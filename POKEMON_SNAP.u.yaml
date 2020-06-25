@@ -1,0 +1,16 @@
+name: "Pokemon Snap (U) [!]"
+# checksums from ROM header offsets 0x10 and 0x14
+# used for auto configuration detection
+checksum1: 0xca12b547
+checksum2: 0x71fa4ee4
+# base filename used for outputs - (please, no spaces)
+basename: "pokemonsnap"
+ranges:
+  # start,  end,      type,     label
+  - [0x000000, 0x000040, "header", "header"]
+  - [0x000040, 0x001000, "bin",    "boot"]
+  - [0x001000, 0x033BD0, "asm", "code_1000", 0x80100400]
+  - [0x033BD0, 0x1000000, "bin", "the_rest"]
+
+labels:
+ - [0x80100400, "EntryPoint"]

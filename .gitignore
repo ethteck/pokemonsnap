@@ -1,1 +1,6 @@
 baserom.z64
+
+bin/
+build/
+
+*.o

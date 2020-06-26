@@ -27,7 +27,7 @@ default: all
 TARGET = pokemonsnap
 LD_SCRIPT = $(TARGET).ld
 
-all: $(TARGET).z64
+all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
 	rm -rf build
@@ -52,18 +52,10 @@ $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 
 # final z64 updates checksum
 $(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
-	$(N64CKSUM) $< $@
+	@cp $< $@
+	#$(N64CKSUM) $@ todo add this sometime
 
-$(BUILD_DIR)/$(TARGET).hex: $(TARGET).z64
-	xxd $< > $@
+verify: $(TARGET).z64
+	md5sum -c checksum.md5
 
-$(BUILD_DIR)/$(TARGET).objdump: $(BUILD_DIR)/$(TARGET).elf
-	$(OBJDUMP) -D $< > $@
-
-test: $(TARGET).z64
-	$(EMULATOR) $(EMU_FLAGS) $<
-
-load: $(TARGET).z64
-	$(LOADER) $(LOADER_FLAGS) $<
-
-.PHONY: all clean default diff test
+.PHONY: all clean default

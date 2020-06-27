@@ -1,5 +1,18 @@
 
 BUILD_DIR = build
+ASM_DIRS := asm
+DATA_DIRS := bin
+
+S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
+DATA_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.bin))
+
+# Object files
+O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
+           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
+           $(foreach file,$(DATA_FILES),$(BUILD_DIR)/$(file:.bin=.o)) \
+           $(foreach file,$(COMPRESSED_FILES),$(BUILD_DIR)/$(file:.yay0=.yay0.o)) \
+           $(foreach file,$(MAP_FILES),$(BUILD_DIR)/$(file:.FS=.FS.o)) \
+           $(foreach file,$(BGM_FILES),$(BUILD_DIR)/$(file:.bgm=.bgm.o))
 
 ##################### Compiler Options #######################
 CROSS = mips-linux-gnu-
@@ -17,10 +30,10 @@ LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.ma
 
 # N64 tools
 TOOLS_DIR = ../tools
-MIO0TOOL = $(TOOLS_DIR)/mio0
-N64CKSUM = $(TOOLS_DIR)/n64cksum
 
 ######################## Targets #############################
+
+$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
 
 default: all
 
@@ -31,21 +44,19 @@ all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
 	rm -rf build
-
-$(MIO0_DIR)/%.mio0: $(MIO0_DIR)/%.bin
-	$(MIO0TOOL) $< $@
+	rm -f pokemonsnap.z64
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
-$(BUILD_DIR)/$(TARGET).o: $(TARGET).s Makefile $(MAKEFILE_SPLIT) $(MIO0_FILES) $(LEVEL_FILES) $(MUSIC_FILES) | $(BUILD_DIR)
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
+	@$(LD) $(LDFLAGS) -o $@ $(O_FILES)
+
+$(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 
-$(BUILD_DIR)/%.o: %.c Makefile.as | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $@ $<
-
-$(BUILD_DIR)/$(TARGET).elf: $(BUILD_DIR)/$(TARGET).o $(LD_SCRIPT)
-	$(LD) $(LDFLAGS) -o $@ $< $(LIBS)
+$(BUILD_DIR)/%.o: %.bin
+	$(LD) -r -b binary -o $@ $<
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJCOPY) $< $@ -O binary
@@ -53,7 +64,6 @@ $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 # final z64 updates checksum
 $(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
 	@cp $< $@
-	#$(N64CKSUM) $@ todo add this sometime
 
 verify: $(TARGET).z64
 	md5sum -c checksum.md5

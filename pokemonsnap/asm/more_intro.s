@@ -10,7 +10,6 @@
 
 .section .text800E18A0_more_intro, "ax"
 
-func_800E18A0:
 /* A083E0 800E18A0 801DE014 */  lb    $sp, -0x1fec($zero)
 /* A083E4 800E18A4 801DE014 */  lb    $sp, -0x1fec($zero)
 /* A083E8 800E18A8 801DDFF8 */  lb    $sp, -0x2008($zero)
@@ -44,7 +43,6 @@ func_800E18A0:
 /* A08458 800E1918 801E0470 */  lb    $fp, 0x470($zero)
 /* A0845C 800E191C 801E04C8 */  lb    $fp, 0x4c8($zero)
 /* A08460 800E1920 801E04C8 */  lb    $fp, 0x4c8($zero)
-func_800E1924:
 /* A08464 800E1924 801E04C8 */  lb    $fp, 0x4c8($zero)
 /* A08468 800E1928 801E04C8 */  lb    $fp, 0x4c8($zero)
 /* A0846C 800E192C 801E04C8 */  lb    $fp, 0x4c8($zero)
@@ -58,13 +56,14 @@ func_800E1924:
 /* A0848C 800E194C 801E0E7C */  lb    $fp, 0xe7c($zero)
 /* A08490 800E1950 801E0E90 */  lb    $fp, 0xe90($zero)
 /* A08494 800E1954 801E0EA4 */  lb    $fp, 0xea4($zero)
-func_800E1958:
 /* A08498 800E1958 801E0EB8 */  lb    $fp, 0xeb8($zero)
 /* A0849C 800E195C 801E0ECC */  lb    $fp, 0xecc($zero)
 /* A084A0 800E1960 801E0EE0 */  lb    $fp, 0xee0($zero)
 /* A084A4 800E1964 801E0EF4 */  lb    $fp, 0xef4($zero)
 /* A084A8 800E1968 801E0F08 */  lb    $fp, 0xf08($zero)
 /* A084AC 800E196C 801E0F1C */  lb    $fp, 0xf1c($zero)
+
+func_800E1970:
 /* A084B0 800E1970 27BDFFC8 */  addiu $sp, $sp, -0x38
 /* A084B4 800E1974 AFBF001C */  sw    $ra, 0x1c($sp)
 /* A084B8 800E1978 0C0DBDE3 */  jal   func_8036F78C

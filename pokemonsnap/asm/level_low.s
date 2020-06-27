@@ -63,7 +63,6 @@ func_800E1924:
 /* 05F0FC 800E194C 3C03800F */  lui   $v1, %hi(D_800F5C68) # $v1, 0x800f
 /* 05F100 800E1950 3C02800F */  lui   $v0, %hi(D_800F5CF8) # $v0, 0x800f
 /* 05F104 800E1954 24425CF8 */  addiu $v0, %lo(D_800F5CF8) # addiu $v0, $v0, 0x5cf8
-func_800E1958:
 /* 05F108 800E1958 24635C68 */  addiu $v1, %lo(D_800F5C68) # addiu $v1, $v1, 0x5c68
 /* 05F10C 800E195C E4225C60 */  swc1  $f2, %lo(D_800F5C60)($at)
 /* 05F110 800E1960 E4225C64 */  swc1  $f2, %lo(D_800F5C64)($at)

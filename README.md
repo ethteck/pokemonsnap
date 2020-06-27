@@ -9,5 +9,3 @@ Note: To use this repository, you must already have a rom for the game.
 3. Build sm64tools: `cd sm64tools && make && cd ..`
 4. Split the rom: `./splitrom.sh`
 5. Re-assemble the rom: `cd pokemonsnap && make`
-
-Currently the crc check is broken, but I'll be working on fixing that shortly. You can diff the baserom with the pokemonsnap.bin to confirm the produced rom is identical.

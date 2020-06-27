@@ -11,7 +11,7 @@ OBJCOPY = $(CROSS)objcopy
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300
 CFLAGS  = -Wall -O2 -mtune=vr4300 -march=vr4300 -G 0 -c
-LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map
+LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
 ####################### Other Tools #########################
 

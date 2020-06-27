@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802C5C20, "ax"
+.section .text802C5C20_valley_code, "ax"
 
 D_802C5C20:
 /* 79F1B0 802C5C20 27BDFFE8 */  addiu $sp, $sp, -0x18

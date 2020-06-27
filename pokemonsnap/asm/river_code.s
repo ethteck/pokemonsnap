@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802D8800, "ax"
+.section .text802D8800_river_code, "ax"
 
 D_802D8800:
 /* 6C05E0 802D8800 27BDFFE8 */  addiu $sp, $sp, -0x18

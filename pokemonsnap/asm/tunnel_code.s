@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802E2500, "ax"
+.section .text802E2500_tunnel_code, "ax"
 
 D_802E2500:
 /* 5DF5D0 802E2500 27BDFF98 */  addiu $sp, $sp, -0x68

@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text803466C0, "ax"
+.section .text803466C0_rainbow_code, "ax"
 
 func_803466C0:
 /* 825E30 803466C0 27BDFF90 */  addiu $sp, $sp, -0x70

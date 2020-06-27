@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text8009A8C0, "ax"
+.section .text8009A8C0_app_render, "ax"
 
 func_8009A8C0:
 /* 046270 8009A8C0 3C01800B */  lui   $at, 0x800b

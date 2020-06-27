@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802BDD00, "ax"
+.section .text802BDD00_cave_code, "ax"
 
 D_802BDD00:
 /* 6401B0 802BDD00 27BDFF98 */  addiu $sp, $sp, -0x68

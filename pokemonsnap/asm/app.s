@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text80000400, "ax"
+.section .text80000400_app, "ax"
 
 /* 001000 80000400 3C088004 */  lui   $t0, %hi(D_80045670) # $t0, 0x8004
 /* 001004 80000404 3C090005 */  lui   $t1, (0x00055250 >> 16) # lui $t1, 5

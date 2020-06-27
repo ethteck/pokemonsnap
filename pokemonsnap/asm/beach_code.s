@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802C40A0, "ax"
+.section .text802C40A0_beach_code, "ax"
 
 D_802C40A0:
 /* 55C110 802C40A0 27BDFF98 */  addiu $sp, $sp, -0x68

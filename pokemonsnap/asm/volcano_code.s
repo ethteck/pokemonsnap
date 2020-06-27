@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text802D60E0, "ax"
+.section .text802D60E0_volcano_code, "ax"
 
 D_802D60E0:
 /* 7272E0 802D60E0 27BDFF98 */  addiu $sp, $sp, -0x68

@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text80350200, "ax"
+.section .text80350200_app_level, "ax"
 
 func_80350200:
 /* 4F0610 80350200 27BDFFE8 */  addiu $sp, $sp, -0x18

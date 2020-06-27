@@ -6,6 +6,7 @@ checksum2: 0x71fa4ee4
 # base filename used for outputs - (please, no spaces)
 basename: "pokemonsnap"
 ranges:
+  # app end? 0x03E6B0
   # start,  end,      type,     label
   - [0x000000, 0x000040, "header", "header"]
   - [0x000040, 0x001000, "bin",    "boot"]

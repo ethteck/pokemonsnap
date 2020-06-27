@@ -15,8 +15,8 @@ SECTIONS
    }
 
    /* 0x80000400 001000-033BD0 [32BD0] */
-   .text80000400 0x80000400 : AT(0x001000) {
-      build/asm/app.o(.text80000400);
+   .text80000400_app 0x80000400 : AT(0x001000) {
+      build/asm/app.o(.text80000400_app);
    }
 
    /* 0x00000000 033BD0-046270 [126A0] */
@@ -25,8 +25,8 @@ SECTIONS
    }
 
    /* 0x8009A8C0 046270-057570 [11300] */
-   .text8009A8C0 0x8009A8C0 : AT(0x046270) {
-      build/asm/app_render.o(.text8009A8C0);
+   .text8009A8C0_app_render 0x8009A8C0 : AT(0x046270) {
+      build/asm/app_render.o(.text8009A8C0_app_render);
    }
 
    /* 0x00000000 057570-05F050 [7AE0] */
@@ -45,8 +45,8 @@ SECTIONS
    }
 
    /* 0x80350200 4F0610-506FB0 [169A0] */
-   .text80350200 0x80350200 : AT(0x4F0610) {
-      build/asm/app_level.o(.text80350200);
+   .text80350200_app_level 0x80350200 : AT(0x4F0610) {
+      build/asm/app_level.o(.text80350200_app_level);
    }
 
    /* 0x00000000 506FB0-55C110 [55160] */
@@ -55,8 +55,8 @@ SECTIONS
    }
 
    /* 0x802C40A0 55C110-563E80 [7D70] */
-   .text802C40A0 0x802C40A0 : AT(0x55C110) {
-      build/asm/beach_code.o(.text802C40A0);
+   .text802C40A0_beach_code 0x802C40A0 : AT(0x55C110) {
+      build/asm/beach_code.o(.text802C40A0_beach_code);
    }
 
    /* 0x00000000 563E80-5DF5D0 [7B750] */
@@ -65,8 +65,8 @@ SECTIONS
    }
 
    /* 0x802E2500 5DF5D0-5EAFD0 [BA00] */
-   .text802E2500 0x802E2500 : AT(0x5DF5D0) {
-      build/asm/tunnel_code.o(.text802E2500);
+   .text802E2500_tunnel_code 0x802E2500 : AT(0x5DF5D0) {
+      build/asm/tunnel_code.o(.text802E2500_tunnel_code);
    }
 
    /* 0x00000000 5EAFD0-6401B0 [551E0] */
@@ -75,8 +75,8 @@ SECTIONS
    }
 
    /* 0x802BDD00 6401B0-6485F0 [8440] */
-   .text802BDD00 0x802BDD00 : AT(0x6401B0) {
-      build/asm/cave_code.o(.text802BDD00);
+   .text802BDD00_cave_code 0x802BDD00 : AT(0x6401B0) {
+      build/asm/cave_code.o(.text802BDD00_cave_code);
    }
 
    /* 0x00000000 6485F0-6C05E0 [77FF0] */
@@ -85,8 +85,8 @@ SECTIONS
    }
 
    /* 0x802D8800 6C05E0-6CA3F0 [9E10] */
-   .text802D8800 0x802D8800 : AT(0x6C05E0) {
-      build/asm/river_code.o(.text802D8800);
+   .text802D8800_river_code 0x802D8800 : AT(0x6C05E0) {
+      build/asm/river_code.o(.text802D8800_river_code);
    }
 
    /* 0x00000000 6CA3F0-7272E0 [5CEF0] */
@@ -95,8 +95,8 @@ SECTIONS
    }
 
    /* 0x802D60E0 7272E0-731E80 [ABA0] */
-   .text802D60E0 0x802D60E0 : AT(0x7272E0) {
-      build/asm/volcano_code.o(.text802D60E0);
+   .text802D60E0_volcano_code 0x802D60E0 : AT(0x7272E0) {
+      build/asm/volcano_code.o(.text802D60E0_volcano_code);
    }
 
    /* 0x00000000 731E80-79F1B0 [6D330] */
@@ -105,8 +105,8 @@ SECTIONS
    }
 
    /* 0x802C5C20 79F1B0-7ABCD0 [CB20] */
-   .text802C5C20 0x802C5C20 : AT(0x79F1B0) {
-      build/asm/valley_code.o(.text802C5C20);
+   .text802C5C20_valley_code 0x802C5C20 : AT(0x79F1B0) {
+      build/asm/valley_code.o(.text802C5C20_valley_code);
    }
 
    /* 0x00000000 7ABCD0-825E30 [7A160] */
@@ -115,8 +115,8 @@ SECTIONS
    }
 
    /* 0x803466C0 825E30-82A280 [4450] */
-   .text803466C0 0x803466C0 : AT(0x825E30) {
-      build/asm/rainbow_code.o(.text803466C0);
+   .text803466C0_rainbow_code 0x803466C0 : AT(0x825E30) {
+      build/asm/rainbow_code.o(.text803466C0_rainbow_code);
    }
 
    /* 0x00000000 82A280-A083E0 [1DE160] */

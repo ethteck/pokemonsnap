@@ -129,14 +129,14 @@ SECTIONS
       build/asm/rainbow_code.o(.text803466C0_rainbow_code);
    }
 
-   /* 0x00000000 82A280-A083E0 [1DE160] */
+   /* 0x00000000 82A280-A084B0 [1DE230] */
    .data0082A280 0x0082A280 : AT(0x82A280) {
       build/bin/pokemonsnap.82A280.o(.data);
    }
 
-   /* 0x800E18A0 A083E0-A08D10 [930] */
-   .text800E18A0_more_intro 0x800E18A0 : AT(0xA083E0) {
-      build/asm/more_intro.o(.text800E18A0_more_intro);
+   /* 0x800E1970 A084B0-A08D10 [860] */
+   .text800E1970_more_intro 0x800E1970 : AT(0xA084B0) {
+      build/asm/more_intro.o(.text800E1970_more_intro);
    }
 
    /* 0x00000000 A08D10-AA0650 [97940] */

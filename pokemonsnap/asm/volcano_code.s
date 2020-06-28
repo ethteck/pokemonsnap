@@ -3390,7 +3390,6 @@ func_802D8FCC:
 /* 72A404 802D9204 02002025 */   move  $a0, $s0
 /* 72A408 802D9208 3C19802E */  lui   $t9, %hi(D_802E1DA4) # $t9, 0x802e
 /* 72A40C 802D920C 27391DA4 */  addiu $t9, %lo(D_802E1DA4) # addiu $t9, $t9, 0x1da4
-func_802D9210:
 /* 72A410 802D9210 AE3900AC */  sw    $t9, 0xac($s1)
 /* 72A414 802D9214 02002025 */  move  $a0, $s0
 /* 72A418 802D9218 0C0D7EFC */  jal   func_8035FBF0

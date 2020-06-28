@@ -29,9 +29,19 @@ SECTIONS
       build/asm/app_render.o(.text8009A8C0_app_render);
    }
 
-   /* 0x00000000 057570-05F050 [7AE0] */
+   /* 0x00000000 057570-05BF20 [49B0] */
    .data00057570 0x00057570 : AT(0x057570) {
       build/bin/pokemonsnap.057570.o(.data);
+   }
+
+   /* 0x800BF080 05BF20-05EF80 [3060] */
+   .text800BF080_more_funcs 0x800BF080 : AT(0x05BF20) {
+      build/asm/more_funcs.o(.text800BF080_more_funcs);
+   }
+
+   /* 0x00000000 05EF80-05F050 [D0] */
+   .data0005EF80 0x0005EF80 : AT(0x05EF80) {
+      build/bin/pokemonsnap.05EF80.o(.data);
    }
 
    /* 0x800E18A0 05F050-064280 [5230] */

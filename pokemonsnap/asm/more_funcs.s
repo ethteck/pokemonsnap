@@ -8,7 +8,7 @@
 .include "globals.inc"
 
 
-.section .text800BF080, "ax"
+.section .text800BF080_more_funcs, "ax"
 
 /* 05BF20 800BF080 3C02800C */  lui   $v0, 0x800c
 /* 05BF24 800BF084 03E00008 */  jr    $ra
@@ -3446,58 +3446,3 @@ func_800C1FD4:
 /* 05EF78 800C20D8 00000000 */   nop   
 
 /* 05EF7C 800C20DC 00000000 */  nop   
-D_800C20E0:
-/* 05EF80 800C20E0 48414C5F */  .byte 0x48, 0x41, 0x4c, 0x5f
-/* 05EF84 800C20E4 534E4150 */  beql  $k0, $t6, .L800D2628
-/* 05EF88 800C20E8 5F56312E */   .byte 0x5f, 0x56, 0x31, 0x2e
-/* 05EF8C 800C20EC 302D3100 */  andi  $t5, $at, 0x3100
-D_800C20F0:
-/* 05EF90 800C20F0 00000000 */  nop   
-D_800C20F4:
-/* 05EF94 800C20F4 00000000 */  nop   
-/* 05EF98 800C20F8 00000000 */  nop   
-/* 05EF9C 800C20FC 00000000 */  nop   
-/* 05EFA0 800C2100 800BFCC4 */  lb    $t3, -0x33c($zero)
-/* 05EFA4 800C2104 800BFCD8 */  lb    $t3, -0x328($zero)
-/* 05EFA8 800C2108 800BFCF0 */  lb    $t3, -0x310($zero)
-/* 05EFAC 800C210C 800BFD08 */  lb    $t3, -0x2f8($zero)
-/* 05EFB0 800C2110 800BFD20 */  lb    $t3, -0x2e0($zero)
-/* 05EFB4 800C2114 800BFD38 */  lb    $t3, -0x2c8($zero)
-/* 05EFB8 800C2118 800BFD50 */  lb    $t3, -0x2b0($zero)
-/* 05EFBC 800C211C 800BFD68 */  lb    $t3, -0x298($zero)
-/* 05EFC0 800C2120 800BFD7C */  lb    $t3, -0x284($zero)
-/* 05EFC4 800C2124 800BFD90 */  lb    $t3, -0x270($zero)
-/* 05EFC8 800C2128 800BFDA8 */  lb    $t3, -0x258($zero)
-/* 05EFCC 800C212C 800BFDC0 */  lb    $t3, -0x240($zero)
-/* 05EFD0 800C2130 800BFDD8 */  lb    $t3, -0x228($zero)
-/* 05EFD4 800C2134 800BFDF0 */  lb    $t3, -0x210($zero)
-/* 05EFD8 800C2138 800BFE08 */  lb    $t3, -0x1f8($zero)
-/* 05EFDC 800C213C 800BFEA8 */  lb    $t3, -0x158($zero)
-/* 05EFE0 800C2140 800BFE1C */  lb    $t3, -0x1e4($zero)
-/* 05EFE4 800C2144 800BFE30 */  lb    $t3, -0x1d0($zero)
-/* 05EFE8 800C2148 800BFE48 */  lb    $t3, -0x1b8($zero)
-/* 05EFEC 800C214C 800BFE60 */  lb    $t3, -0x1a0($zero)
-/* 05EFF0 800C2150 800BFE78 */  lb    $t3, -0x188($zero)
-/* 05EFF4 800C2154 800BFE90 */  lb    $t3, -0x170($zero)
-/* 05EFF8 800C2158 800BFEDC */  lb    $t3, -0x124($zero)
-/* 05EFFC 800C215C 800BFF00 */  lb    $t3, -0x100($zero)
-/* 05F000 800C2160 800BFF28 */  lb    $t3, -0xd8($zero)
-/* 05F004 800C2164 800BFF50 */  lb    $t3, -0xb0($zero)
-/* 05F008 800C2168 800BFF78 */  lb    $t3, -0x88($zero)
-/* 05F00C 800C216C 800BFFA0 */  lb    $t3, -0x60($zero)
-/* 05F010 800C2170 800BFFC8 */  lb    $t3, -0x38($zero)
-/* 05F014 800C2174 800BFFF0 */  lb    $t3, -0x10($zero)
-/* 05F018 800C2178 800C0014 */  lb    $t4, 0x14($zero)
-/* 05F01C 800C217C 800C0038 */  lb    $t4, 0x38($zero)
-/* 05F020 800C2180 800C0060 */  lb    $t4, 0x60($zero)
-/* 05F024 800C2184 800C0088 */  lb    $t4, 0x88($zero)
-/* 05F028 800C2188 800C00B0 */  lb    $t4, 0xb0($zero)
-/* 05F02C 800C218C 800C00D8 */  lb    $t4, 0xd8($zero)
-/* 05F030 800C2190 800C0100 */  lb    $t4, 0x100($zero)
-/* 05F034 800C2194 800C0210 */  lb    $t4, 0x210($zero)
-/* 05F038 800C2198 800C0124 */  lb    $t4, 0x124($zero)
-/* 05F03C 800C219C 800C0148 */  lb    $t4, 0x148($zero)
-/* 05F040 800C21A0 800C0170 */  lb    $t4, 0x170($zero)
-/* 05F044 800C21A4 800C0198 */  lb    $t4, 0x198($zero)
-/* 05F048 800C21A8 800C01C0 */  lb    $t4, 0x1c0($zero)
-/* 05F04C 800C21AC 800C01E8 */  lb    $t4, 0x1e8($zero)

@@ -5327,6 +5327,7 @@ func_80004E7C:
 /* 005A9C 80004E9C 03E00008 */  jr    $ra
 /* 005AA0 80004EA0 00000000 */   nop   
 
+func_80004EA4:
 /* 005AA4 80004EA4 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 005AA8 80004EA8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 005AAC 80004EAC 24040003 */  li    $a0, 3
@@ -5344,6 +5345,7 @@ func_80004E7C:
 /* 005ADC 80004EDC 03E00008 */  jr    $ra
 /* 005AE0 80004EE0 27BD0020 */   addiu $sp, $sp, 0x20
 
+func_80004EE4:
 /* 005AE4 80004EE4 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 005AE8 80004EE8 AFBF0014 */  sw    $ra, 0x14($sp)
 /* 005AEC 80004EEC AFA40020 */  sw    $a0, 0x20($sp)

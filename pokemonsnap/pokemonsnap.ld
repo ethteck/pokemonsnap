@@ -149,9 +149,19 @@ SECTIONS
       build/asm/unk_end_level_2.o(.text801DC8C0_unk_end_level_2);
    }
 
-   /* 0x00000000 8817E0-A084B0 [186CD0] */
+   /* 0x00000000 8817E0-8A70E0 [25900] */
    .data008817E0 0x008817E0 : AT(0x8817E0) {
       build/bin/pokemonsnap.8817E0.o(.data);
+   }
+
+   /* 0x800E18C0 8A70E0-8ABEF0 [4E10] */
+   .text800E18C0_unk_end_level_3 0x800E18C0 : AT(0x8A70E0) {
+      build/asm/unk_end_level_3.o(.text800E18C0_unk_end_level_3);
+   }
+
+   /* 0x00000000 8ABEF0-A084B0 [15C5C0] */
+   .data008ABEF0 0x008ABEF0 : AT(0x8ABEF0) {
+      build/bin/pokemonsnap.8ABEF0.o(.data);
    }
 
    /* 0x800E1970 A084B0-A08D10 [860] */

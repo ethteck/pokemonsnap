@@ -18228,6 +18228,7 @@ func_800AAED0:
 /* 056890 800AAEE0 03E00008 */  jr    $ra
 /* 056894 800AAEE4 AC4F0000 */   sw    $t7, ($v0)
 
+func_800AAEE8:
 /* 056898 800AAEE8 3C06800B */  lui   $a2, %hi(D_800AF3D0) # $a2, 0x800b
 /* 05689C 800AAEEC 24C6F3D0 */  addiu $a2, %lo(D_800AF3D0) # addiu $a2, $a2, -0xc30
 /* 0568A0 800AAEF0 8CC50000 */  lw    $a1, ($a2)
@@ -18239,6 +18240,7 @@ func_800AAED0:
 /* 0568B8 800AAF08 03E00008 */  jr    $ra
 /* 0568BC 800AAF0C ACCF0000 */   sw    $t7, ($a2)
 
+func_800AAF10:
 /* 0568C0 800AAF10 3C01800B */  lui   $at, 0x800b
 /* 0568C4 800AAF14 03E00008 */  jr    $ra
 /* 0568C8 800AAF18 AC20F3D0 */   sw    $zero, -0xc30($at)

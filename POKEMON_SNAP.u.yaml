@@ -1,9 +1,6 @@
 name: "Pokemon Snap (U) [!]"
-# checksums from ROM header offsets 0x10 and 0x14
-# used for auto configuration detection
 checksum1: 0xca12b547
 checksum2: 0x71fa4ee4
-# base filename used for outputs - (please, no spaces)
 basename: "pokemonsnap"
 ranges:
   # app end? 0x03E6B0

@@ -129,9 +129,19 @@ SECTIONS
       build/asm/rainbow_code.o(.text803466C0_rainbow_code);
    }
 
-   /* 0x00000000 82A280-A084B0 [1DE230] */
+   /* 0x00000000 82A280-83D730 [134B0] */
    .data0082A280 0x0082A280 : AT(0x82A280) {
       build/bin/pokemonsnap.82A280.o(.data);
+   }
+
+   /* 0x80369F80 83D730-848BB0 [B480] */
+   .text80369F80_unk_end_level 0x80369F80 : AT(0x83D730) {
+      build/asm/unk_end_level.o(.text80369F80_unk_end_level);
+   }
+
+   /* 0x00000000 848BB0-A084B0 [1BF900] */
+   .data00848BB0 0x00848BB0 : AT(0x848BB0) {
+      build/bin/pokemonsnap.848BB0.o(.data);
    }
 
    /* 0x800E1970 A084B0-A08D10 [860] */

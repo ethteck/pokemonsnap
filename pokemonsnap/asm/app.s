@@ -11968,6 +11968,7 @@ func_8000AB30:
 /* 00B7A4 8000ABA4 03E00008 */  jr    $ra
 /* 00B7A8 8000ABA8 00000000 */   nop   
 
+func_8000ABAC:
 /* 00B7AC 8000ABAC 27BDFFE0 */  addiu $sp, $sp, -0x20
 /* 00B7B0 8000ABB0 AFA50024 */  sw    $a1, 0x24($sp)
 /* 00B7B4 8000ABB4 30A500FF */  andi  $a1, $a1, 0xff
@@ -26825,6 +26826,7 @@ func_80017ADC:
 /* 018B7C 80017F7C 03E00008 */  jr    $ra
 /* 018B80 80017F80 00000000 */   nop   
 
+func_80017F84:
 /* 018B84 80017F84 27BDFF70 */  addiu $sp, $sp, -0x90
 /* 018B88 80017F88 AFBF001C */  sw    $ra, 0x1c($sp)
 /* 018B8C 80017F8C AFB10018 */  sw    $s1, 0x18($sp)

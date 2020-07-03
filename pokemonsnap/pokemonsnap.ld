@@ -94,14 +94,14 @@ SECTIONS
       build/bin/pokemonsnap.6485F0.o(.data);
    }
 
-   /* 0x802D8800 6C05E0-6CA3F0 [9E10] */
+   /* 0x802D8800 6C05E0-6CA3F4 [9E14] */
    .text802D8800_river_code 0x802D8800 : AT(0x6C05E0) {
       build/asm/river_code.o(.text802D8800_river_code);
    }
 
-   /* 0x00000000 6CA3F0-7272E0 [5CEF0] */
-   .data006CA3F0 0x006CA3F0 : AT(0x6CA3F0) {
-      build/bin/pokemonsnap.6CA3F0.o(.data);
+   /* 0x00000000 6CA3F4-7272E0 [5CEEC] */
+   .data006CA3F4 0x006CA3F4 : AT(0x6CA3F4) {
+      build/bin/pokemonsnap.6CA3F4.o(.data);
    }
 
    /* 0x802D60E0 7272E0-731E80 [ABA0] */

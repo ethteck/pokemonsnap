@@ -14,24 +14,24 @@ SECTIONS
       build/bin/pokemonsnap.000040.boot.o(.data);
    }
 
-   /* 0x80000400 001000-033BD0 [32BD0] */
+   /* 0x80000400 001000-033BD4 [32BD4] */
    .text80000400_app 0x80000400 : AT(0x001000) {
       build/asm/app.o(.text80000400_app);
    }
 
-   /* 0x00000000 033BD0-046270 [126A0] */
-   .data00033BD0 0x00033BD0 : AT(0x033BD0) {
-      build/bin/pokemonsnap.033BD0.o(.data);
+   /* 0x00000000 033BD4-046270 [1269C] */
+   .data00033BD4 0x00033BD4 : AT(0x033BD4) {
+      build/bin/pokemonsnap.033BD4.o(.data);
    }
 
-   /* 0x8009A8C0 046270-057570 [11300] */
+   /* 0x8009A8C0 046270-057574 [11304] */
    .text8009A8C0_app_render 0x8009A8C0 : AT(0x046270) {
       build/asm/app_render.o(.text8009A8C0_app_render);
    }
 
-   /* 0x00000000 057570-05BF20 [49B0] */
-   .data00057570 0x00057570 : AT(0x057570) {
-      build/bin/pokemonsnap.057570.o(.data);
+   /* 0x00000000 057574-05BF20 [49AC] */
+   .data00057574 0x00057574 : AT(0x057574) {
+      build/bin/pokemonsnap.057574.o(.data);
    }
 
    /* 0x800BF080 05BF20-05EF80 [3060] */
@@ -84,14 +84,14 @@ SECTIONS
       build/bin/pokemonsnap.5EAFD0.o(.data);
    }
 
-   /* 0x802BDD00 6401B0-6485F0 [8440] */
+   /* 0x802BDD00 6401B0-6485F4 [8444] */
    .text802BDD00_cave_code 0x802BDD00 : AT(0x6401B0) {
       build/asm/cave_code.o(.text802BDD00_cave_code);
    }
 
-   /* 0x00000000 6485F0-6C05E0 [77FF0] */
-   .data006485F0 0x006485F0 : AT(0x6485F0) {
-      build/bin/pokemonsnap.6485F0.o(.data);
+   /* 0x00000000 6485F4-6C05E0 [77FEC] */
+   .data006485F4 0x006485F4 : AT(0x6485F4) {
+      build/bin/pokemonsnap.6485F4.o(.data);
    }
 
    /* 0x802D8800 6C05E0-6CA3F4 [9E14] */
@@ -134,14 +134,14 @@ SECTIONS
       build/bin/pokemonsnap.82A280.o(.data);
    }
 
-   /* 0x80369F80 83D730-848BB0 [B480] */
+   /* 0x80369F80 83D730-848BB4 [B484] */
    .text80369F80_unk_end_level 0x80369F80 : AT(0x83D730) {
       build/asm/unk_end_level.o(.text80369F80_unk_end_level);
    }
 
-   /* 0x00000000 848BB0-87A0B0 [31500] */
-   .data00848BB0 0x00848BB0 : AT(0x848BB0) {
-      build/bin/pokemonsnap.848BB0.o(.data);
+   /* 0x00000000 848BB4-87A0B0 [314FC] */
+   .data00848BB4 0x00848BB4 : AT(0x848BB4) {
+      build/bin/pokemonsnap.848BB4.o(.data);
    }
 
    /* 0x801DC8C0 87A0B0-8817E0 [7730] */
@@ -174,14 +174,14 @@ SECTIONS
       build/bin/pokemonsnap.A08D10.o(.data);
    }
 
-   /* 0x800E18A0 AA0650-AA0A50 [400] */
+   /* 0x800E18A0 AA0650-AA0A54 [404] */
    .text800E18A0_intro_code 0x800E18A0 : AT(0xAA0650) {
       build/asm/intro_code.o(.text800E18A0_intro_code);
    }
 
-   /* 0x00000000 AA0A50-1000000 [55F5B0] */
-   .data00AA0A50 0x00AA0A50 : AT(0xAA0A50) {
-      build/bin/pokemonsnap.AA0A50.o(.data);
+   /* 0x00000000 AA0A54-1000000 [55F5AC] */
+   .data00AA0A54 0x00AA0A54 : AT(0xAA0A54) {
+      build/bin/pokemonsnap.AA0A54.o(.data);
    }
 
    /* Discard everything not specifically mentioned above. */

@@ -291,3 +291,4 @@ func_800E1C5C:
 /* AA0A44 800E1C94 8FBF0014 */  lw    $ra, 0x14($sp)
 /* AA0A48 800E1C98 27BD0018 */  addiu $sp, $sp, 0x18
 /* AA0A4C 800E1C9C 03E00008 */  jr    $ra
+/* AA0A50 800E1CA0 00000000 */   nop

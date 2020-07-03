@@ -56708,3 +56708,4 @@ func_80032ED0:
 /* 033BC4 80032FC4 8FB1001C */  lw    $s1, 0x1c($sp)
 /* 033BC8 80032FC8 8FB20020 */  lw    $s2, 0x20($sp)
 /* 033BCC 80032FCC 03E00008 */  jr    $ra
+/* 033BD0 80032FD0 27BD0038 */   addiu $sp, $sp, 0x38

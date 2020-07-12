@@ -1,6 +1,7 @@
 .vscode/
 bin/
 build/
+__pycache__/
 
 *.o
 *.z64

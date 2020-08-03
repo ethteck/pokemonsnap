@@ -1,3 +1,6 @@
 [submodule "sm64tools"]
 	path = sm64tools
 	url = https://github.com/queueRAM/sm64tools
+[submodule "tools/n64splat"]
+	path = tools/n64splat
+	url = https://github.com/ethteck/n64splat

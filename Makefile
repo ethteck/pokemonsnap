@@ -22,7 +22,7 @@ LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
-ASFLAGS = -EB -mtune=vr4300 -march=vr4300
+ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -Wall -O2 -mtune=vr4300 -march=vr4300 -G 0 -c
 LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
@@ -45,6 +45,9 @@ all: $(BUILD_DIR) $(TARGET).z64 verify
 clean:
 	rm -rf build
 	rm -f pokemonsnap.z64
+
+setup:
+	./tools/n64splat/split.py baserom.z64 tools/splat.yaml .
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)

@@ -2,7 +2,9 @@
 BUILD_DIR = build
 ASM_DIRS := asm
 DATA_DIRS := bin
+SRC_DIRS := src
 
+C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 DATA_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.bin))
 
@@ -17,19 +19,16 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
 ##################### Compiler Options #######################
 CROSS = mips-linux-gnu-
 AS = $(CROSS)as
-CC = $(CROSS)gcc
 LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
+CC         := $(QEMU_IRIX) -L tools/ido7.1_compiler tools/ido7.1_compiler/usr/bin/cc
+CC_OLD     := $(QEMU_IRIX) -L tools/ido5.3_compiler tools/ido5.3_compiler/usr/bin/cc
+
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
-CFLAGS  = -Wall -O2 -mtune=vr4300 -march=vr4300 -G 0 -c
+CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -O2 -D _LANGUAGE_C
 LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
-
-####################### Other Tools #########################
-
-# N64 tools
-TOOLS_DIR = ../tools
 
 ######################## Targets #############################
 
@@ -43,17 +42,23 @@ LD_SCRIPT = $(TARGET).ld
 all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
-	rm -rf build
+	rm -rf $(BUILD_DIR)
 	rm -f pokemonsnap.z64
 
 setup:
+	rm -rf $(ASM_DIRS) $(DATA_DIRS)
+	git submodule update --init --recursive
 	./tools/n64splat/split.py baserom.z64 tools/splat.yaml .
 
 $(BUILD_DIR):
+	echo $(C_FILES)
 	mkdir $(BUILD_DIR)
 
 $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
 	@$(LD) $(LDFLAGS) -o $@ $(O_FILES)
+
+$(BUILD_DIR)/%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $^
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<

@@ -1,0 +1,15 @@
+#include "ultra64.h"
+
+s32 func_800E3FF0(u32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    if ((arg0 < arg1) || (arg2 < arg0)) {
+        return 0;
+    }
+    return 1;
+}
+
+s32 func_800E4018(s32 arg0, s32 arg1) {
+    if (arg0 == 0) {
+        return 0;
+    }
+    return 1;
+}

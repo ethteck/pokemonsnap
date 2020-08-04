@@ -308,6 +308,7 @@ def search_map_file(fn_name):
         cands = []
         last_line = ""
         for line in lines:
+            print(line)
             if line.startswith(" .text"):
                 cur_objfile = line.split()[3]
             if "load address" in line:

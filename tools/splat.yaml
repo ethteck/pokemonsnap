@@ -6,163 +6,248 @@ basename: pokemonsnap
 segments:
   - [0x000000, "bin", "header"]
   - [0x000040, "bin", "boot"]
-  - [0x001000, "asm", "app", 0x80000400]
-  - [0x001520, "asm"]
-  - [0x005FF0, "asm"]
-  - [0x008450, "asm"]
-  - [0x008820, "asm"]
-  - [0x008A80, "asm"]
-  - [0x00C2F0, "asm"]
-  - [0x00C5B0, "asm"]
-  - [0x00D150, "asm"]
-  - [0x011E30, "asm"]
-  - [0x01A560, "asm"]
-  - [0x01AF60, "asm"]
-  - [0x020940, "asm"]
-  - [0x0245DC, "asm"]
-  - [0x026D40, "asm"]
-  - [0x0294C0, "asm"]
-  - [0x029570, "asm"]
-  - [0x0295C0, "asm"]
-  - [0x029610, "asm"]
-  - [0x02AF90, "asm"]
-  - [0x02B060, "asm"]
-  - [0x02B0C0, "asm"]
-  - [0x02B100, "asm"]
-  - [0x02B120, "asm"]
-  - [0x02B1B0, "asm"]
-  - [0x02B240, "asm"]
-  - [0x02B2A0, "asm"]
-  - [0x02EA70, "asm"]
-  - [0x02EB10, "asm"]
-  - [0x02ED30, "asm"]
-  - [0x032D60, "asm"]
-  - [0x032DF0, "asm"]
-  - [0x032ED0, "asm"]
-  - [0x033040, "asm"]
-  - [0x033110, "asm"]
-  - [0x0331B0, "asm"]
-  - [0x033230, "asm"]
-  - [0x033380, "asm"]
-  - [0x033580, "asm"]
-  - [0x033AD0, "asm"]
+  - name: app
+    type: code
+    start: 0x1000
+    vram: 0x80000400
+    files:
+    - [0x001000, "asm"]
+    - [0x001520, "asm"]
+    - [0x005FF0, "asm"]
+    - [0x008450, "asm"]
+    - [0x008820, "asm"]
+    - [0x008A80, "asm"]
+    - [0x00C2F0, "asm"]
+    - [0x00C5B0, "asm"]
+    - [0x00D150, "asm"]
+    - [0x011E30, "asm"]
+    - [0x01A560, "asm"]
+    - [0x01AF60, "asm"]
+    - [0x020940, "asm"]
+    - [0x0245DC, "asm"]
+    - [0x026D40, "asm"]
+    - [0x0294C0, "asm"]
+    - [0x029570, "asm"]
+    - [0x0295C0, "asm"]
+    - [0x029610, "asm"]
+    - [0x02AF90, "asm"]
+    - [0x02B060, "asm"]
+    - [0x02B0C0, "asm"]
+    - [0x02B100, "asm"]
+    - [0x02B120, "asm"]
+    - [0x02B1B0, "asm"]
+    - [0x02B240, "asm"]
+    - [0x02B2A0, "asm"]
+    - [0x02EA70, "asm"]
+    - [0x02EB10, "asm"]
+    - [0x02ED30, "asm"]
+    - [0x032D60, "asm"]
+    - [0x032DF0, "asm"]
+    - [0x032ED0, "asm"]
+    - [0x033040, "asm"]
+    - [0x033110, "asm"]
+    - [0x0331B0, "asm"]
+    - [0x033230, "asm"]
+    - [0x033380, "asm"]
+    - [0x033580, "asm"]
+    - [0x033AD0, "asm"]
   - [0x033BE0, "bin"]
-  - [0x046270, "asm", "app_render", 0x8009A8C0]
-  - [0x047330, "asm"]
-  - [0x047380, "asm"]
-  - [0x04D880, "asm"]
-  - [0x052D70, "asm"]
-  - [0x056880, "asm"]
-  - [0x0568D0, "asm"]
+  - name: app_render
+    type: code
+    start: 0x046270
+    vram: 0x8009A8C0
+    files:
+    - [0x046270, "asm"]
+    - [0x047330, "c"]
+    - [0x047380, "asm"]
+    - [0x04D880, "asm"]
+    - [0x052D70, "asm"]
+    - [0x056880, "c"]
+    - [0x0568D0, "asm"]
   - [0x057580, "bin"]
-  - [0x05BF20, "asm", "more_funcs", 0x800BF080]
+  - name: more_funcs
+    type: code
+    start: 0x05BF20
+    vram: 0x800BF080
+    files:
+    - [0x05BF20, "asm"]
   - [0x05EF80, "bin"]
-  - [0x05F050, "asm", "level_low", 0x800E18A0]
-  - [0x0617A0, "asm"]
-  - [0x0617F0, "asm"]
+  - name: level_low
+    type: code
+    start: 0x05F050
+    vram: 0x800E18A0
+    files:
+    - [0x05F050, "asm"]
+    - [0x0617A0, "c"]
+    - [0x0617F0, "asm"]
   - [0x064280, "bin"]
-  - [0x4F0610, "asm", "app_level", 0x80350200]
-  - [0x4F8B30, "asm"]
-  - [0x4FCFC0, "asm"]
-  - [0x503C10, "asm"]
-  - [0x5047F0, "asm"]
-  - [0x506290, "asm"]
-  - [0x5064F0, "asm"]
-  - [0x506DD0, "asm"]
+  - name: app_level
+    type: code
+    start: 0x4F0610
+    vram: 0x80350200
+    files:
+    - [0x4F0610, "asm"]
+    - [0x4F8B30, "asm"]
+    - [0x4FCFC0, "asm"]
+    - [0x503C10, "asm"]
+    - [0x5047F0, "asm"]
+    - [0x506290, "asm"]
+    - [0x5064F0, "asm"]
+    - [0x506DD0, "asm"]
   - [0x506FB0, "bin"]
-  - [0x55C110, "asm", "beach_code", 0x802C40A0]
-  - [0x55C870, "asm"]
-  - [0x55D1C0, "asm"]
-  - [0x55F350, "asm"]
-  - [0x55FB80, "asm"]
-  - [0x560620, "asm"]
-  - [0x561B30, "asm"]
-  - [0x562110, "asm"]
-  - [0x562370, "asm"]
+  - name: beach_code
+    type: code
+    start: 0x55C110
+    vram: 0x802C40A0
+    files:
+    - [0x55C110, "asm"]
+    - [0x55C870, "asm"]
+    - [0x55D1C0, "asm"]
+    - [0x55F350, "asm"]
+    - [0x55FB80, "asm"]
+    - [0x560620, "asm"]
+    - [0x561B30, "asm"]
+    - [0x562110, "asm"]
+    - [0x562370, "asm"]
   - [0x563E80, "bin"]
-  - [0x5DF5D0, "asm", "tunnel_code", 0x802E2500]
-  - [0x5E0A70, "asm"]
-  - [0x5E1C10, "asm"]
-  - [0x5E21C0, "asm"]
-  - [0x5E4750, "asm"]
-  - [0x5E64A0, "asm"]
-  - [0x5E8930, "asm"]
-  - [0x5EA6F0, "asm"]
+  - name: tunnel_code
+    type: code
+    start: 0x5DF5D0
+    vram: 0x802E2500
+    files:
+    - [0x5DF5D0, "asm"]
+    - [0x5E0A70, "asm"]
+    - [0x5E1C10, "asm"]
+    - [0x5E21C0, "asm"]
+    - [0x5E4750, "asm"]
+    - [0x5E64A0, "asm"]
+    - [0x5E8930, "asm"]
+    - [0x5EA6F0, "asm"]
   - [0x5EAFD0, "bin"]
-  - [0x6401B0, "asm", "cave_code", 0x802BDD00]
-  - [0x640900, "asm"]
-  - [0x640CD0, "asm"]
-  - [0x6414D0, "asm"]
-  - [0x641A50, "asm"]
-  - [0x642290, "asm"]
-  - [0x6438F0, "asm"]
-  - [0x645740, "asm"]
-  - [0x646B50, "asm"]
-  - [0x646EA0, "asm"]
-  - [0x647360, "asm"]
+  - name: cave_code
+    type: code
+    start: 0x6401B0
+    vram: 0x802BDD00
+    files:
+    - [0x6401B0, "asm"]
+    - [0x640900, "asm"]
+    - [0x640CD0, "asm"]
+    - [0x6414D0, "asm"]
+    - [0x641A50, "asm"]
+    - [0x642290, "asm"]
+    - [0x6438F0, "asm"]
+    - [0x645740, "asm"]
+    - [0x646B50, "asm"]
+    - [0x646EA0, "asm"]
+    - [0x647360, "asm"]
   - [0x648600, "bin"]
-  - [0x6C05E0, "asm", "river_code", 0x802D8800]
-  - [0x6C1090, "asm"]
-  - [0x6C22E0, "asm"]
-  - [0x6C26F0, "asm"]
-  - [0x6C3980, "asm"]
-  - [0x6C4CD0, "asm"]
-  - [0x6C66E0, "asm"]
-  - [0x6C6A70, "asm"]
-  - [0x6C7CD0, "asm"]
-  - [0x6C85D0, "asm"]
-  - [0x6C9EB0, "asm"]
+  - name: river_code
+    type: code
+    start: 0x6C05E0
+    vram: 0x802D8800
+    files:
+    - [0x6C05E0, "asm"]
+    - [0x6C1090, "asm"]
+    - [0x6C22E0, "asm"]
+    - [0x6C26F0, "asm"]
+    - [0x6C3980, "asm"]
+    - [0x6C4CD0, "asm"]
+    - [0x6C66E0, "asm"]
+    - [0x6C6A70, "asm"]
+    - [0x6C7CD0, "asm"]
+    - [0x6C85D0, "asm"]
+    - [0x6C9EB0, "asm"]
   - [0x6CA400, "bin"]
-  - [0x7272E0, "asm", "volcano_code", 0x802D60E0]
-  - [0x729CA0, "asm"]
-  - [0x72AF00, "asm"]
-  - [0x72BCE0, "asm"]
-  - [0x72C7A0, "asm"]
-  - [0x72D260, "asm"]
-  - [0x72E4E0, "asm"]
-  - [0x72E9F0, "asm"]
-  - [0x72F100, "asm"]
-  - [0x72F590, "asm"]
-  - [0x72F770, "asm"]
-  - [0x72FFE0, "asm"]
-  - [0x730480, "asm"]
+  - name: volcano_code
+    type: code
+    start: 0x7272E0
+    vram: 0x802D60E0
+    files:
+    - [0x7272E0, "asm"]
+    - [0x729CA0, "asm"]
+    - [0x72AF00, "asm"]
+    - [0x72BCE0, "asm"]
+    - [0x72C7A0, "asm"]
+    - [0x72D260, "asm"]
+    - [0x72E4E0, "asm"]
+    - [0x72E9F0, "asm"]
+    - [0x72F100, "asm"]
+    - [0x72F590, "asm"]
+    - [0x72F770, "asm"]
+    - [0x72FFE0, "asm"]
+    - [0x730480, "asm"]
   - [0x731E80, "bin"]
-  - [0x79F1B0, "asm", "valley_code", 0x802C5C20]
-  - [0x7A00C0, "asm"]
-  - [0x7A1850, "asm"]
-  - [0x7A2B50, "asm"]
-  - [0x7A2DD0, "asm"]
-  - [0x7A3560, "asm"]
-  - [0x7A3800, "asm"]
-  - [0x7A4610, "asm"]
-  - [0x7A5F10, "asm"]
-  - [0x7A6D50, "asm"]
-  - [0x7A7410, "asm"]
-  - [0x7A7790, "asm"]
-  - [0x7A8030, "asm"]
-  - [0x7AA790, "asm"]
-  - [0x7ABB10, "asm"]
+  - name: valley_code
+    type: code
+    start: 0x79F1B0
+    vram: 0x802C5C20
+    files:
+    - [0x79F1B0, "asm"]
+    - [0x7A00C0, "asm"]
+    - [0x7A1850, "asm"]
+    - [0x7A2B50, "asm"]
+    - [0x7A2DD0, "asm"]
+    - [0x7A3560, "asm"]
+    - [0x7A3800, "asm"]
+    - [0x7A4610, "asm"]
+    - [0x7A5F10, "asm"]
+    - [0x7A6D50, "asm"]
+    - [0x7A7410, "asm"]
+    - [0x7A7790, "asm"]
+    - [0x7A8030, "asm"]
+    - [0x7AA790, "asm"]
+    - [0x7ABB10, "asm"]
   - [0x7ABCD0, "bin"]
-  - [0x825E30, "asm", "rainbow_code", 0x803466C0]
-  - [0x826710, "asm"]
-  - [0x8288F0, "asm"]
-  - [0x829670, "asm"]
-  - [0x829900, "asm"]
+  - name: rainbow_code
+    type: code
+    start: 0x825E30
+    vram: 0x803466C0
+    files:
+    - [0x825E30, "asm"]
+    - [0x826710, "asm"]
+    - [0x8288F0, "asm"]
+    - [0x829670, "asm"]
+    - [0x829900, "asm"]
   - [0x82A280, "bin"]
-  - [0x83D730, "asm", "unk_end_level", 0x80369F80]
-  - [0x843790, "asm"]
-  - [0x8486E0, "asm"]
+  - name: unk_end_level
+    type: code
+    start: 0x83D730
+    vram: 0x80369F80
+    files:
+    - [0x83D730, "asm"]
+    - [0x843790, "asm"]
+    - [0x8486E0, "asm"]
   - [0x848BC0, "bin"]
-  - [0x87A0B0, "asm", "unk_end_level_2", 0x801DC8C0]
-  - [0x87A330, "asm"]
-  - [0x87D1A0, "asm"]
+  - name: unk_end_level_2
+    type: code
+    start: 0x87A0B0
+    vram: 0x801DC8C0
+    files:
+    - [0x87A0B0, "asm"]
+    - [0x87A330, "asm"]
+    - [0x87D1A0, "asm"]
   - [0x8817E0, "bin"]
-  - [0x8A70E0, "asm", "unk_end_level_3", 0x800E18C0]
-  - [0x8A8A50, "asm"]
-  - [0x8AAF60, "asm"]
+  - name: unk_end_level_3
+    type: code
+    start: 0x8A70E0
+    vram: 0x800E18C0
+    files:
+    - [0x8A70E0, "asm"]
+    - [0x8A8A50, "asm"]
+    - [0x8AAF60, "asm"]
   - [0x8ABEF0, "bin"]
-  - [0xA084B0, "asm", "more_intro", 0x800E1970]
+  - name: unk_end_level_3
+    type: code
+    start: 0xA084B0
+    vram: 0x800E1970
+    files:
+    - [0xA084B0, "asm"]
   - [0xA08D10, "bin"]
-  - [0xAA0650, "asm", "intro_code", 0x800E18A0]
+  - name: intro_code
+    type: code
+    start: 0xAA0650
+    vram: 0x800E18A0
+    files:
+    - [0xAA0650, "asm"]
   - [0xAA0A60, "bin"]
   - [0x1000000]

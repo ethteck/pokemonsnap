@@ -197,7 +197,7 @@ segments:
     - [0x7A7790, "asm"]
     - [0x7A8030, "asm"]
     - [0x7AA790, "asm"]
-    - [0x7ABB10, "asm"]
+    - [0x7ABB10, "c"]
   - [0x7ABCD0, "bin"]
   - name: rainbow_code
     type: code

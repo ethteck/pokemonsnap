@@ -510,4 +510,19 @@ typedef struct {
     /* 0x58 */ gobjData data;
 } GObj;
 
+typedef GObj* (*animalInit)(s32 arg0, s32 id, struct roomGFX* roomA, struct roomGFX* roomB, struct objectSpawn* spawn);
+typedef void (*gfxFunc)(struct GObj*);
+
+typedef struct {
+    s32 value;
+    void (*func)(GObj*);
+} randomTransition;
+
+typedef struct {
+    /* 0x00 */ u32 id;
+    /* 0x04 */ animalInit* init;
+    /* 0x08 */ void* update;
+    /* 0x0C */ void* kill;
+} animalDef;
+
 #endif

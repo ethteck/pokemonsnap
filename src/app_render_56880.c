@@ -1,4 +1,4 @@
-#include "ultra64.h"
+#include "common.h"
 
 extern s32 D_800AF3D0;
 

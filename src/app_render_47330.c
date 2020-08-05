@@ -1,17 +1,14 @@
-#include "ultra64.h"
+#include "common.h"
 
-extern s32 gLevelID;
-extern s32 gLevelNames[6];
-
-s32 func_8009B980(void) {
+s32 getLevelId(void) {
     return gLevelID;
 }
 
-void func_8009B98C(s32 levelID) {
+void setLevelId(s32 levelID) {
     gLevelID = levelID;
 }
 
-s8* func_8009B998(s32 levelIdx) {
+s8* getLevelName(s32 levelIdx) {
     if (levelIdx < 0 || levelIdx >= 7) {
         return 0;
     }

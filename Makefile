@@ -28,7 +28,7 @@ CC_OLD     := $(QEMU_IRIX) -L tools/ido5.3_compiler tools/ido5.3_compiler/usr/bi
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -O2 -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+LDFLAGS = -T undefined_syms.txt -T undefined_funcs.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
 ######################## Targets #############################
 
@@ -42,14 +42,16 @@ LD_SCRIPT = $(TARGET).ld
 all: $(BUILD_DIR) $(TARGET).z64 verify
 
 clean:
-	rm -rf $(BUILD_DIR)
-	rm -f pokemonsnap.z64
+	rm -rf $(BUILD_DIR) $(TARGET).z64
 
-setup:
-	rm -rf $(ASM_DIRS) $(DATA_DIRS)
+submodules:
 	git submodule update --init --recursive
+
+split:
 	./tools/n64splat/split.py baserom.z64 tools/splat.yaml .
 
+setup: clean submodules split
+	
 $(BUILD_DIR):
 	echo $(C_FILES)
 	mkdir $(BUILD_DIR)
@@ -76,4 +78,4 @@ $(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
 verify: $(TARGET).z64
 	md5sum -c checksum.md5
 
-.PHONY: all clean default
+.PHONY: all clean default split setup

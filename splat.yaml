@@ -12,6 +12,7 @@ segments:
     vram: 0x80000400
     files:
     - [0x001000, "asm"]
+    - [0x001060, "asm"]
     - [0x001520, "asm"]
     - [0x005FF0, "asm"]
     - [0x008450, "asm"]
@@ -233,21 +234,81 @@ segments:
     vram: 0x800E18C0
     files:
     - [0x8A70E0, "asm"]
+    - [0x8A7360, "asm"]
     - [0x8A8A50, "asm"]
     - [0x8AAF60, "asm"]
   - [0x8ABEF0, "bin"]
-  - name: unk_end_level_3
+  - name: unk_end_level_4
+    type: code
+    start: 0x98C330
+    vram: 0x801DC8C0
+    files:
+      - [0x98C330, "asm"]
+  - [0x994E10, "bin"]
+  - name: unk_end_level_5
+    type: code
+    start: 0x9A6B10
+    vram: 0x801DC8C0
+    files:
+      - [0x9A6B10, "asm"]
+      - [0x9A6F70, "asm"]
+      - [0x9ADAD0, "asm"]
+  - [0x9AE430, "bin"]
+  - name: unk_end_level_6
+    type: code
+    start: 0x9D3230
+    vram: 0x801DC8C0
+    files:
+      - [0x9D3230, "asm"]
+      - [0x9D3660, "asm"]
+  - [0x9DA580, "bin"]
+  - name: unk_end_level_7
+    type: code
+    start: 0x9FA580
+    vram: 0x801DC8C0
+    files:
+      - [0x9FA580, "asm"]
+      - [0x9FAC10, "asm"]
+      - [0x9FEC10, "asm"]
+  - [0x9FF2E0, "bin"]
+  - name: unk_end_level_8
     type: code
     start: 0xA084B0
     vram: 0x800E1970
     files:
-    - [0xA084B0, "asm"]
+      - [0xA084B0, "asm"]
   - [0xA08D10, "bin"]
+  - name: unk_level_end_9
+    type: code
+    start: 0xA08E30
+    vram: 0x800E18A0
+    files:
+      - [0xA08E30, "asm"]
+      - [0xA0D4D0, "asm"]
+      - [0xA0E190, "asm"]
+  - [0xA0F660, "bin"]
+  - name: unk_level_end_10
+    type: code
+    start: 0xA5CC50
+    vram: 0x800E18A0
+    files:
+      - [0xA5CC50, "asm"]
+      - [0xA5D5B0, "asm"]
+  - [0xA5E3A0, "bin"]
+  - name: unk_level_end_11
+    type: code
+    start: 0xA93460
+    vram: 0x801DC8A0
+    files:
+      - [0xA93460, "asm"]
+      - [0xA937C0, "asm"]
+      - [0xA94940, "asm"]
+  - [0xA95760, "bin"]
   - name: intro_code
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
     files:
-    - [0xAA0650, "asm"]
+      - [0xAA0650, "asm"]
   - [0xAA0A60, "bin"]
   - [0x1000000]

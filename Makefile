@@ -48,7 +48,7 @@ submodules:
 	git submodule update --init --recursive
 
 split:
-	./tools/n64splat/split.py baserom.z64 tools/splat.yaml .
+	./tools/n64splat/split.py baserom.z64 splat.yaml .
 
 setup: clean submodules split
 	

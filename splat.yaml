@@ -173,7 +173,7 @@ segments:
     - [0x72E4E0, "asm"]
     - [0x72E9F0, "asm"]
     - [0x72F100, "asm"]
-    - [0x72F590, "asm"]
+    - [0x72F590, "c"]
     - [0x72F770, "asm"]
     - [0x72FFE0, "asm"]
     - [0x730480, "asm"]

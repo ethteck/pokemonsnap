@@ -21,12 +21,13 @@
 
 /* 0x802D2580 */ void spawnStaryuAtGeo(GObj*);
 /* 0x802D25B0 */ void spawnStarmieAtGeo(GObj*);
+/* 0x802DE52C */ void spawnKoffingSmoke(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
 
 /* 0x8035EC58 */ void updateAnimalState(GObj* obj, gfxFunc* state);
 /* 0x8035ECAC */ void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
 /* 0x8035EDF8 */ void runPathProcess(GObj* obj, gfxFunc* func);
-/* 0x8035F138 */ void setAnimalAnimation(s32, animationHeader*);
-/* 0x8035F15C */ void forceAnimalAnimation(s32, animationHeader*);
+/* 0x8035F138 */ void setAnimalAnimation(GObj*, animationHeader*);
+/* 0x8035F15C */ void forceAnimalAnimation(GObj*, animationHeader*);
 /* 0x8035FBF0 */ void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
 /* 0x8035FD70 */ void runAnimalCleanup(GObj* obj);
 /* 0x8035FE24 */ GObj* addAnimalAtGeo(GObj* obj, u32 id, animalDef* def);

@@ -53,6 +53,6 @@ void func_802DE4C0(GObj* obj) {
     endGObjProcess(NULL);
 }
 
-void func_802DE52C(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn) {
+void spawnKoffingSmoke(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &koffingSmokeData);
 }

@@ -1,6 +1,6 @@
+#include "ultra64.h"
 #include "functions.h"
 #include "variables.h"
-#include "ultra64.h"
 
 void osYieldThread() {
     register u32 prevInt = __osDisableInt();

@@ -2,7 +2,7 @@
 BUILD_DIR = build
 ASM_DIRS := asm
 DATA_DIRS := bin
-SRC_DIRS := src
+SRC_DIRS := $(shell find src -type d)
 
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
@@ -27,12 +27,16 @@ CC         := $(QEMU_IRIX) -L tools/ido7.1_compiler tools/ido7.1_compiler/usr/bi
 CC_OLD     := $(QEMU_IRIX) -L tools/ido5.3_compiler tools/ido5.3_compiler/usr/bin/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
-CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -O2 -D _LANGUAGE_C
+CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
 LDFLAGS = -T undefined_syms.txt -T undefined_funcs.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+
+OPTFLAGS := -O2
 
 ######################## Targets #############################
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
+
+build/src/os/O1/%.o: OPTFLAGS := -O1
 
 default: all
 
@@ -60,7 +64,7 @@ $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
 	@$(LD) $(LDFLAGS) -o $@ $(O_FILES)
 
 $(BUILD_DIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $^
+	$(CC) -c $(CFLAGS) $(OPTFLAGS) -o $@ $^
 
 $(BUILD_DIR)/%.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<

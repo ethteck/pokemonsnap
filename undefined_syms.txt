@@ -3,6 +3,7 @@ __osRunQueue = 0x80042CB8;
 
 gLevelID = 0x800AC0C0;
 gLevelNames = 0x800AC0C4;
+gPhotoCount = 0x800AC0E0;
 
 extraStaryuDef = 0x802ECAE0;
 extraStarmieDef = 0x802ECAF0;
@@ -14,3 +15,5 @@ D_802E3208 = 0x802E3208;
 D_802E321C = 0x802E321C;
 koffingSmokeData = 0x802E3254;
 D_802ECB2C = 0x802ECB2C;
+
+cartGObj = 0x803937F0;

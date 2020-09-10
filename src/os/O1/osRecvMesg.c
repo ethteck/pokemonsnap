@@ -10,7 +10,7 @@ s32 osRecvMesg(OSMesgQueue* mq, OSMesg* msg, s32 flag) {
             __osRestoreInt(s0);
             return -1;
         }
-        __osRunningThread->state = 8;
+        __osRunningThread->state = OS_STATE_WAITING;
         __osEnqueueAndYield(mq);
     }
 

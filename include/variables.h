@@ -7,6 +7,7 @@
 /* 0x80042CB8 */ extern OSThread* __osRunQueue;
 /* 0x800AC0C0 */ extern s32 gLevelID;
 /* 0x800AC0C4 */ extern s32 gLevelNames[6];
+/* 0x800AC0E0 */ extern s32 gPhotoCount;
 /* 0x803937F0 */ extern GObj* cartGObj;
 
 #endif

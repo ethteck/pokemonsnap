@@ -11,11 +11,11 @@
 
 /* 0x80032780 */ void osStopThread(OSThread* thread);
 /* 0x80032840 */ s32 osRecvMesg(OSMesgQueue* mq, OSMesg* msg, s32 flag);
-/* 0x800338BC */ void __osEnqueueAndYield(OSThread**);
-/* 0x800339BC */ void __osEnqueueThread(OSThread** queue, OSThread* thread);
+/* 0x800338BC! */ void __osEnqueueAndYield(OSThread**);
+/* 0x800339BC! */ void __osEnqueueThread(OSThread** queue, OSThread* thread);
 /* 0x80033A14 */ void __osDispatchThread();
 /* 0x80033A04 */ OSThread* __osPopThread(OSThread**);
-/* 0x80033BA0 */ void __osDequeueThread(OSThread** queue, OSThread* thread);
+/* 0x80033BA0! */ void __osDequeueThread(OSThread** queue, OSThread* thread);
 /* 0x80037A10 */ void osSetThreadPri(OSThread* thread, OSPri pri);
 /* 0x80038D70 */ s32 __osDisableInt(void);
 /* 0x80038D90 */ void __osRestoreInt(s32);

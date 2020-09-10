@@ -4,6 +4,8 @@
 #include "ultra64.h"
 #include "common_structs.h"
 
+/* 0x8000350C! */ void loadCompressedData(u32 rom, u32 ram);
+
 /* 0x80008C28 */ GObj* runGObjProcess(GObj*, gfxFunc* func, s8 kind, u32 priority);
 /* 0x80008F2C */ void endGObjProcess(GObj*);
 
@@ -21,6 +23,7 @@
 /* 0x80038D90 */ void __osRestoreInt(s32);
 /* 0x8003B4E0 */ void osYieldThread(void);
 /* 0x8003D0F0 */ void osStartThread(OSThread*);
+
 
 /* 0x8009B980 */ s32 getLevelId();
 /* 0x8009B98C */ void setLevelId(s32 levelID);

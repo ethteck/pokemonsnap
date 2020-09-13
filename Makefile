@@ -1,6 +1,6 @@
 
 BUILD_DIR = build
-ASM_DIRS := asm
+ASM_DIRS := asm asm/os
 DATA_DIRS := bin
 SRC_DIRS := $(shell find src -type d)
 

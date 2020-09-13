@@ -1,10 +1,5 @@
 #include "common.h"
 
-extern animalDef extraStaryuDef;
-extern animalDef extraStarmieDef;
-extern randomTransition D_802ECB00;
-extern animalInitData D_802ECB2C;
-
 void spawnStaryuAtGeo(GObj* obj) {
     addAnimalAtGeo(obj, 0x78, &extraStaryuDef);
     endGObjProcess(NULL);

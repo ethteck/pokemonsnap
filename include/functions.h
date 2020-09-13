@@ -18,7 +18,12 @@
 /* 0x80033A14 */ void __osDispatchThread();
 /* 0x80033A04 */ OSThread* __osPopThread(OSThread**);
 /* 0x80033BA0! */ void __osDequeueThread(OSThread** queue, OSThread* thread);
+/* 0x80035250 */ void __osSetSR(u32);
+/* 0x80035260 */ u32 __osGetSR();
+/* 0x80036090 */ f32 sqrtf(f32 f);
 /* 0x80037A10 */ void osSetThreadPri(OSThread* thread, OSPri pri);
+/* 0x80037AF0 */ OSPri osGetThreadPri(OSThread* thread);
+/* 0x800385A0 */ void __osSetCompare(u32);
 /* 0x80038D70 */ s32 __osDisableInt(void);
 /* 0x80038D90 */ void __osRestoreInt(s32);
 /* 0x8003B4E0 */ void osYieldThread(void);

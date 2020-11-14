@@ -28,7 +28,7 @@ CC_OLD = tools/ido_recomp/linux/5.3/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms.txt -T undefined_funcs.txt -T $(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+LDFLAGS = -T undefined_syms.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
 OPTFLAGS := -O2
 
@@ -60,8 +60,12 @@ $(BUILD_DIR):
 	echo $(C_FILES)
 	mkdir $(BUILD_DIR)
 
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(LD_SCRIPT)
-	@$(LD) $(LDFLAGS) -o $@ $(O_FILES)
+$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
+	@mkdir -p $(shell dirname $@)
+	cpp -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
+
+$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
+	$(LD) $(LDFLAGS) -o $@
 
 $(BUILD_DIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(OPTFLAGS) -o $@ $^

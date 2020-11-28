@@ -78,7 +78,7 @@ typedef struct { /* OMMtx */
     /* 0x04 */ geoPayloadType type;
 } nodePayload; // size = 0x44;
 
-typedef struct {
+typedef struct xformData {
     /* 0x00 */ char unk_00[0x4];
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ Vec3f translation;
@@ -182,7 +182,7 @@ typedef struct { /* MObj s32ernally */
     /* 0xA4 */ char unk_A4[0x4];
 } uvScroll; // size = 0xA8;
 
-typedef struct { /* top level rendering object */
+typedef struct geoNode { /* top level rendering object */
     /* 0x00 */ struct geoNode* unk_00;
     /* 0x04 */ struct GObj* gobj;
     /* 0x08 */ struct geoNode* next;
@@ -481,7 +481,7 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
-typedef struct {
+typedef struct GObj {
     /* 0x00 */ struct GObj* next;
     /* 0x04 */ struct GObj* prev;
     /* 0x08 */ OSThread* nextThread;

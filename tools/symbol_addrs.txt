@@ -36,6 +36,7 @@ gPhotoCount = 0x800AC0E0;
 D_800AF3D0 = 0x800AF3D0;
 inRange_DEBUG = 0x800E3FF0;
 bool_DEBUG = 0x800E4018;
+evolveIntoMuk = 0x802C0810;
 spawnStaryuAtGeo = 0x802D2580;
 spawnStarmieAtGeo = 0x802D25B0;
 spawnKoffingSmoke = 0x802DE52C;

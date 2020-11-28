@@ -21,3 +21,5 @@ koffingSmokeData = 0x802E3254;
 D_802ECB2C = 0x802ECB2C;
 
 cartGObj = 0x803937F0;
+
+D_802C6FC4 = 0x802C6FC4;

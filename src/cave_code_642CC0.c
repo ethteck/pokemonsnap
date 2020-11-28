@@ -1,6 +1,15 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave_code_642CC0/func_802C0810.s")
+extern animalDef D_802C6FC4;
+
+void evolveIntoMuk(GObj* obj) {
+    GObj* muk;
+    animalDef def = D_802C6FC4;
+
+    muk = addAnimalAtGeo(obj, AnimalID_MUK, &def);
+    muk->rootNode->xform->euler.y = obj->rootNode->xform->euler.y;
+    endGObjProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave_code_642CC0/func_802C0888.s")
 

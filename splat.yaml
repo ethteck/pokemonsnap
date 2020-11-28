@@ -248,7 +248,7 @@ segments:
     start: 0x6401B0
     vram: 0x802BDD00
     files:
-    - [0x6401B0, asm]
+    - [0x6401B0, c]
     - [0x640900, asm]
     - [0x640CD0, asm]
     - [0x6414D0, asm]

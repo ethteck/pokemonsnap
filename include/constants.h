@@ -4,6 +4,7 @@
 #include "ultra64.h"
 
 typedef u16 AnimalID;
-#define AnimalID_MUK 89
+#define AnimalID_MUK        89
+#define AnimalID_MAGIKARP   129
 
 #endif

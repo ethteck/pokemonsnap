@@ -209,7 +209,7 @@ segments:
     start: 0x55C110
     vram: 0x802C40A0
     files:
-    - [0x55C110, asm]
+    - [0x55C110, c]
     - [0x55C870, asm]
     - [0x55D1C0, asm]
     - [0x55D690, asm]

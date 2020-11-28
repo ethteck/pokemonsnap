@@ -255,7 +255,7 @@ segments:
     - [0x641A50, asm]
     - [0x642290, asm]
     - [0x6425F0, asm]
-    - [0x642CC0, asm]
+    - [0x642CC0, c]
     - [0x6438F0, asm]
     - [0x644E80, asm]
     - [0x645740, asm]

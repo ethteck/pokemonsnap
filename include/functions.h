@@ -29,6 +29,8 @@ void __osRestoreInt(s32);
 void osYieldThread(void);
 void osStartThread(OSThread*);
 
+roomGFX* getCurrentRoom(void);
+GObj* animalAddOne(roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalDef* def);
 
 s32 getLevelId();
 void setLevelId(s32 levelID);
@@ -50,9 +52,10 @@ void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
 void runPathProcess(GObj* obj, gfxFunc* func);
 void setAnimalAnimation(GObj*, animationHeader*);
 void forceAnimalAnimation(GObj*, animationHeader*);
+void animalUVStuff(GObj*, animationHeader*, f32 start, s32 forceUpdate);
 void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
 void runAnimalCleanup(GObj* obj);
-GObj* addAnimalAtGeo(GObj* obj, u32 id, animalDef* def);
+GObj* addAnimalAtGeo(GObj* obj, u16 AnimalID, animalDef* def);
 roomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalInitData* initData);

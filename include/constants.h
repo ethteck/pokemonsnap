@@ -3,7 +3,7 @@
 
 #include "ultra64.h"
 
-typedef u32 AnimalID;
+typedef u16 AnimalID;
 #define AnimalID_MUK 89
 
 #endif

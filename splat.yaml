@@ -157,7 +157,7 @@ segments:
     files:
     - [0x46270, asm]
     - [0x47330, c]
-    - [0x47380, asm]
+    - [0x47380, c]
     - [0x4B670, asm]
     - [0x4D400, asm]
     - [0x4D880, asm]
@@ -195,7 +195,7 @@ segments:
     - [0x4F8B30, asm]
     - [0x4F9B50, asm]
     - [0x4FCFC0, asm]
-    - [0x4FE330, asm]
+    - [0x4FE330, c]
     - [0x503C10, asm]
     - [0x504770, asm]
     - [0x5047F0, asm]

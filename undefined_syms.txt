@@ -8,6 +8,8 @@ gPhotoCount = 0x800AC0E0;
 D_80042D10 = 0x80042D10;
 D_80042D18 = 0x80042D18;
 
+globalRoomGFX = 0x800E6AD0;
+
 extraStaryuDef = 0x802ECAE0;
 extraStarmieDef = 0x802ECAF0;
 D_802EC7B8 = 0x802EC7B8;
@@ -21,5 +23,4 @@ koffingSmokeData = 0x802E3254;
 D_802ECB2C = 0x802ECB2C;
 
 cartGObj = 0x803937F0;
-
 D_802C6FC4 = 0x802C6FC4;

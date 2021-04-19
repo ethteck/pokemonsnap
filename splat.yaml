@@ -1,11 +1,13 @@
 name: Pokemon Snap (North America)
-crc1: CA12B547
-crc2: 71FA4EE4
 basename: pokemonsnap
 options:
   find-file-boundaries: True
   compiler: IDO
   mnemonic_ljust: 11
+  platform: n64
+
+  base_path: .
+  target_path: baserom.z64
 
 segments:
   - [0x000000, bin, header]
@@ -14,7 +16,7 @@ segments:
     type: code
     start: 0x1000
     vram: 0x80000400
-    files:
+    subsegments:
     - [0x1000, asm]
     - [0x1060, asm]
     - [0x1520, asm]
@@ -154,7 +156,7 @@ segments:
     type: code
     start: 0x46270
     vram: 0x8009A8C0
-    files:
+    subsegments:
     - [0x46270, asm]
     - [0x47330, c]
     - [0x47380, c]
@@ -171,7 +173,7 @@ segments:
     type: code
     start: 0x5BF20
     vram: 0x800BF080
-    files:
+    subsegments:
     - [0x5BF20, asm]
     - [0x5D500, asm]
   - [0x5EF80, bin]
@@ -179,7 +181,7 @@ segments:
     type: code
     start: 0x5F050
     vram: 0x800E18A0
-    files:
+    subsegments:
     - [0x5F050, asm]
     - [0x617A0, c]
     - [0x617F0, asm]
@@ -190,7 +192,7 @@ segments:
     type: code
     start: 0x4F0610
     vram: 0x80350200
-    files:
+    subsegments:
     - [0x4F0610, asm]
     - [0x4F8B30, asm]
     - [0x4F9B50, asm]
@@ -208,7 +210,7 @@ segments:
     type: code
     start: 0x55C110
     vram: 0x802C40A0
-    files:
+    subsegments:
     - [0x55C110, c]
     - [0x55C870, asm]
     - [0x55D1C0, asm]
@@ -228,7 +230,7 @@ segments:
     type: code
     start: 0x5DF5D0
     vram: 0x802E2500
-    files:
+    subsegments:
     - [0x5DF5D0, asm]
     - [0x5E0A70, asm]
     - [0x5E1C10, asm]
@@ -247,7 +249,7 @@ segments:
     type: code
     start: 0x6401B0
     vram: 0x802BDD00
-    files:
+    subsegments:
     - [0x6401B0, c]
     - [0x640900, asm]
     - [0x640CD0, asm]
@@ -267,7 +269,7 @@ segments:
     type: code
     start: 0x6C05E0
     vram: 0x802D8800
-    files:
+    subsegments:
     - [0x6C05E0, asm]
     - [0x6C1090, asm]
     - [0x6C1D60, asm]
@@ -293,7 +295,7 @@ segments:
     type: code
     start: 0x7272E0
     vram: 0x802D60E0
-    files:
+    subsegments:
     - [0x7272E0, asm]
     - [0x729CA0, asm]
     - [0x72AF00, asm]
@@ -316,7 +318,7 @@ segments:
     type: code
     start: 0x79F1B0
     vram: 0x802C5C20
-    files:
+    subsegments:
     - [0x79F1B0, asm]
     - [0x79FB70, asm]
     - [0x7A00C0, asm]
@@ -341,7 +343,7 @@ segments:
     type: code
     start: 0x825E30
     vram: 0x803466C0
-    files:
+    subsegments:
     - [0x825E30, asm]
     - [0x826710, asm]
     - [0x8288F0, asm]
@@ -352,7 +354,7 @@ segments:
     type: code
     start: 0x83D730
     vram: 0x80369F80
-    files:
+    subsegments:
     - [0x83D730, asm]
     - [0x83DC30, asm]
     - [0x840A50, asm]
@@ -366,7 +368,7 @@ segments:
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
-    files:
+    subsegments:
     - [0x87A0B0, asm]
     - [0x87A330, asm]
     - [0x87D1A0, asm]
@@ -375,7 +377,7 @@ segments:
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
-    files:
+    subsegments:
     - [0x8A70E0, asm]
     - [0x8A7360, asm]
     - [0x8A8A50, asm]
@@ -385,7 +387,7 @@ segments:
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
-    files:
+    subsegments:
       - [0x98C330, asm]
       - [0x993C50, asm]
       - [0x993F80, asm]
@@ -394,7 +396,7 @@ segments:
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
-    files:
+    subsegments:
       - [0x9A6B10, asm]
       - [0x9A6F70, asm]
       - [0x9ABB50, asm]
@@ -404,7 +406,7 @@ segments:
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
-    files:
+    subsegments:
       - [0x9D3230, asm]
       - [0x9D3660, asm]
       - [0x9D91C0, asm]
@@ -413,7 +415,7 @@ segments:
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
-    files:
+    subsegments:
       - [0x9FA580, asm]
       - [0x9FAC10, asm]
       - [0x9FD510, asm]
@@ -423,14 +425,14 @@ segments:
     type: code
     start: 0xA084B0
     vram: 0x800E1970
-    files:
+    subsegments:
       - [0xA084B0, asm]
   - [0xA08D10, bin]
   - name: unk_level_end_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
-    files:
+    subsegments:
       - [0xA08E30, asm]
       - [0xA0BE70, asm]
       - [0xA0D4D0, asm]
@@ -440,7 +442,7 @@ segments:
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0
-    files:
+    subsegments:
       - [0xA5CC50, asm]
       - [0xA5D5B0, asm]
   - [0xA5E3A0, bin]
@@ -448,7 +450,7 @@ segments:
     type: code
     start: 0xA93460
     vram: 0x801DC8A0
-    files:
+    subsegments:
       - [0xA93460, asm]
       - [0xA937C0, asm]
       - [0xA94940, asm]
@@ -457,7 +459,7 @@ segments:
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
-    files:
+    subsegments:
       - [0xAA0650, asm]
   - [0xAA0A60, bin]
   - [0x1000000]

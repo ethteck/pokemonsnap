@@ -8,9 +8,11 @@ options:
 
   base_path: .
   target_path: baserom.z64
+  ld_script_path: pokemonsnap.ld
+  symbol_addrs_path: tools/symbol_addrs.txt
 
 segments:
-  - [0x000000, bin, header]
+  - [0x000000, header, header]
   - [0x000040, bin, boot]
   - name: app
     type: code
@@ -210,6 +212,7 @@ segments:
     type: code
     start: 0x55C110
     vram: 0x802C40A0
+    overlay: True
     subsegments:
     - [0x55C110, c]
     - [0x55C870, asm]
@@ -230,6 +233,7 @@ segments:
     type: code
     start: 0x5DF5D0
     vram: 0x802E2500
+    overlay: True
     subsegments:
     - [0x5DF5D0, asm]
     - [0x5E0A70, asm]
@@ -249,6 +253,7 @@ segments:
     type: code
     start: 0x6401B0
     vram: 0x802BDD00
+    overlay: True
     subsegments:
     - [0x6401B0, c]
     - [0x640900, asm]
@@ -269,6 +274,7 @@ segments:
     type: code
     start: 0x6C05E0
     vram: 0x802D8800
+    overlay: True
     subsegments:
     - [0x6C05E0, asm]
     - [0x6C1090, asm]
@@ -295,6 +301,7 @@ segments:
     type: code
     start: 0x7272E0
     vram: 0x802D60E0
+    overlay: True
     subsegments:
     - [0x7272E0, asm]
     - [0x729CA0, asm]
@@ -368,6 +375,7 @@ segments:
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
+    overlay: True
     subsegments:
     - [0x87A0B0, asm]
     - [0x87A330, asm]
@@ -387,6 +395,7 @@ segments:
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
+    overlay: True
     subsegments:
       - [0x98C330, asm]
       - [0x993C50, asm]
@@ -396,6 +405,7 @@ segments:
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
+    overlay: True
     subsegments:
       - [0x9A6B10, asm]
       - [0x9A6F70, asm]
@@ -406,6 +416,7 @@ segments:
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
+    overlay: True
     subsegments:
       - [0x9D3230, asm]
       - [0x9D3660, asm]
@@ -415,6 +426,7 @@ segments:
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
+    overlay: True
     subsegments:
       - [0x9FA580, asm]
       - [0x9FAC10, asm]
@@ -425,6 +437,7 @@ segments:
     type: code
     start: 0xA084B0
     vram: 0x800E1970
+    overlay: True
     subsegments:
       - [0xA084B0, asm]
   - [0xA08D10, bin]
@@ -432,6 +445,7 @@ segments:
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
+    overlay: True
     subsegments:
       - [0xA08E30, asm]
       - [0xA0BE70, asm]
@@ -442,6 +456,7 @@ segments:
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0
+    overlay: True
     subsegments:
       - [0xA5CC50, asm]
       - [0xA5D5B0, asm]
@@ -459,6 +474,7 @@ segments:
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
+    overlay: True
     subsegments:
       - [0xAA0650, asm]
   - [0xAA0A60, bin]

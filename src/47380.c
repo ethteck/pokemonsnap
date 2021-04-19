@@ -1,18 +1,29 @@
 #include "common.h"
 
+extern s32 D_800AC0F0;
+extern s32 D_800AE27C;
+extern s32 D_800AE280;
+extern s32 D_800B0598;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009B9D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BB4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BBF4.s")
+s32 func_8009BBF4(void) {
+    return D_800AE27C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC00.s")
+s32 func_8009BC00(void) {
+    return D_800AE280;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC0C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC74.s")
+s32* func_8009BC74(void) {
+    return &D_800B0598;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC80.s")
 
@@ -84,6 +95,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FBC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FC2C.s")
+void func_8009FC2C(s32 arg0) {
+    D_800AC0F0 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FC38.s")

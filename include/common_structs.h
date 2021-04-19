@@ -180,7 +180,12 @@ typedef struct { /* MObj s32ernally */
     /* 0x9C */ f32 increment;
     /* 0xA0 */ f32 unk_A0;
     /* 0xA4 */ char unk_A4[0x4];
-} uvScroll; // size = 0xA8;
+} uvScroll; // size = 0xA8
+
+typedef struct geoNodeSub {
+    /* 0x00 */ nodePayload* newPayload;
+    /* 0x04 */ Vec3f translation;
+} geoNodeSub; // size = 0x10
 
 typedef struct geoNode { /* top level rendering object */
     /* 0x00 */ struct geoNode* unk_00;
@@ -189,8 +194,7 @@ typedef struct geoNode { /* top level rendering object */
     /* 0x0C */ struct geoNode* prev;
     /* 0x10 */ struct geoNode* child;
     /* 0x14 */ struct geoNode* parent;
-    /* 0x18 */ nodePayload* newPayload;
-    /* 0x1C */ Vec3f translation;
+    /* 0x18 */ geoNodeSub unk_18;
     /* 0x28 */ char unk_28[0x4];
     /* 0x2C */ f32 degrees;
     /* 0x30 */ Vec3f euler;
@@ -210,7 +214,7 @@ typedef struct geoNode { /* top level rendering object */
     /* 0x7C */ f32 currFrame;
     /* 0x80 */ uvScroll* uvScrolls;
     /* 0x84 */ char unk_84[0x4];
-} geoNode; // size = 0x88;
+} geoNode; // size = 0x88
 
 typedef struct {
     /* 0x00 */ struct signalLL* next;
@@ -523,6 +527,6 @@ typedef struct {
     /* 0x04 */ animalInit* init;
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
-} animalDef;
+} animalDef; // size = 0x10
 
 #endif

@@ -1,10 +1,21 @@
-import os
-from typing import Dict, List
-from util import options
+from dataclasses import dataclass
+from typing import Dict, List, Optional
+
+from capstone import CsInsn
+from util import options, log
 
 all_symbols: "List[Symbol]" = []
 symbol_ranges: "List[Symbol]" = []
 sym_isolated_map: "Dict[Symbol, bool]" = {}
+
+
+def is_truey(str: str) -> bool:
+    return str.lower() in ["true", "on", "yes", "y"]
+
+
+def is_falsey(str: str) -> bool:
+    return str.lower() in ["false", "off", "no", "n"]
+
 
 def initialize(all_segments):
     global all_symbols
@@ -12,50 +23,69 @@ def initialize(all_segments):
 
     all_symbols = []
     symbol_ranges = []
+    sym_addrs_lines = []
 
-    symbol_addrs_path = options.get_symbol_addrs_path()
-    
     # Manual list of func name / addrs
-    if os.path.exists(symbol_addrs_path):
-        with open(symbol_addrs_path) as f:
-            func_addrs_lines = f.readlines()
+    for path in options.get_symbol_addrs_paths():
+        if path.exists():
+            with open(path) as f:
+                sym_addrs_lines += f.readlines()
 
-        for line in func_addrs_lines:
-            line = line.strip()
-            if not line == "" and not line.startswith("//"):
-                comment_loc = line.find("//")
-                line_ext = ""
+    for line in sym_addrs_lines:
+        line = line.strip()
+        if not line == "" and not line.startswith("//"):
+            comment_loc = line.find("//")
+            line_ext = ""
 
-                if comment_loc != -1:
-                    line_ext = line[comment_loc + 2:].strip()
-                    line = line[:comment_loc].strip()
+            if comment_loc != -1:
+                line_ext = line[comment_loc + 2 :].strip()
+                line = line[:comment_loc].strip()
 
-                line_split = line.split("=")
-                name = line_split[0].strip()
-                addr = int(line_split[1].strip()[:-1], 0)
+            line_split = line.split("=")
+            name = line_split[0].strip()
+            addr = int(line_split[1].strip()[:-1], 0)
 
-                sym = Symbol(addr, given_name=name)
+            sym = Symbol(addr, given_name=name)
 
-                if line_ext:
-                    for info in line_ext.split(" "):
+            if line_ext:
+                for info in line_ext.split(" "):
+                    if ":" in info:
                         if info.startswith("type:"):
                             type = info.split(":")[1]
                             sym.type = type
+                            continue
                         if info.startswith("size:"):
                             size = int(info.split(":")[1], 0)
                             sym.size = size
+                            continue
                         if info.startswith("rom:"):
                             rom_addr = int(info.split(":")[1], 0)
                             sym.rom = rom_addr
-                        if info.startswith("dead:"):
-                            sym.dead = True
-                all_symbols.append(sym)
+                            continue
 
-                # Symbol ranges
-                if sym.size > 4:
-                    symbol_ranges.append(sym)
-                
-                is_symbol_isolated(sym, all_segments)
+                        val = str(info.split(":")[1])
+                        tf_val = (
+                            True if is_truey(val) else False if is_falsey(val) else None
+                        )
+                        if tf_val is None:
+                            log.error(
+                                f"Invalid value {val} for attribute on line: {line}"
+                            )
+
+                        if info.startswith("dead:"):
+                            sym.dead = tf_val if tf_val is not None else False
+                        if info.startswith("defined:"):
+                            sym.defined = tf_val if tf_val is not None else False
+                        if info.startswith("extract:"):
+                            sym.extract = tf_val if tf_val is not None else True
+            all_symbols.append(sym)
+
+            # Symbol ranges
+            if sym.size > 4:
+                symbol_ranges.append(sym)
+
+            is_symbol_isolated(sym, all_segments)
+
 
 def is_symbol_isolated(symbol, all_segments):
     if symbol in sym_isolated_map:
@@ -72,27 +102,43 @@ def is_symbol_isolated(symbol, all_segments):
     sym_isolated_map[symbol] = relevant_segs < 2
     return sym_isolated_map[symbol]
 
+
 def retrieve_from_ranges(vram, rom=None):
-        rom_matches = []
-        ram_matches = []
+    rom_matches = []
+    ram_matches = []
 
-        for symbol in symbol_ranges:
-            if symbol.contains_vram(vram):
-                if symbol.rom and rom and symbol.contains_rom(rom):
-                    rom_matches.append(symbol)
-                else:
-                    ram_matches.append(symbol)
+    for symbol in symbol_ranges:
+        if symbol.contains_vram(vram):
+            if symbol.rom and rom and symbol.contains_rom(rom):
+                rom_matches.append(symbol)
+            else:
+                ram_matches.append(symbol)
 
-        ret = rom_matches + ram_matches
+    ret = rom_matches + ram_matches
 
-        if len(ret) > 0:
-            return ret[0]
-        else:
-            return None
+    if len(ret) > 0:
+        return ret[0]
+    else:
+        return None
+
+
+@dataclass
+class Instruction:
+    instruction: CsInsn
+    mnemonic: str
+    op_str: str
+    rom_addr: int
+    is_gp: bool = False
+    is_hi: bool = False
+    is_lo: bool = False
+    hi_lo_sym: Optional["Symbol"] = None
+    sym_offset_str: str = ""
+    hi_lo_reg: str = ""
+
 
 class Symbol:
     @property
-    def default_name(self):
+    def default_name(self) -> str:
         suffix = f"_{self.vram_start:X}"
 
         if self.in_overlay:
@@ -100,7 +146,7 @@ class Symbol:
 
         if self.type == "func":
             prefix = "func"
-        elif self.type =="jtbl":
+        elif self.type == "jtbl":
             prefix = "jtbl"
         else:
             prefix = "D"
@@ -115,11 +161,8 @@ class Symbol:
     def vram_end(self):
         return self.vram_start + self.size
 
-    def set_in_overlay(self):
-        self.in_overlay = True
-
     @property
-    def name(self):
+    def name(self) -> str:
         return self.given_name if self.given_name else self.default_name
 
     def contains_vram(self, offset):
@@ -128,7 +171,15 @@ class Symbol:
     def contains_rom(self, offset):
         return offset >= self.rom and offset < self.rom_end
 
-    def __init__(self, vram, given_name=None, rom=None, type="unknown", in_overlay=False, size=4):
+    def __init__(
+        self,
+        vram,
+        given_name: str = "",
+        rom=None,
+        type="unknown",
+        in_overlay=False,
+        size=4,
+    ):
         self.defined = False
         self.referenced = False
         self.vram_start = vram
@@ -136,7 +187,9 @@ class Symbol:
         self.type = type
         self.in_overlay = in_overlay
         self.size = size
-        self.given_name = given_name
+        self.given_name: str = given_name
+        self.insns: List[Instruction] = []
         self.access_mnemonic = None
         self.disasm_str = None
         self.dead = False
+        self.extract = True

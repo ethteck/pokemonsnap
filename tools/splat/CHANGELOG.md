@@ -1,6 +1,59 @@
 # splat Release Notes
 
-## 0.7: The Path Update
+## 0.8.0: Arbitrary Section Order
+* You can now use the option `section_order` to define the binary section order for your target binary. By default, this is `[".text", ".data", ".rodata", ".bss"]`. See options.py for more details
+* Documented all options in options.py
+* Support for SN64 games (thanks Wiseguy!)
+* More consistent handling of paths (thanks Mkst!)
+* Various other cleanup and fixes across the board
+
+### 0.7.10: WIP PSX support
+* WIP PSX support has been added, thanks to @mkst! (https://github.com/ethteck/splat/pull/99)
+  * Many segments have moved to a "common" package
+  * Endianness of the input binary is now a configurable option
+* Linker hack restored but is now optional and off by default
+
+### 0.7.9
+* Finally removed the dumb linker section alignment hack
+* Added version number to output on execution
+
+### 0.7.8
+
+* Fixed a bug relating to a linker section alignment hack (thanks Wiseguy!)
+* Fixed a bug in linker_entry.py's clean_up_path that should make this function more versatile (thanks Wiseguy!)
+
+### 0.7.7
+
+* Disassembly now reads the `size` property of a function in symbol_addrs.txt to disassemble `size / 4` number of instructions. Feel free to specify the size of your functions in your symbol_addrs file if splat's disassembly is chopping a function too short or making a function too long.
+
+### 0.7.6
+
+* Fixed a bug involving detection of defined functions in c files for GLOBAL_ASM-using projects
+* Added options to disable the creation of undefined_funcs/syms_auto.txt files
+* Add a Vtx segment type for creating c files containg model vertex data in the n64 libultra Vtx format
+* Added a `cpp` segment type which is identical to `c` but looks for a file with the extension ".cpp" instead of ".c".
+
+### 0.7.5: all_ types and auto_all_sections
+
+If you have a group segment with multiple c files and want splat to automatically create linker entries at a given position for each code object (c, asm, hasm) in the segment, you can use an `all_` type for that section. For example, you can add `[auto, all_bss]` as the last subsegment in a segment. This will direct splat to create a linker entry for each code object in the segment. This saves a lot of time when it comes to manually adding .bss subsegments for bss support, for example. The same thing can be done for data and rodata sections, but note this should probably be done later into a project when all data / rodata is migrated to c files, as the `all_` types lose the rom positioning information that's necessary for splat to do proper disassembly.
+
+The `auto_all_sections` option, when set to true, will automatically add `all_` types into every group. This is only done for a section in a group if no other manual declarations for that section exist. For example, if you have 30 c files in a group and a .data later on for one of them, `auto_all_sections` will not interfere with your `.data` subsegment. If you remove this, however, splat will use `auto_all_sections` to implicitly `.data` subsegments for all of your code objects behind the scenes. This feature is again particualrly helpful for bss support, as it will create bss linker entries for every file in your project (assuming you don't have any manual .bss subsegments), which eliminates the need to create dummy .bss subsegments just for the sake of configuring the linker script.
+
+### 0.7.2
+
+* Data disassembly changes:
+  * String detection has been improved. Please send me false positives / negatives as you see them and I can try to improve it further!
+  * Symbols in a data segment pointed to by other symbols will now properly be split out as their own symbols
+
+### 0.7.1
+
+* Image segment changes:
+  * Added `flip_x` and `flip_y` boolean parameters to replace `flip`.
+    * `flip` is deprecated and will produce a warning when used.
+    * Fixed flipping of `ci4` and `ci8` images.
+  * Fixed `extract: false` (and `start: auto`) behaviour.
+
+## 0.7.0: The Path Update
 
 * Significantly better performance, especially when using the cache feature (`--use-cache` CLI arg).
 * BREAKING: Some cli args for splat have been renamed. Please consult the usage output (-h or no args) for more information.

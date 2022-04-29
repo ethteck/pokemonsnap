@@ -1,7 +1,8 @@
-from segtypes.n64.data import N64SegData
-from util import log
+from segtypes.common.data import CommonSegData
+from util import options, log
 
-class N64SegBss(N64SegData):    
+
+class CommonSegBss(CommonSegData):
     def get_linker_section(self) -> str:
         return ".bss"
 
@@ -17,6 +18,6 @@ class N64SegBss(N64SegData):
         if self.sibling:
             path = self.sibling.out_path()
         else:
-            log.error("Unlinked bss sections currently unsupported")
+            path = options.get_src_path() / self.name
 
         return [LinkerEntry(self, [path], path, self.get_linker_section())]

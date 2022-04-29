@@ -3,9 +3,11 @@ import sys
 import os
 from ctypes import *
 from struct import pack, unpack_from
+from util import log
 
 tried_loading = False
 lib = None
+
 
 def setup_lib():
     global lib
@@ -16,12 +18,15 @@ def setup_lib():
         return False
     try:
         tried_loading = True
-        lib = cdll.LoadLibrary(os.path.dirname(os.path.realpath(__file__)) + "/Yay0decompress")
+        lib = cdll.LoadLibrary(
+            os.path.dirname(os.path.realpath(__file__)) + "/Yay0decompress"
+        )
         return True
     except Exception:
-        print(f"Failed to load Yay0decompress, falling back to python method")
+        print(f"Failed to load C library; falling back to python method")
         tried_loading = True
         return False
+
 
 def decompress_yay0(in_bytes, byte_order="big"):
     # attempt to load the library only once per execution
@@ -46,6 +51,10 @@ def decompress_yay0(in_bytes, byte_order="big"):
     else:
         hdr = Yay0.from_buffer_copy(in_bytes, 0)
 
+    magic = getattr(hdr, hdr._fields_[0][0])
+    if magic != int.from_bytes(str.encode("Yay0"), byteorder="big"):
+        log.error(f"Yay0 magic is incorrect: {magic}")
+
     # create the input/output buffers, copying data to in
     src = (c_uint8 * len(in_bytes)).from_buffer_copy(in_bytes, 0)
     dst = (c_uint8 * hdr.uncompressedLength)()
@@ -56,6 +65,7 @@ def decompress_yay0(in_bytes, byte_order="big"):
 
     # other functions want the results back as a non-ctypes type
     return bytearray(dst)
+
 
 def decompress_yay0_python(in_bytes, byte_order="big"):
     if in_bytes[:4] != b"Yay0":
@@ -74,24 +84,28 @@ def decompress_yay0_python(in_bytes, byte_order="big"):
 
     # preallocate result and index into it
     idx = 0
-    ret = bytearray(decompressed_size);
+    ret = bytearray(decompressed_size)
 
     while idx < decompressed_size:
         # If we're out of bits, get the next mask
         if mask_bit_counter == 0:
-            current_mask = int.from_bytes(in_bytes[other_idx : other_idx + 4], byteorder=byte_order)
+            current_mask = int.from_bytes(
+                in_bytes[other_idx : other_idx + 4], byteorder=byte_order
+            )
             other_idx += 4
             mask_bit_counter = 32
 
-        if (current_mask & 0x80000000):
+        if current_mask & 0x80000000:
             ret[idx] = in_bytes[chunk_idx]
             idx += 1
             chunk_idx += 1
         else:
-            link = int.from_bytes(in_bytes[link_table_idx : link_table_idx + 2], byteorder=byte_order)
+            link = int.from_bytes(
+                in_bytes[link_table_idx : link_table_idx + 2], byteorder=byte_order
+            )
             link_table_idx += 2
 
-            offset = idx - (link & 0xfff)
+            offset = idx - (link & 0xFFF)
 
             count = link >> 12
 
@@ -121,6 +135,7 @@ def main(args):
 
     with open(args.outfile, "wb") as f:
         f.write(decompressed)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

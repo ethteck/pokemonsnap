@@ -1,6 +1,6 @@
 
 BUILD_DIR = build
-ASM_DIRS := asm asm/os
+ASM_DIRS := asm asm/os asm/data
 ASSET_DIR = assets
 SRC_DIRS := $(shell find src -type d)
 
@@ -20,15 +20,12 @@ LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
-#CC         := $(QEMU_IRIX) -L tools/ido7.1_compiler tools/ido7.1_compiler/usr/bin/cc
-#CC_OLD     := $(QEMU_IRIX) -L tools/ido5.3_compiler tools/ido5.3_compiler/usr/bin/cc
-
 CC = tools/ido_recomp/linux/7.1/cc
 CC_OLD = tools/ido_recomp/linux/5.3/cc
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+LDFLAGS = -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
 OPTFLAGS := -O2
 

@@ -11,6 +11,8 @@ options:
   ld_script_path: pokemonsnap.ld
   symbol_addrs_path: tools/symbol_addrs.txt
 
+  create_undefined_funcs_auto: False
+
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -22,6 +24,7 @@ segments:
     - [0x1000, asm]
     - [0x1060, asm]
     - [0x1520, asm]
+    - [0x4680, asm]
     - [0x5FF0, asm]
     - [0x8450, asm]
     - [0x8820, asm]
@@ -32,6 +35,7 @@ segments:
     - [0x11E30, asm]
     - [0x1A560, asm]
     - [0x1AF60, asm]
+    - [0x1BCF0, asm]
     - [0x1F960, asm]
     - [0x20940, asm]
     - [0x245E0, asm]
@@ -88,6 +92,7 @@ segments:
     - [0x35930, asm]
     - [0x359B0, asm]
     - [0x35A30, asm]
+    - [0x35D90, asm]
     - [0x35E50, hasm, os/__osSetSR]
     - [0x35E60, hasm, os/__osGetSR]
     - [0x35E70, asm]
@@ -102,12 +107,14 @@ segments:
     - [0x36CA0, asm]
     - [0x36D50, asm]
     - [0x36E10, asm]
+    - [0x37080, asm]
     - [0x37290, asm]
     - [0x37F50, asm]
     - [0x38130, asm]
     - [0x38180, asm]
     - [0x38260, asm]
     - [0x38300, asm]
+    - [0x38330, asm]
     - [0x383B0, asm]
     - [0x38460, asm]
     - [0x38490, asm]
@@ -115,11 +122,13 @@ segments:
     - [0x38610, c, os/O1/osSetThreadPri]
     - [0x386F0, c, os/O1/osGetThreadPri]
     - [0x38710, asm]
+    - [0x38AE0, asm]
     - [0x38B70, asm]
     - [0x38FC0, asm]
     - [0x39110, asm]
     - [0x391A0, hasm, os/__osSetCompare]
     - [0x391B0, asm]
+    - [0x391C0, asm]
     - [0x394D0, asm]
     - [0x39530, asm]
     - [0x39670, asm]
@@ -135,7 +144,9 @@ segments:
     - [0x3A060, asm]
     - [0x3A250, asm]
     - [0x3ADD0, asm]
+    - [0x3B1F0, asm]
     - [0x3BF20, asm]
+    - [0x3C080, asm]
     - [0x3C0E0, c, os/O1/osYieldThread]
     - [0x3C130, asm]
     - [0x3C380, asm]
@@ -148,12 +159,18 @@ segments:
     - [0x3D850, asm]
     - [0x3D8A0, asm]
     - [0x3D950, asm]
+    - [0x3D980, asm]
+    - [0x3D990, asm]
+    - [0x3D9A0, asm]
+    - [0x3DCB0, asm]
+    - [0x3DCC0, asm]
     - [0x3DCF0, c , os/O1/osStartThread]
     - [0x3DE40, asm]
     - [0x3DEA0, asm]
     - [0x3E0B0, asm]
     - [0x3E3F0, asm]
-  - [0x3E4A0, bin]
+    - [0x3E4A0, data]
+    - [0x43B40, rodata]
   - name: app_render
     type: code
     start: 0x46270
@@ -167,6 +184,7 @@ segments:
     - [0x4D880, asm]
     - [0x52D70, asm]
     - [0x52DE0, asm]
+    - [0x53AD0, asm]
     - [0x56880, c]
     - [0x568D0, asm]
     - [0x574F0, asm]
@@ -178,6 +196,8 @@ segments:
     subsegments:
     - [0x5BF20, asm]
     - [0x5D500, asm]
+    - [0x5DA50, asm]
+    - [0x5E630, asm]
   - [0x5EF80, bin]
   - name: level_low
     type: code
@@ -189,6 +209,7 @@ segments:
     - [0x617F0, asm]
     - [0x61C10, asm]
     - [0x62010, asm]
+    - [0x64270, asm]
   - [0x64280, bin]
   - name: app_level
     type: code
@@ -199,7 +220,8 @@ segments:
     - [0x4F8B30, asm]
     - [0x4F9B50, asm]
     - [0x4FCFC0, asm]
-    - [0x4FE330, c]
+    - [0x4FE330, asm]
+    - [0x4FEB90, c]
     - [0x503C10, asm]
     - [0x504770, asm]
     - [0x5047F0, asm]
@@ -247,6 +269,7 @@ segments:
     - [0x5E8080, asm]
     - [0x5E8930, asm]
     - [0x5E9010, asm]
+    - [0x5E94D0, asm]
     - [0x5EA6F0, asm]
   - [0x5EAFD0, bin]
   - name: cave_code
@@ -304,6 +327,7 @@ segments:
     overlay: True
     subsegments:
     - [0x7272E0, asm]
+    - [0x728490, asm]
     - [0x729CA0, asm]
     - [0x72AF00, asm]
     - [0x72BCE0, asm]
@@ -340,6 +364,7 @@ segments:
     - [0x7A7410, asm]
     - [0x7A7790, asm]
     - [0x7A8030, asm]
+    - [0x7AA110, asm]
     - [0x7AA720, c]
     - [0x7AA780, bin] # Weird extra nops, possibly infinite loop somewhere?
     - [0x7AA790, asm]
@@ -365,9 +390,12 @@ segments:
     - [0x83D730, asm]
     - [0x83DC30, asm]
     - [0x840A50, asm]
+    - [0x842390, asm]
+    - [0x842850, asm]
     - [0x843050, asm]
     - [0x843790, asm]
     - [0x843D10, asm]
+    - [0x847B60, asm]
     - [0x8486E0, asm]
     - [0x848B50, asm]
   - [0x848BC0, bin]
@@ -380,6 +408,7 @@ segments:
     - [0x87A0B0, asm]
     - [0x87A330, asm]
     - [0x87D1A0, asm]
+    - [0x87FB20, asm]
   - [0x8817E0, bin]
   - name: unk_end_level_3
     type: code
@@ -389,6 +418,7 @@ segments:
     - [0x8A70E0, asm]
     - [0x8A7360, asm]
     - [0x8A8A50, asm]
+    - [0x8A9CC0, asm]
     - [0x8AAF60, asm]
   - [0x8ABEF0, bin]
   - name: unk_end_level_4
@@ -477,5 +507,6 @@ segments:
     overlay: True
     subsegments:
       - [0xAA0650, asm]
-  - [0xAA0A60, bin]
+  - [0xAA0A60, bin] # Some code in here 0xF08 in, it seems
+  - [0xF53540, bin, padding]
   - [0x1000000]

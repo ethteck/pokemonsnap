@@ -14,14 +14,31 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.c.o)) \
            $(foreach file,$(DATA_FILES),$(BUILD_DIR)/$(file:.bin=.bin.o)) \
 
 ##################### Compiler Options #######################
+
+ifeq ($(OS),Windows_NT)
+    OS = windows
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        OS = linux
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        OS = macos
+    endif
+endif
+
 CROSS = mips-linux-gnu-
 AS = $(CROSS)as
 LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
-CC = tools/ido_recomp/linux/7.1/cc
-CC_OLD = tools/ido_recomp/linux/5.3/cc
+CC = tools/ido_recomp/$(OS)/7.1/CC
+CPP = cpp
+
+ifeq ($(OS), macos)
+    CPP = cpp-11
+endif
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
@@ -69,7 +86,7 @@ $(BUILD_DIR)/%.bin.o: %.bin
 
 $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 	@mkdir -p $(shell dirname $@)
-	cpp -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
+	$(CPP) -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
 $(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
 	$(LD) $(LDFLAGS) -o $@

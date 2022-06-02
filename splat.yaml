@@ -303,6 +303,7 @@ segments:
     type: code
     start: 0x6C05E0
     vram: 0x802D8800
+    exclusive_ram_id: level
     subsegments:
     - [0x6C05E0, asm]
     - [0x6C1090, asm]
@@ -329,6 +330,7 @@ segments:
     type: code
     start: 0x7272E0
     vram: 0x802D60E0
+    exclusive_ram_id: level
     subsegments:
     - [0x7272E0, asm]
     - [0x728490, asm]
@@ -420,6 +422,7 @@ segments:
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
+    exclusive_ram_id: 800E18A0
     subsegments:
     - [0x8A70E0, asm]
     - [0x8A7360, asm]

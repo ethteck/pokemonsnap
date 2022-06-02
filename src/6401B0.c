@@ -26,4 +26,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/6401B0/func_802BE3A8_640858.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/6401B0/func_802BE3B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/6401B0/func_802BE3B0_640860.s")

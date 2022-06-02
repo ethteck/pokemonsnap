@@ -206,7 +206,7 @@ segments:
     type: code
     start: 0x5F050
     vram: 0x800E18A0
-    unique_ram_id: 800E18A0
+    exclusive_ram_id: 800E18A0
     subsegments:
     - [0x5F050, asm]
     - [0x617A0, c]
@@ -239,6 +239,7 @@ segments:
     type: code
     start: 0x55C110
     vram: 0x802C40A0
+    exclusive_ram_id: level
     symbol_name_format: $VRAM_$ROM
     subsegments:
     - [0x55C110, c]
@@ -260,6 +261,7 @@ segments:
     type: code
     start: 0x5DF5D0
     vram: 0x802E2500
+    exclusive_ram_id: level
     subsegments:
     - [0x5DF5D0, asm]
     - [0x5E0A70, asm]
@@ -280,6 +282,7 @@ segments:
     type: code
     start: 0x6401B0
     vram: 0x802BDD00
+    exclusive_ram_id: level
     subsegments:
     - [0x6401B0, c]
     - [0x640900, asm]
@@ -350,6 +353,7 @@ segments:
     type: code
     start: 0x79F1B0
     vram: 0x802C5C20
+    exclusive_ram_id: level
     subsegments:
     - [0x79F1B0, asm]
     - [0x79FB70, asm]
@@ -376,6 +380,7 @@ segments:
     type: code
     start: 0x825E30
     vram: 0x803466C0
+    exclusive_ram_id: level
     subsegments:
     - [0x825E30, asm]
     - [0x826710, asm]
@@ -404,6 +409,7 @@ segments:
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
+    exclusive_ram_id: end_level
     subsegments:
     - [0x87A0B0, asm]
     - [0x87A330, asm]
@@ -425,6 +431,7 @@ segments:
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
+    exclusive_ram_id: end_level
     subsegments:
       - [0x98C330, asm]
       - [0x993C50, asm]
@@ -434,6 +441,7 @@ segments:
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
+    exclusive_ram_id: end_level
     subsegments:
       - [0x9A6B10, asm]
       - [0x9A6F70, asm]
@@ -444,6 +452,7 @@ segments:
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
+    exclusive_ram_id: end_level
     subsegments:
       - [0x9D3230, asm]
       - [0x9D3660, asm]
@@ -453,6 +462,7 @@ segments:
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
+    exclusive_ram_id: end_level
     subsegments:
       - [0x9FA580, asm]
       - [0x9FAC10, asm]
@@ -463,6 +473,7 @@ segments:
     type: code
     start: 0xA084B0
     vram: 0x800E1970
+    exclusive_ram_id: 800E18A0
     subsegments:
       - [0xA084B0, asm]
   - [0xA08D10, bin]
@@ -470,7 +481,7 @@ segments:
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
-    unique_ram_id: 800E18A0
+    exclusive_ram_id: 800E18A0
     subsegments:
       - [0xA08E30, asm]
       - [0xA0BE70, asm]
@@ -481,7 +492,7 @@ segments:
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0
-    unique_ram_id: 800E18A0
+    exclusive_ram_id: 800E18A0
     subsegments:
       - [0xA5CC50, asm]
       - [0xA5D5B0, asm]
@@ -490,6 +501,7 @@ segments:
     type: code
     start: 0xA93460
     vram: 0x801DC8A0
+    exclusive_ram_id: end_level
     subsegments:
       - [0xA93460, asm]
       - [0xA937C0, asm]
@@ -499,7 +511,7 @@ segments:
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
-    unique_ram_id: 800E18A0
+    exclusive_ram_id: 800E18A0
     subsegments:
       - [0xAA0650, asm]
   - [0xAA0A60, bin] # Some code in here 0xF08 in, it seems

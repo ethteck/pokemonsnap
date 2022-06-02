@@ -33,7 +33,7 @@ LD = $(CROSS)ld
 OBJDUMP = $(CROSS)objdump
 OBJCOPY = $(CROSS)objcopy
 
-CC = tools/ido_recomp/$(OS)/7.1/CC
+CC = tools/ido_recomp/$(OS)/7.1/cc
 CPP = cpp
 
 ifeq ($(OS), macos)

@@ -42,7 +42,7 @@ endif
 
 ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
 CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+LDFLAGS = -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
 
 OPTFLAGS := -O2
 

@@ -5,16 +5,11 @@ options:
   compiler: IDO
   mnemonic_ljust: 11
   platform: n64
-
   base_path: .
   target_path: baserom.z64
   ld_script_path: pokemonsnap.ld
   symbol_addrs_path: tools/symbol_addrs.txt
-
-  create_undefined_funcs_auto: True
-
   symbol_name_format: $VRAM_$ROM
-
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -441,9 +436,9 @@ segments:
     vram: 0x801DC8C0
     exclusive_ram_id: level
     subsegments:
-      - [0x98C330, asm]
-      - [0x993C50, asm]
-      - [0x993F80, asm]
+    - [0x98C330, asm]
+    - [0x993C50, asm]
+    - [0x993F80, asm]
   - [0x994E10, bin]
   - name: unk_end_level_5
     type: code
@@ -451,10 +446,10 @@ segments:
     vram: 0x801DC8C0
     exclusive_ram_id: level
     subsegments:
-      - [0x9A6B10, asm]
-      - [0x9A6F70, asm]
-      - [0x9ABB50, asm]
-      - [0x9ADAD0, asm]
+    - [0x9A6B10, asm]
+    - [0x9A6F70, asm]
+    - [0x9ABB50, asm]
+    - [0x9ADAD0, asm]
   - [0x9AE430, bin]
   - name: unk_end_level_6
     type: code
@@ -462,9 +457,9 @@ segments:
     vram: 0x801DC8C0
     exclusive_ram_id: level
     subsegments:
-      - [0x9D3230, asm]
-      - [0x9D3660, asm]
-      - [0x9D91C0, asm]
+    - [0x9D3230, asm]
+    - [0x9D3660, asm]
+    - [0x9D91C0, asm]
   - [0x9DA580, bin]
   - name: unk_end_level_7
     type: code
@@ -472,10 +467,10 @@ segments:
     vram: 0x801DC8C0
     exclusive_ram_id: level
     subsegments:
-      - [0x9FA580, asm]
-      - [0x9FAC10, asm]
-      - [0x9FD510, asm]
-      - [0x9FEC10, asm]
+    - [0x9FA580, asm]
+    - [0x9FAC10, asm]
+    - [0x9FD510, asm]
+    - [0x9FEC10, asm]
   - [0x9FF2E0, bin]
   - name: unk_end_level_8
     type: code
@@ -483,7 +478,7 @@ segments:
     vram: 0x800E1970
     exclusive_ram_id: level
     subsegments:
-      - [0xA084B0, asm]
+    - [0xA084B0, asm]
   - [0xA08D10, bin]
   - name: unk_level_end_9
     type: code
@@ -491,10 +486,10 @@ segments:
     vram: 0x800E18A0
     exclusive_ram_id: level
     subsegments:
-      - [0xA08E30, asm]
-      - [0xA0BE70, asm]
-      - [0xA0D4D0, asm]
-      - [0xA0E190, asm]
+    - [0xA08E30, asm]
+    - [0xA0BE70, asm]
+    - [0xA0D4D0, asm]
+    - [0xA0E190, asm]
   - [0xA0F660, bin]
   - name: unk_level_end_10
     type: code
@@ -502,8 +497,8 @@ segments:
     vram: 0x800E18A0
     exclusive_ram_id: level
     subsegments:
-      - [0xA5CC50, asm]
-      - [0xA5D5B0, asm]
+    - [0xA5CC50, asm]
+    - [0xA5D5B0, asm]
   - [0xA5E3A0, bin]
   - name: unk_level_end_11
     type: code
@@ -511,9 +506,9 @@ segments:
     vram: 0x801DC8A0
     exclusive_ram_id: level
     subsegments:
-      - [0xA93460, asm]
-      - [0xA937C0, asm]
-      - [0xA94940, asm]
+    - [0xA93460, asm]
+    - [0xA937C0, asm]
+    - [0xA94940, asm]
   - [0xA95760, bin]
   - name: intro_code
     type: code
@@ -521,7 +516,7 @@ segments:
     vram: 0x800E18A0
     exclusive_ram_id: level
     subsegments:
-      - [0xAA0650, asm]
+    - [0xAA0650, asm]
   - [0xAA0A60, bin] # Some code in here 0xF08 in, it seems
   - [0xF53540, bin, padding]
   - [0x1000000]

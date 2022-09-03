@@ -1,4 +1,5 @@
 name: Pokemon Snap (North America)
+sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
 basename: pokemonsnap
 options:
   find-file-boundaries: True

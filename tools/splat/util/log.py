@@ -24,11 +24,11 @@ def error(*args, **kwargs):
     sys.exit(2)
 
 
-def dot(status: Status = None):
-    global newline
-
-    print(status_to_ansi(status) + ".", end="")
-    newline = False
+# The line_num is expected to be zero-indexed
+def parsing_error_preamble(path, line_num, line):
+    write("")
+    write(f"error reading {path}, line {line_num + 1}:", status="error")
+    write(f"\t{line}")
 
 
 def status_to_ansi(status: Status):

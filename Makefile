@@ -1,19 +1,36 @@
+### Build Options ###
 
-BUILD_DIR = build
-ASM_DIRS := asm asm/os asm/data
-ASSET_DIR = assets
-SRC_DIRS := $(shell find src -type d)
+BASEROM      := baserom.z64
+TARGET       := pokemonsnap
+COMPARE      ?= 1
+NON_MATCHING ?= 0
+CHECK        ?= 1
+VERBOSE      ?= 0
 
-C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
-DATA_FILES := $(foreach dir,$(ASSET_DIR),$(wildcard $(dir)/*.bin))
+# Fail early if baserom does not exist
+ifeq ($(wildcard $(BASEROM)),)
+$(error Baserom `$(BASEROM)' not found.)
+endif
 
-# Object files
-O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.c.o)) \
-           $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.s.o)) \
-           $(foreach file,$(DATA_FILES),$(BUILD_DIR)/$(file:.bin=.bin.o)) \
+# NON_MATCHING=1 implies COMPARE=0
+ifeq ($(NON_MATCHING),1)
+override COMPARE=0
+endif
 
-##################### Compiler Options #######################
+ifeq ($(VERBOSE),0)
+V := @
+endif
+
+### Output ###
+
+BUILD_DIR := build
+ROM       := $(BUILD_DIR)/$(TARGET).z64
+ELF       := $(BUILD_DIR)/$(TARGET).elf
+LD_SCRIPT := $(TARGET).ld
+LD_MAP    := $(BUILD_DIR)/$(TARGET).map
+
+
+### Tools ###
 
 ifeq ($(OS),Windows_NT)
     OS = windows
@@ -27,77 +44,150 @@ else
     endif
 endif
 
-CROSS = mips-linux-gnu-
-AS = $(CROSS)as
-LD = $(CROSS)ld
-OBJDUMP = $(CROSS)objdump
-OBJCOPY = $(CROSS)objcopy
+PYTHON     := python3
+N64CKSUM   := $(PYTHON) tools/n64cksum.py
+SPLAT_YAML := splat.yaml
+SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
+EMULATOR   := mupen64plus
+DIFF       := diff
 
-CC = tools/ido_recomp/$(OS)/7.1/cc
-CPP = cpp
+CROSS    := mips-linux-gnu-
+AS       := $(CROSS)as
+LD       := $(CROSS)ld
+OBJDUMP  := $(CROSS)objdump
+OBJCOPY  := $(CROSS)objcopy
+STRIP    := $(CROSS)strip
 
-ifeq ($(OS), macos)
-    CPP = cpp-11
-endif
+CC       := tools/ido_recomp/$(OS)/7.1/cc
+CC_HOST  := gcc
+CPP      := cpp -P
 
-ASFLAGS = -EB -mtune=vr4300 -march=vr4300 -Iinclude
-CFLAGS  = -G 0 -non_shared -Xfullwarn -Xcpluscomm -Iinclude -Wab,-r4300_mul -D _LANGUAGE_C
-LDFLAGS = -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T undefined_funcs.txt -T $(BUILD_DIR)/$(LD_SCRIPT) -Map $(BUILD_DIR)/pokemonsnap.map --no-check-sections
+PRINT := printf '
+ ENDCOLOR := \033[0m
+ WHITE     := \033[0m
+ ENDWHITE  := $(ENDCOLOR)
+ GREEN     := \033[0;32m
+ ENDGREEN  := $(ENDCOLOR)
+ BLUE      := \033[0;34m
+ ENDBLUE   := $(ENDCOLOR)
+ YELLOW    := \033[0;33m
+ ENDYELLOW := $(ENDCOLOR)
+ENDLINE := \n'
 
+### Compiler Options ###
+
+ASFLAGS      := -G 0 -I include -EB -mtune=vr4300 -march=vr4300
+CFLAGS       := -G 0 -non_shared -Xfullwarn -Xcpluscomm -Wab,-r4300_mul
+CPPFLAGS     := -I include -I $(BUILD_DIR)/include -I src -DF3DEX_GBI_2 -D_LANGUAGE_C
+LDFLAGS      := -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T undefined_funcs.txt -T $(LD_SCRIPT) -Map $(LD_MAP) --no-check-sections
+CFLAGS_CHECK := -fsyntax-only -fsigned-char -nostdinc -fno-builtin -D CC_CHECK\
+                -std=gnu90 -Wall -Wextra -Wno-format-security -Wno-unused-parameter -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-unknown-pragmas -Wunused-variable
 OPTFLAGS := -O2
 
-######################## Targets #############################
+ifneq ($(CHECK),1)
+CFLAGS_CHECK += -w
+endif
 
-$(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_DIR) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
+### Sources ###
 
+# Empty file used to track the time that splat was most recently run
+SPLAT_TIMESTAMP := $(BUILD_DIR)/splat_timestamp
+
+# Object files
+OBJECTS := $(shell $(PYTHON) tools/splat_objects.py $(SPLAT_YAML))
+DEPENDS := $(OBJECTS:=.d)
+
+### Targets ###
+
+all: $(ROM)
+
+-include $(DEPENDS)
+
+clean:
+	$(V)rm -rf build
+
+distclean: clean
+	$(V)rm -rf asm
+	$(V)rm -rf assets
+	$(V)rm -f *auto.txt
+	$(V)rm -f pokemonsnap.ld
+	$(V)rm -f include/ld_addrs.h
+
+setup: distclean split
+
+split:
+	$(V)$(SPLAT)
+	@touch $(SPLAT_TIMESTAMP)
+
+test: $(ROM)
+	$(V)$(EMULATOR) $<
+
+# Run splat and update the timestamp
+$(SPLAT_TIMESTAMP) : $(SPLAT_YAML) | $(BUILD_DIR)
+	@$(PRINT)$(GREEN)Running splat$(ENDGREEN)$(ENDLINE)
+	$(V)$(SPLAT)
+	@touch $@
+
+# Disassemble asm files with splat (just update the timestamp so it's newer than the time splat was run)
+asm/%.s: $(SPLAT_TIMESTAMP)
+	@touch $@
+
+# Extract bin files with splat (same as above)
+assets/%.bin: $(SPLAT_TIMESTAMP)
+	@touch $@
+
+# Create the build directory
+$(BUILD_DIR):
+	@$(PRINT)$(GREEN)Making build folder$(ENDGREEN)$(ENDLINE)
+	@mkdir -p $@
+
+# Compile .c files with ido
+$(BUILD_DIR)/src/%.c.o: src/%.c $(SPLAT_TIMESTAMP) | $(BUILD_DIR)
+	@$(PRINT)$(GREEN)Compiling C file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
+	@mkdir -p $(shell dirname $@)
+	@$(CC_HOST) $(CFLAGS_CHECK) $(CPPFLAGS) -MMD -MP -MT $@ -MF $@.d -I include/ $<
+	$(V)$(CC) $(CFLAGS) $(OPTFLAGS) $(CPPFLAGS) -I include/ -c -o $@ $<
+
+# Assemble .s files with modern gnu as
+$(BUILD_DIR)/asm/%.s.o: asm/%.s | $(BUILD_DIR)
+	@$(PRINT)$(GREEN)Assembling asm file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
+	@mkdir -p $(shell dirname $@)
+	$(V)$(AS) $(ASFLAGS) -o $@ $<
+
+# Create .o files from .bin files.
+$(BUILD_DIR)/%.bin.o: %.bin | $(BUILD_DIR)
+	@$(PRINT)$(GREEN)Objcopying binary file: $(ENDGREEN)$(BLUE)$<$(ENDBLUE)$(ENDLINE)
+	@mkdir -p $(shell dirname $@)
+	$(V)$(LD) -r -b binary -o $@ $<
+
+# Link the .o files into the .elf
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS)
+	@$(PRINT)$(GREEN)Linking elf file: $(ENDGREEN)$(BLUE)$@$(ENDBLUE)$(ENDLINE)
+	$(V)$(LD) $(LDFLAGS) -o $@
+
+# Convert the .elf to the final rom
+$(ROM): $(BUILD_DIR)/$(TARGET).elf
+	@$(PRINT)$(GREEN)Creating z64: $(ENDGREEN)$(BLUE)$@$(ENDBLUE)$(ENDLINE)
+	$(V)$(OBJCOPY) $< $@ -O binary
+	$(V)$(OBJCOPY) -O binary --gap-fill 0xFF --pad-to 0x1000000 $< $@
+ifeq ($(COMPARE),1)
+	@$(DIFF) $(BASEROM) $(ROM) && $(PRINT)OK$(ENDLINE) || ($(PRINT)$(RED)The build succeeded, but did not match the base ROM. This is expected if you are making changes to the game. To skip this check, use "make COMPARE=0".$(ENDRED)$(ENDLINE) && false)
+endif
+
+### File-Specific Rules ###
 build/src/os/O1/%.o: OPTFLAGS := -O1
 build/src/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 
-default: all
+### Make Settings ###
 
-TARGET = pokemonsnap
-LD_SCRIPT = $(TARGET).ld
+# Prevent removing intermediate files
+.SECONDARY:
 
-all: $(BUILD_DIR) $(TARGET).z64 verify
+# Specify which targets don't have a corresponding file
+.PHONY: all clean distclean test setup split
 
-clean:
-	rm -rf $(BUILD_DIR) $(ASM_DIRS) $(ASSET_DIR) $(TARGET).z64
+# Remove built-in implicit rules to improve performance
+MAKEFLAGS += --no-builtin-rules
 
-split: $(TOOLS)/splat/util/n64/Yay0decompress
-	./tools/splat/split.py splat.yaml
-
-$(TOOLS)/splat/util/n64/Yay0decompress:
-	make -C tools/splat
-
-setup: split
-	
-$(BUILD_DIR):
-	echo $(C_FILES)
-	mkdir $(BUILD_DIR)
-
-$(BUILD_DIR)/%.c.o: %.c
-	$(CC) -c $(CFLAGS) $(OPTFLAGS) -o $@ $^
-
-$(BUILD_DIR)/%.s.o: %.s
-	$(AS) $(ASFLAGS) -o $@ $<
-
-$(BUILD_DIR)/%.bin.o: %.bin
-	$(LD) -r -b binary -o $@ $<
-
-$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
-	@mkdir -p $(shell dirname $@)
-	$(CPP) -P -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
-
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
-	$(LD) $(LDFLAGS) -o $@
-
-$(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
-	$(OBJCOPY) $< $@ -O binary
-
-$(TARGET).z64: $(BUILD_DIR)/$(TARGET).bin
-	@cp $< $@
-
-verify: $(TARGET).z64
-	md5sum -c checksum.md5
-
-.PHONY: all clean default split setup
+# Print target for debugging
+print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true

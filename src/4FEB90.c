@@ -97,15 +97,15 @@ GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
     animalTmp = gobj->data.animal;
     roomA = getCurrentRoom();
     spawn.id = id;
-    spawn.translation.x = 0.0;
-    spawn.translation.y = 0.0;
-    spawn.translation.z = 0.0;
-    spawn.euler.x = 0.0;
-    spawn.euler.y = 0.0;
-    spawn.euler.z = 0.0;
-    spawn.scale.x = 1.0;
-    spawn.scale.y = 1.0;
-    spawn.scale.z = 1.0;
+    spawn.translation.x = 0.0f;
+    spawn.translation.y = 0.0f;
+    spawn.translation.z = 0.0f;
+    spawn.euler.x = 0.0f;
+    spawn.euler.y = 0.0f;
+    spawn.euler.z = 0.0f;
+    spawn.scale.x = 1.0f;
+    spawn.scale.y = 1.0f;
+    spawn.scale.z = 1.0f;
     spawn.path = animalTmp->path;
     spawn.behavior = animalTmp->behavior;
     

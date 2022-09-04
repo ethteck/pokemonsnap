@@ -9,7 +9,7 @@ void setLevelId(s32 levelID) {
 }
 
 s8* getLevelName(s32 levelIdx) {
-    if (levelIdx < 0 || levelIdx >= 7) {
+    if (levelIdx < 0 || levelIdx > 6) {
         return 0;
     }
     return gLevelNames[levelIdx];

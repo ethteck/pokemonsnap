@@ -514,8 +514,8 @@ typedef struct GObj {
     /* 0x58 */ gobjData data;
 } GObj;
 
-typedef GObj* (*animalInit)(s32 arg0, s32 id, struct roomGFX* roomA, struct roomGFX* roomB, struct objectSpawn* spawn);
-typedef void (*gfxFunc)(struct GObj*);
+typedef GObj* (*animalInit)(s32 arg0, s32 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
+typedef void (*gfxFunc)(GObj*);
 
 typedef struct {
     s32 value;

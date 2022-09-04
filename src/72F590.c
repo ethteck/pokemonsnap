@@ -10,7 +10,7 @@ extern animationHeader D_802E321C;
 extern animalInitData koffingSmokeData;
 
 void func_802DE390_72F590(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     forceAnimalAnimation(obj, &D_802E31F4);
@@ -21,7 +21,7 @@ void func_802DE390_72F590(GObj* obj) {
 }
 
 void func_802DE3FC_72F5FC(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     forceAnimalAnimation(obj, &D_802E3208);
@@ -31,7 +31,7 @@ void func_802DE3FC_72F5FC(GObj* obj) {
 }
 
 void func_802DE450_72F650(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     setAnimalAnimation(obj, &D_802E321C);
@@ -43,7 +43,7 @@ void func_802DE450_72F650(GObj* obj) {
 }
 
 void func_802DE4C0_72F6C0(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     setNodePosToNegRoom(obj);

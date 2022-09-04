@@ -1,12 +1,12 @@
 #include "common.h"
 
 void spawnStaryuAtGeo(GObj* obj) {
-    addAnimalAtGeo(obj, 0x78, &extraStaryuDef);
+    addAnimalAtGeo(obj, AnimalID_STARYU, &extraStaryuDef);
     endGObjProcess(NULL);
 }
 
 void spawnStarmieAtGeo(GObj* obj) {
-    addAnimalAtGeo(obj, 0x79, &extraStarmieDef);
+    addAnimalAtGeo(obj, AnimalID_STARMIE, &extraStarmieDef);
     endGObjProcess(NULL);
 }
 
@@ -15,7 +15,7 @@ void func_802D25E0(GObj* obj) {
 }
 
 void func_802D2604(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     runGObjProcess(obj, spawnStaryuAtGeo, 1, 1);
@@ -28,7 +28,7 @@ void func_802D2604(GObj* obj) {
 }
 
 void func_802D2684(GObj* obj) {
-    s32 pad[3];
+    UNUSED s32 pad[3];
     animal* animal = obj->data.animal;
 
     runGObjProcess(obj, spawnStarmieAtGeo, 1, 1);

@@ -6,7 +6,7 @@
 
 void loadCompressedData(u32 rom, u32 ram);
 
-GObj* runGObjProcess(GObj*, gfxFunc* func, s8 kind, u32 priority);
+GObj* runGObjProcess(GObj*, gfxFunc func, s8 kind, u32 priority);
 void endGObjProcess(GObj*);
 
 void sendSignalToLink(s32 llIndex, s32, GObj*);
@@ -47,9 +47,9 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
 
-void updateAnimalState(GObj* obj, gfxFunc* state);
+void updateAnimalState(GObj* obj, gfxFunc state);
 void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
-void runPathProcess(GObj* obj, gfxFunc* func);
+void runPathProcess(GObj* obj, gfxFunc func);
 void setAnimalAnimation(GObj*, animationHeader*);
 void forceAnimalAnimation(GObj*, animationHeader*);
 void animalUVStuff(GObj*, animationHeader*, f32 start, s32 forceUpdate);

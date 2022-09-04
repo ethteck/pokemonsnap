@@ -1,0 +1,11 @@
+// VSCode will likely add extra stuff to this file, just ignore it
+{
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "**/.git": true,
+        "baserom/**": true,
+        "build/**": true,
+        "expected/**": true,
+    },
+
+}

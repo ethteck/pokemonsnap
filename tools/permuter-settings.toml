@@ -1,0 +1,22 @@
+compiler_type = "ido"
+
+[preserve_macros]
+"g[DS]P.*" = "void"
+"gs[DS]P.*" = "void"
+"G_IM_SIZ_.*" = "int"
+"G_[AC]C.*" = "int"
+ABS = "int"
+ABS_ALT = "int"
+SQ = "int"
+ARRAY_COUNT = "int"
+ARRAY_COUNTU = "int"
+CLAMP = "int"
+NULL = "int"
+
+[decompme.compilers]
+"tools/ido_recomp/linux/7.1/cc" = "ido7.1"
+"tools/ido_recomp/macos/7.1/cc" = "ido7.1"
+"tools/ido_recomp/windows/7.1/cc" = "ido7.1"
+"tools/ido_recomp/linux/5.3/cc" = "ido5.3"
+"tools/ido_recomp/macos/5.3/cc" = "ido5.3"
+"tools/ido_recomp/windows/5.3/cc" = "ido5.3"

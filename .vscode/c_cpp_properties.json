@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "compilerPath": "/usr/bin/gcc", // Needs to not be "" for -m32 to work
+            "compilerArgs": [
+                "-m32" // Removes integer truncation warnings with gbi macros
+            ],
+            "intelliSenseMode": "${default}", // Shouldn't matter
+            "includePath": [ // Matches makefile's includes
+                "${workspaceFolder}/**",
+                "src",
+                "build",
+                "include"
+            ],
+            "defines": [
+                "_LANGUAGE_C", // For gbi.h
+                "NON_MATCHING",
+                "F3DEX_GBI_2",
+                "_MIPS_SIM=1"
+            ],
+            "cStandard": "gnu89" // C89 + some GNU extensions from C99 like C++ comments
+        }
+    ],
+    "version": 4
+}

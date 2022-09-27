@@ -53,7 +53,7 @@ endif
 PYTHON     := python3
 N64CKSUM   := $(PYTHON) tools/n64cksum.py
 SPLAT_YAML := splat.yaml
-SPLAT      := $(PYTHON) tools/splat/split.py $(SPLAT_YAML)
+SPLAT      := $(PYTHON) ~/repos/splat/split.py $(SPLAT_YAML)
 DIFF       := diff
 
 CROSS    := mips-linux-gnu-

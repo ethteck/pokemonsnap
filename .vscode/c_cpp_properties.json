@@ -9,9 +9,9 @@
             "intelliSenseMode": "${default}", // Shouldn't matter
             "includePath": [ // Matches makefile's includes
                 "${workspaceFolder}/**",
-                "src",
-                "build",
-                "include"
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/build",
+                "${workspaceFolder}/include"
             ],
             "defines": [
                 "_LANGUAGE_C", // For gbi.h

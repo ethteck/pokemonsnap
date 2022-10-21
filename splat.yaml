@@ -219,6 +219,7 @@ segments:
     type: code
     start: 0x4F0610
     vram: 0x80350200
+    exclusive_ram_id: app_level
     symbol_name_format: $VRAM
     subsegments:
     - [0x4F0610, asm]

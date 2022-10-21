@@ -1,7 +1,7 @@
 name: Pokemon Snap (North America)
 sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
-basename: pokemonsnap
 options:
+  basename: pokemonsnap
   find-file-boundaries: True
   compiler: IDO
   mnemonic_ljust: 11
@@ -11,6 +11,7 @@ options:
   ld_script_path: pokemonsnap.ld
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
+  migrate_rodata_to_functions: False
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -176,7 +177,6 @@ segments:
     start: 0x46270
     vram: 0x8009A8C0
     symbol_name_format: $VRAM
-    # exclusive_ram_id: level
     subsegments:
     - [0x46270, asm]
     - [0x47330, c]
@@ -219,7 +219,7 @@ segments:
     type: code
     start: 0x4F0610
     vram: 0x80350200
-    # exclusive_ram_id: app_level
+    exclusive_ram_id: app_level
     symbol_name_format: $VRAM
     subsegments:
     - [0x4F0610, asm]

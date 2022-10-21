@@ -1,13 +1,14 @@
 import importlib
 import importlib.util
 
-from typing import Any, Dict, TYPE_CHECKING, Type, Union, Optional, List
+from typing import Any, Dict, TYPE_CHECKING, Set, Type, Union, Optional, List
 from pathlib import Path
 
 from util import log
 from util import options
 from util import symbols
 from util.symbols import Symbol
+from intervaltree import Interval, IntervalTree
 
 # circular import
 if TYPE_CHECKING:
@@ -23,18 +24,36 @@ def parse_segment_vram(segment: Union[dict, list]) -> Optional[int]:
         return None
 
 
+def parse_segment_align(segment: Union[dict, list]) -> Optional[int]:
+    if isinstance(segment, dict) and "align" in segment:
+        return int(segment["align"])
+    return None
+
+
 def parse_segment_subalign(segment: Union[dict, list]) -> int:
-    default = options.get_subalign()
+    default = options.opts.subalign
     if isinstance(segment, dict):
         return int(segment.get("subalign", default))
     return default
 
 
 def parse_segment_section_order(segment: Union[dict, list]) -> List[str]:
-    default = options.get_section_order()
+    default = options.opts.section_order
     if isinstance(segment, dict):
         return segment.get("section_order", default)
     return default
+
+
+def parse_segment_follows_vram(segment: Union[dict, list]) -> Optional[str]:
+    if isinstance(segment, dict):
+        return segment.get("follows_vram", None)
+    return None
+
+
+def parse_segment_follows_vram_symbol(segment: Union[dict, list]) -> Optional[str]:
+    if isinstance(segment, dict):
+        return segment.get("follows_vram_symbol", None)
+    return None
 
 
 class Segment:
@@ -54,7 +73,7 @@ class Segment:
 
     @staticmethod
     def get_base_segment_class(seg_type):
-        platform = options.get_platform()
+        platform = options.opts.platform
         is_platform_seg = False
 
         # heirarchy is platform -> common -> fail
@@ -72,9 +91,9 @@ class Segment:
 
     @staticmethod
     def get_extension_segment_class(seg_type):
-        platform = options.get_platform()
+        platform = options.opts.platform
 
-        ext_path = options.get_extensions_path()
+        ext_path = options.opts.extensions_path
         if not ext_path:
             log.error(
                 f"could not load presumed extended segment type '{seg_type}' because no extensions path is configured"
@@ -84,7 +103,9 @@ class Segment:
             ext_spec = importlib.util.spec_from_file_location(
                 f"{platform}.segtypes.{seg_type}", ext_path / f"{seg_type}.py"
             )
+            assert ext_spec is not None
             ext_mod = importlib.util.module_from_spec(ext_spec)
+            assert ext_spec.loader is not None
             ext_spec.loader.exec_module(ext_mod)
         except Exception as err:
             log.write(err, status="error")
@@ -131,14 +152,20 @@ class Segment:
         if isinstance(segment, dict) and "symbol_name_format" in segment:
             return str(segment["symbol_name_format"])
         else:
-            return options.get_symbol_name_format()
+            return options.opts.symbol_name_format
 
     @staticmethod
     def parse_segment_symbol_name_format_no_rom(segment: Union[dict, list]) -> str:
         if isinstance(segment, dict) and "symbol_name_format_no_rom" in segment:
             return str(segment["symbol_name_format_no_rom"])
         else:
-            return options.get_symbol_name_format_no_rom()
+            return options.opts.symbol_name_format_no_rom
+
+    @staticmethod
+    def parse_segment_file_path(segment: Union[dict, list]) -> Optional[Path]:
+        if isinstance(segment, dict) and "path" in segment:
+            return Path(segment["path"])
+        return None
 
     def __init__(
         self,
@@ -147,43 +174,48 @@ class Segment:
         type: str,
         name: str,
         vram_start: Any,
-        extract: bool = True,
-        given_subalign: int = options.get_subalign(),
-        exclusive_ram_id: Optional[str] = None,
-        given_dir: Path = Path(),
-        symbol_name_format: str = options.get_symbol_name_format(),
-        symbol_name_format_no_rom: str = options.get_symbol_name_format_no_rom(),
-        args=[],
-        yaml={},
+        args: list,
+        yaml,
     ):
         self.rom_start = rom_start
         self.rom_end = rom_end
         self.type = type
         self.name = name
         self.vram_start = vram_start
-        self.extract = extract
 
-        self.given_subalign = given_subalign
-        self.exclusive_ram_id = exclusive_ram_id
-        self.given_dir = given_dir
-        self.given_seg_symbols: Dict[
-            int, List[Symbol]
-        ] = {}  # Symbols known to be in this segment
-        self.given_section_order: List[str] = options.get_section_order()
+        self.align: Optional[int] = None
+        self.given_subalign: int = options.opts.subalign
+        self.exclusive_ram_id: Optional[str] = None
+        self.given_dir: Path = Path()
 
-        self.given_symbol_name_format = symbol_name_format
-        self.given_symbol_name_format_no_rom = symbol_name_format_no_rom
+        # Symbols known to be in this segment
+        self.given_seg_symbols: Dict[int, List[Symbol]] = {}
+
+        # Ranges for faster symbol lookup
+        self.symbol_ranges_ram: IntervalTree = IntervalTree()
+        self.symbol_ranges_rom: IntervalTree = IntervalTree()
+
+        self.given_section_order: List[str] = options.opts.section_order
+        self.follows_vram: Optional[str] = None
+        self.follows_vram_symbol: Optional[str] = None
+
+        self.given_symbol_name_format: str = options.opts.symbol_name_format
+        self.given_symbol_name_format_no_rom: str = (
+            options.opts.symbol_name_format_no_rom
+        )
 
         self.parent: Optional[Segment] = None
         self.sibling: Optional[Segment] = None
+        self.follows_vram_segment: Optional[Segment] = None
+        self.file_path: Optional[Path] = None
 
         self.args: List[str] = args
         self.yaml = yaml
 
+        self.extract: bool = True
         if self.rom_start == "auto":
             self.extract = False
-
-        if self.type.startswith("."):
+        elif self.type.startswith("."):
             self.extract = False
 
         self.warnings: List[str] = []
@@ -206,16 +238,7 @@ class Segment:
         type = Segment.parse_segment_type(yaml)
         name = Segment.parse_segment_name(cls, rom_start, yaml)
         vram_start = vram if vram is not None else parse_segment_vram(yaml)
-        extract = bool(yaml.get("extract", True)) if isinstance(yaml, dict) else True
-        given_subalign = parse_segment_subalign(yaml)
-        exclusive_ram_id: Optional[str] = (
-            yaml.get("exclusive_ram_id") if isinstance(yaml, dict) else None
-        )
-        given_dir = Path(yaml.get("dir", "")) if isinstance(yaml, dict) else Path()
-        given_symbol_name_format = Segment.parse_segment_symbol_name_format(yaml)
-        given_symbol_name_format_no_rom = (
-            Segment.parse_segment_symbol_name_format_no_rom(yaml)
-        )
+
         args: List[str] = [] if isinstance(yaml, dict) else yaml[3:]
 
         ret = cls(
@@ -224,16 +247,29 @@ class Segment:
             type=type,
             name=name,
             vram_start=vram_start,
-            extract=extract,
-            given_subalign=given_subalign,
-            exclusive_ram_id=exclusive_ram_id,
-            given_dir=given_dir,
-            symbol_name_format=given_symbol_name_format,
-            symbol_name_format_no_rom=given_symbol_name_format_no_rom,
             args=args,
             yaml=yaml,
         )
-        cls.given_section_order = parse_segment_section_order(yaml)
+        ret.given_section_order = parse_segment_section_order(yaml)
+        ret.given_subalign = parse_segment_subalign(yaml)
+        if isinstance(yaml, dict):
+            ret.extract = bool(yaml.get("extract", ret.extract))
+            ret.exclusive_ram_id = yaml.get("exclusive_ram_id")
+            ret.given_dir = Path(yaml.get("dir", ""))
+        ret.given_symbol_name_format = Segment.parse_segment_symbol_name_format(yaml)
+        ret.given_symbol_name_format_no_rom = (
+            Segment.parse_segment_symbol_name_format_no_rom(yaml)
+        )
+        ret.file_path = Segment.parse_segment_file_path(yaml)
+
+        if not ret.follows_vram:
+            ret.follows_vram = parse_segment_follows_vram(yaml)
+
+        if not ret.follows_vram_symbol:
+            ret.follows_vram_symbol = parse_segment_follows_vram_symbol(yaml)
+
+        if not ret.align:
+            ret.align = parse_segment_align(yaml)
         return ret
 
     @property
@@ -271,6 +307,12 @@ class Segment:
         if symbol.vram_start not in self.given_seg_symbols:
             self.given_seg_symbols[symbol.vram_start] = []
         self.given_seg_symbols[symbol.vram_start].append(symbol)
+
+        # For larger symbols, add their ranges to interval trees for faster lookup
+        if symbol.size > 4:
+            self.symbol_ranges_ram.addi(symbol.vram_start, symbol.vram_end, symbol)
+            if symbol.rom and isinstance(symbol.rom, int):
+                self.symbol_ranges_rom.addi(symbol.rom, symbol.rom_end, symbol)
 
     @property
     def seg_symbols(self) -> Dict[int, List[Symbol]]:
@@ -339,7 +381,7 @@ class Segment:
         return self.should_split()
 
     def should_split(self) -> bool:
-        return self.extract and options.mode_active(self.type)
+        return self.extract and options.opts.is_mode_active(self.type)
 
     def scan(self, rom_bytes: bytes):
         pass
@@ -375,7 +417,7 @@ class Segment:
             return []
 
     def log(self, msg):
-        if options.verbose():
+        if options.opts.verbose:
             log.write(f"{self.type} {self.name}: {msg}")
 
     def warn(self, msg: str):
@@ -445,7 +487,7 @@ class Segment:
         create: bool = False,
         define: bool = False,
         reference: bool = False,
-        offsets: bool = False,
+        search_ranges: bool = False,
         local_only: bool = False,
         dead: bool = True,
     ) -> Optional[Symbol]:
@@ -458,12 +500,25 @@ class Segment:
             # If the vram address is within this segment, we can calculate the symbol's rom address
             rom = most_parent.ram_to_rom(addr)
             ret = most_parent.retrieve_symbol(most_parent.seg_symbols, addr)
+
+            if not ret and search_ranges:
+                # Search ranges first, starting with rom
+                if rom is not None:
+                    cands: Set[Interval] = most_parent.symbol_ranges_rom[rom]
+                    if cands:
+                        ret = cands.pop().data
+                # and then vram if we can't find a rom match
+                if not ret:
+                    cands = most_parent.symbol_ranges_ram[addr]
+                    if cands:
+                        ret = cands.pop().data
         elif not local_only:
             ret = most_parent.retrieve_symbol(symbols.all_symbols_dict, addr)
 
-        # Search for symbol ranges
-        if not ret and offsets:
-            ret = symbols.retrieve_from_ranges(addr, rom)
+            if not ret and search_ranges:
+                cands = symbols.all_symbols_ranges[addr]
+                if cands:
+                    ret = cands.pop().data
 
         # Reject dead symbols unless we allow them
         if not dead and ret and ret.dead:
@@ -502,7 +557,7 @@ class Segment:
         type: Optional[str] = None,
         define: bool = False,
         reference: bool = False,
-        offsets: bool = False,
+        search_ranges: bool = False,
         local_only: bool = False,
         dead: bool = True,
     ) -> Symbol:
@@ -513,7 +568,7 @@ class Segment:
             create=True,
             define=define,
             reference=reference,
-            offsets=offsets,
+            search_ranges=search_ranges,
             local_only=local_only,
             dead=dead,
         )

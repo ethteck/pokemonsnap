@@ -6,34 +6,34 @@
 typedef f32 quartic[5];
 
 typedef enum geoPayloadType {
-    axis=23,
+    translate=18,
     axisDEG=19,
     axisDEG_translate=20,
-    axis_translate=24,
-    axis_translate_scale=25,
-    bone=51,
-    euler=29,
     eulerDEG_XYZ=21,
     eulerDEG_translate=22,
+    axis=23,
+    axis_translate=24,
+    axis_translate_scale=25,
     eulerTAB=26,
     eulerTAB_translate=27,
     eulerTAB_translate_scale=28,
-    euler_scale_translate=31,
     euler_translate=30,
-    euler_translate_conjScale=54,
+    euler=29,
+    euler_scale_translate=31,
     scale=32,
-    scale_proj=44,
-    scaled_viewproj=50,
     set_viewproj=42,
+    scale_proj=44,
+    zrot_viewproj=46,
+    scaled_viewproj=50,
+    bone=51,
     tempScale=53,
-    translate=18,
-    xform_eulerTAB_trans_scale=63,
-    zrot_viewproj=46
+    euler_translate_conjScale=54,
+    xform_eulerTAB_trans_scale=63
 } geoPayloadType;
 
 typedef struct {
     f32 x, y, z;
-} Vec3f;
+} Vec3f; // size = 0xC
 
 typedef struct {
     /* 0x000 */ s32 regs[50];
@@ -120,7 +120,7 @@ typedef struct {
     /* 0x08 */ s32 inc;
 } uvState;
 
-typedef struct { /* MObj s32ernally */
+typedef struct { /* MObj internally */
     /* 0x00 */ struct uvScroll* next;
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ u16 h_8;

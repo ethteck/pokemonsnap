@@ -12,8 +12,6 @@ def main(config_path):
         config = yaml.load(f.read(), Loader=yaml.SafeLoader)
 
     options.initialize(config, config_path, None, None)
-    options.set("modes", [])
-    options.set("verbose", False)
 
     all_segments = initialize_segments(config["segments"])
 
@@ -23,7 +21,7 @@ def main(config_path):
         linker_entries = segment.get_linker_entries()
         for entry in linker_entries:
             objs += str(entry.object_path) + " "
-    
+
     return objs
 
 

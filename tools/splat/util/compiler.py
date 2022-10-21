@@ -9,11 +9,12 @@ class Compiler:
     asm_end_label: str = ""
     c_newline: str = "\n"
     asm_inc_header: str = ""
+    include_macro_inc: bool = True
 
 
 GCC = Compiler(
     "GCC",
-    asm_inc_header=".set noat      # allow manual use of $at\n.set noreorder # don't insert nops after branches\n\n",
+    asm_inc_header=".set noat      /* allow manual use of $at */\n.set noreorder /* don't insert nops after branches */\n\n",
 )
 
 SN64 = Compiler(
@@ -22,6 +23,7 @@ SN64 = Compiler(
     asm_data_macro=".globl",
     asm_end_label=".end",
     c_newline="\r\n",
+    include_macro_inc=False,
 )
 
 IDO = Compiler("IDO")

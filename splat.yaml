@@ -2,7 +2,7 @@ name: Pokemon Snap (North America)
 sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
 options:
   basename: pokemonsnap
-  find-file-boundaries: True
+  find_file_boundaries: True
   compiler: IDO
   mnemonic_ljust: 11
   platform: n64

@@ -1,18 +1,20 @@
 from typing import List, Optional
-from segtypes.common.segment import CommonSegment
-from segtypes.segment import RomAddr, Segment
+
 from util import log
+
+from segtypes.common.segment import CommonSegment
+from segtypes.segment import Segment
 
 
 class CommonSegGroup(CommonSegment):
     def __init__(
         self,
-        rom_start,
-        rom_end,
-        type,
-        name,
-        vram_start,
-        args,
+        rom_start: Optional[int],
+        rom_end: Optional[int],
+        type: str,
+        name: str,
+        vram_start: Optional[int],
+        args: list,
         yaml,
     ):
         super().__init__(
@@ -40,7 +42,7 @@ class CommonSegGroup(CommonSegment):
         if not yaml or "subsegments" not in yaml:
             return ret
 
-        prev_start: RomAddr = -1
+        prev_start: Optional[int] = -1
 
         for i, subsection_yaml in enumerate(yaml["subsegments"]):
             # endpos marker
@@ -64,7 +66,7 @@ class CommonSegGroup(CommonSegment):
                 )
 
             vram = None
-            if start != "auto":
+            if start is not None:
                 assert isinstance(start, int)
                 vram = self.get_most_parent().rom_to_ram(start)
 
@@ -72,6 +74,8 @@ class CommonSegGroup(CommonSegment):
                 segment_class, subsection_yaml, start, end, vram
             )
             segment.parent = self
+            if segment.special_vram_segment:
+                self.special_vram_segment = True
 
             ret.append(segment)
             prev_start = start
@@ -125,7 +129,7 @@ class CommonSegGroup(CommonSegment):
         """
 
         for sub in self.subsegments:
-            if sub.vram_start == "auto":
+            if sub.vram_start is None:
                 continue
             assert isinstance(sub.vram_start, int)
             if sub.vram_start > addr:

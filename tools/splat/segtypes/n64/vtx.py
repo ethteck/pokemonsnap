@@ -7,21 +7,22 @@ Originally written by Mark Street (https://github.com/mkst)
 
 import struct
 from pathlib import Path
-from util.log import error
+from typing import Optional
 
-from util import options
+from util import options, log
+
 from segtypes.common.codesubsegment import CommonSegCodeSubsegment
 
 
 class N64SegVtx(CommonSegCodeSubsegment):
     def __init__(
         self,
-        rom_start,
-        rom_end,
-        type,
-        name,
-        vram_start,
-        args,
+        rom_start: Optional[int],
+        rom_end: Optional[int],
+        type: str,
+        name: str,
+        vram_start: Optional[int],
+        args: list,
         yaml,
     ):
         super().__init__(
@@ -34,6 +35,10 @@ class N64SegVtx(CommonSegCodeSubsegment):
             yaml=yaml,
         )
         self.file_text = None
+        self.data_only = isinstance(yaml, dict) and yaml.get("data_only", False)
+
+    def format_sym_name(self, sym) -> str:
+        return sym.name
 
     def get_linker_section(self) -> str:
         return ".data"
@@ -45,23 +50,29 @@ class N64SegVtx(CommonSegCodeSubsegment):
         self.file_text = self.disassemble_data(rom_bytes)
 
     def disassemble_data(self, rom_bytes):
+        assert isinstance(self.rom_start, int)
+        assert isinstance(self.rom_end, int)
+        assert isinstance(self.vram_start, int)
+
         vertex_data = rom_bytes[self.rom_start : self.rom_end]
         segment_length = len(vertex_data)
         if (segment_length) % 16 != 0:
-            error(
+            log.error(
                 f"Error: Vtx segment {self.name} length ({segment_length}) is not a multiple of 16!"
             )
 
         lines = []
-        preamble = options.opts.generated_c_preamble
-        lines.append(preamble)
-        lines.append("")
+        if not self.data_only:
+            lines.append(options.opts.generated_c_preamble)
+            lines.append("")
 
         vertex_count = segment_length // 16
         sym = self.create_symbol(
             addr=self.vram_start, in_segment=True, type="data", define=True
         )
-        lines.append(f"Vtx {sym.name}[{vertex_count}] = {{")
+
+        if not self.data_only:
+            lines.append(f"Vtx {self.format_sym_name(sym)}[{vertex_count}] = {{")
 
         for vtx in struct.iter_unpack(">hhhHhhBBBB", vertex_data):
             x, y, z, flg, t, c, r, g, b, a = vtx
@@ -70,7 +81,8 @@ class N64SegVtx(CommonSegCodeSubsegment):
                 self.warn(f"Non-zero flag found in vertex data {self.name}!")
             lines.append(vtx_string)
 
-        lines.append("};")
+        if not self.data_only:
+            lines.append("};")
 
         # enforce newline at end of file
         lines.append("")
@@ -86,8 +98,8 @@ class N64SegVtx(CommonSegCodeSubsegment):
     def should_scan(self) -> bool:
         return (
             options.opts.is_mode_active("vtx")
-            and self.rom_start != "auto"
-            and self.rom_end != "auto"
+            and self.rom_start is not None
+            and self.rom_end is not None
         )
 
     def should_split(self) -> bool:

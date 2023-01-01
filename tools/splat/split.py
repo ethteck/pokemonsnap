@@ -2,9 +2,9 @@
 
 import argparse
 import hashlib
+import importlib
 import pickle
 from typing import Any, Dict, List, Optional, Set, Union
-import importlib
 
 import rabbitizer
 import spimdisasm
@@ -14,12 +14,12 @@ from colorama import Fore, Style
 from intervaltree import Interval, IntervalTree
 
 from segtypes.linker_entry import LinkerWriter, to_cname
-from segtypes.segment import RomAddr, Segment
-from util import compiler, log, options, palettes, symbols
+from segtypes.segment import Segment
+from util import compiler, log, options, palettes, symbols, relocs
 
-VERSION = "0.12.4"
+VERSION = "0.12.10"
 # This value should be keep in sync with the version listed on requirements.txt
-SPIMDISASM_MIN = (1, 5, 6)
+SPIMDISASM_MIN = (1, 9, 0)
 
 parser = argparse.ArgumentParser(
     description="Split a rom given a rom, a config, and output directory"
@@ -29,6 +29,11 @@ parser.add_argument("--modes", nargs="+", default="all")
 parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
 parser.add_argument(
     "--use-cache", action="store_true", help="Only split changed segments in config"
+)
+parser.add_argument(
+    "--skip-version-check",
+    action="store_true",
+    help="Skips the disassembler's version check",
 )
 
 linker_writer: LinkerWriter
@@ -68,8 +73,8 @@ def initialize_segments(config_segments: Union[dict, list]) -> List[Segment]:
 
         this_start = Segment.parse_segment_start(seg_yaml)
 
-        if i == len(config_segments) - 1 and Segment.parse_segment_file_path:
-            next_start: RomAddr = 0
+        if i == len(config_segments) - 1 and Segment.parse_segment_file_path(seg_yaml):
+            next_start: Optional[int] = 0
         else:
             next_start = Segment.parse_segment_start(config_segments[i + 1])
 
@@ -114,7 +119,7 @@ def assign_symbols_to_segments():
             continue
 
         if symbol.rom:
-            cands = segment_roms[symbol.rom]
+            cands: Set[Interval] = segment_roms[symbol.rom]
             if len(cands) > 1:
                 log.error("multiple segments rom overlap symbol", symbol)
             elif len(cands) == 0:
@@ -124,7 +129,7 @@ def assign_symbols_to_segments():
                 seg: Segment = cand.data
                 seg.add_symbol(symbol)
         else:
-            cands: Set[Interval] = segment_rams[symbol.vram_start]
+            cands = segment_rams[symbol.vram_start]
             segs: List[Segment] = [cand.data for cand in cands]
             for seg in segs:
                 if not seg.get_exclusive_ram_id():
@@ -221,23 +226,24 @@ def configure_disassembler():
 
     rabbitizer.config.pseudos_pseudoMove = False
 
-    selectedCompiler = options.opts.compiler
-    if selectedCompiler == compiler.SN64:
+    selected_compiler = options.opts.compiler
+    if selected_compiler == compiler.SN64:
         rabbitizer.config.regNames_namedRegisters = False
         rabbitizer.config.toolchainTweaks_sn64DivFix = True
         rabbitizer.config.toolchainTweaks_treatJAsUnconditionalBranch = True
         spimdisasm.common.GlobalConfig.ASM_COMMENT = False
         spimdisasm.common.GlobalConfig.SYMBOL_FINDER_FILTERED_ADDRESSES_AS_HILO = False
         spimdisasm.common.GlobalConfig.COMPILER = spimdisasm.common.Compiler.SN64
-    elif selectedCompiler == compiler.GCC:
+    elif selected_compiler == compiler.GCC:
         rabbitizer.config.toolchainTweaks_treatJAsUnconditionalBranch = True
         spimdisasm.common.GlobalConfig.COMPILER = spimdisasm.common.Compiler.GCC
-    elif selectedCompiler == compiler.IDO:
+    elif selected_compiler == compiler.IDO:
         spimdisasm.common.GlobalConfig.COMPILER = spimdisasm.common.Compiler.IDO
 
     spimdisasm.common.GlobalConfig.GP_VALUE = options.opts.gp
 
     spimdisasm.common.GlobalConfig.ASM_TEXT_LABEL = options.opts.asm_function_macro
+    spimdisasm.common.GlobalConfig.ASM_JTBL_LABEL = options.opts.asm_jtbl_label_macro
     spimdisasm.common.GlobalConfig.ASM_DATA_LABEL = options.opts.asm_data_macro
     spimdisasm.common.GlobalConfig.ASM_TEXT_END_LABEL = options.opts.asm_end_label
 
@@ -258,10 +264,10 @@ def brief_seg_name(seg: Segment, limit: int, ellipsis="…") -> str:
     return s
 
 
-def main(config_path, modes, verbose, use_cache=True):
+def main(config_path, modes, verbose, use_cache=True, skip_version_check=False):
     global config
 
-    if spimdisasm.__version_info__ < SPIMDISASM_MIN:
+    if not skip_version_check and spimdisasm.__version_info__ < SPIMDISASM_MIN:
         log.error(
             f"splat {VERSION} requires as minimum spimdisasm {SPIMDISASM_MIN}, but the installed version is {spimdisasm.__version_info__}"
         )
@@ -328,12 +334,14 @@ def main(config_path, modes, verbose, use_cache=True):
 
     # Load and process symbols
     symbols.initialize(all_segments)
+    relocs.initialize()
 
     # Assign symbols to segments
     assign_symbols_to_segments()
 
     if options.opts.is_mode_active("code"):
         symbols.initialize_spim_context(all_segments)
+        relocs.initialize_spim_context()
 
     # Resolve raster/palette siblings
     if options.opts.is_mode_active("img"):
@@ -475,7 +483,7 @@ def main(config_path, modes, verbose, use_cache=True):
         with open(options.opts.cache_path, "wb") as f4:
             pickle.dump(cache, f4)
 
-    if options.opts.dump_symbols:
+    if options.opts.dump_symbols and options.opts.is_mode_active("code"):
         from pathlib import Path
 
         splat_hidden_folder = Path(".splat/")
@@ -505,4 +513,4 @@ def main(config_path, modes, verbose, use_cache=True):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    main(args.config, args.modes, args.verbose, args.use_cache)
+    main(args.config, args.modes, args.verbose, args.use_cache, args.skip_version_check)

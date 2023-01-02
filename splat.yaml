@@ -2,7 +2,7 @@ name: Pokemon Snap (North America)
 sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
 options:
   basename: pokemonsnap
-  find-file-boundaries: True
+  find_file_boundaries: True
   compiler: IDO
   mnemonic_ljust: 11
   platform: n64
@@ -12,6 +12,7 @@ options:
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
   migrate_rodata_to_functions: False
+  dump_symbols: True
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]

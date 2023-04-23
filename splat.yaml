@@ -172,7 +172,13 @@ segments:
     - [0x3E0B0, asm]
     - [0x3E3F0, asm]
     - [0x3E4A0, data]
+    - [0x3E580, data, rsp/aspMain]
+    - [0x3F3A0, data, rsp/aspMainCopy]
+    - [0x401C0, data]
     - [0x43B40, rodata]
+    - [0x457A0, rodata, rsp/aspMain_data]
+    - [0x45A60, rodata, rsp/aspMain_dataCopy]
+    - [0x45D20, rodata]
   - name: app_render
     type: code
     start: 0x46270
@@ -521,5 +527,52 @@ segments:
     subsegments:
     - [0xAA0650, asm]
   - [0xAA0A60, bin] # Some code in here 0xF08 in, it seems
+
+  # Sequences
+  - [0xAEFD3C, bin, audio/seq/AEFD3C]
+  - [0xAF0A94, bin, audio/seq/AF0A94]
+  - [0xAF0C30, bin, audio/seq/AF0C30]
+  - [0xAF0DF4, bin, audio/seq/AF0DF4]
+  - [0xAF0FC4, bin, audio/seq/AF0FC4]
+  - [0xAF15BC, bin, audio/seq/AF15BC]
+  - [0xAF1F70, bin, audio/seq/AF1F70]
+  - [0xAF2B34, bin, audio/seq/AF2B34]
+  - [0xAF383C, bin, audio/seq/AF383C]
+  - [0xAF3D74, bin, audio/seq/AF3D74]
+  - [0xAF444C, bin, audio/seq/AF444C]
+  - [0xAF4918, bin, audio/seq/AF4918]
+  - [0xAF5A8C, bin, audio/seq/AF5A8C]
+  - [0xAF5F4C, bin, audio/seq/AF5F4C]
+  - [0xAF6E84, bin, audio/seq/AF6E84]
+  - [0xAF7D3C, bin, audio/seq/AF7D3C]
+  - [0xAF7F88, bin, audio/seq/AF7F88]
+  - [0xAF8A10, bin, audio/seq/AF8A10]
+  - [0xAF8C88, bin, audio/seq/AF8C88]
+  - [0xAF9508, bin, audio/seq/AF9508]
+  - [0xAF9938, bin, audio/seq/AF9938]
+  - [0xAF9AC8, bin, audio/seq/AF9AC8]
+  - [0xAF9BE4, bin, audio/seq/AF9BE4]
+  - [0xAF9C5C, bin, audio/seq/AF9C5C]
+  - [0xAFA7F8, bin, audio/seq/AFA7F8]
+  - [0xAFA96C, bin, audio/seq/AFA96C]
+  - [0xAFB44C, bin, audio/seq/AFB44C]
+  - [0xAFB914, bin, audio/seq/AFB914]
+  - [0xAFBEF0, bin, audio/seq/AFBEF0]
+  - [0xAFC2D8, bin, audio/seq/AFC2D8]
+  - [0xAFCCE8, bin, audio/seq/AFCCE8]
+  - [0xAFD194, bin, audio/seq/AFD194]
+  - [0xAFD298, bin, audio/seq/AFD298]
+  - [0xAFD3A4, bin, audio/seq/AFD3A4]
+  - [0xAFD494, bin, audio/seq/AFD494]
+  - [0xAFDCD8, bin, audio/seq/AFDCD8]
+  - [0xAFDDC4, bin, audio/seq/AFDDC4] # Unkown size for now
+  - [0xAFDDC8, bin]
+
+  # Audio banks and wave tables
+  - [0xAFEEE0, bin, audio/bank1]
+  - [0xB04430, bin, audio/table1]
+  - [0xBA6C20, bin, audio/bank2]
+  - [0xBB6940, bin, audio/table2]
+
   - [0xF53540, bin, padding]
   - [0x1000000]

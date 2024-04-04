@@ -1,6 +1,7 @@
-#include "ultra64.h"
-#include "functions.h"
 #include "variables.h"
+
+#include "PR/os_internal_reg.h"
+#include "os/osint.h"
 
 s32 osSendMesg(OSMesgQueue* mq, OSMesg mesg, s32 flag) {
     register u32 s0 = __osDisableInt();

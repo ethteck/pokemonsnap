@@ -2,6 +2,7 @@
 #define _VARIABLES_H_
 
 #include "ultra64.h"
+#include "common_structs.h"
 
 extern OSThread* __osRunningThread;
 extern OSThread* __osRunQueue;

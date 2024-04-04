@@ -1,16 +1,11 @@
-#include "ultra64.h"
-#include "functions.h"
-#include "variables.h"
+#include "PR/os_internal.h"
+#include "os/osint.h"
 
-void osStopThread(OSThread* thread) {
-    register u32 s0 = __osDisableInt();
-    register u32 state;
+void osStopThread(OSThread* t) {
+    register u32 saveMask = __osDisableInt();
+    register u16 state;
 
-    if (thread == NULL) {
-        state = OS_STATE_RUNNING;
-    } else {
-        state = thread->state;
-    }
+    state = (t == NULL) ? OS_STATE_RUNNING: t->state;
 
     switch (state) {
         case OS_STATE_RUNNING:
@@ -19,10 +14,10 @@ void osStopThread(OSThread* thread) {
             break;
         case OS_STATE_RUNNABLE:
         case OS_STATE_WAITING:
-            thread->state = OS_STATE_STOPPED;
-            __osDequeueThread(thread->queue, thread);
+            t->state = OS_STATE_STOPPED;
+            __osDequeueThread(t->queue, t);
             break;
     }
 
-    __osRestoreInt(s0);
+    __osRestoreInt(saveMask);
 }

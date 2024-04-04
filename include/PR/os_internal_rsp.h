@@ -13,13 +13,13 @@
 /*---------------------------------------------------------------------*
         Copyright (C) 1998 Nintendo. (Originated by SGI)
         
-        $RCSfile: os_internal.h,v $
-        $Revision: 1.20 $
-        $Date: 1998/10/09 08:01:09 $
+        $RCSfile: os_internal_rsp.h,v $
+        $Revision: 1.1 $
+        $Date: 1998/10/09 08:01:12 $
  *---------------------------------------------------------------------*/
 
-#ifndef _OS_INTERNAL_H_
-#define	_OS_INTERNAL_H_
+#ifndef _OS_INTERNAL_RSP_H_
+#define	_OS_INTERNAL_RSP_H_
 
 #ifdef _LANGUAGE_C_PLUS_PLUS
 extern "C" {
@@ -29,16 +29,15 @@ extern "C" {
 
 #if defined(_LANGUAGE_C) || defined(_LANGUAGE_C_PLUS_PLUS)
 
-#include "os_internal_reg.h"
-#include "os_internal_exception.h"
-#include "os_internal_tlb.h"
-#include "os_internal_si.h"
-#include "os_internal_rsp.h"
-#include "os_internal_error.h"
-#include "os_internal_gio.h"
-#include "os_internal_thread.h"
-#include "os_internal_debug.h"
-#include "os_internal_host.h"
+/* Signal processor interface (Sp) */
+
+extern u32 		__osSpGetStatus(void);
+extern void		__osSpSetStatus(u32);
+extern s32		__osSpSetPc(u32);
+extern s32		__osSpRawWriteIo(u32, u32);
+extern s32		__osSpRawReadIo(u32, u32 *);
+extern s32		__osSpRawStartDma(s32, u32, void *, u32);
+
 
 #endif /* _LANGUAGE_C */
 
@@ -46,4 +45,4 @@ extern "C" {
 }
 #endif
 
-#endif /* !_OS_INTERNAL_H */
+#endif /* !_OS_INTERNAL_RSP_H */

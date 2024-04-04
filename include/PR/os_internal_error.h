@@ -10,30 +10,36 @@
  *									  *
  **************************************************************************/
 
-/**************************************************************************
- *
- *  $Revision: 1.6 $
- *  $Date: 1997/02/11 08:30:08 $
- *  $Source: /exdisk2/cvs/N64OS/Master/cvsmdev2/PR/include/rmon.h,v $
- *
- **************************************************************************/
+/*---------------------------------------------------------------------*
+        Copyright (C) 1998 Nintendo. (Originated by SGI)
+        
+        $RCSfile: os_internal_error.h,v $
+        $Revision: 1.1 $
+        $Date: 1998/10/09 08:01:10 $
+ *---------------------------------------------------------------------*/
 
-#ifndef _RMON_H_
-#define	_RMON_H_
+#ifndef _OS_INTERNAL_ERROR_H_
+#define	_OS_INTERNAL_ERROR_H_
 
 #ifdef _LANGUAGE_C_PLUS_PLUS
 extern "C" {
 #endif
 
-#include <PR/ultratypes.h>
-#define RMON_DBG_BUF_SIZE  2048
-#define RMON_STACKSIZE 0x1000
+#include <PR/os.h>
 
-extern void rmonMain( void * );
-extern void rmonPrintf( const char *, ... );
+#if defined(_LANGUAGE_C) || defined(_LANGUAGE_C_PLUS_PLUS)
+
+/* Error handling */
+
+extern void		__osError(s16, s16, ...);
+extern OSThread *	__osGetCurrFaultedThread(void);
+extern OSThread *	__osGetNextFaultedThread(OSThread *);
+
+
+#endif /* _LANGUAGE_C */
 
 #ifdef _LANGUAGE_C_PLUS_PLUS
 }
 #endif
 
-#endif /* !_OS_H */
+#endif /* !_OS_INTERNAL_ERROR_H */

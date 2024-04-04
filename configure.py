@@ -24,7 +24,8 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-COMMON_INCLUDES = "-Iinclude"
+COMMON_INCLUDES = "-I include"
+IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
@@ -34,7 +35,7 @@ AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 
 IDO_DIR = TOOLS_DIR / "ido5.3"
 IDO_CC = f"{IDO_DIR}/cc"
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- {IDO_CC} {COMMON_INCLUDES} -G0 $flags -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} -I build/include -I src {IDO_DEFS} -c -o $out $in"
 
 
 def clean():
@@ -63,7 +64,7 @@ def obtain_ido_recomp():
         print(f"Unsupported platform {sys.platform}")
         sys.exit(1)
 
-    ido_tar_name = f"ido-5.3-recomp-{ido_os}.tar.gz"
+    ido_tar_name = f"ido-7.1-recomp-{ido_os}.tar.gz"
     url = f"https://github.com/decompals/ido-static-recomp/releases/download/{IDO_RECOMP_VERSION}/{ido_tar_name}"
     target_path = TOOLS_DIR / ido_tar_name
 
@@ -192,6 +193,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 flags = "-O1"
 
             build(entry.object_path, entry.src_paths, "cc", variables={"flags": flags})
+        elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
+            build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
@@ -218,7 +221,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         OK_PATH,
         "sha1sum",
         "checksum.sha1",
-        implicit=[ELF_PATH],
+        implicit=[Z64_PATH],
     )
 
 

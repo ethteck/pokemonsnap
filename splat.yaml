@@ -381,7 +381,7 @@ segments:
     - [0x7A8030, asm]
     - [0x7AA110, asm]
     - [0x7AA720, c]
-    - [0x7AA780, bin] # Weird extra nops, possibly infinite loop somewhere?
+    - [0x7AA780, textbin] # Weird extra nops, possibly infinite loop somewhere?
     - [0x7AA790, asm]
     - [0x7AB7C0, asm]
     - [0x7ABB10, c]

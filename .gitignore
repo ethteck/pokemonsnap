@@ -10,6 +10,7 @@ tools/ido5.3/
 *.o
 *.z64
 
+.ninja_log
 .splache
 build.ninja
 undefined_funcs_auto.txt

@@ -1,17 +1,16 @@
-bin/
-build/
+.splat/
 __pycache__/
+asm/
+assets/
+build/
+tools/ido5.3/
 
+*.bin
+*.ld
 *.o
 *.z64
 
-asm/
-assets/
-
-pokemonsnap.ld
-splat_timestamp
-
+.splache
+build.ninja
 undefined_funcs_auto.txt
 undefined_syms_auto.txt
-
-.splat/

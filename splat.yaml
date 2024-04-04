@@ -7,7 +7,7 @@ options:
   mnemonic_ljust: 11
   platform: n64
   base_path: .
-  target_path: baserom.z64
+  target_path: pokemonsnap.z64
   ld_script_path: pokemonsnap.ld
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM

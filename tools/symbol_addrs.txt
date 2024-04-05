@@ -2,6 +2,7 @@ loadCompressedData = 0x8000350C; //
 runGObjProcess = 0x80008C28;
 endGObjProcess = 0x80008F2C;
 sendSignalToLink = 0x8000B830;
+spSetAttribute = 0x80026170;
 osSendMesg = 0x80032630;
 osStopThread = 0x80032780;
 osRecvMesg = 0x80032840;

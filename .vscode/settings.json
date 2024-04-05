@@ -10,6 +10,7 @@
     "files.associations": {
         "common.h": "c",
         "ultra64.h": "c",
-        "variables.h": "c"
+        "variables.h": "c",
+        "sp.h": "c"
     },
 }

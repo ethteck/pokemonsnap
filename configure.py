@@ -24,7 +24,9 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-COMMON_INCLUDES = "-I include"
+COMMON_INCLUDES = (
+    "-I include -I ultralib/include -I ultralib/include/PR -I ultralib/src"
+)
 IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C"
 
 CROSS = "mips-linux-gnu-"
@@ -35,7 +37,7 @@ AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 
 IDO_DIR = TOOLS_DIR / "ido5.3"
 IDO_CC = f"{IDO_DIR}/cc"
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} -I build/include -I src {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 
 def clean():

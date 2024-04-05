@@ -3,6 +3,7 @@ __pycache__/
 asm/
 assets/
 build/
+expected/
 tools/ido5.3/
 
 *.bin

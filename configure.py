@@ -24,9 +24,7 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-COMMON_INCLUDES = (
-    "-I include -I ultralib/include -I ultralib/include/PR -I ultralib/src"
-)
+COMMON_INCLUDES = "-I include -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src"
 IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C"
 
 CROSS = "mips-linux-gnu-"

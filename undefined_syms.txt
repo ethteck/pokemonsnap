@@ -1,10 +1,3 @@
-func_80026188 = 0x80026188;
-func_80026194 = 0x80026194;
-func_800278D4 = 0x800278D4;
-func_80027A00 = 0x80027A00;
-func_80028730 = 0x80028730;
-__osRunningThread = 0x80042CC0;
-__osRunQueue = 0x80042CB8;
 
 gLevelID = 0x800AC0C0;
 gLevelNames = 0x800AC0C4;
@@ -31,3 +24,16 @@ cartGObj = 0x803937F0;
 D_802C6FC4 = 0x802C6FC4;
 beachAnimalData = 0x802CBEE4;
 D_802CBFF4 = 0x802CBFF4;
+
+
+
+func_80026188 = 0x80026188;
+func_80026194 = 0x80026194;
+func_800278D4 = 0x800278D4;
+func_80027A00 = 0x80027A00;
+func_80028730 = 0x80028730;
+
+alEvtqPostEvent = 0x80029E80;
+
+__osRunningThread = 0x80042CC0;
+__osRunQueue = 0x80042CB8;

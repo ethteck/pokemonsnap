@@ -181,9 +181,10 @@ segments:
     - [0x3DEA0, asm]
     - [0x3E0B0, asm]
     - [0x3E3F0, asm]
-    - [0x3E4A0, data]
+    - [0x3E4A0, asm]
+    - [0x3E4B0, asm, rspboot]
     - [0x3E580, data, rsp/aspMain]
-    - [0x3F3A0, data, rsp/aspMainCopy]
+    - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
     - [0x401C0, data]
     - [0x438B0, .data, ../ultralib/src/os/thread]
     - [0x438D0, data]
@@ -217,7 +218,7 @@ segments:
     - [0x45730, rodata]
     - [0x45790, rodata]
     - [0x457A0, rodata, rsp/aspMain_data]
-    - [0x45A60, rodata, rsp/aspMain_dataCopy]
+    - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
   - name: app_render
     type: code

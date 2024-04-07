@@ -1,18 +1,11 @@
-// VSCode will likely add extra stuff to this file, just ignore it
 {
     "search.useIgnoreFiles": false,
     "search.exclude": {
         "**/.git": true,
-        "baserom/**": true,
         "build/**": true,
         "expected/**": true,
     },
     "files.associations": {
-        "common.h": "c",
-        "ultra64.h": "c",
-        "variables.h": "c",
-        "sp.h": "c",
-        "controller.h": "c",
-        "macros.h": "c"
+        "*.h": "c",
     },
 }

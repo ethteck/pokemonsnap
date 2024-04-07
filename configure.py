@@ -36,6 +36,7 @@ AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 IDO_DIR = TOOLS_DIR / "ido5.3"
 IDO_CC = f"{IDO_DIR}/cc"
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD_NOASMPROC = f"{IDO_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 
 def clean():
@@ -149,6 +150,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "cc_libultra",
+        description="cc $in",
+        command=f"{GAME_CC_CMD_NOASMPROC}",
+    )
+
+    ninja.rule(
         "ld",
         description="link $out",
         command=f"{CROSS}ld -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
@@ -188,11 +195,25 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         ):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
-            flags = "-O2"
-            if "src/os/O1" in str(entry.src_paths[0]):
-                flags = "-O1"
+            c_path = entry.src_paths[0]
 
-            build(entry.object_path, entry.src_paths, "cc", variables={"flags": flags})
+            if "ultralib" not in str(c_path):
+                build(
+                    entry.object_path, entry.src_paths, "cc", variables={"flags": "-O2"}
+                )
+            else:
+                flags = "-O2"
+                if c_path.stem in ["pigetcmdq"] or "ultralib/src/os" in str(c_path):
+                    flags = "-O1"
+                elif "ultralib/src/gu" in str(c_path):
+                    flags = "-O3"
+
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc_libultra",
+                    variables={"flags": flags},
+                )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):

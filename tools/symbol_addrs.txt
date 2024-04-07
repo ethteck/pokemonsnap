@@ -156,6 +156,7 @@ __osThreadTail = 0x80042CB0;
 __osRunQueue = 0x80042CB8;
 __osActiveQueue = 0x80042CBC;
 __osRunningThread = 0x80042CC0;
+__osFaultedThread = 0x80042CC4;
 __osContinitialized = 0x80042CE0;
 __OSGlobalIntMask = 0x80042D00;
 __osPiDevMgr = 0x80042D10;

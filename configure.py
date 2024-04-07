@@ -25,7 +25,7 @@ Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
 COMMON_INCLUDES = "-I include -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src"
-IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C"
+IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
@@ -33,10 +33,11 @@ CROSS_LD = f"{CROSS}ld"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
 AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 
-IDO_DIR = TOOLS_DIR / "ido5.3"
-IDO_CC = f"{IDO_DIR}/cc"
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
-GAME_CC_CMD_NOASMPROC = f"{IDO_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+IDO_72_CC = TOOLS_DIR / "ido7.1" / "cc"
+IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
+
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 
 def clean():
@@ -47,11 +48,14 @@ def clean():
     shutil.rmtree("build", ignore_errors=True)
 
 
-def obtain_ido_recomp():
+def obtain_ido_recomp(version: str):
+    download_dir = TOOLS_DIR / f"ido{version}"
 
-    if IDO_DIR.exists():
-        print(f"IDO already exists at {IDO_DIR}, removing and re-downloading")
-        shutil.rmtree(IDO_DIR)
+    if download_dir.exists():
+        print(
+            f"IDO {version} already exists at {download_dir}, removing and re-downloading"
+        )
+        shutil.rmtree(download_dir)
 
     IDO_RECOMP_VERSION = "v1.1"
 
@@ -65,11 +69,11 @@ def obtain_ido_recomp():
         print(f"Unsupported platform {sys.platform}")
         sys.exit(1)
 
-    ido_tar_name = f"ido-7.1-recomp-{ido_os}.tar.gz"
+    ido_tar_name = f"ido-{version}-recomp-{ido_os}.tar.gz"
     url = f"https://github.com/decompals/ido-static-recomp/releases/download/{IDO_RECOMP_VERSION}/{ido_tar_name}"
     target_path = TOOLS_DIR / ido_tar_name
 
-    print(f"Downloading IDO: {url}")
+    print(f"Downloading IDO {version}: {url}")
     response = requests.get(url)
     if response.status_code != 200:
         print(f"Failed to download IDO tarball from {url}")
@@ -77,12 +81,13 @@ def obtain_ido_recomp():
     with open(target_path, "wb") as f:
         f.write(response.content)
 
-    shutil.unpack_archive(target_path, IDO_DIR)
+    shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
 
 def setup():
-    obtain_ido_recomp()
+    obtain_ido_recomp("5.3")
+    obtain_ido_recomp("7.1")
     print("Setup complete!")
 
 
@@ -152,7 +157,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "cc_libultra",
         description="cc $in",
-        command=f"{GAME_CC_CMD_NOASMPROC}",
+        command=f"{LIBULTRA_CC_CMD}",
     )
 
     ninja.rule(
@@ -202,17 +207,30 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     entry.object_path, entry.src_paths, "cc", variables={"flags": "-O2"}
                 )
             else:
-                flags = "-O2"
-                if c_path.stem in ["pigetcmdq"] or "ultralib/src/os" in str(c_path):
-                    flags = "-O1"
+                opt_level = "-O2"
+                if (
+                    c_path.stem
+                    in [
+                        "pigetcmdq",
+                        "controller",
+                    ]
+                    or "ultralib/src/os" in str(c_path)
+                    or "ultralib/src/io" in str(c_path)
+                ):
+                    opt_level = "-O1"
                 elif "ultralib/src/gu" in str(c_path):
-                    flags = "-O3"
+                    opt_level = "-O3"
+
+                mips = "-mips2"
+
+                # if c_path.stem == "ll":
+                #     flags = "-O1 -32 -mips3"
 
                 build(
                     entry.object_path,
                     entry.src_paths,
                     "cc_libultra",
-                    variables={"flags": flags},
+                    variables={"flags": f"{opt_level} {mips}"},
                 )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
             build(entry.object_path, entry.src_paths, "as")

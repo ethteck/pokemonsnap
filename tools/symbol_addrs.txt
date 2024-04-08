@@ -70,6 +70,7 @@ __osSpRawStartDma = 0x800354D0;
 __osSiRawStartDma = 0x80035560;
 osEPiLinkHandle = 0x80035610;
 osViBlack = 0x80035660;
+__osSiRawReadIo = 0x800356D0;
 osSpTaskYield = 0x80035720;
 osViSetMode = 0x80035740;
 __osProbeTLB = 0x800357B0;

@@ -33,3 +33,8 @@ func_80028730 = 0x80028730;
 
 func_84001008 = 0x84001008;
 func_84001064 = 0x84001064;
+
+__osThreadSave = 0x80097F90;
+leoDiskStack = 0x80001000;
+__osShutdown = 0x80002000;
+__osEventStateTab = 0x80003000;

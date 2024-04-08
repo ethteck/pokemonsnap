@@ -25,11 +25,12 @@ Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
 COMMON_INCLUDES = "-I include -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src"
-IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG"
+IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_I"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
 CROSS_LD = f"{CROSS}ld"
+CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
 AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 
@@ -39,7 +40,11 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
-LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+
+LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+
+LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
+
 LIBULTRA_LIBC_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -32 -mips3 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
 
@@ -154,7 +159,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as_libultra",
         description="as $in",
-        command=f"cpp {COMMON_INCLUDES} $in -o - | {CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+        command=f"{LIBULTRA_AS_CMD}",
     )
 
     ninja.rule(
@@ -213,7 +218,18 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
             seg, splat.segtypes.common.data.CommonSegData
         ):
-            build(entry.object_path, entry.src_paths, "as")
+            s_path = entry.src_paths[0]
+            if "ultralib" in str(s_path):
+                flags = "-mips3 -32"
+
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "as_libultra",
+                    variables={"flags": flags},
+                )
+            else:
+                build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
             c_path = entry.src_paths[0]
 

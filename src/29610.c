@@ -33,11 +33,3 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029B24.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029BC4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029C10.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029C44.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029C7C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/29610/func_80029CA0.s")

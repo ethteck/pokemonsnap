@@ -13,7 +13,7 @@ import splat
 import splat.scripts.split as split
 from splat.segtypes.linker_entry import LinkerEntry
 
-ROOT = Path(__file__).parent.resolve()
+ROOT = Path(__file__).parent.relative_to(os.getcwd())
 TOOLS_DIR = ROOT / "tools"
 
 YAML_FILE = "splat.yaml"
@@ -41,7 +41,7 @@ O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
-LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
+LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
@@ -239,6 +239,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             else:
                 opt_level = "-O2"
                 mips = "-mips2"
+                ido = "5.3"
 
                 if (
                     c_path.stem
@@ -250,22 +251,30 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     or "ultralib/src/io" in str(c_path)
                 ):
                     opt_level = "-O1"
-                elif "ultralib/src/gu" in str(c_path):
+                elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
+                    c_path
+                ):
                     opt_level = "-O3"
-
-                if "ultralib/src/libc" in str(c_path):
+                    if "color" in str(c_path):
+                        ido = "7.1"
+                elif "ultralib/src/libc" in str(c_path):
                     opt_level = "-O3"
                     mips = "-mips2 -o32"
 
                     if c_path.stem in ["ll", "llbit", "llcvt"]:
                         opt_level = "-O1"
                         mips = "-mips3 -32"
+                elif "ultralib/src/audio" in str(c_path):
+                    ido = "7.1"
 
                 build(
                     entry.object_path,
                     entry.src_paths,
                     "cc_libultra",
-                    variables={"flags": f"{opt_level} {mips}"},
+                    variables={
+                        "flags": f"{opt_level} {mips}",
+                        "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                    },
                 )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
             build(entry.object_path, entry.src_paths, "as")

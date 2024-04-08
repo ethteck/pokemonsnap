@@ -1,9 +1,11 @@
 {
     "search.useIgnoreFiles": false,
     "search.exclude": {
+        "**/*.o": true,
+        ".splat/": true,
         "**/.git": true,
-        "build/**": true,
         "expected/**": true,
+        "build/pokemonsnap.map": false,
     },
     "files.associations": {
         "*.h": "c",

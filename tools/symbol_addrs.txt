@@ -178,9 +178,12 @@ __osMaxControllers = 0x80097EF1;
 __osEepromTimerQ = 0x80097F18;
 __osEepromTimerMsg = 0x80097F30;
 __osEventStateTab = 0x800B9420;
-__osCurrentTime = 0x800B94C0;
-__osBaseCounter = 0x800B94C8;
-__osViIntrCount = 0x800B94CC;
+
+__osCurrentTime = 0x800994C0;
+__osBaseCounter = 0x800994C8;
+__osViIntrCount = 0x800994CC;
+__osTimerCounter = 0x800994F0;
+__osPfsPifRam = 0x80099660;
 
 getLevelId = 0x8009B980;
 setLevelId = 0x8009B98C;

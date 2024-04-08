@@ -2,13 +2,14 @@
 #define _VARIABLES_H_
 
 #include "ultra64.h"
+#include "common_structs.h"
 
 extern OSThread* __osRunningThread;
 extern OSThread* __osRunQueue;
 extern s32 D_80042D10;
 extern s32 D_80042D18;
 extern s32 gLevelID;
-extern s32 gLevelNames[6];
+extern char* gLevelNames[6];
 extern s32 gPhotoCount;
 
 // Valley code

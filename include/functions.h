@@ -11,30 +11,13 @@ void endGObjProcess(GObj*);
 
 void sendSignalToLink(s32 llIndex, s32, GObj*);
 
-void osStopThread(OSThread* thread);
-s32 osRecvMesg(OSMesgQueue* mq, OSMesg* msg, s32 flag);
-void __osEnqueueAndYield(OSThread**);
-void __osEnqueueThread(OSThread** queue, OSThread* thread);
-void __osDispatchThread();
-OSThread* __osPopThread(OSThread**);
-void __osDequeueThread(OSThread** queue, OSThread* thread);
-void __osSetSR(u32);
-u32 __osGetSR();
-f32 sqrtf(f32 f);
-void osSetThreadPri(OSThread* thread, OSPri pri);
-OSPri osGetThreadPri(OSThread* thread);
-void __osSetCompare(u32);
-s32 __osDisableInt(void);
-void __osRestoreInt(s32);
-void osYieldThread(void);
-void osStartThread(OSThread*);
-
 roomGFX* getCurrentRoom(void);
 GObj* animalAddOne(roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalDef* def);
+void animalAdd(roomGFX*, roomGFX*, animalDef* def);
 
 s32 getLevelId();
 void setLevelId(s32 levelID);
-s8* getLevelName(s32 levelIdx);
+char* getLevelName(s32 levelIdx);
 
 void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
@@ -59,5 +42,18 @@ GObj* addAnimalAtGeo(GObj* obj, u16 AnimalID, animalDef* def);
 roomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalInitData* initData);
+
+
+void func_800067DC(void);
+void func_80022334(void);
+void func_80022B14(void);
+void func_800A19D8(void);
+void func_800E3064(void);
+void func_80356FBC(void);
+void func_803586C0(void);
+void func_80359074(void);
+void func_8036406C(s32*, objectSpawn*, animalDef*);
+void func_803641B8(s32, animalDef*);
+void func_8036650C(void);
 
 #endif

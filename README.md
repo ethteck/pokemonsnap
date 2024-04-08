@@ -9,6 +9,7 @@ For Python dependencies:
 
 ## To use
 
-1. Place the US Pokemon Snap rom (retail, not kiosk demo) into the root of the repository as "baserom.z64".
-2. Set up tools and extract the rom: `make setup`
-3. Re-assemble the rom: `make`
+1. Place the US Pokemon Snap rom (sha1: `edc7c49cc568c045fe48be0d18011c30f393cbaf`) into the root of the repository as "pokemonsnap.z64".
+2. (one-time) Set up tools: `./configure.py --setup`
+3. Run extraction and disassembly: `./configure.py`
+4. Rebuild the rom: `ninja`

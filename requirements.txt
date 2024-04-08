@@ -1,1 +1,4 @@
--r tools/splat/requirements.txt
+spimdisasm>=1.18.0
+rabbitizer>=1.8.0
+splat64>=0.23.1
+tqdm

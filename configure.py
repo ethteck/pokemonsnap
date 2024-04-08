@@ -41,11 +41,9 @@ O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
-LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
-
-LIBULTRA_LIBC_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -32 -mips3 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
 
 def clean():
@@ -175,12 +173,6 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
-        "cc_libultra_libc",
-        description="cc $in",
-        command=f"{LIBULTRA_LIBC_CC_CMD}",
-    )
-
-    ninja.rule(
         "ld",
         description="link $out",
         command=f"{CROSS}ld -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
@@ -220,13 +212,21 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         ):
             s_path = entry.src_paths[0]
             if "ultralib" in str(s_path):
-                flags = "-mips3 -32"
+                opt_level = "-O2"
+
+                if "/os/" in str(s_path):
+                    opt_level = "-O1"
+
+                if s_path.stem in ["exceptasm"]:
+                    mips = "-mips3 -32"
+                else:
+                    mips = "-mips2 -o32"
 
                 build(
                     entry.object_path,
                     entry.src_paths,
                     "as_libultra",
-                    variables={"flags": flags},
+                    variables={"flags": f"{opt_level} {mips}"},
                 )
             else:
                 build(entry.object_path, entry.src_paths, "as")
@@ -237,14 +237,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 build(
                     entry.object_path, entry.src_paths, "cc", variables={"flags": "-O2"}
                 )
-            elif "ultralib/src/libc" in str(c_path):
-                build(
-                    entry.object_path,
-                    entry.src_paths,
-                    "cc_libultra_libc",
-                )
             else:
                 opt_level = "-O2"
+                mips = "-mips2"
+
                 if (
                     c_path.stem
                     in [
@@ -258,10 +254,13 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 elif "ultralib/src/gu" in str(c_path):
                     opt_level = "-O3"
 
-                mips = "-mips2"
+                if "ultralib/src/libc" in str(c_path):
+                    opt_level = "-O3"
+                    mips = "-mips2 -o32"
 
-                # if c_path.stem == "ll":
-                #     flags = "-O1 -32 -mips3"
+                    if c_path.stem in ["ll", "llbit", "llcvt"]:
+                        opt_level = "-O1"
+                        mips = "-mips3 -32"
 
                 build(
                     entry.object_path,

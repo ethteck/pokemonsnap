@@ -36,8 +36,11 @@ AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 IDO_72_CC = TOOLS_DIR / "ido7.1" / "cc"
 IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
+O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
+
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 LIBULTRA_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+LIBULTRA_LIBC_CC_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -32 -mips3 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
 
 def clean():
@@ -149,6 +152,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "as_libultra",
+        description="as $in",
+        command=f"cpp {COMMON_INCLUDES} $in -o - | {CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+    )
+
+    ninja.rule(
         "cc",
         description="cc $in",
         command=f"{GAME_CC_CMD}",
@@ -158,6 +167,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "cc_libultra",
         description="cc $in",
         command=f"{LIBULTRA_CC_CMD}",
+    )
+
+    ninja.rule(
+        "cc_libultra_libc",
+        description="cc $in",
+        command=f"{LIBULTRA_LIBC_CC_CMD}",
     )
 
     ninja.rule(
@@ -205,6 +220,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             if "ultralib" not in str(c_path):
                 build(
                     entry.object_path, entry.src_paths, "cc", variables={"flags": "-O2"}
+                )
+            elif "ultralib/src/libc" in str(c_path):
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc_libultra_libc",
                 )
             else:
                 opt_level = "-O2"

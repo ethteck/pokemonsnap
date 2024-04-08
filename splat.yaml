@@ -21,7 +21,7 @@ segments:
     symbol_name_format: $VRAM
     subsegments:
     - [0x1000, asm]
-    - [0x1060, asm]
+    - [0x1060, c]
     - [0x1520, c]
     - [0x4680, asm]
     - [0x5FF0, asm]
@@ -190,8 +190,9 @@ segments:
     - [0x438D0, data]
     - [0x438E0, data] # .data, ../ultralib/src/io/controller]
     - [0x438F0, data]
-    - [0x43B70, rodata]
-    - [0x43BA0, rodata]
+    - [0x43B70, data]
+    - [0x43BA0, .rodata, 1060]
+    - [0x43BC0, .rodata, 1520]
     - [0x43C20, rodata]
     - [0x43C40, rodata]
     - [0x43E60, rodata]

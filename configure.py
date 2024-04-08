@@ -99,10 +99,9 @@ def setup():
 
 def write_permuter_settings():
     with open("permuter_settings.toml", "w") as f:
-        # TODO FIX
         f.write(
-            f"""compiler_command = "{GAME_COMPILE_CMD} -D__GNUC__"
-assembler_command = "mips-linux-gnu-as -march=r5900 -mabi=eabi -Iinclude"
+            f"""compiler_command = "{GAME_CC_CMD}"
+assembler_command = "{CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
 compiler_type = "ido"
 
 [preserve_macros]

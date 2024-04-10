@@ -11,7 +11,40 @@ f32 func_80019960(f32 arg0) {
     return __sinf(arg0) / __cosf(arg0);
 }
 
+#if 0
+#define pow(arg) (arg * arg)
+f32 func_80019994(f32 arg0) {
+    f32 temp_f0;
+    f32 temp_f2;
+    s32 var_v0;
+
+    if (arg0 == 0.0f) {
+        return 0.0f;
+    }
+    var_v0 = 1;
+    if (arg0 > 1.0f) {
+        arg0 = 1.0f / arg0;
+    } else if (arg0 < -1.0f) {
+        arg0 = 1.0f / arg0;
+        var_v0 = 2;
+    } else {        
+        var_v0 = 0;
+    }
+    temp_f2 = arg0  * ((pow(arg0) / ((pow(arg0) / ((pow(arg0) / ((pow(arg0) / ((pow(arg0) / ((pow(arg0) / -0.108107f) + -44.5719f)) + -0.161908f)) + -(HALF_PI * 10.0f))) + -0.55557f)) + -3.0f)) + 1.0f);
+    switch (var_v0) {
+    default:
+        return pow(arg0);
+    case 0:
+        return temp_f2;
+    case 1:
+        return HALF_PI - temp_f2;
+    case 2:
+        return -HALF_PI - temp_f2;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019994.s")
+#endif
 
 f32 func_80019ABC(f32 arg0, f32 arg1) {
     f32 temp_f0;
@@ -88,7 +121,22 @@ f32 func_80019DB0(void) {
     return ((D_80040F40 >> 16) & 0xFFFF) / 65536.0f;
 }
 
+#if 0
+s32 func_80019E14(s32 arg0) {
+    s32 temp_lo;
+    s32 var_at;
+
+    temp_lo = func_80019D60() * arg0;
+    if (temp_lo < 0) {
+        var_at = temp_lo + 0xFFFF;
+    } else {
+        var_at = temp_lo;
+    }
+    return var_at >> 16;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019E14.s")
+#endif
 
 s32 func_80019E54(void) {
     return (osGetTime() & 0xFF);
@@ -98,7 +146,10 @@ f32 func_80019E78(void) {
     return (osGetTime() & 0xFF) * (1.0f / 256.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019EB0.s")
+s32 func_80019EB0(s32 arg0) {
+    s32 time = osGetTime() & 0xFF;
+    return (time * arg0 * (1.0f / 256.0f));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019F00.s")
 

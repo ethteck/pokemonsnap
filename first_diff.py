@@ -34,7 +34,7 @@ diff_count = args.count
 if args.make:
     check_call(["make"])
 
-baseimg = f"baserom.z64"
+baseimg = f"pokemonsnap.z64"
 basemap = f"pokemonsnap.map"
 
 myimg = f"build/pokemonsnap.z64"

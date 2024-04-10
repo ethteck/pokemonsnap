@@ -1,6 +1,6 @@
 ### Build Options ###
 
-BASEROM         := baserom.z64
+BASEROM         := pokemonsnap.z64
 TARGET          := pokemonsnap
 COMPARE         ?= 1
 NON_MATCHING    ?= 0

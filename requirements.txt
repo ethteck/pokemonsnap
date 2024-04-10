@@ -1,4 +1,3 @@
-spimdisasm>=1.18.0
-rabbitizer>=1.8.0
-splat64>=0.23.1
+splat64[mips]>=0.23.1,<1.0.0
 tqdm
+ninja_syntax>=1.7.2

@@ -427,7 +427,7 @@ segments:
     - [0x3F63D0, asm]
     # - [0x3F63E0, data]
     # - { start: auto, name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
-  - [0x3F63E0, bin]
+  - [0x3F63E0, bin] # todo comment out above and remove this
   - type: code
     start: 0x47CF30
     vram: 0x80186B10
@@ -443,7 +443,7 @@ segments:
     - [0x4A8160, asm]
     # - [0x4A8170, data]
     # - { start: auto, name: bss_80139C30, type: bss, vram: 0x80139C30 }
-  - [0x4A8170, bin]
+  - [0x4A8170, bin] # todo comment out above and remove this
   - type: code
     start: 0x4EC000
     vram: 0x80139C50
@@ -473,7 +473,30 @@ segments:
     - [0x506DD0, asm]
     - [0x506FB0, data]
     - { start: auto, name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
-  - [0x54B5D0, bin]
+  - type: code
+    start: 0x54B5D0
+    vram: 0x8034E130
+    exclusive_ram_id: unk8034E130
+    subsegments:
+    - [0x54B5D0, data]
+  - type: code
+    start: 0x54D6A0
+    vram: 0x803476A0
+    exclusive_ram_id: unk803476A0
+    subsegments:
+    - [0x54D6A0, data]
+  - type: code
+    start: 0x554130
+    vram: 0x80344780
+    exclusive_ram_id: unk80344780
+    subsegments:
+    - [0x554130, data]
+  - type: code
+    start: 0x557050
+    vram: 0x80344780
+    exclusive_ram_id: unk80344780
+    subsegments:
+    - [0x557050, data]
   - name: beach_code
     type: code
     start: 0x55C110
@@ -600,7 +623,7 @@ segments:
     - [0x731860, asm]
     # - [0x731E80, data]
     # - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
-  - [0x731E80, bin]
+  - [0x731E80, bin] # todo comment out above and remove this
   - name: valley_code
     type: code
     start: 0x79F1B0
@@ -630,7 +653,7 @@ segments:
     - [0x7ABB10, c]
     # - [0x7ABCD0, data]
     # - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
-  - [0x7ABCD0, bin]
+  - [0x7ABCD0, bin] # todo comment out above and remove this
   - name: rainbow_code
     type: code
     start: 0x825E30
@@ -837,6 +860,7 @@ segments:
     - [0xAA18E0, asm]
     - [0xAA20A0, data]
     - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
+    
   - [0xAAA610, bin]
 
   # Sequences

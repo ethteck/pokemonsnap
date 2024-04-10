@@ -134,8 +134,13 @@ void func_80002C5C(u32 dramAddr, u32 devAddr, u32 numBytes) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80003478.s")
 
+void func_800034C4(u32 rom, u32 ram, void* buf, u32 size);
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_800034C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/loadCompressedData.s")
+void loadCompressedData(u32 rom, u32 ram) {
+    char buf[0x400];
+
+    func_800034C4(rom, ram, &buf, sizeof(buf));
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80003530.s")

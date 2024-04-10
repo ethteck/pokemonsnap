@@ -39,7 +39,7 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
 
 LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
 
@@ -100,8 +100,7 @@ def setup():
 def write_permuter_settings():
     with open("permuter_settings.toml", "w") as f:
         f.write(
-            f"""compiler_command = "{GAME_CC_CMD}"
-assembler_command = "{CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
+            f"""build_system = "ninja"
 compiler_type = "ido"
 
 [preserve_macros]
@@ -118,8 +117,8 @@ CLAMP = "int"
 NULL = "int"
 
 [decompme.compilers]
-"tools/ido7.1/cc" = "ido7.1"
-"tools/ido5.3/cc" = "ido5.3"
+"{IDO_72_CC}" = "ido7.1"
+"{IDO_53_CC}" = "ido5.3"
 """
         )
 
@@ -245,9 +244,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             c_path = entry.src_paths[0]
 
             if "ultralib" not in str(c_path):
-                build(
-                    entry.object_path, entry.src_paths, "cc", variables={"flags": "-O2"}
-                )
+                build(entry.object_path, entry.src_paths, "cc")
             else:
                 opt_level = "-O2"
                 mips = "-mips2"

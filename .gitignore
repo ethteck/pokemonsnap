@@ -15,5 +15,7 @@ tools/ido7.1/
 .ninja_log
 .splache
 build.ninja
+ctx.c
+ctx.c.m2c
 undefined_funcs_auto.txt
 undefined_syms_auto.txt

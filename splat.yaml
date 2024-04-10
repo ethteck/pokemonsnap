@@ -259,30 +259,38 @@ segments:
     - [0x457A0, rodata, rsp/aspMain_data]
     - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
-    - { start: 0x46270, name: bss_80045670, type: bss, vram: 0x80045670 }
-    - { start: 0x46270, name: bss_80097D40, type: bss, vram: 0x80097D40 }
-    - { start: 0x46270, name: bss_80097D50, type: bss, vram: 0x80097D50 }
-    - { start: 0x46270, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
-    - { start: 0x46270, name: bss_800996A0, type: bss, vram: 0x800996A0 }
+    - { start: auto, name: bss_80045670, type: bss, vram: 0x80045670 }
+    - { start: auto, name: bss_80097D40, type: bss, vram: 0x80097D40 }
+    - { start: auto, name: bss_80097D50, type: bss, vram: 0x80097D50 }
+    - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
+    - { start: auto, name: bss_800996A0, type: bss, vram: 0x800996A0 }
   - name: app_render
     type: code
     start: 0x46270
     vram: 0x8009A8C0
     symbol_name_format: $VRAM
     subsegments:
-    - [0x46270, asm]
+    - [0x46270, c]
     - [0x47330, c]
     - [0x47380, c]
-    - [0x4B670, asm]
-    - [0x4D400, asm]
-    - [0x4D880, asm]
+    - [0x4B670, c]
+    - [0x4D400, c]
+    - [0x4D880, c]
     - [0x52D70, asm]
-    - [0x52DE0, asm]
-    - [0x53AD0, asm]
+    - [0x52DE0, c]
+    - [0x53AD0, c]
     - [0x56880, c]
-    - [0x568D0, asm]
+    - [0x568D0, c]
     - [0x574F0, asm]
-  - [0x57580, bin]
+    - [0x57580, data]
+    - [0x5AD90, data]
+    - [0x5B850, .rodata, 47380]
+    - [0x5BB30, .rodata, 4B670]
+    - [0x5BBF0, .rodata, 4D400]
+    - [0x5BC10, .rodata, 4D880]
+    - [0x5BEB0, .rodata, 52DE0]
+    - [0x5BEE0, .rodata, 53AD0]
+    - [0x5BF10, .rodata, 568D0]
   - name: more_funcs
     type: code
     start: 0x5BF20
@@ -307,6 +315,81 @@ segments:
     - [0x62010, asm]
     - [0x64270, asm]
   - [0x64280, bin]
+  - type: code
+    start: 0x731B0
+    vram: 0x800F5D90
+    exclusive_ram_id: unk731B0
+    subsegments:
+    - [0x731B0, data]
+  - type: code
+    start: 0x7D3B0
+    vram: 0x800FFF90
+    exclusive_ram_id: unk7D3B0
+    subsegments:
+    - [0x7D3B0, data]
+  - type: code
+    start: 0x98470
+    vram: 0x8011B050
+    exclusive_ram_id: unk98470
+    subsegments:
+    - [0x98470, data]
+  - type: code
+    start: 0x99F70
+    vram: 0x8011B050
+    exclusive_ram_id: unk99F70
+    subsegments:
+    - [0x99F70, data]
+  - [0xA74E0, bin]
+  - type: code
+    start: 0x13C780
+    vram: 0x8011CB50
+    exclusive_ram_id: unk13C780
+    subsegments:
+    - [0x13C780, data]
+  - [0x162CB0, bin]
+  - type: code
+    start: 0x1D1D90
+    vram: 0x8018BC50
+    exclusive_ram_id: unk1D1D90
+    subsegments:
+    - [0x1D1D90, data]
+  - [0x1F5E70, bin]
+  - type: code
+    start: 0x27AB80
+    vram: 0x801AEDF0
+    exclusive_ram_id: unk27AB80
+    subsegments:
+    - [0x27AB80, data]
+  - [0x29A190, bin]
+  - type: code
+    start: 0x30AF90
+    vram: 0x8019AEE0
+    exclusive_ram_id: unk30AF90
+    subsegments:
+    - [0x30AF90, data]
+  - [0x326C10, bin]
+  - type: code
+    start: 0x3D0560
+    vram: 0x801A9900
+    exclusive_ram_id: unk3D0560
+    subsegments:
+    - [0x3D0560, data]
+  - [0x3F63D0, bin]
+  - type: code
+    start: 0x47CF30
+    vram: 0x80186B10
+    exclusive_ram_id: unk47CF30
+    subsegments:
+    - [0x47CF30, data]
+  - [0x4A8160, bin]
+  - type: code
+    start: 0x4EC000
+    vram: 0x80139C50
+    exclusive_ram_id: unk4EC000
+    subsegments:
+    - [0x4EC000, data]
+  - [0x4F0610, bin]
+
   - name: app_level
     type: code
     start: 0x4F0610
@@ -483,6 +566,30 @@ segments:
     - [0x829670, asm]
     - [0x829900, asm]
   - [0x82A280, bin]
+  - type: code
+    start: 0x82F8E0
+    vram: 0x803B1F80
+    exclusive_ram_id: unk82F8E0
+    subsegments:
+    - [0x82F8E0, data]
+  - type: code # follows the seg before this in memory
+    start: 0x832960
+    vram: 0x803AD580
+    exclusive_ram_id: unk832960
+    subsegments:
+    - [0x832960, data]
+  - type: code # follows the seg before this in memory
+    start: 0x837360
+    vram: 0x803AA700
+    exclusive_ram_id: unk837360
+    subsegments:
+    - [0x837360, data]
+  - type: code # follows the seg before this in memory
+    start: 0x83A1E0
+    vram: 0x803A71B0
+    exclusive_ram_id: unk83A1E0
+    subsegments:
+    - [0x83A1E0, data]
   - name: unk_end_level
     type: code
     start: 0x83D730

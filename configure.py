@@ -105,9 +105,21 @@ assembler_command = "{CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr
 compiler_type = "ido"
 
 [preserve_macros]
+"g[DS]P.*" = "void"
+"gs[DS]P.*" = "void"
+"G_IM_SIZ_.*" = "int"
+"G_[AC]C.*" = "int"
+ABS = "int"
+ABS_ALT = "int"
+SQ = "int"
+ARRAY_COUNT = "int"
+ARRAY_COUNTU = "int"
+CLAMP = "int"
+NULL = "int"
 
 [decompme.compilers]
-"tools/build/cc/gcc/gcc" = "ido7.1"
+"tools/ido7.1/cc" = "ido7.1"
+"tools/ido5.3/cc" = "ido5.3"
 """
         )
 
@@ -337,4 +349,4 @@ if __name__ == "__main__":
 
     create_build_script(linker_entries)
 
-    # write_permuter_settings()
+    write_permuter_settings()

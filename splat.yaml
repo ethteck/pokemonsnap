@@ -18,8 +18,8 @@ segments:
     type: code
     start: 0x1000
     vram: 0x80000400
-    symbol_name_format: $VRAM
     bss_size: 0x55250
+    symbol_name_format: $VRAM
     subsegments:
     - [0x1000, asm]
     - [0x1060, c]
@@ -295,17 +295,20 @@ segments:
     type: code
     start: 0x5BF20
     vram: 0x800BF080
+    bss_size: 0x1F6F0
     exclusive_ram_id: more_funcs
     subsegments:
     - [0x5BF20, asm]
     - [0x5D500, asm]
     - [0x5DA50, asm]
     - [0x5E630, asm]
-  - [0x5EF80, bin]
+    - [0x5EF80, data]
+    - { start: auto, name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
   - name: level_low
     type: code
     start: 0x5F050
     vram: 0x800E18A0
+    bss_size: 0x390
     exclusive_ram_id: level
     subsegments:
     - [0x5F050, asm]
@@ -314,86 +317,144 @@ segments:
     - [0x61C10, asm]
     - [0x62010, asm]
     - [0x64270, asm]
-  - [0x64280, bin]
+    - [0x64280, data]
+    - { start: auto, name: bss_800F5A00, type: bss, vram: 0x800F5A00 }
   - type: code
     start: 0x731B0
     vram: 0x800F5D90
-    exclusive_ram_id: unk731B0
+    exclusive_ram_id: unk800F5D90
     subsegments:
     - [0x731B0, data]
   - type: code
     start: 0x7D3B0
     vram: 0x800FFF90
-    exclusive_ram_id: unk7D3B0
+    exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x7D3B0, data]
   - type: code
     start: 0x98470
     vram: 0x8011B050
-    exclusive_ram_id: unk98470
+    exclusive_ram_id: unk8011B050
     subsegments:
     - [0x98470, data]
   - type: code
     start: 0x99F70
     vram: 0x8011B050
-    exclusive_ram_id: unk99F70
+    exclusive_ram_id: unk8011B050
     subsegments:
     - [0x99F70, data]
-  - [0xA74E0, bin]
+  - type: code
+    start: 0xA74E0
+    vram: 0x8011B050
+    bss_size: 0x20
+    exclusive_ram_id: unk8011B050
+    subsegments:
+    - [0xA74E0, asm]
+    - [0xA74F0, data]
+    - { start: auto, name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
   - type: code
     start: 0x13C780
     vram: 0x8011CB50
-    exclusive_ram_id: unk13C780
+    exclusive_ram_id: unk8011CB50
     subsegments:
     - [0x13C780, data]
-  - [0x162CB0, bin]
+  - type: code
+    start: 0x162CB0
+    vram: 0x8011CB50
+    bss_size: 0x20
+    exclusive_ram_id: unk8011CB50
+    subsegments:
+    - [0x162CB0, asm]
+    - [0x162CC0, data]
+    - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     start: 0x1D1D90
     vram: 0x8018BC50
     exclusive_ram_id: unk1D1D90
     subsegments:
     - [0x1D1D90, data]
-  - [0x1F5E70, bin]
+  - type: code
+    start: 0x1F5E70
+    vram: 0x8012A0C0
+    bss_size: 0x20
+    exclusive_ram_id: unk8012A0C0
+    subsegments:
+    - [0x1F5E70, asm]
+    - [0x1F5E80, data]
+    - { start: auto, name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
   - type: code
     start: 0x27AB80
     vram: 0x801AEDF0
     exclusive_ram_id: unk27AB80
     subsegments:
     - [0x27AB80, data]
-  - [0x29A190, bin]
+  - type: code
+    start: 0x29A190
+    vram: 0x8012A0C0
+    bss_size: 0x20
+    exclusive_ram_id: unk8012A0C0
+    subsegments:
+    - [0x29A190, asm]
+    - [0x29A1A0, data]
+    - { start: auto, name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
   - type: code
     start: 0x30AF90
     vram: 0x8019AEE0
     exclusive_ram_id: unk30AF90
     subsegments:
     - [0x30AF90, data]
-  - [0x326C10, bin]
+  - type: code
+    start: 0x326C10
+    vram: 0x800FFF90
+    bss_size: 0x20
+    exclusive_ram_id: unk800FFF90
+    subsegments:
+    - [0x326C10, asm]
+    - [0x326C20, data]
+    - { start: auto, name: bss_801A98E0, type: bss, vram: 0x801A98E0 }
   - type: code
     start: 0x3D0560
     vram: 0x801A9900
     exclusive_ram_id: unk3D0560
     subsegments:
     - [0x3D0560, data]
-  - [0x3F63D0, bin]
+  - type: code
+    start: 0x3F63D0
+    vram: 0x800FFF90
+    bss_size: 0x20
+    exclusive_ram_id: unk800FFF90
+    subsegments:
+    - [0x3F63D0, asm]
+    # - [0x3F63E0, data]
+    # - { start: auto, name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
+  - [0x3F63E0, bin]
   - type: code
     start: 0x47CF30
     vram: 0x80186B10
     exclusive_ram_id: unk47CF30
     subsegments:
     - [0x47CF30, data]
-  - [0x4A8160, bin]
+  - type: code
+    start: 0x4A8160
+    vram: 0x800F5D90
+    bss_size: 0x20
+    exclusive_ram_id: unk800F5D90
+    subsegments:
+    - [0x4A8160, asm]
+    # - [0x4A8170, data]
+    # - { start: auto, name: bss_80139C30, type: bss, vram: 0x80139C30 }
+  - [0x4A8170, bin]
   - type: code
     start: 0x4EC000
     vram: 0x80139C50
     exclusive_ram_id: unk4EC000
     subsegments:
     - [0x4EC000, data]
-  - [0x4F0610, bin]
-
   - name: app_level
     type: code
     start: 0x4F0610
     vram: 0x80350200
+    bss_size: 0x9E40
     exclusive_ram_id: app_level
     symbol_name_format: $VRAM
     subsegments:
@@ -410,11 +471,14 @@ segments:
     - [0x506290, asm]
     - [0x5064F0, asm]
     - [0x506DD0, asm]
-  - [0x506FB0, bin]
+    - [0x506FB0, data]
+    - { start: auto, name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
+  - [0x54B5D0, bin]
   - name: beach_code
     type: code
     start: 0x55C110
     vram: 0x802C40A0
+    bss_size: 0x140
     exclusive_ram_id: level
     symbol_name_format: $VRAM_$ROM
     subsegments:
@@ -432,11 +496,13 @@ segments:
     - [0x562110, asm]
     - [0x562370, asm]
     - [0x562BC0, asm]
-  - [0x563E80, bin]
+    - [0x563E80, data]
+    - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
     type: code
     start: 0x5DF5D0
     vram: 0x802E2500
+    bss_size: 0x1690
     exclusive_ram_id: level
     subsegments:
     - [0x5DF5D0, asm]
@@ -453,11 +519,13 @@ segments:
     - [0x5E9010, asm]
     - [0x5E94D0, asm]
     - [0x5EA6F0, asm]
-  - [0x5EAFD0, bin]
+    - [0x5EAFD0, data]
+    - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
     type: code
     start: 0x6401B0
     vram: 0x802BDD00
+    bss_size: 0x1580
     exclusive_ram_id: level
     subsegments:
     - [0x6401B0, c]
@@ -474,11 +542,13 @@ segments:
     - [0x646B50, asm]
     - [0x646EA0, asm]
     - [0x647360, asm]
-  - [0x648600, bin]
+    - [0x648600, data]
+    - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
     type: code
     start: 0x6C05E0
     vram: 0x802D8800
+    bss_size: 0x1B0
     exclusive_ram_id: level
     subsegments:
     - [0x6C05E0, asm]
@@ -501,11 +571,13 @@ segments:
     - [0x6C86E0, asm]
     - [0x6C9680, asm]
     - [0x6C9EB0, asm]
-  - [0x6CA400, bin]
+    - [0x6CA400, data]
+    - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
     type: code
     start: 0x7272E0
     vram: 0x802D60E0
+    bss_size: 0x170
     exclusive_ram_id: level
     subsegments:
     - [0x7272E0, asm]
@@ -526,11 +598,14 @@ segments:
     - [0x730480, asm]
     - [0x730D80, asm]
     - [0x731860, asm]
+    # - [0x731E80, data]
+    # - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - [0x731E80, bin]
   - name: valley_code
     type: code
     start: 0x79F1B0
     vram: 0x802C5C20
+    bss_size: 0x1880
     exclusive_ram_id: level
     subsegments:
     - [0x79F1B0, asm]
@@ -553,11 +628,14 @@ segments:
     - [0x7AA790, asm]
     - [0x7AB7C0, asm]
     - [0x7ABB10, c]
+    # - [0x7ABCD0, data]
+    # - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - [0x7ABCD0, bin]
   - name: rainbow_code
     type: code
     start: 0x825E30
     vram: 0x803466C0
+    bss_size: 0x80
     exclusive_ram_id: level
     subsegments:
     - [0x825E30, asm]
@@ -565,7 +643,8 @@ segments:
     - [0x8288F0, asm]
     - [0x829670, asm]
     - [0x829900, asm]
-  - [0x82A280, bin]
+    - [0x82A280, data]
+    - { start: auto, name: bss_80350170, type: bss, vram: 0x80350170 }
   - type: code
     start: 0x82F8E0
     vram: 0x803B1F80
@@ -594,6 +673,7 @@ segments:
     type: code
     start: 0x83D730
     vram: 0x80369F80
+    bss_size: 0x8A0
     exclusive_ram_id: level
     subsegments:
     - [0x83D730, asm]
@@ -607,22 +687,26 @@ segments:
     - [0x847B60, asm]
     - [0x8486E0, asm]
     - [0x848B50, asm]
-  - [0x848BC0, bin]
+    - [0x848BC0, data]
+    - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: unk_end_level_2
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
+    bss_size: 0x408F0
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, asm]
     - [0x87A330, asm]
     - [0x87D1A0, asm]
     - [0x87FB20, asm]
-  - [0x8817E0, bin]
+    - [0x8817E0, data]
+    - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
+    bss_size: 0x40080
     exclusive_ram_id: level
     subsegments:
     - [0x8A70E0, asm]
@@ -630,95 +714,130 @@ segments:
     - [0x8A8A50, asm]
     - [0x8A9CC0, asm]
     - [0x8AAF60, asm]
-  - [0x8ABEF0, bin]
+    - [0x8ABEF0, data]
+    - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: unk_end_level_4
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
+    bss_size: 0x327A0
     exclusive_ram_id: level
     subsegments:
     - [0x98C330, asm]
     - [0x993C50, asm]
     - [0x993F80, asm]
-  - [0x994E10, bin]
+    - [0x994E10, data]
+    - { start: auto, name: bss_801F70A0, type: bss, vram: 0x801F70A0 }
   - name: unk_end_level_5
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
+    bss_size: 0x47970
     exclusive_ram_id: level
     subsegments:
     - [0x9A6B10, asm]
     - [0x9A6F70, asm]
     - [0x9ABB50, asm]
     - [0x9ADAD0, asm]
-  - [0x9AE430, bin]
+    - [0x9AE430, data]
+    - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
+    bss_size: 0x2D210
     exclusive_ram_id: level
     subsegments:
     - [0x9D3230, asm]
     - [0x9D3660, asm]
     - [0x9D91C0, asm]
-  - [0x9DA580, bin]
+    - [0x9DA580, data]
+    - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
+    bss_size: 0x46300
     exclusive_ram_id: level
     subsegments:
     - [0x9FA580, asm]
     - [0x9FAC10, asm]
     - [0x9FD510, asm]
     - [0x9FEC10, asm]
-  - [0x9FF2E0, bin]
+    - [0x9FF2E0, data]
+    - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
     type: code
     start: 0xA084B0
     vram: 0x800E1970
+    bss_size: 0x32020
     exclusive_ram_id: level
     subsegments:
     - [0xA084B0, asm]
-  - [0xA08D10, bin]
+    - [0xA08D10, data]
+    - { start: auto, name: bss_801DD240, type: bss, vram: 0x801DD240 }
   - name: unk_level_end_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
+    bss_size: 0x100
     exclusive_ram_id: level
     subsegments:
     - [0xA08E30, asm]
     - [0xA0BE70, asm]
     - [0xA0D4D0, asm]
     - [0xA0E190, asm]
-  - [0xA0F660, bin]
+    - [0xA0F660, data]
+    - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
+
+  - [0xA0F830, bin] # compressed data?
+
   - name: unk_level_end_10
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0
+    bss_size: 0x51F60
     exclusive_ram_id: level
     subsegments:
     - [0xA5CC50, asm]
     - [0xA5D5B0, asm]
     - [0xA5E3A0, data]
+    - { start: auto, name: bss_801180B0, type: bss, vram: 0x801180B0 }
   - name: unk_level_end_11
     type: code
     start: 0xA93460
     vram: 0x801DC8A0
+    bss_size: 0x3590
     exclusive_ram_id: level
     subsegments:
     - [0xA93460, asm]
     - [0xA937C0, asm]
     - [0xA94940, asm]
     - [0xA95760, data]
+    - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
+    bss_size: 0x10
     exclusive_ram_id: level
     subsegments:
     - [0xAA0650, asm]
-  - [0xAA0A60, bin] # Some code in here 0xF08 in, it seems
+    - [0xAA0A60, data]
+    - { start: auto, name: bss_800E1DD0, type: bss, vram: 0x800E1DD0 }
+
+  - [0xAA0B80, bin] # Some code in here, it seems
+
+  - type: code
+    start: 0xAA18E0
+    vram: 0x801DC8A0
+    exclusive_ram_id: level
+    bss_size: 0x20
+    subsegments:
+    - [0xAA18E0, asm]
+    - [0xAA20A0, data]
+    - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
+  - [0xAAA610, bin]
 
   # Sequences
   - [0xAEFD3C, bin, audio/seq/AEFD3C]

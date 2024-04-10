@@ -100,18 +100,6 @@ void func_80002A10(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes
     }
 }
 
-typedef struct {
-    u32 romStart;
-    u32 romEnd;
-    u32 vramStart;
-    u32 textVramStart;
-    u32 textVramEnd;
-    u32 dataVramStart; // Probably rodata too
-    u32 dataVramEnd;
-    u32 bssVramStart;
-    u32 bssVramEnd;
-} OverlaySegment;
-
 void func_80002B64(OverlaySegment* dmaData) {
     // If there is a text section, invalidate instruction and data caches
     if (dmaData->textVramEnd - dmaData->textVramStart != 0) {

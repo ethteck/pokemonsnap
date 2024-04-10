@@ -529,4 +529,17 @@ typedef struct {
     /* 0x0C */ void* kill;
 } animalDef; // size = 0x10
 
+
+typedef struct {
+    /* 0x00 */ u32 romStart;
+    /* 0x04 */ u32 romEnd;
+    /* 0x08 */ u32 vramStart;
+    /* 0x0C */ u32 textVramStart;
+    /* 0x10 */ u32 textVramEnd;
+    /* 0x14 */ u32 dataVramStart; // Probably rodata too
+    /* 0x18 */ u32 dataVramEnd;
+    /* 0x1C */ u32 bssVramStart;
+    /* 0x20 */ u32 bssVramEnd;
+} OverlaySegment; // size = 0x24
+
 #endif

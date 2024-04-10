@@ -1,7 +1,7 @@
 #include "common.h"
 
 extern animalDef D_802CBFF4;
-extern s32 D_802CC018;
+extern s32 D_802CC018_564088;
 extern animalDef beachAnimalData[17];
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
@@ -51,7 +51,7 @@ void func_802C431C_55C38C(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C4340_55C3B0.s")
 
 void func_802C43CC_55C43C(s32 arg0) {
-    D_802CC018 = arg0;
+    D_802CC018_564088 = arg0;
     func_800A19D8();
     func_80359074();
     func_8036650C();

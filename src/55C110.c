@@ -41,11 +41,11 @@ void beachAnimalAdd(roomGFX* param_1, roomGFX* param_2) {
 }
 
 void func_802C42F8_55C368(s32* param_1, objectSpawn* param_2) {
-    func_8036406C(param_1, param_2, beachAnimalData);
+    func_8036406C_50447C(param_1, param_2, beachAnimalData);
 }
 
 void func_802C431C_55C38C(s32 arg0) {
-    func_803641B8(arg0, beachAnimalData);
+    func_803641B8_5045C8(arg0, beachAnimalData);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C4340_55C3B0.s")
@@ -53,13 +53,13 @@ void func_802C431C_55C38C(s32 arg0) {
 void func_802C43CC_55C43C(s32 arg0) {
     D_802CC018_564088 = arg0;
     func_800A19D8();
-    func_80359074();
-    func_8036650C();
+    func_80359074_4F9484();
+    func_8036650C_50691C();
     func_80022334();
     func_80022B14();
     func_800E3064();
-    func_80356FBC();
-    func_803586C0();
+    func_80356FBC_4F73CC();
+    func_803586C0_4F8AD0();
     func_800067DC();
 }
 

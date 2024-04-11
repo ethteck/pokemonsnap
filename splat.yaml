@@ -14,7 +14,7 @@ options:
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
-  - name: app
+  - name: main
     type: code
     start: 0x1000
     vram: 0x80000400
@@ -268,6 +268,7 @@ segments:
     type: code
     start: 0x46270
     vram: 0x8009A8C0
+    follows_vram: main
     symbol_name_format: $VRAM
     subsegments:
     - [0x46270, c]
@@ -860,7 +861,7 @@ segments:
     - [0xAA18E0, asm]
     - [0xAA20A0, data]
     - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
-    
+
   - [0xAAA610, bin]
 
   # Sequences

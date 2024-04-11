@@ -317,6 +317,41 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
 
+def graph_segments():
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from splat.segtypes.segment import Segment
+
+    graph_items = []
+    vram_start = 0x80000400
+
+    for item in split.segment_rams.items():
+        segment: Segment = item[2]
+        graph_items.append(
+            dict(
+                Segment=segment.name,
+                VRAMStart=segment.vram_start,
+                VRAMEnd=segment.vram_end,
+                VRAMLength=segment.vram_end - segment.vram_start,
+                PosFromStart=segment.vram_start - vram_start,
+            )
+        )
+
+    # Sort graph_items by VRAMStart
+    graph_items = sorted(graph_items, key=lambda x: x["VRAMStart"])
+
+    df = pd.DataFrame(graph_items)
+    plt.barh(y=df["Segment"], width=df["VRAMLength"], left=df["PosFromStart"])
+    plt.grid(axis="x")
+
+    axes = plt.gca()
+    xlabels = map(lambda t: "0x%08X" % (int(t) + vram_start), axes.get_xticks())
+    axes.set_xticklabels(xlabels)
+
+    plt.show()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Configure the project")
     parser.add_argument(
@@ -343,6 +378,8 @@ if __name__ == "__main__":
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries
+
+    # graph_segments()
 
     create_build_script(linker_entries)
 

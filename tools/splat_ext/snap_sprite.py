@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from enum import IntEnum, IntFlag
-from io import SEEK_END, BytesIO
+from io import BytesIO
 from pathlib import Path
-from pprint import pprint
 from struct import unpack
 
 import n64img.image
+import numpy
 import numpy as np
 from splat.segtypes.n64.segment import N64Segment
 from splat.util import options
@@ -134,13 +134,11 @@ class N64SegSnap_sprite(N64Segment):
 
         header = Sprite()
         header.unpack(BytesIO(data[-0x40:]))
-        pprint(header)
 
         # get all bitmaps
         bitmaps = []
         offset = header.bitmap
         for i in range(header.nbitmaps):
-            print(f"Bitmap {i}: {offset:X} @ 0x{self.ram_to_rom(offset):X}")
             assert offset >= self.vram_start
             assert offset < self.vram_end
             bitmap = Bitmap()
@@ -151,36 +149,86 @@ class N64SegSnap_sprite(N64Segment):
             bitmaps.append(bitmap)
             offset += 0x10
 
-        assert header.bmfmt == IM_FMT.G_IM_FMT_RGBA
-        assert header.bmsiz == IM_SIZ.G_IM_SIZ_16b
+        if header.bmfmt == IM_FMT.G_IM_FMT_RGBA and header.bmsiz == IM_SIZ.G_IM_SIZ_16b:
+            png_bpp = 4
+            input_bpp = 2
+            img_class = n64img.image.RGBA16
+        elif (
+            header.bmfmt == IM_FMT.G_IM_FMT_RGBA and header.bmsiz == IM_SIZ.G_IM_SIZ_32b
+        ):
+            png_bpp = 4
+            input_bpp = 4
+            img_class = n64img.image.RGBA32
+        elif header.bmfmt == IM_FMT.G_IM_FMT_I and header.bmsiz == IM_SIZ.G_IM_SIZ_8b:
+            png_bpp = 1
+            input_bpp = 1
+            img_class = n64img.image.I8
+        elif header.bmfmt == IM_FMT.G_IM_FMT_IA and header.bmsiz == IM_SIZ.G_IM_SIZ_16b:
+            png_bpp = 2
+            input_bpp = 2
+            img_class = n64img.image.IA16
+        elif header.bmfmt == IM_FMT.G_IM_FMT_CI and header.bmsiz == IM_SIZ.G_IM_SIZ_8b:
+            png_bpp = 1
+            input_bpp = 1
+            img_class = n64img.image.CI8
+        else:
+            print(f"Unsupported format: {header.bmfmt.name} {header.bmsiz.name}")
+            return
 
-        canvas = bytearray(header.width * header.height * 4)
-        canvas = np.array(canvas).reshape(header.height, header.width, 4)
+        canvas = bytearray(header.width * header.height * png_bpp)
+        canvas = np.array(canvas).reshape(header.height, header.width, png_bpp)
+
+        palette = None
+        if header.LUT:
+            palette = rom_bytes[
+                self.ram_to_rom(header.LUT) : self.ram_to_rom(header.LUT)
+                + header.nTLUT * 2
+            ]
+            palette = bytearray(palette)
 
         canvas_y = 0
         canvas_x = 0
         # loop over all bitmaps
         for i, bitmap in enumerate(bitmaps):
-            bytes = bytearray()
-            input_bytes = rom_bytes[self.ram_to_rom(bitmap.buf) :]
-            row_size = bitmap.width_img * 2
-            for y in range(bitmap.actual_height):
-                row_bytes = input_bytes[y * row_size : y * row_size + row_size]
+            input_bytes = rom_bytes[
+                self.ram_to_rom(bitmap.buf) : self.ram_to_rom(bitmap.buf)
+                + bitmap.width_img * bitmap.actual_height * input_bpp
+            ]
 
-                # if Y is odd, flip the row
-                if y % 2 == 1:
-                    row_bytes = bytearray(row_bytes)
-                    for x in range(len(row_bytes) // 8):
-                        [a, b, c, d, e, f, g, h] = row_bytes[x * 8 : x * 8 + 8]
-                        row_bytes[x * 8 : x * 8 + 8] = [e, f, g, h, a, b, c, d]
+            tile = img_class(input_bytes, bitmap.width_img, bitmap.actual_height)
 
-                bytes += row_bytes
+            if palette:
+                tile.set_palette(palette, "big")
+                pass
 
-            tile = n64img.image.RGBA16(bytes, bitmap.width_img, bitmap.actual_height)
             pixels = tile.parse()
             pixels = np.array(bytearray(pixels)).reshape(
-                bitmap.actual_height, bitmap.width_img, 4
+                bitmap.actual_height, bitmap.width_img, png_bpp
             )
+
+            # swap the odd rows
+            if input_bpp == 2 or input_bpp == 4:
+                for y in range(len(pixels)):
+                    if y % 2 == 1:
+                        for x in range(0, len(pixels[0]), 4):
+                            temp = numpy.copy(pixels[y][x : x + 4])
+                            pixels[y][x] = temp[2]
+                            pixels[y][x + 1] = temp[3]
+                            pixels[y][x + 2] = temp[0]
+                            pixels[y][x + 3] = temp[1]
+            elif input_bpp == 1:
+                for y in range(len(pixels)):
+                    if y % 2 == 1:
+                        for x in range(0, len(pixels[0]), 8):
+                            temp = numpy.copy(pixels[y][x : x + 8])
+                            pixels[y][x + 0] = temp[4]
+                            pixels[y][x + 1] = temp[5]
+                            pixels[y][x + 2] = temp[6]
+                            pixels[y][x + 3] = temp[7]
+                            pixels[y][x + 4] = temp[0]
+                            pixels[y][x + 5] = temp[1]
+                            pixels[y][x + 6] = temp[2]
+                            pixels[y][x + 7] = temp[3]
 
             # copy the pixels to the canvas
             canvas[
@@ -193,6 +241,8 @@ class N64SegSnap_sprite(N64Segment):
                 canvas_x = 0
                 canvas_y += bitmap.actual_height
 
-        canvas_img = n64img.image.RGBA16(bytearray(), header.width, header.height)
+        canvas_img = img_class(bytearray(), header.width, header.height)
+        if palette:
+            canvas_img.set_palette(palette)
         with open(path, "wb") as f:
             canvas_img.get_writer().write_array(f, canvas.tobytes())

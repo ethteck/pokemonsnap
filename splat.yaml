@@ -970,6 +970,7 @@ segments:
   - [0xA0F830, bin] # VPK0 compressed data
 
   - name: unk_level_end_10
+    dir: unk_level_end_10
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0

@@ -1,12 +1,14 @@
 from dataclasses import dataclass
 from enum import IntEnum, IntFlag
 from io import SEEK_END, BytesIO
+from pathlib import Path
 from pprint import pprint
 from struct import unpack
 
 import n64img.image
 import numpy as np
 from splat.segtypes.n64.segment import N64Segment
+from splat.util import options
 
 
 class IM_FMT(IntEnum):
@@ -118,7 +120,16 @@ class Sprite:
 
 
 class N64SegSnap_sprite(N64Segment):
+    def out_path(self) -> Path:
+        self.image_type_in_extension = options.opts.image_type_in_extension
+        type_extension = f".{self.type}" if self.image_type_in_extension else ""
+
+        return options.opts.asset_path / self.dir / f"{self.name}{type_extension}.png"
+
     def split(self, rom_bytes: bytes):
+        path = self.out_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+
         data = rom_bytes[self.rom_start : self.rom_end]
 
         header = Sprite()
@@ -183,5 +194,5 @@ class N64SegSnap_sprite(N64Segment):
                 canvas_y += bitmap.actual_height
 
         canvas_img = n64img.image.RGBA16(bytearray(), header.width, header.height)
-        with open(f"sprite_{self.name}.png", "wb") as f:
+        with open(path, "wb") as f:
             canvas_img.get_writer().write_array(f, canvas.tobytes())

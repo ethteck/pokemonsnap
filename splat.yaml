@@ -99,10 +99,11 @@ segments:
     - [0x347A0, c, ../ultralib/src/os/thread]
     - [0x347E0, hasm, ../ultralib/src/libc/bzero]
     - [0x34880, asm]
-    - [0x34E30, asm]
+    - [0x34E30, asm] # TODO motor
+    - [0x35200, asm]
     - [0x352C0, asm] # ../ultralib/src/io/controller]
     - [0x35600, c, ../ultralib/src/os/createthread]
-    - [0x35750, asm]
+    - [0x35750, c, ../ultralib/src/io/contreaddata]
     - [0x35930, c, ../ultralib/src/os/virtualtophysical]
     - [0x359B0, hasm] # ../ultralib/src/os/writebackdcache]
     - [0x35A30, asm]
@@ -112,10 +113,10 @@ segments:
     - [0x35E60, hasm, ../ultralib/src/os/getsr]
     - [0x35E70, asm]
     - [0x360D0, c, ../ultralib/src/io/sprawdma]
-    - [0x36160, asm]
+    - [0x36160, c, ../ultralib/src/io/sirawdma]
     - [0x36210, c, ../ultralib/src/io/epilinkhandle]
     - [0x36260, c, ../ultralib/src/io/viblack]
-    - [0x362D0, asm]
+    - [0x362D0, asm] # c, ../ultralib/src/io/sirawread]
     - [0x36320, c, ../ultralib/src/io/sptaskyield]
     - [0x36340, c, ../ultralib/src/io/visetmode]
     - [0x363B0, hasm, ../ultralib/src/os/probetlb]
@@ -168,11 +169,12 @@ segments:
     - [0x39BD0, c, ../ultralib/src/io/visetevent]
     - [0x39C40, asm]
     - [0x39E20, asm]
-    - [0x39FE0, asm]
+    - [0x39FE0, c, ../ultralib/src/io/pfsselectbank]
     - [0x3A060, hasm, ../ultralib/src/os/setfpccsr]
-    - [0x3A070, asm]
-    - [0x3A250, asm]
-    - [0x3ADD0, asm]
+    - [0x3A070, c, ../ultralib/src/io/pfsfilestate]
+    - [0x3A250, c, ../ultralib/src/io/contpfs]
+    - [0x3ADD0, c, ../ultralib/src/io/pfsinitpak]
+    - [0x3AFC0, asm]
     - [0x3B1F0, c, ../ultralib/src/io/pfschecker]
     - [0x3BB90, c, ../ultralib/src/io/pfsisplug]
     - [0x3BED0, asm]
@@ -224,6 +226,8 @@ segments:
     - [0x439B0, data]
     - [0x43A50, .data, ../ultralib/src/io/vi]
     - [0x43AC0, data]
+    - [0x43B20, .data, ../ultralib/src/io/contpfs]
+    - [0x43B30, data]
     - [0x43B70, data] # .data, ../ultralib/src/io/vimgr]
     - [0x43B90, data]
     - [0x43BA0, .rodata, 1060]
@@ -272,6 +276,7 @@ segments:
     - { start: auto, name: bss_unk, type: bss, vram: 0x800994A0 }
     # - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
     - { start: auto, name: bss_unk2, type: bss, vram: 0x80099500 }
+    - { start: auto, name: ../ultralib/src/io/contpfs, type: .bss, vram: 0x80099560 }
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
     - { start: auto, name: bss_800996A0, type: bss, vram: 0x800996A0 }
     # - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996C0 }

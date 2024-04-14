@@ -176,8 +176,6 @@ s32 osPfsChecker(OSPfs* pfs) {
     return 0;
 }
 
-#define BUILD_VERSION VERSION_I // needed to match Pokemon Snap
-
 s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache) {
     int i;
     int n;
@@ -205,7 +203,7 @@ s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache) {
             tpage = tmp_inode.inode_page[i];
 
             if (tpage.ipage >= pfs->inode_start_page && tpage.inode_t.bank != bank) {
-#if BUILD_VERSION >= VERSION_J
+#if 0 // BUILD_VERSION >= VERSION_J  // needed to match Pokemon Snap
                 n = ((tpage.inode_t.page & 0x7F) / PFS_SECTOR_SIZE) +
                     ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
 #else

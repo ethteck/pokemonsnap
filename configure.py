@@ -279,7 +279,18 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 elif "ultralib/src/audio" in str(c_path):
                     ido = "7.1"
 
-                if c_path.stem in ["vimgr", "crc", "pfschecker"]:
+                if c_path.stem in [
+                    "vimgr",
+                    "contpfs",
+                    "contreaddata",
+                    "crc",
+                    "pfschecker",
+                    "pfsfilestate",
+                    "pfsinitpak",
+                    "pfsselectbank",
+                    "sirawdma",
+                    "sirawread",
+                ]:
                     opt_level = "-O2"
                     libultra = "VERSION_J"
 

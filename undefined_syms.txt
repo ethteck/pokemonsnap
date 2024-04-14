@@ -40,22 +40,13 @@ alSaveParam = 0x8002E03C;
 D_800428E0 = 0x800428E0;
 D_800428E4 = 0x800428E4;
 
-__osPiAccessQueueEnabled = 0x80042D40;
 LeoDiskHandle = 0x800981B8;
 CartRomHandle = 0x80098140;
 osEPiRawStartDma = 0x80037B60;
-__osPiAccessQueue = 0x80099408;
-__osPiCreateAccessQueue = 0x800359E0;
-__osViGetCurrentContext = 0x8003D0B0;
 
-D_800994E0 = 0x800994E0;
-D_800994F4 = 0x800994F4;
-D_80099560 = 0x80099560;
-func_8003BA80 = 0x8003BA80;
-
-__osCheckId = 0x80039E20;
-__osGetId = 0x80039C74;
 __osContRamRead = 0x8003B780;
-__osPfsRWInode = 0x80039EF4;
 __osContRamWrite = 0x8003B530;
-__osPfsSelectBank = 0x800393E0;
+__osPfsGetStatus = 0x8003A3C0;
+
+func_80034BD4 = 0x80034BD4;
+func_80034B50 = 0x80034B50;

@@ -176,6 +176,8 @@ s32 osPfsChecker(OSPfs* pfs) {
     return 0;
 }
 
+#define BUILD_VERSION VERSION_I // needed to match Pokemon Snap
+
 s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache) {
     int i;
     int n;

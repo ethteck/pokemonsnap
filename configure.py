@@ -25,7 +25,7 @@ Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
 COMMON_INCLUDES = "-I include -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src"
-IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_I"
+IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
@@ -39,9 +39,9 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
-LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
+LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
@@ -249,6 +249,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 opt_level = "-O2"
                 mips = "-mips2"
                 ido = "5.3"
+                libultra = "VERSION_I"
 
                 if (
                     c_path.stem
@@ -260,6 +261,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     or "ultralib/src/io" in str(c_path)
                 ):
                     opt_level = "-O1"
+                    if c_path.stem in ["pimgr"]:
+                        opt_level = "-O2"
                 elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
                     c_path
                 ):
@@ -276,6 +279,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 elif "ultralib/src/audio" in str(c_path):
                     ido = "7.1"
 
+                if c_path.stem in ["vimgr", "crc", "pfschecker"]:
+                    opt_level = "-O2"
+                    libultra = "VERSION_J"
+
                 build(
                     entry.object_path,
                     entry.src_paths,
@@ -283,6 +290,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     variables={
                         "flags": f"{opt_level} {mips}",
                         "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                        "libultra": libultra,
                     },
                 )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):

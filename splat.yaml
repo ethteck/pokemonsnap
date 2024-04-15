@@ -65,9 +65,10 @@ segments:
     - [0x2B240, c, ../ultralib/src/audio/sndpsetpitch]
     - [0x2B2A0, c, ../ultralib/src/audio/synthesizer]
     - [0x2B920, c, ../ultralib/src/audio/drvrnew]
-    - [0x2C0B0, c]
-    - [0x2CE60, asm]
-    - [0x2CF70, c]
+    - [0x2C0B0, c, ../ultralib/src/audio/mainbus]
+    - [0x2C200, c, ../ultralib/src/audio/reverb]
+    - [0x2CE60, c, ../ultralib/src/audio/auxbus]
+    - [0x2CF70, c, ../ultralib/src/audio/env]
     - [0x2DBE0, c]
     - [0x2DED0, asm]
     - [0x2EA50, c, ../ultralib/src/audio/filter]
@@ -219,10 +220,12 @@ segments:
     - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
     - [0x401C0, data]
     - [0x43020, data, 245E0]
-    - [0x434E0, .data, ../ultralib/src/audio/sl]
-    - [0x434F0, data]
+    - [0x434F0, .data, ../ultralib/src/audio/sl]
     - [0x43500, .data, ../ultralib/src/audio/drvrnew]
-    - [0x43690, data]
+    - [0x43690, .data, ../ultralib/src/audio/reverb]
+    - [0x436B0, .data, ../ultralib/src/audio/env]
+    - [0x437F0, data]
+    - [0x43830, data]
     - [0x438B0, .data, ../ultralib/src/os/thread]
     - [0x438D0, .data, ../ultralib/src/io/siacs]
     - [0x438E0, data] # .data, ../ultralib/src/io/controller]
@@ -259,8 +262,8 @@ segments:
     - [0x44E60, .rodata, 29610]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
     - [0x44EC0, .rodata, ../ultralib/src/audio/drvrnew]
-    - [0x44EE0, .rodata, 2C0B0]
-    - [0x44F10, .rodata, 2CF70]
+    - [0x44EE0, .rodata, ../ultralib/src/audio/reverb]
+    - [0x44F10, .rodata, ../ultralib/src/audio/env]
     - [0x44F70, .rodata, 2DBE0]
     - [0x44FA0, .rodata, 2ED30]
     - [0x45230, .rodata, 30C80]
@@ -287,7 +290,6 @@ segments:
     - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
     - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
     - { start: auto, name: bss_80097F90, type: bss, vram: 0x80097F90 }
-    # - { start: auto, name: asdf, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
     - { start: auto, name: bss_unk, type: bss, vram: 0x800994A0 }

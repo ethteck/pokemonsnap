@@ -52,7 +52,7 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
                 }
 
                 daddr += BLOCKSIZE;
-            } while (num++ < ARRLEN(buf[0]) - 1);
+            } while (num++ < ARRLEN(buf[0])); //  - 1); // needed to match Pokemon Snap
 
             if (num != 0) {
                 return PFS_ERR_CONTRFAIL;
@@ -124,6 +124,10 @@ s32 osGbpakCheckConnector(OSPfs* pfs, u8* status) {
 
         if (ret == PFS_ERR_NEW_GBCART) {
             ret = PFS_ERR_CONTRFAIL;
+        }
+
+        if (ret != 0) {
+            return ret;
         }
     }
 

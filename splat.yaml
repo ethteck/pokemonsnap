@@ -37,29 +37,30 @@ segments:
     - [0x1AF60, asm]
     - [0x1BCF0, c]
     - [0x1F960, c]
-    - [0x20940, c]
-    - [0x245E0, c]
+    - [0x20940, asm]
+    - [0x245E0, asm]
     - [0x26D40, c, ../ultralib/src/sp/color]
     - [0x26D70, c, ../ultralib/src/sp/setattribute]
-    - [0x26D80, c] # , ../ultralib/src/sp/sprite]
+    - [0x26D80, c] # , ../ultralib/src/sp/sprite] # TODO
     - [0x293F0, c, ../ultralib/src/sp/clearattribute]
     - [0x29410, c, ../ultralib/src/sp/hide]
     - [0x29430, c, ../ultralib/src/sp/show]
     - [0x29450, c, ../ultralib/src/sp/spscale]
-    - [0x294C0, asm]
-    - [0x29570, asm]
+    - [0x294C0, asm] # TODO
+    - [0x29570, asm] # TODO
     - [0x295C0, c, ../ultralib/src/audio/sndpstop]
-    - [0x29610, c]
+    - [0x29610, asm] # TODO
+    - [0x2A140, c, ../ultralib/src/audio/sndplayer]
     - [0x2A810, c, ../ultralib/src/audio/sl]
     - [0x2A8D0, c, ../ultralib/src/audio/synsetvol]
-    - [0x2A970, asm]
-    - [0x2ACC0, asm]
-    - [0x2AD70, asm]
+    - [0x2A970, c, ../ultralib/src/audio/event]
+    - [0x2ACC0, c, ../ultralib/src/audio/synfreevoice]
+    - [0x2AD70, c, ../ultralib/src/audio/synallocvoice]
     - [0x2AF90, c, ../ultralib/src/audio/cspgettempo]
     - [0x2AFD0, c, ../ultralib/src/audio/synstartvoice]
-    - [0x2B060, asm]
-    - [0x2B0C0, asm]
-    - [0x2B100, asm]
+    - [0x2B060, asm] # TODO
+    - [0x2B0C0, asm] # TODO
+    - [0x2B100, asm] # TODO
     - [0x2B120, c, ../ultralib/src/audio/synsetpitch]
     - [0x2B1B0, c, ../ultralib/src/audio/synsetpan]
     - [0x2B240, c, ../ultralib/src/audio/sndpsetpitch]
@@ -71,28 +72,28 @@ segments:
     - [0x2CF70, c, ../ultralib/src/audio/env]
     - [0x2DBE0, c, ../ultralib/src/audio/resample]
     - [0x2DED0, c, ../ultralib/src/audio/load]
-    - [0x2E9E0, asm]
+    - [0x2E9E0, asm] # TODO
     - [0x2EA50, c, ../ultralib/src/audio/filter]
-    - [0x2EA70, asm]
+    - [0x2EA70, asm] # TODO
     - [0x2EB10, c, ../ultralib/src/audio/synsetfxmix]
     - [0x2EBB0, c, ../ultralib/src/audio/save]
-    - [0x2EC70, asm]
-    - [0x2ED30, asm]
-    - [0x30C80, asm]
-    - [0x32690, asm]
-    - [0x326B0, asm]
-    - [0x32D60, asm]
-    - [0x32D90, asm]
+    - [0x2EC70, asm] # TODO
+    - [0x2ED30, asm] # TODO
+    - [0x30C80, asm] # TODO
+    - [0x32690, asm] # TODO
+    - [0x326B0, asm] # TODO
+    - [0x32D60, asm] # TODO
+    - [0x32D90, asm] # TODO
     - [0x32DF0, c, ../ultralib/src/audio/synaddplayer]
     - [0x32E40, c, ../ultralib/src/audio/sndpgetstate]
     - [0x32E60, c, ../ultralib/src/audio/sndpplay]
-    - [0x32ED0, asm]
+    - [0x32ED0, asm] # TODO
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
-    - [0x33000, asm] # cspstop or seqpstop ? 
-    - [0x33030, asm]
-    - [0x33040, asm]
+    - [0x33000, asm] # cspstop or seqpstop ?  # TODO
+    - [0x33030, asm] # TODO
+    - [0x33040, asm] # TODO
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
-    - [0x33110, asm]
+    - [0x33110, asm] # TODO
     - [0x331A0, c, ../ultralib/src/audio/syndelete]
     - [0x331B0, c, ../ultralib/src/audio/synstopvoice]
     - [0x33230, c, ../ultralib/src/os/sendmesg]
@@ -103,14 +104,14 @@ segments:
     - [0x337E0, c, ../ultralib/src/io/sptask]
     - [0x33AD0, c, ../ultralib/src/os/destroythread]
     - [0x33BE0, c, ../ultralib/src/libc/ll]
-    - [0x33EA0, hasm] # , ../ultralib/src/os/exceptasm] # TODO
+    - [0x33EA0, hasm, ../ultralib/src/os/exceptasm]
     - [0x347A0, c, ../ultralib/src/os/thread]
     - [0x347E0, hasm, ../ultralib/src/libc/bzero]
     - [0x34880, c, ../ultralib/src/io/gbpakpower]
-    - [0x34990, asm] # TODO
+    - [0x34990, c, ../ultralib/src/io/gbpakcheckconnector]
     - [0x34E30, c, ../ultralib/src/io/motor]
     - [0x35200, c, ../ultralib/src/io/siacs]
-    - [0x352C0, asm] # ../ultralib/src/io/controller] # TODO bss
+    - [0x352C0, c, ../ultralib/src/io/controller]
     - [0x35600, c, ../ultralib/src/os/createthread]
     - [0x35750, c, ../ultralib/src/io/contreaddata]
     - [0x35930, c, ../ultralib/src/os/virtualtophysical]
@@ -160,7 +161,7 @@ segments:
     - [0x38940, c, ../ultralib/src/io/sptaskyielded]
     - [0x389C0, hasm, ../ultralib/src/libc/bcmp]
     - [0x38AE0, c, ../ultralib/src/os/gettime]
-    - [0x38B70, asm] # c, ../ultralib/src/os/timerintr] # TODO
+    - [0x38B70, c, ../ultralib/src/os/timerintr]
     - [0x38F70, c, ../ultralib/src/os/setglobalintmask]
     - [0x38FC0, c, ../ultralib/src/io/aisetfreq]
     - [0x39110, c, ../ultralib/src/gu/normalize]
@@ -204,7 +205,7 @@ segments:
     - [0x3D950, c, ../ultralib/src/io/dp]
     - [0x3D980, c, ../ultralib/src/io/spsetstat]
     - [0x3D990, c, ../ultralib/src/io/spgetstat]
-    - [0x3D9A0, asm] # c, ../ultralib/src/io/vimgr] # TODO
+    - [0x3D9A0, c, ../ultralib/src/io/vimgr]
     - [0x3DCB0, c, ../ultralib/src/io/vigetcurrcontext]
     - [0x3DCC0, hasm, ../ultralib/src/os/writebackdcacheall]
     - [0x3DCF0, c, ../ultralib/src/os/startthread]
@@ -222,20 +223,23 @@ segments:
     - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
     - [0x401C0, data]
     - [0x43020, data, 245E0]
+    - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
     - [0x43500, .data, ../ultralib/src/audio/drvrnew]
     - [0x43690, .data, ../ultralib/src/audio/reverb]
     - [0x436B0, .data, ../ultralib/src/audio/env]
     - [0x437F0, data]
     - [0x43830, data]
+    - [0x43880, .data, ../ultralib/src/os/exceptasm]
+    - [0x438A0, data]
     - [0x438B0, .data, ../ultralib/src/os/thread]
     - [0x438D0, .data, ../ultralib/src/io/siacs]
-    - [0x438E0, data] # .data, ../ultralib/src/io/controller]
+    - [0x438E0, .data, ../ultralib/src/io/controller]
     - [0x438F0, .data, ../ultralib/src/os/initialize]
     - [0x43910, .data, ../ultralib/src/io/pimgr]
     - [0x43940, .data, ../ultralib/src/io/piacs]
     - [0x43950, .data, ../ultralib/src/libc/xprintf]
-    - [0x439A0, data] # .data, ../ultralib/src/os/timerintr]
+    - [0x439A0, .data, ../ultralib/src/os/timerintr]
     - [0x439B0, data]
     - [0x43A50, .data, ../ultralib/src/io/vi]
     - [0x43AC0, data]
@@ -243,7 +247,7 @@ segments:
     - [0x43B20, .data, ../ultralib/src/io/contpfs]
     - [0x43B30, .data, ../ultralib/src/io/contramread]
     - [0x43B40, .data, ../ultralib/src/libc/xlitob]
-    - [0x43B70, data] # .data, ../ultralib/src/io/vimgr]
+    - [0x43B70, .data, ../ultralib/src/io/vimgr]
     - [0x43B90, .data, ../ultralib/src/io/aisetnextbuf]
     - [0x43BA0, .rodata, 1060]
     - [0x43BC0, .rodata, 1520]
@@ -258,10 +262,11 @@ segments:
     - [0x44940, .rodata, 1A560]
     - [0x44990, .rodata, 1BCF0]
     - [0x449E0, .rodata, 1F960]
-    - [0x44A00, .rodata, 20940]
-    - [0x44A10, rodata] # 245E0
-    - [0x44E50, .rodata, 26D80] # ../ultralib/src/sp/sprite]
-    - [0x44E60, .rodata, 29610]
+    - [0x44A00, rodata, 20940]
+    - [0x44A10, rodata, 245E0]
+    - [0x44E50, rodata] # .rodata, ../ultralib/src/sp/sprite]
+    - [0x44E60, rodata, 29610]
+    - [0x44E70, .rodata, ../ultralib/src/audio/sndplayer]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
     - [0x44EC0, .rodata, ../ultralib/src/audio/drvrnew]
     - [0x44EE0, .rodata, ../ultralib/src/audio/reverb]
@@ -273,7 +278,7 @@ segments:
     - [0x45480, rodata, 32ED0]
     - [0x45490, .rodata, ../ultralib/src/os/setintmask]
     - [0x45510, .rodata, ../ultralib/src/gu/sinf]
-    - [0x45560, rodata] # .rodata, ../ultralib/src/os/exceptasm]
+    - [0x45560, .rodata, ../ultralib/src/os/exceptasm]
     - [0x455B0, .rodata, ../ultralib/src/io/devmgr]
     - [0x455D0, .rodata, ../ultralib/src/libc/xprintf]
     - [0x456D0, .rodata, ../ultralib/src/gu/cosf]
@@ -284,23 +289,22 @@ segments:
     - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
     - { start: auto, name: bss_80045670, type: bss, vram: 0x80045670 }
-    - { start: auto, name: bss_80097D40, type: bss, vram: 0x80097D40 }
+    - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
     - { start: auto, name: ../ultralib/src/io/siacs, type: .bss, vram: 0x80097E90 }
-    - { start: auto, name: bss_80097EB0, type: bss, vram: 0x80097EB0 } # controller
+    - { start: auto, name: ../ultralib/src/io/controller, type: .bss, vram: 0x80097EB0 }
     - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
     - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
     - { start: auto, name: bss_80097F90, type: bss, vram: 0x80097F90 }
     - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
-    - { start: auto, name: bss_unk, type: bss, vram: 0x800994A0 }
-    # - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
+    - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
+    - { start: auto, name: bss_unk, type: bss, vram: 0x800994E0 }
     - { start: auto, name: bss_unk2, type: bss, vram: 0x80099500 }
     - { start: auto, name: ../ultralib/src/io/contpfs, type: .bss, vram: 0x80099560 }
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
-    - { start: auto, name: bss_800996A0, type: bss, vram: 0x800996A0 }
-    # - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996C0 }
+    - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996A0 }
   - name: app_render
     type: code
     start: 0x46270

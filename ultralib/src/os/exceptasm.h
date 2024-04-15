@@ -20,7 +20,7 @@
 #define HWINTR_SP       0x04
 
 /* __osHwInt struct size */
-#if BUILD_VERSION >= VERSION_J
+#if 1 /* BUILD_VERSION >= VERSION_J // needed to match Pokemon Snap */
 #define HWINTR_SIZE     0x8
 #else
 #define HWINTR_SIZE     0x4

@@ -231,7 +231,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 if s_path.stem in ["exceptasm"]:
                     mips = "-mips3 -32"
                 else:
-                    mips = "-mips2 -o32"
+                    mips = "-mips2 -32"
 
                 build(
                     entry.object_path,
@@ -268,9 +268,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     opt_level = "-O3"
                     if "color" in str(c_path):
                         ido = "7.1"
+                    if c_path.stem == "spriteex2":
+                        opt_level = "-O2"
+                        ido = "7.1"
                 elif "ultralib/src/libc" in str(c_path):
                     opt_level = "-O3"
-                    mips = "-mips2 -o32"
+                    mips = "-mips2 -32"
 
                     if c_path.stem in ["ll", "llbit", "llcvt"]:
                         opt_level = "-O1"
@@ -289,6 +292,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     "epirawdma",
                     "epirawread",
                     "epirawwrite",
+                    "gbpakcheckconnector",
                     "gbpakgetstatus",
                     "gbpakinit",
                     "gbpakpower",

@@ -1,13 +1,5 @@
 alHeapDBAlloc = 0x8001FD74;
 
-alResamplePull = 0x8002CFE0;
-alAdpcmPull = 0x8002D2D0;
-alLoadParam = 0x8002DAC0;
-alResampleParam = 0x8002D1D8;
-alSavePull = 0x8002DFB0;
-alSaveParam = 0x8002E03C;
-
-func_80033D90 = 0x80033D90;
 func_800344A4 = 0x800344A4;
 func_80034BD4 = 0x80034BD4;
 func_80034B50 = 0x80034B50;
@@ -43,3 +35,5 @@ cartGObj = 0x803937F0;
 
 func_84001008 = 0x84001008;
 func_84001064 = 0x84001064;
+
+func_8002E0CC = 0x8002E0CC;

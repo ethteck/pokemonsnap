@@ -261,8 +261,6 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     or "ultralib/src/io" in str(c_path)
                 ):
                     opt_level = "-O1"
-                    if c_path.stem in ["pimgr"]:
-                        opt_level = "-O2"
                 elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
                     c_path
                 ):
@@ -280,18 +278,44 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     ido = "7.1"
 
                 if c_path.stem in [
-                    "vimgr",
+                    "aisetfreq",
+                    "cartrominit",
                     "contpfs",
+                    "contramread",
+                    "contramwrite",
                     "contreaddata",
                     "crc",
+                    "epirawdma",
+                    "epirawread",
+                    "epirawwrite",
+                    "gbpakgetstatus",
+                    "gbpakinit",
+                    "gbpakreadid",
+                    "gbpakreadwrite",
+                    "gbpaksetbank",
+                    "motor",
                     "pfschecker",
                     "pfsfilestate",
+                    "pfsgetstatus",
                     "pfsinitpak",
+                    "pimgr",
                     "pfsselectbank",
                     "sirawdma",
-                    "sirawread",
+                    "vimgr",
+                    "viswapcontext",
                 ]:
                     opt_level = "-O2"
+                    libultra = "VERSION_J"
+                elif c_path.stem in [
+                    "devmgr",
+                    "epiread",
+                    "epiwrite",
+                    "initialize",
+                    "pirawdma",
+                    "pirawread",
+                    "sirawread",
+                ]:
+                    opt_level = "-O1"
                     libultra = "VERSION_J"
 
                 build(
@@ -337,6 +361,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
 
 def graph_segments():
+
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt

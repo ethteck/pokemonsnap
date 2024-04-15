@@ -99,24 +99,25 @@ segments:
     - [0x347A0, c, ../ultralib/src/os/thread]
     - [0x347E0, hasm, ../ultralib/src/libc/bzero]
     - [0x34880, asm]
-    - [0x34E30, asm] # TODO motor
-    - [0x35200, asm]
-    - [0x352C0, asm] # ../ultralib/src/io/controller]
+    - [0x34E30, c, ../ultralib/src/io/motor]
+    - [0x35200, c, ../ultralib/src/io/siacs]
+    - [0x352C0, asm] # ../ultralib/src/io/controller] # TODO bss
     - [0x35600, c, ../ultralib/src/os/createthread]
     - [0x35750, c, ../ultralib/src/io/contreaddata]
     - [0x35930, c, ../ultralib/src/os/virtualtophysical]
-    - [0x359B0, hasm] # ../ultralib/src/os/writebackdcache]
-    - [0x35A30, asm]
+    - [0x359B0, hasm, ../ultralib/src/os/writebackdcache]
+    - [0x35A30, c, ../ultralib/src/os/initialize]
     - [0x35D90, c, ../ultralib/src/io/pirawread]
-    - [0x35DF0, asm]
+    - [0x35DF0, hasm, ../ultralib/src/os/parameters]
     - [0x35E50, hasm, ../ultralib/src/os/setsr]
     - [0x35E60, hasm, ../ultralib/src/os/getsr]
-    - [0x35E70, asm]
+    - [0x35E70, c, ../ultralib/src/io/vigetnextframebuf]
+    - [0x35EB0, c, ../ultralib/src/io/gbpakinit]
     - [0x360D0, c, ../ultralib/src/io/sprawdma]
     - [0x36160, c, ../ultralib/src/io/sirawdma]
     - [0x36210, c, ../ultralib/src/io/epilinkhandle]
     - [0x36260, c, ../ultralib/src/io/viblack]
-    - [0x362D0, asm] # c, ../ultralib/src/io/sirawread]
+    - [0x362D0, c, ../ultralib/src/io/sirawread]
     - [0x36320, c, ../ultralib/src/io/sptaskyield]
     - [0x36340, c, ../ultralib/src/io/visetmode]
     - [0x363B0, hasm, ../ultralib/src/os/probetlb]
@@ -132,7 +133,7 @@ segments:
     - [0x36E10, c, ../ultralib/src/gu/mtxutil]
     - [0x37080, c, ../ultralib/src/gu/mtxcatf]
     - [0x37290, c, ../ultralib/src/libc/xprintf]
-    - [0x37F50, asm]
+    - [0x37F50, c, ../ultralib/src/io/gbpakgetstatus]
     - [0x380B0, c, ../ultralib/src/libc/sprintf]
     - [0x38130, hasm, ../ultralib/src/os/unmaptlball]
     - [0x38180, c, ../ultralib/src/io/epidma]
@@ -146,68 +147,67 @@ segments:
     - [0x38610, c, ../ultralib/src/os/setthreadpri]
     - [0x386F0, c, ../ultralib/src/os/getthreadpri]
     - [0x38710, c, ../ultralib/src/io/viswapbuf]
-    - [0x38760, asm]
+    - [0x38760, c, ../ultralib/src/io/epirawdma]
     - [0x38940, c, ../ultralib/src/io/sptaskyielded]
-    - [0x389C0, hasm, bcmp]
+    - [0x389C0, hasm, ../ultralib/src/libc/bcmp]
     - [0x38AE0, c, ../ultralib/src/os/gettime]
-    - [0x38B70, asm] # c, ../ultralib/src/os/timerintr]
+    - [0x38B70, asm] # c, ../ultralib/src/os/timerintr] # TODO
     - [0x38F70, c, ../ultralib/src/os/setglobalintmask]
-    - [0x38FC0, asm]
+    - [0x38FC0, c, ../ultralib/src/io/aisetfreq]
     - [0x39110, c, ../ultralib/src/gu/normalize]
-    - [0x391A0, hasm, setcompare]
+    - [0x391A0, hasm, ../ultralib/src/os/setcompare]
     - [0x391B0, c, ../ultralib/src/os/getactivequeue]
     - [0x391C0, hasm, ../ultralib/src/libc/bcopy]
     - [0x394D0, c, ../ultralib/src/os/resetglobalintmask]
     - [0x39530, c, ../ultralib/src/io/vi]
-    - [0x39670, asm] # c, ../ultralib/src/io/viswapcontext]
+    - [0x39670, c, ../ultralib/src/io/viswapcontext]
     - [0x39970, hasm, ../ultralib/src/os/interrupt]
     - [0x399B0, c, ../ultralib/src/io/pigetcmdq]
     - [0x399E0, c, ../ultralib/src/gu/cosf]
     - [auto, hasm, ../ultralib/src/gu/libm_vals]
-    - [0x39B50, asm]
+    - [0x39B50, c, ../ultralib/src/io/epiread]
     - [0x39BA0, c, ../ultralib/src/os/settime]
     - [0x39BD0, c, ../ultralib/src/io/visetevent]
-    - [0x39C40, asm]
-    - [0x39E20, asm]
+    - [0x39C40, asm] # c, ../ultralib/src/io/cartrominit] # TODO
+    - [0x39E20, c, ../ultralib/src/io/gbpakreadid]
     - [0x39FE0, c, ../ultralib/src/io/pfsselectbank]
     - [0x3A060, hasm, ../ultralib/src/os/setfpccsr]
     - [0x3A070, c, ../ultralib/src/io/pfsfilestate]
     - [0x3A250, c, ../ultralib/src/io/contpfs]
     - [0x3ADD0, c, ../ultralib/src/io/pfsinitpak]
-    - [0x3AFC0, asm]
+    - [0x3AFC0, c, ../ultralib/src/io/pfsgetstatus]
     - [0x3B1F0, c, ../ultralib/src/io/pfschecker]
     - [0x3BB90, c, ../ultralib/src/io/pfsisplug]
-    - [0x3BED0, asm]
-    - [0x3BF20, asm]
+    - [0x3BED0, c, ../ultralib/src/io/epiwrite]
+    - [0x3BF20, c, ../ultralib/src/io/epirawread]
     - [0x3C080, hasm, ../ultralib/src/os/maptlbrdb]
     - [0x3C0E0, c, ../ultralib/src/os/yieldthread]
-    - [0x3C130, asm]
-    - [0x3C380, asm]
+    - [0x3C130, c, ../ultralib/src/io/contramwrite]
+    - [0x3C380, c, ../ultralib/src/io/contramread]
     - [0x3C5B0, c, ../ultralib/src/io/crc]
-    - [0x3C720, asm]
+    - [0x3C720, c, ../ultralib/src/io/epirawwrite]
     - [0x3C880, c, ../ultralib/src/os/settimer]
     - [0x3C960, c, ../ultralib/src/libc/xldtob]
-    - [0x3D420, asm]
-    # - [0x3D420, c, ../ultralib/src/libc/ldiv]
-    - [0x3D5B0, asm]
-    # - [0x3D5B0, c, ../ultralib/src/libc/xlitob]
-    - [0x3D850, asm]
+    - [0x3D420, c, ../ultralib/src/libc/ldiv]
+    - [0x3D5B0, c, ../ultralib/src/libc/xlitob]
+    - [0x3D850, c, ../ultralib/src/io/sirawwrite]
     - [0x3D8A0, c, ../ultralib/src/io/dpsetnextbuf]
     - [0x3D950, c, ../ultralib/src/io/dp]
     - [0x3D980, c, ../ultralib/src/io/spsetstat]
     - [0x3D990, c, ../ultralib/src/io/spgetstat]
-    - [0x3D9A0, asm] # c, ../ultralib/src/io/vimgr]
-    - [0x3DCB0, asm]
+    - [0x3D9A0, asm] # c, ../ultralib/src/io/vimgr] # TODO
+    - [0x3DCB0, c, ../ultralib/src/io/vigetcurrcontext]
     - [0x3DCC0, hasm, ../ultralib/src/os/writebackdcacheall]
     - [0x3DCF0, c, ../ultralib/src/os/startthread]
     - [0x3DE40, c, ../ultralib/src/io/visetyscale]
     - [0x3DEA0, c, ../ultralib/src/libc/llcvt]
-    - [0x3E0B0, asm]
-    - [0x3E340, c] # , ../ultralib/src/io/aisetnextbuf]
+    - [0x3E0B0, c, ../ultralib/src/io/gbpakreadwrite]
+    - [0x3E270, c, ../ultralib/src/io/gbpaksetbank]
+    - [0x3E340, c, ../ultralib/src/io/aisetnextbuf]
     - [0x3E3F0, c, ../ultralib/src/io/ai]
-    - [0x3E420, asm]
+    - [0x3E420, c, ../ultralib/src/io/vigetcurrframebuf]
     - [0x3E460, c, ../ultralib/src/io/spsetpc]
-    - [0x3E4A0, asm]
+    - [0x3E4A0, hasm, ../ultralib/src/os/setwatchlo]
     - [0x3E4B0, asm, rspboot]
     - [0x3E580, data, rsp/aspMain]
     - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
@@ -216,9 +216,9 @@ segments:
     - [0x434E0, .data, ../ultralib/src/audio/sl]
     - [0x434F0, data]
     - [0x438B0, .data, ../ultralib/src/os/thread]
-    - [0x438D0, data]
+    - [0x438D0, .data, ../ultralib/src/io/siacs]
     - [0x438E0, data] # .data, ../ultralib/src/io/controller]
-    - [0x438F0, data]
+    - [0x438F0, .data, ../ultralib/src/os/initialize]
     - [0x43910, .data, ../ultralib/src/io/pimgr]
     - [0x43940, .data, ../ultralib/src/io/piacs]
     - [0x43950, .data, ../ultralib/src/libc/xprintf]
@@ -226,10 +226,12 @@ segments:
     - [0x439B0, data]
     - [0x43A50, .data, ../ultralib/src/io/vi]
     - [0x43AC0, data]
+    - [0x43AD0, .data, ../ultralib/src/io/gbpakreadid]
     - [0x43B20, .data, ../ultralib/src/io/contpfs]
-    - [0x43B30, data]
+    - [0x43B30, .data, ../ultralib/src/io/contramread]
+    - [0x43B40, .data, ../ultralib/src/libc/xlitob]
     - [0x43B70, data] # .data, ../ultralib/src/io/vimgr]
-    - [0x43B90, data]
+    - [0x43B90, .data, ../ultralib/src/io/aisetnextbuf]
     - [0x43BA0, .rodata, 1060]
     - [0x43BC0, .rodata, 1520]
     - [0x43C20, .rodata, 4680]
@@ -271,7 +273,14 @@ segments:
     - { start: auto, name: bss_80045670, type: bss, vram: 0x80045670 }
     - { start: auto, name: bss_80097D40, type: bss, vram: 0x80097D40 }
     - { start: auto, name: bss_80097D50, type: bss, vram: 0x80097D50 }
-    - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098230 }
+    - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
+    - { start: auto, name: ../ultralib/src/io/siacs, type: .bss, vram: 0x80097E90 }
+    - { start: auto, name: bss_80097EB0, type: bss, vram: 0x80097EB0 } # controller
+    - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
+    - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
+    - { start: auto, name: bss_80097F90, type: bss, vram: 0x80097F90 }
+    # - { start: auto, name: asdf, type: .bss, vram: 0x80098140 }
+    - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
     - { start: auto, name: bss_unk, type: bss, vram: 0x800994A0 }
     # - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
@@ -834,7 +843,7 @@ segments:
     - [0xA0F810, .rodata, A0E190]
     - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
-  - [0xA0F830, bin] # compressed data?
+  - [0xA0F830, bin] # compressed data
 
   - name: unk_level_end_10
     type: code
@@ -870,7 +879,7 @@ segments:
     - [0xAA0A60, bin] # , data]
     - { start: auto, name: bss_800E1DD0, type: bss, vram: 0x800E1DD0 }
 
-  - [0xAA0B80, bin] # Some code in here, it seems
+  - [0xAA0B80, bin] # Some code in here, it seems # compressed data
 
   - type: code
     start: 0xAA18E0
@@ -882,7 +891,7 @@ segments:
     - [0xAA20A0, bin] # , data]
     - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
 
-  - [0xAAA610, bin]
+  - [0xAAA610, bin] # compressed data
 
   # Sequences
   - [0xAEFD3C, bin, audio/seq/AEFD3C]

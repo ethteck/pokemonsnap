@@ -73,7 +73,7 @@ s32 osGbpakInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
         }
     }
 
-    ERRCK(__osPfsGetStatus(mq, channel));
+    // ERRCK(__osPfsGetStatus(mq, channel)); // needed to match Pokemon Snap
 
     osCreateMesgQueue(&__osGbpakTimerQ, &__osGbpakTimerMsg, 1);
     osSetTimer(&__osGbpakTimer, OS_USEC_TO_CYCLES(192000), 0, &__osGbpakTimerQ, &__osGbpakTimerMsg);

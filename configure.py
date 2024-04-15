@@ -162,7 +162,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"{CROSS_CPP} {COMMON_INCLUDES} $in -o - | {CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+        command=f"{CROSS_CPP} {COMMON_INCLUDES} $in -o - | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
     )
 
     ninja.rule(
@@ -186,7 +186,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "ld",
         description="link $out",
-        command=f"{CROSS}ld -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
+        command=f"{CROSS_LD} -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
     )
 
     ninja.rule(
@@ -198,7 +198,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "elf",
         description="elf $out",
-        command=f"{CROSS}objcopy $in $out -O binary",
+        command=f"{CROSS_OBJCOPY} $in $out -O binary",
     )
 
     ninja.rule(

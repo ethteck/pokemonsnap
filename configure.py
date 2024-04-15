@@ -186,7 +186,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "ld",
         description="link $out",
-        command=f"{CROSS_LD} -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
+        command=f"{CROSS_LD} -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
     )
 
     ninja.rule(

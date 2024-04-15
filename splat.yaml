@@ -58,7 +58,7 @@ segments:
     - [0x2AD70, c, ../ultralib/src/audio/synallocvoice]
     - [0x2AF90, c, ../ultralib/src/audio/cspgettempo]
     - [0x2AFD0, c, ../ultralib/src/audio/synstartvoice]
-    - [0x2B060, asm] # TODO
+    - [0x2B060, c, ../ultralib/src/audio/sndpsetfxmix]
     - [0x2B0C0, asm] # TODO
     - [0x2B100, asm] # TODO
     - [0x2B120, c, ../ultralib/src/audio/synsetpitch]
@@ -79,6 +79,7 @@ segments:
     - [0x2EBB0, c, ../ultralib/src/audio/save]
     - [0x2EC70, asm] # TODO
     - [0x2ED30, asm] # TODO
+    - [0x2ED80, asm] # c, ../ultralib/src/audio/seqplayer] # TODO
     - [0x30C80, asm] # TODO
     - [0x32690, asm] # TODO
     - [0x326B0, asm] # TODO
@@ -87,7 +88,7 @@ segments:
     - [0x32DF0, c, ../ultralib/src/audio/synaddplayer]
     - [0x32E40, c, ../ultralib/src/audio/sndpgetstate]
     - [0x32E60, c, ../ultralib/src/audio/sndpplay]
-    - [0x32ED0, asm] # TODO
+    - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, asm] # cspstop or seqpstop ?  # TODO
     - [0x33030, asm] # TODO
@@ -272,17 +273,16 @@ segments:
     - [0x44EE0, .rodata, ../ultralib/src/audio/reverb]
     - [0x44F10, .rodata, ../ultralib/src/audio/env]
     - [0x44F70, .rodata, ../ultralib/src/audio/resample]
-    - [0x44FA0, rodata, 2ED30]
+    - [0x44FA0, rodata] # , ../ultralib/src/audio/seqplayer]
     - [0x45230, rodata, 30C80]
     - [0x45470, rodata, 326B0]
-    - [0x45480, rodata, 32ED0]
+    - [0x45480, .rodata, ../ultralib/src/audio/cents2ratio]
     - [0x45490, .rodata, ../ultralib/src/os/setintmask]
     - [0x45510, .rodata, ../ultralib/src/gu/sinf]
     - [0x45560, .rodata, ../ultralib/src/os/exceptasm]
     - [0x455B0, .rodata, ../ultralib/src/io/devmgr]
     - [0x455D0, .rodata, ../ultralib/src/libc/xprintf]
     - [0x456D0, .rodata, ../ultralib/src/gu/cosf]
-    - [0x45720]
     - [0x45730, .rodata, ../ultralib/src/libc/xldtob]
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
     - [0x457A0, rodata, rsp/aspMain_data]

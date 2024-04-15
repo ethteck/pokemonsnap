@@ -290,6 +290,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     "epirawwrite",
                     "gbpakgetstatus",
                     "gbpakinit",
+                    "gbpakpower",
                     "gbpakreadid",
                     "gbpakreadwrite",
                     "gbpaksetbank",

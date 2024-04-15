@@ -1,27 +1,40 @@
 alSynNew = 0x8002A6A0;
 alGlobals = 0x800428F0;
 alHeapDBAlloc = 0x8001FD74;
+alFxNew = 0x8002ADC0;
 alSaveNew = 0x8002B464;
 alAuxBusNew = 0x8002B3BC;
 alMainBusNew = 0x8002B410;
+alFxParam = 0x8002B934;
 alSynAllocFX = 0x80032470;
-alMainBusParam = 0x8002B5D0;
-alLoadNew = 0x8002B288;
-alLoadParam = 0x8002DAC0;
-alResampleNew = 0x8002B330;
-alResampleParam = 0x8002D1D8;
 alEnvmixerNew = 0x8002B1E0;
-alEnvmixerParam = 0x8002C878;
+alLoadNew = 0x8002B288;
+alMainBusParam = 0x8002B5D0;
+alResampleNew = 0x8002B330;
+alMainBusPull = 0x8002B4B0;
+alFxPull = 0x8002B600;
+alFxParamHdl = 0x8002B94C;
+alAuxBusPull = 0x8002C260;
 alAuxBusParam = 0x8002C338;
+alEnvmixerPull = 0x8002C370;
+alEnvmixerParam = 0x8002C878;
+alResamplePull = 0x8002CFE0;
+alAdpcmPull = 0x8002D2D0;
+alLoadParam = 0x8002DAC0;
+alResampleParam = 0x8002D1D8;
+alSavePull = 0x8002DFB0;
 alSaveParam = 0x8002E03C;
 
-osGbpakPower = 0x80033C80;
+func_80033D90 = 0x80033D90;
+func_800344A4 = 0x800344A4;
 func_80034BD4 = 0x80034BD4;
 func_80034B50 = 0x80034B50;
 
 D_800428E0 = 0x800428E0;
 D_800428E4 = 0x800428E4;
 D_80042CFC = 0x80042CFC;
+D_80044880 = 0x80044880;
+D_80044884 = 0x80044884;
 D_80045670 = 0x80045670;
 D_800456A8 = 0x800456A8;
 D_800456AC = 0x800456AC;
@@ -47,5 +60,3 @@ cartGObj = 0x803937F0;
 
 func_84001008 = 0x84001008;
 func_84001064 = 0x84001064;
-
-func_800344A4 = 0x800344A4;

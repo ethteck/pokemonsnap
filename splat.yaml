@@ -64,7 +64,7 @@ segments:
     - [0x2B1B0, c, ../ultralib/src/audio/synsetpan]
     - [0x2B240, c, ../ultralib/src/audio/sndpsetpitch]
     - [0x2B2A0, c, ../ultralib/src/audio/synthesizer]
-    - [0x2B920, c]
+    - [0x2B920, c, ../ultralib/src/audio/drvrnew]
     - [0x2C0B0, c]
     - [0x2CE60, asm]
     - [0x2CF70, c]
@@ -79,11 +79,16 @@ segments:
     - [0x32690, asm]
     - [0x326B0, c]
     - [0x32D60, asm]
+    - [0x32D90, asm]
     - [0x32DF0, c, ../ultralib/src/audio/synaddplayer]
     - [0x32E40, c, ../ultralib/src/audio/sndpgetstate]
     - [0x32E60, c, ../ultralib/src/audio/sndpplay]
-    - [0x32ED0, c]
+    - [0x32ED0, asm]
+    - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
+    - [0x33000, asm] # cspstop or seqpstop ? 
+    - [0x33030, asm]
     - [0x33040, asm]
+    - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, asm]
     - [0x331A0, c, ../ultralib/src/audio/syndelete]
     - [0x331B0, c, ../ultralib/src/audio/synstopvoice]
@@ -91,14 +96,15 @@ segments:
     - [0x33380, c, ../ultralib/src/os/stopthread]
     - [0x33440, c, ../ultralib/src/os/recvmesg]
     - [0x33580, hasm, ../ultralib/src/os/setintmask]
-    - [0x33620, c] # c, ../ultralib/src/gu/sinf]
-    - [0x337E0, asm] # c, ../ultralib/src/io/sptask]
+    - [0x33620, c, ../ultralib/src/gu/sinf]
+    - [0x337E0, c, ../ultralib/src/io/sptask]
     - [0x33AD0, c, ../ultralib/src/os/destroythread]
-    - [0x33BE0, asm] # c, ../ultralib/src/libc/ll]
-    - [0x33EA0, hasm] # , ../ultralib/src/os/exceptasm]
+    - [0x33BE0, c, ../ultralib/src/libc/ll]
+    - [0x33EA0, hasm] # , ../ultralib/src/os/exceptasm] # TODO
     - [0x347A0, c, ../ultralib/src/os/thread]
     - [0x347E0, hasm, ../ultralib/src/libc/bzero]
-    - [0x34880, asm]
+    - [0x34880, c, ../ultralib/src/io/gbpakpower]
+    - [0x34990, asm] # TODO
     - [0x34E30, c, ../ultralib/src/io/motor]
     - [0x35200, c, ../ultralib/src/io/siacs]
     - [0x352C0, asm] # ../ultralib/src/io/controller] # TODO bss
@@ -215,6 +221,8 @@ segments:
     - [0x43020, data, 245E0]
     - [0x434E0, .data, ../ultralib/src/audio/sl]
     - [0x434F0, data]
+    - [0x43500, .data, ../ultralib/src/audio/drvrnew]
+    - [0x43690, data]
     - [0x438B0, .data, ../ultralib/src/os/thread]
     - [0x438D0, .data, ../ultralib/src/io/siacs]
     - [0x438E0, data] # .data, ../ultralib/src/io/controller]
@@ -250,16 +258,16 @@ segments:
     - [0x44E50, .rodata, 26D80] # ../ultralib/src/sp/sprite]
     - [0x44E60, .rodata, 29610]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
-    - [0x44EC0, .rodata, 2B920]
+    - [0x44EC0, .rodata, ../ultralib/src/audio/drvrnew]
     - [0x44EE0, .rodata, 2C0B0]
     - [0x44F10, .rodata, 2CF70]
     - [0x44F70, .rodata, 2DBE0]
     - [0x44FA0, .rodata, 2ED30]
     - [0x45230, .rodata, 30C80]
     - [0x45470, .rodata, 326B0]
-    - [0x45480, .rodata, 32ED0]
+    - [0x45480, rodata, 32ED0]
     - [0x45490, .rodata, ../ultralib/src/os/setintmask]
-    - [0x45510, .rodata, 33620]
+    - [0x45510, .rodata, ../ultralib/src/gu/sinf]
     - [0x45560, rodata] # .rodata, ../ultralib/src/os/exceptasm]
     - [0x455B0, .rodata, ../ultralib/src/io/devmgr]
     - [0x455D0, .rodata, ../ultralib/src/libc/xprintf]
@@ -272,7 +280,7 @@ segments:
     - [0x45D20, rodata]
     - { start: auto, name: bss_80045670, type: bss, vram: 0x80045670 }
     - { start: auto, name: bss_80097D40, type: bss, vram: 0x80097D40 }
-    - { start: auto, name: bss_80097D50, type: bss, vram: 0x80097D50 }
+    - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
     - { start: auto, name: ../ultralib/src/io/siacs, type: .bss, vram: 0x80097E90 }
     - { start: auto, name: bss_80097EB0, type: bss, vram: 0x80097EB0 } # controller

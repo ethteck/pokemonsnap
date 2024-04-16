@@ -83,7 +83,7 @@ segments:
     - [0x30C80, asm] # TODO
     - [0x32690, asm] # TODO
     - [0x326B0, asm] # TODO
-    - [0x32D60, asm] # TODO
+    - [0x32D60, asm] # cspplay or seqpplay ?
     - [0x32D90, asm] # TODO
     - [0x32DF0, c, ../ultralib/src/audio/synaddplayer]
     - [0x32E40, c, ../ultralib/src/audio/sndpgetstate]

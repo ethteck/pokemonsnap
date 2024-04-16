@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern animalDef D_802CBFF4;
+extern animalDef D_802CBFF4_564064;
 extern s32 D_802CC018_564088;
 extern animalDef beachAnimalData[17];
 
@@ -10,7 +10,7 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     GObj* animalObj;
     objectSpawn spawn;
     roomGFX* roomA;
-    animalDef def = D_802CBFF4;
+    animalDef def = D_802CBFF4_564064;
     
     roomA = getCurrentRoom();
     spawn.id = AnimalID_MAGIKARP;

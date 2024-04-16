@@ -1,5 +1,7 @@
 #include "common.h"
 
+void *memcpy(void *,const void *,size_t);
+
 #define F_PI ((f32) M_PI) // M_PI is a double, we want it as a single float.
 #define HALF_PI (F_PI / 2.0f)
 
@@ -112,8 +114,9 @@ s32 func_80019D54(void) {
 }
 
 u16 func_80019D60(void) {
-    // This seems a little ridiculous...
-    return (D_80040F40 = (D_80040F40 * 0x343FD) + 0x269EC3) >> 16;
+    // Required to be one line to match.
+    D_80040F40 = (D_80040F40 * 0x343FD) + 0x269EC3; \
+    return (D_80040F40 >> 16);
 }
 
 f32 func_80019DB0(void) {
@@ -123,11 +126,11 @@ f32 func_80019DB0(void) {
 
 #if 0
 s32 func_80019E14(s32 arg0) {
-    s32 temp_lo;
+    u16 temp_lo;
     s32 var_at;
 
     temp_lo = func_80019D60() * arg0;
-    if (temp_lo < 0) {
+    if ((temp_lo) < 0) {
         var_at = temp_lo + 0xFFFF;
     } else {
         var_at = temp_lo;
@@ -151,12 +154,95 @@ s32 func_80019EB0(s32 arg0) {
     return (time * arg0 * (1.0f / 256.0f));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019F00.s")
+void func_80019F00(u8* arg0, u8* arg1, s32 arg2) {
+    while (arg2--) {
+        s32 temp = *arg0;
+        *arg0++ = *arg1;
+        *arg1++ = temp;
+    }
+}
 
+#if 0
+extern s32 D_80040F44;
+extern s32 (*D_80040F48)(u32, u32);
+
+void func_80019F38(u32 arg0, s32 arg1) {
+    s32 temp_a2;
+    s32 var_s1;
+
+    var_s1 = arg1 + D_80040F44;
+    while (arg0 < arg1) {
+loop_2:
+        do {
+            arg0 += D_80040F44;
+        } while (arg0 < arg1 && D_80040F48(arg0, arg0) <= 0);
+
+        do {
+            var_s1 -= D_80040F44;
+        } while (arg0 < var_s1 && D_80040F48(var_s1, arg0) >= 0);
+
+        if (arg0 < var_s1) {
+            func_80019F00((u8* ) arg0, (u8* ) var_s1, D_80040F44);
+            goto loop_2;
+        }
+        func_80019F00((u8* ) arg0, (u8* ) var_s1, D_80040F44);
+        if ((var_s1 - (s32) arg0) >= (arg1 - var_s1)) {
+            func_80019F38(var_s1 + D_80040F44, arg1);
+            arg1 = var_s1 - D_80040F44;
+        } else {
+            func_80019F38(arg0, var_s1 - D_80040F44);
+            arg0 = var_s1 + D_80040F44;
+            var_s1 = arg1 + D_80040F44;
+        }
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019F38.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_8001A094.s")
+extern s32 D_80040F44;
+extern s32 (*D_80040F48)(u32, u32);
+void func_80019F38(u32 arg0, s32 arg1);
+
+void func_8001A094(u32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(u32, u32)) {
+    s32 temp;
+    s32 temp_v1;
+    s32 var_s1;
+    s32 found;
+    
+    temp_v1 = arg1 - 1U;
+    temp = arg0;
+    var_s1 = temp + arg2;
+    found = FALSE;
+    if (arg1 != 0) {
+        while (temp_v1--) {
+            if (arg3(temp, var_s1) > 0) {
+                found = TRUE;
+                break;
+            }
+            temp = var_s1;
+            var_s1 += arg2;
+        }
+    }
+    if (found) {
+        D_80040F44 = arg2;
+        D_80040F48 = arg3;
+        func_80019F38(arg0, ((arg1 - 1) * D_80040F44) + arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_8001A16C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_8001A29C.s")
+s32 func_8001A29C(u32 arg0, u32 arg1, u32* arg2, u32 arg3, s32 (*arg4)(u32, u32)) {
+    s32 var_s0;
+
+    for (var_s0 = 0; *arg2 > var_s0; var_s0++) {
+        if (arg4(arg0, arg1) == 0) {
+            return arg1;
+        }
+        arg1 += arg3;        
+    }
+    memcpy((u8 *) arg0, (u8 *) arg1, arg3);
+    *arg2 += 1;
+    return arg1;
+}

@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "sys/dma.h"
+
 extern s32 D_80048888;
 extern s32 D_80048890;
 extern OSMesg D_800488A4;
@@ -57,7 +59,7 @@ void func_80000920(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_800024E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002510.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1520/scMain.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002954.s")
 
@@ -73,7 +75,7 @@ void func_800029D4(void) {
     D_80048890 = 0;
 }
 
-void func_800029E0(void) {
+void create_dma_mq(void) {
     osCreateMesgQueue(&D_800488A8, &D_800488A4, 1);
 }
 
@@ -116,7 +118,7 @@ void func_80002A10(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes
     }
 }
 
-void func_80002B64(OverlaySegment* dmaData) {
+void load_overlay(Overlay* dmaData) {
     // If there is a text section, invalidate instruction and data caches
     if (dmaData->textVramEnd - dmaData->textVramStart != 0) {
         osInvalICache((void*)dmaData->textVramStart, dmaData->textVramEnd - dmaData->textVramStart);
@@ -136,8 +138,8 @@ void func_80002B64(OverlaySegment* dmaData) {
     }
 }
 
-void func_80002C20(u32 devAddr, u32 dramAddr, u32 numBytes) {
-    func_80002A10(D_800488A0, devAddr, dramAddr, numBytes, OS_READ);
+void dma_rom_read(u32 romSrc, void* ramDst, u32 nbytes) {
+    func_80002A10(D_800488A0, romSrc, ramDst, nbytes, OS_READ);
 }
 
 void func_80002C5C(u32 dramAddr, u32 devAddr, u32 numBytes) {
@@ -154,7 +156,7 @@ void func_8000345C(s32 devAddr, s32 dramAddr, s32 numBytes) {
 }
 
 void func_80003478(void) {
-    func_80002C20(D_800488C8, D_800488C0, D_800488C4);
+    dma_rom_read(D_800488C8, D_800488C0, D_800488C4);
     D_800488C8 += D_800488C4;
 }
 

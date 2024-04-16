@@ -9,6 +9,7 @@ options:
   base_path: .
   target_path: pokemonsnap.z64
   ld_script_path: pokemonsnap.ld
+  ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
 segments:
@@ -22,7 +23,8 @@ segments:
     symbol_name_format: $VRAM
     subsegments:
     - [0x1000, hasm, entry]
-    - [0x1060, c]
+    - [0x1060, c, sys/main]
+    - [0x1510, hasm, padding_1510]
     - [0x1520, c]
     - [0x4680, c]
     - [0x5FF0, c]
@@ -223,6 +225,8 @@ segments:
     - [0x3E580, data, rsp/aspMain]
     - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
     - [0x401C0, data]
+    - [0x418C0, .data, sys/main]
+    - [0x418F0, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -250,7 +254,7 @@ segments:
     - [0x43B40, .data, ../ultralib/src/libc/xlitob]
     - [0x43B70, .data, ../ultralib/src/io/vimgr]
     - [0x43B90, .data, ../ultralib/src/io/aisetnextbuf]
-    - [0x43BA0, .rodata, 1060]
+    - [0x43BA0, .rodata, sys/main]
     - [0x43BC0, .rodata, 1520]
     - [0x43C20, .rodata, 4680]
     - [0x43C40, .rodata, 5FF0]
@@ -288,7 +292,8 @@ segments:
     - [0x457A0, rodata, rsp/aspMain_data]
     - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
-    - { start: auto, name: bss_80045670, type: bss, vram: 0x80045670 }
+    - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
+    - { start: auto, name: bss_80045A70, type: bss, vram: 0x80048730 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
@@ -334,7 +339,7 @@ segments:
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
-    # - { start: auto, name: bss_800B0570, type: bss, vram: 0x800B0570 }
+    - { start: auto, name: bss_800B0570, type: bss, vram: 0x800B0570 }
   - name: more_funcs
     type: code
     start: 0x5BF20

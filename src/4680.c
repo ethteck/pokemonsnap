@@ -55,4 +55,4 @@ void func_80004A04(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4680/func_80004F24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4680/func_8000527C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4680/contMain.s")

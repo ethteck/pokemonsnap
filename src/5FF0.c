@@ -88,4 +88,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5FF0/func_800076B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5FF0/func_800076F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/5FF0/gtl_init.s")

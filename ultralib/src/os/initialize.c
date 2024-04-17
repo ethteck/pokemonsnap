@@ -91,9 +91,9 @@ void INITIALIZE_FUNC() {
     SPEED_PARAM_FUNC();
     osUnmapTLBAll();
     osMapTLBRdb();
-#else
-    osMapTLBRdb();
-    osPiRawReadIo(4, &clock); // Read clock rate from the ROM header
+//#else                 // needed to match Pokemon Snap
+//    osMapTLBRdb();    // needed to match Pokemon Snap
+    __osPiRawReadIo(4, &clock); // Read clock rate from the ROM header
     clock &= ~0xf;
     if (clock != 0)
     {
@@ -116,11 +116,11 @@ void INITIALIZE_FUNC() {
 
 #if BUILD_VERSION >= VERSION_J
     // Wait until there are no RCP interrupts
-    if (__osGetCause() & CAUSE_IP5) {
-        while (TRUE) {
-            ;
-        }
-    }
+    // if (__osGetCause() & CAUSE_IP5) {
+    //     while (TRUE) {
+    //         ;
+    //     }
+    // }
 
     IO_WRITE(AI_CONTROL_REG, AI_CONTROL_DMA_ON);
     IO_WRITE(AI_DACRATE_REG, AI_MAX_DAC_RATE - 1);

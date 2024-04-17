@@ -60,7 +60,7 @@ s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     bcopy(&dir.game_name, state->game_name, PFS_FILE_NAME_LEN);
     bcopy(&dir.ext_name, state->ext_name, PFS_FILE_EXT_LEN);
 
-    ret = __osPfsGetStatus(pfs->queue, pfs->channel);
+    ret = NULL; // __osPfsGetStatus(pfs->queue, pfs->channel); // needed to match Pokemon Snap
     return ret;
 #else
     if (dir.start_page.ipage < pfs->inode_start_page) {

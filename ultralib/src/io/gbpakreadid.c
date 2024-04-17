@@ -43,9 +43,10 @@ s32 osGbpakReadId(OSPfs* pfs, OSGbpakId* id, u8* status) {
             return ret;
         }
 
-        if (!(*status & OS_GBPAK_RSTB_STATUS)) {
-            return PFS_ERR_CONTRFAIL;
-        }
+        // needed to match Pokemon Snap
+        // if (!(*status & OS_GBPAK_RSTB_STATUS)) {
+        //     return PFS_ERR_CONTRFAIL;
+        // }
 
 #if BUILD_VERSION >= VERSION_K
         if (bcmp(nintendo, buf + 4, ARRLEN(nintendo))) {

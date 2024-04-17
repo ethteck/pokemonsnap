@@ -1,8 +1,9 @@
 #include "common.h"
 #include "os_cache.h"
+#include "sys/dma.h"
 
-extern s32 D_800ABBD0;
-extern s32 D_800ABDEC;
+extern Overlay D_800ABBD0;
+extern Overlay D_800ABDEC;
 extern s32 D_800AC00C;
 extern s32 D_800B0578;
 
@@ -28,25 +29,20 @@ s32 func_8009A8E4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/46270/func_8009B2BC.s")
 
-// ordering of the 0
-#ifdef NON_MATCHING
 void func_8009B40C(void) {
-    s32 var_s0 = 0;
+    s32 i = 0;
 
-    while (1) {
-        func_80002B64(&D_800ABDEC);
-        func_80002B64(&D_800ABBD0);
-        if (func_801DD010(var_s0) != 0) {
-            while (1);
+    for (i = 0;;) {
+        load_overlay(&D_800ABDEC);
+        load_overlay(&D_800ABBD0);
+        if (func_801DD010(i) != 0) {
+            while (TRUE);
         }
-        var_s0++;
-        if (var_s0 == 0x11) {
-            while (1);
+        i++;
+        if (i == 0x11) {
+            while (TRUE);
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/46270/func_8009B40C.s")
-#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/46270/func_8009B49C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/46270/start_scene_manager.s")

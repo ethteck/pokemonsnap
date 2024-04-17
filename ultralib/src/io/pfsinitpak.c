@@ -3,7 +3,7 @@
 #include "siint.h"
 
 #if BUILD_VERSION >= VERSION_J
-static s32 __osPfsCheckRamArea(OSPfs* pfs);
+//static s32 __osPfsCheckRamArea(OSPfs* pfs);  // needed to match Pokemon Snap
 #endif
 
 s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
@@ -32,7 +32,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     pfs->status = 0;
 
 #if BUILD_VERSION >= VERSION_J
-    ERRCK(__osPfsCheckRamArea(pfs));
+    // ERRCK(__osPfsCheckRamArea(pfs));  // needed to match Pokemon Snap
 #endif
     ERRCK(SELECT_BANK(pfs, 0));
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, temp));
@@ -101,7 +101,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     return ret;
 }
 
-#if BUILD_VERSION >= VERSION_J
+#if 0 // BUILD_VERSION >= VERSION_J  // needed to match Pokemon Snap
 static s32 __osPfsCheckRamArea(OSPfs* pfs) {
     s32 i;
     s32 ret = 0;

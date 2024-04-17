@@ -15,7 +15,7 @@ s32 osGbpakGetStatus(OSPfs* pfs, u8* status) {
     ret = __osContRamRead(pfs->queue, pfs->channel, CONT_BLOCK_GB_STATUS, (u8*)temp);
 
     if (ret == 0) {
-        ERRCK(__osPfsGetStatus(pfs->queue, pfs->channel));
+        // ERRCK(__osPfsGetStatus(pfs->queue, pfs->channel)); // needed to match Pokemon Snap
 
         *status = ((u8*)temp)[0];
 

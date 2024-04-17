@@ -83,6 +83,7 @@ ALMicroTime _sndpVoiceHandler(void *node)
 #if BUILD_VERSION >= VERSION_K
 		        evt.common.state = (ALSoundState*)-1;
 #endif
+                evt.common.state = NULL; // needed to match Pokemon Snap
                 alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, sndp->frameTime);
                 break;
 
@@ -97,6 +98,7 @@ ALMicroTime _sndpVoiceHandler(void *node)
     return sndp->nextDelta;
 }
 
+// state->vol >> 7 needed to match Pokemon Snap
 void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event) 
 {
     ALVoiceConfig       vc;
@@ -128,7 +130,7 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
             voice = &state->voice;
             alSynAllocVoice(sndp->drvr, voice, &vc);
 
-            vol   = (s16) ((s32) snd->envelope->attackVolume*state->vol/AL_VOL_FULL);
+            vol   = (s16) ((s32) snd->envelope->attackVolume*state->vol >> 7);
             tmp   = state->pan - AL_PAN_CENTER + snd->samplePan;
             tmp   = MAX(tmp, AL_PAN_LEFT);
             pan   = (ALPan) MIN(tmp, AL_PAN_RIGHT);
@@ -200,7 +202,7 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
         case (AL_SNDP_VOL_EVT):
             state->vol = event->vol.vol;
             if (state->state == AL_PLAYING && snd){
-                vtmp  = snd->envelope->decayVolume * state->vol/AL_VOL_FULL;            
+                vtmp  = snd->envelope->decayVolume * state->vol >> 7;
                 alSynSetVol(sndp->drvr, &state->voice, (s16) vtmp, 1000);
             }
             break;
@@ -211,7 +213,7 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
              * set up callback for release envelope - except for a looped sound
              */
             if (snd->envelope->decayTime != -1){
-                vtmp   = snd->envelope->decayVolume * state->vol/AL_VOL_FULL;            
+                vtmp   = snd->envelope->decayVolume * state->vol >> 7;
 		delta = (ALMicroTime) _DivS32ByF32 (snd->envelope->decayTime, state->pitch);
                 alSynSetVol(sndp->drvr, &state->voice, (s16) vtmp, delta);
                 evt.common.type        = AL_SNDP_STOP_EVT;

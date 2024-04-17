@@ -2,6 +2,7 @@
 #define _COMMON_STRUCTS_H
 
 #include "ultra64.h"
+#include "types.h"
 
 typedef f32 quartic[5];
 
@@ -30,48 +31,6 @@ typedef enum geoPayloadType {
     euler_translate_conjScale=54,
     xform_eulerTAB_trans_scale=63
 } geoPayloadType;
-
-typedef struct {
-    f32 x, y, z;
-} Vec3f; // size = 0xC
-
-typedef struct {
-    /* 0x000 */ s32 regs[50];
-    /* 0x0C8 */ char unk_0C8[4];
-    /* 0x0CC */ s32 gp;
-    /* 0x0D0 */ char unk_0D0[4];
-    /* 0x0D4 */ s32 sp_upper;
-    /* 0x0D8 */ void* sp;
-    /* 0x0DC */ s32 s8_up;
-    /* 0x0E0 */ s32 s8;
-    /* 0x0E4 */ u32 ra_up;
-    /* 0x0E8 */ void* ra;
-    /* 0x0EC */ s32 lo_up;
-    /* 0x0F0 */ s32 lo;
-    /* 0x0F4 */ s32 hi_up;
-    /* 0x0F8 */ u32 hi;
-    /* 0x0FC */ u32 sr;
-    /* 0x100 */ void* pc;
-    /* 0x104 */ u32 cause;
-    /* 0x108 */ u32 badvaddr;
-    /* 0x10C */ u32 rcp;
-    /* 0x110 */ u32 fpcsr;
-    /* 0x114 */ f32 fregs[32];
-} OSThreadContext; // size = 0x194
-
-struct OSThread {
-    /* 0x000 */ OSThread* next;
-    /* 0x004 */ s32 priority;
-    /* 0x008 */ OSThread** queue;
-    /* 0x00C */ OSThread* tlnext;
-    /* 0x010 */ u16 state;
-    /* 0x012 */ u16 flags;
-    /* 0x014 */ s32 id;
-    /* 0x018 */ s32 fp;
-    /* 0x01C */ OSThreadContext context;
-    /* 0x1B0 */ char unk_1B0[0x8];
-    /* 0x1B8 */ void* stackInfo;
-};
 
 typedef struct { /* OMMtx */
     /* 0x00 */ char unk_00[0x4];
@@ -434,11 +393,11 @@ typedef struct {
     /* 0x04C */ Vec3f collisionOffset;
     /* 0x058 */ f32 collisionRadius;
     /* 0x05C */ animalAnimationSetup* animSetup; /* Created by retype action */
-    /* 0x060 */ struct GObj* s32eractionProc; /* Created by retype action */
+    /* 0x060 */ struct GObj* interactionProc; /* Created by retype action */
     /* 0x064 */ struct GObj* apple;
-    /* 0x068 */ f32 s32eractionDist;
+    /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
-    /* 0x070 */ struct GObj* s32eractionTarget;
+    /* 0x070 */ struct GObj* interactionTarget;
     /* 0x074 */ roomGFX* someRoom;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ uvState** animators; /* Created by retype action */

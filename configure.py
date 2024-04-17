@@ -24,11 +24,12 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-COMMON_INCLUDES = "-I include -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src"
-IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_I"
+COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src -I build/include"
+IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
+CROSS_CPP = f"{CROSS}cpp"
 CROSS_LD = f"{CROSS}ld"
 CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
@@ -39,9 +40,9 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
-LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -c -o $out $in && {O32_TOOL} $out"
+LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
@@ -161,7 +162,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"cpp {COMMON_INCLUDES} $in -o - | {CROSS}as -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
+        command=f"{CROSS_CPP} {COMMON_INCLUDES} $in -o - | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out",
     )
 
     ninja.rule(
@@ -185,7 +186,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "ld",
         description="link $out",
-        command=f"{CROSS}ld -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
+        command=f"{CROSS_LD} -T undefined_syms.txt -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -Map $mapfile -T $in -o $out",
     )
 
     ninja.rule(
@@ -197,7 +198,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "elf",
         description="elf $out",
-        command=f"{CROSS}objcopy $in $out -O binary",
+        command=f"{CROSS_OBJCOPY} $in $out -O binary",
     )
 
     ninja.rule(
@@ -230,7 +231,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 if s_path.stem in ["exceptasm"]:
                     mips = "-mips3 -32"
                 else:
-                    mips = "-mips2 -o32"
+                    mips = "-mips2 -32"
 
                 build(
                     entry.object_path,
@@ -249,6 +250,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 opt_level = "-O2"
                 mips = "-mips2"
                 ido = "5.3"
+                libultra = "VERSION_I"
 
                 if (
                     c_path.stem
@@ -266,15 +268,61 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     opt_level = "-O3"
                     if "color" in str(c_path):
                         ido = "7.1"
+                    if c_path.stem == "spriteex2":
+                        opt_level = "-O2"
+                        ido = "7.1"
                 elif "ultralib/src/libc" in str(c_path):
                     opt_level = "-O3"
-                    mips = "-mips2 -o32"
+                    mips = "-mips2 -32"
 
                     if c_path.stem in ["ll", "llbit", "llcvt"]:
                         opt_level = "-O1"
                         mips = "-mips3 -32"
                 elif "ultralib/src/audio" in str(c_path):
                     ido = "7.1"
+
+                if c_path.stem in [
+                    "aisetfreq",
+                    "cartrominit",
+                    "contpfs",
+                    "contramread",
+                    "contramwrite",
+                    "contreaddata",
+                    "crc",
+                    "epirawdma",
+                    "epirawread",
+                    "epirawwrite",
+                    "gbpakcheckconnector",
+                    "gbpakgetstatus",
+                    "gbpakinit",
+                    "gbpakpower",
+                    "gbpakreadid",
+                    "gbpakreadwrite",
+                    "gbpaksetbank",
+                    "motor",
+                    "pfschecker",
+                    "pfsfilestate",
+                    "pfsgetstatus",
+                    "pfsinitpak",
+                    "pimgr",
+                    "pfsselectbank",
+                    "sirawdma",
+                    "vimgr",
+                    "viswapcontext",
+                ]:
+                    opt_level = "-O2"
+                    libultra = "VERSION_J"
+                elif c_path.stem in [
+                    "devmgr",
+                    "epiread",
+                    "epiwrite",
+                    "initialize",
+                    "pirawdma",
+                    "pirawread",
+                    "sirawread",
+                ]:
+                    opt_level = "-O1"
+                    libultra = "VERSION_J"
 
                 build(
                     entry.object_path,
@@ -283,6 +331,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     variables={
                         "flags": f"{opt_level} {mips}",
                         "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                        "libultra": libultra,
                     },
                 )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
@@ -317,6 +366,42 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
 
+def graph_segments():
+
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from splat.segtypes.segment import Segment
+
+    graph_items = []
+    vram_start = 0x80000400
+
+    for item in split.segment_rams.items():
+        segment: Segment = item[2]
+        graph_items.append(
+            dict(
+                Segment=segment.name,
+                VRAMStart=segment.vram_start,
+                VRAMEnd=segment.vram_end,
+                VRAMLength=segment.vram_end - segment.vram_start,
+                PosFromStart=segment.vram_start - vram_start,
+            )
+        )
+
+    # Sort graph_items by VRAMStart
+    graph_items = sorted(graph_items, key=lambda x: x["VRAMStart"])
+
+    df = pd.DataFrame(graph_items)
+    plt.barh(y=df["Segment"], width=df["VRAMLength"], left=df["PosFromStart"])
+    plt.grid(axis="x")
+
+    axes = plt.gca()
+    xlabels = map(lambda t: "0x%08X" % (int(t) + vram_start), axes.get_xticks())
+    axes.set_xticklabels(xlabels)
+
+    plt.show()
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Configure the project")
     parser.add_argument(
@@ -343,6 +428,8 @@ if __name__ == "__main__":
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries
+
+    # graph_segments()
 
     create_build_script(linker_entries)
 

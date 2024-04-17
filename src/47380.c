@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "sys/dma.h"
+
 extern s32 D_800AC0F0;
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
@@ -19,7 +21,9 @@ s32 func_8009BC00(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BC68.s")
+s32 func_8009BC68(void) {
+    return gPhotoCount;
+}
 
 s32* func_8009BC74(void) {
     return &D_800B0598;
@@ -53,9 +57,21 @@ s32* func_8009BC74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C9E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CDC0.s")
+// & 0xFFs and temp required to match
+void func_8009CDC0(u8* arg0, s32 arg1) {
+    if (arg0 != NULL) {
+        s32 prev = *arg0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CDE4.s")
+        *arg0 = (arg1 & 1) & 0xFF | (prev & 0xFF & ~1);
+    }
+}
+
+s32 func_8009CDE4(u8* arg0) {
+    if (arg0 != NULL) {
+        return *arg0 & 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CE00.s")
 
@@ -65,7 +81,11 @@ s32* func_8009BC74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D184.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D1E8.s")
+void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
+    if (arg1 >= arg0) {
+        dma_rom_read(arg0, arg2, arg1 - arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D21C.s")
 

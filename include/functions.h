@@ -46,17 +46,17 @@ roomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalInitData* initData);
 
-
 void func_800067DC(void);
 void func_80022334(void);
 void func_80022B14(void);
 void func_800A19D8(void);
 void func_800E3064(void);
-void func_80356FBC(void);
-void func_803586C0(void);
-void func_80359074(void);
-void func_8036406C(s32*, objectSpawn*, animalDef*);
-void func_803641B8(s32, animalDef*);
-void func_8036650C(void);
+s32 func_801DD010(s32);
+void func_80356FBC_4F73CC(void);
+void func_803586C0_4F8AD0(void);
+void func_80359074_4F9484(void);
+void func_8036406C_50447C(s32*, objectSpawn*, animalDef*);
+void func_803641B8_5045C8(s32, animalDef*);
+void func_8036650C_50691C(void);
 
 #endif

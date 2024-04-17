@@ -1,10 +1,10 @@
 #include "common.h"
 
-extern animalDef D_802C6FC4;
+extern animalDef D_802C6FC4_649474;
 
 void evolveIntoMuk(GObj* obj) {
     GObj* muk;
-    animalDef def = D_802C6FC4;
+    animalDef def = D_802C6FC4_649474;
 
     muk = addAnimalAtGeo(obj, AnimalID_MUK, &def);
     muk->rootNode->xform->euler.y = obj->rootNode->xform->euler.y;

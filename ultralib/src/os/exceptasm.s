@@ -559,7 +559,7 @@ STAY2(mtc0  t1, C0_COMPARE)
     b       next_interrupt
 
 cart:
-#if BUILD_VERSION >= VERSION_J
+#if 1 || BUILD_VERSION >= VERSION_J
     and     s0, s0, ~CAUSE_IP4
     la      t1, __osHwIntTable
     add     t1, HWINTR_SIZE
@@ -570,11 +570,11 @@ cart:
     lw      sp, HWINTR_SP(t1)
     jalr    t2
     
+    li      a0, MESG(OS_EVENT_CART)
     beqz    v0, 1f
     b       redispatch
     
 1:
-    li      a0, MESG(OS_EVENT_CART)
     jal     send_mesg
     b       next_interrupt
 #else

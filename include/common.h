@@ -7,5 +7,8 @@
 #include "variables.h"
 #include "constants.h"
 #include "macros.h"
+#include "types.h"
+
+typedef u8 Addr[];
 
 #endif

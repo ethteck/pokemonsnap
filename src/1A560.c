@@ -1,6 +1,6 @@
 #include "common.h"
 
-void *memcpy(void *,const void *,size_t);
+void* memcpy(void*, const void*, size_t);
 
 #define F_PI ((f32) M_PI) // M_PI is a double, we want it as a single float.
 #define HALF_PI (F_PI / 2.0f)
@@ -97,7 +97,7 @@ f32 func_80019DB0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019E14.s")
 
 s32 func_80019E54(void) {
-    return (osGetTime() & 0xFF);
+    return osGetTime() & 0xFF;
 }
 
 f32 func_80019E78(void) {
@@ -106,7 +106,7 @@ f32 func_80019E78(void) {
 
 s32 func_80019EB0(s32 arg0) {
     s32 time = osGetTime() & 0xFF;
-    return (time * arg0 * (1.0f / 256.0f));
+    return time * arg0 * (1.0f / 256.0f);
 }
 
 void func_80019F00(u8* arg0, u8* arg1, s32 arg2) {
@@ -155,7 +155,6 @@ loop_2:
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_80019F38.s")
 #endif
 
-
 void func_8001A094(u32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(u32, u32)) {
     s32 temp;
     s32 temp_v1;
@@ -186,15 +185,15 @@ void func_8001A094(u32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(u32, u32)) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1A560/func_8001A16C.s")
 
 s32 func_8001A29C(u32 arg0, u32 arg1, u32* arg2, u32 arg3, s32 (*arg4)(u32, u32)) {
-    s32 var_s0;
+    s32 i;
 
-    for (var_s0 = 0; *arg2 > var_s0; var_s0++) {
+    for (i = 0; i < *arg2; i++) {
         if (arg4(arg0, arg1) == 0) {
             return arg1;
         }
         arg1 += arg3;        
     }
-    memcpy((u8 *) arg0, (u8 *) arg1, arg3);
+    memcpy((u8*) arg0, (u8*) arg1, arg3);
     *arg2 += 1;
     return arg1;
 }

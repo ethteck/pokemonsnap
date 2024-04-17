@@ -1,14 +1,7 @@
 #include "common.h"
 
-#include "sys/dma.h"
-
 extern s32 D_80048888;
 extern s32 D_80048890;
-extern OSMesg D_800488A4;
-extern OSMesgQueue D_800488A8;
-extern s32 D_800488C0;
-extern s32 D_800488C4;
-extern s32 D_800488C8;
 
 void func_80000920(void) {
 }
@@ -75,15 +68,24 @@ void func_800029D4(void) {
     D_80048890 = 0;
 }
 
+// sys/dma.c
+
+#include "sys/dma.h"
+
+extern OSMesg sDmaOSMesg;
+extern OSMesgQueue sDmaRetQueue;
+extern s32 sVpkRamAddr;
+extern s32 sVpkBufSize;
+extern s32 sVpkRomAddr;
+
 void create_dma_mq(void) {
-    osCreateMesgQueue(&D_800488A8, &D_800488A4, 1);
+    osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);
 }
 
-extern s32 D_8004888C;
-extern OSMesgQueue D_800488A8;
-extern OSPiHandle* D_800488A0;
+extern s32 scBeforeReset;
+extern OSPiHandle* gRomPiHandle;
 
-void func_80002A10(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
+void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
     OSIoMesg mb;
 
     if (direction == 1) {
@@ -92,16 +94,16 @@ void func_80002A10(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes
         osInvalDCache((void*)dramAddr, numBytes);
     }
     mb.hdr.pri = 0;
-    mb.hdr.retQueue = &D_800488A8;
+    mb.hdr.retQueue = &sDmaRetQueue;
     mb.size = 0x10000;
 
     while (numBytes > 0x10000) {
             mb.dramAddr = (void*)dramAddr;
             mb.devAddr = devAddr;
-            if (D_8004888C == 0) {
+            if (!scBeforeReset) {
                 osEPiStartDma(piHandle, &mb, direction);
             }
-            osRecvMesg(&D_800488A8, NULL, 1);
+            osRecvMesg(&sDmaRetQueue, NULL, 1);
             devAddr += 0x10000;
             dramAddr += 0x10000;
             numBytes -= 0x10000;
@@ -111,10 +113,10 @@ void func_80002A10(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes
         mb.dramAddr = (void*)dramAddr;
         mb.devAddr = devAddr;
         mb.size = numBytes;
-        if (D_8004888C == 0) {
+        if (!scBeforeReset) {
             osEPiStartDma(piHandle, &mb, direction);
         }
-        osRecvMesg(&D_800488A8, NULL, 1);
+        osRecvMesg(&sDmaRetQueue, NULL, 1);
     }
 }
 
@@ -130,7 +132,7 @@ void load_overlay(Overlay* dmaData) {
     }
     // If there is any segment content, DMA it
     if (dmaData->romEnd - dmaData->romStart != 0) {
-        func_80002A10(D_800488A0, dmaData->romStart, dmaData->vramStart, dmaData->romEnd - dmaData->romStart, 0);
+        dma_copy(gRomPiHandle, dmaData->romStart, dmaData->vramStart, dmaData->romEnd - dmaData->romStart, OS_READ);
     }
     // Zero bss
     if (dmaData->bssVramEnd - dmaData->bssVramStart != 0) {
@@ -139,30 +141,30 @@ void load_overlay(Overlay* dmaData) {
 }
 
 void dma_rom_read(u32 romSrc, void* ramDst, u32 nbytes) {
-    func_80002A10(D_800488A0, romSrc, ramDst, nbytes, OS_READ);
+    dma_copy(gRomPiHandle, romSrc, (u32) ramDst, nbytes, OS_READ);
 }
 
-void func_80002C5C(u32 dramAddr, u32 devAddr, u32 numBytes) {
-    func_80002A10(D_800488A0, devAddr, dramAddr, numBytes, OS_WRITE);
+void dma_rom_write(void* ramSrc, u32 romDst, u32 nbytes) {
+    dma_copy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
 }
 
-void func_80002C94(void*, u32, void (*)(void), u32);
 #pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002C94.s")
+void func_80002C94(u16* data, s32 size, void (*func)(void), u32 arg3);
 
-void func_8000345C(s32 devAddr, s32 dramAddr, s32 numBytes) {
-    D_800488C8 = devAddr;
-    D_800488C0 = dramAddr;
-    D_800488C4 = numBytes;
+void initialize_vpk_dma_stream(s32 romAddr, s32 ramAddr, s32 bufSize) {
+    sVpkRomAddr = romAddr;
+    sVpkRamAddr = ramAddr;
+    sVpkBufSize = bufSize;
 }
 
-void func_80003478(void) {
-    dma_rom_read(D_800488C8, D_800488C0, D_800488C4);
-    D_800488C8 += D_800488C4;
+void fill_vpk_dma_buffer(void) {
+    dma_rom_read(sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
+    sVpkRomAddr += sVpkBufSize;
 }
 
 void func_800034C4(u32 rom, u32 ram, void* buf, u32 size) {
-    func_8000345C(rom, (s32) buf, size);
-    func_80002C94(buf, size, &func_80003478, ram);
+    initialize_vpk_dma_stream(rom, (s32) buf, size);
+    func_80002C94(buf, size, &fill_vpk_dma_buffer, ram);
 }
 
 void loadCompressedData(u32 rom, u32 ram) {

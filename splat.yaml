@@ -972,7 +972,7 @@ segments:
   - [0xAFD3A4, bin, audio/seq/AFD3A4]
   - [0xAFD494, bin, audio/seq/AFD494]
   - [0xAFDCD8, bin, audio/seq/AFDCD8]
-  - [0xAFDDC4, bin, audio/seq/AFDDC4] # Unkown size for now
+  - [0xAFDDC4, bin, audio/seq/AFDDC4] # Unknown size for now
   - [0xAFDDC8, bin]
 
   # Audio banks and wave tables

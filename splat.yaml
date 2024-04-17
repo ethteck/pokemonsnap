@@ -389,7 +389,7 @@ segments:
     - [0x98470, bin] # , data]
   - type: code
     start: 0x99F70
-    vram: 0x8011B050
+    vram: 0x8011CB50
     exclusive_ram_id: unk8011B050
     subsegments:
     - [0x99F70, bin] # , data]
@@ -404,7 +404,7 @@ segments:
     - { start: auto, name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
   - type: code
     start: 0x13C780
-    vram: 0x8011CB50
+    vram: 0x801B0310
     exclusive_ram_id: unk8011CB50
     subsegments:
     - [0x13C780, bin] # , data]
@@ -542,7 +542,7 @@ segments:
     - [0x554130, bin] # , data]
   - type: code
     start: 0x557050
-    vram: 0x80344780
+    vram: 0x8033F6C0
     exclusive_ram_id: unk80344780
     subsegments:
     - [0x557050, bin] # , data]
@@ -840,7 +840,7 @@ segments:
   - name: unk_end_level_8
     type: code
     start: 0xA084B0
-    vram: 0x800E1970
+    vram: 0x801DC8C0
     bss_size: 0x32020
     exclusive_ram_id: level
     subsegments:
@@ -913,6 +913,27 @@ segments:
     - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
 
   - [0xAAA610, bin] # compressed data
+  - [0xAAA660, bin]
+  - [0xAB1470, bin]
+  - [0xAB5860, bin]
+  - [0xAB5980, bin]
+  - [0xAB85E0, bin]
+  - [0xAB8780, bin]
+  - [0xABE7A0, bin]
+  - [0xABEBD0, bin]
+  - [0xAC6890, bin]
+  - [0xAC6A80, bin]
+  - [0xAC8510, bin]
+  - [0xAC8830, bin]
+  - [0xACF6F0, bin]
+  - [0xACF9A0, bin]
+  - [0xAD0E00, bin]
+  - [0xAD1640, bin]
+  - [0xADD310, bin]
+  - [0xADD5D0, bin]
+  - [0xADEC60, bin]
+  - [0xADEDF0, bin]
+  - [0xAE0510, bin]
 
   # Sequences
   - [0xAEFD3C, bin, audio/seq/AEFD3C]

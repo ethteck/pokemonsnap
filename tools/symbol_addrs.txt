@@ -14,12 +14,14 @@ alHeapDBAlloc = 0x8001FD74;
 thread4_audio = 0x800216A8;
 start_thread8_rmon = 0x80025C38;
 fatal_printf = 0x80025F24;
+
 gRomPiHandle = 0x800488A0;
 sDmaOSMesg = 0x800488A4;
 sDmaRetQueue = 0x800488A8;
 sVpkRamAddr = 0x800488C0;
 sVpkBufSize = 0x800488C4;
 sVpkRomAddr = 0x800488C8;
+
 spColor = 0x80026140;
 spSetAttribute = 0x80026170;
 spX2SetZ = 0x80026180;

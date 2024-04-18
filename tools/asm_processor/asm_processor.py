@@ -295,8 +295,6 @@ class Section:
         new_data = bytearray(self.data)
         shift_by = self.sh_offset - original_offset
 
-        print(f"Shift by {shift_by}")
-
         # Update the file-relative offsets in the Symbolic HDRR
         hdrr_magic, hdrr_vstamp, hdrr_ilineMax, hdrr_cbLine, \
             hdrr_cbLineOffset, hdrr_idnMax, hdrr_cbDnOffset, hdrr_ipdMax, \

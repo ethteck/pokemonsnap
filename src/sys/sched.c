@@ -22,7 +22,7 @@ void contRumbleInit(s32);
 void contRumbleStop(s32);
 
 SCClient* scClientList;
-// priority queue, all tasks added from sc_execute_blocking are put into this queue
+// priority queue, all tasks added from scExecuteBlocking are put into this queue
 SCTaskInfo* scMainQueueHead;
 SCTaskInfo* scMainQueueTail;
 
@@ -74,7 +74,7 @@ void func_80000928(void) {
     }
 }
 
-void sc_execute_blocking(SCTaskInfo* task) {
+void scExecuteBlocking(SCTaskInfo* task) {
     OSMesg msgs[1];
     OSMesgQueue mq;
 
@@ -96,10 +96,11 @@ void scAddClient(SCClient* client, OSMesgQueue* mq, OSMesg* msg, u32 count) {
     t.info.type = SC_TASK_TYPE_ADD_CLIENT;
     t.info.priority = 100;
     t.client = client;
-    sc_execute_blocking(&t.info);
+    scExecuteBlocking(&t.info);
 }
 
-s32 func_80000A64(SCTaskGfx* t) {
+// return TRUE if task can be executed now
+s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
     s32 idx;
     s32 i;
     void* nextFb;
@@ -115,6 +116,8 @@ s32 func_80000A64(SCTaskGfx* t) {
 
     nextFb = osViGetNextFramebuffer();
     curFb  = osViGetCurrentFramebuffer();
+
+    // set framebuffer for drawing
     idx = t->fbIdx;
     if (idx != -1) {
         fb = scFrameBuffers[idx];
@@ -126,6 +129,7 @@ s32 func_80000A64(SCTaskGfx* t) {
         }
     }
 
+    // set any available 
     for (i = 0; i < ARRAY_COUNT(scFrameBuffers); i++) {
         fb = scFrameBuffers[i];
         if (fb != NULL && curFb != fb && nextFb != fb) {
@@ -282,7 +286,7 @@ void scQueue3Remove(SCTaskGfx* task) {
     }
 }
 
-void func_80000EBC(void) {
+void scSetNewViMode(void) {
     scViModeCurrent = scViModeNext;
     osViSetMode(&scViModeCurrent);
     osViBlack(scViSettings.blackout);
@@ -566,10 +570,11 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
 #endif
 
-void scSetFrameBuffer(void* fb) {
+// called when frame is drawn into fb
+void scSetNextFrameBuffer(void* fb) {
     if (scViSettingsUpdated) {
         if (!scBeforeReset) {
-            func_80000EBC();
+            scSetNewViMode();
         }
     }
 
@@ -599,7 +604,7 @@ void scSetFrameBuffer(void* fb) {
 }
 
 void scExecuteGfxTask(SCTaskGfx* task) {
-    if (scCurrentGfxTask != 0) {
+    if (scCurrentGfxTask != NULL) {
         osSpTaskYield();
         scCurrentGfxTask->info.state = SC_TASK_STATE_SUSPENDING;
         scPausedQueueAdd(scCurrentGfxTask);
@@ -755,7 +760,7 @@ s32 scExecuteTask(SCTaskInfo* task) {
                     v1->fb = t->fb;
                 } else {
                     if (t->fb != NULL) {
-                        scSetFrameBuffer(t->fb);
+                        scSetNextFrameBuffer(t->fb);
                     }
 
                     if (t->info.mq != NULL) {
@@ -964,7 +969,7 @@ void scHandleDPFullSync(void) {
                         scUnknownFunc(scCurrentGfxTask->fb);
                     }
                 }
-                scSetFrameBuffer(scCurrentGfxTask->fb);
+                scSetNextFrameBuffer(scCurrentGfxTask->fb);
             }
 
             if (scCurrentGfxTask->info.mq != NULL) {
@@ -988,7 +993,7 @@ void scHandleDPFullSync(void) {
                     scUnknownFunc(scCurrentQueue3Task->fb);
                 }
             }
-            scSetFrameBuffer(scCurrentQueue3Task->fb);
+            scSetNextFrameBuffer(scCurrentQueue3Task->fb);
         }
 
         if (scCurrentQueue3Task->info.mq != NULL) {
@@ -1007,7 +1012,7 @@ void scHandleDPFullSync(void) {
                         scUnknownFunc(scPausedQueueHead->fb);
                     }
                 }
-                scSetFrameBuffer(scPausedQueueHead->fb);
+                scSetNextFrameBuffer(scPausedQueueHead->fb);
             }
 
             if (scPausedQueueHead->info.mq != NULL) {
@@ -1128,7 +1133,7 @@ void scPreNMIDefault(void) {
 
 }
 
-void func_800029BC(void (*fn)(void)) {
+void scSetPreNMIProc(void (*fn)(void)) {
     scPreNMIProc = fn;
 }
 

@@ -26,8 +26,8 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     
     animalObj = animalAddOne(roomA, roomA, &spawn, &def);
 
-    sub = &obj->rootNode->unk_18;
-    pxVar2 = animalObj->rootNode;
+    sub = &obj->userData.rootNode->unk_18;
+    pxVar2 = animalObj->userData.rootNode;
         
     pxVar2->xform->translation.x = sub->translation.x;
     pxVar2->xform->translation.y = sub->translation.y;

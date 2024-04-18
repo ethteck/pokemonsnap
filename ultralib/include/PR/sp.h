@@ -55,48 +55,48 @@ struct bitmap {
 typedef struct bitmap Bitmap;
 
 struct sprite {
-	s16	x,y;		/* Target position		*/
+	/* 0x00 */ s16	x,y;		/* Target position		*/
 
-	s16	width, height;	/* Target size			*/
+	/* 0x04 */ s16	width, height;	/* Target size			*/
 
-	f32	scalex, scaley;	/* Texel to Pixel scale factor	*/
+	/* 0x08 */ f32	scalex, scaley;	/* Texel to Pixel scale factor	*/
 
-	s16	expx, expy;	/* Explosion spacing		*/
+	/* 0x10 */ s16	expx, expy;	/* Explosion spacing		*/
 
-	u16 	attr;		/* Attribute Flags		*/
-	s16	zdepth;		/* Z Depth 			*/
+	/* 0x14 */ u16 	attr;		/* Attribute Flags		*/
+	/* 0x16 */ s16	zdepth;		/* Z Depth 			*/
 
-	u8	red;		/* Red component		*/
-	u8	green;		/* Green component		*/
-	u8	blue;		/* Blue component		*/
-	u8	alpha;		/* Alpha component		*/
+	/* 0x18 */ u8	red;		/* Red component		*/
+	/* 0x19 */ u8	green;		/* Green component		*/
+	/* 0x1A */ u8	blue;		/* Blue component		*/
+	/* 0x1B */ u8	alpha;		/* Alpha component		*/
 
-	s16	startTLUT;	/* Lookup Table Entry Starting index */
-	s16	nTLUT;		/* Total number of Lookup Table Entries */
+	/* 0x1C */ s16	startTLUT;	/* Lookup Table Entry Starting index */
+	/* 0x1E */ s16	nTLUT;		/* Total number of Lookup Table Entries */
 
-	int	*LUT;		/* Pointer to Lookup Table	*/
+	/* 0x20 */ int	*LUT;		/* Pointer to Lookup Table	*/
 
-	s16	istart;		/* Starting bitmap index	*/
-	s16	istep;		/* Bitmaps index step (see SP_INCY) */
+	/* 0x24 */ s16	istart;		/* Starting bitmap index	*/
+	/* 0x26 */ s16	istep;		/* Bitmaps index step (see SP_INCY) */
 				/* if 0, then variable width bitmaps */
 
-	s16	nbitmaps;	/* Total number of bitmaps	*/
-	s16	ndisplist;	/* Total number of display-list words */
+	/* 0x28 */ s16	nbitmaps;	/* Total number of bitmaps	*/
+	/* 0x2A */ s16	ndisplist;	/* Total number of display-list words */
 
-	s16	bmheight;	/* Bitmap Texel height (Used)	*/
-	s16	bmHreal;	/* Bitmap Texel height (Real)	*/
-	u8	bmfmt;		/* Bitmap Format	 	*/
-	u8	bmsiz;		/* Bitmap Texel Size		*/
+	/* 0x2C */ s16	bmheight;	/* Bitmap Texel height (Used)	*/
+	/* 0x2E */ s16	bmHreal;	/* Bitmap Texel height (Real)	*/
+	/* 0x30 */ u8	bmfmt;		/* Bitmap Format	 	*/
+	/* 0x31 */ u8	bmsiz;		/* Bitmap Texel Size		*/
 
-	Bitmap	*bitmap;	/* Pointer to first bitmap	*/
+	/* 0x34 */ Bitmap	*bitmap;	/* Pointer to first bitmap	*/
 
-	Gfx	*rsp_dl;	/* Pointer to RSP display list	*/
+	/* 0x38 */ Gfx	*rsp_dl;	/* Pointer to RSP display list	*/
 
-	Gfx	*rsp_dl_next;	/* Pointer to next RSP display entry	*/
+	/* 0x3C */ Gfx	*rsp_dl_next;	/* Pointer to next RSP display entry	*/
 
-	s16	frac_s,		/* Fractional Texture offsets */
-		frac_t;		/* These have 5 fraction bits */
-};
+	/* 0x40 */ s16	frac_s,		/* Fractional Texture offsets */
+					frac_t;		/* These have 5 fraction bits */
+}; // size = 0x44
 
 typedef struct sprite Sprite;
 

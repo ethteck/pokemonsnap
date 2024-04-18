@@ -213,6 +213,13 @@ typedef struct {
 } color;
 
 typedef struct {
+    /* 0x0 */ u8 r;
+    /* 0x1 */ u8 g;
+    /* 0x2 */ u8 b;
+    /* 0x3 */ u8 a;
+} ucolor;
+
+typedef struct {
     /* 0x00 */ u16 h_0;
     /* 0x02 */ s8 fmt1;
     /* 0x03 */ s8 siz1;
@@ -444,6 +451,12 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
+typedef struct SObj {
+    /* 0x00 */ char unk_00[0x10];
+    /* 0x10 */ Sprite sprite;
+    /* 0x54 */
+} SObj;
+
 typedef struct GObj {
     /* 0x00 */ struct GObj* next;
     /* 0x04 */ struct GObj* prev;
@@ -453,10 +466,10 @@ typedef struct GObj {
     /* 0x0E */ char unk_0E[0x2];
     /* 0x10 */ u32 sortKey;
     /* 0x14 */ void* somefunc;
-    /* 0x18 */ struct GObj * child;
+    /* 0x18 */ struct GObj* child;
     /* 0x1C */ OSThread* thread;
     /* 0x20 */ void* dlFunc;
-    /* 0x24 */ struct GObj * dlNext;
+    /* 0x24 */ struct GObj* dlNext;
     /* 0x28 */ u32 dlSortKey;
     /* 0x2C */ void (*renderFn)(struct GObj*);
     /* 0x30 */ void* linkFlags;
@@ -466,7 +479,10 @@ typedef struct GObj {
     /* 0x3C */ signalLL* signals;
     /* 0x40 */ signalLL* lastSignal;
     /* 0x44 */ s32 LLCount;
-    /* 0x48 */ struct geoNode* rootNode;
+    /* 0x48 */ union {
+        struct geoNode* rootNode;
+        struct SObj* sobj;
+    } userData;
     /* 0x4C */ f32 currFrame;
     /* 0x50 */ s32 activeFlags;
     /* 0x54 */ void (*nodeFunc)(struct geoNode*, s32 undefined4);
@@ -487,5 +503,10 @@ typedef struct {
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
 } animalDef; // size = 0x10
+
+typedef struct UnkStruct800BEDF8 {
+    /* 0x00 */ char unk_00[0x14];
+    /* 0x14 */ s32 unk_14;
+} UnkStruct800BEDF8;
 
 #endif

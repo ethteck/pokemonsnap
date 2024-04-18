@@ -112,8 +112,8 @@ GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
     animalObj = animalAddOne(roomA, roomA, &spawn, def);
 
     if (animalObj != NULL) {
-        xformData* pxVar1 = gobj->rootNode->xform;
-        xformData* pxVar2 = animalObj->rootNode->xform;
+        xformData* pxVar1 = gobj->userData.rootNode->xform;
+        xformData* pxVar2 = animalObj->userData.rootNode->xform;
         
         pxVar2->translation.x = pxVar1->translation.x;
         pxVar2->translation.y = pxVar1->translation.y;

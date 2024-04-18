@@ -12,6 +12,7 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "random": "c"
     },
 }

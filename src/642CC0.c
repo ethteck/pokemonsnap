@@ -7,7 +7,7 @@ void evolveIntoMuk(GObj* obj) {
     animalDef def = D_802C6FC4_649474;
 
     muk = addAnimalAtGeo(obj, AnimalID_MUK, &def);
-    muk->rootNode->xform->euler.y = obj->rootNode->xform->euler.y;
+    muk->userData.rootNode->xform->euler.y = obj->userData.rootNode->xform->euler.y;
     endGObjProcess(NULL);
 }
 

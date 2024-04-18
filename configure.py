@@ -40,7 +40,7 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul -O2 -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
+GAME_CC_CMD = f"python3 tools/asm_processor/build.py {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
 LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
 
@@ -243,9 +243,18 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
             c_path = entry.src_paths[0]
+            opt_level = "-O2"
+
+            if c_path.stem in ["98C330"]:
+                opt_level = "-g"
 
             if "ultralib" not in str(c_path):
-                build(entry.object_path, entry.src_paths, "cc")
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc",
+                    variables={"flags": opt_level},
+                )
             else:
                 opt_level = "-O2"
                 mips = "-mips2"

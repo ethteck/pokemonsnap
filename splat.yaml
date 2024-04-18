@@ -797,7 +797,7 @@ segments:
     - [0x98C330, c]
     - [0x993C50, c]
     - [0x993F80, c]
-    - [0x994E10, bin] # , data]
+    - [0x994E10, data]
     - { start: auto, name: bss_801F70A0, type: bss, vram: 0x801F70A0 }
   - name: unk_end_level_5
     type: code

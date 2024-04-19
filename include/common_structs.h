@@ -451,12 +451,6 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
-typedef struct SObj {
-    /* 0x00 */ char unk_00[0x10];
-    /* 0x10 */ Sprite sprite;
-    /* 0x54 */
-} SObj;
-
 typedef struct GObj {
     /* 0x00 */ struct GObj* next;
     /* 0x04 */ struct GObj* prev;

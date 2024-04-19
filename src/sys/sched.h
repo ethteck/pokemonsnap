@@ -14,8 +14,8 @@ enum SCTaskType {
     SC_TASK_TYPE_GFX_END            = 6,
     SC_TASK_TYPE_NOP                = 7,
     SC_TASK_TYPE_RDP_BUFFER         = 8,
-    SC_TASK_TYPE_CUSTOM_BUFFERING                  = 9,
-    SC_TASK_TYPE_DEFAULT_BUFFERING                 = 10,
+    SC_TASK_TYPE_CUSTOM_BUFFERING   = 9,
+    SC_TASK_TYPE_DEFAULT_BUFFERING  = 10,
     SC_TASK_TYPE_11                 = 11
 };
 
@@ -114,5 +114,7 @@ extern u32 scUnknownInt;
 void scAddClient(SCClient* client, OSMesgQueue* mq, OSMesg* msg, u32 count);
 void scExecuteBlocking(SCTaskInfo* task);
 s32 func_80000B84(SCTaskInfo* t);
+void scRemovePostProcessFunc(void);
+s32 scCheckGfxTaskDefault(SCTaskGfx*);
 
 #endif

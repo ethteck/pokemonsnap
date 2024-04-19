@@ -4,6 +4,8 @@
 #include "ultra64.h"
 #include "common_structs.h"
 
+extern Gfx* D_8004A890[];
+
 extern OSThread* __osRunningThread;
 extern OSThread* __osRunQueue;
 extern s32 gLevelID;

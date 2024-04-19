@@ -12,6 +12,8 @@ options:
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
+  string_encoding: ASCII
+  data_string_encoding: ASCII
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -804,6 +806,10 @@ segments:
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
+    - [0x9A3C10, rodata]
+    - [0x9A57D0, rodata] # suggests a file split in 98C330
+    - [0x9A5AA0, rodata] # suggests a file split in 98C330
+    - [0x9A6AF0, rodata]
     - { start: auto, name: bss_801F70A0, type: bss, vram: 0x801F70A0 }
   - name: unk_end_level_5
     type: code

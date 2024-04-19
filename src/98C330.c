@@ -34,10 +34,34 @@ typedef struct UnkStruct98C_D {
     /* 0x0A */ s16 unk_0A;
 } UnkStruct98C_D; // size = ???
 
+// data
+extern Gfx D_801E53A0_994E10[];
+extern s32 D_801E5410_994E80; // Todo some struct
+extern s32 D_801E542C_994E9C;
+extern s32 D_801E543C_994EAC;
+extern Sprite D_801E5DB0_995820;
+extern Sprite D_801E5EE0_995950;
+extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check
+extern Sprite D_801F26B0_9A2120; // NEW
+extern Sprite D_801F2910_9A2380; // blue diamond background
+extern Sprite D_801F29F0_9A2460; // evaluation background sprite
+extern Sprite D_801F2AD0_9A2540; // black square
+extern Sprite D_801F3B10_9A3580;
+extern s32 D_801F3E28_9A3898;
+extern s32 D_801F3E2C_9A389C;
+extern s32 D_801F3E30_9A38A0;
+
+// rodata
+extern char D_801F51E8_9A4C58[];
+extern char D_801F51EC_9A4C5C[];
+extern char D_801F5F70_9A59E0[];
+extern char D_801F5F78_9A59E8[]; // %s Course
+extern char D_801F5F84_9A59F4[]; // Hmm...\nWhat's new this time?
+
 // BSS
 extern s32 D_801F70A0_9A6B10;
 extern UnkStruct98C_A D_802290A0_9D8B10[6];
-// extern D_802290A4_9D8B14
+extern UnkStruct98C_A D_802290A4_9D8B14[];
 extern s32 D_802290D8_9D8B48;
 extern s32 D_802290DC_9D8B4C;
 extern s32 D_802290E0_9D8B50;
@@ -60,10 +84,22 @@ void func_801DC8C0_98C330(Gfx** gfx) {
     gSPDisplayList(++*gfx, &D_801E53A0_994E10);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DC904_98C374.s")
+void func_801DC904_98C374(s32 arg0, s32 arg1) {
+    Gfx* gfx = D_8004A890[0];
+
+    gSPDisplayList(gfx++, &D_801E53A0_994E10);
+    gDPSetColorDither(gfx++, G_CD_MAGICSQ);
+    gDPPipeSync(gfx++);
+    gDPSetRenderMode(gfx++, AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL |
+                            GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0),
+                            AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
+    gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
+
+    D_8004A890[0] = gfx;
+}
 
 void func_801DCA14_98C484(s32 arg0) {
-    s32 UNUSED pad;
+    UNUSED s32 pad;
     
     while (TRUE) {
         func_8000BCA8(1);
@@ -74,7 +110,7 @@ void func_801DCA48_98C4B8(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DCA48_98C4B8.s")
 
 void func_801DCBF4_98C664(void) {
-    s32 UNUSED pad;
+    UNUSED s32 pad;
 
     func_8036A3F8(&D_801F70A0_9A6B10, 0x32000);
     func_800AAE28();
@@ -88,7 +124,7 @@ void func_801DCBF4_98C664(void) {
 }
 
 s32 func_801DCC74_98C6E4(s32 arg0) {
-    s32 UNUSED pad[3];
+    UNUSED s32 pad[3];
 
     func_80007BC4(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
@@ -128,7 +164,39 @@ void func_801DCFE8_98CA58(UnkStruct98C_D* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD05C_98CACC.s")
+s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
+    s32 ret = 0;
+    UnkStruct800BEDF8* sp18;
+
+    func_8036B9EC_83F19C(arg0, 180, 0x20);
+    func_8036C898_840048(arg0, D_801F51E8_9A4C58);
+    func_8036EB80_842330(0);
+    func_8000BCA8(1);
+
+    sp18 = func_800AA38C(0);
+    while (!(sp18->unk_18 & (0x8000 | 0x4000))) {
+        func_8000BCA8(1);
+        sp18 = func_800AA38C(0);
+    }
+    if (sp18->unk_14 & 0x8000) {
+        ret = 0x8000;
+    }
+    if (sp18->unk_14 & 0x4000) {
+        ret = 0x4000;
+    }
+    if (sp18->unk_14 & 0x1000) {
+        ret = 0x1000;
+    }
+    if (arg1 != 0) {
+        func_800228E4(0x4D);
+    }
+    func_8036B9EC_83F19C(arg0, 180, 0x20);
+    func_8036C898_840048(arg0, D_801F51EC_9A4C5C);
+    func_8000BCA8(1);
+    func_8036EE40_8425F0();
+    func_8036EB80_842330(1);
+    return ret;
+}
 
 s32 func_801DD1A8_98CC18(s32 arg0) {
     s32 i;
@@ -228,6 +296,45 @@ void func_801DD680_98D0F0(void) {
 void func_801DD720_98D190(s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD720_98D190.s")
 
+// GObj* func_801DD720_98D190(s32 idx) {
+//     GObj* gobj;
+//     SObj* sobj;
+//     UNUSED s32 pad[2];
+//     Bitmap* sp24;
+//     s32 i;
+//     u8* sp20;
+//     u8* sp1C;
+
+//     gobj = func_80371C68(0, 6, &D_801E5DB0_995820);
+//     sobj = gobj->userData.sobj;
+//     D_802290A0_9D8B10[idx].unk_00 = gobj;
+//     sobj = func_80371E68(sobj, &D_801E5DB0_995820);
+//     sobj->sprite.x = 54;
+//     sobj->sprite.y = 0;
+//     sobj = func_80371DC0(sobj, &D_801E5EE0_995950);
+//     sobj->sprite.x = 2;
+//     sobj->sprite.y = 0;
+//     sobj = func_80371DC0(sobj, &D_801E5EE0_995950);
+//     sobj->sprite.x = 2;
+//     sobj->sprite.y = 41;
+//     sobj = func_80371DC0(sobj, &D_801F3B10_9A3580);
+//     sobj->sprite.x = 2;
+//     sobj->sprite.y = 2;
+//     D_802290A4_9D8B14[idx].unk_00 = sobj;
+//     sp24 = func_8036A194(0x30);
+//     sp20 = func_8036A194(0xFD8);
+//     sp1C = sobj->sprite.bitmap->buf;
+//     *sp24 = *sobj->sprite.bitmap;
+//     sp24->buf = sp20;
+//     sobj->sprite.bitmap = sp24;
+
+//     for (i = 0xFD8; i > 0; i--) {
+//         *sp20++ = *sp1C++;
+//     }
+
+//     return gobj;
+// }
+
 void func_801DD8F4_98D364(void) {
     s32 i;
 
@@ -283,7 +390,7 @@ void func_801DDA68_98D4D8(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E1FA8_991A18.s")
 
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
-    s32 UNUSED pad[3];
+    UNUSED s32 pad[3];
 
     PANIC();
 }
@@ -291,7 +398,45 @@ void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
 void func_801E2454_991EC4(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2454_991EC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E28CC_99233C.s")
+s32 func_801E28CC_99233C(s32* arg0) {
+    s32 i;
+    s32 sp28;
+    s32 sp24;
+
+    sp28 = 0;
+    sp24 = 0;
+
+    for (i = 1; i < 0x98; i++) {
+        if (func_800BF3D4_5C274(i) == 0) {
+
+        } else {
+            sp28 += func_800BF818_5C6B8(i);
+            sp24++;
+        }
+    }
+    if (func_800BF3D4_5C274(1004) != 0) {
+        sp28 += func_800BF818_5C6B8(1004);
+    }
+    if (func_800BF3D4_5C274(1010) != 0) {
+        sp28 += func_800BF818_5C6B8(1010);
+    }
+    if (func_800BF3D4_5C274(1018) != 0) {
+        sp28 += func_800BF818_5C6B8(1018);
+    }
+    if (func_800BF3D4_5C274(1022) != 0) {
+        sp28 += func_800BF818_5C6B8(1022);
+    }
+    if (func_800BF3D4_5C274(1028) != 0) {
+        sp28 += func_800BF818_5C6B8(1028);
+    }
+    if (func_800BF3D4_5C274(1035) != 0) {
+        sp28 += func_800BF818_5C6B8(1035);
+    }
+    if (arg0 != NULL) {
+        *arg0 = sp24;
+    }
+    return sp28;
+}
 
 s32 func_801E2A68_9924D8(void) {
     s32 i, ret;
@@ -312,9 +457,9 @@ void func_801E2ED4_992944(s32); // TODO probably a struct
 
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {
-    s32 UNUSED pad[1];
+    UNUSED s32 pad[1];
     s32 sp28 = D_802290DC_9D8B4C;
-    s32 UNUSED pad2[2];
+    UNUSED s32 pad2[2];
     s32 sp1C;
 
     func_801DD9E4_98D454(0);
@@ -335,10 +480,10 @@ s32 func_801E4428_993E98(void);
 void func_801E5030_994AA0(void);
 
 void func_801E39DC_99344C(s32 arg0) {
-    s32 UNUSED pad;
+    UNUSED s32 pad;
     s32 sp48;
     s32 i;
-    s32 UNUSED pad2;
+    UNUSED s32 pad2;
     s32 sp3C;
     s32 sp38;
     ucolor sp34; // ?

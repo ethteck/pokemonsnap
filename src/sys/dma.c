@@ -11,11 +11,11 @@ extern s32 sVpkBufSize;
 extern s32 sVpkRomAddr;
 extern OSPiHandle* gRomPiHandle;
 
-void create_dma_mq(void) {
+void dmaCreateMessageQueue(void) {
     osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);
 }
 
-void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
+void dmaCopy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
     OSIoMesg mb;
 
     if (direction == 1) {
@@ -28,15 +28,15 @@ void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 
     mb.size = 0x10000;
 
     while (numBytes > 0x10000) {
-            mb.dramAddr = (void*)dramAddr;
-            mb.devAddr = devAddr;
-            if (!scBeforeReset) {
-                osEPiStartDma(piHandle, &mb, direction);
-            }
-            osRecvMesg(&sDmaRetQueue, NULL, 1);
-            devAddr += 0x10000;
-            dramAddr += 0x10000;
-            numBytes -= 0x10000;
+        mb.dramAddr = (void*)dramAddr;
+        mb.devAddr = devAddr;
+        if (!scBeforeReset) {
+            osEPiStartDma(piHandle, &mb, direction);
+        }
+        osRecvMesg(&sDmaRetQueue, NULL, 1);
+        devAddr += 0x10000;
+        dramAddr += 0x10000;
+        numBytes -= 0x10000;
     }
 
     if (numBytes != 0) {
@@ -50,7 +50,7 @@ void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 
     }
 }
 
-void load_overlay(Overlay* dmaData) {
+void dmaLoadOverlay(Overlay* dmaData) {
     // If there is a text section, invalidate instruction and data caches
     if (dmaData->textVramEnd - dmaData->textVramStart != 0) {
         osInvalICache((void*)dmaData->textVramStart, dmaData->textVramEnd - dmaData->textVramStart);
@@ -62,7 +62,7 @@ void load_overlay(Overlay* dmaData) {
     }
     // If there is any segment content, DMA it
     if (dmaData->romEnd - dmaData->romStart != 0) {
-        dma_copy(gRomPiHandle, dmaData->romStart, dmaData->vramStart, dmaData->romEnd - dmaData->romStart, OS_READ);
+        dmaCopy(gRomPiHandle, dmaData->romStart, dmaData->vramStart, dmaData->romEnd - dmaData->romStart, OS_READ);
     }
     // Zero bss
     if (dmaData->bssVramEnd - dmaData->bssVramStart != 0) {
@@ -70,37 +70,37 @@ void load_overlay(Overlay* dmaData) {
     }
 }
 
-void dma_rom_read(u32 romSrc, void* ramDst, u32 nbytes) {
-    dma_copy(gRomPiHandle, romSrc, (u32) ramDst, nbytes, OS_READ);
+void dmaReadRom(u32 romSrc, void* ramDst, u32 nbytes) {
+    dmaCopy(gRomPiHandle, romSrc, (u32) ramDst, nbytes, OS_READ);
 }
 
-void dma_rom_write(void* ramSrc, u32 romDst, u32 nbytes) {
-    dma_copy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
+void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes) {
+    dmaCopy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80002C94.s")
-void func_80002C94(u16* data, s32 size, void (*func)(void), u32 arg3);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/dmaDecodeVPK.s")
+void dmaDecodeVPK(u16* data, s32 size, void (*func)(void), u32 arg3);
 
-void initialize_vpk_dma_stream(s32 romAddr, s32 ramAddr, s32 bufSize) {
+void dmaInitVPKStream(s32 romAddr, s32 ramAddr, s32 bufSize) {
     sVpkRomAddr = romAddr;
     sVpkRamAddr = ramAddr;
     sVpkBufSize = bufSize;
 }
 
-void fill_vpk_dma_buffer(void) {
-    dma_rom_read(sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
+void dmaUpdateVPKStream(void) {
+    dmaReadRom(sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
     sVpkRomAddr += sVpkBufSize;
 }
 
-void func_800034C4(u32 rom, u32 ram, void* buf, u32 size) {
-    initialize_vpk_dma_stream(rom, (s32) buf, size);
-    func_80002C94(buf, size, &fill_vpk_dma_buffer, ram);
+void dmaReadVPKToBuffer(u32 rom, u32 ram, void* buf, u32 size) {
+    dmaInitVPKStream(rom, (s32) buf, size);
+    dmaDecodeVPK(buf, size, &dmaUpdateVPKStream, ram);
 }
 
-void loadCompressedData(u32 rom, u32 ram) {
+void dmaReadVPK(u32 rom, u32 ram) {
     char buf[0x400];
 
-    func_800034C4(rom, ram, &buf, sizeof(buf));
+    dmaReadVPKToBuffer(rom, ram, &buf, sizeof(buf));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80003530.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/func_80003530.s")

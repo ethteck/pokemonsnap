@@ -23,11 +23,11 @@ typedef struct Overlay {
 
 extern OSPiHandle* gRomPiHandle;
 
-void create_dma_mq(void);
-void dma_copy(OSPiHandle* handle, u32 physAddr, uintptr_t vAddr, u32 size, u8 direction);
-void load_overlay(Overlay* ovl);
-void dma_rom_read(u32 romSrc, void* ramDst, u32 nbytes);
-void dma_rom_write(void* ramSrc, u32 romDst, u32 nbytes);
+void dmaCreateMessageQueue(void);
+void dmaCopy(OSPiHandle* handle, u32 physAddr, uintptr_t vAddr, u32 size, u8 direction);
+void dmaLoadOverlay(Overlay* ovl);
+void dmaReadRom(u32 romSrc, void* ramDst, u32 nbytes);
+void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes);
 OSPiHandle* sram_pi_init(void);
 void dma_sram_read(u32 romSrc, void* ramDst, u32 nbytes);
 void dma_sram_write(void* ramSrc, u32 romDst, u32 nbytes);

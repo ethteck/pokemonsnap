@@ -29,9 +29,9 @@ void func_800049C4(s32 arg0) {
     func_80004910(arg0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4680/func_800049E4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/4680/contRumbleStop.s")
 
-void func_80004A04(s32 arg0) {
+void contRumbleInit(s32 arg0) {
     func_80004910(arg0, 0);
 }
 

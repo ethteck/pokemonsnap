@@ -1,89 +1,19 @@
 #include "common.h"
-
-extern s32 D_80048888;
-extern s32 D_80048890;
-
-void func_80000920(void) {
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000928.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_800009A0.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000A08.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000A64.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000B84.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000C74.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000D04.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000D54.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000DE4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000E34.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000E6C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000EBC.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80000F40.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_800016E8.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001810.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001898.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001930.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001D94.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001F24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001F8C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80001FE4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002254.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_800024E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/scMain.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002954.s")
-
-void func_800029BC(s32 arg0) {
-    D_80048888 = arg0;
-}
-
-void func_800029C8(s32 arg0) {
-    D_80048890 = arg0;
-}
-
-void func_800029D4(void) {
-    D_80048890 = 0;
-}
-
 // sys/dma.c
 
 #include "sys/dma.h"
+#include "sys/sched.h"
 
 extern OSMesg sDmaOSMesg;
 extern OSMesgQueue sDmaRetQueue;
 extern s32 sVpkRamAddr;
 extern s32 sVpkBufSize;
 extern s32 sVpkRomAddr;
+extern OSPiHandle* gRomPiHandle;
 
 void create_dma_mq(void) {
     osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);
 }
-
-extern s32 scBeforeReset;
-extern OSPiHandle* gRomPiHandle;
 
 void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
     OSIoMesg mb;
@@ -148,7 +78,7 @@ void dma_rom_write(void* ramSrc, u32 romDst, u32 nbytes) {
     dma_copy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002C94.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80002C94.s")
 void func_80002C94(u16* data, s32 size, void (*func)(void), u32 arg3);
 
 void initialize_vpk_dma_stream(s32 romAddr, s32 ramAddr, s32 bufSize) {
@@ -173,4 +103,4 @@ void loadCompressedData(u32 rom, u32 ram) {
     func_800034C4(rom, ram, &buf, sizeof(buf));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80003530.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80003530.s")

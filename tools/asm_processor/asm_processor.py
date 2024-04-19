@@ -306,17 +306,17 @@ class Section:
 
         assert hdrr_magic == 0x7009, "Invalid magic value for .mdebug symbolic header"
 
-        hdrr_cbLineOffset += shift_by
-        hdrr_cbDnOffset += shift_by
-        hdrr_cbPdOffset += shift_by
-        hdrr_cbSymOffset += shift_by
-        hdrr_cbOptOffset += shift_by
-        hdrr_cbAuxOffset += shift_by
-        hdrr_cbSsOffset += shift_by
-        hdrr_cbSsExtOffset += shift_by
-        hdrr_cbFdOffset += shift_by
-        hdrr_cbRfdOffset += shift_by
-        hdrr_cbExtOffset += shift_by
+        if hdrr_cbLine: hdrr_cbLineOffset += shift_by
+        if hdrr_idnMax: hdrr_cbDnOffset += shift_by
+        if hdrr_ipdMax: hdrr_cbPdOffset += shift_by
+        if hdrr_isymMax: hdrr_cbSymOffset += shift_by
+        if hdrr_ioptMax: hdrr_cbOptOffset += shift_by
+        if hdrr_iauxMax: hdrr_cbAuxOffset += shift_by
+        if hdrr_issMax: hdrr_cbSsOffset += shift_by
+        if hdrr_issExtMax: hdrr_cbSsExtOffset += shift_by
+        if hdrr_ifdMax: hdrr_cbFdOffset += shift_by
+        if hdrr_crfd: hdrr_cbRfdOffset += shift_by
+        if hdrr_iextMax: hdrr_cbExtOffset += shift_by
 
         new_data[0:0x60] = self.fmt.pack("HHIIIIIIIIIIIIIIIIIIIIIII", hdrr_magic, hdrr_vstamp, hdrr_ilineMax, hdrr_cbLine, \
             hdrr_cbLineOffset, hdrr_idnMax, hdrr_cbDnOffset, hdrr_ipdMax, \

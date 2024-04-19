@@ -25,7 +25,8 @@ segments:
     - [0x1000, hasm, entry]
     - [0x1060, c, sys/main]
     - [0x1510, hasm, padding_1510]
-    - [0x1520, c]
+    - [0x1520, c, sys/sched]
+    - [0x35E0, c, 35E0]
     - [0x4680, c]
     - [0x5FF0, c]
     - [0x8450, c]
@@ -255,7 +256,7 @@ segments:
     - [0x43B70, .data, ../ultralib/src/io/vimgr]
     - [0x43B90, .data, ../ultralib/src/io/aisetnextbuf]
     - [0x43BA0, .rodata, sys/main]
-    - [0x43BC0, .rodata, 1520]
+    - [0x43BC0, .rodata, sys/sched]
     - [0x43C20, .rodata, 4680]
     - [0x43C40, .rodata, 5FF0]
     - [0x43E60, .rodata, 8450]
@@ -293,7 +294,8 @@ segments:
     - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
-    - { start: auto, name: bss_80045A70, type: bss, vram: 0x80048730 }
+    - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }
+    - { start: auto, name: bss_800488A0, type: bss, vram: 0x800488A0 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }

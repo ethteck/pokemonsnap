@@ -3,9 +3,7 @@
 #include "gbi.h"
 #include "string.h"
 
-extern Gfx* D_801E53A0_994E10;
 extern s32 D_801E5410_994E80;
-extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check 
 extern Sprite D_801F26B0_9A2120; // NEW
@@ -37,7 +35,7 @@ typedef struct UnkStruct98C_D {
 // data
 extern Gfx D_801E53A0_994E10[];
 extern s32 D_801E5410_994E80; // Todo some struct
-extern s32 D_801E542C_994E9C;
+extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801E5DB0_995820;
 extern Sprite D_801E5EE0_995950;

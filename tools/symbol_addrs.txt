@@ -5,7 +5,6 @@ dmaLoadOverlay = 0x80002B64;
 dmaReadRom = 0x80002C20;
 dmaWriteRom = 0x80002C5C;
 dmaReadVPK = 0x8000350C;
-contMain = 0x8000527C;
 gtl_init = 0x800076F0;
 runGObjProcess = 0x80008C28;
 endGObjProcess = 0x80008F2C;
@@ -376,5 +375,22 @@ scSetPostProcessFunc = 0x800029C8;
 scRemovePostProcessFunc = 0x800029D4;
 
 dmaDecodeVPK = 0x80002C94;
+
+contReadAndUpdate = 0x80004838;
+contUpdate = 0x80004860;
+contSetUpdateEveryTick = 0x800048B8;
+contIsPrinterAvailable = 0x80004E7C;
+contPrinterGetStatus = 0x80004EA4;
+contPrinterSendCommand = 0x80004EE4;
+contMain = 0x8000527C;
+sNumControllers = 0x800489F8;
+sControllerIndices = 0x800489FC;
+gContInput = 0x80048A88;
+gContInputCurrentButtons = 0x80049750;
+gContInputPressedButtons = 0x80049752;
+gContInputHeldButtons = 0x80049754;
+gContInputReleasedButtons = 0x80049756;
+gContInputStickX = 0x80049758;
+gContInputStickY = 0x80049759;
 
 contRumbleStop = 0x800049E4;

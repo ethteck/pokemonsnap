@@ -4,12 +4,12 @@
 #include "sys/dma.h"
 #include "sys/sched.h"
 
-extern OSMesg sDmaOSMesg;
-extern OSMesgQueue sDmaRetQueue;
-extern s32 sVpkRamAddr;
-extern s32 sVpkBufSize;
-extern s32 sVpkRomAddr;
-extern OSPiHandle* gRomPiHandle;
+OSPiHandle* gRomPiHandle;
+OSMesg sDmaOSMesg;
+OSMesgQueue sDmaRetQueue;
+s32 sVpkRamAddr;
+s32 sVpkBufSize;
+s32 sVpkRomAddr;
 
 void dmaCreateMessageQueue(void) {
     osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);

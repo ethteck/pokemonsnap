@@ -33,8 +33,8 @@ void func_8009B40C(void) {
     s32 i = 0;
 
     for (i = 0;;) {
-        load_overlay(&D_800ABDEC);
-        load_overlay(&D_800ABBD0);
+        dmaLoadOverlay(&D_800ABDEC);
+        dmaLoadOverlay(&D_800ABBD0);
         if (func_801DD010(i) != 0) {
             while (TRUE);
         }

@@ -105,9 +105,9 @@ void thread5_main(UNUSED void *arg) {
     osCreateViManager(OS_PRIORITY_VIMGR);
     gRomPiHandle = osCartRomInit();
     osCreatePiManager(OS_PRIORITY_PIMGR, &sPIcmdQ, sPIcmdBuf, ARRAY_COUNT(sPIcmdBuf));
-    create_dma_mq();
+    dmaCreateMessageQueue();
 
-    dma_rom_read(PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
+    dmaReadRom(PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
     check_sp_imem();
     check_sp_dmem();
     osCreateMesgQueue(&gThreadingQueue, sBlockMsg, ARRAY_COUNT(sBlockMsg));
@@ -125,7 +125,7 @@ void thread5_main(UNUSED void *arg) {
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
     gtl_init();
-    load_overlay(&OverlayManager);
+    dmaLoadOverlay(&OverlayManager);
     start_scene_manager(0);
 }
 

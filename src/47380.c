@@ -83,7 +83,7 @@ s32 func_8009CDE4(u8* arg0) {
 
 void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
     if (arg1 >= arg0) {
-        dma_rom_read(arg0, (void*) arg2, arg1 - arg0);
+        dmaReadRom(arg0, (void*) arg2, arg1 - arg0);
     }
 }
 

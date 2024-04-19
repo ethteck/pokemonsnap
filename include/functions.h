@@ -7,7 +7,7 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
-void loadCompressedData(u32 rom, u32 ram);
+void dmaReadVPK(u32 rom, u32 ram);
 
 GObj* runGObjProcess(GObj*, gfxFunc func, s8 kind, u32 priority);
 void endGObjProcess(GObj*);

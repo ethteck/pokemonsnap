@@ -372,5 +372,7 @@ scUnknownU64 = 0x80048830;
 scTaskQueue = 0x80048868;
 scBeforeReset = 0x8004888C;
 scCheckGfxTaskDefault = 0x80000A64;
+scSetPostProcessFunc = 0x800029C8;
+scRemovePostProcessFunc = 0x800029D4;
 
 contRumbleStop = 0x800049E4;

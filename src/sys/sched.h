@@ -13,9 +13,9 @@ enum SCTaskType {
     SC_TASK_TYPE_FRAMEBUFFERS       = 5,
     SC_TASK_TYPE_GFX_END            = 6,
     SC_TASK_TYPE_NOP                = 7,
-    SC_TASK_TYPE_8                  = 8,
-    SC_TASK_TYPE_9                  = 9,
-    SC_TASK_TYPE_10                 = 10,
+    SC_TASK_TYPE_RDP_BUFFER         = 8,
+    SC_TASK_TYPE_CUSTOM_BUFFERING                  = 9,
+    SC_TASK_TYPE_DEFAULT_BUFFERING                 = 10,
     SC_TASK_TYPE_11                 = 11
 };
 
@@ -97,9 +97,9 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ SCTaskInfo info;
-    /* 0x24 */ void* unk24;
-    /* 0x28 */ s32 unk28; // size
-} SCTaskType8; // size >= 0x2C
+    /* 0x24 */ void* buffer;
+    /* 0x28 */ s32 size;
+} SCTaskRDPBuffer; // size >= 0x2C
 
 typedef struct {
     /* 0x00 */ SCTaskInfo info;

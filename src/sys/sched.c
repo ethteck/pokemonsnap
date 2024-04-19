@@ -1,4 +1,5 @@
 #include "sys/sched.h"
+#include "sys/crash.h"
 #include "sys/main.h"
 #include "macros.h"
 #include "types.h"
@@ -41,26 +42,26 @@ OSViMode scViModeNext;
 u32 scViSettingsUpdated;
 u32 padding;
 void* scFrameBuffers[3];
-void* scNextFrameBuffer;
+void* scNextFrameBuffer; // drawn and ready for display
 void* scUnkFrameBuffer;
 u32 scUnknownInt;
-void* scCurrentFrameBuffer;
+void* scCurrentFrameBuffer; // currently displayed
 s32 scTimestampSetFb;
 s32 scTimestampAudioTaskStarted;
 s32 scTimeSpentGfx;
 s32 scTimeSpentAudio;
 ViSettings scViSettings;
 u64 scUnknownU64;
-s32 scUnknownInt2;
-void* scUnknownVoid;
-s32 scUnknownInt3;
+s32 scRDPOutputBufferUsed;
+void* scRDPBuffer;
+s32 scRDPBufferCapacity;
 OSMesg scMessages[8];
 OSMesgQueue scTaskQueue;
 s32 scUseCustomSwapBufferFunc;
 OSMesgQueue *scCustomSwapBufferQueue;
 void (*scPreNMIProc)(void);
 s32 scBeforeReset;
-void (*scUnknownFunc)(void*);
+void (*scPostProcessFunc)(void*);
 
 void func_80000920(void) {
 }
@@ -123,7 +124,7 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
         fb = scFrameBuffers[idx];
         if (fb != NULL && curFb != fb && nextFb != fb) {
             scUnkFrameBuffer = scNextFrameBuffer = fb;
-            scUnknownInt2 = 0;
+            scRDPOutputBufferUsed = 0;
             scTimestampSetFb = osGetCount();
             return TRUE;
         }
@@ -134,7 +135,7 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
         fb = scFrameBuffers[i];
         if (fb != NULL && curFb != fb && nextFb != fb) {
             scNextFrameBuffer = fb;
-            scUnknownInt2 = 0;
+            scRDPOutputBufferUsed = 0;
             scTimestampSetFb = osGetCount();
             return TRUE;
         }
@@ -570,7 +571,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
 #endif
 
-// called when frame is drawn into fb
+// called when rcp task is done
 void scSetNextFrameBuffer(void* fb) {
     if (scViSettingsUpdated) {
         if (!scBeforeReset) {
@@ -645,7 +646,7 @@ s32 scExecuteTask(SCTaskInfo* task) {
                     osWritebackDCache(t->unk68, sizeof(s32*));
                 }
                 if ((uintptr_t)t->task.t.output_buff == (uintptr_t)-1) {
-                    t->task.t.output_buff = (u64 *)((uintptr_t)scUnknownVoid + scUnknownInt2);
+                    t->task.t.output_buff = (u64 *)((uintptr_t)scRDPBuffer + scRDPOutputBufferUsed);
                     osWritebackDCache(&t->task.t.output_buff, sizeof(u64 *));
                 }
                 if (t->unk74 == 1) {
@@ -774,30 +775,30 @@ s32 scExecuteTask(SCTaskInfo* task) {
                 osSendMesg(task->mq, (OSMesg)task->retVal, OS_MESG_NOBLOCK);
             }
             break;
-        case SC_TASK_TYPE_8:
+        case SC_TASK_TYPE_RDP_BUFFER:
             {
-                SCTaskType8* t = (void *)task;
+                SCTaskRDPBuffer* t = (void *)task;
 
-                scUnknownVoid = t->unk24;
-                scUnknownInt3 = t->unk28;
+                scRDPBuffer = t->buffer;
+                scRDPBufferCapacity = t->size;
                 if (t->info.mq != NULL) {
                     osSendMesg(t->info.mq, (OSMesg)t->info.retVal, OS_MESG_NOBLOCK);
                 }
                 break;
             }
-        case SC_TASK_TYPE_9:
+        case SC_TASK_TYPE_CUSTOM_BUFFERING:
             {
                 SCTaskType9* t = (void *)task;
 
-                scUseCustomSwapBufferFunc = 1;
+                scUseCustomSwapBufferFunc = TRUE;
                 scCustomSwapBufferQueue = t->unk24;
                 if (t->info.mq != NULL) {
                     osSendMesg(t->info.mq, (OSMesg)t->info.retVal, OS_MESG_NOBLOCK);
                 }
                 break;
             }
-        case SC_TASK_TYPE_10:
-            scUseCustomSwapBufferFunc = 0;
+        case SC_TASK_TYPE_DEFAULT_BUFFERING:
+            scUseCustomSwapBufferFunc = FALSE;
             if (task->mq != NULL) {
                 osSendMesg(task->mq, (OSMesg)task->retVal, OS_MESG_NOBLOCK);
             }
@@ -934,10 +935,10 @@ void scHandleSPTaskDone(void) {
         if (scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX && scCurrentGfxTask->unk74 == 1) {
             osInvalDCache(&scUnknownU64, sizeof(scUnknownU64));
             scCurrentGfxTask->rdpBufSize = scUnknownU64;
-            scUnknownInt2 += (s32)scUnknownU64;
-            scUnknownInt2 = OS_DCACHE_ROUNDUP_ADDR(scUnknownInt2);
-            if (scUnknownInt2 < scUnknownU64) {
-                fatal_printf("rdp_output_buff over !! size = %d\n byte", scUnknownInt2);
+            scRDPOutputBufferUsed += (s32)scUnknownU64;
+            scRDPOutputBufferUsed = OS_DCACHE_ROUNDUP_SIZE(scRDPOutputBufferUsed);
+            if (scRDPOutputBufferUsed < scUnknownU64) {
+                fatal_printf("rdp_output_buff over !! size = %d\n byte", scRDPOutputBufferUsed);
                 while (TRUE) { }
             }
             
@@ -962,11 +963,11 @@ void scHandleDPFullSync(void) {
     if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 2) {
         if (scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
             if (scCurrentGfxTask->fb != NULL) { 
-                if (scUnknownFunc != NULL) {
+                if (scPostProcessFunc != NULL) {
                     if ((intptr_t)scCurrentGfxTask->fb == -1) {
-                        scUnknownFunc(scNextFrameBuffer);
+                        scPostProcessFunc(scNextFrameBuffer);
                     } else {
-                        scUnknownFunc(scCurrentGfxTask->fb);
+                        scPostProcessFunc(scCurrentGfxTask->fb);
                     }
                 }
                 scSetNextFrameBuffer(scCurrentGfxTask->fb);
@@ -986,11 +987,11 @@ void scHandleDPFullSync(void) {
         scExecuteTasks();
     } else if (scCurrentQueue3Task != NULL) {
         if (scCurrentQueue3Task->fb != NULL) { 
-            if (scUnknownFunc != NULL) {
+            if (scPostProcessFunc != NULL) {
                 if ((intptr_t)scCurrentQueue3Task->fb == -1) {
-                    scUnknownFunc(scNextFrameBuffer);
+                    scPostProcessFunc(scNextFrameBuffer);
                 } else {
-                    scUnknownFunc(scCurrentQueue3Task->fb);
+                    scPostProcessFunc(scCurrentQueue3Task->fb);
                 }
             }
             scSetNextFrameBuffer(scCurrentQueue3Task->fb);
@@ -1005,11 +1006,11 @@ void scHandleDPFullSync(void) {
     } else if (scPausedQueueHead != NULL && scPausedQueueHead->info.unk18 == 2) {
         if (scPausedQueueHead->info.type == SC_TASK_TYPE_GFX) {
             if (scPausedQueueHead->fb != NULL) { 
-                if (scUnknownFunc != NULL) {
+                if (scPostProcessFunc != NULL) {
                     if ((intptr_t)scPausedQueueHead->fb == -1) {
-                        scUnknownFunc(scNextFrameBuffer);
+                        scPostProcessFunc(scNextFrameBuffer);
                     } else {
-                        scUnknownFunc(scPausedQueueHead->fb);
+                        scPostProcessFunc(scPausedQueueHead->fb);
                     }
                 }
                 scSetNextFrameBuffer(scPausedQueueHead->fb);
@@ -1137,10 +1138,10 @@ void scSetPreNMIProc(void (*fn)(void)) {
     scPreNMIProc = fn;
 }
 
-void func_800029C8(void (*fn)(void*)) {
-    scUnknownFunc = fn;
+void scSetPostProcessFunc(void (*fn)(void*)) {
+    scPostProcessFunc = fn;
 }
 
-void func_800029D4(void) {
-    scUnknownFunc = NULL;
+void scRemovePostProcessFunc(void) {
+    scPostProcessFunc = NULL;
 }

@@ -15,7 +15,7 @@
 void scMain(void *arg);
 void thread4_audio(void *arg);
 void contMain(void *arg);
-void gtl_init(void);
+void gtlInit(void);
 
 void start_scene_manager(s32);
 void start_thread8_rmon(void);
@@ -90,8 +90,7 @@ void check_sp_dmem(void) {
 
 void fatal_stack_overflow_thread(s32 tid) {
     fatal_printf("thread stack overflow  id = %d\n", tid);
-
-    while (TRUE) { }
+    PANIC();
 }
 
 void check_stack_probes(void) {
@@ -124,7 +123,7 @@ void thread5_main(UNUSED void *arg) {
     sThread6Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread6);
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
-    gtl_init();
+    gtlInit();
     dmaLoadOverlay(&OverlayManager);
     start_scene_manager(0);
 }

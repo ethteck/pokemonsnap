@@ -9,13 +9,14 @@
 #include "sys/vi.h"
 #include "types.h"
 #include "macros.h"
-#include "ld_addrs.h"
+#include "ucode.h"
 
 // TODO include
+void func_80007D08(void*);
+void func_80007D14(Gfx**);
+void om_create_objects(OMSetup*);
+void func_80011254(void*);
 void func_8000C274(void);
-
-extern u8 UcodeText2[];
-extern u8 UcodeData2[];
 
 enum GtlStates { GTL_STATE_0 = 0, GTL_STATE_1 = 1, GTL_STATE_2 = 2 };
 
@@ -35,8 +36,8 @@ enum UcodeTypes {
 };
 
 typedef struct {
-    /* 0x00 */ u8* text;
-    /* 0x04 */ u8* data;
+    /* 0x00 */ long long* text;
+    /* 0x04 */ long long* data;
 } UcodeInfo; // size = 0x08
 
 typedef struct FnBundle {
@@ -51,9 +52,9 @@ typedef struct FnBundle {
 s32 gtlD_80040CF0 = 0;
 u32 gtlFrameCounter = 0;
 s32 gtlDrawnFrameCounter = 0;
-UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gSPF3DEX2H_NoN_fifo_text_bin, gSPF3DEX2H_NoN_fifo_data_bin },
+UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gspF3DEX2_NoN_fifoTextStart, gspF3DEX2_NoN_fifoDataStart },
                               { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
-                              { NULL, NULL }, { NULL, NULL }, { UcodeText2, UcodeData2 },
+                              { NULL, NULL }, { NULL, NULL }, { gspL3DEX2_fifoTextStart, gspL3DEX2_fifoDataStart },
                               { NULL, NULL }, { NULL, NULL } };
 
 // BSS
@@ -66,7 +67,7 @@ s32 gtlD_8004979C;
 OSMesg gtlD_800497A0[1];
 OSMesgQueue gtlD_800497A8;
 SCClient gtlSCClient;
-u32* gftlSegmentFBasePtr;
+u32* gtlSegmentFBasePtr;
 OSMesg gtlD_800497D0[3];
 OSMesgQueue gtlD_800497E0;
 OSMesg gtlResetQueueMsgs[1];
@@ -103,12 +104,6 @@ DynamicBuffer gtlGfxHeaps[2];
 void (*gtlUpdateInputFunc)(void);
 s32 (*gtlD_8004A94C)(SCTaskGfx*);
 
-// TODO header
-void func_80007D08(void*);
-void func_80007D14(Gfx**);
-void om_create_objects(OMSetup*);
-void func_80011254(void*);
-
 void func_800053F0(void* arg0) {
     if (arg0 != NULL) {
         gtlD_8004A94C = arg0;
@@ -119,11 +114,11 @@ void func_800053F0(void* arg0) {
 }
 
 void gtl_set_segment_F(Gfx** gfxPtr) {
-    gftlSegmentFBasePtr = (u32*)&(*gfxPtr)->dma.addr;
+    gtlSegmentFBasePtr = (u32*)&(*gfxPtr)->dma.addr;
     gSPSegment((*gfxPtr)++, 0x0F, 0x00000000);
 }
 
-void func_80005448(s32 arg0) {
+void gtlDisableNearClipping(s32 arg0) {
     gtlNoNearclipping = arg0;
 }
 
@@ -132,15 +127,15 @@ void func_80005454(u16 arg0, u16 arg1) {
     gtlD_8004A906 = arg1;
 }
 
-void init_hal_alloc(void* arg0, s32 size) {
+void gtlInitHeap(void* arg0, s32 size) {
     init_bump_alloc(&sGeneralHeap, 0x10000, arg0, size);
 }
 
-void* hal_alloc(s32 size, s32 alignment) {
+void* gtlMalloc(s32 size, s32 alignment) {
     return bump_alloc(&sGeneralHeap, size, alignment);
 }
 
-void gtl_reset_heap(void) {
+void gtlResetHeap(void) {
     gtlCurrentGfxHeap.id = gtlGfxHeaps[gtlContextId].id;
     gtlCurrentGfxHeap.start = gtlGfxHeaps[gtlContextId].start;
     gtlCurrentGfxHeap.end = gtlGfxHeaps[gtlContextId].end;
@@ -148,17 +143,17 @@ void gtl_reset_heap(void) {
     reset_bump_alloc(&gtlCurrentGfxHeap);
 }
 
-void gtl_set_dl_buffers(DLBuffer (*arg0)[4]) {
+void gtlSetDLBuffers(DLBuffer (*buffers)[4]) {
     s32 i, j;
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 4; j++) {
-            gtlDLBuffers[i][j] = arg0[i][j];
+            gtlDLBuffers[i][j] = buffers[i][j];
         }
     }
 }
 
-void gtl_init_display_lists(void) {
+void gtlInitDLists(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
@@ -179,7 +174,7 @@ void gtl_init_display_lists(void) {
     gtlD_8004A908 = FALSE;
 }
 
-void gtl_check_buffers(void) {
+void gtlCheckBuffers(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
@@ -187,14 +182,14 @@ void gtl_check_buffers(void) {
             (uintptr_t)gMainGfxPos[i]) {
             fatal_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i,
                          (uintptr_t)gMainGfxPos[i] - (uintptr_t)gtlDLBuffers[gtlContextId][i].start);
-            while (TRUE) {}
+            PANIC();
         }
     }
 
     if ((uintptr_t)gtlCurrentGfxHeap.end < (uintptr_t)gtlCurrentGfxHeap.ptr) {
         fatal_printf("gtl : DynamicBuffer over flow !  %d byte\n",
                      (uintptr_t)gtlCurrentGfxHeap.ptr - (uintptr_t)gtlCurrentGfxHeap.start);
-        while (TRUE) {}
+        PANIC();
     }
 }
 
@@ -208,7 +203,7 @@ void gtl_set_rdp_output(void* buffer, s32 size) {
     scExecuteBlocking(&task.info);
     if ((s32)&scUnknownU64 & 7) {
         fatal_printf("bad addr sc_rdp_output_len = %x\n", &scUnknownU64);
-        while (TRUE) {}
+        PANIC();
     }
 }
 
@@ -220,7 +215,7 @@ void gtl_set_rdp_output_settings(s32 type, void* buffer, u32 size) {
     if (type == 2 || type == 1) {
         if (size == 0) {
             fatal_printf("gtl : Buffer size for RDP is zero !!\n");
-            while (TRUE) {}
+            PANIC();
         }
     }
 
@@ -234,12 +229,12 @@ SCTaskGfx* gtl_get_task_gfx(void) {
 
     if (gtlGfxTasksBufferStart[gtlContextId] == NULL) {
         fatal_printf("gtl : not defined SCTaskGfx\n");
-        while (TRUE) {}
+        PANIC();
     }
 
     if (gtlGfxTasksBufferPtr[gtlContextId] == gtlGfxTasksBufferEnd[gtlContextId]) {
         fatal_printf("gtl : couldn\'t get SCTaskGfx\n");
-        while (TRUE) {}
+        PANIC();
     }
     task = gtlGfxTasksBufferPtr[gtlContextId]++;
     return task;
@@ -274,7 +269,7 @@ void gtl_cancel_current_gfx_task(void) {
 
     if (task == NULL) {
         fatal_printf("gtl : not defined SCTaskGfxEnd\n");
-        while (TRUE) {}
+        PANIC();
     }
 
     retVal = gtlContextId;
@@ -289,15 +284,15 @@ void gtl_reset(void) {
 
     if (task == NULL) {
         fatal_printf("gtl : not defined SCTaskGfxEnd\n");
-        while (TRUE) {}
+        PANIC();
     }
 
     retVal = gtlContextId;
     gtl_schedule_gfx_end(task, NULL, retVal, &gtlResetQueue);
     osRecvMesg(&gtlResetQueue, &recv, OS_MESG_BLOCK);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
-    gtl_reset_heap();
-    gtl_init_display_lists();
+    gtlResetHeap();
+    gtlInitDLists();
 }
 
 void gtl_schedule_gfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff,
@@ -306,10 +301,10 @@ void gtl_schedule_gfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* d
 
     t->info.type = SC_TASK_TYPE_GFX;
     t->info.priority = 50;
-    if (gftlSegmentFBasePtr != NULL) {
+    if (gtlSegmentFBasePtr != NULL) {
         t->info.fnCheck = (SCTaskCallback)gtlD_8004A94C;
-        t->unk68 = gftlSegmentFBasePtr;
-        gftlSegmentFBasePtr = NULL;
+        t->unk68 = gtlSegmentFBasePtr;
+        gtlSegmentFBasePtr = NULL;
     } else {
         t->info.fnCheck = NULL;
         t->unk68 = NULL;
@@ -334,10 +329,10 @@ void gtl_schedule_gfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* d
     ucode = &gtlD_80040CFC[ucodeIdx];
     if (ucode->text == NULL) {
         fatal_printf("gtl : ucode isn\'t included  kind = %d\n", ucodeIdx);
-        while (TRUE) {}
+        PANIC();
     }
-    t->task.t.ucode = ucode->text;
-    t->task.t.ucode_data = ucode->data;
+    t->task.t.ucode = (u64*)ucode->text;
+    t->task.t.ucode_data = (u64*)ucode->data;
     t->task.t.ucode_size = SP_UCODE_SIZE;
     t->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     t->task.t.dram_stack = OS_DCACHE_ROUNDUP_ADDR(&gtlDramStack);
@@ -429,13 +424,13 @@ void func_80005D60(s32 arg0, u64* dlist) {
     }
 }
 
-void gtl_load_ucode(Gfx** dlist, u32 ucodeIdx) {
+void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx) {
     // TODO: use gSPLoadUcodeL
     switch (ucodeIdx) {
         case 0:
         case 1:
         case 2:
-            gSPLoadUcode((*dlist)++, OS_K0_TO_PHYSICAL(gSPF3DEX2H_NoN_fifo_text_bin), OS_K0_TO_PHYSICAL(gSPF3DEX2H_NoN_fifo_data_bin));
+            gSPLoadUcodeL((*dlist)++, gspF3DEX2_NoN_fifo);
             break;
         case 3:
         case 4:
@@ -443,7 +438,7 @@ void gtl_load_ucode(Gfx** dlist, u32 ucodeIdx) {
         case 6:
         case 7:
         case 8:
-            gSPLoadUcode((*dlist)++, OS_K0_TO_PHYSICAL(&UcodeText2), OS_K0_TO_PHYSICAL(&UcodeData2));
+            gSPLoadUcodeL((*dlist)++, gspL3DEX2_fifo);
             break;
         case 9:
             break;
@@ -451,7 +446,7 @@ void gtl_load_ucode(Gfx** dlist, u32 ucodeIdx) {
     gSPDisplayList((*dlist)++, gtlResetRDPDlist);
 }
 
-void gtl_process_all_dlists(void) {
+void gtlProcessAllDLists(void) {
     s32 needLineUcode;
     s32 diffs;
     s32 i;
@@ -478,17 +473,17 @@ void gtl_process_all_dlists(void) {
         if (diffs & 1) {
             if (diffs & 4) {
                 // 0 -> 2
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[2]);
             } else if (diffs & 2) {
                 // 0 -> 1
                 if (gtlD_8004A908) {
-                    gtl_load_ucode(&gMainGfxPos[0], gtlD_8004A904);
+                    gtlLoadUcode(&gMainGfxPos[0], gtlD_8004A904);
                 }
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
                 // 0 -> 3
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[3]);
             } else {
                 // 0
@@ -499,7 +494,7 @@ void gtl_process_all_dlists(void) {
         if (diffs & 4) {
             if (diffs & 2) {
                 // 2 -> 1
-                gtl_load_ucode(&gMainGfxPos[2], gtlD_8004A904);
+                gtlLoadUcode(&gMainGfxPos[2], gtlD_8004A904);
                 gSPBranchList(gMainGfxPos[2]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
                 // 2 -> 3
@@ -513,7 +508,7 @@ void gtl_process_all_dlists(void) {
         if (diffs & 2) {
             if (diffs & 8) {
                 // 1 -> 3
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[1]++, gSavedGfxPos[3]);
             } else {
                 // 1
@@ -553,14 +548,14 @@ void gtl_process_all_dlists(void) {
         gSavedGfxPos[3] = gMainGfxPos[3];
     }
 
-    gtl_check_buffers();
+    gtlCheckBuffers();
 }
 
 void gtl_combine_all_dlists(void) {
     s32 i;
     s32 diffs;
 
-    gtl_check_buffers();
+    gtlCheckBuffers();
     diffs = 0;
     for (i = 0; i < 4; i++) {
         diffs >>= 1;
@@ -572,27 +567,27 @@ void gtl_combine_all_dlists(void) {
     if (diffs != 0) {
         if (diffs & 1) {
             if (diffs & 4) {
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[2]);
             } else if (diffs & 2) {
                 if (gtlD_8004A908) {
-                    gtl_load_ucode(&gMainGfxPos[0], gtlD_8004A904);
+                    gtlLoadUcode(&gMainGfxPos[0], gtlD_8004A904);
                 }
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[3]);
             }
         }
 
         if (diffs & 4) {
             if (diffs & 2) {
-                gtl_load_ucode(&gMainGfxPos[2], gtlD_8004A904);
+                gtlLoadUcode(&gMainGfxPos[2], gtlD_8004A904);
                 gSPBranchList(gMainGfxPos[2]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
                 gSPBranchList(gMainGfxPos[2]++, gSavedGfxPos[3]);
             } else {
-                gtl_load_ucode(&gMainGfxPos[2], gtlD_8004A904);
+                gtlLoadUcode(&gMainGfxPos[2], gtlD_8004A904);
                 gSPBranchList(gMainGfxPos[2]++, gMainGfxPos[0]);
             }
             gSavedGfxPos[2] = gMainGfxPos[2];
@@ -600,11 +595,11 @@ void gtl_combine_all_dlists(void) {
 
         if (diffs & 2) {
             if (diffs & 8) {
-                gtl_load_ucode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
                 gSPBranchList(gMainGfxPos[1]++, gSavedGfxPos[3]);
             } else {
                 if (gtlD_8004A908) {
-                    gtl_load_ucode(&gMainGfxPos[1], gtlD_8004A904);
+                    gtlLoadUcode(&gMainGfxPos[1], gtlD_8004A904);
                 }
                 gSPBranchList(gMainGfxPos[1]++, gMainGfxPos[0]);
             }
@@ -612,14 +607,14 @@ void gtl_combine_all_dlists(void) {
         }
 
         if (diffs & 8) {
-            gtl_load_ucode(&gMainGfxPos[3], gtlD_8004A904);
+            gtlLoadUcode(&gMainGfxPos[3], gtlD_8004A904);
             gSPBranchList(gMainGfxPos[3]++, gMainGfxPos[0]);
             gSavedGfxPos[3] = gMainGfxPos[3];
         }
     }
 
     gtlD_8004A908 = FALSE;
-    gtl_check_buffers();
+    gtlCheckBuffers();
 }
 
 u32 gtl_switch_context(s32 arg0) {
@@ -702,7 +697,7 @@ void func_80006878(void) {
     }
 }
 
-void gtl_main(FnBundle* arg0) {
+void gtlMain(FnBundle* arg0) {
     s32 i;
 
     gtlD_8004979C = 0;
@@ -793,10 +788,10 @@ void func_80006E24(FnBundle* arg0) {
 }
 
 void func_80006E5C(FnBundle* self) {
-    gtl_reset_heap();
-    gtl_init_display_lists();
+    gtlResetHeap();
+    gtlInitDLists();
     self->fnPrivDraw();
-    gtl_process_all_dlists();
+    gtlProcessAllDLists();
     vi_apply_settings_nonblocking(gtlVideoSettingsTasks[gtlContextId]);
     gtl_cancel_current_gfx_task();
 }
@@ -810,10 +805,10 @@ void gtl_update(FnBundle* self) {
 }
 
 void gtl_draw(FnBundle* self) {
-    gtl_reset_heap();
-    gtl_init_display_lists();
+    gtlResetHeap();
+    gtlInitDLists();
     self->fnPrivDraw();
-    gtl_process_all_dlists();
+    gtlProcessAllDLists();
     vi_apply_settings_nonblocking(gtlVideoSettingsTasks[gtlContextId]);
     gtl_cancel_current_gfx_task();
     if (gtl_check_exit_main_loop()) {
@@ -832,14 +827,14 @@ void func_80006F8C(struct Temp8000641C* arg0) {
     SCTaskGfxEnd* task;
 
     gtl_switch_context(0);
-    gtl_reset_heap();
-    gtl_init_display_lists();
+    gtlResetHeap();
+    gtlInitDLists();
     arg0->fn2C(arg0);
-    gtl_process_all_dlists();
+    gtlProcessAllDLists();
     task = gtlGfxEndTasks[gtlContextId];
     if (task == NULL) {
         fatal_printf("gtl : not defined SCTaskGfxEnd\n");
-        while (TRUE) {}
+        PANIC();
     }
     tmp = gtlContextId;
     gtl_schedule_gfx_end(task, NULL, tmp, &gtlD_800497E0);
@@ -862,24 +857,24 @@ void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlCallbackBundle.fnPrivUpdate = setup->fnUpdate;
     gtlCallbackBundle.fnPrivDraw = setup->fnDraw;
 
-    gtl_init_task_buffers(hal_alloc(setup->unk14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk14,
-                          hal_alloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
-                          hal_alloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
+    gtl_init_task_buffers(gtlMalloc(setup->unk14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk14,
+                          gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
+                          gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
 
     for (i = 0; i < gtlNumContexts; i++) {
-        dlBuffers[i][0].start = hal_alloc(setup->dlBufferSize0, 8);
+        dlBuffers[i][0].start = gtlMalloc(setup->dlBufferSize0, 8);
         dlBuffers[i][0].length = setup->dlBufferSize0;
-        dlBuffers[i][1].start = hal_alloc(setup->dlBufferSize1, 8);
+        dlBuffers[i][1].start = gtlMalloc(setup->dlBufferSize1, 8);
         dlBuffers[i][1].length = setup->dlBufferSize1;
-        dlBuffers[i][2].start = hal_alloc(setup->dlBufferSize2, 8);
+        dlBuffers[i][2].start = gtlMalloc(setup->dlBufferSize2, 8);
         dlBuffers[i][2].length = setup->dlBufferSize2;
-        dlBuffers[i][3].start = hal_alloc(setup->dlBufferSize3, 8);
+        dlBuffers[i][3].start = gtlMalloc(setup->dlBufferSize3, 8);
         dlBuffers[i][3].length = setup->dlBufferSize3;
     }
-    gtl_set_dl_buffers(dlBuffers);
+    gtlSetDLBuffers(dlBuffers);
 
     for (i = 0; i < gtlNumContexts; i++) {
-        init_bump_alloc(&gtlCurrentGfxHeap, 0x10002, hal_alloc(setup->gfxHeapSize, 8), setup->gfxHeapSize);
+        init_bump_alloc(&gtlCurrentGfxHeap, 0x10002, gtlMalloc(setup->gfxHeapSize, 8), setup->gfxHeapSize);
         gtlGfxHeaps[i].id = gtlCurrentGfxHeap.id;
         gtlGfxHeaps[i].start = gtlCurrentGfxHeap.start;
         gtlGfxHeaps[i].end = gtlCurrentGfxHeap.end;
@@ -892,7 +887,7 @@ void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
     }
 
     tmp = setup->rdpOutputBufferSize;
-    gtl_set_rdp_output_settings(setup->unk30, hal_alloc(tmp, 16), setup->rdpOutputBufferSize);
+    gtl_set_rdp_output_settings(setup->unk30, gtlMalloc(tmp, 16), setup->rdpOutputBufferSize);
     func_80007D08(setup->fnPreRender);
     gtlUpdateInputFunc = setup->fnUpdateInput;
     contSetUpdateEveryTick((uintptr_t)contReadAndUpdate != (uintptr_t)gtlUpdateInputFunc ? TRUE : FALSE);
@@ -902,11 +897,11 @@ void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
         postInitFunc();
     }
 
-    gtl_main(&gtlCallbackBundle);
+    gtlMain(&gtlCallbackBundle);
 }
 
 void func_80007354(BufferSetup* arg) {
-    init_hal_alloc(arg->heapBase, arg->heapSize);
+    gtlInitHeap(arg->heapBase, arg->heapSize);
     gtlCallbackBundle.fnUpdate = func_80006E24;
     gtlCallbackBundle.fnDraw = func_80006E5C;
     gtl_start(arg, NULL);
@@ -915,14 +910,14 @@ void func_80007354(BufferSetup* arg) {
 void om_setup_scene(SceneSetup* arg) {
     OMSetup omSetup;
 
-    init_hal_alloc(arg->gtlSetup.heapBase, arg->gtlSetup.heapSize);
+    gtlInitHeap(arg->gtlSetup.heapBase, arg->gtlSetup.heapSize);
 
-    omSetup.threads = hal_alloc(sizeof(GObjThread) * arg->numOMThreads, 8);
+    omSetup.threads = gtlMalloc(sizeof(GObjThread) * arg->numOMThreads, 8);
     omSetup.numThreads = arg->numOMThreads;
     omSetup.threadStackSize = arg->omThreadStackSize;
     if (arg->omThreadStackSize != 0) {
         omSetup.stacks =
-            hal_alloc((arg->omThreadStackSize + 0x8 /*offsetof(ThreadStackNode, stack)*/) * arg->numOMStacks, 8);
+            gtlMalloc((arg->omThreadStackSize + 0x8 /*offsetof(ThreadStackNode, stack)*/) * arg->numOMStacks, 8);
     } else {
         omSetup.stacks = NULL;
     }
@@ -930,34 +925,34 @@ void om_setup_scene(SceneSetup* arg) {
     omSetup.numStacks = arg->numOMStacks;
     omSetup.unk14 = arg->unk4C;
 
-    omSetup.processes = hal_alloc(sizeof(GObjProcess) * arg->numOMProcesses, 4);
+    omSetup.processes = gtlMalloc(sizeof(GObjProcess) * arg->numOMProcesses, 4);
     omSetup.numProcesses = arg->numOMProcesses;
 
-    omSetup.commons = hal_alloc(arg->objectSize * arg->numOMGobjs, 8);
+    omSetup.commons = gtlMalloc(arg->objectSize * arg->numOMGobjs, 8);
     omSetup.numObjects = arg->numOMGobjs;
     omSetup.objectSize = arg->objectSize;
 
-    omSetup.matrices = hal_alloc(sizeof(OMMtx) * arg->numOMMtx, 8);
+    omSetup.matrices = gtlMalloc(sizeof(OMMtx) * arg->numOMMtx, 8);
     omSetup.numMatrices = arg->numOMMtx;
 
     func_80011254(arg->unk60);
     omSetup.cleanupFn = arg->unk64;
 
-    omSetup.aobjs = hal_alloc(sizeof(AObj) * arg->numOMAobjs, 4);
+    omSetup.aobjs = gtlMalloc(sizeof(AObj) * arg->numOMAobjs, 4);
     omSetup.numAObjs = arg->numOMAobjs;
 
-    omSetup.mobjs = hal_alloc(sizeof(MObj) * arg->numOMMobjs, 4);
+    omSetup.mobjs = gtlMalloc(sizeof(MObj) * arg->numOMMobjs, 4);
     omSetup.numMObjs = arg->numOMMobjs;
 
-    omSetup.dobjs = hal_alloc(arg->omDobjSize * arg->numOMDobjs, 8);
+    omSetup.dobjs = gtlMalloc(arg->omDobjSize * arg->numOMDobjs, 8);
     omSetup.numDObjs = arg->numOMDobjs;
     omSetup.dobjSize = arg->omDobjSize;
 
-    omSetup.sobjs = hal_alloc(arg->omSobjSize * arg->numOMSobjs, 8);
+    omSetup.sobjs = gtlMalloc(arg->omSobjSize * arg->numOMSobjs, 8);
     omSetup.numSObjs = arg->numOMSobjs;
     omSetup.sobjSize = arg->omSobjSize;
 
-    omSetup.cameras = hal_alloc(arg->omCameraSize * arg->numOMCameras, 8);
+    omSetup.cameras = gtlMalloc(arg->omCameraSize * arg->numOMCameras, 8);
     omSetup.numCameras = arg->numOMCameras;
     omSetup.cameraSize = arg->omCameraSize;
 
@@ -1006,7 +1001,7 @@ s32 func_800076B4(s32 arg0) {
     return 0;
 }
 
-void gtl_init(void) {
+void gtlInit(void) {
     s32 i;
     s32 j;
 
@@ -1027,7 +1022,7 @@ void gtl_init(void) {
         }
     }
 
-    gftlSegmentFBasePtr = NULL;
+    gtlSegmentFBasePtr = NULL;
     func_800053F0(NULL);
 
     scAddClient(&gtlSCClient, &gtlGameTickQueue, gtlGameTickQueueMsgs, ARRAY_COUNT(gtlGameTickQueueMsgs));

@@ -59,11 +59,11 @@ typedef struct {
     /* 0x88 */ void (*postInitFunc)(void);
 } SceneSetup; // size >= 0x8C
 
-void* hal_alloc(s32 size, s32 alignment);
-void gtl_process_all_dlists(void);
+void* gtlMalloc(s32 size, s32 alignment);
+void gtlProcessAllDLists(void);
 void gtl_combine_all_dlists(void);
 void gtl_reset(void);
-void gtl_load_ucode(Gfx** dlist, u32 ucodeIdx);
+void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx);
 void om_setup_scene(SceneSetup* arg);
 
 extern s32 gtlDrawnFrameCounter;

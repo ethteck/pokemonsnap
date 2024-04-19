@@ -5,7 +5,7 @@ dmaLoadOverlay = 0x80002B64;
 dmaReadRom = 0x80002C20;
 dmaWriteRom = 0x80002C5C;
 dmaReadVPK = 0x8000350C;
-gtl_init = 0x800076F0;
+gtlInit = 0x800076F0;
 runGObjProcess = 0x80008C28;
 endGObjProcess = 0x80008F2C;
 sendSignalToLink = 0x8000B830;
@@ -393,10 +393,11 @@ gContInputStickX = 0x80049758;
 gContInputStickY = 0x80049759;
 
 gtl_set_segment_F = 0x80005418;
-hal_alloc = 0x800054A0;
-gtl_load_ucode = 0x80005E64;
+gtlDisableNearClipping = 0x80005448;
+gtlMalloc = 0x800054A0;
+gtlLoadUcode = 0x80005E64;
 gtl_reset = 0x80005A98;
-gtl_process_all_dlists = 0x80005F34;
+gtlProcessAllDLists = 0x80005F34;
 gtl_combine_all_dlists = 0x80006330;
 gtl_wait_all_gfx_tasks_done = 0x80006764;
 om_setup_scene = 0x800073AC;
@@ -420,6 +421,8 @@ init_bump_alloc = 0x800078C4;
 
 vi_apply_settings_nonblocking = 0x80007AFC;
 
-UcodeText2 = 0x8003FB30;
-UcodeData2 = 0x80045280;
+gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
+gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
+gspL3DEX2_fifoTextStart = 0x8003FB30;
+gspL3DEX2_fifoDataStart = 0x80045280;
 om_create_objects = 0x8000B0F8;

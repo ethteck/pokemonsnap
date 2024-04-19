@@ -5,7 +5,7 @@
 
 extern Gfx* D_801E53A0_994E10;
 extern s32 D_801E5410_994E80;
-extern s32 D_801E542C_994E9C;
+extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check 
 extern Sprite D_801F26B0_9A2120; // NEW
@@ -92,7 +92,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
 
     func_80007BC4(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
-    func_80005448(1);
+    gtlDisableNearClipping(1);
     om_setup_scene(&D_801E542C_994E9C);
     return D_800AF3C0;
 }
@@ -285,7 +285,7 @@ void func_801DDA68_98D4D8(s32 arg0) {
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
     s32 UNUSED pad[3];
 
-    while (TRUE) {}
+    PANIC();
 }
 
 void func_801E2454_991EC4(void);

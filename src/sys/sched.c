@@ -939,7 +939,7 @@ void scHandleSPTaskDone(void) {
             scRDPOutputBufferUsed = OS_DCACHE_ROUNDUP_SIZE(scRDPOutputBufferUsed);
             if (scRDPOutputBufferUsed < scUnknownU64) {
                 fatal_printf("rdp_output_buff over !! size = %d\n byte", scRDPOutputBufferUsed);
-                while (TRUE) { }
+                PANIC();
             }
             
             scCurrentGfxTask->info.state = SC_TASK_STATE_QUEUED;
@@ -1060,7 +1060,7 @@ void scMain(UNUSED void* arg) {
             scViModeNext = mode;
             break;
         case OS_TV_PAL:
-            while (TRUE) { }
+            PANIC();
             break;
         case OS_TV_MPAL:
             mode = osViModeMpalLan1;

@@ -36,11 +36,11 @@ void func_8009B40C(void) {
         dmaLoadOverlay(&D_800ABDEC);
         dmaLoadOverlay(&D_800ABBD0);
         if (func_801DD010(i) != 0) {
-            while (TRUE);
+            PANIC();
         }
         i++;
         if (i == 0x11) {
-            while (TRUE);
+            PANIC();
         }
     }
 }

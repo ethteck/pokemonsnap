@@ -224,8 +224,8 @@ segments:
     - [0x3E4A0, hasm, ../ultralib/src/os/setwatchlo]
     - [0x3E4B0, asm, rspboot]
     - [0x3E580, data, rsp/aspMain]
-    - [0x3F3A0, bin, gSPF3DEX2H_NoN_fifo_text]
-    - [0x40730, data]
+    - [0x3F3A0, data, gspF3DEX2H.NoN.fifo]
+    - [0x401C0, data]
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
     - [0x41960, data]
@@ -292,7 +292,7 @@ segments:
     - [0x45730, .rodata, ../ultralib/src/libc/xldtob]
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
     - [0x457A0, rodata, rsp/aspMain_data]
-    - [0x45A60, rodata, gSPF3DEX2H_NoN_fifo_data]
+    - [0x45A60, rodata, gspF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
     - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }

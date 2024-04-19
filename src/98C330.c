@@ -83,7 +83,7 @@ void func_801DC8C0_98C330(Gfx** gfx) {
 }
 
 void func_801DC904_98C374(s32 arg0, s32 arg1) {
-    Gfx* gfx = D_8004A890[0];
+    Gfx* gfx = gMainGfxPos[0];
 
     gSPDisplayList(gfx++, &D_801E53A0_994E10);
     gDPSetColorDither(gfx++, G_CD_MAGICSQ);
@@ -93,7 +93,7 @@ void func_801DC904_98C374(s32 arg0, s32 arg1) {
                             AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
 
-    D_8004A890[0] = gfx;
+    gMainGfxPos[0] = gfx;
 }
 
 void func_801DCA14_98C484(s32 arg0) {

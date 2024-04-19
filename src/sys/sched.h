@@ -106,7 +106,7 @@ typedef struct {
     /* 0x24 */ OSMesgQueue* unk24;
 } SCTaskType9; // size >= 0x28
 
-//extern s32 scBeforeReset;
+extern s32 scBeforeReset;
 extern u64 scUnknownU64;
 extern OSMesgQueue scTaskQueue;
 extern u32 scUnknownInt;

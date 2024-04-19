@@ -2,8 +2,8 @@
 // sys/dma.c
 
 #include "sys/dma.h"
+#include "sys/sched.h"
 
-extern s32 scBeforeReset;
 extern OSMesg sDmaOSMesg;
 extern OSMesgQueue sDmaRetQueue;
 extern s32 sVpkRamAddr;

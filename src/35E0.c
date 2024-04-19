@@ -15,9 +15,6 @@ void create_dma_mq(void) {
     osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);
 }
 
-
-
-
 void dma_copy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
     OSIoMesg mb;
 
@@ -81,7 +78,7 @@ void dma_rom_write(void* ramSrc, u32 romDst, u32 nbytes) {
     dma_copy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80002C94.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80002C94.s")
 void func_80002C94(u16* data, s32 size, void (*func)(void), u32 arg3);
 
 void initialize_vpk_dma_stream(s32 romAddr, s32 ramAddr, s32 bufSize) {
@@ -106,4 +103,4 @@ void loadCompressedData(u32 rom, u32 ram) {
     func_800034C4(rom, ram, &buf, sizeof(buf));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1520/func_80003530.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/35E0/func_80003530.s")

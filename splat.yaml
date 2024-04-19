@@ -26,7 +26,7 @@ segments:
     - [0x1060, c, sys/main]
     - [0x1510, hasm, padding_1510]
     - [0x1520, c, sys/sched]
-    - [0x35E0, c, 1520]
+    - [0x35E0, c, 35E0]
     - [0x4680, c]
     - [0x5FF0, c]
     - [0x8450, c]

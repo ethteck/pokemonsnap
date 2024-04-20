@@ -19,7 +19,7 @@ typedef struct UnkStruct98C_D {
 
 // data
 extern Gfx D_801E53A0_994E10[];
-extern s32 D_801E5410_994E80; // Todo some struct
+extern ScreenSettings D_801E5410_994E80;
 extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801E5DB0_995820;
@@ -109,7 +109,7 @@ void func_801DCBF4_98C664(void) {
 s32 func_801DCC74_98C6E4(s32 arg0) {
     UNUSED s32 pad[3];
 
-    func_80007BC4(&D_801E5410_994E80);
+    viApplyScreenSettings(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E542C_994E9C);

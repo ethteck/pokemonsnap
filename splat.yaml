@@ -31,8 +31,9 @@ segments:
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
     - [0x5FF0, c, sys/gtl]
-    - [0x8450, c]
-    - [0x8820, asm]
+    - [0x8450, c, sys/ml]
+    - [0x8510, c, sys/vi]
+    - [0x8820, c, sys/rdp_reset]
     - [0x8A80, c]
     - [0xC2F0, c]
     - [0xC5B0, c]
@@ -230,7 +231,8 @@ segments:
     - [0x401C0, data]
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
-    - [0x41960, data]
+    - [0x41950, .data, sys/rdp_reset]
+    - [0x41A80, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -262,7 +264,7 @@ segments:
     - [0x43BC0, .rodata, sys/sched]
     - [0x43C20, .rodata, sys/cont]
     - [0x43C40, .rodata, sys/gtl]
-    - [0x43E60, .rodata, 8450]
+    - [0x43E60, .rodata, sys/ml]
     - [0x43E80, .rodata, 8A80]
     - [0x44300, .rodata, C2F0]
     - [0x44320, .rodata, C5B0]
@@ -301,7 +303,9 @@ segments:
     - { start: auto, name: sys/dma, type: .bss, vram: 0x800488A0 }
     - { start: auto, name: sys/cont, type: .bss, vram: 0x800488D0 }
     - { start: auto, name: sys/gtl, type: .bss, vram: 0x80049770 }
-    - { start: auto, name: bss_8004A950, type: bss, vram: 0x8004A950 }
+    - { start: auto, name: sys/vi, type: .bss, vram: 0x8004A950 }
+    - { start: auto, name: sys/rdp_reset, type: .bss, vram: 0x8004A980 }
+    - { start: auto, name: bss_8004A990, type: bss, vram: 0x8004A990 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }

@@ -63,17 +63,17 @@ void func_80371C0C_8453BC(GObj* gobj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80371C68_845418.s")
 
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite) {
-    GObj* gobj = func_8000A410(1 << arg1, 0, arg1 & 0xFF, arg1);
+    GObj* gobj = om_add_gobj(1 << arg1, 0, arg1 & 0xFF, arg1);
 
     if (gobj == NULL) {
         return NULL;
     }
-    func_8000A8A4(gobj, func_80371C0C_8453BC, 0x1E, arg1, 0x40000000);
-    func_8000A0B4(gobj, sprite);
+    om_link_gobj_dl(gobj, func_80371C0C_8453BC, 0x1E, arg1, 0x40000000);
+    om_gobj_add_sprite(gobj, sprite);
     gobj->userData.rootNode->payloads[0] = NULL;
     gobj->userData.rootNode->payloads[1] = NULL;
     if (gfxFunc != NULL) {
-        runGObjProcess(gobj, gfxFunc, 0, 0);
+        om_create_process(gobj, gfxFunc, 0, 0);
     }
     return gobj;
 }

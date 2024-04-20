@@ -12,8 +12,8 @@
 #include "ucode.h"
 
 // TODO include
-void func_80007D08(void*);
-void func_80007D14(Gfx**);
+void rdpSetPreRenderFunc(void*);
+void ResetRDP(Gfx**);
 void omCreateObjects(OMSetup*);
 void func_80011254(void*);
 void func_8000C274(void);
@@ -128,11 +128,11 @@ void func_80005454(u16 arg0, u16 arg1) {
 }
 
 void gtlInitHeap(void* arg0, s32 size) {
-    init_bump_alloc(&sGeneralHeap, 0x10000, arg0, size);
+    mlHeapInit(&sGeneralHeap, 0x10000, arg0, size);
 }
 
 void* gtlMalloc(s32 size, s32 alignment) {
-    return bump_alloc(&sGeneralHeap, size, alignment);
+    return mlHeapAlloc(&sGeneralHeap, size, alignment);
 }
 
 void gtlResetHeap(void) {
@@ -140,7 +140,7 @@ void gtlResetHeap(void) {
     gtlCurrentGfxHeap.start = gtlGfxHeaps[gtlContextId].start;
     gtlCurrentGfxHeap.end = gtlGfxHeaps[gtlContextId].end;
     gtlCurrentGfxHeap.ptr = gtlGfxHeaps[gtlContextId].ptr;
-    reset_bump_alloc(&gtlCurrentGfxHeap);
+    mlHeapClear(&gtlCurrentGfxHeap);
 }
 
 void gtlSetDLBuffers(DLBuffer (*buffers)[4]) {
@@ -164,7 +164,7 @@ void gtlInitDLists(void) {
         if (gtlDLBuffers[gtlContextId][i].length != 0) {
             // load "reset rdp" display list in the beginning and use reference to it every time we reload ucode
             gtlResetRDPDlist = gMainGfxPos[i];
-            func_80007D14(&gMainGfxPos[i]);
+            ResetRDP(&gMainGfxPos[i]);
             gSPEndDisplayList(gMainGfxPos[i]++);
             gSavedGfxPos[i] = gMainGfxPos[i];
             break;
@@ -777,7 +777,7 @@ void gtlMain(FnBundle* arg0) {
     while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {}
     while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
     while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
-    func_80007D08(NULL);
+    rdpSetPreRenderFunc(NULL);
     scRemovePostProcessFunc();
     gtlD_8004979C = 2;
 }
@@ -874,7 +874,7 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlSetDLBuffers(dlBuffers);
 
     for (i = 0; i < gtlNumContexts; i++) {
-        init_bump_alloc(&gtlCurrentGfxHeap, 0x10002, gtlMalloc(setup->gfxHeapSize, 8), setup->gfxHeapSize);
+        mlHeapInit(&gtlCurrentGfxHeap, 0x10002, gtlMalloc(setup->gfxHeapSize, 8), setup->gfxHeapSize);
         gtlGfxHeaps[i].id = gtlCurrentGfxHeap.id;
         gtlGfxHeaps[i].start = gtlCurrentGfxHeap.start;
         gtlGfxHeaps[i].end = gtlCurrentGfxHeap.end;
@@ -888,7 +888,7 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
 
     tmp = setup->rdpOutputBufferSize;
     gtlSetRDPOutputSettings(setup->unk30, gtlMalloc(tmp, 16), setup->rdpOutputBufferSize);
-    func_80007D08(setup->fnPreRender);
+    rdpSetPreRenderFunc(setup->fnPreRender);
     gtlUpdateInputFunc = setup->fnUpdateInput;
     contSetUpdateEveryTick((uintptr_t)contReadAndUpdate != (uintptr_t)gtlUpdateInputFunc ? TRUE : FALSE);
 

@@ -16,7 +16,7 @@ Mtx sIdentityMatrix = {{
     {0x00000000, 0x00000000, 0x00000000, 0x00000000},
 }};
 
-Gfx sResetRdp[] = {
+Gfx srdpReset[] = {
     gsDPPipeSync(),
     gsSPViewport(&sViewport),
     gsSPClearGeometryMode(
@@ -69,7 +69,7 @@ void rdpSetPreRenderFunc(void (*func)(Gfx**)) {
 }
 
 #ifdef NON_MATCHING
-void ResetRDP(Gfx** pGfxPos) {
+void rdpReset(Gfx** pGfxPos) {
     Gfx* gfxPos = *pGfxPos;
     s32 x = 0;
     s32 y = 0;
@@ -77,7 +77,7 @@ void ResetRDP(Gfx** pGfxPos) {
     gtl_set_segment_F(&gfxPos);
     gDPSetDepthImage(gfxPos++, viZBuffer);
     func_80007CBC(&sViewport);
-    gSPDisplayList(gfxPos++, sResetRdp);
+    gSPDisplayList(gfxPos++, srdpReset);
     gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, x, y, viScreenWidth, viScreenHeight);
     if (sPreRenderFunc != NULL) {
         sPreRenderFunc(&gfxPos);
@@ -85,6 +85,6 @@ void ResetRDP(Gfx** pGfxPos) {
     *pGfxPos = gfxPos;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/ResetRDP.s")
-void ResetRDP(Gfx**);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/rdpReset.s")
+void rdpReset(Gfx**);
 #endif

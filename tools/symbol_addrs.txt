@@ -432,10 +432,10 @@ viEdgeOffsetTop = 0x8004A978;
 viEdgeOffsetBottom = 0x8004A97A;
 
 rdpSetPreRenderFunc = 0x80007D08;
-ResetRDP = 0x80007D14;
+rdpReset = 0x80007D14;
 sPreRenderFunc = 0x80040D60;
 sIdentityMatrix = 0x80040D68;
-sResetRdp = 0x80040DA8;
+srdpReset = 0x80040DA8;
 sViewport = 0x8004A980;
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;

@@ -5,5 +5,8 @@
 
 void contReadAndUpdate(void);
 void contSetUpdateEveryTick(s32);
+void contRumbleInit(s32);
+void contRumbleStop(s32);
+void contMain(void *arg);
 
 #endif /* SYS_CONT_H */

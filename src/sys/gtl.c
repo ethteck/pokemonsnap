@@ -7,13 +7,12 @@
 #include "sys/ml.h"
 #include "sys/gtl.h"
 #include "sys/vi.h"
+#include "sys/rdp_reset.h"
 #include "types.h"
 #include "macros.h"
 #include "ucode.h"
 
 // TODO include
-void rdpSetPreRenderFunc(void*);
-void ResetRDP(Gfx**);
 void omCreateObjects(OMSetup*);
 void func_80011254(void*);
 void func_8000C274(void);
@@ -96,7 +95,7 @@ s32 gtlNoNearclipping;
 u16 gtlD_8004A904;
 u16 gtlD_8004A906;
 u16 gtlD_8004A908;
-Gfx* gtlResetRDPDlist;
+Gfx* gtlrdpResetDlist;
 s32 gtlContextId;
 s32 gtlD_8004A918[2];
 s32 gtlNumContexts;
@@ -163,8 +162,8 @@ void gtlInitDLists(void) {
     for (i = 0; i < 4; i++) {
         if (gtlDLBuffers[gtlContextId][i].length != 0) {
             // load "reset rdp" display list in the beginning and use reference to it every time we reload ucode
-            gtlResetRDPDlist = gMainGfxPos[i];
-            ResetRDP(&gMainGfxPos[i]);
+            gtlrdpResetDlist = gMainGfxPos[i];
+            rdpReset(&gMainGfxPos[i]);
             gSPEndDisplayList(gMainGfxPos[i]++);
             gSavedGfxPos[i] = gMainGfxPos[i];
             break;
@@ -425,7 +424,6 @@ void func_80005D60(s32 arg0, u64* dlist) {
 }
 
 void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx) {
-    // TODO: use gSPLoadUcodeL
     switch (ucodeIdx) {
         case 0:
         case 1:
@@ -443,7 +441,7 @@ void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx) {
         case 9:
             break;
     }
-    gSPDisplayList((*dlist)++, gtlResetRDPDlist);
+    gSPDisplayList((*dlist)++, gtlrdpResetDlist);
 }
 
 void gtlProcessAllDLists(void) {
@@ -538,7 +536,7 @@ void gtlProcessAllDLists(void) {
 
         cmdPtr = gMainGfxPos[firstDlIdx];
         // after end ??
-        gSPDisplayList(gMainGfxPos[firstDlIdx]++, gtlResetRDPDlist);
+        gSPDisplayList(gMainGfxPos[firstDlIdx]++, gtlrdpResetDlist);
         gSPBranchList(gMainGfxPos[firstDlIdx]++, gSavedGfxPos[firstDlIdx]);
         func_80005D60(needLineUcode, (u64*)cmdPtr);
 

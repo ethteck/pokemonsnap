@@ -116,5 +116,6 @@ void scExecuteBlocking(SCTaskInfo* task);
 s32 func_80000B84(SCTaskInfo* t);
 void scRemovePostProcessFunc(void);
 s32 scCheckGfxTaskDefault(SCTaskGfx*);
+void scMain(void *arg);
 
 #endif

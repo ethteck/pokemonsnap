@@ -7,6 +7,10 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
+void contPrinterSendCommand(u8 value);
+s32 contIsPrinterAvailable(void);
+u8 contPrinterGetStatus(void);
+
 void dmaReadVPK(u32 rom, u32 ram);
 
 GObj* runGObjProcess(GObj*, gfxFunc func, s8 kind, u32 priority);
@@ -64,7 +68,7 @@ void func_800AAE28(void);
 void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
-s32 func_800BF3D4_5C274(s16);
+s32 func_800BF3D4_5C274(s32);
 s32 func_800BF818_5C6B8(s32);
 s32 func_800BF9EC_5C88C(void);
 s32 func_800BFA44_5C8E4(s32);
@@ -110,7 +114,7 @@ void func_80370A48_8441F8(void);
 void func_803713C8_844B78(s32);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
-GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
+// GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 void func_80374F30_8486E0(s32, s32);

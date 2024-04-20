@@ -5,7 +5,7 @@ dmaLoadOverlay = 0x80002B64;
 dmaReadRom = 0x80002C20;
 dmaWriteRom = 0x80002C5C;
 dmaReadVPK = 0x8000350C;
-gtl_init = 0x800076F0;
+gtlInit = 0x800076F0;
 runGObjProcess = 0x80008C28;
 endGObjProcess = 0x80008F2C;
 sendSignalToLink = 0x8000B830;
@@ -370,7 +370,6 @@ scViSettings = 0x8004882C;
 scUnknownU64 = 0x80048830;
 scTaskQueue = 0x80048868;
 scBeforeReset = 0x8004888C;
-scCheckGfxTaskDefault = 0x80000A64;
 scSetPostProcessFunc = 0x800029C8;
 scRemovePostProcessFunc = 0x800029D4;
 
@@ -393,4 +392,37 @@ gContInputReleasedButtons = 0x80049756;
 gContInputStickX = 0x80049758;
 gContInputStickY = 0x80049759;
 
-contRumbleStop = 0x800049E4;
+gtlSetSegmentF = 0x80005418;
+gtlDisableNearClipping = 0x80005448;
+gtlMalloc = 0x800054A0;
+gtlLoadUcode = 0x80005E64;
+gtlReset = 0x80005A98;
+gtlProcessAllDLists = 0x80005F34;
+gtlCombineAllDLists = 0x80006330;
+gtlWaitAllGfxTasksDone = 0x80006764;
+omSetupScene = 0x800073AC;
+gtlSetIntervals = 0x800075FC;
+gtlFrameCounter = 0x80040CF4;
+gtlDrawnFrameCounter = 0x80040CF8;
+gtlDLBuffers = 0x8004A850;
+gMainGfxPos = 0x8004A890; // size:0x10
+gSavedGfxPos = 0x8004A8A0; // size:0x10
+gtlCurrentGfxHeap = 0x8004A8B8; // size:0x10
+sGeneralHeap = 0x8004A8C8;
+gtlD_8004A8F0 = 0x8004A8F0;
+gtlD_8004A8F4 = 0x8004A8F4;
+gtlD_8004A906 = 0x8004A906;
+gtlD_8004A908 = 0x8004A908;
+gtlContextId = 0x8004A910;
+
+reset_bump_alloc = 0x80007850;
+bump_alloc = 0x8000785C;
+init_bump_alloc = 0x800078C4;
+
+viApplySettingsNonblocking = 0x80007AFC;
+
+gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
+gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
+gspL3DEX2_fifoTextStart = 0x8003FB30;
+gspL3DEX2_fifoDataStart = 0x80045280;
+omCreateObjects = 0x8000B0F8;

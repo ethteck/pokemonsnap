@@ -5,9 +5,9 @@
 #include "macros.h"
 
 // TODO: header
-void func_8000C220(GObjCommon*);
-void func_8000C1CC(GObjCommon*);
-void omh_end_all_object_processes(GObjCommon*);
+void func_8000C220(GObj*);
+void func_8000C1CC(GObj*);
+void omh_end_all_object_processes(GObj*);
 void func_8000B740(GObj_Sub3CList*);
 void func_80015448(void);
 void func_80018CD0(s32);
@@ -32,11 +32,11 @@ void (*omEndProcessHandler)(GObjProcess*);
 GObjProcess* omFreeProcessList;
 GObjProcess* omGProcessList[12]; // indexed by priority
 s32 omActiveProcesses;
-GObjCommon* omGObjListHead[32];  // indexed by link
-GObjCommon* omGObjListTail[32];
-GObjCommon* omFreeGObjList;
-GObjCommon* omGObjListDlHead[33]; // indexed by dlLink
-GObjCommon* omGObjListDlTail[33];
+GObj* omGObjListHead[32];  // indexed by link
+GObj* omGObjListTail[32];
+GObj* omFreeGObjList;
+GObj* omGObjListDlHead[33]; // indexed by dlLink
+GObj* omGObjListDlTail[33];
 s32 omActiveObjects;
 u16 omGObjSize;
 s16 omMaxObjects;
@@ -56,9 +56,9 @@ u16 omSObjSize;
 OMCamera* omFreeCameraList;
 s32 omActiveCameras;
 u16 omCameraSize;
-GObjCommon* omCurrentObject;
-GObjCommon* omCurrentCamera;
-GObjCommon* omRenderedObject;
+GObj* omCurrentObject;
+GObj* omCurrentCamera;
+GObj* omRenderedObject;
 GObjProcess* omCurrentProcess;
 s32 omD_8004AC54;
 OSMesg omProcessWaitMsgs[1];
@@ -188,8 +188,8 @@ GObjProcess* omGetProcess(void) {
 }
 
 void omLinkProcess(GObjProcess* proc) {
-    GObjCommon* obj = proc->object;
-    GObjCommon* curObj = proc->object;
+    GObj* obj = proc->object;
+    GObj* curObj = proc->object;
     s32 curLink = curObj->link;
     curObj = curObj; // required to match
 
@@ -255,7 +255,7 @@ void omUnlinkProcessFromPriorityList(GObjProcess* proc) {
 }
 
 void omUnlinkProcess(GObjProcess* proc) {
-    GObjCommon* obj = proc->object;
+    GObj* obj = proc->object;
 
     omUnlinkProcessFromPriorityList(proc);
     if (proc->prev != NULL) {
@@ -304,7 +304,7 @@ void omSetEndProcessHandler(void (*handler)(GObjProcess*)) {
 }
 
 s32 omGetTotalGObjNumber(void) {
-    GObjCommon* curr = omFreeGObjList;
+    GObj* curr = omFreeGObjList;
     s32 i = 0;
 
     while (curr != NULL) {
@@ -315,8 +315,8 @@ s32 omGetTotalGObjNumber(void) {
     return i + omActiveObjects;
 }
 
-GObjCommon* omGetGObj(void) {
-    GObjCommon* ret;
+GObj* omGetGObj(void) {
+    GObj* ret;
 
     if (omMaxObjects == -1 || omActiveObjects < omMaxObjects) {
         ret = omFreeGObjList;
@@ -342,13 +342,13 @@ GObjCommon* omGetGObj(void) {
     return ret;
 }
 
-void omFreeGObj(GObjCommon* obj) {
+void omFreeGObj(GObj* obj) {
     obj->next = omFreeGObjList;
     omFreeGObjList = obj;
     omActiveObjects--;
 }
 
-void omLinkGObjAfter(GObjCommon* obj, GObjCommon* prevObj) {
+void omLinkGObjAfter(GObj* obj, GObj* prevObj) {
     obj->prev = prevObj;
     if (prevObj != NULL) {
         obj->next = prevObj->next;
@@ -365,8 +365,8 @@ void omLinkGObjAfter(GObjCommon* obj, GObjCommon* prevObj) {
     }
 }
 
-void omLinkGObjAfterSamePriority(GObjCommon* obj) {
-    GObjCommon* curr;
+void omLinkGObjAfterSamePriority(GObj* obj) {
+    GObj* curr;
 
     curr = omGObjListTail[obj->link];
     while (curr != NULL && curr->priority < obj->priority) {
@@ -376,9 +376,9 @@ void omLinkGObjAfterSamePriority(GObjCommon* obj) {
     omLinkGObjAfter(obj, curr);
 }
 
-void omLinkGObjBeforeSamePriority(GObjCommon* obj) {
-    GObjCommon* curr;
-    GObjCommon* beforeCurr;
+void omLinkGObjBeforeSamePriority(GObj* obj) {
+    GObj* curr;
+    GObj* beforeCurr;
 
     curr = omGObjListHead[obj->link];
     while (curr != NULL && obj->priority < curr->priority) {
@@ -394,7 +394,7 @@ void omLinkGObjBeforeSamePriority(GObjCommon* obj) {
     omLinkGObjAfter(obj, beforeCurr);
 }
 
-void omUnlinkGObj(GObjCommon* obj) {
+void omUnlinkGObj(GObj* obj) {
     if (obj->prev != NULL) {
         obj->prev->next = obj->next;
     } else {
@@ -408,7 +408,7 @@ void omUnlinkGObj(GObjCommon* obj) {
     }
 }
 
-void omInsertGObjDL(GObjCommon* obj, GObjCommon* prevObj) {
+void omInsertGObjDL(GObj* obj, GObj* prevObj) {
     obj->prevDl = prevObj;
 
     if (prevObj != NULL) {
@@ -426,8 +426,8 @@ void omInsertGObjDL(GObjCommon* obj, GObjCommon* prevObj) {
     }
 }
 
-void omInsertGObjDLAfterSamePriority(GObjCommon* obj) {
-    GObjCommon* csr;
+void omInsertGObjDLAfterSamePriority(GObj* obj) {
+    GObj* csr;
 
     csr = omGObjListDlTail[obj->dlLink];
     while (csr != NULL && csr->dlPriority < obj->dlPriority) {
@@ -436,9 +436,9 @@ void omInsertGObjDLAfterSamePriority(GObjCommon* obj) {
     omInsertGObjDL(obj, csr);
 }
 
-void omInsertGObjDLBeforeSamePriority(GObjCommon* obj) {
-    GObjCommon* curr;
-    GObjCommon* found;
+void omInsertGObjDLBeforeSamePriority(GObj* obj) {
+    GObj* curr;
+    GObj* found;
 
     curr = omGObjListDlHead[obj->dlLink];
     while (curr != NULL && obj->dlPriority < curr->dlPriority) {
@@ -454,7 +454,7 @@ void omInsertGObjDLBeforeSamePriority(GObjCommon* obj) {
     omInsertGObjDL(obj, found);
 }
 
-void omUnlinkGObjDL(GObjCommon* obj) {
+void omUnlinkGObjDL(GObj* obj) {
     if (obj->prevDl != NULL) {
         obj->prevDl->nextDl = obj->nextDl;
     } else {
@@ -631,7 +631,7 @@ void omFreeCamera(OMCamera* obj) {
     omActiveCameras--;
 }
 
-GObjProcess* omCreateProcess(GObjCommon* obj, void (*func)(struct GObjCommon*), u8 kind, u32 pri) {
+GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32 pri) {
     ThreadStackNode* stackNode;
     GObjThread* thread;
     GObjProcess* process;
@@ -679,7 +679,7 @@ GObjProcess* omCreateProcess(GObjCommon* obj, void (*func)(struct GObjCommon*), 
     return process;
 }
 
-GObjProcess* omCreateProcessThreaded(GObjCommon* obj, void (*entry)(GObjCommon*), u32 pri, s32 threadId, u32 stackSize) {
+GObjProcess* omCreateProcessThreaded(GObj* obj, void (*entry)(GObj*), u32 pri, s32 threadId, u32 stackSize) {
     GObjProcess* process;
     GObjThread* thread;
     ThreadStackNode* stackNode;
@@ -1141,7 +1141,7 @@ void omDObjInit(DObj* dobj) {
     dobj->unk84 = 0;
 }
 
-DObj* omGObjAddDObj(GObjCommon* obj, void* arg1) {
+DObj* omGObjAddDObj(GObj* obj, void* arg1) {
     DObj* newDobj;
     DObj* curr;
 
@@ -1290,7 +1290,7 @@ void omDObjRemove(DObj* dobj) {
     omFreeDObj(dobj);
 }
 
-SObj* omGObjAddSprite(GObjCommon* obj, Sprite* sprite) {
+SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
     SObj* sobj;
 
     if (obj == NULL) {
@@ -1344,7 +1344,7 @@ void omGObjRemoveSprite(SObj* obj) {
     omFreeSObj(obj);
 }
 
-OMCamera* omGObjSetCamera(GObjCommon* obj) {
+OMCamera* omGObjSetCamera(GObj* obj) {
     s32 i;
     OMCamera* camera;
 
@@ -1376,7 +1376,7 @@ OMCamera* omGObjSetCamera(GObjCommon* obj) {
 }
 
 void omGObjRemoveCamera(OMCamera* cam) {
-    GObjCommon* obj;
+    GObj* obj;
     s32 i;
     AObj* curr;
     AObj* next;
@@ -1401,8 +1401,8 @@ void omGObjRemoveCamera(OMCamera* cam) {
     omFreeCamera(cam);
 }
 
-GObjCommon* om_add_gobj_common(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u32 priority) {
-    GObjCommon* obj;
+GObj* om_add_gobj_common(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
+    GObj* obj;
 
     if (link >= 32) {
         fatal_printf("omGAddCommon() : link num over : link = %d : id = %d\n", link, id);
@@ -1436,8 +1436,8 @@ GObjCommon* om_add_gobj_common(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u
     return obj;
 }
 
-GObjCommon* omAddGObj(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u32 priority) {
-    GObjCommon* com = om_add_gobj_common(id, fnUpdate, link, priority);
+GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
+    GObj* com = om_add_gobj_common(id, fnUpdate, link, priority);
 
     if (com == NULL) {
         return NULL;
@@ -1448,8 +1448,8 @@ GObjCommon* omAddGObj(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u32 priori
     return com;
 }
 
-GObjCommon* omAddGObjBeforeSamePriority(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u32 priority) {
-    GObjCommon* com = om_add_gobj_common(id, fnUpdate, link, priority);
+GObj* omAddGObjBeforeSamePriority(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
+    GObj* com = om_add_gobj_common(id, fnUpdate, link, priority);
 
     if (com == NULL) {
         return NULL;
@@ -1460,8 +1460,8 @@ GObjCommon* omAddGObjBeforeSamePriority(u32 id, void (*fnUpdate)(GObjCommon*), u
     return com;
 }
 
-GObjCommon* omAddGObjAfter(u32 id, void (*fnUpdate)(GObjCommon*), GObjCommon* arg2) {
-    GObjCommon* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
+GObj* omAddGObjAfter(u32 id, void (*fnUpdate)(GObj*), GObj* arg2) {
+    GObj* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
 
     if (com == NULL) {
         return NULL;
@@ -1472,8 +1472,8 @@ GObjCommon* omAddGObjAfter(u32 id, void (*fnUpdate)(GObjCommon*), GObjCommon* ar
     return com;
 }
 
-GObjCommon* omAddGObjBefore(u32 id, void (*fnUpdate)(GObjCommon*), GObjCommon* arg2) {
-    GObjCommon* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
+GObj* omAddGObjBefore(u32 id, void (*fnUpdate)(GObj*), GObj* arg2) {
+    GObj* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
 
     if (com == NULL) {
         return NULL;
@@ -1484,7 +1484,7 @@ GObjCommon* omAddGObjBefore(u32 id, void (*fnUpdate)(GObjCommon*), GObjCommon* a
     return com;
 }
 
-void omDeleteGObj(GObjCommon* obj) {
+void omDeleteGObj(GObj* obj) {
     if (obj == NULL || obj == omCurrentObject) {
         omD_8004AC54 = 2;
         return;
@@ -1511,7 +1511,7 @@ void omDeleteGObj(GObjCommon* obj) {
     omFreeGObj(obj);
 }
 
-void omMoveGObjCommon(s32 moveType, GObjCommon* obj, u8 link, u32 priority, GObjCommon* refObj) {
+void omMoveGObjCommon(s32 moveType, GObj* obj, u8 link, u32 priority, GObj* refObj) {
     GObjProcess* csr;
     GObjProcess* procList;
     GObjProcess* next;
@@ -1561,23 +1561,23 @@ void omMoveGObjCommon(s32 moveType, GObjCommon* obj, u8 link, u32 priority, GObj
     }
 }
 
-void omMoveGObjAfterSamePriority(GObjCommon* obj, u8 link, u32 priority) {
+void omMoveGObjAfterSamePriority(GObj* obj, u8 link, u32 priority) {
     omMoveGObjCommon(0, obj, link, priority, NULL);
 }
 
-void omMoveGObjBeforeSamePriority(GObjCommon* arg0, u8 link, u32 arg2) {
+void omMoveGObjBeforeSamePriority(GObj* arg0, u8 link, u32 arg2) {
     omMoveGObjCommon(1, arg0, link, arg2, NULL);
 }
 
-void omMoveGObjAfter(GObjCommon* arg0, GObjCommon* arg1) {
+void omMoveGObjAfter(GObj* arg0, GObj* arg1) {
     omMoveGObjCommon(2, arg0, arg1->link, arg1->priority, arg1);
 }
 
-void omMoveGObjBefore(GObjCommon* arg0, GObjCommon* arg1) {
+void omMoveGObjBefore(GObj* arg0, GObj* arg1) {
     omMoveGObjCommon(3, arg0, arg1->link, arg1->priority, arg1);
 }
 
-void omLinkGObjDLCommon(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u8 dlLink, s32 dlPriority,
+void omLinkGObjDLCommon(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlPriority,
                             s32 cameraTag) {
     if (dlLink >= 32) {
         fatal_printf("omGLinkObjDLCommon() : dl_link num over : dl_link = %d : id = %d\n", dlLink, obj->id);
@@ -1591,7 +1591,7 @@ void omLinkGObjDLCommon(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u8 dlL
     obj->lastDrawFrame = gtlDrawnFrameCounter - 1;
 }
 
-void omLinkGObjDL(GObjCommon* obj, void (*arg1)(GObjCommon*), u8 dlLink, s32 dlPriority, s32 cameraTag) {
+void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -1599,7 +1599,7 @@ void omLinkGObjDL(GObjCommon* obj, void (*arg1)(GObjCommon*), u8 dlLink, s32 dlP
     omInsertGObjDLAfterSamePriority(obj);
 }
 
-void omLinkGObjDLBeforeSamePriority(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u8 dlLink, s32 dlPriority,
+void omLinkGObjDLBeforeSamePriority(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlPriority,
                                           s32 arg4) {
     if (obj == NULL) {
         obj = omCurrentObject;
@@ -1608,7 +1608,7 @@ void omLinkGObjDLBeforeSamePriority(GObjCommon* obj, void (*renderFunc)(GObjComm
     omInsertGObjDLBeforeSamePriority(obj);
 }
 
-void omLinkGObjDLAfter(GObjCommon* obj, void (*renderFunc)(GObjCommon*), s32 arg2, GObjCommon* other) {
+void omLinkGObjDLAfter(GObj* obj, void (*renderFunc)(GObj*), s32 arg2, GObj* other) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -1616,7 +1616,7 @@ void omLinkGObjDLAfter(GObjCommon* obj, void (*renderFunc)(GObjCommon*), s32 arg
     omInsertGObjDL(obj, other);
 }
 
-void omLinkGObjDLBefore(GObjCommon* obj, void (*renderFunc)(struct GObjCommon*), s32 arg2, GObjCommon* other) {
+void omLinkGObjDLBefore(GObj* obj, void (*renderFunc)(struct GObj*), s32 arg2, GObj* other) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -1624,7 +1624,7 @@ void omLinkGObjDLBefore(GObjCommon* obj, void (*renderFunc)(struct GObjCommon*),
     omInsertGObjDL(obj, other->prev);
 }
 
-void omLinkGObjDLCameraCommon(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dlPriority, s32 dlLinkBitMask,
+void omLinkGObjDLCameraCommon(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask,
                                    s32 cameraTag) {
     obj->dlLink = 32;
     obj->dlPriority = dlPriority;
@@ -1635,7 +1635,7 @@ void omLinkGObjDLCameraCommon(GObjCommon* obj, void (*renderFunc)(GObjCommon*), 
     obj->lastDrawFrame = gtlDrawnFrameCounter - 1;
 }
 
-void omLinkGObjDLCamera(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dlPriority, s32 dlLinkBitMask,
+void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask,
                             s32 cameraTag) {
     if (obj == NULL) {
         obj = omCurrentObject;
@@ -1644,7 +1644,7 @@ void omLinkGObjDLCamera(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dl
     omInsertGObjDLAfterSamePriority(obj);
 }
 
-void omLinkGObjDLCameraBeforeSamePriority(GObjCommon* arg0, void (*arg1)(GObjCommon*), u32 arg2, s32 arg3,
+void omLinkGObjDLCameraBeforeSamePriority(GObj* arg0, void (*arg1)(GObj*), u32 arg2, s32 arg3,
                                                  s32 arg4) {
     if (arg0 == NULL) {
         arg0 = omCurrentObject;
@@ -1653,7 +1653,7 @@ void omLinkGObjDLCameraBeforeSamePriority(GObjCommon* arg0, void (*arg1)(GObjCom
     omInsertGObjDLBeforeSamePriority(arg0);
 }
 
-void omLinkGObjDLCameraAfter(GObjCommon* arg0, void (*arg1)(GObjCommon*), s32 arg2, s32 arg3, GObjCommon* arg4) {
+void omLinkGObjDLCameraAfter(GObj* arg0, void (*arg1)(GObj*), s32 arg2, s32 arg3, GObj* arg4) {
     if (arg0 == NULL) {
         arg0 = omCurrentObject;
     }
@@ -1661,7 +1661,7 @@ void omLinkGObjDLCameraAfter(GObjCommon* arg0, void (*arg1)(GObjCommon*), s32 ar
     omInsertGObjDL(arg0, arg4);
 }
 
-void omLinkGObjDLCameraBefore(GObjCommon* arg0, void (*arg1)(GObjCommon*), s32 arg2, s32 arg3, GObjCommon* arg4) {
+void omLinkGObjDLCameraBefore(GObj* arg0, void (*arg1)(GObj*), s32 arg2, s32 arg3, GObj* arg4) {
     if (arg0 == NULL) {
         arg0 = omCurrentObject;
     }
@@ -1669,7 +1669,7 @@ void omLinkGObjDLCameraBefore(GObjCommon* arg0, void (*arg1)(GObjCommon*), s32 a
     omInsertGObjDL(arg0, arg4->prev);
 }
 
-void omMoveGObjDL(GObjCommon* arg0, u8 dlLink, u32 dlPriority) {
+void omMoveGObjDL(GObj* arg0, u8 dlLink, u32 dlPriority) {
     if (dlLink >= 32) {
         fatal_printf("omGMoveObjDL() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
         PANIC();
@@ -1681,7 +1681,7 @@ void omMoveGObjDL(GObjCommon* arg0, u8 dlLink, u32 dlPriority) {
     omInsertGObjDLAfterSamePriority(arg0);
 }
 
-void omMoveGObjDLHead(GObjCommon* arg0, u8 dlLink, u32 arg2) {
+void omMoveGObjDLHead(GObj* arg0, u8 dlLink, u32 arg2) {
     if (dlLink >= 32) {
         fatal_printf("omGMoveObjDLHead() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
         PANIC();
@@ -1692,39 +1692,39 @@ void omMoveGObjDLHead(GObjCommon* arg0, u8 dlLink, u32 arg2) {
     omInsertGObjDLBeforeSamePriority(arg0);
 }
 
-void func_8000AC28(GObjCommon* arg0, GObjCommon* arg1) {
+void func_8000AC28(GObj* arg0, GObj* arg1) {
     omUnlinkGObjDL(arg0);
     arg0->dlLink = arg1->dlLink;
     arg0->dlPriority = arg1->dlPriority;
     omInsertGObjDL(arg0, arg1);
 }
 
-void func_8000AC68(GObjCommon* arg0, GObjCommon* arg1) {
+void func_8000AC68(GObj* arg0, GObj* arg1) {
     omUnlinkGObjDL(arg0);
     arg0->dlLink = arg1->dlLink;
     arg0->dlPriority = arg1->dlPriority;
     omInsertGObjDL(arg0, arg1->prevDl);
 }
 
-void func_8000ACAC(GObjCommon* arg0, u32 dlPriority) {
+void func_8000ACAC(GObj* arg0, u32 dlPriority) {
     omUnlinkGObjDL(arg0);
     arg0->dlPriority = dlPriority;
     omInsertGObjDLAfterSamePriority(arg0);
 }
 
-void func_8000ACE0(GObjCommon* arg0, u32 dlPriority) {
+void func_8000ACE0(GObj* arg0, u32 dlPriority) {
     omUnlinkGObjDL(arg0);
     arg0->dlPriority = dlPriority;
     omInsertGObjDLBeforeSamePriority(arg0);
 }
 
-void func_8000AD14(GObjCommon* obj, GObjCommon* other) {
+void func_8000AD14(GObj* obj, GObj* other) {
     omUnlinkGObjDL(obj);
     obj->dlPriority = other->dlPriority;
     omInsertGObjDL(obj, other);
 }
 
-void func_8000AD4C(GObjCommon* arg0, GObjCommon* arg1) {
+void func_8000AD4C(GObj* arg0, GObj* arg1) {
     omUnlinkGObjDL(arg0);
     arg0->dlPriority = arg1->dlPriority;
     omInsertGObjDL(arg0, arg1->prev);
@@ -1740,7 +1740,7 @@ s16 omGetMaxObjects(void) {
 
 void omDrawAll(void) {
     s32 i;
-    GObjCommon* curr;
+    GObj* curr;
 
     omCurrentCamera = NULL;
     omRenderedObject = NULL;
@@ -1759,8 +1759,8 @@ void omDrawAll(void) {
     }
 }
 
-GObjCommon* omUpdateGObj(GObjCommon* arg0) {
-    GObjCommon* ret;
+GObj* omUpdateGObj(GObj* arg0) {
+    GObj* ret;
 
     omCurrentObject = arg0;
     arg0->fnUpdate(arg0);
@@ -1830,7 +1830,7 @@ GObjProcess* omRunProcess(GObjProcess* proc) {
 
 void omUpdateAll(void) {
     s32 i;
-    GObjCommon* obj;
+    GObj* obj;
     GObjProcess* proc;
 
     omD_8004AC54 = 0;
@@ -1922,7 +1922,7 @@ void omCreateObjects(OMSetup* setup) {
     }
 
     if (setup->numObjects != 0) {
-        GObjCommon* csr;
+        GObj* csr;
         omFreeGObjList = csr = setup->commons;
 
         for (i = 0; i < setup->numObjects - 1; i++) {

@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "types.h"
+#include "sys/om.h"
 
 typedef f32 quartic[5];
 
@@ -450,39 +451,6 @@ typedef union {
     animal* animal;
     projectileData* projectileData;
 } gobjData;
-
-
-typedef struct GObj {
-    /* 0x00 */ struct GObj* next;
-    /* 0x04 */ struct GObj* prev;
-    /* 0x08 */ OSThread* nextThread;
-    /* 0x0C */ s8 link;
-    /* 0x0D */ s8 dlLink;
-    /* 0x0E */ char unk_0E[0x2];
-    /* 0x10 */ u32 sortKey;
-    /* 0x14 */ void* somefunc;
-    /* 0x18 */ struct GObj* child;
-    /* 0x1C */ OSThread* thread;
-    /* 0x20 */ void* dlFunc;
-    /* 0x24 */ struct GObj* dlNext;
-    /* 0x28 */ u32 dlSortKey;
-    /* 0x2C */ void (*renderFn)(struct GObj*);
-    /* 0x30 */ void* linkFlags;
-    /* 0x34 */ char unk_34[0x4];
-    /* 0x38 */ s8 specialLinkRender; /* Created by retype action */
-    /* 0x39 */ char unk_39[0x3];
-    /* 0x3C */ signalLL* signals;
-    /* 0x40 */ signalLL* lastSignal;
-    /* 0x44 */ s32 LLCount;
-    /* 0x48 */ union {
-        struct geoNode* rootNode;
-        struct SObj* sobj;
-    } userData;
-    /* 0x4C */ f32 currFrame;
-    /* 0x50 */ s32 activeFlags;
-    /* 0x54 */ void (*nodeFunc)(struct geoNode*, s32 undefined4);
-    /* 0x58 */ gobjData data;
-} GObj;
 
 typedef GObj* (*animalInit)(s32 arg0, s32 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
 typedef void (*gfxFunc)(GObj*);

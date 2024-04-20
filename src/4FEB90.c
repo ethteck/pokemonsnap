@@ -88,6 +88,8 @@ void runAnimalCleanup(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD9C_5001AC.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/addAnimalAtGeo.s")
+/*
 GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
     objectSpawn spawn;
     roomGFX* roomA;
@@ -122,6 +124,7 @@ GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
 
     return animalObj;
 }
+*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FEEC_5002FC.s")
 

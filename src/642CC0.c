@@ -2,6 +2,7 @@
 
 extern animalDef D_802C6FC4_649474;
 
+/*
 void evolveIntoMuk(GObj* obj) {
     GObj* muk;
     animalDef def = D_802C6FC4_649474;
@@ -10,6 +11,9 @@ void evolveIntoMuk(GObj* obj) {
     muk->userData.rootNode->xform->euler.y = obj->userData.rootNode->xform->euler.y;
     omEndProcess(NULL);
 }
+*/
+
+#pragma GLOBAL_ASM("asm/nonmatchings/642CC0/evolveIntoMuk.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/642CC0/func_802C0888_642D38.s")
 

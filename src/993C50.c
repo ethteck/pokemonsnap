@@ -9,7 +9,7 @@ extern s32 D_80229194_9D8C04;
 
 void func_800AA85C(s32, s32);
 void func_800AA870(s32);
-s32 func_800BFB84_5CA24();
+s32 func_800BFB84_5CA24(void);
 s32 func_801DCCE0_98C750(void);
 void func_801DD9E4_98D454(s32);
 void func_801DDA68_98D4D8(s32);
@@ -21,7 +21,7 @@ s32 func_8036FFE0_843790(s32, s32);
 void func_80370004_8437B4(s32, s32);
 void func_8037005C_84380C(s32, s32);
 void func_80370134_8438E4(void);
-s32 func_80370600_843DB0();
+s32 func_80370600_843DB0(void);
 void func_803713EC_844B9C(s32);
 
 void* func_801E41E0_993C50(void) {
@@ -36,10 +36,10 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
         D_801F4180_9A3BF0 = -1;
         return 0;
     }
-    if ((arg0->unk_18 & 0x40000) && (*arg1 <= 0)) {
+    if (arg0->unk_18 & 0x40000 && *arg1 <= 0) {
         *arg1 += 1;
     }
-    if ((arg0->unk_18 & 0x80000) && (*arg1 > 0)) {
+    if (arg0->unk_18 & 0x80000 && *arg1 > 0) {
         *arg1 -= 1;
     }
     if (*arg1 != D_801F4180_9A3BF0) {

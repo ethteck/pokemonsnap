@@ -4,7 +4,7 @@ UseTab: Never
 ColumnLimit: 120
 PointerAlignment: Left
 BreakBeforeBraces: Attach
-SpaceAfterCStyleCast: false
+SpaceAfterCStyleCast: true
 Cpp11BracedListStyle: false
 IndentCaseLabels: true
 BinPackArguments: true
@@ -13,11 +13,10 @@ AlignAfterOpenBracket: Align
 AlignOperands: true
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
-AllowShortBlocksOnASingleLine: true
+AllowShortBlocksOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: false
 AlignEscapedNewlines: Left
-AlignTrailingComments: true
 SortIncludes: false

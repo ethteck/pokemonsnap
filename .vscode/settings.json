@@ -16,4 +16,5 @@
         "random": "c",
         "limits": "c"
     },
+    "files.insertFinalNewline": true,
 }

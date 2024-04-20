@@ -72,19 +72,19 @@ typedef struct Bar {
 } Bar; // size: 0x1C
 
 typedef struct Fizz {
-    /*   0 */ u8 pad[0x3a0];
-    /* 3a0 */ u32 unk3A0;
-    /* 3a4 */ s16 unk3A4;
-    /* 3a6 */ u8 unk3A6;
-    /* 3a7 */ u8 unk3A7;
-    /* 3a8 */ u8 unk3A8;
-    /* 3a9 */ u8 unk3A9;
-    /* 3aa */ s16 unk3AA;
-    /* 3ac */ u16 unk3AC;
-    /* 3ae */ u16 unk3AE;
-    /* 3b0 */ u16 unk3B0;
-    /* 3b2 */ u16 unk3B2;
-    /* 3b4 */ u8 unk3B4;
+    /* 0x000 */ u8 pad[0x3a0];
+    /* 0x3A0 */ u32 unk3A0;
+    /* 0x3A4 */ s16 unk3A4;
+    /* 0x3A6 */ u8 unk3A6;
+    /* 0x3A7 */ u8 unk3A7;
+    /* 0x3A8 */ u8 unk3A8;
+    /* 0x3A9 */ u8 unk3A9;
+    /* 0x3Aa */ s16 unk3AA;
+    /* 0x3AC */ u16 unk3AC;
+    /* 0x3AE */ u16 unk3AE;
+    /* 0x3B0 */ u16 unk3B0;
+    /* 0x3B2 */ u16 unk3B2;
+    /* 0x3B4 */ u8 unk3B4;
 } Fizz;
 
 extern s32 D_801F4194_9A3C04;
@@ -107,7 +107,7 @@ void func_800BF5D8_5C478(s32, u32);
 void func_800BF690_5C530(s16, u32);
 void func_800BF7D4_5C674(s16, u32);
 void func_800BF954_5C7F4(s32, s32, int);
-Foo* func_800BFB50_5C9F0(s32);
+unk0* func_800BFB50_5C9F0(s32);
 void* func_8037452C(void*);
 #endif
 
@@ -115,33 +115,33 @@ s32 func_801E4510_993F80(void) {
     return D_801F4194_9A3C04;
 }
 
-u32 func_801E452C_993F9C(s32 arg0) {
-    if ((arg0 < 0) || (arg0 >= func_800BFB84_5CA24())) {
+u32 func_801E452C_993F9C(s32 idx) {
+    if (idx < 0 || idx >= func_800BFB84_5CA24()) {
         return 0;
     }
-    return D_802291A0_9D8C10[arg0].unk0;
+    return D_802291A0_9D8C10[idx].unk0;
 }
 
-void* func_801E459C_99400C(s32 arg0) {
-    if ((arg0 < 0) || (arg0 >= func_800BFB84_5CA24())) {
+void* func_801E459C_99400C(s32 idx) {
+    if (idx < 0 || idx >= func_800BFB84_5CA24()) {
         return NULL;
     }
-    return &D_802291A0_9D8C10[arg0];
+    return &D_802291A0_9D8C10[idx];
 }
 
 s32 func_801E460C_99407C(char* arg0, char* arg1) {
     s32 sp4;
 
-    if ((arg0 == NULL) || (arg1 == NULL)) {
+    if (arg0 == NULL || arg1 == NULL) {
         return 0;
     }
 
-    for (;; arg0++, arg1++) {
+    for (; TRUE; arg0++, arg1++) {
         sp4 = *arg0 - *arg1;
         if (sp4 != 0) {
             return sp4;
         }
-        if ((*arg0 == 0) || (*arg1 == 0)) {
+        if (*arg0 == 0 || *arg1 == 0) {
             break;
         }
     }
@@ -173,10 +173,9 @@ int func_801E4704_994174(const void* arg0, const void* arg1) {
         return -1;
     }
 
-    if ((D_801F4198_9A3C08 != NULL) && (func_801E4704_994174 != D_801F4198_9A3C08)) {
+    if (D_801F4198_9A3C08 != NULL && D_801F4198_9A3C08 != func_801E4704_994174) {
         return D_801F4198_9A3C08(arg0, arg1);
     }
-
     return func_801E4690_994100(arg0, arg1);
 }
 
@@ -191,7 +190,7 @@ int func_801E47F0_994260(const void* arg0, const void* arg1) {
         return -1;
     }
 
-    if ((D_801F4198_9A3C08 != NULL) && (func_801E47F0_994260 != D_801F4198_9A3C08)) {
+    if (D_801F4198_9A3C08 != NULL && D_801F4198_9A3C08 != func_801E47F0_994260) {
         return D_801F4198_9A3C08(arg0, arg1);
     }
     return func_801E4690_994100(arg0, arg1);
@@ -207,7 +206,7 @@ int func_801E48CC_99433C(const void* arg0, const void* arg1) {
     if (sp2C != 0) {
         return sp2C;
     }
-    if ((D_801F4198_9A3C08 != NULL) && (func_801E48CC_99433C != D_801F4198_9A3C08)) {
+    if (D_801F4198_9A3C08 != NULL && D_801F4198_9A3C08 != func_801E48CC_99433C) {
         return D_801F4198_9A3C08(arg0, arg1);
     }
     return func_801E4690_994100(arg0, arg1);
@@ -224,7 +223,7 @@ int func_801E49A8_994418(const void* arg0, const void* arg1) {
         return -1;
     }
 
-    if ((D_801F4198_9A3C08 != NULL) && (func_801E49A8_994418 != D_801F4198_9A3C08)) {
+    if (D_801F4198_9A3C08 != NULL && D_801F4198_9A3C08 != func_801E49A8_994418) {
         return D_801F4198_9A3C08(arg0, arg1);
     }
     return func_801E4690_994100(arg0, arg1);

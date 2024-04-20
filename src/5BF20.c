@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF080_5BF20.s")
+extern s32 D_800C20F0_5EF90; // s32 D_800C20F0_5EF90 = 0;
+extern s32 D_800C21B0_5F050;
+
+s32 func_800BF080_5BF20(void) {
+    return D_800C21B0_5F050;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF08C_5BF2C.s")
 
@@ -60,7 +65,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFB50_5C9F0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFB84_5CA24.s")
+s32 func_800BFB84_5CA24(void) {
+    return D_800C20F0_5EF90;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFB90_5CA30.s")
 

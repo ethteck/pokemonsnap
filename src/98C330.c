@@ -127,7 +127,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     func_80007BC4(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
     gtlDisableNearClipping(1);
-    om_setup_scene(&D_801E542C_994E9C);
+    omSetupScene(&D_801E542C_994E9C);
     return D_800AF3C0;
 }
 

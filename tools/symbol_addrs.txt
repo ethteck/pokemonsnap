@@ -392,16 +392,16 @@ gContInputReleasedButtons = 0x80049756;
 gContInputStickX = 0x80049758;
 gContInputStickY = 0x80049759;
 
-gtl_set_segment_F = 0x80005418;
+gtlSetSegmentF = 0x80005418;
 gtlDisableNearClipping = 0x80005448;
 gtlMalloc = 0x800054A0;
 gtlLoadUcode = 0x80005E64;
-gtl_reset = 0x80005A98;
+gtlReset = 0x80005A98;
 gtlProcessAllDLists = 0x80005F34;
 gtl_combine_all_dlists = 0x80006330;
 gtl_wait_all_gfx_tasks_done = 0x80006764;
-om_setup_scene = 0x800073AC;
-gtl_set_intervals = 0x800075FC;
+omSetupScene = 0x800073AC;
+gtlSetIntervals = 0x800075FC;
 gtlFrameCounter = 0x80040CF4;
 gtlDrawnFrameCounter = 0x80040CF8;
 gtlDLBuffers = 0x8004A850;
@@ -419,10 +419,10 @@ reset_bump_alloc = 0x80007850;
 bump_alloc = 0x8000785C;
 init_bump_alloc = 0x800078C4;
 
-vi_apply_settings_nonblocking = 0x80007AFC;
+viApplySettingsNonblocking = 0x80007AFC;
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
 gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
 gspL3DEX2_fifoTextStart = 0x8003FB30;
 gspL3DEX2_fifoDataStart = 0x80045280;
-om_create_objects = 0x8000B0F8;
+omCreateObjects = 0x8000B0F8;

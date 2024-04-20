@@ -14,7 +14,7 @@
 // TODO include
 void func_80007D08(void*);
 void func_80007D14(Gfx**);
-void om_create_objects(OMSetup*);
+void omCreateObjects(OMSetup*);
 void func_80011254(void*);
 void func_8000C274(void);
 
@@ -113,7 +113,7 @@ void func_800053F0(void* arg0) {
     }
 }
 
-void gtl_set_segment_F(Gfx** gfxPtr) {
+void gtlSetSegmentF(Gfx** gfxPtr) {
     gtlSegmentFBasePtr = (u32*)&(*gfxPtr)->dma.addr;
     gSPSegment((*gfxPtr)++, 0x0F, 0x00000000);
 }
@@ -193,7 +193,7 @@ void gtlCheckBuffers(void) {
     }
 }
 
-void gtl_set_rdp_output(void* buffer, s32 size) {
+void gtlSetRDPOutput(void* buffer, s32 size) {
     SCTaskRDPBuffer task;
 
     task.info.type = SC_TASK_TYPE_RDP_BUFFER;
@@ -207,7 +207,7 @@ void gtl_set_rdp_output(void* buffer, s32 size) {
     }
 }
 
-void gtl_set_rdp_output_settings(s32 type, void* buffer, u32 size) {
+void gtlSetRDPOutputSettings(s32 type, void* buffer, u32 size) {
     gtlD_80040CF0 = type;
     gtlRPDOutputBuffer = buffer;
     gtlRPDOutputBufferSize = size;
@@ -220,11 +220,11 @@ void gtl_set_rdp_output_settings(s32 type, void* buffer, u32 size) {
     }
 
     if (type == 1) {
-        gtl_set_rdp_output(buffer, size);
+        gtlSetRDPOutput(buffer, size);
     }
 }
 
-SCTaskGfx* gtl_get_task_gfx(void) {
+SCTaskGfx* gtlGetTaskGfx(void) {
     SCTaskGfx* task;
 
     if (gtlGfxTasksBufferStart[gtlContextId] == NULL) {
@@ -240,7 +240,7 @@ SCTaskGfx* gtl_get_task_gfx(void) {
     return task;
 }
 
-void gtl_init_task_buffers(SCTaskGfx* gfxTasks, s32 taskBufferSize, SCTaskGfxEnd* gfxEndTasks, SCTaskVi* viTasks) {
+void gtlInitTaskBuffers(SCTaskGfx* gfxTasks, s32 taskBufferSize, SCTaskGfxEnd* gfxEndTasks, SCTaskVi* viTasks) {
     s32 i;
     for (i = 0; i < gtlNumContexts; i++) {
         gtlGfxTasksBufferStart[i] = (SCTaskGfx*)((uintptr_t)(gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * i);
@@ -251,7 +251,7 @@ void gtl_init_task_buffers(SCTaskGfx* gfxTasks, s32 taskBufferSize, SCTaskGfxEnd
     }
 }
 
-void gtl_schedule_gfx_end(SCTaskGfxEnd* task, void* fb, s32 arg2, OSMesgQueue* mq) {
+void gtlScheduleGfxEnd(SCTaskGfxEnd* task, void* fb, s32 arg2, OSMesgQueue* mq) {
     task->info.type = SC_TASK_TYPE_GFX_END;
     task->info.priority = 100;
     task->info.fnCheck = NULL;
@@ -263,7 +263,7 @@ void gtl_schedule_gfx_end(SCTaskGfxEnd* task, void* fb, s32 arg2, OSMesgQueue* m
     osSendMesg(&scTaskQueue, (OSMesg)task, OS_MESG_NOBLOCK);
 }
 
-void gtl_cancel_current_gfx_task(void) {
+void gtlCancelCurrentGfxTask(void) {
     s32 retVal;
     SCTaskGfxEnd* task = gtlGfxEndTasks[gtlContextId];
 
@@ -273,11 +273,11 @@ void gtl_cancel_current_gfx_task(void) {
     }
 
     retVal = gtlContextId;
-    gtl_schedule_gfx_end(task, (void*)-1, retVal, &gtlD_800497E0);
+    gtlScheduleGfxEnd(task, (void*)-1, retVal, &gtlD_800497E0);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
 }
 
-void gtl_reset(void) {
+void gtlReset(void) {
     OSMesg recv;
     s32 retVal;
     SCTaskGfxEnd* task = gtlGfxEndTasks[gtlContextId];
@@ -288,14 +288,14 @@ void gtl_reset(void) {
     }
 
     retVal = gtlContextId;
-    gtl_schedule_gfx_end(task, NULL, retVal, &gtlResetQueue);
+    gtlScheduleGfxEnd(task, NULL, retVal, &gtlResetQueue);
     osRecvMesg(&gtlResetQueue, &recv, OS_MESG_BLOCK);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
     gtlResetHeap();
     gtlInitDLists();
 }
 
-void gtl_schedule_gfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff,
+void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff,
                       u32 outputBuffSize) {
     UcodeInfo* ucode;
 
@@ -411,14 +411,14 @@ void func_80005D60(s32 arg0, u64* dlist) {
         case UCODE_F3DEX2_REJ_XBUS:
         case UCODE_F3DLX2_REJ_XBUS:
         case UCODE_L3DEX2_XBUS:
-            gtl_schedule_gfx(gtl_get_task_gfx(), 0, uidx, gtlContextId, dlist, NULL, 0);
+            gtlScheduleGfx(gtlGetTaskGfx(), 0, uidx, gtlContextId, dlist, NULL, 0);
             break;
         case UCODE_F3DEX2_FIFO:
         case UCODE_F3DEX2_NON_FIFO:
         case UCODE_F3DEX2_REJ_FIFO:
         case UCODE_F3DLX2_REJ_FIFO:
         case UCODE_L3DEX2_FIFO:
-            gtl_schedule_gfx(gtl_get_task_gfx(), 0, uidx, gtlContextId, dlist, gtlRPDOutputBuffer,
+            gtlScheduleGfx(gtlGetTaskGfx(), 0, uidx, gtlContextId, dlist, gtlRPDOutputBuffer,
                              gtlRPDOutputBufferSize);
             break;
     }
@@ -667,7 +667,7 @@ void func_800067EC(s32 arg0) {
     gtlD_8004A8B4 = arg0;
 }
 
-s32 gtl_check_exit_main_loop(void) {
+s32 gtlCheckExitMainLoop(void) {
     SCTaskInfo task;
 
     switch (gtlState) {
@@ -728,7 +728,7 @@ void gtlMain(FnBundle* arg0) {
             arg0->fnUpdate(arg0);
             gtlFrameCounter += 1;
             gtlD_8004A8F0 = (osGetCount() - gtlTimestamp) / 2971;
-            if (gtl_check_exit_main_loop()) {
+            if (gtlCheckExitMainLoop()) {
                 break;
             }
 
@@ -739,7 +739,7 @@ void gtlMain(FnBundle* arg0) {
                 gtlDrawnFrameCounter += 1;
                 gtlD_8004A8F4 = (osGetCount() - gtlTimestamp) / 2971;
 
-                if (gtl_check_exit_main_loop()) {
+                if (gtlCheckExitMainLoop()) {
                     break;
                 }
             }
@@ -757,7 +757,7 @@ void gtlMain(FnBundle* arg0) {
             arg0->fnUpdate(arg0);
             gtlFrameCounter += 1;
             gtlD_8004A8F0 = (osGetCount() - gtlTimestamp) / 2971;
-            if (gtl_check_exit_main_loop()) {
+            if (gtlCheckExitMainLoop()) {
                 break;
             }
 
@@ -766,7 +766,7 @@ void gtlMain(FnBundle* arg0) {
                 arg0->fnDraw(arg0);
                 gtlDrawnFrameCounter += 1;
                 gtlD_8004A8F4 = (osGetCount() - gtlTimestamp) / 2971;
-                if (gtl_check_exit_main_loop()) {
+                if (gtlCheckExitMainLoop()) {
                     break;
                 }
             }
@@ -792,26 +792,26 @@ void func_80006E5C(FnBundle* self) {
     gtlInitDLists();
     self->fnPrivDraw();
     gtlProcessAllDLists();
-    vi_apply_settings_nonblocking(gtlVideoSettingsTasks[gtlContextId]);
-    gtl_cancel_current_gfx_task();
+    viApplySettingsNonblocking(gtlVideoSettingsTasks[gtlContextId]);
+    gtlCancelCurrentGfxTask();
 }
 
-void gtl_update(FnBundle* self) {
+void gtlUpdate(FnBundle* self) {
     gtlUpdateInputFunc();
     self->fnPrivUpdate();
-    if (gtl_check_exit_main_loop()) {
+    if (gtlCheckExitMainLoop()) {
         func_8000C274();
     }
 }
 
-void gtl_draw(FnBundle* self) {
+void gtlDraw(FnBundle* self) {
     gtlResetHeap();
     gtlInitDLists();
     self->fnPrivDraw();
     gtlProcessAllDLists();
-    vi_apply_settings_nonblocking(gtlVideoSettingsTasks[gtlContextId]);
-    gtl_cancel_current_gfx_task();
-    if (gtl_check_exit_main_loop()) {
+    viApplySettingsNonblocking(gtlVideoSettingsTasks[gtlContextId]);
+    gtlCancelCurrentGfxTask();
+    if (gtlCheckExitMainLoop()) {
         func_8000C274();
     }
 }
@@ -837,7 +837,7 @@ void func_80006F8C(struct Temp8000641C* arg0) {
         PANIC();
     }
     tmp = gtlContextId;
-    gtl_schedule_gfx_end(task, NULL, tmp, &gtlD_800497E0);
+    gtlScheduleGfxEnd(task, NULL, tmp, &gtlD_800497E0);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
     do {
         osRecvMesg(&gtlD_800497E0, (OSMesg*)&idx, OS_MESG_BLOCK);
@@ -847,7 +847,7 @@ void func_80006F8C(struct Temp8000641C* arg0) {
     gtlDrawnFrameCounter += 1;
 }
 
-void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
+void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     s32 i;
     DLBuffer dlBuffers[2][4];
     s32 tmp;
@@ -857,7 +857,7 @@ void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlCallbackBundle.fnPrivUpdate = setup->fnUpdate;
     gtlCallbackBundle.fnPrivDraw = setup->fnDraw;
 
-    gtl_init_task_buffers(gtlMalloc(setup->unk14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk14,
+    gtlInitTaskBuffers(gtlMalloc(setup->unk14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk14,
                           gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
                           gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
 
@@ -887,7 +887,7 @@ void gtl_start(BufferSetup* setup, void (*postInitFunc)(void)) {
     }
 
     tmp = setup->rdpOutputBufferSize;
-    gtl_set_rdp_output_settings(setup->unk30, gtlMalloc(tmp, 16), setup->rdpOutputBufferSize);
+    gtlSetRDPOutputSettings(setup->unk30, gtlMalloc(tmp, 16), setup->rdpOutputBufferSize);
     func_80007D08(setup->fnPreRender);
     gtlUpdateInputFunc = setup->fnUpdateInput;
     contSetUpdateEveryTick((uintptr_t)contReadAndUpdate != (uintptr_t)gtlUpdateInputFunc ? TRUE : FALSE);
@@ -904,10 +904,10 @@ void func_80007354(BufferSetup* arg) {
     gtlInitHeap(arg->heapBase, arg->heapSize);
     gtlCallbackBundle.fnUpdate = func_80006E24;
     gtlCallbackBundle.fnDraw = func_80006E5C;
-    gtl_start(arg, NULL);
+    gtlStart(arg, NULL);
 }
 
-void om_setup_scene(SceneSetup* arg) {
+void omSetupScene(SceneSetup* arg) {
     OMSetup omSetup;
 
     gtlInitHeap(arg->gtlSetup.heapBase, arg->gtlSetup.heapSize);
@@ -956,15 +956,15 @@ void om_setup_scene(SceneSetup* arg) {
     omSetup.numCameras = arg->numOMCameras;
     omSetup.cameraSize = arg->omCameraSize;
 
-    om_create_objects(&omSetup);
-    gtlCallbackBundle.fnUpdate = gtl_update;
-    gtlCallbackBundle.fnDraw = gtl_draw;
-    gtl_start(&arg->gtlSetup, arg->postInitFunc);
+    omCreateObjects(&omSetup);
+    gtlCallbackBundle.fnUpdate = gtlUpdate;
+    gtlCallbackBundle.fnDraw = gtlDraw;
+    gtlStart(&arg->gtlSetup, arg->postInitFunc);
 }
 
-void gtl_set_intervals(u16 updateInterval, u16 draw_interval) {
+void gtlSetIntervals(u16 updateInterval, u16 drawInterval) {
     gtlUpdateInterval = updateInterval;
-    gtlDrawFrameInterval = draw_interval;
+    gtlDrawFrameInterval = drawInterval;
 }
 
 void func_80007618(void) {

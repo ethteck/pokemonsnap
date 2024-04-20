@@ -62,9 +62,9 @@ typedef struct {
 void* gtlMalloc(s32 size, s32 alignment);
 void gtlProcessAllDLists(void);
 void gtl_combine_all_dlists(void);
-void gtl_reset(void);
+void gtlReset(void);
 void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx);
-void om_setup_scene(SceneSetup* arg);
+void omSetupScene(SceneSetup* arg);
 
 extern s32 gtlDrawnFrameCounter;
 extern Gfx* gMainGfxPos[4];

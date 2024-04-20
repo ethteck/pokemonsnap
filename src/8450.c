@@ -20,7 +20,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007A94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8450/vi_apply_settings_nonblocking.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8450/viApplySettingsNonblocking.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007B58.s")
 

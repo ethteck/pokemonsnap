@@ -237,7 +237,12 @@ typedef struct GObj {
     /* 0x34 */ s32 cameraTag;
     /* 0x38 */ s32 unk38;
     /* 0x3C */ GObj_Sub3CList sub3C;
-    /* 0x48 */ void* children;
+    /* 0x48 */ union {
+                struct DObj* dobj;
+                struct SObj* sobj;
+                struct OMCamera* cam;
+                void* any;
+    } data;
     /* 0x4C */ f32 animationTime;
     /* 0x50 */ u32 flags;
     /* 0x54 */ void (*fnAnimCallback)(struct DObj*, u32, f32);

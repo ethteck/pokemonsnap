@@ -55,13 +55,10 @@ void func_80371F30_8456E0(s32, s32, s32, s32);
 void func_803719B0_845160(SObj*, s32, s32, s32, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_803719B0_845160.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80371C0C_8453BC.s")
-/*
 void func_80371C0C_8453BC(GObj* gobj) {
-    func_803719B0_845160(gobj->userData.sobj, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
+    func_803719B0_845160(gobj->data.sobj, 0, 0, 0xFF, 0xFF, 0xFF, 0xFF);
     func_80371F30_8456E0(0, SCREEN_WIDTH * 2 - 1, 0, SCREEN_HEIGHT * 2 - 1);
 }
-*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80371C68_845418.s")
 

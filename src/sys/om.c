@@ -1150,8 +1150,8 @@ DObj* omGObjAddDObj(GObj* obj, void* arg1) {
     }
 
     newDobj = omGetDObj();
-    if (obj->children != NULL) {
-        curr = obj->children;
+    if (obj->data.dobj != NULL) {
+        curr = obj->data.dobj;
 
         while (curr->next != NULL) {
             curr = curr->next;
@@ -1161,7 +1161,7 @@ DObj* omGObjAddDObj(GObj* obj, void* arg1) {
         newDobj->prev = curr;
     } else {
         obj->type = 1;
-        obj->children = newDobj;
+        obj->data.dobj = newDobj;
         newDobj->prev = NULL;
     }
 
@@ -1239,9 +1239,9 @@ void omDObjRemove(DObj* dobj) {
 
     if ((uintptr_t)dobj->parent == 1) {
         // toplevel
-        if (dobj == dobj->obj->children) {
-            dobj->obj->children = dobj->next;
-            if (dobj->obj->children == NULL) {
+        if (dobj == dobj->obj->data.dobj) {
+            dobj->obj->data.dobj = dobj->next;
+            if (dobj->obj->data.dobj == NULL) {
                 dobj->obj->type = 0;
             }
         }
@@ -1299,8 +1299,8 @@ SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
 
     sobj = omGetSObj();
 
-    if (obj->children != NULL) {
-        SObj* curr = obj->children;
+    if (obj->data.sobj != NULL) {
+        SObj* curr = obj->data.sobj;
 
         while (curr->next != NULL) {
             curr = curr->next;
@@ -1310,7 +1310,7 @@ SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
         sobj->prev = curr;
     } else {
         obj->type = 2;
-        obj->children = sobj;
+        obj->data.sobj = sobj;
         sobj->prev = NULL;
     }
 
@@ -1326,9 +1326,9 @@ SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
 }
 
 void omGObjRemoveSprite(SObj* obj) {
-    if (obj == obj->obj->children) {
-        obj->obj->children = (void*)obj->next;
-        if (obj->obj->children == NULL) {
+    if (obj == obj->obj->data.sobj) {
+        obj->obj->data.sobj = (void*)obj->next;
+        if (obj->obj->data.sobj == NULL) {
             obj->obj->type = 0;
         }
     }
@@ -1354,7 +1354,7 @@ OMCamera* omGObjSetCamera(GObj* obj) {
     obj->type = 3;
 
     camera = omGetCamera();
-    obj->children = camera;
+    obj->data.cam = camera;
     camera->obj = obj;
     func_80007CBC(&camera->vp);
     if (FALSE) {} // required to match
@@ -1383,7 +1383,7 @@ void omGObjRemoveCamera(OMCamera* cam) {
 
     obj = cam->obj;
     obj->type = 0;
-    obj->children = NULL;
+    obj->data.cam = NULL;
 
     for (i = 0; i < ARRAY_COUNT(cam->matrices); i++) {
         if (cam->matrices[i] != NULL) {
@@ -1401,7 +1401,7 @@ void omGObjRemoveCamera(OMCamera* cam) {
     omFreeCamera(cam);
 }
 
-GObj* om_add_gobj_common(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
+GObj* omAddGObjCommon(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
     GObj* obj;
 
     if (link >= 32) {
@@ -1426,7 +1426,7 @@ GObj* om_add_gobj_common(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority)
     obj->animationTime = 0.0f;
     obj->flags = 0;
     obj->type = 0;
-    obj->children = NULL;
+    obj->data.any = NULL;
     obj->dlLink = 33;
 
     if (FALSE) {} // required to match
@@ -1437,7 +1437,7 @@ GObj* om_add_gobj_common(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority)
 }
 
 GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
-    GObj* com = om_add_gobj_common(id, fnUpdate, link, priority);
+    GObj* com = omAddGObjCommon(id, fnUpdate, link, priority);
 
     if (com == NULL) {
         return NULL;
@@ -1449,7 +1449,7 @@ GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
 }
 
 GObj* omAddGObjBeforeSamePriority(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
-    GObj* com = om_add_gobj_common(id, fnUpdate, link, priority);
+    GObj* com = omAddGObjCommon(id, fnUpdate, link, priority);
 
     if (com == NULL) {
         return NULL;
@@ -1461,7 +1461,7 @@ GObj* omAddGObjBeforeSamePriority(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 
 }
 
 GObj* omAddGObjAfter(u32 id, void (*fnUpdate)(GObj*), GObj* arg2) {
-    GObj* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
+    GObj* com = omAddGObjCommon(id, fnUpdate, arg2->link, arg2->priority);
 
     if (com == NULL) {
         return NULL;
@@ -1473,7 +1473,7 @@ GObj* omAddGObjAfter(u32 id, void (*fnUpdate)(GObj*), GObj* arg2) {
 }
 
 GObj* omAddGObjBefore(u32 id, void (*fnUpdate)(GObj*), GObj* arg2) {
-    GObj* com = om_add_gobj_common(id, fnUpdate, arg2->link, arg2->priority);
+    GObj* com = omAddGObjCommon(id, fnUpdate, arg2->link, arg2->priority);
 
     if (com == NULL) {
         return NULL;
@@ -1500,7 +1500,7 @@ void omDeleteGObj(GObj* obj) {
             func_8000C220(obj);
             break;
         case 3:
-            omGObjRemoveCamera(obj->children);
+            omGObjRemoveCamera(obj->data.cam);
             break;
     }
 

@@ -367,7 +367,7 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
     osSendMesg(&scTaskQueue, (OSMesg)t, OS_MESG_NOBLOCK);
 }
 
-u32 gtl_get_line_ucode(void) {
+u32 gtlGetLineUcode(void) {
     u32 o = gtlD_8004A908 ? gtlD_8004A906 : gtlD_8004A904;
 
     switch (o) {
@@ -402,7 +402,7 @@ void func_80005D60(s32 arg0, u64* dlist) {
             }
         }
     } else {
-        uidx = gtl_get_line_ucode();
+        uidx = gtlGetLineUcode();
     }
 
     switch (uidx) {
@@ -473,7 +473,7 @@ void gtlProcessAllDLists(void) {
         if (diffs & 1) {
             if (diffs & 4) {
                 // 0 -> 2
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[2]);
             } else if (diffs & 2) {
                 // 0 -> 1
@@ -483,7 +483,7 @@ void gtlProcessAllDLists(void) {
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
                 // 0 -> 3
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[3]);
             } else {
                 // 0
@@ -508,7 +508,7 @@ void gtlProcessAllDLists(void) {
         if (diffs & 2) {
             if (diffs & 8) {
                 // 1 -> 3
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[1]++, gSavedGfxPos[3]);
             } else {
                 // 1
@@ -551,7 +551,7 @@ void gtlProcessAllDLists(void) {
     gtlCheckBuffers();
 }
 
-void gtl_combine_all_dlists(void) {
+void gtlCombineAllDLists(void) {
     s32 i;
     s32 diffs;
 
@@ -567,7 +567,7 @@ void gtl_combine_all_dlists(void) {
     if (diffs != 0) {
         if (diffs & 1) {
             if (diffs & 4) {
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[2]);
             } else if (diffs & 2) {
                 if (gtlD_8004A908) {
@@ -575,7 +575,7 @@ void gtl_combine_all_dlists(void) {
                 }
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[1]);
             } else if (diffs & 8) {
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[0]++, gSavedGfxPos[3]);
             }
         }
@@ -595,7 +595,7 @@ void gtl_combine_all_dlists(void) {
 
         if (diffs & 2) {
             if (diffs & 8) {
-                gtlLoadUcode(&gMainGfxPos[0], gtl_get_line_ucode());
+                gtlLoadUcode(&gMainGfxPos[0], gtlGetLineUcode());
                 gSPBranchList(gMainGfxPos[1]++, gSavedGfxPos[3]);
             } else {
                 if (gtlD_8004A908) {
@@ -617,7 +617,7 @@ void gtl_combine_all_dlists(void) {
     gtlCheckBuffers();
 }
 
-u32 gtl_switch_context(s32 arg0) {
+u32 gtlSwitchContext(s32 arg0) {
     s32 msg;
     s32 i;
 
@@ -642,7 +642,7 @@ u32 gtl_switch_context(s32 arg0) {
     return 0;
 }
 
-void gtl_wait_all_gfx_tasks_done(void) {
+void gtlWaitAllGfxTasksDone(void) {
     struct SCTaskInfo task;
     OSMesg msgs[1];
     OSMesgQueue mq;
@@ -733,7 +733,7 @@ void gtlMain(FnBundle* arg0) {
             }
 
             if (gtlFrameCounter % gtlDrawFrameInterval == 0) {
-                gtl_switch_context(0);
+                gtlSwitchContext(0);
                 gtlTimestamp = osGetCount();
                 arg0->fnDraw(arg0);
                 gtlDrawnFrameCounter += 1;
@@ -761,7 +761,7 @@ void gtlMain(FnBundle* arg0) {
                 break;
             }
 
-            if (gtlFrameCounter % gtlDrawFrameInterval == 0 && gtl_switch_context(1)) {
+            if (gtlFrameCounter % gtlDrawFrameInterval == 0 && gtlSwitchContext(1)) {
                 gtlTimestamp = osGetCount();
                 arg0->fnDraw(arg0);
                 gtlDrawnFrameCounter += 1;
@@ -773,7 +773,7 @@ void gtlMain(FnBundle* arg0) {
         }
     }
 
-    gtl_wait_all_gfx_tasks_done();
+    gtlWaitAllGfxTasksDone();
     while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {}
     while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
     while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
@@ -826,7 +826,7 @@ void func_80006F8C(struct Temp8000641C* arg0) {
     s32 tmp;
     SCTaskGfxEnd* task;
 
-    gtl_switch_context(0);
+    gtlSwitchContext(0);
     gtlResetHeap();
     gtlInitDLists();
     arg0->fn2C(arg0);

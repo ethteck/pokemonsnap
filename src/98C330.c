@@ -3,21 +3,6 @@
 #include "gbi.h"
 #include "string.h"
 
-extern s32 D_801E5410_994E80;
-extern s32 D_801E543C_994EAC;
-extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check 
-extern Sprite D_801F26B0_9A2120; // NEW
-extern Sprite D_801F2910_9A2380; // blue diamond background
-extern Sprite D_801F29F0_9A2460; // evaluation background sprite
-extern Sprite D_801F2AD0_9A2540; // black square
-extern s32 D_801F3E28_9A3898;
-extern s32 D_801F3E2C_9A389C;
-extern s32 D_801F3E30_9A38A0;
-extern char D_801F5F70_9A59E0[];
-extern char D_801F5F78_9A59E8[];
-extern char D_801F5F84_9A59F4[];
-
-
 extern s32 D_800AF3C0;
 extern s32 D_80229840;
 extern s32 D_80369F80;

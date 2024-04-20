@@ -426,3 +426,35 @@ gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
 gspL3DEX2_fifoTextStart = 0x8003FB30;
 gspL3DEX2_fifoDataStart = 0x80045280;
 omCreateObjects = 0x8000B0F8;
+
+D_801F53B8_9A4E28 = 0x801F53B8; // force_migration:True rom:0x9A4E28
+D_801F54B0_9A4F20 = 0x801F54B0; // force_migration:True rom:0x9A4F20
+D_801F5584_9A4FF4 = 0x801F5584; // force_migration:True rom:0x9A4FF4
+D_801F55D0_9A5040 = 0x801F55D0; // force_migration:True rom:0x9A5040
+D_801F55F4_9A5064 = 0x801F55F4; // force_migration:True rom:0x9A5064
+D_801F5680_9A50F0 = 0x801F5680; // force_migration:True rom:0x9A50F0
+D_801F56F0_9A5160 = 0x801F56F0; // force_migration:True rom:0x9A5160
+D_801F5764_9A51D4 = 0x801F5764; // force_migration:True rom:0x9A51D4
+D_801F5964_9A53D4 = 0x801F5964; // force_migration:True rom:0x9A53D4
+D_801F598C_9A53FC = 0x801F598C; // force_migration:True rom:0x9A53FC
+D_801F59A8_9A5418 = 0x801F59A8; // force_migration:True rom:0x9A5418
+D_801F59C0_9A5430 = 0x801F59C0; // force_migration:True rom:0x9A5430
+D_801F59E8_9A5458 = 0x801F59E8; // force_migration:True rom:0x9A5458
+D_801F5A14_9A5484 = 0x801F5A14; // force_migration:True rom:0x9A5484
+D_801F5B70_9A55E0 = 0x801F5B70; // force_migration:True rom:0x9A55E0
+D_801F5BB0_9A5620 = 0x801F5BB0; // force_migration:True rom:0x9A5620
+D_801F5CB8_9A5728 = 0x801F5CB8; // force_migration:True rom:0x9A5728
+D_801F5D90_9A5800 = 0x801F5D90; // force_migration:True rom:0x9A5800
+D_801F5E2C_9A589C = 0x801F5E2C; // force_migration:True rom:0x9A589C
+D_801F5F14_9A5984 = 0x801F5F14; // force_migration:True rom:0x9A5984
+
+
+D_801F558C_9A4FFC = 0x801F558C; // force_migration:True rom:0x9A4FFC
+D_801F5630_9A50A0 = 0x801F5630; // force_migration:True rom:0x9A50A0
+D_801F568C_9A50FC = 0x801F568C; // force_migration:True rom:0x9A50FC
+D_801F56FC_9A516C = 0x801F56FC; // force_migration:True rom:0x9A516C
+D_801F576C_9A51DC = 0x801F576C; // force_migration:True rom:0x9A51DC
+D_801F5990_9A5400 = 0x801F5990; // force_migration:True rom:0x9A5400
+D_801F5D08_9A5778 = 0x801F5D08; // force_migration:True rom:0x9A5778
+
+D_801F5778_9A51E8 = 0x801F5778; // force_migration:True rom:0x9A51E8

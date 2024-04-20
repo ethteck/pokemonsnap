@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "common_structs.h"
+#include "sys/vi.h"
 
 f32 __cosf(f32);
 f32 __sinf(f32);
@@ -44,11 +45,13 @@ void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* ro
 
 void gtlDisableNearClipping(s32);
 void func_800067DC(void);
-void func_80007BC4(s32*);
 GObj* func_8000A410(s32, s32, s32, s32);
 void func_8000A0B4(GObj*, Sprite*);
 void func_8000A8A4(GObj*, void (*)(GObj*), s32, s32, s32);
+void func_8000ADA0(void);
+void func_8000AFFC(void);
 void func_8000BCA8(s32);
+void func_800A1A50(Gfx**);
 void func_80022334(void);
 void func_80022374(s32, s32);
 void func_80022454(s32, s32);
@@ -99,6 +102,7 @@ void func_8036F0A0_842850(s32, s32);
 void func_8036F0DC_84288C(s32, s32);
 void func_8036F198_842948(s32, s32);
 void func_8036F1F4_8429A4(s32, s32, s32);
+void func_8036F378_842B28(s32, s32, s32);
 void func_8036F684_842E34(s32, s32);
 void func_8036F738_842EE8(s32, ucolor*);
 s32 func_8036F78C_842F3C(void);

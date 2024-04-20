@@ -2,15 +2,17 @@
 
 #include "gbi.h"
 #include "string.h"
+#include "sys/vi.h"
+#include "sys/cont.h"
+
+void func_801DCBF4_98C664(void);
 
 extern s32 D_800AF3C0;
 extern s32 D_80229840;
 extern s32 D_80369F80;
 
-typedef struct UnkStruct98C_A {
-    /* 0x00 */ GObj* unk_00;
-    /* 0x04 */ char unk_04[0x4];
-} UnkStruct98C_A; // size = ???
+extern Addr D_803B5000;
+extern Addr D_803DA800;
 
 typedef struct UnkStruct98C_D {
     /* 0x00 */ char unk_00[0x0A];
@@ -18,10 +20,75 @@ typedef struct UnkStruct98C_D {
 } UnkStruct98C_D; // size = ???
 
 // data
+// Gfx D_801E53A0_994E10[] = {
+//     gsDPPipeSync(),
+//     gsDPPipelineMode(G_PM_NPRIMITIVE),
+//     gsSPSetGeometryMode(G_LIGHTING),
+//     gsDPSetTextureLOD(G_TL_TILE),
+//     gsDPSetTextureDetail(G_TD_CLAMP),
+//     gsDPSetTexturePersp(G_TP_PERSP),
+//     gsDPSetTextureLUT(G_TT_NONE),
+//     gsDPSetTextureFilter(G_TF_BILERP),
+//     gsDPSetTextureConvert(G_TC_FILT),
+//     gsSPClipRatio(FRUSTRATIO_6),
+//     gsSPEndDisplayList(),
+// };
+
+// ScreenSettings D_801E5410_994E80 = {
+//     D_803B5000,
+//     D_803DA800,
+//     NULL,
+//     NULL,
+//     SCREEN_WIDTH,
+//     SCREEN_HEIGHT,
+//     0x16A99,
+// };
+
+// SceneSetup D_801E542C_994E9C = {
+//     {
+//         0,
+//         func_8000AFFC,
+//         func_8000ADA0,
+//         &D_80229840,
+//         0,
+//         1,
+//         1,
+//         0x0000C000,
+//         0x00002000,
+//         0,
+//         0,
+//         0x00003000,
+//         0x00020000,
+//         0x00003000,
+//         func_800A1A50,
+//         contUpdate,
+//     },
+//     32,
+//     0x00002000,
+//     0x00000020,
+//     0,
+//     0x00000040,
+//     0,
+//     0x0000005C,
+//     0x00000400,
+//     0,
+//     0,
+//     0,
+//     0x00000010,
+//     0,
+//     0x00000088,
+//     0,
+//     0x00000060,
+//     0,
+//     0x00000090,
+//     func_801DCBF4_98C664
+// };
+
 extern Gfx D_801E53A0_994E10[];
-extern s32 D_801E5410_994E80; // Todo some struct
+extern ScreenSettings D_801E5410_994E80;
 extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
+extern Sprite D_801E5840_9952B0;
 extern Sprite D_801E5DB0_995820;
 extern Sprite D_801E5EE0_995950;
 extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check
@@ -34,17 +101,16 @@ extern s32 D_801F3E28_9A3898;
 extern s32 D_801F3E2C_9A389C;
 extern s32 D_801F3E30_9A38A0;
 
-// rodata
-extern char D_801F51E8_9A4C58[];
-extern char D_801F51EC_9A4C5C[];
-extern char D_801F5F70_9A59E0[];
-extern char D_801F5F78_9A59E8[]; // %s Course
-extern char D_801F5F84_9A59F4[]; // Hmm...\nWhat's new this time?
+
+typedef struct UnkStruct98C_A {
+    /* 0x00 */ GObj* unk_00;
+    /* 0x04 */ SObj* unk_04;
+} UnkStruct98C_A; // size = ???
+
 
 // BSS
-extern s32 D_801F70A0_9A6B10;
 extern UnkStruct98C_A D_802290A0_9D8B10[6];
-extern UnkStruct98C_A D_802290A4_9D8B14[];
+extern s32 D_801F70A0_9A6B10;
 extern s32 D_802290D8_9D8B48;
 extern s32 D_802290DC_9D8B4C;
 extern s32 D_802290E0_9D8B50;
@@ -62,6 +128,218 @@ extern SObj* D_80229188_9D8BF8;
 // extern D_80229838_9D92A8
 
 void func_801E3FFC_993A6C(void);
+s32 func_801E4428_993E98(void);
+void func_801E5030_994AA0(void);
+
+s32 D_801F3B50_9A35C0[] = {
+    0x00000000,
+};
+
+char* D_801F3B54_9A35C4[] = {
+    NULL,
+    "Surfing PIKACHU",
+    "PIKACHU on a Ball",
+    "Balloon PIKACHU",
+    "Speed PIKACHU",
+    "PIKACHU on a Stump",
+    "Flying PIKACHU",
+    "Gust-using PIDGEY",
+    "JIGGLYPUFF on Stage",
+    "GRAVELER's Group Dance",
+    "The Rare Pokεmon MEW",
+    "Fighting MAGMAR",
+    "JIGGLYPUFF TRIO on Stage",
+};
+
+char* D_801F3B88_9A35F8[] = {
+    "wrong number!",
+    "\\BOh! It seems to be screeching.",
+    "\\BOh! This is a fighting pose.",
+    "\\BOh! It's happy.",
+    "This is a relaxed pose.",
+    "\\BOh! It's neighing.",
+    "\\BOh! So many embers!",
+    "\\BOh! Tons of embers!",
+    "\\BOh! It's shining.",
+    "\\BOh! It's shining.",
+    "\\BOh! It's about to leap out!",
+    "\\BOh! It's enjoying the food.",
+    "\\BOh! It's DRAGONITE!",
+    "\\BOh! What a Thunder Jolt!",
+    "\\BOh! It's happy.",
+    "It looks happy.",
+    "\\BOh! It's happy.",
+    "\\BOh! What a jolly dance!",
+    "\\BOh! How beautiful!",
+    "\\BOh! How powerful!",
+    "It just showed its face.",
+    "Umm... looks scary!",
+    "\\BOh! It's furious!",
+    "\\BOh! It looks astonished!",
+    "JIGGLYPUFF's dance is great!",
+    "\\BOh! That's a shame...",
+    "\\BOh! It's singing cheerfully.",
+    "It's rolling...",
+    "\\BOh! It exploded!",
+    "It's a blast!",
+    "Oh dear, it fainted.",
+    "You've thrown a PESTER BALL.",
+    "It must be angry.",
+    "\\BOh! It's surprised!",
+    "It sure is happy!",
+    "It's trying to go underground.",
+    "I can barely see it.",
+    "It's trying to go underground.",
+    "\\BOh! What an amazing jump!",
+    "That's a pretty good jump.",
+    "It's jumping.",
+    "\\BOh! It's falling.",
+    "\\BOh! It's falling.",
+    "\\BOh! It fell.",
+    "\\BOh! It's MANKEY in the sky!",
+    "\\BOh! MANKEY got blasted!",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "\\BOh! What a splash!",
+    "It splashed!",
+    "That's a good splash.",
+    "\\BOh! It's splashing.",
+    "Nice jump.",
+    "It's jumping.",
+    "\\BOh! What a jump!",
+    "It's dizzy.",
+    "Oh dear, it fainted.",
+    "\\BOh! It's about to wake up.",
+    "\\BOh! It's about to jump in!",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "\\BOh! It's about to pop up.",
+    "It's about to go underground.",
+    "Hmm... It looks jolly.",
+    "It stumbled.",
+    "It stumbled.",
+    "It stumbled.",
+    "\\BOh! It's about to pop up.",
+    "It's about to go underground.",
+    "\\BOh! It's happy.",
+    "That's a good splash!",
+    "It's splashing.",
+    "\\BOh! What a splash!",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "It's about to withdraw.",
+    "I only see its shell.",
+    "It's about to come out.",
+    "\\BOh! It's happy!",
+    "Hmm... It looks happy.",
+    "Hmm... It looks jolly.",
+    "\\BOh! It sure is jolly!",
+    "Isn't the Pokεmon dance fun?",
+    "\\BOh! It's rockin'!",
+    "\\BOh! It's about to wake up!",
+    "\\BOh! It's been caught!",
+    "\\BOh! It's snapping!",
+    "It looks like it's going to fish.",
+    "Nice jump.",
+    "It jumped.",
+    "\\BOh! What a jump!",
+    "It's about to fall.",
+    "Quite unique!",
+    "It's submerging.",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "\\BOh! What a happy face!",
+    "\\BOh! What a wonderful pose!",
+    "It looks like it's shocked.",
+    "\\BOh! What a flame!",
+    "It's unstable...",
+    "Hmm...",
+    "You've thrown a PESTER BALL.",
+    "\\BOh! It looks happy!",
+    "Interesting! It's dizzy!",
+    "It's unstable...",
+    "This is pretty funny!",
+    "Ha, ha, ha! This is so funny!",
+    "\\BOh! It looks hot!",
+    "It's about to fall.",
+    "It seems to have fainted.",
+    "It seems to have woken up.",
+    "\\BOh! It's roaring!",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "You've thrown a PESTER BALL.",
+    "Hmm... It looks happy.",
+    "wrong number!",
+    "wrong number!",
+    "\\BOh! It looks jolly.",
+    "\\BOh! You hit 'em!",
+    "\\BOh! It just fainted.",
+    "\\BOh! It's about to wake up.",
+    "This angry shot is pretty cool.",
+    "\\BOh! What an interesting pose!",
+    "It's pretty funny.",
+    "It seems to have fainted.",
+    "You've thrown a PESTER BALL.",
+    "\\BOh! A dancing MEOWTH!",
+    "That's SNORLAX for sure!",
+    "\\BOh! What a jolly dance!",
+    "This pose zaps even me!",
+    "\\BOh! This is very lively!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "\\BOh! That's PIKA!",
+    "wrong number!",
+    "wrong number!",
+    "wrong number!",
+    "If only it were facing you...",
+    "If only it were facing you...",
+    "\\BOh! Well done!",
+    "\\BOh! It's spinning.",
+    "Why, it's \\Vperfect!",
+    "\\BOh! It looks yummy!",
+    "\\BOh! What a weird dance.",
+    "Gone fishing...",
+    "\\BOh! It got a bite!",
+    "It's about to pop up.",
+    "I can barely see it.",
+    "It's about to pop up.",
+    "What a funny pose.",
+    "It's about to get up.",
+    "It's scratching its tummy.",
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+};
+
+s32 D_801F3E28_9A3898 = 0;
+s32 D_801F3E2C_9A389C = 0;
+s32 D_801F3E30_9A38A0 = 4;
+s32 D_801F3E34_9A38A4 = 0;
+s32 D_801F3E38_9A38A8 = 15;
+
+f32 D_801F3E3C_9A38AC[] = {
+    0.0f,
+    0.08333333582f,
+    0.1666666716f,
+    0.25f,
+    0.3333333433f,
+    0.4166666567f,
+    0.5f,
+    0.5833333135f,
+    0.6666666865f,
+};
+
 
 void func_801DC8C0_98C330(Gfx** gfx) {
     gSPDisplayList(++*gfx, &D_801E53A0_994E10);
@@ -83,14 +361,81 @@ void func_801DC904_98C374(s32 arg0, s32 arg1) {
 
 void func_801DCA14_98C484(s32 arg0) {
     UNUSED s32 pad;
-    
+
     while (TRUE) {
         func_8000BCA8(1);
     }
 }
 
-void func_801DCA48_98C4B8(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DCA48_98C4B8.s")
+// TODO CLEAN
+// ASJDFIAWEJFIAWJEFIJAWEFIJAWEIFJAWEFAIWEJFAIWEJFIAWJEFIAWEF
+typedef struct Fizz {
+    s32 unk_00;
+    s32 unk_04;
+    s32 unk_08;
+} Fizz;
+
+typedef struct Bar {
+    /* 0x00 */ char pad_00[0x20];
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ char pad_24[4];
+    /* 0x28 */ f32 unk_28;
+    /* 0x2C */ f32 unk_2C;
+
+    /* 0x30 */ f32 unk_30;
+    /* 0x34 */ char pad_34[8];
+    /* 0x3C */ Fizz unk_3C;
+    /* 0x48 */ Fizz unk_48;
+
+    /* 0x54 */ f32 unk_54;
+    /* 0x58 */ f32 unk_58;
+    /* 0x5C */ f32 unk_5C;
+
+    /* 0x60 */ char pad_60[0x20];
+
+    /* 0x80 */ s32 unk_80;
+    /* 0x84 */ int unk_84;
+} Bar;
+
+typedef struct Foo {
+    /* 0x00 */ char pad_00[0x38];
+    /* 0x38 */ int unk_38;
+    /* 0x3C */ char pad_3C[0xC];
+    /* 0x48 */ Bar* unk_48;
+} Foo;
+
+extern Fizz D_800AF0C4;
+extern Fizz D_800AF094;
+
+Foo* func_8000C3FC(int, void*, int, int, void*, int, int, int, int, int, void*, int, int);
+void func_800A844C(void*, int, int, int, int);
+
+void func_8000BC84(void);
+void func_800191D8(void);
+
+void func_801DCA48_98C4B8(void) {
+    Foo* sp54;
+    Bar* sp50;
+    char pad[0x10];
+
+    sp54 = func_8000C3FC(0x200, func_8000BC84, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
+                         func_801DCA14_98C484, 0, 1);
+    sp54->unk_38 = 0x100000;
+    sp50 = sp54->unk_48;
+    sp50->unk_80 |= 6;
+    sp50->unk_80 &= ~3;
+    func_800A844C(sp50, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    sp50->unk_54 = 0.0f;
+    sp50->unk_58 = 0.0f;
+    sp50->unk_5C = 1.0f;
+    sp50->unk_48 = D_800AF0C4;
+    sp50->unk_3C = D_800AF094;
+    sp50->unk_20 = 33.0f;
+    sp50->unk_2C = 8000.0f;
+    sp50->unk_28 = sp50->unk_2C / 128.0;
+    sp50->unk_30 = 1.0f;
+    sp50->unk_84 = 1;
+}
 
 void func_801DCBF4_98C664(void) {
     UNUSED s32 pad;
@@ -120,8 +465,38 @@ s32 func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
-void func_801DCCFC_98C76C(s32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DCCFC_98C76C.s")
+void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
+    s32 sp2C;
+    s32 i;
+    s32 sp24;
+    s32 sp20;
+    s32 sp1C;
+    s32 sp18;
+
+    func_8036F684_842E34(arg0, 1);
+    func_8036F0A0_842850(arg0, 1);
+    for (i = 0; i <= D_801F3E38_9A38A8; i++) {
+        if (arg1 != 0) {
+            sp2C = i;
+        } else {
+            sp2C = D_801F3E38_9A38A8 - i;
+        }
+        sp24 = (sp2C * -92) / D_801F3E38_9A38A8 + 148;
+        sp20 = (sp2C * 92) / D_801F3E38_9A38A8 + 172;
+        sp1C = (sp2C * -36) / D_801F3E38_9A38A8 + 201;
+        sp18 = (sp2C * 0xFF) / D_801F3E38_9A38A8;
+        func_8036F1F4_8429A4(arg0, sp24, sp1C);
+        func_8036F378_842B28(arg0, sp20 - sp24, 225 - sp1C);
+        func_8036F198_842948(arg0, sp18);
+        func_8000BCA8(1);
+    }
+
+    if (arg1 != 0) {
+        func_8036F1F4_8429A4(arg0, 0x38, 0xA5);
+        func_8036F378_842B28(arg0, 0xD0, 0x3C);
+    }
+}
+
 
 void func_801DCF4C_98C9BC(s32 arg0) {
     func_8036F0DC_84288C(arg0, 1);
@@ -152,7 +527,7 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
     UnkStruct800BEDF8* sp18;
 
     func_8036B9EC_83F19C(arg0, 180, 0x20);
-    func_8036C898_840048(arg0, D_801F51E8_9A4C58);
+    func_8036C898_840048(arg0, "\\l");
     func_8036EB80_842330(0);
     func_8000BCA8(1);
 
@@ -174,7 +549,7 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
         func_800228E4(0x4D);
     }
     func_8036B9EC_83F19C(arg0, 180, 0x20);
-    func_8036C898_840048(arg0, D_801F51EC_9A4C5C);
+    func_8036C898_840048(arg0, "　");
     func_8000BCA8(1);
     func_8036EE40_8425F0();
     func_8036EB80_842330(1);
@@ -215,8 +590,45 @@ s32 func_801DD25C_98CCCC(s32 arg0, s32 arg1) {
     }
     return ret;
 }
-void func_801DD2D4_98CD44(void); // TODO unsure
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD2D4_98CD44.s")
+
+void func_80022A58(s32, s32, s32, f32, s32);
+
+void func_801DD2D4_98CD44(s32 arg0) {
+    switch (arg0) {
+        case 0x5C42:
+            func_80022A58(0xA2, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C43:
+            func_80022A58(0xA3, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C46:
+            func_80022A58(0xA6, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C47:
+            func_80022A58(0xA7, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C48:
+            func_80022A58(0xA8, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C49:
+            func_80022A58(0xA9, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C4A:
+            func_80022A58(0xAA, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C51:
+            func_80022A58(0xAE, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C53:
+            func_80022A58(0xAF, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        case 0x5C56:
+            func_80022A58(0xB2, 0x7FFF, 0x40, 0.75f, 0);
+            break;
+        default:
+            break;
+    }
+}
 
 void func_801DD46C_98CEDC(s32 rgb) {
     s32 i;
@@ -276,47 +688,49 @@ void func_801DD680_98D0F0(void) {
     }
 }
 
-void func_801DD720_98D190(s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD720_98D190.s")
+GObj* func_80371C68_845418(s32, s32, Sprite*);
+SObj* func_80371DC0_845570(SObj*, Sprite*);
+SObj* func_80371E68_845618(SObj*, Sprite*);
+void* func_8036A194_83D944(s32);
 
-// GObj* func_801DD720_98D190(s32 idx) {
-//     GObj* gobj;
-//     SObj* sobj;
-//     UNUSED s32 pad[2];
-//     Bitmap* sp24;
-//     s32 i;
-//     u8* sp20;
-//     u8* sp1C;
+GObj* func_801DD720_98D190(s32 idx) {
+    GObj* gobj;
+    SObj* sobj;
+    s32 i;
+    UNUSED s32 pad[1];
+    Bitmap* sp24;
+    u8* sp20;
+    u8* sp1C;
 
-//     gobj = func_80371C68(0, 6, &D_801E5DB0_995820);
-//     sobj = gobj->userData.sobj;
-//     D_802290A0_9D8B10[idx].unk_00 = gobj;
-//     sobj = func_80371E68(sobj, &D_801E5DB0_995820);
-//     sobj->sprite.x = 54;
-//     sobj->sprite.y = 0;
-//     sobj = func_80371DC0(sobj, &D_801E5EE0_995950);
-//     sobj->sprite.x = 2;
-//     sobj->sprite.y = 0;
-//     sobj = func_80371DC0(sobj, &D_801E5EE0_995950);
-//     sobj->sprite.x = 2;
-//     sobj->sprite.y = 41;
-//     sobj = func_80371DC0(sobj, &D_801F3B10_9A3580);
-//     sobj->sprite.x = 2;
-//     sobj->sprite.y = 2;
-//     D_802290A4_9D8B14[idx].unk_00 = sobj;
-//     sp24 = func_8036A194(0x30);
-//     sp20 = func_8036A194(0xFD8);
-//     sp1C = sobj->sprite.bitmap->buf;
-//     *sp24 = *sobj->sprite.bitmap;
-//     sp24->buf = sp20;
-//     sobj->sprite.bitmap = sp24;
+    gobj = func_80371C68_845418(0, 6, &D_801E5DB0_995820);
+    sobj = gobj->userData.sobj;
+    D_802290A0_9D8B10[idx].unk_00 = gobj;
+    sobj = func_80371E68_845618(sobj, &D_801E5DB0_995820);
+    sobj->sprite.x = 54;
+    sobj->sprite.y = 0;
+    sobj = func_80371DC0_845570(sobj, &D_801E5EE0_995950);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 0;
+    sobj = func_80371DC0_845570(sobj, &D_801E5EE0_995950);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 41;
+    sobj = func_80371DC0_845570(sobj, &D_801F3B10_9A3580);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 2;
+    D_802290A0_9D8B10[idx].unk_04 = sobj; // ?
+    sp24 = func_8036A194_83D944(0x30);
+    sp20 = func_8036A194_83D944(0xFD8);
+    sp1C = sobj->sprite.bitmap->buf;
+    *sp24 = *sobj->sprite.bitmap;
+    sp24->buf = sp20;
+    sobj->sprite.bitmap = sp24;
 
-//     for (i = 0xFD8; i > 0; i--) {
-//         *sp20++ = *sp1C++;
-//     }
+    for (i = 0xFD8; i > 0; sp1C++, sp20++, i--) {
+        *sp20 = *sp1C;
+    }
 
-//     return gobj;
-// }
+    return gobj;
+}
 
 void func_801DD8F4_98D364(void) {
     s32 i;
@@ -362,15 +776,53 @@ void func_801DDA68_98D4D8(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DDAD8_98D548.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DDAD8_98D548.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DDCF8_98D768.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DDCF8_98D768.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DE02C_98DA9C.s")
+void func_801DE02C_98DA9C(s32 arg0) {
+    f32 sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DE204_98DC74.s")
+    D_80229188_9D8BF8->sprite.y = 0;
+    D_80229188_9D8BF8->sprite.x = -211;
+    D_80229188_9D8BF8->sprite.attr &= ~SP_HIDDEN;
+    sp24 = 7.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E1FA8_991A18.s")
+    while (D_80229188_9D8BF8->sprite.x >= -211) {
+        if (D_801F3E30_9A38A0 == 2) {
+            break;
+        }
+
+        switch (D_801F3E30_9A38A0) {
+            case 0:
+                sp24 -= 0.1f;
+                break;
+            case 4:
+                D_80229188_9D8BF8->sprite.x = -12;
+                sp24 = 0.0f;
+                break;
+            case 1:
+                sp24 = -16.0f;
+        }
+
+        D_80229188_9D8BF8->sprite.x += sp24;
+        if (D_80229188_9D8BF8->sprite.x > -12) {
+            D_80229188_9D8BF8->sprite.x = -12;
+            D_801F3E30_9A38A0 = 4;
+        }
+        func_8000BCA8(1);
+    }
+    D_80229188_9D8BF8->sprite.attr |= SP_HIDDEN;
+    D_801F3E30_9A38A0 = 2;
+    func_8000A52C(0);
+    func_8000BCA8(0x63);
+}
+
+// THIS NEEDS TO BE MOVED
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DE204_98DC74.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E1FA8_991A18.s")
+
 
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad[3];
@@ -379,7 +831,7 @@ void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_801E2454_991EC4(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2454_991EC4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2454_991EC4.s")
 
 s32 func_801E28CC_99233C(s32* arg0) {
     s32 i;
@@ -433,10 +885,10 @@ s32 func_801E2A68_9924D8(void) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2AE8_992558.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2AE8_992558.s")
 
 void func_801E2ED4_992944(s32); // TODO probably a struct
-#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2ED4_992944.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2ED4_992944.s")
 
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {
@@ -458,9 +910,6 @@ void func_801E3934_9933A4(void) {
     func_8036D1A4_840954(D_802290E0_9D8B50, 1);
     func_8036D1A4_840954(D_802290DC_9D8B4C, 1);
 }
-
-s32 func_801E4428_993E98(void);
-void func_801E5030_994AA0(void);
 
 void func_801E39DC_99344C(s32 arg0) {
     UNUSED s32 pad;
@@ -491,15 +940,15 @@ void func_801E39DC_99344C(s32 arg0) {
 
     levelName = getLevelName(getLevelId());
     if (levelName == NULL) {
-        levelName = D_801F5F70_9A59E0;
+        levelName = "−−−";
     } else {
-        sprintf(D_802290E8_9D8B58, D_801F5F78_9A59E8, levelName);
+        sprintf(D_802290E8_9D8B58, "%s Course", levelName);
         levelName = D_802290E8_9D8B58;
     }
     sp3C = func_8036AC6C_83E41C(0x47, 0x32, 0xCC, 0x78, 0);
     D_802290E0_9D8B50 = sp3C;
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
-    func_8036B870_83F020(sp3C, 0, 0U, 0U, 0, 0);
+    func_8036B870_83F020(sp3C, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp3C);
     func_8036CB58_840308(sp3C, 0xC);
     func_8036D448_840BF8(0);
@@ -541,7 +990,7 @@ void func_801E39DC_99344C(s32 arg0) {
     func_8036D4A0_840C50((0, 0)); // fake match or typo?
     func_8036D1A4_840954(sp3C, 0);
     func_8036B9EC_83F19C(sp3C, 0, 0);
-    func_8036C898_840048(sp3C, D_801F5F84_9A59F4);
+    func_8036C898_840048(sp3C, "Hmm...\nWhat's new this time?");
     func_8036D1A4_840954(D_802290E0_9D8B50, 0);
     func_80374F30_8486E0(sp3C, 1);
     func_8036D4A0_840C50(0);
@@ -594,6 +1043,11 @@ void func_801E39DC_99344C(s32 arg0) {
     func_8000BCA8(0x63);
 }
 
+
+
+void func_801DD2D4_98CD44(s32 arg0);
+void func_8036EB8C_84233C();
+
 void func_801E3FFC_993A6C(void) {
     GObj* gobj;
     SObj* sobj;
@@ -631,5 +1085,5 @@ void func_801E3FFC_993A6C(void) {
     D_80229188_9D8BF8->sprite.alpha = 128;
     D_80229188_9D8BF8->sprite.istep = 0;
     D_80229188_9D8BF8->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
-    func_8036EB8C_84233C(&func_801DD2D4_98CD44);
+    func_8036EB8C_84233C(func_801DD2D4_98CD44);
 }

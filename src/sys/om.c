@@ -1432,7 +1432,7 @@ GObj* om_add_gobj_common(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority)
     if (FALSE) {} // required to match
 
     obj->fnAnimCallback = NULL;
-    obj->unk_58 = 0;
+    obj->userData = NULL;
     return obj;
 }
 

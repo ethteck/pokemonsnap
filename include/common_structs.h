@@ -433,7 +433,7 @@ typedef struct {
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ char unk_10C[0x2];
     /* 0x100 */ s16 field_0x10e;
-} animal; // size = 0x110
+} Animal; // size = 0x110
 
 typedef struct {
     /* 0x00 */ char unk_00[0x1];
@@ -448,7 +448,7 @@ typedef struct {
 } projectileData; // size = 0x30
 
 typedef union {
-    animal* animal;
+    Animal* animal;
     projectileData* projectileData;
 } gobjData;
 

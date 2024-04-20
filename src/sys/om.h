@@ -241,7 +241,7 @@ typedef struct GObj {
     /* 0x4C */ f32 animationTime;
     /* 0x50 */ u32 flags;
     /* 0x54 */ void (*fnAnimCallback)(struct DObj*, u32, f32);
-    /* 0x58 */ s32 unk_58;
+    /* 0x58 */ void* userData;
 } GObj; // size >= 0x5C
 
 typedef struct OMMtx {

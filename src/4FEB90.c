@@ -93,7 +93,7 @@ void runAnimalCleanup(GObj* obj) {
 GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
     objectSpawn spawn;
     roomGFX* roomA;
-    animal* animalTmp;
+    Animal* animalTmp;
     GObj* animalObj;
     
     animalTmp = gobj->data.animal;

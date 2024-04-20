@@ -83,7 +83,7 @@ void forceAnimalAnimation(GObj* obj, animationHeader* header) {
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD00_500110.s")
 
 void runAnimalCleanup(GObj* obj) {
-    om_create_process(obj, func_8035FD00_500110, 1, 4);
+    omCreateProcess(obj, func_8035FD00_500110, 1, 4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD9C_5001AC.s")

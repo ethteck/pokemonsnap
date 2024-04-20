@@ -590,7 +590,7 @@ void func_801E39DC_99344C(s32 arg0) {
     }
 
     func_800AAED0(0x20);
-    func_8000A52C(0);
+    omDeleteGObj(0);
     func_8000BCA8(0x63);
 }
 

@@ -451,6 +451,7 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
+
 typedef struct GObj {
     /* 0x00 */ struct GObj* next;
     /* 0x04 */ struct GObj* prev;

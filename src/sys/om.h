@@ -507,10 +507,13 @@ typedef struct {
     /* 0x68 */ s32 cameraSize;
 } OMSetup; // size == 0x6C
 
-void func_8000A52C(GObjCommon* obj);
-void om_link_gobj_dl_camera(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dlPriority, s32 arg3, s32 arg4);
-OMCamera* om_gobj_set_camera(GObjCommon* obj);
-DObj* om_gobj_add_dobj(GObjCommon* obj, void* arg1);
+GObjProcess* omCreateProcess(GObjCommon* obj, void (*func)(struct GObjCommon*), u8 kind, u32 pri);
+void omDeleteGObj(GObjCommon* obj);
+void omLinkGObjDLCamera(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dlPriority, s32 arg3, s32 arg4);
+OMCamera* omGObjSetCamera(GObjCommon* obj);
+DObj* omGObjAddDObj(GObjCommon* obj, void* arg1);
+void omEndProcess(GObjProcess* proc);
+GObjCommon* omAddGObj(u32 id, void (*fnUpdate)(GObjCommon*), u8 link, u32 priority);
 
 extern GObjCommon* omCurrentObject;
 extern GObjCommon* omCurrentCamera;

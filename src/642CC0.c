@@ -8,7 +8,7 @@ void evolveIntoMuk(GObj* obj) {
 
     muk = addAnimalAtGeo(obj, AnimalID_MUK, &def);
     muk->userData.rootNode->xform->euler.y = obj->userData.rootNode->xform->euler.y;
-    om_end_process(NULL);
+    omEndProcess(NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/642CC0/func_802C0888_642D38.s")

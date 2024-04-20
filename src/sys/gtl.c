@@ -13,7 +13,7 @@
 #include "ucode.h"
 
 // TODO include
-void om_create_objects(OMSetup*);
+void omCreateObjects(OMSetup*);
 void func_80011254(void*);
 void func_8000C274(void);
 
@@ -954,7 +954,7 @@ void omSetupScene(SceneSetup* arg) {
     omSetup.numCameras = arg->numOMCameras;
     omSetup.cameraSize = arg->omCameraSize;
 
-    om_create_objects(&omSetup);
+    omCreateObjects(&omSetup);
     gtlCallbackBundle.fnUpdate = gtlUpdate;
     gtlCallbackBundle.fnDraw = gtlDraw;
     gtlStart(&arg->gtlSetup, arg->postInitFunc);

@@ -1,5 +1,4 @@
 #include "common.h"
-// sys/dma.c
 
 #include "sys/dma.h"
 #include "sys/sched.h"

@@ -1,6 +1,7 @@
 #include "sys/sched.h"
 #include "sys/crash.h"
 #include "sys/main.h"
+#include "sys/cont.h"
 #include "macros.h"
 #include "types.h"
 #include "PR/rcp.h"
@@ -17,10 +18,6 @@ typedef struct {
     u8 divot        : 1; // b8 1 80 => divot on
                          // b9 1 40
 } ViSettings;
-
-// TODO: use header
-void contRumbleInit(s32);
-void contRumbleStop(s32);
 
 SCClient* scClientList;
 // priority queue, all tasks added from scExecuteBlocking are put into this queue

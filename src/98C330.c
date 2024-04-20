@@ -454,7 +454,7 @@ void func_801DCBF4_98C664(void) {
 s32 func_801DCC74_98C6E4(s32 arg0) {
     UNUSED s32 pad[3];
 
-    func_80007BC4(&D_801E5410_994E80);
+    viApplyScreenSettings(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E542C_994E9C);
@@ -776,9 +776,9 @@ void func_801DDA68_98D4D8(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DDAD8_98D548.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DDAD8_98D548.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DDCF8_98D768.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DDCF8_98D768.s")
 
 void func_801DE02C_98DA9C(s32 arg0) {
     f32 sp24;
@@ -819,9 +819,9 @@ void func_801DE02C_98DA9C(s32 arg0) {
 }
 
 // THIS NEEDS TO BE MOVED
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801DE204_98DC74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DE204_98DC74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E1FA8_991A18.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E1FA8_991A18.s")
 
 
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
@@ -831,7 +831,7 @@ void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_801E2454_991EC4(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2454_991EC4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2454_991EC4.s")
 
 s32 func_801E28CC_99233C(s32* arg0) {
     s32 i;
@@ -885,10 +885,10 @@ s32 func_801E2A68_9924D8(void) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2AE8_992558.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2AE8_992558.s")
 
 void func_801E2ED4_992944(s32); // TODO probably a struct
-#pragma GLOBAL_ASM("asm/nonmatchings/98D0F0/func_801E2ED4_992944.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E2ED4_992944.s")
 
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {

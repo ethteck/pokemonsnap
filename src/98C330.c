@@ -20,7 +20,7 @@ typedef struct UnkStruct98C_D {
 // data
 extern Gfx D_801E53A0_994E10[];
 extern s32 D_801E5410_994E80; // Todo some struct
-extern s32 D_801E542C_994E9C;
+extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801E5DB0_995820;
 extern Sprite D_801E5EE0_995950;
@@ -68,7 +68,7 @@ void func_801DC8C0_98C330(Gfx** gfx) {
 }
 
 void func_801DC904_98C374(s32 arg0, s32 arg1) {
-    Gfx* gfx = D_8004A890[0];
+    Gfx* gfx = gMainGfxPos[0];
 
     gSPDisplayList(gfx++, &D_801E53A0_994E10);
     gDPSetColorDither(gfx++, G_CD_MAGICSQ);
@@ -78,7 +78,7 @@ void func_801DC904_98C374(s32 arg0, s32 arg1) {
                             AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
 
-    D_8004A890[0] = gfx;
+    gMainGfxPos[0] = gfx;
 }
 
 void func_801DCA14_98C484(s32 arg0) {
@@ -111,8 +111,8 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
 
     func_80007BC4(&D_801E5410_994E80);
     D_801E543C_994EAC = (s32)&D_80369F80 - (s32)&D_80229840;
-    func_80005448(1);
-    func_800073AC(&D_801E542C_994E9C);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_801E542C_994E9C);
     return D_800AF3C0;
 }
 
@@ -375,7 +375,7 @@ void func_801DDA68_98D4D8(s32 arg0) {
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad[3];
 
-    while (TRUE) {}
+    PANIC();
 }
 
 void func_801E2454_991EC4(void);

@@ -196,4 +196,4 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8A80/func_8000AFFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8A80/func_8000B0F8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8A80/omCreateObjects.s")

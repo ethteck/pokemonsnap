@@ -30,7 +30,7 @@ segments:
     - [0x1520, c, sys/sched]
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
-    - [0x5FF0, c]
+    - [0x5FF0, c, sys/gtl]
     - [0x8450, c]
     - [0x8820, asm]
     - [0x8A80, c]
@@ -226,10 +226,11 @@ segments:
     - [0x3E4A0, hasm, ../ultralib/src/os/setwatchlo]
     - [0x3E4B0, asm, rspboot]
     - [0x3E580, data, rsp/aspMain]
-    - [0x3F3A0, data, gSPF3DEX2H.NoN.fifo]
+    - [0x3F3A0, data, gspF3DEX2H.NoN.fifo]
     - [0x401C0, data]
     - [0x418C0, .data, sys/main]
-    - [0x418F0, data]
+    - [0x418F0, .data, sys/gtl]
+    - [0x41960, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -260,7 +261,7 @@ segments:
     - [0x43BA0, .rodata, sys/main]
     - [0x43BC0, .rodata, sys/sched]
     - [0x43C20, .rodata, sys/cont]
-    - [0x43C40, .rodata, 5FF0]
+    - [0x43C40, .rodata, sys/gtl]
     - [0x43E60, .rodata, 8450]
     - [0x43E80, .rodata, 8A80]
     - [0x44300, .rodata, C2F0]
@@ -293,13 +294,14 @@ segments:
     - [0x45730, .rodata, ../ultralib/src/libc/xldtob]
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
     - [0x457A0, rodata, rsp/aspMain_data]
-    - [0x45A60, rodata, gSPF3DEX2H.NoN.fifo]
+    - [0x45A60, rodata, gspF3DEX2H.NoN.fifo]
     - [0x45D20, rodata]
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
     - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }
     - { start: auto, name: sys/dma, type: .bss, vram: 0x800488A0 }
     - { start: auto, name: sys/cont, type: .bss, vram: 0x800488D0 }
-    - { start: auto, name: bss_80049760, type: bss, vram: 0x80049760 }
+    - { start: auto, name: sys/gtl, type: .bss, vram: 0x80049770 }
+    - { start: auto, name: bss_8004A950, type: bss, vram: 0x8004A950 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }

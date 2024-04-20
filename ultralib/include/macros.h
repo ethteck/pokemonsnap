@@ -18,6 +18,8 @@
 /// Get the number of elements in a static array
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
 
+#define PANIC() while(1) {}
+
 /// Convert from a physical addresss to a ROM (0xB0) address
 #define PHYSICAL_TO_ROM(x) ((uintptr_t)(x) + 0xB0000000)
 

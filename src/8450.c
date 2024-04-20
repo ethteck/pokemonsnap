@@ -1,10 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007850.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8450/reset_bump_alloc.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8450/func_8000785C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8450/bump_alloc.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8450/func_800078C4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8450/init_bump_alloc.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007910.s")
 
@@ -20,7 +20,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007A94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007AFC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/8450/viApplySettingsNonblocking.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8450/func_80007B58.s")
 

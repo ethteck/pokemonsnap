@@ -9,6 +9,9 @@
 #include "macros.h"
 #include "types.h"
 
+#include "sys/om.h"
+#include "sys/gtl.h"
+
 typedef u8 Addr[];
 
 #endif

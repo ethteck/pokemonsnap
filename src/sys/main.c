@@ -1,5 +1,8 @@
 #include "sys/crash.h"
 #include "sys/dma.h"
+#include "sys/gtl.h"
+#include "sys/sched.h"
+#include "sys/cont.h"
 
 #include "macros.h"
 
@@ -12,10 +15,7 @@
 #include "ld_addrs.h"
 
 // TODO: includes
-void scMain(void *arg);
 void thread4_audio(void *arg);
-void contMain(void *arg);
-void gtlInit(void);
 
 void start_scene_manager(s32);
 void start_thread8_rmon(void);

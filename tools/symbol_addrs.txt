@@ -415,11 +415,28 @@ gtlD_8004A906 = 0x8004A906;
 gtlD_8004A908 = 0x8004A908;
 gtlContextId = 0x8004A910;
 
-reset_bump_alloc = 0x80007850;
-bump_alloc = 0x8000785C;
-init_bump_alloc = 0x800078C4;
+mlHeapClear = 0x80007850;
+mlHeapAlloc = 0x8000785C;
+mlHeapInit = 0x800078C4;
 
+viSetScreenOffsets = 0x80007A34;
 viApplySettingsNonblocking = 0x80007AFC;
+viApplyScreenSettings = 0x80007BC4;
+viZBuffer = 0x8004A950;
+viBitDepth = 0x8004A954;
+viScreenWidth = 0x8004A958;
+viScreenHeight = 0x8004A95C;
+viEdgeOffsetLeft = 0x8004A974;
+viEdgeOffsetRight = 0x8004A976;
+viEdgeOffsetTop = 0x8004A978;
+viEdgeOffsetBottom = 0x8004A97A;
+
+rdpSetPreRenderFunc = 0x80007D08;
+rdpReset = 0x80007D14;
+sPreRenderFunc = 0x80040D60;
+sIdentityMatrix = 0x80040D68;
+srdpReset = 0x80040DA8;
+sViewport = 0x8004A980;
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
 gspF3DEX2_NoN_fifoDataStart = 0x80044E60;

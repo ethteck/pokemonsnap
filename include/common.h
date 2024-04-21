@@ -11,6 +11,7 @@
 
 #include "sys/om.h"
 #include "sys/gtl.h"
+#include "sys/vi.h"
 
 typedef u8 Addr[];
 

@@ -239,6 +239,8 @@ void func_801DD528_98CF98(s32 rgb) {
     D_80229180_9D8BF0->sprite.red = D_80229180_9D8BF0->sprite.green = D_80229180_9D8BF0->sprite.blue = rgb;
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD568_98CFD8.s")
+/*
 void func_801DD568_98CFD8(void) {
     GObj* gobj = func_80371D14_8454C4(NULL, 6, &D_801F29F0_9A2460);
     SObj* sobj = gobj->userData.sobj;
@@ -250,6 +252,7 @@ void func_801DD568_98CFD8(void) {
     sobj->sprite.istep = 0;
     D_80229170_9D8BE0[0] = sobj;
 }
+*/
 
 void func_801DD5F0_98D060(s32 arg0) {
    if (arg0 != 0) {
@@ -267,6 +270,7 @@ void func_801DD638_98D0A8(s32 arg0) {
     }
 }
 
+/*
 void func_801DD680_98D0F0(void) {
     s32 i;
 
@@ -275,6 +279,9 @@ void func_801DD680_98D0F0(void) {
         D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.y = ((i / 3) * 55) + 53;
     }
 }
+*/
+
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD680_98D0F0.s")
 
 void func_801DD720_98D190(s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DD720_98D190.s")
@@ -318,23 +325,24 @@ void func_801DD720_98D190(s32);
 //     return gobj;
 // }
 
+
 void func_801DD8F4_98D364(void) {
     s32 i;
 
     for (i = 0; i < 6; i++) {
         func_801DD720_98D190(i);
     }
-    D_802290A0_9D8B10[0].unk_00->userData.sobj->sprite.x = -60;
-    D_802290A0_9D8B10[1].unk_00->userData.sobj->sprite.x = 320;
+    D_802290A0_9D8B10[0].unk_00->data.sobj->sprite.x = -60;
+    D_802290A0_9D8B10[1].unk_00->data.sobj->sprite.x = 320;
 }
 
 void func_801DD964_98D3D4(s32 rgb) {
     s32 i;
 
     for (i = 0; i < 6; i++) {
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.red = rgb;
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.green = rgb;
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.blue = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.red = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.green = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.blue = rgb;
     }
 }
 
@@ -343,12 +351,13 @@ void func_801DD9E4_98D454(s32 arg0) {
 
     for (i = 0; i < 6; i++) {
         if (arg0 != 0) {
-            D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.attr &= ~SP_HIDDEN;
+            D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
-            D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.attr |= SP_HIDDEN;
+            D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
         }
     }
 }
+
 
 void func_801DDA68_98D4D8(s32 arg0) {
     if (D_802290E0_9D8B50 == 0) {
@@ -590,10 +599,12 @@ void func_801E39DC_99344C(s32 arg0) {
     }
 
     func_800AAED0(0x20);
-    func_8000A52C(0);
+    omDeleteGObj(0);
     func_8000BCA8(0x63);
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E3FFC_993A6C.s")
+/*
 void func_801E3FFC_993A6C(void) {
     GObj* gobj;
     SObj* sobj;
@@ -633,3 +644,4 @@ void func_801E3FFC_993A6C(void) {
     D_80229188_9D8BF8->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
     func_8036EB8C_84233C(&func_801DD2D4_98CD44);
 }
+*/

@@ -46,4 +46,7 @@
 #define TAU 6.2831855f
 #define PI_2 1.5707964f
 
+// TODO create header for animals
+#define GET_ANIMAL(obj) ((Animal*)((obj)->userData))
+
 #endif

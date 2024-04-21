@@ -83,15 +83,17 @@ void forceAnimalAnimation(GObj* obj, animationHeader* header) {
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD00_500110.s")
 
 void runAnimalCleanup(GObj* obj) {
-    runGObjProcess(obj, func_8035FD00_500110, 1, 4);
+    omCreateProcess(obj, func_8035FD00_500110, 1, 4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD9C_5001AC.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/addAnimalAtGeo.s")
+/*
 GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
     objectSpawn spawn;
     roomGFX* roomA;
-    animal* animalTmp;
+    Animal* animalTmp;
     GObj* animalObj;
     
     animalTmp = gobj->data.animal;
@@ -122,6 +124,7 @@ GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
 
     return animalObj;
 }
+*/
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FEEC_5002FC.s")
 

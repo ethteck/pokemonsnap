@@ -19,7 +19,7 @@ void func_802D2604(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
-    
+
     animal->counter = 1; animal->processFlags &= ~4;
     animal->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);
@@ -39,7 +39,6 @@ void func_802D2684(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-
-void func_802D2704(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn) {
+void func_802D2704(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_802ECB2C);
 }

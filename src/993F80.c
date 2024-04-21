@@ -2,7 +2,7 @@
 
 #include "photocheck.h"
 
-typedef struct Foo {
+typedef struct Foo2 {
     Foo_Sub* var_0;
     u32 unk4_31 : 1;
     u32 unk4_30 : 1;
@@ -36,13 +36,14 @@ typedef struct Foo {
     u32 unk4_2 : 1;
     u32 unk4_1 : 1;
     u32 unk4_0 : 1;
-} Foo; // size = 0x8
+} Foo2; // size = 0x8
 
 
 extern s32 D_801F4194_9A3C04;
-extern s32 D_80229838_9D92A8;
-extern Photo D_802291A0_9D8C10[60];
 extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
+
+Photo D_802291A0_9D8C10[60];
+s32 D_80229838_9D92A8;
 
 void func_8001A094(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
 s32 func_800BF574_5C414(s32);
@@ -50,7 +51,7 @@ void func_800BF5D8_5C478(s32, Foo_Sub*);
 void func_800BF690_5C530(s16, Foo_Sub*);
 void func_800BF7D4_5C674(s16, u32);
 void func_800BF954_5C7F4(s32, Foo_Sub*, s32);
-Foo* func_800BFB50_5C9F0(s32);
+Foo2* func_800BFB50_5C9F0(s32);
 s32 func_800BFB84_5CA24(void);
 s32 func_801E4704_994174(const void*, const void*);
 s32 func_801E47F0_994260(const void*, const void*);
@@ -241,7 +242,7 @@ void func_801E4E04_994874(void) {
     s32 sp30;
     s32 sp2C;
     Photo* sp28;
-    Foo* sp24;
+    Foo2* sp24;
 
     sp30 = !!func_800BFA44_5C8E4(0x3B);
     sp2C = 0;
@@ -292,7 +293,7 @@ s32 func_801E5030_994AA0(void) {
     Unk803A6C18* sp30;
     Photo* photo;
     UNUSED s32 pad3;
-    Foo* sp24;
+    Foo2* sp24;
 
     sp34 = 0;
     D_801F4194_9A3C04 = -1;

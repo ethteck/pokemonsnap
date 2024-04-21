@@ -9,69 +9,6 @@
 
 #include "photocheck.h"
 
-typedef struct Fizz {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-} Fizz;
-
-typedef struct Bar {
-    /* 0x00 */ char pad_00[0x20];
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ char pad_24[4];
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ char pad_34[8];
-    /* 0x3C */ Fizz unk_3C;
-    /* 0x48 */ Fizz unk_48;
-
-    /* 0x54 */ f32 unk_54;
-    /* 0x58 */ f32 unk_58;
-    /* 0x5C */ f32 unk_5C;
-
-    /* 0x60 */ char pad_60[0x20];
-
-    /* 0x80 */ s32 unk_80;
-    /* 0x84 */ s32 unk_84;
-} Bar;
-
-typedef struct Foo {
-    /* 0x00 */ char pad_00[0x38];
-    /* 0x38 */ s32 unk_38;
-    /* 0x3C */ char pad_3C[0xC];
-    /* 0x48 */ Bar* unk_48;
-} Foo;
-
-void func_8000BC84(void);
-Foo* func_8000C3FC(s32, void*, s32, s32, void*, s32, s32, s32, s32, s32, void*, s32, s32);
-void func_800191D8(void);
-void func_80022A58(s32, s32, s32, f32, s32);
-void func_800A844C(void*, s32, s32, s32, s32);
-char* func_800BF498_5C338(void); // get_player_name
-void* func_800BF710_5C5B0(s32);
-s32 func_800BFC5C_5CAFC(void);
-s32 func_800C0290_5D130(void);
-void func_800C02A0_5D140(s32);
-void func_800C0314_5D1B4(s32, s32);
-void func_801DCBF4_98C664(void);
-void func_801DD2D4_98CD44(s32 arg0);
-GObj* func_801DD720_98D190(s32 idx);
-s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1);
-s32 func_801E4510_993F80(void);
-void func_801E4E04_994874(void);
-void* func_8036A194_83D944(s32);
-void func_8036A8E4_83E094(s32);
-void func_8036C2FC_83FAAC(s32, s32, s32, s32, s32, s32, s32);
-void func_8036EB8C_84233C();
-char* func_8037501C(char*, s32);
-GObj* func_80371C68_845418(s32, s32, Sprite*);
-SObj* func_80371DC0_845570(SObj*, Sprite*);
-SObj* func_80371E68_845618(SObj*, Sprite*);
-void func_80374714_847EC4(Foo_Sub*, Sprite*);
-void func_8037519C_84894C(s32, char*, ...);
-
 extern Fizz D_800AF094;
 extern Fizz D_800AF0C4;
 extern s32 D_800AF3C0;
@@ -171,25 +108,21 @@ typedef struct ObjPair {
     /* 0x04 */ SObj* sobj;
 } ObjPair; // size = 0x8
 
-
 // BSS
-extern ObjPair D_802290A0_9D8B10[6];
-extern s32 D_801F70A0_9A6B10;
-extern s32 D_802290D8_9D8B48;
-extern s32 D_802290DC_9D8B4C;
-extern s32 D_802290E0_9D8B50;
-extern s32 D_802290E4_9D8B54;
-extern char D_802290E8_9D8B58[0x80];
-extern SObj* D_80229168_9D8BD8;
-extern SObj* D_80229170_9D8BE0[4];
-extern SObj* D_80229180_9D8BF0;
-extern SObj* D_80229184_9D8BF4;
-extern SObj* D_80229188_9D8BF8;
-extern s32 D_8022918C_9D8BFC;
-extern s32 D_80229190_9D8C00;
-// extern D_80229194_9D8C04
-// extern D_802291A0_9D8C10
-// extern D_80229838_9D92A8
+ObjPair D_802290A0_9D8B10[6];
+u8 D_801F70A0_9A6B10[0x32000];
+s32 D_802290D8_9D8B48;
+s32 D_802290DC_9D8B4C;
+s32 D_802290E0_9D8B50;
+s32 D_802290E4_9D8B54;
+char D_802290E8_9D8B58[0x80];
+SObj* D_80229168_9D8BD8;
+SObj* D_80229170_9D8BE0[4];
+SObj* D_80229180_9D8BF0;
+SObj* D_80229184_9D8BF4;
+SObj* D_80229188_9D8BF8;
+s32 D_8022918C_9D8BFC;
+s32 D_80229190_9D8C00;
 
 void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);
@@ -458,7 +391,7 @@ void func_801DCA48_98C4B8(void) {
 void func_801DCBF4_98C664(void) {
     UNUSED s32 pad;
 
-    func_8036A3F8(&D_801F70A0_9A6B10, 0x32000);
+    func_8036A3F8(D_801F70A0_9A6B10, sizeof(D_801F70A0_9A6B10));
     func_800AAE28();
     func_801DCA48_98C4B8();
     func_80374D40_8484F0();

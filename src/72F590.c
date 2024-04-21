@@ -55,6 +55,6 @@ void func_802DE4C0_72F6C0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void spawnKoffingSmoke(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn) {
+void spawnKoffingSmoke(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &koffingSmokeData);
 }

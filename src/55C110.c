@@ -4,6 +4,7 @@ extern animalDef D_802CBFF4_564064;
 extern s32 D_802CC018_564088;
 extern animalDef beachAnimalData[17];
 
+/*
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNodeSub* sub;
     geoNode* pxVar2;
@@ -33,6 +34,9 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     pxVar2->xform->translation.y = sub->translation.y;
     pxVar2->xform->translation.z = sub->translation.z;
 }
+*/
+
+#pragma GLOBAL_ASM("asm/nonmatchings/55C110/beachSpawnMagikarpAtGObj.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C416C_55C1DC.s")
 

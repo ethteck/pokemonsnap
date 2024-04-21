@@ -5,7 +5,56 @@
 #include "sys/vi.h"
 #include "sys/cont.h"
 
+typedef struct Fizz {
+    s32 unk_00;
+    s32 unk_04;
+    s32 unk_08;
+} Fizz;
+
+typedef struct Bar {
+    /* 0x00 */ char pad_00[0x20];
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ char pad_24[4];
+    /* 0x28 */ f32 unk_28;
+    /* 0x2C */ f32 unk_2C;
+
+    /* 0x30 */ f32 unk_30;
+    /* 0x34 */ char pad_34[8];
+    /* 0x3C */ Fizz unk_3C;
+    /* 0x48 */ Fizz unk_48;
+
+    /* 0x54 */ f32 unk_54;
+    /* 0x58 */ f32 unk_58;
+    /* 0x5C */ f32 unk_5C;
+
+    /* 0x60 */ char pad_60[0x20];
+
+    /* 0x80 */ s32 unk_80;
+    /* 0x84 */ int unk_84;
+} Bar;
+
+typedef struct Foo {
+    /* 0x00 */ char pad_00[0x38];
+    /* 0x38 */ int unk_38;
+    /* 0x3C */ char pad_3C[0xC];
+    /* 0x48 */ Bar* unk_48;
+} Foo;
+
+void func_8000BC84(void);
+Foo* func_8000C3FC(int, void*, int, int, void*, int, int, int, int, int, void*, int, int);
+void func_800191D8(void);
+void func_80022A58(s32, s32, s32, f32, s32);
+void func_800A844C(void*, int, int, int, int);
+
 void func_801DCBF4_98C664(void);
+void func_801DD2D4_98CD44(s32 arg0);
+GObj* func_801DD720_98D190(s32 idx);
+void* func_8036A194_83D944(s32);
+void func_8036EB8C_84233C();
+
+GObj* func_80371C68_845418(s32, s32, Sprite*);
+SObj* func_80371DC0_845570(SObj*, Sprite*);
+SObj* func_80371E68_845618(SObj*, Sprite*);
 
 extern s32 D_800AF3C0;
 extern s32 D_80229840;
@@ -18,6 +67,11 @@ typedef struct UnkStruct98C_D {
     /* 0x00 */ char unk_00[0x0A];
     /* 0x0A */ s16 unk_0A;
 } UnkStruct98C_D; // size = ???
+
+
+
+extern Fizz D_800AF0C4;
+extern Fizz D_800AF094;
 
 // data
 // Gfx D_801E53A0_994E10[] = {
@@ -367,52 +421,6 @@ void func_801DCA14_98C484(s32 arg0) {
     }
 }
 
-// TODO CLEAN
-// ASJDFIAWEJFIAWJEFIJAWEFIJAWEIFJAWEFAIWEJFAIWEJFIAWJEFIAWEF
-typedef struct Fizz {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-} Fizz;
-
-typedef struct Bar {
-    /* 0x00 */ char pad_00[0x20];
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ char pad_24[4];
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ char pad_34[8];
-    /* 0x3C */ Fizz unk_3C;
-    /* 0x48 */ Fizz unk_48;
-
-    /* 0x54 */ f32 unk_54;
-    /* 0x58 */ f32 unk_58;
-    /* 0x5C */ f32 unk_5C;
-
-    /* 0x60 */ char pad_60[0x20];
-
-    /* 0x80 */ s32 unk_80;
-    /* 0x84 */ int unk_84;
-} Bar;
-
-typedef struct Foo {
-    /* 0x00 */ char pad_00[0x38];
-    /* 0x38 */ int unk_38;
-    /* 0x3C */ char pad_3C[0xC];
-    /* 0x48 */ Bar* unk_48;
-} Foo;
-
-extern Fizz D_800AF0C4;
-extern Fizz D_800AF094;
-
-Foo* func_8000C3FC(int, void*, int, int, void*, int, int, int, int, int, void*, int, int);
-void func_800A844C(void*, int, int, int, int);
-
-void func_8000BC84(void);
-void func_800191D8(void);
-
 void func_801DCA48_98C4B8(void) {
     Foo* sp54;
     Bar* sp50;
@@ -422,8 +430,8 @@ void func_801DCA48_98C4B8(void) {
                          func_801DCA14_98C484, 0, 1);
     sp54->unk_38 = 0x100000;
     sp50 = sp54->unk_48;
-    sp50->unk_80 |= 6;
-    sp50->unk_80 &= ~3;
+    sp50->unk_80 |= 0x4 | 0x2;
+    sp50->unk_80 &= ~(0x2 | 0x1);
     func_800A844C(sp50, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     sp50->unk_54 = 0.0f;
     sp50->unk_58 = 0.0f;
@@ -496,7 +504,6 @@ void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
         func_8036F378_842B28(arg0, 0xD0, 0x3C);
     }
 }
-
 
 void func_801DCF4C_98C9BC(s32 arg0) {
     func_8036F0DC_84288C(arg0, 1);
@@ -591,8 +598,6 @@ s32 func_801DD25C_98CCCC(s32 arg0, s32 arg1) {
     return ret;
 }
 
-void func_80022A58(s32, s32, s32, f32, s32);
-
 void func_801DD2D4_98CD44(s32 arg0) {
     switch (arg0) {
         case 0x5C42:
@@ -653,7 +658,7 @@ void func_801DD528_98CF98(s32 rgb) {
 
 void func_801DD568_98CFD8(void) {
     GObj* gobj = func_80371D14_8454C4(NULL, 6, &D_801F29F0_9A2460);
-    SObj* sobj = gobj->userData.sobj;
+    SObj* sobj = gobj->data.sobj;
 
     sobj->sprite.x = 0;
     sobj->sprite.y = 86;
@@ -683,15 +688,10 @@ void func_801DD680_98D0F0(void) {
     s32 i;
 
     for (i = 0; i < 6; i++) {
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.x = ((i % 3) * 66) + 104;
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.y = ((i / 3) * 55) + 53;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.x = ((i % 3) * 66) + 104;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.y = ((i / 3) * 55) + 53;
     }
 }
-
-GObj* func_80371C68_845418(s32, s32, Sprite*);
-SObj* func_80371DC0_845570(SObj*, Sprite*);
-SObj* func_80371E68_845618(SObj*, Sprite*);
-void* func_8036A194_83D944(s32);
 
 GObj* func_801DD720_98D190(s32 idx) {
     GObj* gobj;
@@ -703,7 +703,7 @@ GObj* func_801DD720_98D190(s32 idx) {
     u8* sp1C;
 
     gobj = func_80371C68_845418(0, 6, &D_801E5DB0_995820);
-    sobj = gobj->userData.sobj;
+    sobj = gobj->data.sobj;
     D_802290A0_9D8B10[idx].unk_00 = gobj;
     sobj = func_80371E68_845618(sobj, &D_801E5DB0_995820);
     sobj->sprite.x = 54;
@@ -738,17 +738,17 @@ void func_801DD8F4_98D364(void) {
     for (i = 0; i < 6; i++) {
         func_801DD720_98D190(i);
     }
-    D_802290A0_9D8B10[0].unk_00->userData.sobj->sprite.x = -60;
-    D_802290A0_9D8B10[1].unk_00->userData.sobj->sprite.x = 320;
+    D_802290A0_9D8B10[0].unk_00->data.sobj->sprite.x = -60;
+    D_802290A0_9D8B10[1].unk_00->data.sobj->sprite.x = 320;
 }
 
 void func_801DD964_98D3D4(s32 rgb) {
     s32 i;
 
     for (i = 0; i < 6; i++) {
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.red = rgb;
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.green = rgb;
-        D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.blue = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.red = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.green = rgb;
+        D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.blue = rgb;
     }
 }
 
@@ -757,12 +757,13 @@ void func_801DD9E4_98D454(s32 arg0) {
 
     for (i = 0; i < 6; i++) {
         if (arg0 != 0) {
-            D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.attr &= ~SP_HIDDEN;
+            D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
-            D_802290A0_9D8B10[i].unk_00->userData.sobj->sprite.attr |= SP_HIDDEN;
+            D_802290A0_9D8B10[i].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
         }
     }
 }
+
 
 void func_801DDA68_98D4D8(s32 arg0) {
     if (D_802290E0_9D8B50 == 0) {
@@ -814,15 +815,13 @@ void func_801DE02C_98DA9C(s32 arg0) {
     }
     D_80229188_9D8BF8->sprite.attr |= SP_HIDDEN;
     D_801F3E30_9A38A0 = 2;
-    func_8000A52C(0);
+    omDeleteGObj(NULL);
     func_8000BCA8(0x63);
 }
 
-// THIS NEEDS TO BE MOVED
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801DE204_98DC74.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E1FA8_991A18.s")
-
 
 void func_801E242C_991E9C(s32 arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad[3];
@@ -1039,14 +1038,9 @@ void func_801E39DC_99344C(s32 arg0) {
     }
 
     func_800AAED0(0x20);
-    func_8000A52C(0);
+    omDeleteGObj(0);
     func_8000BCA8(0x63);
 }
-
-
-
-void func_801DD2D4_98CD44(s32 arg0);
-void func_8036EB8C_84233C();
 
 void func_801E3FFC_993A6C(void) {
     GObj* gobj;
@@ -1055,7 +1049,7 @@ void func_801E3FFC_993A6C(void) {
     func_800A85E8(func_801E39DC_99344C, 6, 0, 0);
 
     gobj = func_80371D14_8454C4(0, 6, &D_801F2910_9A2380);
-    sobj = gobj->userData.sobj;
+    sobj = gobj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;
     sobj->sprite.height = SCREEN_HEIGHT;
     sobj->sprite.istep = 0;
@@ -1064,20 +1058,20 @@ void func_801E3FFC_993A6C(void) {
     func_801DD46C_98CEDC(0);
 
     gobj = func_80371D14_8454C4(0, 6, &D_801F2378_9A1DE8);
-    D_80229180_9D8BF0 = gobj->userData.sobj;
+    D_80229180_9D8BF0 = gobj->data.sobj;
     D_80229180_9D8BF0->sprite.x = 56;
     D_80229180_9D8BF0->sprite.y = 38;
     func_801DD5F0_98D060(1);
     func_801DD528_98CF98(0);
 
     gobj = func_80371D14_8454C4(0, 6, &D_801F26B0_9A2120);
-    D_80229184_9D8BF4 = gobj->userData.sobj;
+    D_80229184_9D8BF4 = gobj->data.sobj;
     D_80229184_9D8BF4->sprite.x = 217;
     D_80229184_9D8BF4->sprite.y = 23;
     func_801DD638_98D0A8(0);
 
     gobj = func_80371D14_8454C4(0, 6, &D_801F2AD0_9A2540);
-    D_80229188_9D8BF8 = gobj->userData.sobj;
+    D_80229188_9D8BF8 = gobj->data.sobj;
     D_80229188_9D8BF8->sprite.x = 0;
     D_80229188_9D8BF8->sprite.y = 0;
     D_80229188_9D8BF8->sprite.width = 132;

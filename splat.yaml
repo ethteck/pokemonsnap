@@ -13,7 +13,7 @@ options:
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
   string_encoding: UTF-8
-  data_string_encoding: ASCII
+  data_string_encoding: UTF-8
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -34,7 +34,7 @@ segments:
     - [0x8450, c, sys/ml]
     - [0x8510, c, sys/vi]
     - [0x8820, c, sys/rdp_reset]
-    - [0x8A80, c]
+    - [0x8A80, c, sys/om]
     - [0xC2F0, c]
     - [0xC5B0, c]
     - [0xD150, c]
@@ -232,7 +232,8 @@ segments:
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
     - [0x41950, .data, sys/rdp_reset]
-    - [0x41A80, data]
+    - [0x41A80, .data, sys/om]
+    - [0x41B30, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -265,7 +266,7 @@ segments:
     - [0x43C20, .rodata, sys/cont]
     - [0x43C40, .rodata, sys/gtl]
     - [0x43E60, .rodata, sys/ml]
-    - [0x43E80, .rodata, 8A80]
+    - [0x43E80, .rodata, sys/om]
     - [0x44300, .rodata, C2F0]
     - [0x44320, .rodata, C5B0]
     - [0x44350, .rodata, D150]
@@ -305,7 +306,8 @@ segments:
     - { start: auto, name: sys/gtl, type: .bss, vram: 0x80049770 }
     - { start: auto, name: sys/vi, type: .bss, vram: 0x8004A950 }
     - { start: auto, name: sys/rdp_reset, type: .bss, vram: 0x8004A980 }
-    - { start: auto, name: bss_8004A990, type: bss, vram: 0x8004A990 }
+    - { start: auto, name: sys/om, type: .bss, vram: 0x8004A990 }
+    - { start: auto, name: bss_8004AF00, type: bss, vram: 0x8004AF00 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }

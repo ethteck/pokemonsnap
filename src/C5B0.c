@@ -30,7 +30,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BE1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BE5C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/omh_end_all_object_processes.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BEAC.s")
 

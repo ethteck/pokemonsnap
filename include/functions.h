@@ -10,9 +10,6 @@ f32 __sinf(f32);
 
 void dmaReadVPK(u32 rom, u32 ram);
 
-GObj* runGObjProcess(GObj*, gfxFunc func, s8 kind, u32 priority);
-void endGObjProcess(GObj*);
-
 void sendSignalToLink(s32 llIndex, s32, GObj*);
 
 roomGFX* getCurrentRoom(void);
@@ -43,13 +40,8 @@ roomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalInitData* initData);
 
-void gtlDisableNearClipping(s32);
 void func_800067DC(void);
-GObj* func_8000A410(s32, s32, s32, s32);
-void func_8000A0B4(GObj*, Sprite*);
-void func_8000A8A4(GObj*, void (*)(GObj*), s32, s32, s32);
-void func_8000ADA0(void);
-void func_8000AFFC(void);
+void func_80007BC4(s32*);
 void func_8000BCA8(s32);
 void func_800A1A50(Gfx**);
 void func_80022334(void);

@@ -6,6 +6,8 @@
 typedef u32 uintptr_t;
 typedef s32 intptr_t;
 
+typedef s32* UNK_PTR;
+
 typedef struct Vec3i {
     s32 x, y, z;
 } Vec3i;

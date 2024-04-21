@@ -467,10 +467,4 @@ typedef struct {
     /* 0x0C */ void* kill;
 } animalDef; // size = 0x10
 
-typedef struct UnkStruct800BEDF8 {
-    /* 0x00 */ char unk_00[0x14];
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-} UnkStruct800BEDF8;
-
 #endif

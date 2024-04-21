@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "photocheck.h"
+
 typedef struct Foo_Sub {
     s32 unk4_25 : 7;
 } Foo_Sub;
@@ -38,75 +40,43 @@ typedef struct Foo {
     u32 unk4_2 : 1;
     u32 unk4_1 : 1;
     u32 unk4_0 : 1;
-} Foo; // size: 0x8
-
-typedef struct Bar {
-    /* 0x00 */ u32 unk_0; // confirmed
-    /* 0x04 */ u32 unk_4;
-    /* 0x08 */ u8 unk_8;
-    /* 0x09 */ u8 unk_9;
-    /* 0x0A */ s16 unk_A; // confirmed
-    /* 0x0C */ u16 unk_C;
-    /* 0x0E */ u16 unk_0E;
-    /* 0x10 */ u16 unk_10;
-    /* 0x12 */ u16 unk_12;
-    /* 0x14 */ u16 unk_14;
-    /* 0x16 */ u16 unk_16;
-    /* 0x18 */ s16 unk_18;
-    /* 0x1A */ s8 unk_1A_15 : 1; // confirmed
-    /* 0x1A */ s8 unk_1A_14 : 1; // confirmed
-    /* 0x1A */ s8 unk_1A_13 : 1; // confirmed
-    /* 0x1A */ s8 unk_1A_12 : 1;
-    /* 0x1A */ s8 unk_1A_11 : 1;
-    /* 0x1A */ s8 unk_1A_10 : 1;
-    /* 0x1A */ s8 unk_1A_9 : 1;
-    /* 0x1A */ s8 unk_1A_8 : 1;
-    /* 0x1A */ s8 unk_1A_7 : 1;
-    /* 0x1A */ s8 unk_1A_6 : 1;
-    /* 0x1A */ s8 unk_1A_5 : 1;
-    /* 0x1A */ s8 unk_1A_4 : 1;
-    /* 0x1A */ s8 unk_1A_3 : 1;
-    /* 0x1A */ s8 unk_1A_2 : 1;
-    /* 0x1A */ s8 unk_1A_1 : 1;
-    /* 0x1A */ s8 unk_1A_0 : 1;
-} Bar; // size: 0x1C
+} Foo; // size = 0x8
 
 typedef struct Fizz {
-    /* 0x000 */ u8 pad[0x3a0];
-    /* 0x3A0 */ u32 unk_03A0;
-    /* 0x3A4 */ s16 unk_03A4;
-    /* 0x3A6 */ u8 unk_03A6;
-    /* 0x3A7 */ u8 unk_03A7;
-    /* 0x3A8 */ u8 unk_03A8;
-    /* 0x3A9 */ u8 unk_03A9;
-    /* 0x3Aa */ s16 unk_03AA;
-    /* 0x3AC */ u16 unk_03AC;
-    /* 0x3AE */ u16 unk_03AE;
-    /* 0x3B0 */ u16 unk_03B0;
-    /* 0x3B2 */ u16 unk_03B2;
-    /* 0x3B4 */ u8 unk_03B4;
+    /* 0x000 */ u8 pad[0x3A0];
+    /* 0x3A0 */ u32 unk_3A0;
+    /* 0x3A4 */ s16 unk_3A4;
+    /* 0x3A6 */ u8 unk_3A6;
+    /* 0x3A7 */ u8 unk_3A7;
+    /* 0x3A8 */ u8 unk_3A8;
+    /* 0x3A9 */ u8 unk_3A9;
+    /* 0x3Aa */ s16 unk_3AA;
+    /* 0x3AC */ u16 unk_3AC;
+    /* 0x3AE */ u16 unk_3AE;
+    /* 0x3B0 */ u16 unk_3B0;
+    /* 0x3B2 */ u16 unk_3B2;
+    /* 0x3B4 */ u8 unk_3B4;
 } Fizz;
 
 extern s32 D_801F4194_9A3C04;
 extern s32 D_80229838_9D92A8;
-extern Bar D_802291A0_9D8C10[60];
-extern int (*D_801F4198_9A3C08)(const void*, const void*);
+extern Photo D_802291A0_9D8C10[60];
+extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 
-char* func_8009B9D0(s16);
-void func_8001A094(void* base, s32 nitems, u32 size, int (*compar)(const void*, const void*)); // Probably qsort
+void func_8001A094(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
 s32 func_800BFB84_5CA24(void);
-int func_801E4704_994174(const void*, const void*);
-int func_801E47F0_994260(const void*, const void*);
-int func_801E48CC_99433C(const void*, const void*);
-int func_801E49A8_994418(const void*, const void*);
-int func_801E4AA4_994514(const void*, const void*);
+s32 func_801E4704_994174(const void*, const void*);
+s32 func_801E47F0_994260(const void*, const void*);
+s32 func_801E48CC_99433C(const void*, const void*);
+s32 func_801E49A8_994418(const void*, const void*);
+s32 func_801E4AA4_994514(const void*, const void*);
 
 #if 0
 s32 func_800BF574_5C414(s32);
 void func_800BF5D8_5C478(s32, u32);
 void func_800BF690_5C530(s16, u32);
 void func_800BF7D4_5C674(s16, u32);
-void func_800BF954_5C7F4(s32, s32, int);
+void func_800BF954_5C7F4(s32, s32, s32);
 unk_0* func_800BFB50_5C9F0(s32);
 void* func_8037452C(void*);
 #endif
@@ -122,7 +92,7 @@ u32 func_801E452C_993F9C(s32 idx) {
     return D_802291A0_9D8C10[idx].unk_0;
 }
 
-void* func_801E459C_99400C(s32 idx) {
+Photo* func_801E459C_99400C(s32 idx) {
     if (idx < 0 || idx >= func_800BFB84_5CA24()) {
         return NULL;
     }
@@ -149,9 +119,9 @@ s32 func_801E460C_99407C(char* arg0, char* arg1) {
     return 0;
 }
 
-int func_801E4690_994100(const void* arg0, const void* arg1) {
-    const Bar* lhs = arg0;
-    const Bar* rhs = arg1;
+s32 func_801E4690_994100(const void* arg0, const void* arg1) {
+    const Photo* lhs = arg0;
+    const Photo* rhs = arg1;
 
     if (lhs->unk_0 > rhs->unk_0) {
         return 1;
@@ -162,9 +132,9 @@ int func_801E4690_994100(const void* arg0, const void* arg1) {
     return 0;
 }
 
-int func_801E4704_994174(const void* arg0, const void* arg1) {
-    const Bar* lhs;
-    const Bar* rhs;
+s32 func_801E4704_994174(const void* arg0, const void* arg1) {
+    const Photo* lhs;
+    const Photo* rhs;
 
     lhs = arg0, rhs = arg1;
     if (lhs->unk_1A_15 < rhs->unk_1A_15) {
@@ -179,14 +149,14 @@ int func_801E4704_994174(const void* arg0, const void* arg1) {
     return func_801E4690_994100(arg0, arg1);
 }
 
-int func_801E47F0_994260(const void* arg0, const void* arg1) {
-    const Bar* lhs;
-    const Bar* rhs;
+s32 func_801E47F0_994260(const void* arg0, const void* arg1) {
+    const Photo* lhs;
+    const Photo* rhs;
 
     lhs = arg0, rhs = arg1;
-    if (lhs->unk_A < rhs->unk_A) {
+    if (lhs->unk_0A < rhs->unk_0A) {
         return 1;
-    } else if (lhs->unk_A > rhs->unk_A) {
+    } else if (lhs->unk_0A > rhs->unk_0A) {
         return -1;
     }
 
@@ -196,13 +166,13 @@ int func_801E47F0_994260(const void* arg0, const void* arg1) {
     return func_801E4690_994100(arg0, arg1);
 }
 
-int func_801E48CC_99433C(const void* arg0, const void* arg1) {
-    const Bar* lhs;
-    const Bar* rhs;
+s32 func_801E48CC_99433C(const void* arg0, const void* arg1) {
+    const Photo* lhs;
+    const Photo* rhs;
     s32 sp2C;
 
     lhs = arg0, rhs = arg1;
-    sp2C = func_801E460C_99407C(func_8009B9D0(lhs->unk_A), func_8009B9D0(rhs->unk_A));
+    sp2C = func_801E460C_99407C(func_8009B9D0(lhs->unk_0A), func_8009B9D0(rhs->unk_0A));
     if (sp2C != 0) {
         return sp2C;
     }
@@ -212,9 +182,9 @@ int func_801E48CC_99433C(const void* arg0, const void* arg1) {
     return func_801E4690_994100(arg0, arg1);
 }
 
-int func_801E49A8_994418(const void* arg0, const void* arg1) {
-    const Bar* lhs;
-    const Bar* rhs;
+s32 func_801E49A8_994418(const void* arg0, const void* arg1) {
+    const Photo* lhs;
+    const Photo* rhs;
 
     lhs = arg0, rhs = arg1;
     if (lhs->unk_1A_14 > rhs->unk_1A_14) {
@@ -229,9 +199,9 @@ int func_801E49A8_994418(const void* arg0, const void* arg1) {
     return func_801E4690_994100(arg0, arg1);
 }
 
-int func_801E4AA4_994514(const void* arg0, const void* arg1) {
-    const Bar* lhs;
-    const Bar* rhs;
+s32 func_801E4AA4_994514(const void* arg0, const void* arg1) {
+    const Photo* lhs;
+    const Photo* rhs;
 
     lhs = arg0, rhs = arg1;
     if (lhs->unk_1A_13 > rhs->unk_1A_13) {
@@ -249,37 +219,37 @@ int func_801E4AA4_994514(const void* arg0, const void* arg1) {
 void func_801E4BA0_994610(u32 arg0) {
     switch (arg0) {
         case 0:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E4690_994100);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4690_994100);
             if (D_801F4198_9A3C08 != func_801E4690_994100) {
                 D_801F4198_9A3C08 = func_801E4690_994100;
             }
             break;
         case 1:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E4704_994174);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4704_994174);
             if (D_801F4198_9A3C08 != func_801E4704_994174) {
                 D_801F4198_9A3C08 = func_801E4704_994174;
             }
             break;
         case 2:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E47F0_994260);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E47F0_994260);
             if (D_801F4198_9A3C08 != func_801E47F0_994260) {
                 D_801F4198_9A3C08 = func_801E47F0_994260;
             }
             break;
         case 3:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E48CC_99433C);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E48CC_99433C);
             if (D_801F4198_9A3C08 != func_801E48CC_99433C) {
                 D_801F4198_9A3C08 = func_801E48CC_99433C;
             }
             break;
         case 4:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E49A8_994418);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E49A8_994418);
             if (D_801F4198_9A3C08 != func_801E49A8_994418) {
                 D_801F4198_9A3C08 = func_801E49A8_994418;
             }
             break;
         case 5:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Bar), func_801E4AA4_994514);
+            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4AA4_994514);
             if (D_801F4198_9A3C08 != func_801E4AA4_994514) {
                 D_801F4198_9A3C08 = func_801E4AA4_994514;
             }
@@ -396,19 +366,19 @@ s32 func_801E5030_994AA0(void) {
                     sp2C->unk9 = 0U;
                     sp2C->unk_018 = 0;
                 } else {
-                    sp2C->unk4 = sp30->unk_03A0;
-                    sp2C->unkA = sp30->unk_03AA;
+                    sp2C->unk4 = sp30->unk_3A0;
+                    sp2C->unkA = sp30->unk_3AA;
                     sp2C->unk_1A_15 = (func_800BF3D4_5C274(sp2C->unkA) == 0);
                     sp2C->unk_1A_11 = 0;
-                    sp2C->unkC = sp30->unk_03B4;
-                    sp2C->unk_0E = sp30->unk_03A7;
-                    sp2C->unk_12 = sp30->unk_03AE;
-                    sp2C->unk_014 = sp30->unk_03AC;
-                    sp2C->unk8 = sp30->unk_03A8;
-                    sp2C->unk_10 = sp30->unk_03B0;
-                    sp2C->unk_016 = sp30->unk_03B2;
-                    sp2C->unk_018 = sp30->unk_03A4;
-                    sp2C->unk9 = sp30->unk_03A6;
+                    sp2C->unkC = sp30->unk_3B4;
+                    sp2C->unk_0E = sp30->unk_3A7;
+                    sp2C->unk_12 = sp30->unk_3AE;
+                    sp2C->unk_014 = sp30->unk_3AC;
+                    sp2C->unk8 = sp30->unk_3A8;
+                    sp2C->unk_10 = sp30->unk_3B0;
+                    sp2C->unk_016 = sp30->unk_3B2;
+                    sp2C->unk_018 = sp30->unk_3A4;
+                    sp2C->unk9 = sp30->unk_3A6;
                     sp34 += 1;
                 }
             }

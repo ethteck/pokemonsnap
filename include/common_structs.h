@@ -467,13 +467,13 @@ typedef struct {
     /* 0x0C */ void* kill;
 } AnimalDef; // size = 0x10
 
-typedef struct Fizz {
+typedef struct UnkCharcoalBurbot {
     s32 unk_00;
     s32 unk_04;
     s32 unk_08;
-} Fizz;
+} UnkCharcoalBurbot;
 
-typedef struct Bar {
+typedef struct UnkDesertMackerel {
     /* 0x00 */ char pad_00[0x20];
     /* 0x20 */ f32 unk_20;
     /* 0x24 */ char pad_24[4];
@@ -482,8 +482,8 @@ typedef struct Bar {
 
     /* 0x30 */ f32 unk_30;
     /* 0x34 */ char pad_34[8];
-    /* 0x3C */ Fizz unk_3C;
-    /* 0x48 */ Fizz unk_48;
+    /* 0x3C */ UnkCharcoalBurbot unk_3C;
+    /* 0x48 */ UnkCharcoalBurbot unk_48;
 
     /* 0x54 */ f32 unk_54;
     /* 0x58 */ f32 unk_58;
@@ -493,13 +493,13 @@ typedef struct Bar {
 
     /* 0x80 */ s32 unk_80;
     /* 0x84 */ s32 unk_84;
-} Bar;
+} UnkDesertMackerel;
 
-typedef struct Foo {
+typedef struct UnkAmberCod {
     /* 0x00 */ char pad_00[0x38];
     /* 0x38 */ s32 unk_38;
     /* 0x3C */ char pad_3C[0xC];
-    /* 0x48 */ Bar* unk_48;
-} Foo;
+    /* 0x48 */ UnkDesertMackerel* unk_48;
+} UnkAmberCod;
 
 #endif

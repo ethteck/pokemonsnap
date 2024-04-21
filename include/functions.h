@@ -44,7 +44,7 @@ void func_800067DC(void);
 void func_80007BC4(s32*);
 void func_8000BC84(void);
 void func_8000BCA8(s32);
-Foo* func_8000C3FC(s32, void*, s32, s32, void*, s32, s32, s32, s32, s32, void*, s32, s32);
+UnkAmberCod* func_8000C3FC(s32, void*, s32, s32, void*, s32, s32, s32, s32, s32, void*, s32, s32);
 void func_800191D8(void);
 void func_80022334(void);
 void func_80022374(s32, s32);

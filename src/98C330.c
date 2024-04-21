@@ -9,8 +9,8 @@
 
 #include "photocheck.h"
 
-extern Fizz D_800AF094;
-extern Fizz D_800AF0C4;
+extern UnkCharcoalBurbot D_800AF094;
+extern UnkCharcoalBurbot D_800AF0C4;
 extern s32 D_800AF3C0;
 extern s32 D_80229840;
 extern s32 D_80369F80;
@@ -365,8 +365,8 @@ void func_801DCA14_98C484(s32 arg0) {
 }
 
 void func_801DCA48_98C4B8(void) {
-    Foo* sp54;
-    Bar* sp50;
+    UnkAmberCod* sp54;
+    UnkDesertMackerel* sp50;
     char pad[0x10];
 
     sp54 = func_8000C3FC(0x200, func_8000BC84, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,

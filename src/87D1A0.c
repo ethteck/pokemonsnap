@@ -14,10 +14,10 @@ typedef struct Foo {
 
 typedef struct Bar {
     s32 var_0;
-} Bar;
+} UnkDesertMackerel;
 
-extern Bar D_80208994_8A6184;
-extern Bar D_802089BC_8A61AC;
+extern UnkDesertMackerel D_80208994_8A6184;
+extern UnkDesertMackerel D_802089BC_8A61AC;
 extern s32 D_80208960_8A6150;
 
 int func_803713EC(int);
@@ -39,7 +39,7 @@ void func_801DD630_87AE20(int, int);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/87D1A0/func_801DF9B0_87D1A0.s")
 
-Bar* func_801DFA4C_87D23C(void) {
+UnkDesertMackerel* func_801DFA4C_87D23C(void) {
     if (func_800BFCA0_5CB40(8) == 0) {
         return &D_80208994_8A6184;
     }

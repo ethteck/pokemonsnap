@@ -1931,7 +1931,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-void func_801E242C_991E9C(Foo_Sub* arg0, s32 arg1, s32 arg2) {
+void func_801E242C_991E9C(UnkPinkBarracuda* arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad[3];
 
     PANIC();

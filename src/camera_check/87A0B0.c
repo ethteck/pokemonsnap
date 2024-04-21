@@ -1,16 +1,9 @@
 #include "common.h"
+#include "camera_check.h"
 
-extern u8 D_camera_check_802098F0[0x40000];
 extern s32 D_800AF3C0;
-extern ScreenSettings D_camera_check_801E4060;
-extern SceneSetup D_camera_check_801E407C;
 extern Addr D_8024A1E0;
 extern Addr D_80369F80;
-
-void func_camera_check_801DC910(void);
-void func_80375284(int);
-void func_camera_check_801DF938(void);
-void func_80374D40(void);
 
 void gtlSetIntervals(u16 updateInterval, u16 drawInterval);
 
@@ -57,10 +50,10 @@ void func_camera_check_801DCA60(void) {
     func_8036A3F8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
     func_800AAE28();
     func_camera_check_801DC910();
-    func_80374D40();
+    func_80374D40_8484F0();
     func_8036EB98();
-    func_80375284(3);
-    func_80375284(2);
+    func_80375284_848A34(3);
+    func_80375284_848A34(2);
     func_80022454(0, 0x7F00);
     func_camera_check_801DF938();
 }

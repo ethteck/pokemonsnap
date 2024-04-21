@@ -502,4 +502,8 @@ typedef struct UnkAmberCod {
     /* 0x48 */ UnkDesertMackerel* unk_48;
 } UnkAmberCod;
 
+typedef struct UnkPinkBarracuda {
+    s32 unk4_25 : 7;
+} UnkPinkBarracuda;
+
 #endif

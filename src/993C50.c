@@ -23,7 +23,6 @@ void func_80370004_8437B4(s32, s32);
 void func_8037005C_84380C(s32, s32);
 void func_80370134_8438E4(void);
 s32 func_80370600_843DB0(void);
-void func_803713EC_844B9C(s32);
 
 void* func_801E41E0_993C50(void) {
     return D_801F4150_9A3BC0;

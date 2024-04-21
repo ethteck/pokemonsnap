@@ -782,6 +782,7 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
+    - [0x87A320, c]
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]

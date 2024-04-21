@@ -4,8 +4,9 @@
 #define HALF_PI (F_PI / 2.0f)
 
 extern u16 D_80040F50[0x7FF];
-f32 *func_8001A8B8(f32 *arg0, f32 *arg1, f32 arg2);
-void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA);
+f32* func_8001A8B8(f32* arg0, f32* arg1, f32 arg2);
+void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
+                   f32 argA);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B0F0.s")
 
@@ -42,8 +43,10 @@ s32 func_8001B51C(f32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B570.s")
 
 void func_8001B0F0(Mtx4f arg0, Mtx4f arg1);
-void func_8001B570(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
-void func_8001B7FC(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
+void func_8001B570(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
+                   f32 arg9);
+void func_8001B7FC(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
+                   f32 arg9) {
     Mtx4f matrix;
 
     func_8001B570(matrix, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
@@ -52,7 +55,8 @@ void func_8001B7FC(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5,
 
 #if NON_EQUIVALENT
 #define SQ(x) ((x) * (x))
-void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA) {
+void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
+                   f32 argA) {
     f32 root;
     Vec3f vec1;
     Vec3f vec2;

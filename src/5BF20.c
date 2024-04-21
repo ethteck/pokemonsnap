@@ -6,7 +6,7 @@ typedef struct Unk_D_800C21B0_5F050 {
     s32 unk4;
     s32 unk8;
     s32 unkC;
-    u8 *unk10;
+    u8* unk10;
     u8 pad[0x1C];
     u32 unk30;
     s32 unk34;
@@ -20,10 +20,11 @@ typedef struct Unk_D_800C21B0_5F050 {
     u8 pad68[0x4];
     s32 unk6C;
     u8 pad70[0x110];
-    s32 *unk180;
+    s32* unk180;
     s32 unk184;
     u8 pad188[0x216];
 } Unk_D_800C21B0_5F050;
+
 Unk_D_800C21B0_5F050* func_800C16EC_5E58C(u8*, s32);
 s32 func_800C09C0_5D860(Unk_D_800C21B0_5F050* arg0, s32 arg1);
 void func_800C06A8_5D548(Unk_D_800C21B0_5F050*, s32);
@@ -31,11 +32,11 @@ void func_800C0AB4_5D954(Unk_D_800C21B0_5F050*, s32);
 s32 func_8009BB4C(void);
 
 extern u8 D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
-extern s32 D_800C20F0_5EF90; // s32 D_800C20F0_5EF90 = 0;
-extern Unk_D_800C21B0_5F050 *D_800C21B0_5F050;
+extern s32 D_800C20F0_5EF90;    // s32 D_800C20F0_5EF90 = 0;
+extern Unk_D_800C21B0_5F050* D_800C21B0_5F050;
 extern s32 D_800E1500_7E3A0;
 
-Unk_D_800C21B0_5F050 *func_800BF080_5BF20(void) {
+Unk_D_800C21B0_5F050* func_800BF080_5BF20(void) {
     return D_800C21B0_5F050;
 }
 
@@ -43,10 +44,10 @@ s32 func_800BF08C_5BF2C(void) {
     Unk_D_800C21B0_5F050* temp_v0;
 
     temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk10, 0x1F294);
-    if (temp_v0->unk0 != D_800C21B0_5F050->unk0 || temp_v0->unk4 != D_800C21B0_5F050->unk4 || 
+    if (temp_v0->unk0 != D_800C21B0_5F050->unk0 || temp_v0->unk4 != D_800C21B0_5F050->unk4 ||
         temp_v0->unk8 != D_800C21B0_5F050->unk8 || temp_v0->unkC != D_800C21B0_5F050->unkC) {
         return 1;
-    } else {        
+    } else {
         return 0;
     }
 }
@@ -177,7 +178,7 @@ void* func_800BF574_5C414(s32 arg0) {
         return NULL;
     }
     temp_v0 = &D_800C21B0_5F050[arg0];
-    if ((s32)(temp_v0 + 68) == -1) {
+    if ((s32) (temp_v0 + 68) == -1) {
         var_v1 = NULL;
     } else {
         var_v1 = temp_v0 + 69;

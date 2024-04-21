@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern char D_camera_check_802098F0[0x40000];
+extern u8 D_camera_check_802098F0[0x40000];
 extern s32 D_800AF3C0;
 extern ScreenSettings D_camera_check_801E4060;
 extern SceneSetup D_camera_check_801E407C;
@@ -54,7 +54,7 @@ void func_camera_check_801DC910(void) {
 }
 
 void func_camera_check_801DCA60(void) {
-    func_8036A3F8((s32*) D_camera_check_802098F0, 0x40000);
+    func_8036A3F8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
     func_800AAE28();
     func_camera_check_801DC910();
     func_80374D40();

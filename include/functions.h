@@ -128,7 +128,7 @@ void func_80370A48_8441F8(void);
 void func_803713C8_844B78(s32);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
-GObj* func_80371C68_845418(s32, s32, Sprite*);
+GObj* func_80371C68_845418(void*, s32, Sprite*);
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);

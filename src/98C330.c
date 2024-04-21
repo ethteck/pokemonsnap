@@ -645,7 +645,7 @@ GObj* func_801DD720_98D190(s32 idx) {
     u8* sp20;
     u8* sp1C;
 
-    gobj = func_80371C68_845418(0, 6, &D_801E5DB0_995820);
+    gobj = func_80371C68_845418(NULL, 6, &D_801E5DB0_995820);
     sobj = gobj->data.sobj;
     D_802290A0_9D8B10[idx].gobj = gobj;
     sobj = func_80371E68_845618(sobj, &D_801E5DB0_995820);

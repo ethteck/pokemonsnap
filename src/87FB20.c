@@ -64,7 +64,7 @@ s32 func_801E2484_87FC74(s32 arg0) {
     return D_80249B30_8E7320[arg0 + D_8024A1C0_8E79B0].var_0;
 }
 
-UnkIndigoHalibut* func_801E24D8_87FCC8(s32 arg0) {
+UnkIndigoHalibut* func_camera_check_801E24D8(s32) {
     if ((arg0 < 0) || (arg0 >= D_8024A1C4_8E79B4)) {
         return NULL;
     }
@@ -72,7 +72,7 @@ UnkIndigoHalibut* func_801E24D8_87FCC8(s32 arg0) {
     return D_80249B30_8E7320 + arg0 + D_8024A1C0_8E79B0;
 }
 
-s32 func_801E2534_87FD24(void) {
+s32 func_camera_check_801E2534(void) {
     return D_8024A1C4_8E79B4;
 }
 
@@ -212,12 +212,12 @@ u32 func_801E2C38_880428(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/87FB20/func_801E2CC0_8804B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/87FB20/func_camera_check_801E2CC0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/87FB20/func_801E2D98_880588.s")
 
 // Get the number of photos that have been taken?
-s32 func_801E2E04_8805F4(void) {
+s32 func_camera_check_801E2E04(void) {
     s32 i;
     s32 ret;
 

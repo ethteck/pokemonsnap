@@ -32,7 +32,7 @@ void func_801DD6D0_87AEC0(int, int);
 s32 func_801E2534_87FD24(void);
 void func_803713D4(int);
 void func_801E2984_880174(s16);
-int func_801E2CC0_8804B0(s32);
+int func_801E2CC0_8804B0(void);
 int func_801E2E04_8805F4(void);
 void func_801DEA20_87C210(int, int);
 void func_801DD630_87AE20(int, int);
@@ -50,13 +50,9 @@ Bar* func_801DFA4C_87D23C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/87D1A0/func_801DFCD4_87D4C4.s")
 
-#if 1
-#pragma GLOBAL_ASM("asm/nonmatchings/87D1A0/func_801E0034_87D824.s")
-#else
 void func_801E0034_87D824(s32 arg0) {
-    void* sp20;
+    s32 pad;
     Foo* temp_v0;
-    s32 sp1C;
 
     temp_v0 = func_801E24D8_87FCC8(D_80208960_8A6150);
     if (temp_v0 == NULL) {
@@ -67,8 +63,7 @@ void func_801E0034_87D824(s32 arg0) {
         func_800228E4(0x4A);
         temp_v0->var_18_0x08000000 = 0;
     } else {
-        sp1C = func_801E2CC0_8804B0(0x4A);
-        if (func_801E2E04_8805F4() <= sp1C) {
+        if (func_801E2CC0_8804B0() >= func_801E2E04_8805F4()) {
             return;
         }
         func_800228E4(0x49);
@@ -81,7 +76,6 @@ void func_801E0034_87D824(s32 arg0) {
         func_801DD630_87AE20(D_80208960_8A6150 - ((s32) D_80208960_8A6150 % 6), 0);
     }
 }
-#endif
 
 void func_801E0118_87D908(s32 arg0) {
     void* sp1C;

@@ -131,9 +131,9 @@ s32 func_801E47F0_994260(const void* arg0, const void* arg1) {
     const Photo* rhs;
 
     lhs = arg0, rhs = arg1;
-    if (lhs->unk_0A < rhs->unk_0A) {
+    if (lhs->pkmnID < rhs->pkmnID) {
         return 1;
-    } else if (lhs->unk_0A > rhs->unk_0A) {
+    } else if (lhs->pkmnID > rhs->pkmnID) {
         return -1;
     }
 
@@ -149,7 +149,7 @@ s32 func_801E48CC_99433C(const void* arg0, const void* arg1) {
     s32 sp2C;
 
     lhs = arg0, rhs = arg1;
-    sp2C = func_801E460C_99407C(func_8009B9D0(lhs->unk_0A), func_8009B9D0(rhs->unk_0A));
+    sp2C = func_801E460C_99407C(func_8009B9D0(lhs->pkmnID), func_8009B9D0(rhs->pkmnID));
     if (sp2C != 0) {
         return sp2C;
     }
@@ -260,8 +260,8 @@ void func_801E4E04_994874(void) {
 
     for (loop_i = 0, sp28 = &D_802291A0_9D8C10[0]; loop_i < loop_end; sp28++, loop_i++) {
         if (sp28->unk_1A_14 || sp28->unk_1A_13) {
-            func_800BF690_5C530(sp28->unk_0A, sp28->unk_0);
-            func_800BF7D4_5C674(sp28->unk_0A, sp28->unk_4);
+            func_800BF690_5C530(sp28->pkmnID, sp28->unk_0);
+            func_800BF7D4_5C674(sp28->pkmnID, sp28->unk_4);
             if (D_80229838_9D92A8 < 3) {
                 // D_80229838_9D92A8 is being pre-incremented here. It seems to match better this way so far. Weird though...
                 func_800BF5D8_5C478(++D_80229838_9D92A8, sp28->unk_0);
@@ -310,31 +310,31 @@ s32 func_801E5030_994AA0(void) {
             photo->unk_0 = sp24->var_0;
             if (sp30->unk_3AA == 0) {
                 photo->unk_4 = 0;
-                photo->unk_0A = 9999;
+                photo->pkmnID = 9999;
                 photo->unk_1A_15 = 0;
                 photo->unk_1A_11 = 1;
-                photo->unk_0C = 0;
-                photo->unk_0E = 0;
-                photo->unk_10 = 0;
-                photo->unk_12 = 0;
-                photo->unk_8 = 0;
-                photo->unk_14 = 0;
-                photo->unk_16 = 0;
+                photo->specialID = 0;
+                photo->isWellFramed = FALSE;
+                photo->posePts = 0;
+                photo->sizeParam1 = 0;
+                photo->commentID = 0;
+                photo->sizeParam2 = 0;
+                photo->specialBonus = 0;
                 photo->unk_9 = 0;
-                photo->unk_18 = 0;
+                photo->samePkmnBonus = 0;
             } else {
                 photo->unk_4 = sp30->unk_3A0;
-                photo->unk_0A = sp30->unk_3AA;
-                photo->unk_1A_15 = !func_800BF3D4_5C274(photo->unk_0A);
+                photo->pkmnID = sp30->unk_3AA;
+                photo->unk_1A_15 = !func_800BF3D4_5C274(photo->pkmnID);
                 photo->unk_1A_11 = 0;
-                photo->unk_0C = sp30->unk_3B4;
-                photo->unk_0E = sp30->unk_3A7;
-                photo->unk_12 = sp30->unk_3AE;
-                photo->unk_14 = sp30->unk_3AC;
-                photo->unk_8 = sp30->unk_3A8;
-                photo->unk_10 = sp30->unk_3B0;
-                photo->unk_16 = sp30->unk_3B2;
-                photo->unk_18 = sp30->unk_3A4;
+                photo->specialID = sp30->unk_3B4;
+                photo->isWellFramed = sp30->unk_3A7;
+                photo->sizeParam1 = sp30->unk_3AE;
+                photo->sizeParam2 = sp30->unk_3AC;
+                photo->commentID = sp30->unk_3A8;
+                photo->posePts = sp30->unk_3B0;
+                photo->specialBonus = sp30->unk_3B2;
+                photo->samePkmnBonus = sp30->unk_3A4;
                 photo->unk_9 = sp30->unk_3A6;
                 sp34++;
             }

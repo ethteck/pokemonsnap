@@ -6,7 +6,7 @@
 #include "sys/cont.h"
 
 
-s32 D_801F3E60_9A38D0 = 0;
+s32 D_801F3E60_9A38D0 = FALSE;
 s32 D_801F3E64_9A38D4 = 0;
 
 //??

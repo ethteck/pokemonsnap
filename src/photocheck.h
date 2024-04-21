@@ -5,34 +5,34 @@ typedef struct Foo_Sub {
 } Foo_Sub;
 
 typedef struct Photo {
-    /* 0x00 */ Foo_Sub* unk_0; // confirmed
+    /* 0x00 */ Foo_Sub* unk_0;
     /* 0x04 */ u32 unk_4;
-    /* 0x08 */ u8 unk_8;
+    /* 0x08 */ u8 commentID;
     /* 0x09 */ u8 unk_9;
-    /* 0x0A */ s16 unk_0A; // confirmed
-    /* 0x0C */ s16 unk_0C;
-    /* 0x0E */ s16 unk_0E;
-    /* 0x10 */ s16 unk_10;
-    /* 0x12 */ s16 unk_12;
-    /* 0x14 */ s16 unk_14;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ s16 unk_18;
-    /* 0x1A */ s16 unk_1A_15 : 1; // confirmed
-    /* 0x1A */ s16 unk_1A_14 : 1; // confirmed
-    /* 0x1A */ s16 unk_1A_13 : 1; // confirmed
+    /* 0x0A */ s16 pkmnID;
+    /* 0x0C */ s16 specialID;
+    /* 0x0E */ s16 isWellFramed;
+    /* 0x10 */ s16 posePts;
+    /* 0x12 */ s16 sizeParam1;
+    /* 0x14 */ s16 sizeParam2;
+    /* 0x16 */ s16 specialBonus;
+    /* 0x18 */ s16 samePkmnBonus;
+    /* 0x1A */ s16 unk_1A_15 : 1;
+    /* 0x1A */ s16 unk_1A_14 : 1;
+    /* 0x1A */ s16 unk_1A_13 : 1;
     /* 0x1A */ s16 unk_1A_12 : 1;
     /* 0x1A */ s16 unk_1A_11 : 1;
-    /* 0x1A */ s16 unk_1A_10 : 1;
-    /* 0x1A */ s16 unk_1A_9 : 1;
-    /* 0x1A */ s16 unk_1A_8 : 1;
-    /* 0x1A */ s16 unk_1A_7 : 1;
-    /* 0x1A */ s16 unk_1A_6 : 1;
-    /* 0x1A */ s16 unk_1A_5 : 1;
-    /* 0x1A */ s16 unk_1A_4 : 1;
-    /* 0x1A */ s16 unk_1A_3 : 1;
-    /* 0x1A */ s16 unk_1A_2 : 1;
-    /* 0x1A */ s16 unk_1A_1 : 1;
-    /* 0x1A */ s16 unk_1A_0 : 1;
+    // /* 0x1A */ s16 unk_1A_10 : 1;
+    // /* 0x1A */ s16 unk_1A_9 : 1;
+    // /* 0x1A */ s16 unk_1A_8 : 1;
+    // /* 0x1A */ s16 unk_1A_7 : 1;
+    // /* 0x1A */ s16 unk_1A_6 : 1;
+    // /* 0x1A */ s16 unk_1A_5 : 1;
+    // /* 0x1A */ s16 unk_1A_4 : 1;
+    // /* 0x1A */ s16 unk_1A_3 : 1;
+    // /* 0x1A */ s16 unk_1A_2 : 1;
+    // /* 0x1A */ s16 unk_1A_1 : 1;
+    // /* 0x1A */ s16 unk_1A_0 : 1;
 } Photo; // size = 0x1C
 
 typedef struct UnkStruct800BEDF8 {

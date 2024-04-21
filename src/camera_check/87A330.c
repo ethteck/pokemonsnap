@@ -196,7 +196,7 @@ void func_camera_check_801DE80C(s32 arg0, s32 arg1, s32 arg2) {
         D_camera_check_802498F0.unk0->data.sobj->sprite.attr |= 4;
     }
     if (arg0 != 0) {
-        func_80374714_847EC4(func_camera_check_801E2484(arg1), D_camera_check_802498FC + 0x10);
+        func_80374714_847EC4(func_camera_check_801E2484(arg1), &D_camera_check_802498F0.unkC->sprite);
         func_camera_check_801DD238(&D_camera_check_802498F0, arg1, arg2);
     }
     func_camera_check_801DE288(func_camera_check_801E24D8(arg1));
@@ -209,7 +209,7 @@ void func_camera_check_801DE8AC(s32 arg0, int arg1) {
         D_camera_check_802498F0.unk0->data.sobj->sprite.attr |= 4;
     }
     if (arg0 != 0) {
-        func_80374714_847EC4(func_800BF8BC_5C75C(arg1), D_camera_check_802498FC + 0x10);
+        func_80374714_847EC4(func_800BF8BC_5C75C(arg1), &D_camera_check_802498F0.unkC->sprite);
         func_camera_check_801DD238(&D_camera_check_802498F0, -1, 0);
     }
 }

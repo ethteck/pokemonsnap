@@ -1,14 +1,9 @@
 #include "common.h"
 #include "camera_check.h"
+#include "../sys/gtl.h"
 
-extern s32 D_800AF3C0;
 extern Addr D_8024A1E0;
 extern Addr D_80369F80;
-
-void gtlSetIntervals(u16 updateInterval, u16 drawInterval);
-
-extern UnkCharcoalBurbot D_800AF0C4;
-extern UnkCharcoalBurbot D_800AF094;
 
 static void nullsub() {
 }

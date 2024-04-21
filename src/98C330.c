@@ -9,9 +9,6 @@
 
 #include "photocheck.h"
 
-extern UnkCharcoalBurbot D_800AF094;
-extern UnkCharcoalBurbot D_800AF0C4;
-extern s32 D_800AF3C0;
 extern s32 D_80229840;
 extern s32 D_80369F80;
 

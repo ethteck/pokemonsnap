@@ -13,21 +13,21 @@ typedef struct UnkIndigoHalibut {
     /* 0x18 */ s32 var_18_0x08000000 : 1;
 } UnkIndigoHalibut; // size: 0x1C
 
-typedef struct CyanBass {
+typedef struct UnkCyanBass {
     s32 var_0;
 } UnkCyanBass;
 
-typedef struct SiennaHaddock {
+typedef struct UnkSiennaHaddock {
     char pad[0x48];
     SObj* var_48;
-} SiennaHaddock;
+} UnkSiennaHaddock;
 
-typedef struct PurpleMackerel {
-    /* 0x00 */ SiennaHaddock* var_0;
+typedef struct UnkPurpleMackerel {
+    /* 0x00 */ UnkSiennaHaddock* var_0;
     /* 0x04 */ char pad_04[0x1C];
-} PurpleMackerel; // size: 0x20
+} UnkPurpleMackerel; // size: 0x20
 
-typedef struct TealFlounder {
+typedef struct UnkTealFlounder {
     GObj* unk0;
     SObj* unk4;
     SObj* unk8;
@@ -36,7 +36,7 @@ typedef struct TealFlounder {
     SObj* unk14;
     SObj* unk18;
     SObj* unk1C;
-} TealFlounder;
+} UnkTealFlounder;
 
 extern ScreenSettings D_camera_check_801E4060;
 extern SceneSetup D_camera_check_801E407C;
@@ -56,14 +56,14 @@ extern Sprite D_camera_check_80208900;
 extern char D_camera_check_80208A34[];
 extern char D_camera_check_80208A3C[];
 extern u8 D_camera_check_802098F0[0x40000];
-extern TealFlounder D_camera_check_802498F0;
+extern UnkTealFlounder D_camera_check_802498F0;
 extern s32 D_camera_check_802498FC;
 extern s32 D_camera_check_80249910;
 extern s32 D_camera_check_80249914;
 extern s32 D_camera_check_80249918;
 extern s32 D_camera_check_8024991C;
 extern SObj* D_camera_check_802499A8;
-extern PurpleMackerel D_camera_check_802499C0[];
+extern UnkPurpleMackerel D_camera_check_802499C0[];
 extern UnkIndigoHalibut D_camera_check_80249B30[];
 extern s32 D_camera_check_8024A1C0;
 extern s32 D_camera_check_8024A1C4;

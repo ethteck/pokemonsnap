@@ -467,41 +467,6 @@ typedef struct {
     /* 0x0C */ void* kill;
 } AnimalDef; // size = 0x10
 
-typedef struct UnkCharcoalBurbot {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-} UnkCharcoalBurbot;
-
-typedef struct UnkDesertMackerel {
-    /* 0x00 */ char pad_00[0x20];
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ char pad_24[4];
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ char pad_34[8];
-    /* 0x3C */ UnkCharcoalBurbot unk_3C;
-    /* 0x48 */ UnkCharcoalBurbot unk_48;
-
-    /* 0x54 */ f32 unk_54;
-    /* 0x58 */ f32 unk_58;
-    /* 0x5C */ f32 unk_5C;
-
-    /* 0x60 */ char pad_60[0x20];
-
-    /* 0x80 */ s32 unk_80;
-    /* 0x84 */ s32 unk_84;
-} UnkDesertMackerel;
-
-typedef struct UnkAmberCod {
-    /* 0x00 */ char pad_00[0x38];
-    /* 0x38 */ s32 unk_38;
-    /* 0x3C */ char pad_3C[0xC];
-    /* 0x48 */ UnkDesertMackerel* unk_48;
-} UnkAmberCod;
-
 typedef struct UnkPinkBarracuda {
     s32 unk4_25 : 7;
 } UnkPinkBarracuda;

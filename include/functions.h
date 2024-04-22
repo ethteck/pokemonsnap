@@ -10,7 +10,7 @@ f32 __sinf(f32);
 
 void dmaReadVPK(u32 rom, u32 ram);
 
-void sendSignalToLink(s32 llIndex, s32, GObj*);
+void cmdSendCommandToLink(s32 llIndex, s32, GObj*);
 
 RoomGFX* getCurrentRoom(void);
 GObj* animalAddOne(RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, AnimalDef* def);
@@ -40,12 +40,7 @@ RoomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
-void func_800067DC(void);
-void func_80007BC4(s32*);
-void func_8000BC84(void);
-void func_8000BCA8(s32);
-UnkAmberCod* func_8000C3FC(s32, void*, s32, s32, void*, s32, s32, s32, s32, s32, void*, s32, s32);
-void func_800191D8(void);
+void func_800191D8(GObj*);
 void func_80022334(void);
 void func_80022374(s32, s32);
 void func_80022454(s32, s32);
@@ -59,7 +54,7 @@ s32 func_8009BC68(void);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
 void func_800A7F68(s32, s32);
-void func_800A844C(void*, s32, s32, s32, s32);
+void func_800A844C(OMCamera*, s32, s32, s32, s32);
 GObj* func_800A85E8(void (*arg0)(UNK_PTR), s32 arg1, s32 arg2, s32 arg3);
 void func_800AADF0(s32);
 void func_800AAE28(void);

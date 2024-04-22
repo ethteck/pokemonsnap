@@ -6,6 +6,7 @@
 #include "sys/cont.h"
 #include "sys/om.h"
 #include "sys/vi.h"
+#include "sys/oh.h"
 
 #include "photocheck.h"
 
@@ -353,36 +354,36 @@ void func_801DC904_98C374(s32 arg0, s32 arg1) {
     gMainGfxPos[0] = gfx;
 }
 
-void func_801DCA14_98C484(s32 arg0) {
+void func_801DCA14_98C484(GObj* arg0) {
     UNUSED s32 pad;
 
     while (TRUE) {
-        func_8000BCA8(1);
+        ohWait(1);
     }
 }
 
 void func_801DCA48_98C4B8(void) {
-    UnkAmberCod* sp54;
-    UnkDesertMackerel* sp50;
+    GObj* camObj;
+    OMCamera* camera;
     char pad[0x10];
 
-    sp54 = func_8000C3FC(0x200, func_8000BC84, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
                          func_801DCA14_98C484, 0, 1);
-    sp54->unk_38 = 0x100000;
-    sp50 = sp54->unk_48;
-    sp50->unk_80 |= 0x4 | 0x2;
-    sp50->unk_80 &= ~(0x2 | 0x1);
-    func_800A844C(sp50, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    sp50->unk_54 = 0.0f;
-    sp50->unk_58 = 0.0f;
-    sp50->unk_5C = 1.0f;
-    sp50->unk_48 = D_800AF0C4;
-    sp50->unk_3C = D_800AF094;
-    sp50->unk_20 = 33.0f;
-    sp50->unk_2C = 8000.0f;
-    sp50->unk_28 = sp50->unk_2C / 128.0;
-    sp50->unk_30 = 1.0f;
-    sp50->unk_84 = 1;
+    camObj->unk38 = 0x100000;
+    camera = camObj->data.cam;
+    camera->flags |= 0x4 | 0x2;
+    camera->flags &= ~(0x2 | 0x1);
+    func_800A844C(camera, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    camera->viewMtx.lookAt.up.x = 0.0f;
+    camera->viewMtx.lookAt.up.y = 0.0f;
+    camera->viewMtx.lookAt.up.z = 1.0f;
+    camera->viewMtx.lookAt.at = D_800AF0C4;
+    camera->viewMtx.lookAt.eye = D_800AF094;
+    camera->perspMtx.persp.fovy = 33.0f;
+    camera->perspMtx.persp.far = 8000.0f;
+    camera->perspMtx.persp.near = camera->perspMtx.persp.far / 128.0;
+    camera->perspMtx.persp.scale = 1.0f;
+    camera->unk84 = 1;
 }
 
 void func_801DCBF4_98C664(void) {
@@ -436,7 +437,7 @@ void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
         func_8036F1F4_8429A4(arg0, sp24, sp1C);
         func_8036F378_842B28(arg0, sp20 - sp24, 225 - sp1C);
         func_8036F198_842948(arg0, sp18);
-        func_8000BCA8(1);
+        ohWait(1);
     }
 
     if (arg1 != 0) {
@@ -476,11 +477,11 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
     func_8036B9EC_83F19C(arg0, 180, 32);
     func_8036C898_840048(arg0, "\\l");
     func_8036EB80_842330(0);
-    func_8000BCA8(1);
+    ohWait(1);
 
     sp18 = func_800AA38C(0);
     while (!(sp18->unk_18 & (0x8000 | 0x4000))) {
-        func_8000BCA8(1);
+        ohWait(1);
         sp18 = func_800AA38C(0);
     }
     if (sp18->unk_14 & 0x8000) {
@@ -497,7 +498,7 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
     }
     func_8036B9EC_83F19C(arg0, 180, 32);
     func_8036C898_840048(arg0, "　");
-    func_8000BCA8(1);
+    ohWait(1);
     func_8036EE40_8425F0();
     func_8036EB80_842330(1);
     return ret;
@@ -509,7 +510,7 @@ s32 func_801DD1A8_98CC18(s32 arg0) {
     UnkStruct800BEDF8* sp1C;
 
     for (i = 0; i < arg0; i++) {
-        func_8000BCA8(1);
+        ohWait(1);
         sp1C = func_800AA38C(0);
         if (sp1C->unk_14 & 0x8000) {
             ret = 0x8000;
@@ -765,7 +766,7 @@ void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
     sp3C->sprite.attr &= ~SP_HIDDEN;
     i = 30;
 
-    for (sp34 = 0.0f, sp38 = -199.0f; sp38 > -200.0f; func_8000BCA8(1)) {
+    for (sp34 = 0.0f, sp38 = -199.0f; sp38 > -200.0f; ohWait(1)) {
         if (D_801F3E2C_9A389C == 2) {
             sp3C->sprite.x = -140;
             break;
@@ -798,7 +799,7 @@ void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
                 } else {
                     sp3C->sprite.attr &= ~SP_HIDDEN;
                 }
-                func_8000BCA8(2);
+                ohWait(2);
             }
             break;
         } else {
@@ -813,7 +814,7 @@ void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
     sp3C->sprite.attr |= SP_HIDDEN;
     D_801F3E2C_9A389C = 2;
     omDeleteGObj(NULL);
-    func_8000BCA8(0x63);
+    ohWait(0x63);
 }
 
 void func_801DE02C_98DA9C(UNK_PTR arg0) {
@@ -846,12 +847,12 @@ void func_801DE02C_98DA9C(UNK_PTR arg0) {
             D_80229188_9D8BF8->sprite.x = -12;
             D_801F3E30_9A38A0 = 4;
         }
-        func_8000BCA8(1);
+        ohWait(1);
     }
     D_80229188_9D8BF8->sprite.attr |= SP_HIDDEN;
     D_801F3E30_9A38A0 = 2;
     omDeleteGObj(NULL);
-    func_8000BCA8(0x63);
+    ohWait(0x63);
 }
 
 s32 func_801DE204_98DC74(Photo* photo) {
@@ -929,7 +930,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             sp1E4 = func_800A85E8(func_801DDCF8_98D768, 6, 0, 0);
             sp1E4->userData = func_800BF710_5C5B0(photo->pkmnID);
             sp1E8 = TRUE;
-            func_8000BCA8(1);
+            ohWait(1);
         }
     } else {
         func_801DD638_98D0A8(1);
@@ -1591,7 +1592,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036C9C0_840170(D_802290E0_9D8B50, spA4);
                 func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             }
-            func_8000BCA8(2);
+            ohWait(2);
         }
         func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
         func_8036CB58_840308(D_802290E0_9D8B50, 8);
@@ -1622,7 +1623,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
         func_8036C9C0_840170(D_802290E0_9D8B50, sp84);
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-        func_8000BCA8(2);
+        ohWait(2);
         func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
         if ((sp20C && sp25C->unk_3B0 != 0) || photo->posePts != 0) {
             func_8036CB58_840308(D_802290E0_9D8B50, 8);
@@ -1655,7 +1656,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036C9C0_840170(D_802290E0_9D8B50, sp64);
                 func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             }
-            func_8000BCA8(2);
+            ohWait(2);
         }
         func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
         if ((sp20C && sp25C->unk_3A7 != 0) || photo->isWellFramed) {
@@ -1680,7 +1681,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036C898_840048(D_802290E0_9D8B50, sp214);
             }
         }
-        func_8000BCA8(2);
+        ohWait(2);
         if ((sp20C && sp25C->unk_3A4 > 0) || photo->samePkmnBonus > 0) {
             func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
             func_8036CB58_840308(D_802290E0_9D8B50, 8);
@@ -1713,7 +1714,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036C9C0_840170(D_802290E0_9D8B50, sp44);
                 func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             }
-            func_8000BCA8(2);
+            ohWait(2);
         }
         sp210 = photo->unk_4;
         if (sp20C) {
@@ -1798,7 +1799,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D3E8_840B98(-1, 3);
         func_8036C898_840048(D_802290DC_9D8B4C, "Which picture are you going\nto save to your Report?\nPress \\a to Save.");
         func_801E41FC_993C6C(NULL, &sp3C);
-        func_8000BCA8(8);
+        ohWait(8);
 
 // TODO LABEL
 loop_1:
@@ -1818,7 +1819,7 @@ loop_1:
                 sp1EC = 0;
             }
         } else {
-            func_8000BCA8(1);
+            ohWait(1);
             goto loop_1;
         }
         func_8036D448_840BF8(1);
@@ -1827,12 +1828,12 @@ loop_1:
         func_8036C898_840048(D_802290DC_9D8B4C, "                             ");
 
     }
-    func_8000BCA8(1);
+    ohWait(1);
     func_8036A8E4_83E094(D_802290E4_9D8B54);
     func_8036A8E4_83E094(D_802290E0_9D8B50);
     func_8036A8E4_83E094(D_802290DC_9D8B4C);
     func_8036EE40_8425F0();
-    func_8000BCA8(2);
+    ohWait(2);
     func_801DD638_98D0A8(0);
     D_801F3E34_9A38A4 = FALSE;
     return sp1EC;
@@ -1856,9 +1857,9 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
         sp5C->sprite.y = 37;
         sp5C->sprite.attr &= ~SP_HIDDEN;
         func_80374714_847EC4(func_800BF710_5C5B0(arg0->pkmnID), &D_802290A0_9D8B10[1].sobj->sprite);
-        func_8000BCA8(2);
+        ohWait(2);
         func_80374714_847EC4(func_800BF710_5C5B0(arg0->pkmnID), &D_802290A0_9D8B10[1].sobj->sprite);
-        func_8000BCA8(2);
+        ohWait(2);
     }
     func_80022A58(0x4F, 0x7FFF, 0x4A, 1.0f, 0xA);
     sp4C = D_802290A0_9D8B10;
@@ -1867,7 +1868,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     sp5C->sprite.y = 37;
     sp5C->sprite.attr &= ~SP_HIDDEN;
     func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10->sobj->sprite);
-    func_8000BCA8(2);
+    ohWait(2);
     func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10->sobj->sprite);
     if (arg1 != 0) {
         sp58 = -239.0f;
@@ -1911,13 +1912,13 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
                         } else {
                             sp5C->sprite.attr &= ~SP_HIDDEN;
                         }
-                        func_8000BCA8(2);
+                        ohWait(2);
                     }
                 }
                 D_801F3E30_9A38A0 = 1;
 
                 for (i--; i > 0; i--) {
-                    func_8000BCA8(1);
+                    ohWait(1);
                 }
                 func_8036D4A0_840C50(0);
                 func_8036EB80_842330(0);
@@ -2387,19 +2388,19 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
     func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
     func_8036B734_83EEE4(sp3C);
     func_8036D1A4_840954(sp3C, 1);
-    func_8000BCA8(1);
+    ohWait(1);
 
     for (i = 0; i < 60; i++) {
         func_801DD46C_98CEDC((i * 0xFF) / 60);
         func_801DD528_98CF98((i * 0xFF) / 60);
-        func_8000BCA8(1);
+        ohWait(1);
     }
 
     func_801DD46C_98CEDC(0xFF);
     func_801DD528_98CF98(0xFF);
     func_8037172C_844EDC(0);
     func_803713C8_844B78(0);
-    func_8000BCA8(1);
+    ohWait(1);
     func_8036CB58_840308(sp3C, 0xC);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
@@ -2426,7 +2427,7 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
     func_8036D3E8_840B98(0, 4);
     func_801DD8F4_98D364();
     func_801DD9E4_98D454(0);
-    func_8000BCA8(1);
+    ohWait(1);
     D_802290E0_9D8B50 = sp3C;
 
     while (TRUE) {
@@ -2443,7 +2444,7 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
         for (i = 30; i >= 0; i--) {
             func_801DD46C_98CEDC((i * 0xFF) / 30);
             func_801DD964_98D3D4((i * 0xFF) / 30);
-            func_8000BCA8(1);
+            ohWait(1);
         }
 
         func_801DD46C_98CEDC(0);
@@ -2455,12 +2456,12 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
         } else {
             func_800AADF0(sp48);
         }
-        func_8000BCA8(1);
+        ohWait(1);
     }
 
     func_800AAED0(0x20);
-    omDeleteGObj(0);
-    func_8000BCA8(0x63);
+    omDeleteGObj(NULL);
+    ohWait(99);
 }
 
 void func_801E3FFC_993A6C(void) {

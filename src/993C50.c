@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "sys/oh.h"
+
 #include "photocheck.h"
 
 extern char D_801F4150_9A3BC0[];
@@ -23,7 +25,6 @@ void func_80370004_8437B4(s32, s32);
 void func_8037005C_84380C(s32, s32);
 void func_80370134_8438E4(void);
 s32 func_80370600_843DB0(void);
-void func_803713EC_844B9C(s32);
 
 void* func_801E41E0_993C50(void) {
     return D_801F4150_9A3BC0;
@@ -100,6 +101,6 @@ s32 func_801E4428_993E98(void) {
                 return -1;
         }
 
-        func_8000BCA8(1);
+        ohWait(1);
     }
 }

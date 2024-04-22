@@ -4,6 +4,7 @@
 #include "sys/main.h"
 #include "sys/cont.h"
 #include "sys/om.h"
+#include "sys/oh.h"
 #include "sys/ml.h"
 #include "sys/gtl.h"
 #include "sys/vi.h"
@@ -13,9 +14,7 @@
 #include "ucode.h"
 
 // TODO include
-void omCreateObjects(OMSetup*);
 void func_80011254(void*);
-void func_8000C274(void);
 
 enum GtlStates { GTL_STATE_0 = 0, GTL_STATE_1 = 1, GTL_STATE_2 = 2 };
 
@@ -798,7 +797,7 @@ void gtlUpdate(FnBundle* self) {
     gtlUpdateInputFunc();
     self->fnPrivUpdate();
     if (gtlCheckExitMainLoop()) {
-        func_8000C274();
+        ohDeleteAllObjects();
     }
 }
 
@@ -810,7 +809,7 @@ void gtlDraw(FnBundle* self) {
     viApplySettingsNonblocking(gtlVideoSettingsTasks[gtlContextId]);
     gtlCancelCurrentGfxTask();
     if (gtlCheckExitMainLoop()) {
-        func_8000C274();
+        ohDeleteAllObjects();
     }
 }
 

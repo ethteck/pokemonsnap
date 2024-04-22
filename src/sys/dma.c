@@ -69,8 +69,8 @@ void dmaLoadOverlay(Overlay* dmaData) {
     }
 }
 
-void dmaReadRom(u32 romSrc, void* ramDst, u32 nbytes) {
-    dmaCopy(gRomPiHandle, romSrc, (u32) ramDst, nbytes, OS_READ);
+void dmaReadRom(void* romSrc, void* ramDst, u32 nbytes) {
+    dmaCopy(gRomPiHandle, (u32) romSrc, (u32) ramDst, nbytes, OS_READ);
 }
 
 void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes) {
@@ -87,7 +87,7 @@ void dmaInitVPKStream(s32 romAddr, s32 ramAddr, s32 bufSize) {
 }
 
 void dmaUpdateVPKStream(void) {
-    dmaReadRom(sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
+    dmaReadRom((void*) sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
     sVpkRomAddr += sVpkBufSize;
 }
 

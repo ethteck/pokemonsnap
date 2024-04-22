@@ -14,7 +14,7 @@ u8 contPrinterGetStatus(void);
 
 void dmaReadVPK(u32 rom, u32 ram);
 
-void sendSignalToLink(s32 llIndex, s32, GObj*);
+void cmdSendCommandToLink(s32 llIndex, s32, GObj*);
 
 RoomGFX* getCurrentRoom(void);
 GObj* animalAddOne(RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, AnimalDef* def);
@@ -44,12 +44,7 @@ RoomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
-void func_800067DC(void);
-void func_80007BC4(s32*);
-void func_8000BC84(void);
-void func_8000BCA8(s32);
-Foo* func_8000C3FC(s32, void*, s32, s32, void*, s32, s32, s32, s32, s32, void*, s32, s32);
-void func_800191D8(void);
+void func_800191D8(GObj*);
 void func_80022334(void);
 void func_80022374(s32, s32);
 void func_80022454(s32, s32);
@@ -58,10 +53,12 @@ void func_800228E4(s32);
 void func_80022A58(s32, s32, s32, f32, s32);
 void func_80022B14(void);
 char* func_8009B9D0(s16);
+s32 func_8009BB4C(s32);
+s32 func_8009BC68(void);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
 void func_800A7F68(s32, s32);
-void func_800A844C(void*, s32, s32, s32, s32);
+void func_800A844C(OMCamera*, s32, s32, s32, s32);
 GObj* func_800A85E8(void (*arg0)(UNK_PTR), s32 arg1, s32 arg2, s32 arg3);
 void func_800AADF0(s32);
 void func_800AAE28(void);
@@ -69,11 +66,13 @@ void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
 s32 func_800BF3D4_5C274(s32);
-char* get_player_name(void); // get_player_name
+char* get_player_name(void);
 void* func_800BF710_5C5B0(s32);
 s32 func_800BF818_5C6B8(s32);
+UnkPinkBarracuda* func_800BF8BC_5C75C(int);
 s32 func_800BF9EC_5C88C(void);
 s32 func_800BFA44_5C8E4(s32);
+void func_800BFABC_5C95C(UnkPinkBarracuda*, s32, int, s32);
 s32 func_800BFC5C_5CAFC(void);
 s32 func_800BFCA0_5CB40(s32);
 s32 func_800C0290_5D130(void);
@@ -130,16 +129,20 @@ void func_80370428_843BD8(void);
 void func_803705A4_843D54(void);
 void func_80370A48_8441F8(void);
 void func_803713C8_844B78(s32);
+void func_803713D4_844B84(int);
+void func_803713EC_844B9C(int);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
-GObj* func_80371C68_845418(s32, s32, Sprite*);
+GObj* func_80371C68_845418(void*, s32, Sprite*);
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
+void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 void func_80374F30_8486E0(s32, s32);
 char* func_8037501C(char*, s32);
 void func_8037519C_84894C(s32, char*, ...);
+void func_80375284_848A34(int);
 
 #endif

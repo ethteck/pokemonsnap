@@ -3,7 +3,7 @@
 #include "photocheck.h"
 
 typedef struct Foo2 {
-    Foo_Sub* var_0;
+    UnkPinkBarracuda* var_0;
     u32 unk4_31 : 1;
     u32 unk4_30 : 1;
     u32 unk4_29 : 1;
@@ -47,10 +47,10 @@ s32 D_80229838_9D92A8;
 
 void func_8001A094(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
 s32 func_800BF574_5C414(s32);
-void func_800BF5D8_5C478(s32, Foo_Sub*);
-void func_800BF690_5C530(s16, Foo_Sub*);
+void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
+void func_800BF690_5C530(s16, UnkPinkBarracuda*);
 void func_800BF7D4_5C674(s16, u32);
-void func_800BF954_5C7F4(s32, Foo_Sub*, s32);
+void func_800BF954_5C7F4(s32, UnkPinkBarracuda*, s32);
 Foo2* func_800BFB50_5C9F0(s32);
 s32 func_800BFB84_5CA24(void);
 s32 func_801E4704_994174(const void*, const void*);
@@ -63,7 +63,7 @@ s32 func_801E4510_993F80(void) {
     return D_801F4194_9A3C04;
 }
 
-Foo_Sub* func_801E452C_993F9C(s32 idx) {
+UnkPinkBarracuda* func_801E452C_993F9C(s32 idx) {
     if (idx < 0 || idx >= func_800BFB84_5CA24()) {
         return 0;
     }

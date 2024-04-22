@@ -1,18 +1,15 @@
 #include "sys/om.h"
+#include "sys/oh.h"
+#include "sys/cmd.h"
 #include "sys/gtl.h"
 #include "sys/crash.h"
 #include "sys/rdp_reset.h"
 #include "macros.h"
 
 // TODO: header
-void func_8000C220(GObj*);
-void func_8000C1CC(GObj*);
-void omh_end_all_object_processes(GObj*);
-void func_8000B740(GObj_Sub3CList*);
 void func_80015448(void);
 void func_80018CD0(s32);
-void func_8000B998(void);
-void func_8000BCA8(s32);
+
 
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)
 
@@ -725,7 +722,7 @@ void omEndProcess(GObjProcess* proc) {
     if (proc == NULL || proc == omCurrentProcess) {
         omD_8004AC54 = 1;
         if (omCurrentProcess->kind == 0) {
-            func_8000BCA8(1);
+            ohWait(1);
         }
         return;
     }
@@ -969,10 +966,10 @@ OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2) {
     return mtx;
 }
 
-AObj* omDObjAddAObj(DObj* dobj, u8 index) {
+AObj* omDObjAddAObj(DObj* dobj, u8 paramID) {
     AObj* aobj = omGetAObj();
 
-    aobj->paramID = index;
+    aobj->paramID = paramID;
     aobj->kind = ANIM_TYPE_NONE;
     aobj->unk20 = NULL;
     aobj->targetRate = 0.0;
@@ -1420,9 +1417,9 @@ GObj* omAddGObjCommon(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
     obj->fnUpdate = fnUpdate;
     obj->processListHead = NULL;
     obj->processListTail = NULL;
-    obj->sub3C.count = 0;
-    obj->sub3C.head = NULL;
-    obj->sub3C.tail = NULL;
+    obj->cmdList.count = 0;
+    obj->cmdList.head = NULL;
+    obj->cmdList.tail = NULL;
     obj->animationTime = 0.0f;
     obj->flags = 0;
     obj->type = 0;
@@ -1490,14 +1487,14 @@ void omDeleteGObj(GObj* obj) {
         return;
     }
 
-    omh_end_all_object_processes(obj);
-    func_8000B740(&obj->sub3C);
+    ohEndAllObjectProcesses(obj);
+    cmdFreeObjCmd(&obj->cmdList);
     switch (obj->type) {
         case 1:
-            func_8000C1CC(obj);
+            ohRemoveDObj(obj);
             break;
         case 2:
-            func_8000C220(obj);
+            ohRemoveSprite(obj);
             break;
         case 3:
             omGObjRemoveCamera(obj->data.cam);
@@ -2051,5 +2048,5 @@ void omCreateObjects(OMSetup* setup) {
 
     omEndProcessHandler = NULL;
     func_80018CD0(0);
-    func_8000B998();
+    cmdReset();
 }

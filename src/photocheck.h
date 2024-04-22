@@ -1,11 +1,7 @@
 #include "types.h"
 
-typedef struct Foo_Sub {
-    s32 unk4_25 : 7;
-} Foo_Sub;
-
 typedef struct Photo {
-    /* 0x00 */ Foo_Sub* unk_0;
+    /* 0x00 */ UnkPinkBarracuda* unk_0;
     /* 0x04 */ u32 unk_4;
     /* 0x08 */ u8 commentID;
     /* 0x09 */ u8 unk_9;
@@ -60,7 +56,6 @@ typedef struct Unk803A6C18 {
 UnkStruct800BEDF8* func_800AA38C(s32);
 
 Unk803A6C18* func_8037452C_847CDC(void*);
-void func_80374714_847EC4(Foo_Sub*, Sprite*);
 
 s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1);
 Photo* func_801E459C_99400C(s32 idx);

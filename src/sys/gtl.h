@@ -65,9 +65,11 @@ void gtlCombineAllDLists(void);
 void gtlReset(void);
 void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx);
 void omSetupScene(SceneSetup* arg);
+void gtlSetIntervals(u16 updateInterval, u16 drawInterval);
 void gtlSetSegmentF(Gfx**);
 void gtlInit(void);
 void gtlDisableNearClipping(s32);
+void func_800067DC(void);
 
 extern s32 gtlDrawnFrameCounter;
 extern Gfx* gMainGfxPos[4];

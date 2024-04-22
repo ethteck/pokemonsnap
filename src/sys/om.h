@@ -6,6 +6,8 @@
 #include "PR/sp.h"
 #include "types.h"
 
+#include "sys/cmd.h"
+
 // Object Manager (OM) Objects
 
 enum MatrixType {
@@ -201,18 +203,6 @@ typedef struct GObjProcess {
 struct DObj;
 struct GObj;
 
-typedef struct GObjCmd {
-    /* 0x00 */ struct GObjCmd* next;
-    /* 0x04 */ struct GObj* obj;
-    /* 0x08 */ s32 cmd;
-} GObjCmd; // size = 0xC
-
-typedef struct GObj_Sub3CList {
-    /* 0x00 */ GObjCmd* head;
-    /* 0x04 */ GObjCmd* tail;
-    /* 0x08 */ s32 count;
-} GObj_Sub3CList; // size = 0xC
-
 typedef struct GObj {
     /* 0x00 */ u32 id;
     /* 0x04 */ struct GObj* next;
@@ -236,7 +226,7 @@ typedef struct GObj {
     /* 0x30 */ s32 dlLinkBitMask;
     /* 0x34 */ s32 cameraTag;
     /* 0x38 */ s32 unk38;
-    /* 0x3C */ GObj_Sub3CList sub3C;
+    /* 0x3C */ GObjCmdList cmdList;
     /* 0x48 */ union {
                 struct DObj* dobj;
                 struct SObj* sobj;
@@ -299,15 +289,9 @@ struct MtxCameraOrtho {
 
 struct MtxCameraLookAt {
     /* 0x00 */ struct OMMtx* mtx;
-    /* 0x04 */ f32 xEye;
-    /* 0x04 */ f32 yEye;
-    /* 0x04 */ f32 zEye;
-    /* 0x04 */ f32 xAt;
-    /* 0x04 */ f32 yAt;
-    /* 0x04 */ f32 zAt;
-    /* 0x04 */ f32 xUp;
-    /* 0x04 */ f32 yUp;
-    /* 0x04 */ f32 zUp;
+    /* 0x04 */ Vec3f eye;
+    /* 0x10 */ Vec3f at;
+    /* 0x1C */ Vec3f up;
 }; // size == 0x28;
 
 struct MtxCameraLookAtRoll {
@@ -518,6 +502,23 @@ OMCamera* omGObjSetCamera(GObj* obj);
 DObj* omGObjAddDObj(GObj* obj, void* arg1);
 void omEndProcess(GObjProcess* proc);
 GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority);
+OMMtx* omDObjAppendMtx(DObj* dobj, u8 kind, u8 arg2);
+OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2);
+void omDObjRemoveAllMObj(DObj* dobj);
+SObj* omGObjAddSprite(GObj* obj, Sprite* sprite);
+void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag);
+void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask, s32 cameraTag);
+void omGObjRemoveSprite(SObj* obj);
+void omDObjRemove(DObj* dobj);
+DObj* omDObjAddChild(DObj* arg0, void* arg1);
+DObj* omDObjAddSibling(DObj* dobj, void* arg1);
+void omCreateObjects(OMSetup* setup);
+AObj* omMObjAddAObj(MObj* mobj, u8 paramID);
+AObj* omCameraAddAObj(OMCamera* obj, u8 paramID);
+MObj* omDObjAddMObj(DObj* dobj, Texture* arg1);
+void omDObjResetAnimation(DObj* dobj);
+AObj* omDObjAddAObj(DObj* dobj, u8 paramID);
+void omMObjResetAObjList(MObj* mobj);
 
 extern GObj* omCurrentObject;
 extern GObj* omCurrentCamera;

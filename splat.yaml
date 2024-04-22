@@ -234,7 +234,8 @@ segments:
     - [0x418F0, .data, sys/gtl]
     - [0x41950, .data, sys/rdp_reset]
     - [0x41A80, .data, sys/om]
-    - [0x41B30, data]
+    - [0x41B30, .data, 11E30]
+    - [0x41B40, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -309,7 +310,8 @@ segments:
     - { start: auto, name: sys/rdp_reset, type: .bss, vram: 0x8004A980 }
     - { start: auto, name: sys/om, type: .bss, vram: 0x8004A990 }
     - { start: auto, name: sys/cmd, type: .bss, vram: 0x8004AF00 }
-    - { start: auto, name: bss_8004AF20, type: bss, vram: 0x8004AF20 }
+    - { start: auto, name: 11E30, type: .bss, vram: 0x8004AF20 }
+    - { start: auto, name: bss_8004B250, type: bss, vram: 0x8004B250 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }

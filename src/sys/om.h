@@ -289,15 +289,9 @@ struct MtxCameraOrtho {
 
 struct MtxCameraLookAt {
     /* 0x00 */ struct OMMtx* mtx;
-    /* 0x04 */ f32 xEye;
-    /* 0x04 */ f32 yEye;
-    /* 0x04 */ f32 zEye;
-    /* 0x04 */ f32 xAt;
-    /* 0x04 */ f32 yAt;
-    /* 0x04 */ f32 zAt;
-    /* 0x04 */ f32 xUp;
-    /* 0x04 */ f32 yUp;
-    /* 0x04 */ f32 zUp;
+    /* 0x04 */ Vec3f eye;
+    /* 0x10 */ Vec3f at;
+    /* 0x1C */ Vec3f up;
 }; // size == 0x28;
 
 struct MtxCameraLookAtRoll {

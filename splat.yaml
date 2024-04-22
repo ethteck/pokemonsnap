@@ -12,8 +12,8 @@ options:
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
-  string_encoding: ASCII
-  data_string_encoding: ASCII
+  string_encoding: UTF-8
+  data_string_encoding: UTF-8
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -435,7 +435,7 @@ segments:
   - type: code
     start: 0x1D1D90
     vram: 0x8018BC50
-    exclusive_ram_id: unk1D1D90
+    exclusive_ram_id: unk_01D1D90
     subsegments:
     - [0x1D1D90, bin] # , data]
   - type: code
@@ -775,7 +775,9 @@ segments:
     - [0x848B50, c]
     - [0x848BC0, bin] # , data]
     - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
-  - name: unk_end_level_2
+  - name: camera_check
+    dir: camera_check
+    symbol_name_format: camera_check_$VRAM
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
@@ -783,10 +785,13 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
+    - [0x87A320, c]
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]
     - [0x8817E0, bin] # , data]
+    - [0x8A7010, .rodata, '87D1A0']
+    - [0x8A70C0, .rodata, '87FB20']
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
     type: code
@@ -802,7 +807,7 @@ segments:
     - [0x8AAF60, c]
     - [0x8ABEF0, bin] # , data]
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
-  - name: unk_end_level_4
+  - name: photo_check
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
@@ -810,14 +815,13 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x98C330, c]
+    - [0x993C50, c, 98D0F0]
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
-    - [0x9A3C10, rodata]
-    - [0x9A57D0, rodata] # suggests a file split in 98C330
-    - [0x9A5AA0, rodata] # suggests a file split in 98C330
-    - [0x9A6AF0, .rodata, '993F80']
-    - { start: auto, name: bss_801F70A0, type: bss, vram: 0x801F70A0 }
+    - [0x9A35C0, .data, 98C330]
+    - [auto, .data, 98D0F0]
+    - [0x9A3C10]
   - name: unk_end_level_5
     type: code
     start: 0x9A6B10

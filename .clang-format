@@ -14,6 +14,7 @@ AlignOperands: true
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
 AllowShortBlocksOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false

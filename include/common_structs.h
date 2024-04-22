@@ -308,7 +308,7 @@ typedef struct {
     /* 0x14 */ Vec3f euler;
     /* 0x20 */ Vec3f scale;
     /* 0x2C */ pathSpline* path;
-} objectSpawn;
+} ObjectSpawn;
 
 typedef struct {
     /* 0x00 */ room* room;
@@ -316,7 +316,7 @@ typedef struct {
     /* 0x10 */ f32 roomYaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ otherObj* unk_18; /* -1 id terminates */
-    /* 0x1C */ objectSpawn* objects;
+    /* 0x1C */ ObjectSpawn* objects;
     /* 0x20 */ otherObj* unk_20;
 } roomDescriptor;
 
@@ -329,12 +329,12 @@ typedef struct {
 typedef struct {
     /* 0x00 */ s32 index;
     /* 0x04 */ roomDescriptor* roomDesc;
-    /* 0x08 */ struct roomGFX* prev;
-    /* 0x0C */ struct roomGFX* next;
+    /* 0x08 */ struct RoomGFX* prev;
+    /* 0x0C */ struct RoomGFX* next;
     /* 0x10 */ struct GObj* blockModel;
     /* 0x14 */ struct GObj* blockUV;
     /* 0x18 */ roomgfx_18* unk_18;
-} roomGFX;
+} RoomGFX;
 
 typedef union {
     f32 field0;
@@ -406,7 +406,7 @@ typedef struct {
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ struct GObj* interactionTarget;
-    /* 0x074 */ roomGFX* someRoom;
+    /* 0x074 */ RoomGFX* someRoom;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ uvState** animators; /* Created by retype action */
     /* 0x084 */ uvState*** matAnims; /* Created by retype action */
@@ -452,7 +452,7 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
-typedef GObj* (*animalInit)(s32 arg0, s32 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
+typedef GObj* (*animalInit)(s32 arg0, s32 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn);
 typedef void (*gfxFunc)(GObj*);
 
 typedef struct {
@@ -465,12 +465,10 @@ typedef struct {
     /* 0x04 */ animalInit* init;
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
-} animalDef; // size = 0x10
+} AnimalDef; // size = 0x10
 
-typedef struct UnkStruct800BEDF8 {
-    /* 0x00 */ char unk_00[0x14];
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-} UnkStruct800BEDF8;
+typedef struct UnkPinkBarracuda {
+    s32 unk4_25 : 7;
+} UnkPinkBarracuda;
 
 #endif

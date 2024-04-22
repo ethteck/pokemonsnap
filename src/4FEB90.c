@@ -89,42 +89,40 @@ void runAnimalCleanup(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FD9C_5001AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/addAnimalAtGeo.s")
-/*
-GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, animalDef *def) {
-    objectSpawn spawn;
-    roomGFX* roomA;
-    Animal* animalTmp;
-    GObj* animalObj;
-    
-    animalTmp = gobj->data.animal;
-    roomA = getCurrentRoom();
-    spawn.id = id;
-    spawn.translation.x = 0.0f;
-    spawn.translation.y = 0.0f;
-    spawn.translation.z = 0.0f;
-    spawn.euler.x = 0.0f;
-    spawn.euler.y = 0.0f;
-    spawn.euler.z = 0.0f;
-    spawn.scale.x = 1.0f;
-    spawn.scale.y = 1.0f;
-    spawn.scale.z = 1.0f;
-    spawn.path = animalTmp->path;
-    spawn.behavior = animalTmp->behavior;
-    
-    animalObj = animalAddOne(roomA, roomA, &spawn, def);
+// GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, AnimalDef *def) {
+//     ObjectSpawn spawn;
+//     RoomGFX* roomA;
+//     Animal* animalTmp;
+//     GObj* animalObj;
 
-    if (animalObj != NULL) {
-        xformData* pxVar1 = gobj->userData.rootNode->xform;
-        xformData* pxVar2 = animalObj->userData.rootNode->xform;
-        
-        pxVar2->translation.x = pxVar1->translation.x;
-        pxVar2->translation.y = pxVar1->translation.y;
-        pxVar2->translation.z = pxVar1->translation.z;
-    }
+//     animalTmp = GET_ANIMAL(gobj);
+//     roomA = getCurrentRoom();
+//     spawn.id = id;
+//     spawn.translation.x = 0.0f;
+//     spawn.translation.y = 0.0f;
+//     spawn.translation.z = 0.0f;
+//     spawn.euler.x = 0.0f;
+//     spawn.euler.y = 0.0f;
+//     spawn.euler.z = 0.0f;
+//     spawn.scale.x = 1.0f;
+//     spawn.scale.y = 1.0f;
+//     spawn.scale.z = 1.0f;
+//     spawn.path = animalTmp->path;
+//     spawn.behavior = animalTmp->behavior;
 
-    return animalObj;
-}
-*/
+//     animalObj = animalAddOne(roomA, roomA, &spawn, def);
+
+//     if (animalObj != NULL) {
+//         xformData* pxVar1 = gobj->data.dobj->unk4C; // TODO type issue
+//         xformData* pxVar2 = animalObj->data.dobj->unk4C; // TODO type issue
+
+//         pxVar2->translation.x = pxVar1->translation.x;
+//         pxVar2->translation.y = pxVar1->translation.y;
+//         pxVar2->translation.z = pxVar1->translation.z;
+//     }
+
+//     return animalObj;
+// }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035FEEC_5002FC.s")
 

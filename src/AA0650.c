@@ -1,26 +1,39 @@
 #include "common.h"
 
-typedef struct Unk_48_D_800E1DD0_AA0B80 {
-    u8 pad[0x28];
+typedef struct Unk800E1DD0_data {
+    u8 pad_00[0x10];
+    s16 unk_10;
+    s16 unk_12;
+    s16 unk_14;
+    s16 unk_16;
+    u8 pad_18[0xC];
+    s16 unk_24;
+    u8 pad_26[0x2];
     u8 unk_28;
     u8 unk_29;
     u8 unk_2A;
-} Unk_48_D_800E1DD0_AA0B80;
+} Unk800E1DD0_data;
 
-typedef struct Unk_D_800E1DD0_AA0B80 {
-    u8 pad_00[0x48];
-    Unk_48_D_800E1DD0_AA0B80* unk48;
-} Unk_D_800E1DD0_AA0B80;
-
-extern Unk_D_800E1DD0_AA0B80* D_800E1DD0_AA0B80;
+extern GObj* D_800E1DD0_AA0B80;
 extern s32 D_800E1DD4_AA0B84;
 
-Unk_D_800E1DD0_AA0B80* func_800E18A0_AA0650(void);
-void func_800E1958_AA0708(Unk_48_D_800E1DD0_AA0B80* arg0, u16 arg1);
+GObj* func_800E18A0_AA0650(void);
+void func_800E1958_AA0708(Unk800E1DD0_data* arg0, u16 arg1);
+extern Sprite D_802BC0C0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/AA0650/func_800E18A0_AA0650.s")
+GObj* func_800E18A0_AA0650(void) {
+    Unk800E1DD0_data* temp_v1;
+    GObj* temp_v0;
 
-void func_800E1958_AA0708(Unk_48_D_800E1DD0_AA0B80* arg0, u16 arg1) {
+    temp_v0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_802BC0C0, 0, NULL, 1);
+    temp_v1 = temp_v0->data.any;
+    temp_v1->unk_24 = 0x201;
+    temp_v1->unk_10 = 160 - (temp_v1->unk_14 / 2);
+    temp_v1->unk_12 = 120 - (temp_v1->unk_16 / 2);
+    return temp_v0;
+}
+
+void func_800E1958_AA0708(Unk800E1DD0_data* arg0, u16 arg1) {
     u8 temp_lo;
     u16 temp_arg1;
     u8 temp;
@@ -52,7 +65,7 @@ void func_800E1A94_AA0844(s32 arg0) {
     if (D_800E1DD4_AA0B84 < 60) {
         ohWait(60 - D_800E1DD4_AA0B84);
     }
-    func_800E1958_AA0708(D_800E1DD0_AA0B80->unk48, 20);
+    func_800E1958_AA0708(D_800E1DD0_AA0B80->data.any, 20);
     func_800067DC();
     // Infinite wait loop
     while(1) {

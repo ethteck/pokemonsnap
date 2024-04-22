@@ -139,6 +139,10 @@ void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
+GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                          void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
+                          u8 procKind, void (*procFunc)(GObj*), s32 procPriority);
+void renDrawSprite(GObj* arg0);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);

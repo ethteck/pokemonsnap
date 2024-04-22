@@ -21,7 +21,7 @@ extern s32 viBitDepth;
 
 void viApplyScreenSettings(ScreenSettings* settings);
 void viSetScreenOffsets(s16, s16, s16, s16);
-u32 func_80007910(u32 color);
+u32 viPackRGBA(u32 color);
 void viApplySettingsNonblocking(SCTaskVi* task);
 
 #endif /* SYS_VI_H */

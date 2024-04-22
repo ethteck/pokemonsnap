@@ -1,18 +1,91 @@
 #include "common.h"
+#include "sys/mtx.h"
+
+#define COMBINE_INTEGRAL(a, b) (((a)&0xffff0000) | (((b) >> 16)))
+#define COMBINE_FRACTIONAL(a, b) (((a) << 16)) | ((b)&0xffff)
 
 #define F_PI ((f32) M_PI) // M_PI is a double, we want it as a single float.
 #define HALF_PI (F_PI / 2.0f)
 
 extern u16 D_80040F50[0x7FF];
 f32* func_8001A8B8(f32* arg0, f32* arg1, f32 arg2);
-void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
-                   f32 argA);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B0F0.s")
+void hal_mtx_f2l(Mtx4f src, Mtx* dst) {
+    u32 e1, e2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B320.s")
+    e1 = FTOFIX32(src[0][0]);
+    e2 = FTOFIX32(src[0][1]);
+    dst->m[0][0] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[0][2]);
+    e2 = FTOFIX32(src[0][3]);
+    dst->m[0][1] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][1] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[1][0]);
+    e2 = FTOFIX32(src[1][1]);
+    dst->m[0][2] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[1][2]);
+    e2 = FTOFIX32(src[1][3]);
+    dst->m[0][3] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][3] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[2][0]);
+    e2 = FTOFIX32(src[2][1]);
+    dst->m[1][0] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[2][2]);
+    e2 = FTOFIX32(src[2][3]);
+    dst->m[1][1] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][1] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[3][0]);
+    e2 = FTOFIX32(src[3][1]);
+    dst->m[1][2] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][2] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(src[3][2]);
+    e2 = FTOFIX32(src[3][3]);
+    dst->m[1][3] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][3] = COMBINE_FRACTIONAL(e1, e2);
+}
 
-s32 func_8001B4D4(f32 arg0) {
+// Same as above, but assumes column 3 is (0, 0, 0, 1)
+void hal_mtx_f2l_fixed_w(Mtx4f src, Mtx *dst) {
+    u32 e1, e2;
+
+    e1           = FTOFIX32(src[0][0]);
+    e2           = FTOFIX32(src[0][1]);
+    dst->m[0][0] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[0][2]);
+    e2           = FTOFIX32(0.0f);
+    dst->m[0][1] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][1] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[1][0]);
+    e2           = FTOFIX32(src[1][1]);
+    dst->m[0][2] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[1][2]);
+    e2           = FTOFIX32(0.0f);
+    dst->m[0][3] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[2][3] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[2][0]);
+    e2           = FTOFIX32(src[2][1]);
+    dst->m[1][0] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[2][2]);
+    e2           = FTOFIX32(0.0f);
+    dst->m[1][1] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][1] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[3][0]);
+    e2           = FTOFIX32(src[3][1]);
+    dst->m[1][2] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][2] = COMBINE_FRACTIONAL(e1, e2);
+    e1           = FTOFIX32(src[3][2]);
+    e2           = FTOFIX32(1.0f);
+    dst->m[1][3] = COMBINE_INTEGRAL(e1, e2);
+    dst->m[3][3] = COMBINE_FRACTIONAL(e1, e2);
+}
+
+s32 fast_sinf(f32 arg0) {
     s32 temp;
     s32 ret;
 
@@ -26,7 +99,7 @@ s32 func_8001B4D4(f32 arg0) {
     return ret;
 }
 
-s32 func_8001B51C(f32 arg0) {
+s32 fast_cosf(f32 arg0) {
     s32 temp;
     s32 ret;
 
@@ -40,22 +113,19 @@ s32 func_8001B51C(f32 arg0) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B570.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_f.s")
 
-void func_8001B0F0(Mtx4f arg0, Mtx4f arg1);
-void func_8001B570(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
-                   f32 arg9);
-void func_8001B7FC(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
+void hal_look_at(Mtx* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
                    f32 arg9) {
     Mtx4f matrix;
 
-    func_8001B570(matrix, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
-    func_8001B0F0(matrix, arg0);
+    hal_look_at_f(matrix, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+    hal_mtx_f2l(matrix, arg0);
 }
 
 #if NON_EQUIVALENT
 #define SQ(x) ((x) * (x))
-void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
+void hal_look_at_roll_f(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
                    f32 argA) {
     f32 root;
     Vec3f vec1;
@@ -99,124 +169,124 @@ void func_8001B870(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5,
     arg0[3][3] = 1.0f;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001B870.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_roll_f.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001BB48.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_roll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001BBC4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_reflect_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001BFAC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_reflect.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C024.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_reflect_roll_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C450.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_reflect_roll.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C4D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_ortho_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C664.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_ortho.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C6C8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_perspective_fast_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C8F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_perspective_fast.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001C94C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_perspective_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CB14.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_perspective.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CB6C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_scale_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CC00.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_scale.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CCA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_scale_mul_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CDA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CE44.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001CEF8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D078.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D0C4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D120.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D184.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate_scale_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D1F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate_scale.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D26C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D3A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D648.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D69C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001D9A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate_scale_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001DA08.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate_scale.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001DDFC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001DF34.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001DF78.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001DFCC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E028.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr_translate_scale_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E08C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pyr_translate_scale.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E100.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_py_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E1CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_py.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E20C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_py_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E25C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_py_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E2B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rp_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E37C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rp.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E3BC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rp_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E40C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rp_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E460.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_yaw_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E4F0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_yaw.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E528.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_yaw_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E574.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_yaw_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E5C0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pitch_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E650.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pitch.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E688.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pitch_translate_f.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E6D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_pitch_translate.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E720.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_f_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E774.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E7DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate_f_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E844.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_translate_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E8C0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_f_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E924.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001E99C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate_f_deg.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001EA0C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_rotate_rpy_translate_deg.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/func_8001EA90.s")
 

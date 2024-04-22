@@ -14,7 +14,7 @@
 #include "ucode.h"
 
 // TODO include
-void func_80011254(void*);
+void renSetCustomMatrixHandler(void*);
 
 enum GtlStates { GTL_STATE_0 = 0, GTL_STATE_1 = 1, GTL_STATE_2 = 2 };
 
@@ -932,7 +932,7 @@ void omSetupScene(SceneSetup* arg) {
     omSetup.matrices = gtlMalloc(sizeof(OMMtx) * arg->numOMMtx, 8);
     omSetup.numMatrices = arg->numOMMtx;
 
-    func_80011254(arg->unk60);
+    renSetCustomMatrixHandler(arg->unk60);
     omSetup.cleanupFn = arg->unk64;
 
     omSetup.aobjs = gtlMalloc(sizeof(AObj) * arg->numOMAobjs, 4);

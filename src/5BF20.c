@@ -16,8 +16,11 @@ typedef struct Unk_D_800C21B0_5F050 {
     s32 unk_58;
     s32 unk_5C;
     s32 unk_60;
-    u32 unk_64_29 : 3; // Definitely 3 bits.
-    u32 unk_64_00: 29; // Not positive how many bits this field is.
+    u32 unk_64_29 : 3;
+    u32 unk_64_22 : 7;
+    u32 unk_64_16 : 6;
+    u32 unk_64_06 : 10;
+    u32 unk_64_00 : 6;
     u8 pad_68[0x4];
     s32 unk_6C ;
     u8 pad_70[0x110];
@@ -304,7 +307,14 @@ s32 func_800BFB84_5CA24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFB90_5CA30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFC18_5CAB8.s")
+void func_800BFC18_5CAB8(s32* arg0, s32* arg1) {
+    if (arg0 != NULL) {
+        *arg0 = D_800C21B0_5F050->unk_64_22 - 76;
+    }
+    if (arg1 != NULL) {
+        *arg1 = D_800C21B0_5F050->unk_64_16 - 36;
+    }
+}
 
 s32 func_800BFC5C_5CAFC(void) {
     return D_800C21B0_5F050->unk_64_29;

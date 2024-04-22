@@ -79,6 +79,8 @@ s32 func_800BFCA0_5CB40(s32);
 s32 func_800C0290_5D130(void);
 void func_800C02A0_5D140(s32);
 void func_800C0314_5D1B4(s32, s32);
+s32 func_800C042C_5D2CC(void);
+void func_800C0B48_5D9E8(void);
 void func_800E3064(void);
 void func_801DCBF4_98C664(void);
 s32 func_801DD010(s32);

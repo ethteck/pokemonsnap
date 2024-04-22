@@ -1,69 +1,377 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000B9B0.s")
+void func_8000B9B0(s32 link, void (*cb)(GObj*, void*), void* param) {
+    GObj* curr;
+    GObj* next;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BA18.s")
+    curr = omGObjListHead[link];
+    while (curr != NULL) {
+        next = curr->next;
+        cb(curr, param);
+        curr = next;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BAA4.s")
+void func_8000BA18(void (*cb)(GObj*, void*), void* param) {
+    GObj* curr;
+    GObj* next;
+    s32 link;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BB4C.s")
+    for (link = 0; link < 32; link++) {
+        curr = omGObjListHead[link];
+        while (curr != NULL) {
+            next = curr->next;
+            cb(curr, param);
+            curr = next;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BC0C.s")
+s32 func_8000BAA4(s32 link, s32 (*cb)(GObj*, void*), void* param, s32 getFirst) {
+    GObj* curr;
+    GObj* next;
+    s32 ret = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BC2C.s")
+    curr = omGObjListHead[link];
+    while (curr != NULL) {
+        s32 retVal;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BC58.s")
+        next = curr->next;
+        retVal = cb(curr, param);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BC84.s")
+        if (retVal != 0) {
+            ret = retVal;
+            if (getFirst == TRUE) {
+                return ret;
+            }
+        }
+        curr = next;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BCA8.s")
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BD44.s")
+s32 func_8000BB4C(s32 (*cb)(GObj*, void*), void* param, s32 getFirst) {
+    GObj* curr;
+    GObj* next;
+    s32 link;
+    s32 ret = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BD78.s")
+    for (link = 0; link < 32; link++) {
+        curr = omGObjListHead[link];
+        while (curr != NULL) {
+            s32 retVal;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BDAC.s")
+            next = curr->next;
+            retVal = cb(curr, param);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BDC4.s")
+            if (retVal != 0) {
+                ret = retVal;
+                if (getFirst == TRUE) {
+                    return ret;
+                }
+            }
+            curr = next;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BDDC.s")
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BE1C.s")
+GObj* func_8000BC0C(GObj* obj, void* id) {
+    return obj->id == (u32)id ? obj : NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/omh_end_all_object_processes.s")
+GObj* func_8000BC2C(s32 link, u32 id) {
+    return func_8000BAA4(link, func_8000BC0C, (void*)id, TRUE);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BEAC.s")
+GObj* func_8000BC58(u32 id) {
+    return func_8000BB4C(func_8000BC0C, id, TRUE);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BEF4.s")
+void func_8000BC84(UNUSED GObj* arg0) {
+    func_8000B880(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BF3C.s")
+void func_8000BCA8(s32 numFrames) {
+    // todo: main.h STACK_PROBE_MAGIC
+    if (omCurrentProcess->unk1C.thread->osStack[7] != 0xFEDCBA98) {
+        fatal_printf("gobjthread stack over  gobjid = %d\n", omCurrentProcess->object->id);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BF74.s")
+    while (numFrames) {
+        osSendMesg(&omProcessWaitQueue, (OSMesg)1, OS_MESG_NOBLOCK);
+        osStopThread(NULL);
+        numFrames--;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BFB8.s")
+void func_8000BD44(GObj* obj) {
+    GObjProcess* proc;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000BFE8.s")
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C018.s")
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        proc->paused = 1;
+        proc = proc->next;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C048.s")
+void func_8000BD78(GObj* obj) {
+    GObjProcess* proc;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C078.s")
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C0A8.s")
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        proc->paused = 0;
+        proc = proc->next;
+    }
+}
+
+void func_8000BDAC(GObjProcess* proc) {
+    if (proc == NULL) {
+        proc = omCurrentProcess;
+    }
+
+    proc->paused = TRUE;
+}
+
+void func_8000BDC4(GObjProcess* proc) {
+    if (proc == NULL) {
+        proc = omCurrentProcess;
+    }
+
+    proc->paused = 0;
+}
+
+void func_8000BDDC(GObj* obj, void (*function)(GObj*)) {
+    GObjProcess* proc;
+
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        if (proc->function == function) {
+            proc->paused = TRUE;
+        }
+        proc = proc->next;
+    }
+}
+
+void func_8000BE1C(GObj* obj, void (*function)(GObj*)) {
+    GObjProcess* proc;
+
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        if (proc->function == function) {
+            proc->paused = FALSE;
+        }
+        proc = proc->next;
+    }
+}
+
+void omh_end_all_object_processes(GObj* obj) {
+    GObjProcess *curr, *next;
+
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+
+    curr = obj->processListHead;
+    while (curr != NULL) {
+        next = curr->next;
+        om_end_process(curr);
+        curr = next;
+    }
+}
+
+void func_8000BEAC(DObj* dobj) {
+    omDObjAppendMtx(dobj, MTX_TYPE_TRANSLATE, 0);
+    omDObjAppendMtx(dobj, MTX_TYPE_ROTATE_RPY_DEG, 0);
+    omDObjAppendMtx(dobj, MTX_TYPE_SCALE, 0);
+}
+
+void func_8000BEF4(DObj* dobj) {
+    omDObjAppendMtx(dobj, MTX_TYPE_TRANSLATE, 0);
+    omDObjAppendMtx(dobj, MTX_TYPE_ROTATE_RPY, 0);
+    omDObjAppendMtx(dobj, MTX_TYPE_SCALE, 0);
+}
+
+void func_8000BF3C(OMCamera* camera) {
+    omCameraAddMtx(camera, MTX_TYPE_PERSP_FAST, 0);
+    omCameraAddMtx(camera, MTX_TYPE_LOOKAT, 0);
+}
+
+void func_8000BF74(GObj* obj) {
+    DObj* curr;
+
+    curr = obj->children;
+    while (curr != NULL) {
+        omDObjRemoveAllMObj(curr);
+        curr = func_8000C550(curr);
+    }
+}
+
+DObj* func_8000BFB8(GObj* obj, void* arg1) {
+    DObj* ret = omGObjAddDObj(obj, arg1);
+    func_8000BEAC(ret);
+    return ret;
+}
+
+s32 func_8000BFE8(DObj* dobj, void* arg1) {
+    DObj* ret = omDObjAddSibling(dobj, arg1);
+    func_8000BEAC(ret);
+    return ret;
+}
+
+s32 func_8000C018(DObj* dobj, void* arg1) {
+    DObj* ret = omDObjAddChild(dobj, arg1);
+    func_8000BEAC(ret);
+    return ret;
+}
+
+DObj* func_8000C048(GObj* obj, void* arg1) {
+    DObj* ret = omGObjAddDObj(obj, arg1);
+    func_8000BEF4(ret);
+    return ret;
+}
+
+s32 func_8000C078(DObj* dobj, void* arg1) {
+    DObj* ret = omDObjAddSibling(dobj, arg1);
+    func_8000BEF4(ret);
+    return ret;
+}
+
+s32 func_8000C0A8(DObj* dobj, void* arg1) {
+    DObj* ret = omDObjAddChild(dobj, arg1);
+    func_8000BEF4(ret);
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C0D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C1CC.s")
+void func_8000C1CC(GObj* obj) {
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+    while (obj->children != NULL) {
+        om_dobj_remove(obj->children);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C220.s")
+void func_8000C220(GObj* obj) {
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+    while (obj->children != NULL) {
+        omDObjRemoveSprite(obj->children);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C274.s")
+void func_8000C274(void) {
+    GObj* curr;
+    GObj* next;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C2E4.s")
+    for (i = 0; i < 32; i++) {
+        curr = omGObjListHead[i];
+        while (curr != NULL) {
+            next = curr->next;
+            func_8000A52C(curr);
+            curr = next;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C37C.s")
+s32 func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 dlArg, void* dobjBP, s32 arg9,
+                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+    GObj* obj;
+    DObj* dobj;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C3FC.s")
+    obj = omAddGObj(objId, objFnUpdate, objLink, objPriority);
+    if (obj == NULL) {
+        return NULL;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C4B0.s")
+    omLinkGObjDL(obj, fnRender, dlLink, dlPriority, dlArg);
+
+    dobj = omGObjAddDObj(obj, dobjBP);
+    if (arg9) {
+        func_8000BEAC(dobj);
+    }
+    if (procFunc != NULL) {
+        omCreateProcess(obj, procFunc, procKind, procPriority);
+    }
+    return obj;
+}
+
+GObj* create_sprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                          void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
+                          u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+    GObj* obj;
+
+    obj = omAddGObj(objId, objFnUpdate, objLink, objPriority);
+    if (obj == NULL) {
+        return NULL;
+    }
+
+    omLinkGObjDL(obj, fnRender, dlLink, dlPriority, cameraTag);
+    omGObjAddSprite(obj, sprite);
+    if (procFunc != NULL) {
+        omCreateProcess(obj, procFunc, procKind, procPriority);
+    }
+    return obj;
+}
+
+GObj* create_camera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                  void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices,
+                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
+    GObj* obj;
+    OMCamera* cam;
+
+    obj = omAddGObj(objId, objFnUpdate, objLink, objPriority);
+    if (obj == NULL) {
+        return NULL;
+    }
+    om_link_gobj_dl_camera(obj, fnRender, dlPriority, dlLinkBitMask, cameraTag);
+    cam = om_gobj_set_camera(obj);
+    if (defaultMatrices) {
+        func_8000BF3C(cam);
+    }
+    if (procFunc != NULL) {
+        omCreateProcess(obj, procFunc, procKind, procPriority);
+    }
+    if (defaultFlags) {
+        cam->flags = 7;
+        cam->unk84 = 0xFF;
+    }
+    return obj;
+}
+
+GObj* func_8000C4B0(s32 link, s32 priority, s32 dlPriority, s32 flags, s32 bgColor) {
+    GObj* obj;
+    OMCamera* cam;
+
+    obj = create_camera(-1, func_8000BC84, link, priority, func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
+    if (obj == NULL) {
+        return NULL;
+    }
+    cam = obj->children;
+    cam->flags = flags;
+    cam->unk84 = bgColor;
+    return obj;
+}

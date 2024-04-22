@@ -1,6 +1,7 @@
 #include "sys/gtl.h"
 #include "sys/om.h"
 
+// TODO header
 s32 func_8000BAA4(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8000BD44(s32);
 void func_8000BD78(s32);
@@ -84,7 +85,7 @@ s32 func_8000B880(void (*handler)(GObj*, s32)) {
     while (cur != NULL) {
         switch (cur->cmd) {
             case -1:
-                func_8000A52C(NULL);
+                omDeleteGObj(NULL);
                 return 1;
             case -2:
                 func_8000BD44(NULL);

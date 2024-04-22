@@ -9,9 +9,6 @@
 
 #include "photocheck.h"
 
-extern Fizz D_800AF094;
-extern Fizz D_800AF0C4;
-extern s32 D_800AF3C0;
 extern s32 D_80229840;
 extern s32 D_80369F80;
 
@@ -365,8 +362,8 @@ void func_801DCA14_98C484(s32 arg0) {
 }
 
 void func_801DCA48_98C4B8(void) {
-    Foo* sp54;
-    Bar* sp50;
+    UnkAmberCod* sp54;
+    UnkDesertMackerel* sp50;
     char pad[0x10];
 
     sp54 = func_8000C3FC(0x200, func_8000BC84, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
@@ -645,7 +642,7 @@ GObj* func_801DD720_98D190(s32 idx) {
     u8* sp20;
     u8* sp1C;
 
-    gobj = func_80371C68_845418(0, 6, &D_801E5DB0_995820);
+    gobj = func_80371C68_845418(NULL, 6, &D_801E5DB0_995820);
     sobj = gobj->data.sobj;
     D_802290A0_9D8B10[idx].gobj = gobj;
     sobj = func_80371E68_845618(sobj, &D_801E5DB0_995820);
@@ -1931,7 +1928,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     return 0;
 }
 
-void func_801E242C_991E9C(Foo_Sub* arg0, s32 arg1, s32 arg2) {
+void func_801E242C_991E9C(UnkPinkBarracuda* arg0, s32 arg1, s32 arg2) {
     UNUSED s32 pad[3];
 
     PANIC();

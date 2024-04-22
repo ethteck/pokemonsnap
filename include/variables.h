@@ -19,4 +19,8 @@ extern animalInitData D_802ECB2C;
 
 extern GObj* cartGObj;
 
+extern UnkCharcoalBurbot D_800AF094;
+extern UnkCharcoalBurbot D_800AF0C4;
+extern s32 D_800AF3C0;
+
 #endif

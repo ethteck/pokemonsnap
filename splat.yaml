@@ -774,7 +774,9 @@ segments:
     - [0x848B50, c]
     - [0x848BC0, bin] # , data]
     - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
-  - name: unk_end_level_2
+  - name: camera_check
+    dir: camera_check
+    symbol_name_format: camera_check_$VRAM
     type: code
     start: 0x87A0B0
     vram: 0x801DC8C0
@@ -782,10 +784,13 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
+    - [0x87A320, c]
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]
     - [0x8817E0, bin] # , data]
+    - [0x8A7010, .rodata, '87D1A0']
+    - [0x8A70C0, .rodata, '87FB20']
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
     type: code

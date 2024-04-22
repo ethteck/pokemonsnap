@@ -115,58 +115,57 @@ s32 fast_cosf(f32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_f.s")
 
-void hal_look_at(Mtx* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8,
-                   f32 arg9) {
+void hal_look_at(Mtx* m, f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 xUp, f32 yUp, f32 zUp) {
     Mtx4f matrix;
 
-    hal_look_at_f(matrix, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
-    hal_mtx_f2l(matrix, arg0);
+    hal_look_at_f(matrix, xEye, yEye, zEye, xAt, yAt, zAt, xUp, yUp, zUp);
+    hal_mtx_f2l(matrix, m);
 }
 
-#if NON_EQUIVALENT
+#ifdef NON_EQUIVALENT
 #define SQ(x) ((x) * (x))
-void hal_look_at_roll_f(Mtx4f arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9,
-                   f32 argA) {
+void hal_look_at_roll_f(Mtx4f mf, f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt, f32 roll, f32 xUp, f32 yUp,
+                       f32 zUp) {
     f32 root;
     Vec3f vec1;
     Vec3f vec2;
     Vec3f vec3;
 
-    vec1.x = arg4 - arg1;
-    vec1.y = arg5 - arg2;
-    vec1.z = arg6 - arg3;
+    vec1.x = xAt - xEye;
+    vec1.y = yAt - yEye;
+    vec1.z = zAt - zEye;
     root = -1.0f / sqrtf(SQ(vec1.x) + SQ(vec1.y) + SQ(vec1.z));
     vec1.x *= root;
     vec1.y *= root;
     vec1.z *= root;
-    vec2.x = (arg9 * vec1.z) - (argA * vec1.y);
-    vec2.y = (argA * vec1.x) - (arg8 * vec1.z);
-    vec2.z = (arg8 * vec1.y) - (arg9 * vec1.x);
+    vec2.x = (yUp * vec1.z) - (zUp * vec1.y);
+    vec2.y = (zUp * vec1.x) - (xUp * vec1.z);
+    vec2.z = (xUp * vec1.y) - (yUp * vec1.x);
     root = 1.0f / sqrtf(SQ(vec2.x) + SQ(vec2.y) + SQ(vec2.z));
     vec2.x *= root;
     vec2.y *= root;
     vec2.z *= root;
-    func_8001A8B8(&vec2, &vec1, arg7);
+    func_8001A8B8(&vec2, &vec1, roll);
     vec3.x = (vec1.y * vec2.z) - (vec1.z * vec2.y);
     vec3.y = (vec1.z * vec2.x) - (vec1.x * vec2.z);
     vec3.z = (vec1.x * vec2.y) - (vec1.y * vec2.x);
     root = 1.0f / sqrtf(SQ(vec3.x) + SQ(vec3.y) + SQ(vec3.z));
-    arg0[0][0] = vec2.x;
-    arg0[1][0] = vec2.y;
-    arg0[2][0] = vec2.z;
-    arg0[3][0] = -((arg1 * vec2.x) + (arg2 * vec2.y) + (arg3 * vec2.z));
-    arg0[0][1] = (vec3.x * root);
-    arg0[1][1] = (vec3.y * root);
-    arg0[2][1] = (vec3.z * root);
-    arg0[3][1] = -((arg1 * (vec3.x * root)) + (arg2 * (vec3.y * root)) + (arg3 * (vec3.z * root)));
-    arg0[0][2] = vec1.x;
-    arg0[1][2] = vec1.y;
-    arg0[2][2] = vec1.z;
-    arg0[3][2] = -((arg1 * vec1.x) + (arg2 * vec1.y) + (arg3 * vec1.z));
-    arg0[0][3] = 0.0f;
-    arg0[1][3] = 0.0f;
-    arg0[2][3] = 0.0f;
-    arg0[3][3] = 1.0f;
+    mf[0][0] = vec2.x;
+    mf[1][0] = vec2.y;
+    mf[2][0] = vec2.z;
+    mf[3][0] = -((xEye * vec2.x) + (yEye * vec2.y) + (zEye * vec2.z));
+    mf[0][1] = (vec3.x * root);
+    mf[1][1] = (vec3.y * root);
+    mf[2][1] = (vec3.z * root);
+    mf[3][1] = -((xEye * (vec3.x * root)) + (yEye * (vec3.y * root)) + (zEye * (vec3.z * root)));
+    mf[0][2] = vec1.x;
+    mf[1][2] = vec1.y;
+    mf[2][2] = vec1.z;
+    mf[3][2] = -((xEye * vec1.x) + (yEye * vec1.y) + (zEye * vec1.z));
+    mf[0][3] = 0.0f;
+    mf[1][3] = 0.0f;
+    mf[2][3] = 0.0f;
+    mf[3][3] = 1.0f;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/1BCF0/hal_look_at_roll_f.s")

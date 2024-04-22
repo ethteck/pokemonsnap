@@ -16,14 +16,19 @@ typedef struct Unk800E1DD0_data {
     s32 unk_80;
 } Unk800E1DD0_data;
 
+// bss
 GObj* D_800E1DD0_AA0B80;
 s32 D_800E1DD4_AA0B84;
+
+// external data
 extern Sprite D_802BC0C0;
+extern s32 D_800E1DE0;
+
+// internal data
 extern ScreenSettings D_800E1CB0_AA0A60;
 extern Gfx D_800E1CE8_AA0A98[];
 extern SceneSetup D_800E1D40_AA0AF0;
 extern s32 D_800E1D50_AA0B00;
-extern s32 D_800E1DE0;
 
 GObj* func_800E18A0_AA0650(void) {
     Unk800E1DD0_data* temp_v1;

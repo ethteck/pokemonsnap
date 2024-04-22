@@ -6,11 +6,6 @@
 #include "sys/rdp_reset.h"
 #include "macros.h"
 
-// TODO: header
-void ren_func_80015448(void);
-void ren_func_80018CD0(s32);
-
-
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)
 
 typedef struct ThreadStackList {

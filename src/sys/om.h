@@ -353,7 +353,6 @@ typedef struct DObj {
     /* 0x28 */ struct Mtx4Float rotation;
     /* 0x3C */ struct Mtx3Float scale;
     /* 0x4C */ struct DObjDynamicStore* unk4C;
-    // can be any of: DObj *, Gfx *, or the struct Unk50... above
     /* 0x50 */ union {
                     void* any;
                     Gfx* dlist;
@@ -367,7 +366,6 @@ typedef struct DObj {
                     DObjPayloadTypeI** typeK;
                     DObjPayloadTypeJ** typeL;
                } payload;
-    // is this a union? WeirdBytewise...?
     /* 0x54 */ u8 flags;
     /* 0x55 */ u8 animCBReceiver;
     /* 0x56 */ u8 numMatrices;

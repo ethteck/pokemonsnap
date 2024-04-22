@@ -9,7 +9,7 @@ f32 __sinf(f32);
 
 void dmaReadVPK(u32 rom, u32 ram);
 
-void sendSignalToLink(s32 llIndex, s32, GObj*);
+void cmdSendCommandToLink(s32 llIndex, s32, GObj*);
 
 roomGFX* getCurrentRoom(void);
 GObj* animalAddOne(roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn, animalDef* def);
@@ -41,7 +41,7 @@ void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, roomGFX* roomA, roomGFX* ro
 
 void func_800067DC(void);
 void func_80007BC4(s32*);
-void func_8000BCA8(s32);
+void ohWait(s32);
 void func_80022334(void);
 void func_80022374(s32, s32);
 void func_80022454(s32, s32);

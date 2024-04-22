@@ -2,24 +2,26 @@
 #include "sys/om.h"
 #include "sys/crash.h"
 
+// Object Helpers
+
 // TODO header
-s32 func_8000B880(void (*handler)(GObj*, s32));
+s32 cmdProcessCommands(void (*handler)(GObj*, s32));
 void func_800191D8(GObj*);
 DObj* func_8000C550(DObj*);
 
-void func_8000B9B0(s32 link, void (*cb)(GObj*, void*), void* param) {
+void ohApplyByLink(s32 link, void (*func)(GObj*, void*), void* param) {
     GObj* curr;
     GObj* next;
 
     curr = omGObjListHead[link];
     while (curr != NULL) {
         next = curr->next;
-        cb(curr, param);
+        func(curr, param);
         curr = next;
     }
 }
 
-void func_8000BA18(void (*cb)(GObj*, void*), void* param) {
+void ohApplyToAll(void (*cb)(GObj*, void*), void* param) {
     GObj* curr;
     GObj* next;
     s32 link;
@@ -34,7 +36,7 @@ void func_8000BA18(void (*cb)(GObj*, void*), void* param) {
     }
 }
 
-GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
+GObj* ohApplyByLinkEx(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 onlyOne) {
     GObj* curr;
     GObj* next;
     GObj* ret = NULL;
@@ -48,7 +50,7 @@ GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFir
 
         if (retVal != NULL) {
             ret = retVal;
-            if (getFirst == TRUE) {
+            if (onlyOne == TRUE) {
                 return ret;
             }
         }
@@ -58,11 +60,11 @@ GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFir
     return ret;
 }
 
-GObj* func_8000BB4C(GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
+GObj* ohApplyToAllEx(GObj* (*cb)(GObj*, void*), void* param, s32 onlyOne) {
     GObj* curr;
     GObj* next;
     s32 link;
-    GObj* ret = 0;
+    GObj* ret = NULL;
 
     for (link = 0; link < 32; link++) {
         curr = omGObjListHead[link];
@@ -74,7 +76,7 @@ GObj* func_8000BB4C(GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
 
             if (retVal != NULL) {
                 ret = retVal;
-                if (getFirst == TRUE) {
+                if (onlyOne == TRUE) {
                     return ret;
                 }
             }
@@ -85,24 +87,23 @@ GObj* func_8000BB4C(GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
     return ret;
 }
 
-GObj* func_8000BC0C(GObj* obj, void* id) {
+GObj* ohCheckId(GObj* obj, void* id) {
     return obj->id == (u32)id ? obj : NULL;
 }
 
-GObj* func_8000BC2C(s32 link, u32 id) {
-    return func_8000BAA4(link, func_8000BC0C, (void*)id, TRUE);
+GObj* ohFindByLinkAndId(s32 link, u32 id) {
+    return ohApplyByLinkEx(link, ohCheckId, (void*)id, TRUE);
 }
 
-GObj* func_8000BC58(u32 id) {
-    return func_8000BB4C(func_8000BC0C, (void*)id, TRUE);
+GObj* ohFindById(u32 id) {
+    return ohApplyToAllEx(ohCheckId, (void*)id, TRUE);
 }
 
-void func_8000BC84(UNUSED GObj* arg0) {
-    func_8000B880(NULL);
+void ohUpdateDefault(UNUSED GObj* arg0) {
+    cmdProcessCommands(NULL);
 }
 
-void func_8000BCA8(s32 numFrames) {
-    // todo: main.h STACK_PROBE_MAGIC
+void ohWait(s32 numFrames) {
     if (omCurrentProcess->unk1C.thread->osStack[7] != 0xFEDCBA98) {
         fatal_printf("gobjthread stack over  gobjid = %d\n", omCurrentProcess->object->id);
     }
@@ -114,7 +115,7 @@ void func_8000BCA8(s32 numFrames) {
     }
 }
 
-void func_8000BD44(GObj* obj) {
+void ohPauseObjectProcesses(GObj* obj) {
     GObjProcess* proc;
 
     if (obj == NULL) {
@@ -123,12 +124,12 @@ void func_8000BD44(GObj* obj) {
 
     proc = obj->processListHead;
     while (proc != NULL) {
-        proc->paused = 1;
+        proc->paused = TRUE;
         proc = proc->next;
     }
 }
 
-void func_8000BD78(GObj* obj) {
+void ohResumeObjectProcesses(GObj* obj) {
     GObjProcess* proc;
 
     if (obj == NULL) {
@@ -137,12 +138,12 @@ void func_8000BD78(GObj* obj) {
 
     proc = obj->processListHead;
     while (proc != NULL) {
-        proc->paused = 0;
+        proc->paused = FALSE;
         proc = proc->next;
     }
 }
 
-void func_8000BDAC(GObjProcess* proc) {
+void ohPauseProcess(GObjProcess* proc) {
     if (proc == NULL) {
         proc = omCurrentProcess;
     }
@@ -150,7 +151,7 @@ void func_8000BDAC(GObjProcess* proc) {
     proc->paused = TRUE;
 }
 
-void func_8000BDC4(GObjProcess* proc) {
+void ohResumeProcess(GObjProcess* proc) {
     if (proc == NULL) {
         proc = omCurrentProcess;
     }
@@ -158,7 +159,7 @@ void func_8000BDC4(GObjProcess* proc) {
     proc->paused = 0;
 }
 
-void func_8000BDDC(GObj* obj, void (*function)(GObj*)) {
+void ohPauseProcessByFunction(GObj* obj, void (*function)(GObj*)) {
     GObjProcess* proc;
 
     if (obj == NULL) {
@@ -174,7 +175,7 @@ void func_8000BDDC(GObj* obj, void (*function)(GObj*)) {
     }
 }
 
-void func_8000BE1C(GObj* obj, void (*function)(GObj*)) {
+void ohResumeProcessByFunction(GObj* obj, void (*function)(GObj*)) {
     GObjProcess* proc;
 
     if (obj == NULL) {
@@ -190,7 +191,7 @@ void func_8000BE1C(GObj* obj, void (*function)(GObj*)) {
     }
 }
 
-void omh_end_all_object_processes(GObj* obj) {
+void ohEndAllObjectProcesses(GObj* obj) {
     GObjProcess *curr, *next;
 
     if (obj == NULL) {
@@ -205,24 +206,24 @@ void omh_end_all_object_processes(GObj* obj) {
     }
 }
 
-void func_8000BEAC(DObj* dobj) {
+void ohCreateDefaultMatricesDeg(DObj* dobj) {
     omDObjAppendMtx(dobj, MTX_TYPE_TRANSLATE, 0);
     omDObjAppendMtx(dobj, MTX_TYPE_ROTATE_RPY_DEG, 0);
     omDObjAppendMtx(dobj, MTX_TYPE_SCALE, 0);
 }
 
-void func_8000BEF4(DObj* dobj) {
+void ohCreateDefaultMatricesRad(DObj* dobj) {
     omDObjAppendMtx(dobj, MTX_TYPE_TRANSLATE, 0);
     omDObjAppendMtx(dobj, MTX_TYPE_ROTATE_RPY, 0);
     omDObjAppendMtx(dobj, MTX_TYPE_SCALE, 0);
 }
 
-void func_8000BF3C(OMCamera* camera) {
+void ohCreateDefaultCameraMatrices(OMCamera* camera) {
     omCameraAddMtx(camera, MTX_TYPE_PERSP_FAST, 0);
     omCameraAddMtx(camera, MTX_TYPE_LOOKAT, 0);
 }
 
-void func_8000BF74(GObj* obj) {
+void ohDobjTreeRemoveAllMObjs(GObj* obj) {
     DObj* curr;
 
     curr = obj->data.dobj;
@@ -232,45 +233,45 @@ void func_8000BF74(GObj* obj) {
     }
 }
 
-DObj* func_8000BFB8(GObj* obj, void* arg1) {
+DObj* ohAddDObj(GObj* obj, void* arg1) {
     DObj* ret = omGObjAddDObj(obj, arg1);
-    func_8000BEAC(ret);
+    ohCreateDefaultMatricesDeg(ret);
     return ret;
 }
 
-DObj* func_8000BFE8(DObj* dobj, void* arg1) {
+DObj* ohAddDObjSibling(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddSibling(dobj, arg1);
-    func_8000BEAC(ret);
+    ohCreateDefaultMatricesDeg(ret);
     return ret;
 }
 
-DObj* func_8000C018(DObj* dobj, void* arg1) {
+DObj* ohAddDObjChild(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddChild(dobj, arg1);
-    func_8000BEAC(ret);
+    ohCreateDefaultMatricesDeg(ret);
     return ret;
 }
 
-DObj* func_8000C048(GObj* obj, void* arg1) {
+DObj* ohAddDObjRad(GObj* obj, void* arg1) {
     DObj* ret = omGObjAddDObj(obj, arg1);
-    func_8000BEF4(ret);
+    ohCreateDefaultMatricesRad(ret);
     return ret;
 }
 
-DObj* func_8000C078(DObj* dobj, void* arg1) {
+DObj* ohAddDObjSiblingRad(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddSibling(dobj, arg1);
-    func_8000BEF4(ret);
+    ohCreateDefaultMatricesRad(ret);
     return ret;
 }
 
-DObj* func_8000C0A8(DObj* dobj, void* arg1) {
+DObj* ohAddDObjChildRad(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddChild(dobj, arg1);
-    func_8000BEF4(ret);
+    ohCreateDefaultMatricesRad(ret);
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/C5B0/func_8000C0D8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/oh/func_8000C0D8.s")
 
-void func_8000C1CC(GObj* obj) {
+void ohRemoveDObj(GObj* obj) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -279,7 +280,7 @@ void func_8000C1CC(GObj* obj) {
     }
 }
 
-void func_8000C220(GObj* obj) {
+void ohRemoveSprite(GObj* obj) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -288,7 +289,7 @@ void func_8000C220(GObj* obj) {
     }
 }
 
-void func_8000C274(void) {
+void ohDeleteAllObjects(void) {
     GObj* curr;
     GObj* next;
     s32 i;
@@ -303,8 +304,8 @@ void func_8000C274(void) {
     }
 }
 
-GObj* func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 dlArg, void* dobjBP, s32 arg9,
+GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices,
                   u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
     DObj* dobj;
@@ -314,11 +315,11 @@ GObj* func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
         return NULL;
     }
 
-    omLinkGObjDL(obj, fnRender, dlLink, dlPriority, dlArg);
+    omLinkGObjDL(obj, fnRender, dlLink, dlPriority, cameraTag);
 
     dobj = omGObjAddDObj(obj, dobjBP);
-    if (arg9) {
-        func_8000BEAC(dobj);
+    if (setMatrices) {
+        ohCreateDefaultMatricesDeg(dobj);
     }
     if (procFunc != NULL) {
         omCreateProcess(obj, procFunc, procKind, procPriority);
@@ -326,7 +327,7 @@ GObj* func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     return obj;
 }
 
-GObj* create_sprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
                           void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
                           u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
@@ -344,7 +345,7 @@ GObj* create_sprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     return obj;
 }
 
-GObj* create_camera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
                   void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices,
                   u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
     GObj* obj;
@@ -357,7 +358,7 @@ GObj* create_camera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     omLinkGObjDLCamera(obj, fnRender, dlPriority, dlLinkBitMask, cameraTag);
     cam = omGObjSetCamera(obj);
     if (defaultMatrices) {
-        func_8000BF3C(cam);
+        ohCreateDefaultCameraMatrices(cam);
     }
     if (procFunc != NULL) {
         omCreateProcess(obj, procFunc, procKind, procPriority);
@@ -369,11 +370,11 @@ GObj* create_camera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     return obj;
 }
 
-GObj* func_8000C4B0(s32 link, s32 priority, s32 dlPriority, s32 flags, s32 bgColor) {
+GObj* ohCreateCameraWrapper(s32 link, s32 priority, s32 dlPriority, s32 flags, s32 bgColor) {
     GObj* obj;
     OMCamera* cam;
 
-    obj = create_camera(-1, func_8000BC84, link, priority, func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
+    obj = ohCreateCamera(-1, ohUpdateDefault, link, priority, func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
     if (obj == NULL) {
         return NULL;
     }

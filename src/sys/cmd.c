@@ -2,85 +2,85 @@
 #include "sys/om.h"
 
 // TODO header
-GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst);
-void func_8000BD44(s32);
-void func_8000BD78(s32);
-
-s32 padding1[4];
-GObjCmd* _D_8004AF10;
-
-GObjCmd* GetGObjCmd(void) {
-    GObjCmd* ret;
-
-    if (_D_8004AF10 != NULL) {
-        ret = _D_8004AF10;
-        _D_8004AF10 = _D_8004AF10->next;
-    } else {
-        ret = gtlMalloc(sizeof(GObjCmd), 4);
-    }
-    return ret;
-}
-
-void func_8000B740(GObj_Sub3CList* arg0) {
-    GObjCmd* last = arg0->tail;
-    if (last != NULL) {
-        last->next = _D_8004AF10;
-        _D_8004AF10 = arg0->head;
-        arg0->head = NULL;
-        arg0->tail = NULL;
-    }
-}
-
-s32 func_8000B774(GObj* obj, s32 cmd, GObj* arg2) {
-    GObjCmd* objCmd;
-
-    if (obj == NULL) {
-        obj = omCurrentObject;
-    }
-    if (arg2 == NULL) {
-        arg2 = omCurrentObject;
-    }
-    objCmd = GetGObjCmd();
-    objCmd->cmd = cmd;
-    objCmd->obj = arg2;
-
-    if (obj->sub3C.head == NULL) {
-        obj->sub3C.tail = objCmd;
-        obj->sub3C.head = objCmd;
-    } else {
-        obj->sub3C.tail->next = objCmd;
-        obj->sub3C.tail = objCmd;
-    }
-    objCmd->next = NULL;
-    obj->sub3C.count++;
-    return 0;
-}
+GObj* ohApplyByLinkEx(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst);
+void ohPauseObjectProcesses(s32);
+void ohResumeObjectProcesses(s32);
 
 struct SignalParam {
     GObj* obj;
     s32 cmd; 
 };
 
-void func_8000B808(GObj* obj, struct SignalParam* param) {
-    func_8000B774(obj, param->cmd, param->obj);
+s32 padding1[4];
+GObjCmd* cmdObjCmdList;
+
+GObjCmd* cmdGetObjCmd(void) {
+    GObjCmd* ret;
+
+    if (cmdObjCmdList != NULL) {
+        ret = cmdObjCmdList;
+        cmdObjCmdList = cmdObjCmdList->next;
+    } else {
+        ret = gtlMalloc(sizeof(GObjCmd), 4);
+    }
+    return ret;
 }
 
-void sendSignalToLink(s32 arg0, s32 cmd, GObj* arg2) {
+void cmdFreeObjCmd(GObjCmdList* entry) {
+    GObjCmd* last = entry->tail;
+    if (last != NULL) {
+        last->next = cmdObjCmdList;
+        cmdObjCmdList = entry->head;
+        entry->head = NULL;
+        entry->tail = NULL;
+    }
+}
+
+s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source) {
+    GObjCmd* objCmd;
+
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+    if (source == NULL) {
+        source = omCurrentObject;
+    }
+    objCmd = cmdGetObjCmd();
+    objCmd->cmd = cmd;
+    objCmd->source = source;
+
+    if (obj->cmdList.head == NULL) {
+        obj->cmdList.tail = objCmd;
+        obj->cmdList.head = objCmd;
+    } else {
+        obj->cmdList.tail->next = objCmd;
+        obj->cmdList.tail = objCmd;
+    }
+    objCmd->next = NULL;
+    obj->cmdList.count++;
+    return 0;
+}
+
+void cmdSendSignal(GObj* obj, struct SignalParam* param) {
+    cmdSendCommand(obj, param->cmd, param->obj);
+}
+
+void cmdSendCommandToLink(s32 link, s32 cmd, GObj* source) {
     struct SignalParam param;
 
-    if (arg2 != 0) {
-        param.obj = arg2;
+    if (source != 0) {
+        param.obj = source;
     } else {
         param.obj = omCurrentObject;
     }
     param.cmd = cmd;
-    func_8000BAA4(arg0, (GObj* (*)(GObj*, void*))func_8000B808, (void*)&param, FALSE);
+    ohApplyByLinkEx(link, (GObj* (*)(GObj*, void*))cmdSendSignal, (void*)&param, FALSE);
 }
 
 #ifdef NON_MATCHING
-s32 func_8000B880(void (*handler)(GObj*, s32)) {
-    GObj_Sub3CList* temp_t7 = &omCurrentObject->sub3C;
-    GObjCmd* cur = temp_t7->head;
+s32 cmdProcessCommands(void (*handler)(GObj*, s32)) {
+    GObjCmdList* entry = &omCurrentObject->cmdList;
+    GObjCmd* cur = entry->head;
 
     while (cur != NULL) {
         switch (cur->cmd) {
@@ -88,10 +88,10 @@ s32 func_8000B880(void (*handler)(GObj*, s32)) {
                 omDeleteGObj(NULL);
                 return 1;
             case -2:
-                func_8000BD44(NULL);
+                ohPauseObjectProcesses(NULL);
                 break;
             case -3:
-                func_8000BD78(NULL);
+                ohResumeObjectProcesses(NULL);
                 break;
             case -4:
                 omCurrentObject->flags |= GOBJ_FLAG_1;
@@ -101,22 +101,22 @@ s32 func_8000B880(void (*handler)(GObj*, s32)) {
                 break;
             default:
                 if (handler != NULL) {
-                    handler(cur->obj, cur->cmd);
+                    handler(cur->source, cur->cmd);
                 }
                 break;
         }
         cur = cur->next;
     }
 
-    func_8000B740(temp_t7);
-    temp_t7->count = 0;
+    cmdFreeObjCmd(entry);
+    entry->count = 0;
     return 0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/cmd/func_8000B880.s")
-s32 func_8000B880(void (*handler)(GObj*, s32));
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/cmd/cmdProcessCommands.s")
+s32 cmdProcessCommands(void (*handler)(GObj*, s32));
 #endif
 
-void func_8000B998(void) {
-    _D_8004AF10 = NULL;
+void cmdReset(void) {
+    cmdObjCmdList = NULL;
 }

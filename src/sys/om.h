@@ -6,6 +6,8 @@
 #include "PR/sp.h"
 #include "types.h"
 
+#include "sys/cmd.h"
+
 // Object Manager (OM) Objects
 
 enum MatrixType {
@@ -201,18 +203,6 @@ typedef struct GObjProcess {
 struct DObj;
 struct GObj;
 
-typedef struct GObjCmd {
-    /* 0x00 */ struct GObjCmd* next;
-    /* 0x04 */ struct GObj* obj;
-    /* 0x08 */ s32 cmd;
-} GObjCmd; // size = 0xC
-
-typedef struct GObj_Sub3CList {
-    /* 0x00 */ GObjCmd* head;
-    /* 0x04 */ GObjCmd* tail;
-    /* 0x08 */ s32 count;
-} GObj_Sub3CList; // size = 0xC
-
 typedef struct GObj {
     /* 0x00 */ u32 id;
     /* 0x04 */ struct GObj* next;
@@ -236,7 +226,7 @@ typedef struct GObj {
     /* 0x30 */ s32 dlLinkBitMask;
     /* 0x34 */ s32 cameraTag;
     /* 0x38 */ s32 unk38;
-    /* 0x3C */ GObj_Sub3CList sub3C;
+    /* 0x3C */ GObjCmdList cmdList;
     /* 0x48 */ union {
                 struct DObj* dobj;
                 struct SObj* sobj;
@@ -528,6 +518,7 @@ void omGObjRemoveSprite(SObj* obj);
 void omDObjRemove(DObj* dobj);
 DObj* omDObjAddChild(DObj* arg0, void* arg1);
 DObj* omDObjAddSibling(DObj* dobj, void* arg1);
+void omCreateObjects(OMSetup* setup);
 
 extern GObj* omCurrentObject;
 extern GObj* omCurrentCamera;

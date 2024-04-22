@@ -99,6 +99,6 @@ s32 func_801E4428_993E98(void) {
                 return -1;
         }
 
-        func_8000BCA8(1);
+        ohWait(1);
     }
 }

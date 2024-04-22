@@ -39,7 +39,7 @@ void func_802DE450_72F650(GObj* obj) {
     setAnimalAnimation(obj, &D_802E321C);
     animal->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    sendSignalToLink(3, 0x21, obj);
+    cmdSendCommandToLink(3, 0x21, obj);
     runAnimalCleanup(obj);
     updateAnimalState(obj, NULL);
 }

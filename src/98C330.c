@@ -85,7 +85,7 @@ void func_801DCA14_98C484(s32 arg0) {
     UNUSED s32 pad;
     
     while (TRUE) {
-        func_8000BCA8(1);
+        ohWait(1);
     }
 }
 
@@ -154,11 +154,11 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
     func_8036B9EC_83F19C(arg0, 180, 0x20);
     func_8036C898_840048(arg0, D_801F51E8_9A4C58);
     func_8036EB80_842330(0);
-    func_8000BCA8(1);
+    ohWait(1);
 
     sp18 = func_800AA38C(0);
     while (!(sp18->unk_18 & (0x8000 | 0x4000))) {
-        func_8000BCA8(1);
+        ohWait(1);
         sp18 = func_800AA38C(0);
     }
     if (sp18->unk_14 & 0x8000) {
@@ -175,7 +175,7 @@ s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
     }
     func_8036B9EC_83F19C(arg0, 180, 0x20);
     func_8036C898_840048(arg0, D_801F51EC_9A4C5C);
-    func_8000BCA8(1);
+    ohWait(1);
     func_8036EE40_8425F0();
     func_8036EB80_842330(1);
     return ret;
@@ -187,7 +187,7 @@ s32 func_801DD1A8_98CC18(s32 arg0) {
     UnkStruct800BEDF8* sp1C;
 
     for (i = 0; i < arg0; i++) {
-        func_8000BCA8(1);
+        ohWait(1);
         sp1C = func_800AA38C(0);
         if (sp1C->unk_14 & 0x8000) {
             ret = 0x8000;
@@ -527,19 +527,19 @@ void func_801E39DC_99344C(s32 arg0) {
     func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
     func_8036B734_83EEE4(sp3C);
     func_8036D1A4_840954(sp3C, 1);
-    func_8000BCA8(1);
+    ohWait(1);
 
     for (i = 0; i < 60; i++) {
         func_801DD46C_98CEDC((i * 0xFF) / 60);
         func_801DD528_98CF98((i * 0xFF) / 60);
-        func_8000BCA8(1);
+        ohWait(1);
     }
 
     func_801DD46C_98CEDC(0xFF);
     func_801DD528_98CF98(0xFF);
     func_8037172C_844EDC(0);
     func_803713C8_844B78(0);
-    func_8000BCA8(1);
+    ohWait(1);
     func_8036CB58_840308(sp3C, 0xC);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
@@ -566,7 +566,7 @@ void func_801E39DC_99344C(s32 arg0) {
     func_8036D3E8_840B98(0, 4);
     func_801DD8F4_98D364();
     func_801DD9E4_98D454(0);
-    func_8000BCA8(1);
+    ohWait(1);
     D_802290E0_9D8B50 = sp3C;
 
     while (TRUE) {
@@ -583,7 +583,7 @@ void func_801E39DC_99344C(s32 arg0) {
         for (i = 30; i >= 0; i--) {
             func_801DD46C_98CEDC((s32) (i * 0xFF) / 30);
             func_801DD964_98D3D4((s32) (i * 0xFF) / 30);
-            func_8000BCA8(1);
+            ohWait(1);
         }
 
         func_801DD46C_98CEDC(0);
@@ -595,12 +595,12 @@ void func_801E39DC_99344C(s32 arg0) {
         } else {
             func_800AADF0(sp48);
         }
-        func_8000BCA8(1);
+        ohWait(1);
     }
 
     func_800AAED0(0x20);
     omDeleteGObj(0);
-    func_8000BCA8(0x63);
+    ohWait(0x63);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/98C330/func_801E3FFC_993A6C.s")

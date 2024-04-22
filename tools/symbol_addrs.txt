@@ -7,7 +7,7 @@ dmaWriteRom = 0x80002C5C;
 dmaReadVPK = 0x8000350C;
 gtlInit = 0x800076F0;
 omEndProcess = 0x80008F2C;
-sendSignalToLink = 0x8000B830;
+cmdSendCommandToLink = 0x8000B830;
 alHeapDBAlloc = 0x8001FD74;
 thread4_audio = 0x800216A8;
 start_thread8_rmon = 0x80025C38;
@@ -474,9 +474,27 @@ omCurrentProcess = 0x8004AC50;
 omProcessWaitQueue = 0x8004AC60;
 omD_8004AC78 = 0x8004AC78;
 
-omh_end_all_object_processes = 0x8000BE5C;
-create_camera = 0x8000C3FC;
-create_sprite = 0x8000C37C;
+cmdSendCommand = 0x8000B774;
+cmdFreeObjCmd = 0x8000B740;
+cmdProcessCommands = 0x8000B880;
+
+ohFindByLinkAndId = 0x8000BC2C;
+ohFindById = 0x8000BC58;
+ohUpdateDefault = 0x8000BC84;
+ohWait = 0x8000BCA8;
+ohPauseObjectProcesses = 0x8000BD44;
+ohResumeObjectProcesses = 0x8000BD78;
+ohPauseProcessByFunction = 0x8000BDDC;
+ohResumeProcessByFunction = 0x8000BE1C;
+ohEndAllObjectProcesses = 0x8000BE5C;
+ohAddDObj = 0x8000BFB8;
+ohAddDObjChild = 0x8000C018;
+ohRemoveSprite = 0x8000C220;
+ohCreateModel = 0x8000C2E4;
+ohCreateSprite = 0x8000C37C;
+ohCreateCamera = 0x8000C3FC;
+ohCreateCameraWrapper = 0x8000C4B0;
+
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
 gspF3DEX2_NoN_fifoDataStart = 0x80044E60;

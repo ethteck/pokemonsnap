@@ -17,7 +17,7 @@ typedef struct Unk_D_800C21B0_5F050 {
     s32 unk_5C;
     s32 unk_60;
     u32 unk_64_29 : 3; // Definitely 3 bits.
-    u32 unk_64_0 : 29; // Not positive how many bits this field is.
+    u32 unk_64_00: 29; // Not positive how many bits this field is.
     u8 pad_68[0x4];
     s32 unk_6C ;
     u8 pad_70[0x110];
@@ -308,7 +308,11 @@ s32 func_800BFB84_5CA24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFC5C_5CAFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFC70_5CB10.s")
+void func_800BFC70_5CB10(s32 arg0) {
+    if (arg0 >= 0 && arg0 < 7) {
+        D_800C21B0_5F050->unk_64_29 = arg0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFCA0_5CB40.s")
 

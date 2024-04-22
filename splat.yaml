@@ -590,24 +590,32 @@ segments:
     - [0x506FB0, bin] # , data]
     - { start: auto, name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
   - type: code
+    name: magikarp3
+    dir: pokemon/magikarp
     start: 0x54B5D0
     vram: 0x8034E130
     exclusive_ram_id: unk8034E130
     subsegments:
     - [0x54B5D0, bin] # , data]
   - type: code
+    name: pikachu3
+    dir: pokemon/pikachu
     start: 0x54D6A0
     vram: 0x803476A0
     exclusive_ram_id: unk803476A0
     subsegments:
     - [0x54D6A0, bin] # , data]
   - type: code
+    name: zubat3
+    dir: pokemon/zubat
     start: 0x554130
     vram: 0x80344780
     exclusive_ram_id: unk80344780
     subsegments:
     - [0x554130, bin] # , data]
   - type: code
+    name: bulbasaur3
+    dir: pokemon/bulbasaur
     start: 0x557050
     vram: 0x8033F6C0
     exclusive_ram_id: unk80344780

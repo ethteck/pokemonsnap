@@ -19,7 +19,10 @@ typedef struct Unk_D_800C21B0_5F050 {
     u32 unk_64_29 : 3;
     u32 unk_64_22 : 7;
     u32 unk_64_16 : 6;
-    u32 unk_64_06 : 10;
+    u32 unk_64_15 : 1;
+    u32 unk_64_14 : 1;
+    u32 unk_64_13 : 1;
+    u32 unk_64_06 : 7;
     u32 unk_64_00 : 6;
     u8 pad_68[0x4];
     s32 unk_6C ;
@@ -34,10 +37,13 @@ s32 func_800C09C0_5D860(Unk_D_800C21B0_5F050* arg0, s32 arg1);
 void func_800C06A8_5D548(Unk_D_800C21B0_5F050*, s32);
 void func_800C0AB4_5D954(Unk_D_800C21B0_5F050*, s32);
 
+extern Unk_D_800C21B0_5F050* D_800C21B0_5F050;
 extern u8 D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
 extern s32 D_800C20F0_5EF90;    // s32 D_800C20F0_5EF90 = 0;
-extern Unk_D_800C21B0_5F050* D_800C21B0_5F050;
+extern u8 D_800E14FC_7E39C[4];
 extern s32 D_800E1500_7E3A0;
+extern s32 D_800E1504_7E3A4;
+extern s32 D_800E1508_7E3A8;
 
 Unk_D_800C21B0_5F050* func_800BF080_5BF20(void) {
     return D_800C21B0_5F050;
@@ -358,13 +364,63 @@ void func_800C02A0_5D140(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C02EC_5D18C.s")
+u8 func_800C02EC_5D18C(s32 arg0) {
+    if (arg0 < 0) {
+        arg0 = 0;
+    }
+    if (arg0 > 2U) {
+        arg0 = 2;
+    }
+    return D_800E14FC_7E39C[arg0];
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C0314_5D1B4.s")
+void func_800C0314_5D1B4(s32 arg0, s32 arg1) {
+    s32 temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C03D4_5D274.s")
+    if (arg0 < 0) {
+        arg0 = 0;
+    }
+    if (arg0 > 2U) {
+        arg0 = 2;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C0400_5D2A0.s")
+    temp_v0 = !!arg1;
+    D_800E14FC_7E39C[arg0] = temp_v0;
+    
+    switch (arg0) {
+    case 0:
+        if (temp_v0 && !D_800C21B0_5F050->unk_64_15) {
+            D_800E1500_7E3A0 = 1;
+        }
+        break;
+    case 1:
+        if (temp_v0 && !D_800C21B0_5F050->unk_64_14) {
+            D_800E1500_7E3A0 = 1;
+        }
+        break;
+    case 2:
+        if (temp_v0 && !D_800C21B0_5F050->unk_64_13) {
+            D_800E1500_7E3A0 = 1;
+        }
+        break;
+    }
+}
+
+s32 func_800C03D4_5D274(void) {
+    if (D_800E1504_7E3A4 == 0) {
+        return 0;
+    }
+    D_800E1504_7E3A4 = 0;
+    return 1;
+}
+
+s32 func_800C0400_5D2A0(void) {
+    if (D_800E1508_7E3A8 == 0) {
+        return 0;
+    }
+    D_800E1508_7E3A8 = 0;
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C042C_5D2CC.s")
 

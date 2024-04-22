@@ -6,16 +6,13 @@ typedef struct Unk_D_800C21B0_5F050 {
     s32 unk_4;
     s32 unk_8;
     s32 unk_C;
-    u8* unk_10;
+    char unk_10[4];
     u8 pad_14[0x1C];
     u32 unk_30;
     s32 unk_34;
     u8 pad_38[0x18];
     s32 unk_50;
-    char *player_name;
-    s32 unk_58;
-    s32 unk_5C;
-    s32 unk_60;
+    char playerName[0x10];
     u32 unk_64_29 : 3;
     u32 unk_64_22 : 7;
     u32 unk_64_16 : 6;
@@ -32,13 +29,13 @@ typedef struct Unk_D_800C21B0_5F050 {
     u8 pad_188[0x216];
 } Unk_D_800C21B0_5F050;
 
-Unk_D_800C21B0_5F050* func_800C16EC_5E58C(u8*, s32);
+Unk_D_800C21B0_5F050* func_800C16EC_5E58C(char*, s32);
 s32 func_800C09C0_5D860(Unk_D_800C21B0_5F050* arg0, s32 arg1);
 void func_800C06A8_5D548(Unk_D_800C21B0_5F050*, s32);
 void func_800C0AB4_5D954(Unk_D_800C21B0_5F050*, s32);
 
 extern Unk_D_800C21B0_5F050* D_800C21B0_5F050;
-extern u8 D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
+extern char D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
 extern s32 D_800C20F0_5EF90;    // s32 D_800C20F0_5EF90 = 0;
 extern Unk_D_800C21B0_5F050* D_800C21B8_5F058[];  // Likely wrong type, but so far it's only being used in one place and it works for now.
 extern u8 D_800E14FC_7E39C[4];
@@ -53,7 +50,7 @@ Unk_D_800C21B0_5F050* func_800BF080_5BF20(void) {
 s32 func_800BF08C_5BF2C(void) {
     Unk_D_800C21B0_5F050* temp_v0;
 
-    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk_10, 0x1F294);
+    temp_v0 = func_800C16EC_5E58C(D_800C21B0_5F050->unk_10, 0x1F294);
     if (temp_v0->unk_0 != D_800C21B0_5F050->unk_0 || temp_v0->unk_4 != D_800C21B0_5F050->unk_4 ||
         temp_v0->unk_8 != D_800C21B0_5F050->unk_8 || temp_v0->unk_C != D_800C21B0_5F050->unk_C) {
         return 1;
@@ -65,7 +62,7 @@ s32 func_800BF08C_5BF2C(void) {
 void func_800BF10C_5BFAC(void) {
     Unk_D_800C21B0_5F050* temp_v0;
 
-    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk_10, 0x1F294);
+    temp_v0 = func_800C16EC_5E58C(D_800C21B0_5F050->unk_10, 0x1F294);
     D_800C21B0_5F050->unk_0 = temp_v0->unk_0;
     D_800C21B0_5F050->unk_4 = temp_v0->unk_4;
     D_800C21B0_5F050->unk_8 = temp_v0->unk_8;
@@ -77,8 +74,8 @@ s32 func_800BF178_5C018(void) {
     u8* versionStringBytes;
     u8* comparisonStringBytes;
 
-    versionStringBytes = &D_800C20E0_5EF80;
-    comparisonStringBytes = &D_800C21B0_5F050->unk_10;
+    versionStringBytes = D_800C20E0_5EF80;
+    comparisonStringBytes = D_800C21B0_5F050->unk_10;
     i = 0;
     while (1) {
         if (*versionStringBytes != *comparisonStringBytes) {
@@ -101,8 +98,8 @@ void func_800BF1F0_5C090(void) {
     u8* versionStringBytes;
     u8* copyToBytes;
 
-    versionStringBytes = &D_800C20E0_5EF80;
-    copyToBytes = &D_800C21B0_5F050->unk_10;
+    versionStringBytes = D_800C20E0_5EF80;
+    copyToBytes = D_800C21B0_5F050->unk_10;
     for (i = 0; i < sizeof(D_800C20E0_5EF80); i++) {
         *copyToBytes = *versionStringBytes;
         versionStringBytes++;
@@ -172,7 +169,7 @@ void func_800BF444_5C2E4(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF44C_5C2EC.s")
 
 char* get_player_name(void) {
-    return &D_800C21B0_5F050->player_name;
+    return D_800C21B0_5F050->playerName;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF4A8_5C348.s")
@@ -387,7 +384,7 @@ void func_800C0314_5D1B4(s32 arg0, s32 arg1) {
 
     temp_v0 = !!arg1;
     D_800E14FC_7E39C[arg0] = temp_v0;
-    
+
     switch (arg0) {
     case 0:
         if (temp_v0 && !D_800C21B0_5F050->unk_64_15) {

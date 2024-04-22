@@ -4,6 +4,7 @@
 #include "sys/gtl.h"
 #include "sys/crash.h"
 #include "sys/rdp_reset.h"
+#include "sys/render.h"
 #include "macros.h"
 
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)

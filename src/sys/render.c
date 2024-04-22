@@ -10,72 +10,46 @@
 #define G_TX_TILE_5 (5)
 #define G_TX_TILE_BLOCK (6)
 
-typedef struct DObjUnk50_3 {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ Gfx* unk_04;
-} DObjUnk50_3; // size = 0x08
-
-typedef struct DObjUnk50_5 {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ DObjUnk50_3* unk_04;
-} DObjUnk50_5; // size = 0x08
-
-typedef struct DObjUnk50_4 {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ Gfx* unk_04;
-} DObjUnk50_4; // size = 0x08
-
-typedef struct DObjUnk50_1 {
-    /* 0x00 */ Gfx* unk_00;
-    /* 0x04 */ Gfx* unk_04;
-} DObjUnk50_1; // size = 0x08
-
-typedef struct DObjUnk50_2 {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ Gfx* unk_04;
-    /* 0x08 */ Gfx* unk_08;
-} DObjUnk50_2; // size = 0x0C
-
 // data
-s32 D_80040F30 = 0;
-s32 D_80040F34 = 0;
-s32 D_80040F38 = 0;
-s32 D_80040F3C = 0;
+s32 renCameraScisTop = 0;
+s32 renCameraScisBottom = 0;
+s32 renCameraScisLeft = 0;
+s32 renCameraScisRight = 0;
 
 // bss
-Mtx* sProjectionMatrix;
-f32 sScaleX;
-Mtx4f sPerspectiveMatrixF;
-Mtx4f sMvpMatrixF;
-Mtx4f _D_8004AFA8;
-Mtx4f _D_8004AFE8;
-s32 _D_8004B028;
-f32 sScaleY;
-f32 sScaleZ;
-s32 sIsScaleMtxPushed;
-Struct_8004B038* sCustomMatrixHandler;
-Gfx* _D_8004B03C;
-Gfx* _D_8004B040[4];
-Gfx _D_8004B050[60];
-s32 sLevelOfDetail;
-Gfx* _D_8004B238[4];
-Gfx* _D_8004B248;
+Mtx* renProjectionMatrix;
+f32 renScaleX;
+Mtx4f renPerspectiveMatrixF;
+Mtx4f renMvpMatrixF;
+Mtx4f ren_D_8004AFA8;
+Mtx4f ren_D_8004AFE8;
+s32 ren_D_8004B028;
+f32 renScaleY;
+f32 renScaleZ;
+s32 renIsScaleMtxPushed;
+Struct_8004B038* renCustomMatrixHandler;
+Gfx* ren_D_8004B03C;
+Gfx* ren_D_8004B040[4];
+Gfx ren_D_8004B050[60];
+s32 renLevelOfDetail;
+Gfx* ren_D_8004B238[4];
+Gfx* ren_D_8004B248;
 
-void func_80011230(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    D_80040F30 = arg0;
-    D_80040F34 = arg1;
-    D_80040F38 = arg2;
-    D_80040F3C = arg3;
+void renSetCameraScissors(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    renCameraScisTop = arg0;
+    renCameraScisBottom = arg1;
+    renCameraScisLeft = arg2;
+    renCameraScisRight = arg3;
 }
 
-void func_80011254(Struct_8004B038* arg0) {
-    sCustomMatrixHandler = arg0;
+void renSetCustomMatrixHandler(Struct_8004B038* arg0) {
+    renCustomMatrixHandler = arg0;
 }
 
-void func_80011260(void) {
+void renNullsub(void) {
 }
 
-void func_80011268(Mtx* arg0, DObj* arg1, s32 arg2) {
+void ren_func_80011268(Mtx* arg0, DObj* arg1, s32 arg2) {
     Mtx4f sp48;
     f32 x, y, z;
 
@@ -125,7 +99,7 @@ void func_80011268(Mtx* arg0, DObj* arg1, s32 arg2) {
     hal_mtx_f2l_fixed_w(sp48, arg0);
 }
 
-void func_80011438(Mtx* arg0, DObj* arg1, s32 arg2) {
+void ren_func_80011438(Mtx* arg0, DObj* arg1, s32 arg2) {
     Mtx4f sp48;
     f32 x, y, z;
 
@@ -175,7 +149,7 @@ void func_80011438(Mtx* arg0, DObj* arg1, s32 arg2) {
     hal_mtx_f2l_fixed_w(sp48, arg0);
 }
 
-void func_80011608(Mtx* arg0, DObj* arg1, s32 arg2) {
+void ren_func_80011608(Mtx* arg0, DObj* arg1, s32 arg2) {
     Mtx4f sp48;
     f32 x;
     f32 y;
@@ -259,7 +233,7 @@ void func_8001174C(Mtx* arg0, DObj* arg1, s32 arg2) {
     hal_mtx_f2l_fixed_w(sp48, arg0);
 }
 
-s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
+s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
     Gfx* sp2DC;
     uintptr_t csr;
     s32 sp2D4;
@@ -303,7 +277,7 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
             Mtx** unk;
             Mtx* mtx;
 
-            unk = &ommtx->unk08;
+            unk = (Mtx**)&ommtx->unk08;
             mtx = &ommtx->unk08;
 
             if (ommtx->unk05 != 2) {
@@ -428,7 +402,7 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                                                    dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
                                                    dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y,
                                                    dobj->scale.v.z);
-                        sScaleX *= dobj->scale.v.x;
+                        renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_RPY:
                         hal_rotate_rpy(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
@@ -441,7 +415,7 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         hal_rotate_rpy_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
                                                        dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
                                                        dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
-                        sScaleX *= dobj->scale.v.x;
+                        renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_PYR:
                         hal_rotate_pyr(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
@@ -454,23 +428,23 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         hal_rotate_pyr_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
                                                        dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
                                                        dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
-                        sScaleX *= dobj->scale.v.x;
+                        renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_SCALE:
                         hal_scale(mtx, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
-                        sScaleX *= dobj->scale.v.x;
+                        renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_33:
-                        func_80011608(mtx, dobj, FALSE);
+                        ren_func_80011608(mtx, dobj, FALSE);
                         break;
                     case MTX_TYPE_34:
-                        func_80011608(mtx, dobj, TRUE);
+                        ren_func_80011608(mtx, dobj, TRUE);
                         break;
                     case MTX_TYPE_35:
-                        func_80011268(mtx, dobj, FALSE);
+                        ren_func_80011268(mtx, dobj, FALSE);
                         break;
                     case MTX_TYPE_36:
-                        func_80011268(mtx, dobj, TRUE);
+                        ren_func_80011268(mtx, dobj, TRUE);
                         break;
                     case MTX_TYPE_37:
                         func_8001174C(mtx, dobj, FALSE);
@@ -479,10 +453,10 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         func_8001174C(mtx, dobj, TRUE);
                         break;
                     case MTX_TYPE_39:
-                        func_80011438(mtx, dobj, FALSE);
+                        ren_func_80011438(mtx, dobj, FALSE);
                         break;
                     case MTX_TYPE_40:
-                        func_80011438(mtx, dobj, TRUE);
+                        ren_func_80011438(mtx, dobj, TRUE);
                         break;
                     case MTX_TYPE_56:
                         hal_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z);
@@ -495,9 +469,9 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         break;
                     case MTX_TYPE_59:
                         hal_scale(mtx, sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
-                        sScaleX *= sp2C0->v.x;
-                        sScaleY *= sp2C0->v.y;
-                        sScaleZ *= sp2C0->v.z;
+                        renScaleX *= sp2C0->v.x;
+                        renScaleY *= sp2C0->v.y;
+                        renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_60:
                         hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
@@ -507,9 +481,9 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         hal_rotate_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0],
                                                    sp2C4->f[1], sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y,
                                                    sp2C0->v.z);
-                        sScaleX *= sp2C0->v.x;
-                        sScaleY *= sp2C0->v.y;
-                        sScaleZ *= sp2C0->v.z;
+                        renScaleX *= sp2C0->v.x;
+                        renScaleY *= sp2C0->v.y;
+                        renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_62:
                         hal_rotate_rpy_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
@@ -518,56 +492,56 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                     case MTX_TYPE_63:
                         hal_rotate_rpy_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
                                                        sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
-                        sScaleX *= sp2C0->v.x;
-                        sScaleY *= sp2C0->v.y;
-                        sScaleZ *= sp2C0->v.z;
+                        renScaleX *= sp2C0->v.x;
+                        renScaleY *= sp2C0->v.y;
+                        renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_41:
                         gSPMvpRecalc(sp2DC++);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, sProjectionMatrix->m[0][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, sProjectionMatrix->m[0][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_I, sProjectionMatrix->m[0][2]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_I, sProjectionMatrix->m[0][3]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, sProjectionMatrix->m[1][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, sProjectionMatrix->m[1][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_F, sProjectionMatrix->m[2][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_F, sProjectionMatrix->m[2][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_F, sProjectionMatrix->m[2][2]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, sProjectionMatrix->m[2][3]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_F, sProjectionMatrix->m[3][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_F, sProjectionMatrix->m[3][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, renProjectionMatrix->m[0][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, renProjectionMatrix->m[0][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_I, renProjectionMatrix->m[0][2]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_I, renProjectionMatrix->m[0][3]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, renProjectionMatrix->m[1][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, renProjectionMatrix->m[1][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_F, renProjectionMatrix->m[2][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_F, renProjectionMatrix->m[2][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_F, renProjectionMatrix->m[2][2]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, renProjectionMatrix->m[2][3]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_F, renProjectionMatrix->m[3][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_F, renProjectionMatrix->m[3][1]);
                         continue;
                     case MTX_TYPE_42:
                         gSPMvpRecalc(sp2DC++);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, sProjectionMatrix->m[0][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, sProjectionMatrix->m[0][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, sProjectionMatrix->m[0][2]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, sProjectionMatrix->m[0][3]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_I, sProjectionMatrix->m[1][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_I, sProjectionMatrix->m[1][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_F, sProjectionMatrix->m[2][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_F, sProjectionMatrix->m[2][1]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_F, sProjectionMatrix->m[2][2]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_F, sProjectionMatrix->m[2][3]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_F, sProjectionMatrix->m[3][0]);
-                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, sProjectionMatrix->m[3][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, renProjectionMatrix->m[0][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, renProjectionMatrix->m[0][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, renProjectionMatrix->m[0][2]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, renProjectionMatrix->m[0][3]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_I, renProjectionMatrix->m[1][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_I, renProjectionMatrix->m[1][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_F, renProjectionMatrix->m[2][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_F, renProjectionMatrix->m[2][1]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_F, renProjectionMatrix->m[2][2]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_F, renProjectionMatrix->m[2][3]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZX_ZY_F, renProjectionMatrix->m[3][0]);
+                        gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, renProjectionMatrix->m[3][1]);
                         continue;
                     case MTX_TYPE_43:
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = sPerspectiveMatrixF[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = 0.0f;
-                        sMvpMatrixF[0][2] = 0.0f;
-                        sMvpMatrixF[0][3] = 0.0f;
-                        sMvpMatrixF[1][0] = 0.0f;
-                        sMvpMatrixF[1][1] = sPerspectiveMatrixF[1][1] * f12;
-                        sMvpMatrixF[1][2] = 0.0f;
-                        sMvpMatrixF[1][3] = 0.0f;
-                        sMvpMatrixF[2][0] = 0.0f;
-                        sMvpMatrixF[2][1] = 0.0f;
-                        sMvpMatrixF[2][2] = sPerspectiveMatrixF[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = sPerspectiveMatrixF[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = renPerspectiveMatrixF[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = 0.0f;
+                        renMvpMatrixF[0][2] = 0.0f;
+                        renMvpMatrixF[0][3] = 0.0f;
+                        renMvpMatrixF[1][0] = 0.0f;
+                        renMvpMatrixF[1][1] = renPerspectiveMatrixF[1][1] * f12;
+                        renMvpMatrixF[1][2] = 0.0f;
+                        renMvpMatrixF[1][3] = 0.0f;
+                        renMvpMatrixF[2][0] = 0.0f;
+                        renMvpMatrixF[2][1] = 0.0f;
+                        renMvpMatrixF[2][2] = renPerspectiveMatrixF[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = renPerspectiveMatrixF[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, mtx->m[0][1]);
@@ -583,21 +557,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_F, mtx->m[3][1]);
                         continue;
                     case MTX_TYPE_44: {
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = sPerspectiveMatrixF[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = 0.0f;
-                        sMvpMatrixF[0][2] = 0.0f;
-                        sMvpMatrixF[0][3] = 0.0f;
-                        sMvpMatrixF[1][0] = 0.0f;
-                        sMvpMatrixF[1][1] = sPerspectiveMatrixF[1][1] * f12;
-                        sMvpMatrixF[1][2] = 0.0f;
-                        sMvpMatrixF[1][3] = 0.0f;
-                        sMvpMatrixF[2][0] = 0.0f;
-                        sMvpMatrixF[2][1] = 0.0f;
-                        sMvpMatrixF[2][2] = sPerspectiveMatrixF[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = sPerspectiveMatrixF[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = renPerspectiveMatrixF[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = 0.0f;
+                        renMvpMatrixF[0][2] = 0.0f;
+                        renMvpMatrixF[0][3] = 0.0f;
+                        renMvpMatrixF[1][0] = 0.0f;
+                        renMvpMatrixF[1][1] = renPerspectiveMatrixF[1][1] * f12;
+                        renMvpMatrixF[1][2] = 0.0f;
+                        renMvpMatrixF[1][3] = 0.0f;
+                        renMvpMatrixF[2][0] = 0.0f;
+                        renMvpMatrixF[2][1] = 0.0f;
+                        renMvpMatrixF[2][2] = renPerspectiveMatrixF[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = renPerspectiveMatrixF[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, mtx->m[0][1]);
@@ -617,21 +591,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         f32 sp1D4 = sinf(dobj->rotation.f[1]);
                         f32 f0 = cosf(dobj->rotation.f[1]);
 
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = sPerspectiveMatrixF[0][0] * sScaleX * f0;
-                        sMvpMatrixF[1][0] = sPerspectiveMatrixF[0][0] * sScaleX * -sp1D4;
-                        sMvpMatrixF[0][1] = sPerspectiveMatrixF[1][1] * f12 * sp1D4;
-                        sMvpMatrixF[1][1] = sPerspectiveMatrixF[1][1] * f12 * f0;
-                        sMvpMatrixF[0][2] = 0.0f;
-                        sMvpMatrixF[1][2] = 0.0f;
-                        sMvpMatrixF[0][3] = 0.0f;
-                        sMvpMatrixF[1][3] = 0.0f;
-                        sMvpMatrixF[2][0] = 0.0f;
-                        sMvpMatrixF[2][1] = 0.0f;
-                        sMvpMatrixF[2][2] = sPerspectiveMatrixF[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = sPerspectiveMatrixF[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = renPerspectiveMatrixF[0][0] * renScaleX * f0;
+                        renMvpMatrixF[1][0] = renPerspectiveMatrixF[0][0] * renScaleX * -sp1D4;
+                        renMvpMatrixF[0][1] = renPerspectiveMatrixF[1][1] * f12 * sp1D4;
+                        renMvpMatrixF[1][1] = renPerspectiveMatrixF[1][1] * f12 * f0;
+                        renMvpMatrixF[0][2] = 0.0f;
+                        renMvpMatrixF[1][2] = 0.0f;
+                        renMvpMatrixF[0][3] = 0.0f;
+                        renMvpMatrixF[1][3] = 0.0f;
+                        renMvpMatrixF[2][0] = 0.0f;
+                        renMvpMatrixF[2][1] = 0.0f;
+                        renMvpMatrixF[2][2] = renPerspectiveMatrixF[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = renPerspectiveMatrixF[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, mtx->m[0][1]);
@@ -651,22 +625,22 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         f32 sp1D4 = sinf(dobj->rotation.f[3]);
                         f32 f0 = cosf(dobj->rotation.f[3]);
 
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
 
-                        sMvpMatrixF[0][0] = sPerspectiveMatrixF[0][0] * sScaleX * f0;
-                        sMvpMatrixF[1][0] = sPerspectiveMatrixF[0][0] * sScaleX * -sp1D4;
-                        sMvpMatrixF[0][1] = sPerspectiveMatrixF[1][1] * f12 * sp1D4;
-                        sMvpMatrixF[1][1] = sPerspectiveMatrixF[1][1] * f12 * f0;
-                        sMvpMatrixF[0][2] = 0.0f;
-                        sMvpMatrixF[1][2] = 0.0f;
-                        sMvpMatrixF[0][3] = 0.0f;
-                        sMvpMatrixF[1][3] = 0.0f;
-                        sMvpMatrixF[2][0] = 0.0f;
-                        sMvpMatrixF[2][1] = 0.0f;
-                        sMvpMatrixF[2][2] = sPerspectiveMatrixF[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = sPerspectiveMatrixF[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        renMvpMatrixF[0][0] = renPerspectiveMatrixF[0][0] * renScaleX * f0;
+                        renMvpMatrixF[1][0] = renPerspectiveMatrixF[0][0] * renScaleX * -sp1D4;
+                        renMvpMatrixF[0][1] = renPerspectiveMatrixF[1][1] * f12 * sp1D4;
+                        renMvpMatrixF[1][1] = renPerspectiveMatrixF[1][1] * f12 * f0;
+                        renMvpMatrixF[0][2] = 0.0f;
+                        renMvpMatrixF[1][2] = 0.0f;
+                        renMvpMatrixF[0][3] = 0.0f;
+                        renMvpMatrixF[1][3] = 0.0f;
+                        renMvpMatrixF[2][0] = 0.0f;
+                        renMvpMatrixF[2][1] = 0.0f;
+                        renMvpMatrixF[2][2] = renPerspectiveMatrixF[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = renPerspectiveMatrixF[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, mtx->m[0][1]);
@@ -683,21 +657,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_47: {
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = _D_8004AFA8[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = _D_8004AFA8[0][1] * sScaleX;
-                        sMvpMatrixF[0][2] = _D_8004AFA8[0][2] * sScaleX;
-                        sMvpMatrixF[0][3] = _D_8004AFA8[0][3] * sScaleX;
-                        sMvpMatrixF[1][0] = _D_8004AFA8[1][0] * f12;
-                        sMvpMatrixF[1][1] = _D_8004AFA8[1][1] * f12;
-                        sMvpMatrixF[1][2] = _D_8004AFA8[1][2] * f12;
-                        sMvpMatrixF[1][3] = _D_8004AFA8[1][3] * f12;
-                        sMvpMatrixF[2][0] = _D_8004AFA8[2][0] * sScaleX;
-                        sMvpMatrixF[2][1] = _D_8004AFA8[2][1] * sScaleX;
-                        sMvpMatrixF[2][2] = _D_8004AFA8[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = _D_8004AFA8[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = ren_D_8004AFA8[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = ren_D_8004AFA8[0][1] * renScaleX;
+                        renMvpMatrixF[0][2] = ren_D_8004AFA8[0][2] * renScaleX;
+                        renMvpMatrixF[0][3] = ren_D_8004AFA8[0][3] * renScaleX;
+                        renMvpMatrixF[1][0] = ren_D_8004AFA8[1][0] * f12;
+                        renMvpMatrixF[1][1] = ren_D_8004AFA8[1][1] * f12;
+                        renMvpMatrixF[1][2] = ren_D_8004AFA8[1][2] * f12;
+                        renMvpMatrixF[1][3] = ren_D_8004AFA8[1][3] * f12;
+                        renMvpMatrixF[2][0] = ren_D_8004AFA8[2][0] * renScaleX;
+                        renMvpMatrixF[2][1] = ren_D_8004AFA8[2][1] * renScaleX;
+                        renMvpMatrixF[2][2] = ren_D_8004AFA8[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = ren_D_8004AFA8[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, mtx->m[0][1]);
@@ -714,21 +688,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_48: {
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = _D_8004AFA8[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = _D_8004AFA8[0][1] * sScaleX;
-                        sMvpMatrixF[0][2] = _D_8004AFA8[0][2] * sScaleX;
-                        sMvpMatrixF[0][3] = _D_8004AFA8[0][3] * sScaleX;
-                        sMvpMatrixF[1][0] = _D_8004AFA8[1][0] * f12;
-                        sMvpMatrixF[1][1] = _D_8004AFA8[1][1] * f12;
-                        sMvpMatrixF[1][2] = _D_8004AFA8[1][2] * f12;
-                        sMvpMatrixF[1][3] = _D_8004AFA8[1][3] * f12;
-                        sMvpMatrixF[2][0] = _D_8004AFA8[2][0] * sScaleX;
-                        sMvpMatrixF[2][1] = _D_8004AFA8[2][1] * sScaleX;
-                        sMvpMatrixF[2][2] = _D_8004AFA8[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = _D_8004AFA8[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = ren_D_8004AFA8[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = ren_D_8004AFA8[0][1] * renScaleX;
+                        renMvpMatrixF[0][2] = ren_D_8004AFA8[0][2] * renScaleX;
+                        renMvpMatrixF[0][3] = ren_D_8004AFA8[0][3] * renScaleX;
+                        renMvpMatrixF[1][0] = ren_D_8004AFA8[1][0] * f12;
+                        renMvpMatrixF[1][1] = ren_D_8004AFA8[1][1] * f12;
+                        renMvpMatrixF[1][2] = ren_D_8004AFA8[1][2] * f12;
+                        renMvpMatrixF[1][3] = ren_D_8004AFA8[1][3] * f12;
+                        renMvpMatrixF[2][0] = ren_D_8004AFA8[2][0] * renScaleX;
+                        renMvpMatrixF[2][1] = ren_D_8004AFA8[2][1] * renScaleX;
+                        renMvpMatrixF[2][2] = ren_D_8004AFA8[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = ren_D_8004AFA8[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, mtx->m[0][1]);
@@ -745,21 +719,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_49: {
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = _D_8004AFE8[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = _D_8004AFE8[0][1] * sScaleX;
-                        sMvpMatrixF[0][2] = _D_8004AFE8[0][2] * sScaleX;
-                        sMvpMatrixF[0][3] = _D_8004AFE8[0][3] * sScaleX;
-                        sMvpMatrixF[1][0] = _D_8004AFE8[1][0] * f12;
-                        sMvpMatrixF[1][1] = _D_8004AFE8[1][1] * f12;
-                        sMvpMatrixF[1][2] = _D_8004AFE8[1][2] * f12;
-                        sMvpMatrixF[1][3] = _D_8004AFE8[1][3] * f12;
-                        sMvpMatrixF[2][0] = _D_8004AFE8[2][0] * sScaleX;
-                        sMvpMatrixF[2][1] = _D_8004AFE8[2][1] * sScaleX;
-                        sMvpMatrixF[2][2] = _D_8004AFE8[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = _D_8004AFE8[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = ren_D_8004AFE8[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = ren_D_8004AFE8[0][1] * renScaleX;
+                        renMvpMatrixF[0][2] = ren_D_8004AFE8[0][2] * renScaleX;
+                        renMvpMatrixF[0][3] = ren_D_8004AFE8[0][3] * renScaleX;
+                        renMvpMatrixF[1][0] = ren_D_8004AFE8[1][0] * f12;
+                        renMvpMatrixF[1][1] = ren_D_8004AFE8[1][1] * f12;
+                        renMvpMatrixF[1][2] = ren_D_8004AFE8[1][2] * f12;
+                        renMvpMatrixF[1][3] = ren_D_8004AFE8[1][3] * f12;
+                        renMvpMatrixF[2][0] = ren_D_8004AFE8[2][0] * renScaleX;
+                        renMvpMatrixF[2][1] = ren_D_8004AFE8[2][1] * renScaleX;
+                        renMvpMatrixF[2][2] = ren_D_8004AFE8[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = ren_D_8004AFE8[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YX_YY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_YZ_YW_I, mtx->m[0][1]);
@@ -776,21 +750,21 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_50:
-                        f12 = dobj->scale.v.y * sScaleX;
-                        sScaleX *= dobj->scale.v.x;
-                        sMvpMatrixF[0][0] = _D_8004AFE8[0][0] * sScaleX;
-                        sMvpMatrixF[0][1] = _D_8004AFE8[0][1] * sScaleX;
-                        sMvpMatrixF[0][2] = _D_8004AFE8[0][2] * sScaleX;
-                        sMvpMatrixF[0][3] = _D_8004AFE8[0][3] * sScaleX;
-                        sMvpMatrixF[1][0] = _D_8004AFE8[1][0] * f12;
-                        sMvpMatrixF[1][1] = _D_8004AFE8[1][1] * f12;
-                        sMvpMatrixF[1][2] = _D_8004AFE8[1][2] * f12;
-                        sMvpMatrixF[1][3] = _D_8004AFE8[1][3] * f12;
-                        sMvpMatrixF[2][0] = _D_8004AFE8[2][0] * sScaleX;
-                        sMvpMatrixF[2][1] = _D_8004AFE8[2][1] * sScaleX;
-                        sMvpMatrixF[2][2] = _D_8004AFE8[2][2] * sScaleX;
-                        sMvpMatrixF[2][3] = _D_8004AFE8[2][3] * sScaleX;
-                        hal_mtx_f2l(sMvpMatrixF, mtx);
+                        f12 = dobj->scale.v.y * renScaleX;
+                        renScaleX *= dobj->scale.v.x;
+                        renMvpMatrixF[0][0] = ren_D_8004AFE8[0][0] * renScaleX;
+                        renMvpMatrixF[0][1] = ren_D_8004AFE8[0][1] * renScaleX;
+                        renMvpMatrixF[0][2] = ren_D_8004AFE8[0][2] * renScaleX;
+                        renMvpMatrixF[0][3] = ren_D_8004AFE8[0][3] * renScaleX;
+                        renMvpMatrixF[1][0] = ren_D_8004AFE8[1][0] * f12;
+                        renMvpMatrixF[1][1] = ren_D_8004AFE8[1][1] * f12;
+                        renMvpMatrixF[1][2] = ren_D_8004AFE8[1][2] * f12;
+                        renMvpMatrixF[1][3] = ren_D_8004AFE8[1][3] * f12;
+                        renMvpMatrixF[2][0] = ren_D_8004AFE8[2][0] * renScaleX;
+                        renMvpMatrixF[2][1] = ren_D_8004AFE8[2][1] * renScaleX;
+                        renMvpMatrixF[2][2] = ren_D_8004AFE8[2][2] * renScaleX;
+                        renMvpMatrixF[2][3] = ren_D_8004AFE8[2][3] * renScaleX;
+                        hal_mtx_f2l(renMvpMatrixF, mtx);
                         gSPMvpRecalc(sp2DC++);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XX_XY_I, mtx->m[0][0]);
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_XZ_XW_I, mtx->m[0][1]);
@@ -806,52 +780,52 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, mtx->m[3][1]);
                         continue;
                     case MTX_TYPE_51:
-                        hal_rotate_rpy_translate(mtx, dobj->position.v.x * sScaleX, dobj->position.v.y * sScaleY,
-                                                 dobj->position.v.z * sScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
+                        hal_rotate_rpy_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
+                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
                                                  dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_52:
-                        hal_rotate_pyr_translate(mtx, dobj->position.v.x * sScaleX, dobj->position.v.y * sScaleY,
-                                                 dobj->position.v.z * sScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
+                        hal_rotate_pyr_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
+                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
                                                  dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_53:
-                        sScaleX *= dobj->scale.v.x;
-                        sScaleY *= dobj->scale.v.y;
-                        sScaleZ *= dobj->scale.v.z;
-                        hal_scale(mtx, sScaleX, sScaleY, sScaleZ);
-                        sIsScaleMtxPushed = TRUE;
+                        renScaleX *= dobj->scale.v.x;
+                        renScaleY *= dobj->scale.v.y;
+                        renScaleZ *= dobj->scale.v.z;
+                        hal_scale(mtx, renScaleX, renScaleY, renScaleZ);
+                        renIsScaleMtxPushed = TRUE;
                         sp2B8 = 2;
                         break;
                     case MTX_TYPE_55:
-                        hal_translate(mtx, dobj->position.v.x * sScaleX, dobj->position.v.y * sScaleY,
-                                      dobj->position.v.z * sScaleZ);
+                        hal_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
+                                      dobj->position.v.z * renScaleZ);
                         break;
                     case MTX_TYPE_64:
-                        sScaleX *= sp2C0->v.x;
-                        sScaleY *= sp2C0->v.y;
-                        sScaleZ *= sp2C0->v.z;
+                        renScaleX *= sp2C0->v.x;
+                        renScaleY *= sp2C0->v.y;
+                        renScaleZ *= sp2C0->v.z;
                         continue;
                     case MTX_TYPE_65:
                         hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
                                              sp2C4->f[2], sp2C4->f[3]);
-                        sScaleX *= sp2C0->v.x;
-                        sScaleY *= sp2C0->v.y;
-                        sScaleZ *= sp2C0->v.z;
+                        renScaleX *= sp2C0->v.x;
+                        renScaleY *= sp2C0->v.y;
+                        renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_54:
                         func_8001ECD0(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                      dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], sScaleX, sScaleY,
-                                      sScaleZ, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
-                        sScaleX *= dobj->scale.v.x;
-                        sScaleY *= dobj->scale.v.y;
-                        sScaleZ *= dobj->scale.v.z;
+                                      dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], renScaleX, renScaleY,
+                                      renScaleZ, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
+                        renScaleX *= dobj->scale.v.x;
+                        renScaleY *= dobj->scale.v.y;
+                        renScaleZ *= dobj->scale.v.z;
                         break;
                     default:
-                        if (ommtx->kind >= MTX_TYPE_66 && sCustomMatrixHandler != NULL) {
+                        if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
                             func = dobj->obj->lastDrawFrame != (u8)gtlDrawnFrameCounter
-                                       ? sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00
-                                       : sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04;
+                                       ? renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00
+                                       : renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04;
                             sp2B8 = func(mtx, dobj, &sp2DC);
                         }
                         if (sp2B8 == 1) {
@@ -879,7 +853,7 @@ s32 func_80011890(Gfx** gfxPtr, DObj* dobj) {
     return sp2D4;
 }
 
-s32 func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
+s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
     Gfx* gfxPos = *gfxPtr;
     s32 i;
     s32 mtxCount = 0;
@@ -894,7 +868,7 @@ s32 func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                 continue;
             }
 
-            unk = &ommtx->unk08;
+            unk = (Mtx**)&ommtx->unk08;
             mtx = &ommtx->unk08;
 
             if (ommtx->unk05 != 2) {
@@ -919,8 +893,8 @@ s32 func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                         gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                     }
                 }
-                hal_scale(mtx, sScaleX, sScaleY, sScaleZ);
-                sIsScaleMtxPushed = TRUE;
+                hal_scale(mtx, renScaleX, renScaleY, renScaleZ);
+                renIsScaleMtxPushed = TRUE;
             END:
                 if (ommtx->unk05 == 1 && &ommtx->unk08 == mtx) {
                     ommtx->unk05 = 2;
@@ -937,7 +911,7 @@ s32 func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
 }
 
 #ifdef NON_MATCHING
-void func_80013E2C(DObj* dobj, Gfx** gfxPtr) {
+void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
     s32 count;
     s32 i;
     MObj* mobj;
@@ -1139,29 +1113,29 @@ void func_80013E2C(DObj* dobj, Gfx** gfxPtr) {
     gtlCurrentGfxHeap.ptr = gfxPos;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/func_80013E2C.s")
-void func_80013E2C(DObj* dobj, Gfx** gfxPtr);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renLoadTextures.s")
+void renLoadTextures(DObj* dobj, Gfx** gfxPtr);
 #endif
 
-void func_80014C28(GObj* gobj, Gfx** gfxPtr) {
+void renRenderModelTypeACommon(GObj* gobj, Gfx** gfxPtr) {
     s32 ret;
     DObj* dobj;
 
     dobj = gobj->data.dobj;
 
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
 
-    if (dobj->unk50 != NULL) {
+    if (dobj->payload.dlist != NULL) {
         if (dobj->flags == 0) {
-            ret = func_80011890(gfxPtr, dobj);
-            func_80013E2C(dobj, gfxPtr);
-            gSPDisplayList((*gfxPtr)++, dobj->unk50);
+            ret = renPrepareModelMatrix(gfxPtr, dobj);
+            renLoadTextures(dobj, gfxPtr);
+            gSPDisplayList((*gfxPtr)++, dobj->payload.dlist);
 
-            if (sIsScaleMtxPushed) {
+            if (renIsScaleMtxPushed) {
                 gSPPopMatrix((*gfxPtr)++, G_MTX_MODELVIEW);
             }
-            sIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = FALSE;
 
             if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix((*gfxPtr)++, G_MTX_MODELVIEW);
@@ -1170,23 +1144,23 @@ void func_80014C28(GObj* gobj, Gfx** gfxPtr) {
     }
 }
 
-void func_80014D60(GObj* gobj) {
-    func_80014C28(gobj, &gMainGfxPos[0]);
+void renRenderModelTypeA(GObj* gobj) {
+    renRenderModelTypeACommon(gobj, &gMainGfxPos[0]);
 }
 
-void func_80014D84(GObj* gobj) {
-    func_80014C28(gobj, &gMainGfxPos[1]);
+void renRenderModelTypeA2(GObj* gobj) {
+    renRenderModelTypeACommon(gobj, &gMainGfxPos[1]);
 }
 
-void func_80014DA8(GObj* gobj) {
-    func_80014C28(gobj, &gMainGfxPos[2]);
+void renRenderModelTypeA3(GObj* gobj) {
+    renRenderModelTypeACommon(gobj, &gMainGfxPos[2]);
 }
 
-void func_80014DCC(GObj* gobj) {
-    func_80014C28(gobj, &gMainGfxPos[3]);
+void renRenderModelTypeA4(GObj* gobj) {
+    renRenderModelTypeACommon(gobj, &gMainGfxPos[3]);
 }
 
-void func_80014DF0(DObj* dobj) {
+void renRenderModelNodeTypeB(DObj* dobj) {
     s32 ret;
     DObj* curr;
     f32 sp2C;
@@ -1194,49 +1168,49 @@ void func_80014DF0(DObj* dobj) {
     f32 sp24;
 
     if (!(dobj->flags & 2)) {
-        sp2C = sScaleX;
-        sp28 = sScaleY;
-        sp24 = sScaleZ;
-        ret = func_80011890(&gMainGfxPos[0], dobj);
+        sp2C = renScaleX;
+        sp28 = renScaleY;
+        sp24 = renScaleZ;
+        ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
 
-        if (dobj->unk50 != NULL && !(dobj->flags & 1)) {
-            func_80013E2C(dobj, &gMainGfxPos[0]);
-            gSPDisplayList(gMainGfxPos[0]++, dobj->unk50);
+        if (dobj->payload.dlist != NULL && !(dobj->flags & 1)) {
+            renLoadTextures(dobj, &gMainGfxPos[0]);
+            gSPDisplayList(gMainGfxPos[0]++, dobj->payload.dlist);
         }
 
-        if (sIsScaleMtxPushed) {
+        if (renIsScaleMtxPushed) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
-        sIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = FALSE;
 
         if (dobj->firstChild != NULL) {
-            func_80014DF0(dobj->firstChild);
+            renRenderModelNodeTypeB(dobj->firstChild);
         }
 
         if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
-        sScaleX = sp2C;
-        sScaleY = sp28;
-        sScaleZ = sp24;
+        renScaleX = sp2C;
+        renScaleY = sp28;
+        renScaleZ = sp24;
     }
 
     if (dobj->prev == NULL) {
         curr = dobj->next;
         while (curr != NULL) {
-            func_80014DF0(curr);
+            renRenderModelNodeTypeB(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_80014F98(GObj* arg0) {
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
-    func_80014DF0(arg0->data.any); // TODO object type
+void renRenderModelTypeB(GObj* arg0) {
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
+    renRenderModelNodeTypeB(arg0->data.dobj);
 }
 
-void func_80014FF0(DObj* dobj, DObjUnk50_3* arg1) {
+void renRenderModelNodeTypeC(DObj* dobj, DObjPayloadTypeC* payload) {
     Gfx* temp;
     s32 sp30 = -1;
     Gfx* t1;
@@ -1244,56 +1218,56 @@ void func_80014FF0(DObj* dobj, DObjUnk50_3* arg1) {
     s32 ret;
     void* segaddr;
 
-    if (arg1 == NULL || dobj->flags) {
+    if (payload == NULL || dobj->flags) {
         return;
     }
 
-    t1 = gMainGfxPos[arg1->unk_00];
-    ret = func_80011890(&gMainGfxPos[arg1->unk_00], dobj);
-    t0 = gMainGfxPos[arg1->unk_00];
+    t1 = gMainGfxPos[payload->dlistID];
+    ret = renPrepareModelMatrix(&gMainGfxPos[payload->dlistID], dobj);
+    t0 = gMainGfxPos[payload->dlistID];
 
-    if (arg1->unk_04 != NULL) {
+    if (payload->dlist != NULL) {
         segaddr = gtlCurrentGfxHeap.ptr;
-        func_80013E2C(dobj, &gMainGfxPos[arg1->unk_00]);
-        gSPDisplayList(gMainGfxPos[arg1->unk_00]++, arg1->unk_04);
+        renLoadTextures(dobj, &gMainGfxPos[payload->dlistID]);
+        gSPDisplayList(gMainGfxPos[payload->dlistID]++, payload->dlist);
 
-        if (sIsScaleMtxPushed) {
-            gSPPopMatrix(gMainGfxPos[arg1->unk_00]++, G_MTX_MODELVIEW);
+        if (renIsScaleMtxPushed) {
+            gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
         }
 
         if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
-            gSPPopMatrix(gMainGfxPos[arg1->unk_00]++, G_MTX_MODELVIEW);
+            gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
         }
     } else {
-        sp30 = arg1->unk_00;
+        sp30 = payload->dlistID;
     }
 
-    arg1++;
+    payload++;
 
-    while (arg1->unk_00 != 4) {
-        if (arg1->unk_04 != NULL) {
+    while (payload->dlistID != 4) {
+        if (payload->dlist != NULL) {
             temp = t1;
             while (temp != t0) {
-                *gMainGfxPos[arg1->unk_00]++ = *temp++;
+                *gMainGfxPos[payload->dlistID]++ = *temp++;
             }
 
             if (dobj->mobjList != NULL) {
                 goto DUMMY_LABEL;
             DUMMY_LABEL:; // TODO find better match
-                gSPSegment(gMainGfxPos[arg1->unk_00]++, 0x0E, segaddr);
+                gSPSegment(gMainGfxPos[payload->dlistID]++, 0x0E, segaddr);
             }
-            gSPDisplayList(gMainGfxPos[arg1->unk_00]++, arg1->unk_04);
+            gSPDisplayList(gMainGfxPos[payload->dlistID]++, payload->dlist);
 
-            if (sIsScaleMtxPushed) {
-                gSPPopMatrix(gMainGfxPos[arg1->unk_00]++, G_MTX_MODELVIEW);
+            if (renIsScaleMtxPushed) {
+                gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
             }
-            sIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = FALSE;
 
             if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
-                gSPPopMatrix(gMainGfxPos[arg1->unk_00]++, G_MTX_MODELVIEW);
+                gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
             }
         }
-        arg1++;
+        payload++;
     }
 
     if (sp30 != -1) {
@@ -1301,119 +1275,119 @@ void func_80014FF0(DObj* dobj, DObjUnk50_3* arg1) {
     }
 }
 
-void func_800153EC(GObj* obj) {
+void renRenderModelTypeC(GObj* obj) {
     DObj* dobj;
 
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
     dobj = obj->data.dobj;
-    func_80014FF0(dobj, dobj->unk50);
+    renRenderModelNodeTypeC(dobj, dobj->payload.typeC);
 }
 
 #ifdef NON_MATCHING
-void func_80015448(void) {
+void ren_func_80015448(void) {
     s32 i;
 
-    _D_8004B03C = _D_8004B050;
+    ren_D_8004B03C = ren_D_8004B050;
 
     for (i = 0; i < 4; i++) {
-        _D_8004B040[i] = _D_8004B050;
+        ren_D_8004B040[i] = ren_D_8004B050;
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/func_80015448.s")
-void func_80015448(void);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/ren_func_80015448.s")
+void ren_func_80015448(void);
 #endif
 
-void func_80015474(DObj* dobj) {
+void renRenderModelNodeTypeD(DObj* dobj) {
     void* segaddr = NULL;
     s32 sp50;
-    DObjUnk50_3* unk_50;
+    DObjPayloadTypeC* payload;
     Gfx* sp48;
     s32 i;
     UNUSED s32 temp;
 
     if (!(dobj->flags & 2)) {
-        f32 sp3C = sScaleX;
-        f32 sp38 = sScaleY;
-        f32 sp34 = sScaleZ;
+        f32 sp3C = renScaleX;
+        f32 sp38 = renScaleY;
+        f32 sp34 = renScaleZ;
 
-        unk_50 = dobj->unk50;
-        sp48 = _D_8004B03C;
-        sp50 = func_80011890(&_D_8004B03C, dobj);
+        payload = dobj->payload.typeC;
+        sp48 = ren_D_8004B03C;
+        sp50 = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
 
-        if (unk_50 != NULL && !(dobj->flags & 1)) {
-            while (unk_50->unk_00 != 4) {
-                if (unk_50->unk_04 != 0) {
-                    while (_D_8004B040[unk_50->unk_00] != _D_8004B03C) {
-                        *gMainGfxPos[unk_50->unk_00]++ = *_D_8004B040[unk_50->unk_00]++;
+        if (payload != NULL && !(dobj->flags & 1)) {
+            while (payload->dlistID != 4) {
+                if (payload->dlist != 0) {
+                    while (ren_D_8004B040[payload->dlistID] != ren_D_8004B03C) {
+                        *gMainGfxPos[payload->dlistID]++ = *ren_D_8004B040[payload->dlistID]++;
                     }
 
                     if (dobj->mobjList != NULL) {
                         if (segaddr == NULL) {
                             segaddr = gtlCurrentGfxHeap.ptr;
-                            func_80013E2C(dobj, &gMainGfxPos[unk_50->unk_00]);
+                            renLoadTextures(dobj, &gMainGfxPos[payload->dlistID]);
                         } else {
-                            gSPSegment(gMainGfxPos[unk_50->unk_00]++, 0x0E, segaddr);
+                            gSPSegment(gMainGfxPos[payload->dlistID]++, 0x0E, segaddr);
                         }
                     }
 
-                    gSPDisplayList(gMainGfxPos[unk_50->unk_00]++, unk_50->unk_04);
+                    gSPDisplayList(gMainGfxPos[payload->dlistID]++, payload->dlist);
                 }
 
-                if (sIsScaleMtxPushed) {
-                    gSPPopMatrix(gMainGfxPos[unk_50->unk_00]++, G_MTX_MODELVIEW);
+                if (renIsScaleMtxPushed) {
+                    gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
                 }
-                unk_50++;
+                payload++;
             }
         }
 
         if (dobj->firstChild != NULL) {
-            if (sIsScaleMtxPushed) {
+            if (renIsScaleMtxPushed) {
                 for (i = 0; i < 4; i++) {
-                    if (_D_8004B040[i] == _D_8004B03C) {
-                        _D_8004B040[i]--;
+                    if (ren_D_8004B040[i] == ren_D_8004B03C) {
+                        ren_D_8004B040[i]--;
                     }
                 }
-                _D_8004B03C--;
+                ren_D_8004B03C--;
             }
-            sIsScaleMtxPushed = FALSE;
-            func_80015474(dobj->firstChild);
+            renIsScaleMtxPushed = FALSE;
+            renRenderModelNodeTypeD(dobj->firstChild);
         }
 
-        sIsScaleMtxPushed = FALSE;
-        _D_8004B03C = sp48;
+        renIsScaleMtxPushed = FALSE;
+        ren_D_8004B03C = sp48;
 
         for (i = 0; i < 4; i++) {
-            if (_D_8004B040[i] > _D_8004B03C) {
-                _D_8004B040[i] = _D_8004B03C;
+            if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                ren_D_8004B040[i] = ren_D_8004B03C;
                 if (sp50 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
             do { } while (0); }
 
-        sScaleX = sp3C;
-        sScaleY = sp38;
-        sScaleZ = sp34;
+        renScaleX = sp3C;
+        renScaleY = sp38;
+        renScaleZ = sp34;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80015474(curr);
+            renRenderModelNodeTypeD(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_80015890(GObj* arg0) {
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
-    func_80015474(arg0->data.any); // TODO objet type ?
+void renRenderModelTypeD(GObj* arg0) {
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
+    renRenderModelNodeTypeD(arg0->data.dobj);
 }
 
-f32 func_800158E8(DObj* arg) {
+f32 renSquaredDistanceToCamera(DObj* arg) {
     f32 x, y, z;
     OMCamera* cam = omCurrentCamera->data.cam;
 
@@ -1424,28 +1398,28 @@ f32 func_800158E8(DObj* arg) {
     return SQ(x) + SQ(y) + SQ(z);
 }
 
-void func_80015930(GObj* obj) {
-    DObjUnk50_4* unk_50;
+void renRenderModelTypeE(GObj* obj) {
+    DObjPayloadTypeE* payload;
     s32 ret;
     DObj* dobj;
 
     dobj = obj->data.dobj;
-    unk_50 = dobj->unk50;
+    payload = dobj->payload.typeE;
 
-    if (unk_50 != NULL && !(dobj->flags)) {
-        f32 dist = func_800158E8(dobj);
+    if (payload != NULL && !(dobj->flags)) {
+        f32 dist = renSquaredDistanceToCamera(dobj);
 
-        while (unk_50->unk_00 > dist) {
-            unk_50++;
+        while (payload->maxSqDist > dist) {
+            payload++;
         }
 
-        sScaleX = sScaleY = sScaleZ = 1.0f;
-        sIsScaleMtxPushed = FALSE;
+        renScaleX = renScaleY = renScaleZ = 1.0f;
+        renIsScaleMtxPushed = FALSE;
 
-        if (unk_50->unk_04 != NULL) {
-            ret = func_80011890(&gMainGfxPos[0], dobj);
-            func_80013E2C(dobj, &gMainGfxPos[0]);
-            gSPDisplayList(gMainGfxPos[0]++, unk_50->unk_04);
+        if (payload->dlist != NULL) {
+            ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
+            renLoadTextures(dobj, &gMainGfxPos[0]);
+            gSPDisplayList(gMainGfxPos[0]++, payload->dlist);
             if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
@@ -1453,70 +1427,70 @@ void func_80015930(GObj* obj) {
     }
 }
 
-void func_80015A84(DObj* dobj) {
+void renRenderModelNodeTypeF(DObj* dobj) {
     s32 ret;
-    Gfx** unk_50 = dobj->unk50;
+    Gfx** payload = dobj->payload.typeF;
     UNUSED s32 temp;
 
     if (!(dobj->flags & 2)) {
-        f32 sp20 = sScaleX;
+        f32 sp20 = renScaleX;
 
-        ret = func_80011890(&gMainGfxPos[0], dobj);
-        if (unk_50 != NULL && unk_50[sLevelOfDetail] != NULL && !(dobj->flags & 1)) {
-            func_80013E2C(dobj, &gMainGfxPos[0]);
-            gSPDisplayList(gMainGfxPos[0]++, unk_50[sLevelOfDetail]);
+        ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
+        if (payload != NULL && payload[renLevelOfDetail] != NULL && !(dobj->flags & 1)) {
+            renLoadTextures(dobj, &gMainGfxPos[0]);
+            gSPDisplayList(gMainGfxPos[0]++, payload[renLevelOfDetail]);
         }
 
         if (dobj->firstChild != NULL) {
-            func_80015A84(dobj->firstChild);
+            renRenderModelNodeTypeF(dobj->firstChild);
         }
 
         if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
-        sScaleX = sp20;
+        renScaleX = sp20;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80015A84(curr);
+            renRenderModelNodeTypeF(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_80015BFC(GObj* obj) {
-    DObjUnk50_4* unk_50;
+void renRenderModelTypeF(GObj* obj) {
+    DObjPayloadTypeE* payload;
     s32 ret;
     UNUSED s32 temp;
     DObj* dobj = obj->data.dobj;
 
     if (1) {} // required to match
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
 
     if (!(dobj->flags & 2)) {
-        unk_50 = dobj->unk50;
-        if (unk_50 != NULL) {
-            f32 dist;
+        payload = dobj->payload.typeE;
+        if (payload != NULL) {
+            f32 dist2;
 
-            sLevelOfDetail = 0;
-            dist = func_800158E8(dobj);
-            while (unk_50->unk_00 > dist) {
-                unk_50++;
-                sLevelOfDetail++;
+            renLevelOfDetail = 0;
+            dist2 = renSquaredDistanceToCamera(dobj);
+            while (payload->maxSqDist > dist2) {
+                payload++;
+                renLevelOfDetail++;
             }
 
-            ret = func_80011890(&gMainGfxPos[0], dobj);
-            if (unk_50->unk_04 != NULL && !(dobj->flags & 1)) {
-                func_80013E2C(dobj, &gMainGfxPos[0]);
-                gSPDisplayList(gMainGfxPos[0]++, unk_50->unk_04);
+            ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
+            if (payload->dlist != NULL && !(dobj->flags & 1)) {
+                renLoadTextures(dobj, &gMainGfxPos[0]);
+                gSPDisplayList(gMainGfxPos[0]++, payload->dlist);
             }
 
             if (dobj->firstChild != NULL) {
-                func_80015A84(dobj->firstChild);
+                renRenderModelNodeTypeF(dobj->firstChild);
             }
 
             if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
@@ -1526,7 +1500,7 @@ void func_80015BFC(GObj* obj) {
             if (dobj->prev == NULL) {
                 DObj* curr = dobj->next;
                 while (curr != NULL) {
-                    func_80015A84(curr);
+                    renRenderModelNodeTypeF(curr);
                     curr = curr->next;
                 }
             }
@@ -1534,79 +1508,79 @@ void func_80015BFC(GObj* obj) {
     }
 }
 
-void func_80015DD8(GObj* obj) {
-    DObjUnk50_5* unk_50;
+void renRenderModelTypeG(GObj* obj) {
+    DObjPayloadTypeG* payload;
     UNUSED s32 temp;
     DObj* dobj = obj->data.dobj;
 
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
 
     if (!(dobj->flags)) {
-        unk_50 = dobj->unk50;
-        if (unk_50 != NULL) {
+        payload = dobj->payload.any;
+        if (payload != NULL) {
             f32 dist;
 
-            dist = func_800158E8(dobj);
-            while (unk_50->unk_00 > dist) {
-                unk_50++;
+            dist = renSquaredDistanceToCamera(dobj);
+            while (payload->maxSqDist > dist) {
+                payload++;
             }
 
-            func_80014FF0(dobj, unk_50->unk_04);
+            renRenderModelNodeTypeC(dobj, payload->payloadTypeC);
         }
     }
 }
 
-void func_80015E98(DObj* dobj) {
+void renRenderModelNodeTypeH(DObj* dobj) {
     void* segaddr = NULL;
     s32 ret;
-    DObjUnk50_3** unk_50;
-    DObjUnk50_3* sp40;
+    DObjPayloadTypeC** payload;
+    DObjPayloadTypeC* curPayload;
     Gfx* sp3C;
     s32 i;
     UNUSED s32 temp;
 
     if (!(dobj->flags & 2)) {
-        f32 sp30 = sScaleX;
-        unk_50 = dobj->unk50;
-        if (unk_50 != NULL) {
-            sp40 = unk_50[sLevelOfDetail];
+        f32 sp30 = renScaleX;
+        payload = dobj->payload.typeH;
+        if (payload != NULL) {
+            curPayload = payload[renLevelOfDetail];
         }
 
-        sp3C = _D_8004B03C;
-        ret = func_80011890(&_D_8004B03C, dobj);
+        sp3C = ren_D_8004B03C;
+        ret = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
 
-        if (unk_50 != NULL && sp40 != NULL && !(dobj->flags & 1)) {
-            while (sp40->unk_00 != 4) {
-                if (sp40->unk_04 != NULL) {
-                    while (_D_8004B040[sp40->unk_00] != _D_8004B03C) {
-                        *gMainGfxPos[sp40->unk_00]++ = *_D_8004B040[sp40->unk_00]++;
+        if (payload != NULL && curPayload != NULL && !(dobj->flags & 1)) {
+            while (curPayload->dlistID != 4) {
+                if (curPayload->dlist != NULL) {
+                    while (ren_D_8004B040[curPayload->dlistID] != ren_D_8004B03C) {
+                        *gMainGfxPos[curPayload->dlistID]++ = *ren_D_8004B040[curPayload->dlistID]++;
                     }
 
                     if (dobj->mobjList != NULL) {
                         if (segaddr == NULL) {
                             segaddr = gtlCurrentGfxHeap.ptr;
-                            func_80013E2C(dobj, &gMainGfxPos[sp40->unk_00]);
+                            renLoadTextures(dobj, &gMainGfxPos[curPayload->dlistID]);
                         } else {
-                            gSPSegment(gMainGfxPos[sp40->unk_00]++, 0x0E, segaddr);
+                            gSPSegment(gMainGfxPos[curPayload->dlistID]++, 0x0E, segaddr);
                         }
                     }
 
-                    gSPDisplayList(gMainGfxPos[sp40->unk_00]++, sp40->unk_04);
+                    gSPDisplayList(gMainGfxPos[curPayload->dlistID]++, curPayload->dlist);
                 }
 
-                sp40++;
+                curPayload++;
             }
         }
 
         if (dobj->firstChild != NULL) {
-            func_80015E98(dobj->firstChild);
+            renRenderModelNodeTypeH(dobj->firstChild);
         }
 
-        _D_8004B03C = sp3C;
+        ren_D_8004B03C = sp3C;
         for (i = 0; i < 4; i++) {
-            if (_D_8004B040[i] > _D_8004B03C) {
-                _D_8004B040[i] = _D_8004B03C;
+            if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                ren_D_8004B040[i] = ren_D_8004B03C;
                 if (dobj) {}
                 if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
@@ -1614,64 +1588,64 @@ void func_80015E98(DObj* dobj) {
             }
         }
 
-        sScaleX = sp30;
+        renScaleX = sp30;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80015E98(curr);
+            renRenderModelNodeTypeH(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_800161C4(GObj* obj) {
+void renRenderModelTypeH(GObj* obj) {
     UNUSED s32 temp[2];
     s32 ret;
-    DObjUnk50_5* unk_50;
+    DObjPayloadTypeG* payload;
     DObj* dobj = obj->data.dobj;
     void* segaddr = NULL;
-    DObjUnk50_3* sp34;
+    DObjPayloadTypeC* sp34;
     Gfx* sp30;
     s32 i;
 
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
 
     if (!(dobj->flags & 2)) {
-        unk_50 = dobj->unk50;
-        if (unk_50 != NULL) {
+        payload = dobj->payload.typeG;
+        if (payload != NULL) {
             f32 dist;
 
-            sLevelOfDetail = 0;
-            dist = func_800158E8(dobj);
-            while (unk_50->unk_00 > dist) {
-                unk_50++;
-                sLevelOfDetail++;
+            renLevelOfDetail = 0;
+            dist = renSquaredDistanceToCamera(dobj);
+            while (payload->maxSqDist > dist) {
+                payload++;
+                renLevelOfDetail++;
             }
 
-            sp34 = unk_50->unk_04;
-            sp30 = _D_8004B03C;
-            ret = func_80011890(&_D_8004B03C, dobj);
+            sp34 = payload->payloadTypeC;
+            sp30 = ren_D_8004B03C;
+            ret = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
 
             if (sp34 != NULL && !(dobj->flags & 1)) {
-                while (sp34->unk_00 != 4) {
-                    if (sp34->unk_04 != NULL) {
-                        while (_D_8004B040[sp34->unk_00] != _D_8004B03C) {
-                            *gMainGfxPos[sp34->unk_00]++ = *_D_8004B040[sp34->unk_00]++;
+                while (sp34->dlistID != 4) {
+                    if (sp34->dlist != NULL) {
+                        while (ren_D_8004B040[sp34->dlistID] != ren_D_8004B03C) {
+                            *gMainGfxPos[sp34->dlistID]++ = *ren_D_8004B040[sp34->dlistID]++;
                         }
 
                         if (dobj->mobjList != NULL) {
                             if (segaddr == NULL) {
                                 segaddr = gtlCurrentGfxHeap.ptr;
-                                func_80013E2C(dobj, &gMainGfxPos[sp34->unk_00]);
+                                renLoadTextures(dobj, &gMainGfxPos[sp34->dlistID]);
                             } else {
-                                gSPSegment(gMainGfxPos[sp34->unk_00]++, 0x0E, segaddr);
+                                gSPSegment(gMainGfxPos[sp34->dlistID]++, 0x0E, segaddr);
                             }
                         }
 
-                        gSPDisplayList(gMainGfxPos[sp34->unk_00]++, sp34->unk_04);
+                        gSPDisplayList(gMainGfxPos[sp34->dlistID]++, sp34->dlist);
                     }
 
                     sp34++;
@@ -1679,13 +1653,13 @@ void func_800161C4(GObj* obj) {
             }
 
             if (dobj->firstChild != NULL) {
-                func_80015E98(dobj->firstChild);
+                renRenderModelNodeTypeH(dobj->firstChild);
             }
 
-            _D_8004B03C = sp30;
+            ren_D_8004B03C = sp30;
             for (i = 0; i < 4; i++) {
-                if (_D_8004B040[i] > _D_8004B03C) {
-                    _D_8004B040[i] = _D_8004B03C;
+                if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                    ren_D_8004B040[i] = ren_D_8004B03C;
                     if (dobj) {}
                     if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                         gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
@@ -1696,7 +1670,7 @@ void func_800161C4(GObj* obj) {
             if (dobj->prev == NULL) {
                 DObj* curr = dobj->next;
                 while (curr != NULL) {
-                    func_80015E98(curr);
+                    renRenderModelNodeTypeH(curr);
                     curr = curr->next;
                 }
             }
@@ -1704,238 +1678,238 @@ void func_800161C4(GObj* obj) {
     }
 }
 
-void func_80016548(DObj* dobj) {
+void renRenderModelNodeTypeI(DObj* dobj) {
     s32 ret;
     UNUSED s32 temp;
     f32 sp2C, sp28, sp24;
-    DObjUnk50_1* unk_50;
+    DObjPayloadTypeI* payload;
 
-    unk_50 = dobj->unk50;
+    payload = dobj->payload.typeI;
 
     if (!(dobj->flags & 2)) {
-        sp2C = sScaleX;
-        sp28 = sScaleY;
-        sp24 = sScaleZ;
+        sp2C = renScaleX;
+        sp28 = renScaleY;
+        sp24 = renScaleZ;
 
-        if (unk_50 != NULL && unk_50->unk_00 != NULL && !(dobj->flags & 1)) {
-            func_80013C5C(&gMainGfxPos[0], dobj->parent);
-            gSPDisplayList(gMainGfxPos[0]++, unk_50->unk_00);
-            if (sIsScaleMtxPushed) {
+        if (payload != NULL && payload->unk_00 != NULL && !(dobj->flags & 1)) {
+            ren_func_80013C5C(&gMainGfxPos[0], dobj->parent);
+            gSPDisplayList(gMainGfxPos[0]++, payload->unk_00);
+            if (renIsScaleMtxPushed) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
-            sIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = FALSE;
         }
 
-        ret = func_80011890(&gMainGfxPos[0], dobj);
+        ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
 
-        if (unk_50 != NULL && unk_50->unk_04 != NULL && !(dobj->flags & 1)) {
-            func_80013E2C(dobj, &gMainGfxPos[0]);
-            gSPDisplayList(gMainGfxPos[0]++, unk_50->unk_04);
+        if (payload != NULL && payload->unk_04 != NULL && !(dobj->flags & 1)) {
+            renLoadTextures(dobj, &gMainGfxPos[0]);
+            gSPDisplayList(gMainGfxPos[0]++, payload->unk_04);
         }
-        if (sIsScaleMtxPushed) {
+        if (renIsScaleMtxPushed) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
-        sIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = FALSE;
 
         if (dobj->firstChild != NULL) {
-            func_80016548(dobj->firstChild);
+            renRenderModelNodeTypeI(dobj->firstChild);
         }
 
         if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
-        sScaleX = sp2C;
-        sScaleY = sp28;
-        sScaleZ = sp24;
+        renScaleX = sp2C;
+        renScaleY = sp28;
+        renScaleZ = sp24;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80016548(curr);
+            renRenderModelNodeTypeI(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_8001679C(GObj* arg0) {
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
-    func_80016548(arg0->data.any); // TODO object type ?
+void renRenderModelTypeI(GObj* arg0) {
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
+    renRenderModelNodeTypeI(arg0->data.dobj);
 }
 
-void func_800167F4(DObj* dobj) {
+void renRenderModelNodeTypeJ(DObj* dobj) {
     void* segaddr = NULL;
     s32 sp60;
     s32 i;
     Gfx* sp58;
-    DObjUnk50_2* unk_50;
+    DObjPayloadTypeJ* payload;
     UNUSED s32 temp;
 
     if (!(dobj->flags & 2)) {
-        f32 sp4C = sScaleX;
-        f32 sp48 = sScaleY;
-        f32 sp44 = sScaleZ;
+        f32 sp4C = renScaleX;
+        f32 sp48 = renScaleY;
+        f32 sp44 = renScaleZ;
         s32 sp40;
 
-        unk_50 = dobj->unk50;
-        sp58 = _D_8004B03C;
-        sp60 = func_80011890(&_D_8004B03C, dobj);
-        sp40 = sIsScaleMtxPushed;
-        sIsScaleMtxPushed = FALSE;
+        payload = dobj->payload.typeJ;
+        sp58 = ren_D_8004B03C;
+        sp60 = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
+        sp40 = renIsScaleMtxPushed;
+        renIsScaleMtxPushed = FALSE;
 
-        if (unk_50 != NULL && !(dobj->flags & 1)) {
-            while (unk_50->unk_00 != 4) {
-                if (unk_50->unk_08 != 0) {
-                    if (unk_50->unk_04 != 0) {
-                        func_80013C5C(&gMainGfxPos[unk_50->unk_00], dobj->parent);
-                        gSPDisplayList(gMainGfxPos[unk_50->unk_00]++, unk_50->unk_04);
-                        if (sIsScaleMtxPushed) {
-                            gSPPopMatrix(gMainGfxPos[unk_50->unk_00]++, G_MTX_MODELVIEW);
+        if (payload != NULL && !(dobj->flags & 1)) {
+            while (payload->dlistID != 4) {
+                if (payload->unk_08 != 0) {
+                    if (payload->unk_04 != 0) {
+                        ren_func_80013C5C(&gMainGfxPos[payload->dlistID], dobj->parent);
+                        gSPDisplayList(gMainGfxPos[payload->dlistID]++, payload->unk_04);
+                        if (renIsScaleMtxPushed) {
+                            gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
                         }
-                        sIsScaleMtxPushed = FALSE;
+                        renIsScaleMtxPushed = FALSE;
                     }
 
-                    while (_D_8004B040[unk_50->unk_00] != _D_8004B03C) {
-                        *gMainGfxPos[unk_50->unk_00]++ = *_D_8004B040[unk_50->unk_00]++;
+                    while (ren_D_8004B040[payload->dlistID] != ren_D_8004B03C) {
+                        *gMainGfxPos[payload->dlistID]++ = *ren_D_8004B040[payload->dlistID]++;
                     }
 
                     if (dobj->mobjList != NULL) {
                         if (segaddr == NULL) {
                             segaddr = gtlCurrentGfxHeap.ptr;
-                            func_80013E2C(dobj, &gMainGfxPos[unk_50->unk_00]);
+                            renLoadTextures(dobj, &gMainGfxPos[payload->dlistID]);
                         } else {
-                            gSPSegment(gMainGfxPos[unk_50->unk_00]++, 0x0E, segaddr);
+                            gSPSegment(gMainGfxPos[payload->dlistID]++, 0x0E, segaddr);
                         }
                     }
 
-                    gSPDisplayList(gMainGfxPos[unk_50->unk_00]++, unk_50->unk_08);
+                    gSPDisplayList(gMainGfxPos[payload->dlistID]++, payload->unk_08);
 
                     if (sp40) {
-                        gSPPopMatrix(gMainGfxPos[unk_50->unk_00]++, G_MTX_MODELVIEW);
+                        gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
                     }
                 }
-                unk_50++;
+                payload++;
             }
         }
 
         if (dobj->firstChild != NULL) {
             if (sp40) {
                 for (i = 0; i < 4; i++) {
-                    if (_D_8004B040[i] == _D_8004B03C) {
-                        _D_8004B040[i]--;
+                    if (ren_D_8004B040[i] == ren_D_8004B03C) {
+                        ren_D_8004B040[i]--;
                     }
                 }
-                _D_8004B03C--;
+                ren_D_8004B03C--;
             }
-            func_800167F4(dobj->firstChild);
+            renRenderModelNodeTypeJ(dobj->firstChild);
         }
 
-        _D_8004B03C = sp58;
+        ren_D_8004B03C = sp58;
 
         for (i = 0; i < 4; i++) {
-            if (_D_8004B040[i] > _D_8004B03C) {
-                _D_8004B040[i] = _D_8004B03C;
+            if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                ren_D_8004B040[i] = ren_D_8004B03C;
                 if (sp60 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
         }
 
-        sScaleX = sp4C;
-        sScaleY = sp48;
-        sScaleZ = sp44;
+        renScaleX = sp4C;
+        renScaleY = sp48;
+        renScaleZ = sp44;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_800167F4(curr);
+            renRenderModelNodeTypeJ(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_80016C88(GObj* arg0) {
-    sScaleX = sScaleY = sScaleZ = 1.0f;
-    sIsScaleMtxPushed = FALSE;
-    func_800167F4(arg0->data.any); // TODO object type ?
+void renRenderModelTypeJ(GObj* arg0) {
+    renScaleX = renScaleY = renScaleZ = 1.0f;
+    renIsScaleMtxPushed = FALSE;
+    renRenderModelNodeTypeJ(arg0->data.dobj);
 }
 
-void func_80016CE0(DObj* dobj) {
+void renRenderModelNodeTypeK(DObj* dobj) {
     s32 ret;
-    DObjUnk50_1** unk50 = dobj->unk50;
+    DObjPayloadTypeI** payload = dobj->payload.typeK;
 
     if (!(dobj->flags & 2)) {
-        f32 sp24 = sScaleX;
-        DObjUnk50_1* sp20;
+        f32 sp24 = renScaleX;
+        DObjPayloadTypeI* curPayload;
 
-        if (unk50 != NULL) {
-            sp20 = unk50[sLevelOfDetail];
+        if (payload != NULL) {
+            curPayload = payload[renLevelOfDetail];
         }
 
-        if (unk50 != NULL && sp20->unk_00 != NULL && !(dobj->flags & 1)) {
-            gSPDisplayList(gMainGfxPos[0]++, sp20->unk_00);
+        if (payload != NULL && curPayload->unk_00 != NULL && !(dobj->flags & 1)) {
+            gSPDisplayList(gMainGfxPos[0]++, curPayload->unk_00);
         }
 
-        ret = func_80011890(&gMainGfxPos[0], dobj);
+        ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
 
-        if (unk50 != NULL && sp20->unk_04 != NULL && !(dobj->flags & 1)) {
-            func_80013E2C(dobj, &gMainGfxPos[0]);
-            gSPDisplayList(gMainGfxPos[0]++, sp20->unk_04);
+        if (payload != NULL && curPayload->unk_04 != NULL && !(dobj->flags & 1)) {
+            renLoadTextures(dobj, &gMainGfxPos[0]);
+            gSPDisplayList(gMainGfxPos[0]++, curPayload->unk_04);
         }
 
         if (dobj->firstChild != NULL) {
-            func_80016CE0(dobj->firstChild);
+            renRenderModelNodeTypeK(dobj->firstChild);
         }
 
         if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
-        sScaleX = sp24;
+        renScaleX = sp24;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80016CE0(curr);
+            renRenderModelNodeTypeK(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_80016EA8(GObj* obj) {
-    DObjUnk50_4* unk50;
+void renRenderModelTypeK(GObj* obj) {
+    DObjPayloadTypeE* payload;
     s32 ret;
     f32 dist;
     DObj* dobj = obj->data.dobj;
 
     if (!(dobj->flags & 2)) {
-        unk50 = dobj->unk50;
-        if (unk50 != NULL) {
-            sScaleX = sScaleY = sScaleZ = 1.0f;
-            sIsScaleMtxPushed = FALSE;
-            sLevelOfDetail = 0;
+        payload = dobj->payload.typeE;
+        if (payload != NULL) {
+            renScaleX = renScaleY = renScaleZ = 1.0f;
+            renIsScaleMtxPushed = FALSE;
+            renLevelOfDetail = 0;
 
-            dist = func_800158E8(dobj);
-            while (unk50->unk_00 > dist) {
-                unk50++;
-                sLevelOfDetail++;
+            dist = renSquaredDistanceToCamera(dobj);
+            while (payload->maxSqDist > dist) {
+                payload++;
+                renLevelOfDetail++;
             }
 
-            ret = func_80011890(&gMainGfxPos[0], dobj);
+            ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
 
-            if (unk50->unk_04 != NULL && !(dobj->flags & 1)) {
-                func_80013E2C(dobj, &gMainGfxPos[0]);
+            if (payload->dlist != NULL && !(dobj->flags & 1)) {
+                renLoadTextures(dobj, &gMainGfxPos[0]);
                 if (TRUE) { // required to match
-                    gSPDisplayList(gMainGfxPos[0]++, unk50->unk_04);
+                    gSPDisplayList(gMainGfxPos[0]++, payload->dlist);
                 }
             }
 
             if (dobj->firstChild != NULL) {
-                func_80016CE0(dobj->firstChild);
+                renRenderModelNodeTypeK(dobj->firstChild);
             }
 
             if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
@@ -1945,7 +1919,7 @@ void func_80016EA8(GObj* obj) {
             if (dobj->prev == NULL) {
                 DObj* curr = dobj->next;
                 while (curr != NULL) {
-                    func_80016CE0(curr);
+                    renRenderModelNodeTypeK(curr);
                     curr = curr->next;
                 }
             }
@@ -1953,141 +1927,141 @@ void func_80016EA8(GObj* obj) {
     }
 }
 
-void func_80017084(DObj* dobj) {
+void renRenderModelNodeTypeL(DObj* dobj) {
     s32 i;
     s32 ret;
-    s32 segaddr;
-    DObjUnk50_2* sp40;
+    u8* segaddr;
+    DObjPayloadTypeJ* curPayload;
     Gfx* sp3C;
-    DObjUnk50_2** unk50;
+    DObjPayloadTypeJ** payload;
     UNUSED s32 temp;
     f32 sp30;
 
     segaddr = NULL;
 
     if (!(dobj->flags & 2)) {
-        sp30 = sScaleX;
+        sp30 = renScaleX;
 
-        unk50 = dobj->unk50;
-        if (unk50 != NULL) {
-            sp40 = unk50[sLevelOfDetail];
+        payload = dobj->payload.typeL;
+        if (payload != NULL) {
+            curPayload = payload[renLevelOfDetail];
         }
 
-        sp3C = _D_8004B03C;
-        ret = func_80011890(&_D_8004B03C, dobj);
+        sp3C = ren_D_8004B03C;
+        ret = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
 
-        if (unk50 != NULL && sp40 != NULL && !(dobj->flags & 1)) {
-            while (sp40->unk_00 != 4) {
-                if (sp40->unk_08 != NULL) {
-                    if (sp40->unk_04 != NULL) {
-                        gSPDisplayList(gMainGfxPos[sp40->unk_00]++, sp40->unk_04);
+        if (payload != NULL && curPayload != NULL && !(dobj->flags & 1)) {
+            while (curPayload->dlistID != 4) {
+                if (curPayload->unk_08 != NULL) {
+                    if (curPayload->unk_04 != NULL) {
+                        gSPDisplayList(gMainGfxPos[curPayload->dlistID]++, curPayload->unk_04);
                     }
 
-                    while (_D_8004B040[sp40->unk_00] != _D_8004B03C) {
-                        *gMainGfxPos[sp40->unk_00]++ = *_D_8004B040[sp40->unk_00]++;
+                    while (ren_D_8004B040[curPayload->dlistID] != ren_D_8004B03C) {
+                        *gMainGfxPos[curPayload->dlistID]++ = *ren_D_8004B040[curPayload->dlistID]++;
                     }
 
                     if (dobj->mobjList != NULL) {
                         if (segaddr == NULL) {
                             segaddr = gtlCurrentGfxHeap.ptr;
-                            func_80013E2C(dobj, &gMainGfxPos[sp40->unk_00]);
+                            renLoadTextures(dobj, &gMainGfxPos[curPayload->dlistID]);
                         } else {
-                            gSPSegment(gMainGfxPos[sp40->unk_00]++, 0x0E, segaddr);
+                            gSPSegment(gMainGfxPos[curPayload->dlistID]++, 0x0E, segaddr);
                         }
                     }
 
-                    gSPDisplayList(gMainGfxPos[sp40->unk_00]++, sp40->unk_08);
+                    gSPDisplayList(gMainGfxPos[curPayload->dlistID]++, curPayload->unk_08);
                 }
-                sp40++;
+                curPayload++;
             }
         }
 
         if (dobj->firstChild != NULL) {
-            func_80017084(dobj->firstChild);
+            renRenderModelNodeTypeL(dobj->firstChild);
         }
 
-        _D_8004B03C = sp3C;
+        ren_D_8004B03C = sp3C;
         for (i = 0; i < 4; i++) {
-            if (_D_8004B040[i] > _D_8004B03C) {
-                _D_8004B040[i] = _D_8004B03C;
+            if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                ren_D_8004B040[i] = ren_D_8004B03C;
                 if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
         }
 
-        sScaleX = sp30;
+        renScaleX = sp30;
     }
 
     if (dobj->prev == NULL) {
         DObj* curr = dobj->next;
         while (curr != NULL) {
-            func_80017084(curr);
+            renRenderModelNodeTypeL(curr);
             curr = curr->next;
         }
     }
 }
 
-void func_800173E4(GObj* obj) {
+void renRenderModelTypeL(GObj* obj) {
     DObj* dobj;
-    s32 segaddr;
+    u8* segaddr;
     s32 ret;
-    DObjUnk50_5* unk50;
+    DObjPayloadTypeG* payload;
     f32 dist;
     s32 i;
-    DObjUnk50_3* sp34;
-    s32 sp30;
+    DObjPayloadTypeC* subPayload;
+    Gfx* sp30;
 
     dobj = obj->data.dobj;
     segaddr = 0;
 
     if (!(dobj->flags & 2)) {
-        unk50 = dobj->unk50;
-        if (unk50 != NULL) {
-            sScaleX = sScaleY = sScaleZ = 1.0f;
-            sIsScaleMtxPushed = FALSE;
-            sLevelOfDetail = 0;
+        payload = dobj->payload.typeG;
+        if (payload != NULL) {
+            renScaleX = renScaleY = renScaleZ = 1.0f;
+            renIsScaleMtxPushed = FALSE;
+            renLevelOfDetail = 0;
 
-            dist = func_800158E8(dobj);
-            while (unk50->unk_00 > dist) {
-                unk50++;
-                sLevelOfDetail++;
+            dist = renSquaredDistanceToCamera(dobj);
+            while (payload->maxSqDist > dist) {
+                payload++;
+                renLevelOfDetail++;
             }
 
-            sp34 = unk50->unk_04;
-            sp30 = _D_8004B03C;
-            ret = func_80011890(&_D_8004B03C, dobj);
+            subPayload = payload->payloadTypeC;
+            sp30 = ren_D_8004B03C;
+            ret = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
 
-            if (sp34 != NULL && !(dobj->flags & 1)) {
-                while (sp34->unk_00 != 4) {
-                    if (sp34->unk_04 != NULL) {
-                        while (_D_8004B040[sp34->unk_00] != _D_8004B03C) {
-                            *gMainGfxPos[sp34->unk_00]++ = *_D_8004B040[sp34->unk_00]++;
+            if (subPayload != NULL && !(dobj->flags & 1)) {
+                while (subPayload->dlistID != 4) {
+                    if (subPayload->dlist != NULL) {
+                        while (ren_D_8004B040[subPayload->dlistID] != ren_D_8004B03C) {
+                            *gMainGfxPos[subPayload->dlistID]++ = *ren_D_8004B040[subPayload->dlistID]++;
                         }
 
                         if (dobj->mobjList != NULL) {
                             if (segaddr == NULL) {
                                 segaddr = gtlCurrentGfxHeap.ptr;
-                                func_80013E2C(dobj, &gMainGfxPos[sp34->unk_00]);
+                                renLoadTextures(dobj, &gMainGfxPos[subPayload->dlistID]);
                             } else {
-                                gSPSegment(gMainGfxPos[sp34->unk_00]++, 0x0E, segaddr);
+                                gSPSegment(gMainGfxPos[subPayload->dlistID]++, 0x0E, segaddr);
                             }
                         }
 
-                        gSPDisplayList(gMainGfxPos[sp34->unk_00]++, sp34->unk_04);
+                        gSPDisplayList(gMainGfxPos[subPayload->dlistID]++, subPayload->dlist);
                     }
-                    sp34++;
+                    subPayload++;
                 }
             }
 
             if (dobj->firstChild != NULL) {
-                func_80017084(dobj->firstChild);
+                renRenderModelNodeTypeL(dobj->firstChild);
             }
 
-            _D_8004B03C = sp30;
+            ren_D_8004B03C = sp30;
             for (i = 0; i < 4; i++) {
-                if (_D_8004B040[i] > _D_8004B03C) {
-                    _D_8004B040[i] = _D_8004B03C;
+                if (ren_D_8004B040[i] > ren_D_8004B03C) {
+                    ren_D_8004B040[i] = ren_D_8004B03C;
                     if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
                         gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                     }
@@ -2098,7 +2072,7 @@ void func_800173E4(GObj* obj) {
             if (dobj->prev == NULL) {
                 DObj* curr = dobj->next;
                 while (curr != NULL) {
-                    func_80017084(curr);
+                    renRenderModelNodeTypeL(curr);
                     curr = curr->next;
                 }
             }
@@ -2106,7 +2080,7 @@ void func_800173E4(GObj* obj) {
     }
 }
 
-void draw_sprite(GObj* arg0) {
+void renDrawSprite(GObj* arg0) {
     SObj* sobj = arg0->data.sobj;
     while (sobj != NULL) {
         if (!(sobj->sprite.attr & SP_HIDDEN)) {
@@ -2119,7 +2093,7 @@ void draw_sprite(GObj* arg0) {
 }
 
 #ifdef NON_MATCHING
-void func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
+void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
 
@@ -2135,17 +2109,17 @@ void func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     xmax = cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4;
     ymax = cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4;
 
-    if (xmin < viScreenWidth / SCREEN_WIDTH * D_80040F38) {
-        xmin = viScreenWidth / SCREEN_WIDTH * D_80040F38;
+    if (xmin < viScreenWidth / SCREEN_WIDTH * renCameraScisLeft) {
+        xmin = viScreenWidth / SCREEN_WIDTH * renCameraScisLeft;
     }
-    if (ymin < viScreenHeight / SCREEN_HEIGHT * D_80040F30) {
-        ymin = viScreenHeight / SCREEN_HEIGHT * D_80040F30;
+    if (ymin < viScreenHeight / SCREEN_HEIGHT * renCameraScisTop) {
+        ymin = viScreenHeight / SCREEN_HEIGHT * renCameraScisTop;
     }
-    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C) {
-        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C;
+    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight) {
+        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight;
     }
-    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34) {
-        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34;
+    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom) {
+        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom;
     }
 
     gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, xmin, ymin, xmax, ymax);
@@ -2162,12 +2136,12 @@ void func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     *gfxPtr = gfxPos;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/func_800177D8.s")
-void func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/ren_func_800177D8.s")
+void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode);
 #endif
 
 #ifdef NON_MATCHING
-void camera_init(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
+void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
 
@@ -2183,17 +2157,17 @@ void camera_init(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     xmax = cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4;
     ymax = cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4;
 
-    if (xmin < viScreenWidth / SCREEN_WIDTH * D_80040F38) {
-        xmin = viScreenWidth / SCREEN_WIDTH * D_80040F38;
+    if (xmin < viScreenWidth / SCREEN_WIDTH * renCameraScisLeft) {
+        xmin = viScreenWidth / SCREEN_WIDTH * renCameraScisLeft;
     }
-    if (ymin < viScreenHeight / SCREEN_HEIGHT * D_80040F30) {
-        ymin = viScreenHeight / SCREEN_HEIGHT * D_80040F30;
+    if (ymin < viScreenHeight / SCREEN_HEIGHT * renCameraScisTop) {
+        ymin = viScreenHeight / SCREEN_HEIGHT * renCameraScisTop;
     }
-    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C) {
-        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C;
+    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight) {
+        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight;
     }
-    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34) {
-        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34;
+    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom) {
+        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom;
     }
 
     gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, xmin, ymin, xmax, ymax);
@@ -2216,7 +2190,7 @@ void camera_init(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     if (cam->flags & 2) {
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
-        gDPSetFillColor(gfxPos++, func_80007910(cam->unk84));
+        gDPSetFillColor(gfxPos++, viPackRGBA(cam->bgColor));
         gDPFillRectangle(gfxPos++, xmin, ymin, xmax, ymax);
     }
 
@@ -2231,12 +2205,12 @@ void camera_init(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     *gfxPtr = gfxPos;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/camera_init.s")
-void camera_init(Gfx** gfxPtr, OMCamera* cam, s32 mode);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renInitCamera.s")
+void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode);
 #endif
 
 #ifdef NON_MATCHING
-void func_80017F84(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width, s32 height, u16* zbuffer) {
+void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width, s32 height, u16* zbuffer) {
     s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
 
@@ -2281,7 +2255,7 @@ void func_80017F84(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width
     if (cam->flags & 2) {
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
-        gDPSetFillColor(gfxPos++, func_80007910(cam->unk84));
+        gDPSetFillColor(gfxPos++, viPackRGBA(cam->bgColor));
         gDPFillRectangle(gfxPos++, xmin, ymin, xmax, ymax);
     }
 
@@ -2296,11 +2270,11 @@ void func_80017F84(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width
     *gfxPtr = gfxPos;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/func_80017F84.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renInitCameraEx.s")
 #endif
 
 #ifdef NON_MATCHING
-void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
+void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
     Gfx* spDC;
     s32 i;
     s32 s3;
@@ -2339,30 +2313,30 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_2:
                         break;
                     case MTX_TYPE_PERSP_FAST:
-                        hal_perspective_fast_f(&sPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                        hal_perspective_fast_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
                                                cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
                                                cam->perspMtx.persp.near, cam->perspMtx.persp.far,
                                                cam->perspMtx.persp.scale);
-                        hal_mtx_f2l(sPerspectiveMatrixF, mtx);
-                        sProjectionMatrix = mtx;
+                        hal_mtx_f2l(renPerspectiveMatrixF, mtx);
+                        renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_PERSP:
-                        hal_perspective_f(&sPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                        hal_perspective_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
                                           cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
                                           cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
-                        hal_mtx_f2l(sPerspectiveMatrixF, mtx);
-                        sProjectionMatrix = mtx;
+                        hal_mtx_f2l(renPerspectiveMatrixF, mtx);
+                        renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_ORTHO:
                         hal_ortho(mtx, cam->perspMtx.ortho.l, cam->perspMtx.ortho.r, cam->perspMtx.ortho.b,
                                   cam->perspMtx.ortho.t, cam->perspMtx.ortho.n, cam->perspMtx.ortho.f,
                                   cam->perspMtx.ortho.scale);
-                        sProjectionMatrix = mtx;
+                        renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_LOOKAT:
                     case MTX_TYPE_LOOKAT_MVIEW:
                         hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
-                                    cam->viewMtx.lookAt.xAt, cam->viewMtx.lookAt.yAt, cam->viewMtx.lookAt.zAt,
+                                    cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
                                     cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp, cam->viewMtx.lookAt.zUp);
                         if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
                             s3 = 1;
@@ -2373,16 +2347,16 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_LOOKAT_ROLL:
                     case MTX_TYPE_LOOKAT_ROLL_MVIEW:
                         hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.xAt,
-                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
+                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
+                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
                                          cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_ROLL_Z:
                     case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
                         hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.xAt,
-                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
+                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
+                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
                                          cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
                         s3 = 2;
                         break;
@@ -2390,8 +2364,8 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y,
-                                            cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.xAt, cam->viewMtx.lookAt.yAt,
-                                            cam->viewMtx.lookAt.zAt, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp,
+                                            cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y,
+                                            cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp,
                                             cam->viewMtx.lookAt.zUp);
                         if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
                             s3 = 1;
@@ -2404,8 +2378,8 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect_roll(
                             mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
-                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
+                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
@@ -2413,14 +2387,14 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect_roll(
                             mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
-                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
+                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
                         s3 = 2;
                         break;
                     default:
-                        if (ommtx->kind >= MTX_TYPE_66 && sCustomMatrixHandler != NULL) {
-                            if (sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00 != NULL) {
-                                sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00(mtx, cam, &spDC);
+                        if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
+                            if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00 != NULL) {
+                                renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00(mtx, cam, &spDC);
                             }
                         }
                         break;
@@ -2465,9 +2439,9 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
                     gSPMatrix(spDC++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                     break;
                 default:
-                    if (ommtx->kind >= MTX_TYPE_66 && sCustomMatrixHandler != NULL) {
-                        if (sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04 != NULL) {
-                            sCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04(mtx, cam, &spDC);
+                    if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
+                        if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04 != NULL) {
+                            renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04(mtx, cam, &spDC);
                         }
                     }
                     break;
@@ -2475,7 +2449,7 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
         }
     }
 
-    switch (_D_8004B028) {
+    switch (ren_D_8004B028) {
         case 0:
             spC8 = s3;
             break;
@@ -2509,73 +2483,73 @@ void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam) {
     if (s3 != 0) {
         switch (s3) {
             case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.zAt - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.xAt - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
+                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp98 = cam->viewMtx.lookAt.eye.y;
-                sp94 = cam->viewMtx.lookAt.yAt;
+                sp94 = cam->viewMtx.lookAt.at.y;
                 break;
             case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.yAt - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.xAt - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
+                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp98 = cam->viewMtx.lookAt.eye.z;
-                sp94 = cam->viewMtx.lookAt.zAt;
+                sp94 = cam->viewMtx.lookAt.at.z;
                 break;
             default:
                 f2 = sp9C;
                 break;
         }
         if (f2 < 0.0001f) {
-            hal_scale_f(&_D_8004AFA8, 0.0f, 0.0f, 0.0f);
+            hal_scale_f(&ren_D_8004AFA8, 0.0f, 0.0f, 0.0f);
         } else {
-            hal_look_at_f(&_D_8004AFA8, 0.0f, sp98, f2, 0.0f, sp94, 0.0f, 0.0f, 1.0f, 0.0f);
-            guMtxCatF(_D_8004AFA8, sPerspectiveMatrixF, _D_8004AFA8);
+            hal_look_at_f(&ren_D_8004AFA8, 0.0f, sp98, f2, 0.0f, sp94, 0.0f, 0.0f, 1.0f, 0.0f);
+            guMtxCatF(ren_D_8004AFA8, renPerspectiveMatrixF, ren_D_8004AFA8);
         }
     }
 
     if (spC8 != 0) {
         switch (spC8) {
             case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.yAt - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.zAt - cam->viewMtx.lookAt.eye.z));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
+                           SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z));
                 sp8C = cam->viewMtx.lookAt.eye.x;
-                sp88 = cam->viewMtx.lookAt.xAt;
+                sp88 = cam->viewMtx.lookAt.at.x;
                 break;
             case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.zAt - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.xAt - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
+                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp8C = cam->viewMtx.lookAt.eye.y;
-                sp88 = cam->viewMtx.lookAt.yAt;
+                sp88 = cam->viewMtx.lookAt.at.y;
                 break;
             default:
                 f2 = sp90;
                 break;
         }
         if (f2 < 0.0001f) {
-            hal_scale_f(&_D_8004AFE8, 0.0f, 0.0f, 0.0f);
+            hal_scale_f(&ren_D_8004AFE8, 0.0f, 0.0f, 0.0f);
         } else {
-            hal_look_at_f(&_D_8004AFE8, sp8C, 0.0f, f2, sp88, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-            guMtxCatF(_D_8004AFE8, sPerspectiveMatrixF, _D_8004AFE8);
+            hal_look_at_f(&ren_D_8004AFE8, sp8C, 0.0f, f2, sp88, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+            guMtxCatF(ren_D_8004AFE8, renPerspectiveMatrixF, ren_D_8004AFE8);
         }
     }
 
     *gfxPtr = spDC;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/11E30/camera_prepare_matrix.s")
-void camera_prepare_matrix(Gfx** gfxPtr, OMCamera* cam);
+#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renPrepareCameraMatrix.s")
+void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam);
 #endif
 
-void func_80018CD0(s32 val) {
-    _D_8004B028 = val;
+void ren_func_80018CD0(s32 val) {
+    ren_D_8004B028 = val;
 }
 
-void camera_pre_render(OMCamera* cam, s32 arg1) {
+void renCameraPreRender(OMCamera* cam, s32 arg1) {
     if (cam->fnPreRender != NULL) {
         cam->fnPreRender(cam, arg1);
     }
 }
 
-void camera_render_by_link(GObj* camObj, s32 dlLink, s32 mode) {
+void renCameraRenderByLink(GObj* camObj, s32 dlLink, s32 mode) {
     GObj* curr = omGObjListDlHead[dlLink];
 
     while (curr != NULL) {
@@ -2592,7 +2566,7 @@ void camera_render_by_link(GObj* camObj, s32 dlLink, s32 mode) {
     }
 }
 
-void func_80018DE8(GObj* obj, s32 dlLink, s32 mode) {
+void ren_func_80018DE8(GObj* obj, s32 dlLink, s32 mode) {
     Gfx* savedGfxPos[4];
     s32 i;
 
@@ -2602,7 +2576,7 @@ void func_80018DE8(GObj* obj, s32 dlLink, s32 mode) {
         gMainGfxPos[i] += 2;
     }
 
-    camera_render_by_link(obj, dlLink, mode);
+    renCameraRenderByLink(obj, dlLink, mode);
 
     for (i = 0; i < 4; i++) {
         if (gMainGfxPos[i] == savedGfxPos[i] + 2) {
@@ -2621,7 +2595,7 @@ void func_80018DE8(GObj* obj, s32 dlLink, s32 mode) {
     omD_8004AC78[dlLink].unk00 = gtlDrawnFrameCounter;
 }
 
-void func_80018F1C(s32 dlLink) {
+void ren_func_80018F1C(s32 dlLink) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
@@ -2631,7 +2605,7 @@ void func_80018F1C(s32 dlLink) {
     }
 }
 
-void camera_render_objects(GObj* camObj, s32 mode) {
+void renCameraRenderObjects(GObj* camObj, s32 mode) {
     s32 dlLink = 0;
     u32 dlLinkBitMask = camObj->dlLinkBitMask;
     u32 unk_38 = camObj->unk38;
@@ -2640,12 +2614,12 @@ void camera_render_objects(GObj* camObj, s32 mode) {
         if (dlLinkBitMask & 1) {
             if (unk_38 & 1) {
                 if ((u8)gtlDrawnFrameCounter == omD_8004AC78[dlLink].unk00) {
-                    func_80018F1C(dlLink);
+                    ren_func_80018F1C(dlLink);
                 } else {
-                    func_80018DE8(camObj, dlLink, mode);
+                    ren_func_80018DE8(camObj, dlLink, mode);
                 }
             } else {
-                camera_render_by_link(camObj, dlLink, mode);
+                renCameraRenderByLink(camObj, dlLink, mode);
             }
         }
 
@@ -2655,7 +2629,7 @@ void camera_render_objects(GObj* camObj, s32 mode) {
     }
 }
 
-void camera_post_render(OMCamera* cam) {
+void renCameraPostRender(OMCamera* cam) {
     if (cam->flags & 0x04) {
         gtlCombineAllDLists();
     }
@@ -2670,92 +2644,92 @@ void camera_post_render(OMCamera* cam) {
     }
 }
 
-void func_80019158(GObj* obj, Gfx** gfx, s32 arg2) {
+void ren_func_80019158(GObj* obj, Gfx** gfx, s32 arg2) {
     OMCamera* cam = obj->data.cam;
 
-    camera_init(gfx, cam, arg2);
-    camera_prepare_matrix(gfx, cam);
-    camera_pre_render(cam, arg2);
-    camera_render_objects(obj, (cam->flags & 8) ? 1 : 0);
-    camera_post_render(cam);
+    renInitCamera(gfx, cam, arg2);
+    renPrepareCameraMatrix(gfx, cam);
+    renCameraPreRender(cam, arg2);
+    renCameraRenderObjects(obj, (cam->flags & 8) ? 1 : 0);
+    renCameraPostRender(cam);
 }
 
-void func_800191D8(GObj* obj) {
-    func_80019158(obj, &gMainGfxPos[0], 0);
+void ren_func_800191D8(GObj* obj) {
+    ren_func_80019158(obj, &gMainGfxPos[0], 0);
 }
 
-void func_80019200(GObj* obj) {
-    func_80019158(obj, &gMainGfxPos[1], 1);
+void ren_func_80019200(GObj* obj) {
+    ren_func_80019158(obj, &gMainGfxPos[1], 1);
 }
 
-void func_80019228(GObj* obj) {
-    func_80019158(obj, &gMainGfxPos[2], 2);
+void ren_func_80019228(GObj* obj) {
+    ren_func_80019158(obj, &gMainGfxPos[2], 2);
 }
 
-void func_80019250(GObj* obj) {
-    func_80019158(obj, &gMainGfxPos[3], 3);
+void ren_func_80019250(GObj* obj) {
+    ren_func_80019158(obj, &gMainGfxPos[3], 3);
 }
 
-void func_80019278(void) {
+void ren_func_80019278(void) {
     OMCamera* cam = omCurrentCamera->data.cam;
 
     gtlProcessAllDLists();
     gtlReset();
-    camera_init(&gMainGfxPos[0], cam, 0);
-    camera_prepare_matrix(&gMainGfxPos[0], cam);
-    camera_pre_render(cam, 0);
+    renInitCamera(&gMainGfxPos[0], cam, 0);
+    renPrepareCameraMatrix(&gMainGfxPos[0], cam);
+    renCameraPreRender(cam, 0);
 }
 
-void func_800192DC(GObj* obj) {
+void ren_func_800192DC(GObj* obj) {
     s32 i;
     OMCamera* cam = obj->data.cam;
 
-    camera_init(&gMainGfxPos[0], cam, 0);
-    _D_8004B248 = gMainGfxPos[0] + 1;
+    renInitCamera(&gMainGfxPos[0], cam, 0);
+    ren_D_8004B248 = gMainGfxPos[0] + 1;
     gSPDisplayList(gMainGfxPos[0], gMainGfxPos[0] + 2);
     gMainGfxPos[0] += 2;
-    camera_prepare_matrix(&gMainGfxPos[0], cam);
+    renPrepareCameraMatrix(&gMainGfxPos[0], cam);
     gSPEndDisplayList(gMainGfxPos[0]++);
-    gSPBranchList(_D_8004B248, gMainGfxPos[0]);
-    camera_pre_render(cam, 0);
+    gSPBranchList(ren_D_8004B248, gMainGfxPos[0]);
+    renCameraPreRender(cam, 0);
 
     if (cam->flags & 0x20) {
-        func_800177D8(&gMainGfxPos[1], cam, 1);
+        ren_func_800177D8(&gMainGfxPos[1], cam, 1);
     }
 
     for (i = 1; i < 4; i++) {
         if (gtlDLBuffers[gtlContextId][i].length != 0) {
             gMainGfxPos[i]++;
         }
-        _D_8004B238[i] = gMainGfxPos[i];
+        ren_D_8004B238[i] = gMainGfxPos[i];
     }
 
-    camera_render_objects(obj, (cam->flags & 8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & 8) ? TRUE : FALSE);
 
     for (i = 1; i < 4; i++) {
         Gfx* start = gMainGfxPos[i];
 
-        if (_D_8004B238[i] == gMainGfxPos[i]) {
+        if (ren_D_8004B238[i] == gMainGfxPos[i]) {
             if (gtlDLBuffers[gtlContextId][i].length != 0) {
                 gMainGfxPos[i]--;
             }
         } else {
             gMainGfxPos[i]++;
-            gSPDisplayList(&_D_8004B238[i][-1], gMainGfxPos[i]);
+            gSPDisplayList(&ren_D_8004B238[i][-1], gMainGfxPos[i]);
             if (i != 1 || !(cam->flags & 0x20)) {
-                func_800177D8(&gMainGfxPos[i], cam, i);
+                ren_func_800177D8(&gMainGfxPos[i], cam, i);
             }
-            gSPDisplayList(gMainGfxPos[i]++, _D_8004B248 + 1);
-            camera_pre_render(cam, i);
+            gSPDisplayList(gMainGfxPos[i]++, ren_D_8004B248 + 1);
+            renCameraPreRender(cam, i);
             gSPEndDisplayList(gMainGfxPos[i]++);
             gSPBranchList(start, gMainGfxPos[i]);
         }
     }
 
-    camera_post_render(cam);
+    renCameraPostRender(cam);
 }
 
-void func_80019588(void) {
+void ren_func_80019588(void) {
     s32 i;
     OMCamera* cam = omCurrentCamera->data.cam;
     Gfx* start;
@@ -2764,14 +2738,14 @@ void func_80019588(void) {
     for (i = 1; i < 4; i++) {
         start = new_var[i];
 
-        if (_D_8004B238[i] == gMainGfxPos[i]) {
+        if (ren_D_8004B238[i] == gMainGfxPos[i]) {
             gMainGfxPos[i]--;
         } else {
             gMainGfxPos[i]++;
-            gSPDisplayList(&_D_8004B238[i][-1], gMainGfxPos[i]);
-            func_800177D8(&gMainGfxPos[i], cam, i);
-            gSPDisplayList(gMainGfxPos[i]++, _D_8004B248 + 1);
-            camera_pre_render(cam, i);
+            gSPDisplayList(&ren_D_8004B238[i][-1], gMainGfxPos[i]);
+            ren_func_800177D8(&gMainGfxPos[i], cam, i);
+            gSPDisplayList(gMainGfxPos[i]++, ren_D_8004B248 + 1);
+            renCameraPreRender(cam, i);
             gSPEndDisplayList(gMainGfxPos[i]++);
             gSPBranchList(start, gMainGfxPos[i]);
         }
@@ -2779,21 +2753,21 @@ void func_80019588(void) {
 
     gtlProcessAllDLists();
     gtlReset();
-    camera_init(&gMainGfxPos[0], cam, 0);
-    _D_8004B248 = gMainGfxPos[0] + 1;
+    renInitCamera(&gMainGfxPos[0], cam, 0);
+    ren_D_8004B248 = gMainGfxPos[0] + 1;
     gSPDisplayList(gMainGfxPos[0], gMainGfxPos[0] + 2);
     gMainGfxPos[0] += 2;
-    camera_prepare_matrix(&gMainGfxPos[0], cam);
+    renPrepareCameraMatrix(&gMainGfxPos[0], cam);
     gSPEndDisplayList(gMainGfxPos[0]++);
-    gSPBranchList(_D_8004B248, gMainGfxPos[0]);
-    camera_pre_render(cam, 0);
+    gSPBranchList(ren_D_8004B248, gMainGfxPos[0]);
+    renCameraPreRender(cam, 0);
 
     for (i = 1; i < 4; i++) {
-        _D_8004B238[i] = ++gMainGfxPos[i];
+        ren_D_8004B238[i] = ++gMainGfxPos[i];
     }
 }
 
-void sprite_camera_render(GObj* obj) {
+void renSpriteCameraRender(GObj* obj) {
     OMCamera* cam;
     UNUSED u32 pad;
     s32 xmin, ymin, xmax, ymax;
@@ -2805,23 +2779,23 @@ void sprite_camera_render(GObj* obj) {
     xmax = cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4;
     ymax = cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4;
 
-    if (xmin < viScreenWidth / SCREEN_WIDTH * D_80040F38) {
-        xmin = viScreenWidth / SCREEN_WIDTH * D_80040F38;
+    if (xmin < viScreenWidth / SCREEN_WIDTH * renCameraScisLeft) {
+        xmin = viScreenWidth / SCREEN_WIDTH * renCameraScisLeft;
     }
-    if (ymin < viScreenHeight / SCREEN_HEIGHT * D_80040F30) {
-        ymin = viScreenHeight / SCREEN_HEIGHT * D_80040F30;
+    if (ymin < viScreenHeight / SCREEN_HEIGHT * renCameraScisTop) {
+        ymin = viScreenHeight / SCREEN_HEIGHT * renCameraScisTop;
     }
-    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C) {
-        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * D_80040F3C;
+    if (xmax > viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight) {
+        xmax = viScreenWidth - viScreenWidth / SCREEN_WIDTH * renCameraScisRight;
     }
-    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34) {
-        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * D_80040F34;
+    if (ymax > viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom) {
+        ymax = viScreenHeight - viScreenHeight / SCREEN_HEIGHT * renCameraScisBottom;
     }
 
-    camera_init(&gMainGfxPos[0], cam, 0);
+    renInitCamera(&gMainGfxPos[0], cam, 0);
     spInit(&gMainGfxPos[0]);
     spScissor(xmin, xmax, ymin, ymax);
-    camera_render_objects(obj, (cam->flags & 8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & 8) ? TRUE : FALSE);
     spFinish(&gMainGfxPos[0]);
     gMainGfxPos[0]--;
     gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_PERSP);

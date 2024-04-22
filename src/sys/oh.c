@@ -7,7 +7,7 @@
 // Object Helpers
 
 // TODO header
-void func_800191D8(GObj*);
+void ren_func_800191D8(GObj*);
 
 void ohApplyByLink(s32 link, void (*func)(GObj*, void*), void* param) {
     GObj* curr;
@@ -365,7 +365,7 @@ GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 obj
     }
     if (defaultFlags) {
         cam->flags = 7;
-        cam->unk84 = 0xFF;
+        cam->bgColor = 0xFF;
     }
     return obj;
 }
@@ -374,12 +374,12 @@ GObj* ohCreateCameraWrapper(s32 link, s32 priority, s32 dlPriority, s32 flags, s
     GObj* obj;
     OMCamera* cam;
 
-    obj = ohCreateCamera(-1, ohUpdateDefault, link, priority, func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
+    obj = ohCreateCamera(-1, ohUpdateDefault, link, priority, ren_func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
     if (obj == NULL) {
         return NULL;
     }
     cam = obj->data.cam;
     cam->flags = flags;
-    cam->unk84 = bgColor;
+    cam->bgColor = bgColor;
     return obj;
 }

@@ -23,7 +23,7 @@ void func_camera_check_801DC910(void) {
     OMCamera* camera;
     GObj* camObj;
 
-    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
                             func_camera_check_801DC8D0, 0, 1);
     camera = camObj->data.cam;
     camObj->unk38 = 0x100000;
@@ -35,7 +35,7 @@ void func_camera_check_801DC910(void) {
     camera->viewMtx.lookAt.up.z = 1.0f;
     camera->viewMtx.lookAt.at = D_800AF0C4;
     camera->viewMtx.lookAt.eye = D_800AF094;
-    camera->unk84 = 0x7101;
+    camera->bgColor = 0x7101;
     camera->perspMtx.persp.scale = 1.0f;
     camera->perspMtx.persp.far = 8000.0f;
     camera->perspMtx.persp.fovy = 33.0f;

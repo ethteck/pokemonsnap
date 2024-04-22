@@ -367,7 +367,7 @@ void func_801DCA48_98C4B8(void) {
     OMCamera* camera;
     char pad[0x10];
 
-    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
                          func_801DCA14_98C484, 0, 1);
     camObj->unk38 = 0x100000;
     camera = camObj->data.cam;
@@ -383,7 +383,7 @@ void func_801DCA48_98C4B8(void) {
     camera->perspMtx.persp.far = 8000.0f;
     camera->perspMtx.persp.near = camera->perspMtx.persp.far / 128.0;
     camera->perspMtx.persp.scale = 1.0f;
-    camera->unk84 = 1;
+    camera->bgColor = 1;
 }
 
 void func_801DCBF4_98C664(void) {

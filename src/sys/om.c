@@ -7,8 +7,8 @@
 #include "macros.h"
 
 // TODO: header
-void func_80015448(void);
-void func_80018CD0(s32);
+void ren_func_80015448(void);
+void ren_func_80018CD0(s32);
 
 
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)
@@ -1166,7 +1166,7 @@ DObj* omGObjAddDObj(GObj* obj, void* arg1) {
     newDobj->parent = (void*)1;
     newDobj->next = NULL;
     newDobj->firstChild = NULL;
-    newDobj->unk50 = arg1;
+    newDobj->payload.any = arg1;
 
     omDObjInit(newDobj);
 
@@ -1187,7 +1187,7 @@ DObj* omDObjAddSibling(DObj* dobj, void* arg1) {
     newObj->parent = dobj->parent;
 
     newObj->firstChild = NULL;
-    newObj->unk50 = arg1;
+    newObj->payload.any = arg1;
     omDObjInit(newObj);
 
     return newObj;
@@ -1216,7 +1216,7 @@ DObj* omDObjAddChild(DObj* arg0, void* arg1) {
     newObj->parent = arg0;
     newObj->firstChild = NULL;
     newObj->next = NULL;
-    newObj->unk50 = arg1;
+    newObj->payload.any = arg1;
 
     omDObjInit(newObj);
 
@@ -1360,7 +1360,7 @@ OMCamera* omGObjSetCamera(GObj* obj) {
         camera->matrices[i] = NULL;
     }
     camera->flags = 0;
-    camera->unk84 = 0;
+    camera->bgColor = 0;
     camera->fnPreRender = NULL;
     camera->unk8C = 0;
     camera->aobjList = NULL;
@@ -2040,13 +2040,13 @@ void omCreateObjects(OMSetup* setup) {
         omGObjListDlHead[i] = NULL;
     }
 
-    func_80015448();
+    ren_func_80015448();
     osCreateMesgQueue(&omProcessWaitQueue, omProcessWaitMsgs, ARRAY_COUNT(omProcessWaitMsgs));
 
     omActiveStacks = omActiveThreads = omActiveProcesses = omActiveObjects = omActiveMatrices = omActiveAObj =
         omActiveDObj = omActiveSObj = omActiveCameras = 0;
 
     omEndProcessHandler = NULL;
-    func_80018CD0(0);
+    ren_func_80018CD0(0);
     cmdReset();
 }

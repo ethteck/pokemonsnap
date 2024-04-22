@@ -316,6 +316,32 @@ struct DObjDynamicStore {
     /* 0x04 */ u8 data[1];
 }; // size == 4 + VLA
 
+typedef struct DObjPayloadTypeC {
+    /* 0x00 */ s32 dlistID;
+    /* 0x04 */ Gfx* dlist;
+} DObjPayloadTypeC; // size = 0x08
+
+typedef struct DObjPayloadTypeE {
+    /* 0x00 */ f32 maxSqDist;
+    /* 0x04 */ Gfx* dlist;
+} DObjPayloadTypeE; // size = 0x08
+
+typedef struct DObjPayloadTypeG {
+    /* 0x00 */ f32 maxSqDist;
+    /* 0x04 */ DObjPayloadTypeC* payloadTypeC;
+} DObjPayloadTypeG; // size = 0x08
+
+typedef struct DObjPayloadTypeI {
+    /* 0x00 */ Gfx* unk_00;
+    /* 0x04 */ Gfx* unk_04;
+} DObjPayloadTypeI; // size = 0x08
+
+typedef struct DObjPayloadTypeJ {
+    /* 0x00 */ s32 dlistID;
+    /* 0x04 */ Gfx* unk_04;
+    /* 0x08 */ Gfx* unk_08;
+} DObjPayloadTypeJ; // size = 0x0C
+
 typedef struct DObj {
     /* 0x00 */ struct DObj* nextFree;
     /* 0x04 */ struct GObj* obj;
@@ -328,7 +354,19 @@ typedef struct DObj {
     /* 0x3C */ struct Mtx3Float scale;
     /* 0x4C */ struct DObjDynamicStore* unk4C;
     // can be any of: DObj *, Gfx *, or the struct Unk50... above
-    /* 0x50 */ void* unk50;
+    /* 0x50 */ union {
+                    void* any;
+                    Gfx* dlist;
+                    DObjPayloadTypeC* typeC;
+                    DObjPayloadTypeE* typeE;
+                    Gfx** typeF;
+                    DObjPayloadTypeG* typeG;
+                    DObjPayloadTypeC** typeH;
+                    DObjPayloadTypeI* typeI;
+                    DObjPayloadTypeJ* typeJ;
+                    DObjPayloadTypeI** typeK;
+                    DObjPayloadTypeJ** typeL;
+               } payload;
     // is this a union? WeirdBytewise...?
     /* 0x54 */ u8 flags;
     /* 0x55 */ u8 animCBReceiver;
@@ -460,7 +498,7 @@ typedef struct OMCamera {
     /* 0x78 */ f32 animSpeed;
     /* 0x7C */ f32 timePassed;
     /* 0x80 */ s32 flags; // attr flags?
-    /* 0x84 */ s32 unk84; // color?
+    /* 0x84 */ s32 bgColor; // color?
     /* 0x88 */ void (*fnPreRender)(struct OMCamera*, s32);
     /* 0x8C */ s32 unk8C;
 } OMCamera; // size >= 0x90

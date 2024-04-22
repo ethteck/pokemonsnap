@@ -29,7 +29,8 @@ GObj* func_800E18A0_AA0650(void) {
     Unk800E1DD0_data* temp_v1;
     GObj* temp_v0;
 
-    temp_v0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_802BC0C0, 0, NULL, 1);
+    temp_v0 =
+        ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_802BC0C0, 0, NULL, 1);
     temp_v1 = temp_v0->data.any;
     temp_v1->unk_24 = 0x201;
     temp_v1->unk_10 = 160 - (temp_v1->unk_14 / 2);
@@ -76,7 +77,7 @@ void func_800E1A94_AA0844(s32 unused) {
     }
     func_800E1958_AA0708(D_800E1DD0_AA0B80->data.any, 20);
     func_800067DC();
-    while(1) {
+    while (1) {
         ohWait(1);
     }
 }
@@ -94,11 +95,11 @@ void func_800E1B54_AA0904(void) {
     viApplyScreenSettings(&D_800E1CB0_AA0A60);
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 3, 0);
     camera = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
-    ((Unk800E1DD0_data *)(camera->data.any))->unk_80 = 8;
+    ((Unk800E1DD0_data*) (camera->data.any))->unk_80 = 8;
     objE = omAddGObj(0xE, NULL, 0, 0x80000000U);
     objE_Clone = objE;
-    omCreateProcess(objE, (void *) func_800E1A94_AA0844, 0, 1);
-    omCreateProcess(objE_Clone, (void *) func_800E1A34_AA07E4, 0, 1);
+    omCreateProcess(objE, (void*) func_800E1A94_AA0844, 0, 1);
+    omCreateProcess(objE_Clone, (void*) func_800E1A34_AA07E4, 0, 1);
     D_800E1DD4_AA0B84 = 0;
 }
 

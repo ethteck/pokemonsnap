@@ -444,4 +444,9 @@ s32 func_800C05D4_5D474(void) {
         D_800E1504_7E3A4 = 0;
         D_800E1508_7E3A8 = 0;
     }
+
+    //! @bug This doesn't guarantee a return. In practice, the return value isn't actually checked though.
+    #ifdef AVOID_UB
+    return 0;
+    #endif
 }

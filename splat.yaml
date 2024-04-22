@@ -38,6 +38,7 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c]
+    - [0x11E20, hasm, padding_11E20]
     - [0x11E30, c]
     - [0x1A560, c]
     - [0x1AF60, asm]

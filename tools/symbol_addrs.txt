@@ -464,6 +464,7 @@ omMoveGObjDL = 0x8000AB30;
 omMoveGObjDLHead = 0x8000ABAC;
 omDrawAll = 0x8000ADA0;
 omUpdateAll = 0x8000AFFC;
+omCreateObjects = 0x8000B0F8;
 omGObjListHead = 0x8004A9E8;
 omGObjListTail = 0x8004AA68;
 omGObjListDlHead = 0x8004AAF0;
@@ -495,13 +496,21 @@ ohCreateSprite = 0x8000C37C;
 ohCreateCamera = 0x8000C3FC;
 ohCreateCameraWrapper = 0x8000C4B0;
 
+set_model_animation_speed = 0x8000C5B4;
+set_model_and_texture_animation_speed = 0x8000C5FC;
+set_texture_animation_speed = 0x8000C660;
+set_model_animation = 0x8000C7CC;
+set_model_tree_animation = 0x8000C83C;
+set_model_tree_texture_animation = 0x8000C8D8;
+update_texture_animated_params = 0x8000E4E4;
+update_model_tree_animation = 0x8000E9D8;
+set_camera_animation = 0x8001054C;
+update_camera_animation = 0x80011090;
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
 gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
 gspL3DEX2_fifoTextStart = 0x8003FB30;
 gspL3DEX2_fifoDataStart = 0x80045280;
-
-omCreateObjects = 0x8000B0F8;
 
 D_801F53B8_9A4E28 = 0x801F53B8; // force_migration:True rom:0x9A4E28
 D_801F54B0_9A4F20 = 0x801F54B0; // force_migration:True rom:0x9A4F20

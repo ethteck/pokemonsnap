@@ -7,7 +7,7 @@
 
 // TODO header
 void func_800191D8(GObj*);
-DObj* func_8000C550(DObj*);
+DObj* animModelTreeNextNode(DObj*);
 
 void ohApplyByLink(s32 link, void (*func)(GObj*, void*), void* param) {
     GObj* curr;
@@ -229,7 +229,7 @@ void ohDobjTreeRemoveAllMObjs(GObj* obj) {
     curr = obj->data.dobj;
     while (curr != NULL) {
         omDObjRemoveAllMObj(curr);
-        curr = func_8000C550(curr);
+        curr = animModelTreeNextNode(curr);
     }
 }
 

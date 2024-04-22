@@ -41,7 +41,7 @@ segments:
     - [0x11E20, hasm, padding_11E20]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
-    - [0x1AF60, asm]
+    - [0x1AF60, c]
     - [0x1BCF0, c]
     - [0x1F960, c]
     - [0x20940, asm]

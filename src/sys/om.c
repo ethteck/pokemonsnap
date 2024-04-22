@@ -966,10 +966,10 @@ OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2) {
     return mtx;
 }
 
-AObj* omDObjAddAObj(DObj* dobj, u8 index) {
+AObj* omDObjAddAObj(DObj* dobj, u8 paramID) {
     AObj* aobj = omGetAObj();
 
-    aobj->paramID = index;
+    aobj->paramID = paramID;
     aobj->kind = ANIM_TYPE_NONE;
     aobj->unk20 = NULL;
     aobj->targetRate = 0.0;

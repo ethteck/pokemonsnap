@@ -513,6 +513,12 @@ void omDObjRemove(DObj* dobj);
 DObj* omDObjAddChild(DObj* arg0, void* arg1);
 DObj* omDObjAddSibling(DObj* dobj, void* arg1);
 void omCreateObjects(OMSetup* setup);
+AObj* omMObjAddAObj(MObj* mobj, u8 paramID);
+AObj* omCameraAddAObj(OMCamera* obj, u8 paramID);
+MObj* omDObjAddMObj(DObj* dobj, Texture* arg1);
+void omDObjResetAnimation(DObj* dobj);
+AObj* omDObjAddAObj(DObj* dobj, u8 paramID);
+void omMObjResetAObjList(MObj* mobj);
 
 extern GObj* omCurrentObject;
 extern GObj* omCurrentCamera;

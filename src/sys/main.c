@@ -106,7 +106,7 @@ void thread5_main(UNUSED void *arg) {
     osCreatePiManager(OS_PRIORITY_PIMGR, &sPIcmdQ, sPIcmdBuf, ARRAY_COUNT(sPIcmdBuf));
     dmaCreateMessageQueue();
 
-    dmaReadRom(PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
+    dmaReadRom((void*)PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
     check_sp_imem();
     check_sp_dmem();
     osCreateMesgQueue(&gThreadingQueue, sBlockMsg, ARRAY_COUNT(sBlockMsg));

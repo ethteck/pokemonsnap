@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "types.h"
+#include "sys/om.h"
 
 typedef f32 quartic[5];
 
@@ -307,7 +308,7 @@ typedef struct {
     /* 0x14 */ Vec3f euler;
     /* 0x20 */ Vec3f scale;
     /* 0x2C */ pathSpline* path;
-} objectSpawn;
+} ObjectSpawn;
 
 typedef struct {
     /* 0x00 */ room* room;
@@ -315,7 +316,7 @@ typedef struct {
     /* 0x10 */ f32 roomYaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ otherObj* unk_18; /* -1 id terminates */
-    /* 0x1C */ objectSpawn* objects;
+    /* 0x1C */ ObjectSpawn* objects;
     /* 0x20 */ otherObj* unk_20;
 } roomDescriptor;
 
@@ -328,12 +329,12 @@ typedef struct {
 typedef struct {
     /* 0x00 */ s32 index;
     /* 0x04 */ roomDescriptor* roomDesc;
-    /* 0x08 */ struct roomGFX* prev;
-    /* 0x0C */ struct roomGFX* next;
+    /* 0x08 */ struct RoomGFX* prev;
+    /* 0x0C */ struct RoomGFX* next;
     /* 0x10 */ struct GObj* blockModel;
     /* 0x14 */ struct GObj* blockUV;
     /* 0x18 */ roomgfx_18* unk_18;
-} roomGFX;
+} RoomGFX;
 
 typedef union {
     f32 field0;
@@ -405,7 +406,7 @@ typedef struct {
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ struct GObj* interactionTarget;
-    /* 0x074 */ roomGFX* someRoom;
+    /* 0x074 */ RoomGFX* someRoom;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ uvState** animators; /* Created by retype action */
     /* 0x084 */ uvState*** matAnims; /* Created by retype action */
@@ -432,7 +433,7 @@ typedef struct {
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ char unk_10C[0x2];
     /* 0x100 */ s16 field_0x10e;
-} animal; // size = 0x110
+} Animal; // size = 0x110
 
 typedef struct {
     /* 0x00 */ char unk_00[0x1];
@@ -447,43 +448,11 @@ typedef struct {
 } projectileData; // size = 0x30
 
 typedef union {
-    animal* animal;
+    Animal* animal;
     projectileData* projectileData;
 } gobjData;
 
-typedef struct GObj {
-    /* 0x00 */ struct GObj* next;
-    /* 0x04 */ struct GObj* prev;
-    /* 0x08 */ OSThread* nextThread;
-    /* 0x0C */ s8 link;
-    /* 0x0D */ s8 dlLink;
-    /* 0x0E */ char unk_0E[0x2];
-    /* 0x10 */ u32 sortKey;
-    /* 0x14 */ void* somefunc;
-    /* 0x18 */ struct GObj* child;
-    /* 0x1C */ OSThread* thread;
-    /* 0x20 */ void* dlFunc;
-    /* 0x24 */ struct GObj* dlNext;
-    /* 0x28 */ u32 dlSortKey;
-    /* 0x2C */ void (*renderFn)(struct GObj*);
-    /* 0x30 */ void* linkFlags;
-    /* 0x34 */ char unk_34[0x4];
-    /* 0x38 */ s8 specialLinkRender; /* Created by retype action */
-    /* 0x39 */ char unk_39[0x3];
-    /* 0x3C */ signalLL* signals;
-    /* 0x40 */ signalLL* lastSignal;
-    /* 0x44 */ s32 LLCount;
-    /* 0x48 */ union {
-        struct geoNode* rootNode;
-        struct SObj* sobj;
-    } userData;
-    /* 0x4C */ f32 currFrame;
-    /* 0x50 */ s32 activeFlags;
-    /* 0x54 */ void (*nodeFunc)(struct geoNode*, s32 undefined4);
-    /* 0x58 */ gobjData data;
-} GObj;
-
-typedef GObj* (*animalInit)(s32 arg0, s32 id, roomGFX* roomA, roomGFX* roomB, objectSpawn* spawn);
+typedef GObj* (*animalInit)(s32 arg0, s32 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn);
 typedef void (*gfxFunc)(GObj*);
 
 typedef struct {
@@ -496,12 +465,41 @@ typedef struct {
     /* 0x04 */ animalInit* init;
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
-} animalDef; // size = 0x10
+} AnimalDef; // size = 0x10
 
-typedef struct UnkStruct800BEDF8 {
-    /* 0x00 */ char unk_00[0x14];
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-} UnkStruct800BEDF8;
+typedef struct Fizz {
+    s32 unk_00;
+    s32 unk_04;
+    s32 unk_08;
+} Fizz;
+
+typedef struct Bar {
+    /* 0x00 */ char pad_00[0x20];
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ char pad_24[4];
+    /* 0x28 */ f32 unk_28;
+    /* 0x2C */ f32 unk_2C;
+
+    /* 0x30 */ f32 unk_30;
+    /* 0x34 */ char pad_34[8];
+    /* 0x3C */ Fizz unk_3C;
+    /* 0x48 */ Fizz unk_48;
+
+    /* 0x54 */ f32 unk_54;
+    /* 0x58 */ f32 unk_58;
+    /* 0x5C */ f32 unk_5C;
+
+    /* 0x60 */ char pad_60[0x20];
+
+    /* 0x80 */ s32 unk_80;
+    /* 0x84 */ s32 unk_84;
+} Bar;
+
+typedef struct Foo {
+    /* 0x00 */ char pad_00[0x38];
+    /* 0x38 */ s32 unk_38;
+    /* 0x3C */ char pad_3C[0xC];
+    /* 0x48 */ Bar* unk_48;
+} Foo;
 
 #endif

@@ -12,8 +12,8 @@ options:
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
-  string_encoding: ASCII
-  data_string_encoding: ASCII
+  string_encoding: UTF-8
+  data_string_encoding: UTF-8
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -34,7 +34,7 @@ segments:
     - [0x8450, c, sys/ml]
     - [0x8510, c, sys/vi]
     - [0x8820, c, sys/rdp_reset]
-    - [0x8A80, c]
+    - [0x8A80, c, sys/om]
     - [0xC2F0, c]
     - [0xC5B0, c]
     - [0xD150, c]
@@ -232,7 +232,8 @@ segments:
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
     - [0x41950, .data, sys/rdp_reset]
-    - [0x41A80, data]
+    - [0x41A80, .data, sys/om]
+    - [0x41B30, data]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
@@ -265,7 +266,7 @@ segments:
     - [0x43C20, .rodata, sys/cont]
     - [0x43C40, .rodata, sys/gtl]
     - [0x43E60, .rodata, sys/ml]
-    - [0x43E80, .rodata, 8A80]
+    - [0x43E80, .rodata, sys/om]
     - [0x44300, .rodata, C2F0]
     - [0x44320, .rodata, C5B0]
     - [0x44350, .rodata, D150]
@@ -305,7 +306,8 @@ segments:
     - { start: auto, name: sys/gtl, type: .bss, vram: 0x80049770 }
     - { start: auto, name: sys/vi, type: .bss, vram: 0x8004A950 }
     - { start: auto, name: sys/rdp_reset, type: .bss, vram: 0x8004A980 }
-    - { start: auto, name: bss_8004A990, type: bss, vram: 0x8004A990 }
+    - { start: auto, name: sys/om, type: .bss, vram: 0x8004A990 }
+    - { start: auto, name: bss_8004AF00, type: bss, vram: 0x8004AF00 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
@@ -432,7 +434,7 @@ segments:
   - type: code
     start: 0x1D1D90
     vram: 0x8018BC50
-    exclusive_ram_id: unk1D1D90
+    exclusive_ram_id: unk_01D1D90
     subsegments:
     - [0x1D1D90, bin] # , data]
   - type: code
@@ -799,7 +801,7 @@ segments:
     - [0x8AAF60, c]
     - [0x8ABEF0, bin] # , data]
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
-  - name: unk_end_level_4
+  - name: photo_check
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
@@ -807,14 +809,13 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x98C330, c]
+    - [0x993C50, c, 98D0F0]
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
-    - [0x9A3C10, rodata]
-    - [0x9A57D0, rodata] # suggests a file split in 98C330
-    - [0x9A5AA0, rodata] # suggests a file split in 98C330
-    - [0x9A6AF0, .rodata, '993F80']
-    - { start: auto, name: bss_801F70A0, type: bss, vram: 0x801F70A0 }
+    - [0x9A35C0, .data, 98C330]
+    - [auto, .data, 98D0F0]
+    - [0x9A3C10]
   - name: unk_end_level_5
     type: code
     start: 0x9A6B10

@@ -1,17 +1,18 @@
 #include "common.h"
 
-extern animalDef D_802CBFF4_564064;
+extern AnimalDef D_802CBFF4_564064;
 extern s32 D_802CC018_564088;
-extern animalDef beachAnimalData[17];
+extern AnimalDef beachAnimalData[17];
 
+/*
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNodeSub* sub;
     geoNode* pxVar2;
     GObj* animalObj;
     objectSpawn spawn;
-    roomGFX* roomA;
-    animalDef def = D_802CBFF4_564064;
-    
+    RoomGFX* roomA;
+    AnimalDef def = D_802CBFF4_564064;
+
     roomA = getCurrentRoom();
     spawn.id = AnimalID_MAGIKARP;
     spawn.translation.x = 0.0;
@@ -23,24 +24,27 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     spawn.scale.x = 1.0;
     spawn.scale.y = 1.0;
     spawn.scale.z = 1.0;
-    
+
     animalObj = animalAddOne(roomA, roomA, &spawn, &def);
 
     sub = &obj->userData.rootNode->unk_18;
     pxVar2 = animalObj->userData.rootNode;
-        
+
     pxVar2->xform->translation.x = sub->translation.x;
     pxVar2->xform->translation.y = sub->translation.y;
     pxVar2->xform->translation.z = sub->translation.z;
 }
+*/
+
+#pragma GLOBAL_ASM("asm/nonmatchings/55C110/beachSpawnMagikarpAtGObj.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C416C_55C1DC.s")
 
-void beachAnimalAdd(roomGFX* param_1, roomGFX* param_2) {
+void beachAnimalAdd(RoomGFX* param_1, RoomGFX* param_2) {
     animalAdd(param_1, param_2, beachAnimalData);
 }
 
-void func_802C42F8_55C368(s32* param_1, objectSpawn* param_2) {
+void func_802C42F8_55C368(s32* param_1, ObjectSpawn* param_2) {
     func_8036406C_50447C(param_1, param_2, beachAnimalData);
 }
 

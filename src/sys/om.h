@@ -5,7 +5,6 @@
 #include "PR/mbi.h"
 #include "PR/sp.h"
 #include "types.h"
-#include "common_structs.h"
 
 // Object Manager (OM) Objects
 
@@ -190,21 +189,21 @@ typedef struct GObjProcess {
     /* 0x10 */ s32 priority;
     /* 0x14 */ u8 kind;
     /* 0x15 */ u8 paused;
-    /* 0x18 */ struct GObjCommon* object;
+    /* 0x18 */ struct GObj* object;
     // following two fields are typed via kind
     /* 0x1C */ union {
         struct GObjThread* thread;
-        void (*cb)(struct GObjCommon*);
+        void (*cb)(struct GObj*);
     } unk1C;
-    /* 0x20 */ void (*function)(struct GObjCommon*);
+    /* 0x20 */ void (*function)(struct GObj*);
 } GObjProcess; // size == 0x24
 
 struct DObj;
-struct GObjCommon;
+struct GObj;
 
 typedef struct GObjCmd {
     /* 0x00 */ struct GObjCmd* next;
-    /* 0x04 */ struct GObjCommon* obj;
+    /* 0x04 */ struct GObj* obj;
     /* 0x08 */ s32 cmd;
 } GObjCmd; // size = 0xC
 
@@ -214,10 +213,10 @@ typedef struct GObj_Sub3CList {
     /* 0x08 */ s32 count;
 } GObj_Sub3CList; // size = 0xC
 
-typedef struct GObjCommon {
+typedef struct GObj {
     /* 0x00 */ u32 id;
-    /* 0x04 */ struct GObjCommon* next;
-    /* 0x08 */ struct GObjCommon* prev;
+    /* 0x04 */ struct GObj* next;
+    /* 0x08 */ struct GObj* prev;
     /* 0x0C */ u8 link;
     /* 0x0D */ u8 dlLink;
     /* 0x0E */ u8 lastDrawFrame;
@@ -227,23 +226,28 @@ typedef struct GObjCommon {
     // 3 : OMCamera
     /* 0x0F */ u8 type;
     /* 0x10 */ u32 priority;
-    /* 0x14 */ void (*fnUpdate)(struct GObjCommon*);
+    /* 0x14 */ void (*fnUpdate)(struct GObj*);
     /* 0x18 */ struct GObjProcess* processListHead;
     /* 0x1C */ struct GObjProcess* processListTail;
-    /* 0x20 */ struct GObjCommon* nextDl;
-    /* 0x24 */ struct GObjCommon* prevDl;
+    /* 0x20 */ struct GObj* nextDl;
+    /* 0x24 */ struct GObj* prevDl;
     /* 0x28 */ u32 dlPriority;
-    /* 0x2C */ void (*fnRender)(struct GObjCommon*);
+    /* 0x2C */ void (*fnRender)(struct GObj*);
     /* 0x30 */ s32 dlLinkBitMask;
     /* 0x34 */ s32 cameraTag;
     /* 0x38 */ s32 unk38;
     /* 0x3C */ GObj_Sub3CList sub3C;
-    /* 0x48 */ void* children;
+    /* 0x48 */ union {
+                struct DObj* dobj;
+                struct SObj* sobj;
+                struct OMCamera* cam;
+                void* any;
+    } data;
     /* 0x4C */ f32 animationTime;
     /* 0x50 */ u32 flags;
     /* 0x54 */ void (*fnAnimCallback)(struct DObj*, u32, f32);
-    /* 0x58 */ s32 unk_58;
-} GObjCommon; // size >= 0x5C
+    /* 0x58 */ void* userData;
+} GObj; // size >= 0x5C
 
 typedef struct OMMtx {
     /* 0x00 */ struct OMMtx* next;
@@ -330,7 +334,7 @@ struct DObjDynamicStore {
 
 typedef struct DObj {
     /* 0x00 */ struct DObj* nextFree;
-    /* 0x04 */ struct GObjCommon* obj;
+    /* 0x04 */ struct GObj* obj;
     /* 0x08 */ struct DObj* next;
     /* 0x0C */ struct DObj* prev;
     /* 0x10 */ struct DObj* firstChild;
@@ -445,7 +449,7 @@ typedef struct MObj {
 
 typedef struct SObj {
     /* 0x00 */ struct SObj* nextFree;
-    /* 0x04 */ struct GObjCommon* obj;
+    /* 0x04 */ struct GObj* obj;
     /* 0x08 */ struct SObj* next;
     /* 0x0C */ struct SObj* prev;
     /* 0x10 */ Sprite sprite;
@@ -454,7 +458,7 @@ typedef struct SObj {
 
 typedef struct OMCamera {
     /* 0x00 */ struct OMCamera* nextFree;
-    /* 0x04 */ struct GObjCommon* obj;
+    /* 0x04 */ struct GObj* obj;
     /* 0x08 */ Vp vp;
     /* 0x18 */ union {
         struct MtxCameraPersp persp;
@@ -486,7 +490,7 @@ typedef struct {
     /* 0x14 */ s32 unk14;
     /* 0x18 */ GObjProcess* processes;
     /* 0x1C */ s32 numProcesses;
-    /* 0x20 */ struct GObjCommon* commons;
+    /* 0x20 */ struct GObj* commons;
     /* 0x24 */ s32 numObjects;
     /* 0x28 */ s32 objectSize;
     /* 0x2C */ OMMtx* matrices;
@@ -507,18 +511,21 @@ typedef struct {
     /* 0x68 */ s32 cameraSize;
 } OMSetup; // size == 0x6C
 
-void func_8000A52C(GObjCommon* obj);
-void om_link_gobj_dl_camera(GObjCommon* obj, void (*renderFunc)(GObjCommon*), u32 dlPriority, s32 arg3, s32 arg4);
-OMCamera* om_gobj_set_camera(GObjCommon* obj);
-DObj* om_gobj_add_dobj(GObjCommon* obj, void* arg1);
+GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32 pri);
+void omDeleteGObj(GObj* obj);
+void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 arg3, s32 arg4);
+OMCamera* omGObjSetCamera(GObj* obj);
+DObj* omGObjAddDObj(GObj* obj, void* arg1);
+void omEndProcess(GObjProcess* proc);
+GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority);
 
-extern GObjCommon* omCurrentObject;
-extern GObjCommon* omCurrentCamera;
-extern GObjCommon* omRenderedObject;
-extern GObjCommon* omGObjListHead[];
+extern GObj* omCurrentObject;
+extern GObj* omCurrentCamera;
+extern GObj* omRenderedObject;
+extern GObj* omGObjListHead[];
 extern OSMesgQueue omProcessWaitQueue;
 extern GObjProcess* omCurrentProcess;
 extern struct Unk80046A88 omD_8004AC78[32];
-extern GObjCommon* omGObjListDlHead[33];
+extern GObj* omGObjListDlHead[33];
 
 #endif /* SYS_OM_H */

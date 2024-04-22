@@ -475,6 +475,8 @@ omProcessWaitQueue = 0x8004AC60;
 omD_8004AC78 = 0x8004AC78;
 
 omh_end_all_object_processes = 0x8000BE5C;
+create_camera = 0x8000C3FC;
+create_sprite = 0x8000C37C;
 
 gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
 gspF3DEX2_NoN_fifoDataStart = 0x80044E60;

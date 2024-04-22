@@ -518,6 +518,16 @@ OMCamera* omGObjSetCamera(GObj* obj);
 DObj* omGObjAddDObj(GObj* obj, void* arg1);
 void omEndProcess(GObjProcess* proc);
 GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority);
+OMMtx* omDObjAppendMtx(DObj* dobj, u8 kind, u8 arg2);
+OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2);
+void omDObjRemoveAllMObj(DObj* dobj);
+SObj* omGObjAddSprite(GObj* obj, Sprite* sprite);
+void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag);
+void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask, s32 cameraTag);
+void omGObjRemoveSprite(SObj* obj);
+void omDObjRemove(DObj* dobj);
+DObj* omDObjAddChild(DObj* arg0, void* arg1);
+DObj* omDObjAddSibling(DObj* dobj, void* arg1);
 
 extern GObj* omCurrentObject;
 extern GObj* omCurrentCamera;

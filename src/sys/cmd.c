@@ -2,7 +2,7 @@
 #include "sys/om.h"
 
 // TODO header
-s32 func_8000BAA4(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst);
 void func_8000BD44(s32);
 void func_8000BD78(s32);
 
@@ -74,7 +74,7 @@ void sendSignalToLink(s32 arg0, s32 cmd, GObj* arg2) {
         param.obj = omCurrentObject;
     }
     param.cmd = cmd;
-    func_8000BAA4(arg0, func_8000B808, &param, FALSE);
+    func_8000BAA4(arg0, (GObj* (*)(GObj*, void*))func_8000B808, (void*)&param, FALSE);
 }
 
 #ifdef NON_MATCHING

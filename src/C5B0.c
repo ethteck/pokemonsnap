@@ -1,4 +1,11 @@
-#include "common.h"
+#include "macros.h"
+#include "sys/om.h"
+#include "sys/crash.h"
+
+// TODO header
+s32 func_8000B880(void (*handler)(GObj*, s32));
+void func_800191D8(GObj*);
+DObj* func_8000C550(DObj*);
 
 void func_8000B9B0(s32 link, void (*cb)(GObj*, void*), void* param) {
     GObj* curr;
@@ -27,19 +34,19 @@ void func_8000BA18(void (*cb)(GObj*, void*), void* param) {
     }
 }
 
-s32 func_8000BAA4(s32 link, s32 (*cb)(GObj*, void*), void* param, s32 getFirst) {
+GObj* func_8000BAA4(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
     GObj* curr;
     GObj* next;
-    s32 ret = 0;
+    GObj* ret = NULL;
 
     curr = omGObjListHead[link];
     while (curr != NULL) {
-        s32 retVal;
+        GObj* retVal;
 
         next = curr->next;
         retVal = cb(curr, param);
 
-        if (retVal != 0) {
+        if (retVal != NULL) {
             ret = retVal;
             if (getFirst == TRUE) {
                 return ret;
@@ -51,21 +58,21 @@ s32 func_8000BAA4(s32 link, s32 (*cb)(GObj*, void*), void* param, s32 getFirst) 
     return ret;
 }
 
-s32 func_8000BB4C(s32 (*cb)(GObj*, void*), void* param, s32 getFirst) {
+GObj* func_8000BB4C(GObj* (*cb)(GObj*, void*), void* param, s32 getFirst) {
     GObj* curr;
     GObj* next;
     s32 link;
-    s32 ret = 0;
+    GObj* ret = 0;
 
     for (link = 0; link < 32; link++) {
         curr = omGObjListHead[link];
         while (curr != NULL) {
-            s32 retVal;
+            GObj* retVal;
 
             next = curr->next;
             retVal = cb(curr, param);
 
-            if (retVal != 0) {
+            if (retVal != NULL) {
                 ret = retVal;
                 if (getFirst == TRUE) {
                     return ret;
@@ -87,7 +94,7 @@ GObj* func_8000BC2C(s32 link, u32 id) {
 }
 
 GObj* func_8000BC58(u32 id) {
-    return func_8000BB4C(func_8000BC0C, id, TRUE);
+    return func_8000BB4C(func_8000BC0C, (void*)id, TRUE);
 }
 
 void func_8000BC84(UNUSED GObj* arg0) {
@@ -193,7 +200,7 @@ void omh_end_all_object_processes(GObj* obj) {
     curr = obj->processListHead;
     while (curr != NULL) {
         next = curr->next;
-        om_end_process(curr);
+        omEndProcess(curr);
         curr = next;
     }
 }
@@ -218,7 +225,7 @@ void func_8000BF3C(OMCamera* camera) {
 void func_8000BF74(GObj* obj) {
     DObj* curr;
 
-    curr = obj->children;
+    curr = obj->data.dobj;
     while (curr != NULL) {
         omDObjRemoveAllMObj(curr);
         curr = func_8000C550(curr);
@@ -231,13 +238,13 @@ DObj* func_8000BFB8(GObj* obj, void* arg1) {
     return ret;
 }
 
-s32 func_8000BFE8(DObj* dobj, void* arg1) {
+DObj* func_8000BFE8(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddSibling(dobj, arg1);
     func_8000BEAC(ret);
     return ret;
 }
 
-s32 func_8000C018(DObj* dobj, void* arg1) {
+DObj* func_8000C018(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddChild(dobj, arg1);
     func_8000BEAC(ret);
     return ret;
@@ -249,13 +256,13 @@ DObj* func_8000C048(GObj* obj, void* arg1) {
     return ret;
 }
 
-s32 func_8000C078(DObj* dobj, void* arg1) {
+DObj* func_8000C078(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddSibling(dobj, arg1);
     func_8000BEF4(ret);
     return ret;
 }
 
-s32 func_8000C0A8(DObj* dobj, void* arg1) {
+DObj* func_8000C0A8(DObj* dobj, void* arg1) {
     DObj* ret = omDObjAddChild(dobj, arg1);
     func_8000BEF4(ret);
     return ret;
@@ -267,8 +274,8 @@ void func_8000C1CC(GObj* obj) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
-    while (obj->children != NULL) {
-        om_dobj_remove(obj->children);
+    while (obj->data.dobj != NULL) {
+        omDObjRemove(obj->data.dobj);
     }
 }
 
@@ -276,8 +283,8 @@ void func_8000C220(GObj* obj) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
-    while (obj->children != NULL) {
-        omDObjRemoveSprite(obj->children);
+    while (obj->data.sobj != NULL) {
+        omGObjRemoveSprite(obj->data.sobj);
     }
 }
 
@@ -290,13 +297,13 @@ void func_8000C274(void) {
         curr = omGObjListHead[i];
         while (curr != NULL) {
             next = curr->next;
-            func_8000A52C(curr);
+            omDeleteGObj(curr);
             curr = next;
         }
     }
 }
 
-s32 func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+GObj* func_8000C2E4(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
                   void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 dlArg, void* dobjBP, s32 arg9,
                   u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
@@ -347,8 +354,8 @@ GObj* create_camera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     if (obj == NULL) {
         return NULL;
     }
-    om_link_gobj_dl_camera(obj, fnRender, dlPriority, dlLinkBitMask, cameraTag);
-    cam = om_gobj_set_camera(obj);
+    omLinkGObjDLCamera(obj, fnRender, dlPriority, dlLinkBitMask, cameraTag);
+    cam = omGObjSetCamera(obj);
     if (defaultMatrices) {
         func_8000BF3C(cam);
     }
@@ -370,7 +377,7 @@ GObj* func_8000C4B0(s32 link, s32 priority, s32 dlPriority, s32 flags, s32 bgCol
     if (obj == NULL) {
         return NULL;
     }
-    cam = obj->children;
+    cam = obj->data.cam;
     cam->flags = flags;
     cam->unk84 = bgColor;
     return obj;

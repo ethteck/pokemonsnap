@@ -14,6 +14,7 @@ options:
   symbol_name_format: $VRAM_$ROM
   string_encoding: UTF-8
   data_string_encoding: UTF-8
+  create_undefined_funcs_auto: false
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]

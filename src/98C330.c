@@ -336,7 +336,6 @@ f32 D_801F3E3C_9A38AC[] = {
     0.6666666865f,
 };
 
-
 void func_801DC8C0_98C330(Gfx** gfx) {
     gSPDisplayList(++*gfx, &D_801E53A0_994E10);
 }
@@ -461,7 +460,7 @@ void func_801DCFA0_98CA10(s32 arg0) {
 }
 
 void func_801DCFE8_98CA58(Photo* arg0) {
-    if (arg0->pkmnID == 0x97) {
+    if (arg0->pkmnID == AnimalID_MEW) {
         if (func_800BF3D4_5C274(arg0->pkmnID) == 0) {
             D_801F3E28_9A3898 = 0x40000;
         }

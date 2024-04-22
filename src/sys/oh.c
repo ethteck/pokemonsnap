@@ -3,11 +3,9 @@
 #include "sys/cmd.h"
 #include "sys/crash.h"
 #include "sys/anim.h"
+#include "sys/render.h"
 
 // Object Helpers
-
-// TODO header
-void ren_func_800191D8(GObj*);
 
 void ohApplyByLink(s32 link, void (*func)(GObj*, void*), void* param) {
     GObj* curr;

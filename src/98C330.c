@@ -7,6 +7,7 @@
 #include "sys/om.h"
 #include "sys/vi.h"
 #include "sys/oh.h"
+#include "sys/render.h"
 
 #include "photocheck.h"
 

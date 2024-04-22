@@ -991,8 +991,8 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xAA0650, c]
-    - [0xAA0A60, bin] # , data]
-    - { start: auto, name: bss_800E1DD0, type: bss, vram: 0x800E1DD0 }
+    - [0xAA0A60, data]
+    - { start: auto, name: AA0650, type: .bss, vram: 0x800E1DD0 }
 
   - [0xAA0B80, bin] # Some code in here, it seems # compressed data
 

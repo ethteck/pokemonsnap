@@ -2269,9 +2269,9 @@ void func_801E2ED4_992944(s32 arg0) {
     func_8036D3E8_840B98(-1, 3);
 
     if (sp38 != 0 || D_801F3E28_9A3898 != 0) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", func_800BF498_5C338());
+        func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", get_player_name());
     } else if (func_800BFCA0_5CB40(0xE) != 0) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", func_800BF498_5C338());
+        func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", get_player_name());
     } else if (func_800BF3D4_5C274(0x97) != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
@@ -2282,18 +2282,18 @@ void func_801E2ED4_992944(s32 arg0) {
         } else if (func_800BFCA0_5CB40(5) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 130000 - sp48));
         } else if (func_801E4510_993F80() == 5) {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", func_800BF498_5C338());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", get_player_name());
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", func_800BF498_5C338());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", get_player_name());
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C("%d", 40 - sp44));
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (func_800BFCA0_5CB40(1) != 0) {
             if (func_801E4510_993F80() == 3) {
-                func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", func_800BF498_5C338());
+                func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", get_player_name());
             } else {
-                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", func_800BF498_5C338());
+                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", get_player_name());
             }
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 72500 - sp48));
@@ -2303,7 +2303,7 @@ void func_801E2ED4_992944(s32 arg0) {
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (func_800BFCA0_5CB40(0) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "There is a \\hhidden path\\p in the\nTunnel!\n");
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Good luck, %s!", func_800BF498_5C338());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Good luck, %s!", get_player_name());
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 24000 - sp48));
         }

@@ -2,27 +2,28 @@
 
 // sizeof: 0x3A0?
 typedef struct Unk_D_800C21B0_5F050 {
-    s32 unk0;
-    s32 unk4;
-    s32 unk8;
-    s32 unkC;
-    u8* unk10;
-    u8 pad[0x1C];
-    u32 unk30;
-    s32 unk34;
-    u8 pad38[0x18];
-    s32 unk50;
-    s32 unk54;
-    s32 unk58;
-    s32 unk5C;
-    s32 unk60;
-    u32 unk64;
-    u8 pad68[0x4];
-    s32 unk6C;
-    u8 pad70[0x110];
-    s32* unk180;
-    s32 unk184;
-    u8 pad188[0x216];
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+    u8* unk_10;
+    u8 pad_14[0x1C];
+    u32 unk_30;
+    s32 unk_34;
+    u8 pad_38[0x18];
+    s32 unk_50;
+    char *player_name;
+    s32 unk_58;
+    s32 unk_5C;
+    s32 unk_60;
+    u32 unk_64_29 : 3; // Definitely 3 bits.
+    u32 unk_64_0 : 29; // Not positive how many bits this field is.
+    u8 pad_68[0x4];
+    s32 unk_6C ;
+    u8 pad_70[0x110];
+    s32* unk_180;
+    s32 unk_184;
+    u8 pad_188[0x216];
 } Unk_D_800C21B0_5F050;
 
 Unk_D_800C21B0_5F050* func_800C16EC_5E58C(u8*, s32);
@@ -43,9 +44,9 @@ Unk_D_800C21B0_5F050* func_800BF080_5BF20(void) {
 s32 func_800BF08C_5BF2C(void) {
     Unk_D_800C21B0_5F050* temp_v0;
 
-    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk10, 0x1F294);
-    if (temp_v0->unk0 != D_800C21B0_5F050->unk0 || temp_v0->unk4 != D_800C21B0_5F050->unk4 ||
-        temp_v0->unk8 != D_800C21B0_5F050->unk8 || temp_v0->unkC != D_800C21B0_5F050->unkC) {
+    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk_10, 0x1F294);
+    if (temp_v0->unk_0 != D_800C21B0_5F050->unk_0 || temp_v0->unk_4 != D_800C21B0_5F050->unk_4 ||
+        temp_v0->unk_8 != D_800C21B0_5F050->unk_8 || temp_v0->unk_C != D_800C21B0_5F050->unk_C) {
         return 1;
     } else {
         return 0;
@@ -55,11 +56,11 @@ s32 func_800BF08C_5BF2C(void) {
 void func_800BF10C_5BFAC(void) {
     Unk_D_800C21B0_5F050* temp_v0;
 
-    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk10, 0x1F294);
-    D_800C21B0_5F050->unk0 = temp_v0->unk0;
-    D_800C21B0_5F050->unk4 = temp_v0->unk4;
-    D_800C21B0_5F050->unk8 = temp_v0->unk8;
-    D_800C21B0_5F050->unkC = temp_v0->unkC;
+    temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->unk_10, 0x1F294);
+    D_800C21B0_5F050->unk_0 = temp_v0->unk_0;
+    D_800C21B0_5F050->unk_4 = temp_v0->unk_4;
+    D_800C21B0_5F050->unk_8 = temp_v0->unk_8;
+    D_800C21B0_5F050->unk_C = temp_v0->unk_C;
 }
 
 s32 func_800BF178_5C018(void) {
@@ -68,7 +69,7 @@ s32 func_800BF178_5C018(void) {
     u8* comparisonStringBytes;
 
     versionStringBytes = &D_800C20E0_5EF80;
-    comparisonStringBytes = &D_800C21B0_5F050->unk10;
+    comparisonStringBytes = &D_800C21B0_5F050->unk_10;
     i = 0;
     while (1) {
         if (*versionStringBytes != *comparisonStringBytes) {
@@ -92,7 +93,7 @@ void func_800BF1F0_5C090(void) {
     u8* copyToBytes;
 
     versionStringBytes = &D_800C20E0_5EF80;
-    copyToBytes = &D_800C21B0_5F050->unk10;
+    copyToBytes = &D_800C21B0_5F050->unk_10;
     for (i = 0; i < sizeof(D_800C20E0_5EF80); i++) {
         *copyToBytes = *versionStringBytes;
         versionStringBytes++;
@@ -113,7 +114,7 @@ s32 func_800BF244_5C0E4(void) {
         }
     }
     sp24 = D_800C21B0_5F050;
-    D_800C21B0_5F050->unk30 = osGetTime();
+    D_800C21B0_5F050->unk_30 = osGetTime();
     func_800BF10C_5BFAC();
     if (func_800C09C0_5D860(sp24, 0x1F2A4) != 0) {
         return 1;
@@ -161,8 +162,8 @@ void func_800BF444_5C2E4(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF44C_5C2EC.s")
 
-s32* func_800BF498_5C338(void) {
-    return &D_800C21B0_5F050->unk54;
+char* get_player_name(void) {
+    return &D_800C21B0_5F050->player_name;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF4A8_5C348.s")
@@ -226,7 +227,7 @@ void func_800BF780_5C620(void) {
 
     temp_v0 = func_8009BB4C();
     if (temp_v0 >= 0 && temp_v0 < 69) {
-        D_800C21B0_5F050[temp_v0].unk184 = -1;
+        D_800C21B0_5F050[temp_v0].unk_184 = -1;
     }
 }
 
@@ -326,18 +327,18 @@ s32 func_800C027C_5D11C(void) {
 }
 
 s32 func_800C0290_5D130(void) {
-    return D_800C21B0_5F050->unk50;
+    return D_800C21B0_5F050->unk_50;
 }
 
 void func_800C02A0_5D140(s32 arg0) {
     if (arg0 < 0) {
         arg0 = 0;
     }
-    if (arg0 >= 7) {
+    if (arg0 > 6) {
         arg0 = 6;
     }
-    D_800C21B0_5F050->unk50 = arg0;
-    if ((D_800C21B0_5F050->unk64 >> 29) < arg0) {
+    D_800C21B0_5F050->unk_50 = arg0;
+    if (D_800C21B0_5F050->unk_64_29 < arg0) {
         D_800E1500_7E3A0 = 1;
     }
 }

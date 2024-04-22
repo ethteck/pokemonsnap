@@ -69,7 +69,7 @@ void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
 s32 func_800BF3D4_5C274(s32);
-char* func_800BF498_5C338(void); // get_player_name
+char* get_player_name(void); // get_player_name
 void* func_800BF710_5C5B0(s32);
 s32 func_800BF818_5C6B8(s32);
 s32 func_800BF9EC_5C88C(void);

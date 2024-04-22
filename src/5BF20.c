@@ -306,7 +306,9 @@ s32 func_800BFB84_5CA24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFC18_5CAB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFC5C_5CAFC.s")
+s32 func_800BFC5C_5CAFC(void) {
+    return D_800C21B0_5F050->unk_64_29;
+}
 
 void func_800BFC70_5CB10(s32 arg0) {
     if (arg0 >= 0 && arg0 < 7) {

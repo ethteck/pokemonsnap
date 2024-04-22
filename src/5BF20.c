@@ -33,7 +33,6 @@ Unk_D_800C21B0_5F050* func_800C16EC_5E58C(u8*, s32);
 s32 func_800C09C0_5D860(Unk_D_800C21B0_5F050* arg0, s32 arg1);
 void func_800C06A8_5D548(Unk_D_800C21B0_5F050*, s32);
 void func_800C0AB4_5D954(Unk_D_800C21B0_5F050*, s32);
-s32 func_8009BB4C(void);
 
 extern u8 D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
 extern s32 D_800C20F0_5EF90;    // s32 D_800C20F0_5EF90 = 0;
@@ -109,11 +108,11 @@ s32 func_800BF244_5C0E4(void) {
 
     if (contIsPrinterAvailable()) {
         while (contPrinterGetStatus() == 8) {
-            func_8000BCA8(1);
+            ohWait(1);
         }
         contPrinterSendCommand(0xCC);
         while (contPrinterGetStatus() == 8) {
-            func_8000BCA8(1);
+            ohWait(1);
         }
     }
     sp24 = D_800C21B0_5F050;
@@ -124,11 +123,11 @@ s32 func_800BF244_5C0E4(void) {
     }
     if (contIsPrinterAvailable()) {
         while (contPrinterGetStatus() == 8) {
-            func_8000BCA8(1);
+            ohWait(1);
         }
         contPrinterSendCommand(0x33);
         while (contPrinterGetStatus() == 8) {
-            func_8000BCA8(1);
+            ohWait(1);
         }
     }
     return 0;
@@ -149,7 +148,7 @@ s32 func_800BF3D4_5C274(s32 arg0) {
     s32 temp_v0;
     s32 var_v1;
 
-    temp_v0 = func_8009BB4C();
+    temp_v0 = func_8009BB4C(arg0);
     if ((temp_v0 < 0) || (temp_v0 >= 69)) {
         return 0;
     }
@@ -208,12 +207,12 @@ void func_800BF650_5C4F0(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF690_5C530.s")
 
 #ifdef NON_EQUIVALENT
-s32* func_800BF710_5C5B0(void) {
+s32* func_800BF710_5C5B0(s32 arg0) {
     Unk_D_800C21B0_5F050* temp_a0;
     s32 temp_v0;
     s32* var_v1;
 
-    temp_v0 = func_8009BB4C();
+    temp_v0 = func_8009BB4C(arg0);
     if ((temp_v0 < 0) || (temp_v0 >= 69)) {
         return NULL;
     }
@@ -225,10 +224,10 @@ s32* func_800BF710_5C5B0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF710_5C5B0.s")
 #endif
 
-void func_800BF780_5C620(void) {
+void func_800BF780_5C620(s32 arg0) {
     s32 temp_v0;
 
-    temp_v0 = func_8009BB4C();
+    temp_v0 = func_8009BB4C(arg0);
     if (temp_v0 >= 0 && temp_v0 < 69) {
         D_800C21B0_5F050[temp_v0].unk_184 = -1;
     }
@@ -238,7 +237,7 @@ void func_800BF780_5C620(void) {
 void func_800BF7D4_5C674(s32 arg0, s32 arg1) {
     s32 temp_v0;
 
-    temp_v0 = func_8009BB4C();
+    temp_v0 = func_8009BB4C(arg0);
     if (temp_v0 >= 0 && temp_v0 < 69) {
         D_800C21B0_5F050[temp_v0].unk6C = arg1;
     }

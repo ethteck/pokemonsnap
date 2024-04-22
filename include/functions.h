@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "common_structs.h"
 #include "sys/vi.h"
+#include "sys/oh.h"
 
 f32 __cosf(f32);
 f32 __sinf(f32);

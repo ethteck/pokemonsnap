@@ -1,11 +1,11 @@
 #include "macros.h"
 #include "sys/om.h"
+#include "sys/cmd.h"
 #include "sys/crash.h"
 
 // Object Helpers
 
 // TODO header
-s32 cmdProcessCommands(void (*handler)(GObj*, s32));
 void func_800191D8(GObj*);
 DObj* func_8000C550(DObj*);
 

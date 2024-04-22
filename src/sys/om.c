@@ -1,4 +1,5 @@
 #include "sys/om.h"
+#include "sys/oh.h"
 #include "sys/cmd.h"
 #include "sys/gtl.h"
 #include "sys/crash.h"
@@ -6,12 +7,9 @@
 #include "macros.h"
 
 // TODO: header
-void ohRemoveSprite(GObj*);
-void ohRemoveDObj(GObj*);
-void ohEndAllObjectProcesses(GObj*);
 void func_80015448(void);
 void func_80018CD0(s32);
-void ohWait(s32);
+
 
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)
 

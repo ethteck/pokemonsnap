@@ -1,10 +1,6 @@
 #include "sys/gtl.h"
 #include "sys/om.h"
-
-// TODO header
-GObj* ohApplyByLinkEx(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getFirst);
-void ohPauseObjectProcesses(s32);
-void ohResumeObjectProcesses(s32);
+#include "sys/oh.h"
 
 struct SignalParam {
     GObj* obj;

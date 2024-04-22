@@ -16,8 +16,8 @@ typedef struct Unk800E1DD0_data {
     s32 unk_80;
 } Unk800E1DD0_data;
 
-extern GObj* D_800E1DD0_AA0B80;
-extern s32 D_800E1DD4_AA0B84;
+GObj* D_800E1DD0_AA0B80;
+s32 D_800E1DD4_AA0B84;
 extern Sprite D_802BC0C0;
 extern ScreenSettings D_800E1CB0_AA0A60;
 extern Gfx D_800E1CE8_AA0A98[];
@@ -96,7 +96,7 @@ void func_800E1B54_AA0904(void) {
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 3, 0);
     camera = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
     ((Unk800E1DD0_data*) (camera->data.any))->unk_80 = 8;
-    objE = omAddGObj(0xE, NULL, 0, 0x80000000U);
+    objE = omAddGObj(0xE, NULL, 0, 0x80000000);
     objE_Clone = objE;
     omCreateProcess(objE, (void*) func_800E1A94_AA0844, 0, 1);
     omCreateProcess(objE_Clone, (void*) func_800E1A34_AA07E4, 0, 1);

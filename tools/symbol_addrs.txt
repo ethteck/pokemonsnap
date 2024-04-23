@@ -576,6 +576,7 @@ Vec3f_func_8001A8B8 = 0x8001A8B8;
 Vec3f_func_8001AC98 = 0x8001AC98;
 Vec3fNormalizedCross = 0x8001AE00;
 Vec3fDistance = 0x8001AF30;
+sSinTable = 0x80040F50;
 
 hal_mtx_f2l = 0x8001B0F0;
 hal_mtx_f2l_fixed_w = 0x8001B320;

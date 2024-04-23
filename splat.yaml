@@ -12,8 +12,8 @@ options:
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
   symbol_name_format: $VRAM_$ROM
-  string_encoding: UTF-8
-  data_string_encoding: UTF-8
+  string_encoding: EUC-JP
+  data_string_encoding: EUC-JP
   create_undefined_funcs_auto: false
 segments:
   - [0x000000, header, header]

@@ -45,6 +45,7 @@ void func_80022B14(void);
 char* func_8009B9D0(s16);
 s32 func_8009BB4C(s32);
 s32 func_8009BC68(void);
+void func_8009FBC4(void);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
 void func_800A7F68(s32, s32);

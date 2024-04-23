@@ -1,6 +1,5 @@
 #include "common.h"
 #include "os_cache.h"
-#include "sys/dma.h"
 
 extern Addr magikarp1_ROM_START, magikarp1_ROM_END, magikarp1_VRAM;          //  731b0
 extern Addr pikachu1_ROM_START, pikachu1_ROM_END, pikachu1_VRAM;             //  7d3b0

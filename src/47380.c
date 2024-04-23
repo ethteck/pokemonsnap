@@ -1,7 +1,5 @@
 #include "common.h"
 
-#include "sys/dma.h"
-
 extern s32 D_800AC0F0;
 extern s32 D_800AE27C;
 extern s32 D_800AE280;

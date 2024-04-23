@@ -2,15 +2,15 @@
 
 extern s8 sControllerIndices[MAXCONTROLLERS];
 
-extern u8 D_800BF050;
-extern s8 D_800BF051;
+u8 D_800BF050;
+s8 D_800BF051;
 
 void func_800ABB40(void) {
     D_800BF050 = 0;
 }
 
-void func_800ABB4C(u8 arg0) {
-    D_800BF050 |= arg0;
+void func_800ABB4C(u8 flags) {
+    D_800BF050 |= flags;
 }
 
 u8 func_800ABB68(void) {

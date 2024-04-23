@@ -181,6 +181,7 @@ void func_8009AE0C(u32 arg0) {
     }
 }
 
+s32 func_8009B2BC(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/46270/func_8009B2BC.s")
 
 void func_8009B40C(void) {
@@ -201,17 +202,19 @@ void func_8009B40C(void) {
 
 void func_800222F4(s32);
 void func_80022300(s32);
-s32 func_8009B2BC(void);
 void func_800AAF20(void);
+void func_800BFC18_5CAB8(s32*, s32*);
+s32 func_800E1AD8_8A72F8(s32);
+void func_800E1C5C_AA0A0C(void);
 s32 func_800E218C_A5D53C(s32);
 s32 func_800E4830_A0BDC0(s32);
 s32 func_camera_check_801DCACC(s32);
 s32 func_801DCB24_A936E4(s32);
+s32 func_801DCC74_98C6E4(s32);
+s32 func_801DCC74_9D35E4(s32);
 s32 func_801DCCA0_9A6EF0(s32);
 s32 func_801DCEBC_9FAB7C(s32);
 s32 func_801DD09C_A08C8C(s32);
-s32 func_800E1AD8_8A72F8(s32);
-void func_800E1C5C_AA0A0C(void);
 s32 func_802BE3B0_640860(s32);
 s32 func_802C4740_55C7B0(s32);
 s32 func_802C6544_79FAD4(s32);
@@ -219,8 +222,6 @@ s32 func_802D67C4_7279C4(s32);
 s32 func_802D9210_6C0FF0(s32);
 s32 func_802E2BB8_5DFC88(s32);
 s32 func_80346EF0_826660(s32);
-
-void func_800BFC18_5CAB8(s32*, s32*);
 
 void start_scene_manager(s32 arg0) {
     u32 var_s0;
@@ -325,13 +326,13 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC84);
-                var_s0 = func_801DCC74(var_s0);
+                var_s0 = func_801DCC74_9D35E4(var_s0);
                 break;
             case 15:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCA8);
-                var_s0 = func_801DCC74(var_s0);
+                var_s0 = func_801DCC74_98C6E4(var_s0);
                 break;
             case 22:
                 func_800AAF20();

@@ -3,7 +3,6 @@
 
 #include "ultra64.h"
 #include "types.h"
-#include "sys/om.h"
 
 typedef f32 quartic[5];
 

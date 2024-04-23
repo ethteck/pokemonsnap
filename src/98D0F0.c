@@ -2,8 +2,6 @@
 
 #include "gbi.h"
 #include "string.h"
-#include "sys/vi.h"
-#include "sys/cont.h"
 
 
 s32 D_801F3E60_9A38D0 = FALSE;

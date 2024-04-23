@@ -20,5 +20,6 @@ typedef struct GObjCmdList {
 void cmdFreeObjCmd(GObjCmdList*);
 void cmdReset(void);
 s32 cmdProcessCommands(void (*handler)(struct GObj*, s32));
+void cmdSendCommandToLink(s32 llIndex, s32, struct GObj*);
 
 #endif /* SYS_CMD_H */

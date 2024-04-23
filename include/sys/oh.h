@@ -13,5 +13,9 @@ void ohRemoveSprite(GObj*);
 void ohRemoveDObj(GObj*);
 void ohEndAllObjectProcesses(GObj*);
 void ohDeleteAllObjects(void);
+GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                          void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
+                          u8 procKind, void (*procFunc)(GObj*), s32 procPriority);
+GObj* ohCreateCameraWrapper(s32 link, s32 priority, s32 dlPriority, s32 flags, s32 bgColor);
 
 #endif /* SYS_OH_H */

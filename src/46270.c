@@ -1,6 +1,5 @@
 #include "common.h"
 #include "os_cache.h"
-#include "sys/dma.h"
 
 #include "ld_addrs.h"
 

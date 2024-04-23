@@ -3,12 +3,6 @@
 #include "gbi.h"
 #include "string.h"
 
-#include "sys/cont.h"
-#include "sys/om.h"
-#include "sys/vi.h"
-#include "sys/oh.h"
-#include "sys/render.h"
-
 #include "photocheck.h"
 
 extern s32 D_80229840;

@@ -2,7 +2,7 @@
 #define _COMMON_H
 
 #include "ultra64.h"
-#include "hal.h"
+#include "sys.h"
 #include "common_structs.h"
 #include "functions.h"
 #include "variables.h"

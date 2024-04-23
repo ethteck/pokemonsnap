@@ -11,6 +11,7 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/build",
+                "${workspaceFolder}/build/include",
                 "${workspaceFolder}/include"
             ],
             "defines": [

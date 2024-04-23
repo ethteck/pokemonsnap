@@ -80,7 +80,7 @@ void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes) {
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/dmaDecodeVPK.s")
 void dmaDecodeVPK(u16* data, s32 size, void (*func)(void), u32 arg3);
 
-void dmaInitVPKStream(s32 romAddr, s32 ramAddr, s32 bufSize) {
+void dmaInitVPKStream(u32 romAddr, s32 ramAddr, s32 bufSize) {
     sVpkRomAddr = romAddr;
     sVpkRamAddr = ramAddr;
     sVpkBufSize = bufSize;
@@ -96,10 +96,10 @@ void dmaReadVPKToBuffer(u32 rom, u32 ram, void* buf, u32 size) {
     dmaDecodeVPK(buf, size, &dmaUpdateVPKStream, ram);
 }
 
-void dmaReadVPK(u32 rom, u32 ram) {
+void dmaReadVPK(u32* rom, u32 ram) {
     char buf[0x400];
 
-    dmaReadVPKToBuffer(rom, ram, &buf, sizeof(buf));
+    dmaReadVPKToBuffer((u32) rom, ram, &buf, sizeof(buf));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/func_80003530.s")

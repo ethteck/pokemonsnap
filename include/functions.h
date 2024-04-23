@@ -13,7 +13,7 @@ void contPrinterSendCommand(u8 value);
 s32 contIsPrinterAvailable(void);
 u8 contPrinterGetStatus(void);
 
-void dmaReadVPK(u32 rom, u32 ram);
+void dmaReadVPK(u32* rom, u32 ram);
 
 void cmdSendCommandToLink(s32 llIndex, s32, GObj*);
 

@@ -16,6 +16,7 @@
 #include "sys/rdp_reset.h"
 #include "sys/render.h"
 #include "sys/sched.h"
+#include "sys/vector.h"
 #include "sys/vi.h"
 
 #endif

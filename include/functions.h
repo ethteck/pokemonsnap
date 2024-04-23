@@ -97,7 +97,7 @@ void func_80359074_4F9484(void);
 void func_8036406C_50447C(s32*, ObjectSpawn*, AnimalDef*);
 void func_803641B8_5045C8(s32, AnimalDef*);
 void func_8036650C_50691C(void);
-void* func_8036A194_83D944(s32);
+void* func_8036A194_83D944(u32);
 void func_8036A3F8(u8*, s32);
 void func_8036A5B8_83DD68(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 void func_8036A8E4_83E094(s32);

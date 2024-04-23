@@ -550,6 +550,19 @@ renCustomMatrixHandler = 0x8004B038;
 ren_D_8004B03C = 0x8004B03C; // size:0x14
 ren_D_8004B050 = 0x8004B050;
 
+atanf = 0x80019994;
+atan2f = 0x80019ABC;
+asinf = 0x80019BBC;
+acosf = 0x80019C40;
+setRandSeed = 0x80019D48;
+rand = 0x80019D60;
+randFloat = 0x80019DB0;
+randRange = 0x80019E14;
+randT = 0x80019E54;
+randTRange = 0x80019EB0;
+qsortInternal = 0x80019F38;
+qsort = 0x8001A094;
+
 hal_mtx_f2l = 0x8001B0F0;
 hal_mtx_f2l_fixed_w = 0x8001B320;
 fast_sinf = 0x8001B4D4;

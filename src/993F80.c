@@ -45,7 +45,7 @@ extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 Photo D_802291A0_9D8C10[60];
 s32 D_80229838_9D92A8;
 
-void func_8001A094(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
+void qsort(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
 s32 func_800BF574_5C414(s32);
 void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
 void func_800BF690_5C530(s16, UnkPinkBarracuda*);
@@ -197,37 +197,37 @@ s32 func_801E4AA4_994514(const void* arg0, const void* arg1) {
 void func_801E4BA0_994610(u32 arg0) {
     switch (arg0) {
         case 0:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4690_994100);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4690_994100);
             if (D_801F4198_9A3C08 != func_801E4690_994100) {
                 D_801F4198_9A3C08 = func_801E4690_994100;
             }
             break;
         case 1:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4704_994174);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4704_994174);
             if (D_801F4198_9A3C08 != func_801E4704_994174) {
                 D_801F4198_9A3C08 = func_801E4704_994174;
             }
             break;
         case 2:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E47F0_994260);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E47F0_994260);
             if (D_801F4198_9A3C08 != func_801E47F0_994260) {
                 D_801F4198_9A3C08 = func_801E47F0_994260;
             }
             break;
         case 3:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E48CC_99433C);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E48CC_99433C);
             if (D_801F4198_9A3C08 != func_801E48CC_99433C) {
                 D_801F4198_9A3C08 = func_801E48CC_99433C;
             }
             break;
         case 4:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E49A8_994418);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E49A8_994418);
             if (D_801F4198_9A3C08 != func_801E49A8_994418) {
                 D_801F4198_9A3C08 = func_801E49A8_994418;
             }
             break;
         case 5:
-            func_8001A094(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4AA4_994514);
+            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4AA4_994514);
             if (D_801F4198_9A3C08 != func_801E4AA4_994514) {
                 D_801F4198_9A3C08 = func_801E4AA4_994514;
             }

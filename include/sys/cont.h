@@ -3,6 +3,7 @@
 
 #include <PR/ultratypes.h>
 
+void contUpdate(void);
 void contReadAndUpdate(void);
 void contSetUpdateEveryTick(s32);
 void contRumbleInit(s32);

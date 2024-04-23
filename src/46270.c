@@ -1,25 +1,7 @@
 #include "common.h"
 #include "os_cache.h"
 
-extern Addr magikarp1_ROM_START, magikarp1_ROM_END, magikarp1_VRAM;          //  731b0
-extern Addr pikachu1_ROM_START, pikachu1_ROM_END, pikachu1_VRAM;             //  7d3b0
-extern Addr zubat1_ROM_START, zubat1_ROM_END, zubat1_VRAM;                   //  98470
-extern Addr bulbasaur1_ROM_START, bulbasaur1_ROM_END, bulbasaur1_VRAM;       //  99f70
-extern Addr stage0_extra_ROM_START, stage0_extra_ROM_END, stage0_extra_VRAM; // 13c780
-extern Addr stage1_extra_ROM_START, stage1_extra_ROM_END, stage1_extra_VRAM; // 1d1d90
-extern Addr stage4_extra_ROM_START, stage4_extra_ROM_END, stage4_extra_VRAM; // 27ab80
-extern Addr stage3_extra_ROM_START, stage3_extra_ROM_END, stage3_extra_VRAM; // 30af90
-extern Addr stage2_extra_ROM_START, stage2_extra_ROM_END, stage2_extra_VRAM; // 3d0560
-extern Addr stage5_extra_ROM_START, stage5_extra_ROM_END, stage5_extra_VRAM; // 47cf30
-extern Addr stage6_extra_ROM_START, stage6_extra_ROM_END, stage6_extra_VRAM; // 4ec000
-extern Addr magikarp3_ROM_START, magikarp3_ROM_END, magikarp3_VRAM;          // 54B5D0
-extern Addr pikachu3_ROM_START, pikachu3_ROM_END, pikachu3_VRAM;             // 54D6A0
-extern Addr zubat3_ROM_START, zubat3_ROM_END, zubat3_VRAM;                   // 554130
-extern Addr bulbasaur3_ROM_START, bulbasaur3_ROM_END, bulbasaur3_VRAM;       // 557050
-extern Addr magikarp2_ROM_START, magikarp2_ROM_END, magikarp2_VRAM;          // 82f8e0
-extern Addr pikachu2_ROM_START, pikachu2_ROM_END, pikachu2_VRAM;             // 832960
-extern Addr zubat2_ROM_START, zubat2_ROM_END, zubat2_VRAM;                   // 837360
-extern Addr bulbasaur2_ROM_START, bulbasaur2_ROM_END, bulbasaur2_VRAM;       // 83a1e0
+#include "ld_addrs.h"
 
 extern Overlay D_800ABBD0;
 extern Overlay D_800ABDC8;
@@ -57,8 +39,8 @@ s32 func_8009A8E4(void) {
     return D_800AC00C;
 }
 
-void func_8009A8F0(int param_1) {
-    switch (param_1) {
+void func_8009A8F0(s32 levelID) {
+    switch (levelID) {
         case 0:
             dmaLoadOverlay(&D_800ABE10);
             dmaReadRom(stage0_extra_ROM_START, stage0_extra_VRAM, stage0_extra_ROM_END - stage0_extra_ROM_START);

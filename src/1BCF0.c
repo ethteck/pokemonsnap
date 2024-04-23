@@ -8,7 +8,7 @@
 #define HALF_PI (F_PI / 2.0f)
 
 extern u16 D_80040F50[0x7FF];
-f32* func_8001A8B8(f32* arg0, f32* arg1, f32 arg2);
+f32* Vec3f_func_8001A8B8(f32* arg0, f32* arg1, f32 arg2);
 
 void hal_mtx_f2l(Mtx4f src, Mtx* dst) {
     u32 e1, e2;
@@ -145,7 +145,7 @@ void hal_look_at_roll_f(Mtx4f mf, f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt
     vec2.x *= root;
     vec2.y *= root;
     vec2.z *= root;
-    func_8001A8B8(&vec2, &vec1, roll);
+    Vec3f_func_8001A8B8(&vec2, &vec1, roll);
     vec3.x = (vec1.y * vec2.z) - (vec1.z * vec2.y);
     vec3.y = (vec1.z * vec2.x) - (vec1.x * vec2.z);
     vec3.z = (vec1.x * vec2.y) - (vec1.y * vec2.x);

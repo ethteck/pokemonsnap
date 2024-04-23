@@ -3,7 +3,6 @@
 
 #include <PR/ultratypes.h>
 
-// BumpAllocRegion?
 typedef struct {
     /* 0x00 */ u32 id;
     /* 0x04 */ void* start;

@@ -8,6 +8,7 @@
 #include "sys/dma.h"
 #include "sys/gtl.h"
 #include "sys/main.h"
+#include "sys/misc.h"
 #include "sys/ml.h"
 #include "sys/mtx.h"
 #include "sys/oh.h"

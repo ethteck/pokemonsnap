@@ -563,6 +563,20 @@ randTRange = 0x80019EB0;
 qsortInternal = 0x80019F38;
 qsort = 0x8001A094;
 
+Vec3fNormalize = 0x8001A360;
+Vec3fAdd = 0x8001A43C;
+Vec3fSub = 0x8001A474;
+Vec3fDiff = 0x8001A4AC;
+Vec3fDirection = 0x8001A4E4;
+Vec3fScale = 0x8001A530;
+Vec3fAddScaled = 0x8001A5AC;
+Vec3fAngleDiff = 0x8001A67C;
+Vec3fGetEulerRotation = 0x8001A750;
+Vec3f_func_8001A8B8 = 0x8001A8B8;
+Vec3f_func_8001AC98 = 0x8001AC98;
+Vec3fNormalizedCross = 0x8001AE00;
+Vec3fDistance = 0x8001AF30;
+
 hal_mtx_f2l = 0x8001B0F0;
 hal_mtx_f2l_fixed_w = 0x8001B320;
 fast_sinf = 0x8001B4D4;

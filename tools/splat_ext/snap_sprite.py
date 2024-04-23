@@ -120,19 +120,23 @@ class Sprite:
 
 
 class N64SegSnap_sprite(N64Segment):
+    suffix: str = ""
+
     def out_path(self) -> Path:
         self.image_type_in_extension = options.opts.image_type_in_extension
         type_extension = f".{self.type}" if self.image_type_in_extension else ""
 
-        return options.opts.asset_path / self.dir / f"{self.name}{type_extension}.png"
+        return (
+            options.opts.asset_path
+            / self.dir
+            / f"{self.name}{type_extension}_{self.suffix}.png"
+        )
 
     def split(self, rom_bytes: bytes):
-        path = self.out_path()
-        path.parent.mkdir(parents=True, exist_ok=True)
-
         data = rom_bytes[self.rom_start : self.rom_end]
 
         header = Sprite()
+        self.name = f"{self.rom_end-0x40:X}"
         header.unpack(BytesIO(data[-0x40:]))
 
         # get all bitmaps
@@ -153,27 +157,36 @@ class N64SegSnap_sprite(N64Segment):
             png_bpp = 4
             input_bpp = 2
             img_class = n64img.image.RGBA16
+            self.suffix = "rgba16"
         elif (
             header.bmfmt == IM_FMT.G_IM_FMT_RGBA and header.bmsiz == IM_SIZ.G_IM_SIZ_32b
         ):
             png_bpp = 4
             input_bpp = 4
             img_class = n64img.image.RGBA32
+            self.suffix = "rgba32"
         elif header.bmfmt == IM_FMT.G_IM_FMT_I and header.bmsiz == IM_SIZ.G_IM_SIZ_8b:
             png_bpp = 1
             input_bpp = 1
             img_class = n64img.image.I8
+            self.suffix = "i8"
         elif header.bmfmt == IM_FMT.G_IM_FMT_IA and header.bmsiz == IM_SIZ.G_IM_SIZ_16b:
             png_bpp = 2
             input_bpp = 2
             img_class = n64img.image.IA16
+            self.suffix = "ia16"
         elif header.bmfmt == IM_FMT.G_IM_FMT_CI and header.bmsiz == IM_SIZ.G_IM_SIZ_8b:
             png_bpp = 1
             input_bpp = 1
             img_class = n64img.image.CI8
+            self.suffix = "ci8"
         else:
             print(f"Unsupported format: {header.bmfmt.name} {header.bmsiz.name}")
             return
+
+        if self.rom_start == 0xA9D3E0:
+            print("Setting width to 320")
+            header.width = 320
 
         canvas = bytearray(header.width * header.height * png_bpp)
         canvas = np.array(canvas).reshape(header.height, header.width, png_bpp)
@@ -244,5 +257,8 @@ class N64SegSnap_sprite(N64Segment):
         canvas_img = img_class(bytearray(), header.width, header.height)
         if palette:
             canvas_img.set_palette(palette)
+
+        path = self.out_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
             canvas_img.get_writer().write_array(f, canvas.tobytes())

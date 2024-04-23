@@ -1543,8 +1543,8 @@ segments:
     - [0xA9D030, bin]
     - [0xA9D038, snap_sprite]
     - [0xA9D3D8, bin]
-    #      - [0xA9D3E0, snap_sprite] TODO: fix this one
-    #      - [0xA9D6A8, bin]
+    - [0xA9D3E0, snap_sprite]
+    - [0xA9D6A8, bin]
     - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
     type: code

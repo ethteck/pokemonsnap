@@ -548,6 +548,8 @@ void omGObjRemoveSprite(SObj* obj);
 void omDObjRemove(DObj* dobj);
 DObj* omDObjAddChild(DObj* arg0, void* arg1);
 DObj* omDObjAddSibling(DObj* dobj, void* arg1);
+void omDrawAll(void);
+void omUpdateAll(void);
 void omCreateObjects(OMSetup* setup);
 AObj* omMObjAddAObj(MObj* mobj, u8 paramID);
 AObj* omCameraAddAObj(OMCamera* obj, u8 paramID);

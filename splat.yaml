@@ -836,6 +836,7 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x83D730, c]
+    - [0x83DC20, c]
     - [0x83DC30, c]
     - [0x840A50, c]
     - [0x842390, c]
@@ -846,7 +847,11 @@ segments:
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
-    - [0x848BC0, bin] # , data]
+    - [0x848BC0, bin]
+    - [0x879F20, rodata]
+    - [0x87A000, rodata]
+    - [0x87A090, rodata]
+    - [0x87A0A0, rodata]
     - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: camera_check
     dir: camera_check
@@ -960,7 +965,7 @@ segments:
     - [0xA0F810, .rodata, A0E190]
     - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
-  - [0xA0F830, bin] # compressed data
+  - [0xA0F830, bin] # VPK0 compressed data
 
   - name: unk_level_end_10
     type: code
@@ -996,7 +1001,7 @@ segments:
     - [0xAA0A60, data]
     - { start: auto, name: AA0650, type: .bss, vram: 0x800E1DD0 }
 
-  - [0xAA0B80, bin] # Some code in here, it seems # compressed data
+  - [0xAA0B80, bin] # VPK0 compressed data
 
   - type: code
     start: 0xAA18E0
@@ -1008,7 +1013,7 @@ segments:
     - [0xAA20A0, bin] # , data]
     - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
 
-  - [0xAAA610, bin] # compressed data
+  - [0xAAA610, bin] # VPK0 compressed data
   - [0xAAA660, bin]
   - [0xAB1470, bin]
   - [0xAB5860, bin]

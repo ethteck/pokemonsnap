@@ -24,4 +24,4 @@ void auSetSoundGlobalVolume(u8 vol);
 void auSetCurrentSoundsGlobalVolume(u8 vol);
 void auSetSoundGlobalReverb(u8 reverbAmt);
 
-#endif /* SYS_ANIM_H */
+#endif /* SYS_AUDIO_H */

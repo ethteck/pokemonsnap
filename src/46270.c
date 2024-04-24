@@ -205,7 +205,7 @@ void start_scene_manager(s32 arg0) {
     s32 sp38;
     s32 sp34;
 
-    func_80022300(6);
+    auSetReverbType(AL_FX_CUSTOM);
     func_800AAF20();
     dmaLoadOverlay(&D_800ABD14);
     dmaLoadOverlay(&D_800ABDA4);
@@ -214,7 +214,7 @@ void start_scene_manager(s32 arg0) {
     if (func_8009B2BC() == 0) {
         func_8009B40C();
     }
-    func_800222F4(func_800BFCA0_5CB40(9) == 0);
+    auSetSoundQuality(func_800BFCA0_5CB40(9) == 0);
     func_800BFC18_5CAB8(&sp38, &sp34);
     viSetScreenOffsets(sp38, sp38, sp34, sp34);
 

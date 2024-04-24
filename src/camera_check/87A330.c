@@ -239,7 +239,7 @@ void func_camera_check_801DEC2C(char* arg0) {
 }
 
 void func_camera_check_801DEC84(void) {
-    func_80022374(0, 0x10);
+    auPlaySong(0, 0x10);
     func_camera_check_801DDA44(0);
     func_803700A4_843854(0);
     func_803713EC_844B9C(3);

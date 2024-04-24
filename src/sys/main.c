@@ -14,9 +14,6 @@
 
 #include "ld_addrs.h"
 
-// TODO: includes
-void thread4_audio(void *arg);
-
 void start_scene_manager(s32);
 void start_thread8_rmon(void);
 
@@ -115,7 +112,7 @@ void thread5_main(UNUSED void *arg) {
     sThread3Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread3);
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
-    osCreateThread(&sThread4, 4, thread4_audio, NULL, sThread4Stack + THREAD4_STACK_SIZE, THREAD4_PRI);
+    osCreateThread(&sThread4, 4, auThreadMain, NULL, sThread4Stack + THREAD4_STACK_SIZE, THREAD4_PRI);
     sThread4Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread4);
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 

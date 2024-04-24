@@ -71,7 +71,11 @@ void alSeqpNew(ALSeqPlayer *seqp, ALSeqpConfig *c)
     seqp->uspt          = 488;
     seqp->nextDelta     = 0;
     seqp->state         = AL_STOPPED;
-    seqp->vol           = 0x7FFF;                  /* full volume  */
+//////// Only in Pokemon Snap
+    seqp->vol           = 0x7800;
+    seqp->extraVol      = 120;
+    seqp->extraFxMix    = 0;
+////////
     seqp->debugFlags    = c->debugFlags;
     seqp->frameTime     = AL_USEC_PER_FRAME; /* should get this from driver */
     seqp->curTime       = 0;
@@ -705,8 +709,12 @@ void __handleMIDIMsg(ALSeqPlayer *seqp, ALEvent *event)
 		}
 		break;
 
-	    case (AL_MIDI_FX_CTRL_0):
-	    case (AL_MIDI_FX_CTRL_1):
+//////// Only in Pokemon Snap
+        case (AL_MIDI_FX_CTRL_1):
+            seqp->extraVol = byte2;
+            break;
+	    case (AL_MIDI_FX_CTRL_0):	    
+////////
 	    case (AL_MIDI_FX_CTRL_2):
 	    case (AL_MIDI_FX_CTRL_3):
 	    case (AL_MIDI_FX_CTRL_4):
@@ -937,8 +945,14 @@ s16 __vsVol(ALVoiceState *vs, ALSeqPlayer *seqp)
     u32     t1,t2;
 
     t1 = (vs->tremelo*vs->velocity*vs->envGain) >> 6;
-    t2 = (vs->sound->sampleVolume*seqp->vol*
+//////// Only in Pokemon Snap
+    // ignore sampleVolume, use extraVol instead
+    t2 = (seqp->vol*seqp->extraVol*
           seqp->chanState[vs->channel].vol) >> 14;
+    if (seqp->chanState[vs->channel].extraVol >= 0) {
+        t2 = (seqp->chanState[vs->channel].extraVol * t2) >> 7;
+    }
+////////
 
     t1 *= t2;
     t1 >>= 15;
@@ -1156,7 +1170,9 @@ void __resetPerfChanState(ALSeqPlayer *seqp, s32 chan)
   seqp->chanState[chan].fxId = AL_FX_NONE;
   seqp->chanState[chan].fxmix = AL_DEFAULT_FXMIX;
   seqp->chanState[chan].pan = AL_PAN_CENTER;
-  seqp->chanState[chan].vol = AL_VOL_FULL;
+//////// Only in Pokemon Snap
+  seqp->chanState[chan].vol = 120;
+////////
   seqp->chanState[chan].priority = AL_DEFAULT_PRIORITY;
   seqp->chanState[chan].sustain = 0;
   seqp->chanState[chan].bendRange = 200;
@@ -1174,6 +1190,9 @@ void __initChanState(ALSeqPlayer *seqp)
     for (i = 0; i < seqp->maxChannels; i++)
     {
         seqp->chanState[i].instrument = 0;
+//////// Only in Pokemon Snap
+        seqp->chanState[i].extraVol = -1;
+////////
 	__resetPerfChanState (seqp, i);
     }
 }

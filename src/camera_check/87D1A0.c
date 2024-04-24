@@ -24,13 +24,13 @@ void func_camera_check_801E0034(s32 arg0) {
     }
 
     if (temp_v0->var_18_0x08000000) {
-        func_800228E4(0x4A);
+        auPlaySound(0x4A);
         temp_v0->var_18_0x08000000 = 0;
     } else {
         if (func_camera_check_801E2CC0() >= func_camera_check_801E2E04()) {
             return;
         }
-        func_800228E4(0x49);
+        auPlaySound(0x49);
         temp_v0->var_18_0x08000000 = 1;
     }
 
@@ -49,14 +49,14 @@ void func_camera_check_801E0118(s32 arg0) {
     if ((func_800BFCA0_5CB40(5) != 0) &&
         (temp_v0 = func_camera_check_801E24D8(D_camera_check_80208960), (temp_v0 != NULL))) {
         if (temp_v0->var_18_0x10000000) {
-            func_800228E4(0x4A);
+            auPlaySound(0x4A);
             temp_v0->var_18_0x10000000 = 0;
             return;
         }
         temp_a0 = temp_v0->var_8;
         if (((temp_a0 == 0x270F) | (temp_a0 < 0x98)) == 0) {
             func_camera_check_801E2984(temp_a0);
-            func_800228E4(0x49);
+            auPlaySound(0x49);
             temp_v0->var_18_0x10000000 = 1;
         }
     }
@@ -73,7 +73,7 @@ void func_camera_check_801E01C0(s32 arg0) {
     }
 
     if (temp_v0->var_18_0x20000000) {
-        func_800228E4(0x4A);
+        auPlaySound(0x4A);
         temp_v0->var_18_0x20000000 = 0;
         return;
     }
@@ -85,7 +85,7 @@ void func_camera_check_801E01C0(s32 arg0) {
 
     if (temp_a0 < 0x98) {
         func_camera_check_801E2984(temp_a0);
-        func_800228E4(0x49);
+        auPlaySound(0x49);
         temp_v0->var_18_0x20000000 = 1;
     }
 }

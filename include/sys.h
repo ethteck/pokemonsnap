@@ -2,6 +2,7 @@
 #define HAL_H
 
 #include "sys/anim.h"
+#include "sys/audio.h"
 #include "sys/cmd.h"
 #include "sys/cont.h"
 #include "sys/crash.h"

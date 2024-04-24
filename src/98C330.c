@@ -622,7 +622,7 @@ void func_801DD638_98D0A8(s32 arg0) {
 void func_801DD680_98D0F0(void) {
     s32 i;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_802290A0_9D8B10); i++) {
         D_802290A0_9D8B10[i].gobj->data.sobj->sprite.x = ((i % 3) * 66) + 104;
         D_802290A0_9D8B10[i].gobj->data.sobj->sprite.y = ((i / 3) * 55) + 53;
     }
@@ -670,7 +670,7 @@ GObj* func_801DD720_98D190(s32 idx) {
 void func_801DD8F4_98D364(void) {
     s32 i;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_802290A0_9D8B10); i++) {
         func_801DD720_98D190(i);
     }
     D_802290A0_9D8B10[0].gobj->data.sobj->sprite.x = -60;
@@ -680,7 +680,7 @@ void func_801DD8F4_98D364(void) {
 void func_801DD964_98D3D4(s32 rgb) {
     s32 i;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_802290A0_9D8B10); i++) {
         D_802290A0_9D8B10[i].gobj->data.sobj->sprite.red = rgb;
         D_802290A0_9D8B10[i].gobj->data.sobj->sprite.green = rgb;
         D_802290A0_9D8B10[i].gobj->data.sobj->sprite.blue = rgb;
@@ -690,7 +690,7 @@ void func_801DD964_98D3D4(s32 rgb) {
 void func_801DD9E4_98D454(s32 arg0) {
     s32 i;
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_802290A0_9D8B10); i++) {
         if (arg0 != 0) {
             D_802290A0_9D8B10[i].gobj->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -1857,13 +1857,13 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     }
     func_80022A58(0x4F, 0x7FFF, 0x4A, 1.0f, 0xA);
     sp4C = D_802290A0_9D8B10;
-    sp5C = D_802290A0_9D8B10->gobj->data.sobj;
+    sp5C = D_802290A0_9D8B10[0].gobj->data.sobj;
     sp5C->sprite.x = 431;
     sp5C->sprite.y = 37;
     sp5C->sprite.attr &= ~SP_HIDDEN;
-    func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10->sobj->sprite);
+    func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10[0].sobj->sprite);
     ohWait(2);
-    func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10->sobj->sprite);
+    func_80374714_847EC4(arg0->unk_0, &D_802290A0_9D8B10[0].sobj->sprite);
     if (arg1 != 0) {
         sp58 = -239.0f;
     } else {

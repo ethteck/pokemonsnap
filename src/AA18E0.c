@@ -62,13 +62,11 @@ void func_801DC9BC_AA19FC(void *unused) {
     D_801E550C_AAA54C = 1;
 }
 
-#ifdef NON_MATCHING
-// Single stack diff from matching
 void func_801DC9D0_AA1A10(GObj* arg0) {
     void* sp2C;
-    s32 i;
-    s32 var_a0;
     s32 var_s0;
+    s32 var_a0; 
+    s32 i;
     s32 *temp_v0;
 
     sp2C = arg0->data.any;
@@ -142,9 +140,6 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/AA18E0/func_801DC9D0_AA1A10.s")
-#endif
 
 void func_801DCCD4_AA1D14(s32 unused) {
 }

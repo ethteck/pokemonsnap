@@ -398,6 +398,7 @@ segments:
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
     - { start: auto, name: bss_800B0570, type: bss, vram: 0x800B0570 }
+    - [0x6AA00, .bss, 574F0]
   - name: more_funcs
     type: code
     start: 0x5BF20
@@ -1008,7 +1009,7 @@ segments:
     subsegments:
     - [0xAA18E0, c]
     - [0xAA20A0, bin] # , data]
-    - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
+    - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - [0xAAA610, bin] # VPK0 compressed data
   - [0xAAA660, bin]

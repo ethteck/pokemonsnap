@@ -28,6 +28,6 @@ void dmaCopy(OSPiHandle* handle, u32 physAddr, uintptr_t vAddr, u32 size, u8 dir
 void dmaLoadOverlay(Overlay* ovl);
 void dmaReadRom(void* romSrc, void* ramDst, u32 nbytes);
 void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes);
-void dmaReadVPK(u32 rom, u32 ram);
+void dmaReadVPK(u32* rom, u32 ram);
 
 #endif /* SYSTEM_DMA_H */

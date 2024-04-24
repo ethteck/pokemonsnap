@@ -35,6 +35,8 @@ RoomGFX* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
+void func_800222F4(s32);
+void func_80022300(s32);
 void func_80022334(void);
 void func_80022374(s32, s32);
 void func_80022454(s32, s32);
@@ -55,7 +57,9 @@ void func_800AAE28(void);
 void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
+void func_800AAF20(void);
 void func_800ABB94(void);
+void func_800BFC18_5CAB8(s32*, s32*);
 s32 func_800BF3D4_5C274(s32);
 char* get_player_name(void);
 void* func_800BF710_5C5B0(s32);
@@ -72,13 +76,36 @@ void func_800C0314_5D1B4(s32, s32);
 s32 func_800C042C_5D2CC(void);
 s32 func_800C05D4_5D474(void);
 void func_800C0B48_5D9E8(void);
+s32 func_800E1AD8_8A72F8(s32);
+void func_800E1C5C_AA0A0C(void);
+s32 func_800E218C_A5D53C(s32);
 void func_800E3064(void);
+s32 func_800E4830_A0BDC0(s32);
+
+s32 func_801DCB24_A936E4(s32);
 void func_801DCBF4_98C664(void);
+s32 func_801DCC74_98C6E4(s32);
+s32 func_801DCC74_9D35E4(s32);
+s32 func_801DCCA0_9A6EF0(s32);
+s32 func_801DCEBC_9FAB7C(s32);
+s32 func_801DD09C_A08C8C(s32);
 s32 func_801DD010(s32);
 void func_801DD2D4_98CD44(s32 arg0);
 GObj* func_801DD720_98D190(s32 idx);
 s32 func_801E4510_993F80(void);
 void func_801E4E04_994874(void);
+
+s32 func_802BE3B0_640860(s32);
+
+s32 func_802C4740_55C7B0(s32);
+s32 func_802C6544_79FAD4(s32);
+
+s32 func_802D67C4_7279C4(s32);
+s32 func_802D9210_6C0FF0(s32);
+
+s32 func_802E2BB8_5DFC88(s32);
+
+s32 func_80346EF0_826660(s32);
 
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);

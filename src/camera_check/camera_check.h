@@ -72,6 +72,7 @@ extern s32 D_camera_check_8024A1D4;
 extern s32 D_camera_check_8024A1D8;
 
 void func_camera_check_801DC910(void);
+s32 func_camera_check_801DCACC(s32);
 void func_camera_check_801DCB58(int);
 void func_camera_check_801DCC0C(void);
 void func_camera_check_801DCD00(void);

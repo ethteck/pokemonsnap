@@ -297,13 +297,13 @@ struct MtxCameraLookAt {
 struct MtxCameraLookAtRoll {
     /* 0x00 */ struct OMMtx* mtx;
     /* 0x04 */ f32 xEye;
-    /* 0x04 */ f32 yEye;
-    /* 0x04 */ f32 zEye;
-    /* 0x04 */ f32 xAt;
-    /* 0x04 */ f32 yAt;
-    /* 0x04 */ f32 zAt;
-    /* 0x04 */ f32 roll;
-}; // size == 0x28;
+    /* 0x08 */ f32 yEye;
+    /* 0x0C */ f32 zEye;
+    /* 0x10 */ f32 xAt;
+    /* 0x14 */ f32 yAt;
+    /* 0x18 */ f32 zAt;
+    /* 0x1C */ f32 roll;
+}; // size == 0x20;
 
 /// This stores up to 3 `Mtx3Int`/`Mtx3Float`/`Mtx4Float` structures in the VLA data
 /// based on the kind id in the `kinds` arrays:

@@ -4,6 +4,7 @@ extern s32 D_800AC0F0;
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
 extern s32 D_800B0598;
+extern u8 D_800BDF1E;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009B9D0.s")
 
@@ -111,7 +112,19 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FB50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FBC4.s")
+void func_8009FBC4(void) {
+    GObj* curObj;
+    GObj* nextObj;
+
+    func_800E3064();
+    curObj = omGObjListHead[D_800BDF1E];
+    while (curObj != NULL) {
+        nextObj = curObj->next;
+        omDeleteGObj(curObj);
+        curObj = nextObj;
+    }
+    D_800AC0F0 = -1;
+}
 
 void func_8009FC2C(s32 arg0) {
     D_800AC0F0 = arg0;

@@ -12,5 +12,6 @@ void contMain(void *arg);
 void contPrinterSendCommand(u8 value);
 s32 contIsPrinterAvailable(void);
 u8 contPrinterGetStatus(void);
+extern u16 gContInputPressedButtons;
 
 #endif /* SYS_CONT_H */

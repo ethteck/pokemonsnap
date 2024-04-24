@@ -486,6 +486,9 @@ enum AL_MIDIstatus {
 
 enum AL_MIDIctrl {
     AL_MIDI_VOLUME_CTRL         = 0x07,
+//////// Only in Pokemon Snap
+    AL_MIDI_EXTRA_VOLUME_CTRL   = 0x08,
+////////
     AL_MIDI_PAN_CTRL            = 0x0A,
     AL_MIDI_PRIORITY_CTRL       = 0x10, /* use general purpose controller for priority */
     AL_MIDI_FX_CTRL_0           = 0x14,
@@ -658,6 +661,9 @@ typedef struct {
     ALPan               pan;            /* overall pan for this chan        */
     u8                  priority;       /* priority for this chan           */
     u8                  vol;            /* current volume for this chan     */
+//////// Only in Pokemon Snap
+    s8                  extraVol;
+////////
     u8                  fxmix;          /* current fx mix for this chan     */
     u8                  sustain;        /* current sustain pedal state      */
     f32                 pitchBend;      /* current pitch bend val in cents  */
@@ -737,6 +743,10 @@ typedef struct {
     s32                 state;
     u16                 chanMask;       /* active channels                  */
     s16                 vol;            /* overall sequence volume          */
+///////// Only in Pokemon Snap
+    s16                 extraVol;
+    s8                  extraFxMix;
+////////
     u8                  maxChannels;    /* number of MIDI channels          */
     u8                  debugFlags;     /* control which error get reported */
     ALEvent             nextEvent;
@@ -765,6 +775,10 @@ typedef struct {
     s32                 state;
     u16                 chanMask;       /* active channels                  */
     s16                 vol;            /* overall sequence volume          */
+///////// Only in Pokemon Snap
+    s16                 extraVol;
+    s8                  extraFxMix;
+////////
     u8                  maxChannels;    /* number of MIDI channels          */
     u8                  debugFlags;     /* control which error get reported */
     ALEvent             nextEvent;
@@ -865,10 +879,16 @@ void    alCSPSetVol(ALCSPlayer *seqp, s16 vol);
 void    alCSPSetChlProgram(ALCSPlayer *seqp, u8 chan, u8 prog);
 s32     alCSPGetChlProgram(ALCSPlayer *seqp, u8 chan);
 void    alCSPSetChlFXMix(ALCSPlayer *seqp, u8 chan, u8 fxmix);
+//////// Only in Pokemon Snap
+void alCSPSetPlayerFXMix(ALCSPlayer *seqp, s8 fxmix);
+////////
 u8      alCSPGetChlFXMix(ALCSPlayer *seqp, u8 chan);
 void    alCSPSetChlPan(ALCSPlayer *seqp, u8 chan, ALPan pan);
 ALPan   alCSPGetChlPan(ALCSPlayer *seqp, u8 chan);
 void	alCSPSetChlVol(ALCSPlayer *seqp, u8 chan, u8 vol);
+//////// Only in Pokemon Snap
+void	alCSPSetChlExtraVol(ALCSPlayer *seqp, u8 chan, s8 vol);
+////////
 u8	alCSPGetChlVol(ALCSPlayer *seqp, u8 chan);
 void    alCSPSetChlPriority(ALCSPlayer *seqp, u8 chan, u8 priority);
 u8      alCSPGetChlPriority(ALCSPlayer *seqp, u8 chan);

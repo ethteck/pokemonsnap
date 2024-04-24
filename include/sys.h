@@ -1,7 +1,8 @@
-#ifndef HAL_H
-#define HAL_H
+#ifndef SYS_H
+#define SYS_H
 
 #include "sys/anim.h"
+#include "sys/audio.h"
 #include "sys/cmd.h"
 #include "sys/cont.h"
 #include "sys/crash.h"

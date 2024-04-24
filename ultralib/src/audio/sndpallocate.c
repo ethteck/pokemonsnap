@@ -33,7 +33,9 @@ ALSndId alSndpAllocate(ALSndPlayer *sndp, ALSound *sound)
             sState[i].pitch = 1.0;
             sState[i].pan = AL_PAN_CENTER;
             sState[i].fxMix = AL_DEFAULT_FXMIX;
-            sState[i].vol = 32767*sound->sampleVolume/AL_VOL_FULL;
+//////// Only in Pokemon Snap            
+            sState[i].vol = (32767*sound->sampleVolume) >> 7;
+////////
 	    return i;
         }
     }

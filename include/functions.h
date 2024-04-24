@@ -37,15 +37,6 @@ void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* ro
 
 void ren_func_800192DC(GObj* obj);
 
-void func_800222F4(s32);
-void func_80022300(s32);
-void func_80022334(void);
-void func_80022374(s32, s32);
-void func_80022454(s32, s32);
-void func_800224DC(s32, s32, s32);
-void func_800228E4(s32);
-void func_80022A58(s32, s32, s32, f32, s32);
-void func_80022B14(void);
 char* func_8009B9D0(s16);
 s32 func_8009BB4C(s32);
 s32 func_8009BC68(void);

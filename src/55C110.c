@@ -59,8 +59,8 @@ void func_802C43CC_55C43C(s32 arg0) {
     func_800A19D8();
     func_80359074_4F9484();
     func_8036650C_50691C();
-    func_80022334();
-    func_80022B14();
+    auStopBGM();
+    auStopAllSounds();
     func_800E3064();
     func_80356FBC_4F73CC();
     func_803586C0_4F8AD0();

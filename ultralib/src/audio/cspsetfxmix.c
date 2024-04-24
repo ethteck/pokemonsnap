@@ -33,3 +33,10 @@ void alCSPSetChlFXMix(ALCSPlayer *seqp, u8 chan, u8 fxmix)
     alEvtqPostEvent(&seqp->evtq, &evt, 0);
 }
 
+//////// Only in Pokemon Snap
+
+void alCSPSetPlayerFXMix(ALCSPlayer *seqp, s8 fxmix) {
+    seqp->extraFxMix = fxmix;
+}
+
+////////

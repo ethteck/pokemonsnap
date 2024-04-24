@@ -27,7 +27,7 @@ segments:
     subsegments:
     - [0x1000, hasm, entry]
     - [0x1060, c, sys/main]
-    - [0x1510, hasm, padding_1510]
+    - [0x1510, asm, padding_1510]
     - [0x1520, c, sys/sched]
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
@@ -39,13 +39,13 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, hasm, padding_11E20]
+    - [0x11E20, asm, padding_11E20]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]
     - [0x1BCF0, c, sys/matrix]
     - [0x1F960, c]
-    - [0x20940, asm]
+    - [0x20940, c, sys/audio]
     - [0x245E0, asm]
     - [0x26D40, c, ../ultralib/src/sp/color]
     - [0x26D70, c, ../ultralib/src/sp/setattribute]
@@ -54,10 +54,11 @@ segments:
     - [0x29410, c, ../ultralib/src/sp/hide]
     - [0x29430, c, ../ultralib/src/sp/show]
     - [0x29450, c, ../ultralib/src/sp/spscale]
-    - [0x294C0, asm] # TODO
-    - [0x29570, asm] # TODO
+    - [0x294C0, c, ../ultralib/src/audio/cspsetfxmix]
+    - [0x29530, c, ../ultralib/src/audio/cspsetbank]
+    - [0x29570, c, ../ultralib/src/audio/cspsetpriority]
     - [0x295C0, c, ../ultralib/src/audio/sndpstop]
-    - [0x29610, asm] # TODO
+    - [0x29610, c, ../ultralib/src/audio/cseq]
     - [0x2A140, c, ../ultralib/src/audio/sndplayer]
     - [0x2A810, c, ../ultralib/src/audio/sl]
     - [0x2A8D0, c, ../ultralib/src/audio/synsetvol]
@@ -67,8 +68,8 @@ segments:
     - [0x2AF90, c, ../ultralib/src/audio/cspgettempo]
     - [0x2AFD0, c, ../ultralib/src/audio/synstartvoice]
     - [0x2B060, c, ../ultralib/src/audio/sndpsetfxmix]
-    - [0x2B0C0, asm] # TODO
-    - [0x2B100, asm] # TODO
+    - [0x2B0C0, c, ../ultralib/src/audio/cspsetseq]
+    - [0x2B100, c, ../ultralib/src/audio/sndpsetsound]
     - [0x2B120, c, ../ultralib/src/audio/synsetpitch]
     - [0x2B1B0, c, ../ultralib/src/audio/synsetpan]
     - [0x2B240, c, ../ultralib/src/audio/sndpsetpitch]
@@ -80,29 +81,31 @@ segments:
     - [0x2CF70, c, ../ultralib/src/audio/env]
     - [0x2DBE0, c, ../ultralib/src/audio/resample]
     - [0x2DED0, c, ../ultralib/src/audio/load]
-    - [0x2E9E0, asm] # TODO
+    - [0x2E9E0, c, ../ultralib/src/audio/cspsettempo]
     - [0x2EA50, c, ../ultralib/src/audio/filter]
-    - [0x2EA70, asm] # TODO
+    - [0x2EA70, c, ../ultralib/src/audio/cspsetvol]
+    - [0x2EAB0, c, ../ultralib/src/audio/sndpsetvol]
     - [0x2EB10, c, ../ultralib/src/audio/synsetfxmix]
     - [0x2EBB0, c, ../ultralib/src/audio/save]
-    - [0x2EC70, asm] # TODO
-    - [0x2ED30, asm] # TODO
-    - [0x2ED80, asm] # c, ../ultralib/src/audio/seqplayer] # TODO
-    - [0x30C80, asm] # TODO
-    - [0x32690, asm] # TODO
-    - [0x326B0, asm] # TODO
-    - [0x32D60, asm] # cspplay or seqpplay ?
-    - [0x32D90, asm] # TODO
+    - [0x2EC70, c, ../ultralib/src/audio/cspsetchlvol]
+    - [0x2ED30, c, ../ultralib/src/audio/sndpdeallocate]
+    - [0x2ED80, c, ../ultralib/src/audio/csplayer]
+    - [0x30C80, c, ../ultralib/src/audio/seqplayer]
+    - [0x32690, c, ../ultralib/src/audio/synsetpriority]
+    - [0x326B0, c, ../ultralib/src/audio/seq]
+    - [0x32CE0, c, ../ultralib/src/audio/copy]
+    - [0x32D60, c, ../ultralib/src/audio/cspplay]
+    - [0x32D90, c, ../ultralib/src/audio/sndpsetpan]
     - [0x32DF0, c, ../ultralib/src/audio/synaddplayer]
     - [0x32E40, c, ../ultralib/src/audio/sndpgetstate]
     - [0x32E60, c, ../ultralib/src/audio/sndpplay]
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
-    - [0x33000, asm] # cspstop or seqpstop ?  # TODO
-    - [0x33030, asm] # TODO
-    - [0x33040, asm] # TODO
+    - [0x33000, c, ../ultralib/src/audio/cspstop]
+    - [0x33030, asm, padding_33030]
+    - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
-    - [0x33110, asm] # TODO
+    - [0x33110, c, ../ultralib/src/audio/sndpallocate]
     - [0x331A0, c, ../ultralib/src/audio/syndelete]
     - [0x331B0, c, ../ultralib/src/audio/synstopvoice]
     - [0x33230, c, ../ultralib/src/os/sendmesg]
@@ -230,7 +233,7 @@ segments:
     - [0x3E4B0, asm, rspboot]
     - [0x3E580, data, rsp/aspMain]
     - [0x3F3A0, data, gspF3DEX2H.NoN.fifo]
-    - [0x401C0, data]
+    - [0x40730, data, gspL3DEX2H.fifo] # probably wrong offset
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
     - [0x41950, .data, sys/rdp_reset]
@@ -238,14 +241,14 @@ segments:
     - [0x41B30, .data, sys/render]
     - [0x41B40, .data, sys/misc]
     - [0x41B50, .data, sys/matrix]
-    - [0x42B50, data]
+    - [0x42B50, .data, sys/audio]
     - [0x43020, data, 245E0]
     - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
     - [0x43500, .data, ../ultralib/src/audio/drvrnew]
     - [0x43690, .data, ../ultralib/src/audio/reverb]
     - [0x436B0, .data, ../ultralib/src/audio/env]
-    - [0x437F0, data]
+    - [0x437F0, .data, ../ultralib/src/audio/csplayer]
     - [0x43830, data]
     - [0x43880, .data, ../ultralib/src/os/exceptasm]
     - [0x438A0, data]
@@ -279,19 +282,19 @@ segments:
     - [0x44940, .rodata, sys/misc]
     - [0x44990, .rodata, sys/matrix]
     - [0x449E0, .rodata, 1F960]
-    - [0x44A00, rodata, 20940]
+    - [0x44A00, .rodata, sys/audio]
     - [0x44A10, rodata, 245E0]
     - [0x44E50, rodata] # .rodata, ../ultralib/src/sp/sprite]
-    - [0x44E60, rodata, 29610]
+    - [0x44E60, .rodata, ../ultralib/src/audio/cseq]
     - [0x44E70, .rodata, ../ultralib/src/audio/sndplayer]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
     - [0x44EC0, .rodata, ../ultralib/src/audio/drvrnew]
     - [0x44EE0, .rodata, ../ultralib/src/audio/reverb]
     - [0x44F10, .rodata, ../ultralib/src/audio/env]
     - [0x44F70, .rodata, ../ultralib/src/audio/resample]
-    - [0x44FA0, rodata] # , ../ultralib/src/audio/seqplayer]
-    - [0x45230, rodata, 30C80]
-    - [0x45470, rodata, 326B0]
+    - [0x44FA0, .rodata, ../ultralib/src/audio/csplayer]
+    - [0x45230, .rodata, ../ultralib/src/audio/seqplayer]
+    - [0x45470, .rodata, ../ultralib/src/audio/seq]
     - [0x45480, .rodata, ../ultralib/src/audio/cents2ratio]
     - [0x45490, .rodata, ../ultralib/src/os/setintmask]
     - [0x45510, .rodata, ../ultralib/src/gu/sinf]
@@ -303,7 +306,7 @@ segments:
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
     - [0x457A0, rodata, rsp/aspMain_data]
     - [0x45A60, rodata, gspF3DEX2H.NoN.fifo]
-    - [0x45D20, rodata]
+    - [0x45E80, rodata, gspL3DEX2H.fifo] # probably wrong offset
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
     - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }
     - { start: auto, name: sys/dma, type: .bss, vram: 0x800488A0 }
@@ -314,7 +317,8 @@ segments:
     - { start: auto, name: sys/om, type: .bss, vram: 0x8004A990 }
     - { start: auto, name: sys/cmd, type: .bss, vram: 0x8004AF00 }
     - { start: auto, name: sys/render, type: .bss, vram: 0x8004AF20 }
-    - { start: auto, name: bss_8004B250, type: bss, vram: 0x8004B250 }
+    - { start: auto, name: sys/audio, type: .bss, vram: 0x8004B250 }
+    - { start: auto, name: bss_80096980, type: bss, vram: 0x80096980 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
@@ -1035,6 +1039,7 @@ segments:
   - [0xAE0510, bin]
 
   # Sequences
+  - [0xAEFC10, bin, audio/sbk]
   - [0xAEFD3C, bin, audio/seq/AEFD3C]
   - [0xAF0A94, bin, audio/seq/AF0A94]
   - [0xAF0C30, bin, audio/seq/AF0C30]

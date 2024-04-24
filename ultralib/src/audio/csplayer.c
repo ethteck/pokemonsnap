@@ -51,8 +51,10 @@ static void             __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event);
 static void             __CSPHandleMetaMsg(ALCSPlayer *seqp, ALEvent *event);
 static void             __CSPRepostEvent(ALEventQueue *evtq, ALEventListItem *item);
 static void		__setUsptFromTempo(ALCSPlayer *seqp, f32 tempo);		/* sct 1/8/96 */
-
-
+//////// Only in Pokemon Snap
+static f32 _getRate(f32 vol32, f32 tgt32, s32 count);
+static f32 _getVol(f32 ivol, s32 samples, f32 r);
+////////
 /*
  * Sequence Player public functions
  */
@@ -75,7 +77,11 @@ void alCSPNew(ALCSPlayer *seqp, ALSeqpConfig *c)
     seqp->uspt          = 488;
     seqp->nextDelta     = 0;
     seqp->state         = AL_STOPPED;
-    seqp->vol           = 0x7FFF;              /* full volume  */
+//////// Only in Pokemon Snap
+    seqp->vol           = 0x7800;
+    seqp->extraVol      = 120;
+    seqp->extraFxMix    = 0;
+////////
     seqp->frameTime     = AL_USEC_PER_FRAME; /* should get this from driver */
     seqp->curTime       = 0;
     seqp->initOsc       = c->initOsc;
@@ -211,9 +217,26 @@ static ALMicroTime __CSPVoiceHandler(void *node)
 	    seqp->vol =  seqp->nextEvent.msg.spvol.vol;
 	    for (vs = seqp->vAllocHead; vs != 0; vs = vs->next)
 	    {
-		alSynSetVol(seqp->drvr, &vs->voice,
+//////// Only in Pokemon Snap
+            if (vs->envPhase == AL_PHASE_DECAY && vs->envEndTime - seqp->curTime > AL_GAIN_CHANGE_TIME) {
+                vs->envGain = _getVol(vs->sound->envelope->attackVolume, 
+                            vs->sound->envelope->decayTime - vs->envEndTime + seqp->curTime + AL_GAIN_CHANGE_TIME,
+                            _getRate(vs->sound->envelope->attackVolume, vs->envGain, vs->sound->envelope->decayTime));
+                alSynSetVol(seqp->drvr, &vs->voice, __vsVol(vs, (ALSeqPlayer*)seqp), AL_GAIN_CHANGE_TIME);
+                vs->envPhase = AL_PHASE_NOTEON;
+
+                evt.type          = AL_SEQP_ENV_EVT;
+                evt.msg.vol.voice = &vs->voice;
+                evt.msg.vol.vol   = vs->sound->envelope->decayVolume;
+                evt.msg.vol.delta = vs->envEndTime - seqp->curTime - AL_GAIN_CHANGE_TIME;
+                                    
+                alEvtqPostEvent(&seqp->evtq, &evt, AL_GAIN_CHANGE_TIME);
+            } else {
+                alSynSetVol(seqp->drvr, &vs->voice,
                             __vsVol(vs, (ALSeqPlayer*)seqp),
                             __vsDelta(vs, seqp->curTime));
+            }
+////////
 	    }
 	    break;
 
@@ -545,6 +568,15 @@ static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
                 pitch = vstate->pitch * seqp->chanState[chan].pitchBend *
                     vstate->vibrato;
                 fxmix = seqp->chanState[chan].fxmix;
+//////// Only in Pokemon Snap
+                fxmix += seqp->extraFxMix;
+                if (fxmix > 127) {
+                    fxmix = 127;
+                }
+                if (fxmix < 0) {
+                    fxmix = 0;
+                }
+////////
                 pan   = __vsPan(vstate, (ALSeqPlayer*)seqp);
                 vol   = __vsVol(vstate, (ALSeqPlayer*)seqp);
                 deltaTime  = sound->envelope->attackTime;
@@ -643,6 +675,22 @@ static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
                         {
                             pan = __vsPan(vs, (ALSeqPlayer*)seqp);
                             alSynSetPan(seqp->drvr, &vs->voice, pan);
+//////// Only in Pokemon Snap
+                            if (vs->envPhase == AL_PHASE_DECAY && vs->envEndTime - seqp->curTime > AL_GAIN_CHANGE_TIME) {
+                                vs->envGain = _getVol(vs->sound->envelope->attackVolume, 
+                                            vs->sound->envelope->decayTime - vs->envEndTime + seqp->curTime + AL_GAIN_CHANGE_TIME,
+                                            _getRate(vs->sound->envelope->attackVolume, vs->envGain, vs->sound->envelope->decayTime));
+                                alSynSetVol(seqp->drvr, &vs->voice, __vsVol(vs, (ALSeqPlayer*)seqp), AL_GAIN_CHANGE_TIME);
+                                vs->envPhase = AL_PHASE_NOTEON;
+
+                                evt.type          = AL_SEQP_ENV_EVT;
+                                evt.msg.vol.voice = &vs->voice;
+                                evt.msg.vol.vol   = vs->sound->envelope->decayVolume;
+                                evt.msg.vol.delta = vs->envEndTime - seqp->curTime - AL_GAIN_CHANGE_TIME;
+                                                    
+                                alEvtqPostEvent(&seqp->evtq, &evt, AL_GAIN_CHANGE_TIME);
+                            }
+////////
                         }
                     }
                     break;
@@ -652,12 +700,58 @@ static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
                     {
                         if ((vs->channel == chan) && (vs->envPhase != AL_PHASE_RELEASE))
                         {
-                            vol = __vsVol(vs, (ALSeqPlayer*)seqp);
-                            alSynSetVol(seqp->drvr, &vs->voice, vol,
-                                        __vsDelta(vs,seqp->curTime));
+//////// Only in Pokemon Snap
+                            if ((vs->channel == chan) && vs->envPhase == AL_PHASE_DECAY && vs->envEndTime - seqp->curTime > AL_GAIN_CHANGE_TIME) {
+                                vs->envGain = _getVol(vs->sound->envelope->attackVolume, 
+                                            vs->sound->envelope->decayTime - vs->envEndTime + seqp->curTime + AL_GAIN_CHANGE_TIME,
+                                            _getRate(vs->sound->envelope->attackVolume, vs->envGain, vs->sound->envelope->decayTime));
+                                alSynSetVol(seqp->drvr, &vs->voice, __vsVol(vs, (ALSeqPlayer*)seqp), AL_GAIN_CHANGE_TIME);
+                                vs->envPhase = AL_PHASE_NOTEON;
+
+                                evt.type          = AL_SEQP_ENV_EVT;
+                                evt.msg.vol.voice = &vs->voice;
+                                evt.msg.vol.vol   = vs->sound->envelope->decayVolume;
+                                evt.msg.vol.delta = vs->envEndTime - seqp->curTime - AL_GAIN_CHANGE_TIME;
+                                                    
+                                alEvtqPostEvent(&seqp->evtq, &evt, AL_GAIN_CHANGE_TIME);
+                            } else {
+                                vol = __vsVol(vs, (ALSeqPlayer*)seqp);
+                                alSynSetVol(seqp->drvr, &vs->voice, vol,
+                                            __vsDelta(vs,seqp->curTime));
+                            }
+////////
                         }
                     }
                     break;
+//////// Only in Pokemon Snap
+                case AL_MIDI_EXTRA_VOLUME_CTRL:
+                    seqp->chanState[chan].extraVol = byte2;
+                    for (vs = seqp->vAllocHead; vs != 0; vs = vs->next)
+                    {
+                        if ((vs->channel == chan) && (vs->envPhase != AL_PHASE_RELEASE))
+                        {
+                            if ((vs->channel == chan) && vs->envPhase == AL_PHASE_DECAY && vs->envEndTime - seqp->curTime > AL_GAIN_CHANGE_TIME) {
+                                vs->envGain = _getVol(vs->sound->envelope->attackVolume, 
+                                            vs->sound->envelope->decayTime - vs->envEndTime + seqp->curTime + AL_GAIN_CHANGE_TIME,
+                                            _getRate(vs->sound->envelope->attackVolume, vs->envGain, vs->sound->envelope->decayTime));
+                                alSynSetVol(seqp->drvr, &vs->voice, __vsVol(vs, (ALSeqPlayer*)seqp), AL_GAIN_CHANGE_TIME);
+                                vs->envPhase = AL_PHASE_NOTEON;
+
+                                evt.type          = AL_SEQP_ENV_EVT;
+                                evt.msg.vol.voice = &vs->voice;
+                                evt.msg.vol.vol   = vs->sound->envelope->decayVolume;
+                                evt.msg.vol.delta = vs->envEndTime - seqp->curTime - AL_GAIN_CHANGE_TIME;
+                                                    
+                                alEvtqPostEvent(&seqp->evtq, &evt, AL_GAIN_CHANGE_TIME);
+                            } else {
+                                vol = __vsVol(vs, (ALSeqPlayer*)seqp);
+                                alSynSetVol(seqp->drvr, &vs->voice, vol,
+                                            __vsDelta(vs,seqp->curTime));
+                            }
+                        }
+                    }
+                    break;
+////////
                 case (AL_MIDI_PRIORITY_CTRL):
 		    /* leave current voices where they are */
                     seqp->chanState[chan].priority = byte2;
@@ -699,10 +793,54 @@ static void __CSPHandleMIDIMsg(ALCSPlayer *seqp, ALEvent *event)
                     seqp->chanState[chan].fxmix = byte2;
                     for (vs = seqp->vAllocHead; vs != 0; vs = vs->next)
                     {
-                        if (vs->channel == chan)
-                            alSynSetFXMix(seqp->drvr, &vs->voice, byte2);
+//////// Only in Pokemon Snap
+                        if (vs->channel == chan) {
+                            u8 fxmix = byte2 + seqp->extraFxMix;
+                            if (fxmix > 127) {
+                                fxmix = 127;
+                            }
+                            if (fxmix < 0) {
+                                fxmix = 0;
+                            }
+                            byte2 = fxmix;
+                        }
+                        alSynSetFXMix(seqp->drvr, &vs->voice, byte2); // BUG this is called for every voice
+////////
                     }
                     break;
+//////// Only in Pokemon Snap
+                case (AL_MIDI_FX_CTRL_1):
+                    seqp->extraVol = byte2;
+                    for (vs = seqp->vAllocHead; vs != 0; vs = vs->next)
+                    {
+                        if (vs->envPhase == AL_PHASE_DECAY && vs->envEndTime - seqp->curTime > AL_GAIN_CHANGE_TIME) {
+                            vs->envGain = _getVol(vs->sound->envelope->attackVolume, 
+                                         vs->sound->envelope->decayTime - vs->envEndTime + seqp->curTime + AL_GAIN_CHANGE_TIME,
+                                         _getRate(vs->sound->envelope->attackVolume, vs->envGain, vs->sound->envelope->decayTime));
+                            alSynSetVol(seqp->drvr, &vs->voice, __vsVol(vs, (ALSeqPlayer*)seqp), AL_GAIN_CHANGE_TIME);
+                            vs->envPhase = AL_PHASE_NOTEON;
+
+                            evt.type          = AL_SEQP_ENV_EVT;
+                            evt.msg.vol.voice = &vs->voice;
+                            evt.msg.vol.vol   = vs->sound->envelope->decayVolume;
+                            evt.msg.vol.delta = vs->envEndTime - seqp->curTime - AL_GAIN_CHANGE_TIME;
+                                                
+                            alEvtqPostEvent(&seqp->evtq, &evt, AL_GAIN_CHANGE_TIME);
+                        }
+                    }
+                    break;
+                case (AL_MIDI_FX_CTRL_0):
+                case (AL_MIDI_FX_CTRL_2):
+                case (AL_MIDI_FX_CTRL_3):
+                case (AL_MIDI_FX_CTRL_4):
+                case (AL_MIDI_FX_CTRL_5):
+                case (AL_MIDI_FX_CTRL_6):
+                case (AL_MIDI_FX_CTRL_7):
+                    break;
+
+                case AL_MIDI_FX3_CTRL:
+                    break;
+////////
 /*                case (AL_MIDI_FX_CTRL_0):
                 case (AL_MIDI_FX_CTRL_1):
                 case (AL_MIDI_FX_CTRL_2):
@@ -880,3 +1018,132 @@ static void __setUsptFromTempo (ALCSPlayer *seqp, f32 tempo)
 	seqp->uspt = 488;		/* This is the initial value set by alSeqpNew. */
 }
 
+//////// Only in Pokemon Snap
+// Modified versions of __getRate and __getVol
+
+f64 _ldexpf(f64 in, s32 ex);
+f64 _frexpf(f64 value, s32 *eptr);
+
+static f32 _getRate(f32 vol32, f32 tgt32, s32 count)
+{
+    f64 vol = (f64)vol32;
+    f64 tgt = (f64)tgt32;
+    
+    f64         invn = 1.0/count, eps, a, fs, mant;
+    s32         i_invn, ex, indx;
+
+#ifdef AUD_PROFILE
+    lastCnt[++cnt_index] = osGetCount();
+#endif
+    
+    if (count == 0){
+        if (tgt >= vol){
+            return (f32)0x8000;
+        }
+        else{
+            return (f32)0;
+        }
+    }
+
+    if (tgt < 1.0)
+        tgt = 1.0;
+    if (vol < 1.0)
+        vol = 1.0;
+
+#define NBITS (3)
+#define NPOS  (1<<NBITS)
+#define NFRACBITS (30)
+#define M_LN2		0.69314718055994530942
+    /*
+     * rww's parametric pow()
+     Goal: compute a = (tgt/vol)^(1/count)
+
+     Approach:
+     (tgt/vol)^(1/count) =
+     ((tgt/vol)^(1/2^30))^(2^30*1/count)
+
+     (tgt/vol)^(1/2^30) ~= 1 + eps
+
+     where
+
+     eps ~= ln(tgt/vol)/2^30
+
+     ln(tgt/vol) = ln2(tgt/vol) * ln(2)
+
+     ln2(tgt/vol) = fp_exponent( tgt/vol ) +
+     ln2( fp_mantissa( tgt/vol ) )
+		
+     fp_mantissa() and fp_exponent() are
+     calculated via tricky bit manipulations of
+     the floating point number. ln2() is
+     approximated by a look up table.
+
+     Note that this final (1+eps) value needs
+     to be raised to the 2^30/count power. This
+     is done by operating on the binary representaion
+     of this number in the final while loop.
+	
+     Enjoy!
+     */
+    {
+	f64 logtab[] = { -0.912537, -0.752072, -0.607683, -0.476438,
+                         -0.356144, -0.245112, -0.142019, -0.045804  };
+
+	i_invn = (s32) _ldexpf( invn, NFRACBITS );
+	mant = _frexpf( tgt/vol, &ex );
+	indx = (s32) (_ldexpf( mant, NBITS+1 ) ); /* NPOS <= indx < 2*NPOS */
+	eps = (logtab[indx - NPOS] + ex) * M_LN2;
+	eps /= _ldexpf( 1, NFRACBITS ); /* eps / 2^NFRACBITS */
+	fs = (1.0 + eps);
+	a = 1.0;
+	while( i_invn ) {
+	    if( i_invn & 1 )
+		a = a * fs;
+	    fs *= fs;
+	    i_invn >>= 1;
+	}
+    }
+
+    a *= (a *= (a *= a));
+
+#ifdef AUD_PROFILE
+    PROFILE_AUD(rate_num, rate_cnt, rate_max, rate_min);
+#endif
+    return (f32)a;
+
+}
+
+static f32 _getVol(f32 ivol, s32 samples, f32 r)
+{
+    f32	        a;
+    s32	      	i;
+
+#ifdef AUD_PROFILE
+    lastCnt[++cnt_index] = osGetCount();
+#endif
+    
+    /*
+     * Rate values are actually rate^8
+     */
+    samples >>=3;
+    if (samples == 0){
+        return ivol;
+    }
+    
+    a = 1.0;
+    for (i=0; i<32; i++){
+	if( samples & 1 )
+	    a *= r;
+        samples >>= 1;
+        if (samples == 0)
+            break;
+	r *= r;
+    }
+    ivol *= a;
+#ifdef AUD_PROFILE
+    PROFILE_AUD(vol_num, vol_cnt, vol_max, vol_min);
+#endif
+    return ivol;
+}
+
+////////

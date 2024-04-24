@@ -48,7 +48,7 @@ void func_camera_check_801DCA60(void) {
     func_8036EB98();
     func_80375284_848A34(3);
     func_80375284_848A34(2);
-    func_80022454(0, 0x7F00);
+    auSetBGMVolume(0, 0x7F00);
     func_camera_check_801DF938();
 }
 

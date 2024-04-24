@@ -46,7 +46,7 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
     }
     if (*arg1 != D_801F4180_9A3BF0) {
         D_801F4180_9A3BF0 = *arg1;
-        func_800228E4(0x45);
+        auPlaySound(0x45);
         func_8036FFE0_843790((*arg1 * 0x93) + 0x3C, 0x27);
     }
     return 0;

@@ -4,6 +4,7 @@
 void func_8009FA68(void* arg0, s32* arg1);
 void func_801DC9D0_AA1A10(GObj*);
 
+// data
 extern Sprite D_801E5478_AAA4B8;
 extern u8 D_801E54BC_AAA4FC;
 extern u8 D_801E54C0_AAA500;
@@ -14,8 +15,12 @@ extern ScreenSettings D_801E5510_AAA550;
 extern SceneSetup D_801E552C_AAA56C;
 extern s32 D_801E553C_AAA57C;
 extern f32 D_801E55C0_AAA600;
-extern s32 D_801E55D8_AAA618;
-extern GObj* D_801E55DC_AAA61C;
+
+// bss
+s32 D_801E55D0_AAA610[2];
+s32 D_801E55D8_AAA618;
+GObj* D_801E55DC_AAA61C;
+s32 D_801E55E0_AAA620[4];
 
 void func_801DC8A0_AA18E0(s32 arg0) {
     if (arg0 == 4) {
@@ -59,15 +64,10 @@ void func_801DC9BC_AA19FC(s32 unused) {
 void func_801DCCD4_AA1D14(s32 unused) {
 }
 
-#if 0
-u64 D_801E55E0_AAA620;
-//s32 D_801E55E4_AAA624;
-u64 D_801E55E8_AAA628;
-//s32 D_801E55EC_AAA62C;
 void func_801DCCDC_AA1D1C(void) {
     GObj* cam;
     OMCamera* omCamera;
-    s32 stackpad;
+    s32 i;
 
     D_801E5510_AAA550.zBuffer = gtlMalloc(0x96000, 0x40);
     viApplyScreenSettings(&D_801E5510_AAA550);
@@ -90,17 +90,14 @@ void func_801DCCDC_AA1D1C(void) {
     omCamera->perspMtx.persp.aspect = D_801E55C0_AAA600;
 
     omCamera->viewMtx.lookAt.at.x = 0.0f;
-
     omCamera->viewMtx.lookAt.eye.x = 0.0f;
-    omCamera->viewMtx.lookAt.eye.y = 100.0f;
-    
     omCamera->viewMtx.lookAt.at.y = 0.0f;
-    omCamera->viewMtx.lookAt.eye.z = 0.0f;
-    omCamera->viewMtx.lookAt.up.z = 1.0f;
-    
+    omCamera->viewMtx.lookAt.eye.y = 0.0f;
     omCamera->viewMtx.lookAt.at.z = 0.0f;
     omCamera->viewMtx.lookAt.up.x = 0.0f;
-    omCamera->viewMtx.lookAt.up.y = 0.0f;
+    omCamera->viewMtx.lookAt.up.z = 0.0f;
+    omCamera->viewMtx.lookAt.eye.z = 100.0f;
+    omCamera->viewMtx.lookAt.up.y = 1.0f;
 
     cam = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
     cam->data.cam->flags = 8;
@@ -108,14 +105,10 @@ void func_801DCCDC_AA1D1C(void) {
     D_801E55DC_AAA61C = cam;
     ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8, 0, NULL, 1);
 
-    //D_801E55E4_AAA624 = 0;
-    D_801E55E0_AAA620 = 0;
-    D_801E55E8_AAA628 = 0;
-    //D_801E55EC_AAA62C = 0;
+    for (i = 0; i < ARRAY_COUNT(D_801E55E0_AAA620); i++) {
+        D_801E55E0_AAA620[i] = 0;
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/AA18E0/func_801DCCDC_AA1D1C.s")
-#endif
 
 s32 func_801DD010_AA2050(s32 arg0) {
     D_801E55D8_AAA618 = arg0;

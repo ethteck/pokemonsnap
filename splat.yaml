@@ -1013,7 +1013,7 @@ segments:
     subsegments:
     - [0xAA18E0, c]
     - [0xAA20A0, bin] # , data]
-    - { start: auto, name: bss_801E55D0, type: bss, vram: 0x801E55D0 }
+    - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - [0xAAA610, bin] # VPK0 compressed data
   - [0xAAA660, bin]

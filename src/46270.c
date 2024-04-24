@@ -4,38 +4,41 @@
 
 #include "ld_addrs.h"
 
-extern Overlay D_800ABBD0;
-extern Overlay D_800ABC18;
-extern Overlay D_800ABC3C;
-extern Overlay D_800ABC60;
-extern Overlay D_800ABC84;
-extern Overlay D_800ABCA8;
-extern Overlay D_800ABCCC;
-extern Overlay D_800ABCF0;
-extern Overlay D_800ABD14;
-extern Overlay D_800ABD38;
-extern Overlay D_800ABD5C;
-extern Overlay D_800ABD80;
-extern Overlay D_800ABDA4;
-extern Overlay D_800ABDC8;
-extern Overlay D_800ABDEC;
-extern Overlay D_800ABBF4;
-extern Overlay D_800ABE10;
-extern Overlay D_800ABE34;
-extern Overlay D_800ABE58;
-extern Overlay D_800ABE7C;
-extern Overlay D_800ABEA0;
-extern Overlay D_800ABEC4;
-extern Overlay D_800ABEE8;
-extern Overlay D_800ABF0C;
-extern Overlay D_800ABF30;
-extern Overlay D_800ABF54;
-extern Overlay D_800ABF78;
-extern Overlay D_800ABF9C;
-extern Overlay D_800ABFC0;
-extern Overlay D_800ABFE4;
-extern s32 D_800AC00C;
-extern s32 D_800AC010;
+Overlay D_800ABBD0 = OVERLAY(AA18E0);
+Overlay D_800ABBF4 = OVERLAY(unk_end_level);
+Overlay D_800ABC18 = OVERLAY(camera_check);
+Overlay D_800ABC3C = OVERLAY(unk_end_level_3);
+Overlay D_800ABC60 = OVERLAY(unk_end_level_5);
+Overlay D_800ABC84 = OVERLAY(unk_end_level_6);
+Overlay D_800ABCA8 = OVERLAY(photo_check);
+Overlay D_800ABCCC = OVERLAY(unk_end_level_7);
+Overlay D_800ABCF0 = OVERLAY(unk_end_level_8);
+Overlay D_800ABD14 = OVERLAY(more_funcs);
+Overlay D_800ABD38 = OVERLAY(unk_level_end_9);
+Overlay D_800ABD5C = OVERLAY(unk_level_end_10);
+Overlay D_800ABD80 = OVERLAY(unk_level_end_11);
+Overlay D_800ABDA4 = OVERLAY(intro_code);
+Overlay D_800ABDC8 = OVERLAY(app_level);
+Overlay D_800ABDEC = OVERLAY(level_low);
+Overlay D_800ABE10 = OVERLAY(A74E0);
+Overlay D_800ABE34 = OVERLAY(beach_code);
+Overlay D_800ABE58 = OVERLAY(_162CB0);
+Overlay D_800ABE7C = OVERLAY(tunnel_code);
+Overlay D_800ABEA0 = OVERLAY(_1F5E70);
+Overlay D_800ABEC4 = OVERLAY(cave_code);
+Overlay D_800ABEE8 = OVERLAY(_29A190);
+Overlay D_800ABF0C = OVERLAY(river_code);
+Overlay D_800ABF30 = OVERLAY(_326C10);
+Overlay D_800ABF54 = OVERLAY(volcano_code);
+Overlay D_800ABF78 = OVERLAY(_3F63D0);
+Overlay D_800ABF9C = OVERLAY(valley_code);
+Overlay D_800ABFC0 = OVERLAY(_4A8160);
+Overlay D_800ABFE4 = OVERLAY(rainbow_code);
+
+static s32 padding2[1] = {0};
+s32 D_800AC00C = 0;
+s32 D_800AC010 = 0;
+
 extern s32 D_800B0578;
 
 #define VPK_VRAM 0x802B5000 // TODO SHIFT hard-coded VRAM

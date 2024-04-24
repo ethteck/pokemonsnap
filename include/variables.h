@@ -13,9 +13,9 @@ extern s32 gPhotoCount;
 // Valley code
 extern AnimalDef extraStaryuDef;
 extern AnimalDef extraStarmieDef;
-extern randomTransition D_802ECB00;
-extern animalInitData D_802EC7B8;
-extern animalInitData D_802ECB2C;
+extern randomTransition D_802ECB00_7C6090;
+extern animalInitData D_802EC7B8_7C5D48;
+extern animalInitData D_802ECB2C_7C60BC;
 
 extern GObj* cartGObj;
 

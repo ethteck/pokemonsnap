@@ -351,7 +351,7 @@ segments:
     - [0x56880, c]
     - [0x568D0, c]
     - [0x574F0, c]
-    - [0x57580, data]
+    - [0x57580, .data, 46270]
     - [0x579D0, .rodata, 46270]
     - [0x57A70, rodata]
     - [0x57AA0, rodata]
@@ -368,7 +368,7 @@ segments:
     - [0x5AA00, rodata]
     - [0x5AD50, rodata]
     - [0x5AD80, rodata]
-    - [0x5AD90, rodata]
+    - [0x5AD90, rodata] # I believe rodata actually starts here (aside from the one blob at 0x579D0 - 0x57A70)
     - [0x5ADD0, rodata]
     - [0x5AEA0, rodata]
     - [0x5B020, rodata]
@@ -546,9 +546,8 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x3F63D0, c]
-    # - [0x3F63E0, bin] # , data]
-    # - { start: auto, name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
-  - [0x3F63E0, bin] # todo comment out above and remove this
+    - [0x3F63E0, bin] # , data]
+    - { start: auto, name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
   - type: code
     name: stage5_extra
     start: 0x47CF30
@@ -563,9 +562,8 @@ segments:
     exclusive_ram_id: unk800F5D90
     subsegments:
     - [0x4A8160, c]
-    # - [0x4A8170, bin] # , data]
-    # - { start: auto, name: bss_80139C30, type: bss, vram: 0x80139C30 }
-  - [0x4A8170, bin] # todo comment out above and remove this
+    - [0x4A8170, bin] # , data]
+    - { start: auto, name: bss_80139C30, type: bss, vram: 0x80139C30 }
   - type: code
     name: stage6_extra
     start: 0x4EC000
@@ -750,9 +748,8 @@ segments:
     - [0x730480, c]
     - [0x730D80, c]
     - [0x731860, c]
-    # - [0x731E80, bin] # , data]
-    # - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
-  - [0x731E80, bin] # todo comment out above and remove this
+    - [0x731E80, bin] # , data]
+    - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     type: code
     start: 0x79F1B0
@@ -780,9 +777,8 @@ segments:
     - [0x7AA790, c]
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
-    # - [0x7ABCD0, bin] # , data]
-    # - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
-  - [0x7ABCD0, bin] # todo comment out above and remove this
+    - [0x7ABCD0, bin] # , data]
+    - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
     type: code
     start: 0x825E30

@@ -11,7 +11,7 @@ void spawnStarmieAtGeo(GObj* obj) {
 }
 
 void func_802D25E0(GObj* obj) {
-    weightedRandomStaightTransition(obj, &D_802ECB00);
+    weightedRandomStaightTransition(obj, &D_802ECB00_7C6090);
 }
 
 void func_802D2604(GObj* obj) {
@@ -40,5 +40,5 @@ void func_802D2684(GObj* obj) {
 }
 
 void func_802D2704(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
-    spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_802ECB2C);
+    spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_802ECB2C_7C60BC);
 }

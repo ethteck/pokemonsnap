@@ -1,6 +1,5 @@
 #include "common.h"
 
-enum VectorAxisFlags { AXIS_X = 1 << 0, AXIS_Y = 1 << 1, AXIS_Z = 1 << 2 };
 #define VEC_DOT(v, w) ((v->x * w->x) + (v->y * w->y) + (v->z * w->z))
 
 f32 Vec3fNormalize(Vec3f* v) {

@@ -430,7 +430,10 @@ segments:
     - [0x61C10, c]
     - [0x62010, c]
     - [0x64270, c]
-    - [0x64280, bin] # , data]
+    - [0x64280, data]
+    - [0x643A0, rodata]
+    - [0x643A0, .rodata, 62010]
+    - [0x64420, rodata]
     - { start: auto, name: bss_800F5A00, type: bss, vram: 0x800F5A00 }
   - type: code
     name: magikarp1

@@ -656,7 +656,19 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [0x5EAFD0, bin] # , data]
-    - [0x5ED360, bin] # , data] # rodata
+
+    - { start: 0x5ED360, type: .rodata, name: 5DF5D0, linker_section_order: .data }
+    - { start: 0x5ED420, type: .rodata, name: 5E0A70, linker_section_order: .data }
+    - { start: 0x5ED430, type: .rodata, name: 5E21C0, linker_section_order: .data }
+    - { start: 0x5ED440, type: .rodata, name: 5E3D80, linker_section_order: .data }
+    - { start: 0x5ED450, type: .rodata, name: 5E4750, linker_section_order: .data }
+    - { start: 0x5ED470, type: .rodata, name: 5E64A0, linker_section_order: .data }
+    - { start: 0x5ED480, type: .rodata, name: 5E7560, linker_section_order: .data }
+    - { start: 0x5ED4A0, type: .rodata, name: 5E8080, linker_section_order: .data }
+    - { start: 0x5ED4C0, type: .rodata, name: 5E8930, linker_section_order: .data }
+    - { start: 0x5ED4D0, type: .rodata, name: 5E9010, linker_section_order: .data }
+    - { start: 0x5ED4E0, type: .rodata, name: 5EA6F0, linker_section_order: .data }
+
     - [0x5ED4F0, bin] # , data]
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
@@ -677,11 +689,25 @@ segments:
     - [0x6438F0, c]
     - [0x644E80, c]
     - [0x645740, c]
+    - [0x645D90, c]
     - [0x646B50, c]
     - [0x646EA0, c]
     - [0x647360, c]
     - [0x648600, bin] # , data]
-    - [0x64A500, bin] # , rodata]
+
+    - { start: 0x64A500, type: .rodata, name: 6401B0, linker_section_order: .data }
+    - { start: 0x64A510, type: .rodata, name: 640900, linker_section_order: .data }
+    - { start: 0x64A540, type: .rodata, name: 640CD0, linker_section_order: .data }
+    - { start: 0x64A550, type: .rodata, name: 6414D0, linker_section_order: .data }
+    - { start: 0x64A560, type: .rodata, name: 641A50, linker_section_order: .data }
+    - { start: 0x64A570, type: .rodata, name: 6438F0, linker_section_order: .data }
+    - { start: 0x64A590, type: .rodata, name: 644E80, linker_section_order: .data }
+    - { start: 0x64A5A0, type: .rodata, name: 645740, linker_section_order: .data }
+    - { start: 0x64A5B0, type: .rodata, name: 645D90, linker_section_order: .data }
+    - { start: 0x64A5C0, type: .rodata, name: 646B50, linker_section_order: .data }
+    - { start: 0x64A5D0, type: .rodata, name: 646EA0, linker_section_order: .data }
+    - { start: 0x64A5E0, type: .rodata, name: 647360, linker_section_order: .data }
+
     - [0x64A610, bin] # , data]
     - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code

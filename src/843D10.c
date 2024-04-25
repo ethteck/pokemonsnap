@@ -89,5 +89,3 @@ GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite) {
 #pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80371F30_8456E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80371F54_845704.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/843D10/func_80373670_846E20.s")

@@ -15,7 +15,7 @@ options:
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
   data_string_guesser_level: 2
-  rodata_string_guesser_level: 2
+  rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
 segments:
   - [0x000000, header, header]
@@ -360,6 +360,7 @@ segments:
     - [0x57580, .data, 46270]
     - { start: 0x579D0, type: .rodata, name: 46270, linker_section_order: .data }
     - [0x57A70, data]
+
     - [0x5AD90, rodata]
     - [0x5ADD0, rodata]
     - [0x5B830, .rodata, 47380]
@@ -369,8 +370,11 @@ segments:
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
-    - { start: auto, name: bss_800B0570, type: bss, vram: 0x800B0570 }
-    - [0x6AA00, .bss, 574F0]
+
+    - { start: 0x5BF20, type: data, linker_section_order: .rodata }
+
+    - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
+    - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
     type: code
     start: 0x5BF20
@@ -912,15 +916,20 @@ segments:
     - [0x843050, c]
     - [0x843790, c]
     - [0x843D10, c]
+    - [0x846E20, c]
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
+
     - [0x848BC0, bin] # , data]
-    - [0x879E80, rodata]
-    - [0x879F20, rodata]
-    - [0x87A000, rodata]
-    - [0x87A090, rodata]
-    - [0x87A0A0, rodata]
+
+    - [0x879E80, .rodata, 848B50]
+    - [0x879F20, .rodata, 840A50]
+    - [0x879FF0, .rodata, 843790]
+    - [0x87A000, .rodata, 843D10]
+    - [0x87A090, .rodata, 846E20]
+    - [0x87A0A0, .rodata, 8486E0]
+
     - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: camera_check
     dir: camera_check
@@ -937,9 +946,11 @@ segments:
     - [0x87D1A0, c]
     - [0x87FB20, c]
     - [0x8817E0, bin] # , data]
+
     - [0x8A61F0, rodata]
     - [0x8A7010, .rodata, '87D1A0']
     - [0x8A70C0, .rodata, '87FB20']
+
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
     type: code

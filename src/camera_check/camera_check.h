@@ -53,8 +53,6 @@ extern UnkCyanBass D_camera_check_802089BC;
 extern s32 D_camera_check_80208960;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);
 extern Sprite D_camera_check_80208900;
-extern char D_camera_check_80208A34[];
-extern char D_camera_check_80208A3C[];
 extern u8 D_camera_check_802098F0[0x40000];
 extern UnkTealFlounder D_camera_check_802498F0;
 extern s32 D_camera_check_802498FC;

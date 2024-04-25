@@ -941,15 +941,16 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
-    - [0x87A320, c]
+    - [0x87A320, asm] # padding
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]
+
     - [0x8817E0, bin] # , data]
 
-    - [0x8A61F0, rodata]
-    - [0x8A7010, .rodata, '87D1A0']
-    - [0x8A70C0, .rodata, '87FB20']
+    - [0x8A61F0, .rodata, 87A330]
+    - [0x8A6450, .rodata, 87D1A0]
+    - [0x8A70C0, .rodata, 87FB20]
 
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3

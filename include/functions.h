@@ -126,7 +126,7 @@ void func_8036B734_83EEE4(s32);
 void func_8036B870_83F020(s32, s32, s32, s32, s32, s32);
 void func_8036B9EC_83F19C(s32, s32 x, s32 y);
 void func_8036C2FC_83FAAC(s32, s32, s32, s32, s32, s32, s32);
-void func_8036C898_840048(s32, char*);
+void func_8036C898_840048(s32, const char*);
 void func_8036C9C0_840170(s32, char*);
 void func_8036CB58_840308(s32, s32);
 void func_8036CBA0_840350(s32, s32, s32);

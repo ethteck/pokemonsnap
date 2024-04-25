@@ -1,11 +1,5 @@
 splat 0.24.1 (powered by spimdisasm 1.25.0)
 
-Rodata segment '8A61F0' may belong to the text segment '87A330'
-    Based on the usage from the function func_camera_check_801DDB80 to the symbol D_camera_check_80208A00
-
-Rodata segment '8A61F0' may belong to the text segment '87D1A0'
-    Based on the usage from the function func_camera_check_801DF9B0 to the symbol D_camera_check_80208E34
-
 Rodata segment 'A0F7B0' may belong to the text segment 'A08E30'
     Based on the usage from the function func_800E1E10_A093A0 to the symbol D_800E8220_A0F7B0
 
@@ -21,10 +15,6 @@ Rodata segment 'sprite_cursor' may belong to the text segment 'A5D5B0'
 Segment ../ultralib/src/gu/cosf, symbol at vram 80044B10 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:
       - [0x45720, .rodata]
-
-Segment 8A61F0, symbol at vram 80208C30 ends with extra nops, indicating a likely file split.
-File split suggestions for this segment will follow in config yaml format:
-      - [0x8A6450, rodata]
 Split 16 MB (96.37%) in defined segments
               header:     64 B (0.00%) 1 split, 0 cached
                  bin:     5 MB (31.64%) 44 split, 0 cached

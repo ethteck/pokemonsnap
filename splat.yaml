@@ -1106,6 +1106,7 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xA93460, c]
+    - [0xA937B0, asm] # nops
     - [0xA937C0, c]
     - [0xA94940, c]
     - [0xA95760, data]

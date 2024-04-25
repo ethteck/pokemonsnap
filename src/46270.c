@@ -124,7 +124,7 @@ void func_8009AE0C(u32 arg0) {
     dmaLoadOverlay(&D_800ABDEC);
     dmaLoadOverlay(&D_800ABDC8);
     switch (arg0) {
-        case 0:
+        case SCENE_BEACH:
             dmaLoadOverlay(&D_800ABE34);
             dmaLoadOverlay(&D_800ABE10);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -132,7 +132,7 @@ void func_8009AE0C(u32 arg0) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
             break;
-        case 1:
+        case SCENE_TUNNEL:
             dmaLoadOverlay(&D_800ABE7C);
             dmaLoadOverlay(&D_800ABE58);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -142,7 +142,7 @@ void func_8009AE0C(u32 arg0) {
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
             dmaReadRom(zubat3_ROM_START, zubat3_VRAM, zubat3_ROM_END - zubat3_ROM_START);
             break;
-        case 4:
+        case SCENE_CAVE:
             dmaLoadOverlay(&D_800ABEC4);
             dmaLoadOverlay(&D_800ABEA0);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
@@ -154,7 +154,7 @@ void func_8009AE0C(u32 arg0) {
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
             dmaReadRom(zubat3_ROM_START, zubat3_VRAM, zubat3_ROM_END - zubat3_ROM_START);
             break;
-        case 3:
+        case SCENE_RIVER:
             dmaLoadOverlay(&D_800ABF0C);
             dmaLoadOverlay(&D_800ABEE8);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
@@ -164,19 +164,19 @@ void func_8009AE0C(u32 arg0) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
             break;
-        case 2:
+        case SCENE_VOLCANO:
             dmaLoadOverlay(&D_800ABF54);
             dmaLoadOverlay(&D_800ABF30);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             break;
-        case 5:
+        case SCENE_VALLEY:
             dmaLoadOverlay(&D_800ABF9C);
             dmaLoadOverlay(&D_800ABF78);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             break;
-        case 6:
+        case SCENE_RAINBOW:
             dmaLoadOverlay(&D_800ABFE4);
             dmaLoadOverlay(&D_800ABFC0);
             break;
@@ -201,7 +201,7 @@ void func_8009B40C(void) {
 }
 
 void start_scene_manager(s32 arg0) {
-    u32 var_s0;
+    u32 sceneId;
     s32 sp38;
     s32 sp34;
 
@@ -218,134 +218,134 @@ void start_scene_manager(s32 arg0) {
     func_800BFC18_5CAB8(&sp38, &sp34);
     viSetScreenOffsets(sp38, sp38, sp34, sp34);
 
-    var_s0 = 8;
+    sceneId = SCENE_8;
 
     while (TRUE) {
         gtlSetIntervals(1, 1);
         func_8009A8C0(0);
 
-        switch (var_s0) {
-            case 7:
-            case 10:
-            case 16:
+        switch (sceneId) {
+            case SCENE_7:
+            case SCENE_10:
+            case SCENE_16:
                 break;
-            case 21:
+            case SCENE_21:
                 func_800AAF20();
                 func_8009A8D8(1);
-                var_s0 = D_800AC010 == 0 ? 0 : 1;
+                sceneId = D_800AC010 == 0 ? SCENE_BEACH : SCENE_TUNNEL;
                 D_800AC010 = (D_800AC010 + 1) % 2;
                 break;
-            case 0:
+            case SCENE_BEACH:
                 func_800AAF20();
                 func_8009AE0C(0);
                 setLevelId(0);
-                var_s0 = func_802C4740_55C7B0(var_s0);
+                sceneId = func_802C4740_55C7B0(sceneId);
                 break;
-            case 1:
+            case SCENE_TUNNEL:
                 func_800AAF20();
                 func_8009AE0C(1);
                 setLevelId(1);
-                var_s0 = func_802E2BB8_5DFC88(var_s0);
+                sceneId = func_802E2BB8_5DFC88(sceneId);
                 break;
-            case 4:
+            case SCENE_CAVE:
                 func_800AAF20();
                 func_8009AE0C(4);
                 setLevelId(4);
-                var_s0 = func_802BE3B0_640860(var_s0);
+                sceneId = func_802BE3B0_640860(sceneId);
                 break;
-            case 3:
+            case SCENE_RIVER:
                 func_800AAF20();
                 func_8009AE0C(3);
                 setLevelId(3);
-                var_s0 = func_802D9210_6C0FF0(var_s0);
+                sceneId = func_802D9210_6C0FF0(sceneId);
                 break;
-            case 2:
+            case SCENE_VOLCANO:
                 func_800AAF20();
                 func_8009AE0C(2);
                 setLevelId(2);
-                var_s0 = func_802D67C4_7279C4(var_s0);
+                sceneId = func_802D67C4_7279C4(sceneId);
                 break;
-            case 5:
+            case SCENE_VALLEY:
                 func_800AAF20();
                 func_8009AE0C(5);
                 setLevelId(5);
-                var_s0 = func_802C6544_79FAD4(var_s0);
+                sceneId = func_802C6544_79FAD4(sceneId);
                 break;
-            case 6:
+            case SCENE_RAINBOW:
                 func_800AAF20();
                 func_8009AE0C(6);
                 setLevelId(6);
-                var_s0 = func_80346EF0_826660(var_s0);
+                sceneId = func_80346EF0_826660(sceneId);
                 break;
-            case 9:
+            case SCENE_CAMERA_CHECK:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC18);
-                var_s0 = func_camera_check_801DCACC(var_s0);
+                sceneId = func_camera_check_801DCACC(sceneId);
                 break;
-            case 11:
-            case 13:
+            case SCENE_11:
+            case SCENE_13:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC3C);
-                var_s0 = func_800E1AD8_8A72F8(var_s0);
+                sceneId = func_800E1AD8_8A72F8(sceneId);
                 break;
-            case 12:
+            case SCENE_12:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC60);
-                var_s0 = func_801DCCA0_9A6EF0(var_s0);
+                sceneId = func_801DCCA0_9A6EF0(sceneId);
                 break;
-            case 14:
+            case SCENE_14:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC84);
-                var_s0 = func_801DCC74_9D35E4(var_s0);
+                sceneId = func_801DCC74_9D35E4(sceneId);
                 break;
-            case 15:
+            case SCENE_15:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCA8);
-                var_s0 = func_801DCC74_98C6E4(var_s0);
+                sceneId = func_801DCC74_98C6E4(sceneId);
                 break;
-            case 22:
+            case SCENE_22:
                 func_800AAF20();
-            case 23:
+            case SCENE_23:
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCCC);
-                var_s0 = func_801DCEBC_9FAB7C(var_s0);
+                sceneId = func_801DCEBC_9FAB7C(sceneId);
                 break;
-            case 24:
+            case SCENE_24:
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCF0);
-                var_s0 = func_801DD09C_A08C8C(var_s0);
+                sceneId = func_801DD09C_A08C8C(sceneId);
                 break;
-            case 17:
-            case 18:
-            case 19:
-            case 20:
+            case SCENE_17:
+            case SCENE_18:
+            case SCENE_19:
+            case SCENE_20:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABD80);
-                var_s0 = func_801DCB24_A936E4(var_s0);
+                sceneId = func_801DCB24_A936E4(sceneId);
                 break;
-            case 8:
+            case SCENE_8:
                 setLevelId(0);
                 func_800AAF20();
                 dmaReadVPK((u32*) A0F830_ROM_START, VPK_VRAM);
                 dmaLoadOverlay(&D_800ABD38);
-                var_s0 = func_800E4830_A0BDC0(var_s0);
-                if (var_s0 == 0) {
+                sceneId = func_800E4830_A0BDC0(sceneId);
+                if (sceneId == SCENE_BEACH) {
                     dmaLoadOverlay(&D_800ABDEC);
                     dmaLoadOverlay(&D_800ABBF4);
                     dmaLoadOverlay(&overlayMenuNewGame);
-                    var_s0 = menu_new_game_entry(var_s0);
+                    sceneId = menu_new_game_entry(sceneId);
                 }
                 func_8009A8D8(0);
                 break;

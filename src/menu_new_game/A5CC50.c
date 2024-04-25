@@ -332,5 +332,5 @@ s32 menu_new_game_entry(s32 arg0) {
     gtlDisableNearClipping(1);
     omSetupScene(&menu_new_game_setup);
     func_800BFEBC_5CD5C(16, 1);
-    return 11;
+    return SCENE_11;
 }

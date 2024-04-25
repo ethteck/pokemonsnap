@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "sys.h"
+#include "enums.h"
 #include "common_structs.h"
 #include "functions.h"
 #include "variables.h"

@@ -719,6 +719,7 @@ segments:
     subsegments:
     - [0x6C05E0, c]
     - [0x6C1090, c]
+    - [0x6C1300, c]
     - [0x6C1D60, c]
     - [0x6C22E0, c]
     - [0x6C26F0, c]
@@ -726,6 +727,7 @@ segments:
     - [0x6C2E80, c]
     - [0x6C3980, c]
     - [0x6C4CD0, c]
+    - [0x6C4EC0, c]
     - [0x6C66E0, c]
     - [0x6C6A70, c]
     - [0x6C7450, c]
@@ -738,7 +740,19 @@ segments:
     - [0x6C9680, c]
     - [0x6C9EB0, c]
     - [0x6CA400, bin] # , data]
-    - [0x6CC980, bin] # , rodata]
+
+    - { start: 0x6CC980, type: .rodata, name: 6C1090, linker_section_order: .data }
+    - { start: 0x6CC9B0, type: .rodata, name: 6C1300, linker_section_order: .data }
+    - { start: 0x6CC9D0, type: .rodata, name: 6C22E0, linker_section_order: .data }
+    - { start: 0x6CC9E0, type: .rodata, name: 6C27C0, linker_section_order: .data }
+    - { start: 0x6CC9F0, type: .rodata, name: 6C2E80, linker_section_order: .data }
+    - { start: 0x6CCA00, type: .rodata, name: 6C3980, linker_section_order: .data }
+    - { start: 0x6CCA30, type: .rodata, name: 6C4CD0, linker_section_order: .data }
+    - { start: 0x6CCA40, type: .rodata, name: 6C4EC0, linker_section_order: .data }
+    - { start: 0x6CCA50, type: .rodata, name: 6C66E0, linker_section_order: .data }
+    - { start: 0x6CCA60, type: .rodata, name: 6C6A70, linker_section_order: .data }
+    - { start: 0x6CCA70, type: .rodata, name: 6C86E0, linker_section_order: .data }
+
     - [0x6CCA80, bin] # , data]
     - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
@@ -757,6 +771,7 @@ segments:
     - [0x72D260, c]
     - [0x72E4E0, c]
     - [0x72E9F0, c]
+    - [0x72EE30, c]
     - [0x72F100, c]
     - [0x72F590, c]
     - [0x72F770, c]
@@ -767,7 +782,22 @@ segments:
     - [0x730D80, c]
     - [0x731860, c]
     - [0x731E80, bin] # , data]
-    - [0x734A10, bin] # , rodata]
+
+    - { start: 0x734A10, type: .rodata, name: 7272E0, linker_section_order: .data }
+    - { start: 0x734A30, type: .rodata, name: 728490, linker_section_order: .data }
+    - { start: 0x734A50, type: .rodata, name: 729CA0, linker_section_order: .data }
+    - { start: 0x734A90, type: .rodata, name: 72AF00, linker_section_order: .data }
+    - { start: 0x734AB0, type: .rodata, name: 72BCE0, linker_section_order: .data }
+    - { start: 0x734AC0, type: .rodata, name: 72C7A0, linker_section_order: .data }
+    - { start: 0x734AD0, type: .rodata, name: 72D260, linker_section_order: .data }
+    - { start: 0x734B10, type: .rodata, name: 72E4E0, linker_section_order: .data }
+    - { start: 0x734B20, type: .rodata, name: 72E9F0, linker_section_order: .data }
+    - { start: 0x734B30, type: .rodata, name: 72EE30, linker_section_order: .data }
+    - { start: 0x734B40, type: .rodata, name: 72FC80, linker_section_order: .data }
+    - { start: 0x734B50, type: .rodata, name: 72FFE0, linker_section_order: .data }
+    - { start: 0x734B60, type: .rodata, name: 730480, linker_section_order: .data }
+    - { start: 0x734B70, type: .rodata, name: 730D80, linker_section_order: .data }
+
     - [0x734C00, bin] # , data]
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code

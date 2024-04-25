@@ -434,6 +434,10 @@ if __name__ == "__main__":
         setup()
         sys.exit(0)
 
+    if not Path(f"{BASENAME}.z64").exists():
+        print(f"{BASENAME}.z64 is missing!")
+        sys.exit(1)
+
     split.main([YAML_FILE], modes="all", verbose=False)
 
     linker_entries = split.linker_writer.entries

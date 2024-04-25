@@ -6,10 +6,6 @@
 #include "photocheck.h"
 
 extern s32 D_80229840;
-extern s32 D_80369F80;
-
-extern Addr D_803B5000;
-extern Addr D_803DA800;
 
 // data
 // Gfx D_801E53A0_994E10[] = {

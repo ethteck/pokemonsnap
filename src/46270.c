@@ -15,7 +15,7 @@ Overlay D_800ABCCC = OVERLAY(unk_end_level_7);
 Overlay D_800ABCF0 = OVERLAY(unk_end_level_8);
 Overlay D_800ABD14 = OVERLAY(more_funcs);
 Overlay D_800ABD38 = OVERLAY(unk_level_end_9);
-Overlay D_800ABD5C = OVERLAY(unk_level_end_10);
+Overlay overlayMenuNewGame = OVERLAY(newgame);
 Overlay D_800ABD80 = OVERLAY(unk_level_end_11);
 Overlay D_800ABDA4 = OVERLAY(intro_code);
 Overlay D_800ABDC8 = OVERLAY(app_level);
@@ -344,8 +344,8 @@ void start_scene_manager(s32 arg0) {
                 if (var_s0 == 0) {
                     dmaLoadOverlay(&D_800ABDEC);
                     dmaLoadOverlay(&D_800ABBF4);
-                    dmaLoadOverlay(&D_800ABD5C);
-                    var_s0 = func_800E218C_A5D53C(var_s0);
+                    dmaLoadOverlay(&overlayMenuNewGame);
+                    var_s0 = new_game_entry(var_s0);
                 }
                 func_8009A8D8(0);
                 break;

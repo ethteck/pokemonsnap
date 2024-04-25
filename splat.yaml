@@ -14,6 +14,8 @@ options:
   symbol_name_format: $VRAM_$ROM
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
+  data_string_guesser_level: 2
+  rodata_string_guesser_level: 2
   create_undefined_funcs_auto: false
 segments:
   - [0x000000, header, header]
@@ -618,6 +620,17 @@ segments:
     - [0x562370, c]
     - [0x562BC0, c]
     - [0x563E80, bin] # , data]
+
+    - [0x566160, bin] # , rodata] # linker_section_order: .data
+    - { start: 0x5661B0, type: rodata, linker_section_order: .data }
+    - { start: 0x5661C0, type: rodata, linker_section_order: .data }
+    - { start: 0x5661D0, type: rodata, linker_section_order: .data }
+    - { start: 0x5661E0, type: rodata, linker_section_order: .data }
+    - { start: 0x5661F0, type: rodata, linker_section_order: .data }
+    - { start: 0x566200, type: rodata, linker_section_order: .data }
+    - { start: 0x566210, type: rodata, linker_section_order: .data }
+
+    - [0x566220, bin] # , data]
     - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
     type: code
@@ -641,6 +654,8 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [0x5EAFD0, bin] # , data]
+    - [0x5ED360, bin] # , data] # rodata
+    - [0x5ED4F0, bin] # , data]
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
     type: code
@@ -664,6 +679,8 @@ segments:
     - [0x646EA0, c]
     - [0x647360, c]
     - [0x648600, bin] # , data]
+    - [0x64A500, bin] # , rodata]
+    - [0x64A610, bin] # , data]
     - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
     type: code
@@ -693,6 +710,8 @@ segments:
     - [0x6C9680, c]
     - [0x6C9EB0, c]
     - [0x6CA400, bin] # , data]
+    - [0x6CC980, bin] # , rodata]
+    - [0x6CCA80, bin] # , data]
     - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
     type: code
@@ -720,6 +739,8 @@ segments:
     - [0x730D80, c]
     - [0x731860, c]
     - [0x731E80, bin] # , data]
+    - [0x734A10, bin] # , rodata]
+    - [0x734C00, bin] # , data]
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     type: code
@@ -749,6 +770,8 @@ segments:
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
     - [0x7ABCD0, bin] # , data]
+    - [0x7C60F0, bin] # , rodata]
+    - [0x7C6770, bin] # , data]
     - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
     type: code
@@ -815,7 +838,8 @@ segments:
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
-    - [0x848BC0, bin]
+    - [0x848BC0, bin] # , data]
+    - [0x879E80, rodata]
     - [0x879F20, rodata]
     - [0x87A000, rodata]
     - [0x87A090, rodata]
@@ -836,6 +860,7 @@ segments:
     - [0x87D1A0, c]
     - [0x87FB20, c]
     - [0x8817E0, bin] # , data]
+    - [0x8A61F4, rodata]
     - [0x8A7010, .rodata, '87D1A0']
     - [0x8A70C0, .rodata, '87FB20']
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
@@ -852,6 +877,7 @@ segments:
     - [0x8A9CC0, c]
     - [0x8AAF60, c]
     - [0x8ABEF0, bin] # , data]
+    - [0x98AD50, bin] # , rodata]
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
     type: code
@@ -880,6 +906,7 @@ segments:
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, bin] # , data]
+    - [0x9D2EA0, bin] # , rodata]
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
     type: code
@@ -892,6 +919,7 @@ segments:
     - [0x9D3660, c]
     - [0x9D91C0, c]
     - [0x9DA580, bin] # , data]
+    - [0x9F9990, bin] # , rodata]
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
     type: code
@@ -905,6 +933,7 @@ segments:
     - [0x9FD510, c]
     - [0x9FEC10, c]
     - [0x9FF2E0, bin] # , data]
+    - [0xA07F80, bin] # , rodata]
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
     type: code

@@ -969,8 +969,8 @@ segments:
 
   - [0xA0F830, bin] # VPK0 compressed data
 
-  - name: newgame
-    dir: newgame
+  - name: menu_new_game
+    dir: menu_new_game
     type: code
     start: 0xA5CC50
     vram: 0x800E18A0

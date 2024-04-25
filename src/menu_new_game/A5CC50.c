@@ -55,7 +55,7 @@ char* D_800E2FF0[] = {
 
 char* D_800E356C[] = { "←", "→", "　", "End" };
 
-ScreenSettings menuNewGameVideoSettings = {
+ScreenSettings menu_new_game_video_settings = {
     D_803B5000, /* fb1 */
     D_803DA800, /* fb2 */
     NULL,       /* fb3 */
@@ -286,12 +286,12 @@ void new_game_init(void) {
     omCreateProcess(omAddGObj(0xE, NULL, 0, 0x80000000), func_800E1F58_A5D308, 0, 1);
 }
 
-SceneSetup menuNewGameSetup = {
+SceneSetup menu_new_game_setup = {
     {
         0,                          /* unk_00*/
         omUpdateAll,                /* fnUpdate */
         omDrawAll,                  /* fnDraw */
-        newgame_VRAM_END,           /* heapBase */
+        menu_new_game_VRAM_END,     /* heapBase */
         0,                          /* heapSize */
         2,                          /* unk14 */
         1,                          /* numContexts */
@@ -323,14 +323,14 @@ SceneSetup menuNewGameSetup = {
     0x58,                           /* omSobjSize */
     8,                              /* numOMCameras */
     0x90,                           /* omCameraSize */
-    new_game_init               /* postInitFunc */
+    new_game_init                   /* postInitFunc */
 };
 
-s32 new_game_entry(s32 arg0) {
-    viApplyScreenSettings(&menuNewGameVideoSettings);
-    menuNewGameSetup.gtlSetup.heapSize = D_80369F80 - newgame_VRAM_END;
+s32 menu_new_game_entry(s32 arg0) {
+    viApplyScreenSettings(&menu_new_game_video_settings);
+    menu_new_game_setup.gtlSetup.heapSize = D_80369F80 - menu_new_game_VRAM_END;
     gtlDisableNearClipping(1);
-    omSetupScene(&menuNewGameSetup);
+    omSetupScene(&menu_new_game_setup);
     func_800BFEBC_5CD5C(16, 1);
     return 11;
 }

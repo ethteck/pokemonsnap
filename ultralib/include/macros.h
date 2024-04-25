@@ -46,7 +46,10 @@
 #define TAU 6.2831855f
 #define PI_2 1.5707964f
 
+#define SET_SPRITE_POS(s, _x, _y) (s).x = _x; (s).y = _y;
+
 // TODO create header for animals
 #define GET_ANIMAL(obj) ((Animal*)((obj)->userData))
+
 
 #endif

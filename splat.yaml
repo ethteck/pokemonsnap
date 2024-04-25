@@ -815,12 +815,14 @@ segments:
     - [0x7A2DD0, c]
     - [0x7A3560, c]
     - [0x7A3800, c]
+    - [0x7A3C50, c]
     - [0x7A4610, c]
     - [0x7A5F10, c]
     - [0x7A6D50, c]
     - [0x7A7410, c]
     - [0x7A7790, c]
     - [0x7A8030, c]
+    - [0x7A8DD0, c]
     - [0x7AA110, c]
     - [0x7AA720, c]
     - [0x7AA780, textbin] # Weird extra nops, possibly infinite loop somewhere?
@@ -828,7 +830,24 @@ segments:
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
     - [0x7ABCD0, bin] # , data]
-    - [0x7C60F0, bin] # , rodata]
+
+    - { start: 0x7C60F0, type: .rodata, name: 79F1B0, linker_section_order: .data }
+    - { start: 0x7C6100, type: .rodata, name: 7A00C0, linker_section_order: .data }
+    - { start: 0x7C6220, type: .rodata, name: 7A1850, linker_section_order: .data }
+    - { start: 0x7C6260, type: .rodata, name: 7A2DD0, linker_section_order: .data }
+    - { start: 0x7C6280, type: .rodata, name: 7A3560, linker_section_order: .data }
+    - { start: 0x7C6290, type: .rodata, name: 7A3800, linker_section_order: .data }
+    - { start: 0x7C62A0, type: .rodata, name: 7A3C50, linker_section_order: .data }
+    - { start: 0x7C62B0, type: .rodata, name: 7A4610, linker_section_order: .data }
+    - { start: 0x7C62D0, type: .rodata, name: 7A5F10, linker_section_order: .data }
+    - { start: 0x7C6320, type: .rodata, name: 7A6D50, linker_section_order: .data }
+    - { start: 0x7C6330, type: .rodata, name: 7A8030, linker_section_order: .data }
+    - { start: 0x7C6380, type: .rodata, name: 7A8DD0, linker_section_order: .data }
+    - { start: 0x7C6390, type: rodata, linker_section_order: .data } # lots of unreferenced strings 
+    - { start: 0x7C6720, type: .rodata, name: 7AA110, linker_section_order: .data }
+    - { start: 0x7C6730, type: .rodata, name: 7AA790, linker_section_order: .data }
+    - { start: 0x7C6760, type: .rodata, name: 7AB7C0, linker_section_order: .data }
+
     - [0x7C6770, bin] # , data]
     - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code

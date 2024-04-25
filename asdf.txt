@@ -34,6 +34,8 @@ File split suggestions for this segment will follow in config yaml format:
 Segment 568D0, symbol at vram 800B0560 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:
       - [0x5BF20, .rodata]
+Wrote 7A8030 to src/7A8030.c
+Wrote 7A8DD0 to src/7A8DD0.c
 
 Segment 8A61F0, symbol at vram 80208C30 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:

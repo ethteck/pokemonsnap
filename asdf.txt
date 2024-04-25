@@ -1,29 +1,5 @@
 splat 0.24.1 (powered by spimdisasm 1.25.0)
 
-Rodata segment '44E50' may belong to the text segment '26D80'
-    Based on the usage from the function spX2Draw to the symbol D_80044250
-
-Rodata segment '5661B0' may belong to the text segment '55D690'
-    Based on the usage from the function func_802C5620_55D690 to the symbol D_802CE140_5661B0
-
-Rodata segment '5661C0' may belong to the text segment '55D690'
-    Based on the usage from the function func_802C5C60_55DCD0 to the symbol D_802CE150_5661C0
-
-Rodata segment '5661D0' may belong to the text segment '5612B0'
-    Based on the usage from the function func_802C94F0_561560 to the symbol D_802CE160_5661D0
-
-Rodata segment '5661E0' may belong to the text segment '561B30'
-    Based on the usage from the function func_802C9C88_561CF8 to the symbol D_802CE170_5661E0
-
-Rodata segment '5661F0' may belong to the text segment '562370'
-    Based on the usage from the function func_802CA300_562370 to the symbol D_802CE180_5661F0
-
-Rodata segment '566200' may belong to the text segment '562BC0'
-    Based on the usage from the function func_802CAB50_562BC0 to the symbol D_802CE190_566200
-
-Rodata segment '566210' may belong to the text segment '562BC0'
-    Based on the usage from the function func_802CB194_563204 to the symbol D_802CE1A0_566210
-
 Rodata segment '879E80' may belong to the text segment '848B50'
     Based on the usage from the function func_803753D0_848B80 to the symbol D_803A66D0_879E80
 

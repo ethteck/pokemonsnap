@@ -286,7 +286,7 @@ segments:
     - [0x449E0, .rodata, 1F960]
     - [0x44A00, .rodata, sys/audio]
     - [0x44A10, rodata, 245E0]
-    - [0x44E50, rodata] # .rodata, ../ultralib/src/sp/sprite]
+    - [0x44E50, .rodata, 26D80] # .rodata, ../ultralib/src/sp/sprite]
     - [0x44E60, .rodata, ../ultralib/src/audio/cseq]
     - [0x44E70, .rodata, ../ultralib/src/audio/sndplayer]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
@@ -609,6 +609,7 @@ segments:
     - [0x55C870, c]
     - [0x55D1C0, c]
     - [0x55D690, c]
+    - [0x55DCD0, c] # file split based on rodata, the real one may be a bit earlier
     - [0x55F350, c]
     - [0x55FB80, c]
     - [0x560320, c]
@@ -619,16 +620,17 @@ segments:
     - [0x562110, c]
     - [0x562370, c]
     - [0x562BC0, c]
+    - [0x563000, c]
     - [0x563E80, bin] # , data]
 
-    - [0x566160, bin] # , rodata] # linker_section_order: .data
-    - { start: 0x5661B0, type: rodata, linker_section_order: .data }
-    - { start: 0x5661C0, type: rodata, linker_section_order: .data }
-    - { start: 0x5661D0, type: rodata, linker_section_order: .data }
-    - { start: 0x5661E0, type: rodata, linker_section_order: .data }
-    - { start: 0x5661F0, type: rodata, linker_section_order: .data }
-    - { start: 0x566200, type: rodata, linker_section_order: .data }
-    - { start: 0x566210, type: rodata, linker_section_order: .data }
+    - { start: 0x566160, type: .rodata, name: 55C870, linker_section_order: .data }
+    - { start: 0x5661B0, type: .rodata, name: 55D690, linker_section_order: .data }
+    - { start: 0x5661C0, type: .rodata, name: 55DCD0, linker_section_order: .data }
+    - { start: 0x5661D0, type: .rodata, name: 5612B0, linker_section_order: .data }
+    - { start: 0x5661E0, type: .rodata, name: 561B30, linker_section_order: .data }
+    - { start: 0x5661F0, type: .rodata, name: 562370, linker_section_order: .data }
+    - { start: 0x566200, type: .rodata, name: 562BC0, linker_section_order: .data }
+    - { start: 0x566210, type: .rodata, name: 563000, linker_section_order: .data }
 
     - [0x566220, bin] # , data]
     - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }

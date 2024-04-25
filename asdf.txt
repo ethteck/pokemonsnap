@@ -3,45 +3,29 @@ splat 0.24.1 (powered by spimdisasm 1.25.0)
 Rodata segment '44E50' may belong to the text segment '26D80'
     Based on the usage from the function spX2Draw to the symbol D_80044250
 
+Rodata segment '5661B0' may belong to the text segment '55D690'
+    Based on the usage from the function func_802C5620_55D690 to the symbol D_802CE140_5661B0
 
-Data segment 64280, symbol at vram 800E6BF0 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x643A0, rodata]
+Rodata segment '5661C0' may belong to the text segment '55D690'
+    Based on the usage from the function func_802C5C60_55DCD0 to the symbol D_802CE150_5661C0
 
+Rodata segment '5661D0' may belong to the text segment '5612B0'
+    Based on the usage from the function func_802C94F0_561560 to the symbol D_802CE160_5661D0
 
-Data segment 506FB0, symbol at vram 8038A2A4 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x52A6B4, rodata]
+Rodata segment '5661E0' may belong to the text segment '561B30'
+    Based on the usage from the function func_802C9C88_561CF8 to the symbol D_802CE170_5661E0
 
+Rodata segment '5661F0' may belong to the text segment '562370'
+    Based on the usage from the function func_802CA300_562370 to the symbol D_802CE180_5661F0
 
-Data segment 563E80, symbol at vram 802CE0F0 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x566160, rodata]
+Rodata segment '566200' may belong to the text segment '562BC0'
+    Based on the usage from the function func_802CAB50_562BC0 to the symbol D_802CE190_566200
 
+Rodata segment '566210' may belong to the text segment '562BC0'
+    Based on the usage from the function func_802CB194_563204 to the symbol D_802CE1A0_566210
 
-Data segment 5EAFD0, symbol at vram 802F0290 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x5ED360, rodata]
-
-
-Data segment 648600, symbol at vram 802C8060 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x64A510, rodata]
-
-
-Data segment 6CA400, symbol at vram 802E4BA0 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x6CC980, rodata]
-
-
-Data segment 731E80, symbol at vram 802E3860 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x734A60, rodata]
-
-
-Data segment 7ABCD0, symbol at vram 802ECB70 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x7C6100, rodata]
+Rodata segment '879E80' may belong to the text segment '848B50'
+    Based on the usage from the function func_803753D0_848B80 to the symbol D_803A66D0_879E80
 
 Rodata segment '879F20' may belong to the text segment '840A50'
     Based on the usage from the function func_8036D4F0_840CA0 to the symbol jtbl_803A6770_879F20
@@ -58,30 +42,11 @@ Rodata segment '87A090' may belong to the text segment '843D10'
 Rodata segment '87A0A0' may belong to the text segment '8486E0'
     Based on the usage from the function func_80374F30_8486E0 to the symbol D_803A68F0_87A0A0
 
+Rodata segment '8A61F0' may belong to the text segment '87A330'
+    Based on the usage from the function func_camera_check_801DDB80 to the symbol D_camera_check_80208A04
 
-Data segment 8817E0, symbol at vram 80208C30 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x8A6420, rodata]
-
-
-Data segment 8ABEF0, symbol at vram 801C5570 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x98AD90, rodata]
-
-
-Data segment 9AE430, symbol at vram 80208EF0 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x9D3140, rodata]
-
-
-Data segment 9DA580, symbol at vram 80203BE0 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0x9FA550, rodata]
-
-
-Data segment 9FF2E0, symbol at vram 801EA710 is a jumptable, indicating the start of the rodata section _may_ be near here.
-Please note the real start of the rodata section may be way before this point.
-      - [0xA083D0, rodata]
+Rodata segment '8A61F0' may belong to the text segment '87D1A0'
+    Based on the usage from the function func_camera_check_801DF9B0 to the symbol D_camera_check_80208E34
 
 Rodata segment 'A0F7B0' may belong to the text segment 'A08E30'
     Based on the usage from the function func_800E1E10_A093A0 to the symbol D_800E8220_A0F7B0
@@ -93,6 +58,10 @@ File split suggestions for this segment will follow in config yaml format:
 Segment 568D0, symbol at vram 800B0560 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:
       - [0x5BF20, .rodata]
+
+Segment 8A61F0, symbol at vram 80208C30 ends with extra nops, indicating a likely file split.
+File split suggestions for this segment will follow in config yaml format:
+      - [0x8A6450, rodata]
 Split 16 MB (96.37%) in defined segments
               header:     64 B (0.00%) 1 split, 0 cached
                  bin:     5 MB (31.64%) 44 split, 0 cached

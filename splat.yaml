@@ -15,6 +15,7 @@ options:
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
   create_undefined_funcs_auto: false
+  extensions_path: tools/splat_ext
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -982,9 +983,12 @@ segments:
     - [0xA5E3A0, .data, A5CC50]
     - [0xA5EA50, .rodata, A5CC50]
     - [0xA5F040, .rodata, A5D5B0]
-    - [0xA5F070, rodata, sprite_background]
-    - [0xA84C80, rodata, sprite_card]
-    - [0xA93390, rodata, sprite_cursor]
+    - [0xA5F070, snap_sprite, sprite_background]
+    - [0xA84C70, bin]
+    - [0xA84C80, snap_sprite, sprite_card]
+    - [0xA93388, bin]
+    - [0xA93390, snap_sprite, sprite_cursor]
+    - [0xA93458, bin]
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { start: auto, name: sprite_bss, type: bss, vram: 0x80168150 }

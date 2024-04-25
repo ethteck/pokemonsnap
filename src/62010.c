@@ -1,6 +1,8 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E4860_62010.s")
+f32 func_800E4860_62010(Vec3f* v1, Vec3f* v2) {
+    return v1->x * v2->x + v1->y * v2->y + v1->z * v2->z;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E4890_62040.s")
 
@@ -22,7 +24,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E5094_62844.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E55C0_62D70.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E55C0_62D70.s")
+s32 func_800E55C0_62D70(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, void* arg4, Vec3f* arg5) {
+    f32 f20;
+    f32 sp60;
+    f32 sp58;
+    Vec3f sp40;
+
+    arg5 = arg1;
+    f20 = Vec3fNormalize(arg5);
+    Vec3fDiff(&sp40, arg2, arg0);
+    sp60 = func_800E4860_62010(&sp40, &sp40);
+    sp58 = func_800E4860_62010(&sp40, arg5);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E57CC_62F7C.s")
 

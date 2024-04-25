@@ -83,7 +83,7 @@ s32 menu_new_game_entry(s32);
 void func_800E3064(void);
 s32 func_800E4830_A0BDC0(s32);
 
-s32 func_801DCB24_A936E4(s32);
+s32 func_credits_801DCB24(s32);
 void func_801DCBF4_98C664(void);
 s32 func_801DCC74_98C6E4(s32);
 s32 func_801DCC74_9D35E4(s32);

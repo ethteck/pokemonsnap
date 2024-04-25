@@ -2,7 +2,6 @@
 #include "camera_check.h"
 
 extern Addr D_8024A1E0;
-extern Addr D_80369F80;
 
 static void nullsub() {
 }

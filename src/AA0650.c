@@ -8,8 +8,6 @@ s32 D_800E1DD4_AA0B84;
 // external data
 extern Sprite D_802BC0C0;
 extern Addr D_800E1DE0;
-extern u16 D_803B5000[SCREEN_WIDTH * SCREEN_HEIGHT];
-extern u16 D_803DA800[SCREEN_WIDTH * SCREEN_HEIGHT];
 
 // internal data
 ScreenSettings D_800E1CB0_AA0A60 = {

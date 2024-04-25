@@ -966,7 +966,13 @@ segments:
     - [0x8A9CC0, c]
     - [0x8AAF60, c]
     - [0x8ABEF0, bin] # , data]
-    - [0x98AD50, bin] # , rodata]
+
+    - [0x98AD50, rodata] # unreferenced string
+    - [0x98AD70, .rodata, 8A7360]
+    - [0x98AE70, .rodata, 8A8A50]
+    - [0x98B170, .rodata, 8A9CC0]
+    - [0x98C300, .rodata, 8AAF60]
+
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
     type: code

@@ -23,7 +23,7 @@ extern UNK_PTR D_801E54CC_AAA50C;
 s32 D_801E55D0_AAA610[2];
 s32 D_801E55D8_AAA618;
 GObj* D_801E55DC_AAA61C;
-s32 D_801E55E0_AAA620[4];
+UNK_PTR D_801E55E0_AAA620[4];
 
 void func_801DC8A0_AA18E0(s32 arg0) {
     if (arg0 == 4) {
@@ -65,7 +65,7 @@ void func_801DC9BC_AA19FC(void *unused) {
 void func_801DC9D0_AA1A10(GObj* arg0) {
     void* sp2C;
     s32 var_s0;
-    s32 var_a0; 
+    s32 var_a0;
     s32 i;
     s32 *temp_v0;
 

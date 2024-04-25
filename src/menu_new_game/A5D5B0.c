@@ -9,7 +9,7 @@ static s32 menu_new_game_CursorX;
 static s32 menu_new_game_CursorY;
 static s32 D_80168128;
 static s8 D_8016812C;
-static u8 D_80168130[16];
+static char D_80168130[16];
 static u8 D_80168140[3];
 static u8 D_80168143;
 static u8 D_80168144;
@@ -138,7 +138,7 @@ void func_800E25C0_A5D970(void) {
     }
 
     dst = &D_80168130[D_80168143];
-    src = D_80168140;    
+    src = D_80168140;
     while (*src != 0) {
         *dst++ = *src++;
     }
@@ -183,10 +183,10 @@ void func_800E2758_A5DB08(void) {
 
     if (D_80168143 < 14) {
         u8* src = sp24;
-        u8* dst = &D_80168130[D_80168143];        
-        
+        u8* dst = &D_80168130[D_80168143];
+
         auPlaySound(66);
-       
+
         while (*src != 0) {
             *dst++ = *src++;
         }
@@ -246,7 +246,7 @@ void func_800E28C0_A5DC70(void) {
         auPlaySoundWithParams(96, 0x7FFF, 84, 1.0f, 10);
     }
 
-    func_800BF44C_5C2EC(D_80168130);
+    func_800BF44C_5C2EC((PlayerName*) D_80168130); // todo cast ??
     auPlaySound(66);
 }
 
@@ -264,7 +264,7 @@ s32 func_800E2A24_A5DDD4(char* arg0) {
 
 void func_800E2A84_A5DE34(char* arg0) {
     u8** temp_v0;
-    s16 sp1A;    
+    s16 sp1A;
     SObj* unk_48;
 
     func_8036D344_840AF4(12);

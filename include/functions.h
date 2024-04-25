@@ -61,7 +61,7 @@ void func_800ABB94(void);
 void func_800BFC18_5CAB8(s32*, s32*);
 s32 func_800BF3D4_5C274(s32);
 char* get_player_name(void);
-void func_800BF44C_5C2EC(u8*);
+void func_800BF44C_5C2EC(PlayerName*);
 void* func_800BF710_5C5B0(s32);
 s32 func_800BF818_5C6B8(s32);
 UnkPinkBarracuda* func_800BF8BC_5C75C(int);

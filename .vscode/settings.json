@@ -14,7 +14,8 @@
         "initializer_list": "c",
         "typeinfo": "c",
         "random": "c",
-        "limits": "c"
+        "limits": "c",
+        "cstdlib": "c"
     },
     "files.insertFinalNewline": true,
 }

@@ -1108,6 +1108,7 @@ segments:
     - [0xA93460, c]
     - [0xA937B0, asm] # nops
     - [0xA937C0, c]
+    - [0xA94930, asm] # nops
     - [0xA94940, c]
     - [0xA95760, data, A93460]
     - [0xA95880, data] # sprite
@@ -1115,10 +1116,9 @@ segments:
     - [0xA9D040, data] # sprite starts 8 bytes earlier
     - [0xA9D3E0, data] # sprite
     - [0xA9D6B0, data] # sprite
-    - [0xA9F760, data, A94940]
-    - [0xA9FFE0, .rodata, A937C0] # sprite
-    - [0xAA0010, rodata]
-#    - [0xA9FFE0, rodata, A94940]
+    - [0xA9F760, .data, A94940]
+    - [0xA9FFE0, .rodata, A937C0]
+    - [0xAA0010, .rodata, A94940]
     - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
     type: code

@@ -1,47 +1,9 @@
 #include "common.h"
-
-typedef struct UnkChartreuseAngler {
-    /* 0x00 */ s32 unk0;
-    /* 0x04 */ s32 unk4;
-    /* 0x08 */ void* unk8;
-    /* 0x0C */ s32 unkC;
-} UnkChartreuseAngler; // size: 0x80
-
-typedef struct UnkCitronCod {
-    /* 0x00 */ u8 pad0[0x44];
-    /* 0x44 */ UnkChartreuseAngler* unk44;
-} UnkCitronCod;
-
-extern Sprite D_credits_801E8B50;
-extern GObj* D_credits_801ECCA0;
-extern GObj* D_credits_801ECC80;
-extern GObj* D_credits_801ECC98;
-extern GObj* D_credits_801ECC9C;
-extern Sprite D_credits_801E6AA8;
-extern void* D_credits_801ECC94;
-extern u8 D_credits_801ECDA4;
-extern s32 D_credits_801ED010;
-extern s32 D_credits_801ECDA0;
-
-void func_credits_801DD848();
-void func_credits_801DD49C(GObj*);
-void func_credits_801DCAF8(SObj*);
-GObj* func_credits_801DCC00(GObj*, Sprite*);
-void func_credits_801DD8C0(SObj*);
-void func_credits_801DEB74(void*, float);
-void func_credits_801DEA30(void*, float);
-void func_credits_801DCEF0(GObj*);
-void func_credits_801DE8A0(SObj*, s32);
-s32 func_credits_801DE8D8();
-void func_credits_801DD540(GObj*);
+#include "credits.h"
 
 GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
     return ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1, arg1, 0U, NULL, 1);
 }
-
-extern Sprite D_credits_801E6058;
-extern Sprite D_credits_801E6430;
-extern Sprite D_credits_801E67D8;
 
 GObj* func_credits_801DCC70(void) {
     GObj* temp_v0;
@@ -307,22 +269,38 @@ void func_credits_801DD428(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD49C.s")
-
 #if 1
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD540.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD49C.s")
 #else
-void func_credits_801DD540(GObj* arg0) {
+// TODO: there should be a file split after this and before the next rodata
+void func_credits_801DD49C(GObj* arg0) {
+    SObj* temp_s0;
+    f32 var_f20;
 
-    SObj* temp_t8;
+    temp_s0 = arg0->data.sobj;
+    var_f20 = temp_s0->sprite.x;
+
+    while (1) {
+        var_f20 -= 1.3f;
+        if (var_f20 < -16.0f) {
+            var_f20 += 16.0f;
+        }
+        // clang-format off
+        temp_s0->sprite.x = var_f20; temp_s0->sprite.y = temp_s0->sprite.y;
+        // clang-format on
+        ohWait(1);
+    }
+}
+#endif
+
+void func_credits_801DD540(GObj* arg0) {
+    u8 i;
     SObj* sp44[2];
     f32 sp3C[2];
-    u8 i;
 
     for (i = 0; i < 2; i++) {
-        temp_t8 = (&D_credits_801ECC98)[i]->data.sobj;
-        sp44[i] = temp_t8;
-        sp3C[i] = temp_t8->sprite.y;
+        sp44[i] = D_credits_801ECC98[i]->data.sobj;
+        sp3C[i] = sp44[i]->sprite.y;
     }
 
     while (1) {
@@ -349,12 +327,11 @@ void func_credits_801DD540(GObj* arg0) {
         ohWait(1);
     }
 }
-#endif
 
 void func_credits_801DD744(void) {
-    ohEndAllObjectProcesses(D_credits_801ECC98);
-    ohEndAllObjectProcesses(D_credits_801ECC9C);
-    omCreateProcess(D_credits_801ECC98, func_credits_801DD540, 0U, 1U);
+    ohEndAllObjectProcesses(D_credits_801ECC98[0]);
+    ohEndAllObjectProcesses(D_credits_801ECC98[1]);
+    omCreateProcess(D_credits_801ECC98[0], func_credits_801DD540, 0U, 1U);
 }
 
 GObj* func_credits_801DD790(void) {
@@ -386,9 +363,33 @@ void func_credits_801DD83C(SObj* arg0) {
     arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD848.s")
+void func_credits_801DD848(void) {
+    SObj* temp_s1;
+    u8 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD8C0.s")
+    for (i = 0; i < 2; i++) {
+        D_credits_801ECC98[i] = func_credits_801DD790();
+        temp_s1 = D_credits_801ECC98[i]->data.sobj;
+        func_credits_801DD7D8(temp_s1, i);
+        func_credits_801DD83C(temp_s1);
+    }
+}
+
+void func_credits_801DD8C0(SObj* arg0) {
+    switch (D_credits_801ECDA0) {
+        case SCENE_CREDITS_17:
+        case SCENE_CREDITS_18:
+        case SCENE_CREDITS_20:
+            arg0->sprite.x = 0x60;
+            arg0->sprite.y = 0xF0;
+            break;
+
+        case SCENE_CREDITS_19:
+            arg0->sprite.x = 0x140;
+            arg0->sprite.y = 0x78 - ((s16) arg0->sprite.height / 2);
+            break;
+    }
+}
 
 void func_credits_801DD930(SObj* arg0) {
     arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
@@ -406,11 +407,61 @@ void func_credits_801DD93C(void) {
     func_credits_801DD930(temp_a0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD980.s")
+void func_credits_801DD980(void) {
+    SObj* temp_s0;
+    s32 temp_v0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDA60.s")
+    temp_s0 = D_credits_801ECCA0->data.sobj;
+    switch (D_credits_801ECDA0) {
+        case SCENE_CREDITS_17:
+        case SCENE_CREDITS_18:
+        case SCENE_CREDITS_20:
+            while (1) {
+                temp_s0->sprite.y -= 1;
+                if (temp_s0->sprite.y < 0x71) {
+                    break;
+                }
+                ohWait(1);
+            }
+            temp_s0->sprite.y = 0x70;
+            break;
 
-void func_credits_801DDAE8(s32 arg0) {
+        case SCENE_CREDITS_19:
+            while (1) {
+                temp_s0->sprite.x -= 1;
+                temp_v0 = 0xA0 - (temp_s0->sprite.width / 2);
+                if (temp_s0->sprite.x < temp_v0) {
+                    break;
+                }
+                ohWait(1);
+            }
+            temp_s0->sprite.x = temp_v0;
+            break;
+    }
+}
+
+void func_credits_801DDA60(void) {
+    u8 var_s1;
+    SObj* temp_s0;
+
+    temp_s0 = D_credits_801ECCA0->data.sobj;
+    var_s1 = 0xFF;
+    while (1) {
+        var_s1 -= 5;
+        if (var_s1 >= 0xA) {
+            temp_s0->sprite.red = temp_s0->sprite.green = temp_s0->sprite.blue = var_s1;
+        } else {
+            temp_s0->sprite.attr |= 4;
+            ohWait(1);
+            break;
+        }
+
+        ohWait(1);
+        ohWait(1);
+    }
+}
+
+void func_credits_801DDAE8(u8 arg0) {
     switch (D_credits_801ECDA0) {
         case SCENE_CREDITS_17:
         case SCENE_CREDITS_18:
@@ -429,8 +480,66 @@ void func_credits_801DDAE8(s32 arg0) {
     func_credits_801DD93C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDB60.s")
+void func_credits_801DDB60(void) {
+    UnkChartreuseAngler* var_s0;
+    f32 var_f20;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDC0C.s")
+    if (D_credits_801ECDA0 == SCENE_CREDITS_19) {
+        var_f20 = 0.44f;
+    } else {
+        var_f20 = 0.5f;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDC70.s")
+    var_s0 = D_credits_801ECCB0;
+    while (var_s0->unkC != 0) {
+        var_s0->unk4 = (f32) (var_s0->unk4 - var_f20);
+        func_8036CBA0_840350(var_s0->unkC, var_s0->unk0, (s32) var_s0->unk4);
+        var_s0++;
+    }
+}
+
+UnkChartreuseAngler* func_credits_801DDC0C(void) {
+    UnkChartreuseAngler* var_v1;
+
+    var_v1 = D_credits_801ECCB0;
+    while (var_v1->unkC != 0) {
+        if (var_v1->unk4 < -18.0f) {
+            break;
+        }
+
+        var_v1++;
+    }
+
+    if (var_v1->unkC == 0) {
+        return NULL;
+    }
+
+    return var_v1;
+}
+
+void func_credits_801DDC70(void) {
+    UnkChartreuseAngler* var_s0;
+    f32 var_f20;
+    s16 var_s1;
+    s32 temp_v0;
+
+    var_f20 = 0.0f;
+    var_s0 = D_credits_801ECCB0;
+
+    for (var_s1 = 0; var_s1 < 0xE; var_s1++) {
+        var_s0->unk4 = var_f20;
+        var_s0->unk0 = 0xA0;
+        var_f20 += 18.0f;
+        func_8036D4A0_840C50(0);
+        temp_v0 = func_8036AC6C_83E41C(var_s0->unk0, (s32) var_s0->unk4, 0xFC, 0xF, 0x400);
+        var_s0->unkC = temp_v0;
+        func_8036CB58_840308(temp_v0, 0xC);
+        func_8036B734_83EEE4(var_s0->unkC);
+        func_8036B9EC_83F19C(var_s0->unkC, 0, 0);
+        func_8036B870_83F020(var_s0->unkC, 0, 0, 0, 0, 0);
+        var_s0++;
+    }
+    var_s0->unkC = 0;
+    var_s0->unk0 = 0;
+    var_s0->unk4 = 0.0f;
+}

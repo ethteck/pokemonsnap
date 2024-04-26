@@ -37,10 +37,12 @@ void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* ro
 
 void ren_func_800192DC(GObj* obj);
 
+OSThread* func_80000460(void);
 char* func_8009B9D0(s16);
 s32 func_8009BB4C(s32);
 s32 func_8009BC68(void);
 void func_8009FBC4(void);
+void func_8009FC38(void*);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
 void func_800A7470(s32, s32, s32);
@@ -116,6 +118,7 @@ void func_8036406C_50447C(s32*, ObjectSpawn*, AnimalDef*);
 void func_803641B8_5045C8(s32, AnimalDef*);
 void func_8036650C_50691C(void);
 void* func_8036A194_83D944(u32);
+void func_8036A228_83D9D8(void*);
 void func_8036A3F8_83DBA8(void*, s32);
 void func_8036A3F8(u8*, s32);
 void func_8036A5B8_83DD68(s32, s32, s32, s32, s32, s32, s32, s32, s32);
@@ -164,13 +167,14 @@ void func_803713EC_844B9C(int);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
-#ifndef M2CTX
+#if !defined(M2CTX) && !defined(PERMUTER)
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 #endif
 
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);
+void func_80374D40_8484F0(void);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 void func_80374F30_8486E0(s32, s32);

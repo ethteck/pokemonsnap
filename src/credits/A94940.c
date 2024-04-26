@@ -1,30 +1,166 @@
 #include "common.h"
+#include "credits.h"
 
-typedef struct UnkTealGrouper UnkTealGrouper;
-struct UnkTealGrouper {
-    u8 pad_00[0x8];
-    UnkTealGrouper* var_8;
-    u8 pad_C[0xC];
-    f32 var_18;
-    f32 var_1C;
+Credit D_credits_801E8BA0[] = {
+    { 0x00000032, 0x43700000, "POKεMON SNAP Staff", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "JACK and BEANS", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Director", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Yoichi Yamamoto", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Koji Inokuchi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Akira Takeshima", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Designer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Shigezo Kawase", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Takeyuki Machida", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Masanobu Yamamoto", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Shizu Higashiyama", 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
 };
 
-extern s32 D_credits_801ECDA0;
-extern u8 D_credits_801ECDA3;
-extern s32 D_credits_801ECDA8;
-extern s32 D_credits_801ECDB0[];
+Credit D_credits_801E8D00[] = {
+    { 0x00000032, 0x43A00000, "Sound Designer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Ikuko Mimori", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Programmer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Yoshiaki Shinohara", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Kazuki Sekimori", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Jinji Horagai", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Tomoyuki Sumi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hirotaka Kato", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hideaki Kiko", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Technical Support", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Makoto Kanai", 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+};
 
-void func_80374714(void*, s32);
-void func_credits_801DDF48(GObj*);
-void func_credits_801DDE24(GObj*);
-void func_credits_801DDAE8(u8);
-void func_credits_801DDC70(void);
-void func_credits_801DDD80(void);
-void func_credits_801DE734(s32);
-void func_credits_801DE7B4(s32);
-void func_credits_801DCF94(void);
-void func_credits_801DE060(void);
-void func_credits_801DE35C(void);
+Credit D_credits_801E8E30[] = {
+    { 0x00000032, 0x43A00000, "Supervisor", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Kensuke Tanabe", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "US Coordination", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hiro Nakamura", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "N64 Modeling Center Tokyo", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Super Duper Special Chief Designer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Benimaru \"ASHURA\" Ito", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Takeshi Iizuka", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hiroshi Ishikawa", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Takemi Ichikawa", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Atsuko Ujiie", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Ryuta Kusumi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Izuru Kumasaka", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Toru Kurashige", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Satomi Kokubo", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hitoshi Kobayashi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Mitsuteru Sato", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Yuichi Sawayama", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hikaru Jinguji", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Nachi Sugiyama", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Jyungo Suzuki", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Yoshiyuki Tagawa", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Kazuo Yazawa", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Akira Yamazaki", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Shinichi Yoshikawa", 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+};
+
+Credit D_credits_801E9080[] = {
+    { 0x00000032, 0x43A00000, "Voice Actor", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Stan Hart", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Jimmy Zoppi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Ikue Otani", 0x00000000 },
+    { 0x00000032, 0x43A00000, "and", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Others...", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Special Thanks", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hiroyuki Jinnai", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Gakuji Nomoto", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Jyun Yamazaki", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Chiharu Ito", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Masayoshi Tanimura", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Satoshi Ishida", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Tetsuya Notoya", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Chieko Obikane", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hisatoshi Takeuchi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Keita Oriuchi", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "N64 Modeling Center Kyoto", 0x00000000 },
+    { 0x00000032, 0x43A00000, "System Development #2 (HAL)", 0x00000000 },
+    { 0x00000032, 0x43A00000, "HAL Debug Team", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Super Mario Club", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Creatures inc.", 0x00000000 },
+    { 0x00000032, 0x43A00000, "GAME FREAK inc.", 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+};
+
+Credit D_credits_801E9260[] = {
+    { 0x00000032, 0x43A00000, "Character Supervisor", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Yoichi Kotabe", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Pokεmon Created by", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Satoshi Tajiri", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Pokεmon Producer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Tsunekaz Ishihara", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Producer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Satoru Iwata", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Kenji Miki", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Shigeru Miyamoto", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Executive Producer", 0x00000000 },
+    { 0x00000032, 0x43A00000, "", 0x00000000 },
+    { 0x00000032, 0x43A00000, "Hiroshi Yamauchi", 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+};
+
+Credit* D_credits_801E9400[] = {
+    D_credits_801E8BA0,
+    D_credits_801E8D00,
+    D_credits_801E8E30,
+    D_credits_801E9080,
+};
+Credit* D_credits_801E9410[] = {
+    D_credits_801E9260,
+};
+
+s32 D_credits_801E9414[] = { 0, 0, 0 };
 
 void func_credits_801DDD80(void) {
     s32* var_v0;
@@ -44,11 +180,6 @@ void func_credits_801DDD80(void) {
     }
 }
 
-#if 0
-// TODO: This should match when rodata is moved
-void func_credits_801DEA30(SObj*, f32); /* extern */
-void func_credits_801DEB74(SObj*, f32); /* extern */
-extern f32 D_credits_801E9A84; // 0.1000000015
 void func_credits_801DDE24(GObj* arg0) {
     SObj* temp_s0;
     f32 scale;
@@ -74,9 +205,6 @@ void func_credits_801DDE24(GObj* arg0) {
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A94940/func_credits_801DDE24.s")
-#endif
 
 void func_credits_801DDF1C(GObj* arg0) {
     omCreateProcess(arg0, func_credits_801DDE24, 0U, 1U);
@@ -118,7 +246,7 @@ void func_credits_801DE034(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A94940/func_credits_801DE35C.s")
 
-void func_credits_801DE734(s32 arg0) {
+void func_credits_801DE734(GObj* arg0) {
     switch (D_credits_801ECDA0) {
         case SCENE_CREDITS_18:
             func_credits_801DE060();
@@ -150,7 +278,7 @@ void func_credits_801DE7B4(s32 arg0) {
     }
 }
 
-void func_credits_801DE844(s32 arg0) {
+void func_credits_801DE844(GObj* arg0) {
     func_credits_801DE7B4(D_credits_801ECDA0);
     func_credits_801DDD80();
     func_credits_801DDAE8(D_credits_801ECDA3);
@@ -160,12 +288,12 @@ void func_credits_801DE844(s32 arg0) {
     ohWait(1);
 }
 
-void func_credits_801DE8A0(s32 arg0, s32 arg1) {
+void func_credits_801DE8A0(SObj* arg0, s32 arg1) {
     void* temp_v0;
 
     temp_v0 = func_800BF710_5C5B0(arg1);
     if (temp_v0 != NULL) {
-        func_80374714(temp_v0, arg0 + 0x10);
+        func_80374714_847EC4(temp_v0, &arg0->sprite);
     }
 }
 

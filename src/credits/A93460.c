@@ -1,23 +1,5 @@
 #include "common.h"
-
-extern Gfx D_credits_801DEBD8[];
-extern ScreenSettings D_credits_801DEBA0;
-extern DynamicBuffer sGeneralHeap;
-extern s32 D_credits_801ECDA0; // scene id
-extern u8 D_801ED020[];
-extern s32 D_credits_801DEC40;
-extern OSMesg D_credits_801ECC40[10];
-extern OSThread D_credits_801E9A90;
-extern SceneSetup D_credits_801DEC30;
-extern OSMesgQueue D_credits_801ECC68;
-
-void func_80374D40(void);
-void func_credits_801DE844(GObj*);
-void func_8036A228_83D9D8(void*);
-OSThread* func_80000460(void);
-void func_8009FC38(void*);
-void func_credits_801DE8A0(void*, s32);
-s32 func_credits_801DE8D8(void);
+#include "credits.h"
 
 void func_credits_801DC8A0(Gfx** gfx) {
     gSPDisplayList((*gfx)++, &D_credits_801DEBD8);
@@ -35,7 +17,7 @@ void func_credits_801DC8C4(void) {
     }
     func_8036A3F8(mlHeapAlloc(&sGeneralHeap, var_a1, 8U), (s32) var_a1);
     func_800AAE28();
-    func_80374D40();
+    func_80374D40_8484F0();
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 6, 0xFF);
     ohCreateCamera(3, &ohUpdateDefault, 0, 0x80000000, &renSpriteCameraRender, 3, 2, -1, 1, 1, 0, 1, 1)
         ->data.cam->flags = 8;
@@ -69,7 +51,7 @@ void func_credits_801DCA1C(void* arg0) {
     }
 }
 
-void func_credits_801DCAF8(void* arg0) {
+void func_credits_801DCAF8(SObj* arg0) {
     osSendMesg(&D_credits_801ECC68, arg0, 1);
 }
 

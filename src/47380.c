@@ -144,16 +144,16 @@ PhotoData* func_8009BC80(s32 photoIndex) {
     return &D_800B0598[photoIndex];
 }
 
-typedef struct unk_func_8009BCC4 {
+typedef struct UnkFunc8009BCC4 {
     s32 unk_00_25 : 7;
     u8 unk_00_17 : 8;
     s32 unk_00_00 : 16;
     u8 pad[0x1C];
     s32 unk_20_19 : 13;
     s32 unk_20_00 : 19;
-} unk_func_8009BCC4;
+} UnkFunc8009BCC4;
 
-s32 func_8009BCC4(unk_func_8009BCC4* arg0) {
+s32 func_8009BCC4(UnkFunc8009BCC4* arg0) {
     s32 temp_v0;
     s32 ret;
 
@@ -161,24 +161,24 @@ s32 func_8009BCC4(unk_func_8009BCC4* arg0) {
         return -1;
     }
     switch (arg0->unk_00_17 & 0xE0) {
-    default:
-        ret = -1;
-        break;
-    case 0x60:
-        ret = 0x3EC;
-        break;
-    case 0x80:
-        ret = 0x3FA;
-        break;
-    case 0xA0:
-        ret = 0x3FE;
-        break;
-    case 0xE0:
-        ret = 0x40B;
-        break;
-    case 0x20:
-        ret = arg0->unk_20_19;
-        break;
+        default:
+            ret = -1;
+            break;
+        case 0x60:
+            ret = 0x3EC;
+            break;
+        case 0x80:
+            ret = 0x3FA;
+            break;
+        case 0xA0:
+            ret = 0x3FE;
+            break;
+        case 0xE0:
+            ret = 0x40B;
+            break;
+        case 0x20:
+            ret = arg0->unk_20_19;
+            break;
     }
     return ret;
 }

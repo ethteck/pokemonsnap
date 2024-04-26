@@ -255,8 +255,157 @@ void func_800E4F40_626F0(Vec3f* arg0, Vec3f* arg1, f32 arg2, s32 arg3, Vec3f* ar
     Vec3f_func_8001AC98(arg5, &sp24);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E5094_62844.s")
-s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, Vec3f* arg8, Vec3f* arg9);
+s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, Vec3f* arg8, Vec3f* arg9) {
+    Vec3f sp3C;
+    f32 sp38;
+    f32 sp34 = 0.0f;
+    f32 sp30 = FLOAT_MAX;
+    f32 f2;
+    s32 sp28 = 0;
+
+    arg9->x = arg1->x;
+    arg9->y = arg1->y;
+    arg9->z = arg1->z;
+
+    sp3C.x = arg9->x;
+    sp3C.y = arg9->y;
+    sp3C.z = arg9->z;
+
+    sp38 = Vec3fNormalize(&sp3C);
+
+    if (sp3C.x < -0.0001f) {
+        f2 = (arg2 - arg0->x) / sp3C.x;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg3 - arg0->x) / sp3C.x;
+        if (f2 >= sp34) {
+            sp28 = 2;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (sp3C.x > 0.0001f) {
+        f2 = (arg3 - arg0->x) / sp3C.x;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg2 - arg0->x) / sp3C.x;
+        if (f2 >= sp34) {
+            sp28 = 1;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (arg0->x < arg2 || arg0->x > arg3){
+        return FALSE;
+    }
+
+    if (sp3C.y < -0.0001f) {
+        f2 = (arg4 - arg0->y) / sp3C.y;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg5 - arg0->y) / sp3C.y;
+        if (f2 >= sp34) {
+            sp28 = 4;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (sp3C.y > 0.0001f) {
+        f2 = (arg5 - arg0->y) / sp3C.y;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg4 - arg0->y) / sp3C.y;
+        if (f2 >= sp34) {
+            sp28 = 3;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (arg0->y < arg4 || arg0->y > arg5){
+        return FALSE;
+    }
+
+    if (sp3C.z < -0.0001f) {
+        f2 = (arg6 - arg0->z) / sp3C.z;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg7 - arg0->z) / sp3C.z;
+        if (f2 >= sp34) {
+            sp28 = 6;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (sp3C.z > 0.0001f) {
+        f2 = (arg7 - arg0->z) / sp3C.z;
+        if (f2 < sp34) {
+            return FALSE;
+        }
+
+        if (f2 <= sp30) {
+            sp30 = f2;
+        }
+
+        f2 = (arg6 - arg0->z) / sp3C.z;
+        if (f2 >= sp34) {
+            sp28 = 5;
+            if (f2 > sp30) {
+                return FALSE;
+            }
+            sp34 = f2;
+        }
+    } else if (arg0->z < arg6 || arg0->z > arg7){
+        return FALSE;
+    }
+
+    if (sp34 < 0.0001f) {
+        return FALSE;
+    }
+
+    if (sp28 > 0 && sp34 < sp38) {
+        func_800E4F40_626F0(arg0, &sp3C, sp34, sp28, arg8, arg9);
+        sp38 *= 0.7f;
+        Vec3fScale(arg9, sp38);
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
 
 s32 func_800E55C0_62D70(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, Vec3f* arg4, Vec3f* arg5) {
     f32 unused;

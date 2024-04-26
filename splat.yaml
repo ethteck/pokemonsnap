@@ -1063,7 +1063,7 @@ segments:
     - [0xA0D4D0, c]
     - [0xA0E190, c]
     - [0xA0F660, bin] # , data]
-    - [0xA0F7B0, rodata]
+    - [0xA0F7B0, .rodata, A08E30]
     - [0xA0F800, .rodata, A0BE70]
     - [0xA0F810, .rodata, A0E190]
     - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
@@ -1083,12 +1083,13 @@ segments:
     - [0xA5E3A0, .data, A5CC50]
     - [0xA5EA50, .rodata, A5CC50]
     - [0xA5F040, .rodata, A5D5B0]
-    - [0xA5F070, rodata, sprite_background]
-    - [0xA84C80, rodata, sprite_card]
-    - [0xA93390, rodata, sprite_cursor]
+    - { start: 0xA5F070, type: data, name: sprite_background, linker_section_order: .rodata }
+    - { start: 0xA84C80, type: data, name: sprite_card, linker_section_order: .rodata }
+    - { start: 0xA93390, type: data, name: sprite_cursor, linker_section_order: .rodata }
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { start: auto, name: sprite_bss, type: bss, vram: 0x80168150 }
+
   - name: unk_level_end_11
     type: code
     start: 0xA93460

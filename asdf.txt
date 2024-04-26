@@ -1,17 +1,5 @@
 splat 0.24.1 (powered by spimdisasm 1.25.0)
 
-Rodata segment 'A0F7B0' may belong to the text segment 'A08E30'
-    Based on the usage from the function func_800E1E10_A093A0 to the symbol D_800E8220_A0F7B0
-
-Rodata segment 'sprite_background' may belong to the text segment 'A5CC50'
-    Based on the usage from the function func_800E18CC_A5CC7C to the symbol D_80109880_A84C30
-
-Rodata segment 'sprite_card' may belong to the text segment 'A5CC50'
-    Based on the usage from the function func_800E1950_A5CD00 to the symbol D_80117F98_A93348
-
-Rodata segment 'sprite_cursor' may belong to the text segment 'A5D5B0'
-    Based on the usage from the function func_800E2E00_A5E1B0 to the symbol D_80118068_A93418
-
 Segment ../ultralib/src/gu/cosf, symbol at vram 80044B10 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:
       - [0x45720, .rodata]

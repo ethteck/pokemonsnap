@@ -685,3 +685,5 @@ D_801EA2C0_A07F80 = 0x801EA2C0; // rom:0xA07F80 type:asciz // TODO spimdisasm se
 D_801EA4DC_A0819C = 0x801EA4DC; // rom:0xA0819C type:asciz // TODO spimdisasm seems to have issues with this string
 D_801EA584_A08244 = 0x801EA584; // rom:0xA08244 type:asciz // TODO spimdisasm seems to have issues with this string
 D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz // TODO spimdisasm seems to have issues with this string
+
+D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True

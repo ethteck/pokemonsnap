@@ -178,9 +178,9 @@ void* func_camera_check_801DDFC4(void) {
     func_8036D3E8_840B98(-1, 3);
     func_8036CB58_840308(temp_v0_2, 8);
     func_8036B9EC_83F19C(temp_v0_2, 0, 0);
-    func_8036C898_840048(temp_v0_2, D_camera_check_80208A34);
+    func_8036C898_840048(temp_v0_2, "Course");
     func_8036B9EC_83F19C(temp_v0_2, 0, 0x1C);
-    func_8036C898_840048(temp_v0_2, D_camera_check_80208A3C);
+    func_8036C898_840048(temp_v0_2, "Photo by");
 
     return temp_v0;
 }

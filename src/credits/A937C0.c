@@ -263,7 +263,7 @@ void func_credits_801DD340(SObj* arg0) {
     u8 i;
 
     while (arg0 != NULL) {
-        list = (Bitmap *)func_8036A194_83D944(sizeof (Bitmap) * 8);
+        list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
 
         for (i = 0; i < 8u; i++) {
             buf = func_8036A194_83D944(1960 * sizeof(u16));
@@ -288,7 +288,47 @@ void func_credits_801DD3E0(SObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD49C.s")
 
+#if 1
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD540.s")
+#else
+void func_credits_801DD540(GObj* arg0) {
+
+    SObj* temp_t8;
+    SObj* sp44[2];
+    f32 sp3C[2];
+    u8 i;
+
+    for (i = 0; i < 2; i++) {
+        temp_t8 = (&D_credits_801ECC98)[i]->data.sobj;
+        sp44[i] = temp_t8;
+        sp3C[i] = temp_t8->sprite.y;
+    }
+
+    while (1) {
+        if ((sp44[0]->sprite.y < 0)) {
+            break;
+        }
+
+        sp3C[0] -= 0.5f;
+        sp44[0]->sprite.y = sp3C[0];
+        sp44[0]->sprite.alpha = (sp44[0]->sprite.y * 255) / 48;
+
+        sp3C[1] += 0.5f;
+        sp44[1]->sprite.y = sp3C[1];
+        sp44[1]->sprite.alpha = ((0xF0 - sp44[1]->sprite.y) * 255) / 58;
+
+        ohWait(1);
+    }
+
+    for (i = 0; i < 2; i++) {
+        sp44[i]->sprite.attr |= 4;
+    }
+
+    while (1) {
+        ohWait(1);
+    }
+}
+#endif
 
 void func_credits_801DD744(void) {
     ohEndAllObjectProcesses(D_credits_801ECC98);

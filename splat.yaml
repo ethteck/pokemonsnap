@@ -613,7 +613,7 @@ segments:
     - [0x55C870, c]
     - [0x55D1C0, c]
     - [0x55D690, c]
-    - [0x55DCD0, c] # file split based on rodata, the real one may be a bit earlier
+    - [0x55DCD0, c]
     - [0x55F350, c]
     - [0x55FB80, c]
     - [0x560320, c]
@@ -627,16 +627,17 @@ segments:
     - [0x563000, c]
     - [0x563E80, bin] # , data]
 
-    - { start: 0x566160, type: .rodata, name: 55C870, linker_section_order: .data }
-    - { start: 0x5661B0, type: .rodata, name: 55D690, linker_section_order: .data }
-    - { start: 0x5661C0, type: .rodata, name: 55DCD0, linker_section_order: .data }
-    - { start: 0x5661D0, type: .rodata, name: 5612B0, linker_section_order: .data }
-    - { start: 0x5661E0, type: .rodata, name: 561B30, linker_section_order: .data }
-    - { start: 0x5661F0, type: .rodata, name: 562370, linker_section_order: .data }
-    - { start: 0x566200, type: .rodata, name: 562BC0, linker_section_order: .data }
-    - { start: 0x566210, type: .rodata, name: 563000, linker_section_order: .data }
+    - [0x566160, .rodata, 55C870]
+    - [0x5661B0, .rodata, 55D690]
+    - [0x5661C0, .rodata, 55DCD0]
+    - [0x5661D0, .rodata, 5612B0]
+    - [0x5661E0, .rodata, 561B30]
+    - [0x5661F0, .rodata, 562370]
+    - [0x566200, .rodata, 562BC0]
+    - [0x566210, .rodata, 563000]
 
-    - [0x566220, bin] # , data]
+    - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+
     - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
     type: code
@@ -661,19 +662,20 @@ segments:
     - [0x5EA6F0, c]
     - [0x5EAFD0, bin] # , data]
 
-    - { start: 0x5ED360, type: .rodata, name: 5DF5D0, linker_section_order: .data }
-    - { start: 0x5ED420, type: .rodata, name: 5E0A70, linker_section_order: .data }
-    - { start: 0x5ED430, type: .rodata, name: 5E21C0, linker_section_order: .data }
-    - { start: 0x5ED440, type: .rodata, name: 5E3D80, linker_section_order: .data }
-    - { start: 0x5ED450, type: .rodata, name: 5E4750, linker_section_order: .data }
-    - { start: 0x5ED470, type: .rodata, name: 5E64A0, linker_section_order: .data }
-    - { start: 0x5ED480, type: .rodata, name: 5E7560, linker_section_order: .data }
-    - { start: 0x5ED4A0, type: .rodata, name: 5E8080, linker_section_order: .data }
-    - { start: 0x5ED4C0, type: .rodata, name: 5E8930, linker_section_order: .data }
-    - { start: 0x5ED4D0, type: .rodata, name: 5E9010, linker_section_order: .data }
-    - { start: 0x5ED4E0, type: .rodata, name: 5EA6F0, linker_section_order: .data }
+    - [0x5ED360, .rodata, 5DF5D0]
+    - [0x5ED420, .rodata, 5E0A70]
+    - [0x5ED430, .rodata, 5E21C0]
+    - [0x5ED440, .rodata, 5E3D80]
+    - [0x5ED450, .rodata, 5E4750]
+    - [0x5ED470, .rodata, 5E64A0]
+    - [0x5ED480, .rodata, 5E7560]
+    - [0x5ED4A0, .rodata, 5E8080]
+    - [0x5ED4C0, .rodata, 5E8930]
+    - [0x5ED4D0, .rodata, 5E9010]
+    - [0x5ED4E0, .rodata, 5EA6F0]
 
-    - [0x5ED4F0, bin] # , data]
+    - { start: 0x5ED4F0, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
     type: code
@@ -699,20 +701,21 @@ segments:
     - [0x647360, c]
     - [0x648600, bin] # , data]
 
-    - { start: 0x64A500, type: .rodata, name: 6401B0, linker_section_order: .data }
-    - { start: 0x64A510, type: .rodata, name: 640900, linker_section_order: .data }
-    - { start: 0x64A540, type: .rodata, name: 640CD0, linker_section_order: .data }
-    - { start: 0x64A550, type: .rodata, name: 6414D0, linker_section_order: .data }
-    - { start: 0x64A560, type: .rodata, name: 641A50, linker_section_order: .data }
-    - { start: 0x64A570, type: .rodata, name: 6438F0, linker_section_order: .data }
-    - { start: 0x64A590, type: .rodata, name: 644E80, linker_section_order: .data }
-    - { start: 0x64A5A0, type: .rodata, name: 645740, linker_section_order: .data }
-    - { start: 0x64A5B0, type: .rodata, name: 645D90, linker_section_order: .data }
-    - { start: 0x64A5C0, type: .rodata, name: 646B50, linker_section_order: .data }
-    - { start: 0x64A5D0, type: .rodata, name: 646EA0, linker_section_order: .data }
-    - { start: 0x64A5E0, type: .rodata, name: 647360, linker_section_order: .data }
+    - [0x64A500, .rodata, 6401B0]
+    - [0x64A510, .rodata, 640900]
+    - [0x64A540, .rodata, 640CD0]
+    - [0x64A550, .rodata, 6414D0]
+    - [0x64A560, .rodata, 641A50]
+    - [0x64A570, .rodata, 6438F0]
+    - [0x64A590, .rodata, 644E80]
+    - [0x64A5A0, .rodata, 645740]
+    - [0x64A5B0, .rodata, 645D90]
+    - [0x64A5C0, .rodata, 646B50]
+    - [0x64A5D0, .rodata, 646EA0]
+    - [0x64A5E0, .rodata, 647360]
 
-    - [0x64A610, bin] # , data]
+    - { start: 0x64A610, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
     type: code
@@ -745,19 +748,20 @@ segments:
     - [0x6C9EB0, c]
     - [0x6CA400, bin] # , data]
 
-    - { start: 0x6CC980, type: .rodata, name: 6C1090, linker_section_order: .data }
-    - { start: 0x6CC9B0, type: .rodata, name: 6C1300, linker_section_order: .data }
-    - { start: 0x6CC9D0, type: .rodata, name: 6C22E0, linker_section_order: .data }
-    - { start: 0x6CC9E0, type: .rodata, name: 6C27C0, linker_section_order: .data }
-    - { start: 0x6CC9F0, type: .rodata, name: 6C2E80, linker_section_order: .data }
-    - { start: 0x6CCA00, type: .rodata, name: 6C3980, linker_section_order: .data }
-    - { start: 0x6CCA30, type: .rodata, name: 6C4CD0, linker_section_order: .data }
-    - { start: 0x6CCA40, type: .rodata, name: 6C4EC0, linker_section_order: .data }
-    - { start: 0x6CCA50, type: .rodata, name: 6C66E0, linker_section_order: .data }
-    - { start: 0x6CCA60, type: .rodata, name: 6C6A70, linker_section_order: .data }
-    - { start: 0x6CCA70, type: .rodata, name: 6C86E0, linker_section_order: .data }
+    - [0x6CC980, .rodata, 6C1090]
+    - [0x6CC9B0, .rodata, 6C1300]
+    - [0x6CC9D0, .rodata, 6C22E0]
+    - [0x6CC9E0, .rodata, 6C27C0]
+    - [0x6CC9F0, .rodata, 6C2E80]
+    - [0x6CCA00, .rodata, 6C3980]
+    - [0x6CCA30, .rodata, 6C4CD0]
+    - [0x6CCA40, .rodata, 6C4EC0]
+    - [0x6CCA50, .rodata, 6C66E0]
+    - [0x6CCA60, .rodata, 6C6A70]
+    - [0x6CCA70, .rodata, 6C86E0]
 
-    - [0x6CCA80, bin] # , data]
+    - { start: 0x6CCA80, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
     type: code
@@ -787,22 +791,23 @@ segments:
     - [0x731860, c]
     - [0x731E80, bin] # , data]
 
-    - { start: 0x734A10, type: .rodata, name: 7272E0, linker_section_order: .data }
-    - { start: 0x734A30, type: .rodata, name: 728490, linker_section_order: .data }
-    - { start: 0x734A50, type: .rodata, name: 729CA0, linker_section_order: .data }
-    - { start: 0x734A90, type: .rodata, name: 72AF00, linker_section_order: .data }
-    - { start: 0x734AB0, type: .rodata, name: 72BCE0, linker_section_order: .data }
-    - { start: 0x734AC0, type: .rodata, name: 72C7A0, linker_section_order: .data }
-    - { start: 0x734AD0, type: .rodata, name: 72D260, linker_section_order: .data }
-    - { start: 0x734B10, type: .rodata, name: 72E4E0, linker_section_order: .data }
-    - { start: 0x734B20, type: .rodata, name: 72E9F0, linker_section_order: .data }
-    - { start: 0x734B30, type: .rodata, name: 72EE30, linker_section_order: .data }
-    - { start: 0x734B40, type: .rodata, name: 72FC80, linker_section_order: .data }
-    - { start: 0x734B50, type: .rodata, name: 72FFE0, linker_section_order: .data }
-    - { start: 0x734B60, type: .rodata, name: 730480, linker_section_order: .data }
-    - { start: 0x734B70, type: .rodata, name: 730D80, linker_section_order: .data }
+    - [0x734A10, .rodata, 7272E0]
+    - [0x734A30, .rodata, 728490]
+    - [0x734A50, .rodata, 729CA0]
+    - [0x734A90, .rodata, 72AF00]
+    - [0x734AB0, .rodata, 72BCE0]
+    - [0x734AC0, .rodata, 72C7A0]
+    - [0x734AD0, .rodata, 72D260]
+    - [0x734B10, .rodata, 72E4E0]
+    - [0x734B20, .rodata, 72E9F0]
+    - [0x734B30, .rodata, 72EE30]
+    - [0x734B40, .rodata, 72FC80]
+    - [0x734B50, .rodata, 72FFE0]
+    - [0x734B60, .rodata, 730480]
+    - [0x734B70, .rodata, 730D80]
 
-    - [0x734C00, bin] # , data]
+    - { start: 0x734C00, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     type: code
@@ -835,24 +840,25 @@ segments:
     - [0x7ABB10, c]
     - [0x7ABCD0, bin] # , data]
 
-    - { start: 0x7C60F0, type: .rodata, name: 79F1B0, linker_section_order: .data }
-    - { start: 0x7C6100, type: .rodata, name: 7A00C0, linker_section_order: .data }
-    - { start: 0x7C6220, type: .rodata, name: 7A1850, linker_section_order: .data }
-    - { start: 0x7C6260, type: .rodata, name: 7A2DD0, linker_section_order: .data }
-    - { start: 0x7C6280, type: .rodata, name: 7A3560, linker_section_order: .data }
-    - { start: 0x7C6290, type: .rodata, name: 7A3800, linker_section_order: .data }
-    - { start: 0x7C62A0, type: .rodata, name: 7A3C50, linker_section_order: .data }
-    - { start: 0x7C62B0, type: .rodata, name: 7A4610, linker_section_order: .data }
-    - { start: 0x7C62D0, type: .rodata, name: 7A5F10, linker_section_order: .data }
-    - { start: 0x7C6320, type: .rodata, name: 7A6D50, linker_section_order: .data }
-    - { start: 0x7C6330, type: .rodata, name: 7A8030, linker_section_order: .data }
-    - { start: 0x7C6380, type: .rodata, name: 7A8DD0, linker_section_order: .data }
-    - { start: 0x7C6390, type: rodata, linker_section_order: .data } # lots of unreferenced strings 
-    - { start: 0x7C6720, type: .rodata, name: 7AA110, linker_section_order: .data }
-    - { start: 0x7C6730, type: .rodata, name: 7AA790, linker_section_order: .data }
-    - { start: 0x7C6760, type: .rodata, name: 7AB7C0, linker_section_order: .data }
+    - [0x7C60F0, .rodata, 79F1B0]
+    - [0x7C6100, .rodata, 7A00C0]
+    - [0x7C6220, .rodata, 7A1850]
+    - [0x7C6260, .rodata, 7A2DD0]
+    - [0x7C6280, .rodata, 7A3560]
+    - [0x7C6290, .rodata, 7A3800]
+    - [0x7C62A0, .rodata, 7A3C50]
+    - [0x7C62B0, .rodata, 7A4610]
+    - [0x7C62D0, .rodata, 7A5F10]
+    - [0x7C6320, .rodata, 7A6D50]
+    - [0x7C6330, .rodata, 7A8030]
+    - [0x7C6380, .rodata, 7A8DD0]
+    - [0x7C6390, rodata] # lots of unreferenced strings 
+    - [0x7C6720, .rodata, 7AA110]
+    - [0x7C6730, .rodata, 7AA790]
+    - [0x7C6760, .rodata, 7AB7C0]
 
-    - [0x7C6770, bin] # , data]
+    - { start: 0x7C6770, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
     type: code

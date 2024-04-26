@@ -10,6 +10,6 @@ typedef u16 AnimalID;
 #define AnimalID_STARMIE    121
 #define AnimalID_MAGIKARP   129
 #define AnimalID_MEW        151
-#define AnimalID_MAX        151
+#define POKEDEX_MAX        151
 
 #endif

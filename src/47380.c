@@ -34,7 +34,7 @@ extern char D_800AFE9C[4];  // = "Ｓｉｇｎ？";
 
 #ifdef RODATA_MIGRATED
 char* getPokemonName(s32 pkmnID) {
-    if (pkmnID > 0 && pkmnID <= AnimalID_MAX) {
+    if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         return (&D_800AE284)[pkmnID];
     }
     if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
@@ -80,7 +80,7 @@ s32 func_8009BB4C(s32 pkmnID) {
     if (pkmnID == 0x25B) {
         pkmnID = AnimalID_SHELLDER;
     }
-    if (pkmnID > 0 && pkmnID <= AnimalID_MAX) {
+    if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         ret = D_800AE4E4[pkmnID - 1];
     } else {
         switch (pkmnID) {

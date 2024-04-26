@@ -1,5 +1,7 @@
 #include "common.h"
 
+#pragma GLOBAL_ASM("asm/nonmatchings/9ABB50/D_80208F50_9D31A0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/9ABB50/func_801E1900_9ABB50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/9ABB50/func_801E190C_9ABB5C.s")

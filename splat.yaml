@@ -17,6 +17,7 @@ options:
   data_string_guesser_level: 2
   rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
+  subalign: null
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -29,7 +30,6 @@ segments:
     subsegments:
     - [0x1000, hasm, entry]
     - [0x1060, c, sys/main]
-    - [0x1510, asm, padding_1510]
     - [0x1520, c, sys/sched]
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
@@ -41,7 +41,7 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, asm, padding_11E20]
+    - [0x11E20, pad, padding_11E20]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]
@@ -104,7 +104,7 @@ segments:
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, c, ../ultralib/src/audio/cspstop]
-    - [0x33030, asm, padding_33030]
+    - [0x33030, pad, padding_33030]
     - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, c, ../ultralib/src/audio/sndpallocate]
@@ -947,7 +947,7 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
-    - [0x87A320, asm] # padding
+    - [0x87A320, pad] # padding
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]

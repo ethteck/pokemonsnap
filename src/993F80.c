@@ -150,7 +150,7 @@ s32 func_801E48CC_99433C(const void* arg0, const void* arg1) {
     s32 sp2C;
 
     lhs = arg0, rhs = arg1;
-    sp2C = func_801E460C_99407C(func_8009B9D0(lhs->pkmnID), func_8009B9D0(rhs->pkmnID));
+    sp2C = func_801E460C_99407C(getPokemonName(lhs->pkmnID), getPokemonName(rhs->pkmnID));
     if (sp2C != 0) {
         return sp2C;
     }

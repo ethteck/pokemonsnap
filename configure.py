@@ -425,6 +425,12 @@ if __name__ == "__main__":
         help="Download and extract IDO compiler",
         action="store_true",
     )
+    parser.add_argument(
+        "-d",
+        "--disassemble-all",
+        help="Download and extract IDO compiler",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     if args.clean:
@@ -434,7 +440,11 @@ if __name__ == "__main__":
         setup()
         sys.exit(0)
 
-    split.main([YAML_FILE], modes="all", verbose=False)
+    if not Path(f"{BASENAME}.z64").exists():
+        print(f"{BASENAME}.z64 is missing!")
+        sys.exit(1)
+
+    split.main([YAML_FILE], modes="all", verbose=False, disassemble_all=args.disassemble_all)
 
     linker_entries = split.linker_writer.entries
 

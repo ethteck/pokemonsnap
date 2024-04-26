@@ -85,13 +85,13 @@ char* D_800E2FF0[] = {
 char* D_800E356C[] = { "←", "→", "　", "End" };
 
 ScreenSettings menu_new_game_video_settings = {
-    D_803B5000, /* fb1 */
-    D_803DA800, /* fb2 */
-    NULL,       /* fb3 */
-    NULL,       /* zbuffer */
-    320,        /* width*/
-    240,        /* height */
-    0x00016A99 /* flags*/
+    D_803B5000,    /* fb1 */
+    D_803DA800,    /* fb2 */
+    NULL,          /* fb3 */
+    NULL,          /* zbuffer */
+    SCREEN_WIDTH,  /* width*/
+    SCREEN_HEIGHT, /* height */
+    0x00016A99     /* flags*/
 };
 
 Lights1 D_800E3598 = gdSPDefLights1(100, 100, 100, 180, 180, 180, 30, 30, 30);
@@ -145,7 +145,7 @@ void func_800E1950_A5CD00(void) {
     SObj* sobj;
 
     D_801180B8 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80117F98_A93348, 0, 0, 1);
-    sobj = D_801180B8->data.sobj; 
+    sobj = D_801180B8->data.sobj;
     sobj->sprite.x = 96; sobj->sprite.y = 21;
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
@@ -230,7 +230,7 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
     }
 
     temp_s1 = 0;
-    func_8036D4B4_840C64(1, 0);   
+    func_8036D4B4_840C64(1, 0);
 
     for (i = 0; i < ARRAY_COUNT(D_801180C0) - 1; i++) {
         temp_s2 = D_801180C0[i];
@@ -272,7 +272,7 @@ void func_800E1EE4_A5D294(void) {
 
 void func_800E1F58_A5D308(GObj* arg0) {
     s32 sp24;
-    s32 sp20;    
+    s32 sp20;
     u8 i;
 
     func_800E19E4_A5CD94();

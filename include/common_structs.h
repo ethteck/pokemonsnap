@@ -476,4 +476,8 @@ typedef struct UnkStruct800BEDF8 {
     /* 0x18 */ s32 unk_18;
 } UnkStruct800BEDF8;
 
+typedef struct PlayerName {
+    /* 0x00 */ char data[0x10];
+} PlayerName; // size = 0x10
+
 #endif

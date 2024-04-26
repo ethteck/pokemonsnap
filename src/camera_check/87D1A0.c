@@ -1,6 +1,9 @@
 #include "common.h"
 #include "camera_check.h"
 
+// Unreferenced strings
+#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/D_camera_check_80208C60.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DF9B0.s")
 
 UnkCyanBass* func_camera_check_801DFA4C(void) {

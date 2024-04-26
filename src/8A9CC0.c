@@ -1,5 +1,7 @@
 #include "common.h"
 
+#pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/D_801C5950_98B170.s")
+
 void func_800E44A0_8A9CC0(void) {
 }
 
@@ -45,6 +47,12 @@ void func_800E4674_8A9E94(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/func_800E50A0_8AA8C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/func_800E510C_8AA92C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/D_801C5EDC_98B6FC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/D_801C6054_98B874.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/D_801C6090_98B8B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8A9CC0/func_800E5120_8AA940.s")
 

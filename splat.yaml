@@ -14,7 +14,10 @@ options:
   symbol_name_format: $VRAM_$ROM
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
+  data_string_guesser_level: 2
+  rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
+  subalign: null
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -27,7 +30,6 @@ segments:
     subsegments:
     - [0x1000, hasm, entry]
     - [0x1060, c, sys/main]
-    - [0x1510, asm, padding_1510]
     - [0x1520, c, sys/sched]
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
@@ -39,7 +41,7 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, asm, padding_11E20]
+    - [0x11E20, pad, padding_11E20]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]
@@ -102,7 +104,7 @@ segments:
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, c, ../ultralib/src/audio/cspstop]
-    - [0x33030, asm, padding_33030]
+    - [0x33030, pad, padding_33030]
     - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, c, ../ultralib/src/audio/sndpallocate]
@@ -284,7 +286,7 @@ segments:
     - [0x449E0, .rodata, 1F960]
     - [0x44A00, .rodata, sys/audio]
     - [0x44A10, rodata, 245E0]
-    - [0x44E50, rodata] # .rodata, ../ultralib/src/sp/sprite]
+    - [0x44E50, .rodata, 26D80] # .rodata, ../ultralib/src/sp/sprite]
     - [0x44E60, .rodata, ../ultralib/src/audio/cseq]
     - [0x44E70, .rodata, ../ultralib/src/audio/sndplayer]
     - [0x44EB0, .rodata, ../ultralib/src/audio/synthesizer]
@@ -356,53 +358,23 @@ segments:
     - [0x568D0, c]
     - [0x574F0, c]
     - [0x57580, .data, 46270]
-    - [0x579D0, .rodata, 46270]
-    - [0x57A70, rodata]
-    - [0x57AA0, rodata]
-    - [0x59F30, rodata]
-    - [0x5A180, rodata]
-    - [0x5A400, rodata]
-    - [0x5A430, rodata]
-    - [0x5A490, rodata]
-    - [0x5A4F0, rodata]
-    - [0x5A530, rodata]
-    - [0x5A570, rodata]
-    - [0x5A580, rodata]
-    - [0x5A610, rodata]
-    - [0x5AA00, rodata]
-    - [0x5AD50, rodata]
-    - [0x5AD80, rodata]
-    - [0x5AD90, rodata] # I believe rodata actually starts here (aside from the one blob at 0x579D0 - 0x57A70)
+    - { start: 0x579D0, type: .rodata, name: 46270, linker_section_order: .data }
+    - [0x57A70, data]
+
+    - [0x5AD90, rodata]
     - [0x5ADD0, rodata]
-    - [0x5AEA0, rodata]
-    - [0x5B020, rodata]
-    - [0x5B070, rodata]
-    - [0x5B080, rodata]
-    - [0x5B0E0, rodata]
-    - [0x5B0F0, rodata]
-    - [0x5B130, rodata]
-    - [0x5B200, rodata]
-    - [0x5B2B0, rodata]
-    - [0x5B2E0, rodata]
-    - [0x5B330, rodata]
-    - [0x5B360, rodata]
-    - [0x5B3E0, rodata]
-    - [0x5B510, rodata]
-    - [0x5B5A0, rodata]
-    - [0x5B6C0, rodata]
-    - [0x5B710, rodata]
-    - [0x5B770, rodata]
-    - [0x5B7C0, rodata]
-    - [0x5B7D0, rodata]
-    - [0x5B850, .rodata, 47380]
+    - [0x5B830, .rodata, 47380]
     - [0x5BB30, .rodata, 4B670]
     - [0x5BBF0, .rodata, 4D400]
     - [0x5BC10, .rodata, 4D880]
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
-    - { start: auto, name: bss_800B0570, type: bss, vram: 0x800B0570 }
-    - [0x6AA00, .bss, 574F0]
+
+    - { start: 0x5BF20, type: data, linker_section_order: .rodata }
+
+    - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
+    - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
     type: code
     start: 0x5BF20
@@ -644,6 +616,7 @@ segments:
     - [0x55C870, c]
     - [0x55D1C0, c]
     - [0x55D690, c]
+    - [0x55DCD0, c]
     - [0x55F350, c]
     - [0x55FB80, c]
     - [0x560320, c]
@@ -654,7 +627,20 @@ segments:
     - [0x562110, c]
     - [0x562370, c]
     - [0x562BC0, c]
+    - [0x563000, c]
     - [0x563E80, bin] # , data]
+
+    - [0x566160, .rodata, 55C870]
+    - [0x5661B0, .rodata, 55D690]
+    - [0x5661C0, .rodata, 55DCD0]
+    - [0x5661D0, .rodata, 5612B0]
+    - [0x5661E0, .rodata, 561B30]
+    - [0x5661F0, .rodata, 562370]
+    - [0x566200, .rodata, 562BC0]
+    - [0x566210, .rodata, 563000]
+
+    - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+
     - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
     type: code
@@ -678,6 +664,21 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [0x5EAFD0, bin] # , data]
+
+    - [0x5ED360, .rodata, 5DF5D0]
+    - [0x5ED420, .rodata, 5E0A70]
+    - [0x5ED430, .rodata, 5E21C0]
+    - [0x5ED440, .rodata, 5E3D80]
+    - [0x5ED450, .rodata, 5E4750]
+    - [0x5ED470, .rodata, 5E64A0]
+    - [0x5ED480, .rodata, 5E7560]
+    - [0x5ED4A0, .rodata, 5E8080]
+    - [0x5ED4C0, .rodata, 5E8930]
+    - [0x5ED4D0, .rodata, 5E9010]
+    - [0x5ED4E0, .rodata, 5EA6F0]
+
+    - { start: 0x5ED4F0, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
     type: code
@@ -697,10 +698,27 @@ segments:
     - [0x6438F0, c]
     - [0x644E80, c]
     - [0x645740, c]
+    - [0x645D90, c]
     - [0x646B50, c]
     - [0x646EA0, c]
     - [0x647360, c]
     - [0x648600, bin] # , data]
+
+    - [0x64A500, .rodata, 6401B0]
+    - [0x64A510, .rodata, 640900]
+    - [0x64A540, .rodata, 640CD0]
+    - [0x64A550, .rodata, 6414D0]
+    - [0x64A560, .rodata, 641A50]
+    - [0x64A570, .rodata, 6438F0]
+    - [0x64A590, .rodata, 644E80]
+    - [0x64A5A0, .rodata, 645740]
+    - [0x64A5B0, .rodata, 645D90]
+    - [0x64A5C0, .rodata, 646B50]
+    - [0x64A5D0, .rodata, 646EA0]
+    - [0x64A5E0, .rodata, 647360]
+
+    - { start: 0x64A610, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
     type: code
@@ -711,6 +729,7 @@ segments:
     subsegments:
     - [0x6C05E0, c]
     - [0x6C1090, c]
+    - [0x6C1300, c]
     - [0x6C1D60, c]
     - [0x6C22E0, c]
     - [0x6C26F0, c]
@@ -718,6 +737,7 @@ segments:
     - [0x6C2E80, c]
     - [0x6C3980, c]
     - [0x6C4CD0, c]
+    - [0x6C4EC0, c]
     - [0x6C66E0, c]
     - [0x6C6A70, c]
     - [0x6C7450, c]
@@ -730,6 +750,21 @@ segments:
     - [0x6C9680, c]
     - [0x6C9EB0, c]
     - [0x6CA400, bin] # , data]
+
+    - [0x6CC980, .rodata, 6C1090]
+    - [0x6CC9B0, .rodata, 6C1300]
+    - [0x6CC9D0, .rodata, 6C22E0]
+    - [0x6CC9E0, .rodata, 6C27C0]
+    - [0x6CC9F0, .rodata, 6C2E80]
+    - [0x6CCA00, .rodata, 6C3980]
+    - [0x6CCA30, .rodata, 6C4CD0]
+    - [0x6CCA40, .rodata, 6C4EC0]
+    - [0x6CCA50, .rodata, 6C66E0]
+    - [0x6CCA60, .rodata, 6C6A70]
+    - [0x6CCA70, .rodata, 6C86E0]
+
+    - { start: 0x6CCA80, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
     type: code
@@ -747,6 +782,7 @@ segments:
     - [0x72D260, c]
     - [0x72E4E0, c]
     - [0x72E9F0, c]
+    - [0x72EE30, c]
     - [0x72F100, c]
     - [0x72F590, c]
     - [0x72F770, c]
@@ -757,6 +793,24 @@ segments:
     - [0x730D80, c]
     - [0x731860, c]
     - [0x731E80, bin] # , data]
+
+    - [0x734A10, .rodata, 7272E0]
+    - [0x734A30, .rodata, 728490]
+    - [0x734A50, .rodata, 729CA0]
+    - [0x734A90, .rodata, 72AF00]
+    - [0x734AB0, .rodata, 72BCE0]
+    - [0x734AC0, .rodata, 72C7A0]
+    - [0x734AD0, .rodata, 72D260]
+    - [0x734B10, .rodata, 72E4E0]
+    - [0x734B20, .rodata, 72E9F0]
+    - [0x734B30, .rodata, 72EE30]
+    - [0x734B40, .rodata, 72FC80]
+    - [0x734B50, .rodata, 72FFE0]
+    - [0x734B60, .rodata, 730480]
+    - [0x734B70, .rodata, 730D80]
+
+    - { start: 0x734C00, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     type: code
@@ -773,12 +827,14 @@ segments:
     - [0x7A2DD0, c]
     - [0x7A3560, c]
     - [0x7A3800, c]
+    - [0x7A3C50, c]
     - [0x7A4610, c]
     - [0x7A5F10, c]
     - [0x7A6D50, c]
     - [0x7A7410, c]
     - [0x7A7790, c]
     - [0x7A8030, c]
+    - [0x7A8DD0, c]
     - [0x7AA110, c]
     - [0x7AA720, c]
     - [0x7AA780, textbin] # Weird extra nops, possibly infinite loop somewhere?
@@ -786,6 +842,26 @@ segments:
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
     - [0x7ABCD0, bin] # , data]
+
+    - [0x7C60F0, .rodata, 79F1B0]
+    - [0x7C6100, .rodata, 7A00C0]
+    - [0x7C6220, .rodata, 7A1850]
+    - [0x7C6260, .rodata, 7A2DD0]
+    - [0x7C6280, .rodata, 7A3560]
+    - [0x7C6290, .rodata, 7A3800]
+    - [0x7C62A0, .rodata, 7A3C50]
+    - [0x7C62B0, .rodata, 7A4610]
+    - [0x7C62D0, .rodata, 7A5F10]
+    - [0x7C6320, .rodata, 7A6D50]
+    - [0x7C6330, .rodata, 7A8030]
+    - [0x7C6380, .rodata, 7A8DD0]
+    - [0x7C6390, rodata] # lots of unreferenced strings 
+    - [0x7C6720, .rodata, 7AA110]
+    - [0x7C6730, .rodata, 7AA790]
+    - [0x7C6760, .rodata, 7AB7C0]
+
+    - { start: 0x7C6770, type: bin, linker_section_order: .rodata }
+
     - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
     type: code
@@ -849,14 +925,20 @@ segments:
     - [0x843050, c]
     - [0x843790, c]
     - [0x843D10, c]
+    - [0x846E20, c]
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
-    - [0x848BC0, bin]
-    - [0x879F20, rodata]
-    - [0x87A000, rodata]
-    - [0x87A090, rodata]
-    - [0x87A0A0, rodata]
+
+    - [0x848BC0, bin] # , data]
+
+    - [0x879E80, .rodata, 848B50]
+    - [0x879F20, .rodata, 840A50]
+    - [0x879FF0, .rodata, 843790]
+    - [0x87A000, .rodata, 843D10]
+    - [0x87A090, .rodata, 846E20]
+    - [0x87A0A0, .rodata, 8486E0]
+
     - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: camera_check
     dir: camera_check
@@ -868,13 +950,17 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x87A0B0, c]
-    - [0x87A320, c]
+    - [0x87A320, pad] # padding
     - [0x87A330, c]
     - [0x87D1A0, c]
     - [0x87FB20, c]
+
     - [0x8817E0, bin] # , data]
-    - [0x8A7010, .rodata, '87D1A0']
-    - [0x8A70C0, .rodata, '87FB20']
+
+    - [0x8A61F0, .rodata, 87A330]
+    - [0x8A6450, .rodata, 87D1A0]
+    - [0x8A70C0, .rodata, 87FB20]
+
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
     type: code
@@ -889,6 +975,13 @@ segments:
     - [0x8A9CC0, c]
     - [0x8AAF60, c]
     - [0x8ABEF0, bin] # , data]
+
+    - [0x98AD50, rodata] # unreferenced string
+    - [0x98AD70, .rodata, 8A7360]
+    - [0x98AE70, .rodata, 8A8A50]
+    - [0x98B170, .rodata, 8A9CC0]
+    - [0x98C300, .rodata, 8AAF60]
+
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
     type: code
@@ -898,13 +991,15 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x98C330, c]
-    - [0x993C50, c, 98D0F0]
+    - [auto, c, 98D0F0]
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
     - [0x9A35C0, .data, 98C330]
-    - [auto, .data, 98D0F0]
-    - [0x9A3C10]
+    - [0x9A38D0, .data, 98D0F0]
+    - [0x9A3C10, .rodata, 98C330]
+    - [0x9A5AA0, .rodata, 98D0F0]
+    - [0x9A6AF0, .rodata, 993F80]
   - name: unk_end_level_5
     type: code
     start: 0x9A6B10
@@ -917,6 +1012,10 @@ segments:
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, bin] # , data]
+
+    - [0x9D2EA0, .rodata, 9A6F70]
+    - [0x9D31A0, .rodata, 9ABB50]
+
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
     type: code
@@ -929,6 +1028,10 @@ segments:
     - [0x9D3660, c]
     - [0x9D91C0, c]
     - [0x9DA580, bin] # , data]
+
+    - [0x9F9990, .rodata, 9D3660]
+    - [0x9FA550, .rodata, 9D91C0]
+
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
     type: code
@@ -942,6 +1045,10 @@ segments:
     - [0x9FD510, c]
     - [0x9FEC10, c]
     - [0x9FF2E0, bin] # , data]
+
+    - [0xA07F80, .rodata, 9FAC10]
+    - [0xA08410, .rodata, 9FD510]
+
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
     type: code
@@ -965,7 +1072,7 @@ segments:
     - [0xA0D4D0, c]
     - [0xA0E190, c]
     - [0xA0F660, bin] # , data]
-    - [0xA0F7B0, rodata]
+    - [0xA0F7B0, .rodata, A08E30]
     - [0xA0F800, .rodata, A0BE70]
     - [0xA0F810, .rodata, A0E190]
     - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
@@ -985,12 +1092,13 @@ segments:
     - [0xA5E3A0, .data, A5CC50]
     - [0xA5EA50, .rodata, A5CC50]
     - [0xA5F040, .rodata, A5D5B0]
-    - [0xA5F070, rodata, sprite_background]
-    - [0xA84C80, rodata, sprite_card]
-    - [0xA93390, rodata, sprite_cursor]
+    - { start: 0xA5F070, type: data, name: sprite_background, linker_section_order: .rodata }
+    - { start: 0xA84C80, type: data, name: sprite_card, linker_section_order: .rodata }
+    - { start: 0xA93390, type: data, name: sprite_cursor, linker_section_order: .rodata }
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { start: auto, name: sprite_bss, type: bss, vram: 0x80168150 }
+
   - name: unk_level_end_11
     type: code
     start: 0xA93460

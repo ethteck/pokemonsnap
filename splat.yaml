@@ -1019,7 +1019,10 @@ segments:
     - [0x9D3660, c]
     - [0x9D91C0, c]
     - [0x9DA580, bin] # , data]
-    - [0x9F9990, bin] # , rodata]
+
+    - [0x9F9990, .rodata, 9D3660]
+    - [0x9FA550, .rodata, 9D91C0]
+
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
     type: code
@@ -1033,7 +1036,10 @@ segments:
     - [0x9FD510, c]
     - [0x9FEC10, c]
     - [0x9FF2E0, bin] # , data]
-    - [0xA07F80, bin] # , rodata]
+
+    - [0xA07F80, .rodata, 9FAC10]
+    - [0xA08410, .rodata, 9FD510]
+
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
     type: code

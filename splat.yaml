@@ -982,13 +982,15 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x98C330, c]
-    - [0x993C50, c, 98D0F0]
+    - [auto, c, 98D0F0]
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
     - [0x9A35C0, .data, 98C330]
-    - [auto, .data, 98D0F0]
-    - [0x9A3C10]
+    - [0x9A38D0, .data, 98D0F0]
+    - [0x9A3C10, .rodata, 98C330]
+    - [0x9A5AA0, .rodata, 98D0F0]
+    - [0x9A6AF0, .rodata, 993F80]
   - name: unk_end_level_5
     type: code
     start: 0x9A6B10
@@ -1001,7 +1003,10 @@ segments:
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, bin] # , data]
-    - [0x9D2EA0, bin] # , rodata]
+
+    - [0x9D2EA0, .rodata, 9A6F70]
+    - [0x9D31A0, .rodata, 9ABB50]
+
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
     type: code

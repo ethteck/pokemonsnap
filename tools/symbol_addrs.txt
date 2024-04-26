@@ -677,3 +677,6 @@ aspMainDataStart = 0x80044BA0;
 D_801C5EDC_98B6FC = 0x801C5EDC; // rom:0x98B6FC type:asciz
 D_801C6054_98B874 = 0x801C6054; // rom:0x98B874 type:asciz // TODO spimdisasm seems to have issues with this string
 D_801C6090_98B8B0 = 0x801C6090; // rom:0x98B8B0 type:asciz
+
+D_80208DD8_9D3028 = 0x80208DD8; // rom:0x9D3028 type:asciz // TODO spimdisasm seems to have issues with this string
+D_80208E80_9D30D0 = 0x80208E80; // rom:0x9D30D0 type:asciz // TODO spimdisasm seems to have issues with this string

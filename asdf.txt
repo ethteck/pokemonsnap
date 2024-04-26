@@ -15,11 +15,6 @@ Rodata segment 'sprite_cursor' may belong to the text segment 'A5D5B0'
 Segment ../ultralib/src/gu/cosf, symbol at vram 80044B10 ends with extra nops, indicating a likely file split.
 File split suggestions for this segment will follow in config yaml format:
       - [0x45720, .rodata]
-Wrote 8A70E0 to src/8A70E0.c
-Wrote 8A7360 to src/8A7360.c
-Wrote 8A8A50 to src/8A8A50.c
-Wrote 8A9CC0 to src/8A9CC0.c
-Wrote 8AAF60 to src/8AAF60.c
 Split 16 MB (96.37%) in defined segments
               header:     64 B (0.00%) 1 split, 0 cached
                  bin:     5 MB (31.64%) 44 split, 0 cached

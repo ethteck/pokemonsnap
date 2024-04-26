@@ -10,4 +10,6 @@ typedef u16 AnimalID;
 #define AnimalID_MAGIKARP   129
 #define AnimalID_MEW        151
 
+#define VPK_VRAM 0x802B5000 // TODO SHIFT hard-coded VRAM
+
 #endif

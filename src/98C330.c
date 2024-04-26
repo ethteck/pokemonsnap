@@ -1792,33 +1792,33 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_801E41FC_993C6C(NULL, &sp3C);
         ohWait(8);
 
-// TODO LABEL
-loop_1:
-        sp40 = func_800AA38C(0);
-        func_801E41FC_993C6C(sp40, &sp3C);
-        if (sp40->unk_18 & 0x8000) {
-            func_803700A4_843854(0);
-            if (sp3C != NULL) {
-                auPlaySound(0x5F);
-                func_801DCFE8_98CA58(photo);
-                D_801F3E2C_9A389C = 3;
-                sp1EC = 0x3C;
-            } else {
-                auPlaySound(0x53);
-                photo->unk_1A_14 = 0;
-                D_801F3E2C_9A389C = 1;
-                sp1EC = 0;
+        while (TRUE) {
+            sp40 = func_800AA38C(0);
+            func_801E41FC_993C6C(sp40, &sp3C);
+            if (sp40->unk_18 & 0x8000) {
+                func_803700A4_843854(0);
+                if (sp3C != NULL) {
+                    auPlaySound(0x5F);
+                    func_801DCFE8_98CA58(photo);
+                    D_801F3E2C_9A389C = 3;
+                    sp1EC = 0x3C;
+                } else {
+                    auPlaySound(0x53);
+                    photo->unk_1A_14 = 0;
+                    D_801F3E2C_9A389C = 1;
+                    sp1EC = 0;
+                }
+                break;
             }
-        } else {
             ohWait(1);
-            goto loop_1;
         }
+
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
         func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
         func_8036C898_840048(D_802290DC_9D8B4C, "                             ");
-
     }
+
     ohWait(1);
     func_8036A8E4_83E094(D_802290E4_9D8B54);
     func_8036A8E4_83E094(D_802290E0_9D8B50);

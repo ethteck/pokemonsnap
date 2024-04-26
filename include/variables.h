@@ -23,6 +23,7 @@ extern GObj* cartGObj;
 extern Vec3f D_800AF094;
 extern Vec3f D_800AF0C4;
 extern s32 D_800AF3C0;
+extern s8 D_800BF051;
 
 extern u8 D_80369F80[];
 extern u16 D_803B5000[SCREEN_WIDTH * SCREEN_HEIGHT];

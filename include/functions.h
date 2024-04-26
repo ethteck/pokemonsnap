@@ -164,7 +164,9 @@ void func_803713EC_844B9C(int);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
+#ifndef M2CTX
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
+#endif
 
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);

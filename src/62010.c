@@ -31,9 +31,24 @@ typedef struct UnkBeigeServal {
     /* 0x1C */ Vec3f unk_1C;
 } UnkBeigeServal; // size = 0x28
 
-// data
-extern UnkChestnutCougar* D_800E6B40_642F0;
-extern Mtx4f D_800E6B44_642F4;
+typedef struct UnkAmberMarlin {
+    /* 0x00 */ s32 unk0;
+    /* 0x04 */ Vec3f unk4;
+    /* 0x10 */ char unk10[16];
+    /* 0x20 */ UnkBeigeServal* unk20;
+} UnkAmberMarlin;
+
+typedef struct UnkCeruleanComodo {
+    /* 0x00 */ s32 unk0;
+    /* 0x04 */ UnkAmberMarlin* unk4;
+    /* 0x08 */ struct UnkCeruleanComodo* unk8;
+    /* 0x0C */ struct UnkCeruleanComodo* unkC;
+} UnkCeruleanComodo;
+
+extern UnkCeruleanComodo* func_800E2184_5F934(void);
+
+UnkChestnutCougar* D_800E6B40_642F0 = NULL;
+Mtx4f D_800E6B44_642F4 = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
 
 f32 func_800E4860_62010(Vec3f* v1, Vec3f* v2) {
     return v1->x * v2->x + v1->y * v2->y + v1->z * v2->z;
@@ -124,7 +139,6 @@ static void nullsub() {
 
 // needs data probably ?
 #ifdef NON_MATCHING
-Mtx4f D_800E6B44_642F4 = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
 void func_800E4BCC_6237C(Mtx4f dst) {
     dst[0][0] = D_800E6B44_642F4[0][0];
     dst[0][1] = D_800E6B44_642F4[0][1];
@@ -697,26 +711,10 @@ s32 func_800E61CC_6397C(UnkCaramelBoa* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3)
     }
 }
 
-struct TempStruct2 {
-    s32 unk0;
-    Vec3f unk4;
-    char unk10[16];
-    UnkBeigeServal* unk20;
-};
-
-struct TempStruct1 {
-    s32 unk0;
-    struct TempStruct2* unk4;
-    struct TempStruct1* unk8;
-    struct TempStruct1* unkC;
-};
-
-struct TempStruct1* getCurrentRoom(void);
-
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {    
-    struct TempStruct1* sp18C;
-    struct TempStruct1* sp188;
-    struct TempStruct1* sp17C[3];
+    UnkCeruleanComodo* sp18C;
+    UnkCeruleanComodo* sp188;
+    UnkCeruleanComodo* sp17C[3];
     f32 unused[4];
     UnkCaramelBoa* s0;
     UnkCaramelBoa* v0;
@@ -736,7 +734,7 @@ s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
         return -1;
     }
 
-    sp18C = getCurrentRoom();
+    sp18C = func_800E2184_5F934();
     if (sp18C == NULL || sp18C->unk4 == NULL) {
         return -1;
     }

@@ -327,7 +327,6 @@ gLevelID = 0x800AC0C0;
 gLevelNames = 0x800AC0C4;
 gPhotoCount = 0x800AC0E0;
 get_player_name = 0x800BF498;
-getCurrentRoom = 0x800E2184;
 inRange_DEBUG = 0x800E3FF0; // type:func rom:0x617A0
 bool_DEBUG = 0x800E4018; // type:func
 globalRoomGFX = 0x800E6AD0;
@@ -687,3 +686,4 @@ D_801EA584_A08244 = 0x801EA584; // rom:0xA08244 type:asciz
 D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
+func_800E2184_5F934 = 0x800E2184;

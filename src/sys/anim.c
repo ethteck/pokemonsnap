@@ -604,7 +604,7 @@ f32 animGetAObjRate(AObj* aobj) {
     }
 }
 
-void animModelAnimatedParams(DObj* dobj) {
+void animUpdateModelAnimatedParams(DObj* dobj) {
     f32 value;
     AObj* aobj;
 
@@ -1174,7 +1174,7 @@ void animUpdateModelTreeAnimation(GObj* obj) {
     dobj = obj->data.dobj;
     while (dobj != NULL) {
         animProcessModelAnimation(dobj);
-        animModelAnimatedParams(dobj);
+        animUpdateModelAnimatedParams(dobj);
 
         mobj = dobj->mobjList;
         while (mobj != NULL) {

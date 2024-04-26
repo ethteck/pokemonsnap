@@ -7,7 +7,6 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
-RoomGFX* getCurrentRoom(void);
 GObj* animalAddOne(RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, AnimalDef* def);
 void animalAdd(RoomGFX*, RoomGFX*, AnimalDef* def);
 
@@ -164,7 +163,7 @@ void func_803713EC_844B9C(int);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
-GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
+//GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);

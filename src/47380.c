@@ -32,7 +32,6 @@ extern char D_800AFE84[16]; // = "Ｓｉｇｎ？";
 extern char D_800AFE90[13]; // = "Ｓｉｇｎ";
 extern char D_800AFE9C[4];  // = "Ｓｉｇｎ？";
 
-#ifdef RODATA_MIGRATED
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         return (&D_800AE284)[pkmnID];
@@ -63,15 +62,11 @@ char* getPokemonName(s32 pkmnID) {
         case 0x258:
         case 0x259:
         case 0x25A:
-            return "Ｓｉｇｎ？";
+            return "？";
         default:
             return NULL;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/getPokemonName.s")
-#endif
-
 
 s32 func_8009BB4C(s32 pkmnID) {
     s32 ret;

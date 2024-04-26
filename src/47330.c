@@ -1,5 +1,10 @@
 #include "common.h"
 
+s32 gLevelID = -1;
+char* gLevelNames[] = {
+    "Beach", "Tunnel", "Volcano", "River", "Cave", "Valley", "Rainbow",
+};
+
 s32 getLevelId(void) {
     return gLevelID;
 }

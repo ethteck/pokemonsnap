@@ -3,7 +3,7 @@
 extern Gfx D_credits_801DEBD8[];
 extern ScreenSettings D_credits_801DEBA0;
 extern DynamicBuffer sGeneralHeap;
-extern s32 D_credits_801ECDA0;
+extern s32 D_credits_801ECDA0; // scene id
 extern u8 D_801ED020[];
 extern s32 D_credits_801DEC40;
 extern OSMesg D_credits_801ECC40[10];
@@ -73,8 +73,8 @@ void func_credits_801DCAF8(void* arg0) {
     osSendMesg(&D_credits_801ECC68, arg0, 1);
 }
 
-s32 func_credits_801DCB24(s32 arg0) {
-    D_credits_801ECDA0 = arg0;
+s32 func_credits_801DCB24(s32 sceneId) {
+    D_credits_801ECDA0 = sceneId;
     D_credits_801DEC40 = (uintptr_t) &D_80369F80 - (uintptr_t) &D_801ED020;
     gtlDisableNearClipping(1);
     gtlSetIntervals(1U, 2U);

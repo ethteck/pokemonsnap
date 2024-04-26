@@ -325,10 +325,10 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABCF0);
                 sceneId = func_801DD09C_A08C8C(sceneId);
                 break;
-            case SCENE_17:
-            case SCENE_18:
-            case SCENE_19:
-            case SCENE_20:
+            case SCENE_CREDITS_17:
+            case SCENE_CREDITS_18:
+            case SCENE_CREDITS_19:
+            case SCENE_CREDITS_20:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);

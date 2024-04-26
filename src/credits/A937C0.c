@@ -17,11 +17,15 @@ extern GObj* D_credits_801ECCA0;
 extern GObj* D_credits_801ECC80;
 extern GObj* D_credits_801ECC98;
 extern GObj* D_credits_801ECC9C;
-
+extern Sprite D_credits_801E6AA8;
+extern void* D_credits_801ECC94;
 extern u8 D_credits_801ECDA4;
 extern s32 D_credits_801ED010;
+extern s32 D_credits_801ECDA0;
 
-void func_credits_801DCAF8(SObj*); /* extern */
+void func_credits_801DD848();
+void func_credits_801DD49C(GObj*);
+void func_credits_801DCAF8(SObj*);
 GObj* func_credits_801DCC00(GObj*, Sprite*);
 void func_credits_801DD8C0(SObj*);
 void func_credits_801DEB74(void*, float);
@@ -29,7 +33,7 @@ void func_credits_801DEA30(void*, float);
 void func_credits_801DCEF0(GObj*);
 void func_credits_801DE8A0(SObj*, s32);
 s32 func_credits_801DE8D8();
-void func_credits_801DD540(GObj*); /* extern */
+void func_credits_801DD540(GObj*);
 
 GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
     return ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1, arg1, 0U, NULL, 1);
@@ -284,7 +288,24 @@ void func_credits_801DD3E0(SObj* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD428.s")
+void func_credits_801DD428(void) {
+    GObj* temp_v0;
+    SObj* var_s0;
+
+    temp_v0 = func_credits_801DD258();
+    D_credits_801ECC94 = temp_v0;
+    var_s0 = temp_v0->data.sobj;
+    func_credits_801DD2D4(var_s0);
+    func_credits_801DD320(var_s0);
+    func_credits_801DD340(var_s0);
+    func_credits_801DD3E0(var_s0);
+
+    while (var_s0 != NULL) {
+        var_s0->unk54 = 0;
+        var_s0->sprite.attr &= ~SP_HIDDEN;
+        var_s0 = var_s0->next;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD49C.s")
 
@@ -336,9 +357,6 @@ void func_credits_801DD744(void) {
     omCreateProcess(D_credits_801ECC98, func_credits_801DD540, 0U, 1U);
 }
 
-void func_credits_801DD49C(GObj*); /* extern */
-extern Sprite D_credits_801E6AA8;
-
 GObj* func_credits_801DD790(void) {
     GObj* sp1C;
 
@@ -365,7 +383,7 @@ void func_credits_801DD7D8(SObj* arg0, u8 arg1) {
 }
 
 void func_credits_801DD83C(SObj* arg0) {
-    arg0->sprite.attr = 0x201;
+    arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD848.s")
@@ -373,7 +391,7 @@ void func_credits_801DD83C(SObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD8C0.s")
 
 void func_credits_801DD930(SObj* arg0) {
-    arg0->sprite.attr = 0x201;
+    arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
 void func_credits_801DD93C(void) {
@@ -392,7 +410,24 @@ void func_credits_801DD93C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDA60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDAE8.s")
+void func_credits_801DDAE8(s32 arg0) {
+    switch (D_credits_801ECDA0) {
+        case SCENE_CREDITS_17:
+        case SCENE_CREDITS_18:
+        case SCENE_CREDITS_20:
+            func_credits_801DCE10();
+            D_credits_801ECDA4 = 0;
+            break;
+
+        case SCENE_CREDITS_19:
+            D_credits_801ECDA4 = 0;
+            func_credits_801DD428();
+            func_credits_801DD848();
+            break;
+    }
+
+    func_credits_801DD93C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DDB60.s")
 

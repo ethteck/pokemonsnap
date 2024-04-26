@@ -101,7 +101,7 @@ void func_credits_801DDF48(GObj* arg0) {
     }
 
     for (var_v0 = temp_s1; var_v0 != NULL; var_v0 = var_v0->next) {
-        var_v0->sprite.attr |= 4;
+        var_v0->sprite.attr |= SP_HIDDEN;
     }
     omEndProcess(NULL);
 
@@ -120,15 +120,15 @@ void func_credits_801DE034(GObj* arg0) {
 
 void func_credits_801DE734(s32 arg0) {
     switch (D_credits_801ECDA0) {
-        case 18:
+        case SCENE_CREDITS_18:
             func_credits_801DE060();
             return;
-        case 17:
-        case 20:
+        case SCENE_CREDITS_17:
+        case SCENE_CREDITS_20:
             func_credits_801DCF94();
             func_credits_801DE060();
             return;
-        case 19:
+        case SCENE_CREDITS_19:
             func_credits_801DE35C();
             return;
     }

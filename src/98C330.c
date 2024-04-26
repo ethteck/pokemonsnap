@@ -991,7 +991,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         if (sp208) {
             func_8036C898_840048(D_802290DC_9D8B4C, "\\BOh! This is exactly the PKMN\nSign I've been looking for!");
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Let me see...\nThis is %s!!", func_8009B9D0(photo->pkmnID));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Let me see...\nThis is %s!!", getPokemonName(photo->pkmnID));
         }
     }
     if (!D_801F3E34_9A38A4 && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
@@ -1041,7 +1041,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
             auPlaySound(0x4D);
-            func_8037519C_84894C(D_802290DC_9D8B4C, "%s's picture\nis in the PKMN Report already.", func_8009B9D0(photo->pkmnID));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "%s's picture\nis in the PKMN Report already.", getPokemonName(photo->pkmnID));
             func_8036D4A0_840C50(0);
             if (photo->specialID != 0) {
                 auPlaySound(0x4E);
@@ -1492,7 +1492,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
             func_8036C898_840048(D_802290DC_9D8B4C, "There are other ");
             auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
-            func_8037519C_84894C(D_802290DC_9D8B4C, "%s", func_8009B9D0(photo->pkmnID));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "%s", getPokemonName(photo->pkmnID));
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
             func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
@@ -1979,7 +1979,7 @@ void func_801E2454_991EC4(void) {
             }
             func_8036A8E4_83E094(D_802290E4_9D8B54);
             func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            sp48 = func_8009B9D0(photo->pkmnID);
+            sp48 = getPokemonName(photo->pkmnID);
             if (sp48 != NULL) {
                 func_8036D448_840BF8(0);
                 func_8036D3E8_840B98(0, 4);

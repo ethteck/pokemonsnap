@@ -3,7 +3,6 @@
 
 void func_8009FA68(UNK_PTR arg0, UNK_PTR arg1);
 void func_801DC9D0_AA1A10(GObj*);
-void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
 UNK_PTR func_800BF574_5C414(s32 arg0);
 
 // data

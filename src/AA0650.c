@@ -90,7 +90,7 @@ GObj* func_800E18A0_AA0650(void) {
     return temp_v0;
 }
 
-void func_800E1958_AA0708(SObj * arg0, u16 arg1) {
+void func_800E1958_AA0708(SObj* sobj, u16 arg1) {
     u8 temp_lo;
     u16 temp_arg1;
     u8 temp;
@@ -99,14 +99,14 @@ void func_800E1958_AA0708(SObj * arg0, u16 arg1) {
         temp_arg1 = arg1;
         for (arg1 = arg1 - 1; arg1 > 0; arg1--) {
             temp_lo = (arg1 * (temp = 0xFF)) / temp_arg1;
-            arg0->sprite.blue = temp_lo;
-            arg0->sprite.green = temp_lo;
-            arg0->sprite.red = temp_lo;
+            sobj->sprite.blue = temp_lo;
+            sobj->sprite.green = temp_lo;
+            sobj->sprite.red = temp_lo;
             ohWait(1);
         }
-        arg0->sprite.blue = 0;
-        arg0->sprite.green = 0;
-        arg0->sprite.red = 0;
+        sobj->sprite.blue = 0;
+        sobj->sprite.green = 0;
+        sobj->sprite.red = 0;
         ohWait(1);
     }
 }
@@ -156,7 +156,7 @@ void func_800E1B54_AA0904(void) {
 }
 
 void func_800E1C5C_AA0A0C(void) {
-    D_800E1D40_AA0AF0.gtlSetup.heapSize = 0x802B5000 - (uintptr_t) D_800E1DE0;
+    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) D_800E1DE0;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E1D40_AA0AF0);
 }

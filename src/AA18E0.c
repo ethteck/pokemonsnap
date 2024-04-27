@@ -129,7 +129,7 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
         ohWait(1);
     }
     ohWait(1);
-    while (1) {
+    while (TRUE) {
         if (gContInputPressedButtons & START_BUTTON) {
             contPrinterSendCommand(4);
             while (contPrinterGetStatus() == 8) {

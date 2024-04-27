@@ -6,73 +6,70 @@ GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
 }
 
 GObj* func_credits_801DCC70(void) {
-    GObj* temp_v0;
+    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058);
 
-    temp_v0 = func_credits_801DCC00(temp_v0, &D_credits_801E6058);
-    omGObjAddSprite(temp_v0, &D_credits_801E6430);
-    omGObjAddSprite(temp_v0, &D_credits_801E6430);
-    omGObjAddSprite(temp_v0, &D_credits_801E67D8);
-    omGObjAddSprite(temp_v0, &D_credits_801E67D8);
+    omGObjAddSprite(gobj, &D_credits_801E6430);
+    omGObjAddSprite(gobj, &D_credits_801E6430);
+    omGObjAddSprite(gobj, &D_credits_801E67D8);
+    omGObjAddSprite(gobj, &D_credits_801E67D8);
 
-    return temp_v0;
+    return gobj;
 }
 
 void func_credits_801DCCE4(SObj* arg0) {
-    SObj* temp_v0;
+    SObj* sobj = arg0;
 
-    temp_v0 = arg0;
-    temp_v0->sprite.x = 0x5A;
-    temp_v0->sprite.y = 0x44;
+    sobj->sprite.x = 90;
+    sobj->sprite.y = 68;
 
-    temp_v0 = arg0->next;
-    temp_v0->sprite.x = arg0->sprite.x - 3;
-    temp_v0->sprite.y = arg0->sprite.y - 3;
+    sobj = arg0->next;
+    sobj->sprite.x = arg0->sprite.x - 3;
+    sobj->sprite.y = arg0->sprite.y - 3;
 
-    temp_v0 = temp_v0->next;
-    temp_v0->sprite.x = arg0->sprite.x + 0x8C;
-    temp_v0->sprite.y = arg0->sprite.y - 3;
+    sobj = sobj->next;
+    sobj->sprite.x = arg0->sprite.x + 0x8C;
+    sobj->sprite.y = arg0->sprite.y - 3;
 
-    temp_v0 = temp_v0->next;
-    temp_v0->sprite.x = arg0->sprite.x;
-    temp_v0->sprite.y = arg0->sprite.y - 3;
+    sobj = sobj->next;
+    sobj->sprite.x = arg0->sprite.x;
+    sobj->sprite.y = arg0->sprite.y - 3;
 
-    temp_v0 = temp_v0->next;
-    temp_v0->sprite.x = arg0->sprite.x;
-    temp_v0->sprite.y = arg0->sprite.y + 0x69;
+    sobj = sobj->next;
+    sobj->sprite.x = arg0->sprite.x;
+    sobj->sprite.y = arg0->sprite.y + 0x69;
 }
 
 void func_credits_801DCD60(SObj* arg0) {
-    while (arg0) {
+    while (arg0 != NULL) {
         arg0->sprite.attr = SP_TEXSHUF | SP_SCALE | SP_HIDDEN | SP_TRANSPARENT;
         arg0 = arg0->next;
     }
 }
 
-void func_credits_801DCD80(SObj* arg0) {
-    Bitmap* list;
+void func_credits_801DCD80(SObj* sobj) {
+    Bitmap* list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
     u16* buf;
-    u8 var_s0;
+    u8 i;
 
-    list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
-    for (var_s0 = 0; var_s0 < 8u; var_s0++) {
+    for (i = 0; i < 8u; i++) {
         buf = func_8036A194_83D944(14 * 140 * sizeof(u16));
 
-        list[var_s0] = arg0->sprite.bitmap[var_s0];
-        list[var_s0].buf = buf;
+        list[i] = sobj->sprite.bitmap[i];
+        list[i].buf = buf;
     }
 
-    arg0->sprite.bitmap = list;
+    sobj->sprite.bitmap = list;
 }
 
 void func_credits_801DCE10(void) {
-    GObj* temp_v0;
+    GObj* gobj;
     SObj* sobj;
-    s8 var_s2;
+    s8 i;
 
-    for (var_s2 = 4; var_s2 >= 0; var_s2--) {
-        temp_v0 = func_credits_801DCC70();
-        (&D_credits_801ECC80)[var_s2] = temp_v0;
-        sobj = temp_v0->data.sobj;
+    for (i = 4; i >= 0; i--) {
+        gobj = func_credits_801DCC70();
+        (&D_credits_801ECC80)[i] = gobj;
+        sobj = gobj->data.sobj;
         func_credits_801DCCE4(sobj);
         func_credits_801DCD60(sobj);
         func_credits_801DCD80(sobj);
@@ -87,17 +84,17 @@ void func_credits_801DCE10(void) {
 }
 
 void func_credits_801DCEF0(GObj* arg0) {
-    ohWait(0xE2);
+    ohWait(226);
 
-    while (1) {
-        if (gContInputPressedButtons & 0x9000) {
+    while (TRUE) {
+        if (gContInputPressedButtons & (0x8000 | 0x1000)) {
             func_800A7470(0, 0, 0);
             func_800A7860(0, 1.0f);
-            auSetBGMVolumeSmooth(0, 0, 0x3C);
-            ohWait(0x3C);
+            auSetBGMVolumeSmooth(0, 0, 60);
+            ohWait(60);
             func_800067DC();
 
-            while (1) {
+            while (TRUE) {
                 ohWait(1);
             }
         }
@@ -109,26 +106,25 @@ void func_credits_801DCF94(void) {
     omCreateProcess(D_credits_801ECC80, func_credits_801DCEF0, 0, 1);
 }
 
-s32 func_credits_801DCFC8(GObj* arg0) {
-    SObj* temp_v0;
+s32 func_credits_801DCFC8(GObj* gobj) {
+    SObj* sobj = gobj->data.sobj;
 
-    temp_v0 = arg0->data.sobj;
-    if (temp_v0->sprite.attr & SP_HIDDEN) {
-        if ((temp_v0->next->sprite.attr & SP_HIDDEN) && (temp_v0->next->next->sprite.attr & SP_HIDDEN)) {
-            return 1;
-        }
+    if (sobj->sprite.attr & SP_HIDDEN &&
+        sobj->next->sprite.attr & SP_HIDDEN &&
+        sobj->next->next->sprite.attr & SP_HIDDEN)
+    {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void func_credits_801DD018(GObj* arg0) {
-    SObj* var_s0;
+void func_credits_801DD018(GObj* gobj) {
+    SObj* sobj = gobj->data.sobj;
 
-    var_s0 = arg0->data.sobj;
-    while (var_s0 != NULL) {
-        var_s0->sprite.x -= 1;
-        if (var_s0->sprite.x < -259.0) {
+    while (sobj != NULL) {
+        sobj->sprite.x--;
+        if (sobj->sprite.x < -259.0) {
             if (D_credits_801ED010 != 0) {
                 D_credits_801ED010--;
                 if (D_credits_801ED010 == 0) {
@@ -136,21 +132,20 @@ void func_credits_801DD018(GObj* arg0) {
                 }
             }
             if (D_credits_801ECDA4 == 1) {
-                var_s0->sprite.x += 700.0;
-                func_credits_801DCAF8(var_s0);
+                sobj->sprite.x += 700.0;
+                func_credits_801DCAF8(sobj);
             } else {
-                var_s0->sprite.attr |= SP_HIDDEN;
+                sobj->sprite.attr |= SP_HIDDEN;
             }
         }
 
-        var_s0 = var_s0->next;
+        sobj = sobj->next;
     }
 }
 
-s32 func_credits_801DD12C(GObj* arg0) {
-    SObj* sobj;
+s32 func_credits_801DD12C(GObj* gobj) {
+    SObj* sobj = gobj->data.sobj;
 
-    sobj = arg0->data.sobj;
     while (sobj != NULL) {
         if (sobj->sprite.x == 90) {
             return 90;
@@ -161,8 +156,8 @@ s32 func_credits_801DD12C(GObj* arg0) {
     return 0;
 }
 
-void func_credits_801DD168(GObj* arg0) {
-    s32 var_s0;
+void func_credits_801DD168(GObj* gobj) {
+    u8 var_s0;
 
     ohWait(1);
     while (D_credits_801ECDA4 != 1) {
@@ -170,102 +165,100 @@ void func_credits_801DD168(GObj* arg0) {
     }
 
     var_s0 = 0;
-    while (1) {
+    while (TRUE) {
         while (var_s0 != 0) {
             ohWait(1);
-            var_s0 = (var_s0 - 1) & 0xFF;
+            var_s0 --;
         }
 
-        if (func_credits_801DCFC8(arg0)) {
+        if (func_credits_801DCFC8(gobj)) {
             break;
         }
 
-        func_credits_801DD018(arg0);
-        var_s0 = func_credits_801DD12C(arg0) & 0xFF;
+        func_credits_801DD018(gobj);
+        var_s0 = func_credits_801DD12C(gobj);
         ohWait(1);
     }
 
-    ohRemoveSprite(arg0);
+    ohRemoveSprite(gobj);
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }
 
 GObj* func_credits_801DD258(void) {
-    GObj* temp_v0;
+    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058);
 
-    temp_v0 = func_credits_801DCC00(temp_v0, &D_credits_801E6058);
-    omGObjAddSprite(temp_v0, &D_credits_801E6058);
-    omGObjAddSprite(temp_v0, &D_credits_801E6058);
-    omGObjAddSprite(temp_v0, &D_credits_801E6058);
-    omCreateProcess(temp_v0, func_credits_801DD168, 0, 1);
+    omGObjAddSprite(gobj, &D_credits_801E6058);
+    omGObjAddSprite(gobj, &D_credits_801E6058);
+    omGObjAddSprite(gobj, &D_credits_801E6058);
+    omCreateProcess(gobj, func_credits_801DD168, 0, 1);
 
-    return temp_v0;
+    return gobj;
 }
 
-void func_credits_801DD2D4(SObj* arg0) {
-    s16 var_v0;
+void func_credits_801DD2D4(SObj* sobj) {
+    s16 x = SCREEN_WIDTH;
 
-    var_v0 = 320;
-    while (arg0 != NULL) {
-        arg0->sprite.x = var_v0;
-        arg0->sprite.y = 68;
-        arg0 = arg0->next;
-        var_v0 += 175.0;
+    while (sobj != NULL) {
+        sobj->sprite.x = x;
+        sobj->sprite.y = 68;
+        sobj = sobj->next;
+        x += 175.0;
     }
 }
 
-void func_credits_801DD320(SObj* arg0) {
-    while (arg0) {
-        arg0->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
-        arg0 = arg0->next;
+void func_credits_801DD320(SObj* sobj) {
+    while (sobj != NULL) {
+        sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
+        sobj = sobj->next;
     }
 }
 
-void func_credits_801DD340(SObj* arg0) {
+void func_credits_801DD340(SObj* sobj) {
     Bitmap* list;
     u16* buf;
     u8 i;
 
-    while (arg0 != NULL) {
+    while (sobj != NULL) {
         list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
 
         for (i = 0; i < 8u; i++) {
             buf = func_8036A194_83D944(1960 * sizeof(u16));
 
-            list[i] = arg0->sprite.bitmap[i];
+            list[i] = sobj->sprite.bitmap[i];
             list[i].buf = buf;
         }
 
-        arg0->sprite.bitmap = list;
-        arg0 = arg0->next;
+        sobj->sprite.bitmap = list;
+        sobj = sobj->next;
     }
 }
 
-void func_credits_801DD3E0(SObj* arg0) {
-    while (arg0 != NULL) {
-        func_credits_801DE8A0(arg0, func_credits_801DE8D8());
-        arg0 = arg0->next;
+void func_credits_801DD3E0(SObj* sobj) {
+    while (sobj != NULL) {
+        func_credits_801DE8A0(sobj, func_credits_801DE8D8());
+        sobj = sobj->next;
     }
 }
 
 void func_credits_801DD428(void) {
-    GObj* temp_v0;
-    SObj* var_s0;
+    GObj* gobj;
+    SObj* sobj;
 
-    temp_v0 = func_credits_801DD258();
-    D_credits_801ECC94 = temp_v0;
-    var_s0 = temp_v0->data.sobj;
-    func_credits_801DD2D4(var_s0);
-    func_credits_801DD320(var_s0);
-    func_credits_801DD340(var_s0);
-    func_credits_801DD3E0(var_s0);
+    gobj = func_credits_801DD258();
+    D_credits_801ECC94 = gobj;
+    sobj = gobj->data.sobj;
+    func_credits_801DD2D4(sobj);
+    func_credits_801DD320(sobj);
+    func_credits_801DD340(sobj);
+    func_credits_801DD3E0(sobj);
 
-    while (var_s0 != NULL) {
-        var_s0->unk54 = 0;
-        var_s0->sprite.attr &= ~SP_HIDDEN;
-        var_s0 = var_s0->next;
+    while (sobj != NULL) {
+        sobj->unk54 = 0;
+        sobj->sprite.attr &= ~SP_HIDDEN;
+        sobj = sobj->next;
     }
 }
 
@@ -280,7 +273,7 @@ void func_credits_801DD49C(GObj* arg0) {
     temp_s0 = arg0->data.sobj;
     var_f20 = temp_s0->sprite.x;
 
-    while (1) {
+    while (TRUE) {
         var_f20 -= 1.3f;
         if (var_f20 < -16.0f) {
             var_f20 += 16.0f;
@@ -303,7 +296,7 @@ void func_credits_801DD540(GObj* arg0) {
         sp3C[i] = sp44[i]->sprite.y;
     }
 
-    while (1) {
+    while (TRUE) {
         if ((sp44[0]->sprite.y < 0)) {
             break;
         }
@@ -320,10 +313,10 @@ void func_credits_801DD540(GObj* arg0) {
     }
 
     for (i = 0; i < 2; i++) {
-        sp44[i]->sprite.attr |= 4;
+        sp44[i]->sprite.attr |= SP_HIDDEN;
     }
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }
@@ -335,39 +328,38 @@ void func_credits_801DD744(void) {
 }
 
 GObj* func_credits_801DD790(void) {
-    GObj* sp1C;
+    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6AA8);
 
-    sp1C = func_credits_801DCC00(sp1C, &D_credits_801E6AA8);
-    omCreateProcess(sp1C, func_credits_801DD49C, 0, 1);
-    return sp1C;
+    omCreateProcess(gobj, func_credits_801DD49C, 0, 1);
+    return gobj;
 }
 
-void func_credits_801DD7D8(SObj* arg0, u8 arg1) {
-    arg0->sprite.width = 0x150;
+void func_credits_801DD7D8(SObj* sobj, u8 arg1) {
+    sobj->sprite.width = 336;
 
     switch (arg1) { /* irregular */
         case 0:
             // clang-format off
             // TODO: look into setPos(x, y) macro
-            arg0->sprite.x = 0x140; arg0->sprite.y = 0x44 - (arg0->sprite.height * 2);
+            sobj->sprite.x = SCREEN_WIDTH; sobj->sprite.y = 68 - (sobj->sprite.height * 2);
             // clang-format on
             return;
         case 1:
-            arg0->sprite.x = 0x140;
-            arg0->sprite.y = arg0->sprite.height + 0xAC;
+            sobj->sprite.x = SCREEN_WIDTH;
+            sobj->sprite.y = sobj->sprite.height + 172;
             return;
     }
 }
 
-void func_credits_801DD83C(SObj* arg0) {
-    arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
+void func_credits_801DD83C(SObj* sobj) {
+    sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
 void func_credits_801DD848(void) {
     SObj* temp_s1;
     u8 i;
 
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_credits_801ECC98); i++) {
         D_credits_801ECC98[i] = func_credits_801DD790();
         temp_s1 = D_credits_801ECC98[i]->data.sobj;
         func_credits_801DD7D8(temp_s1, i);
@@ -375,83 +367,80 @@ void func_credits_801DD848(void) {
     }
 }
 
-void func_credits_801DD8C0(SObj* arg0) {
+void func_credits_801DD8C0(SObj* sobj) {
     switch (D_credits_801ECDA0) {
         case SCENE_CREDITS_17:
         case SCENE_CREDITS_18:
         case SCENE_CREDITS_20:
-            arg0->sprite.x = 0x60;
-            arg0->sprite.y = 0xF0;
+            sobj->sprite.x = 0x60;
+            sobj->sprite.y = 0xF0;
             break;
 
         case SCENE_CREDITS_19:
-            arg0->sprite.x = 0x140;
-            arg0->sprite.y = 0x78 - ((s16) arg0->sprite.height / 2);
+            sobj->sprite.x = SCREEN_WIDTH;
+            sobj->sprite.y = (SCREEN_HEIGHT / 2) - (sobj->sprite.height / 2);
             break;
     }
 }
 
-void func_credits_801DD930(SObj* arg0) {
-    arg0->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
+void func_credits_801DD930(SObj* sobj) {
+    sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
 void func_credits_801DD93C(void) {
-    GObj* sp1C;
-    SObj* temp_a0;
-    GObj* temp_v0;
+    GObj* gobj;
+    SObj* sobj;
 
-    temp_v0 = func_credits_801DCC00(sp1C, &D_credits_801E8B50);
-    D_credits_801ECCA0 = temp_v0;
-    temp_a0 = temp_v0->data.sobj;
-    func_credits_801DD8C0(temp_a0);
-    func_credits_801DD930(temp_a0);
+    gobj = func_credits_801DCC00(gobj, &D_credits_801E8B50);
+    D_credits_801ECCA0 = gobj;
+    sobj = gobj->data.sobj;
+    func_credits_801DD8C0(sobj);
+    func_credits_801DD930(sobj);
 }
 
 void func_credits_801DD980(void) {
-    SObj* temp_s0;
-    s32 temp_v0;
+    SObj* sobj = D_credits_801ECCA0->data.sobj;
+    s32 middle;
 
-    temp_s0 = D_credits_801ECCA0->data.sobj;
     switch (D_credits_801ECDA0) {
         case SCENE_CREDITS_17:
         case SCENE_CREDITS_18:
         case SCENE_CREDITS_20:
-            while (1) {
-                temp_s0->sprite.y -= 1;
-                if (temp_s0->sprite.y < 0x71) {
+            while (TRUE) {
+                sobj->sprite.y--;
+                if (sobj->sprite.y < 0x71) {
                     break;
                 }
                 ohWait(1);
             }
-            temp_s0->sprite.y = 0x70;
+            sobj->sprite.y = 0x70;
             break;
 
         case SCENE_CREDITS_19:
-            while (1) {
-                temp_s0->sprite.x -= 1;
-                temp_v0 = 0xA0 - (temp_s0->sprite.width / 2);
-                if (temp_s0->sprite.x < temp_v0) {
+            while (TRUE) {
+                sobj->sprite.x--;
+                middle = (SCREEN_WIDTH / 2) - (sobj->sprite.width / 2);
+                if (sobj->sprite.x < middle) {
                     break;
                 }
                 ohWait(1);
             }
-            temp_s0->sprite.x = temp_v0;
+            sobj->sprite.x = middle;
             break;
     }
 }
 
 void func_credits_801DDA60(void) {
-    u8 var_s1;
-    SObj* temp_s0;
+    u8 color;
+    SObj* sobj = D_credits_801ECCA0->data.sobj;
 
-    temp_s0 = D_credits_801ECCA0->data.sobj;
-    var_s1 = 0xFF;
-    while (1) {
-        var_s1 -= 5;
-        if (var_s1 >= 0xA) {
-            temp_s0->sprite.red = temp_s0->sprite.green = temp_s0->sprite.blue = var_s1;
+    color = 0xFF;
+    while (TRUE) {
+        color -= 5;
+        if (color >= 10) {
+            sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = color;
         } else {
-            temp_s0->sprite.attr |= 4;
+            sobj->sprite.attr |= SP_HIDDEN;
             ohWait(1);
             break;
         }
@@ -492,16 +481,15 @@ void func_credits_801DDB60(void) {
 
     var_s0 = D_credits_801ECCB0;
     while (var_s0->unkC != 0) {
-        var_s0->unk4 = (f32) (var_s0->unk4 - var_f20);
-        func_8036CBA0_840350(var_s0->unkC, var_s0->unk0, (s32) var_s0->unk4);
+        var_s0->unk4 -= var_f20;
+        func_8036CBA0_840350(var_s0->unkC, var_s0->unk0, var_s0->unk4);
         var_s0++;
     }
 }
 
 UnkChartreuseAngler* func_credits_801DDC0C(void) {
-    UnkChartreuseAngler* var_v1;
+    UnkChartreuseAngler* var_v1 = D_credits_801ECCB0;
 
-    var_v1 = D_credits_801ECCB0;
     while (var_v1->unkC != 0) {
         if (var_v1->unk4 < -18.0f) {
             break;
@@ -520,18 +508,18 @@ UnkChartreuseAngler* func_credits_801DDC0C(void) {
 void func_credits_801DDC70(void) {
     UnkChartreuseAngler* var_s0;
     f32 var_f20;
-    s16 var_s1;
+    s16 i;
     s32 temp_v0;
 
     var_f20 = 0.0f;
     var_s0 = D_credits_801ECCB0;
 
-    for (var_s1 = 0; var_s1 < 0xE; var_s1++) {
+    for (i = 0; i < 14; i++) {
         var_s0->unk4 = var_f20;
         var_s0->unk0 = 0xA0;
         var_f20 += 18.0f;
         func_8036D4A0_840C50(0);
-        temp_v0 = func_8036AC6C_83E41C(var_s0->unk0, (s32) var_s0->unk4, 0xFC, 0xF, 0x400);
+        temp_v0 = func_8036AC6C_83E41C(var_s0->unk0, var_s0->unk4, 0xFC, 0xF, 0x400);
         var_s0->unkC = temp_v0;
         func_8036CB58_840308(temp_v0, 0xC);
         func_8036B734_83EEE4(var_s0->unkC);

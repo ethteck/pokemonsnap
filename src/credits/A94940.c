@@ -164,44 +164,43 @@ s32 D_credits_801E9414[] = { 0, 0, 0 };
 
 void func_credits_801DDD80(void) {
     s32* var_v0;
-    u32 var_s0;
+    u32 i;
 
     D_credits_801ECDA8 = 0;
     var_v0 = D_credits_801ECDB0;
-    for (var_s0 = 0; var_s0 < 0x98; var_s0++) {
-        *var_v0++ = 0x3E7;
+    for (i = 0; i < 152; i++) {
+        *var_v0++ = 999;
     }
 
-    for (var_s0 = 0; var_s0 < 0x98; var_s0++) {
-        if (func_800BF710_5C5B0(var_s0) != NULL) {
-            D_credits_801ECDB0[D_credits_801ECDA8] = var_s0;
-            D_credits_801ECDA8 += 1;
+    for (i = 0; i < 152; i++) {
+        if (func_800BF710_5C5B0(i) != NULL) {
+            D_credits_801ECDB0[D_credits_801ECDA8] = i;
+            D_credits_801ECDA8++;
         }
     }
 }
 
-void func_credits_801DDE24(GObj* arg0) {
-    SObj* temp_s0;
+void func_credits_801DDE24(GObj* gobj) {
+    SObj* sobj = gobj->data.sobj;
     f32 scale;
     f32 temp_f22;
 
-    temp_s0 = arg0->data.sobj;
     auPlaySoundWithParams(0x47, 0x7FFF, 0x40, 1.0, 0xF);
-    temp_f22 = 0.1000000015;
+    temp_f22 = 0.1;
 
     scale = 4.0f;
-    while (temp_s0->sprite.scalex > 1.0f) {
+    while (sobj->sprite.scalex > 1.0f) {
         scale -= temp_f22;
         ohWait(1);
-        func_credits_801DEB74(temp_s0, scale);
-        func_credits_801DEA30(temp_s0, scale);
+        func_credits_801DEB74(sobj, scale);
+        func_credits_801DEA30(sobj, scale);
     }
-    func_credits_801DEA30(temp_s0, 1.0);
-    func_credits_801DEB74(temp_s0, 1.0);
+    func_credits_801DEA30(sobj, 1.0);
+    func_credits_801DEB74(sobj, 1.0);
     ohWait(1);
     omEndProcess(NULL);
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }
@@ -211,29 +210,29 @@ void func_credits_801DDF1C(GObj* arg0) {
 }
 
 void func_credits_801DDF48(GObj* arg0) {
-    SObj* temp_s1;
-    SObj* var_v0;
+    SObj* sobj;
+    SObj* it;
     s16 var_s0;
 
-    temp_s1 = arg0->data.sobj;
+    sobj = arg0->data.sobj;
     auPlaySoundWithParams(0x50, 0x7FFF, 0x40, 1.0f, 0xF);
 
-    var_s0 = 0xA;
-    while (temp_s1->sprite.y < 0x12C) {
-        for (var_v0 = temp_s1; var_v0 != NULL; var_v0 = var_v0->next) {
-            var_v0->sprite.y += var_s0;
+    var_s0 = 10;
+    while (sobj->sprite.y < 300) {
+        for (it = sobj; it != NULL; it = it->next) {
+            it->sprite.y += var_s0;
         }
 
         var_s0++;
         ohWait(1);
     }
 
-    for (var_v0 = temp_s1; var_v0 != NULL; var_v0 = var_v0->next) {
-        var_v0->sprite.attr |= SP_HIDDEN;
+    for (it = sobj; it != NULL; it = it->next) {
+        it->sprite.attr |= SP_HIDDEN;
     }
     omEndProcess(NULL);
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }
@@ -288,12 +287,12 @@ void func_credits_801DE844(GObj* arg0) {
     ohWait(1);
 }
 
-void func_credits_801DE8A0(SObj* arg0, s32 arg1) {
+void func_credits_801DE8A0(SObj* sobj, s32 arg1) {
     void* temp_v0;
 
     temp_v0 = func_800BF710_5C5B0(arg1);
     if (temp_v0 != NULL) {
-        func_80374714_847EC4(temp_v0, &arg0->sprite);
+        func_80374714_847EC4(temp_v0, &sobj->sprite);
     }
 }
 
@@ -337,10 +336,10 @@ void func_credits_801DEA30(SObj* arg0, f32 arg1) {
 }
 #endif
 
-void func_credits_801DEB74(SObj* arg0, f32 arg1) {
-    while (arg0 != NULL) {
-        arg0->sprite.scalex = arg1;
-        arg0->sprite.scaley = arg1;
-        arg0 = arg0->next;
+void func_credits_801DEB74(SObj* sobj, f32 scale) {
+    while (sobj != NULL) {
+        sobj->sprite.scalex = scale;
+        sobj->sprite.scaley = scale;
+        sobj = sobj->next;
     }
 }

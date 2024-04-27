@@ -10,7 +10,7 @@ static void nullsub2() {
 }
 
 void func_camera_check_801DC8D0(GObj* arg0) {
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }

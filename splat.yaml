@@ -960,6 +960,7 @@ segments:
 
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
+    dir: unk_end_level_3
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
@@ -971,7 +972,7 @@ segments:
     - [0x8A8A50, c]
     - [0x8A9CC0, c]
     - [0x8AAF60, c]
-    - [0x8ABEF0, bin] # , data]
+    - [0x8ABEF0, data]
 
     - [0x98AD50, rodata] # unreferenced string
     - [0x98AD70, .rodata, 8A7360]

@@ -59,6 +59,7 @@ void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
 void func_800AAF20(void);
+void func_800AB918(s32);
 void func_800ABB4C(u8 flags);
 u8 func_800ABB68(void);
 void func_800ABB94(void);
@@ -172,7 +173,6 @@ void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
-
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);

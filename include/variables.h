@@ -29,5 +29,7 @@ extern u8 D_80369F80[];
 extern u16 D_803B5000[SCREEN_WIDTH * SCREEN_HEIGHT];
 extern u16 D_803DA800[SCREEN_WIDTH * SCREEN_HEIGHT];
 
+extern DynamicBuffer sGeneralHeap;
+extern u8 D_801ED020[];
 
 #endif

@@ -251,14 +251,14 @@ AuSettings auPublicSettings = {
     0x40,
     0x40,
     10,
-    { 16, 16 },        
-    0,          
-    50,         
-    100,        
-    (s32)audio_bank2_ROM_START, 
+    { 16, 16 },
+    0,
+    50,
+    100,
+    (s32)audio_bank2_ROM_START,
     (s32)audio_bank2_ROM_END,
     audio_table2_ROM_START,
-    (s32)audio_bank1_ROM_START, 
+    (s32)audio_bank1_ROM_START,
     (s32)audio_bank1_ROM_END,
     audio_table1_ROM_START,
     (s32)audio_sbk_ROM_START,
@@ -694,7 +694,7 @@ void auLoadAssets(void) {
     alHeapInit(&auHeap, auCurrentSettings.heapBase, auCurrentSettings.heapSize);
 
     // load sfx bank
-    if ((u32)auCurrentSettings.bank2Start >= 0x80000000U) {
+    if ((u32)auCurrentSettings.bank2Start >= 0x80000000) {
         auSeqBank = (ALBank*)auCurrentSettings.bank2Start;
     } else {
         len = auCurrentSettings.bank2End - auCurrentSettings.bank2Start;
@@ -704,7 +704,7 @@ void auLoadAssets(void) {
         auSeqBank = bankFile->bankArray[0];
     }
 
-    if ((u32)auCurrentSettings.bank1Start >= 0x80000000U) {
+    if ((u32)auCurrentSettings.bank1Start >= 0x80000000) {
         D_800968B8 = (ALBank*)auCurrentSettings.bank1Start;
     } else {
         len = auCurrentSettings.bank1End - auCurrentSettings.bank1Start;
@@ -715,7 +715,7 @@ void auLoadAssets(void) {
     }
 
     // load sequnces
-    if ((u32)auCurrentSettings.romSbkStart >= 0x80000000U) {
+    if ((u32)auCurrentSettings.romSbkStart >= 0x80000000) {
         auSeqFile = (ALSeqFile*)auCurrentSettings.romSbkStart;
     } else {
         auSeqFile = alHeapAlloc(&auHeap, 1, 4);

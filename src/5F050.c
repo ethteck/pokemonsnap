@@ -32,7 +32,7 @@ extern s32 D_800E6B14_642C4;
 extern UnkBordeauxWolf* D_800F5A08_731B8[13];
 extern UnkBordeauxWolf D_800F5A40_731F0[13];
 extern UnkIvoryMamba D_800F5BB0_73360[13];
-static UnkAquamarineCoyote D_800F5C50_73400[14];
+extern UnkAquamarineCoyote D_800F5C50_73400[14];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E18A0_5F050.s")
 void func_800E18A0_5F050(u32);

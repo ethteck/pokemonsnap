@@ -186,7 +186,7 @@ void func_credits_801DDE24(GObj* arg0) {
     f32 temp_f22;
 
     temp_s0 = arg0->data.sobj;
-    auPlaySoundWithParams(0x47U, 0x7FFF, 0x40, 1.0, 0xF);
+    auPlaySoundWithParams(0x47, 0x7FFF, 0x40, 1.0, 0xF);
     temp_f22 = 0.1000000015;
 
     scale = 4.0f;
@@ -207,7 +207,7 @@ void func_credits_801DDE24(GObj* arg0) {
 }
 
 void func_credits_801DDF1C(GObj* arg0) {
-    omCreateProcess(arg0, func_credits_801DDE24, 0U, 1U);
+    omCreateProcess(arg0, func_credits_801DDE24, 0, 1);
 }
 
 void func_credits_801DDF48(GObj* arg0) {
@@ -216,7 +216,7 @@ void func_credits_801DDF48(GObj* arg0) {
     s16 var_s0;
 
     temp_s1 = arg0->data.sobj;
-    auPlaySoundWithParams(0x50U, 0x7FFF, 0x40, 1.0f, 0xF);
+    auPlaySoundWithParams(0x50, 0x7FFF, 0x40, 1.0f, 0xF);
 
     var_s0 = 0xA;
     while (temp_s1->sprite.y < 0x12C) {
@@ -239,7 +239,7 @@ void func_credits_801DDF48(GObj* arg0) {
 }
 
 void func_credits_801DE034(GObj* arg0) {
-    omCreateProcess(arg0, func_credits_801DDF48, 0U, 1U);
+    omCreateProcess(arg0, func_credits_801DDF48, 0, 1);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/credits/A94940/func_credits_801DE060.s")

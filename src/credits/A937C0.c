@@ -2,7 +2,7 @@
 #include "credits.h"
 
 GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
-    return ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1, arg1, 0U, NULL, 1);
+    return ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, arg1, 0, NULL, 1);
 }
 
 GObj* func_credits_801DCC70(void) {
@@ -93,7 +93,7 @@ void func_credits_801DCEF0(GObj* arg0) {
         if (gContInputPressedButtons & 0x9000) {
             func_800A7470(0, 0, 0);
             func_800A7860(0, 1.0f);
-            auSetBGMVolumeSmooth(0, 0U, 0x3CU);
+            auSetBGMVolumeSmooth(0, 0, 0x3C);
             ohWait(0x3C);
             func_800067DC();
 
@@ -106,7 +106,7 @@ void func_credits_801DCEF0(GObj* arg0) {
 }
 
 void func_credits_801DCF94(void) {
-    omCreateProcess(D_credits_801ECC80, func_credits_801DCEF0, 0U, 1U);
+    omCreateProcess(D_credits_801ECC80, func_credits_801DCEF0, 0, 1);
 }
 
 s32 func_credits_801DCFC8(GObj* arg0) {
@@ -199,7 +199,7 @@ GObj* func_credits_801DD258(void) {
     omGObjAddSprite(temp_v0, &D_credits_801E6058);
     omGObjAddSprite(temp_v0, &D_credits_801E6058);
     omGObjAddSprite(temp_v0, &D_credits_801E6058);
-    omCreateProcess(temp_v0, func_credits_801DD168, 0U, 1U);
+    omCreateProcess(temp_v0, func_credits_801DD168, 0, 1);
 
     return temp_v0;
 }
@@ -331,14 +331,14 @@ void func_credits_801DD540(GObj* arg0) {
 void func_credits_801DD744(void) {
     ohEndAllObjectProcesses(D_credits_801ECC98[0]);
     ohEndAllObjectProcesses(D_credits_801ECC98[1]);
-    omCreateProcess(D_credits_801ECC98[0], func_credits_801DD540, 0U, 1U);
+    omCreateProcess(D_credits_801ECC98[0], func_credits_801DD540, 0, 1);
 }
 
 GObj* func_credits_801DD790(void) {
     GObj* sp1C;
 
     sp1C = func_credits_801DCC00(sp1C, &D_credits_801E6AA8);
-    omCreateProcess(sp1C, func_credits_801DD49C, 0U, 1U);
+    omCreateProcess(sp1C, func_credits_801DD49C, 0, 1);
     return sp1C;
 }
 

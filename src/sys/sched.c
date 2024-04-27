@@ -127,7 +127,7 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
         }
     }
 
-    // set any available 
+    // set any available
     for (i = 0; i < ARRAY_COUNT(scFrameBuffers); i++) {
         fb = scFrameBuffers[i];
         if (fb != NULL && curFb != fb && nextFb != fb) {
@@ -549,7 +549,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     scViModeNext.fldRegs[1].yScale = phi_t3;
     scViModeNext.fldRegs[1].origin = (phi_a0 * width * 2 * sp14);
     if (scViSettings.unk_b04) {
-        if ((height << 11) < 0xB4000U) {
+        if ((height << 11) < 0xB4000) {
             scViModeNext.fldRegs[0].yScale = phi_t3 + 0x3000000;
             scViModeNext.fldRegs[1].yScale = phi_t3 + 0x1000000;
         } else {
@@ -588,8 +588,8 @@ void scSetNextFrameBuffer(void* fb) {
     } else {
         if ((intptr_t)fb == -1) {
             osViSwapBuffer(scNextFrameBuffer);
-            if (scUnkFrameBuffer == scNextFrameBuffer) { 
-                scUnknownInt = 1; 
+            if (scUnkFrameBuffer == scNextFrameBuffer) {
+                scUnknownInt = 1;
             }
             scCurrentFrameBuffer = scNextFrameBuffer;
             scNextFrameBuffer = NULL;
@@ -631,7 +631,7 @@ void scExecuteAudioTask(SCTaskAudio* task) {
 s32 scExecuteTask(SCTaskInfo* task) {
     s32 ret = 0;
     UNUSED s32 pad[4]; // required to match
-    SCTaskInfo* sp34[2]; 
+    SCTaskInfo* sp34[2];
 
     switch (task->type) {
         case SC_TASK_TYPE_GFX:
@@ -938,7 +938,7 @@ void scHandleSPTaskDone(void) {
                 fatal_printf("rdp_output_buff over !! size = %d\n byte", scRDPOutputBufferUsed);
                 PANIC();
             }
-            
+
             scCurrentGfxTask->info.state = SC_TASK_STATE_QUEUED;
             scQueue3Add(scCurrentGfxTask);
             func_80001F24();
@@ -947,7 +947,7 @@ void scHandleSPTaskDone(void) {
         scExecuteTasks();
         return;
     }
-    
+
     if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 2 && scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
         scCurrentGfxTask->info.state = SC_TASK_STATE_STOPPED;
         if (!(scCurrentGfxTask->unk7C & 2)) {
@@ -959,7 +959,7 @@ void scHandleSPTaskDone(void) {
 void scHandleDPFullSync(void) {
     if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 2) {
         if (scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
-            if (scCurrentGfxTask->fb != NULL) { 
+            if (scCurrentGfxTask->fb != NULL) {
                 if (scPostProcessFunc != NULL) {
                     if ((intptr_t)scCurrentGfxTask->fb == -1) {
                         scPostProcessFunc(scNextFrameBuffer);
@@ -983,7 +983,7 @@ void scHandleDPFullSync(void) {
         scCurrentGfxTask = NULL;
         scExecuteTasks();
     } else if (scCurrentQueue3Task != NULL) {
-        if (scCurrentQueue3Task->fb != NULL) { 
+        if (scCurrentQueue3Task->fb != NULL) {
             if (scPostProcessFunc != NULL) {
                 if ((intptr_t)scCurrentQueue3Task->fb == -1) {
                     scPostProcessFunc(scNextFrameBuffer);
@@ -1002,7 +1002,7 @@ void scHandleDPFullSync(void) {
         func_80001F24();
     } else if (scPausedQueueHead != NULL && scPausedQueueHead->info.unk18 == 2) {
         if (scPausedQueueHead->info.type == SC_TASK_TYPE_GFX) {
-            if (scPausedQueueHead->fb != NULL) { 
+            if (scPausedQueueHead->fb != NULL) {
                 if (scPostProcessFunc != NULL) {
                     if ((intptr_t)scPausedQueueHead->fb == -1) {
                         scPostProcessFunc(scNextFrameBuffer);
@@ -1103,7 +1103,7 @@ void scMain(UNUSED void* arg) {
                 scHandleDPFullSync();
                 break;
             case INTR_SOFT_RESET:
-                if (scPreNMIProc != NULL) { 
+                if (scPreNMIProc != NULL) {
                     scPreNMIProc();
                 }
                 break;

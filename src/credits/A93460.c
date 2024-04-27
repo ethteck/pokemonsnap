@@ -15,14 +15,14 @@ void func_credits_801DC8C4(void) {
     } else {
         var_a1 = 0x78000;
     }
-    func_8036A3F8(mlHeapAlloc(&sGeneralHeap, var_a1, 8U), (s32) var_a1);
+    func_8036A3F8(mlHeapAlloc(&sGeneralHeap, var_a1, 8), (s32) var_a1);
     func_800AAE28();
     func_80374D40_8484F0();
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 6, 0xFF);
     ohCreateCamera(3, &ohUpdateDefault, 0, 0x80000000, &renSpriteCameraRender, 3, 2, -1, 1, 1, 0, 1, 1)
         ->data.cam->flags = 8;
     func_800A7F68(0, 0x101);
-    omCreateProcess(omAddGObj(0xEU, NULL, 0U, 0x80000000U), func_credits_801DE844, 0U, 1U);
+    omCreateProcess(omAddGObj(0xE, NULL, 0, 0x80000000), func_credits_801DE844, 0, 1);
 }
 
 void func_credits_801DC9FC(void* arg1) {
@@ -59,7 +59,7 @@ s32 func_credits_801DCB24(s32 sceneId) {
     D_credits_801ECDA0 = sceneId;
     D_credits_801DEC40 = (uintptr_t) &D_80369F80 - (uintptr_t) &D_801ED020;
     gtlDisableNearClipping(1);
-    gtlSetIntervals(1U, 2U);
+    gtlSetIntervals(1, 2);
     osCreateMesgQueue(&D_credits_801ECC68, D_credits_801ECC40, ARRAY_COUNT(D_credits_801ECC40));
     osCreateThread(&D_credits_801E9A90, 0x64, func_credits_801DCA1C, NULL, &D_credits_801ECC40, 0x31);
     osStartThread(&D_credits_801E9A90);

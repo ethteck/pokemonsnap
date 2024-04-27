@@ -14,7 +14,7 @@ s32 getLevelId(void);
 void setLevelId(s32 levelID);
 char* getLevelName(s32 levelIdx);
 
-s32 inRange_DEBUG(u32, s32, s32, s32);
+s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 bool_DEBUG(s32, s32);
 
 void spawnStaryuAtGeo(GObj*);
@@ -41,8 +41,16 @@ s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
+void func_800A1530(GObj*);
+void func_800A1590(GObj*);
+void func_800A15D8(GObj*);
+void func_800A1608(GObj*);
+void func_800A1780(u8, u8, u8);
+void func_800A181C(u8, u8, u8);
+void func_800A18AC(u16, u16);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
+void func_800A71F8(f32, f32, f32);
 void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd);
 void func_800A7470(s32, s32, s32);
 void func_800A7860(s32, f32);
@@ -111,6 +119,7 @@ s32 func_802E2BB8_5DFC88(s32);
 
 s32 func_80346EF0_826660(s32);
 
+void func_8035024C_4F065C(f32, f32, f32);
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);
 Unk803586F8* func_803586F8_4F8B08(void);

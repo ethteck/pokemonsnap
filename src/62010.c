@@ -667,9 +667,9 @@ s32 func_800E61CC_6397C(UnkCaramelBoa* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3)
 }
 
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {    
-    UnkCeruleanComodo* sp18C;
-    UnkCeruleanComodo* sp188;
-    UnkCeruleanComodo* sp17C[3];
+    UnkBordeauxWolf* sp18C;
+    UnkBordeauxWolf* sp188;
+    UnkBordeauxWolf* sp17C[3];
     f32 unused[4];
     UnkCaramelBoa* s0;
     UnkCaramelBoa* v0;
@@ -690,30 +690,30 @@ s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
     }
 
     sp18C = func_800E2184_5F934();
-    if (sp18C == NULL || sp18C->unk4 == NULL) {
+    if (sp18C == NULL || sp18C->unk_04 == NULL) {
         return -1;
     }
 
-    sp17C[0] = sp18C->unk8;
+    sp17C[0] = sp18C->unk_08;
     sp17C[1] = sp18C;
-    sp17C[2] = sp18C->unkC;
+    sp17C[2] = sp18C->unk_0C;
 
     for (j = 0; j < ARRAY_COUNT(sp17C); j++) {
         sp188 = sp17C[j];
-        if (sp188 == NULL || sp188->unk4 == NULL || sp188->unk4->unk20 == NULL) {
+        if (sp188 == NULL || sp188->unk_04 == NULL || sp188->unk_04->unk20 == NULL) {
             continue;
         }
 
-        s6 = sp188->unk4->unk20;
+        s6 = sp188->unk_04->unk20;
         while (s6->unk_00 != -1) {
             for (i = 0; i < 100; i++) {
                 if (D_800E6B40_642F0[i].unk_00 == -1) {
                     break;
                 }
                 if (D_800E6B40_642F0[i].unk_04 != NULL && D_800E6B40_642F0[i].unk_00 == s6->unk_00) {
-                    sp158.x = s6->unk_04.x + (sp188->unk4->unk4.x - sp18C->unk4->unk4.x);
-                    sp158.y = s6->unk_04.y + (sp188->unk4->unk4.y - sp18C->unk4->unk4.y);
-                    sp158.z = s6->unk_04.z + (sp188->unk4->unk4.z - sp18C->unk4->unk4.z);
+                    sp158.x = s6->unk_04.x + (sp188->unk_04->unk_04.x - sp18C->unk_04->unk_04.x);
+                    sp158.y = s6->unk_04.y + (sp188->unk_04->unk_04.y - sp18C->unk_04->unk_04.y);
+                    sp158.z = s6->unk_04.z + (sp188->unk_04->unk_04.z - sp18C->unk_04->unk_04.z);
 
                     sp138.x = arg0->x / 100.0f;
                     sp138.y = arg0->y / 100.0f;

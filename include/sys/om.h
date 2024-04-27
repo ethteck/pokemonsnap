@@ -183,6 +183,8 @@ typedef struct ThreadStackNode {
     /* 0x08 */ u64 stack[1];
 } ThreadStackNode; // size == 0x08 + VLA
 
+typedef void(*GObjFunc)(struct GObj*);
+
 typedef struct GObjProcess {
     /* 0x00 */ struct GObjProcess* next; // Points to next process in free or object process list
     /* 0x04 */ struct GObjProcess* prev; // Points to previous process in object process list
@@ -195,9 +197,9 @@ typedef struct GObjProcess {
     // following two fields are typed via kind
     /* 0x1C */ union {
         struct GObjThread* thread;
-        void (*cb)(struct GObj*);
+        GObjFunc cb;
     } unk1C;
-    /* 0x20 */ void (*function)(struct GObj*);
+    /* 0x20 */ GObjFunc function;
 } GObjProcess; // size == 0x24
 
 struct DObj;
@@ -216,13 +218,13 @@ typedef struct GObj {
     // 3 : OMCamera
     /* 0x0F */ u8 type;
     /* 0x10 */ u32 priority;
-    /* 0x14 */ void (*fnUpdate)(struct GObj*);
+    /* 0x14 */ GObjFunc fnUpdate;
     /* 0x18 */ struct GObjProcess* processListHead;
     /* 0x1C */ struct GObjProcess* processListTail;
     /* 0x20 */ struct GObj* nextDl;
     /* 0x24 */ struct GObj* prevDl;
     /* 0x28 */ u32 dlPriority;
-    /* 0x2C */ void (*fnRender)(struct GObj*);
+    /* 0x2C */ GObjFunc fnRender;
     /* 0x30 */ s32 dlLinkBitMask;
     /* 0x34 */ s32 cameraTag;
     /* 0x38 */ s32 unk38;

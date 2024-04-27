@@ -9,14 +9,6 @@ void func_8001FCA4(Vec3f*, void*, f32);
 #define ANIMATION_CHANGED (FLOAT_NEG_MAX / 2)
 #define ANIMATION_FINISHED (FLOAT_NEG_MAX / 3)
 
-struct UnkEC64Arg3 {
-    /* 0x00 */ s32 unk00;
-    /* 0x04 */ void* unk04;
-    /* 0x08 */ Vec3f position;
-    /* 0x14 */ Vec3f rotation;
-    /* 0x20 */ Vec3f scale;
-}; // size == 0x2C
-
 #ifdef NON_MATCHING
 DObj* animModelTreeNextNode(DObj* obj) {
     DObj* child;

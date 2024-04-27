@@ -41,8 +41,6 @@ s32 D_800AC010 = 0;
 
 extern s32 D_800B0578;
 
-#define VPK_VRAM 0x802B5000 // TODO SHIFT hard-coded VRAM
-
 void func_8009A8C0(s32 arg0) {
     D_800B0578 = arg0;
 }

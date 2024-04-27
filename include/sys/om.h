@@ -187,7 +187,7 @@ typedef struct GObjProcess {
     /* 0x00 */ struct GObjProcess* next; // Points to next process in free or object process list
     /* 0x04 */ struct GObjProcess* prev; // Points to previous process in object process list
     /* 0x08 */ struct GObjProcess* nextInPriorityList;
-    /* 0x08 */ struct GObjProcess* prevInPriorityList;
+    /* 0x0C */ struct GObjProcess* prevInPriorityList;
     /* 0x10 */ s32 priority;
     /* 0x14 */ u8 kind;
     /* 0x15 */ u8 paused;

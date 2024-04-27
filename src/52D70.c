@@ -1,3 +1,12 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/52D70/func_800A73C0.s")
+void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd) {
+    void* ramDst;
+
+    if (romSrcEnd < romSrcStart) {
+        return NULL;
+    }
+    ramDst = gtlMalloc(romSrcEnd - romSrcStart, 8);
+    dmaReadRom((void* ) romSrcStart, ramDst, romSrcEnd - romSrcStart);
+    return ramDst;
+}

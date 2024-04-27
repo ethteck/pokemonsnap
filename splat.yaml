@@ -857,7 +857,7 @@ segments:
     - [0x7C6320, .rodata, 7A6D50]
     - [0x7C6330, .rodata, 7A8030]
     - [0x7C6380, .rodata, 7A8DD0]
-    - [0x7C6390, rodata] # lots of unreferenced strings 
+    - [0x7C6390, rodata] # lots of unreferenced strings
     - [0x7C6720, .rodata, 7AA110]
     - [0x7C6730, .rodata, 7AA790]
     - [0x7C6760, .rodata, 7AB7C0]

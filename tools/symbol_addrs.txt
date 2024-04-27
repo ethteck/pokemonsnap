@@ -320,6 +320,7 @@ start_scene_manager = 0x8009B49C;
 getLevelId = 0x8009B980;
 setLevelId = 0x8009B98C;
 getLevelName = 0x8009B998;
+getPokemonName = 0x8009B9D0;
 func_800AAED0 = 0x800AAED0;
 func_800AAEE8 = 0x800AAEE8;
 func_800AAF10 = 0x800AAF10;

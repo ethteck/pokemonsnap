@@ -109,6 +109,7 @@ s32 func_80346EF0_826660(s32);
 
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);
+Unk803586F8* func_803586F8_4F8B08(void);
 void func_80359074_4F9484(void);
 
 void func_8036406C_50447C(s32*, ObjectSpawn*, AnimalDef*);

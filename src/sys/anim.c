@@ -1,4 +1,5 @@
 #include "sys/om.h"
+#include "sys/anim.h"
 #include "macros.h"
 
 // TODO header
@@ -7,12 +8,6 @@ void func_8001FCA4(Vec3f*, void*, f32);
 #define ANIMATION_DISABLED (FLOAT_NEG_MAX)
 #define ANIMATION_CHANGED (FLOAT_NEG_MAX / 2)
 #define ANIMATION_FINISHED (FLOAT_NEG_MAX / 3)
-
-union AnimCmd {
-    u32 w;
-    f32 f;
-    void* ptr;
-};
 
 struct UnkEC64Arg3 {
     /* 0x00 */ s32 unk00;

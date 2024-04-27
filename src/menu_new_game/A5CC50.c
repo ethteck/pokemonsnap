@@ -293,7 +293,7 @@ void func_800E1F58_A5D308(GObj* arg0) {
     func_800BFC18_5CAB8(sp24, sp20); // BUG: why not pointers ?
     viSetScreenOffsets(sp24, sp24, sp20, sp20);
     func_800067DC();
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }

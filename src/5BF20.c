@@ -79,7 +79,7 @@ s32 func_800BF178_5C018(void) {
     versionStringBytes = D_800C20E0_5EF80;
     comparisonStringBytes = D_800C21B0_5F050->unk_10;
     i = 0;
-    while (1) {
+    while (TRUE) {
         if (*versionStringBytes != *comparisonStringBytes) {
             return TRUE;
         }

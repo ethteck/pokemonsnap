@@ -112,7 +112,7 @@ void func_800E1958_AA0708(SObj* sobj, u16 arg1) {
 }
 
 void func_800E1A34_AA07E4(s32 unused) {
-    while (1) {
+    while (TRUE) {
         D_800E1DD4_AA0B84++;
         ohWait(1);
     }
@@ -129,7 +129,7 @@ void func_800E1A94_AA0844(s32 unused) {
     }
     func_800E1958_AA0708(D_800E1DD0_AA0B80->data.sobj, 20);
     func_800067DC();
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }

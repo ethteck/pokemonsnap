@@ -16,7 +16,7 @@ Overlay D_800ABCF0 = OVERLAY(unk_end_level_8);
 Overlay D_800ABD14 = OVERLAY(more_funcs);
 Overlay D_800ABD38 = OVERLAY(unk_level_end_9);
 Overlay overlayMenuNewGame = OVERLAY(menu_new_game);
-Overlay D_800ABD80 = OVERLAY(unk_level_end_11);
+Overlay overlayCredits = OVERLAY(credits);
 Overlay D_800ABDA4 = OVERLAY(intro_code);
 Overlay D_800ABDC8 = OVERLAY(app_level);
 Overlay D_800ABDEC = OVERLAY(level_low);
@@ -323,15 +323,15 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABCF0);
                 sceneId = func_801DD09C_A08C8C(sceneId);
                 break;
-            case SCENE_17:
-            case SCENE_18:
-            case SCENE_19:
-            case SCENE_20:
+            case SCENE_CREDITS_17:
+            case SCENE_CREDITS_18:
+            case SCENE_CREDITS_19:
+            case SCENE_CREDITS_20:
                 func_800AAF20();
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
-                dmaLoadOverlay(&D_800ABD80);
-                sceneId = func_801DCB24_A936E4(sceneId);
+                dmaLoadOverlay(&overlayCredits);
+                sceneId = func_credits_801DCB24(sceneId);
                 break;
             case SCENE_8:
                 setLevelId(0);

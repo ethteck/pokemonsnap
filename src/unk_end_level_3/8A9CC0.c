@@ -25,7 +25,7 @@ void func_800E44A0_8A9CC0(void) {
 
 s32 func_800E44A8_8A9CC8(s32 arg0, s32 arg1) {
     s32 sp1C;
-    UnkStruct800BEDF8 *var_v0;
+    UnkStruct800BEDF8* var_v0;
     s32 temp_v1;
 
     sp1C = 0;
@@ -57,11 +57,11 @@ s32 func_800E44A8_8A9CC8(s32 arg0, s32 arg1) {
     return sp1C;
 }
 
-s32 func_800E4578_8A9D98(s32 arg0, char**arg1, s32 arg2, s32 arg3) {
+s32 func_800E4578_8A9D98(s32 arg0, char** arg1, s32 arg2, s32 arg3) {
     s32 temp_t8;
     s32 var_v0;
 
-    for (;*arg1;arg1++) {
+    for (; *arg1; arg1++) {
         func_8036A8E4_83E094(arg0);
         func_8037519C_84894C(arg0, *arg1, get_player_name());
         if ((arg2 == 2) && (arg1[1] == 0)) {
@@ -75,7 +75,6 @@ s32 func_800E4578_8A9D98(s32 arg0, char**arg1, s32 arg2, s32 arg3) {
         if ((arg2 == 1) && (var_v0 == 0x8000)) {
             return 0x8000;
         }
-
     }
 
     return 0;
@@ -451,7 +450,7 @@ void func_800E5120_8AA940(void) {
     ohWait(1);
 
     while (!(func_800AA38C(0)->unk_18 & 0xC000)) {
-            ohWait(1);
+        ohWait(1);
     }
 
     auPlaySound(0x53U);
@@ -471,7 +470,7 @@ void func_800E5120_8AA940(void) {
     ohWait(1);
 
     while (func_800A7460()) {
-            ohWait(1);
+        ohWait(1);
     }
 }
 

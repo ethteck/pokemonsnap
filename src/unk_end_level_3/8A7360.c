@@ -18,8 +18,30 @@ extern Bitmap D_80143CD8_9094F8[];
 extern Sprite D_80146918_90C138;
 extern Sprite D_80149A38_90F258;
 extern Sprite D_80190438_955C58;
-extern s32 D_801957EC_95B00C;
-extern Bitmap* D_801957F4_95B014[7]; // Stage icons
+
+extern Bitmap D_8012B298_8F0AB8[];
+extern Bitmap D_801387F8_8FE018[];
+extern Bitmap D_8012D628_8F2E48[];
+extern Bitmap D_8012F9B8_8F51D8[];
+extern Bitmap D_801340D8_8F98F8[];
+extern Bitmap D_80131D48_8F7568[];
+
+extern Bitmap D_801482E8_90DB08[];
+extern Bitmap D_80146908_90C128[];
+extern Bitmap D_80148B88_90E3A8[];
+extern Bitmap D_801471A8_90C9C8[];
+extern Bitmap D_80149428_90EC48[];
+extern Bitmap D_80147A48_90D268[];
+extern Bitmap D_8014B828_911048[];
+extern Bitmap D_80149A28_90F248[];
+extern Bitmap D_8014BE28_911648[];
+extern Bitmap D_8014A028_90F848[];
+extern Bitmap D_8014C428_911C48[];
+extern Bitmap D_8014A628_90FE48[];
+extern Bitmap D_8014E228_913A48[];
+extern Bitmap D_8014D628_912E48[];
+extern Bitmap D_8014E828_914048[];
+extern Bitmap D_8014DC28_913448[];
 extern s32 D_80195850_95B070;
 
 extern SObj* D_80206B10_9CC330;
@@ -31,13 +53,21 @@ extern SObj* D_80206B28_9CC348[];
 extern SObj* D_80206B2C_9CC34C;
 extern SObj* D_80206B30_9CC350;
 
-void func_800E1CA0_8A74C0(void);
+void func_800E1CA0_8A74C0(s32);
 void func_800E2058_8A7878(GObj*);
 void func_800E235C_8A7B7C(s32);
 void func_800E2848_8A8068(void);
 void func_800E2C0C_8A842C(UNK_PTR);
 void func_800E614C_8AB96C(void);
 void func_800E66B8_8ABED8(void);
+
+// TODO: part of Sprite. Included for alignment.
+s32 D_801957E0_95B000 = 0;
+s32 D_801957E4_95B004 = 0;
+s32 D_801957E4_95B008 = 0;
+// end Sprite
+
+s32 D_801957EC_95B00C = 0;
 
 s32 func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
@@ -82,10 +112,6 @@ void func_800E1C18_8A7438(s32 arg0) {
     }
 }
 
-#if 1
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A7360/func_800E1CA0_8A74C0.s")
-#else
-// TODO: matches, but needs data migrated
 void func_800E1CA0_8A74C0(s32 arg0) {
     f32 temp_f2;
     f32 var_f0;
@@ -100,7 +126,38 @@ void func_800E1CA0_8A74C0(s32 arg0) {
     D_80206B18_9CC338->sprite.y = temp_f2;
     bla = temp_f2;
 }
-#endif
+
+// Stage icons
+Bitmap* D_801957F4_95B014[] = {
+    D_80136468_8FBC88,
+    D_8012B298_8F0AB8,
+    D_801387F8_8FE018,
+    D_8012D628_8F2E48,
+    D_8012F9B8_8F51D8,
+    D_801340D8_8F98F8,
+    D_80131D48_8F7568,
+};
+
+Bitmap* D_80195810_95B030[] = {
+    D_801482E8_90DB08,
+    D_80146908_90C128,
+    D_80148B88_90E3A8,
+    D_801471A8_90C9C8,
+    D_80149428_90EC48,
+    D_80147A48_90D268,
+};
+Bitmap* D_80195828_95B048[] = {
+    D_8014B828_911048,
+    D_80149A28_90F248,
+    D_8014BE28_911648,
+    D_8014A028_90F848,
+    D_8014C428_911C48,
+    D_8014A628_90FE48,
+    D_8014E228_913A48,
+    D_8014D628_912E48,
+    D_8014E828_914048,
+    D_8014DC28_913448,
+};
 
 void func_800E1D1C_8A753C(s32 arg0) {
     if (arg0) {

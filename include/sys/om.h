@@ -474,7 +474,8 @@ typedef struct SObj {
     /* 0x0C */ struct SObj* prev;
     /* 0x10 */ Sprite sprite;
     /* 0x54 */ s32 unk54;
-} SObj; // size >= 0x58
+    /* 0x58 */ struct SObj* unk58;
+} SObj; // size >= 0x5C
 
 typedef struct OMCamera {
     /* 0x00 */ struct OMCamera* nextFree;

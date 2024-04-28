@@ -71,6 +71,7 @@ s32 func_800BF3D4_5C274(s32);
 char* get_player_name(void);
 void func_800BF44C_5C2EC(PlayerName*);
 void* func_800BF710_5C5B0(s32);
+void func_800BF780_5C620(s32);
 s32 func_800BF818_5C6B8(s32);
 UnkPinkBarracuda* func_800BF8BC_5C75C(int);
 s32 func_800BF9EC_5C88C(void);
@@ -186,9 +187,11 @@ void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);
 void func_80374D40_8484F0(void);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
-void func_80374F30_8486E0(s32, s32);
+s32 func_80374F30_8486E0(s32, s32);
 char* func_8037501C(char*, s32);
 void func_8037519C_84894C(s32, char*, ...);
 void func_80375284_848A34(int);
+
+void func_8037005C_84380C(s32, s32);
 
 #endif

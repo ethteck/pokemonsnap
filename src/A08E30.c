@@ -1294,7 +1294,7 @@ void func_800E4634_A0BBC4(void) {
     omCreateProcess(gobj, func_800E455C_A0BAEC, 0, 1);
 }
 
-s32 func_800E4830_A0BDC0(s32 arg0) {
+s32 func_800E4830_A0BDC0(s32 sceneId) {
     D_800E8198_A0F728 = VPK_VRAM - (s32)&D_800E83A0;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E8188_A0F718);

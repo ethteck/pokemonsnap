@@ -14,8 +14,8 @@ void setLevelId(s32 levelID) {
 }
 
 char* getLevelName(s32 levelIdx) {
-    if (levelIdx < 0 || levelIdx > 6) {
-        return 0;
+    if (levelIdx < 0 || levelIdx >= ARRAY_COUNT(gLevelNames)) {
+        return NULL;
     }
     return gLevelNames[levelIdx];
 }

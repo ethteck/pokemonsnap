@@ -118,10 +118,10 @@ void func_8009A8F0(s32 levelID) {
     }
 }
 
-void func_8009AE0C(u32 arg0) {
+void func_8009AE0C(u32 sceneId) {
     dmaLoadOverlay(&D_800ABDEC);
     dmaLoadOverlay(&D_800ABDC8);
-    switch (arg0) {
+    switch (sceneId) {
         case SCENE_BEACH:
             dmaLoadOverlay(&D_800ABE34);
             dmaLoadOverlay(&D_800ABE10);
@@ -235,44 +235,44 @@ void start_scene_manager(s32 arg0) {
                 break;
             case SCENE_BEACH:
                 func_800AAF20();
-                func_8009AE0C(0);
-                setLevelId(0);
+                func_8009AE0C(SCENE_BEACH);
+                setLevelId(SCENE_BEACH);
                 sceneId = func_802C4740_55C7B0(sceneId);
                 break;
             case SCENE_TUNNEL:
                 func_800AAF20();
-                func_8009AE0C(1);
-                setLevelId(1);
+                func_8009AE0C(SCENE_TUNNEL);
+                setLevelId(SCENE_TUNNEL);
                 sceneId = func_802E2BB8_5DFC88(sceneId);
                 break;
             case SCENE_CAVE:
                 func_800AAF20();
-                func_8009AE0C(4);
-                setLevelId(4);
+                func_8009AE0C(SCENE_CAVE);
+                setLevelId(SCENE_CAVE);
                 sceneId = func_802BE3B0_640860(sceneId);
                 break;
             case SCENE_RIVER:
                 func_800AAF20();
-                func_8009AE0C(3);
-                setLevelId(3);
+                func_8009AE0C(SCENE_RIVER);
+                setLevelId(SCENE_RIVER);
                 sceneId = func_802D9210_6C0FF0(sceneId);
                 break;
             case SCENE_VOLCANO:
                 func_800AAF20();
-                func_8009AE0C(2);
-                setLevelId(2);
+                func_8009AE0C(SCENE_VOLCANO);
+                setLevelId(SCENE_VOLCANO);
                 sceneId = func_802D67C4_7279C4(sceneId);
                 break;
             case SCENE_VALLEY:
                 func_800AAF20();
-                func_8009AE0C(5);
-                setLevelId(5);
+                func_8009AE0C(SCENE_VALLEY);
+                setLevelId(SCENE_VALLEY);
                 sceneId = func_802C6544_79FAD4(sceneId);
                 break;
             case SCENE_RAINBOW:
                 func_800AAF20();
-                func_8009AE0C(6);
-                setLevelId(6);
+                func_8009AE0C(SCENE_RAINBOW);
+                setLevelId(SCENE_RAINBOW);
                 sceneId = func_80346EF0_826660(sceneId);
                 break;
             case SCENE_CAMERA_CHECK:
@@ -334,7 +334,7 @@ void start_scene_manager(s32 arg0) {
                 sceneId = func_801DCB24_A936E4(sceneId);
                 break;
             case SCENE_8:
-                setLevelId(0);
+                setLevelId(SCENE_BEACH);
                 func_800AAF20();
                 dmaReadVPK((u32*) A0F830_ROM_START, VPK_VRAM);
                 dmaLoadOverlay(&D_800ABD38);

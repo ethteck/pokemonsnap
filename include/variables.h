@@ -7,8 +7,6 @@
 
 extern OSThread* __osRunningThread;
 extern OSThread* __osRunQueue;
-extern s32 gLevelID;
-extern char* gLevelNames[7];
 extern s32 gPhotoCount;
 
 // Valley code

@@ -28,7 +28,6 @@ extern SObj* D_80206B7C_9CC39C;
 extern SObj* D_80206B80_9CC3A0;
 
 s32 rand(void);
-s32 randT(void);
 GObj* func_800A9F10(void*, int, Sprite*);
 void func_800E58D0_8AB0F0(void);
 void func_800E5EF8_8AB718(void);

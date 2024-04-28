@@ -1,65 +1,5 @@
 #include "common.h"
-
-extern Sprite D_8010C590_8D1DB0;
-extern Sprite D_8011EEA0_8E46C0;
-extern Sprite D_80128F38_8EE758;
-extern Sprite D_80122548_8E7D68;
-extern Bitmap D_80136468_8FBC88[];
-extern Sprite D_80136498_8FBCB8;
-extern Bitmap D_801396E8_8FEF08[]; // Report
-extern Bitmap D_8013BA58_901278[];
-extern Bitmap D_8013DDE8_903608[];
-extern Bitmap D_80141068_906888[];
-extern Bitmap D_80140178_905998[];
-extern Bitmap D_80141F38_907758[];
-extern Sprite D_80141F48_907768;
-extern Bitmap D_80142E08_908628[];
-extern Bitmap D_80143CD8_9094F8[];
-extern Sprite D_80146918_90C138;
-extern Sprite D_80149A38_90F258;
-extern Sprite D_80190438_955C58;
-
-extern Bitmap D_8012B298_8F0AB8[];
-extern Bitmap D_801387F8_8FE018[];
-extern Bitmap D_8012D628_8F2E48[];
-extern Bitmap D_8012F9B8_8F51D8[];
-extern Bitmap D_801340D8_8F98F8[];
-extern Bitmap D_80131D48_8F7568[];
-
-extern Bitmap D_801482E8_90DB08[];
-extern Bitmap D_80146908_90C128[];
-extern Bitmap D_80148B88_90E3A8[];
-extern Bitmap D_801471A8_90C9C8[];
-extern Bitmap D_80149428_90EC48[];
-extern Bitmap D_80147A48_90D268[];
-extern Bitmap D_8014B828_911048[];
-extern Bitmap D_80149A28_90F248[];
-extern Bitmap D_8014BE28_911648[];
-extern Bitmap D_8014A028_90F848[];
-extern Bitmap D_8014C428_911C48[];
-extern Bitmap D_8014A628_90FE48[];
-extern Bitmap D_8014E228_913A48[];
-extern Bitmap D_8014D628_912E48[];
-extern Bitmap D_8014E828_914048[];
-extern Bitmap D_8014DC28_913448[];
-extern s32 D_80195850_95B070;
-
-extern SObj* D_80206B10_9CC330;
-extern SObj* D_80206B14_9CC334;
-extern SObj* D_80206B18_9CC338;
-extern s32 D_80206B1C_9CC33C;
-extern s32 D_80206B20_9CC340;
-extern SObj* D_80206B28_9CC348[];
-extern SObj* D_80206B2C_9CC34C;
-extern SObj* D_80206B30_9CC350;
-
-void func_800E1CA0_8A74C0(s32);
-void func_800E2058_8A7878(GObj*);
-void func_800E235C_8A7B7C(s32);
-void func_800E2848_8A8068(void);
-void func_800E2C0C_8A842C(UNK_PTR);
-void func_800E614C_8AB96C(void);
-void func_800E66B8_8ABED8(void);
+#include "unk_end_level_3.h"
 
 // TODO: part of Sprite. Included for alignment.
 s32 D_801957E0_95B000 = 0;
@@ -91,7 +31,7 @@ void func_800E1B58_8A7378(u32 arg0) {
     D_80206B18_9CC338->sprite.green = arg0;
     D_80206B18_9CC338->sprite.blue = arg0;
 
-    func_800E614C_8AB96C();
+    func_800E614C_8AB96C(arg0);
 }
 
 void func_800E1BF4_8A7414(u32 arg0) {
@@ -307,8 +247,6 @@ void func_800E2058_8A7878(GObj* arg0) {
         ohWait(1);
     }
 }
-/* Warning: struct AnimCmd is not defined (only forward-declared) */
-
 #endif
 
 void func_800E2350_8A7B70(void) {
@@ -366,7 +304,47 @@ s32 func_800E2960_8A8180(s32 arg0, char** arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A7360/func_800E2A04_8A8224.s")
+void func_800E2A04_8A8224(void) {
+    s32 sp24;
+    s32 temp_a1;
+    s32 temp_s0;
+    s32 var_s0;
+
+    sp24 = D_80206B1C_9CC33C;
+    func_8036CB58_840308(D_80206B1C_9CC33C, 0xC);
+    func_8036D448_840BF8(1);
+    func_8036D3E8_840B98(-1, 3);
+    temp_s0 = func_800C0290_5D130();
+    if (func_800BFC5C_5CAFC() < temp_s0) {
+        func_800BFC70_5CB10(func_800C0290_5D130());
+        ohWait(1);
+        if ((func_800BFC5C_5CAFC() != 2) && (func_800BFC5C_5CAFC() != 4) && (func_800BFC5C_5CAFC() != 6)) {
+            func_8036EB80_842330(0);
+            func_8036D4A0_840C50(2);
+            func_800E2960_8A8180(sp24, D_80195888_95B0A8, 0);
+            func_8036D4A0_840C50(0);
+        } else {
+            ohWait(0x2A);
+        }
+        auPlaySound(0x52U);
+        temp_a1 = func_800C0290_5D130() + 6;
+        func_80370900_8440B0(1, temp_a1);
+        func_80370990_844140(0.1f, temp_a1);
+        if (func_800C0290_5D130() == 6) {
+            func_800E60C8_8AB8E8();
+        }
+        var_s0 = 1;
+        do {
+            func_80370990_844140((f32) var_s0 / 30.0f, temp_a1);
+            var_s0 += 1;
+            ohWait(1);
+        } while (var_s0 != 0x1E);
+        func_80370990_844140(1.0f, temp_a1);
+        func_800E61B4_8AB9D4(3, 0);
+        func_8036A8E4_83E094(sp24);
+    }
+    ohWait(0xF);
+}
 
 void func_800E2BAC_8A83CC(void) {
 }

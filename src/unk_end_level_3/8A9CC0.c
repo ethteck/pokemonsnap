@@ -1,24 +1,10 @@
 #include "common.h"
+#include "unk_end_level_3.h"
 
 // TODO: probably remove this when more data is integrated
 s32 D_80195D10 = 0;
 s32 D_80195D14 = 0;
 
-extern s32 D_80206B50_9CC370;
-
-s32 func_800E1B40_8A7360(void);
-s32 func_800E4578_8A9D98(s32, char**, s32, s32);
-void func_800E1D68_8A7588(u32 arg0);
-void func_800E1D1C_8A753C(s32 arg0);
-void func_803705F0(int);
-void* func_800E3230_8A8A50(void);
-void func_80370C34_8443E4(void*);
-void func_80370900_8440B0(int, int);
-void func_80370990_844140(f32, int);
-s32 func_800A7460(void);
-s32 func_800BF244_5C0E4(void);
-void func_800E30B8_8A88D8(void);
-s32 func_800BF864_5C704(void);
 
 void func_800E44A0_8A9CC0(void) {
 }
@@ -164,14 +150,14 @@ void func_800E48C4_8AA0E4(void) {
     s32 var_s0;
 
     auPlaySound(0x52U);
-    func_803705F0(1);
+    func_803705F0_843DA0(1);
     func_80370C34_8443E4(func_800E3230_8A8A50());
     func_80370900_8440B0(1, 3);
     func_80370990_844140(0.1f, 3);
 
     var_s0 = 1;
     do {
-        func_80370990_844140((f32) var_s0 / 30.0f, 3);
+        func_80370990_844140(var_s0 / 30.0f, 3);
         var_s0 += 1;
         ohWait(1);
     } while (var_s0 != 0x1E);
@@ -203,7 +189,7 @@ void func_800E4A10_8AA230(void) {
     s32 var_s0;
 
     auPlaySound(0x52U);
-    func_803705F0(1);
+    func_803705F0_843DA0(1);
     func_80370C34_8443E4(func_800E3230_8A8A50());
     func_80370900_8440B0(1, 2);
     func_80370990_844140(0.1f, 2);

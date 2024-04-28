@@ -1,42 +1,7 @@
 #include "common.h"
+#include "unk_end_level_3.h"
 
-typedef struct UnkOrangeShark {
-    s32 var_0;
-    char* var_4;
-    s32 var_8;
-    s32 var_C;
-} UnkOrangeShark;
-
-typedef struct UnkCobaltBarbel {
-    s32 var_0;
-    s32 var_4;
-} UnkCobaltBarbel;
-
-extern s32 D_801958C0_95B0E0;
-extern s32 D_801958F0_95B110;
-
-UnkStruct800BEDF8* func_800AA740(int);      /* extern */
-s32 func_800E1B40_8A7360(void);             /* extern */
-void func_800E1C18_8A7438(int);             /* extern */
-void func_800E1D1C_8A753C(int);             /* extern */
-void func_800E1FEC_8A780C(s32);             /* extern */
-void func_800E2A04_8A8224(void);            /* extern */
-void func_800E61B4_8AB9D4(int, int);        /* extern */
-s32 func_800E6404_8ABC24(void);             /* extern */
-void func_8037060C_843DBC(int, s32);        /* extern */
-void func_80370900_8440B0(int, s32);        /* extern */
-void func_80370C34_8443E4(UnkOrangeShark*); /* extern */
-char* func_803717A8_844F58(void*, s32);     /* extern */
-extern s32 D_80195894_95B0B4;
-
-extern UnkOrangeShark* D_80195CEC_95B50C[];
-extern void* D_80206B48_9CC368;
-void func_800E307C_8A889C(void);
-
-extern UnkCobaltBarbel (*D_80206B44_9CC364)[];
-void func_80370004_8437B4(s32, s32);
-
-UNK_PTR func_800E3230_8A8A50(void) {
+void *func_800E3230_8A8A50(void) {
     if (func_800BFCA0_5CB40(7) == 0) {
         return &D_801958F0_95B110;
     }
@@ -204,6 +169,66 @@ s32 func_800E3774_8A8F94(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/func_800E37CC_8A8FEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/func_800E3CE8_8A9508.s")
+s32 func_800E3CE8_8A9508(void) {
+    char* unused;
+    s32 sp38;
+    s32 temp_v1;
+    s32 temp_v1_2;
+    s32 sp2C;
+    s32 temp_v0;
+
+    sp38 = 7;
+    sp2C = func_800E1B40_8A7360();
+    func_8036A8E4_83E094(sp2C);
+    ohWait(1);
+    func_8036C898_840048(sp2C, "Shall I save your progress?\n\\a Yes!   \\b No!");
+    func_800E3264_8A8A84(func_800AA740(0), &sp38);
+    func_803700A4_843854(0);
+
+    while (1) {
+        temp_v1 = func_800AA38C(0)->unk_18;
+        if (temp_v1 & 0x8000) {
+            auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
+            auPlaySound(0x53U);
+            func_8036A8E4_83E094(sp2C);
+            func_8036B9EC_83F19C(sp2C, 0, 0x20);
+            func_8036C898_840048(sp2C, "\\eSaving...\\p");
+            ohWait(0x30);
+            auSetBGMVolumeSmooth(0, 0U, 0x1EU);
+            ohWait(0x21);
+            if (func_800BFCA0_5CB40(0x15) != 0) {
+                D_80206B48_9CC368();
+            }
+            if (func_800BF244_5C0E4() != 0) {
+                func_800E30B8_8A88D8();
+            }
+            auSetBGMVolumeSmooth(0, 0x7F00U, 0x12U);
+            ohWait(0x15);
+            func_8036A8E4_83E094(sp2C);
+            func_8036C898_840048(sp2C, "Would you like to keep going?\n\\a Yes!  \\b No!");
+            while (1) {
+                temp_v1_2 = func_800AA38C(0)->unk_18;
+                if (temp_v1_2 & 0x4000) {
+                    auPlaySound(0x53U);
+                    func_8036A8E4_83E094(sp2C);
+                    func_8036C898_840048(sp2C, "I'm looking forward to seeing\nyour new shots!");
+                    ohWait(0x78);
+                    D_80195894_95B0B4 = 8;
+                    return 4;
+                }
+                if (temp_v1_2 & 0x8000) {
+                    auPlaySound(0x4DU);
+                    return 0;
+                }
+                ohWait(1);
+            }
+        }
+        if (temp_v1 & 0x4000) {
+            auPlaySound(0x4DU);
+            return 0;
+        }
+        ohWait(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/func_800E3ED4_8A96F4.s")

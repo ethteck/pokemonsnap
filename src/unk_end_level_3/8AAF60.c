@@ -1,37 +1,5 @@
 #include "common.h"
-
-extern Sprite D_80197EB0_95D6D0;
-extern Sprite D_80198FB8_95E7D8;
-extern Sprite D_8019C2D0_961AF0;
-extern Sprite D_801A2900_968120;
-extern Sprite D_801AD198_9729B8;
-extern Sprite D_801B93A8_97EBC8;
-extern Sprite D_801BED90_9845B0;
-extern Sprite D_801BFE98_9856B8;
-extern Sprite D_801C31B0_9889D0;
-extern Bitmap* D_801C5474_98AC94[4];
-extern Bitmap* D_801C5484_98ACA4[4];
-extern s32 D_801C550C_98AD2C;
-extern s32 D_801C5510_98AD30;
-extern s32 D_801C5514_98AD34;
-extern s32 D_801C5518_98AD38;
-extern s32 D_801C551C_98AD3C;
-extern s32 D_801C5520_98AD40;
-extern SObj* D_80206B60_9CC380;
-extern SObj* D_80206B64_9CC384;
-extern SObj* D_80206B68_9CC388;
-extern SObj* D_80206B6C_9CC38C;
-extern SObj* D_80206B70_9CC390;
-extern SObj* D_80206B74_9CC394;
-extern SObj* D_80206B78_9CC398;
-extern SObj* D_80206B7C_9CC39C;
-extern SObj* D_80206B80_9CC3A0;
-
-s32 rand(void);
-GObj* func_800A9F10(void*, int, Sprite*);
-void func_800E58D0_8AB0F0(void);
-void func_800E5EF8_8AB718(void);
-void func_800BF780_5C620(s32);
+#include "unk_end_level_3.h"
 
 void func_800E5740_8AAF60(s32 arg0) {
     s32 frame;
@@ -267,7 +235,7 @@ void func_800E5EBC_8AB6DC(void) {
 #if 1
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8AAF60/func_800E5EF8_8AB718.s")
 #else
-void func_800E5EF8_8AB718(s32 arg0) {
+void func_800E5EF8_8AB718(void) {
     f32 temp_f22;
     f32 var_f20;
     s32 temp_s0;
@@ -279,7 +247,6 @@ void func_800E5EF8_8AB718(s32 arg0) {
             D_80206B78_9CC398->sprite.attr |= 4;
         }
         while (1) {
-
             ohWait(1);
         }
     }

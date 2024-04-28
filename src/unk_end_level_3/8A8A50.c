@@ -1,7 +1,7 @@
 #include "common.h"
 #include "unk_end_level_3.h"
 
-void *func_800E3230_8A8A50(void) {
+void* func_800E3230_8A8A50(void) {
     if (func_800BFCA0_5CB40(7) == 0) {
         return &D_801958F0_95B110;
     }

@@ -109,15 +109,21 @@ void thread5_main(UNUSED void *arg) {
     osCreateMesgQueue(&gThreadingQueue, sBlockMsg, ARRAY_COUNT(sBlockMsg));
 
     osCreateThread(&sThread3, 3, &scMain, NULL, sThread3Stack + THREAD3_STACK_SIZE, THREAD3_PRI);
+    // clang-format off
     sThread3Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread3);
+    // clang-format on
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
     osCreateThread(&sThread4, 4, auThreadMain, NULL, sThread4Stack + THREAD4_STACK_SIZE, THREAD4_PRI);
+    // clang-format off
     sThread4Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread4);
+    // clang-format on
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
     osCreateThread(&sThread6, 6, contMain, NULL, sThread6Stack + THREAD6_STACK_SIZE, THREAD6_PRI);
+    // clang-format off
     sThread6Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread6);
+    // clang-format on
     osRecvMesg(&gThreadingQueue, NULL, OS_MESG_BLOCK);
 
     gtlInit();
@@ -140,5 +146,7 @@ void game_main(void) {
     __osSetWatchLo(0x04900000 & WATCHLO_ADDRMASK);
     osInitialize();
     osCreateThread(&sThread1, 1, thread1_idle, &sThreadArgBuf, sThread1Stack + THREAD1_STACK_SIZE, OS_PRIORITY_APPMAX);
+    // clang-format off
     sThread1Stack[7] = STACK_PROBE_MAGIC; osStartThread(&sThread1);
+    // clang-format on
 }

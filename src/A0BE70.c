@@ -265,17 +265,23 @@ void func_800E5468_A0C9F8(void) {
                              &D_803051F0, 0, func_800E5370_A0C900, 1);
 
     sobj = D_800E8318_A0F8A8->data.sobj;
+    // clang-format off
     sobj->sprite.x = 98; sobj->sprite.y = 68;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0);
 
     sobj = sobj->next;
+    // clang-format off
     sobj->sprite.x = 96; sobj->sprite.y = 103;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00);
 
     sobj = sobj->next;
+    // clang-format off
     sobj->sprite.x = 71; sobj->sprite.y = 112;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 

@@ -971,14 +971,13 @@ segments:
     - [0x8A7360, c]
     - [0x8A8A50, c]
     - [0x8A9CC0, c]
-#    - [0x8AA2E0, c]
     - [0x8AAF60, c]
-    - [0x8ABEF0, data]
+    - [0x8ABEF0, .data, 8A70E0]
+    - [0x8AC010, data] # sprite data. Should be in the same file as the next segment
     - [0x95B000, .data, 8A7360]
     - [0x95B070, data]
     - [0x95B530, .data, 8A9CC0]
-#    - [0x95B5C0, data]
-    - [0x95B6C0, data] # some sprite
+    - [0x95B6C0, data] # more sprites
 
     - [0x98AD50, rodata] # unreferenced string
     - [0x98AD70, .rodata, 8A7360]

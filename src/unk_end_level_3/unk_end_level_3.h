@@ -103,6 +103,7 @@ extern SObj* D_80206B7C_9CC39C;
 extern SObj* D_80206B80_9CC3A0;
 extern u8 D_80206B90[];
 
+void func_800E1A60_8A7280(void);
 s32 func_800E1B40_8A7360(void);
 void func_800E1C18_8A7438(s32);
 void func_800E1CA0_8A74C0(s32);

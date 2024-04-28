@@ -1,6 +1,70 @@
 #include "common.h"
 #include "unk_end_level_3.h"
 
+Gfx D_800E66D0_8ABEF0[] = {
+    gsDPPipeSync(),
+    gsDPPipelineMode(G_PM_NPRIMITIVE),
+    gsSPClearGeometryMode(G_LIGHTING),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureDetail(G_TD_CLAMP),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsSPClipRatio(FRUSTRATIO_6),
+    gsSPEndDisplayList(),
+};
+
+ScreenSettings D_800E6740_8ABF60 = {
+    D_803B5000,
+    D_803DA800,
+    NULL,
+    NULL,
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    0x00016A99,
+};
+
+SceneSetup D_800E675C_8ABF7C = {
+    {
+        0,
+        omUpdateAll,
+        omDrawAll,
+        D_80206B90,
+        0,
+        2,
+        1,
+        0x10000,
+        0x400,
+        0,
+        0,
+        0x400,
+        2,
+        0x2000,
+        func_800A1A50,
+        contUpdate,
+    },
+    0x20,
+    0x2000,
+    0x20,
+    0,
+    0x40,
+    0x80,
+    0x5C,
+    0x400,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0x88,
+    0,
+    0x60,
+    0x4,
+    0x90,
+    func_800E1A60_8A7280,
+};
+
 void func_800E18C0_8A70E0(void) {
 }
 
@@ -37,7 +101,7 @@ void func_800E1910_8A7130(void) {
 }
 
 void func_800E1A60_8A7280(void) {
-    func_8036A3F8(&D_801C6B10_98C330, 0x40000);
+    func_8036A3F8(D_801C6B10_98C330, sizeof(D_801C6B10_98C330));
     func_800AAE28();
     func_800E1910_8A7130();
     func_8036EB98();
@@ -51,7 +115,7 @@ void func_800E1A60_8A7280(void) {
 void func_800E1AD0_8A72F0(void) {
 }
 
-s32 func_800E1AD8_8A72F8(s32 arg0) {
+s32 func_oaks_lab_800E1AD8(s32 sceneId) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1U, 2U);
     viApplyScreenSettings(&D_800E6740_8ABF60);

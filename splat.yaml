@@ -1097,7 +1097,9 @@ segments:
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { start: auto, name: sprite_bss, type: bss, vram: 0x80168150 }
 
-  - name: unk_level_end_11
+  - name: credits
+    dir: credits
+    symbol_name_format: credits_$VRAM
     type: code
     start: 0xA93460
     vram: 0x801DC8A0
@@ -1105,9 +1107,19 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xA93460, c]
+    - [0xA937B0, asm] # nops
     - [0xA937C0, c]
+    - [0xA94930, asm] # nops
     - [0xA94940, c]
-    - [0xA95760, bin] # , data]
+    - [0xA95760, data, A93460]
+    - [0xA95880, data] # sprite
+    - [0xA9CC60, data] # sprite
+    - [0xA9D040, data] # sprite starts 8 bytes earlier
+    - [0xA9D3E0, data] # sprite
+    - [0xA9D6B0, data] # sprite
+    - [0xA9F760, .data, A94940]
+    - [0xA9FFE0, .rodata, A937C0]
+    - [0xAA0010, .rodata, A94940]
     - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
     type: code

@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include "A0BE70.h"
+
 typedef struct PanData {
     /* 0x00 */ s32 data[4];
 } PanData;
@@ -65,11 +67,6 @@ extern Sprite D_8034C4B0;
 extern Sprite D_8034C710;
 extern Sprite D_8034D3A0;
 extern Sprite D_8034FAD8;
-
-// same overlay
-void func_800E5C8C_A0D21C(void);
-void func_800E5D2C_A0D2BC(void);
-s32 func_800E6B2C_A0E0BC(void);
 
 // same file (needs to be declared early)
 s32 func_800E3E28_A0B3B8(void);

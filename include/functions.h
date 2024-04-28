@@ -37,11 +37,13 @@ void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* ro
 
 void ren_func_800192DC(GObj* obj);
 
+OSThread* func_80000460(void);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
+void func_8009FC38(void*);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
 void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd);
@@ -59,6 +61,7 @@ void func_800AAED0(s32);
 s32 func_800AAEE8(s32);
 void func_800AAF10(void);
 void func_800AAF20(void);
+void func_800AB918(s32);
 void func_800ABB4C(u8 flags);
 u8 func_800ABB68(void);
 void func_800ABB94(void);
@@ -87,7 +90,7 @@ s32 menu_new_game_entry(s32);
 void func_800E3064(void);
 s32 func_800E4830_A0BDC0(s32);
 
-s32 func_801DCB24_A936E4(s32);
+s32 func_credits_801DCB24(s32);
 void func_801DCBF4_98C664(void);
 s32 func_801DCC74_98C6E4(s32);
 s32 func_801DCC74_9D35E4(s32);
@@ -123,6 +126,7 @@ s32 func_80364718(GObj *);
 s32 func_80364718_504B28(GObj *obj);
 void func_8036650C_50691C(void);
 void* func_8036A194_83D944(u32);
+void func_8036A228_83D9D8(void*);
 void func_8036A3F8_83DBA8(void*, s32);
 void func_8036A3F8(u8*, s32);
 void func_8036A5B8_83DD68(s32, s32, s32, s32, s32, s32, s32, s32, s32);
@@ -171,11 +175,14 @@ void func_803713EC_844B9C(int);
 void func_8037172C_844EDC(s32);
 void func_803717E8_844F98(void);
 GObj* func_80371C68_845418(void*, s32, Sprite*);
+#if !defined(M2CTX) && !defined(PERMUTER)
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
+#endif
 
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);
+void func_80374D40_8484F0(void);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 void func_80374F30_8486E0(s32, s32);

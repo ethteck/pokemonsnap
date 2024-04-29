@@ -1,5 +1,7 @@
 #include "common.h"
+#if !defined(M2CTX) && !defined(PERMUTER)
 #include "ld_addrs.h"
+#endif
 
 void func_8009D21C(s32 arg0, s32* arg1);
 
@@ -328,7 +330,30 @@ s32 func_8009BCC4(UnkFunc8009BCC4* arg0) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BD4C.s")
+typedef struct Unkfunc_8009BD4C{
+    u32 unk_00;
+    struct Unkfunc_8009BD4C* next;
+    s32 unk_08;
+} Unkfunc_8009BD4C;
+
+s8 func_8009BD4C(s16 arg0, Unkfunc_8009BD4C* arg1, Unkfunc_8009BD4C* arg2, s32 arg3) {
+    Unkfunc_8009BD4C* next;
+    s32 i;
+    s32 j;
+
+    for (i = 0; i < arg3; i++) {
+        if (arg0 == arg2[i].unk_00) {
+            next = arg2[i].next; // TODO: This var seems necessary, but using it seems to break things.
+            for (j = 0; j < arg2[i].unk_08; j++, next++) {
+                if (arg1 == arg2[i].next[j].next) {
+                    return j;
+                }
+            }
+            return -1;
+        }
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BDDC.s")
 

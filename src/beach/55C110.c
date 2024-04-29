@@ -1,17 +1,16 @@
 #include "common.h"
 
-extern AnimalDef D_802CBFF4_564064;
-extern s32 D_802CC018_564088;
+extern s32 D_beach_802CC018;
 extern AnimalDef beachAnimalData[17];
 
-/*
+#ifdef NON_MATCHING
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNodeSub* sub;
     geoNode* pxVar2;
     GObj* animalObj;
     objectSpawn spawn;
     RoomGFX* roomA;
-    AnimalDef def = D_802CBFF4_564064;
+    AnimalDef def = D_beach_802CBFF4;
 
     roomA = getCurrentRoom();
     spawn.id = AnimalID_MAGIKARP;
@@ -34,28 +33,28 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     pxVar2->xform->translation.y = sub->translation.y;
     pxVar2->xform->translation.z = sub->translation.z;
 }
-*/
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/beachSpawnMagikarpAtGObj.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/beachSpawnMagikarpAtGObj.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C416C_55C1DC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
 
 void beachAnimalAdd(RoomGFX* param_1, RoomGFX* param_2) {
     animalAdd(param_1, param_2, beachAnimalData);
 }
 
-void func_802C42F8_55C368(s32* param_1, ObjectSpawn* param_2) {
+void func_beach_802C42F8(s32* param_1, ObjectSpawn* param_2) {
     func_8036406C_50447C(param_1, param_2, beachAnimalData);
 }
 
-void func_802C431C_55C38C(s32 arg0) {
+void func_beach_802C431C(s32 arg0) {
     func_803641B8_5045C8(arg0, beachAnimalData);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C4340_55C3B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4340.s")
 
-void func_802C43CC_55C43C(s32 arg0) {
-    D_802CC018_564088 = arg0;
+void func_beach_802C43CC(s32 arg0) {
+    D_beach_802CC018 = arg0;
     func_800A19D8();
     func_80359074_4F9484();
     func_8036650C_50691C();
@@ -67,22 +66,19 @@ void func_802C43CC_55C43C(s32 arg0) {
     func_800067DC();
 }
 
-void func_802C4430_55C4A0(s32 arg0) {
-
+void func_beach_802C4430(s32 arg0) {
 }
 
-void func_802C4438_55C4A8(s32 arg0) {
-
+void func_beach_802C4438(s32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C4440_55C4B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4440.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C44D4_55C544.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C44D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C45C0_55C630.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C45C0.s")
 
-void func_802C4738_55C7A8(s32 arg0) {
-
+void func_beach_802C4738(s32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/55C110/func_802C4740_55C7B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4740.s")

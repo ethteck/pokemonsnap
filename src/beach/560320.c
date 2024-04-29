@@ -19,16 +19,16 @@ void func_beach_802C82B0(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    obj->flags |= 1;
+    obj->flags |= GOBJ_FLAG_1;
     runPathProcess(obj, func_beach_802C8438);
     // clang-format off
     animal->counter = 1; animal->processFlags &= ~4;
     // clang-format on
     animal->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4U);
+    runInteractionsAndWaitForFlags(obj, 4);
     animal->processFlags |= 0x20;
     animal->transitionGraph = &D_beach_802CCF44;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 
@@ -42,7 +42,7 @@ void func_beach_802C8354(GObj* obj) {
     animal->processFlags &= ~0x20;
     setAnimalAnimation(obj, &D_beach_802CCF00);
     animal->transitionGraph = &D_beach_802CCF14;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     updateAnimalState(obj, func_beach_802C83D0);
 }
 
@@ -62,7 +62,7 @@ void func_beach_802C8438(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0, 01.0f, 0.1f, 0.0f, 3);
+    animalPathLoop(obj, 0, 1.0f, 0.1f, 0.0f, 3);
     animal->pathProcess = 0;
     animal->processFlags |= 2;
     omEndProcess(0);
@@ -75,16 +75,16 @@ void func_beach_802C84A4(GObj* obj) {
     animal->processFlags |= 0x20;
     setAnimalAnimation(obj, &D_beach_802CCEC4);
     animal->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     setAnimalAnimation(obj, &D_beach_802CCED8);
     // clang-format off
-    animal->counter = 0x78; animal->processFlags &= ~4;
+    animal->counter = 120; animal->processFlags &= ~4;
     // clang-format on
     animal->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4U);
+    runInteractionsAndWaitForFlags(obj, 4);
     setAnimalAnimation(obj, &D_beach_802CCEEC);
     animal->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     animal->processFlags &= ~0x20;
     updateAnimalState(obj, func_beach_802C83D0);
 }

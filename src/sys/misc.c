@@ -118,8 +118,10 @@ s32 getRandSeed(void) {
 
 u16 rand(void) {
     // Required to be one line to match.
+    // clang-format off
     sRandSeed = (sRandSeed * 0x343FD) + 0x269EC3; \
     return (sRandSeed >> 16);
+    // clang-format on
 }
 
 f32 randFloat(void) {

@@ -1066,6 +1066,7 @@ segments:
     - [0xA08E30, c]
     - [0xA0BE70, c]
     - [0xA0D4D0, c]
+    - [0xA0E180, pad]
     - [0xA0E190, c]
     - [0xA0F660, bin] # , data]
     - [0xA0F7B0, .rodata, A08E30]

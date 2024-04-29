@@ -46,6 +46,7 @@ void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
 void func_8009FC38(void*);
 void func_800A19D8(void);
 void func_800A1A50(Gfx**);
+GObj* func_800A6C48(s32, s32);
 void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd);
 void func_800A7470(s32, s32, s32);
 void func_800A7860(s32, f32);

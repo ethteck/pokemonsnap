@@ -1354,7 +1354,7 @@ void auSetSoundPitch(s32 i, f32 arg1) {
     }
 }
 
-void auStopSound(s32 i) {
+void auStopSound(u32 i) {
     if (auSndpSoundId[i] != -1) {
         OSIntMask mask = osSetIntMask(OS_IM_NONE);
         alSndpSetSound(auSoundPlayer, auSndpSoundId[i]);

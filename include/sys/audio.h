@@ -18,7 +18,7 @@ s32 auPlaySoundWithParams(u32 soundID, s32 volume, s32 pan, f32 pitch, s32 rever
 void auStopAllSounds(void);
 void auSetSoundVolume(s32 handle, u32 vol);
 void auSetSoundPan(s32 handle, u32 arg1);
-void auStopSound(s32 handle);
+void auStopSound(u32 handle);
 s32 auPlaySoundWithVolume(u32 soundID, u32 vol);
 void auSetSoundGlobalVolume(u8 vol);
 void auSetCurrentSoundsGlobalVolume(u8 vol);

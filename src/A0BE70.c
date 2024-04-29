@@ -9,8 +9,6 @@ void func_800A15D8(GObj*);
 void func_800A1608(GObj*);
 void func_800A1650(GObj*);
 void func_800A16B0(GObj*);
-void func_800A181C(s32, s32, s32);
-void func_800A18AC(s32, s32);
 void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
 s32 func_800A2094(s32, s32, OMCamera*);
 void func_800A5DF4(s32, s32);

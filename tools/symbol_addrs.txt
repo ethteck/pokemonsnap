@@ -687,4 +687,17 @@ D_801EA584_A08244 = 0x801EA584; // rom:0xA08244 type:asciz
 D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
-func_800E2184_5F934 = 0x800E2184;
+
+setWorldBlocksVisibility = 0x800E18A0;
+createSkyBox = 0x800E1E94; // rom:0x5F644
+getCurrentWorldBlock = 0x800E2184;
+createWorldBlockModel = 0x800E27C4; // rom:0x5FF74
+createWorldBlockUV = 0x800E2ACC; // rom:0x6027C
+SkyBoxObjectId = 0x800E6AD4; // rom:0x64284
+WorldBlockMinObjId = 0x800E6AD8; // rom:0x64288
+WorldBlockMaxObjId = 0x800E6ADC; // rom:0x6428C
+WorldLink = 0x800E6AE0; // rom:0x64290
+WorldDlLink = 0x800E6AE4; // rom:0x64294
+WorldBlockDeleteCb = 0x800E6B00; // rom:0x642B0
+worldBlocks = 0x800F5A08; // rom:0x731B8
+worldBlockArray = 0x800F5A40; // rom:0x731F0

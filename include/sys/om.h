@@ -159,7 +159,7 @@ enum AnimParam {
 };
 
 enum GObjFlag {
-    GOBJ_FLAG_1 = 0x01,
+    GOBJ_FLAG_HIDDEN = 0x01,
     GOBJ_FLAG_2 = 0x02,
     GOBJ_FLAG_40 = 0x40
 };

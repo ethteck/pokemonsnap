@@ -2553,7 +2553,7 @@ void renCameraRenderByLink(GObj* camObj, s32 dlLink, s32 mode) {
     GObj* curr = omGObjListDlHead[dlLink];
 
     while (curr != NULL) {
-        if (!(curr->flags & GOBJ_FLAG_1)) {
+        if (!(curr->flags & GOBJ_FLAG_HIDDEN)) {
             if (mode == 0 && (camObj->cameraTag & curr->cameraTag) ||
                 mode == 1 && camObj->cameraTag == curr->cameraTag) {
                 omRenderedObject = curr;

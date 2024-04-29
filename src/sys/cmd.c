@@ -90,10 +90,10 @@ s32 cmdProcessCommands(void (*handler)(GObj*, s32)) {
                 ohResumeObjectProcesses(NULL);
                 break;
             case -4:
-                omCurrentObject->flags |= GOBJ_FLAG_1;
+                omCurrentObject->flags |= GOBJ_FLAG_HIDDEN;
                 break;
             case -5:
-                omCurrentObject->flags &= ~GOBJ_FLAG_1;
+                omCurrentObject->flags &= ~GOBJ_FLAG_HIDDEN;
                 break;
             default:
                 if (handler != NULL) {

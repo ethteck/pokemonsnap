@@ -1,13 +1,94 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C82B0.s")
+// ???
+extern u8 D_beach_802CCF78;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C8354.s")
+extern animationHeader D_beach_802CCEB0;
+extern idFuncStruct D_beach_802CCF14;
+extern animationHeader D_beach_802CCF00;
+extern idFuncStruct D_beach_802CCF44;
+extern animationHeader D_beach_802CCEC4;
+extern animationHeader D_beach_802CCED8;
+extern animationHeader D_beach_802CCEEC;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C83D0.s")
+void func_beach_802C83D0(GObj* obj);
+void func_beach_802C8438(GObj* obj);
+void func_80362EE0_5032F0(int, u16, int, int, int, UNK_PTR);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C8438.s")
+void func_beach_802C82B0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C84A4.s")
+    obj->flags |= 1;
+    runPathProcess(obj, func_beach_802C8438);
+    // clang-format off
+    animal->counter = 1; animal->processFlags &= ~4;
+    // clang-format on
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 4U);
+    animal->processFlags |= 0x20;
+    animal->transitionGraph = &D_beach_802CCF44;
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updateAnimalState(obj, NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560320/func_beach_802C8570.s")
+void func_beach_802C8354(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    animal->flags |= 0x200;
+    obj->flags = 0;
+    animal->processFlags &= ~0x20;
+    setAnimalAnimation(obj, &D_beach_802CCF00);
+    animal->transitionGraph = &D_beach_802CCF14;
+    runInteractionsAndWaitForFlags(obj, 1U);
+    updateAnimalState(obj, func_beach_802C83D0);
+}
+
+void func_beach_802C83D0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    setAnimalAnimation(obj, &D_beach_802CCEB0);
+    animal->transitionGraph = &D_beach_802CCF14;
+    runInteractionsAndWaitForFlags(obj, 2);
+    runAnimalCleanup(obj);
+    updateAnimalState(obj, 0);
+}
+
+void func_beach_802C8438(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    setNodePosToNegRoom(obj);
+    animalPathLoop(obj, 0, 01.0f, 0.1f, 0.0f, 3);
+    animal->pathProcess = 0;
+    animal->processFlags |= 2;
+    omEndProcess(0);
+}
+
+void func_beach_802C84A4(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal->processFlags |= 0x20;
+    setAnimalAnimation(obj, &D_beach_802CCEC4);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1U);
+    setAnimalAnimation(obj, &D_beach_802CCED8);
+    // clang-format off
+    animal->counter = 0x78; animal->processFlags &= ~4;
+    // clang-format on
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 4U);
+    setAnimalAnimation(obj, &D_beach_802CCEEC);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1U);
+    animal->processFlags &= ~0x20;
+    updateAnimalState(obj, func_beach_802C83D0);
+}
+
+void func_beach_802C8570(int arg0, u16 arg1, int arg2, int arg3, s32 arg4) {
+    func_80362EE0_5032F0(arg0, arg1, arg2, arg3, arg4, &D_beach_802CCF78);
+}

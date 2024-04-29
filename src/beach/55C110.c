@@ -1,14 +1,14 @@
 #include "common.h"
 
+extern AnimalDef D_beach_802CBFF4;
 extern s32 D_beach_802CC018;
 extern AnimalDef beachAnimalData[17];
 
-#ifdef NON_MATCHING
 void beachSpawnMagikarpAtGObj(GObj* obj) {
-    geoNodeSub* sub;
-    geoNode* pxVar2;
+    geoNode* a0;
+    struct Mtx3Float* position;
     GObj* animalObj;
-    objectSpawn spawn;
+    ObjectSpawn spawn;
     RoomGFX* roomA;
     AnimalDef def = D_beach_802CBFF4;
 
@@ -26,16 +26,12 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
 
     animalObj = animalAddOne(roomA, roomA, &spawn, &def);
 
-    sub = &obj->userData.rootNode->unk_18;
-    pxVar2 = animalObj->userData.rootNode;
-
-    pxVar2->xform->translation.x = sub->translation.x;
-    pxVar2->xform->translation.y = sub->translation.y;
-    pxVar2->xform->translation.z = sub->translation.z;
+    position = &obj->data.dobj->position;
+    a0 = (geoNode*) animalObj->data.any;
+    a0->xform->translation.x = position->v.x;
+    a0->xform->translation.y = position->v.y;
+    a0->xform->translation.z = position->v.z;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/beachSpawnMagikarpAtGObj.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
 

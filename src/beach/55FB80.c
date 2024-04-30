@@ -27,7 +27,7 @@ void func_beach_802C7F1C(GObj* obj) {
 
     func_8035ED90_4FF1A0(obj, func_beach_802C7F74);
     animal->transitionGraph = &D_beach_802CCE1C;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 

@@ -30,7 +30,7 @@ void func_beach_802C8828(GObj* obj) {
     animal = animal;
     runPathProcess(obj, func_beach_802C8894);
     animal->transitionGraph = &D_beach_802CD010;
-    runInteractionsAndWaitForFlags(obj, 2U);
+    runInteractionsAndWaitForFlags(obj, 2);
     runAnimalCleanup(obj);
     updateAnimalState(obj, NULL);
 }
@@ -79,7 +79,6 @@ void func_beach_802C8BC4(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal->counter = 0x80;
     animal->processFlags &= ~4;
     animal = animal;
@@ -107,7 +106,7 @@ void func_beach_802C8C7C(GObj* obj) {
 
     obj->flags = 0;
     animal->transitionGraph = &D_beach_802CD0B4;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 
@@ -120,7 +119,7 @@ void func_beach_802C8CFC(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     animal->transitionGraph = &D_beach_802CD0E4;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 

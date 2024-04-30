@@ -16,9 +16,8 @@ void func_beach_802C9348(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0, 0, 0.05f, 0.0f, 3U);
+    animalPathLoop(obj, 0, 0, 0.05f, 0.0f, 3);
     animal->pathProcess = NULL;
     animal->processFlags |= 2;
     omEndProcess(NULL);
@@ -54,7 +53,7 @@ void func_beach_802C9760(GObj* obj) {
     setAnimalAnimation(obj, &D_beach_802CD320);
     runPathProcess(obj, func_beach_802C97D4);
     animal->transitionGraph = &D_beach_802CD4A8;
-    runInteractionsAndWaitForFlags(obj, 2U);
+    runInteractionsAndWaitForFlags(obj, 2);
     updateAnimalState(obj, func_beach_802C9580);
 }
 
@@ -81,15 +80,29 @@ void func_beach_802C999C(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     setAnimalAnimation(obj, &D_beach_802CD2BC);
     runPathProcess(obj, func_beach_802C9A10);
     animal->transitionGraph = &D_beach_802CD518;
-    runInteractionsAndWaitForFlags(obj, 2U);
+    runInteractionsAndWaitForFlags(obj, 2);
     updateAnimalState(obj, func_beach_802C9580);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9A10.s")
+void func_beach_802C9A10(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    while (1) {
+        if (!func_80361440_501850(obj)) {
+            break;
+        }
+
+        ohWait(1);
+    }
+
+    animal->processFlags |= 2;
+    animal->pathProcess = NULL;
+    omEndProcess(NULL);
+}
 
 void func_beach_802C9A7C(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CD55C);

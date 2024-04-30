@@ -26,7 +26,7 @@ void func_beach_802CAC80(GObj* obj) {
     animal->flags |= 0x200;
     animal->flags |= 0x800;
     animal->transitionGraph = &D_beach_802CDC60;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 
@@ -76,11 +76,11 @@ void func_beach_802CAE14(GObj* obj) {
     obj->flags = 0;
     setAnimalAnimation(obj, &D_beach_802CDBAC);
     animal->transitionGraph = &D_beach_802CDCA0;
-    runInteractionsAndWaitForFlags(obj, 2U);
+    runInteractionsAndWaitForFlags(obj, 2);
     animal->field_0x10e = 5;
     setAnimalAnimation(obj, &D_beach_802CDBFC);
     animal->transitionGraph = &D_beach_802CDCA0;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     updateAnimalState(obj, func_beach_802CAF90);
 }
 

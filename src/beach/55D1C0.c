@@ -41,7 +41,7 @@ void func_beach_802C527C(GObj* obj) {
         ohWait(1);
     }
 
-    D_beach_80347588 = auPlaySoundWithParams(0x15U, 0x6000, 0x40, 1.0f, 0x1E);
+    D_beach_80347588 = auPlaySoundWithParams(0x15, 0x6000, 0x40, 1.0f, 0x1E);
     omEndProcess(NULL);
 }
 
@@ -77,11 +77,11 @@ void func_beach_802C52EC(GObj* obj) {
 
     temp_s1->animSpeed = 0.5f;
     animSetCameraAnimation(temp_s1, &D_8013DA90, 0.0f);
-    temp_s5 = omCreateProcess(temp_s0, animUpdateCameraAnimation, 1U, 1U);
+    temp_s5 = omCreateProcess(temp_s0, animUpdateCameraAnimation, 1, 1);
     func_80365F38_506348(&D_8013C580, &D_8013CEA0, 0, 0x3F000000);
     D_beach_802CC0E0 = 0;
     obj->fnAnimCallback = func_beach_802C51A0;
-    omCreateProcess(obj, func_beach_802C527C, 0U, 1U);
+    omCreateProcess(obj, func_beach_802C527C, 0, 1);
 
     for (i = 0; i != 0x122 && D_beach_802CC0E0 == 0; i++) {
         if (gContInputPressedButtons & 0x9000) {
@@ -126,7 +126,7 @@ void func_beach_802C55CC(void) {
     obj = func_80365E80_506290();
     D_beach_802CC0E4 = obj;
     if (obj) {
-        omCreateProcess(obj, func_beach_802C52EC, 0U, 1U);
+        omCreateProcess(obj, func_beach_802C52EC, 0, 1);
         func_beach_802C5150(obj);
     }
 }

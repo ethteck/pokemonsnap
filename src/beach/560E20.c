@@ -19,9 +19,8 @@ void func_beach_802C8E20(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0, 0, 0.1f, 0.0f, 3U);
+    animalPathLoop(obj, 0, 0, 0.1f, 0.0f, 3);
     animal->pathProcess = NULL;
     animal->processFlags |= 2;
     omEndProcess(NULL);

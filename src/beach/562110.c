@@ -23,7 +23,7 @@ void func_beach_802CA148(GObj* obj) {
     animal->tangible = 0;
     obj->flags |= GOBJ_FLAG_1 | GOBJ_FLAG_2;
     animal->transitionGraph = &D_beach_802CD858;
-    runInteractionsAndWaitForFlags(obj, 0U);
+    runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);
 }
 

@@ -32,8 +32,8 @@ void func_beach_802CA148(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802CA198(GObj* arg0) {
-    weightedRandomStaightTransition(arg0, &D_beach_802CD8B8);
+void func_beach_802CA198(GObj* obj) {
+    weightedRandomStaightTransition(obj, &D_beach_802CD8B8);
 }
 
 void func_beach_802CA1BC(GObj* obj) {

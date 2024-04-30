@@ -1,8 +1,21 @@
 #include "common.h"
 
+extern animalInitData D_beach_802CC2F0;
+extern animationHeader D_beach_802CC15C;
+
+void func_beach_802C5828(GObj*);
+void func_beach_802C5700(GObj*);
+void func_beach_802C5620(GObj*);
+void func_beach_802C5768(GObj*);
+
+void func_8035ED90_4FF1A0(GObj*, void*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5620.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C56C8.s")
+void func_beach_802C56C8(GObj* arg0) {
+    func_8035ED90_4FF1A0(arg0, func_beach_802C5620);
+    updateAnimalState(arg0, func_beach_802C5700);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5700.s")
 
@@ -10,9 +23,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5828.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5884.s")
+void func_beach_802C5884(GObj* arg0) {
+    Animal* animal = GET_ANIMAL(arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C58B8.s")
+    animal->flags |= 8;
+    updateAnimalState(arg0, func_beach_802C5768);
+}
+
+void func_beach_802C58B8(GObj* arg0) {
+    Animal* animal = GET_ANIMAL(arg0);
+
+    animal->flags |= 8;
+    updateAnimalState(arg0, func_beach_802C5828);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C58EC.s")
 
@@ -28,6 +51,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5B68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5BD4.s")
+void func_beach_802C5BD4(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5C28.s")
+    setAnimalAnimation(obj, &D_beach_802CC15C);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updateAnimalState(obj, func_beach_802C5700);
+}
+
+void func_beach_802C5C28(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CC2F0);
+}

@@ -1,6 +1,17 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9240.s")
+extern animalInitData D_beach_802CD55C;
+extern pathSpline* D_beach_802CD3F4;
+
+void func_beach_802C9830(GObj*);
+void func_beach_802C9274(GObj*);
+
+void func_beach_802C9240(GObj* obj) {
+    Animal* animal = GET_ANIMAL(obj);
+
+    D_beach_802CD3F4 = animal->path;
+    updateAnimalState(obj, func_beach_802C9274);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9274.s")
 
@@ -30,10 +41,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C98F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9978.s")
+void func_beach_802C9978(GObj* obj) {
+    updateAnimalState(obj, func_beach_802C9830);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C999C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9A10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9A7C.s")
+void func_beach_802C9A7C(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CD55C);
+}

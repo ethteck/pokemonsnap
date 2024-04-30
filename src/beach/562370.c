@@ -19,7 +19,7 @@ extern u8 D_beach_8034757A;
 extern animationHeader D_beach_802CD980;
 extern idFuncStruct D_beach_802CD9D8;
 extern s32 D_beach_802CD9D4;
-extern u8 D_beach_802CDA10; // ??
+extern animalInitData D_beach_802CDA10;
 extern animationHeader D_beach_802CD994;
 extern animationHeader D_beach_802CD9A8;
 extern animationHeader D_beach_802CD9BC;
@@ -44,7 +44,6 @@ void func_8035FD9C_5001AC(UnkBla*);
 
 s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source);
 void func_8035EDC8_4FF1D8(GObj*);
-void func_80362DC4_5031D4(int, u16, int, int, int, void*);
 void func_80357384_4F7794(s32*, f32*);
 
 void func_beach_802CA474(GObj*);
@@ -222,6 +221,6 @@ void func_beach_802CA950(GObj* arg0) {
     updateAnimalState(arg0, NULL);
 }
 
-void func_beach_802CAB14(int arg0, u16 arg1, int arg2, int arg3, int arg4) {
-    func_80362DC4_5031D4(arg0, arg1, arg2, arg3, arg4, &D_beach_802CDA10);
+void func_beach_802CAB14(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+    func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_beach_802CDA10);
 }

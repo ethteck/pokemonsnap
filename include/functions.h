@@ -207,4 +207,7 @@ void func_80375284_848A34(int);
 
 void func_8037005C_84380C(s32, s32);
 
+void func_80362EE0_5032F0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
+void func_80362DC4_5031D4(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
+
 #endif

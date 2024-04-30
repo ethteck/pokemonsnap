@@ -1,5 +1,11 @@
 #include "common.h"
 
+extern animalInitData D_beach_802CCCEC;
+
+void func_beach_802C78E8(GObj*);
+void func_beach_802C796C(GObj*);
+void func_beach_802C762C(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C72E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C737C.s")
@@ -20,13 +26,18 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C77CC.s")
+void func_beach_802C77CC(GObj* arg0) {
+    updateAnimalState(arg0, func_beach_802C762C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C77F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7864.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C78B0.s")
+void func_beach_802C78B0(GObj* arg0) {
+    runPathProcess(arg0, func_beach_802C796C);
+    updateAnimalState(arg0, func_beach_802C78E8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C78E8.s")
 
@@ -36,4 +47,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7A60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7AD0.s")
+void func_beach_802C7AD0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CCCEC);
+}

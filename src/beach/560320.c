@@ -1,8 +1,6 @@
 #include "common.h"
 
-// ???
-extern u8 D_beach_802CCF78;
-
+extern animalInitData D_beach_802CCF78;
 extern animationHeader D_beach_802CCEB0;
 extern idFuncStruct D_beach_802CCF14;
 extern animationHeader D_beach_802CCF00;
@@ -13,7 +11,6 @@ extern animationHeader D_beach_802CCEEC;
 
 void func_beach_802C83D0(GObj* obj);
 void func_beach_802C8438(GObj* obj);
-void func_80362EE0_5032F0(int, u16, int, int, int, UNK_PTR);
 
 void func_beach_802C82B0(GObj* obj) {
     UNUSED s32 pad[3];
@@ -89,6 +86,6 @@ void func_beach_802C84A4(GObj* obj) {
     updateAnimalState(obj, func_beach_802C83D0);
 }
 
-void func_beach_802C8570(int arg0, u16 arg1, int arg2, int arg3, s32 arg4) {
-    func_80362EE0_5032F0(arg0, arg1, arg2, arg3, arg4, &D_beach_802CCF78);
+void func_beach_802C8570(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CCF78);
 }

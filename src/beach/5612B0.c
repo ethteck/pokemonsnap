@@ -12,7 +12,17 @@ void func_beach_802C9240(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C92BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C9348.s")
+void func_beach_802C9348(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    setNodePosToNegRoom(obj);
+    animalPathLoop(obj, 0, 0, 0.05f, 0.0f, 3U);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C93B8.s")
 

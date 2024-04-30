@@ -15,13 +15,57 @@ void func_beach_802C8DE8(GObj* obj) {
     updateAnimalState(obj, func_beach_802C8E90);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C8E20.s")
+void func_beach_802C8E20(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    setNodePosToNegRoom(obj);
+    animalPathLoop(obj, 0, 0, 0.1f, 0.0f, 3U);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C8E90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C8F48.s")
+void func_beach_802C8F48(GObj* obj) {
+    Animal* animal = GET_ANIMAL(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C907C.s")
+    animal->collisionRadius = animal->miscVars[0].field0;
+    obj->flags = 0;
+    runPathProcess(obj, func_beach_802C907C);
+    setAnimalAnimation(obj, &D_beach_802CD168);
+    animal->transitionGraph = &D_beach_802CD214;
+    runInteractionsAndWaitForFlags(obj, 1);
+    setAnimalAnimation(obj, &D_beach_802CD1A4);
+    animal->transitionGraph = &D_beach_802CD214;
+    runInteractionsAndWaitForFlags(obj, 2);
+    setAnimalAnimation(obj, &D_beach_802CD190);
+    animal->transitionGraph = &D_beach_802CD214;
+    runInteractionsAndWaitForFlags(obj, 1);
+    cmdSendCommandToLink(3, 0x1E, obj);
+    setAnimalAnimation(obj, &D_beach_802CD17C);
+    animal->transitionGraph = &D_beach_802CD214;
+    runInteractionsAndWaitForFlags(obj, 2);
+    runPathProcess(obj, func_beach_802C90E0);
+    animal->transitionGraph = &D_beach_802CD214;
+    runInteractionsAndWaitForFlags(obj, 2);
+    runAnimalCleanup(obj);
+    updateAnimalState(obj, func_beach_802C8F48);
+}
+
+void func_beach_802C907C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal->hSpeed = 0.0f;
+    animal->jumpVel = 100.0f;
+    func_80360300_500710(obj, 150.0f, 0.0f, 0.0f, 0.0f);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C90E0.s")
 

@@ -355,8 +355,9 @@ s8 func_8009BD4C(s16 arg0, Unkfunc_8009BD4C* arg1, Unkfunc_8009BD4C* arg2, s32 a
     return -1;
 }
 
+#ifdef NON_MATCHING
 typedef struct Unkfunc_8009BDDC {
-    u32 unk_00; // Id?
+    s32 unk_00; // Id?
     Vec3f *unk_04; // Size of 0xC, floats?
     s32 unk_10; // number of unk_04 records?
 } Unkfunc_8009BDDC;
@@ -364,25 +365,25 @@ typedef struct Unkfunc_8009BDDC {
 extern s32 D_800AD4B8; // 0x58;
 extern Vec3f *D_800AD4BC; // 5 values here
 extern s32 D_800AD4C0; // = 5; // number of D_800AD4BC records
+
 extern s32 D_800AD4C4; // = 0x59
 extern Vec3f *D_800AD4C8; // 5 values here
 extern s32 D_800AD4CC; // = 5; // number of D_800AD4C8 records
 extern s32 D_800AD4D0; // = 0x7E;
 extern Vec3f *D_800AD4D4; // 10 values here
 extern s32 D_800AD4D8; // = 10;
-extern Unkfunc_8009BDDC D_800AD4DC[64]; 
+extern Unkfunc_8009BDDC D_800AD4DC[64];
 
-#if 1
 f32 func_8009BDDC(s16 arg0, s8 arg1) {
-    Unkfunc_8009BDDC* var_a0;
     s32 i;
+    u32 test = arg0;
 
-    if (arg0 == D_800AD4B8) { return D_800AD4BC[arg1].x; }
-    if (arg0 == D_800AD4C4) { return D_800AD4C8[arg1].x; }\
-    if (arg0 == D_800AD4D0) { return D_800AD4D4[arg1].x; }
-    
+    if (test == D_800AD4B8) { return D_800AD4BC[arg1].x; }
+    if (test == D_800AD4C4) { return D_800AD4C8[arg1].x; } /* One Line diff */ \
+    if (test == D_800AD4D0) { return D_800AD4D4[arg1].x; }
+
     for (i = 0; i < ARRAY_COUNT(D_800AD4DC); i++) {
-        if (arg0 == D_800AD4DC[i].unk_00) { return D_800AD4DC[i].unk_04[arg1].x; }
+        if (test == D_800AD4DC[i].unk_00) { return D_800AD4DC[i].unk_04[arg1].x; }
     }
     return -1.0f;
 }

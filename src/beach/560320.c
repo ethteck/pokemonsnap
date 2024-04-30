@@ -1,16 +1,5 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CCF78;
-extern animationHeader D_beach_802CCEB0;
-extern idFuncStruct D_beach_802CCF14;
-extern animationHeader D_beach_802CCF00;
-extern idFuncStruct D_beach_802CCF44;
-extern animationHeader D_beach_802CCEC4;
-extern animationHeader D_beach_802CCED8;
-extern animationHeader D_beach_802CCEEC;
-
-void func_beach_802C83D0(GObj* obj);
-void func_beach_802C8438(GObj* obj);
+#include "beach.h"
 
 void func_beach_802C82B0(GObj* obj) {
     UNUSED s32 pad[3];

@@ -1,13 +1,5 @@
 #include "common.h"
-
-extern idFuncStruct D_beach_802CD0E4;
-extern animalInitData D_beach_802CD118;
-extern animalInitData D_beach_802CD118;
-
-void func_8035EDC8_4FF1D8(GObj*);
-void func_beach_802C89A4(GObj*);
-void func_beach_802C85E0(GObj*);
-void func_beach_802C86A8(GObj*);
+#include "beach.h"
 
 void func_beach_802C85B0(GObj* arg0) {
     arg0->flags |= 1;
@@ -62,17 +54,17 @@ void func_beach_802C8C58(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/560620/func_beach_802C8C7C.s")
 
-void func_beach_802C8CC0(GObj* arg0) {
-    cmdSendCommandToLink(3, 0x1F, arg0);
-    updateAnimalState(arg0, func_beach_802C86A8);
+void func_beach_802C8CC0(GObj* obj) {
+    cmdSendCommandToLink(3, 0x1F, obj);
+    updateAnimalState(obj, func_beach_802C86A8);
 }
 
-void func_beach_802C8CFC(GObj* arg0) {
-    Animal* animal = GET_ANIMAL(arg0);
+void func_beach_802C8CFC(GObj* obj) {
+    Animal* animal = GET_ANIMAL(obj);
 
     animal->transitionGraph = &D_beach_802CD0E4;
-    runInteractionsAndWaitForFlags(arg0, 0U);
-    updateAnimalState(arg0, NULL);
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updateAnimalState(obj, NULL);
 }
 
 void func_beach_802C8D3C(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {

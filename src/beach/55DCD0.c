@@ -1,16 +1,5 @@
 #include "common.h"
-
-extern animationHeader D_beach_802CC344;
-extern idFuncStruct D_beach_802CC854;
-extern idFuncStruct D_beach_802CC904;
-extern idFuncStruct D_beach_802CC7E4;
-
-void func_beach_802C6FF8(GObj*);
-void func_beach_802C6D44(GObj*);
-void func_beach_802C667C(GObj*);
-void func_beach_802C6DD4(GObj*);
-void func_beach_802C6E40(GObj*);
-void func_beach_802C62E4(GObj*);
+#include "beach.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C5C60.s")
 
@@ -36,8 +25,8 @@ void func_beach_802C62E4(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C63F4.s")
 
-void func_beach_802C6478(GObj* arg0) {
-    updateAnimalState(arg0, func_beach_802C62E4);
+void func_beach_802C6478(GObj* obj) {
+    updateAnimalState(obj, func_beach_802C62E4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C649C.s")
@@ -102,9 +91,9 @@ void func_beach_802C6D44(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802C6D9C(GObj* arg0) {
-    runPathProcess(arg0, func_beach_802C6DD4);
-    updateAnimalState(arg0, func_beach_802C6E40);
+void func_beach_802C6D9C(GObj* obj) {
+    runPathProcess(obj, func_beach_802C6DD4);
+    updateAnimalState(obj, func_beach_802C6E40);
 }
 
 void func_beach_802C6DD4(GObj* obj) {

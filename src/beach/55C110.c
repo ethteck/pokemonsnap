@@ -1,8 +1,5 @@
 #include "common.h"
-
-extern AnimalDef D_beach_802CBFF4;
-extern s32 D_beach_802CC018;
-extern AnimalDef beachAnimalData[17];
+#include "beach.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNode* a0;

@@ -1,10 +1,5 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CD258;
-
-void func_beach_802C8E20(GObj*);
-void func_beach_802C8E90(GObj*);
-void func_beach_802C8DE8(GObj*);
+#include "beach.h"
 
 void func_beach_802C8DB0(GObj* obj) {
     UNUSED s32 pad[3];
@@ -15,9 +10,9 @@ void func_beach_802C8DB0(GObj* obj) {
     updateAnimalState(obj, func_beach_802C8DE8);
 }
 
-void func_beach_802C8DE8(GObj* arg0) {
-    runPathProcess(arg0, func_beach_802C8E20);
-    updateAnimalState(arg0, func_beach_802C8E90);
+void func_beach_802C8DE8(GObj* obj) {
+    runPathProcess(obj, func_beach_802C8E20);
+    updateAnimalState(obj, func_beach_802C8E90);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/560E20/func_beach_802C8E20.s")

@@ -1,20 +1,11 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CC2F0;
-extern animationHeader D_beach_802CC15C;
-
-void func_beach_802C5828(GObj*);
-void func_beach_802C5700(GObj*);
-void func_beach_802C5620(GObj*);
-void func_beach_802C5768(GObj*);
-
-void func_8035ED90_4FF1A0(GObj*, void*);
+#include "beach.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5620.s")
 
-void func_beach_802C56C8(GObj* arg0) {
-    func_8035ED90_4FF1A0(arg0, func_beach_802C5620);
-    updateAnimalState(arg0, func_beach_802C5700);
+void func_beach_802C56C8(GObj* obj) {
+    func_8035ED90_4FF1A0(obj, func_beach_802C5620);
+    updateAnimalState(obj, func_beach_802C5700);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5700.s")
@@ -23,18 +14,18 @@ void func_beach_802C56C8(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5828.s")
 
-void func_beach_802C5884(GObj* arg0) {
-    Animal* animal = GET_ANIMAL(arg0);
+void func_beach_802C5884(GObj* obj) {
+    Animal* animal = GET_ANIMAL(obj);
 
     animal->flags |= 8;
-    updateAnimalState(arg0, func_beach_802C5768);
+    updateAnimalState(obj, func_beach_802C5768);
 }
 
-void func_beach_802C58B8(GObj* arg0) {
-    Animal* animal = GET_ANIMAL(arg0);
+void func_beach_802C58B8(GObj* obj) {
+    Animal* animal = GET_ANIMAL(obj);
 
     animal->flags |= 8;
-    updateAnimalState(arg0, func_beach_802C5828);
+    updateAnimalState(obj, func_beach_802C5828);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C58EC.s")

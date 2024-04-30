@@ -1,10 +1,5 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CD55C;
-extern pathSpline* D_beach_802CD3F4;
-
-void func_beach_802C9830(GObj*);
-void func_beach_802C9274(GObj*);
+#include "beach.h"
 
 void func_beach_802C9240(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);

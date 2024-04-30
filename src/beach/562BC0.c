@@ -1,10 +1,5 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CDAEC;
-extern idFuncStruct D_beach_802CDC80;
-
-void func_beach_802CAD7C(GObj*);
-void func_8035E298_4FE6A8(GObj* obj);
+#include "beach.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/562BC0/func_beach_802CAB50.s")
 

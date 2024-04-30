@@ -1,24 +1,19 @@
 #include "common.h"
+#include "beach.h"
 
-extern animalInitData D_beach_802CD8E4;
-extern idFuncStruct D_beach_802CD858;
-extern AnimalDef D_beach_802CD848;
-extern AnimalDef D_beach_802CD838;
-extern randomTransition D_beach_802CD8B8;
-
-void func_beach_802CA0A0(GObj* arg0) {
+void func_beach_802CA0A0(GObj* obj) {
     // TODO: see if this can be inlined
     AnimalDef sp18 = D_beach_802CD838;
 
-    addAnimalAtGeo(arg0, AnimalID_PIDGEY, &sp18);
+    addAnimalAtGeo(obj, AnimalID_PIDGEY, &sp18);
     omEndProcess(NULL);
 }
 
-void func_beach_802CA0F4(GObj* arg0) {
+void func_beach_802CA0F4(GObj* obj) {
     // TODO: see if this can be inlined
     AnimalDef sp18 = D_beach_802CD848;
 
-    addAnimalAtGeo(arg0, AnimalID_SCYTHER, &sp18);
+    addAnimalAtGeo(obj, AnimalID_SCYTHER, &sp18);
     omEndProcess(NULL);
 }
 

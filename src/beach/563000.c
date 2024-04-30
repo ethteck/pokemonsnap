@@ -1,20 +1,13 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CE038;
-extern AnimalDef D_beach_802CE0DC;
-extern animalInitData D_beach_802CE0A8;
-
-void func_beach_802CB08C(GObj*);
-void func_beach_802CB128(GObj*);
-void func_beach_802CBD04(GObj*);
+#include "beach.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/563000/func_beach_802CAF90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/563000/func_beach_802CAFEC.s")
 
-void func_beach_802CB054(GObj* arg0) {
-    runPathProcess(arg0, func_beach_802CB128);
-    updateAnimalState(arg0, func_beach_802CB08C);
+void func_beach_802CB054(GObj* obj) {
+    runPathProcess(obj, func_beach_802CB128);
+    updateAnimalState(obj, func_beach_802CB08C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/563000/func_beach_802CB08C.s")
@@ -71,9 +64,9 @@ void func_beach_802CBDA0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, Obj
     func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_beach_802CE0A8);
 }
 
-void func_beach_802CBDD8(GObj* arg0) {
+void func_beach_802CBDD8(GObj* obj) {
     GObj* var;
 
-    var = addAnimalAtGeo(arg0, 0x3EEU, &D_beach_802CE0DC);
+    var = addAnimalAtGeo(obj, 0x3EEU, &D_beach_802CE0DC);
     GET_ANIMAL(var)->behavior = 0;
 }

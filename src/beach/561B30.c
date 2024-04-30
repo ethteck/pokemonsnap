@@ -1,8 +1,5 @@
 #include "common.h"
-
-extern animalInitData D_beach_802CD7A8;
-
-void func_beach_802C9AE4(GObj*);
+#include "beach.h"
 
 void func_beach_802C9AC0(GObj* obj) {
     updateAnimalState(obj, func_beach_802C9AE4);

@@ -1,20 +1,5 @@
 #include "common.h"
-
-extern s32* D_800968BC;
-
-extern s32 D_beach_802CC0E0;
-extern GObj* D_beach_802CC0E4;
-extern u8 D_beach_80347588;
-
-GObj* func_80365E80_506290(void);
-void func_803570B0_4F74C0(void);
-void func_80357120_4F7530(GObj*);
-void func_80357170_4F7580(void);
-void func_803571C4_4F75D4(void);
-void func_803572B0_4F76C0(void);
-void func_803573BC_4F77CC(void);
-
-void func_beach_802C52EC(GObj* obj);
+#include "beach.h"
 
 void func_beach_802C5150(GObj* obj) {
     func_803571C4_4F75D4();
@@ -49,7 +34,7 @@ void func_beach_802C5214(void) {
     omDeleteGObj(NULL);
 }
 
-void func_beach_802C527C(GObj* arg0) {
+void func_beach_802C527C(GObj* obj) {
     s32 i;
 
     for (i = 0; i != 0x78; i++) {

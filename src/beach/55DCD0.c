@@ -263,7 +263,18 @@ void func_beach_802C67E0(GObj* obj) {
     updateAnimalState(obj, func_beach_802C667C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C6854.s")
+void func_beach_802C6854(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    runPathProcess(obj, func_beach_802C68D8);
+    animal->processFlags |= 0x20;
+    setAnimalAnimation(obj, &D_beach_802CC3F8);
+    animal->transitionGraph = &D_beach_802CC6B4;
+    runInteractionsAndWaitForFlags(obj, 2U);
+    updateAnimalState(obj, func_beach_802C667C);
+}
 
 void func_beach_802C68D8(GObj* obj) {
     UNUSED s32 pad[3];

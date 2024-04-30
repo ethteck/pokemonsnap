@@ -7,7 +7,6 @@ void func_beach_802CAC08(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     func_8035E298_4FE6A8(obj);
     animal->pathProcess = NULL;
     animal->processFlags |= 2;
@@ -17,6 +16,8 @@ void func_beach_802CAC08(GObj* obj) {
 void func_beach_802CAC48(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CDAEC);
 }
+
+// TODO: potential file split. func_80362EE0_5032F0 tends to be used at the end of files
 
 void func_beach_802CAC80(GObj* obj) {
     UNUSED s32 pad[3];
@@ -32,8 +33,6 @@ void func_beach_802CAC80(GObj* obj) {
 void func_beach_802CACD4(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
-
-    animal = obj->userData;
 
     if (animal->behavior == 1) {
         updateAnimalState(obj, func_beach_802CAD58);

@@ -7,13 +7,31 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C73EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7490.s")
+void func_beach_802C7490(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal->hSpeed = 20.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C74EC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C755C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C75D0.s")
+void func_beach_802C75D0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal->hSpeed = 80.0f;
+    func_8036194C_501D5C(obj, 300.0f, 0.1f, 1);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C762C.s")
 

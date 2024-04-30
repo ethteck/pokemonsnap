@@ -22,7 +22,6 @@ void func_beach_802C8354(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal->flags |= 0x200;
     obj->flags = 0;
     animal->processFlags &= ~0x20;

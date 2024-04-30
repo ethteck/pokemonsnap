@@ -32,6 +32,8 @@ void func_8035E298_4FE6A8(GObj*);
 void func_8035ED90_4FF1A0(GObj*, void (*)(GObj*));
 void func_8035EDC8_4FF1D8(GObj*);
 void func_8035FD9C_5001AC(UnkBlueShark*);
+void func_80361110_501520(GObj*, f32, f32, int);
+void func_8036194C_501D5C(GObj*, f32, f32, int);
 void func_80365E34_506244(void);
 GObj* func_80365E80_506290(void);
 void func_80365F38_506348(void*, void*, f32, float);

@@ -47,6 +47,8 @@ void func_beach_802CA418(s32 gObjId, u16 id, RoomGFX* roomA, RoomGFX* roomB, Obj
     spawnAnimalUsingDeltaHeight(gObjId, id, roomA, roomB, spawn, &D_beach_802CD948);
 }
 
+// TODO: potential file split. spawnAnimalUsingDeltaHeight tends to be used at the end of files
+
 void func_beach_802CA450(GObj* obj) {
     updateAnimalState(obj, func_beach_802CA474);
 }

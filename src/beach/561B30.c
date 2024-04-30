@@ -17,7 +17,16 @@ void func_beach_802C9AC0(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9CF8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9D70.s")
+void func_beach_802C9D70(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal->hSpeed = 20.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9DCC.s")
 

@@ -287,7 +287,7 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC3C);
-                sceneId = func_800E1AD8_8A72F8(sceneId);
+                sceneId = func_oaks_lab_800E1AD8(sceneId);
                 break;
             case SCENE_12:
                 func_800AAF20();

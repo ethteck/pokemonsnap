@@ -20,7 +20,17 @@ void func_beach_802C7490(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C74EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C755C.s")
+void func_beach_802C755C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+    ;
+
+    setAnimalAnimation(obj, &D_beach_802CC9D4);
+    runPathProcess(obj, func_beach_802C75D0);
+    animal->transitionGraph = &D_beach_802CCAE8;
+    runInteractionsAndWaitForFlags(obj, 2);
+    updateAnimalState(obj, func_beach_802C737C);
+}
 
 void func_beach_802C75D0(GObj* obj) {
     UNUSED s32 pad[3];
@@ -43,7 +53,16 @@ void func_beach_802C77CC(GObj* obj) {
     updateAnimalState(obj, func_beach_802C762C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C77F0.s")
+void func_beach_802C77F0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    setAnimalAnimation(obj, &D_beach_802CC9C0);
+    runPathProcess(obj, func_beach_802C7864);
+    animal->transitionGraph = &D_beach_802CCBF8;
+    runInteractionsAndWaitForFlags(obj, 2U);
+    updateAnimalState(obj, func_beach_802C737C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55F350/func_beach_802C7864.s")
 

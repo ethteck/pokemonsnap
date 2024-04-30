@@ -26,7 +26,7 @@ void func_beach_802C7F1C(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     animal = obj->userData;
-    func_8035ED90_4FF1A0(obj, &func_beach_802C7F74);
+    func_8035ED90_4FF1A0(obj, func_beach_802C7F74);
     animal->transitionGraph = &D_beach_802CCE1C;
     runInteractionsAndWaitForFlags(obj, 0U);
     updateAnimalState(obj, NULL);

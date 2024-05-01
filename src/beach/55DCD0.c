@@ -306,7 +306,6 @@ void func_beach_802C6854(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     runPathProcess(obj, func_beach_802C68D8);
     animal->processFlags |= 0x20;
     setAnimalAnimation(obj, &D_beach_802CC3F8);

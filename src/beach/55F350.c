@@ -4,12 +4,10 @@
 void func_beach_802C72E0(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     while (D_beach_802CD3F4 == NULL) {
         ohWait(1);
     }
     animal->path = D_beach_802CD3F4;
-    ;
     ohWait(60);
     animal->flags |= 0x200;
     animal->flags |= 0x800;
@@ -163,7 +161,6 @@ void func_beach_802C78E8(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal->processFlags &= ~0x20;
     cmdSendCommandToLink(3, 0x22, obj);
     setAnimalAnimation(obj, &D_beach_802CC9D4);

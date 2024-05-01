@@ -39,7 +39,6 @@ void func_beach_802C9BF8(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     setAnimalAnimation(obj, &D_beach_802CD5F8);
     animal->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
@@ -54,7 +53,6 @@ void func_beach_802C9C88(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal = animal;
     setNodePosToNegRoom(obj);
     animalPathLoop(obj, 0.0f, 1.0f, 0.05f, 0.1f, 0x81U);

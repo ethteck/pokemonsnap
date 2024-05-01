@@ -65,7 +65,6 @@ void func_beach_802CB2D8(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal->flags |= 0x200;
     animal->flags |= 0x800;
     func_8035ED90_4FF1A0(obj, func_beach_802CB814);
@@ -102,7 +101,6 @@ void func_beach_802CB44C(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     forceAnimalAnimation(obj, &D_beach_802CDBC0);
     runPathProcess(obj, NULL);
     animal->transitionGraph = &D_beach_802CDE48;

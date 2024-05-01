@@ -34,7 +34,6 @@ void func_beach_802C5700(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    animal = obj->userData;
     animal->flags |= 8;
     setAnimalAnimation(obj, &D_beach_802CC10C);
     animal->transitionGraph = &D_beach_802CC1D4;

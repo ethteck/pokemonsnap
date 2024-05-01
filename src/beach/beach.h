@@ -4,9 +4,9 @@
 // TODO: move to a common header
 
 typedef struct UnkBlueShark {
-    /* 0x0 */ u16 unk0;
-    /* 0x4 */ u16 unk2;
-} UnkBlueShark; // size: 0x8
+    /* 0x0 */ u16 unk_0;
+    /* 0x2 */ u16 unk2;
+} UnkBlueShark; // size: 0x4
 
 extern s32* D_800968BC;
 extern GObj* D_80382C00_523010;

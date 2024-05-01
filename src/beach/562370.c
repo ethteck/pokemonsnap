@@ -11,7 +11,7 @@ void func_beach_802CA300(GObj* obj) {
 
     obj->flags |= 2;
 
-    while (1) {
+    while (TRUE) {
         func_80357384_4F7794(&sp34, &sp30);
         if (sp34 > 0) {
             break;
@@ -26,7 +26,7 @@ void func_beach_802CA300(GObj* obj) {
 
     animal->flags |= 4;
 
-    while (1) {
+    while (TRUE) {
         func_80357384_4F7794(&sp2C, &sp28);
         if (sp2C > 0) {
             break;
@@ -39,7 +39,7 @@ void func_beach_802CA300(GObj* obj) {
         ohWait(1);
     }
 
-    animal->flags &= 0xFFFB;
+    animal->flags &= ~0x4;
     updateAnimalState(obj, NULL);
 }
 
@@ -94,12 +94,12 @@ void func_beach_802CA5D4() {
 
 void func_beach_802CA5DC(GObj* obj) {
     f32 var_f20;
-    s32 var_s1;
+    s32 i;
     f32 steps;
 
     var_f20 = 1.0f;
     steps = 240.0;
-    for (var_s1 = 239; var_s1 > 0; var_s1--) {
+    for (i = 239; i > 0; i--) {
         var_f20 += -1.0f / steps;
         auSetBGMVolume(0, (32512.0f * var_f20));
         auSetBGMVolume(1, (32512.0f * var_f20));
@@ -125,7 +125,7 @@ void func_beach_802CA8C4(GObj* obj) {
     }
 
     auPlaySound(0x29);
-    if ((D_beach_802CD9D0 != -1) && D_800968BC[D_beach_802CD9D0] != -1) {
+    if (D_beach_802CD9D0 != -1 && D_800968BC[D_beach_802CD9D0] != -1) {
         auStopSound(D_beach_802CD9D0);
     }
     func_8035EDC8_4FF1D8(obj);

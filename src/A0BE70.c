@@ -83,7 +83,7 @@ void func_800E4960_A0BEF0(GObj* gobj) {
         if (D_800E832B_A0F8BB == 5) {
             if (D_800E832C_A0F8BC >= 3600.0) {
                 D_800E832B_A0F8BB = 1;
-            } else if (D_800BF051 == 0 && D_800E832C_A0F8BC > 1.0 && gContInputPressedButtons & (0x8000 | 0x1000)) {
+            } else if (D_800BF051 == 0 && D_800E832C_A0F8BC > 1.0 && gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
                 D_800E832B_A0F8BB = 4;
             }
         }

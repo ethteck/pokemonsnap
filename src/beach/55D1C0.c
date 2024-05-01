@@ -14,7 +14,7 @@ void func_beach_802C5180(void) {
 void func_beach_802C51A0(DObj* arg0, u32 arg1, f32 arg2) {
     GObj* obj;
 
-    if ((arg1 == -2) || (arg1 == -1)) {
+    if (arg1 == -2 || arg1 == -1) {
         D_beach_802CC0E0 = 1;
     } else if ((s32) arg2 - 1 >= 0) {
         obj = func_800A6C48(arg1, (s32) arg2 - 1);
@@ -37,18 +37,18 @@ void func_beach_802C5214(void) {
 void func_beach_802C527C(GObj* obj) {
     s32 i;
 
-    for (i = 0; i != 0x78; i++) {
+    for (i = 0; i < 120; i++) {
         ohWait(1);
     }
 
-    D_beach_80347588 = auPlaySoundWithParams(0x15, 0x6000, 0x40, 1.0f, 0x1E);
+    D_beach_80347588 = auPlaySoundWithParams(0x15, 0x6000, 0x40, 1.0f, 30);
     omEndProcess(NULL);
 }
 
 #ifdef NON_MATCHING
 OMCamera* func_803586F8_4F8B08();
 extern AnimCmd D_8013DA90;
-void func_80365F38_506348(UNK_PTR, UNK_PTR, int, int);
+void func_80365F38_506348(UNK_PTR, UNK_PTR, s32, s32);
 
 extern u8 D_8013C580;
 extern u8 D_8013CEA0;
@@ -83,8 +83,8 @@ void func_beach_802C52EC(GObj* obj) {
     obj->fnAnimCallback = func_beach_802C51A0;
     omCreateProcess(obj, func_beach_802C527C, 0, 1);
 
-    for (i = 0; i != 0x122 && D_beach_802CC0E0 == 0; i++) {
-        if (gContInputPressedButtons & 0x9000) {
+    for (i = 0; i < 290 && D_beach_802CC0E0 == 0; i++) {
+        if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             omEndProcess(temp_s5);
             func_beach_802C5214();
         }
@@ -101,7 +101,7 @@ void func_beach_802C52EC(GObj* obj) {
     base_at.z = temp_s1->viewMtx.lookAt.at.z;
 
     for (i = 0; i <= 10; i++) {
-        if (gContInputPressedButtons & 0x9000) {
+        if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_beach_802C5214();
         }
         temp_s1->viewMtx.lookAt.eye.x = (((f32) i * (start_eye.x - base_eye.x)) / 10.0f) + base_eye.x;
@@ -125,7 +125,7 @@ void func_beach_802C55CC(void) {
 
     obj = func_80365E80_506290();
     D_beach_802CC0E4 = obj;
-    if (obj) {
+    if (obj != NULL) {
         omCreateProcess(obj, func_beach_802C52EC, 0, 1);
         func_beach_802C5150(obj);
     }

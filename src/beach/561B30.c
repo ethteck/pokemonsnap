@@ -55,7 +55,7 @@ void func_beach_802C9C88(GObj* obj) {
 
     animal = animal;
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0.0f, 1.0f, 0.05f, 0.1f, 0x81U);
+    animalPathLoop(obj, 0.0f, 1.0f, 0.05f, 0.1f, 0x80 | 0x1);
     animal->pathProcess = NULL;
     animal->processFlags |= 2;
     omEndProcess(NULL);

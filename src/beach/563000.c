@@ -46,7 +46,7 @@ void func_beach_802CB128(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    while (1) {
+    while (TRUE) {
         if (!func_80361440_501850(obj)) {
             break;
         }
@@ -207,10 +207,8 @@ void func_beach_802CBA48(GObj* obj) {
     func_8001FCE8(&sp34, animal->path, 0.99999f);
     temp_f0 = atan2f(sp34.x, sp34.z);
     temp_f20 = temp_f0 - ((s32) (temp_f0 / 6.2831855f) * 6.2831855f);
-    if (func_80360FC8_5013D8(node, temp_f20, 0.13962634f) == 0) {
-        do {
-            ohWait(1);
-        } while (func_80360FC8_5013D8(node, temp_f20, 0.13962634f) == 0);
+    while (func_80360FC8_5013D8(node, temp_f20, 0.13962634f) == 0) {
+        ohWait(1);
     }
     animal->pathProcess = 0;
     animal->processFlags |= 2;

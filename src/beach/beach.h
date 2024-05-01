@@ -63,6 +63,9 @@ void func_803667C0_506BD0(GObj*, int, int);
 
 extern AnimalDef D_beach_802CBFF4;
 extern s32 D_beach_802CC018;
+extern s32 D_beach_802CC0D0;
+extern s32 D_beach_802CC0D4;
+extern s32 D_beach_802CC0D8;
 extern s32 D_beach_802CC0E0;
 extern GObj* D_beach_802CC0E4;
 extern animationHeader D_beach_802CC10C;
@@ -233,6 +236,8 @@ extern int D_beach_80318F00; // TODO: figure out type
 extern u8 D_beach_80347578;
 extern u8 D_beach_80347579;
 extern u8 D_beach_8034757A;
+extern u8 D_beach_8034757B;
+extern u16 D_beach_8034757C;
 extern u8 D_beach_80347588;
 extern void* D_beach_80347658;
 

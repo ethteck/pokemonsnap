@@ -115,7 +115,7 @@ void func_beach_802C619C(GObj* obj) {
 
     animal->hSpeed = 80.0f;
 
-    while (1) {
+    while (TRUE) {
         if (func_80360F1C_50132C(obj, 1)) {
             break;
         }
@@ -176,7 +176,7 @@ void func_beach_802C62E4(GObj* obj) {
     }
     func_8036010C_50051C(obj);
     animal->transitionGraph = &D_beach_802CC564;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     weightedRandomStaightTransition(obj, &D_beach_802CC4AC);
 }
 

@@ -60,7 +60,7 @@ void func_beach_802C7E70(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     animal->tangible = 0;
-    obj->flags |= 3;
+    obj->flags |= 2 | 1;
     if (animal->behavior == 2) {
         animal = animal;
         updateAnimalState(obj, func_beach_802C816C);
@@ -89,7 +89,7 @@ void func_beach_802C7F74(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     animal->tangible = 0;
-    obj->flags |= 3;
+    obj->flags |= 2 | 1;
     forceAnimalAnimation(obj, &D_beach_802CCE08);
 
     // clang-format off
@@ -124,7 +124,7 @@ void func_beach_802C8028(GObj* obj) {
 }
 
 void func_beach_802C80BC(GObj* obj) {
-    D_beach_802CCDFC += 1;
+    D_beach_802CCDFC++;
     updateAnimalState(obj, NULL);
 }
 

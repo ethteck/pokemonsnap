@@ -124,6 +124,7 @@ s32 func_802E2BB8_5DFC88(s32);
 
 s32 func_80346EF0_826660(s32);
 
+void func_803507E0_4F0BF0(s32);
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);
 void func_80359074_4F9484(void);

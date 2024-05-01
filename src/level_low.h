@@ -42,7 +42,7 @@ typedef struct SkyBox {
 } SkyBox;
 
 typedef struct UnkIvoryMamba {
-    /* 0x00 */ char unk_00[0xC];
+    /* 0x00 */ DObj* unk_00[3];
 } UnkIvoryMamba; // size == 0xC
 
 typedef struct WorldBlockGFX {
@@ -54,6 +54,7 @@ typedef struct WorldBlockGFX {
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ AnimCmd** unk_18;
     /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ f32 unk_20[1]; // variable size, depends on unk_14
 } WorldBlockGFX; // size >= 0x20
 
 typedef struct WorldBlockDescriptor {
@@ -64,7 +65,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x18 */ s32* unk_18;
     /* 0x1C */ char unk_1C[4];
     /* 0x20 */ UnkBeigeServal* unk20;
-} WorldBlockDescriptor; // size >= 0x1C
+} WorldBlockDescriptor; // size >= 0x24
 
 typedef struct WorldBlock {
     /* 0x00 */ s32 index;
@@ -100,5 +101,7 @@ typedef struct UnkTomatoEagle {
 
 WorldBlock* getCurrentWorldBlock(void);
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
+WorldBlock* func_800E26CC_5FE7C(s32 arg0);
+WorldBlock* func_800E2400_5FBB0(void);
 
 #endif

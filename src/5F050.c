@@ -217,7 +217,7 @@ void func_800E20B4_5F864(void) {
     }
 }
 
-void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 arg3, f32 arg4) {
+void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4) {
 
     if (SkyBoxObject != NULL && SkyBoxObject->data.dobj != NULL) {
         SkyBoxObject->data.dobj->position.v.x = posX;
@@ -225,7 +225,7 @@ void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 arg3, f32 arg4) {
         SkyBoxObject->data.dobj->position.v.z = posZ;
     }
 
-    SkyBoxObject->data.dobj->rotation.f[2] = arg3;
+    SkyBoxObject->data.dobj->rotation.f[2] = yaw;
 
     if (SkyBoxAnimation != NULL) {
         animSetModelTreeTextureAnimation(SkyBoxObject, SkyBoxAnimation, arg4);

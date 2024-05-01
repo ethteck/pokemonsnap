@@ -603,6 +603,8 @@ segments:
     subsegments:
     - [0x557050, bin] # , data]
   - name: beach_code
+    dir: beach
+    symbol_name_format: beach_$VRAM
     type: code
     start: 0x55C110
     vram: 0x802C40A0
@@ -625,7 +627,7 @@ segments:
     - [0x562370, c]
     - [0x562BC0, c]
     - [0x563000, c]
-    - [0x563E80, bin] # , data]
+    - [0x563E80, data]
 
     - [0x566160, .rodata, 55C870]
     - [0x5661B0, .rodata, 55D690]

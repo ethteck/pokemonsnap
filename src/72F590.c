@@ -49,7 +49,7 @@ void func_802DE4C0_72F6C0(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0, 1.0f, 0.05f, 0.0f, 2);
+    animalPathLoop(obj, 0, 1, 0.05f, 0.0f, 2);
     animal->pathProcess = NULL;
     animal->processFlags |= 2;
     omEndProcess(NULL);

@@ -113,7 +113,7 @@ void func_801E4E04_994874(void);
 
 s32 func_802BE3B0_640860(s32);
 
-s32 func_802C4740_55C7B0(s32);
+s32 func_beach_802C4740(s32);
 s32 func_802C6544_79FAD4(s32);
 
 s32 func_802D67C4_7279C4(s32);
@@ -206,5 +206,8 @@ void func_8037519C_84894C(s32, char*, ...);
 void func_80375284_848A34(int);
 
 void func_8037005C_84380C(s32, s32);
+
+void func_80362EE0_5032F0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
+void func_80362DC4_5031D4(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
 #endif

@@ -237,7 +237,7 @@ void start_scene_manager(s32 arg0) {
                 func_800AAF20();
                 func_8009AE0C(0);
                 setLevelId(0);
-                sceneId = func_802C4740_55C7B0(sceneId);
+                sceneId = func_beach_802C4740(sceneId);
                 break;
             case SCENE_TUNNEL:
                 func_800AAF20();

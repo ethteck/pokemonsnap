@@ -422,31 +422,76 @@ void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
     }
 }
 
-s32 func_8009C304(void*, GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C304.s")
+
+typedef struct UnkFunc8009C450_Unk140 {
+    u8 pad[0x10];
+} UnkFunc8009C450_Unk140;
 
 typedef struct UnkFunc8009C450 {
     /* 0x000 */ u8 pad[0x140];
-    /* 0x140 */ s32 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
+    /* 0x140 */ UnkFunc8009C450_Unk140 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
 } UnkFunc8009C450;
 
-// arg0 is a fake type, but hopefully this helps identify it later.
-// Could be (UnkFunc8009C450 *arg0) : &arg0->unk_140[i * 4]
-void func_8009C450(s32 *arg0, u8 objIndex) {
+s32 func_8009C304(UnkFunc8009C450_Unk140*, GObj*);
+
+void func_8009C450(UnkFunc8009C450 *arg0, u8 objIndex) {
     GObj* obj;
     s32 i;
 
     i = 0;
     obj = omGObjListHead[objIndex];
     while (obj != NULL && i < 6) {
-        if (!(obj->flags & 1) && (func_803647BC(obj) == 0) && (func_8009C304(arg0 + 80 + (i * 4), obj) != 0)) {
+        if (!(obj->flags & 1) && (func_803647BC(obj) == 0) && (func_8009C304(&arg0->unk_140[i], obj) != 0)) {
             i++;
         }
         obj = obj->next;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C4F4.s")
+typedef struct UnkFunc8009C4F4_arg0 {
+    s32 unk_00_25 : 7;
+    s32 unk_00_24 : 1;
+    s32 unk_00_16 : 8;
+    s32 unk_00_8 : 8;
+    s32 unk_00_0 : 8;
+    f32 unk_04;
+    f32 unk_08;
+    f32 unk_0C;
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    f32 unk_1C;
+} UnkFunc8009C4F4_arg0;
+
+typedef struct UnkFunc8009C4F4_arg1 {
+    u8 pad00[0x8];
+    s32 *unk_8;
+} UnkFunc8009C4F4_arg1;
+
+typedef struct UnkFunc8009C4F4_arg2 {
+    u8 pad00[0x3C];
+    f32 unk_3C;
+    f32 unk_40;
+    f32 unk_44;
+    f32 unk_48;
+    f32 unk_4C;
+    f32 unk_50;
+} UnkFunc8009C4F4_arg2;
+
+f32 func_800E219C(void);
+
+void func_8009C4F4(UnkFunc8009C4F4_arg0* arg0, UnkFunc8009C4F4_arg1* arg1, UnkFunc8009C4F4_arg2* arg2) {
+    arg0->unk_00_25 = getLevelId();
+    arg0->unk_00_16 = *arg1->unk_8;
+    arg0->unk_04 = func_800E219C();
+    arg0->unk_08 = arg2->unk_3C;
+    arg0->unk_0C = arg2->unk_40;
+    arg0->unk_10 = arg2->unk_44;
+    arg0->unk_14 = arg2->unk_48;
+    arg0->unk_18 = arg2->unk_4C;
+    arg0->unk_1C = arg2->unk_50;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C584.s")
 

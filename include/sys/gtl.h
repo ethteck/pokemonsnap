@@ -23,7 +23,7 @@ typedef struct {
     /* 0x08 */ void (*fnDraw)(void);
     /* 0x0C */ void* heapBase;
     /* 0x10 */ u32 heapSize;
-    /* 0x14 */ u32 unk14; // count?
+    /* 0x14 */ u32 unk_14; // count?
     /* 0x18 */ s32 numContexts;
     /* 0x1C */ u32 dlBufferSize0;
     /* 0x20 */ u32 dlBufferSize1;

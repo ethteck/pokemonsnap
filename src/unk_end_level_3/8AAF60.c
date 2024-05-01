@@ -11,20 +11,20 @@ void func_800E5740_8AAF60(s32 arg0) {
         var_s1 -= 1;
         switch (D_801C5510_98AD30) {
             case 0:
-                D_80206B7C_9CC39C->sprite.attr |= 4;
-                D_80206B80_9CC3A0->sprite.attr |= 4;
+                D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
+                D_80206B80_9CC3A0->sprite.attr |= SP_HIDDEN;
                 break;
             case 1:
                 frame &= 3;
                 D_80206B7C_9CC39C->sprite.bitmap = D_801C5484_98ACA4[frame];
-                D_80206B7C_9CC39C->sprite.attr &= ~4;
-                D_80206B80_9CC3A0->sprite.attr |= 4;
+                D_80206B7C_9CC39C->sprite.attr &= ~SP_HIDDEN;
+                D_80206B80_9CC3A0->sprite.attr |= SP_HIDDEN;
                 break;
             case 2:
                 frame &= 3;
                 D_80206B80_9CC3A0->sprite.bitmap = D_801C5474_98AC94[frame];
-                D_80206B80_9CC3A0->sprite.attr &= ~4;
-                D_80206B7C_9CC39C->sprite.attr |= 4;
+                D_80206B80_9CC3A0->sprite.attr &= ~SP_HIDDEN;
+                D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
                 break;
         }
         if (var_s1 == 0) {
@@ -89,13 +89,13 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 break;
 
             case 1:
-                D_80206B68_9CC388->sprite.x = 0x89;
-                D_80206B68_9CC388->sprite.y = 0x79;
+                D_80206B68_9CC388->sprite.x = 137;
+                D_80206B68_9CC388->sprite.y = 121;
                 var_s2 = 0;
 
                 frame = 0;
                 frame_counter = 0;
-                D_80206B64_9CC384->sprite.attr |= 4;
+                D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
                 D_80206B68_9CC388->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 2;
                 do {
@@ -117,13 +117,13 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 break;
 
             case 2:
-                D_80206B70_9CC390->sprite.x = 0x69;
-                D_80206B70_9CC390->sprite.y = 0x75;
+                D_80206B70_9CC390->sprite.x = 105;
+                D_80206B70_9CC390->sprite.y = 117;
                 frame = 0;
-                D_80206B60_9CC380->sprite.attr |= 4;
+                D_80206B60_9CC380->sprite.attr |= SP_HIDDEN;
                 var_s2_2 = 0;
                 frame_counter = 0;
-                D_80206B68_9CC388->sprite.attr |= 4;
+                D_80206B68_9CC388->sprite.attr |= SP_HIDDEN;
                 D_80206B70_9CC390->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 3;
                 D_801C5510_98AD30 = 2;
@@ -151,13 +151,13 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 break;
 
             case 3:
-                D_80206B74_9CC394->sprite.x = 0xAA;
-                D_80206B74_9CC394->sprite.y = 0x79;
-                D_80206B70_9CC390->sprite.attr |= 4;
+                D_80206B74_9CC394->sprite.x = 170;
+                D_80206B74_9CC394->sprite.y = 121;
+                D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
                 var_s2_3 = 0;
                 frame = 0;
                 frame_counter = 0;
-                D_80206B74_9CC394->sprite.attr &= ~4;
+                D_80206B74_9CC394->sprite.attr &= ~SP_HIDDEN;
                 while (var_s2_3 != 0x3C) {
                     frame_counter += 1;
                     if (frame_counter >= 4) {
@@ -188,7 +188,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
 
             case 4:
                 D_801C5514_98AD34 = 0;
-                D_80206B64_9CC384->sprite.attr |= 4;
+                D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
                 frame = 0;
                 D_80206B6C_9CC38C->sprite.attr &= ~SP_HIDDEN;
                 frame_counter = 0;
@@ -216,7 +216,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 if (var_v0 == 0) {
                     ohWait(0x1E);
                     D_80206B64_9CC384->sprite.attr &= ~SP_HIDDEN;
-                    D_80206B6C_9CC38C->sprite.attr |= 4;
+                    D_80206B6C_9CC38C->sprite.attr |= SP_HIDDEN;
                 }
                 D_801C551C_98AD3C = 0;
                 break;
@@ -227,7 +227,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
 #endif
 
 void func_800E5EBC_8AB6DC(void) {
-    if (!(rand() & 0x12)) {
+    if ((rand() & 0x12) == 0) {
         func_800BF780_5C620(randT());
     }
 }
@@ -244,7 +244,7 @@ void func_800E5EF8_8AB718(void) {
     temp_s0 = func_800C0290_5D130();
     if (func_800BFC5C_5CAFC() == temp_s0) {
         if (func_800BFC5C_5CAFC() != 6) {
-            D_80206B78_9CC398->sprite.attr |= 4;
+            D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
         }
         while (1) {
             ohWait(1);
@@ -252,7 +252,7 @@ void func_800E5EF8_8AB718(void) {
     }
 
     if (func_800C0290_5D130() != 6) {
-        D_80206B78_9CC398->sprite.attr |= 4;
+        D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
         while (1) {
 
             ohWait(1);
@@ -293,9 +293,9 @@ void func_800E60D8_8AB8F8(s32 arg0) {
     if ((D_80206B78_9CC398 != NULL) && (func_800BFC5C_5CAFC() == 6)) {
         if (arg0 != 0) {
             D_80206B78_9CC398->sprite.attr &= ~SP_HIDDEN;
-            return;
+        } else {
+            D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
         }
-        D_80206B78_9CC398->sprite.attr |= 4;
     }
 }
 
@@ -324,18 +324,18 @@ void func_800E61B4_8AB9D4(s32 arg0, s32 arg1) {
                 D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
                 D_80206B74_9CC394->sprite.attr |= SP_HIDDEN;
                 D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
-                D_80206B60_9CC380->sprite.x = 0x69;
-                D_80206B60_9CC380->sprite.y = 0x75;
-                D_80206B64_9CC384->sprite.x = 0xAA;
-                D_80206B64_9CC384->sprite.y = 0x79;
-                D_80206B68_9CC388->sprite.x = 0x89;
-                D_80206B68_9CC388->sprite.y = 0x79;
-                D_80206B6C_9CC38C->sprite.x = 0x69;
-                D_80206B6C_9CC38C->sprite.y = 0x75;
-                D_80206B70_9CC390->sprite.x = 0xAA;
-                D_80206B70_9CC390->sprite.y = 0x79;
-                D_80206B74_9CC394->sprite.x = 0xAA;
-                D_80206B74_9CC394->sprite.y = 0x79;
+                D_80206B60_9CC380->sprite.x = 105;
+                D_80206B60_9CC380->sprite.y = 117;
+                D_80206B64_9CC384->sprite.x = 170;
+                D_80206B64_9CC384->sprite.y = 121;
+                D_80206B68_9CC388->sprite.x = 137;
+                D_80206B68_9CC388->sprite.y = 121;
+                D_80206B6C_9CC38C->sprite.x = 105;
+                D_80206B6C_9CC38C->sprite.y = 117;
+                D_80206B70_9CC390->sprite.x = 170;
+                D_80206B70_9CC390->sprite.y = 121;
+                D_80206B74_9CC394->sprite.x = 170;
+                D_80206B74_9CC394->sprite.y = 121;
                 D_801C5510_98AD30 = 0;
                 return;
             case 1:
@@ -372,48 +372,48 @@ void func_800E6410_8ABC30(void) {
     D_801C5514_98AD34 = 0;
 
     D_80206B78_9CC398 = func_800A9F10(func_800E5EF8_8AB718, 6, &D_801BED90_9845B0)->data.sobj;
-    D_80206B78_9CC398->sprite.x = 0x6D;
-    D_80206B78_9CC398->sprite.y = 0x18;
+    D_80206B78_9CC398->sprite.x = 109;
+    D_80206B78_9CC398->sprite.y = 24;
     D_80206B78_9CC398->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
 
     D_80206B60_9CC380 = func_800A9F10(func_800E58D0_8AB0F0, 6, &D_80197EB0_95D6D0)->data.sobj;
-    D_80206B60_9CC380->sprite.x = 0x69;
-    D_80206B60_9CC380->sprite.y = 0x75;
+    D_80206B60_9CC380->sprite.x = 105;
+    D_80206B60_9CC380->sprite.y = 117;
     D_80206B60_9CC380->sprite.attr |= SP_HIDDEN;
 
     D_80206B64_9CC384 = func_800A9F10(NULL, 6, &D_80198FB8_95E7D8)->data.sobj;
-    D_80206B64_9CC384->sprite.x = 0xAA;
-    D_80206B64_9CC384->sprite.y = 0x79;
+    D_80206B64_9CC384->sprite.x = 170;
+    D_80206B64_9CC384->sprite.y = 121;
     D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
 
     D_80206B68_9CC388 = func_800A9F10(NULL, 6, &D_8019C2D0_961AF0)->data.sobj;
-    D_80206B68_9CC388->sprite.x = 0x89;
-    D_80206B68_9CC388->sprite.y = 0x79;
+    D_80206B68_9CC388->sprite.x = 137;
+    D_80206B68_9CC388->sprite.y = 121;
     D_80206B68_9CC388->sprite.attr |= SP_HIDDEN;
 
     D_80206B6C_9CC38C = func_800A9F10(NULL, 6, &D_801A2900_968120)->data.sobj;
-    D_80206B6C_9CC38C->sprite.x = 0xAA;
-    D_80206B6C_9CC38C->sprite.y = 0x79;
+    D_80206B6C_9CC38C->sprite.x = 170;
+    D_80206B6C_9CC38C->sprite.y = 121;
     D_80206B6C_9CC38C->sprite.attr |= SP_HIDDEN;
 
     D_80206B70_9CC390 = func_800A9F10(NULL, 6, &D_801AD198_9729B8)->data.sobj;
-    D_80206B70_9CC390->sprite.x = 0x69;
-    D_80206B70_9CC390->sprite.y = 0x75;
+    D_80206B70_9CC390->sprite.x = 105;
+    D_80206B70_9CC390->sprite.y = 117;
     D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
 
     D_80206B74_9CC394 = func_800A9F10(NULL, 6, &D_801B93A8_97EBC8)->data.sobj;
-    D_80206B74_9CC394->sprite.x = 0xAA;
-    D_80206B74_9CC394->sprite.y = 0x79;
+    D_80206B74_9CC394->sprite.x = 170;
+    D_80206B74_9CC394->sprite.y = 121;
     D_80206B74_9CC394->sprite.attr |= SP_SCALE | SP_HIDDEN;
 
     D_80206B7C_9CC39C = func_800A9F10(func_800E5740_8AAF60, 6, &D_801C31B0_9889D0)->data.sobj;
-    D_80206B7C_9CC39C->sprite.x = 0x107;
-    D_80206B7C_9CC39C->sprite.y = 0x79;
+    D_80206B7C_9CC39C->sprite.x = 263;
+    D_80206B7C_9CC39C->sprite.y = 121;
     D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
 
     D_80206B80_9CC3A0 = func_800A9F10(NULL, 6, &D_801BFE98_9856B8)->data.sobj;
-    D_80206B80_9CC3A0->sprite.x = 0x107;
-    D_80206B80_9CC3A0->sprite.y = 0x79;
+    D_80206B80_9CC3A0->sprite.x = 263;
+    D_80206B80_9CC3A0->sprite.y = 121;
     D_80206B80_9CC3A0->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
 }
 

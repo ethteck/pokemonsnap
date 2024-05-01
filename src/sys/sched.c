@@ -928,7 +928,7 @@ void scHandleSPTaskDone(void) {
         scCurrentAudioTask->info.state = SC_TASK_STATE_RUNNUNG;
     }
 
-    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 1 && scCurrentGfxTask->info.state != SC_TASK_STATE_SUSPENDED) {
+    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk_18 == 1 && scCurrentGfxTask->info.state != SC_TASK_STATE_SUSPENDED) {
         if (scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX && scCurrentGfxTask->unk74 == 1) {
             osInvalDCache(&scUnknownU64, sizeof(scUnknownU64));
             scCurrentGfxTask->rdpBufSize = scUnknownU64;
@@ -948,7 +948,7 @@ void scHandleSPTaskDone(void) {
         return;
     }
 
-    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 2 && scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
+    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk_18 == 2 && scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
         scCurrentGfxTask->info.state = SC_TASK_STATE_STOPPED;
         if (!(scCurrentGfxTask->unk7C & 2)) {
             scCurrentGfxTask->unk7C |= 1;
@@ -957,7 +957,7 @@ void scHandleSPTaskDone(void) {
 }
 
 void scHandleDPFullSync(void) {
-    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk18 == 2) {
+    if (scCurrentGfxTask != NULL && scCurrentGfxTask->info.unk_18 == 2) {
         if (scCurrentGfxTask->info.type == SC_TASK_TYPE_GFX) {
             if (scCurrentGfxTask->fb != NULL) {
                 if (scPostProcessFunc != NULL) {
@@ -1000,7 +1000,7 @@ void scHandleDPFullSync(void) {
 
         scCurrentQueue3Task = NULL;
         func_80001F24();
-    } else if (scPausedQueueHead != NULL && scPausedQueueHead->info.unk18 == 2) {
+    } else if (scPausedQueueHead != NULL && scPausedQueueHead->info.unk_18 == 2) {
         if (scPausedQueueHead->info.type == SC_TASK_TYPE_GFX) {
             if (scPausedQueueHead->fb != NULL) {
                 if (scPostProcessFunc != NULL) {

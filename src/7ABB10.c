@@ -21,7 +21,7 @@ void func_802D2604(GObj* obj) {
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
 
     // clang-format off
-    animal->counter = 1; animal->processFlags &= ~4;
+    animal->counter = 1; animal->processFlags &= ~SP_HIDDEN;
     // clang-format on
     animal->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);
@@ -35,7 +35,7 @@ void func_802D2684(GObj* obj) {
 
     omCreateProcess(obj, spawnStarmieAtGeo, 1, 1);
     // clang-format off
-    animal->counter = 1; animal->processFlags &= ~4;
+    animal->counter = 1; animal->processFlags &= ~SP_HIDDEN;
     // clang-format on
     animal->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);

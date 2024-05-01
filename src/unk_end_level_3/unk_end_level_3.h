@@ -109,7 +109,7 @@ void func_800E1C18_8A7438(s32);
 void func_800E1CA0_8A74C0(s32);
 void func_800E1D1C_8A753C(s32 arg0);
 void func_800E1D68_8A7588(u32 arg0);
-void func_800E1FEC_8A780C(s32);
+//void func_800E1FEC_8A780C(s32);
 void func_800E2058_8A7878(GObj*);
 void func_800E235C_8A7B7C(s32);
 void func_800E2848_8A8068(void);

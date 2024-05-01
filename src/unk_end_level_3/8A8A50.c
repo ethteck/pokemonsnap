@@ -8,6 +8,7 @@ void* func_800E3230_8A8A50(void) {
     return &D_801958C0_95B0E0;
 }
 
+// TODO struct in arg1
 s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     int temp;
     if (arg0 == NULL) {
@@ -143,16 +144,15 @@ s32 func_800E3404_8A8C24(void) {
 
 s32 func_800E3774_8A8F94(void) {
     s32 i;
-    s32 var_s1;
+    s32 ret = 0;
 
-    var_s1 = 0;
-    for (i = 0; i < 0x3C; i++) {
+    for (i = 0; i < 60; i++) {
         if (func_800BFA44_5C8E4(i) != 0) {
-            var_s1 += 1;
+            ret++;
         }
     }
 
-    return var_s1;
+    return ret;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/D_801C5650_98AE70.s")
@@ -188,13 +188,13 @@ s32 func_800E3CE8_8A9508(void) {
     while (1) {
         temp_v1 = func_800AA38C(0)->unk_18;
         if (temp_v1 & 0x8000) {
-            auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
+            auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             auPlaySound(0x53U);
             func_8036A8E4_83E094(sp2C);
             func_8036B9EC_83F19C(sp2C, 0, 0x20);
             func_8036C898_840048(sp2C, "\\eSaving...\\p");
             ohWait(0x30);
-            auSetBGMVolumeSmooth(0, 0U, 0x1EU);
+            auSetBGMVolumeSmooth(0, 0U, 0x1E);
             ohWait(0x21);
             if (func_800BFCA0_5CB40(0x15) != 0) {
                 D_80206B48_9CC368();
@@ -202,7 +202,7 @@ s32 func_800E3CE8_8A9508(void) {
             if (func_800BF244_5C0E4() != 0) {
                 func_800E30B8_8A88D8();
             }
-            auSetBGMVolumeSmooth(0, 0x7F00U, 0x12U);
+            auSetBGMVolumeSmooth(0, 0x7F00, 0x12);
             ohWait(0x15);
             func_8036A8E4_83E094(sp2C);
             func_8036C898_840048(sp2C, "Would you like to keep going?\n\\a Yes!  \\b No!");
@@ -212,7 +212,7 @@ s32 func_800E3CE8_8A9508(void) {
                     auPlaySound(0x53U);
                     func_8036A8E4_83E094(sp2C);
                     func_8036C898_840048(sp2C, "I'm looking forward to seeing\nyour new shots!");
-                    ohWait(0x78);
+                    ohWait(120);
                     D_80195894_95B0B4 = 8;
                     return 4;
                 }

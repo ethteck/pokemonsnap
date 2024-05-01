@@ -877,7 +877,7 @@ void auThreadMain(UNUSED void* arg) {
         auTask->info.type = SC_TASK_TYPE_AUDIO;
         auTask->info.priority = 80;
         auTask->info.fnCheck = NULL;
-        auTask->info.unk18 = 1;
+        auTask->info.unk_18 = 1;
         auTask->info.retVal = 0;
         auTask->info.mq = &auSPTaskMessageQueue;
 

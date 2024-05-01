@@ -323,7 +323,7 @@ SceneSetup menu_new_game_setup = {
         omDrawAll,                  /* fnDraw */
         menu_new_game_VRAM_END,     /* heapBase */
         0,                          /* heapSize */
-        2,                          /* unk14 */
+        2,                          /* unk_14 */
         1,                          /* numContexts */
         0x5000,                     /* dlBufferSize0 */
         0x2000,                     /* dlBufferSize1 */

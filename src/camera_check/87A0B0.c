@@ -23,7 +23,7 @@ void func_camera_check_801DC910(void) {
     camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
                             func_camera_check_801DC8D0, 0, 1);
     camera = camObj->data.cam;
-    camObj->unk38 = 0x100000;
+    camObj->unk_38 = 0x100000;
     camera->flags |= 6;
     camera->flags &= ~3;
     func_800A844C(camera, 0, 0, 640, 480);

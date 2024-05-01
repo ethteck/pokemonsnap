@@ -256,7 +256,7 @@ void func_credits_801DD428(void) {
     func_credits_801DD3E0(sobj);
 
     while (sobj != NULL) {
-        sobj->unk54 = 0;
+        sobj->unk_54 = 0;
         sobj->sprite.attr &= ~SP_HIDDEN;
         sobj = sobj->next;
     }

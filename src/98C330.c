@@ -360,7 +360,7 @@ void func_801DCA48_98C4B8(void) {
 
     camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
                          func_801DCA14_98C484, 0, 1);
-    camObj->unk38 = 0x100000;
+    camObj->unk_38 = 0x100000;
     camera = camObj->data.cam;
     camera->flags |= 0x4 | 0x2;
     camera->flags &= ~(0x2 | 0x1);

@@ -476,7 +476,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 if (aobjArray[ANIM_PARAM_4 - ANIM_PARAM_MODEL_MIN] == NULL) {
                     aobjArray[ANIM_PARAM_4 - ANIM_PARAM_MODEL_MIN] = omDObjAddAObj(dobj, ANIM_PARAM_4);
                 }
-                aobjArray[ANIM_PARAM_4 - ANIM_PARAM_MODEL_MIN]->unk20 = dobj->animList->ptr;
+                aobjArray[ANIM_PARAM_4 - ANIM_PARAM_MODEL_MIN]->unk_20 = dobj->animList->ptr;
                 dobj->animList++;
                 break;
             case ANIM_CMD_END:
@@ -646,7 +646,7 @@ void animModelAnimatedParams(DObj* dobj) {
                             } else if (value > 1.0f) {
                                 value = 1.0f;
                             }
-                            func_8001FCA4(&dobj->position.v, aobj->unk20, value);
+                            func_8001FCA4(&dobj->position.v, aobj->unk_20, value);
                             break;
                         case ANIM_PARAM_POSITION_X:
                             dobj->position.v.x = value;
@@ -992,7 +992,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 if (bitMask & 0x01) {
-                    mobj->texture.unk4C = mobj->animList->w;
+                    mobj->texture.unk_4C = mobj->animList->w;
                     mobj->animList++;
                 }
                 if (bitMask & 0x02) {
@@ -1072,10 +1072,10 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             mobj->imageIndex = value;
                             break;
                         case 14:
-                            mobj->texture.unk14 = value;
+                            mobj->texture.unk_14 = value;
                             break;
                         case 15:
-                            mobj->texture.unk18 = value;
+                            mobj->texture.unk_18 = value;
                             break;
                         case 16:
                             mobj->texture.scaleS = value;
@@ -1087,10 +1087,10 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             mobj->nextImageIndex = value;
                             break;
                         case 19:
-                            mobj->texture.unk3C = value;
+                            mobj->texture.unk_3C = value;
                             break;
                         case 20:
-                            mobj->texture.unk40 = value;
+                            mobj->texture.unk_40 = value;
                             break;
                         case 21:
                             mobj->lodLevel = value;
@@ -1115,11 +1115,11 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             }
 
                             for (i = 0; i < 4; i++) {
-                                color.b[i] = ((256 - v1) * aobj->unk10_color[i] + aobj->unk14_color[i] * v1) / 256;
+                                color.b[i] = ((256 - v1) * aobj->unk_10_color[i] + aobj->unk_14_color[i] * v1) / 256;
                             }
                         }
                     } else {
-                        color.i = *(u32*)(aobj->invDuration <= aobj->time ? aobj->unk14_color : aobj->unk10_color);
+                        color.i = *(u32*)(aobj->invDuration <= aobj->time ? aobj->unk_14_color : aobj->unk_10_color);
                     }
 
                     switch (aobj->paramID) {
@@ -1301,7 +1301,7 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
                     } else if (*outValue > 1.0f) {
                         *outValue = 1.0f;
                     }
-                    func_8001FCA4(interpPos, aobj->unk20, *outValue);
+                    func_8001FCA4(interpPos, aobj->unk_20, *outValue);
                     switch (paramID) {
                         case ANIM_PARAM_POSITION_X:
                             *outValue = interpPos->x;
@@ -2283,7 +2283,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                             aobjArray[3] = omCameraAddAObj(cam, ANIM_PARAM_CAMERA_28);
                         }
 
-                        aobjArray[3]->unk20 = cam->animList->ptr;
+                        aobjArray[3]->unk_20 = cam->animList->ptr;
                         cam->animList++;
                     }
                     if (bitMask & 0x80) {
@@ -2291,7 +2291,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                             aobjArray[7] = omCameraAddAObj(cam, ANIM_PARAM_CAMERA_32);
                         }
 
-                        aobjArray[7]->unk20 = cam->animList->ptr;
+                        aobjArray[7]->unk_20 = cam->animList->ptr;
                         cam->animList++;
                     }
                     break;
@@ -2347,7 +2347,7 @@ void animUpdateCameraAnimatedParams(OMCamera* camera) {
                             } else if (tmp > 1.0f) {
                                 tmp = 1.0f;
                             }
-                            func_8001FCA4(&camera->viewMtx.lookAt.eye, aobj->unk20, tmp);
+                            func_8001FCA4(&camera->viewMtx.lookAt.eye, aobj->unk_20, tmp);
                             break;
                         case ANIM_PARAM_CAMERA_XAT:
                             camera->viewMtx.lookAt.at.x = animGetAObjValue(aobj);
@@ -2365,7 +2365,7 @@ void animUpdateCameraAnimatedParams(OMCamera* camera) {
                             } else if (tmp > 1.0f) {
                                 tmp = 1.0f;
                             }
-                            func_8001FCA4(&camera->viewMtx.lookAt.at, aobj->unk20, tmp);
+                            func_8001FCA4(&camera->viewMtx.lookAt.at, aobj->unk_20, tmp);
                             break;
                         case ANIM_PARAM_CAMERA_ROLL:
                             camera->viewMtx.lookAtRoll.roll = animGetAObjValue(aobj);

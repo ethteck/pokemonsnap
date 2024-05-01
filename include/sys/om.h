@@ -196,7 +196,7 @@ typedef struct GObjProcess {
     /* 0x1C */ union {
         struct GObjThread* thread;
         void (*cb)(struct GObj*);
-    } unk1C;
+    } unk_1C;
     /* 0x20 */ void (*function)(struct GObj*);
 } GObjProcess; // size == 0x24
 
@@ -225,7 +225,7 @@ typedef struct GObj {
     /* 0x2C */ void (*fnRender)(struct GObj*);
     /* 0x30 */ s32 dlLinkBitMask;
     /* 0x34 */ s32 cameraTag;
-    /* 0x38 */ s32 unk38;
+    /* 0x38 */ s32 unk_38;
     /* 0x3C */ GObjCmdList cmdList;
     /* 0x48 */ union {
                 struct DObj* dobj;
@@ -352,7 +352,7 @@ typedef struct DObj {
     /* 0x18 */ struct Mtx3Float position;
     /* 0x28 */ struct Mtx4Float rotation;
     /* 0x3C */ struct Mtx3Float scale;
-    /* 0x4C */ struct DObjDynamicStore* unk4C;
+    /* 0x4C */ struct DObjDynamicStore* unk_4C;
     /* 0x50 */ union {
                     void* any;
                     Gfx* dlist;
@@ -369,7 +369,7 @@ typedef struct DObj {
     /* 0x54 */ u8 flags;
     /* 0x55 */ u8 animCBReceiver;
     /* 0x56 */ u8 numMatrices;
-    /* 0x57 */ u8 unk57;
+    /* 0x57 */ u8 unk_57;
     /* 0x58 */ struct OMMtx* matrices[5];
     /* 0x6C */ struct AObj* aobjList;
     /* 0x70 */ union AnimCmd* animList;
@@ -391,7 +391,7 @@ typedef struct AObj {
     /* 0x18 */ f32 rate;
     /* 0x1C */ f32 targetRate;
     // interpolation control struct?
-    /* 0x20 */ void* unk20;
+    /* 0x20 */ void* unk_20;
 } AObj; // size == 0x24
 
 typedef struct Texture {
@@ -405,35 +405,35 @@ typedef struct Texture {
     ///* 0x0C */ f32 unk0C;
     /* 0x0C */ u16 widthMain;
     /* 0x0E */ u16 heightMain;
-    /* 0x10 */ s32 unk10; // could be f32??
-    /* 0x14 */ f32 unk14;
+    /* 0x10 */ s32 unk_10; // could be f32??
+    /* 0x14 */ f32 unk_14;
     // next three part of vec3f?
-    /* 0x18 */ f32 unk18;
+    /* 0x18 */ f32 unk_18;
     /* 0x1C */ f32 scaleS;
     /* 0x20 */ f32 scaleT;
-    /* 0x24 */ f32 unk24;
-    /* 0x28 */ f32 unk28;
+    /* 0x24 */ f32 unk_24;
+    /* 0x28 */ f32 unk_28;
     /* 0x2C */ u8** palettes; // image pointers?
     /* 0x30 */ u16 flags;     // command flags?
-    /* 0x32 */ u8 unk32;      // texture image format?
-    /* 0x33 */ u8 unk33;
+    /* 0x32 */ u8 unk_32;      // texture image format?
+    /* 0x33 */ u8 unk_33;
     /* 0x34 */ u16 blockWidth;
     /* 0x36 */ u16 blockHeight;
     /* 0x38 */ u16 widthAux;
     /* 0x3A */ u16 heightAux;
-    /* 0x3C */ f32 unk3C;
-    /* 0x40 */ f32 unk40;
-    /* 0x44 */ f32 unk44;
-    /* 0x48 */ u8 pad44[0x4C - 0x48];
-    /* 0x4C */ u32 unk4C;
+    /* 0x3C */ f32 unk_3C;
+    /* 0x40 */ f32 unk_40;
+    /* 0x44 */ f32 unk_44;
+    /* 0x48 */ char unk_48[0x4];
+    /* 0x4C */ u32 unk_4C;
     /* 0x50 */ u8 primR; // primitive color r
     /* 0x51 */ u8 primG; // primitive color g
     /* 0x52 */ u8 primB; // primitive color b
     /* 0x53 */ u8 primA; // primitive color a
-    /* 0x54 */ u8 unk54;
-    /* 0x54 */ u8 minLodValue;
-    /* 0x55 */ u8 unk56;
-    /* 0x56 */ u8 unk57;
+    /* 0x54 */ u8 unk_54;
+    /* 0x55 */ u8 minLodValue;
+    /* 0x56 */ u8 unk_56;
+    /* 0x57 */ u8 unk_57;
     /* 0x58 */ u8 envR;         // env color r
     /* 0x59 */ u8 envG;         // env color g
     /* 0x5A */ u8 envB;         // env color b
@@ -473,8 +473,9 @@ typedef struct SObj {
     /* 0x08 */ struct SObj* next;
     /* 0x0C */ struct SObj* prev;
     /* 0x10 */ Sprite sprite;
-    /* 0x54 */ s32 unk54;
-} SObj; // size >= 0x58
+    /* 0x54 */ s32 unk_54;
+    /* 0x58 */ struct SObj* unk_58;
+} SObj; // size >= 0x5C
 
 typedef struct OMCamera {
     /* 0x00 */ struct OMCamera* nextFree;
@@ -498,7 +499,7 @@ typedef struct OMCamera {
     /* 0x80 */ s32 flags; // attr flags?
     /* 0x84 */ s32 bgColor; // color?
     /* 0x88 */ void (*fnPreRender)(struct OMCamera*, s32);
-    /* 0x8C */ s32 unk8C;
+    /* 0x8C */ s32 unk_8C;
 } OMCamera; // size >= 0x90
 
 typedef struct {
@@ -507,7 +508,7 @@ typedef struct {
     /* 0x08 */ u32 threadStackSize;
     /* 0x0C */ struct ThreadStackNode* stacks;
     /* 0x10 */ u32 numStacks;
-    /* 0x14 */ s32 unk14;
+    /* 0x14 */ s32 unk_14;
     /* 0x18 */ GObjProcess* processes;
     /* 0x1C */ s32 numProcesses;
     /* 0x20 */ struct GObj* commons;

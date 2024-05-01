@@ -18,10 +18,10 @@ s32 func_camera_check_801DCB4C(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DCF9C.s")
 
 void func_camera_check_801DD1F0(void) {
-    s32 var_s0;
+    s32 i;
 
-    for (var_s0 = 0; var_s0 < 7; var_s0++) {
-        func_camera_check_801DCF9C(var_s0);
+    for (i = 0; i < 7; i++) {
+        func_camera_check_801DCF9C(i);
     }
     func_camera_check_801DCD00();
 }
@@ -51,21 +51,21 @@ void func_camera_check_801DDA44(s32 arg0) {
 
     for (i = 0; i < 6; i += 2) {
         if (arg0) {
-            D_camera_check_802499C0[i].var_0->var_48->sprite.attr &= ~4;
+            D_camera_check_802499C0[i].var_0->var_48->sprite.attr &= ~SP_HIDDEN;
         } else {
-            D_camera_check_802499C0[i].var_0->var_48->sprite.attr |= 4;
+            D_camera_check_802499C0[i].var_0->var_48->sprite.attr |= SP_HIDDEN;
         }
         if (arg0) {
-            D_camera_check_802499C0[i + 1].var_0->var_48->sprite.attr &= ~4;
+            D_camera_check_802499C0[i + 1].var_0->var_48->sprite.attr &= ~SP_HIDDEN;
         } else {
-            D_camera_check_802499C0[i + 1].var_0->var_48->sprite.attr |= 4;
+            D_camera_check_802499C0[i + 1].var_0->var_48->sprite.attr |= SP_HIDDEN;
         }
     }
 }
 
 void func_camera_check_801DDAD8(s32 arg0) {
-    D_camera_check_802499C0[6].var_0->var_48->sprite.x = 0x19;
-    D_camera_check_802499C0[6].var_0->var_48->sprite.y = 0x41;
+    D_camera_check_802499C0[6].var_0->var_48->sprite.x = 25;
+    D_camera_check_802499C0[6].var_0->var_48->sprite.y = 65;
 }
 
 void func_camera_check_801DDB08(s32 arg0) {
@@ -74,10 +74,10 @@ void func_camera_check_801DDB08(s32 arg0) {
     }
 
     if (arg0) {
-        D_camera_check_802499C0[6].var_0->var_48->sprite.attr &= ~4;
+        D_camera_check_802499C0[6].var_0->var_48->sprite.attr &= ~SP_HIDDEN;
         func_8036D1A4_840954(D_camera_check_8024991C, 0);
     } else {
-        D_camera_check_802499C0[6].var_0->var_48->sprite.attr |= 4;
+        D_camera_check_802499C0[6].var_0->var_48->sprite.attr |= SP_HIDDEN;
         func_8036D1A4_840954(D_camera_check_8024991C, 1);
     }
 }
@@ -110,14 +110,14 @@ void* func_camera_check_801DDFC4(void) {
     s32 temp_v0_2;
 
     temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
-    D_camera_check_802498F0.unk0 = temp_v0;
+    D_camera_check_802498F0.unk_00 = temp_v0;
     sobj = temp_v0->data.sobj;
     sobj->sprite.x = 0x65;
     sobj->sprite.y = 0x2F;
     sobj->sprite.attr |= SP_HIDDEN;
 
     sobj = func_80371E68_845618(sobj, &D_camera_check_801FDDB8);
-    sobj->sprite.x = 0x8F;
+    sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
@@ -126,46 +126,46 @@ void* func_camera_check_801DDFC4(void) {
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
     sobj->sprite.x = 3;
-    sobj->sprite.y = 0x6C;
+    sobj->sprite.y = 108;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD9E0);
-    sobj->sprite.x = 0xA1;
-    sobj->sprite.y = 0x3C;
-    D_camera_check_802498F0.unk4 = sobj;
+    sobj->sprite.x = 161;
+    sobj->sprite.y = 60;
+    D_camera_check_802498F0.unk_04 = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_80208900);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
-    D_camera_check_802498F0.unkC = sobj;
+    D_camera_check_802498F0.unk_0C = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088);
     sobj->sprite.x = -2;
     sobj->sprite.y = -2;
-    D_camera_check_802498F0.unk8 = sobj;
+    D_camera_check_802498F0.unk_08 = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF128);
-    sobj->sprite.x = 0xE;
-    sobj->sprite.y = 0x48;
+    sobj->sprite.x = 14;
+    sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
-    D_camera_check_802498F0.unk10 = sobj;
+    D_camera_check_802498F0.unk_10 = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF988);
-    sobj->sprite.x = 0x64;
-    sobj->sprite.y = 0x48;
+    sobj->sprite.x = 100;
+    sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
-    D_camera_check_802498F0.unk14 = sobj;
+    D_camera_check_802498F0.unk_14 = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
-    sobj->sprite.x = 0x64;
-    sobj->sprite.y = 0x48;
+    sobj->sprite.x = 100;
+    sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
-    D_camera_check_802498F0.unk18 = sobj;
+    D_camera_check_802498F0.unk_18 = sobj;
 
     sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
-    sobj->sprite.x = 0xE;
-    sobj->sprite.y = 0x48;
+    sobj->sprite.x = 14;
+    sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
-    D_camera_check_802498F0.unk1C = sobj;
+    D_camera_check_802498F0.unk_1C = sobj;
 
     temp_v0_2 = func_8036AC6C_83E41C(0x100, 0x32, 0x54, 0x70, 0x10);
     func_8036B870_83F020(temp_v0_2, 1, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -191,12 +191,12 @@ void* func_camera_check_801DDFC4(void) {
 
 void func_camera_check_801DE80C(s32 arg0, s32 arg1, s32 arg2) {
     if (arg0 != 0) {
-        D_camera_check_802498F0.unk0->data.sobj->sprite.attr &= ~4;
+        D_camera_check_802498F0.unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
     } else {
-        D_camera_check_802498F0.unk0->data.sobj->sprite.attr |= 4;
+        D_camera_check_802498F0.unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
     }
     if (arg0 != 0) {
-        func_80374714_847EC4(func_camera_check_801E2484(arg1), &D_camera_check_802498F0.unkC->sprite);
+        func_80374714_847EC4(func_camera_check_801E2484(arg1), &D_camera_check_802498F0.unk_0C->sprite);
         func_camera_check_801DD238(&D_camera_check_802498F0, arg1, arg2);
     }
     func_camera_check_801DE288(func_camera_check_801E24D8(arg1));
@@ -204,12 +204,12 @@ void func_camera_check_801DE80C(s32 arg0, s32 arg1, s32 arg2) {
 
 void func_camera_check_801DE8AC(s32 arg0, int arg1) {
     if (arg0 != 0) {
-        D_camera_check_802498F0.unk0->data.sobj->sprite.attr &= ~4;
+        D_camera_check_802498F0.unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
     } else {
-        D_camera_check_802498F0.unk0->data.sobj->sprite.attr |= 4;
+        D_camera_check_802498F0.unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
     }
     if (arg0 != 0) {
-        func_80374714_847EC4(func_800BF8BC_5C75C(arg1), &D_camera_check_802498F0.unkC->sprite);
+        func_80374714_847EC4(func_800BF8BC_5C75C(arg1), &D_camera_check_802498F0.unk_0C->sprite);
         func_camera_check_801DD238(&D_camera_check_802498F0, -1, 0);
     }
 }
@@ -255,14 +255,14 @@ void func_camera_check_801DEC84(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DF2D8.s")
 
 void func_camera_check_801DF938(void) {
-    SObj* temp_v1;
+    SObj* sobj;
 
     func_800A85E8(func_camera_check_801DF2D8, 6, 0, 0);
-    temp_v1 = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
-    temp_v1->sprite.width = 0x280;
-    temp_v1->sprite.height = 0x1E0;
-    temp_v1->sprite.istep = 0;
-    D_camera_check_802499A8 = temp_v1;
+    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
+    sobj->sprite.width = 0x280;
+    sobj->sprite.height = 0x1E0;
+    sobj->sprite.istep = 0;
+    D_camera_check_802499A8 = sobj;
     func_camera_check_801DCC0C();
     func_camera_check_801DCB58(0);
 }

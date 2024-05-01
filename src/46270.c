@@ -237,7 +237,7 @@ void start_scene_manager(s32 arg0) {
                 func_800AAF20();
                 func_8009AE0C(SCENE_BEACH);
                 setLevelId(SCENE_BEACH);
-                sceneId = func_802C4740_55C7B0(sceneId);
+                sceneId = func_beach_802C4740(sceneId);
                 break;
             case SCENE_TUNNEL:
                 func_800AAF20();
@@ -287,7 +287,7 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABDEC);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC3C);
-                sceneId = func_800E1AD8_8A72F8(sceneId);
+                sceneId = func_oaks_lab_800E1AD8(sceneId);
                 break;
             case SCENE_12:
                 func_800AAF20();

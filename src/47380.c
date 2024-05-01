@@ -4,6 +4,7 @@
 #endif
 
 void func_8009D21C(s32 arg0, s32* arg1);
+s32 func_803647BC(GObj*);
 
 typedef struct PhotoData {
     u8 pad[0x3A0];
@@ -393,11 +394,57 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BF48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C25C.s")
 
+typedef struct UnkFunc8009C25C_Unk20 {
+    /* 0x00 */ u8 pad00[0x18];
+} UnkFunc8009C25C_Unk20;
+
+typedef struct UnkFunc8009C25C {
+    /* 0x000 */ u8 pad000[0x20];
+    /* 0x020 */ UnkFunc8009C25C_Unk20 unk_020[12]; // 12 may not be the correct array length, it's just how many times it's accessed.
+    /* 0x024 */ u8 pad024[0x264];
+    /* 0x3A4 */ GObj* unk_3A4[12]; // 12 may not be the correct array length, it's just how many times it's accessed.
+} UnkFunc8009C25C;
+
+s32 func_8009BF48(UnkFunc8009C25C_Unk20*, GObj*);
+
+void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
+    GObj* obj;
+    s32 i;
+    i = 0;
+    obj = omGObjListHead[objIndex];
+    while (obj != NULL && i < 12) {
+        if (func_8009BF48(&arg0->unk_020[i], obj) != 0) {
+            arg0->unk_3A4[i] = obj;
+            i++;
+        }
+        obj = obj->next;
+    }
+}
+
+s32 func_8009C304(void*, GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C304.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C450.s")
+typedef struct UnkFunc8009C450 {
+    /* 0x000 */ u8 pad[0x140];
+    /* 0x140 */ s32 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
+} UnkFunc8009C450;
+
+// arg0 is a fake type, but hopefully this helps identify it later.
+// Could be (UnkFunc8009C450 *arg0) : &arg0->unk_140[i * 4]
+void func_8009C450(s32 *arg0, u8 objIndex) {
+    GObj* obj;
+    s32 i;
+
+    i = 0;
+    obj = omGObjListHead[objIndex];
+    while (obj != NULL && i < 6) {
+        if (!(obj->flags & 1) && (func_803647BC(obj) == 0) && (func_8009C304(arg0 + 80 + (i * 4), obj) != 0)) {
+            i++;
+        }
+        obj = obj->next;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C4F4.s")
 

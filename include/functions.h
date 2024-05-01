@@ -125,6 +125,7 @@ void func_8036406C_50447C(s32*, ObjectSpawn*, AnimalDef*);
 void func_803641B8_5045C8(s32, AnimalDef*);
 s32 func_80364718(GObj *);
 s32 func_80364718_504B28(GObj *obj);
+s32 func_803647BC(GObj*);
 void func_8036650C_50691C(void);
 void* func_8036A194_83D944(u32);
 void func_8036A228_83D9D8(void*);

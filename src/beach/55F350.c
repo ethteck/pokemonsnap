@@ -97,7 +97,7 @@ void func_beach_802C762C(GObj* obj) {
     setAnimalAnimation(obj, &D_beach_802CC9C0);
     runPathProcess(obj, func_beach_802C76C4);
     animal->transitionGraph = &D_beach_802CCB28;
-    runInteractionsAndWaitForFlags(obj, 2U);
+    runInteractionsAndWaitForFlags(obj, 2);
     if (!(animal->processFlags & 0x10)) {
         updateAnimalState(obj, func_beach_802C737C);
     }
@@ -122,7 +122,7 @@ void func_beach_802C7748(GObj* obj) {
 
     setAnimalAnimation(obj, &D_beach_802CC9FC);
     animal->transitionGraph = &D_beach_802CCBA8;
-    runInteractionsAndWaitForFlags(obj, 1U);
+    runInteractionsAndWaitForFlags(obj, 1);
     if (animal->interactionTarget != NULL) {
         updateAnimalState(obj, func_beach_802C7748);
     }

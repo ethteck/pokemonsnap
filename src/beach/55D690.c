@@ -1,14 +1,46 @@
 #include "common.h"
 #include "beach.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5620.s")
+void func_beach_802C5620(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    s32 sp34;
+    f32 sp30;
+
+    while (1) {
+        func_80357384_4F7794(&sp34, &sp30);
+        if (sp34 >= 4) {
+            break;
+        }
+
+        if (sp34 == 3 && sp30 >= 0.3) {
+            break;
+        }
+
+        ohWait(1);
+    }
+
+    runAnimalCleanup(obj);
+    func_8035EDC8_4FF1D8(obj);
+}
 
 void func_beach_802C56C8(GObj* obj) {
     func_8035ED90_4FF1A0(obj, func_beach_802C5620);
     updateAnimalState(obj, func_beach_802C5700);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5700.s")
+void func_beach_802C5700(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    animal->flags |= 8;
+    setAnimalAnimation(obj, &D_beach_802CC10C);
+    animal->transitionGraph = &D_beach_802CC1D4;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_beach_802CC2C4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5768.s")
 

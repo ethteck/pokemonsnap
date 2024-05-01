@@ -35,11 +35,47 @@ void func_beach_802C9B9C(GObj* obj) {
     weightedRandomStaightTransition(obj, &D_beach_802CD774);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9BF8.s")
+void func_beach_802C9BF8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9C88.s")
+    animal = obj->userData;
+    setAnimalAnimation(obj, &D_beach_802CD5F8);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    runPathProcess(obj, func_beach_802C9C88);
+    setAnimalAnimation(obj, &D_beach_802CD5D0);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 2);
+    updateAnimalState(obj, func_beach_802C9F9C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9CF8.s")
+void func_beach_802C9C88(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    animal = obj->userData;
+    animal = animal;
+    setNodePosToNegRoom(obj);
+    animalPathLoop(obj, 0.0f, 1.0f, 0.05f, 0.1f, 0x81U);
+    animal->pathProcess = NULL;
+    animal->processFlags |= 2;
+    omEndProcess(NULL);
+}
+
+void func_beach_802C9CF8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    setAnimalAnimation(obj, &D_beach_802CD5A8);
+    runPathProcess(obj, NULL);
+    animal->transitionGraph = &D_beach_802CD634;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_beach_802CD764);
+}
+
+void func_beach_802C9D68() {
+}
 
 void func_beach_802C9D70(GObj* obj) {
     UNUSED s32 pad[3];
@@ -52,7 +88,20 @@ void func_beach_802C9D70(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/561B30/func_beach_802C9DCC.s")
+void func_beach_802C9DCC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Animal* animal = GET_ANIMAL(obj);
+
+    runPathProcess(obj, NULL);
+    setAnimalAnimation(obj, &D_beach_802CD5F8);
+    animal->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    runPathProcess(obj, func_beach_802C9E70);
+    setAnimalAnimation(obj, &D_beach_802CD5E4);
+    animal->transitionGraph = &D_beach_802CD6C4;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updateAnimalState(obj, func_beach_802C9CF8);
+}
 
 void func_beach_802C9E70(GObj* obj) {
     UNUSED s32 pad[3];

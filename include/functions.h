@@ -69,6 +69,7 @@ void func_800AB918(s32);
 void func_800ABB4C(u8 flags);
 u8 func_800ABB68(void);
 void func_800ABB94(void);
+void func_800BFB90_5CA30(s32, s32);
 void func_800BFC18_5CAB8(s32*, s32*);
 s32 func_800BF244_5C0E4(void);
 s32 func_800BF3D4_5C274(s32);

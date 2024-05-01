@@ -15,9 +15,14 @@ typedef struct {
 } ScreenSettings; // size >= 0x18
 
 extern u16* viZBuffer;
+extern s32 viBitDepth;
 extern s32 viScreenWidth;
 extern s32 viScreenHeight;
-extern s32 viBitDepth;
+
+extern s16 viEdgeOffsetLeft;
+extern s16 viEdgeOffsetRight;
+extern s16 viEdgeOffsetTop;
+extern s16 viEdgeOffsetBottom;
 
 void viApplyScreenSettings(ScreenSettings* settings);
 void viSetScreenOffsets(s16, s16, s16, s16);

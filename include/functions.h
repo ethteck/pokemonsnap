@@ -95,6 +95,7 @@ s32 func_800C05D4_5D474(void);
 void func_800C0B48_5D9E8(void);
 s32 func_oaks_lab_800E1AD8(s32);
 void func_800E1C5C_AA0A0C(void);
+f32 func_800E219C(void);
 s32 menu_new_game_entry(s32);
 void func_800E3064(void);
 s32 func_800E4830_A0BDC0(s32);

@@ -422,18 +422,60 @@ void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C304.s")
 
 typedef struct UnkFunc8009C450_Unk140 {
-    u8 pad[0x10];
-} UnkFunc8009C450_Unk140;
+    /* 0x00 */ u8 unk_00;
+    /* 0x01 */ u8 unk_01;
+    /* 0x04 */ Vec3f unk_04;
+} UnkFunc8009C450_Unk140; // size = 0x10
 
 typedef struct UnkFunc8009C450 {
     /* 0x000 */ u8 pad[0x140];
     /* 0x140 */ UnkFunc8009C450_Unk140 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
 } UnkFunc8009C450;
 
-s32 func_8009C304(UnkFunc8009C450_Unk140*, GObj*);
+extern UNK_PTR *D_800E9168;
+extern UNK_PTR *D_800EAF00;
+extern UNK_PTR *D_800EB460;
+extern UNK_PTR *D_800EDAE0;
+
+s32 func_8009C304(UnkFunc8009C450_Unk140* arg0, GObj* obj) {
+    DObj* dobj;
+    u8 temp_t3;
+    UNK_PTR *payload;
+
+    dobj = obj->data.dobj;
+    if (obj->flags & 1) {
+        return 0;
+    }
+    
+    arg0->unk_04.x = dobj->position.v.x;
+    arg0->unk_04.y = dobj->position.v.y;
+    arg0->unk_04.z = dobj->position.v.z;
+    
+    payload = dobj->firstChild->payload.any;
+    if (payload == D_800EB460) {
+        arg0->unk_00 = 3;
+        arg0->unk_01 = (s32) obj->animationTime;
+    }
+    else if (payload == D_800EDAE0) {
+        arg0->unk_00 = 4;
+        arg0->unk_01 = (s32) obj->animationTime;
+    }
+    else if (payload == D_800E9168) {
+        arg0->unk_00 = 1;
+        arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed;
+    }
+    else if (payload == D_800EAF00) {
+        arg0->unk_00 = 2;
+        arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed & 0xF;
+        arg0->unk_01 |= ((s32) ((dobj->scale.v.x * 15.0f) / 0.1f) * 16);
+    } else {
+        return 0;
+    }
+    
+    return 1;
+}
 
 void func_8009C450(UnkFunc8009C450 *arg0, u8 objIndex) {
     GObj* obj;
@@ -478,8 +520,6 @@ typedef struct UnkFunc8009C4F4_arg2 {
     f32 unk_4C;
     f32 unk_50;
 } UnkFunc8009C4F4_arg2;
-
-f32 func_800E219C(void);
 
 void func_8009C4F4(UnkFunc8009C4F4_arg0* arg0, UnkFunc8009C4F4_arg1* arg1, UnkFunc8009C4F4_arg2* arg2) {
     arg0->unk_00_25 = getLevelId();

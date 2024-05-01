@@ -44,7 +44,12 @@ void func_beach_802C431C(s32 arg0) {
     func_803641B8_5045C8(arg0, beachAnimalData);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4340.s")
+void func_beach_802C4340(void) {
+    func_800E4040_617F0(&D_beach_80318F00);
+    func_800E2F38_606E8(&D_8011B914, 0x63, 0x64, 0x7E, 9, 3, beachAnimalAdd, func_beach_802C431C, func_beach_802C42F8);
+    func_800E20B4_5F864();
+    func_80363928_503D38(0x80, 0xE4, 3, 5);
+}
 
 void func_beach_802C43CC(s32 arg0) {
     D_beach_802CC018 = arg0;

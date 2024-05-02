@@ -408,7 +408,7 @@ segments:
     - [0x642F0, .data, 62010]
     - [0x64340, .rodata, 5F050]
     - [0x64380, .rodata, 60D10]
-    - [0x64390, rodata]
+    - [0x64390, .rodata, 617F0]
     - [0x643A0, rodata]
     - [0x643A0, .rodata, 62010]
     - [0x64420, rodata]

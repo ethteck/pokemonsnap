@@ -48,7 +48,7 @@ typedef struct UnkIvoryMamba {
 typedef struct WorldBlockGFX {
     /* 0x00 */ void* gfxData; // type depends on renderFunc value
     /* 0x04 */ Texture*** textures;
-    /* 0x08 */ s32 unk_08;
+    /* 0x08 */ AnimCmd*** unk_08;
     /* 0x0C */ GObjFunc renderFunc;
     /* 0x10 */ UnkEC64Arg3* uvScrollAnim;
     /* 0x14 */ s32 unk_14;
@@ -63,7 +63,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ s32* unk_18;
-    /* 0x1C */ char unk_1C[4];
+    /* 0x1C */ void* unk_1C;
     /* 0x20 */ UnkBeigeServal* unk20;
 } WorldBlockDescriptor; // size >= 0x24
 

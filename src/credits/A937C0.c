@@ -68,7 +68,7 @@ void func_credits_801DCE10(void) {
 
     for (i = 4; i >= 0; i--) {
         gobj = func_credits_801DCC70();
-        (&D_credits_801ECC80)[i] = gobj;
+        D_credits_801ECC80[i] = gobj;
         sobj = gobj->data.sobj;
         func_credits_801DCCE4(sobj);
         func_credits_801DCD60(sobj);
@@ -103,7 +103,7 @@ void func_credits_801DCEF0(GObj* arg0) {
 }
 
 void func_credits_801DCF94(void) {
-    omCreateProcess(D_credits_801ECC80, func_credits_801DCEF0, 0, 1);
+    omCreateProcess(D_credits_801ECC80[0], func_credits_801DCEF0, 0, 1);
 }
 
 s32 func_credits_801DCFC8(GObj* gobj) {
@@ -470,7 +470,7 @@ void func_credits_801DDAE8(u8 arg0) {
 }
 
 void func_credits_801DDB60(void) {
-    UnkChartreuseAngler* var_s0;
+    Credit* var_s0;
     f32 var_f20;
 
     if (D_credits_801ECDA0 == SCENE_CREDITS_19) {
@@ -480,25 +480,25 @@ void func_credits_801DDB60(void) {
     }
 
     var_s0 = D_credits_801ECCB0;
-    while (var_s0->unkC != 0) {
-        var_s0->unk4 -= var_f20;
-        func_8036CBA0_840350(var_s0->unkC, var_s0->unk0, var_s0->unk4);
+    while (var_s0->unk_C != 0) {
+        var_s0->unk_4 -= var_f20;
+        func_8036CBA0_840350(var_s0->unk_C, var_s0->unk_0, var_s0->unk_4);
         var_s0++;
     }
 }
 
-UnkChartreuseAngler* func_credits_801DDC0C(void) {
-    UnkChartreuseAngler* var_v1 = D_credits_801ECCB0;
+Credit* func_credits_801DDC0C(void) {
+    Credit* var_v1 = D_credits_801ECCB0;
 
-    while (var_v1->unkC != 0) {
-        if (var_v1->unk4 < -18.0f) {
+    while (var_v1->unk_C != 0) {
+        if (var_v1->unk_4 < -18.0f) {
             break;
         }
 
         var_v1++;
     }
 
-    if (var_v1->unkC == 0) {
+    if (var_v1->unk_C == 0) {
         return NULL;
     }
 
@@ -506,7 +506,7 @@ UnkChartreuseAngler* func_credits_801DDC0C(void) {
 }
 
 void func_credits_801DDC70(void) {
-    UnkChartreuseAngler* var_s0;
+    Credit* var_s0;
     f32 var_f20;
     s16 i;
     s32 temp_v0;
@@ -515,19 +515,19 @@ void func_credits_801DDC70(void) {
     var_s0 = D_credits_801ECCB0;
 
     for (i = 0; i < 14; i++) {
-        var_s0->unk4 = var_f20;
-        var_s0->unk0 = 0xA0;
+        var_s0->unk_4 = var_f20;
+        var_s0->unk_0 = 0xA0;
         var_f20 += 18.0f;
         func_8036D4A0_840C50(0);
-        temp_v0 = func_8036AC6C_83E41C(var_s0->unk0, var_s0->unk4, 0xFC, 0xF, 0x400);
-        var_s0->unkC = temp_v0;
+        temp_v0 = func_8036AC6C_83E41C(var_s0->unk_0, var_s0->unk_4, 0xFC, 0xF, 0x400);
+        var_s0->unk_C = temp_v0;
         func_8036CB58_840308(temp_v0, 0xC);
-        func_8036B734_83EEE4(var_s0->unkC);
-        func_8036B9EC_83F19C(var_s0->unkC, 0, 0);
-        func_8036B870_83F020(var_s0->unkC, 0, 0, 0, 0, 0);
+        func_8036B734_83EEE4(var_s0->unk_C);
+        func_8036B9EC_83F19C(var_s0->unk_C, 0, 0);
+        func_8036B870_83F020(var_s0->unk_C, 0, 0, 0, 0, 0);
         var_s0++;
     }
-    var_s0->unkC = 0;
-    var_s0->unk0 = 0;
-    var_s0->unk4 = 0.0f;
+    var_s0->unk_C = 0;
+    var_s0->unk_0 = 0;
+    var_s0->unk_4 = 0.0f;
 }

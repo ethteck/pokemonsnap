@@ -1,5 +1,4 @@
-#include "common.h"
-#include "level_low.h"
+#include "world.h"
 
 void func_800E354C_60CFC(s32, s32);
 void func_800E3464_60C14(WorldBlock*);
@@ -22,9 +21,9 @@ f32 D_800E6AEC_6429C = 0.0f;
 f32 D_800E6AF0_642A0 = 1.0f;
 s32 D_800E6AF4_642A4 = 10000;
 AnimCmd*** SkyBoxAnimation = NULL;
-void (*D_800E6AFC_642AC)(WorldBlock*, WorldBlock*) = NULL;
-void (*WorldBlockDeleteCb)(WorldBlock*) = NULL;
-void (*D_800E6B04_642B4)(WorldBlock*, WorldBlock*) = NULL;
+BlockFunc2 D_800E6AFC_642AC = NULL;
+BlockFunc WorldBlockDeleteCb = NULL;
+BlockFunc2 D_800E6B04_642B4 = NULL;
 // split
 extern s32 D_800E6B10_642C0;
 extern s32 D_800E6B14_642C4;
@@ -33,7 +32,7 @@ extern s32 D_800E6B14_642C4;
 static char D_800F5A00_731B0[8]; // padding
 static WorldBlock* worldBlocks[13];
 static WorldBlock worldBlockArray[13];
-static UnkIvoryMamba D_800F5BB0_73360[13];
+static DObj* D_800F5BB0_73360[13 * 3];
 static UnkAquamarineCoyote D_800F5C50_73400[14];
 static char D_800F5CF8_734A8[0x48];
 
@@ -59,7 +58,7 @@ void func_800E18A0_5F050(u32 visibilityMask) {
 }
 #else
 void func_800E18A0_5F050(u32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E18A0_5F050.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E18A0_5F050.s")
 #endif
 
 void func_800E1924_5F0D4(void) {
@@ -277,7 +276,7 @@ void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
     arg0->blockModel->data.dobj->position.v.z = (z1 - arg1->descriptor->unk_04.z) * 100.0f;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E21E4_5F994.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E21E4_5F994.s")
 void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1);
 #endif
 
@@ -387,7 +386,6 @@ WorldBlock* func_800E2400_5FBB0(void) {
     return D_800E6AD0_64280;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E25E4_5FD94.s")
 WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
     s32 i;
     WorldBlock* v1;
@@ -556,8 +554,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     return obj;
 }
 
-#ifdef NON_MATCHING
-WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, void (*arg6)(WorldBlock*, WorldBlock*), void (*deleteCb)(WorldBlock*), void (*arg8)(WorldBlock*, WorldBlock*)) {
+WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, BlockFunc2 arg6, BlockFunc deleteCb, BlockFunc2 arg8) {
     s32 i;
     s32 num1;
     WorldBlock* s0;
@@ -582,7 +579,7 @@ WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMin
     ptr = arg0->unk_00;
     createSkyBox(arg0->skybox);
     
-    for (i = 0; (i < 13) != 0; i++) {
+    for (i = 0; i < 13; i++) {
         if (ptr[i] == NULL) {
             break;
         }
@@ -600,7 +597,7 @@ WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMin
         s0->index = i;
         s0->descriptor = ptr[i];
         if (i > 0) {
-            if (s0) { }
+            if (s0) { } // TODO fake match
             s0->prev = worldBlocks[i - 1];
         } else {
             s0->prev = NULL;
@@ -609,7 +606,7 @@ WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMin
         if (s0->descriptor->gfx->unk_14 <= 0 || s0->descriptor->gfx->unk_14 >= 4) {
             s0->unk_18 = NULL;
         } else {
-            s0->unk_18 = &D_800F5BB0_73360[i];
+            s0->unk_18 = &D_800F5BB0_73360[3 * i];
         }
 
         s0->blockModel = createWorldBlockModel(s0);
@@ -638,7 +635,7 @@ WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMin
         s0->descriptor = ptr[i - num1];
         s0->prev = NULL;
         s0->next = NULL;
-        if (1) { } if (1) { }
+        if (1) { } if (1) { } // TODO fake match
         s0->blockModel = createWorldBlockModel(s0);
         s0->blockUV = NULL;
         s0->unk_18 = NULL;
@@ -664,12 +661,8 @@ WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMin
 
     return worldBlocks;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E2C24_603D4.s")
-WorldBlock** func_800E2C24_603D4(UnkBoneFox* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8);
-#endif
 
-s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8) {
     func_800E1924_5F0D4();
     if (arg0 == NULL || arg0->unk_00 == NULL) {
         return FALSE;
@@ -679,7 +672,7 @@ s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 arg1, s32 arg2, s32 arg3, s32 
     func_800A18AC(arg0->unk_14, arg0->unk_16);
     func_800A181C(arg0->unk_18, arg0->unk_19, arg0->unk_1A);
     func_800A1780(arg0->unk_1B, arg0->unk_1C, arg0->unk_1D);
-    func_800E2C24_603D4(arg0->unk_00, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+    createWorldBlocks(arg0->unk_00, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, arg6, arg7, arg8);
     func_800E1A78_5F228(arg0->unk_10);
     return TRUE;
 }
@@ -704,11 +697,11 @@ void func_800E3064_60814(void) {
     SkyBoxAnimation = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E30B0_60860.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E30B0_60860.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E3258_60A08.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E3258_60A08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5F050/func_800E3464_60C14.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E3464_60C14.s")
 /*void func_800E3464_60C14(WorldBlock* arg0) {
     if (arg0 == NULL || arg0->unk_04 == NULL || arg0->unk_04->unk_18 == NULL) {
         return;

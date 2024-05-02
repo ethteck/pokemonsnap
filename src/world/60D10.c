@@ -1,5 +1,4 @@
-#include "common.h"
-#include "level_low.h"
+#include "world.h"
 
 typedef struct UnkGoldViper {
     /* 0x00 */ f32 unk_00;
@@ -23,7 +22,7 @@ f32 func_800E3560_60D10(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (arg1 - arg0) * (arg4 - arg2) / (arg3 - arg2) + arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/60D10/func_800E3590_60D40.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/60D10/func_800E3590_60D40.s")
 void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6, f32* arg7, f32* arg8, f32* arg9);
 
 #ifdef NON_MATCHING
@@ -90,7 +89,7 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/60D10/func_800E3968_61118.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/60D10/func_800E3968_61118.s")
 void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2);
 #endif
 

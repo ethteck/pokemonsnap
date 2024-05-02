@@ -1,5 +1,5 @@
-#ifndef LEVEL_LOW_H
-#define LEVEL_LOW_H
+#ifndef WORLD_H
+#define WORLD_H
 
 #include "common.h"
 
@@ -41,10 +41,6 @@ typedef struct SkyBox {
     /* 0x10 */ f32 animationSpeed;
 } SkyBox;
 
-typedef struct UnkIvoryMamba {
-    /* 0x00 */ DObj* unk_00[3];
-} UnkIvoryMamba; // size == 0xC
-
 typedef struct WorldBlockGFX {
     /* 0x00 */ void* gfxData; // type depends on renderFunc value
     /* 0x04 */ Texture*** textures;
@@ -74,7 +70,7 @@ typedef struct WorldBlock {
     /* 0x0C */ struct WorldBlock* next;
     /* 0x10 */ GObj* blockModel;
     /* 0x14 */ GObj* blockUV;
-    /* 0x18 */ UnkIvoryMamba* unk_18;
+    /* 0x18 */ DObj** unk_18;
 } WorldBlock; // size = 0x1C
 
 typedef struct UnkBoneFox {
@@ -117,6 +113,9 @@ typedef struct UnkCoralFossa {
     /* 0x18 */ UnkFuchsiaKomodo* unk_18;
 } UnkCoralFossa; // size = 0x1C
 
+typedef void (*BlockFunc)(WorldBlock*);
+typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
+
 WorldBlock* getCurrentWorldBlock(void);
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
 WorldBlock* func_800E26CC_5FE7C(s32 arg0);
@@ -124,5 +123,7 @@ WorldBlock* func_800E2400_5FBB0(void);
 void func_800E4634_61DE4(UnkCoralFossa* arg0, UnkFuchsiaKomodo* arg1);
 UnkFuchsiaKomodo* func_800E4670_61E20(UnkCoralFossa*, f32, f32);
 f32 func_800E4734_61EE4(UnkFuchsiaKomodo*, f32, f32);
+Vec3f* func_800E47C4_61F74(UnkFuchsiaKomodo* arg0);
+s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
 
 #endif

@@ -1,5 +1,4 @@
-#include "common.h"
-#include "level_low.h"
+#include "world.h"
 
 #ifdef NON_MATCHING
 void func_800E4460_61C10(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKomodo* arg2) {
@@ -28,7 +27,7 @@ void func_800E4460_61C10(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKom
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/61C10/func_800E4460_61C10.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/61C10/func_800E4460_61C10.s")
 void func_800E4460_61C10(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKomodo* arg2);
 #endif
 
@@ -59,7 +58,7 @@ void func_800E4584_61D34(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKom
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/61C10/func_800E4584_61D34.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/61C10/func_800E4584_61D34.s")
 void func_800E4584_61D34(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKomodo* arg2);
 #endif
 
@@ -68,7 +67,6 @@ void func_800E4634_61DE4(UnkCoralFossa* arg0, UnkFuchsiaKomodo* arg1) {
     func_800E4584_61D34(arg0, arg0, arg1);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/61C10/func_800E4670_61E20.s")
 UnkFuchsiaKomodo* func_800E4670_61E20(UnkCoralFossa* arg0, f32 arg1, f32 arg2) {
     while (TRUE) {
         if (arg0->unk_00 * arg1 + arg0->unk_04 * arg2 + arg0->unk_08 <= 0.0f) {

@@ -1,6 +1,5 @@
-#include "common.h"
 #include "string.h"
-#include "level_low.h"
+#include "world.h"
 
 UnkChestnutCougar* D_800E6B40_642F0 = NULL;
 Mtx4f D_800E6B44_642F4 = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
@@ -113,7 +112,7 @@ void func_800E4BCC_6237C(Mtx4f dst) {
     dst[3][3] = D_800E6B44_642F4[3][3];
 }
 #else 
-#pragma GLOBAL_ASM("asm/nonmatchings/62010/func_800E4BCC_6237C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/world/62010/func_800E4BCC_6237C.s")
 void func_800E4BCC_6237C(Mtx4f dst);
 #endif
 

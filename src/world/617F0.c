@@ -1,5 +1,4 @@
-#include "common.h"
-#include "level_low.h"
+#include "world.h"
 
 typedef struct UnkMagentaCrocodile {
     /* 0x00 */ UnkFuchsiaKomodo* unk_00;
@@ -16,8 +15,6 @@ typedef struct UnkBurgundyOcelot {
 
 extern UnkMagentaCrocodile* D_800E6B30_642E0;
 extern UnkMagentaCrocodile* D_800E6B34_642E4;
-Vec3f* func_800E47C4_61F74(UnkFuchsiaKomodo* arg0);
-s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
 
 s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
     UnkFuchsiaKomodo* unk_00;

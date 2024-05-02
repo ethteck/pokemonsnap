@@ -389,14 +389,15 @@ segments:
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]
     - { start: auto, name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
-  - name: level_low
+  - name: world
+    dir: world
     type: code
     start: 0x5F050
     vram: 0x800E18A0
     bss_size: 0x390
     exclusive_ram_id: level
     subsegments:
-    - [0x5F050, c]
+    - [0x5F050, c, block]
     - [0x60D10, c]
     - [0x617A0, c]
     - [0x617F0, c]
@@ -404,16 +405,16 @@ segments:
     - [0x62000, pad, padding_62000]
     - [0x62010, c]
     - [0x64270, c]
-    - [0x64280, .data, 5F050]
+    - [0x64280, .data, block]
     - [0x642C0, data]
     - [0x642F0, .data, 62010]
-    - [0x64340, .rodata, 5F050]
+    - [0x64340, .rodata, block]
     - [0x64380, .rodata, 60D10]
     - [0x64390, .rodata, 617F0]
     - [0x643A0, rodata]
     - [0x643A0, .rodata, 62010]
     - [0x64420, rodata]
-    - { start: auto, name: 5F050, type: .bss, vram: 0x800F5A00 }
+    - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
     - { start: auto, name: 61C10, type: .bss, vram: 0x800F5D40 }
   - type: code
     name: magikarp1

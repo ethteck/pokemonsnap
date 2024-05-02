@@ -356,7 +356,7 @@ animalAddOne = 0x80363C48; // segment:app_level
 animalAdd = 0x80363A8C; // segment:app_level
 cartGObj = 0x803937F0;
 beachAnimalAdd = 0x802C42D4; // type:func rom:0x55C344 segment:beach_code
-func_800E6238_639E8 = 0x800E6238; // type:func rom:0x0639E8 segment:level_low
+func_800E6238_639E8 = 0x800E6238; // type:func rom:0x0639E8 segment:world
 
 scExecuteBlocking = 0x800009A0;
 scAddClient = 0x80000A08;

@@ -45,80 +45,71 @@ void func_beach_802C527C(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#ifdef NON_MATCHING
-OMCamera* func_803586F8_4F8B08();
-extern AnimCmd D_8013DA90;
-void func_80365F38_506348(UNK_PTR, UNK_PTR, s32, s32);
-
-extern u8 D_8013C580;
-extern u8 D_8013CEA0;
-
 void func_beach_802C52EC(GObj* obj) {
-    s32 unused[3];
-    Vec3f base_at;
-    Vec3f start_eye;
-    Vec3f start_at;
-    Vec3f base_eye;
-    f32 sp8C;
-    GObj* temp_s0;
-    OMCamera* temp_s1;
-    GObjProcess* temp_s5;
+    s32 unused[4];
+    GObj* gobj;
+    f32 baseAtX, baseAtY;
+    f32 startEyeX, startEyeY, startEyeZ;
+    f32 startAtX, startAtY, startAtZ;
+    f32 baseEyeX, baseEyeY, baseEyeZ;
+    OMCamera* cam;
+    GObjProcess* proc;
+    f32 baseAtZ;
     s32 i;
 
-    temp_s1 = func_803586F8_4F8B08();
-    temp_s0 = func_803586F8_4F8B08()->obj;
+    cam = func_803586F8_4F8B08();
+    gobj = func_803586F8_4F8B08()->obj;
 
-    start_eye.x = temp_s1->viewMtx.lookAt.eye.x;
-    start_eye.y = temp_s1->viewMtx.lookAt.eye.y;
-    start_eye.z = temp_s1->viewMtx.lookAt.eye.z;
-    start_at.x = temp_s1->viewMtx.lookAt.at.x;
-    start_at.y = temp_s1->viewMtx.lookAt.at.y;
-    start_at.z = temp_s1->viewMtx.lookAt.at.z;
+    startEyeX = cam->viewMtx.lookAt.eye.x;
+    startEyeY = cam->viewMtx.lookAt.eye.y;
+    startEyeZ = cam->viewMtx.lookAt.eye.z;
+    startAtX = cam->viewMtx.lookAt.at.x;
+    startAtY = cam->viewMtx.lookAt.at.y;
+    startAtZ = cam->viewMtx.lookAt.at.z;
 
-    temp_s1->animSpeed = 0.5f;
-    animSetCameraAnimation(temp_s1, &D_8013DA90, 0.0f);
-    temp_s5 = omCreateProcess(temp_s0, animUpdateCameraAnimation, 1, 1);
-    func_80365F38_506348(&D_8013C580, &D_8013CEA0, 0, 0x3F000000);
+    cam->animSpeed = 0.5f;
+    animSetCameraAnimation(cam, &D_8013DA90, 0.0f);
+    proc = omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
+    func_80365F38_506348(&D_8013C580, &D_8013CEA0, 0.0f, 0.5f);
     D_beach_802CC0E0 = 0;
     obj->fnAnimCallback = func_beach_802C51A0;
     omCreateProcess(obj, func_beach_802C527C, 0, 1);
 
-    for (i = 0; i < 290 && D_beach_802CC0E0 == 0; i++) {
+    i = 0;
+    while (D_beach_802CC0E0 == 0 && i < 290) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
-            omEndProcess(temp_s5);
+            omEndProcess(proc);
             func_beach_802C5214();
         }
         ohWait(1);
+        i++;
     }
 
-    omEndProcess(temp_s5);
+    omEndProcess(proc);
 
-    base_eye.x = temp_s1->viewMtx.lookAt.eye.x;
-    base_eye.y = temp_s1->viewMtx.lookAt.eye.y;
-    base_eye.z = temp_s1->viewMtx.lookAt.eye.z;
-    base_at.x = temp_s1->viewMtx.lookAt.at.x;
-    base_at.y = temp_s1->viewMtx.lookAt.at.y;
-    base_at.z = temp_s1->viewMtx.lookAt.at.z;
+    baseEyeX = cam->viewMtx.lookAt.eye.x;
+    baseEyeY = cam->viewMtx.lookAt.eye.y;
+    baseEyeZ = cam->viewMtx.lookAt.eye.z;
+    baseAtX = cam->viewMtx.lookAt.at.x;
+    baseAtY = cam->viewMtx.lookAt.at.y;
+    baseAtZ = cam->viewMtx.lookAt.at.z;
 
     for (i = 0; i <= 10; i++) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_beach_802C5214();
         }
-        temp_s1->viewMtx.lookAt.eye.x = (((f32) i * (start_eye.x - base_eye.x)) / 10.0f) + base_eye.x;
-        temp_s1->viewMtx.lookAt.eye.y = (((f32) i * (start_eye.y - base_eye.y)) / 10.0f) + base_eye.y;
-        temp_s1->viewMtx.lookAt.eye.z = (((f32) i * (start_eye.z - base_eye.z)) / 10.0f) + base_eye.z;
-        temp_s1->viewMtx.lookAt.at.x = (((f32) i * (start_at.x - base_at.x)) / 10.0f) + base_at.x;
-        temp_s1->viewMtx.lookAt.at.y = (((f32) i * (start_at.y - base_at.y)) / 10.0f) + base_at.y;
-        temp_s1->viewMtx.lookAt.at.z = (((f32) i * (start_at.z - base_at.z)) / 10.0f) + base_at.z;
+        cam->viewMtx.lookAt.eye.x = (((f32) i * (startEyeX - baseEyeX)) / 10.0f) + baseEyeX;
+        cam->viewMtx.lookAt.eye.y = (((f32) i * (startEyeY - baseEyeY)) / 10.0f) + baseEyeY;
+        cam->viewMtx.lookAt.eye.z = (((f32) i * (startEyeZ - baseEyeZ)) / 10.0f) + baseEyeZ;
+        cam->viewMtx.lookAt.at.x = (((f32) i * (startAtX - baseAtX)) / 10.0f) + baseAtX;
+        cam->viewMtx.lookAt.at.y = (((f32) i * (startAtY - baseAtY)) / 10.0f) + baseAtY;
+        cam->viewMtx.lookAt.at.z = (((f32) i * (startAtZ - baseAtZ)) / 10.0f) + baseAtZ;
         ohWait(1);
     }
 
     func_beach_802C5214();
     ohWait(1);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55D1C0/func_beach_802C52EC.s")
-#endif
 
 void func_beach_802C55CC(void) {
     GObj* obj;

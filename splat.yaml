@@ -989,6 +989,7 @@ segments:
 
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
+    dir: photo_check
     type: code
     start: 0x98C330
     vram: 0x801DC8C0

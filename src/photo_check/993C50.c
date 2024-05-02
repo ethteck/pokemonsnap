@@ -2,7 +2,7 @@
 
 #include "sys/oh.h"
 
-#include "photocheck.h"
+#include "photo_check.h"
 
 extern char D_801F4150_9A3BC0[];
 extern s32 D_801F4144_9A3BB4;

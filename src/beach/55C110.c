@@ -1,5 +1,6 @@
 #include "common.h"
 #include "beach.h"
+#include "ld_addrs.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNode* a0;
@@ -72,11 +73,48 @@ void func_beach_802C4438(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4440.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C44D4.s")
+void func_beach_802C44D4(void) {
+    void* sp1C;
+    void* temp_v0;
+    void* temp_v0_2;
+
+    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
+    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    if (sp1C != NULL && temp_v0 != NULL) {
+        func_800A1ED0(3, sp1C, temp_v0);
+    }
+    sp1C = func_800A73C0((u32) AB85E0_ROM_START, (u32) AB85E0_ROM_END);
+    temp_v0_2 = func_800A73C0((u32) AB8780_ROM_START, (u32) AB8780_ROM_END);
+    if (sp1C != NULL && temp_v0_2 != NULL) {
+        func_800A1ED0(0, sp1C, temp_v0_2);
+    }
+    D_80382D10_523120 = func_800A2094(4, 100, func_803586F8_4F8B08());
+    D_80382D14_523124 = func_800A5E08(0xA);
+    func_800A5DF4(0xC0, 0x30);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C45C0.s")
 
 void func_beach_802C4738(s32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4740.s")
+s32 func_beach_802C4740(s32 sceneID) {
+    D_beach_802CC038.gtlSetup.heapSize = (s32) beach_code_VRAM - (s32) &D_801B0310;
+    gtlSetIntervals(1, 2);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_beach_802CC038);
+
+    switch (D_beach_802CC018) {
+        case 6:
+            return SCENE_BEACH;
+        case 7:
+        case 8:
+            return SCENE_8;
+        default:
+            if (func_8009BC68() > 0) {
+                return SCENE_CAMERA_CHECK;
+            }
+            func_800AAED0(0x10);
+            return SCENE_13;
+    }
+}

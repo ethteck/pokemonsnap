@@ -30,6 +30,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4D880/func_800A2AA8.s")
 
+extern OMCamera* D_800BE1A8[16];
 #pragma GLOBAL_ASM("asm/nonmatchings/4D880/func_800A2B3C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4D880/func_800A4798.s")

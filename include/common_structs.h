@@ -480,4 +480,12 @@ typedef struct PlayerName {
     /* 0x00 */ char data[0x10];
 } PlayerName; // size = 0x10
 
+typedef struct UnkStruct80366BA4 {
+    /* 0x00 */ u8 pad00[0x8];
+    /* 0x08 */ s32 *unk_08;
+    /* 0x0C */ Vec3f unk_0C;
+    /* 0x18 */ u8 pad18[0x4];
+    /* 0x1C */ f32 unk_1C; 
+} UnkStruct80366BA4; // size >= 0x20
+
 #endif

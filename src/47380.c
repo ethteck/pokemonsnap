@@ -8,32 +8,18 @@ s32 func_803647BC(GObj*);
 
 typedef struct PhotoData {
     u8 pad[0x3A0];
-} PhotoData; // Size: 0x3A0
+} PhotoData; // size == 0x3A0
 
 typedef struct UnkFunc8009C25C_Unk20 {
     /* 0x00 */ u8 pad00[0x18];
-} UnkFunc8009C25C_Unk20; // size = 0x18
+} UnkFunc8009C25C_Unk20; // size == 0x18
 
-typedef struct UnkFunc8009C450_Unk140 {
+typedef struct UnkFunc8009C25C_Unk140 {
     /* 0x00 */ u8 unk_00;
     /* 0x01 */ u8 unk_01;
     /* 0x04 */ Vec3f unk_04;
-} UnkFunc8009C450_Unk140; // size = 0x10
-
-typedef struct UnkFunc8009C4F4_arg1 {
-    /* 0x00 */ u8 pad00[0x8];
-    /* 0x08 */ s32 *unk_8;
-} UnkFunc8009C4F4_arg1;
-
-typedef struct UnkFunc8009C4F4_arg2 {
-    /* 0x00 */ u8 pad00[0x3C];
-    /* 0x3C */ f32 unk_3C;
-    /* 0x40 */ f32 unk_40;
-    /* 0x44 */ f32 unk_44;
-    /* 0x48 */ f32 unk_48;
-    /* 0x4C */ f32 unk_4C;
-    /* 0x50 */ f32 unk_50;
-} UnkFunc8009C4F4_arg2;
+} UnkFunc8009C25C_Unk140; // size == 0x10
+#define UNK_020_ARRAY_COUNT 12
 
 typedef struct UnkFunc8009C25C {
     /* 0x000 */ s32 unk_00_25 : 7;
@@ -48,10 +34,10 @@ typedef struct UnkFunc8009C25C {
     /* 0x014 */ f32 unk_14;
     /* 0x018 */ f32 unk_18;
     /* 0x01C */ f32 unk_1C;
-    /* 0x020 */ UnkFunc8009C25C_Unk20 unk_020[12];
-    /* 0x140 */ UnkFunc8009C450_Unk140 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
+    /* 0x020 */ UnkFunc8009C25C_Unk20 unk_020[UNK_020_ARRAY_COUNT];
+    /* 0x140 */ UnkFunc8009C25C_Unk140 unk_140[6]; // 6 may not be the correct array length, it's just how many times it's accessed.
     /* 0x1A0 */ u8 pad1A0[0x204];
-    /* 0x3A4 */ GObj* unk_3A4[12]; // 12 may not be the correct array length, it's just how many times it's accessed.
+    /* 0x3A4 */ GObj* unk_3A4[UNK_020_ARRAY_COUNT]; // 12 may not be the correct array length, it's just how many times it's accessed.
 } UnkFunc8009C25C;
 
 extern UNK_PTR *D_800E9168;
@@ -450,7 +436,7 @@ void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
     s32 i;
     i = 0;
     obj = omGObjListHead[objIndex];
-    while (obj != NULL && i < 12) {
+    while (obj != NULL && i < UNK_020_ARRAY_COUNT) {
         if (func_8009BF48(&arg0->unk_020[i], obj) != 0) {
             arg0->unk_3A4[i] = obj;
             i++;
@@ -459,7 +445,7 @@ void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
     }
 }
 
-s32 func_8009C304(UnkFunc8009C450_Unk140* arg0, GObj* obj) {
+s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     DObj* dobj;
     u8 temp_t3;
     UNK_PTR *payload;
@@ -511,16 +497,16 @@ void func_8009C450(UnkFunc8009C25C *arg0, u8 objIndex) {
     }
 }
 
-void func_8009C4F4(UnkFunc8009C25C* arg0, UnkFunc8009C4F4_arg1* arg1, UnkFunc8009C4F4_arg2* arg2) {
+void func_8009C4F4(UnkFunc8009C25C* arg0, UnkStruct80366BA4* arg1, OMCamera* arg2) {
     arg0->unk_00_25 = getLevelId();
-    arg0->unk_00_16 = *arg1->unk_8;
+    arg0->unk_00_16 = *arg1->unk_08;
     arg0->unk_04 = func_800E219C();
-    arg0->unk_08 = arg2->unk_3C;
-    arg0->unk_0C = arg2->unk_40;
-    arg0->unk_10 = arg2->unk_44;
-    arg0->unk_14 = arg2->unk_48;
-    arg0->unk_18 = arg2->unk_4C;
-    arg0->unk_1C = arg2->unk_50;
+    arg0->unk_08 = arg2->viewMtx.lookAt.eye.x;
+    arg0->unk_0C = arg2->viewMtx.lookAt.eye.y;
+    arg0->unk_10 = arg2->viewMtx.lookAt.eye.z;
+    arg0->unk_14 = arg2->viewMtx.lookAt.at.x;
+    arg0->unk_18 = arg2->viewMtx.lookAt.at.y;
+    arg0->unk_1C = arg2->viewMtx.lookAt.at.z;
 }
 
 // Used in a qsort to diff Vec3f's Z vals.
@@ -551,9 +537,12 @@ s32 func_8009C5C4(const void* a, const void* b) {
     return 0;
 }
 
-// s32 func_80364494(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
+s32 func_80364494(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
+void func_8009C604(UnkFunc8009C25C* arg0);
+extern OMCamera* D_800BE1A8[16];
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C604.s")
 
+void func_803643E0(OMCamera* cam);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C8E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C9E8.s")

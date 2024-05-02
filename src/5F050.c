@@ -35,10 +35,7 @@ static WorldBlock* worldBlocks[13];
 static WorldBlock worldBlockArray[13];
 static UnkIvoryMamba D_800F5BB0_73360[13];
 static UnkAquamarineCoyote D_800F5C50_73400[14];
-static char D_800F5CF8_734A8[0x50];
-static char D_800F5D48_734F8[4];
-static char D_800F5D4C_734FC[4];
-static char D_800F5D50_73500[0x40];
+static char D_800F5CF8_734A8[0x48];
 
 #ifdef NON_MATCHING
 // setWorldBlocksVisibility

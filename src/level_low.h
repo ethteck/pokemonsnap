@@ -99,9 +99,30 @@ typedef struct UnkTomatoEagle {
     /* 0x1D */ u8 unk_1D;
 } UnkTomatoEagle; // size >= 0x1E
 
+typedef struct UnkFuchsiaKomodo {
+    /* 0x00 */ f32 unk_00;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ f32 unk_08;
+    /* 0x0C */ f32 unk_0C;
+    /* 0x10 */ u32 unk_10;
+} UnkFuchsiaKomodo; // size = 0x14
+
+typedef struct UnkCoralFossa {
+    /* 0x00 */ f32 unk_00;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ f32 unk_08;
+    /* 0x0C */ struct UnkCoralFossa* unk_0C;
+    /* 0x10 */ struct UnkCoralFossa* unk_10;
+    /* 0x14 */ UnkFuchsiaKomodo* unk_14;
+    /* 0x18 */ UnkFuchsiaKomodo* unk_18;
+} UnkCoralFossa; // size = 0x1C
+
 WorldBlock* getCurrentWorldBlock(void);
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
 WorldBlock* func_800E26CC_5FE7C(s32 arg0);
 WorldBlock* func_800E2400_5FBB0(void);
+void func_800E4634_61DE4(UnkCoralFossa* arg0, UnkFuchsiaKomodo* arg1);
+UnkFuchsiaKomodo* func_800E4670_61E20(UnkCoralFossa*, f32, f32);
+f32 func_800E4734_61EE4(UnkFuchsiaKomodo*, f32, f32);
 
 #endif

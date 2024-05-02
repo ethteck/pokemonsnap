@@ -2,8 +2,8 @@
 #include "level_low.h"
 
 typedef struct UnkMagentaCrocodile {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
+    /* 0x00 */ UnkFuchsiaKomodo* unk_00;
+    /* 0x04 */ UnkCoralFossa* unk_04;
 } UnkMagentaCrocodile; // size >= 0x08
 
 typedef struct UnkBurgundyOcelot {
@@ -16,20 +16,17 @@ typedef struct UnkBurgundyOcelot {
 
 extern UnkMagentaCrocodile* D_800E6B30_642E0;
 extern UnkMagentaCrocodile* D_800E6B34_642E4;
-void func_800E4634_61DE4(s32, s32);
-s32 func_800E4670_61E20(s32, f32, f32);
-f32 func_800E4734_61EE4(s32, f32, f32);
-Vec3f* func_800E47C4_61F74(s32 arg0);
-s32 func_800E4820_61FD0(s32);
+Vec3f* func_800E47C4_61F74(UnkFuchsiaKomodo* arg0);
+s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
 
 s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
-    s32 unk_00;
-    s32 unk_04;
+    UnkFuchsiaKomodo* unk_00;
+    UnkCoralFossa* unk_04;
 
     if (arg0 == NULL) {
         return FALSE;
     }
-    if (arg0->unk_04 == 0 || arg0->unk_00 == 0) {
+    if (arg0->unk_04 == NULL || arg0->unk_00 == NULL) {
         return FALSE;
     }
     D_800E6B30_642E0 = arg0;
@@ -40,13 +37,13 @@ s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
 }
 
 s32 func_800E40A4_61854(UnkMagentaCrocodile* arg0) {
-    s32 unk_00;
-    s32 unk_04;
+    UnkFuchsiaKomodo* unk_00;
+    UnkCoralFossa* unk_04;
 
     if (arg0 == NULL) {
         return FALSE;
     }
-    if (arg0->unk_04 == 0 || arg0->unk_00 == 0) {
+    if (arg0->unk_04 == NULL || arg0->unk_00 == NULL) {
         return FALSE;
     }
     D_800E6B34_642E4 = arg0;
@@ -65,7 +62,7 @@ void func_800E4108_618B8(UnkBurgundyOcelot* arg0) {
 }
 
 s32 func_800E4138_618E8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
-    s32 sp24;
+    UnkFuchsiaKomodo* sp24;
     Vec3f* v0;
 
     if (D_800E6B30_642E0 == NULL) {
@@ -106,7 +103,7 @@ s32 func_800E41D8_61988(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
 }
 
 s32 func_800E42BC_61A6C(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
-    s32 sp24;
+    UnkFuchsiaKomodo* sp24;
     Vec3f* v0;
 
     if (D_800E6B34_642E4 == NULL) {

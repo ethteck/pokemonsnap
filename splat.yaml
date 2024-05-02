@@ -401,6 +401,7 @@ segments:
     - [0x617A0, c]
     - [0x617F0, c]
     - [0x61C10, c]
+    - [0x62000, pad, padding_62000]
     - [0x62010, c]
     - [0x64270, c]
     - [0x64280, .data, 5F050]
@@ -413,6 +414,7 @@ segments:
     - [0x643A0, .rodata, 62010]
     - [0x64420, rodata]
     - { start: auto, name: 5F050, type: .bss, vram: 0x800F5A00 }
+    - { start: auto, name: 61C10, type: .bss, vram: 0x800F5D40 }
   - type: code
     name: magikarp1
     dir: pokemon/magikarp

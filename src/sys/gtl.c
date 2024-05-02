@@ -315,7 +315,7 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
     } else {
         t->info.mq = NULL;
     }
-    t->info.unk18 = 2;
+    t->info.unk_18 = 2;
     t->taskId = gtlContextId;
     t->unk7C = 0;
 
@@ -854,7 +854,7 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlCallbackBundle.fnPrivUpdate = setup->fnUpdate;
     gtlCallbackBundle.fnPrivDraw = setup->fnDraw;
 
-    gtlInitTaskBuffers(gtlMalloc(setup->unk14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk14,
+    gtlInitTaskBuffers(gtlMalloc(setup->unk_14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk_14,
                           gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
                           gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
 
@@ -920,7 +920,7 @@ void omSetupScene(SceneSetup* arg) {
     }
 
     omSetup.numStacks = arg->numOMStacks;
-    omSetup.unk14 = arg->unk4C;
+    omSetup.unk_14 = arg->unk4C;
 
     omSetup.processes = gtlMalloc(sizeof(GObjProcess) * arg->numOMProcesses, 4);
     omSetup.numProcesses = arg->numOMProcesses;

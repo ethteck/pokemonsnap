@@ -21,7 +21,6 @@ void func_801E3934_9933A4(void);
 void func_801E43AC_993E1C();
 void func_801E4BA0_994610(s32);
 void func_80370004_8437B4(s32, s32);
-void func_8037005C_84380C(s32, s32);
 s32 func_80370600_843DB0(void);
 
 void* func_801E41E0_993C50(void) {

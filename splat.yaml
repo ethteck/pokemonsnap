@@ -612,6 +612,8 @@ segments:
     subsegments:
     - [0x557050, bin] # , data]
   - name: beach_code
+    dir: beach
+    symbol_name_format: beach_$VRAM
     type: code
     start: 0x55C110
     vram: 0x802C40A0
@@ -634,7 +636,7 @@ segments:
     - [0x562370, c]
     - [0x562BC0, c]
     - [0x563000, c]
-    - [0x563E80, bin] # , data]
+    - [0x563E80, data]
 
     - [0x566160, .rodata, 55C870]
     - [0x5661B0, .rodata, 55D690]
@@ -969,6 +971,7 @@ segments:
 
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: unk_end_level_3
+    dir: unk_end_level_3
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
@@ -980,7 +983,12 @@ segments:
     - [0x8A8A50, c]
     - [0x8A9CC0, c]
     - [0x8AAF60, c]
-    - [0x8ABEF0, bin] # , data]
+    - [0x8ABEF0, .data, 8A70E0]
+    - [0x8AC010, data] # sprite data. Should be in the same file as the next segment
+    - [0x95B000, .data, 8A7360]
+    - [0x95B070, data]
+    - [0x95B530, .data, 8A9CC0]
+    - [0x95B6C0, data] # more sprites
 
     - [0x98AD50, rodata] # unreferenced string
     - [0x98AD70, .rodata, 8A7360]
@@ -1076,6 +1084,7 @@ segments:
     - [0xA08E30, c]
     - [0xA0BE70, c]
     - [0xA0D4D0, c]
+    - [0xA0E180, pad]
     - [0xA0E190, c]
     - [0xA0F660, bin] # , data]
     - [0xA0F7B0, .rodata, A08E30]

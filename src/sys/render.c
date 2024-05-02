@@ -249,10 +249,10 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
     sp2DC = *gfxPtr;
     sp2D4 = 0;
 
-    if (dobj->unk4C != NULL) {
-        csr = (uintptr_t)dobj->unk4C->data;
+    if (dobj->unk_4C != NULL) {
+        csr = (uintptr_t)dobj->unk_4C->data;
         for (i = 0; i < 3; i++) {
-            switch (dobj->unk4C->kinds[i]) {
+            switch (dobj->unk_4C->kinds[i]) {
                 case 0:
                     break;
                 case 1:
@@ -952,14 +952,14 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         if (flags & (0x80 | 0x40 | 0x20)) {
             scaleS = mobj->texture.scaleS;
             scaleT = mobj->texture.scaleT;
-            spD4 = mobj->texture.unk14;
-            spD0 = mobj->texture.unk18;
-            spCC = mobj->texture.unk3C;
-            spC8 = mobj->texture.unk40;
-            if (mobj->texture.unk10) {
+            spD4 = mobj->texture.unk_14;
+            spD0 = mobj->texture.unk_18;
+            spCC = mobj->texture.unk_3C;
+            spC8 = mobj->texture.unk_40;
+            if (mobj->texture.unk_10) {
                 scaleS *= 0.5f;
-                spD4 = (spD4 - mobj->texture.unk24 + 1.0f - mobj->texture.unk28 * 0.5f) * 0.5f;
-                spCC = (spCC - mobj->texture.unk44 + 1.0f - mobj->texture.unk28 * 0.5f) * 0.5f;
+                spD4 = (spD4 - mobj->texture.unk_24 + 1.0f - mobj->texture.unk_28 * 0.5f) * 0.5f;
+                spCC = (spCC - mobj->texture.unk_44 + 1.0f - mobj->texture.unk_28 * 0.5f) * 0.5f;
             }
         }
 
@@ -1010,12 +1010,12 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         }
 
         if (flags & (0x10 | 0x2)) {
-            s32 loadBlockSiz = mobj->texture.unk33 == G_IM_SIZ_32b ? G_IM_SIZ_32b : G_IM_SIZ_16b;
-            gDPSetTextureImage(gfxPos++, mobj->texture.unk32, loadBlockSiz, 1,
+            s32 loadBlockSiz = mobj->texture.unk_33 == G_IM_SIZ_32b ? G_IM_SIZ_32b : G_IM_SIZ_16b;
+            gDPSetTextureImage(gfxPos++, mobj->texture.unk_32, loadBlockSiz, 1,
                                mobj->texture.images[mobj->nextImageIndex]);
             if (flags & (0x10 | 0x1)) {
                 gDPLoadSync(gfxPos++);
-                switch (mobj->texture.unk33) {
+                switch (mobj->texture.unk_33) {
                     case G_IM_SIZ_4b:
                         gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0,
                                      ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_4b_INCR) >>
@@ -2608,7 +2608,7 @@ void ren_func_80018F1C(s32 dlLink) {
 void renCameraRenderObjects(GObj* camObj, s32 mode) {
     s32 dlLink = 0;
     u32 dlLinkBitMask = camObj->dlLinkBitMask;
-    u32 unk_38 = camObj->unk38;
+    u32 unk_38 = camObj->unk_38;
 
     while (dlLinkBitMask != 0) {
         if (dlLinkBitMask & 1) {

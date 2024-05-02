@@ -15,8 +15,8 @@ struct UnkCreamGrouper {
     s32 unk4;
     s32 unk8;
     u8 pad_0C[4];
-    UnkCreamGrouper* unk10;
-    UnkCreamGrouper* unk14;
+    UnkCreamGrouper* unk_10;
+    UnkCreamGrouper* unk_14;
 };
 
 extern UnkClaretTilapia* D_803A6900_87A0B0;
@@ -30,24 +30,24 @@ void func_80369FD4_83D784(void*, s32);
 UnkCreamGrouper* func_8036A07C_83D82C(void*, u32);
 
 void func_80369F80_83D730(UnkCreamGrouper* arg0, UnkCreamGrouper* arg1, UnkCreamGrouper* arg2) {
-    arg0->unk10 = arg1;
-    arg1->unk10 = arg2;
-    arg2->unk14 = arg1;
-    arg1->unk14 = arg0;
+    arg0->unk_10 = arg1;
+    arg1->unk_10 = arg2;
+    arg2->unk_14 = arg1;
+    arg1->unk_14 = arg0;
 }
 
 void func_80369F94_83D744(UnkCreamGrouper* arg0) {
-    func_80369F80_83D730(D_803A6910_87A0C0.unk14, arg0, &D_803A6910_87A0C0);
+    func_80369F80_83D730(D_803A6910_87A0C0.unk_14, arg0, &D_803A6910_87A0C0);
 }
 
 void func_80369FC0_83D770(UnkCreamGrouper* arg0) {
     UnkCreamGrouper* temp_v0;
     UnkCreamGrouper* temp_v1;
 
-    temp_v0 = arg0->unk14;
-    temp_v1 = arg0->unk10;
-    temp_v0->unk10 = temp_v1;
-    temp_v1->unk14 = temp_v0;
+    temp_v0 = arg0->unk_14;
+    temp_v1 = arg0->unk_10;
+    temp_v0->unk_10 = temp_v1;
+    temp_v1->unk_14 = temp_v0;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/83D730/func_80369FD4_83D784.s")
@@ -55,7 +55,7 @@ void func_80369FC0_83D770(UnkCreamGrouper* arg0) {
 UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
     UnkCreamGrouper* var_v1;
 
-    for (var_v1 = D_803A6910_87A0C0.unk10; var_v1 != &D_803A6910_87A0C0; var_v1 = var_v1->unk10) {
+    for (var_v1 = D_803A6910_87A0C0.unk_10; var_v1 != &D_803A6910_87A0C0; var_v1 = var_v1->unk_10) {
         if (var_v1->unk4 >= arg0) {
             return var_v1;
         }
@@ -86,7 +86,7 @@ void* func_8036A194_83D944(u32 arg0) {
     func_80369FC0_83D770(temp_v0);
     temp_v0->unk8 = 1;
 
-    return &temp_v0->unk10;
+    return &temp_v0->unk_10;
 }
 
 // Probably dealloc

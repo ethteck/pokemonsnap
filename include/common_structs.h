@@ -431,7 +431,7 @@ typedef struct {
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ char unk_10C[0x2];
-    /* 0x100 */ s16 field_0x10e;
+    /* 0x10E */ s16 field_0x10e;
 } Animal; // size = 0x110
 
 typedef struct {

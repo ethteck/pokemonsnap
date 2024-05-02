@@ -28,14 +28,14 @@ typedef struct UnkPurpleMackerel {
 } UnkPurpleMackerel; // size: 0x20
 
 typedef struct UnkTealFlounder {
-    GObj* unk0;
-    SObj* unk4;
-    SObj* unk8;
-    SObj* unkC;
-    SObj* unk10;
-    SObj* unk14;
-    SObj* unk18;
-    SObj* unk1C;
+    GObj* unk_00;
+    SObj* unk_04;
+    SObj* unk_08;
+    SObj* unk_0C;
+    SObj* unk_10;
+    SObj* unk_14;
+    SObj* unk_18;
+    SObj* unk_1C;
 } UnkTealFlounder;
 
 extern ScreenSettings D_camera_check_801E4060;

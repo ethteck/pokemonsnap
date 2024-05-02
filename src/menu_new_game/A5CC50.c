@@ -146,7 +146,9 @@ void func_800E1950_A5CD00(void) {
 
     D_801180B8 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80117F98_A93348, 0, 0, 1);
     sobj = D_801180B8->data.sobj;
+    // clang-format off
     sobj->sprite.x = 96; sobj->sprite.y = 21;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 
@@ -261,11 +263,10 @@ void func_800E1E94_A5D244(void) {
 void func_800E1EE4_A5D294(void) {
     u8 var_a1;
 
-    var_a1 = 255; do {
+    for (var_a1 = 255; var_a1 > 128; var_a1 -= 5) {
         func_800E18A0_A5CC50(D_801180B4->data.sobj, var_a1);
         ohWait(1);
-        var_a1 -= 5;
-    } while (var_a1 > 128);
+    }
     func_800E18A0_A5CC50(D_801180B4->data.sobj, 128);
     ohWait(1);
 }
@@ -322,7 +323,7 @@ SceneSetup menu_new_game_setup = {
         omDrawAll,                  /* fnDraw */
         menu_new_game_VRAM_END,     /* heapBase */
         0,                          /* heapSize */
-        2,                          /* unk14 */
+        2,                          /* unk_14 */
         1,                          /* numContexts */
         0x5000,                     /* dlBufferSize0 */
         0x2000,                     /* dlBufferSize1 */

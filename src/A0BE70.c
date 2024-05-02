@@ -58,35 +58,30 @@ extern union AnimCmd* D_803A1BE0;
 extern union AnimCmd** D_803A7F90;
 extern union AnimCmd D_803A80D0;
 
-void func_800E48E0_A0BE70(DObj*, u32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/A0BE70/func_800E48E0_A0BE70.s")
+void func_800E48E0_A0BE70(DObj* dobj, u32 arg1, f32 arg2) {
+    s32 temp_f8;
+    GObj* gobj;
 
-//GObj* func_800A6C48(s32, s32);
-// void func_800E48E0_A0BE70(DObj* dobj, u32 arg1, f32 arg2) {
-//     s32 temp_f8;
-//     GObj* gobj;
+    if (arg1 == -2 || arg1 == -1) {
+        D_800E832B_A0F8BB = 3;
+        return;
+    }
 
-//     if (arg1 == -2 || arg1 == -1) {
-//         D_800E832B_A0F8BB = 3;
-//         return;
-//     }
-
-//     temp_f8 = arg2 - 1.0f;
-//     if (temp_f8 >= 0) {
-//         gobj = func_800A6C48(arg1, arg1);
-//         if (gobj != NULL) {
-//             gobj->data.dobj = dobj;
-//         }
-//     }
-// }
-
+    temp_f8 = arg2 - 1.0f;
+    if (temp_f8 >= 0) {
+        gobj = func_800A6C48(arg1, temp_f8);
+        if (gobj != NULL) {
+            gobj->data.dobj = dobj;
+        }
+    }
+}
 
 void func_800E4960_A0BEF0(GObj* gobj) {
     while (TRUE) {
         if (D_800E832B_A0F8BB == 5) {
             if (D_800E832C_A0F8BC >= 3600.0) {
                 D_800E832B_A0F8BB = 1;
-            } else if (D_800BF051 == 0 && D_800E832C_A0F8BC > 1.0 && gContInputPressedButtons & (0x8000 | 0x1000)) {
+            } else if (D_800BF051 == 0 && D_800E832C_A0F8BC > 1.0 && gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
                 D_800E832B_A0F8BB = 4;
             }
         }
@@ -263,17 +258,23 @@ void func_800E5468_A0C9F8(void) {
                              &D_803051F0, 0, func_800E5370_A0C900, 1);
 
     sobj = D_800E8318_A0F8A8->data.sobj;
+    // clang-format off
     sobj->sprite.x = 98; sobj->sprite.y = 68;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0);
 
     sobj = sobj->next;
+    // clang-format off
     sobj->sprite.x = 96; sobj->sprite.y = 103;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00);
 
     sobj = sobj->next;
+    // clang-format off
     sobj->sprite.x = 71; sobj->sprite.y = 112;
+    // clang-format on
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 

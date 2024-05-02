@@ -1,3 +1,5 @@
 splat64[mips]>=0.23.1,<1.0.0
 ninja_syntax>=1.7.2
+argparse
+GitPython
 requests

@@ -274,7 +274,7 @@ u64* omGetProcessStack(GObjProcess* proc) {
     }
 
     if (proc != NULL && proc->kind == 0) {
-        return proc->unk1C.thread->osStack;
+        return proc->unk_1C.thread->osStack;
     }
 
     return NULL;
@@ -286,7 +286,7 @@ s32 omGetProcessStackSize(GObjProcess* proc) {
     }
 
     if (proc != NULL && proc->kind == 0) {
-        return proc->unk1C.thread->stackSize;
+        return proc->unk_1C.thread->stackSize;
     }
 
     return NULL;
@@ -647,7 +647,7 @@ GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32
     switch (kind) {
         case 0:
             thread = omGetThread();
-            process->unk1C.thread = thread;
+            process->unk_1C.thread = thread;
 
             stackNode = omGetDefaultStack();
             thread->osStack = stackNode->stack;
@@ -661,7 +661,7 @@ GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32
             }
             break;
         case 1:
-            process->unk1C.cb = func;
+            process->unk_1C.cb = func;
             break;
         default:
             fatal_printf("om : GObjProcess's kind is bad value\n");
@@ -694,7 +694,7 @@ GObjProcess* omCreateProcessThreaded(GObj* obj, void (*entry)(GObj*), u32 pri, s
     process->object = obj;
     process->function = entry;
 
-    process->unk1C.thread = thread = omGetThread();
+    process->unk_1C.thread = thread = omGetThread();
     process->kind = 0;
 
     stackNode = stackSize == 0 ? omGetDefaultStack() : omGetStackOfSize(stackSize);
@@ -729,11 +729,11 @@ void omEndProcess(GObjProcess* proc) {
 
     switch (proc->kind) {
         case 0:
-            osDestroyThread(&proc->unk1C.thread->osThread);
+            osDestroyThread(&proc->unk_1C.thread->osThread);
             // cast from stack pointer back to stack node
-            tnode = (void*)((uintptr_t)(proc->unk1C.thread->osStack) - 8); /*offsetof(struct ThreadStackNode, stack));*/
+            tnode = (void*)((uintptr_t)(proc->unk_1C.thread->osStack) - 8); /*offsetof(struct ThreadStackNode, stack));*/
             omFreeStack(tnode);
-            omFreeThread(proc->unk1C.thread);
+            omFreeThread(proc->unk_1C.thread);
             break;
         case 1:
             break;
@@ -757,10 +757,10 @@ OMMtx* omDObjAddMtx(DObj* dobj, u8 kind, u8 arg2, s32 index) {
         PANIC();
     }
 
-    if (dobj->unk4C != NULL) {
-        csr = (uintptr_t)dobj->unk4C->data;
+    if (dobj->unk_4C != NULL) {
+        csr = (uintptr_t)dobj->unk_4C->data;
         for (i = 0; i < 3; i++) {
-            switch (dobj->unk4C->kinds[i]) {
+            switch (dobj->unk_4C->kinds[i]) {
                 case 0:
                     break;
                 case 1:
@@ -967,7 +967,7 @@ AObj* omDObjAddAObj(DObj* dobj, u8 paramID) {
 
     aobj->paramID = paramID;
     aobj->kind = ANIM_TYPE_NONE;
-    aobj->unk20 = NULL;
+    aobj->unk_20 = NULL;
     aobj->targetRate = 0.0;
     aobj->rate = 0.0;
     aobj->targetValue = 0.0;
@@ -999,7 +999,7 @@ AObj* omMObjAddAObj(MObj* mobj, u8 index) {
 
     aobj->paramID = index;
     aobj->kind = ANIM_TYPE_NONE;
-    aobj->unk20 = NULL;
+    aobj->unk_20 = NULL;
     aobj->targetRate = 0.0;
     aobj->rate = 0.0;
     aobj->targetValue = 0.0;
@@ -1031,7 +1031,7 @@ AObj* omCameraAddAObj(OMCamera* obj, u8 index) {
 
     aobj->paramID = index;
     aobj->kind = ANIM_TYPE_NONE;
-    aobj->unk20 = NULL;
+    aobj->unk_20 = NULL;
     aobj->targetRate = 0.0;
     aobj->rate = 0.0;
     aobj->targetValue = 0.0;
@@ -1076,11 +1076,11 @@ MObj* omDObjAddMObj(DObj* dobj, Texture* arg1) {
     }
 
     mobj->next = NULL;
-    mobj->lodLevel = arg1->unk54 / 255.0f;
+    mobj->lodLevel = arg1->unk_54 / 255.0f;
     mobj->texture = *arg1;
 
-    mobj->texture.unk24 = arg1->unk14;
-    mobj->texture.unk28 = arg1->scaleS;
+    mobj->texture.unk_24 = arg1->unk_14;
+    mobj->texture.unk_28 = arg1->scaleS;
     mobj->imageIndex = 0;
     mobj->nextImageIndex = 0;
     mobj->paletteIndex = 0.f;
@@ -1117,7 +1117,7 @@ void omDObjRemoveAllMObj(DObj* dobj) {
 void omDObjInit(DObj* dobj) {
     s32 i;
 
-    dobj->unk4C = 0;
+    dobj->unk_4C = 0;
     dobj->flags = 0;
     dobj->animCBReceiver = FALSE;
     dobj->numMatrices = 0;
@@ -1256,8 +1256,8 @@ void omDObjRemove(DObj* dobj) {
         }
     }
 
-    if (dobj->unk4C != NULL && omD_8004AC0C != NULL) {
-        omD_8004AC0C(dobj->unk4C);
+    if (dobj->unk_4C != NULL && omD_8004AC0C != NULL) {
+        omD_8004AC0C(dobj->unk_4C);
     }
 
     currA = dobj->aobjList;
@@ -1314,7 +1314,7 @@ SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
         sobj->sprite = *sprite;
     }
 
-    sobj->unk54 = 0;
+    sobj->unk_54 = 0;
     return sobj;
 }
 
@@ -1358,7 +1358,7 @@ OMCamera* omGObjSetCamera(GObj* obj) {
     camera->flags = 0;
     camera->bgColor = 0;
     camera->fnPreRender = NULL;
-    camera->unk8C = 0;
+    camera->unk_8C = 0;
     camera->aobjList = NULL;
     camera->animList = 0;
     camera->timeLeft = ANIMATION_DISABLED;
@@ -1624,7 +1624,7 @@ void omLinkGObjDLCameraCommon(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriori
     obj->fnRender = renderFunc;
     obj->dlLinkBitMask = dlLinkBitMask;
     obj->cameraTag = cameraTag;
-    obj->unk38 = 0;
+    obj->unk_38 = 0;
     obj->lastDrawFrame = gtlDrawnFrameCounter - 1;
 }
 
@@ -1783,12 +1783,12 @@ GObjProcess* omRunProcess(GObjProcess* proc) {
 
     switch (proc->kind) {
         case 0: {
-            osStartThread(&proc->unk1C.thread->osThread);
+            osStartThread(&proc->unk_1C.thread->osThread);
             osRecvMesg(&omProcessWaitQueue, NULL, OS_MESG_BLOCK);
             break;
         }
         case 1: {
-            proc->unk1C.cb(proc->object);
+            proc->unk_1C.cb(proc->object);
             break;
         }
     }
@@ -1857,7 +1857,7 @@ void omCreateObjects(OMSetup* setup) {
     s32 i;
 
     omDefaultStackSize = setup->threadStackSize;
-    omD_8004A9A0 = setup->unk14;
+    omD_8004A9A0 = setup->unk_14;
 
     if (setup->numThreads != 0) {
         GObjThread* csr;

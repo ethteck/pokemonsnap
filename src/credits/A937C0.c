@@ -87,7 +87,7 @@ void func_credits_801DCEF0(GObj* arg0) {
     ohWait(226);
 
     while (TRUE) {
-        if (gContInputPressedButtons & (0x8000 | 0x1000)) {
+        if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_800A7470(0, 0, 0);
             func_800A7860(0, 1.0f);
             auSetBGMVolumeSmooth(0, 0, 60);
@@ -256,7 +256,7 @@ void func_credits_801DD428(void) {
     func_credits_801DD3E0(sobj);
 
     while (sobj != NULL) {
-        sobj->unk54 = 0;
+        sobj->unk_54 = 0;
         sobj->sprite.attr &= ~SP_HIDDEN;
         sobj = sobj->next;
     }

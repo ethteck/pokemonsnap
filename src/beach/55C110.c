@@ -1,6 +1,5 @@
 #include "common.h"
 #include "beach.h"
-#include "world/world.h"
 #include "ld_addrs.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {

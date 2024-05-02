@@ -9,7 +9,7 @@ typedef union AnimCmd {
 } AnimCmd;
 
 typedef struct UnkEC64Arg3 {
-    /* 0x00 */ s32 unk00;
+    /* 0x00 */ s32 unk_00;
     /* 0x04 */ void* unk04;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ Vec3f rotation;

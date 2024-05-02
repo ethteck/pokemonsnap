@@ -1,18 +1,5 @@
 #include "world.h"
 
-typedef struct UnkMagentaCrocodile {
-    /* 0x00 */ UnkFuchsiaKomodo* unk_00;
-    /* 0x04 */ UnkCoralFossa* unk_04;
-} UnkMagentaCrocodile; // size >= 0x08
-
-typedef struct UnkBurgundyOcelot {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
-    /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ s32 unk_10;
-} UnkBurgundyOcelot; // size >= 0x14
-
 extern UnkMagentaCrocodile* D_800E6B30_642E0;
 extern UnkMagentaCrocodile* D_800E6B34_642E4;
 

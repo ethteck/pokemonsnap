@@ -1760,24 +1760,24 @@ void anim_func_8000FBC4(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2) {
         sp44[i] = NULL;
     }
 
-    while (arg1->unk00 != 18) {
-        trunc = arg1->unk00 & 0xFFF;
+    while (arg1->unk_00 != 18) {
+        trunc = arg1->unk_00 & 0xFFF;
         if (trunc != 0) {
             dobj = sp44[trunc] = omDObjAddChild(sp44[trunc - 1], arg1->unk04);
         } else {
             dobj = sp44[0] = omGObjAddDObj(obj, arg1->unk04);
         }
-        if (arg1->unk00 & 0xF000) {
+        if (arg1->unk_00 & 0xF000) {
             omDObjAppendMtx(dobj, MTX_TYPE_TRANSLATE, 0);
         }
 
-        if (arg1->unk00 & 0x8000) {
+        if (arg1->unk_00 & 0x8000) {
             omDObjAppendMtx(dobj, MTX_TYPE_44, 0);
-        } else if (arg1->unk00 & 0x4000) {
+        } else if (arg1->unk_00 & 0x4000) {
             omDObjAppendMtx(dobj, MTX_TYPE_46, 0);
-        } else if (arg1->unk00 & 0x2000) {
+        } else if (arg1->unk_00 & 0x2000) {
             omDObjAppendMtx(dobj, MTX_TYPE_48, 0);
-        } else if (arg1->unk00 & 0x1000) {
+        } else if (arg1->unk_00 & 0x1000) {
             omDObjAppendMtx(dobj, MTX_TYPE_50, 0);
         } else {
             anim_func_8000FAFC(dobj);
@@ -1929,16 +1929,16 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
         sp54[i] = NULL;
     }
 
-    while (arg1->unk00 != 18) {
-        trunc = arg1->unk00 & 0xFFF;
+    while (arg1->unk_00 != 18) {
+        trunc = arg1->unk_00 & 0xFFF;
         if (trunc) {
             dobj = sp54[trunc] = omDObjAddChild(sp54[trunc - 1], arg1->unk04);
         } else {
             dobj = sp54[0] = omGObjAddDObj(obj, arg1->unk04);
         }
 
-        if (arg1->unk00 & 0xF000) {
-            anim_func_8000FE08(dobj, arg3, arg4, arg5, arg1->unk00 & 0xF000);
+        if (arg1->unk_00 & 0xF000) {
+            anim_func_8000FE08(dobj, arg3, arg4, arg5, arg1->unk_00 & 0xF000);
         } else {
             anim_func_8000FDA0(dobj, arg3, arg4, arg5);
         }
@@ -1968,15 +1968,15 @@ void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** a
         sp5C[i] = NULL;
     }
 
-    while (arg1->unk00 != 18) {
-        trunc = arg1->unk00 & 0xFFF;
+    while (arg1->unk_00 != 18) {
+        trunc = arg1->unk_00 & 0xFFF;
         if (trunc) {
             dobj = sp5C[trunc] = omDObjAddChild(sp5C[trunc - 1], arg1->unk04);
         } else {
             dobj = sp5C[0] = omGObjAddDObj(arg0, arg1->unk04);
         }
-        if (arg1->unk00 & 0xF000) {
-            anim_func_8000FE08(dobj, arg4, arg5, arg6, arg1->unk00 & 0xF000);
+        if (arg1->unk_00 & 0xF000) {
+            anim_func_8000FE08(dobj, arg4, arg5, arg6, arg1->unk_00 & 0xF000);
         } else {
             anim_func_8000FDA0(dobj, arg4, arg5, arg6);
         }
@@ -2031,7 +2031,7 @@ void anim_func_80010498(GObj* obj, UnkEC64Arg3* arg1) {
     DObj* dobj;
 
     dobj = obj->data.dobj;
-    while (dobj != NULL && arg1->unk00 != 18) {
+    while (dobj != NULL && arg1->unk_00 != 18) {
         dobj->position.v = arg1->position;
         *((Vec3f*)&dobj->rotation.f[1]) = arg1->rotation;
         dobj->scale.v = arg1->scale;

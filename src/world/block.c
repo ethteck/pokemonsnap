@@ -1,6 +1,6 @@
 #include "world.h"
 
-void func_800E354C_60CFC(s32, s32);
+void func_800E354C_60CFC(UnkVioletMarlin*, s32);
 void func_800E3464_60C14(WorldBlock*);
 
 typedef struct UnkAquamarineCoyote {
@@ -17,15 +17,15 @@ u32 WorldBlockMaxObjId = 0;
 u32 WorldLink = 0;
 u32 WorldDlLink = 0;
 GObj* SkyBoxObject = NULL;
-f32 D_800E6AEC_6429C = 0.0f;
-f32 D_800E6AF0_642A0 = 1.0f;
-s32 D_800E6AF4_642A4 = 10000;
+f32 SkyBoxAnimationPhase = 0.0f;
+f32 SkyBoxAnimationSpeed = 1.0f;
+s32 SkyBoxMaxAngle = 10000;
 AnimCmd*** SkyBoxAnimation = NULL;
 BlockFunc2 D_800E6AFC_642AC = NULL;
 BlockFunc WorldBlockDeleteCb = NULL;
 BlockFunc2 D_800E6B04_642B4 = NULL;
 // split
-extern s32 D_800E6B10_642C0;
+extern UnkVioletMarlin* D_800E6B10_642C0;
 extern s32 D_800E6B14_642C4;
 
 // bss
@@ -81,7 +81,7 @@ void func_800E19A4_5F154(DObj* arg0, s32 arg1, f32 arg2) {
 }
 
 void func_800E1A78_5F228(f32 arg0) {
-    D_800E6AF0_642A0 = arg0;
+    SkyBoxAnimationSpeed = arg0;
     if (SkyBoxAnimation != NULL) {
         animSetTextureAnimationSpeed(SkyBoxObject, arg0);
     }
@@ -103,9 +103,9 @@ f32 func_800E1AB4_5F264(f32 arg0, s32 arg1) {
     return arg0;
 }
 
-void func_800E1B68_5F318(GObj* arg0) {
-    D_800E6AEC_6429C += D_800E6AF0_642A0;
-    D_800E6AEC_6429C = func_800E1AB4_5F264(D_800E6AEC_6429C, D_800E6AF4_642A4);
+void updateSkyBoxRotation(GObj* arg0) {
+    SkyBoxAnimationPhase += SkyBoxAnimationSpeed;
+    SkyBoxAnimationPhase = func_800E1AB4_5F264(SkyBoxAnimationPhase, SkyBoxMaxAngle);
 }
 
 void func_800E1BB8_5F368(GObj* obj) {
@@ -123,7 +123,7 @@ void func_800E1BB8_5F368(GObj* obj) {
     gSPSetGeometryMode(gMainGfxPos[0]++, G_ZBUFFER | G_FOG);
 }
 
-void func_800E1CA4_5F454(GObj* obj) {
+void drawSkyBox1Cycle(GObj* obj) {
     gDPPipeSync(gMainGfxPos[0]++);
     gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
     gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
@@ -133,7 +133,7 @@ void func_800E1CA4_5F454(GObj* obj) {
     gSPSetGeometryMode(gMainGfxPos[0]++, G_ZBUFFER | G_FOG);
 }
 
-void func_800E1D80_5F530(GObj* obj) {
+void drawSkyBox2Cycle(GObj* obj) {
     gDPPipeSync(gMainGfxPos[0]++);
     gDPSetCycleType(gMainGfxPos[0]++, G_CYC_2CYCLE);
     gDPSetRenderMode(gMainGfxPos[0]++, G_RM_PASS, G_RM_AA_OPA_SURF2);
@@ -143,37 +143,37 @@ void func_800E1D80_5F530(GObj* obj) {
     gSPSetGeometryMode(gMainGfxPos[0]++, G_ZBUFFER | G_FOG);
 }
 
-void func_800E1E60_5F610(GObj* obj) {
+void setSkyBoxRotation(GObj* obj) {
     DObj* dobj = obj->data.dobj;
-    dobj->rotation.f[2] = 6.283185482f * D_800E6AEC_6429C /  D_800E6AF4_642A4;
+    dobj->rotation.f[2] = 6.283185482f * SkyBoxAnimationPhase /  SkyBoxMaxAngle;
 }
 
-void createSkyBox(SkyBox* bg) {
+void createSkyBox(SkyBox* skyBox) {
     GObj* obj;
     DObj* dobj;
 
     obj = omAddGObj(SkyBoxObjectId, &ohUpdateDefault, WorldLink, 0x80000000);
     SkyBoxObject  = obj;
-    omCreateProcess(obj, &func_800E1B68_5F318, 1, 2);
+    omCreateProcess(obj, &updateSkyBoxRotation, 1, 2);
 
-    if (bg == NULL || bg->gfxData == NULL) {
+    if (skyBox == NULL || skyBox->gfxData == NULL) {
         return;
     }
 
-    if (bg->renderFunc == NULL || bg->renderFunc != &func_800E1CA4_5F454 && bg->renderFunc != &func_800E1D80_5F530) {
+    if (skyBox->renderFunc == NULL || skyBox->renderFunc != &drawSkyBox1Cycle && skyBox->renderFunc != &drawSkyBox2Cycle) {
         return;
     }
 
-    omLinkGObjDL(obj, bg->renderFunc, WorldDlLink, 0x80000001, -1);
-    omGObjAddDObj(obj, bg->gfxData);
-    if (bg->renderFunc == &func_800E1D80_5F530) {
+    omLinkGObjDL(obj, skyBox->renderFunc, WorldDlLink, 0x80000001, -1);
+    omGObjAddDObj(obj, skyBox->gfxData);
+    if (skyBox->renderFunc == &drawSkyBox2Cycle) {
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_ROTATE_RPY_TRANSLATE, 0);
     } else {
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_TRANSLATE, 0);
     }
 
-    if (bg->textures != NULL) {
-        Texture** ptr = *bg->textures;
+    if (skyBox->textures != NULL) {
+        Texture** ptr = *skyBox->textures;
         Texture* curr = *ptr;
         while (curr != NULL) {
             omDObjAddMObj(obj->data.dobj, curr);
@@ -182,15 +182,15 @@ void createSkyBox(SkyBox* bg) {
         }
     }
 
-    if (bg->animation != NULL) {
-        SkyBoxAnimation = bg->animation;
+    if (skyBox->animation != NULL) {
+        SkyBoxAnimation = skyBox->animation;
         omCreateProcess(obj, &animUpdateModelTreeAnimation, 1, 1);
-        animSetModelTreeTextureAnimation(obj, bg->animation, 0);
-        animSetTextureAnimationSpeed(obj, bg->animationSpeed);
+        animSetModelTreeTextureAnimation(obj, skyBox->animation, 0);
+        animSetTextureAnimationSpeed(obj, skyBox->animationSpeed);
     }
 
-    if (bg->renderFunc == &func_800E1D80_5F530) {
-        omCreateProcess(obj, &func_800E1E60_5F610, 1, 1);
+    if (skyBox->renderFunc == &drawSkyBox2Cycle) {
+        omCreateProcess(obj, &setSkyBoxRotation, 1, 1);
     }
 
     dobj = obj->data.dobj;
@@ -213,7 +213,7 @@ void func_800E20B4_5F864(void) {
     }
 }
 
-void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4) {
+void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 animationTime) {
 
     if (SkyBoxObject != NULL && SkyBoxObject->data.dobj != NULL) {
         SkyBoxObject->data.dobj->position.v.x = posX;
@@ -224,7 +224,7 @@ void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4) {
     SkyBoxObject->data.dobj->rotation.f[2] = yaw;
 
     if (SkyBoxAnimation != NULL) {
-        animSetModelTreeTextureAnimation(SkyBoxObject, SkyBoxAnimation, arg4);
+        animSetModelTreeTextureAnimation(SkyBoxObject, SkyBoxAnimation, animationTime);
     }
 }
 
@@ -237,7 +237,7 @@ WorldBlock** getWorldBlocks(void) {
 }
 
 f32 func_800E219C_5F94C(void) {
-    return D_800E6AEC_6429C;
+    return SkyBoxAnimationPhase;
 }
 
 f32 func_800E21A8_5F958(f32 arg0) {
@@ -446,7 +446,7 @@ void func_800E270C_5FEBC(GObj* obj) {
         return;
     }
 
-    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, func_800E21A8_5F958(D_800E6AEC_6429C));
+    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, func_800E21A8_5F958(SkyBoxAnimationPhase));
     animSetTextureAnimationSpeed(obj, 0.0f);
     animUpdateModelTreeAnimation(obj);
 }
@@ -471,7 +471,7 @@ GObj* createWorldBlockModel(WorldBlock* block) {
     obj = omAddGObj(id, &ohUpdateDefault, WorldLink, priority);
     omLinkGObjDL(obj, block->descriptor->gfx->renderFunc, WorldDlLink, priority, -1);
 
-    if (&func_800E1D80_5F530 == block->descriptor->gfx->renderFunc) {
+    if (&drawSkyBox2Cycle == block->descriptor->gfx->renderFunc) {
         omGObjAddDObj(obj, block->descriptor->gfx->gfxData);
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_ROTATE_RPY_TRANSLATE, 0);
         if (block->descriptor->gfx->textures != NULL) {
@@ -697,22 +697,119 @@ void func_800E3064_60814(void) {
     SkyBoxAnimation = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E30B0_60860.s")
+void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2) {
+    if (block->blockModel->fnRender == &renRenderModelTypeA ||
+        block->blockModel->fnRender == &func_800A1530 || 
+        block->blockModel->fnRender == &renRenderModelTypeB || 
+        block->blockModel->fnRender == &func_800A15D8)
+    {
+        DObj* child = omDObjAddChild(block->blockModel->data.dobj, arg2.d.gfx);
+        s32 unused[2];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E3258_60A08.s")
+        if (arg1->unk_1C.x == 1.0f && arg1->unk_1C.y == 1.0f && arg1->unk_1C.z == 1.0f) {
+            omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE, 1);
+            child->scale.v.x = 1.0f;
+            child->scale.v.y = 1.0f;
+            child->scale.v.z = 1.0f;
+        } else {
+            omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 1);
+            child->scale.v.x = arg1->unk_1C.x;
+            child->scale.v.y = arg1->unk_1C.y;
+            child->scale.v.z = arg1->unk_1C.z;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E3464_60C14.s")
-/*void func_800E3464_60C14(WorldBlock* arg0) {
-    if (arg0 == NULL || arg0->unk_04 == NULL || arg0->unk_04->unk_18 == NULL) {
+        child->position.v.x = arg1->unk_04.x * 100.0f;
+        child->position.v.y = arg1->unk_04.y * 100.0f;
+        child->position.v.z = arg1->unk_04.z * 100.0f;
+
+        child->rotation.f[1] = arg1->unk_10.x;
+        child->rotation.f[2] = arg1->unk_10.y;
+        child->rotation.f[3] = arg1->unk_10.z;
+
+        if (block->blockModel->fnRender == &renRenderModelTypeA) {
+            block->blockModel->fnRender = &renRenderModelTypeB;
+        } else if (block->blockModel->fnRender == &func_800A1530) {
+            block->blockModel->fnRender = &func_800A15D8;
+        }
+    }
+}
+
+void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2) {
+    UnkEC64Arg3* treePtr = arg2.d.treeDef;
+
+    if (block->blockModel->fnRender == &renRenderModelTypeA ||
+        block->blockModel->fnRender == &renRenderModelTypeB)
+    {
+        s32 unused;
+        s32 i;
+        DObj* sp54[18];
+        DObj* child;        
+
+        for (i = 0; i < ARRAY_COUNT(sp54); i++) {
+            sp54[i] = NULL;
+        }
+
+        while (treePtr->unk_00 != 18) {
+            if (treePtr->unk_00 != 0) {
+                child = sp54[treePtr->unk_00] = omDObjAddChild(sp54[treePtr->unk_00 - 1], treePtr->unk04);
+            } else {
+                child = sp54[0] = omDObjAddChild(block->blockModel->data.dobj, treePtr->unk04);
+            }
+
+            if (arg1->unk_1C.x == 1.0f && arg1->unk_1C.y == 1.0f && arg1->unk_1C.z == 1.0f) {
+                omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE, 1);
+                child->scale.v.z = 1.0f;
+                child->scale.v.y = 1.0f;
+                child->scale.v.x = 1.0f;
+            } else {
+                child->scale.v.x = arg1->unk_1C.x;
+                child->scale.v.y = arg1->unk_1C.y;
+                child->scale.v.z = arg1->unk_1C.z;
+                omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 1);                
+            }
+
+            child->position.v.x = arg1->unk_04.x * 100.0f;
+            child->position.v.y = arg1->unk_04.y * 100.0f;
+            child->position.v.z = arg1->unk_04.z * 100.0f;
+
+            child->rotation.f[1] = arg1->unk_10.x;
+            child->rotation.f[2] = arg1->unk_10.y;
+            child->rotation.f[3] = arg1->unk_10.z;
+
+            treePtr++;
+        }
+
+        if (block->blockModel->fnRender == &renRenderModelTypeA) {
+            block->blockModel->fnRender = &renRenderModelTypeB;
+        }
+    }
+}
+
+void func_800E3464_60C14(WorldBlock* arg0) {
+    UnkBeigeServal* s2;
+    s32 i;
+
+    if (arg0 == NULL || arg0->descriptor == NULL || arg0->descriptor->unk_18 == NULL || arg0->index >= 13) {
         return;
     }
 
-    if (arg0->unk_00 < 13) {
-        s32* = arg0->unk_04->unk_18;
-    }
-}*/
+    s2 = arg0->descriptor->unk_18;
+    while (s2->unk_00 != -1) {
+        for (i = 0; i < 100; i++) {
+            if (D_800E6B10_642C0[i].unk_00 == -1) {
+                break;
+            }
+            if (D_800E6B10_642C0[i].unk_00 == s2->unk_00 && D_800E6B10_642C0[i].unk_04 != NULL && D_800E6B10_642C0[i].unk_08.d.gfx != NULL) {
+                D_800E6B10_642C0[i].unk_04(arg0, s2, D_800E6B10_642C0[i].unk_08);
+                break;
+            }
 
-void func_800E354C_60CFC(s32 arg0, s32 arg1) {
+        }
+        s2++;
+    }
+}
+
+void func_800E354C_60CFC(UnkVioletMarlin* arg0, s32 arg1) {
     D_800E6B10_642C0 = arg0;
     D_800E6B14_642C4 = arg1;
 }

@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+struct WorldBlock;
+
 typedef struct UnkIndigoDingo {
     /* 0x00 */ u8 unk_00;
     /* 0x04 */ Mtx4f unk_04;
@@ -39,7 +41,7 @@ typedef struct SkyBox {
     /* 0x08 */ Texture*** textures;
     /* 0x0C */ AnimCmd*** animation;
     /* 0x10 */ f32 animationSpeed;
-} SkyBox;
+} SkyBox; // size = 0x14
 
 typedef struct WorldBlockGFX {
     /* 0x00 */ void* gfxData; // type depends on renderFunc value
@@ -53,12 +55,25 @@ typedef struct WorldBlockGFX {
     /* 0x20 */ f32 unk_20[1]; // variable size, depends on unk_14
 } WorldBlockGFX; // size >= 0x20
 
+typedef struct PayloadStruct {
+    union {
+        Gfx* gfx;
+        UnkEC64Arg3* treeDef;
+    } d;
+} PayloadStruct;
+
+typedef struct UnkVioletMarlin {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ void (*unk_04)(struct WorldBlock*, UnkBeigeServal*, PayloadStruct);
+    /* 0x08 */ PayloadStruct unk_08;
+} UnkVioletMarlin; // size = 0x28
+
 typedef struct WorldBlockDescriptor {
     /* 0x00 */ WorldBlockGFX* gfx;
     /* 0x04 */ Vec3f unk_04;
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32* unk_18;
+    /* 0x18 */ UnkBeigeServal* unk_18;
     /* 0x1C */ void* unk_1C;
     /* 0x20 */ UnkBeigeServal* unk20;
 } WorldBlockDescriptor; // size >= 0x24
@@ -81,7 +96,7 @@ typedef struct UnkBoneFox {
 
 typedef struct UnkTomatoEagle {
     /* 0x00 */ UnkBoneFox* unk_00;
-    /* 0x04 */ s32 unk_04;
+    /* 0x04 */ UnkVioletMarlin* unk_04;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ UnkChestnutCougar* unk_0C;
     /* 0x10 */ f32 unk_10;
@@ -113,10 +128,36 @@ typedef struct UnkCoralFossa {
     /* 0x18 */ UnkFuchsiaKomodo* unk_18;
 } UnkCoralFossa; // size = 0x1C
 
+typedef struct UnkGoldViper {
+    /* 0x00 */ f32 unk_00;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ WorldBlock* unk_08;
+    /* 0x0C */ f32 unk_0C;
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ f32 unk_14;
+    /* 0x18 */ f32 unk_18;
+    /* 0x1C */ f32 unk_1C;
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ f32 unk_24;
+    /* 0x28 */ f32 unk_28;
+} UnkGoldViper; // size >= 0x28
+
+typedef struct UnkMagentaCrocodile {
+    /* 0x00 */ UnkFuchsiaKomodo* unk_00;
+    /* 0x04 */ UnkCoralFossa* unk_04;
+} UnkMagentaCrocodile; // size >= 0x08
+
+typedef struct UnkBurgundyOcelot {
+    /* 0x00 */ f32 unk_00;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ f32 unk_08;
+    /* 0x0C */ f32 unk_0C;
+    /* 0x10 */ s32 unk_10;
+} UnkBurgundyOcelot; // size >= 0x14
+
 typedef void (*BlockFunc)(WorldBlock*);
 typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
-WorldBlock* getCurrentWorldBlock(void);
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
 WorldBlock* func_800E26CC_5FE7C(s32 arg0);
 WorldBlock* func_800E2400_5FBB0(void);
@@ -125,5 +166,31 @@ UnkFuchsiaKomodo* func_800E4670_61E20(UnkCoralFossa*, f32, f32);
 f32 func_800E4734_61EE4(UnkFuchsiaKomodo*, f32, f32);
 Vec3f* func_800E47C4_61F74(UnkFuchsiaKomodo* arg0);
 s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
+
+// Public functions
+void func_800E1A78_5F228(f32 arg0);
+void func_800E1CA4_5F454(GObj* obj);
+void func_800E1D80_5F530(GObj* obj);
+void func_800E20B4_5F864(void);
+void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4);
+WorldBlock* getCurrentWorldBlock(void);
+WorldBlock** getWorldBlocks(void);
+f32 func_800E219C_5F94C(void);
+f32 func_800E21A8_5F958(f32 arg0);
+s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8);
+void func_800E3064_60814(void);
+void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
+void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
+void func_800E3D04_614B4(UnkGoldViper* arg0);
+void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
+s32 inRange_DEBUG(u32, s32, s32, const char*);
+s32 bool_DEBUG(s32, const char*);
+s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0);
+s32 func_800E40A4_61854(UnkMagentaCrocodile* arg0);
+s32 func_800E41D8_61988(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
+s32 func_800E435C_61B0C(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
+s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
+void func_800E6778_63F28(UnkChestnutCougar* arg0);
+s32 func_800E67E4_63F94(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
 
 #endif

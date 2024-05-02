@@ -1,19 +1,5 @@
 #include "world.h"
 
-typedef struct UnkGoldViper {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ WorldBlock* unk_08;
-    /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ f32 unk_10;
-    /* 0x14 */ f32 unk_14;
-    /* 0x18 */ f32 unk_18;
-    /* 0x1C */ f32 unk_1C;
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-} UnkGoldViper; // size >= 0x28
-
 extern void (*D_800E6B20_642D0)(WorldBlock*);
 extern void (*D_800E6B24_642D4)(s32);
 extern f32 D_800E6BD0_64380;

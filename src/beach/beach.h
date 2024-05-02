@@ -1,6 +1,8 @@
 #ifndef _BEACH_H
 #define _BEACH_H
 
+#include "world/world.h"
+
 // TODO: move to a common header
 
 typedef struct UnkBlueShark {
@@ -25,9 +27,7 @@ f32 randFloat(void);
 s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
-void func_800E20B4_5F864(void);
-void func_800E2F38_606E8(UNK_PTR, u32, s32, s32, s32, s32, void*, void*, void*);
-void func_800E4040_617F0(UNK_PTR);
+s32 func_800E4040_617F0(UnkMagentaCrocodile*);
 void func_803570B0_4F74C0(void);
 void func_803570F0_4F7500(void*, int, f32);
 void func_80357120_4F7530(GObj*);

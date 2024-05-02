@@ -2,7 +2,13 @@
 #include "world.h"
 
 UnkChestnutCougar* D_800E6B40_642F0 = NULL;
-Mtx4f D_800E6B44_642F4 = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
+
+struct MatrixStruct {
+    f32 x00, x01, x02, x03;
+    f32 x10, x11, x12, x13;
+    f32 x20, x21, x22, x23;
+    f32 x30, x31, x32, x33;
+};
 
 f32 func_800E4860_62010(Vec3f* v1, Vec3f* v2) {
     return v1->x * v2->x + v1->y * v2->y + v1->z * v2->z;
@@ -91,30 +97,25 @@ static void nullsub() {
 
 }
 
-// needs data probably ?
-#ifdef NON_MATCHING
 void func_800E4BCC_6237C(Mtx4f dst) {
-    dst[0][0] = D_800E6B44_642F4[0][0];
-    dst[0][1] = D_800E6B44_642F4[0][1];
-    dst[0][2] = D_800E6B44_642F4[0][2];
-    dst[0][3] = D_800E6B44_642F4[0][3];
-    dst[1][0] = D_800E6B44_642F4[1][0];
-    dst[1][1] = D_800E6B44_642F4[1][1];
-    dst[1][2] = D_800E6B44_642F4[1][2];
-    dst[1][3] = D_800E6B44_642F4[1][3];
-    dst[2][0] = D_800E6B44_642F4[2][0];
-    dst[2][1] = D_800E6B44_642F4[2][1];
-    dst[2][2] = D_800E6B44_642F4[2][2];
-    dst[2][3] = D_800E6B44_642F4[2][3];
-    dst[3][0] = D_800E6B44_642F4[3][0];
-    dst[3][1] = D_800E6B44_642F4[3][1];
-    dst[3][2] = D_800E6B44_642F4[3][2];
-    dst[3][3] = D_800E6B44_642F4[3][3];
+    static struct MatrixStruct D_800E6B44_642F4 = { 1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1 };
+    dst[0][0] = D_800E6B44_642F4.x00;
+    dst[0][1] = D_800E6B44_642F4.x01;
+    dst[0][2] = D_800E6B44_642F4.x02;
+    dst[0][3] = D_800E6B44_642F4.x03;
+    dst[1][0] = D_800E6B44_642F4.x10;
+    dst[1][1] = D_800E6B44_642F4.x11;
+    dst[1][2] = D_800E6B44_642F4.x12;
+    dst[1][3] = D_800E6B44_642F4.x13;
+    dst[2][0] = D_800E6B44_642F4.x20;
+    dst[2][1] = D_800E6B44_642F4.x21;
+    dst[2][2] = D_800E6B44_642F4.x22;
+    dst[2][3] = D_800E6B44_642F4.x23;
+    dst[3][0] = D_800E6B44_642F4.x30;
+    dst[3][1] = D_800E6B44_642F4.x31;
+    dst[3][2] = D_800E6B44_642F4.x32;
+    dst[3][3] = D_800E6B44_642F4.x33;
 }
-#else 
-#pragma GLOBAL_ASM("asm/nonmatchings/world/62010/func_800E4BCC_6237C.s")
-void func_800E4BCC_6237C(Mtx4f dst);
-#endif
 
 void func_800E4C64_62414(Mtx4f mtx, Mtx4f invMtx, Vec3f scale, Vec3f rotation, Vec3f translation) {
     f32 sinAngleX = sinf(rotation.x);

@@ -14,9 +14,6 @@ s32 getLevelId(void);
 void setLevelId(s32 levelID);
 char* getLevelName(s32 levelIdx);
 
-s32 inRange_DEBUG(u32, s32, s32, const char*);
-s32 bool_DEBUG(s32, s32);
-
 void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn);

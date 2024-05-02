@@ -689,7 +689,6 @@ D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
 
 setWorldBlocksVisibility = 0x800E18A0;
-createSkyBox = 0x800E1E94; // rom:0x5F644
 getCurrentWorldBlock = 0x800E2184;
 createWorldBlockModel = 0x800E27C4; // rom:0x5FF74
 createWorldBlockUV = 0x800E2ACC; // rom:0x6027C

@@ -5,7 +5,7 @@ void func_beach_802C82B0(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    obj->flags |= GOBJ_FLAG_1;
+    obj->flags |= GOBJ_FLAG_HIDDEN;
     runPathProcess(obj, func_beach_802C8438);
     // clang-format off
     animal->counter = 1; animal->processFlags &= ~4;

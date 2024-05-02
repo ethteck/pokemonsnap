@@ -204,11 +204,11 @@ void createSkyBox(SkyBox* bg) {
 }
 
 void func_800E206C_5F81C(GObj* obj) {
-    Unk803586F8* v0 = func_803586F8_4F8B08();
+    OMCamera* v0 = func_803586F8_4F8B08();
 
-    obj->data.dobj->position.v.x = v0->unk_3C.x;
-    obj->data.dobj->position.v.y = v0->unk_3C.y;
-    obj->data.dobj->position.v.z = v0->unk_3C.z;
+    obj->data.dobj->position.v.x = v0->viewMtx.lookAt.eye.x;
+    obj->data.dobj->position.v.y = v0->viewMtx.lookAt.eye.y;
+    obj->data.dobj->position.v.z = v0->viewMtx.lookAt.eye.z;
 }
 
 void func_800E20B4_5F864(void) {

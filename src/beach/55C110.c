@@ -1,5 +1,6 @@
 #include "common.h"
 #include "beach.h"
+#include "level_low.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     geoNode* a0;
@@ -9,7 +10,7 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     RoomGFX* roomA;
     AnimalDef def = D_beach_802CBFF4;
 
-    roomA = getCurrentRoom();
+    roomA = getCurrentWorldBlock(); // TODO: type
     spawn.id = AnimalID_MAGIKARP;
     spawn.translation.x = 0.0;
     spawn.translation.y = 0.0;

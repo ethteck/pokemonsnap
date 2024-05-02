@@ -135,7 +135,7 @@ void func_8035024C_4F065C(f32, f32, f32);
 void func_803507E0_4F0BF0(s32);
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);
-Unk803586F8* func_803586F8_4F8B08(void);
+OMCamera* func_803586F8_4F8B08(void);
 void func_80359074_4F9484(void);
 void func_8035FEEC_5002FC(GObj*, s32);
 

@@ -2,152 +2,152 @@
 #include "credits.h"
 
 Credit D_credits_801E8BA0[] = {
-    { 0x00000032, 240.0f, "POKεMON SNAP Staff", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "JACK and BEANS", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Director", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Yoichi Yamamoto", 0x00000000 },
-    { 0x00000032, 320.0f, "Koji Inokuchi", 0x00000000 },
-    { 0x00000032, 320.0f, "Akira Takeshima", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Designer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Shigezo Kawase", 0x00000000 },
-    { 0x00000032, 320.0f, "Takeyuki Machida", 0x00000000 },
-    { 0x00000032, 320.0f, "Masanobu Yamamoto", 0x00000000 },
-    { 0x00000032, 320.0f, "Shizu Higashiyama", 0x00000000 },
-    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 50, 240.0f, "POKεMON SNAP Staff", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "JACK and BEANS", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Director", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Yoichi Yamamoto", 0 },
+    { 50, 320.0f, "Koji Inokuchi", 0 },
+    { 50, 320.0f, "Akira Takeshima", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Designer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Shigezo Kawase", 0 },
+    { 50, 320.0f, "Takeyuki Machida", 0 },
+    { 50, 320.0f, "Masanobu Yamamoto", 0 },
+    { 50, 320.0f, "Shizu Higashiyama", 0 },
+    { 0, 0, NULL, 0 },
 };
 
 Credit D_credits_801E8D00[] = {
-    { 0x00000032, 320.0f, "Sound Designer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Ikuko Mimori", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Programmer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Yoshiaki Shinohara", 0x00000000 },
-    { 0x00000032, 320.0f, "Kazuki Sekimori", 0x00000000 },
-    { 0x00000032, 320.0f, "Jinji Horagai", 0x00000000 },
-    { 0x00000032, 320.0f, "Tomoyuki Sumi", 0x00000000 },
-    { 0x00000032, 320.0f, "Hirotaka Kato", 0x00000000 },
-    { 0x00000032, 320.0f, "Hideaki Kiko", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Technical Support", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Makoto Kanai", 0x00000000 },
-    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 50, 320.0f, "Sound Designer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Ikuko Mimori", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Programmer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Yoshiaki Shinohara", 0 },
+    { 50, 320.0f, "Kazuki Sekimori", 0 },
+    { 50, 320.0f, "Jinji Horagai", 0 },
+    { 50, 320.0f, "Tomoyuki Sumi", 0 },
+    { 50, 320.0f, "Hirotaka Kato", 0 },
+    { 50, 320.0f, "Hideaki Kiko", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Technical Support", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Makoto Kanai", 0 },
+    { 0, 0, NULL, 0 },
 };
 
 Credit D_credits_801E8E30[] = {
-    { 0x00000032, 320.0f, "Supervisor", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Kensuke Tanabe", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "US Coordination", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Hiro Nakamura", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "N64 Modeling Center Tokyo", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Super Duper Special Chief Designer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Benimaru \"ASHURA\" Ito", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Takeshi Iizuka", 0x00000000 },
-    { 0x00000032, 320.0f, "Hiroshi Ishikawa", 0x00000000 },
-    { 0x00000032, 320.0f, "Takemi Ichikawa", 0x00000000 },
-    { 0x00000032, 320.0f, "Atsuko Ujiie", 0x00000000 },
-    { 0x00000032, 320.0f, "Ryuta Kusumi", 0x00000000 },
-    { 0x00000032, 320.0f, "Izuru Kumasaka", 0x00000000 },
-    { 0x00000032, 320.0f, "Toru Kurashige", 0x00000000 },
-    { 0x00000032, 320.0f, "Satomi Kokubo", 0x00000000 },
-    { 0x00000032, 320.0f, "Hitoshi Kobayashi", 0x00000000 },
-    { 0x00000032, 320.0f, "Mitsuteru Sato", 0x00000000 },
-    { 0x00000032, 320.0f, "Yuichi Sawayama", 0x00000000 },
-    { 0x00000032, 320.0f, "Hikaru Jinguji", 0x00000000 },
-    { 0x00000032, 320.0f, "Nachi Sugiyama", 0x00000000 },
-    { 0x00000032, 320.0f, "Jyungo Suzuki", 0x00000000 },
-    { 0x00000032, 320.0f, "Yoshiyuki Tagawa", 0x00000000 },
-    { 0x00000032, 320.0f, "Kazuo Yazawa", 0x00000000 },
-    { 0x00000032, 320.0f, "Akira Yamazaki", 0x00000000 },
-    { 0x00000032, 320.0f, "Shinichi Yoshikawa", 0x00000000 },
-    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 50, 320.0f, "Supervisor", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Kensuke Tanabe", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "US Coordination", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Hiro Nakamura", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "N64 Modeling Center Tokyo", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Super Duper Special Chief Designer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Benimaru \"ASHURA\" Ito", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Takeshi Iizuka", 0 },
+    { 50, 320.0f, "Hiroshi Ishikawa", 0 },
+    { 50, 320.0f, "Takemi Ichikawa", 0 },
+    { 50, 320.0f, "Atsuko Ujiie", 0 },
+    { 50, 320.0f, "Ryuta Kusumi", 0 },
+    { 50, 320.0f, "Izuru Kumasaka", 0 },
+    { 50, 320.0f, "Toru Kurashige", 0 },
+    { 50, 320.0f, "Satomi Kokubo", 0 },
+    { 50, 320.0f, "Hitoshi Kobayashi", 0 },
+    { 50, 320.0f, "Mitsuteru Sato", 0 },
+    { 50, 320.0f, "Yuichi Sawayama", 0 },
+    { 50, 320.0f, "Hikaru Jinguji", 0 },
+    { 50, 320.0f, "Nachi Sugiyama", 0 },
+    { 50, 320.0f, "Jyungo Suzuki", 0 },
+    { 50, 320.0f, "Yoshiyuki Tagawa", 0 },
+    { 50, 320.0f, "Kazuo Yazawa", 0 },
+    { 50, 320.0f, "Akira Yamazaki", 0 },
+    { 50, 320.0f, "Shinichi Yoshikawa", 0 },
+    { 0, 0, NULL, 0 },
 };
 
 Credit D_credits_801E9080[] = {
-    { 0x00000032, 320.0f, "Voice Actor", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Stan Hart", 0x00000000 },
-    { 0x00000032, 320.0f, "Jimmy Zoppi", 0x00000000 },
-    { 0x00000032, 320.0f, "Ikue Otani", 0x00000000 },
-    { 0x00000032, 320.0f, "and", 0x00000000 },
-    { 0x00000032, 320.0f, "Others...", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Special Thanks", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Hiroyuki Jinnai", 0x00000000 },
-    { 0x00000032, 320.0f, "Gakuji Nomoto", 0x00000000 },
-    { 0x00000032, 320.0f, "Jyun Yamazaki", 0x00000000 },
-    { 0x00000032, 320.0f, "Chiharu Ito", 0x00000000 },
-    { 0x00000032, 320.0f, "Masayoshi Tanimura", 0x00000000 },
-    { 0x00000032, 320.0f, "Satoshi Ishida", 0x00000000 },
-    { 0x00000032, 320.0f, "Tetsuya Notoya", 0x00000000 },
-    { 0x00000032, 320.0f, "Chieko Obikane", 0x00000000 },
-    { 0x00000032, 320.0f, "Hisatoshi Takeuchi", 0x00000000 },
-    { 0x00000032, 320.0f, "Keita Oriuchi", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "N64 Modeling Center Kyoto", 0x00000000 },
-    { 0x00000032, 320.0f, "System Development #2 (HAL)", 0x00000000 },
-    { 0x00000032, 320.0f, "HAL Debug Team", 0x00000000 },
-    { 0x00000032, 320.0f, "Super Mario Club", 0x00000000 },
-    { 0x00000032, 320.0f, "Creatures inc.", 0x00000000 },
-    { 0x00000032, 320.0f, "GAME FREAK inc.", 0x00000000 },
-    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 50, 320.0f, "Voice Actor", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Stan Hart", 0 },
+    { 50, 320.0f, "Jimmy Zoppi", 0 },
+    { 50, 320.0f, "Ikue Otani", 0 },
+    { 50, 320.0f, "and", 0 },
+    { 50, 320.0f, "Others...", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Special Thanks", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Hiroyuki Jinnai", 0 },
+    { 50, 320.0f, "Gakuji Nomoto", 0 },
+    { 50, 320.0f, "Jyun Yamazaki", 0 },
+    { 50, 320.0f, "Chiharu Ito", 0 },
+    { 50, 320.0f, "Masayoshi Tanimura", 0 },
+    { 50, 320.0f, "Satoshi Ishida", 0 },
+    { 50, 320.0f, "Tetsuya Notoya", 0 },
+    { 50, 320.0f, "Chieko Obikane", 0 },
+    { 50, 320.0f, "Hisatoshi Takeuchi", 0 },
+    { 50, 320.0f, "Keita Oriuchi", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "N64 Modeling Center Kyoto", 0 },
+    { 50, 320.0f, "System Development #2 (HAL)", 0 },
+    { 50, 320.0f, "HAL Debug Team", 0 },
+    { 50, 320.0f, "Super Mario Club", 0 },
+    { 50, 320.0f, "Creatures inc.", 0 },
+    { 50, 320.0f, "GAME FREAK inc.", 0 },
+    { 0, 0, NULL, 0 },
 };
 
 Credit D_credits_801E9260[] = {
-    { 0x00000032, 320.0f, "Character Supervisor", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Yoichi Kotabe", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Pokεmon Created by", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Satoshi Tajiri", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Pokεmon Producer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Tsunekaz Ishihara", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Producer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Satoru Iwata", 0x00000000 },
-    { 0x00000032, 320.0f, "Kenji Miki", 0x00000000 },
-    { 0x00000032, 320.0f, "Shigeru Miyamoto", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Executive Producer", 0x00000000 },
-    { 0x00000032, 320.0f, "", 0x00000000 },
-    { 0x00000032, 320.0f, "Hiroshi Yamauchi", 0x00000000 },
-    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 50, 320.0f, "Character Supervisor", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Yoichi Kotabe", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Pokεmon Created by", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Satoshi Tajiri", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Pokεmon Producer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Tsunekaz Ishihara", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Producer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Satoru Iwata", 0 },
+    { 50, 320.0f, "Kenji Miki", 0 },
+    { 50, 320.0f, "Shigeru Miyamoto", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Executive Producer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Hiroshi Yamauchi", 0 },
+    { 0, 0, NULL, 0 },
 };
 
 Credit* D_credits_801E9400[] = {
@@ -435,45 +435,67 @@ void func_credits_801DE8A0(SObj* sobj, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A94940/func_credits_801DE8D8.s")
+s32 func_credits_801DE8D8(void) {
+    s32 temp_t1;
+    s32* var_a0;
+    s32* var_v1;
+    u8 idx;
+    s32 orig;
+    s32 i;
 
-#if 1
-#pragma GLOBAL_ASM("asm/nonmatchings/credits/A94940/func_credits_801DEA30.s")
-#else
-void func_credits_801DEA30(SObj* arg0, f32 arg1) {
-    SObj* temp_v1;
-    f32 temp_f0;
-    s16 temp_f10;
-    s16 temp_f6;
-    f32 i;
+    idx = randTRange(D_credits_801ECDA8, &D_credits_801ECDA8);
 
-    temp_f0 = 70.0f * arg1;
-    arg0->sprite.x = (s16) (s32) (160.0f - temp_f0);
-    arg0->sprite.y = (s16) (s32) (120.0f - (52.0f * arg1));
-    temp_f10 = (255.0f - ((arg1 - 1.0f) * 53.0f));
-    temp_f6 = (3.0f * arg1);
-    arg0->sprite.blue = temp_f10;
-    arg0->sprite.green = temp_f10;
-    arg0->sprite.red = temp_f10;
+    temp_t1 = D_credits_801ECDA8;
 
-    temp_v1 = arg0->next;
-    temp_v1->sprite.x = arg0->sprite.x - temp_f6;
-    temp_v1->sprite.y = arg0->sprite.y - temp_f6;
+    orig = D_credits_801ECDB0[idx];
+    D_credits_801ECDB0[idx] = 999;
+    D_credits_801ECDA8 = 0;
 
-    temp_v1 = temp_v1->next;
-    temp_v1->sprite.x = arg0->sprite.x + (s32) (140.0f * arg1);
-    temp_v1->sprite.y = arg0->sprite.y - temp_f6;
+    var_v1 = D_credits_801ECDB0;
+    var_a0 = D_credits_801ECDB0;
 
-    temp_v1 = temp_v1->next;
-    i = 0xA0 - temp_f0;
-    temp_v1->sprite.x = i;
-    temp_v1->sprite.y = arg0->sprite.y - temp_f6;
+    for (i = 0; i != temp_t1; i++) {
+        if (*var_a0 != 999) {
+            *var_v1 = *var_a0;
+            var_v1++;
+            D_credits_801ECDA8++;
+        }
+        var_a0++;
+    }
 
-    temp_v1 = temp_v1->next;
-    temp_v1->sprite.x = i;
-    temp_v1->sprite.y = arg0->sprite.y + (s32) (105.0f * arg1);
+    if (D_credits_801ECDA8 == 0) {
+        D_credits_801ECDA4 = 2;
+    }
+    return orig;
 }
-#endif
+
+void func_credits_801DEA30(SObj* sobj, f32 arg1) {
+    SObj* it;
+
+    sobj->sprite.x = (SCREEN_WIDTH / 2) - (70.0f * arg1);
+    sobj->sprite.y = (SCREEN_HEIGHT / 2) - (52.0f * arg1);
+
+    if (1) {
+        // required to match
+    }
+    sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = (s16) (255.0f - ((arg1 - 1.0f) * 53.0f));
+
+    it = sobj->next;
+    it->sprite.x = sobj->sprite.x - (s16) (3.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+
+    it = it->next;
+    it->sprite.x = sobj->sprite.x + (s16) (140.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+
+    it = it->next;
+    it->sprite.x = (SCREEN_WIDTH / 2) - (s16) (70.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+
+    it = it->next;
+    it->sprite.x = (SCREEN_WIDTH / 2) - (s16) (70.0f * arg1);
+    it->sprite.y = sobj->sprite.y + (s16) (105.0f * arg1);
+}
 
 void func_credits_801DEB74(SObj* sobj, f32 scale) {
     while (sobj != NULL) {

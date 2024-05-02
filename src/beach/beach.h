@@ -10,11 +10,14 @@ typedef struct UnkBlueShark {
 
 extern s32* D_800968BC;
 extern GObj* D_80382C00_523010;
-extern u8 D_8011B914; // ???
+extern UNK_TYPE D_8011B914; // ???
 extern f32 D_8011B924;
 extern u8 D_8013B030;
 extern u8 D_8013BAA0;
 extern AnimCmd D_8013C530[];
+extern UNK_TYPE D_8013C580;
+extern UNK_TYPE D_8013CEA0;
+extern AnimCmd D_8013DA90;
 
 f32 atan2f(f32 y, f32 x);
 u32 randRange(s32 range);
@@ -58,23 +61,27 @@ void func_80363DBC_5041CC(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f3
 void func_80363EB4_5042C4(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void func_80365E34_506244(void);
 GObj* func_80365E80_506290(void);
-void func_80365F38_506348(void*, void*, f32, float);
+void func_80365F38_506348(UNK_PTR, UNK_PTR, f32, f32);
 void func_803667C0_506BD0(GObj*, int, int);
 
 extern AnimalDef D_beach_802CBFF4;
 extern s32 D_beach_802CC018;
+extern SceneSetup D_beach_802CC038;
 extern s32 D_beach_802CC0D0;
 extern s32 D_beach_802CC0D4;
 extern s32 D_beach_802CC0D8;
 extern s32 D_beach_802CC0E0;
 extern GObj* D_beach_802CC0E4;
 extern animationHeader D_beach_802CC10C;
+extern animationHeader D_beach_802CC120;
 extern animationHeader D_beach_802CC134;
 extern animationHeader D_beach_802CC148;
 extern animationHeader D_beach_802CC15C;
 extern animationHeader D_beach_802CC170;
 extern animationHeader D_beach_802CC184;
 extern animationHeader D_beach_802CC198;
+extern animationHeader D_beach_802CC1AC;
+extern animationHeader D_beach_802CC1C0;
 extern idFuncStruct D_beach_802CC1D4;
 extern idFuncStruct D_beach_802CC234;
 extern idFuncStruct D_beach_802CC264;
@@ -232,7 +239,7 @@ extern animalInitData D_beach_802CE038;
 extern animationHeader D_beach_802CE070;
 extern animalInitData D_beach_802CE0A8;
 extern AnimalDef D_beach_802CE0DC;
-extern int D_beach_80318F00; // TODO: figure out type
+extern UNK_TYPE D_beach_80318F00;
 extern u8 D_beach_80347578;
 extern u8 D_beach_80347579;
 extern u8 D_beach_8034757A;

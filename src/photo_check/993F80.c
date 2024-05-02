@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include "photocheck.h"
+#include "photo_check.h"
 
 typedef struct Foo2 {
     UnkPinkBarracuda* var_0;

@@ -3,7 +3,7 @@
 #include "gbi.h"
 #include "string.h"
 
-#include "photocheck.h"
+#include "photo_check.h"
 
 extern s32 D_80229840;
 
@@ -90,7 +90,6 @@ extern s32 D_801F3E2C_9A389C;
 extern s32 D_801F3E30_9A38A0;
 extern s32 D_801F3E60_9A38D0;
 extern s32 D_801F3E64_9A38D4;
-
 
 typedef struct ObjPair {
     /* 0x00 */ GObj* gobj;

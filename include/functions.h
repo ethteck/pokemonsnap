@@ -96,6 +96,7 @@ void func_800C0B48_5D9E8(void);
 s32 func_oaks_lab_800E1AD8(s32);
 void func_800E1C5C_AA0A0C(void);
 f32 func_800E219C(void);
+f32 func_800E21A8(f32);
 s32 menu_new_game_entry(s32);
 void func_800E3064(void);
 s32 func_800E4830_A0BDC0(s32);
@@ -214,6 +215,8 @@ void func_8037005C_84380C(s32, s32);
 void func_80362EE0_5032F0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 void func_80362DC4_5031D4(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
-// void qsort(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*));
+#if defined(M2CTX) || defined(__sgi)
+void qsort(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*));
+#endif
 
 #endif

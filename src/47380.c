@@ -1,4 +1,5 @@
 #include "common.h"
+#include "beach/beach.h"
 #if !defined(M2CTX) && !defined(PERMUTER)
 #include "ld_addrs.h"
 #endif
@@ -9,6 +10,11 @@ s32 func_803647BC(GObj*);
 typedef struct PhotoData {
     u8 pad[0x3A0];
 } PhotoData; // size == 0x3A0
+
+typedef struct UnkFunc8009D184 {
+    /* 0x00 */ u8 pad00[0xC];
+    /* 0x0C */ s32 unk_C;
+} UnkFunc8009D184;
 
 typedef struct UnkFunc8009C25C_Unk20 {
     /* 0x00 */ u8 pad00[0x18];
@@ -567,9 +573,15 @@ s32 func_8009CDE4(u8* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CEAC.s")
 
+void func_8009D0B4(UNK_PTR arg0, UNK_PTR arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D0B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D184.s")
+void func_800E2F38(UNK_PTR, u32, s32, s32, s32, s32, void*, void*, void*);
+void func_8009D184(UnkFunc8009D184* arg0) {
+    arg0->unk_C = 0;
+    func_800E2F38((UNK_PTR) arg0, 0x63, 0x64, 0x7E, D_800BDF1D, D_800BDF1C, func_8009D0B4, 0, 0);
+    func_800E1A78_5F228(0.0f);
+}
 
 void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
     if (arg1 >= arg0) {

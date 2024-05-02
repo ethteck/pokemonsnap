@@ -3,23 +3,27 @@
 #ifdef NON_MATCHING
 void func_800E4460_61C10(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKomodo* arg2) {
     while (TRUE) {
-        if ((uintptr_t)arg1->unk_14 != -1 && ((uintptr_t)arg1->unk_14 & 0xFF000000) == 0) {
+        if (arg1->unk_14 != (void*)-1 && ((uintptr_t)arg1->unk_14 & 0xFF000000) == 0) {
+            if (!arg2) {} // for regalloc
             arg1->unk_14 = &arg2[(uintptr_t)arg1->unk_14];
         }
-        if ((uintptr_t)arg1->unk_18 != -1 && ((uintptr_t)arg1->unk_18 & 0xFF000000) == 0) {
+        if (arg1->unk_18 != (void*)-1 && ((uintptr_t)arg1->unk_18 & 0xFF000000) == 0) {
+            if (!arg2) {} // for regalloc
             arg1->unk_18 = &arg2[(uintptr_t)arg1->unk_18];
         }
-        if ((uintptr_t)arg1->unk_0C != -1 && ((uintptr_t)arg1->unk_0C & 0xFF000000) == 0) {
+        if (arg1->unk_0C != (void*)-1 && ((uintptr_t)arg1->unk_0C & 0xFF000000) == 0) {
+            if (!arg0) {} // for regalloc
             arg1->unk_0C = &arg0[(uintptr_t)arg1->unk_0C];
         }
-        if ((uintptr_t)arg1->unk_10 != -1 && ((uintptr_t)arg1->unk_10 & 0xFF000000) == 0) {
+        if (arg1->unk_10 != (void*)-1 && ((uintptr_t)arg1->unk_10 & 0xFF000000) == 0) {
+            if (!arg0) {} // for regalloc
             arg1->unk_10 = &arg0[(uintptr_t)arg1->unk_10];
         }
 
-        if ((uintptr_t)arg1->unk_0C != -1) {
+        if (arg1->unk_0C != (void*)-1) {
             func_800E4460_61C10(arg0, arg1->unk_0C, arg2);
         }
-        if ((uintptr_t)arg1->unk_10 != -1) {
+        if (arg1->unk_10 != (void*)-1) {
             arg1 = arg1->unk_10;
         } else {
             break;
@@ -34,16 +38,16 @@ void func_800E4460_61C10(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKom
 #ifdef NON_MATCHING
 void func_800E4584_61D34(UnkCoralFossa* arg0, UnkCoralFossa* arg1, UnkFuchsiaKomodo* arg2) {
     while (TRUE) {
-        if ((uintptr_t)arg1->unk_14 == -1) {
+        if (arg1->unk_14 == (void*)-1) {
             arg1->unk_14 = NULL;
         }
-        if ((uintptr_t)arg1->unk_18 == -1) {
+        if (arg1->unk_18 == (void*)-1) {
             arg1->unk_18 = NULL;
         }
-        if ((uintptr_t)arg1->unk_0C == -1) {
+        if (arg1->unk_0C == (void*)-1) {
             arg1->unk_0C = NULL;
         }
-        if ((uintptr_t)arg1->unk_10 == -1) {
+        if (arg1->unk_10 == (void*)-1) {
             arg1->unk_10 = NULL;
         }
 

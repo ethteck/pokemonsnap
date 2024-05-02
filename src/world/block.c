@@ -36,30 +36,26 @@ static DObj* D_800F5BB0_73360[13 * 3];
 static UnkAquamarineCoyote D_800F5C50_73400[14];
 static char D_800F5CF8_734A8[0x48];
 
-#ifdef NON_MATCHING
-// setWorldBlocksVisibility
-void func_800E18A0_5F050(u32 visibilityMask) {
+void setWorldBlocksVisibility(u32 visibilityMask) {
     s32 i;
 
-    for (i = 0; i <= 30 && i < 13; i++) {
+    for (i = 0; i < 31 && i < 13; i++) {
         if (worldBlocks[i] == NULL) {
             break;
         }
 
-        if (worldBlocks[i]->blockModel != NULL) {
-            if (visibilityMask & 1) {
-                worldBlocks[i]->blockModel->flags &= ~GOBJ_FLAG_HIDDEN;
-            } else {
-                worldBlocks[i]->blockModel->flags |= GOBJ_FLAG_HIDDEN;
-            }
-            visibilityMask >>= 1;
+        if (worldBlocks[i]->blockModel == NULL) {
+            continue;
         }
+
+        if (visibilityMask & 1) {
+            worldBlocks[i]->blockModel->flags &= ~GOBJ_FLAG_HIDDEN;
+        } else {
+            worldBlocks[i]->blockModel->flags |= GOBJ_FLAG_HIDDEN;
+        }
+        visibilityMask >>= 1;
     }
 }
-#else
-void func_800E18A0_5F050(u32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E18A0_5F050.s")
-#endif
 
 void func_800E1924_5F0D4(void) {
     s32 i;
@@ -76,7 +72,7 @@ void func_800E19A4_5F154(DObj* arg0, s32 arg1, f32 arg2) {
         f32 animationTime = arg0->obj->animationTime;
         D_800F5C50_73400[arg1].unk_00 = animationTime;
         D_800F5C50_73400[arg1].unk_04 = arg2;
-        func_800E18A0_5F050(arg2);
+        setWorldBlocksVisibility(arg2);
     }   
 }
 
@@ -254,7 +250,6 @@ static void nullsub() {
     
 }
 
-#ifdef NON_MATCHING
 void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
     f32 x1, y1, z1;
 
@@ -267,18 +262,14 @@ void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
         return;
     }
 
-    x1 = arg0->descriptor->unk_04.x;
-    y1 = arg0->descriptor->unk_04.y;
-    z1 = arg0->descriptor->unk_04.z;
+    x1 = arg1->descriptor->unk_04.x;
+    y1 = arg1->descriptor->unk_04.y;
+    z1 = arg1->descriptor->unk_04.z;
 
-    arg0->blockModel->data.dobj->position.v.x = (x1 - arg1->descriptor->unk_04.x) * 100.0f;
-    arg0->blockModel->data.dobj->position.v.y = (y1 - arg1->descriptor->unk_04.y) * 100.0f;
-    arg0->blockModel->data.dobj->position.v.z = (z1 - arg1->descriptor->unk_04.z) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.x = (arg0->descriptor->unk_04.x - x1) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.y = (arg0->descriptor->unk_04.y - y1) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.z = (arg0->descriptor->unk_04.z - z1) * 100.0f;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/world/block/func_800E21E4_5F994.s")
-void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1);
-#endif
 
 void func_800E2280_5FA30(WorldBlock* arg0) {
     s32 i;

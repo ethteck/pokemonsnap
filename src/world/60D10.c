@@ -8,16 +8,117 @@ f32 func_800E3560_60D10(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (arg1 - arg0) * (arg4 - arg2) / (arg3 - arg2) + arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/world/60D10/func_800E3590_60D40.s")
-void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6, f32* arg7, f32* arg8, f32* arg9);
+void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6, f32* arg7, f32* arg8, f32* arg9) {
+    GObj* blockUV;
+    f32 nv;
+    s32 a0, i;
+    f32 f2, f0;
+    s32 temp_a2;
+    s32 unused;
+    DObj* dobj1;
+    DObj* dobj2;
+    
 
-#ifdef NON_MATCHING
+    *arg3 = *arg4 = *arg5 = *arg6 = *arg7 = *arg8 = *arg9 = 0;
+
+    if (arg0 == NULL) {
+        return;
+    } 
+    if (arg0->blockUV == NULL) {
+        return;
+    }
+    if (arg0->unk_18 == NULL) {
+        return;
+    }
+    if (arg0->descriptor == NULL ||
+        arg0->descriptor->gfx == NULL ||
+        arg0->descriptor->gfx->unk_18 == NULL)
+    {
+        return;
+    }
+
+    temp_a2 = arg0->descriptor->gfx->unk_14 - 1;
+    if (temp_a2 <= 0) {
+        return;
+    }
+
+    if (arg1 < 0.0f) {
+        arg1 = 0;
+    }
+    if (arg1 > 1.0f) {
+        arg1 = 1.0f;
+    }
+    if (arg2 < 0.0f) {
+        arg2 = 0;
+    }
+    if (arg2 > 1.0f) {
+        arg2 = 1.0f;
+    }
+
+    if (arg0->descriptor->unk_14 != 0) {
+        arg1 = 1.0f - arg1;
+        arg2 = 1.0f - arg2;
+    }
+    blockUV = arg0->blockUV;
+    nv = arg0->descriptor->gfx->unk_1C * arg1;
+    animSetModelAnimationSpeed(blockUV, nv - blockUV->animationTime);
+    animUpdateModelTreeAnimation(blockUV);
+
+    if (temp_a2 == 1) {
+        dobj1 = arg0->unk_18[1];
+        *arg3 = dobj1->position.v.x;
+        *arg4 = dobj1->position.v.y;
+        *arg5 = dobj1->position.v.z;
+        *arg6 = dobj1->rotation.f[1];
+        *arg7 = dobj1->rotation.f[2];
+        *arg8 = dobj1->rotation.f[3];
+        *arg9 = dobj1->scale.v.x;
+        return;
+    }
+
+    a0 = 1;
+    for (i = 2; i < temp_a2; i++) {
+        a0 = i;
+        if (arg2 <= arg0->descriptor->gfx->unk_20[i - 2]) {
+            a0 = i - 1;
+            break;
+        }
+    }
+
+    i = a0 + 1;
+    if (i <= temp_a2) {
+        if (a0 < 2 || temp_a2 < 3) {
+            f2 = 0;
+        } else {
+            f2 = arg0->descriptor->gfx->unk_20[a0 - 2];
+        }
+
+        if (i >= temp_a2) {
+            f0 = 1.0f;
+        } else {
+            f0 = arg0->descriptor->gfx->unk_20[i - 2];
+        }
+        dobj1 = arg0->unk_18[a0];
+        dobj2 = arg0->unk_18[i];
+        *arg3 = func_800E3560_60D10(dobj1->position.v.x, dobj2->position.v.x, f2, f0, arg2);
+        *arg4 = func_800E3560_60D10(dobj1->position.v.y, dobj2->position.v.y, f2, f0, arg2);
+        *arg5 = func_800E3560_60D10(dobj1->position.v.z, dobj2->position.v.z, f2, f0, arg2);
+        *arg6 = func_800E3560_60D10(dobj1->rotation.f[1], dobj2->rotation.f[1], f2, f0, arg2);
+        *arg7 = func_800E3560_60D10(dobj1->rotation.f[2], dobj2->rotation.f[2], f2, f0, arg2);
+        *arg8 = func_800E3560_60D10(dobj1->rotation.f[3], dobj2->rotation.f[3], f2, f0, arg2);
+        *arg9 = func_800E3560_60D10(dobj1->scale.v.x, dobj2->scale.v.x, f2, f0, arg2);
+    }
+}
+
 void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
     s32 temp_a1;
     s32 i;
     s32 a0;
     f32 f2;
     f32 f0;
+    DObj* dobj1;
+    DObj* dobj2;
+    WorldBlock* block = arg0;
 
     if (arg0 ==NULL ||
         arg0->blockUV == NULL ||
@@ -29,7 +130,7 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
         return;
     }
 
-    temp_a1 = arg0->descriptor->gfx->unk_14 - 1;
+    temp_a1 = block->descriptor->gfx->unk_14 - 1;
     if (temp_a1 <= 0) {
         return;
     }
@@ -40,18 +141,18 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
     if (arg1 > 1.0f) {
         arg1 = 1.0f;
     }
-    if (arg0->descriptor->unk_14 != 0) {
+    if (block->descriptor->unk_14 != 0) {
         arg1 = 1.0f - arg1;
     }
     if (temp_a1 == 1) {
-        *arg2 = arg0->unk_18->unk_00[1]->scale.v.x;
+        *arg2 = block->unk_18[1]->scale.v.x;
         return;
     }
 
     a0 = 1;
     for (i = 2; i < temp_a1; i++) {
         a0 = i;
-        if (arg1 <= arg0->descriptor->gfx->unk_20[i - 2]) {
+        if (arg1 <= block->descriptor->gfx->unk_20[i - 2]) {
             a0 = i - 1;
             break;
         }
@@ -62,22 +163,20 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
         if (a0 < 2 || temp_a1 < 3) {
             f2 = 0;
         } else {
-            f2 = arg0->descriptor->gfx->unk_20[a0 - 2];
+            f2 = block->descriptor->gfx->unk_20[a0 - 2];
         }
 
         if (i >= temp_a1) {
             f0 = 1.0f;
         } else {
-            f0 = arg0->descriptor->gfx->unk_20[i - 2];
+            f0 = block->descriptor->gfx->unk_20[i - 2];
         }
-
-        *arg2 = func_800E3560_60D10(arg0->unk_18->unk_00[a0]->scale.v.x, arg0->unk_18->unk_00[i]->scale.v.x, f2, f0, arg1);
+        
+        dobj1 = block->unk_18[a0];
+        dobj2 = block->unk_18[i];
+        *arg2 = func_800E3560_60D10(dobj1->scale.v.x, dobj2->scale.v.x, f2, f0, arg1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/world/60D10/func_800E3968_61118.s")
-void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2);
-#endif
 
 void func_800E3B0C_612BC(WorldBlock* arg0, f32 arg1, f32 arg2, UnkGoldViper* arg3) {
     f32 sp6C, sp68, sp64, sp60, sp5C, sp58, sp54;

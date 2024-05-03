@@ -1,7 +1,7 @@
 #include "world.h"
 
-extern UnkMagentaCrocodile* D_800E6B30_642E0;
-extern UnkMagentaCrocodile* D_800E6B34_642E4;
+UnkMagentaCrocodile* D_800E6B30_642E0 = NULL;
+UnkMagentaCrocodile* D_800E6B34_642E4 = NULL;
 
 s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
     UnkFuchsiaKomodo* unk_00;

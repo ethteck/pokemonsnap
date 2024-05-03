@@ -1,8 +1,7 @@
 #include "world.h"
 
-extern void (*D_800E6B20_642D0)(WorldBlock*);
-extern void (*D_800E6B24_642D4)(s32);
-extern f32 D_800E6BD0_64380;
+void (*D_800E6B20_642D0)(WorldBlock*) = NULL;
+void (*D_800E6B24_642D4)(s32) = NULL;
 
 f32 func_800E3560_60D10(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (arg1 - arg0) * (arg4 - arg2) / (arg3 - arg2) + arg0;

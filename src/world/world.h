@@ -147,6 +147,7 @@ typedef struct UnkMagentaCrocodile {
     /* 0x04 */ UnkCoralFossa* unk_04;
 } UnkMagentaCrocodile; // size >= 0x08
 
+// probably same as UnkFuchsiaKomodo
 typedef struct UnkBurgundyOcelot {
     /* 0x00 */ f32 unk_00;
     /* 0x04 */ f32 unk_04;

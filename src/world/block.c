@@ -1,5 +1,7 @@
 #include "world.h"
 
+#define MAX_BLOCKS 13
+
 void func_800E354C_60CFC(UnkVioletMarlin*, s32);
 void func_800E3464_60C14(WorldBlock*);
 
@@ -27,16 +29,16 @@ BlockFunc2 D_800E6B04_642B4 = NULL;
 
 // bss
 static char D_800F5A00_731B0[8]; // padding
-static WorldBlock* worldBlocks[13];
-static WorldBlock worldBlockArray[13];
-static DObj* D_800F5BB0_73360[13 * 3];
+static WorldBlock* worldBlocks[MAX_BLOCKS];
+static WorldBlock worldBlockArray[MAX_BLOCKS];
+static DObj* D_800F5BB0_73360[MAX_BLOCKS * 3];
 static UnkAquamarineCoyote D_800F5C50_73400[14];
 static char D_800F5CF8_734A8[0x48];
 
 void setWorldBlocksVisibility(u32 visibilityMask) {
     s32 i;
 
-    for (i = 0; i < 31 && i < 13; i++) {
+    for (i = 0; i < 31 && i < MAX_BLOCKS; i++) {
         if (worldBlocks[i] == NULL) {
             break;
         }
@@ -270,7 +272,7 @@ void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
 void func_800E2280_5FA30(WorldBlock* arg0) {
     s32 i;
 
-    for (i = 0; i < 13; i++) {
+    for (i = 0; i < MAX_BLOCKS; i++) {
         if (worldBlocks[i] == NULL) {
             break;
         }
@@ -359,7 +361,7 @@ WorldBlock* func_800E2400_5FBB0(void) {
     }
 
     for (i = 0; i < 1; i++) {
-        if (next->index + i >= 13) {
+        if (next->index + i >= MAX_BLOCKS) {
             break;
         }
         if (worldBlocks[next->index + i] == NULL) {
@@ -556,7 +558,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     WorldBlockDeleteCb = deleteCb;
     D_800E6B04_642B4 = arg8;
 
-    for (i = 0; i < 13; i++) {
+    for (i = 0; i < MAX_BLOCKS; i++) {
         worldBlocks[i] = NULL;
     }
 
@@ -566,7 +568,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     ptr = arg0->unk_00;
     createSkyBox(arg0->skybox);
     
-    for (i = 0; i < 13; i++) {
+    for (i = 0; i < MAX_BLOCKS; i++) {
         if (ptr[i] == NULL) {
             break;
         }
@@ -612,8 +614,8 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     }
     ptr = arg0->unk_04;
 
-    for (i = num1; i < 13; i++) {
-        if (ptr[i - num1] == 0) {
+    for (i = num1; i < MAX_BLOCKS; i++) {
+        if (ptr[i - num1] == NULL) {
             break;
         }
 
@@ -630,7 +632,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         func_800E3464_60C14(s0);
     }
 
-    if (i >= 13) {
+    if (i >= MAX_BLOCKS) {
         return NULL;
     }
 
@@ -667,7 +669,7 @@ s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockM
 void clearWorldBlocks(void) {
     s32 i;
 
-    for (i = 0; i < 13; i++) {
+    for (i = 0; i < MAX_BLOCKS; i++) {
         if (worldBlocks[i] != NULL) {
             clearWorldBlock(worldBlocks[i]);
         }

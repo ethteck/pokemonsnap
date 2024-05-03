@@ -10,10 +10,10 @@ typedef struct UnkBlueShark {
 
 extern s32* D_800968BC;
 extern GObj* D_80382C00_523010;
-extern UNK_TYPE D_8011B914; // ???
+extern UNK_TYPE D_8011B914;
 extern f32 D_8011B924;
-extern u8 D_8013B030;
-extern u8 D_8013BAA0;
+extern UNK_TYPE D_8013B030;
+extern UNK_TYPE D_8013BAA0;
 extern AnimCmd D_8013C530[];
 extern UNK_TYPE D_8013C580;
 extern UNK_TYPE D_8013CEA0;

@@ -281,25 +281,6 @@ typedef struct {
     /* 0x20 */ Vec3f scale;
 } nodeTreeEntry;
 
-typedef struct { /* room data pos32ers */
-    /* 0x00 */ void* dList;
-    /* 0x04 */ uvScrollData*** scrollList;
-    /* 0x08 */ uvState*** field_0x8;
-    /* 0x0C */ void (*renderer)(struct GObj*);
-    /* 0x10 */ nodeTreeEntry* treeEntries;
-    /* 0x14 */ u32 smallNum;
-    /* 0x18 */ uvState** states;
-    /* 0x1C */ u32 hundred;
-    /* 0x20 */ u32 zero;
-} room;
-
-typedef struct {
-    /* 0x00 */ s32 id;
-    /* 0x04 */ Vec3f pos;
-    /* 0x10 */ Vec3f euler;
-    /* 0x1C */ Vec3f scale;
-} otherObj;
-
 typedef struct {
     /* 0x00 */ s32 id;
     /* 0x04 */ s32 behavior;
@@ -308,32 +289,6 @@ typedef struct {
     /* 0x20 */ Vec3f scale;
     /* 0x2C */ pathSpline* path;
 } ObjectSpawn;
-
-typedef struct {
-    /* 0x00 */ room* room;
-    /* 0x04 */ Vec3f offset; /* divided by 100 */
-    /* 0x10 */ f32 roomYaw;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ otherObj* unk_18; /* -1 id terminates */
-    /* 0x1C */ ObjectSpawn* objects;
-    /* 0x20 */ otherObj* unk_20;
-} roomDescriptor;
-
-typedef struct {
-    /* 0x00 */ geoNode* unk_00;
-    /* 0x04 */ void* unk_04;
-    /* 0x08 */ f32 unk_08;
-} roomgfx_18;
-
-typedef struct {
-    /* 0x00 */ s32 index;
-    /* 0x04 */ roomDescriptor* roomDesc;
-    /* 0x08 */ struct RoomGFX* prev;
-    /* 0x0C */ struct RoomGFX* next;
-    /* 0x10 */ struct GObj* blockModel;
-    /* 0x14 */ struct GObj* blockUV;
-    /* 0x18 */ roomgfx_18* unk_18;
-} RoomGFX;
 
 typedef union {
     f32 field0;
@@ -383,6 +338,7 @@ typedef struct {
     /* 0x10 */ f32 timer;
 } eggStruct;
 
+struct WorldBlock;
 typedef struct {
     /* 0x000 */ s8 id;
     /* 0x001 */ char unk_01[0x1];
@@ -405,7 +361,7 @@ typedef struct {
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ struct GObj* interactionTarget;
-    /* 0x074 */ RoomGFX* someRoom;
+    /* 0x074 */ struct WorldBlock* someRoom;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ uvState** animators; /* Created by retype action */
     /* 0x084 */ uvState*** matAnims; /* Created by retype action */
@@ -451,7 +407,7 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
-typedef GObj* (*animalInit)(s32 arg0, s32 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn);
+typedef GObj* (*animalInit)(s32 arg0, s32 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 typedef void (*gfxFunc)(GObj*);
 
 typedef struct {

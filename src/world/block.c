@@ -200,14 +200,13 @@ void func_800E206C_5F81C(GObj* obj) {
     obj->data.dobj->position.v.z = v0->viewMtx.lookAt.eye.z;
 }
 
-void func_800E20B4_5F864(void) {
+void setSkyBoxFollowPlayer(void) {
     if (SkyBoxObject != NULL && SkyBoxObject->data.dobj != NULL) {
         omCreateProcess(SkyBoxObject, &func_800E206C_5F81C, 1, 0);
     }
 }
 
-void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 animationTime) {
-
+void setSkyBoxPos(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 animationTime) {
     if (SkyBoxObject != NULL && SkyBoxObject->data.dobj != NULL) {
         SkyBoxObject->data.dobj->position.v.x = posX;
         SkyBoxObject->data.dobj->position.v.y = posY;
@@ -229,11 +228,11 @@ WorldBlock** getWorldBlocks(void) {
     return worldBlocks;
 }
 
-f32 func_800E219C_5F94C(void) {
+f32 world_func_800E219C(void) {
     return SkyBoxAnimationPhase;
 }
 
-f32 func_800E21A8_5F958(f32 arg0) {
+f32 world_func_800E21A8(f32 arg0) {
     while (TRUE) {
         if (arg0 < 100.0f) {
             return arg0;
@@ -434,7 +433,7 @@ void func_800E270C_5FEBC(GObj* obj) {
         return;
     }
 
-    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, func_800E21A8_5F958(SkyBoxAnimationPhase));
+    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, world_func_800E21A8(SkyBoxAnimationPhase));
     animSetTextureAnimationSpeed(obj, 0.0f);
     animUpdateModelTreeAnimation(obj);
 }
@@ -538,7 +537,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     }
     animSetModelTreeAnimation(obj, block->descriptor->gfx->unk_18, skipFrames);
     animUpdateModelTreeAnimation(obj);
-    obj->fnAnimCallback = &func_800E19A4_5F154;
+    obj->fnAnimCallback = func_800E19A4_5F154;
     return obj;
 }
 
@@ -650,7 +649,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     return worldBlocks;
 }
 
-s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8) {
+s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8) {
     func_800E1924_5F0D4();
     if (arg0 == NULL || arg0->unk_00 == NULL) {
         return FALSE;
@@ -675,7 +674,7 @@ void clearWorldBlocks(void) {
     }
 }
 
-void func_800E3064_60814(void) {
+void destroyWorld(void) {
     func_800E1924_5F0D4();
     clearWorldBlocks();
     if (SkyBoxObject != NULL) {

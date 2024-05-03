@@ -3,7 +3,7 @@
 UnkMagentaCrocodile* D_800E6B30_642E0 = NULL;
 UnkMagentaCrocodile* D_800E6B34_642E4 = NULL;
 
-s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
+s32 world_func_800E4040(UnkMagentaCrocodile* arg0) {
     UnkFuchsiaKomodo* unk_00;
     UnkCoralFossa* unk_04;
 
@@ -20,7 +20,7 @@ s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0) {
     return TRUE;
 }
 
-s32 func_800E40A4_61854(UnkMagentaCrocodile* arg0) {
+s32 world_func_800E40A4(UnkMagentaCrocodile* arg0) {
     UnkFuchsiaKomodo* unk_00;
     UnkCoralFossa* unk_04;
 
@@ -64,7 +64,7 @@ s32 func_800E4138_618E8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
     return TRUE;
 }
 
-s32 func_800E41D8_61988(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
+s32 world_func_800E41D8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2) {
     WorldBlock* block = getCurrentWorldBlock();
 
     if (block == NULL || block->descriptor == NULL || D_800E6B30_642E0 == NULL) {

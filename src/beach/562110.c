@@ -60,6 +60,6 @@ void func_beach_802CA23C(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802CA2BC(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CA2BC(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_beach_802CD8E4);
 }

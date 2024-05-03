@@ -1,4 +1,5 @@
 #include "common.h"
+#include "world/world.h"
 
 void spawnStaryuAtGeo(GObj* obj) {
     addAnimalAtGeo(obj, AnimalID_STARYU, &extraStaryuDef);
@@ -43,6 +44,6 @@ void func_802D2684(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_802D2704(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_802D2704(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_802ECB2C_7C60BC);
 }

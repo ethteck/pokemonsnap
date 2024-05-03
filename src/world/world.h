@@ -94,7 +94,7 @@ typedef struct UnkBoneFox {
     /* 0x08 */ SkyBox* skybox;
 } UnkBoneFox; // size >= 0xC
 
-typedef struct UnkTomatoEagle {
+typedef struct WorldSetup {
     /* 0x00 */ UnkBoneFox* unk_00;
     /* 0x04 */ UnkVioletMarlin* unk_04;
     /* 0x08 */ s32 unk_08;
@@ -108,7 +108,7 @@ typedef struct UnkTomatoEagle {
     /* 0x1B */ u8 unk_1B;
     /* 0x1C */ u8 unk_1C;
     /* 0x1D */ u8 unk_1D;
-} UnkTomatoEagle; // size >= 0x1E
+} WorldSetup; // size >= 0x1E
 
 typedef struct UnkFuchsiaKomodo {
     /* 0x00 */ f32 unk_00;
@@ -169,28 +169,28 @@ s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
 
 // Public functions
 void func_800E1A78_5F228(f32 arg0);
-void func_800E1CA4_5F454(GObj* obj);
-void func_800E1D80_5F530(GObj* obj);
-void func_800E20B4_5F864(void);
-void func_800E20F8_5F8A8(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4);
+void drawSkyBox1Cycle(GObj* obj);
+void drawSkyBox2Cycle(GObj* obj);
+void setSkyBoxFollowPlayer(void);
+void setSkyBoxPos(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4);
 WorldBlock* getCurrentWorldBlock(void);
 WorldBlock** getWorldBlocks(void);
-f32 func_800E219C_5F94C(void);
-f32 func_800E21A8_5F958(f32 arg0);
-s32 func_800E2F38_606E8(UnkTomatoEagle* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8);
-void func_800E3064_60814(void);
+f32 world_func_800E219C(void);
+f32 world_func_800E21A8(f32 arg0);
+s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8);
+void destroyWorld(void);
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void func_800E3D04_614B4(UnkGoldViper* arg0);
 void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 bool_DEBUG(s32, const char*);
-s32 func_800E4040_617F0(UnkMagentaCrocodile* arg0);
-s32 func_800E40A4_61854(UnkMagentaCrocodile* arg0);
-s32 func_800E41D8_61988(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
+s32 world_func_800E4040(UnkMagentaCrocodile* arg0);
+s32 world_func_800E40A4(UnkMagentaCrocodile* arg0);
+s32 world_func_800E41D8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
 s32 func_800E435C_61B0C(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
-void func_800E6778_63F28(UnkChestnutCougar* arg0);
-s32 func_800E67E4_63F94(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
+void world_func_800E6778(UnkChestnutCougar* arg0);
+s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
 
 #endif

@@ -798,7 +798,7 @@ void func_800E66BC_63E6C(UnkChestnutCougar* arg0) {
     }
 }
 
-void func_800E6778_63F28(UnkChestnutCougar* arg0) {
+void world_func_800E6778(UnkChestnutCougar* arg0) {
     UnkCaramelBoa* s0;
     s32 unused;
     s32 sp44;
@@ -814,7 +814,7 @@ void func_800E6778_63F28(UnkChestnutCougar* arg0) {
     }    
 }
 
-s32 func_800E67E4_63F94(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8) {
+s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8) {
     UnkCaramelBoa* v0;
     UnkCaramelBoa* s0;
     Vec3f sp114;

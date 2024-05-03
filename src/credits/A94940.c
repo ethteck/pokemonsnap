@@ -443,7 +443,7 @@ s32 func_credits_801DE8D8(void) {
     s32 orig;
     s32 i;
 
-    idx = randTRange(D_credits_801ECDA8, &D_credits_801ECDA8);
+    idx = randTRange(D_credits_801ECDA8);
 
     temp_t1 = D_credits_801ECDA8;
 

@@ -74,6 +74,6 @@ void func_beach_802C84A4(GObj* obj) {
     updateAnimalState(obj, func_beach_802C83D0);
 }
 
-void func_beach_802C8570(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802C8570(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CCF78);
 }

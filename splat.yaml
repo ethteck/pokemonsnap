@@ -415,7 +415,7 @@ segments:
     - [0x64380, .rodata, 60D10]
     - [0x64390, .rodata, 617F0]
     - [0x643A0, .rodata, 62010]
-    - [0x64420, rodata]
+    - [0x64420, rodata] # TODO: make assets from this section
     - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
     - { start: auto, name: 61C10, type: .bss, vram: 0x800F5D40 }
   - type: code

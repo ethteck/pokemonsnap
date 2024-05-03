@@ -688,15 +688,16 @@ D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
 
-setWorldBlocksVisibility = 0x800E18A0;
 getCurrentWorldBlock = 0x800E2184;
-createWorldBlockModel = 0x800E27C4; // rom:0x5FF74
-createWorldBlockUV = 0x800E2ACC; // rom:0x6027C
-SkyBoxObjectId = 0x800E6AD4; // rom:0x64284
-WorldBlockMinObjId = 0x800E6AD8; // rom:0x64288
-WorldBlockMaxObjId = 0x800E6ADC; // rom:0x6428C
-WorldLink = 0x800E6AE0; // rom:0x64290
-WorldDlLink = 0x800E6AE4; // rom:0x64294
-WorldBlockDeleteCb = 0x800E6B00; // rom:0x642B0
-worldBlocks = 0x800F5A08; // rom:0x731B8
-worldBlockArray = 0x800F5A40; // rom:0x731F0
+getWorldBlocks = 0x800E2190;
+setSkyBoxFollowPlayer = 0x800E20B4;
+setSkyBoxPos = 0x800E20F8;
+world_func_800E219C = 0x800E219C;
+world_func_800E21A8 = 0x800E21A8;
+createWorld = 0x800E2F38;
+destroyWorld = 0x800E3064;
+world_func_800E4040 = 0x800E4040;
+world_func_800E40A4 = 0x800E40A4;
+world_func_800E41D8 = 0x800E41D8;
+world_func_800E6778 = 0x800E6778;
+world_func_800E67E4 = 0x800E67E4;

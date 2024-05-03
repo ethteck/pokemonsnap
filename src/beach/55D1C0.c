@@ -11,7 +11,7 @@ void func_beach_802C5180(void) {
     func_803572B0_4F76C0();
 }
 
-void func_beach_802C51A0(DObj* arg0, u32 arg1, f32 arg2) {
+void func_beach_802C51A0(DObj* arg0, s32 arg1, f32 arg2) {
     GObj* obj;
 
     if (arg1 == -2 || arg1 == -1) {

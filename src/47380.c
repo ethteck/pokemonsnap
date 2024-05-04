@@ -1,5 +1,6 @@
 #include "common.h"
 #include "ld_addrs.h"
+#include "world/world.h"
 
 void func_8009D21C(s32 arg0, s32* arg1);
 
@@ -273,7 +274,7 @@ void func_8009FBC4(void) {
     GObj* curObj;
     GObj* nextObj;
 
-    func_800E3064();
+    destroyWorld();
     curObj = omGObjListHead[D_800BDF1E];
     while (curObj != NULL) {
         nextObj = curObj->next;

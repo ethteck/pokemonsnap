@@ -91,7 +91,7 @@ void runAnimalCleanup(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/addAnimalAtGeo.s")
 // GObj* addAnimalAtGeo(GObj *gobj, AnimalID id, AnimalDef *def) {
 //     ObjectSpawn spawn;
-//     RoomGFX* roomA;
+//     WorldBlock* roomA;
 //     Animal* animalTmp;
 //     GObj* animalObj;
 

@@ -1,6 +1,8 @@
 #ifndef _BEACH_H
 #define _BEACH_H
 
+#include "world/world.h"
+
 // TODO: move to a common header
 
 typedef struct UnkBlueShark {
@@ -10,7 +12,7 @@ typedef struct UnkBlueShark {
 
 extern s32* D_800968BC;
 extern GObj* D_80382C00_523010;
-extern UNK_TYPE D_8011B914; // ???
+extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
 extern u8 D_8013B030;
 extern u8 D_8013BAA0;
@@ -25,9 +27,6 @@ f32 randFloat(void);
 s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
-void func_800E20B4_5F864(void);
-void func_800E2F38_606E8(UNK_PTR, u32, s32, s32, s32, s32, void*, void*, void*);
-void func_800E4040_617F0(UNK_PTR);
 void func_803570B0_4F74C0(void);
 void func_803570F0_4F7500(void*, int, f32);
 void func_80357120_4F7530(GObj*);
@@ -239,7 +238,7 @@ extern animalInitData D_beach_802CE038;
 extern animationHeader D_beach_802CE070;
 extern animalInitData D_beach_802CE0A8;
 extern AnimalDef D_beach_802CE0DC;
-extern UNK_TYPE D_beach_80318F00;
+extern UnkMagentaCrocodile D_beach_80318F00;
 extern u8 D_beach_80347578;
 extern u8 D_beach_80347579;
 extern u8 D_beach_8034757A;

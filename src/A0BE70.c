@@ -45,7 +45,7 @@ extern AnimCmd* D_803A1BE0;
 extern AnimCmd** D_803A7F90;
 extern AnimCmd D_803A80D0;
 
-void func_800E48E0_A0BE70(DObj* dobj, u32 arg1, f32 arg2) {
+void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
     GObj* gobj;
 
@@ -245,23 +245,17 @@ void func_800E5468_A0C9F8(void) {
                              &D_803051F0, 0, func_800E5370_A0C900, 1);
 
     sobj = D_800E8318_A0F8A8->data.sobj;
-    // clang-format off
-    sobj->sprite.x = 98; sobj->sprite.y = 68;
-    // clang-format on
+    SET_SPRITE_POS(sobj->sprite, 98, 68);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0);
 
     sobj = sobj->next;
-    // clang-format off
-    sobj->sprite.x = 96; sobj->sprite.y = 103;
-    // clang-format on
+    SET_SPRITE_POS(sobj->sprite, 96, 103);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00);
 
     sobj = sobj->next;
-    // clang-format off
-    sobj->sprite.x = 71; sobj->sprite.y = 112;
-    // clang-format on
+    SET_SPRITE_POS(sobj->sprite, 71, 112);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 

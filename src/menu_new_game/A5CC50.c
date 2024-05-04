@@ -146,9 +146,7 @@ void func_800E1950_A5CD00(void) {
 
     D_801180B8 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80117F98_A93348, 0, 0, 1);
     sobj = D_801180B8->data.sobj;
-    // clang-format off
-    sobj->sprite.x = 96; sobj->sprite.y = 21;
-    // clang-format on
+    SET_SPRITE_POS(sobj->sprite, 96, 21);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
 

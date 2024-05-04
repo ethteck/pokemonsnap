@@ -391,21 +391,35 @@ segments:
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]
     - { start: auto, name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
-  - name: level_low
+  - name: world
+    dir: world
     type: code
     start: 0x5F050
     vram: 0x800E18A0
     bss_size: 0x390
     exclusive_ram_id: level
     subsegments:
-    - [0x5F050, asm]
+    - [0x5F050, c, block]
+    - [0x60860, c]
+    - [0x60D10, c]
     - [0x617A0, c]
     - [0x617F0, c]
     - [0x61C10, c]
+    - [0x62000, pad, padding_62000]
     - [0x62010, c]
     - [0x64270, c]
-    - [0x64280, bin] # , data]
-    - { start: auto, name: bss_800F5A00, type: bss, vram: 0x800F5A00 }
+    - [0x64280, .data, block]
+    - [0x642C0, .data, 60860]
+    - [0x642D0, .data, 60D10]
+    - [0x642E0, .data, 617F0]
+    - [0x642F0, .data, 62010]
+    - [0x64340, .rodata, block]
+    - [0x64380, .rodata, 60D10]
+    - [0x64390, .rodata, 617F0]
+    - [0x643A0, .rodata, 62010]
+    - [0x64420, rodata] # TODO: make assets from this section
+    - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
+    - { start: auto, name: 61C10, type: .bss, vram: 0x800F5D40 }
   - type: code
     name: magikarp1
     dir: pokemon/magikarp
@@ -991,6 +1005,7 @@ segments:
 
     - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
+    dir: photo_check
     type: code
     start: 0x98C330
     vram: 0x801DC8C0
@@ -1119,6 +1134,7 @@ segments:
     - [0xA93460, c]
     - [0xA937B0, asm] # nops
     - [0xA937C0, c]
+    - [0xA94480, c]
     - [0xA94930, asm] # nops
     - [0xA94940, c]
     - [0xA95760, data, A93460]
@@ -1129,6 +1145,7 @@ segments:
     - [0xA9D6B0, data] # sprite
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
+    - [auto, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
     - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code

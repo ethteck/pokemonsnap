@@ -2,18 +2,11 @@
 #define _CREDITS_H
 
 typedef struct Credit {
-    u32 var_0;
-    u32 var_4;
-    const char* var_8;
-    u32 var_C;
+    u32 unk_0;
+    f32 unk_4;
+    char* unk_8;
+    u32 unk_C;
 } Credit;
-
-typedef struct UnkChartreuseAngler {
-    s32 unk0;
-    f32 unk4;
-    u8 pad8[0x4];
-    s32 unkC;
-} UnkChartreuseAngler;
 
 extern ScreenSettings D_credits_801DEBA0;
 extern Gfx D_credits_801DEBD8[];
@@ -27,11 +20,11 @@ extern Sprite D_credits_801E8B50;
 extern OSThread D_credits_801E9A90;
 extern OSMesg D_credits_801ECC40[10];
 extern OSMesgQueue D_credits_801ECC68;
-extern GObj* D_credits_801ECC80;
+extern GObj* D_credits_801ECC80[];
 extern void* D_credits_801ECC94;
 extern GObj* D_credits_801ECC98[2];
 extern GObj* D_credits_801ECCA0;
-extern UnkChartreuseAngler D_credits_801ECCB0[];
+extern Credit D_credits_801ECCB0[];
 extern s32 D_credits_801ECDA0; // scene id
 extern u8 D_credits_801ECDA3;
 extern u8 D_credits_801ECDA4;
@@ -41,15 +34,22 @@ extern s32 D_credits_801ED010;
 
 void func_credits_801DCAF8(SObj*);
 GObj* func_credits_801DCC00(GObj*, Sprite*);
+void func_credits_801DCE10(void);
 void func_credits_801DCEF0(GObj*);
 void func_credits_801DCF94(void);
+void func_credits_801DD428(void);
 void func_credits_801DD49C(GObj*);
 void func_credits_801DD540(GObj*);
-void func_credits_801DD848();
+void func_credits_801DD744(void);
+void func_credits_801DD848(void);
+void func_credits_801DD980(void);
 void func_credits_801DD8C0(SObj*);
+void func_credits_801DDA60(void);
+void func_credits_801DDB60(void);
 void func_credits_801DDAE8(u8);
 void func_credits_801DDC70(void);
 void func_credits_801DDD80(void);
+Credit* func_credits_801DDC0C(void);
 void func_credits_801DDE24(GObj*);
 void func_credits_801DDF48(GObj*);
 void func_credits_801DE060(void);

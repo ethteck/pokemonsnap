@@ -7,20 +7,16 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
-RoomGFX* getCurrentRoom(void);
-GObj* animalAddOne(RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, AnimalDef* def);
-void animalAdd(RoomGFX*, RoomGFX*, AnimalDef* def);
+GObj* animalAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, AnimalDef* def);
+void animalAdd(struct WorldBlock*, struct WorldBlock*, AnimalDef* def);
 
 s32 getLevelId(void);
 void setLevelId(s32 levelID);
 char* getLevelName(s32 levelIdx);
 
-s32 inRange_DEBUG(u32, s32, s32, s32);
-s32 bool_DEBUG(s32, s32);
-
 void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
-void spawnKoffingSmoke(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn);
+void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
 void updateAnimalState(GObj* obj, gfxFunc state);
 void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
@@ -31,9 +27,9 @@ void animalUVStuff(GObj*, animationHeader*, f32 start, s32 forceUpdate);
 void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
 void runAnimalCleanup(GObj* obj);
 GObj* addAnimalAtGeo(GObj* obj, u16 AnimalID, AnimalDef* def);
-RoomGFX* setNodePosToNegRoom(GObj*);
+struct WorldBlock* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
-void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
+void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
 void ren_func_800192DC(GObj* obj);
 
@@ -44,10 +40,13 @@ s32 func_8009BC68(void);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
 void func_8009FC38(void*);
+void renderModelTypeAFogged(GObj*);
 void renderModelTypeBFogged(GObj*);
+void renderModelTypeCFogged(GObj*);
 void renderModelTypeDFogged(GObj*);
 void renderModelTypeIFogged(GObj*);
 void renderModelTypeJFogged(GObj*);
+void setBackgroundColor(u8, u8, u8);
 void setFogColor(u8, u8, u8);
 void setFogDistance(u16, u16);
 void func_800A19D8(s32);
@@ -59,6 +58,7 @@ void func_800A5DF4(s32, s32);
 s32 func_800A5E08(s32);
 
 GObj* func_800A6C48(s32, s32);
+void func_800A71F8(f32, f32, f32);
 void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd);
 s32 func_800A7460(void);
 void func_800A7470(s32, s32, s32);
@@ -111,7 +111,6 @@ void func_800C0B48_5D9E8(void);
 s32 func_oaks_lab_800E1AD8(s32);
 void func_800E1C5C_AA0A0C(void);
 s32 menu_new_game_entry(s32);
-void func_800E3064(void);
 s32 func_800E4830_A0BDC0(s32);
 
 s32 func_credits_801DCB24(s32);
@@ -139,14 +138,16 @@ s32 func_802E2BB8_5DFC88(s32);
 
 s32 func_80346EF0_826660(s32);
 
+void func_8035024C_4F065C(f32, f32, f32);
 void func_803507E0_4F0BF0(s32);
 void func_80356FBC_4F73CC(void);
 void func_803586C0_4F8AD0(void);
+OMCamera* func_803586F8_4F8B08(void);
 void func_80359074_4F9484(void);
 void func_8035FEEC_5002FC(GObj*, s32);
 
-void func_8036406C_50447C(s32*, ObjectSpawn*, AnimalDef*);
-void func_803641B8_5045C8(s32, AnimalDef*);
+void func_8036406C_50447C(struct WorldBlock*, struct WorldBlock*, AnimalDef*);
+void func_803641B8_5045C8(struct WorldBlock*, AnimalDef*);
 s32 func_80364718(GObj *);
 s32 func_80364718_504B28(GObj *obj);
 void func_8036650C_50691C(void);
@@ -224,7 +225,7 @@ void func_80375284_848A34(int);
 
 void func_8037005C_84380C(s32, s32);
 
-void func_80362EE0_5032F0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
-void func_80362DC4_5031D4(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn, animalInitData* initData);
+void func_80362EE0_5032F0(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
+void func_80362DC4_5031D4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
 
 #endif

@@ -473,9 +473,9 @@ GObj* createWorldBlockModel(WorldBlock* block) {
             }
         }
     } else if (&renRenderModelTypeA == block->descriptor->gfx->renderFunc ||
-               &func_800A1530 == block->descriptor->gfx->renderFunc || 
+               &renderModelTypeAFogged == block->descriptor->gfx->renderFunc || 
                &renRenderModelTypeC == block->descriptor->gfx->renderFunc || 
-               &func_800A1590 == block->descriptor->gfx->renderFunc)
+               &renderModelTypeCFogged == block->descriptor->gfx->renderFunc)
     {
         omGObjAddDObj(obj, block->descriptor->gfx->gfxData);
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_TRANSLATE, 0);
@@ -489,9 +489,9 @@ GObj* createWorldBlockModel(WorldBlock* block) {
             }
         }
     } else if (&renRenderModelTypeB == block->descriptor->gfx->renderFunc ||
-               &func_800A15D8 == block->descriptor->gfx->renderFunc || 
+               &renderModelTypeBFogged == block->descriptor->gfx->renderFunc || 
                &renRenderModelTypeD == block->descriptor->gfx->renderFunc || 
-               &func_800A1608 == block->descriptor->gfx->renderFunc)
+               &renderModelTypeDFogged == block->descriptor->gfx->renderFunc)
     {
         anim_func_80010230(obj, block->descriptor->gfx->gfxData, block->descriptor->gfx->textures, NULL, 0, 0, 0);
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_TRANSLATE, 0);
@@ -653,15 +653,15 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
 
 s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8) {
     func_800E1924_5F0D4();
-    if (arg0 == NULL || arg0->unk_00 == NULL) {
+    if (arg0 == NULL || arg0->blocksSetup == NULL) {
         return FALSE;
     }
     func_800E354C_60CFC(arg0->unk_04, arg0->unk_08);
     func_800E66BC_63E6C(arg0->unk_0C);
-    func_800A18AC(arg0->unk_14, arg0->unk_16);
-    func_800A181C(arg0->unk_18, arg0->unk_19, arg0->unk_1A);
-    func_800A1780(arg0->unk_1B, arg0->unk_1C, arg0->unk_1D);
-    createWorldBlocks(arg0->unk_00, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, arg6, arg7, arg8);
+    setFogDistance(arg0->fogDistanceMin, arg0->fogDistanceMax);
+    setFogColor(arg0->fogR, arg0->fogG, arg0->fogB);
+    setBackgroundColor(arg0->backgroundR, arg0->backgroundG, arg0->backgroundB);
+    createWorldBlocks(arg0->blocksSetup, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, arg6, arg7, arg8);
     func_800E1A78_5F228(arg0->unk_10);
     return TRUE;
 }

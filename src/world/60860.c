@@ -5,9 +5,9 @@ s32 D_800E6B14_642C4 = 0;
 
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2) {
     if (block->blockModel->fnRender == &renRenderModelTypeA ||
-        block->blockModel->fnRender == &func_800A1530 || 
+        block->blockModel->fnRender == &renderModelTypeAFogged || 
         block->blockModel->fnRender == &renRenderModelTypeB || 
-        block->blockModel->fnRender == &func_800A15D8)
+        block->blockModel->fnRender == &renderModelTypeBFogged)
     {
         DObj* child = omDObjAddChild(block->blockModel->data.dobj, arg2.d.gfx);
         s32 unused[2];
@@ -34,8 +34,8 @@ void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
 
         if (block->blockModel->fnRender == &renRenderModelTypeA) {
             block->blockModel->fnRender = &renRenderModelTypeB;
-        } else if (block->blockModel->fnRender == &func_800A1530) {
-            block->blockModel->fnRender = &func_800A15D8;
+        } else if (block->blockModel->fnRender == &renderModelTypeAFogged) {
+            block->blockModel->fnRender = &renderModelTypeBFogged;
         }
     }
 }

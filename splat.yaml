@@ -349,6 +349,7 @@ segments:
     - [0x47330, c]
     - [0x47380, c]
     - [0x4B670, c]
+    - [0x4CDB0, c]
     - [0x4D400, c]
     - [0x4D880, c]
     - [0x52D70, c]
@@ -360,7 +361,8 @@ segments:
     - [0x57580, .data, 46270]
     - { start: 0x579D0, type: .rodata, name: 46270, linker_section_order: .data }
     - [0x57A70, data]
-
+    - [0x5A400, .data, 4CDB0]
+    - [0x5A580, data]
     - [0x5AD90, rodata]
     - [0x5ADD0, rodata]
     - [0x5B830, .rodata, 47380]

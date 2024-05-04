@@ -688,6 +688,17 @@ D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
 
+renderModelTypeAFogged = 0x800A1530;
+renderModelTypeAFoggedTransparent = 0x800A1560;
+renderModelTypeCFogged = 0x800A1590;
+renderModelTypeBFogged = 0x800A15D8;
+renderModelTypeDFogged = 0x800A1608;
+renderModelTypeIFogged = 0x800A1650;
+renderModelTypeJFogged = 0x800A16B0;
+getBackgroundColor = 0x800A1758;
+setBackgroundColor = 0x800A1780;
+setFogColor = 0x800A181C;
+setFogDistance = 0x800A18AC;
 getCurrentWorldBlock = 0x800E2184;
 getWorldBlocks = 0x800E2190;
 setSkyBoxFollowPlayer = 0x800E20B4;

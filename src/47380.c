@@ -9,8 +9,10 @@ void func_8009D21C(s32 arg0, s32* arg1);
 s32 func_803647BC_504BCC(GObj*);
 
 typedef struct PhotoData {
-    u8 pad[0x3A0];
-} PhotoData; // size == 0x3A0
+    s8 unk_000_1:7;
+    u8 unk_000_0:1;
+    u8 pad[0x3A0-1];
+} PhotoData; // Size: 0x3A0
 
 typedef struct UnkFunc8009C25C_Unk20 {
     /* 0x00 */ u8 pad00[0x18];
@@ -49,10 +51,12 @@ extern UNK_PTR* D_800EDAE0;
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
 extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern u8 D_800BDF1E;
+extern s32 D_800BDF18; // real ?
 extern u8 D_800BDF1C;
 extern u8 D_800BDF1D;
+extern u8 D_800BDF1E;
 extern s32 D_800BDF20[3];
+extern s32 D_800BDF2C;
 extern s32 D_800AC0F0;
 extern char* D_800AE284; // Pokedex entries
 extern s8 D_800AE4E4[];
@@ -566,7 +570,22 @@ s32 func_8009CDE4(u8* arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CE00.s")
+void func_8009CE00(void) {
+    s32 i;
+
+    gPhotoCount = 0;
+    D_800AE27C = 0;
+    D_800AE280 = 0;
+
+    for (i = 0; i < ARRAY_COUNT(D_800BDF20); i++) {
+        D_800BDF20[i] = -1;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(D_800B0598); i++) {
+        D_800B0598[i].unk_000_1 = -1;
+        D_800B0598[i].unk_000_0 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CEAC.s")
 
@@ -599,13 +618,30 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E050.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E110.s")
+void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists, u8 skipFrames) {
+    if (animLists != NULL) {
+        animSetModelTreeAnimation(gobj, animLists, skipFrames);
+        animSetModelAnimationSpeed(gobj, 0.0f);
+    }
+    if (textureAnimLists != NULL) {
+        animSetModelTreeTextureAnimation(gobj, textureAnimLists, skipFrames);
+        animSetTextureAnimationSpeed(gobj, 0.0f);
+    }
+    animUpdateModelTreeAnimation(gobj);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E1CC.s")
 
+void func_8009E3D0(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E3D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FA00.s")
+void func_8009FA00(UNK_TYPE arg0, UNK_TYPE arg1) {
+    GObj* gobj;
+
+    gobj = omAddGObj(0x80, NULL, D_800BDF1E, 0x80000000);
+    gobj->userData = (void*) (arg1 + 0x1A0);
+    omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FA68.s")
 

@@ -1029,6 +1029,7 @@ segments:
     - [0x9A5AA0, .rodata, 98D0F0]
     - [0x9A6AF0, .rodata, 993F80]
   - name: unk_end_level_5
+    dir: unk_end_level_5
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
@@ -1046,6 +1047,7 @@ segments:
 
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
+    dir: unk_end_level_6
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
@@ -1062,6 +1064,7 @@ segments:
 
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
+    dir: unk_end_level_7
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
@@ -1079,6 +1082,7 @@ segments:
 
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
+    dir: unk_end_level_8
     type: code
     start: 0xA084B0
     vram: 0x801DC8C0

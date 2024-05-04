@@ -8,7 +8,6 @@ typedef struct Credit {
     u32 unk_C;
 } Credit;
 
-
 extern ScreenSettings D_credits_801DEBA0;
 extern Gfx D_credits_801DEBD8[];
 extern SceneSetup D_credits_801DEC30;
@@ -35,8 +34,10 @@ extern s32 D_credits_801ED010;
 
 void func_credits_801DCAF8(SObj*);
 GObj* func_credits_801DCC00(GObj*, Sprite*);
+void func_credits_801DCE10(void);
 void func_credits_801DCEF0(GObj*);
 void func_credits_801DCF94(void);
+void func_credits_801DD428(void);
 void func_credits_801DD49C(GObj*);
 void func_credits_801DD540(GObj*);
 void func_credits_801DD744(void);

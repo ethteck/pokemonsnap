@@ -91,11 +91,13 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
         D_801E55DC_AAA61C->flags |= 1;
     }
     if (D_801E55D8_AAA618 >= 0 && D_801E55D8_AAA618 < 16) {
+        UNK_PTR var_s0_2;
+
         func_8009FB50(D_801E54BC_AAA4FC, D_801E54C0_AAA500, D_801E54C4_AAA504);
-        var_s0 = D_801E55E0_AAA620[D_801E54C8_AAA508[1 + D_801E55D8_AAA618]];
+        var_s0_2 = D_801E55E0_AAA620[D_801E54C8_AAA508[1 + D_801E55D8_AAA618]];
         D_801E550C_AAA54C = 0;
         scSetPostProcessFunc(func_801DC9BC_AA19FC);
-        func_801DC930_AA1970(sp2C, var_s0);
+        func_801DC930_AA1970(sp2C, var_s0_2);
         if (D_801E55D8_AAA618 == 0) {
             while (contPrinterGetStatus() == 8) {
                 ohWait(1);

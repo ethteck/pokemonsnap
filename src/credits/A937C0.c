@@ -111,8 +111,7 @@ s32 func_credits_801DCFC8(GObj* gobj) {
 
     if (sobj->sprite.attr & SP_HIDDEN &&
         sobj->next->sprite.attr & SP_HIDDEN &&
-        sobj->next->next->sprite.attr & SP_HIDDEN)
-    {
+        sobj->next->next->sprite.attr & SP_HIDDEN) {
         return TRUE;
     }
 
@@ -168,7 +167,7 @@ void func_credits_801DD168(GObj* gobj) {
     while (TRUE) {
         while (var_s0 != 0) {
             ohWait(1);
-            var_s0 --;
+            var_s0--;
         }
 
         if (func_credits_801DCFC8(gobj)) {

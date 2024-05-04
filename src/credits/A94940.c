@@ -342,7 +342,6 @@ void func_credits_801DE35C(void) {
             ohWait(1);
         }
 
-
         if (i == 4 && D_credits_801ECDA4 == 1) {
             D_credits_801ECDA4 = 2;
         }

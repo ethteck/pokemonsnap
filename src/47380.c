@@ -6,7 +6,7 @@
 #include "world/world.h"
 
 void func_8009D21C(s32 arg0, s32* arg1);
-s32 func_803647BC(GObj*);
+s32 func_803647BC_504BCC(GObj*);
 
 typedef struct PhotoData {
     u8 pad[0x3A0];
@@ -25,10 +25,10 @@ typedef struct UnkFunc8009C25C_Unk140 {
 
 typedef struct UnkFunc8009C25C {
     /* 0x000 */ s32 unk_00_25 : 7;
-                s32 unk_00_24 : 1;
-                s32 unk_00_16 : 8;
-                s32 unk_00_8 : 8;
-                s32 unk_00_0 : 8;
+    s32 unk_00_24 : 1;
+    s32 unk_00_16 : 8;
+    s32 unk_00_8 : 8;
+    s32 unk_00_0 : 8;
     /* 0x004 */ f32 unk_04;
     /* 0x008 */ f32 unk_08;
     /* 0x00C */ f32 unk_0C;
@@ -42,10 +42,10 @@ typedef struct UnkFunc8009C25C {
     /* 0x3A4 */ GObj* unk_3A4[UNK_020_ARRAY_COUNT]; // 12 may not be the correct array length, it's just how many times it's accessed.
 } UnkFunc8009C25C;
 
-extern UNK_PTR *D_800E9168;
-extern UNK_PTR *D_800EAF00;
-extern UNK_PTR *D_800EB460;
-extern UNK_PTR *D_800EDAE0;
+extern UNK_PTR* D_800E9168;
+extern UNK_PTR* D_800EAF00;
+extern UNK_PTR* D_800EB460;
+extern UNK_PTR* D_800EDAE0;
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
 extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
@@ -367,7 +367,7 @@ s32 func_8009BCC4(UnkFunc8009BCC4* arg0) {
     return ret;
 }
 
-typedef struct Unkfunc_8009BD4C{
+typedef struct Unkfunc_8009BD4C {
     u32 unk_00;
     struct Unkfunc_8009BD4C* next;
     s32 unk_08;
@@ -394,33 +394,41 @@ s8 func_8009BD4C(s16 arg0, Unkfunc_8009BD4C* arg1, Unkfunc_8009BD4C* arg2, s32 a
 
 #ifdef NON_MATCHING
 typedef struct Unkfunc_8009BDDC {
-    s32 unk_00; // Id?
-    Vec3f *unk_04; // Size of 0xC, floats?
-    s32 unk_10; // number of unk_04 records?
+    s32 unk_00;    // Id?
+    Vec3f* unk_04; // Size of 0xC, floats?
+    s32 unk_10;    // number of unk_04 records?
 } Unkfunc_8009BDDC;
 
-extern s32 D_800AD4B8; // 0x58;
-extern Vec3f *D_800AD4BC; // 5 values here
-extern s32 D_800AD4C0; // = 5; // number of D_800AD4BC records
+extern s32 D_800AD4B8;    // 0x58;
+extern Vec3f* D_800AD4BC; // 5 values here
+extern s32 D_800AD4C0;    // = 5; // number of D_800AD4BC records
 
-extern s32 D_800AD4C4; // = 0x59
-extern Vec3f *D_800AD4C8; // 5 values here
-extern s32 D_800AD4CC; // = 5; // number of D_800AD4C8 records
-extern s32 D_800AD4D0; // = 0x7E;
-extern Vec3f *D_800AD4D4; // 10 values here
-extern s32 D_800AD4D8; // = 10;
+extern s32 D_800AD4C4;    // = 0x59
+extern Vec3f* D_800AD4C8; // 5 values here
+extern s32 D_800AD4CC;    // = 5; // number of D_800AD4C8 records
+extern s32 D_800AD4D0;    // = 0x7E;
+extern Vec3f* D_800AD4D4; // 10 values here
+extern s32 D_800AD4D8;    // = 10;
 extern Unkfunc_8009BDDC D_800AD4DC[64];
 
 f32 func_8009BDDC(s16 arg0, s8 arg1) {
     s32 i;
     u32 test = arg0;
 
-    if (test == D_800AD4B8) { return D_800AD4BC[arg1].x; }
-    if (test == D_800AD4C4) { return D_800AD4C8[arg1].x; } /* One Line diff */ \
-    if (test == D_800AD4D0) { return D_800AD4D4[arg1].x; }
+    if (test == D_800AD4B8) {
+        return D_800AD4BC[arg1].x;
+    }
+    if (test == D_800AD4C4) {
+        return D_800AD4C8[arg1].x;
+    } /* One Line diff */
+    if (test == D_800AD4D0) {
+        return D_800AD4D4[arg1].x;
+    }
 
     for (i = 0; i < ARRAY_COUNT(D_800AD4DC); i++) {
-        if (test == D_800AD4DC[i].unk_00) { return D_800AD4DC[i].unk_04[arg1].x; }
+        if (test == D_800AD4DC[i].unk_00) {
+            return D_800AD4DC[i].unk_04[arg1].x;
+        }
     }
     return -1.0f;
 }
@@ -430,10 +438,9 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BF48.s")
 
-
 s32 func_8009BF48(UnkFunc8009C25C_Unk20*, GObj*);
 
-void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
+void func_8009C25C(UnkFunc8009C25C* arg0, u8 objIndex) {
     GObj* obj;
     s32 i;
     i = 0;
@@ -450,7 +457,7 @@ void func_8009C25C(UnkFunc8009C25C *arg0, u8 objIndex) {
 s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     DObj* dobj;
     u8 temp_t3;
-    UNK_PTR *payload;
+    UNK_PTR* payload;
 
     dobj = obj->data.dobj;
     if (obj->flags & 1) {
@@ -465,16 +472,13 @@ s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     if (payload == D_800EB460) {
         arg0->unk_00 = 3;
         arg0->unk_01 = (s32) obj->animationTime;
-    }
-    else if (payload == D_800EDAE0) {
+    } else if (payload == D_800EDAE0) {
         arg0->unk_00 = 4;
         arg0->unk_01 = (s32) obj->animationTime;
-    }
-    else if (payload == D_800E9168) {
+    } else if (payload == D_800E9168) {
         arg0->unk_00 = 1;
         arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed;
-    }
-    else if (payload == D_800EAF00) {
+    } else if (payload == D_800EAF00) {
         arg0->unk_00 = 2;
         arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed & 0xF;
         arg0->unk_01 |= ((s32) ((dobj->scale.v.x * 15.0f) / 0.1f) * 16);
@@ -485,14 +489,14 @@ s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     return 1;
 }
 
-void func_8009C450(UnkFunc8009C25C *arg0, u8 objIndex) {
+void func_8009C450(UnkFunc8009C25C* arg0, u8 objIndex) {
     GObj* obj;
     s32 i;
 
     i = 0;
     obj = omGObjListHead[objIndex];
     while (obj != NULL && i < 6) {
-        if (!(obj->flags & 1) && (func_803647BC(obj) == 0) && (func_8009C304(&arg0->unk_140[i], obj) != 0)) {
+        if (!(obj->flags & 1) && (func_803647BC_504BCC(obj) == 0) && (func_8009C304(&arg0->unk_140[i], obj) != 0)) {
             i++;
         }
         obj = obj->next;
@@ -539,12 +543,9 @@ s32 func_8009C5C4(const void* a, const void* b) {
     return 0;
 }
 
-s32 func_80364494(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 void func_8009C604(UnkFunc8009C25C* arg0);
-extern OMCamera* D_800BE1A8[16];
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C604.s")
 
-void func_803643E0(OMCamera* cam);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C8E4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C9E8.s")

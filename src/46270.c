@@ -190,7 +190,7 @@ void func_8009B40C(void) {
     for (i = 0; i < 0x11; i++) {
         dmaLoadOverlay(&D_800ABDEC);
         dmaLoadOverlay(&D_800ABBD0);
-        if (func_801DD010(i) != 0) {
+        if (func_801DD010_AA2050(i) != 0) {
             PANIC();
         }
     }

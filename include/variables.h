@@ -21,6 +21,7 @@ extern GObj* cartGObj;
 extern Vec3f D_800AF094;
 extern Vec3f D_800AF0C4;
 extern s32 D_800AF3C0;
+extern OMCamera* D_800BE1A8[16];
 extern s8 D_800BF051;
 
 extern s32 D_801B0310;

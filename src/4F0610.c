@@ -36,7 +36,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4F0610/func_80351768_4F1B78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4F0610/func_80351E8C_4F229C.s")
+void func_80351E8C_4F229C(Vec3f* arg0) {
+    f32 sin;
+    f32 cos;
+    f32 x;
+    f32 y;
+    f32 z;
+
+    x = arg0->x - D_80366BA4_506FB4.unk_0C.x;
+    y = arg0->y - D_80366BA4_506FB4.unk_0C.y;
+    z = arg0->z - D_80366BA4_506FB4.unk_0C.z;
+    sin = __sinf(-D_80366BA4_506FB4.unk_1C);
+    cos = __cosf(-D_80366BA4_506FB4.unk_1C);
+    arg0->x = (x * cos) + (z * sin);
+    arg0->y = y;
+    arg0->z = (z * cos) - (x * sin);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4F0610/func_80351F44_4F2354.s")
 

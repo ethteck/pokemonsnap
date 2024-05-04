@@ -120,7 +120,7 @@ s32 func_801DCC74_9D35E4(s32);
 s32 func_801DCCA0_9A6EF0(s32);
 s32 func_801DCEBC_9FAB7C(s32);
 s32 func_801DD09C_A08C8C(s32);
-s32 func_801DD010(s32);
+s32 func_801DD010_AA2050(s32);
 void func_801DD2D4_98CD44(s32 arg0);
 GObj* func_801DD720_98D190(s32 idx);
 s32 func_801E4510_993F80(void);
@@ -148,7 +148,8 @@ void func_8035FEEC_5002FC(GObj*, s32);
 
 void func_8036406C_50447C(struct WorldBlock*, struct WorldBlock*, AnimalDef*);
 void func_803641B8_5045C8(struct WorldBlock*, AnimalDef*);
-s32 func_80364718(GObj *);
+void func_803643E0_5047F0(OMCamera* cam);
+s32 func_80364494_5048A4(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 s32 func_80364718_504B28(GObj *obj);
 void func_8036650C_50691C(void);
 void* func_8036A194_83D944(u32);
@@ -214,6 +215,7 @@ GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);
 
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
+
 void func_80374714_847EC4(UnkPinkBarracuda*, Sprite*);
 void func_80374D40_8484F0(void);
 void func_80374D20_8484D0(void);

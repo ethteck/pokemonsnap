@@ -1744,7 +1744,7 @@ void omDrawAll(void) {
 
     curr = omGObjListDlHead[32];
     while (curr != NULL) {
-        if (!(curr->flags & GOBJ_FLAG_1)) {
+        if (!(curr->flags & GOBJ_FLAG_HIDDEN)) {
             omCurrentCamera = curr;
             curr->fnRender(curr);
         }

@@ -3,6 +3,7 @@
 #if !defined(M2CTX) && !defined(PERMUTER)
 #include "ld_addrs.h"
 #endif
+#include "world/world.h"
 
 void func_8009D21C(s32 arg0, s32* arg1);
 s32 func_803647BC(GObj*);
@@ -10,11 +11,6 @@ s32 func_803647BC(GObj*);
 typedef struct PhotoData {
     u8 pad[0x3A0];
 } PhotoData; // size == 0x3A0
-
-typedef struct UnkFunc8009D184 {
-    /* 0x00 */ u8 pad00[0xC];
-    /* 0x0C */ s32 unk_C;
-} UnkFunc8009D184;
 
 typedef struct UnkFunc8009C25C_Unk20 {
     /* 0x00 */ u8 pad00[0x18];
@@ -460,11 +456,11 @@ s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     if (obj->flags & 1) {
         return 0;
     }
-    
+
     arg0->unk_04.x = dobj->position.v.x;
     arg0->unk_04.y = dobj->position.v.y;
     arg0->unk_04.z = dobj->position.v.z;
-    
+
     payload = dobj->firstChild->payload.any;
     if (payload == D_800EB460) {
         arg0->unk_00 = 3;
@@ -485,7 +481,7 @@ s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
     } else {
         return 0;
     }
-    
+
     return 1;
 }
 
@@ -506,7 +502,7 @@ void func_8009C450(UnkFunc8009C25C *arg0, u8 objIndex) {
 void func_8009C4F4(UnkFunc8009C25C* arg0, UnkStruct80366BA4* arg1, OMCamera* arg2) {
     arg0->unk_00_25 = getLevelId();
     arg0->unk_00_16 = *arg1->unk_08;
-    arg0->unk_04 = func_800E219C();
+    arg0->unk_04 = world_func_800E219C();
     arg0->unk_08 = arg2->viewMtx.lookAt.eye.x;
     arg0->unk_0C = arg2->viewMtx.lookAt.eye.y;
     arg0->unk_10 = arg2->viewMtx.lookAt.eye.z;
@@ -525,7 +521,7 @@ s32 func_8009C584(const void* a, const void* b) {
     } else if (b1->z < a1->z) {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -539,7 +535,7 @@ s32 func_8009C5C4(const void* a, const void* b) {
     } else if (a1->y < b1->y) {
         return 1;
     }
-    
+
     return 0;
 }
 
@@ -573,13 +569,12 @@ s32 func_8009CDE4(u8* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CEAC.s")
 
-void func_8009D0B4(UNK_PTR arg0, UNK_PTR arg1);
+void func_8009D0B4(WorldBlock* arg0, WorldBlock* arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D0B4.s")
 
-void func_800E2F38(UNK_PTR, u32, s32, s32, s32, s32, void*, void*, void*);
-void func_8009D184(UnkFunc8009D184* arg0) {
-    arg0->unk_C = 0;
-    func_800E2F38((UNK_PTR) arg0, 0x63, 0x64, 0x7E, D_800BDF1D, D_800BDF1C, func_8009D0B4, 0, 0);
+void func_8009D184(WorldSetup* arg0) {
+    arg0->unk_0C = NULL;
+    createWorld(arg0, 0x63, 0x64, 0x7E, D_800BDF1D, D_800BDF1C, func_8009D0B4, 0, 0);
     func_800E1A78_5F228(0.0f);
 }
 
@@ -630,7 +625,7 @@ void func_8009FBC4(void) {
     GObj* curObj;
     GObj* nextObj;
 
-    func_800E3064();
+    destroyWorld();
     curObj = omGObjListHead[D_800BDF1E];
     while (curObj != NULL) {
         nextObj = curObj->next;

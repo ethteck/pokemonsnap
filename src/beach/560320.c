@@ -5,7 +5,7 @@ void func_beach_802C82B0(GObj* obj) {
     UNUSED s32 pad[3];
     Animal* animal = GET_ANIMAL(obj);
 
-    obj->flags |= GOBJ_FLAG_1;
+    obj->flags |= GOBJ_FLAG_HIDDEN;
     runPathProcess(obj, func_beach_802C8438);
     // clang-format off
     animal->counter = 1; animal->processFlags &= ~4;
@@ -74,6 +74,6 @@ void func_beach_802C84A4(GObj* obj) {
     updateAnimalState(obj, func_beach_802C83D0);
 }
 
-void func_beach_802C8570(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802C8570(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CCF78);
 }

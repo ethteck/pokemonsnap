@@ -1,5 +1,6 @@
 #include "common.h"
 #include "beach.h"
+#include "world/world.h"
 #include "ld_addrs.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
@@ -7,10 +8,10 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     struct Mtx3Float* position;
     GObj* animalObj;
     ObjectSpawn spawn;
-    RoomGFX* roomA;
+    WorldBlock* roomA;
     AnimalDef def = D_beach_802CBFF4;
 
-    roomA = getCurrentRoom();
+    roomA = getCurrentWorldBlock(); // TODO: type
     spawn.id = AnimalID_MAGIKARP;
     spawn.translation.x = 0.0;
     spawn.translation.y = 0.0;
@@ -33,33 +34,33 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
 
-void beachAnimalAdd(RoomGFX* param_1, RoomGFX* param_2) {
+void beachAnimalAdd(WorldBlock* param_1, WorldBlock* param_2) {
     animalAdd(param_1, param_2, beachAnimalData);
 }
 
-void func_beach_802C42F8(s32* param_1, ObjectSpawn* param_2) {
+void func_beach_802C42F8(WorldBlock* param_1, WorldBlock* param_2) {
     func_8036406C_50447C(param_1, param_2, beachAnimalData);
 }
 
-void func_beach_802C431C(s32 arg0) {
+void func_beach_802C431C(WorldBlock* arg0) {
     func_803641B8_5045C8(arg0, beachAnimalData);
 }
 
 void func_beach_802C4340(void) {
-    func_800E4040_617F0(&D_beach_80318F00);
-    func_800E2F38_606E8(&D_8011B914, 0x63, 0x64, 0x7E, 9, 3, beachAnimalAdd, func_beach_802C431C, func_beach_802C42F8);
-    func_800E20B4_5F864();
+    world_func_800E4040(&D_beach_80318F00);
+    createWorld(&D_8011B914, 99, 100, 126, 9, 3, beachAnimalAdd, func_beach_802C431C, func_beach_802C42F8);
+    setSkyBoxFollowPlayer();
     func_80363928_503D38(0x80, 0xE4, 3, 5);
 }
 
 void func_beach_802C43CC(s32 arg0) {
     D_beach_802CC018 = arg0;
-    func_800A19D8();
+    func_800A19D8(arg0);
     func_80359074_4F9484();
     func_8036650C_50691C();
     auStopBGM();
     auStopAllSounds();
-    func_800E3064();
+    destroyWorld();
     func_80356FBC_4F73CC();
     func_803586C0_4F8AD0();
     func_800067DC();

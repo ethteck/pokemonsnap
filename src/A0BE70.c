@@ -45,7 +45,7 @@ extern AnimCmd* D_803A1BE0;
 extern AnimCmd** D_803A7F90;
 extern AnimCmd D_803A80D0;
 
-void func_800E48E0_A0BE70(DObj* dobj, u32 arg1, f32 arg2) {
+void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
     GObj* gobj;
 
@@ -135,10 +135,10 @@ void func_800E4D74_A0C304(void) {
     GObj* gobj;
 
     gobj = D_800E8300_A0F890 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(gobj, func_800A1608, 4, 0x80000000, -1);
+    omLinkGObjDL(gobj, renderModelTypeDFogged, 4, 0x80000000, -1);
     anim_func_80010230(gobj, &D_8037F658, &D_8036A458, 0, 0x1C, 0, 0);
-    func_800A181C(0x78, 0x78, 0x96);
-    func_800A18AC(0x3DD, 0x3E8);
+    setFogColor(120, 120, 150);
+    setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
 }
 
@@ -146,10 +146,10 @@ void func_800E4E34_A0C3C4(void) {
     GObj* gobj;
 
     gobj = D_800E8304_A0F894 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(gobj, func_800A16B0, 4, 0x80000000, -1);
+    omLinkGObjDL(gobj, renderModelTypeJFogged, 4, 0x80000000, -1);
     anim_func_80010230(gobj, &D_803A1730, &D_8039BC48, 0, 0x1C, 0, 0);
-    func_800A181C(0x78, 0x78, 0x96);
-    func_800A18AC(0x3DD, 0x3E8);
+    setFogColor(120, 120, 150);
+    setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
 }
 
@@ -157,10 +157,10 @@ void func_800E4EF4_A0C484(void) {
     GObj* gobj;
 
     gobj = D_800E8308_A0F898 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(gobj, func_800A1608, 4, 0x80000000, -1);
+    omLinkGObjDL(gobj, renderModelTypeDFogged, 4, 0x80000000, -1);
     anim_func_80010230(gobj, &D_80359A20, &D_80359378, 0, 0x1C, 0, 0);
-    func_800A181C(0x78, 0x78, 0x96);
-    func_800A18AC(0x3DD, 0x3E8);
+    setFogColor(120, 120, 150);
+    setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
 }
 
@@ -168,10 +168,10 @@ void func_800E4FB4_A0C544(void) {
     GObj* gobj;
 
     gobj = D_800E830C_A0F89C = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(gobj, func_800A1650, 4, 0x80000000, -1);
+    omLinkGObjDL(gobj, renderModelTypeIFogged, 4, 0x80000000, -1);
     anim_func_80010230(gobj, &D_8038F3E0, &D_8038AD40, 0, 0x1C, 0, 0);
-    func_800A181C(0x78, 0x78, 0x96);
-    func_800A18AC(0x3DD, 0x3E8);
+    setFogColor(120, 120, 150);
+    setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
 }
 
@@ -179,10 +179,10 @@ void func_800E5074_A0C604(void) {
     GObj* gobj;
 
     gobj = D_800E8310_A0F8A0 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(gobj, func_800A15D8, 4, 0x80000000, -1);
+    omLinkGObjDL(gobj, renderModelTypeBFogged, 4, 0x80000000, -1);
     anim_func_80010230(gobj, &D_80393D30, NULL, 0, 0x1C, 0, 0);
-    func_800A181C(0x78, 0x78, 0x96);
-    func_800A18AC(0x3DD, 0x3E8);
+    setFogColor(120, 120, 150);
+    setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
 }
 

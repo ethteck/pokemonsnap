@@ -43,7 +43,7 @@ void func_beach_802CA300(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802CA418(s32 gObjId, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CA418(s32 gObjId, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     spawnAnimalUsingDeltaHeight(gObjId, id, roomA, roomB, spawn, &D_beach_802CD948);
 }
 
@@ -83,7 +83,7 @@ void func_beach_802CA4CC(GObj* obj) {
     updateAnimalState(obj, func_beach_802CA950);
 }
 
-void func_beach_802CA5A8(DObj* obj, u32 arg1, f32 arg2) {
+void func_beach_802CA5A8(DObj* obj, s32 arg1, f32 arg2) {
     if ((arg1 == -2) || (arg1 == -1)) {
         D_beach_802CD9D4 = 1;
     }
@@ -175,6 +175,6 @@ void func_beach_802CA950(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802CAB14(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CAB14(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_beach_802CDA10);
 }

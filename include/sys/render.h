@@ -6,5 +6,9 @@ void ren_func_80015448(void);
 void ren_func_80018CD0(s32);
 void renSpriteCameraRender(GObj* obj);
 void renDrawSprite(GObj* arg0);
+void renRenderModelTypeA(GObj* gobj);
+void renRenderModelTypeB(GObj* gobj);
+void renRenderModelTypeC(GObj* gobj);
+void renRenderModelTypeD(GObj* gobj);
 
 #endif /* SYS_RENDER_H */

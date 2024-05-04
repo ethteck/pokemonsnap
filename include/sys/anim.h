@@ -9,7 +9,7 @@ typedef union AnimCmd {
 } AnimCmd;
 
 typedef struct UnkEC64Arg3 {
-    /* 0x00 */ s32 unk00;
+    /* 0x00 */ s32 unk_00;
     /* 0x04 */ void* unk04;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ Vec3f rotation;
@@ -17,6 +17,7 @@ typedef struct UnkEC64Arg3 {
 } UnkEC64Arg3; // size == 0x2C
 
 DObj* animModelTreeNextNode(DObj*);
+void anim_func_8000FBC4(GObj* obj, struct UnkEC64Arg3* arg1, DObj** arg2);
 void animSetModelAnimationSpeed(GObj* obj, f32 speed);
 void animSetTextureAnimationSpeed(GObj* obj, f32 speed);
 void animSetModelTreeAnimation(GObj* obj, AnimCmd** animLists, f32 skipFrames);

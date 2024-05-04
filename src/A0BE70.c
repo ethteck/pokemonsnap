@@ -45,7 +45,7 @@ extern AnimCmd* D_803A1BE0;
 extern AnimCmd** D_803A7F90;
 extern AnimCmd D_803A80D0;
 
-void func_800E48E0_A0BE70(DObj* dobj, u32 arg1, f32 arg2) {
+void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
     GObj* gobj;
 

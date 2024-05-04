@@ -252,7 +252,7 @@ void func_beach_802CBC4C(GObj* obj) {
     updateAnimalState(obj, func_beach_802CBB90);
 }
 
-void func_beach_802CBCA8(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CBCA8(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CE038);
 }
 
@@ -275,7 +275,7 @@ void func_beach_802CBD04(GObj* obj) {
     updateAnimalState(obj, NULL);
 }
 
-void func_beach_802CBDA0(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CBDA0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_beach_802CE0A8);
 }
 

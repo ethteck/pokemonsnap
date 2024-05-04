@@ -328,7 +328,6 @@ gLevelID = 0x800AC0C0;
 gLevelNames = 0x800AC0C4;
 gPhotoCount = 0x800AC0E0;
 get_player_name = 0x800BF498;
-getCurrentRoom = 0x800E2184;
 inRange_DEBUG = 0x800E3FF0; // type:func rom:0x617A0
 bool_DEBUG = 0x800E4018; // type:func
 globalRoomGFX = 0x800E6AD0;
@@ -357,7 +356,7 @@ animalAddOne = 0x80363C48; // segment:app_level
 animalAdd = 0x80363A8C; // segment:app_level
 cartGObj = 0x803937F0;
 beachAnimalAdd = 0x802C42D4; // type:func rom:0x55C344 segment:beach_code
-func_800E6238_639E8 = 0x800E6238; // type:func rom:0x0639E8 segment:level_low
+func_800E6238_639E8 = 0x800E6238; // type:func rom:0x0639E8 segment:world
 
 scExecuteBlocking = 0x800009A0;
 scAddClient = 0x80000A08;
@@ -688,3 +687,17 @@ D_801EA584_A08244 = 0x801EA584; // rom:0xA08244 type:asciz
 D_801EA68C_A0834C = 0x801EA68C; // rom:0xA0834C type:asciz
 
 D_800E823C_A0F7CC = 0x800E823C; // rom:0xA0F7CC force_migration:True
+
+getCurrentWorldBlock = 0x800E2184;
+getWorldBlocks = 0x800E2190;
+setSkyBoxFollowPlayer = 0x800E20B4;
+setSkyBoxPos = 0x800E20F8;
+world_func_800E219C = 0x800E219C;
+world_func_800E21A8 = 0x800E21A8;
+createWorld = 0x800E2F38;
+destroyWorld = 0x800E3064;
+world_func_800E4040 = 0x800E4040;
+world_func_800E40A4 = 0x800E40A4;
+world_func_800E41D8 = 0x800E41D8;
+world_func_800E6778 = 0x800E6778;
+world_func_800E67E4 = 0x800E67E4;

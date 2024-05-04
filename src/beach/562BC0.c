@@ -13,7 +13,7 @@ void func_beach_802CAC08(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_beach_802CAC48(s32 gObjID, u16 id, RoomGFX* roomA, RoomGFX* roomB, ObjectSpawn* spawn) {
+void func_beach_802CAC48(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CDAEC);
 }
 
@@ -53,7 +53,7 @@ void func_beach_802CAD7C(GObj* obj) {
     Animal* animal = GET_ANIMAL(obj);
 
     animal->tangible = 0;
-    obj->flags |= GOBJ_FLAG_1 | GOBJ_FLAG_2;
+    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
     animal->transitionGraph = &D_beach_802CDC80;
     runInteractionsAndWaitForFlags(obj, 0);
     updateAnimalState(obj, NULL);

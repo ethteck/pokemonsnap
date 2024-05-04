@@ -658,6 +658,7 @@ segments:
 
     - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
+    dir: tunnel
     type: code
     start: 0x5DF5D0
     vram: 0x802E2500
@@ -696,6 +697,7 @@ segments:
 
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
+    dir: cave
     type: code
     start: 0x6401B0
     vram: 0x802BDD00
@@ -736,6 +738,7 @@ segments:
 
     - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
+    dir: river
     type: code
     start: 0x6C05E0
     vram: 0x802D8800
@@ -782,6 +785,7 @@ segments:
 
     - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
+    dir: volcano
     type: code
     start: 0x7272E0
     vram: 0x802D60E0
@@ -828,6 +832,7 @@ segments:
 
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
+    dir: valley
     type: code
     start: 0x79F1B0
     vram: 0x802C5C20
@@ -879,6 +884,7 @@ segments:
 
     - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
+    dir: rainbow
     type: code
     start: 0x825E30
     vram: 0x803466C0
@@ -1023,6 +1029,7 @@ segments:
     - [0x9A5AA0, .rodata, 98D0F0]
     - [0x9A6AF0, .rodata, 993F80]
   - name: unk_end_level_5
+    dir: unk_end_level_5
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
@@ -1040,6 +1047,7 @@ segments:
 
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: unk_end_level_6
+    dir: unk_end_level_6
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
@@ -1056,6 +1064,7 @@ segments:
 
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: unk_end_level_7
+    dir: unk_end_level_7
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
@@ -1073,6 +1082,7 @@ segments:
 
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
   - name: unk_end_level_8
+    dir: unk_end_level_8
     type: code
     start: 0xA084B0
     vram: 0x801DC8C0

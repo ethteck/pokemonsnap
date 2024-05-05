@@ -86,7 +86,7 @@ void func_801DC8C0_A084B0(void) {
     func_8036F1F4_8429A4(sp2C, 0xB8, 0x140);
     func_8036F0DC_84288C(sp2C, 0);
     sp28 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
-    func_8036B870_83F020(sp28, 1, 0xFFU, 0xFFU, 0xFF, 0xFF);
+    func_8036B870_83F020(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
     func_8036B734_83EEE4(sp28);
     func_8036CB58_840308(sp28, 0xC);
@@ -115,7 +115,7 @@ void func_801DC9E8_A085D8(UNK_PTR arg0) {
     sp30 = 0x1E;
     sp2C = 0x28;
     sp28 = 5;
-    func_8009FB50(5U, 9U, 8U);
+    func_8009FB50(5, 9, 8);
     func_801DC8C0_A084B0();
     func_800A7860(1, 1.0f);
     func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
@@ -158,12 +158,12 @@ void func_801DC9E8_A085D8(UNK_PTR arg0) {
             if ((sp3C->unk_18 & 4) && (D_801DD12C_A08D1C > 0)) {
                 s8 scopedTemp2;
 
-                auPlaySound(0x43U);
+                auPlaySound(0x43);
                 D_801DD12C_A08D1C -= 1;
             } else if ((sp3C->unk_18 & 8) && (D_801DD12C_A08D1C < 5)) {
                 s8 scopedTemp3;
 
-                auPlaySound(0x42U);
+                auPlaySound(0x42);
                 D_801DD12C_A08D1C += 1;
             } else {
                 goto label;
@@ -203,12 +203,12 @@ void func_801DCE64_A08A54(void) {
     GObj* obj;
     OMCamera* cam;
 
-    obj = ohCreateCamera(1, ohUpdateDefault, 0, 5, ren_func_800192DC, 0xA, 0x20, -1, 0, 1U, NULL, 0, 0);
+    obj = ohCreateCamera(1, ohUpdateDefault, 0, 5, ren_func_800192DC, 0xA, 0x20, -1, 0, 1, NULL, 0, 0);
     cam = obj->data.cam;
     cam->flags = 5;
     obj->flags |= 1;
-    omCameraAddMtx(cam, 3U, 0U);
-    omCameraAddMtx(cam, 0xEU, 0U);
+    omCameraAddMtx(cam, 3, 0);
+    omCameraAddMtx(cam, 0xE, 0);
     cam->perspMtx.persp.near = 10.0f;
     cam->perspMtx.persp.far = 25600.0f;
     cam->perspMtx.persp.fovy = 55.0f;
@@ -234,7 +234,7 @@ void func_801DCFE0_A08BD0(void) {
     func_800AAE28();
     func_801DCE64_A08A54();
     func_8036EB98();
-    auSetBGMVolume(0, 0x7F00U);
+    auSetBGMVolume(0, 0x7F00);
     func_800A7F68(1, 0x101);
     func_801DCE2C_A08A1C();
 }

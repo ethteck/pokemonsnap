@@ -1,8 +1,5 @@
-#ifndef A0BE70_H
-#define A0BE70_H
-
-
-#include "types.h"
+#ifndef _UNK_LEVEL_END_9_H
+#define _UNK_LEVEL_END_9_H
 
 void func_800E1930_A08EC0(u8 arg0, u8 arg1, u8 arg2, u8 arg3, f32 arg4);
 

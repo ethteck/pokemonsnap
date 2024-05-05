@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include "A0BE70.h"
+#include "unk_level_end_9.h"
 
 extern GObj* D_800E8334_A0F8C4;
 extern GObj* D_800E8338_A0F8C8;

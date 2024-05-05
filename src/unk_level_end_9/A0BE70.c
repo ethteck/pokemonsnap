@@ -1,7 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 
-#include "A0BE70.h"
+#include "unk_level_end_9.h"
 #include "sys/anim.h"
 
 extern s32 D_800E82F4_A0F884;
@@ -260,7 +260,7 @@ void func_800E5468_A0C9F8(void) {
 }
 
 void func_800E5574_A0CB04(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/A0BE70/func_800E5574_A0CB04.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/unk_level_end_9/A0BE70/func_800E5574_A0CB04.s")
 // void func_800E5574_A0CB04(s32 arg0) {
 //     func_800AB9A4();
 //     auSetBGMVolume(0, 0x7F00);

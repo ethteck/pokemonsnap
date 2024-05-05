@@ -1095,6 +1095,7 @@ segments:
     - [0xA08D10, .data, A084B0]
     - { start: auto, name: A084B0, type: .bss, vram: 0x801DD240 }
   - name: unk_level_end_9
+    dir: unk_level_end_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0

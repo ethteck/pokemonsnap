@@ -582,7 +582,17 @@ segments:
     - [0x506290, c]
     - [0x5064F0, c]
     - [0x506DD0, c]
-    - [0x506FB0, bin] # , data]
+    - [0x506FB0, data]
+    - [0x533C10, .rodata, 4FEB90]
+    - [0x533E90, .rodata, 503C10]
+    - [0x533ED0, rodata]
+    - [0x533EE0, rodata]
+    - [0x533FE0, rodata]
+    - [0x534000, rodata]
+    - [0x536010, rodata]
+    - [0x53E1E0, rodata]
+    - [0x53E1F0, rodata]
+    - [0x54AE40, rodata]
     - { start: auto, name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
   - type: code
     name: magikarp3

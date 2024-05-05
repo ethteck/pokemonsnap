@@ -3,6 +3,7 @@
 
 #include "ultra64.h"
 #include "types.h"
+#include "sys/om.h"
 
 typedef f32 quartic[5];
 
@@ -198,7 +199,7 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ animationHeader* animations;
-    /* 0x04 */ void* func;
+    /* 0x04 */ GObjFunc func;
     /* 0x08 */ s8 kind;
     /* 0x09 */ char unk_09[0x3];
     /* 0x0C */ void* unk_0C;
@@ -220,75 +221,13 @@ typedef struct {
 } ucolor;
 
 typedef struct {
-    /* 0x00 */ u16 h_0;
-    /* 0x02 */ s8 fmt1;
-    /* 0x03 */ s8 siz1;
-    /* 0x04 */ u32 * textures;
-    /* 0x08 */ u16 stretch;
-    /* 0x0A */ u16 sharedOffset;
-    /* 0x0C */ u16 t0_w;
-    /* 0x0E */ u16 t0_h;
-    /* 0x10 */ s32 halve;
-    /* 0x14 */ f32 t0_xShift;
-    /* 0x18 */ f32 t0_yShift;
-    /* 0x1C */ f32 xScale;
-    /* 0x20 */ f32 yScale;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ void* palettes;
-    /* 0x30 */ u16 flags;
-    /* 0x32 */ s8 fmt2;
-    /* 0x33 */ s8 siz2;
-    /* 0x34 */ u16 w2;
-    /* 0x36 */ u16 h2;
-    /* 0x38 */ u16 t1_w;
-    /* 0x3A */ u16 t1_h;
-    /* 0x3C */ f32 t1_xShift;
-    /* 0x40 */ f32 t1_yShift;
-    /* 0x44 */ f32 unk_44;
-    /* 0x48 */ f32 unk_48;
-    /* 0x4C */ s32 unk_4C;
-    /* 0x50 */ color prim;
-    /* 0x54 */ s8 primLODFrac;
-    /* 0x55 */ s8 unk_55;
-    /* 0x56 */ s8 unk_56;
-    /* 0x57 */ char unk_57[0x1];
-    /* 0x58 */ color env;
-    /* 0x5C */ color blend;
-    /* 0x60 */ color light1;
-    /* 0x64 */ color light2;
-    /* 0x68 */ s32 unk_68;
-    /* 0x6C */ s32 unk_6C;
-    /* 0x70 */ s32 unk_70;
-    /* 0x74 */ s32 unk_74;
-} uvScrollData;
-
-typedef union { /* lower word of an f3d command */
-    void* field0;
-    u32 field1;
-} cmdLow;
-
-typedef struct {
-    u32 upper;
-    cmdLow lower;
-} displayCommand;
-
-typedef struct {
-    /* 0x00 */ u32 index;
-    /* 0x04 */ displayCommand* dl;
-    /* 0x08 */ Vec3f trans;
-    /* 0x14 */ Vec3f euler;
-    /* 0x20 */ Vec3f scale;
-} nodeTreeEntry;
-
-typedef struct {
-    /* 0x00 */ s32 id;
+    /* 0x00 */ u32 id;
     /* 0x04 */ s32 behavior;
     /* 0x08 */ Vec3f translation;
     /* 0x14 */ Vec3f euler;
     /* 0x20 */ Vec3f scale;
     /* 0x2C */ pathSpline* path;
-} ObjectSpawn;
+} ObjectSpawn; // size = 0x30
 
 typedef union {
     f32 field0;
@@ -301,21 +240,28 @@ typedef struct {
     /* 0x10 */ s32 type;
 } groundResult; // size = 0x14
 
-typedef struct {
-    /* 0x00 */ nodeTreeEntry* tree;
-    /* 0x04 */ uvScrollData*** materials;
-    /* 0x08 */ void (*renderer)(struct GObj*);
+// TODO remove this later
+typedef struct PokemonInitData {
+    /* 0x00 */ UnkEC64Arg3* tree;
+    /* 0x04 */ Texture*** textures;
+    /* 0x08 */ GObjFunc fnRender;
     /* 0x0C */ animalAnimationSetup* animSetup;
     /* 0x10 */ Vec3f scale;
     /* 0x1C */ Vec3f scaleNumerator;
     /* 0x28 */ f32 radius;
     /* 0x2C */ u16 flags;
-    /* 0x2E */ geoPayloadType payload1;
-    /* 0x2F */ geoPayloadType payload2;
-    /* 0x30 */ geoPayloadType payload3;
+    /* 0x2E */ u8 matrix1;
+    /* 0x2F */ u8 matrix2;
+    /* 0x30 */ u8 matrix3;
     /* 0x31 */ char unk_31[0x3];
     /* 0x34 */ f32 unk_34;
-} animalInitData;
+} PokemonInitData;
+
+typedef struct PokemonTransform {
+    /* 0x00 */ struct Mtx3Float pos;
+    /* 0x10 */ struct Mtx4Float rot;
+    /* 0x24 */ struct Mtx3Float scale;
+} PokemonTransform; // size = 0x34
 
 typedef struct {
     /* 0x00 */ s16 x;
@@ -340,15 +286,16 @@ typedef struct {
 
 struct WorldBlock;
 typedef struct {
-    /* 0x000 */ s8 id;
-    /* 0x001 */ char unk_01[0x1];
-    /* 0x002 */ s8 appleID;
-    /* 0x003 */ char unk_03[0x5];
+    /* 0x000 */ s32 id;
+    /* 0x001 */ //char unk_01[0x1];
+    /* 0x002 */ //s8 appleID;
+    /* 0x003 */ //char unk_03[0x5];
+    /* 0x004 */ char unk_04[0x4];
     /* 0x008 */ u16 flags;
     /* 0x00A */ char unk_0A[0x6];
     /* 0x010 */ s32 tangible;
     /* 0x014 */ s32 loopCount;
-    /* 0x018 */ char unk_18[0x4];
+    /* 0x018 */ s32 unk_18;
     /* 0x01C */ Vec3f pos1;
     /* 0x028 */ Vec3f targetPos;
     /* 0x034 */ Vec3f dirToNeighbors;
@@ -356,7 +303,7 @@ typedef struct {
     /* 0x04C */ Vec3f collisionOffset;
     /* 0x058 */ f32 collisionRadius;
     /* 0x05C */ animalAnimationSetup* animSetup; /* Created by retype action */
-    /* 0x060 */ struct GObj* interactionProc; /* Created by retype action */
+    /* 0x060 */ GObjProcess* interactionProc; /* Created by retype action */
     /* 0x064 */ struct GObj* apple;
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
@@ -378,15 +325,16 @@ typedef struct {
     /* 0x0B0 */ misc miscVars[7];
     /* 0x0CC */ f32* forbiddenGround;
     /* 0x0D0 */ groundResult currGround; /* Created by retype action */
-    /* 0x0E4 */ char unk_E4[0x4];
+    /* 0x0E4 */ u8 unk_E4;
+    /* 0x0E5 */ char unk_E5[0x3];
     /* 0x0E8 */ pathSpline* path;
     /* 0x0EC */ f32 pathParam; /* Created by retype action */
-    /* 0x0F0 */ animalInitData* initData;
+    /* 0x0F0 */ PokemonInitData* initData;
     /* 0x0F4 */ animationHeader* animHeader;
     /* 0x0F8 */ eggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
-    /* 0x10C */ char unk_10C[0x2];
+    /* 0x10C */ s16 unk_10C;
     /* 0x10E */ s16 field_0x10e;
 } Animal; // size = 0x110
 
@@ -407,7 +355,7 @@ typedef union {
     projectileData* projectileData;
 } gobjData;
 
-typedef GObj* (*animalInit)(s32 arg0, s32 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
+typedef GObj* (*animalInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
 typedef void (*gfxFunc)(GObj*);
 
 typedef struct {
@@ -417,7 +365,7 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ u32 id;
-    /* 0x04 */ animalInit* init;
+    /* 0x04 */ animalInit init;
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
 } AnimalDef; // size = 0x10

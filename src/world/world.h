@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define MAX_BLOCKS 13
+
 struct WorldBlock;
 
 typedef struct UnkIndigoDingo {
@@ -74,7 +76,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ UnkBeigeServal* unk_18;
-    /* 0x1C */ void* unk_1C;
+    /* 0x1C */ ObjectSpawn* unk_1C;
     /* 0x20 */ UnkBeigeServal* unk20;
 } WorldBlockDescriptor; // size >= 0x24
 
@@ -185,7 +187,7 @@ void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
 void func_800E3D04_614B4(UnkGoldViper* arg0);
 void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
-s32 bool_DEBUG(s32, const char*);
+s32 notNull_DEBUG(void*, const char*);
 s32 world_func_800E4040(UnkMagentaCrocodile* arg0);
 s32 world_func_800E40A4(UnkMagentaCrocodile* arg0);
 s32 world_func_800E41D8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);

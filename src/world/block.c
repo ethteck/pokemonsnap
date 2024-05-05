@@ -1,7 +1,5 @@
 #include "world.h"
 
-#define MAX_BLOCKS 13
-
 void func_800E354C_60CFC(UnkVioletMarlin*, s32);
 void func_800E3464_60C14(WorldBlock*);
 

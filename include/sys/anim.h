@@ -27,5 +27,6 @@ void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** a
                    u8 arg4, u8 arg5, u8 arg6);
 void animSetCameraAnimation(OMCamera* cam, AnimCmd* animList, f32 skipFrames);
 void animUpdateCameraAnimation(GObj* obj);
+void anim_func_8000FDA0(DObj* dobj, u8 arg1, u8 arg2, u8 arg3);
 
 #endif /* SYS_ANIM_H */

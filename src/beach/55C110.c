@@ -55,7 +55,7 @@ void func_beach_802C4340(void) {
 
 void func_beach_802C43CC(s32 arg0) {
     D_beach_802CC018 = arg0;
-    func_800A19D8();
+    func_800A19D8(arg0);
     func_80359074_4F9484();
     func_8036650C_50691C();
     auStopBGM();

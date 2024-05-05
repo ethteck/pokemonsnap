@@ -64,6 +64,7 @@ void gtlProcessAllDLists(void);
 void gtlCombineAllDLists(void);
 void gtlReset(void);
 void gtlLoadUcode(Gfx** dlist, u32 ucodeIdx);
+void gtlWaitAllGfxTasksDone(void);
 void omSetupScene(SceneSetup* arg);
 void gtlSetIntervals(u16 updateInterval, u16 drawInterval);
 void gtlSetSegmentF(Gfx**);

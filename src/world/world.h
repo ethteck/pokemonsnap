@@ -97,19 +97,19 @@ typedef struct UnkBoneFox {
 } UnkBoneFox; // size >= 0xC
 
 typedef struct WorldSetup {
-    /* 0x00 */ UnkBoneFox* unk_00;
+    /* 0x00 */ UnkBoneFox* blocksSetup;
     /* 0x04 */ UnkVioletMarlin* unk_04;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ UnkChestnutCougar* unk_0C;
     /* 0x10 */ f32 unk_10;
-    /* 0x14 */ u16 unk_14;
-    /* 0x16 */ u16 unk_16;
-    /* 0x18 */ u8 unk_18;
-    /* 0x19 */ u8 unk_19;
-    /* 0x1A */ u8 unk_1A;
-    /* 0x1B */ u8 unk_1B;
-    /* 0x1C */ u8 unk_1C;
-    /* 0x1D */ u8 unk_1D;
+    /* 0x14 */ u16 fogDistanceMin;
+    /* 0x16 */ u16 fogDistanceMax;
+    /* 0x18 */ u8 fogR;
+    /* 0x19 */ u8 fogG;
+    /* 0x1A */ u8 fogB;
+    /* 0x1B */ u8 backgroundR;
+    /* 0x1C */ u8 backgroundG;
+    /* 0x1D */ u8 backgroundB;
 } WorldSetup; // size >= 0x1E
 
 typedef struct UnkFuchsiaKomodo {

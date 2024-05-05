@@ -50,7 +50,7 @@ void func_80369FC0_83D770(UnkCreamGrouper* arg0) {
     temp_v1->unk_14 = temp_v0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/83D730/func_80369FD4_83D784.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_80369FD4_83D784.s")
 
 UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
     UnkCreamGrouper* var_v1;
@@ -64,9 +64,9 @@ UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
     return NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/83D730/func_8036A07C_83D82C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A07C_83D82C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/83D730/func_8036A0BC_83D86C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A0BC_83D86C.s")
 
 void* func_8036A194_83D944(u32 arg0) {
     u32 temp_a1;
@@ -94,7 +94,7 @@ void func_8036A228_83D9D8(void* arg0) {
     func_8036A0BC_83D86C((UnkClaretTilapia*) (((uintptr_t) arg0) - sizeof(UnkClaretTilapia)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/83D730/func_8036A248_83D9F8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A248_83D9F8.s")
 
 void func_8036A3F8_83DBA8(void* arg0, s32 arg1) {
     func_80369FD4_83D784(arg0, arg1);

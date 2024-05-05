@@ -932,6 +932,7 @@ segments:
     subsegments:
     - [0x83A1E0, bin] # , data]
   - name: unk_end_level
+    dir: unk_end_level
     type: code
     start: 0x83D730
     vram: 0x80369F80

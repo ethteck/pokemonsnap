@@ -18,7 +18,7 @@ void func_803643E0_5047F0(OMCamera* cam) {
     guMtxCatF(D_803B14D8_5518E8, D_803B1518_551928, D_803B1518_551928);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5047F0/func_80364494_5048A4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/5047F0/func_80364494_5048A4.s")
 
 s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z) {
     f32 outX;

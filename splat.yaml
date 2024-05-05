@@ -566,6 +566,7 @@ segments:
     subsegments:
     - [0x4EC000, bin] # , data]
   - name: app_level
+    dir: app_level
     type: code
     start: 0x4F0610
     vram: 0x80350200

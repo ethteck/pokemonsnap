@@ -1091,8 +1091,8 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xA084B0, c]
-    - [0xA08D10, bin] # , data]
-    - { start: auto, name: bss_801DD240, type: bss, vram: 0x801DD240 }
+    - [0xA08D10, .data, A084B0]
+    - { start: auto, name: A084B0, type: .bss, vram: 0x801DD240 }
   - name: unk_level_end_9
     type: code
     start: 0xA08E30

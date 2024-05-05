@@ -46,7 +46,6 @@ Photo D_802291A0_9D8C10[60];
 s32 D_80229838_9D92A8;
 
 void qsort(void* base, s32 nitems, u32 size, s32 (*compar)(const void*, const void*)); // Probably qsort
-s32 func_800BF574_5C414(s32);
 void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
 void func_800BF690_5C530(s16, UnkPinkBarracuda*);
 void func_800BF7D4_5C674(s16, u32);

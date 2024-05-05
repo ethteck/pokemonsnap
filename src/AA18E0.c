@@ -1,9 +1,7 @@
 #include "common.h"
 #include "sys/oh.h"
 
-void func_8009FA68(UNK_PTR arg0, UNK_PTR arg1);
 void func_801DC9D0_AA1A10(GObj*);
-UNK_PTR func_800BF574_5C414(s32 arg0);
 
 // data
 extern Sprite D_801E5478_AAA4B8;
@@ -41,7 +39,7 @@ void func_801DC8A0_AA18E0(s32 arg0) {
     func_800067DC();
 }
 
-void func_801DC930_AA1970(UNK_PTR arg0, UNK_PTR arg1) {
+void func_801DC930_AA1970(OMCamera* arg0, UNK_PTR arg1) {
     GObj* obj;
 
     func_8009FA68(arg0, arg1);
@@ -62,13 +60,13 @@ void func_801DC9BC_AA19FC(void *unused) {
 }
 
 void func_801DC9D0_AA1A10(GObj* arg0) {
-    void* sp2C;
+    OMCamera* sp2C;
     s32 var_s0;
     s32 var_a0;
     s32 i;
     s32 *temp_v0;
 
-    sp2C = arg0->data.any;
+    sp2C = arg0->data.cam;
     if (D_801E54C8_AAA508[0] >= 0) {
         func_800067DC();
     }

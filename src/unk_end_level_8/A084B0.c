@@ -102,7 +102,98 @@ void func_801DC8C0_A084B0(void) {
     D_801DD258_A08E48 = sp28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_8/A084B0/func_801DC9E8_A085D8.s")
+// TODO: try to match this function without using a goto
+void func_801DC9E8_A085D8(UNK_PTR arg0) {
+    UnkStruct800BEDF8* sp3C;
+    s32 pad;
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    sp34 = 1;
+    sp30 = 0x1E;
+    sp2C = 0x28;
+    sp28 = 5;
+    func_8009FB50(5U, 9U, 8U);
+    func_801DC8C0_A084B0();
+    func_800A7860(1, 1.0f);
+    func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
+    D_801DD240_A08E30->flags &= ~1;
+    func_8036FE54_843604(D_801DD254_A08E44, 1);
+
+    while (func_800A7460() != 0) {
+        ohWait(1);
+    }
+
+    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+    D_801DD25C_A08E4C = 0;
+
+    while (D_801DD250_A08E40 == 0x10000000) {
+    label:
+        ohWait(1);
+
+        sp3C = func_800AA38C(0);
+        if (D_801DD12C_A08D1C && (--D_801DD25C_A08E4C == 0)) {
+
+        } else if (sp3C->unk_18 & 0x8000) {
+
+        } else if (sp3C->unk_18 & 0x4000) {
+            s8 scopedTemp1;
+
+            D_801DD250_A08E40 = 0x20000000;
+        } else {
+            if (sp3C->unk_18 & 0x2000) {
+                sp34 ^= 1;
+                if (sp34 != 0) {
+                    func_8036F0DC_84288C(D_801DD254_A08E44, 1);
+                    func_8036F0A0_842850(D_801DD254_A08E44, 1);
+                    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+                } else {
+                    func_8036F0DC_84288C(D_801DD254_A08E44, 0);
+                    func_8036F0A0_842850(D_801DD254_A08E44, 0);
+                    func_8036D1A4_840954(D_801DD258_A08E48, 1);
+                }
+            }
+            if ((sp3C->unk_18 & 4) && (D_801DD12C_A08D1C > 0)) {
+                s8 scopedTemp2;
+
+                auPlaySound(0x43U);
+                D_801DD12C_A08D1C -= 1;
+            } else if ((sp3C->unk_18 & 8) && (D_801DD12C_A08D1C < 5)) {
+                s8 scopedTemp3;
+
+                auPlaySound(0x42U);
+                D_801DD12C_A08D1C += 1;
+            } else {
+                goto label;
+            }
+        }
+        if (D_801DD250_A08E40 == 0x10000000) {
+            D_801DD24C_A08E3C = (s32) (D_801DD24C_A08E3C + 1) % 4;
+            D_801DD240_A08E30->flags |= 1;
+            gtlWaitAllGfxTasksDone();
+            func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
+            D_801DD240_A08E30->flags &= ~1;
+            ohWait(0xA);
+            D_801DD25C_A08E4C = (D_801DD12C_A08D1C != 0) ? ((sp2C * sp28) / D_801DD12C_A08D1C) : 0;
+        }
+    }
+
+    func_800A7860(0, 1.0f);
+
+    while (func_800A7460() != 0) {
+        ohWait(1);
+    }
+
+    D_801DD240_A08E30->flags |= 1;
+    func_8009FBC4();
+    func_800AADF0(0x17);
+
+    while (TRUE) {
+        ohWait(1);
+    }
+}
 
 void func_801DCE2C_A08A1C(void) {
     func_800A85E8(func_801DC9E8_A085D8, 6, 0, 0);

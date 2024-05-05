@@ -338,6 +338,7 @@ segments:
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
     - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996A0 }
   - name: app_render
+    dir: app_render
     type: code
     start: 0x46270
     vram: 0x8009A8C0

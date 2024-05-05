@@ -182,7 +182,7 @@ void func_8009AE0C(u32 sceneId) {
 }
 
 s32 func_8009B2BC(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/46270/func_8009B2BC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/46270/func_8009B2BC.s")
 
 void func_8009B40C(void) {
     s32 i;

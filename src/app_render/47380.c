@@ -437,10 +437,10 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
     return -1.0f;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BDDC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BDDC.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009BF48.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BF48.s")
 
 s32 func_8009BF48(UnkFunc8009C25C_Unk20*, GObj*);
 
@@ -548,11 +548,11 @@ s32 func_8009C5C4(const void* a, const void* b) {
 }
 
 void func_8009C604(UnkFunc8009C25C* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C604.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C604.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C8E4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C8E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009C9E8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C9E8.s")
 
 // & 0xFFs and temp required to match
 void func_8009CDC0(u8* arg0, s32 arg1) {
@@ -587,10 +587,10 @@ void func_8009CE00(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009CEAC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009CEAC.s")
 
 void func_8009D0B4(WorldBlock* arg0, WorldBlock* arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D0B4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D0B4.s")
 
 void func_8009D184(WorldSetup* arg0) {
     arg0->unk_0C = NULL;
@@ -604,19 +604,19 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D21C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D21C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D37C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D37C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D65C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D65C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D8A8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D8A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009D9A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009DEF0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009DEF0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E050.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E050.s")
 
 void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists, u8 skipFrames) {
     if (animLists != NULL) {
@@ -630,10 +630,10 @@ void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists,
     animUpdateModelTreeAnimation(gobj);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E1CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E1CC.s")
 
 void func_8009E3D0(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009E3D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E3D0.s")
 
 void func_8009FA00(UNK_TYPE arg0, UNK_TYPE arg1) {
     GObj* gobj;
@@ -643,7 +643,7 @@ void func_8009FA00(UNK_TYPE arg0, UNK_TYPE arg1) {
     omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FA68.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009FA68.s")
 
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2) {
     s32* temp_v0;
@@ -676,4 +676,4 @@ void func_8009FC2C(s32 arg0) {
     D_800AC0F0 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/47380/func_8009FC38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009FC38.s")

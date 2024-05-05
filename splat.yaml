@@ -380,6 +380,7 @@ segments:
     - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
     - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
+    dir: more_funcs
     type: code
     start: 0x5BF20
     vram: 0x800BF080

@@ -162,7 +162,7 @@ s32 func_800BF3D4_5C274(s32 arg0) {
     return var_v1 != 0;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF3D4_5C274.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF3D4_5C274.s")
 #endif
 
 void func_800BF444_5C2E4(s32 arg0) {
@@ -176,9 +176,9 @@ char* get_player_name(void) {
     return D_800C21B0_5F050->playerName.data;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF4A8_5C348.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF4A8_5C348.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF534_5C3D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF534_5C3D4.s")
 
 #ifdef NON_EQUIVALENT
 void* func_800BF574_5C414(s32 arg0) {
@@ -197,10 +197,10 @@ void* func_800BF574_5C414(s32 arg0) {
     return var_v1;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF574_5C414.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF574_5C414.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF5D8_5C478.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF5D8_5C478.s")
 
 void func_800BF650_5C4F0(s32 arg0) {
     if (arg0 >= 0 && arg0 < 4) {
@@ -208,7 +208,7 @@ void func_800BF650_5C4F0(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF690_5C530.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF690_5C530.s")
 
 #ifdef NON_EQUIVALENT
 s32* func_800BF710_5C5B0(s32 arg0) {
@@ -225,7 +225,7 @@ s32* func_800BF710_5C5B0(s32 arg0) {
     return var_v1;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF710_5C5B0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF710_5C5B0.s")
 #endif
 
 void func_800BF780_5C620(s32 arg0) {
@@ -245,7 +245,7 @@ void func_800BF7D4_5C674(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF818_5C6B8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF818_5C6B8.s")
 // s32 func_800BF818_5C6B8(s32 arg0) {
 //     s32 temp_v0 = func_8009BB4C(arg0);
 
@@ -288,20 +288,20 @@ s32** func_800BF8BC_5C75C(s32 arg0) {
     return sp28;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF8BC_5C75C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF8BC_5C75C.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF954_5C7F4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF954_5C7F4.s")
 
 s32 func_800BF9EC_5C88C(void) {
     return 60;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BF9F4_5C894.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF9F4_5C894.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFA44_5C8E4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFA44_5C8E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFABC_5C95C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFABC_5C95C.s")
 
 void* func_800BFB50_5C9F0(s32 arg0) {
     if (arg0 < 0 || arg0 >= D_800C20F0_5EF90) {
@@ -314,7 +314,7 @@ s32 func_800BFB84_5CA24(void) {
     return D_800C20F0_5EF90;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFB90_5CA30.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFB90_5CA30.s")
 
 void func_800BFC18_5CAB8(s32* arg0, s32* arg1) {
     if (arg0 != NULL) {
@@ -335,9 +335,9 @@ void func_800BFC70_5CB10(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFCA0_5CB40.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFCA0_5CB40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800BFEBC_5CD5C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFEBC_5CD5C.s")
 
 s32 func_800C0224_5D0C4(s32 arg0) {
     if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_800C21B0_5F050->unk_34)) {
@@ -434,7 +434,7 @@ s32 func_800C0400_5D2A0(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/5BF20/func_800C042C_5D2CC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800C042C_5D2CC.s")
 
 s32 func_800C05D4_5D474(void) {
     s32 temp_v0;

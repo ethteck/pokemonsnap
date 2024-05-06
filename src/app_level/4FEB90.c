@@ -670,13 +670,22 @@ void updatePokemonDefault(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362D2C_50313C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362DC4_5031D4.s")
+GObj* func_80362DC4_5031D4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    GObj* pokemonObj = spawnPokemon(objID, id, block, blockB, spawn, initData);
+    omMoveGObjDL(pokemonObj, 4, 0x80000000);
+    return pokemonObj;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362E10_503220.s")
+GObj* func_80362E10_503220(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    GObj* pokemonObj = spawnPokemonOnGround(objID, id, block, blockB, spawn, initData);
+    omMoveGObjDL(pokemonObj, 4, 0x80000000);
+    return pokemonObj;
+}
 
-void spawnPokemon(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* spawnPokemon(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     GObj* pokemonObj = spawnPokemonOnGround(objID, id, block, blockB, spawn, initData);
     GET_TRANSFORM(pokemonObj->data.dobj)->pos.v.y = spawn->translation.y * 100.0f + (block->descriptor->unk_04.y - blockB->descriptor->unk_04.y) * 100.0f;
+    return pokemonObj;
 }
 
 GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {

@@ -234,13 +234,6 @@ typedef union {
     s32 field1;
 } misc;
 
-typedef struct {
-    /* 0x00 */ f32 height;
-    /* 0x04 */ Vec3f normal;
-    /* 0x10 */ s32 type;
-} groundResult; // size = 0x14
-
-// TODO remove this later
 typedef struct PokemonInitData {
     /* 0x00 */ UnkEC64Arg3* tree;
     /* 0x04 */ Texture*** textures;
@@ -284,6 +277,12 @@ typedef struct {
     /* 0x10 */ f32 timer;
 } eggStruct;
 
+typedef struct GroundResult {
+    /* 0x00 */ f32 height;
+    /* 0x04 */ Vec3f normal;
+    /* 0x10 */ s32 type;
+} GroundResult; // size = 0x14
+
 struct WorldBlock;
 typedef struct {
     /* 0x000 */ s32 id;
@@ -324,7 +323,7 @@ typedef struct {
     /* 0x0AC */ idFuncStruct* transitionGraph; /* Created by retype action */
     /* 0x0B0 */ misc miscVars[7];
     /* 0x0CC */ f32* forbiddenGround;
-    /* 0x0D0 */ groundResult currGround; /* Created by retype action */
+    /* 0x0D0 */ GroundResult currGround; /* Created by retype action */
     /* 0x0E4 */ u8 unk_E4;
     /* 0x0E5 */ char unk_E5[0x3];
     /* 0x0E8 */ pathSpline* path;

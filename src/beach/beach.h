@@ -238,7 +238,7 @@ extern PokemonInitData D_beach_802CE038;
 extern animationHeader D_beach_802CE070;
 extern PokemonInitData D_beach_802CE0A8;
 extern AnimalDef D_beach_802CE0DC;
-extern UnkMagentaCrocodile D_beach_80318F00;
+extern HeightMap D_beach_80318F00;
 extern u8 D_beach_80347578;
 extern u8 D_beach_80347579;
 extern u8 D_beach_8034757A;

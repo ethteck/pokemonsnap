@@ -59,10 +59,10 @@ void forceAnimalAnimation(GObj* obj, animationHeader* header) {
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_8035F1D0_4FF5E0.s")
 
 f32 func_8035F21C_4FF62C(f32 arg0, f32 arg1) {
-    UnkBurgundyOcelot sp1C;
+    GroundResult sp1C;
 
-    if (world_func_800E41D8(arg0, arg1, &sp1C) != 0) {
-        return sp1C.unk_00;
+    if (getGroundAt(arg0, arg1, &sp1C) != 0) {
+        return sp1C.height;
     }
     return 0.0f;
 }

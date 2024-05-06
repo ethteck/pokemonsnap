@@ -47,7 +47,7 @@ void func_beach_802C431C(WorldBlock* arg0) {
 }
 
 void func_beach_802C4340(void) {
-    world_func_800E4040(&D_beach_80318F00);
+    setHeightMap(&D_beach_80318F00);
     createWorld(&D_8011B914, 99, 100, 126, 9, 3, beachAnimalAdd, func_beach_802C431C, func_beach_802C42F8);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(0x80, 0xE4, 3, 5);

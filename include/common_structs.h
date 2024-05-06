@@ -7,48 +7,6 @@
 
 typedef f32 quartic[5];
 
-typedef enum geoPayloadType {
-    translate=18,
-    axisDEG=19,
-    axisDEG_translate=20,
-    eulerDEG_XYZ=21,
-    eulerDEG_translate=22,
-    axis=23,
-    axis_translate=24,
-    axis_translate_scale=25,
-    eulerTAB=26,
-    eulerTAB_translate=27,
-    eulerTAB_translate_scale=28,
-    euler_translate=30,
-    euler=29,
-    euler_scale_translate=31,
-    scale=32,
-    set_viewproj=42,
-    scale_proj=44,
-    zrot_viewproj=46,
-    scaled_viewproj=50,
-    bone=51,
-    tempScale=53,
-    euler_translate_conjScale=54,
-    xform_eulerTAB_trans_scale=63
-} geoPayloadType;
-
-typedef struct { /* OMMtx */
-    /* 0x00 */ char unk_00[0x4];
-    /* 0x04 */ geoPayloadType type;
-} nodePayload; // size = 0x44;
-
-typedef struct xformData {
-    /* 0x00 */ char unk_00[0x4];
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ Vec3f translation;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ f32 angle;
-    /* 0x1C */ Vec3f euler;
-    /* 0x28 */ s32 unk_28;
-    /* 0x2C */ Vec3f scale;
-} xformData; // size = 0x38
-
 typedef struct {
     /* 0x00 */ s8 type; /* 0=linear;1=bezier;2=hermite/6 */
     /* 0x01 */ char unk_01[0x1];
@@ -61,134 +19,12 @@ typedef struct {
 } pathSpline;
 
 typedef struct {
-    /* 0x00 */ struct uvOP* next;
-    /* 0x04 */ s8 value;
-    /* 0x05 */ s8 op;
-    /* 0x06 */ char unk_06[0x2];
-    /* 0x08 */ f32 ref;
-    /* 0x0C */ f32 t;
-    /* 0x10 */ f32 p0;
-    /* 0x14 */ f32 p1;
-    /* 0x18 */ f32 v0;
-    /* 0x1C */ f32 v1;
-    /* 0x20 */ struct pathSpline* path;
-} uvOP;
-
-typedef struct {
-    /* 0x00 */ u32 type;
-    /* 0x04 */ u32 flags;
-    /* 0x08 */ s32 inc;
-} uvState;
-
-typedef struct { /* MObj internally */
-    /* 0x00 */ struct uvScroll* next;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ u16 h_8;
-    /* 0x0A */ s8 fmt1;
-    /* 0x0B */ s8 siz1;
-    /* 0x0C */ u32* textures;
-    /* 0x10 */ u16 stretch;
-    /* 0x12 */ u16 sharedOffset;
-    /* 0x14 */ u16 t0w;
-    /* 0x16 */ u16 t0h;
-    /* 0x18 */ s32 halve;
-    /* 0x1C */ f32 xFrac0;
-    /* 0x20 */ f32 yFrac0;
-    /* 0x24 */ f32 xScale;
-    /* 0x28 */ f32 yScale;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ u32* palettes;
-    /* 0x38 */ u16 flags;
-    /* 0x3A */ s8 fmt2;
-    /* 0x3B */ s8 siz2;
-    /* 0x3C */ u16 w2;
-    /* 0x3E */ u16 h2;
-    /* 0x40 */ u16 t1w;
-    /* 0x42 */ u16 t1h;
-    /* 0x44 */ f32 xFrac1;
-    /* 0x48 */ f32 yFrac1;
-    /* 0x4C */ f32 unk_4C;
-    /* 0x50 */ s32 unk_50;
-    /* 0x54 */ s32 unk_54;
-    /* 0x58 */ s8 primR;
-    /* 0x59 */ s8 primG;
-    /* 0x5A */ s8 primB;
-    /* 0x5B */ s8 primA;
-    /* 0x5C */ char unk_5C[0x1];
-    /* 0x5D */ s8 minLOD;
-    /* 0x5E */ char unk_5E[0x2];
-    /* 0x60 */ s8 envR;
-    /* 0x61 */ s8 envG;
-    /* 0x62 */ s8 envB;
-    /* 0x63 */ s8 envA;
-    /* 0x64 */ s8 blendR;
-    /* 0x65 */ s8 blendG;
-    /* 0x66 */ s8 blendB;
-    /* 0x67 */ s8 blendA;
-    /* 0x68 */ u32 lightColor1;
-    /* 0x6C */ u32 lightColor2;
-    /* 0x70 */ char unk_70[0x10];
-    /* 0x80 */ u16 texIndex1;
-    /* 0x82 */ u16 texIndex2;
-    /* 0x84 */ f32 primLOD;
-    /* 0x88 */ f32 palIndex;
-    /* 0x8C */ char unk_8C[0x4];
-    /* 0x90 */ uvOP* ops;
-    /* 0x94 */ uvState* states;
-    /* 0x98 */ f32 offset;
-    /* 0x9C */ f32 increment;
-    /* 0xA0 */ f32 unk_A0;
-    /* 0xA4 */ char unk_A4[0x4];
-} uvScroll; // size = 0xA8
-
-typedef struct geoNodeSub {
-    /* 0x00 */ nodePayload* newPayload;
-    /* 0x04 */ Vec3f translation;
-} geoNodeSub; // size = 0x10
-
-typedef struct geoNode { /* top level rendering object */
-    /* 0x00 */ struct geoNode* unk_00;
-    /* 0x04 */ struct GObj* gobj;
-    /* 0x08 */ struct geoNode* next;
-    /* 0x0C */ struct geoNode* prev;
-    /* 0x10 */ struct geoNode* child;
-    /* 0x14 */ struct geoNode* parent;
-    /* 0x18 */ geoNodeSub unk_18;
-    /* 0x28 */ char unk_28[0x4];
-    /* 0x2C */ f32 degrees;
-    /* 0x30 */ Vec3f euler;
-    /* 0x3C */ f32 unk_3C;
-    /* 0x40 */ Vec3f scale;
-    /* 0x4C */ xformData* xform;
-    /* 0x50 */ s32 nodeGraphics;
-    /* 0x54 */ s8 stateFlags;
-    /* 0x55 */ s8 firstState;
-    /* 0x56 */ s8 nextIndex;
-    /* 0x57 */ char unk_57[0x1];
-    /* 0x58 */ nodePayload* payloads[5];
-    /* 0x6C */ uvOP* ops;
-    /* 0x70 */ uvState* uvState;
-    /* 0x74 */ f32 untilUpdate; /* see uvScroll offset */
-    /* 0x78 */ f32 inc;
-    /* 0x7C */ f32 currFrame;
-    /* 0x80 */ uvScroll* uvScrolls;
-    /* 0x84 */ char unk_84[0x4];
-} geoNode; // size = 0x88
-
-typedef struct {
-    /* 0x00 */ struct signalLL* next;
-    /* 0x04 */ struct GObj* gobj;
-    /* 0x08 */ s32 data;
-} signalLL;
-
-typedef struct {
-    /* 0x00 */ f32 nodeInc;
+    /* 0x00 */ f32 speed;
     /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ uvState** animList;
-    /* 0x0C */ uvState*** matAnims;
+    /* 0x08 */ AnimCmd** animList;
+    /* 0x0C */ AnimCmd*** matAnims;
     /* 0x10 */ s32* ids;
-} animationHeader;
+} AnimationHeader;
 
 typedef struct {
     /* 0x00 */ s32 id;
@@ -198,7 +34,7 @@ typedef struct {
 } idFuncStruct; // size = 0x10
 
 typedef struct {
-    /* 0x00 */ animationHeader* animations;
+    /* 0x00 */ AnimationHeader* animations;
     /* 0x04 */ GObjFunc func;
     /* 0x08 */ s8 kind;
     /* 0x09 */ char unk_09[0x3];
@@ -301,35 +137,35 @@ typedef struct {
     /* 0x040 */ Vec3f euler;
     /* 0x04C */ Vec3f collisionOffset;
     /* 0x058 */ f32 collisionRadius;
-    /* 0x05C */ animalAnimationSetup* animSetup; /* Created by retype action */
-    /* 0x060 */ GObjProcess* interactionProc; /* Created by retype action */
+    /* 0x05C */ animalAnimationSetup* animSetup;
+    /* 0x060 */ GObjProcess* interactionProc;
     /* 0x064 */ GObj* apple;
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ GObj* interactionTarget;
     /* 0x074 */ struct WorldBlock* someRoom;
     /* 0x078 */ char unk_78[0x8];
-    /* 0x080 */ uvState** animators; /* Created by retype action */
-    /* 0x084 */ uvState*** matAnims; /* Created by retype action */
+    /* 0x080 */ AnimCmd** animators;
+    /* 0x084 */ AnimCmd*** matAnims;
     /* 0x088 */ s32 behavior;
-    /* 0x08C */ u32 processFlags; /* Created by retype action */
+    /* 0x08C */ u32 processFlags;
     /* 0x090 */ s32 counter;
-    /* 0x094 */ GObj* pathProcess; /* Created by retype action */
+    /* 0x094 */ GObjProcess* pathProcess;
     /* 0x098 */ f32 hSpeed;
     /* 0x09C */ f32 jumpVel;
-    /* 0x0A0 */ f32 facingYaw; /* Created by retype action */
+    /* 0x0A0 */ f32 facingYaw;
     /* 0x0A4 */ s32 animalLoopTarget;
     /* 0x0A8 */ f32 lastAnimationFrame;
-    /* 0x0AC */ idFuncStruct* transitionGraph; /* Created by retype action */
+    /* 0x0AC */ idFuncStruct* transitionGraph;
     /* 0x0B0 */ misc miscVars[7];
     /* 0x0CC */ f32* forbiddenGround;
-    /* 0x0D0 */ GroundResult currGround; /* Created by retype action */
+    /* 0x0D0 */ GroundResult currGround;
     /* 0x0E4 */ u8 unk_E4;
     /* 0x0E5 */ char unk_E5[0x3];
     /* 0x0E8 */ pathSpline* path;
-    /* 0x0EC */ f32 pathParam; /* Created by retype action */
+    /* 0x0EC */ f32 pathParam;
     /* 0x0F0 */ PokemonInitData* initData;
-    /* 0x0F4 */ animationHeader* animHeader;
+    /* 0x0F4 */ AnimationHeader* animHeader;
     /* 0x0F8 */ eggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;

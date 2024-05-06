@@ -76,7 +76,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ UnkBeigeServal* unk_18;
-    /* 0x1C */ ObjectSpawn* unk_1C;
+    /* 0x1C */ ObjectSpawn* spawn;
     /* 0x20 */ UnkBeigeServal* unk20;
 } WorldBlockDescriptor; // size >= 0x24
 

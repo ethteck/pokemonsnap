@@ -1,7 +1,10 @@
 #include "common.h"
 #include "world/world.h"
 
+extern DObj* D_80382C04_523014;
+
 u8 func_803573A4_4F77B4(void);
+void func_80366864_506C74(GObj*, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E780_4FEB90.s")
 void func_8035E780_4FEB90(GObj*);
@@ -30,27 +33,103 @@ Animal* func_8035EA80_4FEE90(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035EC1C_4FF02C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/updateAnimalState.s")
+void updateAnimalState(GObj* obj, GObjFunc func) {
+    Animal* pokemon = GET_ANIMAL(obj);
+    GObjProcess* oldProc = pokemon->interactionProc;
+
+    pokemon->transitionGraph = NULL;
+    if (func != NULL) {
+        pokemon->interactionProc = omCreateProcess(obj, func, 0, 7);
+    } else {
+        pokemon->interactionProc = NULL;
+    }
+    omEndProcess(oldProc);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/weightedRandomStaightTransition.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035ED90_4FF1A0.s")
+void func_8035ED90_4FF1A0(GObj* obj, GObjFunc func) {
+    Animal* pokemon = GET_ANIMAL(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035EDC8_4FF1D8.s")
+    pokemon->processFlags &= ~0x8;
+    omCreateProcess(obj, func, 0, 6);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/runPathProcess.s")
+void func_8035EDC8_4FF1D8(GObj* obj) {
+    Animal* pokemon = GET_ANIMAL(obj);
+
+    pokemon->processFlags |= 0x8;
+    omEndProcess(NULL);
+}
+
+void runPathProcess(GObj* obj, GObjFunc func) {
+    Animal* pokemon = GET_ANIMAL(obj);
+    GObjProcess* oldProc = pokemon->pathProcess;
+
+    if (func != NULL) {
+        pokemon->pathProcess = omCreateProcess(obj, func, 0, 5);
+        pokemon->processFlags &= ~0x32;
+    } else {
+        pokemon->pathProcess = NULL;
+    }
+    if (oldProc != NULL) {
+        omEndProcess(oldProc);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035EE64_4FF274.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035EF2C_4FF33C.s")
+void func_8035EF2C_4FF33C(GObj* arg0, Texture*** arg1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/animalUVStuff.s")
+void animalUVStuff(GObj* obj, AnimationHeader* header, f32 startTime, s32 force) {
+    Animal* pokemon = GET_ANIMAL(obj);
 
-void setAnimalAnimation(GObj* obj, animationHeader* header) {
+    if (header != NULL) {
+        if (pokemon->animators == NULL) {
+            ohResumeProcessByFunction(obj, animUpdateModelTreeAnimation);
+        }
+
+        if (pokemon->animators != header->animList || force) {
+            func_80366864_506C74(obj, 0);
+            anim_func_8000F8E4(obj, header->animList, startTime, pokemon->initData->tree);
+            pokemon->animators = header->animList;
+        }
+
+        if (header->matAnims != NULL) {
+            if (pokemon->matAnims != header->matAnims || force) {
+                animSetModelTreeTextureAnimation(obj, header->matAnims, 0.0f);
+                pokemon->matAnims = header->matAnims;
+            }
+            animSetModelAndTextureAnimationSpeed(obj, header->speed);
+        } else {
+            if (pokemon->initData->textures != NULL) {
+                func_8035EF2C_4FF33C(obj, pokemon->initData->textures);
+            }
+            animSetModelAnimationSpeed(obj, header->speed);
+            pokemon->matAnims = NULL;
+        }
+
+        pokemon->animHeader = header;
+        animUpdateModelTreeAnimation(obj);
+    } else {
+        ohPauseProcessByFunction(obj, animUpdateModelTreeAnimation);
+        pokemon->animHeader = NULL;
+        pokemon->matAnims = NULL;
+        pokemon->animators = NULL;
+    }
+
+    pokemon->loopCount = 0;
+    pokemon->processFlags &= ~1;
+    pokemon->animalLoopTarget = 1;
+    pokemon->lastAnimationFrame = 0.0f;
+}
+
+void setAnimalAnimation(GObj* obj, AnimationHeader* header) {
     animalUVStuff(obj, header, 0, 0);
 }
 
-void forceAnimalAnimation(GObj* obj, animationHeader* header) {
+void forceAnimalAnimation(GObj* obj, AnimationHeader* header) {
     animalUVStuff(obj, header, 0, 1);
 }
 
@@ -74,8 +153,28 @@ f32 func_8035F21C_4FF62C(f32 arg0, f32 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F2A4_4FF6B4.s")
 f32 func_8035F2A4_4FF6B4(GObj* arg0, GObj* arg1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F390_4FF7A0.s")
-void func_8035F390_4FF7A0(GObj*);
+void func_8035F390_4FF7A0(GObj* obj) {
+    Animal* pokemon = GET_ANIMAL(obj);
+    DObj* model = obj->data.dobj;
+
+    if (D_80382C04_523014 != NULL) {
+        Vec3f sp34;
+        Vec3f sp28;
+        Vec3f sp1C;
+        
+        sp28.x = GET_TRANSFORM(model)->pos.v.x;
+        sp28.y = GET_TRANSFORM(model)->pos.v.y;
+        sp28.z = GET_TRANSFORM(model)->pos.v.z;
+
+        sp34.x = GET_TRANSFORM(D_80382C04_523014)->pos.v.x;
+        sp34.y = GET_TRANSFORM(D_80382C04_523014)->pos.v.y;
+        sp34.z = GET_TRANSFORM(D_80382C04_523014)->pos.v.z;
+
+        pokemon->playerDist = Vec3fDirection(&sp1C, &sp34, &sp28);
+    } else {
+        pokemon->playerDist = FLOAT_MAX;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F430_4FF840.s")
 
@@ -86,8 +185,20 @@ void func_8035F390_4FF7A0(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F784_4FFB94.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F900_4FFD10.s")
+void func_8035F900_4FFD10(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/runInteractionsAndWaitForFlags.s")
+void runInteractionsAndWaitForFlags(GObj* obj, u32 flags) {
+    Animal* pokemon = GET_ANIMAL(obj);
+
+    while (TRUE) {
+        func_8035F900_4FFD10(obj);
+        if (pokemon->processFlags & flags) {
+            break;
+        }
+        ohWait(1);
+    }
+    pokemon->transitionGraph = NULL;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FC54_500064.s")
 
@@ -197,7 +308,6 @@ s32 func_80360D18_501128(GObj* arg0, f32 arg1, f32 arg2, s32 arg3);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361B50_501F60.s")
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361B68_501F78.s")
 s32 func_80361B68_501F78(GObj* arg0, f32 arg1, s32 arg2) {
     f32 dx, dz;
     f32 sp4C;

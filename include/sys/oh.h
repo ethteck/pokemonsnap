@@ -10,6 +10,8 @@ GObj* ohApplyByLinkEx(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 getF
 GObj* ohFindByLinkAndId(s32 link, u32 id);
 void ohPauseObjectProcesses(GObj* obj);
 void ohResumeObjectProcesses(GObj* obj);
+void ohPauseProcessByFunction(GObj* obj, GObjFunc function);
+void ohResumeProcessByFunction(GObj* obj, GObjFunc function);
 void ohRemoveSprite(GObj*);
 void ohRemoveDObj(GObj*);
 void ohEndAllObjectProcesses(GObj*);

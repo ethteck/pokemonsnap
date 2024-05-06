@@ -1,20 +1,24 @@
 #include "common.h"
 #include "world/world.h"
 
-typedef struct UnkAzureCobra {
+typedef struct PokemonListEntry {
     /* 0x00 */ GObj* pokemonObj;
-    /* 0x04 */ struct UnkAzureCobra* next;
-} UnkAzureCobra; // size = 0x08
+    /* 0x04 */ struct PokemonListEntry* next;
+} PokemonListEntry; // size = 0x08
 
 extern s32 D_8038A460_52A870;
-extern s32 D_8038A470_52A880;
-extern s32 D_8038A474_52A884;
-extern s32 D_8038A478_52A888;
-extern s32 D_8038A47C_52A88C;
-extern s32 D_8038A484_52A894;
+// file split
+s32 sMinPokemonObjId = 0;
+s32 sMaxPokemonObjId = 0;
+s32 sPokemonLink = 0;
+s32 D_8038A47C_52A88C = 0;
+s32 D_8038A480_52A890 = 0; // unused
+s32 sPokemonCounter = 0;
 
-extern UnkAzureCobra D_803B0F68_551378[100];
-extern UnkAzureCobra* D_803B1288_551698[];
+// bss
+extern u8 padding_503C10[8];
+extern PokemonListEntry sPokemonListEntries[100];
+extern PokemonListEntry* sPokemonLists[MAX_BLOCKS];
 
 void func_803668DC_506CEC(void);
 void func_803638E8_503CF8(void);
@@ -42,12 +46,14 @@ f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1) {
     return pokemon->collisionRadius;
 }
 
-UnkAzureCobra* func_80363870_503C80(void) {
+// file split here ?
+
+PokemonListEntry* getPokemonListEntry(void) {
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(D_803B0F68_551378); i++) {
-        if (D_803B0F68_551378[i].pokemonObj == NULL) {
-            return &D_803B0F68_551378[i];
+    for (i = 0; i < ARRAY_COUNT(sPokemonListEntries); i++) {
+        if (sPokemonListEntries[i].pokemonObj == NULL) {
+            return &sPokemonListEntries[i];
         }
     }
     return NULL;
@@ -56,16 +62,16 @@ UnkAzureCobra* func_80363870_503C80(void) {
 void func_803638E8_503CF8(void) {
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(D_803B0F68_551378); i++) {
-        D_803B0F68_551378[i].pokemonObj = 0;
-        D_803B0F68_551378[i].next = 0;
+    for (i = 0; i < ARRAY_COUNT(sPokemonListEntries); i++) {
+        sPokemonListEntries[i].pokemonObj = 0;
+        sPokemonListEntries[i].next = 0;
     }
 }
 
-void func_80363928_503D38(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    D_8038A470_52A880 = arg0;
-    D_8038A474_52A884 = arg1;
-    D_8038A478_52A888 = arg2;
+void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3) {
+    sMinPokemonObjId = minObjId;
+    sMaxPokemonObjId = maxObjId;
+    sPokemonLink = link;
     D_8038A47C_52A88C = arg3;
     func_803638E8_503CF8();
 }
@@ -78,24 +84,24 @@ static void nullsub() {
 s32 func_8036396C_503D7C(void) {
     s32 i;
 
-    D_8038A484_52A894++;
-    if (D_8038A484_52A894 > D_8038A474_52A884 - D_8038A470_52A880) {
-        D_8038A484_52A894 = 0;
+    sPokemonCounter++;
+    if (sPokemonCounter > sMaxPokemonObjId - sMinPokemonObjId) {
+        sPokemonCounter = 0;
     }
 
-    for (i = D_8038A470_52A880 + D_8038A484_52A894; i < D_8038A474_52A884; i++) {
-        if (ohFindByLinkAndId(D_8038A478_52A888, i) == NULL) {
+    for (i = sMinPokemonObjId + sPokemonCounter; i < sMaxPokemonObjId; i++) {
+        if (ohFindByLinkAndId(sPokemonLink, i) == NULL) {
             return i;
         }
     }
 
-    for (i = D_8038A470_52A880; i < D_8038A470_52A880 + D_8038A484_52A894; i++) {
-        if (ohFindByLinkAndId(D_8038A478_52A888, i) == NULL) {
+    for (i = sMinPokemonObjId; i < sMinPokemonObjId + sPokemonCounter; i++) {
+        if (ohFindByLinkAndId(sPokemonLink, i) == NULL) {
             return i;
         }
     }
 
-    return D_8038A474_52A884;
+    return sMaxPokemonObjId;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_8036396C_503D7C.s")
@@ -109,19 +115,19 @@ void animalAdd(WorldBlock* block, WorldBlock* blockB, AnimalDef* def) {
 
     if (block == NULL ||
         block->descriptor == NULL ||
-        block->descriptor->unk_1C == NULL ||
+        block->descriptor->spawn == NULL ||
         block->index >= MAX_BLOCKS)
     {
         return;
     }
 
-    D_803B1288_551698[block->index] = NULL;
+    sPokemonLists[block->index] = NULL;
 
-    spawn = block->descriptor->unk_1C;
+    spawn = block->descriptor->spawn;
 
     while (spawn->id != 0xFFFFFFFF) {
         s32 objId = func_8036396C_503D7C();
-        if (!inRange_DEBUG(objId, D_8038A470_52A880, D_8038A474_52A884, "animalAdd()")) {
+        if (!inRange_DEBUG(objId, sMinPokemonObjId, sMaxPokemonObjId, "animalAdd()")) {
             return;
         }
 
@@ -139,10 +145,10 @@ void animalAdd(WorldBlock* block, WorldBlock* blockB, AnimalDef* def) {
         }
 
         if (pokemonObj != NULL) {
-            UnkAzureCobra* uac = func_80363870_503C80();
-            uac->pokemonObj = pokemonObj;
-            uac->next = D_803B1288_551698[block->index];
-            D_803B1288_551698[block->index] = uac;
+            PokemonListEntry* entry = getPokemonListEntry();
+            entry->pokemonObj = pokemonObj;
+            entry->next = sPokemonLists[block->index];
+            sPokemonLists[block->index] = entry;
         }
 
         spawn++;
@@ -164,7 +170,7 @@ GObj* animalAddOne(WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, An
     }
 
     objId = func_8036396C_503D7C();
-    if (!inRange_DEBUG(objId, D_8038A470_52A880, D_8038A474_52A884, "animalAddOne()")) {
+    if (!inRange_DEBUG(objId, sMinPokemonObjId, sMaxPokemonObjId, "animalAddOne()")) {
         return NULL;
     }
 
@@ -176,20 +182,20 @@ GObj* animalAddOne(WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, An
     }
 
     if (pokemonObj != NULL) {
-        UnkAzureCobra* uac = func_80363870_503C80();
-        uac->pokemonObj = pokemonObj;
-        uac->next = D_803B1288_551698[block->index];
-        D_803B1288_551698[block->index] = uac;
+        PokemonListEntry* entry = getPokemonListEntry();
+        entry->pokemonObj = pokemonObj;
+        entry->next = sPokemonLists[block->index];
+        sPokemonLists[block->index] = entry;
     }
 
     return pokemonObj;
 }
 
-f32 func_80363D8C_50419C(f32 arg0, f32 arg1) {
-    GroundResult sp1C;
+f32 func_80363D8C_50419C(f32 x, f32 z) {
+    GroundResult result;
 
-    if (getGroundAt(arg0, arg1, &sp1C)) {
-        return sp1C.height;
+    if (getGroundAt(x, z, &result)) {
+        return result.height;
     }
     return 0.0f;
 }

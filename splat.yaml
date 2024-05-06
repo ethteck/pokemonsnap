@@ -589,6 +589,8 @@ segments:
     - [0x5064F0, c]
     - [0x506DD0, c]
     - [0x506FB0, data]
+    - [0x52A880, .data, 503C10]
+    - [0x52A8A0, data]
     - [0x533C10, .rodata, 4FEB90]
     - [0x533E90, .rodata, 503C10]
     - [0x533ED0, rodata]
@@ -599,7 +601,9 @@ segments:
     - [0x53E1E0, rodata]
     - [0x53E1F0, rodata]
     - [0x54AE40, rodata]
-    - { start: auto, name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
+    - { name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
+    #- { name: 503C10, type: bss, vram: 0x803B0F60 }
+    #- { start: auto, name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
   - type: code
     name: magikarp3
     dir: pokemon/magikarp

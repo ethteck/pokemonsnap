@@ -198,16 +198,15 @@ void func_beach_802CBA48(GObj* obj) {
     f32 temp_f0;
     f32 temp_f20;
     Animal* animal = GET_ANIMAL(obj);
-    geoNode* node;
+    DObj* model;
     Vec3f sp34;
 
-    // TODO: verify cast
-    node = (geoNode*) obj->data.any;
+    model = obj->data.dobj;
     ohWait(0x3C);
     func_8001FCE8(&sp34, animal->path, 0.99999f);
     temp_f0 = atan2f(sp34.x, sp34.z);
     temp_f20 = temp_f0 - ((s32) (temp_f0 / 6.2831855f) * 6.2831855f);
-    while (func_80360FC8_5013D8(node, temp_f20, 0.13962634f) == 0) {
+    while (func_80360FC8_5013D8(model, temp_f20, 0.13962634f) == 0) {
         ohWait(1);
     }
     animal->pathProcess = 0;

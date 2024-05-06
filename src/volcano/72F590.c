@@ -5,9 +5,9 @@ void func_802DE3FC_72F5FC(GObj* obj);
 void func_802DE450_72F650(GObj* obj);
 void func_802DE4C0_72F6C0(GObj* obj);
 
-extern animationHeader D_802E31F4_7343F4;
-extern animationHeader D_802E3208_734408;
-extern animationHeader D_802E321C_73441C;
+extern AnimationHeader D_802E31F4_7343F4;
+extern AnimationHeader D_802E3208_734408;
+extern AnimationHeader D_802E321C_73441C;
 extern PokemonInitData koffingSmokeData;
 
 

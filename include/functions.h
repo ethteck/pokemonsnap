@@ -36,13 +36,15 @@ GObj* spawnPokemon(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlo
 void ren_func_800192DC(GObj* obj);
 
 OSThread* func_80000460(void);
+void func_8009A8F0(s32);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
-void func_8009FA68(OMCamera* arg0, UNK_PTR arg1);
+void func_8009D37C(u8);
+void func_8009FA68(OMCamera* arg0, UnkThing* arg1);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
-void func_8009FC38(void*);
+void func_8009FC38(UnkGoofyGlobule*);
 void renderModelTypeAFogged(GObj*);
 void renderModelTypeBFogged(GObj*);
 void renderModelTypeCFogged(GObj*);
@@ -55,6 +57,7 @@ void setFogDistance(u16, u16);
 void func_800A19D8(s32);
 void func_800A1A50(Gfx**);
 
+void func_800A1E6C(Vec3f*);
 void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
 s32 func_800A2094(s32, s32, OMCamera*);
 void func_800A5DF4(s32, s32);

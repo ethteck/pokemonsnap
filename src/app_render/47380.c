@@ -14,6 +14,16 @@ typedef struct PhotoData {
     u8 pad[0x3A0-1];
 } PhotoData; // Size: 0x3A0
 
+typedef struct Unk1C {
+    /* 0x00 */ u32 id;
+    /* 0x04 */ f32 scale;
+    /* 0x08 */ UnkEC64Arg3* unk_8;
+    /* 0x0C */ Texture*** unk_C;
+    /* 0x10 */ void (*unk_10)(GObj*);
+    /* 0x14 */ AnimCmd** unk_14;
+    /* 0x18 */ AnimCmd*** unk_18;
+} Unk1C; // size = 0x1C
+
 typedef struct UnkFunc8009C25C_Unk20 {
     /* 0x00 */ u8 pad00[0x18];
 } UnkFunc8009C25C_Unk20; // size == 0x18
@@ -44,22 +54,20 @@ typedef struct UnkFunc8009C25C {
     /* 0x3A4 */ GObj* unk_3A4[UNK_020_ARRAY_COUNT]; // 12 may not be the correct array length, it's just how many times it's accessed.
 } UnkFunc8009C25C;
 
-extern UNK_PTR* D_800E9168;
-extern UNK_PTR* D_800EAF00;
-extern UNK_PTR* D_800EB460;
-extern UNK_PTR* D_800EDAE0;
+extern s32 D_800AC0F0; // level id?
+extern Unk1C D_800ADA64[];
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
+extern char* D_800AE284; // Pokedex entries
+extern s8 D_800AE4E4[];
+
 extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern s32 D_800BDF18; // real ?
+extern UnkThing* D_800BDF18; // real ?
 extern u8 D_800BDF1C;
 extern u8 D_800BDF1D;
 extern u8 D_800BDF1E;
 extern s32 D_800BDF20[3];
 extern s32 D_800BDF2C;
-extern s32 D_800AC0F0;
-extern char* D_800AE284; // Pokedex entries
-extern s8 D_800AE4E4[];
 
 // Manually define this RODATA here until data is migrated for D_800AE284
 // These are the names of all pokemon in order, used for returning their names when needed.
@@ -224,6 +232,11 @@ const char D_800AFE78[] = "ＭＥＷ";
 //     -1, -1, -1, -1, 40, -1, -1, -1, 41, -1, 42, -1, -1, 43, -1, 44, 45, -1, 46, 47, 48, 49, -1, -1, 50, 51,
 //     52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57, 58, 59, 60, -1, 61, -1, 62, 0,  0,  0,  0,  0,
 // };
+
+extern UNK_PTR* D_800E9168;
+extern UNK_PTR* D_800EAF00;
+extern UNK_PTR* D_800EB460;
+extern UNK_PTR* D_800EDAE0;
 
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
@@ -587,10 +600,57 @@ void func_8009CE00(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009CEAC.s")
+GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C* arg3) {
+    DObj* dobj;
+    GObj* gobj;
+    f32 temp_f0;
 
-void func_8009D0B4(WorldBlock* arg0, WorldBlock* arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D0B4.s")
+    gobj = omAddGObj(0x80, NULL, D_800BDF1E, 0x80000000);
+    omLinkGObjDL(gobj, arg3->unk_10, D_800BDF1C, 0x80000000, -1);
+    anim_func_80010230(gobj, arg3->unk_8, arg3->unk_C, NULL, 0x1C, 0, 0);
+    if (arg3->unk_14 != NULL) {
+        animSetModelTreeAnimation(gobj, arg3->unk_14, world_func_800E21A8(D_800BDF18->unk_4));
+        animSetModelAnimationSpeed(gobj, 0.0f);
+        if (arg3->unk_18 != NULL) {
+            animSetModelTreeTextureAnimation(gobj, arg3->unk_18, world_func_800E21A8(D_800BDF18->unk_4));
+            animSetTextureAnimationSpeed(gobj, 0.0f);
+        }
+        animUpdateModelTreeAnimation(gobj);
+    }
+    dobj = gobj->data.dobj;
+    dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->unk_04.x - arg1->descriptor->unk_04.x)) * 100.0f;
+    dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->unk_04.y - arg1->descriptor->unk_04.y)) * 100.0f;
+    dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->unk_04.z - arg1->descriptor->unk_04.z)) * 100.0f;
+    dobj->rotation.f[1] = dobj->rotation.f[3] = 0.0f;
+    dobj->rotation.f[2] = arg2->euler.y;
+    temp_f0 = arg3->scale * 0.1f;
+    dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = temp_f0;
+    if (arg3->id == 0x3FA && (D_800BDF18->unk_1 & 0xE0) != 0x80) { // todo bitfield
+        dobj->firstChild->flags |= 1;
+    }
+    return gobj;
+}
+
+void func_8009D0B4(WorldBlock* b1, WorldBlock* b2) {
+    ObjectSpawn* spawn;
+    Unk1C *var_a3;
+
+    if (b1 != NULL) {
+        if (b1->descriptor != NULL) {
+            if (b1->descriptor->spawn != NULL) {
+                for (spawn = b1->descriptor->spawn; spawn->id != -1; spawn++) {
+                    for (var_a3 = D_800ADA64; var_a3->id != 0; var_a3++) {
+                        // TODO: stupid id ^ 0 required to match
+                        if ((spawn->id ^ 0) == var_a3->id) {
+                            func_8009CEAC(b1, b2, spawn, var_a3);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 void func_8009D184(WorldSetup* arg0) {
     arg0->unk_0C = NULL;
@@ -608,12 +668,41 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D37C.s")
 
+void func_8009D65C(UnkThing*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D65C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D8A8.s")
+void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
+    Vec3f sp24;
+    f32 temp_f2;
+
+    cam->perspMtx.persp.fovy = 30.0f;
+    cam->perspMtx.persp.near = 10.0f;
+    cam->perspMtx.persp.far = 25600.0f;
+
+    cam->viewMtx.lookAt.eye.x = arg1->unk_8.x;
+    cam->viewMtx.lookAt.eye.y = arg1->unk_8.y;
+    cam->viewMtx.lookAt.eye.z = arg1->unk_8.z;
+
+    cam->viewMtx.lookAt.at.x = arg1->unk_14.x;
+    cam->viewMtx.lookAt.at.y = arg1->unk_14.y;
+    cam->viewMtx.lookAt.at.z = arg1->unk_14.z;
+
+    cam->viewMtx.lookAt.up.y = 1.0f;
+    cam->viewMtx.lookAt.up.x = cam->viewMtx.lookAt.up.z = 0.0f;
+
+    sp24.x = cam->viewMtx.lookAt.eye.x - cam->viewMtx.lookAt.at.x;
+    sp24.z = cam->viewMtx.lookAt.eye.z - cam->viewMtx.lookAt.at.z;
+    temp_f2 = 1.0f / sqrtf(SQ(sp24.x) + SQ(sp24.z));
+    sp24.y = 1.0f;
+    sp24.x *= temp_f2;
+    sp24.z *= temp_f2;
+    Vec3fNormalize(&sp24);
+    func_800A1E6C(&sp24);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
 
+void func_8009DEF0(UnkThing*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009DEF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E050.s")
@@ -630,20 +719,49 @@ void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists,
     animUpdateModelTreeAnimation(gobj);
 }
 
+void func_8009E1CC(UnkThing*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E1CC.s")
 
 void func_8009E3D0(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E3D0.s")
 
-void func_8009FA00(UNK_TYPE arg0, UNK_TYPE arg1) {
+void func_8009FA00(OMCamera* arg0, UnkThing* arg1) {
     GObj* gobj;
 
     gobj = omAddGObj(0x80, NULL, D_800BDF1E, 0x80000000);
-    gobj->userData = (void*) (arg1 + 0x1A0);
+    gobj->userData = &arg1->unk_1A0;
     omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009FA68.s")
+void func_8009FA68(OMCamera* arg0, UnkThing* arg1) {
+    GObj* temp_s1;
+    GObj* var_s0;
+    s32 temp_v0;
+
+    temp_v0 = arg1->unk_0;
+    if (temp_v0 >= 0) {
+        if (temp_v0 == 4) {
+            arg0->flags |= 2;
+            arg0->bgColor = 0x05080401;
+        } else {
+            arg0->flags &= ~2;
+        }
+        var_s0 = omGObjListHead[D_800BDF1E];
+        if (var_s0 != NULL) {
+            do {
+                temp_s1 = var_s0->next;
+                omDeleteGObj(var_s0);
+                var_s0 = temp_s1;
+            } while (temp_s1 != NULL);
+        }
+        D_800BDF18 = arg1;
+        func_8009D65C(arg1);
+        func_8009DEF0(arg1);
+        func_8009E1CC(arg1);
+        func_8009FA00(arg0, arg1);
+        func_8009D8A8(arg0, arg1);
+    }
+}
 
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2) {
     s32* temp_v0;
@@ -676,4 +794,13 @@ void func_8009FC2C(s32 arg0) {
     D_800AC0F0 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009FC38.s")
+void func_8009FC38(UnkGoofyGlobule* arg0) {
+    if (arg0->levelID != D_800AC0F0) {
+        if (D_800AC0F0 >= 0) {
+            destroyWorld();
+        }
+        func_8009A8F0(arg0->levelID);
+        func_8009D37C(arg0->levelID);
+        D_800AC0F0 = arg0->levelID;
+    }
+}

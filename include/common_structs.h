@@ -223,7 +223,23 @@ typedef struct UnkStruct80366BA4 {
     /* 0x08 */ s32 *unk_08;
     /* 0x0C */ Vec3f unk_0C;
     /* 0x18 */ u8 pad18[0x4];
-    /* 0x1C */ f32 unk_1C; 
+    /* 0x1C */ f32 unk_1C;
 } UnkStruct80366BA4; // size >= 0x20
+
+typedef struct UnkGoofyGlobule {
+    s32 levelID : 7;
+} UnkGoofyGlobule;
+
+typedef struct UnkThing {
+    /* 0x000 */ s32 unk_0 : 7;
+    /* 0x000 */ s32 unk_0_7 : 1;
+    /* 0x001 */ u8 unk_1;
+    /* 0x002 */ char unk_2[0x2];
+    /* 0x004 */ f32 unk_4;
+    /* 0x008 */ Vec3f unk_8;
+    /* 0x014 */ Vec3f unk_14;
+    /* 0x020 */ char unk_20[0x1A0 - 0x20];
+    /* 0x1A0 */ UNK_TYPE unk_1A0;
+} UnkThing;
 
 #endif

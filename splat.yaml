@@ -338,6 +338,7 @@ segments:
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
     - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996A0 }
   - name: app_render
+    dir: app_render
     type: code
     start: 0x46270
     vram: 0x8009A8C0
@@ -379,6 +380,7 @@ segments:
     - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
     - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
+    dir: more_funcs
     type: code
     start: 0x5BF20
     vram: 0x800BF080
@@ -566,6 +568,7 @@ segments:
     subsegments:
     - [0x4EC000, bin] # , data]
   - name: app_level
+    dir: app_level
     type: code
     start: 0x4F0610
     vram: 0x80350200
@@ -932,6 +935,7 @@ segments:
     subsegments:
     - [0x83A1E0, bin] # , data]
   - name: unk_end_level
+    dir: unk_end_level
     type: code
     start: 0x83D730
     vram: 0x80369F80
@@ -1094,6 +1098,7 @@ segments:
     - [0xA08D10, .data, A084B0]
     - { start: auto, name: A084B0, type: .bss, vram: 0x801DD240 }
   - name: unk_level_end_9
+    dir: unk_level_end_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0

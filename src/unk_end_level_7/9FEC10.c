@@ -11,12 +11,14 @@ void func_801E1170_9FEE30(s8, int);
 
 void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
 
+void func_801DE2E0_9FBFA0(s32 arg0);
+
 extern s32 D_80230ADC_A4E79C;
 extern s32 D_80230AE0_A4E7A0;
 extern PhotoData* D_802309B0_A4E670[];
 extern UNK_PTR D_802309C0_A4E680[0x45];
-extern s32 D_802308C0_A4E580[];
-extern s32 D_80230AD4_A4E794;
+extern UNK_PTR D_802308C0_A4E580[];
+extern UNK_PTR D_80230AD4_A4E794;
 
 extern s8 D_80230AD8_A4E798;
 
@@ -49,7 +51,36 @@ s32 func_801E1008_9FECC8(void) {
     return D_80230AD4_A4E794;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FEC10/func_801E1024_9FECE4.s")
+void func_801E1024_9FECE4(s32 arg0, s32 arg1) {
+    if (arg0 < 0) {
+        return;
+    }
+    if (arg1 < 0) {
+        D_80230AD8_A4E798 = -1;
+        D_80230AD9_A4E799 = -1;
+        D_80230AD4_A4E794 = 0;
+        return;
+    }
+    D_80230AD8_A4E798 = (s8) arg0;
+    D_80230AD9_A4E799 = (s8) arg1;
+    switch (arg0) {
+        case 0:
+            D_80230AD4_A4E794 = D_802309B0_A4E670[arg1];
+            break;
+        case 2:
+            D_80230AD4_A4E794 = D_802309C0_A4E680[arg1];
+            break;
+        case 1:
+            D_80230AD4_A4E794 = D_802308C0_A4E580[arg1];
+            break;
+        default:
+            D_80230AD4_A4E794 = NULL;
+            // fallthrough
+    }
+    if (D_80230AD4_A4E794 != 0) {
+        func_801DE2E0_9FBFA0(D_80230AD4_A4E794);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FEC10/func_801E1170_9FEE30.s")
 
@@ -76,13 +107,13 @@ void func_801E1384_9FF044(void) {
         D_802309B0_A4E670[sp2C] = (PhotoData*) func_800BF574_5C414(sp2C);
     }
 
-    for (sp28 = 0, sp2C = 1; sp2C < 0x98; sp2C++) {
+    for (sp28 = 0, sp2C = 1; sp2C < 152; sp2C++) {
         if ((D_802309C0_A4E680[sp28] = func_800BF710_5C5B0(sp2C))) {
             sp28 += 1;
         }
     }
 
-    for (sp2C = 0x3EC; sp2C < 0x40C; sp2C++) {
+    for (sp2C = 1004; sp2C < 1036; sp2C++) {
         if ((D_802309C0_A4E680[sp28] = func_800BF710_5C5B0(sp2C))) {
             sp28 += 1;
         }
@@ -90,7 +121,7 @@ void func_801E1384_9FF044(void) {
 
     D_80230AE0_A4E7A0 = sp28;
 
-    for (sp2C = 0, sp28 = 0; sp2C < 0x3C; sp2C++) {
+    for (sp2C = 0, sp28 = 0; sp2C < 60; sp2C++) {
         if ((D_802308C0_A4E580[sp28] = func_800BFA44_5C8E4(sp2C))) {
             sp28 += 1;
         }

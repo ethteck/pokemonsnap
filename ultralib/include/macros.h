@@ -46,10 +46,13 @@
 #define TAU 6.2831855f
 #define PI_2 1.5707964f
 
+#define SIGN(x) (((x) < 0) ? -1 : 1)
+
 #define SET_SPRITE_POS(s, _x, _y) (s).x = _x; (s).y = _y;
 
 // TODO create header for animals
 #define GET_ANIMAL(obj) ((Animal*)((obj)->userData))
+#define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
 
 
 #endif

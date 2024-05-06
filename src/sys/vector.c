@@ -41,12 +41,12 @@ Vec3f* Vec3fDiff(Vec3f* difference, Vec3f* minuend, Vec3f* subtrahend) {
     return difference;
 }
 
-void Vec3fDirection(Vec3f* dir, Vec3f* to, Vec3f* from) {
+f32 Vec3fDirection(Vec3f* dir, Vec3f* to, Vec3f* from) {
     dir->x = to->x - from->x;
     dir->y = to->y - from->y;
     dir->z = to->z - from->z;
 
-    Vec3fNormalize(dir);
+    return Vec3fNormalize(dir);
 }
 
 Vec3f* Vec3fScale(Vec3f* v, f32 scale) {

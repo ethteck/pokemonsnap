@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define MAX_BLOCKS 13
+
 struct WorldBlock;
 
 typedef struct UnkIndigoDingo {
@@ -74,7 +76,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ UnkBeigeServal* unk_18;
-    /* 0x1C */ void* unk_1C;
+    /* 0x1C */ ObjectSpawn* spawn;
     /* 0x20 */ UnkBeigeServal* unk20;
 } WorldBlockDescriptor; // size >= 0x24
 
@@ -110,23 +112,23 @@ typedef struct WorldSetup {
     /* 0x1D */ u8 backgroundB;
 } WorldSetup; // size >= 0x1E
 
-typedef struct UnkFuchsiaKomodo {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
-    /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ u32 unk_10;
-} UnkFuchsiaKomodo; // size = 0x14
+typedef struct HeightMapPatch {
+    /* 0x00 */ f32 planeA;
+    /* 0x04 */ f32 planeB;
+    /* 0x08 */ f32 planeC;
+    /* 0x0C */ f32 planeD;
+    /* 0x10 */ u32 surfaceType;
+} HeightMapPatch; // size = 0x14
 
-typedef struct UnkCoralFossa {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
-    /* 0x0C */ struct UnkCoralFossa* unk_0C;
-    /* 0x10 */ struct UnkCoralFossa* unk_10;
-    /* 0x14 */ UnkFuchsiaKomodo* unk_14;
-    /* 0x18 */ UnkFuchsiaKomodo* unk_18;
-} UnkCoralFossa; // size = 0x1C
+typedef struct HeightMapTreeNode {
+    /* 0x00 */ f32 lineA;
+    /* 0x04 */ f32 lineB;
+    /* 0x08 */ f32 lineC;
+    /* 0x0C */ struct HeightMapTreeNode* leftChild;
+    /* 0x10 */ struct HeightMapTreeNode* rightChild;
+    /* 0x14 */ HeightMapPatch* leftPatch;
+    /* 0x18 */ HeightMapPatch* rightPatch;
+} HeightMapTreeNode; // size = 0x1C
 
 typedef struct UnkGoldViper {
     /* 0x00 */ f32 unk_00;
@@ -142,19 +144,10 @@ typedef struct UnkGoldViper {
     /* 0x28 */ f32 unk_28;
 } UnkGoldViper; // size >= 0x28
 
-typedef struct UnkMagentaCrocodile {
-    /* 0x00 */ UnkFuchsiaKomodo* unk_00;
-    /* 0x04 */ UnkCoralFossa* unk_04;
-} UnkMagentaCrocodile; // size >= 0x08
-
-// probably same as UnkFuchsiaKomodo
-typedef struct UnkBurgundyOcelot {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ f32 unk_08;
-    /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ s32 unk_10;
-} UnkBurgundyOcelot; // size >= 0x14
+typedef struct HeightMap {
+    /* 0x00 */ HeightMapPatch* patches;
+    /* 0x04 */ HeightMapTreeNode* tree;
+} HeightMap; // size >= 0x08
 
 typedef void (*BlockFunc)(WorldBlock*);
 typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
@@ -162,11 +155,11 @@ typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
 WorldBlock* func_800E26CC_5FE7C(s32 arg0);
 WorldBlock* func_800E2400_5FBB0(void);
-void func_800E4634_61DE4(UnkCoralFossa* arg0, UnkFuchsiaKomodo* arg1);
-UnkFuchsiaKomodo* func_800E4670_61E20(UnkCoralFossa*, f32, f32);
-f32 func_800E4734_61EE4(UnkFuchsiaKomodo*, f32, f32);
-Vec3f* func_800E47C4_61F74(UnkFuchsiaKomodo* arg0);
-s32 func_800E4820_61FD0(UnkFuchsiaKomodo*);
+void createHeightMapTree(HeightMapTreeNode* arg0, HeightMapPatch* arg1);
+HeightMapPatch* findHeightMapPatch(HeightMapTreeNode*, f32, f32);
+f32 getPatchHeightAt(HeightMapPatch*, f32, f32);
+Vec3f* getPatchNormal(HeightMapPatch* arg0);
+s32 getPatchSurfaceType(HeightMapPatch*);
 
 // Public functions
 void func_800E1A78_5F228(f32 arg0);
@@ -185,11 +178,11 @@ void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
 void func_800E3D04_614B4(UnkGoldViper* arg0);
 void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
-s32 bool_DEBUG(s32, const char*);
-s32 world_func_800E4040(UnkMagentaCrocodile* arg0);
-s32 world_func_800E40A4(UnkMagentaCrocodile* arg0);
-s32 world_func_800E41D8(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
-s32 func_800E435C_61B0C(f32 arg0, f32 arg1, UnkBurgundyOcelot* arg2);
+s32 notNull_DEBUG(void*, const char*);
+s32 setHeightMap(HeightMap* arg0);
+s32 world_func_800E40A4(HeightMap* arg0);
+s32 getGroundAt(f32 arg0, f32 arg1, GroundResult* arg2);
+s32 func_800E435C_61B0C(f32 arg0, f32 arg1, GroundResult* arg2);
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
 void world_func_800E6778(UnkChestnutCougar* arg0);
 s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);

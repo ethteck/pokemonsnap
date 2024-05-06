@@ -7,7 +7,7 @@ f32 Vec3fNormalize(Vec3f* v);
 Vec3f* Vec3fAdd(Vec3f* dst, Vec3f* addend);
 Vec3f* Vec3fSub(Vec3f* dst, Vec3f* subtrahend);
 Vec3f* Vec3fDiff(Vec3f* difference, Vec3f* minuend, Vec3f* subtrahend);
-void Vec3fDirection(Vec3f* dir, Vec3f* to, Vec3f* from);
+f32 Vec3fDirection(Vec3f* dir, Vec3f* to, Vec3f* from);
 Vec3f* Vec3fScale(Vec3f* v, f32 scale);
 Vec3f* Vec3fAddScaled(Vec3f* dst, Vec3f* addend, f32 scale);
 f32 Vec3fAngleDiff(Vec3f* v1, Vec3f* v2);

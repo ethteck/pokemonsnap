@@ -560,6 +560,8 @@ MObj* omDObjAddMObj(DObj* dobj, Texture* arg1);
 void omDObjResetAnimation(DObj* dobj);
 AObj* omDObjAddAObj(DObj* dobj, u8 paramID);
 void omMObjResetAObjList(MObj* mobj);
+OMMtx* omDObjAddMtx(DObj* dobj, u8 kind, u8 arg2, s32 index);
+void omMoveGObjDL(GObj* arg0, u8 dlLink, u32 dlPriority);
 
 extern GObj* omCurrentObject;
 extern GObj* omCurrentCamera;

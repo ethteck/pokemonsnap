@@ -14,10 +14,10 @@ void func_beach_802CAC08(GObj* obj) {
 }
 
 void func_beach_802CAC48(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CDAEC);
+    spawnPokemonOnGround(gObjID, id, roomA, roomB, spawn, &D_beach_802CDAEC);
 }
 
-// TODO: potential file split. func_80362EE0_5032F0 tends to be used at the end of files
+// TODO: potential file split. spawnPokemonOnGround tends to be used at the end of files
 
 void func_beach_802CAC80(GObj* obj) {
     UNUSED s32 pad[3];

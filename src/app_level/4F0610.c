@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern u8 D_80382D20_523130;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350200_4F0610.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350224_4F0634.s")
@@ -185,7 +187,9 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357384_4F7794.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803573A4_4F77B4.s")
+u8 func_803573A4_4F77B4(void) {
+    return D_80382D20_523130;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803573B0_4F77C0.s")
 

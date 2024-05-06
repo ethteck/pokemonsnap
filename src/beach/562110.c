@@ -61,5 +61,5 @@ void func_beach_802CA23C(GObj* obj) {
 }
 
 void func_beach_802CA2BC(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_beach_802CD8E4);
+    spawnPokemon(gObjID, id, roomA, roomB, spawn, &D_beach_802CD8E4);
 }

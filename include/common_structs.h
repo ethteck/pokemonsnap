@@ -192,10 +192,10 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ s32 id;
-    /* 0x04 */ void* state;
+    /* 0x04 */ GObjFunc state;
     /* 0x08 */ f32 radius;
-    /* 0x0C */ void* aux;
-} idFuncStruct;
+    /* 0x0C */ GObjFunc aux;
+} idFuncStruct; // size = 0x10
 
 typedef struct {
     /* 0x00 */ animationHeader* animations;
@@ -303,10 +303,10 @@ typedef struct {
     /* 0x058 */ f32 collisionRadius;
     /* 0x05C */ animalAnimationSetup* animSetup; /* Created by retype action */
     /* 0x060 */ GObjProcess* interactionProc; /* Created by retype action */
-    /* 0x064 */ struct GObj* apple;
+    /* 0x064 */ GObj* apple;
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
-    /* 0x070 */ struct GObj* interactionTarget;
+    /* 0x070 */ GObj* interactionTarget;
     /* 0x074 */ struct WorldBlock* someRoom;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ uvState** animators; /* Created by retype action */
@@ -314,7 +314,7 @@ typedef struct {
     /* 0x088 */ s32 behavior;
     /* 0x08C */ u32 processFlags; /* Created by retype action */
     /* 0x090 */ s32 counter;
-    /* 0x094 */ struct GObj* pathProcess; /* Created by retype action */
+    /* 0x094 */ GObj* pathProcess; /* Created by retype action */
     /* 0x098 */ f32 hSpeed;
     /* 0x09C */ f32 jumpVel;
     /* 0x0A0 */ f32 facingYaw; /* Created by retype action */
@@ -355,7 +355,6 @@ typedef union {
 } gobjData;
 
 typedef GObj* (*animalInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
-typedef void (*gfxFunc)(GObj*);
 
 typedef struct {
     s32 value;

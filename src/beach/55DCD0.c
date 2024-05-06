@@ -564,8 +564,8 @@ void func_beach_802C7270(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* room
         if (FALSE) {
         }
 
-        spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_beach_802CC968);
+        spawnPokemon(gObjID, id, roomA, roomB, spawn, &D_beach_802CC968);
     } else {
-        func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CC968);
+        spawnPokemonOnGround(gObjID, id, roomA, roomB, spawn, &D_beach_802CC968);
     }
 }

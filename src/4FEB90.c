@@ -220,7 +220,6 @@ s32 func_80361B68_501F78(GObj* arg0, f32 arg1, s32 arg2) {
     sp3C = atan2f(dx, dz);
     if (sp3C < 0.0f) {
         sp3C += TAU;
-        //goto label; label: ;
     } else if (sp3C > TAU){
         sp3C -= (s32)(sp3C / TAU) * TAU;
     }
@@ -289,10 +288,10 @@ void func_80362C50_503060(GObj* arg0);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/func_80362E10_503220.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/4FEB90/spawnAnimalUsingDeltaHeight.s")
-//void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-
-//}
+void spawnAnimalUsingDeltaHeight(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    GObj* pokemonObj = func_80362EE0_5032F0(objID, id, block, blockB, spawn, initData);
+    GET_TRANSFORM(pokemonObj->data.dobj)->pos.v.y = spawn->translation.y * 100.0f + (block->descriptor->unk_04.y - blockB->descriptor->unk_04.y) * 100.0f;
+}
 
 GObj* func_80362EE0_5032F0(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     f32 blockBX, blockBY, blockBZ;

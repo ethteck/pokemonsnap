@@ -230,16 +230,32 @@ typedef struct UnkGoofyGlobule {
     s32 levelID : 7;
 } UnkGoofyGlobule;
 
+typedef struct UnkThingSub {
+    /* 0x00 */ s32 pokemonID : 13;
+    /* 0x00 */ s32 unk_20_7 : 1;
+    /* 0x04 */ char unk_4[0x14];
+} UnkThingSub; // size = 0x18
+
+typedef struct UnkFunc8009C25C_Unk140 {
+    /* 0x00 */ u8 unk_00;
+    /* 0x01 */ u8 unk_01;
+    /* 0x04 */ Vec3f unk_04;
+} UnkFunc8009C25C_Unk140; // size == 0x10
+
 typedef struct UnkThing {
-    /* 0x000 */ s32 unk_0 : 7;
-    /* 0x000 */ s32 unk_0_7 : 1;
-    /* 0x001 */ u8 unk_1;
-    /* 0x002 */ char unk_2[0x2];
-    /* 0x004 */ f32 unk_4;
-    /* 0x008 */ Vec3f unk_8;
+    /* 0x000 */ s32 unk_00_25 : 7;
+                s32 unk_00_24 : 1;
+                u32 unk_00_16 : 8;
+                s32 unk_00_8 : 8;
+                s32 unk_00_0 : 8;
+    /* 0x004 */ f32 unk_04;
+    /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
-    /* 0x020 */ char unk_20[0x1A0 - 0x20];
+    /* 0x020 */ UnkThingSub unk_20[12];
+    /* 0x140 */ UnkFunc8009C25C_Unk140 unk_140[6];
     /* 0x1A0 */ UNK_TYPE unk_1A0;
+    /* 0x1A4 */ char unk_1A4[0x3A4 - 0x1A4];
+    /* 0x3A4 */ GObj* unk_3A4[12];
 } UnkThing;
 
 #endif

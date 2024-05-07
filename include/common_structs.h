@@ -206,7 +206,8 @@ typedef struct {
 
 typedef struct UnkPinkBarracuda {
     s32 unk4_25 : 7;
-} UnkPinkBarracuda;
+    s32 unk_3a4[(0x3A0/4) -1];
+} UnkPinkBarracuda; // Size: 0x3A0
 
 typedef struct UnkStruct800BEDF8 {
     /* 0x00 */ char unk_00[0x14];

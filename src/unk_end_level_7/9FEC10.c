@@ -1,13 +1,8 @@
 #include "common.h"
 #include "photo_check/photo_check.h"
 
-// TODO: combine with UnkPinkBarracuda and PhotoData
-typedef struct PhotoData {
-    s32 unk_000[0x3A0 / 4];
-} PhotoData; // Size: 0x3A0
-
 void func_801DDC50_9FB910(s32);
-void func_801DE2E0_9FBFA0(UNK_PTR arg0);
+void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0);
 void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
 
 typedef struct Fasdasd {
@@ -15,10 +10,10 @@ typedef struct Fasdasd {
     s8 unk_01;
 } Fasdasd;
 
-UNK_PTR D_802308C0_A4E580[60];
-PhotoData* D_802309B0_A4E670[4];
-UNK_PTR D_802309C0_A4E680[69];
-UNK_PTR D_80230AD4_A4E794;
+UnkPinkBarracuda* D_802308C0_A4E580[60];
+UnkPinkBarracuda* D_802309B0_A4E670[4];
+UnkPinkBarracuda* D_802309C0_A4E680[69];
+UnkPinkBarracuda* D_80230AD4_A4E794;
 Fasdasd D_80230AD8_A4E798;
 s32 D_80230ADC_A4E79C;
 s32 D_80230AE0_A4E7A0;
@@ -31,22 +26,22 @@ s32 func_801E0F6C_9FEC2C(void) {
     return D_80230AE0_A4E7A0;
 }
 
-PhotoData* func_801E0F88_9FEC48(s32 arg0) {
+UnkPinkBarracuda* func_801E0F88_9FEC48(s32 arg0) {
     return D_802309B0_A4E670[arg0];
 }
 
-UNK_PTR func_801E0FAC_9FEC6C(s32 arg0) {
+UnkPinkBarracuda* func_801E0FAC_9FEC6C(s32 arg0) {
     if (arg0 >= 0x45) {
         return NULL;
     }
     return D_802309C0_A4E680[arg0];
 }
 
-UNK_PTR func_801E0FE4_9FECA4(s32 arg0) {
+UnkPinkBarracuda* func_801E0FE4_9FECA4(s32 arg0) {
     return D_802308C0_A4E580[arg0];
 }
 
-UNK_PTR func_801E1008_9FECC8(void) {
+UnkPinkBarracuda* func_801E1008_9FECC8(void) {
     return D_80230AD4_A4E794;
 }
 
@@ -64,7 +59,7 @@ void func_801E1024_9FECE4(s32 arg0, s32 arg1) {
     D_80230AD8_A4E798.unk_01 = (s8) arg1;
     switch (arg0) {
         case 0:
-            D_80230AD4_A4E794 = (UNK_PTR) D_802309B0_A4E670[arg1];
+            D_80230AD4_A4E794 = D_802309B0_A4E670[arg1];
             break;
         case 2:
             D_80230AD4_A4E794 = D_802309C0_A4E680[arg1];
@@ -82,7 +77,7 @@ void func_801E1024_9FECE4(s32 arg0, s32 arg1) {
 }
 
 s32 func_801E1170_9FEE30(s32 arg0, s32 arg1) {
-    UNK_PTR sp1C;
+    UnkPinkBarracuda* sp1C;
 
     sp1C = NULL;
     if ((arg0 < 0) || (arg0 >= 4)) {
@@ -95,8 +90,8 @@ s32 func_801E1170_9FEE30(s32 arg0, s32 arg1) {
         }
         if (D_802309B0_A4E670[arg0]) {
             sp1C = D_80230AD4_A4E794;
-            D_80230AD4_A4E794 = (UNK_PTR) D_802309B0_A4E670[arg0];
-            D_802309B0_A4E670[arg0] = (UNK_PTR) sp1C;
+            D_80230AD4_A4E794 = D_802309B0_A4E670[arg0];
+            D_802309B0_A4E670[arg0] = sp1C;
             return 1;
         } else {
 
@@ -109,7 +104,7 @@ s32 func_801E1170_9FEE30(s32 arg0, s32 arg1) {
         if (arg1 != 0) {
             auPlaySound(0x5EU);
         }
-        D_80230AD4_A4E794 = (UNK_PTR) D_802309B0_A4E670[arg0];
+        D_80230AD4_A4E794 = D_802309B0_A4E670[arg0];
         D_802309B0_A4E670[arg0] = 0;
         D_80230AD8_A4E798.unk_01 = arg0;
         D_80230AD8_A4E798.unk_00 = 0;
@@ -138,7 +133,7 @@ void func_801E1384_9FF044(void) {
     s32 count;
 
     for (i = 0; i < 4; i++) {
-        D_802309B0_A4E670[i] = (PhotoData*) func_800BF574_5C414(i);
+        D_802309B0_A4E670[i] = func_800BF574_5C414(i);
     }
 
     for (count = 0, i = 1; i <= 151; i++) {
@@ -170,7 +165,7 @@ void func_801E1384_9FF044(void) {
 s32 func_801E1504_9FF1C4(s32 arg0) {
     s32 spE9C;
     s32 spE98;
-    PhotoData sp18[4];
+    UnkPinkBarracuda sp18[4];
 
     spE98 = 0;
 
@@ -178,7 +173,7 @@ s32 func_801E1504_9FF1C4(s32 arg0) {
         sp18[spE9C] = *D_802309B0_A4E670[spE9C];
     }
     for (spE9C = 0; spE9C < 4; spE9C++) {
-        func_800BF5D8_5C478(spE9C, (UnkPinkBarracuda*) &sp18[spE9C]);
+        func_800BF5D8_5C478(spE9C, &sp18[spE9C]);
     }
 
     if (arg0) {

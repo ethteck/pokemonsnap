@@ -1,9 +1,9 @@
 #include "common.h"
 
-typedef struct UnkBeigeBetta {
-    SObj* var_8;
-    s32 var_C;
-} UnkBeigeBetta;
+typedef struct UnkLimeHaddock {
+    GObj* unk_0;
+    SObj* unk_4;
+} UnkLimeHaddock;
 
 UnkPinkBarracuda* func_801E0F88_9FEC48(s32);
 s32 func_801DC904_9FA5C4(void);
@@ -12,7 +12,6 @@ void func_801DF078_9FCD38(UNK_PTR);
 void func_801DD4C4_9FB184(s32);
 void func_801DD28C_9FAF4C(s32);
 
-extern struct UnkBeigeBetta D_8023084C_A4E50C[];
 extern Sprite D_801E8FB0_A06C70;
 extern GObj* D_80230868_A4E528;
 extern s32 D_80230890_A4E550;
@@ -20,6 +19,8 @@ extern s32 D_801EA1FC_A07EBC;
 extern SObj* D_8023086C_A4E52C;
 extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
+
+extern UnkLimeHaddock D_80230848_A4E508[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DCF50_9FAC10.s")
 
@@ -56,12 +57,22 @@ void func_801DD708_9FB3C8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD768_9FB428.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD860_9FB520.s")
+void func_801DD860_9FB520(void) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        if (func_801E0F88_9FEC48(i)) {
+            D_80230848_A4E508[i].unk_0->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            D_80230848_A4E508[i].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD8F8_9FB5B8.s")
 
 void func_801DDC50_9FB910(s32 arg0) {
-    func_80374714_847EC4(func_801E0F88_9FEC48(arg0), &D_8023084C_A4E50C[arg0].var_8->sprite);
+    func_80374714_847EC4(func_801E0F88_9FEC48(arg0), &D_80230848_A4E508[arg0].unk_4->sprite);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DDCA8_9FB968.s")

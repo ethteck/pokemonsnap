@@ -31,6 +31,8 @@ extern UnkLimeHaddock D_80230848_A4E508[];
 extern s32 D_801EA1F4_A07EB4;
 extern s32 D_801EA1F8_A07EB8;
 extern s32 D_801EA200_A07EC0;
+extern Sprite D_801E8890_A06550;
+extern Sprite D_801E8D50_A06A10;
 
 void func_801DCF50_9FAC10(UNK_PTR arg0) {
     s32 sp24;
@@ -280,8 +282,27 @@ void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0) {
     func_80374714_847EC4(arg0, &D_80230874_A4E534->sprite);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE318_9FBFD8.s")
+void func_801DE318_9FBFD8(s32 arg0) {
+    switch (arg0) {
+        case 0:
+            D_8023086C_A4E52C->sprite = D_801E8FB0_A06C70;
+            break;
+        case 1:
+            D_8023086C_A4E52C->sprite = D_801E8890_A06550;
+            break;
+        case 2:
+            D_8023086C_A4E52C->sprite = D_801E8D50_A06A10;
+            break;
+    }
+    D_80230868_A4E528->data.sobj->unk_58 = NULL;
 
+    // TODO: figure out what field this is. SObj's size should match the SceneSetup field
+    *(s32*) ((uintptr_t) D_80230868_A4E528->data.sobj + sizeof(SObj)) = 0;
+
+    D_80230868_A4E528->data.sobj->sprite.width = SCREEN_WIDTH;
+    D_80230868_A4E528->data.sobj->sprite.height = SCREEN_HEIGHT;
+    D_80230868_A4E528->data.sobj->sprite.istep = 0;
+}
 void func_801DE4A0_9FC160(void) {
     s32 i;
 

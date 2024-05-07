@@ -1096,12 +1096,13 @@ segments:
     - [0x9FAC10, c]
     - [0x9FD510, c]
     - [0x9FEC10, c]
-    - [0x9FF2E0, bin] # , data]
+    - [0x9FF2E0, data]
 
     - [0xA07F80, .rodata, 9FAC10]
     - [0xA08410, .rodata, 9FD510]
 
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
+    - { start: auto, name: 9FEC10, type: .bss, vram: 0x802308C0 }
   - name: unk_end_level_8
     dir: unk_end_level_8
     type: code

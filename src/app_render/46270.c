@@ -1,6 +1,7 @@
 #include "common.h"
 #include "os_cache.h"
 #include "camera_check/camera_check.h"
+#include "unk_end_level_7/unk_end_level_7.h"
 
 #include "ld_addrs.h"
 

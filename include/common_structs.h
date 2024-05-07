@@ -206,7 +206,8 @@ typedef struct {
 
 typedef struct UnkPinkBarracuda {
     s32 unk4_25 : 7;
-} UnkPinkBarracuda;
+    s32 unk_4[(0x3A0/4) -1];
+} UnkPinkBarracuda; // Size: 0x3A0
 
 typedef struct UnkStruct800BEDF8 {
     /* 0x00 */ char unk_00[0x14];
@@ -232,7 +233,7 @@ typedef struct UnkThingSub {
 typedef struct UnkThingSub2 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
-    /* 0x04 */ Vec3f unk_04;
+    /* 0x04 */ Vec3f pos;
 } UnkThingSub2; // size == 0x10
 
 typedef struct UnkThingSub3 {
@@ -242,7 +243,7 @@ typedef struct UnkThingSub3 {
 } UnkThingSub3;
 
 typedef struct UnkThing {
-    /* 0x000 */ s32 unk_00_25 : 7;
+    /* 0x000 */ s32 levelID : 7;
                 s32 unk_00_24 : 1;
                 u32 unk_00_16 : 8;
                 s32 unk_00_8 : 8;
@@ -256,5 +257,10 @@ typedef struct UnkThing {
     /* 0x3A0 */ UNK_TYPE unk_3A0;
     /* 0x3A4 */ GObj* unk_3A4[12];
 } UnkThing;
+
+typedef struct UnkCanaryScallop {
+    s32 unk_0;
+    s32 unk_4;
+} UnkCanaryScallop; // size == 0x8
 
 #endif

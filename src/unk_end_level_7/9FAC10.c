@@ -13,6 +13,8 @@ void func_801DD4C4_9FB184(s32);
 void func_801DD28C_9FAF4C(s32);
 void func_801DE04C_9FBD0C(s32 arg0, s32 arg1);
 void func_801DDCA8_9FB968(int);
+void* func_801DF850_9FD510(void);
+void func_80370780_843F30(int, int);
 
 extern Sprite D_801E8FB0_A06C70;
 extern GObj* D_80230868_A4E528;
@@ -23,8 +25,34 @@ extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
 extern UnkLimeHaddock D_80230818_A4E4D8[];
 extern UnkLimeHaddock D_80230848_A4E508[];
+extern s32 D_801EA1F4_A07EB4;
+extern s32 D_801EA1F8_A07EB8;
+extern s32 D_801EA200_A07EC0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DCF50_9FAC10.s")
+void func_801DCF50_9FAC10(UNK_PTR arg0) {
+    s32 sp24;
+
+    while (1) {
+        if (D_801EA1F4_A07EB4 != 0) {
+            sp24 = contIsPrinterAvailable();
+            if (D_801EA200_A07EC0 != sp24) {
+                D_801EA1F8_A07EB8 |= 2;
+                func_80370C34_8443E4(func_801DF850_9FD510());
+
+                func_80370780_843F30(contIsPrinterAvailable()?0:1, 0x20);
+            } else {
+                D_801EA1F8_A07EB8 &= ~2;
+            }
+            D_801EA200_A07EC0 = sp24;
+            if (sp24 != 0) {
+                D_801EA1F8_A07EB8 |= 1;
+            } else {
+                D_801EA1F8_A07EB8 &= ~1;
+            }
+        }
+        ohWait(1);
+    }
+}
 
 void func_801DD074_9FAD34(u32 arg0) {
     UNUSED s32 pad;

@@ -78,6 +78,8 @@ extern u8 D_800BE200[4];
 extern s32 D_800BE228[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
+extern u8 D_800AEC60;
+extern u8 D_800AEC64;
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);
@@ -379,9 +381,7 @@ void func_800A4798(GObj* camObj) {
     }
 }
 
-extern u8 D_800AEC60;
-extern u8 D_800AEC64;
-//#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A4858.s")
+#if 0
 void func_800A4858(GObj* camObj) {
     s32 sp2D4;
     s32 sp2D0;
@@ -418,10 +418,6 @@ void func_800A4858(GObj* camObj) {
     s32 var_a1_2;
     s32 var_a0;
 
-    f32 temp_f24;
-    f32 temp_f26;
-    f32 temp_f16;
-
     f32 temp_f20;
     f32 temp_f2;
 
@@ -439,9 +435,6 @@ void func_800A4858(GObj* camObj) {
 
     f32 temp_f22;
 
-    f32 temp_f12_2;
-    f32 temp_f14_2;
-
     UnkPinkLeopard* v0;
 
     for (sp1F8 = 0; sp1F8 < 4; sp1F8++) {
@@ -451,10 +444,7 @@ void func_800A4858(GObj* camObj) {
             continue;
         }
 
-        sp2C8 = -1;
-        sp2CC = -1;
-        sp2D0 = -1;
-        sp2D4 = 0;
+        
         hal_look_at_roll_f(sp288, D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.zEye,
@@ -470,6 +460,11 @@ void func_800A4858(GObj* camObj) {
                                D_800BE1F0[sp1F8]->perspMtx.persp.far,
                                D_800BE1F0[sp1F8]->perspMtx.persp.scale);
         guMtxCatF(sp288, sp248, sp248);
+
+        sp2C8 = -1;
+        sp2CC = -1;
+        sp2D0 = -1;
+        sp2D4 = 0;
 
         sp218 = D_800BE1F0[sp1F8]->vp.vp.vscale[0];
         sp210 = -D_800BE1F0[sp1F8]->vp.vp.vscale[1];
@@ -498,48 +493,41 @@ void func_800A4858(GObj* camObj) {
                 if (var_s7->unk_40 == 0.0f) {
                     continue;
                 }
-
-                temp_f24 = var_s7->unk_20;
-                temp_f26 = var_s7->unk_24;
-                temp_f16 = var_s7->unk_28;
-
-                temp_f20 = sp248[0][3] * temp_f24 + sp248[1][3] * temp_f26 + sp248[2][3] * temp_f16 + sp248[3][3];
-                temp_f12 = (sp248[0][0] * temp_f24 + sp248[1][0] * temp_f26 + sp248[2][0] * temp_f16 + sp248[3][0]);
-                temp_f14 = (sp248[0][1] * temp_f24 + sp248[1][1] * temp_f26 + sp248[2][1] * temp_f16 + sp248[3][1]);
-                temp_f28 = (sp248[0][2] * temp_f24 + sp248[1][2] * temp_f26 + sp248[2][2] * temp_f16 + sp248[3][2]);
+                temp_f12 = (sp248[0][0] * var_s7->unk_20 + sp248[1][0] * var_s7->unk_24 + sp248[2][0] * var_s7->unk_28 + sp248[3][0]);
+                temp_f20 = sp248[0][3] * var_s7->unk_20 + sp248[1][3] * var_s7->unk_24 + sp248[2][3] * var_s7->unk_28 + sp248[3][3];
+                
                 if (temp_f20 == 0.0f) {
                     continue;
                 }
+
                 temp_f2 = 1.0f / temp_f20;
                 temp_f12 *= temp_f2;
-                temp_f14 *= temp_f2;
-                temp_f28 *= temp_f2;
+                temp_f14 = (sp248[0][1] * var_s7->unk_20 + sp248[1][1] * var_s7->unk_24 + sp248[2][1] * var_s7->unk_28 + sp248[3][1]) * temp_f2;
+                temp_f28 = (sp248[0][2] * var_s7->unk_20 + sp248[1][2] * var_s7->unk_24 + sp248[2][2] * var_s7->unk_28 + sp248[3][2]) * temp_f2;
                 
                 if (temp_f12 < -1.0f || temp_f12 > 1.0f || temp_f14 < -1.0f || temp_f14 > 1.0f || temp_f28 < -1.0f || temp_f28 > 1.0f) {
                     continue;
                 }
 
-                temp_f2 *= var_s7->unk_40;
-
-                temp_f12_2 = temp_f12 * sp218 + sp214;
-                var_f16 = (temp_f2 * sp220 + temp_f12) * sp218 + sp214;
-                if (temp_f12_2 < var_f16) {
-                    var_f24 = temp_f12_2 - (var_f16 - temp_f12_2);
+                var_f16 = (temp_f2 * var_s7->unk_40 * sp220 + temp_f12) * sp218 + sp214;
+                temp_f12 = temp_f12 * sp218 + sp214;                
+                if (var_f16 - temp_f12 > 0) {
+                    var_f24 = temp_f12 - (var_f16 - temp_f12);
                 } else {
                     var_f24 = var_f16;
-                    var_f16 = temp_f12_2 - (var_f16 - temp_f12_2);
+                    var_f16 = temp_f12 - (var_f16 - temp_f12);
                 }
 
-                temp_f14_2 = temp_f14 * sp210 + sp20C;
-                var_f18 = (temp_f2 * temp_f0 + temp_f14) * sp210 + sp20C;
-                if (temp_f14_2 < var_f18) {
-                    var_f26 = temp_f14_2 - (var_f18 - temp_f14_2);
+                var_f18 = (temp_f2 * var_s7->unk_40 * temp_f0 + temp_f14) * sp210 + sp20C;
+                temp_f14 = temp_f14 * sp210 + sp20C;
+                if (var_f18 > temp_f14 * sp210 + sp20C) {
+                    var_f26 = temp_f14 - (var_f18 - temp_f14);
                 } else {
                     var_f26 = var_f18;
-                    var_f18 = temp_f14_2 - (var_f18 - temp_f14_2);
+                    var_f18 = temp_f14 - (var_f18 - temp_f14);
                 }
 
-                v0 = &D_800BE288[var_s7->unk_08 & 7][var_s7->unk_0A];
+                v0 = D_800BE288[var_s7->unk_08 & 7][var_s7->unk_0A];
                 temp_fp = v0->unk_04;
                 temp_t4 = v0->unk_08;
                 temp_s3 = v0->unk_0C;
@@ -720,6 +708,9 @@ void func_800A4858(GObj* camObj) {
         gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
     }
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A4858.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5DD0.s")
 

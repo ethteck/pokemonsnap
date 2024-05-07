@@ -21,5 +21,6 @@ void cmdFreeObjCmd(GObjCmdList*);
 void cmdReset(void);
 s32 cmdProcessCommands(void (*handler)(struct GObj*, s32));
 void cmdSendCommandToLink(s32 llIndex, s32, struct GObj*);
+s32 cmdSendCommand(struct GObj* obj, s32 cmd, struct GObj* source);
 
 #endif /* SYS_CMD_H */

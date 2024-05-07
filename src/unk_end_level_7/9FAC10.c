@@ -33,7 +33,18 @@ void func_801DD074_9FAD34(u32 arg0) {
     D_8023086C_A4E52C->sprite.blue = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD0AC_9FAD6C.s")
+void func_801DD0AC_9FAD6C(s32 arg0) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        // TODO: create a macro for setting R/G/B to the same value
+        D_80230848_A4E508[i].unk_0->data.sobj->sprite.red = D_80230848_A4E508[i].unk_0->data.sobj->sprite.green = D_80230848_A4E508[i].unk_0->data.sobj->sprite.blue = arg0;
+    }
+
+    for (i = 0; i < 6; i++) {
+        D_80230818_A4E4D8[i].unk_0->data.sobj->sprite.red = D_80230818_A4E4D8[i].unk_0->data.sobj->sprite.green = D_80230818_A4E4D8[i].unk_0->data.sobj->sprite.blue = arg0;
+    }
+}
 
 UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     UnkStruct800BEDF8* sp24;

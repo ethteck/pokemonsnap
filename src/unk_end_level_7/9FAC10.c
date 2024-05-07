@@ -282,7 +282,17 @@ void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE318_9FBFD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE4A0_9FC160.s")
+void func_801DE4A0_9FC160(void) {
+    s32 i;
+
+    for (i = 10; i >= 0; i--) {
+        func_801DD0AC_9FAD6C((i * 0xFF) / 10);
+        func_801DD074_9FAD34((i * 0xFF) / 10);
+        ohWait(1);
+    }
+    func_801DD074_9FAD34(0U);
+    func_801DD0AC_9FAD6C(0);
+}
 
 void func_801DE538_9FC1F8(void) {
     s32 i;

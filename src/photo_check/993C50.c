@@ -9,7 +9,7 @@ extern s32 D_801F4144_9A3BB4;
 extern s32 D_801F4148_9A3BB8;
 extern s32 D_801F4180_9A3BF0;
 extern void* D_80229190_9D8C00;
-extern UnkPinkBarracuda* D_80229194_9D8C04;
+extern UnkCanaryScallop* D_80229194_9D8C04;
 
 void func_800AA85C(s32, s32);
 void func_800AA870(s32);

@@ -241,7 +241,7 @@ typedef struct UnkThingSub {
 typedef struct UnkThingSub2 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
-    /* 0x04 */ Vec3f unk_04;
+    /* 0x04 */ Vec3f pos;
 } UnkThingSub2; // size == 0x10
 
 typedef struct UnkThingSub3 {
@@ -251,7 +251,7 @@ typedef struct UnkThingSub3 {
 } UnkThingSub3;
 
 typedef struct UnkThing {
-    /* 0x000 */ s32 unk_00_25 : 7;
+    /* 0x000 */ s32 levelID : 7;
                 s32 unk_00_24 : 1;
                 u32 unk_00_16 : 8;
                 s32 unk_00_8 : 8;

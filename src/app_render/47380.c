@@ -1,4 +1,5 @@
 #include "common.h"
+#include "string.h"
 #include "beach/beach.h"
 #if !defined(M2CTX) && !defined(PERMUTER)
 #include "ld_addrs.h"
@@ -34,6 +35,7 @@ extern s32 D_800BDF30[];
 extern s32 D_800BDF60;
 extern s32 D_800BDF68[];
 extern s32 D_800AC0F0; // level id?
+extern UnkGoldViper D_800AC0F4;
 extern Unk1C D_800ADA64[];
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
@@ -205,31 +207,50 @@ const char D_800AFE68[] = "ＭＥＷＴＷＯ";
 const char D_800AFE78[] = "ＭＥＷ";
 
 extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern UnkThing* D_800BDF18; // real ?
+extern UnkThing* D_800BDF18;
 extern u8 D_800BDF1C;
 extern u8 D_800BDF1D;
 extern u8 D_800BDF1E;
 extern s32 D_800BDF20[3];
-extern s32 D_800BDF2C;
+extern ucolor D_800BDF2C;
 
-extern UNK_TYPE D_800E8EB8;
-extern UNK_TYPE D_800E9138;
+extern Texture** D_800E8EB8;
+extern UnkEC64Arg3 D_800E9138;
 extern UNK_PTR* D_800E9168;
 extern AnimCmd** D_800E91C0;
-extern UNK_TYPE D_800EAC58;
-extern UNK_TYPE D_800EAED0;
+extern Texture** D_800EAC58;
+extern UnkEC64Arg3 D_800EAED0;
 extern UNK_PTR* D_800EAF00;
 extern AnimCmd** D_800EAF60;
 extern AnimCmd* D_800EAFB0;
 extern AnimCmd** D_800EB0C0;
-extern UNK_TYPE D_800EB430;
+extern UnkEC64Arg3 D_800EB430;
 extern UNK_PTR* D_800EB460;
-extern UNK_TYPE D_800EB510;
+extern Texture** D_800EB510;
 extern AnimCmd* D_800ED5B0;
 extern AnimCmd** D_800ED6B0;
 extern UNK_PTR* D_800EDAE0;
-extern UNK_TYPE D_800EDAB0;
-extern UNK_TYPE D_800EDB90;
+extern UnkEC64Arg3 D_800EDAB0;
+extern Texture** D_800EDB90;
+
+extern WorldSetup D_800F5DA0;
+extern WorldSetup D_800FFFB8;
+extern WorldSetup D_80100720;
+extern WorldSetup D_8011E6CC;
+extern WorldSetup D_8012A0E8;
+extern WorldSetup D_8012AC90;
+
+extern UNK_TYPE D_8013E260;
+extern UNK_TYPE D_8017A780;
+extern UNK_TYPE D_80188D28;
+extern UNK_TYPE D_801AFD30;
+extern UNK_TYPE D_801B1230;
+extern UNK_TYPE D_801B1D40;
+extern UNK_TYPE D_801B6B60;
+extern UNK_TYPE D_801CE400;
+extern UNK_TYPE D_801CF770;
+extern UNK_TYPE D_801CF840;
+extern UNK_TYPE D_801D6840;
 
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
@@ -342,7 +363,7 @@ s32 func_8009BCC4(UnkThing* arg0) {
     s32 temp_v0;
     s32 ret;
 
-    if (arg0->unk_00_25 < 0) {
+    if (arg0->levelID < 0) {
         return -1;
     }
     switch (arg0->unk_00_16 & 0xE0) {
@@ -464,9 +485,9 @@ s32 func_8009C304(UnkThingSub2* arg0, GObj* obj) {
         return 0;
     }
 
-    arg0->unk_04.x = dobj->position.v.x;
-    arg0->unk_04.y = dobj->position.v.y;
-    arg0->unk_04.z = dobj->position.v.z;
+    arg0->pos.x = dobj->position.v.x;
+    arg0->pos.y = dobj->position.v.y;
+    arg0->pos.z = dobj->position.v.z;
 
     payload = dobj->firstChild->payload.any;
     if (payload == D_800EB460) {
@@ -504,7 +525,7 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
 }
 
 void func_8009C4F4(UnkThing* arg0, UnkStruct80366BA4* arg1, OMCamera* arg2) {
-    arg0->unk_00_25 = getLevelId();
+    arg0->levelID = getLevelId();
     arg0->unk_00_16 = *arg1->unk_08;
     arg0->unk_04 = world_func_800E219C();
     arg0->unk_08.x = arg2->viewMtx.lookAt.eye.x;
@@ -549,9 +570,13 @@ void func_8009C604(UnkThing* arg0);
 void func_8009C8E4(OMCamera* arg0, UnkStruct80366BA4* arg1, UnkThing* arg2) {
     s32 i;
 
+    // clang-format off
     for (i = 0; i < ARRAY_COUNT(arg2->unk_140); i++) { arg2->unk_140[i].unk_00 = -1; }
+    // clang-format on
 
+    // clang-format off
     for (i = 0; i < ARRAY_COUNT(arg2->unk_1A0); i++) { arg2->unk_1A0[i].unk_00 = -1; }
+    // clang-format on
 
     for (i = 0; i < ARRAY_COUNT(arg2->unk_20); i++) {
         arg2->unk_20[i].pokemonID = -1;
@@ -668,110 +693,148 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
 void func_8009D21C(s32 arg0, s32* arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D21C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D37C.s")
+void func_8009D37C(u8 levelID) {
+    if (levelID < 0) {
+        return;
+    }
 
-void func_8009D65C(UnkThing*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D65C.s")
+    switch (levelID) {
+        case SCENE_BEACH:
+            func_8009D184(&D_8011B914);
+            func_8009D1E8((u32) AB8780_ROM_START, (u32) AB8780_ROM_END, (s32) &D_801D6840);
+            func_8009D21C(0, &D_801D6840);
+            D_800BDF2C.r = 0xFF;
+            D_800BDF2C.g = 0xFF;
+            D_800BDF2C.b = 0xFF;
+            D_800BDF2C.a = 0;
+            break;
+        case SCENE_TUNNEL:
+            func_8009D184(&D_8011E6CC);
+            func_8009D1E8((u32) ABEBD0_ROM_START, (u32) ABEBD0_ROM_END, (s32) &D_801B1230);
+            func_8009D21C(0, &D_801B1230);
+            D_800BDF2C.r = 0x80;
+            D_800BDF2C.g = 0x80;
+            D_800BDF2C.b = 0;
+            D_800BDF2C.a = 0;
+            memcpy(&D_801AFD30, &D_80188D28, 0x1500);
+            break;
+        case SCENE_CAVE:
+            func_8009D184(&D_8012A0E8);
+            func_8009D1E8((u32) AC6A80_ROM_START, (u32) AC6A80_ROM_END, (s32) &D_801CF840);
+            func_8009D21C(0, &D_801CF840);
+            D_800BDF2C.r = 0xFF;
+            D_800BDF2C.g = 0xFF;
+            D_800BDF2C.b = 0xFF;
+            D_800BDF2C.a = 0;
+            memcpy(&D_801CE400, &D_8017A780, 0x1440);
+            break;
+        case SCENE_RIVER:
+            func_8009D184(&D_8012AC90);
+            func_8009D1E8((u32) AC8830_ROM_START, (u32) AC8830_ROM_END, (s32) &D_801B6B60);
+            func_8009D21C(0, &D_801B6B60);
+            D_800BDF2C.r = 0x80;
+            D_800BDF2C.g = 0x80;
+            D_800BDF2C.b = 0x80;
+            D_800BDF2C.a = 0;
+            break;
+        case SCENE_VOLCANO:
+            func_8009D184(&D_800FFFB8);
+            func_8009D1E8((u32) ACF9A0_ROM_START, (u32) ACF9A0_ROM_END, (s32) &D_801CF770);
+            func_8009D21C(0, &D_801CF770);
+            D_800BDF2C.r = 0xFF;
+            D_800BDF2C.g = 0;
+            D_800BDF2C.b = 0;
+            D_800BDF2C.a = 0;
+            break;
+        case SCENE_VALLEY:
+            func_8009D184(&D_80100720);
+            func_8009D1E8((u32) AD1640_ROM_START, (u32) AD1640_ROM_END, (s32) &D_801B1D40);
+            func_8009D21C(0, &D_801B1D40);
+            D_800BDF2C.r = 0x80;
+            D_800BDF2C.g = 0x80;
+            D_800BDF2C.b = 0x80;
+            D_800BDF2C.a = 0;
+            break;
+        case SCENE_RAINBOW:
+            func_8009D184(&D_800F5DA0);
+            func_8009D1E8((u32) ADD5D0_ROM_START, (u32) ADD5D0_ROM_END, (s32) &D_8013E260);
+            func_8009D21C(0, &D_8013E260);
+            D_800BDF2C.r = 0xFF;
+            D_800BDF2C.g = 0xFF;
+            D_800BDF2C.b = 0xFF;
+            D_800BDF2C.a = 0;
+            break;
+    }
+}
 
-// extern UnkGoldViper D_800AC0F4;
+void func_8009D65C(UnkThing* arg0) {
+    WorldBlock** worldBlocks;
+    s32 i;
+    f32 var_f2;
 
-// void func_8009D65C(UnkThing* arg0) {
-//     WorldBlock** sp3C;
-//     s32 sp38;
-//     f32 sp34;
-//     GObj* temp_v1_2;
-//     WorldBlock* temp_a0;
-//     WorldBlock* temp_v0_2;
-//     WorldBlock* temp_v0_4;
-//     WorldBlock** temp_v0;
-//     WorldBlock** temp_v0_5;
-//     WorldBlock** var_a1_2;
-//     WorldBlock** var_s0;
-//     WorldBlockDescriptor* temp_v1;
-//     WorldBlockGFX* temp_v0_3;
-//     f32 var_f2;
+    if (arg0->levelID >= 0) {
+        if (D_800AC0F0 != arg0->levelID) {
+            if (D_800AC0F0 >= 0) {
+                destroyWorld();
+            }
+            func_8009A8F0(arg0->levelID);
+            func_8009D37C(arg0->levelID);
+            D_800AC0F0 = arg0->levelID;
+        }
+        worldBlocks = getWorldBlocks();
 
-//     s32 var_a1;
-//     s32 var_s1;
-//     s32 var_s1_2;
+        for (i = 0; worldBlocks != NULL && i < MAX_BLOCKS; i++) {
+            if (worldBlocks[i] == NULL) {
+                break;
+            }
+            if (worldBlocks[i]->blockModel != NULL) {
+                if (worldBlocks[i]->descriptor != NULL) {
+                    if (worldBlocks[i]->descriptor->gfx != NULL &&
+                        worldBlocks[i]->descriptor->gfx->textures != NULL &&
+                        worldBlocks[i]->descriptor->gfx->unk_08 != NULL)
+                    {
+                        animSetModelTreeTextureAnimation(
+                            worldBlocks[i]->blockModel,
+                            worldBlocks[i]->descriptor->gfx->unk_08,
+                            world_func_800E21A8(arg0->unk_04)
+                        );
+                        animUpdateModelTreeAnimation(worldBlocks[i]->blockModel);
+                    }
+                }
+            }
+        }
 
-//     var_a1 = arg0->unk_0;
-//     if (var_a1 >= 0) {
-//         if (D_800AC0F0 != var_a1) {
-//             if (D_800AC0F0 >= 0) {
-//                 destroyWorld();
-//                 var_a1 = (s32) arg0->unk_0;
-//             }
-//             func_8009A8F0(var_a1);
-//             func_8009D37C(arg0->unk_0);
-//             D_800AC0F0 = arg0->unk_0;
-//         }
-//         temp_v0 = getWorldBlocks();
-//         sp3C = temp_v0;
-//         sp38 = 0;
-//         if (temp_v0 != NULL) {
-//             var_s1 = 0;
-//             var_s0 = temp_v0;
-// loop_7:
-//             temp_v0_2 = *var_s0;
-//             if (temp_v0_2 != NULL) {
-//                 if (temp_v0_2->blockModel != NULL) {
-//                     temp_v1 = temp_v0_2->descriptor;
-//                     if (temp_v1 != NULL) {
-//                         temp_v0_3 = temp_v1->gfx;
-//                         if ((temp_v0_3 != NULL) && (temp_v0_3->textures != NULL) && (temp_v0_3->unk_08 != NULL)) {
-//                             temp_v0_4 = *var_s0;
-//                             animSetModelTreeTextureAnimation(temp_v0_4->blockModel, temp_v0_4->descriptor->gfx->unk_08, world_func_800E21A8(arg0->unk_4));
-//                             animUpdateModelTreeAnimation((*var_s0)->blockModel);
-//                         }
-//                     }
-//                 }
-//                 var_s1 += 4;
-//                 var_s0 += 4;
-//                 if ((sp3C != NULL) && (var_s1 != 0x34)) {
-//                     goto loop_7;
-//                 }
-//             }
-//         }
-//         sp38 = 0;
-//         if (arg0->unk_0 == 6) {
-//             var_f2 = (arg0->unk_4 * 6.2831855f) / 10000.0f;
-//         } else {
-//             var_f2 = 0.0f;
-//         }
-//         switch (arg0->unk_0) {
-//             case 0:
-//             case 2:
-//             case 3:
-//             case 5:
-//             case 6:
-//                 sp34 = var_f2;
-//                 setSkyBoxPos(arg0->unk_8.x, arg0->unk_8.y, arg0->unk_8.z, var_f2, world_func_800E21A8(arg0->unk_4));
-//                 break;
-//         }
-//         D_800AC0F4.unk_00 = 0.0f;
-//         D_800AC0F4.unk_28 = 0.0f;
-//         D_800AC0F4.unk_04 = 0.5f;
-//         func_800E3EE8_61698(&D_800AC0F4, arg0->unk_1 & 0xF, NULL, NULL);
-//         temp_v0_5 = getWorldBlocks();
-//         if (temp_v0_5 != NULL) {
-//             var_s1_2 = sp38 * 4;
-//             var_a1_2 = &temp_v0_5[sp38];
-// loop_24:
-//             temp_a0 = *var_a1_2;
-//             var_s1_2 += 4;
-//             if (temp_a0 != NULL) {
-//                 if (temp_a0->blockModel != NULL) {
-//                     temp_a0->blockModel->flags &= ~1;
-//                 }
-//                 var_a1_2 += 4;
-//                 if ((temp_v0_5 != NULL) && (var_s1_2 != 0x34)) {
-//                     goto loop_24;
-//                 }
-//             }
-//         }
-//     }
-// }
+        if (arg0->levelID == SCENE_RAINBOW) {
+            var_f2 = (arg0->unk_04 * TAU) / 10000.0f;
+        } else {
+            var_f2 = 0.0f;
+        }
+
+        switch (arg0->levelID) {
+            case SCENE_BEACH:
+            case SCENE_VOLCANO:
+            case SCENE_RIVER:
+            case SCENE_VALLEY:
+            case SCENE_RAINBOW:
+                setSkyBoxPos(arg0->unk_08.x, arg0->unk_08.y, arg0->unk_08.z, var_f2, world_func_800E21A8(arg0->unk_04));
+                break;
+        }
+        D_800AC0F4.unk_00 = 0.0f;
+        D_800AC0F4.unk_28 = 0.0f;
+        D_800AC0F4.unk_04 = 0.5f;
+        func_800E3EE8_61698(&D_800AC0F4, arg0->unk_00_16 & 0xF, NULL, NULL);
+
+        worldBlocks = getWorldBlocks();
+        for (i = 0; worldBlocks != NULL && i < MAX_BLOCKS; i++) {
+            if (worldBlocks[i] == NULL) {
+                break;
+            }
+            if (worldBlocks[i]->blockModel != NULL) {
+                worldBlocks[i]->blockModel->flags &= ~1;
+            }
+        }
+    }
+}
 
 void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     Vec3f sp24;
@@ -835,9 +898,21 @@ void func_8009DEF0(UnkThing* arg0) {
     }
 }
 
+GObj* func_8009E050(UnkThingSub2* arg0, UnkEC64Arg3* arg1, Texture*** arg2, void (*arg3)(GObj*)) {
+    GObj* gobj;
+    DObj* dobj;
 
-GObj* func_8009E050(UnkThingSub2*, UNK_TYPE*, UNK_TYPE*, void (*)(GObj*));
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E050.s")
+    gobj = omAddGObj(0x80, NULL, D_800BDF1E, 0x80000000);
+    omLinkGObjDL(gobj, arg3, D_800BDF1C, 0x80000000, -1);
+    anim_func_80010230(gobj, arg1, arg2, NULL, 0x1C, 0, 0);
+    dobj = gobj->data.dobj;
+    dobj->position.v.x = arg0->pos.x;
+    dobj->position.v.y = arg0->pos.y;
+    dobj->position.v.z = arg0->pos.z;
+    dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = 0.1f;
+
+    return gobj;
+}
 
 void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists, u8 skipFrames) {
     if (animLists != NULL) {
@@ -856,8 +931,6 @@ void func_8009E1CC(UnkThing* arg0) {
     f32 temp_f0;
     s32 i;
     u8 temp_s3;
-
-    i = 0;
 
     for (i = 0; i < ARRAY_COUNT(arg0->unk_140); i++) {
         temp_s3 = arg0->unk_140[i].unk_01;
@@ -913,11 +986,10 @@ void func_8009FA00(OMCamera* arg0, UnkThing* arg1) {
 void func_8009FA68(OMCamera* cam, UnkThing* arg1) {
     GObj* temp_s1;
     GObj* var_s0;
-    s32 temp_v0;
+    s32 levelID = arg1->levelID;
 
-    temp_v0 = arg1->unk_00_25;
-    if (temp_v0 >= 0) {
-        if (temp_v0 == 4) {
+    if (levelID >= 0) {
+        if (levelID == SCENE_CAVE) {
             cam->flags |= 2;
             cam->bgColor = 0x05080401;
         } else {

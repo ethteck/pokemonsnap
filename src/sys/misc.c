@@ -196,7 +196,7 @@ void qsortInternal(u8* first, u8* last) {
     }
 }
 
-void qsort(u8* base, s32 count, s32 itemSize, s32 (*compare)(u8*, u8*)) {
+void qsort(u8* base, s32 count, s32 itemSize, s32 (*compare)(void*, void*)) {
     u8 *curr, *next;
     s32 s0;
     s32 foundInversion;
@@ -266,7 +266,7 @@ u8* func_8001A29C(u8* dst, u8* src, u32* count, u32 itemSize, s32 (*compare)(u8*
         if (compare(dst, src) == 0) {
             return src;
         }
-        src += itemSize;        
+        src += itemSize;
     }
     memcpy(dst, src, itemSize);
     *count += 1;

@@ -40,7 +40,6 @@ void func_8009A8F0(s32);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
-void func_8009D37C(u8);
 void func_8009FA68(OMCamera* arg0, UnkThing* arg1);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);

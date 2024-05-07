@@ -1,20 +1,11 @@
 #include "common.h"
-#include "photo_check/photo_check.h"
-
-void func_801DDC50_9FB910(s32);
-void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0);
-void func_800BF5D8_5C478(s32, UnkPinkBarracuda*);
-
-typedef struct Fasdasd {
-    s8 unk_00;
-    s8 unk_01;
-} Fasdasd;
+#include "unk_end_level_7.h"
 
 UnkPinkBarracuda* D_802308C0_A4E580[60];
 UnkPinkBarracuda* D_802309B0_A4E670[4];
 UnkPinkBarracuda* D_802309C0_A4E680[69];
 UnkPinkBarracuda* D_80230AD4_A4E794;
-Fasdasd D_80230AD8_A4E798;
+UnkEmeraldCod D_80230AD8_A4E798;
 s32 D_80230ADC_A4E79C;
 s32 D_80230AE0_A4E7A0;
 
@@ -133,7 +124,8 @@ void func_801E1384_9FF044(void) {
     s32 count;
 
     for (i = 0; i < 4; i++) {
-        D_802309B0_A4E670[i] = func_800BF574_5C414(i);
+        // TODO: figure out what is returned and remove cast
+        D_802309B0_A4E670[i] = (UnkPinkBarracuda*) func_800BF574_5C414(i);
     }
 
     for (count = 0, i = 1; i <= 151; i++) {

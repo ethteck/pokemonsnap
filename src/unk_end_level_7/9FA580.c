@@ -1,15 +1,6 @@
-#include <ld_addrs.h>
+#include "ld_addrs.h"
 #include "common.h"
-
-extern s32 D_801EA7F0_A084B0;
-extern OMCamera* D_801EA800_A084C0;
-extern SceneSetup D_801E16AC_9FF36C;
-extern s32 D_801E16BC_9FF37C;
-
-extern GObj* D_801EA7F4_A084B4; // Camera
-extern GObj* D_801EA7FC_A084BC; // Camera
-
-extern Gfx D_801E1620_9FF2E0[];
+#include "unk_end_level_7.h"
 
 void func_801DC8C0_9FA580(Gfx** dlist) {
     gSPDisplayList(++(*dlist), D_801E1620_9FF2E0);
@@ -45,8 +36,6 @@ void func_801DCA58_9FA718(GObj* arg0) {
         ohWait(1);
     }
 }
-
-extern OMCamera* D_801EA7F8_A084B8;
 
 void func_801DCA98_9FA758(void) {
     GObj* obj;
@@ -98,10 +87,6 @@ void func_801DCC60_9FA920(void) {
     D_801EA7FC_A084BC = obj;
     D_801EA800_A084C0 = cam;
 }
-
-void func_801DF788_9FD448(void);
-extern ScreenSettings D_801E1690_9FF350;
-extern u8 D_801EA808_A084C8;
 
 void func_801DCDDC_9FAA9C(void) {
     UNUSED s32 pad;

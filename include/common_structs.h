@@ -206,7 +206,7 @@ typedef struct {
 
 typedef struct UnkPinkBarracuda {
     s32 unk4_25 : 7;
-    s32 unk_3a4[(0x3A0/4) -1];
+    s32 unk_4[(0x3A0/4) -1];
 } UnkPinkBarracuda; // Size: 0x3A0
 
 typedef struct UnkStruct800BEDF8 {
@@ -265,5 +265,10 @@ typedef struct UnkThing {
     /* 0x3A0 */ UNK_TYPE unk_3A0;
     /* 0x3A4 */ GObj* unk_3A4[12];
 } UnkThing;
+
+typedef struct UnkCanaryScallop {
+    s32 unk_0;
+    s32 unk_4;
+} UnkCanaryScallop; // size == 0x8
 
 #endif

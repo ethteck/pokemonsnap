@@ -9,7 +9,7 @@ extern s32 D_801F4144_9A3BB4;
 extern s32 D_801F4148_9A3BB8;
 extern s32 D_801F4180_9A3BF0;
 extern void* D_80229190_9D8C00;
-extern s32 D_80229194_9D8C04;
+extern UnkPinkBarracuda* D_80229194_9D8C04;
 
 void func_800AA85C(s32, s32);
 void func_800AA870(s32);
@@ -21,7 +21,6 @@ void func_801E3934_9933A4(void);
 void func_801E43AC_993E1C();
 void func_801E4BA0_994610(s32);
 void func_80370004_8437B4(s32, s32);
-s32 func_80370600_843DB0(void);
 
 void* func_801E41E0_993C50(void) {
     return D_801F4150_9A3BC0;

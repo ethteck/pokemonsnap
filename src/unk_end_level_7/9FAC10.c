@@ -1,38 +1,5 @@
 #include "common.h"
-
-typedef struct UnkLimeHaddock {
-    GObj* unk_0;
-    SObj* unk_4;
-} UnkLimeHaddock;
-
-UnkPinkBarracuda* func_801E0F88_9FEC48(s32);
-s32 func_801DC904_9FA5C4(void);
-void func_801DCF50_9FAC10(UNK_PTR);
-void func_801DF078_9FCD38(UNK_PTR);
-GObj* func_801DD4C4_9FB184(s32);
-GObj* func_801DD28C_9FAF4C(s32);
-void func_801DE04C_9FBD0C(s32 arg0, s32 arg1);
-void func_801DDCA8_9FB968(int);
-void* func_801DF850_9FD510(void);
-void func_80370780_843F30(int, int);
-
-extern Sprite D_801E82A0_A05F60;
-extern Sprite D_801E83D0_A06090;
-extern Sprite D_801EA1B0_A07E70;
-extern Sprite D_801E8FB0_A06C70;
-extern GObj* D_80230868_A4E528;
-extern s32 D_80230890_A4E550;
-extern s32 D_801EA1FC_A07EBC;
-extern SObj* D_8023086C_A4E52C;
-extern GObj* D_80230870_A4E530;
-extern SObj* D_80230874_A4E534;
-extern UnkLimeHaddock D_80230818_A4E4D8[];
-extern UnkLimeHaddock D_80230848_A4E508[];
-extern s32 D_801EA1F4_A07EB4;
-extern s32 D_801EA1F8_A07EB8;
-extern s32 D_801EA200_A07EC0;
-extern Sprite D_801E8890_A06550;
-extern Sprite D_801E8D50_A06A10;
+#include "unk_end_level_7.h"
 
 void func_801DCF50_9FAC10(UNK_PTR arg0) {
     s32 sp24;

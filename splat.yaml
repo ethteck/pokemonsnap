@@ -1100,6 +1100,7 @@ segments:
     - [0xA08410, .rodata, 9FD510]
 
     - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
+    - { start: auto, name: 9FEC10, type: .bss, vram: 0x802308C0 }
   - name: unk_end_level_8
     dir: unk_end_level_8
     type: code

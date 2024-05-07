@@ -63,9 +63,9 @@ s32 func_80364718_504B28(GObj* obj) {
     return 0;
 }
 
-void func_803647BC_504BCC(GObj* obj) {
+s32 func_803647BC_504BCC(GObj* obj) {
     DObj* dobj;
 
     dobj = obj->data.dobj;
-    func_80364618_504A28(obj, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z);
+    return func_80364618_504A28(obj, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z);
 }

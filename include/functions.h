@@ -59,7 +59,7 @@ void func_800A1A50(Gfx**);
 
 void func_800A1E6C(Vec3f*);
 void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
-s32 func_800A2094(s32, s32, OMCamera*);
+GObj* func_800A2094(s32, s32, OMCamera*);
 void func_800A5DF4(s32, s32);
 s32 func_800A5E08(s32);
 

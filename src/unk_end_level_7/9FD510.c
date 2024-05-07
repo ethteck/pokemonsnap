@@ -6,14 +6,11 @@ typedef struct UnkCanaryScallop {
 } UnkCanaryScallop;
 
 void func_801DE87C_9FC53C(void);
-void func_801DEE88_9FCB48();
+void func_801DEE88_9FCB48(void);
 s32 func_801DF8A4_9FD564(UNK_PTR, s32*);
 s32 func_801E0F6C_9FEC2C(void);
 s32 func_801E0FAC_9FEC6C(s32);
-u32 func_801E0328_9FDFE8();
-u32 func_801E04E8_9FE1A8();
-s32 func_801E0B7C_9FE83C();
-UNK_PTR func_80370600_843DB0();
+UnkCanaryScallop* func_80370600_843DB0(void);
 void func_801DD860_9FB520(void);
 void func_801DDC50_9FB910(s32);
 void func_801DE2E0_9FBFA0(s32);
@@ -27,7 +24,7 @@ void func_801DDCA8_9FB968(int);
 void func_801DFA94_9FD754(UnkStruct800BEDF8*, s32*, s32*, int);
 s32 func_801E0F50_9FEC10(void);
 s32 func_801E0FE4_9FECA4(s32);
-UnkStruct800BEDF8* func_801DD1A8_9FAE68();
+UnkStruct800BEDF8* func_801DD1A8_9FAE68(void);
 void func_801DE5D0_9FC290(UNK_TYPE);
 void func_801E1024_9FECE4(s32 arg0, s32 arg1);
 void func_801DE04C_9FBD0C(int, int);
@@ -249,7 +246,7 @@ s32 func_801E08FC_9FE5BC(s32 arg0) {
             if (sp1C->unk_18 & 0x8000) {
                 func_801E1024_9FECE4(0, -1);
                 func_80370090(1);
-                func_801DF8A4_9FD564(0, &D_802308A4_A4E564);
+                func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
                 return 0;
             } else {
                 auPlaySound(0x43U);
@@ -329,7 +326,7 @@ s32 func_801E0D80_9FEA40(void) {
     if (contIsPrinterAvailable() == 0) {
         func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
         D_802308A4_A4E564 = 7;
-        func_801DF8A4_9FD564(&sp18, &D_802308A4_A4E564);
+        func_801DF8A4_9FD564((UNK_PTR) &sp18, &D_802308A4_A4E564);
     }
     return 0;
 }

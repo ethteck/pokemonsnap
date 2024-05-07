@@ -3,8 +3,8 @@
 void func_801DE87C_9FC53C(void);
 void func_801DEE88_9FCB48();
 void func_801DF8A4_9FD564(UNK_PTR, s32*);
-extern s32 D_802308A4_A4E564;
-
+s32 func_801E0F6C_9FEC2C(void);
+s32 func_801E0FAC_9FEC6C(s32);
 u32 func_801E0328_9FDFE8();
 u32 func_801E04E8_9FE1A8();
 s32 func_801E0B7C_9FE83C();
@@ -29,9 +29,11 @@ void func_801DE04C_9FBD0C(int, int);
 void func_80370090(int);
 
 extern s32 D_801DC904;
-extern s32 D_801EA294_A07F54;
+extern s32 D_801EA288_A07F48;
 extern s32 D_801EA28C_A07F4C;
+extern s32 D_801EA294_A07F54;
 extern s32 D_802308A0_A4E560;
+extern s32 D_802308A4_A4E564;
 extern s32 D_802308A8_A4E568;
 extern s32 D_802308AC_A4E56C;
 extern s32 D_802308B0_A4E570;
@@ -50,7 +52,54 @@ extern s32 D_802308B8_A4E578;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FD510/func_801E0328_9FDFE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FD510/func_801E04E8_9FE1A8.s")
+u32 func_801E04E8_9FE1A8(void) {
+    UnkStruct800BEDF8* sp1C;
+
+    D_802308A4_A4E564 = 0;
+    D_801EA294_A07F54 = D_801EA288_A07F48;
+    func_803700A4(0);
+    func_801DE5D0_9FC290(2);
+    D_802308AC_A4E56C = 0;
+    D_802308A8_A4E568 = 0;
+    func_80370038(0x32, 0x25);
+    func_803700A4(1);
+    func_801DFA94_9FD754(NULL, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
+    func_801DDCA8_9FB968(0xB);
+
+    while (1) {
+        sp1C = func_800AA38C(0);
+        func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
+        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F6C_9FEC2C() - 6)) {
+            func_803713D4_844B84(2);
+        } else {
+            func_803713EC_844B9C(2);
+        }
+        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) > 0) {
+            func_803713D4_844B84(1);
+        } else {
+            func_803713EC_844B9C(1);
+        }
+        D_801EA288_A07F48 = D_801EA294_A07F54;
+        if (sp1C->unk_18 & 0x4000) {
+            auPlaySound(0x43U);
+            func_803700A4(0);
+            func_801DE5D0_9FC290(0);
+            func_801E1024_9FECE4(2, -1);
+            func_803713EC_844B9C(3);
+            func_801DDCA8_9FB968(0);
+            return 0U;
+        }
+        if ((func_801E0FAC_9FEC6C(D_801EA294_A07F54) != 0) && (sp1C->unk_18 & 0x8000)) {
+            auPlaySound(0x42U);
+            func_803700A4(0);
+            func_801E1024_9FECE4(2, D_801EA294_A07F54);
+            func_803713EC_844B9C(3);
+            func_801DDCA8_9FB968(0xC);
+            return 2U;
+        }
+        ohWait(1);
+    }
+}
 
 s32 func_801E06F0_9FE3B0(void) {
     UnkStruct800BEDF8* sp1C;

@@ -10,12 +10,15 @@ s32 func_801DC904_9FA5C4(void);
 void func_801DCF50_9FAC10(UNK_PTR);
 void func_801DF078_9FCD38(UNK_PTR);
 void func_801DD4C4_9FB184(s32);
-void func_801DD28C_9FAF4C(s32);
+void* func_801DD28C_9FAF4C(s32);
 void func_801DE04C_9FBD0C(s32 arg0, s32 arg1);
 void func_801DDCA8_9FB968(int);
 void* func_801DF850_9FD510(void);
 void func_80370780_843F30(int, int);
 
+extern Sprite D_801E82A0_A05F60;
+extern Sprite D_801E83D0_A06090;
+extern Sprite D_801EA1B0_A07E70;
 extern Sprite D_801E8FB0_A06C70;
 extern GObj* D_80230868_A4E528;
 extern s32 D_80230890_A4E550;
@@ -39,7 +42,7 @@ void func_801DCF50_9FAC10(UNK_PTR arg0) {
                 D_801EA1F8_A07EB8 |= 2;
                 func_80370C34_8443E4(func_801DF850_9FD510());
 
-                func_80370780_843F30(contIsPrinterAvailable()?0:1, 0x20);
+                func_80370780_843F30(contIsPrinterAvailable() ? 0 : 1, 0x20);
             } else {
                 D_801EA1F8_A07EB8 &= ~2;
             }
@@ -103,7 +106,53 @@ void func_801DD270_9FAF30(void) {
     D_801EA1FC_A07EBC = 0x18;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD28C_9FAF4C.s")
+void* func_801DD28C_9FAF4C(s32 arg0) {
+    GObj* gobj;
+    SObj* sobj;
+    s32 x;
+    s32 y;
+    Bitmap* bitmap;
+    u8* dest;
+    u8* src;
+
+    x = ((arg0 % 3) * 66) + 104;
+    y = ((arg0 / 3) * 55) + 53;
+
+    gobj = func_80371C68_845418(NULL, 6, &D_801E82A0_A05F60);
+    sobj = gobj->data.sobj;
+    sobj->sprite.x = x;
+    sobj->sprite.y = y;
+    D_80230818_A4E4D8[arg0].unk_0 = gobj;
+
+    sobj = func_80371E68_845618(sobj, &D_801E82A0_A05F60);
+    sobj->sprite.x = 0x36;
+    sobj->sprite.y = 0;
+
+    sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 0;
+
+    sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 0x29;
+
+    sobj = func_80371DC0_845570(sobj, &D_801EA1B0_A07E70);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 2;
+    D_80230818_A4E4D8[arg0].unk_4 = sobj;
+
+    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
+    dest = (u8*) func_8036A194_83D944(0xFD8);
+    src = sobj->sprite.bitmap->buf;
+    *bitmap = *sobj->sprite.bitmap;
+    bitmap->buf = dest;
+    sobj->sprite.bitmap = bitmap;
+    for (x = 0xFD8; x > 0; src++, dest++, x--) {
+        *dest = *src;
+    }
+
+    return gobj;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD4C4_9FB184.s")
 

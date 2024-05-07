@@ -5,9 +5,6 @@
 #endif
 #include "world/world.h"
 
-void func_8009D21C(s32 arg0, s32* arg1);
-s32 func_803647BC_504BCC(GObj*);
-
 typedef struct PhotoData {
     s8 unk_000_1:7;
     u8 unk_000_0:1;
@@ -24,20 +21,33 @@ typedef struct Unk1C {
     /* 0x18 */ AnimCmd*** unk_18;
 } Unk1C; // size = 0x1C
 
+typedef struct UnkV0 {
+    u32 unk_00;
+    s32 unk_04;
+    s32 unk_08;
+    s32 unk_0C;
+    s32 unk_10;
+} UnkV0;
+
+extern UnkV0 D_800ADBEC[];
+extern s32 D_800BDF30[];
+extern s32 D_800BDF60;
+extern s32 D_800BDF68[];
 extern s32 D_800AC0F0; // level id?
 extern Unk1C D_800ADA64[];
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
-extern char* D_800AE284; // Pokedex entries
+extern char* D_800AE284[]; // Pokedex entries
 extern s8 D_800AE4E4[];
 
-extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern UnkThing* D_800BDF18; // real ?
-extern u8 D_800BDF1C;
-extern u8 D_800BDF1D;
-extern u8 D_800BDF1E;
-extern s32 D_800BDF20[3];
-extern s32 D_800BDF2C;
+// s8 D_800AE4E4[] = {
+//     0,  -1, -1, 1,  2,  3,  4,  -1, -1, -1, 5,  6,  -1, 7,  -1, 8,  -1, -1, -1, -1, -1, -1, -1, -1, 9,  -1,
+//     10, 11, -1, -1, -1, -1, -1, -1, -1, -1, 12, -1, 13, -1, 14, -1, -1, -1, 15, -1, -1, -1, -1, 16, 17, 18,
+//     -1, 19, -1, 20, -1, 21, 22, 23, -1, -1, -1, -1, -1, -1, -1, -1, -1, 24, 25, -1, -1, 26, 27, -1, -1, 28,
+//     29, 30, 31, 32, -1, 33, -1, -1, -1, 34, 35, 36, 37, -1, 38, -1, -1, -1, -1, -1, -1, -1, 39, -1, -1, -1,
+//     -1, -1, -1, -1, 40, -1, -1, -1, 41, -1, 42, -1, -1, 43, -1, 44, 45, -1, 46, 47, 48, 49, -1, -1, 50, 51,
+//     52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57, 58, 59, 60, -1, 61, -1, 62, 0,  0,  0,  0,  0,
+// };
 
 // Manually define this RODATA here until data is migrated for D_800AE284
 // These are the names of all pokemon in order, used for returning their names when needed.
@@ -194,23 +204,36 @@ const char D_800AFE54[] = "ＤＲＡＧＯＮＩＴＥ";
 const char D_800AFE68[] = "ＭＥＷＴＷＯ";
 const char D_800AFE78[] = "ＭＥＷ";
 
-// s8 D_800AE4E4[] = {
-//     0,  -1, -1, 1,  2,  3,  4,  -1, -1, -1, 5,  6,  -1, 7,  -1, 8,  -1, -1, -1, -1, -1, -1, -1, -1, 9,  -1,
-//     10, 11, -1, -1, -1, -1, -1, -1, -1, -1, 12, -1, 13, -1, 14, -1, -1, -1, 15, -1, -1, -1, -1, 16, 17, 18,
-//     -1, 19, -1, 20, -1, 21, 22, 23, -1, -1, -1, -1, -1, -1, -1, -1, -1, 24, 25, -1, -1, 26, 27, -1, -1, 28,
-//     29, 30, 31, 32, -1, 33, -1, -1, -1, 34, 35, 36, 37, -1, 38, -1, -1, -1, -1, -1, -1, -1, 39, -1, -1, -1,
-//     -1, -1, -1, -1, 40, -1, -1, -1, 41, -1, 42, -1, -1, 43, -1, 44, 45, -1, 46, 47, 48, 49, -1, -1, 50, 51,
-//     52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57, 58, 59, 60, -1, 61, -1, 62, 0,  0,  0,  0,  0,
-// };
+extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
+extern UnkThing* D_800BDF18; // real ?
+extern u8 D_800BDF1C;
+extern u8 D_800BDF1D;
+extern u8 D_800BDF1E;
+extern s32 D_800BDF20[3];
+extern s32 D_800BDF2C;
 
+extern UNK_TYPE D_800E8EB8;
+extern UNK_TYPE D_800E9138;
 extern UNK_PTR* D_800E9168;
+extern AnimCmd** D_800E91C0;
+extern UNK_TYPE D_800EAC58;
+extern UNK_TYPE D_800EAED0;
 extern UNK_PTR* D_800EAF00;
+extern AnimCmd** D_800EAF60;
+extern AnimCmd* D_800EAFB0;
+extern AnimCmd** D_800EB0C0;
+extern UNK_TYPE D_800EB430;
 extern UNK_PTR* D_800EB460;
+extern UNK_TYPE D_800EB510;
+extern AnimCmd* D_800ED5B0;
+extern AnimCmd** D_800ED6B0;
 extern UNK_PTR* D_800EDAE0;
+extern UNK_TYPE D_800EDAB0;
+extern UNK_TYPE D_800EDB90;
 
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
-        return (&D_800AE284)[pkmnID];
+        return D_800AE284[pkmnID];
     }
     if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
         pkmnID == 0x40B) {
@@ -226,7 +249,7 @@ char* getPokemonName(s32 pkmnID) {
     }
     switch (pkmnID) {
         case 0x25B:
-            return (&D_800AE284)[AnimalID_SHELLDER];
+            return D_800AE284[AnimalID_SHELLDER];
         case 0x3EC:
         case 0x3F2:
         case 0x3FA:
@@ -414,16 +437,15 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BDDC.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BF48.s")
-
 s32 func_8009BF48(UnkThingSub*, GObj*);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BF48.s")
 
 void func_8009C25C(UnkThing* arg0, u8 objIndex) {
     GObj* obj;
-    s32 i;
-    i = 0;
+    s32 i = 0;
     obj = omGObjListHead[objIndex];
-    while (obj != NULL && i < 12) {
+
+    while (obj != NULL && i < ARRAY_COUNT(arg0->unk_20)) {
         if (func_8009BF48(&arg0->unk_20[i], obj) != 0) {
             arg0->unk_3A4[i] = obj;
             i++;
@@ -432,7 +454,7 @@ void func_8009C25C(UnkThing* arg0, u8 objIndex) {
     }
 }
 
-s32 func_8009C304(UnkFunc8009C25C_Unk140* arg0, GObj* obj) {
+s32 func_8009C304(UnkThingSub2* arg0, GObj* obj) {
     DObj* dobj;
     u8 temp_t3;
     UNK_PTR* payload;
@@ -524,7 +546,25 @@ s32 func_8009C5C4(const void* a, const void* b) {
 void func_8009C604(UnkThing* arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C604.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C8E4.s")
+void func_8009C8E4(OMCamera* arg0, UnkStruct80366BA4* arg1, UnkThing* arg2) {
+    s32 i;
+
+    for (i = 0; i < ARRAY_COUNT(arg2->unk_140); i++) { arg2->unk_140[i].unk_00 = -1; }
+
+    for (i = 0; i < ARRAY_COUNT(arg2->unk_1A0); i++) { arg2->unk_1A0[i].unk_00 = -1; }
+
+    for (i = 0; i < ARRAY_COUNT(arg2->unk_20); i++) {
+        arg2->unk_20[i].pokemonID = -1;
+        arg2->unk_3A4[i] = NULL;
+    }
+
+    arg2->unk_3A0 = 0;
+    func_803643E0_5047F0(arg0);
+    func_8009C4F4(arg2, arg1, arg0);
+    func_8009C25C(arg2, 3);
+    func_8009C450(arg2, 4);
+    func_8009C604(arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C9E8.s")
 
@@ -625,12 +665,113 @@ void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
+void func_8009D21C(s32 arg0, s32* arg1);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D21C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D37C.s")
 
 void func_8009D65C(UnkThing*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D65C.s")
+
+// extern UnkGoldViper D_800AC0F4;
+
+// void func_8009D65C(UnkThing* arg0) {
+//     WorldBlock** sp3C;
+//     s32 sp38;
+//     f32 sp34;
+//     GObj* temp_v1_2;
+//     WorldBlock* temp_a0;
+//     WorldBlock* temp_v0_2;
+//     WorldBlock* temp_v0_4;
+//     WorldBlock** temp_v0;
+//     WorldBlock** temp_v0_5;
+//     WorldBlock** var_a1_2;
+//     WorldBlock** var_s0;
+//     WorldBlockDescriptor* temp_v1;
+//     WorldBlockGFX* temp_v0_3;
+//     f32 var_f2;
+
+//     s32 var_a1;
+//     s32 var_s1;
+//     s32 var_s1_2;
+
+//     var_a1 = arg0->unk_0;
+//     if (var_a1 >= 0) {
+//         if (D_800AC0F0 != var_a1) {
+//             if (D_800AC0F0 >= 0) {
+//                 destroyWorld();
+//                 var_a1 = (s32) arg0->unk_0;
+//             }
+//             func_8009A8F0(var_a1);
+//             func_8009D37C(arg0->unk_0);
+//             D_800AC0F0 = arg0->unk_0;
+//         }
+//         temp_v0 = getWorldBlocks();
+//         sp3C = temp_v0;
+//         sp38 = 0;
+//         if (temp_v0 != NULL) {
+//             var_s1 = 0;
+//             var_s0 = temp_v0;
+// loop_7:
+//             temp_v0_2 = *var_s0;
+//             if (temp_v0_2 != NULL) {
+//                 if (temp_v0_2->blockModel != NULL) {
+//                     temp_v1 = temp_v0_2->descriptor;
+//                     if (temp_v1 != NULL) {
+//                         temp_v0_3 = temp_v1->gfx;
+//                         if ((temp_v0_3 != NULL) && (temp_v0_3->textures != NULL) && (temp_v0_3->unk_08 != NULL)) {
+//                             temp_v0_4 = *var_s0;
+//                             animSetModelTreeTextureAnimation(temp_v0_4->blockModel, temp_v0_4->descriptor->gfx->unk_08, world_func_800E21A8(arg0->unk_4));
+//                             animUpdateModelTreeAnimation((*var_s0)->blockModel);
+//                         }
+//                     }
+//                 }
+//                 var_s1 += 4;
+//                 var_s0 += 4;
+//                 if ((sp3C != NULL) && (var_s1 != 0x34)) {
+//                     goto loop_7;
+//                 }
+//             }
+//         }
+//         sp38 = 0;
+//         if (arg0->unk_0 == 6) {
+//             var_f2 = (arg0->unk_4 * 6.2831855f) / 10000.0f;
+//         } else {
+//             var_f2 = 0.0f;
+//         }
+//         switch (arg0->unk_0) {
+//             case 0:
+//             case 2:
+//             case 3:
+//             case 5:
+//             case 6:
+//                 sp34 = var_f2;
+//                 setSkyBoxPos(arg0->unk_8.x, arg0->unk_8.y, arg0->unk_8.z, var_f2, world_func_800E21A8(arg0->unk_4));
+//                 break;
+//         }
+//         D_800AC0F4.unk_00 = 0.0f;
+//         D_800AC0F4.unk_28 = 0.0f;
+//         D_800AC0F4.unk_04 = 0.5f;
+//         func_800E3EE8_61698(&D_800AC0F4, arg0->unk_1 & 0xF, NULL, NULL);
+//         temp_v0_5 = getWorldBlocks();
+//         if (temp_v0_5 != NULL) {
+//             var_s1_2 = sp38 * 4;
+//             var_a1_2 = &temp_v0_5[sp38];
+// loop_24:
+//             temp_a0 = *var_a1_2;
+//             var_s1_2 += 4;
+//             if (temp_a0 != NULL) {
+//                 if (temp_a0->blockModel != NULL) {
+//                     temp_a0->blockModel->flags &= ~1;
+//                 }
+//                 var_a1_2 += 4;
+//                 if ((temp_v0_5 != NULL) && (var_s1_2 != 0x34)) {
+//                     goto loop_24;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     Vec3f sp24;
@@ -664,9 +805,38 @@ void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
 s32 func_8009D9A0(UnkThingSub*, s32, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
 
-void func_8009DEF0(UnkThing*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009DEF0.s")
+void func_8009DEF0(UnkThing* arg0) {
+    UnkV0* it;
+    s32 temp_v0;
+    s32 i;
 
+    D_800BDF60 = 0;
+
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_20); i++) {
+        if (arg0->unk_20[i].pokemonID < 0) {
+            return;
+        }
+        for(it = D_800ADBEC; it->unk_00 != 0; it++) {
+            if (it->unk_00 == arg0->unk_20[i].pokemonID) {
+                temp_v0 = func_8009D9A0(&arg0->unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
+                if ((arg0->unk_20[i].pokemonID > 0 && arg0->unk_20[i].pokemonID <= 151) ||
+                    arg0->unk_20[i].pokemonID == 0x25B ||
+                    arg0->unk_20[i].pokemonID == 0x258 ||
+                    arg0->unk_20[i].pokemonID == 0x259 ||
+                    arg0->unk_20[i].pokemonID == 0x25A)
+                {
+                    D_800BDF30[D_800BDF60] = temp_v0;
+                    D_800BDF68[D_800BDF60] = i;
+                    D_800BDF60++;
+                }
+                break;
+            }
+        }
+    }
+}
+
+
+GObj* func_8009E050(UnkThingSub2*, UNK_TYPE*, UNK_TYPE*, void (*)(GObj*));
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E050.s")
 
 void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists, u8 skipFrames) {
@@ -681,8 +851,53 @@ void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists,
     animUpdateModelTreeAnimation(gobj);
 }
 
-void func_8009E1CC(UnkThing*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E1CC.s")
+void func_8009E1CC(UnkThing* arg0) {
+    GObj* gobj;
+    f32 temp_f0;
+    s32 i;
+    u8 temp_s3;
+
+    i = 0;
+
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_140); i++) {
+        temp_s3 = arg0->unk_140[i].unk_01;
+        switch (arg0->unk_140[i].unk_00) {
+            case 1:
+                func_8009E110(
+                    func_8009E050(&arg0->unk_140[i], &D_800E9138, &D_800E8EB8, renderModelTypeBFogged),
+                    NULL,
+                    &D_800E91C0,
+                    temp_s3
+                );
+                break;
+            case 2:
+                gobj = func_8009E050(&arg0->unk_140[i], &D_800EAED0, &D_800EAC58, renderModelTypeBFogged);
+                func_8009E110(gobj, NULL, &D_800EAF60, temp_s3 & 0xF);
+                gobj->data.dobj->scale.v.x = (gobj->data.dobj->scale.v.x * (temp_s3 >> 4)) / 15.0f;
+                gobj->data.dobj->scale.v.y = (gobj->data.dobj->scale.v.y * (temp_s3 >> 4)) / 15.0f;
+                gobj->data.dobj->scale.v.z = (gobj->data.dobj->scale.v.z * (temp_s3 >> 4)) / 15.0f;
+                break;
+            case 3:
+                func_8009E110(
+                    func_8009E050(&arg0->unk_140[i], &D_800EB430, &D_800EB510, renderModelTypeDFogged),
+                    &D_800EAFB0,
+                    &D_800EB0C0,
+                    temp_s3
+                );
+                break;
+            case 4:
+                func_8009E110(
+                    func_8009E050(&arg0->unk_140[i], &D_800EDAB0, &D_800EDB90, renderModelTypeDFogged),
+                    &D_800ED5B0,
+                    &D_800ED6B0,
+                    temp_s3
+                );
+                break;
+            default:
+                return;
+        }
+    }
+}
 
 void func_8009E3D0(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E3D0.s")
@@ -695,7 +910,7 @@ void func_8009FA00(OMCamera* arg0, UnkThing* arg1) {
     omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
 }
 
-void func_8009FA68(OMCamera* arg0, UnkThing* arg1) {
+void func_8009FA68(OMCamera* cam, UnkThing* arg1) {
     GObj* temp_s1;
     GObj* var_s0;
     s32 temp_v0;
@@ -703,10 +918,10 @@ void func_8009FA68(OMCamera* arg0, UnkThing* arg1) {
     temp_v0 = arg1->unk_00_25;
     if (temp_v0 >= 0) {
         if (temp_v0 == 4) {
-            arg0->flags |= 2;
-            arg0->bgColor = 0x05080401;
+            cam->flags |= 2;
+            cam->bgColor = 0x05080401;
         } else {
-            arg0->flags &= ~2;
+            cam->flags &= ~2;
         }
         var_s0 = omGObjListHead[D_800BDF1E];
         if (var_s0 != NULL) {
@@ -720,8 +935,8 @@ void func_8009FA68(OMCamera* arg0, UnkThing* arg1) {
         func_8009D65C(arg1);
         func_8009DEF0(arg1);
         func_8009E1CC(arg1);
-        func_8009FA00(arg0, arg1);
-        func_8009D8A8(arg0, arg1);
+        func_8009FA00(cam, arg1);
+        func_8009D8A8(cam, arg1);
     }
 }
 

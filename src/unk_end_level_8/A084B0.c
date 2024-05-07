@@ -155,27 +155,28 @@ void func_801DC9E8_A085D8(UNK_PTR arg0) {
                     func_8036D1A4_840954(D_801DD258_A08E48, 1);
                 }
             }
-            if ((sp3C->unk_18 & 4) && (D_801DD12C_A08D1C > 0)) {
+            if (sp3C->unk_18 & 4 && D_801DD12C_A08D1C > 0) {
                 s8 scopedTemp2;
 
                 auPlaySound(0x43);
-                D_801DD12C_A08D1C -= 1;
-            } else if ((sp3C->unk_18 & 8) && (D_801DD12C_A08D1C < 5)) {
+                D_801DD12C_A08D1C--;
+            } else if (sp3C->unk_18 & 8 && D_801DD12C_A08D1C < 5) {
                 s8 scopedTemp3;
 
                 auPlaySound(0x42);
-                D_801DD12C_A08D1C += 1;
+                D_801DD12C_A08D1C++;
             } else {
                 goto label;
             }
         }
+
         if (D_801DD250_A08E40 == 0x10000000) {
-            D_801DD24C_A08E3C = (s32) (D_801DD24C_A08E3C + 1) % 4;
+            D_801DD24C_A08E3C = (D_801DD24C_A08E3C + 1) % 4;
             D_801DD240_A08E30->flags |= 1;
             gtlWaitAllGfxTasksDone();
             func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
             D_801DD240_A08E30->flags &= ~1;
-            ohWait(0xA);
+            ohWait(10);
             D_801DD25C_A08E4C = (D_801DD12C_A08D1C != 0) ? ((sp2C * sp28) / D_801DD12C_A08D1C) : 0;
         }
     }
@@ -205,8 +206,8 @@ void func_801DCE64_A08A54(void) {
 
     obj = ohCreateCamera(1, ohUpdateDefault, 0, 5, ren_func_800192DC, 0xA, 0x20, -1, 0, 1, NULL, 0, 0);
     cam = obj->data.cam;
-    cam->flags = 5;
-    obj->flags |= 1;
+    cam->flags = 0x4 | 0x1;
+    obj->flags |= 0x1;
     omCameraAddMtx(cam, 3, 0);
     omCameraAddMtx(cam, 0xE, 0);
     cam->perspMtx.persp.near = 10.0f;

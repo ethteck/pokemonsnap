@@ -220,7 +220,7 @@ typedef struct PlayerName {
 
 typedef struct UnkStruct80366BA4 {
     /* 0x00 */ u8 pad00[0x8];
-    /* 0x08 */ s32 *unk_08;
+    /* 0x08 */ s32* unk_08;
     /* 0x0C */ Vec3f unk_0C;
     /* 0x18 */ u8 pad18[0x4];
     /* 0x1C */ f32 unk_1C;
@@ -232,15 +232,22 @@ typedef struct UnkGoofyGlobule {
 
 typedef struct UnkThingSub {
     /* 0x00 */ s32 pokemonID : 13;
-    /* 0x00 */ s32 unk_20_7 : 1;
-    /* 0x04 */ char unk_4[0x14];
+    /* 0x00 */ s32 unk_20_7 : 3;
+    /* 0x02 */ s32 unk_02 : 16;
+    /* 0x04 */ char unk_04[0x14];
 } UnkThingSub; // size = 0x18
 
-typedef struct UnkFunc8009C25C_Unk140 {
-    /* 0x00 */ u8 unk_00;
-    /* 0x01 */ u8 unk_01;
+typedef struct UnkThingSub2 {
+    /* 0x00 */ s8 unk_00;
+    /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
     /* 0x04 */ Vec3f unk_04;
-} UnkFunc8009C25C_Unk140; // size == 0x10
+} UnkThingSub2; // size == 0x10
+
+typedef struct UnkThingSub3 {
+    /* 0x00 */ s8 unk_00;
+    /* 0x01 */ char unk_01[0x3];
+    /* 0x04 */ char unk_04[0xC];
+} UnkThingSub3;
 
 typedef struct UnkThing {
     /* 0x000 */ s32 unk_00_25 : 7;
@@ -252,9 +259,9 @@ typedef struct UnkThing {
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
     /* 0x020 */ UnkThingSub unk_20[12];
-    /* 0x140 */ UnkFunc8009C25C_Unk140 unk_140[6];
-    /* 0x1A0 */ UNK_TYPE unk_1A0;
-    /* 0x1A4 */ char unk_1A4[0x3A4 - 0x1A4];
+    /* 0x140 */ UnkThingSub2 unk_140[6];
+    /* 0x1A0 */ UnkThingSub3 unk_1A0[32];
+    /* 0x3A0 */ UNK_TYPE unk_3A0;
     /* 0x3A4 */ GObj* unk_3A4[12];
 } UnkThing;
 

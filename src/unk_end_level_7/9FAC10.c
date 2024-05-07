@@ -11,6 +11,8 @@ void func_801DCF50_9FAC10(UNK_PTR);
 void func_801DF078_9FCD38(UNK_PTR);
 void func_801DD4C4_9FB184(s32);
 void func_801DD28C_9FAF4C(s32);
+void func_801DE04C_9FBD0C(s32 arg0, s32 arg1);
+void func_801DDCA8_9FB968(int);
 
 extern Sprite D_801E8FB0_A06C70;
 extern GObj* D_80230868_A4E528;
@@ -19,7 +21,7 @@ extern s32 D_801EA1FC_A07EBC;
 extern SObj* D_8023086C_A4E52C;
 extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
-
+extern UnkLimeHaddock D_80230818_A4E4D8[];
 extern UnkLimeHaddock D_80230848_A4E508[];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DCF50_9FAC10.s")
@@ -33,7 +35,30 @@ void func_801DD074_9FAD34(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD0AC_9FAD6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD1A8_9FAE68.s")
+UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
+    UnkStruct800BEDF8* sp24;
+
+    func_803700A4_843854(0);
+    func_801DE04C_9FBD0C(-1, -1);
+    func_8036D4A0_840C50(0);
+    func_801DDCA8_9FB968(0xD);
+
+    while (1) {
+        ohWait(1);
+        sp24 = func_800AA38C(0);
+        if (sp24->unk_18 & 0x4000) {
+            func_801DDCA8_9FB968(8);
+            break;
+        }
+        if (sp24->unk_18 & 0x8000) {
+            auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
+            func_801DDCA8_9FB968(0xA);
+            break;
+        }
+    }
+
+    return sp24;
+}
 
 void func_801DD270_9FAF30(void) {
     D_801EA1FC_A07EBC = 0x18;
@@ -55,7 +80,25 @@ void func_801DD708_9FB3C8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD768_9FB428.s")
+void func_801DD768_9FB428(s32 arg0) {
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        if (arg0 == 0) {
+            D_80230848_A4E508[i].unk_0->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            D_80230848_A4E508[i].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
+        }
+    }
+
+    for (i = 0; i < 6; i++) {
+        if (arg0 == 1) {
+            D_80230818_A4E4D8[i].unk_0->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            D_80230818_A4E4D8[i].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
+        }
+    }
+}
 
 void func_801DD860_9FB520(void) {
     s32 i;

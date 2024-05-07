@@ -161,5 +161,5 @@ void func_beach_802CA010(GObj* obj) {
 }
 
 void func_beach_802CA05C(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    func_80362EE0_5032F0(gObjID, id, roomA, roomB, spawn, &D_beach_802CD7A8);
+    spawnPokemonOnGround(gObjID, id, roomA, roomB, spawn, &D_beach_802CD7A8);
 }

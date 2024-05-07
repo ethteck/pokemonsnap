@@ -1117,7 +1117,7 @@ void omDObjRemoveAllMObj(DObj* dobj) {
 void omDObjInit(DObj* dobj) {
     s32 i;
 
-    dobj->unk_4C = 0;
+    dobj->unk_4C = NULL;
     dobj->flags = 0;
     dobj->animCBReceiver = FALSE;
     dobj->numMatrices = 0;

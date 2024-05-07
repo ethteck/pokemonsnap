@@ -18,29 +18,33 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
-void updateAnimalState(GObj* obj, gfxFunc state);
+void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
+void updateAnimalState(GObj* obj, GObjFunc state);
+s32 func_80353D68_4F4178(void);
 void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
-void runPathProcess(GObj* obj, gfxFunc func);
-void setAnimalAnimation(GObj*, animationHeader*);
-void forceAnimalAnimation(GObj*, animationHeader*);
-void animalUVStuff(GObj*, animationHeader*, f32 start, s32 forceUpdate);
+void runPathProcess(GObj* obj, GObjFunc func);
+void setAnimalAnimation(GObj*, AnimationHeader*);
+void forceAnimalAnimation(GObj*, AnimationHeader*);
+void animalUVStuff(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
 void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
 void runAnimalCleanup(GObj* obj);
 GObj* addAnimalAtGeo(GObj* obj, u16 AnimalID, AnimalDef* def);
 struct WorldBlock* setNodePosToNegRoom(GObj*);
 void animalPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
-void spawnAnimalUsingDeltaHeight(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
+GObj* spawnPokemon(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 void ren_func_800192DC(GObj* obj);
 
 OSThread* func_80000460(void);
+void func_8009A8F0(s32);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
-void func_8009FA68(OMCamera* arg0, UNK_PTR arg1);
+void func_8009D37C(u8);
+void func_8009FA68(OMCamera* arg0, UnkThing* arg1);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
-void func_8009FC38(void*);
+void func_8009FC38(UnkGoofyGlobule*);
 void renderModelTypeAFogged(GObj*);
 void renderModelTypeBFogged(GObj*);
 void renderModelTypeCFogged(GObj*);
@@ -53,6 +57,7 @@ void setFogDistance(u16, u16);
 void func_800A19D8(s32);
 void func_800A1A50(Gfx**);
 
+void func_800A1E6C(Vec3f*);
 void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
 GObj* func_800A2094(s32, s32, OMCamera*);
 void func_800A5DF4(s32, s32);
@@ -91,7 +96,7 @@ s32 func_800BF244_5C0E4(void);
 s32 func_800BF3D4_5C274(s32);
 char* get_player_name(void);
 void func_800BF44C_5C2EC(PlayerName*);
-UNK_PTR func_800BF574_5C414(s32);
+UnkThing* func_800BF574_5C414(s32);
 void* func_800BF710_5C5B0(s32);
 void func_800BF780_5C620(s32);
 s32 func_800BF818_5C6B8(s32);
@@ -153,6 +158,7 @@ void func_803641B8_5045C8(struct WorldBlock*, AnimalDef*);
 void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364494_5048A4(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 s32 func_80364718_504B28(GObj *obj);
+s32 func_803647BC_504BCC(GObj*);
 void func_8036650C_50691C(void);
 void* func_8036A194_83D944(u32);
 void func_8036A228_83D9D8(void*);
@@ -229,7 +235,7 @@ void func_80375284_848A34(int);
 
 void func_8037005C_84380C(s32, s32);
 
-void func_80362EE0_5032F0(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
-void func_80362DC4_5031D4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, animalInitData* initData);
+GObj* spawnPokemonOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+GObj* func_80362DC4_5031D4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

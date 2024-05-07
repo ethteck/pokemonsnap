@@ -4,7 +4,7 @@
 #include "ld_addrs.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
-    geoNode* a0;
+    DObj* a0;
     struct Mtx3Float* position;
     GObj* animalObj;
     ObjectSpawn spawn;
@@ -26,10 +26,10 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     animalObj = animalAddOne(roomA, roomA, &spawn, &def);
 
     position = &obj->data.dobj->position;
-    a0 = (geoNode*) animalObj->data.any;
-    a0->xform->translation.x = position->v.x;
-    a0->xform->translation.y = position->v.y;
-    a0->xform->translation.z = position->v.z;
+    a0 = animalObj->data.dobj;
+    GET_TRANSFORM(a0)->pos.v.x = position->v.x;
+    GET_TRANSFORM(a0)->pos.v.y = position->v.y;
+    GET_TRANSFORM(a0)->pos.v.z = position->v.z;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
@@ -47,7 +47,7 @@ void func_beach_802C431C(WorldBlock* arg0) {
 }
 
 void func_beach_802C4340(void) {
-    world_func_800E4040(&D_beach_80318F00);
+    setHeightMap(&D_beach_80318F00);
     createWorld(&D_8011B914, 99, 100, 126, 9, 3, beachAnimalAdd, func_beach_802C431C, func_beach_802C42F8);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(0x80, 0xE4, 3, 5);

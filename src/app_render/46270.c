@@ -59,7 +59,7 @@ s32 func_8009A8E4(void) {
 
 void func_8009A8F0(s32 levelID) {
     switch (levelID) {
-        case 0:
+        case SCENE_BEACH:
             dmaLoadOverlay(&D_800ABE10);
             dmaReadRom(stage0_extra_ROM_START, stage0_extra_VRAM, stage0_extra_ROM_END - stage0_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -67,7 +67,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             return;
-        case 1:
+        case SCENE_TUNNEL:
             dmaLoadOverlay(&D_800ABE58);
             dmaReadRom(stage1_extra_ROM_START, stage1_extra_VRAM, stage1_extra_ROM_END - stage1_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -77,7 +77,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
             dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
             break;
-        case 4:
+        case SCENE_CAVE:
             dmaLoadOverlay(&D_800ABEA0);
             dmaReadRom(stage4_extra_ROM_START, stage4_extra_VRAM, stage4_extra_ROM_END - stage4_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
@@ -89,7 +89,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
             dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
             break;
-        case 3:
+        case SCENE_RIVER:
             dmaLoadOverlay(&D_800ABEE8);
             dmaReadRom(stage3_extra_ROM_START, stage3_extra_VRAM, stage3_extra_ROM_END - stage3_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
@@ -99,19 +99,19 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             break;
-        case 2:
+        case SCENE_VOLCANO:
             dmaLoadOverlay(&D_800ABF30);
             dmaReadRom(stage2_extra_ROM_START, stage2_extra_VRAM, stage2_extra_ROM_END - stage2_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
-        case 5:
+        case SCENE_VALLEY:
             dmaLoadOverlay(&D_800ABF78);
             dmaReadRom(stage5_extra_ROM_START, stage5_extra_VRAM, stage5_extra_ROM_END - stage5_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
-        case 6:
+        case SCENE_RAINBOW:
             dmaLoadOverlay(&D_800ABFC0);
             dmaReadRom(stage6_extra_ROM_START, stage6_extra_VRAM, stage6_extra_ROM_END - stage6_extra_ROM_START);
             break;

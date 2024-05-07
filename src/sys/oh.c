@@ -157,7 +157,7 @@ void ohResumeProcess(GObjProcess* proc) {
     proc->paused = 0;
 }
 
-void ohPauseProcessByFunction(GObj* obj, void (*function)(GObj*)) {
+void ohPauseProcessByFunction(GObj* obj, GObjFunc function) {
     GObjProcess* proc;
 
     if (obj == NULL) {
@@ -173,7 +173,7 @@ void ohPauseProcessByFunction(GObj* obj, void (*function)(GObj*)) {
     }
 }
 
-void ohResumeProcessByFunction(GObj* obj, void (*function)(GObj*)) {
+void ohResumeProcessByFunction(GObj* obj, GObjFunc function) {
     GObjProcess* proc;
 
     if (obj == NULL) {

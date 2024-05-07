@@ -20,7 +20,7 @@ extern UNK_PTR D_801E54CC_AAA50C;
 s32 D_801E55D0_AAA610[2];
 s32 D_801E55D8_AAA618;
 GObj* D_801E55DC_AAA61C;
-UNK_PTR D_801E55E0_AAA620[4];
+UnkThing* D_801E55E0_AAA620[4];
 
 void func_801DC8A0_AA18E0(s32 arg0) {
     if (arg0 == 4) {
@@ -39,7 +39,7 @@ void func_801DC8A0_AA18E0(s32 arg0) {
     func_800067DC();
 }
 
-void func_801DC930_AA1970(OMCamera* arg0, UNK_PTR arg1) {
+void func_801DC930_AA1970(OMCamera* arg0, UnkThing* arg1) {
     GObj* obj;
 
     func_8009FA68(arg0, arg1);
@@ -61,35 +61,38 @@ void func_801DC9BC_AA19FC(void *unused) {
 
 void func_801DC9D0_AA1A10(GObj* arg0) {
     OMCamera* sp2C;
-    s32 var_s0;
-    s32 var_a0;
+    s32 count;
+    s32 idx;
     s32 i;
-    s32 *temp_v0;
+    UnkThing* temp_v0;
 
     sp2C = arg0->data.cam;
     if (D_801E54C8_AAA508[0] >= 0) {
         func_800067DC();
     }
-    var_s0 = 0;
-    for (var_a0 = 0; var_a0 < 4; var_a0++) {
-        temp_v0 = func_800BF574_5C414(var_a0);
+
+    count = 0;
+    for (idx = 0; idx < ARRAY_COUNT(D_801E55E0_AAA620); idx++) {
+        temp_v0 = func_800BF574_5C414(idx);
         if (temp_v0 != NULL) {
-            var_s0++;
-            D_801E55E0_AAA620[var_a0] = temp_v0;
+            count++;
+            D_801E55E0_AAA620[idx] = temp_v0;
         }
 
     }
-    if (var_s0 < 4) {
+    if (count < 4) {
         func_801DC8A0_AA18E0(2);
         ohWait(1);
     }
+
     if (D_801E55D8_AAA618 == 3) {
         D_801E55DC_AAA61C->flags &= ~1;
     } else {
         D_801E55DC_AAA61C->flags |= 1;
     }
+
     if (D_801E55D8_AAA618 >= 0 && D_801E55D8_AAA618 < 16) {
-        UNK_PTR var_s0_2;
+        UnkThing* var_s0_2;
 
         func_8009FB50(D_801E54BC_AAA4FC, D_801E54C0_AAA500, D_801E54C4_AAA504);
         var_s0_2 = D_801E55E0_AAA620[D_801E54C8_AAA508[1 + D_801E55D8_AAA618]];
@@ -185,7 +188,7 @@ void func_801DCCDC_AA1D1C(void) {
     ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8, 0, NULL, 1);
 
     for (i = 0; i < ARRAY_COUNT(D_801E55E0_AAA620); i++) {
-        D_801E55E0_AAA620[i] = 0;
+        D_801E55E0_AAA620[i] = NULL;
     }
 }
 

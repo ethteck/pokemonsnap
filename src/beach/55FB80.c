@@ -50,7 +50,7 @@ void func_beach_802C7DEC(GObj* obj) {
 }
 
 void func_beach_802C7E38(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_beach_802CCDA4);
+    spawnPokemon(gObjID, id, roomA, roomB, spawn, &D_beach_802CCDA4);
 }
 
 // TODO: potential file split
@@ -176,5 +176,5 @@ void func_beach_802C821C(GObj* obj) {
 }
 
 void func_beach_802C8274(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    spawnAnimalUsingDeltaHeight(gObjID, id, roomA, roomB, spawn, &D_beach_802CCE50);
+    spawnPokemon(gObjID, id, roomA, roomB, spawn, &D_beach_802CCE50);
 }

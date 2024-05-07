@@ -1,14 +1,19 @@
 #include "common.h"
 
+typedef struct UnkCanaryScallop {
+    s32 unk_0;
+    s32 unk_4;
+} UnkCanaryScallop;
+
 void func_801DE87C_9FC53C(void);
 void func_801DEE88_9FCB48();
-void func_801DF8A4_9FD564(UNK_PTR, s32*);
+s32 func_801DF8A4_9FD564(UNK_PTR, s32*);
 s32 func_801E0F6C_9FEC2C(void);
 s32 func_801E0FAC_9FEC6C(s32);
 u32 func_801E0328_9FDFE8();
 u32 func_801E04E8_9FE1A8();
 s32 func_801E0B7C_9FE83C();
-s32 func_80370600_843DB0();
+UNK_PTR func_80370600_843DB0();
 void func_801DD860_9FB520(void);
 void func_801DDC50_9FB910(s32);
 void func_801DE2E0_9FBFA0(s32);
@@ -32,7 +37,7 @@ extern s32 D_801DC904;
 extern s32 D_801EA288_A07F48;
 extern s32 D_801EA28C_A07F4C;
 extern s32 D_801EA294_A07F54;
-extern s32 D_802308A0_A4E560;
+extern UnkCanaryScallop* D_802308A0_A4E560;
 extern s32 D_802308A4_A4E564;
 extern s32 D_802308A8_A4E568;
 extern s32 D_802308AC_A4E56C;
@@ -50,7 +55,60 @@ extern s32 D_802308B8_A4E578;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FD510/func_801E006C_9FDD2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FD510/func_801E0328_9FDFE8.s")
+u32 func_801E0328_9FDFE8(void) {
+    UnkStruct800BEDF8* sp24;
+    UNUSED s32 pad;
+    s32 sp1C;
+
+    func_80370038(0x3E, 0xC);
+    func_803700A4(1);
+    func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
+    sp1C = -1;
+
+    while (1) {
+        ohWait(1);
+        sp24 = func_800AA38C(0);
+        if (func_801DF8A4_9FD564((void*) sp24, &D_802308A4_A4E564) != 0) {
+            if (D_802308A4_A4E564 != sp1C) {
+                func_801DDCA8_9FB968(7);
+            }
+            auPlaySound(0x43U);
+            sp1C = D_802308A4_A4E564 = 7;
+        }
+        if (sp24->unk_18 & 0x8000) {
+            switch (D_802308A0_A4E560[D_802308A4_A4E564].unk_0) {
+                case 2:
+                    auPlaySound(0x42U);
+                    return 1U;
+                case 3:
+                    if (func_801E0F50_9FEC10() != 0) {
+                        auPlaySound(0x42U);
+                        return 3U;
+                    }
+                    auPlaySound(0x55U);
+                    ohWait(0xA);
+                    continue;
+                case 26:
+                    auPlaySound(0x42U);
+                    return 5U;
+                case 20:
+                    auPlaySound(0x42U);
+                    return 6U;
+                case 32:
+                    if (contIsPrinterAvailable() != 0) {
+                        auPlaySound(0x42U);
+                        return 7U;
+                    }
+                    auPlaySound(0x55U);
+                    ohWait(0xA);
+                    continue;
+                case 4:
+                    auPlaySound(0x42U);
+                    return 8U;
+            }
+        }
+    }
+}
 
 u32 func_801E04E8_9FE1A8(void) {
     UnkStruct800BEDF8* sp1C;

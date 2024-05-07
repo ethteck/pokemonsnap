@@ -503,9 +503,9 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     }
 }
 
-void func_8009C4F4(UnkThing* arg0, UnkStruct80366BA4* arg1, OMCamera* arg2) {
+void func_8009C4F4(UnkThing* arg0, UnkGoldViper* arg1, OMCamera* arg2) {
     arg0->unk_00_25 = getLevelId();
-    arg0->unk_00_16 = *arg1->unk_08;
+    arg0->unk_00_16 = arg1->unk_08->index;
     arg0->unk_04 = world_func_800E219C();
     arg0->unk_08.x = arg2->viewMtx.lookAt.eye.x;
     arg0->unk_08.y = arg2->viewMtx.lookAt.eye.y;
@@ -546,7 +546,7 @@ s32 func_8009C5C4(const void* a, const void* b) {
 void func_8009C604(UnkThing* arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C604.s")
 
-void func_8009C8E4(OMCamera* arg0, UnkStruct80366BA4* arg1, UnkThing* arg2) {
+void func_8009C8E4(OMCamera* arg0, UnkGoldViper* arg1, UnkThing* arg2) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(arg2->unk_140); i++) { arg2->unk_140[i].unk_00 = -1; }

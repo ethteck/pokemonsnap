@@ -9,8 +9,8 @@ UnkPinkBarracuda* func_801E0F88_9FEC48(s32);
 s32 func_801DC904_9FA5C4(void);
 void func_801DCF50_9FAC10(UNK_PTR);
 void func_801DF078_9FCD38(UNK_PTR);
-void func_801DD4C4_9FB184(s32);
-void* func_801DD28C_9FAF4C(s32);
+GObj* func_801DD4C4_9FB184(s32);
+GObj* func_801DD28C_9FAF4C(s32);
 void func_801DE04C_9FBD0C(s32 arg0, s32 arg1);
 void func_801DDCA8_9FB968(int);
 void* func_801DF850_9FD510(void);
@@ -106,7 +106,7 @@ void func_801DD270_9FAF30(void) {
     D_801EA1FC_A07EBC = 0x18;
 }
 
-void* func_801DD28C_9FAF4C(s32 arg0) {
+GObj* func_801DD28C_9FAF4C(s32 arg0) {
     GObj* gobj;
     SObj* sobj;
     s32 x;
@@ -154,7 +154,53 @@ void* func_801DD28C_9FAF4C(s32 arg0) {
     return gobj;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DD4C4_9FB184.s")
+GObj* func_801DD4C4_9FB184(s32 arg0) {
+    GObj* gobj;
+    SObj* sobj;
+    s32 x;
+    s32 y;
+    Bitmap* bitmap;
+    u8* dest;
+    u8* src;
+
+    x = ((arg0 % 2) * 0x42) + 0x89;
+    y = ((arg0 / 2) * 0x37) + 0x35;
+
+    gobj = func_80371C68_845418(NULL, 6, &D_801E82A0_A05F60);
+    sobj = gobj->data.sobj;
+    sobj->sprite.x = x;
+    sobj->sprite.y = y;
+    D_80230848_A4E508[arg0].unk_0 = gobj;
+
+    sobj = func_80371E68_845618(sobj, &D_801E82A0_A05F60);
+    sobj->sprite.x = 0x36;
+    sobj->sprite.y = 0;
+
+    sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 0;
+
+    sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 0x29;
+
+    sobj = func_80371DC0_845570(sobj, &D_801EA1B0_A07E70);
+    sobj->sprite.x = 2;
+    sobj->sprite.y = 2;
+    D_80230848_A4E508[arg0].unk_4 = sobj;
+
+    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
+    dest = (u8*) func_8036A194_83D944(0xFD8);
+    src = sobj->sprite.bitmap->buf;
+    *bitmap = *sobj->sprite.bitmap;
+    bitmap->buf = dest;
+    sobj->sprite.bitmap = bitmap;
+    for (x = 0xFD8; x > 0; src++, dest++, x--) {
+        *dest = *src;
+    }
+
+    return gobj;
+}
 
 void func_801DD708_9FB3C8(void) {
     s32 i;
@@ -237,8 +283,6 @@ void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE318_9FBFD8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE4A0_9FC160.s")
-
-void func_801DD0AC_9FAD6C(s32);
 
 void func_801DE538_9FC1F8(void) {
     s32 i;

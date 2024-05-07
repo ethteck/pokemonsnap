@@ -37,7 +37,7 @@ extern Sprite D_801E8D50_A06A10;
 void func_801DCF50_9FAC10(UNK_PTR arg0) {
     s32 sp24;
 
-    while (1) {
+    while (TRUE) {
         if (D_801EA1F4_A07EB4 != 0) {
             sp24 = contIsPrinterAvailable();
             if (D_801EA200_A07EC0 != sp24) {
@@ -87,7 +87,7 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     func_8036D4A0_840C50(0);
     func_801DDCA8_9FB968(0xD);
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
         sp24 = func_800AA38C(0);
         if (sp24->unk_18 & 0x4000) {
@@ -95,7 +95,7 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
             break;
         }
         if (sp24->unk_18 & 0x8000) {
-            auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
+            auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             func_801DDCA8_9FB968(0xA);
             break;
         }

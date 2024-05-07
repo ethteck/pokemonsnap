@@ -1,10 +1,96 @@
 #include "common.h"
+#include "world/world.h"
 
+typedef struct UnkBrassWolverine {
+    /* 0x00 */ char unk_00[0x20];
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ char unk_24[0x18];
+    /* 0x3C */ s32 unk_3C[1];
+} UnkBrassWolverine;
+
+extern UnkGoldViper D_80366BA4_506FB4;
+extern Sprite D_80366DF0_507200;
+extern Sprite D_80367580_507990;
+extern Sprite D_80367D10_508120;
+extern Sprite D_80367DC0_5081D0;
+extern Sprite D_80368038_508448;
+extern Sprite D_803706E0_510AF0;
+extern Sprite D_80378D88_519198;
+extern Sprite D_80378ED8_5192E8;
+extern Sprite D_8037A9A0_51ADB0;
+extern Sprite D_8037C468_51C878;
+extern Sprite D_8037D2A0_51D6B0;
+extern Sprite D_8037E0D8_51E4E8;
+extern Sprite D_8037EF10_51F320;
+extern Sprite D_8037FD48_520158;
+extern Sprite D_80380B80_520F90;
+extern Sprite D_803819B8_521DC8;
+extern GObj* D_80382C00_523010;
+extern DObj* D_80382C04_523014;
+extern UnkBrassWolverine* D_80382C30_523040;
+extern GObj* D_80382C38_523048;
+extern f32 D_80382C44_523054;
+extern f32 D_80382C5C_52306C;
+extern f32 D_80382C60_523070;
+extern GObj* D_80382C6C_52307C;
+extern SObj* D_80382C70_523080;
+extern SObj* D_80382C74_523084;
+extern SObj* D_80382C78_523088;
+extern SObj* D_80382C7C_52308C;
+extern SObj* D_80382C80_523090;
+extern SObj* D_80382C84_523094;
+extern SObj* D_80382C88_523098;
+extern SObj* D_80382C8C_52309C;
+extern SObj* D_80382C90_5230A0;
+extern Vec3f D_80382C94_5230A4;
+extern s32 D_80382CA0_5230B0;
+extern s32 D_80382CB4_5230C4;
+extern s32 D_80382CB8_5230C8;
+extern s32 D_80382CF4_523104;
+extern s32 D_80382D0C_52311C;
 extern u8 D_80382D20_523130;
+extern s32 D_80382D48_523158;
+extern s32 D_80388238_528648;
+
+extern SObj* D_803AE440_54E850;
+extern SObj* D_803AE444_54E854;
+extern SObj* D_803AE448_54E858;
+extern SObj* D_803AE44C_54E85C;
+extern SObj* D_803AE458_54E868;
+extern SObj* D_803AE45C_54E86C;
+extern SObj* D_803AE460_54E870;
+extern SObj* D_803AE464_54E874;
+extern SObj* D_803AE468_54E878;
+extern SObj* D_803AE46C_54E87C;
+extern f32 D_803AE478_54E888;
+extern f32 D_803AE47C_54E88C;
+extern struct DObjDynamicStore D_803AE4A0_54E8B0;
+extern s8 D_803AE514_54E924;
+extern s8 D_803AE515_54E925;
+extern s8 D_803AE516_54E926;
+extern s32 D_803AE518_54E928;
+extern u32 D_803AE51C_54E92C;
+extern s8 D_803AE520_54E930;
+extern s8 D_803AE521_54E931;
+extern s8 D_803AE522_54E932;
+
+void func_803588D4_4F8CE4(void);
+void func_803597D4_4F9BE4(void);
+void func_8035C44C_4FC85C(UNK_PTR, s32*);
+void func_8035C5CC_4FC9DC(UNK_PTR, s32*);
+void func_8035C74C_4FCB5C(void);
+void func_8035C7E4_4FCBF4(void);
+void func_8035C9CC_4FCDDC(s32, u8, s32);
+void func_8035DDE8_4FE1F8(s32);
+void func_8035D1A0_4FD5B0(void);
+void func_8035E37C_4FE78C(void);
+void func_80365B24_505F34(void);
+s32 func_8009A8CC(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350200_4F0610.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350224_4F0634.s")
+void func_80350224_4F0634(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035024C_4F065C.s")
 
@@ -15,16 +101,54 @@ extern u8 D_80382D20_523130;
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350488_4F0898.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350788_4F0B98.s")
+void func_80350788_4F0B98(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803507E0_4F0BF0.s")
+void func_803507E0_4F0BF0(s32 arg0) {
+    D_80382D48_523158 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803507EC_4F0BFC.s")
+void func_803507EC_4F0BFC(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350898_4F0CA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350950_4F0D60.s")
+void func_80350950_4F0D60(GObj* obj) {
+    if (D_80382D0C_52311C == 0) {
+        if ((gContInputPressedButtons & D_CBUTTONS) && D_80388238_528648 >= 3 && D_80382CB8_5230C8 == 0) {
+            D_80382CF4_523104 = 161;
+            D_80382CB8_5230C8 = 45;
+            func_8035DDE8_4FE1F8(161);
+            func_8035C74C_4FCB5C();
+        } else if (D_80382CB4_5230C4 == 0) {
+            if ((gContInputPressedButtons & B_BUTTON) && D_80388238_528648 >= 2) {
+                D_80382CF4_523104 = 162;
+                D_80382CB4_5230C4 = 45;
+                func_8035C44C_4FC85C(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
+                func_8035DDE8_4FE1F8(162);
+                func_8035C7E4_4FCBF4();
+                func_8035DDE8_4FE1F8(-1);
+                D_80382CB8_5230C8 = 0;
+            } else if ((gContInputPressedButtons & A_BUTTON) && D_80388238_528648 >= 1) {
+                D_80382CF4_523104 = 163;
+                D_80382CB4_5230C4 = 45;
+                func_8035C5CC_4FC9DC(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
+                func_8035DDE8_4FE1F8(163);
+                func_8035C7E4_4FCBF4();
+                func_8035DDE8_4FE1F8(-1);
+                D_80382CB8_5230C8 = 0;
+            }
+        }
+    }
+    if (D_80382CB4_5230C4 > 0) {
+        D_80382CB4_5230C4--;
+    }
+    if (D_80382CB8_5230C8 > 0) {
+        D_80382CB8_5230C8--;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350AE8_4F0EF8.s")
+void func_80350AE8_4F0EF8(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351114_4F1524.s")
 
@@ -33,10 +157,13 @@ extern u8 D_80382D20_523130;
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803511DC_4F15EC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803512FC_4F170C.s")
+void func_803512FC_4F170C(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351534_4F1944.s")
+void func_80351534_4F1944(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351768_4F1B78.s")
+void func_80351768_4F1B78(GObj*);
 
 void func_80351E8C_4F229C(Vec3f* arg0) {
     f32 sin;
@@ -48,8 +175,8 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
     x = arg0->x - D_80366BA4_506FB4.unk_0C.x;
     y = arg0->y - D_80366BA4_506FB4.unk_0C.y;
     z = arg0->z - D_80366BA4_506FB4.unk_0C.z;
-    sin = __sinf(-D_80366BA4_506FB4.unk_1C);
-    cos = __cosf(-D_80366BA4_506FB4.unk_1C);
+    sin = __sinf(-D_80366BA4_506FB4.unk_18.y);
+    cos = __cosf(-D_80366BA4_506FB4.unk_18.y);
     arg0->x = (x * cos) + (z * sin);
     arg0->y = y;
     arg0->z = (z * cos) - (x * sin);
@@ -70,10 +197,12 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803530B4_4F34C4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353118_4F3528.s")
+void func_80353118_4F3528(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353180_4F3590.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353BCC_4F3FDC.s")
+void func_80353BCC_4F3FDC(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353D50_4F4160.s")
 
@@ -100,6 +229,7 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80354860_4F4C70.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803549A4_4F4DB4.s")
+void func_803549A4_4F4DB4(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80354D38_4F5148.s")
 
@@ -122,6 +252,7 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803552B0_4F56C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803554EC_4F58FC.s")
+void func_803554EC_4F58FC(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803555B0_4F59C0.s")
 
@@ -140,16 +271,245 @@ void func_80351E8C_4F229C(Vec3f* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355D88_4F6198.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355EF0_4F6300.s")
+void func_80355EF0_4F6300(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355F18_4F6328.s")
+void func_80355F18_4F6328(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356074_4F6484.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356118_4F6528.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356124_4F6534.s")
+void func_80356124_4F6534(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803563A0_4F67B0.s")
+GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg2, u8 arg3, s32 arg4) {
+    GObj* sp4C;
+    GObj* sp48;
+    DObj* sp44;
+    SObj* sp40;
+
+    sp48 = omAddGObj(7, &func_80355EF0_4F6300, 9, 0x80000000);
+    omGObjAddDObj(sp48, NULL);
+    sp44 = sp48->data.dobj;
+
+    D_803AE4A0_54E8B0.kinds[0] = 1;
+    D_803AE4A0_54E8B0.kinds[1] = 2;
+    D_803AE4A0_54E8B0.kinds[2] = 3;
+    sp44->unk_4C = &D_803AE4A0_54E8B0;
+    omDObjAddMtx(sp44, MTX_TYPE_62, 0, 0);
+
+    D_803AE518_54E928 = func_8009A8CC();
+    D_803AE51C_54E92C = 0;
+    if (func_800BFCA0_5CB40(12) == 1) {
+        D_803AE51C_54E92C |= 0x1000;
+    }
+    if (func_800BFCA0_5CB40(13) == 1) {
+        D_803AE51C_54E92C |= 0x2000;
+    }
+    if (func_800BFCA0_5CB40(5) == 1) {
+        D_803AE51C_54E92C |= 0x20;
+    }
+    if (func_800BFCA0_5CB40(0) == 1) {
+        D_803AE51C_54E92C |= 1;
+    }
+    if (func_800BFCA0_5CB40(1) == 1) {
+        D_803AE51C_54E92C |= 2;
+    }
+    if (func_800BFCA0_5CB40(2) == 1) {
+        D_803AE51C_54E92C |= 4;
+    }
+    if (func_800BF864_5C704() >= 4) {
+        D_803AE51C_54E92C |= 0x100;
+    }
+    if (D_803AE518_54E928 != 0) {
+        func_80350788_4F0B98(sp48);
+    }
+    if (D_803AE51C_54E92C & 0x1000) {
+        D_803AE520_54E930 = 1;
+    } else {
+        D_803AE520_54E930 = 0;
+    }
+    if (D_803AE51C_54E92C & 0x2000) {
+        D_803AE521_54E931 = 1;
+    } else {
+        D_803AE521_54E931 = 0;
+    }
+    if (D_803AE51C_54E92C & 0x20) {
+        D_803AE522_54E932 = 1;
+    } else {
+        D_803AE522_54E932 = 0;
+    }
+    if (D_803AE51C_54E92C & 0x100) {
+        D_803AE515_54E925 = 0;
+    } else {
+        D_803AE515_54E925 = 1;
+    }
+    D_803AE514_54E924 = 0;
+    D_803AE516_54E926 = 0;
+    omCreateProcess(sp48, func_80350224_4F0634, 1, 11);
+    omCreateProcess(sp48, func_80350AE8_4F0EF8, 1, 9);
+    omCreateProcess(sp48, func_80350950_4F0D60, 1, 9);
+    omCreateProcess(sp48, func_803512FC_4F170C, 1, 9);
+    omCreateProcess(sp48, func_80351534_4F1944, 1, 9);
+    ohPauseProcessByFunction(sp48, func_80351534_4F1944);
+    omCreateProcess(sp48, func_80351768_4F1B78, 1, 9);
+    omCreateProcess(sp48, func_803507EC_4F0BFC, 0, 9);
+    D_80366BA4_506FB4.unk_00 = 0.0f;
+    D_80366BA4_506FB4.unk_04 = 0.5f;
+    D_80366BA4_506FB4.unk_28 = 0.0005f;
+    func_800E3EE8_61698(&D_80366BA4_506FB4, 0, arg0, arg1);
+    func_80351768_4F1B78(sp48);
+    GET_TRANSFORM(sp44)->pos.v.x = D_80366BA4_506FB4.unk_0C.x;
+    GET_TRANSFORM(sp44)->pos.v.y = D_80366BA4_506FB4.unk_0C.y;
+    GET_TRANSFORM(sp44)->pos.v.z = D_80366BA4_506FB4.unk_0C.z;
+    GET_TRANSFORM(sp44)->rot.f[1] = D_80366BA4_506FB4.unk_18.x;
+    GET_TRANSFORM(sp44)->rot.f[2] = D_80366BA4_506FB4.unk_18.x; // BUG
+    GET_TRANSFORM(sp44)->rot.f[3] = D_80366BA4_506FB4.unk_18.z;
+    sp4C = D_80382C00_523010 = sp48;
+    D_80382C04_523014 = sp44;
+    D_80382C44_523054 = 0.0005f;
+    D_80382C94_5230A4 = GET_TRANSFORM(sp44)->pos.v;
+    
+    sp48 = ohCreateSprite(25, func_80356124_4F6534, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80366DF0_507200, 1, func_80355F18_4F6328, 9);
+    D_80382C38_523048 = sp48;
+    D_803AE440_54E850 = sp48->data.sobj;
+
+    D_803AE444_54E854 = sp40 = omGObjAddSprite(sp48, &D_80367580_507990);
+    spMove(&sp40->sprite, 143, 103);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+
+    D_803AE448_54E858 = sp40 = omGObjAddSprite(sp48, &D_80367D10_508120);
+    spMove(&sp40->sprite, 143, 103);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+
+    D_803AE44C_54E85C = sp40 = omGObjAddSprite(sp48, &D_80367DC0_5081D0);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 157, 117);
+
+    D_803AE458_54E868 = sp40 = omGObjAddSprite(sp48, &D_80368038_508448);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+    spMove(&sp40->sprite, 78, 58);
+    spScale(&sp40->sprite, 82.0f, 1.0f);
+
+    D_803AE45C_54E86C = sp40 = omGObjAddSprite(sp48, &D_80368038_508448);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+    spMove(&sp40->sprite, 78, 180);
+    spScale(&sp40->sprite, 82.0f, 1.0f);
+
+    D_803AE460_54E870 = sp40 = omGObjAddSprite(sp48, &D_80368038_508448);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+    spMove(&sp40->sprite, 78, 60);
+    spScale(&sp40->sprite, 1.0f, 60.0f);
+
+    D_803AE464_54E874 = sp40 = omGObjAddSprite(sp48, &D_80368038_508448);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spColor(&sp40->sprite, 255, 255, 255, 127);
+    spMove(&sp40->sprite, 240, 60);
+    spScale(&sp40->sprite, 1.0f, 60.0f);
+
+    D_803AE468_54E878 = sp40 = omGObjAddSprite(sp48, &D_803706E0_510AF0);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 0, 0);
+
+    D_803AE46C_54E87C = sp40 = omGObjAddSprite(sp48, &D_80378D88_519198);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 0, 187);
+
+    func_803597D4_4F9BE4();
+    func_8035C9CC_4FCDDC(arg2, arg3, arg4);
+    func_8035D1A0_4FD5B0();
+    func_8035E37C_4FE78C();
+    func_803588D4_4F8CE4();
+
+    D_80382C30_523040->unk_20 = 55.0f;
+    D_803AE478_54E888 = 1.0f;
+    D_803AE47C_54E88C = 0.0f;
+    sp48 = omAddGObj(26, ohUpdateDefault, 0, 0x80000000);
+    omLinkGObjDL(sp48, renDrawSprite, 1, 0x80000000, -1);
+    D_80382C6C_52307C = sp48;
+
+    D_80382C70_523080 = sp40 = omGObjAddSprite(sp48, &D_80378ED8_5192E8);
+    spMove(&sp40->sprite, 0, 0);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    sp40->sprite.scalex = 32.0f;
+    sp40->sprite.scaley = 24.0f;
+
+    D_80382C74_523084 = sp40 = omGObjAddSprite(sp48, &D_8037A9A0_51ADB0);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+
+    D_80382C78_523088 = sp40 = omGObjAddSprite(sp48, &D_8037C468_51C878);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+
+    D_80382C7C_52308C = sp40 = omGObjAddSprite(sp48, &D_8037D2A0_51D6B0);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 156);
+
+    D_80382C80_523090 = sp40 = omGObjAddSprite(sp48, &D_8037E0D8_51E4E8);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 156);
+
+    D_80382C84_523094 = sp40 = omGObjAddSprite(sp48, &D_8037EF10_51F320);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 133);
+
+    D_80382C88_523098 = sp40 = omGObjAddSprite(sp48, &D_8037FD48_520158);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 133);
+
+    D_80382C8C_52309C = sp40 = omGObjAddSprite(sp48, &D_80380B80_520F90);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 179);
+
+    D_80382C90_5230A0 = sp40 = omGObjAddSprite(sp48, &D_803819B8_521DC8);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 179);
+
+    if (D_803AE518_54E928 == 0) {
+        omCreateProcess(sp48, func_803549A4_4F4DB4, 1, 9);
+    }
+    omCreateProcess(sp48, func_80353118_4F3528, 1, 9);
+    switch (getLevelId()) {
+        case SCENE_BEACH:
+            if (D_803AE515_54E925 == 1) {
+                omCreateProcess(sp4C, func_803554EC_4F58FC, 1, 9);
+                D_80382D0C_52311C = 1;
+            } else {
+                func_800BFEBC_5CD5C(8, 1);
+            }
+            D_80382C5C_52306C = 2.0f;
+            D_80382C60_523070 = 25.0f;
+            omCreateProcess(sp4C, func_80353BCC_4F3FDC, 0, 9);
+            break;
+        case SCENE_CAVE:
+            D_80382C5C_52306C = 40.0f;
+            D_80382C60_523070 = 1.5f;
+            omCreateProcess(sp4C, func_80353BCC_4F3FDC, 0, 9);
+            break;
+        case SCENE_RAINBOW:
+            D_80382C5C_52306C = 35.0f;
+            D_80382C60_523070 = 1.5f;
+            omCreateProcess(sp4C, func_80353BCC_4F3FDC, 0, 9);
+            break;
+        case SCENE_VALLEY:
+            D_80382C5C_52306C = 10.0f;
+            D_80382C60_523070 = 2.0f;
+            omCreateProcess(sp4C, func_80353BCC_4F3FDC, 0, 9);
+            break;
+        case SCENE_RIVER:
+            D_80382C5C_52306C = 15.0f;
+            D_80382C60_523070 = 1.5f;
+            omCreateProcess(sp4C, func_80353BCC_4F3FDC, 0, 9);
+            break;
+    }
+    func_80365B24_505F34();
+    return sp4C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356FBC_4F73CC.s")
 

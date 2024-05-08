@@ -1,10 +1,10 @@
 #include "common.h"
 #include "unk_end_level_7.h"
 
-UnkPinkBarracuda* D_802308C0_A4E580[60];
-UnkPinkBarracuda* D_802309B0_A4E670[4];
-UnkPinkBarracuda* D_802309C0_A4E680[69];
-UnkPinkBarracuda* D_80230AD4_A4E794;
+PhotoData* D_802308C0_A4E580[60];
+PhotoData* D_802309B0_A4E670[4];
+PhotoData* D_802309C0_A4E680[69];
+PhotoData* D_80230AD4_A4E794;
 UnkEmeraldCod D_80230AD8_A4E798;
 s32 D_80230ADC_A4E79C;
 s32 D_80230AE0_A4E7A0;
@@ -17,22 +17,22 @@ s32 func_801E0F6C_9FEC2C(void) {
     return D_80230AE0_A4E7A0;
 }
 
-UnkPinkBarracuda* func_801E0F88_9FEC48(s32 arg0) {
+PhotoData* func_801E0F88_9FEC48(s32 arg0) {
     return D_802309B0_A4E670[arg0];
 }
 
-UnkPinkBarracuda* func_801E0FAC_9FEC6C(s32 arg0) {
+PhotoData* func_801E0FAC_9FEC6C(s32 arg0) {
     if (arg0 >= 0x45) {
         return NULL;
     }
     return D_802309C0_A4E680[arg0];
 }
 
-UnkPinkBarracuda* func_801E0FE4_9FECA4(s32 arg0) {
+PhotoData* func_801E0FE4_9FECA4(s32 arg0) {
     return D_802308C0_A4E580[arg0];
 }
 
-UnkPinkBarracuda* func_801E1008_9FECC8(void) {
+PhotoData* func_801E1008_9FECC8(void) {
     return D_80230AD4_A4E794;
 }
 
@@ -68,7 +68,7 @@ void func_801E1024_9FECE4(s32 arg0, s32 arg1) {
 }
 
 s32 func_801E1170_9FEE30(s32 arg0, s32 arg1) {
-    UnkPinkBarracuda* sp1C;
+    PhotoData* sp1C;
 
     sp1C = NULL;
     if ((arg0 < 0) || (arg0 >= 4)) {
@@ -125,7 +125,7 @@ void func_801E1384_9FF044(void) {
 
     for (i = 0; i < 4; i++) {
         // TODO: figure out what is returned and remove cast
-        D_802309B0_A4E670[i] = (UnkPinkBarracuda*) func_800BF574_5C414(i);
+        D_802309B0_A4E670[i] = (PhotoData*) func_800BF574_5C414(i);
     }
 
     for (count = 0, i = 1; i <= 151; i++) {
@@ -157,7 +157,7 @@ void func_801E1384_9FF044(void) {
 s32 func_801E1504_9FF1C4(s32 arg0) {
     s32 spE9C;
     s32 spE98;
-    UnkPinkBarracuda sp18[4];
+    PhotoData sp18[4];
 
     spE98 = 0;
 

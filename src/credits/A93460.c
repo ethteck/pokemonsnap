@@ -32,13 +32,13 @@ void func_credits_801DC9FC(void* arg1) {
 void func_credits_801DCA1C(void* arg0) {
     void* sp34;
     s32 temp_v0;
-    void* temp_v0_2;
+    PhotoData* temp_v0_2;
 
     while (TRUE) {
         osRecvMesg(&D_credits_801ECC68, &sp34, 1);
         osSetThreadPri(NULL, 0x34);
         temp_v0 = func_credits_801DE8D8();
-        temp_v0_2 = func_800BF710_5C5B0(temp_v0);
+        temp_v0_2 = func_800BF710_5C5B0(temp_v0); // TODO TYPE
         if (temp_v0_2 != NULL) {
             func_8009FC38(temp_v0_2);
         }

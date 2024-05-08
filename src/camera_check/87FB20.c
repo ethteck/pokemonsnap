@@ -33,7 +33,7 @@ s32 func_camera_check_801E2478(void) {
     return D_camera_check_8024A1D8;
 }
 
-UnkPinkBarracuda* func_camera_check_801E2484(s32 arg0) {
+PhotoData* func_camera_check_801E2484(s32 arg0) {
     if ((arg0 < 0) || (arg0 >= D_camera_check_8024A1C4)) {
         return 0;
     }
@@ -150,7 +150,7 @@ void func_camera_check_801E2984(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2A00.s")
 
-UnkPinkBarracuda* func_camera_check_801E2AD8(s32 arg0) {
+PhotoData* func_camera_check_801E2AD8(s32 arg0) {
     UnkIndigoHalibut* item;
     s32 i;
 
@@ -169,7 +169,7 @@ UnkPinkBarracuda* func_camera_check_801E2AD8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2B60.s")
 
-UnkPinkBarracuda* func_camera_check_801E2C38(s32 arg0) {
+PhotoData* func_camera_check_801E2C38(s32 arg0) {
     UnkIndigoHalibut* item;
     s32 i;
 

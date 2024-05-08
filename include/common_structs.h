@@ -204,11 +204,6 @@ typedef struct {
     /* 0x0C */ void* kill;
 } AnimalDef; // size = 0x10
 
-typedef struct UnkPinkBarracuda {
-    s32 unk4_25 : 7;
-    s32 unk_4[(0x3A0/4) -1];
-} UnkPinkBarracuda; // Size: 0x3A0
-
 typedef struct UnkStruct800BEDF8 {
     /* 0x00 */ char unk_00[0x14];
     /* 0x14 */ s32 unk_14;
@@ -219,14 +214,10 @@ typedef struct PlayerName {
     /* 0x00 */ char data[0x10];
 } PlayerName; // size = 0x10
 
-typedef struct UnkGoofyGlobule {
-    s32 levelID : 7;
-} UnkGoofyGlobule;
-
 typedef struct UnkThingSub {
     /* 0x00 */ s32 pokemonID : 13;
-    /* 0x00 */ s32 unk_20_7 : 3;
-    /* 0x02 */ s32 unk_02 : 16;
+    /* 0x00 */ s32 unk_20_7 : 3; // padding?
+    /* 0x02 */ char unk_02[0x2];
     /* 0x04 */ char unk_04[0x14];
 } UnkThingSub; // size = 0x18
 
@@ -242,18 +233,21 @@ typedef struct UnkThingSub3 {
     /* 0x04 */ char unk_04[0xC];
 } UnkThingSub3;
 
-typedef struct UnkThing {
-    /* 0x000 */ s32 levelID : 7;
-                s32 unk_00_24 : 1;
+typedef struct PhotoData {
+    /* 0x000 */ s8 levelID : 7;
+                u8 unk_00_24 : 1;
                 u32 unk_00_16 : 8;
-                s32 unk_00_8 : 8;
-                s32 unk_00_0 : 8;
+    /* 0x002 */ char unk_02[0x2];
     /* 0x004 */ f32 unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
     /* 0x020 */ UnkThingSub unk_20[12];
     /* 0x140 */ UnkThingSub2 unk_140[6];
     /* 0x1A0 */ UnkThingSub3 unk_1A0[32];
+} PhotoData; // size = 0x3A0
+
+typedef struct UnkThing {
+    /* 0x000 */ PhotoData main;
     /* 0x3A0 */ UNK_TYPE unk_3A0;
     /* 0x3A4 */ GObj* unk_3A4[12];
 } UnkThing;

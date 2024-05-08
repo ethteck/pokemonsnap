@@ -211,7 +211,7 @@ void func_800BF650_5C4F0(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF690_5C530.s")
 
 #ifdef NON_EQUIVALENT
-s32* func_800BF710_5C5B0(s32 arg0) {
+PhotoData* func_800BF710_5C5B0(s32 arg0) {
     Unk_D_800C21B0_5F050* temp_a0;
     s32 temp_v0;
     s32* var_v1;

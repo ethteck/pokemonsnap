@@ -288,7 +288,7 @@ void func_801DE290_9FBF50(s32 arg0) {
     }
 }
 
-void func_801DE2E0_9FBFA0(UnkPinkBarracuda* arg0) {
+void func_801DE2E0_9FBFA0(PhotoData* arg0) {
     func_80374714_847EC4(arg0, &D_80230874_A4E534->sprite);
 }
 

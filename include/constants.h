@@ -3,16 +3,16 @@
 
 #include "ultra64.h"
 
-typedef u16 AnimalID;
+typedef u16 PokemonID;
 
-#define AnimalID_PIDGEY     16
-#define AnimalID_MUK        89
-#define AnimalID_SHELLDER   90
-#define AnimalID_STARYU     120
-#define AnimalID_STARMIE    121
-#define AnimalID_SCYTHER    123
-#define AnimalID_MAGIKARP   129
-#define AnimalID_MEW        151
+#define PokemonID_PIDGEY     16
+#define PokemonID_MUK        89
+#define PokemonID_SHELLDER   90
+#define PokemonID_STARYU     120
+#define PokemonID_STARMIE    121
+#define PokemonID_SCYTHER    123
+#define PokemonID_MAGIKARP   129
+#define PokemonID_MEW        151
 #define POKEDEX_MAX        151
 
 #define VPK_VRAM 0x802B5000 // TODO SHIFT hard-coded VRAM

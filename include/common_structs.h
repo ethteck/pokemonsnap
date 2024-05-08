@@ -147,7 +147,7 @@ typedef struct {
     /* 0x098 */ f32 hSpeed;
     /* 0x09C */ f32 jumpVel;
     /* 0x0A0 */ f32 facingYaw;
-    /* 0x0A4 */ s32 animalLoopTarget;
+    /* 0x0A4 */ s32 pokemonLoopTarget;
     /* 0x0A8 */ f32 lastAnimationFrame;
     /* 0x0AC */ idFuncStruct* transitionGraph;
     /* 0x0B0 */ misc miscVars[7];
@@ -164,7 +164,7 @@ typedef struct {
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ s16 unk_10C;
     /* 0x10E */ s16 field_0x10e;
-} Animal; // size = 0x110
+} Pokemon; // size = 0x110
 
 typedef struct {
     /* 0x00 */ char unk_00[0x1];
@@ -179,11 +179,11 @@ typedef struct {
 } projectileData; // size = 0x30
 
 typedef union {
-    Animal* animal;
+    Pokemon* pokemon;
     projectileData* projectileData;
 } gobjData;
 
-typedef GObj* (*animalInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
+typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
 
 typedef struct {
     s32 value;
@@ -192,10 +192,10 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ u32 id;
-    /* 0x04 */ animalInit init;
+    /* 0x04 */ pokemonInit init;
     /* 0x08 */ void* update;
     /* 0x0C */ void* kill;
-} AnimalDef; // size = 0x10
+} PokemonDef; // size = 0x10
 
 typedef struct UnkStruct800BEDF8 {
     /* 0x00 */ char unk_00[0x14];

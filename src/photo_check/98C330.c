@@ -450,7 +450,7 @@ void func_801DCFA0_98CA10(s32 arg0) {
 }
 
 void func_801DCFE8_98CA58(Photo* arg0) {
-    if (arg0->pkmnID == AnimalID_MEW) {
+    if (arg0->pkmnID == PokemonID_MEW) {
         if (func_800BF3D4_5C274(arg0->pkmnID) == 0) {
             D_801F3E28_9A3898 = 0x40000;
         }

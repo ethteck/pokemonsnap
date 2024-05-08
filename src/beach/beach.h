@@ -61,7 +61,7 @@ GObj* func_80365E80_506290(void);
 void func_80365F38_506348(UNK_PTR, UNK_PTR, f32, f32);
 void func_803667C0_506BD0(GObj*, int, int);
 
-extern AnimalDef D_beach_802CBFF4;
+extern PokemonDef D_beach_802CBFF4;
 extern s32 D_beach_802CC018;
 extern SceneSetup D_beach_802CC038;
 extern s32 D_beach_802CC0D0;
@@ -199,8 +199,8 @@ extern idFuncStruct D_beach_802CD6F4;
 extern randomTransition D_beach_802CD764;
 extern randomTransition D_beach_802CD774;
 extern PokemonInitData D_beach_802CD7A8;
-extern AnimalDef D_beach_802CD838;
-extern AnimalDef D_beach_802CD848;
+extern PokemonDef D_beach_802CD838;
+extern PokemonDef D_beach_802CD848;
 extern idFuncStruct D_beach_802CD858;
 extern randomTransition D_beach_802CD8B8;
 extern PokemonInitData D_beach_802CD8E4;
@@ -235,7 +235,7 @@ extern idFuncStruct D_beach_802CDFD8;
 extern PokemonInitData D_beach_802CE038;
 extern AnimationHeader D_beach_802CE070;
 extern PokemonInitData D_beach_802CE0A8;
-extern AnimalDef D_beach_802CE0DC;
+extern PokemonDef D_beach_802CE0DC;
 extern HeightMap D_beach_80318F00;
 extern u8 D_beach_80347578;
 extern u8 D_beach_80347579;
@@ -245,7 +245,7 @@ extern u16 D_beach_8034757C;
 extern u8 D_beach_80347588;
 extern void* D_beach_80347658;
 
-extern AnimalDef beachAnimalData[17];
+extern PokemonDef beachPokemonData[17];
 
 void func_beach_802C52EC(GObj*);
 void func_beach_802C5620(GObj*);

@@ -10,8 +10,8 @@ extern OSThread* __osRunQueue;
 extern s32 gPhotoCount;
 
 // Valley code
-extern AnimalDef extraStaryuDef;
-extern AnimalDef extraStarmieDef;
+extern PokemonDef extraStaryuDef;
+extern PokemonDef extraStarmieDef;
 extern randomTransition D_802ECB00_7C6090;
 extern PokemonInitData D_802EC7B8_7C5D48;
 extern PokemonInitData D_802ECB2C_7C60BC;

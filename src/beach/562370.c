@@ -3,7 +3,7 @@
 
 void func_beach_802CA300(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
     s32 sp34;
     f32 sp30;
     s32 sp2C;
@@ -24,7 +24,7 @@ void func_beach_802CA300(GObj* obj) {
         ohWait(1);
     }
 
-    animal->flags |= 4;
+    pokemon->flags |= 4;
 
     while (TRUE) {
         func_80357384_4F7794(&sp2C, &sp28);
@@ -39,8 +39,8 @@ void func_beach_802CA300(GObj* obj) {
         ohWait(1);
     }
 
-    animal->flags &= ~0x4;
-    updateAnimalState(obj, NULL);
+    pokemon->flags &= ~0x4;
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CA418(s32 gObjId, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
@@ -50,37 +50,37 @@ void func_beach_802CA418(s32 gObjId, u16 id, WorldBlock* roomA, WorldBlock* room
 // TODO: potential file split. spawnPokemon tends to be used at the end of files
 
 void func_beach_802CA450(GObj* obj) {
-    updateAnimalState(obj, func_beach_802CA474);
+    updatePokemonState(obj, func_beach_802CA474);
 }
 
 void func_beach_802CA474(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    setAnimalAnimation(obj, &D_beach_802CD980);
-    animal->transitionGraph = &D_beach_802CD9D8;
+    setPokemonAnimation(obj, &D_beach_802CD980);
+    pokemon->transitionGraph = &D_beach_802CD9D8;
     runInteractionsAndWaitForFlags(obj, 0);
-    updateAnimalState(obj, NULL);
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CA4CC(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     cmdSendCommand(D_80382C00_523010, 9, 0);
     auPlaySound(0x26);
-    setAnimalAnimation(obj, &D_beach_802CD994);
-    animal->transitionGraph = NULL;
+    setPokemonAnimation(obj, &D_beach_802CD994);
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
     auPlaySound(0x28);
     D_beach_802CD9D0 = auPlaySound(0x27);
-    setAnimalAnimation(obj, &D_beach_802CD9A8);
-    animal->transitionGraph = NULL;
+    setPokemonAnimation(obj, &D_beach_802CD9A8);
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    setAnimalAnimation(obj, &D_beach_802CD9BC);
-    animal->transitionGraph = NULL;
+    setPokemonAnimation(obj, &D_beach_802CD9BC);
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    updateAnimalState(obj, func_beach_802CA950);
+    updatePokemonState(obj, func_beach_802CA950);
 }
 
 void func_beach_802CA5A8(DObj* obj, s32 arg1, f32 arg2) {
@@ -172,7 +172,7 @@ void func_beach_802CA950(GObj* obj) {
     auStopAllSounds();
     cmdSendCommand(D_80382C00_523010, 6, 0);
     omEndProcess(NULL);
-    updateAnimalState(obj, NULL);
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CAB14(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {

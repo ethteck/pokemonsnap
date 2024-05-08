@@ -2,12 +2,12 @@
 #include "world/world.h"
 
 void spawnStaryuAtGeo(GObj* obj) {
-    addAnimalAtGeo(obj, AnimalID_STARYU, &extraStaryuDef);
+    addPokemonAtGeo(obj, PokemonID_STARYU, &extraStaryuDef);
     omEndProcess(NULL);
 }
 
 void spawnStarmieAtGeo(GObj* obj) {
-    addAnimalAtGeo(obj, AnimalID_STARMIE, &extraStarmieDef);
+    addPokemonAtGeo(obj, PokemonID_STARMIE, &extraStarmieDef);
     omEndProcess(NULL);
 }
 
@@ -17,31 +17,31 @@ void func_802D25E0(GObj* obj) {
 
 void func_802D2604(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
 
     // clang-format off
-    animal->counter = 1; animal->processFlags &= ~SP_HIDDEN;
+    pokemon->counter = 1; pokemon->processFlags &= ~SP_HIDDEN;
     // clang-format on
-    animal->transitionGraph = NULL;
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);
-    runAnimalCleanup(obj);
-    updateAnimalState(obj, NULL);
+    runPokemonCleanup(obj);
+    updatePokemonState(obj, NULL);
 }
 
 void func_802D2684(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     omCreateProcess(obj, spawnStarmieAtGeo, 1, 1);
     // clang-format off
-    animal->counter = 1; animal->processFlags &= ~SP_HIDDEN;
+    pokemon->counter = 1; pokemon->processFlags &= ~SP_HIDDEN;
     // clang-format on
-    animal->transitionGraph = NULL;
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);
-    runAnimalCleanup(obj);
-    updateAnimalState(obj, NULL);
+    runPokemonCleanup(obj);
+    updatePokemonState(obj, NULL);
 }
 
 void func_802D2704(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {

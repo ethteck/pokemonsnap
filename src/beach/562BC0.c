@@ -5,11 +5,11 @@
 
 void func_beach_802CAC08(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     func_8035E298_4FE6A8(obj);
-    animal->pathProcess = NULL;
-    animal->processFlags |= 2;
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
     omEndProcess(NULL);
 }
 
@@ -21,88 +21,88 @@ void func_beach_802CAC48(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* room
 
 void func_beach_802CAC80(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    animal->flags |= 0x200;
-    animal->flags |= 0x800;
-    animal->transitionGraph = &D_beach_802CDC60;
+    pokemon->flags |= 0x200;
+    pokemon->flags |= 0x800;
+    pokemon->transitionGraph = &D_beach_802CDC60;
     runInteractionsAndWaitForFlags(obj, 0);
-    updateAnimalState(obj, NULL);
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CACD4(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    if (animal->behavior == 1) {
-        updateAnimalState(obj, func_beach_802CAD58);
+    if (pokemon->behavior == 1) {
+        updatePokemonState(obj, func_beach_802CAD58);
     }
 
-    if (animal->behavior == 4) {
-        updateAnimalState(obj, func_beach_802CB2D8);
+    if (pokemon->behavior == 4) {
+        updatePokemonState(obj, func_beach_802CB2D8);
     }
-    updateAnimalState(obj, func_beach_802CAC80);
-    updateAnimalState(obj, NULL);
+    updatePokemonState(obj, func_beach_802CAC80);
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CAD58(GObj* obj) {
-    updateAnimalState(obj, func_beach_802CAD7C);
+    updatePokemonState(obj, func_beach_802CAD7C);
 }
 
 void func_beach_802CAD7C(GObj* obj) {
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    animal->tangible = 0;
+    pokemon->tangible = 0;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
-    animal->transitionGraph = &D_beach_802CDC80;
+    pokemon->transitionGraph = &D_beach_802CDC80;
     runInteractionsAndWaitForFlags(obj, 0);
-    updateAnimalState(obj, NULL);
+    updatePokemonState(obj, NULL);
 }
 
 void func_beach_802CADCC(GObj* ob) {
-    Animal* animal = GET_ANIMAL(ob);
+    Pokemon* pokemon = GET_POKEMON(ob);
 
-    animal->tangible = 1;
+    pokemon->tangible = 1;
     ob->flags = 0;
     runPathProcess(ob, func_beach_802CAEB0);
-    updateAnimalState(ob, func_beach_802CAE14);
+    updatePokemonState(ob, func_beach_802CAE14);
 }
 
 void func_beach_802CAE14(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    animal->tangible = 1;
+    pokemon->tangible = 1;
     obj->flags = 0;
-    setAnimalAnimation(obj, &D_beach_802CDBAC);
-    animal->transitionGraph = &D_beach_802CDCA0;
+    setPokemonAnimation(obj, &D_beach_802CDBAC);
+    pokemon->transitionGraph = &D_beach_802CDCA0;
     runInteractionsAndWaitForFlags(obj, 2);
-    animal->field_0x10e = 5;
-    setAnimalAnimation(obj, &D_beach_802CDBFC);
-    animal->transitionGraph = &D_beach_802CDCA0;
+    pokemon->field_0x10e = 5;
+    setPokemonAnimation(obj, &D_beach_802CDBFC);
+    pokemon->transitionGraph = &D_beach_802CDCA0;
     runInteractionsAndWaitForFlags(obj, 1);
-    updateAnimalState(obj, func_beach_802CAF90);
+    updatePokemonState(obj, func_beach_802CAF90);
 }
 
 void func_beach_802CAEB0(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     setNodePosToNegRoom(obj);
-    animalPathLoop(obj, 0, 1, 0.033333335f, 0.0f, 3);
-    animal->pathProcess = NULL;
-    animal->processFlags |= 2;
+    pokemonPathLoop(obj, 0, 1, 0.033333335f, 0.0f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
     omEndProcess(0);
 }
 
 void func_beach_802CAF1C(GObj* obj) {
     UNUSED s32 pad[3];
-    Animal* animal = GET_ANIMAL(obj);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    animal->processFlags |= 0x20;
-    setAnimalAnimation(obj, &D_beach_802CDBC0);
-    animal->transitionGraph = NULL;
+    pokemon->processFlags |= 0x20;
+    setPokemonAnimation(obj, &D_beach_802CDBC0);
+    pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    animal->processFlags &= ~0x20;
-    updateAnimalState(obj, func_beach_802CAE14);
+    pokemon->processFlags &= ~0x20;
+    updatePokemonState(obj, func_beach_802CAE14);
 }

@@ -194,7 +194,7 @@ s32 func_800E1CCC_A0925C(void) {
     s32 ret;
     u16 i;
 
-    for (i = 0; i < AnimalID_MEW; i++) {
+    for (i = 0; i < PokemonID_MEW; i++) {
         if (func_800BF710_5C5B0(i) != NULL) {
             sum++;
         }

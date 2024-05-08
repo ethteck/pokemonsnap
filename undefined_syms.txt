@@ -7,7 +7,7 @@ D_80046880 = 0x80046880;
 D_800484E0 = 0x800484E0;
 D_800484E1 = 0x800484E1;
 
-beachAnimalData = 0x802CBEE4;
+beachPokemonData = 0x802CBEE4;
 
 cartGObj = 0x803937F0;
 

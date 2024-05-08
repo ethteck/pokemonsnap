@@ -270,7 +270,7 @@ char* getPokemonName(s32 pkmnID) {
     }
     switch (pkmnID) {
         case 0x25B:
-            return D_800AE284[AnimalID_SHELLDER];
+            return D_800AE284[PokemonID_SHELLDER];
         case 0x3EC:
         case 0x3F2:
         case 0x3FA:
@@ -293,7 +293,7 @@ s32 func_8009BB4C(s32 pkmnID) {
     s32 temp = D_800AE4E4[150];
 
     if (pkmnID == 0x25B) {
-        pkmnID = AnimalID_SHELLDER;
+        pkmnID = PokemonID_SHELLDER;
     }
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         ret = D_800AE4E4[pkmnID - 1];

@@ -50,8 +50,8 @@
 
 #define SET_SPRITE_POS(s, _x, _y) (s).x = _x; (s).y = _y;
 
-// TODO create header for animals
-#define GET_ANIMAL(obj) ((Animal*)((obj)->userData))
+// TODO create header for pokemon
+#define GET_POKEMON(obj) ((Pokemon*)((obj)->userData))
 #define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
 
 

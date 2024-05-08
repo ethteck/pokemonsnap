@@ -1,13 +1,13 @@
 #include "common.h"
 
-extern AnimalDef D_802C6FC4_649474;
+extern PokemonDef D_802C6FC4_649474;
 
 /*
 void evolveIntoMuk(GObj* obj) {
     GObj* muk;
-    AnimalDef def = D_802C6FC4_649474;
+    PokemonDef def = D_802C6FC4_649474;
 
-    muk = addAnimalAtGeo(obj, AnimalID_MUK, &def);
+    muk = addPokemonAtGeo(obj, PokemonID_MUK, &def);
     muk->userData.rootNode->xform->euler.y = obj->userData.rootNode->xform->euler.y;
     omEndProcess(NULL);
 }

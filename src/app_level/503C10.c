@@ -36,7 +36,7 @@ void func_80363828_503C38(void) {
 }
 
 f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1) {
-    Animal* pokemon = GET_ANIMAL(arg0);
+    Pokemon* pokemon = GET_POKEMON(arg0);
 
     if (arg1 != NULL) {
         arg1->x = pokemon->collPosition.x;
@@ -108,9 +108,9 @@ s32 func_8036396C_503D7C(void) {
 s32 func_8036396C_503D7C(void);
 #endif
 
-void animalAdd(WorldBlock* block, WorldBlock* blockB, AnimalDef* def) {
+void pokemonAdd(WorldBlock* block, WorldBlock* blockB, PokemonDef* def) {
     ObjectSpawn* spawn;
-    AnimalDef* defPtr;
+    PokemonDef* defPtr;
     GObj* pokemonObj;
 
     if (block == NULL ||
@@ -155,7 +155,7 @@ void animalAdd(WorldBlock* block, WorldBlock* blockB, AnimalDef* def) {
     }
 }
 
-GObj* animalAddOne(WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, AnimalDef* def) {
+GObj* pokemonAddOne(WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonDef* def) {
     s32 objId;
     GObj* pokemonObj = NULL;
 

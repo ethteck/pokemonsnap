@@ -9,17 +9,59 @@ typedef struct SpriteStruct {
     /* 0x14 */ Sprite* spriteDef;
 } SpriteStruct; // size = 0x18
 
-extern f32 D_8038A3B8_52A7C8;
-extern SpriteStruct D_8038812C_52853C[10];
-extern GObj* D_80388230_528640;
-extern u8 D_8038823C_52864C;
-extern u8 D_80388240_528650;
-extern u8 D_80388304_528714;
-extern SpriteStruct D_80388244_528654[8];
-extern s32 D_803AF8C0_54FCD0[8];
+// data
+// TODO make sprite assets
+extern Sprite D_80383B48_523F58;
+extern Sprite D_803841C8_5245D8;
+extern Sprite D_80384E68_525278;
+extern Sprite D_80385B08_525F18;
+extern Sprite D_803867A8_526BB8;
+extern Sprite D_80387448_527858;
+extern Sprite D_803880E8_5284F8;
+// we have to make this small array because of alignment
+u32 EndOfSpriteData[] = {
+    0x803AF790,
+    0x00000000,
+    0x00000000
+};
+
+SpriteStruct D_8038812C_52853C[] = {
+    { 148, 104, NULL, 0, 0, NULL},
+    { 124,  80, NULL, 0, 0, NULL},
+    { 148,  80, NULL, 0, 0, NULL},
+    { 172,  80, NULL, 0, 0, NULL},
+    { 124, 104, NULL, 0, 0, NULL},
+    { 172, 104, NULL, 0, 0, NULL},
+    { 124, 128, NULL, 0, 0, NULL},
+    { 148, 128, NULL, 0, 0, NULL},
+    { 172, 128, NULL, 0, 0, NULL},
+};
+s32 D_80388204_528614[] = { 163, 162, 161 };
+SObj* D_80388210_528620[] = { NULL, NULL, NULL };
+u32 D_8038821C_52862C = 0;
+u8 D_80388220_528630 = 0;
+SObj* D_80388224_528634[] = { NULL, NULL, NULL };
+GObj* D_80388230_528640 = NULL;
+s32 D_80388234_528644 = 1;
+s32 D_80388238_528648 = 3;
+u8 D_8038823C_52864C = 0;
+u8 D_80388240_528650 = 0;
+SpriteStruct D_80388244_528654[] = {
+    { 210, 189, NULL, 0, 2, &D_80387448_527858 },
+    { 182, 185, NULL, 0, 0, &D_803867A8_526BB8 },
+    { 238, 185, NULL, 0, 4, &D_803880E8_5284F8 },
+    { 268, 189, NULL, 1, 6, &D_80383B48_523F58 },
+    { 268, 155, NULL, 1, 8, &D_80384E68_525278 },
+    { 316, 155, 1, 1, 4, &D_80384E68_525278 },
+    { 238, 233, 1, 0, 0, &D_80385B08_525F18 },
+    { 316, 189, 1, 1, 2, &D_803841C8_5245D8 },
+};
+u8 D_80388304_528714 = 0;
+
+// bss
 extern s32 D_803AF8B8_54FCC8;
 extern s32 D_803AF8BC_54FCCC;
-extern s32 D_80388234_528644;
+extern s32 D_803AF8C0_54FCD0[8];
 
 void func_8035DB80_4FDF90(GObj*);
 

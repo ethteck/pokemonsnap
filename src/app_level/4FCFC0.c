@@ -52,9 +52,9 @@ SpriteStruct D_80388244_528654[] = {
     { 238, 185, NULL, 0, 4, &D_803880E8_5284F8 },
     { 268, 189, NULL, 1, 6, &D_80383B48_523F58 },
     { 268, 155, NULL, 1, 8, &D_80384E68_525278 },
-    { 316, 155, 1, 1, 4, &D_80384E68_525278 },
-    { 238, 233, 1, 0, 0, &D_80385B08_525F18 },
-    { 316, 189, 1, 1, 2, &D_803841C8_5245D8 },
+    { 316, 155, (SObj*)1, 1, 4, &D_80384E68_525278 },
+    { 238, 233, (SObj*)1, 0, 0, &D_80385B08_525F18 },
+    { 316, 189, (SObj*)1, 1, 2, &D_803841C8_5245D8 },
 };
 u8 D_80388304_528714 = 0;
 
@@ -63,13 +63,20 @@ extern s32 D_803AF8B8_54FCC8;
 extern s32 D_803AF8BC_54FCCC;
 extern s32 D_803AF8C0_54FCD0[8];
 
+extern s32 D_80382CF4_523104;
+u32 func_80357048_4F7458(void);
 void func_8035DB80_4FDF90(GObj*);
 
 void func_8035CBB0_4FCFC0(GObj* arg0) {
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035CBB8_4FCFC8.s")
+void func_8035CBB8_4FCFC8(Sprite* arg0, Sprite* arg1) {
+    arg0->width = arg1->width;
+    arg0->height = arg1->height;
+    arg0->bitmap = arg1->bitmap;
+    arg0->rsp_dl = arg1->rsp_dl;
+}
 
 void func_8035CBDC_4FCFEC(s32 arg0) {
     if (D_8038812C_52853C[arg0].spriteObj != NULL) {
@@ -92,39 +99,35 @@ void func_8035CCA8_4FD0B8(GObj* arg0) {
     func_8035CBDC_4FCFEC(5);
 }
 
-#ifdef NON_EQUIVALENT
 void func_8035CCD4_4FD0E4(GObj* arg0) {
     f32 scale;
     s32 i;
+    SpriteStruct* spr = &D_8038812C_52853C[6];
 
-    if (D_8038812C_52853C[6].spriteObj != NULL) {
+    if (spr->spriteObj != NULL) {
         scale = 1.0f;
 
         while (scale > 0.1f) {
-            spScale(&D_8038812C_52853C[6].spriteObj->sprite, 1.0f, scale);
-            spMove(&D_8038812C_52853C[6].spriteObj->sprite, 
-                   D_8038812C_52853C[6].x,
-                   D_8038812C_52853C[6].y + (1.0f - scale) * 10.0f);
+            spScale(&spr->spriteObj->sprite, 1.0f, scale);
+            spMove(&spr->spriteObj->sprite, 
+                   spr->x,
+                   spr->y + (1.0f - scale) * 10.0f);
             ohWait(1);
             scale -= 0.2f;            
         }
 
-        spSetAttribute(&D_8038812C_52853C[6].spriteObj->sprite, SP_HIDDEN);
+        spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
         for (i = 0; i < 2; i++) {
             ohWait(1);
         }
-        spClearAttribute(&D_8038812C_52853C[6].spriteObj->sprite, SP_HIDDEN);
-        spScale(&D_8038812C_52853C[6].spriteObj->sprite, 1.0f, 1.0f);
-        spMove(&D_8038812C_52853C[6].spriteObj->sprite, 
-                D_8038812C_52853C[6].x,
-                D_8038812C_52853C[6].y);
+        spClearAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
+        spScale(&spr->spriteObj->sprite, 1.0f, 1.0f);
+        spMove(&spr->spriteObj->sprite, 
+                spr->x,
+                spr->y);
     }
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035CCD4_4FD0E4.s")
-void func_8035CCD4_4FD0E4(GObj* arg0);
-#endif
 
 void func_8035CE74_4FD284(void) {
 }
@@ -188,81 +191,22 @@ void func_8035D060_4FD470(GObj* arg0) {
     omEndProcess(0);
 }
 
-// needs data migration ??
-#if 0
-
-
-u32 func_80357048_4F7458(void);
-
-extern u8 D_80388220_528630;
-extern u32 D_8038821C_52862C;
-extern s32 D_80388238_528648;
-extern s32 D_80388204_528614[];
-extern s32 D_80382CF4_523104;
-extern GObj* D_80388230_528640;
-extern SObj* D_8038817C_52858C;
-extern Sprite* D_803882A0_5286B0;
-extern s32 D_8038828C_52869C;
-extern s32 D_80388290_5286A0;
-extern s32 D_80388178_528588;
-extern Sprite* D_803882B8_5286C8;
-extern SObj* D_80388194_5285A4;
-extern s32 D_803882A4_5286B4;
-extern s32 D_803882A8_5286B8;
-extern s32 D_8038818C_52859C;
-extern s32 D_80388190_5285A0;
-extern Sprite* D_803882D0_5286E0;
-extern SObj* D_803881AC_5285BC;
-extern s32 D_803882BC_5286CC;
-extern s32 D_803882C0_5286D0;
-extern s32 D_803881A4_5285B4;
-extern s32 D_803881A8_5285B8;
-extern Sprite* D_803882E8_5286F8;
-extern SObj* D_803881C4_5285D4;
-extern s32 D_803882D4_5286E4;
-extern s32 D_803882D8_5286E8;
-extern s32 D_803881BC_5285CC;
-extern s32 D_803881C0_5285D0;
-extern Sprite* D_80388300_528710;
-extern SObj* D_803881DC_5285EC;
-extern s32 D_803882EC_5286FC;
-extern s32 D_803882F0_528700;
-extern s32 D_803881D8_5285E8;
-extern Sprite* D_80388288_528698;
-extern SObj* D_8038822C_52863C;
-extern SObj* D_80388164_528574;
-extern s32 D_80388274_528684;
-extern s32 D_80388278_528688;
-extern s32 D_8038815C_52856C;
-extern s32 D_80388160_528570;
-extern Sprite* D_80388258_528668;
-extern SObj* D_80388224_528634;
-extern SObj* D_80388134_528544;
-extern s32 D_80388244_528654;
-extern s32 D_80388248_528658;
-extern s32 D_8038812C_52853C;
-extern s32 D_80388130_528540;
-extern Sprite* D_80388270_528680;
-extern SObj* D_80388228_528638;
-extern SObj* D_8038814C_52855C;
-extern s32 D_8038825C_52866C;
-extern s32 D_80388260_528670;
-extern s32 D_80388148_528558;
-extern SObj* D_80388210_528620[3];
-extern s32 D_803AF8C0_54FCD0[16];
-
 void func_8035D1A0_4FD5B0(void) {
     GObj* sp2C;
     s32 temp_v0_8;
     s32 i;
     u32 sp20;
+    SpriteStruct* spr;
+    SpriteStruct* sprDef;
+    s32 zero = 0;
 
     sp20 = func_80357048_4F7458();
     D_80388220_528630 = 0;
     D_8038821C_52862C = 0;
     D_80388238_528648 = 0;
+
     if (sp20 & 1) {
-        D_80388220_528630 = 1;
+        D_80388220_528630 |= 1;
     }
     if (sp20 & 2) {
         D_80388220_528630 |= 2;
@@ -270,6 +214,7 @@ void func_8035D1A0_4FD5B0(void) {
     if (sp20 & 4) {
         D_80388220_528630 |= 4;
     }
+
     if (D_80388220_528630 & 1) {
         D_80388238_528648 = 1;
     }
@@ -279,6 +224,7 @@ void func_8035D1A0_4FD5B0(void) {
     if (D_80388220_528630 & 4) {
         D_80388238_528648 = 3;
     }
+
     if (D_80388238_528648 > 0) {
         D_80382CF4_523104 = D_80388204_528614[D_8038821C_52862C];
     } else {
@@ -288,70 +234,73 @@ void func_8035D1A0_4FD5B0(void) {
     omLinkGObjDL(sp2C, &renDrawSprite, 1, 0x80000000, -1);
     D_80388230_528640 = sp2C;
 
-    D_8038817C_52858C = omGObjAddSprite(sp2C, D_803882A0_5286B0);
-    spMove(&D_8038817C_52858C->sprite, D_8038828C_52869C, D_80388290_5286A0);
-    D_80388178_528588 = D_80388290_5286A0;
-    D_80388178_528588 = D_8038828C_52869C;
+    spr = &D_8038812C_52853C[3];
+    sprDef = &D_80388244_528654[3];
+    spr->spriteObj = omGObjAddSprite(sp2C, sprDef->spriteDef);
+    spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+    spr->x = sprDef->x; spr->y = sprDef->y;
 
     if (sp20 & 0x20) {
-        D_80388194_5285A4 = omGObjAddSprite(sp2C, D_803882B8_5286C8);
-        spMove(&D_80388194_5285A4->sprite, D_803882A4_5286B4, D_803882A8_5286B8);
-        D_8038818C_52859C = D_803882A4_5286B4;
-        D_80388190_5285A0 = D_803882A8_5286B8;
+        spr = &D_8038812C_52853C[4];
+        sprDef = &D_80388244_528654[4];
+        spr->spriteObj = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
 
-        D_803881AC_5285BC = omGObjAddSprite(sp2C, D_803882D0_5286E0);
-        spMove(&D_803881AC_5285BC->sprite, D_803882BC_5286CC, D_803882C0_5286D0);
-        D_803881A4_5285B4 = D_803882BC_5286CC;
-        D_803881A8_5285B8 = D_803882C0_5286D0;
-        spSetAttribute(&D_803881AC_5285BC->sprite, SP_HIDDEN);
+        spr = &D_8038812C_52853C[5];
+        sprDef = &D_80388244_528654[5];
+        spr->spriteObj = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
+        spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
     }
-
-    D_803881C4_5285D4 = omGObjAddSprite(sp2C, D_803882E8_5286F8);
-    spMove(&D_803881C4_5285D4->sprite, D_803882D4_5286E4, D_803882D8_5286E8);
-    D_803881BC_5285CC = D_803882D4_5286E4;
-    D_803881C0_5285D0 = D_803882D8_5286E8;
-    spSetAttribute(&D_803881C4_5285D4->sprite, SP_HIDDEN);
+    
+    spr = &D_8038812C_52853C[6];
+    sprDef = &D_80388244_528654[6];
+    spr->spriteObj = omGObjAddSprite(sp2C, sprDef->spriteDef);
+    spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+    spr->x = sprDef->x; spr->y = sprDef->y;
+    spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
 
     if (sp20 & 0x1000) {
-        D_803881DC_5285EC = omGObjAddSprite(sp2C, D_80388300_528710);
-        spMove(&D_803881DC_5285EC->sprite, D_803882EC_5286FC, D_803882F0_528700);
-        D_803881D8_5285E8 = D_803882EC_5286FC;
-        D_803881D8_5285E8 = D_803882F0_528700;
-        spSetAttribute(&D_803881DC_5285EC->sprite, SP_HIDDEN);
-    }
-    temp_v0_8 = D_80388238_528648;
-    if (temp_v0_8 >= 3) {
-        D_80388164_528574 = D_8038822C_52863C = omGObjAddSprite(sp2C, D_80388288_528698);
-        spMove(&D_80388164_528574->sprite, D_80388274_528684, D_80388278_528688);
-        D_8038815C_52856C = D_80388274_528684;
-        D_80388160_528570 = D_80388278_528688;
-    }
-    if (temp_v0_8 >= 1) {
-        D_80388134_528544 = D_80388224_528634 = omGObjAddSprite(sp2C, D_80388258_528668);
-        spMove(&D_80388134_528544->sprite, D_80388244_528654, D_80388248_528658);
-        D_8038812C_52853C = D_80388244_528654;
-        D_80388130_528540 = D_80388248_528658;
-    }
-    if (temp_v0_8 >= 2) {
-        D_8038814C_52855C = D_80388228_528638 = omGObjAddSprite(sp2C, D_80388270_528680);
-        spMove(&D_8038814C_52855C->sprite, D_8038825C_52866C, D_80388260_528670);
-        D_80388148_528558 = D_8038825C_52866C;
-        D_80388148_528558 = D_80388260_528670;
+        spr = &D_8038812C_52853C[7];
+        sprDef = &D_80388244_528654[7];
+        spr->spriteObj = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
+        spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
     }
 
-    D_80388210_528620[0] = D_80388224_528634;
-    D_80388210_528620[1] = D_80388228_528638;
-    D_80388210_528620[2] = D_8038822C_52863C;
+    if (D_80388238_528648 >= 3) {
+        spr = &D_8038812C_52853C[2];
+        sprDef = &D_80388244_528654[2];
+        spr->spriteObj = D_80388224_528634[2] = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
+    }
+    if (D_80388238_528648 >= 1) {
+        spr = &D_8038812C_52853C[0];
+        sprDef = &D_80388244_528654[0];
+        spr->spriteObj = D_80388224_528634[0] = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
+    }
+    if (D_80388238_528648 >= 2) {
+        spr = &D_8038812C_52853C[1];
+        sprDef = &D_80388244_528654[1];
+        spr->spriteObj = D_80388224_528634[1] = omGObjAddSprite(sp2C, sprDef->spriteDef);
+        spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
+        spr->x = sprDef->x; spr->y = sprDef->y;
+    }
+
+    D_80388210_528620[0] = D_80388224_528634[0];
+    D_80388210_528620[1] = D_80388224_528634[1];
+    D_80388210_528620[2] = D_80388224_528634[2];
 
     omCreateProcess(sp2C, func_8035CCA8_4FD0B8, 1, 1);
 
-    for (i = 0; i < ARRAY_COUNT(D_803AF8C0_54FCD0); i++) {
-        D_803AF8C0_54FCD0[i] = 0;
-    }
+    for (i = 0; i < 8; i++) { D_803AF8C0_54FCD0[i] = 0; }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035D1A0_4FD5B0.s")
-#endif
 
 void func_8035D650_4FDA60(s32 arg0) {
     D_8038823C_52864C = arg0;

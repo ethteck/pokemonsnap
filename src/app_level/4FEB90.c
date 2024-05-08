@@ -161,7 +161,7 @@ void func_8035F390_4FF7A0(GObj* obj) {
         Vec3f sp34;
         Vec3f sp28;
         Vec3f sp1C;
-        
+
         sp28.x = GET_TRANSFORM(model)->pos.v.x;
         sp28.y = GET_TRANSFORM(model)->pos.v.y;
         sp28.z = GET_TRANSFORM(model)->pos.v.z;
@@ -311,19 +311,19 @@ s32 func_80360D18_501128(GObj* arg0, f32 arg1, f32 arg2, s32 arg3);
 s32 func_80361B68_501F78(GObj* arg0, f32 arg1, s32 arg2) {
     f32 dx, dz;
     f32 sp4C;
-    f32 sp48; 
+    f32 sp48;
     f32 unused;
     f32 f122;
     f32 sp3C;
     f32 sign;
     f32 delta;
-    f32 sp30;    
+    f32 sp30;
     Animal* pokemon = GET_ANIMAL(arg0);
     DObj* model = arg0->data.dobj;
 
     sp30 = pokemon->hSpeed * 0.033;
     dx = pokemon->targetPos.x - GET_TRANSFORM(model)->pos.v.x;
-    dz = pokemon->targetPos.z - GET_TRANSFORM(model)->pos.v.z;    
+    dz = pokemon->targetPos.z - GET_TRANSFORM(model)->pos.v.z;
 
     if (SQ(dx) + SQ(dz) < SQ(sp30)) {
         pokemon->processFlags |= 0x10;
@@ -393,13 +393,13 @@ void func_80362480_502890(struct DObj*, s32, f32);
 #ifdef NON_MATCHING
 void func_803625B4_5029C4(GObj* source, s32 cmd) {
     idFuncStruct* a2;
-    f32 distance;    
+    f32 distance;
     Animal* pokemon;
     GObjFunc sp24;
     GObjFunc sp20;
-    GObj* sp1C;    
+    GObj* sp1C;
     idFuncStruct* ptr;
-    
+
     sp1C = omCurrentObject;
     pokemon = GET_ANIMAL(omCurrentObject);
     sp24 = NULL;
@@ -692,7 +692,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     f32 blockBX, blockBY, blockBZ;
     s32 unused;
     GObj* pokemonObj;
-    DObj* model;    
+    DObj* model;
     struct DObjDynamicStore* matrixStore;
     Animal* pokemon;
 
@@ -756,13 +756,13 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     pokemon->collisionRadius = initData->radius * initData->scale.y;
     pokemon->flags = initData->flags;
     pokemon->id = id;
-    pokemon->tangible = TRUE;    
+    pokemon->tangible = TRUE;
     pokemon->animSetup = initData->animSetup;
     pokemon->someRoom = block;
     pokemon->forbiddenGround = NULL;
     pokemon->loopCount = 0;
-    pokemon->playerDist = FLOAT_MAX;    
-    pokemon->interactionDist = FLOAT_MAX;    
+    pokemon->playerDist = FLOAT_MAX;
+    pokemon->interactionDist = FLOAT_MAX;
     pokemonObj->fnAnimCallback = func_80362480_502890;
     pokemon->animators = NULL;
     omCreateProcess(pokemonObj, animUpdateModelTreeAnimation, 1, 3);
@@ -787,7 +787,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     pokemon->behavior = spawn->behavior;
     pokemon->eggGeo = NULL;
     pokemon->unk_10C = 0;
-    pokemon->field_0x10e = 0;    
+    pokemon->field_0x10e = 0;
     pokemon->playerDist = FLOAT_MAX;
     func_8035E780_4FEB90(pokemonObj);
     return pokemonObj;

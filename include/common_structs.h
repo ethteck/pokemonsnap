@@ -4,6 +4,7 @@
 #include "ultra64.h"
 #include "types.h"
 #include "sys/om.h"
+#include "sys/anim.h"
 
 typedef f32 quartic[5];
 
@@ -19,14 +20,6 @@ typedef struct {
 } pathSpline;
 
 typedef struct {
-    /* 0x00 */ f32 speed;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ AnimCmd** animList;
-    /* 0x0C */ AnimCmd*** matAnims;
-    /* 0x10 */ s32* ids;
-} AnimationHeader;
-
-typedef struct {
     /* 0x00 */ s32 id;
     /* 0x04 */ GObjFunc state;
     /* 0x08 */ f32 radius;
@@ -40,7 +33,7 @@ typedef struct {
     /* 0x09 */ char unk_09[0x3];
     /* 0x0C */ void* unk_0C;
     /* 0x10 */ idFuncStruct* idfuncs;
-} animalAnimationSetup;
+} PokemonAnimationSetup;
 
 typedef struct {
     /* 0x0 */ s8 r;
@@ -74,7 +67,7 @@ typedef struct PokemonInitData {
     /* 0x00 */ UnkEC64Arg3* tree;
     /* 0x04 */ Texture*** textures;
     /* 0x08 */ GObjFunc fnRender;
-    /* 0x0C */ animalAnimationSetup* animSetup;
+    /* 0x0C */ PokemonAnimationSetup* animSetup;
     /* 0x10 */ Vec3f scale;
     /* 0x1C */ Vec3f scaleNumerator;
     /* 0x28 */ f32 radius;
@@ -137,7 +130,7 @@ typedef struct {
     /* 0x040 */ Vec3f euler;
     /* 0x04C */ Vec3f collisionOffset;
     /* 0x058 */ f32 collisionRadius;
-    /* 0x05C */ animalAnimationSetup* animSetup;
+    /* 0x05C */ PokemonAnimationSetup* animSetup;
     /* 0x060 */ GObjProcess* interactionProc;
     /* 0x064 */ GObj* apple;
     /* 0x068 */ f32 interactionDist;
@@ -145,8 +138,8 @@ typedef struct {
     /* 0x070 */ GObj* interactionTarget;
     /* 0x074 */ struct WorldBlock* someRoom;
     /* 0x078 */ char unk_78[0x8];
-    /* 0x080 */ AnimCmd** animators;
-    /* 0x084 */ AnimCmd*** matAnims;
+    /* 0x080 */ union AnimCmd** animators;
+    /* 0x084 */ union AnimCmd*** matAnims;
     /* 0x088 */ s32 behavior;
     /* 0x08C */ u32 processFlags;
     /* 0x090 */ s32 counter;

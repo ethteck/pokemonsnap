@@ -1,4 +1,6 @@
-#include "common.h"
+#include "common_structs.h"
+#include "app_render.h"
+
 #include "string.h"
 #include "beach/beach.h"
 #if !defined(M2CTX) && !defined(PERMUTER)

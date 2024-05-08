@@ -1,47 +1,5 @@
-#include "common.h"
-
-typedef struct UnkCoalEel {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ char unk_06[2];
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ char unk_09[0x50 - 0x9];
-    /* 0x50 */ u16 unk_50;
-} UnkCoalEel;
-
-typedef struct UnkRustRat {
-    /* 0x00 */ struct UnkRustRat* next;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ s8 unk_09;
-    /* 0x0A */ s8 unk_0A;
-    /* 0x0B */ s8 unk_0B;
-    /* 0x0C */ s16 unk_0C;
-    /* 0x0E */ s16 unk_0E;
-    /* 0x10 */ s16 unk_10;
-    /* 0x12 */ s16 unk_12;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s16 unk_18;
-    /* 0x1A */ s16 unk_1A;
-    /* 0x1C */ s16 unk_1C;
-    /* 0x1E */ s16 unk_1E;
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ f32 unk_34;
-    /* 0x38 */ f32 unk_38;
-    /* 0x3C */ f32 unk_3C;
-    /* 0x40 */ f32 unk_40;
-    /* 0x44 */ s32 unk_44;
-    /* 0x48 */ ucolor unk_48;
-    /* 0x4C */ s32 unk_4C;
-    /* 0x50 */ ucolor unk_50;
-    /* 0x54 */ s32 unk_54;
-    /* 0x58 */ UnkCoalEel* unk_58;
-} UnkRustRat; // size = 0x5C
+#include "common_structs.h"
+#include "app_render.h"
 
 typedef struct UnkAsphaltLeopard {
     /* 0x00 */ s16 unk_00;
@@ -231,7 +189,7 @@ UnkRustRat* func_800A2B3C(UnkRustRat*, UnkRustRat*, s32);
 
 UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
     UnkAsphaltLeopard* temp_v0;
-    s32 id = arg1 & 7;    
+    s32 id = arg1 & 7;
 
     if (id >= 8) {
         return NULL;
@@ -267,7 +225,7 @@ UnkRustRat* func_800A2514(s32 arg0, s32 arg1) {
 
 UnkRustRat* func_800A2564(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7) {
     UnkRustRat* ret;
-    UnkAsphaltLeopard* temp_v0;    
+    UnkAsphaltLeopard* temp_v0;
     s32 id = arg0 & 7;
 
     if (id >= 8) {
@@ -321,7 +279,7 @@ void func_800A2740(void) {
         for (it = D_800BE1A8[i]; it != NULL; it = next) {
             next = it->next;
             func_800A268C(it);
-        }        
+        }
     }
 }
 
@@ -360,7 +318,7 @@ void func_800A4798(GObj* camObj) {
     s32 i;
     UnkRustRat* prev;
     UnkRustRat* it;
-    UnkRustRat* next;    
+    UnkRustRat* next;
 
     for (i = 0; i < 16; i++, flags >>= 1) {
         if (flags & 0x10000) {
@@ -444,7 +402,7 @@ void func_800A4858(GObj* camObj) {
             continue;
         }
 
-        
+
         hal_look_at_roll_f(sp288, D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.zEye,
@@ -495,7 +453,7 @@ void func_800A4858(GObj* camObj) {
                 }
                 temp_f12 = (sp248[0][0] * var_s7->unk_20 + sp248[1][0] * var_s7->unk_24 + sp248[2][0] * var_s7->unk_28 + sp248[3][0]);
                 temp_f20 = sp248[0][3] * var_s7->unk_20 + sp248[1][3] * var_s7->unk_24 + sp248[2][3] * var_s7->unk_28 + sp248[3][3];
-                
+
                 if (temp_f20 == 0.0f) {
                     continue;
                 }
@@ -504,13 +462,13 @@ void func_800A4858(GObj* camObj) {
                 temp_f12 *= temp_f2;
                 temp_f14 = (sp248[0][1] * var_s7->unk_20 + sp248[1][1] * var_s7->unk_24 + sp248[2][1] * var_s7->unk_28 + sp248[3][1]) * temp_f2;
                 temp_f28 = (sp248[0][2] * var_s7->unk_20 + sp248[1][2] * var_s7->unk_24 + sp248[2][2] * var_s7->unk_28 + sp248[3][2]) * temp_f2;
-                
+
                 if (temp_f12 < -1.0f || temp_f12 > 1.0f || temp_f14 < -1.0f || temp_f14 > 1.0f || temp_f28 < -1.0f || temp_f28 > 1.0f) {
                     continue;
                 }
 
                 var_f16 = (temp_f2 * var_s7->unk_40 * sp220 + temp_f12) * sp218 + sp214;
-                temp_f12 = temp_f12 * sp218 + sp214;                
+                temp_f12 = temp_f12 * sp218 + sp214;
                 if (var_f16 - temp_f12 > 0) {
                     var_f24 = temp_f12 - (var_f16 - temp_f12);
                 } else {
@@ -543,7 +501,7 @@ void func_800A4858(GObj* camObj) {
 
                 sp200 = (temp_s3 * 4096.0f) / (var_f16 - var_f24);
                 sp1FC = (temp_s5 * 4096.0f) / (var_f18 - var_f26);
-                
+
                 if (var_s7->unk_06 & 0x20) {
                     sp200 *= 2;
                     sp1F4 = 1;

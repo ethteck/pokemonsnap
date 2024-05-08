@@ -8,6 +8,14 @@ typedef union AnimCmd {
     void* ptr;
 } AnimCmd;
 
+typedef struct {
+    /* 0x00 */ f32 speed;
+    /* 0x04 */ f32 field_0x4;
+    /* 0x08 */ AnimCmd** animList;
+    /* 0x0C */ AnimCmd*** matAnims;
+    /* 0x10 */ s32* ids;
+} AnimationHeader;
+
 typedef struct UnkEC64Arg3 {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ void* unk04;

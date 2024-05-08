@@ -982,8 +982,8 @@ segments:
     - [0x848B50, c]
 
     - [0x848BC0, bin] # , data]
+    - [0x879E80, data, 848B50]
 
-    - [0x879E80, .rodata, 848B50]
     - [0x879F20, .rodata, 840A50]
     - [0x879FF0, .rodata, 843790]
     - [0x87A000, .rodata, 843D10]

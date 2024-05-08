@@ -9,23 +9,23 @@ typedef struct UnkBrassWolverine {
 } UnkBrassWolverine;
 
 extern UnkGoldViper D_80366BA4_506FB4;
-extern Sprite D_80366DF0_507200;
-extern Sprite D_80367580_507990;
-extern Sprite D_80367D10_508120;
-extern Sprite D_80367DC0_5081D0;
-extern Sprite D_80368038_508448;
-extern Sprite D_803706E0_510AF0;
-extern Sprite D_80378D88_519198;
-extern Sprite D_80378ED8_5192E8;
-extern Sprite D_8037A9A0_51ADB0;
-extern Sprite D_8037C468_51C878;
-extern Sprite D_8037D2A0_51D6B0;
-extern Sprite D_8037E0D8_51E4E8;
-extern Sprite D_8037EF10_51F320;
-extern Sprite D_8037FD48_520158;
-extern Sprite D_80380B80_520F90;
-extern Sprite D_803819B8_521DC8;
-extern Sprite D_80381B58_521F68;
+extern Sprite D_80366DF0_507200; // 506FE8 small reticle
+extern Sprite D_80367580_507990; // 507248 reticle 2
+extern Sprite D_80367D10_508120; // 5079D8 reticle 3
+extern Sprite D_80367DC0_5081D0; // 508168 red dot
+extern Sprite D_80368038_508448; // 508218 white dot
+extern Sprite D_803706E0_510AF0; // 508490
+extern Sprite D_80378D88_519198; // 510B38
+extern Sprite D_80378ED8_5192E8; // 5191E0 white square
+extern Sprite D_8037A9A0_51ADB0; // 519330 Pause
+extern Sprite D_8037C468_51C878; // 51ADF8 Pause Pressed
+extern Sprite D_8037D2A0_51D6B0; // 51C8C0 Quit Course
+extern Sprite D_8037E0D8_51E4E8; // 51D6F8 Quit Course Pressed
+extern Sprite D_8037EF10_51F320; // 51E530 Continue
+extern Sprite D_8037FD48_520158; // 51F368 Continue Pressed
+extern Sprite D_80380B80_520F90; // 5201A0 Retry
+extern Sprite D_803819B8_521DC8; // 520FD8 Retry Pressed
+extern Sprite D_80381B58_521F68; // 521E10 END
 extern s32 D_80382BFC_52300C;
 extern GObj* D_80382C00_523010;
 extern DObj* D_80382C04_523014;

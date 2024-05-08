@@ -1,31 +1,25 @@
 #include "common.h"
 #include "world/world.h"
-
-typedef struct UnkBrassWolverine {
-    /* 0x00 */ char unk_00[0x20];
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ char unk_24[0x18];
-    /* 0x3C */ s32 unk_3C[1];
-} UnkBrassWolverine;
+#include "app_level.h"
 
 extern UnkGoldViper D_80366BA4_506FB4;
-extern Sprite D_80366DF0_507200;
-extern Sprite D_80367580_507990;
-extern Sprite D_80367D10_508120;
-extern Sprite D_80367DC0_5081D0;
-extern Sprite D_80368038_508448;
-extern Sprite D_803706E0_510AF0;
-extern Sprite D_80378D88_519198;
-extern Sprite D_80378ED8_5192E8;
-extern Sprite D_8037A9A0_51ADB0;
-extern Sprite D_8037C468_51C878;
-extern Sprite D_8037D2A0_51D6B0;
-extern Sprite D_8037E0D8_51E4E8;
-extern Sprite D_8037EF10_51F320;
-extern Sprite D_8037FD48_520158;
-extern Sprite D_80380B80_520F90;
-extern Sprite D_803819B8_521DC8;
-extern Sprite D_80381B58_521F68;
+extern Sprite D_80366DF0_507200; // 506FE8 small reticle
+extern Sprite D_80367580_507990; // 507248 reticle 2
+extern Sprite D_80367D10_508120; // 5079D8 reticle 3
+extern Sprite D_80367DC0_5081D0; // 508168 red dot
+extern Sprite D_80368038_508448; // 508218 white dot
+extern Sprite D_803706E0_510AF0; // 508490
+extern Sprite D_80378D88_519198; // 510B38
+extern Sprite D_80378ED8_5192E8; // 5191E0 white square
+extern Sprite D_8037A9A0_51ADB0; // 519330 Pause
+extern Sprite D_8037C468_51C878; // 51ADF8 Pause Pressed
+extern Sprite D_8037D2A0_51D6B0; // 51C8C0 Quit Course
+extern Sprite D_8037E0D8_51E4E8; // 51D6F8 Quit Course Pressed
+extern Sprite D_8037EF10_51F320; // 51E530 Continue
+extern Sprite D_8037FD48_520158; // 51F368 Continue Pressed
+extern Sprite D_80380B80_520F90; // 5201A0 Retry
+extern Sprite D_803819B8_521DC8; // 520FD8 Retry Pressed
+extern Sprite D_80381B58_521F68; // 521E10 END
 extern s32 D_80382BFC_52300C;
 extern GObj* D_80382C00_523010;
 extern DObj* D_80382C04_523014;
@@ -35,7 +29,7 @@ extern f32 D_80382C1C_52302C;
 extern f32 D_80382C20_523030;
 extern f32 D_80382C24_523034;
 extern f32 D_80382C2C_52303C;
-extern UnkBrassWolverine* D_80382C30_523040;
+extern OMCamera* D_80382C30_523040;
 extern GObj* D_80382C38_523048;
 extern f32 D_80382C44_523054;
 extern f32 D_80382C5C_52306C;
@@ -64,7 +58,6 @@ extern s8 D_80382D44_523154;
 extern s32 D_80382D48_523158;
 extern s32 D_80382D9C_5231AC;
 extern s32 D_80382DC0_5231D0;
-extern s32 D_80388238_528648;
 extern Sprite D_80388E00_529210;
 extern SObj* D_803AE440_54E850[4];
 extern SObj* D_803AE458_54E868[6];
@@ -89,9 +82,6 @@ void func_8035C5CC_4FC9DC(UNK_PTR, s32*);
 void func_8035C74C_4FCB5C(void);
 void func_8035C7E4_4FCBF4(void);
 void func_8035C9CC_4FCDDC(s32, u8, s32);
-void func_8035D650_4FDA60(s32);
-void func_8035DDE8_4FE1F8(s32);
-void func_8035D1A0_4FD5B0(void);
 void func_8035E37C_4FE78C(void);
 void func_80365B24_505F34(void);
 void func_80365BB0_505FC0(char*, s32, s32, u8, u8, u8, u8, s32, u8);
@@ -130,27 +120,27 @@ void func_80350898_4F0CA8(GObj*);
 
 void func_80350950_4F0D60(GObj* obj) {
     if (D_80382D0C_52311C == 0) {
-        if ((gContInputPressedButtons & D_CBUTTONS) && D_80388238_528648 >= 3 && D_80382CB8_5230C8 == 0) {
+        if ((gContInputPressedButtons & D_CBUTTONS) && Icons_NumItemsAvailable >= 3 && D_80382CB8_5230C8 == 0) {
             D_80382CF4_523104 = 161;
             D_80382CB8_5230C8 = 45;
-            func_8035DDE8_4FE1F8(161);
+            Icons_ProcessButtonPress(161);
             func_8035C74C_4FCB5C();
         } else if (D_80382CB4_5230C4 == 0) {
-            if ((gContInputPressedButtons & B_BUTTON) && D_80388238_528648 >= 2) {
+            if ((gContInputPressedButtons & B_BUTTON) && Icons_NumItemsAvailable >= 2) {
                 D_80382CF4_523104 = 162;
                 D_80382CB4_5230C4 = 45;
-                func_8035C44C_4FC85C(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
-                func_8035DDE8_4FE1F8(162);
+                func_8035C44C_4FC85C(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                Icons_ProcessButtonPress(162);
                 func_8035C7E4_4FCBF4();
-                func_8035DDE8_4FE1F8(-1);
+                Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
-            } else if ((gContInputPressedButtons & A_BUTTON) && D_80388238_528648 >= 1) {
+            } else if ((gContInputPressedButtons & A_BUTTON) && Icons_NumItemsAvailable >= 1) {
                 D_80382CF4_523104 = 163;
                 D_80382CB4_5230C4 = 45;
-                func_8035C5CC_4FC9DC(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
-                func_8035DDE8_4FE1F8(163);
+                func_8035C5CC_4FC9DC(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                Icons_ProcessButtonPress(163);
                 func_8035C7E4_4FCBF4();
-                func_8035DDE8_4FE1F8(-1);
+                Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
             }
         }
@@ -300,7 +290,7 @@ void func_80355860_4F5C70(GObj* arg0) {
     func_803555B0_4F59C0(0, 0, 255);
     scRemovePostProcessFunc();
     func_80351158_4F1568(0);
-    func_8035D650_4FDA60(0);
+    Icons_SetDashEngineEnabled(0);
     sobj1 = omGObjAddSprite(D_80382C6C_52307C, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
     newvar = &sobj1->sprite; 
@@ -658,11 +648,11 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
 
     func_803597D4_4F9BE4();
     func_8035C9CC_4FCDDC(arg2, arg3, arg4);
-    func_8035D1A0_4FD5B0();
+    Icons_Init();
     func_8035E37C_4FE78C();
     func_803588D4_4F8CE4();
 
-    D_80382C30_523040->unk_20 = 55.0f;
+    D_80382C30_523040->perspMtx.persp.fovy = 55.0f;
     D_803AE478_54E888 = 1.0f;
     D_803AE47C_54E88C = 0.0f;
     sp48 = omAddGObj(26, ohUpdateDefault, 0, 0x80000000);
@@ -756,7 +746,7 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035703C_4F744C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357048_4F7458.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/getProgressFlags.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357054_4F7464.s")
 

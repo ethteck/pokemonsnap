@@ -719,3 +719,27 @@ world_func_800E40A4 = 0x800E40A4;
 getGroundAt = 0x800E41D8;
 world_func_800E6778 = 0x800E6778;
 world_func_800E67E4 = 0x800E67E4;
+
+D_8038812C_52853C = 0x8038812C; // segment:app_level size:0xC0
+D_80388224_528634 = 0x80388224; // segment:app_level size:0xC
+D_80388244_528654 = 0x80388244; // segment:app_level size:0xC0
+D_80383B48_523F58 = 0x80383B48; // segment:app_level
+D_803841C8_5245D8 = 0x803841C8; // segment:app_level
+D_80384E68_525278 = 0x80384E68; // segment:app_level
+D_80385B08_525F18 = 0x80385B08; // segment:app_level
+D_803867A8_526BB8 = 0x803867A8; // segment:app_level
+D_80387448_527858 = 0x80387448; // segment:app_level
+D_803880E8_5284F8 = 0x803880E8; // segment:app_level
+
+getProgressFlags = 0x80357048; // segment:app_level
+
+Icons_SetDashEngineEnabled = 0x8035D650; // segment:app_level
+Icons_Show = 0x8035DDA0; // segment:app_level
+Icons_Hide = 0x8035DDC8; // segment:app_level
+Icons_ProcessTakePhotoPressed = 0x8035DEA0; // segment:app_level
+Icons_Freeze = 0x8035DED4; // segment:app_level
+Icons_UnFreeze = 0x8035DEF8; // segment:app_level
+Icons_ProcessButtonPress = 0x8035DDE8; // segment:app_level
+Icons_ProcessZoom = 0x8035DD14; // segment:app_level
+Icons_TotalMoveOutFrameCounter = 0x803AF8B8; // segment:app_level
+Icons_MoveOutCounter = 0x803AF8C0; // segment:app_level

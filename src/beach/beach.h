@@ -22,7 +22,6 @@ extern UNK_TYPE D_8013CEA0;
 extern AnimCmd D_8013DA90;
 
 f32 atan2f(f32 y, f32 x);
-u32 randRange(s32 range);
 f32 randFloat(void);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);

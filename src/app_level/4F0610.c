@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level.h"
 
 extern UnkGoldViper D_80366BA4_506FB4;
 extern Sprite D_80366DF0_507200; // 506FE8 small reticle
@@ -57,7 +58,7 @@ extern s8 D_80382D44_523154;
 extern s32 D_80382D48_523158;
 extern s32 D_80382D9C_5231AC;
 extern s32 D_80382DC0_5231D0;
-extern s32 D_80388238_528648;
+extern s32 Icons_NumItemsAvailable;
 extern Sprite D_80388E00_529210;
 extern SObj* D_803AE440_54E850[4];
 extern SObj* D_803AE458_54E868[6];
@@ -82,9 +83,7 @@ void func_8035C5CC_4FC9DC(UNK_PTR, s32*);
 void func_8035C74C_4FCB5C(void);
 void func_8035C7E4_4FCBF4(void);
 void func_8035C9CC_4FCDDC(s32, u8, s32);
-void func_8035D650_4FDA60(s32);
-void func_8035DDE8_4FE1F8(s32);
-void func_8035D1A0_4FD5B0(void);
+void Icons_ProcessButtonPress(s32);
 void func_8035E37C_4FE78C(void);
 void func_80365B24_505F34(void);
 void func_80365BB0_505FC0(char*, s32, s32, u8, u8, u8, u8, s32, u8);
@@ -123,27 +122,27 @@ void func_80350898_4F0CA8(GObj*);
 
 void func_80350950_4F0D60(GObj* obj) {
     if (D_80382D0C_52311C == 0) {
-        if ((gContInputPressedButtons & D_CBUTTONS) && D_80388238_528648 >= 3 && D_80382CB8_5230C8 == 0) {
+        if ((gContInputPressedButtons & D_CBUTTONS) && Icons_NumItemsAvailable >= 3 && D_80382CB8_5230C8 == 0) {
             D_80382CF4_523104 = 161;
             D_80382CB8_5230C8 = 45;
-            func_8035DDE8_4FE1F8(161);
+            Icons_ProcessButtonPress(161);
             func_8035C74C_4FCB5C();
         } else if (D_80382CB4_5230C4 == 0) {
-            if ((gContInputPressedButtons & B_BUTTON) && D_80388238_528648 >= 2) {
+            if ((gContInputPressedButtons & B_BUTTON) && Icons_NumItemsAvailable >= 2) {
                 D_80382CF4_523104 = 162;
                 D_80382CB4_5230C4 = 45;
                 func_8035C44C_4FC85C(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
-                func_8035DDE8_4FE1F8(162);
+                Icons_ProcessButtonPress(162);
                 func_8035C7E4_4FCBF4();
-                func_8035DDE8_4FE1F8(-1);
+                Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
-            } else if ((gContInputPressedButtons & A_BUTTON) && D_80388238_528648 >= 1) {
+            } else if ((gContInputPressedButtons & A_BUTTON) && Icons_NumItemsAvailable >= 1) {
                 D_80382CF4_523104 = 163;
                 D_80382CB4_5230C4 = 45;
                 func_8035C5CC_4FC9DC(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
-                func_8035DDE8_4FE1F8(163);
+                Icons_ProcessButtonPress(163);
                 func_8035C7E4_4FCBF4();
-                func_8035DDE8_4FE1F8(-1);
+                Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
             }
         }
@@ -293,7 +292,7 @@ void func_80355860_4F5C70(GObj* arg0) {
     func_803555B0_4F59C0(0, 0, 255);
     scRemovePostProcessFunc();
     func_80351158_4F1568(0);
-    func_8035D650_4FDA60(0);
+    Icons_SetDashEngineEnabled(0);
     sobj1 = omGObjAddSprite(D_80382C6C_52307C, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
     newvar = &sobj1->sprite; 
@@ -651,7 +650,7 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
 
     func_803597D4_4F9BE4();
     func_8035C9CC_4FCDDC(arg2, arg3, arg4);
-    func_8035D1A0_4FD5B0();
+    Icons_Init();
     func_8035E37C_4FE78C();
     func_803588D4_4F8CE4();
 
@@ -749,7 +748,7 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035703C_4F744C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357048_4F7458.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/getProgressFlags.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357054_4F7464.s")
 

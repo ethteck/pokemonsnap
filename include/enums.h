@@ -29,4 +29,23 @@ enum SceneIds {
     SCENE_24 = 24
 };
 
+enum ProgressFlags {
+    PF_HAS_APPLE        = 0x0001,
+    PF_HAS_PESTER_BALL  = 0x0002,
+    PF_HAS_FLUTE        = 0x0004,
+    PF_0008             = 0x0008,
+    PF_0010             = 0x0010,
+    PF_HAS_DASH_ENGINE  = 0x0020,
+    PF_0040             = 0x0040,
+    PF_0080             = 0x0080,
+    PF_0100             = 0x0100,
+    PF_0200             = 0x0200,
+    PF_0400             = 0x0400,
+    PF_0800             = 0x0800,
+    PF_CAN_ZOOM_OFF     = 0x1000, // not sure what it is
+    PF_2000             = 0x2000,
+    PF_4000             = 0x4000,
+    PF_8000             = 0x8000
+};
+
 #endif

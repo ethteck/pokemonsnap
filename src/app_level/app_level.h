@@ -4,6 +4,8 @@
 
 extern s32 D_80382CF4_523104;
 
+extern s32 Icons_NumItemsAvailable;
+
 u32 getProgressFlags(void);
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);

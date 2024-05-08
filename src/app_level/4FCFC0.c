@@ -18,6 +18,8 @@ extern u8 D_80388304_528714;
 extern SpriteStruct D_80388244_528654[8];
 extern s32 D_803AF8C0_54FCD0[8];
 extern s32 D_803AF8B8_54FCC8;
+extern s32 D_803AF8BC_54FCCC;
+extern s32 D_80388234_528644;
 
 void func_8035DB80_4FDF90(GObj*);
 
@@ -400,15 +402,106 @@ void func_8035D868_4FDC78(GObj* arg0) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035D9F4_4FDE04.s")
+void func_8035D9F4_4FDE04(GObj* arg0) {
+    s32 i;
+    s32 s3;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DB80_4FDF90.s")
+    while (TRUE) {
+        s3 = FALSE;
+        if (D_80388304_528714 == 1) {
+            break;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DD14_4FE124.s")
+        for (i = 0; i < 8; i++) {
+            if (D_80388244_528654[i].spriteObj != NULL && D_8038812C_52853C[i].spriteObj != NULL && D_803AF8C0_54FCD0[i] >= 0) {
+                s3 = TRUE;
+                D_803AF8C0_54FCD0[i]--;
+                func_8035D65C_4FDA6C(i, 6);
+            }
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DDA0_4FE1B0.s")
+        if (s3) {
+            if (D_803AF8BC_54FCCC > 0) {
+                D_803AF8BC_54FCCC--;
+            }
+            ohWait(1);
+            continue;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DDC8_4FE1D8.s")
+        for (i = 0; i < 8; i++) {
+            if (D_80388244_528654[i].spriteObj != NULL && D_8038812C_52853C[i].spriteObj != NULL) {
+                spSetAttribute(&D_8038812C_52853C[i].spriteObj->sprite, SP_HIDDEN);
+            }
+        }
+        omCreateProcess(D_80388230_528640, func_8035D868_4FDC78, 0, 1);
+        break;
+    }
+    omEndProcess(NULL);
+}
+
+void func_8035DB80_4FDF90(GObj* arg0) {
+    s32 i;
+    s32 s3;
+
+    for (i = 0; i < 8; i++) {
+        if (D_80388244_528654[i].spriteObj != NULL && D_8038812C_52853C[i].spriteObj != NULL) {
+            spClearAttribute(&D_8038812C_52853C[i].spriteObj->sprite, SP_HIDDEN);
+        }
+    }
+
+    while (TRUE) {
+        s3 = FALSE;
+        if (D_80388304_528714 == 0) {
+            break;
+        }
+
+        for (i = 0; i < 8; i++) {
+            if (D_80388244_528654[i].spriteObj != NULL && D_8038812C_52853C[i].spriteObj != NULL) {
+                if (D_80388244_528654[i].unk_10 <= D_803AF8BC_54FCCC) {
+                    if (D_803AF8C0_54FCD0[i] < 8) {
+                        s3 = TRUE;
+                        D_803AF8C0_54FCD0[i]++;
+                        func_8035D65C_4FDA6C(i, -6);
+                    }
+                } else {
+                    s3 = TRUE;
+                }
+            }
+        }
+
+        if (s3) {
+            if (D_803AF8BC_54FCCC < 8) {
+                D_803AF8BC_54FCCC++;
+            }
+            ohWait(1);
+            continue;
+        }
+        break;
+    }
+    omEndProcess(NULL);
+}
+
+void func_8035DD14_4FE124(s32 arg0) {
+    if (arg0 == 0 && D_80388304_528714 != 0) {
+        omCreateProcess(D_80388230_528640, func_8035D9F4_4FDE04, 0, 1);
+        D_80388304_528714 = 0;
+        return;
+    }
+    if (arg0 == 1 && D_80388304_528714 != 1) {
+        omCreateProcess(D_80388230_528640, func_8035D6E0_4FDAF0, 0, 1);
+        D_80388304_528714 = 1;
+    }
+}
+
+void func_8035DDA0_4FE1B0(void) {
+    D_80388230_528640->flags &= ~GOBJ_FLAG_HIDDEN;
+    D_80388234_528644 = 1;
+}
+
+void func_8035DDC8_4FE1D8(void) {
+    D_80388230_528640->flags |= GOBJ_FLAG_HIDDEN;
+    D_80388234_528644 = 0;
+}
 
 void func_8035DDE8_4FE1F8(s32 arg0) {
     if (arg0 == 162) {
@@ -425,9 +518,14 @@ void func_8035DDE8_4FE1F8(s32 arg0) {
     }
 }
 
+void func_8035DEA0_4FE2B0(void) {
+    omCreateProcess(D_80388230_528640, func_8035CCD4_4FD0E4, 0, 1);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DEA0_4FE2B0.s")
+void func_8035DED4_4FE2E4(void) {
+    ohPauseObjectProcesses(D_80388230_528640);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DED4_4FE2E4.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FCFC0/func_8035DEF8_4FE308.s")
+void func_8035DEF8_4FE308(void) {
+    ohResumeObjectProcesses(D_80388230_528640);
+}

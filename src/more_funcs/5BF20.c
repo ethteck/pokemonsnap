@@ -359,7 +359,21 @@ s32 func_800BFB84_5CA24(void) {
     return D_800C20F0_5EF90;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BFB90_5CA30.s")
+void func_800BFB90_5CA30(s32 arg0, s32 arg1) {
+    if (arg0 < -0x4C) {
+        arg0 = -0x4C;
+    } else if (arg0 > 0x18) {
+        arg0 = 0x18;
+    }
+    if (arg1 < -0x24) {
+        arg1 = -0x24;
+    } else if (arg1 > 0xE) {
+        arg1 = 0xE;
+    }
+
+    D_800C21B0_5F050->data.unk_64_22 = arg0 + 0x4C;
+    D_800C21B0_5F050->data.unk_64_16 = arg1 + 0x24;
+}
 
 void func_800BFC18_5CAB8(s32* arg0, s32* arg1) {
     if (arg0 != NULL) {

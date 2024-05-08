@@ -1,5 +1,41 @@
 #include "common.h"
 
+typedef struct UnkPesterBall {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ GObj* unk_08;
+} UnkPesterBall;
+
+typedef struct UnkPesterBall2 {
+    /* 0x00 */ u8 unk_00;
+    /* 0x01 */ u8 unk_01;
+    /* 0x02 */ u8 unk_02;
+    /* 0x03 */ u8 unk_03;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ Vec3f unk_08;
+} UnkPesterBall2;
+
+extern f32 D_80382C1C_52302C;
+extern f32 D_80382C20_523030;
+extern f32 D_80382C24_523034;
+extern s32 D_803AF0BC_54F4CC;
+extern s32 D_803AF0C0_54F4D0;
+extern s32 D_803AF0C4_54F4D4;
+extern UnkPesterBall* D_803AF0A8_54F4B8;
+extern UnkEC64Arg3 D_800E9138[];
+extern UnkEC64Arg3 D_800EAED0[];
+extern Texture** D_800E8EB8[];
+extern Texture** D_800EAC58[];
+extern AnimCmd** D_800E91C0[];
+extern AnimCmd** D_800EAF60[];
+extern Vec3f D_8038A398_52A7A8;
+extern u8 D_803AF0C8_54F4D8;
+extern GObjFunc D_80382EB4_5232C4;
+
+void func_8035C8F4_4FCD04(GObj*);
+UnkPesterBall2* func_8035EBBC_4FEFCC(void);
+void func_80359770_4F9B80(GObj*, GObjFunc);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359740_4F9B50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359770_4F9B80.s")
@@ -15,18 +51,74 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359970_4F9D80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_803599E8_4F9DF8.s")
+void func_803599E8_4F9DF8(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359A50_4F9E60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359B0C_4F9F1C.s")
+s32 func_80359B0C_4F9F1C(void);
+/*
+extern s32 D_80382EB0_5232C0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359CD4_4FA0E4.s")
+s32 func_80359B0C_4F9F1C(void) {
+    D_80382EB0_5232C0++;
+    if (D_80382EB0_5232C0 >= 20) {
+        D_80382EB0_5232C0 = 0;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359D14_4FA124.s")
+    if (D_80382EB0_5232C0 < 20) {
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359E38_4FA248.s")
+    }
+}
+*/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359E6C_4FA27C.s")
+void func_80359CD4_4FA0E4(GObj* obj) {
+    ohWait(3);
+    obj->flags &= ~GOBJ_FLAG_HIDDEN;
+    omEndProcess(NULL);
+}
+
+void func_80359D14_4FA124(GObj* obj, Vec3f* pos, Vec3f* arg2) {
+    Vec3f velocity;
+    DObj* model;
+    UnkPesterBall2* ball;
+
+    model = obj->data.dobj;
+
+    model->position.v.x = pos->x;
+    model->position.v.y = pos->y;
+    model->position.v.z = pos->z;
+
+    velocity.x = D_80382C1C_52302C - model->position.v.x;
+    velocity.y = D_80382C20_523030 - model->position.v.y + 100.0f;
+    velocity.z = D_80382C24_523034 - model->position.v.z;
+    Vec3fNormalize(&velocity);
+    Vec3fScale(&velocity, 50.0f);
+    Vec3fAdd(&velocity, arg2);
+    
+    ball = obj->userData;
+    ball->unk_01 = 1;
+    ball->unk_03 = 0;
+    ball->unk_04 = 0.0f;
+    ball->unk_08.x = velocity.x;
+    ball->unk_08.y = velocity.y;
+    ball->unk_08.z = velocity.z;
+    func_803599E8_4F9DF8(obj);
+    obj->flags |= GOBJ_FLAG_HIDDEN;
+    omCreateProcess(obj, D_80382EB4_5232C4, D_803AF0C8_54F4D8, 7);
+    omCreateProcess(obj, func_80359CD4_4FA0E4, 0, 7);
+}
+
+void func_80359E38_4FA248(GObj* source, s32 cmd) {
+    s32* cmdPtr = &cmd; // TODO find better match
+    if (*cmdPtr == 100) {
+        func_8035C8F4_4FCD04(omCurrentObject);
+    }
+}
+
+void func_80359E6C_4FA27C(GObj* arg0) {
+    cmdProcessCommands(func_80359E38_4FA248);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359E94_4FA2A4.s")
 
@@ -60,9 +152,59 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_8035C35C_4FC76C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_8035C44C_4FC85C.s")
+void spawnPesterBall(Vec3f* arg0, Vec3f* arg1) {
+    GObj* ballObj;
+    UnkPesterBall2* ball;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_8035C5CC_4FC9DC.s")
+    if (D_803AF0C0_54F4D0 >= 5 && D_803AF0A8_54F4B8 != NULL) {
+        func_8035C8F4_4FCD04(D_803AF0A8_54F4B8->unk_08);
+    }
+    D_803AF0BC_54F4CC++;
+    D_803AF0C0_54F4D0++;    
+    ballObj = omAddGObj(func_80359B0C_4F9F1C(), func_80359E6C_4FA27C, 4, 0x80000000);
+    omLinkGObjDL(ballObj, renderModelTypeBFogged, 3, 0x80000000, -1);
+    anim_func_80010230(ballObj, D_800E9138, D_800E8EB8, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
+    omCreateProcess(ballObj, animUpdateModelTreeAnimation, 1, 3);
+    animSetModelTreeTextureAnimation(ballObj, D_800E91C0, 0);
+    animSetTextureAnimationSpeed(ballObj, 0.4f);
+    ballObj->data.dobj->scale.v.x = 0.1f;
+    ballObj->data.dobj->scale.v.y = 0.1f;
+    ballObj->data.dobj->scale.v.z = 0.1f;
+    ball = func_8035EBBC_4FEFCC();
+    ballObj->userData = ball;
+    ball->unk_00 = 162;
+    ballObj->flags |= GOBJ_FLAG_HIDDEN;
+    func_80359770_4F9B80(ballObj, func_80359CD4_4FA0E4);
+    auPlaySound(8);
+    func_80359D14_4FA124(ballObj, arg0, arg1);
+}
+
+void spawnApple(Vec3f* arg0, Vec3f* arg1) {
+    GObj* ballObj;
+    UnkPesterBall2* ball;
+
+    if (D_803AF0C4_54F4D4 >= 5 && D_803AF0A8_54F4B8 != NULL) {
+        func_8035C8F4_4FCD04(D_803AF0A8_54F4B8->unk_08);
+    }
+    D_803AF0BC_54F4CC++;
+    D_803AF0C4_54F4D4++;    
+    ballObj = omAddGObj(func_80359B0C_4F9F1C(), func_80359E6C_4FA27C, 4, 0x80000000);
+    omLinkGObjDL(ballObj, renderModelTypeBFogged, 3, 0x80000000, -1);
+    anim_func_80010230(ballObj, D_800EAED0, D_800EAC58, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
+    omCreateProcess(ballObj, animUpdateModelTreeAnimation, 1, 3);
+    animSetModelTreeTextureAnimation(ballObj, D_800EAF60, 0);
+    animSetTextureAnimationSpeed(ballObj, 0.4f);
+    ballObj->data.dobj->scale.v.x = 0.1f;
+    ballObj->data.dobj->scale.v.y = 0.1f;
+    ballObj->data.dobj->scale.v.z = 0.1f;
+    ball = func_8035EBBC_4FEFCC();
+    ballObj->userData = ball;
+    ball->unk_00 = 163;
+    ballObj->flags |= GOBJ_FLAG_HIDDEN;
+    func_80359770_4F9B80(ballObj, func_80359CD4_4FA0E4);
+    auPlaySound(9);
+    func_80359D14_4FA124(ballObj, arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_8035C74C_4FCB5C.s")
 

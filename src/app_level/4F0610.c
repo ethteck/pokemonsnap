@@ -46,7 +46,7 @@ extern SObj* D_80382C88_523098;
 extern SObj* D_80382C8C_52309C;
 extern SObj* D_80382C90_5230A0;
 extern Vec3f D_80382C94_5230A4;
-extern s32 D_80382CA0_5230B0;
+extern Vec3f D_80382CA0_5230B0;
 extern s32 D_80382CB4_5230C4;
 extern s32 D_80382CB8_5230C8;
 extern f32 D_80382CC0_5230D0;
@@ -77,8 +77,8 @@ void func_80357120_4F7530(s32);
 void func_803579C8_4F7DD8(f32*, f32*, f32*);
 void func_803588D4_4F8CE4(void);
 void func_803597D4_4F9BE4(void);
-void func_8035C44C_4FC85C(UNK_PTR, s32*);
-void func_8035C5CC_4FC9DC(UNK_PTR, s32*);
+void spawnPesterBall(Vec3f*, Vec3f*);
+void spawnApple(Vec3f*, Vec3f*);
 void func_8035C74C_4FCB5C(void);
 void func_8035C7E4_4FCBF4(void);
 void func_8035C9CC_4FCDDC(s32, u8, s32);
@@ -129,7 +129,7 @@ void func_80350950_4F0D60(GObj* obj) {
             if ((gContInputPressedButtons & B_BUTTON) && Icons_NumItemsAvailable >= 2) {
                 D_80382CF4_523104 = 162;
                 D_80382CB4_5230C4 = 45;
-                func_8035C44C_4FC85C(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                spawnPesterBall(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
                 Icons_ProcessButtonPress(162);
                 func_8035C7E4_4FCBF4();
                 Icons_ProcessButtonPress(-1);
@@ -137,7 +137,7 @@ void func_80350950_4F0D60(GObj* obj) {
             } else if ((gContInputPressedButtons & A_BUTTON) && Icons_NumItemsAvailable >= 1) {
                 D_80382CF4_523104 = 163;
                 D_80382CB4_5230C4 = 45;
-                func_8035C5CC_4FC9DC(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                spawnApple(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
                 Icons_ProcessButtonPress(163);
                 func_8035C7E4_4FCBF4();
                 Icons_ProcessButtonPress(-1);

@@ -743,3 +743,5 @@ Icons_ProcessButtonPress = 0x8035DDE8; // segment:app_level
 Icons_ProcessZoom = 0x8035DD14; // segment:app_level
 Icons_TotalMoveOutFrameCounter = 0x803AF8B8; // segment:app_level
 Icons_MoveOutCounter = 0x803AF8C0; // segment:app_level
+spawnPesterBall = 0x8035C44C; // segment:app_level
+spawnApple = 0x8035C5CC; // segment:app_level

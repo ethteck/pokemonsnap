@@ -673,12 +673,13 @@ auSetCurrentSoundsGlobalVolume = 0x80023600;
 auSetSoundGlobalReverb = 0x80023880;
 D_80096968 = 0x80096968; // size:8
 
-gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0;
-gspF3DEX2_NoN_fifoDataStart = 0x80044E60;
-gspL3DEX2_fifoTextStart = 0x8003FB30;
-gspL3DEX2_fifoDataStart = 0x80045280;
-aspMainTextStart = 0x8003D980;
-aspMainDataStart = 0x80044BA0;
+gspF3DEX2_NoN_fifoTextStart = 0x8003E7A0; // name_end:gspF3DEX2_NoN_fifoTextEnd
+gspF3DEX2_NoN_fifoDataStart = 0x80044E60; // name_end:gspF3DEX2_NoN_fifoDataEnd
+gspL3DEX2_fifoTextStart = 0x8003FB30; // name_end:gspL3DEX2_fifoTextEnd
+gspL3DEX2_fifoDataStart = 0x80045280; // name_end:gspL3DEX2_fifoDataEnd
+aspMainTextStart = 0x8003D980; // name_end:aspMainTextEnd
+aspMainDataStart = 0x80044BA0; // name_end:aspMainDataEnd
+rspbootTextStart = 0x8003D8B0; // name_end:rspbootTextEnd
 
 // Unreferenced strings
 D_801C5EDC_98B6FC = 0x801C5EDC; // rom:0x98B6FC type:asciz

@@ -1,13 +1,6 @@
 #include "common.h"
 #include "world/world.h"
 
-typedef struct UnkBrassWolverine {
-    /* 0x00 */ char unk_00[0x20];
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ char unk_24[0x18];
-    /* 0x3C */ s32 unk_3C[1];
-} UnkBrassWolverine;
-
 extern UnkGoldViper D_80366BA4_506FB4;
 extern Sprite D_80366DF0_507200; // 506FE8 small reticle
 extern Sprite D_80367580_507990; // 507248 reticle 2
@@ -35,7 +28,7 @@ extern f32 D_80382C1C_52302C;
 extern f32 D_80382C20_523030;
 extern f32 D_80382C24_523034;
 extern f32 D_80382C2C_52303C;
-extern UnkBrassWolverine* D_80382C30_523040;
+extern OMCamera* D_80382C30_523040;
 extern GObj* D_80382C38_523048;
 extern f32 D_80382C44_523054;
 extern f32 D_80382C5C_52306C;
@@ -139,7 +132,7 @@ void func_80350950_4F0D60(GObj* obj) {
             if ((gContInputPressedButtons & B_BUTTON) && D_80388238_528648 >= 2) {
                 D_80382CF4_523104 = 162;
                 D_80382CB4_5230C4 = 45;
-                func_8035C44C_4FC85C(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
+                func_8035C44C_4FC85C(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
                 func_8035DDE8_4FE1F8(162);
                 func_8035C7E4_4FCBF4();
                 func_8035DDE8_4FE1F8(-1);
@@ -147,7 +140,7 @@ void func_80350950_4F0D60(GObj* obj) {
             } else if ((gContInputPressedButtons & A_BUTTON) && D_80388238_528648 >= 1) {
                 D_80382CF4_523104 = 163;
                 D_80382CB4_5230C4 = 45;
-                func_8035C5CC_4FC9DC(D_80382C30_523040->unk_3C, &D_80382CA0_5230B0);
+                func_8035C5CC_4FC9DC(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
                 func_8035DDE8_4FE1F8(163);
                 func_8035C7E4_4FCBF4();
                 func_8035DDE8_4FE1F8(-1);
@@ -662,7 +655,7 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
     func_8035E37C_4FE78C();
     func_803588D4_4F8CE4();
 
-    D_80382C30_523040->unk_20 = 55.0f;
+    D_80382C30_523040->perspMtx.persp.fovy = 55.0f;
     D_803AE478_54E888 = 1.0f;
     D_803AE47C_54E88C = 0.0f;
     sp48 = omAddGObj(26, ohUpdateDefault, 0, 0x80000000);

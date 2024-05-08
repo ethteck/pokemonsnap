@@ -208,23 +208,23 @@ void func_800E3B0C_612BC(WorldBlock* arg0, f32 arg1, f32 arg2, UnkGoldViper* arg
     if (arg0->descriptor->unk_14 != 0) {
         sp5C += 3.1415927f;
     }
-    arg3->unk_1C = sp5C;
+    arg3->unk_18.y = sp5C;
 
     cosAngle = cosf(arg0->descriptor->yaw);
     sinAngle = sinf(arg0->descriptor->yaw);
 
-    arg3->unk_0C = cosAngle * sp6C + sinAngle * sp64;
-    arg3->unk_14 = -sinAngle * sp6C + cosAngle * sp64;
-    arg3->unk_10 = sp68;    
+    arg3->unk_0C.x = cosAngle * sp6C + sinAngle * sp64;
+    arg3->unk_0C.z = -sinAngle * sp6C + cosAngle * sp64;
+    arg3->unk_0C.y = sp68;    
 
-    arg3->unk_18 = sp60;
-    arg3->unk_20 = sp58;
+    arg3->unk_18.x = sp60;
+    arg3->unk_18.z = sp58;
 
     arg3->unk_24 = arg3->unk_28 * f14;
     
-    arg3->unk_0C = arg3->unk_0C;
-    arg3->unk_10 = arg3->unk_10;
-    arg3->unk_14 = arg3->unk_14;
+    arg3->unk_0C.x = arg3->unk_0C.x;
+    arg3->unk_0C.y = arg3->unk_0C.y;
+    arg3->unk_0C.z = arg3->unk_0C.z;
 }
 
 void func_800E3D04_614B4(UnkGoldViper* arg0) {

@@ -15,6 +15,16 @@ typedef struct UnkPesterBall2 {
     /* 0x08 */ Vec3f unk_08;
 } UnkPesterBall2;
 
+typedef struct UnkTangyViper {
+    /* 0x00 */ struct UnkTangyViper* unk_00;
+    /* 0x04 */ struct UnkTangyViper* unk_04;
+    /* 0x08 */ s32 unk_08;
+    /* 0x0C */ s32 unk_0C;
+} UnkTangyViper; // size = 0x10
+
+extern UnkTangyViper D_803AEF68_54F378[20];
+extern s32 D_803AF0AC_54F4BC;
+extern UnkTangyViper* D_803AF0B0_54F4C0;
 extern f32 D_80382C1C_52302C;
 extern f32 D_80382C20_523030;
 extern f32 D_80382C24_523034;
@@ -34,13 +44,52 @@ extern GObjFunc D_80382EB4_5232C4;
 
 void func_8035C8F4_4FCD04(GObj*);
 UnkPesterBall2* func_8035EBBC_4FEFCC(void);
-void func_80359770_4F9B80(GObj*, GObjFunc);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359740_4F9B50.s")
+f32 func_80359740_4F9B50(Vec3f* v1, Vec3f* v2) {
+    return v1->x * v2->x + v1->y * v2->y + v1->z * v2->z;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359770_4F9B80.s")
+void func_80359770_4F9B80(GObj* obj, GObjFunc func) {
+    GObjProcess* proc;
+    GObjProcess* next;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_803597D4_4F9BE4.s")
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        next = proc->next;
+        if (func == proc->function) {
+            omEndProcess(proc);
+        }
+        proc = next;
+    }
+}
+
+void func_803597D4_4F9BE4(void) {
+    s32 i;
+
+    D_803AF0A8_54F4B8 = NULL;
+    D_803AF0AC_54F4BC = 0;
+    D_803AF0B0_54F4C0 = D_803AEF68_54F378;
+
+    for (i = 0; i < ARRAY_COUNT(D_803AEF68_54F378); i++) {
+        if (i == 0) {
+            D_803AEF68_54F378[i].unk_00 = NULL;
+        } else {
+            D_803AEF68_54F378[i].unk_00 = &D_803AEF68_54F378[i - 1];
+        }
+        if (i == ARRAY_COUNT(D_803AEF68_54F378) - 1) {
+            D_803AEF68_54F378[i].unk_04 = NULL;
+        } else {
+            D_803AEF68_54F378[i].unk_04 = &D_803AEF68_54F378[i + 1];
+        }
+        D_803AEF68_54F378[i].unk_08 = 0;
+        D_803AEF68_54F378[i].unk_0C = i;
+    }
+    D_803AF0BC_54F4CC = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/func_80359880_4F9C90.s")
 

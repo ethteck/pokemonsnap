@@ -330,22 +330,22 @@ s32 func_800BF864_5C704(void) {
 }
 
 #ifdef NON_EQUIVALENT
-s32** func_800BF8BC_5C75C(s32 arg0) {
-    s32 temp;
-    s32** sp28;
+PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     s32 i;
+    PhotoData* sp28;
 
     sp28 = NULL;
     for (i = 1; i < 152; i++) {
-        if (func_800BF3D4_5C274(i)) {
-            temp = arg0;
-            arg0--;
-            if (temp == 0) {
-                sp28 = &D_800C21B0_5F050[func_8009BB4C()].unk_180;
-                break;
-            }
+        if (!func_800BF3D4_5C274(i))
+            continue;
+        if (arg0--) {
+            continue;
         }
+
+        sp28 = &D_800C21B0_5F050->data.unk_180[func_8009BB4C(i)];
+        break;
     }
+
     return sp28;
 }
 #else

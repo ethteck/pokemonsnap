@@ -256,11 +256,4 @@ typedef struct UnkCanaryScallop {
     s32 unk_4;
 } UnkCanaryScallop; // size == 0x8
 
-
-typedef struct UnkImmenseChild {
-    u8 pad_0[4];
-    s32 unk_4;
-    u8 pad_8[0x3A0-0x8];
-} UnkImmenseChild; // size: 0x3A0
-
 #endif

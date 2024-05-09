@@ -106,7 +106,7 @@ s32 func_800BF864_5C704(void);
 PhotoData* func_800BF8BC_5C75C(int);
 s32 func_800BF9EC_5C88C(void);
 PhotoData * func_800BFA44_5C8E4(s32);
-void func_800BFABC_5C95C(PhotoData*, s32, int, s32);
+void func_800BFABC_5C95C(PhotoData*, s32, s32, s32);
 s32 func_800BFC5C_5CAFC(void);
 void func_800BFC70_5CB10(s32 arg0);
 s32 func_800BFCA0_5CB40(s32);

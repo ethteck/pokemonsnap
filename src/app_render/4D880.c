@@ -36,6 +36,8 @@ extern u8 D_800BE200[4];
 extern s32 D_800BE228[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
+extern s32 D_800BE2A8;
+extern s32 D_800BE2AC;
 extern u8 D_800AEC60;
 extern u8 D_800AEC64;
 
@@ -672,7 +674,10 @@ void func_800A4858(GObj* camObj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5DD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5DF4.s")
+void func_800A5DF4(s32 arg0, s32 arg1) {
+    D_800AEC60 = arg0;
+    D_800AEC64 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5E08.s")
 
@@ -688,7 +693,10 @@ void func_800A4858(GObj* camObj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6F74.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6FBC.s")
+void func_800A6FBC(s32 arg0, s32 arg1) {
+    D_800BE2AC = arg0;
+    D_800BE2A8 = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6FD0.s")
 

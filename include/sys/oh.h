@@ -13,6 +13,9 @@ void ohResumeObjectProcesses(GObj* obj);
 void ohPauseProcessByFunction(GObj* obj, GObjFunc function);
 void ohResumeProcessByFunction(GObj* obj, GObjFunc function);
 void ohRemoveSprite(GObj*);
+GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
+                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices,
+                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority);
 void ohRemoveDObj(GObj*);
 void ohEndAllObjectProcesses(GObj*);
 void ohDeleteAllObjects(void);

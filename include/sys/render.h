@@ -1,6 +1,8 @@
 #ifndef SYS_RENDER_H
 #define SYS_RENDER_H
 
+s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj);
+void renLoadTextures(DObj* dobj, Gfx** gfxPtr);
 void ren_func_800191D8(GObj*);
 void ren_func_80015448(void);
 void ren_func_80018CD0(s32);

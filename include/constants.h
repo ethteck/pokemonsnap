@@ -6,8 +6,10 @@
 typedef u16 PokemonID;
 
 #define PokemonID_PIDGEY     16
+#define PokemonID_MAGNETON   82
 #define PokemonID_MUK        89
 #define PokemonID_SHELLDER   90
+#define PokemonID_CHANSEY    113
 #define PokemonID_STARYU     120
 #define PokemonID_STARMIE    121
 #define PokemonID_SCYTHER    123

@@ -232,10 +232,12 @@ segments:
     - [0x3E420, c, ../ultralib/src/io/vigetcurrframebuf]
     - [0x3E460, c, ../ultralib/src/io/spsetpc]
     - [0x3E4A0, hasm, ../ultralib/src/os/setwatchlo]
-    - [0x3E4B0, asm, rspboot]
-    - [0x3E580, data, rsp/aspMain]
-    - [0x3F3A0, data, gspF3DEX2H.NoN.fifo]
-    - [0x40730, data, gspL3DEX2H.fifo] # probably wrong offset
+
+    - [0x3E4B0, textbin, rsp/rspboot]
+    - [0x3E580, textbin, rsp/aspMain]
+    - [0x3F3A0, textbin, rsp/gspF3DEX2H.NoN.fifo]
+    - [0x40730, textbin, rsp/gspL3DEX2H.fifo]
+
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
     - [0x41950, .data, sys/rdp_reset]
@@ -306,9 +308,11 @@ segments:
     - [0x456D0, .rodata, ../ultralib/src/gu/cosf]
     - [0x45730, .rodata, ../ultralib/src/libc/xldtob]
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
-    - [0x457A0, rodata, rsp/aspMain_data]
-    - [0x45A60, rodata, gspF3DEX2H.NoN.fifo]
-    - [0x45E80, rodata, gspL3DEX2H.fifo] # probably wrong offset
+
+    - { start: 0x457A0, type: databin, name: rsp/aspMain,             linker_section_order: .rodata }
+    - { start: 0x45A60, type: databin, name: rsp/gspF3DEX2H.NoN.fifo, linker_section_order: .rodata }
+    - { start: 0x45E80, type: databin, name: rsp/gspL3DEX2H.fifo,     linker_section_order: .rodata }
+
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
     - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }
     - { start: auto, name: sys/dma, type: .bss, vram: 0x800488A0 }
@@ -592,23 +596,20 @@ segments:
     - [0x506FB0, data] # has sprite data which should be in 4FCFC0.c
     - [0x528530, .data, icons]
     - [0x528720, data]
-    - { start: 0x52A470, type: .rodata, name: 4F0610, linker_section_order: .data}
+    - { start: 0x52A470, type: .rodata, name: 4F0610, linker_section_order: .data }
     - [0x52A700, data]
-    - { start: 0x52A720, type: .rodata, name: 4F9B50, linker_section_order: .data}
-    - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data}
+    - { start: 0x52A720, type: .rodata, name: 4F9B50, linker_section_order: .data }
+    - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]
     - [0x52A880, .data, 503C10]
     - [0x52A8A0, data]
     - [0x533C10, .rodata, 4FEB90]
     - [0x533E90, .rodata, 503C10]
-    - [0x533ED0, rodata]
-    - [0x533EE0, rodata]
-    - [0x533FE0, rodata]
-    - [0x534000, rodata]
-    - [0x536010, rodata]
-    - [0x53E1E0, rodata]
-    - [0x53E1F0, rodata]
-    - [0x54AE40, rodata]
+    - [0x533ED0, .rodata, 5047F0]
+    - [0x533EE0, .rodata, 504C00]
+    - { start: 0x533FE0, type: data, linker_section_order: .rodata } # maybe it is rodata?
+    - [0x536010, .rodata, 5064F0]
+    - { start: 0x536030, type: data, linker_section_order: .rodata }
     - { name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
     #- { name: 503C10, type: bss, vram: 0x803B0F60 }
     #- { start: auto, name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
@@ -979,8 +980,8 @@ segments:
     - [0x848B50, c]
 
     - [0x848BC0, bin] # , data]
+    - [0x879E80, data, 848B50]
 
-    - [0x879E80, .rodata, 848B50]
     - [0x879F20, .rodata, 840A50]
     - [0x879FF0, .rodata, 843790]
     - [0x87A000, .rodata, 843D10]
@@ -1184,6 +1185,7 @@ segments:
     - [0xA9D6B0, data] # sprite
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
+    - [0xAA0000, .rodata, A937C0]
     - [auto, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
     - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }

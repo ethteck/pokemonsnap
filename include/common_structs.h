@@ -211,7 +211,9 @@ typedef struct UnkThingSub {
     /* 0x00 */ s32 pokemonID : 13;
     /* 0x00 */ s32 unk_20_7 : 3; // padding?
     /* 0x02 */ char unk_02[0x2];
-    /* 0x04 */ char unk_04[0x14];
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ Vec3f unk_08;
+    /* 0x14 */ f32 unk_14;
 } UnkThingSub; // size = 0x18
 
 typedef struct UnkThingSub2 {
@@ -223,7 +225,8 @@ typedef struct UnkThingSub2 {
 typedef struct UnkThingSub3 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ char unk_01[0x3];
-    /* 0x04 */ char unk_04[0xC];
+    /* 0x04 */ char unk_04[0x8];
+    /* 0x0C */ f32 unk_0C;
 } UnkThingSub3;
 
 typedef struct PhotoData {

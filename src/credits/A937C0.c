@@ -261,10 +261,6 @@ void func_credits_801DD428(void) {
     }
 }
 
-// #if 1
-// #pragma GLOBAL_ASM("asm/nonmatchings/credits/A937C0/func_credits_801DD49C.s")
-// #else
-// TODO: there should be a file split after this and before the next rodata
 void func_credits_801DD49C(GObj* arg0) {
     SObj* temp_s0;
     f32 var_f20;
@@ -283,7 +279,6 @@ void func_credits_801DD49C(GObj* arg0) {
         ohWait(1);
     }
 }
-// #endif
 
 void func_credits_801DD540(GObj* arg0) {
     u8 i;

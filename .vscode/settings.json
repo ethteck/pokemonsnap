@@ -16,7 +16,8 @@
         "random": "c",
         "limits": "c",
         "cstdlib": "c",
-        "string": "c"
+        "string": "c",
+        "algorithm": "c"
     },
     "files.insertFinalNewline": true,
 }

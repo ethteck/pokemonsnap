@@ -1584,7 +1584,7 @@ void omLinkGObjDLCommon(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlP
     obj->lastDrawFrame = gtlDrawnFrameCounter - 1;
 }
 
-void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag) {
+void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, u32 dlPriority, s32 cameraTag) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }

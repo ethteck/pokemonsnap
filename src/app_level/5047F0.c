@@ -3,8 +3,8 @@
 extern Mtx4f D_803B14D8_5518E8;
 extern Mtx4f D_803B1518_551928;
 void func_803643E0_5047F0(OMCamera* cam);
+
 s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z);
-s32 func_80364494_5048A4(OMCamera* cam, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 
 void func_803643E0_5047F0(OMCamera* cam) {
     hal_perspective_fast_f(D_803B1518_551928, NULL, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,

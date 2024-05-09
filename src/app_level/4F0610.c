@@ -77,8 +77,8 @@ void func_80357120_4F7530(s32);
 void func_803579C8_4F7DD8(f32*, f32*, f32*);
 void func_803588D4_4F8CE4(void);
 void func_803597D4_4F9BE4(void);
-void func_8035C44C_4FC85C(UNK_PTR, s32*);
-void func_8035C5CC_4FC9DC(UNK_PTR, s32*);
+void func_8035C44C_4FC85C(Vec3f*, s32*);
+void func_8035C5CC_4FC9DC(Vec3f*, s32*);
 void func_8035C74C_4FCB5C(void);
 void func_8035C7E4_4FCBF4(void);
 void func_8035C9CC_4FCDDC(s32, u8, s32);
@@ -293,7 +293,7 @@ void func_80355860_4F5C70(GObj* arg0) {
     Icons_SetDashEngineEnabled(0);
     sobj1 = omGObjAddSprite(D_80382C6C_52307C, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
-    newvar = &sobj1->sprite; 
+    newvar = &sobj1->sprite;
     spColor(newvar, 255, 255, 255, 0);
     sobj2 = omGObjAddSprite(D_80382C6C_52307C, &D_80381B58_521F68);
     spMove(&sobj2->sprite, 149, 103);
@@ -463,7 +463,7 @@ void func_80356074_4F6484(GObj* arg0) {
             omEndProcess(NULL);
         }
         ohWait(2);
-    }    
+    }
 }
 
 void func_80356118_4F6528(GObj* source, s32 cmd) {
@@ -595,7 +595,7 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
     D_80382C04_523014 = sp44;
     D_80382C44_523054 = 0.0005f;
     D_80382C94_5230A4 = GET_TRANSFORM(sp44)->pos.v;
-    
+
     sp48 = ohCreateSprite(25, func_80356124_4F6534, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80366DF0_507200, 1, func_80355F18_4F6328, 9);
     D_80382C38_523048 = sp48;
     D_803AE440_54E850[0] = sp48->data.sobj;

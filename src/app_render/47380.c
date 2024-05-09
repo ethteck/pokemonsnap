@@ -1,10 +1,10 @@
 #include "common_structs.h"
 #include "app_render.h"
 
-#include "string.h"
 #include "beach/beach.h"
 #if !defined(M2CTX) && !defined(PERMUTER)
 #include "ld_addrs.h"
+#include "string.h"
 #endif
 #include "world/world.h"
 
@@ -20,14 +20,14 @@ typedef struct Unk1C {
 
 typedef struct UnkV0 {
     u32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    s32 unk_0C;
-    s32 unk_10;
-} UnkV0;
+    f32 unk_04;
+    UnkEC64Arg3* unk_08;
+    Texture*** unk_0C;
+    void (*unk_10)(GObj*);
+} UnkV0; // substruct of Unk1C?
 
 extern UnkV0 D_800ADBEC[];
-extern s32 D_800BDF30[];
+extern GObj* D_800BDF30[];
 extern s32 D_800BDF60;
 extern s32 D_800BDF68[];
 extern s32 D_800AC0F0; // level id?
@@ -960,12 +960,12 @@ void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     func_800A1E6C(&sp24);
 }
 
-s32 func_8009D9A0(UnkThingSub*, s32, s32, s32, s32);
+GObj* func_8009D9A0(UnkThingSub*, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*));
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
 
 void func_8009DEF0(UnkThing* arg0) {
     UnkV0* it;
-    s32 temp_v0;
+    GObj* gobj;
     s32 i;
 
     D_800BDF60 = 0;
@@ -976,14 +976,14 @@ void func_8009DEF0(UnkThing* arg0) {
         }
         for(it = D_800ADBEC; it->unk_00 != 0; it++) {
             if (it->unk_00 == arg0->main.unk_20[i].pokemonID) {
-                temp_v0 = func_8009D9A0(&arg0->main.unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
-                if ((arg0->main.unk_20[i].pokemonID > 0 && arg0->main.unk_20[i].pokemonID <= 151) ||
+                gobj = func_8009D9A0(&arg0->main.unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
+                if ((arg0->main.unk_20[i].pokemonID > 0 && arg0->main.unk_20[i].pokemonID <= POKEDEX_MAX) ||
                     arg0->main.unk_20[i].pokemonID == 0x25B ||
                     arg0->main.unk_20[i].pokemonID == 0x258 ||
                     arg0->main.unk_20[i].pokemonID == 0x259 ||
                     arg0->main.unk_20[i].pokemonID == 0x25A)
                 {
-                    D_800BDF30[D_800BDF60] = temp_v0;
+                    D_800BDF30[D_800BDF60] = gobj;
                     D_800BDF68[D_800BDF60] = i;
                     D_800BDF60++;
                 }

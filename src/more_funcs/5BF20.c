@@ -681,31 +681,22 @@ s32 func_800C0400_5D2A0(void) {
     return 1;
 }
 
-#ifdef NON_EQUIVALENT
 s32 func_800C042C_5D2CC(void) {
-    s32 var_v0_2;
     s32 var_v1;
-    s8* temp_t7;
-    u8* temp_t9;
-    s8* var_v0;
-    u32 var_a1;
+    u8* var_v0;
 
     var_v0 = (u8*) D_800C21B0_5F050;
-    for (var_a1 = 0; var_a1 < sizeof(UnkBigBoy); var_a1++) {
+    for (var_v1 = 0; var_v1 < sizeof(UnkBigBoy); var_v1++) {
         *(var_v0++) = 0;
     }
 
-    var_v0_2 = 0;
-    do {
-        D_800C21B0_5F050->data.unk_180[var_v0_2].unk_04.s32 = -1;
-        var_v0_2++;
-    } while (var_v0_2 < 69 + 4);
+    for (var_v1 = 0; var_v1 < 69 + 4; var_v1++) {
+        D_800C21B0_5F050->data.unk_180[var_v1].unk_04.s32 = -1;
+    }
 
-    var_v1 = 0;
-    do {
+    for (var_v1 = 0; var_v1 < 60; var_v1++) {
         D_800C21B0_5F050->data.var_10A20[var_v1].unk_0.unk_04.s32 = -1;
-        var_v1++;
-    } while (var_v1 != 60);
+    }
 
     func_800BF650_5C4F0(0);
     func_800BF650_5C4F0(1);
@@ -728,9 +719,6 @@ s32 func_800C042C_5D2CC(void) {
     func_800BF1F0_5C090();
     return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800C042C_5D2CC.s")
-#endif
 
 s32 func_800C05D4_5D474(void) {
     s32 temp_v0;

@@ -517,7 +517,10 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     i = 0;
     obj = omGObjListHead[objIndex];
     while (obj != NULL && i < 6) {
-        if (!(obj->flags & 1) && (func_803647BC_504BCC(obj) == 0) && (func_8009C304(&arg0->main.unk_140[i], obj) != 0)) {
+        if (!(obj->flags & 1) &&
+            (func_803647BC_504BCC(obj) == 0) &&
+            (func_8009C304(&arg0->main.unk_140[i], obj) != 0))
+        {
             i++;
         }
         obj = obj->next;

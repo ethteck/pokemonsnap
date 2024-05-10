@@ -18,7 +18,7 @@ s32 func_camera_check_801DCB40(void);
 u32 func_camera_check_801E04F4(UNK_TYPE);
 u32 func_camera_check_801E0B5C(UNK_TYPE);
 u32 func_camera_check_801E0F10(void);
-void func_camera_check_801E3CE8();
+void func_camera_check_801E3CE8(void);
 s32 func_camera_check_801DFA80(UNK_PTR, s32*, s32, UNK_PTR);
 
 extern s32 D_camera_check_80208964;

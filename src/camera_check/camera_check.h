@@ -77,7 +77,7 @@ void func_camera_check_801DCD00(void);
 void func_camera_check_801DCF9C(int);
 void func_camera_check_801DD238(void*, s32, int);
 void func_camera_check_801DD630(s32, int);
-void func_camera_check_801DD6D0(int, int);
+void func_camera_check_801DD6D0(s32, s32);
 void func_camera_check_801DDA44(s32);
 void func_camera_check_801DDAD8(s32);
 void func_camera_check_801DDD28(s32);

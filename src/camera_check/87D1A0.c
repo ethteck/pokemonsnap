@@ -4,6 +4,12 @@
 void func_8036A8E4(s32);
 void func_8036C898(s32, const char*);
 
+void func_camera_check_801DDB08(s32);
+UNK_PTR func_camera_check_801DF9B0(void);
+void func_camera_check_801E1918(void);
+s32 func_camera_check_801E3140(void);
+void func_camera_check_801E31E4(UNK_TYPE, UNK_TYPE);
+void func_camera_check_801E3910(UNK_TYPE);
 s32 func_camera_check_801E27FC(void);
 s32 func_camera_check_801E2A00(void);
 s32 func_camera_check_801E2B60(void);
@@ -12,7 +18,6 @@ s32 func_camera_check_801DCB40(void);
 u32 func_camera_check_801E04F4(UNK_TYPE);
 u32 func_camera_check_801E0B5C(UNK_TYPE);
 u32 func_camera_check_801E0F10(void);
-u32 func_camera_check_801E1BD4(void);
 void func_camera_check_801E3CE8();
 s32 func_camera_check_801DFA80(UNK_PTR, s32*, s32, UNK_PTR);
 
@@ -262,7 +267,74 @@ s32 func_camera_check_801E04B0(UnkIndigoHalibut* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E1918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E1BD4.s")
+s32 func_camera_check_801E1BD4(void) {
+    UNUSED s32 pad2;
+    s32 sp38;
+    UNUSED s32 pad;
+    s32 sp30;
+    UnkStruct800BEDF8* temp_s0;
+
+    sp38 = 0;
+    sp30 = func_camera_check_801E2E04();
+    func_80370C34_8443E4(func_camera_check_801DF9B0());
+    if (func_800BFCA0_5CB40(8) == 0) {
+        func_80370780_843F30(1, 0x18);
+    }
+    if (func_camera_check_801E3140() == 0) {
+        func_80370780_843F30(1, 0x17);
+    }
+    if (sp30 == 0) {
+        func_80370780_843F30(1, 0x18);
+    }
+    func_camera_check_801E0258(0);
+    func_camera_check_801E0480();
+    func_camera_check_801E3910(0);
+    func_803700A4_843854(1);
+    ohWait(1);
+
+    while (1) {
+        temp_s0 = func_800AA38C(0);
+        func_camera_check_801DFA80((UNK_PTR) temp_s0, &sp38, 1, func_camera_check_801DF9B0());
+        if (temp_s0->unk_18 & 0x8000) {
+            auPlaySound(0x42U);
+
+            switch (D_camera_check_80249AA8[sp38].unk_0) {
+
+                case 23:
+                    if (func_camera_check_801E3140() != 0) {
+                        func_camera_check_801E31E4(1, 0);
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DDB08(1);
+                        func_camera_check_801E0F10();
+                        auPlaySound(0x43U);
+                        func_camera_check_801E0480();
+                        func_camera_check_801DDB08(0);
+                        func_camera_check_801E31E4(0, 0);
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_80370038_8437E8(0x3E, 0xD);
+                        func_camera_check_801DFA80(NULL, NULL, 0, 0);
+                    }
+                    break;
+
+                case 24:
+                    if ((func_800BFCA0_5CB40(8) != 0) && (sp30 != 0)) {
+                        func_camera_check_801E1918();
+                        auPlaySound(0x43U);
+                        func_camera_check_801E0480();
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_80370038_8437E8(0x3E, 0xD);
+                        func_camera_check_801DFA80(NULL, NULL, 0, 0);
+                    }
+                    break;
+
+                case 22:
+                    return 4;
+            }
+        }
+
+        ohWait(1);
+    }
+}
 
 u32 func_camera_check_801E1EA4(void) {
     UnkStruct800BEDF8* temp_v0;

@@ -148,7 +148,20 @@ void func_camera_check_801E2984(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2A00.s")
+u32 func_camera_check_801E2A00(void) {
+    s32 i;
+    s32 ret;
+    UnkIndigoHalibut* item;
+
+    ret = 0;
+    for (i = func_8009BC68(), item = D_camera_check_80249B30; i != 0; item++, i--) {
+        if (item->var_18_0x20000000) {
+            ret += 1;
+        }
+    }
+
+    return ret;
+}
 
 PhotoData* func_camera_check_801E2AD8(s32 arg0) {
     UnkIndigoHalibut* item;

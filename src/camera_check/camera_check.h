@@ -96,5 +96,6 @@ s32 func_camera_check_801E2534(void);
 void func_camera_check_801E2984(s32);
 s32 func_camera_check_801E2CC0(void);
 s32 func_camera_check_801E2E04(void);
+s32 func_camera_check_801E3420(void);
 
 #endif

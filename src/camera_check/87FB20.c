@@ -305,7 +305,62 @@ s32 func_camera_check_801E2EF4(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2F58.s")
+s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
+    s32 sp24;
+    UNUSED s32 unused[1];
+    s32 sp1C;
+    s32 var_v0;
+
+    if (arg0 == NULL) {
+        return 0;
+    }
+    sp24 = arg0->var_8;
+
+    sp1C = arg0->var_18_0x20000000 != 0;
+    if (sp1C == 0) {
+        sp1C = arg0->var_18_0x10000000 != 0;
+    }
+
+    if ((arg1 == 0) && (func_camera_check_801E3420() != 0)) {
+        return 1;
+    }
+    if (sp24 == 9999) {
+        return 2;
+    }
+    if ((func_camera_check_801E2E5C(sp24) == 0) || (func_800BFCA0_5CB40(5) == 0)) {
+        if (func_camera_check_801E2EC0(sp24) != 0) {
+            return 3;
+        }
+        if (func_camera_check_801E2540(sp24) != 0) {
+            if (sp1C != 0) {
+                return 6;
+            }
+            return 7;
+        }
+        if (func_800BF3D4_5C274(sp24) != 0) {
+            return 4;
+        }
+        return 5;
+    }
+    if (func_800BF3D4_5C274(sp24) != 0) {
+        if (func_camera_check_801E2540(sp24) == 0) {
+            return 13;
+        }
+        if (sp1C != 0) {
+            return 12;
+        }
+        return 11;
+    }
+    if (func_camera_check_801E2540(sp24) == 0) {
+        return 10;
+    }
+
+    if (sp1C) {
+        return 9;
+    }
+
+    return 8;
+}
 
 s32 func_camera_check_801E30CC(s32 arg0) {
     if (func_800BF3D4_5C274(arg0) != 0) {

@@ -433,7 +433,46 @@ s32 func_camera_check_801E3870(const void* arg0, const void* arg1) {
     return func_camera_check_801E3620(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3910.s")
+void func_camera_check_801E3910(u32 arg0) {
+    switch (arg0) {
+        case 0:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3620);
+            if (D_camera_check_802089F4 != func_camera_check_801E3620) {
+                D_camera_check_802089F4 = func_camera_check_801E3620;
+            }
+            break;
+        case 1:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3658);
+            if (D_camera_check_802089F4 != func_camera_check_801E3658) {
+                D_camera_check_802089F4 = func_camera_check_801E3658;
+            }
+            break;
+        case 2:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E36DC);
+            if (D_camera_check_802089F4 != func_camera_check_801E36DC) {
+                D_camera_check_802089F4 = func_camera_check_801E36DC;
+            }
+            break;
+        case 4:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3758);
+            if (D_camera_check_802089F4 != func_camera_check_801E3758) {
+                D_camera_check_802089F4 = func_camera_check_801E3758;
+            }
+            break;
+        case 5:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E37E4);
+            if (D_camera_check_802089F4 != func_camera_check_801E37E4) {
+                D_camera_check_802089F4 = func_camera_check_801E37E4;
+            }
+            break;
+        case 6:
+            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3870);
+            if (D_camera_check_802089F4 != func_camera_check_801E37E4) {
+                D_camera_check_802089F4 = func_camera_check_801E37E4;
+            }
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3AF4.s")
 

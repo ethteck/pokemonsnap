@@ -11,6 +11,9 @@ typedef struct UnkIndigoHalibut {
     /* 0x18 */ s32 var_18_0x20000000 : 1;
     /* 0x18 */ s32 var_18_0x10000000 : 1;
     /* 0x18 */ s32 var_18_0x08000000 : 1;
+    /* 0x18 */ s32 var_18_0x04000000 : 1;
+    /* 0x18 */ s32 var_18_0x02000000 : 1;
+    /* 0x18 */ s32 var_18_0x01000000 : 1;
 } UnkIndigoHalibut; // size: 0x1C
 
 typedef struct UnkCyanBass {

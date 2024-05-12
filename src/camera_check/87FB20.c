@@ -376,7 +376,20 @@ s32 func_camera_check_801E33B8(void) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3420.s")
+s32 func_camera_check_801E3420(void) {
+    s32 count;
+    s32 i;
+    UnkIndigoHalibut* item;
+
+    count = D_camera_check_8024A1C4;
+    for (i = 0, item = &D_camera_check_80249B30[D_camera_check_8024A1C0]; i < count; item++, i++) {
+        if (!item->var_18_0x01000000) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E350C.s")
 

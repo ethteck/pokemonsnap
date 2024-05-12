@@ -4,12 +4,12 @@
 #define GET_ITEM(x) ((UnkPesterBall2*)((x)->userData))
 
 typedef struct UnkPesterBall2 {
-    /* 0x00 */ u8 unk_00;
+    /* 0x00 */ u8 itemID;
     /* 0x01 */ u8 unk_01;
     /* 0x02 */ u8 unk_02;
     /* 0x03 */ u8 unk_03;
     /* 0x04 */ f32 unk_04;
-    /* 0x08 */ Vec3f unk_08;
+    /* 0x08 */ Vec3f velocity;
     /* 0x14 */ Vec3f unk_14;
     /* 0x20 */ Vec3f unk_20;
 } UnkPesterBall2;
@@ -21,6 +21,23 @@ typedef struct UnkTangyViper {
     /* 0x0C */ s32 unk_0C;
 } UnkTangyViper; // size = 0x10
 
+extern Texture** D_800E8EB8[];
+extern UnkEC64Arg3 D_800E9138[];
+extern AnimCmd** D_800E91C0[];
+
+extern Texture** D_800EAC58[];
+extern UnkEC64Arg3 D_800EAED0[];
+extern AnimCmd** D_800EAF60[];
+
+extern AnimCmd* D_800EAFB0[];
+extern AnimCmd** D_800EB0C0[];
+extern Texture** D_800EB510[];
+
+extern AnimCmd* D_800ED5B0[];
+extern AnimCmd** D_800ED6B0[];
+extern UnkEC64Arg3 D_800EDAB0[];
+extern Texture** D_800EDB90[];
+
 extern UnkTangyViper D_803AEF68_54F378[20];
 extern UnkTangyViper* D_803AF0AC_54F4BC;
 extern UnkTangyViper* D_803AF0B0_54F4C0;
@@ -31,12 +48,6 @@ extern s32 D_803AF0BC_54F4CC;
 extern s32 D_803AF0C0_54F4D0;
 extern s32 D_803AF0C4_54F4D4;
 extern UnkTangyViper* D_803AF0A8_54F4B8;
-extern UnkEC64Arg3 D_800E9138[];
-extern UnkEC64Arg3 D_800EAED0[];
-extern Texture** D_800E8EB8[];
-extern Texture** D_800EAC58[];
-extern AnimCmd** D_800E91C0[];
-extern AnimCmd** D_800EAF60[];
 extern Vec3f D_8038A398_52A7A8;
 extern u8 D_803AF0C8_54F4D8;
 extern GObjFunc D_80382EB4_5232C4;
@@ -44,13 +55,6 @@ extern s32 D_803AF0B4_54F4C4;
 extern s32 D_803AF0B8_54F4C8;
 extern s32 D_80382EB0_5232C0;
 extern UnkEC64Arg3 D_800EB430_8B0C50[];
-extern Texture** D_800EB510[];
-extern AnimCmd* D_800EAFB0[];
-extern AnimCmd** D_800EB0C0[];
-extern UnkEC64Arg3 D_800EDAB0[];
-extern Texture** D_800EDB90[];
-extern AnimCmd* D_800ED5B0[];
-extern AnimCmd** D_800ED6B0[];
 extern DObj* D_80382C04_523014;
 extern s32 D_80382ED8_5232E8;
 extern s32 D_80382EDC_5232EC;
@@ -184,7 +188,7 @@ void func_803599E8_4F9DF8(GObj* obj);
 void func_80359A50_4F9E60(GObj* arg0) {
     UnkTangyViper* v0;
 
-    if (GET_ITEM(arg0)->unk_00 == 163) {
+    if (GET_ITEM(arg0)->itemID == 163) {
         cmdSendCommandToLink(3, 21, arg0);
     }
 
@@ -261,9 +265,9 @@ void func_80359D14_4FA124(GObj* obj, Vec3f* pos, Vec3f* arg2) {
     ball->unk_01 = 1;
     ball->unk_03 = 0;
     ball->unk_04 = 0.0f;
-    ball->unk_08.x = velocity.x;
-    ball->unk_08.y = velocity.y;
-    ball->unk_08.z = velocity.z;
+    ball->velocity.x = velocity.x;
+    ball->velocity.y = velocity.y;
+    ball->velocity.z = velocity.z;
     func_803599E8_4F9DF8(obj);
     obj->flags |= GOBJ_FLAG_HIDDEN;
     omCreateProcess(obj, D_80382EB4_5232C4, D_803AF0C8_54F4D8, 7);
@@ -390,13 +394,13 @@ void func_8035A26C_4FA67C(GObj* arg0, GroundResult* arg1) {
     sp28.x = arg1->normal.x;
     sp28.y = arg1->normal.y;
     sp28.z = arg1->normal.z;
-    sp34.x = item->unk_08.x;
-    sp34.y = item->unk_08.y;
-    sp34.z = item->unk_08.z;
+    sp34.x = item->velocity.x;
+    sp34.y = item->velocity.y;
+    sp34.z = item->velocity.z;
     sp20 = Vec3fNormalize(&sp34);
     Vec3f_func_8001AC98(&sp34, &sp28);
 
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         func_8035A1B8_4FA5C8(model, 10);
         if (arg1->type == 0x4C1900 ||
             arg1->type == 0x4C4C33 ||
@@ -404,7 +408,7 @@ void func_8035A26C_4FA67C(GObj* arg0, GroundResult* arg1) {
             arg1->type == 0x7F7F7F ||
             arg1->type == 0xB2997F)
         {
-            if (item->unk_00 == 162) {
+            if (item->itemID == 162) {
                 item->unk_01 = 2;
             }
         }
@@ -501,12 +505,12 @@ void func_8035A26C_4FA67C(GObj* arg0, GroundResult* arg1) {
         return;
     }
 
-    item->unk_08.x = sp34.x * sp20;
-    item->unk_08.y = sp34.y * sp20;
-    item->unk_08.z = sp34.z * sp20;
-    model->position.v.x += item->unk_08.x * newvar;
-    model->position.v.y += item->unk_08.y * newvar;
-    model->position.v.z += item->unk_08.z * newvar;
+    item->velocity.x = sp34.x * sp20;
+    item->velocity.y = sp34.y * sp20;
+    item->velocity.z = sp34.z * sp20;
+    model->position.v.x += item->velocity.x * newvar;
+    model->position.v.y += item->velocity.y * newvar;
+    model->position.v.z += item->velocity.z * newvar;
 
     if (model->position.v.x <= -10000.0f ||
         model->position.v.x >= 10000.0f ||
@@ -554,9 +558,9 @@ void func_8035AA14_4FAE24(GObj* arg0, GroundResult* arg1) {
     sp34.x = 0.0f;
     sp34.y = model->position.v.y - arg1->height;
     sp34.z = 0.0f;
-    sp4C.x = item->unk_08.x;
-    sp4C.y = item->unk_08.y;
-    sp4C.z = item->unk_08.z;    
+    sp4C.x = item->velocity.x;
+    sp4C.y = item->velocity.y;
+    sp4C.z = item->velocity.z;    
     
     sp2C = Vec3fNormalize(&sp4C);
     f2 = sp40.x * sp4C.x + sp40.y * sp4C.y + sp40.z * sp4C.z;
@@ -568,7 +572,7 @@ void func_8035AA14_4FAE24(GObj* arg0, GroundResult* arg1) {
     Vec3fAddScaled(&model->position.v, &sp40, 12.0f);
     Vec3f_func_8001AC98(&sp4C, &sp40);
 
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         func_8035A1B8_4FA5C8(model, 10);
         if (arg1->type == 0x4C1900 ||
             arg1->type == 0x4C4C33 ||
@@ -576,7 +580,7 @@ void func_8035AA14_4FAE24(GObj* arg0, GroundResult* arg1) {
             arg1->type == 0x7F7F7F ||
             arg1->type == 0xB2997F)
         {
-            if (item->unk_00 == 162) {
+            if (item->itemID == 162) {
                 item->unk_01 = 2;
             }
         }
@@ -631,12 +635,12 @@ void func_8035AA14_4FAE24(GObj* arg0, GroundResult* arg1) {
             break;
     }
 
-    item->unk_08.x = sp4C.x * sp2C;
-    item->unk_08.y = sp4C.y * sp2C;
-    item->unk_08.z = sp4C.z * sp2C;
-    model->position.v.x += item->unk_08.x * newvar;
-    model->position.v.y += item->unk_08.y * newvar;
-    model->position.v.z += item->unk_08.z * newvar;
+    item->velocity.x = sp4C.x * sp2C;
+    item->velocity.y = sp4C.y * sp2C;
+    item->velocity.z = sp4C.z * sp2C;
+    model->position.v.x += item->velocity.x * newvar;
+    model->position.v.y += item->velocity.y * newvar;
+    model->position.v.z += item->velocity.z * newvar;
 
     if (model->position.v.x <= -10000.0f ||
         model->position.v.x >= 10000.0f ||
@@ -655,7 +659,7 @@ void func_8035AA14_4FAE24(GObj* arg0, GroundResult* arg1) {
 void func_8035B088_4FB498(GObj* arg0) {
     UnkPesterBall2* item = GET_ITEM(arg0);
 
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         UnkBrassLynx* unk = func_800A6C48(3, 0);
         if (unk != NULL) {
             unk->unk_14.x = arg0->data.dobj->position.v.x;
@@ -664,7 +668,7 @@ void func_8035B088_4FB498(GObj* arg0) {
         }
     }
 
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         cmdSendCommandToLink(3, 10, arg0);
     } else {
         cmdSendCommandToLink(3, 14, arg0);
@@ -797,12 +801,12 @@ void func_8035B528_4FB938(GObj* arg0, GroundResult* arg1) {
     Vec3f sp24;
     f32 sp20;
 
-    sp24.x = item->unk_08.x;
-    sp24.y = item->unk_08.y;
-    sp24.z = item->unk_08.z;
+    sp24.x = item->velocity.x;
+    sp24.y = item->velocity.y;
+    sp24.z = item->velocity.z;
     sp20 = Vec3fNormalize(&sp24);
     func_800E435C_61B0C(item->unk_20.x, item->unk_20.z, arg1);
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         func_8035A1B8_4FA5C8(model, 10);
         sp20 = 0.0f;
         if (arg1->type == 0x4C1900U ||
@@ -811,7 +815,7 @@ void func_8035B528_4FB938(GObj* arg0, GroundResult* arg1) {
             arg1->type == 0x7F7F7F ||
             arg1->type == 0xB2997F)
         {
-            if (item->unk_00 == 162) {
+            if (item->itemID == 162) {
                 item->unk_01 = 2;
             }
         }
@@ -867,12 +871,12 @@ void func_8035B528_4FB938(GObj* arg0, GroundResult* arg1) {
     }
 
     Vec3f_func_8001AC98(&sp24, &arg1->normal);
-    item->unk_08.x = sp24.x * sp20;
-    item->unk_08.y = sp24.y * sp20;
-    item->unk_08.z = sp24.z * sp20;
-    model->position.v.x = item->unk_20.x + item->unk_08.x;
-    model->position.v.y = item->unk_20.y + item->unk_08.y;
-    model->position.v.z = item->unk_20.z + item->unk_08.z;
+    item->velocity.x = sp24.x * sp20;
+    item->velocity.y = sp24.y * sp20;
+    item->velocity.z = sp24.z * sp20;
+    model->position.v.x = item->unk_20.x + item->velocity.x;
+    model->position.v.y = item->unk_20.y + item->velocity.y;
+    model->position.v.z = item->unk_20.z + item->velocity.z;
     func_8035B088_4FB498(arg0);
 }
 
@@ -953,14 +957,14 @@ void func_8035B938_4FBD48(GObj* arg0) {
     item->unk_20.x = model->position.v.x;
     item->unk_20.y = model->position.v.y;
     item->unk_20.z = model->position.v.z;
-    sp124.x = item->unk_08.x * 0.5f;
-    sp124.y = item->unk_08.y * 0.5f;
-    sp124.z = item->unk_08.z * 0.5f;
+    sp124.x = item->velocity.x * 0.5f;
+    sp124.y = item->velocity.y * 0.5f;
+    sp124.z = item->velocity.z * 0.5f;
 
     v02 = func_800E6238_639E8(&model->position.v, &sp124, &spE0, &spD4);
     if (v02 >= 0) {
         item->unk_03 |= 1;
-        if (item->unk_00 == 162) {
+        if (item->itemID == 162) {
             func_8035A1B8_4FA5C8(model, 10);
             v03 = func_800A6C48(3, 0);
             if (v03 != NULL) {
@@ -979,12 +983,12 @@ void func_8035B938_4FBD48(GObj* arg0) {
         } else {
             func_8035A1B8_4FA5C8(model, 31);
         }
-        item->unk_14.x = item->unk_08.x;
-        item->unk_14.y = item->unk_08.y;
-        item->unk_14.z = item->unk_08.z;
-        item->unk_08.x = spD4.x;
-        item->unk_08.y = spD4.y;
-        item->unk_08.z = spD4.z;
+        item->unk_14.x = item->velocity.x;
+        item->unk_14.y = item->velocity.y;
+        item->unk_14.z = item->velocity.z;
+        item->velocity.x = spD4.x;
+        item->velocity.y = spD4.y;
+        item->velocity.z = spD4.z;
         model->position.v.x = spE0.x;
         model->position.v.y = spE0.y;
         model->position.v.z = spE0.z;
@@ -993,7 +997,7 @@ void func_8035B938_4FBD48(GObj* arg0) {
 
     if (D_80382EBC_5232CC != NULL && D_80382EBC_5232CC(&model->position.v, &sp124, &spE0, &spD4) >= 0) {
         item->unk_03 |= 1;
-        if (item->unk_00 == 162) {
+        if (item->itemID == 162) {
             func_8035A1B8_4FA5C8(model, 10);
             v03 = func_800A6C48(3, 0);
             if (v03 != NULL) {
@@ -1010,12 +1014,12 @@ void func_8035B938_4FBD48(GObj* arg0) {
         } else {
             func_8035A1B8_4FA5C8(model, 31);
         }
-        item->unk_14.x = item->unk_08.x;
-        item->unk_14.y = item->unk_08.y;
-        item->unk_14.z = item->unk_08.z;
-        item->unk_08.x = spD4.x;
-        item->unk_08.y = spD4.y;
-        item->unk_08.z = spD4.z;
+        item->unk_14.x = item->velocity.x;
+        item->unk_14.y = item->velocity.y;
+        item->unk_14.z = item->velocity.z;
+        item->velocity.x = spD4.x;
+        item->velocity.y = spD4.y;
+        item->velocity.z = spD4.z;
         model->position.v.x = spE0.x;
         model->position.v.y = spE0.y;
         model->position.v.z = spE0.z;
@@ -1026,9 +1030,9 @@ void func_8035B938_4FBD48(GObj* arg0) {
     spA8.y = model->position.v.y;
     spA8.z = model->position.v.z;
 
-    sp78.x = item->unk_08.x * 0.5f;
-    sp78.y = item->unk_08.y * 0.5f;
-    sp78.z = item->unk_08.z * 0.5f;
+    sp78.x = item->velocity.x * 0.5f;
+    sp78.y = item->velocity.y * 0.5f;
+    sp78.z = item->velocity.z * 0.5f;
     sp4C = Vec3fNormalize(&sp78);
 
     sp11C = sp4C;
@@ -1045,7 +1049,7 @@ void func_8035B938_4FBD48(GObj* arg0) {
                     continue;
                 }
                 if (pokemon->flags & 2) {
-                    if (item->unk_00 == 162) {
+                    if (item->itemID == 162) {
                         cmdSendCommand(ptr, 8, NULL);
                     } else {
                         cmdSendCommand(ptr, 12, NULL);
@@ -1078,7 +1082,7 @@ void func_8035B938_4FBD48(GObj* arg0) {
             sp78.y = sp6C.y * 10.0f;
             sp78.z = sp6C.z * 10.0f;
         }
-        if (item->unk_00 == 162) {
+        if (item->itemID == 162) {
             v03 = func_800A6C48(3, 0);
             if (v03 != NULL) {
                 v03->unk_14.x = arg0->data.dobj->position.v.x;
@@ -1096,21 +1100,21 @@ void func_8035B938_4FBD48(GObj* arg0) {
             func_8035A1B8_4FA5C8(model, 12);
             cmdSendCommand(sp118, 13, NULL);
         }
-        item->unk_14.x = item->unk_08.x;
-        item->unk_14.y = item->unk_08.y;
-        item->unk_14.z = item->unk_08.z;
-        item->unk_08.x = sp78.x;
-        item->unk_08.y = sp78.y;
-        item->unk_08.z = sp78.z;
-        model->position.v.x = sp90.x + item->unk_08.x * 0.5f;
-        model->position.v.y = sp90.y + item->unk_08.y * 0.5f;
-        model->position.v.z = sp90.z + item->unk_08.z * 0.5f;
+        item->unk_14.x = item->velocity.x;
+        item->unk_14.y = item->velocity.y;
+        item->unk_14.z = item->velocity.z;
+        item->velocity.x = sp78.x;
+        item->velocity.y = sp78.y;
+        item->velocity.z = sp78.z;
+        model->position.v.x = sp90.x + item->velocity.x * 0.5f;
+        model->position.v.y = sp90.y + item->velocity.y * 0.5f;
+        model->position.v.z = sp90.z + item->velocity.z * 0.5f;
         return;
     } else {
-        item->unk_08.y -= g * 0.5f;
-        model->position.v.x += item->unk_08.x * 0.5f;
-        model->position.v.y += item->unk_08.y * 0.5f;
-        model->position.v.z += item->unk_08.z * 0.5f;
+        item->velocity.y -= g * 0.5f;
+        model->position.v.x += item->velocity.x * 0.5f;
+        model->position.v.y += item->velocity.y * 0.5f;
+        model->position.v.z += item->velocity.z * 0.5f;
     }
 }
 
@@ -1171,7 +1175,7 @@ void spawnPesterBall(Vec3f* arg0, Vec3f* arg1) {
     ballObj->data.dobj->scale.v.z = 0.1f;
     ball = func_8035EBBC_4FEFCC();
     ballObj->userData = ball;
-    ball->unk_00 = 162;
+    ball->itemID = 162;
     ballObj->flags |= GOBJ_FLAG_HIDDEN;
     func_80359770_4F9B80(ballObj, func_80359CD4_4FA0E4);
     auPlaySound(8);
@@ -1198,7 +1202,7 @@ void spawnApple(Vec3f* arg0, Vec3f* arg1) {
     ballObj->data.dobj->scale.v.z = 0.1f;
     ball = func_8035EBBC_4FEFCC();
     ballObj->userData = ball;
-    ball->unk_00 = 163;
+    ball->itemID = 163;
     ballObj->flags |= GOBJ_FLAG_HIDDEN;
     func_80359770_4F9B80(ballObj, func_80359CD4_4FA0E4);
     auPlaySound(9);
@@ -1283,7 +1287,7 @@ void func_8035C8F4_4FCD04(GObj* arg0) {
     func_80359770_4F9B80(arg0, func_80359CD4_4FA0E4);
     omCreateProcess(arg0, func_8035C8C0_4FCCD0, 1, 4);
     D_803AF0BC_54F4CC--;
-    if (item->unk_00 == 162) {
+    if (item->itemID == 162) {
         D_803AF0C0_54F4D0--;
     } else {
         D_803AF0C4_54F4D4--;

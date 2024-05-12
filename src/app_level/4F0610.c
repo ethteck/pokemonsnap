@@ -81,7 +81,7 @@ void spawnPesterBall(Vec3f*, Vec3f*);
 void spawnApple(Vec3f*, Vec3f*);
 void func_8035C74C_4FCB5C(void);
 void func_8035C7E4_4FCBF4(void);
-void func_8035C9CC_4FCDDC(GObjFunc, u8, s32);
+void func_8035C9CC_4FCDDC(GObjFunc, u8, void(*)(GObj*, GroundResult*));
 void func_8035E37C_4FE78C(void);
 void func_80365B24_505F34(void);
 void func_80365BB0_505FC0(char*, s32, s32, u8, u8, u8, u8, s32, u8);
@@ -508,7 +508,7 @@ void func_80356124_4F6534(GObj* arg0) {
     cmdProcessCommands(func_80356118_4F6528);
 }
 
-GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), GObjFunc arg2, u8 arg3, s32 arg4) {
+GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), GObjFunc arg2, u8 arg3, void (*arg4)(GObj*, GroundResult*)) {
     GObj* sp4C;
     GObj* sp48;
     DObj* sp44;

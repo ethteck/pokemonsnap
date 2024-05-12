@@ -188,7 +188,27 @@ PhotoData* func_camera_check_801E2C38(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2CC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2D98.s")
+PhotoData* func_camera_check_801E2D98(s32 arg0) {
+    s32 max;
+    s32 i;
+    UnkIndigoHalibut* item;
+
+    max = func_8009BC68();
+    for (i = 0, item = D_camera_check_80249B30; i < max; i++, item++) {
+        if (item->var_18_0x20000000) {
+
+            if ((arg0--) == 0) {
+                return item->var_0;
+            }
+        }
+
+        // required to match
+        if (FALSE) {
+        }
+    }
+
+    return NULL;
+}
 
 // Get the number of photos that have been taken?
 s32 func_camera_check_801E2E04(void) {
@@ -395,7 +415,23 @@ s32 func_camera_check_801E37E4(const void* arg0, const void* arg1) {
     return func_camera_check_801E3620(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3870.s")
+s32 func_camera_check_801E3870(const void* arg0, const void* arg1) {
+    UnkIndigoHalibut* lhs;
+    UnkIndigoHalibut* rhs;
+    s32 lhsVal, rhsVal;
+
+    lhs = (UnkIndigoHalibut*) arg0;
+    rhs = (UnkIndigoHalibut*) arg1;
+
+    // TODO: see if this can be matched in a better way
+    lhsVal = (lhs->var_18_0x20000000 << 2 & (1 << 2)) | (lhs->var_18_0x10000000 << 1 & (1 << 1)) | (lhs->var_18_0x08000000 << 0 & (1 << 0));
+    rhsVal = (rhs->var_18_0x20000000 << 2 & (1 << 2)) | (rhs->var_18_0x10000000 << 1 & (1 << 1)) | (rhs->var_18_0x08000000 << 0 & (1 << 0));
+
+    if (lhsVal != rhsVal) {
+        return rhsVal - lhsVal;
+    }
+    return func_camera_check_801E3620(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3910.s")
 

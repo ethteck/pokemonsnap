@@ -186,7 +186,20 @@ PhotoData* func_camera_check_801E2C38(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E2CC0.s")
+u32 func_camera_check_801E2CC0(void) {
+    s32 i;
+    s32 ret;
+    UnkIndigoHalibut* item;
+
+    ret = 0;
+    for (i = func_8009BC68(), item = D_camera_check_80249B30; i != 0; item++, i--) {
+        if (item->var_18_0x08000000) {
+            ret += 1;
+        }
+    }
+
+    return ret;
+}
 
 PhotoData* func_camera_check_801E2D98(s32 arg0) {
     s32 max;

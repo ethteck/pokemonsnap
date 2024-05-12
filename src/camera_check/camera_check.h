@@ -91,7 +91,7 @@ PhotoData* func_camera_check_801E2484(s32);
 UnkIndigoHalibut* func_camera_check_801E24D8(s32);
 s32 func_camera_check_801E2534(void);
 void func_camera_check_801E2984(s32);
-int func_camera_check_801E2CC0(void);
+u32 func_camera_check_801E2CC0(void);
 s32 func_camera_check_801E2E04(void);
 
 #endif

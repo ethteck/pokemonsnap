@@ -8,7 +8,7 @@ void func_camera_check_801DDB08(s32);
 UNK_PTR func_camera_check_801DF9B0(void);
 void func_camera_check_801E1918(void);
 s32 func_camera_check_801E3140(void);
-void func_camera_check_801E31E4(UNK_TYPE, UNK_TYPE);
+void func_camera_check_801E31E4(s32, UNK_TYPE);
 void func_camera_check_801E3910(UNK_TYPE);
 s32 func_camera_check_801E27FC(void);
 s32 func_camera_check_801E2A00(void);

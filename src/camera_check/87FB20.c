@@ -398,7 +398,33 @@ s32 func_camera_check_801E3140(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E31E4.s")
+void func_camera_check_801E31E4(s32 arg0, UNK_TYPE arg1) {
+    s32 count;
+    s32 i;
+    UnkIndigoHalibut* item;
+
+    count = func_8009BC68();
+
+    for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
+        item->var_18_0x01000000 = 0;
+        if (arg0 == 1) {
+            if (item->var_8 >= 0x40C) {
+                item->var_18_0x01000000 = 1;
+            } else if (func_camera_check_801E2540(item->var_8) != 0) {
+                item->var_18_0x01000000 = 1;
+            } else {
+                if ((item->var_8 > 151) && ((func_camera_check_801E2E5C(item->var_8) == 0) || (func_800BFCA0_5CB40(5) == 0))) {
+
+                    item->var_18_0x01000000 = 1;
+                }
+            }
+        }
+
+        // Required to match
+        if (TRUE) {
+        }
+    }
+}
 
 s32 func_camera_check_801E32E0(PhotoData* arg0) {
     s32 count;

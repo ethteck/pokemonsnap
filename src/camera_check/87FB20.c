@@ -609,7 +609,32 @@ void func_camera_check_801E3910(u32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3AF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3C24.s")
+void func_camera_check_801E3C24(s32 arg0) {
+    UnkIndigoHalibut* item;
+    s32 temp_t2;
+    s32 temp_v0;
+    s32 temp_v0_2;
+    s32 var_v1;
+
+    if (arg0 == 0) {
+        func_camera_check_801E3910(0);
+        D_camera_check_802089F0 = 0;
+        D_camera_check_8024A1C0 = 0;
+        D_camera_check_8024A1C4 = func_8009BC68();
+    } else {
+        func_camera_check_801E3910(6);
+        temp_v0 = func_8009BC68();
+        D_camera_check_8024A1C0 = 0;
+
+        for (D_camera_check_8024A1C4 = 0, item = D_camera_check_80249B30; D_camera_check_8024A1C4 < temp_v0; item++, D_camera_check_8024A1C4++) {
+            if (!item->var_18_0x20000000 && !item->var_18_0x10000000 && !item->var_18_0x08000000) {
+                break;
+            }
+        }
+
+        D_camera_check_802089F0 = 1;
+    }
+}
 
 void func_camera_check_801E3CE8(void) {
     UnkIndigoHalibut* item;

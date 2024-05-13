@@ -1,6 +1,13 @@
 #ifndef SYS_AUDIO_H
 #define SYS_AUDIO_H
 
+extern OSTime D_80096968;
+
+enum PlayerIds {
+    BGM_PLAYER_MAIN = 0,
+    BGM_PLAYER_AUX = 1
+};
+
 void auThreadMain(void* arg);
 void auSetSoundQuality(s32 quality);
 void auSetReverbType(s32 fxType);
@@ -19,7 +26,7 @@ void auStopAllSounds(void);
 void auSetSoundVolume(s32 handle, u32 vol);
 void auSetSoundPan(s32 handle, u32 arg1);
 void auStopSound(u32 handle);
-s32 auPlaySoundWithVolume(u32 soundID, u32 vol);
+s32 auPlaySoundWithVolume(u32 soundID, s32 vol);
 void auSetSoundGlobalVolume(u8 vol);
 void auSetCurrentSoundsGlobalVolume(u8 vol);
 void auSetSoundGlobalReverb(u8 reverbAmt);

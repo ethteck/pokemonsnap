@@ -48,4 +48,48 @@ enum ProgressFlags {
     PF_8000             = 0x8000
 };
 
+enum SoundIds {
+    SOUND_ID_8  =  8,
+    SOUND_ID_9  =  9,
+    SOUND_ID_10 = 10,
+    SOUND_ID_12 = 12,
+    SOUND_ID_24 = 24,
+    SOUND_ID_25 = 25,
+    SOUND_ID_26 = 26,
+    SOUND_ID_27 = 27,
+    SOUND_ID_29 = 29,
+    SOUND_ID_31 = 31
+};
+
+enum Links {
+    LINK_POKEMON = 3,
+    LINK_ITEM = 4
+};
+
+enum DlLinks {
+    DL_LINK_3 = 3
+};
+
+enum PokemonIds {
+    PokemonID_PIDGEY     =   16,
+    PokemonID_MAGNETON   =   82,
+    PokemonID_MUK        =   89,
+    PokemonID_SHELLDER   =   90,
+    PokemonID_CHANSEY    =  113,
+    PokemonID_STARYU     =  120,
+    PokemonID_STARMIE    =  121,
+    PokemonID_SCYTHER    =  123,
+    PokemonID_MAGIKARP   =  129,
+    PokemonID_MEW        =  151,
+    POKEDEX_MAX          =  151,
+    PokemonID_1004       = 1004,
+    PokemonID_1007       = 1007,
+    PokemonID_1010       = 1010,
+    PokemonID_1022       = 1022
+};
+
+enum PokemonFlags {
+    POKEMON_FLAG_2 = 2
+};
+
 #endif

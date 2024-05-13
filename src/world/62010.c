@@ -667,9 +667,9 @@ s32 func_800E61CC_6397C(UnkCaramelBoa* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3)
 }
 
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {    
-    WorldBlock* sp18C;
-    WorldBlock* sp188;
-    WorldBlock* sp17C[3];
+    WorldBlock* block;
+    WorldBlock* curBlock;
+    WorldBlock* blockArray[3];
     f32 unused[4];
     UnkCaramelBoa* s0;
     UnkCaramelBoa* v0;
@@ -689,31 +689,31 @@ s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
         return -1;
     }
 
-    sp18C = getCurrentWorldBlock();
-    if (sp18C == NULL || sp18C->descriptor == NULL) {
+    block = getCurrentWorldBlock();
+    if (block == NULL || block->descriptor == NULL) {
         return -1;
     }
 
-    sp17C[0] = sp18C->prev;
-    sp17C[1] = sp18C;
-    sp17C[2] = sp18C->next;
+    blockArray[0] = block->prev;
+    blockArray[1] = block;
+    blockArray[2] = block->next;
 
-    for (j = 0; j < ARRAY_COUNT(sp17C); j++) {
-        sp188 = sp17C[j];
-        if (sp188 == NULL || sp188->descriptor == NULL || sp188->descriptor->unk20 == NULL) {
+    for (j = 0; j < ARRAY_COUNT(blockArray); j++) {
+        curBlock = blockArray[j];
+        if (curBlock == NULL || curBlock->descriptor == NULL || curBlock->descriptor->unk_20 == NULL) {
             continue;
         }
 
-        s6 = sp188->descriptor->unk20;
+        s6 = curBlock->descriptor->unk_20;
         while (s6->unk_00 != -1) {
             for (i = 0; i < 100; i++) {
                 if (D_800E6B40_642F0[i].unk_00 == -1) {
                     break;
                 }
                 if (D_800E6B40_642F0[i].unk_04 != NULL && D_800E6B40_642F0[i].unk_00 == s6->unk_00) {
-                    sp158.x = s6->unk_04.x + (sp188->descriptor->unk_04.x - sp18C->descriptor->unk_04.x);
-                    sp158.y = s6->unk_04.y + (sp188->descriptor->unk_04.y - sp18C->descriptor->unk_04.y);
-                    sp158.z = s6->unk_04.z + (sp188->descriptor->unk_04.z - sp18C->descriptor->unk_04.z);
+                    sp158.x = s6->unk_04.x + (curBlock->descriptor->unk_04.x - block->descriptor->unk_04.x);
+                    sp158.y = s6->unk_04.y + (curBlock->descriptor->unk_04.y - block->descriptor->unk_04.y);
+                    sp158.z = s6->unk_04.z + (curBlock->descriptor->unk_04.z - block->descriptor->unk_04.z);
 
                     sp138.x = arg0->x / 100.0f;
                     sp138.y = arg0->y / 100.0f;

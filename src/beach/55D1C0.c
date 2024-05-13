@@ -12,14 +12,14 @@ void func_beach_802C5180(void) {
 }
 
 void func_beach_802C51A0(DObj* arg0, s32 arg1, f32 arg2) {
-    GObj* obj;
+    UnkBrassLynx* unk;
 
     if (arg1 == -2 || arg1 == -1) {
         D_beach_802CC0E0 = 1;
     } else if ((s32) arg2 - 1 >= 0) {
-        obj = func_800A6C48(arg1, (s32) arg2 - 1);
-        if (obj != NULL) {
-            obj->data.dobj = arg0;
+        unk = func_800A6C48(arg1, (s32) arg2 - 1);
+        if (unk != NULL) {
+            unk->unk_48 = arg0;
         }
     }
 }

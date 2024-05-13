@@ -46,7 +46,7 @@ extern SObj* D_80382C88_523098;
 extern SObj* D_80382C8C_52309C;
 extern SObj* D_80382C90_5230A0;
 extern Vec3f D_80382C94_5230A4;
-extern s32 D_80382CA0_5230B0;
+extern Vec3f D_80382CA0_5230B0;
 extern s32 D_80382CB4_5230C4;
 extern s32 D_80382CB8_5230C8;
 extern f32 D_80382CC0_5230D0;
@@ -76,12 +76,6 @@ extern s8 D_803AE522_54E932;
 void func_80357120_4F7530(s32);
 void func_803579C8_4F7DD8(f32*, f32*, f32*);
 void func_803588D4_4F8CE4(void);
-void func_803597D4_4F9BE4(void);
-void func_8035C44C_4FC85C(Vec3f*, s32*);
-void func_8035C5CC_4FC9DC(Vec3f*, s32*);
-void func_8035C74C_4FCB5C(void);
-void func_8035C7E4_4FCBF4(void);
-void func_8035C9CC_4FCDDC(s32, u8, s32);
 void func_8035E37C_4FE78C(void);
 void func_80365B24_505F34(void);
 void func_80365BB0_505FC0(char*, s32, s32, u8, u8, u8, u8, s32, u8);
@@ -121,25 +115,25 @@ void func_80350898_4F0CA8(GObj*);
 void func_80350950_4F0D60(GObj* obj) {
     if (D_80382D0C_52311C == 0) {
         if ((gContInputPressedButtons & D_CBUTTONS) && Icons_NumItemsAvailable >= 3 && D_80382CB8_5230C8 == 0) {
-            D_80382CF4_523104 = 161;
+            D_80382CF4_523104 = ITEM_ID_POKEFLUTE;
             D_80382CB8_5230C8 = 45;
-            Icons_ProcessButtonPress(161);
-            func_8035C74C_4FCB5C();
+            Icons_ProcessButtonPress(ITEM_ID_POKEFLUTE);
+            Items_PlayPokeFlute();
         } else if (D_80382CB4_5230C4 == 0) {
             if ((gContInputPressedButtons & B_BUTTON) && Icons_NumItemsAvailable >= 2) {
-                D_80382CF4_523104 = 162;
+                D_80382CF4_523104 = ITEM_ID_PESTER_BALL;
                 D_80382CB4_5230C4 = 45;
-                func_8035C44C_4FC85C(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
-                Icons_ProcessButtonPress(162);
-                func_8035C7E4_4FCBF4();
+                Items_SpawnPesterBall(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                Icons_ProcessButtonPress(ITEM_ID_PESTER_BALL);
+                Items_StopPokeFlute();
                 Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
             } else if ((gContInputPressedButtons & A_BUTTON) && Icons_NumItemsAvailable >= 1) {
-                D_80382CF4_523104 = 163;
+                D_80382CF4_523104 = ITEM_ID_APPLE;
                 D_80382CB4_5230C4 = 45;
-                func_8035C5CC_4FC9DC(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
-                Icons_ProcessButtonPress(163);
-                func_8035C7E4_4FCBF4();
+                Items_SpawnApple(&D_80382C30_523040->viewMtx.lookAt.eye, &D_80382CA0_5230B0);
+                Icons_ProcessButtonPress(ITEM_ID_APPLE);
+                Items_StopPokeFlute();
                 Icons_ProcessButtonPress(-1);
                 D_80382CB8_5230C8 = 0;
             }
@@ -508,7 +502,7 @@ void func_80356124_4F6534(GObj* arg0) {
     cmdProcessCommands(func_80356118_4F6528);
 }
 
-GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg2, u8 arg3, s32 arg4) {
+GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), GObjFunc arg2, u8 arg3, void (*arg4)(GObj*, GroundResult*)) {
     GObj* sp4C;
     GObj* sp48;
     DObj* sp44;
@@ -646,8 +640,8 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), s32 arg
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 0, 187);
 
-    func_803597D4_4F9BE4();
-    func_8035C9CC_4FCDDC(arg2, arg3, arg4);
+    Items_Init();
+    Items_SetCustomFunctions(arg2, arg3, arg4);
     Icons_Init();
     func_8035E37C_4FE78C();
     func_803588D4_4F8CE4();

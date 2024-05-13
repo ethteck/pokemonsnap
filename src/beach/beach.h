@@ -2,6 +2,7 @@
 #define _BEACH_H
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 // TODO: move to a common header
 
@@ -34,7 +35,6 @@ void func_803572B0_4F76C0(void);
 void func_80357384_4F7794(s32*, f32*);
 void func_803573BC_4F77CC(void);
 OMCamera* func_803586F8_4F8B08(void);
-void func_8035CAB0_4FCEC0(void);
 void func_8035E298_4FE6A8(GObj*);
 void func_8035ED90_4FF1A0(GObj*, void (*)(GObj*));
 void func_8035EDC8_4FF1D8(GObj*);

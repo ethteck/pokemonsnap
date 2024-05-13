@@ -378,9 +378,7 @@ segments:
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
-
     - { start: 0x5BF20, type: data, linker_section_order: .rodata }
-
     - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
     - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
@@ -424,8 +422,7 @@ segments:
     - [0x64380, .rodata, 60D10]
     - [0x64390, .rodata, ground]
     - [0x643A0, .rodata, 62010]
-    #- [0x64420, rodata] # TODO: make assets from this section
-    - { start: 0x64420, type: data, name: assets, linker_section_order: .rodata}
+    - { start: 0x64420, type: data, name: assets, linker_section_order: .rodata} # TODO: make assets from this section
     - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
     - { start: auto, name: ground_int, type: .bss, vram: 0x800F5D40 }
   - type: code
@@ -582,7 +579,7 @@ segments:
     subsegments:
     - [0x4F0610, c]
     - [0x4F8B30, c]
-    - [0x4F9B50, c]
+    - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
     - [0x4FEB90, c]
@@ -593,11 +590,14 @@ segments:
     - [0x506290, c]
     - [0x5064F0, c]
     - [0x506DD0, c]
-    - [0x506FB0, data] # has sprite data which should be in 4FCFC0.c
+    - [0x506FB0, data]
+    - [0x5232C0, .data, items]
+    - [0x523300, data] # has sprite data which should be in icons.c
     - [0x528530, .data, icons]
     - [0x528720, data]
     - { start: 0x52A470, type: .rodata, name: 4F0610, linker_section_order: .data }
     - [0x52A700, data]
+    - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]
     - [0x52A880, .data, 503C10]

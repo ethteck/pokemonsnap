@@ -1,39 +1,39 @@
 #include "world.h"
 
 HeightMap* sHeightMap = NULL;
-HeightMap* D_800E6B34_642E4 = NULL;
+HeightMap* sCeilingMap = NULL;
 
-s32 setHeightMap(HeightMap* arg0) {
-    HeightMapPatch* unk_00;
+s32 setHeightMap(HeightMap* map) {
+    HeightMapPatch* patches;
     HeightMapTreeNode* tree;
 
-    if (arg0 == NULL) {
+    if (map == NULL) {
         return FALSE;
     }
-    if (arg0->tree == NULL || arg0->patches == NULL) {
+    if (map->tree == NULL || map->patches == NULL) {
         return FALSE;
     }
-    sHeightMap = arg0;
+    sHeightMap = map;
     tree = sHeightMap->tree;
-    unk_00 = sHeightMap->patches;    
-    createHeightMapTree(tree, unk_00);
+    patches = sHeightMap->patches;    
+    createHeightMapTree(tree, patches);
     return TRUE;
 }
 
-s32 world_func_800E40A4(HeightMap* arg0) {
-    HeightMapPatch* unk_00;
-    HeightMapTreeNode* unk_04;
+s32 setCeilingMap(HeightMap* map) {
+    HeightMapPatch* patches;
+    HeightMapTreeNode* tree;
 
-    if (arg0 == NULL) {
+    if (map == NULL) {
         return FALSE;
     }
-    if (arg0->tree == NULL || arg0->patches == NULL) {
+    if (map->tree == NULL || map->patches == NULL) {
         return FALSE;
     }
-    D_800E6B34_642E4 = arg0;
-    unk_04 = D_800E6B34_642E4->tree;
-    unk_00 = D_800E6B34_642E4->patches;    
-    createHeightMapTree(unk_04, unk_00);
+    sCeilingMap = map;
+    tree = sCeilingMap->tree;
+    patches = sCeilingMap->patches;    
+    createHeightMapTree(tree, patches);
     return TRUE;
 }
 
@@ -42,7 +42,7 @@ void setDefaultGroundResult(GroundResult* result) {
     result->normal.x = 0.0f;
     result->normal.y = 1.0f;
     result->normal.z = 0.0f;
-    result->type = -1;
+    result->surfaceType = -1;
 }
 
 s32 getGroundAtGlobal(f32 x, f32 z, GroundResult* result) {
@@ -60,7 +60,7 @@ s32 getGroundAtGlobal(f32 x, f32 z, GroundResult* result) {
     result->normal.x = normal->x;
     result->normal.y = normal->z; // z is UP
     result->normal.z = normal->y;
-    result->type = getPatchSurfaceType(patch);
+    result->surfaceType = getPatchSurfaceType(patch);
     return TRUE;
 }
 
@@ -86,43 +86,43 @@ s32 getGroundAt(f32 x, f32 z, GroundResult* result) {
     return TRUE;
 }
 
-s32 func_800E42BC_61A6C(f32 arg0, f32 arg1, GroundResult* result) {
-    HeightMapPatch* sp24;
-    Vec3f* v0;
+s32 getCeilingAtGlobal(f32 x, f32 z, GroundResult* result) {
+    HeightMapPatch* patch;
+    Vec3f* normal;
 
-    if (D_800E6B34_642E4 == NULL) {
+    if (sCeilingMap == NULL) {
         setDefaultGroundResult(result);
         return FALSE;
     }
 
-    sp24 = findHeightMapPatch(D_800E6B34_642E4->tree, arg0, arg1);
-    result->height = getPatchHeightAt(sp24, arg0, arg1);
-    v0 = getPatchNormal(sp24);
-    result->normal.x = v0->x;
-    result->normal.y = v0->z;
-    result->normal.z = v0->y;
-    result->type = getPatchSurfaceType(sp24);
+    patch = findHeightMapPatch(sCeilingMap->tree, x, z);
+    result->height = getPatchHeightAt(patch, x, z);
+    normal = getPatchNormal(patch);
+    result->normal.x = normal->x;
+    result->normal.y = normal->z;
+    result->normal.z = normal->y;
+    result->surfaceType = getPatchSurfaceType(patch);
     return TRUE;
 }
 
-s32 func_800E435C_61B0C(f32 arg0, f32 arg1, GroundResult* arg2) {
+s32 getCeilingAt(f32 x, f32 z, GroundResult* arg2) {
     WorldBlock* block;
 
-    if (D_800E6B34_642E4 == NULL) {
+    if (sCeilingMap == NULL) {
         return FALSE;
     }
 
     block = getCurrentWorldBlock();
-    if (block == NULL || block->descriptor == NULL || D_800E6B34_642E4 == NULL) {
+    if (block == NULL || block->descriptor == NULL || sCeilingMap == NULL) {
         setDefaultGroundResult(arg2);
         return FALSE;
     }
 
-    arg0 /= 100.0f;
-    arg1 /= 100.0f;
-    arg0 = arg0 + block->descriptor->unk_04.x;
-    arg1 = arg1 + block->descriptor->unk_04.z;
-    if (!func_800E42BC_61A6C(arg0, arg1, arg2)) {
+    x /= 100.0f;
+    z /= 100.0f;
+    x = x + block->descriptor->unk_04.x;
+    z = z + block->descriptor->unk_04.z;
+    if (!getCeilingAtGlobal(x, z, arg2)) {
         setDefaultGroundResult(arg2);
         return FALSE;
     }

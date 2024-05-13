@@ -1426,7 +1426,7 @@ s32 func_80023168(u32 soundID, u32 reverbAmt) {
     }
 }
 
-s32 auPlaySoundWithVolume(u32 soundID, u32 vol) {
+s32 auPlaySoundWithVolume(u32 soundID, s32 vol) {
     s32 i;
 
     for (i = 0; i < auCurrentSettings.numSounds; i++) {

@@ -55,7 +55,7 @@ SpriteStruct Icons_IconObjects[] = {
     { 148, 128, NULL, 0, 0, NULL},
     { 172, 128, NULL, 0, 0, NULL},
 };
-s32 D_80388204_528614[] = { 163, 162, 161 };
+s32 D_80388204_528614[] = { ITEM_ID_APPLE, ITEM_ID_PESTER_BALL, ITEM_ID_POKEFLUTE };
 SObj* Icons_ButtonIconsCopy[] = { NULL, NULL, NULL };
 u32 D_8038821C_52862C = 0;
 u8 Icons_ItemFlags = 0;
@@ -506,11 +506,11 @@ void Icons_Hide(void) {
 }
 
 void Icons_ProcessButtonPress(s32 eventID) {
-    if (eventID == 162) {
+    if (eventID == ITEM_ID_PESTER_BALL) {
         omCreateProcess(Icons_MainObject, Icons_UpdatePesterBallIcon, 0, 1);
-    } else if (eventID == 163) {
+    } else if (eventID == ITEM_ID_APPLE) {
         omCreateProcess(Icons_MainObject, Icons_UpdateAppleIcon, 0, 1);
-    } else if (eventID == 161) {
+    } else if (eventID == ITEM_ID_POKEFLUTE) {
         if (Icons_FluteIsPlayed == FALSE) {
             omCreateProcess(Icons_MainObject, Icons_UpdateFluteIcon, 0, 1);
             Icons_FluteIsPlayed = TRUE;

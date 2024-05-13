@@ -109,7 +109,7 @@ typedef struct {
 typedef struct GroundResult {
     /* 0x00 */ f32 height;
     /* 0x04 */ Vec3f normal;
-    /* 0x10 */ s32 type;
+    /* 0x10 */ u32 surfaceType;
 } GroundResult; // size = 0x14
 
 struct WorldBlock;
@@ -255,5 +255,12 @@ typedef struct UnkCanaryScallop {
     s32 unk_0;
     s32 unk_4;
 } UnkCanaryScallop; // size == 0x8
+
+typedef struct UnkBrassLynx {
+    /* 0x00 */ char unk_00[0x14];
+    /* 0x14 */ Vec3f unk_14;
+    /* 0x20 */ char unk_20[0x28];
+    /* 0x48 */ DObj* unk_48;
+} UnkBrassLynx;
 
 #endif

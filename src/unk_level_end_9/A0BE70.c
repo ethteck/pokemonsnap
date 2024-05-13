@@ -47,7 +47,7 @@ extern AnimCmd D_803A80D0;
 
 void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
-    GObj* gobj;
+    UnkBrassLynx* unk;
 
     if (arg1 == -2 || arg1 == -1) {
         D_800E832B_A0F8BB = 3;
@@ -56,9 +56,9 @@ void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
 
     temp_f8 = arg2 - 1.0f;
     if (temp_f8 >= 0) {
-        gobj = func_800A6C48(arg1, temp_f8);
-        if (gobj != NULL) {
-            gobj->data.dobj = dobj;
+        unk = func_800A6C48(arg1, temp_f8);
+        if (unk != NULL) {
+            unk->unk_48 = dobj;
         }
     }
 }

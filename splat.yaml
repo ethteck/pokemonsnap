@@ -579,7 +579,7 @@ segments:
     subsegments:
     - [0x4F0610, c]
     - [0x4F8B30, c]
-    - [0x4F9B50, c]
+    - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
     - [0x4FEB90, c]
@@ -591,13 +591,13 @@ segments:
     - [0x5064F0, c]
     - [0x506DD0, c]
     - [0x506FB0, data]
-    - [0x5232C0, .data, 4F9B50]
+    - [0x5232C0, .data, items]
     - [0x523300, data] # has sprite data which should be in icons.c
     - [0x528530, .data, icons]
     - [0x528720, data]
     - { start: 0x52A470, type: .rodata, name: 4F0610, linker_section_order: .data }
     - [0x52A700, data]
-    - { start: 0x52A720, type: .rodata, name: 4F9B50, linker_section_order: .data }
+    - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]
     - [0x52A880, .data, 503C10]

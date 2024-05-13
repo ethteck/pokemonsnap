@@ -196,7 +196,7 @@ void Items_LinkObject(GObj* obj) {
     GET_ITEM(obj)->entryIndex = v0->index;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/Items_LinkObject.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_LinkObject.s")
 void Items_LinkObject(GObj* obj);
 #endif
 
@@ -247,7 +247,7 @@ s32 Items_GetFreeObjectID(void) {
     return BASE_ITEM_OBJID;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/Items_GetFreeObjectID.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_GetFreeObjectID.s")
 s32 Items_GetFreeObjectID(void);
 #endif
 
@@ -807,7 +807,7 @@ void Items_BounceFromGround(GObj* obj, GroundResult* groundResult) {
     Items_NotifyItemPosition(obj);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F9B50/Items_BounceFromGround.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_BounceFromGround.s")
 void Items_BounceFromGround(GObj* arg0, GroundResult* arg1);
 #endif
 

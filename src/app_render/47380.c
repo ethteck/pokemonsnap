@@ -530,7 +530,7 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
 void func_8009C4F4(UnkThing* arg0, UnkGoldViper* arg1, OMCamera* arg2) {
     arg0->main.levelID = getLevelId();
     arg0->main.unk_00_16 = arg1->unk_08->index;
-    arg0->main.unk_04 = world_func_800E219C();
+    arg0->main.unk_04.f32 = world_func_800E219C();
     arg0->main.unk_08.x = arg2->viewMtx.lookAt.eye.x;
     arg0->main.unk_08.y = arg2->viewMtx.lookAt.eye.y;
     arg0->main.unk_08.z = arg2->viewMtx.lookAt.eye.z;
@@ -733,10 +733,10 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
     omLinkGObjDL(gobj, arg3->unk_10, D_800BDF1C, 0x80000000, -1);
     anim_func_80010230(gobj, arg3->unk_8, arg3->unk_C, NULL, 0x1C, 0, 0);
     if (arg3->unk_14 != NULL) {
-        animSetModelTreeAnimation(gobj, arg3->unk_14, world_func_800E21A8(D_800BDF18->main.unk_04));
+        animSetModelTreeAnimation(gobj, arg3->unk_14, world_func_800E21A8(D_800BDF18->main.unk_04.f32));
         animSetModelAnimationSpeed(gobj, 0.0f);
         if (arg3->unk_18 != NULL) {
-            animSetModelTreeTextureAnimation(gobj, arg3->unk_18, world_func_800E21A8(D_800BDF18->main.unk_04));
+            animSetModelTreeTextureAnimation(gobj, arg3->unk_18, world_func_800E21A8(D_800BDF18->main.unk_04.f32));
             animSetTextureAnimationSpeed(gobj, 0.0f);
         }
         animUpdateModelTreeAnimation(gobj);
@@ -894,7 +894,7 @@ void func_8009D65C(UnkThing* arg0) {
                         animSetModelTreeTextureAnimation(
                             worldBlocks[i]->blockModel,
                             worldBlocks[i]->descriptor->gfx->unk_08,
-                            world_func_800E21A8(arg0->main.unk_04)
+                            world_func_800E21A8(arg0->main.unk_04.f32)
                         );
                         animUpdateModelTreeAnimation(worldBlocks[i]->blockModel);
                     }
@@ -903,7 +903,7 @@ void func_8009D65C(UnkThing* arg0) {
         }
 
         if (arg0->main.levelID == SCENE_RAINBOW) {
-            var_f2 = (arg0->main.unk_04 * TAU) / 10000.0f;
+            var_f2 = (arg0->main.unk_04.f32 * TAU) / 10000.0f;
         } else {
             var_f2 = 0.0f;
         }
@@ -914,7 +914,7 @@ void func_8009D65C(UnkThing* arg0) {
             case SCENE_RIVER:
             case SCENE_VALLEY:
             case SCENE_RAINBOW:
-                setSkyBoxPos(arg0->main.unk_08.x, arg0->main.unk_08.y, arg0->main.unk_08.z, var_f2, world_func_800E21A8(arg0->main.unk_04));
+                setSkyBoxPos(arg0->main.unk_08.x, arg0->main.unk_08.y, arg0->main.unk_08.z, var_f2, world_func_800E21A8(arg0->main.unk_04.f32));
                 break;
         }
         D_800AC0F4.unk_00 = 0.0f;

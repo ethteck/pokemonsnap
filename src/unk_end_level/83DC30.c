@@ -6,6 +6,7 @@ extern s32 D_8037EA88_852238;
 extern UnkSnowHerring* D_8037EA8C_85223C;
 extern UnkSnowHerring* D_8037EA90_852240;
 
+s32 func_8036D758_840F08(void);
 void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
 
@@ -202,7 +203,21 @@ void func_8036D09C_84084C(UnkSnowHerring* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D0F8_8408A8.s")
+UnkSnowHerring* func_8036D0F8_8408A8(s32 arg0, s32 arg1, s8* arg2, s32 arg3, s32 arg4) {
+    UnkSnowHerring* temp_v0;
+    s32 temp_s0;
+
+    func_8036D344_840AF4(arg3);
+    temp_s0 = func_8036D4F0_840CA0(arg2);
+    // TODO: look into a "ceil to multiple of" macro
+    temp_v0 = func_8036AC6C_83E41C(arg0, arg1, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, arg4);
+    func_8036CB58_840308(temp_v0, arg3);
+    func_8036B734_83EEE4(temp_v0);
+    func_8036B9EC_83F19C(temp_v0, 0, 0);
+    func_8036C898_840048(temp_v0, arg2);
+
+    return temp_v0;
+}
 
 void func_8036D1A4_840954(UnkSnowHerring* arg0, s32 arg1) {
     if (!arg0) {

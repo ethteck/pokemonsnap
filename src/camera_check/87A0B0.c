@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "camera_check.h"
 
 extern Addr D_8024A1E0;
@@ -55,7 +56,7 @@ s32 func_camera_check_801DCACC(s32 arg0) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_camera_check_801E4060);
-    D_camera_check_801E407C.gtlSetup.heapSize = D_80369F80 - D_8024A1E0;
+    D_camera_check_801E407C.gtlSetup.heapSize = unk_end_level_VRAM - camera_check_VRAM_END;
     omSetupScene(&D_camera_check_801E407C);
     return D_800AF3C0;
 }

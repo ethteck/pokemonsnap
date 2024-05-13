@@ -180,7 +180,7 @@ PhotoData* func_camera_check_801E2AD8(s32 arg0) {
     return NULL;
 }
 
-u32 func_camera_check_801E2B60(void) {
+s32 func_camera_check_801E2B60(void) {
     s32 i;
     s32 ret;
     UnkIndigoHalibut* item;

@@ -1,32 +1,6 @@
 #include "common.h"
 #include "camera_check.h"
 
-void func_8036A8E4(s32);
-void func_8036C898(s32, const char*);
-
-void func_camera_check_801DDB08(s32);
-UNK_PTR func_camera_check_801DF9B0(void);
-void func_camera_check_801E1918(void);
-s32 func_camera_check_801E3140(void);
-void func_camera_check_801E31E4(s32, UNK_TYPE);
-void func_camera_check_801E3910(UNK_TYPE);
-s32 func_camera_check_801E27FC(void);
-s32 func_camera_check_801E2A00(void);
-s32 func_camera_check_801E2B60(void);
-void func_camera_check_801E3C24(s32);
-s32 func_camera_check_801DCB40(void);
-u32 func_camera_check_801E04F4(UNK_TYPE);
-u32 func_camera_check_801E0B5C(UNK_TYPE);
-u32 func_camera_check_801E0F10(void);
-void func_camera_check_801E3CE8(void);
-s32 func_camera_check_801DFA80(UNK_PTR, s32*, s32, UNK_PTR);
-
-extern s32 D_camera_check_80208964;
-extern UNK_TYPE D_camera_check_8020896C;
-extern void (*D_camera_check_80249AA0)(s32, s32);
-extern UNK_PTR D_camera_check_80249AA4;
-extern UnkCanaryScallop* D_camera_check_80249AA8;
-
 // Unreferenced strings
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/D_camera_check_80208C60.s")
 

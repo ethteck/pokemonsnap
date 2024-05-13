@@ -508,7 +508,7 @@ s32 func_800E2BB4_8A83D4(void) {
 void func_800E2C0C_8A842C(UNK_PTR arg0) {
     s32 unused2[3];
     s32 i;
-    s32 sp4C;
+    UnkSnowHerring* sp4C;
     s32 temp_v0;
     ucolor sp44;
     s32 unused1;

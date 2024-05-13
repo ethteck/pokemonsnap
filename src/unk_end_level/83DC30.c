@@ -63,7 +63,9 @@ void func_8036A53C_83DCEC(UnkSnowHerring* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A8E4_83E094.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A968_83E118.s")
+void func_8036A968_83E118(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    func_8036A5B8_83DD68(arg0, arg1, arg2, arg3, arg4, arg0->unk_4C, arg0->unk_4D, arg0->unk_4E, arg0->unk_4F);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A9AC_83E15C.s")
 
@@ -76,7 +78,6 @@ void func_8036B5F0_83EDA0(UnkSnowHerring* arg0) {
         func_8036A228_83D9D8(arg0);
     }
 }
-
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036B628_83EDD8.s")
 
@@ -98,11 +99,31 @@ void func_8036B5F0_83EDA0(UnkSnowHerring* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CAE8_840298.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CB10_8402C0.s")
+void func_8036CB10_8402C0(UnkSnowHerring* arg0, f32 arg1, f32 arg2) {
+    if ((arg0 != NULL) && (arg0->unk_18 & 0x100)) {
+        arg0->unk_50->data.sobj->sprite.scalex = arg1;
+        arg0->unk_50->data.sobj->sprite.scaley = arg2;
+        arg0->unk_6C = arg1;
+        arg0->unk_70 = arg2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CB58_840308.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CBA0_840350.s")
+void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 arg1, s32 arg2) {
+    if (!arg0) {
+        return;
+    }
+
+    arg0->unk_0 = arg1;
+    arg0->unk_4 = arg2;
+    arg0->unk_64 = arg1 - arg0->unk_8;
+    arg0->unk_66 = arg2 - arg0->unk_C;
+    if (!(arg0->unk_18 & 0x40)) {
+        arg0->unk_50->data.sobj->sprite.x = arg0->unk_64;
+        arg0->unk_50->data.sobj->sprite.y = arg0->unk_66;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CBFC_8403AC.s")
 
@@ -118,7 +139,16 @@ UnkSnowHerring* func_8036D018_8407C8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D024_8407D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D040_8407F0.s")
+void func_8036D040_8407F0(UnkSnowHerring* arg0) {
+    GObj* gobj;
+
+    if ((D_8037EA8C_85223C != NULL) && (arg0 != D_8037EA8C_85223C) && (arg0 != NULL)) {
+        gobj = arg0->unk_50;
+        omMoveGObjDL(gobj, gobj->dlLink, gobj->dlPriority);
+        func_8036A53C_83DCEC(arg0);
+        func_8036A4AC_83DC5C(arg0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D09C_84084C.s")
 
@@ -128,6 +158,13 @@ UnkSnowHerring* func_8036D018_8407C8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D22C_8409DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D248_8409F8.s")
+void func_8036D248_8409F8(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    if (arg0 != NULL) {
+        arg0->unk_50->data.sobj->sprite.red = arg1;
+        arg0->unk_50->data.sobj->sprite.green = arg2;
+        arg0->unk_50->data.sobj->sprite.blue = arg3;
+        arg0->unk_50->data.sobj->sprite.alpha = arg4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D28C_840A3C.s")

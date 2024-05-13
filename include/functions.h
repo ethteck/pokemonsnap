@@ -10,12 +10,28 @@ f32 __sinf(f32);
 
 typedef struct UnkSnowHerring UnkSnowHerring;
 struct UnkSnowHerring {
-    u8 pad[0x3C];
-    /* 0x3C */ UnkSnowHerring* unk_3C;
-    /* 0x40 */ UnkSnowHerring* unk_40;
-    /* 0x44 */ u8 pad44[12];
-    /* 0x50 */ GObj * unk_50;
-};
+    /*   0x0 */s32 unk_0;
+    /*   0x4 */s32 unk_4;
+    /*   0x8 */s32 unk_8;
+    /*   0xC */s32 unk_C;
+    /*  0x10 */u8 pad_0[0x18-0x10];
+    /*  0x18 */u32 unk_18;
+    /*  0x1C */u8 pad_1C[0x3C-0x1C];
+    /*  0x3C */ UnkSnowHerring* unk_3C;
+    /*  0x40 */ UnkSnowHerring* unk_40;
+    /*  0x44 */ u8 pad_44[8];
+    /*  0x4C */ u8 unk_4C;
+    /*  0x4D */ u8 unk_4D;
+    /*  0x4E */ u8 unk_4E;
+    /*  0x4F */ u8 unk_4F;
+    /*  0x50 */ GObj * unk_50;
+    /*  0x54 */ u8 pad_54[0x64-0x54];
+    /*  0x64 */ s16 unk_64;
+    /*  0x66 */ s16 unk_66;
+    /*  0x68 */ u8 pad_68[4];
+    /*  0x6C */ f32 unk_6C;
+    /*  0x70 */ f32 unk_70;
+}; // size == 0x130
 
 GObj* pokemonAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonDef* def);
 void pokemonAdd(struct WorldBlock*, struct WorldBlock*, PokemonDef* def);

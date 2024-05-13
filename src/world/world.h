@@ -77,7 +77,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ UnkBeigeServal* unk_18;
     /* 0x1C */ ObjectSpawn* spawn;
-    /* 0x20 */ UnkBeigeServal* unk20;
+    /* 0x20 */ UnkBeigeServal* unk_20;
 } WorldBlockDescriptor; // size >= 0x24
 
 typedef struct WorldBlock {
@@ -145,6 +145,29 @@ typedef struct HeightMap {
     /* 0x04 */ HeightMapTreeNode* tree;
 } HeightMap; // size >= 0x08
 
+enum SurfaceTypes {
+    SURFACE_TYPE_4C1900 = 0x4C1900,
+    SURFACE_TYPE_4C4C33 = 0x4C4C33,
+    SURFACE_TYPE_7F4C00 = 0x7F4C00,
+    SURFACE_TYPE_7F7F7F = 0x7F7F7F,
+    SURFACE_TYPE_B2997F = 0xB2997F,
+    SURFACE_TYPE_193333 = 0x193333,
+    SURFACE_TYPE_4C7F00 = 0x4C7F00,
+    SURFACE_TYPE_996666 = 0x996666,
+    SURFACE_TYPE_FF9919 = 0xFF9919,
+    SURFACE_TYPE_331919 = 0x331919,
+    SURFACE_TYPE_7F667F = 0x7F667F,
+    SURFACE_TYPE_FF7FB2 = 0xFF7FB2,
+    SURFACE_TYPE_7F6633 = 0x7F6633,
+    SURFACE_TYPE_00FF00 = 0x00FF00,
+    SURFACE_TYPE_FF4C19 = 0xFF4C19,
+    SURFACE_TYPE_0019FF = 0x0019FF,
+    SURFACE_TYPE_007F66 = 0x007F66,
+    SURFACE_TYPE_337FB2 = 0x337FB2,
+    SURFACE_TYPE_4CCCCC = 0x4CCCCC,
+    SURFACE_TYPE_FF0000 = 0xFF0000
+};
+
 typedef void (*BlockFunc)(WorldBlock*);
 typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
@@ -176,9 +199,9 @@ void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*)
 s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 notNull_DEBUG(void*, const char*);
 s32 setHeightMap(HeightMap* arg0);
-s32 world_func_800E40A4(HeightMap* arg0);
+s32 setCeilingMap(HeightMap* arg0);
 s32 getGroundAt(f32 arg0, f32 arg1, GroundResult* arg2);
-s32 func_800E435C_61B0C(f32 arg0, f32 arg1, GroundResult* arg2);
+s32 getCeilingAt(f32 arg0, f32 arg1, GroundResult* arg2);
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
 void world_func_800E6778(UnkChestnutCougar* arg0);
 s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);

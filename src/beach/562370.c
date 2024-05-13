@@ -142,7 +142,7 @@ void func_beach_802CA950(GObj* obj) {
     sp2C = D_beach_802CD9F8;
     func_8035ED90_4FF1A0(obj, func_beach_802CA5DC);
     func_8035ED90_4FF1A0(obj, func_beach_802CA8C4);
-    func_8035CAB0_4FCEC0();
+    Items_RemoveFlyingItems();
     func_803573BC_4F77CC();
     func_80365E34_506244();
     func_8035FD9C_5001AC(&sp2C);

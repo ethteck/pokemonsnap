@@ -109,7 +109,7 @@ typedef struct {
 typedef struct GroundResult {
     /* 0x00 */ f32 height;
     /* 0x04 */ Vec3f normal;
-    /* 0x10 */ u32 type;
+    /* 0x10 */ u32 surfaceType;
 } GroundResult; // size = 0x14
 
 struct WorldBlock;

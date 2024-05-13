@@ -3,6 +3,11 @@
 
 extern OSTime D_80096968;
 
+enum PlayerIds {
+    BGM_PLAYER_MAIN = 0,
+    BGM_PLAYER_AUX = 1
+};
+
 void auThreadMain(void* arg);
 void auSetSoundQuality(s32 quality);
 void auSetReverbType(s32 fxType);

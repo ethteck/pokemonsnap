@@ -1,28 +1,20 @@
 #include "common.h"
 #include "beach.h"
 
-void func_beach_802C5620(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+void func_beach_802C5620(GObj* arg0) {
+    UNUSED s32 pad[4];
     s32 sp34;
     f32 sp30;
 
-    while (1) {
+    while (TRUE) {
         func_80357384_4F7794(&sp34, &sp30);
-        if (sp34 >= 4) {
+        if (sp34 > 3 || (sp34 == 3 && sp30 >= 0.3)) {
             break;
         }
-
-        if (sp34 == 3 && sp30 >= 0.3) {
-            break;
-        }
-
         ohWait(1);
     }
-
-    runPokemonCleanup(obj);
-    func_8035EDC8_4FF1D8(obj);
+    runPokemonCleanup(arg0);
+    func_8035EDC8_4FF1D8(arg0);
 }
 
 void func_beach_802C56C8(GObj* obj) {

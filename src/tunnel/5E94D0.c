@@ -1,4 +1,10 @@
 #include "common.h"
+#include "world/world.h"
+
+extern GObj* D_802EFFD0_5ED0A0;
+extern GObj* D_802F0070_5ED140;
+extern PokemonInitData D_802F0030_5ED100;
+extern PokemonInitData D_802F00D0_5ED1A0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC400_5E94D0.s")
 
@@ -8,7 +14,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC6CC_5E979C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC720_5E97F0.s")
+GObj* func_802EC720_5E97F0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
+    D_802EFFD0_5ED0A0 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F0030_5ED100);
+
+    return D_802EFFD0_5ED0A0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC760_5E9830.s")
 
@@ -18,7 +28,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECA2C_5E9AFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECA80_5E9B50.s")
+GObj* func_802ECA80_5E9B50(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
+    D_802F0070_5ED140 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F00D0_5ED1A0);
+
+    return D_802F0070_5ED140;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECAC0_5E9B90.s")
 

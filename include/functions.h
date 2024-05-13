@@ -18,6 +18,7 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
+GObj* func_8035E1D4_4FE5E4(void);
 void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
 void updatePokemonState(GObj* obj, GObjFunc state);
 s32 func_80353D68_4F4178(void);
@@ -152,9 +153,11 @@ s32 func_80346EF0_826660(s32);
 void func_8035024C_4F065C(f32, f32, f32);
 void func_803507E0_4F0BF0(s32);
 void func_80356FBC_4F73CC(void);
+void func_80357384_4F7794(s32*, f32*);
 void func_803586C0_4F8AD0(void);
 OMCamera* func_803586F8_4F8B08(void);
 void func_80359074_4F9484(void);
+void func_8035EDC8_4FF1D8(GObj*);
 void func_8035FEEC_5002FC(GObj*, s32);
 
 void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3);

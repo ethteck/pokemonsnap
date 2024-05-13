@@ -207,27 +207,27 @@ typedef struct PlayerName {
     /* 0x00 */ char data[0x10];
 } PlayerName; // size = 0x10
 
-typedef struct UnkThingSub {
+typedef struct PhotoDataSub {
     /* 0x00 */ s32 pokemonID : 13;
     /* 0x00 */ s32 unk_20_7 : 3; // padding?
     /* 0x02 */ char unk_02[0x2];
     /* 0x04 */ f32 unk_04;
     /* 0x08 */ Vec3f unk_08;
     /* 0x14 */ f32 unk_14;
-} UnkThingSub; // size = 0x18
+} PhotoDataSub; // size = 0x18
 
-typedef struct UnkThingSub2 {
+typedef struct PhotoDataSub2 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
     /* 0x04 */ Vec3f pos;
-} UnkThingSub2; // size == 0x10
+} PhotoDataSub2; // size == 0x10
 
-typedef struct UnkThingSub3 {
+typedef struct PhotoDataSub3 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ char unk_01[0x3];
     /* 0x04 */ char unk_04[0x8];
     /* 0x0C */ f32 unk_0C;
-} UnkThingSub3;
+} PhotoDataSub3;
 
 typedef struct PhotoData {
     /* 0x000 */ s8 levelID : 7;
@@ -240,9 +240,9 @@ typedef struct PhotoData {
                 } unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
-    /* 0x020 */ UnkThingSub unk_20[12];
-    /* 0x140 */ UnkThingSub2 unk_140[6];
-    /* 0x1A0 */ UnkThingSub3 unk_1A0[32];
+    /* 0x020 */ PhotoDataSub unk_20[12];
+    /* 0x140 */ PhotoDataSub2 unk_140[6];
+    /* 0x1A0 */ PhotoDataSub3 unk_1A0[32];
 } PhotoData; // size = 0x3A0
 
 typedef struct UnkThing {

@@ -4,7 +4,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802D9DFC_72AFFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802D9E7C_72B07C.s")
+void func_802D9E7C_72B07C(GObj* arg0) {
+    UNUSED s32 pad[4];
+    s32 sp34;
+    f32 sp30;
+
+    while (TRUE) {
+        func_80357384_4F7794(&sp34, &sp30);
+        if (sp34 > 4 || (sp34 == 4 && sp30 >= 0.1)) {
+            break;
+        }
+        ohWait(1);
+    }
+    runPokemonCleanup(arg0);
+    func_8035EDC8_4FF1D8(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802D9F24_72B124.s")
 

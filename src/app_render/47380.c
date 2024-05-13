@@ -458,7 +458,7 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BDDC.s")
 #endif
 
-s32 func_8009BF48(UnkThingSub*, GObj*);
+s32 func_8009BF48(PhotoDataSub*, GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BF48.s")
 
 void func_8009C25C(UnkThing* arg0, u8 objIndex) {
@@ -475,7 +475,7 @@ void func_8009C25C(UnkThing* arg0, u8 objIndex) {
     }
 }
 
-s32 func_8009C304(UnkThingSub2* arg0, GObj* obj) {
+s32 func_8009C304(PhotoDataSub2* arg0, GObj* obj) {
     DObj* dobj;
     u8 temp_t3;
     UNK_PTR* payload;
@@ -963,7 +963,7 @@ void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     func_800A1E6C(&sp24);
 }
 
-GObj* func_8009D9A0(UnkThingSub*, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*));
+GObj* func_8009D9A0(PhotoDataSub*, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*));
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
 
 void func_8009DEF0(UnkThing* arg0) {
@@ -996,7 +996,7 @@ void func_8009DEF0(UnkThing* arg0) {
     }
 }
 
-GObj* func_8009E050(UnkThingSub2* arg0, UnkEC64Arg3* arg1, Texture*** arg2, void (*arg3)(GObj*)) {
+GObj* func_8009E050(PhotoDataSub2* arg0, UnkEC64Arg3* arg1, Texture*** arg2, void (*arg3)(GObj*)) {
     GObj* gobj;
     DObj* dobj;
 

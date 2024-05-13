@@ -1,13 +1,15 @@
 #include "common.h"
 #include "ld_addrs.h"
 
+#include "../unk_end_level/unk_end_level.h"
+
 extern GObj* D_801DD240_A08E30;
 extern OMCamera* D_801DD244_A08E34;
 extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
 extern s32 D_801DD254_A08E44;
-extern s32 D_801DD258_A08E48;
+extern UnkSnowHerring* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
 
@@ -75,7 +77,7 @@ SceneSetup D_801DD14C_A08D3C = {
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
     s32 sp2C;
-    s32 sp28;
+    UnkSnowHerring* sp28;
     ucolor sp24;
 
     sp2C = func_8036F78C_842F3C();
@@ -230,10 +232,10 @@ void func_801DCFE0_A08BD0(void) {
 
     D_801DD130_A08D20.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_801DD130_A08D20);
-    func_8036A3F8(D_801DD260_A08E50, sizeof(D_801DD260_A08E50));
+    func_8036A3F8_83DBA8(D_801DD260_A08E50, sizeof(D_801DD260_A08E50));
     func_800AAE28();
     func_801DCE64_A08A54();
-    func_8036EB98();
+    func_8036EB98_842348();
     auSetBGMVolume(0, 0x7F00);
     func_800A7F68(1, 0x101);
     func_801DCE2C_A08A1C();

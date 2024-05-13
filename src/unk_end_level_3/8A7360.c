@@ -20,7 +20,7 @@ s32 func_800E3ED4_8A96F4(void);
 void func_800E5298_8AAAB8(void);
 void func_800E6410_8ABC30(void);
 
-s32 func_800E1B40_8A7360(void) {
+UnkSnowHerring* func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
 }
 
@@ -431,7 +431,7 @@ void func_800E2848_8A8068(void) {
     D_80206B28_9CC348[0] = sobj;
 }
 
-s32 func_800E2960_8A8180(s32 arg0, char** arg1, s32 arg2) {
+s32 func_800E2960_8A8180(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
     s32 temp_v0;
 
     while (*arg1) {
@@ -448,7 +448,7 @@ s32 func_800E2960_8A8180(s32 arg0, char** arg1, s32 arg2) {
 }
 
 void func_800E2A04_8A8224(void) {
-    s32 sp24;
+    UnkSnowHerring* sp24;
     s32 temp_a1;
     s32 temp_s0;
     s32 i;
@@ -508,7 +508,7 @@ s32 func_800E2BB4_8A83D4(void) {
 void func_800E2C0C_8A842C(UNK_PTR arg0) {
     s32 unused2[3];
     s32 i;
-    s32 sp4C;
+    UnkSnowHerring* sp4C;
     s32 temp_v0;
     ucolor sp44;
     s32 unused1;

@@ -2,7 +2,7 @@
 
 #include "sp.h"
 
-void func_80371F30_8456E0(s32, s32, s32, s32);
+#include "unk_end_level.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80370560_843D10.s")
 
@@ -52,7 +52,6 @@ void func_80371F30_8456E0(s32, s32, s32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803717E8_844F98.s")
 
-void func_803719B0_845160(SObj*, s32, s32, s32, s32, s32, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803719B0_845160.s")
 
 void func_80371C0C_8453BC(GObj* gobj) {

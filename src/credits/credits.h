@@ -1,11 +1,13 @@
 #ifndef _CREDITS_H
 #define _CREDITS_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct Credit {
     u32 unk_0;
     f32 unk_4;
     char* unk_8;
-    u32 unk_C;
+    UnkSnowHerring* unk_C;
 } Credit;
 
 extern ScreenSettings D_credits_801DEBA0;

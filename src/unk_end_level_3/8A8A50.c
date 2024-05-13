@@ -174,7 +174,7 @@ s32 func_800E3CE8_8A9508(void) {
     s32 sp38;
     s32 temp_v1;
     s32 temp_v1_2;
-    s32 sp2C;
+    UnkSnowHerring* sp2C;
     s32 temp_v0;
 
     sp38 = 7;

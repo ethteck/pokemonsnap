@@ -41,11 +41,11 @@ void func_camera_check_801DC910(void) {
 }
 
 void func_camera_check_801DCA60(void) {
-    func_8036A3F8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
+    func_8036A3F8_83DBA8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
     func_800AAE28();
     func_camera_check_801DC910();
     func_80374D40_8484F0();
-    func_8036EB98();
+    func_8036EB98_842348();
     func_80375284_848A34(3);
     func_80375284_848A34(2);
     auSetBGMVolume(0, 0x7F00);

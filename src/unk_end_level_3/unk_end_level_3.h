@@ -1,6 +1,8 @@
 #ifndef _UNK_END_LEVEL_3_H
 #define _UNK_END_LEVEL_3_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct UnkOrangeShark {
     s32 var_0;
     char* var_4;
@@ -85,7 +87,7 @@ extern u8 D_801C6B10_98C330[0x40000];
 extern SObj* D_80206B10_9CC330;
 extern SObj* D_80206B14_9CC334;
 extern SObj* D_80206B18_9CC338;
-extern s32 D_80206B1C_9CC33C;
+extern UnkSnowHerring* D_80206B1C_9CC33C;
 extern s32 D_80206B20_9CC340;
 extern SObj* D_80206B28_9CC348[];
 extern SObj* D_80206B30_9CC350;
@@ -104,7 +106,7 @@ extern SObj* D_80206B80_9CC3A0;
 extern u8 D_80206B90[];
 
 void func_800E1A60_8A7280(void);
-s32 func_800E1B40_8A7360(void);
+UnkSnowHerring* func_800E1B40_8A7360(void);
 void func_800E1C18_8A7438(s32);
 void func_800E1CA0_8A74C0(s32);
 void func_800E1D1C_8A753C(s32 arg0);
@@ -119,7 +121,7 @@ void func_800E307C_8A889C(void);
 void func_800E30B8_8A88D8(void);
 void func_800E3190_8A89B0(void);
 void* func_800E3230_8A8A50(void);
-s32 func_800E4578_8A9D98(s32, char**, s32, s32);
+s32 func_800E4578_8A9D98(UnkSnowHerring*, char**, s32, s32);
 void func_800E58D0_8AB0F0(void);
 void func_800E5EF8_8AB718(void);
 void func_800E60C8_8AB8E8(void);

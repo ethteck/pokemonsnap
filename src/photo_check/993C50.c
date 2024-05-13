@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "sys/oh.h"
+#include "../unk_end_level/unk_end_level.h"
 
 #include "photo_check.h"
 
@@ -11,16 +12,13 @@ extern s32 D_801F4180_9A3BF0;
 extern void* D_80229190_9D8C00;
 extern UnkCanaryScallop* D_80229194_9D8C04;
 
-void func_800AA85C(s32, s32);
-void func_800AA870(s32);
 s32 func_800BFB84_5CA24(void);
-s32 func_801DCCE0_98C750(void);
+UnkSnowHerring* func_801DCCE0_98C750(void);
 void func_801DD9E4_98D454(s32);
 void func_801DDA68_98D4D8(s32);
 void func_801E3934_9933A4(void);
 void func_801E43AC_993E1C();
 void func_801E4BA0_994610(s32);
-void func_80370004_8437B4(s32, s32);
 
 void* func_801E41E0_993C50(void) {
     return D_801F4150_9A3BC0;
@@ -49,7 +47,7 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
 }
 
 void func_801E433C_993DAC(s32 arg0) {
-    s32 sp1C;
+    UnkSnowHerring* sp1C;
 
     sp1C = func_801DCCE0_98C750();
     func_8036A8E4_83E094(sp1C);

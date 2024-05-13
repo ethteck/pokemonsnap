@@ -101,10 +101,10 @@ void func_800E1910_8A7130(void) {
 }
 
 void func_800E1A60_8A7280(void) {
-    func_8036A3F8(D_801C6B10_98C330, sizeof(D_801C6B10_98C330));
+    func_8036A3F8_83DBA8(D_801C6B10_98C330, sizeof(D_801C6B10_98C330));
     func_800AAE28();
     func_800E1910_8A7130();
-    func_8036EB98();
+    func_8036EB98_842348();
     func_800A7F68(1, 0x101);
     func_80375284_848A34(3);
     func_80375284_848A34(0);

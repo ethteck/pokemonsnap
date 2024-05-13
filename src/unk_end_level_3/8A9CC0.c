@@ -8,7 +8,7 @@ s32 D_80195D14 = 0;
 void func_800E44A0_8A9CC0(void) {
 }
 
-s32 func_800E44A8_8A9CC8(s32 arg0, s32 arg1) {
+s32 func_800E44A8_8A9CC8(UnkSnowHerring* arg0, s32 arg1) {
     s32 sp1C;
     UnkStruct800BEDF8* var_v0;
     s32 temp_v1;
@@ -40,7 +40,7 @@ s32 func_800E44A8_8A9CC8(s32 arg0, s32 arg1) {
     return sp1C;
 }
 
-s32 func_800E4578_8A9D98(s32 arg0, char** arg1, s32 arg2, s32 arg3) {
+s32 func_800E4578_8A9D98(UnkSnowHerring* arg0, char** arg1, s32 arg2, s32 arg3) {
     s32 temp_t8;
     s32 var_v0;
 
@@ -67,7 +67,7 @@ void func_800E4674_8A9E94(void) {
 }
 
 void func_800E467C_8A9E9C(void) {
-    s32 temp_v0;
+    UnkSnowHerring* temp_v0;
 
     char* sp54[] = {
         "\\w\\1\\LHello there\\t, %s!\nI'm Oak, the Pokεmon professor.",
@@ -133,7 +133,7 @@ void func_800E482C_8AA04C(void) {
 }
 
 void func_800E4878_8AA098(void) {
-    s32 var;
+    UnkSnowHerring* var;
     char* sp1C[] = {
         "Are you going to take\nPokεmon pictures?\nGood luck, %s!",
         0x00000000,
@@ -162,7 +162,7 @@ void func_800E48C4_8AA0E4(void) {
 }
 
 void func_800E4974_8AA194(void) {
-    s32 sp2C;
+    UnkSnowHerring* sp2C;
 
     char* sp20[] = {
         "How have you been, %s?\nI have completed part of\nmy research.",
@@ -200,7 +200,7 @@ void func_800E4A10_8AA230(void) {
 }
 
 void func_800E4AC0_8AA2E0(void) {
-    s32 var;
+    UnkSnowHerring* var;
     char* sp18[] = {
         "I saw the pictures taken\nby %s.",
         "I saved those pictures in\nthe PKMN Report.",
@@ -215,7 +215,7 @@ void func_800E4AC0_8AA2E0(void) {
 }
 
 void func_800E4B2C_8AA34C(void) {
-    s32 sp24;
+    UnkSnowHerring* sp24;
     char* sp1C[] = {
         "\\w\\EWelcome back!\\t",
         0x00000000,
@@ -228,7 +228,7 @@ void func_800E4B2C_8AA34C(void) {
 }
 
 void func_800E4BA0_8AA3C0(void) {
-    s32 temp_v0;
+    UnkSnowHerring* temp_v0;
 
     char* sp4C[] = {
         "\\w\\1Here's something to make your\\t\nsearch for PKMN Signs easier!",
@@ -268,7 +268,7 @@ void func_800E4BA0_8AA3C0(void) {
 }
 
 void func_800E4CCC_8AA4EC(void) {
-    s32 var;
+    UnkSnowHerring* var;
     char* sp1C[] = {
         "You are doing a fine\njob, %s.\nChoose \xA1\xC9\\hGo to Course\\p.\xA1\xC9",
         0x00000000,
@@ -279,7 +279,7 @@ void func_800E4CCC_8AA4EC(void) {
 }
 
 void func_800E4D18_8AA538(void) {
-    s32 i;
+    UnkSnowHerring* i;
     char* sp18[] = {
         "%s, you found a split\nin the path! According\nto my research, that split\n",
         "should link to a new course.\nI've also made a link from my\nlab. You should go right away!",
@@ -291,7 +291,7 @@ void func_800E4D18_8AA538(void) {
 }
 
 void func_800E4D6C_8AA58C(void) {
-    s32 i;
+    UnkSnowHerring* i;
     char* sp18[] = {
         "You finally got all of\nthe \\hPKMN Sign\\p pictures!",
         "\\JHmm... After looking at these\nsix pictures, I've noticed that\nthe Signs are just like the",
@@ -309,7 +309,7 @@ void func_800E4D6C_8AA58C(void) {
 }
 
 void func_800E4DD4_8AA5F4(void) {
-    s32 i;
+    UnkSnowHerring* i;
     char* sp18[] = {
         "I've seen your \\hPKMN Sign\\p in\npictures!",
         "\\OWe have solved a Pokεmon\nIsland mystery.\nKeep going!",
@@ -321,7 +321,7 @@ void func_800E4DD4_8AA5F4(void) {
 }
 
 void func_800E4E28_8AA648(s32 arg0) {
-    s32 temp_v0;
+    UnkSnowHerring* temp_v0;
     char* sp88[] = {
         "You take pictures at a good\npace. To make your work easier,\n\\Dhere is a present for you.\n",
         "It will come in handy for taking\nPokεmon pictures.",
@@ -382,7 +382,7 @@ void func_800E4E28_8AA648(s32 arg0) {
 }
 
 void func_800E502C_8AA84C(void) {
-    s32 i;
+    UnkSnowHerring* i;
     char* sp18[] = {
         "You have completed the\nPKMN Report!",
         "%s is a genuine Pokεmon\nphotographer.\n\\KCongratulations!",
@@ -398,7 +398,7 @@ void func_800E502C_8AA84C(void) {
 }
 
 void func_800E50A0_8AA8C0(void) {
-    s32 i;
+    UnkSnowHerring* i;
     char* sp1C[] = {
         "\\UYou made it, %s!\nI never believed that MEW lived\non this island!",
         "Our PKMN Report now has a\nvery memorable picture.",
@@ -419,7 +419,7 @@ s32 func_800E510C_8AA92C(void) {
 }
 
 void func_800E5120_8AA940(void) {
-    s32 sp1C;
+    UnkSnowHerring* sp1C;
 
     sp1C = func_800E1B40_8A7360();
     func_8036EB80_842330(0);

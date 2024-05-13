@@ -2,6 +2,7 @@
 
 #include "gbi.h"
 #include "string.h"
+#include "../unk_end_level/unk_end_level.h"
 
 #include "photo_check.h"
 
@@ -100,9 +101,9 @@ typedef struct ObjPair {
 ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
 s32 D_802290D8_9D8B48;
-s32 D_802290DC_9D8B4C;
-s32 D_802290E0_9D8B50;
-s32 D_802290E4_9D8B54;
+UnkSnowHerring* D_802290DC_9D8B4C;
+UnkSnowHerring* D_802290E0_9D8B50;
+UnkSnowHerring* D_802290E4_9D8B54;
 char D_802290E8_9D8B58[0x80];
 SObj* D_80229168_9D8BD8;
 SObj* D_80229170_9D8BE0[4];
@@ -379,12 +380,12 @@ void func_801DCA48_98C4B8(void) {
 void func_801DCBF4_98C664(void) {
     UNUSED s32 pad;
 
-    func_8036A3F8(D_801F70A0_9A6B10, sizeof(D_801F70A0_9A6B10));
+    func_8036A3F8_83DBA8(D_801F70A0_9A6B10, sizeof(D_801F70A0_9A6B10));
     func_800AAE28();
     func_801DCA48_98C4B8();
     func_80374D40_8484F0();
     func_800A7F68(1, 0x101);
-    func_8036EB98();
+    func_8036EB98_842348();
     auPlaySong(0, 0x10);
     auSetBGMVolume(0, 0x7F00);
     func_801E3FFC_993A6C();
@@ -400,7 +401,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     return D_800AF3C0;
 }
 
-s32 func_801DCCE0_98C750(void) {
+UnkSnowHerring* func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
@@ -460,7 +461,7 @@ void func_801DCFE8_98CA58(Photo* arg0) {
     }
 }
 
-s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
+s32 func_801DD05C_98CACC(UnkSnowHerring* arg0, s32 arg1) {
     s32 ret = 0;
     UnkStruct800BEDF8* sp18;
 
@@ -847,8 +848,8 @@ void func_801DE02C_98DA9C(UNK_PTR arg0) {
 
 s32 func_801DE204_98DC74(Photo* photo) {
     Unk803A6C18* sp25C;
-    s32 sp258;
-    s32 sp254;
+    UnkSnowHerring* sp258;
+    UnkSnowHerring* sp254;
     char sp214[0x40];
     s32 sp210;
     s32 sp20C;
@@ -1513,7 +1514,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8037519C_84894C(D_802290DC_9D8B4C, "%spts.", func_8037501C("%d", photo->samePkmnBonus));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "%spts.", func_8037501C_8487CC("%d", photo->samePkmnBonus));
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
             func_801DD1A8_98CC18(0x2D);
@@ -1934,7 +1935,7 @@ void func_801E2454_991EC4(void) {
     char* sp48;
     Photo* photo;
     UNUSED s32 pad2;
-    s32 sp3C;
+    UnkSnowHerring* sp3C;
 
     sp54 = -26;
     sp50 = 0;
@@ -2261,21 +2262,21 @@ void func_801E2ED4_992944(s32 arg0) {
     } else if (func_800BFCA0_5CB40(0xE) != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", get_player_name());
     } else if (func_800BF3D4_5C274(0x97) != 0) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C("%2d", 0x3F - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "Take pictures of Pokεmon\nthat live on the Rainbow Cloud!");
     } else if (func_800BFC5C_5CAFC() == 5) {
         if (func_800BFCA0_5CB40(2) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you collect all the\nPKMN Signs, you will be able\nto enter the Secret Course.");
         } else if (func_800BFCA0_5CB40(5) != 0) {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 130000 - sp48));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 130000 - sp48));
         } else if (func_801E4510_993F80() == 5) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", get_player_name());
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", get_player_name());
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C("%d", 40 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 40 - sp44));
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (func_800BFCA0_5CB40(1) != 0) {
             if (func_801E4510_993F80() == 3) {
@@ -2284,19 +2285,19 @@ void func_801E2ED4_992944(s32 arg0) {
                 func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", get_player_name());
             }
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 72500 - sp48));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 72500 - sp48));
         }
     } else if (func_800BFC5C_5CAFC() == 2) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C("%d", 22 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 22 - sp44));
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (func_800BFCA0_5CB40(0) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "There is a \\hhidden path\\p in the\nTunnel!\n");
             func_8037519C_84894C(D_802290DC_9D8B4C, "Good luck, %s!", get_player_name());
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C("%d", 24000 - sp48));
+            func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 24000 - sp48));
         }
     } else {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C("%d", 6 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 6 - sp44));
     }
     func_80374F30_8486E0(D_802290DC_9D8B4C, 1);
 }
@@ -2304,7 +2305,7 @@ void func_801E2ED4_992944(s32 arg0) {
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {
     UNUSED s32 pad[1];
-    s32 sp28 = D_802290DC_9D8B4C;
+    UnkSnowHerring* sp28 = D_802290DC_9D8B4C;
     UNUSED s32 pad2[2];
     s32 sp1C;
 
@@ -2327,7 +2328,7 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
     s32 sp48;
     s32 i;
     UNUSED s32 pad2;
-    s32 sp3C;
+    UnkSnowHerring* sp3C;
     s32 sp38;
     ucolor sp34; // ?
     s32 sp30;

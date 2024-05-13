@@ -2,6 +2,7 @@
 #include "ld_addrs.h"
 #include "sys/vi.h"
 #include "sys/gtl.h"
+#include "../unk_end_level/unk_end_level.h"
 
 extern Sprite D_80117F98_A93348; // card
 extern Sprite D_80109880_A84C30; // background
@@ -112,9 +113,9 @@ Gfx D_800E35B0[] = {
 static GObj* D_801180B0;
 static GObj* D_801180B4;
 static GObj* D_801180B8;
-static s32 D_801180C0[20];
-s32 D_80118110;
-s32 D_80118114;
+static UnkSnowHerring* D_801180C0[20];
+UnkSnowHerring* D_80118110;
+UnkSnowHerring* D_80118114;
 static u8 D_80118118[0x50000];
 
 void func_800E2ED0_A5E280(void);
@@ -156,7 +157,7 @@ void func_800E19E4_A5CD94(void) {
 }
 
 void func_800E1A0C_A5CDBC(void) {
-    s32 id;
+    UnkSnowHerring* id;
     s32 id2;
     s8 i;
     ucolor sp28;
@@ -221,7 +222,7 @@ void func_800E1A0C_A5CDBC(void) {
 void func_800E1CF8_A5D0A8(s8 arg0) {
     s16 i;
     s16 j;
-    s32 temp_s2;
+    UnkSnowHerring* temp_s2;
     s16 temp_s1;
     char** temp_s4 = func_800E18B4_A5CC64(arg0);
 
@@ -306,7 +307,7 @@ void new_game_init(void) {
     func_800AAE28();
     func_800AA85C(24, 6);
     func_800AA870(0xF0000);
-    func_8036EB98();
+    func_8036EB98_842348();
     ohCreateCameraWrapper(0, 0x80000000, 100, 6, 0);
     D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, TRUE, 1, NULL, 1, TRUE);
     D_801180B0->data.cam->flags = 8;

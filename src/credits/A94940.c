@@ -1,4 +1,5 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 #include "credits.h"
 
 Credit D_credits_801E8BA0[] = {

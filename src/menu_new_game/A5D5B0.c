@@ -1,10 +1,11 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 
 extern Sprite D_80118068_A93418; // cursor
 
 // BSS
-extern s32 D_80118110;
-extern s32 D_80118114;
+extern UnkSnowHerring* D_80118110;
+extern UnkSnowHerring* D_80118114;
 static s32 menu_new_game_CursorX;
 static s32 menu_new_game_CursorY;
 static s32 D_80168128;

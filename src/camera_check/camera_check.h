@@ -1,6 +1,8 @@
 #ifndef _CAMERA_CHECK_H
 #define _CAMERA_CHECK_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct UnkIndigoHalibut {
     /* 0x00 */ PhotoData* var_0;
     /* 0x04 */ char pad_4[4];
@@ -62,10 +64,10 @@ extern s32 (*D_camera_check_802089F4)(const void*, const void*);
 extern u8 D_camera_check_802098F0[0x40000];
 extern UnkTealFlounder D_camera_check_802498F0;
 extern s32 D_camera_check_802498FC;
-extern s32 D_camera_check_80249910;
-extern s32 D_camera_check_80249914;
-extern s32 D_camera_check_80249918;
-extern s32 D_camera_check_8024991C;
+extern UnkSnowHerring* D_camera_check_80249910;
+extern UnkSnowHerring* D_camera_check_80249914;
+extern UnkSnowHerring* D_camera_check_80249918;
+extern UnkSnowHerring* D_camera_check_8024991C;
 extern SObj* D_camera_check_802499A8;
 extern UnkPurpleMackerel D_camera_check_802499C0[];
 extern UnkIndigoHalibut D_camera_check_80249B30[];
@@ -81,7 +83,7 @@ extern UnkCanaryScallop* D_camera_check_80249AA8;
 
 void func_camera_check_801DC910(void);
 s32 func_camera_check_801DCACC(s32);
-s32 func_camera_check_801DCB40(void);
+UnkSnowHerring* func_camera_check_801DCB40(void);
 void func_camera_check_801DCB58(int);
 void func_camera_check_801DCC0C(void);
 void func_camera_check_801DCD00(void);

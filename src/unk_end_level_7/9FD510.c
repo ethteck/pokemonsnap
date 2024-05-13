@@ -1,4 +1,5 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 #include "unk_end_level_7.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FD510/func_801DF850_9FD510.s")

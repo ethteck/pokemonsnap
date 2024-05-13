@@ -1,6 +1,8 @@
 #ifndef _CAMERA_CHECK_H
 #define _CAMERA_CHECK_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct UnkIndigoHalibut {
     /* 0x00 */ PhotoData* var_0;
     /* 0x04 */ char pad_4[4];

@@ -2,6 +2,7 @@
 #include "ld_addrs.h"
 #include "sys/vi.h"
 #include "sys/gtl.h"
+#include "../unk_end_level/unk_end_level.h"
 
 extern Sprite D_80117F98_A93348; // card
 extern Sprite D_80109880_A84C30; // background
@@ -306,7 +307,7 @@ void new_game_init(void) {
     func_800AAE28();
     func_800AA85C(24, 6);
     func_800AA870(0xF0000);
-    func_8036EB98();
+    func_8036EB98_842348();
     ohCreateCameraWrapper(0, 0x80000000, 100, 6, 0);
     D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, TRUE, 1, NULL, 1, TRUE);
     D_801180B0->data.cam->flags = 8;

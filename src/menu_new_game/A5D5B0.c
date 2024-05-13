@@ -1,4 +1,5 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 
 extern Sprite D_80118068_A93418; // cursor
 

@@ -1,14 +1,48 @@
 #include "common.h"
+#include "unk_end_level.h"
 
-extern s32 D_8037EA80_852230;
-extern s32 D_8037EA84_852234;
-extern s32 D_8037EA88_852238;
-extern UnkSnowHerring* D_8037EA8C_85223C;
-extern UnkSnowHerring* D_8037EA90_852240;
-
-s32 func_8036D758_840F08(void);
-void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
+struct UnkSnowHerring {
+    /*   0x0 */ s32 unk_0;
+    /*   0x4 */ s32 unk_4;
+    /*   0x8 */ s32 unk_8;
+    /*   0xC */ s32 unk_C;
+    /*  0x10 */ s32 unk_10;
+    /*  0x14 */ s32 unk_14;
+    /*  0x18 */ u32 unk_18;
+    /*  0x1C */ u8 pad_1C[0x2C - 0x1C];
+    /*  0x2C */ s32 unk_2C;
+    /*  0x30 */ s32 unk_30;
+    /*  0x34 */ s32 unk_34;
+    /*  0x38 */ s32 unk_38;
+    /*  0x3C */ UnkSnowHerring* unk_3C;
+    /*  0x40 */ UnkSnowHerring* unk_40;
+    /*  0x44 */ u8 pad_44[4];
+    /*  0x4C */ u8 unk_48;
+    /*  0x4D */ u8 unk_49;
+    /*  0x4E */ u8 unk_4A;
+    /*  0x4F */ u8 unk_4B;
+    /*  0x4C */ u8 unk_4C;
+    /*  0x4D */ u8 unk_4D;
+    /*  0x4E */ u8 unk_4E;
+    /*  0x4F */ u8 unk_4F;
+    /*  0x50 */ GObj* unk_50;
+    /*  0x54 */ u8 pad_54[0x64 - 0x54];
+    /*  0x64 */ s16 unk_64;
+    /*  0x66 */ s16 unk_66;
+    /*  0x68 */ u8 pad_68[4];
+    /*  0x6C */ f32 unk_6C;
+    /*  0x70 */ f32 unk_70;
+    /*  0x74 */ u8 pad_74[0xA8 - 0x74];
+    /*  0xA8 */ s16 unk_A8;
+    /*  0xAA */ s16 unk_AA;
+    /*  0xAC */ u8 pad_AC[0x114 - 0xAC];
+    /* 0x114 */ s32 unk_114;
+    /* 0x118 */ s32 unk_118;
+    /* 0x11C */ u8 pad_11C[4];
+    /* 0x120 */ s32 unk_120;
+    /* 0x124 */ s32 unk_124;
+    /* 0x128 */ u8 pad_128[8];
+}; // size == 0x130
 
 void func_8036A480_83DC30(void) {
     D_8037EA80_852230 = 0;

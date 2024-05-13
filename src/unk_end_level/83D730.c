@@ -1,4 +1,5 @@
 #include "common.h"
+#include "unk_end_level.h"
 
 typedef struct UnkClaretTilapia UnkClaretTilapia;
 struct UnkClaretTilapia {

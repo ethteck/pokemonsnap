@@ -1,4 +1,5 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 #include "credits.h"
 
 void func_credits_801DD8C0(SObj* sobj) {

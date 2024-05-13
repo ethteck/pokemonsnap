@@ -1,6 +1,8 @@
 #ifndef _CREDITS_H
 #define _CREDITS_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct Credit {
     u32 unk_0;
     f32 unk_4;

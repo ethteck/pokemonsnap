@@ -1,6 +1,8 @@
 #ifndef _UNK_END_LEVEL_3_H
 #define _UNK_END_LEVEL_3_H
 
+#include "../unk_end_level/unk_end_level.h"
+
 typedef struct UnkOrangeShark {
     s32 var_0;
     char* var_4;

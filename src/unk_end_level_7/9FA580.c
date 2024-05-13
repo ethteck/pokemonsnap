@@ -1,5 +1,6 @@
 #include "ld_addrs.h"
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 #include "unk_end_level_7.h"
 
 void func_801DC8C0_9FA580(Gfx** dlist) {
@@ -93,11 +94,11 @@ void func_801DCDDC_9FAA9C(void) {
 
     D_801E1690_9FF350.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_801E1690_9FF350);
-    func_8036A3F8(&D_801EA808_A084C8, 0x46000);
+    func_8036A3F8_83DBA8(&D_801EA808_A084C8, 0x46000);
     func_800AAE28();
     func_801DCC60_9FA920();
     func_80374D40_8484F0();
-    func_8036EB98();
+    func_8036EB98_842348();
     if (D_801EA7F0_A084B0 != 0) {
         auPlaySong(0, 0x22);
         auSetBGMVolume(0, 0x7F00);

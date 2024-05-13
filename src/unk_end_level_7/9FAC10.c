@@ -1,4 +1,5 @@
 #include "common.h"
+#include "../unk_end_level/unk_end_level.h"
 #include "unk_end_level_7.h"
 
 void func_801DCF50_9FAC10(UNK_PTR arg0) {

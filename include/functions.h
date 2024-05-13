@@ -7,16 +7,20 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
-
 typedef struct UnkSnowHerring UnkSnowHerring;
 struct UnkSnowHerring {
-    /*   0x0 */s32 unk_0;
-    /*   0x4 */s32 unk_4;
-    /*   0x8 */s32 unk_8;
-    /*   0xC */s32 unk_C;
-    /*  0x10 */u8 pad_0[0x18-0x10];
-    /*  0x18 */u32 unk_18;
-    /*  0x1C */u8 pad_1C[0x3C-0x1C];
+    /*   0x0 */ s32 unk_0;
+    /*   0x4 */ s32 unk_4;
+    /*   0x8 */ s32 unk_8;
+    /*   0xC */ s32 unk_C;
+    /*  0x10 */ s32 unk_10;
+    /*  0x14 */ s32 unk_14;
+    /*  0x18 */ u32 unk_18;
+    /*  0x1C */ u8 pad_1C[0x2C-0x1C];
+    /*  0x2C */ s32 unk_2C;
+    /*  0x30 */ s32 unk_30;
+    /*  0x34 */ s32 unk_34;
+    /*  0x38 */ s32 unk_38;
     /*  0x3C */ UnkSnowHerring* unk_3C;
     /*  0x40 */ UnkSnowHerring* unk_40;
     /*  0x44 */ u8 pad_44[4];
@@ -35,6 +39,16 @@ struct UnkSnowHerring {
     /*  0x68 */ u8 pad_68[4];
     /*  0x6C */ f32 unk_6C;
     /*  0x70 */ f32 unk_70;
+    /*  0x74 */ u8 pad_74[0xA8-0x74];
+    /*  0xA8 */ s16 unk_A8;
+    /*  0xAA */ s16 unk_AA;
+    /*  0xAC */ u8 pad_AC[0x114-0xAC];
+    /* 0x114 */ s32 unk_114;
+    /* 0x118 */ s32 unk_118;
+    /* 0x11C */ u8 pad_11C[4];
+    /* 0x120 */ s32 unk_120;
+    /* 0x124 */ s32 unk_124;
+    /* 0x128 */ u8 pad_128[8];
 }; // size == 0x130
 
 GObj* pokemonAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonDef* def);
@@ -210,7 +224,7 @@ void func_8036CB58_840308(UnkSnowHerring*, s32);
 void func_8036CBA0_840350(UnkSnowHerring*, s32, s32);
 void func_8036D1A4_840954(UnkSnowHerring*, s32);
 void func_8036D248_8409F8(UnkSnowHerring*, s32, s32, s32, s32);
-void func_8036D344_840AF4(s32);
+s32 func_8036D344_840AF4(s32);
 void func_8036D3E8_840B98(s32, s32);
 void func_8036D448_840BF8(s32);
 void func_8036D4A0_840C50(s32);

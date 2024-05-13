@@ -27,15 +27,9 @@ struct UnkSnowHerring {
     /*  0x4F */ u8 unk_4F;
     /*  0x50 */ GObj* unk_50;
     /*  0x54 */ u8 pad_54[0x64 - 0x54];
-    /*  0x64 */ s16 unk_64;
-    /*  0x66 */ s16 unk_66;
-    /*  0x68 */ u8 pad_68[4];
-    /*  0x6C */ f32 unk_6C;
-    /*  0x70 */ f32 unk_70;
-    /*  0x74 */ u8 pad_74[0xA8 - 0x74];
-    /*  0xA8 */ s16 unk_A8;
-    /*  0xAA */ s16 unk_AA;
-    /*  0xAC */ u8 pad_AC[0x114 - 0xAC];
+    /*  0x64 */ Sprite unk_64;
+    /*  0xA8 */ Sprite unk_A8;
+    /*  0xEC */ char unk_EC[0x114 - 0xEC];
     /* 0x114 */ s32 unk_114;
     /* 0x118 */ s32 unk_118;
     /* 0x11C */ u8 pad_11C[4];
@@ -152,12 +146,12 @@ u32 func_8036B988_83F138(UnkSnowHerring* arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CAE8_840298.s")
 
-void func_8036CB10_8402C0(UnkSnowHerring* arg0, f32 arg1, f32 arg2) {
+void func_8036CB10_8402C0(UnkSnowHerring* arg0, f32 scalex, f32 scaley) {
     if ((arg0 != NULL) && (arg0->unk_18 & 0x100)) {
-        arg0->unk_50->data.sobj->sprite.scalex = arg1;
-        arg0->unk_50->data.sobj->sprite.scaley = arg2;
-        arg0->unk_6C = arg1;
-        arg0->unk_70 = arg2;
+        arg0->unk_50->data.sobj->sprite.scalex = scalex;
+        arg0->unk_50->data.sobj->sprite.scaley = scaley;
+        arg0->unk_64.scalex = scalex;
+        arg0->unk_64.scaley = scaley;
     }
 }
 
@@ -180,32 +174,57 @@ void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 arg1, s32 arg2) {
 
     arg0->unk_0 = arg1;
     arg0->unk_4 = arg2;
-    arg0->unk_64 = arg1 - arg0->unk_8;
-    arg0->unk_66 = arg2 - arg0->unk_C;
+    arg0->unk_64.x = arg1 - arg0->unk_8;
+    arg0->unk_64.y = arg2 - arg0->unk_C;
     if (!(arg0->unk_18 & 0x40)) {
-        arg0->unk_50->data.sobj->sprite.x = arg0->unk_64;
-        arg0->unk_50->data.sobj->sprite.y = arg0->unk_66;
+        arg0->unk_50->data.sobj->sprite.x = arg0->unk_64.x;
+        arg0->unk_50->data.sobj->sprite.y = arg0->unk_64.y;
     }
 }
 
-void func_8036CBFC_8403AC(UnkSnowHerring* arg0, s32 arg1, s32 arg2) {
+void func_8036CBFC_8403AC(UnkSnowHerring* arg0, s32 x, s32 y) {
     if (!arg0) {
         return;
     }
 
-    arg0->unk_2C = arg1;
-    arg0->unk_30 = arg2;
-    arg0->unk_A8 = arg1;
-    arg0->unk_AA = arg2;
+    arg0->unk_2C = x;
+    arg0->unk_30 = y;
+    arg0->unk_A8.x = x;
+    arg0->unk_A8.y = y;
     if (arg0->unk_18 & 0x40) {
-        arg0->unk_50->data.sobj->sprite.x = arg0->unk_A8;
-        arg0->unk_50->data.sobj->sprite.y = arg0->unk_AA;
+        arg0->unk_50->data.sobj->sprite.x = arg0->unk_A8.x;
+        arg0->unk_50->data.sobj->sprite.y = arg0->unk_A8.y;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CC48_8403F8.s")
+void func_8036CC48_8403F8(UnkSnowHerring* arg0, Sprite* arg1) {
+    if (arg0 != NULL && arg1 != NULL) {
+        arg0->unk_34 = arg1->width;
+        arg0->unk_38 = arg1->height;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CCEC_84049C.s")
+        arg0->unk_A8 = *arg1;
+
+        arg0->unk_A8.x = arg0->unk_2C;
+        arg0->unk_A8.y = arg0->unk_30;
+
+        if (arg0->unk_18 & 0x40) {
+            arg0->unk_50->data.sobj->sprite.x = arg0->unk_A8.x;
+            arg0->unk_50->data.sobj->sprite.y = arg0->unk_A8.y;
+        }
+    }
+}
+
+void func_8036CCEC_84049C(UnkSnowHerring* arg0, s32 arg1) {
+    if (arg0 != NULL) {
+        if (arg1 != 0) {
+            arg0->unk_50->data.sobj->sprite = arg0->unk_A8;
+            arg0->unk_18 |= 0x40;
+        } else {
+            arg0->unk_50->data.sobj->sprite = arg0->unk_64;
+            arg0->unk_18 &= ~0x40;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CDAC_84055C.s")
 
@@ -237,7 +256,7 @@ void func_8036D09C_84084C(UnkSnowHerring* arg0) {
     }
 }
 
-UnkSnowHerring* func_8036D0F8_8408A8(s32 arg0, s32 arg1, s8* arg2, s32 arg3, s32 arg4) {
+UnkSnowHerring* func_8036D0F8_8408A8(s32 arg0, s32 arg1, char* arg2, s32 arg3, s32 arg4) {
     UnkSnowHerring* temp_v0;
     s32 temp_s0;
 
@@ -261,9 +280,9 @@ void func_8036D1A4_840954(UnkSnowHerring* arg0, s32 arg1) {
     func_8036EFEC_84279C(arg1, arg0->unk_0, arg0->unk_4, arg0->unk_0 + arg0->unk_10, arg0->unk_4 + arg0->unk_14);
 
     if (arg1) {
-        arg0->unk_50->data.sobj->sprite.attr |= 4;
+        arg0->unk_50->data.sobj->sprite.attr |= SP_HIDDEN;
     } else {
-        arg0->unk_50->data.sobj->sprite.attr &= 0xFFFB;
+        arg0->unk_50->data.sobj->sprite.attr &= ~SP_HIDDEN;
     }
 }
 

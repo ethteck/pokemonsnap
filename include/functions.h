@@ -37,11 +37,12 @@ void ren_func_800192DC(GObj* obj);
 
 OSThread* func_80000460(void);
 void func_8009A8F0(s32);
-s32 func_8009C584(const void* a, const void* b);
-s32 func_8009C5C4(const void* a, const void* b);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);
 s32 func_8009BC68(void);
+s32 func_8009C584(const void* a, const void* b);
+s32 func_8009C5C4(const void* a, const void* b);
+void func_8009CE00(void);
 void func_8009FA68(OMCamera* arg0, UnkThing* arg1);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
@@ -156,6 +157,7 @@ OMCamera* func_803586F8_4F8B08(void);
 void func_80359074_4F9484(void);
 void func_8035FEEC_5002FC(GObj*, s32);
 
+void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3);
 void func_8036406C_50447C(struct WorldBlock*, struct WorldBlock*, PokemonDef*);
 void func_803641B8_5045C8(struct WorldBlock*, PokemonDef*);
 void func_803643E0_5047F0(OMCamera* cam);

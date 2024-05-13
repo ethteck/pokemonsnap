@@ -53,7 +53,6 @@ void func_80361748_501B58(GObj*, f32, f32, int);
 void func_8036194C_501D5C(GObj*, f32, f32, int);
 void func_80361B50_501F60(GObj*, f32, f32);
 void func_80361E58_502268(GObj*, f32);
-void func_80363928_503D38(int, int, int, int);
 void func_80363DBC_5041CC(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void func_80363EB4_5042C4(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void func_80365E34_506244(void);

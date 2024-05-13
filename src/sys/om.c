@@ -1674,14 +1674,14 @@ void omMoveGObjDL(GObj* arg0, u8 dlLink, u32 dlPriority) {
     omInsertGObjDLAfterSamePriority(arg0);
 }
 
-void omMoveGObjDLHead(GObj* arg0, u8 dlLink, u32 arg2) {
+void omMoveGObjDLHead(GObj* arg0, u8 dlLink, u32 dlPriority) {
     if (dlLink >= 32) {
         fatal_printf("omGMoveObjDLHead() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
         PANIC();
     }
     omUnlinkGObjDL(arg0);
     arg0->dlLink = dlLink;
-    arg0->dlPriority = arg2;
+    arg0->dlPriority = dlPriority;
     omInsertGObjDLBeforeSamePriority(arg0);
 }
 

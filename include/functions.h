@@ -19,7 +19,11 @@ struct UnkSnowHerring {
     /*  0x1C */u8 pad_1C[0x3C-0x1C];
     /*  0x3C */ UnkSnowHerring* unk_3C;
     /*  0x40 */ UnkSnowHerring* unk_40;
-    /*  0x44 */ u8 pad_44[8];
+    /*  0x44 */ u8 pad_44[4];
+    /*  0x4C */ u8 unk_48;
+    /*  0x4D */ u8 unk_49;
+    /*  0x4E */ u8 unk_4A;
+    /*  0x4F */ u8 unk_4B;
     /*  0x4C */ u8 unk_4C;
     /*  0x4D */ u8 unk_4D;
     /*  0x4E */ u8 unk_4E;

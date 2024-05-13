@@ -1,11 +1,11 @@
 #include "common.h"
 #include "camera_check.h"
 
-s32 func_camera_check_801DCB40(void) {
+UnkSnowHerring* func_camera_check_801DCB40(void) {
     return D_camera_check_80249914;
 }
 
-s32 func_camera_check_801DCB4C(void) {
+UnkSnowHerring* func_camera_check_801DCB4C(void) {
     return D_camera_check_80249918;
 }
 
@@ -107,7 +107,7 @@ void func_camera_check_801DDD28(s32 arg0) {
 void* func_camera_check_801DDFC4(void) {
     GObj* temp_v0;
     SObj* sobj;
-    s32 temp_v0_2;
+    UnkSnowHerring* temp_v0_2;
 
     temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
     D_camera_check_802498F0.unk_00 = temp_v0;
@@ -220,7 +220,7 @@ void func_camera_check_801DEA20(s32 arg0, int arg1) {
     func_camera_check_801DD238(&D_camera_check_802498F0, arg0, arg1);
 }
 
-s32 func_camera_check_801DEA50(void) {
+UnkSnowHerring* func_camera_check_801DEA50(void) {
     return D_camera_check_80249910;
 }
 
@@ -229,7 +229,7 @@ s32 func_camera_check_801DEA50(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DEAC0.s")
 
 void func_camera_check_801DEC2C(char* arg0) {
-    s32 temp_a0;
+    UnkSnowHerring* temp_a0;
 
     func_8036A8E4_83E094(D_camera_check_80249914);
     temp_a0 = D_camera_check_80249914;

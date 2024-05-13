@@ -1,12 +1,63 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A480_83DC30.s")
+extern s32 D_8037EA80_852230;
+extern s32 D_8037EA84_852234;
+extern s32 D_8037EA88_852238;
+extern UnkSnowHerring* D_8037EA8C_85223C;
+extern UnkSnowHerring* D_8037EA90_852240;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A4AC_83DC5C.s")
+void func_8036A480_83DC30(void) {
+    D_8037EA80_852230 = 0;
+    D_8037EA84_852234 = 0;
+    D_8037EA88_852238 = 0;
+    D_8037EA8C_85223C = NULL;
+    D_8037EA90_852240 = NULL;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A4F4_83DCA4.s")
+void func_8036A4AC_83DC5C(UnkSnowHerring* arg0) {
+    if (D_8037EA8C_85223C == NULL) {
+        D_8037EA8C_85223C = arg0;
+        D_8037EA90_852240 = arg0;
+        arg0->unk_3C = NULL;
+        arg0->unk_40 = 0;
+    } else {
+        D_8037EA8C_85223C->unk_40 = arg0;
+        arg0->unk_3C = (void*) D_8037EA8C_85223C;
+        arg0->unk_40 = 0;
+        D_8037EA8C_85223C = arg0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A53C_83DCEC.s")
+void func_8036A4F4_83DCA4(UnkSnowHerring* arg0) {
+    if (D_8037EA90_852240 == NULL) {
+        D_8037EA8C_85223C = arg0;
+        D_8037EA90_852240 = arg0;
+        arg0->unk_3C = NULL;
+        arg0->unk_40 = NULL;
+    } else {
+        D_8037EA90_852240->unk_3C = arg0;
+        arg0->unk_3C = NULL;
+        arg0->unk_40 = D_8037EA90_852240;
+        D_8037EA90_852240 = arg0;
+    }
+}
+
+void func_8036A53C_83DCEC(UnkSnowHerring* arg0) {
+
+    if (!arg0->unk_3C && !arg0->unk_40) {
+        D_8037EA8C_85223C = NULL;
+        D_8037EA90_852240 = NULL;
+    } else if (!arg0->unk_3C) {
+        D_8037EA90_852240 = arg0->unk_40;
+        arg0->unk_40->unk_3C = NULL;
+    } else if (!arg0->unk_40) {
+        arg0->unk_3C->unk_40 = NULL;
+        D_8037EA8C_85223C = arg0->unk_3C;
+    } else {
+        arg0->unk_3C->unk_40 = arg0->unk_40;
+        arg0->unk_40->unk_3C = arg0->unk_3C;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036A5B8_83DD68.s")
 
@@ -18,7 +69,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036AC6C_83E41C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036B5F0_83EDA0.s")
+void func_8036B5F0_83EDA0(UnkSnowHerring* arg0) {
+    if (arg0 != 0) {
+        func_8036A53C_83DCEC(arg0);
+        omDeleteGObj(arg0->unk_50);
+        func_8036A228_83D9D8(arg0);
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036B628_83EDD8.s")
 
@@ -54,7 +112,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036CDAC_84055C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D018_8407C8.s")
+UnkSnowHerring* func_8036D018_8407C8(void) {
+    return D_8037EA8C_85223C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D024_8407D4.s")
 

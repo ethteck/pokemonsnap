@@ -143,7 +143,7 @@ void func_credits_801DDC70(void) {
     Credit* var_s0;
     f32 var_f20;
     s16 i;
-    s32 temp_v0;
+    UnkSnowHerring* temp_v0;
 
     var_f20 = 0.0f;
     var_s0 = D_credits_801ECCB0;

@@ -100,9 +100,9 @@ typedef struct ObjPair {
 ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
 s32 D_802290D8_9D8B48;
-s32 D_802290DC_9D8B4C;
-s32 D_802290E0_9D8B50;
-s32 D_802290E4_9D8B54;
+UnkSnowHerring* D_802290DC_9D8B4C;
+UnkSnowHerring* D_802290E0_9D8B50;
+UnkSnowHerring* D_802290E4_9D8B54;
 char D_802290E8_9D8B58[0x80];
 SObj* D_80229168_9D8BD8;
 SObj* D_80229170_9D8BE0[4];
@@ -400,7 +400,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     return D_800AF3C0;
 }
 
-s32 func_801DCCE0_98C750(void) {
+UnkSnowHerring* func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
@@ -460,7 +460,7 @@ void func_801DCFE8_98CA58(Photo* arg0) {
     }
 }
 
-s32 func_801DD05C_98CACC(s32 arg0, s32 arg1) {
+s32 func_801DD05C_98CACC(UnkSnowHerring* arg0, s32 arg1) {
     s32 ret = 0;
     UnkStruct800BEDF8* sp18;
 
@@ -847,8 +847,8 @@ void func_801DE02C_98DA9C(UNK_PTR arg0) {
 
 s32 func_801DE204_98DC74(Photo* photo) {
     Unk803A6C18* sp25C;
-    s32 sp258;
-    s32 sp254;
+    UnkSnowHerring* sp258;
+    UnkSnowHerring* sp254;
     char sp214[0x40];
     s32 sp210;
     s32 sp20C;
@@ -1934,7 +1934,7 @@ void func_801E2454_991EC4(void) {
     char* sp48;
     Photo* photo;
     UNUSED s32 pad2;
-    s32 sp3C;
+    UnkSnowHerring* sp3C;
 
     sp54 = -26;
     sp50 = 0;
@@ -2304,7 +2304,7 @@ void func_801E2ED4_992944(s32 arg0) {
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {
     UNUSED s32 pad[1];
-    s32 sp28 = D_802290DC_9D8B4C;
+    UnkSnowHerring* sp28 = D_802290DC_9D8B4C;
     UNUSED s32 pad2[2];
     s32 sp1C;
 
@@ -2327,7 +2327,7 @@ void func_801E39DC_99344C(UNK_PTR arg0) {
     s32 sp48;
     s32 i;
     UNUSED s32 pad2;
-    s32 sp3C;
+    UnkSnowHerring* sp3C;
     s32 sp38;
     ucolor sp34; // ?
     s32 sp30;

@@ -7,7 +7,7 @@ extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
 extern s32 D_801DD254_A08E44;
-extern s32 D_801DD258_A08E48;
+extern UnkSnowHerring* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
 
@@ -75,7 +75,7 @@ SceneSetup D_801DD14C_A08D3C = {
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
     s32 sp2C;
-    s32 sp28;
+    UnkSnowHerring* sp28;
     ucolor sp24;
 
     sp2C = func_8036F78C_842F3C();

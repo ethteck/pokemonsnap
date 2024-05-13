@@ -7,6 +7,16 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
+
+typedef struct UnkSnowHerring UnkSnowHerring;
+struct UnkSnowHerring {
+    u8 pad[0x3C];
+    /* 0x3C */ UnkSnowHerring* unk_3C;
+    /* 0x40 */ UnkSnowHerring* unk_40;
+    /* 0x44 */ u8 pad44[12];
+    /* 0x50 */ GObj * unk_50;
+};
+
 GObj* pokemonAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonDef* def);
 void pokemonAdd(struct WorldBlock*, struct WorldBlock*, PokemonDef* def);
 
@@ -166,20 +176,20 @@ void* func_8036A194_83D944(u32);
 void func_8036A228_83D9D8(void*);
 void func_8036A3F8_83DBA8(void*, s32);
 void func_8036A3F8(u8*, s32);
-void func_8036A5B8_83DD68(s32, s32, s32, s32, s32, s32, s32, s32, s32);
-void func_8036A8E4_83E094(s32);
-s32 func_8036AC6C_83E41C(s32, s32, s32, s32, s32);
-void func_8036B5F0_83EDA0(s32);
-void func_8036B734_83EEE4(s32);
-void func_8036B870_83F020(s32, s32, s32, s32, s32, s32);
-void func_8036B9EC_83F19C(s32, s32 x, s32 y);
-void func_8036C2FC_83FAAC(s32, s32, s32, s32, s32, s32, s32);
-void func_8036C898_840048(s32, const char*);
-void func_8036C9C0_840170(s32, char*);
-void func_8036CB58_840308(s32, s32);
-void func_8036CBA0_840350(s32, s32, s32);
-void func_8036D1A4_840954(s32, s32);
-void func_8036D248_8409F8(s32, s32, s32, s32, s32);
+void func_8036A5B8_83DD68(UnkSnowHerring*, s32, s32, s32, s32, s32, s32, s32, s32);
+void func_8036A8E4_83E094(UnkSnowHerring*);
+UnkSnowHerring* func_8036AC6C_83E41C(s32, s32, s32, s32, s32);
+void func_8036B5F0_83EDA0(UnkSnowHerring*);
+void func_8036B734_83EEE4(UnkSnowHerring*);
+void func_8036B870_83F020(UnkSnowHerring*, s32, s32, s32, s32, s32);
+void func_8036B9EC_83F19C(UnkSnowHerring*, s32 x, s32 y);
+void func_8036C2FC_83FAAC(UnkSnowHerring*, s32, s32, s32, s32, s32, s32);
+void func_8036C898_840048(UnkSnowHerring*, const char*);
+void func_8036C9C0_840170(UnkSnowHerring*, char*);
+void func_8036CB58_840308(UnkSnowHerring*, s32);
+void func_8036CBA0_840350(UnkSnowHerring*, s32, s32);
+void func_8036D1A4_840954(UnkSnowHerring*, s32);
+void func_8036D248_8409F8(UnkSnowHerring*, s32, s32, s32, s32);
 void func_8036D344_840AF4(s32);
 void func_8036D3E8_840B98(s32, s32);
 void func_8036D448_840BF8(s32);
@@ -233,9 +243,9 @@ void func_80374714_847EC4(PhotoData*, Sprite*);
 void func_80374D40_8484F0(void);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
-s32 func_80374F30_8486E0(s32, s32);
+s32 func_80374F30_8486E0(UnkSnowHerring*, s32);
 char* func_8037501C(char*, s32);
-void func_8037519C_84894C(s32, char*, ...);
+void func_8037519C_84894C(UnkSnowHerring*, char*, ...);
 void func_80375284_848A34(int);
 
 void func_8037005C_84380C(s32, s32);

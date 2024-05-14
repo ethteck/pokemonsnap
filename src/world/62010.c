@@ -711,9 +711,9 @@ s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
                     break;
                 }
                 if (D_800E6B40_642F0[i].unk_04 != NULL && D_800E6B40_642F0[i].unk_00 == s6->unk_00) {
-                    sp158.x = s6->unk_04.x + (curBlock->descriptor->unk_04.x - block->descriptor->unk_04.x);
-                    sp158.y = s6->unk_04.y + (curBlock->descriptor->unk_04.y - block->descriptor->unk_04.y);
-                    sp158.z = s6->unk_04.z + (curBlock->descriptor->unk_04.z - block->descriptor->unk_04.z);
+                    sp158.x = s6->unk_04.x + (curBlock->descriptor->worldPos.x - block->descriptor->worldPos.x);
+                    sp158.y = s6->unk_04.y + (curBlock->descriptor->worldPos.y - block->descriptor->worldPos.y);
+                    sp158.z = s6->unk_04.z + (curBlock->descriptor->worldPos.z - block->descriptor->worldPos.z);
 
                     sp138.x = arg0->x / 100.0f;
                     sp138.y = arg0->y / 100.0f;

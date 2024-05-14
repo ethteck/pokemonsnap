@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level.h"
 
 typedef struct PokemonListEntry {
     /* 0x00 */ GObj* pokemonObj;
@@ -200,14 +201,158 @@ f32 func_80363D8C_50419C(f32 x, f32 z) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_80363DBC_5041CC.s")
+void pokemonChangeBlock(GObj* pokemonObj, f32 prevBlockX, f32 prevBlockY, f32 prevBlockZ, f32 currBlockX, f32 currBlockY, f32 currBlockZ) {
+    s32 i;
+    struct Mtx3Float* mtxPtr;
+    Pokemon* pokemon = GET_POKEMON(pokemonObj);
+    f32 dx = (prevBlockX - currBlockX) * 100.0f;
+    f32 dy = (prevBlockY - currBlockY) * 100.0f;
+    f32 dz = (prevBlockZ - currBlockZ) * 100.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_80363EB4_5042C4.s")
+    mtxPtr = (struct Mtx3Float*)pokemonObj->data.dobj->unk_4C->data;
+    for (i = 0; i < 3; i++) {
+        if (pokemonObj->data.dobj->unk_4C->kinds[i] == 1) {
+            mtxPtr->v.x += dx;
+            mtxPtr->v.y += dy;
+            mtxPtr->v.z += dz;
+            mtxPtr++;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_8036406C_50447C.s")
+    pokemon->pos1.x += dx;
+    pokemon->pos1.y += dy;
+    pokemon->pos1.z += dz;
+    pokemon->targetPos.x += dx;
+    pokemon->targetPos.y += dy;
+    pokemon->targetPos.z += dz;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_803641B8_5045C8.s")
+void pokemonChangeBlockOnGround(GObj* pokemonObj, f32 prevBlockX, f32 prevBlockY, f32 prevBlockZ, f32 currBlockX, f32 currBlockY, f32 currBlockZ) {
+    s32 i;
+    f32 dx, dz;
+    struct Mtx3Float* mtxPtr;
+    Pokemon* pokemon;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_80364280_504690.s")
+    if (pokemonObj->data.dobj->unk_4C != NULL) {
+        dx = (prevBlockX - currBlockX) * 100.0f;
+        dz = (prevBlockZ - currBlockZ) * 100.0f;
+        mtxPtr = (struct Mtx3Float*)pokemonObj->data.dobj->unk_4C->data;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_803642A0_5046B0.s")
+        for (i = 0; i < 3; i++) {
+            if (pokemonObj->data.dobj->unk_4C->kinds[i] == 1) {
+                struct Mtx3Float* mtxPtr2 = mtxPtr;
+                if (1) {} // required for match
+                mtxPtr2->v.x += dx;
+                mtxPtr2->v.z += dz;
+                mtxPtr2->v.y = func_80363D8C_50419C(mtxPtr2->v.x, mtxPtr2->v.z);
+                mtxPtr++;
+            }
+        }
+    } else {
+        dx = (prevBlockX - currBlockX) * 100.0f;
+        dz = (prevBlockZ - currBlockZ) * 100.0f;
+        pokemonObj->data.dobj->position.v.x += dx;
+        pokemonObj->data.dobj->position.v.z += dz;
+        pokemonObj->data.dobj->position.v.y = func_80363D8C_50419C(pokemonObj->data.dobj->position.v.x, pokemonObj->data.dobj->position.v.z);
+    }
+    pokemon = GET_POKEMON(pokemonObj);
+    pokemon->pos1.x += dx;
+    pokemon->pos1.z += dz;
+    pokemon->pos1.y = func_80363D8C_50419C(pokemon->pos1.x, pokemon->pos1.z);
+    pokemon->targetPos.x += dx;
+    pokemon->targetPos.z += dz;
+    pokemon->targetPos.y = func_80363D8C_50419C(pokemon->targetPos.x, pokemon->targetPos.z);
+}
+
+void pokemonsChangeBlock(WorldBlock* baseBlock, WorldBlock* currentBlock, PokemonDef* def) {
+    PokemonListEntry* entry;
+    PokemonDef* defPtr;
+    s32 blockIndex;
+    WorldBlock* prevBlock;
+
+    cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_19, NULL);
+    if (baseBlock == NULL || currentBlock == NULL || currentBlock->descriptor == NULL || currentBlock->prev == NULL || currentBlock->prev->descriptor == NULL) {
+        return;
+    }
+    prevBlock = currentBlock->prev;
+
+    blockIndex = baseBlock->index;
+    for (entry = sPokemonLists[blockIndex]; entry != NULL;) {
+        if (entry->pokemonObj != NULL && entry->pokemonObj->data.dobj != NULL) {
+            Pokemon* pokemon = GET_POKEMON(entry->pokemonObj);
+            for (defPtr = def; defPtr->id != 0; defPtr++) {
+                if (pokemon->id == defPtr->id && defPtr->update != NULL) {
+                    defPtr->update(entry->pokemonObj,
+                                   prevBlock->descriptor->worldPos.x,
+                                   prevBlock->descriptor->worldPos.y,
+                                   prevBlock->descriptor->worldPos.z,
+                                   currentBlock->descriptor->worldPos.x,
+                                   currentBlock->descriptor->worldPos.y,
+                                   currentBlock->descriptor->worldPos.z);
+                    break;
+                }
+            }
+            entry = entry->next; // BUG: this should be outside 'if { }' check, infinite loop is possible
+        }
+    }
+}
+
+void pokemonRemove(WorldBlock* block, PokemonDef* def) {
+    PokemonListEntry* entry;
+    Pokemon* pokemon;
+    PokemonDef* defPtr;
+    s32 blockIndex;
+
+    if (block == NULL || block->descriptor == NULL || block->descriptor->spawn == NULL) {
+        return;
+    }
+    blockIndex = block->index;
+    for (entry = sPokemonLists[blockIndex]; entry != NULL; entry = entry->next) {
+        if (entry->pokemonObj == NULL) {
+            continue;
+        }
+        pokemon = GET_POKEMON(entry->pokemonObj);
+        for (defPtr = def; defPtr->id != 0; defPtr++) {
+            if (pokemon->id == defPtr->id && defPtr->kill != NULL) {
+                defPtr->kill(entry->pokemonObj);
+                break;
+            }
+        }
+    }
+}
+
+void pokemonRemoveOne(GObj* obj) {
+    runPokemonCleanup(obj);
+}
+
+void deletePokemon(GObj* pokemonObj) {
+    s32 unused;
+    PokemonListEntry* entry;
+    PokemonListEntry* prevEntry;
+    s32 blockIndex;
+    Pokemon* pokemon = GET_POKEMON(pokemonObj);
+    WorldBlock* block = pokemon->baseBlock;
+    s32 unused2;
+
+    if (block == NULL) {
+        return;
+    }
+    blockIndex = block->index;
+    entry = sPokemonLists[blockIndex];
+    prevEntry = entry;
+    while (entry != NULL) {
+        if (entry->pokemonObj == pokemonObj) {
+            func_80363828_503C38();
+            omDeleteGObj(pokemonObj);
+            entry->pokemonObj = NULL;
+            if (entry == sPokemonLists[blockIndex]) {
+                sPokemonLists[blockIndex] = entry->next;
+            } else {
+                prevEntry->next = entry->next;
+            }
+            break;
+        }
+        prevEntry = entry;
+        entry = entry->next;
+    }
+}

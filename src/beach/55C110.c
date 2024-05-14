@@ -39,11 +39,11 @@ void beachPokemonAdd(WorldBlock* param_1, WorldBlock* param_2) {
 }
 
 void func_beach_802C42F8(WorldBlock* param_1, WorldBlock* param_2) {
-    func_8036406C_50447C(param_1, param_2, beachPokemonData);
+    pokemonsChangeBlock(param_1, param_2, beachPokemonData);
 }
 
 void func_beach_802C431C(WorldBlock* arg0) {
-    func_803641B8_5045C8(arg0, beachPokemonData);
+    pokemonRemove(arg0, beachPokemonData);
 }
 
 void func_beach_802C4340(void) {

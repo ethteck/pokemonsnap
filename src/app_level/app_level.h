@@ -15,6 +15,7 @@ enum PokemonCommands {
     POKEMON_CMD_12 = 12,
     POKEMON_CMD_13 = 13,
     POKEMON_CMD_14 = 14,
+    POKEMON_CMD_19 = 19,
     POKEMON_CMD_21 = 21
 };
 

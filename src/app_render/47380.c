@@ -742,9 +742,9 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
         animUpdateModelTreeAnimation(gobj);
     }
     dobj = gobj->data.dobj;
-    dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->unk_04.x - arg1->descriptor->unk_04.x)) * 100.0f;
-    dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->unk_04.y - arg1->descriptor->unk_04.y)) * 100.0f;
-    dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->unk_04.z - arg1->descriptor->unk_04.z)) * 100.0f;
+    dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->worldPos.x - arg1->descriptor->worldPos.x)) * 100.0f;
+    dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->worldPos.y - arg1->descriptor->worldPos.y)) * 100.0f;
+    dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->worldPos.z - arg1->descriptor->worldPos.z)) * 100.0f;
     dobj->rotation.f[1] = dobj->rotation.f[3] = 0.0f;
     dobj->rotation.f[2] = arg2->euler.y;
     temp_f0 = arg3->scale * 0.1f;

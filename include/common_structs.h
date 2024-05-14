@@ -136,7 +136,7 @@ typedef struct {
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ GObj* interactionTarget;
-    /* 0x074 */ struct WorldBlock* someRoom;
+    /* 0x074 */ struct WorldBlock* baseBlock;
     /* 0x078 */ char unk_78[0x8];
     /* 0x080 */ union AnimCmd** animators;
     /* 0x084 */ union AnimCmd*** matAnims;
@@ -193,8 +193,8 @@ typedef struct {
 typedef struct {
     /* 0x00 */ u32 id;
     /* 0x04 */ pokemonInit init;
-    /* 0x08 */ void* update;
-    /* 0x0C */ void* kill;
+    /* 0x08 */ void (*update)(GObj*, f32, f32, f32, f32, f32, f32);
+    /* 0x0C */ void (*kill)(GObj*);
 } PokemonDef; // size = 0x10
 
 typedef struct UnkStruct800BEDF8 {

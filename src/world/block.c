@@ -258,13 +258,13 @@ void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
         return;
     }
 
-    x1 = arg1->descriptor->unk_04.x;
-    y1 = arg1->descriptor->unk_04.y;
-    z1 = arg1->descriptor->unk_04.z;
+    x1 = arg1->descriptor->worldPos.x;
+    y1 = arg1->descriptor->worldPos.y;
+    z1 = arg1->descriptor->worldPos.z;
 
-    arg0->blockModel->data.dobj->position.v.x = (arg0->descriptor->unk_04.x - x1) * 100.0f;
-    arg0->blockModel->data.dobj->position.v.y = (arg0->descriptor->unk_04.y - y1) * 100.0f;
-    arg0->blockModel->data.dobj->position.v.z = (arg0->descriptor->unk_04.z - z1) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.x = (arg0->descriptor->worldPos.x - x1) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.y = (arg0->descriptor->worldPos.y - y1) * 100.0f;
+    arg0->blockModel->data.dobj->position.v.z = (arg0->descriptor->worldPos.z - z1) * 100.0f;
 }
 
 void func_800E2280_5FA30(WorldBlock* arg0) {
@@ -338,12 +338,12 @@ WorldBlock* func_800E2400_5FBB0(void) {
     }
     next = curr->next;
     D_800E6AD0_64280 = next;
-    func_8035024C_4F065C((curr->descriptor->unk_04.x - next->descriptor->unk_04.x) * 100.0f,
-                         (curr->descriptor->unk_04.y - next->descriptor->unk_04.y) * 100.0f,
-                         (curr->descriptor->unk_04.z - next->descriptor->unk_04.z) * 100.0f);
-    func_800A71F8((curr->descriptor->unk_04.x - next->descriptor->unk_04.x) * 100.0f,
-                         (curr->descriptor->unk_04.y - next->descriptor->unk_04.y) * 100.0f,
-                         (curr->descriptor->unk_04.z - next->descriptor->unk_04.z) * 100.0f);
+    func_8035024C_4F065C((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+    func_800A71F8((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
 
     func_800E2280_5FA30(next);
     func_800E2354_5FB04(curr);

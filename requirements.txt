@@ -1,4 +1,4 @@
-splat64[mips]>=0.23.1,<1.0.0
+splat64[mips]==0.24.1
 ninja_syntax>=1.7.2
 argparse
 GitPython

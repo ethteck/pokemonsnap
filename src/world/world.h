@@ -72,7 +72,7 @@ typedef struct UnkVioletMarlin {
 
 typedef struct WorldBlockDescriptor {
     /* 0x00 */ WorldBlockGFX* gfx;
-    /* 0x04 */ Vec3f unk_04;
+    /* 0x04 */ Vec3f worldPos;
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ UnkBeigeServal* unk_18;

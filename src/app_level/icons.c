@@ -251,20 +251,20 @@ void Icons_Init(void) {
     sprDef = &Icons_IconDefs[ICON_ID_ZOOM];
     spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);
     spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-    spr->x = sprDef->x; spr->y = sprDef->y;
+    SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
 
     if (progressFlags & PF_HAS_DASH_ENGINE) {
         spr = &Icons_IconObjects[ICON_ID_DASH];
         sprDef = &Icons_IconDefs[ICON_ID_DASH];
         spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
 
         spr = &Icons_IconObjects[ICON_ID_DASH_ZOOMED];
         sprDef = &Icons_IconDefs[ICON_ID_DASH_ZOOMED];
         spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
         spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
     }
 
@@ -272,7 +272,7 @@ void Icons_Init(void) {
     sprDef = &Icons_IconDefs[ICON_ID_TAKE_PHOTO];
     spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);
     spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-    spr->x = sprDef->x; spr->y = sprDef->y;
+    SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
     spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
 
     if (progressFlags & PF_ZOOM_SWITCH) {
@@ -280,7 +280,7 @@ void Icons_Init(void) {
         sprDef = &Icons_IconDefs[ICON_ID_ZOOM_OFF];
         spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
         spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
     }
 
@@ -289,21 +289,21 @@ void Icons_Init(void) {
         sprDef = &Icons_IconDefs[ICON_ID_FLUTE];
         spr->spriteObj = Icons_ButtonIcons[ICON_ID_FLUTE] = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
     }
     if (Icons_NumItemsAvailable >= 1) {
         spr = &Icons_IconObjects[ICON_ID_APPLE];
         sprDef = &Icons_IconDefs[ICON_ID_APPLE];
         spr->spriteObj = Icons_ButtonIcons[ICON_ID_APPLE] = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
     }
     if (Icons_NumItemsAvailable >= 2) {
         spr = &Icons_IconObjects[ICON_ID_PESTER_BALL];
         sprDef = &Icons_IconDefs[ICON_ID_PESTER_BALL];
         spr->spriteObj = Icons_ButtonIcons[ICON_ID_PESTER_BALL] = omGObjAddSprite(gobj, sprDef->spriteDef);
         spMove(&spr->spriteObj->sprite, sprDef->x, sprDef->y);
-        spr->x = sprDef->x; spr->y = sprDef->y;
+        SET_SPRITE_POS_PTR(spr, sprDef->x, sprDef->y);
     }
 
     Icons_ButtonIconsCopy[0] = Icons_ButtonIcons[0];
@@ -312,7 +312,9 @@ void Icons_Init(void) {
 
     omCreateProcess(gobj, Icons_UpdateDashEngineIcon, 1, 1);
 
+    // clang-format off
     for (i = 0; i < ARRAY_COUNT(Icons_MoveOutCounter); i++) { Icons_MoveOutCounter[i] = 0; }
+    // clang-format on
 }
 
 void Icons_SetDashEngineEnabled(s32 enabled) {

@@ -7,6 +7,7 @@
 extern Sprite D_80117F98_A93348; // card
 extern Sprite D_80109880_A84C30; // background
 
+// clang-format off
 char* D_800E2FF0[] = {
     "あ", "い", "う", "え", "お",
     "か", "き", "く", "け", "こ",
@@ -82,6 +83,7 @@ char* D_800E2FF0[] = {
     "♀", "［", "］", "ε", "　",
     "\0",
 };
+// clang-format on
 
 char* D_800E356C[] = { "←", "→", "　", "End" };
 

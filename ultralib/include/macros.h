@@ -50,5 +50,6 @@
 #define SIGN(x) (((x) < 0) ? -1 : 1)
 
 #define SET_SPRITE_POS(s, _x, _y) (s).x = _x; (s).y = _y;
+#define SET_SPRITE_POS_PTR(s, _x, _y) (s)->x = _x; (s)->y = _y;
 
 #endif

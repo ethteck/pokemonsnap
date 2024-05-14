@@ -263,4 +263,19 @@ typedef struct UnkBrassLynx {
     /* 0x48 */ DObj* unk_48;
 } UnkBrassLynx;
 
+typedef struct UnkCelesteWolverineSub {
+    /* 0x00 */ u16 unk_00;
+    /* 0x02 */ u16 unk_02;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ s8 unk_08;
+    /* 0x09 */ s8 unk_09;
+} UnkCelesteWolverineSub; // size = 0xA
+
+typedef struct UnkCelesteWolverine {
+    /* 0x00 */ u32 unk_00;
+    /* 0x04 */ char unk_04[12];
+    /* 0x10 */ UnkCelesteWolverineSub unk_10[1]; 
+} UnkCelesteWolverine; // VLA
+
 #endif

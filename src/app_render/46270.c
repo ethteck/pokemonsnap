@@ -40,13 +40,13 @@ static s32 padding2[1] = {0};
 s32 D_800AC00C = 0;
 s32 D_800AC010 = 0;
 
-extern s32 D_800B0578;
+extern UnkCelesteWolverine* D_800B0578;
 
-void func_8009A8C0(s32 arg0) {
+void func_8009A8C0(UnkCelesteWolverine* arg0) {
     D_800B0578 = arg0;
 }
 
-s32 func_8009A8CC(void) {
+UnkCelesteWolverine* func_8009A8CC(void) {
     return D_800B0578;
 }
 
@@ -221,7 +221,7 @@ void start_scene_manager(s32 arg0) {
 
     while (TRUE) {
         gtlSetIntervals(1, 1);
-        func_8009A8C0(0);
+        func_8009A8C0(NULL);
 
         switch (sceneId) {
             case SCENE_7:

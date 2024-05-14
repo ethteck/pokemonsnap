@@ -31,6 +31,7 @@ void Items_PlayPokeFlute(void);
 void Items_StopPokeFlute(void);
 void Items_SetCustomFunctions(GObjFunc, u8, void(*)(GObj*, GroundResult*));
 void Items_RemoveFlyingItems(void);
+s32 Items_GetPokeFluteState(void);
 
 u32 getProgressFlags(void);
 void Icons_SetDashEngineEnabled(s32 enabled);

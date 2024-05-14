@@ -32,6 +32,7 @@ extern f32 D_80382C2C_52303C;
 extern OMCamera* D_80382C30_523040;
 extern GObj* D_80382C38_523048;
 extern f32 D_80382C44_523054;
+extern f32 D_80382C48_523058;
 extern f32 D_80382C5C_52306C;
 extern f32 D_80382C60_523070;
 extern s32 D_80382C64_523074;
@@ -172,7 +173,7 @@ void func_80350488_4F0898(GObj* obj) {
     var_f20 = 1.0f;
     func_80350458_4F0868(10, 1);
     func_800A7F40(0.0f, 0.0f, 0, 2.0f);
-    auSetBGMVolumeSmooth(1, 0, 0x78);
+    auSetBGMVolumeSmooth(1, 0, 120);
     ohWait(1);
     while (func_800A7460() == 1) {
         var_f20 += -(1.0f / duration);
@@ -184,18 +185,53 @@ void func_80350488_4F0898(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350788_4F0B98.s")
-void func_80350788_4F0B98(GObj*);
+void func_80350788_4F0B98(GObj* obj) {
+    UnkCelesteWolverine* unk = D_803AE518_54E928;
+    setRandSeed(unk->unk_08);
+    D_803AE51C_54E92C = unk->unk_0C;
+    omCreateProcess(obj, &func_80350488_4F0898, 0, 10);
+}
 
 void func_803507E0_4F0BF0(s32 arg0) {
     D_80382D48_523158 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803507EC_4F0BFC.s")
-void func_803507EC_4F0BFC(GObj*);
+void func_803507EC_4F0BFC(GObj* obj) {
+    s32 s0 = 2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80350898_4F0CA8.s")
-void func_80350898_4F0CA8(GObj*);
+    while (TRUE) {
+        if (Items_GetPokeFluteState() == 0) {
+            if (--s0 < 0) {
+                Items_StopPokeFlute();
+                Icons_ProcessButtonPress(-1);
+                s0 = 2;
+                auStopSong(BGM_PLAYER_MAIN);
+                if (D_803AE518_54E928 == NULL) {
+                    auPlaySong(BGM_PLAYER_MAIN, D_80382D48_523158);
+                }
+            }
+        } else {
+            s0 = 2;
+        }
+        ohWait(1);
+    }
+}
+
+void func_80350898_4F0CA8(GObj* obj) {
+    f32 f20;
+    s32 i;
+
+    for (f20 = 0.0f, i = 59; i > 0; i--) {
+        D_80382C48_523058 = cosf(f20) * 15.0f;
+        f20 += 0.3f;
+        if (f20 > 6.2831855f) {
+            f20 -= 6.2831855f;
+        }
+        ohWait(1);
+    }
+    D_80382C48_523058 = 0.0f;
+    omEndProcess(NULL);
+}
 
 void func_80350950_4F0D60(GObj* obj) {
     if (D_80382D0C_52311C == 0) {

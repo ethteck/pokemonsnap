@@ -248,9 +248,9 @@ extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
 
-extern s32 D_803AE770; // pokemon ID
-extern UnkThing D_803AE788[];
-extern s32 D_803AEF30; // photo idx
+extern s32 D_803AE770_54EB80; // pokemon ID
+extern UnkThing D_803AE788_54EB98[];
+extern s32 D_803AEF30_54F340; // photo idx
 
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
@@ -611,19 +611,19 @@ s32 func_8009C9E8(GObj* gobj) {
         D_800AE27C++;
 
         for (i = 0; i < D_800AE280 && i < ARRAY_COUNT(D_800BDF20); i++) {
-            if (D_800BDF20[i] == D_803AE770) {
+            if (D_800BDF20[i] == D_803AE770_54EB80) {
                 break;
             }
         }
 
         if (i >= D_800AE280 && i < 3) {
-            D_800BDF20[D_800AE280] = D_803AE770;
+            D_800BDF20[D_800AE280] = D_803AE770_54EB80;
             D_800AE280++;
         }
     }
 
     temp_s4 = &D_800B0598[gPhotoCount];
-    sp38 = &D_803AE788[D_803AEF30];
+    sp38 = &D_803AE788_54EB98[D_803AEF30_54F340];
     memcpy(temp_s4, sp38, 0x20);
 
     for (i = 0; i < ARRAY_COUNT(temp_s4->unk_140); i++) {
@@ -639,7 +639,7 @@ s32 func_8009C9E8(GObj* gobj) {
             memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
         }
     } else {
-        sp34 = D_803AE770;
+        sp34 = D_803AE770_54EB80;
         if (sp34 == 0x3EC || sp34 == 0x3FA || sp34 == 0x3FE || (cond = TRUE, sp34 == 0x40B)) {
             for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
                 memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
@@ -742,9 +742,9 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
         animUpdateModelTreeAnimation(gobj);
     }
     dobj = gobj->data.dobj;
-    dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->unk_04.x - arg1->descriptor->unk_04.x)) * 100.0f;
-    dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->unk_04.y - arg1->descriptor->unk_04.y)) * 100.0f;
-    dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->unk_04.z - arg1->descriptor->unk_04.z)) * 100.0f;
+    dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->worldPos.x - arg1->descriptor->worldPos.x)) * 100.0f;
+    dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->worldPos.y - arg1->descriptor->worldPos.y)) * 100.0f;
+    dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->worldPos.z - arg1->descriptor->worldPos.z)) * 100.0f;
     dobj->rotation.f[1] = dobj->rotation.f[3] = 0.0f;
     dobj->rotation.f[2] = arg2->euler.y;
     temp_f0 = arg3->scale * 0.1f;

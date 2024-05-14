@@ -3,6 +3,10 @@
 
 typedef struct UnkSnowHerring UnkSnowHerring;
 
+extern ucolor D_8037EA70_852220;
+extern ucolor D_8037EA74_852224;
+extern ucolor D_8037EA78_852228;
+extern ucolor D_8037EA7C_85222C;
 extern s32 D_8037EA80_852230;
 extern s32 D_8037EA84_852234;
 extern s32 D_8037EA88_852238;
@@ -14,8 +18,10 @@ void func_8036A228_83D9D8(void*);
 void func_8036A3F8_83DBA8(void*, s32);
 void func_8036A5B8_83DD68(UnkSnowHerring*, s32, s32, s32, s32, s32, s32, s32, s32);
 void func_8036A8E4_83E094(UnkSnowHerring*);
+void func_8036A9AC_83E15C(UnkSnowHerring*, UNK_TYPE, UNK_TYPE, s32, s32, s32, s32, s32, s32);
 UnkSnowHerring* func_8036AC6C_83E41C(s32, s32, s32, s32, s32);
 void func_8036B5F0_83EDA0(UnkSnowHerring*);
+void func_8036B628_83EDD8(UnkSnowHerring*);
 void func_8036B734_83EEE4(UnkSnowHerring*);
 void func_8036B870_83F020(UnkSnowHerring*, s32, s32, s32, s32, s32);
 void func_8036B9EC_83F19C(UnkSnowHerring*, s32 x, s32 y);
@@ -33,6 +39,10 @@ void func_8036D4A0_840C50(s32);
 void func_8036D4B4_840C64(s32, s32);
 s32 func_8036D4F0_840CA0(char*);
 s32 func_8036D758_840F08(void);
+s32 func_8036D774_840F24(void);
+void func_8036D77C_840F2C(void*, ucolor*, ucolor*);
+void func_8036E490_841C40(void*, void*, void*, s8*);
+void func_8036E9BC_84216C(void*, void*, void*, s8*);
 void func_8036EB80_842330(s32);
 void func_8036EB8C_84233C(void (*)(s32));
 void func_8036EB98_842348(void);

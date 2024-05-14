@@ -17,11 +17,11 @@ void func_802C5C20_79F1B0(WorldBlock* arg0, WorldBlock* arg1) {
 }
 
 void func_802C5C44_79F1D4(WorldBlock* arg0, WorldBlock* arg1) {
-    func_8036406C_50447C(arg0, arg1, &D_802D282C_7ABDBC);
+    pokemonsChangeBlock(arg0, arg1, &D_802D282C_7ABDBC);
 }
 
 void func_802C5C68_79F1F8(WorldBlock* arg0) {
-    func_803641B8_5045C8(arg0, &D_802D282C_7ABDBC);
+    pokemonRemove(arg0, &D_802D282C_7ABDBC);
 }
 
 void func_802C5C8C_79F21C(void) {

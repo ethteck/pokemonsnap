@@ -160,9 +160,12 @@ void func_80359074_4F9484(void);
 void func_8035EDC8_4FF1D8(GObj*);
 void func_8035FEEC_5002FC(GObj*, s32);
 
+void func_80361110_501520(GObj*, f32, f32, UNK_TYPE);
+void func_8036148C_50189C(GObj*, f32, s32);
+void func_80361748_501B58(GObj*, f32, f32, UNK_TYPE);
 void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3);
-void func_8036406C_50447C(struct WorldBlock*, struct WorldBlock*, PokemonDef*);
-void func_803641B8_5045C8(struct WorldBlock*, PokemonDef*);
+void pokemonsChangeBlock(struct WorldBlock*, struct WorldBlock*, PokemonDef*);
+void pokemonRemove(struct WorldBlock*, PokemonDef*);
 void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364718_504B28(GObj *obj);
 s32 func_803647BC_504BCC(GObj*);

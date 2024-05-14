@@ -522,7 +522,7 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
             if (a2 != NULL) {
                 for (ptr = a2; ptr->id != 58; ptr++) {
                     if (ptr->id == 19) {
-                        if (getCurrentWorldBlock() == pokemon->someRoom) {
+                        if (getCurrentWorldBlock() == pokemon->baseBlock) {
                             sp24 = ptr->state;
                             sp20 = ptr->aux;
                         }
@@ -684,7 +684,7 @@ GObj* func_80362E10_503220(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 
 GObj* spawnPokemon(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     GObj* pokemonObj = spawnPokemonOnGround(objID, id, block, blockB, spawn, initData);
-    GET_TRANSFORM(pokemonObj->data.dobj)->pos.v.y = spawn->translation.y * 100.0f + (block->descriptor->unk_04.y - blockB->descriptor->unk_04.y) * 100.0f;
+    GET_TRANSFORM(pokemonObj->data.dobj)->pos.v.y = spawn->translation.y * 100.0f + (block->descriptor->worldPos.y - blockB->descriptor->worldPos.y) * 100.0f;
     return pokemonObj;
 }
 
@@ -700,8 +700,8 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
         return NULL;
     }
 
-    blockBX = blockB->descriptor->unk_04.x;
-    blockBZ = blockB->descriptor->unk_04.z;
+    blockBX = blockB->descriptor->worldPos.x;
+    blockBZ = blockB->descriptor->worldPos.z;
 
     pokemonObj = omAddGObj(objID, updatePokemonDefault, 3, 0x80000000);
 
@@ -729,8 +729,8 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     model->unk_4C = matrixStore;
     omDObjAddMtx(model, MTX_TYPE_63, 0, 0);
 
-    GET_TRANSFORM(model)->pos.v.x = spawn->translation.x * 100.0f + (block->descriptor->unk_04.x - blockBX) * 100.0f;
-    GET_TRANSFORM(model)->pos.v.z = spawn->translation.z * 100.0f + (block->descriptor->unk_04.z - blockBZ) * 100.0f;
+    GET_TRANSFORM(model)->pos.v.x = spawn->translation.x * 100.0f + (block->descriptor->worldPos.x - blockBX) * 100.0f;
+    GET_TRANSFORM(model)->pos.v.z = spawn->translation.z * 100.0f + (block->descriptor->worldPos.z - blockBZ) * 100.0f;
     GET_TRANSFORM(model)->pos.v.y = func_8035F21C_4FF62C(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z);
     GET_TRANSFORM(model)->rot.f[1] = spawn->euler.x;
     GET_TRANSFORM(model)->rot.f[2] = spawn->euler.y;
@@ -758,7 +758,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     pokemon->id = id;
     pokemon->tangible = TRUE;
     pokemon->animSetup = initData->animSetup;
-    pokemon->someRoom = block;
+    pokemon->baseBlock = block;
     pokemon->forbiddenGround = NULL;
     pokemon->loopCount = 0;
     pokemon->playerDist = FLOAT_MAX;

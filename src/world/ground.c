@@ -74,14 +74,14 @@ s32 getGroundAt(f32 x, f32 z, GroundResult* result) {
 
     x /= 100.0f;
     z /= 100.0f;
-    x = x + block->descriptor->unk_04.x;
-    z = z + block->descriptor->unk_04.z;
+    x = x + block->descriptor->worldPos.x;
+    z = z + block->descriptor->worldPos.z;
     if (!getGroundAtGlobal(x, z, result)) {
         setDefaultGroundResult(result);
         return FALSE;
     }
 
-    result->height -= block->descriptor->unk_04.y;
+    result->height -= block->descriptor->worldPos.y;
     result->height *= 100.0f;
     return TRUE;
 }
@@ -120,14 +120,14 @@ s32 getCeilingAt(f32 x, f32 z, GroundResult* arg2) {
 
     x /= 100.0f;
     z /= 100.0f;
-    x = x + block->descriptor->unk_04.x;
-    z = z + block->descriptor->unk_04.z;
+    x = x + block->descriptor->worldPos.x;
+    z = z + block->descriptor->worldPos.z;
     if (!getCeilingAtGlobal(x, z, arg2)) {
         setDefaultGroundResult(arg2);
         return FALSE;
     }
 
-    arg2->height -= block->descriptor->unk_04.y;
+    arg2->height -= block->descriptor->worldPos.y;
     arg2->height *= 100.0f;
     return TRUE;
 }

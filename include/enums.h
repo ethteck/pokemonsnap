@@ -49,6 +49,7 @@ enum ProgressFlags {
 };
 
 enum SoundIds {
+    SOUND_ID_2  =  2,
     SOUND_ID_4  =  4,
     SOUND_ID_5  =  5,
     SOUND_ID_8  =  8,

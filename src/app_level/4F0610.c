@@ -71,7 +71,7 @@ extern s8 D_80382D04_523114;
 extern s32 D_80382D0C_52311C;
 extern void (*D_80382D18_523128)(s32);
 extern u8 D_80382D20_523130;
-extern s8 D_80382D44_523154;
+extern u8 D_80382D44_523154;
 extern s32 D_80382D48_523158;
 extern s32 D_80382D4C_52315C;
 extern s32 D_80382D50_523160;
@@ -79,9 +79,12 @@ extern f32 D_80382D58_523168;
 extern f32 D_80382D5C_52316C;
 extern f32 D_80382D60_523170;
 extern f32 D_80382D64_523174;
+extern char D_80382D68_523178[];
+extern s32 D_80382D78_523188;
 extern s32 D_80382D9C_5231AC;
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
+extern s32 D_803AE408_54E818;
 extern Vec3f D_803AE410_54E820;
 extern Vec3f D_803AE420_54E830;
 extern Vec3f D_803AE430_54E840;
@@ -123,6 +126,7 @@ UnkCelesteWolverine* func_8009A8CC(void);
 void func_800A7918(s32, f32);
 void func_800A7F40(f32, f32, s32, f32);
 void func_80357D18_4F8128(s32, s32, s32, s32);
+void func_80365E34_506244(void);
 
 s32 func_80350200_4F0610(s32 arg0) {
     return func_800BF3D4_5C274(arg0) == 0;
@@ -904,16 +908,121 @@ void func_80351FF0_4F2400(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035275C_4F2B6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80352DC8_4F31D8.s")
+s32 func_80352DC8_4F31D8(u8* arg0, u8* arg1) {
+    if (arg0 == NULL || arg1 == NULL) {
+        return 0;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80352E24_4F3234.s")
+    while (TRUE) {
+        s32 diff = *arg0 - *arg1;
+        if (diff != 0) {
+            return diff;
+        }
+        if (*arg0 == 0 || *arg1 == 0) {
+            break;
+        }
+        arg0++;
+        arg1++;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80352F20_4F3330.s")
+void func_80352E24_4F3234(s32 pokemonID, s32 arg1, s32* arg2) {
+    char sp40[32];
+    char* pokemonName;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803530B4_4F34C4.s")
+    if (D_803AE516_54E926 != 0) {
+        return;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353118_4F3528.s")
-void func_80353118_4F3528(GObj*);
+    if (arg1 == 0) {
+        if (*arg2 == 0) {
+            *arg2 = 1;
+            func_80365E34_506244();
+        }
+    } else if (*arg2 != 0) {
+        *arg2 = 0;
+        pokemonName = getPokemonName(pokemonID);
+        if (pokemonName != NULL) {
+            if (func_80350200_4F0610(pokemonID) && func_80352DC8_4F31D8(pokemonName, "？")) {
+                sprintf(sp40, "%s%s", pokemonName, D_80382D68_523178);
+                pokemonName = sp40;
+            }
+        } else {
+            pokemonName = "？";
+        }
+        func_80365BB0_505FC0(pokemonName, 160, 200, 255, 255, 255, 255, 0, 2);
+    }
+}
+
+void func_80352F20_4F3330(GObj* arg0) {
+    s32 i;
+    s32 pokemonID;
+    s32 sp3C;
+
+    pokemonID = D_803AE408_54E818;
+    sp3C = 0;
+
+    if (pokemonID != 0) {
+void func_80353118_4F3528(GObj*);	        if (func_80350200_4F0610(pokemonID)) {
+            auPlaySound(SOUND_ID_2);
+        }
+
+        for (i = 48; i > 0; i--) {
+            if (D_803AE408_54E818 != pokemonID ||
+               D_803AE520_54E930 == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+               D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG))
+            {
+                goto END;
+            }
+            func_80352E24_4F3234(pokemonID, i & 0xC, &sp3C);
+            ohWait(1);
+        }
+
+        func_80352E24_4F3234(pokemonID, 1, &sp3C);
+
+        for (i = 60; i > 0; i--) {
+            if (D_803AE408_54E818 != pokemonID ||
+               D_803AE520_54E930 == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+               D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG))
+            {
+                goto END;
+            }
+            ohWait(1);
+        }
+    }
+END:
+    if (D_803AE516_54E926 == 0) {
+        if (&sp3C) {
+        } // required to match
+        func_80365E34_506244();
+    }
+    omEndProcess(NULL);
+}
+
+void func_803530B4_4F34C4(GObj* obj, GObjFunc func) {
+    GObjProcess* proc;
+    GObjProcess* next;
+
+    if (obj == NULL) {
+        obj = omCurrentObject;
+    }
+
+    proc = obj->processListHead;
+    while (proc != NULL) {
+        next = proc->next;
+        if (func == proc->function) {
+            omEndProcess(proc);
+        }
+        proc = next;
+    }
+}
+
+void func_80353118_4F3528(GObj* obj) {
+    if (D_80382D20_523130 == 0 && D_80382D44_523154 == 0 && D_80382D78_523188 != gtlDrawnFrameCounter) {
+        spSetAttribute(&D_80382C6C_52307C->data.sobj->sprite, SP_HIDDEN);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353180_4F3590.s")
 

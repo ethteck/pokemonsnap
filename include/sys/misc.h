@@ -4,7 +4,9 @@
 #include <PR/ultratypes.h>
 
 f32 acosf(f32);
+f32 atanf(f32);
 f32 atan2f(f32 y, f32 x);
+void setRandSeed(s32 arg0);
 u16 rand(void);
 u8 randT(void);
 u32 randRange(s32 range);

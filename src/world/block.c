@@ -70,7 +70,7 @@ void func_800E19A4_5F154(DObj* arg0, s32 arg1, f32 arg2) {
         D_800F5C50_73400[arg1].unk_00 = animationTime;
         D_800F5C50_73400[arg1].unk_04 = arg2;
         setWorldBlocksVisibility(arg2);
-    }   
+    }
 }
 
 void func_800E1A78_5F228(f32 arg0) {
@@ -84,7 +84,7 @@ f32 func_800E1AB4_5F264(f32 arg0, s32 arg1) {
     while (arg0 < 0.0f) {
         arg0 += arg1;
     }
-    
+
     arg0 *= 10000.0;
     arg0 = ((s32)arg0 + 5) / 10;
     arg0 /= 1000.0;
@@ -171,7 +171,7 @@ void createSkyBox(SkyBox* skyBox) {
         while (curr != NULL) {
             omDObjAddMObj(obj->data.dobj, curr);
             ptr++;
-            curr = *ptr; 
+            curr = *ptr;
         }
     }
 
@@ -243,7 +243,7 @@ f32 world_func_800E21A8(f32 arg0) {
 }
 
 static void nullsub() {
-    
+
 }
 
 void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
@@ -307,7 +307,7 @@ void func_800E2354_5FB04(WorldBlock* arg0) {
         if (WorldBlockDeleteCb != NULL) {
             WorldBlockDeleteCb(arg0);
         }
-    }    
+    }
 }
 
 void func_800E23A8_5FB58(WorldBlock* arg0) {
@@ -324,7 +324,7 @@ void func_800E23A8_5FB58(WorldBlock* arg0) {
         if (D_800E6AFC_642AC != NULL) {
             D_800E6AFC_642AC(next, arg0);
         }
-    }    
+    }
 }
 
 WorldBlock* func_800E2400_5FBB0(void) {
@@ -386,7 +386,7 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
     if (D_800E6AFC_642AC != NULL) {
         D_800E6AFC_642AC(arg0, arg0);
     }
-    
+
     for (i = -1; i >= -1;i--) {
         if (arg0->prev == NULL) {
             break;
@@ -419,7 +419,7 @@ WorldBlock* func_800E26CC_5FE7C(s32 arg0) {
 
 void func_800E270C_5FEBC(GObj* obj) {
     WorldBlock* block;
-    u32 index = obj->id;    
+    u32 index = obj->id;
 
     index = (index - WorldBlockMinObjId) / 2;
     block = worldBlocks[index];
@@ -467,12 +467,12 @@ GObj* createWorldBlockModel(WorldBlock* block) {
             while (curr != NULL) {
                 omDObjAddMObj(obj->data.dobj, curr);
                 ptr++;
-                curr = *ptr; 
+                curr = *ptr;
             }
         }
     } else if (&renRenderModelTypeA == block->descriptor->gfx->renderFunc ||
-               &renderModelTypeAFogged == block->descriptor->gfx->renderFunc || 
-               &renRenderModelTypeC == block->descriptor->gfx->renderFunc || 
+               &renderModelTypeAFogged == block->descriptor->gfx->renderFunc ||
+               &renRenderModelTypeC == block->descriptor->gfx->renderFunc ||
                &renderModelTypeCFogged == block->descriptor->gfx->renderFunc)
     {
         omGObjAddDObj(obj, block->descriptor->gfx->gfxData);
@@ -483,12 +483,12 @@ GObj* createWorldBlockModel(WorldBlock* block) {
             while (curr != NULL) {
                 omDObjAddMObj(obj->data.dobj, curr);
                 ptr++;
-                curr = *ptr; 
+                curr = *ptr;
             }
         }
     } else if (&renRenderModelTypeB == block->descriptor->gfx->renderFunc ||
-               &renderModelTypeBFogged == block->descriptor->gfx->renderFunc || 
-               &renRenderModelTypeD == block->descriptor->gfx->renderFunc || 
+               &renderModelTypeBFogged == block->descriptor->gfx->renderFunc ||
+               &renRenderModelTypeD == block->descriptor->gfx->renderFunc ||
                &renderModelTypeDFogged == block->descriptor->gfx->renderFunc)
     {
         anim_func_80010230(obj, block->descriptor->gfx->gfxData, block->descriptor->gfx->textures, NULL, 0, 0, 0);
@@ -513,7 +513,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     s32 id;
     GObj* obj;
     f32 skipFrames;
-    
+
     if (block == NULL || block->descriptor == NULL || block->descriptor->gfx == NULL) {
         return NULL;
     }
@@ -565,7 +565,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     }
     ptr = arg0->unk_00;
     createSkyBox(arg0->skybox);
-    
+
     for (i = 0; i < MAX_BLOCKS; i++) {
         if (ptr[i] == NULL) {
             break;

@@ -44,7 +44,7 @@ void alSynSetPan(ALSynth *synth, ALVoice *v, u8 pan)
         update->next   = 0;
 
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
 }
 

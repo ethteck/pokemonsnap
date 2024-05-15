@@ -13,7 +13,7 @@
 
 #include "gbi.h"
 
-void guSprite2DInit(uSprite *SpritePointer,   
+void guSprite2DInit(uSprite *SpritePointer,
 		    void *SourceImagePointer,
 		    void *TlutPointer,
 		    short Stride,
@@ -33,7 +33,7 @@ void guSprite2DInit(uSprite *SpritePointer,
   SpritePointer->s.SourceImageBitSize = SourceImageBitSize;
   SpritePointer->s.SourceImageOffsetS = SourceImageOffsetS;
   SpritePointer->s.SourceImageOffsetT = SourceImageOffsetT;
-}		 
-		 
-		 
-		
+}
+
+
+

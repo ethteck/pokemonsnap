@@ -32,9 +32,9 @@ void alCSPSendMidi(ALCSPlayer *seqp, s32 ticks, u8 status, u8 byte1,
     evt.msg.midi.byte1  = byte1;
     evt.msg.midi.byte2  = byte2;
     evt.msg.midi.duration = 0;
-    
+
     deltaTime = ticks*seqp->uspt;
-                    
+
     alEvtqPostEvent(&seqp->evtq, &evt, deltaTime);
 }
 

@@ -38,7 +38,7 @@ void alSndpDelete(ALSndPlayer *sndp)
                 notStopped = 1;
         ALFailIf(notStopped, ERR_ALSNDPDELETE);
     }
-#endif    
+#endif
     alSynRemovePlayer(&alGlobals->drvr, &sndp->node);
 }
 

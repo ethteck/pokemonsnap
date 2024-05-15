@@ -2,11 +2,11 @@
  Copyright (C) 1998,1999 NINTENDO CO,Ltd,
  Copyright (C) 1998,1999 MONEGI CORPORATION,
 	All Rights Reserved
-This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp. 
+This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp.
 and it is not to be reproduced, published, disclosed to others, copied,
-adapted, distributed, or displayed without the prior authorization of 
-NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed 
-this Notice on all copies of the program, including partial copies or 
+adapted, distributed, or displayed without the prior authorization of
+NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed
+this Notice on all copies of the program, including partial copies or
 modified versions thereof.
 *************************************************************************/
 /************************************************************************
@@ -34,7 +34,7 @@ LEAF( guNormalize )
 	mul.s	ft4, ft1, ft1	/* ft4 = y*y */
 	add.s	ft5, ft3, ft4
 	mul.s	ft4, ft2, ft2	/* ft4 = z*z */
-	
+
 	add.s	ft3, ft4, ft5	/* ft3 = x*x + y*y + z*z */
 	mtc1	t0, ft5
 	sqrt.s	ft4, ft3	/* ft4 = sqrt(x*x + y*y + z*z) */

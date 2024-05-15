@@ -88,9 +88,9 @@ void _Ldtob(_Pft* px, char code) {
                 }
             } else if (xexp > 0) {
                 f64 factor = 1;
-                
+
                 xexp &= ~3;
-                
+
                 for (n = xexp, i = 0; n > 0; n >>= 1, i++) {
                     if (n & 1) {
                         factor *= pows[i];
@@ -102,15 +102,15 @@ void _Ldtob(_Pft* px, char code) {
         }
         {
             int gen = px->prec + ((code == 'f') ? 10 + xexp : 6);
-            
+
             if (gen > 0x13) {
                 gen = 0x13;
             }
-            
+
             for (*p++ = '0'; gen > 0 && 0 < ldval; p += 8) {
                 int j;
                 long lo = ldval;
-                
+
                 if ((gen -= 8) > 0) {
                     ldval = (ldval - lo) * 1e8;
                 }
@@ -120,7 +120,7 @@ void _Ldtob(_Pft* px, char code) {
                     qr = ldiv(lo, 10);
                     *--p = qr.rem + '0', lo = qr.quot;
                 }
-                
+
                 while (--j >= 0) {
                     *--p = '0';
                 }
@@ -133,7 +133,7 @@ void _Ldtob(_Pft* px, char code) {
             }
 
             nsig = px->prec + ((code == 'f') ? xexp + 1 : ((code == 'e' || code == 'E') ? 1 : 0));
-            
+
             if (gen < nsig) {
                 nsig = gen;
             }
@@ -149,7 +149,7 @@ void _Ldtob(_Pft* px, char code) {
                 if (drop == '9') {
                     ++p[n];
                 }
-                
+
                 if (n < 0) {
                     --p, ++nsig, ++xexp;
                 }

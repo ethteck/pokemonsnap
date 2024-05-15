@@ -14,7 +14,7 @@
 
 /*
  *  Return rotation matrix given roll, pitch, and yaw in degrees
- *   
+ *
  */
 
 void guRotateRPYF(float mf[4][4], float r, float p, float h)

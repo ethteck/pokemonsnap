@@ -108,12 +108,12 @@ s32 __osContRamRead(OSMesgQueue* mq, int channel, u16 address, u8* buffer) {
             u8 c = __osContDataCrc((u8*)&ramreadformat.data);
             if (c != ramreadformat.datacrc) {
                 ret = __osPfsGetStatus(mq, channel);
-                
+
                 if (ret != 0) {
                     __osSiRelAccess();
                     return ret;
                 }
-                
+
                 ret = PFS_ERR_CONTRFAIL;
             } else  {
                 for (i = 0; i < ARRLEN(ramreadformat.data); i++) {
@@ -143,17 +143,17 @@ static void __osPackRamReadData(int channel, u16 address) {
     ramreadformat.cmd = CONT_CMD_READ_PAK;
     ramreadformat.address = (address << 0x5) | __osContAddressCrc(address);
     ramreadformat.datacrc = CONT_CMD_NOP;
-    
+
     for (i = 0; i < ARRLEN(ramreadformat.data); i++) {
         ramreadformat.data[i] = CONT_CMD_NOP;
     }
-    
+
     if (channel != 0) {
         for (i = 0; i < channel; i++) {
             *ptr++ = CONT_CMD_REQUEST_STATUS;
         }
     }
-    
+
     *(__OSContRamReadFormat *)ptr = ramreadformat;
     ptr += sizeof(__OSContRamReadFormat);
     ptr[0] = CONT_CMD_END;

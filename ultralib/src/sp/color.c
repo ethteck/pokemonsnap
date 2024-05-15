@@ -28,7 +28,7 @@
  *
  *   Sets the color for IA or I images.
  */
-void 
+void
 spColor (Sprite *sp, unsigned char red, unsigned char green,
 	 unsigned char blue, unsigned char alpha)
 {

@@ -28,7 +28,7 @@
  * spSetZ()
  *
  */
-void 
+void
 spSetZ (Sprite *sp, s32 z)
 {
 
@@ -44,7 +44,7 @@ spSetZ (Sprite *sp, s32 z)
  *
  *   Moves a sprite on the screen.
  */
-void 
+void
 spMove (Sprite *sp, s32 x, s32 y)
 {
 
@@ -67,7 +67,7 @@ static s32 scissor_ymin;
  *
  *   Sets the scissoring box to be used for subsequent Sprite Drawing
  */
-void 
+void
 spScissor (s32 xmin, s32 xmax, s32 ymin, s32 ymax )
 {
     scissor_xmin = xmin;
@@ -88,7 +88,7 @@ static int *prev_bmbuf = NULL;
  *   will be used.
  */
 
-static void 
+static void
 drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 	    s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy)
 {
@@ -99,14 +99,14 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
     s32 tex_width, tex_height;
     Gtexrect gt, *g;
     s32 s_clamp, t_clamp,
-	s_mask,  t_mask, 
+	s_mask,  t_mask,
 	s_lod,   t_lod;
 
     g = &gt;
 
     tex_width = b->width_img;
     tex_height= s->bmHreal;
-    
+
 #ifdef rmDEBUG
     rmonPrintf("\tdrawbitmap (buf= 0x%08x; x,y= %d,%d; w,h= %d,%d )\n",
 	    b->buf, x, y, b->width, s->bmheight );
@@ -183,7 +183,7 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 
 #ifdef LOAD_TEX
     if( b->buf != prev_bmbuf ) {
-	switch(s->bmsiz) 
+	switch(s->bmsiz)
 	  {
 #if BUILD_VERSION >= VERSION_J
 	  case G_IM_SIZ_DD:
@@ -192,22 +192,22 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 							  b->s + b->width,b->t + b->actualHeight,
 							  0,
 							  s_clamp, t_clamp,
-							  s_mask,  t_mask, 
+							  s_mask,  t_mask,
 							  s_lod,   t_lod);
 		break;
 #endif
 	  case G_IM_SIZ_4b:
 		if (s->attr & SP_TEXSHUF) {
 		  gDPLoadTextureBlock_4bS(gl++, b->buf, s->bmfmt,
-								  tex_width, tex_height, 0, 
+								  tex_width, tex_height, 0,
 								  s_clamp, t_clamp,
-								  s_mask,  t_mask, 
+								  s_mask,  t_mask,
 								  s_lod,   t_lod);
 		} else {
 		  gDPLoadTextureBlock_4b(gl++, b->buf, s->bmfmt,
-								 tex_width, tex_height, 0, 
+								 tex_width, tex_height, 0,
 								 s_clamp, t_clamp,
-								 s_mask,  t_mask, 
+								 s_mask,  t_mask,
 								 s_lod,   t_lod);
 		};
 	    break;
@@ -217,13 +217,13 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 		gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
 				    tex_width, tex_height, 0,
 				       s_clamp, t_clamp,
-				       s_mask,  t_mask, 
+				       s_mask,  t_mask,
 				       s_lod,   t_lod);
 	    } else {
 		gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
 				    tex_width, tex_height, 0,
 				       s_clamp, t_clamp,
-				       s_mask,  t_mask, 
+				       s_mask,  t_mask,
 				       s_lod,   t_lod);
 	    };
 	    break;
@@ -233,7 +233,7 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 		    gDPLoadTextureBlockYuvS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
 					tex_width, tex_height, 0,
 					   s_clamp, t_clamp,
-					   s_mask,  t_mask, 
+					   s_mask,  t_mask,
 					   s_lod,   t_lod);
 		} else {
 		    if( b->LUToffset != 0 ) { /* Split Y and UV areas */
@@ -288,7 +288,7 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 			gDPLoadTextureBlockYuv(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
 					    tex_width, tex_height, 0,
 					       s_clamp, t_clamp,
-					       s_mask,  t_mask, 
+					       s_mask,  t_mask,
 					       s_lod,   t_lod);
 		    };
 		};
@@ -297,13 +297,13 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 		    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
 					tex_width, tex_height, 0,
 					   s_clamp, t_clamp,
-					   s_mask,  t_mask, 
+					   s_mask,  t_mask,
 					   s_lod,   t_lod);
 		} else {
 		    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
 					tex_width, tex_height, 0,
 					   s_clamp, t_clamp,
-					   s_mask,  t_mask, 
+					   s_mask,  t_mask,
 					   s_lod,   t_lod);
 		};
 	    };
@@ -313,13 +313,13 @@ drawbitmap (Gfx **glp, Sprite *s, Bitmap *b,
 		gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
 				    tex_width, tex_height, 0,
 				       s_clamp, t_clamp,
-				       s_mask,  t_mask, 
+				       s_mask,  t_mask,
 				       s_lod,   t_lod);
 	    } else {
 		gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
 				    tex_width, tex_height, 0,
 				       s_clamp, t_clamp,
-				       s_mask,  t_mask, 
+				       s_mask,  t_mask,
 				       s_lod,   t_lod);
 	    };
 	    break;
@@ -453,16 +453,16 @@ spDraw ( Sprite   *s )
     if (sp_attr & SP_EXTERN)	/* previous attr was extern? */
 	sp_attr = ~s->attr;	/* Assume previous modes are all different
 				   from new ones */
-    
+
     if (s->attr & SP_EXTERN)	/* current attr is extern? */
 	sp_attr = s->attr;	/* Assume all settings should remain the same */
-    
+
     if (s->attr != sp_attr) {
 	if ((s->attr & SP_TRANSPARENT) && !(sp_attr & SP_TRANSPARENT)) {
 	    gDPSetRenderMode( gl++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
 	} else if (!(s->attr & SP_TRANSPARENT) &&
 		   (sp_attr & SP_TRANSPARENT)) {
-	    gDPSetRenderMode( gl++, 
+	    gDPSetRenderMode( gl++,
 			     SPRITE_SURF, SPRITE_SURF2);
 	}
 
@@ -492,22 +492,22 @@ spDraw ( Sprite   *s )
 
     if (s->bmfmt == G_IM_FMT_IA || s->bmfmt == G_IM_FMT_I) {
 	if( s->alpha == 255 ) {
-	    gDPSetCombineMode ( gl++, 
-			       G_CC_MODULATEIDECALA_PRIM, 
+	    gDPSetCombineMode ( gl++,
+			       G_CC_MODULATEIDECALA_PRIM,
 			       G_CC_MODULATEIDECALA_PRIM);
 	} else {
-	    gDPSetCombineMode ( gl++, 
-			       G_CC_MODULATEIA_PRIM, 
+	    gDPSetCombineMode ( gl++,
+			       G_CC_MODULATEIA_PRIM,
 			       G_CC_MODULATEIA_PRIM);
 	};
     } else {
 	if( s->alpha == 255 ) {
-	    gDPSetCombineMode ( gl++, 
-			       G_CC_MODULATEIDECALA_PRIM, 
+	    gDPSetCombineMode ( gl++,
+			       G_CC_MODULATEIDECALA_PRIM,
 			       G_CC_MODULATEIDECALA_PRIM);
 	} else {
-	    gDPSetCombineMode ( gl++, 
-			       G_CC_MODULATERGBA_PRIM, 
+	    gDPSetCombineMode ( gl++,
+			       G_CC_MODULATERGBA_PRIM,
 			       G_CC_MODULATERGBA_PRIM);
 	};
     }

@@ -127,7 +127,7 @@ int	ix, xpt;
 
 		*__errnoaddr = EDOM;
 #endif
-		
+
 		return ( __libm_qnan_f );
 	}
 

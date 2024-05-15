@@ -43,44 +43,44 @@ void alSeqNew(ALSeq *seq, u8 *ptr, s32 len)
     seq->lastStatus     = 0;
     seq->lastTicks      = 0;
     seq->curPtr         = ptr;
-    
+
     if (read32(seq) != IFF_FILE_HDR) {
 #ifdef _DEBUG
         __osError(ERR_ALSEQNOTMIDI, 1, ptr);
-#endif        
+#endif
         return;
     }
 
     read32(seq);        /* skip the length field */
 
     if (read16(seq) != 0) {
-#ifdef _DEBUG        
+#ifdef _DEBUG
         __osError(ERR_ALSEQNOTMIDI0, 1, ptr);
-#endif        
+#endif
         return;
     }
 
     if (read16(seq) != 1) {
-#ifdef _DEBUG        
+#ifdef _DEBUG
         __osError(ERR_ALSEQNUMTRACKS, 1, ptr);
-#endif        
+#endif
         return;
     }
 
     seq->division = read16(seq);
     if (seq->division & 0x8000) {
-#ifdef _DEBUG        
+#ifdef _DEBUG
         __osError(ERR_ALSEQTIME, 1, ptr);
-#endif        
+#endif
         return;
     }
-    
+
     seq->qnpt = 1.0/(f32)seq->division;
 
     if (read32(seq) != IFF_TRACK_HDR) {
-#ifdef _DEBUG        
+#ifdef _DEBUG
         __osError(ERR_ALSEQTRACKHDR, 1, ptr);
-#endif        
+#endif
         return;
     }
 
@@ -103,11 +103,11 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
     if (seq->curPtr >= seq->base + seq->len)
 	__osError(ERR_ALSEQOVERRUN, 0);
 #endif
-    
+
     deltaTicks = readVarLen(seq);   /* read the delta time */
     seq->lastTicks += deltaTicks;
     status = read8(seq);
-    
+
 #if _DEBUG
     /*
      * System exclusives are not supported, so just skip them and read
@@ -123,10 +123,10 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
         return;
     }
 #endif
-    
+
     if (status == AL_MIDI_Meta) {
         u8 type = read8(seq);
-        
+
         if (type == AL_MIDI_META_TEMPO) {
             event->type = AL_TEMPO_EVT;
             event->msg.tempo.ticks = deltaTicks;
@@ -151,11 +151,11 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
             }
             alSeqNextEvent(seq,event);
             return;
-#endif            
+#endif
         }
 
         seq->lastStatus = 0;
-        
+
     } else {
         event->type = AL_SEQ_MIDI_EVT;
         event->msg.midi.ticks = deltaTicks;
@@ -168,7 +168,7 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
             event->msg.midi.status = seq->lastStatus;
             event->msg.midi.byte1 = status;
         }
-        
+
         if (((event->msg.midi.status & 0xf0) != AL_MIDI_ProgramChange) &&
             ((event->msg.midi.status & 0xf0) != AL_MIDI_ChannelPressure)) {
             event->msg.midi.byte2 = read8(seq);
@@ -182,7 +182,7 @@ void alSeqNextEvent(ALSeq *seq, ALEvent *event)
 /*
   Returns the delta time in ticks for the next event in the sequence.
   Assumes that the sequence data pointer is pointing to the delta time.
-  
+
   If the curPtr is at or beyond the end of the sequence, then return FALSE
   to indicate no next event.
 
@@ -201,7 +201,7 @@ char __alSeqNextDelta (ALSeq *seq, s32 *pDeltaTicks)
   seq->curPtr = savedPtr;
 
   return TRUE;
-}  
+}
 
 
 f32 alSeqTicksToSec(ALSeq *seq, s32 ticks, u32 tempo)
@@ -221,9 +221,9 @@ void alSeqNewMarker(ALSeq *seq, ALSeqMarker *m, u32 ticks)
     u8          *savePtr, *lastPtr;
     s32         saveTicks, lastTicks;
     s16         saveStatus, lastStatus;
-    
+
     /* does not check that ticks is within bounds */
-    
+
     if (ticks == 0) { /* common case */
         m->curPtr     = seq->trackStart;
         m->lastStatus = 0;
@@ -243,9 +243,9 @@ void alSeqNewMarker(ALSeq *seq, ALSeqMarker *m, u32 ticks)
             lastPtr    = seq->curPtr;
             lastStatus = seq->lastStatus;
             lastTicks  = seq->lastTicks;
-        
+
             alSeqNextEvent(seq, &evt);
-            
+
             if (evt.type == AL_SEQ_END_EVT)
 	    {
 		lastPtr    = seq->curPtr;
@@ -253,19 +253,19 @@ void alSeqNewMarker(ALSeq *seq, ALSeqMarker *m, u32 ticks)
 		lastTicks  = seq->lastTicks;
                 break;
 	    }
-            
+
         } while (seq->lastTicks < ticks);
 
         m->curPtr     = lastPtr;
         m->lastStatus = lastStatus;
         m->lastTicks  = lastTicks;
 	m->curTicks = seq->lastTicks;	/* Used by test loop condition. */
-    
+
         seq->curPtr     = savePtr;
         seq->lastStatus = saveStatus;
         seq->lastTicks  = saveTicks;
 
-    }    
+    }
 }
 
 s32 alSeqGetTicks(ALSeq *seq)
@@ -299,7 +299,7 @@ static s16 read16(ALSeq *seq)
 
     tmp  = *seq->curPtr++ << 8;
     tmp |= *seq->curPtr++;
-    
+
     return tmp;
 }
 

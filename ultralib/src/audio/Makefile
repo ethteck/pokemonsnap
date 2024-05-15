@@ -109,7 +109,7 @@ CFILES  = \
 	syngetfxref.c \
 	synsetfxparam.c \
 	cents2ratio.c \
-	parse_abi.c 
+	parse_abi.c
 
 TARGETS =	$(CFILES:.c=.o)
 

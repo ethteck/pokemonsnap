@@ -44,7 +44,7 @@ static void _Putfld(_Pft *pf, va_list *pap, char code, char *ac);
 
 int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
     _Pft x;
-    
+
     x.nchar = 0;
 
     while (TRUE) {
@@ -59,15 +59,15 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
         for (c = *s; c != 0 && c != '%';) {
             c = *++s;
         }
-        
+
         PUT(fmt, s - fmt);
-        
+
         if (c == 0) {
             return x.nchar;
         }
-        
+
         fmt = ++s;
-        
+
         for (x.flags = 0; (t = strchr(fchar, *s)) != NULL; s++) {
             x.flags |= fbit[t - fchar];
         }
@@ -80,7 +80,7 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
                 x.flags |= FLAGS_MINUS;
             }
             s++;
-        } else 
+        } else
             ATOI(x.width, s);
 
 
@@ -89,15 +89,15 @@ int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
         } else if (*++s == '*') {
             x.prec = va_arg(args, int);
             ++s;
-        } else 
-            for (x.prec = 0; isdigit(*s); s++) { 
-                if (x.prec < 999) 
-                    x.prec = x.prec * 10 + *s - '0'; 
+        } else
+            for (x.prec = 0; isdigit(*s); s++) {
+                if (x.prec < 999)
+                    x.prec = x.prec * 10 + *s - '0';
             }
 
 
         x.qual = strchr("hlL", *s) ? *s++ : '\0';
-        
+
         if (x.qual == 'l' && *s == 'l') {
             x.qual = 'L';
             ++s;
@@ -241,11 +241,11 @@ static void _Putfld(_Pft *x, va_list *args, char type, char *buff) {
         case 's':
             x->s = va_arg(*args, char *);
             x->n1 = strlen(x->s);
-            
+
             if (x->prec >= 0 && x->prec < x->n1) {
                 x->n1 = x->prec;
             }
-            
+
             break;
         case '%':
             buff[x->n0++] = '%';

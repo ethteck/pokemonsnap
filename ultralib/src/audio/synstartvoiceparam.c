@@ -50,7 +50,7 @@ void alSynStartVoiceParams(ALSynth *s, ALVoice *v, ALWaveTable *w,
             fxmix = -fxmix;
         }
 #endif
-        
+
         /*
          * set offset and fxmix data
          */
@@ -65,11 +65,11 @@ void alSynStartVoiceParams(ALSynth *s, ALVoice *v, ALWaveTable *w,
         update->pitch  = pitch;
         update->samples = _timeToSamples(s, t);
         update->wave    = w;
-        
+
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
-    
+
 }
 
 

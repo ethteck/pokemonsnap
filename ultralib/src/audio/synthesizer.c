@@ -49,7 +49,7 @@ void alSynNew(ALSynth *drvr, ALSynConfig *c)
     ALFilter    *sources;
     ALParam     *params;
     ALParam     *paramPtr;
-    
+
     drvr->head            = NULL;
     drvr->numPVoices      = c->maxPVoices;
     drvr->curSamples      = 0;
@@ -88,7 +88,7 @@ void alSynNew(ALSynth *drvr, ALSynConfig *c)
          * Connect the aux bus to the main bus
          */
     	alMainBusParam(drvr->mainBus, AL_FILTER_ADD_SOURCE, &drvr->auxBus[0]);
-    
+
     /*
      * Build the physical voice lists
      */
@@ -107,7 +107,7 @@ void alSynNew(ALSynth *drvr, ALSynConfig *c)
 
         alLoadNew(&pv->decoder, drvr->dma, hp);
         alLoadParam(&pv->decoder, AL_FILTER_SET_SOURCE, 0);
-    
+
         alResampleNew(&pv->resampler, hp);
         alResampleParam(&pv->resampler, AL_FILTER_SET_SOURCE, &pv->decoder);
 
@@ -115,10 +115,10 @@ void alSynNew(ALSynth *drvr, ALSynConfig *c)
         alEnvmixerParam(&pv->envmixer, AL_FILTER_SET_SOURCE, &pv->resampler);
 
         alAuxBusParam(drvr->auxBus, AL_FILTER_ADD_SOURCE, &pv->envmixer);
-        
+
         pv->channelKnob   = (ALFilter *)&pv->envmixer;
     }
-    
+
     alSaveParam(save, AL_FILTER_SET_SOURCE, drvr->mainBus);
 
     /*
@@ -131,7 +131,7 @@ void alSynNew(ALSynth *drvr, ALSynConfig *c)
         paramPtr->next = drvr->paramList;
         drvr->paramList = paramPtr;
     }
-    
+
     drvr->heap = hp;
 }
 
@@ -154,11 +154,11 @@ Acmd *alAudioFrame(Acmd *cmdList, s32 *cmdLen, s16 *outBuf, s32 outLen)
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
+
     if (drvr->head == 0) {
 	*cmdLen = 0;
         return cmdList;         /* nothing to do */
-    }    
+    }
 
     /*
      * run down list of clients and execute callback if needed this
@@ -217,16 +217,16 @@ Acmd *alAudioFrame(Acmd *cmdList, s32 *cmdLen, s16 *outBuf, s32 outLen)
         (*output->setParam)(output, AL_FILTER_SET_DRAM, lOutBuf);
         cmdlEnd = (*output->handler)(output, &tmp, nOut, drvr->curSamples,
                                      cmdPtr);
-        
+
         outLen -= nOut;
         lOutBuf += nOut<<1;     /* For Stereo */
         drvr->curSamples += nOut;
-                
+
     }
     *cmdLen = (s32) (cmdlEnd - cmdList);
 
     _collectPVoices(drvr); /* collect free physical voices */
-    
+
 #ifdef AUD_PROFILE
     PROFILE_AUD(drvr_num, drvr_cnt, drvr_max, drvr_min);
 #endif
@@ -237,27 +237,27 @@ Acmd *alAudioFrame(Acmd *cmdList, s32 *cmdLen, s16 *outBuf, s32 outLen)
  * Synthesis driver private interfaces
  ***********************************************************************/
 
-ALParam *__allocParam() 
+ALParam *__allocParam()
 {
     ALParam *update = 0;
     ALSynth *drvr = &alGlobals->drvr;
 
-    if (drvr->paramList) {        
+    if (drvr->paramList) {
         update = drvr->paramList;
         drvr->paramList = drvr->paramList->next;
         update->next = 0;
     }
     return update;
 }
-    
-void __freeParam(ALParam *param) 
+
+void __freeParam(ALParam *param)
 {
     ALSynth *drvr = &alGlobals->drvr;
     param->next = drvr->paramList;
     drvr->paramList = param;
 }
 
-void _collectPVoices(ALSynth *drvr) 
+void _collectPVoices(ALSynth *drvr)
 {
     ALLink       *dl;
     PVoice      *pv;
@@ -268,11 +268,11 @@ void _collectPVoices(ALSynth *drvr)
         /* ### remove from mixer */
 
         alUnlink(dl);
-        alLink(dl, &drvr->pFreeList);        
+        alLink(dl, &drvr->pFreeList);
     }
 }
 
-void _freePVoice(ALSynth *drvr, PVoice *pvoice) 
+void _freePVoice(ALSynth *drvr, PVoice *pvoice)
 {
     /*
      * move the voice from the allocated list to the lame list
@@ -298,7 +298,7 @@ s32 _timeToSamples(ALSynth *synth, s32 micros)
     return _timeToSamplesNoRound(synth, micros) & ~0xf;
 }
 
-static s32 __nextSampleTime(ALSynth *drvr, ALPlayer **client) 
+static s32 __nextSampleTime(ALSynth *drvr, ALPlayer **client)
 {
     ALMicroTime delta = 0x7fffffff;     /* max delta for s32 */
     ALPlayer *cl;
@@ -308,7 +308,7 @@ static s32 __nextSampleTime(ALSynth *drvr, ALPlayer **client)
     assert(drvr->head);
 
     *client = 0;
-    
+
     for (cl = drvr->head; cl != 0; cl = cl->next) {
         if ((cl->samplesLeft - drvr->curSamples) < delta) {
             *client = cl;

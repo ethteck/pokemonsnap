@@ -15,7 +15,7 @@ s32 setHeightMap(HeightMap* map) {
     }
     sHeightMap = map;
     tree = sHeightMap->tree;
-    patches = sHeightMap->patches;    
+    patches = sHeightMap->patches;
     createHeightMapTree(tree, patches);
     return TRUE;
 }
@@ -32,7 +32,7 @@ s32 setCeilingMap(HeightMap* map) {
     }
     sCeilingMap = map;
     tree = sCeilingMap->tree;
-    patches = sCeilingMap->patches;    
+    patches = sCeilingMap->patches;
     createHeightMapTree(tree, patches);
     return TRUE;
 }

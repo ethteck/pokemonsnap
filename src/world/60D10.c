@@ -16,13 +16,13 @@ void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* arg3, f32* a
     s32 unused;
     DObj* dobj1;
     DObj* dobj2;
-    
+
 
     *arg3 = *arg4 = *arg5 = *arg6 = *arg7 = *arg8 = *arg9 = 0;
 
     if (arg0 == NULL) {
         return;
-    } 
+    }
     if (arg0->blockUV == NULL) {
         return;
     }
@@ -170,7 +170,7 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
         } else {
             f0 = block->descriptor->gfx->unk_20[i - 2];
         }
-        
+
         dobj1 = block->unk_18[a0];
         dobj2 = block->unk_18[i];
         *arg2 = func_800E3560_60D10(dobj1->scale.v.x, dobj2->scale.v.x, f2, f0, arg1);
@@ -215,13 +215,13 @@ void func_800E3B0C_612BC(WorldBlock* arg0, f32 arg1, f32 arg2, UnkGoldViper* arg
 
     arg3->unk_0C.x = cosAngle * sp6C + sinAngle * sp64;
     arg3->unk_0C.z = -sinAngle * sp6C + cosAngle * sp64;
-    arg3->unk_0C.y = sp68;    
+    arg3->unk_0C.y = sp68;
 
     arg3->unk_18.x = sp60;
     arg3->unk_18.z = sp58;
 
     arg3->unk_24 = arg3->unk_28 * f14;
-    
+
     arg3->unk_0C.x = arg3->unk_0C.x;
     arg3->unk_0C.y = arg3->unk_0C.y;
     arg3->unk_0C.z = arg3->unk_0C.z;
@@ -255,7 +255,7 @@ void func_800E3D04_614B4(UnkGoldViper* arg0) {
         if (D_800E6B20_642D0 != 0) {
             D_800E6B20_642D0(block);
         }
-        
+
         if (block->next == NULL || block->next->unk_18 == NULL) {
             func_800E3B0C_612BC(block, f0, f14, arg0);
             arg0->unk_24 = 0;
@@ -268,7 +268,7 @@ void func_800E3D04_614B4(UnkGoldViper* arg0) {
             return;
         }
         arg0->unk_08 = block;
-        
+
         if (block->blockUV != NULL && block->descriptor != NULL && block->descriptor->gfx != NULL && block->descriptor->gfx->unk_18 != NULL) {
             animSetModelTreeAnimation(block->blockUV, block->descriptor->gfx->unk_18, 0);
         }
@@ -284,7 +284,7 @@ void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*)
     f32 unused;
     f32 f0, f2;
     WorldBlock* block;
-    
+
 
     D_800E6B20_642D0 = arg2;
     D_800E6B24_642D4 = arg3;
@@ -292,7 +292,7 @@ void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*)
     if (arg0->unk_28 < 0.0f || arg1 < 0 || arg1 >= 13) {
         return;
     }
-    
+
     f0 = arg0->unk_00;
     f2 = arg0->unk_04;
     if (f0 < 0.0f) {

@@ -6,7 +6,7 @@
 
 LEAF(osDelay)
     sll     t0,a0,2
-    addu    t0,a0  
+    addu    t0,a0
     sll     t0,t0,2
     beqz    a0,2f
 

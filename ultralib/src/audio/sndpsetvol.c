@@ -22,7 +22,7 @@
 #include <os_internal.h>
 #include <ultraerror.h>
 
-void alSndpSetVol(ALSndPlayer *sndp, s16 vol) 
+void alSndpSetVol(ALSndPlayer *sndp, s16 vol)
 {
     ALSndpEvent evt;
     ALSoundState  *sState = sndp->sndState;

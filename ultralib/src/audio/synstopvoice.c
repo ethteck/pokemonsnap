@@ -27,9 +27,9 @@ void alSynStopVoice(ALSynth *synth, ALVoice *v)
 {
     ALParam  *update;
     ALFilter *f;
-    
+
     if (v->pvoice) {
-        
+
         update = __allocParam();
         ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
 
@@ -38,7 +38,7 @@ void alSynStopVoice(ALSynth *synth, ALVoice *v)
         update->next   = 0;
 
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
 }
 

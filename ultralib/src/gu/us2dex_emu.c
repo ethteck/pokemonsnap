@@ -1,9 +1,9 @@
 /*---------------------------------------------------------------------*
 	Copyright (C) 1998, Nintendo.
-	
+
 	File		us2dex_emu.c
 	Coded    by	Yoshitaka Yasumoto.	Apr  9, 1998.
-	
+
 	$Id: us2dex_emu.c,v 1.9 1999/07/08 05:02:04 yurugi Exp $
  *---------------------------------------------------------------------*/
 #define		F3DEX_GBI
@@ -78,7 +78,7 @@ static	void	tmemLoad_A(Gfx **pkt, u32 imagePtr,
 			   s16 loadLines, s16 tmemAdrs, s16 tmemSH)
 {
   /*
-   * Load 16-bit texture of tmemSH word width starting from imagePtr into 
+   * Load 16-bit texture of tmemSH word width starting from imagePtr into
    * the loadLines amount of lines of  the tmemAdrs of tmem.
    */
 
@@ -90,7 +90,7 @@ static	void	tmemLoad_A(Gfx **pkt, u32 imagePtr,
   (*pkt)->words.w0 = rdpSetTile_w0|tmemAdrs;
   (*pkt)->words.w1 = 0x07000000;
   (*pkt) ++;
-  
+
   tmemLoad_B(pkt, imagePtr, loadLines, tmemSH);
 }
 
@@ -99,23 +99,23 @@ static	void	tmemLoad(Gfx **pkt, u32 *imagePtr,
 {
   s16	loadLines = drawLines + flagBilerp;
   s16	iLoadable = (*imageRemain) - flagSplit;
-  
+
   if (iLoadable >= loadLines){		/* If load can be done all at once */
-    tmemLoad_B(pkt, *imagePtr, loadLines, tmemSliceWmax);    
+    tmemLoad_B(pkt, *imagePtr, loadLines, tmemSliceWmax);
     (*imagePtr)    += imageSrcWsize * drawLines;
     (*imageRemain) -= drawLines;
-    
+
   } else {				/* If load is to be partitioned */
     s16  SubSliceL2, SubSliceD2, SubSliceY2;
-    u32	 imageTopSeg = imageTop & 0xff000000; 
-    
+    u32	 imageTopSeg = imageTop & 0xff000000;
+
     SubSliceY2 = *imageRemain;
     SubSliceL2 = loadLines - SubSliceY2;
     SubSliceD2 = drawLines - SubSliceY2;
-    
+
     if (SubSliceL2 > 0){
       u32  imagePtr2;
-      
+
       imagePtr2 = imageTop + imagePtrX0;
       if (SubSliceY2 & 1){
 	imagePtr2 -= imageSrcWsize;
@@ -130,7 +130,7 @@ static	void	tmemLoad(Gfx **pkt, u32 *imagePtr,
       u32    imagePtr1A, imagePtr1B;
       s16    SubSliceY1, SubSliceL1;
       s16    tmemSH_A, tmemSH_B;
-      
+
       imagePtr1A = (*imagePtr) + iLoadable * imageSrcWsize;
       imagePtr1B = imageTop;
       SubSliceY1 = iLoadable;
@@ -146,20 +146,20 @@ static	void	tmemLoad(Gfx **pkt, u32 *imagePtr,
       tmemLoad_A(pkt, imagePtr1B,
 		 SubSliceL1, SubSliceY1 * tmemSliceWmax + tmemSH_A, tmemSH_B);
       tmemLoad_A(pkt, imagePtr1A,
-		 SubSliceL1, SubSliceY1 * tmemSliceWmax, tmemSH_A);      
+		 SubSliceL1, SubSliceY1 * tmemSliceWmax, tmemSH_A);
     }
     if (iLoadable > 0){
 
       tmemLoad_A(pkt, *imagePtr, iLoadable, 0, tmemSliceWmax);
-            
+
     } else {
-      
+
       /* [SetTile] */
       (*pkt)->words.w0 = rdpSetTile_w0;
       (*pkt)->words.w1 = 0x07000000;
       (*pkt) ++;
     }
-    
+
     (*imageRemain) -= drawLines;
     if ((*imageRemain) > 0){
       (*imagePtr) += imageSrcWsize * drawLines;
@@ -167,7 +167,7 @@ static	void	tmemLoad(Gfx **pkt, u32 *imagePtr,
       (*imageRemain) = tmemSrcLines - SubSliceD2;
       (*imagePtr) = imageTop + SubSliceD2 * imageSrcWsize + imagePtrX0;
     }
-    
+
   }
 }
 
@@ -189,9 +189,9 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
 
   s16	imageISliceL0, imageIY0;
   s32	frameLSliceL0;
-  
+
   scaleW = bg->s.scaleW;
-  scaleH = bg->s.scaleH;  
+  scaleH = bg->s.scaleH;
 
 /* addition 99/05/31(Y) */
 #if BUILD_VERSION >= VERSION_K
@@ -200,11 +200,11 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   if(scaleH==0) scaleH=1;
 #endif
 
-    
+
 {
   /*-------------------------------------------------*
     Scissoring process
-   *-------------------------------------------------*/  
+   *-------------------------------------------------*/
   /*
   /  frameX0, frameX1, framePtrY0, frameRemain
   /  imageX0, imageY0, tmemSliceW
@@ -213,11 +213,11 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   s16	pixX0, pixY0, pixX1, pixY1;			/* (s13.2) */
   s16	frameY0, frameW, frameH;
   s32	frameWmax, frameHmax;
-  
+
   /* Determine maximum frame size from image and  enlargement ratio */
   frameWmax = ((((s32)bg->s.imageW << 10) / scaleW)-1) & ~3;
   frameHmax = ((((s32)bg->s.imageH << 10) / scaleH)-1) & ~3;
-  
+
   /* Clamp the frame size */
   frameW  = bg->s.frameW;
   frameH  = bg->s.frameH;
@@ -230,19 +230,19 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   if (bg->s.imageFlip & G_BG_FLAG_FLIPS){
     frameX0 += frameWmax;
   }
-  
+
   /* Caluculate amount of projection from screen */
   pixX0 = scissorX0 - frameX0;				/* (s13.2) */
   pixY0 = scissorY0 - frameY0;				/* (s13.2) */
   pixX1 = frameW - scissorX1 + frameX0;			/* (s13.2) */
   pixY1 = frameH - scissorY1 + frameY0;			/* (s13.2) */
-  
+
   /* Clamp if no projection */
   if (pixX0 < 0) pixX0 = 0;
   if (pixY0 < 0) pixY0 = 0;
   if (pixX1 < 0) pixX1 = 0;
   if (pixY1 < 0) pixY1 = 0;
-  
+
   /* Cut the part that is projecting */
   frameW  = frameW - (pixX0 + pixX1);			/* (s13.2) */
   frameH  = frameH - (pixY0 + pixY1);			/* (s13.2) */
@@ -256,11 +256,11 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   frameX1     = frameX0 + frameW;			/* (s13.2) */
   framePtrY0  = frameY0 >> 2;				/* (s15.0) */
   frameRemain = frameH  >> 2; 				/* (s15.0) */
-  
+
   /* Join image columns */
   imageSrcW = bg->s.imageW << 3;		/* (u11.5) */
   imageSrcH = bg->s.imageH << 3;		/* (u11.5) */
-  
+
   /* Get image range (u14.2)*(u6.10)=(u20.12)->(u11.5) */
   imageSliceW = (imageW = frameW * scaleW >> 7) + flagBilerp * 32;
   if (bg->s.imageFlip & G_BG_FLAG_FLIPS){
@@ -270,14 +270,14 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   }
   imageY0     = bg->s.imageY + (pixY0 * scaleH >> 7);		  /* (s10.5) */
   imageYorig  = bg->s.imageYorig;
-  
+
   /* Loop one step down when left end of image area is greater than right end of                 image source  */
   while (imageX0 >= imageSrcW){
     imageX0     -= imageSrcW;
     imageY0     += 32;
     imageYorig  += 32;			/* Add 1 to carrier */
   }
-  
+
   /* Loop when top end of image area is greater than bottom end of image source  */
   while (imageY0 >= imageSrcH){
     imageY0     -= imageSrcH;
@@ -293,11 +293,11 @@ void	guS2DEmuBgRect1Cyc(Gfx **pkt, uObjBg *bg)
   // flagSplit
   // tmemSrcLines
   // imageSrcLines
-  */  
-  /* Top/bottom connection process necessary when image range straddles right 
+  */
+  /* Top/bottom connection process necessary when image range straddles right
 end */
   flagSplit = (imageX0 + imageSliceW >= imageSrcW);
-  
+
   /* Number of image lines that can be loaded at once */
   tmemSrcLines = imageSrcH >> 5;
 }
@@ -307,13 +307,13 @@ end */
     Get load data for TMEM
    *-------------------------------------------------*/
   /*
-  //Calculate number of lines that can be loaded into TMEM.	
-  //	If the slice width changes due to scissoring and  the linked 
+  //Calculate number of lines that can be loaded into TMEM.
+  //	If the slice width changes due to scissoring and  the linked
   //	load line number is changed, then the frame division line will
   //	change and the result will be the generation of unnatural wrinkles.
   //	To prevent this, the division region is set such that scissoring
   //  does not occur.
-  // 
+  //
   */
   s16	tmemSize, tmemMask, tmemShift;
   s32	imageNumSlice;
@@ -321,10 +321,10 @@ end */
   s32	imageLYoffset, frameLYoffset;
   s32	imageLHidden,  frameLHidden;
   s32	frameLYslice;
-  
+
   static s16	TMEMSIZE[]  = {   512,   512,   256,   512,  512 };
   static s16	TMEMMASK[]  = { 0x1ff,  0xff,  0x7f,  0x3f };
-  static s16	TMEMSHIFT[] = { 0x200, 0x100,  0x80,  0x40 };   
+  static s16	TMEMSHIFT[] = { 0x200, 0x100,  0x80,  0x40 };
   tmemSize  = TMEMSIZE[bg->s.imageFmt];		/* (s15.0) */
   tmemMask  = TMEMMASK[bg->s.imageSiz];		/* (s10.5) */
   tmemShift = TMEMSHIFT[bg->s.imageSiz];	/* (s10.5)->(s15.0) */
@@ -332,7 +332,7 @@ end */
   /* Calculate tmem width to accommodate the slice image width */
   /* 	o Extra is needed at Bilerp time.
   //	o Clamp slice image width based on image source width.
-  //	o Cut image width end number at TMEM Word boundary. 
+  //	o Cut image width end number at TMEM Word boundary.
   //	o tmem width + 1 when start position not in agreement with Word boundary */
 /* addition 99/05/31(Y) */
 #if BUILD_VERSION >= VERSION_K
@@ -342,15 +342,15 @@ end */
   }
   else{
      imageSliceWmax = (((s32)bg->s.frameW * (s32)scaleW)>>7) + (flagBilerp<<5);
-     if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;  
+     if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;
   }
 #else
   imageSliceWmax = (((s32)bg->s.frameW * (s32)scaleW)>>7) + (flagBilerp<<5);
-  if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;  
+  if (imageSliceWmax > imageSrcW) imageSliceWmax = imageSrcW;
 #endif
 
   tmemSliceWmax  = (imageSliceWmax + tmemMask) / tmemShift + 1;
-  
+
   /* Get TMEM/image/frame line number that can be loaded at once */
    tmemSliceLines = tmemSize / tmemSliceWmax;		/* (s15.0) */
   imageSliceLines = tmemSliceLines - flagBilerp;	/* (s15.0) */
@@ -361,22 +361,22 @@ end */
   if (imageLYoffset < 0) imageLYoffset -= (scaleH - 1);
   frameLYoffset = imageLYoffset / scaleH;
   frameLYoffset <<= 10;
-  
+
   /* Get slice number corresponding to image Y */
   if (frameLYoffset >= 0){
     imageNumSlice = frameLYoffset / frameSliceLines;
   } else {
     imageNumSlice = (frameLYoffset - frameSliceLines + 1) / frameSliceLines;
   }
-  
+
   /* Calculate extent to which first draw slice is hidden at top of frame */
   frameLYslice = (frameLSliceL0 = frameSliceLines * imageNumSlice) & ~1023;
   frameLHidden = frameLYoffset - frameLYslice;
   imageLHidden = (frameLHidden >> 10) * scaleH;
-  
+
   /* Calculate fram size of first draw slice */
-  frameLSliceL0 = (frameLSliceL0 & 1023) + frameSliceLines - frameLHidden;  
-  
+  frameLSliceL0 = (frameLSliceL0 & 1023) + frameSliceLines - frameLHidden;
+
   /* Calculate image parameters for draw in midst of slice */
   imageT        = (imageLHidden >> 5) & 31;
   imageLHidden  >>= 10;
@@ -401,7 +401,7 @@ end */
   /*-------------------------------------------------*
     Creating RDP command constant values
    *-------------------------------------------------*/
-  /*	u32	rdpSetTimg_w0; 
+  /*	u32	rdpSetTimg_w0;
   	u32	rdpSetTile_w0; */
 /* Addition 99/05/31(Y) */
 #if BUILD_VERSION >= VERSION_K
@@ -431,12 +431,12 @@ end */
   (*pkt)->words.w1 = 0x00000000;
   (*pkt)++;
 }
-  
+
 {
   s16	imageRemain;
   s16	imageSliceH, frameSliceH;
-  
-  imageRemain     = tmemSrcLines - imageIY0;  
+
+  imageRemain     = tmemSrcLines - imageIY0;
   imageSliceH     = imageISliceL0;
   frameSliceCount = frameLSliceL0;
 
@@ -453,11 +453,11 @@ end */
 	imagePtr = imageTop - (imageRemain * imageSrcWsize) + imagePtrX0;
 	imageRemain += tmemSrcLines;
       }
-      
+
     } else {
       /* If draw to be performed */
       s16	framePtrY1;
-      
+
       frameSliceCount &= 1023;
       if ((frameRemain -= frameSliceH) < 0){
 	/* Determine final slice */
@@ -466,10 +466,10 @@ end */
 	if (imageSliceH > imageSliceLines) imageSliceH = imageSliceLines;
       }
       tmemLoad(pkt, &imagePtr, &imageRemain, imageSliceH, flagBilerp);
-      
+
       /* Get draw frame range */
       framePtrY1 = framePtrY0 + frameSliceH;		/* (s15.0) */
-      
+
       /* [PipeSync] Wait for end of preceding LOADTILE command */
       (*pkt)->words.w0 = (G_RDPPIPESYNC<<24);
       (*pkt) ++;
@@ -489,14 +489,14 @@ end */
 	(*pkt)->words.w1 =                 (frameX0<<12)|(framePtrY0<<2);
 	(*pkt) ++;
 #endif
-	
+
 #if 0	/* At RDP command creation time */
 	(*pkt)->words.w0 = (imageS<<16) | imageT;
 	(*pkt)->words.w1 = (scaleW<<16) | scaleH;
 #else	/* At RSP command creation time */
 	(*pkt)->words.w0 = (G_RDPHALF_1<<24);
 	(*pkt)->words.w1 = (imageS<<16) | imageT;
-	(*pkt) ++;      
+	(*pkt) ++;
 	(*pkt)->words.w0 = (G_RDPHALF_2<<24);
 	(*pkt)->words.w1 = (scaleW<<16) | scaleH;
 #endif

@@ -49,7 +49,7 @@ sudo apt install binutils-mips-linux-gnu
 ## Building
 
 Run make setup with the proper flags set followed by make with optional jobs.
-For example, if building the 2.0L PC archive you'd do the following: 
+For example, if building the 2.0L PC archive you'd do the following:
 
 - `make VERSION=L TARGET=libgultra_rom setup`
 - `make VERSION=L TARGET=libgultra_rom`

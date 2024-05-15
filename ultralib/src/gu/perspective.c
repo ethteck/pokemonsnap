@@ -40,7 +40,7 @@ void guPerspectiveF(float mf[4][4], u16 *perspNorm, float fovy, float aspect, fl
 		*perspNorm = (u16) 0xFFFF;
 	    } else  {
 		*perspNorm = (u16) ((2.0*65536.0)/(near+far));
-		if (*perspNorm<=0) 
+		if (*perspNorm<=0)
 		    *perspNorm = (u16) 0x0001;
 	    }
 	}

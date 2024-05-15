@@ -4,7 +4,7 @@
 
 struct SignalParam {
     GObj* obj;
-    s32 cmd; 
+    s32 cmd;
 };
 
 s32 padding1[4];

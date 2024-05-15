@@ -107,7 +107,7 @@ void func_800A1520(void) {
 }
 
 void func_800A1528(void) {
-    
+
 }
 
 void renderModelTypeAFogged(GObj* arg0) {

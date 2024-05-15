@@ -175,15 +175,15 @@ void Items_LinkObject(GObj* obj) {
     ItemListEntry* v0;
 
     v0 = Items_FreeObjectListHead;
-    v1 = Items_FreeObjectListHead;    
+    v1 = Items_FreeObjectListHead;
     if (Items_FreeObjectListHead == NULL) {
         return;
     }
     Items_FreeObjectListHead = Items_FreeObjectListHead->next;
-    
+
     v1->prev = Items_AllocatedObjectListTail;
-    v1->next = NULL;    
-    
+    v1->next = NULL;
+
     if (v1->prev != NULL) {
         Items_AllocatedObjectListTail = v1;
         v1->prev->next = v1;
@@ -228,12 +228,12 @@ void Items_UnlinkObject(GObj* obj) {
 // loop not unrolled
 s32 Items_GetFreeObjectID(void) {
     s32 i;
-    
+
     Items_ObjectCounter++;
     if (Items_ObjectCounter >= 20) {
         Items_ObjectCounter = 0;
     }
-    
+
     for (i = Items_ObjectCounter; i < 20; i++) {
         if (Items_ListEntryArray[i].obj == NULL) {
             return BASE_ITEM_OBJID + i;
@@ -275,7 +275,7 @@ void Items_InitItem(GObj* obj, Vec3f* pos, Vec3f* extraVelocity) {
     Vec3fNormalize(&velocity);
     Vec3fScale(&velocity, 50.0f); // base speed
     Vec3fAdd(&velocity, extraVelocity);
-    
+
     item = obj->userData;
     item->state = ITEM_STATE_FLYING;
     item->flags = 0;
@@ -369,7 +369,7 @@ void Items_PlaySound(DObj* model, s32 soundID) {
     f32 dist;
     Vec3f playerPos;
     Vec3f pos;
-    Vec3f diff;    
+    Vec3f diff;
 
     pos.x = model->position.v.x;
     pos.y = model->position.v.y;
@@ -427,7 +427,7 @@ void Items_CollideWithGround(GObj* obj, GroundResult* groundResult) {
                 item->state = ITEM_STATE_STILL;
             }
         }
-        obj->flags |= GOBJ_FLAG_HIDDEN;        
+        obj->flags |= GOBJ_FLAG_HIDDEN;
         Items_EndProcessByFunction(obj, Items_ShowDelayed);
         omCreateProcess(obj, Items_RemovePesterBall, 1, 7);
         animSetTextureAnimationSpeed(obj, 0.0f);
@@ -547,7 +547,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
     Vec3f velocity;
     Vec3f normal;
     Vec3f dirUp;
-    f32 newvar = 0.5f;    
+    f32 newvar = 0.5f;
     f32 speed;
     f32 unused;
     f32 normalSpeed;
@@ -565,7 +565,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
         omEndProcess(NULL);
         return;
     }
-    
+
 
     normal.x = result->normal.x;
     normal.y = result->normal.y;
@@ -575,8 +575,8 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
     dirUp.z = 0.0f;
     velocity.x = item->velocity.x;
     velocity.y = item->velocity.y;
-    velocity.z = item->velocity.z;    
-    
+    velocity.z = item->velocity.z;
+
     speed = Vec3fNormalize(&velocity);
     normalSpeed = normal.x * velocity.x + normal.y * velocity.y + normal.z * velocity.z;
     if (ABS(normalSpeed) > 0.001f) {
@@ -599,7 +599,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
                 item->state = ITEM_STATE_STILL;
             }
         }
-        obj->flags |= GOBJ_FLAG_HIDDEN;        
+        obj->flags |= GOBJ_FLAG_HIDDEN;
         Items_EndProcessByFunction(obj, Items_ShowDelayed);
         omCreateProcess(obj, Items_RemovePesterBall, 1, 7);
         animSetTextureAnimationSpeed(obj, 0.0f);
@@ -703,7 +703,7 @@ void Items_BounceFromCeiling(GObj* obj, GroundResult* ceilingResult) {
     prevX = item->prevPos.x;
     prevY = item->prevPos.y;
     prevZ = item->prevPos.z;
-    
+
     currX = model->position.v.x;
     currY = model->position.v.y;
     currZ = model->position.v.z;
@@ -711,7 +711,7 @@ void Items_BounceFromCeiling(GObj* obj, GroundResult* ceilingResult) {
     // reuiqred for matching, affects only regalloc
     midX = 0.0f;
     midZ = 0.0f;
-    
+
     d = sqrtf(SQ(currX - prevX) + SQ(currZ - prevZ));
     // find approximate intersection point
     for (i = 0; i < 100; i++) {
@@ -734,7 +734,7 @@ void Items_BounceFromCeiling(GObj* obj, GroundResult* ceilingResult) {
             prevZ = midZ;
         }
     }
-    
+
     oldX = model->position.v.x;
     oldY = model->position.v.y;
     oldZ = model->position.v.z;
@@ -835,7 +835,7 @@ void Items_BounceFromCeilingAndGround(GObj* obj, GroundResult* result) {
                 item->state = ITEM_STATE_STILL;
             }
         }
-        obj->flags |= GOBJ_FLAG_HIDDEN;        
+        obj->flags |= GOBJ_FLAG_HIDDEN;
         Items_EndProcessByFunction(obj, Items_ShowDelayed);
         omCreateProcess(obj, Items_RemovePesterBall, 1, 7);
         animSetTextureAnimationSpeed(obj, 0.0f);
@@ -902,7 +902,7 @@ void Items_UpdateItemMovement(GObj* obj) {
     Vec3f vel2;
     UnkBrassLynx* v03;
     f32 sp11C;
-    GObj* closestPokemon;    
+    GObj* closestPokemon;
     Pokemon* pokemon;
     Vec3f sp108;
     GroundResult groundResult;
@@ -957,7 +957,7 @@ void Items_UpdateItemMovement(GObj* obj) {
     if (distToGround > 0.375f && model->position.v.y < groundResult.height) {
         Items_BounceFromGround(obj, &groundResult);
         return;
-    }    
+    }
     if (distToGround <= 0.375f) {
         // exactly on ground
         item->prevPos.x = model->position.v.x;
@@ -1184,7 +1184,7 @@ void Items_SpawnPesterBall(Vec3f* pos, Vec3f* extraVelocity) {
         Items_DeleteItem(Items_AllocatedObjectListHead->obj);
     }
     Items_TotalItemCount++;
-    Items_PesterBallCount++;    
+    Items_PesterBallCount++;
     ballObj = omAddGObj(Items_GetFreeObjectID(), Items_UpdateObject, LINK_ITEM, 0x80000000);
     omLinkGObjDL(ballObj, renderModelTypeBFogged, DL_LINK_3, 0x80000000, -1);
     anim_func_80010230(ballObj, D_800E9138, D_800E8EB8, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
@@ -1211,7 +1211,7 @@ void Items_SpawnApple(Vec3f* pos, Vec3f* extraVelocity) {
         Items_DeleteItem(Items_AllocatedObjectListHead->obj);
     }
     Items_TotalItemCount++;
-    Items_AppleCount++;    
+    Items_AppleCount++;
     appleObj = omAddGObj(Items_GetFreeObjectID(), Items_UpdateObject, LINK_ITEM, 0x80000000);
     omLinkGObjDL(appleObj, renderModelTypeBFogged, DL_LINK_3, 0x80000000, -1);
     anim_func_80010230(appleObj, D_800EAED0, D_800EAC58, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);

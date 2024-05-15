@@ -112,7 +112,7 @@ Vtx D_800E8FA0[8] = {
 // ROM: 0x667D0 - 0x668E8
 // VRAM: 0x800E9020 - 0x800E9138
 /*
-Gfx D_800E9020_667D0[] = 
+Gfx D_800E9020_667D0[] =
 {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_LIGHTING),

@@ -5,8 +5,8 @@ s32 D_800E6B14_642C4 = 0;
 
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2) {
     if (block->blockModel->fnRender == &renRenderModelTypeA ||
-        block->blockModel->fnRender == &renderModelTypeAFogged || 
-        block->blockModel->fnRender == &renRenderModelTypeB || 
+        block->blockModel->fnRender == &renderModelTypeAFogged ||
+        block->blockModel->fnRender == &renRenderModelTypeB ||
         block->blockModel->fnRender == &renderModelTypeBFogged)
     {
         DObj* child = omDObjAddChild(block->blockModel->data.dobj, arg2.d.gfx);
@@ -49,7 +49,7 @@ void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
         s32 unused;
         s32 i;
         DObj* sp54[18];
-        DObj* child;        
+        DObj* child;
 
         for (i = 0; i < ARRAY_COUNT(sp54); i++) {
             sp54[i] = NULL;
@@ -71,7 +71,7 @@ void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
                 child->scale.v.x = arg1->unk_1C.x;
                 child->scale.v.y = arg1->unk_1C.y;
                 child->scale.v.z = arg1->unk_1C.z;
-                omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 1);                
+                omDObjAppendMtx(child, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 1);
             }
 
             child->position.v.x = arg1->unk_04.x * 100.0f;

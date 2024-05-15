@@ -731,7 +731,6 @@ void func_80351F44_4F2354(Vec3f* arg0) {
     arg0->z = z * sp28 - x * sp2C + D_80366BA4_506FB4.unk_0C.z;
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351FF0_4F2400.s")
 void func_80351FF0_4F2400(GObj* obj) {
     s32 unused1;
     s32 i;

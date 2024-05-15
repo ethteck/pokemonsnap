@@ -2,11 +2,11 @@
  Copyright (C) 1998,1999 NINTENDO CO,Ltd,
  Copyright (C) 1998,1999 MONEGI CORPORATION,
 	All Rights Reserved
-This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp. 
+This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp.
 and it is not to be reproduced, published, disclosed to others, copied,
-adapted, distributed, or displayed without the prior authorization of 
-NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed 
-this Notice on all copies of the program, including partial copies or 
+adapted, distributed, or displayed without the prior authorization of
+NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed
+this Notice on all copies of the program, including partial copies or
 modified versions thereof.
 *************************************************************************/
 /************************************************************************
@@ -38,7 +38,7 @@ modified versions thereof.
 #define	mask_hi t9
 #define	magni	fv0
 
-	.text	
+	.text
 	.align	5
 LEAF( guMtxL2F )
 	.set reorder
@@ -48,7 +48,7 @@ LEAF( guMtxL2F )
 label_loop:
 	lw	t0, 0(ptr_mtx)
 	lw	t1, 32(ptr_mtx)
-	
+
 	and	t2, t0, mask_hi
 	srl	t3, t1, 16
 	or	ta0, t2, t3

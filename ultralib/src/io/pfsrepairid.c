@@ -34,7 +34,7 @@ s32 osPfsRepairId(OSPfs *pfs) {
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, 1, (u8*)&temp));
     __osIdCheckSum((u16*)&temp, &sum, &isum);
     id = (__OSPackId*)&temp;
-    
+
     if (id->checksum != sum || id->inverted_checksum != isum) {
         ret = __osCheckPackId(pfs, id);
 
@@ -54,7 +54,7 @@ s32 osPfsRepairId(OSPfs *pfs) {
             return PFS_ERR_DEVICE;
         }
     }
-    
+
     for (k = 0; k < ARRLEN(pfs->id); k++) {
         pfs->id[k] = ((u8*)id)[k];
     }

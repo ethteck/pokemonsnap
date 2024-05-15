@@ -22,7 +22,7 @@
 #include <os_internal.h>
 #include <ultraerror.h>
 
-void alSndpSetPitch(ALSndPlayer *sndp, f32 pitch) 
+void alSndpSetPitch(ALSndPlayer *sndp, f32 pitch)
 {
     ALSndpEvent evt;
     ALSoundState  *sState = sndp->sndState;
@@ -30,7 +30,7 @@ void alSndpSetPitch(ALSndPlayer *sndp, f32 pitch)
     /*
      * If this is set during playback there will be
      * a the envelope lengths won't be accurate - but you can still
-     * do it. 
+     * do it.
      */
 
 #ifdef _DEBUG

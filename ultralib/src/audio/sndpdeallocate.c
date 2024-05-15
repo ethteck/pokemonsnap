@@ -30,6 +30,6 @@ void alSndpDeallocate(ALSndPlayer *sndp, ALSndId id)
 
     sState[id].sound = 0;
     if (sndp->target == id) /* if we are deleting the target sound */
-        sndp->target = -1;      
+        sndp->target = -1;
 }
 

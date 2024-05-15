@@ -30,7 +30,7 @@ s32 alSynAllocVoice(ALSynth *drvr, ALVoice *voice, ALVoiceConfig *vc)
     ALFilter *f;
     ALParam *update;
     s32 stolen;
-    
+
 #ifdef _DEBUG
     /* need two updates if voice is stolen */
     if (drvr->paramList == 0) {
@@ -40,26 +40,26 @@ s32 alSynAllocVoice(ALSynth *drvr, ALVoice *voice, ALVoiceConfig *vc)
         __osError(ERR_ALSYN_NO_UPDATE, 0);
         return 0;
     }
-#endif    
+#endif
 
     voice->priority     = vc->priority;
     voice->unityPitch   = vc->unityPitch;
     voice->table        = 0;
     voice->fxBus        = vc->fxBus;
-    voice->state        = AL_STOPPED;        
+    voice->state        = AL_STOPPED;
     voice->pvoice       = 0;
 
     stolen = _allocatePVoice(drvr, &pvoice, vc->priority);
-        
+
     if (pvoice) {    /* if we were able to allocate a voice */
 
-        f = pvoice->channelKnob;            
-            
+        f = pvoice->channelKnob;
+
         if (stolen) {
-                
+
             pvoice->offset = 512;
             pvoice->vvoice->pvoice = 0; /* zero stolen voice */
-                
+
             /*
              * ramp down stolen voice
              */
@@ -80,7 +80,7 @@ s32 alSynAllocVoice(ALSynth *drvr, ALVoice *voice, ALVoiceConfig *vc)
                 update->next   = 0;
                 (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
             } else {
-#ifdef _DEBUG                
+#ifdef _DEBUG
                 __osError(ERR_ALSYN_NO_UPDATE, 0);
 #endif
             }
@@ -88,13 +88,13 @@ s32 alSynAllocVoice(ALSynth *drvr, ALVoice *voice, ALVoiceConfig *vc)
         } else {
             pvoice->offset = 0;
         }
-            
+
         pvoice->vvoice = voice;     /* assign new voice  */
         voice->pvoice  = pvoice;
 
     }
-    
-    return (pvoice != 0);    
+
+    return (pvoice != 0);
 }
 
 s32 _allocatePVoice(ALSynth *drvr, PVoice **pvoice, s16 priority)
@@ -102,15 +102,15 @@ s32 _allocatePVoice(ALSynth *drvr, PVoice **pvoice, s16 priority)
     ALLink      *dl;
     PVoice      *pv;
     s32         stolen = 0;
-    
+
     if ((dl = drvr->pLameList.next) != 0) { /* check the lame list first */
         *pvoice = (PVoice *) dl;
         alUnlink(dl);
-        alLink(dl, &drvr->pAllocList);        
+        alLink(dl, &drvr->pAllocList);
     } else if ((dl = drvr->pFreeList.next) != 0) { /* from the free list */
         *pvoice = (PVoice *) dl;
         alUnlink(dl);
-        alLink(dl, &drvr->pAllocList);        
+        alLink(dl, &drvr->pAllocList);
     } else { /* steal one */
         for (dl = drvr->pAllocList.next; dl != 0; dl = dl->next) {
             pv = (PVoice *)dl;
@@ -126,7 +126,7 @@ s32 _allocatePVoice(ALSynth *drvr, PVoice **pvoice, s16 priority)
             }
         }
     }
-    
+
     return stolen;
 }
 

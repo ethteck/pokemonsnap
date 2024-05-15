@@ -37,6 +37,6 @@ s32 alSeqpGetChlProgram(ALSeqPlayer *seqp, u8 chan)
             return i;
     }
     return(-1);
-    
+
 }
 

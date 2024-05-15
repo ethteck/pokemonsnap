@@ -54,7 +54,7 @@ enum {
 };
 
 #define AL_MAX_RSP_SAMPLES      160
-    
+
 /*
  * buffer locations based on AL_MAX_RSP_SAMPLES
  */
@@ -162,7 +162,7 @@ typedef struct {
     s32                         sample;
     s32                         lastsam;
     s32                         first;
-    s32                         memin; 
+    s32                         memin;
 } ALLoadFilter;
 
 void    alLoadNew(ALLoadFilter *f, ALDMANew dma, ALHeap *hp);

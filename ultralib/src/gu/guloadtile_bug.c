@@ -41,18 +41,18 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 	int             tile_width,
 	                tile_height;	/*
 
-									 * in texels 
+									 * in texels
 									 */
 	int             dxt;
 	int             sizeb;
 	int             lineb;
 	int             line_size;	/*
 
-								 * in 64-bit words 
+								 * in 64-bit words
 								 */
 	int             texel_num_pad;	/*
 
-									 * in texels, pad to 64-bit word size 
+									 * in texels, pad to 64-bit word size
 									 */
 	int             count;
 	int             tmem;
@@ -81,7 +81,7 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 	dxt = CALC_DXT(tile_width, sizeb);
 	line_size = ((tile_width * lineb) + 7) >> 3;
 	/*
-	 * pad line to word boundary 
+	 * pad line to word boundary
 	 */
 	texel_num_pad = ((((tile_width * sizeb) + 7) >> 3) * 8) / sizeb;
 
@@ -89,12 +89,12 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 
 	for (line = 0; line < tile_height; line += 2) {
 		t = (ult + line) & ~1;	/*
-								 * load from even line 
+								 * load from even line
 								 */
 		tmem = line * line_size;
 
 		/*
-		 * set for both loads, avoid sync by alternating tiles 
+		 * set for both loads, avoid sync by alternating tiles
 		 */
 		tile = (line % 4) ? 1 : 0;
 
@@ -103,7 +103,7 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 				   cms, masks, shifts);
 
 		/*
-		 * do odd line first 
+		 * do odd line first
 		 */
 		s = uls + img_width - texel_num_pad;
 		count = (texel_num_pad * 2) - 1;
@@ -111,7 +111,7 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 		gDPLoadBlock(temp++, G_TX_LOADTILE - tile, s, t, s + count, dxt);
 
 		/*
-		 * do even line 
+		 * do even line
 		 */
 		s = uls;
 		count = tile_width - 1;
@@ -122,7 +122,7 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 	}
 
 	/*
-	 * set final tile 
+	 * set final tile
 	 */
 	gDPSetTile(temp++, texl_fmt, texl_size, line_size, 0, G_TX_RENDERTILE, 0,
 			   cmt, maskt, shiftt,
@@ -136,7 +136,7 @@ guDPLoadTextureTile(Gfx * temp, void *timg,
 }
 
 /*
- *  4-BIT VERSION 
+ *  4-BIT VERSION
  */
 
 /*
@@ -188,12 +188,12 @@ guDPLoadTextureTile_4b(Gfx * temp, void *timg,
 
 	for (line = 0; line < tile_height; line += 2) {
 		t = (ult + line) & ~1;	/*
-								 * load from even line 
+								 * load from even line
 								 */
 		tmem = line * line_size;
 
 		/*
-		 * set for both loads, avoid sync by alternating tiles 
+		 * set for both loads, avoid sync by alternating tiles
 		 */
 		tile = (line % 4) ? 1 : 0;
 
@@ -202,7 +202,7 @@ guDPLoadTextureTile_4b(Gfx * temp, void *timg,
 				   cms, masks, shifts);
 
 		/*
-		 * do odd line first 
+		 * do odd line first
 		 */
 		s = uls + img_width - line_size * 8;
 		count = (line_size * 8 * 2) - 1;
@@ -210,7 +210,7 @@ guDPLoadTextureTile_4b(Gfx * temp, void *timg,
 		gDPLoadBlock(temp++, G_TX_LOADTILE - tile, s, t, s + count, dxt);
 
 		/*
-		 * do even line 
+		 * do even line
 		 */
 		s = uls;
 		count = tile_width - 1;
@@ -221,7 +221,7 @@ guDPLoadTextureTile_4b(Gfx * temp, void *timg,
 	}
 
 	/*
-	 * set final tile 
+	 * set final tile
 	 */
 	gDPSetTile(temp++, texl_fmt, G_IM_SIZ_4b, line_size, 0, G_TX_RENDERTILE, 0,
 			   cmt, maskt, shiftt,

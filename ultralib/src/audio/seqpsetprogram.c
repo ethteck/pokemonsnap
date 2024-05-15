@@ -30,7 +30,7 @@ void alSeqpSetChlProgram(ALSeqPlayer *seqp, u8 chan, u8 prog)
     evt.msg.midi.status = AL_MIDI_ProgramChange | chan;
     evt.msg.midi.byte1  = prog;
     evt.msg.midi.byte2  = 0;
-                    
+
     alEvtqPostEvent(&seqp->evtq, &evt, 0);
 }
 

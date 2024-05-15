@@ -33,7 +33,7 @@ extern u32 cnt_index, resampler_num, resampler_cnt, resampler_max, resampler_min
 /***********************************************************************
  * Resampler filter public interfaces
  ***********************************************************************/
-Acmd *alResamplePull(void *filter, s16 *outp, s32 outCnt, s32 sampleOffset, Acmd *p) 
+Acmd *alResamplePull(void *filter, s16 *outp, s32 outCnt, s32 sampleOffset, Acmd *p)
 {
     ALResampler *f = (ALResampler *)filter;
     Acmd        *ptr = p;
@@ -42,11 +42,11 @@ Acmd *alResamplePull(void *filter, s16 *outp, s32 outCnt, s32 sampleOffset, Acmd
     ALFilter    *source = f->filter.source;
     s32		incr;
     f32         finCount;
-    
+
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
+
     inp = AL_DECODER_OUT;
 
     if (!outCnt)
@@ -95,7 +95,7 @@ Acmd *alResamplePull(void *filter, s16 *outp, s32 outCnt, s32 sampleOffset, Acmd
 	aResample(ptr++, f->first, incr, osVirtualToPhysical(f->state));
 	f->first = 0;
     }
-    
+
 #ifdef AUD_PROFILE
     PROFILE_AUD(resampler_num, resampler_cnt, resampler_max, resampler_min);
 #endif
@@ -110,13 +110,13 @@ s32 alResampleParam(void *filter, s32 paramID, void *param)
         f32             f;
         s32             i;
     } data;
-    
+
     switch (paramID) {
 
         case (AL_FILTER_SET_SOURCE):
             f->source = (ALFilter *) param;
             break;
-	  
+
         case (AL_FILTER_RESET):
             r->delta  = 0.0;
             r->first  = 1;
@@ -131,16 +131,16 @@ s32 alResampleParam(void *filter, s32 paramID, void *param)
             if (f->source)
                 (*f->source->setParam)(f->source, AL_FILTER_START, 0);
             break;
-            
+
         case (AL_FILTER_SET_PITCH):
             data.i = (s32) param;
             r->ratio = data.f;
             break;
-            
+
 	case (AL_FILTER_SET_UNITY_PITCH):
 	    r->upitch = 1;
             break;
-            
+
         default:
             if (f->source)
                 (*f->source->setParam)(f->source, paramID, param);

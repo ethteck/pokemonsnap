@@ -15,7 +15,7 @@
 /*
  *  Return a pseudorandom 32 bit number
  *  try the RAND macro too
- *   
+ *
  */
 int guRandom(void)
 {

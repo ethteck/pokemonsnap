@@ -101,7 +101,7 @@ __os_Kdebug_Pkt:
 __osPreviousThread:
     .word 0
 #endif
-#endif  
+#endif
 
 .text
 
@@ -174,7 +174,7 @@ pt_prof:
 END(__ptException)
 #endif
 
-LEAF(__osException) 
+LEAF(__osException)
     la      k0, __osThreadSave
     /* save AT */
 .set noat
@@ -391,7 +391,7 @@ skip_kmc_mode:
 
 savecontext:
     move    t0, k0
-    lw      k0, __osRunningThread 
+    lw      k0, __osRunningThread
 #if !defined(_FINALROM) && BUILD_VERSION >= VERSION_K
     sw      k0, __osPreviousThread
 #endif
@@ -440,7 +440,7 @@ savecontext:
     lw      k1, THREAD_SR(k0)
     andi    t1, k1, SR_IMASK
     beqz    t1, savercp
-    
+
 /*if any interrupts are enabled*/
     la      t0, __OSGlobalIntMask
     lw      t0, 0(t0)
@@ -520,10 +520,10 @@ no_rdb_mesg:
     andi    t1, t0, CAUSE_EXCMASK
     li      t2, EXC_BREAK
     beq     t1, t2, handle_break
-    
+
     li      t2, EXC_CPU
     beq     t1, t2, handle_CpU
-    
+
     li      t2, EXC_INT
     bne     t1, t2, panic
 handle_interrupt:
@@ -532,7 +532,7 @@ next_interrupt:
     andi    t1, s0, SR_IMASK
     srl     t2, t1, 0xc
     bnez    t2, 1f
-    
+
     srl     t2, t1, SR_IMASKSHIFT
     addi    t2, t2, 16
 1:
@@ -545,7 +545,7 @@ next_interrupt:
 IP6_Hdlr:
     and     s0, s0, ~CAUSE_IP6
     b       next_interrupt
-    
+
 IP7_Hdlr:
     and     s0, s0, ~CAUSE_IP7
     b       next_interrupt
@@ -569,30 +569,30 @@ cart:
 
     lw      sp, HWINTR_SP(t1)
     jalr    t2
-    
+
     li      a0, MESG(OS_EVENT_CART)
     beqz    v0, 1f
     b       redispatch
-    
+
 1:
     jal     send_mesg
     b       next_interrupt
 #else
     li      a0, MESG(OS_EVENT_CART)
     and     s0, s0, ~CAUSE_IP4
-    la      sp, leoDiskStack 
+    la      sp, leoDiskStack
     addiu   sp, 0x1000 - 0x10 # Stack size minus initial frame
     li      t2, HWINTR_SIZE
     lw      t2, __osHwIntTable(t2)
 
     beqz    t2, 1f
-    
+
     jalr    t2
     li      a0, MESG(OS_EVENT_CART)
-    
+
     beqz    v0, 1f
     b       redispatch
-    
+
 1:
     jal     send_mesg
     b       next_interrupt
@@ -628,48 +628,48 @@ sp_other_break:
     jal     send_mesg
 
     beqz    s1, NoMoreRcpInts
-    
+
 vi:
     andi    t1, s1, 0x8
     beqz    t1, ai
-    
+
     andi    s1, s1, 0x37
-    
+
     sw      zero, PHYS_TO_K1(VI_CURRENT_REG)
     li      a0, MESG(OS_EVENT_VI)
     jal     send_mesg
     beqz    s1, NoMoreRcpInts
-    
+
 ai:
     andi    t1, s1, 0x4
     beqz    t1, si
 
     andi    s1, s1, 0x3b
-    
+
     li      t1, 1
     sw      t1, PHYS_TO_K1(AI_STATUS_REG)
 
     li      a0, MESG(OS_EVENT_AI)
     jal     send_mesg
     beqz    s1, NoMoreRcpInts
-    
+
 si:
     andi    t1, s1, 0x2
     beqz    t1, pi
-    
+
     andi    s1, s1, 0x3d
     /* any write clears interrupts */
-    sw      zero, PHYS_TO_K1(SI_STATUS_REG) 
+    sw      zero, PHYS_TO_K1(SI_STATUS_REG)
     li      a0, MESG(OS_EVENT_SI)
     jal     send_mesg
     beqz    s1, NoMoreRcpInts
-    
+
 pi:
     andi    t1, s1, 0x10
     beqz    t1, dp
 
     andi    s1, s1, 0x2f
-    
+
     li      t1, PI_STATUS_CLR_INTR
     sw      t1, PHYS_TO_K1(PI_STATUS_REG)
 
@@ -691,7 +691,7 @@ pi:
 2:
 #endif
     beqz    s1, NoMoreRcpInts
-    
+
 dp:
     andi    t1, s1, 0x20
     beqz    t1, NoMoreRcpInts
@@ -700,7 +700,7 @@ dp:
 
     li      t1, MI_CLR_DP_INTR
     sw      t1, PHYS_TO_K1(MI_INIT_MODE_REG)
-    
+
     li      a0, MESG(OS_EVENT_DP)
     jal     send_mesg
 
@@ -716,7 +716,7 @@ prenmi:
     la      t1, __osShutdown
     lw      t2, 0(t1)
     beqz    t2, firstnmi
-    
+
     and     s0, s0, ~CAUSE_IP5
     b       redispatch
 
@@ -759,21 +759,21 @@ handle_break:
     li      a0, MESG(OS_EVENT_CPU_BREAK)
     jal     send_mesg
     b       redispatch
-    
+
 redispatch:
     lw      t1, THREAD_PRI(k0)
     lw      t2, __osRunQueue
     lw      t3, THREAD_PRI(t2)
-    
+
     bge     t1, t3, enqueueRunning
-    
+
     move    a1, k0
     la      a0, __osRunQueue
-    
+
     jal     __osEnqueueThread
-    
+
     j       __osDispatchThread
-    
+
 enqueueRunning:
     la      t1, __osRunQueue
     lw      t2, MQ_MTQUEUE(t1)
@@ -795,17 +795,17 @@ STAY2(mfc0  t2, C0_BADVADDR)
     jal     send_mesg
     j       __osDispatchThread
 END(__osException)
-    
+
 LEAF(send_mesg)
     move    s2, ra
     la      t2, __osEventStateTab
     addu    t2, t2, a0
     lw      t1, OS_EVENTSTATE_MESSAGE_QUEUE(t2)
     beqz    t1, send_done
-    
+
     lw      t3, MQ_VALIDCOUNT(t1)
     lw      ta0, MQ_MSGCOUNT(t1)
-    
+
     bge     t3, ta0, send_done
 
     lw      ta1, MQ_FIRST(t1)
@@ -822,12 +822,12 @@ LEAF(send_mesg)
     lw      t2, MQ_MTQUEUE(t1)
     lw      t3, THREAD_NEXT(t2)
     beqz    t3, send_done
-    
+
     move    a0, t1
     jal     __osPopThread
 
     move    t2, v0
-    
+
     move    a1, t2
     la      a0, __osRunQueue
     jal     __osEnqueueThread
@@ -914,7 +914,7 @@ STAY2(mfc0  t0, C0_SR)
 noEnqueue:
     j       __osDispatchThread
 END(__osEnqueueAndYield)
-    
+
 /*__osEnqueueThread(OSThread **, OSThread *)*/
 LEAF(__osEnqueueThread)
     move    t9, a0
@@ -1037,7 +1037,7 @@ STAY2(ctc1  k1, fcr31)
     ldc1    $f26, THREAD_FP26(k0)
     ldc1    $f28, THREAD_FP28(k0)
     ldc1    $f30, THREAD_FP30(k0)
-    
+
 1:
 .set noreorder
     lw      k1, THREAD_RCP(k0)

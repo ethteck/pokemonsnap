@@ -37,7 +37,7 @@ void _Litob(_Pft *args, char type) {
 
     while (args->v.ll > 0 && i > 0) {
         lldiv_t qr = lldiv(args->v.ll, base);
-        
+
         args->v.ll = qr.quot;
         buff[--i] = digs[qr.rem];
     }

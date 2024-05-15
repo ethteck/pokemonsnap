@@ -34,12 +34,12 @@ s32 alHeapCheck(ALHeap *hp)
     HeapInfo    *hi;
     HeapInfo    *last = 0;
     u8          *ptr;
-    
+
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
-#ifdef _DEBUG    
+
+#ifdef _DEBUG
     for (ptr = hp->base; ptr < hp->cur; ptr += hi->size){
 
         hi = (HeapInfo *)ptr;
@@ -50,7 +50,7 @@ s32 alHeapCheck(ALHeap *hp)
             } else {
                 __osError(ERR_ALHEAPFIRSTBLOCK, 0);
             }
-            
+
             rv = 1;
 #ifdef AUD_PROFILE
     PROFILE_AUD(heap_num, heap_cnt, heap_max, heap_min);

@@ -411,12 +411,12 @@ MIPS_FP_LOAD_INSNS = [
 ]
 
 MIPS_LOAD_INSNS = [
-    MIPS_INS_LB, MIPS_INS_LBU, 
-    MIPS_INS_LH, MIPS_INS_LHU, 
-    MIPS_INS_LW, MIPS_INS_LWL, MIPS_INS_LWR, MIPS_INS_LWU, 
-    MIPS_INS_LD, MIPS_INS_LDL, MIPS_INS_LDR, 
+    MIPS_INS_LB, MIPS_INS_LBU,
+    MIPS_INS_LH, MIPS_INS_LHU,
+    MIPS_INS_LW, MIPS_INS_LWL, MIPS_INS_LWR, MIPS_INS_LWU,
+    MIPS_INS_LD, MIPS_INS_LDL, MIPS_INS_LDR,
     MIPS_INS_LL, MIPS_INS_LLD,
-    *MIPS_FP_LOAD_INSNS 
+    *MIPS_FP_LOAD_INSNS
 ]
 
 MIPS_FP_STORE_INSNS = [
@@ -424,10 +424,10 @@ MIPS_FP_STORE_INSNS = [
 ]
 
 MIPS_STORE_INSNS = [
-    MIPS_INS_SB, 
-    MIPS_INS_SH, 
-    MIPS_INS_SW, MIPS_INS_SWL, MIPS_INS_SWR,     
-    MIPS_INS_SD, MIPS_INS_SDL, MIPS_INS_SDR, 
+    MIPS_INS_SB,
+    MIPS_INS_SH,
+    MIPS_INS_SW, MIPS_INS_SWL, MIPS_INS_SWR,
+    MIPS_INS_SD, MIPS_INS_SDL, MIPS_INS_SDR,
     MIPS_INS_SC, MIPS_INS_SCD,
     *MIPS_FP_STORE_INSNS
 ]
@@ -526,9 +526,9 @@ mips_cop0_names = (
 )
 
 rsp_cop0_names = (
-    "SP_MEM_ADDR", "SP_DRAM_ADDR", "SP_RD_LEN"   , "SP_WR_LEN"   , 
-    "SP_STATUS"  , "SP_DMA_FULL" , "SP_DMA_BUSY" , "SP_SEMAPHORE", 
-    "DPC_START"  , "DPC_END"     , "DPC_CURRENT" , "DPC_STATUS"  , 
+    "SP_MEM_ADDR", "SP_DRAM_ADDR", "SP_RD_LEN"   , "SP_WR_LEN"   ,
+    "SP_STATUS"  , "SP_DMA_FULL" , "SP_DMA_BUSY" , "SP_SEMAPHORE",
+    "DPC_START"  , "DPC_END"     , "DPC_CURRENT" , "DPC_STATUS"  ,
     "DPC_CLOCK"  , "DPC_BUFBUSY" , "DPC_PIPEBUSY", "DPC_TMEM"    ,
 )
 
@@ -784,20 +784,20 @@ class MipsInsn:
         self.ft = mips_get_ft(self.raw, self.vaddr)
 
     do_sign_extend = [
-        MIPS_INS_ADDIU, MIPS_INS_SLTI, MIPS_INS_ADDI, MIPS_INS_DADDIU, 
-        MIPS_INS_LB, MIPS_INS_LBU, 
-        MIPS_INS_LH, MIPS_INS_LHU, 
-        MIPS_INS_LW, MIPS_INS_LWL, MIPS_INS_LWR, MIPS_INS_LWU, 
-        MIPS_INS_LWC1, 
-        MIPS_INS_LD, MIPS_INS_LDL, MIPS_INS_LDR, 
-        MIPS_INS_LDC1, 
-        MIPS_INS_LL, MIPS_INS_LLD, 
-        MIPS_INS_SB, 
-        MIPS_INS_SH, 
-        MIPS_INS_SW, MIPS_INS_SWL, MIPS_INS_SWR, 
-        MIPS_INS_SWC1, 
-        MIPS_INS_SD, MIPS_INS_SDL, MIPS_INS_SDR, 
-        MIPS_INS_SDC1, 
+        MIPS_INS_ADDIU, MIPS_INS_SLTI, MIPS_INS_ADDI, MIPS_INS_DADDIU,
+        MIPS_INS_LB, MIPS_INS_LBU,
+        MIPS_INS_LH, MIPS_INS_LHU,
+        MIPS_INS_LW, MIPS_INS_LWL, MIPS_INS_LWR, MIPS_INS_LWU,
+        MIPS_INS_LWC1,
+        MIPS_INS_LD, MIPS_INS_LDL, MIPS_INS_LDR,
+        MIPS_INS_LDC1,
+        MIPS_INS_LL, MIPS_INS_LLD,
+        MIPS_INS_SB,
+        MIPS_INS_SH,
+        MIPS_INS_SW, MIPS_INS_SWL, MIPS_INS_SWR,
+        MIPS_INS_SWC1,
+        MIPS_INS_SD, MIPS_INS_SDL, MIPS_INS_SDR,
+        MIPS_INS_SDC1,
         MIPS_INS_SC, MIPS_INS_SCD,
     ]
 
@@ -830,7 +830,7 @@ class MipsInsn:
 
     def set_e(self):
         self.elem = mips_get_elem(self.raw, self.vaddr)
-    
+
     def set_ed(self):
         self.elemd = mips_get_elemd(self.raw, self.vaddr)
 
@@ -960,7 +960,7 @@ mips_insns = {
         0b010111: (MIPS_INS_DSRAV,   "dsrav",   ("rd","rt","rs"), (True , False, False)),
         0b011000: (MIPS_INS_MULT,    "mult",    ("rs","rt"     ), (False, False       )),
         0b011001: (MIPS_INS_MULTU,   "multu",   ("rs","rt"     ), (False, False       )),
-        0b011010: (MIPS_INS_DIV,     "div",     ("rd","rs","rt"), (False, False, False)), # for some reason gas hates div instructions 
+        0b011010: (MIPS_INS_DIV,     "div",     ("rd","rs","rt"), (False, False, False)), # for some reason gas hates div instructions
         0b011011: (MIPS_INS_DIVU,    "divu",    ("rd","rs","rt"), (False, False, False)), #    with the correct number of operands
         0b011100: (MIPS_INS_DMULT,   "dmult",   ("rs","rt"     ), (False, False       )),
         0b011101: (MIPS_INS_DMULTU,  "dmultu",  ("rs","rt"     ), (False, False       )),
@@ -1278,7 +1278,7 @@ rsp_insns = {
     0b100101: (MIPS_INS_LHU,    "lhu",    ("rt","offset(base)"), (True , False)),
     0b101000: (MIPS_INS_SB,     "sb",     ("rt","offset(base)"), (False, False)),
     0b101001: (MIPS_INS_SH,     "sh",     ("rt","offset(base)"), (False, False)),
-    0b101011: (MIPS_INS_SW,     "sw",     ("rt","offset(base)"), (False, False)),   
+    0b101011: (MIPS_INS_SW,     "sw",     ("rt","offset(base)"), (False, False)),
     0b110010: (mips_get_lwc2, {
         0b00000: (MIPS_INS_LBV, "lbv", ("vt[ed]", "voffset(base)"), (True , False)),
         0b00001: (MIPS_INS_LSV, "lsv", ("vt[ed]", "voffset(base)"), (True , False)),

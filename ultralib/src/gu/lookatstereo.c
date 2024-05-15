@@ -104,7 +104,7 @@ void guLookAtStereo (Mtx *m, float xEye, float yEye, float zEye,
 {
 	Matrix	mf;
 
-	guLookAtStereoF(mf, xEye, yEye, zEye, xAt, yAt, zAt, 
+	guLookAtStereoF(mf, xEye, yEye, zEye, xAt, yAt, zAt,
 				xUp, yUp, zUp, eyedist);
 
 	guMtxF2L(mf, m);

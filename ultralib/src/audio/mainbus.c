@@ -21,7 +21,7 @@
 #include <libaudio.h>
 #include "synthInternals.h"
 
-Acmd *alMainBusPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset, Acmd *p) 
+Acmd *alMainBusPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset, Acmd *p)
 {
     Acmd        *ptr = p;
     ALMainBus   *m = (ALMainBus *)filter;
@@ -41,7 +41,7 @@ Acmd *alMainBusPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset, Acm
 	aMix(ptr++, 0, 0x7fff, AL_AUX_L_OUT, AL_MAIN_L_OUT);
 	aMix(ptr++, 0, 0x7fff, AL_AUX_R_OUT, AL_MAIN_R_OUT);
     }
-    
+
     return ptr;
 }
 
@@ -49,19 +49,19 @@ s32 alMainBusParam(void *filter, s32 paramID, void *param)
 {
     ALMainBus     *m = (ALMainBus *) filter;
     ALFilter    **sources = m->sources;
-    
+
     switch (paramID) {
 
         case (AL_FILTER_ADD_SOURCE):
             sources[m->sourceCount++] = (ALFilter *) param;
             break;
-            
+
         default:
             /* ??? */
             break;
     }
 
     return 0;
-    
+
 }
 

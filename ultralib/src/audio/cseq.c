@@ -26,12 +26,12 @@
 
 static u32 __readVarLen(ALCSeq *s,u32 track);
 static u8  __getTrackByte(ALCSeq *s,u32 track);
-static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event); 
+static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event);
 
 void alCSeqNew(ALCSeq *seq, u8 *ptr)
 {
     u32         i,tmpOff,flagTmp;
-    
+
     /* load the seqence pointed to by ptr   */
     seq->base = (ALCMidiHdr*)ptr;
     seq->validTracks = 0;
@@ -72,7 +72,7 @@ void alCSeqNextEvent(ALCSeq *seq,ALEvent *evt)
     if (!seq->validTracks)
 	__osError(ERR_ALSEQOVERRUN, 0);
 #endif
-    
+
 
     for(i = 0; i < 16 ; i++)
     {
@@ -87,7 +87,7 @@ void alCSeqNextEvent(ALCSeq *seq,ALEvent *evt)
             }
         }
     }
- 
+
     __alCSeqGetTrackEvent(seq,firstTrack,evt);
 
     evt->msg.midi.ticks = firstTime;
@@ -125,7 +125,7 @@ char __alCSeqNextDelta(ALCSeq *seq, s32 *pDeltaTicks)
 		firstTime = seq->evtDeltaTicks[i];
         }
     }
- 
+
     seq->deltaFlag = 0;
     *pDeltaTicks = firstTime;
 
@@ -133,18 +133,18 @@ char __alCSeqNextDelta(ALCSeq *seq, s32 *pDeltaTicks)
 }
 
 /* only call alCSeqGetTrackEvent with a valid track !! */
-static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event) 
+static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
 {
     u32     offset;
     u8      status, loopCt, curLpCt, *tmpPtr;
-    
+
 
     status = __getTrackByte(seq,track);     /* read the status byte */
 
     if (status == AL_MIDI_Meta) /* running status not allowed on meta events!! */
     {
         u8 type = __getTrackByte(seq,track);
-        
+
         if (type == AL_MIDI_META_TEMPO)
         {
             event->type = AL_TEMPO_EVT;
@@ -158,10 +158,10 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
         else if (type == AL_MIDI_META_EOT)
         {
             u32     flagMask;
-            
+
             flagMask = 0x01 << track;
             seq->validTracks = seq->validTracks ^ flagMask;
-            
+
             if(seq->validTracks) /* there is music left don't end */
                 event->type = AL_TRACK_END;
             else         /* no more music send AL_SEQ_END_EVT msg */
@@ -184,7 +184,7 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
                 *tmpPtr = loopCt; /* reset current loop count */
                 seq->curLoc[track] = tmpPtr + 5; /* move pointer to end of event */
             }
-            else 
+            else
             {
                 if(curLpCt != 0xFF) /* not a loop forever */
                     *tmpPtr = curLpCt - 1;   /* decrement current loop count */
@@ -199,11 +199,11 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
             event->type = AL_CSP_LOOPEND;
         }
 
-#ifdef _DEBUG        
+#ifdef _DEBUG
         else
             __osError(ERR_ALSEQMETA, 1, type);
 #endif
-        
+
     }
     else
     {
@@ -223,7 +223,7 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
             event->msg.midi.status = seq->lastStatus[track];
             event->msg.midi.byte1 = status;
         }
-        
+
         if (((event->msg.midi.status & 0xf0) != AL_MIDI_ProgramChange) &&
             ((event->msg.midi.status & 0xf0) != AL_MIDI_ChannelPressure))
         {
@@ -231,10 +231,10 @@ static u32 __alCSeqGetTrackEvent(ALCSeq *seq, u32 track, ALEvent *event)
             if((event->msg.midi.status & 0xf0) == AL_MIDI_NoteOn)
             {
                 event->msg.midi.duration = __readVarLen(seq,track);
-#ifdef _DEBUG                
+#ifdef _DEBUG
                 if(event->msg.midi.byte2 == 0)
                     __osError( ERR_ALCSEQZEROVEL, 1, track);
-#endif                
+#endif
             }
         }
         else
@@ -257,7 +257,7 @@ u32 alCSeqSecToTicks(ALCSeq *seq, f32 sec, u32 tempo)
 
 s32 alCSeqGetTicks(ALCSeq *seq)
 {
-    return seq->lastTicks; 
+    return seq->lastTicks;
 }
 
 
@@ -266,15 +266,15 @@ void alCSeqNewMarker(ALCSeq *seq, ALCSeqMarker *m, u32 ticks)
     ALEvent     evt;
     ALCSeq      tempSeq;
     s32         i;
-    
+
 
     alCSeqNew(&tempSeq, (u8*)seq->base);
-    
+
     do {
         m->validTracks    = tempSeq.validTracks;
         m->lastTicks      = tempSeq.lastTicks;
         m->lastDeltaTicks = tempSeq.lastDeltaTicks;
-        
+
         for(i=0;i<16;i++)
         {
             m->curLoc[i]        = tempSeq.curLoc[i];
@@ -283,12 +283,12 @@ void alCSeqNewMarker(ALCSeq *seq, ALCSeqMarker *m, u32 ticks)
             m->lastStatus[i]    = tempSeq.lastStatus[i];
             m->evtDeltaTicks[i] = tempSeq.evtDeltaTicks[i];
         }
-        
+
         alCSeqNextEvent(&tempSeq, &evt);
-        
+
         if (evt.type == AL_SEQ_END_EVT)
             break;
-        
+
     } while (tempSeq.lastTicks < ticks);
 
 }
@@ -296,7 +296,7 @@ void alCSeqNewMarker(ALCSeq *seq, ALCSeqMarker *m, u32 ticks)
 void alCSeqSetLoc(ALCSeq *seq, ALCSeqMarker *m)
 {
     s32     i;
-    
+
     seq->validTracks    = m->validTracks;
     seq->lastTicks      = m->lastTicks;
     seq->lastDeltaTicks = m->lastDeltaTicks;
@@ -314,7 +314,7 @@ void alCSeqSetLoc(ALCSeq *seq, ALCSeqMarker *m)
 void alCSeqGetLoc(ALCSeq *seq, ALCSeqMarker *m)
 {
     s32     i;
-    
+
     m->validTracks    = seq->validTracks;
     m->lastTicks      = seq->lastTicks;
     m->lastDeltaTicks = seq->lastDeltaTicks;
@@ -334,8 +334,8 @@ static u8 __getTrackByte(ALCSeq *seq,u32 track)
 {
     u8      theByte;
 
-    
-    if(seq->curBULen[track])  
+
+    if(seq->curBULen[track])
     {
         theByte = *seq->curBUPtr[track];
         seq->curBUPtr[track]++;
@@ -349,7 +349,7 @@ static u8 __getTrackByte(ALCSeq *seq,u32 track)
         {
             u8   loBackUp,hiBackUp,theLen,nextByte;
             u32  backup;
-            
+
             nextByte = *seq->curLoc[track];
             seq->curLoc[track]++;
             if(nextByte != AL_CMIDI_BLOCK_CODE)
@@ -377,7 +377,7 @@ static u8 __getTrackByte(ALCSeq *seq,u32 track)
         }
     }
 
-    return theByte;    
+    return theByte;
 }
 
 static u32 __readVarLen(ALCSeq *seq,u32 track)

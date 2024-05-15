@@ -82,7 +82,7 @@ int	ix, xpt;
 
 	/* xpt is exponent(x) + 1 bit of mantissa */
 
-	if ( xpt < 0xff )	
+	if ( xpt < 0xff )
 	{
 		/* |x| < 1.5 */
 
@@ -146,7 +146,7 @@ int	ix, xpt;
 
 		*__errnoaddr = EDOM;
 #endif
-		
+
 		return ( __libm_qnan_f );
 	}
 

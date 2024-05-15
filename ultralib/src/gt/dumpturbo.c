@@ -64,23 +64,23 @@ gtDumpTurbo(OSTask *tp,u8 flags)
 
 #if 1
 	PRINTF("? %08x\n",PHYS(tp->t.ucode_boot));
-	for (i=(int)tp->t.ucode_boot; 
+	for (i=(int)tp->t.ucode_boot;
 			i<(int)tp->t.ucode_boot+tp->t.ucode_boot_size; i+=4) {
 		PRINTF("|%08x\n",(int) *((u32 *) i));
 	}
-	
+
 	PRINTF("? %08x\n",PHYS(tp->t.ucode));
 	for (i=(int)tp->t.ucode; i<(int)tp->t.ucode+UCODE_SIZE_MAX; i+=4) {
 		PRINTF("|%08x\n",(int) *((u32 *) i));
 	}
-	
+
 	PRINTF("? %08x\n",PHYS(tp->t.ucode_data));
-	for (i=(int)tp->t.ucode_data; 
+	for (i=(int)tp->t.ucode_data;
 			i<(int)tp->t.ucode_data+tp->t.ucode_data_size; i+=4) {
 		PRINTF("|%08x\n",(int) *((u32 *) i));
 	}
-	
-#endif 
+
+#endif
 
 
 
@@ -194,7 +194,7 @@ gtDumpTurbo(OSTask *tp,u8 flags)
 	    }
 
 
-		
+
 	    gtlistp++;
 	}
 
@@ -228,14 +228,14 @@ gtDumpTurbo(OSTask *tp,u8 flags)
 	    }
 
 	PRINTF("^\nGBI_DUMP_END:\n");
-	
-	
+
+
 	if (flags & GT_DUMPTURBO_HANGAFTER) {
-		for (i=0; i<1000;i++) 
+		for (i=0; i<1000;i++)
 			rmonPrintf("=======================================\n");
 		while(1);
 	}
-		
+
 
 /*
  *   Dumps stuff
@@ -256,5 +256,5 @@ gtDumpTurbo(OSTask *tp,u8 flags)
  *   |  code/code data
  *
  */
-	
+
 }

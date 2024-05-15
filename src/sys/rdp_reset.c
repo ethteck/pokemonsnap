@@ -52,7 +52,7 @@ void func_80007C20(Vp *vp, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     vp->vp.vscale[1] = (arg4 - temp2) * 4.0f;
     vp->vp.vtrans[0] = temp1 * 4.0f;
     vp->vp.vtrans[1] = temp2 * 4.0f;
-    vp->vp.vscale[2] = vp->vp.vtrans[2] = G_MAXZ / 2;    
+    vp->vp.vscale[2] = vp->vp.vtrans[2] = G_MAXZ / 2;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/func_80007C20.s")

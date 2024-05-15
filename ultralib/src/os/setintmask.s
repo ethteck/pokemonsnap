@@ -10,14 +10,14 @@
 
 .text
 .set noreorder
-LEAF(osSetIntMask) 
+LEAF(osSetIntMask)
     mfc0 ta0, C0_SR
 
     andi v0, ta0, OS_IM_CPU
 
     la t0, __OSGlobalIntMask
     lw t3, 0(t0)
- 
+
     xor t0, t3,-1
     andi t0, t0,(SR_IMASK)
     or v0, v0,t0
@@ -38,7 +38,7 @@ LEAF(osSetIntMask)
     srl t0, t0,0xf
     lhu t2, __osRcpImTable(t0)
     sw t2, PHYS_TO_K1(MI_INTR_MASK_REG)
- 
+
     andi t0, a0, OS_IM_CPU
     andi t1, t3, SR_IMASK
     and t0, t0,t1

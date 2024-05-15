@@ -24,8 +24,8 @@
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
 
-void alSndpNew(ALSndPlayer *sndp, ALSndpConfig *c) 
-{    
+void alSndpNew(ALSndPlayer *sndp, ALSndpConfig *c)
+{
     u8            *ptr;
     ALEvent       evt;
     ALSoundState  *sState;
@@ -49,7 +49,7 @@ void alSndpNew(ALSndPlayer *sndp, ALSndpConfig *c)
      */
     ptr = alHeapAlloc(c->heap, 1, c->maxEvents * sizeof(ALEventListItem));
     alEvtqNew(&sndp->evtq, (ALEventListItem *)ptr, c->maxEvents);
-    
+
     /*
      * add ourselves to the driver
      */
@@ -92,14 +92,14 @@ ALMicroTime _sndpVoiceHandler(void *node)
                 break;
         }
         sndp->nextDelta = alEvtqNextEvent(&sndp->evtq, &sndp->nextEvent);
-        
+
     } while (sndp->nextDelta == 0);
     sndp->curTime += sndp->nextDelta;
     return sndp->nextDelta;
 }
 
 // state->vol >> 7 needed to match Pokemon Snap
-void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event) 
+void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
 {
     ALVoiceConfig       vc;
     ALSound             *snd;
@@ -116,13 +116,13 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
 
     state = event->common.state;
     snd   = state->sound;
-            
+
 
     switch (event->msg.type) {
         case (AL_SNDP_PLAY_EVT):
             if (state->state != AL_STOPPED || !snd)
                 return;
-            
+
             vc.fxBus      = 0;            /* effect buss 0 */
             vc.priority   = state->priority;
 	    vc.unityPitch = 0;
@@ -136,21 +136,21 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
             pan   = (ALPan) MIN(tmp, AL_PAN_RIGHT);
             pitch = state->pitch;
             delta   = snd->envelope->attackTime;
-            
+
             alSynStartVoice(sndp->drvr, voice, snd->wavetable);
             state->state = AL_PLAYING;
-            
+
             alSynSetPan(sndp->drvr, voice, pan);
             alSynSetVol(sndp->drvr, voice, vol, delta);
             alSynSetPitch(sndp->drvr, voice, pitch);
             alSynSetFXMix(sndp->drvr, voice, state->fxMix);
-            
+
             evt.common.type     = AL_SNDP_DECAY_EVT;
             evt.common.state    = state;
 	    delta = (ALMicroTime) _DivS32ByF32 (snd->envelope->attackTime, state->pitch);
             alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, delta);
             break;
-                
+
         case (AL_SNDP_STOP_EVT):
             if (state->state != AL_PLAYING || !snd)
                 return;
@@ -169,7 +169,7 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
                 alSynFreeVoice(sndp->drvr, &state->voice);
                 _removeEvents(&sndp->evtq, state);
                 state->state = AL_STOPPED;
-            }            
+            }
             break;
 
         case (AL_SNDP_PAN_EVT):
@@ -187,12 +187,12 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
 	    /* to limit it to a non-zero number to avoid divide by zero. */
             if ((state->pitch = event->pitch.pitch) < MIN_RATIO)
 		state->pitch = MIN_RATIO;
-	    
+
             if (state->state == AL_PLAYING){
                 alSynSetPitch(sndp->drvr, &state->voice, state->pitch);
             }
             break;
-            
+
         case (AL_SNDP_FX_EVT):
             state->fxMix = event->fx.mix;
             if (state->state == AL_PLAYING)
@@ -259,7 +259,7 @@ static void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
         }
 	thisNode = nextNode;
     }
-    
+
     osSetIntMask(mask);
 }
 /*
@@ -289,7 +289,7 @@ static s32 _DivS32ByF32 (s32 i, f32 f)
     assert(f!=0);	/* Caller must make sure we do not divide by zero! */
 
     rd = i/f;		/* Store result as a double to avoid overflow. */
-    
+
     if (rd > INT_MAX)	/* Limit the value if necessary. */
 	ri = INT_MAX;
     else

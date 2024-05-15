@@ -37,6 +37,6 @@ s32 alCSPGetChlProgram(ALCSPlayer *seqp, u8 chan)
             return i;
     }
     return(-1);
-    
+
 }
 

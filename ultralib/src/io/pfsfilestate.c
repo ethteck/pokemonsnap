@@ -90,7 +90,7 @@ s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
             break;
         }
     }
-    
+
     if (next_page.ipage != PFS_EOF) {
         return PFS_ERR_INCONSISTENT;
     }

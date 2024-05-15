@@ -2,11 +2,11 @@
  Copyright (C) 1998,1999 NINTENDO CO,Ltd,
  Copyright (C) 1998,1999 MONEGI CORPORATION,
 	All Rights Reserved
-This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp. 
+This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp.
 and it is not to be reproduced, published, disclosed to others, copied,
-adapted, distributed, or displayed without the prior authorization of 
-NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed 
-this Notice on all copies of the program, including partial copies or 
+adapted, distributed, or displayed without the prior authorization of
+NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed
+this Notice on all copies of the program, including partial copies or
 modified versions thereof.
 *************************************************************************/
 /************************************************************************
@@ -17,12 +17,12 @@ modified versions thereof.
 #include <asm.h>
 #include <regdef.h>
 
-/* 
+/*
   void guTranslate(Mtx *m, float x, float y, float z)
 	m:	a0
 	x:	a1
 	y:	a2
-	z	a3		
+	z	a3
  */
 
 #define	SIZE_OF_MTX	64	/* sizeof( Mtx ) */
@@ -59,7 +59,7 @@ LEAF( guTranslate )
 	or	t0,t0,t2		/* Compose in t0 */
 	sw	t0,24+32(a0)
 
-	
+
 	mtc1		a3, ft1
 	mul.s		ft2, ft1, ft0
 	trunc.w.s	ft3, ft2
@@ -90,12 +90,12 @@ LEAF( guTranslate )
 	ori	t0,0x0000
 	sw	t0,0(a0)
 	sw	t0,20(a0)
-	
+
 	lui	t0,0x0000
 	ori	t0,0x0001
 	sw	t0,8(a0)
-	
+
 	j	ra
-	
+
 	END( guTranslate )
 /* end of file */

@@ -16,7 +16,7 @@ f32 func_800E4860_62010(Vec3f* v1, Vec3f* v2) {
 
 void func_800E4890_62040(Mtx4f arg0, Vec3f* arg1) {
     s32 i;
-    f32 temp[3];    
+    f32 temp[3];
 
     for (i = 0; i < 3; i++) {
         temp[i] = arg1->x * arg0[0][i] + arg1->y * arg0[1][i] + arg1->z * arg0[2][i] + arg0[3][i];
@@ -29,7 +29,7 @@ void func_800E4890_62040(Mtx4f arg0, Vec3f* arg1) {
 
 void func_800E4904_620B4(Mtx4f arg0, Vec3f* arg1) {
     s32 i;
-    f32 temp[3];    
+    f32 temp[3];
 
     for (i = 0; i < 3; i++) {
         temp[i] = arg1->x * arg0[0][i] + arg1->y * arg0[1][i] + arg1->z * arg0[2][i];
@@ -61,7 +61,7 @@ void func_800E4970_62120(Mtx4f dst, Mtx4f src) {
 
 void func_800E49F4_621A4(Mtx4f arg0, Mtx4f arg1, Mtx4f arg2) {
     s32 i, j, k;
-    Mtx4f temp;    
+    Mtx4f temp;
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
@@ -129,7 +129,7 @@ void func_800E4C64_62414(Mtx4f mtx, Mtx4f invMtx, Vec3f scale, Vec3f rotation, V
 
     func_800E4BCC_6237C(mtx);
     func_800E4BCC_6237C(invMtx);
-    
+
     mtx[0][0] = scale.x;
     mtx[1][1] = scale.y;
     mtx[2][2] = scale.z;
@@ -183,7 +183,7 @@ void func_800E4C64_62414(Mtx4f mtx, Mtx4f invMtx, Vec3f scale, Vec3f rotation, V
 void func_800E4E98_62648(UnkCaramelBoa* arg0, s32* arg1) {
     f32 unused[8];
     Mtx4f mtx;
-    Mtx4f invMtx;    
+    Mtx4f invMtx;
 
     if (arg0 != NULL) {
         func_800E4C64_62414(mtx, invMtx, arg0->scale, arg0->rotation, arg0->position);
@@ -400,7 +400,7 @@ s32 func_800E55C0_62D70(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, Vec3f* 
     f32 sp58;
     f32 f12;
     f32 sp50;
-    f32 unused2;    
+    f32 unused2;
     Vec3f sp40;
     Vec3f sp34;
 
@@ -490,7 +490,7 @@ s32 func_800E5854_63004(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, f32 arg
         sp4C = unkf - f12;
         if (f12 <= unkf) {
             f2_2 = (-sp54 - sqrtf(sp4C)) / sp58;
-            if (f2_2 > 0.0001f && sp44 < FLOAT_MAX) { // UB: sp44 uninitialized 
+            if (f2_2 > 0.0001f && sp44 < FLOAT_MAX) { // UB: sp44 uninitialized
                 f12_2 = ABS(f2_2 * sp74.y + sp68.y);
                 if (f12_2 <= arg4 && f2_2 < f20) {
                     func_800E57CC_62F7C(&sp68, &sp74, f2_2, arg5, arg6);
@@ -529,7 +529,7 @@ s32 func_800E5AD4_63284(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, f32 arg
     f32 f0;
     f32 sp50;
     f32 sp4C;
-    f32 f2;    
+    f32 f2;
     f32 unused2;
 
     Vec3fDiff(&sp70, arg0, arg2);
@@ -547,7 +547,7 @@ s32 func_800E5AD4_63284(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, f32 arg
 
     if (!(ABS(sp60) < 0.0001f) && sp60 * sp58 <= SQ(sp5C)) {
         f2 = (-sp5C - sqrtf(SQ(sp5C) - sp60 * sp58)) / sp60;
-        if (f2 > 0.0001f && sp4C < FLOAT_MAX) { // UB: sp4C uninitialized 
+        if (f2 > 0.0001f && sp4C < FLOAT_MAX) { // UB: sp4C uninitialized
             f0 = f2 * sp7C.y + sp70.y;
             if (f0 >= 0.0f && f0 <= arg4 && f2 < sp50) {
                 func_800E5A4C_631FC(&sp70, &sp7C, f2, arg5, arg6);
@@ -666,7 +666,7 @@ s32 func_800E61CC_6397C(UnkCaramelBoa* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3)
     }
 }
 
-s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {    
+s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
     WorldBlock* block;
     WorldBlock* curBlock;
     WorldBlock* blockArray[3];
@@ -758,7 +758,7 @@ s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
                                 arg3->z *= 100.0f;
 
                                 return s6->unk_00;
-                            }        
+                            }
                             s0++;
                         }
                     }
@@ -794,7 +794,7 @@ void func_800E66BC_63E6C(UnkChestnutCougar* arg0) {
                 func_800E4E98_62648(s0, &sp44);
                 s0++;
             }
-        }            
+        }
     }
 }
 
@@ -811,7 +811,7 @@ void world_func_800E6778(UnkChestnutCougar* arg0) {
             func_800E4E98_62648(s0, &sp44);
             s0++;
         }
-    }    
+    }
 }
 
 s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8) {
@@ -825,7 +825,7 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
     Mtx4f spAC;
     Mtx4f sp6C;
     f32 sp68;
-    
+
 
     sp114.x = arg5.x / 100.0f;
     sp114.y = arg5.y / 100.0f;
@@ -845,7 +845,7 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
     }
     Vec3fScale(&spEC, f12);
     sp68 = sp108.x = sp108.y = sp108.z = arg4->unk_08;
-    
+
     v0 = func_800E6168_63918(arg4->unk_04);
     if (v0 == NULL) {
         return FALSE;
@@ -873,7 +873,7 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
             arg3->z *= 100.0f;
 
             return TRUE;
-        }        
+        }
         s0++;
     }
     return FALSE;

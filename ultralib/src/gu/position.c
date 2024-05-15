@@ -15,13 +15,13 @@
 /*
  *  Return position matrix given roll, pitch, and yaw in degrees
  *  plus scale and position.
- *   
+ *
  * r = roll  (degrees)
  * p = pitch (degrees)
  * h = yaw   (degrees)
  * s = scale
  * x,y,z = position (world coordinates)
- *   
+ *
  */
 
 void guPositionF(float mf[4][4], float r, float p, float h, float s,

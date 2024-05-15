@@ -179,7 +179,7 @@ s8 gContInputStickY;
 void contUpdateControllerIndices(void) {
     s32 v0 = 0;
     s32 i;
-    
+
     for (i = 0; i < MAXCONTROLLERS; i++) {
         if (sContInfo[i].errno == 0) {
             sControllerIndices[v0++] = i;
@@ -193,7 +193,7 @@ void contUpdateControllerIndices(void) {
 }
 
 void contDetectDevices(void) {
-    s32 i, j, ret;    
+    s32 i, j, ret;
 
     osContStartQuery(&contSIEvtQueue);
     osRecvMesg(&contSIEvtQueue, NULL, OS_MESG_BLOCK);
@@ -335,7 +335,7 @@ void contUpdateGlobals(void) {
     }
     contUpdateControllerIndices();
     gContInputPressedButtons = gContInput[0].pressedButtons;
-    gContInputCurrentButtons = gContInput[0].buttons;    
+    gContInputCurrentButtons = gContInput[0].buttons;
     gContInputHeldButtons = gContInput[0].heldButtons;
     gContInputReleasedButtons = gContInput[0].releasedButtons;
     gContInputStickX = gContInput[0].stickX;
@@ -560,13 +560,13 @@ void contGbpakWrite(s32 contNo, u16 addr, u8* buffer, u16 size) {
     contExecuteGbpakCommand(contNo, OS_WRITE, addr, buffer, size);
 }
 
-void contGbpakReadWrite(ControllerEventGbpak* arg0) {    
+void contGbpakReadWrite(ControllerEventGbpak* arg0) {
     OSPfs* pfs = &contPfs[arg0->contNo];
     s32 contId = arg0->contNo;
     u8* data = arg0->data;
     u16 addr;
     u16 size = arg0->size;
-    
+
     s32 i;
     u8 sp4C[BLOCKSIZE];
 

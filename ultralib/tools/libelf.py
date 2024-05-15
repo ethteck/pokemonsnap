@@ -27,13 +27,13 @@ EI_MAG0         = 0x00 # Magic char 0 , 0x7F
 EI_MAG1         = 0x01 # Magic char 1 , 0x45
 EI_MAG2         = 0x02 # Magic char 2 , 0x4C
 EI_MAG3         = 0x03 # Magic char 3 , 0x46
-EI_CLASS        = 0x04 # 
-EI_DATA         = 0x05 # 
-EI_VERSION      = 0x06 # 
-EI_OSABI        = 0x07 # 
-EI_ABIVERSION   = 0x08 # 
-EI_PAD          = 0x09 # 
-EI_NIDENT       = 0x10 # 
+EI_CLASS        = 0x04 #
+EI_DATA         = 0x05 #
+EI_VERSION      = 0x06 #
+EI_OSABI        = 0x07 #
+EI_ABIVERSION   = 0x08 #
+EI_PAD          = 0x09 #
+EI_NIDENT       = 0x10 #
 
 # Values for e_ident[EI_DATA]
 EI_DATA_LE      = 1 # little endian
@@ -45,7 +45,7 @@ EI_DATA_V = {
 }
 
 # Values for e_ident[EI_CLASS]
-EI_CLASS_32     = 1 # 32-bit 
+EI_CLASS_32     = 1 # 32-bit
 EI_CLASS_64     = 2 # 64-bit
 
 EI_CLASS_V = {
@@ -79,15 +79,15 @@ EI_OSABI_V = {
 # ELF Types
 # =====================================================================================================
 
-ET_NONE   = 0x0000 # 
+ET_NONE   = 0x0000 #
 ET_REL    = 0x0001 # relocatable
-ET_EXEC   = 0x0002 # 
-ET_DYN    = 0x0003 # 
-ET_CORE   = 0x0004 # 
-ET_LOOS   = 0xFE00 # 
-ET_HIOS   = 0xFEFF # 
-ET_LOPROC = 0xFF00 # 
-ET_HIPROC = 0xFFFF # 
+ET_EXEC   = 0x0002 #
+ET_DYN    = 0x0003 #
+ET_CORE   = 0x0004 #
+ET_LOOS   = 0xFE00 #
+ET_HIOS   = 0xFEFF #
+ET_LOPROC = 0xFF00 #
+ET_HIPROC = 0xFFFF #
 
 E_TYPE = {
     ET_NONE   : 'ET_NONE',
@@ -452,7 +452,7 @@ x06 x06 1   1   EI_VERSION      1
 
 x07 x07 1   1   EI_OSABI        see EI_OSABI_V
 
-x08 x08 1   1   EI_ABIVERSION   
+x08 x08 1   1   EI_ABIVERSION
 
 x09 x09 7   7   EI_PAD          0
 
@@ -1003,7 +1003,7 @@ class MdebugSection(Section):
         super().__init__(header, elf_file, index)
         self.parent = self.elf_file
         self.hdrr = EcoffHDRR(self.data)
- 
+
         self.fdrs = []
         for i in range(self.hdrr.ifdMax):
             fdr = EcoffFdr.from_binary(self, i)

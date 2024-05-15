@@ -72,7 +72,7 @@ static  f32 _getVol(f32 ivol, s32 samples, s16 ratem, u16 ratel);
  * Enveloper filter public interfaces
  ***********************************************************************/
 Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
-                     Acmd *p) 
+                     Acmd *p)
 {
     Acmd        *ptr = p;
     ALEnvMixer	*e = (ALEnvMixer *)filter;
@@ -83,7 +83,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
     s16         loutp = 0;
     s32         fVol;
     ALParam     *thisParam;
-    
+
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
@@ -93,7 +93,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
      */
     inp = AL_RESAMPLER_OUT;
 
-    while (e->ctrlList != 0) { 
+    while (e->ctrlList != 0) {
         lastOffset = thisOffset;
         thisOffset = e->ctrlList->delta;
         samples    = thisOffset - lastOffset;
@@ -108,16 +108,16 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
 
         switch (e->ctrlList->type) {
           case (AL_FILTER_START_VOICE_ALT):
-              {                  
+              {
                   ALStartParamAlt *param = (ALStartParamAlt *)e->ctrlList;
                   ALFilter     *f = (ALFilter *) e;
                   s32 tmp;
-                  
+
                   if (param->unity) {
                       (*e->filter.setParam)(&e->filter,
                                             AL_FILTER_SET_UNITY_PITCH, 0);
                   }
-                  
+
                   (*e->filter.setParam)(&e->filter, AL_FILTER_SET_WAVETABLE,
                                         param->wave);
                   (*e->filter.setParam)(&e->filter, AL_FILTER_START, 0);
@@ -132,7 +132,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                   e->pan    = param->pan;
                   e->dryamt = eqpower[param->fxMix];
                   e->wetamt = eqpower[EQPOWER_LENGTH - param->fxMix - 1];
-                  
+
                   if (param->samples) {
                       e->cvolL  = 1;
                       e->cvolR  = 1;
@@ -150,21 +150,21 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                       union {
                           f32 f;
                           s32 i;
-                      } data;                    
+                      } data;
                       data.f = param->pitch;
                       (*f->source->setParam)(f->source, AL_FILTER_SET_PITCH,
                                             (void *)data.i);
                   }
-                  
+
               }
-              
+
               break;
-                
+
           case (AL_FILTER_SET_FXAMT):
           case (AL_FILTER_SET_PAN):
           case (AL_FILTER_SET_VOLUME):
 	      ptr = _pullSubFrame(e, &inp, &loutp, samples, sampleOffset, ptr);
-            
+
               if (e->delta >= e->segEnd){
                   /*
                    * We should have reached our target, calculate
@@ -177,13 +177,13 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                   e->cvolL = e->ltgt;
                   e->cvolR = e->rtgt;
               } else {
-                  /* 
+                  /*
                    * Estimate the current volume
                    */
                   e->cvolL = _getVol(e->cvolL, e->delta, e->lratm, e->lratl);
                   e->cvolR = _getVol(e->cvolR, e->delta, e->rratm, e->rratl);
               }
-    
+
               /*
                * We can't have volume of zero, because the envelope
                * would never go anywhere from there
@@ -205,7 +205,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                    * Switching to a new segment
                    */
                   e->delta = 0;
-                
+
                   /*
                    * Map volume non-linearly to give something close to
                    * loudness
@@ -213,16 +213,16 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                   fVol = (e->ctrlList->data.i);
                   fVol = (fVol*fVol)>>15;
                   e->volume = (s16) fVol;
-                
+
                   e->segEnd = e->ctrlList->moredata.i;
 
               }
-            
+
               if (e->ctrlList->type == AL_FILTER_SET_FXAMT){
                   e->dryamt = eqpower[e->ctrlList->data.i];
                   e->wetamt = eqpower[EQPOWER_LENGTH - e->ctrlList->data.i - 1];
               }
-            
+
               /*
                * Force a volume update
                */
@@ -232,7 +232,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
           case (AL_FILTER_START_VOICE):
               {
                   ALStartParam *p = (ALStartParam *)e->ctrlList;
-                  
+
                   /*
                    * Changing to PLAYING (since the previous state was
                    * persumable STOPPED, we'll just bump the output
@@ -242,13 +242,13 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
                       (*e->filter.setParam)(&e->filter,
                                             AL_FILTER_SET_UNITY_PITCH, 0);
                   }
-                  
+
                   (*e->filter.setParam)(&e->filter, AL_FILTER_SET_WAVETABLE,
                                         p->wave);
                   (*e->filter.setParam)(&e->filter, AL_FILTER_START, 0);
               }
               break;
-              
+
           case (AL_FILTER_STOP_VOICE):
               {
                   /*
@@ -260,14 +260,14 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
               break;
 
           case (AL_FILTER_FREE_VOICE):
-              {                  
+              {
                   ALSynth *drvr = &alGlobals->drvr;
                   ALFreeParam *param = (ALFreeParam *)e->ctrlList;
                   param->pvoice->offset = 0;
                   _freePVoice(drvr, (PVoice *)param->pvoice);
               }
               break;
-              
+
           default:
               /*
                * Pull the reuired number of samples and then pass the message
@@ -288,11 +288,11 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
         e->ctrlList = e->ctrlList->next;
         if (e->ctrlList == 0)
             e->ctrlTail = 0;
-        
+
         __freeParam(thisParam);
-        
+
     }
-    
+
     ptr = _pullSubFrame(e, &inp, &loutp, outCount, sampleOffset, ptr);
 
     /*
@@ -311,7 +311,7 @@ s32 alEnvmixerParam(void *filter, s32 paramID, void *param)
 {
     ALFilter      *f = (ALFilter *) filter;
     ALEnvMixer	*e = (ALEnvMixer *) filter;
-    
+
     switch (paramID) {
 
       case (AL_FILTER_ADD_UPDATE):
@@ -319,11 +319,11 @@ s32 alEnvmixerParam(void *filter, s32 paramID, void *param)
               e->ctrlTail->next = (ALParam *)param;
           } else {
               e->ctrlList = (ALParam *)param;
-          }            
+          }
           e->ctrlTail = (ALParam *)param;
-          
+
           break;
-        
+
       case (AL_FILTER_RESET):
           e->first = 1;
           e->motion = AL_STOPPED;
@@ -337,7 +337,7 @@ s32 alEnvmixerParam(void *filter, s32 paramID, void *param)
           if (f->source)
               (*f->source->setParam)(f->source, AL_FILTER_START, param);
           break;
-            
+
       case (AL_FILTER_SET_SOURCE):
           f->source = (ALFilter *) param;
           break;
@@ -352,7 +352,7 @@ s32 alEnvmixerParam(void *filter, s32 paramID, void *param)
 #line 350
 #endif
 static Acmd* _pullSubFrame(void *filter, s16 *inp, s16 *outp, s32 outCount,
-                    s32 sampleOffset, Acmd *p) 
+                    s32 sampleOffset, Acmd *p)
 {
     Acmd        *ptr = p;
     ALEnvMixer	*e = (ALEnvMixer *)filter;
@@ -369,7 +369,7 @@ static Acmd* _pullSubFrame(void *filter, s16 *inp, s16 *outp, s32 outCount,
 
     assert(source);
 
-    
+
     ptr = (*source->handler)(source, inp, outCount, sampleOffset, p);
 
     /*
@@ -436,7 +436,7 @@ f64
 _ldexpf(f64 in, s32 ex)
 {
     s32 exp;
-    
+
     if ( ex ) {
 	exp = 1 << ex;
 	in *= (f64)exp;
@@ -460,14 +460,14 @@ static
 s16 _getRate(f64 vol, f64 tgt, s32 count, u16* ratel)
 {
     s16         s;
-    
+
     f64         invn = 1.0/count, eps, a, fs, mant;
     s32         i_invn, ex, indx;
 
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
+
     if (count == 0){
         if (tgt >= vol){
             *ratel = 0xffff;
@@ -505,7 +505,7 @@ s16 _getRate(f64 vol, f64 tgt, s32 count, u16* ratel)
 
      ln2(tgt/vol) = fp_exponent( tgt/vol ) +
      ln2( fp_mantissa( tgt/vol ) )
-		
+
      fp_mantissa() and fp_exponent() are
      calculated via tricky bit manipulations of
      the floating point number. ln2() is
@@ -515,7 +515,7 @@ s16 _getRate(f64 vol, f64 tgt, s32 count, u16* ratel)
      to be raised to the 2^30/count power. This
      is done by operating on the binary representaion
      of this number in the final while loop.
-	
+
      Enjoy!
      */
     {
@@ -557,7 +557,7 @@ f32 _getVol(f32 ivol, s32 samples, s16 ratem, u16 ratel)
 #ifdef AUD_PROFILE
     lastCnt[++cnt_index] = osGetCount();
 #endif
-    
+
     /*
      * Rate values are actually rate^8
      */
@@ -566,7 +566,7 @@ f32 _getVol(f32 ivol, s32 samples, s16 ratem, u16 ratel)
         return ivol;
     }
     r = ((f32) (ratem<<16) + (f32) ratel)/65536;
-    
+
     a = 1.0;
     for (i=0; i<32; i++){
 	if( samples & 1 )

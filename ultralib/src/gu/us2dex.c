@@ -1,8 +1,8 @@
 /*---------------------------------------------------------------------
   $Id: us2dex.c,v 1.4 1998/10/09 06:15:30 has Exp $
-  
+
   File : us2dex.c
-  
+
   Coded     by Yoshitaka Yasumoto.   Mar 19, 1997.
   Copyright by Nintendo, Co., Ltd.           1997.
   ---------------------------------------------------------------------*/
@@ -17,7 +17,7 @@
  *	guS2DInitBG
  *		Set BG screen draw parameters
  *
- *		If called at time of initialization, then it only needs to be 
+ *		If called at time of initialization, then it only needs to be
  *		called again when changes made to imageFmt, imageSiz, imageLoad, *		imageW, frameW.  However, if  imageLoad == G_BGLT_LOADBLOCK and  *		only frameW is changed, another call is unnecessary.
  */
 void	guS2DInitBg(uObjBg *bg)
@@ -27,18 +27,18 @@ void	guS2DInitBg(uObjBg *bg)
 #if BUILD_VERSION >= VERSION_J
   u32	tsize;
 #endif
-  
+
   /*
    *	Get the useable volume for TMEM
    *		If  imageFmt  is CI then TLUT will use half.
    */
   tmemUse = (bg->b.imageFmt == G_IM_FMT_CI) ? 256 : 512;
-  
+
   /*
    *	Get shift volume for conversion to TMEM word.
    */
   shift = 6 - bg->b.imageSiz;
-  
+
   /*
    *	Set other parameters for Load Mode.
    */

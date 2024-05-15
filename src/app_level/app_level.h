@@ -38,5 +38,6 @@ u32 getProgressFlags(void);
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
 void Icons_ProcessButtonPress(s32 eventID);
+void Icons_ProcessZoom(s32 zoomEnabled);
 
 #endif

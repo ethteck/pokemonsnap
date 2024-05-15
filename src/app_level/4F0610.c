@@ -70,7 +70,15 @@ extern s32 D_80382CF4_523104;
 extern s8 D_80382D04_523114;
 extern s32 D_80382D0C_52311C;
 extern void (*D_80382D18_523128)(s32);
+extern void (*D_80382D1C_52312C)(s32);
 extern u8 D_80382D20_523130;
+extern u8 D_80382D24_523134;
+extern s32 D_80382D28_523138;
+extern u8 D_80382D2C_52313C;
+extern u8 D_80382D30_523140;
+extern u8 D_80382D34_523144;
+extern s32 D_80382D38_523148;
+extern u8 D_80382D40_523150;
 extern u8 D_80382D44_523154;
 extern s32 D_80382D48_523158;
 extern s32 D_80382D4C_52315C;
@@ -81,6 +89,7 @@ extern f32 D_80382D60_523170;
 extern f32 D_80382D64_523174;
 extern char D_80382D68_523178[];
 extern s32 D_80382D78_523188;
+extern s32 D_80382D80_523190;
 extern s32 D_80382D9C_5231AC;
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
@@ -149,7 +158,7 @@ void func_8035024C_4F065C(f32 arg0, f32 arg1, f32 arg2) {
     D_80382C30_523040->viewMtx.lookAt.at.y += arg1;
     D_80382C30_523040->viewMtx.lookAt.at.z += arg2;
 
-    D_803AE410_54E820.x += arg0; D_803AE410_54E820.y += arg1; D_803AE410_54E820.z += arg2;    
+    D_803AE410_54E820.x += arg0; D_803AE410_54E820.y += arg1; D_803AE410_54E820.z += arg2;
     D_803AE420_54E830.x += arg0; D_803AE420_54E830.y += arg1; D_803AE420_54E830.z += arg2;
     D_80382C1C_52302C += arg0; D_80382C20_523030 += arg1; D_80382C24_523034 += arg2;
 }
@@ -649,9 +658,9 @@ void func_80351768_4F1B78(GObj* obj) {
         D_80382D58_523168 += SIGN(t1 - t2) * 0.2f;
     } else {
         D_80382D60_523170 = t1;
-        D_80382D58_523168 += 0;        
+        D_80382D58_523168 += 0;
     }
-    
+
     if (ABS(D_80382D64_523174 - D_80382D5C_52316C) > 0.2f) {
         D_80382D5C_52316C += SIGN(D_80382D64_523174 - D_80382D5C_52316C) * 0.2f;
         D_80382D64_523174 = D_80382D64_523174;
@@ -748,7 +757,7 @@ void func_80351FF0_4F2400(GObj* obj) {
     s32 y1, y2;
     s32 x1, x2;
     s32 unused3;
-    f32 dx, dy, dz;    
+    f32 dx, dy, dz;
     s32 y3, y4;
     s32 x3, x4;
     f32 sinAngle, cosAngle;
@@ -756,7 +765,7 @@ void func_80351FF0_4F2400(GObj* obj) {
     f32 dx2, dz2;
 
     i = 0;
-    
+
     Icons_ProcessZoom(TRUE);
 
     y1 = 0;
@@ -838,7 +847,7 @@ void func_80351FF0_4F2400(GObj* obj) {
 
         sinAngle = sinf(D_80366BA4_506FB4.unk_18.y);
         cosAngle = cosf(D_80366BA4_506FB4.unk_18.y);
-        
+
         D_803AE4D8_54E8E8.x += sp114 * spEC.x;
         D_803AE4D8_54E8E8.y += sp114 * spEC.y;
         D_803AE4D8_54E8E8.z += sp114 * spEC.z;
@@ -854,7 +863,7 @@ void func_80351FF0_4F2400(GObj* obj) {
         D_803AE420_54E830.x = D_80366BA4_506FB4.unk_0C.x + D_803AE4E8_54E8F8.x * cosAngle + D_803AE4E8_54E8F8.z * sinAngle;
         D_803AE420_54E830.y = D_80366BA4_506FB4.unk_0C.y + D_803AE4E8_54E8F8.y;
         D_803AE420_54E830.z = D_80366BA4_506FB4.unk_0C.z - D_803AE4E8_54E8F8.x * sinAngle + D_803AE4E8_54E8F8.z * cosAngle;
-        
+
         dx2 = D_803AE420_54E830.x - D_803AE410_54E820.x;
         dz2 = D_803AE420_54E830.z - D_803AE410_54E820.z;
         if ((SQ(dx2) + SQ(dz2)) < 0.1f) {
@@ -964,7 +973,7 @@ void func_80352F20_4F3330(GObj* arg0) {
     sp3C = 0;
 
     if (pokemonID != 0) {
-void func_80353118_4F3528(GObj*);	        if (func_80350200_4F0610(pokemonID)) {
+        if (func_80350200_4F0610(pokemonID)) {
             auPlaySound(SOUND_ID_2);
         }
 
@@ -1026,20 +1035,163 @@ void func_80353118_4F3528(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353180_4F3590.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353BCC_4F3FDC.s")
-void func_80353BCC_4F3FDC(GObj*);
+void func_80353BCC_4F3FDC(GObj* obj) {
+    f32 f20 = 0.0f;
+    f32 sp58;
+    s32 sp54;
+    s32 levelID = getLevelId();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353D50_4F4160.s")
+    if (levelID == SCENE_BEACH) {
+        while (TRUE) {
+            func_80357384_4F7794(&sp54, &sp58);
+            if (sp54 + sp58 >= 4.15f) {
+                break;
+            }
+            ohWait(1);
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353D5C_4F416C.s")
+    while (TRUE) {
+        D_80382C58_523068 = sinf(f20) * D_80382C5C_52306C;
+        f20 += D_80382C60_523070 * 3.1415927f / 180.0f;
+        if (levelID == SCENE_BEACH) {
+            func_80357384_4F7794(&sp54, &sp58);
+            if (sp54 + sp58 >= 4.45f) {
+                break;
+            }
+        }
+        ohWait(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353D68_4F4178.s")
+    D_80382C58_523068 = 0.0f;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353D90_4F41A0.s")
+void func_80353D50_4F4160(void (*arg0)(s32)) {
+    D_80382D18_523128 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035403C_4F444C.s")
+void func_80353D5C_4F416C(void (*arg0)(s32)) {
+    D_80382D1C_52312C = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80354140_4F4550.s")
+// yep `int` is required to match
+int func_80353D68_4F4178(void) {
+    return D_80382D20_523130 == 0 && D_80382D44_523154 == 0;
+}
+
+void func_80353D90_4F41A0(GObj* obj) {
+    if (D_80382D40_523150 > 0) {
+        D_80382D80_523190 = FALSE;
+    } else if (ABS(gContInputStickY) > 20 && D_80382D80_523190) {
+        D_80382D80_523190 = FALSE;
+        if (gContInputStickY > 0) {
+            if (D_80382D24_523134 > 0) {
+                D_80382D24_523134--;
+                auPlaySound(SOUND_ID_65);
+            }
+        } else {
+            if (D_80382D24_523134 < 2) {
+                D_80382D24_523134++;
+                auPlaySound(SOUND_ID_65);
+            }
+        }
+
+        switch (D_80382D24_523134) {
+            case 0:
+                spSetAttribute(&D_80382C7C_52308C->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C80_523090->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C84_523094->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C88_523098->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C8C_52309C->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C90_5230A0->sprite, SP_HIDDEN);
+                break;
+            case 1:
+                spClearAttribute(&D_80382C7C_52308C->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C80_523090->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C84_523094->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C88_523098->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C8C_52309C->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C90_5230A0->sprite, SP_HIDDEN);
+                break;
+            case 2:
+                spSetAttribute(&D_80382C7C_52308C->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C80_523090->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C84_523094->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C88_523098->sprite, SP_HIDDEN);
+                spClearAttribute(&D_80382C8C_52309C->sprite, SP_HIDDEN);
+                spSetAttribute(&D_80382C90_5230A0->sprite, SP_HIDDEN);
+                break;
+        }
+        D_80382D80_523190 += 0; // required to match
+    } else if (ABS(gContInputStickY) < 5) {
+        D_80382D80_523190 = TRUE;
+    }
+    if (D_80382D20_523130 == 0) {
+        omEndProcess(NULL);
+    }
+}
+
+void func_8035403C_4F444C(GObj* obj) {
+    SObj* sobj = obj->data.sobj;
+    Sprite* sprite = &sobj->sprite;
+
+    D_80382D28_523138 = 0;
+    spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 0);
+    spClearAttribute(sprite, SP_HIDDEN);
+
+    while (TRUE) {
+        if (D_80382D28_523138 > 153) {
+            D_80382D28_523138 = 153;
+            spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 153);
+            break;
+        }
+        spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, D_80382D28_523138);
+        D_80382D28_523138 += 15;
+        ohWait(1);
+    }
+
+    omEndProcess(NULL);
+}
+
+void func_80354140_4F4550(GObj* obj) {
+    SObj* sobj = obj->data.sobj;
+    Sprite* sprite = &sobj->sprite;
+
+    D_80382D28_523138 = 0;
+    spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 0);
+    spClearAttribute(sprite, SP_HIDDEN);
+    spMove(&D_80382C78_523088->sprite, 360, 94);
+    spClearAttribute(&D_80382C78_523088->sprite, SP_HIDDEN);
+    D_80382D38_523148 = 360;
+
+    while (TRUE) {
+        if (D_80382D28_523138 > 153) {
+            D_80382D28_523138 = 153;
+            spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 153);
+            spMove(&D_80382C74_523084->sprite, 111, 94);
+            spClearAttribute(&D_80382C74_523084->sprite, SP_HIDDEN);
+            spSetAttribute(&D_80382C78_523088->sprite, SP_HIDDEN);
+            spSetAttribute(&D_80382C7C_52308C->sprite, SP_HIDDEN);
+            spClearAttribute(&D_80382C80_523090->sprite, SP_HIDDEN);
+            spClearAttribute(&D_80382C84_523094->sprite, SP_HIDDEN);
+            spSetAttribute(&D_80382C88_523098->sprite, SP_HIDDEN);
+            spSetAttribute(&D_80382C8C_52309C->sprite, SP_HIDDEN);
+            spClearAttribute(&D_80382C90_5230A0->sprite, SP_HIDDEN);
+            omCreateProcess(obj, func_80353D90_4F41A0, 1, 9);
+            omEndProcess(NULL);
+        } else {
+            spMove(&D_80382C78_523088->sprite, D_80382D38_523148, 94);
+            spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, D_80382D28_523138);
+            D_80382D28_523138 += 15;
+            D_80382D38_523148 -= 24;
+        }
+        if (D_80382D20_523130 == 0) {
+            omEndProcess(NULL);
+        }
+        ohWait(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803543B0_4F47C0.s")
 

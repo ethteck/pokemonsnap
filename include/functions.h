@@ -21,7 +21,7 @@ void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct Worl
 GObj* func_8035E1D4_4FE5E4(void);
 void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
 void updatePokemonState(GObj* obj, GObjFunc state);
-s32 func_80353D68_4F4178(void);
+int func_80353D68_4F4178(void);
 void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
 void runPathProcess(GObj* obj, GObjFunc func);
 void setPokemonAnimation(GObj*, AnimationHeader*);

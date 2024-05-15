@@ -634,7 +634,7 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
     if (sp24 != NULL) {
         updatePokemonState(omCurrentObject, sp24);
     }
-    if (func_80353D68_4F4178() == 0) {
+    if (!func_80353D68_4F4178()) {
         ohPauseObjectProcesses(omCurrentObject);
     }
 }

@@ -13,7 +13,7 @@
 #include "guint.h"
 
 
-void guLookAtReflectF(float mf[4][4], LookAt *l, 
+void guLookAtReflectF(float mf[4][4], LookAt *l,
 		      float xEye, float yEye, float zEye,
 		      float xAt,  float yAt,  float zAt,
 		      float xUp,  float yUp,  float zUp)

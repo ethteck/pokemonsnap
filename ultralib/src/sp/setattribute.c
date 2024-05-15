@@ -28,7 +28,7 @@
  *
  *   Sets attributes about a sprite.
  */
-void 
+void
 spSetAttribute ( Sprite *sp, s32 attr)
 {
     sp->attr |= attr;

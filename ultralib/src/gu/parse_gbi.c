@@ -21,11 +21,11 @@
  * running on the host Indy. guParseGbiDL, sends a bunch of blocks of data,
  * with a minimum of one display list, but typically, the principle display
  * list with a bunch of branched or nested display lists, as well as all the
- * vertex and matrix data that will be used. After all the blocks of data 
+ * vertex and matrix data that will be used. After all the blocks of data
  * are sent, a GU_PARSE_READY command is sent, and dlprint parses out the
  * data printing it to stdout.
  *
- * In order to know what data to send, guParseGbiDL must step through the 
+ * In order to know what data to send, guParseGbiDL must step through the
  * display list, find all the gSPDisplayList and gSPBranchList calls, go
  * to those lists, and also find and send info for all the matrix and vertex
  * calls.
@@ -50,8 +50,8 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
     cntlBlk.paddr = osVirtualToPhysical(gbi_dl);
 
     osWriteHost(&cntlBlk,sizeof(cntlBlk));
-    osWriteHost(gbi_dl,nbytes);  
-        
+    osWriteHost(gbi_dl,nbytes);
+
     dlStk[0] = (Gfx*)gbi_dl;
     while((dlcount >= 0) && (dlcount <= 10))
     {
@@ -70,7 +70,7 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
                     segments[seg] = *word1;
                 }
                 break;
-            case G_ENDDL:   
+            case G_ENDDL:
                 dlcount--;
                 break;
             case G_DL:
@@ -92,13 +92,13 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
                     dlPtr++;
                 }
                 len *= sizeof(Gfx);
-                        
+
                 cntlBlk.dataSize = len;
                 cntlBlk.dlType = GU_PARSE_GBI_TYPE;
                 cntlBlk.paddr = paddr;
-                        
+
                 osWriteHost(&cntlBlk,sizeof(cntlBlk));
-                osWriteHost((u8*)vaddr,len); 
+                osWriteHost((u8*)vaddr,len);
                 if(param == G_DL_PUSH)
                 {
                     if(dlcount < 10)
@@ -127,12 +127,12 @@ void guParseGbiDL(u64 *gbi_dl, u32 nbytes, u8 flags)
                 osWriteHost(&cntlBlk,sizeof(cntlBlk));
                 osWriteHost((u8*)vaddr,len);
                 break;
-                
+
         }
     }
 
     cntlBlk.dlType = GU_PARSE_READY;
-    osWriteHost(&cntlBlk,sizeof(cntlBlk)); 
+    osWriteHost(&cntlBlk,sizeof(cntlBlk));
 }
 
 #endif

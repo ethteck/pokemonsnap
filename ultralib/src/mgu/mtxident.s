@@ -2,11 +2,11 @@
  Copyright (C) 1998,1999 NINTENDO CO,Ltd,
  Copyright (C) 1998,1999 MONEGI CORPORATION,
 	All Rights Reserved
-This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp. 
+This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp.
 and it is not to be reproduced, published, disclosed to others, copied,
-adapted, distributed, or displayed without the prior authorization of 
-NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed 
-this Notice on all copies of the program, including partial copies or 
+adapted, distributed, or displayed without the prior authorization of
+NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed
+this Notice on all copies of the program, including partial copies or
 modified versions thereof.
 *************************************************************************/
 /************************************************************************
@@ -44,7 +44,7 @@ LEAF(guMtxIdent)
 	sw	t1, 20(a0)
 	sw	zero, 24(a0)
 	sw	t0, 28(a0)
-	
+
 	sw	zero, 32(a0)	/* Substitution of fractions */
 	sw	zero, 36(a0)
 	sw	zero, 40(a0)
@@ -56,5 +56,5 @@ LEAF(guMtxIdent)
 	j	ra
 
 	END(guMtxIdent)
-	
+
 /* End of file */

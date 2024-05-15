@@ -26,7 +26,7 @@
 void alEvtqNew(ALEventQueue *evtq, ALEventListItem *items, s32 itemCount)
 {
     s32 i;
-    
+
     evtq->eventCount     = 0;
     evtq->allocList.next = 0;
     evtq->allocList.prev = 0;
@@ -38,14 +38,14 @@ void alEvtqNew(ALEventQueue *evtq, ALEventListItem *items, s32 itemCount)
     }
 }
 
-ALMicroTime alEvtqNextEvent(ALEventQueue *evtq, ALEvent *evt) 
+ALMicroTime alEvtqNextEvent(ALEventQueue *evtq, ALEvent *evt)
 {
     ALEventListItem *item;
     ALMicroTime delta;
     OSIntMask mask;
 
     mask = osSetIntMask(OS_IM_NONE);
-    
+
     item = (ALEventListItem *)evtq->allocList.next;
 
     if (item)
@@ -63,11 +63,11 @@ ALMicroTime alEvtqNextEvent(ALEventQueue *evtq, ALEvent *evt)
 	/* at once completely emptying out the queue.  At this point this problem */
 	/* must be treated as an out of resource error and the evtq should be increased. */
 	evt->type = -1;
-	delta = 0;	    
+	delta = 0;
     }
 
     osSetIntMask(mask);
-    
+
     return delta;
 }
 
@@ -86,16 +86,16 @@ void alEvtqPostEvent(ALEventQueue *evtq, ALEvent *evt, ALMicroTime delta)
         osSetIntMask(mask);
 #ifdef _DEBUG
         __osError(ERR_ALEVENTNOFREE, 0);
-#endif        
+#endif
         return;
     }
-    
+
     alUnlink((ALLink *)item);
     alCopy(evt, &item->evt, sizeof(*evt));
 
     if (delta == AL_EVTQ_END)
         postAtEnd = -1;
-    
+
     for (node = &evtq->allocList; node != 0; node = node->next) {
         if (!node->next) { /* end of the list */
             if (postAtEnd)
@@ -110,18 +110,18 @@ void alEvtqPostEvent(ALEventQueue *evtq, ALEvent *evt, ALMicroTime delta)
             if (delta < nextItem->delta) {
                 item->delta = delta;
                 nextItem->delta -= delta;
-                    
+
                 alLink((ALLink *)item, node);
                 break;
             }
-                
+
             delta -= nextItem->delta;
 
         }
     }
 
     osSetIntMask(mask);
-    
+
 }
 
 void alEvtqFlush(ALEventQueue *evtq)
@@ -139,7 +139,7 @@ void alEvtqFlush(ALEventQueue *evtq)
 	alLink(thisNode, &evtq->freeList);
 	thisNode = nextNode;
     }
-    
+
     osSetIntMask(mask);
 }
 
@@ -177,13 +177,13 @@ void alEvtqFlushType(ALEventQueue *evtq, s16 type)
 
 
 #ifdef _DEBUG_INTERNAL
-void alEvtqPrintEvtQueue(ALEventQueue *evtq) 
+void alEvtqPrintEvtQueue(ALEventQueue *evtq)
 {
     s32 count1 = 0;
     s32 count2 = 0;
     ALLink *node;
     ALEventListItem *item;
-    
+
     /* count free events */
     for (node = evtq->freeList.next; node != 0; node= node->next) {
         count1++;
@@ -192,7 +192,7 @@ void alEvtqPrintEvtQueue(ALEventQueue *evtq)
     PRINTF("----- Allocated Events -----\n");
     for (node = evtq->allocList.next; node != 0; node= node->next) {
         item = (ALEventListItem *)node;
-        
+
         PRINTF("\tdelta: %d\ttype %d\n", item->delta, item->evt.type);
         count2++;
     }
@@ -206,7 +206,7 @@ void alEvtqPrintEvtQueue(ALEventQueue *evtq)
 char *MidiStatus2Str (char status, char *str);
 
 void
-alEvtqPrintAllocEvts(ALEventQueue *evtq) 
+alEvtqPrintAllocEvts(ALEventQueue *evtq)
 {
     ALLink *node;
     ALEventListItem *item;

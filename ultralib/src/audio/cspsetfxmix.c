@@ -29,7 +29,7 @@ void alCSPSetChlFXMix(ALCSPlayer *seqp, u8 chan, u8 fxmix)
     evt.msg.midi.status = AL_MIDI_ControlChange | chan;
     evt.msg.midi.byte1  = AL_MIDI_FX1_CTRL;
     evt.msg.midi.byte2  = fxmix;
-                    
+
     alEvtqPostEvent(&seqp->evtq, &evt, 0);
 }
 

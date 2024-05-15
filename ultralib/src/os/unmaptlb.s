@@ -40,6 +40,6 @@ LEAF(osUnmapTLB)
     nop
     mtc0 t0, C0_ENTRYHI
     jr ra
-    nop	
+    nop
 END(osUnmapTLB)
 

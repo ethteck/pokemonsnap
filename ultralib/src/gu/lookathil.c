@@ -13,7 +13,7 @@
 #include "guint.h"
 
 
-void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h, 
+void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h,
 		float xEye, float yEye, float zEye,
 		float xAt,  float yAt,  float zAt,
 		float xUp,  float yUp,  float zUp,
@@ -70,24 +70,24 @@ void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h,
 
 	len = sqrtf (xHilite*xHilite + yHilite*yHilite + zHilite*zHilite);
 
-	if (len>THRESH2) 
+	if (len>THRESH2)
 	    {
 		len = 1.0 / len;
 		xHilite *= len;
 		yHilite *= len;
 		zHilite *= len;
-		
-		h->h.x1 = 
-		    twidth*4 + (xHilite*xRight + 
-				yHilite*yRight + 
+
+		h->h.x1 =
+		    twidth*4 + (xHilite*xRight +
+				yHilite*yRight +
 				zHilite*zRight)*twidth*2;
-		
-		h->h.y1 = 
-		    theight*4 + (xHilite*xUp + 
-				 yHilite*yUp + 
+
+		h->h.y1 =
+		    theight*4 + (xHilite*xUp +
+				 yHilite*yUp +
 				 zHilite*zUp)*theight*2;
-	    } 
-	else 
+	    }
+	else
 	    {
 		h->h.x1 = twidth*2;
 		h->h.y1 = theight*2;
@@ -102,7 +102,7 @@ void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h,
 	yHilite = yl2 + yLook;
 	zHilite = zl2 + zLook;
 	len = sqrtf (xHilite*xHilite + yHilite*yHilite + zHilite*zHilite);
-	if (len>THRESH2) 
+	if (len>THRESH2)
 	    {
 		len = 1.0 / len;
 		xHilite *= len;
@@ -114,8 +114,8 @@ void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h,
 
 		h->h.y2 = theight*4 +
 		    (xHilite*xUp + yHilite*yUp + zHilite*zUp)*theight*2;
-	    } 
-	else 
+	    }
+	else
 	    {
 		h->h.x2 = twidth*2;
 		h->h.y2 = theight*2;
@@ -167,7 +167,7 @@ void guLookAtHiliteF(float mf[4][4], LookAt *l, Hilite *h,
 	mf[3][3] = 1;
 }
 
-void guLookAtHilite (Mtx *m, LookAt *l, Hilite *h, 
+void guLookAtHilite (Mtx *m, LookAt *l, Hilite *h,
 		float xEye, float yEye, float zEye,
 		float xAt,  float yAt,  float zAt,
 		float xUp,  float yUp,  float zUp,

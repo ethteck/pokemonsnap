@@ -27,11 +27,11 @@ void alSynSetPitch(ALSynth *synth, ALVoice *v, f32 pitch)
     ALParam  *update;
     ALFilter *f;
 
-    if (v->pvoice) {        
+    if (v->pvoice) {
         /*
          * get new update struct from the free list
          */
-        
+
         update = __allocParam();
         ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
 
@@ -44,7 +44,7 @@ void alSynSetPitch(ALSynth *synth, ALVoice *v, f32 pitch)
         update->next   = 0;
 
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
 }
 

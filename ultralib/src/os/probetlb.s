@@ -50,5 +50,5 @@ LEAF(__osProbeTLB)
 4:
     mtc0 t0, C0_ENTRYHI
     jr ra
-    nop	
+    nop
 END(__osProbeTLB)

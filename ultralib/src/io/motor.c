@@ -222,11 +222,11 @@ static void _MakeMotorData(int channel, u16 address, u8 *buffer, OSPifRam *mdata
     u8 *ptr = (u8 *)mdata->ramarray;
     __OSContRamReadFormat ramreadformat;
     int i;
-    
+
     for (i = 0; i < ARRLEN(mdata->ramarray); i++) {
         mdata->ramarray[i] = 0;
     }
-    
+
     mdata->pifstatus = CONT_CMD_EXE;
     ramreadformat.dummy = CONT_CMD_NOP;
     ramreadformat.txsize = CONT_CMD_WRITE_PAK_TX;
@@ -260,7 +260,7 @@ s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     pfs->channel = channel;
     pfs->status = 0;
     pfs->activebank = 128;
-    
+
     for (i = 0; i < ARRLEN(temp); i++) {
         temp[i] = 254;
     }
@@ -284,7 +284,7 @@ s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     if (ret != 0) {
         return ret;
     }
-    
+
     if (temp[31] == 254) {
         return PFS_ERR_DEVICE;
     }
@@ -311,7 +311,7 @@ s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     if (ret != 0) {
         return ret;
     }
-    
+
     if (temp[31] != 0x80) {
         return PFS_ERR_DEVICE;
     }

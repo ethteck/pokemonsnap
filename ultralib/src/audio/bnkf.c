@@ -35,7 +35,7 @@ void alSeqFileNew(ALSeqFile *file, u8 *base)
 {
     s32 offset = (s32) base;
     s32 i;
-    
+
     /*
      * patch the file so that offsets are pointers
      */
@@ -48,14 +48,14 @@ void alBnkfNew(ALBankFile *file, u8 *table)
 {
     s32 offset = (s32) file;
     s32 woffset = (s32) table;
-    
+
     s32 i;
-    
+
     /*
      * check the file format revision in debug libraries
      */
     ALFailIf(file->revision != AL_BANK_VERSION, ERR_ALBNKFNEW);
-    
+
     /*
      * patch the file so that offsets are pointers
      */
@@ -66,10 +66,10 @@ void alBnkfNew(ALBankFile *file, u8 *table)
     }
 }
 
-void _bnkfPatchBank(ALBank *bank, s32 offset, s32 table) 
+void _bnkfPatchBank(ALBank *bank, s32 offset, s32 table)
 {
     s32 i;
-    
+
     if (bank->flags)
         return;
 
@@ -79,7 +79,7 @@ void _bnkfPatchBank(ALBank *bank, s32 offset, s32 table)
         bank->percussion = (ALInstrument *)((u8 *)bank->percussion + offset);
         _bnkfPatchInst(bank->percussion, offset, table);
     }
-    
+
     for (i = 0; i < bank->instCount; i++) {
         bank->instArray[i] = (ALInstrument *)((u8 *)bank->instArray[i] +
                                               offset);
@@ -96,7 +96,7 @@ void _bnkfPatchInst(ALInstrument *inst, s32 offset, s32 table)
         return;
 
     inst->flags = 1;
-    
+
     for (i = 0; i < inst->soundCount; i++) {
         inst->soundArray[i] = (ALSound *)((u8 *)inst->soundArray[i] +
                                           offset);
@@ -111,7 +111,7 @@ void _bnkfPatchSound(ALSound *s, s32 offset, s32 table)
         return;
 
     s->flags = 1;
-    
+
     s->envelope  = (ALEnvelope *)((u8 *)s->envelope + offset);
     s->keyMap    = (ALKeyMap *)((u8 *)s->keyMap + offset);
 
@@ -125,7 +125,7 @@ void _bnkfPatchWaveTable(ALWaveTable *w, s32 offset, s32 table)
         return;
 
     w->flags = 1;
-    
+
     w->base += table;
 
     /* sct 2/14/96 - patch wavetable loop info based on type. */
@@ -139,5 +139,5 @@ void _bnkfPatchWaveTable(ALWaveTable *w, s32 offset, s32 table)
     {
 	if (w->waveInfo.rawWave.loop)
 	    w->waveInfo.rawWave.loop = (ALRawLoop *)((u8 *)w->waveInfo.rawWave.loop + offset);
-    }	
+    }
 }

@@ -237,7 +237,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
         if (file_size_in_pages > 0 || start_page == -1) {
             return PFS_ERR_INCONSISTENT;
         }
-        
+
         backup_inode.inode_page[old_last_page].inode_t.bank = bank;
         backup_inode.inode_page[old_last_page].inode_t.page = start_page;
         ERRCK(__osPfsRWInode(pfs, &backup_inode, OS_WRITE, old_bank));
@@ -279,7 +279,7 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
         *first_page = -1;
         return ret;
     }
-    
+
     for (i = 0; i < ARRLEN(tmp_data); i++) {
         tmp_data[i] = 0;
     }

@@ -2,11 +2,11 @@
  Copyright (C) 1998,1999 NINTENDO CO,Ltd,
  Copyright (C) 1998,1999 MONEGI CORPORATION,
 	All Rights Reserved
-This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp. 
+This program is a trade secret of NINTENDO CO,Ltd and MONEGI Corp.
 and it is not to be reproduced, published, disclosed to others, copied,
-adapted, distributed, or displayed without the prior authorization of 
-NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed 
-this Notice on all copies of the program, including partial copies or 
+adapted, distributed, or displayed without the prior authorization of
+NINTENDO CO,Ltd. and MONEGI Corp. Licensee agrees to attach or embed
+this Notice on all copies of the program, including partial copies or
 modified versions thereof.
 *************************************************************************/
 /************************************************************************
@@ -21,14 +21,14 @@ modified versions thereof.
 /*
  * void guMtxCatF(float mf[4][4], float nf[4][4], float res[4][4])
  *	res = mf * nf
- */	
+ */
 #define	FRAME_SIZE	64
 	.text
 	.align	5
 	.globl	guMtxCatF
 	.ent	guMtxCatF, 0
 guMtxCatF:
-	.set reorder	
+	.set reorder
 	subu	sp, FRAME_SIZE
 	.frame	sp, FRAME_SIZE, ra
 

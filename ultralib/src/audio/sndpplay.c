@@ -28,7 +28,7 @@ void alSndpPlay(ALSndPlayer *sndp)
     ALSoundState  *sState = sndp->sndState;
 
     ALFailIf((sState + sndp->target)->state != AL_STOPPED, ERR_ALSNDPPLAY);
-                                  
+
     evt.common.type = AL_SNDP_PLAY_EVT;
     evt.common.state = &sState[sndp->target];
     alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, 0);

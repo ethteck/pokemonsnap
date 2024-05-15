@@ -35,7 +35,7 @@
  * a few hopefully useful effects.
  */
 #define ms *(((s32)((f32)44.1))&~0x7)
- 
+
 
 static s32 SMALLROOM_PARAMS[26] = {
     /* sections	   length */
@@ -101,7 +101,7 @@ void _init_lpfilter(ALLowPass *lp)
     lp->first = 1;
     for (i=0; i<8; i++)
 	lp->fcvec.fccoef[i] = 0;
-    
+
     lp->fcvec.fccoef[i++] = fc;
     fcoef = ffc = (f64)fc/SCALE;
 
@@ -135,7 +135,7 @@ void alFxNew(ALFx *r, ALSynConfig *c, ALHeap *hp)
 
 
     j = 0;
-    
+
     r->section_count = param[j++];
     r->length 	     = param[j++];
 
@@ -203,7 +203,7 @@ void alEnvmixerNew(ALEnvMixer *e, ALHeap *hp)
     alFilterNew((ALFilter *) e, alEnvmixerPull, alEnvmixerParam, AL_ENVMIX);
 
     e->state = alHeapAlloc(hp, 1, sizeof(ENVMIX_STATE));
-    
+
     e->first = 1;
     e->motion = AL_STOPPED;
     e->volume = 1;
@@ -225,11 +225,11 @@ void alEnvmixerNew(ALEnvMixer *e, ALHeap *hp)
     e->sources = 0;
 }
 
-void alLoadNew(ALLoadFilter *f, ALDMANew dmaNew, ALHeap *hp) 
+void alLoadNew(ALLoadFilter *f, ALDMANew dmaNew, ALHeap *hp)
 {
     s32
         i;
-    
+
     /*
      * init filter superclass
      */
@@ -238,9 +238,9 @@ void alLoadNew(ALLoadFilter *f, ALDMANew dmaNew, ALHeap *hp)
 
     f->state = alHeapAlloc(hp, 1, sizeof(ADPCM_STATE));
     f->lstate = alHeapAlloc(hp, 1, sizeof(ADPCM_STATE));
-    
+
     f->dma = dmaNew(&f->dmaState);
-    
+
     /*
      * init the adpcm state
      */
@@ -264,7 +264,7 @@ void alResampleNew(ALResampler *r, ALHeap *hp)
     r->upitch = 0;
     r->ctrlList = 0;
     r->ctrlTail = 0;
-    
+
     /* state in the ucode is initialized by the A_INIT flag */
 }
 
@@ -284,20 +284,20 @@ void alMainBusNew(ALMainBus *m, void *sources, s32 maxSources)
     m->sources = (ALFilter **)sources;
 }
 
-void alSaveNew(ALSave *f) 
+void alSaveNew(ALSave *f)
 {
     /*
      * init filter superclass
      */
 
     alFilterNew((ALFilter *) f, alSavePull, alSaveParam, AL_SAVE);
-    
+
     /*
      * init the save state, which is a virtual dram address
      */
-    
+
     f->dramout = 0;
     f->first = 1;
-    
+
 }
 

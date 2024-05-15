@@ -27,7 +27,7 @@ from enum import IntEnum
 import struct
 
 class EcoffBt(IntEnum): # Basic Type
-    NIL         =  0 # 
+    NIL         =  0 #
     ADR         =  1 # pointer-sized integer type
     CHAR        =  2 # char
     UCHAR       =  3 # unsigned char
@@ -56,16 +56,16 @@ class EcoffBt(IntEnum): # Basic Type
     VOID        = 26 # void
     LONGLONG    = 27 # long long int
     ULONGLONG   = 28 # unsigned long long int
-    LONG64      = 30 # 
-    ULONG64     = 31 # 
-    LONGLONG64  = 32 # 
-    ULONGLONG64 = 33 # 
-    ADR64       = 34 # 
-    INT64       = 35 # 
-    UINT64      = 36 # 
+    LONG64      = 30 #
+    ULONG64     = 31 #
+    LONGLONG64  = 32 #
+    ULONGLONG64 = 33 #
+    ADR64       = 34 #
+    INT64       = 35 #
+    UINT64      = 36 #
 
     AGGREGATE   = 63 # not a basic type
-    MAX         = 64 # 
+    MAX         = 64 #
 
 class EcoffSc(IntEnum):
     NIL         =  0
@@ -96,10 +96,10 @@ class EcoffSc(IntEnum):
     PDATA       = 25 # procedure section
     FINI        = 26 # .fini section
     RCONST      = 27 # .rconst section
-    MAX         = 32 # 
+    MAX         = 32 #
 
 class EcoffSt(IntEnum):
-    NIL        =  0 # 
+    NIL        =  0 #
     GLOBAL     =  1 # external symbol
     STATIC     =  2 # static symbol
     PARAM      =  3 # procedure argument
@@ -120,17 +120,17 @@ class EcoffSt(IntEnum):
     STRUCT     = 26 # structure
     UNION      = 27 # union
     ENUM       = 28 # enum
-    INDIRECT   = 34 # 
+    INDIRECT   = 34 #
 
 class EcoffTq(IntEnum): # Type qualifier
-    NIL   = 0 # 
+    NIL   = 0 #
     PTR   = 1 # pointer
     PROC  = 2 # procedure
     ARRAY = 3 # array
     FAR   = 4 # longer addressing
     VOL   = 5 # volatile
     CONST = 6 # constant
-    MAX   = 8 # 
+    MAX   = 8 #
 
     UNK7   = 7 # invalid
     UNK9   = 9 # invalid
@@ -147,7 +147,7 @@ class EcoffLanguageCode(IntEnum):
     FORTRAN     = 2
     ASM         = 3
     MACHINE     = 4
-    NIL         = 5 
+    NIL         = 5
     ADA         = 6
     PL1         = 7
     COBOL       = 8
@@ -308,7 +308,7 @@ class EcoffAux:
         self.rndx = EcoffRNDXR(data, endian)
         self.dnLow = self.dnHigh = self.isym = self.iss = self.width = self.count = data
         self.fdr = fdr
-    
+
     def __str__(self) -> str:
         return f"""= EcoffAux ==============
 ti     = {{
@@ -452,42 +452,42 @@ class EcoffSymr:
 
     def process_type_information(self, ind):
         c_bt_names = {
-            EcoffBt.NIL         : None, 
-            EcoffBt.ADR         : None, 
-            EcoffBt.CHAR        : "signed char", 
-            EcoffBt.UCHAR       : "char", 
-            EcoffBt.SHORT       : "short", 
-            EcoffBt.USHORT      : "unsigned short", 
-            EcoffBt.INT         : "int", 
-            EcoffBt.UINT        : "unsigned int", 
-            EcoffBt.LONG        : "long", 
-            EcoffBt.ULONG       : "unsigned long", 
-            EcoffBt.FLOAT       : "float", 
-            EcoffBt.DOUBLE      : "double", 
-            EcoffBt.STRUCT      : "struct", 
-            EcoffBt.UNION       : "union", 
-            EcoffBt.ENUM        : "enum", 
-            EcoffBt.TYPEDEF     : "typedef", 
-            EcoffBt.RANGE       : None, 
-            EcoffBt.SET         : None, 
-            EcoffBt.COMPLEX     : "complex", 
-            EcoffBt.DCOMPLEX    : "double complex", 
-            EcoffBt.INDIRECT    : None, 
-            EcoffBt.FIXEDDEC    : None, 
-            EcoffBt.FLOATDEC    : None, 
-            EcoffBt.STRING      : "const char*", 
-            EcoffBt.BIT         : None, 
-            EcoffBt.PICTURE     : None, 
-            EcoffBt.VOID        : "void", 
-            EcoffBt.LONGLONG    : "long long", 
-            EcoffBt.ULONGLONG   : "unsigned long long", 
-            EcoffBt.LONG64      : "long", 
-            EcoffBt.ULONG64     : "unsigned long", 
-            EcoffBt.LONGLONG64  : "long long", 
-            EcoffBt.ULONGLONG64 : "unsigned long long", 
-            EcoffBt.ADR64       : None, 
-            EcoffBt.INT64       : None, 
-            EcoffBt.UINT64      : None, 
+            EcoffBt.NIL         : None,
+            EcoffBt.ADR         : None,
+            EcoffBt.CHAR        : "signed char",
+            EcoffBt.UCHAR       : "char",
+            EcoffBt.SHORT       : "short",
+            EcoffBt.USHORT      : "unsigned short",
+            EcoffBt.INT         : "int",
+            EcoffBt.UINT        : "unsigned int",
+            EcoffBt.LONG        : "long",
+            EcoffBt.ULONG       : "unsigned long",
+            EcoffBt.FLOAT       : "float",
+            EcoffBt.DOUBLE      : "double",
+            EcoffBt.STRUCT      : "struct",
+            EcoffBt.UNION       : "union",
+            EcoffBt.ENUM        : "enum",
+            EcoffBt.TYPEDEF     : "typedef",
+            EcoffBt.RANGE       : None,
+            EcoffBt.SET         : None,
+            EcoffBt.COMPLEX     : "complex",
+            EcoffBt.DCOMPLEX    : "double complex",
+            EcoffBt.INDIRECT    : None,
+            EcoffBt.FIXEDDEC    : None,
+            EcoffBt.FLOATDEC    : None,
+            EcoffBt.STRING      : "const char*",
+            EcoffBt.BIT         : None,
+            EcoffBt.PICTURE     : None,
+            EcoffBt.VOID        : "void",
+            EcoffBt.LONGLONG    : "long long",
+            EcoffBt.ULONGLONG   : "unsigned long long",
+            EcoffBt.LONG64      : "long",
+            EcoffBt.ULONG64     : "unsigned long",
+            EcoffBt.LONGLONG64  : "long long",
+            EcoffBt.ULONGLONG64 : "unsigned long long",
+            EcoffBt.ADR64       : None,
+            EcoffBt.INT64       : None,
+            EcoffBt.UINT64      : None,
         }
         c_tq_str = {
             EcoffTq.NIL   : "",
@@ -906,7 +906,7 @@ class EcoffHDRR:
             self.cbSsOffset, self.issExtMax, self.cbSsExtOffset, self.ifdMax, \
             self.cbFdOffset, self.crfd, self.cbRfdOffset, self.iextMax, \
             self.cbExtOffset = struct.unpack(">HHIIIIIIIIIIIIIIIIIIIIIII", self.data)
-        
+
         assert self.magic == EcoffHDRR.HDRR_MAGIC , f"Symbolic Header magic value is incorrect. Got 0x{self.magic:04X}, expected 0x{EcoffHDRR.HDRR_MAGIC:04X}"
 
     def __str__(self) -> str:

@@ -49,7 +49,7 @@ typedef enum {
 } ALSndpMsgType;
 
 typedef struct {
-    ALVoice     voice;     
+    ALVoice     voice;
     ALSound     *sound;         /* sound referenced here */
     s16         priority;
     f32         pitch;          /* current playback pitch                    */
@@ -67,31 +67,31 @@ typedef union {
         s16             type;
         ALSoundState    *state;
     } common;
-    
+
     struct {
         s16             type;
         ALSoundState    *state;
         s16             vol;
     } vol;
-    
+
     struct {
         s16             type;
         ALSoundState    *state;
         f32             pitch;
     } pitch;
-    
+
     struct {
         s16             type;
         ALSoundState    *state;
         ALPan           pan;
     } pan;
-    
+
     struct {
         s16             type;
         ALSoundState    *state;
         u8              mix;
     } fx;
-    
+
 } ALSndpEvent;
 
 static  ALMicroTime     _sndpVoiceHandler(void *node);

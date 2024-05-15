@@ -51,7 +51,7 @@
 s32 __osSpRawReadIo(u32 devAddr, u32* data) {
     assert((devAddr & 0x3) == 0);
     assert(data != NULL);
-    
+
     if (__osSpDeviceBusy()) {
         return -1;
     }

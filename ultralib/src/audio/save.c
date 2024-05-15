@@ -24,7 +24,7 @@
 #ident "$Revision: 1.17 $"
 
 Acmd *alSavePull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
-                 Acmd *p) 
+                 Acmd *p)
 {
     Acmd        *ptr = p;
     ALSave *f = (ALSave *)filter;
@@ -34,9 +34,9 @@ Acmd *alSavePull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
 #endif
     assert(f->filter.source);
 
-    
+
     ptr = (*source->handler)(source, outp, outCount, sampleOffset, ptr);
-    
+
     aSetBuffer (ptr++, 0, 0, 0, outCount<<1);
     aInterleave(ptr++, AL_MAIN_L_OUT, AL_MAIN_R_OUT);
     aSetBuffer (ptr++, 0, 0, 0, outCount<<2);
@@ -55,15 +55,15 @@ s32 alSaveParam(void *filter, s32 paramID, void *param)
             f->source = (ALFilter *) param;
             break;
 
-        case (AL_FILTER_SET_DRAM): 
+        case (AL_FILTER_SET_DRAM):
             a->dramout = pp;
             break;
-            
+
         default:
             break;
     }
     return 0;
-            
+
 }
 
 

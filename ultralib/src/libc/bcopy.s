@@ -13,7 +13,7 @@ LEAF(_bcopy)
     beqz a2, ret
     beq a0, a1, ret
     blt a1, a0, goforwards
-    
+
     add v0, a0, a2
     bge a1, v0, goforwards
     b gobackwards
@@ -21,11 +21,11 @@ LEAF(_bcopy)
 goforwards:
 
     blt a2, 16, forwards_bytecopy
-    
+
     andi v0, a0, 0x3
     andi v1, a1, 0x3
     beq v0, v1,forwalignable
-    
+
 
 forwards_bytecopy:
     beqz a2, ret
@@ -110,14 +110,14 @@ forwards_16:
 
 forwards_4:
     blt a2, 4, forwards_bytecopy
-    
+
     lw v0, 0(a0)
     addiu a0, a0, 4
     sw v0, 0(a1)
     addiu a1, a1, 4
     addiu a2, a2, -4
     b forwards_4
-    
+
 gobackwards:
     add a0, a0,a2
     add a1, a1,a2
@@ -126,7 +126,7 @@ gobackwards:
     andi v0, a0, 0x3
     andi v1, a1, 0x3
     beq v0, v1,backalignable
-    
+
 backwards_bytecopy:
     beqz a2, ret
     addiu a0, a0, -1

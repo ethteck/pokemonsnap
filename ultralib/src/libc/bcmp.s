@@ -19,7 +19,7 @@ LEAF(_bcmp)
     andi t8, t8, 0x3
     subu a2, a2, t8
     beqz t8, wordcmp
-    
+
     move v0, v1
     lwl v0, 0(a0)
     lwl v1, 0(a1)
@@ -49,14 +49,14 @@ unalgncmp:
     beqz a3, partaligncmp
 
     addu a3, a3, a0
-    
+
 1:
     lbu v0, 0(a0)
     lbu v1, 0(a1)
     addiu a0, a0, 1
     addiu a1, a1, 1
     bne v0, v1, cmpne
-    bne a0, a3, 1b 
+    bne a0, a3, 1b
 
 partaligncmp:
     and a3, a2, ~3
@@ -64,7 +64,7 @@ partaligncmp:
     beqz a3, bytecmp
 
     addu a3, a3, a0
-    
+
 1:
     lwl v0, 0(a0)
     lwr v0, 3(a0)
@@ -72,8 +72,8 @@ partaligncmp:
     addiu a0, a0, 4
     addiu a1, a1, 4
     bne v0, v1, cmpne
-    bne a0, a3, 1b 
-    
+    bne a0, a3, 1b
+
 bytecmp:
     addu a3, a2, a0
     blez a2, cmpdone
@@ -84,7 +84,7 @@ bytecmp:
     addiu a0, a0, 1
     addiu a1, a1, 1
     bne v0, v1, cmpne
-    bne a0, a3, 1b 
+    bne a0, a3, 1b
 
 cmpdone:
     move v0, zero

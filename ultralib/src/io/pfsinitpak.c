@@ -49,7 +49,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
 #endif
             return ret;
         }
-        
+
 #if BUILD_VERSION < VERSION_J
         // Duplicated check
         else if (ret != 0) {

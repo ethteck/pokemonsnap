@@ -40,7 +40,7 @@ No_Change_Global_Int:
      nop
 #endif
 END(__osDisableInt)
-	
+
 LEAF(__osRestoreInt)
     mfc0  t0, C0_SR
     or    t0, t0, a0

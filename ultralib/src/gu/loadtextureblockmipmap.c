@@ -12,7 +12,7 @@
 
 /****************************************************************************
  * NOTE: To view this file correctly, set tabstop=3
-*****************************************************************************/												
+*****************************************************************************/
 #include "guint.h"
 #include <stdio.h>
 #include "ultra64.h"
@@ -33,10 +33,10 @@ struct texelSizeParams
 	unsigned char shift;
 	unsigned char tsize;
 	unsigned char shiftr;
-};	
+};
 
 /* texture ram tile */
-struct Tile 
+struct Tile
 {
 	int w;		/* width of tile in texels, padded to tram line sz */
  	int s, t;	/* size of tile in texels */
@@ -62,11 +62,11 @@ static unsigned int 	length;  /* total texels in mipmap */
 static int 				level;	/* total levels in mipmap */
 
 static void get3x3(struct Tile *tile, int *s, int *t, int *texel, int shift, int size);
-static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char startTile, 
-		unsigned char pal, unsigned char cms, unsigned char cmt, 
-		unsigned char masks, unsigned char maskt, unsigned char shifts, 
+static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char startTile,
+		unsigned char pal, unsigned char cms, unsigned char cmt,
+		unsigned char masks, unsigned char maskt, unsigned char shifts,
 		unsigned char shiftt);
-static void  kernel(int i, int r1, int g1, int b1, int a1, float *r2, float *g2, 
+static void  kernel(int i, int r1, int g1, int b1, int a1, float *r2, float *g2,
 		float *b2, float *a2);
 
 #define unpack_ia16(c,i,a) \
@@ -124,11 +124,11 @@ static void  kernel(int i, int r1, int g1, int b1, int a1, float *r2, float *g2,
  ************************************************************************/
 
 int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
- unsigned char startTile, unsigned char pal, unsigned char cms, unsigned char cmt, 
- unsigned char masks, unsigned char maskt, unsigned char shifts, unsigned char shiftt, 
+ unsigned char startTile, unsigned char pal, unsigned char cms, unsigned char cmt,
+ unsigned char masks, unsigned char maskt, unsigned char shifts, unsigned char shiftt,
  unsigned char cfs, unsigned char cft)
 {
-  
+
 	unsigned char	*iaddr, *taddr;
 	int		im_bytes, tr_bytes;
 	int		h, b;
@@ -153,7 +153,7 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 	tr_bytes = im_bytes / TRAM_LSIZE; /* no of tram lines per tile line */
 	tr_bytes = tr_bytes * TRAM_LSIZE; /* tile line size in bytes */
 	if (im_bytes > tr_bytes) tr_bytes += TRAM_LSIZE;
-        
+
 	taddr = &tbuf[im->addr]; /* why ? make this zero?*/
 
 	if (startUnAligned)
@@ -161,9 +161,9 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 	  for (h=0; h<im->h; h++)
      	  {
 	  	flip = (h & 1) << 2; /*shift does not depend on txlsize*/
-	 	for (b=0; b<im_bytes; b++) 
+	 	for (b=0; b<im_bytes; b++)
  	 	{
-	   	*(taddr+(b^flip)) = ((*(iaddr+b) & 0x0f) << 4) 
+	   	*(taddr+(b^flip)) = ((*(iaddr+b) & 0x0f) << 4)
 		   | ((*(iaddr+b+1) & 0xf0) >> 4);
 	 	}
 	 	/* add last aligned nibble */
@@ -173,10 +173,10 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 	  	iaddr += im->lsize;
 	  	taddr += tr_bytes;
      		}
-	} 
+	}
 	else  /* if start aligned */
 	{
-		for (h=0; h<im->h; h++) 
+		for (h=0; h<im->h; h++)
 		{
 			flip = (h & 1) << 2; /*shift does not depend on txlsize*/
 			for (b=0; b<im_bytes; b++)
@@ -226,25 +226,25 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
  	int i,trip;
  	unsigned int tempaddr;
  	int ntexels = ((TRAM_LSIZE/txlsize) << 1); /* texels per line */
- 
+
 	level = 0;  /* need to check for memory overflow */
 	while ((mipmap[level].s > 1) || (mipmap[level].t > 1))
 	{
 		level++;
- 		/* 
+ 		/*
 		 * set new mipmap level address in bytes
 		 */
  		mipmap[level].addr = mipmap[level-1].addr +
  		(mipmap[level-1].w * txlsize * mipmap[level-1].t  >> 1);
 
- 		/* 
-		 * grab location in tram pointing to the current level address 
+ 		/*
+		 * grab location in tram pointing to the current level address
 		 */
  		taddr = &(tram[ mipmap[level].addr ]);
 
- 		/* 
-		 * downfilter by 2X, bump odd size 
-	   	 * compute parameters for new mipmap level 
+ 		/*
+		 * downfilter by 2X, bump odd size
+	   	 * compute parameters for new mipmap level
 		 */
  		mipmap[level].s = (mipmap[0].s) >> level;
  		mipmap[level].t = (mipmap[0].t) >> level;
@@ -252,30 +252,30 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 		if (mipmap[level].s == 0) mipmap[level].s = 1;
 		if (mipmap[level].t == 0) mipmap[level].t = 1;
 
- 		/* 
+ 		/*
 		 * width must be a multiple of 8 bytes (padding for tram line size)
 		 */
-		mipmap[level].w = 
+		mipmap[level].w =
 		((mipmap[level].s + (ntexels -1)) >> (shift +1) << (shift +1));
 
 		/*
 		 * compute total no of texels to be loaded
 		 */
-	 	length += mipmap[level].w*mipmap[level].t; 
+	 	length += mipmap[level].w*mipmap[level].t;
 /**
                 rmonPrintf("level, w,t,l = %d %d %d %d\n", level, mipmap[level].w, mipmap[level].t,length);
 **/
 	   	if ((length*txlsize >> 1) >= TRAM_SIZE)
       		{
 		  errNo = 1;
-	 	  length -= mipmap[level].w*mipmap[level].t; 
+	 	  length -= mipmap[level].w*mipmap[level].t;
 	     	  break;
 	   	}
 
- 		/* 
-		 * for each scanline 
+ 		/*
+		 * for each scanline
 		 */
- 		for (t=0; t<mipmap[level-1].t; t+=2) 
+ 		for (t=0; t<mipmap[level-1].t; t+=2)
 		{
  		   flip = 0;
 		   trip =  (t & 2) << 1;	/* invert bit 4 on odd line */
@@ -295,7 +295,7 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 
 		   tempaddr = 0;
 
- 	    	   for (s=0; s<mipmap[level-1].s; s+=2) 
+ 	    	   for (s=0; s<mipmap[level-1].s; s+=2)
 		   {
  			si  = s + 1;
 			sii = s - 1;
@@ -311,7 +311,7 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			}
 
 /***
-			if (level == 6) 
+			if (level == 6)
 			rmonPrintf("sts = %d %d %d %d %d %d\n",
 			s, si, sii, t, ti, tii);
 ***/
@@ -334,9 +334,9 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			saddr = taddr + ((tempaddr >> 1)^trip);
  			r1 = g1 = b1 = a1 = ci1 = i1 = 0;
  			r2 = g2 = b2 = a2 = ci2 = i2 = 0;
-		
+
 			/*
-			 * Extract R,G and B components of the 9 texels and 
+			 * Extract R,G and B components of the 9 texels and
 			 * apply the filter kernel
 			 */
 			switch (im->fmt)
@@ -344,12 +344,12 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			   case (G_IM_FMT_RGBA):
 		  	   	if (im->siz == G_IM_SIZ_16b)
 				{
- 		           	   for (i=0; i< 9; i++) 
+ 		           	   for (i=0; i< 9; i++)
 				   {
  			  	      unpack_rgba(tex4[i], r0, g0, b0, a0);
 				      kernel(i, r0, g0, b0, a0, &r2, &g2, &b2, &a2);
 /***
-				      if (level == 6) 
+				      if (level == 6)
 				      rmonPrintf("r0, g0, b0, a0 = %d %d %d %d\n",
 					r0, g0, b0, a0);
 **/
@@ -358,9 +358,9 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 				   g1 = (int)(g2/16.0 + 0.5);
 				   b1 = (int)(b2/16.0 + 0.5);
 				   a1 = (int)(a2/16.0 + 0.5);
-				} 
-				else 
-				{ 
+				}
+				else
+				{
 				   /*
 				    * RGBA32 is not supported
 				    */
@@ -374,24 +374,24 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 				return errNo;
 			  	break;
 
-			   case (G_IM_FMT_CI):	
+			   case (G_IM_FMT_CI):
 			  	if (im->siz == G_IM_SIZ_4b)
 				{
- 		      		  for (i=0; i<9; i++) 
+ 		      		  for (i=0; i<9; i++)
 				  {
 			     	     unpack_ci4(tex4[i],ci0);
-				     kernel(i, ci0, 0, 0, 0, &ci2, &dummy, &dummy, 
+				     kernel(i, ci0, 0, 0, 0, &ci2, &dummy, &dummy,
 					    &dummy);
 			     	   }
 				   ci1 = (int)(ci2/16.0 + 0.5);
 		      		}
-			  	else 
+			  	else
 				if (im->siz == G_IM_SIZ_8b)
 				{
 				   for (i=0; i<9; i++)
 				   {
 			       	      unpack_ci8(tex4[i],ci0);
-				      kernel(i, ci0, 0, 0, 0, &ci2, &dummy, 
+				      kernel(i, ci0, 0, 0, 0, &ci2, &dummy,
 					     &dummy, &dummy);
 			      	    }
 				    ci1 = (int)(ci2/16.0 + 0.5);
@@ -401,43 +401,43 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 				    errNo=2;
 				    return errNo;
 				}
-			  	break;		
+			  	break;
 
 			   case (G_IM_FMT_IA):
 			  	if (im->siz == G_IM_SIZ_4b)
 				{
-	            		   for (i=0; i<9; i++) 
+	            		   for (i=0; i<9; i++)
 				   {
                    		      unpack_ia4(tex4[i],i0,a0);
-				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy, 
-					     &dummy); 
-                  		    }  
+				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy,
+					     &dummy);
+                  		    }
 				    i1 = (int)(i2/16.0 +0.5);
 				    a1 = (int)(a2/16.0 +0.5);
                			}
                			else if (im->siz == G_IM_SIZ_8b)
 				{
-               		           for (i=0; i<9; i++) 
+               		           for (i=0; i<9; i++)
 				   {
                   		      unpack_ia8(tex4[i],i0,a0);
-				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy, 
+				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy,
 					     &dummy);
 				   }
 				   i1 = (int)(i2/16.0 +0.5);
 				   a1 = (int)(a2/16.0 +0.5);
                 		}
-	     		  	else 
+	     		  	else
 				if (im->siz == G_IM_SIZ_16b)
 				{
-                 		   for (i=0; i<9; i++) 
+                 		   for (i=0; i<9; i++)
 				   {
                    		      unpack_ia16(tex4[i],i0,a0);
-				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy, 
+				      kernel(i, i0, a0, 0, 0, &i2, &a2, &dummy,
 					     &dummy);
                   		    }
 				    i1 = (int)(i2/16.0 +0.5);
 				    a1 = (int)(a2/16.0 +0.5);
-               			} 
+               			}
 				else
 				{
 				    errNo = 2;
@@ -448,15 +448,15 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			   case (G_IM_FMT_I):
 				if (im->siz == G_IM_SIZ_4b)
 				{
-		 		   for (i=0; i<9; i++) 
+		 		   for (i=0; i<9; i++)
 				   {
                 			unpack_i4(tex4[i],i0);
 					kernel(i, i0, 0, 0, 0, &i2, &dummy, &dummy,
 					       &dummy);
-           			    }  
+           			    }
 				    i1 = (int)(i2/16.0 + 0.5);
               			}
-              			else 
+              			else
 				if (im->siz == G_IM_SIZ_8b)
 				{
               			   for (i=0; i<9; i++)
@@ -468,11 +468,11 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 				   i1 = (int)(i2/16.0 +0.5);
                			}
 				else
-				{ 
+				{
 				   errNo = 2;
 				   return errNo;
 				}
-					
+
 			   default:
 			   break;
  			}
@@ -484,19 +484,19 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			{
 
 			   case (G_IM_FMT_RGBA):
-			  	texel = pack_rgba(r1,g1,b1,a1); 
+			  	texel = pack_rgba(r1,g1,b1,a1);
 			     	*(short *)((int)saddr^flip) = texel;
 				break;
 
 			   case (G_IM_FMT_YUV):
 				break;
 
-			   case (G_IM_FMT_CI):	
+			   case (G_IM_FMT_CI):
 
 			  	if (im->siz == G_IM_SIZ_4b)
 				{
 			     		texel = pack_ci4(ci1);
-			     		*(char *)((int)saddr^flip) |= (s & 0x2)? 
+			     		*(char *)((int)saddr^flip) |= (s & 0x2)?
 					(texel): (texel << 4);
 			 	}
 				else
@@ -505,25 +505,25 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 			     		texel = pack_ci8(ci1);
 			     		*(char *)((int)saddr^flip) = texel;
 			  	}
-		  		break;	
+		  		break;
 
 			   case (G_IM_FMT_IA):
 			  	if (im->siz == G_IM_SIZ_4b)
 				{
-                  			texel = pack_ia4(i1,a1);  
+                  			texel = pack_ia4(i1,a1);
 			     		*(char *)((int)saddr^flip) |= (s & 0x2)?
 			     		(texel): (texel << 4);
 			  	}
-                  		else 
+                  		else
 				if (im->siz == G_IM_SIZ_8b)
 				{
-                  			texel = pack_ia8(i1,a1); 
+                  			texel = pack_ia8(i1,a1);
 			     		*(char *)((int)saddr^flip) = texel;
 			  	}
-                  		else 
+                  		else
 				if (im->siz == G_IM_SIZ_16b)
 				{
-					texel = pack_ia16(i1,a1); 
+					texel = pack_ia16(i1,a1);
 			    		*(short *)((int)saddr^flip) = texel;
                   		}
 				break;
@@ -538,7 +538,7 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
                  		else
 				if (im->siz == G_IM_SIZ_8b)
 				{
-                  			texel = pack_i8(i1); 
+                  			texel = pack_i8(i1);
 			     		*(char *)((int)saddr^flip) = texel;
                   		}
 				break;
@@ -552,8 +552,8 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
 
 		} /* end t */
 
- 		if (mipmap[level].s <= MM_MIN_SIZE && 
-		    mipmap[level].t <= MM_MIN_SIZE) 
+ 		if (mipmap[level].s <= MM_MIN_SIZE &&
+		    mipmap[level].t <= MM_MIN_SIZE)
 		{
  		  max_mipmap = level;
  		  break;
@@ -561,8 +561,8 @@ int guLoadTextureBlockMipMap(Gfx **glistp, unsigned char *tbuf, Image *im,
  	} /* end level */
 
 }/* end generate mipmap */
-/* 
- * Add entries for texture loading and rendering in DL 
+/*
+ * Add entries for texture loading and rendering in DL
  */
 stuffDisplayList(glistp, im, tbuf, startTile, pal, cms, cmt, masks, maskt, shifts, shiftt);
 
@@ -570,7 +570,7 @@ return errNo;
 } /* end guLoadTextureBlockMipMap */
 
 /******************************************************************************
- * 
+ *
  * Apply Kernel :
  *			1  2  1
  * 			2  4  1
@@ -581,18 +581,18 @@ static void kernel(int i, int r0, int g0, int b0, int a0, float *r2, float *g2, 
 		if (i == 8)
 		{
 			*r2 += r0*4; *g2 += g0*4; *b2 += b0*4; *a2 += a0*4;
-		} else 
+		} else
  		if (i%2 == 0)
 		{
- 	   		*r2 += r0*2; 
-			*g2 += g0*2; 
-			*b2 += b0*2; 
+ 	   		*r2 += r0*2;
+			*g2 += g0*2;
+			*b2 += b0*2;
 			*a2 += a0*2;
 		} else
 		{
- 	   		*r2 += r0; 
-			*g2 += g0; 
-			*b2 += b0; 
+ 	   		*r2 += r0;
+			*g2 += g0;
+			*b2 += b0;
 			*a2 += a0;
 		}
 }
@@ -601,20 +601,20 @@ static void kernel(int i, int r0, int g0, int b0, int a0, float *r2, float *g2, 
  Add entries for loading and rendering textures into the display list
 *********************************************************************/
 static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char startTile,
-		unsigned char pal, unsigned char cms, unsigned char cmt, 
-		unsigned char masks, unsigned char maskt, unsigned char shifts, 
+		unsigned char pal, unsigned char cms, unsigned char cmt,
+		unsigned char masks, unsigned char maskt, unsigned char shifts,
 		unsigned char shiftt)
-{ 
-	int tile;	
+{
+	int tile;
 	int Smask, Tmask;
 	int Sshift, Tshift;
 
-	/* 
-	 * set LOADTILE for loading texture 
+	/*
+	 * set LOADTILE for loading texture
     	 * 4-bit textures are loaded in 8-bit chunks
 	 */
 	if (im->siz == G_IM_SIZ_4b) {
-	   gDPSetTextureImage((*glistp)++, im->fmt, G_IM_SIZ_8b, 1, 
+	   gDPSetTextureImage((*glistp)++, im->fmt, G_IM_SIZ_8b, 1,
       	   osVirtualToPhysical((unsigned short *)tbuf));
 	   gDPSetTile((*glistp)++, im->fmt, G_IM_SIZ_8b, NA, 0, G_TX_LOADTILE, NA,
 		NA, NA, NA, NA, NA, NA);
@@ -622,7 +622,7 @@ static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char 
 	   gDPLoadSync((*glistp)++);
 	   gDPLoadBlock((*glistp)++, G_TX_LOADTILE, 0, 0, length/2, 0x0);
 	} else {
-	   gDPSetTextureImage((*glistp)++, im->fmt, im->siz, 1, 
+	   gDPSetTextureImage((*glistp)++, im->fmt, im->siz, 1,
            osVirtualToPhysical((unsigned short *)tbuf));
 	   gDPSetTile((*glistp)++, im->fmt, im->siz, NA, 0, G_TX_LOADTILE, NA,
       	   NA, NA, NA, NA, NA, NA);
@@ -630,18 +630,18 @@ static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char 
 	   gDPLoadSync((*glistp)++);
 	   gDPLoadBlock((*glistp)++, G_TX_LOADTILE, 0, 0, length, 0x0);
 	}
-			
+
 	for (tile = 0; tile <= level; tile ++)
 	{
  	    Tmask = maskt-tile;
-	    if (Tmask < 0){ 
+	    if (Tmask < 0){
 		Tmask = 0;
 	    } else {
 		Tshift = tile;
 	    }
-		
+
  	    Smask = masks-tile;
-	    if (Smask < 0){ 
+	    if (Smask < 0){
 		Smask = 0;
 	    } else {
 		Sshift = tile;
@@ -653,13 +653,13 @@ static void stuffDisplayList(Gfx **glistp, Image *im, char *tbuf, unsigned char 
 	    rmonPrintf("%d\n",startTile);
 ***/
 
-	
-	    gDPSetTile((*glistp)++,im->fmt, im->siz, (mipmap[tile].w*txlsize >> 4), 
-	    (mipmap[tile].addr >>  3), tile+startTile, pal, cmt, Tmask, Tshift, cms, 
+
+	    gDPSetTile((*glistp)++,im->fmt, im->siz, (mipmap[tile].w*txlsize >> 4),
+	    (mipmap[tile].addr >>  3), tile+startTile, pal, cmt, Tmask, Tshift, cms,
 	    Smask, Sshift);
 
-	    gDPSetTileSize((*glistp)++,tile+startTile, (0 <<G_TEXTURE_IMAGE_FRAC), 
-	    (0 <<G_TEXTURE_IMAGE_FRAC), (mipmap[tile].s-1) <<G_TEXTURE_IMAGE_FRAC, 
+	    gDPSetTileSize((*glistp)++,tile+startTile, (0 <<G_TEXTURE_IMAGE_FRAC),
+	    (0 <<G_TEXTURE_IMAGE_FRAC), (mipmap[tile].s-1) <<G_TEXTURE_IMAGE_FRAC,
    	    (mipmap[tile].t-1) << G_TEXTURE_IMAGE_FRAC);
 	}
 }
@@ -678,7 +678,7 @@ static void get3x3(struct Tile *tile, int *s, int *t, int *texel, int shift, int
 	struct Image *im;
 	unsigned int ss,tt;
 
-	for (i=0; i< 9; i++) 
+	for (i=0; i< 9; i++)
 	{
 		ss = s[i];
 		tt = t[i];
@@ -709,7 +709,7 @@ static void get3x3(struct Tile *tile, int *s, int *t, int *texel, int shift, int
 				errNo = 2; /* Format not supported */
 				break;
 
-			default: 
+			default:
 	  			break;
 		}
 

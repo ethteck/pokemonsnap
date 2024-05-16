@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "sys.h"
 
 // bss
@@ -156,7 +157,7 @@ void func_800E1B54_AA0904(void) {
 }
 
 void func_800E1C5C_AA0A0C(void) {
-    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) D_800E1DE0;
+    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) intro_code_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E1D40_AA0AF0);
 }

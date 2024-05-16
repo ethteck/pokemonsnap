@@ -39,5 +39,7 @@ void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
 void Icons_ProcessButtonPress(s32 eventID);
 void Icons_ProcessZoom(s32 zoomEnabled);
+void Icons_Freeze(void);
+void Icons_UnFreeze(void);
 
 #endif

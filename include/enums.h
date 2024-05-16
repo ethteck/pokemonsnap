@@ -55,6 +55,7 @@ enum SoundIds {
     SOUND_ID_8  =  8,
     SOUND_ID_9  =  9,
     SOUND_ID_10 = 10,
+    SOUND_ID_11 = 11,
     SOUND_ID_12 = 12,
     SOUND_ID_14 = 14,
     SOUND_ID_15 = 15,
@@ -64,7 +65,8 @@ enum SoundIds {
     SOUND_ID_27 = 27,
     SOUND_ID_29 = 29,
     SOUND_ID_31 = 31,
-    SOUND_ID_65 = 65
+    SOUND_ID_65 = 65,
+    SOUND_ID_66 = 66
 };
 
 enum Links {

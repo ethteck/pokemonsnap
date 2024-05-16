@@ -113,6 +113,7 @@ extern s32 D_80382DAC_5231BC;
 extern s32 D_80382DB0_5231C0;
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
+
 extern s32 D_803AE408_54E818;
 extern Vec3f D_803AE410_54E820;
 extern Vec3f D_803AE420_54E830;
@@ -455,7 +456,9 @@ void func_80351114_4F1524(GObj* obj) {
 }
 
 #ifdef NON_MATCHING
+// requires data
 void func_80351158_4F1568(s32 arg0) {
+    static s32 D_80382D4C_52315C = -1;
     if (arg0 == TRUE) {
         if (D_80382D4C_52315C == -1) {
             D_80382D4C_52315C = auPlaySound(SOUND_ID_14);
@@ -464,11 +467,10 @@ void func_80351158_4F1568(s32 arg0) {
         if (D_80382D4C_52315C == -1) {
             return;
         }
-        D_80382D4C_52315C = D_80382D4C_52315C;
         auStopSound(D_80382D4C_52315C);
         auPlaySound(SOUND_ID_15);
-        D_80382CBC_5230CC = 10;
         D_80382D4C_52315C = -1;
+        D_80382CBC_5230CC = 10;        
     }
 }
 #else
@@ -554,13 +556,10 @@ void func_803512FC_4F170C(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
-// stack diff
 void func_80351534_4F1944(GObj* obj) {
     f32 sp1C;
     f32 f18;
     s32 v0 = 0;
-    f32 temp = 0.04712389f;
 
     if (D_80382D20_523130 != 0) {
         return;
@@ -589,12 +588,12 @@ void func_80351534_4F1944(GObj* obj) {
         D_80382CD0_5230E0 = D_80382CD8_5230E8[D_80382BFC_52300C];
         v0++;
     }
-
-    if (ABS(D_80382C0C_52301C) > temp) {
+    f18 = 0.04712389f; // need var reuse for matching
+    if (ABS(D_80382C0C_52301C) > f18) {
         if (D_80382C0C_52301C > 0.0f) {
-            D_80382C0C_52301C -= temp;
+            D_80382C0C_52301C -= f18;
         } else {
-            D_80382C0C_52301C += temp;
+            D_80382C0C_52301C += f18;
         }
     } else {
         D_80382C0C_52301C = 0.0f;
@@ -613,10 +612,6 @@ void func_80351534_4F1944(GObj* obj) {
 static void nullsub(void) {
 
 }
-#else
-void func_80351534_4F1944(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351534_4F1944.s")
-#endif
 
 #ifdef NON_MATCHING
 void func_80351768_4F1B78(GObj* obj) {
@@ -1687,19 +1682,16 @@ void func_80355664_4F5A74(GObj* arg0, s32 arg1, AnimCmd* arg2, f32 arg3) {
 }
 
 #ifdef NON_MATCHING
+// stack diff
 void func_80355860_4F5C70(GObj* arg0) {
     s32 var_s2;
     SObj* sobj1;
     s32 i;
-    SObj* sobj2;
-    Sprite* newvar;
-    s32 one1 = 1;
-    s32 one2 = 1;
+    SObj* sobj2;    
 
-    D_80382D44_523154 = one1;
     var_s2 = 0;
-    goto dummy_label_483273; dummy_label_483273: ; // TODO find better match
-    D_803AE516_54E926 = one2;
+    D_80382D44_523154 = 1;    
+    D_803AE516_54E926 = 1;
     func_8035038C_4F079C();
     ohPauseProcessByFunction(D_80382C00_523010, func_80355228_4F5638);
     func_80357120_4F7530(NULL);
@@ -1709,8 +1701,7 @@ void func_80355860_4F5C70(GObj* arg0) {
     Icons_SetDashEngineEnabled(0);
     sobj1 = omGObjAddSprite(D_80382C6C_52307C, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
-    newvar = &sobj1->sprite;
-    spColor(newvar, 255, 255, 255, 0);
+    spColor(&sobj1->sprite, 255, 255, 255, 0);
     sobj2 = omGObjAddSprite(D_80382C6C_52307C, &D_80381B58_521F68);
     spMove(&sobj2->sprite, 149, 103);
     spColor(&sobj2->sprite, 255, 255, 255, 0);

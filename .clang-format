@@ -15,7 +15,7 @@ AlignTrailingComments:
     Kind: Leave
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
-AllowShortBlocksOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
 AllowShortEnumsOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false

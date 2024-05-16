@@ -9,7 +9,7 @@ Cpp11BracedListStyle: false
 IndentCaseLabels: true
 BinPackArguments: true
 BinPackParameters: true
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: BlockIndent
 AlignOperands: true
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None

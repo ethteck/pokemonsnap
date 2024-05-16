@@ -4,7 +4,7 @@ UseTab: Never
 ColumnLimit: 0
 PointerAlignment: Left
 BreakBeforeBraces: Attach
-SpaceAfterCStyleCast: true
+SpaceAfterCStyleCast: false
 Cpp11BracedListStyle: false
 IndentCaseLabels: true
 BinPackArguments: true

@@ -192,7 +192,7 @@ void func_800E5130_A0C6C0(GObj* gobj) {
 
     sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = sobj->sprite.alpha = 0;
 
-    sobj->sprite.attr &= ~SP_HIDDEN;;
+    sobj->sprite.attr &= ~SP_HIDDEN;
 
     for (color = 0.0f; color < 255.0f; color += 8.5f, ohWait(1)) {
         sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = sobj->sprite.alpha = color;

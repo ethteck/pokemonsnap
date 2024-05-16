@@ -470,7 +470,7 @@ void func_80351158_4F1568(s32 arg0) {
         auStopSound(D_80382D4C_52315C);
         auPlaySound(SOUND_ID_15);
         D_80382D4C_52315C = -1;
-        D_80382CBC_5230CC = 10;        
+        D_80382CBC_5230CC = 10;
     }
 }
 #else
@@ -614,11 +614,21 @@ static void nullsub(void) {
 }
 
 #ifdef NON_MATCHING
+// need data migration
 void func_80351768_4F1B78(GObj* obj) {
     f32 sp94;
+    f32 unused1[6];
     Vec3f sp70;
     Vec3f sp64;
-    f32 t1, t2;
+    f32 unused2[11];
+    f32 dx, dz;
+    f32 delta1;
+    f32 oneHundred = 100.0f;
+
+    static f32 D_80382D58_523168 = 0;
+    static f32 D_80382D5C_52316C = 0;
+    static f32 D_80382D60_523170 = 0;
+    static f32 D_80382D64_523174 = 0;
 
     if (D_80382BFC_52300C == 0) {
         if (D_80382CC8_5230D8 > 0.9424779f) {
@@ -685,14 +695,10 @@ void func_80351768_4F1B78(GObj* obj) {
         D_80382C44_523054 = D_80382C68_523078 * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
     }
 
-    t1 = D_80382D60_523170;
-    t2 = D_80382D58_523168;
-    if (ABS(t1 - t2) > 0.2f) {
-        D_80382D60_523170 = t1;
-        D_80382D58_523168 += SIGN(t1 - t2) * 0.2f;
+    if (ABS(D_80382D60_523170 - D_80382D58_523168) > 0.2f) {
+        D_80382D58_523168 += SIGN(D_80382D60_523170 - D_80382D58_523168) * 0.2f;
     } else {
-        D_80382D60_523170 = t1;
-        D_80382D58_523168 += 0;
+        D_80382D58_523168 = D_80382D60_523170;
     }
 
     if (ABS(D_80382D64_523174 - D_80382D5C_52316C) > 0.2f) {
@@ -707,12 +713,8 @@ void func_80351768_4F1B78(GObj* obj) {
     cosf(D_80366BA4_506FB4.unk_18.y);
 
     sp70.x = D_803AE410_54E820.x = D_80366BA4_506FB4.unk_0C.x;
-    sp70.y = D_803AE410_54E820.y = D_80366BA4_506FB4.unk_0C.y + 100.0f + D_80382C48_523058 + D_80382C58_523068;
+    sp70.y = D_803AE410_54E820.y = D_80366BA4_506FB4.unk_0C.y + oneHundred + D_80382C48_523058 + D_80382C58_523068;
     sp70.z = D_803AE410_54E820.z = D_80366BA4_506FB4.unk_0C.z;
-
-    //sp70.x = D_803AE410_54E820.x;
-    //sp70.y = D_803AE410_54E820.y;
-    //sp70.z = D_803AE410_54E820.z;
 
     sp64.x = -20.0f * cosf(D_80382C0C_52301C) * sinf(sp94);
     sp64.y = 20.0f * sinf(D_80382C0C_52301C);
@@ -722,16 +724,18 @@ void func_80351768_4F1B78(GObj* obj) {
     Vec3fGetEulerRotation(&sp64, AXIS_Y, D_80366BA4_506FB4.unk_18.y);
     Vec3fGetEulerRotation(&sp64, AXIS_Z, D_80366BA4_506FB4.unk_18.z);
 
-    D_803AE420_54E830.x = sp70.x + sp64.x;
-    D_803AE420_54E830.y = sp70.y + sp64.y;
-    D_803AE420_54E830.z = sp70.z + sp64.z;
+    D_803AE420_54E830.x = sp64.x + sp70.x;
+    D_803AE420_54E830.y = sp64.y + sp70.y;
+    D_803AE420_54E830.z = sp64.z + sp70.z;
 
-    if (SQ(D_803AE420_54E830.x - D_803AE410_54E820.x) + SQ(D_803AE420_54E830.z - D_803AE410_54E820.z) < 0.1f) {
-        D_803AE420_54E830.x = D_803AE430_54E840.x + D_803AE410_54E820.x;
-        D_803AE420_54E830.z = D_803AE430_54E840.z + D_803AE410_54E820.z;
+    dx = D_803AE420_54E830.x - D_803AE410_54E820.x;
+    dz = D_803AE420_54E830.z - D_803AE410_54E820.z;
+    if (SQ(dx) + SQ(dz) < 0.1f) {
+        D_803AE420_54E830.x = D_803AE410_54E820.x + D_803AE430_54E840.x;
+        D_803AE420_54E830.z = D_803AE410_54E820.z + D_803AE430_54E840.z;
     } else {
-        D_803AE430_54E840.x = D_803AE420_54E830.x - D_803AE410_54E820.x;
-        D_803AE430_54E840.z = D_803AE420_54E830.z - D_803AE410_54E820.z;
+        D_803AE430_54E840.x = dx;
+        D_803AE430_54E840.z = dz;
     }
 
     D_80382C30_523040->viewMtx.lookAt.eye.x = D_803AE410_54E820.x;
@@ -1243,7 +1247,7 @@ void func_803543B0_4F47C0(GObj* obj) {
     while (TRUE) {
         if (D_80382D38_523148 < -103) {
             spSetAttribute(&sobj->sprite, SP_HIDDEN);
-            spSetAttribute(&D_80382C78_523088->sprite, SP_HIDDEN);            
+            spSetAttribute(&D_80382C78_523088->sprite, SP_HIDDEN);
             omEndProcess(NULL);
         } else {
             spMove(&D_80382C78_523088->sprite, D_80382D38_523148, 94);
@@ -1541,7 +1545,7 @@ void func_80355228_4F5638(GObj* arg0) {
 
 void func_803552B0_4F56C0(GObj* obj) {
     s32 i;
-    s32 sp30;    
+    s32 sp30;
 
     sp30 = 0;
     func_80357120_4F7530(obj);
@@ -1687,10 +1691,10 @@ void func_80355860_4F5C70(GObj* arg0) {
     s32 var_s2;
     SObj* sobj1;
     s32 i;
-    SObj* sobj2;    
+    SObj* sobj2;
 
     var_s2 = 0;
-    D_80382D44_523154 = 1;    
+    D_80382D44_523154 = 1;
     D_803AE516_54E926 = 1;
     func_8035038C_4F079C();
     ohPauseProcessByFunction(D_80382C00_523010, func_80355228_4F5638);
@@ -2298,7 +2302,7 @@ f32 func_80357460_4F7870(OMCamera* arg0, f32 arg1, f32 arg2, f32 arg3) {
     outX *= outS;
     outY *= outS;
     outZ *= outS;
-    
+
     if (ABS(outX) < 0.2f && ABS(outY) < 0.2f && outS > 0.0f && outZ > 0.0f) {
         return outZ;
     }
@@ -2550,19 +2554,19 @@ GObj* func_80358420_4F8830(s32 arg0) {
     omCameraAddMtx(cam, MTX_TYPE_LOOKAT_REFLECT_ROLL, 0);
     cam->vp = cam->vp; // required to match
     cam->perspMtx.persp.fovy = 60.0f;
-    cam->perspMtx.persp.near = 10.0f;    
+    cam->perspMtx.persp.near = 10.0f;
     cam->perspMtx.persp.far = 25600.0f;
 
     cam->viewMtx.lookAt.at.x = 0.0f;
     cam->viewMtx.lookAt.at.y = 1600.0f;
     cam->viewMtx.lookAt.eye.x = 0.0f;
-    cam->viewMtx.lookAt.at.z = 0.0f;    
+    cam->viewMtx.lookAt.at.z = 0.0f;
     cam->viewMtx.lookAt.eye.y = 1600.0f;
-    cam->viewMtx.lookAt.eye.z = 60.0f;    
+    cam->viewMtx.lookAt.eye.z = 60.0f;
     cam->viewMtx.lookAt.up.x = 0.0f;
     cam->viewMtx.lookAt.up.y = 1.0f;
     cam->viewMtx.lookAt.up.z = 0.0f;
-    
+
     D_803AE410_54E820.x = cam->viewMtx.lookAt.eye.x;
     D_803AE410_54E820.y = cam->viewMtx.lookAt.eye.y;
     D_803AE410_54E820.z = cam->viewMtx.lookAt.eye.z;

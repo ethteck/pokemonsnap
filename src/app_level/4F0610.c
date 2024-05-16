@@ -145,7 +145,7 @@ void func_8035024C_4F065C(f32 arg0, f32 arg1, f32 arg2) {
     D_80382C30_523040->viewMtx.lookAt.at.y += arg1;
     D_80382C30_523040->viewMtx.lookAt.at.z += arg2;
 
-    D_803AE410_54E820.x += arg0; D_803AE410_54E820.y += arg1; D_803AE410_54E820.z += arg2;    
+    D_803AE410_54E820.x += arg0; D_803AE410_54E820.y += arg1; D_803AE410_54E820.z += arg2;
     D_803AE420_54E830.x += arg0; D_803AE420_54E830.y += arg1; D_803AE420_54E830.z += arg2;
     D_80382C1C_52302C += arg0; D_80382C20_523030 += arg1; D_80382C24_523034 += arg2;
 }
@@ -645,9 +645,9 @@ void func_80351768_4F1B78(GObj* obj) {
         D_80382D58_523168 += SIGN(t1 - t2) * 0.2f;
     } else {
         D_80382D60_523170 = t1;
-        D_80382D58_523168 += 0;        
+        D_80382D58_523168 += 0;
     }
-    
+
     if (ABS(D_80382D64_523174 - D_80382D5C_52316C) > 0.2f) {
         D_80382D5C_52316C += SIGN(D_80382D64_523174 - D_80382D5C_52316C) * 0.2f;
         D_80382D64_523174 = D_80382D64_523174;
@@ -744,7 +744,7 @@ void func_80351FF0_4F2400(GObj* obj) {
     s32 y1, y2;
     s32 x1, x2;
     s32 unused3;
-    f32 dx, dy, dz;    
+    f32 dx, dy, dz;
     s32 y3, y4;
     s32 x3, x4;
     f32 sinAngle, cosAngle;
@@ -752,7 +752,7 @@ void func_80351FF0_4F2400(GObj* obj) {
     f32 dx2, dz2;
 
     i = 0;
-    
+
     Icons_ProcessZoom(TRUE);
 
     y1 = 0;
@@ -834,7 +834,7 @@ void func_80351FF0_4F2400(GObj* obj) {
 
         sinAngle = sinf(D_80366BA4_506FB4.unk_18.y);
         cosAngle = cosf(D_80366BA4_506FB4.unk_18.y);
-        
+
         D_803AE4D8_54E8E8.x += sp114 * spEC.x;
         D_803AE4D8_54E8E8.y += sp114 * spEC.y;
         D_803AE4D8_54E8E8.z += sp114 * spEC.z;
@@ -850,7 +850,7 @@ void func_80351FF0_4F2400(GObj* obj) {
         D_803AE420_54E830.x = D_80366BA4_506FB4.unk_0C.x + D_803AE4E8_54E8F8.x * cosAngle + D_803AE4E8_54E8F8.z * sinAngle;
         D_803AE420_54E830.y = D_80366BA4_506FB4.unk_0C.y + D_803AE4E8_54E8F8.y;
         D_803AE420_54E830.z = D_80366BA4_506FB4.unk_0C.z - D_803AE4E8_54E8F8.x * sinAngle + D_803AE4E8_54E8F8.z * cosAngle;
-        
+
         dx2 = D_803AE420_54E830.x - D_803AE410_54E820.x;
         dz2 = D_803AE420_54E830.z - D_803AE410_54E820.z;
         if ((SQ(dx2) + SQ(dz2)) < 0.1f) {

@@ -277,7 +277,7 @@ typedef struct UnkCelesteWolverine {
     /* 0x04 */ char unk_04[4];
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ u32 unk_0C;
-    /* 0x10 */ UnkCelesteWolverineSub unk_10[1]; 
+    /* 0x10 */ UnkCelesteWolverineSub unk_10[1];
 } UnkCelesteWolverine; // VLA
 
 #endif

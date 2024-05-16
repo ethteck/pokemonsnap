@@ -578,6 +578,7 @@ segments:
     exclusive_ram_id: app_level
     subsegments:
     - [0x4F0610, c]
+    - [0x4F8B20, pad, padding_4F8B20]
     - [0x4F8B30, c]
     - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
@@ -596,7 +597,7 @@ segments:
     - [0x528530, .data, icons]
     - [0x528720, data]
     - { start: 0x52A470, type: .rodata, name: 4F0610, linker_section_order: .data }
-    - [0x52A700, data]
+    - [0x52A710, data]
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]

@@ -5,10 +5,14 @@
 
 struct GObj;
 
+typedef struct GObjCmdData {
+    /* 0x00 */ struct GObj* source;
+    /* 0x04 */ u32 cmd;
+} GObjCmdData; // size = 0x8
+
 typedef struct GObjCmd {
     /* 0x00 */ struct GObjCmd* next;
-    /* 0x04 */ struct GObj* source;
-    /* 0x08 */ s32 cmd;
+    /* 0x04 */ GObjCmdData data;
 } GObjCmd; // size = 0xC
 
 typedef struct GObjCmdList {
@@ -19,7 +23,7 @@ typedef struct GObjCmdList {
 
 void cmdFreeObjCmd(GObjCmdList*);
 void cmdReset(void);
-s32 cmdProcessCommands(void (*handler)(struct GObj*, s32));
+s32 cmdProcessCommands(void (*handler)(GObjCmdData));
 void cmdSendCommandToLink(s32 llIndex, s32, struct GObj*);
 s32 cmdSendCommand(struct GObj* obj, s32 cmd, struct GObj* source);
 

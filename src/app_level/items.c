@@ -289,9 +289,8 @@ void Items_InitItem(GObj* obj, Vec3f* pos, Vec3f* extraVelocity) {
     omCreateProcess(obj, Items_ShowDelayed, 0, 7);
 }
 
-void Items_ProcessCommand(GObj* source, s32 cmd) {
-    s32* cmdPtr = &cmd; // TODO find better match
-    if (*cmdPtr == ITEM_CMD_REMOVE) {
+void Items_ProcessCommand(GObjCmdData cmdData) {
+    if (cmdData.cmd == ITEM_CMD_REMOVE) {
         Items_DeleteItem(omCurrentObject);
     }
 }

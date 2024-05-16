@@ -2,11 +2,6 @@
 #include "sys/om.h"
 #include "sys/oh.h"
 
-struct SignalParam {
-    GObj* obj;
-    s32 cmd;
-};
-
 s32 padding1[4];
 GObjCmd* cmdObjCmdList;
 
@@ -42,8 +37,8 @@ s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source) {
         source = omCurrentObject;
     }
     objCmd = cmdGetObjCmd();
-    objCmd->cmd = cmd;
-    objCmd->source = source;
+    objCmd->data.cmd = cmd;
+    objCmd->data.source = source;
 
     if (obj->cmdList.head == NULL) {
         obj->cmdList.tail = objCmd;
@@ -57,29 +52,28 @@ s32 cmdSendCommand(GObj* obj, s32 cmd, GObj* source) {
     return 0;
 }
 
-void cmdSendSignal(GObj* obj, struct SignalParam* param) {
-    cmdSendCommand(obj, param->cmd, param->obj);
+void cmdSendSignal(GObj* obj, GObjCmdData* param) {
+    cmdSendCommand(obj, param->cmd, param->source);
 }
 
 void cmdSendCommandToLink(s32 link, s32 cmd, GObj* source) {
-    struct SignalParam param;
+    GObjCmdData param;
 
     if (source != 0) {
-        param.obj = source;
+        param.source = source;
     } else {
-        param.obj = omCurrentObject;
+        param.source = omCurrentObject;
     }
     param.cmd = cmd;
     ohApplyByLinkEx(link, (GObj* (*)(GObj*, void*))cmdSendSignal, (void*)&param, FALSE);
 }
 
-#ifdef NON_MATCHING
-s32 cmdProcessCommands(void (*handler)(GObj*, s32)) {
+s32 cmdProcessCommands(void (*handler)(GObjCmdData)) {
     GObjCmdList* entry = &omCurrentObject->cmdList;
     GObjCmd* cur = entry->head;
 
     while (cur != NULL) {
-        switch (cur->cmd) {
+        switch (cur->data.cmd) {
             case -1:
                 omDeleteGObj(NULL);
                 return 1;
@@ -97,7 +91,7 @@ s32 cmdProcessCommands(void (*handler)(GObj*, s32)) {
                 break;
             default:
                 if (handler != NULL) {
-                    handler(cur->source, cur->cmd);
+                    handler(cur->data);
                 }
                 break;
         }
@@ -108,10 +102,6 @@ s32 cmdProcessCommands(void (*handler)(GObj*, s32)) {
     entry->count = 0;
     return 0;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/cmd/cmdProcessCommands.s")
-s32 cmdProcessCommands(void (*handler)(GObj*, s32));
-#endif
 
 void cmdReset(void) {
     cmdObjCmdList = NULL;

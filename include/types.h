@@ -19,4 +19,6 @@ typedef struct Vec3f {
 
 typedef f32 Mtx4f[4][4];
 
+typedef f32 Mtx3f[3][3];
+
 #endif

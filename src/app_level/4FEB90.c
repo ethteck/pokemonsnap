@@ -640,7 +640,7 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803625B4_5029C4.s")
-void func_803625B4_5029C4(GObj* source, s32 cmd);
+void func_803625B4_5029C4(GObjCmdData cmdData);
 #endif
 
 void updatePokemonDefault(GObj* obj) {

@@ -59,6 +59,7 @@ enum SoundIds {
     SOUND_ID_12 = 12,
     SOUND_ID_14 = 14,
     SOUND_ID_15 = 15,
+    SOUND_ID_20 = 20,
     SOUND_ID_24 = 24,
     SOUND_ID_25 = 25,
     SOUND_ID_26 = 26,

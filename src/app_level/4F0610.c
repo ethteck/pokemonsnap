@@ -44,6 +44,7 @@ extern f32 D_80382C28_523038;
 extern f32 D_80382C2C_52303C;
 extern OMCamera* D_80382C30_523040;
 extern GObj* D_80382C38_523048;
+extern s32 D_80382C40_523050;
 extern s32 D_80382C3C_52304C;
 extern f32 D_80382C44_523054;
 extern f32 D_80382C48_523058;
@@ -105,6 +106,11 @@ extern s32 D_80382D78_523188;
 extern s32 D_80382D80_523190;
 extern GObjFunc D_80382D84_523194[];
 extern s32 D_80382D9C_5231AC;
+extern s32 D_80382DA0_5231B0;
+extern s32 D_80382DA4_5231B4;
+extern s32 D_80382DA8_5231B8;
+extern s32 D_80382DAC_5231BC;
+extern s32 D_80382DB0_5231C0;
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
 extern s32 D_803AE408_54E818;
@@ -128,6 +134,11 @@ extern u32 D_803AE51C_54E92C;
 extern s8 D_803AE520_54E930;
 extern s8 D_803AE521_54E931;
 extern s8 D_803AE522_54E932;
+extern s32 D_803AE530_54E940[4]; // Rect?
+extern s32 D_803AE540_54E950;
+extern s32 D_803AE544_54E954;
+extern s32 D_803AE548_54E958;
+extern s32 D_803AE54C_54E95C;
 extern s32 D_803AE768_54EB78;
 extern UnkJetSkua* D_803AE76C_54EB7C;
 extern s32 D_803AE770_54EB80;
@@ -154,11 +165,16 @@ void func_800A7F40(f32, f32, s32, f32);
 void func_80357D18_4F8128(s32, s32, s32, s32);
 void func_80365E34_506244(void);
 void func_80358994_4F8DA4(s32);
-void func_80355614_4F5A24(s32);
+void func_80355614_4F5A24(GObj*);
 void func_80357170_4F7580(void);
 void func_80359064_4F9474(void);
 void func_80355F18_4F6328(GObj* arg0);
 s32 func_8009BBF4(void);
+void func_8035E4D0_4FE8E0(void);
+void func_8035E764_4FEB74(void);
+void func_8035E754_4FEB64(void);
+void func_80359034_4F9444(void);
+void func_800A1E6C(Vec3f* arg0);
 
 s32 func_80350200_4F0610(s32 arg0) {
     return func_800BF3D4_5C274(arg0) == 0;
@@ -1251,7 +1267,7 @@ void func_8035453C_4F494C(void) {
     func_80365E34_506244();
     func_80358994_4F8DA4(1);
     func_8035038C_4F079C();
-    func_80355614_4F5A24(0);
+    func_80355614_4F5A24(NULL);
     func_80350458_4F0868(10, 1);
     func_800A7470(0, 0, 0);
     func_800A7918(0, 0.5f);
@@ -1618,11 +1634,57 @@ void func_803555B0_4F59C0(u8 arg0, u8 arg1, u8 arg2) {
     omCreateProcess(D_80382C6C_52307C, func_8035403C_4F444C, 0, 9);
 }
 
+void func_80355614_4F5A24(GObj* arg0) {
+    GObj* pokemonObj;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355614_4F5A24.s")
+    for (pokemonObj = omGObjListHead[LINK_POKEMON]; pokemonObj != NULL; pokemonObj = pokemonObj->next) {
+        if (pokemonObj != arg0) {
+            ohPauseObjectProcesses(pokemonObj);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355664_4F5A74.s")
-void func_80355664_4F5A74(GObj*, s32, AnimCmd*, f32);
+void func_80355664_4F5A74(GObj* arg0, s32 arg1, AnimCmd* arg2, f32 arg3) {
+    Icons_Hide();
+    func_8035E4D0_4FE8E0();
+    if (D_80382C38_523048 != NULL) {
+        omDeleteGObj(D_80382C38_523048);
+        D_80382C38_523048 = NULL;
+    }
+    func_80365E34_506244();
+    func_80358994_4F8DA4(arg1);
+    scRemovePostProcessFunc();
+    func_8035038C_4F079C();
+    ohPauseProcessByFunction(D_80382C00_523010, func_80352F20_4F3330);
+    func_80355614_4F5A24(arg0);
+    func_800E1A78_5F228(0);
+    if (arg2 != NULL) {
+        animSetCameraAnimation(D_80382C30_523040, arg2, arg3);
+        animUpdateCameraAnimation(D_80382C30_523040->obj);
+    } else {
+        Vec3f sp34;
+        Vec3f sp28;
+
+        sp34.x = 0;
+        sp34.y = 0;
+        sp34.z = 1.0f;
+        sp28.x = 0;
+        sp28.y = 0.5f;
+        sp28.z = 0;
+        Vec3fGetEulerRotation(&sp34, AXIS_Y, D_80366BA4_506FB4.unk_18.y);
+        Vec3fAdd(&sp34, &sp28);
+        Vec3fNormalize(&sp28);
+        Vec3f_func_8001A8B8(&sp34, &sp28, -30.0f);
+        D_80382C30_523040->viewMtx.lookAt.at.x = D_80366BA4_506FB4.unk_0C.x;
+        D_80382C30_523040->viewMtx.lookAt.at.y = D_80366BA4_506FB4.unk_0C.y;
+        D_80382C30_523040->viewMtx.lookAt.at.z = D_80366BA4_506FB4.unk_0C.z;
+        D_80382C30_523040->viewMtx.lookAt.eye.x = D_80366BA4_506FB4.unk_0C.x + sp34.x * 80.0f;
+        D_80382C30_523040->viewMtx.lookAt.eye.y = D_80366BA4_506FB4.unk_0C.y + sp34.y * 80.0f;
+        D_80382C30_523040->viewMtx.lookAt.eye.z = D_80366BA4_506FB4.unk_0C.z + sp34.z * 80.0f;
+    }
+    D_80382C30_523040->perspMtx.persp.aspect = 4.0f / 3.0f;
+    func_80007C20(&D_80382C30_523040->vp, 0.0f, 0.0f, 320.0f, 240.0f);
+}
 
 #ifdef NON_MATCHING
 void func_80355860_4F5C70(GObj* arg0) {
@@ -1695,7 +1757,7 @@ void func_80355860_4F5C70(GObj* arg0);
 void func_80355B24_4F5F34(GObj* arg0) {
     s32 i;
 
-    auPlaySound(20);
+    auPlaySound(SOUND_ID_20);
     D_80382C64_523074 = TRUE;
     for (i = 0; i < 180; i++) {
         if (D_80382DC0_5231D0 == -1) {
@@ -1715,8 +1777,8 @@ void func_80355BC4_4F5FD4(GObj* arg0) {
     func_80350458_4F0868(10, 1);
     func_800A7470(255, 255, 255);
     func_800A7918(0, 2.0f);
-    auSetBGMVolumeSmooth(0, 0, 120);
-    auSetBGMVolumeSmooth(1, 0, 120);
+    auSetBGMVolumeSmooth(BGM_PLAYER_MAIN, 0, 120);
+    auSetBGMVolumeSmooth(BGM_PLAYER_AUX, 0, 120);
     ohWait(1);
     while (func_800A7460() == 1) {
         volume += -(1.0f / duration);
@@ -1733,9 +1795,8 @@ void func_80355D54_4F6164(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#ifdef NON_MATCHING
-void func_80355D88_4F6198(GObj* source, s32 cmd) {
-    switch (cmd) {
+void func_80355D88_4F6198(GObjCmdData cmdData) {
+    switch (cmdData.cmd) {
         case 3:
             omCreateProcess(omCurrentObject, func_80350898_4F0CA8, 0, 9);
             break;
@@ -1761,7 +1822,7 @@ void func_80355D88_4F6198(GObj* source, s32 cmd) {
             }
             break;
         case 8:
-            func_80355664_4F5A74(source, 1, NULL, 0.0f);
+            func_80355664_4F5A74(cmdData.source, 1, NULL, 0.0f);
             break;
         case 9:
             D_803AE514_54E924 = 1;
@@ -1773,10 +1834,6 @@ void func_80355D88_4F6198(GObj* source, s32 cmd) {
             break;
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80355D88_4F6198.s")
-void func_80355D88_4F6198(GObj* source, s32 cmd);
-#endif
 
 void func_80355EF0_4F6300(GObj* arg0) {
     cmdProcessCommands(func_80355D88_4F6198);
@@ -1818,7 +1875,7 @@ void func_80356074_4F6484(GObj* arg0) {
     }
 }
 
-void func_80356118_4F6528(GObj* source, s32 cmd) {
+void func_80356118_4F6528(GObjCmdData cmdData) {
 
 }
 
@@ -2088,80 +2145,451 @@ GObj* func_803563A0_4F67B0(void (*arg0)(WorldBlock*), void (*arg1)(s32), GObjFun
     return sp4C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356FBC_4F73CC.s")
+void func_80356FBC_4F73CC(void) {
+    omDeleteGObj(D_80382C00_523010);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80356FE0_4F73F0.s")
+void func_80356FE0_4F73F0(void) {
+    omCreateProcess(D_80382C00_523010, func_80351114_4F1524, 1, 9);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357014_4F7424.s")
+void func_80357014_4F7424(f32* arg0, f32* arg1) {
+    *arg0 = D_80366BA4_506FB4.unk_00;
+    *arg1 = D_80366BA4_506FB4.unk_04;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357030_4F7440.s")
+GObj* func_80357030_4F7440(void) {
+    return D_80382C00_523010;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035703C_4F744C.s")
+DObj* func_8035703C_4F744C(void) {
+    return D_80382C04_523014;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/getProgressFlags.s")
+u32 getProgressFlags(void) {
+    return D_803AE51C_54E92C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357054_4F7464.s")
+void func_80357054_4F7464(f32 arg0, f32 arg1) {
+    D_80382CEC_5230FC = arg0;
+    D_80382CF0_523100 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357068_4F7478.s")
+void func_80357068_4F7478(void) {
+    if (D_80382D10_523120 != NULL) {
+        D_80382D10_523120->flags |= 0xFFFF0000;
+    }
+    if (D_80382D14_523124 != NULL) {
+        D_80382D14_523124->flags |= 0xFFFF0000;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803570B0_4F74C0.s")
+void func_803570B0_4F74C0(void) {
+    if (D_80382D10_523120 != NULL) {
+        D_80382D10_523120->flags &= ~0xFFFF0000;
+    }
+    if (D_80382D14_523124 != NULL) {
+        D_80382D14_523124->flags &= ~0xFFFF0000;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803570F0_4F7500.s")
+void func_803570F0_4F7500(GObj* arg0, AnimCmd* arg1, f32 arg2) {
+    func_80355664_4F5A74(arg0, 1, arg1, arg2);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357120_4F7530.s")
+void func_80357120_4F7530(GObj* arg0) {
+    func_80355614_4F5A24(arg0);
+    Items_Pause();
+    func_80357068_4F7478();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357150_4F7560.s")
+void func_80357150_4F7560(GObj* arg0) {
+    ohResumeObjectProcesses(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357170_4F7580.s")
+void func_80357170_4F7580(void) {
+    GObj* pokemonObj;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803571C4_4F75D4.s")
+    for (pokemonObj = omGObjListHead[LINK_POKEMON]; pokemonObj != NULL; pokemonObj = pokemonObj->next) {
+        ohResumeObjectProcesses(pokemonObj);
+    }
+    Items_UnPause();
+    func_803570B0_4F74C0();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357278_4F7688.s")
+void func_803571C4_4F75D4(void) {
+    Icons_Hide();
+    func_8035E764_4FEB74();
+    D_80382C38_523048->flags |= GOBJ_FLAG_HIDDEN;
+    ohPauseProcessByFunction(D_80382C00_523010, func_80350224_4F0634);
+    ohPauseProcessByFunction(D_80382C00_523010, func_80350AE8_4F0EF8);
+    ohPauseProcessByFunction(D_80382C00_523010, func_803512FC_4F170C);
+    ohPauseProcessByFunction(D_80382C00_523010, func_80350950_4F0D60);
+    ohPauseProcessByFunction(D_80382C00_523010, func_80351768_4F1B78);
+    ohPauseProcessByFunction(D_80382C6C_52307C, func_803549A4_4F4DB4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803572B0_4F76C0.s")
+void func_80357278_4F7688(GObj* arg0) {
+    ohWait(2);
+    D_80382D04_523114 = 1;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357378_4F7788.s")
+void func_803572B0_4F76C0(void) {
+    Icons_Show();
+    func_8035E754_4FEB64();
+    D_80382C38_523048->flags &= ~GOBJ_FLAG_HIDDEN;
+    ohResumeProcessByFunction(D_80382C00_523010, func_80350224_4F0634);
+    ohResumeProcessByFunction(D_80382C00_523010, func_80350AE8_4F0EF8);
+    ohResumeProcessByFunction(D_80382C00_523010, func_803512FC_4F170C);
+    ohResumeProcessByFunction(D_80382C00_523010, func_80350950_4F0D60);
+    ohResumeProcessByFunction(D_80382C00_523010, func_80351768_4F1B78);
+    ohResumeProcessByFunction(D_80382C6C_52307C, func_803549A4_4F4DB4);
+    omCreateProcess(D_80382C00_523010, func_80357278_4F7688, 0, 9);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357384_4F7794.s")
+UnkGoldViper* func_80357378_4F7788(void) {
+    return &D_80366BA4_506FB4;
+}
+
+void func_80357384_4F7794(s32* arg0, f32* arg1) {
+    *arg0 = D_80366BA4_506FB4.unk_08->index;
+    *arg1 = D_80366BA4_506FB4.unk_00;
+}
 
 u8 func_803573A4_4F77B4(void) {
     return D_80382D20_523130;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803573B0_4F77C0.s")
+DObj* func_803573B0_4F77C0(void) {
+    return D_80382C04_523014;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803573BC_4F77CC.s")
+void func_803573BC_4F77CC(void) {
+    func_80007C20(&D_80382C30_523040->vp, 0.0f, 0.0f, 320.0f, 240.0f);
+    D_80382C30_523040->perspMtx.persp.fovy = 55.0f;
+    func_80357D18_4F8128(0, 0, 320, 240);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357428_4F7838.s")
+void func_80357428_4F7838(s32 arg0) {
+    if (D_80382C3C_52304C != 0 && arg0 == D_80382C40_523050) {
+        D_80382C40_523050 = 0;
+        D_80382C3C_52304C = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357460_4F7870.s")
+f32 func_80357460_4F7870(OMCamera* arg0, f32 arg1, f32 arg2, f32 arg3) {
+    Mtx4f spA0;
+    Mtx4f sp60;
+    u16 sp5E;
+    f32 outX, outY, outZ, outS;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_8035769C_4F7AAC.s")
+    if (arg0 == NULL) {
+        return -1.0f;
+    }
+    hal_look_at_f(spA0,
+                  arg0->viewMtx.lookAt.eye.x, arg0->viewMtx.lookAt.eye.y, arg0->viewMtx.lookAt.eye.z,
+                  arg0->viewMtx.lookAt.at.x, arg0->viewMtx.lookAt.at.y, arg0->viewMtx.lookAt.at.z,
+                  0.0f, 1.0f, 0.0f);
+    hal_perspective_fast_f(sp60, &sp5E,
+                           arg0->perspMtx.persp.fovy,
+                           arg0->perspMtx.persp.aspect,
+                           arg0->perspMtx.persp.near,
+                           arg0->perspMtx.persp.far,
+                           arg0->perspMtx.persp.scale);
+    guMtxCatF(spA0, sp60, sp60);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357774_4F7B84.s")
+    outX = sp60[0][0] * arg1 + sp60[1][0] * arg2 + sp60[2][0] * arg3 + sp60[3][0];
+    outY = sp60[0][1] * arg1 + sp60[1][1] * arg2 + sp60[2][1] * arg3 + sp60[3][1];
+    outZ = sp60[0][2] * arg1 + sp60[1][2] * arg2 + sp60[2][2] * arg3 + sp60[3][2];
+    outS = sp60[0][3] * arg1 + sp60[1][3] * arg2 + sp60[2][3] * arg3 + sp60[3][3];
+    outS = 1.0f / outS;
+    outX *= outS;
+    outY *= outS;
+    outZ *= outS;
+    
+    if (ABS(outX) < 0.2f && ABS(outY) < 0.2f && outS > 0.0f && outZ > 0.0f) {
+        return outZ;
+    }
+    return -1.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803579C8_4F7DD8.s")
+f32 func_8035769C_4F7AAC(Mtx3f m) {
+    f32 det = m[0][0] * m[1][1] * m[2][2]
+            + m[1][0] * m[2][1] * m[0][2]
+            + m[2][0] * m[0][1] * m[1][2]
+            - m[0][2] * m[1][1] * m[2][0]
+            - m[1][2] * m[2][1] * m[0][0]
+            - m[2][2] * m[0][1] * m[1][0];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357D18_4F8128.s")
+    return det;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357E0C_4F821C.s")
+f32 func_80357774_4F7B84(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5) {
+    Mtx4f sp88;
+    Mtx4f sp48;
+    u16 sp46;
+    f32 w;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357EC8_4F82D8.s")
+    if (D_80382C30_523040 == NULL) {
+        return -1.0f;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357EF8_4F8308.s")
+    hal_look_at_f(sp88,
+                  D_80382C30_523040->viewMtx.lookAt.eye.x, D_80382C30_523040->viewMtx.lookAt.eye.y, D_80382C30_523040->viewMtx.lookAt.eye.z,
+                  D_80382C30_523040->viewMtx.lookAt.at.x, D_80382C30_523040->viewMtx.lookAt.at.y, D_80382C30_523040->viewMtx.lookAt.at.z,
+                  0.0f, 1.0f, 0.0f);
+    hal_perspective_fast_f(sp48, &sp46,
+                           D_80382C30_523040->perspMtx.persp.fovy,
+                           D_80382C30_523040->perspMtx.persp.aspect,
+                           D_80382C30_523040->perspMtx.persp.near,
+                           D_80382C30_523040->perspMtx.persp.far,
+                           D_80382C30_523040->perspMtx.persp.scale);
+    guMtxCatF(sp88, sp48, sp48);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80357FD4_4F83E4.s")
+    *arg3 = sp48[0][0] * arg0 + sp48[1][0] * arg1 + sp48[2][0] * arg2 + sp48[3][0];
+    *arg4 = sp48[0][1] * arg0 + sp48[1][1] * arg1 + sp48[2][1] * arg2 + sp48[3][1];
+    *arg5 = sp48[0][2] * arg0 + sp48[1][2] * arg1 + sp48[2][2] * arg2 + sp48[3][2];
+    w = sp48[0][3] * arg0 + sp48[1][3] * arg1 + sp48[2][3] * arg2 + sp48[3][3];
+    w = 1.0f / w;
+    *arg3 *= w;
+    *arg4 *= w;
+    *arg5 *= w;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80358064_4F8474.s")
+    if (ABS(*arg3) < 1.0f && ABS(*arg4) < 1.0f && *arg5 > 0.0f) {
+        return *arg5;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80358088_4F8498.s")
+    return -1.0f;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803580B0_4F84C0.s")
+void func_803579C8_4F7DD8(f32* arg0, f32* arg1, f32* arg2) {
+    Mtx4f sp150;
+    Mtx4f sp110;
+    Mtx3f spEC;
+    Mtx4f spAC;
+    s32 i, j, k, l, p;
+    u16 sp96;
+    s32 q;
+    f32 f0, f2;
+    f32 x1, y1, z1, w1;
+    f32 invS;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80358420_4F8830.s")
+    hal_look_at_f(sp150,
+                  D_80382C30_523040->viewMtx.lookAt.eye.x, D_80382C30_523040->viewMtx.lookAt.eye.y, D_80382C30_523040->viewMtx.lookAt.eye.z,
+                  D_80382C30_523040->viewMtx.lookAt.at.x, D_80382C30_523040->viewMtx.lookAt.at.y, D_80382C30_523040->viewMtx.lookAt.at.z,
+                  D_80382C30_523040->viewMtx.lookAt.up.x, D_80382C30_523040->viewMtx.lookAt.up.y, D_80382C30_523040->viewMtx.lookAt.up.z);
+    hal_perspective_fast_f(sp110, &sp96,
+                           D_80382C30_523040->perspMtx.persp.fovy,
+                           D_80382C30_523040->perspMtx.persp.aspect,
+                           D_80382C30_523040->perspMtx.persp.near,
+                           D_80382C30_523040->perspMtx.persp.far,
+                           D_80382C30_523040->perspMtx.persp.scale);
+    guMtxCatF(sp150, sp110, sp110);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803586C0_4F8AD0.s")
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            for (l = 0, k = 0; k < 4; k++) {
+                p = 0;
+                if (k != i) {
+                    for (q = 0; q < 4; q++) {
+                        if (j != q) {
+                            spEC[l][p++] = sp110[k][q];
+                        }
+                    }
+                    l++;
+                }
+            }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803586E8_4F8AF8.s")
+            f0 = func_8035769C_4F7AAC(spEC);
+            if (((i + j) % 2) == 0) {
+                f2 = 1.0f;
+            } else {
+                f2 = -1.0f;
+            }
+            spAC[j][i] = f2 * f0;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_803586F8_4F8B08.s")
+    x1 = spAC[0][0] * *arg0 + spAC[1][0] * *arg1 + spAC[2][0] * *arg2 + spAC[3][0];
+    y1 = spAC[0][1] * *arg0 + spAC[1][1] * *arg1 + spAC[2][1] * *arg2 + spAC[3][1];
+    z1 = spAC[0][2] * *arg0 + spAC[1][2] * *arg1 + spAC[2][2] * *arg2 + spAC[3][2];
+    w1 = spAC[0][3] * *arg0 + spAC[1][3] * *arg1 + spAC[2][3] * *arg2 + spAC[3][3];
+    w1 = 1.0f / w1;
+    *arg0 = x1 * w1;
+    *arg1 = y1 * w1;
+    *arg2 = z1 * w1;
+}
+
+void func_80357D18_4F8128(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    D_803AE540_54E950 = arg0;
+    D_803AE544_54E954 = arg1;
+    D_803AE548_54E958 = arg2;
+    D_803AE54C_54E95C = arg3;
+
+    if (D_803AE540_54E950 < viScreenWidth / 320 * D_80382DAC_5231BC) {
+        D_803AE540_54E950 = viScreenWidth / 320 * D_80382DAC_5231BC;
+    }
+    if (D_803AE544_54E954 < viScreenHeight / 240 * D_80382DA4_5231B4) {
+        D_803AE544_54E954 = viScreenHeight / 240 * D_80382DA4_5231B4;
+    }
+    if (D_803AE548_54E958 > viScreenWidth - viScreenWidth / 320 * D_80382DB0_5231C0) {
+        D_803AE548_54E958 = viScreenWidth - viScreenWidth / 320 * D_80382DB0_5231C0;
+    }
+    if (D_803AE54C_54E95C > viScreenHeight - viScreenHeight / 240 * D_80382DA8_5231B8) {
+        D_803AE54C_54E95C = viScreenHeight - viScreenHeight / 240 * D_80382DA8_5231B8;
+    }
+}
+
+void func_80357E0C_4F821C(Gfx** gfxPtr) {
+    Gfx* gfxPos = *gfxPtr;
+
+    gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, D_803AE540_54E950, D_803AE544_54E954, D_803AE548_54E958, D_803AE54C_54E95C);
+
+    *gfxPtr = gfxPos;
+}
+
+void func_80357EC8_4F82D8(OMCamera* cam, s32 mode) {
+    func_80357E0C_4F821C(&gMainGfxPos[mode]);
+}
+
+void func_80357EF8_4F8308(Gfx** gfxPtr, s32 xmin, s32 ymin, s32 xmax, s32 ymax) {
+    Gfx* gfxPos = *gfxPtr;
+
+    gDPFillRectangle(gfxPos++, 0, 0, 319, ymin);
+    gDPPipeSync(gfxPos++);
+    gDPFillRectangle(gfxPos++, 0, ymax, 319, 239);
+    gDPPipeSync(gfxPos++);
+    gDPFillRectangle(gfxPos++, 0, ymin - 1, xmin, ymax);
+    gDPPipeSync(gfxPos++);
+    gDPFillRectangle(gfxPos++, xmax, ymin - 1, 319, ymax);
+    gDPPipeSync(gfxPos++);
+
+    *gfxPtr = gfxPos;
+}
+
+void func_80357FD4_4F83E4(GObj* obj) {
+    OMCamera* cam  = obj->data.cam;
+    Vec3f sp20;
+    f32 f2;
+
+    sp20.x = cam->viewMtx.lookAt.eye.x - cam->viewMtx.lookAt.at.x;
+    sp20.z = cam->viewMtx.lookAt.eye.z - cam->viewMtx.lookAt.at.z;
+    f2 = 1.0f / sqrtf(SQ(sp20.x) + SQ(sp20.z));
+    sp20.x *= f2;
+    sp20.y = 1.0f;
+    sp20.z *= f2;
+    Vec3fNormalize(&sp20);
+    func_800A1E6C(&sp20);
+}
+
+void func_80358064_4F8474(GObjCmdData cmdData) {
+    if (cmdData.cmd == 1) {
+        D_80382DA0_5231B0 = 1;
+    }
+}
+
+void func_80358088_4F8498(GObj* arg0) {
+    cmdProcessCommands(func_80358064_4F8474);
+}
+
+void func_803580B0_4F84C0(GObj* obj) {
+    if (D_80382DA0_5231B0 > 0) {
+        D_80382DA0_5231B0--;
+        renInitCamera(&gMainGfxPos[0], obj->data.cam, 0);
+        gDPPipeSync(gMainGfxPos[0]++);
+        gDPSetCycleType(gMainGfxPos[0]++, G_CYC_FILL);
+        gDPSetRenderMode(gMainGfxPos[0]++, G_RM_NOOP, G_RM_NOOP2);
+        gDPSetScissor(gMainGfxPos[0]++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+        gDPSetFillColor(gMainGfxPos[0]++, (GPACK_RGBA5551(0, 0, 0, 1) << 16) | GPACK_RGBA5551(0, 0, 0, 1));
+        gDPFillRectangle(gMainGfxPos[0]++, 0, 0, 319, 239);
+        gDPPipeSync(gMainGfxPos[0]++);
+        gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
+        gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+        gDPPipeSync(gMainGfxPos[0]++);
+        renCameraPostRender(obj->data.cam);
+        D_80382D10_523120->flags |= GOBJ_FLAG_HIDDEN;
+        return;
+    }
+
+    D_80382D10_523120->flags &= ~GOBJ_FLAG_HIDDEN;
+
+    if (D_803AE540_54E950 > 0) {
+        gDPPipeSync(gMainGfxPos[0]++);
+        gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
+        gDPSetRenderMode(gMainGfxPos[0]++, G_RM_NOOP, G_RM_NOOP2);
+        gDPSetScissor(gMainGfxPos[0]++, G_SC_NON_INTERLACE, 0, 0, 320, 240);
+        gDPSetColorImage(gMainGfxPos[0]++, G_IM_FMT_RGBA, G_IM_SIZ_16b, viScreenWidth, viZBuffer);
+        gDPSetFillColor(gMainGfxPos[0]++, GPACK_ZDZ(G_MAXFBZ, 0) << 16 | GPACK_ZDZ(G_MAXFBZ, 0));
+        func_80357EF8_4F8308(&gMainGfxPos[0], D_803AE540_54E950, D_803AE544_54E954, D_803AE548_54E958, D_803AE54C_54E95C);
+        gDPPipeSync(gMainGfxPos[0]++);
+        gDPSetColorImage(gMainGfxPos[0]++, G_IM_FMT_RGBA, viBitDepth, viScreenWidth, 0x0F000000);
+        gDPSetFillColor(gMainGfxPos[0]++, (GPACK_RGBA5551(0, 0, 0, 1) << 16) | GPACK_RGBA5551(0, 0, 0, 1));
+        func_80357EF8_4F8308(&gMainGfxPos[0], D_803AE540_54E950, D_803AE544_54E954, D_803AE548_54E958, D_803AE54C_54E95C);
+    }
+    func_80357E0C_4F821C(&gMainGfxPos[0]);
+    ren_func_800192DC(obj);
+    func_80359034_4F9444();
+}
+
+GObj* func_80358420_4F8830(s32 arg0) {
+    GObj* sp4C;
+    OMCamera* cam;
+
+    sp4C = ohCreateCamera(1, func_80358088_4F8498, NULL, 0x80000000, func_803580B0_4F84C0, 5, 0x38, -1, 0, 1, 0, 0, 0);
+    if (sp4C == NULL) {
+        return NULL;
+    }
+    omCreateProcess(sp4C, func_80357FD4_4F83E4, 1, 1);
+    cam = sp4C->data.cam;
+    D_80382C30_523040 = cam;
+    cam->flags |= 5;
+    cam->bgColor = arg0;
+    D_803AE530_54E940[0] = 14;
+    D_803AE530_54E940[1] = 12;
+    D_803AE530_54E940[2] = 304;
+    D_803AE530_54E940[3] = 232;
+    func_80007C20(&cam->vp, D_803AE530_54E940[0], D_803AE530_54E940[1], D_803AE530_54E940[2], D_803AE530_54E940[3]);
+    func_80357D18_4F8128(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4,
+                         cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
+                         cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,
+                         cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4);
+    cam->fnPreRender = func_80357EC8_4F82D8;
+    omCameraAddMtx(cam, MTX_TYPE_PERSP_FAST, 0);
+    omCameraAddMtx(cam, MTX_TYPE_LOOKAT_REFLECT_ROLL, 0);
+    cam->vp = cam->vp; // required to match
+    cam->perspMtx.persp.fovy = 60.0f;
+    cam->perspMtx.persp.near = 10.0f;    
+    cam->perspMtx.persp.far = 25600.0f;
+
+    cam->viewMtx.lookAt.at.x = 0.0f;
+    cam->viewMtx.lookAt.at.y = 1600.0f;
+    cam->viewMtx.lookAt.eye.x = 0.0f;
+    cam->viewMtx.lookAt.at.z = 0.0f;    
+    cam->viewMtx.lookAt.eye.y = 1600.0f;
+    cam->viewMtx.lookAt.eye.z = 60.0f;    
+    cam->viewMtx.lookAt.up.x = 0.0f;
+    cam->viewMtx.lookAt.up.y = 1.0f;
+    cam->viewMtx.lookAt.up.z = 0.0f;
+    
+    D_803AE410_54E820.x = cam->viewMtx.lookAt.eye.x;
+    D_803AE410_54E820.y = cam->viewMtx.lookAt.eye.y;
+    D_803AE410_54E820.z = cam->viewMtx.lookAt.eye.z;
+    D_803AE420_54E830.x = cam->viewMtx.lookAt.at.x;
+    D_803AE420_54E830.y = cam->viewMtx.lookAt.at.y;
+    D_803AE420_54E830.z = cam->viewMtx.lookAt.at.z;
+
+    return ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, FALSE, 0, NULL, 1, 0);
+}
+
+void func_803586C0_4F8AD0(void) {
+    omDeleteGObj(D_80382C30_523040->obj);
+}
+
+GObj* func_803586E8_4F8AF8(void) {
+    return D_80382C30_523040->obj;
+}
+
+OMCamera* func_803586F8_4F8B08(void) {
+    return D_80382C30_523040;
+}

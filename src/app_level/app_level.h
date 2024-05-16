@@ -33,6 +33,8 @@ void Items_StopPokeFlute(void);
 void Items_SetCustomFunctions(GObjFunc, u8, void(*)(GObj*, GroundResult*));
 void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
+void Items_Pause(void);
+void Items_UnPause(void);
 
 u32 getProgressFlags(void);
 void Icons_SetDashEngineEnabled(s32 enabled);
@@ -41,5 +43,7 @@ void Icons_ProcessButtonPress(s32 eventID);
 void Icons_ProcessZoom(s32 zoomEnabled);
 void Icons_Freeze(void);
 void Icons_UnFreeze(void);
+void Icons_Hide(void);
+void Icons_Show(void);
 
 #endif

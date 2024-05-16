@@ -282,13 +282,15 @@ void pokemonsChangeBlock(WorldBlock* baseBlock, WorldBlock* currentBlock, Pokemo
             Pokemon* pokemon = GET_POKEMON(entry->pokemonObj);
             for (defPtr = def; defPtr->id != 0; defPtr++) {
                 if (pokemon->id == defPtr->id && defPtr->update != NULL) {
-                    defPtr->update(entry->pokemonObj,
-                                   prevBlock->descriptor->worldPos.x,
-                                   prevBlock->descriptor->worldPos.y,
-                                   prevBlock->descriptor->worldPos.z,
-                                   currentBlock->descriptor->worldPos.x,
-                                   currentBlock->descriptor->worldPos.y,
-                                   currentBlock->descriptor->worldPos.z);
+                    defPtr->update(
+                        entry->pokemonObj,
+                        prevBlock->descriptor->worldPos.x,
+                        prevBlock->descriptor->worldPos.y,
+                        prevBlock->descriptor->worldPos.z,
+                        currentBlock->descriptor->worldPos.x,
+                        currentBlock->descriptor->worldPos.y,
+                        currentBlock->descriptor->worldPos.z
+                    );
                     break;
                 }
             }

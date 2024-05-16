@@ -338,12 +338,16 @@ WorldBlock* enterNextBlock(void) {
     }
     next = curr->next;
     CurrentWorldBlock = next;
-    bindCameraNextBlock((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
-                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
-                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
-    func_800A71F8((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
-                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
-                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+    bindCameraNextBlock(
+        (curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+        (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+        (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f
+    );
+    func_800A71F8(
+        (curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+        (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+        (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f
+    );
 
     func_800E2280_5FA30(next);
     func_800E2354_5FB04(curr);

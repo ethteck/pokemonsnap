@@ -150,16 +150,20 @@ void Icons_ShrinkAndRestore(s32 id, f32 arg1, f32 arg2) {
 
     while (scale > 0.1f) {
         spScale(&Icons_IconObjects[id].spriteObj->sprite, scale, scale);
-        spMove(&Icons_IconObjects[id].spriteObj->sprite,
-               Icons_IconObjects[id].x + (1.0f - scale) * 10.0f,
-               Icons_IconObjects[id].y + (1.0f - scale) * 10.0f);
+        spMove(
+            &Icons_IconObjects[id].spriteObj->sprite,
+            Icons_IconObjects[id].x + (1.0f - scale) * 10.0f,
+            Icons_IconObjects[id].y + (1.0f - scale) * 10.0f
+        );
         ohWait(1);
         scale -= 0.025f;
     }
     spScale(&Icons_IconObjects[id].spriteObj->sprite, 1.0f, 1.0f);
-    spMove(&Icons_IconObjects[id].spriteObj->sprite,
-            Icons_IconObjects[id].x,
-            Icons_IconObjects[id].y);
+    spMove(
+        &Icons_IconObjects[id].spriteObj->sprite,
+        Icons_IconObjects[id].x,
+        Icons_IconObjects[id].y
+    );
 }
 
 void Icons_UpdateAppleIcon(GObj* arg0) {

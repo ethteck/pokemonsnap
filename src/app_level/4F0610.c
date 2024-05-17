@@ -2,12 +2,24 @@
 #include "world/world.h"
 #include "app_level.h"
 
-typedef struct UnkUserStruct {
-    /* 0x00 */ char unk_00[8];
-    /* 0x08 */ u16 unk_08;
-} UnkUserStruct;
+void func_80351534_4F1944(GObj*);
+void func_80350224_4F0634(GObj*);
+void func_80350AE8_4F0EF8(GObj*);
+void func_803512FC_4F170C(GObj*);
+void func_80350950_4F0D60(GObj*);
 
-#define GET_UNK_USERDATA(x) ((UnkUserStruct*)((x)->userData))
+// TODO make sprite assets
+
+/*
+s32 D_80366BA0_506FB0 = 10;
+UnkGoldViper D_80366BA4_506FB4 = {
+    0.0f,
+    0.5f,
+    NULL,
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f },
+}
+*/
 
 extern s32 D_80366BA0_506FB0;
 extern UnkGoldViper D_80366BA4_506FB4;
@@ -28,95 +40,100 @@ extern Sprite D_8037FD48_520158; // 51F368 Continue Pressed
 extern Sprite D_80380B80_520F90; // 5201A0 Retry
 extern Sprite D_803819B8_521DC8; // 520FD8 Retry Pressed
 extern Sprite D_80381B58_521F68; // 521E10 END
-extern s32 D_80382BFC_52300C;
-extern GObj* D_80382C00_523010;
-extern DObj* D_80382C04_523014;
-extern f32 D_80382C0C_52301C;
-extern s32 D_80382C14_523024;
-extern s32 D_80382C18_523028;
-extern f32 D_80382C1C_52302C;
-extern f32 D_80382C20_523030;
-extern f32 D_80382C24_523034;
-extern f32 D_80382C28_523038;
-extern f32 D_80382C2C_52303C;
-extern OMCamera* D_80382C30_523040;
-extern GObj* D_80382C38_523048;
-extern GObj* D_80382C40_523050;
-extern s32 D_80382C3C_52304C;
-extern f32 D_80382C44_523054;
-extern f32 D_80382C48_523058;
-extern s32 D_80382C4C_52305C;
-extern f32 D_80382C50_523060;
-extern f32 D_80382C58_523068;
-extern f32 D_80382C5C_52306C;
-extern f32 D_80382C60_523070;
-extern s32 D_80382C64_523074;
-extern f32 D_80382C68_523078;
-extern GObj* D_80382C6C_52307C;
-extern SObj* D_80382C70_523080;
-extern SObj* D_80382C74_523084;
-extern SObj* D_80382C78_523088;
-extern SObj* D_80382C7C_52308C;
-extern SObj* D_80382C80_523090;
-extern SObj* D_80382C84_523094;
-extern SObj* D_80382C88_523098;
-extern SObj* D_80382C8C_52309C;
-extern SObj* D_80382C90_5230A0;
-extern Vec3f D_80382C94_5230A4;
-extern Vec3f D_80382CA0_5230B0;
-extern s32 D_80382CB4_5230C4;
-extern s32 D_80382CB8_5230C8;
-extern s32 D_80382CBC_5230CC;
-extern f32 D_80382CC0_5230D0;
-extern f32 D_80382CC4_5230D4;
-extern f32 D_80382CC8_5230D8;
-extern f32 D_80382CCC_5230DC;
-extern f32 D_80382CD0_5230E0;
-extern f32 D_80382CD4_5230E4;
-extern f32 D_80382CD8_5230E8[];
-extern f32 D_80382CEC_5230FC;
-extern f32 D_80382CF0_523100;
-extern s32 D_80382CF4_523104;
-extern s32 D_80382CF8_523108;
-extern s32 D_80382CFC_52310C;
-extern s8 D_80382D00_523110;
-extern s8 D_80382D04_523114;
-extern s32 D_80382D08_523118;
-extern s32 D_80382D0C_52311C;
-extern void (*D_80382D18_523128)(s32);
-extern void (*D_80382D1C_52312C)(s32);
-extern u8 D_80382D20_523130;
-extern u8 D_80382D24_523134;
-extern s32 D_80382D28_523138;
-extern u8 D_80382D2C_52313C;
-extern u8 D_80382D30_523140;
-extern u8 D_80382D34_523144;
-extern s32 D_80382D38_523148;
-extern f32 D_80382D3C_52314C;
-extern u8 D_80382D40_523150;
-extern u8 D_80382D44_523154;
-extern s32 D_80382D48_523158;
-extern s32 D_80382D4C_52315C;
-extern s32 D_80382D50_523160;
-extern s32 D_80382D54_523164;
-extern f32 D_80382D58_523168;
-extern f32 D_80382D5C_52316C;
-extern f32 D_80382D60_523170;
-extern f32 D_80382D64_523174;
-extern char D_80382D68_523178[];
-extern s32 D_80382D78_523188;
-extern s32 D_80382D7C_52318C;
-extern s32 D_80382D80_523190;
-extern GObjFunc D_80382D84_523194[];
-extern s32 D_80382D9C_5231AC;
-extern s32 D_80382DA0_5231B0;
-extern s32 D_80382DA4_5231B4;
-extern s32 D_80382DA8_5231B8;
-extern s32 D_80382DAC_5231BC;
-extern s32 D_80382DB0_5231C0;
+
+// we have to make this small array because of alignment
+u32 D_80382BF0_523000[] = {
+    0x803AE160,
+    0x00000000,
+    0x00000000
+};
+
+s32 D_80382BFC_52300C = 2;
+GObj* D_80382C00_523010 = NULL;
+DObj* D_80382C04_523014 = NULL;
+s32 D_80382C08_523018_unused = 0;
+f32 D_80382C0C_52301C = 0.0f;
+f32 D_80382C10_523020_unused = 0.0f;
+s32 D_80382C14_523024 = 0;
+s32 D_80382C18_523028 = 0;
+f32 D_80382C1C_52302C = 0.0f;
+f32 D_80382C20_523030 = 0.0f;
+f32 D_80382C24_523034 = -500.0f;
+f32 D_80382C28_523038 = 0.0f;
+f32 D_80382C2C_52303C = 0.0f;
+OMCamera* D_80382C30_523040 = NULL;
+s32 D_80382C34_523044_unused = 0;
+GObj* D_80382C38_523048 = NULL;
+s32 D_80382C3C_52304C = 0;
+GObj* D_80382C40_523050 = NULL;
+f32 D_80382C44_523054 = 0.0005;
+f32 D_80382C48_523058 = 0.0f;
+s32 D_80382C4C_52305C = 0;
+f32 D_80382C50_523060 = 0.0f;
+f32 D_80382C54_523064_unused = 0.0f;
+f32 D_80382C58_523068 = 0.0f;
+f32 D_80382C5C_52306C = 20.0f;
+f32 D_80382C60_523070 = 3.0f;
+s32 D_80382C64_523074 = 0;
+f32 D_80382C68_523078 = 1.0f;
+GObj* D_80382C6C_52307C = NULL;
+SObj* D_80382C70_523080 = NULL;
+SObj* D_80382C74_523084 = NULL;
+SObj* D_80382C78_523088 = NULL;
+SObj* D_80382C7C_52308C = NULL;
+SObj* D_80382C80_523090 = NULL;
+SObj* D_80382C84_523094 = NULL;
+SObj* D_80382C88_523098 = NULL;
+SObj* D_80382C8C_52309C = NULL;
+SObj* D_80382C90_5230A0 = NULL;
+Vec3f D_80382C94_5230A4 = { 0.0f, 0.0f, 0.0f };
+Vec3f D_80382CA0_5230B0 = { 0.0f, 0.0f, 0.0f };
+s32 D_80382CAC_5230BC_unused[2] = { 0, 0 };
+s32 D_80382CB4_5230C4 = 3;
+s32 D_80382CB8_5230C8 = 3;
+s32 D_80382CBC_5230CC = 3;
+f32 D_80382CC0_5230D0 = 0.0f;
+f32 D_80382CC4_5230D4 = 0.0f;
+f32 D_80382CC8_5230D8 = 0.0f;
+f32 D_80382CCC_5230DC = 0.0f;
+f32 D_80382CD0_5230E0 = 0.0f;
+f32 D_80382CD4_5230E4 = 0.0f;
+f32 D_80382CD8_5230E8[5] = {
+    -3.141592741f,
+    -1.570796371f,
+    0.0f,
+    1.570796371f,
+    3.141592741f,
+};
+f32 D_80382CEC_5230FC = -0.3926990926f;
+f32 D_80382CF0_523100 = 0.7853981853f;
+s32 D_80382CF4_523104 = 0;
+s32 D_80382CF8_523108 = 0;
+s32 D_80382CFC_52310C = 0;
+s8 D_80382D00_523110 = 2;
+s8 D_80382D04_523114 = 0;
+s32 D_80382D08_523118 = 0;
+s32 D_80382D0C_52311C = 0;
+GObj* D_80382D10_523120 = NULL;
+GObj* D_80382D14_523124 = NULL;
+void (*D_80382D18_523128)(s32) = NULL;
+void (*D_80382D1C_52312C)(s32) = NULL;
+u8 D_80382D20_523130 = 0;
+u8 D_80382D24_523134 = 0;
+s32 D_80382D28_523138 = 153;
+u8 D_80382D2C_52313C = 0;
+u8 D_80382D30_523140 = 0;
+u8 D_80382D34_523144 = 0;
+s32 D_80382D38_523148 = 360;
+f32 D_80382D3C_52314C = 1.0f;
+u8 D_80382D40_523150 = 0;
+u8 D_80382D44_523154 = 0;
+s32 D_80382D48_523158 = -1;
+
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
 
+// bss
 extern s32 D_803AE408_54E818;
 extern Vec3f D_803AE410_54E820;
 extern Vec3f D_803AE420_54E830;
@@ -127,7 +144,7 @@ extern s32 D_803AE470_54E880;
 extern s32 D_803AE474_54E884;
 extern f32 D_803AE478_54E888;
 extern f32 D_803AE47C_54E88C;
-extern struct DObjDynamicStore D_803AE4A0_54E8B0;
+extern struct DObjDynamicStore D_803AE4A0_54E8B0; // size 0x38
 extern Vec3f D_803AE4D8_54E8E8;
 extern Vec3f D_803AE4E8_54E8F8;
 extern Vec3f D_803AE4F8_54E908;
@@ -157,7 +174,6 @@ void func_803573BC_4F77CC(void);
 void func_80350950_4F0D60(GObj*);
 void func_80350AE8_4F0EF8(GObj*);
 void func_803512FC_4F170C(GObj*);
-void func_80351534_4F1944(GObj*);
 void func_80351768_4F1B78(GObj*);
 void func_80351FF0_4F2400(GObj*);
 void func_8035275C_4F2B6C(GObj*);
@@ -470,8 +486,6 @@ void func_80351114_4F1524(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
-// requires data
 void func_80351158_4F1568(s32 arg0) {
     static s32 D_80382D4C_52315C = -1;
     if (arg0 == TRUE) {
@@ -488,10 +502,9 @@ void func_80351158_4F1568(s32 arg0) {
         D_80382CBC_5230CC = 10;
     }
 }
-#else
-void func_80351158_4F1568(s32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351158_4F1568.s")
-#endif
+
+s32 D_80382D50_523160 = 0;
+s32 D_80382D54_523164 = 100;
 
 void func_803511DC_4F15EC(void) {
     D_80382C68_523078 = 1.0f;
@@ -628,8 +641,6 @@ static void nullsub(void) {
 
 }
 
-#ifdef NON_MATCHING
-// need data migration
 void func_80351768_4F1B78(GObj* obj) {
     f32 sp94;
     f32 unused1[6];
@@ -640,10 +651,10 @@ void func_80351768_4F1B78(GObj* obj) {
     f32 delta1;
     f32 oneHundred = 100.0f;
 
-    static f32 D_80382D58_523168 = 0;
-    static f32 D_80382D5C_52316C = 0;
-    static f32 D_80382D60_523170 = 0;
-    static f32 D_80382D64_523174 = 0;
+    static f32 D_80382D58_523168 = 0.0f;
+    static f32 D_80382D5C_52316C = 50.0f;
+    static f32 D_80382D60_523170 = 0.0f;
+    static f32 D_80382D64_523174 = 50.0f;
 
     if (D_80382BFC_52300C == 0) {
         if (D_80382CC8_5230D8 > 0.9424779f) {
@@ -760,10 +771,10 @@ void func_80351768_4F1B78(GObj* obj) {
     D_80382C30_523040->viewMtx.lookAt.at.y = D_803AE420_54E830.y;
     D_80382C30_523040->viewMtx.lookAt.at.z = D_803AE420_54E830.z;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80351768_4F1B78.s")
-void func_80351768_4F1B78(GObj* obj);
-#endif
+
+char D_80382D68_523178[] = "\\#S0\\[\\]\\#S1";
+s32 D_80382D78_523188 = 0;
+
 
 void func_80351E8C_4F229C(Vec3f* arg0) {
     f32 sin;
@@ -1227,8 +1238,6 @@ void func_80353118_4F3528(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
-// requires data
 void func_80353180_4F3590(GObj* arg0) {
     s32 unused[2];
     f32 sp64, sp60;
@@ -1298,7 +1307,7 @@ void func_80353180_4F3590(GObj* arg0) {
         D_80382C30_523040->viewMtx.lookAt.at.z = D_803AE420_54E830.z;
     }
     if (D_803AE520_54E930 == 1 || (gContInputCurrentButtons & 0x2000)) {
-        if (D_803AE768_54EB78 == 1 && D_803AE76C_54EB7C != NULL && GET_UNK_USERDATA(D_803AE76C_54EB7C) == NULL) {
+        if (D_803AE768_54EB78 == 1 && D_803AE76C_54EB7C != NULL && GET_POKEMON(D_803AE76C_54EB7C) == NULL) {
             D_803AE768_54EB78 = 0;
         }
         if (D_803AE768_54EB78 == 1 && (D_803AE774_54EB84 & 4)) {
@@ -1361,7 +1370,7 @@ void func_80353180_4F3590(GObj* arg0) {
                     D_803AE408_54E818 = sp38;
                     omCreateProcess(arg0, func_80352F20_4F3330, 0, 9);
                     if (D_803AE768_54EB78 != 0 && D_803AE76C_54EB7C != NULL) {
-                        GET_UNK_USERDATA(D_803AE76C_54EB7C)->unk_08 |= 0x80;
+                        GET_POKEMON(D_803AE76C_54EB7C)->flags |= 0x80;
                     }
                     if (func_8035E52C_4FE93C() == 0) {
                         omCreateProcess(arg0, func_80355860_4F5C70, 0, 9);
@@ -1427,10 +1436,22 @@ void func_80353180_4F3590(GObj* arg0) {
     omCreateProcess(arg0, func_8035275C_4F2B6C, 0, 9);
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/func_80353180_4F3590.s")
-void func_80353180_4F3590(GObj* arg0);
-#endif
+
+s32 D_80382D80_523190 = 0;
+GObjFunc D_80382D84_523194[] = {
+    func_80351534_4F1944,
+    func_80350224_4F0634,
+    func_80350AE8_4F0EF8,
+    func_803512FC_4F170C,
+    func_80350950_4F0D60,
+    NULL,
+};
+s32 D_80382D9C_5231AC = 0;
+s32 D_80382DA0_5231B0 = 0;
+s32 D_80382DA4_5231B4 = 0;
+s32 D_80382DA8_5231B8 = 0;
+s32 D_80382DAC_5231BC = 0;
+s32 D_80382DB0_5231C0 = 0;
 
 void func_80353BCC_4F3FDC(GObj* obj) {
     f32 f20 = 0.0f;
@@ -1472,7 +1493,7 @@ void func_80353D5C_4F416C(void (*arg0)(s32)) {
     D_80382D1C_52312C = arg0;
 }
 
-// yep `int` is required to match
+// `int` is required to match
 int func_80353D68_4F4178(void) {
     return D_80382D20_523130 == 0 && D_80382D44_523154 == 0;
 }
@@ -1931,7 +1952,7 @@ void func_803552B0_4F56C0(GObj* obj) {
             }
         }
 
-        if (D_803AE770_54EB80 <= 0 || D_803AE770_54EB80 >= 152 || (GET_UNK_USERDATA(D_803AE76C_54EB7C)->unk_08 & 0x80)) {
+        if (D_803AE770_54EB80 <= 0 || D_803AE770_54EB80 >= 152 || (GET_POKEMON(D_803AE76C_54EB7C)->flags & 0x80)) {
             break;
         }
 
@@ -1978,7 +1999,7 @@ void func_803554EC_4F58FC(GObj* arg0) {
                D_80382D08_523118 == 0 &&
                D_803AE770_54EB80 > 0 &&
                D_803AE770_54EB80 < 152 &&
-               !(GET_UNK_USERDATA(D_803AE76C_54EB7C)->unk_08 & 0x80))
+               !(GET_POKEMON(D_803AE76C_54EB7C)->flags & 0x80))
     {
         D_80382D08_523118 = 1;
         omCreateProcess(arg0, func_803552B0_4F56C0, 0, 9);

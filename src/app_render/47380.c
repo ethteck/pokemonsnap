@@ -918,7 +918,7 @@ void func_8009D65C(UnkThing* arg0) {
                 break;
         }
         D_800AC0F4.progress = 0.0f;
-        D_800AC0F4.unk_28 = 0.0f;
+        D_800AC0F4.baseMoveSpeed = 0.0f;
         D_800AC0F4.unk_04 = 0.5f;
         func_800E3EE8_61698(&D_800AC0F4, arg0->main.unk_00_16 & 0xF, NULL, NULL);
 

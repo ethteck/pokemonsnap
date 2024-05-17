@@ -7,36 +7,36 @@ f32 interpolateLinear(f32 val1, f32 val2, f32 startTime, f32 endTime, f32 curren
     return (val2 - val1) * (currentTime - startTime) / (endTime - startTime) + val1;
 }
 
-void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* posX, f32* posY, f32* posZ, f32* rotX, f32* rotY, f32* rotZ, f32* scale) {
+void func_800E3590_60D40(WorldBlock* block, f32 arg1, f32 arg2, f32* posX, f32* posY, f32* posZ, f32* rotX, f32* rotY, f32* rotZ, f32* speed) {
     GObj* blockUV;
     f32 nv;
     s32 a0, i;
-    f32 f2, f0;
+    f32 startTime, endTime;
     s32 temp_a2;
     s32 unused;
     DObj* dobj1;
     DObj* dobj2;
 
 
-    *posX = *posY = *posZ = *rotX = *rotY = *rotZ = *scale = 0;
+    *posX = *posY = *posZ = *rotX = *rotY = *rotZ = *speed = 0;
 
-    if (arg0 == NULL) {
+    if (block == NULL) {
         return;
     }
-    if (arg0->blockUV == NULL) {
+    if (block->blockUV == NULL) {
         return;
     }
-    if (arg0->unk_18 == NULL) {
+    if (block->unk_18 == NULL) {
         return;
     }
-    if (arg0->descriptor == NULL ||
-        arg0->descriptor->gfx == NULL ||
-        arg0->descriptor->gfx->unk_18 == NULL)
+    if (block->descriptor == NULL ||
+        block->descriptor->gfx == NULL ||
+        block->descriptor->gfx->unk_18 == NULL)
     {
         return;
     }
 
-    temp_a2 = arg0->descriptor->gfx->unk_14 - 1;
+    temp_a2 = block->descriptor->gfx->unk_14 - 1;
     if (temp_a2 <= 0) {
         return;
     }
@@ -54,31 +54,31 @@ void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* posX, f32* p
         arg2 = 1.0f;
     }
 
-    if (arg0->descriptor->unk_14 != 0) {
+    if (block->descriptor->unk_14 != 0) {
         arg1 = 1.0f - arg1;
         arg2 = 1.0f - arg2;
     }
-    blockUV = arg0->blockUV;
-    nv = arg0->descriptor->gfx->unk_1C * arg1;
+    blockUV = block->blockUV;
+    nv = block->descriptor->gfx->unk_1C * arg1;
     animSetModelAnimationSpeed(blockUV, nv - blockUV->animationTime);
     animUpdateModelTreeAnimation(blockUV);
 
     if (temp_a2 == 1) {
-        dobj1 = arg0->unk_18[1];
+        dobj1 = block->unk_18[1];
         *posX = dobj1->position.v.x;
         *posY = dobj1->position.v.y;
         *posZ = dobj1->position.v.z;
         *rotX = dobj1->rotation.f[1];
         *rotY = dobj1->rotation.f[2];
         *rotZ = dobj1->rotation.f[3];
-        *scale = dobj1->scale.v.x;
+        *speed = dobj1->scale.v.x;
         return;
     }
 
     a0 = 1;
     for (i = 2; i < temp_a2; i++) {
         a0 = i;
-        if (arg2 <= arg0->descriptor->gfx->unk_20[i - 2]) {
+        if (arg2 <= block->descriptor->gfx->unk_20[i - 2]) {
             a0 = i - 1;
             break;
         }
@@ -87,25 +87,25 @@ void func_800E3590_60D40(WorldBlock* arg0, f32 arg1, f32 arg2, f32* posX, f32* p
     i = a0 + 1;
     if (i <= temp_a2) {
         if (a0 < 2 || temp_a2 < 3) {
-            f2 = 0;
+            startTime = 0;
         } else {
-            f2 = arg0->descriptor->gfx->unk_20[a0 - 2];
+            startTime = block->descriptor->gfx->unk_20[a0 - 2];
         }
 
         if (i >= temp_a2) {
-            f0 = 1.0f;
+            endTime = 1.0f;
         } else {
-            f0 = arg0->descriptor->gfx->unk_20[i - 2];
+            endTime = block->descriptor->gfx->unk_20[i - 2];
         }
-        dobj1 = arg0->unk_18[a0];
-        dobj2 = arg0->unk_18[i];
-        *posX = interpolateLinear(dobj1->position.v.x, dobj2->position.v.x, f2, f0, arg2);
-        *posY = interpolateLinear(dobj1->position.v.y, dobj2->position.v.y, f2, f0, arg2);
-        *posZ = interpolateLinear(dobj1->position.v.z, dobj2->position.v.z, f2, f0, arg2);
-        *rotX = interpolateLinear(dobj1->rotation.f[1], dobj2->rotation.f[1], f2, f0, arg2);
-        *rotY = interpolateLinear(dobj1->rotation.f[2], dobj2->rotation.f[2], f2, f0, arg2);
-        *rotZ = interpolateLinear(dobj1->rotation.f[3], dobj2->rotation.f[3], f2, f0, arg2);
-        *scale = interpolateLinear(dobj1->scale.v.x, dobj2->scale.v.x, f2, f0, arg2);
+        dobj1 = block->unk_18[a0];
+        dobj2 = block->unk_18[i];
+        *posX = interpolateLinear(dobj1->position.v.x, dobj2->position.v.x, startTime, endTime, arg2);
+        *posY = interpolateLinear(dobj1->position.v.y, dobj2->position.v.y, startTime, endTime, arg2);
+        *posZ = interpolateLinear(dobj1->position.v.z, dobj2->position.v.z, startTime, endTime, arg2);
+        *rotX = interpolateLinear(dobj1->rotation.f[1], dobj2->rotation.f[1], startTime, endTime, arg2);
+        *rotY = interpolateLinear(dobj1->rotation.f[2], dobj2->rotation.f[2], startTime, endTime, arg2);
+        *rotZ = interpolateLinear(dobj1->rotation.f[3], dobj2->rotation.f[3], startTime, endTime, arg2);
+        *speed = interpolateLinear(dobj1->scale.v.x, dobj2->scale.v.x, startTime, endTime, arg2);
     }
 }
 
@@ -177,54 +177,54 @@ void func_800E3968_61118(WorldBlock* arg0, f32 arg1, f32* arg2) {
     }
 }
 
-void func_800E3B0C_612BC(WorldBlock* arg0, f32 arg1, f32 arg2, WorldCameraState* arg3) {
+void func_800E3B0C_612BC(WorldBlock* block, f32 arg1, f32 arg2, WorldCameraState* camState) {
     f32 sp6C, sp68, sp64, sp60, sp5C, sp58, sp54;
     f32 sp50;
-    f32 f14;
+    f32 speedFactor;
     f32 cosAngle, sinAngle;
 
     if (D_800E6B24_642D4 != NULL) {
-        D_800E6B24_642D4(arg0->index);
+        D_800E6B24_642D4(block->index);
     }
 
-    func_800E3590_60D40(arg0, arg1, arg2, &sp6C, &sp68, &sp64, &sp60, &sp5C, &sp58, &sp54);
+    func_800E3590_60D40(block, arg1, arg2, &sp6C, &sp68, &sp64, &sp60, &sp5C, &sp58, &sp54);
 
-    if (arg0->next ==NULL ||
-        arg0->next->blockUV == NULL ||
-        arg0->next->unk_18 == NULL ||
-        arg0->next->descriptor == NULL ||
-        arg0->next->descriptor->gfx == NULL ||
-        arg0->next->descriptor->gfx->uvScrollAnim == NULL ||
-        arg0->next->descriptor->gfx->unk_18 == NULL ||
-        arg0->next->descriptor->gfx->unk_14 < 2)
+    if (block->next == NULL ||
+        block->next->blockUV == NULL ||
+        block->next->unk_18 == NULL ||
+        block->next->descriptor == NULL ||
+        block->next->descriptor->gfx == NULL ||
+        block->next->descriptor->gfx->uvScrollAnim == NULL ||
+        block->next->descriptor->gfx->unk_18 == NULL ||
+        block->next->descriptor->gfx->unk_14 < 2)
     {
-        f14 = sp54;
+        speedFactor = sp54;
     } else {
-        func_800E3968_61118(arg0->next, arg2, &sp50);
-        f14 = sp54 + (sp50 - sp54) * arg1;
+        func_800E3968_61118(block->next, arg2, &sp50);
+        speedFactor = sp54 + (sp50 - sp54) * arg1;
     }
 
-    sp5C = sp5C + arg0->descriptor->yaw;
-    if (arg0->descriptor->unk_14 != 0) {
+    sp5C = sp5C + block->descriptor->yaw;
+    if (block->descriptor->unk_14 != 0) {
         sp5C += 3.1415927f;
     }
-    arg3->rotation.y = sp5C;
+    camState->rotation.y = sp5C;
 
-    cosAngle = cosf(arg0->descriptor->yaw);
-    sinAngle = sinf(arg0->descriptor->yaw);
+    cosAngle = cosf(block->descriptor->yaw);
+    sinAngle = sinf(block->descriptor->yaw);
 
-    arg3->pos.x = cosAngle * sp6C + sinAngle * sp64;
-    arg3->pos.z = -sinAngle * sp6C + cosAngle * sp64;
-    arg3->pos.y = sp68;
+    camState->pos.x = cosAngle * sp6C + sinAngle * sp64;
+    camState->pos.z = -sinAngle * sp6C + cosAngle * sp64;
+    camState->pos.y = sp68;
 
-    arg3->rotation.x = sp60;
-    arg3->rotation.z = sp58;
+    camState->rotation.x = sp60;
+    camState->rotation.z = sp58;
 
-    arg3->moveSpeed = arg3->unk_28 * f14;
+    camState->moveSpeed = camState->baseMoveSpeed * speedFactor;
 
-    arg3->pos.x = arg3->pos.x;
-    arg3->pos.y = arg3->pos.y;
-    arg3->pos.z = arg3->pos.z;
+    camState->pos.x = camState->pos.x;
+    camState->pos.y = camState->pos.y;
+    camState->pos.z = camState->pos.z;
 }
 
 void func_800E3D04_614B4(WorldCameraState* camState) {
@@ -258,7 +258,7 @@ void func_800E3D04_614B4(WorldCameraState* camState) {
         }
 
         if (block->next == NULL || block->next->unk_18 == NULL) {
-            // stop camera movement
+            // stop movement
             func_800E3B0C_612BC(block, progress, f14, camState);
             camState->moveSpeed = 0;
             return;
@@ -291,7 +291,7 @@ void func_800E3EE8_61698(WorldCameraState* arg0, s32 blockID, void (*arg2)(World
     WorldCamera_ExitBlockCB = arg2;
     D_800E6B24_642D4 = arg3;
 
-    if (arg0->unk_28 < 0.0f || blockID < 0 || blockID >= MAX_BLOCKS) {
+    if (arg0->baseMoveSpeed < 0.0f || blockID < 0 || blockID >= MAX_BLOCKS) {
         return;
     }
 

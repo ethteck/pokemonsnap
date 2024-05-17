@@ -455,9 +455,9 @@ void func_80350AE8_4F0EF8(GObj* obj) {
         } else if (gWorldCameraState.unk_04 < 0.0f) {
             gWorldCameraState.unk_04 = 0.0f;
         }
-        gWorldCameraState.unk_28 = D_80382C44_523054;
+        gWorldCameraState.baseMoveSpeed = D_80382C44_523054;
     } else {
-        gWorldCameraState.unk_28 = 0.0f;
+        gWorldCameraState.baseMoveSpeed = 0.0f;
     }
 
     GET_TRANSFORM(model)->pos.v.x = gWorldCameraState.pos.x;
@@ -2375,7 +2375,7 @@ GObj* initUI(void (*arg0)(WorldBlock*), void (*arg1)(s32), GObjFunc arg2, u8 arg
     omCreateProcess(obj, func_803507EC_4F0BFC, 0, 9);
     gWorldCameraState.progress = 0.0f;
     gWorldCameraState.unk_04 = 0.5f;
-    gWorldCameraState.unk_28 = 0.0005f;
+    gWorldCameraState.baseMoveSpeed = 0.0005f;
     func_800E3EE8_61698(&gWorldCameraState, 0, arg0, arg1);
     func_80351768_4F1B78(obj);
     GET_TRANSFORM(sp44)->pos.v.x = gWorldCameraState.pos.x;

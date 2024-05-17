@@ -95,7 +95,7 @@ void func_800E3464_60C14(WorldBlock* arg0) {
     UnkBeigeServal* s2;
     s32 i;
 
-    if (arg0 == NULL || arg0->descriptor == NULL || arg0->descriptor->unk_18 == NULL || arg0->index >= 13) {
+    if (arg0 == NULL || arg0->descriptor == NULL || arg0->descriptor->unk_18 == NULL || arg0->index >= MAX_BLOCKS) {
         return;
     }
 

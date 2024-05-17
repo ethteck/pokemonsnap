@@ -137,7 +137,7 @@ typedef struct WorldCameraState {
     /* 0x0C */ Vec3f pos;
     /* 0x18 */ Vec3f rotation;
     /* 0x24 */ f32 moveSpeed; // blocks per frame
-    /* 0x28 */ f32 unk_28;
+    /* 0x28 */ f32 baseMoveSpeed;
 } WorldCameraState; // size >= 0x2C
 
 typedef struct HeightMap {

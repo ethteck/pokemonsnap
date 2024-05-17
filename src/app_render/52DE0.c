@@ -263,9 +263,9 @@ void func_800A7F40(f32 arg0, f32 arg1, s32 arg2, f32 arg3) {
 void func_800A7F68(s32 arg0, s32 arg1) {
     D_800BE2C0 = arg0;
     D_800BE2C8 = ohCreateCamera(5, NULL, 0, 0x80000000, ren_func_800191D8, 1, 1 << arg0, 1 << arg0, 1, 0, NULL, 0, 1)->data.cam;
-    D_800BE2C8->flags = 0x4 | 0x1;
+    D_800BE2C8->flags = CAMERA_FLAG_4 | CAMERA_FLAG_1;
     if (arg1 & 0x100) {
-        D_800BE2C8->flags &= ~1;
+        D_800BE2C8->flags &= ~CAMERA_FLAG_1;
     }
     D_800BE2C8->bgColor = 0x10001;
     D_800BE2C8->perspMtx.persp.fovy = 45.0f;

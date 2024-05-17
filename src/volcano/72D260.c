@@ -6,7 +6,7 @@ void func_802DC060_72D260(GObj* arg0) {
     f32 sp30;
 
     while (TRUE) {
-        func_80357384_4F7794(&sp34, &sp30);
+        getLevelProgress(&sp34, &sp30);
         if (sp34 > 4 || (sp34 == 4 && sp30 >= 0.35)) {
             break;
         }

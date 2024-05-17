@@ -21,7 +21,7 @@ void func_credits_801DC8C4(void) {
     func_80374D40_8484F0();
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 6, 0xFF);
     ohCreateCamera(3, &ohUpdateDefault, 0, 0x80000000, &renSpriteCameraRender, 3, 2, -1, 1, 1, 0, 1, 1)
-        ->data.cam->flags = 8;
+        ->data.cam->flags = CAMERA_FLAG_8;
     func_800A7F68(0, 0x101);
     omCreateProcess(omAddGObj(0xE, NULL, 0, 0x80000000), func_credits_801DE844, 0, 1);
 }

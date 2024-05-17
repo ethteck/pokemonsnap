@@ -160,7 +160,7 @@ void func_801DCCDC_AA1D1C(void) {
     }
     omCamera = cam->data.cam;
     omCreateProcess(cam, func_801DC9D0_AA1A10, 0, 1);
-    omCamera->flags |= 5;
+    omCamera->flags |= CAMERA_FLAG_1 | CAMERA_FLAG_4;
     omCamera->vp.vp.vscale[0] = (omCamera->vp.vp.vscale[0] * 97) / 100;
     omCamera->vp.vp.vscale[1] = (omCamera->vp.vp.vscale[1] * 93) / 100;
     omCamera->vp.vp.vtrans[1] = (omCamera->vp.vp.vtrans[1] * 93) / 100;
@@ -182,7 +182,7 @@ void func_801DCCDC_AA1D1C(void) {
     omCamera->viewMtx.lookAt.up.y = 1.0f;
 
     cam = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
-    cam->data.cam->flags = 8;
+    cam->data.cam->flags = CAMERA_FLAG_8;
     cam->flags = 1;
     D_801E55DC_AAA61C = cam;
     ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8, 0, NULL, 1);

@@ -739,6 +739,25 @@ D_80387448_527858 = 0x80387448; // segment:app_level
 D_803880E8_5284F8 = 0x803880E8; // segment:app_level
 
 getProgressFlags = 0x80357048; // segment:app_level
+getLevelProgress = 0x80357384; // segment:app_level
+initUI = 0x803563A0; // segment:app_level
+resetMainCameraSettings = 0x803573BC; // segment:app_level
+mainCameraSetScissor = 0x80357E0C; // segment:app_level
+createMainCameras = 0x80358420; // segment:app_level
+removeMainCamera = 0x803586C0; // segment:app_level
+getMainCamera = 0x803586F8; // segment:app_level
+gWorldCameraState = 0x80366BA4; // segment:app_level
+gMainCamera = 0x80382C30; // segment:app_level
+gObjPauseMenu = 0x80382C6C; // segment:app_level
+gProgressFlags = 0x803AE51C; // segment:app_level
+gMainCameraViewport = 0x803AE530; // segment:app_level
+gCameraEyePos = 0x803AE410; // segment:app_level
+gCameraAtPos = 0x803AE420; // segment:app_level
+sMainCameraReticles = 0x803AE440; // segment:app_level
+MainCameraBorderXmin = 0x803AE540; // segment:app_level
+MainCameraBorderYmin = 0x803AE544; // segment:app_level
+MainCameraBorderXmax = 0x803AE548; // segment:app_level
+MainCameraBorderYmax = 0x803AE54C; // segment:app_level
 
 Icons_SetDashEngineEnabled = 0x8035D650; // segment:app_level
 Icons_Show = 0x8035DDA0; // segment:app_level

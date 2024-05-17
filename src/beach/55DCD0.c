@@ -279,7 +279,7 @@ void func_beach_802C6700(GObj* obj) {
     forcePokemonAnimation(obj, &D_beach_802CC3A8);
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    func_80357384_4F7794(&sp24, &sp20);
+    getLevelProgress(&sp24, &sp20);
     sp20 += sp24;
     if (sp20 > 3.0f) {
         runPathProcess(obj, func_beach_802C660C);

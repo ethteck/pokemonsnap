@@ -207,7 +207,7 @@ void func_801DCE64_A08A54(void) {
 
     obj = ohCreateCamera(1, ohUpdateDefault, 0, 5, ren_func_800192DC, 0xA, 0x20, -1, 0, 1, NULL, 0, 0);
     cam = obj->data.cam;
-    cam->flags = 0x4 | 0x1;
+    cam->flags = CAMERA_FLAG_4 | CAMERA_FLAG_1;
     obj->flags |= 0x1;
     omCameraAddMtx(cam, 3, 0);
     omCameraAddMtx(cam, 0xE, 0);

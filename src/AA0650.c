@@ -147,7 +147,7 @@ void func_800E1B54_AA0904(void) {
     viApplyScreenSettings(&D_800E1CB0_AA0A60);
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 3, 0);
     camera = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
-    camera->data.cam->flags = 8;
+    camera->data.cam->flags = CAMERA_FLAG_8;
     objE = omAddGObj(0xE, NULL, 0, 0x80000000);
     objE_Clone = objE;
     omCreateProcess(objE, (void*) func_800E1A94_AA0844, 0, 1);

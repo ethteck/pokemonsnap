@@ -62,7 +62,7 @@ void func_beach_802C43CC(s32 arg0) {
     auStopAllSounds();
     destroyWorld();
     func_80356FBC_4F73CC();
-    func_803586C0_4F8AD0();
+    removeMainCamera();
     func_800067DC();
 }
 
@@ -89,7 +89,7 @@ void func_beach_802C44D4(void) {
     if (sp1C != NULL && temp_v0_2 != NULL) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }
-    D_80382D10_523120 = func_800A2094(4, 100, func_803586F8_4F8B08());
+    D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
     D_80382D14_523124 = func_800A5E08(0xA);
     func_800A5DF4(0xC0, 0x30);
 }

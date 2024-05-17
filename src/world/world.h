@@ -130,15 +130,15 @@ typedef struct HeightMapTreeNode {
     /* 0x18 */ HeightMapPatch* rightPatch;
 } HeightMapTreeNode; // size = 0x1C
 
-typedef struct UnkGoldViper {
-    /* 0x00 */ f32 unk_00;
+typedef struct WorldCameraState {
+    /* 0x00 */ f32 progress;
     /* 0x04 */ f32 unk_04;
-    /* 0x08 */ WorldBlock* unk_08;
-    /* 0x0C */ Vec3f unk_0C;
-    /* 0x18 */ Vec3f unk_18;
-    /* 0x24 */ f32 unk_24;
+    /* 0x08 */ WorldBlock* block;
+    /* 0x0C */ Vec3f pos;
+    /* 0x18 */ Vec3f rotation;
+    /* 0x24 */ f32 moveSpeed; // blocks per frame
     /* 0x28 */ f32 unk_28;
-} UnkGoldViper; // size >= 0x2C
+} WorldCameraState; // size >= 0x2C
 
 typedef struct HeightMap {
     /* 0x00 */ HeightMapPatch* patches;
@@ -175,7 +175,7 @@ extern WorldSetup D_80100720;
 
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
 WorldBlock* func_800E26CC_5FE7C(s32 arg0);
-WorldBlock* func_800E2400_5FBB0(void);
+WorldBlock* enterNextBlock(void);
 void createHeightMapTree(HeightMapTreeNode* arg0, HeightMapPatch* arg1);
 HeightMapPatch* findHeightMapPatch(HeightMapTreeNode*, f32, f32);
 f32 getPatchHeightAt(HeightMapPatch*, f32, f32);
@@ -196,8 +196,8 @@ s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockM
 void destroyWorld(void);
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
-void func_800E3D04_614B4(UnkGoldViper* arg0);
-void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
+void func_800E3D04_614B4(WorldCameraState* arg0);
+void func_800E3EE8_61698(WorldCameraState* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 notNull_DEBUG(void*, const char*);
 s32 setHeightMap(HeightMap* arg0);

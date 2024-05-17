@@ -21,6 +21,8 @@ enum PokemonCommands {
 
 #define ITEM_CMD_REMOVE 100
 
+#define CAMERA_CMD_1 1
+
 extern s32 D_80382CF4_523104;
 
 extern s32 Icons_NumItemsAvailable;

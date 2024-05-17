@@ -2097,7 +2097,7 @@ void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
 
-    if ((mode == 0 || mode == 1) && (cam->flags & 0x20)) {
+    if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
         gtl_load_ucode(gfxPtr, gtlD_8004A906);
         gtlD_8004A908 = TRUE;
     }
@@ -2145,7 +2145,7 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
 
-    if ((mode == 0 || mode == 1) && (cam->flags & 0x20)) {
+    if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
         gtl_load_ucode(gfxPtr, gtlD_8004A906);
         gtlD_8004A908 = TRUE;
     }
@@ -2175,7 +2175,7 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     xmax--;
     ymax--;
 
-    if (cam->flags & 1) {
+    if (cam->flags & CAMERA_FLAG_1) {
         gDPPipeSync(gfxPos++);
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
@@ -2187,7 +2187,7 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
     gDPPipeSync(gfxPos++);
     gDPSetColorImage(gfxPos++, G_IM_FMT_RGBA, viBitDepth, viScreenWidth, 0x0F000000);
 
-    if (cam->flags & 2) {
+    if (cam->flags & CAMERA_FLAG_2) {
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
         gDPSetFillColor(gfxPos++, viPackRGBA(cam->bgColor));
@@ -2239,7 +2239,7 @@ void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 wid
     xmax--;
     ymax--;
 
-    if (cam->flags & 1) {
+    if (cam->flags & CAMERA_FLAG_1) {
         gDPPipeSync(gfxPos++);
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
@@ -2252,7 +2252,7 @@ void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 wid
     gDPSetColorImage(gfxPos++, G_IM_FMT_RGBA, viBitDepth, width, buffer);
     gDPSetDepthImage(gfxPos++, zbuffer);
 
-    if (cam->flags & 2) {
+    if (cam->flags & CAMERA_FLAG_2) {
         gDPSetCycleType(gfxPos++, G_CYC_FILL);
         gDPSetRenderMode(gfxPos++, G_RM_NOOP, G_RM_NOOP2);
         gDPSetFillColor(gfxPos++, viPackRGBA(cam->bgColor));
@@ -2630,16 +2630,16 @@ void renCameraRenderObjects(GObj* camObj, s32 mode) {
 }
 
 void renCameraPostRender(OMCamera* cam) {
-    if (cam->flags & 0x04) {
+    if (cam->flags & CAMERA_FLAG_4) {
         gtlCombineAllDLists();
     }
 
-    if (cam->flags & 0x10) {
+    if (cam->flags & CAMERA_FLAG_10) {
         gtlProcessAllDLists();
         gtlReset();
     }
 
-    if (cam->flags & 0x40) {
+    if (cam->flags & CAMERA_FLAG_40) {
         gtlProcessAllDLists();
     }
 }
@@ -2650,7 +2650,7 @@ void ren_func_80019158(GObj* obj, Gfx** gfx, s32 arg2) {
     renInitCamera(gfx, cam, arg2);
     renPrepareCameraMatrix(gfx, cam);
     renCameraPreRender(cam, arg2);
-    renCameraRenderObjects(obj, (cam->flags & 8) ? 1 : 0);
+    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? 1 : 0);
     renCameraPostRender(cam);
 }
 
@@ -2693,7 +2693,7 @@ void ren_func_800192DC(GObj* obj) {
     gSPBranchList(ren_D_8004B248, gMainGfxPos[0]);
     renCameraPreRender(cam, 0);
 
-    if (cam->flags & 0x20) {
+    if (cam->flags & CAMERA_FLAG_20) {
         ren_func_800177D8(&gMainGfxPos[1], cam, 1);
     }
 
@@ -2704,7 +2704,7 @@ void ren_func_800192DC(GObj* obj) {
         ren_D_8004B238[i] = gMainGfxPos[i];
     }
 
-    renCameraRenderObjects(obj, (cam->flags & 8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? TRUE : FALSE);
 
     for (i = 1; i < 4; i++) {
         Gfx* start = gMainGfxPos[i];
@@ -2716,7 +2716,7 @@ void ren_func_800192DC(GObj* obj) {
         } else {
             gMainGfxPos[i]++;
             gSPDisplayList(&ren_D_8004B238[i][-1], gMainGfxPos[i]);
-            if (i != 1 || !(cam->flags & 0x20)) {
+            if (i != 1 || !(cam->flags & CAMERA_FLAG_20)) {
                 ren_func_800177D8(&gMainGfxPos[i], cam, i);
             }
             gSPDisplayList(gMainGfxPos[i]++, ren_D_8004B248 + 1);
@@ -2795,7 +2795,7 @@ void renSpriteCameraRender(GObj* obj) {
     renInitCamera(&gMainGfxPos[0], cam, 0);
     spInit(&gMainGfxPos[0]);
     spScissor(xmin, xmax, ymin, ymax);
-    renCameraRenderObjects(obj, (cam->flags & 8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? TRUE : FALSE);
     spFinish(&gMainGfxPos[0]);
     gMainGfxPos[0]--;
     gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_PERSP);

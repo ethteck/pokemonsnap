@@ -193,7 +193,7 @@ void createSkyBox(SkyBox* skyBox) {
 }
 
 void func_800E206C_5F81C(GObj* obj) {
-    OMCamera* v0 = func_803586F8_4F8B08();
+    OMCamera* v0 = getMainCamera();
 
     obj->data.dobj->position.v.x = v0->viewMtx.lookAt.eye.x;
     obj->data.dobj->position.v.y = v0->viewMtx.lookAt.eye.y;
@@ -327,7 +327,7 @@ void func_800E23A8_5FB58(WorldBlock* arg0) {
     }
 }
 
-WorldBlock* func_800E2400_5FBB0(void) {
+WorldBlock* enterNextBlock(void) {
     WorldBlock* curr;
     WorldBlock* next;
     s32 i;

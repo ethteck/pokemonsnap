@@ -45,5 +45,6 @@ void Icons_Freeze(void);
 void Icons_UnFreeze(void);
 void Icons_Hide(void);
 void Icons_Show(void);
+void Icons_ProcessTakePhotoPressed(void);
 
 #endif

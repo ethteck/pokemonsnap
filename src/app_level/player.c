@@ -66,31 +66,31 @@ s32 gDirectionIndex = 2;
 GObj* gObjPlayer = NULL;
 DObj* gPlayerDObj = NULL;
 s32 D_80382C08_523018_unused = 0;
-f32 sViewPitch = 0.0f;
+f32 ViewPitch = 0.0f;
 f32 D_80382C10_523020_unused = 0.0f;
-s32 sReticleScreenX = 0;
-s32 sReticleScreenY = 0;
+s32 ReticleScreenX = 0;
+s32 ReticleScreenY = 0;
 f32 gCamTargetX = 0.0f;
 f32 gCamTargetY = 0.0f;
 f32 gCamTargetZ = -500.0f;
-f32 sStickXAccum = 0.0f;
-f32 sStickYAccum = 0.0f;
+f32 StickXAccum = 0.0f;
+f32 StickYAccum = 0.0f;
 OMCamera* gMainCamera = NULL;
 s32 D_80382C34_523044_unused = 0;
 GObj* D_80382C38_523048 = NULL;
 s32 D_80382C3C_52304C = 0;
 GObj* D_80382C40_523050 = NULL;
-f32 gTotalSpeedMult = 0.0005f;
-f32 sCameraShakingDeltaY = 0.0f;
-s32 sTargetDirectionZoomedIn = 0;
-f32 sTargetDirectionYawZommedIn = 0.0f;
+f32 TotalSpeedMult = 0.0005f;
+f32 CameraShakingDeltaY = 0.0f;
+s32 TargetDirectionZoomedIn = 0;
+f32 TargetDirectionYawZommedIn = 0.0f;
 f32 D_80382C54_523064_unused = 0.0f;
-f32 sCameraVibrationDeltaY = 0.0f;
-f32 sCameraVibrationAmplitude = 20.0f;
-f32 sCameraVibrationSpeed = 3.0f;
+f32 CameraVibrationDeltaY = 0.0f;
+f32 CameraVibrationAmplitude = 20.0f;
+f32 CameraVibrationSpeed = 3.0f;
 s32 D_80382C64_523074 = 0;
-f32 gDashEngineSpeedMult = 1.0f;
-GObj* gObjPauseMenu = NULL;
+f32 DashEngineSpeedMult = 1.0f;
+GObj* ObjectPauseMenu = NULL;
 SObj* D_80382C70_523080 = NULL;
 SObj* Pause_LabelPause2 = NULL;
 SObj* Pause_LabelPause = NULL;
@@ -100,27 +100,27 @@ SObj* Pause_ContinueSelected = NULL;
 SObj* Pause_Continue = NULL;
 SObj* Pause_RetrySelected = NULL;
 SObj* Pause_Retry = NULL;
-Vec3f gPlayerPos = { 0.0f, 0.0f, 0.0f };
-Vec3f gPlayerVelocity = { 0.0f, 0.0f, 0.0f };
+Vec3f PlayerPos = { 0.0f, 0.0f, 0.0f };
+Vec3f PlayerVelocity = { 0.0f, 0.0f, 0.0f };
 s32 D_80382CAC_5230BC_unused[2] = { 0, 0 };
 s32 ThrowItemTimeout = 3;
 s32 PressPokeFluteTimeout = 3;
-s32 sDashEngineSoundTimeout = 3;
-f32 sStickXValue = 0.0f;
-f32 sStickYValue = 0.0f;
-f32 gViewYaw = 0.0f; // relative to forward direction
-f32 sTurnToDirSpeed = 0.0f;
-f32 gCurrentDirectionYaw = 0.0f;
+s32 DashEngineSoundTimeout = 3;
+f32 StickXValue = 0.0f;
+f32 StickYValue = 0.0f;
+f32 PlayerViewYaw = 0.0f; // relative to forward direction
+f32 TurnToDirSpeed = 0.0f;
+f32 CurrentDirectionYaw = 0.0f;
 f32 D_80382CD4_5230E4 = 0.0f;
-f32 sDirections[5] = {
+f32 DirectionsList[5] = {
     -3.141592741f,
     -1.570796371f,
     0.0f,
     1.570796371f,
     3.141592741f,
 };
-f32 sMinPitch = -0.3926990926f;
-f32 sMaxPitch = 0.7853981853f;
+f32 MinPitch = -0.3926990926f;
+f32 MaxPitch = 0.7853981853f;
 s32 LastItemId = 0;
 s32 D_80382CF8_523108 = 0;
 s32 D_80382CFC_52310C = 0;
@@ -132,46 +132,46 @@ GObj* D_80382D10_523120 = NULL;
 GObj* D_80382D14_523124 = NULL;
 void (*EndLevelCb)(s32) = NULL;
 void (*PauseCb)(s32) = NULL;
-u8 gIsPaused = 0;
-u8 Pause_CurrentSelection = 0;
+u8 IsPaused = FALSE;
+u8 PauseCurrentSelection = 0;
 s32 D_80382D28_523138 = 153;
 u8 D_80382D2C_52313C = 0;
 u8 D_80382D30_523140 = 0;
 u8 D_80382D34_523144 = 0;
 s32 D_80382D38_523148 = 360;
 f32 D_80382D3C_52314C = 1.0f;
-u8 Pause_ButtonPressTimeout = 0;
+u8 PauseButtonPressTimeout = 0;
 u8 D_80382D44_523154 = FALSE;
-s32 sBGMSongID = -1;
+s32 LevelBGMSongID = -1;
 
 extern s32 D_80382DC0_5231D0;
 extern Sprite D_80388E00_529210;
 
 // bss
 extern s32 D_803AE408_54E818;
-extern Vec3f gCameraEyePos;
-extern Vec3f gCameraAtPos;
-extern Vec3f gCameraViewVector;
-extern SObj* sMainCameraReticles[4];
+extern Vec3f CameraEyePos;
+extern Vec3f CameraAtPos;
+extern Vec3f CameraViewVector;
+extern SObj* MainCameraReticles[4];
 extern SObj* D_803AE458_54E868[6];
 extern s32 D_803AE470_54E880;
 extern s32 D_803AE474_54E884;
 extern f32 D_803AE478_54E888;
 extern f32 D_803AE47C_54E88C;
-extern struct DObjDynamicStore sPlayerMatrixStore; // size 0x38
+extern struct DObjDynamicStore PlayerMatrixStore; // size 0x38
 extern Vec3f D_803AE4D8_54E8E8;
 extern Vec3f D_803AE4E8_54E8F8;
 extern Vec3f D_803AE4F8_54E908;
 extern Vec3f D_803AE508_54E918;
-extern s8 sForceDashEngineDisabled;
+extern s8 ForceDashEngineDisabled;
 extern s8 IsTutorialEnabled;
 extern s8 D_803AE516_54E926;
 extern IdleScript* gIdleScript;
-extern u32 gProgressFlags;
+extern u32 ProgressFlags;
 extern s8 ZoomSwitchMode;
 extern s8 IsAxisYInverted;
 extern s8 IsDashEngineAvailable;
-extern s32 gMainCameraViewport[4]; // Rect?
+extern s32 MainCameraViewport[4]; // Rect?
 extern s32 MainCameraBorderXmin;
 extern s32 MainCameraBorderYmin;
 extern s32 MainCameraBorderXmax;
@@ -231,9 +231,9 @@ void updateMovementState(GObj* obj) {
 }
 
 void bindCameraNextBlock(f32 dx, f32 dy, f32 dz) {
-    gPlayerPos.x += dx;
-    gPlayerPos.y += dy;
-    gPlayerPos.z += dz;
+    PlayerPos.x += dx;
+    PlayerPos.y += dy;
+    PlayerPos.z += dz;
 
     gMainCamera->viewMtx.lookAt.eye.x += dx;
     gMainCamera->viewMtx.lookAt.eye.y += dy;
@@ -243,8 +243,8 @@ void bindCameraNextBlock(f32 dx, f32 dy, f32 dz) {
     gMainCamera->viewMtx.lookAt.at.y += dy;
     gMainCamera->viewMtx.lookAt.at.z += dz;
 
-    gCameraEyePos.x += dx; gCameraEyePos.y += dy; gCameraEyePos.z += dz;
-    gCameraAtPos.x += dx; gCameraAtPos.y += dy; gCameraAtPos.z += dz;
+    CameraEyePos.x += dx; CameraEyePos.y += dy; CameraEyePos.z += dz;
+    CameraAtPos.x += dx; CameraAtPos.y += dy; CameraAtPos.z += dz;
     gCamTargetX += dx; gCamTargetY += dy; gCamTargetZ += dz;
 }
 
@@ -258,7 +258,7 @@ void stopLevelProcesses(void) {
     ohPauseProcessByFunction(gObjPlayer, handleCButtons);
     ohPauseProcessByFunction(gObjPlayer, handleItemButtonsPress);
     ohPauseProcessByFunction(gObjPlayer, updateCameraZoomedOut);
-    ohPauseProcessByFunction(gObjPauseMenu, updatePauseMenu);
+    ohPauseProcessByFunction(ObjectPauseMenu, updatePauseMenu);
 }
 
 void func_80350458_4F0868(s32 arg0, s32 arg1) {
@@ -314,12 +314,12 @@ void updateIdle(GObj* obj) {
 void initIdle(GObj* obj) {
     IdleScript* unk = gIdleScript;
     setRandSeed(unk->randSeed);
-    gProgressFlags = unk->playerFlags;
+    ProgressFlags = unk->playerFlags;
     omCreateProcess(obj, updateIdle, 0, 10);
 }
 
 void setBackgroundMusic(s32 songID) {
-    sBGMSongID = songID;
+    LevelBGMSongID = songID;
 }
 
 void updateMusic(GObj* obj) {
@@ -333,7 +333,7 @@ void updateMusic(GObj* obj) {
                 timerAfterFluteStopped = 2;
                 auStopSong(BGM_PLAYER_MAIN);
                 if (gIdleScript == NULL) {
-                    auPlaySong(BGM_PLAYER_MAIN, sBGMSongID);
+                    auPlaySong(BGM_PLAYER_MAIN, LevelBGMSongID);
                 }
             }
         } else {
@@ -348,14 +348,14 @@ void shakeCamera(GObj* obj) {
     s32 i;
 
     for (phase = 0.0f, i = 59; i > 0; i--) {
-        sCameraShakingDeltaY = cosf(phase) * 15.0f;
+        CameraShakingDeltaY = cosf(phase) * 15.0f;
         phase += 0.3f;
         if (phase > TAU) {
             phase -= TAU;
         }
         ohWait(1);
     }
-    sCameraShakingDeltaY = 0.0f;
+    CameraShakingDeltaY = 0.0f;
     omEndProcess(NULL);
 }
 
@@ -370,7 +370,7 @@ void handleItemButtonsPress(GObj* obj) {
             if ((gContInputPressedButtons & B_BUTTON) && Icons_NumItemsAvailable >= 2) {
                 LastItemId = ITEM_ID_PESTER_BALL;
                 ThrowItemTimeout = 45;
-                Items_SpawnPesterBall(&gMainCamera->viewMtx.lookAt.eye, &gPlayerVelocity);
+                Items_SpawnPesterBall(&gMainCamera->viewMtx.lookAt.eye, &PlayerVelocity);
                 Icons_ProcessButtonPress(ITEM_ID_PESTER_BALL);
                 Items_StopPokeFlute();
                 Icons_ProcessButtonPress(-1);
@@ -378,7 +378,7 @@ void handleItemButtonsPress(GObj* obj) {
             } else if ((gContInputPressedButtons & A_BUTTON) && Icons_NumItemsAvailable >= 1) {
                 LastItemId = ITEM_ID_APPLE;
                 ThrowItemTimeout = 45;
-                Items_SpawnApple(&gMainCamera->viewMtx.lookAt.eye, &gPlayerVelocity);
+                Items_SpawnApple(&gMainCamera->viewMtx.lookAt.eye, &PlayerVelocity);
                 Icons_ProcessButtonPress(ITEM_ID_APPLE);
                 Items_StopPokeFlute();
                 Icons_ProcessButtonPress(-1);
@@ -398,50 +398,50 @@ void handleAnalogStick(GObj* obj) {
     DObj* model = obj->data.dobj;
 
     if (ABS(gContInputStickX) >= 6 && !IsInputDisabled) {
-        sStickXValue = (f32)gContInputStickX / 80.0;
-        sStickXAccum += 0.014f * sStickXValue;
-        if (sStickXAccum > 1.0f) {
-            sStickXAccum = 1.0f;
-        } else if (sStickXAccum < -1.0f) {
-            sStickXAccum = -1.0f;
+        StickXValue = (f32)gContInputStickX / 80.0;
+        StickXAccum += 0.014f * StickXValue;
+        if (StickXAccum > 1.0f) {
+            StickXAccum = 1.0f;
+        } else if (StickXAccum < -1.0f) {
+            StickXAccum = -1.0f;
         }
     } else {
-        sStickXValue = 0.0f;
-        if (sStickXAccum > 0.8) {
-            sStickXAccum -= 0.03;
-        } else if (sStickXAccum < -0.8) {
-            sStickXAccum += 0.03;
+        StickXValue = 0.0f;
+        if (StickXAccum > 0.8) {
+            StickXAccum -= 0.03;
+        } else if (StickXAccum < -0.8) {
+            StickXAccum += 0.03;
         }
     }
 
     if (ABS(gContInputStickY) >= 6 && !IsInputDisabled) {
-        sStickYValue = (f32)gContInputStickY / 80.0;
+        StickYValue = (f32)gContInputStickY / 80.0;
         if (IsAxisYInverted == TRUE) {
-            sStickYValue = -sStickYValue;
+            StickYValue = -StickYValue;
         }
 
-        if (sStickYValue < 0.0f && sViewPitch <= sMaxPitch + 0.017453292f ||
-            sStickYValue > 0.0f && sViewPitch >= sMinPitch - 0.017453292f)
+        if (StickYValue < 0.0f && ViewPitch <= MaxPitch + 0.017453292f ||
+            StickYValue > 0.0f && ViewPitch >= MinPitch - 0.017453292f)
         {
-            sStickYAccum += 0.02f * sStickYValue;
+            StickYAccum += 0.02f * StickYValue;
         }
 
-        if (sStickYAccum > 0.2f) {
-            sStickYAccum = 0.2f;
-        } else if (sStickYAccum < -0.9f) {
-            sStickYAccum = -0.9f;
+        if (StickYAccum > 0.2f) {
+            StickYAccum = 0.2f;
+        } else if (StickYAccum < -0.9f) {
+            StickYAccum = -0.9f;
         }
 
-        if (sStickYValue < 0.0f && sViewPitch <= sMaxPitch ||
-            sStickYValue > 0.0f && sViewPitch > sMinPitch)
+        if (StickYValue < 0.0f && ViewPitch <= MaxPitch ||
+            StickYValue > 0.0f && ViewPitch > MinPitch)
         {
-            sViewPitch -= 0.015f * sStickYValue;
+            ViewPitch -= 0.015f * StickYValue;
         }
     } else {
-        if (sStickYAccum > 0.0) {
-            sStickYAccum -= 0.03;
-        } else if (sStickYAccum < -0.7) {
-            sStickYAccum += 0.03;
+        if (StickYAccum > 0.0) {
+            StickYAccum -= 0.03;
+        } else if (StickYAccum < -0.7) {
+            StickYAccum += 0.03;
         }
     }
 
@@ -461,7 +461,7 @@ void handleAnalogStick(GObj* obj) {
         } else if (gMovementState.cpTime < 0.0f) {
             gMovementState.cpTime = 0.0f;
         }
-        gMovementState.speedMult = gTotalSpeedMult;
+        gMovementState.speedMult = TotalSpeedMult;
     } else {
         gMovementState.speedMult = 0.0f;
     }
@@ -473,9 +473,9 @@ void handleAnalogStick(GObj* obj) {
     GET_TRANSFORM(model)->rot.f[2] = gMovementState.rotation.y + D_80382CD4_5230E4;
     GET_TRANSFORM(model)->rot.f[3] = gMovementState.rotation.z;
 
-    Vec3fDiff(&gPlayerVelocity, &GET_TRANSFORM(model)->pos.v, &gPlayerPos);
+    Vec3fDiff(&PlayerVelocity, &GET_TRANSFORM(model)->pos.v, &PlayerPos);
 
-    gPlayerPos = GET_TRANSFORM(model)->pos.v;
+    PlayerPos = GET_TRANSFORM(model)->pos.v;
 
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0 ||
@@ -493,10 +493,10 @@ void handleAnalogStick(GObj* obj) {
 }
 
 void func_80351114_4F1524(GObj* obj) {
-    if (gTotalSpeedMult > 0.0f) {
-        gTotalSpeedMult -= 0.0000025000002f;
+    if (TotalSpeedMult > 0.0f) {
+        TotalSpeedMult -= 0.0000025000002f;
     } else {
-        gTotalSpeedMult = 0.0f;
+        TotalSpeedMult = 0.0f;
     }
 }
 
@@ -513,7 +513,7 @@ void playDashEngineSounds(s32 enabled) {
         auStopSound(dashEngineSoundHandle);
         auPlaySound(SOUND_ID_15);
         dashEngineSoundHandle = -1;
-        sDashEngineSoundTimeout = 10;
+        DashEngineSoundTimeout = 10;
     }
 }
 
@@ -521,12 +521,12 @@ s32 IsDashEngineOn = 0;
 s32 D_80382D54_523164 = 100;
 
 void updateDashEngine(void) {
-    gDashEngineSpeedMult = 1.0f;
+    DashEngineSpeedMult = 1.0f;
     if (!IsInputDisabled && IsDashEngineAvailable == 1) {
-        if ((gContInputCurrentButtons & R_TRIG) && sForceDashEngineDisabled == 0) {
-            gDashEngineSpeedMult *= 3.0f;
+        if ((gContInputCurrentButtons & R_TRIG) && ForceDashEngineDisabled == 0) {
+            DashEngineSpeedMult *= 3.0f;
             Icons_SetDashEngineEnabled(TRUE);
-            if (sDashEngineSoundTimeout == 0) {
+            if (DashEngineSoundTimeout == 0) {
                 playDashEngineSounds(TRUE);
             }
         } else {
@@ -535,10 +535,10 @@ void updateDashEngine(void) {
             Icons_SetDashEngineEnabled(FALSE);
         }
     }
-    if (sDashEngineSoundTimeout > 0) {
-        sDashEngineSoundTimeout--;
+    if (DashEngineSoundTimeout > 0) {
+        DashEngineSoundTimeout--;
     }
-    gTotalSpeedMult = gDashEngineSpeedMult * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
+    TotalSpeedMult = DashEngineSpeedMult * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
 }
 
 void handleCButtons(GObj* obj) {
@@ -552,15 +552,15 @@ void handleCButtons(GObj* obj) {
         if (gContInputPressedButtons & U_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
             if (gDirectionIndex == 0) {
-                sTurnToDirSpeed = 0.2f;
+                TurnToDirSpeed = 0.2f;
             } else if (gDirectionIndex == 1) {
-                sTurnToDirSpeed = 0.1f;
+                TurnToDirSpeed = 0.1f;
             } else {
-                sTurnToDirSpeed = -0.1f;
+                TurnToDirSpeed = -0.1f;
             }
             gDirectionIndex = 2;
             CButtonPressed = TRUE;
-            sReticleScreenX = 0;
+            ReticleScreenX = 0;
         } else if (gContInputPressedButtons & R_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
             gDirectionIndex++;
@@ -568,8 +568,8 @@ void handleCButtons(GObj* obj) {
                 gDirectionIndex -= 4;
             }
             CButtonPressed = TRUE;
-            sTurnToDirSpeed = 0.1f;
-            sReticleScreenX = 0;
+            TurnToDirSpeed = 0.1f;
+            ReticleScreenX = 0;
         } else if (gContInputPressedButtons & L_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
             gDirectionIndex--;
@@ -577,15 +577,15 @@ void handleCButtons(GObj* obj) {
                 gDirectionIndex += 4;
             }
             CButtonPressed = TRUE;
-            sTurnToDirSpeed = -0.1f;
-            sReticleScreenX = 0;
+            TurnToDirSpeed = -0.1f;
+            ReticleScreenX = 0;
         }
     }
 
     updateDashEngine();
     if (CButtonPressed) {
-        sStickXAccum = 0.0f;
-        gViewYaw = 0.0f;
+        StickXAccum = 0.0f;
+        PlayerViewYaw = 0.0f;
         ohResumeProcessByFunction(obj, processTurnToDirection);
         ohPauseProcessByFunction(obj, updateMovementState);
         ohPauseProcessByFunction(obj, handleAnalogStick);
@@ -593,8 +593,8 @@ void handleCButtons(GObj* obj) {
         return;
     }
 
-    if (ABS(sReticleScreenX) > 50) {
-        gViewYaw += sStickXValue * 0.03 * 0.8;
+    if (ABS(ReticleScreenX) > 50) {
+        PlayerViewYaw += StickXValue * 0.03 * 0.8;
     }
 }
 
@@ -603,12 +603,12 @@ void processTurnToDirection(GObj* obj) {
     f32 targetYaw;
     s32 v0 = 0;
 
-    if (gIsPaused) {
+    if (IsPaused) {
         return;
     }
 
-    targetYaw = sDirections[gDirectionIndex];
-    currentYaw = gCurrentDirectionYaw;
+    targetYaw = DirectionsList[gDirectionIndex];
+    currentYaw = CurrentDirectionYaw;
 
     while (targetYaw < 0.0f) {
         targetYaw += TAU;
@@ -624,26 +624,26 @@ void processTurnToDirection(GObj* obj) {
         currentYaw -= TAU;
     }
 
-    if (ABS(targetYaw - currentYaw) > ABS(sTurnToDirSpeed)) {
-        gCurrentDirectionYaw += sTurnToDirSpeed;
+    if (ABS(targetYaw - currentYaw) > ABS(TurnToDirSpeed)) {
+        CurrentDirectionYaw += TurnToDirSpeed;
     } else {
-        gCurrentDirectionYaw = sDirections[gDirectionIndex];
+        CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         v0++;
     }
     targetYaw = 0.04712389f; // need var reuse for matching
-    if (ABS(sViewPitch) > targetYaw) {
-        if (sViewPitch > 0.0f) {
-            sViewPitch -= targetYaw;
+    if (ABS(ViewPitch) > targetYaw) {
+        if (ViewPitch > 0.0f) {
+            ViewPitch -= targetYaw;
         } else {
-            sViewPitch += targetYaw;
+            ViewPitch += targetYaw;
         }
     } else {
-        sViewPitch = 0.0f;
+        ViewPitch = 0.0f;
         v0++;
     }
 
     if (v0 >= 2) {
-        sTurnToDirSpeed = 0.0f;
+        TurnToDirSpeed = 0.0f;
         ohResumeProcessByFunction(obj, updateMovementState);
         ohResumeProcessByFunction(obj, handleAnalogStick);
         ohResumeProcessByFunction(obj, handleCButtons);
@@ -671,49 +671,49 @@ void updateCameraZoomedOut(GObj* obj) {
     static f32 D_80382D64_523174 = 50.0f;
 
     if (gDirectionIndex == 0) {
-        if (gViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.9424779f) {
             gDirectionIndex = 1;
-            gViewYaw = -0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
-        } else if (gViewYaw < -0.9424779f) {
+            PlayerViewYaw = -0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
+        } else if (PlayerViewYaw < -0.9424779f) {
             gDirectionIndex = 3;
-            gViewYaw = 0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+            PlayerViewYaw = 0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 1) {
-        if (gViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.9424779f) {
             gDirectionIndex = 2;
-            gViewYaw = -0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
-        } else if (gViewYaw < -0.9424779f) {
+            PlayerViewYaw = -0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
+        } else if (PlayerViewYaw < -0.9424779f) {
             gDirectionIndex = 0;
-            gViewYaw = 0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+            PlayerViewYaw = 0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 2) {
-        if (gViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.9424779f) {
             gDirectionIndex = 3;
-            gViewYaw = -0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
-        } else if (gViewYaw < -0.9424779f) {
+            PlayerViewYaw = -0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
+        } else if (PlayerViewYaw < -0.9424779f) {
             gDirectionIndex = 1;
-            gViewYaw = 0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+            PlayerViewYaw = 0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 3) {
-        if (gViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.9424779f) {
             gDirectionIndex = 0;
-            gViewYaw = -0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
-        } else if (gViewYaw < -0.9424779f) {
+            PlayerViewYaw = -0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
+        } else if (PlayerViewYaw < -0.9424779f) {
             gDirectionIndex = 2;
-            gViewYaw = 0.62831855f;
-            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+            PlayerViewYaw = 0.62831855f;
+            CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     }
 
     if (gDirectionIndex == 0) {
-        sStickXValue *= -1.0f;
+        StickXValue *= -1.0f;
         D_80382D60_523170 = 0.0f;
         D_80382D64_523174 = 0.0f;
     } else if (gDirectionIndex == 1) {
@@ -727,12 +727,12 @@ void updateCameraZoomedOut(GObj* obj) {
         D_80382D64_523174 = 0.0f;
     }
 
-    sp94 = gCurrentDirectionYaw + gViewYaw;
+    sp94 = CurrentDirectionYaw + PlayerViewYaw;
     D_803AE478_54E888 = cosf(sp94);
     D_803AE47C_54E88C = sinf(sp94);
 
     if (!D_80382C64_523074) {
-        gTotalSpeedMult = gDashEngineSpeedMult * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
+        TotalSpeedMult = DashEngineSpeedMult * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
     }
 
     if (ABS(D_80382D60_523170 - D_80382D58_523168) > 0.2f) {
@@ -752,38 +752,38 @@ void updateCameraZoomedOut(GObj* obj) {
     sinf(gMovementState.rotation.y);
     cosf(gMovementState.rotation.y);
 
-    eyePos.x = gCameraEyePos.x = gMovementState.pos.x;
-    eyePos.y = gCameraEyePos.y = gMovementState.pos.y + oneHundred + sCameraShakingDeltaY + sCameraVibrationDeltaY;
-    eyePos.z = gCameraEyePos.z = gMovementState.pos.z;
+    eyePos.x = CameraEyePos.x = gMovementState.pos.x;
+    eyePos.y = CameraEyePos.y = gMovementState.pos.y + oneHundred + CameraShakingDeltaY + CameraVibrationDeltaY;
+    eyePos.z = CameraEyePos.z = gMovementState.pos.z;
 
-    sp64.x = -20.0f * cosf(sViewPitch) * sinf(sp94);
-    sp64.y = 20.0f * sinf(sViewPitch);
-    sp64.z = 20.0f * cosf(sViewPitch) * cosf(sp94);
+    sp64.x = -20.0f * cosf(ViewPitch) * sinf(sp94);
+    sp64.y = 20.0f * sinf(ViewPitch);
+    sp64.z = 20.0f * cosf(ViewPitch) * cosf(sp94);
 
     Vec3fGetEulerRotation(&sp64, AXIS_X, gMovementState.rotation.x);
     Vec3fGetEulerRotation(&sp64, AXIS_Y, gMovementState.rotation.y);
     Vec3fGetEulerRotation(&sp64, AXIS_Z, gMovementState.rotation.z);
 
-    gCameraAtPos.x = sp64.x + eyePos.x;
-    gCameraAtPos.y = sp64.y + eyePos.y;
-    gCameraAtPos.z = sp64.z + eyePos.z;
+    CameraAtPos.x = sp64.x + eyePos.x;
+    CameraAtPos.y = sp64.y + eyePos.y;
+    CameraAtPos.z = sp64.z + eyePos.z;
 
-    dx = gCameraAtPos.x - gCameraEyePos.x;
-    dz = gCameraAtPos.z - gCameraEyePos.z;
+    dx = CameraAtPos.x - CameraEyePos.x;
+    dz = CameraAtPos.z - CameraEyePos.z;
     if (SQ(dx) + SQ(dz) < 0.1f) {
-        gCameraAtPos.x = gCameraEyePos.x + gCameraViewVector.x;
-        gCameraAtPos.z = gCameraEyePos.z + gCameraViewVector.z;
+        CameraAtPos.x = CameraEyePos.x + CameraViewVector.x;
+        CameraAtPos.z = CameraEyePos.z + CameraViewVector.z;
     } else {
-        gCameraViewVector.x = dx;
-        gCameraViewVector.z = dz;
+        CameraViewVector.x = dx;
+        CameraViewVector.z = dz;
     }
 
-    gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
-    gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y;
-    gMainCamera->viewMtx.lookAt.eye.z = gCameraEyePos.z;
-    gMainCamera->viewMtx.lookAt.at.x = gCameraAtPos.x;
-    gMainCamera->viewMtx.lookAt.at.y = gCameraAtPos.y;
-    gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
+    gMainCamera->viewMtx.lookAt.eye.x = CameraEyePos.x;
+    gMainCamera->viewMtx.lookAt.eye.y = CameraEyePos.y;
+    gMainCamera->viewMtx.lookAt.eye.z = CameraEyePos.z;
+    gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
+    gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y;
+    gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
 }
 
 char D_80382D68_523178[] = "\\#S0\\[\\]\\#S1";
@@ -871,17 +871,17 @@ void processZoomingIn(GObj* obj) {
     spD4.y = dy;
     spD4.z = dz * cosAngle - dx * sinAngle;
 
-    gViewYaw = atanf(spD4.x / spD4.z);
-    sViewPitch = atanf(spD4.y / f28);
+    PlayerViewYaw = atanf(spD4.x / spD4.z);
+    ViewPitch = atanf(spD4.y / f28);
     if (spD4.z > 0.0f) {
-        gViewYaw = TAU - gViewYaw;
+        PlayerViewYaw = TAU - PlayerViewYaw;
     } else {
-        gViewYaw = 3.1415927f - gViewYaw;
+        PlayerViewYaw = 3.1415927f - PlayerViewYaw;
     }
-    if (gViewYaw > TAU) {
-        gViewYaw -= TAU;
-    } else if (gViewYaw < 0.0f) {
-        gViewYaw += TAU;
+    if (PlayerViewYaw > TAU) {
+        PlayerViewYaw -= TAU;
+    } else if (PlayerViewYaw < 0.0f) {
+        PlayerViewYaw += TAU;
     }
 
     D_803AE4F8_54E908.x = 0.0f;
@@ -900,12 +900,12 @@ void processZoomingIn(GObj* obj) {
     D_803AE508_54E918.x = 20.0f * spD4.x + D_803AE4F8_54E908.x;
     D_803AE508_54E918.y = 20.0f * spD4.y + D_803AE4F8_54E908.y;
     D_803AE508_54E918.z = 20.0f * spD4.z + D_803AE4F8_54E908.z;
-    D_803AE4D8_54E8E8.x = gCameraEyePos.x;
-    D_803AE4D8_54E8E8.y = gCameraEyePos.y;
-    D_803AE4D8_54E8E8.z = gCameraEyePos.z;
-    D_803AE4E8_54E8F8.x = gCameraAtPos.x;
-    D_803AE4E8_54E8F8.y = gCameraAtPos.y;
-    D_803AE4E8_54E8F8.z = gCameraAtPos.z;
+    D_803AE4D8_54E8E8.x = CameraEyePos.x;
+    D_803AE4D8_54E8E8.y = CameraEyePos.y;
+    D_803AE4D8_54E8E8.z = CameraEyePos.z;
+    D_803AE4E8_54E8F8.x = CameraAtPos.x;
+    D_803AE4E8_54E8F8.y = CameraAtPos.y;
+    D_803AE4E8_54E8F8.z = CameraAtPos.z;
     WorldToPlayerCoors(&D_803AE4D8_54E8E8);
     WorldToPlayerCoors(&D_803AE4E8_54E8F8);
 
@@ -930,26 +930,26 @@ void processZoomingIn(GObj* obj) {
         D_803AE4D8_54E8E8.y += sp114 * spEC.y;
         D_803AE4D8_54E8E8.z += sp114 * spEC.z;
 
-        gCameraEyePos.x = gMovementState.pos.x + D_803AE4D8_54E8E8.x * cosAngle + D_803AE4D8_54E8E8.z * sinAngle;
-        gCameraEyePos.y = gMovementState.pos.y + D_803AE4D8_54E8E8.y;
-        gCameraEyePos.z = gMovementState.pos.z - D_803AE4D8_54E8E8.x * sinAngle + D_803AE4D8_54E8E8.z * cosAngle;
+        CameraEyePos.x = gMovementState.pos.x + D_803AE4D8_54E8E8.x * cosAngle + D_803AE4D8_54E8E8.z * sinAngle;
+        CameraEyePos.y = gMovementState.pos.y + D_803AE4D8_54E8E8.y;
+        CameraEyePos.z = gMovementState.pos.z - D_803AE4D8_54E8E8.x * sinAngle + D_803AE4D8_54E8E8.z * cosAngle;
 
         D_803AE4E8_54E8F8.x += sp110 * spE0.x;
         D_803AE4E8_54E8F8.y += sp110 * spE0.y;
         D_803AE4E8_54E8F8.z += sp110 * spE0.z;
 
-        gCameraAtPos.x = gMovementState.pos.x + D_803AE4E8_54E8F8.x * cosAngle + D_803AE4E8_54E8F8.z * sinAngle;
-        gCameraAtPos.y = gMovementState.pos.y + D_803AE4E8_54E8F8.y;
-        gCameraAtPos.z = gMovementState.pos.z - D_803AE4E8_54E8F8.x * sinAngle + D_803AE4E8_54E8F8.z * cosAngle;
+        CameraAtPos.x = gMovementState.pos.x + D_803AE4E8_54E8F8.x * cosAngle + D_803AE4E8_54E8F8.z * sinAngle;
+        CameraAtPos.y = gMovementState.pos.y + D_803AE4E8_54E8F8.y;
+        CameraAtPos.z = gMovementState.pos.z - D_803AE4E8_54E8F8.x * sinAngle + D_803AE4E8_54E8F8.z * cosAngle;
 
-        dx2 = gCameraAtPos.x - gCameraEyePos.x;
-        dz2 = gCameraAtPos.z - gCameraEyePos.z;
+        dx2 = CameraAtPos.x - CameraEyePos.x;
+        dz2 = CameraAtPos.z - CameraEyePos.z;
         if ((SQ(dx2) + SQ(dz2)) < 0.1f) {
-            gCameraAtPos.x = gCameraEyePos.x + gCameraViewVector.x;
-            gCameraAtPos.z = gCameraEyePos.z + gCameraViewVector.z;
+            CameraAtPos.x = CameraEyePos.x + CameraViewVector.x;
+            CameraAtPos.z = CameraEyePos.z + CameraViewVector.z;
         } else {
-            gCameraViewVector.x = dx2;
-            gCameraViewVector.z = dz2;
+            CameraViewVector.x = dx2;
+            CameraViewVector.z = dz2;
         }
 
         x1 -= 2;
@@ -957,12 +957,12 @@ void processZoomingIn(GObj* obj) {
         x2 += 2;
         y2 += 2;
 
-        gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
-        gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y + sCameraVibrationDeltaY;
-        gMainCamera->viewMtx.lookAt.eye.z = gCameraEyePos.z;
-        gMainCamera->viewMtx.lookAt.at.x = gCameraAtPos.x;
-        gMainCamera->viewMtx.lookAt.at.y = gCameraAtPos.y + sCameraVibrationDeltaY;
-        gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
+        gMainCamera->viewMtx.lookAt.eye.x = CameraEyePos.x;
+        gMainCamera->viewMtx.lookAt.eye.y = CameraEyePos.y + CameraVibrationDeltaY;
+        gMainCamera->viewMtx.lookAt.eye.z = CameraEyePos.z;
+        gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
+        gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y + CameraVibrationDeltaY;
+        gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
 
         func_80007C20(&gMainCamera->vp, x1, y1, x2, y2);
 
@@ -988,7 +988,7 @@ void processZoomingIn(GObj* obj) {
     }
 
     gDirectionIndex = -1;
-    sTargetDirectionZoomedIn = 0;
+    TargetDirectionZoomedIn = 0;
     omCreateProcess(obj, updateCameraZoomedIn, 1, 9);
     omEndProcess(NULL);
 }
@@ -1012,7 +1012,7 @@ void processZoomingOut(GObj* obj) {
     auPlaySound(SOUND_ID_6);
     D_80382CF8_523108 = 0;
     D_80382CFC_52310C = 0;
-    sStickXAccum = 0.0f;
+    StickXAccum = 0.0f;
 
     y1 = -25;
     y2 = 265;
@@ -1023,41 +1023,41 @@ void processZoomingOut(GObj* obj) {
     y4 = 216;
     x3 = 30;
     x4 = 289;
-    sStickYAccum = 0.0f;
+    StickYAccum = 0.0f;
 
     while (i++ < 10) {
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG)) { break; }
 
-        temp_f14 = gMovementState.pos.x - gCameraEyePos.x;
-        temp_f18 = gMovementState.pos.y + 100.0f + sCameraShakingDeltaY - gCameraEyePos.y;
-        temp_f20 = gMovementState.pos.z - gCameraEyePos.z;
+        temp_f14 = gMovementState.pos.x - CameraEyePos.x;
+        temp_f18 = gMovementState.pos.y + 100.0f + CameraShakingDeltaY - CameraEyePos.y;
+        temp_f20 = gMovementState.pos.z - CameraEyePos.z;
 
-        gCameraEyePos.x = gMovementState.pos.x;
-        gCameraEyePos.y = gMovementState.pos.y + 100.0f + sCameraShakingDeltaY;
-        gCameraEyePos.z = gMovementState.pos.z;
+        CameraEyePos.x = gMovementState.pos.x;
+        CameraEyePos.y = gMovementState.pos.y + 100.0f + CameraShakingDeltaY;
+        CameraEyePos.z = gMovementState.pos.z;
 
-        gCameraAtPos.x += temp_f14;
-        gCameraAtPos.y += temp_f18;
-        gCameraAtPos.z += temp_f20;
+        CameraAtPos.x += temp_f14;
+        CameraAtPos.y += temp_f18;
+        CameraAtPos.z += temp_f20;
 
-        dx = gCameraAtPos.x - gCameraEyePos.x;
-        dz = gCameraAtPos.z - gCameraEyePos.z;
+        dx = CameraAtPos.x - CameraEyePos.x;
+        dz = CameraAtPos.z - CameraEyePos.z;
         if (SQ(dx) + SQ(dz) < 0.1f) {
-            gCameraAtPos.x = gCameraEyePos.x + gCameraViewVector.x;
-            gCameraAtPos.z = gCameraEyePos.z + gCameraViewVector.z;
+            CameraAtPos.x = CameraEyePos.x + CameraViewVector.x;
+            CameraAtPos.z = CameraEyePos.z + CameraViewVector.z;
         } else {
-            gCameraViewVector.x = dx;
-            gCameraViewVector.z = dz;
+            CameraViewVector.x = dx;
+            CameraViewVector.z = dz;
         }
 
-        gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
-        gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y;
-        gMainCamera->viewMtx.lookAt.eye.z = gCameraEyePos.z;
-        gMainCamera->viewMtx.lookAt.at.x = gCameraAtPos.x;
-        gMainCamera->viewMtx.lookAt.at.y = gCameraAtPos.y;
-        gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
-        gMainCamera->viewMtx.lookAt.eye.y += sCameraVibrationDeltaY;
-        gMainCamera->viewMtx.lookAt.at.y += sCameraVibrationDeltaY;
+        gMainCamera->viewMtx.lookAt.eye.x = CameraEyePos.x;
+        gMainCamera->viewMtx.lookAt.eye.y = CameraEyePos.y;
+        gMainCamera->viewMtx.lookAt.eye.z = CameraEyePos.z;
+        gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
+        gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y;
+        gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
+        gMainCamera->viewMtx.lookAt.eye.y += CameraVibrationDeltaY;
+        gMainCamera->viewMtx.lookAt.at.y += CameraVibrationDeltaY;
 
         x1 += 2;
         y1 += 2;
@@ -1081,15 +1081,15 @@ void processZoomingOut(GObj* obj) {
     }
 
     resetMainCameraSettings();
-    viewVector.x = gCameraAtPos.x - gCameraEyePos.x;
-    viewVector.y = gCameraAtPos.y - gCameraEyePos.y;
-    viewVector.z = gCameraAtPos.z - gCameraEyePos.z;
+    viewVector.x = CameraAtPos.x - CameraEyePos.x;
+    viewVector.y = CameraAtPos.y - CameraEyePos.y;
+    viewVector.z = CameraAtPos.z - CameraEyePos.z;
     Vec3fNormalize(&viewVector);
     Vec3fGetEulerRotation(&viewVector, 4, -gMovementState.rotation.z);
     Vec3fGetEulerRotation(&viewVector, 2, -gMovementState.rotation.y);
     Vec3fGetEulerRotation(&viewVector, 1, -gMovementState.rotation.x);
-    sViewPitch = asinf(viewVector.y);
-    angle1 = acosf(viewVector.z / cosf(sViewPitch));
+    ViewPitch = asinf(viewVector.y);
+    angle1 = acosf(viewVector.z / cosf(ViewPitch));
     if (viewVector.x > 0.0f) {
         angle1 = TAU - angle1;
     }
@@ -1106,29 +1106,29 @@ void processZoomingOut(GObj* obj) {
         direction = 2;
     }
 
-    gCurrentDirectionYaw = sDirections[direction];
-    if (gCurrentDirectionYaw < 0.0f) {
-        gCurrentDirectionYaw += TAU;
+    CurrentDirectionYaw = DirectionsList[direction];
+    if (CurrentDirectionYaw < 0.0f) {
+        CurrentDirectionYaw += TAU;
     }
     if (direction == 2) {
         if (angle1 > 3.1415927f) {
-            gViewYaw = angle1 - TAU;
+            PlayerViewYaw = angle1 - TAU;
         } else {
-            gViewYaw = angle1;
+            PlayerViewYaw = angle1;
         }
-        gCurrentDirectionYaw = sDirections[direction];
+        CurrentDirectionYaw = DirectionsList[direction];
     } else {
-        gViewYaw = angle1 - gCurrentDirectionYaw;
-        gCurrentDirectionYaw = sDirections[direction];
+        PlayerViewYaw = angle1 - CurrentDirectionYaw;
+        CurrentDirectionYaw = DirectionsList[direction];
     }
-    gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
-    gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y + sCameraVibrationDeltaY;
-    gMainCamera->viewMtx.lookAt.eye.z = gCameraEyePos.z;
-    gMainCamera->viewMtx.lookAt.at.x = gCameraAtPos.x;
-    gMainCamera->viewMtx.lookAt.at.y = gCameraAtPos.y + sCameraVibrationDeltaY;
-    gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
+    gMainCamera->viewMtx.lookAt.eye.x = CameraEyePos.x;
+    gMainCamera->viewMtx.lookAt.eye.y = CameraEyePos.y + CameraVibrationDeltaY;
+    gMainCamera->viewMtx.lookAt.eye.z = CameraEyePos.z;
+    gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
+    gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y + CameraVibrationDeltaY;
+    gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
     Icons_ProcessZoom(FALSE);
-    sReticleScreenX = 0;
+    ReticleScreenX = 0;
     gDirectionIndex = direction;
     ohResumeProcessByFunction(obj, handleCButtons);
     ohResumeProcessByFunction(obj, handleItemButtonsPress);
@@ -1247,8 +1247,8 @@ void Camera_EndProcessByFunction(GObj* obj, GObjFunc func) {
 }
 
 void func_80353118_4F3528(GObj* obj) {
-    if (!gIsPaused && D_80382D44_523154 == 0 && D_80382D78_523188 != gtlDrawnFrameCounter) {
-        spSetAttribute(&gObjPauseMenu->data.sobj->sprite, SP_HIDDEN);
+    if (!IsPaused && D_80382D44_523154 == 0 && D_80382D78_523188 != gtlDrawnFrameCounter) {
+        spSetAttribute(&ObjectPauseMenu->data.sobj->sprite, SP_HIDDEN);
     }
 }
 
@@ -1268,57 +1268,57 @@ void updateCameraZoomedIn(GObj* obj) {
     static s32 sTimerAfterPhotoTaken = -1;
 
     if (D_80382D08_523118 == 0) {
-        if (sTargetDirectionZoomedIn == 1) {
-            gViewYaw += 0.1f;
-            if (sTargetDirectionYawZommedIn < gViewYaw) {
-                sTargetDirectionZoomedIn = 0;
-                gViewYaw = sTargetDirectionYawZommedIn;
+        if (TargetDirectionZoomedIn == 1) {
+            PlayerViewYaw += 0.1f;
+            if (TargetDirectionYawZommedIn < PlayerViewYaw) {
+                TargetDirectionZoomedIn = 0;
+                PlayerViewYaw = TargetDirectionYawZommedIn;
             }
-        } else if (sTargetDirectionZoomedIn == 2) {
-            gViewYaw -= 0.1f;
-            if (gViewYaw < sTargetDirectionYawZommedIn) {
-                sTargetDirectionZoomedIn = 0;
-                gViewYaw = sTargetDirectionYawZommedIn;
+        } else if (TargetDirectionZoomedIn == 2) {
+            PlayerViewYaw -= 0.1f;
+            if (PlayerViewYaw < TargetDirectionYawZommedIn) {
+                TargetDirectionZoomedIn = 0;
+                PlayerViewYaw = TargetDirectionYawZommedIn;
             }
         } else {
-            gViewYaw = gViewYaw + sStickXValue * 0.025;
-            if (gViewYaw > TAU) {
-                gViewYaw -= TAU;
-            } else if (gViewYaw < 0.0f) {
-                gViewYaw += TAU;
+            PlayerViewYaw = PlayerViewYaw + StickXValue * 0.025;
+            if (PlayerViewYaw > TAU) {
+                PlayerViewYaw -= TAU;
+            } else if (PlayerViewYaw < 0.0f) {
+                PlayerViewYaw += TAU;
             }
         }
         sinCartYaw = sinf(gMovementState.rotation.y);
         cosCartYaw = cosf(gMovementState.rotation.y);
 
-        eyePos.x = gCameraEyePos.x = gMovementState.pos.x;
-        eyePos.y = gCameraEyePos.y = gMovementState.pos.y + 100.0f + sCameraVibrationDeltaY;
-        eyePos.z = gCameraEyePos.z = gMovementState.pos.z;
+        eyePos.x = CameraEyePos.x = gMovementState.pos.x;
+        eyePos.y = CameraEyePos.y = gMovementState.pos.y + 100.0f + CameraVibrationDeltaY;
+        eyePos.z = CameraEyePos.z = gMovementState.pos.z;
 
-        viewVectorX = -20.0f * cosf(sViewPitch) * sinf(gViewYaw);
-        viewVectorY = 20.0f * sinf(sViewPitch);
-        viewVectorZ = 20.0f * cosf(sViewPitch) * cosf(gViewYaw);
+        viewVectorX = -20.0f * cosf(ViewPitch) * sinf(PlayerViewYaw);
+        viewVectorY = 20.0f * sinf(ViewPitch);
+        viewVectorZ = 20.0f * cosf(ViewPitch) * cosf(PlayerViewYaw);
 
-        gCameraAtPos.x = viewVectorX * cosCartYaw + viewVectorZ * sinCartYaw + eyePos.x;
-        gCameraAtPos.y = viewVectorY + eyePos.y;
-        gCameraAtPos.z = viewVectorZ * cosCartYaw - viewVectorX * sinCartYaw + eyePos.z;
+        CameraAtPos.x = viewVectorX * cosCartYaw + viewVectorZ * sinCartYaw + eyePos.x;
+        CameraAtPos.y = viewVectorY + eyePos.y;
+        CameraAtPos.z = viewVectorZ * cosCartYaw - viewVectorX * sinCartYaw + eyePos.z;
 
-        dx = gCameraAtPos.x - gCameraEyePos.x;
-        dz = gCameraAtPos.z - gCameraEyePos.z;
+        dx = CameraAtPos.x - CameraEyePos.x;
+        dz = CameraAtPos.z - CameraEyePos.z;
         if (SQ(dx) + SQ(dz) < 0.1f) {
-            gCameraAtPos.x = gCameraEyePos.x + gCameraViewVector.x;
-            gCameraAtPos.z = gCameraEyePos.z + gCameraViewVector.z;
+            CameraAtPos.x = CameraEyePos.x + CameraViewVector.x;
+            CameraAtPos.z = CameraEyePos.z + CameraViewVector.z;
         } else {
-            gCameraViewVector.x = dx;
-            gCameraViewVector.z = dz;
+            CameraViewVector.x = dx;
+            CameraViewVector.z = dz;
         }
 
-        gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
-        gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y;
-        gMainCamera->viewMtx.lookAt.eye.z = gCameraEyePos.z;
-        gMainCamera->viewMtx.lookAt.at.x = gCameraAtPos.x;
-        gMainCamera->viewMtx.lookAt.at.y = gCameraAtPos.y;
-        gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
+        gMainCamera->viewMtx.lookAt.eye.x = CameraEyePos.x;
+        gMainCamera->viewMtx.lookAt.eye.y = CameraEyePos.y;
+        gMainCamera->viewMtx.lookAt.eye.z = CameraEyePos.z;
+        gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
+        gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y;
+        gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
     }
     if (ZoomSwitchMode == 1 || (gContInputCurrentButtons & Z_TRIG)) {
         if (D_803AE768_54EB78 == 1 && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
@@ -1347,12 +1347,12 @@ void updateCameraZoomedIn(GObj* obj) {
             D_80382C3C_52304C = 0;
         }
         if (sTimerAfterPhotoTaken < 0) {
-            if (sTargetDirectionZoomedIn == 0 && (gContInputPressedButtons & A_BUTTON)) {
+            if (TargetDirectionZoomedIn == 0 && (gContInputPressedButtons & A_BUTTON)) {
                 camera = ohFindByLinkAndId(LINK_0, OBJID_MAIN_CAMERA);
                 if (camera != NULL) {
                     if (D_80382D00_523110 == 2) {
-                        spColor(&gObjPauseMenu->data.sobj->sprite, 0, 0, 0, D_80382D54_523164);
-                        spClearAttribute(&gObjPauseMenu->data.sobj->sprite, SP_HIDDEN);
+                        spColor(&ObjectPauseMenu->data.sobj->sprite, 0, 0, 0, D_80382D54_523164);
+                        spClearAttribute(&ObjectPauseMenu->data.sobj->sprite, SP_HIDDEN);
                         D_80382D78_523188 = gtlDrawnFrameCounter;
                     } else if (D_80382D00_523110 == 1) {
                         cmdSendCommand(camera, CAMERA_CMD_BLINK, 0);
@@ -1401,42 +1401,42 @@ void updateCameraZoomedIn(GObj* obj) {
             updateDashEngine();
             if (gContInputPressedButtons & U_CBUTTONS) {
                 auPlaySound(SOUND_ID_4);
-                if (gViewYaw > 3.1415927f) {
-                    sTargetDirectionZoomedIn = 1;
-                    sTargetDirectionYawZommedIn = TAU;
+                if (PlayerViewYaw > 3.1415927f) {
+                    TargetDirectionZoomedIn = 1;
+                    TargetDirectionYawZommedIn = TAU;
                 } else {
-                    sTargetDirectionZoomedIn = 2;
-                    sTargetDirectionYawZommedIn = 0.0f;
+                    TargetDirectionZoomedIn = 2;
+                    TargetDirectionYawZommedIn = 0.0f;
                 }
             } else if (gContInputPressedButtons & R_CBUTTONS) {
                 auPlaySound(SOUND_ID_4);
-                sTargetDirectionZoomedIn = 1;
-                if (gViewYaw > 6.282185482025146) {
-                    gViewYaw -= TAU;
-                    sTargetDirectionYawZommedIn = PI_2;
-                } else if (gViewYaw > 4.7023889923095705) {
-                    sTargetDirectionYawZommedIn = TAU;
-                } else if (gViewYaw > 3.1315927410125735) {
-                    sTargetDirectionYawZommedIn = 4.712389f;
-                } else if (gViewYaw > 1.5607963705062866) {
-                    sTargetDirectionYawZommedIn = 3.1415927f;
+                TargetDirectionZoomedIn = 1;
+                if (PlayerViewYaw > 6.282185482025146) {
+                    PlayerViewYaw -= TAU;
+                    TargetDirectionYawZommedIn = PI_2;
+                } else if (PlayerViewYaw > 4.7023889923095705) {
+                    TargetDirectionYawZommedIn = TAU;
+                } else if (PlayerViewYaw > 3.1315927410125735) {
+                    TargetDirectionYawZommedIn = 4.712389f;
+                } else if (PlayerViewYaw > 1.5607963705062866) {
+                    TargetDirectionYawZommedIn = 3.1415927f;
                 } else {
-                    sTargetDirectionYawZommedIn = PI_2;
+                    TargetDirectionYawZommedIn = PI_2;
                 }
             } else if (gContInputPressedButtons & L_CBUTTONS) {
                 auPlaySound(SOUND_ID_4);
-                sTargetDirectionZoomedIn = 2;
-                if (gViewYaw < 0.001f) {
-                    gViewYaw += TAU;
-                    sTargetDirectionYawZommedIn = 4.712389f;
-                } else if (gViewYaw < 1.5717964f) {
-                    sTargetDirectionYawZommedIn = 0.0f;
-                } else if (gViewYaw < 3.1425927f) {
-                    sTargetDirectionYawZommedIn = PI_2;
-                } else if (gViewYaw < 4.713389f) {
-                    sTargetDirectionYawZommedIn = 3.1415927f;
+                TargetDirectionZoomedIn = 2;
+                if (PlayerViewYaw < 0.001f) {
+                    PlayerViewYaw += TAU;
+                    TargetDirectionYawZommedIn = 4.712389f;
+                } else if (PlayerViewYaw < 1.5717964f) {
+                    TargetDirectionYawZommedIn = 0.0f;
+                } else if (PlayerViewYaw < 3.1425927f) {
+                    TargetDirectionYawZommedIn = PI_2;
+                } else if (PlayerViewYaw < 4.713389f) {
+                    TargetDirectionYawZommedIn = 3.1415927f;
                 } else {
-                    sTargetDirectionYawZommedIn = 4.712389f;
+                    TargetDirectionYawZommedIn = 4.712389f;
                 }
             }
         }
@@ -1484,8 +1484,8 @@ void vibrateCamera(GObj* obj) {
     }
 
     while (TRUE) {
-        sCameraVibrationDeltaY = sinf(phase) * sCameraVibrationAmplitude;
-        phase += sCameraVibrationSpeed * 3.1415927f / 180.0f;
+        CameraVibrationDeltaY = sinf(phase) * CameraVibrationAmplitude;
+        phase += CameraVibrationSpeed * 3.1415927f / 180.0f;
         if (levelID == SCENE_BEACH) {
             getLevelProgress(&blockCount, &blockPart);
             if (blockCount + blockPart >= 4.45f) {
@@ -1495,7 +1495,7 @@ void vibrateCamera(GObj* obj) {
         ohWait(1);
     }
 
-    sCameraVibrationDeltaY = 0.0f;
+    CameraVibrationDeltaY = 0.0f;
     omEndProcess(NULL);
 }
 
@@ -1509,27 +1509,27 @@ void setPauseCallback(void (*cb)(s32)) {
 
 // `int` is required to match
 int func_80353D68_4F4178(void) {
-    return gIsPaused == 0 && D_80382D44_523154 == 0;
+    return IsPaused == 0 && D_80382D44_523154 == 0;
 }
 
 void Pause_UpdateSelection(GObj* obj) {
-    if (Pause_ButtonPressTimeout > 0) {
+    if (PauseButtonPressTimeout > 0) {
         Pause_StickReleased = FALSE;
     } else if (ABS(gContInputStickY) > 20 && Pause_StickReleased) {
         Pause_StickReleased = FALSE;
         if (gContInputStickY > 0) {
-            if (Pause_CurrentSelection > 0) {
-                Pause_CurrentSelection--;
+            if (PauseCurrentSelection > 0) {
+                PauseCurrentSelection--;
                 auPlaySound(SOUND_ID_65);
             }
         } else {
-            if (Pause_CurrentSelection < 2) {
-                Pause_CurrentSelection++;
+            if (PauseCurrentSelection < 2) {
+                PauseCurrentSelection++;
                 auPlaySound(SOUND_ID_65);
             }
         }
 
-        switch (Pause_CurrentSelection) {
+        switch (PauseCurrentSelection) {
             case PAUSE_OPTION_CONTINUE:
                 spSetAttribute(&Pause_QuitCourseSelected->sprite, SP_HIDDEN);
                 spClearAttribute(&Pause_QuitCourse->sprite, SP_HIDDEN);
@@ -1565,7 +1565,7 @@ void Pause_UpdateSelection(GObj* obj) {
     } else if (ABS(gContInputStickY) < 5) {
         Pause_StickReleased = TRUE;
     }
-    if (!gIsPaused) {
+    if (!IsPaused) {
         omEndProcess(NULL);
     }
 }
@@ -1624,7 +1624,7 @@ void Pause_ShowUI(GObj* obj) {
             D_80382D28_523138 += 15;
             D_80382D38_523148 -= 24;
         }
-        if (gIsPaused == 0) {
+        if (IsPaused == 0) {
             omEndProcess(NULL);
         }
         ohWait(1);
@@ -1715,7 +1715,7 @@ void func_8035464C_4F4A5C(GObj* arg0) {
 
 void func_80354860_4F4C70(GObj* arg0) {
     ohWait(21);
-    gIsPaused = 1 - gIsPaused;
+    IsPaused = 1 - IsPaused;
     func_80357170_4F7580();
     Icons_UnFreeze();
     PauseCb(FALSE);
@@ -1739,44 +1739,44 @@ void func_80354860_4F4C70(GObj* arg0) {
 
 void updatePauseMenu(GObj* arg0) {
     if (IsInputDisabled != TRUE) {
-        if (Pause_ButtonPressTimeout > 0) {
-            Pause_ButtonPressTimeout--;
+        if (PauseButtonPressTimeout > 0) {
+            PauseButtonPressTimeout--;
             return;
         }
-        if (gIsPaused) {
+        if (IsPaused) {
             if (gContInputPressedButtons & B_BUTTON) {
                 omCreateProcess(arg0, Pause_HideUI, 0, 9);
-                Pause_ButtonPressTimeout = 30;
+                PauseButtonPressTimeout = 30;
                 D_80382D3C_52314C = 1.0f;
                 omCreateProcess(arg0, func_8035464C_4F4A5C, 0, 9);
                 omCreateProcess(arg0, func_80354860_4F4C70, 0, 9);
                 gContInputPressedButtons = 0;
             } else if ((gContInputPressedButtons & A_BUTTON) || (gContInputPressedButtons & CONT_START)) {
-                if (Pause_CurrentSelection == PAUSE_OPTION_CONTINUE) {
+                if (PauseCurrentSelection == PAUSE_OPTION_CONTINUE) {
                     omCreateProcess(arg0, Pause_HideUI, 0, 9);
-                    Pause_ButtonPressTimeout = 30;
+                    PauseButtonPressTimeout = 30;
                     D_80382D3C_52314C = 1.0f;
                     omCreateProcess(arg0, func_8035464C_4F4A5C, 0, 9);
                     omCreateProcess(arg0, func_80354860_4F4C70, 0, 9);
-                } else if (Pause_CurrentSelection == PAUSE_OPTION_QUIT) {
+                } else if (PauseCurrentSelection == PAUSE_OPTION_QUIT) {
                     auPlaySound(SOUND_ID_66);
                     omCreateProcess(arg0, quitCourse, 0, 9);
-                    gIsPaused = FALSE;
+                    IsPaused = FALSE;
                     D_80382D44_523154 = 1;
                     omEndProcess(NULL);
                 } else {
                     // retry
                     auPlaySound(SOUND_ID_66);
                     omCreateProcess(arg0, retryCourse, 0, 9);
-                    gIsPaused = FALSE;
+                    IsPaused = FALSE;
                     D_80382D44_523154 = 1;
                     omEndProcess(NULL);
                 }
                 gContInputPressedButtons = 0;
             }
         } else if (gContInputPressedButtons & CONT_START) {
-            gIsPaused = 1 - gIsPaused;
-            Pause_CurrentSelection = 0;
+            IsPaused = 1 - IsPaused;
+            PauseCurrentSelection = 0;
             func_80357120_4F7530(arg0);
             Icons_Freeze();
             PauseCb(TRUE);
@@ -1798,7 +1798,7 @@ void updatePauseMenu(GObj* arg0) {
             ohPauseProcessByFunction(gObjPlayer, vibrateCamera);
             omCreateProcess(arg0, Pause_ShowUI, 0, 9);
             auPlaySound(SOUND_ID_11);
-            Pause_ButtonPressTimeout = 30;
+            PauseButtonPressTimeout = 30;
             D_80382D3C_52314C = 0.5f;
             omCreateProcess(arg0, func_8035464C_4F4A5C, 0, 9);
         }
@@ -1882,7 +1882,7 @@ s32 func_80354FB8_4F53C8(s32 duration) {
         if (ABS(gContInputStickX) >= 6 || ABS(gContInputStickY) >= 6) {
             s1 = TRUE;
         }
-        if (!gIsPaused) {
+        if (!IsPaused) {
             duration--;
         }
         ohWait(1);
@@ -1897,7 +1897,7 @@ void Tutorial_PauseAll(GObj* arg0, s32* arg1) {
     ohPauseProcessByFunction(gObjPlayer, processZoomingIn);
     ohPauseProcessByFunction(gObjPlayer, processZoomingOut);
     ohPauseProcessByFunction(gObjPlayer, updateCameraZoomedIn);
-    ohPauseProcessByFunction(gObjPauseMenu, updatePauseMenu);
+    ohPauseProcessByFunction(ObjectPauseMenu, updatePauseMenu);
     ohPauseProcessByFunction(D_80382C38_523048, updateReticleScreenPos);
 }
 
@@ -1907,7 +1907,7 @@ void Tutorial_UnPauseAll(GObj* arg0, s32* arg1) {
     ohResumeProcessByFunction(gObjPlayer, processZoomingIn);
     ohResumeProcessByFunction(gObjPlayer, processZoomingOut);
     ohResumeProcessByFunction(gObjPlayer, updateCameraZoomedIn);
-    ohResumeProcessByFunction(gObjPauseMenu, updatePauseMenu);
+    ohResumeProcessByFunction(ObjectPauseMenu, updatePauseMenu);
     ohResumeProcessByFunction(D_80382C38_523048, updateReticleScreenPos);
 }
 
@@ -2031,7 +2031,7 @@ void func_803555B0_4F59C0(u8 arg0, u8 arg1, u8 arg2) {
     D_80382D2C_52313C = arg0;
     D_80382D30_523140 = arg1;
     D_80382D34_523144 = arg2;
-    omCreateProcess(gObjPauseMenu, func_8035403C_4F444C, 0, 9);
+    omCreateProcess(ObjectPauseMenu, func_8035403C_4F444C, 0, 9);
 }
 
 void freezePokemons(GObj* obj) {
@@ -2104,10 +2104,10 @@ void processOutOfFilm(GObj* arg0) {
     scRemovePostProcessFunc();
     playDashEngineSounds(0);
     Icons_SetDashEngineEnabled(0);
-    sobj1 = omGObjAddSprite(gObjPauseMenu, &D_80388E00_529210);
+    sobj1 = omGObjAddSprite(ObjectPauseMenu, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
     spColor(&sobj1->sprite, 255, 255, 255, 0);
-    sobj2 = omGObjAddSprite(gObjPauseMenu, &D_80381B58_521F68);
+    sobj2 = omGObjAddSprite(ObjectPauseMenu, &D_80381B58_521F68);
     spMove(&sobj2->sprite, 149, 103);
     spColor(&sobj2->sprite, 255, 255, 255, 0);
 
@@ -2146,7 +2146,7 @@ void processOutOfFilm(GObj* arg0) {
     omEndProcess(NULL);
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4F0610/processOutOfFilm.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/player/processOutOfFilm.s")
 void processOutOfFilm(GObj* arg0);
 #endif
 
@@ -2221,11 +2221,11 @@ void handlePlayerCmd(GObjCmdData cmdData) {
             Camera_StartStopCutscene(cmdData.source, 1, NULL, 0.0f);
             break;
         case PLAYER_CMD_9:
-            sForceDashEngineDisabled = 1;
+            ForceDashEngineDisabled = 1;
             playDashEngineSounds(0);
             break;
         case PLAYER_CMD_10:
-            sForceDashEngineDisabled = 1;
+            ForceDashEngineDisabled = 1;
             playDashEngineSounds(0);
             break;
     }
@@ -2236,24 +2236,24 @@ void updatePlayer(GObj* arg0) {
 }
 
 void updateReticleScreenPos(GObj* arg0) {
-    if (!gIsPaused && IsInputDisabled != TRUE) {
-        if (ABS(sStickXValue) > 0.0005f) {
+    if (!IsPaused && IsInputDisabled != TRUE) {
+        if (ABS(StickXValue) > 0.0005f) {
             if (gDirectionIndex > 0) {
-                sReticleScreenX += (s32) (5.0f * sStickXValue);
+                ReticleScreenX += (s32) (5.0f * StickXValue);
             } else {
-                sReticleScreenX -= (s32) (5.0f * sStickXValue);
+                ReticleScreenX -= (s32) (5.0f * StickXValue);
             }
-            if (sReticleScreenX > 60) {
-                sReticleScreenX = 60;
-            } else if (sReticleScreenX < -60) {
-                sReticleScreenX = -60;
+            if (ReticleScreenX > 60) {
+                ReticleScreenX = 60;
+            } else if (ReticleScreenX < -60) {
+                ReticleScreenX = -60;
             }
-        } else if (sReticleScreenX > 50) {
-            sReticleScreenX -= 3;
-        } else if (sReticleScreenX < -50) {
-            sReticleScreenX += 3;
+        } else if (ReticleScreenX > 50) {
+            ReticleScreenX -= 3;
+        } else if (ReticleScreenX < -50) {
+            ReticleScreenX += 3;
         }
-        sReticleScreenY = sStickYAccum * 100.0;
+        ReticleScreenY = StickYAccum * 100.0;
     }
 }
 
@@ -2261,8 +2261,8 @@ void func_80356074_4F6484(GObj* arg0) {
     s32 i = 0;
 
     while (TRUE) {
-        spSetAttribute(&sMainCameraReticles[i + 1]->sprite, SP_HIDDEN);
-        spClearAttribute(&sMainCameraReticles[1 - (i - 1)]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[i + 1]->sprite, SP_HIDDEN);
+        spClearAttribute(&MainCameraReticles[1 - (i - 1)]->sprite, SP_HIDDEN);
         i++;
         if (i >= 2) {
             omEndProcess(NULL);
@@ -2279,15 +2279,15 @@ void updateReticleSpritesPos(GObj* arg0) {
     SObj* sobj = arg0->data.sobj;
 
     if (gDirectionIndex >= 0) {
-        gCamTargetX = (f32)sReticleScreenX / 160.0f;
-        gCamTargetY = -(f32)sReticleScreenY / 120.0f;
+        gCamTargetX = (f32)ReticleScreenX / 160.0f;
+        gCamTargetY = -(f32)ReticleScreenY / 120.0f;
         gCamTargetZ = 0.99f;
         screenCoorsToWorld(&gCamTargetX, &gCamTargetY, &gCamTargetZ);
-        spMove(&sobj->sprite, sReticleScreenX + 152, sReticleScreenY + 112);
-        spClearAttribute(&sMainCameraReticles[0]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[1]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[2]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[3]->sprite, SP_HIDDEN);
+        spMove(&sobj->sprite, ReticleScreenX + 152, ReticleScreenY + 112);
+        spClearAttribute(&MainCameraReticles[0]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[1]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[2]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[3]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[0]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[1]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[2]->sprite, SP_HIDDEN);
@@ -2296,14 +2296,14 @@ void updateReticleSpritesPos(GObj* arg0) {
         spSetAttribute(&D_803AE458_54E868[5]->sprite, SP_HIDDEN);
     } else if (gDirectionIndex == -1) {
         spMove(&sobj->sprite, 152, 112);
-        spSetAttribute(&sMainCameraReticles[0]->sprite, SP_HIDDEN);
-        spClearAttribute(&sMainCameraReticles[1]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[0]->sprite, SP_HIDDEN);
+        spClearAttribute(&MainCameraReticles[1]->sprite, SP_HIDDEN);
     } else {
         // hide everything
-        spSetAttribute(&sMainCameraReticles[0]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[1]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[2]->sprite, SP_HIDDEN);
-        spSetAttribute(&sMainCameraReticles[3]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[0]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[1]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[2]->sprite, SP_HIDDEN);
+        spSetAttribute(&MainCameraReticles[3]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[0]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[1]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[2]->sprite, SP_HIDDEN);
@@ -2324,59 +2324,59 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
     omGObjAddDObj(obj, NULL);
     playerDObj = obj->data.dobj;
 
-    sPlayerMatrixStore.kinds[0] = 1;
-    sPlayerMatrixStore.kinds[1] = 2;
-    sPlayerMatrixStore.kinds[2] = 3;
-    playerDObj->unk_4C = &sPlayerMatrixStore;
+    PlayerMatrixStore.kinds[0] = 1;
+    PlayerMatrixStore.kinds[1] = 2;
+    PlayerMatrixStore.kinds[2] = 3;
+    playerDObj->unk_4C = &PlayerMatrixStore;
     omDObjAddMtx(playerDObj, MTX_TYPE_62, 0, 0);
 
     gIdleScript = getIdleScript();
-    gProgressFlags = 0;
+    ProgressFlags = 0;
     if (checkPlayerFlag(PFID_ZOOM_SWITCH) == 1) {
-        gProgressFlags |= PF_ZOOM_SWITCH;
+        ProgressFlags |= PF_ZOOM_SWITCH;
     }
     if (checkPlayerFlag(PFID_INVERTED_Y) == 1) {
-        gProgressFlags |= PF_INVERTED_Y;
+        ProgressFlags |= PF_INVERTED_Y;
     }
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 1) {
-        gProgressFlags |= PF_HAS_DASH_ENGINE;
+        ProgressFlags |= PF_HAS_DASH_ENGINE;
     }
     if (checkPlayerFlag(PFID_HAS_APPLE) == 1) {
-        gProgressFlags |= PF_HAS_APPLE;
+        ProgressFlags |= PF_HAS_APPLE;
     }
     if (checkPlayerFlag(PFID_HAS_PESTER_BALL) == 1) {
-        gProgressFlags |= PF_HAS_PESTER_BALL;
+        ProgressFlags |= PF_HAS_PESTER_BALL;
     }
     if (checkPlayerFlag(PFID_HAS_FLUTE) == 1) {
-        gProgressFlags |= PF_HAS_FLUTE;
+        ProgressFlags |= PF_HAS_FLUTE;
     }
     if (func_800BF864_5C704() >= 4) {
-        gProgressFlags |= PF_TUTORIAL_PASSED;
+        ProgressFlags |= PF_TUTORIAL_PASSED;
     }
     if (gIdleScript != NULL) {
         initIdle(obj);
     }
-    if (gProgressFlags & PF_ZOOM_SWITCH) {
+    if (ProgressFlags & PF_ZOOM_SWITCH) {
         ZoomSwitchMode = 1;
     } else {
         ZoomSwitchMode = 0;
     }
-    if (gProgressFlags & PF_INVERTED_Y) {
+    if (ProgressFlags & PF_INVERTED_Y) {
         IsAxisYInverted = TRUE;
     } else {
         IsAxisYInverted = FALSE;
     }
-    if (gProgressFlags & PF_HAS_DASH_ENGINE) {
+    if (ProgressFlags & PF_HAS_DASH_ENGINE) {
         IsDashEngineAvailable = 1;
     } else {
         IsDashEngineAvailable = 0;
     }
-    if (gProgressFlags & PF_TUTORIAL_PASSED) {
+    if (ProgressFlags & PF_TUTORIAL_PASSED) {
         IsTutorialEnabled = 0;
     } else {
         IsTutorialEnabled = 1;
     }
-    sForceDashEngineDisabled = FALSE;
+    ForceDashEngineDisabled = FALSE;
     D_803AE516_54E926 = FALSE;
     omCreateProcess(obj, updateMovementState, 1, 11);
     omCreateProcess(obj, handleAnalogStick, 1, 9);
@@ -2399,24 +2399,24 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
     GET_TRANSFORM(playerDObj)->rot.f[3] = gMovementState.rotation.z;
     objPlayer = gObjPlayer = obj;
     gPlayerDObj = playerDObj;
-    gTotalSpeedMult = 0.0005f;
-    gPlayerPos = GET_TRANSFORM(playerDObj)->pos.v;
+    TotalSpeedMult = 0.0005f;
+    PlayerPos = GET_TRANSFORM(playerDObj)->pos.v;
 
     obj = ohCreateSprite(OBJID_UI_RETICLE, updateReticleSpritesPos, 0, 0x80000000, renDrawSprite, DL_LINK_1, 0x80000000, -1, &D_80366DF0_507200, 1, updateReticleScreenPos, 9);
     D_80382C38_523048 = obj;
-    sMainCameraReticles[0] = obj->data.sobj;
+    MainCameraReticles[0] = obj->data.sobj;
 
-    sMainCameraReticles[1] = sp40 = omGObjAddSprite(obj, &D_80367580_507990);
+    MainCameraReticles[1] = sp40 = omGObjAddSprite(obj, &D_80367580_507990);
     spMove(&sp40->sprite, 143, 103);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
 
-    sMainCameraReticles[2] = sp40 = omGObjAddSprite(obj, &D_80367D10_508120);
+    MainCameraReticles[2] = sp40 = omGObjAddSprite(obj, &D_80367D10_508120);
     spMove(&sp40->sprite, 143, 103);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
 
-    sMainCameraReticles[3] = sp40 = omGObjAddSprite(obj, &D_80367DC0_5081D0);
+    MainCameraReticles[3] = sp40 = omGObjAddSprite(obj, &D_80367DC0_5081D0);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 157, 117);
 
@@ -2464,7 +2464,7 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
 
     obj = omAddGObj(OBJID_UI_PAUSE, ohUpdateDefault, LINK_0, 0x80000000);
     omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
-    gObjPauseMenu = obj;
+    ObjectPauseMenu = obj;
 
     D_80382C70_523080 = sp40 = omGObjAddSprite(obj, &D_80378ED8_5192E8);
     spMove(&sp40->sprite, 0, 0);
@@ -2514,28 +2514,28 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
             } else {
                 setPlayerFlag(PFID_TUTORIAL_PASSED, 1);
             }
-            sCameraVibrationAmplitude = 2.0f;
-            sCameraVibrationSpeed = 25.0f;
+            CameraVibrationAmplitude = 2.0f;
+            CameraVibrationSpeed = 25.0f;
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
         case SCENE_CAVE:
-            sCameraVibrationAmplitude = 40.0f;
-            sCameraVibrationSpeed = 1.5f;
+            CameraVibrationAmplitude = 40.0f;
+            CameraVibrationSpeed = 1.5f;
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
         case SCENE_RAINBOW:
-            sCameraVibrationAmplitude = 35.0f;
-            sCameraVibrationSpeed = 1.5f;
+            CameraVibrationAmplitude = 35.0f;
+            CameraVibrationSpeed = 1.5f;
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
         case SCENE_VALLEY:
-            sCameraVibrationAmplitude = 10.0f;
-            sCameraVibrationSpeed = 2.0f;
+            CameraVibrationAmplitude = 10.0f;
+            CameraVibrationSpeed = 2.0f;
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
         case SCENE_RIVER:
-            sCameraVibrationAmplitude = 15.0f;
-            sCameraVibrationSpeed = 1.5f;
+            CameraVibrationAmplitude = 15.0f;
+            CameraVibrationSpeed = 1.5f;
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
     }
@@ -2565,12 +2565,12 @@ DObj* getPlayerModel(void) {
 }
 
 u32 getProgressFlags(void) {
-    return gProgressFlags;
+    return ProgressFlags;
 }
 
 void setPitchLimits(f32 minValue, f32 maxValue) {
-    sMinPitch = minValue;
-    sMaxPitch = maxValue;
+    MinPitch = minValue;
+    MaxPitch = maxValue;
 }
 
 void func_80357068_4F7478(void) {
@@ -2624,7 +2624,7 @@ void func_803571C4_4F75D4(void) {
     ohPauseProcessByFunction(gObjPlayer, handleCButtons);
     ohPauseProcessByFunction(gObjPlayer, handleItemButtonsPress);
     ohPauseProcessByFunction(gObjPlayer, updateCameraZoomedOut);
-    ohPauseProcessByFunction(gObjPauseMenu, updatePauseMenu);
+    ohPauseProcessByFunction(ObjectPauseMenu, updatePauseMenu);
 }
 
 void func_80357278_4F7688(GObj* arg0) {
@@ -2642,7 +2642,7 @@ void func_803572B0_4F76C0(void) {
     ohResumeProcessByFunction(gObjPlayer, handleCButtons);
     ohResumeProcessByFunction(gObjPlayer, handleItemButtonsPress);
     ohResumeProcessByFunction(gObjPlayer, updateCameraZoomedOut);
-    ohResumeProcessByFunction(gObjPauseMenu, updatePauseMenu);
+    ohResumeProcessByFunction(ObjectPauseMenu, updatePauseMenu);
     omCreateProcess(gObjPlayer, func_80357278_4F7688, 0, 9);
 }
 
@@ -2656,7 +2656,7 @@ void getLevelProgress(s32* blockCount, f32* blockPart) {
 }
 
 u8 getIsPaused(void) {
-    return gIsPaused;
+    return IsPaused;
 }
 
 DObj* func_803573B0_4F77C0(void) {
@@ -2946,11 +2946,11 @@ GObj* createMainCameras(s32 bgColor) {
     gMainCamera = cam;
     cam->flags |= CAMERA_FLAG_1 | CAMERA_FLAG_4;
     cam->bgColor = bgColor;
-    gMainCameraViewport[0] = 14;
-    gMainCameraViewport[1] = 12;
-    gMainCameraViewport[2] = 304;
-    gMainCameraViewport[3] = 232;
-    func_80007C20(&cam->vp, gMainCameraViewport[0], gMainCameraViewport[1], gMainCameraViewport[2], gMainCameraViewport[3]);
+    MainCameraViewport[0] = 14;
+    MainCameraViewport[1] = 12;
+    MainCameraViewport[2] = 304;
+    MainCameraViewport[3] = 232;
+    func_80007C20(&cam->vp, MainCameraViewport[0], MainCameraViewport[1], MainCameraViewport[2], MainCameraViewport[3]);
     setMainCameraViewport(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4,
                          cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
                          cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,
@@ -2973,12 +2973,12 @@ GObj* createMainCameras(s32 bgColor) {
     cam->viewMtx.lookAt.up.y = 1.0f;
     cam->viewMtx.lookAt.up.z = 0.0f;
 
-    gCameraEyePos.x = cam->viewMtx.lookAt.eye.x;
-    gCameraEyePos.y = cam->viewMtx.lookAt.eye.y;
-    gCameraEyePos.z = cam->viewMtx.lookAt.eye.z;
-    gCameraAtPos.x = cam->viewMtx.lookAt.at.x;
-    gCameraAtPos.y = cam->viewMtx.lookAt.at.y;
-    gCameraAtPos.z = cam->viewMtx.lookAt.at.z;
+    CameraEyePos.x = cam->viewMtx.lookAt.eye.x;
+    CameraEyePos.y = cam->viewMtx.lookAt.eye.y;
+    CameraEyePos.z = cam->viewMtx.lookAt.eye.z;
+    CameraAtPos.x = cam->viewMtx.lookAt.at.x;
+    CameraAtPos.y = cam->viewMtx.lookAt.at.y;
+    CameraAtPos.z = cam->viewMtx.lookAt.at.z;
 
     return ohCreateCamera(OBJID_UI_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, renSpriteCameraRender, 3,
                           CAM_MASK_DL_LINK_1, -1, FALSE, 0, NULL, 1, 0);

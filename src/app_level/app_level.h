@@ -32,14 +32,14 @@ enum PokemonCommands {
 };
 
 enum PlayerCommands {
-    PLAYER_CMD_SHAKE_CAMERA  =  3,
-    PLAYER_CMD_4  =  4,
-    PLAYER_CMD_5  =  5,
-    PLAYER_CMD_FINISH  =  6,
-    PLAYER_CMD_7  =  7,
-    PLAYER_CMD_8  =  8,
-    PLAYER_CMD_9  =  9,
-    PLAYER_CMD_10  =  10,
+    PLAYER_CMD_SHAKE_CAMERA =  3,
+    PLAYER_CMD_4            =  4,
+    PLAYER_CMD_5            =  5,
+    PLAYER_CMD_FINISH       =  6,
+    PLAYER_CMD_7            =  7,
+    PLAYER_CMD_8            =  8,
+    PLAYER_CMD_9            =  9,
+    PLAYER_CMD_10           =  10
 };
 
 #define ITEM_CMD_REMOVE 100

@@ -44,6 +44,7 @@
 #define FLOAT_NEG_MAX -FLOAT_MAX
 
 #define TAU 6.2831855f
+#define PI 3.1415927f
 #define PI_2 1.5707964f
 
 #define SIGN(x) (((x) < 0) ? -1 : 1)

@@ -113,14 +113,14 @@ f32 TurnToDirSpeed = 0.0f;
 f32 CurrentDirectionYaw = 0.0f;
 f32 D_80382CD4_5230E4 = 0.0f;
 f32 DirectionsList[5] = {
-    -3.141592741f,
-    -1.570796371f,
+    -PI,
+    -PI / 2,
     0.0f,
-    1.570796371f,
-    3.141592741f,
+    PI / 2,
+    PI,
 };
-f32 MinPitch = -0.3926990926f;
-f32 MaxPitch = 0.7853981853f;
+f32 MinPitch = -PI / 8;
+f32 MaxPitch = PI / 4;
 s32 LastItemId = 0;
 s32 D_80382CF8_523108 = 0;
 s32 D_80382CFC_52310C = 0;
@@ -420,8 +420,8 @@ void handleAnalogStick(GObj* obj) {
             StickYValue = -StickYValue;
         }
 
-        if (StickYValue < 0.0f && ViewPitch <= MaxPitch + 0.017453292f ||
-            StickYValue > 0.0f && ViewPitch >= MinPitch - 0.017453292f)
+        if (StickYValue < 0.0f && ViewPitch <= MaxPitch + PI / 180.0f ||
+            StickYValue > 0.0f && ViewPitch >= MinPitch - PI / 180.0f)
         {
             StickYAccum += 0.02f * StickYValue;
         }
@@ -494,7 +494,7 @@ void handleAnalogStick(GObj* obj) {
 
 void func_80351114_4F1524(GObj* obj) {
     if (TotalSpeedMult > 0.0f) {
-        TotalSpeedMult -= 0.0000025000002f;
+        TotalSpeedMult -= 0.0005f / 200.0f;
     } else {
         TotalSpeedMult = 0.0f;
     }
@@ -630,7 +630,7 @@ void processTurnToDirection(GObj* obj) {
         CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         v0++;
     }
-    targetYaw = 0.04712389f; // need var reuse for matching
+    targetYaw = 0.015f * PI; // need var reuse for matching
     if (ABS(ViewPitch) > targetYaw) {
         if (ViewPitch > 0.0f) {
             ViewPitch -= targetYaw;
@@ -671,43 +671,43 @@ void updateCameraZoomedOut(GObj* obj) {
     static f32 D_80382D64_523174 = 50.0f;
 
     if (gDirectionIndex == 0) {
-        if (PlayerViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.3f * PI) {
             gDirectionIndex = 1;
-            PlayerViewYaw = -0.62831855f;
+            PlayerViewYaw = -0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
-        } else if (PlayerViewYaw < -0.9424779f) {
+        } else if (PlayerViewYaw < -0.3f * PI) {
             gDirectionIndex = 3;
-            PlayerViewYaw = 0.62831855f;
+            PlayerViewYaw = 0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 1) {
-        if (PlayerViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.3f * PI) {
             gDirectionIndex = 2;
-            PlayerViewYaw = -0.62831855f;
+            PlayerViewYaw = -0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
-        } else if (PlayerViewYaw < -0.9424779f) {
+        } else if (PlayerViewYaw < -0.3f * PI) {
             gDirectionIndex = 0;
-            PlayerViewYaw = 0.62831855f;
+            PlayerViewYaw = 0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 2) {
-        if (PlayerViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.3f * PI) {
             gDirectionIndex = 3;
-            PlayerViewYaw = -0.62831855f;
+            PlayerViewYaw = -0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
-        } else if (PlayerViewYaw < -0.9424779f) {
+        } else if (PlayerViewYaw < -0.3f * PI) {
             gDirectionIndex = 1;
-            PlayerViewYaw = 0.62831855f;
+            PlayerViewYaw = 0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     } else if (gDirectionIndex == 3) {
-        if (PlayerViewYaw > 0.9424779f) {
+        if (PlayerViewYaw > 0.3f * PI) {
             gDirectionIndex = 0;
-            PlayerViewYaw = -0.62831855f;
+            PlayerViewYaw = -0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
-        } else if (PlayerViewYaw < -0.9424779f) {
+        } else if (PlayerViewYaw < -0.3f * PI) {
             gDirectionIndex = 2;
-            PlayerViewYaw = 0.62831855f;
+            PlayerViewYaw = 0.2f * PI;
             CurrentDirectionYaw = DirectionsList[gDirectionIndex];
         }
     }
@@ -876,7 +876,7 @@ void processZoomingIn(GObj* obj) {
     if (spD4.z > 0.0f) {
         PlayerViewYaw = TAU - PlayerViewYaw;
     } else {
-        PlayerViewYaw = 3.1415927f - PlayerViewYaw;
+        PlayerViewYaw = PI - PlayerViewYaw;
     }
     if (PlayerViewYaw > TAU) {
         PlayerViewYaw -= TAU;
@@ -1094,13 +1094,13 @@ void processZoomingOut(GObj* obj) {
         angle1 = TAU - angle1;
     }
 
-    if (angle1 < 0.7853982f) {
+    if (angle1 < PI / 4.0f) {
         direction = 2;
-    } else if (angle1 < 2.3561945f) {
+    } else if (angle1 < PI * 3.0f / 4.0f) {
         direction = 3;
-    } else if (angle1 < 3.926991f) {
+    } else if (angle1 < PI * 5.0f / 4.0f) {
         direction = 0;
-    } else if (angle1 < 5.4977875f) {
+    } else if (angle1 < PI * 7.0f / 4.0f) {
         direction = 1;
     } else {
         direction = 2;
@@ -1111,7 +1111,7 @@ void processZoomingOut(GObj* obj) {
         CurrentDirectionYaw += TAU;
     }
     if (direction == 2) {
-        if (angle1 > 3.1415927f) {
+        if (angle1 > PI) {
             PlayerViewYaw = angle1 - TAU;
         } else {
             PlayerViewYaw = angle1;
@@ -1401,7 +1401,7 @@ void updateCameraZoomedIn(GObj* obj) {
             updateDashEngine();
             if (gContInputPressedButtons & U_CBUTTONS) {
                 auPlaySound(SOUND_ID_4);
-                if (PlayerViewYaw > 3.1415927f) {
+                if (PlayerViewYaw > PI) {
                     TargetDirectionZoomedIn = 1;
                     TargetDirectionYawZommedIn = TAU;
                 } else {
@@ -1411,15 +1411,15 @@ void updateCameraZoomedIn(GObj* obj) {
             } else if (gContInputPressedButtons & R_CBUTTONS) {
                 auPlaySound(SOUND_ID_4);
                 TargetDirectionZoomedIn = 1;
-                if (PlayerViewYaw > 6.282185482025146) {
+                if (PlayerViewYaw > TAU - 0.001) {
                     PlayerViewYaw -= TAU;
                     TargetDirectionYawZommedIn = PI_2;
-                } else if (PlayerViewYaw > 4.7023889923095705) {
+                } else if (PlayerViewYaw > PI * 1.5f - 0.01) {
                     TargetDirectionYawZommedIn = TAU;
-                } else if (PlayerViewYaw > 3.1315927410125735) {
-                    TargetDirectionYawZommedIn = 4.712389f;
-                } else if (PlayerViewYaw > 1.5607963705062866) {
-                    TargetDirectionYawZommedIn = 3.1415927f;
+                } else if (PlayerViewYaw > PI - 0.01) {
+                    TargetDirectionYawZommedIn = 1.5f * PI;
+                } else if (PlayerViewYaw > PI / 2.0f - 0.01) {
+                    TargetDirectionYawZommedIn = PI;
                 } else {
                     TargetDirectionYawZommedIn = PI_2;
                 }
@@ -1428,15 +1428,15 @@ void updateCameraZoomedIn(GObj* obj) {
                 TargetDirectionZoomedIn = 2;
                 if (PlayerViewYaw < 0.001f) {
                     PlayerViewYaw += TAU;
-                    TargetDirectionYawZommedIn = 4.712389f;
-                } else if (PlayerViewYaw < 1.5717964f) {
+                    TargetDirectionYawZommedIn = 1.5f * PI;
+                } else if (PlayerViewYaw < PI / 2.0f + 0.001f) {
                     TargetDirectionYawZommedIn = 0.0f;
-                } else if (PlayerViewYaw < 3.1425927f) {
+                } else if (PlayerViewYaw < PI + 0.001f) {
                     TargetDirectionYawZommedIn = PI_2;
-                } else if (PlayerViewYaw < 4.713389f) {
-                    TargetDirectionYawZommedIn = 3.1415927f;
+                } else if (PlayerViewYaw < 1.5f * PI + 0.001f) {
+                    TargetDirectionYawZommedIn = PI;
                 } else {
-                    TargetDirectionYawZommedIn = 4.712389f;
+                    TargetDirectionYawZommedIn = 1.5f * PI;
                 }
             }
         }
@@ -1485,7 +1485,7 @@ void vibrateCamera(GObj* obj) {
 
     while (TRUE) {
         CameraVibrationDeltaY = sinf(phase) * CameraVibrationAmplitude;
-        phase += CameraVibrationSpeed * 3.1415927f / 180.0f;
+        phase += CameraVibrationSpeed * PI / 180.0f;
         if (levelID == SCENE_BEACH) {
             getLevelProgress(&blockCount, &blockPart);
             if (blockCount + blockPart >= 4.45f) {

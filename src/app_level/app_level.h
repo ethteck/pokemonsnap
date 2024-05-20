@@ -8,6 +8,16 @@ enum ItemIds {
     ITEM_ID_APPLE       = 163
 };
 
+enum EndLevelReasons {
+    END_LEVEL_REASON_QUIT = 1,
+    END_LEVEL_REASON_2 = 2,
+    END_LEVEL_REASON_3 = 3,
+    END_LEVEL_REASON_OUT_OF_FILM = 4,
+    END_LEVEL_REASON_6 = 6,
+    END_LEVEL_REASON_7 = 7,
+    END_LEVEL_REASON_8 = 8
+};
+
 enum PokemonCommands {
     POKEMON_CMD_8  =  8,
     POKEMON_CMD_9  =  9,
@@ -19,11 +29,12 @@ enum PokemonCommands {
     POKEMON_CMD_21 = 21
 };
 
+
 #define ITEM_CMD_REMOVE 100
 
 #define CAMERA_CMD_1 1
 
-extern s32 D_80382CF4_523104;
+extern s32 LastItemId;
 
 extern s32 Icons_NumItemsAvailable;
 

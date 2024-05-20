@@ -150,7 +150,7 @@ s32 func_802E2BB8_5DFC88(s32);
 
 s32 func_80346EF0_826660(s32);
 
-void func_8035024C_4F065C(f32, f32, f32);
+void bindCameraNextBlock(f32, f32, f32);
 void func_803507E0_4F0BF0(s32);
 void func_80356FBC_4F73CC(void);
 void getLevelProgress(s32*, f32*);

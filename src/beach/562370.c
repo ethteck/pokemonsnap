@@ -67,7 +67,7 @@ void func_beach_802CA4CC(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    cmdSendCommand(D_80382C00_523010, 9, 0);
+    cmdSendCommand(gObjPlayer, 9, 0);
     auPlaySound(0x26);
     setPokemonAnimation(obj, &D_beach_802CD994);
     pokemon->transitionGraph = NULL;
@@ -157,7 +157,7 @@ void func_beach_802CA950(GObj* obj) {
     func_800E1A78_5F228(D_8011B924);
     temp_v0_2 = func_80365E80_506290();
     if (temp_v0_2 == NULL) {
-        cmdSendCommand(D_80382C00_523010, 7, 0);
+        cmdSendCommand(gObjPlayer, 7, 0);
         omEndProcess(NULL);
     }
     func_80365F38_506348(&D_8013B030, &D_8013BAA0, 0, 0.5f);
@@ -170,7 +170,7 @@ void func_beach_802CA950(GObj* obj) {
     }
 
     auStopAllSounds();
-    cmdSendCommand(D_80382C00_523010, 6, 0);
+    cmdSendCommand(gObjPlayer, 6, 0);
     omEndProcess(NULL);
     updatePokemonState(obj, NULL);
 }

@@ -239,9 +239,9 @@ void Icons_Init(void) {
     }
 
     if (Icons_NumItemsAvailable > 0) {
-        D_80382CF4_523104 = D_80388204_528614[D_8038821C_52862C];
+        LastItemId = D_80388204_528614[D_8038821C_52862C];
     } else {
-        D_80382CF4_523104 = -1;
+        LastItemId = -1;
     }
     gobj = omAddGObj(26, Icons_UpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, &renDrawSprite, 1, 0x80000000, -1);

@@ -406,7 +406,7 @@ segments:
     subsegments:
     - [0x5F050, c, block]
     - [0x60860, c]
-    - [0x60D10, c]
+    - [0x60D10, c, movement]
     - [0x617A0, c, debug]
     - [0x617F0, c, ground]
     - [0x61C10, c, ground_int]
@@ -415,11 +415,11 @@ segments:
     - [0x64270, c]
     - [0x64280, .data, block]
     - [0x642C0, .data, 60860]
-    - [0x642D0, .data, 60D10]
+    - [0x642D0, .data, movement]
     - [0x642E0, .data, ground]
     - [0x642F0, .data, 62010]
     - [0x64340, .rodata, block]
-    - [0x64380, .rodata, 60D10]
+    - [0x64380, .rodata, movement]
     - [0x64390, .rodata, ground]
     - [0x643A0, .rodata, 62010]
     - { start: 0x64420, type: data, name: assets, linker_section_order: .rodata} # TODO: make assets from this section

@@ -49,6 +49,8 @@ enum PlayerCommands {
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
 extern f32 gCamTargetZ;
+extern GObj* gObjPlayer;
+extern s32 gDirectionIndex;
 
 extern s32 LastItemId;
 

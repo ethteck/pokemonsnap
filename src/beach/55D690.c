@@ -7,7 +7,7 @@ void func_beach_802C5620(GObj* arg0) {
     f32 sp30;
 
     while (TRUE) {
-        func_80357384_4F7794(&sp34, &sp30);
+        getLevelProgress(&sp34, &sp30);
         if (sp34 > 3 || (sp34 == 3 && sp30 >= 0.3)) {
             break;
         }

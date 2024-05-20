@@ -46,8 +46,8 @@ void func_801DCA98_9FA758(void) {
     obj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0, func_801DCA58_9FA718, 0, 1);
     obj->unk_38 = 0x100000;
     cam = obj->data.cam;
-    cam->flags |= 6;
-    cam->flags &= ~3;
+    cam->flags |= (CAMERA_FLAG_4 | CAMERA_FLAG_2);
+    cam->flags &= ~(CAMERA_FLAG_1 | CAMERA_FLAG_2);
     func_800A844C(cam, 0, 0, 0x140, 0xF0);
     cam->viewMtx.lookAt.up.x = 0.0f;
     cam->viewMtx.lookAt.up.y = 0.0f;
@@ -69,7 +69,7 @@ void func_801DCC60_9FA920(void) {
 
     obj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800192DC, 0x13, 0x80000, -1, 0, 0, NULL, 0, 1);
     cam = obj->data.cam;
-    cam->flags = 5;
+    cam->flags = CAMERA_FLAG_1 | CAMERA_FLAG_4;
     obj->flags |= 1;
     omCameraAddMtx(cam, 3, 0);
     omCameraAddMtx(cam, 0xE, 0);

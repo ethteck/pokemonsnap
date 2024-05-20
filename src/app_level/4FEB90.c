@@ -1,9 +1,9 @@
 #include "common.h"
 #include "world/world.h"
 
-extern DObj* D_80382C04_523014;
+extern DObj* gPlayerDObj;
 
-u8 func_803573A4_4F77B4(void);
+u8 getIsPaused(void);
 void func_80366864_506C74(GObj*, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E780_4FEB90.s")
@@ -157,7 +157,7 @@ void func_8035F390_4FF7A0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
 
-    if (D_80382C04_523014 != NULL) {
+    if (gPlayerDObj != NULL) {
         Vec3f sp34;
         Vec3f sp28;
         Vec3f sp1C;
@@ -166,9 +166,9 @@ void func_8035F390_4FF7A0(GObj* obj) {
         sp28.y = GET_TRANSFORM(model)->pos.v.y;
         sp28.z = GET_TRANSFORM(model)->pos.v.z;
 
-        sp34.x = GET_TRANSFORM(D_80382C04_523014)->pos.v.x;
-        sp34.y = GET_TRANSFORM(D_80382C04_523014)->pos.v.y;
-        sp34.z = GET_TRANSFORM(D_80382C04_523014)->pos.v.z;
+        sp34.x = GET_TRANSFORM(gPlayerDObj)->pos.v.x;
+        sp34.y = GET_TRANSFORM(gPlayerDObj)->pos.v.y;
+        sp34.z = GET_TRANSFORM(gPlayerDObj)->pos.v.z;
 
         pokemon->playerDist = Vec3fDirection(&sp1C, &sp34, &sp28);
     } else {
@@ -634,13 +634,13 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
     if (sp24 != NULL) {
         updatePokemonState(omCurrentObject, sp24);
     }
-    if (func_80353D68_4F4178() == 0) {
+    if (!func_80353D68_4F4178()) {
         ohPauseObjectProcesses(omCurrentObject);
     }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803625B4_5029C4.s")
-void func_803625B4_5029C4(GObj* source, s32 cmd);
+void func_803625B4_5029C4(GObjCmdData cmdData);
 #endif
 
 void updatePokemonDefault(GObj* obj) {
@@ -650,7 +650,7 @@ void updatePokemonDefault(GObj* obj) {
     }
 
     pokemon = GET_POKEMON(obj);
-    if (func_803573A4_4F77B4() == 0 && !(pokemon->processFlags & 0x4)) {
+    if (getIsPaused() == 0 && !(pokemon->processFlags & 0x4)) {
         if (pokemon->counter > 0) {
             pokemon->counter--;
             if (pokemon->counter <= 0) {

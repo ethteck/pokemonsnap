@@ -164,6 +164,17 @@ enum GObjFlag {
     GOBJ_FLAG_40 = 0x40
 };
 
+enum CameraFlags {
+    CAMERA_FLAG_1  = 0x01,
+    CAMERA_FLAG_2  = 0x02,
+    CAMERA_FLAG_4  = 0x04,
+    CAMERA_FLAG_8  = 0x08,
+    CAMERA_FLAG_10 = 0x10,
+    CAMERA_FLAG_20 = 0x20,
+    CAMERA_FLAG_40 = 0x40,
+    CAMERA_FLAG_80 = 0x80
+};
+
 struct Unk80046A88 {
     /* 0x00 */ u8 unk00;
     /* 0x04 */ Gfx* unk04[4];

@@ -10,14 +10,14 @@ typedef struct UnkAquamarineCoyote {
 } UnkAquamarineCoyote; // size=0x0C
 
 // data
-WorldBlock* D_800E6AD0_64280 = NULL;
+WorldBlock* CurrentWorldBlock = NULL;
 u32 SkyBoxObjectId = 0;
 s32 WorldBlockMinObjId = 0;
 u32 WorldBlockMaxObjId = 0;
 u32 WorldLink = 0;
 u32 WorldDlLink = 0;
 GObj* SkyBoxObject = NULL;
-f32 SkyBoxAnimationPhase = 0.0f;
+f32 GlobalTimer = 0.0f;
 f32 SkyBoxAnimationSpeed = 1.0f;
 s32 SkyBoxMaxAngle = 10000;
 AnimCmd*** SkyBoxAnimation = NULL;
@@ -97,8 +97,8 @@ f32 func_800E1AB4_5F264(f32 arg0, s32 arg1) {
 }
 
 void updateSkyBoxRotation(GObj* arg0) {
-    SkyBoxAnimationPhase += SkyBoxAnimationSpeed;
-    SkyBoxAnimationPhase = func_800E1AB4_5F264(SkyBoxAnimationPhase, SkyBoxMaxAngle);
+    GlobalTimer += SkyBoxAnimationSpeed;
+    GlobalTimer = func_800E1AB4_5F264(GlobalTimer, SkyBoxMaxAngle);
 }
 
 void func_800E1BB8_5F368(GObj* obj) {
@@ -138,7 +138,7 @@ void drawSkyBox2Cycle(GObj* obj) {
 
 void setSkyBoxRotation(GObj* obj) {
     DObj* dobj = obj->data.dobj;
-    dobj->rotation.f[2] = 6.283185482f * SkyBoxAnimationPhase /  SkyBoxMaxAngle;
+    dobj->rotation.f[2] = 6.283185482f * GlobalTimer /  SkyBoxMaxAngle;
 }
 
 void createSkyBox(SkyBox* skyBox) {
@@ -193,7 +193,7 @@ void createSkyBox(SkyBox* skyBox) {
 }
 
 void func_800E206C_5F81C(GObj* obj) {
-    OMCamera* v0 = func_803586F8_4F8B08();
+    OMCamera* v0 = getMainCamera();
 
     obj->data.dobj->position.v.x = v0->viewMtx.lookAt.eye.x;
     obj->data.dobj->position.v.y = v0->viewMtx.lookAt.eye.y;
@@ -221,15 +221,15 @@ void setSkyBoxPos(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 animationTime) {
 }
 
 WorldBlock* getCurrentWorldBlock(void) {
-    return D_800E6AD0_64280;
+    return CurrentWorldBlock;
 }
 
 WorldBlock** getWorldBlocks(void) {
     return worldBlocks;
 }
 
-f32 world_func_800E219C(void) {
-    return SkyBoxAnimationPhase;
+f32 getGlobalTime(void) {
+    return GlobalTimer;
 }
 
 f32 world_func_800E21A8(f32 arg0) {
@@ -327,18 +327,18 @@ void func_800E23A8_5FB58(WorldBlock* arg0) {
     }
 }
 
-WorldBlock* func_800E2400_5FBB0(void) {
+WorldBlock* enterNextBlock(void) {
     WorldBlock* curr;
     WorldBlock* next;
     s32 i;
 
-    curr = D_800E6AD0_64280;
+    curr = CurrentWorldBlock;
     if (curr == NULL || curr->next == NULL) {
         return NULL;
     }
     next = curr->next;
-    D_800E6AD0_64280 = next;
-    func_8035024C_4F065C((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+    CurrentWorldBlock = next;
+    bindCameraNextBlock((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
                          (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
                          (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
     func_800A71F8((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
@@ -370,7 +370,7 @@ WorldBlock* func_800E2400_5FBB0(void) {
         }
     }
 
-    return D_800E6AD0_64280;
+    return CurrentWorldBlock;
 }
 
 WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
@@ -381,7 +381,7 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
         return NULL;
     }
 
-    D_800E6AD0_64280 = arg0;
+    CurrentWorldBlock = arg0;
     func_800E2280_5FA30(arg0);
     if (D_800E6AFC_642AC != NULL) {
         D_800E6AFC_642AC(arg0, arg0);
@@ -410,11 +410,11 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
     return arg0;
 }
 
-WorldBlock* func_800E26CC_5FE7C(s32 arg0) {
-    if (worldBlocks[arg0] == NULL) {
+WorldBlock* enterFirstBlock(s32 blockID) {
+    if (worldBlocks[blockID] == NULL) {
         return NULL;
     }
-    return func_800E25E4_5FD94(worldBlocks[arg0]);
+    return func_800E25E4_5FD94(worldBlocks[blockID]);
 }
 
 void func_800E270C_5FEBC(GObj* obj) {
@@ -433,7 +433,7 @@ void func_800E270C_5FEBC(GObj* obj) {
         return;
     }
 
-    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, world_func_800E21A8(SkyBoxAnimationPhase));
+    animSetModelTreeTextureAnimation(obj, block->descriptor->gfx->unk_08, world_func_800E21A8(GlobalTimer));
     animSetTextureAnimationSpeed(obj, 0.0f);
     animUpdateModelTreeAnimation(obj);
 }
@@ -517,7 +517,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     if (block == NULL || block->descriptor == NULL || block->descriptor->gfx == NULL) {
         return NULL;
     }
-    if (block->descriptor->gfx->unk_14 < 2) {
+    if (block->descriptor->gfx->numControlPoints < 2) {
         return NULL;
     }
 
@@ -528,14 +528,14 @@ GObj* createWorldBlockUV(WorldBlock* block) {
 
     obj = omAddGObj(id, &ohUpdateDefault, WorldLink, 0x80000000);
     omLinkGObjDL(obj, renRenderModelTypeB, WorldDlLink, 0x80000000, -1);
-    anim_func_8000FBC4(obj, block->descriptor->gfx->uvScrollAnim, block->unk_18);
+    anim_func_8000FBC4(obj, block->descriptor->gfx->uvScrollAnim, block->cpObjects);
     animSetModelAnimationSpeed(obj, 0.0f);
-    if (block->descriptor->unk_14 != 0) {
-        skipFrames = block->descriptor->gfx->unk_1C;
+    if (block->descriptor->reversed) {
+        skipFrames = block->descriptor->gfx->movementAnimDuration;
     } else {
         skipFrames = 0.0f;
     }
-    animSetModelTreeAnimation(obj, block->descriptor->gfx->unk_18, skipFrames);
+    animSetModelTreeAnimation(obj, block->descriptor->gfx->movementAnim, skipFrames);
     animUpdateModelTreeAnimation(obj);
     obj->fnAnimCallback = func_800E19A4_5F154;
     return obj;
@@ -590,10 +590,10 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
             s0->prev = NULL;
         }
         s0->next = NULL;
-        if (s0->descriptor->gfx->unk_14 <= 0 || s0->descriptor->gfx->unk_14 >= 4) {
-            s0->unk_18 = NULL;
+        if (s0->descriptor->gfx->numControlPoints <= 0 || s0->descriptor->gfx->numControlPoints >= 4) {
+            s0->cpObjects = NULL;
         } else {
-            s0->unk_18 = &D_800F5BB0_73360[3 * i];
+            s0->cpObjects = &D_800F5BB0_73360[3 * i];
         }
 
         s0->blockModel = createWorldBlockModel(s0);
@@ -625,7 +625,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         if (1) { } if (1) { } // TODO fake match
         s0->blockModel = createWorldBlockModel(s0);
         s0->blockUV = NULL;
-        s0->unk_18 = NULL;
+        s0->cpObjects = NULL;
         worldBlocks[i] = s0;
         func_800E3464_60C14(s0);
     }
@@ -639,10 +639,10 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         s0->blockUV != NULL &&
         s0->descriptor != NULL &&
         s0->descriptor->gfx != NULL &&
-        s0->descriptor->gfx->unk_18 != NULL
+        s0->descriptor->gfx->movementAnim != NULL
         )
     {
-        animSetModelTreeAnimation(s0->blockUV, s0->descriptor->gfx->unk_18, 0);
+        animSetModelTreeAnimation(s0->blockUV, s0->descriptor->gfx->movementAnim, 0);
         animUpdateModelTreeAnimation(s0->blockUV);
     }
 

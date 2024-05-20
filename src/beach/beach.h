@@ -12,7 +12,7 @@ typedef struct UnkBlueShark {
 } UnkBlueShark; // size: 0x4
 
 extern s32* D_800968BC;
-extern GObj* D_80382C00_523010;
+extern GObj* gObjPlayer;
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
 extern UNK_TYPE D_8013B030;
@@ -27,13 +27,13 @@ f32 randFloat(void);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
 void func_803570B0_4F74C0(void);
-void func_803570F0_4F7500(void*, UNK_TYPE, f32);
+void Camera_StartCutScene(void*, UNK_TYPE, f32);
 void func_80357120_4F7530(GObj*);
 void func_80357170_4F7580(void);
 void func_803571C4_4F75D4(void);
 void func_803572B0_4F76C0(void);
-void func_803573BC_4F77CC(void);
-OMCamera* func_803586F8_4F8B08(void);
+void resetMainCameraSettings(void);
+OMCamera* getMainCamera(void);
 void func_8035E298_4FE6A8(GObj*);
 void func_8035ED90_4FF1A0(GObj*, void (*)(GObj*));
 void func_8035FC54_500064(GObj*, s32);

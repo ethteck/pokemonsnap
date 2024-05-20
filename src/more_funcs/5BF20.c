@@ -464,7 +464,7 @@ void func_800BFC70_5CB10(s32 arg0) {
     }
 }
 
-s32 func_800BFCA0_5CB40(s32 arg0) {
+s32 checkPlayerFlag(s32 arg0) {
     switch (arg0) {
         case 0:
             return D_800C21B0_5F050->data.unk_64_15;
@@ -515,7 +515,7 @@ s32 func_800BFCA0_5CB40(s32 arg0) {
     return 0;
 }
 
-void func_800BFEBC_5CD5C(s32 arg0, s32 arg1) {
+void setPlayerFlag(s32 arg0, s32 arg1) {
     switch (arg0) {
         case 0:
             D_800C21B0_5F050->data.unk_64_15 = arg1 != 0;

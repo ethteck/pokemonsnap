@@ -12,7 +12,7 @@ void func_beach_802CA300(GObj* obj) {
     obj->flags |= 2;
 
     while (TRUE) {
-        func_80357384_4F7794(&sp34, &sp30);
+        getLevelProgress(&sp34, &sp30);
         if (sp34 > 0) {
             break;
         }
@@ -27,7 +27,7 @@ void func_beach_802CA300(GObj* obj) {
     pokemon->flags |= 4;
 
     while (TRUE) {
-        func_80357384_4F7794(&sp2C, &sp28);
+        getLevelProgress(&sp2C, &sp28);
         if (sp2C > 0) {
             break;
         }
@@ -67,7 +67,7 @@ void func_beach_802CA4CC(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    cmdSendCommand(D_80382C00_523010, 9, 0);
+    cmdSendCommand(gObjPlayer, PLAYER_CMD_9, 0);
     auPlaySound(0x26);
     setPokemonAnimation(obj, &D_beach_802CD994);
     pokemon->transitionGraph = NULL;
@@ -143,12 +143,12 @@ void func_beach_802CA950(GObj* obj) {
     func_8035ED90_4FF1A0(obj, func_beach_802CA5DC);
     func_8035ED90_4FF1A0(obj, func_beach_802CA8C4);
     Items_RemoveFlyingItems();
-    func_803573BC_4F77CC();
+    resetMainCameraSettings();
     func_80365E34_506244();
     func_8035FD9C_5001AC(&sp2C);
     ohWait(1);
-    func_803570F0_4F7500(obj, 0, 0);
-    temp_v0 = func_803586F8_4F8B08();
+    Camera_StartCutScene(obj, 0, 0);
+    temp_v0 = getMainCamera();
     temp_s1 = temp_v0->obj;
     ohPauseObjectProcesses(temp_s1);
     temp_v0->animSpeed = 0.5f;
@@ -157,7 +157,7 @@ void func_beach_802CA950(GObj* obj) {
     func_800E1A78_5F228(D_8011B924);
     temp_v0_2 = func_80365E80_506290();
     if (temp_v0_2 == NULL) {
-        cmdSendCommand(D_80382C00_523010, 7, 0);
+        cmdSendCommand(gObjPlayer, PLAYER_CMD_7, 0);
         omEndProcess(NULL);
     }
     func_80365F38_506348(&D_8013B030, &D_8013BAA0, 0, 0.5f);
@@ -170,7 +170,7 @@ void func_beach_802CA950(GObj* obj) {
     }
 
     auStopAllSounds();
-    cmdSendCommand(D_80382C00_523010, 6, 0);
+    cmdSendCommand(gObjPlayer, PLAYER_CMD_FINISH, 0);
     omEndProcess(NULL);
     updatePokemonState(obj, NULL);
 }

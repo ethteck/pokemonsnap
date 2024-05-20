@@ -478,21 +478,21 @@ void func_800E5298_8AAAB8(void) {
         func_800E467C_8A9E9C();
     }
     if (func_800AAEE8(2) != 0) {
-        if (func_800BFCA0_5CB40(0xE) != 0) {
+        if (checkPlayerFlag(PFID_14) != 0) {
             func_800E4878_8AA098();
-        } else if (func_800BFCA0_5CB40(0x11) == 0 && func_800BFCA0_5CB40(0xB) != 0) {
+        } else if (checkPlayerFlag(PFID_17) == 0 && checkPlayerFlag(PFID_11) != 0) {
             func_800E47C0_8A9FE0();
-            func_800BFEBC_5CD5C(0x11, 1);
-            if (func_800BFCA0_5CB40(0x14) != 0) {
-                func_800BFEBC_5CD5C(0x14, 0);
-                func_800BFEBC_5CD5C(0xE, 1);
+            setPlayerFlag(PFID_17, 1);
+            if (checkPlayerFlag(PFID_20) != 0) {
+                setPlayerFlag(PFID_20, 0);
+                setPlayerFlag(PFID_14, 1);
             }
         } else {
             func_800E482C_8AA04C();
         }
     }
     if (func_800AAEE8(8) != 0) {
-        func_800BFEBC_5CD5C(6, 1);
+        setPlayerFlag(PFID_6, 1);
         func_800E4974_8AA194();
         D_80206B50_9CC370 = 6;
     }
@@ -500,8 +500,8 @@ void func_800E5298_8AAAB8(void) {
         func_800E4B2C_8AA34C();
     }
     if (func_800AAEE8(0x20) != 0) {
-        if (func_800BFCA0_5CB40(7) == 0 && func_800BF864_5C704() != 0) {
-            func_800BFEBC_5CD5C(7, 1);
+        if (checkPlayerFlag(PFID_7) == 0 && func_800BF864_5C704() != 0) {
+            setPlayerFlag(PFID_7, 1);
             func_800E4AC0_8AA2E0();
             D_80206B50_9CC370 = 1;
         } else {
@@ -509,7 +509,7 @@ void func_800E5298_8AAAB8(void) {
         }
     }
     if (func_800AAEE8(0x800) != 0) {
-        func_800BFEBC_5CD5C(5, 1);
+        setPlayerFlag(PFID_HAS_DASH_ENGINE, 1);
         func_800E4BA0_8AA3C0();
         D_80206B50_9CC370 = 1;
     }
@@ -544,37 +544,37 @@ void func_800E5298_8AAAB8(void) {
         }
     }
     if (func_800AAEE8(0x80) != 0) {
-        func_800BFEBC_5CD5C(0, 1);
+        setPlayerFlag(PFID_HAS_APPLE, 1);
         func_800E4E28_8AA648(0);
     }
     if (func_800AAEE8(0x100) != 0) {
-        func_800BFEBC_5CD5C(1, 1);
+        setPlayerFlag(PFID_HAS_PESTER_BALL, 1);
         func_800E4E28_8AA648(1);
     }
     if (func_800AAEE8(0x200) != 0) {
-        func_800BFEBC_5CD5C(2, 1);
+        setPlayerFlag(PFID_HAS_FLUTE, 1);
         func_800E4E28_8AA648(2);
     }
     sp24 = func_800AAEE8(0x40);
     sp20 = func_800AAEE8(0x40000);
     sp1C = func_800AAEE8(0x80000);
-    temp_v0 = func_800BFCA0_5CB40(0xE);
+    temp_v0 = checkPlayerFlag(PFID_14);
 
     if (sp20 != 0 && sp24 != 0) {
-        func_800BFEBC_5CD5C(0xB, 1);
-        func_800BFEBC_5CD5C(0x14, 1);
+        setPlayerFlag(PFID_11, 1);
+        setPlayerFlag(PFID_20, 1);
         func_800E502C_8AA84C();
         func_800E5120_8AA940();
         func_800AAF10();
         func_800AADF0(0x13);
     } else if (sp20 != 0) {
-        func_800BFEBC_5CD5C(0xB, 1);
+        setPlayerFlag(PFID_11, 1);
         func_800E50A0_8AA8C0();
         func_800E5120_8AA940();
         func_800AAF10();
         func_800AADF0(0x12);
     } else if (sp24 != 0) {
-        func_800BFEBC_5CD5C(0xE, 1);
+        setPlayerFlag(PFID_14, 1);
         func_800E502C_8AA84C();
         func_800E5120_8AA940();
         func_800AAF10();

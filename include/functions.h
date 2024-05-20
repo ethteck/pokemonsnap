@@ -21,7 +21,7 @@ void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct Worl
 GObj* func_8035E1D4_4FE5E4(void);
 void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
 void updatePokemonState(GObj* obj, GObjFunc state);
-s32 func_80353D68_4F4178(void);
+int func_80353D68_4F4178(void);
 void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
 void runPathProcess(GObj* obj, GObjFunc func);
 void setPokemonAnimation(GObj*, AnimationHeader*);
@@ -111,8 +111,8 @@ PhotoData * func_800BFA44_5C8E4(s32);
 void func_800BFABC_5C95C(PhotoData*, s32, s32, s32);
 s32 func_800BFC5C_5CAFC(void);
 void func_800BFC70_5CB10(s32 arg0);
-s32 func_800BFCA0_5CB40(s32);
-void func_800BFEBC_5CD5C(s32, s32);
+s32 checkPlayerFlag(s32);
+void setPlayerFlag(s32, s32);
 s32 func_800C0290_5D130(void);
 void func_800C02A0_5D140(s32);
 void func_800C0314_5D1B4(s32, s32);
@@ -150,12 +150,12 @@ s32 func_802E2BB8_5DFC88(s32);
 
 s32 func_80346EF0_826660(s32);
 
-void func_8035024C_4F065C(f32, f32, f32);
-void func_803507E0_4F0BF0(s32);
+void bindCameraNextBlock(f32, f32, f32);
+void setBackgroundMusic(s32);
 void func_80356FBC_4F73CC(void);
-void func_80357384_4F7794(s32*, f32*);
-void func_803586C0_4F8AD0(void);
-OMCamera* func_803586F8_4F8B08(void);
+void getLevelProgress(s32*, f32*);
+void removeMainCamera(void);
+OMCamera* getMainCamera(void);
 void func_80359074_4F9484(void);
 void func_8035EDC8_4FF1D8(GObj*);
 void func_8035FEEC_5002FC(GObj*, s32);

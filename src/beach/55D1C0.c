@@ -29,7 +29,7 @@ void func_beach_802C5214(void) {
         auStopSound(D_beach_80347588);
     }
     func_80357170_4F7580();
-    func_803573BC_4F77CC();
+    resetMainCameraSettings();
     func_beach_802C5180();
     omDeleteGObj(NULL);
 }
@@ -57,8 +57,8 @@ void func_beach_802C52EC(GObj* obj) {
     f32 baseAtZ;
     s32 i;
 
-    cam = func_803586F8_4F8B08();
-    gobj = func_803586F8_4F8B08()->obj;
+    cam = getMainCamera();
+    gobj = getMainCamera()->obj;
 
     startEyeX = cam->viewMtx.lookAt.eye.x;
     startEyeY = cam->viewMtx.lookAt.eye.y;

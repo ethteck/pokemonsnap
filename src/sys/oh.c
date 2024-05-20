@@ -362,7 +362,7 @@ GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 obj
         omCreateProcess(obj, procFunc, procKind, procPriority);
     }
     if (defaultFlags) {
-        cam->flags = 7;
+        cam->flags = CAMERA_FLAG_1 | CAMERA_FLAG_2 | CAMERA_FLAG_4;
         cam->bgColor = 0xFF;
     }
     return obj;

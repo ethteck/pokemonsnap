@@ -6,6 +6,8 @@
 f32 acosf(f32);
 f32 atanf(f32);
 f32 atan2f(f32 y, f32 x);
+f32 asinf(f32 arg0);
+f32 acosf(f32 arg0);
 void setRandSeed(s32 arg0);
 u16 rand(void);
 u8 randT(void);

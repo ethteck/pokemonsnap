@@ -239,9 +239,9 @@ void Icons_Init(void) {
     }
 
     if (Icons_NumItemsAvailable > 0) {
-        D_80382CF4_523104 = D_80388204_528614[D_8038821C_52862C];
+        LastItemId = D_80388204_528614[D_8038821C_52862C];
     } else {
-        D_80382CF4_523104 = -1;
+        LastItemId = -1;
     }
     gobj = omAddGObj(26, Icons_UpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, &renDrawSprite, 1, 0x80000000, -1);
@@ -275,7 +275,7 @@ void Icons_Init(void) {
     spr->x = sprDef->x; spr->y = sprDef->y;
     spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
 
-    if (progressFlags & PF_CAN_ZOOM_OFF) {
+    if (progressFlags & PF_ZOOM_SWITCH) {
         spr = &Icons_IconObjects[ICON_ID_ZOOM_OFF];
         sprDef = &Icons_IconDefs[ICON_ID_ZOOM_OFF];
         spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);

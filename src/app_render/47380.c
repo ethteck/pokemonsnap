@@ -31,7 +31,7 @@ extern GObj* D_800BDF30[];
 extern s32 D_800BDF60;
 extern s32 D_800BDF68[];
 extern s32 D_800AC0F0; // level id?
-extern UnkGoldViper D_800AC0F4;
+extern MovementState D_800AC0F4;
 extern Unk1C D_800ADA64[];
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
@@ -258,7 +258,7 @@ char* getPokemonName(s32 pkmnID) {
     }
     if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
         pkmnID == 0x40B) {
-        if (func_800BFCA0_5CB40(5) == 0) {
+        if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
             return "？";
         }
     }
@@ -527,10 +527,10 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     }
 }
 
-void func_8009C4F4(UnkThing* arg0, UnkGoldViper* arg1, OMCamera* arg2) {
+void func_8009C4F4(UnkThing* arg0, MovementState* arg1, OMCamera* arg2) {
     arg0->main.levelID = getLevelId();
-    arg0->main.unk_00_16 = arg1->unk_08->index;
-    arg0->main.unk_04.f32 = world_func_800E219C();
+    arg0->main.unk_00_16 = arg1->block->index;
+    arg0->main.unk_04.f32 = getGlobalTime();
     arg0->main.unk_08.x = arg2->viewMtx.lookAt.eye.x;
     arg0->main.unk_08.y = arg2->viewMtx.lookAt.eye.y;
     arg0->main.unk_08.z = arg2->viewMtx.lookAt.eye.z;
@@ -570,7 +570,7 @@ s32 func_8009C5C4(const void* a, const void* b) {
 void func_8009C604(UnkThing* arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C604.s")
 
-void func_8009C8E4(OMCamera* arg0, UnkGoldViper* arg1, UnkThing* arg2) {
+void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
     s32 i;
 
     // clang-format off
@@ -594,7 +594,7 @@ void func_8009C8E4(OMCamera* arg0, UnkGoldViper* arg1, UnkThing* arg2) {
     func_8009C604(arg2);
 }
 
-s32 func_8009C9E8(GObj* gobj) {
+s32 makePhoto(GObj* pokemonObj) {
     UNUSED s32 pad[3];
     UnkThing* sp38;
     s32 sp34;
@@ -607,7 +607,7 @@ s32 func_8009C9E8(GObj* gobj) {
         return 0;
     }
 
-    if (gobj != NULL) {
+    if (pokemonObj != NULL) {
         D_800AE27C++;
 
         for (i = 0; i < D_800AE280 && i < ARRAY_COUNT(D_800BDF20); i++) {
@@ -634,7 +634,7 @@ s32 func_8009C9E8(GObj* gobj) {
         memcpy(&temp_s4->unk_1A0[i], &sp38->main.unk_1A0[i], sizeof(temp_s4->unk_1A0[0]));
     }
 
-    if (gobj == NULL) {
+    if (pokemonObj == NULL) {
         for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
             memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
         }
@@ -646,7 +646,7 @@ s32 func_8009C9E8(GObj* gobj) {
             }
         } else {
             for (i = 0; i < ARRAY_COUNT(sp38->unk_3A4); i++) {
-                if (gobj == sp38->unk_3A4[i]) {
+                if (pokemonObj == sp38->unk_3A4[i]) {
                     cond = FALSE;
                     break;
                 }
@@ -659,7 +659,7 @@ s32 func_8009C9E8(GObj* gobj) {
             } else {
                 idx = 1;
                 for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
-                    if (gobj == sp38->unk_3A4[i]) {
+                    if (pokemonObj == sp38->unk_3A4[i]) {
                         memcpy(&temp_s4->unk_20[0], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
                     } else {
                         memcpy(&temp_s4->unk_20[idx], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[1]));
@@ -917,10 +917,10 @@ void func_8009D65C(UnkThing* arg0) {
                 setSkyBoxPos(arg0->main.unk_08.x, arg0->main.unk_08.y, arg0->main.unk_08.z, var_f2, world_func_800E21A8(arg0->main.unk_04.f32));
                 break;
         }
-        D_800AC0F4.unk_00 = 0.0f;
-        D_800AC0F4.unk_28 = 0.0f;
-        D_800AC0F4.unk_04 = 0.5f;
-        func_800E3EE8_61698(&D_800AC0F4, arg0->main.unk_00_16 & 0xF, NULL, NULL);
+        D_800AC0F4.moveTime = 0.0f;
+        D_800AC0F4.speedMult = 0.0f;
+        D_800AC0F4.cpTime = 0.5f;
+        Movement_Init(&D_800AC0F4, arg0->main.unk_00_16 & 0xF, NULL, NULL);
 
         worldBlocks = getWorldBlocks();
         for (i = 0; worldBlocks != NULL && i < MAX_BLOCKS; i++) {
@@ -1088,10 +1088,10 @@ void func_8009FA68(OMCamera* cam, UnkThing* arg1) {
 
     if (levelID >= 0) {
         if (levelID == SCENE_CAVE) {
-            cam->flags |= 2;
+            cam->flags |= CAMERA_FLAG_2;
             cam->bgColor = 0x05080401;
         } else {
-            cam->flags &= ~2;
+            cam->flags &= ~CAMERA_FLAG_2;
         }
         var_s0 = omGObjListHead[D_800BDF1E];
         if (var_s0 != NULL) {

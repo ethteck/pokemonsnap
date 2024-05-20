@@ -12,7 +12,7 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/504C00/func_80365B24_505F34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/504C00/func_80365BB0_505FC0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/504C00/showMessage.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/504C00/func_80365E34_506244.s")
 

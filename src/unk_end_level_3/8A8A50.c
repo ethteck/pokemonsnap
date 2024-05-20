@@ -2,7 +2,7 @@
 #include "unk_end_level_3.h"
 
 void* func_800E3230_8A8A50(void) {
-    if (func_800BFCA0_5CB40(7) == 0) {
+    if (checkPlayerFlag(PFID_7) == 0) {
         return &D_801958F0_95B110;
     }
     return &D_801958C0_95B0E0;
@@ -196,7 +196,7 @@ s32 func_800E3CE8_8A9508(void) {
             ohWait(0x30);
             auSetBGMVolumeSmooth(0, 0U, 0x1E);
             ohWait(0x21);
-            if (func_800BFCA0_5CB40(0x15) != 0) {
+            if (checkPlayerFlag(PFID_21) != 0) {
                 D_80206B48_9CC368();
             }
             if (func_800BF244_5C0E4() != 0) {

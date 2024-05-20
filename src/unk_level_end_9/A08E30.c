@@ -453,7 +453,7 @@ void func_800E2780_A09D10(void) {
 void func_800E281C_A09DAC(void) {
     switch (D_800BF051) {
         case 0:
-            D_800E82ED_A0F87D = func_800BFCA0_5CB40(0x10);
+            D_800E82ED_A0F87D = checkPlayerFlag(PFID_16);
             func_800E2348_A098D8();
             func_800E23E4_A09974();
             D_800E80D0_A0F660 = func_800E1CCC_A0925C();
@@ -1280,7 +1280,7 @@ void func_800E4634_A0BBC4(void) {
     omCameraAddMtx(D_800E82A8_A0F838->data.cam, 8, 0);
 
     D_800E82AC_A0F83C = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, 1, 1, NULL, 1, 1);
-    D_800E82AC_A0F83C->data.cam->flags = 8;
+    D_800E82AC_A0F83C->data.cam->flags = CAMERA_FLAG_8;
     func_800A7F68(0, 0x101);
     func_800E5C8C_A0D21C();
 

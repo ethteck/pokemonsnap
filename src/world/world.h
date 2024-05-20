@@ -51,10 +51,10 @@ typedef struct WorldBlockGFX {
     /* 0x08 */ AnimCmd*** unk_08;
     /* 0x0C */ GObjFunc renderFunc;
     /* 0x10 */ UnkEC64Arg3* uvScrollAnim;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ AnimCmd** unk_18;
-    /* 0x1C */ s32 unk_1C;
-    /* 0x20 */ f32 unk_20[1]; // variable size, depends on unk_14
+    /* 0x14 */ s32 numControlPoints;
+    /* 0x18 */ AnimCmd** movementAnim;
+    /* 0x1C */ s32 movementAnimDuration;
+    /* 0x20 */ f32 cpTimeStamps[1]; // variable size, depends on unk_14
 } WorldBlockGFX; // size >= 0x20
 
 typedef struct PayloadStruct {
@@ -74,7 +74,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x00 */ WorldBlockGFX* gfx;
     /* 0x04 */ Vec3f worldPos;
     /* 0x10 */ f32 yaw;
-    /* 0x14 */ s32 unk_14;
+    /* 0x14 */ s32 reversed;
     /* 0x18 */ UnkBeigeServal* unk_18;
     /* 0x1C */ ObjectSpawn* spawn;
     /* 0x20 */ UnkBeigeServal* unk_20;
@@ -87,7 +87,7 @@ typedef struct WorldBlock {
     /* 0x0C */ struct WorldBlock* next;
     /* 0x10 */ GObj* blockModel;
     /* 0x14 */ GObj* blockUV;
-    /* 0x18 */ DObj** unk_18;
+    /* 0x18 */ DObj** cpObjects;
 } WorldBlock; // size = 0x1C
 
 typedef struct UnkBoneFox {
@@ -130,15 +130,15 @@ typedef struct HeightMapTreeNode {
     /* 0x18 */ HeightMapPatch* rightPatch;
 } HeightMapTreeNode; // size = 0x1C
 
-typedef struct UnkGoldViper {
-    /* 0x00 */ f32 unk_00;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ WorldBlock* unk_08;
-    /* 0x0C */ Vec3f unk_0C;
-    /* 0x18 */ Vec3f unk_18;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-} UnkGoldViper; // size >= 0x2C
+typedef struct MovementState {
+    /* 0x00 */ f32 moveTime;
+    /* 0x04 */ f32 cpTime;
+    /* 0x08 */ WorldBlock* block;
+    /* 0x0C */ Vec3f pos;
+    /* 0x18 */ Vec3f rotation;
+    /* 0x24 */ f32 moveSpeed; // blocks per frame
+    /* 0x28 */ f32 speedMult;
+} MovementState; // size >= 0x2C
 
 typedef struct HeightMap {
     /* 0x00 */ HeightMapPatch* patches;
@@ -174,8 +174,8 @@ typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 extern WorldSetup D_80100720;
 
 void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
-WorldBlock* func_800E26CC_5FE7C(s32 arg0);
-WorldBlock* func_800E2400_5FBB0(void);
+WorldBlock* enterFirstBlock(s32 arg0);
+WorldBlock* enterNextBlock(void);
 void createHeightMapTree(HeightMapTreeNode* arg0, HeightMapPatch* arg1);
 HeightMapPatch* findHeightMapPatch(HeightMapTreeNode*, f32, f32);
 f32 getPatchHeightAt(HeightMapPatch*, f32, f32);
@@ -190,14 +190,14 @@ void setSkyBoxFollowPlayer(void);
 void setSkyBoxPos(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 arg4);
 WorldBlock* getCurrentWorldBlock(void);
 WorldBlock** getWorldBlocks(void);
-f32 world_func_800E219C(void);
+f32 getGlobalTime(void);
 f32 world_func_800E21A8(f32 arg0);
 s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8);
 void destroyWorld(void);
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
-void func_800E3D04_614B4(UnkGoldViper* arg0);
-void func_800E3EE8_61698(UnkGoldViper* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
+void Movement_Update(MovementState* arg0);
+void Movement_Init(MovementState* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 notNull_DEBUG(void*, const char*);
 s32 setHeightMap(HeightMap* arg0);

@@ -25,8 +25,8 @@ void func_camera_check_801DC910(void) {
                             func_camera_check_801DC8D0, 0, 1);
     camera = camObj->data.cam;
     camObj->unk_38 = 0x100000;
-    camera->flags |= 6;
-    camera->flags &= ~3;
+    camera->flags |= CAMERA_FLAG_2 | CAMERA_FLAG_4;
+    camera->flags &= ~(CAMERA_FLAG_1 | CAMERA_FLAG_2);
     func_800A844C(camera, 0, 0, 640, 480);
     camera->viewMtx.lookAt.up.x = 0.0f;
     camera->viewMtx.lookAt.up.y = 0.0f;

@@ -201,9 +201,9 @@ void func_800E71DC_A0E76C(void) {
         func_800E6C00_A0E190(sobj, 0xFF);
         sobj = sobj->next;
     }
-    D_800E8394_A0F924 = func_800BFCA0_5CB40(9);
-    D_800E8395_A0F925 = func_800BFCA0_5CB40(12);
-    D_800E8396_A0F926 = func_800BFCA0_5CB40(13);
+    D_800E8394_A0F924 = checkPlayerFlag(PFID_9);
+    D_800E8395_A0F925 = checkPlayerFlag(PFID_ZOOM_SWITCH);
+    D_800E8396_A0F926 = checkPlayerFlag(PFID_INVERTED_Y);
     if (D_800E8394_A0F924 == 0) {
         func_800E6C14_A0E1A4(D_800E8358_A0F8E8->data.sobj, 0xFF, 0x82, 0x41);
         func_800E6C00_A0E190(D_800E8358_A0F8E8->data.sobj->next, 0xFF);
@@ -573,9 +573,9 @@ void func_800E7F98_A0F528(void) {
             break;
         case 4:
             func_800BFB90_5CA30(viEdgeOffsetLeft, viEdgeOffsetTop);
-            func_800BFEBC_5CD5C(9, D_800E8394_A0F924);
-            func_800BFEBC_5CD5C(12, D_800E8395_A0F925);
-            func_800BFEBC_5CD5C(13, D_800E8396_A0F926);
+            setPlayerFlag(PFID_9, D_800E8394_A0F924);
+            setPlayerFlag(PFID_ZOOM_SWITCH, D_800E8395_A0F925);
+            setPlayerFlag(PFID_INVERTED_Y, D_800E8396_A0F926);
             cond = TRUE;
             break;
         }

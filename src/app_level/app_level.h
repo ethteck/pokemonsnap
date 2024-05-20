@@ -10,12 +10,12 @@ enum ItemIds {
 
 enum EndLevelReasons {
     END_LEVEL_REASON_QUIT = 1,
-    END_LEVEL_REASON_2 = 2,
+    END_LEVEL_REASON_FINISH = 2,
     END_LEVEL_REASON_3 = 3,
     END_LEVEL_REASON_OUT_OF_FILM = 4,
-    END_LEVEL_REASON_6 = 6,
-    END_LEVEL_REASON_7 = 7,
-    END_LEVEL_REASON_8 = 8
+    END_LEVEL_REASON_RETRY = 6,
+    END_LEVEL_REASON_IDLE_FINISHED = 7,
+    END_LEVEL_REASON_IDLE_INTERRUPTED = 8
 };
 
 enum PokemonCommands {
@@ -25,14 +25,26 @@ enum PokemonCommands {
     POKEMON_CMD_12 = 12,
     POKEMON_CMD_13 = 13,
     POKEMON_CMD_14 = 14,
+    POKEMON_CMD_18 = 18,
     POKEMON_CMD_19 = 19,
-    POKEMON_CMD_21 = 21
+    POKEMON_CMD_21 = 21,
+    POKEMON_CMD_24 = 24
 };
 
+enum PlayerCommands {
+    PLAYER_CMD_SHAKE_CAMERA  =  3,
+    PLAYER_CMD_4  =  4,
+    PLAYER_CMD_5  =  5,
+    PLAYER_CMD_FINISH  =  6,
+    PLAYER_CMD_7  =  7,
+    PLAYER_CMD_8  =  8,
+    PLAYER_CMD_9  =  9,
+    PLAYER_CMD_10  =  10,
+};
 
 #define ITEM_CMD_REMOVE 100
 
-#define CAMERA_CMD_1 1
+#define CAMERA_CMD_BLINK 1
 
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;

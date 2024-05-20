@@ -275,7 +275,7 @@ void Icons_Init(void) {
     spr->x = sprDef->x; spr->y = sprDef->y;
     spSetAttribute(&spr->spriteObj->sprite, SP_HIDDEN);
 
-    if (progressFlags & PF_CAN_ZOOM_OFF) {
+    if (progressFlags & PF_ZOOM_SWITCH) {
         spr = &Icons_IconObjects[ICON_ID_ZOOM_OFF];
         sprDef = &Icons_IconDefs[ICON_ID_ZOOM_OFF];
         spr->spriteObj = omGObjAddSprite(gobj, sprDef->spriteDef);

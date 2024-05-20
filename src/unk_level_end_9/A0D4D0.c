@@ -181,9 +181,9 @@ void func_800E6480_A0DA10(void) {
     GObj* gobj;
     SObj* sobj;
 
-    sp5F = func_800BFCA0_5CB40(9);
-    sp5E = func_800BFCA0_5CB40(12);
-    sp5D = func_800BFCA0_5CB40(13);
+    sp5F = checkPlayerFlag(PFID_9);
+    sp5E = checkPlayerFlag(PFID_ZOOM_SWITCH);
+    sp5D = checkPlayerFlag(PFID_INVERTED_Y);
 
     gobj = D_800E8358_A0F8E8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
                                               &D_80342FF0, 0, NULL, 1);

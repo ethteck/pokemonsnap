@@ -12,7 +12,7 @@ void func_beach_802C4800(s32 arg0, f32 arg1) {
             break;
         case 1:
             if (arg0 + arg1 > 0.0f) {
-                func_803507E0_4F0BF0(0);
+                setBackgroundMusic(0);
                 D_beach_802CC0D0 = 2;
             }
             break;

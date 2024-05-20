@@ -40,13 +40,13 @@ static s32 padding2[1] = {0};
 s32 D_800AC00C = 0;
 s32 D_800AC010 = 0;
 
-extern UnkCelesteWolverine* D_800B0578;
+extern IdleScript* D_800B0578;
 
-void func_8009A8C0(UnkCelesteWolverine* arg0) {
+void setIdleScript(IdleScript* arg0) {
     D_800B0578 = arg0;
 }
 
-UnkCelesteWolverine* func_8009A8CC(void) {
+IdleScript* getIdleScript(void) {
     return D_800B0578;
 }
 
@@ -213,7 +213,7 @@ void start_scene_manager(s32 arg0) {
     if (func_8009B2BC() == 0) {
         func_8009B40C();
     }
-    auSetSoundQuality(func_800BFCA0_5CB40(9) == 0);
+    auSetSoundQuality(checkPlayerFlag(PFID_9) == 0);
     func_800BFC18_5CAB8(&sp38, &sp34);
     viSetScreenOffsets(sp38, sp38, sp34, sp34);
 
@@ -221,7 +221,7 @@ void start_scene_manager(s32 arg0) {
 
     while (TRUE) {
         gtlSetIntervals(1, 1);
-        func_8009A8C0(NULL);
+        setIdleScript(NULL);
 
         switch (sceneId) {
             case SCENE_7:

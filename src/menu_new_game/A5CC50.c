@@ -360,6 +360,6 @@ s32 menu_new_game_entry(s32 arg0) {
     menu_new_game_setup.gtlSetup.heapSize = D_80369F80 - menu_new_game_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&menu_new_game_setup);
-    func_800BFEBC_5CD5C(16, 1);
+    setPlayerFlag(PFID_16, 1);
     return SCENE_11;
 }

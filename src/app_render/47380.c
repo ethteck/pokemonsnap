@@ -258,7 +258,7 @@ char* getPokemonName(s32 pkmnID) {
     }
     if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
         pkmnID == 0x40B) {
-        if (func_800BFCA0_5CB40(5) == 0) {
+        if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
             return "？";
         }
     }
@@ -594,7 +594,7 @@ void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
     func_8009C604(arg2);
 }
 
-s32 func_8009C9E8(GObj* gobj) {
+s32 makePhoto(GObj* pokemonObj) {
     UNUSED s32 pad[3];
     UnkThing* sp38;
     s32 sp34;
@@ -607,7 +607,7 @@ s32 func_8009C9E8(GObj* gobj) {
         return 0;
     }
 
-    if (gobj != NULL) {
+    if (pokemonObj != NULL) {
         D_800AE27C++;
 
         for (i = 0; i < D_800AE280 && i < ARRAY_COUNT(D_800BDF20); i++) {
@@ -634,7 +634,7 @@ s32 func_8009C9E8(GObj* gobj) {
         memcpy(&temp_s4->unk_1A0[i], &sp38->main.unk_1A0[i], sizeof(temp_s4->unk_1A0[0]));
     }
 
-    if (gobj == NULL) {
+    if (pokemonObj == NULL) {
         for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
             memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
         }
@@ -646,7 +646,7 @@ s32 func_8009C9E8(GObj* gobj) {
             }
         } else {
             for (i = 0; i < ARRAY_COUNT(sp38->unk_3A4); i++) {
-                if (gobj == sp38->unk_3A4[i]) {
+                if (pokemonObj == sp38->unk_3A4[i]) {
                     cond = FALSE;
                     break;
                 }
@@ -659,7 +659,7 @@ s32 func_8009C9E8(GObj* gobj) {
             } else {
                 idx = 1;
                 for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
-                    if (gobj == sp38->unk_3A4[i]) {
+                    if (pokemonObj == sp38->unk_3A4[i]) {
                         memcpy(&temp_s4->unk_20[0], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
                     } else {
                         memcpy(&temp_s4->unk_20[idx], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[1]));

@@ -453,7 +453,7 @@ void func_800E2780_A09D10(void) {
 void func_800E281C_A09DAC(void) {
     switch (D_800BF051) {
         case 0:
-            D_800E82ED_A0F87D = func_800BFCA0_5CB40(0x10);
+            D_800E82ED_A0F87D = checkPlayerFlag(PFID_16);
             func_800E2348_A098D8();
             func_800E23E4_A09974();
             D_800E80D0_A0F660 = func_800E1CCC_A0925C();

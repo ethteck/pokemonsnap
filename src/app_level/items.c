@@ -53,7 +53,7 @@ extern AnimCmd** D_800ED6B0[];
 extern UnkEC64Arg3 D_800EDAB0[];
 extern Texture** D_800EDB90[];
 
-extern DObj* D_80382C04_523014;
+extern DObj* gPlayerDObj;
 
 s32 Items_ObjectCounter = 0;
 GObjFunc Items_FnUpdate = NULL;
@@ -370,9 +370,9 @@ void Items_PlaySound(DObj* model, s32 soundID) {
     pos.x = model->position.v.x;
     pos.y = model->position.v.y;
     pos.z = model->position.v.z;
-    playerPos.x = GET_TRANSFORM(D_80382C04_523014)->pos.v.x;
-    playerPos.y = GET_TRANSFORM(D_80382C04_523014)->pos.v.y;
-    playerPos.z = GET_TRANSFORM(D_80382C04_523014)->pos.v.z;
+    playerPos.x = GET_TRANSFORM(gPlayerDObj)->pos.v.x;
+    playerPos.y = GET_TRANSFORM(gPlayerDObj)->pos.v.y;
+    playerPos.z = GET_TRANSFORM(gPlayerDObj)->pos.v.z;
     dist = Vec3fDirection(&diff, &playerPos, &pos);
     if (dist < 3000.0f) {
         auPlaySoundWithVolume(soundID, 30720.0f - (dist / 3000.0f) * 30720.0f);

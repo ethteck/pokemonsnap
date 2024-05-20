@@ -27,7 +27,7 @@ f32 randFloat(void);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
 void func_803570B0_4F74C0(void);
-void func_803570F0_4F7500(void*, UNK_TYPE, f32);
+void Camera_StartCutScene(void*, UNK_TYPE, f32);
 void func_80357120_4F7530(GObj*);
 void func_80357170_4F7580(void);
 void func_803571C4_4F75D4(void);

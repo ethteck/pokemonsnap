@@ -263,21 +263,21 @@ typedef struct UnkBrassLynx {
     /* 0x48 */ DObj* unk_48;
 } UnkBrassLynx;
 
-typedef struct UnkCelesteWolverineSub {
-    /* 0x00 */ u16 unk_00;
-    /* 0x02 */ u16 unk_02;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ s8 unk_08;
-    /* 0x09 */ s8 unk_09;
-} UnkCelesteWolverineSub; // size = 0xA
+typedef struct IdleScriptEntry {
+    /* 0x00 */ u16 currentButtons;
+    /* 0x02 */ u16 pressedButtons;
+    /* 0x04 */ u16 heldButtons;
+    /* 0x06 */ u16 releasedButtons;
+    /* 0x08 */ s8 stickX;
+    /* 0x09 */ s8 stickY;
+} IdleScriptEntry; // size = 0xA
 
-typedef struct UnkCelesteWolverine {
-    /* 0x00 */ u32 unk_00;
+typedef struct IdleScript {
+    /* 0x00 */ u32 dataSize;
     /* 0x04 */ char unk_04[4];
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ u32 unk_0C;
-    /* 0x10 */ UnkCelesteWolverineSub unk_10[1];
-} UnkCelesteWolverine; // VLA
+    /* 0x08 */ s32 randSeed;
+    /* 0x0C */ u32 playerFlags;
+    /* 0x10 */ IdleScriptEntry inputs[1];
+} IdleScript; // VLA
 
 #endif

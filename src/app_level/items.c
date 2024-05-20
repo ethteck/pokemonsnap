@@ -54,9 +54,6 @@ extern UnkEC64Arg3 D_800EDAB0[];
 extern Texture** D_800EDB90[];
 
 extern DObj* D_80382C04_523014;
-extern f32 D_80382C1C_52302C;
-extern f32 D_80382C20_523030;
-extern f32 D_80382C24_523034;
 
 s32 Items_ObjectCounter = 0;
 GObjFunc Items_FnUpdate = NULL;
@@ -269,9 +266,9 @@ void Items_InitItem(GObj* obj, Vec3f* pos, Vec3f* extraVelocity) {
     model->position.v.y = pos->y;
     model->position.v.z = pos->z;
 
-    velocity.x = D_80382C1C_52302C - model->position.v.x;
-    velocity.y = D_80382C20_523030 - model->position.v.y + 100.0f;
-    velocity.z = D_80382C24_523034 - model->position.v.z;
+    velocity.x = gCamTargetX - model->position.v.x;
+    velocity.y = gCamTargetY - model->position.v.y + 100.0f;
+    velocity.z = gCamTargetZ - model->position.v.z;
     Vec3fNormalize(&velocity);
     Vec3fScale(&velocity, 50.0f); // base speed
     Vec3fAdd(&velocity, extraVelocity);

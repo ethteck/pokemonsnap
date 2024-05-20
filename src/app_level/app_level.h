@@ -34,6 +34,10 @@ enum PokemonCommands {
 
 #define CAMERA_CMD_1 1
 
+extern f32 gCamTargetX;
+extern f32 gCamTargetY;
+extern f32 gCamTargetZ;
+
 extern s32 LastItemId;
 
 extern s32 Icons_NumItemsAvailable;

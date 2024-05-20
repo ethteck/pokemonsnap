@@ -62,11 +62,11 @@ u32 D_80382BF0_523000[] = {
     0x00000000
 };
 
-s32 gCButtonDirectionIndex = 2;
+s32 gDirectionIndex = 2;
 GObj* gObjPlayer = NULL;
 DObj* D_80382C04_523014 = NULL;
 s32 D_80382C08_523018_unused = 0;
-f32 D_80382C0C_52301C = 0.0f;
+f32 gViewPitch = 0.0f;
 f32 D_80382C10_523020_unused = 0.0f;
 s32 gReticleScreenX = 0;
 s32 gReticleScreenY = 0;
@@ -108,9 +108,9 @@ s32 PressPokeFluteTimeout = 3;
 s32 sDashEngineSoundTimeout = 3;
 f32 D_80382CC0_5230D0 = 0.0f;
 f32 D_80382CC4_5230D4 = 0.0f;
-f32 D_80382CC8_5230D8 = 0.0f;
+f32 gViewYaw = 0.0f; // relative to forward direction
 f32 sTurnToDirSpeed = 0.0f;
-f32 sCurrentYaw = 0.0f;
+f32 gCurrentDirectionYaw = 0.0f;
 f32 D_80382CD4_5230E4 = 0.0f;
 f32 sDirections[5] = {
     -3.141592741f,
@@ -131,7 +131,7 @@ s32 D_80382D0C_52311C = FALSE;
 GObj* D_80382D10_523120 = NULL;
 GObj* D_80382D14_523124 = NULL;
 void (*EndLevelCb)(s32) = NULL;
-void (*D_80382D1C_52312C)(s32) = NULL;
+void (*PauseCb)(s32) = NULL;
 u8 gIsPaused = 0;
 u8 Pause_CurrentSelection = 0;
 s32 D_80382D28_523138 = 153;
@@ -420,8 +420,8 @@ void handleAnalogStick(GObj* obj) {
             D_80382CC4_5230D4 = -D_80382CC4_5230D4;
         }
 
-        if (D_80382CC4_5230D4 < 0.0f && D_80382C0C_52301C <= D_80382CF0_523100 + 0.017453292f ||
-            D_80382CC4_5230D4 > 0.0f && D_80382C0C_52301C >= D_80382CEC_5230FC - 0.017453292f)
+        if (D_80382CC4_5230D4 < 0.0f && gViewPitch <= D_80382CF0_523100 + 0.017453292f ||
+            D_80382CC4_5230D4 > 0.0f && gViewPitch >= D_80382CEC_5230FC - 0.017453292f)
         {
             D_80382C2C_52303C += 0.02f * D_80382CC4_5230D4;
         }
@@ -432,10 +432,10 @@ void handleAnalogStick(GObj* obj) {
             D_80382C2C_52303C = -0.9f;
         }
 
-        if (D_80382CC4_5230D4 < 0.0f && D_80382C0C_52301C <= D_80382CF0_523100 ||
-            D_80382CC4_5230D4 > 0.0f && D_80382C0C_52301C > D_80382CEC_5230FC)
+        if (D_80382CC4_5230D4 < 0.0f && gViewPitch <= D_80382CF0_523100 ||
+            D_80382CC4_5230D4 > 0.0f && gViewPitch > D_80382CEC_5230FC)
         {
-            D_80382C0C_52301C -= 0.015f * D_80382CC4_5230D4;
+            gViewPitch -= 0.015f * D_80382CC4_5230D4;
         }
     } else {
         if (D_80382C2C_52303C > 0.0) {
@@ -445,7 +445,7 @@ void handleAnalogStick(GObj* obj) {
         }
     }
 
-    if (!(gCButtonDirectionIndex < 0 || (gCButtonDirectionIndex & 1))) {
+    if (!(gDirectionIndex < 0 || (gDirectionIndex & 1))) {
     } else {
         if (ABS(D_80382CD4_5230E4) > 0.1f) {
             D_80382CD4_5230E4 -= SIGN(D_80382CD4_5230E4) * 0.1f;
@@ -478,12 +478,12 @@ void handleAnalogStick(GObj* obj) {
     gPlayerPos = GET_TRANSFORM(model)->pos.v;
 
     if (D_80382D04_523114 == 1) {
-        if (D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG) && gCButtonDirectionIndex >= 0 ||
-            D_803AE520_54E930 == 0 && (gContInputCurrentButtons & Z_TRIG) && gCButtonDirectionIndex >= 0)
+        if (D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0 ||
+            D_803AE520_54E930 == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0)
         {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
-            gCButtonDirectionIndex = -2;
+            gDirectionIndex = -2;
             omCreateProcess(obj, processZoomingIn, 0, 9);
             ohPauseProcessByFunction(obj, handleCButtons);
             ohPauseProcessByFunction(obj, handleItemButtonsPress);
@@ -500,9 +500,9 @@ void func_80351114_4F1524(GObj* obj) {
     }
 }
 
-void playDashEngineSounds(s32 arg0) {
+void playDashEngineSounds(s32 enabled) {
     static s32 dashEngineSoundHandle = -1;
-    if (arg0 == TRUE) {
+    if (enabled == TRUE) {
         if (dashEngineSoundHandle == -1) {
             dashEngineSoundHandle = auPlaySound(SOUND_ID_14);
         }
@@ -544,37 +544,37 @@ void updateDashEngine(void) {
 void handleCButtons(GObj* obj) {
     s32 CButtonPressed = FALSE;
 
-    if (gCButtonDirectionIndex < 0) {
+    if (gDirectionIndex < 0) {
         return;
     }
 
     if (D_80382D0C_52311C == 0) {
         if (gContInputPressedButtons & U_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
-            if (gCButtonDirectionIndex == 0) {
+            if (gDirectionIndex == 0) {
                 sTurnToDirSpeed = 0.2f;
-            } else if (gCButtonDirectionIndex == 1) {
+            } else if (gDirectionIndex == 1) {
                 sTurnToDirSpeed = 0.1f;
             } else {
                 sTurnToDirSpeed = -0.1f;
             }
-            gCButtonDirectionIndex = 2;
+            gDirectionIndex = 2;
             CButtonPressed = TRUE;
             gReticleScreenX = 0;
         } else if (gContInputPressedButtons & R_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
-            gCButtonDirectionIndex++;
-            if (gCButtonDirectionIndex >= 4) {
-                gCButtonDirectionIndex -= 4;
+            gDirectionIndex++;
+            if (gDirectionIndex >= 4) {
+                gDirectionIndex -= 4;
             }
             CButtonPressed = TRUE;
             sTurnToDirSpeed = 0.1f;
             gReticleScreenX = 0;
         } else if (gContInputPressedButtons & L_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
-            gCButtonDirectionIndex--;
-            if (gCButtonDirectionIndex < 0) {
-                gCButtonDirectionIndex += 4;
+            gDirectionIndex--;
+            if (gDirectionIndex < 0) {
+                gDirectionIndex += 4;
             }
             CButtonPressed = TRUE;
             sTurnToDirSpeed = -0.1f;
@@ -585,7 +585,7 @@ void handleCButtons(GObj* obj) {
     updateDashEngine();
     if (CButtonPressed) {
         D_80382C28_523038 = 0.0f;
-        D_80382CC8_5230D8 = 0.0f;
+        gViewYaw = 0.0f;
         ohResumeProcessByFunction(obj, processTurnToDirection);
         ohPauseProcessByFunction(obj, updateMovementState);
         ohPauseProcessByFunction(obj, handleAnalogStick);
@@ -594,7 +594,7 @@ void handleCButtons(GObj* obj) {
     }
 
     if (ABS(gReticleScreenX) > 50) {
-        D_80382CC8_5230D8 += D_80382CC0_5230D0 * 0.03 * 0.8;
+        gViewYaw += D_80382CC0_5230D0 * 0.03 * 0.8;
     }
 }
 
@@ -607,8 +607,8 @@ void processTurnToDirection(GObj* obj) {
         return;
     }
 
-    targetYaw = sDirections[gCButtonDirectionIndex];
-    currentYaw = sCurrentYaw;
+    targetYaw = sDirections[gDirectionIndex];
+    currentYaw = gCurrentDirectionYaw;
 
     while (targetYaw < 0.0f) {
         targetYaw += 6.2831855f;
@@ -625,20 +625,20 @@ void processTurnToDirection(GObj* obj) {
     }
 
     if (ABS(targetYaw - currentYaw) > ABS(sTurnToDirSpeed)) {
-        sCurrentYaw += sTurnToDirSpeed;
+        gCurrentDirectionYaw += sTurnToDirSpeed;
     } else {
-        sCurrentYaw = sDirections[gCButtonDirectionIndex];
+        gCurrentDirectionYaw = sDirections[gDirectionIndex];
         v0++;
     }
     targetYaw = 0.04712389f; // need var reuse for matching
-    if (ABS(D_80382C0C_52301C) > targetYaw) {
-        if (D_80382C0C_52301C > 0.0f) {
-            D_80382C0C_52301C -= targetYaw;
+    if (ABS(gViewPitch) > targetYaw) {
+        if (gViewPitch > 0.0f) {
+            gViewPitch -= targetYaw;
         } else {
-            D_80382C0C_52301C += targetYaw;
+            gViewPitch += targetYaw;
         }
     } else {
-        D_80382C0C_52301C = 0.0f;
+        gViewPitch = 0.0f;
         v0++;
     }
 
@@ -670,64 +670,64 @@ void updateCameraZoomedOut(GObj* obj) {
     static f32 D_80382D60_523170 = 0.0f;
     static f32 D_80382D64_523174 = 50.0f;
 
-    if (gCButtonDirectionIndex == 0) {
-        if (D_80382CC8_5230D8 > 0.9424779f) {
-            gCButtonDirectionIndex = 1;
-            D_80382CC8_5230D8 = -0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
-        } else if (D_80382CC8_5230D8 < -0.9424779f) {
-            gCButtonDirectionIndex = 3;
-            D_80382CC8_5230D8 = 0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
+    if (gDirectionIndex == 0) {
+        if (gViewYaw > 0.9424779f) {
+            gDirectionIndex = 1;
+            gViewYaw = -0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+        } else if (gViewYaw < -0.9424779f) {
+            gDirectionIndex = 3;
+            gViewYaw = 0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
         }
-    } else if (gCButtonDirectionIndex == 1) {
-        if (D_80382CC8_5230D8 > 0.9424779f) {
-            gCButtonDirectionIndex = 2;
-            D_80382CC8_5230D8 = -0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
-        } else if (D_80382CC8_5230D8 < -0.9424779f) {
-            gCButtonDirectionIndex = 0;
-            D_80382CC8_5230D8 = 0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
+    } else if (gDirectionIndex == 1) {
+        if (gViewYaw > 0.9424779f) {
+            gDirectionIndex = 2;
+            gViewYaw = -0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+        } else if (gViewYaw < -0.9424779f) {
+            gDirectionIndex = 0;
+            gViewYaw = 0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
         }
-    } else if (gCButtonDirectionIndex == 2) {
-        if (D_80382CC8_5230D8 > 0.9424779f) {
-            gCButtonDirectionIndex = 3;
-            D_80382CC8_5230D8 = -0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
-        } else if (D_80382CC8_5230D8 < -0.9424779f) {
-            gCButtonDirectionIndex = 1;
-            D_80382CC8_5230D8 = 0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
+    } else if (gDirectionIndex == 2) {
+        if (gViewYaw > 0.9424779f) {
+            gDirectionIndex = 3;
+            gViewYaw = -0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+        } else if (gViewYaw < -0.9424779f) {
+            gDirectionIndex = 1;
+            gViewYaw = 0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
         }
-    } else if (gCButtonDirectionIndex == 3) {
-        if (D_80382CC8_5230D8 > 0.9424779f) {
-            gCButtonDirectionIndex = 0;
-            D_80382CC8_5230D8 = -0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
-        } else if (D_80382CC8_5230D8 < -0.9424779f) {
-            gCButtonDirectionIndex = 2;
-            D_80382CC8_5230D8 = 0.62831855f;
-            sCurrentYaw = sDirections[gCButtonDirectionIndex];
+    } else if (gDirectionIndex == 3) {
+        if (gViewYaw > 0.9424779f) {
+            gDirectionIndex = 0;
+            gViewYaw = -0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
+        } else if (gViewYaw < -0.9424779f) {
+            gDirectionIndex = 2;
+            gViewYaw = 0.62831855f;
+            gCurrentDirectionYaw = sDirections[gDirectionIndex];
         }
     }
 
-    if (gCButtonDirectionIndex == 0) {
+    if (gDirectionIndex == 0) {
         D_80382CC0_5230D0 *= -1.0f;
         D_80382D60_523170 = 0.0f;
         D_80382D64_523174 = 0.0f;
-    } else if (gCButtonDirectionIndex == 1) {
+    } else if (gDirectionIndex == 1) {
         D_80382D60_523170 = 0.0f;
         D_80382D64_523174 = 0.0f;
-    } else if (gCButtonDirectionIndex == 2) {
+    } else if (gDirectionIndex == 2) {
         D_80382D60_523170 = 0.0f;
         D_80382D64_523174 = 0.0f;
-    } else if (gCButtonDirectionIndex == 3) {
+    } else if (gDirectionIndex == 3) {
         D_80382D60_523170 = 0.0f;
         D_80382D64_523174 = 0.0f;
     }
 
-    sp94 = sCurrentYaw + D_80382CC8_5230D8;
+    sp94 = gCurrentDirectionYaw + gViewYaw;
     D_803AE478_54E888 = cosf(sp94);
     D_803AE47C_54E88C = sinf(sp94);
 
@@ -756,9 +756,9 @@ void updateCameraZoomedOut(GObj* obj) {
     eyePos.y = gCameraEyePos.y = gMovementState.pos.y + oneHundred + D_80382C48_523058 + sCameraVibrationDeltaY;
     eyePos.z = gCameraEyePos.z = gMovementState.pos.z;
 
-    sp64.x = -20.0f * cosf(D_80382C0C_52301C) * sinf(sp94);
-    sp64.y = 20.0f * sinf(D_80382C0C_52301C);
-    sp64.z = 20.0f * cosf(D_80382C0C_52301C) * cosf(sp94);
+    sp64.x = -20.0f * cosf(gViewPitch) * sinf(sp94);
+    sp64.y = 20.0f * sinf(gViewPitch);
+    sp64.z = 20.0f * cosf(gViewPitch) * cosf(sp94);
 
     Vec3fGetEulerRotation(&sp64, AXIS_X, gMovementState.rotation.x);
     Vec3fGetEulerRotation(&sp64, AXIS_Y, gMovementState.rotation.y);
@@ -871,17 +871,17 @@ void processZoomingIn(GObj* obj) {
     spD4.y = dy;
     spD4.z = dz * cosAngle - dx * sinAngle;
 
-    D_80382CC8_5230D8 = atanf(spD4.x / spD4.z);
-    D_80382C0C_52301C = atanf(spD4.y / f28);
+    gViewYaw = atanf(spD4.x / spD4.z);
+    gViewPitch = atanf(spD4.y / f28);
     if (spD4.z > 0.0f) {
-        D_80382CC8_5230D8 = 6.2831855f - D_80382CC8_5230D8;
+        gViewYaw = 6.2831855f - gViewYaw;
     } else {
-        D_80382CC8_5230D8 = 3.1415927f - D_80382CC8_5230D8;
+        gViewYaw = 3.1415927f - gViewYaw;
     }
-    if (D_80382CC8_5230D8 > 6.2831855f) {
-        D_80382CC8_5230D8 -= 6.2831855f;
-    } else if (D_80382CC8_5230D8 < 0.0f) {
-        D_80382CC8_5230D8 += 6.2831855f;
+    if (gViewYaw > 6.2831855f) {
+        gViewYaw -= 6.2831855f;
+    } else if (gViewYaw < 0.0f) {
+        gViewYaw += 6.2831855f;
     }
 
     D_803AE4F8_54E908.x = 0.0f;
@@ -987,7 +987,7 @@ void processZoomingIn(GObj* obj) {
         }
     }
 
-    gCButtonDirectionIndex = -1;
+    gDirectionIndex = -1;
     D_80382C4C_52305C = 0;
     omCreateProcess(obj, updateCameraZoomedIn, 1, 9);
     omEndProcess(NULL);
@@ -998,7 +998,7 @@ void processZoomingOut(GObj* obj) {
     f32 angle1;
     s32 x2, y2, x1, y1;
     s32 direction;
-    Vec3f spE8;
+    Vec3f viewVector;
     s32 unused[13];
     s32 y3, y4, x3, x4;
     f32 temp_f14;
@@ -1009,7 +1009,7 @@ void processZoomingOut(GObj* obj) {
     s32 unused2[2];
     s32 i = 0;
 
-    auPlaySound(6);
+    auPlaySound(SOUND_ID_6);
     D_80382CF8_523108 = 0;
     D_80382CFC_52310C = 0;
     D_80382C28_523038 = 0.0f;
@@ -1026,7 +1026,7 @@ void processZoomingOut(GObj* obj) {
     D_80382C2C_52303C = 0.0f;
 
     while (i++ < 10) {
-        if (D_803AE520_54E930 == 0 && (gContInputPressedButtons & 0x2000)) { break; }
+        if (D_803AE520_54E930 == 0 && (gContInputPressedButtons & Z_TRIG)) { break; }
 
         temp_f14 = gMovementState.pos.x - gCameraEyePos.x;
         temp_f18 = gMovementState.pos.y + 100.0f + D_80382C48_523058 - gCameraEyePos.y;
@@ -1074,23 +1074,23 @@ void processZoomingOut(GObj* obj) {
         x3 -= 3;
         setMainCameraViewport(x3, y3, x4, y4);
         ohWait(1);
-        if (D_803AE520_54E930 == 1 && (gContInputPressedButtons & 0x2000)) {
+        if (D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG)) {
             break;
         }
         updateDashEngine();
     }
 
     resetMainCameraSettings();
-    spE8.x = gCameraAtPos.x - gCameraEyePos.x;
-    spE8.y = gCameraAtPos.y - gCameraEyePos.y;
-    spE8.z = gCameraAtPos.z - gCameraEyePos.z;
-    Vec3fNormalize(&spE8);
-    Vec3fGetEulerRotation(&spE8, 4, -gMovementState.rotation.z);
-    Vec3fGetEulerRotation(&spE8, 2, -gMovementState.rotation.y);
-    Vec3fGetEulerRotation(&spE8, 1, -gMovementState.rotation.x);
-    D_80382C0C_52301C = asinf(spE8.y);
-    angle1 = acosf(spE8.z / cosf(D_80382C0C_52301C));
-    if (spE8.x > 0.0f) {
+    viewVector.x = gCameraAtPos.x - gCameraEyePos.x;
+    viewVector.y = gCameraAtPos.y - gCameraEyePos.y;
+    viewVector.z = gCameraAtPos.z - gCameraEyePos.z;
+    Vec3fNormalize(&viewVector);
+    Vec3fGetEulerRotation(&viewVector, 4, -gMovementState.rotation.z);
+    Vec3fGetEulerRotation(&viewVector, 2, -gMovementState.rotation.y);
+    Vec3fGetEulerRotation(&viewVector, 1, -gMovementState.rotation.x);
+    gViewPitch = asinf(viewVector.y);
+    angle1 = acosf(viewVector.z / cosf(gViewPitch));
+    if (viewVector.x > 0.0f) {
         angle1 = 6.2831855f - angle1;
     }
 
@@ -1106,20 +1106,20 @@ void processZoomingOut(GObj* obj) {
         direction = 2;
     }
 
-    sCurrentYaw = sDirections[direction];
-    if (sCurrentYaw < 0.0f) {
-        sCurrentYaw += 6.2831855f;
+    gCurrentDirectionYaw = sDirections[direction];
+    if (gCurrentDirectionYaw < 0.0f) {
+        gCurrentDirectionYaw += 6.2831855f;
     }
     if (direction == 2) {
         if (angle1 > 3.1415927f) {
-            D_80382CC8_5230D8 = angle1 - 6.2831855f;
+            gViewYaw = angle1 - 6.2831855f;
         } else {
-            D_80382CC8_5230D8 = angle1;
+            gViewYaw = angle1;
         }
-        sCurrentYaw = sDirections[direction];
+        gCurrentDirectionYaw = sDirections[direction];
     } else {
-        D_80382CC8_5230D8 = angle1 - sCurrentYaw;
-        sCurrentYaw = sDirections[direction];
+        gViewYaw = angle1 - gCurrentDirectionYaw;
+        gCurrentDirectionYaw = sDirections[direction];
     }
     gMainCamera->viewMtx.lookAt.eye.x = gCameraEyePos.x;
     gMainCamera->viewMtx.lookAt.eye.y = gCameraEyePos.y + sCameraVibrationDeltaY;
@@ -1129,7 +1129,7 @@ void processZoomingOut(GObj* obj) {
     gMainCamera->viewMtx.lookAt.at.z = gCameraAtPos.z;
     Icons_ProcessZoom(FALSE);
     gReticleScreenX = 0;
-    gCButtonDirectionIndex = direction;
+    gDirectionIndex = direction;
     ohResumeProcessByFunction(obj, handleCButtons);
     ohResumeProcessByFunction(obj, handleItemButtonsPress);
     ohResumeProcessByFunction(obj, updateCameraZoomedOut);
@@ -1269,23 +1269,23 @@ void updateCameraZoomedIn(GObj* camObj) {
 
     if (D_80382D08_523118 == 0) {
         if (D_80382C4C_52305C == 1) {
-            D_80382CC8_5230D8 += 0.1f;
-            if (D_80382C50_523060 < D_80382CC8_5230D8) {
+            gViewYaw += 0.1f;
+            if (D_80382C50_523060 < gViewYaw) {
                 D_80382C4C_52305C = 0;
-                D_80382CC8_5230D8 = D_80382C50_523060;
+                gViewYaw = D_80382C50_523060;
             }
         } else if (D_80382C4C_52305C == 2) {
-            D_80382CC8_5230D8 -= 0.1f;
-            if (D_80382CC8_5230D8 < D_80382C50_523060) {
+            gViewYaw -= 0.1f;
+            if (gViewYaw < D_80382C50_523060) {
                 D_80382C4C_52305C = 0;
-                D_80382CC8_5230D8 = D_80382C50_523060;
+                gViewYaw = D_80382C50_523060;
             }
         } else {
-            D_80382CC8_5230D8 = D_80382CC8_5230D8 + D_80382CC0_5230D0 * 0.025;
-            if (D_80382CC8_5230D8 > 6.2831855f) {
-                D_80382CC8_5230D8 -= 6.2831855f;
-            } else if (D_80382CC8_5230D8 < 0.0f) {
-                D_80382CC8_5230D8 += 6.2831855f;
+            gViewYaw = gViewYaw + D_80382CC0_5230D0 * 0.025;
+            if (gViewYaw > 6.2831855f) {
+                gViewYaw -= 6.2831855f;
+            } else if (gViewYaw < 0.0f) {
+                gViewYaw += 6.2831855f;
             }
         }
         sinYaw = sinf(gMovementState.rotation.y);
@@ -1295,9 +1295,9 @@ void updateCameraZoomedIn(GObj* camObj) {
         eyePos.y = gCameraEyePos.y = gMovementState.pos.y + 100.0f + sCameraVibrationDeltaY;
         eyePos.z = gCameraEyePos.z = gMovementState.pos.z;
 
-        sp3C = -20.0f * cosf(D_80382C0C_52301C) * sinf(D_80382CC8_5230D8);
-        sp40 = 20.0f * sinf(D_80382C0C_52301C);
-        temp_f2 = 20.0f * cosf(D_80382C0C_52301C) * cosf(D_80382CC8_5230D8);
+        sp3C = -20.0f * cosf(gViewPitch) * sinf(gViewYaw);
+        sp40 = 20.0f * sinf(gViewPitch);
+        temp_f2 = 20.0f * cosf(gViewPitch) * cosf(gViewYaw);
 
         gCameraAtPos.x = sp3C * cosYaw + temp_f2 * sinYaw + eyePos.x;
         gCameraAtPos.y = sp40 + eyePos.y;
@@ -1332,7 +1332,7 @@ void updateCameraZoomedIn(GObj* camObj) {
                 D_80382C3C_52304C = 0;
             }
             D_80382CFC_52310C = 2;
-            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (D_803AE774_54EB84 & 8)) && gCButtonDirectionIndex == -1) {
+            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (D_803AE774_54EB84 & 8)) && gDirectionIndex == -1) {
                 omCreateProcess(D_80382C38_523048, func_80356074_4F6484, 0, 9);
                 auPlaySound(1);
                 D_80382C3C_52304C = 1;
@@ -1347,7 +1347,7 @@ void updateCameraZoomedIn(GObj* camObj) {
             D_80382C3C_52304C = 0;
         }
         if (D_80382D7C_52318C < 0) {
-            if (D_80382C4C_52305C == 0 && (gContInputPressedButtons & 0x8000)) {
+            if (D_80382C4C_52305C == 0 && (gContInputPressedButtons & A_BUTTON)) {
                 temp_v0 = ohFindByLinkAndId(0, 1);
                 if (temp_v0 != NULL) {
                     if (D_80382D00_523110 == 2) {
@@ -1399,53 +1399,53 @@ void updateCameraZoomedIn(GObj* camObj) {
         }
         if (D_80382D0C_52311C == 0) {
             updateDashEngine();
-            if (gContInputPressedButtons & 8) {
-                auPlaySound(4);
-                if (D_80382CC8_5230D8 > 3.1415927f) {
+            if (gContInputPressedButtons & U_CBUTTONS) {
+                auPlaySound(SOUND_ID_4);
+                if (gViewYaw > 3.1415927f) {
                     D_80382C4C_52305C = 1;
                     D_80382C50_523060 = 6.2831855f;
                 } else {
                     D_80382C4C_52305C = 2;
                     D_80382C50_523060 = 0.0f;
                 }
-            } else if (gContInputPressedButtons & 1) {
-                auPlaySound(4);
+            } else if (gContInputPressedButtons & R_CBUTTONS) {
+                auPlaySound(SOUND_ID_4);
                 D_80382C4C_52305C = 1;
-                if (D_80382CC8_5230D8 > 6.282185482025146) {
-                    D_80382CC8_5230D8 -= 6.2831855f;
+                if (gViewYaw > 6.282185482025146) {
+                    gViewYaw -= 6.2831855f;
                     D_80382C50_523060 = 1.5707964f;
-                } else if (D_80382CC8_5230D8 > 4.7023889923095705) {
+                } else if (gViewYaw > 4.7023889923095705) {
                     D_80382C50_523060 = 6.2831855f;
-                } else if (D_80382CC8_5230D8 > 3.1315927410125735) {
+                } else if (gViewYaw > 3.1315927410125735) {
                     D_80382C50_523060 = 4.712389f;
-                } else if (D_80382CC8_5230D8 > 1.5607963705062866) {
+                } else if (gViewYaw > 1.5607963705062866) {
                     D_80382C50_523060 = 3.1415927f;
                 } else {
                     D_80382C50_523060 = 1.5707964f;
                 }
-            } else if (gContInputPressedButtons & 2) {
-                auPlaySound(4);
+            } else if (gContInputPressedButtons & L_CBUTTONS) {
+                auPlaySound(SOUND_ID_4);
                 D_80382C4C_52305C = 2;
-                if (D_80382CC8_5230D8 < 0.001f) {
-                    D_80382CC8_5230D8 += 6.2831855f;
+                if (gViewYaw < 0.001f) {
+                    gViewYaw += 6.2831855f;
                     D_80382C50_523060 = 4.712389f;
-                } else if (D_80382CC8_5230D8 < 1.5717964f) {
+                } else if (gViewYaw < 1.5717964f) {
                     D_80382C50_523060 = 0.0f;
-                } else if (D_80382CC8_5230D8 < 3.1425927f) {
+                } else if (gViewYaw < 3.1425927f) {
                     D_80382C50_523060 = 1.5707964f;
-                } else if (D_80382CC8_5230D8 < 4.713389f) {
+                } else if (gViewYaw < 4.713389f) {
                     D_80382C50_523060 = 3.1415927f;
                 } else {
                     D_80382C50_523060 = 4.712389f;
                 }
             }
         }
-        if (D_803AE520_54E930 != 1 || !(gContInputPressedButtons & 0x2000)) {
+        if (D_803AE520_54E930 != 1 || !(gContInputPressedButtons & Z_TRIG)) {
             return;
         }
     }
 
-    gCButtonDirectionIndex = -2;
+    gDirectionIndex = -2;
     D_80382D7C_52318C = -1;
     omCreateProcess(camObj, processZoomingOut, 0, 9);
     omEndProcess(NULL);
@@ -1499,12 +1499,12 @@ void vibrateCamera(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_80353D50_4F4160(void (*arg0)(s32)) {
-    EndLevelCb = arg0;
+void setEndLevelCallback(void (*cb)(s32)) {
+    EndLevelCb = cb;
 }
 
-void func_80353D5C_4F416C(void (*arg0)(s32)) {
-    D_80382D1C_52312C = arg0;
+void setPauseCallback(void (*cb)(s32)) {
+    PauseCb = cb;
 }
 
 // `int` is required to match
@@ -1718,10 +1718,10 @@ void func_80354860_4F4C70(GObj* arg0) {
     gIsPaused = 1 - gIsPaused;
     func_80357170_4F7580();
     Icons_UnFreeze();
-    D_80382D1C_52312C(0);
+    PauseCb(FALSE);
     func_80359064_4F9474();
     ohResumeProcessByFunction(gObjPlayer, func_80352F20_4F3330);
-    if (gCButtonDirectionIndex < 0) {
+    if (gDirectionIndex < 0) {
         ohResumeProcessByFunction(gObjPlayer, processZoomingIn);
         ohResumeProcessByFunction(gObjPlayer, processZoomingOut);
         ohResumeProcessByFunction(gObjPlayer, updateCameraZoomedIn);
@@ -1778,11 +1778,11 @@ void updatePauseMenu(GObj* arg0) {
             Pause_CurrentSelection = 0;
             func_80357120_4F7530(arg0);
             Icons_Freeze();
-            D_80382D1C_52312C(1);
+            PauseCb(TRUE);
             func_80359074_4F9484();
             ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
             func_80365E34_506244();
-            if (gCButtonDirectionIndex < 0) {
+            if (gDirectionIndex < 0) {
                 ohPauseProcessByFunction(gObjPlayer, processZoomingIn);
                 ohPauseProcessByFunction(gObjPlayer, processZoomingOut);
                 ohPauseProcessByFunction(gObjPlayer, updateCameraZoomedIn);
@@ -1957,7 +1957,7 @@ void func_803552B0_4F56C0(GObj* obj) {
         }
 
         if (D_803AE520_54E930 == 0) {
-            if (gCButtonDirectionIndex < 0) {
+            if (gDirectionIndex < 0) {
                 if (!(gContInputCurrentButtons & Z_TRIG)) {
                     break;
                 }
@@ -1978,7 +1978,7 @@ void func_803552B0_4F56C0(GObj* obj) {
 
         if (!(i & 0x70)) {
             Tutorial_ShowMessage(MESSAGE_NONE);
-        } else if (gCButtonDirectionIndex < 0) {
+        } else if (gDirectionIndex < 0) {
             Tutorial_ShowMessage(MESSAGE_PRESS_A);
         } else {
             Tutorial_ShowMessage(MESSAGE_PRESS_Z);
@@ -1991,11 +1991,11 @@ void func_803552B0_4F56C0(GObj* obj) {
     D_80382D08_523118 = 0;
     if (D_80382D04_523114 == 1) {
         if (D_803AE520_54E930 == 0 && (gContInputPressedButtons & Z_TRIG) ||
-            D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG) && gCButtonDirectionIndex >= 0)
+            D_803AE520_54E930 == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0)
         {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
-            gCButtonDirectionIndex = -2;
+            gDirectionIndex = -2;
             omCreateProcess(gObjPlayer, processZoomingIn, 0, 9);
             func_80354E7C_4F528C(&sp30, handleCButtons);
             func_80354E7C_4F528C(&sp30, handleItemButtonsPress);
@@ -2237,7 +2237,7 @@ void func_80355EF0_4F6300(GObj* arg0) {
 void func_80355F18_4F6328(GObj* arg0) {
     if (!gIsPaused && D_80382D0C_52311C != TRUE) {
         if (ABS(D_80382CC0_5230D0) > 0.0005f) {
-            if (gCButtonDirectionIndex > 0) {
+            if (gDirectionIndex > 0) {
                 gReticleScreenX += (s32) (5.0f * D_80382CC0_5230D0);
             } else {
                 gReticleScreenX -= (s32) (5.0f * D_80382CC0_5230D0);
@@ -2277,7 +2277,7 @@ void func_80356118_4F6528(GObjCmdData cmdData) {
 void updateReticlePos(GObj* arg0) {
     SObj* sobj = arg0->data.sobj;
 
-    if (gCButtonDirectionIndex >= 0) {
+    if (gDirectionIndex >= 0) {
         gCamTargetX = (f32)gReticleScreenX / 160.0f;
         gCamTargetY = -(f32)gReticleScreenY / 120.0f;
         gCamTargetZ = 0.99f;
@@ -2293,7 +2293,7 @@ void updateReticlePos(GObj* arg0) {
         spSetAttribute(&D_803AE458_54E868[3]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[4]->sprite, SP_HIDDEN);
         spSetAttribute(&D_803AE458_54E868[5]->sprite, SP_HIDDEN);
-    } else if (gCButtonDirectionIndex == -1) {
+    } else if (gDirectionIndex == -1) {
         spMove(&sobj->sprite, 152, 112);
         spSetAttribute(&sMainCameraReticles[0]->sprite, SP_HIDDEN);
         spClearAttribute(&sMainCameraReticles[1]->sprite, SP_HIDDEN);
@@ -2319,7 +2319,7 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
     DObj* sp44;
     SObj* sp40;
 
-    obj = omAddGObj(7, &func_80355EF0_4F6300, 9, 0x80000000);
+    obj = omAddGObj(7, func_80355EF0_4F6300, 9, 0x80000000);
     omGObjAddDObj(obj, NULL);
     sp44 = obj->data.dobj;
 

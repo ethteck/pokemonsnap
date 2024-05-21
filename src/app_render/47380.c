@@ -586,7 +586,7 @@ void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
         arg2->unk_3A4[i] = NULL;
     }
 
-    arg2->unk_3A0 = 0;
+    arg2->unk_3A0 = NULL;
     func_803643E0_5047F0(arg0);
     func_8009C4F4(arg2, arg1, arg0);
     func_8009C25C(arg2, 3);

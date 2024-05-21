@@ -1,6 +1,7 @@
 #ifndef APP_LEVEL_H
 #define APP_LEVEL_H
 #include "common.h"
+#include "world/world.h"
 
 enum ItemIds {
     ITEM_ID_POKEFLUTE   = 161,
@@ -51,6 +52,8 @@ extern f32 gCamTargetY;
 extern f32 gCamTargetZ;
 extern GObj* gObjPlayer;
 extern s32 gDirectionIndex;
+extern OMCamera* gMainCamera;
+extern MovementState gMovementState;
 
 extern s32 LastItemId;
 
@@ -68,6 +71,8 @@ void Items_Pause(void);
 void Items_UnPause(void);
 
 u32 getProgressFlags(void);
+void mainCameraSetScissor(Gfx** gfxPtr);
+
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
 void Icons_ProcessButtonPress(s32 eventID);

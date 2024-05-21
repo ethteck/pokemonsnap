@@ -156,7 +156,7 @@ void func_80356FBC_4F73CC(void);
 void getLevelProgress(s32*, f32*);
 void removeMainCamera(void);
 OMCamera* getMainCamera(void);
-void func_80359074_4F9484(void);
+void PokemonDetector_Disable(void);
 void func_8035EDC8_4FF1D8(GObj*);
 void func_8035FEEC_5002FC(GObj*, s32);
 

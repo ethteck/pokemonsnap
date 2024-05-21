@@ -88,7 +88,7 @@ f32 D_80382C54_523064_unused = 0.0f;
 f32 CameraVibrationDeltaY = 0.0f;
 f32 CameraVibrationAmplitude = 20.0f;
 f32 CameraVibrationSpeed = 3.0f;
-s32 D_80382C64_523074 = 0;
+s32 IsCartStopped = 0;
 f32 DashEngineSpeedMult = 1.0f;
 GObj* ObjectPauseMenu = NULL;
 SObj* D_80382C70_523080 = NULL;
@@ -144,7 +144,7 @@ u8 PauseButtonPressTimeout = 0;
 u8 D_80382D44_523154 = FALSE;
 s32 LevelBGMSongID = -1;
 
-extern s32 D_80382DC0_5231D0;
+extern s32 BumpDetector_ProximityLevel;
 extern Sprite D_80388E00_529210;
 
 // bss
@@ -176,13 +176,13 @@ extern s32 MainCameraBorderXmin;
 extern s32 MainCameraBorderYmin;
 extern s32 MainCameraBorderXmax;
 extern s32 MainCameraBorderYmax;
-extern s32 D_803AE768_54EB78;
-extern GObj* gPokemonInFocus; // TODO check if it's pokemon
-extern s32 D_803AE770_54EB80;
-extern u16 D_803AE774_54EB84;
 
-extern s32 D_803AEF30_54F340;
-extern u16 D_803AEF38_54F348;
+extern s32 gHasPokemonInFocus;
+extern GObj* gPokemonInFocus;
+extern s32 gPokemonIdInFocus;
+extern u16 gPokemonFlagsInFocus;
+extern s32 PokemonDetector_TakenPhotoIndex;
+extern u16 gCurrentPhotoContext;
 
 void resetMainCameraSettings(void);
 void handleItemButtonsPress(GObj*);
@@ -195,7 +195,7 @@ void updateCameraZoomedIn(GObj*);
 void updatePauseMenu(GObj*);
 void func_80357120_4F7530(GObj*);
 void screenCoorsToWorld(f32*, f32*, f32*);
-void func_803588D4_4F8CE4(void);
+void BumpDetector_Init(void);
 void func_8035E37C_4FE78C(void);
 void func_80365B24_505F34(void);
 void showMessage(char*, s32, s32, u8, u8, u8, u8, s32, u8);
@@ -205,16 +205,16 @@ void func_800A7918(s32, f32);
 void func_800A7F40(f32, f32, s32, f32);
 void setMainCameraViewport(s32, s32, s32, s32);
 void func_80365E34_506244(void);
-void func_80358994_4F8DA4(s32);
+void BumpDetector_Delete(s32);
 void freezePokemons(GObj*);
 void func_80357170_4F7580(void);
-void func_80359064_4F9474(void);
+void PokemonDetector_Enable(void);
 void updateReticleScreenPos(GObj* arg0);
 s32 func_8009BBF4(void);
 void func_8035E4D0_4FE8E0(void);
 void func_8035E764_4FEB74(void);
 void func_8035E754_4FEB64(void);
-void func_80359034_4F9444(void);
+void PokemonDetector_ProcessImage(void);
 void func_800A1E6C(Vec3f* arg0);
 void func_80356074_4F6484(GObj* arg0);
 void processOutOfFilm(GObj*);
@@ -454,7 +454,7 @@ void handleAnalogStick(GObj* obj) {
         }
     }
 
-    if (!D_80382C64_523074) {
+    if (!IsCartStopped) {
         gMovementState.cpTime += D_803AE47C_54E88C * 0.005f;
         if (gMovementState.cpTime > 1.0f) {
             gMovementState.cpTime = 1.0f;
@@ -731,7 +731,7 @@ void updateCameraZoomedOut(GObj* obj) {
     D_803AE478_54E888 = cosf(sp94);
     D_803AE47C_54E88C = sinf(sp94);
 
-    if (!D_80382C64_523074) {
+    if (!IsCartStopped) {
         TotalSpeedMult = DashEngineSpeedMult * 0.0005f * (1.0f + D_803AE478_54E888 * 0.25f);
     }
 
@@ -1321,10 +1321,10 @@ void updateCameraZoomedIn(GObj* obj) {
         gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
     }
     if (ZoomSwitchMode == 1 || (gContInputCurrentButtons & Z_TRIG)) {
-        if (D_803AE768_54EB78 == 1 && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
-            D_803AE768_54EB78 = 0;
+        if (gHasPokemonInFocus == TRUE && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
+            gHasPokemonInFocus = FALSE;
         }
-        if (D_803AE768_54EB78 == 1 && (D_803AE774_54EB84 & 4)) {
+        if (gHasPokemonInFocus == TRUE && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
             if (D_80382C40_523050 == gPokemonInFocus) {
                 D_80382CF8_523108++;
             } else {
@@ -1332,13 +1332,13 @@ void updateCameraZoomedIn(GObj* obj) {
                 D_80382C3C_52304C = 0;
             }
             D_80382CFC_52310C = 2;
-            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (D_803AE774_54EB84 & 8)) && gDirectionIndex == -1) {
+            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (gPokemonFlagsInFocus & POKEMON_FLAG_8)) && gDirectionIndex == -1) {
                 omCreateProcess(D_80382C38_523048, func_80356074_4F6484, 0, 9);
                 auPlaySound(SOUND_ID_1);
                 D_80382C3C_52304C = 1;
                 D_80382C40_523050 = gPokemonInFocus;
-                D_803AE470_54E880 = D_803AE770_54EB80;
-                D_803AE474_54E884 = D_803AE774_54EB84 & 8;
+                D_803AE470_54E880 = gPokemonIdInFocus;
+                D_803AE474_54E884 = gPokemonFlagsInFocus & POKEMON_FLAG_8;
             }
         } else if (D_80382CFC_52310C != 0) {
             D_80382CFC_52310C--;
@@ -1365,14 +1365,14 @@ void updateCameraZoomedIn(GObj* obj) {
                         auPlaySound(SOUND_ID_TAKE_PHOTO_2);
                     }
                     cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_18, obj);
-                    if (D_803AE768_54EB78 != 0 && gPokemonInFocus != NULL) {
+                    if (gHasPokemonInFocus && gPokemonInFocus != NULL) {
                         cmdSendCommand(gPokemonInFocus, POKEMON_CMD_24, obj);
                     }
-                    D_803AEF30_54F340 = D_803AEF38_54F348;
-                    if (D_803AE768_54EB78 != 0 && (D_803AE774_54EB84 & 4)) {
+                    PokemonDetector_TakenPhotoIndex = gCurrentPhotoContext;
+                    if (gHasPokemonInFocus && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
                         makePhoto(gPokemonInFocus);
-                        sp38 = D_803AE770_54EB80;
-                        if (D_803AE774_54EB84 & 8) {
+                        sp38 = gPokemonIdInFocus;
+                        if (gPokemonFlagsInFocus & POKEMON_FLAG_8) {
                             sp38 = 500;
                         }
                     } else {
@@ -1383,8 +1383,8 @@ void updateCameraZoomedIn(GObj* obj) {
                     Camera_EndProcessByFunction(obj, func_80352F20_4F3330);
                     D_803AE408_54E818 = sp38;
                     omCreateProcess(obj, func_80352F20_4F3330, 0, 9);
-                    if (D_803AE768_54EB78 != 0 && gPokemonInFocus != NULL) {
-                        GET_POKEMON(gPokemonInFocus)->flags |= 0x80;
+                    if (gHasPokemonInFocus && gPokemonInFocus != NULL) {
+                        GET_POKEMON(gPokemonInFocus)->flags |= POKEMON_FLAG_80;
                     }
                     if (func_8035E52C_4FE93C() == 0) {
                         omCreateProcess(obj, processOutOfFilm, 0, 9);
@@ -1664,7 +1664,7 @@ void Pause_HideUI(GObj* obj) {
 
 void func_8035453C_4F494C(void) {
     func_80365E34_506244();
-    func_80358994_4F8DA4(1);
+    BumpDetector_Delete(1);
     stopLevelProcesses();
     freezePokemons(NULL);
     func_80350458_4F0868(10, 1);
@@ -1719,7 +1719,7 @@ void func_80354860_4F4C70(GObj* arg0) {
     func_80357170_4F7580();
     Icons_UnFreeze();
     PauseCb(FALSE);
-    func_80359064_4F9474();
+    PokemonDetector_Enable();
     ohResumeProcessByFunction(gObjPlayer, func_80352F20_4F3330);
     if (gDirectionIndex < 0) {
         ohResumeProcessByFunction(gObjPlayer, processZoomingIn);
@@ -1780,7 +1780,7 @@ void updatePauseMenu(GObj* arg0) {
             func_80357120_4F7530(arg0);
             Icons_Freeze();
             PauseCb(TRUE);
-            func_80359074_4F9484();
+            PokemonDetector_Disable();
             ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
             func_80365E34_506244();
             if (gDirectionIndex < 0) {
@@ -1953,7 +1953,7 @@ void func_803552B0_4F56C0(GObj* obj) {
     func_80354D38_4F5148(&sp30);
 
     for (i = 120;; i--) {
-        if (D_803AE768_54EB78 == 0) {
+        if (!gHasPokemonInFocus) {
             break;
         }
 
@@ -1973,7 +1973,7 @@ void func_803552B0_4F56C0(GObj* obj) {
             }
         }
 
-        if (D_803AE770_54EB80 <= 0 || D_803AE770_54EB80 > 151 || (GET_POKEMON(gPokemonInFocus)->flags & 0x80)) {
+        if (gPokemonIdInFocus <= 0 || gPokemonIdInFocus > 151 || (GET_POKEMON(gPokemonInFocus)->flags & 0x80)) {
             break;
         }
 
@@ -2016,11 +2016,11 @@ void updateTutorialMain(GObj* arg0) {
         IsInputDisabled = FALSE;
         omCreateProcess(arg0, func_80355228_4F5638, 0, 9);
         omEndProcess(NULL);
-    } else if (D_803AE768_54EB78 == 1 &&
+    } else if (gHasPokemonInFocus == TRUE &&
                D_80382D08_523118 == 0 &&
-               D_803AE770_54EB80 > 0 &&
-               D_803AE770_54EB80 <= 151 &&
-               !(GET_POKEMON(gPokemonInFocus)->flags & 0x80))
+               gPokemonIdInFocus > 0 &&
+               gPokemonIdInFocus <= POKEDEX_MAX &&
+               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80))
     {
         D_80382D08_523118 = 1;
         omCreateProcess(arg0, func_803552B0_4F56C0, 0, 9);
@@ -2052,7 +2052,7 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
         D_80382C38_523048 = NULL;
     }
     func_80365E34_506244();
-    func_80358994_4F8DA4(arg1);
+    BumpDetector_Delete(arg1);
     scRemovePostProcessFunc();
     stopLevelProcesses();
     ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
@@ -2150,18 +2150,18 @@ void processOutOfFilm(GObj* arg0) {
 void processOutOfFilm(GObj* arg0);
 #endif
 
-void func_80355B24_4F5F34(GObj* arg0) {
+void processBump(GObj* arg0) {
     s32 i;
 
     auPlaySound(SOUND_ID_20);
-    D_80382C64_523074 = TRUE;
+    IsCartStopped = TRUE;
     for (i = 0; i < 180; i++) {
-        if (D_80382DC0_5231D0 == -1) {
+        if (BumpDetector_ProximityLevel == -1) {
             i = 0;
         }
         ohWait(1);
     }
-    D_80382C64_523074 = FALSE;
+    IsCartStopped = FALSE;
     cmdSendCommand(gObjPlayer, PLAYER_CMD_5, arg0);
     omEndProcess(NULL);
 }
@@ -2196,9 +2196,9 @@ void handlePlayerCmd(GObjCmdData cmdData) {
         case PLAYER_CMD_SHAKE_CAMERA:
             omCreateProcess(omCurrentObject, shakeCamera, 0, 9);
             break;
-        case PLAYER_CMD_4:
+        case PLAYER_CMD_BUMP:
             if (D_80382D9C_5231AC == 0) {
-                omCreateProcess(omCurrentObject, func_80355B24_4F5F34, 0, 9);
+                omCreateProcess(omCurrentObject, processBump, 0, 9);
                 D_80382D9C_5231AC = 1;
             }
             break;
@@ -2456,7 +2456,7 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
     Items_SetCustomFunctions(fnUpdateItems, fnUpdateItemsKind, fnCollide);
     Icons_Init();
     func_8035E37C_4FE78C();
-    func_803588D4_4F8CE4();
+    BumpDetector_Init();
 
     gMainCamera->perspMtx.persp.fovy = 55.0f;
     D_803AE478_54E888 = 1.0f;
@@ -2929,7 +2929,7 @@ void mainCameraRender(GObj* obj) {
     }
     mainCameraSetScissor(&gMainGfxPos[0]);
     ren_func_800192DC(obj);
-    func_80359034_4F9444();
+    PokemonDetector_ProcessImage();
 }
 
 GObj* createMainCameras(s32 bgColor) {

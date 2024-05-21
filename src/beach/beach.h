@@ -12,7 +12,6 @@ typedef struct UnkBlueShark {
 } UnkBlueShark; // size: 0x4
 
 extern s32* D_800968BC;
-extern GObj* gObjPlayer;
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
 extern UNK_TYPE D_8013B030;

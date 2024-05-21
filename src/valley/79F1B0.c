@@ -34,7 +34,7 @@ void func_802C5C8C_79F21C(void) {
 void func_802C5D18_79F2A8(s32 arg0) {
     D_802D297C_7ABF0C = arg0;
     func_800A19D8(arg0);
-    func_80359074_4F9484();
+    PokemonDetector_Disable();
     func_8036650C_50691C();
     auStopBGM();
     auStopAllSounds();

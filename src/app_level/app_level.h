@@ -1,6 +1,7 @@
 #ifndef APP_LEVEL_H
 #define APP_LEVEL_H
 #include "common.h"
+#include "world/world.h"
 
 enum ItemIds {
     ITEM_ID_POKEFLUTE   = 161,
@@ -33,7 +34,7 @@ enum PokemonCommands {
 
 enum PlayerCommands {
     PLAYER_CMD_SHAKE_CAMERA =  3,
-    PLAYER_CMD_4            =  4,
+    PLAYER_CMD_BUMP         =  4,
     PLAYER_CMD_5            =  5,
     PLAYER_CMD_FINISH       =  6,
     PLAYER_CMD_7            =  7,
@@ -49,6 +50,10 @@ enum PlayerCommands {
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
 extern f32 gCamTargetZ;
+extern GObj* gObjPlayer;
+extern s32 gDirectionIndex;
+extern OMCamera* gMainCamera;
+extern MovementState gMovementState;
 
 extern s32 LastItemId;
 
@@ -66,6 +71,8 @@ void Items_Pause(void);
 void Items_UnPause(void);
 
 u32 getProgressFlags(void);
+void mainCameraSetScissor(Gfx** gfxPtr);
+
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
 void Icons_ProcessButtonPress(s32 eventID);
@@ -75,5 +82,7 @@ void Icons_UnFreeze(void);
 void Icons_Hide(void);
 void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
+
+s32 func_8035FF1C_50032C(GObj*);
 
 #endif

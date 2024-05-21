@@ -248,9 +248,9 @@ extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
 
-extern s32 D_803AE770_54EB80; // pokemon ID
-extern UnkThing D_803AE788_54EB98[];
-extern s32 D_803AEF30_54F340; // photo idx
+extern s32 gPokemonIdInFocus;
+extern UnkThing PokemonDetector_Photo[2];
+extern s32 PokemonDetector_TakenPhotoIndex;
 
 char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
@@ -468,7 +468,7 @@ void func_8009C25C(UnkThing* arg0, u8 objIndex) {
 
     while (obj != NULL && i < ARRAY_COUNT(arg0->main.unk_20)) {
         if (func_8009BF48(&arg0->main.unk_20[i], obj) != 0) {
-            arg0->unk_3A4[i] = obj;
+            arg0->pokemonObjects[i] = obj;
             i++;
         }
         obj = obj->next;
@@ -583,10 +583,10 @@ void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
 
     for (i = 0; i < ARRAY_COUNT(arg2->main.unk_20); i++) {
         arg2->main.unk_20[i].pokemonID = -1;
-        arg2->unk_3A4[i] = NULL;
+        arg2->pokemonObjects[i] = NULL;
     }
 
-    arg2->unk_3A0 = 0;
+    arg2->pokemonInFocus = NULL;
     func_803643E0_5047F0(arg0);
     func_8009C4F4(arg2, arg1, arg0);
     func_8009C25C(arg2, 3);
@@ -611,19 +611,19 @@ s32 makePhoto(GObj* pokemonObj) {
         D_800AE27C++;
 
         for (i = 0; i < D_800AE280 && i < ARRAY_COUNT(D_800BDF20); i++) {
-            if (D_800BDF20[i] == D_803AE770_54EB80) {
+            if (D_800BDF20[i] == gPokemonIdInFocus) {
                 break;
             }
         }
 
         if (i >= D_800AE280 && i < 3) {
-            D_800BDF20[D_800AE280] = D_803AE770_54EB80;
+            D_800BDF20[D_800AE280] = gPokemonIdInFocus;
             D_800AE280++;
         }
     }
 
     temp_s4 = &D_800B0598[gPhotoCount];
-    sp38 = &D_803AE788_54EB98[D_803AEF30_54F340];
+    sp38 = &PokemonDetector_Photo[PokemonDetector_TakenPhotoIndex];
     memcpy(temp_s4, sp38, 0x20);
 
     for (i = 0; i < ARRAY_COUNT(temp_s4->unk_140); i++) {
@@ -639,14 +639,14 @@ s32 makePhoto(GObj* pokemonObj) {
             memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
         }
     } else {
-        sp34 = D_803AE770_54EB80;
+        sp34 = gPokemonIdInFocus;
         if (sp34 == 0x3EC || sp34 == 0x3FA || sp34 == 0x3FE || (cond = TRUE, sp34 == 0x40B)) {
             for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
                 memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
             }
         } else {
-            for (i = 0; i < ARRAY_COUNT(sp38->unk_3A4); i++) {
-                if (pokemonObj == sp38->unk_3A4[i]) {
+            for (i = 0; i < ARRAY_COUNT(sp38->pokemonObjects); i++) {
+                if (pokemonObj == sp38->pokemonObjects[i]) {
                     cond = FALSE;
                     break;
                 }
@@ -659,7 +659,7 @@ s32 makePhoto(GObj* pokemonObj) {
             } else {
                 idx = 1;
                 for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
-                    if (pokemonObj == sp38->unk_3A4[i]) {
+                    if (pokemonObj == sp38->pokemonObjects[i]) {
                         memcpy(&temp_s4->unk_20[0], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
                     } else {
                         memcpy(&temp_s4->unk_20[idx], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[1]));

@@ -125,13 +125,16 @@ enum CameraDlLinkMask {
 
 enum DlLinks {
     DL_LINK_1 = 1,
-    DL_LINK_3 = 3
+    DL_LINK_3 = 3,
+    DL_LINK_5 = 5
 };
 
 enum ObjIDs {
+    OBJID_0             = 0,
     OBJID_MAIN_CAMERA   = 1,
     OBJID_UI_CAMERA     = 3,
     OBJID_PLAYER        = 7,
+    OBJID_BUMP_DETECTOR = 8,
     OBJID_UI_RETICLE    = 25,
     OBJID_UI_PAUSE      = 26
 };
@@ -151,11 +154,17 @@ enum PokemonIds {
     PokemonID_1004       = 1004,
     PokemonID_1007       = 1007,
     PokemonID_1010       = 1010,
-    PokemonID_1022       = 1022
+    PokemonID_1018       = 1018,
+    PokemonID_1022       = 1022,
+    PokemonID_1035       = 1035
 };
 
 enum PokemonFlags {
-    POKEMON_FLAG_2 = 2
+    POKEMON_FLAG_2  = 0x02,
+    POKEMON_FLAG_4  = 0x04,
+    POKEMON_FLAG_8  = 0x08,
+    POKEMON_FLAG_20 = 0x20,
+    POKEMON_FLAG_80  = 0x80
 };
 
 #endif

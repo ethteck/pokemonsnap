@@ -34,7 +34,7 @@ enum PokemonCommands {
 
 enum PlayerCommands {
     PLAYER_CMD_SHAKE_CAMERA =  3,
-    PLAYER_CMD_BUMP            =  4,
+    PLAYER_CMD_BUMP         =  4,
     PLAYER_CMD_5            =  5,
     PLAYER_CMD_FINISH       =  6,
     PLAYER_CMD_7            =  7,

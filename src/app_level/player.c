@@ -1321,10 +1321,10 @@ void updateCameraZoomedIn(GObj* obj) {
         gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
     }
     if (ZoomSwitchMode == 1 || (gContInputCurrentButtons & Z_TRIG)) {
-        if (gHasPokemonInFocus == 1 && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
-            gHasPokemonInFocus = 0;
+        if (gHasPokemonInFocus == TRUE && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
+            gHasPokemonInFocus = FALSE;
         }
-        if (gHasPokemonInFocus == 1 && (gPokemonFlagsInFocus & 4)) {
+        if (gHasPokemonInFocus == TRUE && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
             if (D_80382C40_523050 == gPokemonInFocus) {
                 D_80382CF8_523108++;
             } else {
@@ -1332,13 +1332,13 @@ void updateCameraZoomedIn(GObj* obj) {
                 D_80382C3C_52304C = 0;
             }
             D_80382CFC_52310C = 2;
-            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (gPokemonFlagsInFocus & 8)) && gDirectionIndex == -1) {
+            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (gPokemonFlagsInFocus & POKEMON_FLAG_8)) && gDirectionIndex == -1) {
                 omCreateProcess(D_80382C38_523048, func_80356074_4F6484, 0, 9);
                 auPlaySound(SOUND_ID_1);
                 D_80382C3C_52304C = 1;
                 D_80382C40_523050 = gPokemonInFocus;
                 D_803AE470_54E880 = gPokemonIdInFocus;
-                D_803AE474_54E884 = gPokemonFlagsInFocus & 8;
+                D_803AE474_54E884 = gPokemonFlagsInFocus & POKEMON_FLAG_8;
             }
         } else if (D_80382CFC_52310C != 0) {
             D_80382CFC_52310C--;
@@ -1365,11 +1365,11 @@ void updateCameraZoomedIn(GObj* obj) {
                         auPlaySound(SOUND_ID_TAKE_PHOTO_2);
                     }
                     cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_18, obj);
-                    if (gHasPokemonInFocus != 0 && gPokemonInFocus != NULL) {
+                    if (gHasPokemonInFocus && gPokemonInFocus != NULL) {
                         cmdSendCommand(gPokemonInFocus, POKEMON_CMD_24, obj);
                     }
                     PokemonDetector_TakenPhotoIndex = gCurrentPhotoContext;
-                    if (gHasPokemonInFocus != 0 && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
+                    if (gHasPokemonInFocus && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
                         makePhoto(gPokemonInFocus);
                         sp38 = gPokemonIdInFocus;
                         if (gPokemonFlagsInFocus & POKEMON_FLAG_8) {
@@ -1383,7 +1383,7 @@ void updateCameraZoomedIn(GObj* obj) {
                     Camera_EndProcessByFunction(obj, func_80352F20_4F3330);
                     D_803AE408_54E818 = sp38;
                     omCreateProcess(obj, func_80352F20_4F3330, 0, 9);
-                    if (gHasPokemonInFocus != 0 && gPokemonInFocus != NULL) {
+                    if (gHasPokemonInFocus && gPokemonInFocus != NULL) {
                         GET_POKEMON(gPokemonInFocus)->flags |= POKEMON_FLAG_80;
                     }
                     if (func_8035E52C_4FE93C() == 0) {
@@ -1953,7 +1953,7 @@ void func_803552B0_4F56C0(GObj* obj) {
     func_80354D38_4F5148(&sp30);
 
     for (i = 120;; i--) {
-        if (gHasPokemonInFocus == 0) {
+        if (!gHasPokemonInFocus) {
             break;
         }
 
@@ -2016,11 +2016,11 @@ void updateTutorialMain(GObj* arg0) {
         IsInputDisabled = FALSE;
         omCreateProcess(arg0, func_80355228_4F5638, 0, 9);
         omEndProcess(NULL);
-    } else if (gHasPokemonInFocus == 1 &&
+    } else if (gHasPokemonInFocus == TRUE &&
                D_80382D08_523118 == 0 &&
                gPokemonIdInFocus > 0 &&
-               gPokemonIdInFocus <= 151 &&
-               !(GET_POKEMON(gPokemonInFocus)->flags & 0x80))
+               gPokemonIdInFocus <= POKEDEX_MAX &&
+               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80))
     {
         D_80382D08_523118 = 1;
         omCreateProcess(arg0, func_803552B0_4F56C0, 0, 9);

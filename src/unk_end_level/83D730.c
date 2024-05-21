@@ -12,23 +12,18 @@ struct UnkClaretTilapia {
 
 typedef struct UnkCreamGrouper UnkCreamGrouper;
 struct UnkCreamGrouper {
-    u8 pad_00[4];
-    s32 unk4;
-    s32 unk8;
-    u8 pad_0C[4];
-    UnkCreamGrouper* unk_10;
-    UnkCreamGrouper* unk_14;
+    /* 0x00 */ UNK_PTR unk_00;
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ s32 unk_08;
+    /* 0x0C */ u8 pad_0C[4];
+    /* 0x10 */ UnkCreamGrouper* unk_10;
+    /* 0x14 */ UnkCreamGrouper* unk_14;
 };
 
 extern UnkClaretTilapia* D_803A6900_87A0B0;
 extern s32 D_803A6904_87A0B4;
 extern UnkClaretTilapia* D_803A6908_87A0B8;
-
 extern UnkCreamGrouper D_803A6910_87A0C0;
-
-void func_8036A0BC_83D86C(UnkClaretTilapia*);
-void func_80369FD4_83D784(void*, s32);
-UnkCreamGrouper* func_8036A07C_83D82C(void*, u32);
 
 void func_80369F80_83D730(UnkCreamGrouper* arg0, UnkCreamGrouper* arg1, UnkCreamGrouper* arg2) {
     arg0->unk_10 = arg1;
@@ -51,13 +46,14 @@ void func_80369FC0_83D770(UnkCreamGrouper* arg0) {
     temp_v1->unk_14 = temp_v0;
 }
 
+void func_80369FD4_83D784(void*, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_80369FD4_83D784.s")
 
 UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
     UnkCreamGrouper* var_v1;
 
     for (var_v1 = D_803A6910_87A0C0.unk_10; var_v1 != &D_803A6910_87A0C0; var_v1 = var_v1->unk_10) {
-        if (var_v1->unk4 >= arg0) {
+        if (var_v1->unk_04 >= arg0) {
             return var_v1;
         }
     }
@@ -65,8 +61,10 @@ UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
     return NULL;
 }
 
+UnkCreamGrouper* func_8036A07C_83D82C(UnkCreamGrouper*, u32);
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A07C_83D82C.s")
 
+void func_8036A0BC_83D86C(UnkClaretTilapia*);
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A0BC_83D86C.s")
 
 void* func_8036A194_83D944(u32 arg0) {
@@ -81,11 +79,11 @@ void* func_8036A194_83D944(u32 arg0) {
     if (temp_v0 == NULL) {
         return NULL;
     }
-    if ((temp_v0->unk4 - temp_a1) > 0x18) {
+    if ((temp_v0->unk_04 - temp_a1) > 0x18) {
         func_80369F94_83D744(func_8036A07C_83D82C(temp_v0, temp_a1));
     }
     func_80369FC0_83D770(temp_v0);
-    temp_v0->unk8 = 1;
+    temp_v0->unk_08 = 1;
 
     return &temp_v0->unk_10;
 }

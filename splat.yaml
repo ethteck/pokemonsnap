@@ -971,7 +971,7 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x83D730, c]
-    - [0x83DC20, c]
+    - [0x83DC20, pad]
     - [0x83DC30, c]
     - [0x840A50, c]
     - [0x842390, c]

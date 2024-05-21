@@ -1,3 +1,4 @@
+#include "macros.h"
 #include "common_structs.h"
 #include "app_render.h"
 
@@ -31,8 +32,10 @@ typedef struct UnkPinkLeopard {
 extern u16 D_800AEC68;
 extern UnkRustRat* D_800BE1A0;
 extern UnkRustRat* D_800BE1A8[16];
+extern UNK_TYPE* D_800BE1EC;
 extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
+extern s32 D_800BE204[9];
 extern s32 D_800BE228[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
@@ -672,7 +675,11 @@ void func_800A4858(GObj* camObj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A4858.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5DD0.s")
+void func_800A5DD0(s32 arg0, s32 arg1) {
+    if (arg0 > 0 && arg0 < ARRAY_COUNT(D_800BE204)) {
+        D_800BE204[arg0] = arg1;
+    }
+}
 
 void func_800A5DF4(s32 arg0, s32 arg1) {
     D_800AEC60 = arg0;
@@ -689,9 +696,19 @@ void func_800A5DF4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6C48.s")
 
+UNK_TYPE* func_800A6ED8(UNK_TYPE*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6ED8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6F74.s")
+void func_800A6F74(void) {
+    UNK_TYPE* it = D_800BE1EC;
+
+    while (it != NULL) {
+        UNK_TYPE* temp_s1 = *it;
+
+        func_800A6ED8(it);
+        it = temp_s1;
+    }
+}
 
 void func_800A6FBC(s32 arg0, s32 arg1) {
     D_800BE2AC = arg0;

@@ -2,13 +2,13 @@
 #include "unk_end_level.h"
 
 struct UnkSnowHerring {
-    /*   0x0 */ s32 unk_0;
-    /*   0x4 */ s32 unk_4;
-    /*   0x8 */ s32 unk_8;
-    /*   0xC */ s32 unk_C;
-    /*  0x10 */ s32 unk_10;
-    /*  0x14 */ s32 unk_14;
-    /*  0x18 */ u32 unk_18;
+    /*  0x00 */ s32 unk_0;
+    /*  0x04 */ s32 unk_4;
+    /*  0x08 */ s32 unk_8;
+    /*  0x0C */ s32 unk_C;
+    /*  0x10 */ s32 unk_10; // x limit
+    /*  0x14 */ s32 unk_14; // y limit
+    /*  0x18 */ u32 unk_18; // flags
     /*  0x1C */ u32 unk_1C;
     /*  0x20 */ u32 unk_20;
     /*  0x24 */ u32 unk_24;
@@ -41,8 +41,8 @@ struct UnkSnowHerring {
     /* 0x114 */ s32 unk_114;
     /* 0x118 */ s32 unk_118;
     /* 0x11C */ u8 pad_11C[4];
-    /* 0x120 */ s32 unk_120;
-    /* 0x124 */ s32 unk_124;
+    /* 0x120 */ s32 unk_120; // x
+    /* 0x124 */ s32 unk_124; // y
     /* 0x128 */ u8 pad_128[8];
 }; // size == 0x130
 
@@ -191,7 +191,21 @@ u32 func_8036B988_83F138(UnkSnowHerring* arg0, s32 arg1) {
     return out;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036B9EC_83F19C.s")
+void func_8036B9EC_83F19C(UnkSnowHerring* arg0, s32 x, s32 y) {
+    if (x < 0) {
+        x = 0;
+    } else if (x >= arg0->unk_10) {
+        x = arg0->unk_10 - 1;
+    }
+
+    if (y >= arg0->unk_14) {
+        y = arg0->unk_14 - 1;
+    }
+
+    arg0->unk_120 = x;
+    arg0->unk_124 = y;
+    arg0->unk_118 = func_8036D774_840F24();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036BA50_83F200.s")
 
@@ -429,4 +443,6 @@ void func_8036D248_8409F8(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s3
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83DC30/func_8036D28C_840A3C.s")
+s32 func_8036D28C_840A3C(UnkSnowHerring* arg0) {
+    return arg0->unk_10;
+}

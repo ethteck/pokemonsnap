@@ -247,8 +247,8 @@ typedef struct PhotoData {
 
 typedef struct UnkThing {
     /* 0x000 */ PhotoData main;
-    /* 0x3A0 */ GObj* unk_3A0;
-    /* 0x3A4 */ GObj* unk_3A4[12];
+    /* 0x3A0 */ GObj* pokemonInFocus;
+    /* 0x3A4 */ GObj* pokemonObjects[12];
 } UnkThing;
 
 typedef struct UnkCanaryScallop {

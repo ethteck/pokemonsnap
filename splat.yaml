@@ -579,7 +579,8 @@ segments:
     subsegments:
     - [0x4F0610, c, player]
     - [0x4F8B20, pad, padding_4F8B20]
-    - [0x4F8B30, c]
+    - [0x4F8B30, c, bump_detect]
+    - [0x4F8DE0, c, pokemon_detect]
     - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
@@ -593,13 +594,14 @@ segments:
     - [0x506DD0, c]
     - [0x506FB0, data]
     - [0x523000, .data, player]
-    - [0x5231D0, data]
+    - [0x5231D0, .data, bump_detect]
+    - [0x5231F0, .data, pokemon_detect]
     - [0x5232C0, .data, items]
     - [0x523300, data] # has sprite data which should be in icons.c
     - [0x528530, .data, icons]
     - [0x528720, data]
     - { start: 0x52A470, type: .rodata, name: player, linker_section_order: .data }
-    - { start: 0x52A710, type: .rodata, name: 4F8B30, linker_section_order: .data }
+    - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]

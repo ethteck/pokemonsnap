@@ -34,7 +34,7 @@ enum PokemonCommands {
 
 enum PlayerCommands {
     PLAYER_CMD_SHAKE_CAMERA =  3,
-    PLAYER_CMD_4            =  4,
+    PLAYER_CMD_BUMP            =  4,
     PLAYER_CMD_5            =  5,
     PLAYER_CMD_FINISH       =  6,
     PLAYER_CMD_7            =  7,
@@ -82,5 +82,7 @@ void Icons_UnFreeze(void);
 void Icons_Hide(void);
 void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
+
+s32 func_8035FF1C_50032C(GObj*);
 
 #endif

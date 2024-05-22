@@ -18,7 +18,7 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
-GObj* func_8035E1D4_4FE5E4(void);
+GObj* func_8035E1D4_4FE5E4(GObj*);
 void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
 void updatePokemonState(GObj* obj, GObjFunc state);
 int func_80353D68_4F4178(void);

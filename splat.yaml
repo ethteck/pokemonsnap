@@ -599,7 +599,8 @@ segments:
     - [0x5232C0, .data, items]
     - [0x523300, data] # has sprite data which should be in icons.c
     - [0x528530, .data, icons]
-    - [0x528720, data]
+    - [0x528720, .data, 4FE330]
+    - [0x5287B0, data]
     - { start: 0x52A470, type: .rodata, name: player, linker_section_order: .data }
     - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }

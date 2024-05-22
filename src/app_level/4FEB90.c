@@ -6,17 +6,108 @@ extern DObj* gPlayerDObj;
 u8 getIsPaused(void);
 void func_80366864_506C74(GObj*, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E780_4FEB90.s")
-void func_8035E780_4FEB90(GObj*);
+typedef struct SomeListEntry {
+    /* 0x00 */ struct SomeListEntry* prev;
+    /* 0x04 */ struct SomeListEntry* next;
+    /* 0x08 */ GObj* obj;
+} SomeListEntry; // size ?
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E7DC_4FEBEC.s")
+typedef struct UnkHeatherLynx {
+    /* 0x00 */ struct UnkHeatherLynx* next;
+    /* 0x04 */ PokemonTransformBase* unk_04;
+} UnkHeatherLynx; // size ?
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E868_4FEC78.s")
+extern SomeListEntry* D_803B0C08_551018;
+extern SomeListEntry* D_803B0C0C_55101C;
+extern SomeListEntry* D_803B0C10_551020;
+extern UnkHeatherLynx D_803B0C18_551028[40];
+extern UnkHeatherLynx* D_803B0D58_551168;
+extern UnkHeatherLynx* D_803B0D5C_55116C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E8A4_4FECB4.s")
+void func_8035E780_4FEB90(GObj* arg0) {
+    SomeListEntry* temp_v1 = D_803B0C10_551020;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E944_4FED54.s")
-struct DObjDynamicStore* func_8035E944_4FED54(void);
+    if (D_803B0C10_551020 == NULL) {
+        return;
+    }
+        
+    D_803B0C10_551020 = D_803B0C10_551020->next;
+
+    temp_v1->prev = D_803B0C0C_55101C;
+    temp_v1->next = 0;
+    
+    if (temp_v1->prev != NULL) {
+        temp_v1->prev->next = D_803B0C0C_55101C = temp_v1;
+    } else {
+        D_803B0C08_551018 = D_803B0C0C_55101C = temp_v1;
+    }
+    temp_v1->obj = arg0;
+}
+
+void func_8035E7DC_4FEBEC(GObj* obj) {
+    SomeListEntry* entry = D_803B0C08_551018;
+
+    while (entry != NULL) {
+        if (entry->obj == obj) {
+            break;
+        }
+        entry = entry->next;
+    }
+    
+    if (entry->prev != NULL) {
+        entry->prev->next = entry->next;
+    } else {
+        D_803B0C08_551018 = entry->next;
+    }
+    if (entry->next != NULL) {
+        entry->next->prev = entry->prev;
+    } else {
+        D_803B0C0C_55101C = entry->prev;
+    }
+
+    entry->next = D_803B0C10_551020;
+    entry->obj = NULL;
+    D_803B0C10_551020 = entry;
+}
+
+s32 func_8035E868_4FEC78(GObj* obj) {
+    SomeListEntry* entry = D_803B0C08_551018;
+
+    while (entry != NULL) {
+        if (entry->obj == obj) {
+            return TRUE;
+        }
+        entry = entry->next;
+    }
+    return FALSE;
+}
+
+void func_8035E8A4_4FECB4(void) {
+    s32 i;
+
+    for (i = 0; i < 39; i++) {
+        D_803B0C18_551028[i].next = &D_803B0C18_551028[i+1];
+    }
+    D_803B0C18_551028[i].next = NULL;
+
+    D_803B0D58_551168 = NULL;
+    D_803B0D5C_55116C = D_803B0C18_551028;
+}
+
+PokemonTransformBase* func_8035E944_4FED54(void) {
+    PokemonTransformBase* ret;
+    UnkHeatherLynx* v0 = D_803B0D58_551168;
+
+    if (v0 != NULL) {
+        ret = v0->unk_04;
+        D_803B0D58_551168 = v0->next;
+        v0->next = D_803B0D5C_55116C;
+        D_803B0D5C_55116C = v0;
+    } else {
+        ret = gtlMalloc(sizeof(PokemonTransformBase), 0x40);
+    }
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035E9A4_4FEDB4.s")
 
@@ -693,7 +784,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     s32 unused;
     GObj* pokemonObj;
     DObj* model;
-    struct DObjDynamicStore* matrixStore;
+    PokemonTransformBase* matrixStore;
     Pokemon* pokemon;
 
     if (block == NULL || block->descriptor == NULL) {
@@ -722,7 +813,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
         }
     }
 
-    matrixStore = func_8035E944_4FED54();
+    matrixStore = (struct DObjDynamicStore*)func_8035E944_4FED54();
     matrixStore->kinds[0] = 1;
     matrixStore->kinds[1] = 2;
     matrixStore->kinds[2] = 3;

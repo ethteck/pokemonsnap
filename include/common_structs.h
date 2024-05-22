@@ -85,6 +85,12 @@ typedef struct PokemonTransform {
     /* 0x24 */ struct Mtx3Float scale;
 } PokemonTransform; // size = 0x34
 
+typedef struct PokemonTransformBase {
+    /* 0x00 */ u8 kinds[3];
+    /* 0x03 */ u8 pad;
+    /* 0x04 */ PokemonTransform xform;
+} PokemonTransformBase; // size = 0x38
+
 typedef struct {
     /* 0x00 */ s16 x;
     /* 0x02 */ s16 y;

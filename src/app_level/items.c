@@ -166,12 +166,9 @@ GObj* Items_CheckObjectExists(GObj* arg0) {
     return NULL;
 }
 
-#ifdef NON_MATCHING
 void Items_LinkObject(GObj* obj) {
     ItemListEntry* v1;
-    ItemListEntry* v0;
 
-    v0 = Items_FreeObjectListHead;
     v1 = Items_FreeObjectListHead;
     if (Items_FreeObjectListHead == NULL) {
         return;
@@ -182,20 +179,15 @@ void Items_LinkObject(GObj* obj) {
     v1->next = NULL;
 
     if (v1->prev != NULL) {
-        Items_AllocatedObjectListTail = v1;
-        v1->prev->next = v1;
+        v1->prev->next = Items_AllocatedObjectListTail = v1;
+        v1;
     } else {
-        Items_AllocatedObjectListTail = v0;
-        Items_AllocatedObjectListHead = v0;
+        Items_AllocatedObjectListHead = Items_AllocatedObjectListTail = v1;
     }
 
-    v0->obj = obj;
-    GET_ITEM(obj)->entryIndex = v0->index;
+    v1->obj = obj;
+    GET_ITEM(obj)->entryIndex = v1->index;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_LinkObject.s")
-void Items_LinkObject(GObj* obj);
-#endif
 
 void Items_UnlinkObject(GObj* obj) {
     ItemListEntry* entry;

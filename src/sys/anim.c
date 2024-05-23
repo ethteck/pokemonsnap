@@ -7,9 +7,6 @@
 // TODO header
 void func_8001FCA4(Vec3f*, void*, f32);
 
-#define ANIMATION_DISABLED (FLOAT_NEG_MAX)
-#define ANIMATION_CHANGED (FLOAT_NEG_MAX / 2)
-#define ANIMATION_FINISHED (FLOAT_NEG_MAX / 3)
 #ifdef NON_MATCHING
 DObj* animModelTreeNextNode(DObj* obj) {
     DObj* child;

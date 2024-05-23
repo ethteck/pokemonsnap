@@ -22,7 +22,7 @@ void func_802D2604(GObj* obj) {
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
 
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~SP_HIDDEN;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);
@@ -36,7 +36,7 @@ void func_802D2684(GObj* obj) {
 
     omCreateProcess(obj, spawnStarmieAtGeo, 1, 1);
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~SP_HIDDEN;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);

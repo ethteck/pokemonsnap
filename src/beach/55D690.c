@@ -137,7 +137,7 @@ void func_beach_802C5B68(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     pokemon->pathProcess = NULL;
     omEndProcess(NULL);
 }

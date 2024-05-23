@@ -167,4 +167,13 @@ enum PokemonFlags {
     POKEMON_FLAG_80  = 0x80
 };
 
+enum PokemonProcessFlags {
+    POKEMON_PROCESS_FLAG_1   = 0x01,
+    POKEMON_PROCESS_FLAG_2   = 0x02,
+    POKEMON_PROCESS_FLAG_4   = 0x04,
+    POKEMON_PROCESS_FLAG_8   = 0x08,
+    POKEMON_PROCESS_FLAG_10  = 0x10,
+    POKEMON_PROCESS_FLAG_20  = 0x20
+};
+
 #endif

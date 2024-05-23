@@ -47,6 +47,17 @@ enum PlayerCommands {
 
 #define CAMERA_CMD_BLINK 1
 
+typedef struct Item {
+    /* 0x00 */ u8 itemID;
+    /* 0x01 */ u8 state;
+    /* 0x02 */ u8 entryIndex;
+    /* 0x03 */ u8 flags;
+    /* 0x04 */ f32 restTimer;
+    /* 0x08 */ Vec3f velocity;
+    /* 0x14 */ Vec3f collisionVelocity;
+    /* 0x20 */ Vec3f prevPos;
+} Item;
+
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
 extern f32 gCamTargetZ;
@@ -69,6 +80,8 @@ void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
 void Items_Pause(void);
 void Items_UnPause(void);
+void Items_func_80359880(void);
+GObj* Items_func_80359894(void);
 
 u32 getProgressFlags(void);
 void mainCameraSetScissor(Gfx** gfxPtr);

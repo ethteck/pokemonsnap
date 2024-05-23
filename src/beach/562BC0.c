@@ -9,7 +9,7 @@ void func_beach_802CAC08(GObj* obj) {
 
     func_8035E298_4FE6A8(obj);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -91,7 +91,7 @@ void func_beach_802CAEB0(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, 0, 1, 0.033333335f, 0.0f, 3);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(0);
 }
 
@@ -99,10 +99,10 @@ void func_beach_802CAF1C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags |= 0x20;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
     setPokemonAnimation(obj, &D_beach_802CDBC0);
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 1);
-    pokemon->processFlags &= ~0x20;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
     updatePokemonState(obj, func_beach_802CAE14);
 }

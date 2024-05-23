@@ -2,6 +2,10 @@
 #define SYS_ANIM_H
 #include "sys/om.h"
 
+#define ANIMATION_DISABLED (FLOAT_NEG_MAX)
+#define ANIMATION_CHANGED (FLOAT_NEG_MAX / 2)
+#define ANIMATION_FINISHED (FLOAT_NEG_MAX / 3)
+
 typedef union AnimCmd {
     u32 w;
     f32 f;

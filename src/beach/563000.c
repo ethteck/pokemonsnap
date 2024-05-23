@@ -34,7 +34,7 @@ void func_beach_802CB08C(GObj* obj) {
     forcePokemonAnimation(obj, &D_beach_802CDB84);
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 3);
-    if (pokemon->processFlags & 1) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_1) {
         updatePokemonState(obj, func_beach_802CB08C);
     }
     pokemon->transitionGraph = &D_beach_802CDD40;
@@ -54,7 +54,7 @@ void func_beach_802CB128(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     pokemon->pathProcess = NULL;
     omEndProcess(NULL);
 }
@@ -118,7 +118,7 @@ void func_beach_802CB4C4(GObj* obj) {
     pokemon->hSpeed = 20.0f;
     func_80361110_501520(obj, 500.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -142,7 +142,7 @@ void func_beach_802CB6B4(GObj* obj) {
     ohWait(60);
     func_8036148C_50189C(obj, 0.1f, 0);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -154,7 +154,7 @@ void func_beach_802CB710(GObj* obj) {
     func_80361748_501B58(obj, 50, 0.1f, 3);
     func_8036148C_50189C(obj, 0.1f, 0);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -166,7 +166,7 @@ void func_beach_802CB784(GObj* obj) {
     runPathProcess(obj, func_beach_802CB128);
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 3U);
-    if (pokemon->processFlags & 1) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_1) {
         updatePokemonState(obj, func_beach_802CB784);
     }
     updatePokemonState(obj, func_beach_802CB3DC);
@@ -210,7 +210,7 @@ void func_beach_802CBA48(GObj* obj) {
         ohWait(1);
     }
     pokemon->pathProcess = 0;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -221,7 +221,7 @@ void func_beach_802CBB34(GObj* obj) {
     func_80361B50_501F60(obj, pokemon->pos1.x, pokemon->pos1.z);
     func_80361E58_502268(obj, 0.1f);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

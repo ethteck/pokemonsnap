@@ -17,17 +17,6 @@ enum ItemFlags {
     ITEM_FLAG_DELETED           = 4
 };
 
-typedef struct Item {
-    /* 0x00 */ u8 itemID;
-    /* 0x01 */ u8 state;
-    /* 0x02 */ u8 entryIndex;
-    /* 0x03 */ u8 flags;
-    /* 0x04 */ f32 restTimer;
-    /* 0x08 */ Vec3f velocity;
-    /* 0x14 */ Vec3f collisionVelocity;
-    /* 0x20 */ Vec3f prevPos;
-} Item;
-
 typedef struct ItemListEntry {
     /* 0x00 */ struct ItemListEntry* prev;
     /* 0x04 */ struct ItemListEntry* next;

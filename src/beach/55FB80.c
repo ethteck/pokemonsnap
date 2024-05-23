@@ -12,14 +12,14 @@ void func_beach_802C7C7C(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, randFloat(), 0, 0.1f, 0.0f, 2);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
 void func_beach_802C7CF0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~0x20;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
     func_8035ED90_4FF1A0(obj, func_beach_802C7DA0);
     setPokemonAnimation(obj, &D_beach_802CCD4C);
     pokemon->transitionGraph = NULL;
@@ -93,7 +93,7 @@ void func_beach_802C7F74(GObj* obj) {
     forcePokemonAnimation(obj, &D_beach_802CCE08);
 
     // clang-format off
-    pokemon->counter = randRange(600) + 1; pokemon->processFlags &= ~4;
+    pokemon->counter = randRange(600) + 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
 
     func_8035FC54_500064(obj, 4);

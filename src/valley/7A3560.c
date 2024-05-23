@@ -52,11 +52,11 @@ void func_802C9FD0_7A3560(GObj* arg0) {
 //         ohWait(1);
 //     }
 
-//     pokemon->processFlags |= 0x20;
+//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
 //     setPokemonAnimation(arg0, &D_802D2FB4_7AC544);
 //     pokemon->transitionGraph = NULL;
 //     runInteractionsAndWaitForFlags(arg0, 1);
-//     pokemon->processFlags &= ~0x20;
+//     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
 //     setPokemonAnimation(arg0, &D_802D2FDC_7AC56C);
 //     pokemon->transitionGraph = 0;
 //     runInteractionsAndWaitForFlags(arg0, 2);
@@ -71,7 +71,7 @@ void func_802CA1B0_7A3740(GObj* arg0) {
     setNodePosToNegRoom(arg0);
     pokemonPathLoop(arg0, 0.0f, 1.0f, 0.1f, 0.1f, 0x80);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

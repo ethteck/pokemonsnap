@@ -52,7 +52,7 @@ void func_802DE4C0_72F6C0(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, 0, 1, 0.05f, 0.0f, 2);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

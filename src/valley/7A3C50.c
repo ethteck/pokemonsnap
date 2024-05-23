@@ -59,7 +59,7 @@ void func_802CA858_7A3DE8(GObj* obj) {
 
     func_8036148C_50189C(obj, 0.1f, 42);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -118,7 +118,7 @@ void func_802CAA2C_7A3FBC(GObj* obj) {
     runPathProcess(obj, func_802CAAD0_7A4060);
     pokemon->transitionGraph = &D_802D3224_7AC7B4;
     runInteractionsAndWaitForFlags(obj, 0x2 | 0x1);
-    if (pokemon->processFlags & 2) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_2) {
         updatePokemonState(obj, func_802CA9BC_7A3F4C);
     }
     weightedRandomStaightTransition(obj, &D_802D3274_7AC804);
@@ -131,7 +131,7 @@ void func_802CAAD0_7A4060(GObj* obj) {
     pokemon->hSpeed = 20.0f;
     func_80361110_501520(obj, 500.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 0x2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -144,7 +144,7 @@ void func_802CAB2C_7A40BC(GObj* obj) {
     runPathProcess(obj, func_802CABD0_7A4160);
     pokemon->transitionGraph = &D_802D3224_7AC7B4;
     runInteractionsAndWaitForFlags(obj, 0x2 | 0x1);
-    if (pokemon->processFlags & 2) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_2) {
         updatePokemonState(obj, func_802CA9BC_7A3F4C);
     }
     weightedRandomStaightTransition(obj, &D_802D3274_7AC804);
@@ -157,7 +157,7 @@ void func_802CABD0_7A4160(GObj* obj) {
     pokemon->hSpeed = 80.0f;
     func_80361110_501520(obj, 500.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 0x2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -197,7 +197,7 @@ void func_802CAD54_7A42E4(GObj* obj) {
     runPathProcess(obj, func_802CADEC_7A437C);
     pokemon->transitionGraph = &D_802D3334_7AC8C4;
     runInteractionsAndWaitForFlags(obj, 2);
-    if (!(pokemon->processFlags & 0x10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_10)) {
         updatePokemonState(obj, func_802CA9BC_7A3F4C);
     }
     updatePokemonState(obj, func_802CAE70_7A4400);
@@ -212,7 +212,7 @@ void func_802CADEC_7A437C(GObj* obj) {
     pokemon->hSpeed = 80.0f;
     func_80361748_501B58(obj, 50.0f, 0.1f, 3);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 0x2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

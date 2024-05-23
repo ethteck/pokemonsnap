@@ -20,7 +20,7 @@ void func_beach_802C92BC(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~0x20;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
     pokemon->flags |= 8;
     func_80360144_500554(obj, 0.5f);
 
@@ -37,7 +37,7 @@ void func_beach_802C9348(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, 0, 0, 0.05f, 0.0f, 3);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -49,7 +49,7 @@ void func_beach_802C93B8(GObj* obj) {
     idFuncStruct sp18[4] = D_beach_802CD438;
 
     pokemon->transitionGraph = sp18;
-    pokemon->processFlags |= 0x20;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
     runInteractionsAndWaitForFlags(obj, 0);
     updatePokemonState(obj, NULL);
 }
@@ -88,7 +88,7 @@ void func_beach_802C95F0(GObj* obj) {
     runPathProcess(obj, func_beach_802C9694);
     pokemon->transitionGraph = &D_beach_802CD35C;
     runInteractionsAndWaitForFlags(obj, 3);
-    if (pokemon->processFlags & 2) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_2) {
         updatePokemonState(obj, func_beach_802C9580);
     }
     weightedRandomStaightTransition(obj, &D_beach_802CD3DC);
@@ -101,7 +101,7 @@ void func_beach_802C9694(GObj* obj) {
     pokemon->hSpeed = 30.0f;
     func_80361110_501520(obj, 500.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -134,7 +134,7 @@ void func_beach_802C97D4(GObj* obj) {
     pokemon->hSpeed = 80.0f;
     func_8036194C_501D5C(obj, 300.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -146,7 +146,7 @@ void func_beach_802C9830(GObj* obj) {
     runPathProcess(obj, func_beach_802C98F4);
     pokemon->transitionGraph = &D_beach_802CD4E8;
     runInteractionsAndWaitForFlags(obj, 2);
-    if (!(pokemon->processFlags & 0x10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_10)) {
         updatePokemonState(obj, func_beach_802C9580);
     }
     setPokemonAnimation(obj, &D_beach_802CD334);
@@ -164,7 +164,7 @@ void func_beach_802C98F4(GObj* obj) {
     pokemon->hSpeed = 80.0f;
     func_80361748_501B58(obj, 100.0f, 0.1f, 3);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -195,7 +195,7 @@ void func_beach_802C9A10(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     pokemon->pathProcess = NULL;
     omEndProcess(NULL);
 }

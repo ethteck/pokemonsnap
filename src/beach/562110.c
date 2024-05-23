@@ -37,7 +37,7 @@ void func_beach_802CA1BC(GObj* obj) {
 
     omCreateProcess(obj, func_beach_802CA0A0, 1, 1);
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~4;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
 
     pokemon->transitionGraph = NULL;
@@ -52,7 +52,7 @@ void func_beach_802CA23C(GObj* obj) {
 
     omCreateProcess(obj, func_beach_802CA0F4, 1, 1);
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~4;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
     runInteractionsAndWaitForFlags(obj, 4);

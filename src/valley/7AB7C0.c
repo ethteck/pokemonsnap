@@ -18,7 +18,7 @@ void func_802D2230_7AB7C0(GObj* obj) {
     pokemon->tangible = 0;
     obj->flags |= 0x2 | 0x1;
     pokemon->counter = 1;
-    pokemon->processFlags &= ~4;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     pokemon->transitionGraph = &D_802EC9D0_7C5F60;
     runInteractionsAndWaitForFlags(obj, 4);
     runPokemonCleanup(obj);

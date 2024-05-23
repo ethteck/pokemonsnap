@@ -57,7 +57,7 @@ void func_beach_802C9C88(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, 0.0f, 1.0f, 0.05f, 0.1f, 0x80 | 0x1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -82,7 +82,7 @@ void func_beach_802C9D70(GObj* obj) {
     pokemon->hSpeed = 20.0f;
     func_80361110_501520(obj, 500.0f, 0.1f, 1);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -107,7 +107,7 @@ void func_beach_802C9E70(GObj* obj) {
 
     func_8036148C_50189C(obj, 0.1f, 0x2A);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -134,7 +134,7 @@ void func_beach_802C9F30(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     pokemon->pathProcess = NULL;
     omEndProcess(NULL);
 }
@@ -156,7 +156,7 @@ void func_beach_802CA010(GObj* obj) {
 
     func_8036148C_50189C(obj, 0.1f, 0x2A);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

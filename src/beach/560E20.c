@@ -22,7 +22,7 @@ void func_beach_802C8E20(GObj* obj) {
     setNodePosToNegRoom(obj);
     pokemonPathLoop(obj, 0, 0, 0.1f, 0.0f, 3);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -62,7 +62,7 @@ void func_beach_802C907C(GObj* obj) {
     pokemon->jumpVel = 100.0f;
     func_80360300_500710(obj, 150.0f, 0.0f, 0.0f, 0.0f);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 
@@ -78,7 +78,7 @@ void func_beach_802C90E0(GObj* obj) {
     pokemon->jumpVel = 90.0f;
     func_80360300_500710(obj, 2000.0f, 0.0f, 0.0f, 0.0f);
     pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_2;
     omEndProcess(NULL);
 }
 

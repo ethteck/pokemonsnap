@@ -36,20 +36,20 @@ void func_beach_802C8F48(GObj* obj) {
     runPathProcess(obj, func_beach_802C907C);
     setPokemonAnimation(obj, &D_beach_802CD168);
     pokemon->transitionGraph = &D_beach_802CD214;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     setPokemonAnimation(obj, &D_beach_802CD1A4);
     pokemon->transitionGraph = &D_beach_802CD214;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     setPokemonAnimation(obj, &D_beach_802CD190);
     pokemon->transitionGraph = &D_beach_802CD214;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     cmdSendCommandToLink(3, 0x1E, obj);
     setPokemonAnimation(obj, &D_beach_802CD17C);
     pokemon->transitionGraph = &D_beach_802CD214;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     runPathProcess(obj, func_beach_802C90E0);
     pokemon->transitionGraph = &D_beach_802CD214;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     runPokemonCleanup(obj);
     updatePokemonState(obj, func_beach_802C8F48);
 }

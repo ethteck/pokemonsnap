@@ -11,7 +11,7 @@ void func_beach_802C82B0(GObj* obj) {
     pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
     pokemon->transitionGraph = &D_beach_802CCF44;
     runInteractionsAndWaitForFlags(obj, 0);
@@ -27,7 +27,7 @@ void func_beach_802C8354(GObj* obj) {
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
     setPokemonAnimation(obj, &D_beach_802CCF00);
     pokemon->transitionGraph = &D_beach_802CCF14;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(obj, func_beach_802C83D0);
 }
 
@@ -37,7 +37,7 @@ void func_beach_802C83D0(GObj* obj) {
 
     setPokemonAnimation(obj, &D_beach_802CCEB0);
     pokemon->transitionGraph = &D_beach_802CCF14;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     runPokemonCleanup(obj);
     updatePokemonState(obj, 0);
 }
@@ -60,16 +60,16 @@ void func_beach_802C84A4(GObj* obj) {
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
     setPokemonAnimation(obj, &D_beach_802CCEC4);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     setPokemonAnimation(obj, &D_beach_802CCED8);
     // clang-format off
     pokemon->counter = 120; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     setPokemonAnimation(obj, &D_beach_802CCEEC);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
     updatePokemonState(obj, func_beach_802C83D0);
 }

@@ -5,12 +5,6 @@
 #define GET_ITEM(x) ((Item*)((x)->userData))
 #define BASE_ITEM_OBJID 300
 
-enum ItemStates {
-    ITEM_STATE_INVALID  = 0,
-    ITEM_STATE_FLYING   = 1,
-    ITEM_STATE_STILL    = 2
-};
-
 enum ItemFlags {
     ITEM_FLAG_BOUNCED           = 1,
     ITEM_FLAG_TOUCHED_GROUND    = 2,
@@ -65,8 +59,7 @@ extern s32 Items_PesterBallCount;
 extern s32 Items_AppleCount;
 extern u8 Items_FnUpdateKind;
 
-void Items_DeleteItem(GObj*);
-void func_8035FCA0_5000B0(void);
+void func_8035FCA0_5000B0(GObj*);
 void func_8035EC1C_4FF02C(void*);
 void Items_RemovePesterBall(GObj*);
 Item* func_8035EBBC_4FEFCC(void);
@@ -1250,7 +1243,7 @@ s32 Items_GetPokeFluteState(void) {
 }
 
 void Items_DoRemoveItem(GObj* obj) {
-    func_8035FCA0_5000B0();
+    func_8035FCA0_5000B0(obj);
     func_8035EC1C_4FF02C(obj->userData);
     omDeleteGObj(obj);
 }

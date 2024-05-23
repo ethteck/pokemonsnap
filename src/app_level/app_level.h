@@ -3,10 +3,18 @@
 #include "common.h"
 #include "world/world.h"
 
+#define GET_ITEM(x) ((Item*)((x)->userData))
+
 enum ItemIds {
     ITEM_ID_POKEFLUTE   = 161,
     ITEM_ID_PESTER_BALL = 162,
     ITEM_ID_APPLE       = 163
+};
+
+enum ItemStates {
+    ITEM_STATE_INVALID  = 0,
+    ITEM_STATE_FLYING   = 1,
+    ITEM_STATE_STILL    = 2
 };
 
 enum EndLevelReasons {
@@ -28,6 +36,7 @@ enum PokemonCommands {
     POKEMON_CMD_14 = 14,
     POKEMON_CMD_18 = 18,
     POKEMON_CMD_19 = 19,
+    POKEMON_CMD_20 = 20,
     POKEMON_CMD_21 = 21,
     POKEMON_CMD_24 = 24
 };
@@ -65,6 +74,7 @@ extern GObj* gObjPlayer;
 extern s32 gDirectionIndex;
 extern OMCamera* gMainCamera;
 extern MovementState gMovementState;
+extern u32 D_80382CF8_523108;
 
 extern s32 LastItemId;
 
@@ -82,6 +92,9 @@ void Items_Pause(void);
 void Items_UnPause(void);
 void Items_func_80359880(void);
 GObj* Items_func_80359894(void);
+s32 Items_func_8035C834(void);
+GObj* Items_CheckObjectExists(GObj* arg0);
+void Items_DeleteItem(GObj*);
 
 u32 getProgressFlags(void);
 void mainCameraSetScissor(Gfx** gfxPtr);
@@ -97,5 +110,9 @@ void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
 
 s32 func_8035FF1C_50032C(GObj*);
+void PokemonDetector_CleanupPokemon(GObj* pokemonObj);
+void func_80357428_4F7838(GObj* arg0);
+
+void renderPokemonModelTypeI(GObj* arg0);
 
 #endif

@@ -11,7 +11,7 @@ void func_beach_802C9AE4(GObj* obj) {
 
     setPokemonAnimation(obj, &D_beach_802CD5A8);
     pokemon->transitionGraph = &D_beach_802CD694;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(obj, &D_beach_802CD774);
 }
 
@@ -21,7 +21,7 @@ void func_beach_802C9B40(GObj* obj) {
 
     setPokemonAnimation(obj, &D_beach_802CD5BC);
     pokemon->transitionGraph = &D_beach_802CD694;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(obj, &D_beach_802CD774);
 }
 
@@ -31,7 +31,7 @@ void func_beach_802C9B9C(GObj* obj) {
 
     setPokemonAnimation(obj, &D_beach_802CD60C);
     pokemon->transitionGraph = &D_beach_802CD694;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(obj, &D_beach_802CD774);
 }
 
@@ -41,11 +41,11 @@ void func_beach_802C9BF8(GObj* obj) {
 
     setPokemonAnimation(obj, &D_beach_802CD5F8);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     runPathProcess(obj, func_beach_802C9C88);
     setPokemonAnimation(obj, &D_beach_802CD5D0);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     updatePokemonState(obj, func_beach_802C9F9C);
 }
 
@@ -68,7 +68,7 @@ void func_beach_802C9CF8(GObj* obj) {
     setPokemonAnimation(obj, &D_beach_802CD5A8);
     runPathProcess(obj, NULL);
     pokemon->transitionGraph = &D_beach_802CD634;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(obj, &D_beach_802CD764);
 }
 
@@ -93,11 +93,11 @@ void func_beach_802C9DCC(GObj* obj) {
     runPathProcess(obj, NULL);
     setPokemonAnimation(obj, &D_beach_802CD5F8);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     runPathProcess(obj, func_beach_802C9E70);
     setPokemonAnimation(obj, &D_beach_802CD5E4);
     pokemon->transitionGraph = &D_beach_802CD6C4;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(obj, func_beach_802C9CF8);
 }
 
@@ -118,7 +118,7 @@ void func_beach_802C9EBC(GObj* obj) {
     setPokemonAnimation(obj, &D_beach_802CD620);
     runPathProcess(obj, func_beach_802C9F30);
     pokemon->transitionGraph = &D_beach_802CD6F4;
-    runInteractionsAndWaitForFlags(obj, 2);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_2);
     updatePokemonState(obj, func_beach_802C9CF8);
 }
 
@@ -146,7 +146,7 @@ void func_beach_802C9F9C(GObj* obj) {
     runPathProcess(obj, func_beach_802CA010);
     setPokemonAnimation(obj, &D_beach_802CD5E4);
     pokemon->transitionGraph = &D_beach_802CD6C4;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(obj, &D_beach_802CD764);
 }
 

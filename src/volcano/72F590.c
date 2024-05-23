@@ -19,7 +19,7 @@ void func_802DE390_72F590(GObj* obj) {
     forcePokemonAnimation(obj, &D_802E31F4_7343F4);
     runPathProcess(obj, func_802DE4C0_72F6C0);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(obj, func_802DE3FC_72F5FC);
 }
 
@@ -29,7 +29,7 @@ void func_802DE3FC_72F5FC(GObj* obj) {
 
     forcePokemonAnimation(obj, &D_802E3208_734408);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(obj, func_802DE450_72F650);
 }
 
@@ -39,7 +39,7 @@ void func_802DE450_72F650(GObj* obj) {
 
     setPokemonAnimation(obj, &D_802E321C_73441C);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     cmdSendCommandToLink(3, 0x21, obj);
     runPokemonCleanup(obj);
     updatePokemonState(obj, NULL);

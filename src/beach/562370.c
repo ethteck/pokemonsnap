@@ -71,15 +71,15 @@ void func_beach_802CA4CC(GObj* obj) {
     auPlaySound(0x26);
     setPokemonAnimation(obj, &D_beach_802CD994);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     auPlaySound(0x28);
     D_beach_802CD9D0 = auPlaySound(0x27);
     setPokemonAnimation(obj, &D_beach_802CD9A8);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     setPokemonAnimation(obj, &D_beach_802CD9BC);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(obj, func_beach_802CA950);
 }
 

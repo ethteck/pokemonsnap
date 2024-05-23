@@ -3,11 +3,17 @@
 #include "app_level.h"
 
 extern DObj* gPlayerDObj;
+extern GObj* gPokemonInFocus;
 
+extern Vec3f D_8038A430_52A840;
+
+void deletePokemon(GObj* pokemonObj);
+void func_800A716C(GObj*);
 u8 getIsPaused(void);
 void func_80366864_506C74(GObj*, s32);
 void func_803667C0_506BD0(GObj*, UNK_TYPE, UNK_TYPE);
 s32 func_8036381C_503C2C(void);
+s32 func_80360E78_501288(GObj* arg0, f32 arg1, s32 arg2);
 
 typedef struct SomeListEntry {
     /* 0x00 */ struct SomeListEntry* prev;
@@ -603,8 +609,97 @@ f32 func_8035F784_4FFB94(GObj* obj, Vec3f* arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035F900_4FFD10.s")
-void func_8035F900_4FFD10(GObj*);
+void func_8035F900_4FFD10(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    s32 i;
+    s32 s2 = TRUE;
+    Vec3f sp60;
+    f32 sp5C;
+    GObj* obj2;
+    GObjFunc s4 = NULL;
+    GObjFunc s3 = NULL;    
+    idFuncStruct* transitionGraph = pokemon->transitionGraph;
+
+    if (transitionGraph == NULL) {
+        return;
+    }
+
+    for (i = 0; s2 && transitionGraph[i].id != 58; i++) {
+        if (transitionGraph[i].state == NULL && transitionGraph[i].aux == NULL) {
+            continue;
+        }
+
+        switch (transitionGraph[i].id) {
+            case 15:
+                obj2 = func_8035F430_4FF840(obj, &sp5C);
+                if (obj2 != NULL) {
+                    Item* item = GET_ITEM(obj2);
+                    if (obj2 != pokemon->apple && item->itemID == ITEM_ID_APPLE && item->state == ITEM_STATE_STILL && sp5C < 600.0f) {
+                        pokemon->apple = obj2;
+                        s2 = FALSE;
+                        pokemon->interactionDist = sp5C;
+                        pokemon->interactionTarget = obj2;
+                        s4 = transitionGraph[i].state;
+                        s3 = transitionGraph[i].aux;
+                    }
+                }
+                break;
+            case 16:
+                if (pokemon->playerDist < transitionGraph[i].radius) {
+                    pokemon->interactionDist = sp5C; // BUG: sp5C undefined here, must use 'playerDist'
+                    s2 = FALSE;
+                    pokemon->interactionTarget = gObjPlayer;                    
+                    s4 = transitionGraph[i].state;
+                    s3 = transitionGraph[i].aux;
+                }
+                break;
+            case 17:
+                if (func_8035F784_4FFB94(obj, &sp60) > 0.0f) {
+                    pokemon->dirToNeighbors.x = sp60.x;
+                    pokemon->dirToNeighbors.y = sp60.y;
+                    pokemon->dirToNeighbors.z = sp60.z;
+                    s2 = FALSE;
+                    s4 = transitionGraph[i].state;
+                    s3 = transitionGraph[i].aux;
+                }
+                break;
+            case 5:
+            case 6:
+            case 7:
+                if (Items_func_8035C834() == transitionGraph[i].id && pokemon->playerDist < 1400.0f) {
+                    s2 = FALSE;
+                    pokemon->interactionTarget = gObjPlayer;
+                    s4 = transitionGraph[i].state;
+                    s3 = transitionGraph[i].aux;
+                }
+                break;
+            case 23:
+                if (D_80382CF8_523108 > transitionGraph[i].radius && obj == gPokemonInFocus) {
+                    s4 = transitionGraph[i].state;
+                    s3 = transitionGraph[i].aux;
+                    s2 = FALSE;
+                }
+                break;
+            case 25:
+                if (gDirectionIndex < 0 && pokemon->playerDist < transitionGraph[i].radius) {
+                    s4 = transitionGraph[i].state;
+                    s3 = transitionGraph[i].aux;
+                    s2 = FALSE;
+                }
+                break;
+        }
+    }
+
+    if (s3 != 0) {
+        func_8035ED90_4FF1A0(obj, s3);
+    }
+    if (s4 != 0) {
+        updatePokemonState(obj, s4);
+    }
+    if (!func_80353D68_4F4178()) {
+        ohPauseObjectProcesses(obj);
+    }
+}
 
 void runInteractionsAndWaitForFlags(GObj* obj, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
@@ -619,82 +714,420 @@ void runInteractionsAndWaitForFlags(GObj* obj, u32 flags) {
     pokemon->transitionGraph = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FC54_500064.s")
+void func_8035FC54_500064(GObj* obj, u32 flags) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FCA0_5000B0.s")
+    while (TRUE) {
+        if (pokemon->processFlags & flags) {
+            break;
+        }
+        ohWait(1);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FD00_500110.s")
-void func_8035FD00_500110(GObj*);
+void func_8035FCA0_5000B0(GObj* arg0) {
+    SomeListEntry* entry;
+
+    for (entry = D_803B0C08_551018; entry != NULL; entry = entry->next) {
+        GObj* obj = entry->obj;
+        Pokemon* pokemon = GET_POKEMON(obj);
+        if (arg0 == pokemon->interactionTarget) {
+            cmdSendCommand(obj, 22, arg0);
+        }
+    }
+}
+
+void func_8035FD00_500110(GObj* arg0) {
+    arg0->flags |= GOBJ_FLAG_HIDDEN;
+    PokemonDetector_CleanupPokemon(arg0);
+    func_80357428_4F7838(arg0);
+    func_8035FCA0_5000B0(arg0);
+    func_8035E9A4_4FEDB4(GET_TRANSFORM_BASE(arg0->data.dobj));
+    func_8035EAE0_4FEEF0(GET_POKEMON(arg0));
+    func_8035E7DC_4FEBEC(arg0);
+    func_800A716C(arg0);
+    deletePokemon(arg0);
+}
 
 void runPokemonCleanup(GObj* obj) {
     omCreateProcess(obj, func_8035FD00_500110, 1, 4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FD9C_5001AC.s")
+void func_8035FD9C_5001AC(u16* whiteList) {
+    GObj* pokemonObj;
+    u16* ptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/addPokemonAtGeo.s")
-// GObj* addPokemonAtGeo(GObj *gobj, PokemonID id, PokemonDef *def) {
-//     ObjectSpawn spawn;
-//     WorldBlock* roomA;
-//     Pokemon* pokemonTmp;
-//     GObj* pokemonObj;
+    for (pokemonObj = omGObjListHead[LINK_POKEMON]; pokemonObj != NULL; pokemonObj = pokemonObj->next) {
+        u16 id = GET_POKEMON(pokemonObj)->id;
 
-//     pokemonTmp = GET_POKEMON(gobj);
-//     roomA = getCurrentRoom();
-//     spawn.id = id;
-//     spawn.translation.x = 0.0f;
-//     spawn.translation.y = 0.0f;
-//     spawn.translation.z = 0.0f;
-//     spawn.euler.x = 0.0f;
-//     spawn.euler.y = 0.0f;
-//     spawn.euler.z = 0.0f;
-//     spawn.scale.x = 1.0f;
-//     spawn.scale.y = 1.0f;
-//     spawn.scale.z = 1.0f;
-//     spawn.path = pokemonTmp->path;
-//     spawn.behavior = pokemonTmp->behavior;
+        for (ptr = whiteList; *ptr != 0; ptr++) {
+            if (*ptr == id) {
+                break;
+            }
+        }
+        if (*ptr == 0) {
+            runPokemonCleanup(pokemonObj);
+        }
+    }
+}
 
-//     pokemonObj = pokemonAddOne(roomA, roomA, &spawn, def);
+GObj* addPokemonAtGeo(GObj *gobj, u16 id, PokemonDef *def) {
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    Pokemon* pokemonTmp;
+    GObj* pokemonObj;
 
-//     if (pokemonObj != NULL) {
-//         xformData* pxVar1 = gobj->data.dobj->unk4C; // TODO type issue
-//         xformData* pxVar2 = pokemonObj->data.dobj->unk4C; // TODO type issue
+    pokemonTmp = GET_POKEMON(gobj);
+    block = getCurrentWorldBlock();
+    spawn.id = id;
+    spawn.translation.x = 0.0f;
+    spawn.translation.y = 0.0f;
+    spawn.translation.z = 0.0f;
+    spawn.euler.x = 0.0f;
+    spawn.euler.y = 0.0f;
+    spawn.euler.z = 0.0f;
+    spawn.scale.x = 1.0f;
+    spawn.scale.y = 1.0f;
+    spawn.scale.z = 1.0f;
+    spawn.path = pokemonTmp->path;
+    spawn.behavior = pokemonTmp->behavior;
 
-//         pxVar2->translation.x = pxVar1->translation.x;
-//         pxVar2->translation.y = pxVar1->translation.y;
-//         pxVar2->translation.z = pxVar1->translation.z;
-//     }
+    pokemonObj = pokemonAddOne(block, block, &spawn, def);
 
-//     return pokemonObj;
-// }
+    if (pokemonObj != NULL) {
+        PokemonTransformBase* transform2 = GET_TRANSFORM_BASE(gobj->data.dobj);
+        PokemonTransformBase* transform1 = GET_TRANSFORM_BASE(pokemonObj->data.dobj);        
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FEEC_5002FC.s")
+        transform1->xform.pos.v.x = transform2->xform.pos.v.x;
+        transform1->xform.pos.v.y = transform2->xform.pos.v.y;
+        transform1->xform.pos.v.z = transform2->xform.pos.v.z;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FF1C_50032C.s")
+    return pokemonObj;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8035FF44_500354.s")
+void func_8035FEEC_5002FC(GObj* obj, s32 arg1) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360074_500484.s")
+    if (arg1 == TRUE) {
+        pokemon->flags |= POKEMON_FLAG_100;
+    } else {
+        pokemon->flags &= ~POKEMON_FLAG_100;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036010C_50051C.s")
+s32 func_8035FF1C_50032C(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    s32 ret;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360144_500554.s")
+    if (pokemon->flags & POKEMON_FLAG_100) {
+        ret = TRUE;
+    } else {
+        ret = FALSE;
+    }
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803601FC_50060C.s")
+void func_80360074_500484(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036026C_50067C.s")
+void func_8035FF44_500354(GObj* obj, s32 arg1, s32 arg2) {
+    s32 v1;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    f32 f20 = 255.0f;
+    f32 delta;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360300_500710.s")
+    obj->fnRender = func_80360074_500484;
+    v1 = 255 - arg1;
+    if (v1 < 0) {
+        v1 = 0;
+    }
+    delta = (f32)v1 / (f32)arg2;
+    while (arg2-- > 0) {
+        f20 -= delta;
+        pokemon->unk_E4 = f20;
+        ohWait(1);
+    }
+    pokemon->unk_E4 = arg1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036044C_50085C.s")
+extern Gfx D_8038A3D0_52A7E0[];
+extern Gfx D_8038A400_52A810[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360590_5009A0.s")
+void func_80360074_500484(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803606E8_500AF8.s")
+    gSPDisplayList(gMainGfxPos[0]++, D_8038A3D0_52A7E0);
+    gDPSetFogColor(gMainGfxPos[0]++, 230, 250, 180, pokemon->unk_E4);
+    renderPokemonModelTypeI(obj);
+    gSPDisplayList(gMainGfxPos[0]++, D_8038A400_52A810);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036082C_500C3C.s")
+void func_8036010C_50051C(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360AB8_500EC8.s")
+    if (Items_CheckObjectExists(pokemon->apple)) {
+        Items_DeleteItem(pokemon->apple);
+    }
+}
+
+void func_80360144_500554(GObj* obj, f32 arg1) {
+    DObj* model = obj->data.dobj;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    PokemonInitData* initData = pokemon->initData;    
+
+    GET_TRANSFORM(model)->scale.v.x = initData->scale.x * 0.1f * arg1;
+    GET_TRANSFORM(model)->scale.v.y = initData->scale.y * 0.1f * arg1;
+    GET_TRANSFORM(model)->scale.v.z = initData->scale.z * 0.1f * arg1;
+
+    pokemon->collisionOffset.x = initData->scaleNumerator.x / initData->scale.x * arg1;
+    pokemon->collisionOffset.y = initData->scaleNumerator.y / initData->scale.y * arg1;
+    pokemon->collisionOffset.z = initData->scaleNumerator.z / initData->scale.z * arg1;
+    pokemon->collisionRadius = initData->radius * initData->scale.y * arg1;
+}
+
+void func_803601FC_50060C(GObj* obj, f32 arg1) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    Item* targetItem = GET_ITEM(pokemon->interactionTarget); // TODO check it's really item
+    DObj* model = obj->data.dobj;
+    s32 unused;
+    f32 f10, sp20;
+    f32 sp1C;
+    
+    sp1C = GET_TRANSFORM(model)->rot.f[2];
+    sp20 = sinf(sp1C) * arg1;
+    f10 = cosf(sp1C) * arg1;
+
+    targetItem->velocity.x = sp20;
+    targetItem->velocity.y = arg1;
+    targetItem->velocity.z = f10;
+}
+
+void func_8036026C_50067C(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 sp24 = pokemon->hSpeed * 0.033;
+    f32 sp20 = GET_TRANSFORM(model)->rot.f[2];
+    f32 sp1C = sinf(sp20) * sp24;
+    f32 sp18 = cosf(sp20) * sp24;
+
+    GET_TRANSFORM(model)->pos.v.x += sp1C;
+    GET_TRANSFORM(model)->pos.v.z += sp18;
+}
+
+void func_80360300_500710(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+    f32 f24 = 0.0f;
+    f32 f20, f22, f26, f28;
+
+    f20 = pokemon->jumpVel * 0.033;
+    arg3 *= 0.033;
+    arg4 *= 0.033;
+
+    while (TRUE) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+            f22 = arg2 * 0.033;
+            func_8036026C_50067C(obj);
+
+            f24 += f20;
+            transform->pos.v.y += f20;
+            if (f22 != 0.0f) {
+                f20 += f22;
+                if (f20 > arg4) {
+                    f20 = arg4;
+                }
+                if (f20 < arg3) {
+                    f20 = arg3;
+                }
+            }
+        }
+
+        if (f24 >= arg1) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_8036044C_50085C(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+    f32 f20, f22, f26, f28;
+
+    f20 = pokemon->jumpVel * 0.033;
+    arg3 *= 0.033;
+    arg4 *= 0.033;
+
+    while (TRUE) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+            f22 = arg2 * 0.033;
+            func_8036026C_50067C(obj);
+            transform->pos.v.y += f20;
+            if (f22 != 0.0f) {
+                f20 += f22;
+                if (f20 > arg4) {
+                    f20 = arg4;
+                }
+                if (f20 < arg3) {
+                    f20 = arg3;
+                }
+            }
+        }
+
+        if (transform->pos.v.y >= arg1) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_80360590_5009A0(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+    f32 f24 = 0.0f;
+    f32 f20, f22, f26, f28;
+
+    f20 = pokemon->jumpVel * 0.033;
+    arg3 *= 0.033;
+    arg4 *= 0.033;
+
+    while (TRUE) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+            f22 = arg2 * 0.033;
+            func_8036026C_50067C(obj);
+
+            f24 -= f20;
+            transform->pos.v.y -= f20;
+            if (f22 != 0.0f) {
+                f20 += f22;
+                if (f20 > arg4) {
+                    f20 = arg4;
+                }
+                if (f20 < arg3) {
+                    f20 = arg3;
+                }
+            }
+        }
+
+        if (f24 <= -1.0f * arg1) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_803606E8_500AF8(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+    f32 f20, f22, f26, f28;
+
+    f20 = pokemon->jumpVel * 0.033;
+    arg3 *= 0.033;
+    arg4 *= 0.033;
+
+    while (TRUE) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+            f22 = arg2 * 0.033;
+            func_8036026C_50067C(obj);
+            transform->pos.v.y -= f20;
+            if (f22 != 0.0f) {
+                f20 += f22;
+                if (f20 > arg4) {
+                    f20 = arg4;
+                }
+                if (f20 < arg3) {
+                    f20 = arg3;
+                }
+            }
+        }
+
+        if (transform->pos.v.y <= arg1) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_8036082C_500C3C(GObj* obj, f32 arg1, f32 arg2, f32 arg3) {
+    DObj* model = obj->data.dobj;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    f32 f20;
+    f32 vx,vy,vz;
+    Vec3f sp8C;
+    Vec3f sp80;    
+    f32 f2;
+    f32 temp;
+
+    sp8C = D_8038A430_52A840;
+    arg1 *= 0.033;
+    
+    f20 = GET_TRANSFORM(model)->rot.f[2] + (temp = PI * arg2); // temp required fo matching
+    f20 += arg3 * (randFloat() * TAU - PI);
+    if (f20 < 0.0f) {
+        f20 += TAU;
+    } else if (f20 > TAU) {
+        f20 -= (s32)(f20 / TAU) * TAU;
+    }
+
+    vx = sinf(f20) * arg1;
+    vy = arg1;
+    vz = cosf(f20) * arg1;
+
+    while (TRUE) {
+        getGroundAt(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z, &pokemon->currGround);
+        if (GET_TRANSFORM(model)->pos.v.y < pokemon->currGround.height) {
+            if (Vec3fAngleDiff(&sp8C, &pokemon->currGround.normal) < PI / 3.0f) {
+                cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_20, obj);
+                cmdSendCommand(gObjPlayer, PLAYER_CMD_SHAKE_CAMERA, obj);
+                GET_TRANSFORM(model)->pos.v.y = pokemon->currGround.height;
+                return;
+            }
+            sp80.x = vx;
+            sp80.y = vy;
+            sp80.z = vz;
+            f2 = Vec3fNormalize(&sp80);
+            Vec3f_func_8001AC98(&sp80, &pokemon->currGround.normal);
+            vx = sp80.x * f2;
+            vy = sp80.y * f2;
+            vz = sp80.z * f2;
+        }
+
+        vy -= 0.6f;
+        GET_TRANSFORM(model)->pos.v.x += vx;
+        GET_TRANSFORM(model)->pos.v.y += vy;
+        GET_TRANSFORM(model)->pos.v.z += vz;
+        ohWait(1);
+    }
+}
+
+void func_80360AB8_500EC8(GObj* obj, f32 arg1, s32 arg2) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+    f32 f20 = pokemon->jumpVel * 0.033;
+
+    while (TRUE) {
+        if (arg2) {
+            func_80360E78_501288(obj, pokemon->facingYaw, 0);
+        } else {
+            getGroundAt(transform->pos.v.x, transform->pos.v.z, &pokemon->currGround);
+        }
+        
+        transform->pos.v.y += f20;
+        f20 += (f32)(arg1 * 0.033);
+
+        if (f20 < 0.0f && transform->pos.v.y < pokemon->currGround.height) {
+            break;        
+        }
+        ohWait(1);
+    }
+    transform->pos.v.y = pokemon->currGround.height;
+    pokemon->jumpVel = f20 * 1 / 0.033;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360BEC_500FFC.s")
 

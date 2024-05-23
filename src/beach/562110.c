@@ -41,7 +41,7 @@ void func_beach_802CA1BC(GObj* obj) {
     // clang-format on
 
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     runPokemonCleanup(obj);
     updatePokemonState(obj, NULL);
 }
@@ -55,7 +55,7 @@ void func_beach_802CA23C(GObj* obj) {
     pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     runPokemonCleanup(obj);
     updatePokemonState(obj, NULL);
 }

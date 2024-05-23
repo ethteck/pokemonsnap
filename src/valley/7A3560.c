@@ -41,10 +41,10 @@ void func_802C9FD0_7A3560(GObj* arg0) {
 //     arg0->flags = 0;
 //     forcePokemonAnimation(arg0, &D_802D2F8C_7AC51C);
 //     pokemon->transitionGraph = NULL;
-//     runInteractionsAndWaitForFlags(arg0, 1);
+//     runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
 //     setPokemonAnimation(arg0, &D_802D2FA0_7AC530);
 //     pokemon->transitionGraph = NULL;
-//     runInteractionsAndWaitForFlags(arg0, 1);
+//     runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
 //     setPokemonAnimation(arg0, &D_802D2FC8_7AC558);
 //     runPathProcess(arg0, func_802CA1B0_7A3740);
 
@@ -55,11 +55,11 @@ void func_802C9FD0_7A3560(GObj* arg0) {
 //     pokemon->processFlags |= POKEMON_PROCESS_FLAG_20;
 //     setPokemonAnimation(arg0, &D_802D2FB4_7AC544);
 //     pokemon->transitionGraph = NULL;
-//     runInteractionsAndWaitForFlags(arg0, 1);
+//     runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
 //     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_20;
 //     setPokemonAnimation(arg0, &D_802D2FDC_7AC56C);
 //     pokemon->transitionGraph = 0;
-//     runInteractionsAndWaitForFlags(arg0, 2);
+//     runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_2);
 //     runPokemonCleanup(arg0);
 //     updatePokemonState(arg0, NULL);
 // }

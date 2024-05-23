@@ -25,7 +25,7 @@ void func_802D2604(GObj* obj) {
     pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     runPokemonCleanup(obj);
     updatePokemonState(obj, NULL);
 }
@@ -39,7 +39,7 @@ void func_802D2684(GObj* obj) {
     pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 4);
+    runInteractionsAndWaitForFlags(obj, POKEMON_PROCESS_FLAG_4);
     runPokemonCleanup(obj);
     updatePokemonState(obj, NULL);
 }

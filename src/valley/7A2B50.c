@@ -28,7 +28,7 @@ void func_802C95E4_7A2B74(GObj* arg0) {
     pokemon->tangible = 0;
     arg0->flags |= 0x2 | 0x1;
     pokemon->transitionGraph = &D_802D2DAC_7AC33C;
-    runInteractionsAndWaitForFlags(arg0, 0U);
+    runInteractionsAndWaitForFlags(arg0, 0);
     updatePokemonState(arg0, NULL);
 }
 
@@ -41,7 +41,7 @@ void func_802C9634_7A2BC4(GObj* arg0) {
     arg0->flags = 0;
     setPokemonAnimation(arg0, &D_802D2D10_7AC2A0);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(arg0, 1);
+    runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(arg0, func_802C9750_7A2CE0);
 }
 
@@ -51,7 +51,7 @@ void func_802C96A0_7A2C30(GObj* arg0) {
 
     setPokemonAnimation(arg0, &D_802D2D24_7AC2B4);
     pokemon->transitionGraph = &D_802D2D7C_7AC30C;
-    runInteractionsAndWaitForFlags(arg0, 1);
+    runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
     weightedRandomStaightTransition(arg0, &D_802D2DCC_7AC35C);
 }
 
@@ -61,7 +61,7 @@ void func_802C96FC_7A2C8C(GObj* arg0) {
 
     setPokemonAnimation(arg0, &D_802D2D60_7AC2F0);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(arg0, 1);
+    runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(arg0, func_802C9750_7A2CE0);
 }
 
@@ -71,7 +71,7 @@ void func_802C9750_7A2CE0(GObj* arg0) {
 
     setPokemonAnimation(arg0, &D_802D2D4C_7AC2DC);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(arg0, 1);
+    runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(arg0, func_802C96A0_7A2C30);
 }
 
@@ -81,7 +81,7 @@ void func_802C97A4_7A2D34(GObj* arg0) {
 
     setPokemonAnimation(arg0, &D_802D2D38_7AC2C8);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(arg0, 1);
+    runInteractionsAndWaitForFlags(arg0, POKEMON_PROCESS_FLAG_1);
     updatePokemonState(arg0, func_802C96A0_7A2C30);
 }
 

@@ -54,6 +54,6 @@
 // TODO create header for pokemon
 #define GET_POKEMON(obj) ((Pokemon*)((obj)->userData))
 #define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
-
+#define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*)((p)->unk_4C))
 
 #endif

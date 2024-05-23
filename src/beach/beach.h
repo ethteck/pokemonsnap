@@ -22,7 +22,6 @@ extern UNK_TYPE D_8013CEA0;
 extern AnimCmd D_8013DA90;
 
 f32 atan2f(f32 y, f32 x);
-f32 randFloat(void);
 void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
 void func_803570B0_4F74C0(void);
@@ -36,7 +35,7 @@ OMCamera* getMainCamera(void);
 void func_8035E298_4FE6A8(GObj*);
 void func_8035ED90_4FF1A0(GObj*, void (*)(GObj*));
 void func_8035FC54_500064(GObj*, s32);
-void func_8035FD9C_5001AC(UnkBlueShark*);
+void func_8035FD9C_5001AC(u16*);
 void func_8036010C_50051C(GObj*);
 void func_80360144_500554(GObj*, f32);
 void func_80360300_500710(GObj*, f32, f32, f32, f32);

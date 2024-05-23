@@ -160,11 +160,12 @@ enum PokemonIds {
 };
 
 enum PokemonFlags {
-    POKEMON_FLAG_2  = 0x02,
-    POKEMON_FLAG_4  = 0x04,
-    POKEMON_FLAG_8  = 0x08,
-    POKEMON_FLAG_20 = 0x20,
-    POKEMON_FLAG_80  = 0x80
+    POKEMON_FLAG_2      = 0x002,
+    POKEMON_FLAG_4      = 0x004,
+    POKEMON_FLAG_8      = 0x008,
+    POKEMON_FLAG_20     = 0x020,
+    POKEMON_FLAG_80     = 0x080,
+    POKEMON_FLAG_100    = 0x100
 };
 
 enum PokemonProcessFlags {

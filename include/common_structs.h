@@ -6,19 +6,6 @@
 #include "sys/om.h"
 #include "sys/anim.h"
 
-typedef f32 quartic[5];
-
-typedef struct {
-    /* 0x00 */ s8 type; /* 0=linear;1=bezier;2=hermite/6 */
-    /* 0x01 */ char unk_01[0x1];
-    /* 0x02 */ s16 length;
-    /* 0x04 */ f32 invSegTime;
-    /* 0x08 */ Vec3f* pts;
-    /* 0x0C */ f32 duration;
-    /* 0x10 */ f32* times;
-    /* 0x14 */ quartic* quartics;
-} pathSpline;
-
 typedef struct {
     /* 0x00 */ s32 id;
     /* 0x04 */ GObjFunc state;
@@ -55,7 +42,7 @@ typedef struct {
     /* 0x08 */ Vec3f translation;
     /* 0x14 */ Vec3f euler;
     /* 0x20 */ Vec3f scale;
-    /* 0x2C */ pathSpline* path;
+    /* 0x2C */ InterpData* path;
 } ObjectSpawn; // size = 0x30
 
 typedef union {
@@ -161,7 +148,7 @@ typedef struct {
     /* 0x0D0 */ GroundResult currGround;
     /* 0x0E4 */ u8 unk_E4;
     /* 0x0E5 */ char unk_E5[0x3];
-    /* 0x0E8 */ pathSpline* path;
+    /* 0x0E8 */ InterpData* path;
     /* 0x0EC */ f32 pathParam;
     /* 0x0F0 */ PokemonInitData* initData;
     /* 0x0F4 */ AnimationHeader* animHeader;

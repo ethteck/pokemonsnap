@@ -22,7 +22,6 @@ extern UNK_TYPE D_8013CEA0;
 extern AnimCmd D_8013DA90;
 
 f32 atan2f(f32 y, f32 x);
-void func_8001FCE8(Vec3f*, pathSpline*, f32);
 void func_800E1A78_5F228(f32);
 void func_803570B0_4F74C0(void);
 void Camera_StartCutScene(void*, UNK_TYPE, f32);
@@ -169,7 +168,7 @@ extern AnimationHeader D_beach_802CD320;
 extern AnimationHeader D_beach_802CD334;
 extern idFuncStruct D_beach_802CD35C;
 extern randomTransition D_beach_802CD3DC;
-extern pathSpline* D_beach_802CD3F4;
+extern InterpData* D_beach_802CD3F4;
 extern idFuncStruct D_beach_802CD3F8;
 extern idFuncStruct D_beach_802CD438[4];
 extern idFuncStruct D_beach_802CD478;

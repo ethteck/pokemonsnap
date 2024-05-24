@@ -8,12 +8,16 @@ extern GObj* gPokemonInFocus;
 extern Vec3f D_8038A430_52A840;
 extern Vec3f D_8038A43C_52A84C;
 
+void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
+
 void func_800A5E98(Vec3f*, Vec3f*, DObj*);
+void func_800AB1F8(eggStruct*);
+s32 func_800AB138(eggStruct* arg0, f32 arg1);
 
 void deletePokemon(GObj* pokemonObj);
 void func_800A716C(GObj*);
 u8 getIsPaused(void);
-void func_80366864_506C74(GObj*, s32);
+void func_80366864_506C74(GObj*, u8);
 void func_803667C0_506BD0(GObj*, UNK_TYPE, UNK_TYPE);
 s32 func_8036381C_503C2C(void);
 s32 func_80360E78_501288(GObj* arg0, f32 arg1, u32 arg2);
@@ -502,7 +506,7 @@ GObj* func_8035F430_4FF840(GObj* obj, f32* distance) {
     while ((currItem = Items_func_80359894()) != NULL) {
         DObj* itemModel = currItem->data.dobj;
         f32 currDist2 = SQ(x - itemModel->position.v.x) + SQ(y - itemModel->position.v.y) + SQ(z - itemModel->position.v.z);
-        if (currDist2 < closestDist2) {
+        if (closestDist2 > currDist2) {
             closestItem = currItem;
             closestDist2 = currDist2;
         }
@@ -1662,207 +1666,336 @@ void setNodePosToNegRoom(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.z = -(block->descriptor->worldPos.z * 100.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/pokemonPathLoop.s")
+extern Vec3f D_8038A448_52A858;
+
+void pokemonPathLoop(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, u32 arg5) {
+    DObj* model = obj->data.dobj;
+    Vec3f sp80 = D_8038A448_52A858;
+    Pokemon* pokemon = GET_POKEMON(obj);        
+    Vec3f sp70;
+    f32 f2;
+    f32 sp68;
+    
+
+    pokemon->pathParam = arg1;
+
+    if (pokemon->path == NULL) {
+        while (TRUE) {
+            ohWait(1);
+        }
+    }
+
+    sp68 = 1.0f / pokemon->path->unk_0C * arg3;
+
+    while (TRUE) {
+        if (!(pokemon->pathParam >= 0.0f) || !(pokemon->pathParam <= 1.0f)) {
+            while (TRUE) {
+                ohWait(1);
+            }
+        }
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+            GET_TRANSFORM(model)->pos.v.x -= sp80.x * 100.0f;
+            GET_TRANSFORM(model)->pos.v.z -= sp80.z * 100.0f;
+            if (!(arg5 & 0x10)) {
+                if (arg5 & 1) {
+                    GET_TRANSFORM(model)->pos.v.y -= sp80.y;
+                } else {
+                    GET_TRANSFORM(model)->pos.v.y -= sp80.y * 100.0f;
+                }
+            }
+            
+            if (arg5 & 0x82) {
+                func_8001FCE8(&sp70, pokemon->path, pokemon->pathParam);
+                f2 = atan2f(sp70.x, sp70.z);
+                if (f2 < 0.0f) {
+                    f2 += TAU;
+                } else if (f2 > TAU) {
+                    f2 -= (s32)(f2 / TAU) * TAU;
+                }
+                if (arg5 & 0x80) {
+                    func_80360FC8_5013D8(model, f2, arg4);
+                } else {
+                    GET_TRANSFORM(model)->rot.f[2] = f2;
+                }
+            }
+
+            func_80361FBC_5023CC(&sp80, pokemon->path, pokemon->pathParam);
+
+            GET_TRANSFORM(model)->pos.v.x += sp80.x * 100.0f;
+            GET_TRANSFORM(model)->pos.v.z += sp80.z * 100.0f;
+            if (!(arg5 & 0x10)) {
+                if (arg5 & 1) {
+                    sp80.y = func_8035F21C_4FF62C(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z);
+                    GET_TRANSFORM(model)->pos.v.y += sp80.y;
+                    if (1) { } if (1) { } // TODO fake match
+                } else {
+                    GET_TRANSFORM(model)->pos.v.y += sp80.y * 100.0f;
+                }
+            }
+
+            pokemon->pathParam += sp68;
+            if (arg2 > 0.0f && arg2 <= pokemon->pathParam) {
+                return;
+            }
+
+            if (pokemon->pathParam > 1.0f){
+                pokemon->pathParam -= 1.0f;
+            }
+        }
+        ohWait(1);
+    }
+}
 
 f32 func_803623F4_502804(f32 arg0, f32 arg1) {
     return func_8035F21C_4FF62C(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362414_502824.s")
+void func_80362414_502824(Pokemon* arg0, eggStruct* arg1, f32 arg2) {
+    arg0->eggGeo = arg1;
+    func_800AB1F8(arg1);
+    while (func_800AB138(arg1, arg2)) {
+        ohWait(1);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362480_502890.s")
-void func_80362480_502890(struct DObj*, s32, f32);
+void func_80362480_502890(DObj* model, s32 arg1, f32 arg2) {
+    GObj* obj = model->obj;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    AnimationHeader* animHeader = pokemon->animHeader;
 
-#ifdef NON_MATCHING
-void func_803625B4_5029C4(GObj* source, s32 cmd) {
+    switch (arg1) {
+        case -1:
+            pokemon->loopCount++;
+            break;
+        case -2:
+            pokemon->loopCount++;
+            break;
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            if ((s32)model->parent == 1) { // toplevel
+                s32 val = arg2;
+                if (val != 0) {
+                    if (animHeader->ids != NULL) {
+                        func_8035F1D0_4FF5E0(obj, arg1, animHeader->ids[val - 1]);
+                    }
+                } else {
+                    func_80366864_506C74(obj, arg1);
+                }
+            } else if (pokemon->tangible) {
+                s32 val = arg2;
+                if (val > 0 && D_80382D10_523120 != NULL && D_80382D14_523124 != NULL) {
+                    UnkBrassLynx* unk = func_800A6C48(arg1, val - 1);
+                    if (unk != NULL) {
+                        unk->unk_48 = model;
+                    }
+                }
+            }
+            break;
+    }
+}
+
+void func_803625B4_5029C4(GObjCmdData cmdData) {
     idFuncStruct* a2;
     f32 distance;
-    Pokemon* pokemon;
+    s32 i;
+    Pokemon* pokemon;    
     GObjFunc sp24;
     GObjFunc sp20;
-    GObj* sp1C;
-    idFuncStruct* ptr;
-
-    sp1C = omCurrentObject;
+        
     pokemon = GET_POKEMON(omCurrentObject);
     sp24 = NULL;
     sp20 = NULL;
     a2 = pokemon->transitionGraph;
 
-    switch(cmd) {
+    switch(cmdData.cmd) {
         case 14:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == cmd) {
-                        distance = func_8035F2A4_4FF6B4(sp1C, source);
-                        if (distance < 600.0f) {
-                            pokemon->apple = source;
-                            pokemon->interactionDist = distance;
-                            pokemon->interactionTarget = source;
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                        }
-                        break;
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == cmdData.cmd) {
+                    distance = func_8035F2A4_4FF6B4(omCurrentObject, cmdData.source);
+                    if (distance < 600.0f) {
+                        pokemon->apple = cmdData.source;
+                        pokemon->interactionDist = distance;
+                        pokemon->interactionTarget = cmdData.source;
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
                     }
+                    break;
                 }
             }
             break;
         case 10:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == cmd) {
-                        distance = func_8035F2A4_4FF6B4(sp1C, source);
-                        if (distance < 150.0) {
-                            pokemon->apple = source;
-                            pokemon->interactionDist = distance;
-                            pokemon->interactionTarget = source;
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                        }
-                        break;
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == cmdData.cmd) {
+                    distance = func_8035F2A4_4FF6B4(omCurrentObject, cmdData.source);
+                    if (distance < 150.0) {
+                        pokemon->apple = cmdData.source;
+                        pokemon->interactionDist = distance;
+                        pokemon->interactionTarget = cmdData.source;
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
                     }
+                    break;
                 }
             }
             break;
         case 9:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 9) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 9) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
         case 13:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 13) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 13) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
         case 8:
         case 12:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == cmd) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == cmdData.cmd) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
         case 21:
-            if (pokemon->apple == source) {
+            if (pokemon->apple == cmdData.source) {
                 pokemon->apple = NULL;
-                if (a2 != NULL) {
-                    for (ptr = a2; ptr->id != 58; ptr++) {
-                        if (ptr->id == 21) {
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                            break;
-                        }
+                if (a2 == NULL) {
+                    break;
+                }
+                for (i = 0; a2[i].id != 58; i++) {
+                    if (a2[i].id == 21) {
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
+                        break;
                     }
                 }
             }
             break;
         case 18:
             if (pokemon->playerDist < 400.0f) {
-                if (a2 != NULL) {
-                    for (ptr = a2; ptr->id != 58; ptr++) {
-                        if (ptr->id == 18) {
-                            pokemon->interactionTarget = source;
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                            break;
-                        }
+                if (a2 == NULL) {
+                    break;
+                }
+                for (i = 0; a2[i].id != 58; i++) {
+                    if (a2[i].id == 18) {
+                        pokemon->interactionTarget = cmdData.source;
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
+                        break;
                     }
                 }
             }
             break;
         case 24:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 24) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 24) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
         case 19:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 19) {
-                        if (getCurrentWorldBlock() == pokemon->baseBlock) {
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                        }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 19) {
+                    if (getCurrentWorldBlock() == pokemon->baseBlock) {
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
                     }
                 }
             }
             break;
         case 20:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 20) {
-                        distance = func_8035F2A4_4FF6B4(sp1C, source);
-                        if (distance < 600.0f) {
-                            pokemon->interactionTarget = source;
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                        }
-                        break;
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 20) {
+                    distance = func_8035F2A4_4FF6B4(omCurrentObject, cmdData.source);
+                    if (distance < 600.0f) {
+                        pokemon->interactionTarget = cmdData.source;
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
                     }
+                    break;
                 }
             }
             break;
         case 22:
-            if (pokemon->interactionTarget == source) {
+            if (pokemon->interactionTarget == cmdData.source) {
                 pokemon->interactionTarget = NULL;
-                if (a2 != NULL) {
-                    for (ptr = a2; ptr->id != 58; ptr++) {
-                        if (ptr->id == 22) {
-                            sp24 = ptr->state;
-                            sp20 = ptr->aux;
-                            break;
-                        }
+                if (a2 == NULL) {
+                    break;
+                }
+                for (i = 0; a2[i].id != 58; i++) {
+                    if (a2[i].id == 22) {
+                        sp24 = a2[i].state;
+                        sp20 = a2[i].aux;
+                        break;
                     }
                 }
             }
             break;
         case 26:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 26) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 26) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
         case 27:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == 27) {
-                        pokemon->interactionTarget = source;
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
-                    }
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == 27) {
+                    pokemon->interactionTarget = cmdData.source;
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
@@ -1896,16 +2029,17 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
         case 55:
         case 56:
         case 57:
-            if (a2 != NULL) {
-                for (ptr = a2; ptr->id != 58; ptr++) {
-                    if (ptr->id == cmd) {
-                        if (source != NULL) {
-                            pokemon->interactionTarget = source;
-                        }
-                        sp24 = ptr->state;
-                        sp20 = ptr->aux;
-                        break;
+            if (a2 == NULL) {
+                break;
+            }
+            for (i = 0; a2[i].id != 58; i++) {
+                if (a2[i].id == cmdData.cmd) {
+                    if (cmdData.source != NULL) {
+                        pokemon->interactionTarget = cmdData.source;
                     }
+                    sp24 = a2[i].state;
+                    sp20 = a2[i].aux;
+                    break;
                 }
             }
             break;
@@ -1921,10 +2055,6 @@ void func_803625B4_5029C4(GObj* source, s32 cmd) {
         ohPauseObjectProcesses(omCurrentObject);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803625B4_5029C4.s")
-void func_803625B4_5029C4(GObjCmdData cmdData);
-#endif
 
 void updatePokemonDefault(GObj* obj) {
     Pokemon* pokemon;
@@ -1951,7 +2081,15 @@ void updatePokemonDefault(GObj* obj) {
     cmdProcessCommands(&func_803625B4_5029C4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362D2C_50313C.s")
+void func_80362D2C_50313C(GObj* obj, f32 prevBlockX, f32 prevBlockY, f32 prevBlockZ, f32 currBlockX, f32 currBlockY, f32 currBlockZ) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    WorldBlock* block;
+
+    pokemonChangeBlockOnGround(obj, prevBlockX, prevBlockY, prevBlockZ, currBlockX, currBlockY, currBlockZ);
+    if (getCurrentWorldBlock()->index > (block = pokemon->baseBlock)->index && pokemon->playerDist > 10000.0f) {
+        runPokemonCleanup(obj);
+    }
+}
 
 GObj* func_80362DC4_5031D4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     GObj* pokemonObj = spawnPokemon(objID, id, block, blockB, spawn, initData);
@@ -2076,8 +2214,129 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     return pokemonObj;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036334C_50375C.s")
+void func_8036334C_50375C(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;    
+    Mtx4f sp78;
+    Mtx4f sp38;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036345C_50386C.s")
+    hal_rotate_rpy_translate_f(sp78, GET_TRANSFORM(model)->pos.v.x,
+                                     GET_TRANSFORM(model)->pos.v.y,
+                                     GET_TRANSFORM(model)->pos.v.z,
+                                     GET_TRANSFORM(model)->rot.f[1],
+                                     GET_TRANSFORM(model)->rot.f[2],
+                                     GET_TRANSFORM(model)->rot.f[3]);
+    if (pokemon->flags & POKEMON_FLAG_1) {
+        hal_translate_f(sp38, pokemon->collisionOffset.x + model->position.v.x * GET_TRANSFORM(model)->scale.v.x,
+                              pokemon->collisionOffset.y + model->position.v.y * GET_TRANSFORM(model)->scale.v.y,
+                              pokemon->collisionOffset.z + model->position.v.z * GET_TRANSFORM(model)->scale.v.z);
+    } else {
+        hal_translate_f(sp38, pokemon->collisionOffset.x, pokemon->collisionOffset.y, pokemon->collisionOffset.z);
+    }
+    guMtxCatF(sp38, sp78, sp78);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80363738_503B48.s")
+    pokemon->collPosition.x = sp78[3][0];
+    pokemon->collPosition.y = sp78[3][1];
+    pokemon->collPosition.z = sp78[3][2];
+}
+
+void func_8036345C_50386C(GObj* arg0) {
+    SomeListEntry* entry;
+    SomeListEntry* entry2;
+    Pokemon* pokemon;
+    Pokemon* pokemon2;
+    Vec3f sp84;
+    Vec3f sp78;
+    Vec3f sp6C;
+    f32 f20;
+    s32 unused[2];
+
+    for (entry = D_803B0C08_551018; entry != NULL; entry = entry->next) {
+        func_8036334C_50375C(entry->obj);
+        pokemon = GET_POKEMON(entry->obj);
+        pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_80;
+    }
+
+    for (entry = D_803B0C08_551018; entry != NULL; entry = entry->next) {
+        pokemon = GET_POKEMON(entry->obj);
+        if (pokemon->flags & POKEMON_FLAG_200) {
+            sp84.x = pokemon->collPosition.x;
+            sp84.y = pokemon->collPosition.y;
+            sp84.z = pokemon->collPosition.z;
+            
+            for (entry2 = entry->next; entry2 != NULL; entry2 = entry2->next) {
+                pokemon2 = GET_POKEMON(entry2->obj);
+                if (pokemon2->flags & POKEMON_FLAG_200) {
+                    sp78.x = pokemon2->collPosition.x;
+                    sp78.y = pokemon2->collPosition.y;
+                    sp78.z = pokemon2->collPosition.z;
+                    f20 = Vec3fDirection(&sp6C, &sp84, &sp78) - (pokemon->collisionRadius + pokemon2->collisionRadius);
+                    if (f20 < 0.0f) {
+                        if (f20 < 0.0f) {
+                            f20 = -f20;
+                        }
+
+                        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_80)) {
+                            pokemon->processFlags |= POKEMON_PROCESS_FLAG_80;
+                            cmdSendCommand(entry->obj, 26, entry2->obj);
+                        }
+
+                        if (!(pokemon2->processFlags & POKEMON_PROCESS_FLAG_80)) {
+                            pokemon2->processFlags |= POKEMON_PROCESS_FLAG_80;
+                            cmdSendCommand(entry2->obj, 26, entry->obj);
+                        }
+                        
+                        // BUG same pokemon checked twice
+                        if ((pokemon2->flags & POKEMON_FLAG_800) && (pokemon2->flags & POKEMON_FLAG_800)) {
+                            func_8035F648_4FFA58(&sp84, &sp78, &sp6C, f20 / 2);
+                            func_80360D18_501128(entry->obj, sp6C.x, sp6C.z, 1);
+                            func_8036334C_50375C(entry->obj);
+
+                            func_8035F648_4FFA58(&sp78, &sp84, &sp6C, f20 / 2);
+                            func_80360D18_501128(entry2->obj, sp6C.x, sp6C.z, 1);
+                            func_8036334C_50375C(entry2->obj);
+                        } else if (pokemon2->flags & POKEMON_FLAG_800) {
+                            func_8035F648_4FFA58(&sp78, &sp84, &sp6C, f20);
+                            func_80360D18_501128(entry2->obj, sp6C.x, sp6C.z, 1);
+                            func_8036334C_50375C(entry2->obj);
+                        } else if (pokemon->flags & POKEMON_FLAG_800) {
+                            func_8035F648_4FFA58(&sp84, &sp78, &sp6C, f20);
+                            func_80360D18_501128(entry->obj, sp6C.x, sp6C.z, 1);
+                            func_8036334C_50375C(entry->obj);
+                        }
+                    }
+                }
+            }
+        }
+        if (FALSE) { } // required to match
+    }
+}
+
+extern SomeListEntry D_803B0A28_550E38[];
+
+void func_80363738_503B48(void) {
+    s32 i;
+
+    D_803B0C08_551018 = NULL;
+    D_803B0C0C_55101C = NULL;
+    D_803B0C10_551020 = D_803B0A28_550E38;
+
+    for (i = 0; i < 40; i++) {
+        if (i == 0) {
+            D_803B0A28_550E38[i].prev = NULL;
+        } else {
+            D_803B0A28_550E38[i].prev = &D_803B0A28_550E38[i - 1];
+        }
+        if (i == 39) {
+            D_803B0A28_550E38[i].next = NULL;
+        } else {
+            D_803B0A28_550E38[i].next = &D_803B0A28_550E38[i + 1];
+        }
+        D_803B0A28_550E38[i].obj = NULL;
+    }
+
+    omCreateProcess(ohFindByLinkAndId(0, 0), func_8036345C_50386C, 1, 2);
+    func_8035E8A4_4FECB4();
+    func_8035E9E0_4FEDF0();
+    func_8035EB1C_4FEF2C();
+}

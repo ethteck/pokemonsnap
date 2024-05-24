@@ -129,7 +129,7 @@ f32 randFloat(void) {
     return ((sRandSeed >> 16) & 0xFFFF) / 65536.0f;
 }
 
-u32 randRange(s32 range) {
+s32 randRange(s32 range) {
     return rand() * range / 0x10000;
 }
 

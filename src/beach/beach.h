@@ -40,7 +40,7 @@ void func_8036010C_50051C(GObj*);
 void func_80360144_500554(GObj*, f32);
 void func_80360300_500710(GObj*, f32, f32, f32, f32);
 void func_80360590_5009A0(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
-s32 func_80360F1C_50132C(GObj*, s32);
+s32 func_80360F1C_50132C(GObj*, u32);
 s32 func_80360FC8_5013D8(void*, f32, f32);
 s32 func_80361440_501850(GObj*);
 void func_8036194C_501D5C(GObj*, f32, f32, UNK_TYPE);

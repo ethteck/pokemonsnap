@@ -4,9 +4,6 @@
 
 #include "sys/anim.h"
 
-// TODO header
-void func_8001FCA4(Vec3f*, void*, f32);
-
 #ifdef NON_MATCHING
 DObj* animModelTreeNextNode(DObj* obj) {
     DObj* child;

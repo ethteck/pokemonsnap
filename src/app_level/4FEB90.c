@@ -6,6 +6,9 @@ extern DObj* gPlayerDObj;
 extern GObj* gPokemonInFocus;
 
 extern Vec3f D_8038A430_52A840;
+extern Vec3f D_8038A43C_52A84C;
+
+void func_800A5E98(Vec3f*, Vec3f*, DObj*);
 
 void deletePokemon(GObj* pokemonObj);
 void func_800A716C(GObj*);
@@ -13,7 +16,7 @@ u8 getIsPaused(void);
 void func_80366864_506C74(GObj*, s32);
 void func_803667C0_506BD0(GObj*, UNK_TYPE, UNK_TYPE);
 s32 func_8036381C_503C2C(void);
-s32 func_80360E78_501288(GObj* arg0, f32 arg1, s32 arg2);
+s32 func_80360E78_501288(GObj* arg0, f32 arg1, u32 arg2);
 
 typedef struct SomeListEntry {
     /* 0x00 */ struct SomeListEntry* prev;
@@ -1129,36 +1132,406 @@ void func_80360AB8_500EC8(GObj* obj, f32 arg1, s32 arg2) {
     pokemon->jumpVel = f20 * 1 / 0.033;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360BEC_500FFC.s")
+s32 func_80360BEC_500FFC(f32 arg0, f32 arg1, GroundResult* arg2, f32* arg3) {
+    s32 ret = FALSE;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360D18_501128.s")
-s32 func_80360D18_501128(GObj* arg0, f32 arg1, f32 arg2, s32 arg3);
+    getGroundAt(arg0, arg1, arg2);
+    if (arg3 == NULL) {
+        switch (arg2->surfaceType) {
+            case SURFACE_TYPE_007F66:
+            case SURFACE_TYPE_00FF00:
+            case SURFACE_TYPE_337FB2:
+            case SURFACE_TYPE_4CCCCC:
+            case SURFACE_TYPE_7F6633:
+            case SURFACE_TYPE_7F667F:
+            case SURFACE_TYPE_FF0000:
+            case SURFACE_TYPE_FF4C19:
+            case SURFACE_TYPE_FF7FB2:            
+                ret = TRUE;
+                break;
+        }
+    } else {
+        while (*arg3 != 0.0f) {
+            if (*arg3 == arg2->surfaceType) {
+                ret = TRUE;
+                break;
+            }
+            arg3++;
+        }
+    }
+    return ret;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360E78_501288.s")
+s32 func_80360D18_501128(GObj* obj, f32 arg1, f32 arg2, u32 arg3) {
+    DObj* model = obj->data.dobj;
+    Pokemon* pokemon = GET_POKEMON(obj);    
+    f32 sp5C = GET_TRANSFORM(model)->pos.v.x + arg1;
+    f32 sp58 = GET_TRANSFORM(model)->pos.v.z + arg2;
+    GroundResult sp44;
+    Vec3f sp38;
+    Vec3f sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360F1C_50132C.s")
+    if (func_80360BEC_500FFC(sp5C, sp58, &pokemon->currGround, pokemon->forbiddenGround)) {
+        return TRUE;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80360FC8_5013D8.s")
+    sp2C.x = arg1; sp2C.y = 0.0f; sp2C.z = arg2;
+    Vec3fNormalize(&sp2C);
+    Vec3fScale(&sp2C, pokemon->collisionRadius);
+    if (func_80360BEC_500FFC(GET_TRANSFORM(model)->pos.v.x + sp2C.x, GET_TRANSFORM(model)->pos.v.z + sp2C.z, &sp44, pokemon->forbiddenGround)) {
+        return TRUE;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361110_501520.s")
+    if (arg3 & 0x10) {
+        if (ABS(GET_TRANSFORM(model)->pos.v.y - pokemon->currGround.height) != 0.0f) {
+            return TRUE;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361410_501820.s")
+    GET_TRANSFORM(model)->pos.v.x = sp5C;
+    GET_TRANSFORM(model)->pos.v.z = sp58;
+    if (arg3 & 0x1) {
+        GET_TRANSFORM(model)->pos.v.y = pokemon->currGround.height;
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361440_501850.s")
+s32 func_80360E78_501288(GObj* obj, f32 arg1, u32 arg2) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036148C_50189C.s")
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+        f32 sp1C = pokemon->hSpeed * 0.033;
+        f32 sp18 = sinf(arg1) * sp1C;
+        f32 sp14 = cosf(arg1) * sp1C;
+        
+        if (func_80360D18_501128(obj, sp18, sp14, arg2)) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803615D0_5019E0.s")
+s32 func_80360F1C_50132C(GObj* obj, u32 arg2) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361720_501B30.s")
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_20)) {
+        f32 sp1C = pokemon->hSpeed * 0.033;
+        f32 yaw = GET_TRANSFORM(model)->rot.f[2];
+        f32 sp18 = sinf(yaw) * sp1C;
+        f32 sp14 = cosf(yaw) * sp1C;
+        
+        if (func_80360D18_501128(obj, sp18, sp14, arg2)) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361748_501B58.s")
+s32 func_80360FC8_5013D8(DObj* model, f32 arg1, f32 arg2) {
+    f32 f0;
+    f32 delta;
+    f32 sign;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_8036194C_501D5C.s")
+    f0 = GET_TRANSFORM(model)->rot.f[2];
+    f0 -= (s32)(f0 / TAU) * TAU;
+    if (f0 < 0.0f) {
+        f0 += TAU;
+    }
+    
+    delta = arg1 - f0;
+    if (ABS(delta) > arg2) {
+        if (ABS(delta) < PI) {
+            sign = SIGN(delta);
+        } else {
+            sign = -SIGN(delta);
+        }
+        GET_TRANSFORM(model)->rot.f[2] = f0 + sign * arg2;
+    } else {
+        GET_TRANSFORM(model)->rot.f[2] = arg1;
+        return TRUE;    
+    }
+    return FALSE;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361B20_501F30.s")
+void func_80361110_501520(GObj* obj, f32 arg1, f32 arg2, s32 arg3) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 f20 = pokemon->hSpeed * 0.033;
+    f32 f22;
+    f32 f28, f30;
+    f32 f24;
+    f32 sp54;
+    f32 newX, newZ, deltaX, deltaZ;
+    f32 f02, delta, sign;
+    Vec3f sp68;
+    s32 unused[2];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361B50_501F60.s")
+    switch (randRange(300) % 3) {
+        case 0:
+            f22 = func_8035F24C_4FF65C(GET_TRANSFORM(model)->rot.f[2], PI / 6.0f);
+            break;
+        case 1:
+            f22 = func_8035F24C_4FF65C(GET_TRANSFORM(model)->rot.f[2], -PI / 6.0f);
+            break;
+        case 2:
+            f22 = func_8035F24C_4FF65C(GET_TRANSFORM(model)->rot.f[2], PI);
+            break;
+    }
+
+    sp68.x = GET_TRANSFORM(model)->pos.v.x + sinf(f22) * arg1;
+    sp68.z = GET_TRANSFORM(model)->pos.v.z + cosf(f22) * arg1;
+
+    f24 = func_8035F24C_4FF65C(f22, PI);
+    sp54 = f20 / arg1;
+
+    f28 = GET_TRANSFORM(model)->pos.v.x;
+    f30 = GET_TRANSFORM(model)->pos.v.z;
+
+    while (TRUE) {
+        f24 = func_8035F24C_4FF65C(f24, sp54);
+        f22 = func_8035F24C_4FF65C(f24, PI_2);
+        newX = sinf(f24) * arg1 + sp68.x;
+        newZ = cosf(f24) * arg1 + sp68.z;
+        deltaX = newX - f28;
+        f28 = newX;
+        deltaZ = newZ - f30;
+        f30 = newZ;
+        if (func_80360D18_501128(obj, deltaX, deltaZ, 1)) {
+            return;
+        }
+
+        f02 = func_8035F24C_4FF65C(GET_TRANSFORM(model)->rot.f[2], 0.0f);
+        delta = f22 - f02;
+        if (ABS(delta) > arg2) {
+            if (ABS(delta) < PI) {
+                sign = SIGN(delta);
+            } else {
+                sign = -SIGN(delta);
+            }
+            GET_TRANSFORM(model)->rot.f[2] = func_8035F24C_4FF65C(f02, sign * arg2);
+        } else {
+            GET_TRANSFORM(model)->rot.f[2] = f22;
+        }
+        ohWait(1);
+    }
+}
+
+void func_80361410_501820(GObj* obj, f32 arg1) {
+    func_80361110_501520(obj, arg1, 0.1f, 1);
+}
+
+s32 func_80361440_501850(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    s32 ret = Items_func_8035C834();
+
+    if (pokemon->playerDist > 1400.0f) {
+        ret = 0;
+    }
+    return ret;
+}
+
+void func_8036148C_50189C(GObj* obj, f32 arg1, u32 arg2) {
+    f32 f20;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;    
+    s32 s3 = TRUE;    
+    Vec3f* s2;
+    Vec3f* s1;
+    DObj* v0;
+
+    if (arg2 & 0x20) {
+        v0 = gPlayerDObj;
+    } else if (pokemon->interactionTarget != NULL) {
+        v0 = pokemon->interactionTarget->data.dobj;
+    } else {
+        return;
+    }
+
+    if (GET_TRANSFORM_BASE(v0) != NULL) {
+        s2 = &GET_TRANSFORM(v0)->pos.v;
+    } else {
+        s2 = &v0->position.v;
+    }
+    s1 = &GET_TRANSFORM(model)->pos.v;
+
+    while (TRUE) {
+        if ((arg2 & 4) && !func_80361440_501850(obj)) {
+            break;
+        }
+
+        if (s3 || (arg2 & 2)) {
+            s3 = FALSE;
+            if (arg2 & 0x40) {
+                f20 = func_8035F51C_4FF92C(s1, s2);
+            } else {
+                f20 = func_8035F51C_4FF92C(s2, s1);
+            }
+        }
+
+        if (func_80360FC8_5013D8(model, f20, arg1) && !(arg2 & 8)) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_803615D0_5019E0(GObj* obj, DObj* arg1, f32 arg12, u32 arg2) {
+    f32 f20;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    s32 s3;
+    Vec3f* s1;
+    Vec3f sp60;
+    Vec3f sp54;
+
+    sp54 = D_8038A43C_52A84C;
+    s3 = TRUE;
+
+    s1 = &GET_TRANSFORM(model)->pos.v;
+
+    while (TRUE) {
+        func_800A5E98(&sp60, &sp54, arg1);
+        if ((arg2 & 4) && !func_80361440_501850(obj)) {
+            break;
+        }
+
+        if (s3 || (arg2 & 2)) {
+            s3 = FALSE;
+            if (arg2 & 0x40) {
+                f20 = func_8035F51C_4FF92C(s1, &sp60);
+            } else {
+                f20 = func_8035F51C_4FF92C(&sp60, s1);
+            }
+        }
+
+        if (func_80360FC8_5013D8(model, f20, arg12) && !(arg2 & 8)) {
+            break;
+        }
+        ohWait(1);
+    }
+}
+
+void func_80361720_501B30(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, pokemon->hSpeed, 0);
+}
+
+void func_80361748_501B58(GObj* obj, f32 arg1, f32 arg2, u32 arg3) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 f22 = pokemon->hSpeed * 0.033;
+    DObj* v0;
+    Vec3f* a0;
+    s32 s3 = TRUE;
+    f32 f0;
+    f32 f24;
+    s32 unused[5];
+    Vec3f* s1;
+    Vec3f sp6C;
+    s32 unused2;
+
+    while (TRUE) {
+        if (s3 || (arg3 & 2)) {
+            s3 = FALSE;
+            if (pokemon->interactionTarget == NULL) {
+                break;
+            }
+
+            v0 = pokemon->interactionTarget->data.dobj;
+            if (GET_TRANSFORM_BASE(v0) != NULL) {
+                a0 = &GET_TRANSFORM(v0)->pos.v;
+                pokemon->targetPos.x = GET_TRANSFORM(v0)->pos.v.x;
+                pokemon->targetPos.y = GET_TRANSFORM(v0)->pos.v.y;
+                pokemon->targetPos.z = GET_TRANSFORM(v0)->pos.v.z;
+            } else {
+                a0 = &v0->position.v;
+                pokemon->targetPos.x = v0->position.v.x;
+                pokemon->targetPos.y = v0->position.v.y;
+                pokemon->targetPos.z = v0->position.v.z;
+            }
+            s1 = &GET_TRANSFORM(model)->pos.v;
+            f24 = func_8035F648_4FFA58(a0, s1, &sp6C, f22);
+        }
+
+        if (func_80360D18_501128(obj, sp6C.x, sp6C.z, arg3 | 1)) {
+            break;
+        }
+
+        func_80360FC8_5013D8(model, f24, arg2);
+        f0 = sqrtf(SQ(pokemon->targetPos.x - s1->x) + SQ(pokemon->targetPos.y - s1->y) + SQ(pokemon->targetPos.z - s1->z));
+        if (ABS(f0 - arg1) < f22 || f0 < arg1) {
+            pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+            break;
+        }
+
+        ohWait(1);
+    }
+}
+
+void func_8036194C_501D5C(GObj* obj, f32 arg1, f32 arg2, u32 arg3) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 f22 = pokemon->hSpeed * 0.033;
+    DObj* v0;
+    Vec3f* a0;
+    s32 s3 = TRUE;
+    f32 f0;
+    f32 f24;
+    s32 unused[7];
+    Vec3f* s1;
+    Vec3f sp6C;
+
+    while (TRUE) {
+        if (s3 || (arg3 & 2)) {
+            s3 = FALSE;
+            if (pokemon->interactionTarget == NULL) {
+                break;
+            }
+
+            v0 = pokemon->interactionTarget->data.dobj;
+            if (GET_TRANSFORM_BASE(v0) != NULL) {
+                a0 = &GET_TRANSFORM(v0)->pos.v;
+                pokemon->targetPos.x = GET_TRANSFORM(v0)->pos.v.x;
+                pokemon->targetPos.y = GET_TRANSFORM(v0)->pos.v.y;
+                pokemon->targetPos.z = GET_TRANSFORM(v0)->pos.v.z;
+            } else {
+                a0 = &v0->position.v;
+                pokemon->targetPos.x = v0->position.v.x;
+                pokemon->targetPos.y = v0->position.v.y;
+                pokemon->targetPos.z = v0->position.v.z;
+            }
+            s1 = &GET_TRANSFORM(model)->pos.v;
+            f24 = func_8035F648_4FFA58(s1, a0, &sp6C, f22);
+        }
+
+        if (func_80360D18_501128(obj, sp6C.x, sp6C.z, arg3 | 1)) {
+            break;
+        }
+
+        func_80360FC8_5013D8(model, f24, arg2);
+        f0 = sqrtf(SQ(pokemon->targetPos.x - s1->x) + SQ(pokemon->targetPos.y - s1->y) + SQ(pokemon->targetPos.z - s1->z));
+        if (f0 > arg1) {
+            pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+            break;
+        }
+
+        ohWait(1);
+    }
+}
+
+void func_80361B20_501F30(GObj* obj, f32 arg1) {
+    func_8036194C_501D5C(obj, arg1, 0.1f, 1);
+}
+
+void func_80361B50_501F60(GObj* obj, f32 arg1, f32 arg2) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->targetPos.x = arg1;
+    pokemon->targetPos.z = arg2;
+}
 
 s32 func_80361B68_501F78(GObj* arg0, f32 arg1, s32 arg2) {
     f32 dx, dz;
@@ -1223,19 +1596,77 @@ s32 func_80361B68_501F78(GObj* arg0, f32 arg1, s32 arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361E58_502268.s")
+void func_80361E58_502268(GObj* obj, f32 arg1) {
+    while (!func_80361B68_501F78(obj, arg1, 1)) {
+        ohWait(1);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361EB8_5022C8.s")
+void func_80361EB8_5022C8(GObj* obj, f32 arg1) {
+    func_80361748_501B58(obj, arg1, 0.1f, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361EE8_5022F8.s")
+void func_80361EE8_5022F8(GObj* obj, f32 arg1) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    DObj* targetModel;
+    Vec3f* a0;
+    Vec3f* s1;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80361FBC_5023CC.s")
+    if (pokemon->interactionTarget == NULL) {
+        return;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/setNodePosToNegRoom.s")
+    targetModel = pokemon->interactionTarget->data.dobj;
+    if (GET_TRANSFORM_BASE(targetModel) != NULL) {
+        a0 = &GET_TRANSFORM(targetModel)->pos.v;
+    } else {
+        a0 = &targetModel->position.v;
+    }
+    s1 = &GET_TRANSFORM(model)->pos.v;
+
+    while (TRUE) {
+        if (Items_func_8035C834() == 0 || pokemon->playerDist > 1400.0f) {
+            break;
+        }
+
+        func_80360FC8_5013D8(model, func_8035F51C_4FF92C(a0, s1), arg1);
+        ohWait(1);
+    }
+}
+
+void func_80361FBC_5023CC(Vec3f* arg0, InterpData* arg1, f32 arg2) {
+    switch (arg1->type) {
+        case 1:
+            func_8001FCA4(arg0, arg1, arg2);
+            break;
+        case 2:
+            func_8001FCA4(arg0, arg1, arg2);
+            break;
+        case 3:
+            func_8001FCA4(arg0, arg1, arg2);
+            break;
+        case 0:
+            func_8001FCA4(arg0, arg1, arg2);
+            break;
+    }
+}
+
+void setNodePosToNegRoom(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    WorldBlock* block = getCurrentWorldBlock();
+
+    GET_TRANSFORM(model)->pos.v.x = -(block->descriptor->worldPos.x * 100.0f);
+    GET_TRANSFORM(model)->pos.v.y = -(block->descriptor->worldPos.y * 100.0f);
+    GET_TRANSFORM(model)->pos.v.z = -(block->descriptor->worldPos.z * 100.0f);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/pokemonPathLoop.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_803623F4_502804.s")
+f32 func_803623F4_502804(f32 arg0, f32 arg1) {
+    return func_8035F21C_4FF62C(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/func_80362414_502824.s")
 

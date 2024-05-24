@@ -172,10 +172,10 @@ enum PokemonFlags {
 };
 
 enum PokemonProcessFlags {
-    POKEMON_PROCESS_FLAG_1   = 0x001,
-    POKEMON_PROCESS_FLAG_2   = 0x002,
-    POKEMON_PROCESS_FLAG_4   = 0x004,
-    POKEMON_PROCESS_FLAG_8   = 0x008,
+    POKEMON_PROCESS_FLAG_1   = 0x001, // animation ended ?
+    POKEMON_PROCESS_FLAG_2   = 0x002, // reached end of path ?
+    POKEMON_PROCESS_FLAG_4   = 0x004, // counter reached 0 
+    POKEMON_PROCESS_FLAG_8   = 0x008, // 
     POKEMON_PROCESS_FLAG_10  = 0x010,
     POKEMON_PROCESS_FLAG_20  = 0x020,
     POKEMON_PROCESS_FLAG_80  = 0x080

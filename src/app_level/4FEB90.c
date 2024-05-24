@@ -2078,7 +2078,7 @@ void updatePokemonDefault(GObj* obj) {
             pokemon->processFlags |= POKEMON_PROCESS_FLAG_1;
         }
     }
-    cmdProcessCommands(&func_803625B4_5029C4);
+    cmdProcessCommands(func_803625B4_5029C4);
 }
 
 void func_80362D2C_50313C(GObj* obj, f32 prevBlockX, f32 prevBlockY, f32 prevBlockZ, f32 currBlockX, f32 currBlockY, f32 currBlockZ) {

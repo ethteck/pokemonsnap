@@ -1,6 +1,21 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/5064F0/func_803660E0_5064F0.s")
+extern s32 D_80393BD4_533FE4;
+extern s32 D_80393BD8_533FE8;
+
+f32 func_803660E0_5064F0(GObj* obj, u8 arg1) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    f32 tmp;
+
+    if (D_80393BD4_533FE4 == 0 || D_80393BD8_533FE8 == 0) {
+        return 0.0f;
+    }
+    if (pokemon == NULL) {
+        return 0.0f;
+    }
+    tmp = pokemon->playerDist / 100.0f;
+    return arg1 / (arg1 + tmp);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/5064F0/func_80366160_506570.s")
 

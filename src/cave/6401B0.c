@@ -1,4 +1,8 @@
 #include "common.h"
+#include "ld_addrs.h"
+
+extern s32 D_802C6378_648828;
+extern SceneSetup D_802C6398_648848;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6401B0/func_802BDD00_6401B0.s")
 
@@ -26,4 +30,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6401B0/func_802BE3A8_640858.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6401B0/func_802BE3B0_640860.s")
+s32 func_802BE3B0_640860(s32 arg0) {
+    D_802C6398_648848.gtlSetup.heapSize = (uintptr_t) cave_code_VRAM - (uintptr_t) _1F5E70_VRAM_END;
+    gtlSetIntervals(1, 2);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_802C6398_648848);
+
+    if (D_802C6378_648828 == 6) {
+        return SCENE_CAVE;
+    }
+
+    if (func_8009BC68() > 0) {
+        return SCENE_CAMERA_CHECK;
+    }
+
+    func_800AAED0(0x10);
+
+    return SCENE_13;
+}
+

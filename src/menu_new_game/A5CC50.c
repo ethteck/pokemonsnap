@@ -357,7 +357,7 @@ SceneSetup menu_new_game_setup = {
 
 s32 menu_new_game_entry(s32 arg0) {
     viApplyScreenSettings(&menu_new_game_video_settings);
-    menu_new_game_setup.gtlSetup.heapSize = D_80369F80 - menu_new_game_VRAM_END;
+    menu_new_game_setup.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) menu_new_game_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&menu_new_game_setup);
     setPlayerFlag(PFID_16, 1);

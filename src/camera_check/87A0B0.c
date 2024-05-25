@@ -56,7 +56,7 @@ s32 func_camera_check_801DCACC(s32 arg0) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_camera_check_801E4060);
-    D_camera_check_801E407C.gtlSetup.heapSize = unk_end_level_VRAM - camera_check_VRAM_END;
+    D_camera_check_801E407C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) camera_check_VRAM_END;
     omSetupScene(&D_camera_check_801E407C);
     return D_800AF3C0;
 }

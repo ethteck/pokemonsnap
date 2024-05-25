@@ -109,7 +109,7 @@ void func_800E1BB8_5F368(GObj* obj) {
 
     gDPPipeSync(gMainGfxPos[0]++);
     gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
-    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
+    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
     gSPClearGeometryMode(gMainGfxPos[0]++, G_ZBUFFER | G_FOG);
     renRenderModelTypeA(obj);
     gDPPipeSync(gMainGfxPos[0]++);
@@ -119,7 +119,7 @@ void func_800E1BB8_5F368(GObj* obj) {
 void drawSkyBox1Cycle(GObj* obj) {
     gDPPipeSync(gMainGfxPos[0]++);
     gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
-    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2)
+    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_OPA_SURF, G_RM_AA_OPA_SURF2);
     gSPClearGeometryMode(gMainGfxPos[0]++, G_ZBUFFER | G_FOG);
     renRenderModelTypeA(obj);
     gDPPipeSync(gMainGfxPos[0]++);

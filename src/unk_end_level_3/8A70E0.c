@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "unk_end_level_3.h"
 
 Gfx D_800E66D0_8ABEF0[] = {
@@ -119,7 +120,7 @@ s32 func_oaks_lab_800E1AD8(s32 sceneId) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_800E6740_8ABF60);
-    D_800E675C_8ABF7C.gtlSetup.heapSize = D_80369F80 - D_80206B90;
+    D_800E675C_8ABF7C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_3_VRAM_END;
     omSetupScene(&D_800E675C_8ABF7C);
     return D_800AF3C0;
 }

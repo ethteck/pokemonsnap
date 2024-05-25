@@ -1,4 +1,8 @@
 #include "common.h"
+#include "ld_addrs.h"
+
+extern s32 D_8034ABD8_82A348;
+extern SceneSetup D_8034ABF8_82A368;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_803466C0_825E30.s")
 
@@ -30,4 +34,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346EE8_826658.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346EF0_826660.s")
+s32 func_80346EF0_826660(s32 arg0) {
+    D_8034ABF8_82A368.gtlSetup.heapSize = (uintptr_t)rainbow_code_VRAM - (uintptr_t) _4A8160_VRAM_END;
+    gtlSetIntervals(1, 2);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_8034ABF8_82A368);
+
+    if (D_8034ABD8_82A348 == 6) {
+        return SCENE_RAINBOW;
+    }
+
+    if (func_8009BC68() > 0) {
+        return SCENE_CAMERA_CHECK;
+    }
+
+    func_800AAED0(0x10);
+    return SCENE_13;
+}
+

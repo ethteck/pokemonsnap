@@ -100,8 +100,7 @@ void func_beach_802C4738(s32 arg0) {
 }
 
 s32 func_beach_802C4740(s32 sceneID) {
-    // BUG: the heapSize is calculated incorrectly
-    D_beach_802CC038.gtlSetup.heapSize = (uintptr_t) beach_code_VRAM - (uintptr_t) stage0_extra_VRAM;
+    D_beach_802CC038.gtlSetup.heapSize = (uintptr_t) beach_code_VRAM - (uintptr_t) A74E0_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_beach_802CC038);

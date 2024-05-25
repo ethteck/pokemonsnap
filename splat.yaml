@@ -1091,7 +1091,8 @@ segments:
     - [0x9D3230, c]
     - [0x9D3660, c]
     - [0x9D91C0, c]
-    - [0x9DA580, bin] # , data]
+    - [0x9DA580, .data, 9D3230]
+    - [0x9DA6A0, bin]
 
     - [0x9F9990, .rodata, 9D3660]
     - [0x9FA550, .rodata, 9D91C0]

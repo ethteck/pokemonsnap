@@ -2,13 +2,75 @@
 #include "ld_addrs.h"
 #include "unk_end_level/unk_end_level.h"
 
-extern Gfx D_801E3C10_9DA580[];
 extern UNK_TYPE D_80203C10_9FA580[];
-extern ScreenSettings D_801E3C80_9DA5F0;
-extern SceneSetup D_801E3C9C_9DA60C;
 
+void func_801DCBF4_9D3564(void);
 void func_801DCA48_9D33B8(void);
 void func_801E2790_9D9100(void);
+
+Gfx D_801E3C10_9DA580[] = {
+    gsDPPipeSync(),
+    gsDPPipelineMode(G_PM_NPRIMITIVE),
+    gsSPSetGeometryMode(G_LIGHTING),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureDetail(G_TD_CLAMP),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsSPClipRatio(FRUSTRATIO_6),
+    gsSPEndDisplayList(),
+};
+
+ScreenSettings D_801E3C80_9DA5F0 = {
+    D_803B5000,
+    D_803DA800,
+    NULL,
+    0x00000000,
+    0x00000140,
+    0x000000F0,
+    0x00016A99,
+};
+
+SceneSetup D_801E3C9C_9DA60C = {
+    {
+        0x00000000,
+        omUpdateAll,
+        omDrawAll,
+        unk_end_level_6_VRAM_END,
+        0x00000000,
+        0x00000002,
+        0x00000001,
+        0x0000C000,
+        0x00002000,
+        0x00000000,
+        0x00000000,
+        0x00003000,
+        2,
+        0x00003000,
+        func_800A1A50,
+        contUpdate,
+    },
+    0x00000020,
+    0x00002000,
+    0x00000020,
+    0x00000000,
+    0x00000040,
+    0x00000000,
+    sizeof(GObj),
+    0x00000400,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000010,
+    0x00000000,
+    sizeof(DObj),
+    0x00000000,
+    0x00000060,
+    0x00000000,
+    sizeof(OMCamera),
+    func_801DCBF4_9D3564,
+};
 
 void func_801DC8C0_9D3230(Gfx** arg0) {
     gSPDisplayList(++(*arg0), &D_801E3C10_9DA580);

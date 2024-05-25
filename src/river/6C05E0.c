@@ -1,4 +1,8 @@
 #include "common.h"
+#include "ld_addrs.h"
+
+extern s32 D_802E28B4_6CA694;
+extern SceneSetup D_802E293C_6CA71C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D8800_6C05E0.s")
 
@@ -34,4 +38,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D9208_6C0FE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D9210_6C0FF0.s")
+s32 func_802D9210_6C0FF0(s32 sceneId) {
+    D_802E293C_6CA71C.gtlSetup.heapSize = (uintptr_t) river_code_VRAM - (uintptr_t) _29A190_VRAM_END;
+    gtlSetIntervals(1, 2);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_802E293C_6CA71C);
+
+    if (D_802E28B4_6CA694 == 6) {
+        return SCENE_RIVER;
+    }
+
+    if (func_8009BC68() > 0) {
+        return SCENE_CAMERA_CHECK;
+    }
+
+    func_800AAED0(0x10);
+
+    return SCENE_13;
+}

@@ -2,7 +2,71 @@
 #include "ld_addrs.h"
 #include "camera_check.h"
 
-extern Addr D_8024A1E0;
+void func_camera_check_801DCA60(void);
+
+Gfx D_camera_check_801E3FF0[] = {
+    gsDPPipeSync(),
+    gsDPPipelineMode(G_PM_NPRIMITIVE),
+    gsSPClearGeometryMode(G_LIGHTING),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureDetail(G_TD_CLAMP),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsSPClipRatio(FRUSTRATIO_6),
+    gsSPEndDisplayList(),
+};
+
+ScreenSettings D_camera_check_801E4060 = {
+    D_803B5000,
+    D_803DA800,
+    NULL,
+    NULL,
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    0x16A99,
+};
+
+SceneSetup D_camera_check_801E407C = {
+    {
+        0,
+        omUpdateAll,
+        omDrawAll,
+        camera_check_VRAM_END,
+        0,
+        0x1,
+        0x1,
+        0xD000,
+        0x2000,
+        0,
+        0,
+        0x3000,
+        0x2,
+        0x3000,
+        func_800A1A50,
+        contUpdate,
+    },
+    0x20,
+    0x2000,
+    0x20,
+    0,
+    0x40,
+    0x80,
+    sizeof(GObj),
+    0x400,
+    0,
+    0,
+    0,
+    0,
+    0,
+    sizeof(DObj),
+    0,
+    0x60,
+    0x4,
+    sizeof(OMCamera),
+    func_camera_check_801DCA60,
+};
 
 static void nullsub() {
 }

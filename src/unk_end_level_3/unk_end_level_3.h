@@ -16,8 +16,6 @@ typedef struct UnkCobaltBarbel {
 } UnkCobaltBarbel;
 
 // Data
-extern ScreenSettings D_800E6740_8ABF60;
-extern SceneSetup D_800E675C_8ABF7C;
 extern Sprite D_8010C590_8D1DB0;
 extern Sprite D_8011EEA0_8E46C0;
 extern Sprite D_80122548_8E7D68;

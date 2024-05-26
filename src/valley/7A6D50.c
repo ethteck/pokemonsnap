@@ -1,12 +1,23 @@
 #include "common.h"
 
+void func_802CD914_7A6EA4(GObj*);
+
+extern AnimationHeader D_802D3958_7ACEE8;
+extern AnimationHeader D_802D396C_7ACEFC;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A6D50/func_802CD7C0_7A6D50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A6D50/func_802CD84C_7A6DDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A6D50/func_802CD8A4_7A6E34.s")
+void func_802CD8A4_7A6E34(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802D3958_7ACEE8);
+    updatePokemonState(arg0, func_802CD914_7A6EA4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A6D50/func_802CD8DC_7A6E6C.s")
+void func_802CD8DC_7A6E6C(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802D396C_7ACEFC);
+    updatePokemonState(arg0, func_802CD914_7A6EA4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A6D50/func_802CD914_7A6EA4.s")
 

@@ -1,5 +1,8 @@
 #include "common.h"
 
+void func_802E9C98_5E6D68(GObj*);
+void func_802E9D04_5E6DD4(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E93D0_5E64A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E944C_5E651C.s")
@@ -32,7 +35,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C3C_5E6D0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C60_5E6D30.s")
+void func_802E9C60_5E6D30(GObj* arg0) {
+    runPathProcess(arg0, func_802E9C98_5E6D68);
+    updatePokemonState(arg0, func_802E9D04_5E6DD4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C98_5E6D68.s")
 

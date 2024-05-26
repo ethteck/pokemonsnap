@@ -1,5 +1,9 @@
 #include "common.h"
 
+void func_802CC514_7A5AA4(GObj*);
+
+extern AnimationHeader D_802D352C_7ACABC;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB080_7A4610.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB110_7A46A0.s")
@@ -80,7 +84,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC424_7A59B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC4DC_7A5A6C.s")
+void func_802CC4DC_7A5A6C(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802D352C_7ACABC);
+    updatePokemonState(arg0, func_802CC514_7A5AA4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC514_7A5AA4.s")
 

@@ -1,5 +1,8 @@
 #include "common.h"
 
+void func_80347E44_8275B4(GObj*);
+void func_80348540_827CB0(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80346FA0_826710.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_803470CC_82683C.s")
@@ -28,7 +31,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347CC8_827438.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347E0C_82757C.s")
+void func_80347E0C_82757C(GObj* arg0) {
+    func_8035ED90_4FF1A0(arg0, func_80348540_827CB0);
+    updatePokemonState(arg0, func_80347E44_8275B4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347E44_8275B4.s")
 

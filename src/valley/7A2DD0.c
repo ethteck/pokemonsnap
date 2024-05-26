@@ -1,8 +1,14 @@
 #include "common.h"
 
+void func_802C9840_7A2DD0(GObj*);
+void func_802C9990_7A2F20(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A2DD0/func_802C9840_7A2DD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A2DD0/func_802C9958_7A2EE8.s")
+void func_802C9958_7A2EE8(GObj* arg0) {
+    func_8035ED90_4FF1A0(arg0, func_802C9840_7A2DD0);
+    updatePokemonState(arg0, func_802C9990_7A2F20);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A2DD0/func_802C9990_7A2F20.s")
 

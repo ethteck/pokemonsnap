@@ -1,12 +1,27 @@
 #include "common.h"
 
+void func_802DCFBC_6C4D9C(GObj*);
+
+extern AnimationHeader D_802E36FC_6CB4DC;
+extern AnimationHeader D_802E3710_6CB4F0;
+extern AnimationHeader D_802E3724_6CB504;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCEF0_6C4CD0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCF14_6C4CF4.s")
+void func_802DCF14_6C4CF4(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802E36FC_6CB4DC);
+    updatePokemonState(arg0, func_802DCFBC_6C4D9C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCF4C_6C4D2C.s")
+void func_802DCF4C_6C4D2C(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802E3710_6CB4F0);
+    updatePokemonState(arg0, func_802DCFBC_6C4D9C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCF84_6C4D64.s")
+void func_802DCF84_6C4D64(GObj* arg0) {
+    setPokemonAnimation(arg0, &D_802E3724_6CB504);
+    updatePokemonState(arg0, func_802DCFBC_6C4D9C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCFBC_6C4D9C.s")
 

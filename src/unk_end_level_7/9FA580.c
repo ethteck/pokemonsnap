@@ -48,7 +48,7 @@ void func_801DCA98_9FA758(void) {
     cam = obj->data.cam;
     cam->flags |= (CAMERA_FLAG_4 | CAMERA_FLAG_2);
     cam->flags &= ~(CAMERA_FLAG_1 | CAMERA_FLAG_2);
-    func_800A844C(cam, 0, 0, 0x140, 0xF0);
+    func_800A844C(cam, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     cam->viewMtx.lookAt.up.x = 0.0f;
     cam->viewMtx.lookAt.up.y = 0.0f;
     cam->viewMtx.lookAt.up.z = 1.0f;

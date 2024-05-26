@@ -86,7 +86,7 @@ GObj* func_80371C68_845418(void*, s32, Sprite*);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80371F30_8456E0(s32, s32, s32, s32);
-void func_80374714_847EC4(PhotoData*, Sprite*);
+UNK_TYPE func_80374714_847EC4(PhotoData*, Sprite*);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 s32 func_80374F30_8486E0(UnkSnowHerring*, s32);

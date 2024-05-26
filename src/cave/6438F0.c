@@ -28,7 +28,15 @@ extern PokemonInitData D_802C7590_649A40;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1A20_643ED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1A7C_643F2C.s")
+void func_802C1A7C_643F2C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0x2A);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1AC8_643F78.s")
 

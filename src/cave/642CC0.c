@@ -35,7 +35,16 @@ void evolveIntoMuk(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C0BB0_643060.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C0CD8_643188.s")
+void func_802C0CD8_643188(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 20.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C0D34_6431E4.s")
 

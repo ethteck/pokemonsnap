@@ -79,7 +79,16 @@ void func_802E13F4_6C91D4(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E142C_6C920C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1488_6C9268.s")
+void func_802E1488_6C9268(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.05f, 0.0f, 2U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E14F4_6C92D4.s")
 

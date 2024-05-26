@@ -133,7 +133,16 @@ void func_802D8830_729A30(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D8868_729A68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D88D0_729AD0.s")
+void func_802D88D0_729AD0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.15f, 0.0f, 3U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D893C_729B3C.s")
 

@@ -26,7 +26,16 @@ GObj* func_802EB3A8_5E8478(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8080/func_802EB548_5E8618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8080/func_802EB664_5E8734.s")
+void func_802EB664_5E8734(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.1f, 0.0f, 2U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8080/func_802EB6D0_5E87A0.s")
 

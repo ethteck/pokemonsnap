@@ -23,13 +23,31 @@ void func_802E53B8_5E2488(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E53DC_5E24AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5448_5E2518.s")
+void func_802E5448_5E2518(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.033333335f, 0.0f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E54B4_5E2584.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E54F0_5E25C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E556C_5E263C.s")
+void func_802E556C_5E263C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.043333337f, 0.0f, 3U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E55D8_5E26A8.s")
 

@@ -48,4 +48,3 @@ s32 func_802BE3B0_640860(s32 arg0) {
 
     return SCENE_13;
 }
-

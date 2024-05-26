@@ -52,6 +52,4 @@ s32 func_802E2BB8_5DFC88(s32 arg0) {
     return SCENE_13;
 }
 
-
-
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2C70_5DFD40.s")

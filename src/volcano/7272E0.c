@@ -49,7 +49,6 @@ s32 func_802D67C4_7279C4(s32 arg0) {
     return 0xD;
 }
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6864_727A64.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D693C_727B3C.s")

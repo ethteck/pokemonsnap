@@ -2,6 +2,15 @@
 
 #include "world/world.h"
 
+void func_802CA7A0_7A3D30(GObj*);
+void func_802CA8F8_7A3E88(GObj*);
+void func_802CA9BC_7A3F4C(GObj*);
+void func_802CAAD0_7A4060(GObj*);
+void func_802CABD0_7A4160(GObj*);
+void func_802CADEC_7A437C(GObj*);
+void func_802CAE70_7A4400(GObj*);
+void func_802CAF04_7A4494(GObj*);
+
 extern AnimationHeader D_802D315C_7AC6EC;
 extern AnimationHeader D_802D3170_7AC700;
 extern AnimationHeader D_802D3184_7AC714;
@@ -20,15 +29,6 @@ extern idFuncStruct D_802D3304_7AC894;
 extern idFuncStruct D_802D3334_7AC8C4;
 extern idFuncStruct D_802D3374_7AC904;
 extern PokemonInitData D_802D33F8_7AC988;
-
-void func_802CA7A0_7A3D30(GObj*);
-void func_802CA8F8_7A3E88(GObj*);
-void func_802CA9BC_7A3F4C(GObj*);
-void func_802CAAD0_7A4060(GObj*);
-void func_802CABD0_7A4160(GObj*);
-void func_802CADEC_7A437C(GObj*);
-void func_802CAE70_7A4400(GObj*);
-void func_802CAF04_7A4494(GObj*);
 
 void func_802CA6C0_7A3C50(GObj* obj) {
     UNUSED s32 pad[4];

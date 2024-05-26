@@ -3,9 +3,16 @@
 
 void func_802CB614_7A4BA4(GObj*);
 void func_802CC08C_7A561C(GObj*);
+void func_802CC424_7A59B4(GObj*);
 void func_802CC514_7A5AA4(GObj*);
 
+extern AnimationHeader D_802D3450_7AC9E0;
+extern AnimationHeader D_802D3464_7AC9F4;
+extern AnimationHeader D_802D3478_7ACA08;
 extern AnimationHeader D_802D352C_7ACABC;
+extern idFuncStruct D_802D3568_7ACAF8;
+extern randomTransition D_802D3608_7ACB98;
+extern idFuncStruct D_802D374C_7ACCDC;
 extern PokemonInitData D_802D37C0_7ACD50;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB080_7A4610.s")
@@ -38,9 +45,27 @@ void func_802CB338_7A48C8(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB394_7A4924.s")
+void func_802CB394_7A4924(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB404_7A4994.s")
+    forcePokemonAnimation(obj, &D_802D3464_7AC9F4);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = &D_802D3568_7ACAF8;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_802D3608_7ACB98);
+}
+
+void func_802CB404_7A4994(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    forcePokemonAnimation(obj, &D_802D3478_7ACA08);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = &D_802D3568_7ACAF8;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_802D3608_7ACB98);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB474_7A4A04.s")
 
@@ -124,7 +149,16 @@ void func_802CC068_7A55F8(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC320_7A58B0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC3B4_7A5944.s")
+void func_802CC3B4_7A5944(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802D3450_7AC9E0);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = &D_802D374C_7ACCDC;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802CC424_7A59B4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC424_7A59B4.s")
 

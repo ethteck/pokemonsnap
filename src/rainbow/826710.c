@@ -5,8 +5,8 @@ void func_80347E44_8275B4(GObj*);
 void func_80348540_827CB0(GObj*);
 void func_80348994_828104(GObj*);
 
-extern PokemonInitData D_8034AF78_82A6E8;
 extern PokemonInitData D_8034AE90_82A600;
+extern PokemonInitData D_8034AF78_82A6E8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80346FA0_826710.s")
 

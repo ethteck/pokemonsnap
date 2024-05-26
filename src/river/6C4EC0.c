@@ -22,11 +22,29 @@ extern PokemonInitData D_802E3CBC_6CBA9C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DD74C_6C552C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DD7CC_6C55AC.s")
+void func_802DD7CC_6C55AC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 50.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DD828_6C5608.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DD8A8_6C5688.s")
+void func_802DD8A8_6C5688(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 100.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DD904_6C56E4.s")
 

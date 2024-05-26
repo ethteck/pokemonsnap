@@ -13,11 +13,29 @@ extern PokemonInitData D_802E2710_733910;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DACA8_72BEA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DAD4C_72BF4C.s")
+void func_802DAD4C_72BF4C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 80.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DADA8_72BFA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DAE4C_72C04C.s")
+void func_802DAE4C_72C04C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 160.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DAEA8_72C0A8.s")
 
@@ -49,7 +67,16 @@ void func_802DB2D4_72C4D4(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DB418_72C618.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DB48C_72C68C.s")
+void func_802DB48C_72C68C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 160.0f;
+    func_8036194C_501D5C(obj, 1000.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72BCE0/func_802DB4E8_72C6E8.s")
 

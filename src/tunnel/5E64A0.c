@@ -41,7 +41,16 @@ void func_802E968C_5E675C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9AF8_5E6BC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9B90_5E6C60.s")
+void func_802E9B90_5E6C60(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 100.0f;
+    func_8036194C_501D5C(obj, 1000.0f, 0.1f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9BEC_5E6CBC.s")
 

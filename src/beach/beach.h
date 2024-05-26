@@ -44,7 +44,6 @@ void func_80360590_5009A0(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 s32 func_80360F1C_50132C(GObj*, s32);
 s32 func_80360FC8_5013D8(void*, f32, f32);
 s32 func_80361440_501850(GObj*);
-void func_8036194C_501D5C(GObj*, f32, f32, UNK_TYPE);
 void func_80361B50_501F60(GObj*, f32, f32);
 void func_80361E58_502268(GObj*, f32);
 void pokemonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);

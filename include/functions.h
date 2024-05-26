@@ -30,6 +30,7 @@ void pokemonUVStuff(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
 void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
 void runPokemonCleanup(GObj* obj);
 GObj* addPokemonAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
+void func_8036194C_501D5C(GObj*, f32, f32, UNK_TYPE);
 struct WorldBlock* setNodePosToNegRoom(GObj*);
 void pokemonPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
 GObj* spawnPokemon(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);

@@ -1,6 +1,9 @@
 #include "common.h"
+#include "world/world.h"
 
 void func_802BF044_6414F4(GObj*);
+
+extern PokemonInitData D_802C69C0_648E70;
 
 void func_802BF020_6414D0(GObj* arg0) {
     updatePokemonState(arg0, func_802BF044_6414F4);
@@ -29,4 +32,6 @@ void func_802BF020_6414D0(GObj* arg0) {
 void func_802BF554_641A04(void) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6414D0/func_802BF55C_641A0C.s")
+GObj* func_802BF55C_641A0C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C69C0_648E70);
+}

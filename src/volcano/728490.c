@@ -1,9 +1,13 @@
 #include "common.h"
+#include "world/world.h"
 
 void func_802D78A4_728AA4(GObj*);
 void func_802D8368_729568(GObj*);
 void func_802D8868_729A68(GObj*);
 void func_802D88D0_729AD0(GObj*);
+
+extern PokemonInitData D_802E14D8_7326D8;
+extern PokemonInitData D_802E190C_732B0C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D7290_728490.s")
 
@@ -49,7 +53,9 @@ void func_802D7A10_728C10(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D7E90_729090.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D7F28_729128.s")
+GObj* func_802D7F28_729128(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E14D8_7326D8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D7F60_729160.s")
 
@@ -106,4 +112,6 @@ void func_802D8830_729A30(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D89B0_729BB0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/728490/func_802D8A5C_729C5C.s")
+GObj* func_802D8A5C_729C5C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E190C_732B0C);
+}

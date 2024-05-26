@@ -1,8 +1,12 @@
 #include "common.h"
+#include "world/world.h"
 
 void func_802C1178_643628(GObj*);
 
 extern PokemonDef D_802C6FC4_649474;
+extern PokemonInitData D_802C7040_6494F0;
+extern PokemonInitData D_802C714C_6495FC;
+extern PokemonInitData D_802C7194_649644;
 
 /*
 void evolveIntoMuk(GObj* obj) {
@@ -43,7 +47,9 @@ void evolveIntoMuk(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1018_6434C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C10C8_643578.s")
+GObj* func_802C10C8_643578(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C7040_6494F0);
+}
 
 void func_802C1100_6435B0(GObj* arg0) {
     updatePokemonState(arg0, func_802C1178_643628);
@@ -61,6 +67,10 @@ void func_802C1100_6435B0(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C134C_6437FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C13B4_643864.s")
+GObj* func_802C13B4_643864(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C714C_6495FC);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C13EC_64389C.s")
+GObj* func_802C13EC_64389C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C7194_649644);
+}

@@ -1,12 +1,17 @@
 #include "common.h"
+#include "world/world.h"
 
 void func_802C33E4_645894(GObj*);
+
+extern PokemonInitData D_802C77FC_649CAC;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3290_645740.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3348_6457F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3388_645838.s")
+GObj* func_802C3388_645838(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C77FC_649CAC);
+}
 
 void func_802C33C0_645870(GObj* arg0) {
     updatePokemonState(arg0, func_802C33E4_645894);

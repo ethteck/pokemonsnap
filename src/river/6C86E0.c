@@ -1,8 +1,11 @@
 #include "common.h"
+#include "world/world.h"
 
 void func_802E142C_6C920C(GObj*);
 void func_802E1488_6C9268(GObj*);
 void func_802E1594_6C9374(GObj*);
+
+extern PokemonInitData D_802E4AA8_6CC888;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E0900_6C86E0.s")
 
@@ -76,4 +79,6 @@ void func_802E1570_6C9350(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E17D4_6C95B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1864_6C9644.s")
+GObj* func_802E1864_6C9644(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E4AA8_6CC888);
+}

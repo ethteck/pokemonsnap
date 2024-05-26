@@ -1010,7 +1010,8 @@ segments:
     - [0x87D1A0, c]
     - [0x87FB20, c]
 
-    - [0x8817E0, bin] # , data]
+    - [0x8817E0, .data, 87A0B0]
+    - [0x881900, bin]
 
     - [0x8A61F0, .rodata, 87A330]
     - [0x8A6450, .rodata, 87D1A0]
@@ -1074,7 +1075,8 @@ segments:
     - [0x9A6F70, c]
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
-    - [0x9AE430, bin] # , data]
+    - [0x9AE430, .data, 9A6B10]
+    - [0x9AE550, bin]
 
     - [0x9D2EA0, .rodata, 9A6F70]
     - [0x9D31A0, .rodata, 9ABB50]

@@ -43,8 +43,6 @@ typedef struct UnkTealFlounder {
     SObj* unk_1C;
 } UnkTealFlounder;
 
-extern ScreenSettings D_camera_check_801E4060;
-extern SceneSetup D_camera_check_801E407C;
 extern Sprite D_camera_check_801FCC58;
 extern Sprite D_camera_check_801FD088;
 extern Sprite D_camera_check_801FD9E0;

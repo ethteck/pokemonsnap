@@ -1,14 +1,17 @@
 #include "common.h"
 
+extern UNK_TYPE D_80208B98_9D2DE8;
+extern s32 D_80208B94_9D2DE4;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/D_80208F50_9D31A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E1900_9ABB50.s")
+UNK_TYPE* func_801E1900_9ABB50(void) {
+    return &D_80208B98_9D2DE8;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E190C_9ABB5C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E191C_9ABB6C.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E1928_9ABB78.s")
+s32 func_801E191C_9ABB6C(void) {
+    return D_80208B94_9D2DE4;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E1938_9ABB88.s")
 

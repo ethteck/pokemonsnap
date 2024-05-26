@@ -1,6 +1,7 @@
 #include "common.h"
 
 void func_802D1344_7AA8D4(GObj*);
+void func_802D15BC_7AAB4C(GObj*);
 
 extern AnimationHeader D_802EC82C_7C5DBC;
 extern AnimationHeader D_802EC840_7C5DD0;
@@ -31,7 +32,9 @@ void func_802D130C_7AA89C(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA790/func_802D156C_7AAAFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA790/func_802D1598_7AAB28.s")
+void func_802D1598_7AAB28(GObj* arg0) {
+    updatePokemonState(arg0, func_802D15BC_7AAB4C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA790/func_802D15BC_7AAB4C.s")
 

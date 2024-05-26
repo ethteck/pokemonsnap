@@ -1,6 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6414D0/func_802BF020_6414D0.s")
+void func_802BF044_6414F4(GObj*);
+
+void func_802BF020_6414D0(GObj* arg0) {
+    updatePokemonState(arg0, func_802BF044_6414F4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6414D0/func_802BF044_6414F4.s")
 

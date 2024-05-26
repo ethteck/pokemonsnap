@@ -1,18 +1,26 @@
 #include "common.h"
 #include "ld_addrs.h"
+#include "../world/world.h"
 
 extern s32 D_802EE130_5EB200;
 extern SceneSetup D_802EE150_5EB220;
+extern PokemonDef D_802EDFAC_5EB07C;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2500_5DF5D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E25D4_5DF6A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E273C_5DF80C.s")
+void func_802E273C_5DF80C(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonAdd(arg0, arg1, &D_802EDFAC_5EB07C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2760_5DF830.s")
+void func_802E2760_5DF830(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonsChangeBlock(arg0, arg1, &D_802EDFAC_5EB07C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2784_5DF854.s")
+void func_802E2784_5DF854(WorldBlock* arg0) {
+    pokemonRemove(arg0, &D_802EDFAC_5EB07C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E27A8_5DF878.s")
 

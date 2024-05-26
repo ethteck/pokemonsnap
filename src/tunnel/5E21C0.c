@@ -1,5 +1,9 @@
 #include "common.h"
 
+void func_802E53DC_5E24AC(GObj*);
+void func_802E5668_5E2738(GObj*);
+void func_802E583C_5E290C(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E50F0_5E21C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5134_5E2204.s")
@@ -10,7 +14,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E529C_5E236C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E53B8_5E2488.s")
+void func_802E53B8_5E2488(GObj* arg0) {
+    updatePokemonState(arg0, func_802E53DC_5E24AC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E53DC_5E24AC.s")
 
@@ -24,7 +30,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E55D8_5E26A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5644_5E2714.s")
+void func_802E5644_5E2714(GObj* arg0) {
+    updatePokemonState(arg0, func_802E5668_5E2738);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5668_5E2738.s")
 
@@ -32,7 +40,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5748_5E2818.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E5818_5E28E8.s")
+void func_802E5818_5E28E8(GObj* arg0) {
+    updatePokemonState(arg0, func_802E583C_5E290C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E21C0/func_802E583C_5E290C.s")
 

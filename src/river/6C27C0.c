@@ -1,12 +1,16 @@
 #include "common.h"
 
+extern randomTransition D_802E3048_6CAE28;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DA9E0_6C27C0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DAACC_6C28AC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DABB8_6C2998.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DAC04_6C29E4.s")
+void func_802DAC04_6C29E4(GObj* arg0) {
+    weightedRandomStaightTransition(arg0, &D_802E3048_6CAE28);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DAC28_6C2A08.s")
 

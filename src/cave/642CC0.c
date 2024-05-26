@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_802C1178_643628(GObj*);
+
 extern PokemonDef D_802C6FC4_649474;
 
 /*
@@ -43,7 +45,9 @@ void evolveIntoMuk(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C10C8_643578.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1100_6435B0.s")
+void func_802C1100_6435B0(GObj* arg0) {
+    updatePokemonState(arg0, func_802C1178_643628);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1124_6435D4.s")
 

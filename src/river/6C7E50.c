@@ -1,6 +1,10 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E0070_6C7E50.s")
+void func_802E0094_6C7E74(GObj*);
+
+void func_802E0070_6C7E50(GObj* arg0) {
+    updatePokemonState(arg0, func_802E0094_6C7E74);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E0094_6C7E74.s")
 

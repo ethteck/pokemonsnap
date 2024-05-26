@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_802C5644_647AF4(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C4EB0_647360.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C4EF4_6473A4.s")
@@ -28,7 +30,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C55D4_647A84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C5620_647AD0.s")
+void func_802C5620_647AD0(GObj* arg0) {
+    updatePokemonState(arg0, func_802C5644_647AF4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C5644_647AF4.s")
 

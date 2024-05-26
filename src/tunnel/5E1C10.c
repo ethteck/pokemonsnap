@@ -1,6 +1,11 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4B40_5E1C10.s")
+void func_802E4B64_5E1C34(GObj*);
+void func_802E4DA4_5E1E74(GObj*);
+
+void func_802E4B40_5E1C10(GObj* arg0) {
+    updatePokemonState(arg0, func_802E4B64_5E1C34);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4B64_5E1C34.s")
 
@@ -16,7 +21,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4E2C_5E1EFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4EA4_5E1F74.s")
+void func_802E4EA4_5E1F74(GObj* arg0) {
+    updatePokemonState(arg0, func_802E4DA4_5E1E74);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4EC8_5E1F98.s")
 

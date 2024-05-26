@@ -1,5 +1,7 @@
 #include "common.h"
 
+void func_802DBB78_72CD78(GObj*);
+
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DB5A0_72C7A0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DB660_72C860.s")
@@ -32,7 +34,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DBD34_72CF34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DBD94_72CF94.s")
+void func_802DBD94_72CF94(GObj* arg0) {
+    updatePokemonState(arg0, func_802DBB78_72CD78);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DBDB8_72CFB8.s")
 

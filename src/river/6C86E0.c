@@ -2,6 +2,7 @@
 
 void func_802E142C_6C920C(GObj*);
 void func_802E1488_6C9268(GObj*);
+void func_802E1594_6C9374(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E0900_6C86E0.s")
 
@@ -61,7 +62,9 @@ void func_802E13F4_6C91D4(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E14F4_6C92D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1570_6C9350.s")
+void func_802E1570_6C9350(GObj* arg0) {
+    updatePokemonState(arg0, func_802E1594_6C9374);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1594_6C9374.s")
 

@@ -1,6 +1,8 @@
 #include "common.h"
 #include "ld_addrs.h"
+#include "world/world.h"
 
+extern PokemonDef D_8034AB34_82A2A4;
 extern s32 D_8034ABD8_82A348;
 extern SceneSetup D_8034ABF8_82A368;
 
@@ -14,9 +16,13 @@ extern SceneSetup D_8034ABF8_82A368;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346994_826104.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_803469E0_826150.s")
+void func_803469E0_826150(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonsChangeBlock(arg0, arg1, &D_8034AB34_82A2A4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346A04_826174.s")
+void func_80346A04_826174(WorldBlock* arg0) {
+    pokemonRemove(arg0, &D_8034AB34_82A2A4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346A28_826198.s")
 

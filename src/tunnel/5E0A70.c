@@ -1,4 +1,8 @@
 #include "common.h"
+#include "../world/world.h"
+
+void func_802E3B8C_5E0C5C(GObj*);
+void func_802E3CC8_5E0D98(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E39A0_5E0A70.s")
 
@@ -10,13 +14,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3C18_5E0CE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3CA4_5E0D74.s")
+void func_802E3CA4_5E0D74(GObj* arg0) {
+    updatePokemonState(arg0, func_802E3B8C_5E0C5C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3CC8_5E0D98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3D80_5E0E50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3E20_5E0EF0.s")
+void func_802E3E20_5E0EF0(GObj* arg0) {
+    updatePokemonState(arg0, func_802E3CC8_5E0D98);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3E44_5E0F14.s")
 
@@ -56,4 +64,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E4A84_5E1B54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E4AFC_5E1BCC.s")
+extern PokemonInitData D_802EE660_5EB730;
+
+GObj* func_802E4AFC_5E1BCC(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802EE660_5EB730);
+}

@@ -64,7 +64,15 @@ void func_802DA1AC_6C1F8C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C1D60/func_802DA3F8_6C21D8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C1D60/func_802DA46C_6C224C.s")
+void func_802DA46C_6C224C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0x2E);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 GObj* func_802DA4B8_6C2298(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E2E04_6CABE4);

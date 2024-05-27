@@ -92,7 +92,15 @@ void func_802E1094_6C8E74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E109C_6C8E7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1110_6C8EF0.s")
+void func_802E1110_6C8EF0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0x2E);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E115C_6C8F3C.s")
 

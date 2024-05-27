@@ -132,8 +132,8 @@ void func_801DCBF4_9A6E44(void) {
     func_80374D40_8484F0();
     func_800A7F68(1, 0x101);
     func_8036EB98_842348();
-    auPlaySong(0, 0xAU);
-    auSetBGMVolume(0, 0x7F00U);
+    auPlaySong(0, 0xA);
+    auSetBGMVolume(0, 0x7F00);
     func_801E1858_9ABAA8();
 }
 

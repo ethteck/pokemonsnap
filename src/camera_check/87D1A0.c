@@ -45,7 +45,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, voi
             *arg1 = (*arg1 + 7) % 8;
         } while (D_camera_check_80249AA8[*arg1].unk_0 == 0x23);
         if (arg2) {
-            auPlaySound(0x41U);
+            auPlaySound(0x41);
         }
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
@@ -53,7 +53,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, voi
             *arg1 = (*arg1 + 1) % 8;
         } while (D_camera_check_80249AA8[*arg1].unk_0 == 0x23);
         if (arg2) {
-            auPlaySound(0x41U);
+            auPlaySound(0x41);
         }
     }
     if (arg0->unk_18 & 0x4000) {
@@ -270,7 +270,7 @@ s32 func_camera_check_801E1BD4(void) {
         temp_s0 = func_800AA38C(0);
         func_camera_check_801DFA80((UNK_PTR) temp_s0, &sp38, 1, func_camera_check_801DF9B0());
         if (temp_s0->unk_18 & 0x8000) {
-            auPlaySound(0x42U);
+            auPlaySound(0x42);
 
             switch (D_camera_check_80249AA8[sp38].unk_0) {
 
@@ -280,7 +280,7 @@ s32 func_camera_check_801E1BD4(void) {
                         func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
                         func_camera_check_801DDB08(1);
                         func_camera_check_801E0F10();
-                        auPlaySound(0x43U);
+                        auPlaySound(0x43);
                         func_camera_check_801E0480();
                         func_camera_check_801DDB08(0);
                         func_camera_check_801E31E4(0, 0);
@@ -293,7 +293,7 @@ s32 func_camera_check_801E1BD4(void) {
                 case 24:
                     if ((checkPlayerFlag(PFID_TUTORIAL_PASSED) != 0) && (sp30 != 0)) {
                         func_camera_check_801E1918();
-                        auPlaySound(0x43U);
+                        auPlaySound(0x43);
                         func_camera_check_801E0480();
                         func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
                         func_80370038_8437E8(0x3E, 0xD);
@@ -337,7 +337,7 @@ u32 func_camera_check_801E1EA4(void) {
             if (func_camera_check_801E27FC() != 0) {
                 auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
             }
-            auPlaySound(0x53U);
+            auPlaySound(0x53);
             return 0x10;
         }
         if (temp_v0->unk_18 & 0x4000) {
@@ -345,17 +345,17 @@ u32 func_camera_check_801E1EA4(void) {
             func_8037060C_843DBC(0, 0);
             func_803700A4_843854(1);
             D_camera_check_80208960 = 0;
-            auPlaySound(0x43U);
+            auPlaySound(0x43);
             return 0;
         }
         if ((temp_v0->unk_18 & 0x40000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
-            auPlaySound(0x4BU);
+            auPlaySound(0x4B);
             D_camera_check_80208960 += 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();
         }
         if ((temp_v0->unk_18 & 0x80000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) > 0)) {
-            auPlaySound(0x4BU);
+            auPlaySound(0x4B);
             D_camera_check_80208960 -= 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();

@@ -183,9 +183,9 @@ void func_800E1FEC_8A780C(s32 stage) {
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
         func_800E1D1C_8A753C(1);
-        return;
+    } else {
+        func_800E1D1C_8A753C(0);
     }
-    func_800E1D1C_8A753C(0);
 }
 
 #if 1

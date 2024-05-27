@@ -26,7 +26,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
             *arg1 = (*arg1 + 7) % 8;
         } while ((*D_80206B44_9CC364)[*arg1].var_0 == 0x23);
 
-        auPlaySound(0x41U);
+        auPlaySound(0x41);
     }
 
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
@@ -34,7 +34,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
             *arg1 = (*arg1 + 1) % 8;
         } while ((*D_80206B44_9CC364)[*arg1].var_0 == 0x23);
 
-        auPlaySound(0x41U);
+        auPlaySound(0x41);
     }
 
     if (arg0->unk_18 & 0x4000) {
@@ -89,13 +89,13 @@ s32 func_800E3404_8A8C24(void) {
             var_v0 = func_800AA38C(0);
         }
         if (func_800E3264_8A8A84(var_v0, &sp40) != 0) {
-            auPlaySound(0x43U);
+            auPlaySound(0x43);
             func_800E1D1C_8A753C(0);
             return 0;
         }
         func_800E1FEC_8A780C(sp40);
         if (var_v0->unk_18 & 0x8000) {
-            auPlaySound(0x42U);
+            auPlaySound(0x42);
             func_8037060C_843DBC(1, (*D_80206B44_9CC364)[sp40].var_0);
             switch ((*D_80206B44_9CC364)[sp40].var_0) {
                 case 6:
@@ -189,7 +189,7 @@ s32 func_800E3CE8_8A9508(void) {
         temp_v1 = func_800AA38C(0)->unk_18;
         if (temp_v1 & 0x8000) {
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
-            auPlaySound(0x53U);
+            auPlaySound(0x53);
             func_8036A8E4_83E094(sp2C);
             func_8036B9EC_83F19C(sp2C, 0, 0x20);
             func_8036C898_840048(sp2C, "\\eSaving...\\p");
@@ -209,7 +209,7 @@ s32 func_800E3CE8_8A9508(void) {
             while (1) {
                 temp_v1_2 = func_800AA38C(0)->unk_18;
                 if (temp_v1_2 & 0x4000) {
-                    auPlaySound(0x53U);
+                    auPlaySound(0x53);
                     func_8036A8E4_83E094(sp2C);
                     func_8036C898_840048(sp2C, "I'm looking forward to seeing\nyour new shots!");
                     ohWait(120);
@@ -217,14 +217,14 @@ s32 func_800E3CE8_8A9508(void) {
                     return 4;
                 }
                 if (temp_v1_2 & 0x8000) {
-                    auPlaySound(0x4DU);
+                    auPlaySound(0x4D);
                     return 0;
                 }
                 ohWait(1);
             }
         }
         if (temp_v1 & 0x4000) {
-            auPlaySound(0x4DU);
+            auPlaySound(0x4D);
             return 0;
         }
         ohWait(1);

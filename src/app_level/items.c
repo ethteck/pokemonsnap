@@ -11,12 +11,12 @@ enum ItemFlags {
     ITEM_FLAG_DELETED           = 4
 };
 
-typedef struct ItemListEntry {
-    /* 0x00 */ struct ItemListEntry* prev;
-    /* 0x04 */ struct ItemListEntry* next;
+typedef struct ItemObjectListEntry {
+    /* 0x00 */ struct ItemObjectListEntry* prev;
+    /* 0x04 */ struct ItemObjectListEntry* next;
     /* 0x08 */ GObj* obj;
     /* 0x0C */ s32 index;
-} ItemListEntry; // size = 0x10
+} ItemObjectListEntry; // size = 0x10
 
 extern Texture** D_800E8EB8[];
 extern UnkEC64Arg3 D_800E9138[];
@@ -42,16 +42,16 @@ s32 Items_ObjectCounter = 0;
 GObjFunc Items_FnUpdate = NULL;
 void (*Items_FnCollide)(GObj*, GroundResult*) = NULL;
 s32 (*D_80382EBC_5232CC)(Vec3f*, Vec3f*, Vec3f*, Vec3f*) = NULL;
-s32 Items_FluteSongsList[3] = { 1, 3, 2 };
-s32 D_80382ECC_5232DC[3] = { 5, 6, 7 };
+s32 Items_FluteSongsList[3] = { SONG_ID_1, SONG_ID_3, SONG_ID_2 };
+s32 Items_FluteCommandIds[3] = { POKEMON_CMD_5, POKEMON_CMD_6, POKEMON_CMD_7 };
 s32 Items_FluteSongIndex = 0;
 s32 Items_IsPokeFlutePlaying = FALSE;
 OSTime Items_SongStartTime = 0;
 // bss
-extern ItemListEntry Items_ListEntryArray[20];
-extern ItemListEntry* Items_AllocatedObjectListHead;
-extern ItemListEntry* Items_AllocatedObjectListTail;
-extern ItemListEntry* Items_FreeObjectListHead;
+extern ItemObjectListEntry Items_ListEntryArray[20];
+extern ItemObjectListEntry* Items_AllocatedObjectListHead;
+extern ItemObjectListEntry* Items_AllocatedObjectListTail;
+extern ItemObjectListEntry* Items_FreeObjectListHead;
 extern s32 D_803AF0B4_54F4C4;
 extern s32 D_803AF0B8_54F4C8;
 extern s32 Items_TotalItemCount;
@@ -59,10 +59,10 @@ extern s32 Items_PesterBallCount;
 extern s32 Items_AppleCount;
 extern u8 Items_FnUpdateKind;
 
-void func_8035FCA0_5000B0(GObj*);
-void func_8035EC1C_4FF02C(void*);
+void Pokemon_SendDieCommand(GObj*);
+void Pokemon_FreeItem(void*);
 void Items_RemovePesterBall(GObj*);
-Item* func_8035EBBC_4FEFCC(void);
+Item* Pokemon_GetItem(void);
 f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1);
 void Items_UpdateNonMovingItem(GObj* arg0);
 
@@ -112,12 +112,12 @@ void Items_Init(void) {
     Items_TotalItemCount = 0;
 }
 
-void Items_func_80359880(void) {
+void Items_InitIterator(void) {
     D_803AF0B8_54F4C8 = 0;
     D_803AF0B4_54F4C4 = 0;
 }
 
-GObj* Items_func_80359894(void) {
+GObj* Items_NextValidItem(void) {
     while (D_803AF0B4_54F4C4 < 20) {
         GObj* obj = Items_ListEntryArray[D_803AF0B4_54F4C4++].obj;
         if (obj != NULL && GET_ITEM(obj)->state > ITEM_STATE_INVALID) {
@@ -149,7 +149,7 @@ GObj* Items_CheckObjectExists(GObj* arg0) {
 }
 
 void Items_LinkObject(GObj* obj) {
-    ItemListEntry* v1;
+    ItemObjectListEntry* v1;
 
     v1 = Items_FreeObjectListHead;
     if (Items_FreeObjectListHead == NULL) {
@@ -172,7 +172,7 @@ void Items_LinkObject(GObj* obj) {
 }
 
 void Items_UnlinkObject(GObj* obj) {
-    ItemListEntry* entry;
+    ItemObjectListEntry* entry;
 
     if (GET_ITEM(obj)->itemID == ITEM_ID_APPLE) {
         cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_21, obj);
@@ -1164,7 +1164,7 @@ void Items_SpawnPesterBall(Vec3f* pos, Vec3f* extraVelocity) {
     ballObj->data.dobj->scale.v.x = 0.1f;
     ballObj->data.dobj->scale.v.y = 0.1f;
     ballObj->data.dobj->scale.v.z = 0.1f;
-    ball = func_8035EBBC_4FEFCC();
+    ball = Pokemon_GetItem();
     ballObj->userData = ball;
     ball->itemID = ITEM_ID_PESTER_BALL;
     ballObj->flags |= GOBJ_FLAG_HIDDEN;
@@ -1191,7 +1191,7 @@ void Items_SpawnApple(Vec3f* pos, Vec3f* extraVelocity) {
     appleObj->data.dobj->scale.v.x = 0.1f;
     appleObj->data.dobj->scale.v.y = 0.1f;
     appleObj->data.dobj->scale.v.z = 0.1f;
-    apple = func_8035EBBC_4FEFCC();
+    apple = Pokemon_GetItem();
     appleObj->userData = apple;
     apple->itemID = ITEM_ID_APPLE;
     appleObj->flags |= GOBJ_FLAG_HIDDEN;
@@ -1226,9 +1226,9 @@ void Items_StopPokeFlute(void) {
 }
 
 
-s32 Items_func_8035C834(void) {
+s32 Items_GetPokeFluteCmd(void) {
     if (Items_IsPokeFlutePlaying) {
-        return D_80382ECC_5232DC[Items_FluteSongIndex];
+        return Items_FluteCommandIds[Items_FluteSongIndex];
     } else {
         return 0;
     }
@@ -1243,8 +1243,8 @@ s32 Items_GetPokeFluteState(void) {
 }
 
 void Items_DoRemoveItem(GObj* obj) {
-    func_8035FCA0_5000B0(obj);
-    func_8035EC1C_4FF02C(obj->userData);
+    Pokemon_SendDieCommand(obj);
+    Pokemon_FreeItem(obj->userData);
     omDeleteGObj(obj);
 }
 

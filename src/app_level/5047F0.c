@@ -45,18 +45,18 @@ s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z) {
 s32 func_80364718_504B28(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     if (GET_POKEMON(obj)->flags & 0x40) {
-        func_8035FEEC_5002FC(obj, 0);
+        Pokemon_SetFlag100(obj, 0);
         return 0;
     }
     if (10000.0f < GET_POKEMON(obj)->playerDist) {
-        func_8035FEEC_5002FC(obj, 1);
+        Pokemon_SetFlag100(obj, 1);
         return 1;
     }
     if (func_80364618_504A28(obj, pokemon->collPosition.x, pokemon->collPosition.y, pokemon->collPosition.z) != 0) {
-        func_8035FEEC_5002FC(obj, 1);
+        Pokemon_SetFlag100(obj, 1);
         return 1;
     }
-    func_8035FEEC_5002FC(obj, 0);
+    Pokemon_SetFlag100(obj, 0);
     return 0;
 }
 

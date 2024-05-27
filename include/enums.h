@@ -105,6 +105,12 @@ enum SoundIds {
     SOUND_ID_66 = 66
 };
 
+enum SongIds {
+    SONG_ID_1 = 1,
+    SONG_ID_2 = 2,
+    SONG_ID_3 = 3
+};
+
 enum Links {
     LINK_0 = 0,
     LINK_POKEMON = 3,
@@ -126,6 +132,7 @@ enum CameraDlLinkMask {
 enum DlLinks {
     DL_LINK_1 = 1,
     DL_LINK_3 = 3,
+    DL_LINK_4 = 4,
     DL_LINK_5 = 5
 };
 
@@ -173,12 +180,12 @@ enum PokemonFlags {
 };
 
 enum PokemonProcessFlags {
-    POKEMON_PROCESS_FLAG_1   = 0x001, // animation ended ?
-    POKEMON_PROCESS_FLAG_2   = 0x002, // reached end of path ?
+    POKEMON_PROCESS_FLAG_ANIMATION_ENDED   = 0x001, // animation ended ?
+    POKEMON_PROCESS_FLAG_PATH_ENDED   = 0x002, // reached end of path ?
     POKEMON_PROCESS_FLAG_4   = 0x004, // counter reached 0
-    POKEMON_PROCESS_FLAG_8   = 0x008, //
+    POKEMON_PROCESS_FLAG_AUX_ENDED   = 0x008, //
     POKEMON_PROCESS_FLAG_10  = 0x010,
-    POKEMON_PROCESS_FLAG_20  = 0x020,
+    POKEMON_PROCESS_FLAG_MOVEMENT_ENDED  = 0x020,
     POKEMON_PROCESS_FLAG_80  = 0x080
 };
 

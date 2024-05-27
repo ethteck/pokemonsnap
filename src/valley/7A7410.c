@@ -20,7 +20,7 @@ extern PokemonInitData D_802D3C0C_7AD19C;
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7410/func_802CE124_7A76B4.s")
 
 GObj* func_802CE1B8_7A7748(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802D3B34_7AD0C4 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802D3C0C_7AD19C);
+    D_802D3B34_7AD0C4 = Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_802D3C0C_7AD19C);
 
     return D_802D3B34_7AD0C4;
 }

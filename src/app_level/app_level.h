@@ -28,17 +28,60 @@ enum EndLevelReasons {
 };
 
 enum PokemonCommands {
+    POKEMON_CMD_5  =  5,
+    POKEMON_CMD_6  =  6,
+    POKEMON_CMD_7  =  7,
     POKEMON_CMD_8  =  8,
     POKEMON_CMD_9  =  9,
     POKEMON_CMD_10 = 10,
     POKEMON_CMD_12 = 12,
     POKEMON_CMD_13 = 13,
     POKEMON_CMD_14 = 14,
+    POKEMON_CMD_15 = 15,
+    POKEMON_CMD_16 = 16,
+    POKEMON_CMD_17 = 17,
     POKEMON_CMD_18 = 18,
     POKEMON_CMD_19 = 19,
     POKEMON_CMD_20 = 20,
     POKEMON_CMD_21 = 21,
-    POKEMON_CMD_24 = 24
+    POKEMON_CMD_22 = 22,
+    POKEMON_CMD_23 = 23,
+    POKEMON_CMD_24 = 24,
+    POKEMON_CMD_25 = 25,
+    POKEMON_CMD_26 = 26,
+    POKEMON_CMD_27 = 27,
+    // command below are probably specific to level
+    POKEMON_CMD_28 = 28,
+    POKEMON_CMD_29 = 29,
+    POKEMON_CMD_30 = 30,
+    POKEMON_CMD_31 = 31,
+    POKEMON_CMD_32 = 32,
+    POKEMON_CMD_33 = 33,
+    POKEMON_CMD_34 = 34,
+    POKEMON_CMD_35 = 35,
+    POKEMON_CMD_36 = 36,
+    POKEMON_CMD_37 = 37,
+    POKEMON_CMD_38 = 38,
+    POKEMON_CMD_39 = 39,
+    POKEMON_CMD_40 = 40,
+    POKEMON_CMD_41 = 41,
+    POKEMON_CMD_42 = 42,
+    POKEMON_CMD_43 = 43,
+    POKEMON_CMD_44 = 44,
+    POKEMON_CMD_45 = 45,
+    POKEMON_CMD_46 = 46,
+    POKEMON_CMD_47 = 47,
+    POKEMON_CMD_48 = 48,
+    POKEMON_CMD_49 = 49,
+    POKEMON_CMD_50 = 50,
+    POKEMON_CMD_51 = 51,
+    POKEMON_CMD_52 = 52,
+    POKEMON_CMD_53 = 53,
+    POKEMON_CMD_54 = 54,
+    POKEMON_CMD_55 = 55,
+    POKEMON_CMD_56 = 56,
+    POKEMON_CMD_57 = 57,
+    POKEMON_CMD_58 = 58
 };
 
 enum PlayerCommands {
@@ -50,6 +93,17 @@ enum PlayerCommands {
     PLAYER_CMD_8            =  8,
     PLAYER_CMD_9            =  9,
     PLAYER_CMD_10           =  10
+};
+
+enum WalkFlags {
+    WALK_FLAG_1  = 0x01,
+    WALK_FLAG_2  = 0x02,
+    WALK_FLAG_4  = 0x04,
+    WALK_FLAG_8  = 0x08,
+    WALK_FLAG_10 = 0x10,
+    WALK_FLAG_20 = 0x20,
+    WALK_FLAG_40 = 0x40,
+    WALK_FLAG_80 = 0x80
 };
 
 #define ITEM_CMD_REMOVE 100
@@ -90,9 +144,9 @@ void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
 void Items_Pause(void);
 void Items_UnPause(void);
-void Items_func_80359880(void);
-GObj* Items_func_80359894(void);
-s32 Items_func_8035C834(void);
+void Items_InitIterator(void);
+GObj* Items_NextValidItem(void);
+s32 Items_GetPokeFluteCmd(void);
 GObj* Items_CheckObjectExists(GObj* arg0);
 void Items_DeleteItem(GObj*);
 
@@ -109,7 +163,7 @@ void Icons_Hide(void);
 void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
 
-s32 func_8035FF1C_50032C(GObj*);
+s32 Pokemon_GetFlag100(GObj*);
 void PokemonDetector_CleanupPokemon(GObj* pokemonObj);
 void func_80357428_4F7838(GObj* arg0);
 

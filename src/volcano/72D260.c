@@ -12,8 +12,8 @@ void func_802DC060_72D260(GObj* arg0) {
         }
         ohWait(1);
     }
-    runPokemonCleanup(arg0);
-    func_8035EDC8_4FF1D8(arg0);
+    Pokemon_RunCleanup(arg0);
+    Pokemon_StopAuxProc(arg0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DC108_72D308.s")

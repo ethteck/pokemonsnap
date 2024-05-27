@@ -14,8 +14,8 @@ typedef union AnimCmd {
 
 typedef struct {
     /* 0x00 */ f32 speed;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ AnimCmd** animList;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ AnimCmd** modelAnims;
     /* 0x0C */ AnimCmd*** matAnims;
     /* 0x10 */ s32* ids;
 } AnimationHeader;

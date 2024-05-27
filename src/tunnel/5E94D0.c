@@ -15,7 +15,7 @@ extern PokemonInitData D_802F00D0_5ED1A0;
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC6CC_5E979C.s")
 
 GObj* func_802EC720_5E97F0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802EFFD0_5ED0A0 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F0030_5ED100);
+    D_802EFFD0_5ED0A0 = Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_802F0030_5ED100);
 
     return D_802EFFD0_5ED0A0;
 }
@@ -29,7 +29,7 @@ GObj* func_802EC720_5E97F0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* ro
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECA2C_5E9AFC.s")
 
 GObj* func_802ECA80_5E9B50(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802F0070_5ED140 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F00D0_5ED1A0);
+    D_802F0070_5ED140 = Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_802F00D0_5ED1A0);
 
     return D_802F0070_5ED140;
 }

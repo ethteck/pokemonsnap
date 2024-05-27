@@ -7,7 +7,7 @@ void evolveIntoMuk(GObj* obj) {
     GObj* muk;
     PokemonDef def = D_802C6FC4_649474;
 
-    muk = addPokemonAtGeo(obj, PokemonID_MUK, &def);
+    muk = Pokemon_AddAtGeo(obj, PokemonID_MUK, &def);
     muk->userData.rootNode->xform->euler.y = obj->userData.rootNode->xform->euler.y;
     omEndProcess(NULL);
 }

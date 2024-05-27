@@ -24,7 +24,7 @@ extern PokemonInitData D_802E4B48_6CC928;
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C9680/func_802E1D10_6C9AF0.s")
 
 GObj* func_802E2084_6C9E64(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802E4B00_6CC8E0 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802E4B48_6CC928);
+    D_802E4B00_6CC8E0 = Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_802E4B48_6CC928);
 
     return D_802E4B00_6CC8E0;
 }

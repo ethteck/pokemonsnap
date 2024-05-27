@@ -20,7 +20,7 @@ void func_beach_802C8E20(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, 0, 0, 0.1f, 0.0f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_FollowPath(obj, 0, 0, 0.1f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

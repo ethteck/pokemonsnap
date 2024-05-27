@@ -51,7 +51,7 @@ void func_802DE4C0_72F6C0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, 0, 1, 0.05f, 0.0f, WALK_FLAG_2);
+    Pokemon_FollowPath(obj, 0, 1, 0.05f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

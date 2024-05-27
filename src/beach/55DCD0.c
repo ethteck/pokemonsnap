@@ -116,7 +116,7 @@ void func_beach_802C619C(GObj* obj) {
     pokemon->hSpeed = 80.0f;
 
     while (TRUE) {
-        if (Pokemon_StepWalkInDirectionFacing(obj, WALK_FLAG_1)) {
+        if (Pokemon_StepWalkInDirectionFacing(obj, MOVEMENT_FLAG_ON_GROUND)) {
             break;
         }
 
@@ -146,7 +146,7 @@ void func_beach_802C6288(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunAwayFromTarget(obj, 300.0f, 0.1f, WALK_FLAG_1);
+    Pokemon_RunAwayFromTarget(obj, 300.0f, 0.1f, MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -160,17 +160,17 @@ void func_beach_802C62E4(GObj* obj) {
     Pokemon_StartPathProc(obj, func_beach_802C63F4);
     pokemon->transitionGraph = D_beach_802CC564;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
         Pokemon_SetState(obj, func_beach_802C5E88);
     }
     Pokemon_SetAnimation(obj, &D_beach_802CC3E4);
 
     // clang-format off
-    pokemon->counter = 33; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
+    pokemon->counter = 33; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     // clang-format on
 
     pokemon->transitionGraph = D_beach_802CC564;
-    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_4);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     if (pokemon->interactionTarget == NULL) {
         Pokemon_SetState(obj, func_beach_802C5E88);
     }
@@ -187,7 +187,7 @@ void func_beach_802C63F4(GObj* obj) {
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     Pokemon_SetAnimation(obj, &D_beach_802CC36C);
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunToTarget(obj, 50.0f, 0.1f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -243,7 +243,7 @@ void func_beach_802C660C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_TurnToTarget(obj, 0.1f, WALK_FLAG_20 | WALK_FLAG_8 | WALK_FLAG_2);
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -257,7 +257,7 @@ void func_beach_802C667C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_SetAnimation(obj, &D_beach_802CC344);
     pokemon->transitionGraph = D_beach_802CC644;
@@ -274,7 +274,7 @@ void func_beach_802C6700(GObj* obj) {
     s32 sp24;
     f32 sp20;
 
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimation(obj, &D_beach_802CC3A8);
     pokemon->transitionGraph = NULL;
@@ -294,7 +294,7 @@ void func_beach_802C67E0(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimation(obj, &D_beach_802CC394);
     pokemon->transitionGraph = NULL;
@@ -307,7 +307,7 @@ void func_beach_802C6854(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_StartPathProc(obj, func_beach_802C68D8);
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CC3F8);
     pokemon->transitionGraph = D_beach_802CC6B4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -337,7 +337,7 @@ void func_beach_802C69D4(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CC344);
     pokemon->transitionGraph = D_beach_802CC714;
     Pokemon_WaitForFlag(obj, 0);
@@ -349,7 +349,7 @@ void func_beach_802C6A3C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[4].field1 = 0;
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_beach_802CC3A8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -374,7 +374,7 @@ void func_beach_802C6B28(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[4].field1 = 0;
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_beach_802CC394);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -386,7 +386,7 @@ void func_beach_802C6B8C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_StartPathProc(obj, func_beach_802C68D8);
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CC3F8);
     pokemon->transitionGraph = D_beach_802CC7B4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -449,7 +449,7 @@ void func_beach_802C6DD4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, 0, 1.0f, 0.033333335f, 0.0f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_FollowPath(obj, 0, 1.0f, 0.033333335f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(0);
@@ -459,7 +459,7 @@ void func_beach_802C6E40(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CC36C);
     pokemon->transitionGraph = D_beach_802CC874;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -470,7 +470,7 @@ void func_beach_802C6E40(GObj* obj) {
 void func_beach_802C6EC0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CC3A8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -487,7 +487,7 @@ void func_beach_802C6F6C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_beach_802CC394);
     pokemon->transitionGraph = D_beach_802CC8D4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

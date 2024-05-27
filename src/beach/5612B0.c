@@ -20,7 +20,7 @@ void func_beach_802C92BC(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     pokemon->flags |= 8;
     Pokemon_SetScale(obj, 0.5f);
 
@@ -35,7 +35,7 @@ void func_beach_802C9348(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, 0, 0, 0.05f, 0.0f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_FollowPath(obj, 0, 0, 0.05f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -49,7 +49,7 @@ void func_beach_802C93B8(GObj* obj) {
     InteractionHandler sp18[4] = D_beach_802CD438;
 
     pokemon->transitionGraph = sp18;
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
@@ -132,7 +132,7 @@ void func_beach_802C97D4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunAwayFromTarget(obj, 300.0f, 0.1f, WALK_FLAG_1);
+    Pokemon_RunAwayFromTarget(obj, 300.0f, 0.1f, MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -146,7 +146,7 @@ void func_beach_802C9830(GObj* obj) {
     Pokemon_StartPathProc(obj, func_beach_802C98F4);
     pokemon->transitionGraph = D_beach_802CD4E8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
         Pokemon_SetState(obj, func_beach_802C9580);
     }
     Pokemon_SetAnimation(obj, &D_beach_802CD334);
@@ -162,7 +162,7 @@ void func_beach_802C98F4(GObj* obj) {
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     Pokemon_SetAnimation(obj, &D_beach_802CD320);
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunToTarget(obj, 100.0f, 0.1f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_RunToTarget(obj, 100.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

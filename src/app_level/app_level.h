@@ -95,15 +95,15 @@ enum PlayerCommands {
     PLAYER_CMD_10           =  10
 };
 
-enum WalkFlags {
-    WALK_FLAG_1  = 0x01,
-    WALK_FLAG_2  = 0x02,
-    WALK_FLAG_4  = 0x04,
-    WALK_FLAG_8  = 0x08,
-    WALK_FLAG_10 = 0x10,
-    WALK_FLAG_20 = 0x20,
-    WALK_FLAG_40 = 0x40,
-    WALK_FLAG_80 = 0x80
+enum MovementFlags {
+    MOVEMENT_FLAG_ON_GROUND                         = 0x01,
+    MOVEMENT_FLAG_UPDATE_TARGET_POS                 = 0x02,
+    MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING   = 0x04,
+    MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED          = 0x08,
+    MOVEMENT_FLAG_FIXED_HEIGHT                      = 0x10,
+    MOVEMENT_FLAG_TURN_TO_PLAYER                    = 0x20,
+    MOVEMENT_FLAG_TURN_AWAY                         = 0x40,
+    MOVEMENT_FLAG_TURN_GRADUALLY                    = 0x80 // affects only movement along path
 };
 
 #define ITEM_CMD_REMOVE 100

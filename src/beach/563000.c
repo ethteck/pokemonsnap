@@ -151,7 +151,7 @@ void func_beach_802CB710(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunToTarget(obj, 50, 0.1f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_RunToTarget(obj, 50, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;

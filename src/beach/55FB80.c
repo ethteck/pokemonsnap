@@ -10,7 +10,7 @@ void func_beach_802C7C7C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, randFloat(), 0, 0.1f, 0.0f, WALK_FLAG_2);
+    Pokemon_FollowPath(obj, randFloat(), 0, 0.1f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -19,7 +19,7 @@ void func_beach_802C7C7C(GObj* obj) {
 void func_beach_802C7CF0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_StartAuxProc(obj, func_beach_802C7DA0);
     Pokemon_SetAnimation(obj, &D_beach_802CCD4C);
     pokemon->transitionGraph = NULL;
@@ -93,10 +93,10 @@ void func_beach_802C7F74(GObj* obj) {
     Pokemon_ForceAnimation(obj, &D_beach_802CCE08);
 
     // clang-format off
-    pokemon->counter = randRange(600) + 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
+    pokemon->counter = randRange(600) + 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     // clang-format on
 
-    Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_FLAG_4);
+    Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_WAIT_ENDED);
     pokemon->tangible = 1;
     obj->flags = 0;
     Pokemon_ForceAnimation(obj, &D_beach_802CCDE8);

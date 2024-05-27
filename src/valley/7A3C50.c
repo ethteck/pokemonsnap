@@ -58,7 +58,7 @@ void func_802CA858_7A3DE8(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_TurnToTarget(obj, 0.1f, WALK_FLAG_20 | WALK_FLAG_8 | WALK_FLAG_2);
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -198,7 +198,7 @@ void func_802CAD54_7A42E4(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802CADEC_7A437C);
     pokemon->transitionGraph = D_802D3334_7AC8C4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
         Pokemon_SetState(obj, func_802CA9BC_7A3F4C);
     }
     Pokemon_SetState(obj, func_802CAE70_7A4400);
@@ -211,7 +211,7 @@ void func_802CADEC_7A437C(GObj* obj) {
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     Pokemon_SetAnimation(obj, &D_802D3184_7AC714);
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunToTarget(obj, 50.0f, 0.1f, WALK_FLAG_2 | WALK_FLAG_1);
+    Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

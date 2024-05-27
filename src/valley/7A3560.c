@@ -53,11 +53,11 @@ void func_802C9FD0_7A3560(GObj* arg0) {
 //         ohWait(1);
 //     }
 
-//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
 //     Pokemon_SetAnimation(arg0, &D_802D2FB4_7AC544);
 //     pokemon->transitionGraph = NULL;
 //     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-//     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+//     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
 //     Pokemon_SetAnimation(arg0, &D_802D2FDC_7AC56C);
 //     pokemon->transitionGraph = 0;
 //     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -70,7 +70,7 @@ void func_802CA1B0_7A3740(GObj* arg0) {
     Pokemon* pokemon = GET_POKEMON(arg0);
 
     Pokemon_ResetPathPos(arg0);
-    Pokemon_FollowPath(arg0, 0.0f, 1.0f, 0.1f, 0.1f, WALK_FLAG_80);
+    Pokemon_FollowPath(arg0, 0.0f, 1.0f, 0.1f, 0.1f, MOVEMENT_FLAG_TURN_GRADUALLY);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

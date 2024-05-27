@@ -16,7 +16,7 @@ void func_beach_802C86A8(GObj* obj) {
     }
 
     obj->flags = 0;
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CCFC0);
     pokemon->transitionGraph = D_beach_802CD010;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -38,7 +38,7 @@ void func_beach_802C87BC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, 0, 1, 0.033333335f, 0.0f, WALK_FLAG_2);
+    Pokemon_FollowPath(obj, 0, 1, 0.033333335f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
 
     pokemon->pathProc = 0;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
@@ -108,7 +108,7 @@ void func_beach_802C89A4(GObj* obj) {
 
     pokemon->miscVars[0].field1 = 0;
     obj->flags = 0;
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_ENDED;
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CCFC0);
     pokemon->transitionGraph = D_beach_802CD064;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -161,9 +161,9 @@ void func_beach_802C8BC4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->counter = 0x80;
-    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
+    pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon = pokemon;
-    Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_FLAG_4);
+    Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_WAIT_ENDED);
     if (pokemon->miscVars[0].field1 == 0) {
         cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_29, obj);
     }

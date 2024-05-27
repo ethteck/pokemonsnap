@@ -308,7 +308,7 @@ void Pokemon_StartPathProc(GObj* obj, GObjFunc func) {
 
     if (func != NULL) {
         pokemon->pathProc = omCreateProcess(obj, func, 0, 5);
-        pokemon->processFlags &= ~(POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_10 | POKEMON_PROCESS_FLAG_MOVEMENT_ENDED);
+        pokemon->processFlags &= ~(POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_TARGET_REACHED | POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED);
     } else {
         pokemon->pathProc = NULL;
     }
@@ -946,7 +946,7 @@ void Pokemon_Jump(GObj* obj, f32 maxJumpHeight, f32 acceleration, f32 minJumpSpe
     maxJumpSpeed *= 0.033;
 
     while (TRUE) {
-        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
 
@@ -981,7 +981,7 @@ void Pokemon_JumpToHeight(GObj* obj, f32 maxHeight, f32 acceleration, f32 minJum
     maxJumpSpeed *= 0.033;
 
     while (TRUE) {
-        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
             transform->pos.v.y += jumpVel;
@@ -1015,7 +1015,7 @@ void Pokemon_Fall(GObj* obj, f32 maxFallHeight, f32 acceleration, f32 minFallSpe
     maxFallSpeed *= 0.033;
 
     while (TRUE) {
-        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
 
@@ -1050,7 +1050,7 @@ void Pokemon_FallToHeight(GObj* obj, f32 minHeight, f32 acceleration, f32 minFal
     maxFallSpeed *= 0.033;
 
     while (TRUE) {
-        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
             transform->pos.v.y -= fallSpeed;
@@ -1198,7 +1198,7 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
         return TRUE;
     }
 
-    if (flags & WALK_FLAG_10) {
+    if (flags & MOVEMENT_FLAG_FIXED_HEIGHT) {
         if (ABS(GET_TRANSFORM(model)->pos.v.y - pokemon->currGround.height) != 0.0f) {
             return TRUE;
         }
@@ -1206,7 +1206,7 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
 
     GET_TRANSFORM(model)->pos.v.x = nextX;
     GET_TRANSFORM(model)->pos.v.z = nextZ;
-    if (flags & WALK_FLAG_1) {
+    if (flags & MOVEMENT_FLAG_ON_GROUND) {
         GET_TRANSFORM(model)->pos.v.y = pokemon->currGround.height;
     }
     return FALSE;
@@ -1216,7 +1216,7 @@ s32 Pokemon_StepWalkInDirection(GObj* obj, f32 direction, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
 
-    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
         f32 hSpeed = pokemon->hSpeed * 0.033;
         f32 velX = sinf(direction) * hSpeed;
         f32 velZ = cosf(direction) * hSpeed;
@@ -1232,7 +1232,7 @@ s32 Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
 
-    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
         f32 hSpeed = pokemon->hSpeed * 0.033;
         f32 direction = GET_TRANSFORM(model)->rot.f[2];
         f32 velX = sinf(direction) * hSpeed;
@@ -1314,7 +1314,7 @@ void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unus
         prevX = nextX;
         deltaZ = nextZ - prevZ;
         prevZ = nextZ;
-        if (Pokemon_StepWalk(obj, deltaX, deltaZ, WALK_FLAG_1)) {
+        if (Pokemon_StepWalk(obj, deltaX, deltaZ, MOVEMENT_FLAG_ON_GROUND)) {
             return;
         }
 
@@ -1357,7 +1357,7 @@ void Pokemon_TurnToTarget(GObj* obj, f32 turnSpeed, u32 flags) {
     Vec3f* currentPos;
     DObj* targetModel;
 
-    if (flags & WALK_FLAG_20) {
+    if (flags & MOVEMENT_FLAG_TURN_TO_PLAYER) {
         targetModel = gPlayerDObj;
     } else if (pokemon->interactionTarget != NULL) {
         targetModel = pokemon->interactionTarget->data.dobj;
@@ -1373,20 +1373,20 @@ void Pokemon_TurnToTarget(GObj* obj, f32 turnSpeed, u32 flags) {
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
     while (TRUE) {
-        if ((flags & WALK_FLAG_4) && !Pokemon_HearsPokeFlute(obj)) {
+        if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
 
-        if (updateDir || (flags & WALK_FLAG_2)) {
+        if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
             updateDir = FALSE;
-            if (flags & WALK_FLAG_40) {
+            if (flags & MOVEMENT_FLAG_TURN_AWAY) {
                 targetDir = Pokemon_HeadingBetweenPoints(currentPos, targetPos);
             } else {
                 targetDir = Pokemon_HeadingBetweenPoints(targetPos, currentPos);
             }
         }
 
-        if (Pokemon_Turn(model, targetDir, turnSpeed) && !(flags & WALK_FLAG_8)) {
+        if (Pokemon_Turn(model, targetDir, turnSpeed) && !(flags & MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED)) {
             break;
         }
         ohWait(1);
@@ -1407,20 +1407,20 @@ void Pokemon_TurnToModelNode(GObj* obj, DObj* modelNode, f32 turnSpeed, u32 flag
 
     while (TRUE) {
         func_800A5E98(&targetPos, &sp54, modelNode);
-        if ((flags & WALK_FLAG_4) && !Pokemon_HearsPokeFlute(obj)) {
+        if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
 
-        if (updateDir || (flags & WALK_FLAG_2)) {
+        if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
             updateDir = FALSE;
-            if (flags & WALK_FLAG_40) {
+            if (flags & MOVEMENT_FLAG_TURN_AWAY) {
                 targetDir = Pokemon_HeadingBetweenPoints(currentPos, &targetPos);
             } else {
                 targetDir = Pokemon_HeadingBetweenPoints(&targetPos, currentPos);
             }
         }
 
-        if (Pokemon_Turn(model, targetDir, turnSpeed) && !(flags & WALK_FLAG_8)) {
+        if (Pokemon_Turn(model, targetDir, turnSpeed) && !(flags & MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED)) {
             break;
         }
         ohWait(1);
@@ -1448,7 +1448,7 @@ void Pokemon_RunToTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags
     s32 unused2;
 
     while (TRUE) {
-        if (updateDir || (flags & WALK_FLAG_2)) {
+        if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
             updateDir = FALSE;
             if (pokemon->interactionTarget == NULL) {
                 break;
@@ -1470,14 +1470,14 @@ void Pokemon_RunToTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags
             targetYaw = Pokemon_GetHeadingVector(targetPos, currentPos, &walkDir, hSpeed);
         }
 
-        if (Pokemon_StepWalk(obj, walkDir.x, walkDir.z, flags | WALK_FLAG_1)) {
+        if (Pokemon_StepWalk(obj, walkDir.x, walkDir.z, flags | MOVEMENT_FLAG_ON_GROUND)) {
             break;
         }
 
         Pokemon_Turn(model, targetYaw, turnSpeed);
         distance = sqrtf(SQ(pokemon->targetPos.x - currentPos->x) + SQ(pokemon->targetPos.y - currentPos->y) + SQ(pokemon->targetPos.z - currentPos->z));
         if (ABS(distance - targetDistance) < hSpeed || distance < targetDistance) {
-            pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+            pokemon->processFlags |= POKEMON_PROCESS_TARGET_REACHED;
             break;
         }
 
@@ -1499,7 +1499,7 @@ void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32
     Vec3f walkDir;
 
     while (TRUE) {
-        if (updateDir || (flags & WALK_FLAG_2)) {
+        if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
             updateDir = FALSE;
             if (pokemon->interactionTarget == NULL) {
                 break;
@@ -1521,14 +1521,14 @@ void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32
             targetYaw = Pokemon_GetHeadingVector(currentPos, targetPos, &walkDir, hSpeed);
         }
 
-        if (Pokemon_StepWalk(obj, walkDir.x, walkDir.z, flags | WALK_FLAG_1)) {
+        if (Pokemon_StepWalk(obj, walkDir.x, walkDir.z, flags | MOVEMENT_FLAG_ON_GROUND)) {
             break;
         }
 
         Pokemon_Turn(model, targetYaw, turnSpeed);
         distance = sqrtf(SQ(pokemon->targetPos.x - currentPos->x) + SQ(pokemon->targetPos.y - currentPos->y) + SQ(pokemon->targetPos.z - currentPos->z));
         if (distance > targetDistance) {
-            pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+            pokemon->processFlags |= POKEMON_PROCESS_TARGET_REACHED;
             break;
         }
 
@@ -1537,7 +1537,7 @@ void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32
 }
 
 void Pokemon_RunAwayDefault(GObj* obj, f32 minDistance) {
-    Pokemon_RunAwayFromTarget(obj, minDistance, 0.1f, WALK_FLAG_1);
+    Pokemon_RunAwayFromTarget(obj, minDistance, 0.1f, MOVEMENT_FLAG_ON_GROUND);
 }
 
 void Pokemon_SetTargetPos(GObj* obj, f32 x, f32 z) {
@@ -1565,7 +1565,7 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
     dz = pokemon->targetPos.z - GET_TRANSFORM(model)->pos.v.z;
 
     if (SQ(dx) + SQ(dz) < SQ(hSpeed)) {
-        pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+        pokemon->processFlags |= POKEMON_PROCESS_TARGET_REACHED;
         return 1;
     }
 
@@ -1603,7 +1603,7 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
     dx = pokemon->targetPos.x - GET_TRANSFORM(model)->pos.v.x;
     dz = pokemon->targetPos.z - GET_TRANSFORM(model)->pos.v.z;
     if (SQ(dx) + SQ(dz) < SQ(hSpeed)) {
-        pokemon->processFlags |= POKEMON_PROCESS_FLAG_10;
+        pokemon->processFlags |= POKEMON_PROCESS_TARGET_REACHED;
         return 1;
     }
 
@@ -1611,7 +1611,7 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
 }
 
 void Pokemon_RunToTargetPos(GObj* obj, f32 turnSpeed) {
-    while (!Pokemon_StepToTargetPos(obj, turnSpeed, WALK_FLAG_1)) {
+    while (!Pokemon_StepToTargetPos(obj, turnSpeed, MOVEMENT_FLAG_ON_GROUND)) {
         ohWait(1);
     }
 }
@@ -1701,18 +1701,18 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 ohWait(1);
             }
         }
-        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_ENDED)) {
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             GET_TRANSFORM(model)->pos.v.x -= worldPos.x * 100.0f;
             GET_TRANSFORM(model)->pos.v.z -= worldPos.z * 100.0f;
-            if (!(flags & WALK_FLAG_10)) {
-                if (flags & WALK_FLAG_1) {
+            if (!(flags & MOVEMENT_FLAG_FIXED_HEIGHT)) {
+                if (flags & MOVEMENT_FLAG_ON_GROUND) {
                     GET_TRANSFORM(model)->pos.v.y -= worldPos.y;
                 } else {
                     GET_TRANSFORM(model)->pos.v.y -= worldPos.y * 100.0f;
                 }
             }
 
-            if (flags & (WALK_FLAG_80 | WALK_FLAG_2)) {
+            if (flags & (MOVEMENT_FLAG_TURN_GRADUALLY | MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
                 func_8001FCE8(&sp70, pokemon->path, pokemon->pathParam);
                 f2 = atan2f(sp70.x, sp70.z);
                 if (f2 < 0.0f) {
@@ -1720,7 +1720,7 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 } else if (f2 > TAU) {
                     f2 -= (s32)(f2 / TAU) * TAU;
                 }
-                if (flags & WALK_FLAG_80) {
+                if (flags & MOVEMENT_FLAG_TURN_GRADUALLY) {
                     Pokemon_Turn(model, f2, turnSpeed);
                 } else {
                     GET_TRANSFORM(model)->rot.f[2] = f2;
@@ -1731,8 +1731,8 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
 
             GET_TRANSFORM(model)->pos.v.x += worldPos.x * 100.0f;
             GET_TRANSFORM(model)->pos.v.z += worldPos.z * 100.0f;
-            if (!(flags & WALK_FLAG_10)) {
-                if (flags & WALK_FLAG_1) {
+            if (!(flags & MOVEMENT_FLAG_FIXED_HEIGHT)) {
+                if (flags & MOVEMENT_FLAG_ON_GROUND) {
                     worldPos.y = Pokemon_GetGroundAt(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z);
                     GET_TRANSFORM(model)->pos.v.y += worldPos.y;
                     if (1) { } if (1) { } // TODO fake match
@@ -2071,11 +2071,11 @@ void Pokemon_Update(GObj* obj) {
     }
 
     pokemon = GET_POKEMON(obj);
-    if (getIsPaused() == 0 && !(pokemon->processFlags & POKEMON_PROCESS_FLAG_4)) {
+    if (getIsPaused() == 0 && !(pokemon->processFlags & POKEMON_PROCESS_WAIT_ENDED)) {
         if (pokemon->counter > 0) {
             pokemon->counter--;
             if (pokemon->counter <= 0) {
-                pokemon->processFlags |= POKEMON_PROCESS_FLAG_4;
+                pokemon->processFlags |= POKEMON_PROCESS_WAIT_ENDED;
             }
         }
     }

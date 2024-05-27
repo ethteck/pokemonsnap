@@ -22,10 +22,10 @@ void func_802D2604(GObj* obj) {
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
 
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_4);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
@@ -36,10 +36,10 @@ void func_802D2684(GObj* obj) {
 
     omCreateProcess(obj, spawnStarmieAtGeo, 1, 1);
     // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4;
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     // clang-format on
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_4);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802ED644_5EA714(GObj*);
 
@@ -8,7 +9,7 @@ extern GObj* D_802F0210_5ED2E0;
 extern PokemonInitData D_802F025C_5ED32C;
 
 void func_802ED620_5EA6F0(GObj* arg0) {
-    updatePokemonState(arg0, func_802ED644_5EA714);
+    Pokemon_SetState(arg0, func_802ED644_5EA714);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5EA6F0/func_802ED644_5EA714.s")
@@ -28,7 +29,7 @@ void func_802ED620_5EA6F0(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5EA6F0/func_802EDB3C_5EAC0C.s")
 
 GObj* func_802EDEC0_5EAF90(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802F0210_5ED2E0 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F025C_5ED32C);
+    D_802F0210_5ED2E0 = Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_802F025C_5ED32C);
 
     return D_802F0210_5ED2E0;
 }

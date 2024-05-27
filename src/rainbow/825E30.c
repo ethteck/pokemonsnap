@@ -1,6 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern PokemonDef D_8034AB34_82A2A4;
 extern s32 D_8034ABD8_82A348;

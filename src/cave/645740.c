@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802C33E4_645894(GObj*);
 
@@ -10,11 +11,11 @@ extern PokemonInitData D_802C77FC_649CAC;
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3348_6457F8.s")
 
 GObj* func_802C3388_645838(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C77FC_649CAC);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C77FC_649CAC);
 }
 
 void func_802C33C0_645870(GObj* arg0) {
-    updatePokemonState(arg0, func_802C33E4_645894);
+    Pokemon_SetState(arg0, func_802C33E4_645894);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C33E4_645894.s")
@@ -23,9 +24,9 @@ void func_802C3494_645944(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    func_8036148C_50189C(obj, 0.1f, 0x2A);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

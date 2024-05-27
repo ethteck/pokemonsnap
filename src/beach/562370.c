@@ -40,27 +40,27 @@ void func_beach_802CA300(GObj* obj) {
     }
 
     pokemon->flags &= ~0x4;
-    updatePokemonState(obj, NULL);
+    Pokemon_SetState(obj, NULL);
 }
 
 void func_beach_802CA418(s32 gObjId, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    spawnPokemon(gObjId, id, roomA, roomB, spawn, &D_beach_802CD948);
+    Pokemon_Spawn(gObjId, id, roomA, roomB, spawn, &D_beach_802CD948);
 }
 
-// TODO: potential file split. spawnPokemon tends to be used at the end of files
+// TODO: potential file split. Pokemon_Spawn tends to be used at the end of files
 
 void func_beach_802CA450(GObj* obj) {
-    updatePokemonState(obj, func_beach_802CA474);
+    Pokemon_SetState(obj, func_beach_802CA474);
 }
 
 void func_beach_802CA474(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setPokemonAnimation(obj, &D_beach_802CD980);
-    pokemon->transitionGraph = &D_beach_802CD9D8;
-    runInteractionsAndWaitForFlags(obj, 0);
-    updatePokemonState(obj, NULL);
+    Pokemon_SetAnimation(obj, &D_beach_802CD980);
+    pokemon->transitionGraph = D_beach_802CD9D8;
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
 }
 
 void func_beach_802CA4CC(GObj* obj) {
@@ -69,18 +69,18 @@ void func_beach_802CA4CC(GObj* obj) {
 
     cmdSendCommand(gObjPlayer, PLAYER_CMD_9, 0);
     auPlaySound(0x26);
-    setPokemonAnimation(obj, &D_beach_802CD994);
+    Pokemon_SetAnimation(obj, &D_beach_802CD994);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     auPlaySound(0x28);
     D_beach_802CD9D0 = auPlaySound(0x27);
-    setPokemonAnimation(obj, &D_beach_802CD9A8);
+    Pokemon_SetAnimation(obj, &D_beach_802CD9A8);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
-    setPokemonAnimation(obj, &D_beach_802CD9BC);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(obj, &D_beach_802CD9BC);
     pokemon->transitionGraph = NULL;
-    runInteractionsAndWaitForFlags(obj, 1);
-    updatePokemonState(obj, func_beach_802CA950);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_beach_802CA950);
 }
 
 void func_beach_802CA5A8(DObj* obj, s32 arg1, f32 arg2) {
@@ -114,7 +114,7 @@ void func_beach_802CA5DC(GObj* obj) {
     auSetSoundVolume(D_beach_80347578, 0);
     auSetSoundVolume(D_beach_80347579, 0);
     auSetSoundVolume(D_beach_8034757A, 0);
-    func_8035EDC8_4FF1D8(obj);
+    Pokemon_StopAuxProc(obj);
 }
 
 void func_beach_802CA8C4(GObj* obj) {
@@ -128,7 +128,7 @@ void func_beach_802CA8C4(GObj* obj) {
     if (D_beach_802CD9D0 != -1 && D_800968BC[D_beach_802CD9D0] != -1) {
         auStopSound(D_beach_802CD9D0);
     }
-    func_8035EDC8_4FF1D8(obj);
+    Pokemon_StopAuxProc(obj);
 }
 
 void func_beach_802CA950(GObj* obj) {
@@ -140,12 +140,12 @@ void func_beach_802CA950(GObj* obj) {
     UnkBlueShark sp2C;
 
     sp2C = D_beach_802CD9F8;
-    func_8035ED90_4FF1A0(obj, func_beach_802CA5DC);
-    func_8035ED90_4FF1A0(obj, func_beach_802CA8C4);
+    Pokemon_StartAuxProc(obj, func_beach_802CA5DC);
+    Pokemon_StartAuxProc(obj, func_beach_802CA8C4);
     Items_RemoveFlyingItems();
     resetMainCameraSettings();
     func_80365E34_506244();
-    func_8035FD9C_5001AC(&sp2C);
+    Pokemon_RemovePokemons(&sp2C);
     ohWait(1);
     Camera_StartCutScene(obj, 0, 0);
     temp_v0 = getMainCamera();
@@ -172,9 +172,9 @@ void func_beach_802CA950(GObj* obj) {
     auStopAllSounds();
     cmdSendCommand(gObjPlayer, PLAYER_CMD_FINISH, 0);
     omEndProcess(NULL);
-    updatePokemonState(obj, NULL);
+    Pokemon_SetState(obj, NULL);
 }
 
 void func_beach_802CAB14(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_beach_802CDA10);
+    Pokemon_SpawnDlLink4(gObjID, id, roomA, roomB, spawn, &D_beach_802CDA10);
 }

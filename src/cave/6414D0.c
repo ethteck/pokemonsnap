@@ -1,12 +1,13 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802BF044_6414F4(GObj*);
 
 extern PokemonInitData D_802C69C0_648E70;
 
 void func_802BF020_6414D0(GObj* arg0) {
-    updatePokemonState(arg0, func_802BF044_6414F4);
+    Pokemon_SetState(arg0, func_802BF044_6414F4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6414D0/func_802BF044_6414F4.s")
@@ -20,9 +21,9 @@ void func_802BF1C4_641674(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 20.0f;
-    func_80361110_501520(obj, 500.0f, 0.1f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -42,5 +43,5 @@ void func_802BF554_641A04(void) {
 }
 
 GObj* func_802BF55C_641A0C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C69C0_648E70);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C69C0_648E70);
 }

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern PokemonInitData D_802E31B0_7343B0;
 
@@ -13,10 +14,10 @@ void func_802DE144_72F344(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.13333334f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.13333334f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -27,5 +28,5 @@ void func_802DE144_72F344(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE26C_72F46C.s")
 
 GObj* func_802DE34C_72F54C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E31B0_7343B0);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E31B0_7343B0);
 }

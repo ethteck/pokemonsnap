@@ -1,6 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 #include "../world/world.h"
+#include "app_level/app_level.h"
 
 extern s32 D_802EE130_5EB200;
 extern SceneSetup D_802EE150_5EB220;

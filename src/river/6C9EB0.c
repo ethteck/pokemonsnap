@@ -1,4 +1,5 @@
 #include "common.h"
+#include "app_level/app_level.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C9EB0/func_802E20D0_6C9EB0.s")
 

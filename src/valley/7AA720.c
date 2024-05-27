@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802D1190(GObj* pokemon) {
     Pokemon_SetState(pokemon, NULL);

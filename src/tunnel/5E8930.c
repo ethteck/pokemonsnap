@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802EBC04_5E8CD4(GObj*);
 
@@ -15,10 +16,10 @@ void func_802EB98C_5E8A5C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.13333334f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.13333334f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -30,21 +31,21 @@ void func_802EBABC_5E8B8C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.13333334f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.13333334f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8930/func_802EBB28_5E8BF8.s")
 
 GObj* func_802EBBA8_5E8C78(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemon(objID, id, block, blockB, spawn, &D_802EFD10_5ECDE0);
+    return Pokemon_Spawn(objID, id, block, blockB, spawn, &D_802EFD10_5ECDE0);
 }
 
 void func_802EBBE0_5E8CB0(GObj* arg0) {
-    updatePokemonState(arg0, func_802EBC04_5E8CD4);
+    Pokemon_SetState(arg0, func_802EBC04_5E8CD4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8930/func_802EBC04_5E8CD4.s")
@@ -52,7 +53,7 @@ void func_802EBBE0_5E8CB0(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8930/func_802EBC78_5E8D48.s")
 
 GObj* func_802EBCE8_5E8DB8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802EFD90_5ECE60);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EFD90_5ECE60);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8930/func_802EBD20_5E8DF0.s")
@@ -66,5 +67,5 @@ GObj* func_802EBCE8_5E8DB8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8930/func_802EBEC4_5E8F94.s")
 
 GObj* func_802EBF04_5E8FD4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802EFE7C_5ECF4C);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EFE7C_5ECF4C);
 }

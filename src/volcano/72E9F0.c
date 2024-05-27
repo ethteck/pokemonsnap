@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern PokemonInitData D_802E2FD8_7341D8;
 
@@ -12,7 +13,7 @@ extern PokemonInitData D_802E2FD8_7341D8;
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E9F0/func_802DDA0C_72EC0C.s")
 
 GObj* func_802DDA98_72EC98(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return func_80362DC4_5031D4(objID, id, block, blockB, spawn, &D_802E2FD8_7341D8);
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802E2FD8_7341D8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E9F0/func_802DDAD0_72ECD0.s")

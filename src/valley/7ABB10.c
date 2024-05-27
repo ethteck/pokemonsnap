@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void spawnStaryuAtGeo(GObj* obj) {
     Pokemon_AddAtGeo(obj, PokemonID_STARYU, &extraStaryuDef);
@@ -12,7 +13,7 @@ void spawnStarmieAtGeo(GObj* obj) {
 }
 
 void func_802D25E0(GObj* obj) {
-    Pokemon_SetStateRandom(obj, &D_802ECB00_7C6090);
+    Pokemon_SetStateRandom(obj, D_802ECB00_7C6090);
 }
 
 void func_802D2604(GObj* obj) {

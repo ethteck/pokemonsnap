@@ -1,5 +1,6 @@
 #include "common.h"
 #include "../world/world.h"
+#include "app_level/app_level.h"
 
 void func_802E3B8C_5E0C5C(GObj*);
 void func_802E3CC8_5E0D98(GObj*);
@@ -17,7 +18,7 @@ extern PokemonInitData D_802EE660_5EB730;
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3C18_5E0CE8.s")
 
 void func_802E3CA4_5E0D74(GObj* arg0) {
-    updatePokemonState(arg0, func_802E3B8C_5E0C5C);
+    Pokemon_SetState(arg0, func_802E3B8C_5E0C5C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3CC8_5E0D98.s")
@@ -25,7 +26,7 @@ void func_802E3CA4_5E0D74(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3D80_5E0E50.s")
 
 void func_802E3E20_5E0EF0(GObj* arg0) {
-    updatePokemonState(arg0, func_802E3CC8_5E0D98);
+    Pokemon_SetState(arg0, func_802E3CC8_5E0D98);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E3E44_5E0F14.s")
@@ -36,9 +37,9 @@ void func_802E3F8C_5E105C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    func_8036148C_50189C(obj, 0.1f, 0x2A);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -75,5 +76,5 @@ void func_802E3F8C_5E105C(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E0A70/func_802E4A84_5E1B54.s")
 
 GObj* func_802E4AFC_5E1BCC(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802EE660_5EB730);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EE660_5EB730);
 }

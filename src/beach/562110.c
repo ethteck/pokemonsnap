@@ -28,7 +28,7 @@ void func_beach_802CA148(GObj* obj) {
 }
 
 void func_beach_802CA198(GObj* obj) {
-    Pokemon_SetStateRandom(obj, &D_beach_802CD8B8);
+    Pokemon_SetStateRandom(obj, D_beach_802CD8B8);
 }
 
 void func_beach_802CA1BC(GObj* obj) {

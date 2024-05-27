@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern PokemonInitData D_802EFAFC_5ECBCC;
 extern GObj* D_802EFBA4_5ECC74;
@@ -17,7 +18,7 @@ extern PokemonInitData D_802EFC0C_5ECCDC;
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8080/func_802EB35C_5E842C.s")
 
 GObj* func_802EB3A8_5E8478(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemon(objID, id, block, blockB, spawn, &D_802EFAFC_5ECBCC);
+    return Pokemon_Spawn(objID, id, block, blockB, spawn, &D_802EFAFC_5ECBCC);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E8080/func_802EB3E0_5E84B0.s")
@@ -30,10 +31,10 @@ void func_802EB664_5E8734(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.1f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.1f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

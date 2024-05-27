@@ -21,20 +21,6 @@ void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
 GObj* func_8035E1D4_4FE5E4(void);
-void Pokemon_StartAuxProc(GObj* obj, GObjFunc state);
-void Pokemon_SetState(GObj* obj, GObjFunc state);
-int func_80353D68_4F4178(void);
-void Pokemon_SetStateRandom(GObj* obj, RandomState* nextStates);
-void Pokemon_StartPathProc(GObj* obj, GObjFunc func);
-void Pokemon_SetAnimation(GObj*, AnimationHeader*);
-void Pokemon_ForceAnimation(GObj*, AnimationHeader*);
-void Pokemon_SetAnimationCommon(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
-void Pokemon_WaitForFlag(GObj* obj, u32 flags);
-void Pokemon_RunCleanup(GObj* obj);
-GObj* Pokemon_AddAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
-void Pokemon_ResetPathPos(GObj*);
-void Pokemon_FollowPath(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
-GObj* Pokemon_Spawn(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 void ren_func_800192DC(GObj* obj);
 
@@ -159,12 +145,7 @@ void getLevelProgress(s32*, f32*);
 void removeMainCamera(void);
 OMCamera* getMainCamera(void);
 void PokemonDetector_Disable(void);
-void Pokemon_StopAuxProc(GObj*);
-void Pokemon_SetFlag100(GObj*, s32);
 
-void Pokemon_RunInCircles(GObj*, f32, f32, UNK_TYPE);
-void Pokemon_TurnToTarget(GObj*, f32, u32);
-void Pokemon_RunToTarget(GObj*, f32, f32, u32);
 void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3);
 void pokemonsChangeBlock(struct WorldBlock*, struct WorldBlock*, PokemonDef*);
 void pokemonRemove(struct WorldBlock*, PokemonDef*);
@@ -172,9 +153,5 @@ void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364718_504B28(GObj *obj);
 s32 func_803647BC_504BCC(GObj*);
 void func_8036650C_50691C(void);
-
-
-GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
-GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

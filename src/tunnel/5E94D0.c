@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802ECAE4_5E9BB4(GObj*);
 
@@ -38,7 +39,7 @@ GObj* func_802ECA80_5E9B50(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* ro
 }
 
 void func_802ECAC0_5E9B90(GObj* arg0) {
-    updatePokemonState(arg0, func_802ECAE4_5E9BB4);
+    Pokemon_SetState(arg0, func_802ECAE4_5E9BB4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECAE4_5E9BB4.s")
@@ -54,7 +55,7 @@ void func_802ECAC0_5E9B90(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECE10_5E9EE0.s")
 
 GObj* func_802ECFC8_5EA098(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return func_80362DC4_5031D4(objID, id, block, blockB, spawn, &D_802F01A0_5ED270);
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802F01A0_5ED270);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ED000_5EA0D0.s")

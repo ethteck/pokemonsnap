@@ -178,7 +178,7 @@ typedef union {
 
 typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
 
-typedef struct {
+typedef struct RandomState {
     /* 0x00 */ s32 weight;
     /* 0x04 */ GObjFunc func;
 } RandomState; // size = 0x8

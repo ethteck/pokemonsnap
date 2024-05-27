@@ -1,13 +1,14 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802D93DC_72A5DC(GObj*);
 
 extern AnimationHeader D_802E1958_732B58;
 extern AnimationHeader D_802E196C_732B6C;
-extern idFuncStruct D_802E1A34_732C34;
-extern idFuncStruct D_802E1DF4_732FF4;
-extern randomTransition D_802E1E64_733064;
+extern InteractionHandler D_802E1A34_732C34[];
+extern InteractionHandler D_802E1DF4_732FF4[];
+extern RandomState D_802E1E64_733064[];
 extern PokemonInitData D_802E1FB4_7331B4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D8AA0_729CA0.s")
@@ -18,11 +19,11 @@ void func_802D8CA4_729EA4(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setPokemonAnimation(obj, &D_802E1958_732B58);
-    runPathProcess(obj, NULL);
-    pokemon->transitionGraph = &D_802E1A34_732C34;
-    runInteractionsAndWaitForFlags(obj, 1);
-    weightedRandomStaightTransition(obj, &D_802E1E64_733064);
+    Pokemon_SetAnimation(obj, &D_802E1958_732B58);
+    Pokemon_StartPathProc(obj, NULL);
+    pokemon->transitionGraph = D_802E1A34_732C34;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetStateRandom(obj, D_802E1E64_733064);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D8D14_729F14.s")
@@ -32,9 +33,9 @@ void func_802D8DB8_729FB8(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 20.0f;
-    func_80361110_501520(obj, 500.0f, 0.1f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -45,9 +46,9 @@ void func_802D8EB8_72A0B8(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    func_80361110_501520(obj, 500.0f, 0.1f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -57,11 +58,11 @@ void func_802D8F94_72A194(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    forcePokemonAnimation(obj, &D_802E196C_732B6C);
-    runPathProcess(obj, NULL);
-    pokemon->transitionGraph = &D_802E1DF4_732FF4;
-    runInteractionsAndWaitForFlags(obj, 1);
-    weightedRandomStaightTransition(obj, &D_802E1E64_733064);
+    Pokemon_ForceAnimation(obj, &D_802E196C_732B6C);
+    Pokemon_StartPathProc(obj, NULL);
+    pokemon->transitionGraph = D_802E1DF4_732FF4;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetStateRandom(obj, D_802E1E64_733064);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9004_72A204.s")
@@ -80,9 +81,9 @@ void func_802D9380_72A580(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    func_8036194C_501D5C(obj, 600.0f, 0.1f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunAwayFromTarget(obj, 600.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -95,7 +96,7 @@ void func_802D9380_72A580(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D95AC_72A7AC.s")
 
 void func_802D9614_72A814(GObj* arg0) {
-    updatePokemonState(arg0, func_802D93DC_72A5DC);
+    Pokemon_SetState(arg0, func_802D93DC_72A5DC);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9638_72A838.s")
@@ -127,5 +128,5 @@ void func_802D9614_72A814(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9C84_72AE84.s")
 
 GObj* func_802D9CB8_72AEB8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E1FB4_7331B4);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E1FB4_7331B4);
 }

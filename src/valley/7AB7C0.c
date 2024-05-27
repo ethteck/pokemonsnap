@@ -1,12 +1,13 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern AnimationHeader D_802EC994_7C5F24;
 extern AnimationHeader D_802EC9A8_7C5F38;
 extern AnimationHeader D_802EC9BC_7C5F4C;
 extern InteractionHandler D_802EC9D0_7C5F60[];
-extern RandomState D_802EC9F0_7C5F80;
+extern RandomState D_802EC9F0_7C5F80[];
 extern PokemonInitData D_802ECA30_7C5FC0;
 
 void func_802D237C_7AB90C(GObj*);
@@ -31,7 +32,7 @@ void func_802D22A0_7AB830(GObj* obj) {
 
     pokemon->tangible = 1;
     obj->flags = 0;
-    Pokemon_SetStateRandom(obj, &D_802EC9F0_7C5F80);
+    Pokemon_SetStateRandom(obj, D_802EC9F0_7C5F80);
 }
 
 void func_802D22D4_7AB864(GObj* obj) {

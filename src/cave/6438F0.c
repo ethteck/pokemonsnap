@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802C1B54_644004(GObj*);
 void func_802C1C48_6440F8(GObj*);
@@ -18,10 +19,10 @@ void func_802C1728_643BD8(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.05f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.05f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -41,17 +42,17 @@ void func_802C1A7C_643F2C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    func_8036148C_50189C(obj, 0.1f, 0x2A);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1AC8_643F78.s")
 
 void func_802C1B1C_643FCC(GObj* arg0) {
-    runPathProcess(arg0, func_802C1C48_6440F8);
-    updatePokemonState(arg0, func_802C1B54_644004);
+    Pokemon_StartPathProc(arg0, func_802C1C48_6440F8);
+    Pokemon_SetState(arg0, func_802C1B54_644004);
 }
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1B54_644004.s")
 
@@ -92,5 +93,5 @@ void func_802C1B1C_643FCC(GObj* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C294C_644DFC.s")
 
 GObj* func_802C2994_644E44(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemon(objID, id, block, blockB, spawn, &D_802C7590_649A40);
+    return Pokemon_Spawn(objID, id, block, blockB, spawn, &D_802C7590_649A40);
 }

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "beach.h"
+#include "app_level/app_level.h"
 
 void func_beach_802CAF90(GObj* obj) {
     UNUSED s32 pad[3];
@@ -72,7 +73,7 @@ void func_beach_802CB2D8(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_beach_802CDD80;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_beach_802CDE30);
+    Pokemon_SetStateRandom(obj, D_beach_802CDE30);
 }
 
 void func_beach_802CB36C(GObj* obj) {
@@ -83,7 +84,7 @@ void func_beach_802CB36C(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_beach_802CDD80;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_beach_802CDE30);
+    Pokemon_SetStateRandom(obj, D_beach_802CDE30);
 }
 
 void func_beach_802CB3DC(GObj* obj) {
@@ -94,7 +95,7 @@ void func_beach_802CB3DC(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_beach_802CDD80;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_beach_802CDE30);
+    Pokemon_SetStateRandom(obj, D_beach_802CDE30);
 }
 
 void func_beach_802CB44C(GObj* obj) {

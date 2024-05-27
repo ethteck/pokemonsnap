@@ -1,5 +1,6 @@
 #include "common.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 void func_802C1178_643628(GObj*);
 
@@ -40,9 +41,9 @@ void func_802C0CD8_643188(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 20.0f;
-    func_80361110_501520(obj, 500.0f, 0.1f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -57,11 +58,11 @@ void func_802C0CD8_643188(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1018_6434C8.s")
 
 GObj* func_802C10C8_643578(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C7040_6494F0);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C7040_6494F0);
 }
 
 void func_802C1100_6435B0(GObj* arg0) {
-    updatePokemonState(arg0, func_802C1178_643628);
+    Pokemon_SetState(arg0, func_802C1178_643628);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1124_6435D4.s")
@@ -75,9 +76,9 @@ void func_802C1288_643738(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 20.0f;
-    func_80361110_501520(obj, 500.0f, 0.01f, 1);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_RunInCircles(obj, 500.0f, 0.01f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
@@ -86,9 +87,9 @@ void func_802C1288_643738(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C134C_6437FC.s")
 
 GObj* func_802C13B4_643864(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C714C_6495FC);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C714C_6495FC);
 }
 
 GObj* func_802C13EC_64389C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802C7194_649644);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C7194_649644);
 }

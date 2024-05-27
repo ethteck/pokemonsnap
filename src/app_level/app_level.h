@@ -152,6 +152,7 @@ void Items_DeleteItem(GObj*);
 
 u32 getProgressFlags(void);
 void mainCameraSetScissor(Gfx** gfxPtr);
+int func_80353D68_4F4178(void);
 
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
@@ -163,10 +164,44 @@ void Icons_Hide(void);
 void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
 
-s32 Pokemon_GetFlag100(GObj*);
 void PokemonDetector_CleanupPokemon(GObj* pokemonObj);
 void func_80357428_4F7838(GObj* arg0);
 
 void renderPokemonModelTypeI(GObj* arg0);
+
+s32 Pokemon_GetFlag100(GObj*);
+void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags);
+void Pokemon_StartAuxProc(GObj*, void (*)(GObj*));
+void Pokemon_WaitForFlagNoInteraction(GObj*, u32);
+void Pokemon_RemovePokemons(u16*);
+void Pokemon_EatApple(GObj*);
+void Pokemon_SetScale(GObj*, f32);
+void Pokemon_Jump(GObj*, f32, f32, f32, f32);
+void Pokemon_Fall(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
+s32 Pokemon_StepWalkInDirectionFacing(GObj*, u32);
+s32 Pokemon_Turn(DObj*, f32, f32);
+s32 Pokemon_HearsPokeFlute(GObj*);
+void Pokemon_SetTargetPos(GObj*, f32, f32);
+void Pokemon_RunToTargetPos(GObj*, f32);
+void Pokemon_StartAuxProc(GObj* obj, GObjFunc state);
+void Pokemon_SetState(GObj* obj, GObjFunc state);
+void Pokemon_SetStateRandom(GObj* obj, RandomState* nextStates);
+void Pokemon_StartPathProc(GObj* obj, GObjFunc func);
+void Pokemon_SetAnimation(GObj*, AnimationHeader*);
+void Pokemon_ForceAnimation(GObj*, AnimationHeader*);
+void Pokemon_SetAnimationCommon(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
+void Pokemon_WaitForFlag(GObj* obj, u32 flags);
+void Pokemon_RunCleanup(GObj* obj);
+GObj* Pokemon_AddAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
+void Pokemon_ResetPathPos(GObj*);
+void Pokemon_FollowPath(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
+GObj* Pokemon_Spawn(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+void Pokemon_StopAuxProc(GObj*);
+void Pokemon_SetFlag100(GObj*, s32);
+void Pokemon_RunInCircles(GObj*, f32, f32, UNK_TYPE);
+void Pokemon_TurnToTarget(GObj*, f32, u32);
+void Pokemon_RunToTarget(GObj*, f32, f32, u32);
+GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

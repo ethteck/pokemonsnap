@@ -1,4 +1,5 @@
 #include "common.h"
+#include "app_level.h"
 
 extern Mtx4f D_803B14D8_5518E8;
 extern Mtx4f D_803B1518_551928;

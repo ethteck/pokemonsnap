@@ -1,6 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 #include "../world/world.h"
+#include "app_level/app_level.h"
 
 void func_802D6788_727988(void);
 

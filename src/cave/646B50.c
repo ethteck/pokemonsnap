@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern GObj* D_802C7B4C_649FFC;
 extern PokemonInitData D_802C7B9C_64A04C;
@@ -15,10 +16,10 @@ void func_802C493C_646DEC(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    setNodePosToNegRoom(obj);
-    pokemonPathLoop(obj, 0, 1, 0.075f, 0.0f, 2U);
-    pokemon->pathProcess = NULL;
-    pokemon->processFlags |= 2;
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.075f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

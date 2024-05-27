@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern GObj* D_802C7C3C_64A0EC;
 extern PokemonInitData D_802C7CCC_64A17C;

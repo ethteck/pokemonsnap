@@ -30,7 +30,7 @@ void func_beach_802C5700(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_beach_802CC10C);
     pokemon->transitionGraph = D_beach_802CC1D4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_beach_802CC2C4);
+    Pokemon_SetStateRandom(obj, D_beach_802CC2C4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5768.s")

@@ -4,6 +4,9 @@
 #include "world/world.h"
 
 #define GET_ITEM(x) ((Item*)((x)->userData))
+#define GET_POKEMON(obj) ((Pokemon*)((obj)->userData))
+#define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
+#define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*)((p)->unk_4C))
 
 enum ItemIds {
     ITEM_ID_POKEFLUTE   = 161,

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "app_level.h"
 
 extern s32 D_80393BD4_533FE4;
 extern s32 D_80393BD8_533FE8;

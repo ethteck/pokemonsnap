@@ -15,7 +15,18 @@ extern PokemonInitData D_802E3590_734790;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72FFE0/func_802DF0B4_7302B4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72FFE0/func_802DF164_730364.s")
+extern idFuncStruct D_802E354C_73474C;
+
+void func_802DF164_730364(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802E354C_73474C;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72FFE0/func_802DF1B4_7303B4.s")
 

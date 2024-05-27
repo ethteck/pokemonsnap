@@ -101,7 +101,19 @@ void func_802DA1A4_72B3A4(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA200_72B400.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA2C8_72B4C8.s")
+void func_802DA5D8_72B7D8(GObj*);
+extern AnimationHeader D_802E2034_733234;
+
+void func_802DA2C8_72B4C8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2034_733234);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802DA5D8_72B7D8);
+}
 
 void func_802DA330_72B530(GObj* obj) {
     UNUSED s32 pad[3];
@@ -153,7 +165,16 @@ void func_802DA748_72B948(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA7A4_72B9A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA848_72BA48.s")
+void func_802DA848_72BA48(GObj *obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_80361B50_501F60(obj, pokemon->pos1.x, pokemon->pos1.z);
+    func_80361E58_502268(obj, 0.1f);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA8A4_72BAA4.s")
 
@@ -161,7 +182,19 @@ void func_802DA748_72B948(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA97C_72BB7C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DAA34_72BC34.s")
+void func_802DA7A4_72B9A4(GObj*);
+extern AnimationHeader D_802E2034_733234;
+
+void func_802DAA34_72BC34(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2034_733234);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802DA7A4_72B9A4);
+}
 
 GObj* func_802DAA9C_72BC9C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E2358_733558);

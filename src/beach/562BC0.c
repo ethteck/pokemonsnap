@@ -59,13 +59,13 @@ void func_beach_802CAD7C(GObj* obj) {
     updatePokemonState(obj, NULL);
 }
 
-void func_beach_802CADCC(GObj* ob) {
-    Pokemon* pokemon = GET_POKEMON(ob);
+void func_beach_802CADCC(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->tangible = 1;
-    ob->flags = 0;
-    runPathProcess(ob, func_beach_802CAEB0);
-    updatePokemonState(ob, func_beach_802CAE14);
+    obj->flags = 0;
+    runPathProcess(obj, func_beach_802CAEB0);
+    updatePokemonState(obj, func_beach_802CAE14);
 }
 
 void func_beach_802CAE14(GObj* obj) {

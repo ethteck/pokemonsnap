@@ -41,7 +41,18 @@ void func_802CE328_7A78B8(GObj* obj) {
     updatePokemonState(obj, func_802CE37C_7A790C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7790/func_802CE37C_7A790C.s")
+extern idFuncStruct D_802D3DC4_7AD354;
+
+void func_802CE37C_7A790C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802D3DC4_7AD354;
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7790/func_802CE3CC_7A795C.s")
 
@@ -105,7 +116,20 @@ void func_802CE654_7A7BE4(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7790/func_802CE7D8_7A7D68.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7790/func_802CE870_7A7E00.s")
+extern AnimationHeader D_802D3C84_7AD214;
+
+void func_802CE870_7A7E00(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0);
+    setPokemonAnimation(obj, &D_802D3C84_7AD214);
+    pokemon->hSpeed = 80.0f;
+    func_80361748_501B58(obj, 50.0f, 0.1f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A7790/func_802CE8F4_7A7E84.s")
 

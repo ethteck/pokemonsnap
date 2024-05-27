@@ -15,7 +15,18 @@ extern PokemonInitData D_802E2EC4_6CACA4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C22E0/func_802DA768_6C2548.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C22E0/func_802DA814_6C25F4.s")
+extern idFuncStruct D_802E2E88_6CAC68;
+
+void func_802DA814_6C25F4(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802E2E88_6CAC68;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C22E0/func_802DA864_6C2644.s")
 

@@ -12,4 +12,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C9EB0/func_802E22E4_6CA0C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C9EB0/func_802E25C4_6CA3A4.s")
+void func_802E20D0_6C9EB0(GObj *);
+void func_802E22E4_6CA0C4(GObj *);
+extern GObj *D_802E4B84_6CC964;
+
+void func_802E25C4_6CA3A4(void) {
+    GObj * obj;
+
+    obj = func_80365E80_506290();
+    D_802E4B84_6CC964 = obj;
+    if (obj != NULL) {
+        omCreateProcess(obj, func_802E22E4_6CA0C4, 0, 1);
+        func_802E20D0_6C9EB0(obj);
+    }
+}
+
+

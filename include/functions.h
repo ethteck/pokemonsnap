@@ -176,4 +176,9 @@ void func_8036650C_50691C(void);
 GObj* spawnPokemonOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* func_80362DC4_5031D4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
+GObj* func_80365E80_506290(void);
+void func_8035E298_4FE6A8(GObj*);
+void func_80361E58_502268(GObj*, f32);
+void func_80361B50_501F60(GObj*, f32, f32);
+
 #endif

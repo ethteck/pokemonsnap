@@ -14,7 +14,18 @@ extern AnimationHeader D_802D3FA0_7AD530;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CEAA0_7A8030.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CEB4C_7A80DC.s")
+extern idFuncStruct D_802D3FFC_7AD58C;
+
+void func_802CEB4C_7A80DC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802D3FFC_7AD58C;
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CEB9C_7A812C.s")
 

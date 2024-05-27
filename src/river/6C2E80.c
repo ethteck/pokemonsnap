@@ -56,7 +56,16 @@ void func_802DB554_6C3334(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB5C0_6C33A0.s")
+void func_802DB5C0_6C33A0(GObj *obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj,0, 0,0.05f, 0.0f, 2);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB630_6C3410.s")
 
@@ -66,7 +75,18 @@ void func_802DB554_6C3334(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB85C_6C363C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB8EC_6C36CC.s")
+extern idFuncStruct D_802E32E8_6CB0C8;
+
+void func_802DB8EC_6C36CC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802E32E8_6CB0C8;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB93C_6C371C.s")
 

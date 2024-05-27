@@ -96,5 +96,17 @@ GObj* func_802ECFC8_5EA098(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ED1BC_5EA28C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ED2E8_5EA3B8.s")
+void func_802ED000_5EA0D0(GObj*);
+void func_802ED2E8_5EA3B8(GObj*);
+extern GObj* D_802F01E4_5ED2B4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ED5C8_5EA698.s")
+void func_802ED5C8_5EA698(void) {
+    GObj* obj;
+
+    obj = func_80365E80_506290();
+    D_802F01E4_5ED2B4 = obj;
+    if (obj != NULL) {
+        omCreateProcess(obj, func_802ED2E8_5EA3B8, 0, 1);
+        func_802ED000_5EA0D0(obj);
+    }
+}

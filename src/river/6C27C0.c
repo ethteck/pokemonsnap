@@ -14,10 +14,37 @@ extern PokemonInitData D_802E312C_6CAF0C;
 void func_802DAC04_6C29E4(GObj* arg0) {
     weightedRandomStaightTransition(arg0, &D_802E3048_6CAE28);
 }
+void func_802DA9E0_6C27C0(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DAC28_6C2A08.s")
+void func_802DAC28_6C2A08(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DACA8_6C2A88.s")
+    omCreateProcess(obj, func_802DA9E0_6C27C0, 1, 1);
+    // clang-format off
+    pokemon->counter = 1; pokemon->processFlags &= ~4;
+    // clang-format on
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 4);
+    runPokemonCleanup(obj);
+    updatePokemonState(obj, NULL);
+}
+
+void func_802DAACC_6C28AC(GObj*);
+
+void func_802DACA8_6C2A88(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    omCreateProcess(obj, func_802DAACC_6C28AC, 1, 1);
+    // clang-format off
+    pokemon->counter = 1; pokemon->processFlags &= ~4;
+    // clang-format on
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 4);
+    runPokemonCleanup(obj);
+    updatePokemonState(obj, NULL);
+}
 
 GObj* func_802DAD28_6C2B08(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return func_80362DC4_5031D4(objID, id, block, blockB, spawn, &D_802E3074_6CAE54);

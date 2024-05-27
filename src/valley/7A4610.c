@@ -113,7 +113,19 @@ void func_802CB550_7A4AE0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB5AC_7A4B3C.s")
+void func_802CB110_7A46A0(GObj*);
+extern AnimationHeader D_802D34B4_7ACA44;
+
+void func_802CB5AC_7A4B3C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802D34B4_7ACA44);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802CB110_7A46A0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CB614_7A4BA4.s")
 

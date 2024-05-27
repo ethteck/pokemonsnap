@@ -190,9 +190,31 @@ void func_802D976C_72A96C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D97B8_72A9B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9900_72AB00.s")
+extern idFuncStruct D_802E1F40_733140;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9950_72AB50.s")
+void func_802D9900_72AB00(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802E1F40_733140;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
+
+extern idFuncStruct D_802E1F60_733160;
+
+void func_802D9950_72AB50(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 0;
+    obj->flags |= 3;
+    pokemon->transitionGraph = &D_802E1F60_733160;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D99A0_72ABA0.s")
 

@@ -8,7 +8,17 @@ extern AnimationHeader D_802E4140_6CBF20;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF6BC_6C749C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF710_6C74F0.s")
+void func_802DF7D8_6C75B8(GObj* );
+void func_802DF758_6C7538(GObj *);
+
+void func_802DF710_6C74F0(GObj *obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = 1;
+    obj->flags = 0;
+    runPathProcess(obj, func_802DF7D8_6C75B8);
+    updatePokemonState(obj, func_802DF758_6C7538);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF758_6C7538.s")
 

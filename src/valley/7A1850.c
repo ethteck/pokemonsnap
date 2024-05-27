@@ -54,7 +54,20 @@ void func_802C853C_7A1ACC(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C88C4_7A1E54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C892C_7A1EBC.s")
+void func_802C8998_7A1F28(GObj*);
+extern AnimationHeader D_802D2B24_7AC0B4;
+extern randomTransition D_802D2B74_7AC104;
+
+void func_802C892C_7A1EBC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    runPathProcess(obj, func_802C8998_7A1F28);
+    setPokemonAnimation(obj, &D_802D2B24_7AC0B4);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 2);
+    weightedRandomStaightTransition(obj, &D_802D2B74_7AC104);
+}
 
 void func_802C8998_7A1F28(GObj* obj) {
     UNUSED s32 pad[3];

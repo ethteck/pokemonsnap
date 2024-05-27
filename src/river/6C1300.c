@@ -25,7 +25,21 @@ void func_802D96FC_6C14DC(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D9808_6C15E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D990C_6C16EC.s")
+extern AnimationHeader D_802E2A38_6CA818;
+
+void func_802D990C_6C16EC(GObj * obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0);
+    setPokemonAnimation(obj, &D_802E2A38_6CA818);
+    pokemon->hSpeed = 100.0f;
+    func_80361748_501B58(obj, 90.0f, 0.1f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D9990_6C1770.s")
 
@@ -45,7 +59,16 @@ void func_802D9A0C_6C17EC(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D9C8C_6C1A6C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D9D7C_6C1B5C.s")
+void func_802D9D7C_6C1B5C(GObj *obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_80361B50_501F60(obj, pokemon->pos1.x, pokemon->pos1.z);
+    func_80361E58_502268(obj, 0.1f);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C1300/func_802D9DD8_6C1BB8.s")
 

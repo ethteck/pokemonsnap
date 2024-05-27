@@ -7,7 +7,15 @@ extern PokemonInitData D_802C6F14_6493C4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6425F0/func_802C0220_6426D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6425F0/func_802C027C_64272C.s")
+extern idFuncStruct D_802C6D90_649240;
+
+void func_802C027C_64272C(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->transitionGraph = &D_802C6D90_649240;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6425F0/func_802C02BC_64276C.s")
 

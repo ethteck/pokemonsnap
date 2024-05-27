@@ -95,7 +95,7 @@ void func_beach_802C8980(GObj* obj) {
     updatePokemonState(obj, func_beach_802C89A4);
 }
 
-void func_beach_802C8BC4(GObj*); /* extern */
+void func_beach_802C8BC4(GObj*);
 extern idFuncStruct D_beach_802CD064;
 
 void func_beach_802C89A4(GObj* obj) {

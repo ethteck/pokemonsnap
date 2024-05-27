@@ -159,7 +159,18 @@ void func_802DCDE4_72DFE4(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DCE40_72E040.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DCF44_72E144.s")
+extern AnimationHeader D_802E2B50_733D50;
+
+void func_802DCF44_72E144(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2B50_733D50);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802DCBD0_72DDD0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DCFAC_72E1AC.s")
 

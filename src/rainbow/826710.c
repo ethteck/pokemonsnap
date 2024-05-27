@@ -28,7 +28,19 @@ void func_80347188_8268F8(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347398_826B08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347574_826CE4.s")
+extern AnimationHeader D_8034ACC4_82A434;
+extern idFuncStruct D_8034AD50_82A4C0;
+extern randomTransition D_8034AE30_82A5A0;
+
+void func_80347574_826CE4(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_8034ACC4_82A434);
+    pokemon->transitionGraph = &D_8034AD50_82A4C0;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_8034AE30_82A5A0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_803475D0_826D40.s")
 
@@ -36,7 +48,19 @@ void func_80347188_8268F8(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347900_827070.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347940_8270B0.s")
+void func_80347900_827070(GObj*);
+extern AnimationHeader D_8034ACB0_82A420;
+extern idFuncStruct D_8034AD90_82A500;
+
+void func_80347940_8270B0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_8034ACB0_82A420);
+    pokemon->transitionGraph = &D_8034AD90_82A500;
+    runInteractionsAndWaitForFlags(obj, 2);
+    updatePokemonState(obj, func_80347900_827070);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_8034799C_82710C.s")
 
@@ -77,7 +101,20 @@ void func_80348970_8280E0(GObj* arg0) {
     updatePokemonState(arg0, func_80348994_828104);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348994_828104.s")
+void func_80348B34_8282A4(GObj*);
+extern AnimationHeader D_8034AED0_82A640;
+extern idFuncStruct D_8034AF3C_82A6AC;
+
+void func_80348994_828104(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_8034AED0_82A640);
+    runPathProcess(obj, func_80348B34_8282A4);
+    pokemon->transitionGraph = &D_8034AF3C_82A6AC;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348A04_828174.s")
 

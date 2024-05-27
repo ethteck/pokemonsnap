@@ -12,7 +12,15 @@ extern idFuncStruct D_802E3708_734908;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/730480/func_802DF280_730480.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/730480/func_802DF338_730538.s")
+void func_802DF338_730538(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8035E298_4FE6A8(obj);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 GObj* func_802DF378_730578(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E3674_734874);

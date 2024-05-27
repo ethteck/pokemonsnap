@@ -7,6 +7,7 @@
 #include "types.h"
 
 #include "sys/cmd.h"
+#include "sys/interpolation.h"
 
 // Object Manager (OM) Objects
 
@@ -403,8 +404,7 @@ typedef struct AObj {
     /* 0x14 */ f32 targetValue;
     /* 0x18 */ f32 rate;
     /* 0x1C */ f32 targetRate;
-    // interpolation control struct?
-    /* 0x20 */ void* unk_20;
+    /* 0x20 */ InterpData* unk_20;
 } AObj; // size == 0x24
 
 typedef struct Texture {

@@ -1,14 +1,29 @@
 #include "common.h"
+#include "ld_addrs.h"
+#include "../world/world.h"
+#include "app_level/app_level.h"
+
+void func_802D6788_727988(void);
+
+extern PokemonDef D_802E0D44_731F44;
+extern s32 D_802E0EB8_7320B8;
+extern SceneSetup D_802E0ED8_7320D8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D60E0_7272E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D61AC_7273AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6344_727544.s")
+void func_802D6344_727544(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonAdd(arg0, arg1, &D_802E0D44_731F44);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6368_727568.s")
+void func_802D6368_727568(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonsChangeBlock(arg0, arg1, &D_802E0D44_731F44);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D638C_72758C.s")
+void func_802D638C_72758C(WorldBlock* arg0) {
+    pokemonRemove(arg0, &D_802E0D44_731F44);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D63B0_7275B0.s")
 
@@ -28,7 +43,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6788_727988.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D67C4_7279C4.s")
+s32 func_802D67C4_7279C4(s32 arg0) {
+    D_802E0ED8_7320D8.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) _326C10_VRAM_END;
+    gtlSetIntervals(1U, 2U);
+    gtlDisableNearClipping(1);
+    func_802D6788_727988();
+    omSetupScene(&D_802E0ED8_7320D8);
+    if (D_802E0EB8_7320B8 == 6) {
+        return 2;
+    }
+    if (func_8009BC68() > 0) {
+        return 9;
+    }
+    func_800AAED0(0x10);
+    return 0xD;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6864_727A64.s")
 

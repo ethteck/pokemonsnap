@@ -2,6 +2,7 @@
 
 #include "ld_addrs.h"
 #include "world/world.h"
+#include "app_level/app_level.h"
 
 extern f32 D_802D2828_7ABDB8;
 extern PokemonDef D_802D282C_7ABDBC;
@@ -86,7 +87,6 @@ void func_802C6300_79F890(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C63EC_79F97C.s")
 
 void func_802C653C_79FACC(s32 arg0) {
-
 }
 
 s32 func_802C6544_79FAD4(s32 arg0) {

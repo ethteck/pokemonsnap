@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "unk_end_level_3.h"
 
 Gfx D_800E66D0_8ABEF0[] = {
@@ -22,7 +23,7 @@ ScreenSettings D_800E6740_8ABF60 = {
     NULL,
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
-    0x00016A99,
+    0x16A99,
 };
 
 SceneSetup D_800E675C_8ABF7C = {
@@ -50,18 +51,18 @@ SceneSetup D_800E675C_8ABF7C = {
     0,
     0x40,
     0x80,
-    0x5C,
+    sizeof(GObj),
     0x400,
     0,
     0,
     0,
     0,
     0,
-    0x88,
+    sizeof(DObj),
     0,
     0x60,
     0x4,
-    0x90,
+    sizeof(OMCamera),
     func_800E1A60_8A7280,
 };
 
@@ -87,7 +88,7 @@ void func_800E1910_8A7130(void) {
     camObj->unk_38 = 0x100000;
     camera->flags |= CAMERA_FLAG_4 | CAMERA_FLAG_2;
     camera->flags &= ~(CAMERA_FLAG_2 | CAMERA_FLAG_1);
-    func_800A844C(camera, 0, 0, 0x280, 0x1E0);
+    func_800A844C(camera, 0, 0, 640, 480);
     camera->viewMtx.lookAt.up.x = 0.0f;
     camera->viewMtx.lookAt.up.y = 0.0f;
     camera->viewMtx.lookAt.up.z = 1.0f;
@@ -119,7 +120,7 @@ s32 func_oaks_lab_800E1AD8(s32 sceneId) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_800E6740_8ABF60);
-    D_800E675C_8ABF7C.gtlSetup.heapSize = D_80369F80 - D_80206B90;
+    D_800E675C_8ABF7C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_3_VRAM_END;
     omSetupScene(&D_800E675C_8ABF7C);
     return D_800AF3C0;
 }

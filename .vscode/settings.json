@@ -17,7 +17,8 @@
         "limits": "c",
         "cstdlib": "c",
         "string": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "type_traits": "c"
     },
     "files.insertFinalNewline": true,
 }

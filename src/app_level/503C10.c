@@ -322,7 +322,7 @@ void pokemonRemove(WorldBlock* block, PokemonDef* def) {
 }
 
 void pokemonRemoveOne(GObj* obj) {
-    runPokemonCleanup(obj);
+    Pokemon_RunCleanup(obj);
 }
 
 void deletePokemon(GObj* pokemonObj) {

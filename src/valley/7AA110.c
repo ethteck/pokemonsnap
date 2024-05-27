@@ -1,6 +1,14 @@
 #include "common.h"
+#include "../world/world.h"
+#include "app_level/app_level.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D0B80_7AA110.s")
+void func_802D0BA4_7AA134(GObj*);
+
+extern PokemonInitData D_802EC750_7C5CE0;
+
+void func_802D0B80_7AA110(GObj* arg0) {
+    Pokemon_SetState(arg0, func_802D0BA4_7AA134);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D0BA4_7AA134.s")
 
@@ -14,4 +22,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D0F98_7AA528.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D1154_7AA6E4.s")
+GObj* func_802D1154_7AA6E4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802EC750_7C5CE0);
+}

@@ -1,7 +1,11 @@
 #include "common.h"
 
 #include "world/world.h"
+#include "app_level/app_level.h"
 
+void func_802EC078_5E9148(GObj*);
+
+extern AnimationHeader D_802EFEF8_5ECFC8;
 extern GObj* D_802EFF28_5ECFF8;
 extern PokemonInitData D_802EFF94_5ED064;
 
@@ -9,8 +13,10 @@ extern PokemonInitData D_802EFF94_5ED064;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E9010/func_802EBFDC_5E90AC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E9010/func_802EC040_5E9110.s")
-
+void func_802EC040_5E9110(GObj* arg0) {
+    Pokemon_SetAnimation(arg0, &D_802EFEF8_5ECFC8);
+    Pokemon_SetState(arg0, func_802EC078_5E9148);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E9010/func_802EC078_5E9148.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E9010/func_802EC178_5E9248.s")
@@ -22,7 +28,7 @@ extern PokemonInitData D_802EFF94_5ED064;
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E9010/func_802EC398_5E9468.s")
 
 GObj* func_802EC3BC_5E948C(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    D_802EFF28_5ECFF8 = spawnPokemon(gObjID, id, roomA, roomB, spawn, &D_802EFF94_5ED064);
+    D_802EFF28_5ECFF8 = Pokemon_Spawn(gObjID, id, roomA, roomB, spawn, &D_802EFF94_5ED064);
 
     return D_802EFF28_5ECFF8;
 }

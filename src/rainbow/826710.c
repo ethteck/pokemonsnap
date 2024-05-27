@@ -1,4 +1,13 @@
 #include "common.h"
+#include "../world/world.h"
+#include "app_level/app_level.h"
+
+void func_80347E44_8275B4(GObj*);
+void func_80348540_827CB0(GObj*);
+void func_80348994_828104(GObj*);
+
+extern PokemonInitData D_8034AE90_82A600;
+extern PokemonInitData D_8034AF78_82A6E8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80346FA0_826710.s")
 
@@ -28,7 +37,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347CC8_827438.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347E0C_82757C.s")
+void func_80347E0C_82757C(GObj* arg0) {
+    Pokemon_StartAuxProc(arg0, func_80348540_827CB0);
+    Pokemon_SetState(arg0, func_80347E44_8275B4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347E44_8275B4.s")
 
@@ -50,9 +62,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348850_827FC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348938_8280A8.s")
+GObj* func_80348938_8280A8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_8034AE90_82A600);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348970_8280E0.s")
+void func_80348970_8280E0(GObj* arg0) {
+    Pokemon_SetState(arg0, func_80348994_828104);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348994_828104.s")
 
@@ -68,7 +84,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348DD4_828544.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348FB8_828728.s")
+GObj* func_80348FB8_828728(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_8034AF78_82A6E8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348FF0_828760.s")
 

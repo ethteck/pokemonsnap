@@ -7,6 +7,8 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
+void func_8001FCA4(Vec3f*, InterpData*, f32);
+
 GObj* pokemonAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonDef* def);
 void pokemonAdd(struct WorldBlock*, struct WorldBlock*, PokemonDef* def);
 
@@ -18,21 +20,7 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
-GObj* func_8035E1D4_4FE5E4(GObj*);
-void func_8035ED90_4FF1A0(GObj* obj, GObjFunc state);
-void updatePokemonState(GObj* obj, GObjFunc state);
-int func_80353D68_4F4178(void);
-void weightedRandomStaightTransition(GObj* obj, randomTransition* nextStates);
-void runPathProcess(GObj* obj, GObjFunc func);
-void setPokemonAnimation(GObj*, AnimationHeader*);
-void forcePokemonAnimation(GObj*, AnimationHeader*);
-void pokemonUVStuff(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
-void runInteractionsAndWaitForFlags(GObj* obj, u32 flags);
-void runPokemonCleanup(GObj* obj);
-GObj* addPokemonAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
-struct WorldBlock* setNodePosToNegRoom(GObj*);
-void pokemonPathLoop(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
-GObj* spawnPokemon(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+GObj* func_8035E1D4_4FE5E4(void);
 
 void ren_func_800192DC(GObj* obj);
 
@@ -64,7 +52,7 @@ void func_800A1E6C(Vec3f*);
 void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
 GObj* func_800A2094(s32, s32, OMCamera*);
 void func_800A5DF4(s32, s32);
-s32 func_800A5E08(s32);
+GObj* func_800A5E08(s32);
 
 UnkBrassLynx* func_800A6C48(s32, s32);
 void func_800A71F8(f32, f32, f32);
@@ -157,12 +145,7 @@ void getLevelProgress(s32*, f32*);
 void removeMainCamera(void);
 OMCamera* getMainCamera(void);
 void PokemonDetector_Disable(void);
-void func_8035EDC8_4FF1D8(GObj*);
-void func_8035FEEC_5002FC(GObj*, s32);
 
-void func_80361110_501520(GObj*, f32, f32, UNK_TYPE);
-void func_8036148C_50189C(GObj*, f32, s32);
-void func_80361748_501B58(GObj*, f32, f32, UNK_TYPE);
 void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3);
 void pokemonsChangeBlock(struct WorldBlock*, struct WorldBlock*, PokemonDef*);
 void pokemonRemove(struct WorldBlock*, PokemonDef*);
@@ -170,10 +153,5 @@ void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364718_504B28(GObj *obj);
 s32 func_803647BC_504BCC(GObj*);
 void func_8036650C_50691C(void);
-
-
-GObj* spawnPokemonOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
-GObj* func_80362DC4_5031D4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
-GObj* func_80362E10_503220(s32 objID, u16 id, struct WorldBlock* block, struct WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

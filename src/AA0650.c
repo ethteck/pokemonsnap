@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "sys.h"
 
 // bss
@@ -62,18 +63,18 @@ SceneSetup D_800E1D40_AA0AF0 = {
     0,
     0x40,
     0x40,
-    0x5C,
+    sizeof(GObj),
     0x400,
     0,
     0,
     0x10,
     0x8,
     0x10,
-    0x88,
+    sizeof(DObj),
     0x80,
     0x58,
     0x8,
-    0x90,
+    sizeof(OMCamera),
     func_800E1B54_AA0904,
 };
 
@@ -156,7 +157,7 @@ void func_800E1B54_AA0904(void) {
 }
 
 void func_800E1C5C_AA0A0C(void) {
-    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) D_800E1DE0;
+    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) intro_code_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E1D40_AA0AF0);
 }

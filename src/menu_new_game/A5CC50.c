@@ -340,24 +340,24 @@ SceneSetup menu_new_game_setup = {
     0,                              /* unk4C */
     64,                             /* numOMProcesses */
     64,                             /* numOMGobjs */
-    0x5C,                           /* objectSize */
+    sizeof(GObj),                   /* objectSize */
     1024,                           /* numOMMtx */
     0,                              /* unk60 */
     NULL,                           /* unk64 */
     16,                             /* numOMAobjs */
     8,                              /* numOMMobjs */
     16,                             /* numOMDobjs */
-    0x88,                           /* omDobjSize */
+    sizeof(DObj),                   /* omDobjSize */
     128,                            /* numOMSobjs */
     0x58,                           /* omSobjSize */
     8,                              /* numOMCameras */
-    0x90,                           /* omCameraSize */
+    sizeof(OMCamera),               /* omCameraSize */
     new_game_init                   /* postInitFunc */
 };
 
 s32 menu_new_game_entry(s32 arg0) {
     viApplyScreenSettings(&menu_new_game_video_settings);
-    menu_new_game_setup.gtlSetup.heapSize = D_80369F80 - menu_new_game_VRAM_END;
+    menu_new_game_setup.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) menu_new_game_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&menu_new_game_setup);
     setPlayerFlag(PFID_16, 1);

@@ -1,14 +1,35 @@
 #include "common.h"
+#include "../world/world.h"
+#include "app_level/app_level.h"
+
+extern PokemonInitData D_802D2CB4_7AC244;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C82C0_7A1850.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C8354_7A18E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C840C_7A199C.s")
+void func_802C840C_7A199C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C8458_7A19E8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C84D0_7A1A60.s")
+void func_802C84D0_7A1A60(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.033333335f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C853C_7A1ACC.s")
 
@@ -26,7 +47,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C892C_7A1EBC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C8998_7A1F28.s")
+void func_802C8998_7A1F28(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 20.0f;
+    Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C89F4_7A1F84.s")
 
@@ -58,4 +88,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C94A4_7A2A34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C957C_7A2B0C.s")
+GObj* func_802C957C_7A2B0C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802D2CB4_7AC244);
+}

@@ -1,4 +1,8 @@
 #include "common.h"
+#include "world/world.h"
+#include "app_level/app_level.h"
+
+extern PokemonInitData D_802E4378_6CC158;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF670_6C7450.s")
 
@@ -8,7 +12,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF758_6C7538.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF7D8_6C75B8.s")
+void func_802DF7D8_6C75B8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.2f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DF844_6C7624.s")
 
@@ -34,4 +47,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DFE4C_6C7C2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C7450/func_802DFEB0_6C7C90.s")
+GObj* func_802DFEB0_6C7C90(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_Spawn(objID, id, block, blockB, spawn, &D_802E4378_6CC158);
+}

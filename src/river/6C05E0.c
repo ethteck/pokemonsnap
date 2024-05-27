@@ -1,10 +1,22 @@
 #include "common.h"
+#include "ld_addrs.h"
+#include "../world/world.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D8800_6C05E0.s")
+extern PokemonDef D_802E271C_6CA4FC;
+extern s32 D_802E28B4_6CA694;
+extern SceneSetup D_802E293C_6CA71C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D8824_6C0604.s")
+void func_802D8800_6C05E0(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonAdd(arg0, arg1, &D_802E271C_6CA4FC);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D8848_6C0628.s")
+void func_802D8824_6C0604(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonsChangeBlock(arg0, arg1, &D_802E271C_6CA4FC);
+}
+
+void func_802D8848_6C0628(WorldBlock* arg0) {
+    pokemonRemove(arg0, &D_802E271C_6CA4FC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D886C_6C064C.s")
 
@@ -34,4 +46,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D9208_6C0FE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D9210_6C0FF0.s")
+s32 func_802D9210_6C0FF0(s32 sceneId) {
+    D_802E293C_6CA71C.gtlSetup.heapSize = (uintptr_t) river_code_VRAM - (uintptr_t) _29A190_VRAM_END;
+    gtlSetIntervals(1, 2);
+    gtlDisableNearClipping(1);
+    omSetupScene(&D_802E293C_6CA71C);
+
+    if (D_802E28B4_6CA694 == 6) {
+        return SCENE_RIVER;
+    }
+
+    if (func_8009BC68() > 0) {
+        return SCENE_CAMERA_CHECK;
+    }
+
+    func_800AAED0(0x10);
+
+    return SCENE_13;
+}

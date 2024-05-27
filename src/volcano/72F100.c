@@ -1,4 +1,8 @@
 #include "common.h"
+#include "world/world.h"
+#include "app_level/app_level.h"
+
+extern PokemonInitData D_802E31B0_7343B0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DDF00_72F100.s")
 
@@ -6,7 +10,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE0DC_72F2DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE144_72F344.s")
+void func_802DE144_72F344(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_ResetPathPos(obj);
+    Pokemon_FollowPath(obj, 0, 1, 0.13333334f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE1B0_72F3B0.s")
 
@@ -14,4 +27,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE26C_72F46C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72F100/func_802DE34C_72F54C.s")
+GObj* func_802DE34C_72F54C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E31B0_7343B0);
+}

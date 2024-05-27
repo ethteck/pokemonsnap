@@ -11,7 +11,8 @@ f32 acosf(f32 arg0);
 void setRandSeed(s32 arg0);
 u16 rand(void);
 u8 randT(void);
-u32 randRange(s32 range);
+f32 randFloat(void);
+s32 randRange(s32 range);
 s32 randTRange(s32 arg0);
 void qsort(void* base, u32 count, u32 itemSize, s32 (*compar)(const void*, const void*));
 

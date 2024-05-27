@@ -6,33 +6,20 @@
 #include "sys/om.h"
 #include "sys/anim.h"
 
-typedef f32 quartic[5];
-
 typedef struct {
-    /* 0x00 */ s8 type; /* 0=linear;1=bezier;2=hermite/6 */
-    /* 0x01 */ char unk_01[0x1];
-    /* 0x02 */ s16 length;
-    /* 0x04 */ f32 invSegTime;
-    /* 0x08 */ Vec3f* pts;
-    /* 0x0C */ f32 duration;
-    /* 0x10 */ f32* times;
-    /* 0x14 */ quartic* quartics;
-} pathSpline;
-
-typedef struct {
-    /* 0x00 */ s32 id;
+    /* 0x00 */ s32 cmd;
     /* 0x04 */ GObjFunc state;
-    /* 0x08 */ f32 radius;
+    /* 0x08 */ f32 value; // meaning depends on command
     /* 0x0C */ GObjFunc aux;
-} idFuncStruct; // size = 0x10
+} InteractionHandler; // size = 0x10
 
 typedef struct {
     /* 0x00 */ AnimationHeader* animations;
-    /* 0x04 */ GObjFunc func;
+    /* 0x04 */ GObjFunc initialState;
     /* 0x08 */ s8 kind;
     /* 0x09 */ char unk_09[0x3];
     /* 0x0C */ void* unk_0C;
-    /* 0x10 */ idFuncStruct* idfuncs;
+    /* 0x10 */ InteractionHandler* transitionGraph;
 } PokemonAnimationSetup;
 
 typedef struct {
@@ -55,7 +42,7 @@ typedef struct {
     /* 0x08 */ Vec3f translation;
     /* 0x14 */ Vec3f euler;
     /* 0x20 */ Vec3f scale;
-    /* 0x2C */ pathSpline* path;
+    /* 0x2C */ InterpData* path;
 } ObjectSpawn; // size = 0x30
 
 typedef union {
@@ -89,7 +76,7 @@ typedef struct PokemonTransformBase {
     /* 0x00 */ u8 kinds[3];
     /* 0x03 */ u8 pad;
     /* 0x04 */ PokemonTransform xform;
-} PokemonTransformBase; // size == 0x38
+} PokemonTransformBase; // size = 0x38
 
 typedef struct {
     /* 0x00 */ s16 x;
@@ -110,7 +97,7 @@ typedef struct {
     /* 0x08 */ s32 vertexCount;
     /* 0x0C */ s32 end;
     /* 0x10 */ f32 timer;
-} eggStruct;
+} EggStruct;
 
 typedef struct GroundResult {
     /* 0x00 */ f32 height;
@@ -137,35 +124,35 @@ typedef struct {
     /* 0x04C */ Vec3f collisionOffset;
     /* 0x058 */ f32 collisionRadius;
     /* 0x05C */ PokemonAnimationSetup* animSetup;
-    /* 0x060 */ GObjProcess* interactionProc;
+    /* 0x060 */ GObjProcess* stateProc;
     /* 0x064 */ GObj* apple;
     /* 0x068 */ f32 interactionDist;
     /* 0x06C */ f32 playerDist;
     /* 0x070 */ GObj* interactionTarget;
     /* 0x074 */ struct WorldBlock* baseBlock;
     /* 0x078 */ char unk_78[0x8];
-    /* 0x080 */ union AnimCmd** animators;
+    /* 0x080 */ union AnimCmd** modelAnims;
     /* 0x084 */ union AnimCmd*** matAnims;
     /* 0x088 */ s32 behavior;
     /* 0x08C */ u32 processFlags;
     /* 0x090 */ s32 counter;
-    /* 0x094 */ GObjProcess* pathProcess;
+    /* 0x094 */ GObjProcess* pathProc;
     /* 0x098 */ f32 hSpeed;
     /* 0x09C */ f32 jumpVel;
     /* 0x0A0 */ f32 facingYaw;
     /* 0x0A4 */ s32 pokemonLoopTarget;
     /* 0x0A8 */ f32 lastAnimationFrame;
-    /* 0x0AC */ idFuncStruct* transitionGraph;
+    /* 0x0AC */ InteractionHandler* transitionGraph;
     /* 0x0B0 */ misc miscVars[7];
     /* 0x0CC */ f32* forbiddenGround;
     /* 0x0D0 */ GroundResult currGround;
     /* 0x0E4 */ u8 unk_E4;
     /* 0x0E5 */ char unk_E5[0x3];
-    /* 0x0E8 */ pathSpline* path;
+    /* 0x0E8 */ InterpData* path;
     /* 0x0EC */ f32 pathParam;
     /* 0x0F0 */ PokemonInitData* initData;
     /* 0x0F4 */ AnimationHeader* animHeader;
-    /* 0x0F8 */ eggStruct* eggGeo;
+    /* 0x0F8 */ EggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ s16 unk_10C;
@@ -191,10 +178,10 @@ typedef union {
 
 typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
 
-typedef struct {
-    s32 value;
-    void (*func)(GObj*);
-} randomTransition;
+typedef struct RandomState {
+    /* 0x00 */ s32 weight;
+    /* 0x04 */ GObjFunc func;
+} RandomState; // size = 0x8
 
 typedef struct {
     /* 0x00 */ u32 id;

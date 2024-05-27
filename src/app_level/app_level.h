@@ -3,10 +3,21 @@
 #include "common.h"
 #include "world/world.h"
 
+#define GET_ITEM(x) ((Item*)((x)->userData))
+#define GET_POKEMON(obj) ((Pokemon*)((obj)->userData))
+#define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
+#define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*)((p)->unk_4C))
+
 enum ItemIds {
     ITEM_ID_POKEFLUTE   = 161,
     ITEM_ID_PESTER_BALL = 162,
     ITEM_ID_APPLE       = 163
+};
+
+enum ItemStates {
+    ITEM_STATE_INVALID  = 0,
+    ITEM_STATE_FLYING   = 1,
+    ITEM_STATE_STILL    = 2
 };
 
 enum EndLevelReasons {
@@ -20,16 +31,60 @@ enum EndLevelReasons {
 };
 
 enum PokemonCommands {
+    POKEMON_CMD_5  =  5,
+    POKEMON_CMD_6  =  6,
+    POKEMON_CMD_7  =  7,
     POKEMON_CMD_8  =  8,
     POKEMON_CMD_9  =  9,
     POKEMON_CMD_10 = 10,
     POKEMON_CMD_12 = 12,
     POKEMON_CMD_13 = 13,
     POKEMON_CMD_14 = 14,
+    POKEMON_CMD_15 = 15,
+    POKEMON_CMD_16 = 16,
+    POKEMON_CMD_17 = 17,
     POKEMON_CMD_18 = 18,
     POKEMON_CMD_19 = 19,
+    POKEMON_CMD_20 = 20,
     POKEMON_CMD_21 = 21,
-    POKEMON_CMD_24 = 24
+    POKEMON_CMD_22 = 22,
+    POKEMON_CMD_23 = 23,
+    POKEMON_CMD_24 = 24,
+    POKEMON_CMD_25 = 25,
+    POKEMON_CMD_26 = 26,
+    POKEMON_CMD_27 = 27,
+    // command below are probably specific to level
+    POKEMON_CMD_28 = 28,
+    POKEMON_CMD_29 = 29,
+    POKEMON_CMD_30 = 30,
+    POKEMON_CMD_31 = 31,
+    POKEMON_CMD_32 = 32,
+    POKEMON_CMD_33 = 33,
+    POKEMON_CMD_34 = 34,
+    POKEMON_CMD_35 = 35,
+    POKEMON_CMD_36 = 36,
+    POKEMON_CMD_37 = 37,
+    POKEMON_CMD_38 = 38,
+    POKEMON_CMD_39 = 39,
+    POKEMON_CMD_40 = 40,
+    POKEMON_CMD_41 = 41,
+    POKEMON_CMD_42 = 42,
+    POKEMON_CMD_43 = 43,
+    POKEMON_CMD_44 = 44,
+    POKEMON_CMD_45 = 45,
+    POKEMON_CMD_46 = 46,
+    POKEMON_CMD_47 = 47,
+    POKEMON_CMD_48 = 48,
+    POKEMON_CMD_49 = 49,
+    POKEMON_CMD_50 = 50,
+    POKEMON_CMD_51 = 51,
+    POKEMON_CMD_52 = 52,
+    POKEMON_CMD_53 = 53,
+    POKEMON_CMD_54 = 54,
+    POKEMON_CMD_55 = 55,
+    POKEMON_CMD_56 = 56,
+    POKEMON_CMD_57 = 57,
+    POKEMON_CMD_58 = 58
 };
 
 enum PlayerCommands {
@@ -43,9 +98,31 @@ enum PlayerCommands {
     PLAYER_CMD_10           =  10
 };
 
+enum MovementFlags {
+    MOVEMENT_FLAG_ON_GROUND                         = 0x01,
+    MOVEMENT_FLAG_UPDATE_TARGET_POS                 = 0x02,
+    MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING   = 0x04,
+    MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED          = 0x08,
+    MOVEMENT_FLAG_FIXED_HEIGHT                      = 0x10,
+    MOVEMENT_FLAG_TURN_TO_PLAYER                    = 0x20,
+    MOVEMENT_FLAG_TURN_AWAY                         = 0x40,
+    MOVEMENT_FLAG_TURN_GRADUALLY                    = 0x80 // affects only movement along path
+};
+
 #define ITEM_CMD_REMOVE 100
 
 #define CAMERA_CMD_BLINK 1
+
+typedef struct Item {
+    /* 0x00 */ u8 itemID;
+    /* 0x01 */ u8 state;
+    /* 0x02 */ u8 entryIndex;
+    /* 0x03 */ u8 flags;
+    /* 0x04 */ f32 restTimer;
+    /* 0x08 */ Vec3f velocity;
+    /* 0x14 */ Vec3f collisionVelocity;
+    /* 0x20 */ Vec3f prevPos;
+} Item;
 
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
@@ -54,6 +131,7 @@ extern GObj* gObjPlayer;
 extern s32 gDirectionIndex;
 extern OMCamera* gMainCamera;
 extern MovementState gMovementState;
+extern u32 D_80382CF8_523108;
 
 extern s32 LastItemId;
 
@@ -69,9 +147,15 @@ void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
 void Items_Pause(void);
 void Items_UnPause(void);
+void Items_InitIterator(void);
+GObj* Items_NextValidItem(void);
+s32 Items_GetPokeFluteCmd(void);
+GObj* Items_CheckObjectExists(GObj* arg0);
+void Items_DeleteItem(GObj*);
 
 u32 getProgressFlags(void);
 void mainCameraSetScissor(Gfx** gfxPtr);
+int func_80353D68_4F4178(void);
 
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
@@ -83,6 +167,44 @@ void Icons_Hide(void);
 void Icons_Show(void);
 void Icons_ProcessTakePhotoPressed(void);
 
-s32 func_8035FF1C_50032C(GObj*);
+void PokemonDetector_CleanupPokemon(GObj* pokemonObj);
+void func_80357428_4F7838(GObj* arg0);
+
+void renderPokemonModelTypeI(GObj* arg0);
+
+s32 Pokemon_GetFlag100(GObj*);
+void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags);
+void Pokemon_StartAuxProc(GObj*, void (*)(GObj*));
+void Pokemon_WaitForFlagNoInteraction(GObj*, u32);
+void Pokemon_RemovePokemons(u16*);
+void Pokemon_EatApple(GObj*);
+void Pokemon_SetScale(GObj*, f32);
+void Pokemon_Jump(GObj*, f32, f32, f32, f32);
+void Pokemon_Fall(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
+s32 Pokemon_StepWalkInDirectionFacing(GObj*, u32);
+s32 Pokemon_Turn(DObj*, f32, f32);
+s32 Pokemon_HearsPokeFlute(GObj*);
+void Pokemon_SetTargetPos(GObj*, f32, f32);
+void Pokemon_RunToTargetPos(GObj*, f32);
+void Pokemon_StartAuxProc(GObj* obj, GObjFunc state);
+void Pokemon_SetState(GObj* obj, GObjFunc state);
+void Pokemon_SetStateRandom(GObj* obj, RandomState* nextStates);
+void Pokemon_StartPathProc(GObj* obj, GObjFunc func);
+void Pokemon_SetAnimation(GObj*, AnimationHeader*);
+void Pokemon_ForceAnimation(GObj*, AnimationHeader*);
+void Pokemon_SetAnimationCommon(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
+void Pokemon_WaitForFlag(GObj* obj, u32 flags);
+void Pokemon_RunCleanup(GObj* obj);
+GObj* Pokemon_AddAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
+void Pokemon_ResetPathPos(GObj*);
+void Pokemon_FollowPath(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
+GObj* Pokemon_Spawn(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+void Pokemon_StopAuxProc(GObj*);
+void Pokemon_SetFlag100(GObj*, s32);
+void Pokemon_RunInCircles(GObj*, f32, f32, UNK_TYPE);
+void Pokemon_TurnToTarget(GObj*, f32, u32);
+void Pokemon_RunToTarget(GObj*, f32, f32, u32);
+GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

@@ -3,8 +3,10 @@
 
 void func_802C1B54_644004(GObj*);
 void func_802C1C48_6440F8(GObj*);
+void func_802C1A20_643ED0(GObj*);
 
 extern PokemonInitData D_802C7590_649A40;
+extern AnimationHeader D_802C7274_649724;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1440_6438F0.s")
 
@@ -47,7 +49,15 @@ void func_802C1A7C_643F2C(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1AC8_643F78.s")
+void func_802C1AC8_643F78(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802C7274_649724);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802C1A20_643ED0);
+}
 
 void func_802C1B1C_643FCC(GObj* arg0) {
     runPathProcess(arg0, func_802C1C48_6440F8);

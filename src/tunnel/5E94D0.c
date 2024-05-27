@@ -10,6 +10,8 @@ extern PokemonInitData D_802F00D0_5ED1A0;
 extern PokemonInitData D_802F01A0_5ED270;
 extern AnimationHeader D_802F0110_5ED1E0;
 extern idFuncStruct D_802F0168_5ED238;
+extern AnimationHeader D_802EFFE8_5ED0B8;
+extern AnimationHeader D_802F0088_5ED158;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC400_5E94D0.s")
 
@@ -17,7 +19,15 @@ extern idFuncStruct D_802F0168_5ED238;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC5B0_5E9680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC6CC_5E979C.s")
+void func_802EC6CC_5E979C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    forcePokemonAnimation(obj, &D_802EFFE8_5ED0B8);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802EC6CC_5E979C);
+}
 
 GObj* func_802EC720_5E97F0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     D_802EFFD0_5ED0A0 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F0030_5ED100);
@@ -31,7 +41,15 @@ GObj* func_802EC720_5E97F0(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* ro
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802EC910_5E99E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECA2C_5E9AFC.s")
+void func_802ECA2C_5E9AFC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    forcePokemonAnimation(obj, &D_802F0088_5ED158);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802ECA2C_5E9AFC);
+}
 
 GObj* func_802ECA80_5E9B50(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     D_802F0070_5ED140 = func_80362DC4_5031D4(gObjID, id, roomA, roomB, spawn, &D_802F00D0_5ED1A0);

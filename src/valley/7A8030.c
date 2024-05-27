@@ -10,6 +10,7 @@ extern randomTransition D_802D40A0_7AD630;
 extern idFuncStruct D_802D40B0_7AD640;
 extern idFuncStruct D_802D40D0_7AD660;
 extern PokemonInitData D_802D4124_7AD6B4;
+extern AnimationHeader D_802D3FA0_7AD530;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CEAA0_7A8030.s")
 
@@ -74,7 +75,15 @@ void func_802CF65C_7A8BEC(GObj* obj) {
     updatePokemonState(obj, func_802CF65C_7A8BEC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CF6CC_7A8C5C.s")
+void func_802CF6CC_7A8C5C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802D3FA0_7AD530);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802CF65C_7A8BEC);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CF720_7A8CB0.s")
 

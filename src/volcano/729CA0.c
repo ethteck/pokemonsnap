@@ -7,6 +7,7 @@ void func_802D9380_72A580(GObj*);
 void func_802D96AC_72A8AC(GObj*);
 void func_802D976C_72A96C(GObj*);
 void func_802D8EB8_72A0B8(GObj*);
+void func_802D9B8C_72AD8C(GObj*);
 
 extern AnimationHeader D_802E1994_732B94;
 extern idFuncStruct D_802E1DA4_732FA4;
@@ -20,6 +21,7 @@ extern idFuncStruct D_802E1A34_732C34;
 extern idFuncStruct D_802E1DF4_732FF4;
 extern randomTransition D_802E1E64_733064;
 extern PokemonInitData D_802E1FB4_7331B4;
+extern AnimationHeader D_802E19D0_732BD0;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D8AA0_729CA0.s")
 
@@ -202,7 +204,15 @@ void func_802D976C_72A96C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9BF4_72ADF4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9C30_72AE30.s")
+void func_802D9C30_72AE30(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    forcePokemonAnimation(obj, &D_802E19D0_732BD0);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802D9B8C_72AD8C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9C84_72AE84.s")
 

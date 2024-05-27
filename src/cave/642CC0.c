@@ -7,6 +7,7 @@ extern PokemonDef D_802C6FC4_649474;
 extern PokemonInitData D_802C7040_6494F0;
 extern PokemonInitData D_802C714C_6495FC;
 extern PokemonInitData D_802C7194_649644;
+extern AnimationHeader D_802C70DC_64958C;
 
 /*
 void evolveIntoMuk(GObj* obj) {
@@ -64,7 +65,15 @@ void func_802C1100_6435B0(GObj* arg0) {
     updatePokemonState(arg0, func_802C1178_643628);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1124_6435D4.s")
+void func_802C1124_6435D4(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802C70DC_64958C);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802C1178_643628);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642CC0/func_802C1178_643628.s")
 

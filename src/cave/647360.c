@@ -18,6 +18,7 @@ extern PokemonInitData D_802C7EC0_64A370;
 extern PokemonInitData D_802C8000_64A4B0;
 extern AnimationHeader D_802C7F70_64A420;
 extern idFuncStruct D_802C7FC8_64A478;
+extern AnimationHeader D_802C7F08_64A3B8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C4EB0_647360.s")
 
@@ -81,7 +82,15 @@ GObj* func_802C5548_6479F8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
     return spawnPokemon(objID, id, block, blockB, spawn, &D_802C7EC0_64A370);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C5580_647A30.s")
+void func_802C5580_647A30(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802C7F08_64A3B8);
+    pokemon->transitionGraph = NULL;
+    runInteractionsAndWaitForFlags(obj, 1);
+    updatePokemonState(obj, func_802C5580_647A30);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/647360/func_802C55D4_647A84.s")
 

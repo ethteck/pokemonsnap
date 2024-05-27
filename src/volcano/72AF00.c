@@ -2,6 +2,8 @@
 #include "world/world.h"
 
 void func_802DA3A0_72B5A0(GObj*);
+void func_802DA0A4_72B2A4(GObj*);
+void func_802DA1A4_72B3A4(GObj*);
 
 extern AnimationHeader D_802E1FF8_7331F8;
 extern AnimationHeader D_802E2034_733234;
@@ -9,6 +11,8 @@ extern idFuncStruct D_802E2098_733298;
 extern idFuncStruct D_802E21D8_7333D8;
 extern randomTransition D_802E22D8_7334D8;
 extern PokemonInitData D_802E2358_733558;
+extern AnimationHeader D_802E200C_73320C;
+extern AnimationHeader D_802E2020_733220;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802D9D00_72AF00.s")
 
@@ -43,7 +47,20 @@ void func_802D9F90_72B190(GObj* obj) {
     weightedRandomStaightTransition(obj, &D_802E22D8_7334D8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA000_72B200.s")
+void func_802DA000_72B200(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E200C_73320C);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802DA0A4_72B2A4);
+    pokemon->transitionGraph = &D_802E2098_733298;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802D9F90_72B190);
+    }
+    weightedRandomStaightTransition(obj, &D_802E22D8_7334D8);
+}
 
 void func_802DA0A4_72B2A4(GObj* obj) {
     UNUSED s32 pad[3];
@@ -56,7 +73,20 @@ void func_802DA0A4_72B2A4(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72AF00/func_802DA100_72B300.s")
+void func_802DA100_72B300(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2020_733220);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802DA1A4_72B3A4);
+    pokemon->transitionGraph = &D_802E2098_733298;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802D9F90_72B190);
+    }
+    weightedRandomStaightTransition(obj, &D_802E22D8_7334D8);
+}
 
 void func_802DA1A4_72B3A4(GObj* obj) {
     UNUSED s32 pad[3];

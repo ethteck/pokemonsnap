@@ -1,6 +1,11 @@
 #include "common.h"
 #include "world/world.h"
 
+void func_802DCCE4_72DEE4(GObj*);
+void func_802DCDE4_72DFE4(GObj*);
+
+extern AnimationHeader D_802E2B28_733D28;
+extern AnimationHeader D_802E2B3C_733D3C;
 extern AnimationHeader D_802E2AEC_733CEC;
 extern AnimationHeader D_802E2B00_733D00;
 extern AnimationHeader D_802E2B14_733D14;
@@ -100,7 +105,20 @@ void func_802DCBD0_72DDD0(GObj* obj) {
     weightedRandomStaightTransition(obj, &D_802E2D04_733F04);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DCC40_72DE40.s")
+void func_802DCC40_72DE40(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2B28_733D28);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802DCCE4_72DEE4);
+    pokemon->transitionGraph = &D_802E2CA4_733EA4;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802DCBD0_72DDD0);
+    }
+    weightedRandomStaightTransition(obj, &D_802E2D04_733F04);
+}
 
 void func_802DCCE4_72DEE4(GObj* obj) {
     UNUSED s32 pad[3];
@@ -113,7 +131,20 @@ void func_802DCCE4_72DEE4(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72D260/func_802DCD40_72DF40.s")
+void func_802DCD40_72DF40(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E2B3C_733D3C);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802DCDE4_72DFE4);
+    pokemon->transitionGraph = &D_802E2CA4_733EA4;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802DCBD0_72DDD0);
+    }
+    weightedRandomStaightTransition(obj, &D_802E2D04_733F04);
+}
 
 void func_802DCDE4_72DFE4(GObj* obj) {
     UNUSED s32 pad[3];

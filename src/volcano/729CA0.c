@@ -2,7 +2,18 @@
 #include "world/world.h"
 
 void func_802D93DC_72A5DC(GObj*);
+void func_802D8DB8_729FB8(GObj*);
+void func_802D9380_72A580(GObj*);
+void func_802D96AC_72A8AC(GObj*);
+void func_802D976C_72A96C(GObj*);
+void func_802D8EB8_72A0B8(GObj*);
 
+extern AnimationHeader D_802E1994_732B94;
+extern idFuncStruct D_802E1DA4_732FA4;
+extern AnimationHeader D_802E1A0C_732C0C;
+extern idFuncStruct D_802E1D14_732F14;
+extern idFuncStruct D_802E1C84_732E84;
+extern AnimationHeader D_802E1980_732B80;
 extern AnimationHeader D_802E1958_732B58;
 extern AnimationHeader D_802E196C_732B6C;
 extern idFuncStruct D_802E1A34_732C34;
@@ -25,7 +36,20 @@ void func_802D8CA4_729EA4(GObj* obj) {
     weightedRandomStaightTransition(obj, &D_802E1E64_733064);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D8D14_729F14.s")
+void func_802D8D14_729F14(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E1980_732B80);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802D8DB8_729FB8);
+    pokemon->transitionGraph = &D_802E1A34_732C34;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802D8CA4_729EA4);
+    }
+    weightedRandomStaightTransition(obj, &D_802E1E64_733064);
+}
 
 void func_802D8DB8_729FB8(GObj* obj) {
     UNUSED s32 pad[3];
@@ -38,7 +62,20 @@ void func_802D8DB8_729FB8(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D8E14_72A014.s")
+void func_802D8E14_72A014(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E1994_732B94);
+    pokemon->pokemonLoopTarget = 5;
+    runPathProcess(obj, func_802D8EB8_72A0B8);
+    pokemon->transitionGraph = &D_802E1A34_732C34;
+    runInteractionsAndWaitForFlags(obj, 3);
+    if (pokemon->processFlags & 2) {
+        updatePokemonState(obj, func_802D8CA4_729EA4);
+    }
+    weightedRandomStaightTransition(obj, &D_802E1E64_733064);
+}
 
 void func_802D8EB8_72A0B8(GObj* obj) {
     UNUSED s32 pad[3];
@@ -73,7 +110,16 @@ void func_802D9244_72A444(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D924C_72A44C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D930C_72A50C.s")
+void func_802D930C_72A50C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E1994_732B94);
+    runPathProcess(obj, func_802D9380_72A580);
+    pokemon->transitionGraph = &D_802E1DA4_732FA4;
+    runInteractionsAndWaitForFlags(obj, 2);
+    updatePokemonState(obj, func_802D8CA4_729EA4);
+}
 
 void func_802D9380_72A580(GObj* obj) {
     UNUSED s32 pad[3];
@@ -98,7 +144,16 @@ void func_802D9614_72A814(GObj* arg0) {
     updatePokemonState(arg0, func_802D93DC_72A5DC);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D9638_72A838.s")
+void func_802D9638_72A838(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    runPathProcess(obj, func_802D96AC_72A8AC);
+    setPokemonAnimation(obj, &D_802E1A0C_732C0C);
+    pokemon->transitionGraph = &D_802E1D14_732F14;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_802E1E64_733064);
+}
 
 void func_802D96AC_72A8AC(GObj* obj) {
     UNUSED s32 pad[3];
@@ -110,7 +165,16 @@ void func_802D96AC_72A8AC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/729CA0/func_802D96F8_72A8F8.s")
+void func_802D96F8_72A8F8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802E1980_732B80);
+    runPathProcess(obj, func_802D976C_72A96C);
+    pokemon->transitionGraph = &D_802E1C84_732E84;
+    runInteractionsAndWaitForFlags(obj, 2);
+    updatePokemonState(obj, func_802D8CA4_729EA4);
+}
 
 void func_802D976C_72A96C(GObj* obj) {
     UNUSED s32 pad[3];

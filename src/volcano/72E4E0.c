@@ -1,4 +1,11 @@
 #include "common.h"
+#include "world/world.h"
+
+extern AnimationHeader D_802E2E78_734078;
+extern AnimationHeader D_802E2E8C_73408C;
+extern idFuncStruct D_802E2EC8_7340C8;
+extern randomTransition D_802E2F28_734128;
+extern PokemonInitData D_802E2F54_734154;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD2E0_72E4E0.s")
 
@@ -8,9 +15,27 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD4A4_72E6A4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD500_72E700.s")
+void func_802DD500_72E700(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD570_72E770.s")
+    forcePokemonAnimation(obj, &D_802E2E78_734078);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = &D_802E2EC8_7340C8;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_802E2F28_734128);
+}
+
+void func_802DD570_72E770(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    forcePokemonAnimation(obj, &D_802E2E8C_73408C);
+    runPathProcess(obj, NULL);
+    pokemon->transitionGraph = &D_802E2EC8_7340C8;
+    runInteractionsAndWaitForFlags(obj, 1);
+    weightedRandomStaightTransition(obj, &D_802E2F28_734128);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD5E0_72E7E0.s")
 
@@ -20,4 +45,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD740_72E940.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/72E4E0/func_802DD7AC_72E9AC.s")
+GObj* func_802DD7AC_72E9AC(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802E2F54_734154);
+}

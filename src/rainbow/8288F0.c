@@ -1,4 +1,7 @@
 #include "common.h"
+#include "../world/world.h"
+
+extern PokemonInitData D_8034B554_82ACC4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/8288F0/func_80349180_8288F0.s")
 
@@ -54,4 +57,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/8288F0/func_80349E28_829598.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/8288F0/func_80349EB8_829628.s")
+GObj* func_80349EB8_829628(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return func_80362DC4_5031D4(objID, id, block, blockB, spawn, &D_8034B554_82ACC4);
+}

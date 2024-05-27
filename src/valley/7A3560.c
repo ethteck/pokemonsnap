@@ -2,12 +2,12 @@
 
 #include "world/world.h"
 
-extern GObj* D_802D2FF0_7AC580;
 extern AnimationHeader D_802D2F8C_7AC51C;
 extern AnimationHeader D_802D2FA0_7AC530;
 extern AnimationHeader D_802D2FB4_7AC544;
 extern AnimationHeader D_802D2FC8_7AC558;
 extern AnimationHeader D_802D2FDC_7AC56C;
+extern GObj* D_802D2FF0_7AC580;
 extern s16 D_802D2FF4_7AC584;
 extern idFuncStruct D_802D2FF8_7AC588;
 extern PokemonInitData D_802D302C_7AC5BC;

@@ -533,7 +533,7 @@ GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance) {
     return closestItem;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FEB90/Pokemon_GetClosestItem.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/pokemon/Pokemon_GetClosestItem.s")
 GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance);
 #endif
 

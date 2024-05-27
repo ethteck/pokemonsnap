@@ -584,7 +584,7 @@ segments:
     - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
-    - [0x4FEB90, c]
+    - [0x4FEB90, c, pokemon]
     - [0x503C10, c]
     - [0x504770, c]
     - [0x5047F0, c]
@@ -605,11 +605,11 @@ segments:
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - [0x52A7D0, data]
-    - [0x52A7E0, .data, 4FEB90]
+    - [0x52A7E0, .data, pokemon]
     - [0x52A870, data]
     - [0x52A880, .data, 503C10]
     - [0x52A8A0, data]
-    - [0x533C10, .rodata, 4FEB90]
+    - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
     - [0x533ED0, .rodata, 5047F0]
     - [0x533EE0, .rodata, 504C00]

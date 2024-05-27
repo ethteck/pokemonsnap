@@ -4,12 +4,22 @@
 void func_802D0BA4_7AA134(GObj*);
 
 extern PokemonInitData D_802EC750_7C5CE0;
+extern AnimationHeader D_802EC6C0_7C5C50;
+extern idFuncStruct D_802EC718_7C5CA8;
 
 void func_802D0B80_7AA110(GObj* arg0) {
     updatePokemonState(arg0, func_802D0BA4_7AA134);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D0BA4_7AA134.s")
+void func_802D0BA4_7AA134(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802EC6C0_7C5C50);
+    pokemon->transitionGraph = &D_802EC718_7C5CA8;
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA110/func_802D0BFC_7AA18C.s")
 

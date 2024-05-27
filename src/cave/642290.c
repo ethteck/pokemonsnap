@@ -2,6 +2,8 @@
 #include "world/world.h"
 
 extern PokemonInitData D_802C6C64_649114;
+extern AnimationHeader D_802C6BA4_649054;
+extern idFuncStruct D_802C6BE0_649090;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642290/func_802BFDE0_642290.s")
 
@@ -11,7 +13,15 @@ extern PokemonInitData D_802C6C64_649114;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642290/func_802BFF74_642424.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642290/func_802C0058_642508.s")
+void func_802C0058_642508(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802C6BA4_649054);
+    pokemon->transitionGraph = &D_802C6BE0_649090;
+    runInteractionsAndWaitForFlags(obj, 0);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/642290/func_802C00B0_642560.s")
 

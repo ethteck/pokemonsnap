@@ -2,6 +2,8 @@
 #include "../world/world.h"
 
 extern PokemonInitData D_802D2CB4_7AC244;
+extern AnimationHeader D_802D2AC0_7AC050;
+extern idFuncStruct D_802D2BB4_7AC144;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C82C0_7A1850.s")
 
@@ -30,7 +32,15 @@ void func_802C84D0_7A1A60(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C853C_7A1ACC.s")
+void func_802C853C_7A1ACC(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setPokemonAnimation(obj, &D_802D2AC0_7AC050);
+    pokemon->transitionGraph = &D_802D2BB4_7AC144;
+    runInteractionsAndWaitForFlags(obj, 0U);
+    updatePokemonState(obj, NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A1850/func_802C8594_7A1B24.s")
 

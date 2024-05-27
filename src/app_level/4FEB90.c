@@ -57,23 +57,23 @@ extern UnkHeatherLynx3* D_803B0F48_551358;
 extern UnkHeatherLynx3* D_803B0F4C_55135C;
 
 void func_8035E780_4FEB90(GObj* arg0) {
-    SomeListEntry* temp_v1 = D_803B0C10_551020;
+    SomeListEntry* entry = D_803B0C10_551020;
 
     if (D_803B0C10_551020 == NULL) {
         return;
     }
-        
+
     D_803B0C10_551020 = D_803B0C10_551020->next;
 
-    temp_v1->prev = D_803B0C0C_55101C;
-    temp_v1->next = 0;
-    
-    if (temp_v1->prev != NULL) {
-        temp_v1->prev->next = D_803B0C0C_55101C = temp_v1;
+    entry->prev = D_803B0C0C_55101C;
+    entry->next = 0;
+
+    if (entry->prev != NULL) {
+        entry->prev->next = D_803B0C0C_55101C = entry;
     } else {
-        D_803B0C08_551018 = D_803B0C0C_55101C = temp_v1;
+        D_803B0C08_551018 = D_803B0C0C_55101C = entry;
     }
-    temp_v1->obj = arg0;
+    entry->obj = arg0;
 }
 
 void func_8035E7DC_4FEBEC(GObj* obj) {
@@ -85,7 +85,7 @@ void func_8035E7DC_4FEBEC(GObj* obj) {
         }
         entry = entry->next;
     }
-    
+
     if (entry->prev != NULL) {
         entry->prev->next = entry->next;
     } else {
@@ -269,7 +269,7 @@ void weightedRandomStaightTransition(GObj* obj, randomTransition* arg1) {
     if (arg1[i].func != NULL) {
         pokemon->interactionProc = omCreateProcess(obj, arg1[i].func, 0, 7);
         omEndProcess(oldProc);
-    }    
+    }
 }
 
 void func_8035ED90_4FF1A0(GObj* obj, GObjFunc func) {
@@ -431,7 +431,7 @@ f32 func_8035F2A4_4FF6B4(GObj* arg0, GObj* arg1) {
     DObj* model2;
     Vec3f sp38;
     Vec3f sp2C;
-    Vec3f sp20;    
+    Vec3f sp20;
 
     if (arg0 == NULL || arg1 == NULL) {
         return FLOAT_MAX;
@@ -497,7 +497,7 @@ GObj* func_8035F430_4FF840(GObj* obj, f32* distance) {
     DObj* model = obj->data.dobj;
     f32 closestDist2 = FLOAT_MAX;
     f32 x, y, z;
-    
+
     x = GET_TRANSFORM(model)->pos.v.x;
     y = GET_TRANSFORM(model)->pos.v.y;
     z = GET_TRANSFORM(model)->pos.v.z;
@@ -583,8 +583,8 @@ f32 func_8035F784_4FFB94(GObj* obj, Vec3f* arg1) {
     s32 s5 = FALSE;
     Vec3f sp64;
     Vec3f sp58;
-    Vec3f sp4C;    
-    
+    Vec3f sp4C;
+
     sp64.x = GET_TRANSFORM(model)->pos.v.x;
     sp64.y = GET_TRANSFORM(model)->pos.v.y;
     sp64.z = GET_TRANSFORM(model)->pos.v.z;
@@ -624,7 +624,7 @@ void func_8035F900_4FFD10(GObj* obj) {
     f32 sp5C;
     GObj* obj2;
     GObjFunc s4 = NULL;
-    GObjFunc s3 = NULL;    
+    GObjFunc s3 = NULL;
     idFuncStruct* transitionGraph = pokemon->transitionGraph;
 
     if (transitionGraph == NULL) {
@@ -655,7 +655,7 @@ void func_8035F900_4FFD10(GObj* obj) {
                 if (pokemon->playerDist < transitionGraph[i].radius) {
                     pokemon->interactionDist = sp5C; // BUG: sp5C undefined here, must use 'playerDist'
                     s2 = FALSE;
-                    pokemon->interactionTarget = gObjPlayer;                    
+                    pokemon->interactionTarget = gObjPlayer;
                     s4 = transitionGraph[i].state;
                     s3 = transitionGraph[i].aux;
                 }
@@ -803,7 +803,7 @@ GObj* addPokemonAtGeo(GObj *gobj, u16 id, PokemonDef *def) {
 
     if (pokemonObj != NULL) {
         PokemonTransformBase* transform2 = GET_TRANSFORM_BASE(gobj->data.dobj);
-        PokemonTransformBase* transform1 = GET_TRANSFORM_BASE(pokemonObj->data.dobj);        
+        PokemonTransformBase* transform1 = GET_TRANSFORM_BASE(pokemonObj->data.dobj);
 
         transform1->xform.pos.v.x = transform2->xform.pos.v.x;
         transform1->xform.pos.v.y = transform2->xform.pos.v.y;
@@ -880,7 +880,7 @@ void func_8036010C_50051C(GObj* obj) {
 void func_80360144_500554(GObj* obj, f32 arg1) {
     DObj* model = obj->data.dobj;
     Pokemon* pokemon = GET_POKEMON(obj);
-    PokemonInitData* initData = pokemon->initData;    
+    PokemonInitData* initData = pokemon->initData;
 
     GET_TRANSFORM(model)->scale.v.x = initData->scale.x * 0.1f * arg1;
     GET_TRANSFORM(model)->scale.v.y = initData->scale.y * 0.1f * arg1;
@@ -899,7 +899,7 @@ void func_803601FC_50060C(GObj* obj, f32 arg1) {
     s32 unused;
     f32 f10, sp20;
     f32 sp1C;
-    
+
     sp1C = GET_TRANSFORM(model)->rot.f[2];
     sp20 = sinf(sp1C) * arg1;
     f10 = cosf(sp1C) * arg1;
@@ -1065,13 +1065,13 @@ void func_8036082C_500C3C(GObj* obj, f32 arg1, f32 arg2, f32 arg3) {
     f32 f20;
     f32 vx,vy,vz;
     Vec3f sp8C;
-    Vec3f sp80;    
+    Vec3f sp80;
     f32 f2;
     f32 temp;
 
     sp8C = D_8038A430_52A840;
     arg1 *= 0.033;
-    
+
     f20 = GET_TRANSFORM(model)->rot.f[2] + (temp = PI * arg2); // temp required fo matching
     f20 += arg3 * (randFloat() * TAU - PI);
     if (f20 < 0.0f) {
@@ -1123,12 +1123,12 @@ void func_80360AB8_500EC8(GObj* obj, f32 arg1, s32 arg2) {
         } else {
             getGroundAt(transform->pos.v.x, transform->pos.v.z, &pokemon->currGround);
         }
-        
+
         transform->pos.v.y += f20;
         f20 += (f32)(arg1 * 0.033);
 
         if (f20 < 0.0f && transform->pos.v.y < pokemon->currGround.height) {
-            break;        
+            break;
         }
         ohWait(1);
     }
@@ -1150,7 +1150,7 @@ s32 func_80360BEC_500FFC(f32 arg0, f32 arg1, GroundResult* arg2, f32* arg3) {
             case SURFACE_TYPE_7F667F:
             case SURFACE_TYPE_FF0000:
             case SURFACE_TYPE_FF4C19:
-            case SURFACE_TYPE_FF7FB2:            
+            case SURFACE_TYPE_FF7FB2:
                 ret = TRUE;
                 break;
         }
@@ -1168,7 +1168,7 @@ s32 func_80360BEC_500FFC(f32 arg0, f32 arg1, GroundResult* arg2, f32* arg3) {
 
 s32 func_80360D18_501128(GObj* obj, f32 arg1, f32 arg2, u32 arg3) {
     DObj* model = obj->data.dobj;
-    Pokemon* pokemon = GET_POKEMON(obj);    
+    Pokemon* pokemon = GET_POKEMON(obj);
     f32 sp5C = GET_TRANSFORM(model)->pos.v.x + arg1;
     f32 sp58 = GET_TRANSFORM(model)->pos.v.z + arg2;
     GroundResult sp44;
@@ -1208,7 +1208,7 @@ s32 func_80360E78_501288(GObj* obj, f32 arg1, u32 arg2) {
         f32 sp1C = pokemon->hSpeed * 0.033;
         f32 sp18 = sinf(arg1) * sp1C;
         f32 sp14 = cosf(arg1) * sp1C;
-        
+
         if (func_80360D18_501128(obj, sp18, sp14, arg2)) {
             return TRUE;
         }
@@ -1225,7 +1225,7 @@ s32 func_80360F1C_50132C(GObj* obj, u32 arg2) {
         f32 yaw = GET_TRANSFORM(model)->rot.f[2];
         f32 sp18 = sinf(yaw) * sp1C;
         f32 sp14 = cosf(yaw) * sp1C;
-        
+
         if (func_80360D18_501128(obj, sp18, sp14, arg2)) {
             return TRUE;
         }
@@ -1243,7 +1243,7 @@ s32 func_80360FC8_5013D8(DObj* model, f32 arg1, f32 arg2) {
     if (f0 < 0.0f) {
         f0 += TAU;
     }
-    
+
     delta = arg1 - f0;
     if (ABS(delta) > arg2) {
         if (ABS(delta) < PI) {
@@ -1254,7 +1254,7 @@ s32 func_80360FC8_5013D8(DObj* model, f32 arg1, f32 arg2) {
         GET_TRANSFORM(model)->rot.f[2] = f0 + sign * arg2;
     } else {
         GET_TRANSFORM(model)->rot.f[2] = arg1;
-        return TRUE;    
+        return TRUE;
     }
     return FALSE;
 }
@@ -1339,8 +1339,8 @@ s32 func_80361440_501850(GObj* obj) {
 void func_8036148C_50189C(GObj* obj, f32 arg1, u32 arg2) {
     f32 f20;
     Pokemon* pokemon = GET_POKEMON(obj);
-    DObj* model = obj->data.dobj;    
-    s32 s3 = TRUE;    
+    DObj* model = obj->data.dobj;
+    s32 s3 = TRUE;
     Vec3f* s2;
     Vec3f* s1;
     DObj* v0;
@@ -1671,11 +1671,11 @@ extern Vec3f D_8038A448_52A858;
 void pokemonPathLoop(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, u32 arg5) {
     DObj* model = obj->data.dobj;
     Vec3f sp80 = D_8038A448_52A858;
-    Pokemon* pokemon = GET_POKEMON(obj);        
+    Pokemon* pokemon = GET_POKEMON(obj);
     Vec3f sp70;
     f32 f2;
     f32 sp68;
-    
+
 
     pokemon->pathParam = arg1;
 
@@ -1703,7 +1703,7 @@ void pokemonPathLoop(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, u32 arg5
                     GET_TRANSFORM(model)->pos.v.y -= sp80.y * 100.0f;
                 }
             }
-            
+
             if (arg5 & 0x82) {
                 func_8001FCE8(&sp70, pokemon->path, pokemon->pathParam);
                 f2 = atan2f(sp70.x, sp70.z);
@@ -1800,10 +1800,10 @@ void func_803625B4_5029C4(GObjCmdData cmdData) {
     idFuncStruct* a2;
     f32 distance;
     s32 i;
-    Pokemon* pokemon;    
+    Pokemon* pokemon;
     GObjFunc sp24;
     GObjFunc sp20;
-        
+
     pokemon = GET_POKEMON(omCurrentObject);
     sp24 = NULL;
     sp20 = NULL;
@@ -2128,7 +2128,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 
     if (initData->fnRender != NULL && initData->tree != NULL) {
         omLinkGObjDL(pokemonObj, initData->fnRender, 5, 0x80000000, -1);
-        if (initData->flags & 0x10) {
+        if (initData->flags & POKEMON_FLAG_10) {
             anim_func_80010230(pokemonObj, initData->tree, initData->textures, NULL, initData->matrix1, initData->matrix2, initData->matrix3);
         } else {
             anim_func_80010230(pokemonObj, initData->tree, initData->textures, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
@@ -2136,7 +2136,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
         model = pokemonObj->data.dobj;
     } else {
         model = omGObjAddDObj(pokemonObj, NULL);
-        if (initData->flags & 0x10) {
+        if (initData->flags & POKEMON_FLAG_10) {
             anim_func_8000FDA0(model, initData->matrix1, initData->matrix2, initData->matrix3);
         } else {
             anim_func_8000FDA0(model, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
@@ -2216,7 +2216,7 @@ GObj* spawnPokemonOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* blo
 
 void func_8036334C_50375C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
-    DObj* model = obj->data.dobj;    
+    DObj* model = obj->data.dobj;
     Mtx4f sp78;
     Mtx4f sp38;
 
@@ -2263,7 +2263,7 @@ void func_8036345C_50386C(GObj* arg0) {
             sp84.x = pokemon->collPosition.x;
             sp84.y = pokemon->collPosition.y;
             sp84.z = pokemon->collPosition.z;
-            
+
             for (entry2 = entry->next; entry2 != NULL; entry2 = entry2->next) {
                 pokemon2 = GET_POKEMON(entry2->obj);
                 if (pokemon2->flags & POKEMON_FLAG_200) {
@@ -2285,7 +2285,7 @@ void func_8036345C_50386C(GObj* arg0) {
                             pokemon2->processFlags |= POKEMON_PROCESS_FLAG_80;
                             cmdSendCommand(entry2->obj, 26, entry->obj);
                         }
-                        
+
                         // BUG same pokemon checked twice
                         if ((pokemon2->flags & POKEMON_FLAG_800) && (pokemon2->flags & POKEMON_FLAG_800)) {
                             func_8035F648_4FFA58(&sp84, &sp78, &sp6C, f20 / 2);

@@ -1,4 +1,10 @@
 #include "common.h"
+#include "world/world.h"
+
+void func_802C1B54_644004(GObj*);
+void func_802C1C48_6440F8(GObj*);
+
+extern PokemonInitData D_802C7590_649A40;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1440_6438F0.s")
 
@@ -8,7 +14,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1660_643B10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1728_643BD8.s")
+void func_802C1728_643BD8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.05f, 0.0f, 2U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1794_643C44.s")
 
@@ -22,12 +37,22 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1A20_643ED0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1A7C_643F2C.s")
+void func_802C1A7C_643F2C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8036148C_50189C(obj, 0.1f, 0x2A);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1AC8_643F78.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1B1C_643FCC.s")
-
+void func_802C1B1C_643FCC(GObj* arg0) {
+    runPathProcess(arg0, func_802C1C48_6440F8);
+    updatePokemonState(arg0, func_802C1B54_644004);
+}
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1B54_644004.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C1C48_6440F8.s")
@@ -66,4 +91,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C294C_644DFC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6438F0/func_802C2994_644E44.s")
+GObj* func_802C2994_644E44(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemon(objID, id, block, blockB, spawn, &D_802C7590_649A40);
+}

@@ -1,4 +1,7 @@
 #include "common.h"
+#include "world/world.h"
+
+extern PokemonInitData D_802C7728_649BD8;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C29D0_644E80.s")
 
@@ -14,7 +17,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2C90_645140.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2D00_6451B0.s")
+void func_802C2D00_6451B0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.13333334f, 0.0f, 2U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2D6C_64521C.s")
 
@@ -24,7 +36,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2EBC_64536C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2F48_6453F8.s")
+void func_802C2F48_6453F8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.13333334f, 0.0f, 2U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C2FB4_645464.s")
 
@@ -34,4 +55,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C31D0_645680.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/644E80/func_802C3250_645700.s")
+GObj* func_802C3250_645700(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemon(objID, id, block, blockB, spawn, &D_802C7728_649BD8);
+}

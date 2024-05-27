@@ -11,8 +11,6 @@ extern AnimationHeader D_802E3208_734408;
 extern AnimationHeader D_802E321C_73441C;
 extern PokemonInitData koffingSmokeData;
 
-
-
 void func_802DE390_72F590(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);

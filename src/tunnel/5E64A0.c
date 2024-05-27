@@ -1,4 +1,12 @@
 #include "common.h"
+#include "world/world.h"
+
+void func_802E9C3C_5E6D0C(GObj*);
+void func_802E9C60_5E6D30(GObj*);
+void func_802E9C98_5E6D68(GObj*);
+void func_802E9D04_5E6DD4(GObj*);
+
+extern PokemonInitData D_802EF714_5EC7E4;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E93D0_5E64A0.s")
 
@@ -8,7 +16,16 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E95E8_5E66B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E968C_5E675C.s")
+void func_802E968C_5E675C(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 20.0f;
+    func_80361110_501520(obj, 500.0f, 0.1f, 1);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E96E8_5E67B8.s")
 
@@ -24,17 +41,42 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9AF8_5E6BC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9B90_5E6C60.s")
+void func_802E9B90_5E6C60(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->hSpeed = 100.0f;
+    func_8036194C_501D5C(obj, 1000.0f, 0.1f, 3);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9BEC_5E6CBC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C18_5E6CE8.s")
+void func_802E9C18_5E6CE8(GObj* arg0) {
+    updatePokemonState(arg0, func_802E9C3C_5E6D0C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C3C_5E6D0C.s")
+void func_802E9C3C_5E6D0C(GObj* arg0) {
+    updatePokemonState(arg0, func_802E9C60_5E6D30);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C60_5E6D30.s")
+void func_802E9C60_5E6D30(GObj* arg0) {
+    runPathProcess(arg0, func_802E9C98_5E6D68);
+    updatePokemonState(arg0, func_802E9D04_5E6DD4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9C98_5E6D68.s")
+void func_802E9C98_5E6D68(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    setNodePosToNegRoom(obj);
+    pokemonPathLoop(obj, 0, 1, 0.033333335f, 0.0f, 3U);
+    pokemon->pathProcess = NULL;
+    pokemon->processFlags |= 2;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802E9D04_5E6DD4.s")
 
@@ -64,6 +106,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802EA3EC_5E74BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802EA424_5E74F4.s")
+GObj* func_802EA424_5E74F4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+    return spawnPokemonOnGround(objID, id, block, blockB, spawn, &D_802EF714_5EC7E4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E64A0/func_802EA45C_5E752C.s")

@@ -40,7 +40,7 @@ void func_802BDF7C_64042C(WorldBlock* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/6401B0/func_802BE3A8_640858.s")
 
 s32 func_802BE3B0_640860(s32 arg0) {
-    D_802C6398_648848.gtlSetup.heapSize = (uintptr_t) cave_code_VRAM - (uintptr_t) _1F5E70_VRAM_END;
+    D_802C6398_648848.gtlSetup.heapSize = (uintptr_t)cave_code_VRAM - (uintptr_t)_1F5E70_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_802C6398_648848);

@@ -62,7 +62,7 @@ void func_8036A4AC_83DC5C(UnkSnowHerring* arg0) {
         arg0->unk_40 = 0;
     } else {
         D_8037EA8C_85223C->unk_40 = arg0;
-        arg0->unk_3C = (void*) D_8037EA8C_85223C;
+        arg0->unk_3C = (void*)D_8037EA8C_85223C;
         arg0->unk_40 = 0;
         D_8037EA8C_85223C = arg0;
     }

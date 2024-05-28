@@ -90,7 +90,7 @@ void* func_8036A194_83D944(u32 arg0) {
 
 // Probably dealloc
 void func_8036A228_83D9D8(void* arg0) {
-    func_8036A0BC_83D86C((UnkClaretTilapia*) (((uintptr_t) arg0) - sizeof(UnkClaretTilapia)));
+    func_8036A0BC_83D86C((UnkClaretTilapia*)(((uintptr_t)arg0) - sizeof(UnkClaretTilapia)));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/83D730/func_8036A248_83D9F8.s")
@@ -104,7 +104,7 @@ s32 func_8036A418_83DBC8(void) {
     UnkClaretTilapia* cur;
 
     end = 0;
-    for (cur = D_803A6900_87A0B0; cur < D_803A6908_87A0B8; cur = (UnkClaretTilapia*) ((uintptr_t) cur + cur->unk4)) {
+    for (cur = D_803A6900_87A0B0; cur < D_803A6908_87A0B8; cur = (UnkClaretTilapia*)((uintptr_t)cur + cur->unk4)) {
         if (cur->unk8 != 0) {
             end += cur->unk4;
         }

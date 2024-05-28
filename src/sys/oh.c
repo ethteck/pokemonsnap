@@ -302,9 +302,7 @@ void ohDeleteAllObjects(void) {
     }
 }
 
-GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices,
-                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority, void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices, u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
     DObj* dobj;
 
@@ -325,9 +323,7 @@ GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
     return obj;
 }
 
-GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                          void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
-                          u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority, void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite, u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
 
     obj = omAddGObj(objId, objFnUpdate, objLink, objPriority);
@@ -343,9 +339,7 @@ GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 obj
     return obj;
 }
 
-GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                  void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices,
-                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
+GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority, void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices, u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
     GObj* obj;
     OMCamera* cam;
 

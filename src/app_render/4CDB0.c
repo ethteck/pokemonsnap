@@ -103,11 +103,9 @@ void disableFogTransparent(GObj* arg0) {
 }
 
 void func_800A1520(void) {
-
 }
 
 void func_800A1528(void) {
-
 }
 
 void renderModelTypeAFogged(GObj* arg0) {
@@ -226,7 +224,6 @@ void func_800A19B0(u8 arg0, u8 arg1, u8 arg2) {
     sUnkColorG = arg1;
     sUnkColorB = arg2;
 }
-
 
 void func_800A19D8(s32 arg0) {
     D_800AEBC0 = arg0;

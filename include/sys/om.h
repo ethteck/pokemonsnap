@@ -80,7 +80,12 @@ enum MatrixType {
     MTX_TYPE_66 = 66
 };
 
-enum AnimType { ANIM_TYPE_NONE = 0, ANIM_TYPE_STEP = 1, ANIM_TYPE_LINEAR = 2, ANIM_TYPE_CUBIC = 3 };
+enum AnimType {
+    ANIM_TYPE_NONE = 0,
+    ANIM_TYPE_STEP = 1,
+    ANIM_TYPE_LINEAR = 2,
+    ANIM_TYPE_CUBIC = 3
+};
 
 enum AnimCommand {
     ANIM_CMD_END = 0,
@@ -166,10 +171,10 @@ enum GObjFlag {
 };
 
 enum CameraFlags {
-    CAMERA_FLAG_1  = 0x01,
-    CAMERA_FLAG_2  = 0x02,
-    CAMERA_FLAG_4  = 0x04,
-    CAMERA_FLAG_8  = 0x08,
+    CAMERA_FLAG_1 = 0x01,
+    CAMERA_FLAG_2 = 0x02,
+    CAMERA_FLAG_4 = 0x04,
+    CAMERA_FLAG_8 = 0x08,
     CAMERA_FLAG_10 = 0x10,
     CAMERA_FLAG_20 = 0x20,
     CAMERA_FLAG_40 = 0x40,
@@ -195,7 +200,7 @@ typedef struct ThreadStackNode {
     /* 0x08 */ u64 stack[1];
 } ThreadStackNode; // size == 0x08 + VLA
 
-typedef void(*GObjFunc)(struct GObj*);
+typedef void (*GObjFunc)(struct GObj*);
 
 typedef struct GObjProcess {
     /* 0x00 */ struct GObjProcess* next; // Points to next process in free or object process list
@@ -242,10 +247,10 @@ typedef struct GObj {
     /* 0x38 */ s32 unk_38;
     /* 0x3C */ GObjCmdList cmdList;
     /* 0x48 */ union {
-                struct DObj* dobj;
-                struct SObj* sobj;
-                struct OMCamera* cam;
-                void* any;
+        struct DObj* dobj;
+        struct SObj* sobj;
+        struct OMCamera* cam;
+        void* any;
     } data;
     /* 0x4C */ f32 animationTime;
     /* 0x50 */ u32 flags;
@@ -368,18 +373,18 @@ typedef struct DObj {
     /* 0x3C */ struct Mtx3Float scale;
     /* 0x4C */ struct DObjDynamicStore* unk_4C;
     /* 0x50 */ union {
-                    void* any;
-                    Gfx* dlist;
-                    DObjPayloadTypeC* typeC;
-                    DObjPayloadTypeE* typeE;
-                    Gfx** typeF;
-                    DObjPayloadTypeG* typeG;
-                    DObjPayloadTypeC** typeH;
-                    DObjPayloadTypeI* typeI;
-                    DObjPayloadTypeJ* typeJ;
-                    DObjPayloadTypeI** typeK;
-                    DObjPayloadTypeJ** typeL;
-               } payload;
+        void* any;
+        Gfx* dlist;
+        DObjPayloadTypeC* typeC;
+        DObjPayloadTypeE* typeE;
+        Gfx** typeF;
+        DObjPayloadTypeG* typeG;
+        DObjPayloadTypeC** typeH;
+        DObjPayloadTypeI* typeI;
+        DObjPayloadTypeJ* typeJ;
+        DObjPayloadTypeI** typeK;
+        DObjPayloadTypeJ** typeL;
+    } payload;
     /* 0x54 */ u8 flags;
     /* 0x55 */ u8 animCBReceiver;
     /* 0x56 */ u8 numMatrices;

@@ -85,8 +85,7 @@ void func_camera_check_801DC910(void) {
     OMCamera* camera;
     GObj* camObj;
 
-    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
-                            func_camera_check_801DC8D0, 0, 1);
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0, func_camera_check_801DC8D0, 0, 1);
     camera = camObj->data.cam;
     camObj->unk_38 = 0x100000;
     camera->flags |= CAMERA_FLAG_2 | CAMERA_FLAG_4;
@@ -120,7 +119,7 @@ s32 func_camera_check_801DCACC(s32 arg0) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_camera_check_801E4060);
-    D_camera_check_801E407C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) camera_check_VRAM_END;
+    D_camera_check_801E407C.gtlSetup.heapSize = (uintptr_t)unk_end_level_VRAM - (uintptr_t)camera_check_VRAM_END;
     omSetupScene(&D_camera_check_801E407C);
     return D_800AF3C0;
 }

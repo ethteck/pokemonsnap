@@ -46,8 +46,8 @@ void func_801E1024_9FECE4(s32 arg0, s32 arg1) {
         D_80230AD4_A4E794 = 0;
         return;
     }
-    D_80230AD8_A4E798.unk_00 = (s8) arg0;
-    D_80230AD8_A4E798.unk_01 = (s8) arg1;
+    D_80230AD8_A4E798.unk_00 = (s8)arg0;
+    D_80230AD8_A4E798.unk_01 = (s8)arg1;
     switch (arg0) {
         case 0:
             D_80230AD4_A4E794 = D_802309B0_A4E670[arg1];
@@ -125,7 +125,7 @@ void func_801E1384_9FF044(void) {
 
     for (i = 0; i < 4; i++) {
         // TODO: figure out what is returned and remove cast
-        D_802309B0_A4E670[i] = (PhotoData*) func_800BF574_5C414(i);
+        D_802309B0_A4E670[i] = (PhotoData*)func_800BF574_5C414(i);
     }
 
     for (count = 0, i = 1; i <= 151; i++) {

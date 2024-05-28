@@ -16,7 +16,7 @@ void func_credits_801DC8C4(void) {
     } else {
         var_a1 = 0x78000;
     }
-    func_8036A3F8_83DBA8(mlHeapAlloc(&sGeneralHeap, var_a1, 8), (s32) var_a1);
+    func_8036A3F8_83DBA8(mlHeapAlloc(&sGeneralHeap, var_a1, 8), (s32)var_a1);
     func_800AAE28();
     func_80374D40_8484F0();
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 6, 0xFF);
@@ -58,7 +58,7 @@ void func_credits_801DCAF8(SObj* arg0) {
 
 s32 func_credits_801DCB24(s32 sceneId) {
     D_credits_801ECDA0 = sceneId;
-    D_credits_801DEC40 = (uintptr_t) &D_80369F80 - (uintptr_t) &D_801ED020;
+    D_credits_801DEC40 = (uintptr_t)&D_80369F80 - (uintptr_t)&D_801ED020;
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     osCreateMesgQueue(&D_credits_801ECC68, D_credits_801ECC40, ARRAY_COUNT(D_credits_801ECC40));

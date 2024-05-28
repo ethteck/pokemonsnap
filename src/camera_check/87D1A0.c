@@ -106,7 +106,7 @@ void func_camera_check_801E0034(s32 arg0) {
     if (arg0) {
         func_camera_check_801DEA20(D_camera_check_80208960, 4);
     } else {
-        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0);
+        func_camera_check_801DD630(D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6), 0);
     }
 }
 
@@ -268,7 +268,7 @@ s32 func_camera_check_801E1BD4(void) {
 
     while (1) {
         temp_s0 = func_800AA38C(0);
-        func_camera_check_801DFA80((UNK_PTR) temp_s0, &sp38, 1, func_camera_check_801DF9B0());
+        func_camera_check_801DFA80((UNK_PTR)temp_s0, &sp38, 1, func_camera_check_801DF9B0());
         if (temp_s0->unk_18 & 0x8000) {
             auPlaySound(0x42);
 
@@ -277,14 +277,14 @@ s32 func_camera_check_801E1BD4(void) {
                 case 23:
                     if (func_camera_check_801E3140() != 0) {
                         func_camera_check_801E31E4(1, 0);
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6), 0x15);
                         func_camera_check_801DDB08(1);
                         func_camera_check_801E0F10();
                         auPlaySound(0x43);
                         func_camera_check_801E0480();
                         func_camera_check_801DDB08(0);
                         func_camera_check_801E31E4(0, 0);
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6), 0x15);
                         func_80370038_8437E8(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
@@ -295,7 +295,7 @@ s32 func_camera_check_801E1BD4(void) {
                         func_camera_check_801E1918();
                         auPlaySound(0x43);
                         func_camera_check_801E0480();
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6), 0x15);
                         func_80370038_8437E8(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
@@ -316,7 +316,7 @@ u32 func_camera_check_801E1EA4(void) {
     func_803700A4_843854(0);
     D_camera_check_80208960 = 0;
     func_camera_check_801E3C24(1);
-    func_camera_check_801DD6D0(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+    func_camera_check_801DD6D0(D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6), 0x15);
     func_8037060C_843DBC(1, 0x16);
     func_8036A8E4_83E094(func_camera_check_801DCB40());
     if (func_camera_check_801E27FC() == 0) {
@@ -348,13 +348,13 @@ u32 func_camera_check_801E1EA4(void) {
             auPlaySound(0x43);
             return 0;
         }
-        if ((temp_v0->unk_18 & 0x40000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
+        if ((temp_v0->unk_18 & 0x40000) && ((D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
             auPlaySound(0x4B);
             D_camera_check_80208960 += 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();
         }
-        if ((temp_v0->unk_18 & 0x80000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) > 0)) {
+        if ((temp_v0->unk_18 & 0x80000) && ((D_camera_check_80208960 - ((s32)D_camera_check_80208960 % 6)) > 0)) {
             auPlaySound(0x4B);
             D_camera_check_80208960 -= 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);

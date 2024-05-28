@@ -206,8 +206,8 @@ GObj* func_801DD6CC_9A791C(s32 arg0) {
     sobj->sprite.y = 2;
     D_802500C0_A1A310[arg0].unk_4 = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    bitmap = (Bitmap*)func_8036A194_83D944(0x10);
+    dest = (u8*)func_8036A194_83D944(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;
@@ -291,8 +291,8 @@ GObj* func_801DDE64_9A80B4() {
     D_802500AC_A1A2FC = gobj;
     D_802500B0_A1A300 = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    bitmap = (Bitmap*)func_8036A194_83D944(0x10);
+    dest = (u8*)func_8036A194_83D944(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;

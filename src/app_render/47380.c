@@ -492,17 +492,17 @@ s32 func_8009C304(PhotoDataSub2* arg0, GObj* obj) {
     payload = dobj->firstChild->payload.any;
     if (payload == D_800EB460) {
         arg0->unk_00 = 3;
-        arg0->unk_01 = (s32) obj->animationTime;
+        arg0->unk_01 = (s32)obj->animationTime;
     } else if (payload == D_800EDAE0) {
         arg0->unk_00 = 4;
-        arg0->unk_01 = (s32) obj->animationTime;
+        arg0->unk_01 = (s32)obj->animationTime;
     } else if (payload == D_800E9168) {
         arg0->unk_00 = 1;
-        arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed;
+        arg0->unk_01 = (s32)dobj->firstChild->mobjList->timePassed;
     } else if (payload == D_800EAF00) {
         arg0->unk_00 = 2;
-        arg0->unk_01 = (s32) dobj->firstChild->mobjList->timePassed & 0xF;
-        arg0->unk_01 |= ((s32) ((dobj->scale.v.x * 15.0f) / 0.1f) * 16);
+        arg0->unk_01 = (s32)dobj->firstChild->mobjList->timePassed & 0xF;
+        arg0->unk_01 |= ((s32)((dobj->scale.v.x * 15.0f) / 0.1f) * 16);
     } else {
         return 0;
     }
@@ -519,8 +519,7 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     while (obj != NULL && i < 6) {
         if (!(obj->flags & 1) &&
             (func_803647BC_504BCC(obj) == 0) &&
-            (func_8009C304(&arg0->main.unk_140[i], obj) != 0))
-        {
+            (func_8009C304(&arg0->main.unk_140[i], obj) != 0)) {
             i++;
         }
         obj = obj->next;
@@ -784,7 +783,7 @@ void func_8009D184(WorldSetup* arg0) {
 
 void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
     if (arg1 >= arg0) {
-        dmaReadRom((void*) arg0, (void*) arg2, arg1 - arg0);
+        dmaReadRom((void*)arg0, (void*)arg2, arg1 - arg0);
     }
 }
 
@@ -799,7 +798,7 @@ void func_8009D37C(u8 levelID) {
     switch (levelID) {
         case SCENE_BEACH:
             func_8009D184(&D_8011B914);
-            func_8009D1E8((u32) AB8780_ROM_START, (u32) AB8780_ROM_END, (s32) &D_801D6840);
+            func_8009D1E8((u32)AB8780_ROM_START, (u32)AB8780_ROM_END, (s32)&D_801D6840);
             func_8009D21C(0, &D_801D6840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -808,7 +807,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_TUNNEL:
             func_8009D184(&D_8011E6CC);
-            func_8009D1E8((u32) ABEBD0_ROM_START, (u32) ABEBD0_ROM_END, (s32) &D_801B1230);
+            func_8009D1E8((u32)ABEBD0_ROM_START, (u32)ABEBD0_ROM_END, (s32)&D_801B1230);
             func_8009D21C(0, &D_801B1230);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -818,7 +817,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_CAVE:
             func_8009D184(&D_8012A0E8);
-            func_8009D1E8((u32) AC6A80_ROM_START, (u32) AC6A80_ROM_END, (s32) &D_801CF840);
+            func_8009D1E8((u32)AC6A80_ROM_START, (u32)AC6A80_ROM_END, (s32)&D_801CF840);
             func_8009D21C(0, &D_801CF840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -828,7 +827,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RIVER:
             func_8009D184(&D_8012AC90);
-            func_8009D1E8((u32) AC8830_ROM_START, (u32) AC8830_ROM_END, (s32) &D_801B6B60);
+            func_8009D1E8((u32)AC8830_ROM_START, (u32)AC8830_ROM_END, (s32)&D_801B6B60);
             func_8009D21C(0, &D_801B6B60);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -837,7 +836,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VOLCANO:
             func_8009D184(&D_800FFFB8);
-            func_8009D1E8((u32) ACF9A0_ROM_START, (u32) ACF9A0_ROM_END, (s32) &D_801CF770);
+            func_8009D1E8((u32)ACF9A0_ROM_START, (u32)ACF9A0_ROM_END, (s32)&D_801CF770);
             func_8009D21C(0, &D_801CF770);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0;
@@ -846,7 +845,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VALLEY:
             func_8009D184(&D_80100720);
-            func_8009D1E8((u32) AD1640_ROM_START, (u32) AD1640_ROM_END, (s32) &D_801B1D40);
+            func_8009D1E8((u32)AD1640_ROM_START, (u32)AD1640_ROM_END, (s32)&D_801B1D40);
             func_8009D21C(0, &D_801B1D40);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -855,7 +854,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RAINBOW:
             func_8009D184(&D_800F5DA0);
-            func_8009D1E8((u32) ADD5D0_ROM_START, (u32) ADD5D0_ROM_END, (s32) &D_8013E260);
+            func_8009D1E8((u32)ADD5D0_ROM_START, (u32)ADD5D0_ROM_END, (s32)&D_8013E260);
             func_8009D21C(0, &D_8013E260);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -889,8 +888,7 @@ void func_8009D65C(UnkThing* arg0) {
                 if (worldBlocks[i]->descriptor != NULL) {
                     if (worldBlocks[i]->descriptor->gfx != NULL &&
                         worldBlocks[i]->descriptor->gfx->textures != NULL &&
-                        worldBlocks[i]->descriptor->gfx->unk_08 != NULL)
-                    {
+                        worldBlocks[i]->descriptor->gfx->unk_08 != NULL) {
                         animSetModelTreeTextureAnimation(
                             worldBlocks[i]->blockModel,
                             worldBlocks[i]->descriptor->gfx->unk_08,
@@ -977,15 +975,14 @@ void func_8009DEF0(UnkThing* arg0) {
         if (arg0->main.unk_20[i].pokemonID < 0) {
             return;
         }
-        for(it = D_800ADBEC; it->unk_00 != 0; it++) {
+        for (it = D_800ADBEC; it->unk_00 != 0; it++) {
             if (it->unk_00 == arg0->main.unk_20[i].pokemonID) {
                 gobj = func_8009D9A0(&arg0->main.unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
                 if ((arg0->main.unk_20[i].pokemonID > 0 && arg0->main.unk_20[i].pokemonID <= POKEDEX_MAX) ||
                     arg0->main.unk_20[i].pokemonID == 0x25B ||
                     arg0->main.unk_20[i].pokemonID == 0x258 ||
                     arg0->main.unk_20[i].pokemonID == 0x259 ||
-                    arg0->main.unk_20[i].pokemonID == 0x25A)
-                {
+                    arg0->main.unk_20[i].pokemonID == 0x25A) {
                     D_800BDF30[D_800BDF60] = gobj;
                     D_800BDF68[D_800BDF60] = i;
                     D_800BDF60++;
@@ -1117,7 +1114,7 @@ void func_8009FB50(u8 arg0, u8 arg1, u8 arg2) {
     D_800BDF1D = arg1;
     D_800BDF1E = arg2;
     D_800AC0F0 = -1;
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    temp_v0 = func_800A73C0((u32)AB5980_ROM_START, (u32)AB5980_ROM_END);
     if (temp_v0 != NULL) {
         func_8009D21C(3, temp_v0);
     }

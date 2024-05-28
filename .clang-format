@@ -4,16 +4,18 @@ UseTab: Never
 ColumnLimit: 0
 PointerAlignment: Left
 BreakBeforeBraces: Attach
-SpaceAfterCStyleCast: true
+SpaceAfterCStyleCast: false
 Cpp11BracedListStyle: false
 IndentCaseLabels: true
 BinPackArguments: true
 BinPackParameters: true
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: BlockIndent
 AlignOperands: true
+AlignTrailingComments:
+    Kind: Leave
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
-AllowShortBlocksOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
 AllowShortEnumsOnASingleLine: false
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false

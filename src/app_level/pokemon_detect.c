@@ -81,8 +81,7 @@ void PokemonDetector_PostProcessImage(u16* fb) {
         if (PokemonDetector_PokemonIdInFocus == PokemonID_1004 ||
             PokemonDetector_PokemonIdInFocus == PokemonID_1018 ||
             PokemonDetector_PokemonIdInFocus == PokemonID_1022 ||
-            PokemonDetector_PokemonIdInFocus == PokemonID_1035)
-        {
+            PokemonDetector_PokemonIdInFocus == PokemonID_1035) {
             PokemonDetector_Photo[PokemonDetector_AnalyzedPhotoId].pokemonInFocus = PokemonDetector_PokemonInFocus;
         } else {
             for (i = 0; i < ARRAY_COUNT(PokemonDetector_Photo[PokemonDetector_AnalyzedPhotoId].pokemonObjects); i++) {
@@ -93,13 +92,13 @@ void PokemonDetector_PostProcessImage(u16* fb) {
             }
             if (i >= ARRAY_COUNT(PokemonDetector_Photo[PokemonDetector_AnalyzedPhotoId].pokemonObjects)) {
                 PokemonDetector_HasPokemonInFocus = FALSE;
-                PokemonDetector_PokemonInFocus = NULL;                
+                PokemonDetector_PokemonInFocus = NULL;
             }
         }
     } else {
         PokemonDetector_Photo[PokemonDetector_AnalyzedPhotoId].pokemonInFocus = NULL;
         PokemonDetector_PokemonInFocus = NULL;
-        PokemonDetector_HasPokemonInFocus = FALSE;        
+        PokemonDetector_HasPokemonInFocus = FALSE;
     }
 
     if (PokemonDetector_HasPokemonInFocus && gDirectionIndex == -1 && (PokemonDetector_PokemonFlagsInFocus & POKEMON_FLAG_4)) {
@@ -120,7 +119,7 @@ void PokemonDetector_PostProcessImage(u16* fb) {
 void PokemonDetector_InitDetector(GObj* detectorObj) {
     OMCamera* cam = omCurrentCamera->data.cam;
     Vp* vp = &cam->vp;
-    
+
     PokemonDetector_ContextId = 1 - PokemonDetector_ContextId;
     func_8009C8E4(gMainCamera, &gMovementState, &PokemonDetector_Photo[PokemonDetector_ContextId]);
     PokemonDetector_NumPokemons[PokemonDetector_ContextId] = 0;
@@ -171,7 +170,7 @@ void PokemonDetector_Create(void) {
     }
     omLinkGObjDL(omAddGObj(OBJID_0, NULL, LINK_PLAYER, 0x80000000), PokemonDetector_InitDetector, DL_LINK_5, 0x80000001, -1);
     osCreateMesgQueue(&PokemonDetector_MessageQueue, PokemonDetector_Messages, ARRAY_COUNT(PokemonDetector_Messages));
-    scSetPostProcessFunc((void(*)(void*))PokemonDetector_PostProcessImage);
+    scSetPostProcessFunc((void (*)(void*))PokemonDetector_PostProcessImage);
     PokemonDetector_ContextId = 1;
     gHasPokemonInFocus = PokemonDetector_HasPokemonInFocus = 0;
     omAddGObj(OBJID_0, PokemonDetector_CopyInfo, LINK_0, 0x80000001);
@@ -219,7 +218,8 @@ void PokemonDetector_FindPokemonInFocus(void) {
     PokemonDetector_HasPokemonInFocus = FALSE;
 
     for (i = 1; i < PokemonDetector_NumPokemons[PokemonDetector_AnalyzedPhotoId]; i++) {
-        do { } while (0); // required to match
+        do {
+        } while (0); // required to match
         if (PokemonDetector_Pokemons[PokemonDetector_AnalyzedPhotoId][i] != NULL) {
             cnt = 0;
             for (j = 0; j < 8 * 8; j++) {

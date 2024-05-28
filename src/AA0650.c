@@ -39,23 +39,23 @@ void func_800E1B30_AA08E0(Gfx**);
 void func_800E1B54_AA0904(void);
 
 SceneSetup D_800E1D40_AA0AF0 = {
-     {
-         0,
-         omUpdateAll,
-         omDrawAll,
-         D_800E1DE0,
-         0,
-         1,
-         2,
-         0x5000,
-         0x2000,
-         0,
-         0,
-         0xC800,
-         0,
-         0,
-         func_800E1B30_AA08E0,
-         contUpdate,
+    {
+        0,
+        omUpdateAll,
+        omDrawAll,
+        D_800E1DE0,
+        0,
+        1,
+        2,
+        0x5000,
+        0x2000,
+        0,
+        0,
+        0xC800,
+        0,
+        0,
+        func_800E1B30_AA08E0,
+        contUpdate,
     },
     0x20,
     0x400,
@@ -151,13 +151,13 @@ void func_800E1B54_AA0904(void) {
     camera->data.cam->flags = CAMERA_FLAG_8;
     objE = omAddGObj(0xE, NULL, 0, 0x80000000);
     objE_Clone = objE;
-    omCreateProcess(objE, (void*) func_800E1A94_AA0844, 0, 1);
-    omCreateProcess(objE_Clone, (void*) func_800E1A34_AA07E4, 0, 1);
+    omCreateProcess(objE, (void*)func_800E1A94_AA0844, 0, 1);
+    omCreateProcess(objE_Clone, (void*)func_800E1A34_AA07E4, 0, 1);
     D_800E1DD4_AA0B84 = 0;
 }
 
 void func_800E1C5C_AA0A0C(void) {
-    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t) intro_code_VRAM_END;
+    D_800E1D40_AA0AF0.gtlSetup.heapSize = VPK_VRAM - (uintptr_t)intro_code_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E1D40_AA0AF0);
 }

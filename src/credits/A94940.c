@@ -277,9 +277,7 @@ void func_credits_801DE060(void) {
         if (i == ARRAY_COUNT(D_credits_801E9400) - 1) {
             limit = 234.0f / val;
         } else {
-            if (1) {
-                // required to match
-            }
+            if (1) {} // required to match
             limit = 198.0f / val;
         }
 
@@ -475,26 +473,24 @@ void func_credits_801DEA30(SObj* sobj, f32 arg1) {
     sobj->sprite.x = (SCREEN_WIDTH / 2) - (70.0f * arg1);
     sobj->sprite.y = (SCREEN_HEIGHT / 2) - (52.0f * arg1);
 
-    if (1) {
-        // required to match
-    }
-    sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = (s16) (255.0f - ((arg1 - 1.0f) * 53.0f));
+    if (1) {} // required to match
+    sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = (s16)(255.0f - ((arg1 - 1.0f) * 53.0f));
 
     it = sobj->next;
-    it->sprite.x = sobj->sprite.x - (s16) (3.0f * arg1);
-    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+    it->sprite.x = sobj->sprite.x - (s16)(3.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16)(3.0f * arg1);
 
     it = it->next;
-    it->sprite.x = sobj->sprite.x + (s16) (140.0f * arg1);
-    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+    it->sprite.x = sobj->sprite.x + (s16)(140.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16)(3.0f * arg1);
 
     it = it->next;
-    it->sprite.x = (SCREEN_WIDTH / 2) - (s16) (70.0f * arg1);
-    it->sprite.y = sobj->sprite.y - (s16) (3.0f * arg1);
+    it->sprite.x = (SCREEN_WIDTH / 2) - (s16)(70.0f * arg1);
+    it->sprite.y = sobj->sprite.y - (s16)(3.0f * arg1);
 
     it = it->next;
-    it->sprite.x = (SCREEN_WIDTH / 2) - (s16) (70.0f * arg1);
-    it->sprite.y = sobj->sprite.y + (s16) (105.0f * arg1);
+    it->sprite.x = (SCREEN_WIDTH / 2) - (s16)(70.0f * arg1);
+    it->sprite.y = sobj->sprite.y + (s16)(105.0f * arg1);
 }
 
 void func_credits_801DEB74(SObj* sobj, f32 scale) {

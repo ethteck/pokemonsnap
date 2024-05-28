@@ -3,11 +3,11 @@
 #include "app_level.h"
 
 enum CamMessageIds {
-    MESSAGE_NONE                = 0,
-    MESSAGE_PRESS_Z             = 1,
-    MESSAGE_PRESS_A             = 2,
-    MESSAGE_TAKE_PICTURES       = 3,
-    MESSAGE_USE_CONTROL_STICK   = 4
+    MESSAGE_NONE = 0,
+    MESSAGE_PRESS_Z = 1,
+    MESSAGE_PRESS_A = 2,
+    MESSAGE_TAKE_PICTURES = 3,
+    MESSAGE_USE_CONTROL_STICK = 4
 };
 
 enum PauseOptions {
@@ -423,8 +423,7 @@ void handleAnalogStick(GObj* obj) {
         }
 
         if (StickYValue < 0.0f && ViewPitch <= MaxPitch + PI / 180.0f ||
-            StickYValue > 0.0f && ViewPitch >= MinPitch - PI / 180.0f)
-        {
+            StickYValue > 0.0f && ViewPitch >= MinPitch - PI / 180.0f) {
             StickYAccum += 0.02f * StickYValue;
         }
 
@@ -435,8 +434,7 @@ void handleAnalogStick(GObj* obj) {
         }
 
         if (StickYValue < 0.0f && ViewPitch <= MaxPitch ||
-            StickYValue > 0.0f && ViewPitch > MinPitch)
-        {
+            StickYValue > 0.0f && ViewPitch > MinPitch) {
             ViewPitch -= 0.015f * StickYValue;
         }
     } else {
@@ -481,8 +479,7 @@ void handleAnalogStick(GObj* obj) {
 
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0 ||
-            ZoomSwitchMode == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0)
-        {
+            ZoomSwitchMode == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0) {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
@@ -654,7 +651,6 @@ void processTurnToDirection(GObj* obj) {
 }
 
 static void nullsub(void) {
-
 }
 
 void updateCameraZoomedOut(GObj* obj) {
@@ -790,7 +786,6 @@ void updateCameraZoomedOut(GObj* obj) {
 
 char D_80382D68_523178[] = "\\#S0\\[\\]\\#S1";
 s32 D_80382D78_523188 = 0;
-
 
 void WorldToPlayerCoors(Vec3f* pos) {
     f32 sin;
@@ -1069,7 +1064,7 @@ void processZoomingOut(GObj* obj) {
         y2 -= 2;
         func_80007C20(&gMainCamera->vp, x1, y1, x2, y2);
 
-        gMainCamera->perspMtx.persp.aspect = (f32) (x2 - x1) / (f32) (y2 - y1);
+        gMainCamera->perspMtx.persp.aspect = (f32)(x2 - x1) / (f32)(y2 - y1);
         gMainCamera->perspMtx.persp.fovy = 55.0f - (10.0f - i) * 1.5f;
 
         y4 += 2;
@@ -1202,9 +1197,8 @@ void func_80352F20_4F3330(GObj* arg0) {
 
         for (i = 48; i > 0; i--) {
             if (D_803AE408_54E818 != pokemonID ||
-               ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
-               ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG))
-            {
+                ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+                ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG)) {
                 goto END;
             }
             showPokemonLabel(pokemonID, i & 0xC, &sp3C);
@@ -1215,9 +1209,8 @@ void func_80352F20_4F3330(GObj* arg0) {
 
         for (i = 60; i > 0; i--) {
             if (D_803AE408_54E818 != pokemonID ||
-               ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
-               ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG))
-            {
+                ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+                ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG)) {
                 goto END;
             }
             ohWait(1);
@@ -1996,8 +1989,7 @@ void func_803552B0_4F56C0(GObj* obj) {
     D_80382D08_523118 = 0;
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG) ||
-            ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0)
-        {
+            ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0) {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
@@ -2024,8 +2016,7 @@ void updateTutorialMain(GObj* arg0) {
                D_80382D08_523118 == 0 &&
                gPokemonIdInFocus > 0 &&
                gPokemonIdInFocus <= POKEDEX_MAX &&
-               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80))
-    {
+               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80)) {
         D_80382D08_523118 = 1;
         omCreateProcess(arg0, func_803552B0_4F56C0, 0, 9);
     }
@@ -2243,9 +2234,9 @@ void updateReticleScreenPos(GObj* arg0) {
     if (!IsPaused && IsInputDisabled != TRUE) {
         if (ABS(StickXValue) > 0.0005f) {
             if (gDirectionIndex > 0) {
-                ReticleScreenX += (s32) (5.0f * StickXValue);
+                ReticleScreenX += (s32)(5.0f * StickXValue);
             } else {
-                ReticleScreenX -= (s32) (5.0f * StickXValue);
+                ReticleScreenX -= (s32)(5.0f * StickXValue);
             }
             if (ReticleScreenX > 60) {
                 ReticleScreenX = 60;
@@ -2276,7 +2267,6 @@ void func_80356074_4F6484(GObj* arg0) {
 }
 
 void func_80356118_4F6528(GObjCmdData cmdData) {
-
 }
 
 void updateReticleSpritesPos(GObj* arg0) {
@@ -2689,16 +2679,8 @@ f32 isInScreenCenter(OMCamera* cam, f32 x, f32 y, f32 z) {
     if (cam == NULL) {
         return -1.0f;
     }
-    hal_look_at_f(viewMatrix,
-                  cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
-                  cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
-                  0.0f, 1.0f, 0.0f);
-    hal_perspective_fast_f(projMatrix, &sp5E,
-                           cam->perspMtx.persp.fovy,
-                           cam->perspMtx.persp.aspect,
-                           cam->perspMtx.persp.near,
-                           cam->perspMtx.persp.far,
-                           cam->perspMtx.persp.scale);
+    hal_look_at_f(viewMatrix, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z, 0.0f, 1.0f, 0.0f);
+    hal_perspective_fast_f(projMatrix, &sp5E, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect, cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
     guMtxCatF(viewMatrix, projMatrix, projMatrix);
 
     outX = projMatrix[0][0] * x + projMatrix[1][0] * y + projMatrix[2][0] * z + projMatrix[3][0];
@@ -2717,16 +2699,10 @@ f32 isInScreenCenter(OMCamera* cam, f32 x, f32 y, f32 z) {
 }
 
 f32 matrixDeterminant(Mtx3f m) {
-    f32 det = m[0][0] * m[1][1] * m[2][2]
-            + m[1][0] * m[2][1] * m[0][2]
-            + m[2][0] * m[0][1] * m[1][2]
-            - m[0][2] * m[1][1] * m[2][0]
-            - m[1][2] * m[2][1] * m[0][0]
-            - m[2][2] * m[0][1] * m[1][0];
+    f32 det = m[0][0] * m[1][1] * m[2][2] + m[1][0] * m[2][1] * m[0][2] + m[2][0] * m[0][1] * m[1][2] - m[0][2] * m[1][1] * m[2][0] - m[1][2] * m[2][1] * m[0][0] - m[2][2] * m[0][1] * m[1][0];
 
     return det;
 }
-
 
 f32 worldCoorsToScreen(f32 x, f32 y, f32 z, f32* outX, f32* outY, f32* outZ) {
     Mtx4f viewMatrix;
@@ -2738,16 +2714,8 @@ f32 worldCoorsToScreen(f32 x, f32 y, f32 z, f32* outX, f32* outY, f32* outZ) {
         return -1.0f;
     }
 
-    hal_look_at_f(viewMatrix,
-                  gMainCamera->viewMtx.lookAt.eye.x, gMainCamera->viewMtx.lookAt.eye.y, gMainCamera->viewMtx.lookAt.eye.z,
-                  gMainCamera->viewMtx.lookAt.at.x, gMainCamera->viewMtx.lookAt.at.y, gMainCamera->viewMtx.lookAt.at.z,
-                  0.0f, 1.0f, 0.0f);
-    hal_perspective_fast_f(projMatrix, &perspNorm,
-                           gMainCamera->perspMtx.persp.fovy,
-                           gMainCamera->perspMtx.persp.aspect,
-                           gMainCamera->perspMtx.persp.near,
-                           gMainCamera->perspMtx.persp.far,
-                           gMainCamera->perspMtx.persp.scale);
+    hal_look_at_f(viewMatrix, gMainCamera->viewMtx.lookAt.eye.x, gMainCamera->viewMtx.lookAt.eye.y, gMainCamera->viewMtx.lookAt.eye.z, gMainCamera->viewMtx.lookAt.at.x, gMainCamera->viewMtx.lookAt.at.y, gMainCamera->viewMtx.lookAt.at.z, 0.0f, 1.0f, 0.0f);
+    hal_perspective_fast_f(projMatrix, &perspNorm, gMainCamera->perspMtx.persp.fovy, gMainCamera->perspMtx.persp.aspect, gMainCamera->perspMtx.persp.near, gMainCamera->perspMtx.persp.far, gMainCamera->perspMtx.persp.scale);
     guMtxCatF(viewMatrix, projMatrix, projMatrix);
 
     *outX = projMatrix[0][0] * x + projMatrix[1][0] * y + projMatrix[2][0] * z + projMatrix[3][0];
@@ -2778,16 +2746,8 @@ void screenCoorsToWorld(f32* X, f32* Y, f32* Z) {
     f32 x1, y1, z1, w1;
     f32 invS;
 
-    hal_look_at_f(viewMatrix,
-                  gMainCamera->viewMtx.lookAt.eye.x, gMainCamera->viewMtx.lookAt.eye.y, gMainCamera->viewMtx.lookAt.eye.z,
-                  gMainCamera->viewMtx.lookAt.at.x, gMainCamera->viewMtx.lookAt.at.y, gMainCamera->viewMtx.lookAt.at.z,
-                  gMainCamera->viewMtx.lookAt.up.x, gMainCamera->viewMtx.lookAt.up.y, gMainCamera->viewMtx.lookAt.up.z);
-    hal_perspective_fast_f(projMatrix, &perspNorm,
-                           gMainCamera->perspMtx.persp.fovy,
-                           gMainCamera->perspMtx.persp.aspect,
-                           gMainCamera->perspMtx.persp.near,
-                           gMainCamera->perspMtx.persp.far,
-                           gMainCamera->perspMtx.persp.scale);
+    hal_look_at_f(viewMatrix, gMainCamera->viewMtx.lookAt.eye.x, gMainCamera->viewMtx.lookAt.eye.y, gMainCamera->viewMtx.lookAt.eye.z, gMainCamera->viewMtx.lookAt.at.x, gMainCamera->viewMtx.lookAt.at.y, gMainCamera->viewMtx.lookAt.at.z, gMainCamera->viewMtx.lookAt.up.x, gMainCamera->viewMtx.lookAt.up.y, gMainCamera->viewMtx.lookAt.up.z);
+    hal_perspective_fast_f(projMatrix, &perspNorm, gMainCamera->perspMtx.persp.fovy, gMainCamera->perspMtx.persp.aspect, gMainCamera->perspMtx.persp.near, gMainCamera->perspMtx.persp.far, gMainCamera->perspMtx.persp.scale);
     guMtxCatF(viewMatrix, projMatrix, projMatrix);
 
     // calculate inverse matrix
@@ -2873,7 +2833,7 @@ void fillBorderBlack(Gfx** gfxPtr, s32 xmin, s32 ymin, s32 xmax, s32 ymax) {
 }
 
 void func_80357FD4_4F83E4(GObj* obj) {
-    OMCamera* cam  = obj->data.cam;
+    OMCamera* cam = obj->data.cam;
     Vec3f sp20;
     f32 f2;
 
@@ -2940,8 +2900,7 @@ GObj* createMainCameras(s32 bgColor) {
     GObj* camObj;
     OMCamera* cam;
 
-    camObj = ohCreateCamera(OBJID_MAIN_CAMERA, mainCameraUpdate, LINK_0, 0x80000000, mainCameraRender, 5,
-                            CAM_MASK_DL_LINK_3 | CAM_MASK_DL_LINK_4 | CAM_MASK_DL_LINK_5, -1, FALSE, 1, NULL, 0, 0);
+    camObj = ohCreateCamera(OBJID_MAIN_CAMERA, mainCameraUpdate, LINK_0, 0x80000000, mainCameraRender, 5, CAM_MASK_DL_LINK_3 | CAM_MASK_DL_LINK_4 | CAM_MASK_DL_LINK_5, -1, FALSE, 1, NULL, 0, 0);
     if (camObj == NULL) {
         return NULL;
     }
@@ -2955,10 +2914,7 @@ GObj* createMainCameras(s32 bgColor) {
     MainCameraViewport[2] = 304;
     MainCameraViewport[3] = 232;
     func_80007C20(&cam->vp, MainCameraViewport[0], MainCameraViewport[1], MainCameraViewport[2], MainCameraViewport[3]);
-    setMainCameraViewport(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4,
-                         cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
-                         cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,
-                         cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4);
+    setMainCameraViewport(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4, cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4, cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4, cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4);
     cam->fnPreRender = mainCameraPreRender;
     omCameraAddMtx(cam, MTX_TYPE_PERSP_FAST, 0);
     omCameraAddMtx(cam, MTX_TYPE_LOOKAT_REFLECT_ROLL, 0);
@@ -2984,8 +2940,7 @@ GObj* createMainCameras(s32 bgColor) {
     CameraAtPos.y = cam->viewMtx.lookAt.at.y;
     CameraAtPos.z = cam->viewMtx.lookAt.at.z;
 
-    return ohCreateCamera(OBJID_UI_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, renSpriteCameraRender, 3,
-                          CAM_MASK_DL_LINK_1, -1, FALSE, 0, NULL, 1, 0);
+    return ohCreateCamera(OBJID_UI_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, renSpriteCameraRender, 3, CAM_MASK_DL_LINK_1, -1, FALSE, 0, NULL, 1, 0);
 }
 
 void removeMainCamera(void) {

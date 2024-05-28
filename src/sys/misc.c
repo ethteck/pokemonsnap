@@ -1,13 +1,12 @@
 #include "common.h"
 #include "string.h"
 
-#define F_PI ((f32) M_PI) // M_PI is a double, we want it as a single float.
+#define F_PI ((f32)M_PI) // M_PI is a double, we want it as a single float.
 #define HALF_PI (F_PI / 2.0f)
 
 s32 sRandSeed = 1;
 s32 qsortItemSize = 0;
 s32 (*qsortCompareFunc)(const void*, const void*) = NULL;
-
 
 f32 tanf(f32 arg0) {
     return sinf(arg0) / cosf(arg0);

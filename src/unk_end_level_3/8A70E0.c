@@ -82,8 +82,7 @@ void func_800E1910_8A7130(void) {
     GObj* camObj;
     OMCamera* camera;
 
-    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
-                            func_800E18D0_8A70F0, 0, 1);
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0, func_800E18D0_8A70F0, 0, 1);
     camera = camObj->data.cam;
     camObj->unk_38 = 0x100000;
     camera->flags |= CAMERA_FLAG_4 | CAMERA_FLAG_2;
@@ -120,7 +119,7 @@ s32 func_oaks_lab_800E1AD8(s32 sceneId) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     viApplyScreenSettings(&D_800E6740_8ABF60);
-    D_800E675C_8ABF7C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_3_VRAM_END;
+    D_800E675C_8ABF7C.gtlSetup.heapSize = (uintptr_t)unk_end_level_VRAM - (uintptr_t)unk_end_level_3_VRAM_END;
     omSetupScene(&D_800E675C_8ABF7C);
     return D_800AF3C0;
 }

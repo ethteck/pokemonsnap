@@ -98,7 +98,8 @@ void func_801DC8C0_A084B0(void) {
         sp28,
         "ほれぼれする　しゃしんだね!\n"
         "\\aつぎをみる　\\bもういいや\n"
-        "\\zメッセージを　けす・ひょうじ");
+        "\\zメッセージを　けす・ひょうじ"
+    );
     func_8036D1A4_840954(sp28, 1);
     D_801DD258_A08E48 = sp28;
 }
@@ -249,7 +250,7 @@ s32 func_801DD09C_A08C8C(s32 arg0) {
     D_801DD250_A08E40 = 0x10000000;
     D_801DD24C_A08E3C = 0;
     D_800AF3C0 = SCENE_23;
-    D_801DD14C_A08D3C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_8_VRAM_END;
+    D_801DD14C_A08D3C.gtlSetup.heapSize = (uintptr_t)unk_end_level_VRAM - (uintptr_t)unk_end_level_8_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801DD14C_A08D3C);
 

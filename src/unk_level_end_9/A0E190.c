@@ -123,7 +123,10 @@ void func_800E6F68_A0E4F8(void) {
     s32 leftRight;
     s32 topBottomCur;
 
+    // clang-format off
     leftRightCur = viEdgeOffsetLeft; topBottomCur = viEdgeOffsetTop;
+    // clang-format on
+
     leftRightOrig = leftRightCur;
     topBottomOrig = topBottomCur;
     D_800E8348_A0F8D8->data.sobj->sprite.attr &= ~SP_HIDDEN;

@@ -20,7 +20,7 @@ void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
 void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
-GObj* func_8035E1D4_4FE5E4(void);
+GObj* func_8035E1D4_4FE5E4(GObj*);
 
 void ren_func_800192DC(GObj* obj);
 

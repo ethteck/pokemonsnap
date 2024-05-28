@@ -605,7 +605,7 @@ segments:
     - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
-    - [0x52A7D0, data]
+    - { start: 0x52A7D0, type: .rodata, name: 4FE330, linker_section_order: .data }
     - [0x52A7E0, .data, pokemon]
     - [0x52A870, data]
     - [0x52A880, .data, 503C10]

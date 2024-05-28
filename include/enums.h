@@ -158,6 +158,7 @@ enum PokemonIds {
     PokemonID_MAGIKARP   =  129,
     PokemonID_MEW        =  151,
     POKEDEX_MAX          =  151,
+    PokemonID_1003       = 1003,
     PokemonID_1004       = 1004,
     PokemonID_1007       = 1007,
     PokemonID_1010       = 1010,

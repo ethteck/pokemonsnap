@@ -206,5 +206,6 @@ void Pokemon_TurnToTarget(GObj*, f32, u32);
 void Pokemon_RunToTarget(GObj*, f32, f32, u32);
 GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
+GObj* Pokemon_SpawnOnGroundDlLink4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData);
 
 #endif

@@ -587,6 +587,7 @@ segments:
     - [0x4FEB90, c, pokemon]
     - [0x503C10, c]
     - [0x504770, c]
+    - [0x5047E0, pad, padding_5047E0]
     - [0x5047F0, c]
     - [0x504C00, c]
     - [0x506290, c]

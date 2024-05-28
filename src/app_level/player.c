@@ -197,7 +197,7 @@ void func_80357120_4F7530(GObj*);
 void screenCoorsToWorld(f32*, f32*, f32*);
 void BumpDetector_Init(void);
 void func_8035E37C_4FE78C(void);
-void func_80365B24_505F34(void);
+GObj* func_80365B24_505F34(void);
 void showMessage(char*, s32, s32, u8, u8, u8, u8, s32, u8);
 s32 func_80365E70_506280(void);
 IdleScript* getIdleScript(void);

@@ -55,7 +55,7 @@ void func_801DC930_AA1970(OMCamera* arg0, UnkThing* arg1) {
     }
 }
 
-void func_801DC9BC_AA19FC(void *unused) {
+void func_801DC9BC_AA19FC(void* unused) {
     D_801E550C_AAA54C = 1;
 }
 
@@ -78,7 +78,6 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
             count++;
             D_801E55E0_AAA620[idx] = temp_v0;
         }
-
     }
     if (count < 4) {
         func_801DC8A0_AA18E0(2);
@@ -154,7 +153,7 @@ void func_801DCCDC_AA1D1C(void) {
     D_801E5510_AAA550.zBuffer = gtlMalloc(0x96000, 0x40);
     viApplyScreenSettings(&D_801E5510_AAA550);
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 2, -1);
-    cam = ohCreateCamera(1, (void*) func_801DCCD4_AA1D14, 0, 0x80000000, ren_func_800192DC, 5, 1 << D_801E54BC_AAA4FC, -1, 0, 1, NULL, 0, 0);
+    cam = ohCreateCamera(1, (void*)func_801DCCD4_AA1D14, 0, 0x80000000, ren_func_800192DC, 5, 1 << D_801E54BC_AAA4FC, -1, 0, 1, NULL, 0, 0);
     if (cam == NULL) {
         func_801DC8A0_AA18E0(4);
     }

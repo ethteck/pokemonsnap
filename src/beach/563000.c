@@ -206,7 +206,7 @@ void func_beach_802CBA48(GObj* obj) {
     ohWait(0x3C);
     func_8001FCE8(&sp34, pokemon->path, 0.99999f);
     temp_f0 = atan2f(sp34.x, sp34.z);
-    temp_f20 = temp_f0 - ((s32) (temp_f0 / 6.2831855f) * 6.2831855f);
+    temp_f20 = temp_f0 - ((s32)(temp_f0 / 6.2831855f) * 6.2831855f);
     while (Pokemon_Turn(model, temp_f20, 0.13962634f) == 0) {
         ohWait(1);
     }

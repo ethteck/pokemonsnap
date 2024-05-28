@@ -6,27 +6,27 @@
 #include <PR/ultratypes.h>
 
 enum SCTaskType {
-    SC_TASK_TYPE_GFX                = 1,
-    SC_TASK_TYPE_AUDIO              = 2,
-    SC_TASK_TYPE_ADD_CLIENT         = 3,
-    SC_TASK_TYPE_VI                 = 4,
-    SC_TASK_TYPE_FRAMEBUFFERS       = 5,
-    SC_TASK_TYPE_GFX_END            = 6,
-    SC_TASK_TYPE_NOP                = 7,
-    SC_TASK_TYPE_RDP_BUFFER         = 8,
-    SC_TASK_TYPE_CUSTOM_BUFFERING   = 9,
-    SC_TASK_TYPE_DEFAULT_BUFFERING  = 10,
-    SC_TASK_TYPE_11                 = 11
+    SC_TASK_TYPE_GFX = 1,
+    SC_TASK_TYPE_AUDIO = 2,
+    SC_TASK_TYPE_ADD_CLIENT = 3,
+    SC_TASK_TYPE_VI = 4,
+    SC_TASK_TYPE_FRAMEBUFFERS = 5,
+    SC_TASK_TYPE_GFX_END = 6,
+    SC_TASK_TYPE_NOP = 7,
+    SC_TASK_TYPE_RDP_BUFFER = 8,
+    SC_TASK_TYPE_CUSTOM_BUFFERING = 9,
+    SC_TASK_TYPE_DEFAULT_BUFFERING = 10,
+    SC_TASK_TYPE_11 = 11
 };
 
 enum SCTaskState {
-    SC_TASK_STATE_0                 = 0,
-    SC_TASK_STATE_QUEUED            = 1,
-    SC_TASK_STATE_RUNNUNG           = 2,
-    SC_TASK_STATE_PRIORITY_PENDING  = 3,
-    SC_TASK_STATE_SUSPENDING        = 4,
-    SC_TASK_STATE_SUSPENDED         = 5,
-    SC_TASK_STATE_STOPPED           = 6
+    SC_TASK_STATE_0 = 0,
+    SC_TASK_STATE_QUEUED = 1,
+    SC_TASK_STATE_RUNNUNG = 2,
+    SC_TASK_STATE_PRIORITY_PENDING = 3,
+    SC_TASK_STATE_SUSPENDING = 4,
+    SC_TASK_STATE_SUSPENDED = 5,
+    SC_TASK_STATE_STOPPED = 6
 };
 
 struct SCTaskInfo;
@@ -116,7 +116,7 @@ void scExecuteBlocking(SCTaskInfo* task);
 s32 func_80000B84(SCTaskInfo* t);
 void scRemovePostProcessFunc(void);
 s32 scCheckGfxTaskDefault(SCTaskGfx*);
-void scMain(void *arg);
+void scMain(void* arg);
 void scSetPostProcessFunc(void (*fn)(void*));
 
 #endif

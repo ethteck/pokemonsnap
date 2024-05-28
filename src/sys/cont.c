@@ -8,14 +8,14 @@
 #include "types.h"
 
 // TODO can't use #include "PR/os_motor.h"
-#define MOTOR_START		1
-#define MOTOR_STOP		0
-#define	osMotorStart(x)		__osMotorAccess((x), MOTOR_START)
-#define	osMotorStop(x)		__osMotorAccess((x), MOTOR_STOP)
-extern s32 __osMotorAccess(OSPfs *, s32);
+#define MOTOR_START 1
+#define MOTOR_STOP 0
+#define osMotorStart(x) __osMotorAccess((x), MOTOR_START)
+#define osMotorStop(x) __osMotorAccess((x), MOTOR_STOP)
+extern s32 __osMotorAccess(OSPfs*, s32);
 
-#define OS_PFS_CHECK_ID     0xFE
-#define PFS_FORCE           1
+#define OS_PFS_CHECK_ID 0xFE
+#define PFS_FORCE 1
 
 enum ControllerEventTypes {
     CONT_EVENT_READ_AND_UPDATE_GLOBALS = 1,
@@ -76,7 +76,7 @@ typedef struct {
 typedef struct {
     /* 0x00 */ s32 type;
     /* 0x04 */ OSMesg mesg;
-    /* 0x08 */ OSMesgQueue *cbQueue;
+    /* 0x08 */ OSMesgQueue* cbQueue;
 } ControllerEvent; // size = 0x0C
 
 typedef struct {
@@ -132,8 +132,8 @@ typedef struct {
     /* 0x04 */ ControllerEventPrinter event;
 } ControllerEventPrinterWrapper;
 
-extern s32 __osContRamRead(OSMesgQueue *, int, u16, u8 *);
-extern s32 __osContRamWrite(OSMesgQueue *, int, u16, u8 *, int);
+extern s32 __osContRamRead(OSMesgQueue*, int, u16, u8*);
+extern s32 __osContRamWrite(OSMesgQueue*, int, u16, u8*, int);
 
 OSMesgQueue contSIEvtQueue;
 OSMesg contSIEvtQueueMessages[1];
@@ -210,36 +210,35 @@ void contDetectDevices(void) {
 
         if (sContStatus[i].errno == 0 &&
             (sContStatus[i].status & CONT_CARD_ON) &&
-            (!(sContInfo[i].status & CONT_CARD_ON) || sContInfo[i].errno != 0))
-        {
+            (!(sContInfo[i].status & CONT_CARD_ON) || sContInfo[i].errno != 0)) {
             // new device inserted
             for (j = 0; j < BLOCKSIZE; j++) {
                 contRamDataBlock[j] = OS_PFS_CHECK_ID;
             }
-            ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+            ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
             if (ret == PFS_ERR_NEW_PACK) {
-                ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
             }
             if (ret != 0) {
                 continue;
             }
 
-            ret =  __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
+            ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
             if (ret == 0 && contRamDataBlock[0x1F] == OS_PFS_CHECK_ID) {
                 sContDeviceTypes[i] = CONT_DEV_TYPE_NONE;
             } else {
                 for (j = 0; j < BLOCKSIZE; j++) {
                     contRamDataBlock[j] = 0x85; // what does 0x85 mean?
                 }
-                ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
                 if (ret == PFS_ERR_NEW_PACK) {
-                    ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                    ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
                 }
                 if (ret != 0) {
                     continue;
                 }
 
-                ret =  __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
+                ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
                 if (ret == 0 && contRamDataBlock[0x1F] == 0x85) {
                     sContDeviceTypes[i] = CONT_DEV_TYPE_PRINTER;
                     if (contPrinterQueue.msg == NULL) {
@@ -329,8 +328,8 @@ void contUpdateGlobals(void) {
             gContInput[i].stickY = sContInfo[i].stick_y;
 
             sContInfo[i].pressedButtonsAccum =
-            sContInfo[i].releasedButtonsAccum =
-            sContInfo[i].heldButtonsAccum = 0;
+                sContInfo[i].releasedButtonsAccum =
+                    sContInfo[i].heldButtonsAccum = 0;
         }
     }
     contUpdateControllerIndices();
@@ -362,30 +361,30 @@ void contInitialize(void) {
             for (j = 0; j < BLOCKSIZE; j++) {
                 contRamDataBlock[j] = OS_PFS_CHECK_ID;
             }
-            ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+            ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
             if (ret == PFS_ERR_NEW_PACK) {
-                ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
             }
             if (ret != 0) {
                 continue;
             }
 
-            ret =  __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
+            ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
             if (ret == 0 && contRamDataBlock[0x1F] == OS_PFS_CHECK_ID) {
                 sContDeviceTypes[i] = CONT_DEV_TYPE_NONE;
             } else {
                 for (j = 0; j < BLOCKSIZE; j++) {
                     contRamDataBlock[j] = 0x85;
                 }
-                ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
                 if (ret == PFS_ERR_NEW_PACK) {
-                    ret =  __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
+                    ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
                 }
                 if (ret != 0) {
                     continue;
                 }
 
-                ret =  __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
+                ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
                 if (ret == 0 && contRamDataBlock[0x1F] == 0x85) {
                     sContDeviceTypes[i] = CONT_DEV_TYPE_PRINTER;
                     osCreateMesgQueue(&contPrinterQueue, contPrinterMessages, ARRAY_COUNT(contPrinterMessages));
@@ -452,12 +451,12 @@ void contInitialize(void) {
     contDetectCounter = contDetectInterval = 1;
 }
 
-void contSendEvent(ControllerEvent *evt) {
+void contSendEvent(ControllerEvent* evt) {
     OSMesg mesg[1];
     OSMesgQueue queue;
 
     osCreateMesgQueue(&queue, mesg, ARRAY_COUNT(mesg));
-    evt->mesg    = (OSMesg)1;
+    evt->mesg = (OSMesg)1;
     evt->cbQueue = &queue;
 
     osSendMesg(&contEventQueue, (OSMesg)evt, OS_MESG_NOBLOCK);
@@ -508,7 +507,7 @@ void contExecuteRumbleCommand(s32 contNo, s32 cmd) {
     }
 
     if (i == MAXCONTROLLERS) {
-        osRecvMesg(&contRumblePakQueue, (OSMesg *)&i, OS_MESG_BLOCK);
+        osRecvMesg(&contRumblePakQueue, (OSMesg*)&i, OS_MESG_BLOCK);
     } else {
         sContEventRumble[i].busy = TRUE;
     }
@@ -539,7 +538,7 @@ void contExecuteGbpakCommand(s32 contNo, u16 direction, u16 addr, u8* buffer, u1
     }
 
     if (i == MAXCONTROLLERS) {
-        osRecvMesg(&contGameBoyPakQueue, (OSMesg *)&i, OS_MESG_BLOCK);
+        osRecvMesg(&contGameBoyPakQueue, (OSMesg*)&i, OS_MESG_BLOCK);
     } else {
         sContEventGameBoy[i].busy = TRUE;
     }
@@ -615,12 +614,12 @@ void contPrinterExecute(s32 contNo, u16 direction, u16 value) {
 void contPrinterReadWrite(ControllerEventPrinter* arg0) {
     switch (arg0->direction) {
         case OS_READ:
-            __osContRamRead(&contSIEvtQueue, arg0->contNo, (0xC000/BLOCKSIZE), contRamDataBlock);
+            __osContRamRead(&contSIEvtQueue, arg0->contNo, (0xC000 / BLOCKSIZE), contRamDataBlock);
             arg0->value = contRamDataBlock[0x1F];
             break;
         case OS_WRITE:
             contRamDataBlock[0x1F] = arg0->value;
-            __osContRamWrite(&contSIEvtQueue, arg0->contNo, (0xC000/BLOCKSIZE), contRamDataBlock, PFS_FORCE);
+            __osContRamWrite(&contSIEvtQueue, arg0->contNo, (0xC000 / BLOCKSIZE), contRamDataBlock, PFS_FORCE);
             break;
     }
 }
@@ -649,113 +648,105 @@ void contPrinterSendCommand(u8 value) {
     osRecvMesg(&contPrinterQueue, &mesg, OS_MESG_BLOCK);
 }
 
-void contHandleEvent(ControllerEvent *evt) {
+void contHandleEvent(ControllerEvent* evt) {
     switch (evt->type) {
-        case CONT_EVENT_READ_AND_UPDATE_GLOBALS:
-            {
-                contReadData();
+        case CONT_EVENT_READ_AND_UPDATE_GLOBALS: {
+            contReadData();
+            contUpdateGlobals();
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
+            }
+            break;
+        }
+        case CONT_EVENT_UPDATE_GLOBALS: {
+            if (sNeedUpdateGlobals) {
                 contUpdateGlobals();
                 if (evt->cbQueue != NULL) {
                     osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
                 }
-                break;
-            }
-        case CONT_EVENT_UPDATE_GLOBALS:
-            {
-                if (sNeedUpdateGlobals) {
-                    contUpdateGlobals();
-                    if (evt->cbQueue != NULL) {
-                        osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                    }
-                } else {
+            } else {
                     // call contUpdateGlobals() on next game tick
-                    sEventUpdateGlobals = evt;
-                }
-                break;
+                sEventUpdateGlobals = evt;
             }
-        case CONT_EVENT_HOLD_PARAMS:
-            {
-                ControllerEventTypeHoldParams* evtHoldParams = (ControllerEventTypeHoldParams*)evt;
-                s32 i;
-                for (i = 0; i < MAXCONTROLLERS; i++) {
-                    sContInfo[i].holdDelay = evtHoldParams->holdDelay;
-                    sContInfo[i].holdInterval = evtHoldParams->holdInterval;
-                }
+            break;
+        }
+        case CONT_EVENT_HOLD_PARAMS: {
+            ControllerEventTypeHoldParams* evtHoldParams = (ControllerEventTypeHoldParams*)evt;
+            s32 i;
+            for (i = 0; i < MAXCONTROLLERS; i++) {
+                sContInfo[i].holdDelay = evtHoldParams->holdDelay;
+                sContInfo[i].holdInterval = evtHoldParams->holdInterval;
+            }
 
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
             }
-        case CONT_EVENT_UPDATE_EVERY_TICK:
-            {
-                ControllerEventUpdateEveryTick* evtUpdateEveryTick = (ControllerEventUpdateEveryTick*)evt;
-                sUpdateEveryTickEnabled = evtUpdateEveryTick->enabled;
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            break;
+        }
+        case CONT_EVENT_UPDATE_EVERY_TICK: {
+            ControllerEventUpdateEveryTick* evtUpdateEveryTick = (ControllerEventUpdateEveryTick*)evt;
+            sUpdateEveryTickEnabled = evtUpdateEveryTick->enabled;
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
             }
-        case CONT_EVENT_DETECT_INTERVAL:
-            {
-                ControllerEventDetectParams* evtDetectParams = (ControllerEventDetectParams*)evt;
-                contDetectInterval = evtDetectParams->interval;
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            break;
+        }
+        case CONT_EVENT_DETECT_INTERVAL: {
+            ControllerEventDetectParams* evtDetectParams = (ControllerEventDetectParams*)evt;
+            contDetectInterval = evtDetectParams->interval;
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
             }
-        case CONT_EVENT_RUMBLE_PAK:
-            {
-                ControllerEventRumble* evtRumble = (ControllerEventRumble*)evt;
+            break;
+        }
+        case CONT_EVENT_RUMBLE_PAK: {
+            ControllerEventRumble* evtRumble = (ControllerEventRumble*)evt;
 
-                if (!sContInfo[evtRumble->contNo].errno && (sContInfo[evtRumble->contNo].status & CONT_CARD_ON)) {
-                    switch (evtRumble->cmd) {
-                        case RUMBLE_CMD_INIT:
-                            osMotorInit(&contSIEvtQueue, &contPfs[evtRumble->contNo], evtRumble->contNo);
-                            break;
-                        case RUMBLE_CMD_START:
-                            if (!scBeforeReset) {
-                                osMotorStart(&contPfs[evtRumble->contNo]);
-                            }
-                            break;
-                        case RUMBLE_CMD_STOP:
-                            osMotorStop(&contPfs[evtRumble->contNo]);
-                            break;
-                    }
+            if (!sContInfo[evtRumble->contNo].errno && (sContInfo[evtRumble->contNo].status & CONT_CARD_ON)) {
+                switch (evtRumble->cmd) {
+                    case RUMBLE_CMD_INIT:
+                        osMotorInit(&contSIEvtQueue, &contPfs[evtRumble->contNo], evtRumble->contNo);
+                        break;
+                    case RUMBLE_CMD_START:
+                        if (!scBeforeReset) {
+                            osMotorStart(&contPfs[evtRumble->contNo]);
+                        }
+                        break;
+                    case RUMBLE_CMD_STOP:
+                        osMotorStop(&contPfs[evtRumble->contNo]);
+                        break;
                 }
+            }
 
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
             }
-        case CONT_EVENT_GB_PAK:
-            {
-                ControllerEventGbpak* evtGbpak = (ControllerEventGbpak*)evt;
-                if (!sContInfo[evtGbpak->contNo].errno && (sContInfo[evtGbpak->contNo].status & CONT_CARD_ON)) {
-                    contGbpakReadWrite(evtGbpak);
-                }
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            break;
+        }
+        case CONT_EVENT_GB_PAK: {
+            ControllerEventGbpak* evtGbpak = (ControllerEventGbpak*)evt;
+            if (!sContInfo[evtGbpak->contNo].errno && (sContInfo[evtGbpak->contNo].status & CONT_CARD_ON)) {
+                contGbpakReadWrite(evtGbpak);
             }
-        case CONT_EVENT_PRINTER:
-            {
-                ControllerEventPrinter* evtPrinter = (ControllerEventPrinter*)evt;
-                if (!sContInfo[evtPrinter->contNo].errno && (sContInfo[evtPrinter->contNo].status & CONT_CARD_ON)) {
-                    contPrinterReadWrite(evtPrinter);
-                }
-                if (evt->cbQueue != NULL) {
-                    osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
-                }
-                break;
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
             }
+            break;
+        }
+        case CONT_EVENT_PRINTER: {
+            ControllerEventPrinter* evtPrinter = (ControllerEventPrinter*)evt;
+            if (!sContInfo[evtPrinter->contNo].errno && (sContInfo[evtPrinter->contNo].status & CONT_CARD_ON)) {
+                contPrinterReadWrite(evtPrinter);
+            }
+            if (evt->cbQueue != NULL) {
+                osSendMesg(evt->cbQueue, evt->mesg, OS_MESG_NOBLOCK);
+            }
+            break;
+        }
     }
 }
 
-void contMain(UNUSED void *arg) {
+void contMain(UNUSED void* arg) {
     OSMesg mesg;
 
     contInitialize();
@@ -789,7 +780,7 @@ void contMain(UNUSED void *arg) {
             }
             sEventUpdateGlobals = NULL;
         } else {
-            contHandleEvent((ControllerEvent *)mesg);
+            contHandleEvent((ControllerEvent*)mesg);
         }
     }
 }

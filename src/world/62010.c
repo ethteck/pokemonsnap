@@ -94,11 +94,10 @@ void func_800E4B60_62310(Mtx4f dst, Mtx4f src) {
 
 // added to match extra "jr ra; nop"
 static void nullsub() {
-
 }
 
 void func_800E4BCC_6237C(Mtx4f dst) {
-    static struct MatrixStruct D_800E6B44_642F4 = { 1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1 };
+    static struct MatrixStruct D_800E6B44_642F4 = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
     dst[0][0] = D_800E6B44_642F4.x00;
     dst[0][1] = D_800E6B44_642F4.x01;
     dst[0][2] = D_800E6B44_642F4.x02;
@@ -295,7 +294,7 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
             }
             sp34 = f2;
         }
-    } else if (arg0->x < arg2 || arg0->x > arg3){
+    } else if (arg0->x < arg2 || arg0->x > arg3) {
         return FALSE;
     }
 
@@ -335,7 +334,7 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
             }
             sp34 = f2;
         }
-    } else if (arg0->y < arg4 || arg0->y > arg5){
+    } else if (arg0->y < arg4 || arg0->y > arg5) {
         return FALSE;
     }
 
@@ -375,7 +374,7 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
             }
             sp34 = f2;
         }
-    } else if (arg0->z < arg6 || arg0->z > arg7){
+    } else if (arg0->z < arg6 || arg0->z > arg7) {
         return FALSE;
     }
 
@@ -589,7 +588,7 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
     sp54 = sqrtf(SQ(arg1->x) + SQ(arg1->y) + SQ(arg1->z));
     sp4C = sp54 / sqrtf(SQ(sp64.x) + SQ(sp64.y) + SQ(sp64.z));
 
-    switch(arg3->unk_04->unk_00) {
+    switch (arg3->unk_04->unk_00) {
         case 1:
             if (func_800E55C0_62D70(&sp7C, &sp64, &sp70, arg3->unk_04->unk_84, arg4, arg5)) {
                 sp50 = sqrtf(SQ(arg5->x) + SQ(arg5->y) + SQ(arg5->z));
@@ -621,7 +620,9 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
             }
             break;
         case 4:
-            if (1) { } if (1) { } if (1) { } // TODO fake match
+            if (1) {}
+            if (1) {}
+            if (1) {} // TODO fake match
             sp58.x = arg3->unk_04->unk_84;
             sp58.y = arg3->unk_04->unk_88;
             sp58.z = arg3->unk_04->unk_8C;
@@ -825,7 +826,6 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
     Mtx4f spAC;
     Mtx4f sp6C;
     f32 sp68;
-
 
     sp114.x = arg5.x / 100.0f;
     sp114.y = arg5.y / 100.0f;

@@ -17,7 +17,6 @@ void getMovementPos(WorldBlock* block, f32 moveTime, f32 cpTime, f32* posX, f32*
     DObj* firstCP;
     DObj* secondCP;
 
-
     *posX = *posY = *posZ = *rotX = *rotY = *rotZ = *speed = 0;
 
     if (block == NULL) {
@@ -31,8 +30,7 @@ void getMovementPos(WorldBlock* block, f32 moveTime, f32 cpTime, f32* posX, f32*
     }
     if (block->descriptor == NULL ||
         block->descriptor->gfx == NULL ||
-        block->descriptor->gfx->movementAnim == NULL)
-    {
+        block->descriptor->gfx->movementAnim == NULL) {
         return;
     }
 
@@ -119,13 +117,12 @@ void getNextBlockSpeed(WorldBlock* arg0, f32 cpTime, f32* speed) {
     DObj* secondCP;
     WorldBlock* block = arg0;
 
-    if (arg0 ==NULL ||
+    if (arg0 == NULL ||
         arg0->blockUV == NULL ||
         arg0->cpObjects == NULL ||
         arg0->descriptor == NULL ||
         arg0->descriptor->gfx == NULL ||
-        arg0->descriptor->gfx->movementAnim == NULL)
-    {
+        arg0->descriptor->gfx->movementAnim == NULL) {
         return;
     }
 
@@ -196,8 +193,7 @@ void Movement_UpdatePos(WorldBlock* block, f32 moveTime, f32 cpTime, MovementSta
         block->next->descriptor->gfx == NULL ||
         block->next->descriptor->gfx->uvScrollAnim == NULL ||
         block->next->descriptor->gfx->movementAnim == NULL ||
-        block->next->descriptor->gfx->numControlPoints < 2)
-    {
+        block->next->descriptor->gfx->numControlPoints < 2) {
         animSpeed = speed;
     } else {
         getNextBlockSpeed(block->next, cpTime, &nextBlockSpeed);
@@ -287,7 +283,6 @@ void Movement_Init(MovementState* state, s32 blockID, void (*exitBlockCB)(WorldB
     f32 f0, f2;
     WorldBlock* block;
 
-
     Movement_ExitBlockCB = exitBlockCB;
     Movement_UpdateCB = updateMovementCB;
 
@@ -317,4 +312,3 @@ void Movement_Init(MovementState* state, s32 blockID, void (*exitBlockCB)(WorldB
         Movement_UpdatePos(block, f0, f2, state);
     }
 }
-

@@ -40,7 +40,7 @@ void func_802E2784_5DF854(WorldBlock* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2BB0_5DFC80.s")
 
 s32 func_802E2BB8_5DFC88(s32 arg0) {
-    D_802EE150_5EB220.gtlSetup.heapSize = (uintptr_t) tunnel_code_VRAM - (uintptr_t) _162CB0_VRAM_END;
+    D_802EE150_5EB220.gtlSetup.heapSize = (uintptr_t)tunnel_code_VRAM - (uintptr_t)_162CB0_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_802EE150_5EB220);

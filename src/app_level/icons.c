@@ -2,14 +2,14 @@
 #include "app_level.h"
 
 enum IconSpriteIds {
-    ICON_ID_APPLE       = 0,
+    ICON_ID_APPLE = 0,
     ICON_ID_PESTER_BALL = 1,
-    ICON_ID_FLUTE       = 2,
-    ICON_ID_ZOOM        = 3,
-    ICON_ID_DASH        = 4,
+    ICON_ID_FLUTE = 2,
+    ICON_ID_ZOOM = 3,
+    ICON_ID_DASH = 4,
     ICON_ID_DASH_ZOOMED = 5,
-    ICON_ID_TAKE_PHOTO  = 6,
-    ICON_ID_ZOOM_OFF    = 7
+    ICON_ID_TAKE_PHOTO = 6,
+    ICON_ID_ZOOM_OFF = 7
 };
 
 typedef struct SpriteDefStruct {
@@ -45,15 +45,15 @@ u32 EndOfSpriteData[] = {
 };
 
 SpriteStruct Icons_IconObjects[] = {
-    { 148, 104, NULL, 0, 0, NULL},
-    { 124,  80, NULL, 0, 0, NULL},
-    { 148,  80, NULL, 0, 0, NULL},
-    { 172,  80, NULL, 0, 0, NULL},
-    { 124, 104, NULL, 0, 0, NULL},
-    { 172, 104, NULL, 0, 0, NULL},
-    { 124, 128, NULL, 0, 0, NULL},
-    { 148, 128, NULL, 0, 0, NULL},
-    { 172, 128, NULL, 0, 0, NULL},
+    { 148, 104, NULL, 0, 0, NULL },
+    { 124, 80, NULL, 0, 0, NULL },
+    { 148, 80, NULL, 0, 0, NULL },
+    { 172, 80, NULL, 0, 0, NULL },
+    { 124, 104, NULL, 0, 0, NULL },
+    { 172, 104, NULL, 0, 0, NULL },
+    { 124, 128, NULL, 0, 0, NULL },
+    { 148, 128, NULL, 0, 0, NULL },
+    { 172, 128, NULL, 0, 0, NULL },
 };
 s32 D_80388204_528614[] = { ITEM_ID_APPLE, ITEM_ID_PESTER_BALL, ITEM_ID_POKEFLUTE };
 SObj* Icons_ButtonIconsCopy[] = { NULL, NULL, NULL };
@@ -85,7 +85,6 @@ extern s32 Icons_MoveOutCounter[8];
 void Icons_FinishZoomIn(GObj*);
 
 void Icons_UpdateDefault(GObj* arg0) {
-
 }
 
 void func_8035CBB8_4FCFC8(Sprite* arg0, Sprite* arg1) {

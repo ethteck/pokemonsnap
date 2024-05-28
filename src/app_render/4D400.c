@@ -25,11 +25,11 @@ void func_800A1A74(s32 arg0) {
     f32 sin;
     s32 var_a1;
 
-    theta = ((f32) (arg0 * 0.25) * M_PI_F) / 180.0f;
+    theta = ((f32)(arg0 * 0.25) * M_PI_F) / 180.0f;
     cos = __cosf(theta) * 127.0;
     sin = __sinf(theta);
     D_800AEBD0.unk_10 = cos;
-    D_800AEBD0.unk_11 = (f32) (sin * 127.0);
+    D_800AEBD0.unk_11 = (f32)(sin * 127.0);
     D_800AEBD0.unk_12 = 0;
 
     if (arg0 >= 880 && arg0 <= 1280) {

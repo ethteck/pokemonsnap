@@ -685,7 +685,7 @@ s32 func_800C042C_5D2CC(void) {
     s32 var_v1;
     u8* var_v0;
 
-    var_v0 = (u8*) D_800C21B0_5F050;
+    var_v0 = (u8*)D_800C21B0_5F050;
     for (var_v1 = 0; var_v1 < sizeof(UnkBigBoy); var_v1++) {
         *(var_v0++) = 0;
     }
@@ -711,10 +711,10 @@ s32 func_800C042C_5D2CC(void) {
     D_800C21B0_5F050->data.unk_64_16 = 0x24;
     D_800C20F0_5EF90 = 0;
     D_800C20F4_5EF94 = 0;
-    D_800C21B0_5F050->data.unk_20 = (uintptr_t) D_800C21B0_5F050->data.unk_6C - (uintptr_t) D_800C21B0_5F050;
-    D_800C21B0_5F050->data.unk_24 = (uintptr_t) D_800C21B0_5F050->data.unk_180 - (uintptr_t) D_800C21B0_5F050;
-    D_800C21B0_5F050->data.unk_28 = (uintptr_t) D_800C21B0_5F050->data.unk_FBA0 - (uintptr_t) D_800C21B0_5F050;
-    D_800C21B0_5F050->data.unk_2C = (uintptr_t) D_800C21B0_5F050->data.var_10A20 - (uintptr_t) D_800C21B0_5F050;
+    D_800C21B0_5F050->data.unk_20 = (uintptr_t)D_800C21B0_5F050->data.unk_6C - (uintptr_t)D_800C21B0_5F050;
+    D_800C21B0_5F050->data.unk_24 = (uintptr_t)D_800C21B0_5F050->data.unk_180 - (uintptr_t)D_800C21B0_5F050;
+    D_800C21B0_5F050->data.unk_28 = (uintptr_t)D_800C21B0_5F050->data.unk_FBA0 - (uintptr_t)D_800C21B0_5F050;
+    D_800C21B0_5F050->data.unk_2C = (uintptr_t)D_800C21B0_5F050->data.var_10A20 - (uintptr_t)D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_30 = osGetTime();
     func_800BF1F0_5C090();
     return 0;
@@ -724,7 +724,7 @@ s32 func_800C05D4_5D474(void) {
     s32 temp_v0;
 
     // Align to a multiple of 16
-    D_800C21B0_5F050 = (UnkBigBoy*) ((s32) (&D_800C21B8_5F058) + 0xF & ~0xF);
+    D_800C21B0_5F050 = (UnkBigBoy*)((s32)(&D_800C21B8_5F058) + 0xF & ~0xF);
 
     func_800C0B48_5D9E8();
     func_800BF37C_5C21C();

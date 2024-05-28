@@ -23,23 +23,23 @@ void func_800E28C0_A5DC70(void);
 u8** func_800E18B4_A5CC64(s32 arg0);
 
 void func_800E2200_A5D5B0(void) {
-    if (menu_new_game_CursorY< 19) {
+    if (menu_new_game_CursorY < 19) {
         func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY* 10 + 22);
+        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
     if (menu_new_game_CursorX < 2) {
         func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY* 10 + 22);
+        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
     func_80370038_8437E8(15, 5);
-    func_8036FFE0_843790(63, menu_new_game_CursorY* 10 + 22);
+    func_8036FFE0_843790(63, menu_new_game_CursorY * 10 + 22);
 }
 
 void func_800E2314_A5D6C4(void) {
     menu_new_game_CursorX = 2;
-    menu_new_game_CursorY= 19;
+    menu_new_game_CursorY = 19;
     func_800E2200_A5D5B0();
     auPlaySound(65);
 }
@@ -54,7 +54,7 @@ void func_800E2350_A5D700(void) {
 }
 
 void func_800E2384_A5D734(void) {
-    menu_new_game_CursorX = menu_new_game_CursorY= D_80168128 = 0;
+    menu_new_game_CursorX = menu_new_game_CursorY = D_80168128 = 0;
     D_8016812C = 0;
 }
 
@@ -65,11 +65,11 @@ void func_800E23B0_A5D760(void) {
 }
 
 void func_800E23E0_A5D790(s32 buttons) {
-    if (menu_new_game_CursorY< 19) {
+    if (menu_new_game_CursorY < 19) {
         if (buttons & 0x10000) {
             menu_new_game_CursorY--;
-            if (menu_new_game_CursorY< 0) {
-                menu_new_game_CursorY= 19;
+            if (menu_new_game_CursorY < 0) {
+                menu_new_game_CursorY = 19;
             }
         }
         if (buttons & 0x20000) {
@@ -85,7 +85,7 @@ void func_800E23E0_A5D790(s32 buttons) {
             menu_new_game_CursorX++;
             menu_new_game_CursorX %= 5;
         }
-        if (menu_new_game_CursorY>= 19) {
+        if (menu_new_game_CursorY >= 19) {
             D_80168128 = menu_new_game_CursorX;
             menu_new_game_CursorX = menu_new_game_CursorX / 3;
             auPlaySound(65);
@@ -98,7 +98,7 @@ void func_800E23E0_A5D790(s32 buttons) {
         }
         if (buttons & 0x20000) {
             menu_new_game_CursorY++;
-            menu_new_game_CursorY= menu_new_game_CursorY% 20;
+            menu_new_game_CursorY = menu_new_game_CursorY % 20;
         }
         if (buttons & 0x80000) {
             menu_new_game_CursorX--;
@@ -112,7 +112,7 @@ void func_800E23E0_A5D790(s32 buttons) {
                 menu_new_game_CursorX = 2;
             }
         }
-        if (menu_new_game_CursorY< 19) {
+        if (menu_new_game_CursorY < 19) {
             menu_new_game_CursorX = D_80168128;
             auPlaySound(69);
         } else {
@@ -171,7 +171,7 @@ void func_800E26A0_A5DA50(void) {
 }
 
 void func_800E270C_A5DABC(void) {
-    if (menu_new_game_CursorY< 19) {
+    if (menu_new_game_CursorY < 19) {
         func_800E25C0_A5D970();
         auPlaySound(66);
     } else {
@@ -247,7 +247,7 @@ void func_800E28C0_A5DC70(void) {
         auPlaySoundWithParams(96, 0x7FFF, 84, 1.0f, 10);
     }
 
-    func_800BF44C_5C2EC((PlayerName*) D_80168130); // todo cast ??
+    func_800BF44C_5C2EC((PlayerName*)D_80168130); // todo cast ??
     auPlaySound(66);
 }
 
@@ -272,7 +272,7 @@ void func_800E2A84_A5DE34(char* arg0) {
     sp1A = func_8036D4F0_840CA0(D_80168130) + 203;
     unk_48 = D_80168148->data.sobj;
     SET_SPRITE_POS(unk_48->sprite, sp1A, 64);
-    if (D_80168143 >= 14 || menu_new_game_CursorY>= 19) {
+    if (D_80168143 >= 14 || menu_new_game_CursorY >= 19) {
         if (D_80168143 < 14) {
             D_8016814C = 1;
         } else {
@@ -282,8 +282,8 @@ void func_800E2A84_A5DE34(char* arg0) {
         return;
     }
     temp_v0 = func_800E18B4_A5CC64(D_8016812C);
-    arg0[0] = temp_v0[menu_new_game_CursorY* 5 + menu_new_game_CursorX][0];
-    arg0[1] = temp_v0[menu_new_game_CursorY* 5 + menu_new_game_CursorX][1];
+    arg0[0] = temp_v0[menu_new_game_CursorY * 5 + menu_new_game_CursorX][0];
+    arg0[1] = temp_v0[menu_new_game_CursorY * 5 + menu_new_game_CursorX][1];
     arg0[2] = 0;
     if (func_800E2A24_A5DDD4(arg0) != 0) {
         D_8016814C = 1;

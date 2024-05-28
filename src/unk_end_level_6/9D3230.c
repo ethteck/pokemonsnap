@@ -85,7 +85,8 @@ void func_801DC904_9D3274(s32 arg0, s32 arg1) {
     gDPSetRenderMode(
         gfx++,
         AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0),
-        AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
+        AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2
+    );
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
 
     gMainGfxPos[0] = gfx;
@@ -141,7 +142,7 @@ s32 func_801DCC74_9D35E4(s32 sceneId) {
     UNUSED s32 pad[3];
 
     viApplyScreenSettings(&D_801E3C80_9DA5F0);
-    D_801E3C9C_9DA60C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_6_VRAM_END;
+    D_801E3C9C_9DA60C.gtlSetup.heapSize = (uintptr_t)unk_end_level_VRAM - (uintptr_t)unk_end_level_6_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E3C9C_9DA60C);
     func_800AAED0(0x200000);

@@ -14,7 +14,7 @@ void dmaCreateMessageQueue(void) {
     osCreateMesgQueue(&sDmaRetQueue, &sDmaOSMesg, 1);
 }
 
-void dmaCopy(OSPiHandle *piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
+void dmaCopy(OSPiHandle* piHandle, u32 devAddr, u32 dramAddr, u32 numBytes, u8 direction) {
     OSIoMesg mb;
 
     if (direction == 1) {
@@ -70,11 +70,11 @@ void dmaLoadOverlay(Overlay* dmaData) {
 }
 
 void dmaReadRom(void* romSrc, void* ramDst, u32 nbytes) {
-    dmaCopy(gRomPiHandle, (u32) romSrc, (u32) ramDst, nbytes, OS_READ);
+    dmaCopy(gRomPiHandle, (u32)romSrc, (u32)ramDst, nbytes, OS_READ);
 }
 
 void dmaWriteRom(void* ramSrc, u32 romDst, u32 nbytes) {
-    dmaCopy(gRomPiHandle, romDst, (u32) ramSrc, nbytes, OS_WRITE);
+    dmaCopy(gRomPiHandle, romDst, (u32)ramSrc, nbytes, OS_WRITE);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/dmaDecodeVPK.s")
@@ -87,19 +87,19 @@ void dmaInitVPKStream(u32 romAddr, s32 ramAddr, s32 bufSize) {
 }
 
 void dmaUpdateVPKStream(void) {
-    dmaReadRom((void*) sVpkRomAddr, (void*) sVpkRamAddr, sVpkBufSize);
+    dmaReadRom((void*)sVpkRomAddr, (void*)sVpkRamAddr, sVpkBufSize);
     sVpkRomAddr += sVpkBufSize;
 }
 
 void dmaReadVPKToBuffer(u32 rom, u32 ram, void* buf, u32 size) {
-    dmaInitVPKStream(rom, (s32) buf, size);
+    dmaInitVPKStream(rom, (s32)buf, size);
     dmaDecodeVPK(buf, size, &dmaUpdateVPKStream, ram);
 }
 
 void dmaReadVPK(u32* rom, u32 ram) {
     char buf[0x400];
 
-    dmaReadVPKToBuffer((u32) rom, ram, &buf, sizeof(buf));
+    dmaReadVPKToBuffer((u32)rom, ram, &buf, sizeof(buf));
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/func_80003530.s")

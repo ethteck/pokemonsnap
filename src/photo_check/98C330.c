@@ -337,9 +337,7 @@ void func_801DC904_98C374(s32 arg0, s32 arg1) {
     gSPDisplayList(gfx++, &D_801E53A0_994E10);
     gDPSetColorDither(gfx++, G_CD_MAGICSQ);
     gDPPipeSync(gfx++);
-    gDPSetRenderMode(gfx++, AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL |
-                            GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0),
-                            AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
+    gDPSetRenderMode(gfx++, AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0), AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
 
     gMainGfxPos[0] = gfx;
@@ -358,8 +356,7 @@ void func_801DCA48_98C4B8(void) {
     OMCamera* camera;
     char pad[0x10];
 
-    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
-                         func_801DCA14_98C484, 0, 1);
+    camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0, func_801DCA14_98C484, 0, 1);
     camObj->unk_38 = 0x100000;
     camera = camObj->data.cam;
     camera->flags |= CAMERA_FLAG_4 | CAMERA_FLAG_2;
@@ -601,7 +598,7 @@ void func_801DD568_98CFD8(void) {
 }
 
 void func_801DD5F0_98D060(s32 arg0) {
-   if (arg0 != 0) {
+    if (arg0 != 0) {
         D_80229180_9D8BF0->sprite.attr &= ~SP_HIDDEN;
     } else {
         D_80229180_9D8BF0->sprite.attr |= SP_HIDDEN;
@@ -695,7 +692,6 @@ void func_801DD9E4_98D454(s32 arg0) {
         }
     }
 }
-
 
 void func_801DDA68_98D4D8(s32 arg0) {
     if (D_802290E0_9D8B50 == 0) {
@@ -1079,7 +1075,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             }
         }
         sp1F4 = photo->sizeParam1 / 10000.0f;
-        sp1FA = ((u32) (((photo->sizeParam2 * sp1F4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+        sp1FA = ((u32)(((photo->sizeParam2 * sp1F4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
     }
 
     if (!sp208 && !D_801F3E34_9A38A4) {
@@ -1098,7 +1094,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036C898_840048(D_802290DC_9D8B4C, "How's the Size?");
         if (D_801F3E60_9A38D0) {
             sp19C = sp25C->unk_3AE / 10000.0f;
-            sp1A0 = ((u32) (((sp25C->unk_3AC * sp19C) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+            sp1A0 = ((u32)(((sp25C->unk_3AC * sp19C) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
             sprintf(sp18C, "%5d", sp1A0);
@@ -1453,7 +1449,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036A8E4_83E094(D_802290DC_9D8B4C);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C,  "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
+            func_8036C898_840048(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
         }
         if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
             D_801F3E34_9A38A4 = TRUE;
@@ -1549,10 +1545,10 @@ s32 func_801DE204_98DC74(Photo* photo) {
     if (!sp208 && (D_801F3E34_9A38A4 != 0 || sp204 != 0)) {
         if (sp20C) {
             spC4 = sp25C->unk_3AE / 10000.0f;
-            spCC = ((u32) (((sp25C->unk_3AC * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+            spCC = ((u32)(((sp25C->unk_3AC * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
         }
         spC4 = photo->sizeParam1 / 10000.0f;
-        spCA = ((u32) (((photo->sizeParam2 * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+        spCA = ((u32)(((photo->sizeParam2 * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
         auPlaySound(0x4D);
         func_8036A8E4_83E094(D_802290E0_9D8B50);
         func_8036D448_840BF8(0);
@@ -1877,44 +1873,44 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     }
 
     sp40 = FALSE;
-    for (sp54 = 0.0f; sp58 > -240.0f; ) {
-            sp50 = func_801DD1A8_98CC18(1);
-            if (!sp40 && sp50 != 0) {
-                if (sp50 == 0x4000) {
-                    D_801F3E34_9A38A4 = TRUE;
-                }
-                sp58 = 0.0f;
-                sp54 = 0.0f;
+    for (sp54 = 0.0f; sp58 > -240.0f;) {
+        sp50 = func_801DD1A8_98CC18(1);
+        if (!sp40 && sp50 != 0) {
+            if (sp50 == 0x4000) {
+                D_801F3E34_9A38A4 = TRUE;
             }
-            sp58 += (sp54 - sp58) * 0.12;
-            sp5C->sprite.x = sp48 + sp58 + arg2;
+            sp58 = 0.0f;
+            sp54 = 0.0f;
+        }
+        sp58 += (sp54 - sp58) * 0.12;
+        sp5C->sprite.x = sp48 + sp58 + arg2;
 
-            if (ABS(sp54 - sp58) < 0.1) {
-                func_8036D4A0_840C50(2);
-                func_8036EB80_842330(1);
-                sp40 = TRUE;
-                i = func_801DE204_98DC74(arg0);
-                if (D_801F3E2C_9A389C == 1) {
-                    i = 10;
-
-                    for(i--; i > 0; i--) {
-                        if (i % 2) {
-                            sp5C->sprite.attr |= SP_HIDDEN;
-                        } else {
-                            sp5C->sprite.attr &= ~SP_HIDDEN;
-                        }
-                        ohWait(2);
-                    }
-                }
-                D_801F3E30_9A38A0 = 1;
+        if (ABS(sp54 - sp58) < 0.1) {
+            func_8036D4A0_840C50(2);
+            func_8036EB80_842330(1);
+            sp40 = TRUE;
+            i = func_801DE204_98DC74(arg0);
+            if (D_801F3E2C_9A389C == 1) {
+                i = 10;
 
                 for (i--; i > 0; i--) {
-                    ohWait(1);
+                    if (i % 2) {
+                        sp5C->sprite.attr |= SP_HIDDEN;
+                    } else {
+                        sp5C->sprite.attr &= ~SP_HIDDEN;
+                    }
+                    ohWait(2);
                 }
-                func_8036D4A0_840C50(0);
-                func_8036EB80_842330(0);
-                sp54 = -250.0f;
             }
+            D_801F3E30_9A38A0 = 1;
+
+            for (i--; i > 0; i--) {
+                ohWait(1);
+            }
+            func_8036D4A0_840C50(0);
+            func_8036EB80_842330(0);
+            sp54 = -250.0f;
+        }
     }
     sp5C->sprite.attr |= SP_HIDDEN;
     return 0;
@@ -1947,7 +1943,7 @@ void func_801E2454_991EC4(void) {
         }
         if (photo->unk_1A_14 != 0) {
             sp58++;
-            }
+        }
         if (photo->unk_1A_14 != 0 && func_800BF3D4_5C274(photo->pkmnID) == 0) {
             sp50++;
         }
@@ -2112,15 +2108,11 @@ void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
         func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 34);
         func_8036C898_840048(D_802290E0_9D8B50, "Pictures in Album");
         func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 34);
-        func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s",
-                             func_801E2A68_9924D8() - arg2,
-                             (func_801E2A68_9924D8() - arg2) != 1 ? "s" : "");
+        func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s", func_801E2A68_9924D8() - arg2, (func_801E2A68_9924D8() - arg2) != 1 ? "s" : "");
         func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 50);
         func_8036C898_840048(D_802290E0_9D8B50, "Left in Album");
         func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 50);
-        func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s",
-                             (func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2,
-                             ((func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2) != 1 ? "s" : "");
+        func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s", (func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2, ((func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2) != 1 ? "s" : "");
     }
 }
 
@@ -2206,8 +2198,7 @@ void func_801E2ED4_992944(s32 arg0) {
         func_800BF3D4_5C274(0x3FE) != 0 &&
         func_800BF3D4_5C274(0x404) != 0 &&
         func_800BF3D4_5C274(0x40B) != 0 &&
-        (func_800BFC5C_5CAFC() < 6))
-    {
+        (func_800BFC5C_5CAFC() < 6)) {
         D_801F3E28_9A3898 = 0x400;
         func_800C02A0_5D140(6);
     } else if (sp44 >= 0x28) {

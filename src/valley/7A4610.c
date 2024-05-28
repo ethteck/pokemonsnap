@@ -2,7 +2,6 @@
 #include "../world/world.h"
 #include "app_level/app_level.h"
 
-
 void func_802CB614_7A4BA4(GObj*);
 void func_802CC08C_7A561C(GObj*);
 void func_802CC424_7A59B4(GObj*);

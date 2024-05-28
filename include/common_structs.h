@@ -108,9 +108,9 @@ typedef struct GroundResult {
 struct WorldBlock;
 typedef struct {
     /* 0x000 */ s32 id;
-    /* 0x001 */ //char unk_01[0x1];
-    /* 0x002 */ //s8 appleID;
-    /* 0x003 */ //char unk_03[0x5];
+    /* 0x001 */ // char unk_01[0x1];
+    /* 0x002 */ // s8 appleID;
+    /* 0x003 */ // char unk_03[0x5];
     /* 0x004 */ char unk_04[0x4];
     /* 0x008 */ u16 flags;
     /* 0x00A */ char unk_0A[0x6];
@@ -228,8 +228,8 @@ typedef struct PhotoData {
     /*       */ u32 unk_00_16 : 8;
     /* 0x002 */ char unk_02[0x2];
     /* 0x004 */ union {
-    /*       */     s32 s32;
-    /*       */     f32 f32;
+        /*       */ s32 s32;
+        /*       */ f32 f32;
     /*       */ } unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;

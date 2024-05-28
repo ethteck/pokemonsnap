@@ -107,7 +107,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                     }
                     sp6C = D_801C54F4_98AD14;
                     Vec3fSub(&sp6C, &D_801C54E8_98AD08);
-                    Vec3fScale(&sp6C, (f32) var_s2 / 15.0f);
+                    Vec3fScale(&sp6C, (f32)var_s2 / 15.0f);
                     Vec3fAdd(&sp6C, &D_801C54E8_98AD08);
                     var_s2 += 1;
                     D_80206B68_9CC388->sprite.x = sp6C.x;
@@ -161,19 +161,19 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 while (var_s2_3 != 0x3C) {
                     frame_counter += 1;
                     if (frame_counter >= 4) {
-                        frame = (u32) (frame + 1) % 3U;
+                        frame = (u32)(frame + 1) % 3U;
                         frame_counter = 0;
                         D_80206B74_9CC394->sprite.bitmap = D_801C5468_98AC88[frame];
                     }
-                    temp_f20 = (f32) var_s2_3 / 60.0f;
+                    temp_f20 = (f32)var_s2_3 / 60.0f;
                     sp6C = D_801C5494_98ACB4[D_801C5518_98AD38];
                     Vec3fSub(&sp6C, &D_801C5500_98AD20);
                     Vec3fScale(&sp6C, temp_f20);
                     Vec3fAdd(&sp6C, &D_801C5500_98AD20);
                     var_s2_3 += 1;
                     D_80206B74_9CC394->sprite.x = sp6C.x;
-                    D_80206B74_9CC394->sprite.y = (s16) (s32) sp6C.y;
-                    temp_f0 = (f32) (1.0 - (f64) temp_f20);
+                    D_80206B74_9CC394->sprite.y = (s16)(s32)sp6C.y;
+                    temp_f0 = (f32)(1.0 - (f64)temp_f20);
                     D_80206B74_9CC394->sprite.scalex = temp_f0;
                     D_80206B74_9CC394->sprite.scaley = temp_f0;
                     ohWait(1);

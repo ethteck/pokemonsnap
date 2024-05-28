@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_800A86A4(void (*), s32, s32, s32);
+void func_800A86A4(void(*), s32, s32, s32);
 
 extern s32 D_8037EAA0_852250;
 extern s32 D_8037EAAC_85225C[];

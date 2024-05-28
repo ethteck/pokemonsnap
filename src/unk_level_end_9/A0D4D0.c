@@ -51,8 +51,7 @@ void func_800E5F40_A0D4D0(void) {
 void func_800E5F48_A0D4D8(void) {
     SObj* sobj;
 
-    D_800E8334_A0F8C4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_802DABC0, 0, NULL, 1);
+    D_800E8334_A0F8C4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_802DABC0, 0, NULL, 1);
     sobj = D_800E8334_A0F8C4->data.sobj;
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = 0x66;
@@ -62,8 +61,7 @@ void func_800E5FDC_A0D56C(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E8338_A0F8C8 =  ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_803128E0, 0, NULL, 1);
+    gobj = D_800E8338_A0F8C8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_803128E0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 40, 36);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
@@ -113,8 +111,7 @@ void func_800E61C8_A0D758(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E833C_A0F8CC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80341790, 0, NULL, 1);
+    gobj = D_800E833C_A0F8CC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80341790, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 43, 40);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
@@ -129,8 +126,7 @@ void func_800E6290_A0D820(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E8340_A0F8D0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_8033F498, 0, NULL, 1);
+    gobj = D_800E8340_A0F8D0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_8033F498, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 43, 73);
     sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = 0x80;
@@ -185,8 +181,7 @@ void func_800E6480_A0DA10(void) {
     sp5E = checkPlayerFlag(PFID_ZOOM_SWITCH);
     sp5D = checkPlayerFlag(PFID_INVERTED_Y);
 
-    gobj = D_800E8358_A0F8E8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80342FF0, 0, NULL, 1);
+    gobj = D_800E8358_A0F8E8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80342FF0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 163, 89);
     func_800E643C_A0D9CC(sobj, sp5F);
@@ -198,8 +193,7 @@ void func_800E6480_A0DA10(void) {
     func_800E643C_A0D9CC(sobj, sp5F == 0);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 
-    gobj = D_800E835C_A0F8EC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80341C70, 0, NULL, 1);
+    gobj = D_800E835C_A0F8EC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80341C70, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 163, 105);
     func_800E643C_A0D9CC(sobj, sp5E);
@@ -211,8 +205,7 @@ void func_800E6480_A0DA10(void) {
     func_800E643C_A0D9CC(sobj, sp5E == 0);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 
-    gobj = D_800E8360_A0F8F0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80342B10, 0, NULL, 1);
+    gobj = D_800E8360_A0F8F0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80342B10, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 163, 121);
     func_800E643C_A0D9CC(sobj, sp5D);
@@ -229,8 +222,7 @@ void func_800E672C_A0DCBC(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E8344_A0F8D4 =  ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_8032F360, 0, NULL, 1);
+    gobj = D_800E8344_A0F8D4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_8032F360, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
@@ -260,14 +252,12 @@ void func_800E6880_A0DE10(void) {
     GObj* gobj;
     SObj* sobj;
 
-    D_800E8348_A0F8D8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80332CB0, 0, NULL, 1);
+    D_800E8348_A0F8D8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80332CB0, 0, NULL, 1);
     sobj = D_800E8348_A0F8D8->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
 
-    gobj = D_800E834C_A0F8DC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_8033D8A0, 0, NULL, 1);
+    gobj = D_800E834C_A0F8DC = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_8033D8A0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
@@ -277,8 +267,7 @@ void func_800E6880_A0DE10(void) {
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
 
-    gobj = D_800E8350_A0F8E0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80320E20, 0, NULL, 1);
+    gobj = D_800E8350_A0F8E0 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80320E20, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
@@ -288,8 +277,7 @@ void func_800E6880_A0DE10(void) {
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
 
-    gobj = D_800E8354_A0F8E4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_8031D4D0, 0, NULL, 1);
+    gobj = D_800E8354_A0F8E4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_8031D4D0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
@@ -298,7 +286,6 @@ void func_800E6880_A0DE10(void) {
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
-
 }
 
 void func_800E6ADC_A0E06C(void) {

@@ -22,8 +22,7 @@ void func_801DC948_9FA608(s32 arg0, s32 arg1) {
     gSPDisplayList(gfx++, &D_801E1620_9FF2E0);
     gDPSetColorDither(gfx++, G_CD_MAGICSQ);
     gDPPipeSync(gfx++);
-    gDPSetRenderMode(gfx++, AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0),
-                     AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
+    gDPSetRenderMode(gfx++, AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | GBL_c1(G_BL_CLR_IN, G_BL_0, G_BL_CLR_MEM, G_BL_0), AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_CLAMP | ZMODE_OPA | ALPHA_CVG_SEL | G_RM_NOOP2);
     gDPSetCombineMode(gfx++, G_CC_MODULATEIA, G_CC_PASS2);
 
     gMainGfxPos[0] = gfx;
@@ -117,7 +116,7 @@ s32 func_801DCEBC_9FAB7C(s32 arg0) {
     } else {
         D_801EA7F0_A084B0 = 0;
     }
-    D_801E16AC_9FF36C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_7_VRAM_END;
+    D_801E16AC_9FF36C.gtlSetup.heapSize = (uintptr_t)unk_end_level_VRAM - (uintptr_t)unk_end_level_7_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E16AC_9FF36C);
     return D_800AF3C0;

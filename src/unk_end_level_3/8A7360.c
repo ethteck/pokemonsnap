@@ -383,10 +383,10 @@ void func_800E235C_8A7B7C(s32 arg0) { // TODO arg is bitfield?
             break;
         default:
             if (arg0 >= 42146 && arg0 < 42211) {
-                D_80195858_95B078 = D_80195874_95B094[((s32) (arg0 + 0xFFFF5B5E) % ARRAY_COUNT(D_80195874_95B094))];
+                D_80195858_95B078 = D_80195874_95B094[((s32)(arg0 + 0xFFFF5B5E) % ARRAY_COUNT(D_80195874_95B094))];
                 return;
             } else if (arg0 >= 42402 && arg0 < 42467) {
-                D_80195858_95B078 = D_80195874_95B094[((s32) (arg0 + 0xFFFF5A5E) % ARRAY_COUNT(D_80195874_95B094))];
+                D_80195858_95B078 = D_80195874_95B094[((s32)(arg0 + 0xFFFF5A5E) % ARRAY_COUNT(D_80195874_95B094))];
                 return;
             } else if (arg0 == 42227 || arg0 == 42483 || arg0 == 41377) {
                 D_80195858_95B078 = 0;
@@ -396,7 +396,6 @@ void func_800E235C_8A7B7C(s32 arg0) { // TODO arg is bitfield?
             break;
     }
 }
-
 
 void func_800E2848_8A8068(void) {
     SObj* sobj;
@@ -477,7 +476,7 @@ void func_800E2A04_8A8224(void) {
             func_800E60C8_8AB8E8();
         }
         for (i = 1; i < 30;) {
-            func_80370990_844140((f32) i / 30.0f, temp_a1);
+            func_80370990_844140((f32)i / 30.0f, temp_a1);
             i++;
             ohWait(1);
         }

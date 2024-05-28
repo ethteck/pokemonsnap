@@ -65,7 +65,7 @@ void cmdSendCommandToLink(s32 link, s32 cmd, GObj* source) {
         param.source = omCurrentObject;
     }
     param.cmd = cmd;
-    ohApplyByLinkEx(link, (GObj* (*)(GObj*, void*))cmdSendSignal, (void*)&param, FALSE);
+    ohApplyByLinkEx(link, (GObj * (*)(GObj*, void*)) cmdSendSignal, (void*)&param, FALSE);
 }
 
 s32 cmdProcessCommands(void (*handler)(GObjCmdData)) {

@@ -373,61 +373,45 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         hal_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z);
                         break;
                     case MTX_TYPE_ROTATE_DEG:
-                        hal_rotate_deg(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                       dobj->rotation.f[3]);
+                        hal_rotate_deg(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_DEG_TRANSLATE:
-                        hal_rotate_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                        hal_rotate_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_RPY_DEG:
                         hal_rotate_rpy_deg(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE_DEG:
-                        hal_rotate_rpy_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                     dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_rpy_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE:
-                        hal_rotate(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                   dobj->rotation.f[3]);
+                        hal_rotate(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_TRANSLATE:
-                        hal_rotate_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                             dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                             dobj->rotation.f[3]);
+                        hal_rotate_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_TRANSLATE_SCALE:
-                        hal_rotate_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                   dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                                   dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y,
-                                                   dobj->scale.v.z);
+                        hal_rotate_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_RPY:
                         hal_rotate_rpy(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE:
-                        hal_rotate_rpy_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_rpy_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE:
-                        hal_rotate_rpy_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                       dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
-                                                       dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
+                        hal_rotate_rpy_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_PYR:
                         hal_rotate_pyr(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_PYR_TRANSLATE:
-                        hal_rotate_pyr_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_pyr_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_ROTATE_PYR_TRANSLATE_SCALE:
-                        hal_rotate_pyr_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                       dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
-                                                       dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
+                        hal_rotate_pyr_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_SCALE:
@@ -474,24 +458,19 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_60:
-                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
-                                             sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1], sp2C4->f[2], sp2C4->f[3]);
                         break;
                     case MTX_TYPE_61:
-                        hal_rotate_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0],
-                                                   sp2C4->f[1], sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y,
-                                                   sp2C0->v.z);
+                        hal_rotate_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1], sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_62:
-                        hal_rotate_rpy_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
-                                                 sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_rpy_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1], sp2C4->f[2], sp2C4->f[3]);
                         break;
                     case MTX_TYPE_63:
-                        hal_rotate_rpy_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
-                                                       sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
+                        hal_rotate_rpy_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1], sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
@@ -780,14 +759,10 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         gMoveWd(sp2DC++, G_MW_MATRIX, G_MWO_MATRIX_ZZ_ZW_F, mtx->m[3][1]);
                         continue;
                     case MTX_TYPE_51:
-                        hal_rotate_rpy_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
-                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                        hal_rotate_rpy_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY, dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_52:
-                        hal_rotate_pyr_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
-                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                        hal_rotate_pyr_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY, dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
                         break;
                     case MTX_TYPE_53:
                         renScaleX *= dobj->scale.v.x;
@@ -798,8 +773,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         sp2B8 = 2;
                         break;
                     case MTX_TYPE_55:
-                        hal_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
-                                      dobj->position.v.z * renScaleZ);
+                        hal_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY, dobj->position.v.z * renScaleZ);
                         break;
                     case MTX_TYPE_64:
                         renScaleX *= sp2C0->v.x;
@@ -807,16 +781,13 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleZ *= sp2C0->v.z;
                         continue;
                     case MTX_TYPE_65:
-                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
-                                             sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1], sp2C4->f[2], sp2C4->f[3]);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_54:
-                        func_8001ECD0(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                      dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], renScaleX, renScaleY,
-                                      renScaleZ, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
+                        func_8001ECD0(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], renScaleX, renScaleY, renScaleZ, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         renScaleY *= dobj->scale.v.y;
                         renScaleZ *= dobj->scale.v.z;
@@ -967,8 +938,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
 
         if (flags & 0x04) {
             // load palette
-            gDPSetTextureImage(gfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1,
-                               mobj->texture.palettes[(s32)mobj->paletteIndex]);
+            gDPSetTextureImage(gfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, mobj->texture.palettes[(s32)mobj->paletteIndex]);
             if (flags & (0x02 | 0x01)) {
                 gDPTileSync(gfxPos++);
                 gDPSetTile(gfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_TILE_5, 0, 0, 0, 0, 0, 0, 0);
@@ -990,13 +960,11 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         if (flags & (0x200 | 0x10 | 0x08)) {
             if (flags & 0x10) {
                 s32 lodLevelInt = (s32)mobj->lodLevel;
-                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, (mobj->lodLevel - lodLevelInt) * 256.0f,
-                                mobj->texture.primR, mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
+                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, (mobj->lodLevel - lodLevelInt) * 256.0f, mobj->texture.primR, mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
                 mobj->imageIndex = lodLevelInt;
                 mobj->nextImageIndex = lodLevelInt + 1;
             } else {
-                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, mobj->lodLevel * 255.0f, mobj->texture.primR,
-                                mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
+                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, mobj->lodLevel * 255.0f, mobj->texture.primR, mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
             }
         }
 
@@ -1005,44 +973,26 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         }
 
         if (flags & 0x800) {
-            gDPSetBlendColor(gfxPos++, mobj->texture.blendR, mobj->texture.blendG, mobj->texture.blendB,
-                             mobj->texture.blendA);
+            gDPSetBlendColor(gfxPos++, mobj->texture.blendR, mobj->texture.blendG, mobj->texture.blendB, mobj->texture.blendA);
         }
 
         if (flags & (0x10 | 0x2)) {
             s32 loadBlockSiz = mobj->texture.unk_33 == G_IM_SIZ_32b ? G_IM_SIZ_32b : G_IM_SIZ_16b;
-            gDPSetTextureImage(gfxPos++, mobj->texture.unk_32, loadBlockSiz, 1,
-                               mobj->texture.images[mobj->nextImageIndex]);
+            gDPSetTextureImage(gfxPos++, mobj->texture.unk_32, loadBlockSiz, 1, mobj->texture.images[mobj->nextImageIndex]);
             if (flags & (0x10 | 0x1)) {
                 gDPLoadSync(gfxPos++);
                 switch (mobj->texture.unk_33) {
                     case G_IM_SIZ_4b:
-                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0,
-                                     ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_4b_INCR) >>
-                                      G_IM_SIZ_4b_SHIFT) -
-                                         1,
-                                     CALC_DXT_4b(mobj->texture.blockWidth));
+                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0, ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_4b_INCR) >> G_IM_SIZ_4b_SHIFT) - 1, CALC_DXT_4b(mobj->texture.blockWidth));
                         break;
                     case G_IM_SIZ_8b:
-                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0,
-                                     ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_8b_INCR) >>
-                                      G_IM_SIZ_8b_SHIFT) -
-                                         1,
-                                     CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_8b_BYTES));
+                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0, ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_8b_INCR) >> G_IM_SIZ_8b_SHIFT) - 1, CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_8b_BYTES));
                         break;
                     case G_IM_SIZ_16b:
-                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0,
-                                     ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_16b_INCR) >>
-                                      G_IM_SIZ_16b_SHIFT) -
-                                         1,
-                                     CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_16b_BYTES));
+                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0, ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_16b_INCR) >> G_IM_SIZ_16b_SHIFT) - 1, CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_16b_BYTES));
                         break;
                     case G_IM_SIZ_32b:
-                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0,
-                                     ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_32b_INCR) >>
-                                      G_IM_SIZ_32b_SHIFT) -
-                                         1,
-                                     CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_32b_BYTES));
+                        gDPLoadBlock(gfxPos++, G_TX_TILE_BLOCK, 0, 0, ((mobj->texture.blockWidth * mobj->texture.blockHeight + G_IM_SIZ_32b_INCR) >> G_IM_SIZ_32b_SHIFT) - 1, CALC_DXT(mobj->texture.blockWidth, G_IM_SIZ_32b_BYTES));
                         break;
                 }
                 gDPLoadSync(gfxPos++);
@@ -1050,8 +1000,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         }
 
         if (flags & (0x10 | 0x1)) {
-            gDPSetTextureImage(gfxPos++, mobj->texture.fmt, mobj->texture.paletteBitDepth, 1,
-                               mobj->texture.images[mobj->imageIndex]);
+            gDPSetTextureImage(gfxPos++, mobj->texture.fmt, mobj->texture.paletteBitDepth, 1, mobj->texture.images[mobj->imageIndex]);
         }
 
         if (flags & 0x20) {
@@ -1066,8 +1015,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
             } else {
                 ult = zero;
             }
-            gDPSetTileSize(gfxPos++, G_TX_RENDERTILE, uls, ult, ((mobj->texture.widthMain - 1) << 2) + uls,
-                           ((mobj->texture.heightMain - 1) << 2) + ult);
+            gDPSetTileSize(gfxPos++, G_TX_RENDERTILE, uls, ult, ((mobj->texture.widthMain - 1) << 2) + uls, ((mobj->texture.heightMain - 1) << 2) + ult);
         }
 
         if (flags & 0x40) {
@@ -1082,8 +1030,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
             } else {
                 ult = zero;
             }
-            gDPSetTileSize(gfxPos++, G_TX_RENDERTILE + 1, uls, ult, ((mobj->texture.widthAux - 1) << 2) + uls,
-                           ((mobj->texture.heightAux - 1) << 2) + ult);
+            gDPSetTileSize(gfxPos++, G_TX_RENDERTILE + 1, uls, ult, ((mobj->texture.widthAux - 1) << 2) + uls, ((mobj->texture.heightAux - 1) << 2) + ult);
         }
 
         if (flags & 0x80) {
@@ -2313,31 +2260,22 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_2:
                         break;
                     case MTX_TYPE_PERSP_FAST:
-                        hal_perspective_fast_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
-                                               cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
-                                               cam->perspMtx.persp.near, cam->perspMtx.persp.far,
-                                               cam->perspMtx.persp.scale);
+                        hal_perspective_fast_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect, cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
                         hal_mtx_f2l(renPerspectiveMatrixF, mtx);
                         renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_PERSP:
-                        hal_perspective_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
-                                          cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
-                                          cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
+                        hal_perspective_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect, cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
                         hal_mtx_f2l(renPerspectiveMatrixF, mtx);
                         renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_ORTHO:
-                        hal_ortho(mtx, cam->perspMtx.ortho.l, cam->perspMtx.ortho.r, cam->perspMtx.ortho.b,
-                                  cam->perspMtx.ortho.t, cam->perspMtx.ortho.n, cam->perspMtx.ortho.f,
-                                  cam->perspMtx.ortho.scale);
+                        hal_ortho(mtx, cam->perspMtx.ortho.l, cam->perspMtx.ortho.r, cam->perspMtx.ortho.b, cam->perspMtx.ortho.t, cam->perspMtx.ortho.n, cam->perspMtx.ortho.f, cam->perspMtx.ortho.scale);
                         renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_LOOKAT:
                     case MTX_TYPE_LOOKAT_MVIEW:
-                        hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
-                                    cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
-                                    cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp, cam->viewMtx.lookAt.zUp);
+                        hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp, cam->viewMtx.lookAt.zUp);
                         if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
                             s3 = 1;
                         } else {
@@ -2346,27 +2284,18 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         break;
                     case MTX_TYPE_LOOKAT_ROLL:
                     case MTX_TYPE_LOOKAT_ROLL_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
-                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
-                                         cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y, cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_ROLL_Z:
                     case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
-                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
-                                         cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y, cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
                         s3 = 2;
                         break;
                     case MTX_TYPE_LOOKAT_REFLECT:
                     case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
-                        hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y,
-                                            cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y,
-                                            cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp,
-                                            cam->viewMtx.lookAt.zUp);
+                        hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp, cam->viewMtx.lookAt.zUp);
                         if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
                             s3 = 1;
                         } else {
@@ -2379,7 +2308,8 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         hal_look_at_reflect_roll(
                             mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
                             cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
-                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f
+                        );
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
@@ -2388,7 +2318,8 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         hal_look_at_reflect_roll(
                             mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
                             cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
-                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f
+                        );
                         s3 = 2;
                         break;
                     default:
@@ -2483,14 +2414,12 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
     if (s3 != 0) {
         switch (s3) {
             case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) + SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp98 = cam->viewMtx.lookAt.eye.y;
                 sp94 = cam->viewMtx.lookAt.at.y;
                 break;
             case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) + SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp98 = cam->viewMtx.lookAt.eye.z;
                 sp94 = cam->viewMtx.lookAt.at.z;
                 break;
@@ -2509,14 +2438,12 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
     if (spC8 != 0) {
         switch (spC8) {
             case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) + SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z));
                 sp8C = cam->viewMtx.lookAt.eye.x;
                 sp88 = cam->viewMtx.lookAt.at.x;
                 break;
             case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) + SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
                 sp8C = cam->viewMtx.lookAt.eye.y;
                 sp88 = cam->viewMtx.lookAt.at.y;
                 break;

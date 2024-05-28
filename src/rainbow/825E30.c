@@ -42,7 +42,7 @@ void func_80346A04_826174(WorldBlock* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/825E30/func_80346EE8_826658.s")
 
 s32 func_80346EF0_826660(s32 arg0) {
-    D_8034ABF8_82A368.gtlSetup.heapSize = (uintptr_t) rainbow_code_VRAM - (uintptr_t) _4A8160_VRAM_END;
+    D_8034ABF8_82A368.gtlSetup.heapSize = (uintptr_t)rainbow_code_VRAM - (uintptr_t)_4A8160_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_8034ABF8_82A368);

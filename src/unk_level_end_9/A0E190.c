@@ -76,8 +76,7 @@ void func_800E6D64_A0E2F4(void) {
     GObj* gobj;
     SObj* sobj;
 
-    D_800E838C_A0F91C = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1,
-                                              &D_80344388, 0, NULL, 1);
+    D_800E838C_A0F91C = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1, &D_80344388, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 0, -3);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
@@ -94,8 +93,7 @@ void func_800E6D64_A0E2F4(void) {
     SET_SPRITE_POS(sobj->sprite, -24, 95);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 
-    D_800E8390_A0F920 = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80344388, 0, NULL, 1);
+    D_800E8390_A0F920 = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80344388, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 48, 238);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
@@ -115,7 +113,7 @@ void func_800E6D64_A0E2F4(void) {
 
 void func_800E6F68_A0E4F8(void) {
     UNUSED s32 pad;
-    UnkStruct800BEDF8 *temp_v0_2;
+    UnkStruct800BEDF8* temp_v0_2;
     s32 leftRightOrig;
     s32 topBottomOrig;
     s32 topBottom;
@@ -566,21 +564,21 @@ void func_800E7F98_A0F528(void) {
         cond = FALSE;
         temp_v0 = func_800E7700_A0EC90();
         switch (temp_v0) {
-        case 0:
-            func_800E6F68_A0E4F8();
-            break;
-        case 1:
-        case 2:
-        case 3:
-            func_800E7C40_A0F1D0();
-            break;
-        case 4:
-            func_800BFB90_5CA30(viEdgeOffsetLeft, viEdgeOffsetTop);
-            setPlayerFlag(PFID_9, D_800E8394_A0F924);
-            setPlayerFlag(PFID_ZOOM_SWITCH, D_800E8395_A0F925);
-            setPlayerFlag(PFID_INVERTED_Y, D_800E8396_A0F926);
-            cond = TRUE;
-            break;
+            case 0:
+                func_800E6F68_A0E4F8();
+                break;
+            case 1:
+            case 2:
+            case 3:
+                func_800E7C40_A0F1D0();
+                break;
+            case 4:
+                func_800BFB90_5CA30(viEdgeOffsetLeft, viEdgeOffsetTop);
+                setPlayerFlag(PFID_9, D_800E8394_A0F924);
+                setPlayerFlag(PFID_ZOOM_SWITCH, D_800E8395_A0F925);
+                setPlayerFlag(PFID_INVERTED_Y, D_800E8396_A0F926);
+                cond = TRUE;
+                break;
         }
     } while (!cond);
 

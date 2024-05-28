@@ -78,7 +78,6 @@ void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3) {
 }
 
 static void nullsub() {
-
 }
 
 #ifdef NON_MATCHING
@@ -117,8 +116,7 @@ void pokemonAdd(WorldBlock* block, WorldBlock* blockB, PokemonDef* def) {
     if (block == NULL ||
         block->descriptor == NULL ||
         block->descriptor->spawn == NULL ||
-        block->index >= MAX_BLOCKS)
-    {
+        block->index >= MAX_BLOCKS) {
         return;
     }
 

@@ -138,7 +138,7 @@ void drawSkyBox2Cycle(GObj* obj) {
 
 void setSkyBoxRotation(GObj* obj) {
     DObj* dobj = obj->data.dobj;
-    dobj->rotation.f[2] = 6.283185482f * GlobalTimer /  SkyBoxMaxAngle;
+    dobj->rotation.f[2] = 6.283185482f * GlobalTimer / SkyBoxMaxAngle;
 }
 
 void createSkyBox(SkyBox* skyBox) {
@@ -146,7 +146,7 @@ void createSkyBox(SkyBox* skyBox) {
     DObj* dobj;
 
     obj = omAddGObj(SkyBoxObjectId, &ohUpdateDefault, WorldLink, 0x80000000);
-    SkyBoxObject  = obj;
+    SkyBoxObject = obj;
     omCreateProcess(obj, &updateSkyBoxRotation, 1, 2);
 
     if (skyBox == NULL || skyBox->gfxData == NULL) {
@@ -243,7 +243,6 @@ f32 world_func_800E21A8(f32 arg0) {
 }
 
 static void nullsub() {
-
 }
 
 void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
@@ -253,8 +252,7 @@ void func_800E21E4_5F994(WorldBlock* arg0, WorldBlock* arg1) {
         arg0->descriptor == NULL ||
         arg1 == NULL ||
         arg0->blockModel == NULL ||
-        arg0->blockModel->data.dobj == NULL)
-    {
+        arg0->blockModel->data.dobj == NULL) {
         return;
     }
 
@@ -391,7 +389,7 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
         D_800E6AFC_642AC(arg0, arg0);
     }
 
-    for (i = -1; i >= -1;i--) {
+    for (i = -1; i >= -1; i--) {
         if (arg0->prev == NULL) {
             break;
         }
@@ -401,7 +399,7 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
         }
     }
 
-    for (i = 1; i <= 1;i++) {
+    for (i = 1; i <= 1; i++) {
         if (arg0->next == NULL) {
             break;
         }
@@ -432,8 +430,7 @@ void func_800E270C_5FEBC(GObj* obj) {
         block->blockModel == NULL ||
         block->descriptor == NULL ||
         block->descriptor->gfx == NULL ||
-        block->descriptor->gfx->unk_08 == NULL)
-    {
+        block->descriptor->gfx->unk_08 == NULL) {
         return;
     }
 
@@ -477,8 +474,7 @@ GObj* createWorldBlockModel(WorldBlock* block) {
     } else if (&renRenderModelTypeA == block->descriptor->gfx->renderFunc ||
                &renderModelTypeAFogged == block->descriptor->gfx->renderFunc ||
                &renRenderModelTypeC == block->descriptor->gfx->renderFunc ||
-               &renderModelTypeCFogged == block->descriptor->gfx->renderFunc)
-    {
+               &renderModelTypeCFogged == block->descriptor->gfx->renderFunc) {
         omGObjAddDObj(obj, block->descriptor->gfx->gfxData);
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_TRANSLATE, 0);
         if (block->descriptor->gfx->textures != NULL) {
@@ -493,8 +489,7 @@ GObj* createWorldBlockModel(WorldBlock* block) {
     } else if (&renRenderModelTypeB == block->descriptor->gfx->renderFunc ||
                &renderModelTypeBFogged == block->descriptor->gfx->renderFunc ||
                &renRenderModelTypeD == block->descriptor->gfx->renderFunc ||
-               &renderModelTypeDFogged == block->descriptor->gfx->renderFunc)
-    {
+               &renderModelTypeDFogged == block->descriptor->gfx->renderFunc) {
         anim_func_80010230(obj, block->descriptor->gfx->gfxData, block->descriptor->gfx->textures, NULL, 0, 0, 0);
         omDObjAppendMtx(obj->data.dobj, MTX_TYPE_TRANSLATE, 0);
     } else {
@@ -578,7 +573,6 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         if (i > 0 && ptr[i] == ptr[0]) {
             worldBlocks[0]->prev = worldBlocks[i - 1];
             if (1) {
-
             }
             worldBlocks[i - 1]->next = worldBlocks[0];
             break;
@@ -588,7 +582,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         s0->index = i;
         s0->descriptor = ptr[i];
         if (i > 0) {
-            if (s0) { } // TODO fake match
+            if (s0) {} // TODO fake match
             s0->prev = worldBlocks[i - 1];
         } else {
             s0->prev = NULL;
@@ -626,7 +620,8 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         s0->descriptor = ptr[i - num1];
         s0->prev = NULL;
         s0->next = NULL;
-        if (1) { } if (1) { } // TODO fake match
+        if (1) {}
+        if (1) {} // TODO fake match
         s0->blockModel = createWorldBlockModel(s0);
         s0->blockUV = NULL;
         s0->cpObjects = NULL;
@@ -643,9 +638,7 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
         s0->blockUV != NULL &&
         s0->descriptor != NULL &&
         s0->descriptor->gfx != NULL &&
-        s0->descriptor->gfx->movementAnim != NULL
-        )
-    {
+        s0->descriptor->gfx->movementAnim != NULL) {
         animSetModelTreeAnimation(s0->blockUV, s0->descriptor->gfx->movementAnim, 0);
         animUpdateModelTreeAnimation(s0->blockUV);
     }

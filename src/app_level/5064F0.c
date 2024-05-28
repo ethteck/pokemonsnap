@@ -47,7 +47,7 @@ s32 func_80366160_506570(GObj* obj) {
     f32 dx, dz;
     s32 unused[3];
     s32 val1;
-    
+
 
     if (D_80393BD4_533FE4 == NULL) {
         return 0;
@@ -154,10 +154,80 @@ void func_8036650C_50691C(void) {
     D_80393BD8_533FE8 = NULL;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/5064F0/func_80366520_506930.s")
-void func_80366520_506930(void* arg0, u8 arg1, s32 arg2, u8 arg3, u8 arg4);
+void func_80366520_506930(GObj* obj, u8 arg1, s32 arg2, u8 arg3, u8 arg4) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    UnkBeigeBoa* last;
+    u32 sp34, sp30;
+    UnkBeigeBoa* ptr;
 
-void func_803667C0_506BD0(s32 arg0, u8 arg1, s32 arg2) {
+
+    if (2 * arg4 < pokemon->playerDist / 100.0f || D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
+        return;
+    }
+
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
+        if (ptr->unk_04 == obj && ptr->unk_0F_0 == arg1) {
+            auStopSound(ptr->unk_08);
+            ptr->unk_04 = NULL;
+        }
+    }
+
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
+        if (ptr->unk_04 != NULL) {
+            last = ptr;
+        } else {
+            break;
+        }
+    }
+
+    if (ptr == NULL) {
+        ptr = gtlMalloc(sizeof(UnkBeigeBoa), 4);
+        ptr->unk_00 = NULL;
+        ptr->unk_04 = NULL;
+        last->unk_00 = ptr;
+    }
+
+    func_8036621C_50662C(obj, arg4, &sp34, &sp30);
+    if (sp34 > 0x7FFF) {
+        sp34 = 0x7FFF;
+    }
+    if (sp30 > 0x7F) {
+        sp30 = 0x7F;
+    }
+
+    arg3 = arg3 > 0x7F ? 0x7F : arg3;
+
+    switch (arg3) {
+        case 0:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 1.0f, 0);
+            break;
+        case 1:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.8f, 0);
+            break;
+        case 2:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.7f, 0);
+            break;
+        case 3:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.75f, 0);
+            break;
+        case 4:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.5f, 0);
+            break;
+        default:
+            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 1.0f, 0);
+            break;
+    }
+
+    if (ptr->unk_08 != -1) {
+        ptr->unk_04 = obj;
+        ptr->unk_0F_0 = arg1;
+        ptr->unk_0E = arg4;
+        ptr->unk_0C = arg2;
+        ptr->unk_0F_2 = FALSE;
+    }
+}
+
+void func_803667C0_506BD0(GObj* arg0, u8 arg1, s32 arg2) {
     s32 i;
 
     if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL || D_80393BD0_533FE0 == NULL) {

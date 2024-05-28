@@ -98,12 +98,12 @@ extern UnkMagentaCivet D_803931F0_533600[];
 extern u8 D_803936B8_533AC8[];
 extern s16 D_8039379C_533BAC[];
 
-#ifdef NON_MATCHING
 s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
     s32 ret;
     s32 a0;
     s32 c0 = ptr[0];
-    s32 c1 = ptr[1];    
+    s32 c1 = ptr[1];
+    s32 i;
 
     D_803B4FB0_5553C0 = 0;
     ret = 0;
@@ -190,28 +190,25 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
         }
     } else {
         s16 q = ((c0 & 0xFF) << 8) + (c1 & 0xFF);
-        s32 i;
-
-        for (i = 0;;i++) {    
-            if (D_8039379C_533BAC[i] == q) {
+        s16 *test = D_8039379C_533BAC;
+        i = 0;
+        for (i = 0;;i++) {
+            if (*test == q) {
                 ret = D_803931F0_533600[i].unk_00;
                 *arg2 = func_8036496C_504D7C(i + 0x3E);
                 break;
             }
-            
-            if (((D_8039379C_533BAC[i] >> 8) & 0xFF) == 0) {
+
+            if (((*test >> 8) & 0xFF) == 0) {
                 *arg1 = 1;
                 *arg2 = 0;
                 break;
             }
+            test++;
         }
     }
     return ret;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/504C00/func_803649A0_504DB0.s")
-s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2);
-#endif
 
 void func_80364DDC_5051EC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 temp_t4 = arg1 + D_80393670_533A80;
@@ -267,7 +264,7 @@ void func_803656E8_505AF8(GObj* obj) {
         } else {
             D_803B4FB4_5553C4 = 0;
         }
-        
+
         switch (D_803936A8_533AB8) {
             case 0:
                 D_803936A4_533AB4 += 0.02f;
@@ -291,7 +288,7 @@ void func_803656E8_505AF8(GObj* obj) {
                 }
                 break;
         }
-        
+
         while (*ptr != 0) {
             v0 = func_803649A0_504DB0(ptr, &sp4C, &sp48);
             if (v0 == 0) {
@@ -303,7 +300,7 @@ void func_803656E8_505AF8(GObj* obj) {
                     func_80364DDC_5051EC(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 13, 13);
                 }
                 ptr += sp4C;
-                D_803B4FA8_5553B8 += (sp48 + 1) * D_803936AC_533ABC;                
+                D_803B4FA8_5553B8 += (sp48 + 1) * D_803936AC_533ABC;
             }
         }
 

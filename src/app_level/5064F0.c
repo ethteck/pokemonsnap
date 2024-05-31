@@ -2,19 +2,19 @@
 #include "app_level.h"
 
 typedef struct UnkBeigeBoa {
-    /* 0x00 */ struct UnkBeigeBoa* unk_00;
-    /* 0x04 */ GObj* unk_04;
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ u16 unk_0C;
-    /* 0x0E */ u8 unk_0E;
-    /* 0x0F */ u32 unk_0F_0 : 2;
-    /* 0x0F */ u32 unk_0F_2 : 1;
+    /* 0x00 */ struct UnkBeigeBoa* next;
+    /* 0x04 */ GObj* source;
+    /* 0x08 */ s32 soundHandle;
+    /* 0x0C */ u16 soundId;
+    /* 0x0E */ u8 hearingRange;
+    /* 0x0F */ u32 group : 2;
+    /* 0x0F */ u32 finished : 1;
 } UnkBeigeBoa; // size 0x10
 
 typedef struct UnkVioletPython {
-    /* 0x00 */ u16 unk_00;
+    /* 0x00 */ u16 soundID;
     /* 0x02 */ u8 unk_02;
-    /* 0x03 */ u8 unk_03;
+    /* 0x03 */ u8 hearingRange;
 } UnkVioletPython; // size 0x4
 
 extern UnkBeigeBoa* D_80393BD0_533FE0;
@@ -28,7 +28,7 @@ DObj* func_803573B0_4F77C0(void);
 OMCamera* getMainCamera(void);
 s32 func_803669C0_506DD0(f32, f32);
 
-f32 func_803660E0_5064F0(GObj* obj, u8 arg1) {
+f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {
     Pokemon* pokemon = GET_POKEMON(obj);
     f32 tmp;
 
@@ -39,7 +39,7 @@ f32 func_803660E0_5064F0(GObj* obj, u8 arg1) {
         return 0.0f;
     }
     tmp = pokemon->playerDist / 100.0f;
-    return arg1 / (arg1 + tmp);
+    return hearingRange / (hearingRange + tmp);
 }
 
 s32 func_80366160_506570(GObj* obj) {
@@ -66,20 +66,20 @@ s32 func_80366160_506570(GObj* obj) {
     return val1 & 0x7FFF;
 }
 
-void func_8036621C_50662C(GObj* arg0, u8 arg1, s32* arg2, s32* arg3) {
+void EnvSound_GetVolumePan(GObj* obj, u8 hearingRange, s32* volume, s32* pan) {
     f32 f0;
     s32 v1;
     f32 sp24;
     s32 temp_v0;
     s32 unused;
 
-    sp24 = func_803660E0_5064F0(arg0, arg1 & 0x7F);
+    sp24 = EnvSound_GetDecay(obj, hearingRange & 0x7F);
 
-    if (arg1 & 0x80) {
+    if (hearingRange & 0x80) {
         f0 = 1.0f;
         v1 = 0x40;
     } else {
-        temp_v0 = func_80366160_506570(arg0);
+        temp_v0 = func_80366160_506570(obj);
         v1 = (temp_v0 + 0x2000) & 0x7FFF;
 
         if (v1 > 0x4000) {
@@ -97,32 +97,32 @@ void func_8036621C_50662C(GObj* arg0, u8 arg1, s32* arg2, s32* arg3) {
         f0 = -0.000030517578f * temp_v0 + 1.0f;
     }
 
-    *arg2 = sp24 * f0 * 0x7FFF;
-    *arg3 = v1;
+    *volume = sp24 * f0 * 0x7FFF;
+    *pan = v1;
 }
 
 void func_80366328_506738(GObj* obj) {
     UnkBeigeBoa* ptr;
-    s32 sp50, sp4C;
+    s32 volume, pan;
     s32 unused[2];
 
     if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
         return;
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 != NULL) {
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source != NULL) {
             OSIntMask mask = osSetIntMask(OS_IM_NONE);
-            s32 v1 = D_800968BC[ptr->unk_08];
+            s32 soundId = D_800968BC[ptr->soundHandle];
 
-            if (v1 == -1 || v1 != ptr->unk_0C) {
-                ptr->unk_04 = NULL;
-                ptr->unk_0F_2 = TRUE;
-            } else if (ptr->unk_0F_2 != TRUE) {
-                func_8036621C_50662C(ptr->unk_04, ptr->unk_0E, &sp50, &sp4C);
-                auSetSoundVolume(ptr->unk_08, sp50);
-                if (!(ptr->unk_0E & 0x80)) {
-                    auSetSoundPan(ptr->unk_08, sp4C);
+            if (soundId == -1 || soundId != ptr->soundId) {
+                ptr->source = NULL;
+                ptr->finished = TRUE;
+            } else if (ptr->finished != TRUE) {
+                EnvSound_GetVolumePan(ptr->source, ptr->hearingRange, &volume, &pan);
+                auSetSoundVolume(ptr->soundHandle, volume);
+                if (!(ptr->hearingRange & 0x80)) {
+                    auSetSoundPan(ptr->soundHandle, pan);
                 }
             }
 
@@ -139,8 +139,8 @@ void func_80366470_506880(UnkVioletPython* arg0, s32 arg1) {
         D_80393BD4_533FE4 = func_803573B0_4F77C0();
         D_80393BD8_533FE8 = getMainCamera();
         D_80393BD0_533FE0 = gtlMalloc(sizeof(UnkBeigeBoa), 4);
-        D_80393BD0_533FE0->unk_00 = NULL;
-        D_80393BD0_533FE0->unk_04 = NULL;
+        D_80393BD0_533FE0->next = NULL;
+        D_80393BD0_533FE0->source = NULL;
         omCreateProcess(omAddGObj(400, ohUpdateDefault, 9, 1), func_80366328_506738, 1, 1);
     }
 }
@@ -154,26 +154,26 @@ void func_8036650C_50691C(void) {
     D_80393BD8_533FE8 = NULL;
 }
 
-void func_80366520_506930(GObj* obj, u8 arg1, s32 arg2, u8 arg3, u8 arg4) {
+void func_80366520_506930(GObj* obj, u8 group, s32 soundID, u8 pitch, u8 hearingRange) {
     Pokemon* pokemon = GET_POKEMON(obj);
     UnkBeigeBoa* last;
-    u32 sp34, sp30;
+    u32 volume, pan;
     UnkBeigeBoa* ptr;
 
 
-    if (2 * arg4 < pokemon->playerDist / 100.0f || D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
+    if (2 * hearingRange < pokemon->playerDist / 100.0f || D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
         return;
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 == obj && ptr->unk_0F_0 == arg1) {
-            auStopSound(ptr->unk_08);
-            ptr->unk_04 = NULL;
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj && ptr->group == group) {
+            auStopSound(ptr->soundHandle);
+            ptr->source = NULL;
         }
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 != NULL) {
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source != NULL) {
             last = ptr;
         } else {
             break;
@@ -182,52 +182,52 @@ void func_80366520_506930(GObj* obj, u8 arg1, s32 arg2, u8 arg3, u8 arg4) {
 
     if (ptr == NULL) {
         ptr = gtlMalloc(sizeof(UnkBeigeBoa), 4);
-        ptr->unk_00 = NULL;
-        ptr->unk_04 = NULL;
-        last->unk_00 = ptr;
+        ptr->next = NULL;
+        ptr->source = NULL;
+        last->next = ptr;
     }
 
-    func_8036621C_50662C(obj, arg4, &sp34, &sp30);
-    if (sp34 > 0x7FFF) {
-        sp34 = 0x7FFF;
+    EnvSound_GetVolumePan(obj, hearingRange, &volume, &pan);
+    if (volume > 0x7FFF) {
+        volume = 0x7FFF;
     }
-    if (sp30 > 0x7F) {
-        sp30 = 0x7F;
+    if (pan > 0x7F) {
+        pan = 0x7F;
     }
 
-    arg3 = arg3 > 0x7F ? 0x7F : arg3;
+    pitch = pitch > 0x7F ? 0x7F : pitch;
 
-    switch (arg3) {
+    switch (pitch) {
         case 0:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 1.0f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 1.0f, 0);
             break;
         case 1:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.8f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.8f, 0);
             break;
         case 2:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.7f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.7f, 0);
             break;
         case 3:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.75f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.75f, 0);
             break;
         case 4:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 0.5f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.5f, 0);
             break;
         default:
-            ptr->unk_08 = auPlaySoundWithParams(arg2, sp34, sp30, 1.0f, 0);
+            ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 1.0f, 0);
             break;
     }
 
-    if (ptr->unk_08 != -1) {
-        ptr->unk_04 = obj;
-        ptr->unk_0F_0 = arg1;
-        ptr->unk_0E = arg4;
-        ptr->unk_0C = arg2;
-        ptr->unk_0F_2 = FALSE;
+    if (ptr->soundHandle != -1) {
+        ptr->source = obj;
+        ptr->group = group;
+        ptr->hearingRange = hearingRange;
+        ptr->soundId = soundID;
+        ptr->finished = FALSE;
     }
 }
 
-void func_803667C0_506BD0(GObj* arg0, u8 arg1, s32 arg2) {
+void func_803667C0_506BD0(GObj* obj, u8 arg1, s32 soundID) {
     s32 i;
 
     if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL || D_80393BD0_533FE0 == NULL) {
@@ -235,51 +235,51 @@ void func_803667C0_506BD0(GObj* arg0, u8 arg1, s32 arg2) {
     }
 
     for (i = 0; i < D_80393BE0_533FF0; i++) {
-        if (D_80393BDC_533FEC[i].unk_00 == arg2) {
-            func_80366520_506930(arg0, arg1, arg2, D_80393BDC_533FEC[i].unk_02, D_80393BDC_533FEC[i].unk_03);
+        if (D_80393BDC_533FEC[i].soundID == soundID) {
+            func_80366520_506930(obj, arg1, soundID, D_80393BDC_533FEC[i].unk_02, D_80393BDC_533FEC[i].hearingRange);
             break;
         }
     }
 }
 
-void func_80366864_506C74(GObj* arg0, u8 arg1) {
+void func_80366864_506C74(GObj* obj, u8 group) {
     UnkBeigeBoa* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 == arg0 && ptr->unk_0F_0 == arg1) {
-            auStopSound(ptr->unk_08);
-            ptr->unk_04 = NULL;
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj && ptr->group == group) {
+            auStopSound(ptr->soundHandle);
+            ptr->source = NULL;
         }
     }
 }
 
-void func_803668DC_506CEC(GObj* arg0) {
+void func_803668DC_506CEC(GObj* obj) {
     UnkBeigeBoa* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 == arg0) {
-            ptr->unk_0F_2 = TRUE;
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj) {
+            ptr->finished = TRUE;
         }
     }
 }
 
-void func_80366918_506D28(GObj* arg0) {
+void func_80366918_506D28(GObj* obj) {
     UnkBeigeBoa* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 == arg0) {
-            auStopSound(ptr->unk_08);
-            ptr->unk_04 = NULL;
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj) {
+            auStopSound(ptr->soundHandle);
+            ptr->source = NULL;
         }
     }
 }
 
-s32 func_80366970_506D80(s32 arg0) {
+s32 EnvSound_GetSoundHandle(s32 soundId) {
     UnkBeigeBoa* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->unk_00) {
-        if (ptr->unk_04 != NULL && ptr->unk_0C == arg0) {
-            return ptr->unk_08;
+    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source != NULL && ptr->soundId == soundId) {
+            return ptr->soundHandle;
         }
     }
     return -1;

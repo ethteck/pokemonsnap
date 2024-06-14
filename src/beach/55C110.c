@@ -57,7 +57,7 @@ void func_beach_802C43CC(s32 arg0) {
     D_beach_802CC018 = arg0;
     func_800A19D8(arg0);
     PokemonDetector_Disable();
-    func_8036650C_50691C();
+    EnvSound_Cleanup();
     auStopBGM();
     auStopAllSounds();
     destroyWorld();

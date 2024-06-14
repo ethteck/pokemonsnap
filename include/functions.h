@@ -152,6 +152,6 @@ void pokemonRemove(struct WorldBlock*, PokemonDef*);
 void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364718_504B28(GObj *obj);
 s32 func_803647BC_504BCC(GObj*);
-void func_8036650C_50691C(void);
+void EnvSound_Cleanup(void);
 
 #endif

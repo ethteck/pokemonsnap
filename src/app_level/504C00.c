@@ -210,23 +210,23 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
     return ret;
 }
 
-void func_80364DDC_5051EC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    s32 temp_t4 = arg1 + D_80393670_533A80;
-    s32 temp_t5 = arg2 + D_80393674_533A84;
-    s32 sp4 = temp_t4 + arg3 * D_803936AC_533ABC - 1;
-    s32 sp0 = temp_t5 + arg4 * D_803936B0_533AC0 - 1;
+void Message_DrawChar(u8* timg, s32 offsetX, s32 offsetY, s32 width, s32 height) {
+    s32 ulx = offsetX + D_80393670_533A80;
+    s32 uly = offsetY + D_80393674_533A84;
+    s32 lrx = ulx + width * D_803936AC_533ABC - 1;
+    s32 lry = uly + height * D_803936B0_533AC0 - 1;
 
     if (D_803B4FB0_5553C0 == 0) {
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
-        gDPLoadTextureBlockS(gMainGfxPos[0]++, arg0, G_IM_FMT_I, G_IM_SIZ_8b, 14, 14, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+        gDPLoadTextureBlockS(gMainGfxPos[0]++, timg, G_IM_FMT_I, G_IM_SIZ_8b, 14, 14, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     } else {
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIDECALA_PRIM, G_CC_MODULATEIDECALA_PRIM);
-        gDPLoadTextureBlockS(gMainGfxPos[0]++, arg0, G_IM_FMT_RGBA, G_IM_SIZ_16b, 14, 14, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+        gDPLoadTextureBlockS(gMainGfxPos[0]++, timg, G_IM_FMT_RGBA, G_IM_SIZ_16b, 14, 14, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     }
     if (D_8039369C_533AAC != 0) {
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
         gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, 0, 0, 0, 255);
-        gSPTextureRectangle(gMainGfxPos[0]++, (temp_t4 + 1) << 2, (temp_t5 + 1) << 2, (sp4 + 1) << 2, (sp0 + 1) << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
+        gSPTextureRectangle(gMainGfxPos[0]++, (ulx + 1) << 2, (uly + 1) << 2, (lrx + 1) << 2, (lry + 1) << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
         gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, D_80393680_533A90, D_80393684_533A94, D_80393688_533A98, D_8039368C_533A9C);
     }
     if (D_803936A0_533AB0 != 0) {
@@ -236,7 +236,7 @@ void func_80364DDC_5051EC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         D_80393688_533A98 * D_803936A4_533AB4,
         D_8039368C_533A9C);
     }
-    gSPTextureRectangle(gMainGfxPos[0]++, temp_t4 << 2, temp_t5 << 2, sp4 << 2, sp0 << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
+    gSPTextureRectangle(gMainGfxPos[0]++, ulx << 2, uly << 2, lrx << 2, lry << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
 }
 
 void func_803656E8_505AF8(GObj* obj) {
@@ -252,7 +252,7 @@ void func_803656E8_505AF8(GObj* obj) {
     gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, D_80393680_533A90, D_80393684_533A94, D_80393688_533A98, D_8039368C_533A9C);
 
     if (D_803B4DA0_5551B0[0] != 0) {
-        s32 v0;
+        u8* v0;
         s32 sp4C;
         s32 sp48;
 
@@ -291,13 +291,13 @@ void func_803656E8_505AF8(GObj* obj) {
 
         while (*ptr != 0) {
             v0 = func_803649A0_504DB0(ptr, &sp4C, &sp48);
-            if (v0 == 0) {
+            if (v0 == NULL) {
                 ptr += sp4C;
             } else {
                 if (sp4C == 1) {
-                    func_80364DDC_5051EC(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 9, 13);
+                    Message_DrawChar(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 9, 13);
                 } else {
-                    func_80364DDC_5051EC(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 13, 13);
+                    Message_DrawChar(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 13, 13);
                 }
                 ptr += sp4C;
                 D_803B4FA8_5553B8 += (sp48 + 1) * D_803936AC_533ABC;
@@ -305,7 +305,7 @@ void func_803656E8_505AF8(GObj* obj) {
         }
 
         if (D_80393694_533AA4 != 0 && D_80393698_533AA8 != 0) {
-            func_80364DDC_5051EC(func_803649A0_504DB0("\\F", &sp4C, &sp48), 187, 32, 13, 13);
+            Message_DrawChar(func_803649A0_504DB0("\\F", &sp4C, &sp48), 187, 32, 13, 13);
         }
     } else {
         D_803936A8_533AB8 = 0;
@@ -328,7 +328,7 @@ GObj* func_80365B24_505F34(void) {
     return temp_v0;
 }
 
-void showMessage(u8* arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 arg8) {
+void Message_Show(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 arg8) {
     u8* ptr;
     s32 sp50;
     s32 sp4C;
@@ -336,7 +336,7 @@ void showMessage(u8* arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg
     s32 unused;
 
     s1 = 0;
-    for (ptr = arg0; *ptr != 0; ptr += sp50) {
+    for (ptr = message; *ptr != 0; ptr += sp50) {
         func_803649A0_504DB0(ptr, &sp50, &sp4C);
         s1 += sp4C + 1;
         if (*ptr == '\\' && (ptr[1] == (0,'B') || ptr[1] == (0,'Q')) && D_803936B4_533AC4 != NULL) { // TODO find better way to match
@@ -345,21 +345,21 @@ void showMessage(u8* arg0, s32 arg1, s32 arg2, u8 arg3, u8 arg4, u8 arg5, u8 arg
     }
 
     D_8039367C_533A8C = 0;
-    for (ptr = arg0; *ptr != 0; ptr++) {
+    for (ptr = message; *ptr != 0; ptr++) {
         D_8039367C_533A8C++;
     }
-    memcpy(D_803B4EA0_5552B0, arg0, D_8039367C_533A8C);
+    memcpy(D_803B4EA0_5552B0, message, D_8039367C_533A8C);
     D_803B4EA0_5552B0[D_8039367C_533A8C] = 0;
 
     if (arg8 == 0) {
-        D_80393670_533A80 = arg1;
-        D_80393674_533A84 = arg2;
+        D_80393670_533A80 = posX;
+        D_80393674_533A84 = posY;
     } else if (arg8 == 1) {
-        D_80393670_533A80 = arg1 - s1;
-        D_80393674_533A84 = arg2;
+        D_80393670_533A80 = posX - s1;
+        D_80393674_533A84 = posY;
     } else {
-        D_80393670_533A80 = arg1 - s1 / 2;
-        D_80393674_533A84 = arg2;
+        D_80393670_533A80 = posX - s1 / 2;
+        D_80393674_533A84 = posY;
     }
     D_803B4FA0_5553B0 = D_80393690_533AA0 + 12;
     D_80393680_533A90 = arg3;

@@ -1,38 +1,37 @@
 #include "common.h"
 #include "app_level.h"
 
-typedef struct UnkBeigeBoa {
-    /* 0x00 */ struct UnkBeigeBoa* next;
+typedef struct EnvSound {
+    /* 0x00 */ struct EnvSound* next;
     /* 0x04 */ GObj* source;
     /* 0x08 */ s32 soundHandle;
     /* 0x0C */ u16 soundId;
     /* 0x0E */ u8 hearingRange;
-    /* 0x0F */ u32 group : 2;
-    /* 0x0F */ u32 finished : 1;
-} UnkBeigeBoa; // size 0x10
+    /* 0x0F */ u32 category : 2;
+    /* 0x0F */ u32 fixedParams : 1;
+} EnvSound; // size 0x10
 
-typedef struct UnkVioletPython {
+typedef struct EnvSoundData {
     /* 0x00 */ u16 soundID;
-    /* 0x02 */ u8 unk_02;
+    /* 0x02 */ u8 pitchModifier;
     /* 0x03 */ u8 hearingRange;
-} UnkVioletPython; // size 0x4
+} EnvSoundData; // size 0x4
 
-extern UnkBeigeBoa* D_80393BD0_533FE0;
-extern UnkVioletPython* D_80393BDC_533FEC;
-extern s32 D_80393BE0_533FF0;
-extern DObj* D_80393BD4_533FE4;
-extern OMCamera* D_80393BD8_533FE8;
-extern s32* D_800968BC;
+extern EnvSound* EnvSound_Sounds;
+extern EnvSoundData* EnvSound_InitData;
+extern s32 EnvSound_InitDataSize;
+extern DObj* EnvSound_PlayerModel;
+extern OMCamera* EnvSound_MainCamera;
 
 DObj* func_803573B0_4F77C0(void);
 OMCamera* getMainCamera(void);
-s32 func_803669C0_506DD0(f32, f32);
+s32 atan2s(f32, f32);
 
 f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {
     Pokemon* pokemon = GET_POKEMON(obj);
     f32 tmp;
 
-    if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
+    if (EnvSound_PlayerModel == NULL || EnvSound_MainCamera == NULL) {
         return 0.0f;
     }
     if (pokemon == NULL) {
@@ -42,26 +41,26 @@ f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {
     return hearingRange / (hearingRange + tmp);
 }
 
-s32 func_80366160_506570(GObj* obj) {
+s32 EnvSound_GetTargetAngle(GObj* obj) {
     DObj* model = obj->data.dobj;
     f32 dx, dz;
     s32 unused[3];
     s32 val1;
 
 
-    if (D_80393BD4_533FE4 == NULL) {
+    if (EnvSound_PlayerModel == NULL) {
         return 0;
     }
 
-    dx = GET_TRANSFORM(model)->pos.v.x - GET_TRANSFORM(D_80393BD4_533FE4)->pos.v.x;
-    dz = GET_TRANSFORM(model)->pos.v.z - GET_TRANSFORM(D_80393BD4_533FE4)->pos.v.z;
+    dx = GET_TRANSFORM(model)->pos.v.x - GET_TRANSFORM(EnvSound_PlayerModel)->pos.v.x;
+    dz = GET_TRANSFORM(model)->pos.v.z - GET_TRANSFORM(EnvSound_PlayerModel)->pos.v.z;
     if ((s32)dx == 0 && (s32)dz == 0) {
         return 0;
     }
-    val1 = func_803669C0_506DD0(dz, dx);
-    dx = D_80393BD8_533FE8->viewMtx.lookAt.at.x - D_80393BD8_533FE8->viewMtx.lookAt.eye.x;
-    dz = D_80393BD8_533FE8->viewMtx.lookAt.at.z - D_80393BD8_533FE8->viewMtx.lookAt.eye.z;
-    val1 -= func_803669C0_506DD0(dz, dx);
+    val1 = atan2s(dz, dx);
+    dx = EnvSound_MainCamera->viewMtx.lookAt.at.x - EnvSound_MainCamera->viewMtx.lookAt.eye.x;
+    dz = EnvSound_MainCamera->viewMtx.lookAt.at.z - EnvSound_MainCamera->viewMtx.lookAt.eye.z;
+    val1 -= atan2s(dz, dx);
 
     return val1 & 0x7FFF;
 }
@@ -79,7 +78,7 @@ void EnvSound_GetVolumePan(GObj* obj, u8 hearingRange, s32* volume, s32* pan) {
         f0 = 1.0f;
         v1 = 0x40;
     } else {
-        temp_v0 = func_80366160_506570(obj);
+        temp_v0 = EnvSound_GetTargetAngle(obj);
         v1 = (temp_v0 + 0x2000) & 0x7FFF;
 
         if (v1 > 0x4000) {
@@ -101,24 +100,24 @@ void EnvSound_GetVolumePan(GObj* obj, u8 hearingRange, s32* volume, s32* pan) {
     *pan = v1;
 }
 
-void func_80366328_506738(GObj* obj) {
-    UnkBeigeBoa* ptr;
+void EnvSound_Update(GObj* obj) {
+    EnvSound* ptr;
     s32 volume, pan;
     s32 unused[2];
 
-    if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
+    if (EnvSound_PlayerModel == NULL || EnvSound_MainCamera == NULL) {
         return;
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source != NULL) {
             OSIntMask mask = osSetIntMask(OS_IM_NONE);
-            s32 soundId = D_800968BC[ptr->soundHandle];
+            s32 soundId = auPlayingSound[ptr->soundHandle];
 
             if (soundId == -1 || soundId != ptr->soundId) {
                 ptr->source = NULL;
-                ptr->finished = TRUE;
-            } else if (ptr->finished != TRUE) {
+                ptr->fixedParams = TRUE;
+            } else if (ptr->fixedParams != TRUE) {
                 EnvSound_GetVolumePan(ptr->source, ptr->hearingRange, &volume, &pan);
                 auSetSoundVolume(ptr->soundHandle, volume);
                 if (!(ptr->hearingRange & 0x80)) {
@@ -132,47 +131,47 @@ void func_80366328_506738(GObj* obj) {
 }
 
 #ifdef NON_MATCHING
-void func_80366470_506880(UnkVioletPython* arg0, s32 arg1) {
-    if (arg0 != 0 && arg1 > 0) {
-        D_80393BDC_533FEC = arg0;
-        D_80393BE0_533FF0 = arg1;
-        D_80393BD4_533FE4 = func_803573B0_4F77C0();
-        D_80393BD8_533FE8 = getMainCamera();
-        D_80393BD0_533FE0 = gtlMalloc(sizeof(UnkBeigeBoa), 4);
-        D_80393BD0_533FE0->next = NULL;
-        D_80393BD0_533FE0->source = NULL;
-        omCreateProcess(omAddGObj(400, ohUpdateDefault, 9, 1), func_80366328_506738, 1, 1);
+void EnvSound_Init(EnvSoundData* data, s32 numEntries) {
+    if (data != 0 && numEntries > 0) {
+        EnvSound_InitData = data;
+        EnvSound_InitDataSize = numEntries;
+        EnvSound_PlayerModel = func_803573B0_4F77C0();
+        EnvSound_MainCamera = getMainCamera();
+        EnvSound_Sounds = gtlMalloc(sizeof(EnvSound), 4);
+        EnvSound_Sounds->next = NULL;
+        EnvSound_Sounds->source = NULL;
+        omCreateProcess(omAddGObj(OBJID_ENV_SOUND_PLAYER, ohUpdateDefault, LINK_PLAYER, 1), EnvSound_Update, 1, 1);
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/5064F0/func_80366470_506880.s")
-void func_80366470_506880(UnkVioletPython* arg0, s32 arg1);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_level/envsound/EnvSound_Init.s")
+void EnvSound_Init(EnvSoundData* data, s32 numEntries);
 #endif
 
-void func_8036650C_50691C(void) {
-    D_80393BD4_533FE4 = NULL;
-    D_80393BD8_533FE8 = NULL;
+void EnvSound_Cleanup(void) {
+    EnvSound_PlayerModel = NULL;
+    EnvSound_MainCamera = NULL;
 }
 
-void func_80366520_506930(GObj* obj, u8 group, s32 soundID, u8 pitch, u8 hearingRange) {
+void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier, u8 hearingRange) {
     Pokemon* pokemon = GET_POKEMON(obj);
-    UnkBeigeBoa* last;
+    EnvSound* last;
     u32 volume, pan;
-    UnkBeigeBoa* ptr;
+    EnvSound* ptr;
 
 
-    if (2 * hearingRange < pokemon->playerDist / 100.0f || D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL) {
+    if (2 * hearingRange < pokemon->playerDist / 100.0f || EnvSound_PlayerModel == NULL || EnvSound_MainCamera == NULL) {
         return;
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
-        if (ptr->source == obj && ptr->group == group) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj && ptr->category == category) {
             auStopSound(ptr->soundHandle);
             ptr->source = NULL;
         }
     }
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source != NULL) {
             last = ptr;
         } else {
@@ -181,7 +180,7 @@ void func_80366520_506930(GObj* obj, u8 group, s32 soundID, u8 pitch, u8 hearing
     }
 
     if (ptr == NULL) {
-        ptr = gtlMalloc(sizeof(UnkBeigeBoa), 4);
+        ptr = gtlMalloc(sizeof(EnvSound), 4);
         ptr->next = NULL;
         ptr->source = NULL;
         last->next = ptr;
@@ -195,9 +194,9 @@ void func_80366520_506930(GObj* obj, u8 group, s32 soundID, u8 pitch, u8 hearing
         pan = 0x7F;
     }
 
-    pitch = pitch > 0x7F ? 0x7F : pitch;
+    pitchModifier = pitchModifier > 0x7F ? 0x7F : pitchModifier;
 
-    switch (pitch) {
+    switch (pitchModifier) {
         case 0:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 1.0f, 0);
             break;
@@ -220,53 +219,53 @@ void func_80366520_506930(GObj* obj, u8 group, s32 soundID, u8 pitch, u8 hearing
 
     if (ptr->soundHandle != -1) {
         ptr->source = obj;
-        ptr->group = group;
+        ptr->category = category;
         ptr->hearingRange = hearingRange;
         ptr->soundId = soundID;
-        ptr->finished = FALSE;
+        ptr->fixedParams = FALSE;
     }
 }
 
-void func_803667C0_506BD0(GObj* obj, u8 arg1, s32 soundID) {
+void EnvSound_PlaySound(GObj* obj, u8 category, s32 soundID) {
     s32 i;
 
-    if (D_80393BD4_533FE4 == NULL || D_80393BD8_533FE8 == NULL || D_80393BD0_533FE0 == NULL) {
+    if (EnvSound_PlayerModel == NULL || EnvSound_MainCamera == NULL || EnvSound_Sounds == NULL) {
         return;
     }
 
-    for (i = 0; i < D_80393BE0_533FF0; i++) {
-        if (D_80393BDC_533FEC[i].soundID == soundID) {
-            func_80366520_506930(obj, arg1, soundID, D_80393BDC_533FEC[i].unk_02, D_80393BDC_533FEC[i].hearingRange);
+    for (i = 0; i < EnvSound_InitDataSize; i++) {
+        if (EnvSound_InitData[i].soundID == soundID) {
+            EnvSound_PlaySoundInt(obj, category, soundID, EnvSound_InitData[i].pitchModifier, EnvSound_InitData[i].hearingRange);
             break;
         }
     }
 }
 
-void func_80366864_506C74(GObj* obj, u8 group) {
-    UnkBeigeBoa* ptr;
+void EnvSound_StopSoundByCategory(GObj* obj, u8 category) {
+    EnvSound* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
-        if (ptr->source == obj && ptr->group == group) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
+        if (ptr->source == obj && ptr->category == category) {
             auStopSound(ptr->soundHandle);
             ptr->source = NULL;
         }
     }
 }
 
-void func_803668DC_506CEC(GObj* obj) {
-    UnkBeigeBoa* ptr;
+void EnvSound_FixParams(GObj* obj) {
+    EnvSound* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source == obj) {
-            ptr->finished = TRUE;
+            ptr->fixedParams = TRUE;
         }
     }
 }
 
-void func_80366918_506D28(GObj* obj) {
-    UnkBeigeBoa* ptr;
+void EnvSound_StopSounds(GObj* obj) {
+    EnvSound* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source == obj) {
             auStopSound(ptr->soundHandle);
             ptr->source = NULL;
@@ -275,9 +274,9 @@ void func_80366918_506D28(GObj* obj) {
 }
 
 s32 EnvSound_GetSoundHandle(s32 soundId) {
-    UnkBeigeBoa* ptr;
+    EnvSound* ptr;
 
-    for (ptr = D_80393BD0_533FE0; ptr != NULL; ptr = ptr->next) {
+    for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source != NULL && ptr->soundId == soundId) {
             return ptr->soundHandle;
         }

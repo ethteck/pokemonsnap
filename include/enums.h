@@ -137,13 +137,14 @@ enum DlLinks {
 };
 
 enum ObjIDs {
-    OBJID_0             = 0,
-    OBJID_MAIN_CAMERA   = 1,
-    OBJID_UI_CAMERA     = 3,
-    OBJID_PLAYER        = 7,
-    OBJID_BUMP_DETECTOR = 8,
-    OBJID_UI_RETICLE    = 25,
-    OBJID_UI_PAUSE      = 26
+    OBJID_0                 = 0,
+    OBJID_MAIN_CAMERA       = 1,
+    OBJID_UI_CAMERA         = 3,
+    OBJID_PLAYER            = 7,
+    OBJID_BUMP_DETECTOR     = 8,
+    OBJID_UI_RETICLE        = 25,
+    OBJID_UI_PAUSE          = 26,
+    OBJID_ENV_SOUND_PLAYER  = 400
 };
 
 enum PokemonIds {

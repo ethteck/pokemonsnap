@@ -125,7 +125,7 @@ void func_beach_802CA8C4(GObj* obj) {
     }
 
     auPlaySound(0x29);
-    if (D_beach_802CD9D0 != -1 && D_800968BC[D_beach_802CD9D0] != -1) {
+    if (D_beach_802CD9D0 != -1 && auPlayingSound[D_beach_802CD9D0] != -1) {
         auStopSound(D_beach_802CD9D0);
     }
     Pokemon_StopAuxProc(obj);
@@ -155,12 +155,12 @@ void func_beach_802CA950(GObj* obj) {
     animSetCameraAnimation(temp_v0, D_8013C530, 0.0f);
     omCreateProcess(temp_s1, animUpdateCameraAnimation, 1, 1);
     func_800E1A78_5F228(D_8011B924);
-    temp_v0_2 = func_80365E80_506290();
+    temp_v0_2 = PlayerModel_Init();
     if (temp_v0_2 == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, 0);
         omEndProcess(NULL);
     }
-    func_80365F38_506348(&D_8013B030, &D_8013BAA0, 0, 0.5f);
+    PlayerModel_SetAnimation(&D_8013B030, &D_8013BAA0, 0, 0.5f);
     D_beach_80347658 = temp_v0_2;
     D_beach_802CD9D4 = 0;
     temp_v0_2->fnAnimCallback = func_beach_802CA5A8;

@@ -21,7 +21,7 @@ extern u8 padding_503C10[8];
 extern PokemonListEntry sPokemonListEntries[100];
 extern PokemonListEntry* sPokemonLists[MAX_BLOCKS];
 
-void func_803668DC_506CEC(GObj* arg0);
+void EnvSound_FixParams(GObj* arg0);
 void func_803638E8_503CF8(void);
 
 void func_80363800_503C10(void) {
@@ -33,7 +33,7 @@ s32 func_8036381C_503C2C(void) {
 }
 
 void func_80363828_503C38(GObj* arg0) {
-    func_803668DC_506CEC(arg0);
+    EnvSound_FixParams(arg0);
 }
 
 f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1) {

@@ -2,7 +2,7 @@
 
 extern u16 D_80393BF0_534000[];
 
-s32 func_803669C0_506DD0(f32 arg0, f32 arg1) {
+s32 atan2s(f32 arg0, f32 arg1) {
     f32 f0, f2;
     s32 v1;
 

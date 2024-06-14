@@ -266,7 +266,7 @@ void func_beach_802CBD04(GObj* obj) {
 
     cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_37, obj);
     ohWait(1);
-    func_803667C0_506BD0(obj, 1, 0x34);
+    EnvSound_PlaySound(obj, 1, 0x34);
     Pokemon_ForceAnimation(obj, &D_beach_802CE070);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

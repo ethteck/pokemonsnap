@@ -51,8 +51,8 @@ void func_80360074_500484(GObj*);
 void deletePokemon(GObj* pokemonObj);
 void func_800A716C(GObj*);
 u8 getIsPaused(void);
-void func_80366864_506C74(GObj*, u8);
-void func_803667C0_506BD0(GObj*, UNK_TYPE, UNK_TYPE);
+void EnvSound_StopSoundByCategory(GObj*, u8);
+void EnvSound_PlaySound(GObj*, UNK_TYPE, UNK_TYPE);
 s32 func_8036381C_503C2C(void);
 s32 Pokemon_StepWalkInDirection(GObj* arg0, f32 arg1, u32 arg2);
 
@@ -366,7 +366,7 @@ void Pokemon_SetAnimationCommon(GObj* obj, AnimationHeader* header, f32 startTim
         }
 
         if (pokemon->modelAnims != header->modelAnims || force) {
-            func_80366864_506C74(obj, 0);
+            EnvSound_StopSoundByCategory(obj, 0);
             anim_func_8000F8E4(obj, header->modelAnims, startTime, pokemon->initData->tree);
             pokemon->modelAnims = header->modelAnims;
         }
@@ -418,7 +418,7 @@ void Pokemon_ForceAnimationAtTime(GObj* obj, AnimationHeader* header, f32 time) 
 
 void func_8035F1D0_4FF5E0(GObj* arg0, u8 arg1, s32 arg2) {
     if (func_8036381C_503C2C() != 0 && !(arg0->flags & GOBJ_FLAG_HIDDEN)) {
-        func_803667C0_506BD0(arg0, arg1, arg2);
+        EnvSound_PlaySound(arg0, arg1, arg2);
     }
 }
 
@@ -1789,7 +1789,7 @@ void Pokemon_AnimationCallback(DObj* model, s32 param, f32 value) {
                         func_8035F1D0_4FF5E0(obj, param, animHeader->ids[val - 1]);
                     }
                 } else {
-                    func_80366864_506C74(obj, param);
+                    EnvSound_StopSoundByCategory(obj, param);
                 }
             } else if (pokemon->tangible) {
                 s32 val = value;

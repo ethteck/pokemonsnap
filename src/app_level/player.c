@@ -198,7 +198,7 @@ void screenCoorsToWorld(f32*, f32*, f32*);
 void BumpDetector_Init(void);
 void func_8035E37C_4FE78C(void);
 GObj* func_80365B24_505F34(void);
-void showMessage(char*, s32, s32, u8, u8, u8, u8, s32, u8);
+void Message_Show(char*, s32, s32, u8, u8, u8, u8, s32, u8);
 s32 func_80365E70_506280(void);
 IdleScript* getIdleScript(void);
 void func_800A7918(s32, f32);
@@ -1179,7 +1179,7 @@ void showPokemonLabel(s32 pokemonID, s32 arg1, s32* arg2) {
         } else {
             pokemonName = "？";
         }
-        showMessage(pokemonName, 160, 200, 255, 255, 255, 255, 0, 2);
+        Message_Show(pokemonName, 160, 200, 255, 255, 255, 255, 0, 2);
     }
 }
 
@@ -1868,7 +1868,7 @@ void Tutorial_ShowMessage(s32 msgID) {
         }
 
         if (message != NULL) {
-            showMessage(message, 160, 150, 255, 255, 255, 255, 0, 2);
+            Message_Show(message, 160, 150, 255, 255, 255, 255, 0, 2);
         }
     } else {
         func_80365E34_506244();
@@ -2120,7 +2120,7 @@ void processOutOfFilm(GObj* arg0) {
         spColor(&sobj2->sprite, 255, 255, 255, var_s2);
         ohWait(1);
     }
-    showMessage("You're out of film!", 160, 130, 255, 255, 255, 255, 5, 2);
+    Message_Show("You're out of film!", 160, 130, 255, 255, 255, 255, 5, 2);
     auStopBGM();
     auStopAllSounds();
     for (i = 0; i < 16; i++) {

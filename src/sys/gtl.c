@@ -16,7 +16,11 @@
 // TODO include
 void renSetCustomMatrixHandler(void*);
 
-enum GtlStates { GTL_STATE_0 = 0, GTL_STATE_1 = 1, GTL_STATE_2 = 2 };
+enum GtlStates {
+    GTL_STATE_0 = 0,
+    GTL_STATE_1 = 1,
+    GTL_STATE_2 = 2
+};
 
 enum UcodeTypes {
     UCODE_F3DEX2_FIFO = 0,
@@ -50,10 +54,7 @@ typedef struct FnBundle {
 s32 gtlD_80040CF0 = 0;
 u32 gtlFrameCounter = 0;
 s32 gtlDrawnFrameCounter = 0;
-UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gspF3DEX2_NoN_fifoTextStart, gspF3DEX2_NoN_fifoDataStart },
-                              { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
-                              { NULL, NULL }, { NULL, NULL }, { gspL3DEX2_fifoTextStart, gspL3DEX2_fifoDataStart },
-                              { NULL, NULL }, { NULL, NULL } };
+UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gspF3DEX2_NoN_fifoTextStart, gspF3DEX2_NoN_fifoDataStart }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { gspL3DEX2_fifoTextStart, gspL3DEX2_fifoDataStart }, { NULL, NULL }, { NULL, NULL } };
 
 // BSS
 u8 gtlPadding[16];
@@ -178,15 +179,13 @@ void gtlCheckBuffers(void) {
     for (i = 0; i < 4; i++) {
         if (gtlDLBuffers[gtlContextId][i].length + (uintptr_t)gtlDLBuffers[gtlContextId][i].start <
             (uintptr_t)gMainGfxPos[i]) {
-            fatal_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i,
-                         (uintptr_t)gMainGfxPos[i] - (uintptr_t)gtlDLBuffers[gtlContextId][i].start);
+            fatal_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i, (uintptr_t)gMainGfxPos[i] - (uintptr_t)gtlDLBuffers[gtlContextId][i].start);
             PANIC();
         }
     }
 
     if ((uintptr_t)gtlCurrentGfxHeap.end < (uintptr_t)gtlCurrentGfxHeap.ptr) {
-        fatal_printf("gtl : DynamicBuffer over flow !  %d byte\n",
-                     (uintptr_t)gtlCurrentGfxHeap.ptr - (uintptr_t)gtlCurrentGfxHeap.start);
+        fatal_printf("gtl : DynamicBuffer over flow !  %d byte\n", (uintptr_t)gtlCurrentGfxHeap.ptr - (uintptr_t)gtlCurrentGfxHeap.start);
         PANIC();
     }
 }
@@ -293,8 +292,7 @@ void gtlReset(void) {
     gtlInitDLists();
 }
 
-void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff,
-                      u32 outputBuffSize) {
+void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff, u32 outputBuffSize) {
     UcodeInfo* ucode;
 
     t->info.type = SC_TASK_TYPE_GFX;
@@ -416,8 +414,7 @@ void func_80005D60(s32 arg0, u64* dlist) {
         case UCODE_F3DEX2_REJ_FIFO:
         case UCODE_F3DLX2_REJ_FIFO:
         case UCODE_L3DEX2_FIFO:
-            gtlScheduleGfx(gtlGetTaskGfx(), 0, uidx, gtlContextId, dlist, gtlRPDOutputBuffer,
-                             gtlRPDOutputBufferSize);
+            gtlScheduleGfx(gtlGetTaskGfx(), 0, uidx, gtlContextId, dlist, gtlRPDOutputBuffer, gtlRPDOutputBufferSize);
             break;
     }
 }
@@ -854,9 +851,7 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlCallbackBundle.fnPrivUpdate = setup->fnUpdate;
     gtlCallbackBundle.fnPrivDraw = setup->fnDraw;
 
-    gtlInitTaskBuffers(gtlMalloc(setup->unk_14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk_14,
-                          gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
-                          gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
+    gtlInitTaskBuffers(gtlMalloc(setup->unk_14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk_14, gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8), gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
 
     for (i = 0; i < gtlNumContexts; i++) {
         dlBuffers[i][0].start = gtlMalloc(setup->dlBufferSize0, 8);

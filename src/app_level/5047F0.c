@@ -8,11 +8,8 @@ void func_803643E0_5047F0(OMCamera* cam);
 s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z);
 
 void func_803643E0_5047F0(OMCamera* cam) {
-    hal_perspective_fast_f(D_803B1518_551928, NULL, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
-                           cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
-    hal_look_at_f(D_803B14D8_5518E8, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
-                  cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
-                  cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y, cam->viewMtx.lookAt.up.z);
+    hal_perspective_fast_f(D_803B1518_551928, NULL, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect, cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
+    hal_look_at_f(D_803B14D8_5518E8, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y, cam->viewMtx.lookAt.up.z);
     guMtxCatF(D_803B14D8_5518E8, D_803B1518_551928, D_803B1518_551928);
 }
 

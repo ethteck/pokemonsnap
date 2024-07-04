@@ -44,7 +44,7 @@ void func_802D638C_72758C(WorldBlock* arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6788_727988.s")
 
 s32 func_802D67C4_7279C4(s32 arg0) {
-    D_802E0ED8_7320D8.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) _326C10_VRAM_END;
+    D_802E0ED8_7320D8.gtlSetup.heapSize = (uintptr_t)volcano_code_VRAM - (uintptr_t)_326C10_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     func_802D6788_727988();

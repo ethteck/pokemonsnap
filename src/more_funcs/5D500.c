@@ -56,7 +56,7 @@ s32 func_800C0848_5D6E8(s32 arg0, s32 arg1, s32 arg2) {
 #pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5D500/func_800C0AB4_5D954.s")
 
 void func_800C0B48_5D9E8(void) {
-    D_800E1700_7E5A0 = (s32) ((uintptr_t) D_800E1708_7E5A8 + 0xF) & ~0xF;
+    D_800E1700_7E5A0 = (s32)((uintptr_t)D_800E1708_7E5A8 + 0xF) & ~0xF;
     D_800E16F0_7E590 = func_800C1818_5E6B8();
     osCreateMesgQueue(&D_800E17A8_7E648, &D_800E17A0_7E640, 1);
     D_800E1798_7E638 = 0;

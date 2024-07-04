@@ -16,8 +16,8 @@ void func_beach_802C51A0(DObj* arg0, s32 arg1, f32 arg2) {
 
     if (arg1 == -2 || arg1 == -1) {
         D_beach_802CC0E0 = 1;
-    } else if ((s32) arg2 - 1 >= 0) {
-        unk = func_800A6C48(arg1, (s32) arg2 - 1);
+    } else if ((s32)arg2 - 1 >= 0) {
+        unk = func_800A6C48(arg1, (s32)arg2 - 1);
         if (unk != NULL) {
             unk->unk_48 = arg0;
         }
@@ -98,12 +98,12 @@ void func_beach_802C52EC(GObj* obj) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_beach_802C5214();
         }
-        cam->viewMtx.lookAt.eye.x = (((f32) i * (startEyeX - baseEyeX)) / 10.0f) + baseEyeX;
-        cam->viewMtx.lookAt.eye.y = (((f32) i * (startEyeY - baseEyeY)) / 10.0f) + baseEyeY;
-        cam->viewMtx.lookAt.eye.z = (((f32) i * (startEyeZ - baseEyeZ)) / 10.0f) + baseEyeZ;
-        cam->viewMtx.lookAt.at.x = (((f32) i * (startAtX - baseAtX)) / 10.0f) + baseAtX;
-        cam->viewMtx.lookAt.at.y = (((f32) i * (startAtY - baseAtY)) / 10.0f) + baseAtY;
-        cam->viewMtx.lookAt.at.z = (((f32) i * (startAtZ - baseAtZ)) / 10.0f) + baseAtZ;
+        cam->viewMtx.lookAt.eye.x = (((f32)i * (startEyeX - baseEyeX)) / 10.0f) + baseEyeX;
+        cam->viewMtx.lookAt.eye.y = (((f32)i * (startEyeY - baseEyeY)) / 10.0f) + baseEyeY;
+        cam->viewMtx.lookAt.eye.z = (((f32)i * (startEyeZ - baseEyeZ)) / 10.0f) + baseEyeZ;
+        cam->viewMtx.lookAt.at.x = (((f32)i * (startAtX - baseAtX)) / 10.0f) + baseAtX;
+        cam->viewMtx.lookAt.at.y = (((f32)i * (startAtY - baseAtY)) / 10.0f) + baseAtY;
+        cam->viewMtx.lookAt.at.z = (((f32)i * (startAtZ - baseAtZ)) / 10.0f) + baseAtZ;
         ohWait(1);
     }
 

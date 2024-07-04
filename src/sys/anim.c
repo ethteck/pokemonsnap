@@ -184,8 +184,7 @@ void animSetModelTreeTextureAnimation(GObj* obj, AnimCmd*** textureAnimLists, f3
     }
 }
 
-void animSetModelTreeAndTextureAnimation(GObj* obj, AnimCmd** modelAnimLists,
-                                          AnimCmd*** textureAnimLists, f32 skipFrames) {
+void animSetModelTreeAndTextureAnimation(GObj* obj, AnimCmd** modelAnimLists, AnimCmd*** textureAnimLists, f32 skipFrames) {
     DObj* dobj = obj->data.dobj;
     MObj* mobj;
     AnimCmd** cmdlist;
@@ -495,8 +494,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 break;
             case ANIM_CMD_16:
                 if (dobj->obj->fnAnimCallback != NULL) {
-                    dobj->obj->fnAnimCallback(dobj, ((dobj->animList->w << 7) >> 22) >> 8,
-                                              ((dobj->animList->w << 7) >> 22) & 0xFF);
+                    dobj->obj->fnAnimCallback(dobj, ((dobj->animList->w << 7) >> 22) >> 8, ((dobj->animList->w << 7) >> 22) & 0xFF);
                 }
 
                 dobj->timeLeft += (f32)(dobj->animList++->w & 0x7FFF);
@@ -525,8 +523,7 @@ void animProcessModelAnimation(DObj* dobj) {
     } while (dobj->timeLeft <= 0.0f);
 }
 
-f32 animGetAObjInterpValue(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate,
-                          f32 targetRate) {
+f32 animGetAObjInterpValue(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate, f32 targetRate) {
     f32 sp18;
     f32 sp14;
     f32 sp10;
@@ -547,8 +544,7 @@ f32 animGetAObjInterpValue(f32 invDuration, f32 time, f32 initialValue, f32 targ
            initialRate * ((sp10 - sp18) + time) + targetRate * sp10;
 }
 
-f32 animGetAObjInterpRate(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate,
-                         f32 targetRate) {
+f32 animGetAObjInterpRate(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate, f32 targetRate) {
     f32 temp_f18;
     f32 temp_f16;
     f32 temp_f2;
@@ -567,8 +563,7 @@ f32 animGetAObjValue(AObj* aobj) {
         case ANIM_TYPE_LINEAR:
             return aobj->initialValue + (aobj->time * aobj->rate);
         case ANIM_TYPE_CUBIC:
-            return animGetAObjInterpValue(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue,
-                                         aobj->rate, aobj->targetRate);
+            return animGetAObjInterpValue(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue, aobj->rate, aobj->targetRate);
         case ANIM_TYPE_STEP:
             return aobj->invDuration <= aobj->time ? aobj->targetValue : aobj->initialValue;
     }
@@ -579,8 +574,7 @@ f32 animGetAObjRate(AObj* aobj) {
         case ANIM_TYPE_LINEAR:
             return aobj->rate;
         case ANIM_TYPE_CUBIC:
-            return animGetAObjInterpRate(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue,
-                                        aobj->rate, aobj->targetRate);
+            return animGetAObjInterpRate(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue, aobj->rate, aobj->targetRate);
         case ANIM_TYPE_STEP:
             return 0.0f;
     }
@@ -1256,8 +1250,7 @@ f32 func_8000EB98(UnkEC64Arg3* arg0, s32 paramID) {
     }
 }
 
-s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* aobjList, UnkEC64Arg3* arg5,
-                  s32 paramID, s32 setRate, Vec3f* interpPos, s32* interpPosReady) {
+s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* aobjList, UnkEC64Arg3* arg5, s32 paramID, s32 setRate, Vec3f* interpPos, s32* interpPosReady) {
     AObj* aobj;
 
     aobj = animGetAObjByParamID(aobjList, paramID);
@@ -1461,8 +1454,7 @@ void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, AObj*
 void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, struct AObj* arg5);
 #endif
 
-f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* arg3, s32 setRate, f32 duration,
-                  f32 arg6, f32 arg7, f32 arg8) {
+f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* arg3, s32 setRate, f32 duration, f32 arg6, f32 arg7, f32 arg8) {
     AObj* origAobjList;
     AObj* spC0;
     AObj* newAObj;
@@ -1572,8 +1564,7 @@ f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* a
     return spA4;
 }
 
-f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3, s32 arg4, f32 arg5,
-                  f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
+f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
     f32 ret;
     UNUSED f32 tmp;
     DObj* dobj;
@@ -1949,8 +1940,7 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
     }
 }
 
-void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** arg3,
-                   u8 arg4, u8 arg5, u8 arg6) {
+void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** arg3, u8 arg4, u8 arg5, u8 arg6) {
     int i;
     DObj* dobj;
     s32 trunc;

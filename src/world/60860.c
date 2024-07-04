@@ -7,8 +7,7 @@ void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
     if (block->blockModel->fnRender == &renRenderModelTypeA ||
         block->blockModel->fnRender == &renderModelTypeAFogged ||
         block->blockModel->fnRender == &renRenderModelTypeB ||
-        block->blockModel->fnRender == &renderModelTypeBFogged)
-    {
+        block->blockModel->fnRender == &renderModelTypeBFogged) {
         DObj* child = omDObjAddChild(block->blockModel->data.dobj, arg2.d.gfx);
         s32 unused[2];
 
@@ -44,8 +43,7 @@ void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
     UnkEC64Arg3* treePtr = arg2.d.treeDef;
 
     if (block->blockModel->fnRender == &renRenderModelTypeA ||
-        block->blockModel->fnRender == &renRenderModelTypeB)
-    {
+        block->blockModel->fnRender == &renRenderModelTypeB) {
         s32 unused;
         s32 i;
         DObj* sp54[18];
@@ -109,7 +107,6 @@ void func_800E3464_60C14(WorldBlock* arg0) {
                 D_800E6B10_642C0[i].unk_04(arg0, s2, D_800E6B10_642C0[i].unk_08);
                 break;
             }
-
         }
         s2++;
     }

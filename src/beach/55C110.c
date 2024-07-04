@@ -79,13 +79,13 @@ void func_beach_802C44D4(void) {
     void* temp_v0;
     void* temp_v0_2;
 
-    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    sp1C = func_800A73C0((u32)AB5860_ROM_START, (u32)AB5860_ROM_END);
+    temp_v0 = func_800A73C0((u32)AB5980_ROM_START, (u32)AB5980_ROM_END);
     if (sp1C != NULL && temp_v0 != NULL) {
         func_800A1ED0(3, sp1C, temp_v0);
     }
-    sp1C = func_800A73C0((u32) AB85E0_ROM_START, (u32) AB85E0_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) AB8780_ROM_START, (u32) AB8780_ROM_END);
+    sp1C = func_800A73C0((u32)AB85E0_ROM_START, (u32)AB85E0_ROM_END);
+    temp_v0_2 = func_800A73C0((u32)AB8780_ROM_START, (u32)AB8780_ROM_END);
     if (sp1C != NULL && temp_v0_2 != NULL) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }
@@ -100,7 +100,7 @@ void func_beach_802C4738(s32 arg0) {
 }
 
 s32 func_beach_802C4740(s32 sceneID) {
-    D_beach_802CC038.gtlSetup.heapSize = (uintptr_t) beach_code_VRAM - (uintptr_t) A74E0_VRAM_END;
+    D_beach_802CC038.gtlSetup.heapSize = (uintptr_t)beach_code_VRAM - (uintptr_t)A74E0_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_beach_802CC038);

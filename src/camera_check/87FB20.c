@@ -124,7 +124,7 @@ s32 func_camera_check_801E2948(s32 arg0) {
     }
 
     // TODO: fix this
-    temp = arg0 - ((uintptr_t) &D_camera_check_80249B30);
+    temp = arg0 - ((uintptr_t)&D_camera_check_80249B30);
     return (temp / 28) - D_camera_check_8024A1C0;
 }
 
@@ -491,8 +491,8 @@ s32 func_camera_check_801E3620(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* lhs;
     UnkIndigoHalibut* rhs;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
     if (rhs->var_0 < lhs->var_0) {
         return 1;
     }
@@ -506,8 +506,8 @@ s32 func_camera_check_801E3658(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* lhs;
     UnkIndigoHalibut* rhs;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
     if (lhs->var_18_0x80000000 < rhs->var_18_0x80000000) {
         return 1;
     }
@@ -524,8 +524,8 @@ s32 func_camera_check_801E36DC(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* lhs;
     UnkIndigoHalibut* rhs;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
     if (lhs->var_8 < rhs->var_8) {
         return 1;
     }
@@ -542,8 +542,8 @@ s32 func_camera_check_801E3758(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* lhs;
     UnkIndigoHalibut* rhs;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
     if (lhs->var_18_0x20000000 > rhs->var_18_0x20000000) {
         return 1;
     }
@@ -560,8 +560,8 @@ s32 func_camera_check_801E37E4(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* lhs;
     UnkIndigoHalibut* rhs;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
     if (lhs->var_18_0x10000000 > rhs->var_18_0x10000000) {
         return 1;
     }
@@ -579,8 +579,8 @@ s32 func_camera_check_801E3870(const void* arg0, const void* arg1) {
     UnkIndigoHalibut* rhs;
     s32 lhsVal, rhsVal;
 
-    lhs = (UnkIndigoHalibut*) arg0;
-    rhs = (UnkIndigoHalibut*) arg1;
+    lhs = (UnkIndigoHalibut*)arg0;
+    rhs = (UnkIndigoHalibut*)arg1;
 
     // TODO: see if this can be matched in a better way
     lhsVal = (lhs->var_18_0x20000000 << 2 & (1 << 2)) | (lhs->var_18_0x10000000 << 1 & (1 << 1)) | (lhs->var_18_0x08000000 << 0 & (1 << 0));

@@ -69,13 +69,13 @@ void func_802C6300_79F890(void) {
     void* temp_v0;
     void* temp_v0_2;
 
-    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    sp1C = func_800A73C0((u32)AB5860_ROM_START, (u32)AB5860_ROM_END);
+    temp_v0 = func_800A73C0((u32)AB5980_ROM_START, (u32)AB5980_ROM_END);
     if ((sp1C != NULL) && (temp_v0 != NULL)) {
         func_800A1ED0(3, sp1C, temp_v0);
     }
-    sp1C = func_800A73C0((u32) AD0E00_ROM_START, (u32) AD0E00_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) AD1640_ROM_START, (u32) AD1640_ROM_END);
+    sp1C = func_800A73C0((u32)AD0E00_ROM_START, (u32)AD0E00_ROM_END);
+    temp_v0_2 = func_800A73C0((u32)AD1640_ROM_START, (u32)AD1640_ROM_END);
     if ((sp1C != NULL) && (temp_v0_2 != NULL)) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }

@@ -25,7 +25,7 @@ u32 func_801E0328_9FDFE8(void) {
     while (TRUE) {
         ohWait(1);
         sp24 = func_800AA38C(0);
-        if (func_801DF8A4_9FD564((void*) sp24, &D_802308A4_A4E564) != 0) {
+        if (func_801DF8A4_9FD564((void*)sp24, &D_802308A4_A4E564) != 0) {
             if (D_802308A4_A4E564 != sp1C) {
                 func_801DDCA8_9FB968(7);
             }
@@ -84,12 +84,12 @@ u32 func_801E04E8_9FE1A8(void) {
     while (TRUE) {
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
-        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F6C_9FEC2C() - 6)) {
+        if ((D_801EA294_A07F54 - ((s32)D_801EA294_A07F54 % 6)) < (func_801E0F6C_9FEC2C() - 6)) {
             func_803713D4_844B84(2);
         } else {
             func_803713EC_844B9C(2);
         }
-        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) > 0) {
+        if ((D_801EA294_A07F54 - ((s32)D_801EA294_A07F54 % 6)) > 0) {
             func_803713D4_844B84(1);
         } else {
             func_803713EC_844B9C(1);
@@ -134,12 +134,12 @@ s32 func_801E06F0_9FE3B0(void) {
 
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 1);
-        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F50_9FEC10() - 6)) {
+        if ((D_801EA294_A07F54 - ((s32)D_801EA294_A07F54 % 6)) < (func_801E0F50_9FEC10() - 6)) {
             func_803713D4_844B84(2);
         } else {
             func_803713EC_844B9C(2);
         }
-        if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) > 0) {
+        if ((D_801EA294_A07F54 - ((s32)D_801EA294_A07F54 % 6)) > 0) {
             func_803713D4_844B84(1);
         } else {
             func_803713EC_844B9C(1);
@@ -286,7 +286,7 @@ s32 func_801E0D80_9FEA40(void) {
     if (contIsPrinterAvailable() == 0) {
         func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
         D_802308A4_A4E564 = 7;
-        func_801DF8A4_9FD564((UNK_PTR) &sp18, &D_802308A4_A4E564);
+        func_801DF8A4_9FD564((UNK_PTR)&sp18, &D_802308A4_A4E564);
     }
     return 0;
 }

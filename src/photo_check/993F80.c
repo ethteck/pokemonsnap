@@ -38,7 +38,6 @@ typedef struct Foo2 {
     u32 unk4_0 : 1;
 } Foo2; // size = 0x8
 
-
 extern s32 D_801F4194_9A3C04;
 extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 

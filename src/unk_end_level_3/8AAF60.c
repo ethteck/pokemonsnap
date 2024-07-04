@@ -127,7 +127,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                 D_80206B70_9CC390->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 3;
                 D_801C5510_98AD30 = 2;
-                auPlaySound(0x16U);
+                auPlaySound(0x16);
                 while (1) {
                     frame_counter += 1;
                     var_s2_2 += 1;
@@ -135,7 +135,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                         frame += 1;
                         frame_counter = 0;
 
-                        if (frame >= 6U) {
+                        if (frame >= 6) {
                             break;
                         }
 
@@ -199,7 +199,7 @@ void func_800E58D0_8AB0F0(s32 arg0) {
                     if (frame_counter >= 7) {
                         frame += 1;
                         frame_counter = 0;
-                        if (frame >= 9U) {
+                        if (frame >= 9) {
                             var_v0 = D_80206B6C_9CC38C->sprite.attr & 4;
                             break;
                         }

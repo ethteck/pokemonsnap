@@ -243,9 +243,11 @@ void bindCameraNextBlock(f32 dx, f32 dy, f32 dz) {
     gMainCamera->viewMtx.lookAt.at.y += dy;
     gMainCamera->viewMtx.lookAt.at.z += dz;
 
+    // clang-format off
     CameraEyePos.x += dx; CameraEyePos.y += dy; CameraEyePos.z += dz;
     CameraAtPos.x += dx; CameraAtPos.y += dy; CameraAtPos.z += dz;
     gCamTargetX += dx; gCamTargetY += dy; gCamTargetZ += dz;
+    // clang-format on
 }
 
 void stopLevelProcesses(void) {
@@ -1026,7 +1028,9 @@ void processZoomingOut(GObj* obj) {
     StickYAccum = 0.0f;
 
     while (i++ < 10) {
+        // clang-format off
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG)) { break; }
+        // clang-format on
 
         temp_f14 = gMovementState.pos.x - CameraEyePos.x;
         temp_f18 = gMovementState.pos.y + 100.0f + CameraShakingDeltaY - CameraEyePos.y;

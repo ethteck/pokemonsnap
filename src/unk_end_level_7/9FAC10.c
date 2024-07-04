@@ -322,7 +322,7 @@ void func_801DE4A0_9FC160(void) {
         func_801DD074_9FAD34((i * 0xFF) / 10);
         ohWait(1);
     }
-    func_801DD074_9FAD34(0U);
+    func_801DD074_9FAD34(0);
     func_801DD0AC_9FAD6C(0);
 }
 

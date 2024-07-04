@@ -1191,7 +1191,9 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
         return TRUE;
     }
 
+    // clang-format off
     collOffset.x = velX; collOffset.y = 0.0f; collOffset.z = velZ;
+    // clang-format on
     Vec3fNormalize(&collOffset);
     Vec3fScale(&collOffset, pokemon->collisionRadius);
     if (Pokemon_IsGroundForbidden(GET_TRANSFORM(model)->pos.v.x + collOffset.x, GET_TRANSFORM(model)->pos.v.z + collOffset.z, &groundResult, pokemon->forbiddenGround)) {

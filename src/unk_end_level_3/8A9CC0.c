@@ -32,7 +32,7 @@ s32 func_800E44A8_8A9CC8(UnkSnowHerring* arg0, s32 arg1) {
         sp1C = 0x1000;
     }
     if (arg1 != 0) {
-        auPlaySound(0x4DU);
+        auPlaySound(0x4D);
     }
     ohWait(1);
     func_8036A8E4_83E094(arg0);
@@ -146,7 +146,7 @@ void func_800E4878_8AA098(void) {
 void func_800E48C4_8AA0E4(void) {
     s32 i;
 
-    auPlaySound(0x52U);
+    auPlaySound(0x52);
     func_803705F0_843DA0(1);
     func_80370C34_8443E4(func_800E3230_8A8A50());
     func_80370900_8440B0(1, 3);
@@ -262,7 +262,7 @@ void func_800E4BA0_8AA3C0(void) {
         auPlaySound(0x53);
     }
 
-    auPlaySound(0x4DU);
+    auPlaySound(0x4D);
     func_800E4578_8A9D98(temp_v0, sp2C, 0, 1);
     func_800E1D68_8A7588(0);
 }

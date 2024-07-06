@@ -58,6 +58,7 @@ void func_8036F684_842E34(s32, s32);
 void func_8036F738_842EE8(s32, ucolor*);
 s32 func_8036F78C_842F3C(void);
 void func_8036FE54_843604(s32, s32);
+void func_8036FF20_8436D0(s32);
 s32 func_8036FFE0_843790(s32, s32);
 void func_80370004_8437B4(s32, s32);
 void func_80370038_8437E8(s32, s32);

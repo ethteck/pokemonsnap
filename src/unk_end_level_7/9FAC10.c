@@ -95,7 +95,7 @@ GObj* func_801DD28C_9FAF4C(s32 arg0) {
     D_80230818_A4E4D8[arg0].unk_0 = gobj;
 
     sobj = func_80371E68_845618(sobj, &D_801E82A0_A05F60);
-    sobj->sprite.x = 0x36;
+    sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
     sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
@@ -104,7 +104,7 @@ GObj* func_801DD28C_9FAF4C(s32 arg0) {
 
     sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
     sobj->sprite.x = 2;
-    sobj->sprite.y = 0x29;
+    sobj->sprite.y = 41;
 
     sobj = func_80371DC0_845570(sobj, &D_801EA1B0_A07E70);
     sobj->sprite.x = 2;
@@ -133,8 +133,8 @@ GObj* func_801DD4C4_9FB184(s32 arg0) {
     u8* dest;
     u8* src;
 
-    x = ((arg0 % 2) * 0x42) + 0x89;
-    y = ((arg0 / 2) * 0x37) + 0x35;
+    x = ((arg0 % 2) * 66) + 137;
+    y = ((arg0 / 2) * 55) + 53;
 
     gobj = func_80371C68_845418(NULL, 6, &D_801E82A0_A05F60);
     sobj = gobj->data.sobj;
@@ -341,11 +341,65 @@ void func_801DE538_9FC1F8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE5D0_9FC290.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE804_9FC4C4.s")
+// TODO defines for these indices
+void func_801DE804_9FC4C4(void) {
+    GObj* sp1C;
+
+    for (sp1C = omGObjListHead[18]; sp1C != NULL; sp1C = sp1C->next) {
+        ohPauseObjectProcesses(sp1C);
+    }
+    for (sp1C = omGObjListHead[17]; sp1C != NULL; sp1C = sp1C->next) {
+        ohPauseObjectProcesses(sp1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DE87C_9FC53C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DEE88_9FCB48.s")
+void func_801DEE88_9FCB48(void) {
+    s32 sp2C;
+    GObj* sp28;
+
+    if (D_801EA1F4_A07EB4 != 0 && contIsPrinterAvailable()) {
+        func_803700A4_843854(0);
+        func_80370780_843F30(1, 0x20);
+        func_8036A8E4_83E094(D_80230880_A4E540);
+        func_8036B9EC_83F19C(D_80230880_A4E540, 0, 32);
+        func_8036C898_840048(D_80230880_A4E540, "\\eNow Saving...");
+        if (func_801E1504_9FF1C4(1) != 0) {
+            sp28 = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
+            sp28->data.sobj->sprite.x = 40;
+            sp28->data.sobj->sprite.y = 92;
+            auSetBGMVolumeSmooth(0, 0x3F80, 0x3C);
+        loop_4:
+            ohWait(1);
+            goto loop_4;
+        }
+        if (contPrinterGetStatus() == 8) {
+            do {
+                ohWait(1);
+            } while (contPrinterGetStatus() == 8);
+        }
+        contPrinterSendCommand(0x5AU);
+        ohWait(1);
+        if (contPrinterGetStatus() == 8) {
+            do {
+                ohWait(1);
+            } while (contPrinterGetStatus() == 8);
+        }
+        auSetBGMVolumeSmooth(0, 0x7F00, 0x1E);
+        ohWait(32);
+        func_80370780_843F30(contIsPrinterAvailable() ? 0 : 1, 0x20);
+        if (contIsPrinterAvailable()) {
+            sp2C = 6;
+            func_801DDCA8_9FB968(sp2C);
+        } else {
+            sp2C = 7;
+            func_801DDCA8_9FB968(sp2C);
+            auPlaySound(0x41);
+        }
+        func_803700A4_843854(1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DF078_9FCD38.s")
 

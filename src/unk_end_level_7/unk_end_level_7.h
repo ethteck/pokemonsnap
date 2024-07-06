@@ -1,6 +1,9 @@
 #ifndef _UNK_END_LEVEL_7_H
 #define _UNK_END_LEVEL_7_H
 
+// TODO maybe get rid of this include at some point, but UnkSnowHerring is defined in unk_end_level.h
+#include "unk_end_level/unk_end_level.h"
+
 typedef struct UnkLimeHaddock {
     GObj* unk_0;
     SObj* unk_4;
@@ -44,12 +47,14 @@ PhotoData* func_801E1008_9FECC8(void);
 void func_801E1024_9FECE4(s32, s32);
 s32 func_801E1170_9FEE30(s32, UNK_TYPE);
 void func_801E1318_9FEFD8(void);
+s32 func_801E1504_9FF1C4(s32);
 
 // DATA
 extern Gfx D_801E1620_9FF2E0[];
 extern ScreenSettings D_801E1690_9FF350;
 extern SceneSetup D_801E16AC_9FF36C;
 extern s32 D_801E16BC_9FF37C;
+extern Sprite D_801E80E8_A05DA8;
 extern Sprite D_801E82A0_A05F60;
 extern Sprite D_801E83D0_A06090;
 extern Sprite D_801E8890_A06550;
@@ -77,6 +82,7 @@ extern GObj* D_80230868_A4E528;
 extern SObj* D_8023086C_A4E52C;
 extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
+extern UnkSnowHerring* D_80230880_A4E540;
 extern s32 D_80230890_A4E550;
 extern UnkCanaryScallop* D_802308A0_A4E560;
 extern s32 D_802308A4_A4E564;

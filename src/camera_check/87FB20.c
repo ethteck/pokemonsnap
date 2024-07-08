@@ -264,45 +264,44 @@ s32 func_camera_check_801E2E04(void) {
     return ret;
 }
 
-s32 func_camera_check_801E2E5C(s32 arg0) {
-    if ((arg0 == 0x3EC) || (arg0 == 0x3F2) || (arg0 == 0x3FA) || (arg0 == 0x3FE) || (arg0 == 0x404) ||
-        (arg0 == 0x40B)) {
-        return 1;
+s32 func_camera_check_801E2E5C(s32 id) {
+    if (id == PokemonID_1004 || id == PokemonID_1010 || id == PokemonID_1018 || id == PokemonID_1022 ||
+        id == PokemonID_1028 || id == PokemonID_1035) {
+        return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
-void func_camera_check_801E2EA0(s32 arg0) {
-    func_camera_check_801E2E5C(arg0);
+void func_camera_check_801E2EA0(s32 id) {
+    func_camera_check_801E2E5C(id);
 }
 
-s32 func_camera_check_801E2EC0(s32 arg0) {
-    switch (arg0) {
-        case 0x1F4:
-        case 0x258:
-        case 0x259:
-        case 0x25A:
-            return 1;
-
+s32 func_camera_check_801E2EC0(s32 id) {
+    switch (id) {
+        case PokemonID_500:
+        case PokemonID_600:
+        case PokemonID_601:
+        case PokemonID_602:
+            return TRUE;
         default:
-            return 0;
+            return FALSE;
     }
 }
 
-s32 func_camera_check_801E2EF4(s32 arg0) {
-    if ((arg0 > 0) && (arg0 < 0x98)) {
-        return 1;
+s32 func_camera_check_801E2EF4(s32 id) {
+    if (id > 0 && id <= POKEDEX_MAX) {
+        return TRUE;
     }
 
-    if (func_camera_check_801E2E5C(arg0) == 0) {
-        return 0;
+    if (func_camera_check_801E2E5C(id) == 0) {
+        return FALSE;
     }
 
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) != 0) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {

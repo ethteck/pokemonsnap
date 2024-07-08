@@ -34,7 +34,7 @@ s32 func_800C0848_5D6E8(s32 arg0, s32 arg1, s32 arg2) {
         if (arg2 < 0) {
             return 0;
         }
-        if (arg1 >= 0x3FE) {
+        if (arg1 >= PokemonID_1022) {
             break;
         }
         if (func_800C0790_5D630(arg0, arg1)) {

@@ -186,12 +186,12 @@ void func_800BF3A8_5C248(void) {
     func_800C0AB4_5D954(arg0, sizeof(UnkBigBoy));
 }
 
-s32 func_800BF3D4_5C274(s32 arg0) {
+s32 func_800BF3D4_5C274(s32 pkmnID) {
     s32 temp_v0;
     PhotoData* var_v1;
 
-    temp_v0 = func_8009BB4C(arg0);
-    if ((temp_v0 < 0) || (temp_v0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
+    temp_v0 = func_8009BB4C(pkmnID);
+    if (temp_v0 < 0 || (temp_v0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
         return 0;
     }
     var_v1 = (D_800C21B0_5F050->data.unk_180[temp_v0].unk_04.s32 == -1) ? 0 : &D_800C21B0_5F050->data.unk_180[temp_v0];
@@ -228,7 +228,7 @@ UnkFuzzyCaterpillar* func_800BF534_5C3D4(s32 arg0) {
 PhotoData* func_800BF574_5C414(s32 arg0) {
     PhotoData* ret;
 
-    if ((arg0 < 0) || (arg0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_FBA0))) {
+    if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_FBA0)) {
         return NULL;
     }
 
@@ -320,7 +320,7 @@ s32 func_800BF864_5C704(void) {
     s32 i;
     s32 ret = 0;
 
-    for (i = 1; i < 152; i++) {
+    for (i = PokemonID_BULBASAUR; i <= POKEDEX_MAX; i++) {
         if (func_800BF3D4_5C274(i)) {
             ret++;
         }
@@ -335,7 +335,7 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     PhotoData* sp28;
 
     sp28 = NULL;
-    for (i = 1; i < 152; i++) {
+    for (i = PokemonID_BULBASAUR; i <= POKEDEX_MAX; i++) {
         if (!func_800BF3D4_5C274(i))
             continue;
         if (arg0--) {
@@ -353,7 +353,7 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
 #endif
 
 void func_800BF954_5C7F4(s32 arg0, PhotoData* arg1, UnkFuzzyCaterpillar* arg2) {
-    if (arg0 < 0 || arg0 >= 0x3C) {
+    if (arg0 < 0 || arg0 >= 60) {
         return;
     }
 
@@ -381,7 +381,7 @@ void func_800BF9F4_5C894(s32 arg0) {
 
 PhotoData* func_800BFA44_5C8E4(s32 arg0) {
     UnkTinyGrandma* ret;
-    if ((arg0 < 0) || (arg0 >= 0x3C)) {
+    if (arg0 < 0 || arg0 >= 60) {
         return NULL;
     }
 
@@ -430,19 +430,19 @@ s32 func_800BFB84_5CA24(void) {
 }
 
 void func_800BFB90_5CA30(s32 arg0, s32 arg1) {
-    if (arg0 < -0x4C) {
-        arg0 = -0x4C;
-    } else if (arg0 > 0x18) {
-        arg0 = 0x18;
+    if (arg0 < -76) {
+        arg0 = -76;
+    } else if (arg0 > 24) {
+        arg0 = 24;
     }
-    if (arg1 < -0x24) {
-        arg1 = -0x24;
-    } else if (arg1 > 0xE) {
-        arg1 = 0xE;
+    if (arg1 < -36) {
+        arg1 = -36;
+    } else if (arg1 > 14) {
+        arg1 = 14;
     }
 
-    D_800C21B0_5F050->data.unk_64_22 = arg0 + 0x4C;
-    D_800C21B0_5F050->data.unk_64_16 = arg1 + 0x24;
+    D_800C21B0_5F050->data.unk_64_22 = arg0 + 76;
+    D_800C21B0_5F050->data.unk_64_16 = arg1 + 36;
 }
 
 void func_800BFC18_5CAB8(s32* arg0, s32* arg1) {

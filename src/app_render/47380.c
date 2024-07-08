@@ -256,32 +256,32 @@ char* getPokemonName(s32 pkmnID) {
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         return D_800AE284[pkmnID];
     }
-    if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
-        pkmnID == 0x40B) {
+    if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
+        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
         if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
             return "？";
         }
     }
-    if (pkmnID == 0x3EC || pkmnID == 0x3F2 || pkmnID == 0x3FA || pkmnID == 0x3FE || pkmnID == 0x404 ||
-        pkmnID == 0x40B) {
+    if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
+        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
         if (func_800BF3D4_5C274(pkmnID) == 0) {
             return "Ｓｉｇｎ？";
         }
     }
     switch (pkmnID) {
-        case 0x25B:
+        case PokemonID_603:
             return D_800AE284[PokemonID_SHELLDER];
-        case 0x3EC:
-        case 0x3F2:
-        case 0x3FA:
-        case 0x3FE:
-        case 0x404:
-        case 0x40B:
+        case PokemonID_1004:
+        case PokemonID_1010:
+        case PokemonID_1018:
+        case PokemonID_1022:
+        case PokemonID_1028:
+        case PokemonID_1035:
             return "Ｓｉｇｎ";
-        case 0x1F4:
-        case 0x258:
-        case 0x259:
-        case 0x25A:
+        case PokemonID_500:
+        case PokemonID_600:
+        case PokemonID_601:
+        case PokemonID_602:
             return "？";
         default:
             return NULL;
@@ -292,29 +292,29 @@ s32 func_8009BB4C(s32 pkmnID) {
     s32 ret;
     s32 temp = D_800AE4E4[150];
 
-    if (pkmnID == 0x25B) {
+    if (pkmnID == PokemonID_603) {
         pkmnID = PokemonID_SHELLDER;
     }
     if (pkmnID > 0 && pkmnID <= POKEDEX_MAX) {
         ret = D_800AE4E4[pkmnID - 1];
     } else {
         switch (pkmnID) {
-            case 0x3EC:
+            case PokemonID_1004:
                 ret = temp + 1;
                 break;
-            case 0x3F2:
+            case PokemonID_1010:
                 ret = temp + 2;
                 break;
-            case 0x404:
+            case PokemonID_1028:
                 ret = temp + 3;
                 break;
-            case 0x3FE:
+            case PokemonID_1022:
                 ret = temp + 4;
                 break;
-            case 0x3FA:
+            case PokemonID_1018:
                 ret = temp + 5;
                 break;
-            case 0x40B:
+            case PokemonID_1035:
                 ret = temp + 6;
                 break;
             default:
@@ -371,16 +371,16 @@ s32 func_8009BCC4(UnkThing* arg0) {
             ret = -1;
             break;
         case 0x60:
-            ret = 0x3EC;
+            ret = PokemonID_1004;
             break;
         case 0x80:
-            ret = 0x3FA;
+            ret = PokemonID_1018;
             break;
         case 0xA0:
-            ret = 0x3FE;
+            ret = PokemonID_1022;
             break;
         case 0xE0:
-            ret = 0x40B;
+            ret = PokemonID_1035;
             break;
         case 0x20:
             ret = arg0->main.unk_20[0].pokemonID;
@@ -519,8 +519,7 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     while (obj != NULL && i < 6) {
         if (!(obj->flags & 1) &&
             (func_803647BC_504BCC(obj) == 0) &&
-            (func_8009C304(&arg0->main.unk_140[i], obj) != 0))
-        {
+            (func_8009C304(&arg0->main.unk_140[i], obj) != 0)) {
             i++;
         }
         obj = obj->next;
@@ -640,7 +639,8 @@ s32 makePhoto(GObj* pokemonObj) {
         }
     } else {
         sp34 = gPokemonIdInFocus;
-        if (sp34 == 0x3EC || sp34 == 0x3FA || sp34 == 0x3FE || (cond = TRUE, sp34 == 0x40B)) {
+        // TODO clean if
+        if (sp34 == PokemonID_1004 || sp34 == PokemonID_1018 || sp34 == PokemonID_1022 || (cond = TRUE, sp34 == PokemonID_1035)) {
             for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
                 memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
             }
@@ -670,20 +670,21 @@ s32 makePhoto(GObj* pokemonObj) {
         }
 
         switch (sp34) {
+            // TODO bitfield pieces?
             default:
                 temp_s4->unk_00_16 |= 0x20;
                 break;
-            case 0x3EC:
-                temp_s4->unk_00_16 |= 0x60;
+            case PokemonID_1004:
+                temp_s4->unk_00_16 |= 0x40 | 0x20;
                 break;
-            case 0x3FA:
+            case PokemonID_1018:
                 temp_s4->unk_00_16 |= 0x80;
                 break;
-            case 0x3FE:
-                temp_s4->unk_00_16 |= 0xA0;
+            case PokemonID_1022:
+                temp_s4->unk_00_16 |= 0x80 | 0x20;
                 break;
-            case 0x40B:
-                temp_s4->unk_00_16 |= 0xE0;
+            case PokemonID_1035:
+                temp_s4->unk_00_16 |= 0x80 | 0x40 | 0x20;
                 break;
         }
     }
@@ -749,7 +750,7 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
     dobj->rotation.f[2] = arg2->euler.y;
     temp_f0 = arg3->scale * 0.1f;
     dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = temp_f0;
-    if (arg3->id == 0x3FA && (D_800BDF18->main.unk_00_16 & 0xE0) != 0x80) { // todo bitfield
+    if (arg3->id == PokemonID_1018 && (D_800BDF18->main.unk_00_16 & 0xE0) != 0x80) { // todo bitfield
         dobj->firstChild->flags |= 1;
     }
     return gobj;
@@ -889,13 +890,11 @@ void func_8009D65C(UnkThing* arg0) {
                 if (worldBlocks[i]->descriptor != NULL) {
                     if (worldBlocks[i]->descriptor->gfx != NULL &&
                         worldBlocks[i]->descriptor->gfx->textures != NULL &&
-                        worldBlocks[i]->descriptor->gfx->unk_08 != NULL)
-                    {
+                        worldBlocks[i]->descriptor->gfx->unk_08 != NULL) {
                         animSetModelTreeTextureAnimation(
                             worldBlocks[i]->blockModel,
                             worldBlocks[i]->descriptor->gfx->unk_08,
-                            world_func_800E21A8(arg0->main.unk_04.f32)
-                        );
+                            world_func_800E21A8(arg0->main.unk_04.f32));
                         animUpdateModelTreeAnimation(worldBlocks[i]->blockModel);
                     }
                 }
@@ -977,15 +976,14 @@ void func_8009DEF0(UnkThing* arg0) {
         if (arg0->main.unk_20[i].pokemonID < 0) {
             return;
         }
-        for(it = D_800ADBEC; it->unk_00 != 0; it++) {
+        for (it = D_800ADBEC; it->unk_00 != 0; it++) {
             if (it->unk_00 == arg0->main.unk_20[i].pokemonID) {
                 gobj = func_8009D9A0(&arg0->main.unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
                 if ((arg0->main.unk_20[i].pokemonID > 0 && arg0->main.unk_20[i].pokemonID <= POKEDEX_MAX) ||
                     arg0->main.unk_20[i].pokemonID == 0x25B ||
                     arg0->main.unk_20[i].pokemonID == 0x258 ||
                     arg0->main.unk_20[i].pokemonID == 0x259 ||
-                    arg0->main.unk_20[i].pokemonID == 0x25A)
-                {
+                    arg0->main.unk_20[i].pokemonID == 0x25A) {
                     D_800BDF30[D_800BDF60] = gobj;
                     D_800BDF68[D_800BDF60] = i;
                     D_800BDF60++;
@@ -1038,8 +1036,7 @@ void func_8009E1CC(UnkThing* arg0) {
                     func_8009E050(&arg0->main.unk_140[i], &D_800E9138, &D_800E8EB8, renderModelTypeBFogged),
                     NULL,
                     &D_800E91C0,
-                    temp_s3
-                );
+                    temp_s3);
                 break;
             case 2:
                 gobj = func_8009E050(&arg0->main.unk_140[i], &D_800EAED0, &D_800EAC58, renderModelTypeBFogged);
@@ -1053,16 +1050,14 @@ void func_8009E1CC(UnkThing* arg0) {
                     func_8009E050(&arg0->main.unk_140[i], &D_800EB430, &D_800EB510, renderModelTypeDFogged),
                     &D_800EAFB0,
                     &D_800EB0C0,
-                    temp_s3
-                );
+                    temp_s3);
                 break;
             case 4:
                 func_8009E110(
                     func_8009E050(&arg0->main.unk_140[i], &D_800EDAB0, &D_800EDB90, renderModelTypeDFogged),
                     &D_800ED5B0,
                     &D_800ED6B0,
-                    temp_s3
-                );
+                    temp_s3);
                 break;
             default:
                 return;

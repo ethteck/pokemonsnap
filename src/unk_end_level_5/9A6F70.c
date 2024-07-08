@@ -234,10 +234,10 @@ void func_801DDB54_9A7DA4(s32 arg0) {
 
     idx = arg0 % 6;
     if (func_80374714_847EC4(func_801E38E0_9ADB30(arg0), &D_802500C0_A1A310[idx].unk_4->sprite)) {
-        D_802500C0_A1A310[idx].unk_0->data.sobj->sprite.attr |= 4;
+        D_802500C0_A1A310[idx].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
         D_802500C0_A1A310[idx].unk_8 = 0;
     } else {
-        D_802500C0_A1A310[idx].unk_0->data.sobj->sprite.attr &= ~4;
+        D_802500C0_A1A310[idx].unk_0->data.sobj->sprite.attr &= ~SP_HIDDEN;
         D_802500C0_A1A310[idx].unk_8 = 1;
     }
 }

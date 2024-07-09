@@ -92,6 +92,7 @@ void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 s32 func_80374F30_8486E0(UnkSnowHerring*, s32);
 char* func_8037501C_8487CC(char*, s32);
+s32 func_803750CC_84887C(char*, char*);
 void func_8037519C_84894C(UnkSnowHerring*, char*, ...);
 void func_80375284_848A34(s32);
 

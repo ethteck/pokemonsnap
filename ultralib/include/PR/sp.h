@@ -31,26 +31,26 @@ extern "C" {
 #include <PR/ultratypes.h>
 
 struct bitmap {
-	s16	width;		/* Size across to draw in texels */
+	/* 0x00 */ s16	width;		/* Size across to draw in texels */
 				/* Done if width = 0		*/
 
-	s16	width_img;	/* Size across of bitmap in texels */
+	/* 0x02 */ s16	width_img;	/* Size across of bitmap in texels */
 				/* Done if width = 0		*/
 
-	s16	s;		/* Horizontal offset into bitmap */
+	/* 0x04 */ s16	s;		/* Horizontal offset into bitmap */
 				/* if (s > width), then load only! */
 
-	s16	t;		/* Vertical offset into base	*/
+	/* 0x06 */ s16	t;		/* Vertical offset into base	*/
 
-	void	*buf;		/* Pointer to bitmap data	*/
+	/* 0x08 */ void	*buf;		/* Pointer to bitmap data	*/
 				/* Don't re-load if new buf	*/
 				/* is the same as the old one   */
 				/* Skip if NULL */
 
-	s16	actualHeight;	/* True Height of this bitmap piece */
+	/* 0x0C */ s16	actualHeight;	/* True Height of this bitmap piece */
 
-	s16	LUToffset;	/* LUT base index		*/
-};
+	/* 0x0E */ s16	LUToffset;	/* LUT base index		*/
+}; // size = 0x10
 
 typedef struct bitmap Bitmap;
 

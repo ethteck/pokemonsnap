@@ -77,7 +77,7 @@ void* func_8036A194_83D944(u32 arg0) {
     if (temp_v0 == NULL) {
         return NULL;
     }
-    if ((temp_v0->unk_04 - temp_a1) > 0x18) {
+    if (temp_v0->unk_04 - temp_a1 > 0x18) {
         func_80369F94_83D744(func_8036A07C_83D82C(temp_v0, temp_a1));
     }
     func_80369FC0_83D770(temp_v0);

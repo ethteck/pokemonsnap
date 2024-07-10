@@ -55,7 +55,7 @@ void func_801DC930_AA1970(OMCamera* arg0, UnkThing* arg1) {
     }
 }
 
-void func_801DC9BC_AA19FC(void *unused) {
+void func_801DC9BC_AA19FC(void* unused) {
     D_801E550C_AAA54C = 1;
 }
 
@@ -73,12 +73,11 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
 
     count = 0;
     for (idx = 0; idx < ARRAY_COUNT(D_801E55E0_AAA620); idx++) {
-        temp_v0 = func_800BF574_5C414(idx);
+        temp_v0 = (UnkThing*) func_800BF574_5C414(idx); // todo figure out proper return type
         if (temp_v0 != NULL) {
             count++;
             D_801E55E0_AAA620[idx] = temp_v0;
         }
-
     }
     if (count < 4) {
         func_801DC8A0_AA18E0(2);

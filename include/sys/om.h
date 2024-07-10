@@ -488,6 +488,7 @@ typedef struct SObj {
     /* 0x10 */ Sprite sprite;
     /* 0x54 */ s32 unk_54;
     /* 0x58 */ struct SObj* unk_58;
+    /* 0x5C */ UNK_PTR unk_5C;
 } SObj; // size >= 0x5C
 
 typedef struct OMCamera {

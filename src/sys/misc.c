@@ -8,7 +8,6 @@ s32 sRandSeed = 1;
 s32 qsortItemSize = 0;
 s32 (*qsortCompareFunc)(const void*, const void*) = NULL;
 
-
 f32 tanf(f32 arg0) {
     return sinf(arg0) / cosf(arg0);
 }
@@ -202,7 +201,7 @@ void qsort(void* _base, u32 count, u32 itemSize, s32 (*compare)(const void*, con
     s32 foundInversion;
     s32 nv = 1; // required to match
 
-    u8* base = (u8*)_base;
+    u8* base = (u8*) _base;
 
     curr = base;
     next = base + itemSize;

@@ -29,6 +29,7 @@ void func_801DCF50_9FAC10(UNK_PTR arg0) {
 
 void func_801DD074_9FAD34(u32 arg0) {
     UNUSED s32 pad;
+
     D_8023086C_A4E52C->sprite.red = arg0;
     D_8023086C_A4E52C->sprite.green = arg0;
     D_8023086C_A4E52C->sprite.blue = arg0;
@@ -37,12 +38,12 @@ void func_801DD074_9FAD34(u32 arg0) {
 void func_801DD0AC_9FAD6C(s32 arg0) {
     s32 i;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80230848_A4E508); i++) {
         // TODO: create a macro for setting R/G/B to the same value
         D_80230848_A4E508[i].gobj->data.sobj->sprite.red = D_80230848_A4E508[i].gobj->data.sobj->sprite.green = D_80230848_A4E508[i].gobj->data.sobj->sprite.blue = arg0;
     }
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80230818_A4E4D8); i++) {
         D_80230818_A4E4D8[i].gobj->data.sobj->sprite.red = D_80230818_A4E4D8[i].gobj->data.sobj->sprite.green = D_80230818_A4E4D8[i].gobj->data.sobj->sprite.blue = arg0;
     }
 }
@@ -73,7 +74,7 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
 }
 
 void func_801DD270_9FAF30(void) {
-    D_801EA1FC_A07EBC = 0x18;
+    D_801EA1FC_A07EBC = 24;
 }
 
 GObj* func_801DD28C_9FAF4C(s32 arg0) {
@@ -187,7 +188,7 @@ void func_801DD708_9FB3C8(void) {
 void func_801DD768_9FB428(s32 arg0) {
     s32 i;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80230848_A4E508); i++) {
         if (arg0 == 0) {
             D_80230848_A4E508[i].gobj->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -195,7 +196,7 @@ void func_801DD768_9FB428(s32 arg0) {
         }
     }
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80230818_A4E4D8); i++) {
         if (arg0 == 1) {
             D_80230818_A4E4D8[i].gobj->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -207,7 +208,7 @@ void func_801DD768_9FB428(s32 arg0) {
 void func_801DD860_9FB520(void) {
     s32 i;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80230848_A4E508); i++) {
         if (func_801E0F88_9FEC48(i)) {
             D_80230848_A4E508[i].gobj->data.sobj->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -389,7 +390,7 @@ GObj* func_801DE0B8_9FBD78(void) {
     sobj->sprite.attr |= SP_HIDDEN;
 
     sobj = func_80371E68_845618(sobj, &D_801E82A0_A05F60);
-    sobj->sprite.x = 0x36;
+    sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
     sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
@@ -398,7 +399,7 @@ GObj* func_801DE0B8_9FBD78(void) {
 
     sobj = func_80371DC0_845570(sobj, &D_801E83D0_A06090);
     sobj->sprite.x = 2;
-    sobj->sprite.y = 0x29;
+    sobj->sprite.y = 41;
 
     sobj = func_80371DC0_845570(sobj, &D_801EA1B0_A07E70);
     sobj->sprite.x = 2;
@@ -443,10 +444,9 @@ void func_801DE318_9FBFD8(s32 arg0) {
             D_8023086C_A4E52C->sprite = D_801E8D50_A06A10;
             break;
     }
-    D_80230868_A4E528->data.sobj->unk_58 = NULL;
 
-    // TODO: figure out what field this is. SObj's size should match the SceneSetup field
-    *(s32*) ((uintptr_t) D_80230868_A4E528->data.sobj + sizeof(SObj)) = 0;
+    D_80230868_A4E528->data.sobj->unk_58 = NULL;
+    D_80230868_A4E528->data.sobj->unk_5C = NULL;
 
     D_80230868_A4E528->data.sobj->sprite.width = SCREEN_WIDTH;
     D_80230868_A4E528->data.sobj->sprite.height = SCREEN_HEIGHT;
@@ -854,7 +854,7 @@ void func_801DF078_9FCD38(UNK_PTR arg0) {
         func_80370A48_8441F8();
         func_803705A4_843D54();
 
-        if (D_801EA1FC_A07EBC != 0x18) {
+        if (D_801EA1FC_A07EBC != 24) {
             for (i = 30; i >= 0; i--) {
                 func_801DD0AC_9FAD6C((s32) (i * 0xFF) / 30);
                 func_801DD074_9FAD34((s32) (i * 0xFF) / 30);

@@ -32,14 +32,14 @@ typedef struct Photo {
 } Photo; // size = 0x1C
 
 typedef struct Unk803A6C18 {
-    /* 0x000 */ char unk_00[0x3A0];
+    /* 0x000 */ PhotoData unk_00;
     /* 0x3A0 */ s32 unk_3A0;
     /* 0x3A4 */ u16 unk_3A4;
     /* 0x3A6 */ u8 unk_3A6;
     /* 0x3A7 */ u8 unk_3A7;
     /* 0x3A8 */ u8 unk_3A8;
     /* 0x3A9 */ char unk_3A9[0x1];
-    /* 0x3AA */ s16 unk_3AA;
+    /* 0x3AA */ s16 unk_3AA; // some pokemon id
     /* 0x3AC */ u16 unk_3AC;
     /* 0x3AE */ u16 unk_3AE;
     /* 0x3B0 */ u16 unk_3B0;
@@ -51,4 +51,3 @@ Unk803A6C18* func_8037452C_847CDC(void*);
 
 s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1);
 Photo* func_801E459C_99400C(s32 idx);
-

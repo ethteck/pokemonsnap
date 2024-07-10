@@ -8,11 +8,11 @@ extern Texture** D_8039D938_53DD48[];
 GObj* PlayerModel_Init(void) {
     GObj* obj;
 
-    obj = omAddGObj(0x23, ohUpdateDefault, 9, 0x80000000);
-    if (obj == 0) {
-        return 0;
+    obj = omAddGObj(OBJID_35, ohUpdateDefault, LINK_PLAYER, 0x80000000);
+    if (obj == NULL) {
+        return NULL;
     }
-    omLinkGObjDL(obj, renderModelTypeJFogged, 3, 0x80000000, -1);
+    omLinkGObjDL(obj, renderModelTypeJFogged, DL_LINK_3, 0x80000000, -1);
     anim_func_80010230(obj, D_803AAA30_54AE40, D_8039D938_53DD48, 0, 28, 0, 0);
     omCreateProcess(obj, animUpdateModelTreeAnimation, 1, 1);
     D_803937F0_533C00 = obj;

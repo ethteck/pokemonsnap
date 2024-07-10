@@ -146,6 +146,7 @@ enum ObjIDs {
     OBJID_BUMP_DETECTOR = 8,
     OBJID_UI_RETICLE = 25,
     OBJID_UI_PAUSE = 26,
+    OBJID_35 = 35,
     OBJID_ENV_SOUND_PLAYER = 400
 };
 
@@ -167,6 +168,7 @@ enum PokemonIds {
     PokemonID_601 = 601,
     PokemonID_602 = 602,
     PokemonID_603 = 603,
+    PokemonID_1003 = 1003,
     PokemonID_1004 = 1004,
     PokemonID_1007 = 1007,
     PokemonID_1010 = 1010,

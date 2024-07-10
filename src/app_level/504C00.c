@@ -1,35 +1,54 @@
 #include "common.h"
 #include "string.h"
 
+typedef struct UnkMagentaCivet {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ s32 unk_04;
+    /* 0x08 */ s32 unk_08;
+    /* 0x0C */ s32 unk_0C;
+} UnkMagentaCivet; // size 0x10
+
+extern UnkMagentaCivet D_8038BF18_52C328[2];
+extern UnkMagentaCivet D_8038BF38_52C348[2];
+extern UnkMagentaCivet D_8038BF58_52C368[2];
+extern UnkMagentaCivet D_8038BF78_52C388[2];
+extern UnkMagentaCivet D_8038BF98_52C3A8[2];
+extern UnkMagentaCivet D_8038BFB8_52C3C8[2];
+extern UnkMagentaCivet D_8038BFD8_52C3E8[2];
+extern UnkMagentaCivet D_80392E10_533220[2];
+extern UnkMagentaCivet D_803931F0_533600[];
 extern GObj* D_8039366C_533A7C;
 extern s32 D_80393670_533A80;
 extern s32 D_80393674_533A84;
 extern s32 D_80393678_533A88;
 extern s32 D_8039367C_533A8C;
-extern s32 D_80393690_533AA0;
-extern s32 D_80393694_533AA4;
-extern s32 D_80393698_533AA8;
-extern s32 D_803B4FA0_5553B0;
 extern u8 D_80393680_533A90;
 extern u8 D_80393684_533A94;
 extern u8 D_80393688_533A98;
 extern u8 D_8039368C_533A9C;
-extern void (*D_803936B4_533AC4)(u8);
-extern u8 D_80393738_533B48[];
-extern u8 D_803B4DA0_5551B0[];
-extern u8 D_803B4EA0_5552B0[];
-extern f32 D_803B4FA8_5553B8;
-extern f32 D_803B4FAC_5553BC;
-extern u32 D_803937E8_533BF8;
-extern s32 D_803B4FB4_5553C4;
-extern s32 D_803936A8_533AB8;
-extern f32 D_803936A4_533AB4;
-extern s32 D_803B4FA4_5553B4;
-extern f32 D_803936AC_533ABC;
-extern f32 D_803936B0_533AC0;
-extern s32 D_803B4FB0_5553C0;
+extern s32 D_80393690_533AA0;
+extern s32 D_80393694_533AA4;
+extern s32 D_80393698_533AA8;
 extern s32 D_8039369C_533AAC;
 extern s32 D_803936A0_533AB0;
+extern f32 D_803936A4_533AB4;
+extern s32 D_803936A8_533AB8;
+extern f32 D_803936AC_533ABC;
+extern f32 D_803936B0_533AC0;
+extern void (*D_803936B4_533AC4)(u8);
+extern u8 D_803936B8_533AC8[];
+extern u8 D_80393738_533B48[];
+extern s16 D_8039379C_533BAC[];
+extern u32 D_803937E8_533BF8;
+
+extern u8 D_803B4DA0_5551B0[];
+extern u8 D_803B4EA0_5552B0[];
+extern s32 D_803B4FA0_5553B0;
+extern s32 D_803B4FA4_5553B4;
+extern f32 D_803B4FA8_5553B8;
+extern f32 D_803B4FAC_5553BC;
+extern s32 D_803B4FB0_5553C0;
+extern s32 D_803B4FB4_5553C4;
 
 void func_803647F0_504C00(GObj* obj) {
     s32 i = 0;
@@ -77,26 +96,6 @@ u8 func_8036496C_504D7C(s32 arg0) {
     }
     return D_80393738_533B48[arg0];
 }
-
-typedef struct UnkMagentaCivet {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ s32 unk_0C;
-} UnkMagentaCivet; // size 0x10
-
-extern UnkMagentaCivet D_8038BF18_52C328[2];
-extern UnkMagentaCivet D_8038BF38_52C348[2];
-extern UnkMagentaCivet D_8038BF58_52C368[2];
-extern UnkMagentaCivet D_8038BF78_52C388[2];
-extern UnkMagentaCivet D_8038BF98_52C3A8[2];
-extern UnkMagentaCivet D_8038BFB8_52C3C8[2];
-extern UnkMagentaCivet D_8038BFD8_52C3E8[2];
-extern UnkMagentaCivet D_80392E10_533220[2];
-extern UnkMagentaCivet D_803931F0_533600[];
-
-extern u8 D_803936B8_533AC8[];
-extern s16 D_8039379C_533BAC[];
 
 s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
     s32 ret;

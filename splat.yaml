@@ -592,7 +592,7 @@ segments:
     - [0x504C00, c]
     - [0x506290, c, render_player]
     - [0x5064F0, c, envsound]
-    - [0x506DD0, c]
+    - [0x506DD0, c, trig]
     - [0x506FB0, data]
     - [0x523000, .data, player]
     - [0x5231D0, .data, bump_detect]

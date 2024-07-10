@@ -29,12 +29,12 @@ extern u8 D_8039368C_533A9C;
 extern s32 D_80393690_533AA0;
 extern s32 D_80393694_533AA4;
 extern s32 D_80393698_533AA8;
-extern s32 D_8039369C_533AAC;
+extern s32 Message_ShadowMode;
 extern s32 D_803936A0_533AB0;
 extern f32 D_803936A4_533AB4;
 extern s32 D_803936A8_533AB8;
-extern f32 D_803936AC_533ABC;
-extern f32 D_803936B0_533AC0;
+extern f32 Message_ScaleX;
+extern f32 Message_ScaleY;
 extern void (*D_803936B4_533AC4)(u8);
 extern u8 D_803936B8_533AC8[];
 extern u8 D_80393738_533B48[];
@@ -113,7 +113,7 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
         *arg1 = 1;
         *arg2 = 0;
         D_803B4FA8_5553B8 = 0.0f;
-        D_803B4FAC_5553BC += D_803B4FA0_5553B0 * D_803936B0_533AC0;
+        D_803B4FAC_5553BC += D_803B4FA0_5553B0 * Message_ScaleY;
     } else if (c0 == '\\') {
         switch (c1) {
             case 'z':
@@ -149,15 +149,15 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
             case '#':
                 switch (ptr[2]) {
                     case 'S':
-                        D_8039369C_533AAC = ptr[3] - '0';
+                        Message_ShadowMode = ptr[3] - '0';
                         *arg1 = 4;
                         break;
                     case 'X':
-                        D_803936AC_533ABC = (ptr[3] - '0') + (ptr[4] - '0') * 0.1f;
+                        Message_ScaleX = (ptr[3] - '0') + (ptr[4] - '0') * 0.1f;
                         *arg1 = 5;
                         break;
                     case 'Y':
-                        D_803936B0_533AC0 = (ptr[3] - '0') + (ptr[4] - '0') * 0.1f;
+                        Message_ScaleY = (ptr[3] - '0') + (ptr[4] - '0') * 0.1f;
                         *arg1 = 5;
                         break;
                     case 'F':
@@ -212,8 +212,8 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
 void Message_DrawChar(u8* timg, s32 offsetX, s32 offsetY, s32 width, s32 height) {
     s32 ulx = offsetX + D_80393670_533A80;
     s32 uly = offsetY + D_80393674_533A84;
-    s32 lrx = ulx + width * D_803936AC_533ABC - 1;
-    s32 lry = uly + height * D_803936B0_533AC0 - 1;
+    s32 lrx = ulx + width * Message_ScaleX - 1;
+    s32 lry = uly + height * Message_ScaleY - 1;
 
     if (D_803B4FB0_5553C0 == 0) {
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
@@ -222,10 +222,10 @@ void Message_DrawChar(u8* timg, s32 offsetX, s32 offsetY, s32 width, s32 height)
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIDECALA_PRIM, G_CC_MODULATEIDECALA_PRIM);
         gDPLoadTextureBlockS(gMainGfxPos[0]++, timg, G_IM_FMT_RGBA, G_IM_SIZ_16b, 14, 14, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     }
-    if (D_8039369C_533AAC != 0) {
+    if (Message_ShadowMode != 0) {
         gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
         gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, 0, 0, 0, 255);
-        gSPTextureRectangle(gMainGfxPos[0]++, (ulx + 1) << 2, (uly + 1) << 2, (lrx + 1) << 2, (lry + 1) << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
+        gSPTextureRectangle(gMainGfxPos[0]++, (ulx + 1) << 2, (uly + 1) << 2, (lrx + 1) << 2, (lry + 1) << 2, G_TX_RENDERTILE, 0, 0, 1024 / Message_ScaleX, 1024 / Message_ScaleY);
         gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, D_80393680_533A90, D_80393684_533A94, D_80393688_533A98, D_8039368C_533A9C);
     }
     if (D_803936A0_533AB0 != 0) {
@@ -235,7 +235,7 @@ void Message_DrawChar(u8* timg, s32 offsetX, s32 offsetY, s32 width, s32 height)
         D_80393688_533A98 * D_803936A4_533AB4,
         D_8039368C_533A9C);
     }
-    gSPTextureRectangle(gMainGfxPos[0]++, ulx << 2, uly << 2, lrx << 2, lry << 2, G_TX_RENDERTILE, 0, 0, 1024 / D_803936AC_533ABC, 1024 / D_803936B0_533AC0);
+    gSPTextureRectangle(gMainGfxPos[0]++, ulx << 2, uly << 2, lrx << 2, lry << 2, G_TX_RENDERTILE, 0, 0, 1024 / Message_ScaleX, 1024 / Message_ScaleY);
 }
 
 void func_803656E8_505AF8(GObj* obj) {
@@ -299,7 +299,7 @@ void func_803656E8_505AF8(GObj* obj) {
                     Message_DrawChar(v0, D_803B4FA8_5553B8, D_803B4FAC_5553BC, 13, 13);
                 }
                 ptr += sp4C;
-                D_803B4FA8_5553B8 += (sp48 + 1) * D_803936AC_533ABC;
+                D_803B4FA8_5553B8 += (sp48 + 1) * Message_ScaleX;
             }
         }
 
@@ -327,17 +327,17 @@ GObj* func_80365B24_505F34(void) {
     return temp_v0;
 }
 
-void Message_Show(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 arg8) {
+void Message_Show(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 alignment) {
     u8* ptr;
     s32 sp50;
     s32 sp4C;
-    s32 s1;
+    s32 messageWidth;
     s32 unused;
 
-    s1 = 0;
+    messageWidth = 0;
     for (ptr = message; *ptr != 0; ptr += sp50) {
         func_803649A0_504DB0(ptr, &sp50, &sp4C);
-        s1 += sp4C + 1;
+        messageWidth += sp4C + 1;
         if (*ptr == '\\' && (ptr[1] == (0,'B') || ptr[1] == (0,'Q')) && D_803936B4_533AC4 != NULL) { // TODO find better way to match
             D_803936B4_533AC4(ptr[1]);
         }
@@ -350,14 +350,14 @@ void Message_Show(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8
     memcpy(D_803B4EA0_5552B0, message, D_8039367C_533A8C);
     D_803B4EA0_5552B0[D_8039367C_533A8C] = 0;
 
-    if (arg8 == 0) {
+    if (alignment == 0) {
         D_80393670_533A80 = posX;
         D_80393674_533A84 = posY;
-    } else if (arg8 == 1) {
-        D_80393670_533A80 = posX - s1;
+    } else if (alignment == 1) {
+        D_80393670_533A80 = posX - messageWidth;
         D_80393674_533A84 = posY;
     } else {
-        D_80393670_533A80 = posX - s1 / 2;
+        D_80393670_533A80 = posX - messageWidth / 2;
         D_80393674_533A84 = posY;
     }
     D_803B4FA0_5553B0 = D_80393690_533AA0 + 12;

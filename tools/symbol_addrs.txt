@@ -910,6 +910,10 @@ PlayerModel_SetAnimation = 0x80365F38; // segment:app_level
 PlayerModel_ChangeAnimation = 0x80365FEC; // segment:app_level
 PlayerModel_SetAnimationSpeed = 0x80366070; // segment:app_level
 
+Message_ShadowMode = 0x8039369C; // segment:app_level
+Message_ScaleX = 0x803936AC; // segment:app_level
+Message_ScaleY = 0x803936B0; // segment:app_level
+
 EnvSound_Update = 0x80366328; // segment:app_level
 EnvSound_Init = 0x80366470; // segment:app_level
 EnvSound_Cleanup = 0x8036650C; // segment:app_level

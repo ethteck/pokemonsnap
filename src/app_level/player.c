@@ -3,11 +3,11 @@
 #include "app_level.h"
 
 enum CamMessageIds {
-    MESSAGE_NONE                = 0,
-    MESSAGE_PRESS_Z             = 1,
-    MESSAGE_PRESS_A             = 2,
-    MESSAGE_TAKE_PICTURES       = 3,
-    MESSAGE_USE_CONTROL_STICK   = 4
+    MESSAGE_NONE = 0,
+    MESSAGE_PRESS_Z = 1,
+    MESSAGE_PRESS_A = 2,
+    MESSAGE_TAKE_PICTURES = 3,
+    MESSAGE_USE_CONTROL_STICK = 4
 };
 
 enum PauseOptions {
@@ -400,7 +400,7 @@ void handleAnalogStick(GObj* obj) {
     DObj* model = obj->data.dobj;
 
     if (ABS(gContInputStickX) >= 6 && !IsInputDisabled) {
-        StickXValue = (f32)gContInputStickX / 80.0;
+        StickXValue = (f32) gContInputStickX / 80.0;
         StickXAccum += 0.014f * StickXValue;
         if (StickXAccum > 1.0f) {
             StickXAccum = 1.0f;
@@ -417,14 +417,13 @@ void handleAnalogStick(GObj* obj) {
     }
 
     if (ABS(gContInputStickY) >= 6 && !IsInputDisabled) {
-        StickYValue = (f32)gContInputStickY / 80.0;
+        StickYValue = (f32) gContInputStickY / 80.0;
         if (IsAxisYInverted == TRUE) {
             StickYValue = -StickYValue;
         }
 
         if (StickYValue < 0.0f && ViewPitch <= MaxPitch + PI / 180.0f ||
-            StickYValue > 0.0f && ViewPitch >= MinPitch - PI / 180.0f)
-        {
+            StickYValue > 0.0f && ViewPitch >= MinPitch - PI / 180.0f) {
             StickYAccum += 0.02f * StickYValue;
         }
 
@@ -435,8 +434,7 @@ void handleAnalogStick(GObj* obj) {
         }
 
         if (StickYValue < 0.0f && ViewPitch <= MaxPitch ||
-            StickYValue > 0.0f && ViewPitch > MinPitch)
-        {
+            StickYValue > 0.0f && ViewPitch > MinPitch) {
             ViewPitch -= 0.015f * StickYValue;
         }
     } else {
@@ -481,8 +479,7 @@ void handleAnalogStick(GObj* obj) {
 
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0 ||
-            ZoomSwitchMode == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0)
-        {
+            ZoomSwitchMode == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0) {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
@@ -654,7 +651,6 @@ void processTurnToDirection(GObj* obj) {
 }
 
 static void nullsub(void) {
-
 }
 
 void updateCameraZoomedOut(GObj* obj) {
@@ -790,7 +786,6 @@ void updateCameraZoomedOut(GObj* obj) {
 
 char D_80382D68_523178[] = "\\#S0\\[\\]\\#S1";
 s32 D_80382D78_523188 = 0;
-
 
 void WorldToPlayerCoors(Vec3f* pos) {
     f32 sin;
@@ -973,7 +968,7 @@ void processZoomingIn(GObj* obj) {
         x4 -= 3;
         y4 -= 2;
 
-        gMainCamera->perspMtx.persp.aspect = (f32)(x2 - x1) / (f32)(y2 - y1);
+        gMainCamera->perspMtx.persp.aspect = (f32) (x2 - x1) / (f32) (y2 - y1);
         gMainCamera->perspMtx.persp.fovy = 55.0f - i * 1.5f;
 
         setMainCameraViewport(x3, y3, x4, y4);
@@ -1202,9 +1197,8 @@ void func_80352F20_4F3330(GObj* arg0) {
 
         for (i = 48; i > 0; i--) {
             if (D_803AE408_54E818 != pokemonID ||
-               ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
-               ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG))
-            {
+                ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+                ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG)) {
                 goto END;
             }
             showPokemonLabel(pokemonID, i & 0xC, &sp3C);
@@ -1215,9 +1209,8 @@ void func_80352F20_4F3330(GObj* arg0) {
 
         for (i = 60; i > 0; i--) {
             if (D_803AE408_54E818 != pokemonID ||
-               ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
-               ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG))
-            {
+                ZoomSwitchMode == 0 && !(gContInputCurrentButtons & Z_TRIG) ||
+                ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG)) {
                 goto END;
             }
             ohWait(1);
@@ -1996,8 +1989,7 @@ void func_803552B0_4F56C0(GObj* obj) {
     D_80382D08_523118 = 0;
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG) ||
-            ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0)
-        {
+            ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0) {
             D_80382C3C_52304C = 0;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
@@ -2024,8 +2016,7 @@ void updateTutorialMain(GObj* arg0) {
                D_80382D08_523118 == 0 &&
                gPokemonIdInFocus > 0 &&
                gPokemonIdInFocus <= POKEDEX_MAX &&
-               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80))
-    {
+               !(GET_POKEMON(gPokemonInFocus)->flags & POKEMON_FLAG_80)) {
         D_80382D08_523118 = 1;
         omCreateProcess(arg0, func_803552B0_4F56C0, 0, 9);
     }
@@ -2276,15 +2267,14 @@ void func_80356074_4F6484(GObj* arg0) {
 }
 
 void func_80356118_4F6528(GObjCmdData cmdData) {
-
 }
 
 void updateReticleSpritesPos(GObj* arg0) {
     SObj* sobj = arg0->data.sobj;
 
     if (gDirectionIndex >= 0) {
-        gCamTargetX = (f32)ReticleScreenX / 160.0f;
-        gCamTargetY = -(f32)ReticleScreenY / 120.0f;
+        gCamTargetX = (f32) ReticleScreenX / 160.0f;
+        gCamTargetY = -(f32) ReticleScreenY / 120.0f;
         gCamTargetZ = 0.99f;
         screenCoorsToWorld(&gCamTargetX, &gCamTargetY, &gCamTargetZ);
         spMove(&sobj->sprite, ReticleScreenX + 152, ReticleScreenY + 112);
@@ -2336,26 +2326,26 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
 
     gIdleScript = getIdleScript();
     ProgressFlags = 0;
-    if (checkPlayerFlag(PFID_ZOOM_SWITCH) == 1) {
+    if (checkPlayerFlag(PFID_ZOOM_SWITCH) == TRUE) {
         ProgressFlags |= PF_ZOOM_SWITCH;
     }
-    if (checkPlayerFlag(PFID_INVERTED_Y) == 1) {
+    if (checkPlayerFlag(PFID_INVERTED_Y) == TRUE) {
         ProgressFlags |= PF_INVERTED_Y;
     }
-    if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 1) {
+    if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == TRUE) {
         ProgressFlags |= PF_HAS_DASH_ENGINE;
     }
-    if (checkPlayerFlag(PFID_HAS_APPLE) == 1) {
+    if (checkPlayerFlag(PFID_HAS_APPLE) == TRUE) {
         ProgressFlags |= PF_HAS_APPLE;
     }
-    if (checkPlayerFlag(PFID_HAS_PESTER_BALL) == 1) {
+    if (checkPlayerFlag(PFID_HAS_PESTER_BALL) == TRUE) {
         ProgressFlags |= PF_HAS_PESTER_BALL;
     }
-    if (checkPlayerFlag(PFID_HAS_FLUTE) == 1) {
+    if (checkPlayerFlag(PFID_HAS_FLUTE) == TRUE) {
         ProgressFlags |= PF_HAS_FLUTE;
     }
     if (func_800BF864_5C704() >= 4) {
-        ProgressFlags |= PF_TUTORIAL_PASSED;
+        ProgressFlags |= PF_HAS_FINISHED_TUTORIAL;
     }
     if (gIdleScript != NULL) {
         initIdle(obj);
@@ -2371,14 +2361,14 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
         IsAxisYInverted = FALSE;
     }
     if (ProgressFlags & PF_HAS_DASH_ENGINE) {
-        IsDashEngineAvailable = 1;
+        IsDashEngineAvailable = TRUE;
     } else {
-        IsDashEngineAvailable = 0;
+        IsDashEngineAvailable = FALSE;
     }
-    if (ProgressFlags & PF_TUTORIAL_PASSED) {
-        IsTutorialEnabled = 0;
+    if (ProgressFlags & PF_HAS_FINISHED_TUTORIAL) {
+        IsTutorialEnabled = FALSE;
     } else {
-        IsTutorialEnabled = 1;
+        IsTutorialEnabled = TRUE;
     }
     ForceDashEngineDisabled = FALSE;
     D_803AE516_54E926 = FALSE;
@@ -2516,7 +2506,7 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
                 omCreateProcess(objPlayer, updateTutorialMain, 1, 9);
                 IsInputDisabled = TRUE;
             } else {
-                setPlayerFlag(PFID_TUTORIAL_PASSED, 1);
+                setPlayerFlag(PFID_HAS_FINISHED_TUTORIAL, 1);
             }
             CameraVibrationAmplitude = 2.0f;
             CameraVibrationSpeed = 25.0f;
@@ -2717,16 +2707,10 @@ f32 isInScreenCenter(OMCamera* cam, f32 x, f32 y, f32 z) {
 }
 
 f32 matrixDeterminant(Mtx3f m) {
-    f32 det = m[0][0] * m[1][1] * m[2][2]
-            + m[1][0] * m[2][1] * m[0][2]
-            + m[2][0] * m[0][1] * m[1][2]
-            - m[0][2] * m[1][1] * m[2][0]
-            - m[1][2] * m[2][1] * m[0][0]
-            - m[2][2] * m[0][1] * m[1][0];
+    f32 det = m[0][0] * m[1][1] * m[2][2] + m[1][0] * m[2][1] * m[0][2] + m[2][0] * m[0][1] * m[1][2] - m[0][2] * m[1][1] * m[2][0] - m[1][2] * m[2][1] * m[0][0] - m[2][2] * m[0][1] * m[1][0];
 
     return det;
 }
-
 
 f32 worldCoorsToScreen(f32 x, f32 y, f32 z, f32* outX, f32* outY, f32* outZ) {
     Mtx4f viewMatrix;
@@ -2873,7 +2857,7 @@ void fillBorderBlack(Gfx** gfxPtr, s32 xmin, s32 ymin, s32 xmax, s32 ymax) {
 }
 
 void func_80357FD4_4F83E4(GObj* obj) {
-    OMCamera* cam  = obj->data.cam;
+    OMCamera* cam = obj->data.cam;
     Vec3f sp20;
     f32 f2;
 
@@ -2956,9 +2940,9 @@ GObj* createMainCameras(s32 bgColor) {
     MainCameraViewport[3] = 232;
     func_80007C20(&cam->vp, MainCameraViewport[0], MainCameraViewport[1], MainCameraViewport[2], MainCameraViewport[3]);
     setMainCameraViewport(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4,
-                         cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
-                         cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,
-                         cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4);
+                          cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
+                          cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,
+                          cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4);
     cam->fnPreRender = mainCameraPreRender;
     omCameraAddMtx(cam, MTX_TYPE_PERSP_FAST, 0);
     omCameraAddMtx(cam, MTX_TYPE_LOOKAT_REFLECT_ROLL, 0);

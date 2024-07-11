@@ -245,7 +245,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             c_path = entry.src_paths[0]
             opt_level = "-O2"
 
-            if c_path.stem in ["98C330", "98D0F0", "993F80", "993C50", "9A6B10", "9A6F70", "9ABB50", "9ADAD0", "9D3230", "9D3660", "A084B0", "9FAC10", "9FA580", "9FD510", "9FEC10"]:
+            if c_path.stem in ["98C330", "98D0F0", "993F80", "993C50", "9A6B10", "9A6F70", "9ABB50", "9ADAD0", "9D3230", "9D3660", "9D91C0", "A084B0", "9FAC10", "9FA580", "9FD510", "9FEC10"]:
                 opt_level = "-g"
 
             if "ultralib" not in str(c_path):

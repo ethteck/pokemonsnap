@@ -29,21 +29,21 @@ typedef struct UnkBigBoy {
         /* 0x064 */ u32 unk_64_29 : 3;
         /* ----- */ u32 unk_64_22 : 7;
         /* ----- */ u32 unk_64_16 : 6;
-        /* 0x066 */ u32 unk_64_15 : 1;
-        /* ----- */ u32 unk_64_14 : 1;
-        /* ----- */ u32 unk_64_13 : 1;
+        /* 0x066 */ u32 hasApple : 1;
+        /* ----- */ u32 hasPesterBall : 1;
+        /* ----- */ u32 hasFlute : 1;
         /* ----- */ u32 unk_64_12 : 1;
         /* ----- */ u32 unk_64_11 : 1;
-        /* ----- */ u32 unk_64_10 : 1;
+        /* ----- */ u32 hasDashEngine : 1;
         /* ----- */ u32 unk_64_09 : 1;
         /* ----- */ u32 unk_64_08 : 1;
-        /* 0x067 */ u32 unk_64_07 : 1;
+        /* 0x067 */ u32 hasFinishedTutorial : 1;
         /* ----- */ u32 unk_64_06 : 1;
         /* ----- */ u32 unk_64_05 : 1;
         /* ----- */ u32 unk_64_04 : 1;
         /* ----- */ u32 unk_64_03 : 1;
-        /* ----- */ u32 unk_64_02 : 1;
-        /* ----- */ u32 unk_64_01 : 1;
+        /* ----- */ u32 zoomSwitch : 1;
+        /* ----- */ u32 invertedY : 1;
         /* ----- */ u32 unk_64_00 : 1;
         /* 0x068 */ u32 unk_68_31 : 1;
         /* ----- */ u32 unk_68_30 : 1;
@@ -466,49 +466,49 @@ void func_800BFC70_5CB10(s32 arg0) {
 
 s32 checkPlayerFlag(s32 arg0) {
     switch (arg0) {
-        case 0:
-            return D_800C21B0_5F050->data.unk_64_15;
-        case 1:
-            return D_800C21B0_5F050->data.unk_64_14;
-        case 2:
-            return D_800C21B0_5F050->data.unk_64_13;
-        case 3:
+        case PFID_HAS_APPLE:
+            return D_800C21B0_5F050->data.hasApple;
+        case PFID_HAS_PESTER_BALL:
+            return D_800C21B0_5F050->data.hasPesterBall;
+        case PFID_HAS_FLUTE:
+            return D_800C21B0_5F050->data.hasFlute;
+        case PFID_3:
             return D_800C21B0_5F050->data.unk_64_12;
-        case 4:
+        case PFID_4:
             return D_800C21B0_5F050->data.unk_64_11;
-        case 5:
-            return D_800C21B0_5F050->data.unk_64_10;
-        case 6:
+        case PFID_HAS_DASH_ENGINE:
+            return D_800C21B0_5F050->data.hasDashEngine;
+        case PFID_6:
             return D_800C21B0_5F050->data.unk_64_09;
-        case 7:
+        case PFID_7:
             return D_800C21B0_5F050->data.unk_64_08;
-        case 8:
-            return D_800C21B0_5F050->data.unk_64_07;
-        case 9:
+        case PFID_HAS_FINISHED_TUTORIAL:
+            return D_800C21B0_5F050->data.hasFinishedTutorial;
+        case PFID_9:
             return D_800C21B0_5F050->data.unk_64_06;
-        case 10:
+        case PFID_10:
             return D_800C21B0_5F050->data.unk_64_05;
-        case 11:
+        case PFID_11:
             return D_800C21B0_5F050->data.unk_64_03;
-        case 12:
-            return D_800C21B0_5F050->data.unk_64_02;
-        case 13:
-            return D_800C21B0_5F050->data.unk_64_01;
-        case 14:
+        case PFID_ZOOM_SWITCH:
+            return D_800C21B0_5F050->data.zoomSwitch;
+        case PFID_INVERTED_Y:
+            return D_800C21B0_5F050->data.invertedY;
+        case PFID_14:
             return D_800C21B0_5F050->data.unk_64_00;
-        case 16:
+        case PFID_16:
             return D_800C21B0_5F050->data.unk_68_31;
-        case 17:
+        case PFID_17:
             return D_800C21B0_5F050->data.unk_68_30;
-        case 18:
+        case PFID_18:
             return D_800C21B0_5F050->data.unk_68_29;
-        case 19:
+        case PFID_19:
             return D_800C21B0_5F050->data.unk_68_28;
-        case 20:
+        case PFID_20:
             return D_800C21B0_5F050->data.unk_68_27;
-        case 21:
+        case PFID_21:
             return D_800C21B0_5F050->data.unk_64_04;
-        case 15:
+        case PFID_15:
             return D_800C20F4_5EF94;
     }
 
@@ -517,70 +517,70 @@ s32 checkPlayerFlag(s32 arg0) {
 
 void setPlayerFlag(s32 arg0, s32 arg1) {
     switch (arg0) {
-        case 0:
-            D_800C21B0_5F050->data.unk_64_15 = arg1 != 0;
+        case PFID_HAS_APPLE:
+            D_800C21B0_5F050->data.hasApple = arg1 != 0;
             break;
-        case 1:
-            D_800C21B0_5F050->data.unk_64_14 = arg1 != 0;
+        case PFID_HAS_PESTER_BALL:
+            D_800C21B0_5F050->data.hasPesterBall = arg1 != 0;
             break;
-        case 2:
-            D_800C21B0_5F050->data.unk_64_13 = arg1 != 0;
+        case PFID_HAS_FLUTE:
+            D_800C21B0_5F050->data.hasFlute = arg1 != 0;
             break;
-        case 3:
+        case PFID_3:
             D_800C21B0_5F050->data.unk_64_12 = arg1 != 0;
             break;
-        case 4:
+        case PFID_4:
             D_800C21B0_5F050->data.unk_64_11 = arg1 != 0;
             break;
-        case 5:
-            D_800C21B0_5F050->data.unk_64_10 = arg1 != 0;
+        case PFID_HAS_DASH_ENGINE:
+            D_800C21B0_5F050->data.hasDashEngine = arg1 != 0;
             break;
-        case 6:
+        case PFID_6:
             D_800C21B0_5F050->data.unk_64_09 = arg1 != 0;
             break;
-        case 7:
+        case PFID_7:
             D_800C21B0_5F050->data.unk_64_08 = arg1 != 0;
             break;
-        case 8:
-            D_800C21B0_5F050->data.unk_64_07 = arg1 != 0;
+        case PFID_HAS_FINISHED_TUTORIAL:
+            D_800C21B0_5F050->data.hasFinishedTutorial = arg1 != 0;
             break;
-        case 9:
+        case PFID_9:
             D_800C21B0_5F050->data.unk_64_06 = arg1 != 0;
             break;
-        case 10:
+        case PFID_10:
             D_800C21B0_5F050->data.unk_64_05 = arg1 != 0;
             break;
-        case 11:
+        case PFID_11:
             D_800C21B0_5F050->data.unk_64_03 = arg1 != 0;
             break;
-        case 12:
-            D_800C21B0_5F050->data.unk_64_02 = arg1 != 0;
+        case PFID_ZOOM_SWITCH:
+            D_800C21B0_5F050->data.zoomSwitch = arg1 != 0;
             break;
-        case 13:
-            D_800C21B0_5F050->data.unk_64_01 = arg1 != 0;
+        case PFID_INVERTED_Y:
+            D_800C21B0_5F050->data.invertedY = arg1 != 0;
             break;
-        case 14:
+        case PFID_14:
             D_800C21B0_5F050->data.unk_64_00 = arg1 != 0;
             break;
-        case 16:
+        case PFID_16:
             D_800C21B0_5F050->data.unk_68_31 = arg1 != 0;
             break;
-        case 17:
+        case PFID_17:
             D_800C21B0_5F050->data.unk_68_30 = arg1 != 0;
             break;
-        case 18:
+        case PFID_18:
             D_800C21B0_5F050->data.unk_68_29 = arg1 != 0;
             break;
-        case 19:
+        case PFID_19:
             D_800C21B0_5F050->data.unk_68_28 = arg1 != 0;
             break;
-        case 20:
+        case PFID_20:
             D_800C21B0_5F050->data.unk_68_27 = arg1 != 0;
             break;
-        case 21:
+        case PFID_21:
             D_800C21B0_5F050->data.unk_64_04 = arg1 != 0;
             break;
-        case 15:
+        case PFID_15:
             D_800C20F4_5EF94 = arg1 != 0;
             break;
     }
@@ -648,17 +648,17 @@ void func_800C0314_5D1B4(s32 arg0, s32 arg1) {
 
     switch (arg0) {
         case 0:
-            if (temp_v0 && !D_800C21B0_5F050->data.unk_64_15) {
+            if (temp_v0 && !D_800C21B0_5F050->data.hasApple) {
                 D_800E1500_7E3A0 = 1;
             }
             break;
         case 1:
-            if (temp_v0 && !D_800C21B0_5F050->data.unk_64_14) {
+            if (temp_v0 && !D_800C21B0_5F050->data.hasPesterBall) {
                 D_800E1500_7E3A0 = 1;
             }
             break;
         case 2:
-            if (temp_v0 && !D_800C21B0_5F050->data.unk_64_13) {
+            if (temp_v0 && !D_800C21B0_5F050->data.hasFlute) {
                 D_800E1500_7E3A0 = 1;
             }
             break;

@@ -2,7 +2,7 @@
 #include "string.h"
 
 typedef struct UnkMagentaCivet {
-    /* 0x00 */ s32 unk_00;
+    /* 0x00 */ u8* img;
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ s32 unk_0C;
@@ -65,7 +65,7 @@ void func_803647F0_504C00(GObj* obj) {
                 break;
             }
 
-            if (D_80393694_533AA4 != 0) {
+            if (D_80393694_533AA4) {
                 j = D_80393678_533A88;
                 while (j > 0) {
                     ohWait(1);
@@ -84,7 +84,7 @@ END:
     D_803B4DA0_5551B0[D_8039367C_533A8C] = 0;
     ohWait(1);
     D_80393698_533AA8 = 1;
-    omEndProcess(0);
+    omEndProcess(NULL);
 }
 
 u8 func_8036496C_504D7C(s32 arg0) {
@@ -97,8 +97,8 @@ u8 func_8036496C_504D7C(s32 arg0) {
     return D_80393738_533B48[arg0];
 }
 
-s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
-    s32 ret;
+u8* func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
+    u8* ret;
     s32 a0;
     s32 c0 = ptr[0];
     s32 c1 = ptr[1];
@@ -117,32 +117,32 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
     } else if (c0 == '\\') {
         switch (c1) {
             case 'z':
-                ret = D_8038BF18_52C328[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BF18_52C328[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 break;
             case 'r':
-                ret = D_8038BF38_52C348[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BF38_52C348[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 break;
             case 'F':
-                ret = D_8038BF58_52C368[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BF58_52C368[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 break;
             case 'a':
-                ret = D_8038BF78_52C388[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BF78_52C388[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 break;
             case 'b':
-                ret = D_8038BF98_52C3A8[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BF98_52C3A8[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 break;
             case '[':
-                ret = D_8038BFB8_52C3C8[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BFB8_52C3C8[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 *arg2 = 11;
                 break;
             case ']':
-                ret = D_8038BFD8_52C3E8[D_803B4FB4_5553C4].unk_00;
+                ret = D_8038BFD8_52C3E8[D_803B4FB4_5553C4].img;
                 D_803B4FB0_5553C0 = 1;
                 *arg2 = 11;
                 break;
@@ -178,13 +178,13 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
     } else if (c0 >= ' ' && c0 < 0x80) {
         *arg1 = 1;
         a0 = D_803936B8_533AC8[c0];
-        ret = D_80392E10_533220[a0].unk_00;
+        ret = D_80392E10_533220[a0].img;
         *arg2 = func_8036496C_504D7C(a0);
     } else if (c0 == 0xA3) {
         s32 v02 = c1 - 0x80;
         if (c1 - 0x80 >= 0x20 && c1 - 0x80 < 0x80) {
             a0 = D_803936B8_533AC8[v02];
-            ret = D_80392E10_533220[a0].unk_00;
+            ret = D_80392E10_533220[a0].img;
             *arg2 = func_8036496C_504D7C(a0);
         }
     } else {
@@ -193,8 +193,8 @@ s32 func_803649A0_504DB0(u8* ptr, s32* arg1, s32* arg2) {
         i = 0;
         for (i = 0;;i++) {
             if (*test == q) {
-                ret = D_803931F0_533600[i].unk_00;
-                *arg2 = func_8036496C_504D7C(i + 0x3E);
+                ret = D_803931F0_533600[i].img;
+                *arg2 = func_8036496C_504D7C(i + 62);
                 break;
             }
 
@@ -303,7 +303,7 @@ void func_803656E8_505AF8(GObj* obj) {
             }
         }
 
-        if (D_80393694_533AA4 != 0 && D_80393698_533AA8 != 0) {
+        if (D_80393694_533AA4 && D_80393698_533AA8 != 0) {
             Message_DrawChar(func_803649A0_504DB0("\\F", &sp4C, &sp48), 187, 32, 13, 13);
         }
     } else {
@@ -327,7 +327,7 @@ GObj* func_80365B24_505F34(void) {
     return temp_v0;
 }
 
-void Message_Show(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 alignment) {
+void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 arg3, u8 arg4, u8 arg5, u8 arg6, s32 arg7, u8 alignment) {
     u8* ptr;
     s32 sp50;
     s32 sp4C;
@@ -380,7 +380,7 @@ void func_80365E34_506244(void) {
     D_8039367C_533A8C = 0;
 }
 
-void func_80365E48_506258(s32 arg0) {
+void func_80365E48_506258(void (*arg0)(u8)) {
     D_803936B4_533AC4 = arg0;
 }
 

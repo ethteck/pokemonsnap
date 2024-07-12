@@ -397,7 +397,6 @@ void func_800E235C_8A7B7C(s32 arg0) { // TODO arg is bitfield?
     }
 }
 
-
 void func_800E2848_8A8068(void) {
     SObj* sobj;
 
@@ -533,7 +532,7 @@ void func_800E2C0C_8A842C(UNK_PTR arg0) {
     func_8036B734_83EEE4(sp4C);
     func_8036D1A4_840954(sp4C, 1);
     if (func_800BF864_5C704() >= 4) {
-        setPlayerFlag(PFID_TUTORIAL_PASSED, 1);
+        setPlayerFlag(PFID_HAS_FINISHED_TUTORIAL, 1);
     }
 
     for (i = 0; i < 60; i++) {

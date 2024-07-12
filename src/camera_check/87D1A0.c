@@ -7,7 +7,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DF9B0.s")
 
 UnkCyanBass* func_camera_check_801DFA4C(void) {
-    if (checkPlayerFlag(PFID_TUTORIAL_PASSED) == 0) {
+    if (checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) == 0) {
         return &D_camera_check_80208994;
     }
     return &D_camera_check_802089BC;
@@ -251,7 +251,7 @@ s32 func_camera_check_801E1BD4(void) {
     sp38 = 0;
     sp30 = func_camera_check_801E2E04();
     func_80370C34_8443E4(func_camera_check_801DF9B0());
-    if (checkPlayerFlag(PFID_TUTORIAL_PASSED) == 0) {
+    if (checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) == 0) {
         func_80370780_843F30(1, 0x18);
     }
     if (func_camera_check_801E3140() == 0) {
@@ -291,7 +291,7 @@ s32 func_camera_check_801E1BD4(void) {
                     break;
 
                 case 24:
-                    if ((checkPlayerFlag(PFID_TUTORIAL_PASSED) != 0) && (sp30 != 0)) {
+                    if ((checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) != 0) && (sp30 != 0)) {
                         func_camera_check_801E1918();
                         auPlaySound(0x43);
                         func_camera_check_801E0480();

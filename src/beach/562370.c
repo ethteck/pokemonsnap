@@ -84,7 +84,7 @@ void func_beach_802CA4CC(GObj* obj) {
 }
 
 void func_beach_802CA5A8(DObj* obj, s32 arg1, f32 arg2) {
-    if ((arg1 == -2) || (arg1 == -1)) {
+    if (arg1 == -2 || arg1 == -1) {
         D_beach_802CD9D4 = 1;
     }
 }
@@ -133,8 +133,8 @@ void func_beach_802CA8C4(GObj* obj) {
 
 void func_beach_802CA950(GObj* obj) {
     s32 unused[4];
-    GObj* temp_s1;
-    OMCamera* temp_v0;
+    GObj* camObj;
+    OMCamera* cam;
     s32 i;
     GObj* temp_v0_2;
     UnkBlueShark sp2C;
@@ -148,12 +148,12 @@ void func_beach_802CA950(GObj* obj) {
     Pokemon_RemovePokemons(&sp2C);
     ohWait(1);
     Camera_StartCutScene(obj, 0, 0);
-    temp_v0 = getMainCamera();
-    temp_s1 = temp_v0->obj;
-    ohPauseObjectProcesses(temp_s1);
-    temp_v0->animSpeed = 0.5f;
-    animSetCameraAnimation(temp_v0, D_8013C530, 0.0f);
-    omCreateProcess(temp_s1, animUpdateCameraAnimation, 1, 1);
+    cam = getMainCamera();
+    camObj = cam->obj;
+    ohPauseObjectProcesses(camObj);
+    cam->animSpeed = 0.5f;
+    animSetCameraAnimation(cam, D_8013C530, 0.0f);
+    omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
     func_800E1A78_5F228(D_8011B924);
     temp_v0_2 = PlayerModel_Init();
     if (temp_v0_2 == NULL) {
@@ -165,7 +165,7 @@ void func_beach_802CA950(GObj* obj) {
     D_beach_802CD9D4 = 0;
     temp_v0_2->fnAnimCallback = func_beach_802CA5A8;
 
-    for (i = 0; D_beach_802CD9D4 == 0 && i != 0x4B0; i++) {
+    for (i = 0; D_beach_802CD9D4 == 0 && i != 1200; i++) {
         ohWait(1);
     }
 

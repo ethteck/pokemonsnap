@@ -186,7 +186,7 @@ void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier
         last->next = ptr;
     }
 
-    EnvSound_GetVolumePan(obj, hearingRange, &volume, &pan);
+    EnvSound_GetVolumePan(obj, hearingRange, (s32*)&volume, (s32*)&pan);
     if (volume > 0x7FFF) {
         volume = 0x7FFF;
     }

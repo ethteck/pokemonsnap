@@ -584,6 +584,7 @@ segments:
     - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
+    - [0x4FE780, c]
     - [0x4FEB90, c, pokemon]
     - [0x503C10, c]
     - [0x504770, c]

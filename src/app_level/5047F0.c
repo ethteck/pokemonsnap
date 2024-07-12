@@ -81,7 +81,7 @@ s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z) {
 
 s32 func_80364718_504B28(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
-    if (GET_POKEMON(obj)->flags & 0x40) {
+    if (GET_POKEMON(obj)->flags & POKEMON_FLAG_40) {
         Pokemon_SetFlag100(obj, FALSE);
         return 0;
     }

@@ -32,8 +32,8 @@ void func_8035E37C_4FE78C(void) {
     D_8038A02C_52A43C = 0;
     D_8038A030_52A440 = 6;
 
-    obj = omAddGObj(28, ohUpdateDefault, 0, 0x80000000);
-    omLinkGObjDL(obj, renDrawSprite, 1, 0x80000000, -1);
+    obj = omAddGObj(OBJID_28, ohUpdateDefault, LINK_0, 0x80000000);
+    omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
     D_803B09D8_550DE8 = obj;
     
     sobj = omGObjAddSprite(obj, &D_80388E00_529210);

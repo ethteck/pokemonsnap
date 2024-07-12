@@ -25,7 +25,7 @@ void func_beach_802C51A0(DObj* arg0, s32 arg1, f32 arg2) {
 }
 
 void func_beach_802C5214(void) {
-    if (D_800968BC[D_beach_80347588] == 0x15) {
+    if (auPlayingSound[D_beach_80347588] == 0x15) {
         auStopSound(D_beach_80347588);
     }
     func_80357170_4F7580();
@@ -70,7 +70,7 @@ void func_beach_802C52EC(GObj* obj) {
     cam->animSpeed = 0.5f;
     animSetCameraAnimation(cam, &D_8013DA90, 0.0f);
     proc = omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
-    func_80365F38_506348(&D_8013C580, &D_8013CEA0, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_8013C580, &D_8013CEA0, 0.0f, 0.5f);
     D_beach_802CC0E0 = 0;
     obj->fnAnimCallback = func_beach_802C51A0;
     omCreateProcess(obj, func_beach_802C527C, 0, 1);
@@ -114,7 +114,7 @@ void func_beach_802C52EC(GObj* obj) {
 void func_beach_802C55CC(void) {
     GObj* obj;
 
-    obj = func_80365E80_506290();
+    obj = PlayerModel_Init();
     D_beach_802CC0E4 = obj;
     if (obj != NULL) {
         omCreateProcess(obj, func_beach_802C52EC, 0, 1);

@@ -1,35 +1,193 @@
 #include "common.h"
+#include "world/world.h"
+#include "app_level.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035DF20_4FE330.s")
+extern AnimCmd* D_800EAFB0[];
+extern AnimCmd** D_800EB0C0[];
+extern UnkEC64Arg3 D_800EB430[];
+extern Texture** D_800EB510[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035DFB0_4FE3C0.s")
+void pokemonChangeBlock(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
+void pokemonRemoveOne(GObj* obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E034_4FE444.s")
+void func_8035DF20_4FE330(GObj* obj);
+GObj* func_8035E0D4_4FE4E4(s32 objID, u16 id, WorldBlock* block, WorldBlock* arg3, ObjectSpawn* arg4);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E0D4_4FE4E4.s")
+AnimationHeader D_80388310_528720 = {
+    0.9f,
+    60.0f,
+    D_800EAFB0,
+    D_800EB0C0,
+    NULL
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E10C_4FE51C.s")
+InteractionHandler D_80388324_528734[] = {
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E174_4FE584.s")
+PokemonAnimationSetup D_80388334_528744 = {
+    &D_80388310_528720,
+    func_8035DF20_4FE330,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL,
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E1D4_4FE5E4.s")
+PokemonInitData D_80388348_528758 = {
+    D_800EB430,
+    D_800EB510,
+    renderModelTypeDFogged,
+    &D_80388334_528744,
+    { 2.0f, 2.0f, 2.0f },
+    { 0.0f, 0.0f, 0.0f },
+    0.0f,
+    0,
+    0, 0, 0,
+    { 0, 0, 0 },
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E238_4FE648.s")
+PokemonDef D_8038837C_52878C = {
+    1003,
+    func_8035E0D4_4FE4E4,
+    pokemonChangeBlock,
+    pokemonRemoveOne
+};
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E264_4FE674.s")
+Vec3f D_8038838C_52879C = { 0.0f, 0.0f, 0.0f };
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E298_4FE6A8.s")
+void func_800A5E98(Vec3f*, Vec3f*, DObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E370_4FE780.s")
+void func_8035E034_4FE444(GObj*);
+void func_8035DFB0_4FE3C0(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E37C_4FE78C.s")
+void func_8035DF20_4FE330(GObj* obj) {
+    s32 unused[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E4D0_4FE8E0.s")
+    if (pokemon->behavior == 1) {
+        Pokemon_SetState(obj, func_8035E034_4FE444);
+    }
+    Pokemon_SetAnimation(obj, &D_80388310_528720);
+    Pokemon_StartPathProc(obj, func_8035DFB0_4FE3C0);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_RunCleanup(obj);
+    Pokemon_SetState(obj, NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E508_4FE918.s")
+void func_8035DFB0_4FE3C0(GObj* obj) {
+    s32 unused[2];
+    DObj* model = obj->data.dobj;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E52C_4FE93C.s")
+    for (i = 59; i > 0; i--) {
+        model->position.v.y -= 0.2f;
+        ohWait(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E754_4FEB64.s")
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = NULL;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/4FE330/func_8035E764_4FEB74.s")
+void func_8035E034_4FE444(GObj* obj) {
+    s32 unused[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->tangible = FALSE;
+    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    pokemon->miscVars[0].field1 = 0;
+    do {
+        ohWait(1);
+    } while (pokemon->miscVars[0].field1 == 0);
+    pokemon->tangible = TRUE;
+    obj->flags = 0;
+    Pokemon_ForceAnimation(obj, &D_80388310_528720);
+    Pokemon_StartPathProc(obj, func_8035DFB0_4FE3C0);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_8035E034_4FE444);
+}
+
+GObj* func_8035E0D4_4FE4E4(s32 objID, u16 id, WorldBlock* block, WorldBlock* arg3, ObjectSpawn* arg4) {
+    return Pokemon_SpawnOnGroundDlLink4(objID, id, block, arg3, arg4, &D_80388348_528758);
+}
+
+void func_8035E10C_4FE51C(GObj* obj) {
+    s32 unused;
+    GObj* sp30;
+    PokemonTransformBase* sp2C;
+    GroundResult sp18;
+
+    sp30 = Pokemon_AddAtGeo(obj, PokemonID_1003, &D_8038837C_52878C);
+    sp2C = GET_TRANSFORM_BASE(sp30->data.dobj);
+    getGroundAt(sp2C->xform.pos.v.x, sp2C->xform.pos.v.z, &sp18);
+    sp2C->xform.pos.v.y = sp18.height;
+    GET_POKEMON(sp30)->behavior = 0;
+    omEndProcess(NULL);
+}
+
+void func_8035E174_4FE584(GObj* obj, Vec3f* arg1) {
+    s32 unused;
+    GObj* sp30;
+    PokemonTransform* sp2C;
+
+    sp30 = Pokemon_AddAtGeo(obj, PokemonID_1003, &D_8038837C_52878C);
+    sp2C = GET_TRANSFORM(sp30->data.dobj);
+    sp2C->pos.v.x = arg1->x;
+    sp2C->pos.v.y = arg1->y;
+    sp2C->pos.v.z = arg1->z;
+    GET_POKEMON(sp30)->behavior = 0;
+}
+
+GObj* func_8035E1D4_4FE5E4(GObj* obj) {
+    GObj* sp30;
+    GroundResult sp18;
+    PokemonTransform* sp2C;    
+
+    sp30 = Pokemon_AddAtGeo(obj, PokemonID_1003, &D_8038837C_52878C);
+    sp2C = GET_TRANSFORM(sp30->data.dobj);
+    getGroundAt(sp2C->pos.v.x, sp2C->pos.v.z, &sp18);
+    sp2C->pos.v.y = sp18.height;
+    GET_POKEMON(sp30)->behavior = 0;
+    return sp30;
+}
+
+void func_8035E238_4FE648(GObj* obj) {
+    GET_POKEMON(func_8035E1D4_4FE5E4(obj))->behavior = 1;
+}
+
+void func_8035E264_4FE674(GObj* obj, Vec3f* arg1) {
+    PokemonTransform* sp2C;
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    sp2C = GET_TRANSFORM(obj->data.dobj);
+    sp2C->pos.v.x = arg1->x;
+    sp2C->pos.v.y = arg1->y;
+    sp2C->pos.v.z = arg1->z;
+    pokemon->miscVars[0].field1 = 1;
+}
+
+void func_8035E298_4FE6A8(GObj* obj) {
+    Vec3f sp4C;
+    Vec3f sp40;
+    DObj* s1;
+    GroundResult sp28;
+
+    sp40 = D_8038838C_52879C;
+    s1 = obj->data.dobj->firstChild->firstChild->next;
+
+    ohWait(10);
+    while (TRUE) {
+        func_800A5E98(&sp4C, &sp40, s1);
+        getGroundAt(sp4C.x, sp4C.z, &sp28);
+        if (sp4C.y < sp28.height) {
+            break;
+        }
+        ohWait(1);
+    }
+    sp4C.y = sp28.height;
+    func_8035E174_4FE584(obj, &sp4C);
+}

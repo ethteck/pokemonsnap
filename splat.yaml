@@ -584,14 +584,16 @@ segments:
     - [0x4F9B50, c, items]
     - [0x4FCFC0, c, icons]
     - [0x4FE330, c]
+    - [0x4FE780, c]
     - [0x4FEB90, c, pokemon]
     - [0x503C10, c]
     - [0x504770, c]
+    - [0x5047E0, pad, padding_5047E0]
     - [0x5047F0, c]
-    - [0x504C00, c]
-    - [0x506290, c]
-    - [0x5064F0, c]
-    - [0x506DD0, c]
+    - [0x504C00, c, msg]
+    - [0x506290, c, render_player]
+    - [0x5064F0, c, envsound]
+    - [0x506DD0, c, trig]
     - [0x506FB0, data]
     - [0x523000, .data, player]
     - [0x5231D0, .data, bump_detect]
@@ -599,12 +601,13 @@ segments:
     - [0x5232C0, .data, items]
     - [0x523300, data] # has sprite data which should be in icons.c
     - [0x528530, .data, icons]
-    - [0x528720, data]
+    - [0x528720, .data, 4FE330]
+    - [0x5287B0, data]
     - { start: 0x52A470, type: .rodata, name: player, linker_section_order: .data }
     - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
-    - [0x52A7D0, data]
+    - { start: 0x52A7D0, type: .rodata, name: 4FE330, linker_section_order: .data }
     - [0x52A7E0, .data, pokemon]
     - [0x52A870, data]
     - [0x52A880, .data, 503C10]
@@ -612,9 +615,9 @@ segments:
     - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
     - [0x533ED0, .rodata, 5047F0]
-    - [0x533EE0, .rodata, 504C00]
+    - [0x533EE0, .rodata, msg]
     - { start: 0x533FE0, type: data, linker_section_order: .rodata } # maybe it is rodata?
-    - [0x536010, .rodata, 5064F0]
+    - [0x536010, .rodata, envsound]
     - { start: 0x536030, type: data, linker_section_order: .rodata }
     - { name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
     #- { name: 503C10, type: bss, vram: 0x803B0F60 }

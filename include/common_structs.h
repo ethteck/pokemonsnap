@@ -63,7 +63,7 @@ typedef struct PokemonInitData {
     /* 0x2F */ u8 matrix2;
     /* 0x30 */ u8 matrix3;
     /* 0x31 */ char unk_31[0x3];
-    /* 0x34 */ f32 unk_34;
+    /* 0x34 */ //f32 unk_34; // size = 0x34 in 4FE330.c
 } PokemonInitData;
 
 typedef struct PokemonTransform {

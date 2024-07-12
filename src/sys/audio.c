@@ -216,7 +216,7 @@ Acmd* auCmdListBuffers[2];
 SCTaskAudio* auTask;
 SCTaskAudio* auScTasks[2];
 ALBank* D_800968B8;
-s32* D_800968BC;
+s32* auPlayingSound;
 s32* auStartingSound;
 s8* auSndpSoundId; // returned by alSndpAllocate
 u8* auSoundPriority;
@@ -787,7 +787,7 @@ void auCreatePlayers(void) {
 
     auSoundPlayer = alHeapAlloc(&auHeap, 1, sizeof(ALSndPlayer));
     auSndpSoundId = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds);
-    D_800968BC = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds * 4);
+    auPlayingSound = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds * 4);
     auStartingSound = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds * 4);
     auSoundPriority = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds);
     auSoundIdleCounter = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds);
@@ -797,7 +797,7 @@ void auCreatePlayers(void) {
     auSoundReverbAmt = alHeapAlloc(&auHeap, 1, auCurrentSettings.numSounds);
 
     for (i = 0; i < auCurrentSettings.numSounds; i++) {
-        D_800968BC[i] = -1;
+        auPlayingSound[i] = -1;
         auStartingSound[i] = -1;
         auSndpSoundId[i] = -1;
         auSoundPriority[i] = 0;
@@ -950,7 +950,7 @@ void auThreadMain(UNUSED void* arg) {
                 if (alSndpGetState(auSoundPlayer) == AL_STOPPED) {
                     alSndpDeallocate(auSoundPlayer, auSndpSoundId[i]);
                     auSndpSoundId[i] = -1;
-                    D_800968BC[i] = -1;
+                    auPlayingSound[i] = -1;
                 }
             }
         }
@@ -1238,7 +1238,7 @@ s32 auPlaySound(u32 soundID) {
         i = auStealSound(auSoundPriorities[soundID]);
         if (i >= 0) {
             OSIntMask mask = osSetIntMask(OS_IM_NONE);
-            D_800968BC[i] = soundID;
+            auPlayingSound[i] = soundID;
             auStartingSound[i] = soundID;
             auSoundIdleCounter[i] = 0;
             auSoundPriority[i] = auSoundPriorities[soundID];
@@ -1282,7 +1282,7 @@ void auStopAllSounds(void) {
             alSndpSetSound(auSoundPlayer, auSndpSoundId[i]);
             alSndpStop(auSoundPlayer);
         }
-        D_800968BC[i] = -1;
+        auPlayingSound[i] = -1;
         auStartingSound[i] = -1;
     }
     osSetIntMask(mask);
@@ -1361,7 +1361,7 @@ void auStopSound(u32 i) {
         alSndpStop(auSoundPlayer);
         osSetIntMask(mask);
     }
-    D_800968BC[i] = -1;
+    auPlayingSound[i] = -1;
     auStartingSound[i] = -1;
 }
 
@@ -1407,7 +1407,7 @@ s32 func_80023168(u32 soundID, u32 reverbAmt) {
         i = auStealSound(auSoundPriorities[soundID]);
         if (i >= 0) {
             OSIntMask mask = osSetIntMask(OS_IM_NONE);
-            D_800968BC[i] = soundID;
+            auPlayingSound[i] = soundID;
             auStartingSound[i] = soundID;
             auSoundIdleCounter[i] = 0;
             auSoundPriority[i] = auSoundPriorities[soundID];
@@ -1439,7 +1439,7 @@ s32 auPlaySoundWithVolume(u32 soundID, s32 vol) {
         i = auStealSound(auSoundPriorities[soundID]);
         if (i >= 0) {
             OSIntMask mask = osSetIntMask(OS_IM_NONE);
-            D_800968BC[i] = soundID;
+            auPlayingSound[i] = soundID;
             auStartingSound[i] = soundID;
             auSoundIdleCounter[i] = 0;
             auSoundPriority[i] = auSoundPriorities[soundID];

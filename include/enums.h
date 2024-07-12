@@ -145,7 +145,11 @@ enum ObjIDs {
     OBJID_PLAYER = 7,
     OBJID_BUMP_DETECTOR = 8,
     OBJID_UI_RETICLE = 25,
-    OBJID_UI_PAUSE = 26
+    OBJID_UI_PAUSE = 26,
+    OBJID_28 = 28,
+    OBJID_MSG_CAMERA = 29,
+    OBJID_35 = 35,
+    OBJID_ENV_SOUND_PLAYER = 400
 };
 
 enum PokemonIds {
@@ -166,6 +170,7 @@ enum PokemonIds {
     PokemonID_601 = 601,
     PokemonID_602 = 602,
     PokemonID_603 = 603,
+    PokemonID_1003 = 1003,
     PokemonID_1004 = 1004,
     PokemonID_1007 = 1007,
     PokemonID_1010 = 1010,
@@ -182,6 +187,7 @@ enum PokemonFlags {
     POKEMON_FLAG_8 = 0x008,
     POKEMON_FLAG_10 = 0x010,
     POKEMON_FLAG_20 = 0x020,
+    POKEMON_FLAG_40 = 0x040,
     POKEMON_FLAG_80 = 0x080,
     POKEMON_FLAG_100 = 0x100,
     POKEMON_FLAG_200 = 0x200,
@@ -196,6 +202,12 @@ enum PokemonProcessFlags {
     POKEMON_PROCESS_TARGET_REACHED = 0x010,
     POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED = 0x020,
     POKEMON_PROCESS_FLAG_80 = 0x080
+};
+
+enum MsgAlignment {
+    MSG_ALIGN_LEFT = 0,
+    MSG_ALIGN_RIGHT = 1,
+    MSG_ALIGN_CENTER = 2
 };
 
 #endif

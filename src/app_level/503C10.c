@@ -21,7 +21,7 @@ extern u8 padding_503C10[8];
 extern PokemonListEntry sPokemonListEntries[100];
 extern PokemonListEntry* sPokemonLists[MAX_BLOCKS];
 
-void func_803668DC_506CEC(void);
+void EnvSound_FixParams(GObj* arg0);
 void func_803638E8_503CF8(void);
 
 void func_80363800_503C10(void) {
@@ -32,8 +32,8 @@ s32 func_8036381C_503C2C(void) {
     return D_8038A460_52A870;
 }
 
-void func_80363828_503C38(void) {
-    func_803668DC_506CEC();
+void func_80363828_503C38(GObj* arg0) {
+    EnvSound_FixParams(arg0);
 }
 
 f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1) {
@@ -342,7 +342,7 @@ void deletePokemon(GObj* pokemonObj) {
     prevEntry = entry;
     while (entry != NULL) {
         if (entry->pokemonObj == pokemonObj) {
-            func_80363828_503C38();
+            func_80363828_503C38(pokemonObj);
             omDeleteGObj(pokemonObj);
             entry->pokemonObj = NULL;
             if (entry == sPokemonLists[blockIndex]) {

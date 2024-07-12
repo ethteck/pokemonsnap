@@ -2,6 +2,7 @@
 #define SYS_AUDIO_H
 
 extern OSTime D_80096968;
+extern s32* auPlayingSound;
 
 enum PlayerIds {
     BGM_PLAYER_MAIN = 0,

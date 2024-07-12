@@ -11,7 +11,6 @@ typedef struct UnkBlueShark {
     /* 0x2 */ u16 unk2;
 } UnkBlueShark; // size: 0x4
 
-extern s32* D_800968BC;
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
 extern UNK_TYPE D_8013B030;
@@ -34,10 +33,10 @@ OMCamera* getMainCamera(void);
 void func_8035E298_4FE6A8(GObj*);
 void pokemonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void func_80365E34_506244(void);
-GObj* func_80365E80_506290(void);
-void func_80365F38_506348(UNK_PTR, UNK_PTR, f32, f32);
-void func_803667C0_506BD0(GObj*, UNK_TYPE, UNK_TYPE);
+void Msg_Reset(void);
+GObj* PlayerModel_Init(void);
+void PlayerModel_SetAnimation(UNK_PTR, UNK_PTR, f32, f32);
+void EnvSound_PlaySound(GObj*, UNK_TYPE, UNK_TYPE);
 
 extern PokemonDef D_beach_802CBFF4;
 extern s32 D_beach_802CC018;

@@ -33,7 +33,7 @@ OMCamera* getMainCamera(void);
 void func_8035E298_4FE6A8(GObj*);
 void pokemonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void func_80365E34_506244(void);
+void Msg_Reset(void);
 GObj* PlayerModel_Init(void);
 void PlayerModel_SetAnimation(UNK_PTR, UNK_PTR, f32, f32);
 void EnvSound_PlaySound(GObj*, UNK_TYPE, UNK_TYPE);

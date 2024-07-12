@@ -197,14 +197,14 @@ void func_80357120_4F7530(GObj*);
 void screenCoorsToWorld(f32*, f32*, f32*);
 void BumpDetector_Init(void);
 void func_8035E37C_4FE78C(void);
-GObj* func_80365B24_505F34(void);
+GObj* Msg_InitCamera(void);
 void Msg_ShowMessage(char*, s32, s32, u8, u8, u8, u8, s32, u8);
-s32 func_80365E70_506280(void);
+s32 Msg_IsMessagePrinted(void);
 IdleScript* getIdleScript(void);
 void func_800A7918(s32, f32);
 void func_800A7F40(f32, f32, s32, f32);
 void setMainCameraViewport(s32, s32, s32, s32);
-void func_80365E34_506244(void);
+void Msg_Reset(void);
 void BumpDetector_Delete(s32);
 void freezePokemons(GObj*);
 void func_80357170_4F7580(void);
@@ -1165,7 +1165,7 @@ void showPokemonLabel(s32 pokemonID, s32 arg1, s32* arg2) {
     if (arg1 == 0) {
         if (*arg2 == 0) {
             *arg2 = 1;
-            func_80365E34_506244();
+            Msg_Reset();
         }
     } else if (*arg2 != 0) {
         *arg2 = 0;
@@ -1178,7 +1178,7 @@ void showPokemonLabel(s32 pokemonID, s32 arg1, s32* arg2) {
         } else {
             pokemonName = "？";
         }
-        Msg_ShowMessage(pokemonName, 160, 200, 255, 255, 255, 255, 0, 2);
+        Msg_ShowMessage(pokemonName, 160, 200, 255, 255, 255, 255, 0, MSG_ALIGN_CENTER);
     }
 }
 
@@ -1220,7 +1220,7 @@ END:
     if (!D_803AE516_54E926) {
         if (&sp3C) {
         } // required to match
-        func_80365E34_506244();
+        Msg_Reset();
     }
     omEndProcess(NULL);
 }
@@ -1660,7 +1660,7 @@ void Pause_HideUI(GObj* obj) {
 }
 
 void func_8035453C_4F494C(void) {
-    func_80365E34_506244();
+    Msg_Reset();
     BumpDetector_Delete(1);
     stopLevelProcesses();
     freezePokemons(NULL);
@@ -1779,7 +1779,7 @@ void updatePauseMenu(GObj* arg0) {
             PauseCb(TRUE);
             PokemonDetector_Disable();
             ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
-            func_80365E34_506244();
+            Msg_Reset();
             if (gDirectionIndex < 0) {
                 ohPauseProcessByFunction(gObjPlayer, processZoomingIn);
                 ohPauseProcessByFunction(gObjPlayer, processZoomingOut);
@@ -1865,10 +1865,10 @@ void Tutorial_ShowMessage(s32 msgID) {
         }
 
         if (message != NULL) {
-            Msg_ShowMessage(message, 160, 150, 255, 255, 255, 255, 0, 2);
+            Msg_ShowMessage(message, 160, 150, 255, 255, 255, 255, 0, MSG_ALIGN_CENTER);
         }
     } else {
-        func_80365E34_506244();
+        Msg_Reset();
     }
 }
 
@@ -1985,7 +1985,7 @@ void func_803552B0_4F56C0(GObj* obj) {
         ohWait(1);
     }
 
-    func_80365E34_506244();
+    Msg_Reset();
     D_80382D08_523118 = 0;
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG) ||
@@ -2046,7 +2046,7 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
         omDeleteGObj(D_80382C38_523048);
         D_80382C38_523048 = NULL;
     }
-    func_80365E34_506244();
+    Msg_Reset();
     BumpDetector_Delete(arg1);
     scRemovePostProcessFunc();
     stopLevelProcesses();
@@ -2115,14 +2115,14 @@ void processOutOfFilm(GObj* arg0) {
         spColor(&sobj2->sprite, 255, 255, 255, var_s2);
         ohWait(1);
     }
-    Msg_ShowMessage("You're out of film!", 160, 130, 255, 255, 255, 255, 5, 2);
+    Msg_ShowMessage("You're out of film!", 160, 130, 255, 255, 255, 255, 5, MSG_ALIGN_CENTER);
     auStopBGM();
     auStopAllSounds();
     for (i = 0; i < 16; i++) {
         auSetBGMChannelVolume(0, i, 127);
     }
     auPlaySong(0, 17);
-    while (func_80365E70_506280() == 0) {
+    while (Msg_IsMessagePrinted() == 0) {
         ohWait(1);
     }
     for (i = 180; i != 0; i--) {
@@ -2533,7 +2533,7 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
             omCreateProcess(objPlayer, vibrateCamera, 0, 9);
             break;
     }
-    func_80365B24_505F34();
+    Msg_InitCamera();
     return objPlayer;
 }
 

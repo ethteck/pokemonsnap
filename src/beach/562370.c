@@ -144,7 +144,7 @@ void func_beach_802CA950(GObj* obj) {
     Pokemon_StartAuxProc(obj, func_beach_802CA8C4);
     Items_RemoveFlyingItems();
     resetMainCameraSettings();
-    func_80365E34_506244();
+    Msg_Reset();
     Pokemon_RemovePokemons(&sp2C);
     ohWait(1);
     Camera_StartCutScene(obj, 0, 0);

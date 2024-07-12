@@ -7,7 +7,7 @@ pipeline {
         stage('Setup') {
             steps {
                 sh 'cp /usr/local/etc/roms/pokemonsnap.us.z64 pokemonsnap.z64'
-                sh 'pip install -U -r requirements.txt'
+                sh 'pip install -U -r requirements.txt --break-system-packages'
                 sh 'cargo install pigment64'
                 sh './configure.py --setup'
                 sh './configure.py'

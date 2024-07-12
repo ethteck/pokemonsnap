@@ -13,18 +13,18 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     int temp;
     if (arg0 == NULL) {
         if (arg1 != NULL) {
-            func_80370004_8437B4(0x16, (*arg1 * 0x18) + 0x1D);
+            func_80370004_8437B4(0x16, (*arg1 * 24) + 29);
             func_8037005C_84380C(0x3E, 0xD);
         }
         return 0;
     }
 
-    func_8036FFE0_843790(0x16, (*arg1 * 0x18) + 0x1D);
+    func_8036FFE0_843790(0x16, (*arg1 * 24) + 29);
 
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].var_0 == 0x23);
+        } while ((*D_80206B44_9CC364)[*arg1].var_0 == 35);
 
         auPlaySound(0x41);
     }
@@ -32,7 +32,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].var_0 == 0x23);
+        } while ((*D_80206B44_9CC364)[*arg1].var_0 == 35);
 
         auPlaySound(0x41);
     }
@@ -194,7 +194,7 @@ s32 func_800E3CE8_8A9508(void) {
             func_8036B9EC_83F19C(sp2C, 0, 0x20);
             func_8036C898_840048(sp2C, "\\eSaving...\\p");
             ohWait(0x30);
-            auSetBGMVolumeSmooth(0, 0U, 0x1E);
+            auSetBGMVolumeSmooth(0, 0, 0x1E);
             ohWait(0x21);
             if (checkPlayerFlag(PFID_21) != 0) {
                 D_80206B48_9CC368();

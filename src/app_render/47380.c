@@ -8,6 +8,8 @@
 #endif
 #include "world/world.h"
 
+s32 func_8009FCC0(void);
+
 typedef struct Unk1C {
     /* 0x00 */ u32 id;
     /* 0x04 */ f32 scale;
@@ -26,13 +28,18 @@ typedef struct UnkV0 {
     void (*unk_10)(GObj*);
 } UnkV0; // substruct of Unk1C?
 
-extern UnkV0 D_800ADBEC[];
-extern GObj* D_800BDF30[];
-extern s32 D_800BDF60;
-extern s32 D_800BDF68[];
+typedef struct Unkfunc_8009BDDC {
+    /* 0x00 */ u32 unk_00;    // Id?
+    /* 0x04 */ Vec3f* unk_04; // Size of 0xC, floats?
+    /* 0x08 */ s32 unk_10;    // number of unk_04 records?
+} Unkfunc_8009BDDC; // size = 0xC
+
 extern s32 D_800AC0F0; // level id?
 extern MovementState D_800AC0F4;
+extern Unkfunc_8009BDDC D_800AD4B8[67];
+extern Unkfunc_8009BDDC D_800AD9A4[16];
 extern Unk1C D_800ADA64[];
+extern UnkV0 D_800ADBEC[];
 extern s32 D_800AE27C;
 extern s32 D_800AE280;
 extern char* D_800AE284[]; // Pokedex entries
@@ -209,6 +216,9 @@ extern u8 D_800BDF1D;
 extern u8 D_800BDF1E;
 extern s32 D_800BDF20[3];
 extern ucolor D_800BDF2C;
+extern GObj* D_800BDF30[];
+extern s32 D_800BDF60;
+extern s32 D_800BDF68[];
 
 extern Texture** D_800E8EB8;
 extern UnkEC64Arg3 D_800E9138;
@@ -389,22 +399,16 @@ s32 func_8009BCC4(UnkThing* arg0) {
     return ret;
 }
 
-typedef struct Unkfunc_8009BD4C {
-    u32 unk_00;
-    struct Unkfunc_8009BD4C* next;
-    s32 unk_08;
-} Unkfunc_8009BD4C;
-
-s8 func_8009BD4C(s16 arg0, Unkfunc_8009BD4C* arg1, Unkfunc_8009BD4C* arg2, s32 arg3) {
-    Unkfunc_8009BD4C* next;
+s8 func_8009BD4C(s16 arg0, AnimCmd** arg1, Unkfunc_8009BDDC* arg2, s32 arg3) {
+    AnimCmd** next;
     s32 i;
     s32 j;
 
     for (i = 0; i < arg3; i++) {
         if (arg0 == arg2[i].unk_00) {
-            next = arg2[i].next; // TODO: This var seems necessary, but using it seems to break things.
-            for (j = 0; j < arg2[i].unk_08; j++, next++) {
-                if (arg1 == arg2[i].next[j].next) {
+            next = arg2[i].unk_04; // TODO: This var seems necessary, but using it seems to break things.
+            for (j = 0; j < arg2[i].unk_10; j++, next++) {
+                if (arg1 == *(AnimCmd***)(&arg2[i].unk_04[j].y)) {
                     return j;
                 }
             }
@@ -414,52 +418,114 @@ s8 func_8009BD4C(s16 arg0, Unkfunc_8009BD4C* arg1, Unkfunc_8009BD4C* arg2, s32 a
     return -1;
 }
 
-#ifdef NON_MATCHING
-typedef struct Unkfunc_8009BDDC {
-    s32 unk_00;    // Id?
-    Vec3f* unk_04; // Size of 0xC, floats?
-    s32 unk_10;    // number of unk_04 records?
-} Unkfunc_8009BDDC;
-
-extern s32 D_800AD4B8;    // 0x58;
-extern Vec3f* D_800AD4BC; // 5 values here
-extern s32 D_800AD4C0;    // = 5; // number of D_800AD4BC records
-
-extern s32 D_800AD4C4;    // = 0x59
-extern Vec3f* D_800AD4C8; // 5 values here
-extern s32 D_800AD4CC;    // = 5; // number of D_800AD4C8 records
-extern s32 D_800AD4D0;    // = 0x7E;
-extern Vec3f* D_800AD4D4; // 10 values here
-extern s32 D_800AD4D8;    // = 10;
-extern Unkfunc_8009BDDC D_800AD4DC[64];
-
 f32 func_8009BDDC(s16 arg0, s8 arg1) {
     s32 i;
-    u32 test = arg0;
 
-    if (test == D_800AD4B8) {
-        return D_800AD4BC[arg1].x;
-    }
-    if (test == D_800AD4C4) {
-        return D_800AD4C8[arg1].x;
-    } /* One Line diff */
-    if (test == D_800AD4D0) {
-        return D_800AD4D4[arg1].x;
-    }
-
-    for (i = 0; i < ARRAY_COUNT(D_800AD4DC); i++) {
-        if (test == D_800AD4DC[i].unk_00) {
-            return D_800AD4DC[i].unk_04[arg1].x;
+    for (i = 0; i < ARRAY_COUNT(D_800AD4B8); i++) {
+        if (D_800AD4B8[i].unk_00 == arg0) {
+            return D_800AD4B8[i].unk_04[arg1].x;
         }
     }
     return -1.0f;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BDDC.s")
-#endif
 
-s32 func_8009BF48(PhotoDataSub*, GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009BF48.s")
+s32 func_8009BF48(PhotoDataSub* arg0, GObj* arg1) {
+    Pokemon* pokemon = GET_POKEMON(arg1);
+    s32 pokemonId;
+    DObj* model = arg1->data.dobj;
+    s32 i;
+    s32 unused[2];
+    s32 sp24;    
+
+    pokemonId = pokemon->id;
+    if ((arg1->flags & GOBJ_FLAG_HIDDEN) || !pokemon->tangible) {
+        return FALSE;
+    }
+    if (func_80364718_504B28(arg1)) {
+        return FALSE;
+    }
+
+    switch (pokemonId) {
+        case PokemonID_600:
+        case PokemonID_601:
+        case PokemonID_602:
+        case PokemonID_603:
+        case PokemonID_1001:
+        case PokemonID_1002:
+        case PokemonID_1003:
+        case PokemonID_1006:
+        case PokemonID_1008:
+        case PokemonID_1009:
+        case PokemonID_1010:
+        case PokemonID_1012:
+        case PokemonID_1013:
+        case PokemonID_1028:
+        case PokemonID_1029:
+        case PokemonID_1030:
+        case PokemonID_1031:
+        case PokemonID_1033:
+        case PokemonID_1037:
+        case PokemonID_1038:
+            break;
+        default:
+            if (pokemonId <= 0 || pokemonId > POKEDEX_MAX) {
+                return FALSE;
+            }
+            break;
+    }
+
+    arg0->pokemonID = pokemonId;
+    if (pokemonId < PokemonID_1000) {
+        arg0->unk_02_5 = pokemon->field_0x10e;
+        arg0->unk_20_7 = func_8009BD4C(pokemonId, pokemon->modelAnims, D_800AD4B8, ARRAY_COUNT(D_800AD4B8));
+        if (pokemon->unk_10C > 0) {
+            arg0->unk_02 = pokemon->unk_10C;
+        } else {
+            sp24 = func_8009BDDC(arg0->pokemonID, arg0->unk_20_7);
+            if (sp24 >= func_8009FCC0()) {
+                arg0->unk_02 = 0;
+            } else if (sp24 > 0) {
+                arg0->unk_02 = sp24;
+            } else {
+                arg0->unk_02 = 0;
+            }
+        }
+    } else {
+        arg0->unk_02 = 0;
+        arg0->unk_02_5 = 0;
+        arg0->unk_20_7 = func_8009BD4C(pokemonId, pokemon->modelAnims, D_800AD9A4, ARRAY_COUNT(D_800AD9A4));
+    }
+
+    arg0->unk_04 = arg1->animationTime;
+    if (model->unk_4C != NULL) {
+        uintptr_t csr = (uintptr_t)model->unk_4C->data;
+        for (i = 0; i < 3; i++) {
+            switch (model->unk_4C->kinds[i]) {
+                case 0:
+                    break;
+                case 1:
+                    arg0->unk_08.x = ((struct Mtx3Float*)csr)->v.x;
+                    arg0->unk_08.y = ((struct Mtx3Float*)csr)->v.y;
+                    arg0->unk_08.z = ((struct Mtx3Float*)csr)->v.z;
+                    csr += sizeof(union Mtx3fi);
+                    break;
+                case 2:
+                    arg0->unk_14 = ((struct Mtx4Float*)csr)->f[2];
+                    csr += sizeof(struct Mtx4Float);
+                    break;
+                case 3:
+                    csr += sizeof(struct Mtx3Float);
+                    break;
+            }
+        }
+    } else {
+        arg0->unk_08.x = model->position.v.x;
+        arg0->unk_08.y = model->position.v.y;
+        arg0->unk_08.z = model->position.v.z;
+        arg0->unk_14 = model->rotation.f[2];
+    }
+    return TRUE;
+}
 
 void func_8009C25C(UnkThing* arg0, u8 objIndex) {
     GObj* obj;

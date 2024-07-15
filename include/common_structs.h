@@ -155,8 +155,8 @@ typedef struct {
     /* 0x0F8 */ EggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
-    /* 0x10C */ s16 unk_10C;
-    /* 0x10E */ s16 field_0x10e;
+    /* 0x10C */ u16 unk_10C;
+    /* 0x10E */ u16 field_0x10e;
 } Pokemon; // size = 0x110
 
 typedef struct {
@@ -202,8 +202,9 @@ typedef struct PlayerName {
 
 typedef struct PhotoDataSub {
     /* 0x00 */ s32 pokemonID : 13;
-    /* 0x00 */ s32 unk_20_7 : 3; // padding?
-    /* 0x02 */ char unk_02[0x2];
+    /* 0x00 */ u32 unk_20_7 : 6; // padding?
+    /* 0x02 */ u16 unk_02_5 : 5;
+    /* 0x03 */ s8 unk_02;
     /* 0x04 */ f32 unk_04;
     /* 0x08 */ Vec3f unk_08;
     /* 0x14 */ f32 unk_14;

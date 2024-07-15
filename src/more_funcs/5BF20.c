@@ -1,10 +1,5 @@
 #include "common.h"
 
-typedef struct UnkFuzzyCaterpillar {
-    /* 00 */ s16 unk_0;
-    /* 0x2 */ u8 pad_3A4[0x40 - 2];
-} UnkFuzzyCaterpillar;
-
 typedef struct UnkTinyGrandma {
     /* 0x000 */ PhotoData unk_0;
     /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
@@ -187,15 +182,15 @@ void func_800BF3A8_5C248(void) {
 }
 
 s32 func_800BF3D4_5C274(s32 pkmnID) {
-    s32 temp_v0;
-    PhotoData* var_v1;
+    s32 photoIdx;
+    PhotoData* photoData;
 
-    temp_v0 = func_8009BB4C(pkmnID);
-    if (temp_v0 < 0 || (temp_v0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
+    photoIdx = func_8009BB4C(pkmnID);
+    if (photoIdx < 0 || (photoIdx >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
         return 0;
     }
-    var_v1 = (D_800C21B0_5F050->data.unk_180[temp_v0].unk_04.s32 == -1) ? 0 : &D_800C21B0_5F050->data.unk_180[temp_v0];
-    return var_v1 != 0;
+    photoData = (D_800C21B0_5F050->data.unk_180[photoIdx].unk_04.s32 == -1) ? NULL : &D_800C21B0_5F050->data.unk_180[photoIdx];
+    return photoData != NULL;
 }
 
 void func_800BF444_5C2E4(s32 arg0) {
@@ -210,7 +205,7 @@ char* get_player_name(void) {
 }
 
 void func_800BF4A8_5C348(UnkFuzzyCaterpillar* arg0, s32 arg1) {
-    if (arg1 < 0 || arg1 >= 0x3C) {
+    if (arg1 < 0 || arg1 >= ARRAY_COUNT(D_800C21B0_5F050->data.var_10A20)) {
         return;
     }
 
@@ -218,7 +213,7 @@ void func_800BF4A8_5C348(UnkFuzzyCaterpillar* arg0, s32 arg1) {
 }
 
 UnkFuzzyCaterpillar* func_800BF534_5C3D4(s32 arg0) {
-    if (arg0 < 0 || arg0 >= 0x3C) {
+    if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_800C21B0_5F050->data.var_10A20)) {
         return NULL;
     }
 
@@ -376,7 +371,7 @@ void func_800BF9F4_5C894(s32 arg0) {
     }
 
     D_800C21B0_5F050->data.var_10A20[arg0].unk_0.unk_04.s32 = -1;
-    D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0.unk_0 = 0;
+    D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0.unk_00 = 0;
 }
 
 PhotoData* func_800BFA44_5C8E4(s32 arg0) {

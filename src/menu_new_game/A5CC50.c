@@ -133,7 +133,6 @@ char** func_800E18B4_A5CC64(s32 arg0) {
 }
 
 void func_800E18C4_A5CC74(void) {
-
 }
 
 void func_800E18CC_A5CC7C(void) {
@@ -319,42 +318,42 @@ void new_game_init(void) {
 
 SceneSetup menu_new_game_setup = {
     {
-        0,                          /* unk_00*/
-        omUpdateAll,                /* fnUpdate */
-        omDrawAll,                  /* fnDraw */
-        menu_new_game_VRAM_END,     /* heapBase */
-        0,                          /* heapSize */
-        2,                          /* unk_14 */
-        1,                          /* numContexts */
-        0x5000,                     /* dlBufferSize0 */
-        0x2000,                     /* dlBufferSize1 */
-        0x0000,                     /* dlBufferSize2 */
-        0x0000,                     /* dlBufferSize3 */
-        0xC800,                     /* gfxHeapSize */
-        0,                          /* unk30 */
-        0x2000,                     /* rdpOutputBufferSize */
-        func_800A1A50,              /* fnPreRender */
-        contUpdate                  /* fnUpdateInput */
+        0,                      /* unk_00*/
+        omUpdateAll,            /* fnUpdate */
+        omDrawAll,              /* fnDraw */
+        menu_new_game_VRAM_END, /* heapBase */
+        0,                      /* heapSize */
+        2,                      /* unk_14 */
+        1,                      /* numContexts */
+        0x5000,                 /* dlBufferSize0 */
+        0x2000,                 /* dlBufferSize1 */
+        0x0000,                 /* dlBufferSize2 */
+        0x0000,                 /* dlBufferSize3 */
+        0xC800,                 /* gfxHeapSize */
+        0,                      /* unk30 */
+        0x2000,                 /* rdpOutputBufferSize */
+        func_800A1A50,          /* fnPreRender */
+        contUpdate              /* fnUpdateInput */
     },
-    32,                             /* numOMThreads */
-    1024,                           /* omThreadStackSize */
-    128,                            /* numOMStacks */
-    0,                              /* unk4C */
-    64,                             /* numOMProcesses */
-    64,                             /* numOMGobjs */
-    sizeof(GObj),                   /* objectSize */
-    1024,                           /* numOMMtx */
-    0,                              /* unk60 */
-    NULL,                           /* unk64 */
-    16,                             /* numOMAobjs */
-    8,                              /* numOMMobjs */
-    16,                             /* numOMDobjs */
-    sizeof(DObj),                   /* omDobjSize */
-    128,                            /* numOMSobjs */
-    0x58,                           /* omSobjSize */
-    8,                              /* numOMCameras */
-    sizeof(OMCamera),               /* omCameraSize */
-    new_game_init                   /* postInitFunc */
+    32,               /* numOMThreads */
+    1024,             /* omThreadStackSize */
+    128,              /* numOMStacks */
+    0,                /* unk4C */
+    64,               /* numOMProcesses */
+    64,               /* numOMGobjs */
+    sizeof(GObj),     /* objectSize */
+    1024,             /* numOMMtx */
+    0,                /* unk60 */
+    NULL,             /* unk64 */
+    16,               /* numOMAobjs */
+    8,                /* numOMMobjs */
+    16,               /* numOMDobjs */
+    sizeof(DObj),     /* omDobjSize */
+    128,              /* numOMSobjs */
+    0x58,             /* omSobjSize */
+    8,                /* numOMCameras */
+    sizeof(OMCamera), /* omCameraSize */
+    new_game_init     /* postInitFunc */
 };
 
 s32 menu_new_game_entry(s32 arg0) {

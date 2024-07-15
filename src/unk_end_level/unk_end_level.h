@@ -29,7 +29,7 @@ void func_8036C2FC_83FAAC(UnkSnowHerring*, s32, s32, s32, s32, s32, s32);
 void func_8036C898_840048(UnkSnowHerring*, char*);
 void func_8036C9C0_840170(UnkSnowHerring*, char*);
 void func_8036CB58_840308(UnkSnowHerring*, s32);
-void func_8036CBA0_840350(UnkSnowHerring*, s32, s32);
+void func_8036CBA0_840350(UnkSnowHerring*, s32 x, s32 y);
 void func_8036D1A4_840954(UnkSnowHerring*, s32);
 void func_8036D248_8409F8(UnkSnowHerring*, s32, s32, s32, s32);
 s32 func_8036D344_840AF4(s32);

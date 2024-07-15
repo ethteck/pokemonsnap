@@ -112,8 +112,8 @@ void* func_camera_check_801DDFC4(void) {
     temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
     D_camera_check_802498F0.unk_00 = temp_v0;
     sobj = temp_v0->data.sobj;
-    sobj->sprite.x = 0x65;
-    sobj->sprite.y = 0x2F;
+    sobj->sprite.x = 101;
+    sobj->sprite.y = 47;
     sobj->sprite.attr |= SP_HIDDEN;
 
     sobj = func_80371E68_845618(sobj, &D_camera_check_801FDDB8);

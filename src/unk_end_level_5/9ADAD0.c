@@ -1,7 +1,5 @@
 #include "common.h"
 
-typedef struct UnkFuzzyCaterpillar UnkFuzzyCaterpillar;
-
 extern s32 D_8025093C_A1AB8C;
 extern s32 D_80250940_A1AB90;
 extern s32 D_80250944_A1AB94;
@@ -50,7 +48,7 @@ void func_801E3914_9ADB64(s32 arg0) {
     }
 }
 
-UnkFuzzyCaterpillar* func_801E3A34_9ADC84(s32 arg0) {
+s16* func_801E3A34_9ADC84(s32 arg0) {
     if (!func_800BFA44_5C8E4(arg0)) {
         return NULL;
     }
@@ -88,6 +86,7 @@ UnkThing* func_801E4068_9AE2B8(void) {
     return &D_80250170_A1A3C0;
 }
 
+void func_801E4084_9AE2D4(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ADAD0/func_801E4084_9AE2D4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ADAD0/func_801E41AC_9AE3FC.s")

@@ -14,12 +14,6 @@ UnkCyanBass* func_camera_check_801DFA4C(void) {
 }
 
 #if 0
-void func_8036D3E8(UNK_TYPE, UNK_TYPE);
-void func_8036D448(UNK_TYPE);
-void func_8036FFE0(UNK_TYPE, s32);
-void func_80370004(UNK_TYPE, s32);
-void func_8037005C(UNK_TYPE, UNK_TYPE);
-char* func_803717A8(void*, s32);
 extern s32 D_camera_check_802089E4;
 
 void func_8036B9EC(s32, s32 x, s32 y);

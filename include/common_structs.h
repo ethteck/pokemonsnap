@@ -63,7 +63,7 @@ typedef struct PokemonInitData {
     /* 0x2F */ u8 matrix2;
     /* 0x30 */ u8 matrix3;
     /* 0x31 */ char unk_31[0x3];
-    /* 0x34 */ //f32 unk_34; // size = 0x34 in 4FE330.c
+    /* 0x34 */ // f32 unk_34; // size = 0x34 in 4FE330.c
 } PokemonInitData;
 
 typedef struct PokemonTransform {
@@ -108,9 +108,9 @@ typedef struct GroundResult {
 struct WorldBlock;
 typedef struct {
     /* 0x000 */ s32 id;
-    /* 0x001 */ //char unk_01[0x1];
-    /* 0x002 */ //s8 appleID;
-    /* 0x003 */ //char unk_03[0x5];
+    /* 0x001 */ // char unk_01[0x1];
+    /* 0x002 */ // s8 appleID;
+    /* 0x003 */ // char unk_03[0x5];
     /* 0x004 */ char unk_04[0x4];
     /* 0x008 */ u16 flags;
     /* 0x00A */ char unk_0A[0x6];
@@ -224,13 +224,13 @@ typedef struct PhotoDataSub3 {
 
 typedef struct PhotoData {
     /* 0x000 */ s8 levelID : 7;
-                u8 unk_00_24 : 1;
-                u32 unk_00_16 : 8;
+    u8 unk_00_24 : 1;
+    u32 unk_00_16 : 8;
     /* 0x002 */ char unk_02[0x2];
     /* 0x004 */ union {
-                    s32 s32;
-                    f32 f32;
-                } unk_04;
+        s32 s32;
+        f32 f32;
+    } unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
     /* 0x020 */ PhotoDataSub unk_20[12];
@@ -272,5 +272,10 @@ typedef struct IdleScript {
     /* 0x0C */ u32 playerFlags;
     /* 0x10 */ IdleScriptEntry inputs[1];
 } IdleScript; // VLA
+
+typedef struct UnkFuzzyCaterpillar {
+    /* 0x00 */ s16 unk_00;
+    /* 0x02 */ u8 pad_3A4[0x40 - 2];
+} UnkFuzzyCaterpillar;
 
 #endif

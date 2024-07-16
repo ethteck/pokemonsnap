@@ -182,6 +182,40 @@ void func_8009AE0C(u32 sceneId) {
     }
 }
 
+#if 0
+s32 func_8009B2BC(void) {
+    s32 i;
+    u32* VRAM_START = (u32*)0x80400000;
+
+    if (!contIsPrinterAvailable()) {
+        return -3;
+    }
+
+    osWritebackDCache(VRAM_START, 0x400000);
+    for (i = 0; i < 0x100000 - 4; i++) {
+        VRAM_START[i] = 0x55555555;
+    }
+    osInvalDCache(VRAM_START, 0x400000);
+    for (i = 0; i < 0x100000 - 4; i++) {
+        if (VRAM_START[i] != 0x55555555) {
+            return -1;
+        }
+    }
+
+    osWritebackDCache(VRAM_START, 0x400000);
+    for (i = 0; i < 0x100000 - 4; i++) {
+        VRAM_START[i] = 0xAAAAAAAA;
+    }
+    osInvalDCache(VRAM_START, 0x400000);
+    for (i = 0; i < 0x100000 - 4; i++) {
+        if (VRAM_START[i] != 0xAAAAAAAA) {
+            return -1;
+        }
+    }
+
+    return 0;
+}
+#endif
 s32 func_8009B2BC(void);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/46270/func_8009B2BC.s")
 

@@ -149,6 +149,7 @@ enum ObjIDs {
     OBJID_28 = 28,
     OBJID_MSG_CAMERA = 29,
     OBJID_35 = 35,
+    OBJID_128 = 128,
     OBJID_ENV_SOUND_PLAYER = 400
 };
 
@@ -170,14 +171,28 @@ enum PokemonIds {
     PokemonID_601 = 601,
     PokemonID_602 = 602,
     PokemonID_603 = 603,
+    PokemonID_1000 = 1000,
+    PokemonID_1001 = 1001,
+    PokemonID_1002 = 1002,
     PokemonID_1003 = 1003,
     PokemonID_1004 = 1004,
+    PokemonID_1006 = 1006,
     PokemonID_1007 = 1007,
+    PokemonID_1008 = 1008,
+    PokemonID_1009 = 1009,
     PokemonID_1010 = 1010,
+    PokemonID_1012 = 1012,
+    PokemonID_1013 = 1013,
     PokemonID_1018 = 1018,
     PokemonID_1022 = 1022,
     PokemonID_1028 = 1028,
-    PokemonID_1035 = 1035
+    PokemonID_1029 = 1029,
+    PokemonID_1030 = 1030,
+    PokemonID_1031 = 1031,
+    PokemonID_1033 = 1033,
+    PokemonID_1035 = 1035,
+    PokemonID_1037 = 1037,
+    PokemonID_1038 = 1038
 };
 
 enum PokemonFlags {

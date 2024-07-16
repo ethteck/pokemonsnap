@@ -9,6 +9,13 @@
 #include "world/world.h"
 
 s32 func_8009FCC0(void);
+s32 func_80364494_5048A4(UnkRustRat* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
+
+typedef struct Unk8009C604 {
+    /* 0x00 */ UnkRustRat* unk_00;
+    /* 0x04 */ f32 unk_04;
+    /* 0x08 */ f32 unk_08;
+} Unk8009C604; // size = 0xC
 
 typedef struct Unk1C {
     /* 0x00 */ u32 id;
@@ -28,9 +35,15 @@ typedef struct UnkV0 {
     void (*unk_10)(GObj*);
 } UnkV0; // substruct of Unk1C?
 
+typedef struct Unkfunc_8009BDDCSub {
+    /* 0x00 */ f32 unk_00;
+    /* 0x04 */ AnimCmd** unk_04;
+    /* 0x08 */ AnimCmd*** unk_08;
+} Unkfunc_8009BDDCSub; // size = 0xC
+
 typedef struct Unkfunc_8009BDDC {
     /* 0x00 */ u32 unk_00;    // Id?
-    /* 0x04 */ Vec3f* unk_04; // Size of 0xC, floats?
+    /* 0x04 */ Unkfunc_8009BDDCSub* unk_04; // Size of 0xC, floats?
     /* 0x08 */ s32 unk_10;    // number of unk_04 records?
 } Unkfunc_8009BDDC; // size = 0xC
 
@@ -400,15 +413,15 @@ s32 func_8009BCC4(UnkThing* arg0) {
 }
 
 s8 func_8009BD4C(s16 arg0, AnimCmd** arg1, Unkfunc_8009BDDC* arg2, s32 arg3) {
-    AnimCmd** next;
+    Unkfunc_8009BDDCSub* next;
     s32 i;
     s32 j;
 
     for (i = 0; i < arg3; i++) {
         if (arg0 == arg2[i].unk_00) {
-            next = arg2[i].unk_04; // TODO: This var seems necessary, but using it seems to break things.
-            for (j = 0; j < arg2[i].unk_10; j++, next++) {
-                if (arg1 == *(AnimCmd***)(&arg2[i].unk_04[j].y)) {
+            next = arg2[i].unk_04;
+            for (j = 0; j < arg2[i].unk_10; j++) {
+                if (arg1 == next[j].unk_04) {
                     return j;
                 }
             }
@@ -423,7 +436,7 @@ f32 func_8009BDDC(s16 arg0, s8 arg1) {
 
     for (i = 0; i < ARRAY_COUNT(D_800AD4B8); i++) {
         if (D_800AD4B8[i].unk_00 == arg0) {
-            return D_800AD4B8[i].unk_04[arg1].x;
+            return D_800AD4B8[i].unk_04[arg1].unk_00;
         }
     }
     return -1.0f;
@@ -606,12 +619,12 @@ void func_8009C4F4(UnkThing* arg0, MovementState* arg1, OMCamera* arg2) {
 
 // Used in a qsort to diff Vec3f's Z vals.
 s32 func_8009C584(const void* a, const void* b) {
-    const Vec3f* a1 = a;
-    const Vec3f* b1 = b;
+    const Unk8009C604* a1 = a;
+    const Unk8009C604* b1 = b;
 
-    if (a1->z < b1->z) {
+    if (a1->unk_08 < b1->unk_08) {
         return -1;
-    } else if (b1->z < a1->z) {
+    } else if (b1->unk_08 < a1->unk_08) {
         return 1;
     }
 
@@ -620,20 +633,67 @@ s32 func_8009C584(const void* a, const void* b) {
 
 // Used in a qsort to diff Vec3f's Y vals.
 s32 func_8009C5C4(const void* a, const void* b) {
-    const Vec3f* a1 = a;
-    const Vec3f* b1 = b;
+    const Unk8009C604* a1 = a;
+    const Unk8009C604* b1 = b;
 
-    if (b1->y < a1->y) {
+    if (b1->unk_04 < a1->unk_04) {
         return -1;
-    } else if (a1->y < b1->y) {
+    } else if (a1->unk_04 < b1->unk_04) {
         return 1;
     }
 
     return 0;
 }
 
-void func_8009C604(UnkThing* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009C604.s")
+void func_8009C604(UnkThing* arg0) {
+    s32 i;
+    s32 count;
+    UnkRustRat* ptr;
+    f32 sp520, sp51C, sp518, sp514;
+    s32 unused;
+    Unk8009C604 sp60[100];
+
+    count = 0;
+    for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
+        for (ptr = D_800BE1A8[i]; ptr != NULL; ptr = ptr->next) {
+            if (func_80364494_5048A4(ptr, &sp520, &sp51C, &sp518, &sp514) || (s16)(ptr->unk_40 * 128.0f) == 0 || ptr->unk_48.a == 0) {
+                if (0) { } // TODO fake match
+                continue;
+            }
+            sp60[count].unk_00 = ptr;
+            sp60[count].unk_04 = ptr->unk_40 * sp514;
+            sp60[count].unk_08 = sp518;
+            count++;
+            if (count >= 100) {
+                break;
+            }
+        }
+        if (count >= 100) {
+            break;
+        }
+    }
+
+    ptr = sp60[count - i - 1].unk_00; // TODO fake match
+
+    if (count > 32) {
+        qsort(sp60, count, sizeof(Unk8009C604), func_8009C5C4);
+        count = 32;
+    }
+
+    qsort(sp60, count, sizeof(Unk8009C604), func_8009C584);
+    for (i = 0; i < count; i++) {
+        ptr = sp60[count - i - 1].unk_00;
+        arg0->main.unk_1A0[i].unk_00 = ptr->unk_0A;
+        arg0->main.unk_1A0[i].unk_01 = ptr->unk_0B;
+        arg0->main.unk_1A0[i].unk_03 = (ptr->unk_06 >> 4) & 0xFF;
+        arg0->main.unk_1A0[i].unk_02 = ptr->unk_08 & 7;
+        arg0->main.unk_1A0[i].unk_04 = ptr->unk_20 * 8.0f;
+        arg0->main.unk_1A0[i].unk_06 = ptr->unk_24 * 8.0f;
+        arg0->main.unk_1A0[i].unk_08 = ptr->unk_28 * 8.0f;
+        arg0->main.unk_1A0[i].unk_0A = ptr->unk_40 * 128.0f;
+        arg0->main.unk_1A0[i].unk_0C = ptr->unk_48;
+    }
+}
 
 void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
     s32 i;
@@ -1028,8 +1088,65 @@ void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     func_800A1E6C(&sp24);
 }
 
-GObj* func_8009D9A0(PhotoDataSub*, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*));
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D9A0.s")
+GObj* func_8009D9A0(PhotoDataSub* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*)) {
+    GObj* v0;
+    Unkfunc_8009BDDC* v00;
+    Mtx4f spB4;
+    Mtx4f sp74;
+    s32 sp6C;
+    s32 i;
+    DObj* s0;
+
+    v0 = omAddGObj(128, NULL, D_800BDF1E, 0x80000000);
+    if (arg0->pokemonID == PokemonID_MAGNETON) {
+        omLinkGObjDL(v0, arg4, D_800BDF1C, 1, -1);
+    } else {
+        omLinkGObjDL(v0, arg4, D_800BDF1C, 0x80000000, -1);
+    }
+    anim_func_80010230(v0, arg2, arg3, 0, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
+
+    if (arg0->pokemonID < PokemonID_1000) {
+        v00 = D_800AD4B8;
+        sp6C = ARRAY_COUNT(D_800AD4B8);
+    } else {
+        v00 = D_800AD9A4;
+        sp6C = ARRAY_COUNT(D_800AD9A4);
+    }
+
+    for (i = 0; i < sp6C; i++) {
+        if (v00[i].unk_00 == arg0->pokemonID) {
+            if (v00[i].unk_04[arg0->unk_20_7].unk_04 != NULL) {
+                animSetModelTreeAnimation(v0, v00[i].unk_04[0].unk_04, arg0->unk_04);
+                animSetModelAnimationSpeed(v0, 0.0f);
+            }
+            if (v00[i].unk_04[arg0->unk_20_7].unk_08 != NULL) {
+                animSetModelTreeTextureAnimation(v0, v00[i].unk_04[0].unk_08, arg0->unk_04);
+                animSetTextureAnimationSpeed(v0, 0.0f);
+            }
+            animUpdateModelTreeAnimation(v0);
+        }
+    }
+
+    s0 = v0->data.dobj;
+    arg1 *= 0.1f;
+    hal_rotate_rpy_translate_scale_f(spB4, arg0->unk_08.x, arg0->unk_08.y, arg0->unk_08.z, 0.0f, arg0->unk_14, 0.0f, arg1, arg1, arg1);
+    hal_rotate_rpy_translate_scale_f(sp74, s0->position.v.x, s0->position.v.y, s0->position.v.z,
+                                           s0->rotation.f[1], s0->rotation.f[2], s0->rotation.f[3],
+                                           s0->scale.v.x, s0->scale.v.y, s0->scale.v.z);
+    guMtxCatF(sp74, spB4, spB4);
+    s0->position.v.x = spB4[3][0];
+    s0->position.v.y = spB4[3][1];
+    s0->position.v.z = spB4[3][2];
+    s0->rotation.f[2] += arg0->unk_14;
+    s0->scale.v.x *= arg1;
+    s0->scale.v.y *= arg1;
+    s0->scale.v.z *= arg1;
+
+    switch(arg0->pokemonID) {
+        case PokemonID_CHANSEY:
+            if (D_800ACD9C[arg0->unk_20_7].)
+    }
+}
 
 void func_8009DEF0(UnkThing* arg0) {
     UnkV0* it;

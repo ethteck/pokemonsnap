@@ -218,9 +218,14 @@ typedef struct PhotoDataSub2 {
 
 typedef struct PhotoDataSub3 {
     /* 0x00 */ s8 unk_00;
-    /* 0x01 */ char unk_01[0x3];
-    /* 0x04 */ char unk_04[0x8];
-    /* 0x0C */ f32 unk_0C;
+    /* 0x01 */ s8 unk_01;
+    /* 0x01 */ s8 unk_02;
+    /* 0x01 */ u8 unk_03;
+    /* 0x04 */ s16 unk_04;
+    /* 0x06 */ s16 unk_06;
+    /* 0x08 */ s16 unk_08;
+    /* 0x0A */ u16 unk_0A;
+    /* 0x0C */ ucolor unk_0C;
 } PhotoDataSub3;
 
 typedef struct PhotoData {

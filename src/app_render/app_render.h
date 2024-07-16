@@ -18,8 +18,8 @@ typedef struct UnkRustRat {
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ u8 unk_08;
     /* 0x09 */ s8 unk_09;
-    /* 0x0A */ s8 unk_0A;
-    /* 0x0B */ s8 unk_0B;
+    /* 0x0A */ u8 unk_0A;
+    /* 0x0B */ u8 unk_0B;
     /* 0x0C */ s16 unk_0C;
     /* 0x0E */ s16 unk_0E;
     /* 0x10 */ s16 unk_10;

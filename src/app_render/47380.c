@@ -631,7 +631,6 @@ void func_8009C4F4(UnkThing* arg0, MovementState* arg1, OMCamera* arg2) {
     arg0->main.unk_14.z = arg2->viewMtx.lookAt.at.z;
 }
 
-// Used in a qsort to diff Vec3f's Z vals.
 s32 func_8009C584(const void* a, const void* b) {
     const Unk8009C604* a1 = a;
     const Unk8009C604* b1 = b;
@@ -645,7 +644,6 @@ s32 func_8009C584(const void* a, const void* b) {
     return 0;
 }
 
-// Used in a qsort to diff Vec3f's Y vals.
 s32 func_8009C5C4(const void* a, const void* b) {
     const Unk8009C604* a1 = a;
     const Unk8009C604* b1 = b;
@@ -1108,7 +1106,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     s32 i;
     Mtx4f spB4;
     Mtx4f sp74;
-    DObj* s0;
+    DObj* model;
     s32 sp6C;
 
     if (D_800AD9A4) {} // TODO fake match
@@ -1144,27 +1142,27 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
         }
     }
 
-    s0 = gobj->data.dobj;
+    model = gobj->data.dobj;
     arg1 *= 0.1f;
     hal_rotate_rpy_translate_scale_f(spB4, arg0->position.x, arg0->position.y, arg0->position.z, 0.0f, arg0->yaw, 0.0f, arg1, arg1, arg1);
-    hal_rotate_rpy_translate_scale_f(sp74, s0->position.v.x, s0->position.v.y, s0->position.v.z,
-                                           s0->rotation.f[1], s0->rotation.f[2], s0->rotation.f[3],
-                                           s0->scale.v.x, s0->scale.v.y, s0->scale.v.z);
+    hal_rotate_rpy_translate_scale_f(sp74, model->position.v.x, model->position.v.y, model->position.v.z,
+                                           model->rotation.f[1], model->rotation.f[2], model->rotation.f[3],
+                                           model->scale.v.x, model->scale.v.y, model->scale.v.z);
     guMtxCatF(sp74, spB4, spB4);
-    s0->position.v.x = spB4[3][0];
-    s0->position.v.y = spB4[3][1];
-    s0->position.v.z = spB4[3][2];
-    s0->rotation.f[2] += arg0->yaw;
-    s0->scale.v.x *= arg1;
-    s0->scale.v.y *= arg1;
-    s0->scale.v.z *= arg1;
+    model->position.v.x = spB4[3][0];
+    model->position.v.y = spB4[3][1];
+    model->position.v.z = spB4[3][2];
+    model->rotation.f[2] += arg0->yaw;
+    model->scale.v.x *= arg1;
+    model->scale.v.y *= arg1;
+    model->scale.v.z *= arg1;
 
     switch(arg0->pokemonID) {
         case PokemonID_CHANSEY:
             if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
-                s0->scale.v.x *= 0.5f;
-                s0->scale.v.y *= 0.5f;
-                s0->scale.v.z *= 0.5f;
+                model->scale.v.x *= 0.5f;
+                model->scale.v.y *= 0.5f;
+                model->scale.v.z *= 0.5f;
             }
             break;
         case PokemonID_602:
@@ -1244,7 +1242,7 @@ GObj* func_8009E050(ItemPhotoData* arg0, UnkEC64Arg3* arg1, Texture*** arg2, voi
     GObj* gobj;
     DObj* dobj;
 
-    gobj = omAddGObj(128, NULL, D_800BDF1E, 0x80000000);
+    gobj = omAddGObj(OBJID_128, NULL, D_800BDF1E, 0x80000000);
     omLinkGObjDL(gobj, arg3, D_800BDF1C, 0x80000000, -1);
     anim_func_80010230(gobj, arg1, arg2, NULL, 0x1C, 0, 0);
     dobj = gobj->data.dobj;

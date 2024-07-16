@@ -504,7 +504,7 @@ void func_801DE1FC_9A844C(s32 arg0) {
     char sp28[0x40];
 
     func_8036A8E4_83E094(D_8024FFFC_A1A24C);
-    if (func_801E3A34_9ADC84(arg0) == 0) {
+    if (func_801E3A34_9ADC84(arg0) == NULL) {
         return;
     }
     func_8036CB58_840308(D_8024FFFC_A1A24C, 0xC);
@@ -689,7 +689,7 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
     sp64[31] = 0;
 
     if (arg0 != 0) {
-        for (D_802500BE_A1A30E = 0; D_802500BE_A1A30E < 0x1F; D_802500BE_A1A30E++) {
+        for (D_802500BE_A1A30E = 0; D_802500BE_A1A30E < 31; D_802500BE_A1A30E++) {
             if (sp64[D_802500BE_A1A30E] == 0) {
                 break;
             }

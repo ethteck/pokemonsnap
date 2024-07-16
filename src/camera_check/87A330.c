@@ -257,7 +257,7 @@ void func_camera_check_801DEC84(void) {
 void func_camera_check_801DF938(void) {
     SObj* sobj;
 
-    func_800A85E8(func_camera_check_801DF2D8, 6, 0, 0);
+    func_800A85E8(func_camera_check_801DF2D8, LINK_6, DL_LINK_0, NULL);
     sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
     sobj->sprite.width = 0x280;
     sobj->sprite.height = 0x1E0;

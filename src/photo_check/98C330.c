@@ -739,7 +739,7 @@ void func_801DDAD8_98D548(s32 arg0, s32 arg1) {
     func_8036B870_83F020(D_802290E0_9D8B50, 1, 0xFF, 0xFF, 0xFF, 0xFF);
 }
 
-void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
+void func_801DDCF8_98D768(GObj* arg0) {
     SObj* sp3C;
     f32 sp38;
     f32 sp34;
@@ -748,7 +748,7 @@ void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
 
     auPlaySoundWithParams(0x4F, 0x7FFF, 0x2C, 1.65f, 0xA);
     D_8022918C_9D8BFC = FALSE;
-    sp2C = arg0[0x58 / 4]; // TODO STRUCT
+    sp2C = (s32)arg0->userData;
     sp3C = D_802290A0_9D8B10[1].gobj->data.sobj;
     sp3C->sprite.x = -140;
     sp3C->sprite.y = 37;
@@ -806,7 +806,7 @@ void func_801DDCF8_98D768(UNK_PTR arg0) { // TODO STRUCT
     ohWait(0x63);
 }
 
-void func_801DE02C_98DA9C(UNK_PTR arg0) {
+void func_801DE02C_98DA9C(GObj* arg0) {
     f32 sp24;
 
     D_80229188_9D8BF8->sprite.y = 0;
@@ -916,7 +916,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         sp25C = func_8037452C_847CDC(func_800BF710_5C5B0(photo->pkmnID));
         if (D_801F3E34_9A38A4) {
             D_801F3E2C_9A389C = 0;
-            sp1E4 = func_800A85E8(func_801DDCF8_98D768, 6, 0, 0);
+            sp1E4 = func_800A85E8(func_801DDCF8_98D768, LINK_6, DL_LINK_0, NULL);
             sp1E4->userData = func_800BF710_5C5B0(photo->pkmnID);
             sp1E8 = TRUE;
             ohWait(1);
@@ -1002,7 +1002,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             } else {
                 D_801F3E30_9A38A0 = 0;
             }
-            sp1C0 = func_800A85E8(func_801DE02C_98DA9C, 6, 0, 0);
+            sp1C0 = func_800A85E8(func_801DE02C_98DA9C, LINK_6, DL_LINK_0, NULL);
             if (1) {
             }
         } else if (D_801F3E60_9A38D0) {
@@ -1015,7 +1015,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036C898_840048(D_802290E4_9D8B54, "This time");
             if (!sp1E8) {
                 D_801F3E2C_9A389C = 0;
-                sp1BC = func_800A85E8(func_801DDCF8_98D768, 6, 0, 0);
+                sp1BC = func_800A85E8(func_801DDCF8_98D768, LINK_6, DL_LINK_0, NULL);
                 sp1BC->userData = func_800BF710_5C5B0(photo->pkmnID);
             }
         }
@@ -1026,7 +1026,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             } else {
                 D_801F3E30_9A38A0 = 0;
             }
-            sp1B8 = func_800A85E8(func_801DE02C_98DA9C, 6, 0, 0);
+            sp1B8 = func_800A85E8(func_801DE02C_98DA9C, LINK_6, DL_LINK_0, NULL);
             if (photo->specialID != 0) {
                 auPlaySound(0x4E);
             }
@@ -1034,7 +1034,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_801DD1A8_98CC18(0x1E);
         } else if (!sp1E8) {
             D_801F3E2C_9A389C = 0;
-            sp1B4 = func_800A85E8(func_801DDCF8_98D768, 6, 0, 0);
+            sp1B4 = func_800A85E8(func_801DDCF8_98D768, LINK_6, DL_LINK_0, NULL);
             sp1B4->userData = func_800BF710_5C5B0(photo->pkmnID);
             func_8036A8E4_83E094(D_802290DC_9D8B4C);
             func_8036D448_840BF8(1);
@@ -2321,7 +2321,7 @@ void func_801E3934_9933A4(void) {
     func_8036D1A4_840954(D_802290DC_9D8B4C, 1);
 }
 
-void func_801E39DC_99344C(UNK_PTR arg0) {
+void func_801E39DC_99344C(GObj* arg0) {
     UNUSED s32 pad;
     s32 sp48;
     s32 i;
@@ -2457,7 +2457,7 @@ void func_801E3FFC_993A6C(void) {
     GObj* gobj;
     SObj* sobj;
 
-    func_800A85E8(func_801E39DC_99344C, 6, 0, 0);
+    func_800A85E8(func_801E39DC_99344C, LINK_6, DL_LINK_0, NULL);
 
     gobj = func_80371D14_8454C4(0, 6, &D_801F2910_9A2380);
     sobj = gobj->data.sobj;

@@ -97,7 +97,7 @@ void func_camera_check_801DDF28(s32);
 void func_camera_check_801DE288(void*);
 void func_camera_check_801DE80C(s32, s32, s32);
 void func_camera_check_801DEA20(s32, int);
-void func_camera_check_801DF2D8(UNK_PTR);
+void func_camera_check_801DF2D8(GObj*);
 void func_camera_check_801DF938(void);
 UNK_PTR func_camera_check_801DF9B0(void);
 s32 func_camera_check_801DFA80(UNK_PTR, s32*, s32, UNK_PTR);

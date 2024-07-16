@@ -111,7 +111,7 @@ s32 func_801DCD7C_9A6FCC(s16* arg0, char* arg1) {
     return func_8036D4F0_840CA0(sp20);
 }
 
-void func_801DCED4_9A7124(UNK_PTR arg0) {
+void func_801DCED4_9A7124(GObj* arg0) {
     while (D_80208B74_9D2DC4) {
         D_80208B78_9D2DC8 += D_80208B7C_9D2DCC;
         if (D_80208B78_9D2DC8 > 0xFF) {
@@ -130,7 +130,7 @@ void func_801DCED4_9A7124(UNK_PTR arg0) {
     ohWait(0x63);
 }
 
-void func_801DCFB8_9A7208(UNK_PTR arg0) {
+void func_801DCFB8_9A7208(GObj* arg0) {
     while (D_80208B74_9D2DC4) {
         D_80208B80_9D2DD0 += D_80208B84_9D2DD4;
         if (D_80208B80_9D2DD0 > 0xFF) {
@@ -645,7 +645,7 @@ GObj* func_801DE830_9A8A80(void) {
     sobj->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
     D_802500A4_A1A2F4 = sobj;
     D_80208B74_9D2DC4 = TRUE;
-    func_800A85E8(func_801DCED4_9A7124, 6, 0, 0);
+    func_800A85E8(func_801DCED4_9A7124, LINK_6, DL_LINK_0, NULL);
     D_8024FFF0_A1A240 = func_8036AC6C_83E41C(0x74, 0xC5, 0xC, 0xC, 0x400);
     func_8036B870_83F020(D_8024FFF0_A1A240, 1, 0xFF, 0xF, 0x19, 0xFF);
     func_8036B870_83F020(D_8024FFF0_A1A240, 0, 0, 0, 0, 0);
@@ -654,7 +654,7 @@ GObj* func_801DE830_9A8A80(void) {
     func_8036B734_83EEE4(D_8024FFF0_A1A240);
     func_8036CB58_840308(D_8024FFF0_A1A240, 0xC);
     func_8036D1A4_840954(D_8024FFF0_A1A240, 1);
-    func_800A85E8(func_801DCFB8_9A7208, 6, 0, 0);
+    func_800A85E8(func_801DCFB8_9A7208, LINK_6, DL_LINK_0, NULL);
 
     return gobj;
 }
@@ -1516,7 +1516,7 @@ void func_801E1320_9AB570(s32 arg0) {
     return;
 }
 
-void func_801E1598_9AB7E8(UNK_PTR arg0) {
+void func_801E1598_9AB7E8(GObj* arg0) {
     UNUSED s32 pad[2];
     s32 i;
     UNUSED s32 pad2;
@@ -1588,7 +1588,7 @@ void func_801E1858_9ABAA8(void) {
     GObj* gobj;
     SObj* sobj;
 
-    func_800A85E8(func_801E1598_9AB7E8, 6, 0, 0);
+    func_800A85E8(func_801E1598_9AB7E8, LINK_6, DL_LINK_0, NULL);
     gobj = func_80371D14_8454C4(0, 6, &D_801E4518_9AE768);
     sobj = gobj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;

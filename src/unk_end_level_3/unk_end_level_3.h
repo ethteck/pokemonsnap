@@ -114,7 +114,7 @@ void func_800E2058_8A7878(GObj*);
 void func_800E235C_8A7B7C(s32);
 void func_800E2848_8A8068(void);
 void func_800E2A04_8A8224(void);
-void func_800E2C0C_8A842C(UNK_PTR);
+void func_800E2C0C_8A842C(GObj*);
 void func_800E307C_8A889C(void);
 void func_800E30B8_8A88D8(void);
 void func_800E3190_8A89B0(void);

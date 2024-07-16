@@ -347,13 +347,13 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF8BC_5C75C.s")
 #endif
 
-void func_800BF954_5C7F4(s32 arg0, PhotoData* arg1, UnkFuzzyCaterpillar* arg2) {
+void func_800BF954_5C7F4(s32 arg0, PhotoData* photoData, UnkFuzzyCaterpillar* arg2) {
     if (arg0 < 0 || arg0 >= 60) {
         return;
     }
 
-    if (arg1 != 0) {
-        D_800C21B0_5F050->data.var_10A20[arg0].unk_0 = *arg1;
+    if (photoData != NULL) {
+        D_800C21B0_5F050->data.var_10A20[arg0].unk_0 = *photoData;
     }
     if (arg2 != 0) {
         func_800BF4A8_5C348(arg2, arg0);

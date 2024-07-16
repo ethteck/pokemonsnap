@@ -213,14 +213,14 @@ typedef struct PhotoDataSub2 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
     /* 0x04 */ Vec3f pos;
-} PhotoDataSub2; // size == 0x10
+} PhotoDataSub2; // size = 0x10
 
 typedef struct PhotoDataSub3 {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ char unk_01[0x3];
     /* 0x04 */ char unk_04[0x8];
     /* 0x0C */ f32 unk_0C;
-} PhotoDataSub3;
+} PhotoDataSub3; // size = 0x10
 
 typedef struct PhotoData {
     /* 0x000 */ s8 levelID : 7;
@@ -247,7 +247,7 @@ typedef struct UnkThing {
 typedef struct UnkCanaryScallop {
     s32 unk_0;
     s32 unk_4;
-} UnkCanaryScallop; // size == 0x8
+} UnkCanaryScallop; // size = 0x8
 
 typedef struct UnkBrassLynx {
     /* 0x00 */ char unk_00[0x14];

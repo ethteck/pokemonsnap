@@ -8,11 +8,24 @@ extern s32 D_80208B94_9D2DE4;
 extern s32 D_80208C18_9D2E68;
 extern s32 D_80208C1C_9D2E6C;
 extern s32 D_80208C20_9D2E70;
+extern s32 D_80208C24_9D2E74;
+extern s32 D_80208C28_9D2E78;
+extern s32 D_80208C2C_9D2E7C;
+extern s32 D_80208C30_9D2E80;
 
 extern UNK_TYPE* D_80250120_A1A370;
 extern UnkCanaryScallop* D_80250124_A1A374;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/D_80208F50_9D31A0.s")
+const char D_80208F50_9D31A0[] = "ひらく";
+const char D_80208F58_menustr[] = "けんきゅうじょへ";
+const char D_80208F6C_menustr[] = "みる";
+const char D_80208F74_menustr[] = "いれかえ";
+const char D_80208F80_menustr[] = "けす";
+const char D_80208F88_menustr[] = "ひょうしへ";
+const char D_80208F94_menustr[] = "くわしく";
+const char D_80208FA0_menustr[] = "コメント";
+const char D_80208FAC_menustr[] = "けす";
+const char D_80208FB4_menustr[] = "もどる";
 
 UNK_TYPE* func_801E1900_9ABB50(void) {
     return &D_80208B98_9D2DE8;
@@ -127,9 +140,139 @@ s32 func_801E1C30_9ABE80(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E1FE4_9AC234.s")
+s32 func_801E1FE4_9AC234(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3) {
+    if (arg0 == NULL) {
+        D_80208C24_9D2E74 = -1;
+        D_80208C28_9D2E78 = -1;
+        return 0;
+    }
+    func_801E3880_9ADAD0();
+    if ((arg0->unk_18 & 0x20000) && *arg2 <= 0) {
+        (*arg2)++;
+    }
+    if ((arg0->unk_18 & 0x10000) && *arg2 > 0) {
+        (*arg2)--;
+    }
+    if (arg0->unk_18 & 0x40000) {
+        if (*arg1 < 2) {
+            (*arg1)++;
+        } else if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) < func_800BF9EC_5C88C() - 6) {
+            auPlaySound(0x4B);
+            D_80208B94_9D2DE4 += 6;
+            *arg1 = 0;
+            func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+        }
+    }
+    if (arg0->unk_18 & 0x80000) {
+        if (*arg1 > 0) {
+            (*arg1)--;
+        } else if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) > 0) {
+            auPlaySound(0x4B);
+            D_80208B94_9D2DE4 -= 6;
+            *arg1 = 2;
+            func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+        }
+    }
+    if ((*arg1 != D_80208C24_9D2E74) || (*arg2 != D_80208C28_9D2E78)) {
+        // bug? using the same variable twice. silly mask needed to match
+        if (!((D_80208C24_9D2E74 < 0) & 0xFFFFFFFF) || !(D_80208C24_9D2E74 < 0)) {
+            auPlaySound(0x45);
+        }
+        D_80208C24_9D2E74 = *arg1;
+        D_80208C28_9D2E78 = *arg2;
+        D_80208B94_9D2DE4 = ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) + (*arg2 * 3)) + *arg1;
+        if (arg3 != 0) {
+            func_8036FFE0_843790((*arg1 * 66) + 99, (*arg2 * 55) + 48);
+            func_801DDDF8_9A8048((*arg1 * 66) + 96, (*arg2 * 55) + 45);
+        } else {
+            func_8036FFE0_843790((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            func_801DDDF8_9A8048(-1, -1);
+        }
+        func_801DE1FC_9A844C(D_80208B94_9D2DE4);
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E2438_9AC688.s")
+s32 func_801E2438_9AC688(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
+    if (arg0 == NULL) {
+        D_80208C2C_9D2E7C = -1;
+        D_80208C30_9D2E80 = -1;
+        func_801DEA4C_9A8C9C(1, 0, 0);
+        return 0;
+    }
+    func_801E3880_9ADAD0();
+    if (arg0->unk_18 & 0x20000) {
+        if (*arg2 < 0x13) {
+            (*arg2)++;
+        } else {
+            *arg2 = 0;
+        }
+    }
+    if (arg0->unk_18 & 0x10000) {
+        if (*arg2 > 0) {
+            (*arg2)--;
+        } else {
+            *arg2 = 19;
+        }
+    }
+    if (arg0->unk_18 & 0x40000) {
+        if (*arg2 < 0x13) {
+            if (*arg1 < 4) {
+                (*arg1)++;
+            } else {
+                *arg1 = 0;
+            }
+        } else if (*arg1 < 2) {
+            (*arg1)++;
+        } else {
+            *arg1 = 0;
+        }
+    }
+    if (arg0->unk_18 & 0x80000) {
+        if (*arg2 < 19) {
+            if (*arg1 > 0) {
+                *arg1 -= 1;
+            } else {
+                *arg1 = 4;
+            }
+        } else if (*arg1 > 0) {
+            *arg1 -= 1;
+        } else {
+            *arg1 = 2;
+        }
+    }
+
+    if (*arg2 < 19) {
+        if ((*arg1 != D_80208C2C_9D2E7C) || (*arg2 != D_80208C30_9D2E80)) {
+            // bug? using the same variable twice. silly mask needed to match
+            if (!((D_80208C2C_9D2E7C < 0) & 0xFFFFFFFF) || !(D_80208C2C_9D2E7C < 0)) {
+                auPlaySound(0x45);
+            }
+            D_80208C2C_9D2E7C = *arg1;
+            D_80208C30_9D2E80 = *arg2;
+            func_801DE998_9A8BE8(1);
+            func_80370038_8437E8(4, 5);
+            func_8036FFE0_843790((*arg1 * 13) + 25, (*arg2 * 10) + 22);
+            func_801DEA4C_9A8C9C(0, *arg1, *arg2);
+        }
+    } else if (*arg1 != D_80208C2C_9D2E7C || *arg2 != D_80208C30_9D2E80) {
+        D_80208C2C_9D2E7C = *arg1;
+        D_80208C30_9D2E80 = *arg2;
+        auPlaySound(0x41);
+        func_801DE998_9A8BE8(0);
+        if (*arg1 < 2) {
+            func_80370038_8437E8(4, 5);
+            func_8036FFE0_843790((*arg1 * 13) + 25, (*arg2 * 10) + 22);
+        } else {
+            func_80370038_8437E8(0xD, 5);
+            func_8036FFE0_843790(68, (*arg2 * 10) + 22);
+        }
+        func_801DEA4C_9A8C9C(0, *arg1, *arg2);
+    }
+    return 0;
+}
 
 s32 func_801E2874_9ACAC4(void) {
     UnkStruct800BEDF8* sp2C;

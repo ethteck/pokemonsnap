@@ -464,7 +464,7 @@ void func_801DE03C_9A828C(s32 arg0) {
 }
 
 void func_801DE080_9A82D0(void) {
-    func_80374714_847EC4(&func_801E4068_9AE2B8()->main, &D_802500B0_A1A300->sprite);
+    func_80374714_847EC4(func_801E4068_9AE2B8(), &D_802500B0_A1A300->sprite);
 }
 
 void* func_801DE0C8_9A8318(void) {

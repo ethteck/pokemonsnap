@@ -149,6 +149,7 @@ enum ObjIDs {
     OBJID_28 = 28,
     OBJID_MSG_CAMERA = 29,
     OBJID_35 = 35,
+    OBJID_128 = 128,
     OBJID_ENV_SOUND_PLAYER = 400
 };
 

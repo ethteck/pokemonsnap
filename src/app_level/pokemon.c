@@ -2218,7 +2218,7 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     pokemon->behavior = spawn->behavior;
     pokemon->eggGeo = NULL;
     pokemon->unk_10C = 0;
-    pokemon->field_0x10e = 0;
+    pokemon->unk_10E = 0;
     pokemon->playerDist = FLOAT_MAX;
     Pokemon_LinkObject(pokemonObj);
     return pokemonObj;

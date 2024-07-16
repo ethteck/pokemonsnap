@@ -49,7 +49,7 @@ void func_beach_802C8828(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->field_0x10e = 0;
+    pokemon->unk_10E = 0;
     pokemon = pokemon;
     Pokemon_StartPathProc(obj, func_beach_802C8894);
     pokemon->transitionGraph = D_beach_802CD010;
@@ -135,7 +135,7 @@ void func_beach_802C8AAC(GObj* obj) {
     }
 
     pokemon->miscVars[0].field1 = 1;
-    pokemon->field_0x10e = 0;
+    pokemon->unk_10E = 0;
     Pokemon_SetAnimation(obj, &D_beach_802CCFD4);
     Pokemon_StartPathProc(obj, func_beach_802C8B60);
     pokemon->transitionGraph = NULL;
@@ -172,13 +172,13 @@ void func_beach_802C8BC4(GObj* obj) {
 
 void func_beach_802C8C30(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
-    pokemon->field_0x10e = 7;
+    pokemon->unk_10E = 7;
     Pokemon_StopAuxProc(obj);
 }
 
 void func_beach_802C8C58(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
-    pokemon->field_0x10e = 0;
+    pokemon->unk_10E = 0;
     Pokemon_StopAuxProc(obj);
 }
 

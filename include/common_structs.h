@@ -156,7 +156,7 @@ typedef struct {
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
     /* 0x10C */ u16 unk_10C;
-    /* 0x10E */ u16 field_0x10e;
+    /* 0x10E */ u16 unk_10E;
 } Pokemon; // size = 0x110
 
 typedef struct {
@@ -200,21 +200,21 @@ typedef struct PlayerName {
     /* 0x00 */ char data[0x10];
 } PlayerName; // size = 0x10
 
-typedef struct PhotoDataSub {
+typedef struct PokemonPhotoData {
     /* 0x00 */ s32 pokemonID : 13;
-    /* 0x00 */ u32 unk_20_7 : 6; // padding?
-    /* 0x02 */ u16 unk_02_5 : 5;
-    /* 0x03 */ s8 unk_02;
-    /* 0x04 */ f32 unk_04;
-    /* 0x08 */ Vec3f unk_08;
-    /* 0x14 */ f32 unk_14;
-} PhotoDataSub; // size = 0x18
+    /* 0x00 */ u32 unk_00_13 : 6;
+    /* 0x02 */ u16 unk_00_19 : 5;
+    /* 0x03 */ s8 unk_03;
+    /* 0x04 */ f32 animationTime;
+    /* 0x08 */ Vec3f position;
+    /* 0x14 */ f32 yaw;
+} PokemonPhotoData; // size = 0x18
 
-typedef struct PhotoDataSub2 {
-    /* 0x00 */ s8 unk_00;
-    /* 0x01 */ u8 unk_01; // TODO skipFrames bitfield?
+typedef struct ItemPhotoData {
+    /* 0x00 */ s8 itemType;
+    /* 0x01 */ u8 animationTime;
     /* 0x04 */ Vec3f pos;
-} PhotoDataSub2; // size = 0x10
+} ItemPhotoData; // size = 0x10
 
 typedef struct PhotoDataSub3 {
     /* 0x00 */ s8 unk_00;
@@ -239,8 +239,8 @@ typedef struct PhotoData {
     } unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
-    /* 0x020 */ PhotoDataSub unk_20[12];
-    /* 0x140 */ PhotoDataSub2 unk_140[6];
+    /* 0x020 */ PokemonPhotoData unk_20[12];
+    /* 0x140 */ ItemPhotoData unk_140[6];
     /* 0x1A0 */ PhotoDataSub3 unk_1A0[32];
 } PhotoData; // size = 0x3A0
 

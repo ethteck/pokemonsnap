@@ -302,15 +302,15 @@ void func_8036CB58_840308(UnkSnowHerring* arg0, s32 arg1) {
     }
 }
 
-void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 arg1, s32 arg2) {
+void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 x, s32 y) {
     if (!arg0) {
         return;
     }
 
-    arg0->unk_0 = arg1;
-    arg0->unk_4 = arg2;
-    arg0->unk_64.x = arg1 - arg0->unk_8;
-    arg0->unk_64.y = arg2 - arg0->unk_C;
+    arg0->unk_0 = x;
+    arg0->unk_4 = y;
+    arg0->unk_64.x = x - arg0->unk_8;
+    arg0->unk_64.y = y - arg0->unk_C;
     if (!(arg0->unk_18 & 0x40)) {
         arg0->unk_50->data.sobj->sprite.x = arg0->unk_64.x;
         arg0->unk_50->data.sobj->sprite.y = arg0->unk_64.y;

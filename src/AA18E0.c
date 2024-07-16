@@ -20,7 +20,7 @@ extern UNK_PTR D_801E54CC_AAA50C;
 s32 D_801E55D0_AAA610[2];
 s32 D_801E55D8_AAA618;
 GObj* D_801E55DC_AAA61C;
-UnkThing* D_801E55E0_AAA620[4];
+PhotoData* D_801E55E0_AAA620[4];
 
 void func_801DC8A0_AA18E0(s32 arg0) {
     if (arg0 == 4) {
@@ -39,10 +39,10 @@ void func_801DC8A0_AA18E0(s32 arg0) {
     func_800067DC();
 }
 
-void func_801DC930_AA1970(OMCamera* arg0, UnkThing* arg1) {
+void func_801DC930_AA1970(OMCamera* cam, PhotoData* photoData) {
     GObj* obj;
 
-    func_8009FA68(arg0, arg1);
+    func_8009FA68(cam, photoData);
     obj = omGObjListHead[D_801E54C0_AAA500];
     while (obj != NULL) {
         ohPauseObjectProcesses(obj);
@@ -64,7 +64,7 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
     s32 count;
     s32 idx;
     s32 i;
-    UnkThing* temp_v0;
+    PhotoData* photoData;
 
     sp2C = arg0->data.cam;
     if (D_801E54C8_AAA508[0] >= 0) {
@@ -73,10 +73,10 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
 
     count = 0;
     for (idx = 0; idx < ARRAY_COUNT(D_801E55E0_AAA620); idx++) {
-        temp_v0 = (UnkThing*) func_800BF574_5C414(idx); // todo figure out proper return type
-        if (temp_v0 != NULL) {
+        photoData = func_800BF574_5C414(idx);
+        if (photoData != NULL) {
             count++;
-            D_801E55E0_AAA620[idx] = temp_v0;
+            D_801E55E0_AAA620[idx] = photoData;
         }
     }
     if (count < 4) {
@@ -91,13 +91,13 @@ void func_801DC9D0_AA1A10(GObj* arg0) {
     }
 
     if (D_801E55D8_AAA618 >= 0 && D_801E55D8_AAA618 < 16) {
-        UnkThing* var_s0_2;
+        PhotoData* photoData;
 
         func_8009FB50(D_801E54BC_AAA4FC, D_801E54C0_AAA500, D_801E54C4_AAA504);
-        var_s0_2 = D_801E55E0_AAA620[D_801E54C8_AAA508[1 + D_801E55D8_AAA618]];
+        photoData = D_801E55E0_AAA620[D_801E54C8_AAA508[1 + D_801E55D8_AAA618]];
         D_801E550C_AAA54C = 0;
         scSetPostProcessFunc(func_801DC9BC_AA19FC);
-        func_801DC930_AA1970(sp2C, var_s0_2);
+        func_801DC930_AA1970(sp2C, photoData);
         if (D_801E55D8_AAA618 == 0) {
             while (contPrinterGetStatus() == 8) {
                 ohWait(1);

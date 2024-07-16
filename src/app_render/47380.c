@@ -223,7 +223,7 @@ const char D_800AFE68[] = "ＭＥＷＴＷＯ";
 const char D_800AFE78[] = "ＭＥＷ";
 
 extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern UnkThing* D_800BDF18;
+extern PhotoData* D_800BDF18;
 extern u8 D_800BDF1C;
 extern u8 D_800BDF1D;
 extern u8 D_800BDF1E;
@@ -860,10 +860,10 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
     omLinkGObjDL(gobj, arg3->unk_10, D_800BDF1C, 0x80000000, -1);
     anim_func_80010230(gobj, arg3->unk_8, arg3->unk_C, NULL, 0x1C, 0, 0);
     if (arg3->unk_14 != NULL) {
-        animSetModelTreeAnimation(gobj, arg3->unk_14, world_func_800E21A8(D_800BDF18->main.unk_04.f32));
+        animSetModelTreeAnimation(gobj, arg3->unk_14, world_func_800E21A8(D_800BDF18->unk_04.f32));
         animSetModelAnimationSpeed(gobj, 0.0f);
         if (arg3->unk_18 != NULL) {
-            animSetModelTreeTextureAnimation(gobj, arg3->unk_18, world_func_800E21A8(D_800BDF18->main.unk_04.f32));
+            animSetModelTreeTextureAnimation(gobj, arg3->unk_18, world_func_800E21A8(D_800BDF18->unk_04.f32));
             animSetTextureAnimationSpeed(gobj, 0.0f);
         }
         animUpdateModelTreeAnimation(gobj);
@@ -876,7 +876,7 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
     dobj->rotation.f[2] = arg2->euler.y;
     temp_f0 = arg3->scale * 0.1f;
     dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = temp_f0;
-    if (arg3->id == PokemonID_1018 && (D_800BDF18->main.unk_00_16 & 0xE0) != 0x80) { // todo bitfield
+    if (arg3->id == PokemonID_1018 && (D_800BDF18->unk_00_16 & 0xE0) != 0x80) { // todo bitfield
         dobj->firstChild->flags |= 1;
     }
     return gobj;
@@ -992,19 +992,19 @@ void func_8009D37C(u8 levelID) {
     }
 }
 
-void func_8009D65C(UnkThing* arg0) {
+void func_8009D65C(PhotoData* photoData) {
     WorldBlock** worldBlocks;
     s32 i;
     f32 var_f2;
 
-    if (arg0->main.levelID >= 0) {
-        if (D_800AC0F0 != arg0->main.levelID) {
+    if (photoData->levelID >= 0) {
+        if (D_800AC0F0 != photoData->levelID) {
             if (D_800AC0F0 >= 0) {
                 destroyWorld();
             }
-            func_8009A8F0(arg0->main.levelID);
-            func_8009D37C(arg0->main.levelID);
-            D_800AC0F0 = arg0->main.levelID;
+            func_8009A8F0(photoData->levelID);
+            func_8009D37C(photoData->levelID);
+            D_800AC0F0 = photoData->levelID;
         }
         worldBlocks = getWorldBlocks();
 
@@ -1020,32 +1020,32 @@ void func_8009D65C(UnkThing* arg0) {
                         animSetModelTreeTextureAnimation(
                             worldBlocks[i]->blockModel,
                             worldBlocks[i]->descriptor->gfx->unk_08,
-                            world_func_800E21A8(arg0->main.unk_04.f32));
+                            world_func_800E21A8(photoData->unk_04.f32));
                         animUpdateModelTreeAnimation(worldBlocks[i]->blockModel);
                     }
                 }
             }
         }
 
-        if (arg0->main.levelID == SCENE_RAINBOW) {
-            var_f2 = (arg0->main.unk_04.f32 * TAU) / 10000.0f;
+        if (photoData->levelID == SCENE_RAINBOW) {
+            var_f2 = (photoData->unk_04.f32 * TAU) / 10000.0f;
         } else {
             var_f2 = 0.0f;
         }
 
-        switch (arg0->main.levelID) {
+        switch (photoData->levelID) {
             case SCENE_BEACH:
             case SCENE_VOLCANO:
             case SCENE_RIVER:
             case SCENE_VALLEY:
             case SCENE_RAINBOW:
-                setSkyBoxPos(arg0->main.unk_08.x, arg0->main.unk_08.y, arg0->main.unk_08.z, var_f2, world_func_800E21A8(arg0->main.unk_04.f32));
+                setSkyBoxPos(photoData->unk_08.x, photoData->unk_08.y, photoData->unk_08.z, var_f2, world_func_800E21A8(photoData->unk_04.f32));
                 break;
         }
         D_800AC0F4.moveTime = 0.0f;
         D_800AC0F4.speedMult = 0.0f;
         D_800AC0F4.cpTime = 0.5f;
-        Movement_Init(&D_800AC0F4, arg0->main.unk_00_16 & 0xF, NULL, NULL);
+        Movement_Init(&D_800AC0F4, photoData->unk_00_16 & 0xF, NULL, NULL);
 
         worldBlocks = getWorldBlocks();
         for (i = 0; worldBlocks != NULL && i < MAX_BLOCKS; i++) {
@@ -1059,7 +1059,7 @@ void func_8009D65C(UnkThing* arg0) {
     }
 }
 
-void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
+void func_8009D8A8(OMCamera* cam, PhotoData* photoData) {
     Vec3f sp24;
     f32 temp_f2;
 
@@ -1067,13 +1067,13 @@ void func_8009D8A8(OMCamera* cam, UnkThing* arg1) {
     cam->perspMtx.persp.near = 10.0f;
     cam->perspMtx.persp.far = 25600.0f;
 
-    cam->viewMtx.lookAt.eye.x = arg1->main.unk_08.x;
-    cam->viewMtx.lookAt.eye.y = arg1->main.unk_08.y;
-    cam->viewMtx.lookAt.eye.z = arg1->main.unk_08.z;
+    cam->viewMtx.lookAt.eye.x = photoData->unk_08.x;
+    cam->viewMtx.lookAt.eye.y = photoData->unk_08.y;
+    cam->viewMtx.lookAt.eye.z = photoData->unk_08.z;
 
-    cam->viewMtx.lookAt.at.x = arg1->main.unk_14.x;
-    cam->viewMtx.lookAt.at.y = arg1->main.unk_14.y;
-    cam->viewMtx.lookAt.at.z = arg1->main.unk_14.z;
+    cam->viewMtx.lookAt.at.x = photoData->unk_14.x;
+    cam->viewMtx.lookAt.at.y = photoData->unk_14.y;
+    cam->viewMtx.lookAt.at.z = photoData->unk_14.z;
 
     cam->viewMtx.lookAt.up.y = 1.0f;
     cam->viewMtx.lookAt.up.x = cam->viewMtx.lookAt.up.z = 0.0f;
@@ -1148,25 +1148,25 @@ GObj* func_8009D9A0(PhotoDataSub* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture*** 
     }
 }
 
-void func_8009DEF0(UnkThing* arg0) {
+void func_8009DEF0(PhotoData* photoData) {
     UnkV0* it;
     GObj* gobj;
     s32 i;
 
     D_800BDF60 = 0;
 
-    for (i = 0; i < ARRAY_COUNT(arg0->main.unk_20); i++) {
-        if (arg0->main.unk_20[i].pokemonID < 0) {
+    for (i = 0; i < ARRAY_COUNT(photoData->unk_20); i++) {
+        if (photoData->unk_20[i].pokemonID < 0) {
             return;
         }
         for (it = D_800ADBEC; it->unk_00 != 0; it++) {
-            if (it->unk_00 == arg0->main.unk_20[i].pokemonID) {
-                gobj = func_8009D9A0(&arg0->main.unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
-                if ((arg0->main.unk_20[i].pokemonID > 0 && arg0->main.unk_20[i].pokemonID <= POKEDEX_MAX) ||
-                    arg0->main.unk_20[i].pokemonID == 0x25B ||
-                    arg0->main.unk_20[i].pokemonID == 0x258 ||
-                    arg0->main.unk_20[i].pokemonID == 0x259 ||
-                    arg0->main.unk_20[i].pokemonID == 0x25A) {
+            if (it->unk_00 == photoData->unk_20[i].pokemonID) {
+                gobj = func_8009D9A0(&photoData->unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
+                if ((photoData->unk_20[i].pokemonID > 0 && photoData->unk_20[i].pokemonID <= POKEDEX_MAX) ||
+                    photoData->unk_20[i].pokemonID == PokemonID_603 ||
+                    photoData->unk_20[i].pokemonID == PokemonID_600 ||
+                    photoData->unk_20[i].pokemonID == PokemonID_601 ||
+                    photoData->unk_20[i].pokemonID == PokemonID_602) {
                     D_800BDF30[D_800BDF60] = gobj;
                     D_800BDF68[D_800BDF60] = i;
                     D_800BDF60++;
@@ -1205,24 +1205,24 @@ void func_8009E110(GObj* gobj, AnimCmd** animLists, AnimCmd*** textureAnimLists,
     animUpdateModelTreeAnimation(gobj);
 }
 
-void func_8009E1CC(UnkThing* arg0) {
+void func_8009E1CC(PhotoData* photoData) {
     GObj* gobj;
     f32 temp_f0;
     s32 i;
     u8 temp_s3;
 
-    for (i = 0; i < ARRAY_COUNT(arg0->main.unk_140); i++) {
-        temp_s3 = arg0->main.unk_140[i].unk_01;
-        switch (arg0->main.unk_140[i].unk_00) {
+    for (i = 0; i < ARRAY_COUNT(photoData->unk_140); i++) {
+        temp_s3 = photoData->unk_140[i].unk_01;
+        switch (photoData->unk_140[i].unk_00) {
             case 1:
                 func_8009E110(
-                    func_8009E050(&arg0->main.unk_140[i], &D_800E9138, &D_800E8EB8, renderModelTypeBFogged),
+                    func_8009E050(&photoData->unk_140[i], &D_800E9138, &D_800E8EB8, renderModelTypeBFogged),
                     NULL,
                     &D_800E91C0,
                     temp_s3);
                 break;
             case 2:
-                gobj = func_8009E050(&arg0->main.unk_140[i], &D_800EAED0, &D_800EAC58, renderModelTypeBFogged);
+                gobj = func_8009E050(&photoData->unk_140[i], &D_800EAED0, &D_800EAC58, renderModelTypeBFogged);
                 func_8009E110(gobj, NULL, &D_800EAF60, temp_s3 & 0xF);
                 gobj->data.dobj->scale.v.x = (gobj->data.dobj->scale.v.x * (temp_s3 >> 4)) / 15.0f;
                 gobj->data.dobj->scale.v.y = (gobj->data.dobj->scale.v.y * (temp_s3 >> 4)) / 15.0f;
@@ -1230,14 +1230,14 @@ void func_8009E1CC(UnkThing* arg0) {
                 break;
             case 3:
                 func_8009E110(
-                    func_8009E050(&arg0->main.unk_140[i], &D_800EB430, &D_800EB510, renderModelTypeDFogged),
+                    func_8009E050(&photoData->unk_140[i], &D_800EB430, &D_800EB510, renderModelTypeDFogged),
                     &D_800EAFB0,
                     &D_800EB0C0,
                     temp_s3);
                 break;
             case 4:
                 func_8009E110(
-                    func_8009E050(&arg0->main.unk_140[i], &D_800EDAB0, &D_800EDB90, renderModelTypeDFogged),
+                    func_8009E050(&photoData->unk_140[i], &D_800EDAB0, &D_800EDB90, renderModelTypeDFogged),
                     &D_800ED5B0,
                     &D_800ED6B0,
                     temp_s3);
@@ -1251,18 +1251,18 @@ void func_8009E1CC(UnkThing* arg0) {
 void func_8009E3D0(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E3D0.s")
 
-void func_8009FA00(OMCamera* arg0, UnkThing* arg1) {
+void func_8009FA00(OMCamera* cam, PhotoData* photoData) {
     GObj* gobj;
 
     gobj = omAddGObj(0x80, NULL, D_800BDF1E, 0x80000000);
-    gobj->userData = &arg1->main.unk_1A0;
+    gobj->userData = &photoData->unk_1A0;
     omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
 }
 
-void func_8009FA68(OMCamera* cam, UnkThing* arg1) {
-    GObj* temp_s1;
-    GObj* var_s0;
-    s32 levelID = arg1->main.levelID;
+void func_8009FA68(OMCamera* cam, PhotoData* photoData) {
+    GObj* next;
+    GObj* it;
+    s32 levelID = photoData->levelID;
 
     if (levelID >= 0) {
         if (levelID == SCENE_CAVE) {
@@ -1271,20 +1271,20 @@ void func_8009FA68(OMCamera* cam, UnkThing* arg1) {
         } else {
             cam->flags &= ~CAMERA_FLAG_2;
         }
-        var_s0 = omGObjListHead[D_800BDF1E];
-        if (var_s0 != NULL) {
-            do {
-                temp_s1 = var_s0->next;
-                omDeleteGObj(var_s0);
-                var_s0 = temp_s1;
-            } while (temp_s1 != NULL);
+
+        it = omGObjListHead[D_800BDF1E];
+        while (it != NULL) {
+            next = it->next;
+            omDeleteGObj(it);
+            it = next;
         }
-        D_800BDF18 = arg1;
-        func_8009D65C(arg1);
-        func_8009DEF0(arg1);
-        func_8009E1CC(arg1);
-        func_8009FA00(cam, arg1);
-        func_8009D8A8(cam, arg1);
+
+        D_800BDF18 = photoData;
+        func_8009D65C(photoData);
+        func_8009DEF0(photoData);
+        func_8009E1CC(photoData);
+        func_8009FA00(cam, photoData);
+        func_8009D8A8(cam, photoData);
     }
 }
 

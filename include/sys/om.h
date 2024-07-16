@@ -242,8 +242,8 @@ typedef struct GObj {
     /* 0x38 */ s32 unk_38;
     /* 0x3C */ GObjCmdList cmdList;
     /* 0x48 */ union {
-                struct DObj* dobj;
                 struct SObj* sobj;
+                struct DObj* dobj;
                 struct OMCamera* cam;
                 void* any;
     } data;

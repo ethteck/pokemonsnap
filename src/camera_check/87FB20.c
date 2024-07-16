@@ -3,7 +3,7 @@
 
 s32 func_camera_check_801E2330(s32 arg0) {
     arg0 = func_8009BB4C(arg0);
-    if ((arg0 < 0) || (arg0 >= 0x45)) {
+    if (arg0 < 0 || arg0 >= 69) {
         return 0;
     }
 
@@ -14,7 +14,7 @@ void func_camera_check_801E23A8(s32 arg0, s32 arg1) {
     s32 temp_v0;
 
     temp_v0 = func_8009BB4C(arg0);
-    if ((temp_v0 < 0) || (temp_v0 >= 0x45)) {
+    if (temp_v0 < 0 || temp_v0 >= 69) {
         return;
     }
 
@@ -34,7 +34,7 @@ s32 func_camera_check_801E2478(void) {
 }
 
 PhotoData* func_camera_check_801E2484(s32 arg0) {
-    if ((arg0 < 0) || (arg0 >= D_camera_check_8024A1C4)) {
+    if (arg0 < 0 || arg0 >= D_camera_check_8024A1C4) {
         return 0;
     }
 
@@ -42,7 +42,7 @@ PhotoData* func_camera_check_801E2484(s32 arg0) {
 }
 
 UnkIndigoHalibut* func_camera_check_801E24D8(s32 arg0) {
-    if ((arg0 < 0) || (arg0 >= D_camera_check_8024A1C4)) {
+    if (arg0 < 0 || arg0 >= D_camera_check_8024A1C4) {
         return NULL;
     }
 

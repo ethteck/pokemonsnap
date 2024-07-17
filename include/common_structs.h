@@ -284,8 +284,15 @@ typedef struct IdleScript {
 } IdleScript; // VLA
 
 typedef struct UnkFuzzyCaterpillar {
-    /* 0x00 */ s16 unk_00;
-    /* 0x02 */ u8 pad_3A4[0x40 - 2];
+    /* 0x00 */ union {
+        s16 s[0x20];
+        s8 c[0x40];
+    } data;
 } UnkFuzzyCaterpillar;
+
+typedef struct PhotoDataExt {
+    /* 0x000 */ PhotoData photoData;
+    /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
+} PhotoDataExt; // size = 0x3E0
 
 #endif

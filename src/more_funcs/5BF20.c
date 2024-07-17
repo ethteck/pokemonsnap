@@ -1,10 +1,5 @@
 #include "common.h"
 
-typedef struct UnkTinyGrandma {
-    /* 0x000 */ PhotoData unk_0;
-    /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
-} UnkTinyGrandma; // size: 0x3E0
-
 typedef struct UnkBigBoy {
     /* 0x000 */ s32 unk_0;
     /* 0x004 */ s32 unk_4;
@@ -49,7 +44,7 @@ typedef struct UnkBigBoy {
         /* 0x06C */ s32 unk_6C[69];
         /* 0x180 */ PhotoData unk_180[69];
         /* 0xFBA0 */ PhotoData unk_FBA0[4];
-        /* 0x10A20 */ UnkTinyGrandma var_10A20[60];
+        /* 0x10A20 */ PhotoDataExt var_10A20[60];
         /* 0x1f2a0 */ u8 pad_1F2A0[4];
     } data;
 } UnkBigBoy; // size = 0x1F2A4
@@ -353,7 +348,7 @@ void func_800BF954_5C7F4(s32 arg0, PhotoData* photoData, UnkFuzzyCaterpillar* ar
     }
 
     if (photoData != NULL) {
-        D_800C21B0_5F050->data.var_10A20[arg0].unk_0 = *photoData;
+        D_800C21B0_5F050->data.var_10A20[arg0].photoData = *photoData;
     }
     if (arg2 != 0) {
         func_800BF4A8_5C348(arg2, arg0);
@@ -370,25 +365,24 @@ void func_800BF9F4_5C894(s32 arg0) {
         return;
     }
 
-    D_800C21B0_5F050->data.var_10A20[arg0].unk_0.unk_04.s32 = -1;
-    D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0.unk_00 = 0;
+    D_800C21B0_5F050->data.var_10A20[arg0].photoData.unk_04.s32 = -1;
+    D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0.data.s[0] = 0;
 }
 
 PhotoData* func_800BFA44_5C8E4(s32 arg0) {
-    UnkTinyGrandma* ret;
+    PhotoData* ret;
     if (arg0 < 0 || arg0 >= 60) {
         return NULL;
     }
 
-    if (D_800C21B0_5F050->data.var_10A20[arg0].unk_0.unk_04.s32 == -1) {
+    if (D_800C21B0_5F050->data.var_10A20[arg0].photoData.unk_04.s32 == -1) {
         ret = NULL;
     } else {
-        ret = &D_800C21B0_5F050->data.var_10A20[arg0];
+        ret = &D_800C21B0_5F050->data.var_10A20[arg0].photoData;
     }
 
     if (ret) {
-        // TODO: Determine if we only need to return the substruct
-        return &D_800C21B0_5F050->data.var_10A20[arg0].unk_0;
+        return &D_800C21B0_5F050->data.var_10A20[arg0].photoData;
     }
 
     return NULL;
@@ -690,7 +684,7 @@ s32 func_800C042C_5D2CC(void) {
     }
 
     for (var_v1 = 0; var_v1 < 60; var_v1++) {
-        D_800C21B0_5F050->data.var_10A20[var_v1].unk_0.unk_04.s32 = -1;
+        D_800C21B0_5F050->data.var_10A20[var_v1].photoData.unk_04.s32 = -1;
     }
 
     func_800BF650_5C4F0(0);

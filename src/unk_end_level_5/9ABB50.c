@@ -5,6 +5,8 @@
 extern s32 D_80208B90_9D2DE0;
 extern UNK_TYPE D_80208B98_9D2DE8;
 extern s32 D_80208B94_9D2DE4;
+extern UNK_TYPE D_80208BB8_9D2E08;
+extern UNK_TYPE D_80208BE8_9D2E38;
 extern s32 D_80208C18_9D2E68;
 extern s32 D_80208C1C_9D2E6C;
 extern s32 D_80208C20_9D2E70;
@@ -308,12 +310,6 @@ s32 func_801E2874_9ACAC4(void) {
         ohWait(1);
     }
 }
-
-// #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_5/9ABB50/func_801E29A8_9ACBF8.s")
-
-extern s32 D_80208B94_9D2DE4;
-extern UNK_TYPE D_80208BB8_9D2E08;
-extern UNK_TYPE D_80208BE8_9D2E38;
 
 s32 func_801E29A8_9ACBF8(void) {
     UnkStruct800BEDF8* sp4C;

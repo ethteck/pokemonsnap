@@ -18,6 +18,7 @@ void func_8036A228_83D9D8(void*);
 void func_8036A3F8_83DBA8(void*, s32);
 void func_8036A5B8_83DD68(UnkSnowHerring*, s32, s32, s32, s32, s32, s32, s32, s32);
 void func_8036A8E4_83E094(UnkSnowHerring*);
+void func_8036A968_83E118(UnkSnowHerring*, s32, s32, s32, s32);
 void func_8036A9AC_83E15C(UnkSnowHerring*, UNK_TYPE, UNK_TYPE, s32, s32, s32, s32, s32, s32);
 UnkSnowHerring* func_8036AC6C_83E41C(s32, s32, s32, s32, s32);
 void func_8036B5F0_83EDA0(UnkSnowHerring*);
@@ -87,6 +88,7 @@ GObj* func_80371C68_845418(void*, s32, Sprite*);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80371F30_8456E0(s32, s32, s32, s32);
+PhotoData* func_803746B4_847E64(s32);
 UNK_TYPE func_80374714_847EC4(PhotoData*, Sprite*);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
@@ -94,6 +96,7 @@ s32 func_80374F30_8486E0(UnkSnowHerring*, s32);
 char* func_8037501C_8487CC(char*, s32);
 s32 func_803750CC_84887C(char*, char*);
 void func_8037519C_84894C(UnkSnowHerring*, char*, ...);
+s32 func_803751F8_8489A8(s32);
 void func_80375284_848A34(s32);
 
 #if !defined(M2CTX) && !defined(PERMUTER)

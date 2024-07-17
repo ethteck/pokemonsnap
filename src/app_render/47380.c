@@ -45,8 +45,8 @@ typedef struct Unkfunc_8009BDDCSub {
 typedef struct Unkfunc_8009BDDC {
     /* 0x00 */ u32 pokemonID;
     /* 0x04 */ Unkfunc_8009BDDCSub* unk_04;
-    /* 0x08 */ s32 unk_08;    // number of unk_04 records?
-} Unkfunc_8009BDDC; // size = 0xC
+    /* 0x08 */ s32 unk_08; // number of unk_04 records?
+} Unkfunc_8009BDDC;        // size = 0xC
 
 typedef struct Struct_800ACD9C {
     /* 0x00 */ UNK_TYPE* unk_00;
@@ -301,7 +301,7 @@ char* getPokemonName(s32 pkmnID) {
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
         pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
-        if (func_800BF3D4_5C274(pkmnID) == 0) {
+        if (!func_800BF3D4_5C274(pkmnID)) {
             return "Ｓｉｇｎ？";
         }
     }
@@ -462,7 +462,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
     DObj* model = arg1->data.dobj;
     s32 i;
     s32 unused[2];
-    s32 sp24;    
+    s32 sp24;
 
     pokemonID = pokemon->id;
     if ((arg1->flags & GOBJ_FLAG_HIDDEN) || !pokemon->tangible) {
@@ -525,19 +525,19 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
 
     arg0->animationTime = arg1->animationTime;
     if (model->unk_4C != NULL) {
-        uintptr_t csr = (uintptr_t)model->unk_4C->data;
+        uintptr_t csr = (uintptr_t) model->unk_4C->data;
         for (i = 0; i < 3; i++) {
             switch (model->unk_4C->kinds[i]) {
                 case 0:
                     break;
                 case 1:
-                    arg0->position.x = ((struct Mtx3Float*)csr)->v.x;
-                    arg0->position.y = ((struct Mtx3Float*)csr)->v.y;
-                    arg0->position.z = ((struct Mtx3Float*)csr)->v.z;
+                    arg0->position.x = ((struct Mtx3Float*) csr)->v.x;
+                    arg0->position.y = ((struct Mtx3Float*) csr)->v.y;
+                    arg0->position.z = ((struct Mtx3Float*) csr)->v.z;
                     csr += sizeof(union Mtx3fi);
                     break;
                 case 2:
-                    arg0->yaw = ((struct Mtx4Float*)csr)->f[2];
+                    arg0->yaw = ((struct Mtx4Float*) csr)->f[2];
                     csr += sizeof(struct Mtx4Float);
                     break;
                 case 3:
@@ -668,8 +668,9 @@ void func_8009C604(UnkThing* arg0) {
     count = 0;
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
         for (ptr = D_800BE1A8[i]; ptr != NULL; ptr = ptr->next) {
-            if (func_80364494_5048A4(ptr, &sp520, &sp51C, &sp518, &sp514) || (s16)(ptr->unk_40 * 128.0f) == 0 || ptr->unk_48.a == 0) {
-                if (0) { } // TODO fake match
+            if (func_80364494_5048A4(ptr, &sp520, &sp51C, &sp518, &sp514) || (s16) (ptr->unk_40 * 128.0f) == 0 || ptr->unk_48.a == 0) {
+                if (0) {
+                } // TODO fake match
                 continue;
             }
             sp60[count].unk_00 = ptr;
@@ -1109,7 +1110,8 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     DObj* model;
     s32 sp6C;
 
-    if (D_800AD9A4) {} // TODO fake match
+    if (D_800AD9A4) {
+    } // TODO fake match
     gobj = omAddGObj(OBJID_128, NULL, D_800BDF1E, 0x80000000);
     if (arg0->pokemonID == PokemonID_MAGNETON) {
         omLinkGObjDL(gobj, arg4, D_800BDF1C, 1, -1);
@@ -1118,7 +1120,8 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     }
     anim_func_80010230(gobj, arg2, arg3, NULL, MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE, 0, 0);
 
-    if (arg2) {} // TODO fake match
+    if (arg2) {
+    } // TODO fake match
 
     if (arg0->pokemonID < PokemonID_1000) {
         v00 = D_800AD4B8;
@@ -1126,7 +1129,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     } else {
         v00 = D_800AD9A4;
         sp6C = ARRAY_COUNT(D_800AD9A4);
-    }    
+    }
 
     for (i = 0; i < sp6C; i++) {
         if (v00[i].pokemonID == arg0->pokemonID) {
@@ -1146,8 +1149,8 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     arg1 *= 0.1f;
     hal_rotate_rpy_translate_scale_f(spB4, arg0->position.x, arg0->position.y, arg0->position.z, 0.0f, arg0->yaw, 0.0f, arg1, arg1, arg1);
     hal_rotate_rpy_translate_scale_f(sp74, model->position.v.x, model->position.v.y, model->position.v.z,
-                                           model->rotation.f[1], model->rotation.f[2], model->rotation.f[3],
-                                           model->scale.v.x, model->scale.v.y, model->scale.v.z);
+                                     model->rotation.f[1], model->rotation.f[2], model->rotation.f[3],
+                                     model->scale.v.x, model->scale.v.y, model->scale.v.z);
     guMtxCatF(sp74, spB4, spB4);
     model->position.v.x = spB4[3][0];
     model->position.v.y = spB4[3][1];
@@ -1157,7 +1160,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     model->scale.v.y *= arg1;
     model->scale.v.z *= arg1;
 
-    switch(arg0->pokemonID) {
+    switch (arg0->pokemonID) {
         case PokemonID_CHANSEY:
             if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
                 model->scale.v.x *= 0.5f;
@@ -1207,7 +1210,6 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
 
     return gobj;
 }
-
 
 void func_8009DEF0(PhotoData* photoData) {
     UnkV0* it;

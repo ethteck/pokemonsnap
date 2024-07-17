@@ -47,7 +47,7 @@ typedef struct Unk803A6C18 {
     /* 0x3B4 */ u8 unk_3B4;
 } Unk803A6C18;
 
-Unk803A6C18* func_8037452C_847CDC(void*);
+Unk803A6C18* func_8037452C_847CDC();
 
 s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1);
 Photo* func_801E459C_99400C(s32 idx);

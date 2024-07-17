@@ -451,7 +451,7 @@ void func_801DCFA0_98CA10(s32 arg0) {
 
 void func_801DCFE8_98CA58(Photo* arg0) {
     if (arg0->pkmnID == PokemonID_MEW) {
-        if (func_800BF3D4_5C274(arg0->pkmnID) == 0) {
+        if (!func_800BF3D4_5C274(arg0->pkmnID)) {
             D_801F3E28_9A3898 = 0x40000;
         }
         if (checkPlayerFlag(PFID_14) != 0) {
@@ -909,7 +909,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     sp258 = D_802290E0_9D8B50;
     sp254 = D_802290DC_9D8B4C;
     func_8036A5B8_83DD68(sp258, 0xE, 0x4E, 0x8E, 0x72, 0, 0, 0, 0);
-    if (func_800BF3D4_5C274(photo->pkmnID) != 0) {
+    if (func_800BF3D4_5C274(photo->pkmnID)) {
         sp20C = TRUE;
         D_801F3E60_9A38D0 = TRUE;
         D_801F3E64_9A38D4 = 0;
@@ -1841,7 +1841,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     s32 sp3C;
 
     D_801F3E34_9A38A4 = FALSE;
-    if (func_800BF3D4_5C274(arg0->pkmnID) != 0) {
+    if (func_800BF3D4_5C274(arg0->pkmnID)) {
         sp5C = D_802290A0_9D8B10[1].gobj->data.sobj;
         sp5C->sprite.x = -140;
         sp5C->sprite.y = 37;
@@ -1867,7 +1867,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     }
     sp5C->sprite.x = 471;
     sp5C->sprite.attr &= ~SP_HIDDEN;
-    if (func_800BF3D4_5C274(arg0->pkmnID) != 0) {
+    if (func_800BF3D4_5C274(arg0->pkmnID)) {
         sp48 = 0xE7;
         sp3C = 1;
     } else {
@@ -2044,22 +2044,22 @@ s32 func_801E28CC_99233C(s32* arg0) {
             sp24++;
         }
     }
-    if (func_800BF3D4_5C274(1004) != 0) {
+    if (func_800BF3D4_5C274(1004)) {
         sp28 += func_800BF818_5C6B8(1004);
     }
-    if (func_800BF3D4_5C274(1010) != 0) {
+    if (func_800BF3D4_5C274(1010)) {
         sp28 += func_800BF818_5C6B8(1010);
     }
-    if (func_800BF3D4_5C274(1018) != 0) {
+    if (func_800BF3D4_5C274(1018)) {
         sp28 += func_800BF818_5C6B8(1018);
     }
-    if (func_800BF3D4_5C274(1022) != 0) {
+    if (func_800BF3D4_5C274(1022)) {
         sp28 += func_800BF818_5C6B8(1022);
     }
-    if (func_800BF3D4_5C274(1028) != 0) {
+    if (func_800BF3D4_5C274(1028)) {
         sp28 += func_800BF818_5C6B8(1028);
     }
-    if (func_800BF3D4_5C274(1035) != 0) {
+    if (func_800BF3D4_5C274(1035)) {
         sp28 += func_800BF818_5C6B8(1035);
     }
     if (arg0 != NULL) {
@@ -2199,12 +2199,12 @@ void func_801E2ED4_992944(s32 arg0) {
     if (checkPlayerFlag(PFID_14) == 0 && sp44 > 62) {
         D_801F3E28_9A3898 |= 0x40;
     }
-    if (func_800BF3D4_5C274(PokemonID_1004) != 0 &&
-        func_800BF3D4_5C274(PokemonID_1010) != 0 &&
-        func_800BF3D4_5C274(PokemonID_1018) != 0 &&
-        func_800BF3D4_5C274(PokemonID_1022) != 0 &&
-        func_800BF3D4_5C274(PokemonID_1028) != 0 &&
-        func_800BF3D4_5C274(PokemonID_1035) != 0 &&
+    if (func_800BF3D4_5C274(PokemonID_1004) &&
+        func_800BF3D4_5C274(PokemonID_1010) &&
+        func_800BF3D4_5C274(PokemonID_1018) &&
+        func_800BF3D4_5C274(PokemonID_1022) &&
+        func_800BF3D4_5C274(PokemonID_1028) &&
+        func_800BF3D4_5C274(PokemonID_1035) &&
         (func_800BFC5C_5CAFC() < 6)) {
         D_801F3E28_9A3898 = 0x400;
         func_800C02A0_5D140(6);
@@ -2259,7 +2259,7 @@ void func_801E2ED4_992944(s32 arg0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", get_player_name());
     } else if (checkPlayerFlag(PFID_14) != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", get_player_name());
-    } else if (func_800BF3D4_5C274(0x97) != 0) {
+    } else if (func_800BF3D4_5C274(0x97)) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "Take pictures of Pokεmon\nthat live on the Rainbow Cloud!");

@@ -78,26 +78,24 @@ typedef struct PokemonTransformBase {
     /* 0x04 */ PokemonTransform xform;
 } PokemonTransformBase; // size = 0x38
 
-typedef struct {
-    /* 0x00 */ s16 x;
-    /* 0x02 */ s16 y;
-    /* 0x04 */ s16 z;
-    /* 0x06 */ s16 flag;
-    /* 0x08 */ s16 s;
-    /* 0x0A */ s16 t;
-    /* 0x0C */ s8 r;
-    /* 0x0D */ s8 g;
-    /* 0x0E */ s8 b;
-    /* 0x0F */ s8 a;
-} vertex;
+typedef struct Struct_800AB050 {
+    /* 0x00 */ s16 unk_00;
+    /* 0x02 */ s16 unk_02;
+    /* 0x04 */ s16 unk_04;
+    /* 0x06 */ char unk_06[6];
+    /* 0x0C */ s8 unk_0C;
+    /* 0x0D */ s8 unk_0D;
+    /* 0x0E */ s8 unk_0E;
+    /* 0x0F */ char unk_0F;
+} Struct_800AB050; // size = 0x10
 
 typedef struct {
-    /* 0x00 */ vertex* data;
-    /* 0x04 */ vertex** tempBuffer;
+    /* 0x00 */ Struct_800AB050* data;
+    /* 0x04 */ Struct_800AB050** tempBuffer;
     /* 0x08 */ s32 vertexCount;
     /* 0x0C */ s32 end;
     /* 0x10 */ f32 timer;
-} EggStruct;
+} EggStruct; // size = 0x14
 
 typedef struct GroundResult {
     /* 0x00 */ f32 height;
@@ -191,10 +189,16 @@ typedef struct {
 } PokemonDef; // size = 0x10
 
 typedef struct UnkStruct800BEDF8 {
-    /* 0x00 */ char unk_00[0x14];
+    /* 0x00 */ u64 unk_00;
+    /* 0x08 */ f32 unk_08;
+    /* 0x0C */ f32 unk_0C;
+    /* 0x10 */ f32 unk_10;
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ s32 unk_18;
-} UnkStruct800BEDF8; // size = 0x1C
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ s32 unk_20;
+    /* 0x24 */ s32 unk_24;
+} UnkStruct800BEDF8; // size = 0x28
 
 typedef struct PlayerName {
     /* 0x00 */ char data[0x10];

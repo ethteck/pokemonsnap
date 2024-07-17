@@ -1,12 +1,10 @@
 #include "common.h"
 
-typedef struct Struct_800AF3B0 {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ s32 unk_04;
-} Struct_800AF3B0; // size = 0x08
-
-extern Struct_800AF3B0 D_800AF3B0;
+extern s32 D_800AF3A0;
+extern u64 D_800AF3B0;
 extern s32 D_800BE2F0[4][24];
+extern UnkStruct800BEDF8 D_800BEDF8[4];
+extern UnkStruct800BEDF8 D_800BEEA0[4];
 extern s32 D_800BEF48;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8120.s")
@@ -140,9 +138,41 @@ void func_800AA1DC(void);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA38C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA740.s")
+// TODO requires bss migration
+#ifdef NON_MATCHING
+UnkStruct800BEDF8* func_800AA740(s32 arg0) {
+    s32 i;
+    static UnkStruct800BEDF8* ptr; // D_800BEF40
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA81C.s")
+    if (arg0 < 0 || arg0 > 3) {
+        return &D_800BEEA0[0];
+    }
+
+    // clang-format off
+    if (D_800AF3A0 != 0) { return &D_800BEEA0[arg0]; }
+    // clang-format on
+    
+    ptr = D_800BEEA0;
+    for (i = 0; i < gNumControllers; i++, ptr++) {
+        ptr->unk_08 = 0.0f;
+        ptr->unk_0C = 0.0f;
+        ptr->unk_10 = 0.0f;
+        ptr->unk_14 = 0;
+        ptr->unk_18 = 0;
+        ptr->unk_1C = 0;
+        ptr->unk_20 = -1;
+        ptr->unk_00 = D_800AF3B0;
+    }
+    return &D_800BEEA0[arg0];
+}
+#else
+UnkStruct800BEDF8* func_800AA740(s32 arg0);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA740.s")
+#endif
+
+void func_800AA81C(void) {
+    D_800AF3A0 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA828.s")
 
@@ -187,7 +217,7 @@ void func_800AAE20(void) {
 void func_800AAE28(void) {
     s32 i, j;
 
-    D_800AF3B0.unk_00 = D_800AF3B0.unk_04 = 0;
+    //D_800AF3B0.unk_00 = D_800AF3B0.unk_04 = 0;
     func_800A85E8(func_800AAB5C, LINK_PLAYER, DL_LINK_0, NULL);
     func_800A8B2C(0, 0);
     func_800AA1DC();

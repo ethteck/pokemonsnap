@@ -223,7 +223,7 @@ s32 makePhoto(GObj* gobj);
 s32 func_8035E52C_4FE93C(void);
 
 s32 func_80350200_4F0610(s32 pokemonID) {
-    return func_800BF3D4_5C274(pokemonID) == 0;
+    return !func_800BF3D4_5C274(pokemonID);
 }
 
 void updateMovementState(GObj* obj) {

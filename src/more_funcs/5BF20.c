@@ -182,7 +182,7 @@ s32 func_800BF3D4_5C274(s32 pkmnID) {
 
     photoIdx = func_8009BB4C(pkmnID);
     if (photoIdx < 0 || (photoIdx >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
-        return 0;
+        return FALSE;
     }
     photoData = (D_800C21B0_5F050->data.unk_180[photoIdx].unk_04.s32 == -1) ? NULL : &D_800C21B0_5F050->data.unk_180[photoIdx];
     return photoData != NULL;

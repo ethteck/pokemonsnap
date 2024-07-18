@@ -21,6 +21,7 @@ extern Sprite D_801F3588_9BD7D8;
 extern Sprite D_801F6B50_9C0DA0;
 extern Sprite D_801FB1D0_9C5420;
 extern Sprite D_801FFA10_9C9C60;
+extern Sprite D_801FFC80_9C9ED0;
 extern Sprite D_80200058_9CA2A8;
 extern Sprite D_80200400_9CA650;
 extern Sprite D_802005B8_9CA808;
@@ -631,8 +632,6 @@ void func_801DE7E8_9A8A38(s32 arg0) {
         D_802500A0_A1A2F0->sprite.attr |= SP_HIDDEN;
     }
 }
-
-extern Sprite D_801FFC80_9C9ED0;
 
 GObj* func_801DE830_9A8A80(void) {
     GObj* gobj;

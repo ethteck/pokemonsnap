@@ -7,7 +7,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DF9B0.s")
 
 UnkCyanBass* func_camera_check_801DFA4C(void) {
-    if (checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) == 0) {
+    if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     }
     return &D_camera_check_802089BC;
@@ -86,15 +86,15 @@ void func_camera_check_801E0034(s32 arg0) {
         return;
     }
 
-    if (temp_v0->var_18_0x08000000) {
+    if (temp_v0->unk_18_0x08000000) {
         auPlaySound(0x4A);
-        temp_v0->var_18_0x08000000 = 0;
+        temp_v0->unk_18_0x08000000 = 0;
     } else {
         if (func_camera_check_801E2CC0() >= func_camera_check_801E2E04()) {
             return;
         }
         auPlaySound(0x49);
-        temp_v0->var_18_0x08000000 = 1;
+        temp_v0->unk_18_0x08000000 = 1;
     }
 
     if (arg0) {
@@ -111,16 +111,16 @@ void func_camera_check_801E0118(s32 arg0) {
 
     if ((checkPlayerFlag(PFID_HAS_DASH_ENGINE) != 0) &&
         (temp_v0 = func_camera_check_801E24D8(D_camera_check_80208960), (temp_v0 != NULL))) {
-        if (temp_v0->var_18_0x10000000) {
+        if (temp_v0->unk_18_0x10000000) {
             auPlaySound(0x4A);
-            temp_v0->var_18_0x10000000 = 0;
+            temp_v0->unk_18_0x10000000 = 0;
             return;
         }
-        temp_a0 = temp_v0->var_8;
+        temp_a0 = temp_v0->unk_08;
         if (((temp_a0 == 0x270F) | (temp_a0 < 0x98)) == 0) {
             func_camera_check_801E2984(temp_a0);
             auPlaySound(0x49);
-            temp_v0->var_18_0x10000000 = 1;
+            temp_v0->unk_18_0x10000000 = 1;
         }
     }
 }
@@ -135,13 +135,13 @@ void func_camera_check_801E01C0(s32 arg0) {
         return;
     }
 
-    if (temp_v0->var_18_0x20000000) {
+    if (temp_v0->unk_18_0x20000000) {
         auPlaySound(0x4A);
-        temp_v0->var_18_0x20000000 = 0;
+        temp_v0->unk_18_0x20000000 = 0;
         return;
     }
 
-    temp_a0 = temp_v0->var_8;
+    temp_a0 = temp_v0->unk_08;
     if (temp_a0 == 0x270F) {
         return;
     }
@@ -149,7 +149,7 @@ void func_camera_check_801E01C0(s32 arg0) {
     if (temp_a0 < 0x98) {
         func_camera_check_801E2984(temp_a0);
         auPlaySound(0x49);
-        temp_v0->var_18_0x20000000 = 1;
+        temp_v0->unk_18_0x20000000 = 1;
     }
 }
 
@@ -218,7 +218,7 @@ s32 func_camera_check_801E04B0(UnkIndigoHalibut* arg0) {
         return 0;
     }
 
-    if (func_8009BB4C(arg0->var_8) >= 0x3F) {
+    if (func_8009BB4C(arg0->unk_08) >= 63) {
         return 1;
     }
 
@@ -313,7 +313,7 @@ u32 func_camera_check_801E1EA4(void) {
     func_camera_check_801DD6D0(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
     func_8037060C_843DBC(1, 0x16);
     func_8036A8E4_83E094(func_camera_check_801DCB40());
-    if (func_camera_check_801E27FC() == 0) {
+    if (!func_camera_check_801E27FC()) {
         func_8036C898_840048(func_camera_check_801DCB40(), "No pictures to show to\nProf. Oak?\n\\a No.   \\b I have some.");
     } else {
         if ((func_camera_check_801E2A00() + func_camera_check_801E2B60()) != 0) {
@@ -328,7 +328,7 @@ u32 func_camera_check_801E1EA4(void) {
         temp_v0 = func_800AA38C(0);
         if (temp_v0->unk_18 & 0x8000) {
             D_camera_check_80208960 = 0;
-            if (func_camera_check_801E27FC() != 0) {
+            if (func_camera_check_801E27FC()) {
                 auPlaySoundWithParams(0xA0U, 0x7FFF, 0x40, 0.75f, 0);
             }
             auPlaySound(0x53);

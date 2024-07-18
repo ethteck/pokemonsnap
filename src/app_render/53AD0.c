@@ -7,9 +7,34 @@ extern UnkStruct800BEDF8 D_800BEDF8[4];
 extern UnkStruct800BEDF8 D_800BEEA0[4];
 extern s32 D_800BEF48;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8120.s")
+#ifdef NON_MATCHING
+void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2) {
+    Mtx temp;
+    f32 value;
+    s32 i, j, k;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8344.s")
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            value = 0.0f;
+            for (k = 0; k < 4; k++) {
+                value += (arg1.m[i][k] / 65536.0f) * (arg2.m[k][j] / 65536.0f);
+            }
+            temp.m[i][j] = value * 65536.0f;
+        }
+    }
+    arg0 = temp;
+}
+#else
+void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8120.s")
+#endif
+
+void func_800A8344(Mtx arg0, Vec3f* arg1, f32 arg2) {
+    Mtx spC8;
+
+    hal_rotate_deg(&spC8, arg2, arg1->x, arg1->y, arg1->z);
+    func_800A8120(arg0, arg0, spC8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A844C.s")
 
@@ -61,8 +86,32 @@ DObj* func_800A8764(DObj* dobj) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A87B0.s")
+void func_800A87B0(GObj* obj, s32 arg3, s32 arg4);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A88E4.s")
+GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, s32 arg3, s32 arg4) {
+    s32 unused;
+    GObj* gobj;
+    s32 cameraTag;
+    DObj* model;
+
+    if (dllink < 0) {
+        dllink = 0;
+        cameraTag = 0;
+    } else {
+        cameraTag = 1 << dllink;
+    }
+    gobj = omAddGObj(1 << link, NULL, link, link);
+    if (gobj == NULL) {
+        return NULL;
+    }
+
+    omLinkGObjDL(gobj, renRenderModelTypeB, dllink, link, cameraTag);
+    func_800A87B0(gobj, arg3, arg4);
+    omCreateProcess(gobj, procFunc, 0, 0);
+    model = gobj->data.dobj;
+    model->rotation.mtx->kind = MTX_TYPE_ROTATE_RPY;
+    return gobj;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A89B4.s")
 
@@ -97,7 +146,12 @@ void func_800A8B2C(s32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8F5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A904C.s")
+Vec3f* func_800A904C(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2, f32 arg3) {
+    arg0->x += (arg1[0][0] * arg2->x + arg1[1][0] * arg2->y + arg1[2][0] * arg2->z) * arg3;
+    arg0->y += (arg1[0][1] * arg2->x + arg1[1][1] * arg2->y + arg1[2][1] * arg2->z) * arg3;
+    arg0->z += (arg1[0][2] * arg2->x + arg1[1][2] * arg2->y + arg1[2][2] * arg2->z) * arg3;
+    return arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A910C.s")
 
@@ -125,9 +179,13 @@ void func_800A8B2C(s32, s32);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9E1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9F10.s")
+GObj* func_800A9F10(void (*procFunc)(GObj*), s32 link, Sprite* sprite) {
+    return ohCreateSprite(1 << link, NULL, link, link, renDrawSprite, DL_LINK_2, link, CAM_MASK_DL_LINK_2, sprite, 0, procFunc, 0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9F84.s")
+GObj* func_800A9F84(void (*procFunc)(GObj*), s32 link, Sprite* sprite) {
+    return ohCreateSprite(1 << link, NULL, link, link, renDrawSprite, DL_LINK_30, link, CAM_MASK_DL_LINK_30, sprite, 0, procFunc, 0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9FF8.s")
 

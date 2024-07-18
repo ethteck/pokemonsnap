@@ -432,7 +432,6 @@ s32 func_801E0D50_9FEA10(void) {
 }
 
 s32 func_801E0D80_9FEA40(void) {
-    UNUSED s32 pad[3]; // TODO may be part of the UnkStruct800BEDF8 struct
     UnkStruct800BEDF8 sp18;
 
     func_801DEE88_9FCB48();

@@ -1,7 +1,7 @@
 #include "common.h"
 #include "unk_end_level_3.h"
 
-void func_800E5740_8AAF60(s32 arg0) {
+void func_800E5740_8AAF60(GObj* obj) {
     s32 frame;
     s32 var_s1;
 
@@ -57,7 +57,7 @@ extern s32 D_801C5510_98AD30;
 extern volatile u32 D_801C5514_98AD34;
 extern s32 D_801C5518_98AD38;
 
-void func_800E58D0_8AB0F0(s32 arg0) {
+void func_800E58D0_8AB0F0(GObj* arg0) {
     Vec3f sp6C;
     Vec3f* temp_t1;
     f32 temp_f0;
@@ -235,7 +235,7 @@ void func_800E5EBC_8AB6DC(void) {
 #if 1
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8AAF60/func_800E5EF8_8AB718.s")
 #else
-void func_800E5EF8_8AB718(void) {
+void func_800E5EF8_8AB718(GObj* obj) {
     f32 temp_f22;
     f32 var_f20;
     s32 temp_s0;
@@ -371,47 +371,47 @@ s32 func_800E6404_8ABC24(void) {
 void func_800E6410_8ABC30(void) {
     D_801C5514_98AD34 = 0;
 
-    D_80206B78_9CC398 = func_800A9F10(func_800E5EF8_8AB718, 6, &D_801BED90_9845B0)->data.sobj;
+    D_80206B78_9CC398 = func_800A9F10(func_800E5EF8_8AB718, LINK_6, &D_801BED90_9845B0)->data.sobj;
     D_80206B78_9CC398->sprite.x = 109;
     D_80206B78_9CC398->sprite.y = 24;
     D_80206B78_9CC398->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
 
-    D_80206B60_9CC380 = func_800A9F10(func_800E58D0_8AB0F0, 6, &D_80197EB0_95D6D0)->data.sobj;
+    D_80206B60_9CC380 = func_800A9F10(func_800E58D0_8AB0F0, LINK_6, &D_80197EB0_95D6D0)->data.sobj;
     D_80206B60_9CC380->sprite.x = 105;
     D_80206B60_9CC380->sprite.y = 117;
     D_80206B60_9CC380->sprite.attr |= SP_HIDDEN;
 
-    D_80206B64_9CC384 = func_800A9F10(NULL, 6, &D_80198FB8_95E7D8)->data.sobj;
+    D_80206B64_9CC384 = func_800A9F10(NULL, LINK_6, &D_80198FB8_95E7D8)->data.sobj;
     D_80206B64_9CC384->sprite.x = 170;
     D_80206B64_9CC384->sprite.y = 121;
     D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
 
-    D_80206B68_9CC388 = func_800A9F10(NULL, 6, &D_8019C2D0_961AF0)->data.sobj;
+    D_80206B68_9CC388 = func_800A9F10(NULL, LINK_6, &D_8019C2D0_961AF0)->data.sobj;
     D_80206B68_9CC388->sprite.x = 137;
     D_80206B68_9CC388->sprite.y = 121;
     D_80206B68_9CC388->sprite.attr |= SP_HIDDEN;
 
-    D_80206B6C_9CC38C = func_800A9F10(NULL, 6, &D_801A2900_968120)->data.sobj;
+    D_80206B6C_9CC38C = func_800A9F10(NULL, LINK_6, &D_801A2900_968120)->data.sobj;
     D_80206B6C_9CC38C->sprite.x = 170;
     D_80206B6C_9CC38C->sprite.y = 121;
     D_80206B6C_9CC38C->sprite.attr |= SP_HIDDEN;
 
-    D_80206B70_9CC390 = func_800A9F10(NULL, 6, &D_801AD198_9729B8)->data.sobj;
+    D_80206B70_9CC390 = func_800A9F10(NULL, LINK_6, &D_801AD198_9729B8)->data.sobj;
     D_80206B70_9CC390->sprite.x = 105;
     D_80206B70_9CC390->sprite.y = 117;
     D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
 
-    D_80206B74_9CC394 = func_800A9F10(NULL, 6, &D_801B93A8_97EBC8)->data.sobj;
+    D_80206B74_9CC394 = func_800A9F10(NULL, LINK_6, &D_801B93A8_97EBC8)->data.sobj;
     D_80206B74_9CC394->sprite.x = 170;
     D_80206B74_9CC394->sprite.y = 121;
     D_80206B74_9CC394->sprite.attr |= SP_SCALE | SP_HIDDEN;
 
-    D_80206B7C_9CC39C = func_800A9F10(func_800E5740_8AAF60, 6, &D_801C31B0_9889D0)->data.sobj;
+    D_80206B7C_9CC39C = func_800A9F10(func_800E5740_8AAF60, LINK_6, &D_801C31B0_9889D0)->data.sobj;
     D_80206B7C_9CC39C->sprite.x = 263;
     D_80206B7C_9CC39C->sprite.y = 121;
     D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
 
-    D_80206B80_9CC3A0 = func_800A9F10(NULL, 6, &D_801BFE98_9856B8)->data.sobj;
+    D_80206B80_9CC3A0 = func_800A9F10(NULL, LINK_6, &D_801BFE98_9856B8)->data.sobj;
     D_80206B80_9CC3A0->sprite.x = 263;
     D_80206B80_9CC3A0->sprite.y = 121;
     D_80206B80_9CC3A0->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;

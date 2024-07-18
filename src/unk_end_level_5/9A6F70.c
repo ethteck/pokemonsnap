@@ -95,8 +95,8 @@ s32 func_801DCD7C_9A6FCC(s16* arg0, char* arg1) {
     sp18 = 0;
 
     while (sp24[sp1C] != 0) {
-        if (*((u16*) (sp24 + sp1C)) == 0xA1A1) {
-            sp20[sp18] = 0x20;
+        if (*((u16*) (sp24 + sp1C)) == '　') {
+            sp20[sp18] = ' ';
             sp20[sp18 + 1] = 0;
             sp1C += 2;
             sp18 += 1;
@@ -701,7 +701,7 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
         sp60[2] = 0;
         func_8036A8E4_83E094(D_8024FFF0_A1A240);
         func_8036C898_840048(D_8024FFF0_A1A240, sp60);
-        if ((((sp60[0] << 8) | sp60[1]) & 0xFFFF) == 0xA1A1) {
+        if ((((sp60[0] << 8) | sp60[1]) & 0xFFFF) == '　') {
             func_8036D1A4_840954(D_8024FFF0_A1A240, 1);
             D_802500A4_A1A2F4->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -1153,7 +1153,7 @@ void func_801E0398_9AA5E8(s32 arg0, s32 arg1) {
                 return;
             case 1:
                 if (D_802500BE_A1A30E < 31) {
-                    sp2C[D_802500BE_A1A30E] = -0x5E5F;
+                    sp2C[D_802500BE_A1A30E] = '　';
                     D_802500BE_A1A30E++;
                     sp2C[D_802500BE_A1A30E] = 0;
                     if (func_801DCD7C_9A6FCC(sp2C, 0) >= 169) {

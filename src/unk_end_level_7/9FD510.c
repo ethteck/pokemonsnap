@@ -449,7 +449,7 @@ void func_801E0DEC_9FEAAC(void) {
 
     sp18 = 0;
     D_802308A0_A4E560 = func_80370600_843DB0();
-    if (&D_801DC904 != NULL) {
+    if (func_801DC904_9FA5C4 != NULL) { // BUG! forgot to actually call the function
         D_802308A4_A4E564 = 0;
     } else {
         D_802308A4_A4E564 = 3;

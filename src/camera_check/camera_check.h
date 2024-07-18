@@ -117,7 +117,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut*);
 void func_camera_check_801DE80C(s32, s32, s32);
 void func_camera_check_801DEA20(s32, s32);
 void func_camera_check_801DF0D4(UnkSnowHerring*, UnkSnowHerring*, s32, s32);
-void func_camera_check_801DF2D8(UNK_PTR);
+void func_camera_check_801DF2D8(GObj*);
 void func_camera_check_801DF938(void);
 UNK_PTR func_camera_check_801DF9B0(void);
 UnkCyanBass* func_camera_check_801DFA4C(void);

@@ -1,7 +1,5 @@
 #include "common.h"
 
-void func_800A86A4(void (*), s32, s32, s32);
-
 extern s32 D_8037EAA0_852250;
 extern s32 D_8037EAAC_85225C[];
 extern s32 D_8037EAC4_852274;
@@ -74,7 +72,7 @@ s32 func_8036D774_840F24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/840A50/func_8036E9BC_84216C.s")
 
-void func_8036EB34_8422E4(s32 arg0) {
+void func_8036EB34_8422E4(GObj* arg0) {
     if ((D_8037EAE0_852290 != 0) && (func_800AA38C(0)->unk_18 & (0x8000 | 0x4000))) {
         D_8037EAC8_852278 = 1;
     }
@@ -89,7 +87,7 @@ void func_8036EB8C_84233C(void (*arg0)(s32)) {
 }
 
 void func_8036EB98_842348(void) {
-    func_800A86A4(func_8036EB34_8422E4, 6, 0, 0);
+    func_800A86A4(func_8036EB34_8422E4, LINK_6, DL_LINK_0, NULL);
     D_8037EAC4_852274 = 0;
     D_803A6A0C_87A1BC = 0;
     D_8037EAC8_852278 = 0;

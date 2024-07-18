@@ -681,7 +681,7 @@ void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DF0D4.s")
 
-void func_camera_check_801DF2D8(UNK_PTR arg0) {
+void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];
     UnkSnowHerring* sp6C;
     s32 sp68;
@@ -842,7 +842,7 @@ void func_camera_check_801DF2D8(UNK_PTR arg0) {
 void func_camera_check_801DF938(void) {
     SObj* sobj;
 
-    func_800A85E8(func_camera_check_801DF2D8, 6, 0, 0);
+    func_800A85E8(func_camera_check_801DF2D8, LINK_6, DL_LINK_0, NULL);
     sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
     sobj->sprite.width = 640;
     sobj->sprite.height = 480;

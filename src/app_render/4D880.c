@@ -29,10 +29,29 @@ typedef struct UnkPinkLeopard {
     /* 0x18 */ u8* unk_18[1];
 } UnkPinkLeopard;
 
+typedef struct Unk_800A7114 {
+    /* 0x00 */ char unk_00[4];
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ char unk_06[2];
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ u8 unk_09;
+} Unk_800A7114; // size >= 0xC
+
+typedef struct UnkPinkRat {
+    /* 0x00 */ struct UnkPinkRat* next;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ char unk_08[0x50];
+} UnkPinkRat; // size = 0x58
+
+extern u8 D_800AEC60;
+extern u8 D_800AEC64;
 extern u16 D_800AEC68;
+
 extern UnkRustRat* D_800BE1A0;
 extern UnkRustRat* D_800BE1A8[16];
-extern UNK_TYPE* D_800BE1EC;
+extern UnkPinkRat* D_800BE1E8;
+extern UnkPinkRat* D_800BE1EC;
 extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
@@ -41,8 +60,7 @@ extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;
 extern s32 D_800BE2AC;
-extern u8 D_800AEC60;
-extern u8 D_800AEC64;
+extern UnkPinkRat* D_800BE2B0;
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);
@@ -127,7 +145,7 @@ void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
 
 #ifdef NON_MATCHING
 UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7,
-                    f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10) {
+                          f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10) {
     UnkRustRat* ret = D_800BE1A0;
 
     if (ret == NULL) {
@@ -187,7 +205,7 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 a
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A21E0.s")
 UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7,
-                    f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10);
+                          f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10);
 #endif
 
 UnkRustRat* func_800A2B3C(UnkRustRat*, UnkRustRat*, s32);
@@ -203,9 +221,9 @@ UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
         return NULL;
     }
     temp_v0 = D_800BE268[id][arg2];
-    return func_800A21E0(arg0, arg1, temp_v0->unk_08, temp_v0->unk_02, (u32)temp_v0 + 0x30, temp_v0->unk_06,
-                        0.0f, 0.0f, 0.0f, temp_v0->unk_14, temp_v0->unk_18, temp_v0->unk_1C, temp_v0->unk_2C, temp_v0->unk_0C,
-                        temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
+    return func_800A21E0(arg0, arg1, temp_v0->unk_08, temp_v0->unk_02, (u32) temp_v0 + 0x30, temp_v0->unk_06,
+                         0.0f, 0.0f, 0.0f, temp_v0->unk_14, temp_v0->unk_18, temp_v0->unk_1C, temp_v0->unk_2C, temp_v0->unk_0C,
+                         temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
 }
 
 UnkRustRat* func_800A244C(s32 arg0, s32 arg1, u16 arg2, s32 arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, s32 argE, UnkCoalEel* argF) {
@@ -240,7 +258,7 @@ UnkRustRat* func_800A2564(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 
         return NULL;
     }
     temp_v0 = D_800BE268[id][arg1];
-    ret = func_800A21E0(NULL, arg0, temp_v0->unk_08, temp_v0->unk_02, (u32)temp_v0 + 0x30, temp_v0->unk_06,
+    ret = func_800A21E0(NULL, arg0, temp_v0->unk_08, temp_v0->unk_02, (u32) temp_v0 + 0x30, temp_v0->unk_06,
                         arg2, arg3, arg4, arg5, arg6, arg7, temp_v0->unk_2C, temp_v0->unk_0C,
                         temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
     if (ret != NULL) {
@@ -295,7 +313,7 @@ u8* func_800A27B0(u8* arg0, f32* arg1) {
     sp4[1] = *arg0++;
     sp4[2] = *arg0++;
     sp4[3] = *arg0++;
-    *arg1 = *(f32*)sp4;
+    *arg1 = *(f32*) sp4;
     return arg0;
 }
 
@@ -692,21 +710,38 @@ void func_800A5DF4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6BDC.s")
+UnkPinkRat* func_800A6BDC(void) {
+    UnkPinkRat* ret;
+
+    ret = D_800BE1E8;
+    if (ret == NULL) {
+        return NULL;
+    }
+
+    D_800BE1E8 = ret->next;
+    ret->next = D_800BE1EC;
+    D_800BE1EC = ret;
+    if (D_800BE2B0 == NULL) {
+        D_800BE2B0 = ret;
+    }
+
+    ret->unk_04 = ++D_800AEC68;
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6C48.s")
 
-UNK_TYPE* func_800A6ED8(UNK_TYPE*);
+UnkPinkRat* func_800A6ED8(UnkPinkRat*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6ED8.s")
 
 void func_800A6F74(void) {
-    UNK_TYPE* it = D_800BE1EC;
+    UnkPinkRat* it = D_800BE1EC;
 
     while (it != NULL) {
-        UNK_TYPE* temp_s1 = *it;
+        UnkPinkRat* next = it->next;
 
         func_800A6ED8(it);
-        it = temp_s1;
+        it = next;
     }
 }
 
@@ -716,15 +751,35 @@ void func_800A6FBC(s32 arg0, s32 arg1) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6FD0.s")
+void func_800A6FD0(u16 arg0, s32 arg1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7114.s")
+void func_800A7114(Unk_800A7114* arg0) {
+    func_800A6FD0(arg0->unk_04, arg0->unk_08 >> 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7140.s")
+void func_800A7140(Unk_800A7114* arg0) {
+    func_800A6FD0(arg0->unk_04, arg0->unk_09 >> 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A716C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A71F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A72AC.s")
+void func_800A72AC(u16 arg0, s32 arg1) {
+    UnkRustRat* ptr;
+    UnkPinkRat* ptr2;
+
+    for (ptr = D_800BE1A8[arg1]; ptr != NULL; ptr = ptr->next) {
+        if (ptr->unk_04 == arg0) {
+            ptr->unk_06 |= 0x800;
+        }
+    }
+
+    for (ptr2 = D_800BE1EC; ptr2 != NULL; ptr2 = ptr2->next) {
+        if (ptr2->unk_04 == arg0) {
+            ptr2->unk_06 |= 0x800;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7330.s")

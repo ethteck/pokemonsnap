@@ -2,7 +2,7 @@
 #include "../unk_end_level/unk_end_level.h"
 #include "unk_end_level_7.h"
 
-void func_801DCF50_9FAC10(UNK_PTR arg0) {
+void func_801DCF50_9FAC10(GObj* arg0) {
     s32 sp24;
 
     while (TRUE) {
@@ -722,7 +722,7 @@ void func_801DEE88_9FCB48(void) {
 }
 
 // #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DF078_9FCD38.s")
-void func_801DF078_9FCD38(UNK_PTR arg0) {
+void func_801DF078_9FCD38(GObj* arg0) {
     s32 pad[2];
     s32 i;
     s32 sp38;
@@ -880,8 +880,8 @@ void func_801DF788_9FD448(void) {
     SObj* sobj;
 
     D_80230890_A4E550 = func_801DC904_9FA5C4();
-    func_800A85E8(func_801DF078_9FCD38, 6, 0, 0);
-    func_800A85E8(func_801DCF50_9FAC10, 6, 0, 0);
+    func_800A85E8(func_801DF078_9FCD38, LINK_6, DL_LINK_0, NULL);
+    func_800A85E8(func_801DCF50_9FAC10, LINK_6, DL_LINK_0, NULL);
     obj = func_80371D14_8454C4(NULL, 6, &D_801E8FB0_A06C70);
     sobj = obj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;

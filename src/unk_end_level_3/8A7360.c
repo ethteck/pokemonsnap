@@ -504,7 +504,7 @@ s32 func_800E2BB4_8A83D4(void) {
     return ret;
 }
 
-void func_800E2C0C_8A842C(UNK_PTR arg0) {
+void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused2[3];
     s32 i;
     UnkSnowHerring* sp4C;
@@ -642,7 +642,7 @@ void func_800E30B8_8A88D8(void) {
 }
 
 void func_800E3190_8A89B0(void) {
-    func_800A85E8(func_800E2C0C_8A842C, 6, 0, 0);
+    func_800A85E8(func_800E2C0C_8A842C, LINK_6, DL_LINK_0, NULL);
     D_80206B30_9CC350 = func_80371D14_8454C4(NULL, 6, &D_8010C590_8D1DB0)->data.sobj;
     D_80206B10_9CC330 = func_80371D14_8454C4(NULL, 6, &D_80190438_955C58)->data.sobj;
     func_800E2848_8A8068();

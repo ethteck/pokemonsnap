@@ -150,7 +150,7 @@ OSMesg contPrinterMessages[MAXCONTROLLERS];
 OSMesgQueue contPrinterQueue;
 OSContStatus sContStatus[MAXCONTROLLERS];
 OSContPad contPadData[MAXCONTROLLERS];
-u32 sNumControllers;
+s32 gNumControllers;
 s8 sControllerIndices[MAXCONTROLLERS];
 s8 sContDeviceTypes[MAXCONTROLLERS];
 ControllerInfo sContInfo[MAXCONTROLLERS];
@@ -185,7 +185,7 @@ void contUpdateControllerIndices(void) {
             sControllerIndices[v0++] = i;
         }
     }
-    sNumControllers = v0;
+    gNumControllers = v0;
 
     for (i = v0; i < MAXCONTROLLERS; i++) {
         sControllerIndices[i] = -1;

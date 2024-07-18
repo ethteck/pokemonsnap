@@ -104,7 +104,7 @@ void func_801DC8C0_A084B0(void) {
 }
 
 // TODO: try to match this function without using a goto
-void func_801DC9E8_A085D8(UNK_PTR arg0) {
+void func_801DC9E8_A085D8(GObj* arg0) {
     UnkStruct800BEDF8* sp3C;
     s32 pad;
     s32 sp34;
@@ -198,7 +198,7 @@ void func_801DC9E8_A085D8(UNK_PTR arg0) {
 }
 
 void func_801DCE2C_A08A1C(void) {
-    func_800A85E8(func_801DC9E8_A085D8, 6, 0, 0);
+    func_800A85E8(func_801DC9E8_A085D8, LINK_6, DL_LINK_0, NULL);
 }
 
 void func_801DCE64_A08A54(void) {

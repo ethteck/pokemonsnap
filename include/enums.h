@@ -115,6 +115,7 @@ enum Links {
     LINK_0 = 0,
     LINK_POKEMON = 3,
     LINK_ITEM = 4,
+    LINK_6 = 6,
     LINK_PLAYER = 9,
     LINK_17 = 17,
     LINK_18 = 18
@@ -128,14 +129,18 @@ enum CameraDlLinkMask {
     CAM_MASK_DL_LINK_4 = 0x10,
     CAM_MASK_DL_LINK_5 = 0x20,
     CAM_MASK_DL_LINK_6 = 0x40,
-    CAM_MASK_DL_LINK_7 = 0x80
+    CAM_MASK_DL_LINK_7 = 0x80,
+    CAM_MASK_DL_LINK_30 = 0x40000000
 };
 
 enum DlLinks {
+    DL_LINK_0 = 0,
     DL_LINK_1 = 1,
+    DL_LINK_2 = 2,
     DL_LINK_3 = 3,
     DL_LINK_4 = 4,
-    DL_LINK_5 = 5
+    DL_LINK_5 = 5,
+    DL_LINK_30 = 30
 };
 
 enum ObjIDs {

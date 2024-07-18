@@ -19,7 +19,7 @@ extern s32 D_801DC904; // TODO: figure out what this is
 s32 func_801DC904_9FA5C4(void);
 void func_801DC920_9FA5E0(GObj** arg0, GObj** arg1);
 s32 func_801DCEBC_9FAB7C(s32);
-void func_801DCF50_9FAC10(UNK_PTR);
+void func_801DCF50_9FAC10(GObj*);
 UnkStruct800BEDF8* func_801DD1A8_9FAE68(void);
 GObj* func_801DD28C_9FAF4C(s32);
 GObj* func_801DD4C4_9FB184(s32);
@@ -34,7 +34,7 @@ void func_801DE2E0_9FBFA0(PhotoData* arg0);
 void func_801DE5D0_9FC290(UNK_TYPE);
 void func_801DE87C_9FC53C(void);
 void func_801DEE88_9FCB48(void);
-void func_801DF078_9FCD38(UNK_PTR);
+void func_801DF078_9FCD38(GObj*);
 void func_801DF788_9FD448(void);
 UNK_TYPE* func_801DF850_9FD510(void);
 s32 func_801DF8A4_9FD564(UnkStruct800BEDF8*, s32*);

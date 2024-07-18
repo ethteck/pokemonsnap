@@ -18,5 +18,6 @@ extern u16 gContInputHeldButtons;
 extern u16 gContInputReleasedButtons;
 extern s8 gContInputStickX;
 extern s8 gContInputStickY;
+extern s32 gNumControllers;
 
 #endif /* SYS_CONT_H */

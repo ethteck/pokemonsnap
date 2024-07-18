@@ -1657,7 +1657,7 @@ void func_801E2340_9D8CB0(void) {
     auSetBGMVolumeSmooth(0, 0x7F00, 0xF);
 }
 
-void func_801E24B4_9D8E24(UNK_PTR arg0) {
+void func_801E24B4_9D8E24(GObj* arg0) {
     UNUSED s32 pad2;
     s32 i2;
     s32 i;
@@ -1731,7 +1731,7 @@ void func_801E2790_9D9100(void) {
     GObj* gobj;
     SObj* sobj;
 
-    func_800A85E8(func_801E24B4_9D8E24, 6, 0, 0);
+    func_800A85E8(func_801E24B4_9D8E24, LINK_6, DL_LINK_0, NULL);
     gobj = func_80371D14_8454C4(0, 6, &D_801E3F48_9DA8B8);
     sobj = gobj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;

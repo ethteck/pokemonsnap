@@ -50,8 +50,8 @@ extern u16 D_800AEC68;
 
 extern UnkRustRat* D_800BE1A0;
 extern UnkRustRat* D_800BE1A8[16];
-extern UnkPinkRat* D_800BE1E8; // probably different type
-extern UnkPinkRat* D_800BE1EC; // probably different type
+extern UnkPinkRat* D_800BE1E8;
+extern UnkPinkRat* D_800BE1EC;
 extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
@@ -60,7 +60,7 @@ extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;
 extern s32 D_800BE2AC;
-extern UnkPinkRat* D_800BE2B0; // probably different type
+extern UnkPinkRat* D_800BE2B0;
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);

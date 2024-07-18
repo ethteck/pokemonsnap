@@ -29,10 +29,29 @@ typedef struct UnkPinkLeopard {
     /* 0x18 */ u8* unk_18[1];
 } UnkPinkLeopard;
 
+typedef struct Unk_800A7114 {
+    /* 0x00 */ char unk_00[4];
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ char unk_06[2];
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ u8 unk_09;
+} Unk_800A7114; // size >= 0xC
+
+typedef struct UnkPinkRat {
+    /* 0x00 */ struct UnkPinkRat* next;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ char unk_08[0x50];
+} UnkPinkRat; // size = 0x58
+
+extern u8 D_800AEC60;
+extern u8 D_800AEC64;
 extern u16 D_800AEC68;
+
 extern UnkRustRat* D_800BE1A0;
 extern UnkRustRat* D_800BE1A8[16];
-extern UNK_TYPE* D_800BE1EC;
+extern UnkPinkRat* D_800BE1E8; // probably different type
+extern UnkPinkRat* D_800BE1EC; // probably different type
 extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
@@ -41,8 +60,7 @@ extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;
 extern s32 D_800BE2AC;
-extern u8 D_800AEC60;
-extern u8 D_800AEC64;
+extern UnkPinkRat* D_800BE2B0; // probably different type
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);
@@ -692,21 +710,38 @@ void func_800A5DF4(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6BDC.s")
+UnkPinkRat* func_800A6BDC(void) {
+    UnkPinkRat* ret;
+
+    ret = D_800BE1E8;
+    if (ret == NULL) {
+        return NULL;
+    }
+
+    D_800BE1E8 = ret->next;
+    ret->next = D_800BE1EC;
+    D_800BE1EC = ret;
+    if (D_800BE2B0 == NULL) {
+        D_800BE2B0 = ret;
+    }
+
+    ret->unk_04 = ++D_800AEC68;
+    return ret;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6C48.s")
 
-UNK_TYPE* func_800A6ED8(UNK_TYPE*);
+UnkPinkRat* func_800A6ED8(UnkPinkRat*);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6ED8.s")
 
 void func_800A6F74(void) {
-    UNK_TYPE* it = D_800BE1EC;
+    UnkPinkRat* it = D_800BE1EC;
 
     while (it != NULL) {
-        UNK_TYPE* temp_s1 = *it;
+        UnkPinkRat* next = it->next;
 
         func_800A6ED8(it);
-        it = temp_s1;
+        it = next;
     }
 }
 
@@ -716,15 +751,35 @@ void func_800A6FBC(s32 arg0, s32 arg1) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6FD0.s")
+void func_800A6FD0(u16 arg0, s32 arg1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7114.s")
+void func_800A7114(Unk_800A7114* arg0) {
+    func_800A6FD0(arg0->unk_04, arg0->unk_08 >> 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7140.s")
+void func_800A7140(Unk_800A7114* arg0) {
+    func_800A6FD0(arg0->unk_04, arg0->unk_09 >> 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A716C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A71F8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A72AC.s")
+void func_800A72AC(u16 arg0, s32 arg1) {
+    UnkRustRat* ptr;
+    UnkPinkRat* ptr2;
+
+    for (ptr = D_800BE1A8[arg1]; ptr != NULL; ptr = ptr->next) {
+        if (ptr->unk_04 == arg0) {
+            ptr->unk_06 |= 0x800;
+        }
+    }
+
+    for (ptr2 = D_800BE1EC; ptr2 != NULL; ptr2 = ptr2->next) {
+        if (ptr2->unk_04 == arg0) {
+            ptr2->unk_06 |= 0x800;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A7330.s")

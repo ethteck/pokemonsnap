@@ -2,8 +2,8 @@
 
 #include "sys/oh.h"
 
-#define FORCE_S32(thing) (void*) (*(s32*)(&thing)) // TODO cursed
-#define FORCE_F32(thing) (*(f32*)(&thing)) // TODO cursed
+#define FORCE_S32(thing) (void*) (*(s32*) (&thing)) // TODO cursed
+#define FORCE_F32(thing) (*(f32*) (&thing))         // TODO cursed
 
 extern Gfx D_800AECB0[];
 extern Gfx D_800AEEE0[];
@@ -145,9 +145,8 @@ void func_800A7948(GObj* gobj) {
 
     gDPSetPrimColor(gfx++, 0, 0, 0, 0, 0, 0);
     gDPSetRenderMode(gfx++,
-        AA_EN | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c1(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA),
-        AA_EN | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA)
-    );
+                     AA_EN | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c1(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA),
+                     AA_EN | Z_UPD | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | ZMODE_OPA | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA));
     gSPDisplayList(gfx++, gobj->data.dobj->payload.dlist);
 
     if (sp30 != 0 && (gobj->data.dobj->parent == (void*) 1 || gobj->data.dobj->next != NULL)) {

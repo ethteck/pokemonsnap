@@ -115,8 +115,10 @@ enum Links {
     LINK_0 = 0,
     LINK_POKEMON = 3,
     LINK_ITEM = 4,
+    LINK_5 = 5,
     LINK_6 = 6,
     LINK_PLAYER = 9,
+    LINK_10 = 10,
     LINK_17 = 17,
     LINK_18 = 18
 };

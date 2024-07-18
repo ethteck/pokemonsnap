@@ -1,7 +1,7 @@
 #ifndef _APP_RENDER_H_
 #define _APP_RENDER_H_
 
-#include "common_structs.h"
+#include "common.h"
 
 typedef struct UnkCoalEel {
     /* 0x00 */ s32 unk_00;
@@ -29,12 +29,8 @@ typedef struct UnkRustRat {
     /* 0x1A */ s16 unk_1A;
     /* 0x1C */ s16 unk_1C;
     /* 0x1E */ s16 unk_1E;
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ f32 unk_34;
+    /* 0x20 */ Vec3f unk_20;
+    /* 0x2C */ Vec3f unk_2C;
     /* 0x38 */ f32 unk_38;
     /* 0x3C */ f32 unk_3C;
     /* 0x40 */ f32 unk_40;

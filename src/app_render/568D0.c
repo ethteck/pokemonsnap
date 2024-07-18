@@ -10,6 +10,7 @@ typedef struct Struct_800BEFD8 {
     /* 0x14 */ u32 unk_14;
 } Struct_800BEFD8; // size = 0x18
 
+extern Struct_800BEFD8 D_800BEF60[];
 extern Struct_800BEFD8 D_800BEFD8[];
 
 void func_800AAF20(void) {
@@ -97,12 +98,13 @@ void func_800AB240(GObj* obj);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB240.s")
 #endif
 
-#ifdef NON_MATCHING
 s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     s32 i;
+    Struct_800BEFD8* ptr = D_800BEFD8;
 
     for (i = 0; i < 5; i++) {
-        if (D_800BEFD8[i].unk_00 != NULL) {
+        if (ptr->unk_00 != NULL) {
+            ptr++;
             continue;
         }
 
@@ -113,26 +115,51 @@ s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
             arg2 = 127;
         }
 
-        D_800BEFD8[i].unk_04 = arg0;
-        D_800BEFD8[i].unk_08 = arg1;
-        D_800BEFD8[i].unk_0C = arg2;
-        D_800BEFD8[i].unk_10 = 0;
-        D_800BEFD8[i].unk_14 = arg3;
-        D_800BEFD8[i].unk_00 = omAddGObj(14, NULL, LINK_0, 0x80000000);
-        D_800BEFD8[i].unk_00->userData = (void*)i;
-        omCreateProcess(D_800BEFD8[i].unk_00, func_800AB240, 0, 1);
+        ptr->unk_04 = arg0;
+        ptr->unk_08 = arg1;
+        ptr->unk_0C = arg2;
+        ptr->unk_10 = 0;
+        ptr->unk_14 = arg3;
+        ptr->unk_00 = omAddGObj(14, NULL, LINK_0, 0x80000000);
+        ptr->unk_00->userData = (void*)i;
+        omCreateProcess(ptr->unk_00, func_800AB240, 0, 1);
         return 0;
     }
     return -1;
 }
-#else
-s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB41C.s")
-#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB518.s")
+void func_800AB518(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB700.s")
+s32 func_800AB700(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
+    s32 i;
+    Struct_800BEFD8* ptr = D_800BEF60;
+
+    for (i = 0; i < 5; i++) {
+        if (ptr->unk_00 != NULL) {
+            ptr++;
+            continue;
+        }
+
+        if (arg1 > 0x7FFF) {
+            arg1 = 0x7FFF;
+        }
+        if (arg2 > 0x7FFF) {
+            arg2 = 0x7FFF;
+        }
+
+        ptr->unk_04 = arg0;
+        ptr->unk_08 = arg1;
+        ptr->unk_0C = arg2;
+        ptr->unk_10 = 0;
+        ptr->unk_14 = arg3;        
+        ptr->unk_00 = omAddGObj(14, NULL, LINK_0, 0x80000000);
+        ptr->unk_00->userData = (void*)i;
+        omCreateProcess(ptr->unk_00, func_800AB518, 0, 1);
+        return 0;
+    }
+    return -1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB7FC.s")
 

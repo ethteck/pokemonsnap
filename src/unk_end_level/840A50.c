@@ -72,7 +72,7 @@ s32 func_8036D774_840F24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/840A50/func_8036E9BC_84216C.s")
 
-void func_8036EB34_8422E4(s32 arg0) {
+void func_8036EB34_8422E4(GObj* arg0) {
     if ((D_8037EAE0_852290 != 0) && (func_800AA38C(0)->unk_18 & (0x8000 | 0x4000))) {
         D_8037EAC8_852278 = 1;
     }

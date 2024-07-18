@@ -45,10 +45,10 @@ void func_800E1B58_8A7378(u32 arg0) {
     func_800E614C_8AB96C(arg0);
 }
 
-void func_800E1BF4_8A7414(u32 arg0) {
-    D_80206B10_9CC330->sprite.red = arg0;
-    D_80206B10_9CC330->sprite.green = arg0;
-    D_80206B10_9CC330->sprite.blue = arg0;
+void func_800E1BF4_8A7414(u32 intensity) {
+    D_80206B10_9CC330->sprite.red = intensity;
+    D_80206B10_9CC330->sprite.green = intensity;
+    D_80206B10_9CC330->sprite.blue = intensity;
 }
 
 void func_800E1C18_8A7438(s32 arg0) {

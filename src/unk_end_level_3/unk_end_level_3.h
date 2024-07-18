@@ -10,11 +10,6 @@ typedef struct UnkOrangeShark {
     s32 var_C;
 } UnkOrangeShark;
 
-typedef struct UnkCobaltBarbel {
-    s32 var_0;
-    s32 var_4;
-} UnkCobaltBarbel;
-
 // Data
 extern Sprite D_8010C590_8D1DB0;
 extern Sprite D_8011EEA0_8E46C0;
@@ -89,7 +84,7 @@ extern UnkSnowHerring* D_80206B1C_9CC33C;
 extern s32 D_80206B20_9CC340;
 extern SObj* D_80206B28_9CC348[];
 extern SObj* D_80206B30_9CC350;
-extern UnkCobaltBarbel (*D_80206B44_9CC364)[];
+extern UnkCanaryScallop (*D_80206B44_9CC364)[];
 extern void (*D_80206B48_9CC368)(void);
 extern s32 D_80206B50_9CC370;
 extern SObj* D_80206B60_9CC380;
@@ -105,11 +100,13 @@ extern u8 D_80206B90[];
 
 void func_800E1A60_8A7280(void);
 UnkSnowHerring* func_800E1B40_8A7360(void);
+s32 func_800E1B4C_8A736C(void);
+void func_800E1BF4_8A7414(u32 intensity);
 void func_800E1C18_8A7438(s32);
 void func_800E1CA0_8A74C0(s32);
 void func_800E1D1C_8A753C(s32 arg0);
 void func_800E1D68_8A7588(u32 arg0);
-//void func_800E1FEC_8A780C(s32);
+void func_800E1FEC_8A780C(s32);
 void func_800E2058_8A7878(GObj*);
 void func_800E235C_8A7B7C(s32);
 void func_800E2848_8A8068(void);
@@ -119,10 +116,14 @@ void func_800E307C_8A889C(void);
 void func_800E30B8_8A88D8(void);
 void func_800E3190_8A89B0(void);
 void* func_800E3230_8A8A50(void);
+s32 func_800E3404_8A8C24(void);
 s32 func_800E4578_8A9D98(UnkSnowHerring*, char**, s32, s32);
+s32 func_800E510C_8AA92C(void);
 void func_800E58D0_8AB0F0(GObj*);
+void func_800E5EBC_8AB6DC(void);
 void func_800E5EF8_8AB718(GObj*);
 void func_800E60C8_8AB8E8(void);
+void func_800E60D8_8AB8F8(s32);
 void func_800E614C_8AB96C(s32);
 void func_800E61B4_8AB9D4(s32, s32);
 s32 func_800E6404_8ABC24(void);

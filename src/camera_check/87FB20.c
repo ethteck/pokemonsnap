@@ -129,18 +129,18 @@ s32 func_camera_check_801E2948(UnkIndigoHalibut* arg0) {
     return (temp / 28) - D_camera_check_8024A1C0;
 }
 
-void func_camera_check_801E2984(s32 arg0) {
+void func_camera_check_801E2984(s32 pokeID) {
     s32 count;
     UnkIndigoHalibut* item;
     s32 i;
 
-    if (arg0 <= 0 || arg0 >= 0x40C) {
+    if (pokeID <= 0 || pokeID >= 0x40C) {
         return;
     }
 
     count = func_8009BC68();
     for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
-        if (item->unk_08 != arg0) {
+        if (item->unk_08 != pokeID) {
             continue;
         }
 
@@ -149,7 +149,7 @@ void func_camera_check_801E2984(s32 arg0) {
     }
 }
 
-u32 func_camera_check_801E2A00(void) {
+s32 func_camera_check_801E2A00(void) {
     s32 i;
     s32 ret;
     UnkIndigoHalibut* item;
@@ -592,7 +592,7 @@ s32 func_camera_check_801E3870(const void* arg0, const void* arg1) {
     return func_camera_check_801E3620(arg0, arg1);
 }
 
-void func_camera_check_801E3910(u32 arg0) {
+void func_camera_check_801E3910(s32 arg0) {
     switch (arg0) {
         case 0:
             qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3620);

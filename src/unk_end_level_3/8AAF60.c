@@ -232,29 +232,21 @@ void func_800E5EBC_8AB6DC(void) {
     }
 }
 
-#if 1
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8AAF60/func_800E5EF8_8AB718.s")
-#else
 void func_800E5EF8_8AB718(GObj* obj) {
-    f32 temp_f22;
     f32 var_f20;
-    s32 temp_s0;
-    s32 temp_s1;
 
-    temp_s0 = func_800C0290_5D130();
-    if (func_800BFC5C_5CAFC() == temp_s0) {
+    if (func_800C0290_5D130() == func_800BFC5C_5CAFC()) {
         if (func_800BFC5C_5CAFC() != 6) {
             D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
         }
-        while (1) {
+        while (TRUE) {
             ohWait(1);
         }
     }
 
     if (func_800C0290_5D130() != 6) {
         D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
-        while (1) {
-
+        while (TRUE) {
             ohWait(1);
         }
     }
@@ -263,14 +255,13 @@ void func_800E5EF8_8AB718(GObj* obj) {
         ohWait(1);
     }
 
-    var_f20 = 0.0f;
     D_80206B78_9CC398->sprite.attr &= ~SP_HIDDEN;
-    while (1) {
-        temp_f22 = __sinf(var_f20);
-        temp_s1 = ((temp_f22 / __sinf(1.5707964f)) + 0.001) * 254;
-        var_f20 += 0.032724924f;
-        D_80206B78_9CC398->sprite.alpha = temp_s1;
-        if ((var_f20 > 1.5707964f)) {
+    var_f20 = 0.0f;
+
+    while (TRUE) {
+        D_80206B78_9CC398->sprite.alpha = (s32) ((f32) ((__sinf(var_f20) / __sinf(PI_2)) + 0.001) * 254.0f);
+        var_f20 += PI / 96;
+        if (var_f20 > PI_2) {
             break;
         }
 
@@ -279,19 +270,18 @@ void func_800E5EF8_8AB718(GObj* obj) {
     D_80206B78_9CC398->sprite.scalex = 1.0f;
     D_80206B78_9CC398->sprite.scaley = 1.0f;
 
-    while (1) {
+    while (TRUE) {
         ohWait(1);
     }
 }
-#endif
 
 void func_800E60C8_8AB8E8(void) {
     D_801C5520_98AD40 = 1;
 }
 
 void func_800E60D8_8AB8F8(s32 arg0) {
-    if ((D_80206B78_9CC398 != NULL) && (func_800BFC5C_5CAFC() == 6)) {
-        if (arg0 != 0) {
+    if (D_80206B78_9CC398 != NULL && func_800BFC5C_5CAFC() == 6) {
+        if (arg0) {
             D_80206B78_9CC398->sprite.attr &= ~SP_HIDDEN;
         } else {
             D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;

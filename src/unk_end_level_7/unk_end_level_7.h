@@ -14,8 +14,6 @@ typedef struct UnkEmeraldCod {
     s8 unk_01;
 } UnkEmeraldCod;
 
-extern s32 D_801DC904; // TODO: figure out what this is
-
 s32 func_801DC904_9FA5C4(void);
 void func_801DC920_9FA5E0(GObj** arg0, GObj** arg1);
 s32 func_801DCEBC_9FAB7C(s32);

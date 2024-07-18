@@ -681,7 +681,7 @@ void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DF0D4.s")
 
-void func_camera_check_801DF2D8(UNK_PTR arg0) {
+void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];
     UnkSnowHerring* sp6C;
     s32 sp68;

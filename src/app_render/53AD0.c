@@ -17,6 +17,7 @@ extern u64 D_800AF3B0;
 extern s32 D_800AF3B8;
 extern s32 D_800AF3BC;
 extern s32 D_800BE2F0[4][24];
+extern s32 D_800BE470[4][24];
 extern UnkStruct800BEDF8 D_800BEDF8[4];
 extern UnkStruct800BEDF8 D_800BEEA0[4];
 extern s32 D_800BEF48;
@@ -453,7 +454,29 @@ void func_800AA1DC(void) {
     func_800A844C(camObj->data.cam, 0, 0, viScreenWidth, viScreenHeight);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA28C.s")
+s32 func_800AA28C(s32 arg0, s32 arg1) {
+    s32 i;
+    s32 v1 = 0;
+    s32 mask = 1;
+
+    for (i = 0; i < 24; i++, mask *= 2) {
+        if (!(D_800AF3AC & mask)) {
+            v1 |= mask & arg0;
+        } else if (!(mask & arg0)) {
+            D_800BE2F0[arg1][i] = 0;
+        } else if (D_800BE2F0[arg1][i] < D_800AF3A4) {
+            D_800BE2F0[arg1][i]++;
+            D_800BE470[arg1][i] = D_800AF3A8;
+            v1 |= arg0 & mask;
+        } else if (D_800BE470[arg1][i] >= D_800AF3A8) {
+            D_800BE470[arg1][i] = 0;
+        } else {
+            D_800BE470[arg1][i]++;
+            v1 |= mask;
+        }
+    }
+    return v1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA38C.s")
 
@@ -522,9 +545,59 @@ s32 func_800AA87C(void) {
     return D_800AF3AC;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA888.s")
+f32 func_800AA888(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3) {
+    Vec3f sp2C = *arg2;
+    Vec3f sp20;
+    f32 ret;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA994.s")
+    Vec3fSub(&sp2C, arg1);
+    sp2C.z = 0.0f;
+    if (Vec3fNormalize(&sp2C) == 0.0f) {
+        return 0.0f;
+    }
+
+    sp20 = *arg0;
+    sp20.z = 0.0f;
+    if (Vec3fNormalize(&sp20) == 0.0f) {
+        return 0.0f;
+    }
+
+    ret = Vec3fAngleDiff(&sp2C, &sp20);
+    if (ret > arg3) {
+        ret = arg3;
+    }
+    if (Vec3fAngleDiff(&sp2C, &arg0[1]) > PI_2) {
+        ret = -ret;
+    }
+    return ret;
+}
+
+f32 func_800AA994(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3) {
+    Vec3f sp2C = *arg1;
+    Vec3f sp20;
+    f32 ret;
+
+    Vec3fSub(&sp2C, arg2);
+    sp2C.z = 0.0f;
+    if (Vec3fNormalize(&sp2C) == 0.0f) {
+        return 0.0f;
+    }
+
+    sp20 = *arg0;
+    sp20.z = 0.0f;
+    if (Vec3fNormalize(&sp20) == 0.0f) {
+        return 0.0f;
+    }
+
+    ret = Vec3fAngleDiff(&sp2C, &sp20);
+    if (ret > arg3) {
+        ret = arg3;
+    }
+    if (Vec3fAngleDiff(&sp2C, &arg0[1]) > PI_2) {
+        ret = -ret;
+    }
+    return ret;
+}
 
 f32 func_800AAAA8(Vec3f* arg0, Vec3f* arg1) {
     Vec3f sp24 = *arg0;

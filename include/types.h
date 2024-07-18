@@ -9,6 +9,8 @@ typedef s32 intptr_t;
 typedef s32* UNK_PTR;
 typedef s32 UNK_TYPE;
 
+typedef s32 bool;
+
 typedef struct Vec3i {
     s32 x, y, z;
 } Vec3i;

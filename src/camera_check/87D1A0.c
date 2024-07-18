@@ -2,7 +2,15 @@
 #include "camera_check.h"
 
 // Unreferenced strings
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/D_camera_check_80208C60.s")
+const char D_camera_check_80208C60[] = "I'll choose which pictures to\nshow to Prof. Oak!";
+const char D_camera_check_80208C94[] = "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n";
+const char D_camera_check_80208CCC[] = "Let's show the marked\npicture(s) to Prof. Oak.";
+const char D_camera_check_80208CFC[] = "I'll choose which pictures to\nshow to Prof. Oak!";
+const char D_camera_check_80208D30[] = "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n";
+const char D_camera_check_80208D68[] = "Let's show the marked\npicture(s) to Prof. Oak.";
+const char D_camera_check_80208D98[] = "I'll choose which pictures to\nshow to Prof. Oak!";
+const char D_camera_check_80208DCC[] = "I'll choose which pictures to\nsave in my PKMN Album.";
+const char D_camera_check_80208E04[] = "Let's show the marked\npicture(s) to Prof. Oak.";
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DF9B0.s")
 
@@ -17,7 +25,7 @@ UnkCyanBass* func_camera_check_801DFA4C(void) {
 extern s32 D_camera_check_802089E4;
 
 void func_8036B9EC(s32, s32 x, s32 y);
-void func_8036C898(s32, const char*);
+void func_8036C898_840048(s32, const char*);
 
 s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, void* arg3) {
 
@@ -60,11 +68,11 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, voi
          D_camera_check_802089E4 = *arg1;
         temp_v0_2 = func_803717A8(arg3, i);
         if (temp_v0_2) {
-            func_8036A8E4(func_camera_check_801DCB40());
+            func_8036A8E4_83E094(func_camera_check_801DCB40());
             func_8036B9EC(func_camera_check_801DCB40(), 0, 0);
             func_8036D448(1);
             func_8036D3E8(-1, 3);
-            func_8036C898(func_camera_check_801DCB40(), temp_v0_2);
+            func_8036C898_840048(func_camera_check_801DCB40(), temp_v0_2);
         }
         return 1;
     }
@@ -75,6 +83,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, voi
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DFA80.s")
 #endif
 
+s32 func_camera_check_801DFCD4(UnkStruct800BEDF8*, s32*, s32*, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DFCD4.s")
 
 void func_camera_check_801E0034(s32 arg0) {
@@ -100,7 +109,7 @@ void func_camera_check_801E0034(s32 arg0) {
     if (arg0) {
         func_camera_check_801DEA20(D_camera_check_80208960, 4);
     } else {
-        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0);
+        func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0);
     }
 }
 
@@ -109,7 +118,7 @@ void func_camera_check_801E0118(s32 arg0) {
     s16 temp_a0;
     UnkIndigoHalibut* temp_v0;
 
-    if ((checkPlayerFlag(PFID_HAS_DASH_ENGINE) != 0) &&
+    if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) &&
         (temp_v0 = func_camera_check_801E24D8(D_camera_check_80208960), (temp_v0 != NULL))) {
         if (temp_v0->unk_18_0x10000000) {
             auPlaySound(0x4A);
@@ -142,11 +151,11 @@ void func_camera_check_801E01C0(s32 arg0) {
     }
 
     temp_a0 = temp_v0->unk_08;
-    if (temp_a0 == 0x270F) {
+    if (temp_a0 == 9999) {
         return;
     }
 
-    if (temp_a0 < 0x98) {
+    if (temp_a0 <= POKEDEX_MAX) {
         func_camera_check_801E2984(temp_a0);
         auPlaySound(0x49);
         temp_v0->unk_18_0x20000000 = 1;
@@ -187,22 +196,22 @@ void func_camera_check_801E0374(void) {
     }
     if (D_camera_check_80208960 >= (func_camera_check_801E2534() - 1)) {
         func_803713EC_844B9C(2);
-        return;
+    } else {
+        func_803713D4_844B84(2);
     }
-    func_803713D4_844B84(2);
 }
 
 void func_camera_check_801E03EC(void) {
-    if ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) <= 0) {
+    if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) <= 0) {
         func_803713EC_844B9C(1);
     } else {
         func_803713D4_844B84(1);
     }
-    if ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) >= (func_camera_check_801E2534() - 6)) {
+    if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) >= func_camera_check_801E2534() - 6) {
         func_803713EC_844B9C(2);
-        return;
+    } else {
+        func_803713D4_844B84(2);
     }
-    func_803713D4_844B84(2);
 }
 
 void func_camera_check_801E0480(void) {
@@ -213,23 +222,177 @@ void func_camera_check_801E0480(void) {
 void nullsub() {
 }
 
-s32 func_camera_check_801E04B0(UnkIndigoHalibut* arg0) {
+bool func_camera_check_801E04B0(UnkIndigoHalibut* arg0) {
     if (arg0 == NULL) {
-        return 0;
+        return FALSE;
     }
 
     if (func_8009BB4C(arg0->unk_08) >= 63) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E04F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E0B5C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E0F10.s")
+s32 func_camera_check_801E0F10(void) {
+    UnkIndigoHalibut* temp_v0_2;
+    UnkStruct800BEDF8* temp_v0;
+    s32 sp6C;
+    s32 sp68;
+    s32 numPics;
+    s32 mode;
+    s32 prevMode;
+    s32 prevNumPics;
+    s32 var_s6;
+    char* pokemonName;
+    char* prevPokemonName;
+    s32 a2;
+
+    var_s6 = 1;
+    a2 = D_camera_check_80208960 % 6;
+    sp6C = a2 % 3, sp68 = a2 / 3;
+    D_camera_check_80208960 -= (D_camera_check_80208960 % 6);
+    func_80370038_8437E8(0x33, 0x26);
+    func_camera_check_801DFCD4(NULL, &sp6C, &sp68, 0);
+    prevMode = -1;
+    prevNumPics = -1;
+    prevPokemonName = NULL;
+    ohWait(1);
+
+    while (TRUE) {
+        temp_v0 = func_800AA38C(0);
+        var_s6 |= func_camera_check_801DFCD4(temp_v0, &sp6C, &sp68, 0);
+        if ((temp_v0->unk_18 & 0x8000) && (func_camera_check_801E24D8(D_camera_check_80208960) != NULL)) {
+            prevMode = -1;
+            func_camera_check_801E24D8(D_camera_check_80208960);
+            func_camera_check_801E31E4(0, 0);
+            func_camera_check_801E0B5C(0);
+            func_camera_check_801E31E4(1, 0);
+            a2 = D_camera_check_80208960 % 6;
+            sp6C = a2 % 3, sp68 = a2 / 3;
+            func_camera_check_801DFCD4(NULL, &sp6C, &sp68, 1);
+            func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
+            temp_v0_2 = func_camera_check_801E24D8(D_camera_check_80208960);
+            if (temp_v0_2 != NULL) {
+                func_camera_check_801DDB80(temp_v0_2->unk_08, 0, 5);
+            }
+            var_s6 |= 1;
+            prevMode = -1;
+        } else {
+            if (temp_v0->unk_18 & 0x4000) {
+                return 0;
+            } else {
+                if (var_s6 != 0) {
+                    var_s6 = 0;
+                    func_camera_check_801E03EC();
+                    temp_v0_2 = func_camera_check_801E24D8(D_camera_check_80208960);
+                    if (temp_v0_2 != NULL) {
+                        func_camera_check_801DDB80(temp_v0_2->unk_08, 0, 5);
+                        pokemonName = getPokemonName(temp_v0_2->unk_08);
+                        numPics = func_camera_check_801E28E4(temp_v0_2->unk_08);
+                        mode = func_camera_check_801E2F58(temp_v0_2, 0);
+
+                        switch (mode) {
+                            case 1:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "I've chosen pictures to show to\nProf. Oak! Press \\b to return\nand choose \"\\hTo Prof. Oak\\p!\"");
+                                }
+                                break;
+                            case 2:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokεmon.");
+                                }
+                                break;
+                            case 3:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "What's this?\nIt's kind of odd...");
+                                }
+                                break;
+                            case 4:
+                                if (numPics < 2) {
+                                    if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
+                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Prof. Oak has\nseen it already. Check with \\a", numPics, pokemonName);
+                                    }
+                                } else if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Prof. Oak has\nseen this one. Check with \\a", numPics, pokemonName);
+                                }
+                                break;
+                            case 5:
+                                if (numPics < 2) {
+                                    if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
+                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Press \\a.", numPics, pokemonName);
+                                    }
+                                } else if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Press \\a.", numPics, pokemonName);
+                                }
+                                break;
+                            case 6:
+                            case 7:
+                                if (prevMode != mode || prevPokemonName != pokemonName) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8037519C_84894C(func_camera_check_801DCB40(), "I have decided to show\n%s's picture.", pokemonName);
+                                }
+                                break;
+                            case 8:
+                            case 9:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "I have decided which picture to\nshow for this Sign.");
+                                }
+                                break;
+                            case 10:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "Is this the PKMN Sign Prof. Oak\nwas talking about?\nPress \\a.");
+                                }
+                                break;
+                            case 11:
+                            case 12:
+                                if (prevMode != mode) {
+                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    func_8036C898_840048(func_camera_check_801DCB40(), "I have decided on the Sign\npicture.");
+                                }
+                                break;
+                            case 13:
+                                if (numPics <= 1) {
+                                    if (prevMode != mode || prevNumPics != numPics) {
+                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        func_8037519C_84894C(func_camera_check_801DCB40(), "There is \\h%d\\p Sign picture. I\nshowed it to Prof. Oak already.\nCheck with \\a.", numPics);
+                                    }
+                                } else {
+                                    if (prevMode != mode || prevNumPics != numPics) {
+                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        func_8037519C_84894C(func_camera_check_801DCB40(), "There are \\h%d\\p Sign pictures.\nProf. Oak has seen this one.\nCheck with \\a.", numPics);
+                                    }
+                                }
+                                break;
+                        }
+                        prevMode = mode;
+                        prevNumPics = numPics;
+                        prevPokemonName = pokemonName;
+                    } else {
+                        prevMode = -1;
+                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                        func_camera_check_801DDB08(0);
+                    }
+                }
+            }
+        }
+        ohWait(1);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E15B4.s")
 
@@ -271,14 +434,14 @@ s32 func_camera_check_801E1BD4(void) {
                 case 23:
                     if (func_camera_check_801E3140() != 0) {
                         func_camera_check_801E31E4(1, 0);
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
                         func_camera_check_801DDB08(1);
                         func_camera_check_801E0F10();
                         auPlaySound(0x43);
                         func_camera_check_801E0480();
                         func_camera_check_801DDB08(0);
                         func_camera_check_801E31E4(0, 0);
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
                         func_80370038_8437E8(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
@@ -289,7 +452,7 @@ s32 func_camera_check_801E1BD4(void) {
                         func_camera_check_801E1918();
                         auPlaySound(0x43);
                         func_camera_check_801E0480();
-                        func_camera_check_801DD630(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+                        func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
                         func_80370038_8437E8(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
@@ -310,7 +473,7 @@ u32 func_camera_check_801E1EA4(void) {
     func_803700A4_843854(0);
     D_camera_check_80208960 = 0;
     func_camera_check_801E3C24(1);
-    func_camera_check_801DD6D0(D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6), 0x15);
+    func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
     func_8037060C_843DBC(1, 0x16);
     func_8036A8E4_83E094(func_camera_check_801DCB40());
     if (!func_camera_check_801E27FC()) {
@@ -342,13 +505,13 @@ u32 func_camera_check_801E1EA4(void) {
             auPlaySound(0x43);
             return 0;
         }
-        if ((temp_v0->unk_18 & 0x40000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
+        if ((temp_v0->unk_18 & 0x40000) && ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
             auPlaySound(0x4B);
             D_camera_check_80208960 += 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();
         }
-        if ((temp_v0->unk_18 & 0x80000) && ((D_camera_check_80208960 - ((s32) D_camera_check_80208960 % 6)) > 0)) {
+        if ((temp_v0->unk_18 & 0x80000) && ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) > 0)) {
             auPlaySound(0x4B);
             D_camera_check_80208960 -= 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);

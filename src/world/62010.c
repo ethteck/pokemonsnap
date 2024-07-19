@@ -94,11 +94,10 @@ void func_800E4B60_62310(Mtx4f dst, Mtx4f src) {
 
 // added to match extra "jr ra; nop"
 static void nullsub() {
-
 }
 
 void func_800E4BCC_6237C(Mtx4f dst) {
-    static struct MatrixStruct D_800E6B44_642F4 = { 1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1 };
+    static struct MatrixStruct D_800E6B44_642F4 = { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
     dst[0][0] = D_800E6B44_642F4.x00;
     dst[0][1] = D_800E6B44_642F4.x01;
     dst[0][2] = D_800E6B44_642F4.x02;
@@ -262,7 +261,7 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
     if (sp3C.x < -0.0001f) {
         f2 = (arg2 - arg0->x) / sp3C.x;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -273,14 +272,14 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 2;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
     } else if (sp3C.x > 0.0001f) {
         f2 = (arg3 - arg0->x) / sp3C.x;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -291,18 +290,18 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 1;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
-    } else if (arg0->x < arg2 || arg0->x > arg3){
-        return FALSE;
+    } else if (arg0->x < arg2 || arg0->x > arg3) {
+        return false;
     }
 
     if (sp3C.y < -0.0001f) {
         f2 = (arg4 - arg0->y) / sp3C.y;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -313,14 +312,14 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 4;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
     } else if (sp3C.y > 0.0001f) {
         f2 = (arg5 - arg0->y) / sp3C.y;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -331,18 +330,18 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 3;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
-    } else if (arg0->y < arg4 || arg0->y > arg5){
-        return FALSE;
+    } else if (arg0->y < arg4 || arg0->y > arg5) {
+        return false;
     }
 
     if (sp3C.z < -0.0001f) {
         f2 = (arg6 - arg0->z) / sp3C.z;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -353,14 +352,14 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 6;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
     } else if (sp3C.z > 0.0001f) {
         f2 = (arg7 - arg0->z) / sp3C.z;
         if (f2 < sp34) {
-            return FALSE;
+            return false;
         }
 
         if (f2 <= sp30) {
@@ -371,25 +370,25 @@ s32 func_800E5094_62844(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3, f32 arg4, 
         if (f2 >= sp34) {
             sp28 = 5;
             if (f2 > sp30) {
-                return FALSE;
+                return false;
             }
             sp34 = f2;
         }
-    } else if (arg0->z < arg6 || arg0->z > arg7){
-        return FALSE;
+    } else if (arg0->z < arg6 || arg0->z > arg7) {
+        return false;
     }
 
     if (sp34 < 0.0001f) {
-        return FALSE;
+        return false;
     }
 
     if (sp28 > 0 && sp34 < sp38) {
         func_800E4F40_626F0(arg0, &sp3C, sp34, sp28, arg8, arg9);
         sp38 *= 0.7f;
         Vec3fScale(arg9, sp38);
-        return TRUE;
+        return true;
     } else {
-        return FALSE;
+        return false;
     }
 }
 
@@ -413,7 +412,7 @@ s32 func_800E55C0_62D70(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, Vec3f* 
     sp58 = func_800E4860_62010(&sp40, arg5);
 
     if (sp60 >= SQ(arg3) || sp58 < 0.0001f) {
-        return FALSE;
+        return false;
     }
 
     f12 = sqrtf(sp58) + (SQ(arg3) - sp60);
@@ -436,10 +435,10 @@ s32 func_800E55C0_62D70(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, Vec3f* 
             arg4->y += sp50 * arg5->y;
             arg4->z += sp50 * arg5->z;
             Vec3fScale(arg5, f20);
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 void func_800E57CC_62F7C(Vec3f* arg0, Vec3f* arg1, f32 arg2, Vec3f* arg3, Vec3f* arg4) {
@@ -497,12 +496,12 @@ s32 func_800E5854_63004(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, f32 arg
                     f20 *= 0.7f;
                     Vec3fScale(arg6, f20);
                     Vec3fAdd(arg5, arg2);
-                    return TRUE;
+                    return true;
                 }
             }
         }
     }
-    return FALSE;
+    return false;
 }
 
 void func_800E5A4C_631FC(Vec3f* arg0, Vec3f* arg1, f32 arg2, Vec3f* arg3, Vec3f* arg4) {
@@ -554,11 +553,11 @@ s32 func_800E5AD4_63284(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3, f32 arg
                 sp50 *= 0.7f;
                 Vec3fScale(arg6, sp50);
                 Vec3fAdd(arg5, arg2);
-                return TRUE;
+                return true;
             }
         }
     }
-    return FALSE;
+    return false;
 }
 
 s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* arg3, Vec3f* arg4, Vec3f* arg5) {
@@ -589,7 +588,7 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
     sp54 = sqrtf(SQ(arg1->x) + SQ(arg1->y) + SQ(arg1->z));
     sp4C = sp54 / sqrtf(SQ(sp64.x) + SQ(sp64.y) + SQ(sp64.z));
 
-    switch(arg3->unk_04->unk_00) {
+    switch (arg3->unk_04->unk_00) {
         case 1:
             if (func_800E55C0_62D70(&sp7C, &sp64, &sp70, arg3->unk_04->unk_84, arg4, arg5)) {
                 sp50 = sqrtf(SQ(arg5->x) + SQ(arg5->y) + SQ(arg5->z));
@@ -597,7 +596,7 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
                 func_800E4904_620B4(arg3->unk_04->unk_04, arg5);
                 Vec3fNormalize(arg5);
                 Vec3fScale(arg5, sp50 * sp4C);
-                return TRUE;
+                return true;
             }
             break;
         case 3:
@@ -607,7 +606,7 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
                 func_800E4904_620B4(arg3->unk_04->unk_04, arg5);
                 Vec3fNormalize(arg5);
                 Vec3fScale(arg5, sp50 * sp4C);
-                return TRUE;
+                return true;
             }
             break;
         case 2:
@@ -617,11 +616,16 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
                 func_800E4904_620B4(arg3->unk_04->unk_04, arg5);
                 Vec3fNormalize(arg5);
                 Vec3fScale(arg5, sp50 * sp4C);
-                return TRUE;
+                return true;
             }
             break;
         case 4:
-            if (1) { } if (1) { } if (1) { } // TODO fake match
+            if (1) {
+            }
+            if (1) {
+            }
+            if (1) {
+            } // TODO fake match
             sp58.x = arg3->unk_04->unk_84;
             sp58.y = arg3->unk_04->unk_88;
             sp58.z = arg3->unk_04->unk_8C;
@@ -631,13 +635,13 @@ s32 func_800E5D30_634E0(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, UnkCaramelBoa* ar
                 func_800E4904_620B4(arg3->unk_04->unk_04, arg5);
                 Vec3fNormalize(arg5);
                 Vec3fScale(arg5, sp50 * sp4C);
-                return TRUE;
+                return true;
             }
             break;
         default:
-            return FALSE;
+            return false;
     }
-    return FALSE;
+    return false;
 }
 
 UnkCaramelBoa* func_800E6168_63918(UnkCaramelBoa* arg0) {
@@ -660,9 +664,9 @@ s32 func_800E61CC_6397C(UnkCaramelBoa* arg0, Vec3f* arg1, Vec3f* arg2, f32 arg3)
     f32 temp = arg0->unk_04->unk_84 * arg0->scale.x * arg3;
 
     if (SQ(arg1->x - arg2->x) + SQ(arg1->z - arg2->z) < SQ(temp)) {
-        return TRUE;
+        return true;
     } else {
-        return FALSE;
+        return false;
     }
 }
 
@@ -826,7 +830,6 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
     Mtx4f sp6C;
     f32 sp68;
 
-
     sp114.x = arg5.x / 100.0f;
     sp114.y = arg5.y / 100.0f;
     sp114.z = arg5.z / 100.0f;
@@ -848,10 +851,10 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
 
     v0 = func_800E6168_63918(arg4->unk_04);
     if (v0 == NULL) {
-        return FALSE;
+        return false;
     }
     if (!func_800E61CC_6397C(v0, &spF8, &sp114, sp68)) {
-        return FALSE;
+        return false;
     }
 
     func_800E4C64_62414(spAC, sp6C, sp108, arg8, sp114);
@@ -872,9 +875,9 @@ s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkC
             arg3->y *= 100.0f;
             arg3->z *= 100.0f;
 
-            return TRUE;
+            return true;
         }
         s0++;
     }
-    return FALSE;
+    return false;
 }

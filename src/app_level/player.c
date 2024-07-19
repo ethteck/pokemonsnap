@@ -127,12 +127,12 @@ s32 D_80382CFC_52310C = 0;
 s8 D_80382D00_523110 = 2;
 s8 D_80382D04_523114 = 0;
 s32 D_80382D08_523118 = 0;
-s32 IsInputDisabled = FALSE;
+s32 IsInputDisabled = false;
 GObj* D_80382D10_523120 = NULL;
 GObj* D_80382D14_523124 = NULL;
 void (*EndLevelCb)(s32) = NULL;
 void (*PauseCb)(s32) = NULL;
-u8 IsPaused = FALSE;
+u8 IsPaused = false;
 u8 PauseCurrentSelection = 0;
 s32 D_80382D28_523138 = 153;
 u8 D_80382D2C_52313C = 0;
@@ -141,7 +141,7 @@ u8 D_80382D34_523144 = 0;
 s32 D_80382D38_523148 = 360;
 f32 D_80382D3C_52314C = 1.0f;
 u8 PauseButtonPressTimeout = 0;
-u8 D_80382D44_523154 = FALSE;
+u8 D_80382D44_523154 = false;
 s32 LevelBGMSongID = -1;
 
 extern s32 BumpDetector_ProximityLevel;
@@ -327,7 +327,7 @@ void setBackgroundMusic(s32 songID) {
 void updateMusic(GObj* obj) {
     s32 timerAfterFluteStopped = 2;
 
-    while (TRUE) {
+    while (true) {
         if (Items_GetPokeFluteState() == 0) {
             if (--timerAfterFluteStopped < 0) {
                 Items_StopPokeFlute();
@@ -418,7 +418,7 @@ void handleAnalogStick(GObj* obj) {
 
     if (ABS(gContInputStickY) >= 6 && !IsInputDisabled) {
         StickYValue = (f32) gContInputStickY / 80.0;
-        if (IsAxisYInverted == TRUE) {
+        if (IsAxisYInverted == true) {
             StickYValue = -StickYValue;
         }
 
@@ -501,7 +501,7 @@ void func_80351114_4F1524(GObj* obj) {
 
 void playDashEngineSounds(s32 enabled) {
     static s32 dashEngineSoundHandle = -1;
-    if (enabled == TRUE) {
+    if (enabled == true) {
         if (dashEngineSoundHandle == -1) {
             dashEngineSoundHandle = auPlaySound(SOUND_ID_14);
         }
@@ -524,14 +524,14 @@ void updateDashEngine(void) {
     if (!IsInputDisabled && IsDashEngineAvailable == 1) {
         if ((gContInputCurrentButtons & R_TRIG) && ForceDashEngineDisabled == 0) {
             DashEngineSpeedMult *= 3.0f;
-            Icons_SetDashEngineEnabled(TRUE);
+            Icons_SetDashEngineEnabled(true);
             if (DashEngineSoundTimeout == 0) {
-                playDashEngineSounds(TRUE);
+                playDashEngineSounds(true);
             }
         } else {
-            playDashEngineSounds(FALSE);
+            playDashEngineSounds(false);
             IsDashEngineOn = 0;
-            Icons_SetDashEngineEnabled(FALSE);
+            Icons_SetDashEngineEnabled(false);
         }
     }
     if (DashEngineSoundTimeout > 0) {
@@ -541,7 +541,7 @@ void updateDashEngine(void) {
 }
 
 void handleCButtons(GObj* obj) {
-    s32 CButtonPressed = FALSE;
+    s32 CButtonPressed = false;
 
     if (gDirectionIndex < 0) {
         return;
@@ -558,7 +558,7 @@ void handleCButtons(GObj* obj) {
                 TurnToDirSpeed = -0.1f;
             }
             gDirectionIndex = 2;
-            CButtonPressed = TRUE;
+            CButtonPressed = true;
             ReticleScreenX = 0;
         } else if (gContInputPressedButtons & R_CBUTTONS) {
             auPlaySound(SOUND_ID_4);
@@ -566,7 +566,7 @@ void handleCButtons(GObj* obj) {
             if (gDirectionIndex >= 4) {
                 gDirectionIndex -= 4;
             }
-            CButtonPressed = TRUE;
+            CButtonPressed = true;
             TurnToDirSpeed = 0.1f;
             ReticleScreenX = 0;
         } else if (gContInputPressedButtons & L_CBUTTONS) {
@@ -575,7 +575,7 @@ void handleCButtons(GObj* obj) {
             if (gDirectionIndex < 0) {
                 gDirectionIndex += 4;
             }
-            CButtonPressed = TRUE;
+            CButtonPressed = true;
             TurnToDirSpeed = -0.1f;
             ReticleScreenX = 0;
         }
@@ -841,7 +841,7 @@ void processZoomingIn(GObj* obj) {
 
     i = 0;
 
-    Icons_ProcessZoom(TRUE);
+    Icons_ProcessZoom(true);
 
     y1 = 0;
     y2 = SCREEN_HEIGHT;
@@ -915,7 +915,7 @@ void processZoomingIn(GObj* obj) {
     spE0.z = D_803AE508_54E918.z - D_803AE4E8_54E8F8.z;
     sp110 = Vec3fNormalize(&spE0) / 10.0f;
 
-    while (TRUE) {
+    while (true) {
         if (ZoomSwitchMode == 0 && (gContInputReleasedButtons & Z_TRIG)) {
             break;
         }
@@ -1126,7 +1126,7 @@ void processZoomingOut(GObj* obj) {
     gMainCamera->viewMtx.lookAt.at.x = CameraAtPos.x;
     gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y + CameraVibrationDeltaY;
     gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
-    Icons_ProcessZoom(FALSE);
+    Icons_ProcessZoom(false);
     ReticleScreenX = 0;
     gDirectionIndex = direction;
     ohResumeProcessByFunction(obj, handleCButtons);
@@ -1140,7 +1140,7 @@ s32 strcmp2(u8* arg0, u8* arg1) {
         return 0;
     }
 
-    while (TRUE) {
+    while (true) {
         s32 diff = *arg0 - *arg1;
         if (diff != 0) {
             return diff;
@@ -1318,10 +1318,10 @@ void updateCameraZoomedIn(GObj* obj) {
         gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
     }
     if (ZoomSwitchMode == 1 || (gContInputCurrentButtons & Z_TRIG)) {
-        if (gHasPokemonInFocus == TRUE && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
-            gHasPokemonInFocus = FALSE;
+        if (gHasPokemonInFocus == true && gPokemonInFocus != NULL && GET_POKEMON(gPokemonInFocus) == NULL) {
+            gHasPokemonInFocus = false;
         }
-        if (gHasPokemonInFocus == TRUE && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
+        if (gHasPokemonInFocus == true && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
             if (D_80382C40_523050 == gPokemonInFocus) {
                 D_80382CF8_523108++;
             } else {
@@ -1471,7 +1471,7 @@ void vibrateCamera(GObj* obj) {
     s32 levelID = getLevelId();
 
     if (levelID == SCENE_BEACH) {
-        while (TRUE) {
+        while (true) {
             getLevelProgress(&blockCount, &blockPart);
             if (blockCount + blockPart >= 4.15f) {
                 break;
@@ -1480,7 +1480,7 @@ void vibrateCamera(GObj* obj) {
         }
     }
 
-    while (TRUE) {
+    while (true) {
         CameraVibrationDeltaY = sinf(phase) * CameraVibrationAmplitude;
         phase += CameraVibrationSpeed * PI / 180.0f;
         if (levelID == SCENE_BEACH) {
@@ -1511,9 +1511,9 @@ int func_80353D68_4F4178(void) {
 
 void Pause_UpdateSelection(GObj* obj) {
     if (PauseButtonPressTimeout > 0) {
-        Pause_StickReleased = FALSE;
+        Pause_StickReleased = false;
     } else if (ABS(gContInputStickY) > 20 && Pause_StickReleased) {
-        Pause_StickReleased = FALSE;
+        Pause_StickReleased = false;
         if (gContInputStickY > 0) {
             if (PauseCurrentSelection > 0) {
                 PauseCurrentSelection--;
@@ -1560,7 +1560,7 @@ void Pause_UpdateSelection(GObj* obj) {
         }
         Pause_StickReleased += 0; // required to match
     } else if (ABS(gContInputStickY) < 5) {
-        Pause_StickReleased = TRUE;
+        Pause_StickReleased = true;
     }
     if (!IsPaused) {
         omEndProcess(NULL);
@@ -1575,7 +1575,7 @@ void func_8035403C_4F444C(GObj* obj) {
     spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 0);
     spClearAttribute(sprite, SP_HIDDEN);
 
-    while (TRUE) {
+    while (true) {
         if (D_80382D28_523138 > 153) {
             D_80382D28_523138 = 153;
             spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 153);
@@ -1600,7 +1600,7 @@ void Pause_ShowUI(GObj* obj) {
     spClearAttribute(&Pause_LabelPause->sprite, SP_HIDDEN);
     D_80382D38_523148 = 360;
 
-    while (TRUE) {
+    while (true) {
         if (D_80382D28_523138 > 153) {
             D_80382D28_523138 = 153;
             spColor(sprite, D_80382D2C_52313C, D_80382D30_523140, D_80382D34_523144, 153);
@@ -1641,7 +1641,7 @@ void Pause_HideUI(GObj* obj) {
     spSetAttribute(&Pause_RetrySelected->sprite, SP_HIDDEN);
     spSetAttribute(&Pause_Retry->sprite, SP_HIDDEN);
 
-    while (TRUE) {
+    while (true) {
         if (D_80382D38_523148 < -103) {
             spSetAttribute(&sobj->sprite, SP_HIDDEN);
             spSetAttribute(&Pause_LabelPause->sprite, SP_HIDDEN);
@@ -1715,7 +1715,7 @@ void func_80354860_4F4C70(GObj* arg0) {
     IsPaused = 1 - IsPaused;
     func_80357170_4F7580();
     Icons_UnFreeze();
-    PauseCb(FALSE);
+    PauseCb(false);
     PokemonDetector_Enable();
     ohResumeProcessByFunction(gObjPlayer, func_80352F20_4F3330);
     if (gDirectionIndex < 0) {
@@ -1735,7 +1735,7 @@ void func_80354860_4F4C70(GObj* arg0) {
 }
 
 void updatePauseMenu(GObj* arg0) {
-    if (IsInputDisabled != TRUE) {
+    if (IsInputDisabled != true) {
         if (PauseButtonPressTimeout > 0) {
             PauseButtonPressTimeout--;
             return;
@@ -1758,14 +1758,14 @@ void updatePauseMenu(GObj* arg0) {
                 } else if (PauseCurrentSelection == PAUSE_OPTION_QUIT) {
                     auPlaySound(SOUND_ID_66);
                     omCreateProcess(arg0, quitCourse, 0, 9);
-                    IsPaused = FALSE;
+                    IsPaused = false;
                     D_80382D44_523154 = 1;
                     omEndProcess(NULL);
                 } else {
                     // retry
                     auPlaySound(SOUND_ID_66);
                     omCreateProcess(arg0, retryCourse, 0, 9);
-                    IsPaused = FALSE;
+                    IsPaused = false;
                     D_80382D44_523154 = 1;
                     omEndProcess(NULL);
                 }
@@ -1776,7 +1776,7 @@ void updatePauseMenu(GObj* arg0) {
             PauseCurrentSelection = 0;
             func_80357120_4F7530(arg0);
             Icons_Freeze();
-            PauseCb(TRUE);
+            PauseCb(true);
             PokemonDetector_Disable();
             ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
             Msg_Reset();
@@ -1845,7 +1845,7 @@ void func_80354E7C_4F528C(s32* arg0, GObjFunc arg1) {
 void Tutorial_ShowMessage(s32 msgID) {
     char* message = NULL;
 
-    if (D_803AE516_54E926 == TRUE) {
+    if (D_803AE516_54E926 == true) {
         return;
     }
     if (msgID != 0) {
@@ -1873,11 +1873,11 @@ void Tutorial_ShowMessage(s32 msgID) {
 }
 
 s32 func_80354FB8_4F53C8(s32 duration) {
-    s32 s1 = FALSE;
+    s32 s1 = false;
 
     while (duration > 0) {
         if (ABS(gContInputStickX) >= 6 || ABS(gContInputStickY) >= 6) {
-            s1 = TRUE;
+            s1 = true;
         }
         if (!IsPaused) {
             duration--;
@@ -2009,10 +2009,10 @@ void func_803552B0_4F56C0(GObj* obj) {
 
 void updateTutorialMain(GObj* arg0) {
     if (func_8009BBF4() >= 3) {
-        IsInputDisabled = FALSE;
+        IsInputDisabled = false;
         omCreateProcess(arg0, func_80355228_4F5638, 0, 9);
         omEndProcess(NULL);
-    } else if (gHasPokemonInFocus == TRUE &&
+    } else if (gHasPokemonInFocus == true &&
                D_80382D08_523118 == 0 &&
                gPokemonIdInFocus > 0 &&
                gPokemonIdInFocus <= POKEDEX_MAX &&
@@ -2091,7 +2091,7 @@ void processOutOfFilm(GObj* arg0) {
 
     var_s2 = 0;
     D_80382D44_523154 = 1;
-    D_803AE516_54E926 = TRUE;
+    D_803AE516_54E926 = true;
     stopLevelProcesses();
     ohPauseProcessByFunction(gObjPlayer, func_80355228_4F5638);
     func_80357120_4F7530(NULL);
@@ -2149,14 +2149,14 @@ void processBump(GObj* arg0) {
     s32 i;
 
     auPlaySound(SOUND_ID_20);
-    IsCartStopped = TRUE;
+    IsCartStopped = true;
     for (i = 0; i < 180; i++) {
         if (BumpDetector_ProximityLevel == -1) {
             i = 0;
         }
         ohWait(1);
     }
-    IsCartStopped = FALSE;
+    IsCartStopped = false;
     cmdSendCommand(gObjPlayer, PLAYER_CMD_5, arg0);
     omEndProcess(NULL);
 }
@@ -2231,7 +2231,7 @@ void updatePlayer(GObj* arg0) {
 }
 
 void updateReticleScreenPos(GObj* arg0) {
-    if (!IsPaused && IsInputDisabled != TRUE) {
+    if (!IsPaused && IsInputDisabled != true) {
         if (ABS(StickXValue) > 0.0005f) {
             if (gDirectionIndex > 0) {
                 ReticleScreenX += (s32) (5.0f * StickXValue);
@@ -2255,7 +2255,7 @@ void updateReticleScreenPos(GObj* arg0) {
 void func_80356074_4F6484(GObj* arg0) {
     s32 i = 0;
 
-    while (TRUE) {
+    while (true) {
         spSetAttribute(&MainCameraReticles[i + 1]->sprite, SP_HIDDEN);
         spClearAttribute(&MainCameraReticles[1 - (i - 1)]->sprite, SP_HIDDEN);
         i++;
@@ -2326,22 +2326,22 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
 
     gIdleScript = getIdleScript();
     ProgressFlags = 0;
-    if (checkPlayerFlag(PFID_ZOOM_SWITCH) == TRUE) {
+    if (checkPlayerFlag(PFID_ZOOM_SWITCH) == true) {
         ProgressFlags |= PF_ZOOM_SWITCH;
     }
-    if (checkPlayerFlag(PFID_INVERTED_Y) == TRUE) {
+    if (checkPlayerFlag(PFID_INVERTED_Y) == true) {
         ProgressFlags |= PF_INVERTED_Y;
     }
-    if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == TRUE) {
+    if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == true) {
         ProgressFlags |= PF_HAS_DASH_ENGINE;
     }
-    if (checkPlayerFlag(PFID_HAS_APPLE) == TRUE) {
+    if (checkPlayerFlag(PFID_HAS_APPLE) == true) {
         ProgressFlags |= PF_HAS_APPLE;
     }
-    if (checkPlayerFlag(PFID_HAS_PESTER_BALL) == TRUE) {
+    if (checkPlayerFlag(PFID_HAS_PESTER_BALL) == true) {
         ProgressFlags |= PF_HAS_PESTER_BALL;
     }
-    if (checkPlayerFlag(PFID_HAS_FLUTE) == TRUE) {
+    if (checkPlayerFlag(PFID_HAS_FLUTE) == true) {
         ProgressFlags |= PF_HAS_FLUTE;
     }
     if (func_800BF864_5C704() >= 4) {
@@ -2356,22 +2356,22 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
         ZoomSwitchMode = 0;
     }
     if (ProgressFlags & PF_INVERTED_Y) {
-        IsAxisYInverted = TRUE;
+        IsAxisYInverted = true;
     } else {
-        IsAxisYInverted = FALSE;
+        IsAxisYInverted = false;
     }
     if (ProgressFlags & PF_HAS_DASH_ENGINE) {
-        IsDashEngineAvailable = TRUE;
+        IsDashEngineAvailable = true;
     } else {
-        IsDashEngineAvailable = FALSE;
+        IsDashEngineAvailable = false;
     }
     if (ProgressFlags & PF_HAS_FINISHED_TUTORIAL) {
-        IsTutorialEnabled = FALSE;
+        IsTutorialEnabled = false;
     } else {
-        IsTutorialEnabled = TRUE;
+        IsTutorialEnabled = true;
     }
-    ForceDashEngineDisabled = FALSE;
-    D_803AE516_54E926 = FALSE;
+    ForceDashEngineDisabled = false;
+    D_803AE516_54E926 = false;
     omCreateProcess(obj, updateMovementState, 1, 11);
     omCreateProcess(obj, handleAnalogStick, 1, 9);
     omCreateProcess(obj, handleItemButtonsPress, 1, 9);
@@ -2502,9 +2502,9 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GO
     omCreateProcess(obj, func_80353118_4F3528, 1, 9);
     switch (getLevelId()) {
         case SCENE_BEACH:
-            if (IsTutorialEnabled == TRUE) {
+            if (IsTutorialEnabled == true) {
                 omCreateProcess(objPlayer, updateTutorialMain, 1, 9);
-                IsInputDisabled = TRUE;
+                IsInputDisabled = true;
             } else {
                 setPlayerFlag(PFID_HAS_FINISHED_TUTORIAL, 1);
             }
@@ -2925,7 +2925,7 @@ GObj* createMainCameras(s32 bgColor) {
     OMCamera* cam;
 
     camObj = ohCreateCamera(OBJID_MAIN_CAMERA, mainCameraUpdate, LINK_0, 0x80000000, mainCameraRender, 5,
-                            CAM_MASK_DL_LINK_3 | CAM_MASK_DL_LINK_4 | CAM_MASK_DL_LINK_5, -1, FALSE, 1, NULL, 0, 0);
+                            CAM_MASK_DL_LINK_3 | CAM_MASK_DL_LINK_4 | CAM_MASK_DL_LINK_5, -1, false, 1, NULL, 0, 0);
     if (camObj == NULL) {
         return NULL;
     }
@@ -2969,7 +2969,7 @@ GObj* createMainCameras(s32 bgColor) {
     CameraAtPos.z = cam->viewMtx.lookAt.at.z;
 
     return ohCreateCamera(OBJID_UI_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, renSpriteCameraRender, 3,
-                          CAM_MASK_DL_LINK_1, -1, FALSE, 0, NULL, 1, 0);
+                          CAM_MASK_DL_LINK_1, -1, false, 0, NULL, 1, 0);
 }
 
 void removeMainCamera(void) {

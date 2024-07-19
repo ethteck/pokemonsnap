@@ -70,7 +70,7 @@ void func_801E3B18_9DA488(void) {
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
 
-    while (TRUE) {
+    while (true) {
         switch (sp18) {
             case 0:
                 sp18 = func_801E2EB0_9D9820();

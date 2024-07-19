@@ -2,13 +2,13 @@
 #include "world/world.h"
 #include "app_level.h"
 
-#define GET_ITEM(x) ((Item*)((x)->userData))
+#define GET_ITEM(x) ((Item*) ((x)->userData))
 #define BASE_ITEM_OBJID 300
 
 enum ItemFlags {
-    ITEM_FLAG_BOUNCED           = 1,
-    ITEM_FLAG_TOUCHED_GROUND    = 2,
-    ITEM_FLAG_DELETED           = 4
+    ITEM_FLAG_BOUNCED = 1,
+    ITEM_FLAG_TOUCHED_GROUND = 2,
+    ITEM_FLAG_DELETED = 4
 };
 
 typedef struct ItemObjectListEntry {
@@ -45,7 +45,7 @@ s32 (*D_80382EBC_5232CC)(Vec3f*, Vec3f*, Vec3f*, Vec3f*) = NULL;
 s32 Items_FluteSongsList[3] = { SONG_ID_1, SONG_ID_3, SONG_ID_2 };
 s32 Items_FluteCommandIds[3] = { POKEMON_CMD_5, POKEMON_CMD_6, POKEMON_CMD_7 };
 s32 Items_FluteSongIndex = 0;
-s32 Items_IsPokeFlutePlaying = FALSE;
+s32 Items_IsPokeFlutePlaying = false;
 OSTime Items_SongStartTime = 0;
 // bss
 extern ItemObjectListEntry Items_ListEntryArray[20];
@@ -222,7 +222,6 @@ s32 Items_GetFreeObjectID(void) {
 s32 Items_GetFreeObjectID(void);
 #endif
 
-
 void Items_ShowDelayed(GObj* obj) {
     ohWait(3);
     obj->flags &= ~GOBJ_FLAG_HIDDEN;
@@ -277,7 +276,7 @@ void Items_DeleteFume(GObj* obj) {
 void Items_UpdateFume(GObj* obj) {
     f32 animTime = 0.0f;
 
-    while (TRUE) {
+    while (true) {
         if (60.0f - obj->animationTime < 0.9f) {
             break;
         }
@@ -366,8 +365,7 @@ void Items_CollideWithGround(GObj* obj, GroundResult* groundResult) {
         model->position.v.y <= -10000.0f ||
         model->position.v.y >= 10000.0f ||
         model->position.v.z <= -10000.0f ||
-        model->position.v.z >= 10000.0f)
-    {
+        model->position.v.z >= 10000.0f) {
         item->state = ITEM_STATE_STILL;
         obj->flags |= GOBJ_FLAG_HIDDEN;
         omCreateProcess(obj, Items_DeleteItemImmediately, 1, 7);
@@ -391,8 +389,7 @@ void Items_CollideWithGround(GObj* obj, GroundResult* groundResult) {
             groundResult->surfaceType == SURFACE_TYPE_4C4C33 ||
             groundResult->surfaceType == SURFACE_TYPE_7F4C00 ||
             groundResult->surfaceType == SURFACE_TYPE_7F7F7F ||
-            groundResult->surfaceType == SURFACE_TYPE_B2997F)
-        {
+            groundResult->surfaceType == SURFACE_TYPE_B2997F) {
             if (item->itemID == ITEM_ID_PESTER_BALL) {
                 item->state = ITEM_STATE_STILL;
             }
@@ -502,8 +499,7 @@ void Items_CollideWithGround(GObj* obj, GroundResult* groundResult) {
         model->position.v.y <= -10000.0f ||
         model->position.v.y >= 10000.0f ||
         model->position.v.z <= -10000.0f ||
-        model->position.v.z >= 10000.0f)
-    {
+        model->position.v.z >= 10000.0f) {
         item->state = ITEM_STATE_STILL;
         obj->flags |= GOBJ_FLAG_HIDDEN;
         omCreateProcess(obj, Items_DeleteItemImmediately, 1, 7);
@@ -527,15 +523,13 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
         model->position.v.y <= -10000.0f ||
         model->position.v.y >= 10000.0f ||
         model->position.v.z <= -10000.0f ||
-        model->position.v.z >= 10000.0f)
-    {
+        model->position.v.z >= 10000.0f) {
         item->state = ITEM_STATE_STILL;
         obj->flags |= GOBJ_FLAG_HIDDEN;
         omCreateProcess(obj, Items_DeleteItemImmediately, 1, 7);
         omEndProcess(NULL);
         return;
     }
-
 
     normal.x = result->normal.x;
     normal.y = result->normal.y;
@@ -550,9 +544,8 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
     speed = Vec3fNormalize(&velocity);
     normalSpeed = normal.x * velocity.x + normal.y * velocity.y + normal.z * velocity.z;
     if (ABS(normalSpeed) > 0.001f) {
-        Vec3fAddScaled(&model->position.v, &velocity, - (normal.x * dirUp.x + normal.y * dirUp.y + normal.z * dirUp.z) / normalSpeed);
+        Vec3fAddScaled(&model->position.v, &velocity, -(normal.x * dirUp.x + normal.y * dirUp.y + normal.z * dirUp.z) / normalSpeed);
     } else {
-
     }
     Vec3fAddScaled(&model->position.v, &normal, 12.0f);
     Vec3f_func_8001AC98(&velocity, &normal);
@@ -563,8 +556,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
             result->surfaceType == SURFACE_TYPE_4C4C33 ||
             result->surfaceType == SURFACE_TYPE_7F4C00 ||
             result->surfaceType == SURFACE_TYPE_7F7F7F ||
-            result->surfaceType == SURFACE_TYPE_B2997F)
-        {
+            result->surfaceType == SURFACE_TYPE_B2997F) {
             if (item->itemID == ITEM_ID_PESTER_BALL) {
                 item->state = ITEM_STATE_STILL;
             }
@@ -632,8 +624,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
         model->position.v.y <= -10000.0f ||
         model->position.v.y >= 10000.0f ||
         model->position.v.z <= -10000.0f ||
-        model->position.v.z >= 10000.0f)
-    {
+        model->position.v.z >= 10000.0f) {
         item->state = ITEM_STATE_STILL;
         obj->flags |= GOBJ_FLAG_HIDDEN;
         omCreateProcess(obj, Items_DeleteItemImmediately, 1, 7);
@@ -799,8 +790,7 @@ void Items_BounceFromCeilingAndGround(GObj* obj, GroundResult* result) {
             result->surfaceType == SURFACE_TYPE_4C4C33 ||
             result->surfaceType == SURFACE_TYPE_7F4C00 ||
             result->surfaceType == SURFACE_TYPE_7F7F7F ||
-            result->surfaceType == SURFACE_TYPE_B2997F)
-        {
+            result->surfaceType == SURFACE_TYPE_B2997F) {
             if (item->itemID == ITEM_ID_PESTER_BALL) {
                 item->state = ITEM_STATE_STILL;
             }
@@ -903,8 +893,7 @@ void Items_UpdateItemMovement(GObj* obj) {
         model->position.v.y <= -10000.0f ||
         model->position.v.y >= 10000.0f ||
         model->position.v.z <= -10000.0f ||
-        model->position.v.z >= 10000.0f)
-    {
+        model->position.v.z >= 10000.0f) {
         item->state = ITEM_STATE_STILL;
         obj->flags |= GOBJ_FLAG_HIDDEN;
         omCreateProcess(obj, Items_DeleteItemImmediately, 1, 7);
@@ -1211,7 +1200,7 @@ void Items_PlayPokeFlute(void) {
     }
     auStopSong(BGM_PLAYER_MAIN);
     auPlaySong(BGM_PLAYER_MAIN, Items_FluteSongsList[Items_FluteSongIndex]);
-    Items_IsPokeFlutePlaying = TRUE;
+    Items_IsPokeFlutePlaying = true;
     Items_SongStartTime = D_80096968;
 }
 
@@ -1221,10 +1210,9 @@ void Items_StopPokeFlute(void) {
     if (Items_IsPokeFlutePlaying) {
         auStopSong(BGM_PLAYER_MAIN);
     }
-    Items_IsPokeFlutePlaying = FALSE;
+    Items_IsPokeFlutePlaying = false;
     Items_SongStartTime = D_80096968;
 }
-
 
 s32 Items_GetPokeFluteCmd(void) {
     if (Items_IsPokeFlutePlaying) {

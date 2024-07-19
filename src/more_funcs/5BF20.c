@@ -106,18 +106,18 @@ s32 func_800BF178_5C018(void) {
     versionStringBytes = D_800C20E0_5EF80;
     comparisonStringBytes = D_800C21B0_5F050->data.unk_10;
     i = 0;
-    while (TRUE) {
+    while (true) {
         if (*versionStringBytes != *comparisonStringBytes) {
-            return TRUE;
+            return true;
         }
         versionStringBytes++;
         comparisonStringBytes++;
         i++;
         if (i == sizeof(D_800C20E0_5EF80)) {
             if (func_800BF08C_5BF2C() != 0) {
-                return TRUE;
+                return true;
             }
-            return FALSE;
+            return false;
         }
     }
 }
@@ -182,7 +182,7 @@ s32 func_800BF3D4_5C274(s32 pkmnID) {
 
     photoIdx = func_8009BB4C(pkmnID);
     if (photoIdx < 0 || (photoIdx >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_180))) {
-        return FALSE;
+        return false;
     }
     photoData = (D_800C21B0_5F050->data.unk_180[photoIdx].unk_04.s32 == -1) ? NULL : &D_800C21B0_5F050->data.unk_180[photoIdx];
     return photoData != NULL;

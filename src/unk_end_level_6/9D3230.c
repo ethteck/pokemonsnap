@@ -94,7 +94,7 @@ void func_801DC904_9D3274(s32 arg0, s32 arg1) {
 void func_801DCA14_9D3384(GObj* obj) {
     UNUSED s32 pad[2];
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

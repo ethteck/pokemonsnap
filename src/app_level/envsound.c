@@ -47,14 +47,13 @@ s32 EnvSound_GetTargetAngle(GObj* obj) {
     s32 unused[3];
     s32 val1;
 
-
     if (EnvSound_PlayerModel == NULL) {
         return 0;
     }
 
     dx = GET_TRANSFORM(model)->pos.v.x - GET_TRANSFORM(EnvSound_PlayerModel)->pos.v.x;
     dz = GET_TRANSFORM(model)->pos.v.z - GET_TRANSFORM(EnvSound_PlayerModel)->pos.v.z;
-    if ((s32)dx == 0 && (s32)dz == 0) {
+    if ((s32) dx == 0 && (s32) dz == 0) {
         return 0;
     }
     val1 = atan2s(dz, dx);
@@ -116,8 +115,8 @@ void EnvSound_Update(GObj* obj) {
 
             if (soundId == -1 || soundId != ptr->soundId) {
                 ptr->source = NULL;
-                ptr->fixedParams = TRUE;
-            } else if (ptr->fixedParams != TRUE) {
+                ptr->fixedParams = true;
+            } else if (ptr->fixedParams != true) {
                 EnvSound_GetVolumePan(ptr->source, ptr->hearingRange, &volume, &pan);
                 auSetSoundVolume(ptr->soundHandle, volume);
                 if (!(ptr->hearingRange & 0x80)) {
@@ -159,7 +158,6 @@ void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier
     u32 volume, pan;
     EnvSound* ptr;
 
-
     if (2 * hearingRange < pokemon->playerDist / 100.0f || EnvSound_PlayerModel == NULL || EnvSound_MainCamera == NULL) {
         return;
     }
@@ -186,7 +184,7 @@ void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier
         last->next = ptr;
     }
 
-    EnvSound_GetVolumePan(obj, hearingRange, (s32*)&volume, (s32*)&pan);
+    EnvSound_GetVolumePan(obj, hearingRange, (s32*) &volume, (s32*) &pan);
     if (volume > 0x7FFF) {
         volume = 0x7FFF;
     }
@@ -222,7 +220,7 @@ void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier
         ptr->category = category;
         ptr->hearingRange = hearingRange;
         ptr->soundId = soundID;
-        ptr->fixedParams = FALSE;
+        ptr->fixedParams = false;
     }
 }
 
@@ -257,7 +255,7 @@ void EnvSound_FixParams(GObj* obj) {
 
     for (ptr = EnvSound_Sounds; ptr != NULL; ptr = ptr->next) {
         if (ptr->source == obj) {
-            ptr->fixedParams = TRUE;
+            ptr->fixedParams = true;
         }
     }
 }

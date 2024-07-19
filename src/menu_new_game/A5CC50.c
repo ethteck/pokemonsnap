@@ -294,7 +294,7 @@ void func_800E1F58_A5D308(GObj* arg0) {
     func_800BFC18_5CAB8(sp24, sp20); // BUG: why not pointers ?
     viSetScreenOffsets(sp24, sp24, sp20, sp20);
     func_800067DC();
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -310,7 +310,7 @@ void new_game_init(void) {
     func_800AA870(0xF0000);
     func_8036EB98_842348();
     ohCreateCameraWrapper(0, 0x80000000, 100, 6, 0);
-    D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, TRUE, 1, NULL, 1, TRUE);
+    D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, true, 1, NULL, 1, true);
     D_801180B0->data.cam->flags = CAMERA_FLAG_8;
     func_800A7F68(0, 0x101);
     omCreateProcess(omAddGObj(0xE, NULL, 0, 0x80000000), func_800E1F58_A5D308, 0, 1);

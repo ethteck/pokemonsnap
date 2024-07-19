@@ -2,6 +2,7 @@
 #include "PR/gbi.h"
 #include "sys/sched.h"
 #include "sys/vi.h"
+#include "types.h"
 
 u16* viZBuffer;
 s32 viBitDepth;
@@ -52,17 +53,17 @@ void viSetFlags(s32 flags) {
     if (flags & 0x10) {
         viBitDepth = G_IM_SIZ_16b;
     }
-    viSettingsChanged = TRUE;
+    viSettingsChanged = true;
 }
 
 void viSetScreenWidth(s32 width) {
     viScreenWidth = width;
-    viSettingsChanged = TRUE;
+    viSettingsChanged = true;
 }
 
 void viSetScreenHeight(s32 height) {
     viScreenHeight = height;
-    viSettingsChanged = TRUE;
+    viSettingsChanged = true;
 }
 
 void viSetScreenOffsets(s16 left, s16 right, s16 top, s16 bottom) {
@@ -70,7 +71,7 @@ void viSetScreenOffsets(s16 left, s16 right, s16 top, s16 bottom) {
     viEdgeOffsetRight = right;
     viEdgeOffsetTop = top;
     viEdgeOffsetBottom = bottom;
-    viSettingsChanged = TRUE;
+    viSettingsChanged = true;
 }
 
 void viFillVideoTask(SCTaskVi* task) {
@@ -82,7 +83,7 @@ void viFillVideoTask(SCTaskVi* task) {
     task->edgeOffsetTop = viEdgeOffsetTop;
     task->edgeOffsetBottom = viEdgeOffsetBottom;
     viFlags = 0;
-    viSettingsChanged = FALSE;
+    viSettingsChanged = false;
 }
 
 void viApplySettingsNonblocking(SCTaskVi* task) {
@@ -92,7 +93,7 @@ void viApplySettingsNonblocking(SCTaskVi* task) {
         task->info.fnCheck = NULL;
         task->info.mq = NULL;
         viFillVideoTask(task);
-        osSendMesg(&scTaskQueue, (OSMesg)task, OS_MESG_NOBLOCK);
+        osSendMesg(&scTaskQueue, (OSMesg) task, OS_MESG_NOBLOCK);
     }
 }
 

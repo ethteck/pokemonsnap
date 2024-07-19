@@ -205,20 +205,20 @@ void qsort(void* _base, u32 count, u32 itemSize, s32 (*compare)(const void*, con
 
     curr = base;
     next = base + itemSize;
-    foundInversion = FALSE;
+    foundInversion = false;
 
     if (count) {
         s0 = count - nv;
         do { // required to match
             while (s0--) {
                 if (compare(curr, next) > 0) {
-                    foundInversion = TRUE;
+                    foundInversion = true;
                     break;
                 }
                 curr = next;
                 next += itemSize;
             }
-        } while (FALSE);
+        } while (false);
     }
 
     if (foundInversion) {

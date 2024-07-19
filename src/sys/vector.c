@@ -4,7 +4,9 @@
 
 f32 Vec3fNormalize(Vec3f* v) {
     f32 mag = sqrtf(SQ(v->x) + SQ(v->y) + SQ(v->z));
-    if (mag == 0.0f) { return 0.0f; }
+    if (mag == 0.0f) {
+        return 0.0f;
+    }
 
     v->x *= 1.0f / mag;
     v->y *= 1.0f / mag;
@@ -92,8 +94,12 @@ f32 Vec3fAngleDiff(Vec3f* v1, Vec3f* v2) {
     if (magProd != 0.0f) {
         f32 cosDiff = VEC_DOT(v1, v2) / magProd;
         // limit result to -1 < x < 1
-        if (1.0f < cosDiff) { cosDiff = 1.0f; }
-        if (cosDiff < -1.0f) { cosDiff = -1.0f; }
+        if (1.0f < cosDiff) {
+            cosDiff = 1.0f;
+        }
+        if (cosDiff < -1.0f) {
+            cosDiff = -1.0f;
+        }
         return acosf(cosDiff);
     }
 
@@ -163,11 +169,9 @@ Vec3f* Vec3f_func_8001A8B8(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
         phiF18 = arg0->z;
     }
     // L800194F8
-    resX = (((((arg0->x * sp3C) - (phiF18 * arg1->x)) * sp30) - (phiF20 * sp2C)) * sp3C)
-         + (((arg1->x * arg0->x) + (phiF18 * sp3C)) * arg1->x);
+    resX = (((((arg0->x * sp3C) - (phiF18 * arg1->x)) * sp30) - (phiF20 * sp2C)) * sp3C) + (((arg1->x * arg0->x) + (phiF18 * sp3C)) * arg1->x);
     resY = (((arg0->x * sp3C) - (phiF18 * arg1->x)) * sp2C) + (phiF20 * sp30);
-    resZ = (-((((arg0->x * sp3C) - (phiF18 * arg1->x)) * sp30) - (phiF20 * sp2C)) * arg1->x)
-         + (((arg1->x * arg0->x) + (phiF18 * sp3C)) * sp3C);
+    resZ = (-((((arg0->x * sp3C) - (phiF18 * arg1->x)) * sp30) - (phiF20 * sp2C)) * arg1->x) + (((arg1->x * arg0->x) + (phiF18 * sp3C)) * sp3C);
 
     if (sp3C != 0.0f) {
         arg0->x = resX;
@@ -187,9 +191,15 @@ Vec3f* Vec3f_func_8001A8B8(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
 #endif
 
 Vec3f* Vec3fNegateByAxis(Vec3f* v, enum VectorAxisFlags flag) {
-    if (flag & AXIS_X) { v->x = -v->x; }
-    if (flag & AXIS_Y) { v->y = -v->y; }
-    if (flag & AXIS_Z) { v->z = -v->z; }
+    if (flag & AXIS_X) {
+        v->x = -v->x;
+    }
+    if (flag & AXIS_Y) {
+        v->y = -v->y;
+    }
+    if (flag & AXIS_Z) {
+        v->z = -v->z;
+    }
     return v;
 }
 
@@ -220,12 +230,16 @@ Vec3f* Vec3f_func_8001AA88(Vec3f* v, u32 flags) {
             if ((flags & 1) && (0.0f < v->x)) {
                 v->x = -v->x;
             } else if (flags & 8) {
-                if (v->x < 0.0f) { v->x = -v->x; }
+                if (v->x < 0.0f) {
+                    v->x = -v->x;
+                }
             }
             if ((flags & 2) && (0.0f < v->y)) {
                 v->y = -v->y;
             } else if (flags & 0x10) {
-                if (v->y < 0.0f) { v->y = -v->y; }
+                if (v->y < 0.0f) {
+                    v->y = -v->y;
+                }
             }
             if (flags & 4) {
                 if (0.0f < v->z) {
@@ -233,9 +247,11 @@ Vec3f* Vec3f_func_8001AA88(Vec3f* v, u32 flags) {
                     break;
                 }
             }
-            if ((flags & 0x20) && (v->z < 0.0f)) { v->z = -v->z; }
+            if ((flags & 0x20) && (v->z < 0.0f)) {
+                v->z = -v->z;
+            }
         }
-    } while (FALSE);
+    } while (false);
 
     // do while (0)... macro?
 
@@ -276,8 +292,7 @@ s32 Vec3fCompareDirection(Vec3f* v1, Vec3f* v2) {
     }
 }
 
-
-Vec3f* Vec3fNormalizedCross(Vec3f *v0, Vec3f *v1, Vec3f *result) {
+Vec3f* Vec3fNormalizedCross(Vec3f* v0, Vec3f* v1, Vec3f* result) {
     result->x = (v0->y * v1->z) - (v0->z * v1->y);
     result->y = (v0->z * v1->x) - (v0->x * v1->z);
     result->z = (v0->x * v1->y) - (v0->y * v1->x);

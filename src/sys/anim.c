@@ -18,9 +18,9 @@ DObj* animModelTreeNextNode(DObj* obj) {
     if (obj->next != NULL) {
         return next;
     }
-    while (TRUE) {
+    while (true) {
         parent = obj->parent;
-        if ((uintptr_t)parent == 1) {
+        if ((uintptr_t) parent == 1) {
             return NULL;
         }
         if (parent->next != NULL) {
@@ -139,7 +139,7 @@ void animSetTextureAnimation(MObj* mobj, AnimCmd* animList, f32 skipFrames) {
 
 void animSetModelTreeAnimation(GObj* obj, AnimCmd** animLists, f32 skipFrames) {
     DObj* dobj;
-    u8 s2 = TRUE;
+    u8 s2 = true;
 
     dobj = obj->data.dobj;
     obj->animationTime = skipFrames;
@@ -147,10 +147,10 @@ void animSetModelTreeAnimation(GObj* obj, AnimCmd** animLists, f32 skipFrames) {
         if (*animLists != NULL) {
             animSetModelAnimation(dobj, *animLists, skipFrames);
             dobj->animCBReceiver = s2;
-            s2 = FALSE;
+            s2 = false;
         } else {
             dobj->timeLeft = ANIMATION_DISABLED;
-            dobj->animCBReceiver = FALSE;
+            dobj->animCBReceiver = false;
         }
 
         animLists++;
@@ -185,11 +185,11 @@ void animSetModelTreeTextureAnimation(GObj* obj, AnimCmd*** textureAnimLists, f3
 }
 
 void animSetModelTreeAndTextureAnimation(GObj* obj, AnimCmd** modelAnimLists,
-                                          AnimCmd*** textureAnimLists, f32 skipFrames) {
+                                         AnimCmd*** textureAnimLists, f32 skipFrames) {
     DObj* dobj = obj->data.dobj;
     MObj* mobj;
     AnimCmd** cmdlist;
-    u8 mainNode = TRUE;
+    u8 mainNode = true;
 
     obj->animationTime = skipFrames;
     while (dobj != NULL) {
@@ -197,10 +197,10 @@ void animSetModelTreeAndTextureAnimation(GObj* obj, AnimCmd** modelAnimLists,
             if (*modelAnimLists != NULL) {
                 animSetModelAnimation(dobj, *modelAnimLists, skipFrames);
                 dobj->animCBReceiver = mainNode;
-                mainNode = FALSE;
+                mainNode = false;
             } else {
                 dobj->timeLeft = ANIMATION_DISABLED;
-                dobj->animCBReceiver = FALSE;
+                dobj->animCBReceiver = false;
             }
             modelAnimLists++;
         }
@@ -277,7 +277,7 @@ void animProcessModelAnimation(DObj* dobj) {
         switch (cmd) {
             case ANIM_CMD_SET_VALUE_ZERO_RATE_LAST:
             case ANIM_CMD_SET_VALUE_ZERO_RATE:
-                duration = (f32)(dobj->animList->w & 0x7FFF);
+                duration = (f32) (dobj->animList->w & 0x7FFF);
                 bitMask = (dobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -310,7 +310,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 break;
             case ANIM_CMD_SET_VALUE_LAST:
             case ANIM_CMD_SET_VALUE:
-                duration = (f32)(dobj->animList->w & 0x7FFF);
+                duration = (f32) (dobj->animList->w & 0x7FFF);
                 bitMask = (dobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -341,7 +341,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 break;
             case ANIM_CMD_SET_VALUE_WITH_RATE_LAST:
             case ANIM_CMD_SET_VALUE_WITH_RATE:
-                duration = (f32)(dobj->animList->w & 0x7FFF);
+                duration = (f32) (dobj->animList->w & 0x7FFF);
                 bitMask = (dobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -394,11 +394,11 @@ void animProcessModelAnimation(DObj* dobj) {
                 }
                 break;
             case ANIM_CMD_WAIT:
-                dobj->timeLeft += (f32)(dobj->animList++->w & 0x7FFF);
+                dobj->timeLeft += (f32) (dobj->animList++->w & 0x7FFF);
                 break;
             case ANIM_CMD_SET_VALUE_AFTER_LAST:
             case ANIM_CMD_SET_VALUE_AFTER:
-                duration = (f32)(dobj->animList->w & 0x7FFF);
+                duration = (f32) (dobj->animList->w & 0x7FFF);
                 bitMask = (dobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -447,7 +447,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 }
                 break;
             case ANIM_CMD_12:
-                duration = (f32)(dobj->animList->w & 0x7FFF);
+                duration = (f32) (dobj->animList->w & 0x7FFF);
                 bitMask = (dobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -491,7 +491,7 @@ void animProcessModelAnimation(DObj* dobj) {
                 return;
             case ANIM_CMD_SET_FLAGS:
                 dobj->flags = (dobj->animList->w << 7) >> 22;
-                dobj->timeLeft += (f32)(dobj->animList++->w & 0x7FFF);
+                dobj->timeLeft += (f32) (dobj->animList++->w & 0x7FFF);
                 break;
             case ANIM_CMD_16:
                 if (dobj->obj->fnAnimCallback != NULL) {
@@ -499,11 +499,11 @@ void animProcessModelAnimation(DObj* dobj) {
                                               ((dobj->animList->w << 7) >> 22) & 0xFF);
                 }
 
-                dobj->timeLeft += (f32)(dobj->animList++->w & 0x7FFF);
+                dobj->timeLeft += (f32) (dobj->animList++->w & 0x7FFF);
                 break;
             case ANIM_CMD_17:
                 bitMask = (dobj->animList->w << 7) >> 22;
-                dobj->timeLeft += (f32)(dobj->animList++->w & 0x7FFF);
+                dobj->timeLeft += (f32) (dobj->animList++->w & 0x7FFF);
 
                 for (i = 4; i < 14; i++) {
                     if (bitMask == 0) {
@@ -526,7 +526,7 @@ void animProcessModelAnimation(DObj* dobj) {
 }
 
 f32 animGetAObjInterpValue(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate,
-                          f32 targetRate) {
+                           f32 targetRate) {
     f32 sp18;
     f32 sp14;
     f32 sp10;
@@ -548,7 +548,7 @@ f32 animGetAObjInterpValue(f32 invDuration, f32 time, f32 initialValue, f32 targ
 }
 
 f32 animGetAObjInterpRate(f32 invDuration, f32 time, f32 initialValue, f32 targetValue, f32 initialRate,
-                         f32 targetRate) {
+                          f32 targetRate) {
     f32 temp_f18;
     f32 temp_f16;
     f32 temp_f2;
@@ -568,7 +568,7 @@ f32 animGetAObjValue(AObj* aobj) {
             return aobj->initialValue + (aobj->time * aobj->rate);
         case ANIM_TYPE_CUBIC:
             return animGetAObjInterpValue(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue,
-                                         aobj->rate, aobj->targetRate);
+                                          aobj->rate, aobj->targetRate);
         case ANIM_TYPE_STEP:
             return aobj->invDuration <= aobj->time ? aobj->targetValue : aobj->initialValue;
     }
@@ -580,7 +580,7 @@ f32 animGetAObjRate(AObj* aobj) {
             return aobj->rate;
         case ANIM_TYPE_CUBIC:
             return animGetAObjInterpRate(aobj->invDuration, aobj->time, aobj->initialValue, aobj->targetValue,
-                                        aobj->rate, aobj->targetRate);
+                                         aobj->rate, aobj->targetRate);
         case ANIM_TYPE_STEP:
             return 0.0f;
     }
@@ -736,7 +736,7 @@ void animProcessTextureAnimation(MObj* mobj) {
         switch (cmd) {
             case ANIM_CMD_SET_VALUE_ZERO_RATE_LAST:
             case ANIM_CMD_SET_VALUE_ZERO_RATE:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -769,7 +769,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 break;
             case ANIM_CMD_SET_VALUE_LAST:
             case ANIM_CMD_SET_VALUE:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -801,7 +801,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 break;
             case ANIM_CMD_SET_VALUE_WITH_RATE_LAST:
             case ANIM_CMD_SET_VALUE_WITH_RATE:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -852,12 +852,12 @@ void animProcessTextureAnimation(MObj* mobj) {
                 }
                 break;
             case ANIM_CMD_WAIT:
-                mobj->timeLeft += (f32)(mobj->animList->w & 0x7FFF);
+                mobj->timeLeft += (f32) (mobj->animList->w & 0x7FFF);
                 mobj->animList++;
                 break;
             case ANIM_CMD_SET_VALUE_AFTER_LAST:
             case ANIM_CMD_SET_VALUE_AFTER:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -895,7 +895,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 mobj->animList = mobj->animList->ptr;
                 break;
             case ANIM_CMD_12:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -925,7 +925,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 return; // not break
             case ANIM_CMD_SET_EXTRA_VALUE_AFTER_LAST:
             case ANIM_CMD_SET_EXTRA_VALUE_AFTER:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(extraAobjArray); i++) {
@@ -953,7 +953,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 break;
             case ANIM_CMD_SET_EXTRA_VALUE_LAST:
             case ANIM_CMD_SET_EXTRA_VALUE:
-                duration = (f32)(mobj->animList->w & 0x7FFF);
+                duration = (f32) (mobj->animList->w & 0x7FFF);
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
                 for (i = 0; i < ARRAY_COUNT(extraAobjArray); i++) {
@@ -982,7 +982,7 @@ void animProcessTextureAnimation(MObj* mobj) {
                 }
                 break;
             case ANIM_CMD_22:
-                mobj->timeLeft = (f32)(mobj->animList->w & 0x7FFF);
+                mobj->timeLeft = (f32) (mobj->animList->w & 0x7FFF);
 
                 bitMask = (mobj->animList++->w << 7) >> 22;
 
@@ -1101,7 +1101,7 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                         if (aobj->kind == ANIM_TYPE_LINEAR) {
                             s32 v1;
 
-                            v1 = (s32)(aobj->time * aobj->invDuration * 256.0f);
+                            v1 = (s32) (aobj->time * aobj->invDuration * 256.0f);
                             if (v1 < 0) {
                                 v1 = 0;
                             }
@@ -1114,7 +1114,7 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             }
                         }
                     } else {
-                        color.i = *(u32*)(aobj->invDuration <= aobj->time ? aobj->unk_14_color : aobj->unk_10_color);
+                        color.i = *(u32*) (aobj->invDuration <= aobj->time ? aobj->unk_14_color : aobj->unk_10_color);
                     }
 
                     switch (aobj->paramID) {
@@ -1171,8 +1171,8 @@ void animUpdateModelTreeAnimation(GObj* obj) {
         } else if (dobj->next != NULL) {
             dobj = dobj->next;
         } else {
-            while (TRUE) {
-                if ((uintptr_t)dobj->parent == 1) {
+            while (true) {
+                if ((uintptr_t) dobj->parent == 1) {
                     dobj = NULL;
                     break;
                 }
@@ -1257,7 +1257,7 @@ f32 func_8000EB98(UnkEC64Arg3* arg0, s32 paramID) {
 }
 
 s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* aobjList, UnkEC64Arg3* arg5,
-                  s32 paramID, s32 setRate, Vec3f* interpPos, s32* interpPosReady) {
+                       s32 paramID, s32 setRate, Vec3f* interpPos, s32* interpPosReady) {
     AObj* aobj;
 
     aobj = animGetAObjByParamID(aobjList, paramID);
@@ -1309,11 +1309,11 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
                             break;
                     }
 
-                    *interpPosReady = TRUE;
+                    *interpPosReady = true;
                 } else {
                     if (arg0 == 0) {
                         if (arg5 == NULL) {
-                            return TRUE;
+                            return true;
                         }
                         *outValue = func_8000EB98(arg5, paramID);
                     } else {
@@ -1324,7 +1324,7 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
         } else {
             if (arg0 == 0) {
                 if (arg5 == NULL) {
-                    return TRUE;
+                    return true;
                 }
                 *outValue = func_8000EB98(arg5, paramID);
             } else {
@@ -1332,7 +1332,7 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
             }
         }
     }
-    return FALSE;
+    return false;
 }
 
 #ifdef NON_MATCHING
@@ -1462,7 +1462,7 @@ void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, struc
 #endif
 
 f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* arg3, s32 setRate, f32 duration,
-                  f32 arg6, f32 arg7, f32 arg8) {
+                       f32 arg6, f32 arg7, f32 arg8) {
     AObj* origAobjList;
     AObj* spC0;
     AObj* newAObj;
@@ -1573,7 +1573,7 @@ f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* a
 }
 
 f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3, s32 arg4, f32 arg5,
-                  f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
+                       f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
     f32 ret;
     UNUSED f32 tmp;
     DObj* dobj;
@@ -1642,7 +1642,7 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
 
     dobj = obj->data.dobj;
     sp7C = 0;
-    sp6C = TRUE;
+    sp6C = true;
     obj->animationTime = skipFrames;
 
     while (dobj != NULL) {
@@ -1690,10 +1690,10 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
             }
         } else {
             dobj->timeLeft = ANIMATION_DISABLED;
-            dobj->animCBReceiver = FALSE;
+            dobj->animCBReceiver = false;
             if (arg3 != NULL) {
                 dobj->position.v = arg3->position;
-                *((Vec3f*)&dobj->rotation.f[1]) = arg3->rotation;
+                *((Vec3f*) &dobj->rotation.f[1]) = arg3->rotation;
                 dobj->scale.v = arg3->scale;
             }
         }
@@ -1777,7 +1777,7 @@ void anim_func_8000FBC4(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2) {
             anim_func_8000FAFC(dobj);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*)&dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1801,38 +1801,38 @@ void anim_func_8000FDA0(DObj* dobj, u8 arg1, u8 arg2, u8 arg3) {
 }
 
 void anim_func_8000FE08(DObj* arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
-    s32 isTranslate = FALSE;
+    s32 isTranslate = false;
     s32 isScale = 0;
     s32 phi_v1 = 0;
     s32 phi_t2 = 0;
 
     switch (arg1) {
         case MTX_TYPE_TRANSLATE:
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_ROTATE_RPY:
             phi_v1 = 1;
             break;
         case MTX_TYPE_ROTATE_RPY_TRANSLATE:
             phi_v1 = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE:
             isScale = 1;
             phi_v1 = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_ROTATE_PYR:
             phi_v1 = 2;
             break;
         case MTX_TYPE_ROTATE_PYR_TRANSLATE:
             phi_v1 = 2;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_ROTATE_PYR_TRANSLATE_SCALE:
             phi_v1 = 2;
             isScale = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_SCALE:
             isScale = 1;
@@ -1841,18 +1841,18 @@ void anim_func_8000FE08(DObj* arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
             phi_t2 = 1;
             isScale = 1;
             phi_v1 = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_52:
             phi_v1 = 2;
             phi_t2 = 1;
             isScale = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
         case MTX_TYPE_54:
             isScale = 1;
             phi_v1 = 1;
-            isTranslate = TRUE;
+            isTranslate = true;
             break;
     }
 
@@ -1938,7 +1938,7 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
         }
 
         dobj->position.v = arg1->position;
-        *((Vec3f*)&dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1950,7 +1950,7 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
 }
 
 void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** arg3,
-                   u8 arg4, u8 arg5, u8 arg6) {
+                        u8 arg4, u8 arg5, u8 arg6) {
     int i;
     DObj* dobj;
     s32 trunc;
@@ -1975,7 +1975,7 @@ void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** a
             anim_func_8000FDA0(dobj, arg4, arg5, arg6);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*)&dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -2027,7 +2027,7 @@ void anim_func_80010498(GObj* obj, UnkEC64Arg3* arg1) {
     dobj = obj->data.dobj;
     while (dobj != NULL && arg1->unk_00 != 18) {
         dobj->position.v = arg1->position;
-        *((Vec3f*)&dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         arg1++;
@@ -2099,7 +2099,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
             switch (cmd) {
                 case ANIM_CMD_SET_VALUE_ZERO_RATE_LAST:
                 case ANIM_CMD_SET_VALUE_ZERO_RATE:
-                    duration = (f32)(cam->animList->w & 0x7FFF);
+                    duration = (f32) (cam->animList->w & 0x7FFF);
                     bitMask = (cam->animList++->w << 7) >> 22;
 
                     for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -2130,7 +2130,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                     break;
                 case ANIM_CMD_SET_VALUE_LAST:
                 case ANIM_CMD_SET_VALUE:
-                    duration = (f32)(cam->animList->w & 0x7FFF);
+                    duration = (f32) (cam->animList->w & 0x7FFF);
                     bitMask = (cam->animList++->w << 7) >> 22;
 
                     for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -2160,7 +2160,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                     break;
                 case ANIM_CMD_SET_VALUE_WITH_RATE_LAST:
                 case ANIM_CMD_SET_VALUE_WITH_RATE:
-                    duration = (f32)(cam->animList->w & 0x7FFF);
+                    duration = (f32) (cam->animList->w & 0x7FFF);
                     bitMask = (cam->animList++->w << 7) >> 22;
 
                     for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -2210,11 +2210,11 @@ void animProcessCameraAnimation(OMCamera* cam) {
                     }
                     break;
                 case ANIM_CMD_WAIT:
-                    cam->timeLeft += (f32)(cam->animList++->w & 0x7FFF);
+                    cam->timeLeft += (f32) (cam->animList++->w & 0x7FFF);
                     break;
                 case ANIM_CMD_SET_VALUE_AFTER_LAST:
                 case ANIM_CMD_SET_VALUE_AFTER:
-                    duration = (f32)(cam->animList->w & 0x7FFF);
+                    duration = (f32) (cam->animList->w & 0x7FFF);
                     bitMask = (cam->animList++->w << 7) >> 22;
 
                     for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -2253,7 +2253,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                     cam->animList = cam->animList->ptr;
                     break;
                 case ANIM_CMD_12:
-                    duration = (f32)(cam->animList->w & 0x7FFF);
+                    duration = (f32) (cam->animList->w & 0x7FFF);
                     bitMask = (cam->animList++->w << 7) >> 22;
 
                     for (i = 0; i < ARRAY_COUNT(aobjArray); i++) {
@@ -2302,7 +2302,7 @@ void animProcessCameraAnimation(OMCamera* cam) {
                     cam->timeLeft = ANIMATION_FINISHED;
                     return; // not break
                 case ANIM_CMD_23:
-                    cam->timeLeft += (f32)(cam->animList++->w & 0x7FFF);
+                    cam->timeLeft += (f32) (cam->animList++->w & 0x7FFF);
                     cam->animList += 2;
                     break;
                 default:
@@ -2405,7 +2405,7 @@ s32 animGetTotalDuration(AnimCmd** arg0) {
     cmd = list->w;
     id = cmd >> 25;
 
-    while (TRUE) {
+    while (true) {
         switch (id) {
             case ANIM_CMD_SET_VALUE_LAST:
             case ANIM_CMD_SET_VALUE_ZERO_RATE_LAST:

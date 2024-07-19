@@ -11,7 +11,7 @@ void func_beach_802CA300(GObj* obj) {
 
     obj->flags |= 2;
 
-    while (TRUE) {
+    while (true) {
         getLevelProgress(&sp34, &sp30);
         if (sp34 > 0) {
             break;
@@ -26,7 +26,7 @@ void func_beach_802CA300(GObj* obj) {
 
     pokemon->flags |= 4;
 
-    while (TRUE) {
+    while (true) {
         getLevelProgress(&sp2C, &sp28);
         if (sp2C > 0) {
             break;

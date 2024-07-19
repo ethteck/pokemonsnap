@@ -282,13 +282,13 @@ s32 func_801E2874_9ACAC4(void) {
     if (D_80208B90_9D2DE0) {
         func_801E0774_9AA9C4();
     }
-    D_80208B90_9D2DE0 = TRUE;
+    D_80208B90_9D2DE0 = true;
     sp28 = 0;
     func_80370C34_8443E4(&D_80208B98_9D2DE8);
     func_80370038_8437E8(0x3E, 0xC);
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         sp2C = func_800AA38C(0);
         if (func_801E1A50_9ABCA0(sp2C, &sp28) != 0) {
             auPlaySound(0x43);
@@ -664,7 +664,7 @@ void func_801E37A0_9AD9F0(void) {
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
 
-    while (TRUE) {
+    while (true) {
         switch (sp28) {
             case 1:
                 sp28 = func_801E2874_9ACAC4();

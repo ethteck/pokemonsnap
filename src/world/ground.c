@@ -8,16 +8,16 @@ s32 setHeightMap(HeightMap* map) {
     HeightMapTreeNode* tree;
 
     if (map == NULL) {
-        return FALSE;
+        return false;
     }
     if (map->tree == NULL || map->patches == NULL) {
-        return FALSE;
+        return false;
     }
     sHeightMap = map;
     tree = sHeightMap->tree;
     patches = sHeightMap->patches;
     createHeightMapTree(tree, patches);
-    return TRUE;
+    return true;
 }
 
 s32 setCeilingMap(HeightMap* map) {
@@ -25,16 +25,16 @@ s32 setCeilingMap(HeightMap* map) {
     HeightMapTreeNode* tree;
 
     if (map == NULL) {
-        return FALSE;
+        return false;
     }
     if (map->tree == NULL || map->patches == NULL) {
-        return FALSE;
+        return false;
     }
     sCeilingMap = map;
     tree = sCeilingMap->tree;
     patches = sCeilingMap->patches;
     createHeightMapTree(tree, patches);
-    return TRUE;
+    return true;
 }
 
 void setDefaultGroundResult(GroundResult* result) {
@@ -51,7 +51,7 @@ s32 getGroundAtGlobal(f32 x, f32 z, GroundResult* result) {
 
     if (sHeightMap == NULL) {
         setDefaultGroundResult(result);
-        return FALSE;
+        return false;
     }
 
     patch = findHeightMapPatch(sHeightMap->tree, x, z);
@@ -61,7 +61,7 @@ s32 getGroundAtGlobal(f32 x, f32 z, GroundResult* result) {
     result->normal.y = normal->z; // z is UP
     result->normal.z = normal->y;
     result->surfaceType = getPatchSurfaceType(patch);
-    return TRUE;
+    return true;
 }
 
 s32 getGroundAt(f32 x, f32 z, GroundResult* result) {
@@ -69,7 +69,7 @@ s32 getGroundAt(f32 x, f32 z, GroundResult* result) {
 
     if (block == NULL || block->descriptor == NULL || sHeightMap == NULL) {
         setDefaultGroundResult(result);
-        return FALSE;
+        return false;
     }
 
     x /= 100.0f;
@@ -78,12 +78,12 @@ s32 getGroundAt(f32 x, f32 z, GroundResult* result) {
     z = z + block->descriptor->worldPos.z;
     if (!getGroundAtGlobal(x, z, result)) {
         setDefaultGroundResult(result);
-        return FALSE;
+        return false;
     }
 
     result->height -= block->descriptor->worldPos.y;
     result->height *= 100.0f;
-    return TRUE;
+    return true;
 }
 
 s32 getCeilingAtGlobal(f32 x, f32 z, GroundResult* result) {
@@ -92,7 +92,7 @@ s32 getCeilingAtGlobal(f32 x, f32 z, GroundResult* result) {
 
     if (sCeilingMap == NULL) {
         setDefaultGroundResult(result);
-        return FALSE;
+        return false;
     }
 
     patch = findHeightMapPatch(sCeilingMap->tree, x, z);
@@ -102,20 +102,20 @@ s32 getCeilingAtGlobal(f32 x, f32 z, GroundResult* result) {
     result->normal.y = normal->z;
     result->normal.z = normal->y;
     result->surfaceType = getPatchSurfaceType(patch);
-    return TRUE;
+    return true;
 }
 
 s32 getCeilingAt(f32 x, f32 z, GroundResult* arg2) {
     WorldBlock* block;
 
     if (sCeilingMap == NULL) {
-        return FALSE;
+        return false;
     }
 
     block = getCurrentWorldBlock();
     if (block == NULL || block->descriptor == NULL || sCeilingMap == NULL) {
         setDefaultGroundResult(arg2);
-        return FALSE;
+        return false;
     }
 
     x /= 100.0f;
@@ -124,10 +124,10 @@ s32 getCeilingAt(f32 x, f32 z, GroundResult* arg2) {
     z = z + block->descriptor->worldPos.z;
     if (!getCeilingAtGlobal(x, z, arg2)) {
         setDefaultGroundResult(arg2);
-        return FALSE;
+        return false;
     }
 
     arg2->height -= block->descriptor->worldPos.y;
     arg2->height *= 100.0f;
-    return TRUE;
+    return true;
 }

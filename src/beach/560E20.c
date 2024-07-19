@@ -71,7 +71,7 @@ void func_beach_802C90E0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     // required to match
-    if (FALSE) {
+    if (false) {
     }
 
     pokemon->hSpeed = 200.0f;
@@ -87,7 +87,7 @@ void func_beach_802C914C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     // required to match
-    if (FALSE) {
+    if (false) {
     }
 
     pokemon->hSpeed = 0.0f;

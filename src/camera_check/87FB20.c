@@ -80,11 +80,11 @@ s32 func_camera_check_801E27FC(void) {
     count = func_8009BC68();
     for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
         if (item->unk_18_0x20000000 || item->unk_18_0x10000000 || item->unk_18_0x08000000) {
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 UnkIndigoHalibut* func_camera_check_801E286C(s32 arg0) {
@@ -243,7 +243,7 @@ PhotoData* func_camera_check_801E2D98(s32 arg0) {
         }
 
         // required to match
-        if (FALSE) {
+        if (false) {
         }
     }
 
@@ -268,9 +268,9 @@ s32 func_camera_check_801E2E04(void) {
 s32 func_camera_check_801E2E5C(s32 id) {
     if (id == PokemonID_1004 || id == PokemonID_1010 || id == PokemonID_1018 || id == PokemonID_1022 ||
         id == PokemonID_1028 || id == PokemonID_1035) {
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 s32 func_camera_check_801E2EA0(s32 id) {
@@ -283,26 +283,26 @@ s32 func_camera_check_801E2EC0(s32 id) {
         case PokemonID_600:
         case PokemonID_601:
         case PokemonID_602:
-            return TRUE;
+            return true;
         default:
-            return FALSE;
+            return false;
     }
 }
 
 s32 func_camera_check_801E2EF4(s32 id) {
     if (id > 0 && id <= POKEDEX_MAX) {
-        return TRUE;
+        return true;
     }
 
     if (!func_camera_check_801E2E5C(id)) {
-        return FALSE;
+        return false;
     }
 
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
@@ -364,18 +364,18 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
 
 s32 func_camera_check_801E30CC(s32 arg0) {
     if (func_800BF3D4_5C274(arg0)) {
-        return FALSE;
+        return false;
     }
 
     if (arg0 > 0 && arg0 <= POKEDEX_MAX) {
-        return TRUE;
+        return true;
     }
 
     if (func_camera_check_801E2E5C(arg0) && checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 s32 func_camera_check_801E3140(void) {
@@ -388,14 +388,14 @@ s32 func_camera_check_801E3140(void) {
     hashDashEngine = checkPlayerFlag(PFID_HAS_DASH_ENGINE);
     for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
         if (item->unk_08 > 0 && item->unk_08 <= POKEDEX_MAX) {
-            return TRUE;
+            return true;
         }
         if (hashDashEngine && func_camera_check_801E2E5C(item->unk_08)) {
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 void func_camera_check_801E31E4(s32 arg0, UNK_TYPE arg1) {
@@ -421,7 +421,7 @@ void func_camera_check_801E31E4(s32 arg0, UNK_TYPE arg1) {
         }
 
         // Required to match
-        if (TRUE) {
+        if (true) {
         }
     }
 }
@@ -465,11 +465,11 @@ s32 func_camera_check_801E3420(void) {
     count = D_camera_check_8024A1C4;
     for (i = 0, item = &D_camera_check_80249B30[D_camera_check_8024A1C0]; i < count; item++, i++) {
         if (!item->unk_18_0x01000000) {
-            return FALSE;
+            return false;
         }
     }
 
-    return TRUE;
+    return true;
 }
 
 s32 func_camera_check_801E350C(void) {
@@ -480,11 +480,11 @@ s32 func_camera_check_801E350C(void) {
     count = D_camera_check_8024A1C4;
     for (i = 0, item = &D_camera_check_80249B30[D_camera_check_8024A1C0]; i < count; item++, i++) {
         if (!item->unk_18_0x01000000 && item->unk_18_0x80000000) {
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 s32 func_camera_check_801E3620(const void* arg0, const void* arg1) {
@@ -644,7 +644,7 @@ void func_camera_check_801E3C24(s32 arg0) {
 
     if (arg0 == 0) {
         func_camera_check_801E3910(0);
-        D_camera_check_802089F0 = FALSE;
+        D_camera_check_802089F0 = false;
         D_camera_check_8024A1C0 = 0;
         D_camera_check_8024A1C4 = func_8009BC68();
     } else {
@@ -658,7 +658,7 @@ void func_camera_check_801E3C24(s32 arg0) {
             }
         }
 
-        D_camera_check_802089F0 = TRUE;
+        D_camera_check_802089F0 = true;
     }
 }
 
@@ -691,10 +691,10 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
     if (temp_v0->unk_3AA == 0) {
         arg1->unk_04 = NULL;
         arg1->unk_08 = 9999;
-        arg1->unk_18_0x80000000 = FALSE;
+        arg1->unk_18_0x80000000 = false;
         arg1->unk_0A = 0;
         arg1->unk_0C = 0;
-        arg1->unk_18_0x04000000 = TRUE;
+        arg1->unk_18_0x04000000 = true;
         arg1->unk_0E = 0;
         arg1->unk_10 = 0;
         arg1->unk_12 = 0;
@@ -704,7 +704,7 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
         arg1->unk_04 = temp_v0->unk_3A0;
         arg1->unk_08 = temp_v0->unk_3AA;
         arg1->unk_18_0x80000000 = func_camera_check_801E30CC(arg1->unk_08);
-        arg1->unk_18_0x04000000 = FALSE;
+        arg1->unk_18_0x04000000 = false;
         arg1->unk_0A = temp_v0->unk_3B4;
         arg1->unk_0C = temp_v0->unk_3A7;
         arg1->unk_0E = temp_v0->unk_3B0;
@@ -715,11 +715,11 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
         D_camera_check_8024A1D4 += (s32) arg1->unk_04;
         func_camera_check_801E23A8(arg1->unk_08, 1);
     }
-    arg1->unk_18_0x40000000 = FALSE;
-    arg1->unk_18_0x20000000 = FALSE;
-    arg1->unk_18_0x10000000 = FALSE;
-    arg1->unk_18_0x08000000 = FALSE;
-    arg1->unk_18_0x01000000 = FALSE;
+    arg1->unk_18_0x40000000 = false;
+    arg1->unk_18_0x20000000 = false;
+    arg1->unk_18_0x10000000 = false;
+    arg1->unk_18_0x08000000 = false;
+    arg1->unk_18_0x01000000 = false;
 }
 
 void func_camera_check_801E3EEC(void (*arg0)(s32)) {
@@ -727,7 +727,7 @@ void func_camera_check_801E3EEC(void (*arg0)(s32)) {
     s32 temp_v0;
     s32 i;
 
-    D_camera_check_802089F0 = FALSE;
+    D_camera_check_802089F0 = false;
     D_camera_check_8024A1C0 = 0;
     temp_v0 = D_camera_check_8024A1C4 = func_8009BC68();
     D_camera_check_8024A1D4 = 0;

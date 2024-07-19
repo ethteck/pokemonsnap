@@ -239,14 +239,14 @@ void func_800E5EF8_8AB718(GObj* obj) {
         if (func_800BFC5C_5CAFC() != 6) {
             D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
         }
-        while (TRUE) {
+        while (true) {
             ohWait(1);
         }
     }
 
     if (func_800C0290_5D130() != 6) {
         D_80206B78_9CC398->sprite.attr |= SP_HIDDEN;
-        while (TRUE) {
+        while (true) {
             ohWait(1);
         }
     }
@@ -258,7 +258,7 @@ void func_800E5EF8_8AB718(GObj* obj) {
     D_80206B78_9CC398->sprite.attr &= ~SP_HIDDEN;
     var_f20 = 0.0f;
 
-    while (TRUE) {
+    while (true) {
         D_80206B78_9CC398->sprite.alpha = (s32) ((f32) ((__sinf(var_f20) / __sinf(PI_2)) + 0.001) * 254.0f);
         var_f20 += PI / 96;
         if (var_f20 > PI_2) {
@@ -270,7 +270,7 @@ void func_800E5EF8_8AB718(GObj* obj) {
     D_80206B78_9CC398->sprite.scalex = 1.0f;
     D_80206B78_9CC398->sprite.scaley = 1.0f;
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

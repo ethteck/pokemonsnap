@@ -32,7 +32,7 @@ void func_801DC948_9FA608(s32 arg0, s32 arg1) {
 void func_801DCA58_9FA718(GObj* arg0) {
     UnkStruct800BEDF8* sp1C;
 
-    while (TRUE) {
+    while (true) {
         sp1C = func_800AA38C(0);
         ohWait(1);
     }

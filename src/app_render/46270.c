@@ -36,7 +36,7 @@ Overlay D_800ABF9C = OVERLAY(valley_code);
 Overlay D_800ABFC0 = OVERLAY(_4A8160);
 Overlay D_800ABFE4 = OVERLAY(rainbow_code);
 
-static s32 padding2[1] = {0};
+static s32 padding2[1] = { 0 };
 s32 D_800AC00C = 0;
 s32 D_800AC010 = 0;
 
@@ -253,7 +253,7 @@ void start_scene_manager(s32 arg0) {
 
     sceneId = SCENE_8;
 
-    while (TRUE) {
+    while (true) {
         gtlSetIntervals(1, 1);
         setIdleScript(NULL);
 

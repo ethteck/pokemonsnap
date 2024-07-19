@@ -35,7 +35,7 @@ s32 func_80364494_5048A4(Unk80364494* arg0, f32* arg1, f32* arg2, f32* arg3, f32
     outZ = D_803B1518_551928[0][2] * x + D_803B1518_551928[1][2] * y + D_803B1518_551928[2][2] * z + D_803B1518_551928[3][2];
     outS = D_803B1518_551928[0][3] * x + D_803B1518_551928[1][3] * y + D_803B1518_551928[2][3] * z + D_803B1518_551928[3][3];
     if (outS == 0.0f) {
-        return TRUE;
+        return true;
     }
 
     outS = 1.0f / outS;
@@ -44,14 +44,14 @@ s32 func_80364494_5048A4(Unk80364494* arg0, f32* arg1, f32* arg2, f32* arg3, f32
     outZ *= outS;
 
     if (outX < -1.0f || outX > 1.0f || outY < -1.0f || outY > 1.0f || outZ < -1.0f || outZ > 1.0f) {
-        return TRUE;
+        return true;
     }
 
     *arg1 = outX;
     *arg2 = outY;
     *arg3 = outZ;
     *arg4 = outS;
-    return FALSE;
+    return false;
 }
 
 s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z) {
@@ -82,18 +82,18 @@ s32 func_80364618_504A28(GObj* obj, f32 x, f32 y, f32 z) {
 s32 func_80364718_504B28(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     if (GET_POKEMON(obj)->flags & POKEMON_FLAG_40) {
-        Pokemon_SetFlag100(obj, FALSE);
+        Pokemon_SetFlag100(obj, false);
         return 0;
     }
     if (10000.0f < GET_POKEMON(obj)->playerDist) {
-        Pokemon_SetFlag100(obj, TRUE);
+        Pokemon_SetFlag100(obj, true);
         return 1;
     }
     if (func_80364618_504A28(obj, pokemon->collPosition.x, pokemon->collPosition.y, pokemon->collPosition.z) != 0) {
-        Pokemon_SetFlag100(obj, TRUE);
+        Pokemon_SetFlag100(obj, true);
         return 1;
     }
-    Pokemon_SetFlag100(obj, FALSE);
+    Pokemon_SetFlag100(obj, false);
     return 0;
 }
 

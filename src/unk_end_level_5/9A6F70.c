@@ -643,7 +643,7 @@ GObj* func_801DE830_9A8A80(void) {
     sobj->sprite.y = 196;
     sobj->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
     D_802500A4_A1A2F4 = sobj;
-    D_80208B74_9D2DC4 = TRUE;
+    D_80208B74_9D2DC4 = true;
     func_800A85E8(func_801DCED4_9A7124, LINK_6, DL_LINK_0, NULL);
     D_8024FFF0_A1A240 = func_8036AC6C_83E41C(0x74, 0xC5, 0xC, 0xC, 0x400);
     func_8036B870_83F020(D_8024FFF0_A1A240, 1, 0xFF, 0xF, 0x19, 0xFF);
@@ -1573,11 +1573,11 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     func_803700A4_843854(1);
     func_8036D4A0_840C50((0, 0));
 
-    while (TRUE) {
+    while (true) {
         func_801E37A0_9AD9F0();
         func_8037172C_844EDC(0);
         func_80374D20_8484D0();
-        D_80208B74_9D2DC4 = FALSE;
+        D_80208B74_9D2DC4 = false;
         func_800AADF0(13);
         ohWait(1);
     }

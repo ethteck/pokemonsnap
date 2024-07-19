@@ -2,14 +2,14 @@
 #include "app_level.h"
 
 enum IconSpriteIds {
-    ICON_ID_APPLE       = 0,
+    ICON_ID_APPLE = 0,
     ICON_ID_PESTER_BALL = 1,
-    ICON_ID_FLUTE       = 2,
-    ICON_ID_ZOOM        = 3,
-    ICON_ID_DASH        = 4,
+    ICON_ID_FLUTE = 2,
+    ICON_ID_ZOOM = 3,
+    ICON_ID_DASH = 4,
     ICON_ID_DASH_ZOOMED = 5,
-    ICON_ID_TAKE_PHOTO  = 6,
-    ICON_ID_ZOOM_OFF    = 7
+    ICON_ID_TAKE_PHOTO = 6,
+    ICON_ID_ZOOM_OFF = 7
 };
 
 typedef struct SpriteDefStruct {
@@ -45,15 +45,15 @@ u32 EndOfSpriteData[] = {
 };
 
 SpriteStruct Icons_IconObjects[] = {
-    { 148, 104, NULL, 0, 0, NULL},
-    { 124,  80, NULL, 0, 0, NULL},
-    { 148,  80, NULL, 0, 0, NULL},
-    { 172,  80, NULL, 0, 0, NULL},
-    { 124, 104, NULL, 0, 0, NULL},
-    { 172, 104, NULL, 0, 0, NULL},
-    { 124, 128, NULL, 0, 0, NULL},
-    { 148, 128, NULL, 0, 0, NULL},
-    { 172, 128, NULL, 0, 0, NULL},
+    { 148, 104, NULL, 0, 0, NULL },
+    { 124, 80, NULL, 0, 0, NULL },
+    { 148, 80, NULL, 0, 0, NULL },
+    { 172, 80, NULL, 0, 0, NULL },
+    { 124, 104, NULL, 0, 0, NULL },
+    { 172, 104, NULL, 0, 0, NULL },
+    { 124, 128, NULL, 0, 0, NULL },
+    { 148, 128, NULL, 0, 0, NULL },
+    { 172, 128, NULL, 0, 0, NULL },
 };
 s32 D_80388204_528614[] = { ITEM_ID_APPLE, ITEM_ID_PESTER_BALL, ITEM_ID_POKEFLUTE };
 SObj* Icons_ButtonIconsCopy[] = { NULL, NULL, NULL };
@@ -61,21 +61,21 @@ u32 D_8038821C_52862C = 0;
 u8 Icons_ItemFlags = 0;
 SObj* Icons_ButtonIcons[] = { NULL, NULL, NULL };
 GObj* Icons_MainObject = NULL;
-s32 Icons_IsShown = TRUE;
+s32 Icons_IsShown = true;
 s32 Icons_NumItemsAvailable = 3;
-u8 Icons_DashEngineEnabled = FALSE;
-u8 Icons_FluteIsPlayed = FALSE;
+u8 Icons_DashEngineEnabled = false;
+u8 Icons_FluteIsPlayed = false;
 SpriteDefStruct Icons_IconDefs[] = {
-    { 210, 189, FALSE, 0, 2, &D_80387448_527858 },
-    { 182, 185, FALSE, 0, 0, &D_803867A8_526BB8 },
-    { 238, 185, FALSE, 0, 4, &D_803880E8_5284F8 },
-    { 268, 189, FALSE, 1, 6, &D_80383B48_523F58 },
-    { 268, 155, FALSE, 1, 8, &D_80384E68_525278 },
-    { 316, 155, TRUE, 1, 4, &D_80384E68_525278 },
-    { 238, 233, TRUE, 0, 0, &D_80385B08_525F18 },
-    { 316, 189, TRUE, 1, 2, &D_803841C8_5245D8 },
+    { 210, 189, false, 0, 2, &D_80387448_527858 },
+    { 182, 185, false, 0, 0, &D_803867A8_526BB8 },
+    { 238, 185, false, 0, 4, &D_803880E8_5284F8 },
+    { 268, 189, false, 1, 6, &D_80383B48_523F58 },
+    { 268, 155, false, 1, 8, &D_80384E68_525278 },
+    { 316, 155, true, 1, 4, &D_80384E68_525278 },
+    { 238, 233, true, 0, 0, &D_80385B08_525F18 },
+    { 316, 189, true, 1, 2, &D_803841C8_5245D8 },
 };
-u8 Icons_IsZoomedIn = FALSE;
+u8 Icons_IsZoomedIn = false;
 
 // bss
 extern s32 Icons_TotalMoveOutFrameCounter;
@@ -85,7 +85,6 @@ extern s32 Icons_MoveOutCounter[8];
 void Icons_FinishZoomIn(GObj*);
 
 void Icons_UpdateDefault(GObj* arg0) {
-
 }
 
 void func_8035CBB8_4FCFC8(Sprite* arg0, Sprite* arg1) {
@@ -158,8 +157,8 @@ void Icons_ShrinkAndRestore(s32 id, f32 arg1, f32 arg2) {
     }
     spScale(&Icons_IconObjects[id].spriteObj->sprite, 1.0f, 1.0f);
     spMove(&Icons_IconObjects[id].spriteObj->sprite,
-            Icons_IconObjects[id].x,
-            Icons_IconObjects[id].y);
+           Icons_IconObjects[id].x,
+           Icons_IconObjects[id].y);
 }
 
 void Icons_UpdateAppleIcon(GObj* arg0) {
@@ -178,7 +177,7 @@ void Icons_UpdateFluteIcon(GObj* arg0) {
     f32 scaleXIncr = 0.05f;
     f32 scaleYIncr = 0.05f;
 
-    while (TRUE) {
+    while (true) {
         if (!Icons_FluteIsPlayed) {
             break;
         }
@@ -331,15 +330,15 @@ void Icons_ProcessZoomIn(GObj* arg0) {
     s32 i;
     s32 isMoving;
 
-    while (TRUE) {
-        isMoving = FALSE;
+    while (true) {
+        isMoving = false;
         if (!Icons_IsZoomedIn) {
             break;
         }
 
         for (i = 0; i < ARRAY_COUNT(Icons_IconDefs); i++) {
             if (!Icons_IconDefs[i].shownWhenZoomedIn && Icons_IconObjects[i].spriteObj != NULL && Icons_MoveOutCounter[i] < 8) {
-                isMoving = TRUE;
+                isMoving = true;
                 Icons_MoveOutCounter[i]++;
                 Icons_MoveIcon(i, 6);
             }
@@ -374,9 +373,9 @@ void Icons_FinishZoomOut(GObj* arg0) {
         }
     }
 
-    while (TRUE) {
-        isMoving = FALSE;
-        if (Icons_IsZoomedIn == TRUE) {
+    while (true) {
+        isMoving = false;
+        if (Icons_IsZoomedIn == true) {
             break;
         }
 
@@ -384,12 +383,12 @@ void Icons_FinishZoomOut(GObj* arg0) {
             if (!Icons_IconDefs[i].shownWhenZoomedIn && Icons_IconObjects[i].spriteObj != NULL) {
                 if (Icons_IconDefs[i].unk_10 <= 8 - Icons_TotalMoveOutFrameCounter) {
                     if (Icons_MoveOutCounter[i] > 0) {
-                        isMoving = TRUE;
+                        isMoving = true;
                         Icons_MoveOutCounter[i]--;
                         Icons_MoveIcon(i, -6);
                     }
                 } else {
-                    isMoving = TRUE;
+                    isMoving = true;
                 }
             }
         }
@@ -410,15 +409,15 @@ void Icons_ProcessZoomOut(GObj* arg0) {
     s32 i;
     s32 isMoving;
 
-    while (TRUE) {
-        isMoving = FALSE;
-        if (Icons_IsZoomedIn == TRUE) {
+    while (true) {
+        isMoving = false;
+        if (Icons_IsZoomedIn == true) {
             break;
         }
 
         for (i = 0; i < ARRAY_COUNT(Icons_IconDefs); i++) {
             if (Icons_IconDefs[i].shownWhenZoomedIn && Icons_IconObjects[i].spriteObj != NULL && Icons_MoveOutCounter[i] >= 0) {
-                isMoving = TRUE;
+                isMoving = true;
                 Icons_MoveOutCounter[i]--;
                 Icons_MoveIcon(i, 6);
             }
@@ -453,8 +452,8 @@ void Icons_FinishZoomIn(GObj* arg0) {
         }
     }
 
-    while (TRUE) {
-        isMoving = FALSE;
+    while (true) {
+        isMoving = false;
         if (!Icons_IsZoomedIn) {
             break;
         }
@@ -463,12 +462,12 @@ void Icons_FinishZoomIn(GObj* arg0) {
             if (Icons_IconDefs[i].shownWhenZoomedIn && Icons_IconObjects[i].spriteObj != NULL) {
                 if (Icons_IconDefs[i].unk_10 <= D_803AF8BC_54FCCC) {
                     if (Icons_MoveOutCounter[i] < 8) {
-                        isMoving = TRUE;
+                        isMoving = true;
                         Icons_MoveOutCounter[i]++;
                         Icons_MoveIcon(i, -6);
                     }
                 } else {
-                    isMoving = TRUE;
+                    isMoving = true;
                 }
             }
         }
@@ -486,25 +485,25 @@ void Icons_FinishZoomIn(GObj* arg0) {
 }
 
 void Icons_ProcessZoom(s32 zoomEnabled) {
-    if (zoomEnabled == 0 && Icons_IsZoomedIn != FALSE) {
+    if (zoomEnabled == 0 && Icons_IsZoomedIn != false) {
         omCreateProcess(Icons_MainObject, Icons_ProcessZoomOut, 0, 1);
-        Icons_IsZoomedIn = FALSE;
+        Icons_IsZoomedIn = false;
         return;
     }
-    if (zoomEnabled == 1 && Icons_IsZoomedIn != TRUE) {
+    if (zoomEnabled == 1 && Icons_IsZoomedIn != true) {
         omCreateProcess(Icons_MainObject, Icons_ProcessZoomIn, 0, 1);
-        Icons_IsZoomedIn = TRUE;
+        Icons_IsZoomedIn = true;
     }
 }
 
 void Icons_Show(void) {
     Icons_MainObject->flags &= ~GOBJ_FLAG_HIDDEN;
-    Icons_IsShown = TRUE;
+    Icons_IsShown = true;
 }
 
 void Icons_Hide(void) {
     Icons_MainObject->flags |= GOBJ_FLAG_HIDDEN;
-    Icons_IsShown = FALSE;
+    Icons_IsShown = false;
 }
 
 void Icons_ProcessButtonPress(s32 eventID) {
@@ -513,12 +512,12 @@ void Icons_ProcessButtonPress(s32 eventID) {
     } else if (eventID == ITEM_ID_APPLE) {
         omCreateProcess(Icons_MainObject, Icons_UpdateAppleIcon, 0, 1);
     } else if (eventID == ITEM_ID_POKEFLUTE) {
-        if (Icons_FluteIsPlayed == FALSE) {
+        if (Icons_FluteIsPlayed == false) {
             omCreateProcess(Icons_MainObject, Icons_UpdateFluteIcon, 0, 1);
-            Icons_FluteIsPlayed = TRUE;
+            Icons_FluteIsPlayed = true;
         }
     } else {
-        Icons_FluteIsPlayed = FALSE;
+        Icons_FluteIsPlayed = false;
     }
 }
 

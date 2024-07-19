@@ -64,7 +64,7 @@ void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
 }
 
 void func_800E4960_A0BEF0(GObj* gobj) {
-    while (TRUE) {
+    while (true) {
         if (D_800E832B_A0F8BB == 5) {
             if (D_800E832C_A0F8BC >= 3600.0) {
                 D_800E832B_A0F8BB = 1;
@@ -82,7 +82,7 @@ void func_800E4960_A0BEF0(GObj* gobj) {
         ohWait(1);
     }
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -126,7 +126,7 @@ void func_800E4B4C_A0C0DC(GObj* arg0) {
     animSetModelTreeAnimation(D_800E8310_A0F8A0, &D_80393DC0, 0.0f);
     animSetModelAnimationSpeed(D_800E8310_A0F8A0, 0.5f);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -222,7 +222,7 @@ void func_800E5370_A0C900(GObj* arg0) {
     sobj1->sprite.attr |= SP_HIDDEN;
     sobj2->sprite.attr |= SP_HIDDEN;
 
-    while (TRUE) {
+    while (true) {
         switch (D_800E832C_A0F8BC) {
             case 0xD2:
                 func_800E5330_A0C8C0(sobj1);
@@ -264,7 +264,7 @@ void func_800E5574_A0CB04(GObj* arg0) {
     auSetBGMVolume(0, 0x7F00);
     auSetBGMVolume(1, 0x7F00);
 
-    while (TRUE) {
+    while (true) {
         switch (D_800E832C_A0F8BC) {
             case 0x1:
                 auPlaySong(0, 0x19);
@@ -386,7 +386,7 @@ void func_800E5574_A0CB04(GObj* arg0) {
 
     ohWait(1);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

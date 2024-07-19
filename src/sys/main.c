@@ -71,17 +71,17 @@ s32 func_80000478(void) {
 
 void check_sp_imem(void) {
     if (IO_READ(SP_IMEM_START) == 6103) {
-        gSPImemOkay = TRUE;
+        gSPImemOkay = true;
     } else {
-        gSPImemOkay = FALSE;
+        gSPImemOkay = false;
     }
 }
 
 void check_sp_dmem(void) {
-    if (IO_READ(SP_DMEM_START) == (u32)-1) {
-        gSPDmemOkay = TRUE;
+    if (IO_READ(SP_DMEM_START) == (u32) -1) {
+        gSPDmemOkay = true;
     } else {
-        gSPDmemOkay = FALSE;
+        gSPDmemOkay = false;
     }
 }
 
@@ -91,19 +91,27 @@ void fatal_stack_overflow_thread(s32 tid) {
 }
 
 void check_stack_probes(void) {
-    if (gThread0Stack[7] != STACK_PROBE_MAGIC) { fatal_stack_overflow_thread(0); }
-    if (sThread1Stack[7] != STACK_PROBE_MAGIC) { fatal_stack_overflow_thread(1); }
-    if (sThread3Stack[7] != STACK_PROBE_MAGIC) { fatal_stack_overflow_thread(3); }
-    if (sThread5Stack[7] != STACK_PROBE_MAGIC) { fatal_stack_overflow_thread(5); }
+    if (gThread0Stack[7] != STACK_PROBE_MAGIC) {
+        fatal_stack_overflow_thread(0);
+    }
+    if (sThread1Stack[7] != STACK_PROBE_MAGIC) {
+        fatal_stack_overflow_thread(1);
+    }
+    if (sThread3Stack[7] != STACK_PROBE_MAGIC) {
+        fatal_stack_overflow_thread(3);
+    }
+    if (sThread5Stack[7] != STACK_PROBE_MAGIC) {
+        fatal_stack_overflow_thread(5);
+    }
 }
 
-void thread5_main(UNUSED void *arg) {
+void thread5_main(UNUSED void* arg) {
     osCreateViManager(OS_PRIORITY_VIMGR);
     gRomPiHandle = osCartRomInit();
     osCreatePiManager(OS_PRIORITY_PIMGR, &sPIcmdQ, sPIcmdBuf, ARRAY_COUNT(sPIcmdBuf));
     dmaCreateMessageQueue();
 
-    dmaReadRom((void*)PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
+    dmaReadRom((void*) PHYSICAL_TO_ROM(0xB70), gRspBootCode, sizeof(gRspBootCode));
     check_sp_imem();
     check_sp_dmem();
     osCreateMesgQueue(&gThreadingQueue, sBlockMsg, ARRAY_COUNT(sBlockMsg));
@@ -131,14 +139,17 @@ void thread5_main(UNUSED void *arg) {
     start_scene_manager(0);
 }
 
-void thread1_idle(void *arg) {
+void thread1_idle(void* arg) {
     start_thread8_rmon();
     osCreateThread(&gThread5, 5, thread5_main, arg, sThread5Stack + THREAD5_STACK_SIZE, THREAD5_PRI);
     sThread5Stack[7] = STACK_PROBE_MAGIC;
-    if (!sNoThread5) { osStartThread(&gThread5); }
+    if (!sNoThread5) {
+        osStartThread(&gThread5);
+    }
     osSetThreadPri(NULL, OS_PRIORITY_IDLE);
 
-    while (TRUE) { }
+    while (true) {
+    }
 }
 
 void game_main(void) {

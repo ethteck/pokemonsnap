@@ -70,30 +70,30 @@ void func_800A1ED0(s32 arg0, s32* arg1, s32* arg2) {
     if (arg0 >= 8) {
         return;
     }
-    
+
     D_800BE228[arg0] = *arg1;
     D_800BE248[arg0] = *arg2;
-    D_800BE268[arg0] = (UnkAsphaltLeopard**)(arg1 + 1);
-    D_800BE288[arg0] = (UnkPinkLeopard**)(arg2 + 1);
+    D_800BE268[arg0] = (UnkAsphaltLeopard**) (arg1 + 1);
+    D_800BE288[arg0] = (UnkPinkLeopard**) (arg2 + 1);
 
     for (i = 1; i <= D_800BE228[arg0]; i++) {
-        arg1[i] = (u32)(arg1) + arg1[i];
+        arg1[i] = (u32) (arg1) + arg1[i];
     }
     for (i = 1; i <= D_800BE248[arg0]; i++) {
-        arg2[i] = (u32)(arg2) + arg2[i];
+        arg2[i] = (u32) (arg2) + arg2[i];
     }
 
     for (i = 0; i < D_800BE248[arg0]; i++) {
         for (j = 0; j < D_800BE288[arg0][i]->unk_00; j++) {
-            D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+            D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
         }
         if (D_800BE288[arg0][i]->unk_04 == 2) {
             if (D_800BE288[arg0][i]->unk_14 & 1) {
                 j = D_800BE288[arg0][i]->unk_00;
-                D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+                D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
             } else {
                 for (j = D_800BE288[arg0][i]->unk_00; j < 2 * D_800BE288[arg0][i]->unk_00; j++) {
-                    D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+                    D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
                 }
             }
         }
@@ -129,7 +129,7 @@ GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     if (ohFindById(-6) != NULL) {
         return NULL;
     } else {
-        return ohCreateCamera(-6, func_800A4798, LINK_0, 0x80000000, func_800A4858, dlPriority, 0, 0, FALSE, 1, NULL, 1, FALSE);
+        return ohCreateCamera(-6, func_800A4798, LINK_0, 0x80000000, func_800A4858, dlPriority, 0, 0, false, 1, NULL, 1, false);
     }
 }
 
@@ -184,9 +184,9 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 a
         ret->unk_06 = ((s16) arg2) | 0x10;
     }
     if (arg4 != 0) {
-        ret->unk_0C = TRUE;
+        ret->unk_0C = true;
     } else {
-        ret->unk_0C = FALSE;
+        ret->unk_0C = false;
     }
     ret->unk_48.r = ret->unk_48.g = ret->unk_48.b = ret->unk_48.a = 0xFF;
     ret->unk_0B = temp;
@@ -409,7 +409,7 @@ void func_800A4858(GObj* camObj) {
     f32 temp_f12;
     f32 temp_f14;
     f32 temp_f28;
-    
+
     f32 temp_f0;
     f32 temp_f22;
     f32 sp220;
@@ -429,7 +429,7 @@ void func_800A4858(GObj* camObj) {
 
     s32 j;
     s32 var_s2;
-    
+
     s32 temp_fp;
     s32 temp_t4;
     s32 temp_s3;

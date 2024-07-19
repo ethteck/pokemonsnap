@@ -1718,7 +1718,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     func_803705A4_843D54();
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         sp30 = D_80230C30_A275A0;
         func_801E3B18_9DA488();
         func_8037172C_844EDC(0);

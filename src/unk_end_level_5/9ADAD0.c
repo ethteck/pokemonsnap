@@ -21,7 +21,7 @@ void func_800BF4A8_5C348(UnkFuzzyCaterpillar* arg0, s32 arg1);
 void func_800BF9F4_5C894(s32);
 
 void func_801E3880_9ADAD0(void) {
-    D_80208C40_9D2E90 = TRUE;
+    D_80208C40_9D2E90 = true;
 }
 
 void func_801E389C_9ADAEC(const UnkFuzzyCaterpillar* src, UnkFuzzyCaterpillar* dst) {
@@ -219,6 +219,6 @@ void func_801E41AC_9AE3FC(void) {
     UNUSED s32 pad;
 
     if (D_80208C40_9D2E90) {
-        D_80208C40_9D2E90 = FALSE;
+        D_80208C40_9D2E90 = false;
     }
 }

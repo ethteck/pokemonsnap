@@ -585,7 +585,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     func_800E5298_8AAAB8();
     func_800E6410_8ABC30();
 
-    while (TRUE) {
+    while (true) {
         sp3C = func_800E3ED4_8A96F4();
         func_80375284_848A34(3);
         func_803700A4_843854(0);

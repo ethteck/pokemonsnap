@@ -199,7 +199,7 @@ void func_credits_801DDE24(GObj* gobj) {
     ohWait(1);
     omEndProcess(NULL);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -231,7 +231,7 @@ void func_credits_801DDF48(GObj* arg0) {
     }
     omEndProcess(NULL);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -254,7 +254,7 @@ void func_credits_801DE060(void) {
         func_credits_801DDF1C(D_credits_801ECC80[i]);
         credit = D_credits_801E9400[i];
 
-        while (TRUE) {
+        while (true) {
             func_credits_801DDB60();
             temp_v0 = func_credits_801DDC0C();
 
@@ -297,7 +297,7 @@ void func_credits_801DE060(void) {
     func_credits_801DD980();
     ohWait(180);
 
-    while (TRUE) {
+    while (true) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_credits_801DDA60();
             break;
@@ -321,7 +321,7 @@ void func_credits_801DE35C(void) {
     for (i = 0; i < ARRAY_COUNT(D_credits_801E9400); i++) {
         credit = D_credits_801E9400[i];
 
-        while (TRUE) {
+        while (true) {
             func_credits_801DDB60();
             temp_v0 = func_credits_801DDC0C();
 
@@ -375,7 +375,7 @@ void func_credits_801DE35C(void) {
     func_credits_801DD744();
     ohWait(180);
 
-    while (TRUE) {
+    while (true) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_credits_801DDA60();
             break;

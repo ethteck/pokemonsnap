@@ -64,7 +64,7 @@ void func_80000920(void) {
 }
 
 void func_80000928(void) {
-    while (TRUE) {
+    while (true) {
         if (scCurrentGfxTask == NULL && scCurrentQueue3Task == NULL && scQueue3Head == NULL) {
             return;
         }
@@ -97,7 +97,7 @@ void scAddClient(SCClient* client, OSMesgQueue* mq, OSMesg* msg, u32 count) {
     scExecuteBlocking(&t.info);
 }
 
-// return TRUE if task can be executed now
+// return true if task can be executed now
 s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
     s32 idx;
     s32 i;
@@ -106,10 +106,10 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
     void* fb;
 
     if (scNextFrameBuffer != NULL) {
-        return TRUE;
+        return true;
     }
     if (scUnkFrameBuffer != NULL) {
-        return FALSE;
+        return false;
     }
 
     nextFb = osViGetNextFramebuffer();
@@ -123,7 +123,7 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
             scUnkFrameBuffer = scNextFrameBuffer = fb;
             scRDPOutputBufferUsed = 0;
             scTimestampSetFb = osGetCount();
-            return TRUE;
+            return true;
         }
     }
 
@@ -134,11 +134,11 @@ s32 scCheckGfxTaskDefault(SCTaskGfx* t) {
             scNextFrameBuffer = fb;
             scRDPOutputBufferUsed = 0;
             scTimestampSetFb = osGetCount();
-            return TRUE;
+            return true;
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 s32 func_80000B84(UNUSED SCTaskInfo* t) {
@@ -288,7 +288,7 @@ void scSetNewViMode(void) {
     scViModeCurrent = scViModeNext;
     osViSetMode(&scViModeCurrent);
     osViBlack(scViSettings.blackout);
-    scViSettingsUpdated = FALSE;
+    scViSettingsUpdated = false;
 }
 
 void func_80000F40(u32, u32, s32, s16, s16, s16, s16);
@@ -314,89 +314,89 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 
     // L80000F5C
     if (flags & 0x00004) {
-        scViSettings.serrate = TRUE;
+        scViSettings.serrate = true;
         scViModeNext.comRegs.ctrl |= VI_CTRL_SERRATE_ON;
     }
     // L80000F8C
     if (flags & 0x00008) {
-        scViSettings.serrate = FALSE;
+        scViSettings.serrate = false;
         scViModeNext.comRegs.ctrl &= ~VI_CTRL_SERRATE_ON;
     }
     // L80000FC0
     if (flags & 0x00010) {
-        scViSettings.pixelSize32 = FALSE;
+        scViSettings.pixelSize32 = false;
         scViModeNext.comRegs.ctrl &= ~(VI_CTRL_TYPE_32 | VI_CTRL_TYPE_16);
         scViModeNext.comRegs.ctrl |= VI_CTRL_TYPE_16;
     }
     // L80000FF4
     if (flags & 0x00020) {
-        scViSettings.pixelSize32 = TRUE;
+        scViSettings.pixelSize32 = true;
         scViModeNext.comRegs.ctrl &= ~(VI_CTRL_TYPE_32 | VI_CTRL_TYPE_16);
         scViModeNext.comRegs.ctrl |= VI_CTRL_TYPE_32;
     }
     // L80001024
     if (flags & 0x00040) {
-        scViSettings.gamma = TRUE;
+        scViSettings.gamma = true;
         scViModeNext.comRegs.ctrl |= VI_CTRL_GAMMA_ON;
     }
     // L80001048
     if (flags & 0x00080) {
-        scViSettings.gamma = FALSE;
+        scViSettings.gamma = false;
         scViModeNext.comRegs.ctrl &= ~VI_CTRL_GAMMA_ON;
     }
     // L80001070
     if (flags & 0x01000) {
-        scViSettings.gammaDither = TRUE;
+        scViSettings.gammaDither = true;
         scViModeNext.comRegs.ctrl |= VI_CTRL_GAMMA_DITHER_ON;
     }
     // L80001094
     if (flags & 0x02000) {
-        scViSettings.gammaDither = FALSE;
+        scViSettings.gammaDither = false;
         scViModeNext.comRegs.ctrl &= ~VI_CTRL_GAMMA_DITHER_ON;
     }
     // L800010BC
     if (flags & 0x04000) {
-        scViSettings.ditherFilter = TRUE;
+        scViSettings.ditherFilter = true;
         scViModeNext.comRegs.ctrl |= VI_CTRL_DITHER_FILTER_ON;
     }
     // L800010E4
     if (flags & 0x08000) {
-        scViSettings.ditherFilter = FALSE;
+        scViSettings.ditherFilter = false;
         scViModeNext.comRegs.ctrl &= ~VI_CTRL_DITHER_FILTER_ON;
     }
     // L80001110
     if (flags & 0x10000) {
-        scViSettings.divot = TRUE;
+        scViSettings.divot = true;
         scViModeNext.comRegs.ctrl |= VI_CTRL_DIVOT_ON;
     }
     // L80001134
     if (flags & 0x20000) {
-        scViSettings.divot = FALSE;
+        scViSettings.divot = false;
         scViModeNext.comRegs.ctrl &= ~VI_CTRL_DIVOT_ON;
     }
     // L8000115C
     if (flags & 0x00100) {
-        scViSettings.blackout = TRUE;
+        scViSettings.blackout = true;
     }
     // L80001174
     if (flags & 0x00200) {
-        scViSettings.blackout = FALSE;
+        scViSettings.blackout = false;
     }
     // L80001188
     if (flags & 0x00400) {
-        scViSettings.unk_b04 = TRUE;
+        scViSettings.unk_b04 = true;
     }
     // L800011A0
     if (flags & 0x00800) {
-        scViSettings.unk_b04 = FALSE;
+        scViSettings.unk_b04 = false;
     }
     // L800011B4
     if (flags & 0x00001) {
-        scViSettings.unk_b80 = TRUE;
+        scViSettings.unk_b80 = true;
     }
     // L800011D0
     if (flags & 0x00002) {
-        scViSettings.unk_b80 = FALSE;
+        scViSettings.unk_b80 = false;
     }
 
     // L800011E8D_80044F88
@@ -590,7 +590,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     // L800016BC
     scViModeNext.fldRegs[0].vIntr = 2;
     scViModeNext.fldRegs[1].vIntr = 2;
-    scViSettingsUpdated = TRUE;
+    scViSettingsUpdated = true;
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
@@ -806,7 +806,7 @@ s32 scExecuteTask(SCTaskInfo* task) {
         case SC_TASK_TYPE_CUSTOM_BUFFERING: {
             SCTaskType9* t = (void*) task;
 
-            scUseCustomSwapBufferFunc = TRUE;
+            scUseCustomSwapBufferFunc = true;
             scCustomSwapBufferQueue = t->unk24;
             if (t->info.mq != NULL) {
                 osSendMesg(t->info.mq, (OSMesg) t->info.retVal, OS_MESG_NOBLOCK);
@@ -814,7 +814,7 @@ s32 scExecuteTask(SCTaskInfo* task) {
             break;
         }
         case SC_TASK_TYPE_DEFAULT_BUFFERING:
-            scUseCustomSwapBufferFunc = FALSE;
+            scUseCustomSwapBufferFunc = false;
             if (task->mq != NULL) {
                 osSendMesg(task->mq, (OSMesg) task->retVal, OS_MESG_NOBLOCK);
             }
@@ -847,7 +847,7 @@ void scExecuteTasks(void) {
     s32 taskQueueType;
     SCTaskInfo* task;
     SCTaskInfo* nextTask;
-    s32 stop = FALSE;
+    s32 stop = false;
     s32 pausedTaskPriority;
     s32 currentTaskPriority;
 
@@ -872,13 +872,13 @@ void scExecuteTasks(void) {
         }
 
         if (currentTaskPriority >= selectedTaskPriority) {
-            stop = TRUE;
+            stop = true;
         } else {
             switch (taskQueueType) {
                 case 0:
                     // execute paused gfx task
                     osSpTaskStart(&scPausedQueueHead->task);
-                    stop = TRUE;
+                    stop = true;
                     scPausedQueueHead->info.state = SC_TASK_STATE_RUNNUNG;
                     scCurrentGfxTask = scPausedQueueHead;
                     scPausedQueueRemove(scPausedQueueHead);
@@ -1066,11 +1066,11 @@ void scMain(UNUSED void* arg) {
     scCurrentGfxTask = (SCTaskGfx*) scCurrentAudioTask;
     scMainQueueHead = scMainQueueTail = (SCTaskInfo*) scCurrentGfxTask;
     scCurrentQueue3Task = scQueue3Head = scQueue3Tail = NULL;
-    scViSettingsUpdated = FALSE;
+    scViSettingsUpdated = false;
     scCurrentFrameBuffer = scNextFrameBuffer = scUnkFrameBuffer = NULL;
     scUseCustomSwapBufferFunc = 0;
     scPreNMIProc = scPreNMIDefault;
-    scBeforeReset = FALSE;
+    scBeforeReset = false;
 
     switch (osTvType) {
         case OS_TV_NTSC:
@@ -1091,17 +1091,17 @@ void scMain(UNUSED void* arg) {
     scViModeCurrent.comRegs.ctrl = VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_DIVOT_ON | VI_CTRL_DITHER_FILTER_ON;
     scViModeNext.comRegs.ctrl = VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_DIVOT_ON | VI_CTRL_DITHER_FILTER_ON;
     osViSetMode(&scViModeCurrent);
-    osViBlack(TRUE);
+    osViBlack(true);
 
-    scViSettings.unk_b80 = TRUE;
-    scViSettings.serrate = FALSE;
-    scViSettings.pixelSize32 = FALSE;
-    scViSettings.gamma = FALSE;
-    scViSettings.blackout = TRUE;
-    scViSettings.unk_b04 = FALSE;
-    scViSettings.gammaDither = TRUE;
-    scViSettings.ditherFilter = TRUE;
-    scViSettings.divot = TRUE;
+    scViSettings.unk_b80 = true;
+    scViSettings.serrate = false;
+    scViSettings.pixelSize32 = false;
+    scViSettings.gamma = false;
+    scViSettings.blackout = true;
+    scViSettings.unk_b04 = false;
+    scViSettings.gammaDither = true;
+    scViSettings.ditherFilter = true;
+    scViSettings.divot = true;
 
     osCreateMesgQueue(&scTaskQueue, scMessages, ARRAY_COUNT(scMessages));
     osViSetEvent(&scTaskQueue, (OSMesg) INTR_VRETRACE, 1);
@@ -1111,7 +1111,7 @@ void scMain(UNUSED void* arg) {
 
     osSendMesg(&gThreadingQueue, (OSMesg) 1, OS_MESG_NOBLOCK);
 
-    while (TRUE) {
+    while (true) {
         osRecvMesg(&scTaskQueue, &intrMsg, OS_MESG_BLOCK);
 
         switch ((uintptr_t) intrMsg) {
@@ -1131,7 +1131,7 @@ void scMain(UNUSED void* arg) {
                 break;
             default:
                 // task added by client
-                if (scBeforeReset == FALSE) {
+                if (scBeforeReset == false) {
                     scAddTask((SCTaskInfo*) intrMsg);
                 }
                 break;
@@ -1142,9 +1142,9 @@ void scMain(UNUSED void* arg) {
 void scPreNMIDefault(void) {
     s32 i;
 
-    scBeforeReset = TRUE;
+    scBeforeReset = true;
     osViSetYScale(1.0);
-    osViBlack(TRUE);
+    osViBlack(true);
 
     for (i = 0; i < 4; i++) {
         contRumbleInit(i);

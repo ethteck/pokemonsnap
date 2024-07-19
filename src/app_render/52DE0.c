@@ -23,7 +23,7 @@ f32 func_800A7430(f32 arg0) {
 }
 
 s32 func_800A7460(void) {
-    return D_800AF050 != FALSE;
+    return D_800AF050 != false;
 }
 
 void func_800A7470(s32 arg0, s32 arg1, s32 arg2) {
@@ -60,12 +60,12 @@ void func_800A7660(GObj* arg0) {
     f32 var_f20;
     f32 tmp;
 
-    D_800AF050 = TRUE;
+    D_800AF050 = true;
     tmp = FORCE_F32(arg0->userData);
     temp_f24 = 255.0f / (tmp * 60.0);
     var_f20 = 0.0f;
 
-    while (TRUE) {
+    while (true) {
         var_f20 += temp_f24;
         if (var_f20 > 255.0) {
             break;
@@ -75,7 +75,7 @@ void func_800A7660(GObj* arg0) {
     }
 
     D_800AF060 = 0xFF;
-    D_800AF050 = FALSE;
+    D_800AF050 = false;
     if (D_800BE2CC) {
         ohWait(3);
     }
@@ -88,12 +88,12 @@ void func_800A7760(GObj* arg0) {
     f32 var_f20;
     f32 tmp;
 
-    D_800AF050 = TRUE;
+    D_800AF050 = true;
     tmp = FORCE_F32(arg0->userData);
     temp_f24 = 255.0f / (tmp * 60.0);
     var_f20 = 255.0f;
 
-    while (TRUE) {
+    while (true) {
         var_f20 -= temp_f24;
         if (var_f20 < 0.0) {
             break;
@@ -102,7 +102,7 @@ void func_800A7760(GObj* arg0) {
         ohWait(1);
     }
     D_800AF060 = 0;
-    D_800AF050 = FALSE;
+    D_800AF050 = false;
     if (D_800BE2CC) {
         ohWait(3);
     }
@@ -113,7 +113,7 @@ void func_800A7760(GObj* arg0) {
 void func_800A7860(s32 arg0, f32 arg1) {
     GObj* gobj;
 
-    D_800AF050 = TRUE;
+    D_800AF050 = true;
     if (arg0 != 0) {
         gobj = func_800A748C(func_800A7760, D_800AECB0);
         D_800AF060 = 0xFF;
@@ -126,12 +126,12 @@ void func_800A7860(s32 arg0, f32 arg1) {
     gobj->data.dobj->scale.v.y = 3.2f;
     gobj->data.dobj->scale.v.z = 2.4f;
     gobj->userData = FORCE_S32(arg1);
-    D_800BE2CC = FALSE;
+    D_800BE2CC = false;
 }
 
 void func_800A7918(s32 arg0, f32 arg1) {
     func_800A7860(arg0, arg1);
-    D_800BE2CC = TRUE;
+    D_800BE2CC = true;
 }
 
 void func_800A7948(GObj* gobj) {
@@ -180,13 +180,13 @@ void func_800A7BAC(GObj* gobj) {
     f32 var_f20;
     f32 tmp;
 
-    D_800AF050 = TRUE;
+    D_800AF050 = true;
     tmp = FORCE_F32(gobj->userData);
     temp_f20 = gobj->data.dobj->scale.v.x;
     temp_f24 = temp_f20 / (tmp * 60.0);
     var_f20 = temp_f20;
 
-    while (TRUE) {
+    while (true) {
         var_f20 -= temp_f24;
         if (var_f20 <= 0.0) {
             break;
@@ -197,7 +197,7 @@ void func_800A7BAC(GObj* gobj) {
         ohWait(1);
     }
 
-    D_800AF050 = FALSE;
+    D_800AF050 = false;
     if (D_800BE2CC) {
         ohWait(3);
     }
@@ -251,12 +251,12 @@ void func_800A7CC4(f32 arg0, f32 arg1, s32 arg2, f32 arg3) {
     gobj->data.dobj->scale.v.z = 2.4f;
 
     D_800BE2D0 = gobj;
-    D_800BE2CC = FALSE;
+    D_800BE2CC = false;
 }
 
 void func_800A7F40(f32 arg0, f32 arg1, s32 arg2, f32 arg3) {
     func_800A7CC4(arg0, arg1, arg2, arg3);
-    D_800BE2CC = TRUE;
+    D_800BE2CC = true;
 }
 
 void func_800A7F68(s32 arg0, s32 arg1) {

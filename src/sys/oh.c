@@ -48,7 +48,7 @@ GObj* ohApplyByLinkEx(s32 link, GObj* (*cb)(GObj*, void*), void* param, s32 only
 
         if (retVal != NULL) {
             ret = retVal;
-            if (onlyOne == TRUE) {
+            if (onlyOne == true) {
                 return ret;
             }
         }
@@ -74,7 +74,7 @@ GObj* ohApplyToAllEx(GObj* (*cb)(GObj*, void*), void* param, s32 onlyOne) {
 
             if (retVal != NULL) {
                 ret = retVal;
-                if (onlyOne == TRUE) {
+                if (onlyOne == true) {
                     return ret;
                 }
             }
@@ -86,15 +86,15 @@ GObj* ohApplyToAllEx(GObj* (*cb)(GObj*, void*), void* param, s32 onlyOne) {
 }
 
 GObj* ohCheckId(GObj* obj, void* id) {
-    return obj->id == (u32)id ? obj : NULL;
+    return obj->id == (u32) id ? obj : NULL;
 }
 
 GObj* ohFindByLinkAndId(s32 link, u32 id) {
-    return ohApplyByLinkEx(link, ohCheckId, (void*)id, TRUE);
+    return ohApplyByLinkEx(link, ohCheckId, (void*) id, true);
 }
 
 GObj* ohFindById(u32 id) {
-    return ohApplyToAllEx(ohCheckId, (void*)id, TRUE);
+    return ohApplyToAllEx(ohCheckId, (void*) id, true);
 }
 
 void ohUpdateDefault(UNUSED GObj* arg0) {
@@ -107,7 +107,7 @@ void ohWait(s32 numFrames) {
     }
 
     while (numFrames) {
-        osSendMesg(&omProcessWaitQueue, (OSMesg)1, OS_MESG_NOBLOCK);
+        osSendMesg(&omProcessWaitQueue, (OSMesg) 1, OS_MESG_NOBLOCK);
         osStopThread(NULL);
         numFrames--;
     }
@@ -122,7 +122,7 @@ void ohPauseObjectProcesses(GObj* obj) {
 
     proc = obj->processListHead;
     while (proc != NULL) {
-        proc->paused = TRUE;
+        proc->paused = true;
         proc = proc->next;
     }
 }
@@ -136,7 +136,7 @@ void ohResumeObjectProcesses(GObj* obj) {
 
     proc = obj->processListHead;
     while (proc != NULL) {
-        proc->paused = FALSE;
+        proc->paused = false;
         proc = proc->next;
     }
 }
@@ -146,7 +146,7 @@ void ohPauseProcess(GObjProcess* proc) {
         proc = omCurrentProcess;
     }
 
-    proc->paused = TRUE;
+    proc->paused = true;
 }
 
 void ohResumeProcess(GObjProcess* proc) {
@@ -167,7 +167,7 @@ void ohPauseProcessByFunction(GObj* obj, GObjFunc function) {
     proc = obj->processListHead;
     while (proc != NULL) {
         if (proc->function == function) {
-            proc->paused = TRUE;
+            proc->paused = true;
         }
         proc = proc->next;
     }
@@ -183,7 +183,7 @@ void ohResumeProcessByFunction(GObj* obj, GObjFunc function) {
     proc = obj->processListHead;
     while (proc != NULL) {
         if (proc->function == function) {
-            proc->paused = FALSE;
+            proc->paused = false;
         }
         proc = proc->next;
     }
@@ -303,8 +303,8 @@ void ohDeleteAllObjects(void) {
 }
 
 GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                  void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices,
-                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+                    void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, void* dobjBP, s32 setMatrices,
+                    u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
     DObj* dobj;
 
@@ -326,8 +326,8 @@ GObj* ohCreateModel(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objP
 }
 
 GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                          void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
-                          u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
+                     void (*fnRender)(GObj*), u8 dlLink, s32 dlPriority, s32 cameraTag, Sprite* sprite,
+                     u8 procKind, void (*procFunc)(GObj*), s32 procPriority) {
     GObj* obj;
 
     obj = omAddGObj(objId, objFnUpdate, objLink, objPriority);
@@ -344,8 +344,8 @@ GObj* ohCreateSprite(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 obj
 }
 
 GObj* ohCreateCamera(s32 objId, void (*objFnUpdate)(GObj*), s32 objLink, s32 objPriority,
-                  void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices,
-                  u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
+                     void (*fnRender)(GObj*), s32 dlPriority, s32 dlLinkBitMask, s32 cameraTag, s32 defaultMatrices,
+                     u8 procKind, void (*procFunc)(GObj*), s32 procPriority, s32 defaultFlags) {
     GObj* obj;
     OMCamera* cam;
 
@@ -372,7 +372,7 @@ GObj* ohCreateCameraWrapper(s32 link, s32 priority, s32 dlPriority, s32 flags, s
     GObj* obj;
     OMCamera* cam;
 
-    obj = ohCreateCamera(-1, ohUpdateDefault, link, priority, ren_func_800191D8, dlPriority, 0, 0, FALSE, 0, NULL, 0, FALSE);
+    obj = ohCreateCamera(-1, ohUpdateDefault, link, priority, ren_func_800191D8, dlPriority, 0, 0, false, 0, NULL, 0, false);
     if (obj == NULL) {
         return NULL;
     }

@@ -140,7 +140,7 @@ void func_beach_802C8124(GObj* obj) {
 }
 
 void func_beach_802C816C(GObj* obj) {
-    while (TRUE) {
+    while (true) {
         if (D_beach_802CCDFC > 0) {
             break;
         }
@@ -152,7 +152,7 @@ void func_beach_802C816C(GObj* obj) {
 }
 
 void func_beach_802C81C4(GObj* obj) {
-    while (TRUE) {
+    while (true) {
         if (D_beach_802CCE00 > 0) {
             break;
         }
@@ -164,7 +164,7 @@ void func_beach_802C81C4(GObj* obj) {
 }
 
 void func_beach_802C821C(GObj* obj) {
-    while (TRUE) {
+    while (true) {
         if (D_beach_802CCE04 > 0) {
             break;
         }

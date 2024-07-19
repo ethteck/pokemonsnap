@@ -174,7 +174,7 @@ u32 func_801E0328_9FDFE8(void) {
     func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
     sp1C = -1;
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
         sp24 = func_800AA38C(0);
         if (func_801DF8A4_9FD564(sp24, &D_802308A4_A4E564) != 0) {
@@ -233,7 +233,7 @@ u32 func_801E04E8_9FE1A8(void) {
     func_801DFA94_9FD754(NULL, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
     func_801DDCA8_9FB968(0xB);
 
-    while (TRUE) {
+    while (true) {
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
         if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F6C_9FEC2C() - 6)) {
@@ -282,7 +282,7 @@ s32 func_801E06F0_9FE3B0(void) {
     func_801DFA94_9FD754(NULL, &D_802308A8_A4E568, &D_802308AC_A4E56C, 1);
     func_801DDCA8_9FB968(0xB);
 
-    while (TRUE) {
+    while (true) {
 
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 1);
@@ -335,7 +335,7 @@ s32 func_801E08FC_9FE5BC(s32 arg0) {
     func_801E006C_9FDD2C(NULL, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         sp1C = func_800AA38C(0);
         func_801E006C_9FDD2C(sp1C, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
         if (sp1C->unk_18 & 0x4000) {
@@ -386,7 +386,7 @@ s32 func_801E0B7C_9FE83C(void) {
     func_801E006C_9FDD2C(NULL, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
         sp2C = func_800AA38C(0);
         func_801E006C_9FDD2C(sp2C, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
@@ -459,7 +459,7 @@ void func_801E0DEC_9FEAAC(void) {
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
 
-    while (TRUE) {
+    while (true) {
         switch (sp18) {
             case 0:
                 sp18 = func_801E0328_9FDFE8();

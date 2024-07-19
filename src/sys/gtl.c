@@ -16,7 +16,11 @@
 // TODO include
 void renSetCustomMatrixHandler(void*);
 
-enum GtlStates { GTL_STATE_0 = 0, GTL_STATE_1 = 1, GTL_STATE_2 = 2 };
+enum GtlStates {
+    GTL_STATE_0 = 0,
+    GTL_STATE_1 = 1,
+    GTL_STATE_2 = 2
+};
 
 enum UcodeTypes {
     UCODE_F3DEX2_FIFO = 0,
@@ -50,10 +54,7 @@ typedef struct FnBundle {
 s32 gtlD_80040CF0 = 0;
 u32 gtlFrameCounter = 0;
 s32 gtlDrawnFrameCounter = 0;
-UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gspF3DEX2_NoN_fifoTextStart, gspF3DEX2_NoN_fifoDataStart },
-                              { NULL, NULL }, { NULL, NULL }, { NULL, NULL },
-                              { NULL, NULL }, { NULL, NULL }, { gspL3DEX2_fifoTextStart, gspL3DEX2_fifoDataStart },
-                              { NULL, NULL }, { NULL, NULL } };
+UcodeInfo gtlD_80040CFC[] = { { NULL, NULL }, { NULL, NULL }, { gspF3DEX2_NoN_fifoTextStart, gspF3DEX2_NoN_fifoDataStart }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { NULL, NULL }, { gspL3DEX2_fifoTextStart, gspL3DEX2_fifoDataStart }, { NULL, NULL }, { NULL, NULL } };
 
 // BSS
 u8 gtlPadding[16];
@@ -112,7 +113,7 @@ void func_800053F0(void* arg0) {
 }
 
 void gtlSetSegmentF(Gfx** gfxPtr) {
-    gtlSegmentFBasePtr = (u32*)&(*gfxPtr)->dma.addr;
+    gtlSegmentFBasePtr = (u32*) &(*gfxPtr)->dma.addr;
     gSPSegment((*gfxPtr)++, 0x0F, 0x00000000);
 }
 
@@ -169,24 +170,24 @@ void gtlInitDLists(void) {
         }
     }
 
-    gtlD_8004A908 = FALSE;
+    gtlD_8004A908 = false;
 }
 
 void gtlCheckBuffers(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        if (gtlDLBuffers[gtlContextId][i].length + (uintptr_t)gtlDLBuffers[gtlContextId][i].start <
-            (uintptr_t)gMainGfxPos[i]) {
+        if (gtlDLBuffers[gtlContextId][i].length + (uintptr_t) gtlDLBuffers[gtlContextId][i].start <
+            (uintptr_t) gMainGfxPos[i]) {
             fatal_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i,
-                         (uintptr_t)gMainGfxPos[i] - (uintptr_t)gtlDLBuffers[gtlContextId][i].start);
+                         (uintptr_t) gMainGfxPos[i] - (uintptr_t) gtlDLBuffers[gtlContextId][i].start);
             PANIC();
         }
     }
 
-    if ((uintptr_t)gtlCurrentGfxHeap.end < (uintptr_t)gtlCurrentGfxHeap.ptr) {
+    if ((uintptr_t) gtlCurrentGfxHeap.end < (uintptr_t) gtlCurrentGfxHeap.ptr) {
         fatal_printf("gtl : DynamicBuffer over flow !  %d byte\n",
-                     (uintptr_t)gtlCurrentGfxHeap.ptr - (uintptr_t)gtlCurrentGfxHeap.start);
+                     (uintptr_t) gtlCurrentGfxHeap.ptr - (uintptr_t) gtlCurrentGfxHeap.start);
         PANIC();
     }
 }
@@ -199,7 +200,7 @@ void gtlSetRDPOutput(void* buffer, s32 size) {
     task.buffer = buffer;
     task.size = size;
     scExecuteBlocking(&task.info);
-    if ((s32)&scUnknownU64 & 7) {
+    if ((s32) &scUnknownU64 & 7) {
         fatal_printf("bad addr sc_rdp_output_len = %x\n", &scUnknownU64);
         PANIC();
     }
@@ -241,9 +242,9 @@ SCTaskGfx* gtlGetTaskGfx(void) {
 void gtlInitTaskBuffers(SCTaskGfx* gfxTasks, s32 taskBufferSize, SCTaskGfxEnd* gfxEndTasks, SCTaskVi* viTasks) {
     s32 i;
     for (i = 0; i < gtlNumContexts; i++) {
-        gtlGfxTasksBufferStart[i] = (SCTaskGfx*)((uintptr_t)(gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * i);
-        gtlGfxTasksBufferPtr[i] = (SCTaskGfx*)((uintptr_t)(gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * i);
-        gtlGfxTasksBufferEnd[i] = (SCTaskGfx*)((uintptr_t)(gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * (i + 1));
+        gtlGfxTasksBufferStart[i] = (SCTaskGfx*) ((uintptr_t) (gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * i);
+        gtlGfxTasksBufferPtr[i] = (SCTaskGfx*) ((uintptr_t) (gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * i);
+        gtlGfxTasksBufferEnd[i] = (SCTaskGfx*) ((uintptr_t) (gfxTasks) + taskBufferSize * sizeof(SCTaskGfx) * (i + 1));
         gtlGfxEndTasks[i] = &gfxEndTasks[i];
         gtlVideoSettingsTasks[i] = &viTasks[i];
     }
@@ -258,7 +259,7 @@ void gtlScheduleGfxEnd(SCTaskGfxEnd* task, void* fb, s32 arg2, OSMesgQueue* mq) 
     task->fb = fb;
     task->taskId = gtlContextId;
 
-    osSendMesg(&scTaskQueue, (OSMesg)task, OS_MESG_NOBLOCK);
+    osSendMesg(&scTaskQueue, (OSMesg) task, OS_MESG_NOBLOCK);
 }
 
 void gtlCancelCurrentGfxTask(void) {
@@ -271,7 +272,7 @@ void gtlCancelCurrentGfxTask(void) {
     }
 
     retVal = gtlContextId;
-    gtlScheduleGfxEnd(task, (void*)-1, retVal, &gtlD_800497E0);
+    gtlScheduleGfxEnd(task, (void*) -1, retVal, &gtlD_800497E0);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
 }
 
@@ -294,13 +295,13 @@ void gtlReset(void) {
 }
 
 void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dlist, u64* outputBuff,
-                      u32 outputBuffSize) {
+                    u32 outputBuffSize) {
     UcodeInfo* ucode;
 
     t->info.type = SC_TASK_TYPE_GFX;
     t->info.priority = 50;
     if (gtlSegmentFBasePtr != NULL) {
-        t->info.fnCheck = (SCTaskCallback)gtlD_8004A94C;
+        t->info.fnCheck = (SCTaskCallback) gtlD_8004A94C;
         t->unk68 = gtlSegmentFBasePtr;
         gtlSegmentFBasePtr = NULL;
     } else {
@@ -329,8 +330,8 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
         fatal_printf("gtl : ucode isn\'t included  kind = %d\n", ucodeIdx);
         PANIC();
     }
-    t->task.t.ucode = (u64*)ucode->text;
-    t->task.t.ucode_data = (u64*)ucode->data;
+    t->task.t.ucode = (u64*) ucode->text;
+    t->task.t.ucode_data = (u64*) ucode->data;
     t->task.t.ucode_size = SP_UCODE_SIZE;
     t->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     t->task.t.dram_stack = OS_DCACHE_ROUNDUP_ADDR(&gtlDramStack);
@@ -344,7 +345,7 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
         case UCODE_L3DEX2_FIFO:
             // FIFO microcodes..?
             t->task.t.output_buff = outputBuff;
-            t->task.t.output_buff_size = (u64*)((uintptr_t)outputBuff + outputBuffSize);
+            t->task.t.output_buff_size = (u64*) ((uintptr_t) outputBuff + outputBuffSize);
             t->unk74 = 2;
             break;
         case UCODE_F3DEX2_XBUS:
@@ -362,7 +363,7 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
     t->task.t.yield_data_ptr = OS_DCACHE_ROUNDUP_ADDR(&gtlYieldData);
     t->task.t.yield_data_size = OS_YIELD_DATA_SIZE;
     osWritebackDCacheAll();
-    osSendMesg(&scTaskQueue, (OSMesg)t, OS_MESG_NOBLOCK);
+    osSendMesg(&scTaskQueue, (OSMesg) t, OS_MESG_NOBLOCK);
 }
 
 u32 gtlGetLineUcode(void) {
@@ -389,7 +390,7 @@ void func_80005D60(s32 arg0, u64* dlist) {
 
     if (!arg0) {
         uidx = gtlD_8004A904;
-        if (gtlNoNearclipping == TRUE) {
+        if (gtlNoNearclipping == true) {
             switch (uidx) {
                 case UCODE_F3DEX2_FIFO:
                     uidx = UCODE_F3DEX2_NON_FIFO;
@@ -417,7 +418,7 @@ void func_80005D60(s32 arg0, u64* dlist) {
         case UCODE_F3DLX2_REJ_FIFO:
         case UCODE_L3DEX2_FIFO:
             gtlScheduleGfx(gtlGetTaskGfx(), 0, uidx, gtlContextId, dlist, gtlRPDOutputBuffer,
-                             gtlRPDOutputBufferSize);
+                           gtlRPDOutputBufferSize);
             break;
     }
 }
@@ -521,23 +522,23 @@ void gtlProcessAllDLists(void) {
 
         if (diffs & 1) {
             firstDlIdx = 0;
-            needLineUcode = FALSE;
+            needLineUcode = false;
         } else if (diffs & 4) {
             firstDlIdx = 2;
-            needLineUcode = TRUE;
+            needLineUcode = true;
         } else if (diffs & 2) {
             firstDlIdx = 1;
-            needLineUcode = FALSE;
+            needLineUcode = false;
         } else {
             firstDlIdx = 3;
-            needLineUcode = TRUE;
+            needLineUcode = true;
         }
 
         cmdPtr = gMainGfxPos[firstDlIdx];
         // after end ??
         gSPDisplayList(gMainGfxPos[firstDlIdx]++, gtlrdpResetDlist);
         gSPBranchList(gMainGfxPos[firstDlIdx]++, gSavedGfxPos[firstDlIdx]);
-        func_80005D60(needLineUcode, (u64*)cmdPtr);
+        func_80005D60(needLineUcode, (u64*) cmdPtr);
 
         gSavedGfxPos[0] = gMainGfxPos[0];
         gSavedGfxPos[2] = gMainGfxPos[2];
@@ -610,7 +611,7 @@ void gtlCombineAllDLists(void) {
         }
     }
 
-    gtlD_8004A908 = FALSE;
+    gtlD_8004A908 = false;
     gtlCheckBuffers();
 }
 
@@ -618,7 +619,7 @@ u32 gtlSwitchContext(s32 arg0) {
     s32 msg;
     s32 i;
 
-    while (osRecvMesg(&gtlD_800497E0, (OSMesg*)&msg, OS_MESG_NOBLOCK) != -1) {
+    while (osRecvMesg(&gtlD_800497E0, (OSMesg*) &msg, OS_MESG_NOBLOCK) != -1) {
         gtlD_8004A918[msg] = 0;
     }
 
@@ -631,7 +632,7 @@ u32 gtlSwitchContext(s32 arg0) {
             }
         }
         if (!arg0) {
-            osRecvMesg(&gtlD_800497E0, (OSMesg*)&msg, OS_MESG_BLOCK);
+            osRecvMesg(&gtlD_800497E0, (OSMesg*) &msg, OS_MESG_BLOCK);
             gtlD_8004A918[msg] = 0;
         }
     } while (!arg0);
@@ -651,7 +652,7 @@ void gtlWaitAllGfxTasksDone(void) {
     task.retVal = 1;
     task.mq = &mq;
 
-    osSendMesg(&scTaskQueue, (OSMesg)&task, OS_MESG_NOBLOCK);
+    osSendMesg(&scTaskQueue, (OSMesg) &task, OS_MESG_NOBLOCK);
     osRecvMesg(&mq, NULL, OS_MESG_BLOCK);
 }
 
@@ -687,7 +688,8 @@ s32 gtlCheckExitMainLoop(void) {
 void func_80006878(void) {
     if (gtlD_8004979C == 1) {
         gtlD_8004979C = 2;
-        while (osRecvMesg(&gtlD_800497A8, NULL, OS_MESG_NOBLOCK) != -1) {}
+        while (osRecvMesg(&gtlD_800497A8, NULL, OS_MESG_NOBLOCK) != -1) {
+        }
 
         osRecvMesg(&gtlD_800497A8, NULL, OS_MESG_BLOCK);
         gtlD_8004979C = 0;
@@ -699,9 +701,12 @@ void gtlMain(FnBundle* arg0) {
 
     gtlD_8004979C = 0;
 
-    while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {}
-    while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
-    while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
+    while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
+    while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
+    while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
 
     gtlState = GTL_STATE_0;
     gtlD_8004A8B4 = -1;
@@ -713,13 +718,14 @@ void gtlMain(FnBundle* arg0) {
     }
 
     if (arg0->unk00 & 1) {
-        while (TRUE) {
+        while (true) {
             func_80006878();
             check_stack_probes();
             for (i = 0; i < gtlUpdateInterval; i++) {
                 osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_BLOCK);
             }
-            while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
+            while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+            }
 
             gtlTimestamp = osGetCount();
             arg0->fnUpdate(arg0);
@@ -742,13 +748,14 @@ void gtlMain(FnBundle* arg0) {
             }
         }
     } else {
-        while (TRUE) {
+        while (true) {
             func_80006878();
             check_stack_probes();
             for (i = 0; i < gtlUpdateInterval; i++) {
                 osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_BLOCK);
             }
-            while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
+            while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+            }
 
             gtlTimestamp = osGetCount();
             arg0->fnUpdate(arg0);
@@ -771,9 +778,12 @@ void gtlMain(FnBundle* arg0) {
     }
 
     gtlWaitAllGfxTasksDone();
-    while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {}
-    while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
-    while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {}
+    while (osRecvMesg(&gtlD_800497E0, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
+    while (osRecvMesg(&gtlResetQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
+    while (osRecvMesg(&gtlGameTickQueue, NULL, OS_MESG_NOBLOCK) != -1) {
+    }
     rdpSetPreRenderFunc(NULL);
     scRemovePostProcessFunc();
     gtlD_8004979C = 2;
@@ -837,7 +847,7 @@ void func_80006F8C(struct Temp8000641C* arg0) {
     gtlScheduleGfxEnd(task, NULL, tmp, &gtlD_800497E0);
     gtlGfxTasksBufferPtr[gtlContextId] = gtlGfxTasksBufferStart[gtlContextId];
     do {
-        osRecvMesg(&gtlD_800497E0, (OSMesg*)&idx, OS_MESG_BLOCK);
+        osRecvMesg(&gtlD_800497E0, (OSMesg*) &idx, OS_MESG_BLOCK);
         gtlD_8004A918[idx] = 0;
     } while (gtlD_8004A918[gtlContextId] != 0);
 
@@ -855,8 +865,8 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlCallbackBundle.fnPrivDraw = setup->fnDraw;
 
     gtlInitTaskBuffers(gtlMalloc(setup->unk_14 * sizeof(SCTaskGfx) * gtlNumContexts, 8), setup->unk_14,
-                          gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
-                          gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
+                       gtlMalloc(sizeof(SCTaskGfxEnd) * gtlNumContexts, 8),
+                       gtlMalloc(sizeof(SCTaskVi) * gtlNumContexts, 8));
 
     for (i = 0; i < gtlNumContexts; i++) {
         dlBuffers[i][0].start = gtlMalloc(setup->dlBufferSize0, 8);
@@ -887,7 +897,7 @@ void gtlStart(BufferSetup* setup, void (*postInitFunc)(void)) {
     gtlSetRDPOutputSettings(setup->unk30, gtlMalloc(tmp, 16), setup->rdpOutputBufferSize);
     rdpSetPreRenderFunc(setup->fnPreRender);
     gtlUpdateInputFunc = setup->fnUpdateInput;
-    contSetUpdateEveryTick((uintptr_t)contReadAndUpdate != (uintptr_t)gtlUpdateInputFunc ? TRUE : FALSE);
+    contSetUpdateEveryTick((uintptr_t) contReadAndUpdate != (uintptr_t) gtlUpdateInputFunc ? true : false);
 
     gtlFrameCounter = gtlDrawnFrameCounter = 0;
     if (postInitFunc != NULL) {

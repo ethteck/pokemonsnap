@@ -64,7 +64,7 @@ GObj* func_800A85E8(void (*procFunc)(GObj*), s32 link, s32 dllink, Gfx* dlist) {
     } else {
         cameraTag = 1 << dllink;
     }
-    gobj = ohCreateModel(1 << link, NULL, link, link, renRenderModelTypeA, dllink, link, cameraTag, dlist, TRUE, 0, procFunc, 0);
+    gobj = ohCreateModel(1 << link, NULL, link, link, renRenderModelTypeA, dllink, link, cameraTag, dlist, true, 0, procFunc, 0);
     if (gobj == NULL) {
         return NULL;
     }
@@ -84,7 +84,7 @@ GObj* func_800A86A4(void (*procFunc)(GObj*), s32 link, s32 dllink, Gfx* dlist) {
     } else {
         cameraTag = 1 << dllink;
     }
-    gobj = ohCreateModel(1 << link, NULL, link, link, renRenderModelTypeA, dllink, link, cameraTag, dlist, TRUE, 1, procFunc, 0);
+    gobj = ohCreateModel(1 << link, NULL, link, link, renRenderModelTypeA, dllink, link, cameraTag, dlist, true, 1, procFunc, 0);
     if (gobj == NULL) {
         return NULL;
     }
@@ -117,7 +117,7 @@ void func_800A87B0(GObj* obj, UnkEC64Arg3* treeDef, DObj** nodeList) {
         }
 
         dobj->position.v = treeDef->position;
-        *((Vec3f*)&dobj->rotation.f[1]) = treeDef->rotation;
+        *((Vec3f*) &dobj->rotation.f[1]) = treeDef->rotation;
         dobj->scale.v = treeDef->scale;
 
         if (nodeList != NULL) {
@@ -182,7 +182,7 @@ GObj* func_800A8A84(void (*procFunc)(GObj*), s32 dllink, s32 link) {
     GObj* gobj;
     OMCamera* cam;
 
-    gobj = ohCreateCamera(0x200, NULL, link, link, ren_func_800191D8, dllink, 1 << dllink, 1 << dllink, TRUE, 0, procFunc, 0, TRUE);
+    gobj = ohCreateCamera(0x200, NULL, link, link, ren_func_800191D8, dllink, 1 << dllink, 1 << dllink, true, 0, procFunc, 0, true);
     if (gobj == NULL) {
         return NULL;
     }
@@ -269,7 +269,7 @@ Vec3f* func_800A8E00(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2) {
     return func_800A8D60(arg0, arg1, arg2->x, arg2->y, arg2->z);
 }
 
-//void func_800A8E34(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2, f32 arg3, f32 arg4, f32 arg5);
+// void func_800A8E34(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2, f32 arg3, f32 arg4, f32 arg5);
 #ifdef NON_MATCHING
 Vec3f* func_800A8E34(Vec3f* arg0, Vec3f* arg1, Mtx3f arg2, f32 arg3, f32 arg4, f32 arg5) {
     arg0->x = arg1->x + arg2[0][0] * arg3 + arg2[1][0] * arg4 + arg2[2][0] * arg5;
@@ -303,7 +303,7 @@ void func_800A8F5C(Unk_800A8F0C* arg0, Vec3f* arg1, f32 arg2) {
     s0[0].y = arg0->unk_48.y - arg0->unk_3C.y;
     s0[0].z = arg0->unk_48.z - arg0->unk_3C.z;
     s0[2] = arg0->unk_54;
-    
+
     Vec3f_func_8001A8B8(&s0[0], arg1, arg2);
     Vec3f_func_8001A8B8(&s0[2], arg1, arg2);
 
@@ -340,7 +340,7 @@ Unk_800A8F0C* func_800A910C(Unk_800A8F0C* arg0, Vec3f* arg1, f32 arg2) {
     Vec3fNormalize(&sp34[2]);
     Vec3fNormalizedCross(&sp34[0], &sp34[2], &sp34[1]);
     Vec3fNormalizedCross(&sp34[0], &sp34[1], &sp34[2]);
-    func_800A904C(&sp28, (f32(*)[3])sp34, arg1, arg2);
+    func_800A904C(&sp28, (f32(*)[3]) sp34, arg1, arg2);
 
     arg0->unk_48.x = sp28.x + sp34[0].x;
     arg0->unk_48.y = sp28.y + sp34[0].y;
@@ -363,10 +363,10 @@ s32 func_800A9254(GObj* obj, GObjFunc func) {
 
     for (proc = obj->processListHead; proc != NULL; proc = proc->next) {
         if (proc->function == func) {
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A929C.s")

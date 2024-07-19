@@ -35,7 +35,7 @@ void func_credits_801DCA1C(void* arg0) {
     s32 temp_v0;
     PhotoData* temp_v0_2;
 
-    while (TRUE) {
+    while (true) {
         osRecvMesg(&D_credits_801ECC68, &sp34, 1);
         osSetThreadPri(NULL, 0x34);
         temp_v0 = func_credits_801DE8D8();

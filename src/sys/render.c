@@ -250,21 +250,21 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
     sp2D4 = 0;
 
     if (dobj->unk_4C != NULL) {
-        csr = (uintptr_t)dobj->unk_4C->data;
+        csr = (uintptr_t) dobj->unk_4C->data;
         for (i = 0; i < 3; i++) {
             switch (dobj->unk_4C->kinds[i]) {
                 case 0:
                     break;
                 case 1:
-                    sp2C8 = (void*)csr;
+                    sp2C8 = (void*) csr;
                     csr += sizeof(union Mtx3fi);
                     break;
                 case 2:
-                    sp2C4 = (void*)csr;
+                    sp2C4 = (void*) csr;
                     csr += sizeof(struct Mtx4Float);
                     break;
                 case 3:
-                    sp2C0 = (void*)csr;
+                    sp2C0 = (void*) csr;
                     csr += sizeof(struct Mtx3Float);
                     break;
             }
@@ -277,15 +277,15 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
             Mtx** unk;
             Mtx* mtx;
 
-            unk = (Mtx**)&ommtx->unk08;
+            unk = (Mtx**) &ommtx->unk08;
             mtx = &ommtx->unk08;
 
             if (ommtx->unk05 != 2) {
                 if (ommtx->unk05 == 4) {
-                    if (dobj->obj->lastDrawFrame != (u8)gtlDrawnFrameCounter) {
+                    if (dobj->obj->lastDrawFrame != (u8) gtlDrawnFrameCounter) {
                         *unk = gtlCurrentGfxHeap.ptr;
                         mtx = gtlCurrentGfxHeap.ptr;
-                        gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                        gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                     } else {
                         switch (ommtx->kind) {
                             case MTX_TYPE_33:
@@ -307,12 +307,12 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                             case MTX_TYPE_49:
                             case MTX_TYPE_50:
                                 mtx = gtlCurrentGfxHeap.ptr;
-                                gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                                gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 break;
                             default:
                                 if (ommtx->kind >= MTX_TYPE_66) {
                                     mtx = gtlCurrentGfxHeap.ptr;
-                                    gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                                    gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 } else {
                                     mtx = *unk;
                                     goto END2;
@@ -323,8 +323,8 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                 } else {
                     if (gtlContextId > 0) {
                         mtx = gtlCurrentGfxHeap.ptr;
-                        gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
-                    } else if (dobj->obj->lastDrawFrame == (u8)gtlDrawnFrameCounter) {
+                        gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                    } else if (dobj->obj->lastDrawFrame == (u8) gtlDrawnFrameCounter) {
                         switch (ommtx->kind) {
                             case MTX_TYPE_33:
                             case MTX_TYPE_34:
@@ -345,18 +345,18 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                             case MTX_TYPE_49:
                             case MTX_TYPE_50:
                                 mtx = gtlCurrentGfxHeap.ptr;
-                                gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                                gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 break;
                             default:
                                 if (ommtx->kind >= MTX_TYPE_66) {
                                     mtx = gtlCurrentGfxHeap.ptr;
-                                    gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                                    gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 } else {
                                     if (ommtx->unk05 != 3) {
                                         goto END2;
                                     }
                                     mtx = gtlCurrentGfxHeap.ptr;
-                                    gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                                    gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 }
                                 break;
                         }
@@ -435,28 +435,28 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_33:
-                        ren_func_80011608(mtx, dobj, FALSE);
+                        ren_func_80011608(mtx, dobj, false);
                         break;
                     case MTX_TYPE_34:
-                        ren_func_80011608(mtx, dobj, TRUE);
+                        ren_func_80011608(mtx, dobj, true);
                         break;
                     case MTX_TYPE_35:
-                        ren_func_80011268(mtx, dobj, FALSE);
+                        ren_func_80011268(mtx, dobj, false);
                         break;
                     case MTX_TYPE_36:
-                        ren_func_80011268(mtx, dobj, TRUE);
+                        ren_func_80011268(mtx, dobj, true);
                         break;
                     case MTX_TYPE_37:
-                        func_8001174C(mtx, dobj, FALSE);
+                        func_8001174C(mtx, dobj, false);
                         break;
                     case MTX_TYPE_38:
-                        func_8001174C(mtx, dobj, TRUE);
+                        func_8001174C(mtx, dobj, true);
                         break;
                     case MTX_TYPE_39:
-                        ren_func_80011438(mtx, dobj, FALSE);
+                        ren_func_80011438(mtx, dobj, false);
                         break;
                     case MTX_TYPE_40:
-                        ren_func_80011438(mtx, dobj, TRUE);
+                        ren_func_80011438(mtx, dobj, true);
                         break;
                     case MTX_TYPE_56:
                         hal_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z);
@@ -794,7 +794,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleY *= dobj->scale.v.y;
                         renScaleZ *= dobj->scale.v.z;
                         hal_scale(mtx, renScaleX, renScaleY, renScaleZ);
-                        renIsScaleMtxPushed = TRUE;
+                        renIsScaleMtxPushed = true;
                         sp2B8 = 2;
                         break;
                     case MTX_TYPE_55:
@@ -823,7 +823,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         break;
                     default:
                         if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
-                            func = dobj->obj->lastDrawFrame != (u8)gtlDrawnFrameCounter
+                            func = dobj->obj->lastDrawFrame != (u8) gtlDrawnFrameCounter
                                        ? renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00
                                        : renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04;
                             sp2B8 = func(mtx, dobj, &sp2DC);
@@ -839,7 +839,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                 }
             }
             if (ommtx->kind != MTX_TYPE_2) {
-                if (sp2B8 == 2 || sp2D4 == 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                if (sp2B8 == 2 || sp2D4 == 0 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                     gSPMatrix(sp2DC++, mtx, G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
                 } else {
                     gSPMatrix(sp2DC++, mtx, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
@@ -868,15 +868,15 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                 continue;
             }
 
-            unk = (Mtx**)&ommtx->unk08;
+            unk = (Mtx**) &ommtx->unk08;
             mtx = &ommtx->unk08;
 
             if (ommtx->unk05 != 2) {
                 if (ommtx->unk05 == 4) {
-                    if (dobj->obj->lastDrawFrame != (u8)gtlDrawnFrameCounter) {
+                    if (dobj->obj->lastDrawFrame != (u8) gtlDrawnFrameCounter) {
                         *unk = gtlCurrentGfxHeap.ptr;
                         mtx = gtlCurrentGfxHeap.ptr;
-                        gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                        gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                     } else {
                         mtx = *unk;
                         goto END;
@@ -884,17 +884,17 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                 } else {
                     if (gtlContextId > 0) {
                         mtx = gtlCurrentGfxHeap.ptr;
-                        gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
-                    } else if (dobj->obj->lastDrawFrame == (u8)gtlDrawnFrameCounter) {
+                        gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                    } else if (dobj->obj->lastDrawFrame == (u8) gtlDrawnFrameCounter) {
                         if (ommtx->unk05 != 3) {
                             goto END;
                         }
                         mtx = gtlCurrentGfxHeap.ptr;
-                        gtlCurrentGfxHeap.ptr = (u8*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                        gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                     }
                 }
                 hal_scale(mtx, renScaleX, renScaleY, renScaleZ);
-                renIsScaleMtxPushed = TRUE;
+                renIsScaleMtxPushed = true;
             END:
                 if (ommtx->unk05 == 1 && &ommtx->unk08 == mtx) {
                     ommtx->unk05 = 2;
@@ -940,7 +940,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
     }
     mobj = dobj->mobjList;
 
-    gfxPos = &((Gfx*)gtlCurrentGfxHeap.ptr)[count];
+    gfxPos = &((Gfx*) gtlCurrentGfxHeap.ptr)[count];
     baseDl = gtlCurrentGfxHeap.ptr;
 
     for (i = 0; i < count; i++) {
@@ -968,7 +968,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         if (flags & 0x04) {
             // load palette
             gDPSetTextureImage(gfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1,
-                               mobj->texture.palettes[(s32)mobj->paletteIndex]);
+                               mobj->texture.palettes[(s32) mobj->paletteIndex]);
             if (flags & (0x02 | 0x01)) {
                 gDPTileSync(gfxPos++);
                 gDPSetTile(gfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_TILE_5, 0, 0, 0, 0, 0, 0, 0);
@@ -989,7 +989,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
 
         if (flags & (0x200 | 0x10 | 0x08)) {
             if (flags & 0x10) {
-                s32 lodLevelInt = (s32)mobj->lodLevel;
+                s32 lodLevelInt = (s32) mobj->lodLevel;
                 gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, (mobj->lodLevel - lodLevelInt) * 256.0f,
                                 mobj->texture.primR, mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
                 mobj->imageIndex = lodLevelInt;
@@ -1124,7 +1124,7 @@ void renRenderModelTypeACommon(GObj* gobj, Gfx** gfxPtr) {
     dobj = gobj->data.dobj;
 
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
 
     if (dobj->payload.dlist != NULL) {
         if (dobj->flags == 0) {
@@ -1135,9 +1135,9 @@ void renRenderModelTypeACommon(GObj* gobj, Gfx** gfxPtr) {
             if (renIsScaleMtxPushed) {
                 gSPPopMatrix((*gfxPtr)++, G_MTX_MODELVIEW);
             }
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
 
-            if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+            if (ret != 0 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix((*gfxPtr)++, G_MTX_MODELVIEW);
             }
         }
@@ -1181,13 +1181,13 @@ void renRenderModelNodeTypeB(DObj* dobj) {
         if (renIsScaleMtxPushed) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
-        renIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = false;
 
         if (dobj->firstChild != NULL) {
             renRenderModelNodeTypeB(dobj->firstChild);
         }
 
-        if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+        if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
         renScaleX = sp2C;
@@ -1206,7 +1206,7 @@ void renRenderModelNodeTypeB(DObj* dobj) {
 
 void renRenderModelTypeB(GObj* arg0) {
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
     renRenderModelNodeTypeB(arg0->data.dobj);
 }
 
@@ -1235,7 +1235,7 @@ void renRenderModelNodeTypeC(DObj* dobj, DObjPayloadTypeC* payload) {
             gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
         }
 
-        if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+        if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
         }
     } else {
@@ -1261,9 +1261,9 @@ void renRenderModelNodeTypeC(DObj* dobj, DObjPayloadTypeC* payload) {
             if (renIsScaleMtxPushed) {
                 gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
             }
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
 
-            if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+            if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
             }
         }
@@ -1279,7 +1279,7 @@ void renRenderModelTypeC(GObj* obj) {
     DObj* dobj;
 
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
     dobj = obj->data.dobj;
     renRenderModelNodeTypeC(dobj, dobj->payload.typeC);
 }
@@ -1351,21 +1351,23 @@ void renRenderModelNodeTypeD(DObj* dobj) {
                 }
                 ren_D_8004B03C--;
             }
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
             renRenderModelNodeTypeD(dobj->firstChild);
         }
 
-        renIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = false;
         ren_D_8004B03C = sp48;
 
         for (i = 0; i < 4; i++) {
             if (ren_D_8004B040[i] > ren_D_8004B03C) {
                 ren_D_8004B040[i] = ren_D_8004B03C;
-                if (sp50 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                if (sp50 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
-            do { } while (0); }
+            do {
+            } while (0);
+        }
 
         renScaleX = sp3C;
         renScaleY = sp38;
@@ -1383,7 +1385,7 @@ void renRenderModelNodeTypeD(DObj* dobj) {
 
 void renRenderModelTypeD(GObj* arg0) {
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
     renRenderModelNodeTypeD(arg0->data.dobj);
 }
 
@@ -1414,13 +1416,13 @@ void renRenderModelTypeE(GObj* obj) {
         }
 
         renScaleX = renScaleY = renScaleZ = 1.0f;
-        renIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = false;
 
         if (payload->dlist != NULL) {
             ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
             renLoadTextures(dobj, &gMainGfxPos[0]);
             gSPDisplayList(gMainGfxPos[0]++, payload->dlist);
-            if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+            if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
         }
@@ -1445,7 +1447,7 @@ void renRenderModelNodeTypeF(DObj* dobj) {
             renRenderModelNodeTypeF(dobj->firstChild);
         }
 
-        if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+        if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
@@ -1467,9 +1469,10 @@ void renRenderModelTypeF(GObj* obj) {
     UNUSED s32 temp;
     DObj* dobj = obj->data.dobj;
 
-    if (1) {} // required to match
+    if (1) {
+    } // required to match
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
 
     if (!(dobj->flags & 2)) {
         payload = dobj->payload.typeE;
@@ -1493,7 +1496,7 @@ void renRenderModelTypeF(GObj* obj) {
                 renRenderModelNodeTypeF(dobj->firstChild);
             }
 
-            if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+            if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
 
@@ -1514,7 +1517,7 @@ void renRenderModelTypeG(GObj* obj) {
     DObj* dobj = obj->data.dobj;
 
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
 
     if (!(dobj->flags)) {
         payload = dobj->payload.any;
@@ -1581,8 +1584,9 @@ void renRenderModelNodeTypeH(DObj* dobj) {
         for (i = 0; i < 4; i++) {
             if (ren_D_8004B040[i] > ren_D_8004B03C) {
                 ren_D_8004B040[i] = ren_D_8004B03C;
-                if (dobj) {}
-                if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                if (dobj) {
+                }
+                if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
@@ -1611,7 +1615,7 @@ void renRenderModelTypeH(GObj* obj) {
     s32 i;
 
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
 
     if (!(dobj->flags & 2)) {
         payload = dobj->payload.typeG;
@@ -1660,8 +1664,9 @@ void renRenderModelTypeH(GObj* obj) {
             for (i = 0; i < 4; i++) {
                 if (ren_D_8004B040[i] > ren_D_8004B03C) {
                     ren_D_8004B040[i] = ren_D_8004B03C;
-                    if (dobj) {}
-                    if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                    if (dobj) {
+                    }
+                    if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                         gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                     }
                 }
@@ -1697,7 +1702,7 @@ void renRenderModelNodeTypeI(DObj* dobj) {
             if (renIsScaleMtxPushed) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
         }
 
         ret = renPrepareModelMatrix(&gMainGfxPos[0], dobj);
@@ -1709,13 +1714,13 @@ void renRenderModelNodeTypeI(DObj* dobj) {
         if (renIsScaleMtxPushed) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
-        renIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = false;
 
         if (dobj->firstChild != NULL) {
             renRenderModelNodeTypeI(dobj->firstChild);
         }
 
-        if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+        if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
@@ -1735,7 +1740,7 @@ void renRenderModelNodeTypeI(DObj* dobj) {
 
 void renRenderModelTypeI(GObj* arg0) {
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
     renRenderModelNodeTypeI(arg0->data.dobj);
 }
 
@@ -1757,7 +1762,7 @@ void renRenderModelNodeTypeJ(DObj* dobj) {
         sp58 = ren_D_8004B03C;
         sp60 = renPrepareModelMatrix(&ren_D_8004B03C, dobj);
         sp40 = renIsScaleMtxPushed;
-        renIsScaleMtxPushed = FALSE;
+        renIsScaleMtxPushed = false;
 
         if (payload != NULL && !(dobj->flags & 1)) {
             while (payload->dlistID != 4) {
@@ -1768,7 +1773,7 @@ void renRenderModelNodeTypeJ(DObj* dobj) {
                         if (renIsScaleMtxPushed) {
                             gSPPopMatrix(gMainGfxPos[payload->dlistID]++, G_MTX_MODELVIEW);
                         }
-                        renIsScaleMtxPushed = FALSE;
+                        renIsScaleMtxPushed = false;
                     }
 
                     while (ren_D_8004B040[payload->dlistID] != ren_D_8004B03C) {
@@ -1811,7 +1816,7 @@ void renRenderModelNodeTypeJ(DObj* dobj) {
         for (i = 0; i < 4; i++) {
             if (ren_D_8004B040[i] > ren_D_8004B03C) {
                 ren_D_8004B040[i] = ren_D_8004B03C;
-                if (sp60 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                if (sp60 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
@@ -1833,7 +1838,7 @@ void renRenderModelNodeTypeJ(DObj* dobj) {
 
 void renRenderModelTypeJ(GObj* arg0) {
     renScaleX = renScaleY = renScaleZ = 1.0f;
-    renIsScaleMtxPushed = FALSE;
+    renIsScaleMtxPushed = false;
     renRenderModelNodeTypeJ(arg0->data.dobj);
 }
 
@@ -1864,7 +1869,7 @@ void renRenderModelNodeTypeK(DObj* dobj) {
             renRenderModelNodeTypeK(dobj->firstChild);
         }
 
-        if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+        if (ret != 0 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
             gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
         }
 
@@ -1890,7 +1895,7 @@ void renRenderModelTypeK(GObj* obj) {
         payload = dobj->payload.typeE;
         if (payload != NULL) {
             renScaleX = renScaleY = renScaleZ = 1.0f;
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
             renLevelOfDetail = 0;
 
             dist = renSquaredDistanceToCamera(dobj);
@@ -1903,7 +1908,7 @@ void renRenderModelTypeK(GObj* obj) {
 
             if (payload->dlist != NULL && !(dobj->flags & 1)) {
                 renLoadTextures(dobj, &gMainGfxPos[0]);
-                if (TRUE) { // required to match
+                if (true) { // required to match
                     gSPDisplayList(gMainGfxPos[0]++, payload->dlist);
                 }
             }
@@ -1912,7 +1917,7 @@ void renRenderModelTypeK(GObj* obj) {
                 renRenderModelNodeTypeK(dobj->firstChild);
             }
 
-            if (ret != 0 && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+            if (ret != 0 && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                 gSPPopMatrix(gMainGfxPos[0]++, G_MTX_MODELVIEW);
             }
 
@@ -1984,7 +1989,7 @@ void renRenderModelNodeTypeL(DObj* dobj) {
         for (i = 0; i < 4; i++) {
             if (ren_D_8004B040[i] > ren_D_8004B03C) {
                 ren_D_8004B040[i] = ren_D_8004B03C;
-                if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                     gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                 }
             }
@@ -2019,7 +2024,7 @@ void renRenderModelTypeL(GObj* obj) {
         payload = dobj->payload.typeG;
         if (payload != NULL) {
             renScaleX = renScaleY = renScaleZ = 1.0f;
-            renIsScaleMtxPushed = FALSE;
+            renIsScaleMtxPushed = false;
             renLevelOfDetail = 0;
 
             dist = renSquaredDistanceToCamera(dobj);
@@ -2062,11 +2067,12 @@ void renRenderModelTypeL(GObj* obj) {
             for (i = 0; i < 4; i++) {
                 if (ren_D_8004B040[i] > ren_D_8004B03C) {
                     ren_D_8004B040[i] = ren_D_8004B03C;
-                    if (ret && ((uintptr_t)dobj->parent == 1 || dobj->next != NULL)) {
+                    if (ret && ((uintptr_t) dobj->parent == 1 || dobj->next != NULL)) {
                         gSPPopMatrix(gMainGfxPos[i]++, G_MTX_MODELVIEW);
                     }
                 }
-                if (!NULL) {} // required to match
+                if (!NULL) {
+                } // required to match
             }
 
             if (dobj->prev == NULL) {
@@ -2099,7 +2105,7 @@ void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
 
     if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
         gtl_load_ucode(gfxPtr, gtlD_8004A906);
-        gtlD_8004A908 = TRUE;
+        gtlD_8004A908 = true;
     }
     gfxPos = *gfxPtr;
 
@@ -2147,7 +2153,7 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
 
     if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
         gtl_load_ucode(gfxPtr, gtlD_8004A906);
-        gtlD_8004A908 = TRUE;
+        gtlD_8004A908 = true;
     }
     gfxPos = *gfxPtr;
 
@@ -2304,7 +2310,7 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
             if (ommtx->unk05 != 2) {
                 if (gtlContextId > 0) {
                     mtx = gtlCurrentGfxHeap.ptr;
-                    gtlCurrentGfxHeap.ptr = (char*)gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                    gtlCurrentGfxHeap.ptr = (char*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                 }
 
                 switch (ommtx->kind) {
@@ -2613,7 +2619,7 @@ void renCameraRenderObjects(GObj* camObj, s32 mode) {
     while (dlLinkBitMask != 0) {
         if (dlLinkBitMask & 1) {
             if (unk_38 & 1) {
-                if ((u8)gtlDrawnFrameCounter == omD_8004AC78[dlLink].unk00) {
+                if ((u8) gtlDrawnFrameCounter == omD_8004AC78[dlLink].unk00) {
                     ren_func_80018F1C(dlLink);
                 } else {
                     ren_func_80018DE8(camObj, dlLink, mode);
@@ -2704,7 +2710,7 @@ void ren_func_800192DC(GObj* obj) {
         ren_D_8004B238[i] = gMainGfxPos[i];
     }
 
-    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? true : false);
 
     for (i = 1; i < 4; i++) {
         Gfx* start = gMainGfxPos[i];
@@ -2795,7 +2801,7 @@ void renSpriteCameraRender(GObj* obj) {
     renInitCamera(&gMainGfxPos[0], cam, 0);
     spInit(&gMainGfxPos[0]);
     spScissor(xmin, xmax, ymin, ymax);
-    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? TRUE : FALSE);
+    renCameraRenderObjects(obj, (cam->flags & CAMERA_FLAG_8) ? true : false);
     spFinish(&gMainGfxPos[0]);
     gMainGfxPos[0]--;
     gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_PERSP);

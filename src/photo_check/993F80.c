@@ -38,7 +38,6 @@ typedef struct Foo2 {
     u32 unk4_0 : 1;
 } Foo2; // size = 0x8
 
-
 extern s32 D_801F4194_9A3C04;
 extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 
@@ -82,7 +81,7 @@ s32 func_801E460C_99407C(char* arg0, char* arg1) {
         return 0;
     }
 
-    for (; TRUE; arg0++, arg1++) {
+    for (; true; arg0++, arg1++) {
         sp4 = *arg0 - *arg1;
         if (sp4 != 0) {
             return sp4;
@@ -251,7 +250,8 @@ void func_801E4E04_994874(void) {
             }
         }
     } else {
-        for (loop_i = 0; func_800BFA44_5C8E4(loop_i) != 0; loop_i++) {}
+        for (loop_i = 0; func_800BFA44_5C8E4(loop_i) != 0; loop_i++) {
+        }
         sp2C = loop_i;
     }
 
@@ -273,7 +273,8 @@ void func_801E4E04_994874(void) {
                 sp30 = 1;
             }
             if (sp30 != 0) {
-                for (sp3C = 0; func_800BFA44_5C8E4(sp3C) != 0; sp3C++) {}
+                for (sp3C = 0; func_800BFA44_5C8E4(sp3C) != 0; sp3C++) {
+                }
                 sp2C = sp3C;
             } else {
                 sp2C++;
@@ -313,7 +314,7 @@ s32 func_801E5030_994AA0(void) {
                 photo->unk_1A_15 = 0;
                 photo->unk_1A_11 = 1;
                 photo->specialID = 0;
-                photo->isWellFramed = FALSE;
+                photo->isWellFramed = false;
                 photo->posePts = 0;
                 photo->sizeParam1 = 0;
                 photo->commentID = 0;

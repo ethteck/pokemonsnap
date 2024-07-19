@@ -36,7 +36,7 @@ void func_802CA6C0_7A3C50(GObj* obj) {
     s32 sp34;
     f32 sp30;
 
-    while (TRUE) {
+    while (true) {
         getLevelProgress(&sp34, &sp30);
         if (sp34 > 2 || (sp34 == 2 && sp30 >= 0.1)) {
             break;
@@ -232,7 +232,7 @@ void func_802CAE70_7A4400(GObj* obj) {
 }
 
 void func_802CAF04_7A4494(GObj* obj) {
-    while (TRUE) {
+    while (true) {
         Pokemon_TurnToTarget(obj, 0.1f, 0);
         ohWait(1);
     }

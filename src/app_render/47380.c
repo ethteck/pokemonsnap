@@ -466,10 +466,10 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
 
     pokemonID = pokemon->id;
     if ((arg1->flags & GOBJ_FLAG_HIDDEN) || !pokemon->tangible) {
-        return FALSE;
+        return false;
     }
     if (func_80364718_504B28(arg1)) {
-        return FALSE;
+        return false;
     }
 
     switch (pokemonID) {
@@ -496,7 +496,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
             break;
         default:
             if (pokemonID <= 0 || pokemonID > POKEDEX_MAX) {
-                return FALSE;
+                return false;
             }
             break;
     }
@@ -551,7 +551,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         arg0->position.z = model->position.v.z;
         arg0->yaw = model->rotation.f[2];
     }
-    return TRUE;
+    return true;
 }
 
 void func_8009C25C(UnkThing* arg0, u8 objIndex) {
@@ -779,14 +779,14 @@ s32 makePhoto(GObj* pokemonObj) {
     } else {
         sp34 = gPokemonIdInFocus;
         // TODO clean if
-        if (sp34 == PokemonID_1004 || sp34 == PokemonID_1018 || sp34 == PokemonID_1022 || (cond = TRUE, sp34 == PokemonID_1035)) {
+        if (sp34 == PokemonID_1004 || sp34 == PokemonID_1018 || sp34 == PokemonID_1022 || (cond = true, sp34 == PokemonID_1035)) {
             for (i = 0; i < ARRAY_COUNT(temp_s4->unk_20); i++) {
                 memcpy(&temp_s4->unk_20[i], &sp38->main.unk_20[i], sizeof(temp_s4->unk_20[0]));
             }
         } else {
             for (i = 0; i < ARRAY_COUNT(sp38->pokemonObjects); i++) {
                 if (pokemonObj == sp38->pokemonObjects[i]) {
-                    cond = FALSE;
+                    cond = false;
                     break;
                 }
             }

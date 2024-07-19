@@ -47,7 +47,7 @@ void func_beach_802CB128(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    while (TRUE) {
+    while (true) {
         if (!Pokemon_HearsPokeFlute(obj)) {
             break;
         }

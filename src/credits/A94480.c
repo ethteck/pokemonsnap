@@ -41,7 +41,7 @@ void func_credits_801DD980(void) {
         case SCENE_CREDITS_17:
         case SCENE_CREDITS_18:
         case SCENE_CREDITS_20:
-            while (TRUE) {
+            while (true) {
                 sobj->sprite.y--;
                 if (sobj->sprite.y < 113) {
                     break;
@@ -52,7 +52,7 @@ void func_credits_801DD980(void) {
             break;
 
         case SCENE_CREDITS_19:
-            while (TRUE) {
+            while (true) {
                 sobj->sprite.x--;
                 middle = (SCREEN_WIDTH / 2) - (sobj->sprite.width / 2);
                 if (sobj->sprite.x < middle) {
@@ -70,7 +70,7 @@ void func_credits_801DDA60(void) {
     SObj* sobj = D_credits_801ECCA0->data.sobj;
 
     color = 0xFF;
-    while (TRUE) {
+    while (true) {
         color -= 5;
         if (color >= 10) {
             sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = color;

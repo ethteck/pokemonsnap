@@ -122,18 +122,18 @@ s32 func_8035E868_4FEC78(GObj* obj) {
 
     while (entry != NULL) {
         if (entry->obj == obj) {
-            return TRUE;
+            return true;
         }
         entry = entry->next;
     }
-    return FALSE;
+    return false;
 }
 
 void Pokemon_InitTransforms(void) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_803B0C18_551028) - 1; i++) {
-        D_803B0C18_551028[i].next = &D_803B0C18_551028[i+1];
+        D_803B0C18_551028[i].next = &D_803B0C18_551028[i + 1];
     }
     D_803B0C18_551028[i].next = NULL;
 
@@ -173,7 +173,7 @@ void Pokemon_InitPokemonsData(void) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_803B0D60_551170) - 1; i++) {
-        D_803B0D60_551170[i].next = &D_803B0D60_551170[i+1];
+        D_803B0D60_551170[i].next = &D_803B0D60_551170[i + 1];
     }
     D_803B0D60_551170[i].next = NULL;
 
@@ -213,7 +213,7 @@ void Pokemon_InitItems(void) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_803B0EA8_5512B8) - 1; i++) {
-        D_803B0EA8_5512B8[i].next = &D_803B0EA8_5512B8[i+1];
+        D_803B0EA8_5512B8[i].next = &D_803B0EA8_5512B8[i + 1];
     }
     D_803B0EA8_5512B8[i].next = NULL;
 
@@ -278,7 +278,7 @@ void Pokemon_SetStateRandom(GObj* obj, RandomState* stateList) {
 
     sumWeight = stateList[0].weight;
     for (i = 0; sumWeight <= randValue; i++) {
-        sumWeight += stateList[i+1].weight;
+        sumWeight += stateList[i + 1].weight;
     }
 
     if (stateList[i].func != NULL) {
@@ -401,19 +401,19 @@ void Pokemon_SetAnimationCommon(GObj* obj, AnimationHeader* header, f32 startTim
 }
 
 void Pokemon_SetAnimation(GObj* obj, AnimationHeader* header) {
-    Pokemon_SetAnimationCommon(obj, header, 0, FALSE);
+    Pokemon_SetAnimationCommon(obj, header, 0, false);
 }
 
 void Pokemon_ForceAnimation(GObj* obj, AnimationHeader* header) {
-    Pokemon_SetAnimationCommon(obj, header, 0, TRUE);
+    Pokemon_SetAnimationCommon(obj, header, 0, true);
 }
 
 void Pokemon_SetAnimationAtTime(GObj* obj, AnimationHeader* header, f32 time) {
-    Pokemon_SetAnimationCommon(obj, header, time, FALSE);
+    Pokemon_SetAnimationCommon(obj, header, time, false);
 }
 
 void Pokemon_ForceAnimationAtTime(GObj* obj, AnimationHeader* header, f32 time) {
-    Pokemon_SetAnimationCommon(obj, header, time, TRUE);
+    Pokemon_SetAnimationCommon(obj, header, time, true);
 }
 
 void func_8035F1D0_4FF5E0(GObj* arg0, u8 arg1, s32 arg2) {
@@ -433,7 +433,7 @@ f32 Pokemon_GetGroundAt(f32 x, f32 z) {
 
 f32 Pokemon_WrapAngleSum(f32 angle1, f32 angle2) {
     f32 sum = angle1 + angle2;
-    f32 ret = sum - (s32)(sum / TAU) * TAU;
+    f32 ret = sum - (s32) (sum / TAU) * TAU;
 
     if (ret < 0.0f) {
         ret += TAU;
@@ -557,7 +557,7 @@ f32 Pokemon_HeadingBetweenPoints(Vec3f* pointTo, Vec3f* pointFrom) {
     if (heading < 0.0f) {
         heading += TAU;
     } else if (heading > TAU) {
-        heading -= (s32)(heading / TAU) * TAU;
+        heading -= (s32) (heading / TAU) * TAU;
     }
     return heading;
 }
@@ -582,7 +582,7 @@ f32 Pokemon_GetHeadingVector(Vec3f* pointTo, Vec3f* pointFrom, Vec3f* outVec, f3
     if (heading < 0.0f) {
         heading += TAU;
     } else if (heading > TAU) {
-        heading -= (s32)(heading / TAU) * TAU;
+        heading -= (s32) (heading / TAU) * TAU;
     }
     if (outVec != NULL) {
         outVec->x = dx;
@@ -596,7 +596,7 @@ f32 Pokemon_GetDirToNeighbours(GObj* obj, Vec3f* outDir) {
     GObj* pokemonObj;
     DObj* model = obj->data.dobj;
     f32 dist;
-    s32 hasNeighbour = FALSE;
+    s32 hasNeighbour = false;
     Vec3f pos;
     Vec3f neighbourPos;
     Vec3f dir;
@@ -617,7 +617,7 @@ f32 Pokemon_GetDirToNeighbours(GObj* obj, Vec3f* outDir) {
 
             dist = Vec3fDirection(&dir, &pos, &neighbourPos);
             if (dist < 100.0f) {
-                hasNeighbour = TRUE;
+                hasNeighbour = true;
                 outDir->x += dist * dir.x;
                 outDir->y += dist * dir.y;
                 outDir->z += dist * dir.z;
@@ -635,7 +635,7 @@ f32 Pokemon_GetDirToNeighbours(GObj* obj, Vec3f* outDir) {
 void Pokemon_RunInteractions(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     s32 i;
-    s32 continueSearch = TRUE;
+    s32 continueSearch = true;
     Vec3f dirToNeighbors;
     f32 interactionDist;
     GObj* interactionTarget;
@@ -659,7 +659,7 @@ void Pokemon_RunInteractions(GObj* obj) {
                     Item* item = GET_ITEM(interactionTarget);
                     if (interactionTarget != pokemon->apple && item->itemID == ITEM_ID_APPLE && item->state == ITEM_STATE_STILL && interactionDist < 600.0f) {
                         pokemon->apple = interactionTarget;
-                        continueSearch = FALSE;
+                        continueSearch = false;
                         pokemon->interactionDist = interactionDist;
                         pokemon->interactionTarget = interactionTarget;
                         stateProc = transitionGraph[i].state;
@@ -670,7 +670,7 @@ void Pokemon_RunInteractions(GObj* obj) {
             case POKEMON_CMD_16:
                 if (pokemon->playerDist < transitionGraph[i].value) {
                     pokemon->interactionDist = interactionDist; // BUG: interactionDist undefined here, must use 'playerDist'
-                    continueSearch = FALSE;
+                    continueSearch = false;
                     pokemon->interactionTarget = gObjPlayer;
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
@@ -681,7 +681,7 @@ void Pokemon_RunInteractions(GObj* obj) {
                     pokemon->dirToNeighbors.x = dirToNeighbors.x;
                     pokemon->dirToNeighbors.y = dirToNeighbors.y;
                     pokemon->dirToNeighbors.z = dirToNeighbors.z;
-                    continueSearch = FALSE;
+                    continueSearch = false;
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
                 }
@@ -690,7 +690,7 @@ void Pokemon_RunInteractions(GObj* obj) {
             case POKEMON_CMD_6:
             case POKEMON_CMD_7:
                 if (Items_GetPokeFluteCmd() == transitionGraph[i].cmd && pokemon->playerDist < 1400.0f) {
-                    continueSearch = FALSE;
+                    continueSearch = false;
                     pokemon->interactionTarget = gObjPlayer;
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
@@ -700,14 +700,14 @@ void Pokemon_RunInteractions(GObj* obj) {
                 if (D_80382CF8_523108 > transitionGraph[i].value && obj == gPokemonInFocus) {
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
-                    continueSearch = FALSE;
+                    continueSearch = false;
                 }
                 break;
             case POKEMON_CMD_25:
                 if (gDirectionIndex < 0 && pokemon->playerDist < transitionGraph[i].value) {
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
-                    continueSearch = FALSE;
+                    continueSearch = false;
                 }
                 break;
         }
@@ -728,7 +728,7 @@ void Pokemon_RunInteractions(GObj* obj) {
 void Pokemon_WaitForFlag(GObj* obj, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    while (TRUE) {
+    while (true) {
         Pokemon_RunInteractions(obj);
         if (pokemon->processFlags & flags) {
             break;
@@ -741,7 +741,7 @@ void Pokemon_WaitForFlag(GObj* obj, u32 flags) {
 void Pokemon_WaitForFlagNoInteraction(GObj* obj, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    while (TRUE) {
+    while (true) {
         if (pokemon->processFlags & flags) {
             break;
         }
@@ -833,7 +833,7 @@ GObj* Pokemon_AddAtGeo(GObj* gobj, u16 id, PokemonDef* def) {
 void Pokemon_SetFlag100(GObj* obj, s32 enabled) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    if (enabled == TRUE) {
+    if (enabled == true) {
         pokemon->flags |= POKEMON_FLAG_100;
     } else {
         pokemon->flags &= ~POKEMON_FLAG_100;
@@ -845,9 +845,9 @@ s32 Pokemon_GetFlag100(GObj* obj) {
     s32 ret;
 
     if (pokemon->flags & POKEMON_FLAG_100) {
-        ret = TRUE;
+        ret = true;
     } else {
-        ret = FALSE;
+        ret = false;
     }
     return ret;
 }
@@ -863,7 +863,7 @@ void func_8035FF44_500354(GObj* obj, s32 arg1, s32 arg2) {
     if (v1 < 0) {
         v1 = 0;
     }
-    delta = (f32)v1 / (f32)arg2;
+    delta = (f32) v1 / (f32) arg2;
     while (arg2-- > 0) {
         f20 -= delta;
         pokemon->unk_E4 = f20;
@@ -945,7 +945,7 @@ void Pokemon_Jump(GObj* obj, f32 maxJumpHeight, f32 acceleration, f32 minJumpSpe
     minJumpSpeed *= 0.033;
     maxJumpSpeed *= 0.033;
 
-    while (TRUE) {
+    while (true) {
         if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
@@ -980,7 +980,7 @@ void Pokemon_JumpToHeight(GObj* obj, f32 maxHeight, f32 acceleration, f32 minJum
     minJumpSpeed *= 0.033;
     maxJumpSpeed *= 0.033;
 
-    while (TRUE) {
+    while (true) {
         if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
@@ -1014,7 +1014,7 @@ void Pokemon_Fall(GObj* obj, f32 maxFallHeight, f32 acceleration, f32 minFallSpe
     minFallSpeed *= 0.033;
     maxFallSpeed *= 0.033;
 
-    while (TRUE) {
+    while (true) {
         if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
@@ -1049,7 +1049,7 @@ void Pokemon_FallToHeight(GObj* obj, f32 minHeight, f32 acceleration, f32 minFal
     minFallSpeed *= 0.033;
     maxFallSpeed *= 0.033;
 
-    while (TRUE) {
+    while (true) {
         if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             accel = acceleration * 0.033;
             Pokemon_MoveXZ(obj);
@@ -1076,7 +1076,7 @@ void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f3
     DObj* model = obj->data.dobj;
     Pokemon* pokemon = GET_POKEMON(obj);
     f32 velYaw;
-    f32 velX,velY,velZ;
+    f32 velX, velY, velZ;
     Vec3f vectorUp = { 0, 1, 0 };
     Vec3f velDir;
     f32 currentSpeed;
@@ -1089,14 +1089,14 @@ void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f3
     if (velYaw < 0.0f) {
         velYaw += TAU;
     } else if (velYaw > TAU) {
-        velYaw -= (s32)(velYaw / TAU) * TAU;
+        velYaw -= (s32) (velYaw / TAU) * TAU;
     }
 
     velX = sinf(velYaw) * speed;
     velY = speed;
     velZ = cosf(velYaw) * speed;
 
-    while (TRUE) {
+    while (true) {
         getGroundAt(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z, &pokemon->currGround);
         if (GET_TRANSFORM(model)->pos.v.y < pokemon->currGround.height) {
             if (Vec3fAngleDiff(&vectorUp, &pokemon->currGround.normal) < PI / 3.0f) {
@@ -1129,7 +1129,7 @@ void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32 arg2) {
     PokemonTransform* transform = GET_TRANSFORM(model);
     f32 jumpVel = pokemon->jumpVel * 0.033;
 
-    while (TRUE) {
+    while (true) {
         if (arg2) {
             Pokemon_StepWalkInDirection(obj, pokemon->facingYaw, 0);
         } else {
@@ -1137,7 +1137,7 @@ void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32 arg2) {
         }
 
         transform->pos.v.y += jumpVel;
-        jumpVel += (f32)(acceleration * 0.033);
+        jumpVel += (f32) (acceleration * 0.033);
 
         if (jumpVel < 0.0f && transform->pos.v.y < pokemon->currGround.height) {
             break;
@@ -1149,7 +1149,7 @@ void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32 arg2) {
 }
 
 s32 Pokemon_IsGroundForbidden(f32 x, f32 z, GroundResult* groundResult, f32* forbiddenList) {
-    s32 ret = FALSE;
+    s32 ret = false;
 
     getGroundAt(x, z, groundResult);
     if (forbiddenList == NULL) {
@@ -1163,13 +1163,13 @@ s32 Pokemon_IsGroundForbidden(f32 x, f32 z, GroundResult* groundResult, f32* for
             case SURFACE_TYPE_FF0000:
             case SURFACE_TYPE_FF4C19:
             case SURFACE_TYPE_FF7FB2:
-                ret = TRUE;
+                ret = true;
                 break;
         }
     } else {
         while (*forbiddenList != 0.0f) {
             if (*forbiddenList == groundResult->surfaceType) {
-                ret = TRUE;
+                ret = true;
                 break;
             }
             forbiddenList++;
@@ -1188,7 +1188,7 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
     Vec3f collOffset;
 
     if (Pokemon_IsGroundForbidden(nextX, nextZ, &pokemon->currGround, pokemon->forbiddenGround)) {
-        return TRUE;
+        return true;
     }
 
     // clang-format off
@@ -1197,12 +1197,12 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
     Vec3fNormalize(&collOffset);
     Vec3fScale(&collOffset, pokemon->collisionRadius);
     if (Pokemon_IsGroundForbidden(GET_TRANSFORM(model)->pos.v.x + collOffset.x, GET_TRANSFORM(model)->pos.v.z + collOffset.z, &groundResult, pokemon->forbiddenGround)) {
-        return TRUE;
+        return true;
     }
 
     if (flags & MOVEMENT_FLAG_FIXED_HEIGHT) {
         if (ABS(GET_TRANSFORM(model)->pos.v.y - pokemon->currGround.height) != 0.0f) {
-            return TRUE;
+            return true;
         }
     }
 
@@ -1211,7 +1211,7 @@ s32 Pokemon_StepWalk(GObj* obj, f32 velX, f32 velZ, u32 flags) {
     if (flags & MOVEMENT_FLAG_ON_GROUND) {
         GET_TRANSFORM(model)->pos.v.y = pokemon->currGround.height;
     }
-    return FALSE;
+    return false;
 }
 
 s32 Pokemon_StepWalkInDirection(GObj* obj, f32 direction, u32 flags) {
@@ -1224,10 +1224,10 @@ s32 Pokemon_StepWalkInDirection(GObj* obj, f32 direction, u32 flags) {
         f32 velZ = cosf(direction) * hSpeed;
 
         if (Pokemon_StepWalk(obj, velX, velZ, flags)) {
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 s32 Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
@@ -1241,10 +1241,10 @@ s32 Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
         f32 velZ = cosf(direction) * hSpeed;
 
         if (Pokemon_StepWalk(obj, velX, velZ, flags)) {
-            return TRUE;
+            return true;
         }
     }
-    return FALSE;
+    return false;
 }
 
 s32 Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
@@ -1253,7 +1253,7 @@ s32 Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
     f32 sign;
 
     yaw = GET_TRANSFORM(model)->rot.f[2];
-    yaw -= (s32)(yaw / TAU) * TAU;
+    yaw -= (s32) (yaw / TAU) * TAU;
     if (yaw < 0.0f) {
         yaw += TAU;
     }
@@ -1268,9 +1268,9 @@ s32 Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
         GET_TRANSFORM(model)->rot.f[2] = yaw + sign * turnSpeed;
     } else {
         GET_TRANSFORM(model)->rot.f[2] = targetYaw;
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unusedArg) {
@@ -1307,7 +1307,7 @@ void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unus
     prevX = GET_TRANSFORM(model)->pos.v.x;
     prevZ = GET_TRANSFORM(model)->pos.v.z;
 
-    while (TRUE) {
+    while (true) {
         backwardDir = Pokemon_WrapAngleSum(backwardDir, realTurnSpeed);
         nextYaw = Pokemon_WrapAngleSum(backwardDir, PI_2);
         nextX = sinf(backwardDir) * radius + centerPos.x;
@@ -1354,7 +1354,7 @@ void Pokemon_TurnToTarget(GObj* obj, f32 turnSpeed, u32 flags) {
     f32 targetDir;
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
-    s32 updateDir = TRUE;
+    s32 updateDir = true;
     Vec3f* targetPos;
     Vec3f* currentPos;
     DObj* targetModel;
@@ -1374,13 +1374,13 @@ void Pokemon_TurnToTarget(GObj* obj, f32 turnSpeed, u32 flags) {
     }
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
-    while (TRUE) {
+    while (true) {
         if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
 
         if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
-            updateDir = FALSE;
+            updateDir = false;
             if (flags & MOVEMENT_FLAG_TURN_AWAY) {
                 targetDir = Pokemon_HeadingBetweenPoints(currentPos, targetPos);
             } else {
@@ -1404,17 +1404,17 @@ void Pokemon_TurnToModelNode(GObj* obj, DObj* modelNode, f32 turnSpeed, u32 flag
     Vec3f targetPos;
     Vec3f sp54 = { 0, 0, 0 };
 
-    updateDir = TRUE;
+    updateDir = true;
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
-    while (TRUE) {
+    while (true) {
         func_800A5E98(&targetPos, &sp54, modelNode);
         if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
 
         if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
-            updateDir = FALSE;
+            updateDir = false;
             if (flags & MOVEMENT_FLAG_TURN_AWAY) {
                 targetDir = Pokemon_HeadingBetweenPoints(currentPos, &targetPos);
             } else {
@@ -1441,7 +1441,7 @@ void Pokemon_RunToTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags
     f32 hSpeed = pokemon->hSpeed * 0.033;
     DObj* targetModel;
     Vec3f* targetPos;
-    s32 updateDir = TRUE;
+    s32 updateDir = true;
     f32 distance;
     f32 targetYaw;
     s32 unused[5];
@@ -1449,9 +1449,9 @@ void Pokemon_RunToTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags
     Vec3f walkDir;
     s32 unused2;
 
-    while (TRUE) {
+    while (true) {
         if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
-            updateDir = FALSE;
+            updateDir = false;
             if (pokemon->interactionTarget == NULL) {
                 break;
             }
@@ -1493,16 +1493,16 @@ void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32
     f32 hSpeed = pokemon->hSpeed * 0.033;
     DObj* targetModel;
     Vec3f* targetPos;
-    s32 updateDir = TRUE;
+    s32 updateDir = true;
     f32 distance;
     f32 targetYaw;
     s32 unused[7];
     Vec3f* currentPos;
     Vec3f walkDir;
 
-    while (TRUE) {
+    while (true) {
         if (updateDir || (flags & MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
-            updateDir = FALSE;
+            updateDir = false;
             if (pokemon->interactionTarget == NULL) {
                 break;
             }
@@ -1574,8 +1574,8 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
     targetYaw = atan2f(dx, dz);
     if (targetYaw < 0.0f) {
         targetYaw += TAU;
-    } else if (targetYaw > TAU){
-        targetYaw -= (s32)(targetYaw / TAU) * TAU;
+    } else if (targetYaw > TAU) {
+        targetYaw -= (s32) (targetYaw / TAU) * TAU;
     }
 
     velX = sinf(targetYaw) * hSpeed;
@@ -1585,7 +1585,7 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
     }
 
     currentYaw = GET_TRANSFORM(model)->rot.f[2];
-    currentYaw -= (s32)(currentYaw / TAU) * TAU;
+    currentYaw -= (s32) (currentYaw / TAU) * TAU;
     if (currentYaw < 0.0f) {
         currentYaw += TAU;
     }
@@ -1641,7 +1641,7 @@ void Pokemon_TurnToPokeFlute(GObj* obj, f32 turnSpeed) {
     }
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
-    while (TRUE) {
+    while (true) {
         if (Items_GetPokeFluteCmd() == 0 || pokemon->playerDist > 1400.0f) {
             break;
         }
@@ -1686,20 +1686,19 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
     f32 f2;
     f32 paramStep;
 
-
     pokemon->pathParam = startParam;
 
     if (pokemon->path == NULL) {
-        while (TRUE) {
+        while (true) {
             ohWait(1);
         }
     }
 
     paramStep = 1.0f / pokemon->path->unk_0C * speedMult;
 
-    while (TRUE) {
+    while (true) {
         if (!(pokemon->pathParam >= 0.0f) || !(pokemon->pathParam <= 1.0f)) {
-            while (TRUE) {
+            while (true) {
                 ohWait(1);
             }
         }
@@ -1720,7 +1719,7 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 if (f2 < 0.0f) {
                     f2 += TAU;
                 } else if (f2 > TAU) {
-                    f2 -= (s32)(f2 / TAU) * TAU;
+                    f2 -= (s32) (f2 / TAU) * TAU;
                 }
                 if (flags & MOVEMENT_FLAG_TURN_GRADUALLY) {
                     Pokemon_Turn(model, f2, turnSpeed);
@@ -1737,7 +1736,10 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 if (flags & MOVEMENT_FLAG_ON_GROUND) {
                     worldPos.y = Pokemon_GetGroundAt(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z);
                     GET_TRANSFORM(model)->pos.v.y += worldPos.y;
-                    if (1) { } if (1) { } // TODO fake match
+                    if (1) {
+                    }
+                    if (1) {
+                    } // TODO fake match
                 } else {
                     GET_TRANSFORM(model)->pos.v.y += worldPos.y * 100.0f;
                 }
@@ -1748,7 +1750,7 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 return;
             }
 
-            if (pokemon->pathParam > 1.0f){
+            if (pokemon->pathParam > 1.0f) {
                 pokemon->pathParam -= 1.0f;
             }
         }
@@ -1784,7 +1786,7 @@ void Pokemon_AnimationCallback(DObj* model, s32 param, f32 value) {
         case 1:
         case 2:
         case 3:
-            if ((s32)model->parent == 1) { // toplevel
+            if ((s32) model->parent == 1) { // toplevel
                 s32 val = value;
                 if (val != 0) {
                     if (animHeader->ids != NULL) {
@@ -1819,7 +1821,7 @@ void Pokemon_HandleCommand(GObjCmdData cmdData) {
     auxProc = NULL;
     transitionGraph = pokemon->transitionGraph;
 
-    switch(cmdData.cmd) {
+    switch (cmdData.cmd) {
         case POKEMON_CMD_14:
             if (transitionGraph == NULL) {
                 break;
@@ -2157,7 +2159,7 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     matrixStore->kinds[0] = 1;
     matrixStore->kinds[1] = 2;
     matrixStore->kinds[2] = 3;
-    model->unk_4C = (struct DObjDynamicStore*)matrixStore;
+    model->unk_4C = (struct DObjDynamicStore*) matrixStore;
     omDObjAddMtx(model, MTX_TYPE_63, 0, 0);
 
     GET_TRANSFORM(model)->pos.v.x = spawn->translation.x * 100.0f + (block->descriptor->worldPos.x - blockBX) * 100.0f;
@@ -2187,7 +2189,7 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     pokemon->collisionRadius = initData->radius * initData->scale.y;
     pokemon->flags = initData->flags;
     pokemon->id = id;
-    pokemon->tangible = TRUE;
+    pokemon->tangible = true;
     pokemon->animSetup = initData->animSetup;
     pokemon->baseBlock = block;
     pokemon->forbiddenGround = NULL;
@@ -2231,15 +2233,15 @@ void func_8036334C_50375C(GObj* obj) {
     Mtx4f sp38;
 
     hal_rotate_rpy_translate_f(sp78, GET_TRANSFORM(model)->pos.v.x,
-                                     GET_TRANSFORM(model)->pos.v.y,
-                                     GET_TRANSFORM(model)->pos.v.z,
-                                     GET_TRANSFORM(model)->rot.f[1],
-                                     GET_TRANSFORM(model)->rot.f[2],
-                                     GET_TRANSFORM(model)->rot.f[3]);
+                               GET_TRANSFORM(model)->pos.v.y,
+                               GET_TRANSFORM(model)->pos.v.z,
+                               GET_TRANSFORM(model)->rot.f[1],
+                               GET_TRANSFORM(model)->rot.f[2],
+                               GET_TRANSFORM(model)->rot.f[3]);
     if (pokemon->flags & POKEMON_FLAG_1) {
         hal_translate_f(sp38, pokemon->collisionOffset.x + model->position.v.x * GET_TRANSFORM(model)->scale.v.x,
-                              pokemon->collisionOffset.y + model->position.v.y * GET_TRANSFORM(model)->scale.v.y,
-                              pokemon->collisionOffset.z + model->position.v.z * GET_TRANSFORM(model)->scale.v.z);
+                        pokemon->collisionOffset.y + model->position.v.y * GET_TRANSFORM(model)->scale.v.y,
+                        pokemon->collisionOffset.z + model->position.v.z * GET_TRANSFORM(model)->scale.v.z);
     } else {
         hal_translate_f(sp38, pokemon->collisionOffset.x, pokemon->collisionOffset.y, pokemon->collisionOffset.z);
     }
@@ -2318,7 +2320,8 @@ void func_8036345C_50386C(GObj* arg0) {
                 }
             }
         }
-        if (FALSE) { } // required to match
+        if (false) {
+        } // required to match
     }
 }
 

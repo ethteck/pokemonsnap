@@ -43,7 +43,9 @@ PokemonInitData D_80388348_528758 = {
     { 0.0f, 0.0f, 0.0f },
     0.0f,
     0,
-    0, 0, 0,
+    0,
+    0,
+    0,
     { 0, 0, 0 },
 };
 
@@ -96,13 +98,13 @@ void func_8035E034_4FE444(GObj* obj) {
     s32 unused[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = FALSE;
+    pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
     pokemon->miscVars[0].field1 = 0;
     do {
         ohWait(1);
     } while (pokemon->miscVars[0].field1 == 0);
-    pokemon->tangible = TRUE;
+    pokemon->tangible = true;
     obj->flags = 0;
     Pokemon_ForceAnimation(obj, &D_80388310_528720);
     Pokemon_StartPathProc(obj, func_8035DFB0_4FE3C0);
@@ -145,7 +147,7 @@ void func_8035E174_4FE584(GObj* obj, Vec3f* arg1) {
 GObj* func_8035E1D4_4FE5E4(GObj* obj) {
     GObj* sp30;
     GroundResult sp18;
-    PokemonTransform* sp2C;    
+    PokemonTransform* sp2C;
 
     sp30 = Pokemon_AddAtGeo(obj, PokemonID_1003, &D_8038837C_52878C);
     sp2C = GET_TRANSFORM(sp30->data.dobj);
@@ -180,7 +182,7 @@ void func_8035E298_4FE6A8(GObj* obj) {
     s1 = obj->data.dobj->firstChild->firstChild->next;
 
     ohWait(10);
-    while (TRUE) {
+    while (true) {
         func_800A5E98(&sp4C, &sp40, s1);
         getGroundAt(sp4C.x, sp4C.z, &sp28);
         if (sp4C.y < sp28.height) {

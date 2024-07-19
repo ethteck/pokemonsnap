@@ -115,7 +115,7 @@ void func_800E6D64_A0E2F4(void) {
 
 void func_800E6F68_A0E4F8(void) {
     UNUSED s32 pad;
-    UnkStruct800BEDF8 *temp_v0_2;
+    UnkStruct800BEDF8* temp_v0_2;
     s32 leftRightOrig;
     s32 topBottomOrig;
     s32 topBottom;
@@ -133,7 +133,7 @@ void func_800E6F68_A0E4F8(void) {
     func_800E6D64_A0E2F4();
     func_800E6C7C_A0E20C();
 
-    while (TRUE) {
+    while (true) {
         temp_v0_2 = func_800AA38C(0);
 
         if (gContInputPressedButtons & START_BUTTON) {
@@ -253,7 +253,7 @@ void func_800E7478_A0EA08(GObj* arg0) {
     state = 0;
     var_s0 = D_800E8374_A0F904;
 
-    while (TRUE) {
+    while (true) {
         if (var_s0 != D_800E8374_A0F904) {
             func_800E6C00_A0E190(D_800E8378_A0F908[var_s0], 0xFF);
             counter = 0;
@@ -310,7 +310,7 @@ void func_800E7604_A0EB94(GObj* arg0) {
     }
 
     var_s1 = D_800E8374_A0F904;
-    while (TRUE) {
+    while (true) {
         if (var_s1 != D_800E8374_A0F904) {
             sp34[var_s1]->sprite.attr |= SP_HIDDEN;
         }
@@ -332,15 +332,15 @@ s8 func_800E7700_A0EC90(void) {
     omCreateProcess(gobj, func_800E7604_A0EB94, 0, 1);
     ohWait(1);
 
-    while (TRUE) {
+    while (true) {
         temp_v0_2 = func_800AA38C(0);
         if (gContInputPressedButtons & A_BUTTON) {
             auPlaySoundWithParams(0x42, 0x7FFF, 0x40, 1.0f, 0);
-            pressedB = FALSE;
+            pressedB = false;
             break;
         } else if (gContInputPressedButtons & B_BUTTON) {
             auPlaySoundWithParams(0x43, 0x7FFF, 0x40, 1.0f, 0);
-            pressedB = TRUE;
+            pressedB = true;
             break;
         } else {
             if (temp_v0_2->unk_18 & 0x10000) {
@@ -397,7 +397,7 @@ void func_800E7950_A0EEE0(GObj* arg0) {
     sp40[0] = sobj;
     sp40[1] = sobj->next;
 
-    while (TRUE) {
+    while (true) {
         if (var_s0 != D_800E8375_A0F905) {
             func_800E6C00_A0E190(sp40[var_s0], 0xFF);
             color = 0xFF;
@@ -459,7 +459,7 @@ void func_800E7B24_A0F0B4(GObj* arg0) {
     sp38[0] = var_v0;
     sp38[1] = var_v0->next;
 
-    while (TRUE) {
+    while (true) {
         if (var_s2 != D_800E8375_A0F905) {
             sp38[var_s2]->sprite.attr |= SP_HIDDEN;
         }
@@ -500,7 +500,7 @@ void func_800E7C40_A0F1D0(void) {
     setting = D_800E8375_A0F905;
     ohWait(1);
 
-    while (TRUE) {
+    while (true) {
         temp_v0_2 = func_800AA38C(0);
         if (gContInputPressedButtons & A_BUTTON) {
             auPlaySoundWithParams(0x42, 0x7FFF, 0x40, 1.0f, 0);
@@ -563,24 +563,24 @@ void func_800E7F98_A0F528(void) {
     auPlaySong(0, 0x1B);
 
     do {
-        cond = FALSE;
+        cond = false;
         temp_v0 = func_800E7700_A0EC90();
         switch (temp_v0) {
-        case 0:
-            func_800E6F68_A0E4F8();
-            break;
-        case 1:
-        case 2:
-        case 3:
-            func_800E7C40_A0F1D0();
-            break;
-        case 4:
-            func_800BFB90_5CA30(viEdgeOffsetLeft, viEdgeOffsetTop);
-            setPlayerFlag(PFID_9, D_800E8394_A0F924);
-            setPlayerFlag(PFID_ZOOM_SWITCH, D_800E8395_A0F925);
-            setPlayerFlag(PFID_INVERTED_Y, D_800E8396_A0F926);
-            cond = TRUE;
-            break;
+            case 0:
+                func_800E6F68_A0E4F8();
+                break;
+            case 1:
+            case 2:
+            case 3:
+                func_800E7C40_A0F1D0();
+                break;
+            case 4:
+                func_800BFB90_5CA30(viEdgeOffsetLeft, viEdgeOffsetTop);
+                setPlayerFlag(PFID_9, D_800E8394_A0F924);
+                setPlayerFlag(PFID_ZOOM_SWITCH, D_800E8395_A0F925);
+                setPlayerFlag(PFID_INVERTED_Y, D_800E8396_A0F926);
+                cond = true;
+                break;
         }
     } while (!cond);
 

@@ -86,7 +86,7 @@ void func_credits_801DCE10(void) {
 void func_credits_801DCEF0(GObj* arg0) {
     ohWait(226);
 
-    while (TRUE) {
+    while (true) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
             func_800A7470(0, 0, 0);
             func_800A7860(0, 1.0f);
@@ -94,7 +94,7 @@ void func_credits_801DCEF0(GObj* arg0) {
             ohWait(60);
             func_800067DC();
 
-            while (TRUE) {
+            while (true) {
                 ohWait(1);
             }
         }
@@ -112,10 +112,10 @@ s32 func_credits_801DCFC8(GObj* gobj) {
     if (sobj->sprite.attr & SP_HIDDEN &&
         sobj->next->sprite.attr & SP_HIDDEN &&
         sobj->next->next->sprite.attr & SP_HIDDEN) {
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 void func_credits_801DD018(GObj* gobj) {
@@ -164,7 +164,7 @@ void func_credits_801DD168(GObj* gobj) {
     }
 
     var_s0 = 0;
-    while (TRUE) {
+    while (true) {
         while (var_s0 != 0) {
             ohWait(1);
             var_s0--;
@@ -181,7 +181,7 @@ void func_credits_801DD168(GObj* gobj) {
 
     ohRemoveSprite(gobj);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -268,7 +268,7 @@ void func_credits_801DD49C(GObj* arg0) {
     temp_s0 = arg0->data.sobj;
     var_f20 = temp_s0->sprite.x;
 
-    while (TRUE) {
+    while (true) {
         var_f20 -= 1.3f;
         if (var_f20 < -16.0f) {
             var_f20 += 16.0f;
@@ -290,7 +290,7 @@ void func_credits_801DD540(GObj* arg0) {
         sp3C[i] = sp44[i]->sprite.y;
     }
 
-    while (TRUE) {
+    while (true) {
         if ((sp44[0]->sprite.y < 0)) {
             break;
         }
@@ -310,7 +310,7 @@ void func_credits_801DD540(GObj* arg0) {
         sp44[i]->sprite.attr |= SP_HIDDEN;
     }
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

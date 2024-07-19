@@ -63,7 +63,7 @@ void Msg_UpdatePrinter(GObj* obj) {
 
     Msg_PrintedText[0] = 0;
     if (Msg_PrintDelay > 0) {
-        while (TRUE) {
+        while (true) {
             i += 2;
             memcpy(Msg_PrintedText, Msg_MessageText, i);
             Msg_PrintedText[i] = 0;
@@ -90,7 +90,7 @@ END:
     memcpy(Msg_PrintedText, Msg_MessageText, Msg_MessageLength);
     Msg_PrintedText[Msg_MessageLength] = 0;
     ohWait(1);
-    Msg_IsPrinted = TRUE;
+    Msg_IsPrinted = true;
     omEndProcess(NULL);
 }
 
@@ -200,9 +200,9 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
     } else {
         // wide non-alphanumeric chars
         s16 code2byte = ((c0 & 0xFF) << 8) + (c1 & 0xFF);
-        s16 *test = D_8039379C_533BAC;
+        s16* test = D_8039379C_533BAC;
         i = 0;
-        for (i = 0;;i++) {
+        for (i = 0;; i++) {
             if (*test == code2byte) {
                 img = D_803931F0_533600[i].img;
                 *width = Msg_GetGlyphWidth(i + 62);
@@ -241,10 +241,10 @@ void Msg_DrawChar(u8* timg, s32 offsetX, s32 offsetY, s32 width, s32 height) {
     }
     if (Msg_BlinkEnabled) {
         gDPSetPrimColor(gMainGfxPos[0]++, 0, 0,
-        Msg_TextColorR * Msg_BlinkAlpha,
-        Msg_TextColorG * Msg_BlinkAlpha,
-        Msg_TextColorB * Msg_BlinkAlpha,
-        Msg_TextColorA);
+                        Msg_TextColorR * Msg_BlinkAlpha,
+                        Msg_TextColorG * Msg_BlinkAlpha,
+                        Msg_TextColorB * Msg_BlinkAlpha,
+                        Msg_TextColorA);
     }
     gSPTextureRectangle(gMainGfxPos[0]++, ulx << 2, uly << 2, lrx << 2, lry << 2, G_TX_RENDERTILE, 0, 0, 1024 / Message_ScaleX, 1024 / Message_ScaleY);
 }
@@ -332,7 +332,7 @@ GObj* Msg_InitCamera(void) {
     if (ohFindById(OBJID_MSG_CAMERA) != NULL) {
         return NULL;
     }
-    Msg_CameraObject = cam = ohCreateCamera(OBJID_MSG_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, Msg_DrawMessage, 3, 0, 0, FALSE, 0, NULL, 0, 0);
+    Msg_CameraObject = cam = ohCreateCamera(OBJID_MSG_CAMERA, ohUpdateDefault, LINK_0, 0x80000000, Msg_DrawMessage, 3, 0, 0, false, 0, NULL, 0, 0);
     Msg_PrintedText[0] = 0;
     Msg_MessageLength = 0;
     return cam;
@@ -349,7 +349,7 @@ void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 colorR, u8 colorG, u8 c
     for (ptr = message; *ptr != 0; ptr += nbytes) {
         Msg_GetCharParams(ptr, &nbytes, &charWidth);
         messageWidth += charWidth + 1;
-        if (*ptr == '\\' && (ptr[1] == (0,'B') || ptr[1] == (0,'Q')) && Msg_SpecialHandler != NULL) { // TODO find better way to match
+        if (*ptr == '\\' && (ptr[1] == (0, 'B') || ptr[1] == (0, 'Q')) && Msg_SpecialHandler != NULL) { // TODO find better way to match
             Msg_SpecialHandler(ptr[1]);
         }
     }
@@ -396,11 +396,11 @@ void Msg_SetSpecialHandler(void (*handler)(u8)) {
 }
 
 void Msg_SetNonInteractive(void) {
-    Msg_IsInteractive = FALSE;
+    Msg_IsInteractive = false;
 }
 
 void Msg_SetInteractive(void) {
-    Msg_IsInteractive = TRUE;
+    Msg_IsInteractive = true;
 }
 
 s32 Msg_IsMessagePrinted(void) {

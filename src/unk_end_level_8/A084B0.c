@@ -192,7 +192,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
     func_8009FBC4();
     func_800AADF0(0x17);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

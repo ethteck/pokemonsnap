@@ -28,11 +28,11 @@ void func_800AAF20(void) {
 }
 
 s8 func_800AAFB0(s16 arg0, s16 arg1, f32 arg2) {
-    return ((f32)arg1 - (f32)arg0) * arg2 + arg0;
+    return ((f32) arg1 - (f32) arg0) * arg2 + arg0;
 }
 
 s16 func_800AB000(s16 arg0, s16 arg1, f32 arg2) {
-    return ((f32)arg1 - (f32)arg0) * arg2 + arg0;
+    return ((f32) arg1 - (f32) arg0) * arg2 + arg0;
 }
 
 void func_800AB050(f32 arg0, s32 arg1, Struct_800AB050* arg2, Struct_800AB050* arg3, Struct_800AB050* arg4) {
@@ -51,16 +51,16 @@ void func_800AB050(f32 arg0, s32 arg1, Struct_800AB050* arg2, Struct_800AB050* a
 s32 func_800AB138(EggStruct* arg0, f32 arg1) {
     s32 n;
     Struct_800AB050* next;
-    
+
     n = arg0->timer;
     next = arg0->tempBuffer[n + 1];
     func_800AB050(arg0->timer - n, arg0->vertexCount, arg0->data, arg0->tempBuffer[n], next);
     arg0->timer += arg1;
-    if ((s32)arg0->timer >= arg0->end - 1) {
+    if ((s32) arg0->timer >= arg0->end - 1) {
         arg0->timer = arg0->end - 2 + 0.9999f;
-        return FALSE;
+        return false;
     } else {
-        return TRUE;
+        return true;
     }
 }
 
@@ -71,8 +71,8 @@ void func_800AB1F8(EggStruct* arg0) {
 
 #ifdef NON_MATCHING
 void func_800AB240(GObj* obj) {
-    while (TRUE) {
-        Struct_800BEFD8* entry = &D_800BEFD8[(s32)obj->userData];
+    while (true) {
+        Struct_800BEFD8* entry = &D_800BEFD8[(s32) obj->userData];
         f32 unk_08 = entry->unk_08;
         f32 unk_0C = entry->unk_0C;
         f32 unk_10 = entry->unk_10;
@@ -121,7 +121,7 @@ s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
         ptr->unk_10 = 0;
         ptr->unk_14 = arg3;
         ptr->unk_00 = omAddGObj(14, NULL, LINK_0, 0x80000000);
-        ptr->unk_00->userData = (void*)i;
+        ptr->unk_00->userData = (void*) i;
         omCreateProcess(ptr->unk_00, func_800AB240, 0, 1);
         return 0;
     }
@@ -152,9 +152,9 @@ s32 func_800AB700(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
         ptr->unk_08 = arg1;
         ptr->unk_0C = arg2;
         ptr->unk_10 = 0;
-        ptr->unk_14 = arg3;        
+        ptr->unk_14 = arg3;
         ptr->unk_00 = omAddGObj(14, NULL, LINK_0, 0x80000000);
-        ptr->unk_00->userData = (void*)i;
+        ptr->unk_00->userData = (void*) i;
         omCreateProcess(ptr->unk_00, func_800AB518, 0, 1);
         return 0;
     }

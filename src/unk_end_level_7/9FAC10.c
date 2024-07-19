@@ -5,7 +5,7 @@
 void func_801DCF50_9FAC10(GObj* arg0) {
     s32 sp24;
 
-    while (TRUE) {
+    while (true) {
         if (D_801EA1F4_A07EB4 != 0) {
             sp24 = contIsPrinterAvailable();
             if (D_801EA200_A07EC0 != sp24) {
@@ -56,7 +56,7 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     func_8036D4A0_840C50(0);
     func_801DDCA8_9FB968(13);
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
         sp24 = func_800AA38C(0);
         if (sp24->unk_18 & 0x4000) {
@@ -598,7 +598,7 @@ void func_801DE87C_9FC53C(void) {
             } else if (sp54->unk_18 & 0x4000) {
                 auPlaySound(0x4D);
                 D_801EA204_A07EC4 = 0;
-                sp40 = TRUE;
+                sp40 = true;
                 ;
             } else {
                 if (sp54->unk_18 & 0x2000) {
@@ -690,7 +690,7 @@ void func_801DEE88_9FCB48(void) {
             sp28->data.sobj->sprite.y = 92;
             auSetBGMVolumeSmooth(0, 0x3F80, 0x3C);
 
-            while (TRUE) {
+            while (true) {
                 ohWait(1);
             }
         }
@@ -825,7 +825,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_803700A4_843854(1);
     func_8036D4A0_840C50((0, 0));
 
-    while (TRUE) {
+    while (true) {
         func_801E0DEC_9FEAAC();
         if (D_801EA1FC_A07EBC != 0) {
             func_801E1504_9FF1C4(0);
@@ -839,7 +839,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
                 gobj->data.sobj->sprite.y = 92;
                 auSetBGMVolumeSmooth(0, 0x3F80, 60);
 
-                while (TRUE) {
+                while (true) {
                     ohWait(1);
                 }
             }

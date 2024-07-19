@@ -39,23 +39,23 @@ void func_800E1B30_AA08E0(Gfx**);
 void func_800E1B54_AA0904(void);
 
 SceneSetup D_800E1D40_AA0AF0 = {
-     {
-         0,
-         omUpdateAll,
-         omDrawAll,
-         D_800E1DE0,
-         0,
-         1,
-         2,
-         0x5000,
-         0x2000,
-         0,
-         0,
-         0xC800,
-         0,
-         0,
-         func_800E1B30_AA08E0,
-         contUpdate,
+    {
+        0,
+        omUpdateAll,
+        omDrawAll,
+        D_800E1DE0,
+        0,
+        1,
+        2,
+        0x5000,
+        0x2000,
+        0,
+        0,
+        0xC800,
+        0,
+        0,
+        func_800E1B30_AA08E0,
+        contUpdate,
     },
     0x20,
     0x400,
@@ -113,7 +113,7 @@ void func_800E1958_AA0708(SObj* sobj, u16 arg1) {
 }
 
 void func_800E1A34_AA07E4(s32 unused) {
-    while (TRUE) {
+    while (true) {
         D_800E1DD4_AA0B84++;
         ohWait(1);
     }
@@ -130,7 +130,7 @@ void func_800E1A94_AA0844(s32 unused) {
     }
     func_800E1958_AA0708(D_800E1DD0_AA0B80->data.sobj, 20);
     func_800067DC();
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }

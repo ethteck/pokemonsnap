@@ -20,7 +20,7 @@ void func_802D9E7C_72B07C(GObj* arg0) {
     s32 sp34;
     f32 sp30;
 
-    while (TRUE) {
+    while (true) {
         getLevelProgress(&sp34, &sp30);
         if (sp34 > 4 || (sp34 == 4 && sp30 >= 0.1)) {
             break;

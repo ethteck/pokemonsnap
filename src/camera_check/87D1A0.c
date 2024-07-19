@@ -224,14 +224,14 @@ void nullsub() {
 
 bool func_camera_check_801E04B0(UnkIndigoHalibut* arg0) {
     if (arg0 == NULL) {
-        return FALSE;
+        return false;
     }
 
     if (func_8009BB4C(arg0->unk_08) >= 63) {
-        return TRUE;
+        return true;
     }
 
-    return FALSE;
+    return false;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E04F4.s")
@@ -263,7 +263,7 @@ s32 func_camera_check_801E0F10(void) {
     prevPokemonName = NULL;
     ohWait(1);
 
-    while (TRUE) {
+    while (true) {
         temp_v0 = func_800AA38C(0);
         var_s6 |= func_camera_check_801DFCD4(temp_v0, &sp6C, &sp68, 0);
         if ((temp_v0->unk_18 & 0x8000) && (func_camera_check_801E24D8(D_camera_check_80208960) != NULL)) {

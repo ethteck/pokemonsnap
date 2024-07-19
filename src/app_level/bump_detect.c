@@ -11,7 +11,7 @@ void BumpDetector_Update(GObj* arg0) {
     GObj* pokemonObj;
     u8 unk = 0;
 
-    while (TRUE) {
+    while (true) {
         f32 minDistance = FLOAT_MAX;
         for (pokemonObj = omGObjListHead[LINK_POKEMON]; pokemonObj != NULL; pokemonObj = pokemonObj->next) {
             Pokemon* pokemon = GET_POKEMON(pokemonObj);
@@ -46,16 +46,16 @@ void BumpDetector_Init(void) {
     BumpDetector_ProximityLevel = 0;
     BumpDetector_Object = omAddGObj(OBJID_BUMP_DETECTOR, ohUpdateDefault, LINK_0, 0x80000000);
     omCreateProcess(BumpDetector_Object, BumpDetector_Update, 0, 9);
-    BumpDetector_IsEnabled = TRUE;
+    BumpDetector_IsEnabled = true;
 }
 
 void BumpDetector_Disable(void) {
-    BumpDetector_IsEnabled = FALSE;
+    BumpDetector_IsEnabled = false;
     ohPauseObjectProcesses(BumpDetector_Object);
 }
 
 void BumpDetector_Enable(void) {
-    BumpDetector_IsEnabled = TRUE;
+    BumpDetector_IsEnabled = true;
     ohResumeObjectProcesses(BumpDetector_Object);
 }
 

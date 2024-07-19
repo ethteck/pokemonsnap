@@ -85,7 +85,7 @@ s32 func_801E4428_993E98(void) {
     func_800AA870(0xF0000);
     func_801E4BA0_994610(0);
 
-    while (TRUE) {
+    while (true) {
         func_801E433C_993DAC(sp24);
         switch (sp24) {
             case 2:

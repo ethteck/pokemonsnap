@@ -920,9 +920,9 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     temp_s1 = func_camera_check_801E2478() * temp_s2;
 
     if (checkPlayerFlag(PFID_11)) {
-        func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, FALSE);
+        func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, false);
         func_80374F30_8486E0(temp_s0, 1);
-        func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, TRUE);
+        func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, true);
     }
 
     if (!checkPlayerFlag(PFID_18) && func_800BF864_5C704() >= 4) {
@@ -946,7 +946,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_camera_check_801DDAD8(0);
     func_camera_check_801DDB08(0);
 
-    while (TRUE) {
+    while (true) {
         func_camera_check_801E21E8();
         func_803700A4_843854(0);
         func_8036D1A4_840954(D_camera_check_80249914, 1);

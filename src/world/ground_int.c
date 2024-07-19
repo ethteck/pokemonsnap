@@ -2,28 +2,32 @@
 
 #ifdef NON_MATCHING
 void func_800E4460_61C10(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) {
-    while (TRUE) {
-        if (tree->leftPatch != (void*)-1 && ((uintptr_t)tree->leftPatch & 0xFF000000) == 0) {
-            if (!patchArray) {} // for regalloc
-            tree->leftPatch = &patchArray[(uintptr_t)tree->leftPatch];
+    while (true) {
+        if (tree->leftPatch != (void*) -1 && ((uintptr_t) tree->leftPatch & 0xFF000000) == 0) {
+            if (!patchArray) {
+            } // for regalloc
+            tree->leftPatch = &patchArray[(uintptr_t) tree->leftPatch];
         }
-        if (tree->rightPatch != (void*)-1 && ((uintptr_t)tree->rightPatch & 0xFF000000) == 0) {
-            if (!patchArray) {} // for regalloc
-            tree->rightPatch = &patchArray[(uintptr_t)tree->rightPatch];
+        if (tree->rightPatch != (void*) -1 && ((uintptr_t) tree->rightPatch & 0xFF000000) == 0) {
+            if (!patchArray) {
+            } // for regalloc
+            tree->rightPatch = &patchArray[(uintptr_t) tree->rightPatch];
         }
-        if (tree->leftChild != (void*)-1 && ((uintptr_t)tree->leftChild & 0xFF000000) == 0) {
-            if (!nodeArray) {} // for regalloc
-            tree->leftChild = &nodeArray[(uintptr_t)tree->leftChild];
+        if (tree->leftChild != (void*) -1 && ((uintptr_t) tree->leftChild & 0xFF000000) == 0) {
+            if (!nodeArray) {
+            } // for regalloc
+            tree->leftChild = &nodeArray[(uintptr_t) tree->leftChild];
         }
-        if (tree->rightChild != (void*)-1 && ((uintptr_t)tree->rightChild & 0xFF000000) == 0) {
-            if (!nodeArray) {} // for regalloc
-            tree->rightChild = &nodeArray[(uintptr_t)tree->rightChild];
+        if (tree->rightChild != (void*) -1 && ((uintptr_t) tree->rightChild & 0xFF000000) == 0) {
+            if (!nodeArray) {
+            } // for regalloc
+            tree->rightChild = &nodeArray[(uintptr_t) tree->rightChild];
         }
 
-        if (tree->leftChild != (void*)-1) {
+        if (tree->leftChild != (void*) -1) {
             func_800E4460_61C10(nodeArray, tree->leftChild, patchArray);
         }
-        if (tree->rightChild != (void*)-1) {
+        if (tree->rightChild != (void*) -1) {
             tree = tree->rightChild;
         } else {
             break;
@@ -37,17 +41,17 @@ void func_800E4460_61C10(HeightMapTreeNode* arg0, HeightMapTreeNode* arg1, Heigh
 
 #ifdef NON_MATCHING
 void func_800E4584_61D34(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) {
-    while (TRUE) {
-        if (tree->leftPatch == (void*)-1) {
+    while (true) {
+        if (tree->leftPatch == (void*) -1) {
             tree->leftPatch = NULL;
         }
-        if (tree->rightPatch == (void*)-1) {
+        if (tree->rightPatch == (void*) -1) {
             tree->rightPatch = NULL;
         }
-        if (tree->leftChild == (void*)-1) {
+        if (tree->leftChild == (void*) -1) {
             tree->leftChild = NULL;
         }
-        if (tree->rightChild == (void*)-1) {
+        if (tree->rightChild == (void*) -1) {
             tree->rightChild = NULL;
         }
 
@@ -72,7 +76,7 @@ void createHeightMapTree(HeightMapTreeNode* tree, HeightMapPatch* patches) {
 }
 
 HeightMapPatch* findHeightMapPatch(HeightMapTreeNode* node, f32 x, f32 z) {
-    while (TRUE) {
+    while (true) {
         if (node->lineA * x + node->lineB * z + node->lineC <= 0.0f) {
             if (node->rightPatch != NULL) {
                 return node->rightPatch;

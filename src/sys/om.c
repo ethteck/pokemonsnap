@@ -25,7 +25,7 @@ void (*omEndProcessHandler)(GObjProcess*);
 GObjProcess* omFreeProcessList;
 GObjProcess* omGProcessList[12]; // indexed by priority
 s32 omActiveProcesses;
-GObj* omGObjListHead[32];  // indexed by link
+GObj* omGObjListHead[32]; // indexed by link
 GObj* omGObjListTail[32];
 GObj* omFreeGObjList;
 GObj* omGObjListDlHead[33]; // indexed by dlLink
@@ -188,7 +188,7 @@ void omLinkProcess(GObjProcess* proc) {
 
     // find place in priority list
     // here it is assumed that objects with lower link and priority have processes with lower priority
-    while (TRUE) {
+    while (true) {
         while (curObj != NULL) {
             GObjProcess* curProc = curObj->processListTail;
             while (curProc != NULL) {
@@ -652,7 +652,7 @@ GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32
             stackNode = omGetDefaultStack();
             thread->osStack = stackNode->stack;
             thread->stackSize = omDefaultStackSize;
-            osCreateThread(&thread->osThread, omThreadCounter++, (void (*)(void*))func, obj, &thread->osStack[omDefaultStackSize / 8],
+            osCreateThread(&thread->osThread, omThreadCounter++, (void (*)(void*)) func, obj, &thread->osStack[omDefaultStackSize / 8],
                            51);
             thread->osStack[7] = 0xFEDCBA98;
 
@@ -702,7 +702,7 @@ GObjProcess* omCreateProcessThreaded(GObj* obj, void (*entry)(GObj*), u32 pri, s
     thread->stackSize = stackSize == 0 ? omDefaultStackSize : stackSize;
     tid = threadId != -1 ? threadId : omThreadCounter++;
 
-    osCreateThread(&thread->osThread, tid, (void (*)(void*))entry, obj, &thread->osStack[thread->stackSize / 8], 51);
+    osCreateThread(&thread->osThread, tid, (void (*)(void*)) entry, obj, &thread->osStack[thread->stackSize / 8], 51);
     thread->osStack[7] = 0xFEDCBA98;
     if (omThreadCounter >= 20000000) {
         omThreadCounter = 10000000;
@@ -731,7 +731,7 @@ void omEndProcess(GObjProcess* proc) {
         case 0:
             osDestroyThread(&proc->unk_1C.thread->osThread);
             // cast from stack pointer back to stack node
-            tnode = (void*)((uintptr_t)(proc->unk_1C.thread->osStack) - 8); /*offsetof(struct ThreadStackNode, stack));*/
+            tnode = (void*) ((uintptr_t) (proc->unk_1C.thread->osStack) - 8); /*offsetof(struct ThreadStackNode, stack));*/
             omFreeStack(tnode);
             omFreeThread(proc->unk_1C.thread);
             break;
@@ -758,21 +758,21 @@ OMMtx* omDObjAddMtx(DObj* dobj, u8 kind, u8 arg2, s32 index) {
     }
 
     if (dobj->unk_4C != NULL) {
-        csr = (uintptr_t)dobj->unk_4C->data;
+        csr = (uintptr_t) dobj->unk_4C->data;
         for (i = 0; i < 3; i++) {
             switch (dobj->unk_4C->kinds[i]) {
                 case 0:
                     break;
                 case 1:
-                    t2 = (void*)csr;
+                    t2 = (void*) csr;
                     csr += sizeof(union Mtx3fi);
                     break;
                 case 2:
-                    t1 = (void*)csr;
+                    t1 = (void*) csr;
                     csr += sizeof(struct Mtx4Float);
                     break;
                 case 3:
-                    t4 = (void*)csr;
+                    t4 = (void*) csr;
                     csr += sizeof(struct Mtx3Float);
                     break;
             }
@@ -1119,7 +1119,7 @@ void omDObjInit(DObj* dobj) {
 
     dobj->unk_4C = NULL;
     dobj->flags = 0;
-    dobj->animCBReceiver = FALSE;
+    dobj->animCBReceiver = false;
     dobj->numMatrices = 0;
 
     for (i = 0; i < 5; i++) {
@@ -1159,7 +1159,7 @@ DObj* omGObjAddDObj(GObj* obj, void* arg1) {
     }
 
     newDobj->obj = obj;
-    newDobj->parent = (void*)1;
+    newDobj->parent = (void*) 1;
     newDobj->next = NULL;
     newDobj->firstChild = NULL;
     newDobj->payload.any = arg1;
@@ -1230,7 +1230,7 @@ void omDObjRemove(DObj* dobj) {
         omDObjRemove(dobj->firstChild);
     }
 
-    if ((uintptr_t)dobj->parent == 1) {
+    if ((uintptr_t) dobj->parent == 1) {
         // toplevel
         if (dobj == dobj->obj->data.dobj) {
             dobj->obj->data.dobj = dobj->next;
@@ -1320,7 +1320,7 @@ SObj* omGObjAddSprite(GObj* obj, Sprite* sprite) {
 
 void omGObjRemoveSprite(SObj* obj) {
     if (obj == obj->obj->data.sobj) {
-        obj->obj->data.sobj = (void*)obj->next;
+        obj->obj->data.sobj = (void*) obj->next;
         if (obj->obj->data.sobj == NULL) {
             obj->obj->type = 0;
         }
@@ -1350,7 +1350,8 @@ OMCamera* omGObjSetCamera(GObj* obj) {
     obj->data.cam = camera;
     camera->obj = obj;
     func_80007CBC(&camera->vp);
-    if (FALSE) {} // required to match
+    if (false) {
+    } // required to match
     camera->numMatrices = 0;
     for (i = 0; i < ARRAY_COUNT(camera->matrices); i++) {
         camera->matrices[i] = NULL;
@@ -1422,7 +1423,8 @@ GObj* omAddGObjCommon(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
     obj->data.any = NULL;
     obj->dlLink = 33;
 
-    if (FALSE) {} // required to match
+    if (false) {
+    } // required to match
 
     obj->fnAnimCallback = NULL;
     obj->userData = NULL;
@@ -1571,7 +1573,7 @@ void omMoveGObjBefore(GObj* arg0, GObj* arg1) {
 }
 
 void omLinkGObjDLCommon(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlPriority,
-                            s32 cameraTag) {
+                        s32 cameraTag) {
     if (dlLink >= 32) {
         fatal_printf("omGLinkObjDLCommon() : dl_link num over : dl_link = %d : id = %d\n", dlLink, obj->id);
         PANIC();
@@ -1593,7 +1595,7 @@ void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, u32 dlPriority, s32
 }
 
 void omLinkGObjDLBeforeSamePriority(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlPriority,
-                                          s32 arg4) {
+                                    s32 arg4) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -1618,7 +1620,7 @@ void omLinkGObjDLBefore(GObj* obj, void (*renderFunc)(struct GObj*), s32 arg2, G
 }
 
 void omLinkGObjDLCameraCommon(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask,
-                                   s32 cameraTag) {
+                              s32 cameraTag) {
     obj->dlLink = 32;
     obj->dlPriority = dlPriority;
     obj->fnRender = renderFunc;
@@ -1629,7 +1631,7 @@ void omLinkGObjDLCameraCommon(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriori
 }
 
 void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask,
-                            s32 cameraTag) {
+                        s32 cameraTag) {
     if (obj == NULL) {
         obj = omCurrentObject;
     }
@@ -1638,7 +1640,7 @@ void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s3
 }
 
 void omLinkGObjDLCameraBeforeSamePriority(GObj* arg0, void (*arg1)(GObj*), u32 arg2, s32 arg3,
-                                                 s32 arg4) {
+                                          s32 arg4) {
     if (arg0 == NULL) {
         arg0 = omCurrentObject;
     }
@@ -1882,10 +1884,10 @@ void omCreateObjects(OMSetup* setup) {
         omFreeStackList->size = omDefaultStackSize;
         omFreeStackList->stack = csr = setup->stacks;
 
-        for (i = 0; (u32)i < setup->numStacks - 1; i++) {
-            csr->next = (void*)((uintptr_t)csr + omDefaultStackSize + 8); // offsetof(struct ThreadStackNode, stack));
+        for (i = 0; (u32) i < setup->numStacks - 1; i++) {
+            csr->next = (void*) ((uintptr_t) csr + omDefaultStackSize + 8); // offsetof(struct ThreadStackNode, stack));
             csr->stackSize = omDefaultStackSize;
-            csr = (void*)((uintptr_t)csr + omDefaultStackSize + 8);       // offsetof(struct ThreadStackNode, stack));
+            csr = (void*) ((uintptr_t) csr + omDefaultStackSize + 8); // offsetof(struct ThreadStackNode, stack));
         }
 
         csr->stackSize = omDefaultStackSize;
@@ -1919,7 +1921,7 @@ void omCreateObjects(OMSetup* setup) {
         omFreeGObjList = csr = setup->commons;
 
         for (i = 0; i < setup->numObjects - 1; i++) {
-            csr->next = (void*)((uintptr_t)csr + setup->objectSize);
+            csr->next = (void*) ((uintptr_t) csr + setup->objectSize);
             csr = csr->next;
         }
         csr->next = NULL;
@@ -1986,7 +1988,7 @@ void omCreateObjects(OMSetup* setup) {
         omFreeDObjList = csr = setup->dobjs;
 
         for (i = 0; i < setup->numDObjs - 1; i++) {
-            csr->nextFree = (void*)((uintptr_t)csr + setup->dobjSize);
+            csr->nextFree = (void*) ((uintptr_t) csr + setup->dobjSize);
             csr = csr->nextFree;
         }
 
@@ -2001,7 +2003,7 @@ void omCreateObjects(OMSetup* setup) {
         omFreeSObjList = csr = setup->sobjs;
 
         for (i = 0; i < setup->numSObjs - 1; i++) {
-            csr->nextFree = (void*)((uintptr_t)csr + setup->sobjSize);
+            csr->nextFree = (void*) ((uintptr_t) csr + setup->sobjSize);
             csr = csr->nextFree;
         }
 
@@ -2016,7 +2018,7 @@ void omCreateObjects(OMSetup* setup) {
         omFreeCameraList = csr = setup->cameras;
 
         for (i = 0; i < setup->numCameras - 1; i++) {
-            csr->nextFree = (void*)((uintptr_t)csr + setup->cameraSize);
+            csr->nextFree = (void*) ((uintptr_t) csr + setup->cameraSize);
             csr = csr->nextFree;
         }
 

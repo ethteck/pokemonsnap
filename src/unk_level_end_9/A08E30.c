@@ -95,11 +95,9 @@ void func_800E18FC_A08E8C(SObj* sobj, s16 x, s16 y) {
 }
 
 void func_800E1920_A08EB0(void) {
-
 }
 
 void func_800E1928_A08EB0(void) {
-
 }
 
 void func_800E1930_A08EC0(u8 arg0, u8 arg1, u8 arg2, u8 arg3, f32 arg4) {
@@ -121,7 +119,7 @@ void func_800E1A68_A08FF8(void) {
     SObj* sobj = D_800E82B0_A0F840->data.sobj;
     u8 newColor;
 
-    while (TRUE) {
+    while (true) {
         newColor = (u64) (sobj->sprite.blue + 5); // TODO: u64 cast required to match
         sobj->sprite.blue = newColor;
         sobj->sprite.green = newColor;
@@ -148,7 +146,7 @@ void func_800E1AEC_A0907C(void) {
 }
 
 void func_800E1B04_A09094(GObj* gobj) {
-    while (TRUE) {
+    while (true) {
         if (D_800E82EC_A0F87C == 1 && D_800E82E8_A0F878 < 1800) {
             D_800E82E8_A0F878++;
         }
@@ -201,9 +199,9 @@ s32 func_800E1CCC_A0925C(void) {
     }
 
     if (sum > 3) {
-        ret = TRUE;
+        ret = true;
     } else {
-        ret = FALSE;
+        ret = false;
     }
     return ret;
 }
@@ -333,7 +331,7 @@ void func_800E212C_A096BC(void) {
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
 
     gobj = D_800E82C4_A0F854 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                               &D_8030E020, 0, NULL, 1);
+                                              &D_8030E020, 0, NULL, 1);
     sobj = gobj->data.sobj;
 
     func_800E18FC_A08E8C(sobj, 0, 150);
@@ -355,7 +353,7 @@ void func_800E2348_A098D8(void) {
     SObj* sobj;
 
     gobj = D_800E82C8_A0F858 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_802F4828, 0, NULL, 1);
+                                              &D_802F4828, 0, NULL, 1);
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -367,8 +365,13 @@ void func_800E23E4_A09974(void) {
     GObj* gobj;
 
     gobj = D_800E82CC_A0F85C = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_8034B920, 0, NULL, 1);
-    if (1) { } if (1) { } if (1) { } // TODO 3 if 1s required to match
+                                              &D_8034B920, 0, NULL, 1);
+    if (1) {
+    }
+    if (1) {
+    }
+    if (1) {
+    } // TODO 3 if 1s required to match
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -380,8 +383,13 @@ void func_800E2480_A09A10(void) {
     GObj* gobj;
 
     gobj = D_800E82D0_A0F860 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_8034C4B0, 0, NULL, 1);
-    if (1) { } if (1) { } if (1) { } // TODO 3 if 1s required to match
+                                              &D_8034C4B0, 0, NULL, 1);
+    if (1) {
+    }
+    if (1) {
+    }
+    if (1) {
+    } // TODO 3 if 1s required to match
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -393,8 +401,13 @@ void func_800E251C_A09AAC(void) {
     GObj* gobj;
 
     gobj = D_800E82D4_A0F864 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_8034D3A0, 0, NULL, 1);
-    if (1) { } if (1) { } if (1) { } // TODO 3 if 1s required to match
+                                              &D_8034D3A0, 0, NULL, 1);
+    if (1) {
+    }
+    if (1) {
+    }
+    if (1) {
+    } // TODO 3 if 1s required to match
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -406,8 +419,13 @@ void func_800E25B8_A09B48(void) {
     GObj* gobj;
 
     gobj = D_800E82D8_A0F868 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_802F6490, 0, NULL, 1);
-    if (1) { } if (1) { } if (1) { } // TODO 3 if 1s required to match
+                                              &D_802F6490, 0, NULL, 1);
+    if (1) {
+    }
+    if (1) {
+    }
+    if (1) {
+    } // TODO 3 if 1s required to match
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -443,7 +461,7 @@ void func_800E2780_A09D10(void) {
     SObj* sobj;
 
     gobj = D_800E82E0_A0F870 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                          &D_8034FAD8, 0, NULL, 1);
+                                              &D_8034FAD8, 0, NULL, 1);
     sobj = gobj->data.sobj;
 
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT);
@@ -457,7 +475,7 @@ void func_800E281C_A09DAC(void) {
             func_800E2348_A098D8();
             func_800E23E4_A09974();
             D_800E80D0_A0F660 = func_800E1CCC_A0925C();
-            if (D_800E80D0_A0F660 == TRUE) {
+            if (D_800E80D0_A0F660 == true) {
                 func_800E251C_A09AAC();
             }
             func_800E25B8_A09B48();
@@ -493,7 +511,7 @@ void func_800E28CC_A09E5C(void) {
         x = sobj->sprite.x + (sobj->sprite.width / 2);
         y = sobj->sprite.y + (sobj->sprite.height / 2);
 
-        func_800E18AC_A08E3C(sobj, TRUE);
+        func_800E18AC_A08E3C(sobj, true);
 
         for (j = 0; j < 6; j++) {
             temp_v0 = func_800AA38C(0);
@@ -506,8 +524,7 @@ void func_800E28CC_A09E5C(void) {
             func_800E18FC_A08E8C(
                 sobj,
                 x - (sobj->sprite.width * temp_f0 * 0.5),
-                y - (sobj->sprite.height * temp_f0 * 0.5)
-            );
+                y - (sobj->sprite.height * temp_f0 * 0.5));
             ohWait(1);
         }
 
@@ -557,10 +574,10 @@ void func_800E2C60_A0A1F0(GObj* gobj) {
     var_s1 = 0;
     sobj->sprite.x = x;
 
-    while (TRUE) {
+    while (true) {
         var_s2++;
         if ((var_s2 % 4) == 0) {
-            func_800E18AC_A08E3C(sobj, FALSE);
+            func_800E18AC_A08E3C(sobj, false);
             if (var_s1 != 3) {
                 sobj->next->sprite.x = sobj->sprite.x;
                 sobj = sobj->next;
@@ -568,7 +585,7 @@ void func_800E2C60_A0A1F0(GObj* gobj) {
                 gobj->data.sobj->sprite.x = sobj->sprite.x;
                 sobj = gobj->data.sobj;
             }
-            func_800E18AC_A08E3C(sobj, TRUE);
+            func_800E18AC_A08E3C(sobj, true);
             var_s1++;
             var_s1 %= 4;
         }
@@ -584,11 +601,11 @@ void func_800E2C60_A0A1F0(GObj* gobj) {
 
     sobj = gobj->data.sobj;
     while (sobj != NULL) {
-        func_800E18AC_A08E3C(sobj, FALSE);
+        func_800E18AC_A08E3C(sobj, false);
         sobj = sobj->next;
     }
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -603,10 +620,10 @@ void func_800E2DC8_A0A358(GObj* gobj) {
     var_s1 = 0;
     sobj->sprite.x = 671;
 
-    while (TRUE) {
+    while (true) {
         var_s2++;
         if ((var_s2 % 4) == 0) {
-            func_800E18AC_A08E3C(sobj, FALSE);
+            func_800E18AC_A08E3C(sobj, false);
             if (var_s1 != 2) {
                 sobj->next->sprite.x = sobj->sprite.x;
                 sobj = sobj->next;
@@ -614,7 +631,7 @@ void func_800E2DC8_A0A358(GObj* gobj) {
                 gobj->data.sobj->sprite.x = sobj->sprite.x;
                 sobj = gobj->data.sobj;
             }
-            func_800E18AC_A08E3C(sobj, TRUE);
+            func_800E18AC_A08E3C(sobj, true);
             var_s1++;
             var_s1 %= 3;
         }
@@ -629,15 +646,14 @@ void func_800E2DC8_A0A358(GObj* gobj) {
 
     sobj = gobj->data.sobj;
     while (sobj != NULL) {
-        func_800E18AC_A08E3C(sobj, FALSE);
+        func_800E18AC_A08E3C(sobj, false);
         sobj = sobj->next;
     }
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
-
 
 void func_800E2F24_A0A4B4(void) {
     omCreateProcess(D_800E82C0_A0F850, func_800E2C60_A0A1F0, 0, 1);
@@ -654,7 +670,7 @@ void func_800E2F74_A0A504(GObj* gobj) {
     state = 0;
     func_800E18E0_A08E70(sobj, 0, 0, 0);
 
-    while (TRUE) {
+    while (true) {
         switch (state) {
             case 0:
                 color += 5;
@@ -694,9 +710,9 @@ s32 func_800E30EC_A0A67C(s8 arg0) {
     sobj = D_800E82C8_A0F858->data.sobj;
     func_800E18FC_A08E8C(sobj, 59, 147);
     omCreateProcess(D_800E82C8_A0F858, func_800E2F74_A0A504, 0, 1);
-    func_800E18AC_A08E3C(sobj, TRUE);
+    func_800E18AC_A08E3C(sobj, true);
 
-    while (TRUE) {
+    while (true) {
         temp_v0 = func_800AA38C(0);
         if (temp_v0->unk_18 != 0) {
             func_800E1AEC_A0907C();
@@ -704,7 +720,7 @@ s32 func_800E30EC_A0A67C(s8 arg0) {
         }
 
         if (D_800E82E8_A0F878 >= 1800 && D_800BF051 == 0) {
-            func_800E1B78_A09108(FALSE);
+            func_800E1B78_A09108(false);
             if (arg0 == 0xF) {
                 ret = 0xB;
             } else {
@@ -719,7 +735,7 @@ s32 func_800E30EC_A0A67C(s8 arg0) {
         }
     }
 
-    func_800E18AC_A08E3C(sobj, FALSE);
+    func_800E18AC_A08E3C(sobj, false);
     ohEndAllObjectProcesses(D_800E82C8_A0F858);
     if (ret == 3) {
         auPlaySoundWithParams(0x42, 0x7FFF, 0x40, 1.0f, 0);
@@ -738,7 +754,7 @@ void func_800E3240_A0A7D0(GObj* gobj) {
     color = 0xFF;
     func_800E18E0_A08E70(sobj, color, color, color);
 
-    while (TRUE) {
+    while (true) {
         switch (state) {
             case 0:
                 if (sobj->sprite.red < 226) {
@@ -771,7 +787,6 @@ void func_800E3240_A0A7D0(GObj* gobj) {
     }
 }
 
-
 u8 func_800E33C8_A0A958(GObj** gobjs) {
     u8 ret;
     u8 sp4E;
@@ -781,9 +796,9 @@ u8 func_800E33C8_A0A958(GObj** gobjs) {
 
     if (D_800E82ED_A0F87D == 0) {
         sp4E = 0;
-    } else if (D_800E80D0_A0F660 == FALSE) {
+    } else if (D_800E80D0_A0F660 == false) {
         sp4E = 1;
-    } else if (D_800E80D0_A0F660 == TRUE) {
+    } else if (D_800E80D0_A0F660 == true) {
         sp4E = 2;
     }
 
@@ -791,57 +806,57 @@ u8 func_800E33C8_A0A958(GObj** gobjs) {
         case 0:
             gobjs[ret] = D_800E82CC_A0F85C;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
             break;
         case 1:
             gobjs[ret] = D_800E82CC_A0F85C;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D0_A0F860;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
             break;
         case 2:
             gobjs[ret] = D_800E82CC_A0F85C;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D0_A0F860;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D4_A0F864;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 116, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
             func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
-            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, TRUE);
+            func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
             break;
@@ -875,7 +890,7 @@ s32 func_800E37E8_A0AD78(s32 arg0, s8 arg1) {
                 func_800E1B78_A09108(0);
                 return 7;
             default:
-                if (D_800E80D0_A0F660 == TRUE) {
+                if (D_800E80D0_A0F660 == true) {
                     if (arg1 == 2) {
                         auPlaySoundWithParams(0x42, 0x7FFF, 0x40, 1.0f, 0);
                         func_800E1B78_A09108(0);
@@ -892,9 +907,9 @@ s32 func_800E37E8_A0AD78(s32 arg0, s8 arg1) {
                 }
         }
     }
-    #ifdef AVOID_UB
+#ifdef AVOID_UB
     return 0;
-    #endif
+#endif
 }
 
 s32 func_800E3974_A0AF04(s8 arg0) {
@@ -917,7 +932,7 @@ s32 func_800E3974_A0AF04(s8 arg0) {
     omCreateProcess(sp54[var_s0], func_800E3240_A0A7D0, 0, 1);
     ohWait(1);
 
-    while (TRUE) {
+    while (true) {
         temp_v0 = func_800AA38C(0);
         if (temp_v0->unk_18 != 0) {
             func_800E1AEC_A0907C();
@@ -954,7 +969,7 @@ s32 func_800E3974_A0AF04(s8 arg0) {
             auPlaySoundWithParams(0x43, 0x7FFF, 0x40, 1.0f, 0);
             ohEndAllObjectProcesses(sp54[var_s0]);
             for (i = 0; i < temp_s3; i++) {
-                func_800E18AC_A08E3C(sp54[i]->data.sobj, FALSE);
+                func_800E18AC_A08E3C(sp54[i]->data.sobj, false);
             }
             ret = 2;
             break;
@@ -985,7 +1000,7 @@ void func_800E3C7C_A0B20C(GObj* gobj) {
     }
     func_800E18E0_A08E70(sobj, color, color, color);
 
-    while (TRUE) {
+    while (true) {
         switch (state) {
             case 0:
                 if (sobj->sprite.red < 226) {
@@ -1035,12 +1050,12 @@ s32 func_800E3E28_A0B3B8(void) {
 
     ohEndAllObjectProcesses(D_800E82CC_A0F85C);
     func_800E18E0_A08E70(D_800E82CC_A0F85C->data.sobj, 0xFF, 0xFF, 0xFF);
-    func_800E18AC_A08E3C(sobj0, TRUE);
-    func_800E18AC_A08E3C(sobj2, TRUE);
-    func_800E18AC_A08E3C(sobj1, TRUE);
+    func_800E18AC_A08E3C(sobj0, true);
+    func_800E18AC_A08E3C(sobj2, true);
+    func_800E18AC_A08E3C(sobj1, true);
     func_800E18E0_A08E70(sobj2, 0x80, 0x80, 0x80);
     func_800E18E0_A08E70(sobj1, 0x80, 0x80, 0x80);
-    cond = FALSE;
+    cond = false;
     gobj->userData = NULL;
     omCreateProcess(gobj, func_800E3C7C_A0B20C, 0, 1);
     auSetBGMVolume(1, 0x7F00);
@@ -1050,25 +1065,25 @@ s32 func_800E3E28_A0B3B8(void) {
 
     one = 1;
 
-    while (TRUE) {
+    while (true) {
         flags = func_800AA38C(0)->unk_18;
         if (flags & 0x4000) {
-            cond = FALSE;
+            cond = false;
             break;
         } else {
             if (flags & 0x80000) {
                 if (gobj->userData == NULL) {
                     auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
-                    cond = TRUE;
+                    cond = true;
                     ohEndAllObjectProcesses(gobj);
-                    gobj->userData = (void* ) one;
+                    gobj->userData = (void*) one;
                     func_800E18E0_A08E70(sobj1, 0x80, 0x80, 0x80);
                     omCreateProcess(gobj, func_800E3C7C_A0B20C, 0, 1);
                 }
             } else if (flags & 0x40000) {
-                if (gobj->userData == (void* )one) {
+                if (gobj->userData == (void*) one) {
                     auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
-                    cond = FALSE;
+                    cond = false;
                     ohEndAllObjectProcesses(gobj);
                     gobj->userData = NULL;
                     func_800E18E0_A08E70(sobj2, 0x80, 0x80, 0x80);
@@ -1088,9 +1103,9 @@ s32 func_800E3E28_A0B3B8(void) {
         ret = 6;
     } else {
         ohEndAllObjectProcesses(gobj);
-        func_800E18AC_A08E3C(sobj0, FALSE);
-        func_800E18AC_A08E3C(sobj2, FALSE);
-        func_800E18AC_A08E3C(sobj1, FALSE);
+        func_800E18AC_A08E3C(sobj0, false);
+        func_800E18AC_A08E3C(sobj2, false);
+        func_800E18AC_A08E3C(sobj1, false);
         auPlaySoundWithParams(0x43, 0x7FFF, 0x40, 1.0f, 0);
         auSetBGMVolumeSmooth(0, 0x7FFF, 30);
         ohWait(30);
@@ -1110,7 +1125,7 @@ void func_800E4100_A0B690(GObj* gobj) {
     state = 0;
     func_800E18E0_A08E70(sobj, 0, 0, 0);
 
-    while (TRUE) {
+    while (true) {
         switch (state) {
             case 0:
                 color += 5;
@@ -1152,9 +1167,9 @@ s32 func_800E426C_A0B7FC(s8 arg0) {
     gobj = D_800E82E0_A0F870;
     func_800E18FC_A08E8C(sobj, 59, 147);
     omCreateProcess(gobj, func_800E4100_A0B690, 0, 1);
-    func_800E18AC_A08E3C(sobj, TRUE);
+    func_800E18AC_A08E3C(sobj, true);
 
-    while (TRUE) {
+    while (true) {
         if (D_800E82E8_A0F878 >= 1800 && D_800BF051 == 0) {
             func_800E1B78_A09108(0);
             if (arg0 == 0xF) {
@@ -1167,7 +1182,7 @@ s32 func_800E426C_A0B7FC(s8 arg0) {
         ohWait(1);
     }
 
-    func_800E18AC_A08E3C(sobj, FALSE);
+    func_800E18AC_A08E3C(sobj, false);
     ohEndAllObjectProcesses(gobj);
     return ret;
 }
@@ -1187,8 +1202,7 @@ void func_800E4374_A0B904(s8 arg0) {
         D_800E82E4_A0F874 = 12;
     }
 
-
-    while (TRUE) {
+    while (true) {
         func_800E1AEC_A0907C();
         func_800E1D44_A092D4(D_800E82E4_A0F874);
         func_800E212C_A096BC();
@@ -1234,7 +1248,7 @@ void func_800E4374_A0B904(s8 arg0) {
                     auStopBGM();
                     func_800067DC();
 
-                    while (TRUE) {
+                    while (true) {
                         ohWait(1);
                     }
             }
@@ -1257,7 +1271,7 @@ void func_800E455C_A0BAEC(GObj* gobj) {
         func_800E4374_A0B904(0x10);
     }
 
-    while (TRUE) {
+    while (true) {
         ohWait(1);
     }
 }
@@ -1292,7 +1306,7 @@ void func_800E4634_A0BBC4(void) {
 }
 
 s32 func_800E4830_A0BDC0(s32 sceneId) {
-    D_800E8198_A0F728 = VPK_VRAM - (s32)&D_800E83A0;
+    D_800E8198_A0F728 = VPK_VRAM - (s32) &D_800E83A0;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E8188_A0F718);
 
@@ -1311,7 +1325,7 @@ s32 func_800E4830_A0BDC0(s32 sceneId) {
             break;
     }
 
-    #ifdef AVOID_UB
+#ifdef AVOID_UB
     return 0;
-    #endif
+#endif
 }

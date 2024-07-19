@@ -81,7 +81,7 @@ s32 func_800E3404_8A8C24(void) {
     func_800E3264_8A8A84(NULL, &sp40);
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         if (func_800E6404_8ABC24() != 0) {
             var_v0 = func_800AA740(0);
         } else {
@@ -190,7 +190,7 @@ s32 func_800E37CC_8A8FEC(void) {
     func_800E3264_8A8A84(NULL, &sp80);
     func_803700A4_843854(1);
 
-    while (TRUE) {
+    while (true) {
         temp_v0_2 = func_800AA38C(0);
         func_800E3264_8A8A84(temp_v0_2, &sp80);
         if (temp_v0_2->unk_18 & 0x8000) {
@@ -376,7 +376,7 @@ s32 func_800E3ED4_8A96F4(void) {
     func_8036D4A0_840C50(0);
     D_80206B48_9CC368 = func_800E5EBC_8AB6DC;
 
-    while (TRUE) {
+    while (true) {
         switch (var_s0) {
             case 0:
                 var_s0 = func_800E37CC_8A8FEC();
@@ -458,7 +458,7 @@ s32 func_800E3ED4_8A96F4(void) {
                 func_800E1BF4_8A7414(0xFF);
                 ohWait(1);
 
-                while (TRUE) {
+                while (true) {
                 loop_28:
                     func_800E3264_8A8A84(func_800AA740(0), &D_80195894_95B0B4);
                     temp_v1 = func_800AA38C(0)->unk_18;

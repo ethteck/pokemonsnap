@@ -81,7 +81,7 @@ void func_803713C8_844B78(s32);
 void func_803713D4_844B84(s32);
 void func_803713EC_844B9C(s32);
 void func_8037172C_844EDC(s32);
-char* func_803717A8_844F58(void*, s32);
+char* func_803717A8_844F58(UnkCyanBass*, s32);
 void func_803717E8_844F98(void);
 void func_803719B0_845160(SObj*, s32, s32, s32, s32, s32, s32);
 GObj* func_80371C68_845418(void*, s32, Sprite*);

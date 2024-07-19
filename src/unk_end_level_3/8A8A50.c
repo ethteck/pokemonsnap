@@ -53,7 +53,7 @@ s32 func_800E3404_8A8C24(void) {
     s32 sp40;
     s32 temp_s0_2;
     s32 var_s2;
-    UnkOrangeShark* shark;
+    UnkCyanBass* bass;
 
     var_s2 = -1;
     sp40 = 0;
@@ -67,16 +67,16 @@ s32 func_800E3404_8A8C24(void) {
     if (func_800C0290_5D130() > func_800BFC5C_5CAFC()) {
         func_803700A4_843854(0);
         func_80370900_8440B0(0, func_800C0290_5D130() + 6);
-        shark = D_80195CEC_95B50C[func_800C0290_5D130()];
-        func_80370C34_8443E4(shark);
+        bass = D_80195CEC_95B50C[func_800C0290_5D130()];
+        func_80370C34_8443E4(bass);
         func_803705A4_843D54();
         func_800E2A04_8A8224();
         sp40 = func_800BFC5C_5CAFC();
         func_803700A4_843854(1);
     } else {
         sp40 = D_80195894_95B0B4;
-        shark = D_80195CEC_95B50C[func_800BFC5C_5CAFC()];
-        func_80370C34_8443E4(shark);
+        bass = D_80195CEC_95B50C[func_800BFC5C_5CAFC()];
+        func_80370C34_8443E4(bass);
     }
     func_800E3264_8A8A84(NULL, &sp40);
     func_803700A4_843854(1);
@@ -347,11 +347,6 @@ s32 func_800E3CE8_8A9508(void) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/func_800E3ED4_8A96F4.s")
-
-extern void* D_80206B40_9CC360;
-extern void (*D_80206B48_9CC368)(void);
-
 s32 func_800E3ED4_8A96F4(void) {
     s32 temp_s0;
     UnkSnowHerring* temp_s1;
@@ -439,7 +434,7 @@ s32 func_800E3ED4_8A96F4(void) {
                     func_8036B9EC_83F19C(temp_s1, 0, 0);
                     func_8036C898_840048(temp_s1, "HI-SCORE");
                     sprintf(sp44, "\\i%8d\\g pts", func_800C0224_5D0C4(D_80195894_95B0B4));
-                    func_8036B9EC_83F19C(temp_s1, 0x60, 0);
+                    func_8036B9EC_83F19C(temp_s1, 96, 0);
                     func_8036C898_840048(temp_s1, sp44);
                     temp_s0 = func_803751F8_8489A8(D_80195894_95B0B4);
                     if (temp_s0 < func_800C0224_5D0C4(D_80195894_95B0B4)) {
@@ -450,7 +445,7 @@ s32 func_800E3ED4_8A96F4(void) {
                     func_8036B9EC_83F19C(temp_s1, 0, 0x10);
                     func_8036C898_840048(temp_s1, "CHALLENGE SCORE");
                     sprintf(sp44, "\\i%8d\\g pts", func_803751F8_8489A8(D_80195894_95B0B4));
-                    func_8036B9EC_83F19C(temp_s1, 0x60, 0x20);
+                    func_8036B9EC_83F19C(temp_s1, 96, 32);
                     func_8036C898_840048(temp_s1, sp44);
                     func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
                 }

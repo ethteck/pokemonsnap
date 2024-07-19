@@ -2,7 +2,6 @@
 #include "world/world.h"
 #include "app_level.h"
 
-#define GET_ITEM(x) ((Item*) ((x)->userData))
 #define BASE_ITEM_OBJID 300
 
 enum ItemFlags {

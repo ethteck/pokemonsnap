@@ -24,10 +24,6 @@ typedef struct UnkIndigoHalibut {
     /* 0x18 */ s32 unk_18_0x01000000 : 1;
 } UnkIndigoHalibut; // size: 0x1C
 
-typedef struct UnkCyanBass {
-    s32 var_0;
-} UnkCyanBass;
-
 typedef struct UnkTealFlounder {
     /* 0x00 */ GObj* unk_00;
     /* 0x04 */ SObj* unk_04;
@@ -67,6 +63,7 @@ extern s32 D_camera_check_80208964;
 extern UNK_TYPE D_camera_check_8020896C;
 extern UnkCyanBass D_camera_check_80208994;
 extern UnkCyanBass D_camera_check_802089BC;
+extern s32 D_camera_check_802089E4;
 extern s32 D_camera_check_802089F0;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);
 extern u8 D_camera_check_802098F0[0x40000];
@@ -90,6 +87,7 @@ extern UnkTealFlounder D_camera_check_802499C0[6]; // 7 or more
 extern void (*D_camera_check_80249AA0)(s32, s32);
 extern UNK_PTR D_camera_check_80249AA4;
 extern UnkCanaryScallop* D_camera_check_80249AA8;
+extern char D_camera_check_80249AB0[];
 extern UnkIndigoHalibut D_camera_check_80249B30[];
 extern s32 D_camera_check_8024A1C0;
 extern s32 D_camera_check_8024A1C4;
@@ -120,13 +118,13 @@ void func_camera_check_801DEA20(s32, s32);
 void func_camera_check_801DF0D4(UnkSnowHerring*, UnkSnowHerring*, s32, s32);
 void func_camera_check_801DF2D8(GObj*);
 void func_camera_check_801DF938(void);
-UNK_PTR func_camera_check_801DF9B0(void);
+UnkCyanBass* func_camera_check_801DF9B0(void);
 UnkCyanBass* func_camera_check_801DFA4C(void);
-s32 func_camera_check_801DFA80(UNK_PTR, s32*, s32, UNK_PTR);
+s32 func_camera_check_801DFA80(UnkStruct800BEDF8*, s32*, s32, UnkCyanBass*);
 s32 func_camera_check_801E04F4(UNK_TYPE);
 s32 func_camera_check_801E0B5C(UNK_TYPE);
 s32 func_camera_check_801E0F10(void);
-void func_camera_check_801E1918(void);
+// void func_camera_check_801E1918(void);
 s32 func_camera_check_801E21E8(void);
 s32 func_camera_check_801E246C(void);
 s32 func_camera_check_801E2478(void);
@@ -144,10 +142,11 @@ s32 func_camera_check_801E2CC0(void);
 s32 func_camera_check_801E2E04(void);
 s32 func_camera_check_801E2EA0(s32 id);
 s32 func_camera_check_801E2F58(UnkIndigoHalibut*, s32);
-s32 func_camera_check_801E3140(void);
+bool func_camera_check_801E3140(void);
 void func_camera_check_801E31E4(s32, UNK_TYPE);
 s32 func_camera_check_801E3420(void);
 void func_camera_check_801E3910(s32);
+void func_camera_check_801E3AF4(UnkIndigoHalibut*);
 void func_camera_check_801E3C24(s32);
 void func_camera_check_801E3CE8(void);
 void func_camera_check_801E3D8C(PhotoData*, UnkIndigoHalibut*);

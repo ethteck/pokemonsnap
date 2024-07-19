@@ -378,7 +378,7 @@ s32 func_camera_check_801E30CC(s32 arg0) {
     return false;
 }
 
-s32 func_camera_check_801E3140(void) {
+bool func_camera_check_801E3140(void) {
     UnkIndigoHalibut* item;
     s32 count;
     s32 hashDashEngine;

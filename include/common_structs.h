@@ -318,4 +318,11 @@ typedef struct PhotoDataExt {
     /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
 } PhotoDataExt; // size = 0x3E0
 
+typedef struct UnkCyanBass {
+    /* 0x00 */ char unk_00[0x4];
+    /* 0x04 */ char* unk_04;
+    /* 0x08 */ char unk_08[0xC];
+    /* 0x14 */ char* unk_14;
+} UnkCyanBass; // size = > 0x18
+
 #endif

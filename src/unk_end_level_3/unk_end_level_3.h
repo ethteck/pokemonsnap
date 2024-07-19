@@ -3,13 +3,6 @@
 
 #include "../unk_end_level/unk_end_level.h"
 
-typedef struct UnkOrangeShark {
-    s32 var_0;
-    char* var_4;
-    s32 var_8;
-    s32 var_C;
-} UnkOrangeShark;
-
 // Data
 extern Sprite D_8010C590_8D1DB0;
 extern Sprite D_8011EEA0_8E46C0;
@@ -56,7 +49,7 @@ extern char* D_80195888_95B0A8[];
 extern s32 D_80195894_95B0B4;
 extern s32 D_801958C0_95B0E0;
 extern s32 D_801958F0_95B110;
-extern UnkOrangeShark* D_80195CEC_95B50C[];
+extern UnkCyanBass* D_80195CEC_95B50C[];
 extern Sprite D_80197EB0_95D6D0;
 extern Sprite D_80198FB8_95E7D8;
 extern Sprite D_8019C2D0_961AF0;
@@ -84,6 +77,7 @@ extern UnkSnowHerring* D_80206B1C_9CC33C;
 extern s32 D_80206B20_9CC340;
 extern SObj* D_80206B28_9CC348[];
 extern SObj* D_80206B30_9CC350;
+extern void* D_80206B40_9CC360;
 extern UnkCanaryScallop (*D_80206B44_9CC364)[];
 extern void (*D_80206B48_9CC368)(void);
 extern s32 D_80206B50_9CC370;

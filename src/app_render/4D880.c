@@ -19,13 +19,13 @@ typedef struct UnkAsphaltLeopard {
 } UnkAsphaltLeopard;
 
 typedef struct UnkPinkLeopard {
-    /* 0x00 */ s32 unk_00;
+    /* 0x00 */ u32 unk_00;
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ s32 unk_0C;
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ s32 unk_14;
-    /* 0x18 */ u8* unk_18[1];
+    /* 0x18 */ u32 unk_18[1]; // variable length
 } UnkPinkLeopard;
 
 typedef struct UnkGreenLeopard {
@@ -53,6 +53,7 @@ extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
 extern s32 D_800BE228[];
+extern s32 D_800BE248[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;
@@ -63,38 +64,41 @@ void func_800A4798(GObj*);
 void func_800A4858(GObj*);
 void func_800A63BC(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A1ED0.s")
-/*
-TODO later
-extern u32 D_800BE228[8];
-extern u32 D_800BE248[8];
-extern u32* D_800BE268[8];
-extern u32** D_800BE288[8];
-
 void func_800A1ED0(s32 arg0, s32* arg1, s32* arg2) {
     s32 i, j;
 
-    if (arg0 < 8) {
-        D_800BE228[arg0] = *arg1;
-        D_800BE248[arg0] = *arg2;
-        D_800BE268[arg0] = ((u32)arg1) + 4;
-        D_800BE288[arg0] = ((u32)arg2) + 4;
+    if (arg0 >= 8) {
+        return;
+    }
+    
+    D_800BE228[arg0] = *arg1;
+    D_800BE248[arg0] = *arg2;
+    D_800BE268[arg0] = (UnkAsphaltLeopard**)(arg1 + 1);
+    D_800BE288[arg0] = (UnkPinkLeopard**)(arg2 + 1);
 
-        for (i = 1; i < D_800BE228[arg0]; i++) {
-            arg1[i] = (u32)(arg1) + arg1[i];
-        }
-        for (i = 1; i < D_800BE248[arg0]; i++) {
-            arg2[i] = (u32)(arg2) + arg2[i];
-        }
+    for (i = 1; i <= D_800BE228[arg0]; i++) {
+        arg1[i] = (u32)(arg1) + arg1[i];
+    }
+    for (i = 1; i <= D_800BE248[arg0]; i++) {
+        arg2[i] = (u32)(arg2) + arg2[i];
+    }
 
-        for (i = 0; i < D_800BE248[arg0]; i++) {
-            for (j = 0; j < D_800BE288[arg0][i][j]; j++) {
-                D_800BE288[arg0][i][j]
+    for (i = 0; i < D_800BE248[arg0]; i++) {
+        for (j = 0; j < D_800BE288[arg0][i]->unk_00; j++) {
+            D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+        }
+        if (D_800BE288[arg0][i]->unk_04 == 2) {
+            if (D_800BE288[arg0][i]->unk_14 & 1) {
+                j = D_800BE288[arg0][i]->unk_00;
+                D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+            } else {
+                for (j = D_800BE288[arg0][i]->unk_00; j < 2 * D_800BE288[arg0][i]->unk_00; j++) {
+                    D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+                }
             }
         }
     }
 }
-*/
 
 GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     s32 i;
@@ -390,13 +394,24 @@ void func_800A4798(GObj* camObj) {
 
 #if 0
 void func_800A4858(GObj* camObj) {
+    UnkRustRat* var_s7;
+    UnkPinkLeopard* v0;
     s32 sp2D4;
     s32 sp2D0;
     s32 sp2CC;
     s32 sp2C8;
     Mtx4f sp288;
     Mtx4f sp248;
-    f32 temp_f0; // probably near sp220
+    f32 var_f24;
+    f32 var_f16;
+    f32 var_f26;
+    f32 var_f18;
+    f32 temp_f12;
+    f32 temp_f14;
+    f32 temp_f28;
+    
+    f32 temp_f0;
+    f32 temp_f22;
     f32 sp220;
     f32 sp21C;
     f32 sp218;
@@ -414,7 +429,7 @@ void func_800A4858(GObj* camObj) {
 
     s32 j;
     s32 var_s2;
-    UnkRustRat* var_s7;
+    
     s32 temp_fp;
     s32 temp_t4;
     s32 temp_s3;
@@ -428,29 +443,12 @@ void func_800A4858(GObj* camObj) {
     f32 temp_f20;
     f32 temp_f2;
 
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f28;
-
-    f32 var_f24;
-    f32 var_f16;
-    f32 var_f26;
-    f32 var_f18;
-
-    f32 temp_f4;
-    f32 temp_f8;
-
-    f32 temp_f22;
-
-    UnkPinkLeopard* v0;
-
     for (sp1F8 = 0; sp1F8 < 4; sp1F8++) {
         var_s2 = 0;
 
         if (D_800BE1F0[sp1F8] == NULL) {
             continue;
         }
-
 
         hal_look_at_roll_f(sp288, D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yEye,
@@ -500,8 +498,8 @@ void func_800A4858(GObj* camObj) {
                 if (var_s7->unk_40 == 0.0f) {
                     continue;
                 }
-                temp_f12 = (sp248[0][0] * var_s7->unk_20 + sp248[1][0] * var_s7->unk_24 + sp248[2][0] * var_s7->unk_28 + sp248[3][0]);
-                temp_f20 = sp248[0][3] * var_s7->unk_20 + sp248[1][3] * var_s7->unk_24 + sp248[2][3] * var_s7->unk_28 + sp248[3][3];
+                temp_f12 = (sp248[0][0] * var_s7->unk_20.x + sp248[1][0] * var_s7->unk_20.y + sp248[2][0] * var_s7->unk_20.z + sp248[3][0]);
+                temp_f20 = sp248[0][3] * var_s7->unk_20.x + sp248[1][3] * var_s7->unk_20.y + sp248[2][3] * var_s7->unk_20.z + sp248[3][3];
 
                 if (temp_f20 == 0.0f) {
                     continue;
@@ -509,8 +507,8 @@ void func_800A4858(GObj* camObj) {
 
                 temp_f2 = 1.0f / temp_f20;
                 temp_f12 *= temp_f2;
-                temp_f14 = (sp248[0][1] * var_s7->unk_20 + sp248[1][1] * var_s7->unk_24 + sp248[2][1] * var_s7->unk_28 + sp248[3][1]) * temp_f2;
-                temp_f28 = (sp248[0][2] * var_s7->unk_20 + sp248[1][2] * var_s7->unk_24 + sp248[2][2] * var_s7->unk_28 + sp248[3][2]) * temp_f2;
+                temp_f14 = (sp248[0][1] * var_s7->unk_20.x + sp248[1][1] * var_s7->unk_20.y + sp248[2][1] * var_s7->unk_20.z + sp248[3][1]) * temp_f2;
+                temp_f28 = (sp248[0][2] * var_s7->unk_20.x + sp248[1][2] * var_s7->unk_20.y + sp248[2][2] * var_s7->unk_20.z + sp248[3][2]) * temp_f2;
 
                 if (temp_f12 < -1.0f || temp_f12 > 1.0f || temp_f14 < -1.0f || temp_f14 > 1.0f || temp_f28 < -1.0f || temp_f28 > 1.0f) {
                     continue;
@@ -518,7 +516,7 @@ void func_800A4858(GObj* camObj) {
 
                 var_f16 = (temp_f2 * var_s7->unk_40 * sp220 + temp_f12) * sp218 + sp214;
                 temp_f12 = temp_f12 * sp218 + sp214;
-                if (var_f16 - temp_f12 > 0) {
+                if (var_f16 > temp_f12) {
                     var_f24 = temp_f12 - (var_f16 - temp_f12);
                 } else {
                     var_f24 = var_f16;
@@ -527,7 +525,7 @@ void func_800A4858(GObj* camObj) {
 
                 var_f18 = (temp_f2 * var_s7->unk_40 * temp_f0 + temp_f14) * sp210 + sp20C;
                 temp_f14 = temp_f14 * sp210 + sp20C;
-                if (var_f18 > temp_f14 * sp210 + sp20C) {
+                if (var_f18 > temp_f14) {
                     var_f26 = temp_f14 - (var_f18 - temp_f14);
                 } else {
                     var_f26 = var_f18;

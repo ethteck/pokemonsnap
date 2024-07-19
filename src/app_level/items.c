@@ -645,7 +645,7 @@ void Items_NotifyItemPosition(GObj* obj) {
     Item* item = GET_ITEM(obj);
 
     if (item->itemID == ITEM_ID_PESTER_BALL) {
-        UnkBrassLynx* unk = func_800A6C48(3, 0);
+        UnkPinkRat* unk = func_800A6C48(3, 0);
         if (unk != NULL) {
             unk->unk_14.x = obj->data.dobj->position.v.x;
             unk->unk_14.y = obj->data.dobj->position.v.y;
@@ -870,7 +870,7 @@ void Items_UpdateItemMovement(GObj* obj) {
     DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
     Vec3f vel2;
-    UnkBrassLynx* v03;
+    UnkPinkRat* v03;
     f32 sp11C;
     GObj* closestPokemon;
     Pokemon* pokemon;

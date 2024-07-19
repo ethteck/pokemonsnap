@@ -16,5 +16,6 @@ void renRenderModelTypeI(GObj* arg0);
 void renRenderModelTypeJ(GObj* arg0);
 void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode);
 void renCameraPostRender(OMCamera* cam);
+void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam);
 
 #endif /* SYS_RENDER_H */

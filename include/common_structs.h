@@ -259,12 +259,35 @@ typedef struct UnkCanaryScallop {
     s32 unk_4;
 } UnkCanaryScallop; // size = 0x8
 
-typedef struct UnkBrassLynx {
-    /* 0x00 */ char unk_00[0x14];
+typedef union UnkPinkRatSub {
+    Vec3f data1;
+    u16 data2[3];
+} UnkPinkRatSub; // size = 0xC
+
+typedef struct UnkPinkRat {
+    /* 0x00 */ struct UnkPinkRat* next;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u16 unk_06;
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ s8 unk_09;
+    /* 0x0A */ s16 unk_0A;
+    /* 0x0C */ s16 unk_0C;
+    /* 0x0E */ u16 unk_0E;
+    /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ Vec3f unk_14;
-    /* 0x20 */ char unk_20[0x28];
-    /* 0x48 */ DObj* unk_48;
-} UnkBrassLynx;
+    /* 0x20 */ f32 unk_20;
+    /* 0x24 */ f32 unk_24;
+    /* 0x28 */ f32 unk_28;
+    /* 0x2C */ f32 unk_2C;
+    /* 0x30 */ f32 unk_30;
+    /* 0x34 */ f32 unk_34;
+    /* 0x38 */ f32 unk_38;
+    /* 0x3C */ f32 unk_3C;
+    /* 0x40 */ f32 unk_40;
+    /* 0x44 */ f32 unk_44;
+    /* 0x48 */ DObj* dobj;
+    /* 0x4C */ UnkPinkRatSub unk_4C;
+} UnkPinkRat; // size = 0x58
 
 typedef struct IdleScriptEntry {
     /* 0x00 */ u16 currentButtons;

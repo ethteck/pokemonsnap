@@ -100,10 +100,35 @@ DObj* func_800A8764(DObj* dobj) {
     return dobj;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A87B0.s")
-void func_800A87B0(GObj* obj, s32 arg3, s32 arg4);
+void func_800A87B0(GObj* obj, UnkEC64Arg3* treeDef, DObj** nodeList) {
+    int i;
+    DObj* dobj;
+    DObj* sp44[18];
 
-GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, s32 arg3, s32 arg4) {
+    // clang-format off
+    for (i = 0; i < ARRAY_COUNT(sp44); i++) { sp44[i] = NULL; }
+    // clang-format on
+
+    while (treeDef->unk_00 != 18) {
+        if (treeDef->unk_00 != 0) {
+            dobj = sp44[treeDef->unk_00] = func_800A8764(omDObjAddChild(sp44[treeDef->unk_00 - 1], treeDef->unk04));
+        } else {
+            dobj = sp44[0] = func_800A8764(omGObjAddDObj(obj, treeDef->unk04));
+        }
+
+        dobj->position.v = treeDef->position;
+        *((Vec3f*)&dobj->rotation.f[1]) = treeDef->rotation;
+        dobj->scale.v = treeDef->scale;
+
+        if (nodeList != NULL) {
+            *nodeList++ = dobj;
+        }
+
+        treeDef++;
+    }
+}
+
+GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, UnkEC64Arg3* treeDef, DObj** nodeList) {
     s32 unused;
     GObj* gobj;
     s32 cameraTag;
@@ -121,14 +146,14 @@ GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, s32 arg3, s32
     }
 
     omLinkGObjDL(gobj, renRenderModelTypeB, dllink, link, cameraTag);
-    func_800A87B0(gobj, arg3, arg4);
+    func_800A87B0(gobj, treeDef, nodeList);
     omCreateProcess(gobj, procFunc, 0, 0);
     model = gobj->data.dobj;
     model->rotation.mtx->kind = MTX_TYPE_ROTATE_RPY;
     return gobj;
 }
 
-GObj* func_800A89B4(void (*procFunc)(GObj*), s32 link, s32 dllink, s32 arg3, s32 arg4) {
+GObj* func_800A89B4(void (*procFunc)(GObj*), s32 link, s32 dllink, UnkEC64Arg3* treeDef, DObj** nodeList) {
     s32 unused;
     GObj* gobj;
     s32 cameraTag;
@@ -146,7 +171,7 @@ GObj* func_800A89B4(void (*procFunc)(GObj*), s32 link, s32 dllink, s32 arg3, s32
     }
 
     omLinkGObjDL(gobj, renRenderModelTypeB, dllink, link, cameraTag);
-    func_800A87B0(gobj, arg3, arg4);
+    func_800A87B0(gobj, treeDef, nodeList);
     omCreateProcess(gobj, procFunc, 1, 0);
     model = gobj->data.dobj;
     model->rotation.mtx->kind = MTX_TYPE_ROTATE_RPY;
@@ -297,7 +322,37 @@ Vec3f* func_800A904C(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2, f32 arg3) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A910C.s")
+Unk_800A8F0C* func_800A910C(Unk_800A8F0C* arg0, Vec3f* arg1, f32 arg2) {
+    Vec3f* sp34; // BUG: sp34 undefined
+    Vec3f sp28;
+
+    sp34[0].x = arg0->unk_48.x - arg0->unk_3C.x;
+    sp34[0].y = arg0->unk_48.y - arg0->unk_3C.y;
+    sp34[0].z = arg0->unk_48.z - arg0->unk_3C.z;
+    sp34[2].x = arg0->unk_54.x;
+    sp34[2].y = arg0->unk_54.y;
+    sp34[2].z = arg0->unk_54.z;
+    sp28.x = arg0->unk_3C.x;
+    sp28.y = arg0->unk_3C.y;
+    sp28.z = arg0->unk_3C.z;
+
+    Vec3fNormalize(&sp34[0]);
+    Vec3fNormalize(&sp34[2]);
+    Vec3fNormalizedCross(&sp34[0], &sp34[2], &sp34[1]);
+    Vec3fNormalizedCross(&sp34[0], &sp34[1], &sp34[2]);
+    func_800A904C(&sp28, (f32(*)[3])sp34, arg1, arg2);
+
+    arg0->unk_48.x = sp28.x + sp34[0].x;
+    arg0->unk_48.y = sp28.y + sp34[0].y;
+    arg0->unk_48.z = sp28.z + sp34[0].z;
+    arg0->unk_54.x = sp34[2].x;
+    arg0->unk_54.y = sp34[2].y;
+    arg0->unk_54.z = sp34[2].z;
+    arg0->unk_3C.x = sp28.x;
+    arg0->unk_3C.y = sp28.y;
+    arg0->unk_3C.z = sp28.z;
+    return arg0;
+}
 
 s32 func_800A9254(GObj* obj, GObjFunc func) {
     GObjProcess* proc;

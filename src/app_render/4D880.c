@@ -1,9 +1,9 @@
 #include "app_render.h"
 
 typedef struct UnkAsphaltLeopard {
-    /* 0x00 */ s16 unk_00;
+    /* 0x00 */ u16 unk_00;
     /* 0x02 */ u16 unk_02;
-    /* 0x04 */ s16 unk_04;
+    /* 0x04 */ u16 unk_04;
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ f32 unk_0C;
@@ -15,16 +15,17 @@ typedef struct UnkAsphaltLeopard {
     /* 0x24 */ f32 unk_24;
     /* 0x28 */ f32 unk_28;
     /* 0x2C */ f32 unk_2C;
+    /* 0x30 */ s32 unk_30;
 } UnkAsphaltLeopard;
 
 typedef struct UnkPinkLeopard {
-    /* 0x00 */ s32 unk_00;
+    /* 0x00 */ u32 unk_00;
     /* 0x04 */ s32 unk_04;
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ s32 unk_0C;
     /* 0x10 */ s32 unk_10;
     /* 0x14 */ s32 unk_14;
-    /* 0x18 */ u8* unk_18[1];
+    /* 0x18 */ u32 unk_18[1]; // variable length
 } UnkPinkLeopard;
 
 typedef struct UnkGreenLeopard {
@@ -40,24 +41,6 @@ typedef struct Unk_800A7114 {
     /* 0x09 */ u8 unk_09;
 } Unk_800A7114; // size >= 0xC
 
-typedef struct UnkPinkRat {
-    /* 0x00 */ struct UnkPinkRat* next;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ char unk_09[5];
-    /* 0x0E */ u16 unk_0E;
-    /* 0x10 */ char unk_10[4];
-    /* 0x14 */ Vec3f unk_14;
-    /* 0x20 */ char unk_20[0x20];
-    /* 0x40 */ f32 unk_40;
-    /* 0x44 */ char unk_44[4];
-    /* 0x48 */ DObj* dobj;
-    /* 0x4C */ char unk_4C[4];
-    /* 0x50 */ u16 unk_50;
-    /* 0x52 */ char unk_52[6];
-} UnkPinkRat; // size = 0x58
-
 extern u8 D_800AEC60;
 extern u8 D_800AEC64;
 extern u16 D_800AEC68;
@@ -70,54 +53,55 @@ extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
 extern s32 D_800BE228[];
+extern s32 D_800BE248[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;
-extern s32 D_800BE2AC;
+extern void (*D_800BE2AC)(UnkPinkRat*);
 extern UnkPinkRat* D_800BE2B0;
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);
 void func_800A63BC(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A1ED0.s")
-/*
-TODO later
-extern u32 D_800BE228[8];
-extern u32 D_800BE248[8];
-extern u32* D_800BE268[8];
-extern u32** D_800BE288[8];
-
 void func_800A1ED0(s32 arg0, s32* arg1, s32* arg2) {
     s32 i, j;
 
-    if (arg0 < 8) {
-        D_800BE228[arg0] = *arg1;
-        D_800BE248[arg0] = *arg2;
-        D_800BE268[arg0] = ((u32)arg1) + 4;
-        D_800BE288[arg0] = ((u32)arg2) + 4;
+    if (arg0 >= 8) {
+        return;
+    }
+    
+    D_800BE228[arg0] = *arg1;
+    D_800BE248[arg0] = *arg2;
+    D_800BE268[arg0] = (UnkAsphaltLeopard**)(arg1 + 1);
+    D_800BE288[arg0] = (UnkPinkLeopard**)(arg2 + 1);
 
-        for (i = 1; i < D_800BE228[arg0]; i++) {
-            arg1[i] = (u32)(arg1) + arg1[i];
-        }
-        for (i = 1; i < D_800BE248[arg0]; i++) {
-            arg2[i] = (u32)(arg2) + arg2[i];
-        }
+    for (i = 1; i <= D_800BE228[arg0]; i++) {
+        arg1[i] = (u32)(arg1) + arg1[i];
+    }
+    for (i = 1; i <= D_800BE248[arg0]; i++) {
+        arg2[i] = (u32)(arg2) + arg2[i];
+    }
 
-        for (i = 0; i < D_800BE248[arg0]; i++) {
-            for (j = 0; j < D_800BE288[arg0][i][j]; j++) {
-                D_800BE288[arg0][i][j]
+    for (i = 0; i < D_800BE248[arg0]; i++) {
+        for (j = 0; j < D_800BE288[arg0][i]->unk_00; j++) {
+            D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+        }
+        if (D_800BE288[arg0][i]->unk_04 == 2) {
+            if (D_800BE288[arg0][i]->unk_14 & 1) {
+                j = D_800BE288[arg0][i]->unk_00;
+                D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+            } else {
+                for (j = D_800BE288[arg0][i]->unk_00; j < 2 * D_800BE288[arg0][i]->unk_00; j++) {
+                    D_800BE288[arg0][i]->unk_18[j] += (u32)arg2;
+                }
             }
         }
     }
 }
-*/
 
-#ifdef NON_MATCHING
-// loop unroll
-GObj* func_800A2094(s32 arg0, s32 arg1, OMCamera* arg2) {
+GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     s32 i;
-    s32 s0;
     UnkRustRat* temp;
 
     D_800BE1F0[0] = arg2;
@@ -131,27 +115,23 @@ GObj* func_800A2094(s32 arg0, s32 arg1, OMCamera* arg2) {
         D_800BE1A8[i] = NULL;
     }
 
-    s0 = arg1 - 1;
-    while (s0 >= 0) {
+    i = arg1 - 1;
+    while (i >= 0) {
         temp = gtlMalloc(sizeof(UnkRustRat), 4);
         if (temp == NULL) {
             return NULL;
         }
-        s0--;
+        i--;
         temp->next = D_800BE1A0;
         D_800BE1A0 = temp;
     }
 
-    if (ohFindById(-6) != 0) {
+    if (ohFindById(-6) != NULL) {
         return NULL;
     } else {
-        return ohCreateCamera(-6, func_800A4798, 0, 0x80000000, func_800A4858, arg0, 0, 0, FALSE, 1, NULL, 1, 0);
+        return ohCreateCamera(-6, func_800A4798, LINK_0, 0x80000000, func_800A4858, dlPriority, 0, 0, FALSE, 1, NULL, 1, FALSE);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A2094.s")
-GObj* func_800A2094(s32 arg0, s32 arg1, OMCamera* arg2);
-#endif
 
 void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
     D_800BE1F0[arg0] = arg1;
@@ -162,6 +142,7 @@ void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
 UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7,
                           f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10) {
     UnkRustRat* ret = D_800BE1A0;
+    s32 temp = 0;
 
     if (ret == NULL) {
         return NULL;
@@ -200,7 +181,7 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 a
     ret->unk_18 = 0;
     ret->unk_1A = 0;
     if (argF) {
-        ret->unk_06 = arg2 | 0x10;
+        ret->unk_06 = ((s16) arg2) | 0x10;
     }
     if (arg4 != 0) {
         ret->unk_0C = TRUE;
@@ -208,13 +189,10 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 a
         ret->unk_0C = FALSE;
     }
     ret->unk_48.r = ret->unk_48.g = ret->unk_48.b = ret->unk_48.a = 0xFF;
+    ret->unk_0B = temp;
     ret->unk_50.r = ret->unk_50.g = ret->unk_50.b = ret->unk_50.a = 0;
-    ret->unk_0B = 0;
-    ret->unk_12 = 0;
-    ret->unk_10 = 0;
-    ret->unk_0E = 0;
+    ret->unk_0E = ret->unk_10 = ret->unk_12 = temp;
     ret->unk_58 = arg10;
-
     return ret;
 }
 #else
@@ -416,13 +394,24 @@ void func_800A4798(GObj* camObj) {
 
 #if 0
 void func_800A4858(GObj* camObj) {
+    UnkRustRat* var_s7;
+    UnkPinkLeopard* v0;
     s32 sp2D4;
     s32 sp2D0;
     s32 sp2CC;
     s32 sp2C8;
     Mtx4f sp288;
     Mtx4f sp248;
-    f32 temp_f0; // probably near sp220
+    f32 var_f24;
+    f32 var_f16;
+    f32 var_f26;
+    f32 var_f18;
+    f32 temp_f12;
+    f32 temp_f14;
+    f32 temp_f28;
+    
+    f32 temp_f0;
+    f32 temp_f22;
     f32 sp220;
     f32 sp21C;
     f32 sp218;
@@ -440,7 +429,7 @@ void func_800A4858(GObj* camObj) {
 
     s32 j;
     s32 var_s2;
-    UnkRustRat* var_s7;
+    
     s32 temp_fp;
     s32 temp_t4;
     s32 temp_s3;
@@ -454,29 +443,12 @@ void func_800A4858(GObj* camObj) {
     f32 temp_f20;
     f32 temp_f2;
 
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f28;
-
-    f32 var_f24;
-    f32 var_f16;
-    f32 var_f26;
-    f32 var_f18;
-
-    f32 temp_f4;
-    f32 temp_f8;
-
-    f32 temp_f22;
-
-    UnkPinkLeopard* v0;
-
     for (sp1F8 = 0; sp1F8 < 4; sp1F8++) {
         var_s2 = 0;
 
         if (D_800BE1F0[sp1F8] == NULL) {
             continue;
         }
-
 
         hal_look_at_roll_f(sp288, D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xEye,
                                   D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yEye,
@@ -526,8 +498,8 @@ void func_800A4858(GObj* camObj) {
                 if (var_s7->unk_40 == 0.0f) {
                     continue;
                 }
-                temp_f12 = (sp248[0][0] * var_s7->unk_20 + sp248[1][0] * var_s7->unk_24 + sp248[2][0] * var_s7->unk_28 + sp248[3][0]);
-                temp_f20 = sp248[0][3] * var_s7->unk_20 + sp248[1][3] * var_s7->unk_24 + sp248[2][3] * var_s7->unk_28 + sp248[3][3];
+                temp_f12 = (sp248[0][0] * var_s7->unk_20.x + sp248[1][0] * var_s7->unk_20.y + sp248[2][0] * var_s7->unk_20.z + sp248[3][0]);
+                temp_f20 = sp248[0][3] * var_s7->unk_20.x + sp248[1][3] * var_s7->unk_20.y + sp248[2][3] * var_s7->unk_20.z + sp248[3][3];
 
                 if (temp_f20 == 0.0f) {
                     continue;
@@ -535,8 +507,8 @@ void func_800A4858(GObj* camObj) {
 
                 temp_f2 = 1.0f / temp_f20;
                 temp_f12 *= temp_f2;
-                temp_f14 = (sp248[0][1] * var_s7->unk_20 + sp248[1][1] * var_s7->unk_24 + sp248[2][1] * var_s7->unk_28 + sp248[3][1]) * temp_f2;
-                temp_f28 = (sp248[0][2] * var_s7->unk_20 + sp248[1][2] * var_s7->unk_24 + sp248[2][2] * var_s7->unk_28 + sp248[3][2]) * temp_f2;
+                temp_f14 = (sp248[0][1] * var_s7->unk_20.x + sp248[1][1] * var_s7->unk_20.y + sp248[2][1] * var_s7->unk_20.z + sp248[3][1]) * temp_f2;
+                temp_f28 = (sp248[0][2] * var_s7->unk_20.x + sp248[1][2] * var_s7->unk_20.y + sp248[2][2] * var_s7->unk_20.z + sp248[3][2]) * temp_f2;
 
                 if (temp_f12 < -1.0f || temp_f12 > 1.0f || temp_f14 < -1.0f || temp_f14 > 1.0f || temp_f28 < -1.0f || temp_f28 > 1.0f) {
                     continue;
@@ -544,7 +516,7 @@ void func_800A4858(GObj* camObj) {
 
                 var_f16 = (temp_f2 * var_s7->unk_40 * sp220 + temp_f12) * sp218 + sp214;
                 temp_f12 = temp_f12 * sp218 + sp214;
-                if (var_f16 - temp_f12 > 0) {
+                if (var_f16 > temp_f12) {
                     var_f24 = temp_f12 - (var_f16 - temp_f12);
                 } else {
                     var_f24 = var_f16;
@@ -553,7 +525,7 @@ void func_800A4858(GObj* camObj) {
 
                 var_f18 = (temp_f2 * var_s7->unk_40 * temp_f0 + temp_f14) * sp210 + sp20C;
                 temp_f14 = temp_f14 * sp210 + sp20C;
-                if (var_f18 > temp_f14 * sp210 + sp20C) {
+                if (var_f18 > temp_f14) {
                     var_f26 = temp_f14 - (var_f18 - temp_f14);
                 } else {
                     var_f26 = var_f18;
@@ -803,7 +775,67 @@ UnkPinkRat* func_800A6BDC(void) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6C48.s")
+UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
+    UnkPinkRat* ret;
+    s32 id = arg0 & 7;
+    s32 unused;
+
+    if (id > 7) {
+        return NULL;
+    }
+    if (arg1 >= D_800BE228[id]) {
+        return NULL;
+    }
+
+    ret = func_800A6BDC();
+    if (ret != NULL) {
+        ret->unk_08 = D_800BE268[id][arg1]->unk_00;
+        ret->unk_09 = arg0;
+        ret->unk_06 = D_800BE268[id][arg1]->unk_08;
+        ret->unk_0A = D_800BE268[id][arg1]->unk_02;
+        ret->unk_0C = D_800BE268[id][arg1]->unk_06;
+        ret->unk_0E = D_800BE268[id][arg1]->unk_04;
+        ret->unk_14.x = 0.0f;
+        ret->unk_14.y = 0.0f;
+        ret->unk_14.z = 0.0f;
+        ret->unk_20 = D_800BE268[id][arg1]->unk_14;
+        ret->unk_24 = D_800BE268[id][arg1]->unk_18;
+        ret->unk_28 = D_800BE268[id][arg1]->unk_1C;
+        ret->unk_2C = D_800BE268[id][arg1]->unk_0C;
+        ret->unk_30 = D_800BE268[id][arg1]->unk_10;
+        ret->unk_34 = D_800BE268[id][arg1]->unk_2C;
+        ret->unk_10 = &D_800BE268[id][arg1]->unk_30;
+        ret->unk_38 = D_800BE268[id][arg1]->unk_20;
+        ret->unk_3C = D_800BE268[id][arg1]->unk_24;
+        ret->unk_40 = D_800BE268[id][arg1]->unk_28;
+        ret->unk_44 = 0.0f;
+        if (D_800BE288[id][D_800BE268[id][arg1]->unk_02]->unk_14 != 0) {
+            ret->unk_06 |= 0x10;
+        }
+        ret->dobj = NULL;
+
+        switch (ret->unk_08) {
+            case 0:
+            case 3:
+            case 4:
+                break;
+            case 1:
+                ret->unk_4C.data1.x = ret->unk_14.x + ret->unk_20;
+                ret->unk_4C.data1.y = ret->unk_14.y + ret->unk_24;
+                ret->unk_4C.data1.z = ret->unk_14.z + ret->unk_28;
+                break;
+            case 2:
+                ret->unk_4C.data2[2] = 0;
+                break;
+            default:
+                if (D_800BE2AC != NULL) {
+                    D_800BE2AC(ret);
+                }
+                break;
+        }
+    }
+    return ret;
+}
 
 void func_800A6ED8(UnkPinkRat* arg0) {
     UnkPinkRat* prev = NULL;
@@ -811,7 +843,7 @@ void func_800A6ED8(UnkPinkRat* arg0) {
 
     while (it != NULL) {
         if (it == arg0) {
-            if (arg0->unk_08 == 2 && arg0->unk_50 != 0) {
+            if (arg0->unk_08 == 2 && arg0->unk_4C.data2[2] != 0) {
                 arg0->unk_0E = 1;
                 arg0->unk_40 = 0.0f;
                 return;
@@ -841,13 +873,60 @@ void func_800A6F74(void) {
     }
 }
 
-void func_800A6FBC(s32 arg0, s32 arg1) {
+void func_800A6FBC(void (*arg0)(UnkPinkRat*), s32 arg1) {
     D_800BE2AC = arg0;
     D_800BE2A8 = arg1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A6FD0.s")
-void func_800A6FD0(u16 arg0, s32 arg1);
+void func_800A6FD0(u16 arg0, s32 arg1) {
+    UnkRustRat* it;
+    UnkRustRat* next;
+    UnkRustRat* prev;
+    UnkPinkRat* it2;
+    UnkPinkRat* next2;
+    UnkPinkRat* prev2;
+
+    prev = NULL;
+    for (it = D_800BE1A8[arg1]; it != NULL; it = next) {
+        next = it->next;
+        if (it->unk_04 == arg0) {
+            if (prev == NULL) {
+                D_800BE1A8[arg1] = it->next;
+            } else {
+                prev->next = it->next;
+            }
+            if (it->unk_58 != NULL && (it->unk_06 & 4) && it->unk_58->unk_08 == 2) {
+                it->unk_58->unk_50--;
+            }
+            it->next = D_800BE1A0;
+            D_800BE1A0 = it;
+        } else {
+            prev = it;
+        }
+    }
+
+    prev2 = NULL;
+    for (it2 = D_800BE1EC; it2 != NULL; it2 = next2) {
+        next2 = it2->next;
+        if (it2->unk_04 == arg0) {
+            if (it2->unk_08 == 2 && it2->unk_4C.data2[2] != 0) {
+                it2->unk_40 = 0.0f;
+                it2->unk_0E = 1;
+                prev2 = it2;
+            } else {
+                if (prev2 == NULL) {
+                    D_800BE1EC = it2->next;
+                } else {
+                    prev2->next = it2->next;
+                }
+                it2->next = D_800BE1E8;
+                D_800BE1E8 = it2;
+            }
+        } else {
+            prev2 = it2;
+        }
+    }
+}
 
 void func_800A7114(Unk_800A7114* arg0) {
     func_800A6FD0(arg0->unk_04, arg0->unk_08 >> 3);

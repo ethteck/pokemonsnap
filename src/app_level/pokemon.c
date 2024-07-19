@@ -1796,9 +1796,9 @@ void Pokemon_AnimationCallback(DObj* model, s32 param, f32 value) {
             } else if (pokemon->tangible) {
                 s32 val = value;
                 if (val > 0 && D_80382D10_523120 != NULL && D_80382D14_523124 != NULL) {
-                    UnkBrassLynx* unk = func_800A6C48(param, val - 1);
+                    UnkPinkRat* unk = func_800A6C48(param, val - 1);
                     if (unk != NULL) {
-                        unk->unk_48 = model;
+                        unk->dobj = model;
                     }
                 }
             }

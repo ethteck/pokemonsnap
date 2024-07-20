@@ -2192,7 +2192,7 @@ void func_801E2ED4_992944(s32 arg0) {
         func_8036C898_840048(D_802290DC_9D8B4C, "I'll save the results of today's\ntrip in the PKMN Album!");
     }
 
-    func_80374F30_8486E0(D_802290DC_9D8B4C, 1);
+    func_80374F30_8486E0(D_802290DC_9D8B4C, true);
     auPlaySound(0x4E);
     func_801E2AE8_992558(sp44, sp48, sp30 ? 0 : -1);
 
@@ -2297,7 +2297,7 @@ void func_801E2ED4_992944(s32 arg0) {
     } else {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 6 - sp44));
     }
-    func_80374F30_8486E0(D_802290DC_9D8B4C, 1);
+    func_80374F30_8486E0(D_802290DC_9D8B4C, true);
 }
 
 // TODO probably needs a struct on the stack - this is broken
@@ -2402,7 +2402,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_8036B9EC_83F19C(sp3C, 0, 0);
     func_8036C898_840048(sp3C, "Hmm...\nWhat's new this time?");
     func_8036D1A4_840954(D_802290E0_9D8B50, 0);
-    func_80374F30_8486E0(sp3C, 1);
+    func_80374F30_8486E0(sp3C, true);
     func_8036D4A0_840C50(0);
     func_801DD5F0_98D060(0);
     func_8036B5F0_83EDA0(D_802290E0_9D8B50);

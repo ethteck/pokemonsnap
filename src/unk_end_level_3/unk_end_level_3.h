@@ -111,7 +111,7 @@ void func_800E30B8_8A88D8(void);
 void func_800E3190_8A89B0(void);
 void* func_800E3230_8A8A50(void);
 s32 func_800E3404_8A8C24(void);
-s32 func_800E4578_8A9D98(UnkSnowHerring*, char**, s32, s32);
+s32 func_800E4578_8A9D98(UnkSnowHerring*, char**, s32, bool);
 s32 func_800E510C_8AA92C(void);
 void func_800E58D0_8AB0F0(GObj*);
 void func_800E5EBC_8AB6DC(void);

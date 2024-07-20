@@ -810,10 +810,10 @@ void func_801DF078_9FCD38(GObj* arg0) {
     if (D_80230890_A4E550 != 0) {
         func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0);
         func_8037519C_84894C(D_80230880_A4E540, "Pick your four best shots!");
-        func_80374F30_8486E0(D_80230880_A4E540, 1);
+        func_80374F30_8486E0(D_80230880_A4E540, true);
         func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0);
         func_8037519C_84894C(D_80230880_A4E540, "Choose your favorite shots\nfrom the Report and Album.");
-        func_80374F30_8486E0(D_80230880_A4E540, 1);
+        func_80374F30_8486E0(D_80230880_A4E540, true);
         func_801DDCA8_9FB968(0);
         func_8036FFE0_843790(0x16, 0x1D);
     } else {

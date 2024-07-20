@@ -1201,7 +1201,7 @@ s32 func_801E0B8C_9D74FC(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
     for (; *arg1 != 0; arg1++) {
         func_8036A8E4_83E094(arg0);
         func_8036C898_840048(arg0, *arg1);
-        sp1C = func_80374F30_8486E0(arg0, 1);
+        sp1C = func_80374F30_8486E0(arg0, true);
         if (arg2 != 0 && sp1C == 0x4000) {
             return 0x4000;
         }

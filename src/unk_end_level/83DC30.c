@@ -1,51 +1,6 @@
 #include "common.h"
 #include "unk_end_level.h"
 
-struct UnkSnowHerring {
-    /*  0x00 */ s32 unk_0;
-    /*  0x04 */ s32 unk_4;
-    /*  0x08 */ s32 unk_8;
-    /*  0x0C */ s32 unk_C;
-    /*  0x10 */ s32 unk_10; // x limit
-    /*  0x14 */ s32 unk_14; // y limit
-    /*  0x18 */ u32 unk_18; // flags
-    /*  0x1C */ u32 unk_1C;
-    /*  0x20 */ u32 unk_20;
-    /*  0x24 */ u32 unk_24;
-    /*  0x28 */ u32 unk_28;
-    /*  0x2C */ s32 unk_2C;
-    /*  0x30 */ s32 unk_30;
-    /*  0x34 */ s32 unk_34;
-    /*  0x38 */ s32 unk_38;
-    /*  0x3C */ UnkSnowHerring* unk_3C;
-    /*  0x40 */ UnkSnowHerring* unk_40;
-    /*  0x44 */ s32 unk_44;
-    /*  0x48 */ ucolor unk_48;
-    /*  0x4C */ ucolor unk_4C;
-    /*  0x50 */ GObj* unk_50;
-    /*  0x54 */ s32 unk_54;
-    /*  0x58 */ u8 pad_58[0x60 - 0x58];
-    /*  0x60 */ s32 unk_60;
-    /*  0x64 */ Sprite unk_64;
-    /*  0xA8 */ Sprite unk_A8;
-    /*  0xEC */ char unk_EC[0xF0 - 0xEC];
-    /*  0xF0 */ void* unk_F0;
-    /*  0xF4 */ s32 unk_F4;
-    /*  0xF8 */ s32 unk_F8;
-    /*  0xFC */ s32 unk_FC;
-    /* 0x100 */ s32 unk_100;
-    /* 0x104 */ s32 unk_104;
-    /* 0x108 */ s32 unk_108;
-    /* 0x10C */ s32 unk_10C;
-    /* 0x110 */ s32 unk_110;
-    /* 0x114 */ s32 unk_114;
-    /* 0x118 */ s32 unk_118;
-    /* 0x11C */ u8 pad_11C[4];
-    /* 0x120 */ s32 unk_120; // x
-    /* 0x124 */ s32 unk_124; // y
-    /* 0x128 */ u8 pad_128[8];
-}; // size == 0x130
-
 void func_8036A480_83DC30(void) {
     D_8037EA80_852230 = 0;
     D_8037EA84_852234 = 0;

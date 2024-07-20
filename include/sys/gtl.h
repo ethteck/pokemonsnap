@@ -4,6 +4,7 @@
 #include <PR/ultratypes.h>
 #include <PR/mbi.h>
 #include "sys/ml.h"
+#include "sys/om.h"
 
 typedef struct {
     /* 0x00 */ Gfx* start;
@@ -59,6 +60,11 @@ typedef struct {
     /* 0x88 */ void (*postInitFunc)(void);
 } SceneSetup; // size >= 0x8C
 
+typedef struct Temp8000641C {
+    /* 0x00 */ u8 unk00[0x2C];
+    /* 0x2C */ void (*fn2C)(struct Temp8000641C*);
+} Temp8000641C; // size >= 0x2C
+
 void* gtlMalloc(s32 size, s32 alignment);
 void gtlProcessAllDLists(void);
 void gtlCombineAllDLists(void);
@@ -71,6 +77,7 @@ void gtlSetSegmentF(Gfx**);
 void gtlInit(void);
 void gtlDisableNearClipping(s32);
 void func_800067DC(void);
+void func_80006F8C(GObj*);
 
 extern s32 gtlDrawnFrameCounter;
 extern Gfx* gMainGfxPos[4];

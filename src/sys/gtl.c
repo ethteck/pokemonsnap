@@ -823,12 +823,7 @@ void gtlDraw(FnBundle* self) {
     }
 }
 
-struct Temp8000641C {
-    /* 0x00 */ u8 unk00[0x2C];
-    /* 0x2C */ void (*fn2C)(struct Temp8000641C*);
-}; // size >= 0x2C
-
-void func_80006F8C(struct Temp8000641C* arg0) {
+void func_80006F8C(GObj* arg0) {
     s32 idx;
     s32 tmp;
     SCTaskGfxEnd* task;
@@ -836,7 +831,7 @@ void func_80006F8C(struct Temp8000641C* arg0) {
     gtlSwitchContext(0);
     gtlResetHeap();
     gtlInitDLists();
-    arg0->fn2C(arg0);
+    arg0->fnRender(arg0);
     gtlProcessAllDLists();
     task = gtlGfxEndTasks[gtlContextId];
     if (task == NULL) {

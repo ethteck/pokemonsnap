@@ -1,6 +1,6 @@
 #include "common.h"
 
-u8 sBackroundR = 90;
+u8 sBackgroundR = 90;
 u8 sBackgroundG = 140;
 u8 sBackgroundB = 200;
 u8 sFogR = 60;
@@ -103,11 +103,9 @@ void disableFogTransparent(GObj* arg0) {
 }
 
 void func_800A1520(void) {
-
 }
 
 void func_800A1528(void) {
-
 }
 
 void renderModelTypeAFogged(GObj* arg0) {
@@ -170,20 +168,20 @@ void func_800A16F8(GObj* arg0) {
     renderModelTypeDFogged(arg0);
 }
 
-void getBackgroundColor(u8* arg0, u8* arg1, u8* arg2) {
-    *arg0 = sBackroundR;
-    *arg1 = sBackgroundG;
-    *arg2 = sBackgroundB;
+void getBackgroundColor(u8* r, u8* g, u8* b) {
+    *r = sBackgroundR;
+    *g = sBackgroundG;
+    *b = sBackgroundB;
 }
 
-void setBackgroundColor(u8 arg0, u8 arg1, u8 arg2) {
-    sBackroundR = arg0;
-    sBackgroundG = arg1;
-    sBackgroundB = arg2;
+void setBackgroundColor(u8 r, u8 g, u8 b) {
+    sBackgroundR = r;
+    sBackgroundG = g;
+    sBackgroundB = b;
 }
 
 void setCameraBackgroundColor(OMCamera* camera) {
-    u32 packed = ((sBackroundR << 8) & 0xF800) | ((sBackgroundG << 3) & 0x07C0) | ((sBackgroundB >> 2) & 0x003E) | 1;
+    u32 packed = ((sBackgroundR << 8) & 0xF800) | ((sBackgroundG << 3) & 0x07C0) | ((sBackgroundB >> 2) & 0x003E) | 1;
     camera->bgColor = (packed << 16) | packed;
 }
 
@@ -226,7 +224,6 @@ void func_800A19B0(u8 arg0, u8 arg1, u8 arg2) {
     sUnkColorG = arg1;
     sUnkColorB = arg2;
 }
-
 
 void func_800A19D8(s32 arg0) {
     D_800AEBC0 = arg0;

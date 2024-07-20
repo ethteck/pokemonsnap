@@ -44,4 +44,7 @@ typedef struct UnkRustRat {
 
 extern UnkRustRat* D_800BE1A8[16];
 
+PhotoData* func_8009BC74(void);
+void getBackgroundColor(u8* r, u8* g, u8* b);
+
 #endif

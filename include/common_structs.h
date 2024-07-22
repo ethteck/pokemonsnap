@@ -275,9 +275,7 @@ typedef struct UnkPinkRat {
     /* 0x0E */ u16 unk_0E;
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ Vec3f unk_14;
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
+    /* 0x20 */ Vec3f unk_20;
     /* 0x2C */ f32 unk_2C;
     /* 0x30 */ f32 unk_30;
     /* 0x34 */ f32 unk_34;

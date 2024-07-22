@@ -8,9 +8,7 @@ typedef struct UnkAsphaltLeopard {
     /* 0x08 */ s32 unk_08;
     /* 0x0C */ f32 unk_0C;
     /* 0x10 */ f32 unk_10;
-    /* 0x14 */ f32 unk_14;
-    /* 0x18 */ f32 unk_18;
-    /* 0x1C */ f32 unk_1C;
+    /* 0x14 */ Vec3f unk_14;
     /* 0x20 */ f32 unk_20;
     /* 0x24 */ f32 unk_24;
     /* 0x28 */ f32 unk_28;
@@ -215,7 +213,7 @@ UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
     }
     temp_v0 = D_800BE268[id][arg2];
     return func_800A21E0(arg0, arg1, temp_v0->unk_08, temp_v0->unk_02, (u32) temp_v0 + 0x30, temp_v0->unk_06,
-                         0.0f, 0.0f, 0.0f, temp_v0->unk_14, temp_v0->unk_18, temp_v0->unk_1C, temp_v0->unk_2C, temp_v0->unk_0C,
+                         0.0f, 0.0f, 0.0f, temp_v0->unk_14.x, temp_v0->unk_14.y, temp_v0->unk_14.z, temp_v0->unk_2C, temp_v0->unk_0C,
                          temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
 }
 
@@ -321,7 +319,40 @@ u8* func_800A27E8(u8* arg0, u16* arg1) {
     return arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A2824.s")
+void func_800A2824(UnkRustRat* arg0, f32 arg1) {
+    f32 unused;
+    f32 x, y, z;
+    f32 sp5C;
+    f32 sp58;
+    f32 sp54;
+    f32 temp_f26, sp4C;
+    f32 sp48, sp44;
+    f32 temp_f20_2;
+    f32 temp_f2;
+
+    x = arg0->unk_2C.x;
+    y = arg0->unk_2C.y;
+    z = unused = arg0->unk_2C.z;
+
+    sp58 = atan2f(y, z);
+    temp_f26 = sinf(sp58);
+    sp4C = cosf(sp58);
+
+    sp54 = atan2f(x, y * temp_f26 + z * sp4C);
+    sp48 = sinf(sp54);
+    sp44 = cosf(sp54);
+    sp5C = sqrtf(SQ(x) + SQ(y) + SQ(z));
+
+    temp_f20_2 = randFloat() * TAU;
+    z = sinf(arg1) * sp5C;
+    x = cosf(temp_f20_2) * z;
+    y = sinf(temp_f20_2) * z;
+    temp_f2 = cosf(arg1) * sp5C;
+
+    arg0->unk_2C.x = x * sp44 + temp_f2 * sp48;
+    arg0->unk_2C.y = -x * temp_f26 * sp48 + y * sp4C + temp_f2 * temp_f26 * sp44;
+    arg0->unk_2C.z = -x * sp4C * sp48 - y * temp_f26 + temp_f2 * sp4C * sp44;
+}
 
 void func_800A29AC(UnkRustRat* arg0, UnkGreenLeopard* arg1) {
     f32 dx, dy, dz;
@@ -751,10 +782,141 @@ GObj* func_800A5E08(s32 arg0) {
 GObj* func_800A5E08(s32 arg0);
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5E98.s")
+void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
+    Mtx4f spB8;
+    Mtx4f sp78;
+    f32 x, y, z;
+    s32 i;
+    uintptr_t csr;
+    struct Mtx3Float* var_s0;
+    struct Mtx4Float* var_t1;
+    struct Mtx3Float* var_t0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
-void func_800A63BC(GObj*);
+    guMtxIdentF(spB8);
+    do {
+        if (arg2->scale.v.x != 1.0f || arg2->scale.v.y != 1.0f || arg2->scale.v.z != 1.0f) {
+            hal_scale_f(sp78, arg2->scale.v.x, arg2->scale.v.y, arg2->scale.v.z);
+            guMtxCatF(spB8, sp78, spB8);
+        }
+        if (arg2->rotation.f[1] != 0.0f || arg2->rotation.f[2] != 0.0f || arg2->rotation.f[3] != 0.0f) {
+            hal_rotate_rpy_f(sp78, arg2->rotation.f[1], arg2->rotation.f[2], arg2->rotation.f[3]);
+            guMtxCatF(spB8, sp78, spB8);
+        }
+        if (arg2->position.v.x != 0.0f || arg2->position.v.y != 0.0f || arg2->position.v.z != 0.0f) {
+            hal_translate_f(sp78, arg2->position.v.x, arg2->position.v.y, arg2->position.v.z);
+            guMtxCatF(spB8, sp78, spB8);
+        }
+
+        if (arg2->unk_4C != NULL) {
+            var_s0 = NULL;
+            var_t1 = NULL;
+            var_t0 = NULL;
+            csr = (uintptr_t) arg2->unk_4C->data;
+            for (i = 0; i < 3; i++) {
+                switch (arg2->unk_4C->kinds[i]) {
+                    case 0:
+                        break;
+                    case 1:
+                        var_s0 = (void*) csr;
+                        csr += sizeof(union Mtx3fi);
+                        break;
+                    case 2:
+                        var_t1 = (void*) csr;
+                        csr += sizeof(struct Mtx4Float);
+                        break;
+                    case 3:
+                        var_t0 = (void*) csr;
+                        csr += sizeof(struct Mtx3Float);
+                        break;
+                }
+            }
+
+            if (var_t0 != NULL && (var_t0->v.x != 1.0f || var_t0->v.y != 1.0f || var_t0->v.z != 1.0f)) {
+                hal_scale_f(sp78, var_t0->v.x, var_t0->v.y, var_t0->v.z);
+                guMtxCatF(spB8, sp78, spB8);
+            }
+            if (var_t1 != NULL && (var_t1->f[1] != 0.0f || var_t1->f[2] != 0.0f || var_t1->f[3] != 0.0f)) {
+                hal_rotate_rpy_f(sp78, var_t1->f[1], var_t1->f[2], var_t1->f[3]);
+                guMtxCatF(spB8, sp78, spB8);
+            }
+            if (var_s0 != NULL && (var_s0->v.x != 0.0f || var_s0->v.y != 0.0f || var_s0->v.z != 0.0f)) {
+                hal_translate_f(sp78, var_s0->v.x, var_s0->v.y, var_s0->v.z);
+                guMtxCatF(spB8, sp78, spB8);
+            }
+        }
+        arg2 = arg2->parent;
+    } while ((uintptr_t) arg2 != 1);
+
+    arg0->x = spB8[3][0];
+    arg0->y = spB8[3][1];
+    arg0->z = spB8[3][2];
+    // clang-format off
+    x = arg1->x; y = arg1->y; z = arg1->z;
+    // clang-format on
+    if (spB8[0][0] != 0.0f || spB8[1][0] != 0.0f || spB8[2][0] != 0.0f) {
+        guNormalize(&spB8[0][0], &spB8[1][0], &spB8[2][0]);
+    }
+    if (spB8[0][1] != 0.0f || spB8[1][1] != 0.0f || spB8[2][1] != 0.0f) {
+        guNormalize(&spB8[0][1], &spB8[1][1], &spB8[2][1]);
+    }
+    if (spB8[0][2] != 0.0f || spB8[1][2] != 0.0f || spB8[2][2] != 0.0f) {
+        guNormalize(&spB8[0][2], &spB8[1][2], &spB8[2][2]);
+    }
+    arg1->x = spB8[0][0] * x + spB8[1][0] * y + spB8[2][0] * z;
+    arg1->y = spB8[0][1] * x + spB8[1][1] * y + spB8[2][1] * z;
+    arg1->z = spB8[0][2] * x + spB8[1][2] * y + spB8[2][2] * z;
+}
+
+// #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
+void func_800A63BC(GObj* obj) {
+    UnkPinkRat* ptr;
+    Vec3f sp128;
+    Vec3f sp11C;
+    f32 spDC;
+    f32 spB8;
+
+    D_800BE2B0 = NULL;
+
+    for (ptr = D_800BE1EC; ptr != NULL; ptr = ptr->next) {
+        if (obj->flags & (1 << (16 + (ptr->unk_09 >> 3)))) {
+            D_800BE2B0 = ptr;
+            continue;
+        }
+        if (ptr->unk_06 & 0x800) {
+            D_800BE2B0 = ptr;
+            continue;
+        }
+
+        if (ptr->unk_40 < 0.0f) {
+            ptr->unk_44 -= ptr->unk_40;
+        } else {
+            ptr->unk_44 += randFloat() * ptr->unk_40;
+        }
+
+        if (ptr->unk_44 >= 1.0f) {
+            sp11C.x = ptr->unk_20.x;
+            sp11C.y = ptr->unk_20.y;
+            sp11C.z = ptr->unk_20.z;
+            if (ptr->dobj != NULL) {
+                func_800A5E98(&sp128, &sp11C, ptr->dobj);
+                ptr->unk_14.x = sp128.x;
+                ptr->unk_14.y = sp128.y;
+                ptr->unk_14.z = sp128.z;
+            }
+            spDC = randFloat() * TAU;
+            spB8 = TAU / ptr->unk_44;
+        }
+
+        while (ptr->unk_44 >= 1.0f) {
+            switch (ptr->unk_08) {
+                case 0:
+                case 3:
+                case 4:
+
+            }
+        }
+    }
+}
 
 UnkPinkRat* func_800A6BDC(void) {
     UnkPinkRat* ret;
@@ -798,9 +960,9 @@ UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
         ret->unk_14.x = 0.0f;
         ret->unk_14.y = 0.0f;
         ret->unk_14.z = 0.0f;
-        ret->unk_20 = D_800BE268[id][arg1]->unk_14;
-        ret->unk_24 = D_800BE268[id][arg1]->unk_18;
-        ret->unk_28 = D_800BE268[id][arg1]->unk_1C;
+        ret->unk_20.x = D_800BE268[id][arg1]->unk_14.x;
+        ret->unk_20.y = D_800BE268[id][arg1]->unk_14.y;
+        ret->unk_20.z = D_800BE268[id][arg1]->unk_14.z;
         ret->unk_2C = D_800BE268[id][arg1]->unk_0C;
         ret->unk_30 = D_800BE268[id][arg1]->unk_10;
         ret->unk_34 = D_800BE268[id][arg1]->unk_2C;
@@ -820,9 +982,9 @@ UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
             case 4:
                 break;
             case 1:
-                ret->unk_4C.data1.x = ret->unk_14.x + ret->unk_20;
-                ret->unk_4C.data1.y = ret->unk_14.y + ret->unk_24;
-                ret->unk_4C.data1.z = ret->unk_14.z + ret->unk_28;
+                ret->unk_4C.data1.x = ret->unk_14.x + ret->unk_20.x;
+                ret->unk_4C.data1.y = ret->unk_14.y + ret->unk_20.y;
+                ret->unk_4C.data1.z = ret->unk_14.z + ret->unk_20.z;
                 break;
             case 2:
                 ret->unk_4C.data2[2] = 0;

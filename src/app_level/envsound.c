@@ -1,5 +1,6 @@
 #include "common.h"
 #include "app_level.h"
+#include "sys/om.h"
 
 typedef struct EnvSound {
     /* 0x00 */ struct EnvSound* next;
@@ -129,23 +130,25 @@ void EnvSound_Update(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
 void EnvSound_Init(EnvSoundData* data, s32 numEntries) {
-    if (data != 0 && numEntries > 0) {
+    EnvSound* envSound; // TODO required to match
+    GObj* gobj;
+
+    if (data != NULL && numEntries > 0) {
         EnvSound_InitData = data;
         EnvSound_InitDataSize = numEntries;
         EnvSound_PlayerModel = func_803573B0_4F77C0();
         EnvSound_MainCamera = getMainCamera();
         EnvSound_Sounds = gtlMalloc(sizeof(EnvSound), 4);
-        EnvSound_Sounds->next = NULL;
+        envSound = EnvSound_Sounds;
+        envSound->next = NULL;
         EnvSound_Sounds->source = NULL;
-        omCreateProcess(omAddGObj(OBJID_ENV_SOUND_PLAYER, ohUpdateDefault, LINK_PLAYER, 1), EnvSound_Update, 1, 1);
+        gobj = omAddGObj(OBJID_ENV_SOUND_PLAYER, ohUpdateDefault, LINK_PLAYER, 1);
+        do {
+        } while (0); // TODO required to match
+        omCreateProcess(gobj, EnvSound_Update, 1, 1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/envsound/EnvSound_Init.s")
-void EnvSound_Init(EnvSoundData* data, s32 numEntries);
-#endif
 
 void EnvSound_Cleanup(void) {
     EnvSound_PlayerModel = NULL;

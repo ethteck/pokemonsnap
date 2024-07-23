@@ -85,7 +85,7 @@ void func_800ABB94(void);
 void func_800BFB90_5CA30(s32, s32);
 void func_800BFC18_5CAB8(s32*, s32*);
 s32 func_800BF244_5C0E4(void);
-s32 func_800BF3D4_5C274(s32);
+bool func_800BF3D4_5C274(s32);
 char* get_player_name(void);
 void func_800BF44C_5C2EC(PlayerName*);
 PhotoData* func_800BF574_5C414(s32);

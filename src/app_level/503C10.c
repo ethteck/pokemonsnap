@@ -78,7 +78,6 @@ void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3) {
 }
 
 static void nullsub() {
-
 }
 
 #ifdef NON_MATCHING
@@ -117,8 +116,7 @@ void pokemonAdd(WorldBlock* block, WorldBlock* blockB, PokemonDef* def) {
     if (block == NULL ||
         block->descriptor == NULL ||
         block->descriptor->spawn == NULL ||
-        block->index >= MAX_BLOCKS)
-    {
+        block->index >= MAX_BLOCKS) {
         return;
     }
 
@@ -209,7 +207,7 @@ void pokemonChangeBlock(GObj* pokemonObj, f32 prevBlockX, f32 prevBlockY, f32 pr
     f32 dy = (prevBlockY - currBlockY) * 100.0f;
     f32 dz = (prevBlockZ - currBlockZ) * 100.0f;
 
-    mtxPtr = (struct Mtx3Float*)pokemonObj->data.dobj->unk_4C->data;
+    mtxPtr = (struct Mtx3Float*) pokemonObj->data.dobj->unk_4C->data;
     for (i = 0; i < 3; i++) {
         if (pokemonObj->data.dobj->unk_4C->kinds[i] == 1) {
             mtxPtr->v.x += dx;
@@ -236,12 +234,13 @@ void pokemonChangeBlockOnGround(GObj* pokemonObj, f32 prevBlockX, f32 prevBlockY
     if (pokemonObj->data.dobj->unk_4C != NULL) {
         dx = (prevBlockX - currBlockX) * 100.0f;
         dz = (prevBlockZ - currBlockZ) * 100.0f;
-        mtxPtr = (struct Mtx3Float*)pokemonObj->data.dobj->unk_4C->data;
+        mtxPtr = (struct Mtx3Float*) pokemonObj->data.dobj->unk_4C->data;
 
         for (i = 0; i < 3; i++) {
             if (pokemonObj->data.dobj->unk_4C->kinds[i] == 1) {
                 struct Mtx3Float* mtxPtr2 = mtxPtr;
-                if (1) {} // required for match
+                if (1) {
+                } // required for match
                 mtxPtr2->v.x += dx;
                 mtxPtr2->v.z += dz;
                 mtxPtr2->v.y = func_80363D8C_50419C(mtxPtr2->v.x, mtxPtr2->v.z);

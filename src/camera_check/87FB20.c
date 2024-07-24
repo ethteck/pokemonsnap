@@ -70,7 +70,37 @@ bool func_camera_check_801E2540(s32 arg0) {
     return false;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E25B8.s")
+bool func_camera_check_801E25B8(void) {
+    UnkIndigoHalibut* it;
+    UnkIndigoHalibut* it2;
+    s32 temp_v0;
+    s32 i;
+    s32 j;
+
+    temp_v0 = func_8009BC68();
+
+    // clang-format off
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) it->unk_18_0x02000000 = 0;
+    // clang-format on
+
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) {
+        if (!it->unk_18_0x02000000 && ((it->unk_18_0x20000000) || (it->unk_18_0x10000000))) {
+            for (j = 0, it2 = D_camera_check_80249B30; j < temp_v0; j++, it2++) {
+                if (it->unk_08 == it2->unk_08) {
+                    it2->unk_18_0x02000000 = true;
+                }
+            }
+        }
+    }
+
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) {
+        if (!it->unk_18_0x02000000 && it->unk_18_0x80000000) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 s32 func_camera_check_801E27FC(void) {
     s32 count;
@@ -633,8 +663,42 @@ void func_camera_check_801E3910(s32 arg0) {
     }
 }
 
-void func_camera_check_801E3AF4(UnkIndigoHalibut* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3AF4.s")
+void func_camera_check_801E3AF4(UnkIndigoHalibut* arg0) {
+    s32 temp_a3;
+    UnkIndigoHalibut* it;
+    s32 temp_v0;
+
+    if (arg0 == NULL) {
+        func_camera_check_801E3910(0);
+        D_camera_check_802089F0 = 0;
+        D_camera_check_8024A1C0 = 0;
+        D_camera_check_8024A1C4 = func_8009BC68();
+        return;
+    }
+
+    if ((s32) arg0 == 1) {
+        D_camera_check_8024A1C0 = 0;
+        D_camera_check_8024A1C4 = 0;
+        D_camera_check_802089F0 = 1;
+    } else {
+        temp_a3 = arg0->unk_08;
+        func_camera_check_801E3910(2);
+        temp_v0 = func_8009BC68();
+
+        for (D_camera_check_8024A1C0 = 0, it = D_camera_check_80249B30; D_camera_check_8024A1C0 < temp_v0; it++, D_camera_check_8024A1C0++) {
+            if (temp_a3 == it->unk_08) {
+                break;
+            }
+        }
+
+        for (D_camera_check_8024A1C4 = 1, it++; D_camera_check_8024A1C0 + D_camera_check_8024A1C4 < temp_v0; it++, D_camera_check_8024A1C4++) {
+            if (temp_a3 != it->unk_08) {
+                break;
+            }
+        }
+        D_camera_check_802089F0 = 1;
+    }
+}
 
 void func_camera_check_801E3C24(s32 arg0) {
     UnkIndigoHalibut* item;

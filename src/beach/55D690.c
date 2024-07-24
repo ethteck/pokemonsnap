@@ -33,7 +33,26 @@ void func_beach_802C5700(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_beach_802CC2C4);
 }
 
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55D690/func_beach_802C5768.s")
+#else
+void func_beach_802C5768(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_ForceAnimation(obj, &D_beach_802CC120);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_ForceAnimation(obj, &D_beach_802CC1AC);
+    pokemon->flags &= ~0x8;
+    pokemon->transitionGraph = D_beach_802CC1D4;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_ForceAnimation(obj, &D_beach_802CC1C0);
+    pokemon->flags |= 8;
+    pokemon->transitionGraph = D_beach_802CC1D4;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetStateRandom(obj, D_beach_802CC2C4);
+}
+#endif
 
 void func_beach_802C5828(GObj* obj) {
     UNUSED s32 pad[3];

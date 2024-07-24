@@ -66,6 +66,7 @@ extern InteractionHandler D_beach_802CC594[];
 extern InteractionHandler D_beach_802CC5C4[];
 extern InteractionHandler D_beach_802CC644[];
 extern InteractionHandler D_beach_802CC6B4[];
+extern InteractionHandler D_beach_802CC6E4[];
 extern InteractionHandler D_beach_802CC714[];
 extern InteractionHandler D_beach_802CC784[];
 extern InteractionHandler D_beach_802CC7B4[];

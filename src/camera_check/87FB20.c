@@ -55,7 +55,7 @@ s32 func_camera_check_801E2534(void) {
     return D_camera_check_8024A1C4;
 }
 
-s32 func_camera_check_801E2540(s32 arg0) {
+bool func_camera_check_801E2540(s32 arg0) {
     UnkIndigoHalibut* item;
     s32 count;
     s32 i;
@@ -63,11 +63,11 @@ s32 func_camera_check_801E2540(s32 arg0) {
     count = func_8009BC68();
     for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
         if ((arg0 == item->unk_08) && (item->unk_18_0x20000000 || (item->unk_18_0x10000000))) {
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E25B8.s")
@@ -265,7 +265,7 @@ s32 func_camera_check_801E2E04(void) {
     return ret;
 }
 
-s32 func_camera_check_801E2E5C(s32 id) {
+bool func_camera_check_801E2E5C(s32 id) {
     if (id == PokemonID_1004 || id == PokemonID_1010 || id == PokemonID_1018 || id == PokemonID_1022 ||
         id == PokemonID_1028 || id == PokemonID_1035) {
         return true;
@@ -277,7 +277,7 @@ s32 func_camera_check_801E2EA0(s32 id) {
     return func_camera_check_801E2E5C(id);
 }
 
-s32 func_camera_check_801E2EC0(s32 id) {
+bool func_camera_check_801E2EC0(s32 id) {
     switch (id) {
         case PokemonID_500:
         case PokemonID_600:
@@ -289,7 +289,7 @@ s32 func_camera_check_801E2EC0(s32 id) {
     }
 }
 
-s32 func_camera_check_801E2EF4(s32 id) {
+bool func_camera_check_801E2EF4(s32 id) {
     if (id > 0 && id <= POKEDEX_MAX) {
         return true;
     }
@@ -305,7 +305,7 @@ s32 func_camera_check_801E2EF4(s32 id) {
     return false;
 }
 
-s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
+s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, bool arg1) {
     s32 sp24;
     UNUSED s32 unused[1];
     s32 sp1C;
@@ -321,7 +321,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         sp1C = arg0->unk_18_0x10000000 != 0;
     }
 
-    if ((arg1 == 0) && func_camera_check_801E3420()) {
+    if (!arg1 && func_camera_check_801E3420()) {
         return 1;
     }
     if (sp24 == 9999) {
@@ -331,7 +331,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         if (func_camera_check_801E2EC0(sp24) != 0) {
             return 3;
         }
-        if (func_camera_check_801E2540(sp24) != 0) {
+        if (func_camera_check_801E2540(sp24)) {
             if (sp1C != 0) {
                 return 6;
             }
@@ -343,7 +343,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         return 5;
     }
     if (func_800BF3D4_5C274(sp24)) {
-        if (func_camera_check_801E2540(sp24) == 0) {
+        if (!func_camera_check_801E2540(sp24)) {
             return 13;
         }
         if (sp1C != 0) {
@@ -351,7 +351,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         }
         return 11;
     }
-    if (func_camera_check_801E2540(sp24) == 0) {
+    if (!func_camera_check_801E2540(sp24)) {
         return 10;
     }
 
@@ -410,7 +410,7 @@ void func_camera_check_801E31E4(s32 arg0, UNK_TYPE arg1) {
         if (arg0 == 1) {
             if (item->unk_08 >= 0x40C) {
                 item->unk_18_0x01000000 = 1;
-            } else if (func_camera_check_801E2540(item->unk_08) != 0) {
+            } else if (func_camera_check_801E2540(item->unk_08)) {
                 item->unk_18_0x01000000 = 1;
             } else {
                 if ((item->unk_08 > 151) && (!func_camera_check_801E2E5C(item->unk_08) || !checkPlayerFlag(PFID_HAS_DASH_ENGINE))) {

@@ -13,33 +13,17 @@ typedef struct UnkBlueShark {
 
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
-extern UNK_TYPE D_8013B030;
-extern UNK_TYPE D_8013BAA0;
+extern AnimCmd* D_8013B030;
+extern AnimCmd** D_8013BAA0;
 extern AnimCmd D_8013C530[];
-extern UNK_TYPE D_8013C580;
-extern UNK_TYPE D_8013CEA0;
+extern AnimCmd* D_8013C580;
+extern AnimCmd** D_8013CEA0;
 extern AnimCmd D_8013DA90;
 
-f32 atan2f(f32 y, f32 x);
-void func_800E1A78_5F228(f32);
-void func_803570B0_4F74C0(void);
-void Camera_StartCutScene(void*, UNK_TYPE, f32);
-void func_80357120_4F7530(GObj*);
-void func_80357170_4F7580(void);
-void func_803571C4_4F75D4(void);
-void func_803572B0_4F76C0(void);
-void resetMainCameraSettings(void);
-OMCamera* getMainCamera(void);
-void func_8035E298_4FE6A8(GObj*);
-void pokemonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void Msg_Reset(void);
-GObj* PlayerModel_Init(void);
-void PlayerModel_SetAnimation(UNK_PTR, UNK_PTR, f32, f32);
-void EnvSound_PlaySound(GObj*, UNK_TYPE, UNK_TYPE);
-
 extern PokemonDef D_beach_802CBFF4;
+extern EnvSoundData D_beach_802CBE10;
 extern s32 D_beach_802CC018;
+extern ScreenSettings D_beach_802CC01C;
 extern SceneSetup D_beach_802CC038;
 extern s32 D_beach_802CC0D0;
 extern s32 D_beach_802CC0D4;
@@ -224,7 +208,9 @@ extern void* D_beach_80347658;
 
 extern PokemonDef beachPokemonData[17];
 
+void func_beach_802C4800(s32, f32);
 void func_beach_802C52EC(GObj*);
+void func_beach_802C55CC(void);
 void func_beach_802C5620(GObj*);
 void func_beach_802C5700(GObj*);
 void func_beach_802C5768(GObj*);

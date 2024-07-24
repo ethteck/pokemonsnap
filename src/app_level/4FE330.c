@@ -7,9 +7,6 @@ extern AnimCmd** D_800EB0C0[];
 extern UnkEC64Arg3 D_800EB430[];
 extern Texture** D_800EB510[];
 
-void pokemonChangeBlock(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void pokemonRemoveOne(GObj* obj);
-
 void func_8035DF20_4FE330(GObj* obj);
 GObj* func_8035E0D4_4FE4E4(s32 objID, u16 id, WorldBlock* block, WorldBlock* arg3, ObjectSpawn* arg4);
 

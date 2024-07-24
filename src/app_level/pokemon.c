@@ -43,7 +43,6 @@ Gfx D_8038A400_52A810[] = {
 extern DObj* gPlayerDObj;
 extern GObj* gPokemonInFocus;
 
-void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void func_800A5E98(Vec3f*, Vec3f*, DObj*);
 void func_800AB1F8(EggStruct*);
 s32 func_800AB138(EggStruct* arg0, f32 arg1);
@@ -51,8 +50,6 @@ void func_80360074_500484(GObj*);
 void deletePokemon(GObj* pokemonObj);
 void func_800A716C(GObj*);
 u8 getIsPaused(void);
-void EnvSound_StopSoundByCategory(GObj*, u8);
-void EnvSound_PlaySound(GObj*, UNK_TYPE, UNK_TYPE);
 s32 func_8036381C_503C2C(void);
 s32 Pokemon_StepWalkInDirection(GObj* arg0, f32 arg1, u32 arg2);
 

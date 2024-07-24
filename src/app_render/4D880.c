@@ -52,8 +52,6 @@ extern UnkPinkRat* D_800BE1EC;
 extern OMCamera* D_800BE1F0[4];
 extern u8 D_800BE200[4];
 extern s32 D_800BE204[9];
-extern s32 D_800BE228[];
-extern s32 D_800BE248[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
 extern s32 D_800BE2A8;

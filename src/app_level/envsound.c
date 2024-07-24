@@ -1,22 +1,7 @@
 #include "common.h"
 #include "app_level.h"
+#include "functions.h"
 #include "sys/om.h"
-
-typedef struct EnvSound {
-    /* 0x00 */ struct EnvSound* next;
-    /* 0x04 */ GObj* source;
-    /* 0x08 */ s32 soundHandle;
-    /* 0x0C */ u16 soundId;
-    /* 0x0E */ u8 hearingRange;
-    /* 0x0F */ u32 category : 2;
-    /* 0x0F */ u32 fixedParams : 1;
-} EnvSound; // size 0x10
-
-typedef struct EnvSoundData {
-    /* 0x00 */ u16 soundID;
-    /* 0x02 */ u8 pitchModifier;
-    /* 0x03 */ u8 hearingRange;
-} EnvSoundData; // size 0x4
 
 extern EnvSound* EnvSound_Sounds;
 extern EnvSoundData* EnvSound_InitData;
@@ -25,7 +10,6 @@ extern DObj* EnvSound_PlayerModel;
 extern OMCamera* EnvSound_MainCamera;
 
 DObj* func_803573B0_4F77C0(void);
-OMCamera* getMainCamera(void);
 s32 atan2s(f32, f32);
 
 f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {

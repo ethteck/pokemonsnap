@@ -55,7 +55,7 @@ typedef struct WorldBlockGFX {
     /* 0x18 */ AnimCmd** movementAnim;
     /* 0x1C */ s32 movementAnimDuration;
     /* 0x20 */ f32 cpTimeStamps[1]; // variable size, depends on unk_14
-} WorldBlockGFX; // size >= 0x20
+} WorldBlockGFX;                    // size >= 0x20
 
 typedef struct PayloadStruct {
     union {
@@ -197,7 +197,7 @@ void destroyWorld(void);
 void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
 void Movement_Update(MovementState* arg0);
-void Movement_Init(MovementState* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32));
+void Movement_Init(MovementState* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32, f32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
 s32 notNull_DEBUG(void*, const char*);
 s32 setHeightMap(HeightMap* arg0);

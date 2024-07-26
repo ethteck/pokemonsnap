@@ -24,7 +24,7 @@ typedef struct UnkRustRat {
     /* 0x0E */ s16 unk_0E;
     /* 0x10 */ s16 unk_10;
     /* 0x12 */ s16 unk_12;
-    /* 0x14 */ s32 unk_14;
+    /* 0x14 */ UNK_PTR unk_14;
     /* 0x18 */ s16 unk_18;
     /* 0x1A */ s16 unk_1A;
     /* 0x1C */ s16 unk_1C;

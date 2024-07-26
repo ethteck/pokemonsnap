@@ -261,7 +261,10 @@ typedef struct UnkCanaryScallop {
 
 typedef union UnkPinkRatSub {
     Vec3f data1;
-    u16 data2[3];
+    struct {
+        f32 unk_00;
+        u16 unk_04;
+    } data2;
 } UnkPinkRatSub; // size = 0xC
 
 typedef struct UnkPinkRat {
@@ -269,9 +272,9 @@ typedef struct UnkPinkRat {
     /* 0x04 */ u16 unk_04;
     /* 0x06 */ u16 unk_06;
     /* 0x08 */ u8 unk_08;
-    /* 0x09 */ s8 unk_09;
+    /* 0x09 */ u8 unk_09;
     /* 0x0A */ s16 unk_0A;
-    /* 0x0C */ s16 unk_0C;
+    /* 0x0C */ u16 unk_0C;
     /* 0x0E */ u16 unk_0E;
     /* 0x10 */ UNK_PTR unk_10;
     /* 0x14 */ Vec3f unk_14;

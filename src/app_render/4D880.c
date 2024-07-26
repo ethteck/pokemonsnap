@@ -54,7 +54,7 @@ extern s32 D_800BE228[];
 extern s32 D_800BE248[];
 extern UnkAsphaltLeopard** D_800BE268[];
 extern UnkPinkLeopard** D_800BE288[];
-extern s32 D_800BE2A8;
+extern void (*D_800BE2A8)(UnkPinkRat*, Vec3f*);
 extern void (*D_800BE2AC)(UnkPinkRat*);
 extern UnkPinkRat* D_800BE2B0;
 
@@ -137,7 +137,7 @@ void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
 }
 
 #ifdef NON_MATCHING
-UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7,
+UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, UNK_PTR arg4, s32 arg5, f32 arg6, f32 arg7,
                           f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10) {
     UnkRustRat* ret = D_800BE1A0;
     s32 temp = 0;
@@ -195,7 +195,7 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 a
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A21E0.s")
-UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, s32 arg4, s32 arg5, f32 arg6, f32 arg7,
+UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, UNK_PTR arg4, s32 arg5, f32 arg6, f32 arg7,
                           f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkCoalEel* arg10);
 #endif
 
@@ -217,7 +217,7 @@ UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
                          temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
 }
 
-UnkRustRat* func_800A244C(s32 arg0, s32 arg1, u16 arg2, s32 arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, s32 argE, UnkCoalEel* argF) {
+UnkRustRat* func_800A244C(s32 arg0, s32 arg1, u16 arg2, UNK_PTR arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, s32 argE, UnkCoalEel* argF) {
     UnkRustRat* ret;
 
     ret = func_800A21E0(NULL, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, argA, argB, argC, argD, argE, argF);
@@ -867,23 +867,55 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
     arg1->z = spB8[0][2] * x + spB8[1][2] * y + spB8[2][2] * z;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
+#if 0
 void func_800A63BC(GObj* obj) {
     UnkPinkRat* ptr;
     Vec3f sp128;
     Vec3f sp11C;
+    f32 sp108;
+    f32 angle1;
+    f32 spFC;
+    f32 spF8;
+    f32 angle2; // move this
+    f32 spF4;
+    f32 spF0;
+    f32 spEC;
     f32 spDC;
     f32 spB8;
+    f32 spB4;
+    f32 var_f20;
+    f32 var_f24;
+    f32 temp_f26;
+    f32 temp_f28;
+    f32 temp_f20;
 
-    D_800BE2B0 = NULL;
+    f32 temp_f0;
 
-    for (ptr = D_800BE1EC; ptr != NULL; ptr = ptr->next) {
+    f32 temp_f22, temp_f0_6,
+        spD0, spCC, temp_f12, spC8;
+        
+    f32 var_f14, var_f16, var_f18;
+
+    f32 temp_f0_8;
+    f32 temp_f28_4;
+    f32 temp_f22_2;
+    f32 var_f24_3;
+    UnkPinkRat* next;
+
+    f32 nv1;
+
+    f32 x, y, z;
+    f32 x1, y1, z1;
+
+    for (ptr = D_800BE1EC, D_800BE2B0 = NULL; ptr != NULL;) {
         if (obj->flags & (1 << (16 + (ptr->unk_09 >> 3)))) {
             D_800BE2B0 = ptr;
+            ptr = ptr->next;
             continue;
         }
         if (ptr->unk_06 & 0x800) {
             D_800BE2B0 = ptr;
+            ptr = ptr->next;
             continue;
         }
 
@@ -904,7 +936,7 @@ void func_800A63BC(GObj* obj) {
                 ptr->unk_14.z = sp128.z;
             }
             spDC = randFloat() * TAU;
-            spB8 = TAU / ptr->unk_44;
+            spB8 = TAU / (s32) ptr->unk_44;
         }
 
         while (ptr->unk_44 >= 1.0f) {
@@ -912,11 +944,137 @@ void func_800A63BC(GObj* obj) {
                 case 0:
                 case 3:
                 case 4:
+                    x = sp11C.x;
+                    y = sp11C.y;
+                    z = sp11C.z;
 
+                    angle1 = atan2f(y, z);
+                    spFC = sinf(angle1);
+                    spF8 = cosf(angle1);
+
+                    angle2 = atan2f(x, y * spFC + z * spF8);
+                    spF4 = sinf(angle2);
+                    spF0 = cosf(angle2);
+
+                    sp108 = sqrtf(SQ(x) + SQ(y) + SQ(z));
+
+                    if (ptr->unk_38 < 0.0f) {
+                        spB4 = 1.0f;
+                        var_f20 = -ptr->unk_38;
+                    } else {
+                        spB4 = randFloat();
+                        if (ptr->unk_08 != 0) {
+                            spB4 = sqrtf(spB4);
+                        }
+                        var_f20 = ptr->unk_38 * spB4;
+                    }
+
+                    if (ptr->unk_3C < 0.0f) {
+                        spDC += spB8;
+                        var_f24 = -ptr->unk_3C;
+                    } else {
+                        spDC = randFloat() * TAU;
+                        var_f24 = ptr->unk_3C * spB4;
+                    }
+
+                    spEC = __cosf(spDC) * var_f20;
+                    temp_f26 = __sinf(spDC) * var_f20;
+                    temp_f28 = __sinf(var_f24) * sp108;
+
+                    temp_f20 = __cosf(spDC) * temp_f28;
+                    temp_f22 = __sinf(spDC) * temp_f28;
+                    temp_f0_6 = __cosf(var_f24) * sp108;
+
+                    spD0 = ptr->unk_14.x;
+                    spD0 += spEC * spF0 + 0;
+                    spCC = -spEC * spFC * spF4 + temp_f26 * spF8 + 0 + ptr->unk_14.y;
+                    spC8 =  ptr->unk_14.z + (-spEC * spF8 * spF4 - temp_f26 * spFC + 0);
+
+                    nv1 = temp_f0_6 * spFC * spF0;
+                    var_f14 = temp_f20 * spF0 + temp_f0_6 * spF4;
+                    var_f16 = -temp_f20 * spFC * spF4 + temp_f22 * spF8 + nv1;
+                    var_f18 = -temp_f20 * spF8 * spF4 - temp_f22 * spFC + temp_f0_6 * spF8 * spF0;
+
+                    if (ptr->unk_08 == 3) {
+                        var_f14 *= spB4;
+                        var_f16 *= spB4;
+                        var_f18 *= spB4;
+                    }
+                    func_800A244C(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                                spD0, spCC, spC8,
+                                var_f14, var_f16, var_f18,
+                                ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
+                    break;
+                case 1:
+                    temp_f0 = randFloat();
+                    x1 = ptr->unk_14.x + temp_f0 * (ptr->unk_4C.data1.x - ptr->unk_14.x);
+                    y1 = ptr->unk_14.y + temp_f0 * (ptr->unk_4C.data1.y - ptr->unk_14.y);
+                    z1 = ptr->unk_14.z + temp_f0 * (ptr->unk_4C.data1.z - ptr->unk_14.z);
+                    func_800A244C(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                                  x1, y1, z1,
+                                  sp11C.x, sp11C.y, sp11C.z, ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
+                    break;
+                case 2:
+                    x = sp11C.x;
+                    y = sp11C.y;
+                    z = sp11C.z;
+                    temp_f0_8 = atan2f(y, z);
+                    temp_f28_4 = atan2f(x, y * __sinf(temp_f0_8) + z * __cosf(temp_f0_8));
+                    temp_f22_2 = sqrtf(SQ(x) + SQ(y) + SQ(z));
+                    if (ptr->unk_38 < 0.0f) {
+                        var_f24_3 = 1.0f;
+                    } else {
+                        var_f24_3 = randFloat();
+                    }
+                    if (ptr->unk_3C < 0.0f) {
+                        spDC += spB8;
+                    } else {
+                        spDC = randFloat() * 6.2831855f;
+                    }
+                    ptr->unk_4C.data2.unk_00 = temp_f22_2;
+                    if (func_800A244C(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                                      0, 0, 0,
+                                      spDC, var_f24_3, 0, ptr->unk_34, temp_f0_8, temp_f28_4, 0, ptr) != NULL) {
+                        ptr->unk_4C.data2.unk_04++;
+                    }
+                    break;
+                default:
+                    if (D_800BE2A8 != NULL) {
+                        D_800BE2A8(ptr, &sp11C);
+                    }
+                    break;
             }
+
+            ptr->unk_44 -= 1.0f;
+        }
+
+        if (ptr->unk_0E != 0 && --ptr->unk_0E == 0) {
+            if (ptr->unk_08 == 2 && ptr->unk_4C.data2.unk_04 != 0) {
+                ptr->unk_0E = 1;
+                ptr->unk_40 = 0.0f;
+                goto END;
+            } else {
+                if (D_800BE2B0 == NULL) {
+                    D_800BE1EC = ptr->next;
+                } else {
+                    D_800BE2B0->next = ptr->next;
+                }
+                next = ptr->next;
+                ptr->next = D_800BE1E8;
+                D_800BE1E8 = ptr;
+                ptr = next;
+            }
+        } else {
+        END:
+            D_800BE2B0 = ptr;
+            ptr = ptr->next;
         }
     }
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
+void func_800A63BC(GObj* obj);
+#endif
 
 UnkPinkRat* func_800A6BDC(void) {
     UnkPinkRat* ret;
@@ -987,7 +1145,7 @@ UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
                 ret->unk_4C.data1.z = ret->unk_14.z + ret->unk_20.z;
                 break;
             case 2:
-                ret->unk_4C.data2[2] = 0;
+                ret->unk_4C.data2.unk_04 = 0;
                 break;
             default:
                 if (D_800BE2AC != NULL) {
@@ -1005,7 +1163,7 @@ void func_800A6ED8(UnkPinkRat* arg0) {
 
     while (it != NULL) {
         if (it == arg0) {
-            if (arg0->unk_08 == 2 && arg0->unk_4C.data2[2] != 0) {
+            if (arg0->unk_08 == 2 && arg0->unk_4C.data2.unk_04 != 0) {
                 arg0->unk_0E = 1;
                 arg0->unk_40 = 0.0f;
                 return;
@@ -1035,7 +1193,7 @@ void func_800A6F74(void) {
     }
 }
 
-void func_800A6FBC(void (*arg0)(UnkPinkRat*), s32 arg1) {
+void func_800A6FBC(void (*arg0)(UnkPinkRat*), void (*arg1)(UnkPinkRat*, Vec3f*)) {
     D_800BE2AC = arg0;
     D_800BE2A8 = arg1;
 }
@@ -1071,7 +1229,7 @@ void func_800A6FD0(u16 arg0, s32 arg1) {
     for (it2 = D_800BE1EC; it2 != NULL; it2 = next2) {
         next2 = it2->next;
         if (it2->unk_04 == arg0) {
-            if (it2->unk_08 == 2 && it2->unk_4C.data2[2] != 0) {
+            if (it2->unk_08 == 2 && it2->unk_4C.data2.unk_04 != 0) {
                 it2->unk_40 = 0.0f;
                 it2->unk_0E = 1;
                 prev2 = it2;

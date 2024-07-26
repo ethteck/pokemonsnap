@@ -1,4 +1,5 @@
 #include "common.h"
+#include "more_funcs.h"
 
 s32 func_800C0790_5D630(s32, s32);
 

@@ -331,7 +331,22 @@ void func_beach_802C68D8(GObj* obj) {
     omEndProcess(NULL);
 }
 
+#ifdef NON_MATCHING
+void func_beach_802C6944(GObj* arg0) {
+    Pokemon* pokemon = GET_POKEMON(arg0);
+
+    Pokemon_StartPathProc(arg0, func_beach_802C660C);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    Pokemon_StartAuxProc(arg0, func_beach_802C5C60);
+    Pokemon_SetAnimation(arg0, &D_beach_802CC380);
+    pokemon->transitionGraph = D_beach_802CC6E4;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    pokemon->miscVars[4].field1 = 0;
+    Pokemon_SetState(arg0, func_beach_802C69D4);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C6944.s")
+#endif
 
 void func_beach_802C69D4(GObj* obj) {
     UNUSED s32 pad[3];

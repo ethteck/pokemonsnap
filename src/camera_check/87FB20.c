@@ -55,7 +55,7 @@ s32 func_camera_check_801E2534(void) {
     return D_camera_check_8024A1C4;
 }
 
-s32 func_camera_check_801E2540(s32 arg0) {
+bool func_camera_check_801E2540(s32 arg0) {
     UnkIndigoHalibut* item;
     s32 count;
     s32 i;
@@ -63,14 +63,44 @@ s32 func_camera_check_801E2540(s32 arg0) {
     count = func_8009BC68();
     for (i = 0, item = D_camera_check_80249B30; i < count; i++, item++) {
         if ((arg0 == item->unk_08) && (item->unk_18_0x20000000 || (item->unk_18_0x10000000))) {
-            return 1;
+            return true;
         }
     }
 
-    return 0;
+    return false;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E25B8.s")
+bool func_camera_check_801E25B8(void) {
+    UnkIndigoHalibut* it;
+    UnkIndigoHalibut* it2;
+    s32 temp_v0;
+    s32 i;
+    s32 j;
+
+    temp_v0 = func_8009BC68();
+
+    // clang-format off
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) it->unk_18_0x02000000 = 0;
+    // clang-format on
+
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) {
+        if (!it->unk_18_0x02000000 && ((it->unk_18_0x20000000) || (it->unk_18_0x10000000))) {
+            for (j = 0, it2 = D_camera_check_80249B30; j < temp_v0; j++, it2++) {
+                if (it->unk_08 == it2->unk_08) {
+                    it2->unk_18_0x02000000 = true;
+                }
+            }
+        }
+    }
+
+    for (i = 0, it = D_camera_check_80249B30; i < temp_v0; i++, it++) {
+        if (!it->unk_18_0x02000000 && it->unk_18_0x80000000) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 s32 func_camera_check_801E27FC(void) {
     s32 count;
@@ -265,7 +295,7 @@ s32 func_camera_check_801E2E04(void) {
     return ret;
 }
 
-s32 func_camera_check_801E2E5C(s32 id) {
+bool func_camera_check_801E2E5C(s32 id) {
     if (id == PokemonID_1004 || id == PokemonID_1010 || id == PokemonID_1018 || id == PokemonID_1022 ||
         id == PokemonID_1028 || id == PokemonID_1035) {
         return true;
@@ -277,7 +307,7 @@ s32 func_camera_check_801E2EA0(s32 id) {
     return func_camera_check_801E2E5C(id);
 }
 
-s32 func_camera_check_801E2EC0(s32 id) {
+bool func_camera_check_801E2EC0(s32 id) {
     switch (id) {
         case PokemonID_500:
         case PokemonID_600:
@@ -289,7 +319,7 @@ s32 func_camera_check_801E2EC0(s32 id) {
     }
 }
 
-s32 func_camera_check_801E2EF4(s32 id) {
+bool func_camera_check_801E2EF4(s32 id) {
     if (id > 0 && id <= POKEDEX_MAX) {
         return true;
     }
@@ -305,7 +335,7 @@ s32 func_camera_check_801E2EF4(s32 id) {
     return false;
 }
 
-s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
+s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, bool arg1) {
     s32 sp24;
     UNUSED s32 unused[1];
     s32 sp1C;
@@ -321,7 +351,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         sp1C = arg0->unk_18_0x10000000 != 0;
     }
 
-    if ((arg1 == 0) && func_camera_check_801E3420()) {
+    if (!arg1 && func_camera_check_801E3420()) {
         return 1;
     }
     if (sp24 == 9999) {
@@ -331,7 +361,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         if (func_camera_check_801E2EC0(sp24) != 0) {
             return 3;
         }
-        if (func_camera_check_801E2540(sp24) != 0) {
+        if (func_camera_check_801E2540(sp24)) {
             if (sp1C != 0) {
                 return 6;
             }
@@ -343,7 +373,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         return 5;
     }
     if (func_800BF3D4_5C274(sp24)) {
-        if (func_camera_check_801E2540(sp24) == 0) {
+        if (!func_camera_check_801E2540(sp24)) {
             return 13;
         }
         if (sp1C != 0) {
@@ -351,7 +381,7 @@ s32 func_camera_check_801E2F58(UnkIndigoHalibut* arg0, s32 arg1) {
         }
         return 11;
     }
-    if (func_camera_check_801E2540(sp24) == 0) {
+    if (!func_camera_check_801E2540(sp24)) {
         return 10;
     }
 
@@ -410,7 +440,7 @@ void func_camera_check_801E31E4(s32 arg0, UNK_TYPE arg1) {
         if (arg0 == 1) {
             if (item->unk_08 >= 0x40C) {
                 item->unk_18_0x01000000 = 1;
-            } else if (func_camera_check_801E2540(item->unk_08) != 0) {
+            } else if (func_camera_check_801E2540(item->unk_08)) {
                 item->unk_18_0x01000000 = 1;
             } else {
                 if ((item->unk_08 > 151) && (!func_camera_check_801E2E5C(item->unk_08) || !checkPlayerFlag(PFID_HAS_DASH_ENGINE))) {
@@ -633,8 +663,42 @@ void func_camera_check_801E3910(s32 arg0) {
     }
 }
 
-void func_camera_check_801E3AF4(UnkIndigoHalibut* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87FB20/func_camera_check_801E3AF4.s")
+void func_camera_check_801E3AF4(UnkIndigoHalibut* arg0) {
+    s32 temp_a3;
+    UnkIndigoHalibut* it;
+    s32 temp_v0;
+
+    if (arg0 == NULL) {
+        func_camera_check_801E3910(0);
+        D_camera_check_802089F0 = 0;
+        D_camera_check_8024A1C0 = 0;
+        D_camera_check_8024A1C4 = func_8009BC68();
+        return;
+    }
+
+    if ((s32) arg0 == 1) {
+        D_camera_check_8024A1C0 = 0;
+        D_camera_check_8024A1C4 = 0;
+        D_camera_check_802089F0 = 1;
+    } else {
+        temp_a3 = arg0->unk_08;
+        func_camera_check_801E3910(2);
+        temp_v0 = func_8009BC68();
+
+        for (D_camera_check_8024A1C0 = 0, it = D_camera_check_80249B30; D_camera_check_8024A1C0 < temp_v0; it++, D_camera_check_8024A1C0++) {
+            if (temp_a3 == it->unk_08) {
+                break;
+            }
+        }
+
+        for (D_camera_check_8024A1C4 = 1, it++; D_camera_check_8024A1C0 + D_camera_check_8024A1C4 < temp_v0; it++, D_camera_check_8024A1C4++) {
+            if (temp_a3 != it->unk_08) {
+                break;
+            }
+        }
+        D_camera_check_802089F0 = 1;
+    }
+}
 
 void func_camera_check_801E3C24(s32 arg0) {
     UnkIndigoHalibut* item;

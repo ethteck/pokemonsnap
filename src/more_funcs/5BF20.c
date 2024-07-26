@@ -1,53 +1,5 @@
 #include "common.h"
-
-typedef struct UnkBigBoy {
-    /* 0x000 */ s32 unk_0;
-    /* 0x004 */ s32 unk_4;
-    /* 0x008 */ s32 unk_8;
-    /* 0x00C */ s32 unk_C;
-    struct {
-        /* 0x010 */ char unk_10[4];
-        /* 0x014 */ u8 pad_14[0xC];
-        /* 0x020 */ s32 unk_20;
-        /* 0x024 */ s32 unk_24;
-        /* 0x028 */ s32 unk_28;
-        /* 0x02C */ s32 unk_2C;
-        /* 0x030 */ u32 unk_30;
-        /* 0x034 */ s32 unk_34[7];
-        /* 0x050 */ s32 unk_50;
-        /* 0x054 */ PlayerName playerName;
-        /* 0x064 */ u32 unk_64_29 : 3;
-        /* ----- */ u32 unk_64_22 : 7;
-        /* ----- */ u32 unk_64_16 : 6;
-        /* 0x066 */ u32 hasApple : 1;
-        /* ----- */ u32 hasPesterBall : 1;
-        /* ----- */ u32 hasFlute : 1;
-        /* ----- */ u32 unk_64_12 : 1;
-        /* ----- */ u32 unk_64_11 : 1;
-        /* ----- */ u32 hasDashEngine : 1;
-        /* ----- */ u32 unk_64_09 : 1;
-        /* ----- */ u32 unk_64_08 : 1;
-        /* 0x067 */ u32 hasFinishedTutorial : 1;
-        /* ----- */ u32 unk_64_06 : 1;
-        /* ----- */ u32 unk_64_05 : 1;
-        /* ----- */ u32 unk_64_04 : 1;
-        /* ----- */ u32 unk_64_03 : 1;
-        /* ----- */ u32 zoomSwitch : 1;
-        /* ----- */ u32 invertedY : 1;
-        /* ----- */ u32 unk_64_00 : 1;
-        /* 0x068 */ u32 unk_68_31 : 1;
-        /* ----- */ u32 unk_68_30 : 1;
-        /* ----- */ u32 unk_68_29 : 1;
-        /* ----- */ u32 unk_68_28 : 1;
-        /* ----- */ u32 unk_68_27 : 1;
-        /* ----- */ u32 unk_68_26 : 27;
-        /* 0x06C */ s32 unk_6C[69];
-        /* 0x180 */ PhotoData unk_180[69];
-        /* 0xFBA0 */ PhotoData unk_FBA0[4];
-        /* 0x10A20 */ PhotoDataExt var_10A20[60];
-        /* 0x1f2a0 */ u8 pad_1F2A0[4];
-    } data;
-} UnkBigBoy; // size = 0x1F2A4
+#include "more_funcs.h"
 
 typedef struct Unk800E1510 {
     PhotoData* unk_0;
@@ -57,11 +9,6 @@ typedef struct Unk800E1510 {
     u32 unk_04_31 : 8;
     u32 unk_04_20 : 21;
 } Unk800E1510;
-
-UnkBigBoy* func_800C16EC_5E58C(void*, s32);
-s32 func_800C09C0_5D860(UnkBigBoy* arg0, s32 arg1);
-void func_800C06A8_5D548(UnkBigBoy*, s32);
-void func_800C0AB4_5D954(UnkBigBoy*, s32);
 
 extern char D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
 extern s32 D_800C20F0_5EF90;      // s32 D_800C20F0_5EF90 = 0;
@@ -176,7 +123,7 @@ void func_800BF3A8_5C248(void) {
     func_800C0AB4_5D954(arg0, sizeof(UnkBigBoy));
 }
 
-s32 func_800BF3D4_5C274(s32 pkmnID) {
+bool func_800BF3D4_5C274(s32 pkmnID) {
     s32 photoIdx;
     PhotoData* photoData;
 
@@ -323,6 +270,7 @@ s32 func_800BF864_5C704(void) {
 PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     s32 i;
     PhotoData* sp28;
+    s32 t;
 
     sp28 = NULL;
     for (i = PokemonID_BULBASAUR; i <= POKEDEX_MAX; i++) {
@@ -332,7 +280,8 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
             continue;
         }
 
-        sp28 = &D_800C21B0_5F050->data.unk_180[func_8009BB4C(i)];
+        t = func_8009BB4C(i);
+        sp28 = &D_800C21B0_5F050->data.unk_180[t];
         break;
     }
 

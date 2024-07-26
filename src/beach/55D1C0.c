@@ -1,5 +1,6 @@
 #include "common.h"
 #include "beach.h"
+#include "app_level/app_level.h"
 
 void func_beach_802C5150(GObj* obj) {
     func_803571C4_4F75D4();

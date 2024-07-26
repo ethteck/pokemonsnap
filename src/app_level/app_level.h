@@ -3,21 +3,21 @@
 #include "common.h"
 #include "world/world.h"
 
-#define GET_ITEM(x) ((Item*)((x)->userData))
-#define GET_POKEMON(obj) ((Pokemon*)((obj)->userData))
-#define GET_TRANSFORM(p) ((PokemonTransform*)((p)->unk_4C->data))
-#define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*)((p)->unk_4C))
+#define GET_ITEM(x) ((Item*) ((x)->userData))
+#define GET_POKEMON(obj) ((Pokemon*) ((obj)->userData))
+#define GET_TRANSFORM(p) ((PokemonTransform*) ((p)->unk_4C->data))
+#define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*) ((p)->unk_4C))
 
 enum ItemIds {
-    ITEM_ID_POKEFLUTE   = 161,
+    ITEM_ID_POKEFLUTE = 161,
     ITEM_ID_PESTER_BALL = 162,
-    ITEM_ID_APPLE       = 163
+    ITEM_ID_APPLE = 163
 };
 
 enum ItemStates {
-    ITEM_STATE_INVALID  = 0,
-    ITEM_STATE_FLYING   = 1,
-    ITEM_STATE_STILL    = 2
+    ITEM_STATE_INVALID = 0,
+    ITEM_STATE_FLYING = 1,
+    ITEM_STATE_STILL = 2
 };
 
 enum EndLevelReasons {
@@ -31,11 +31,11 @@ enum EndLevelReasons {
 };
 
 enum PokemonCommands {
-    POKEMON_CMD_5  =  5,
-    POKEMON_CMD_6  =  6,
-    POKEMON_CMD_7  =  7,
-    POKEMON_CMD_8  =  8,
-    POKEMON_CMD_9  =  9,
+    POKEMON_CMD_5 = 5,
+    POKEMON_CMD_6 = 6,
+    POKEMON_CMD_7 = 7,
+    POKEMON_CMD_8 = 8,
+    POKEMON_CMD_9 = 9,
     POKEMON_CMD_10 = 10,
     POKEMON_CMD_12 = 12,
     POKEMON_CMD_13 = 13,
@@ -88,25 +88,25 @@ enum PokemonCommands {
 };
 
 enum PlayerCommands {
-    PLAYER_CMD_SHAKE_CAMERA =  3,
-    PLAYER_CMD_BUMP         =  4,
-    PLAYER_CMD_5            =  5,
-    PLAYER_CMD_FINISH       =  6,
-    PLAYER_CMD_7            =  7,
-    PLAYER_CMD_8            =  8,
-    PLAYER_CMD_9            =  9,
-    PLAYER_CMD_10           =  10
+    PLAYER_CMD_SHAKE_CAMERA = 3,
+    PLAYER_CMD_BUMP = 4,
+    PLAYER_CMD_5 = 5,
+    PLAYER_CMD_FINISH = 6,
+    PLAYER_CMD_7 = 7,
+    PLAYER_CMD_8 = 8,
+    PLAYER_CMD_9 = 9,
+    PLAYER_CMD_10 = 10
 };
 
 enum MovementFlags {
-    MOVEMENT_FLAG_ON_GROUND                         = 0x01,
-    MOVEMENT_FLAG_UPDATE_TARGET_POS                 = 0x02,
-    MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING   = 0x04,
-    MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED          = 0x08,
-    MOVEMENT_FLAG_FIXED_HEIGHT                      = 0x10,
-    MOVEMENT_FLAG_TURN_TO_PLAYER                    = 0x20,
-    MOVEMENT_FLAG_TURN_AWAY                         = 0x40,
-    MOVEMENT_FLAG_TURN_GRADUALLY                    = 0x80 // affects only movement along path
+    MOVEMENT_FLAG_ON_GROUND = 0x01,
+    MOVEMENT_FLAG_UPDATE_TARGET_POS = 0x02,
+    MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING = 0x04,
+    MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED = 0x08,
+    MOVEMENT_FLAG_FIXED_HEIGHT = 0x10,
+    MOVEMENT_FLAG_TURN_TO_PLAYER = 0x20,
+    MOVEMENT_FLAG_TURN_AWAY = 0x40,
+    MOVEMENT_FLAG_TURN_GRADUALLY = 0x80 // affects only movement along path
 };
 
 #define ITEM_CMD_REMOVE 100
@@ -124,9 +124,26 @@ typedef struct Item {
     /* 0x20 */ Vec3f prevPos;
 } Item;
 
+typedef struct EnvSound {
+    /* 0x00 */ struct EnvSound* next;
+    /* 0x04 */ GObj* source;
+    /* 0x08 */ s32 soundHandle;
+    /* 0x0C */ u16 soundId;
+    /* 0x0E */ u8 hearingRange;
+    /* 0x0F */ u32 category : 2;
+    /* 0x0F */ u32 fixedParams : 1;
+} EnvSound; // size 0x10
+
+typedef struct EnvSoundData {
+    /* 0x00 */ u16 soundID;
+    /* 0x02 */ u8 pitchModifier;
+    /* 0x03 */ u8 hearingRange;
+} EnvSoundData; // size 0x4
+
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
 extern f32 gCamTargetZ;
+extern DObj* gPlayerDObj;
 extern GObj* gObjPlayer;
 extern s32 gDirectionIndex;
 extern OMCamera* gMainCamera;
@@ -142,7 +159,7 @@ void Items_SpawnPesterBall(Vec3f*, Vec3f*);
 void Items_SpawnApple(Vec3f*, Vec3f*);
 void Items_PlayPokeFlute(void);
 void Items_StopPokeFlute(void);
-void Items_SetCustomFunctions(GObjFunc, u8, void(*)(GObj*, GroundResult*));
+void Items_SetCustomFunctions(GObjFunc, u8, void (*)(GObj*, GroundResult*));
 void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
 void Items_Pause(void);
@@ -152,10 +169,17 @@ GObj* Items_NextValidItem(void);
 s32 Items_GetPokeFluteCmd(void);
 GObj* Items_CheckObjectExists(GObj* arg0);
 void Items_DeleteItem(GObj*);
+void Items_DisplaceAllItems(f32 deltaX, f32 deltaY, f32 deltaZ);
 
 u32 getProgressFlags(void);
 void mainCameraSetScissor(Gfx** gfxPtr);
 int func_80353D68_4F4178(void);
+void func_803570B0_4F74C0(void);
+void func_80357120_4F7530(GObj* arg0);
+void func_80357170_4F7580(void);
+void func_803571C4_4F75D4(void);
+void func_803572B0_4F76C0(void);
+void func_8035E298_4FE6A8(GObj* obj);
 
 void Icons_SetDashEngineEnabled(s32 enabled);
 void Icons_Init(void);
@@ -207,5 +231,36 @@ void Pokemon_RunToTarget(GObj*, f32, f32, u32);
 GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnOnGroundDlLink4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData);
+void Pokemons_Init(void);
+
+void EnvSound_Init(EnvSoundData* data, s32 numEntries);
+
+GObj* initUI(void (*exitBlockCB)(struct WorldBlock*), void (*updateMovementCB)(s32, f32), GObjFunc fnUpdateItems, u8 fnUpdateItemsKind, void (*fnCollide)(GObj*, GroundResult*));
+GObj* createMainCameras(s32 bgColor);
+
+void setEndLevelCallback(void (*cb)(s32));
+void setPauseCallback(void (*cb)(s32));
+void setIdleScript(struct IdleScript*);
+s32 func_8009A8E4(void);
+void PokemonDetector_Create(void);
+void PokemonDetector_Enable(void);
+void PokemonDetector_Disable(void);
+
+GObj* PlayerModel_Init(void);
+void PlayerModel_SetAnimation(AnimCmd** modelAnim, AnimCmd*** matAnim, f32 startTime, f32 speed);
+void PlayerModel_SetAnimationSpeed(f32 speed);
+
+void pokemonChangeBlock(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
+void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
+void pokemonRemoveOne(GObj* obj);
+
+void resetMainCameraSettings(void);
+
+void Camera_StartCutScene(GObj* pokemon, AnimCmd* camAnim, f32 time);
+
+void Msg_Reset(void);
+
+void EnvSound_PlaySound(GObj* obj, u8 category, s32 soundID);
+void EnvSound_StopSoundByCategory(GObj*, u8);
 
 #endif

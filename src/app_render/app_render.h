@@ -43,6 +43,8 @@ typedef struct UnkRustRat {
 } UnkRustRat; // size = 0x5C
 
 extern UnkRustRat* D_800BE1A8[16];
+extern s32 D_800BE228[8];
+extern s32 D_800BE248[8];
 
 PhotoData* func_8009BC74(void);
 void getBackgroundColor(u8* r, u8* g, u8* b);

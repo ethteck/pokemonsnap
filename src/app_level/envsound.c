@@ -1,21 +1,7 @@
 #include "common.h"
 #include "app_level.h"
-
-typedef struct EnvSound {
-    /* 0x00 */ struct EnvSound* next;
-    /* 0x04 */ GObj* source;
-    /* 0x08 */ s32 soundHandle;
-    /* 0x0C */ u16 soundId;
-    /* 0x0E */ u8 hearingRange;
-    /* 0x0F */ u32 category : 2;
-    /* 0x0F */ u32 fixedParams : 1;
-} EnvSound; // size 0x10
-
-typedef struct EnvSoundData {
-    /* 0x00 */ u16 soundID;
-    /* 0x02 */ u8 pitchModifier;
-    /* 0x03 */ u8 hearingRange;
-} EnvSoundData; // size 0x4
+#include "functions.h"
+#include "sys/om.h"
 
 extern EnvSound* EnvSound_Sounds;
 extern EnvSoundData* EnvSound_InitData;
@@ -24,7 +10,6 @@ extern DObj* EnvSound_PlayerModel;
 extern OMCamera* EnvSound_MainCamera;
 
 DObj* func_803573B0_4F77C0(void);
-OMCamera* getMainCamera(void);
 s32 atan2s(f32, f32);
 
 f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {
@@ -129,23 +114,25 @@ void EnvSound_Update(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
 void EnvSound_Init(EnvSoundData* data, s32 numEntries) {
-    if (data != 0 && numEntries > 0) {
+    EnvSound* envSound; // TODO required to match
+    GObj* gobj;
+
+    if (data != NULL && numEntries > 0) {
         EnvSound_InitData = data;
         EnvSound_InitDataSize = numEntries;
         EnvSound_PlayerModel = func_803573B0_4F77C0();
         EnvSound_MainCamera = getMainCamera();
         EnvSound_Sounds = gtlMalloc(sizeof(EnvSound), 4);
-        EnvSound_Sounds->next = NULL;
+        envSound = EnvSound_Sounds;
+        envSound->next = NULL;
         EnvSound_Sounds->source = NULL;
-        omCreateProcess(omAddGObj(OBJID_ENV_SOUND_PLAYER, ohUpdateDefault, LINK_PLAYER, 1), EnvSound_Update, 1, 1);
+        gobj = omAddGObj(OBJID_ENV_SOUND_PLAYER, ohUpdateDefault, LINK_PLAYER, 1);
+        do {
+        } while (0); // TODO required to match
+        omCreateProcess(gobj, EnvSound_Update, 1, 1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/envsound/EnvSound_Init.s")
-void EnvSound_Init(EnvSoundData* data, s32 numEntries);
-#endif
 
 void EnvSound_Cleanup(void) {
     EnvSound_PlayerModel = NULL;

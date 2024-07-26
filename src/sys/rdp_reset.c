@@ -2,26 +2,24 @@
 #include "sys/gtl.h"
 #include "PR/mbi.h"
 
-
 Vp sViewport;
 
 void (*sPreRenderFunc)(Gfx**) = NULL;
 
-Mtx sIdentityMatrix = {{
+Mtx sIdentityMatrix = { {
     /* Integer Portion */
-    {0x00010000, 0x00000000, 0x00000001, 0x00000000},
-    {0x00000000, 0x00010000, 0x00000000, 0x00000001},
+    { 0x00010000, 0x00000000, 0x00000001, 0x00000000 },
+    { 0x00000000, 0x00010000, 0x00000000, 0x00000001 },
     /* Fractional Portion */
-    {0x00000000, 0x00000000, 0x00000000, 0x00000000},
-    {0x00000000, 0x00000000, 0x00000000, 0x00000000},
-}};
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+    { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },
+} };
 
 Gfx srdpReset[] = {
     gsDPPipeSync(),
     gsSPViewport(&sViewport),
     gsSPClearGeometryMode(
-        G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN
-        | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
+        G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH),
     gsSPClipRatio(FRUSTRATIO_1),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
     gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
@@ -45,7 +43,7 @@ Gfx srdpReset[] = {
 };
 
 #ifdef NON_MATCHING
-void func_80007C20(Vp *vp, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
+void func_80007C20(Vp* vp, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 temp1 = (arg1 + arg3) / 2.0f;
     f32 temp2 = (arg2 + arg4) / 2.0f;
     vp->vp.vscale[0] = (arg3 - temp1) * 4.0f;
@@ -58,7 +56,7 @@ void func_80007C20(Vp *vp, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/func_80007C20.s")
 #endif
 
-void func_80007CBC(Vp *vp) {
+void func_80007CBC(Vp* vp) {
     vp->vp.vscale[0] = vp->vp.vtrans[0] = viScreenWidth * 2;
     vp->vp.vscale[1] = vp->vp.vtrans[1] = viScreenHeight * 2;
     vp->vp.vscale[2] = vp->vp.vtrans[2] = G_MAXZ / 2;

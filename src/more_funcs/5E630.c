@@ -1,5 +1,8 @@
 #include "common.h"
 
+extern OSPiHandle D_800E1820_7E6C0;
+extern s32 D_800E182C_7E6CC;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5E630/func_800C1790_5E630.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5E630/func_800C1818_5E6B8.s")

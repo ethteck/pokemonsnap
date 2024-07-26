@@ -2308,7 +2308,7 @@ void updateReticleSpritesPos(GObj* arg0) {
     cmdProcessCommands(func_80356118_4F6528);
 }
 
-GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32), GObjFunc fnUpdateItems, u8 fnUpdateItemsKind, void (*fnCollide)(GObj*, GroundResult*)) {
+GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32, f32), GObjFunc fnUpdateItems, u8 fnUpdateItemsKind, void (*fnCollide)(GObj*, GroundResult*)) {
     GObj* objPlayer;
     GObj* obj;
     DObj* playerDObj;

@@ -11,7 +11,35 @@ UnkSnowHerring* func_camera_check_801DCB4C(void) {
     return D_camera_check_80249918;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DCB58.s")
+// TODO bs required to match
+void func_camera_check_801DCB58(s32 rgb) {
+    SObj** tmp1;
+    SObj** tmp2;
+    SObj** tmp3;
+    SObj** tmp4;
+
+    tmp1 = &D_camera_check_802499B0;
+    tmp2 = &D_camera_check_802499B4;
+    tmp3 = &D_camera_check_802499B8;
+    tmp4 = &D_camera_check_802499BC;
+    if (1) {
+        D_camera_check_802499A8->sprite.red = rgb;
+        D_camera_check_802499A8->sprite.green = rgb;
+        D_camera_check_802499A8->sprite.blue = rgb;
+    }
+    (*tmp1)->sprite.red = rgb;
+    (*tmp1)->sprite.green = rgb;
+    (*tmp1)->sprite.blue = rgb;
+    (*tmp2)->sprite.red = rgb;
+    (*tmp2)->sprite.green = rgb;
+    (*tmp2)->sprite.blue = rgb;
+    (*tmp3)->sprite.red = rgb;
+    (*tmp3)->sprite.green = rgb;
+    (*tmp3)->sprite.blue = rgb;
+    (*tmp4)->sprite.red = rgb;
+    (*tmp4)->sprite.green = rgb;
+    (*tmp4)->sprite.blue = rgb;
+}
 
 void func_camera_check_801DCC0C(void) {
     SObj* sobj;
@@ -141,117 +169,119 @@ void func_camera_check_801DD1F0(void) {
     func_camera_check_801DCD00();
 }
 
-void func_camera_check_801DD238(UnkTealFlounder*, s32, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DD238.s")
+void func_camera_check_801DD238(UnkTealFlounder* arg0, s32 arg1, s32 arg2) {
+    UnkIndigoHalibut* temp_v0;
+    UNUSED s32 pad[4];
+    s32 temp_t4;
 
-// void func_camera_check_801DD238(UnkTealFlounder* arg0, s32 arg1, s32 arg2) {
-//     UNUSED s32 pad[4];
-//     UnkIndigoHalibut* temp_v0;
+    if (arg0 == NULL || (temp_v0 = func_camera_check_801E24D8(arg1), (temp_v0 == NULL))) {
+        if (arg0 != NULL) {
+            arg0->unk_04->sprite.attr |= SP_HIDDEN;
+            arg0->unk_08->sprite.attr |= SP_HIDDEN;
+            arg0->unk_14->sprite.attr |= SP_HIDDEN;
+            arg0->unk_10->sprite.attr |= SP_HIDDEN;
+            arg0->unk_18->sprite.attr |= SP_HIDDEN;
+            arg0->unk_0C->sprite.red = 0xFF;
+            arg0->unk_0C->sprite.green = 0xFF;
+            arg0->unk_0C->sprite.blue = 0xFF;
+        }
+    } else {
+        if (checkPlayerFlag(PFID_6)) {
+        }
+        temp_t4 = arg2 & 4;
+        if (temp_v0->unk_08 != 9999) {
+            if (temp_v0->unk_08 <= POKEDEX_MAX) {
+                if (arg2 & 1) {
+                }
+            } else {
+                checkPlayerFlag(PFID_HAS_DASH_ENGINE);
+            }
+        }
 
-//     if (arg0 == NULL || (temp_v0 = func_camera_check_801E24D8(arg1), (temp_v0 == NULL))) {
-//         if (arg0 != NULL) {
-//             arg0->unk_04->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_08->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_14->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_10->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_18->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_0C->sprite.red = 0xFF;
-//             arg0->unk_0C->sprite.green = 0xFF;
-//             arg0->unk_0C->sprite.blue = 0xFF;
-//         }
-//     } else {
-//         checkPlayerFlag(6);
-//         if (temp_v0->unk_08 != 9999) {
-//             if (temp_v0->unk_08 <= POKEDEX_MAX) {
-//                 if (arg2 & 1) {
-//                 }
-//             } else {
-//                 checkPlayerFlag(5);
-//             }
-//         }
+        if (temp_v0->unk_18_0x80000000) {
+            arg0->unk_04->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            arg0->unk_04->sprite.attr |= SP_HIDDEN;
+        }
 
-//         if (temp_v0->unk_18_0x80000000) {
-//             arg0->unk_04->sprite.attr &= ~SP_HIDDEN;
-//         } else {
-//             arg0->unk_04->sprite.attr |= SP_HIDDEN;
-//         }
+        if (temp_v0->unk_18_0x40000000) {
+            arg0->unk_08->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            arg0->unk_08->sprite.attr |= SP_HIDDEN;
+        }
 
-//         if (temp_v0->unk_18_0x40000000) {
-//             arg0->unk_08->sprite.attr &= ~SP_HIDDEN;
-//         } else {
-//             arg0->unk_08->sprite.attr |= SP_HIDDEN;
-//         }
+        if ((temp_v0->unk_18_0x01000000) && !(arg2 & 0x20)) {
+            arg0->unk_00->data.sobj->sprite.red = 0x80;
+            arg0->unk_00->data.sobj->sprite.green = 0x80;
+            arg0->unk_00->data.sobj->sprite.blue = 0x80;
+        } else {
+            arg0->unk_00->data.sobj->sprite.red = 0xFF;
+            arg0->unk_00->data.sobj->sprite.green = 0xFF;
+            arg0->unk_00->data.sobj->sprite.blue = 0xFF;
+        }
 
-//         if ((temp_v0->unk_18_0x01000000) && !(arg2 & 0x20)) {
-//             arg0->unk_00->data.sobj->sprite.red = 0x80;
-//             arg0->unk_00->data.sobj->sprite.green = 0x80;
-//             arg0->unk_00->data.sobj->sprite.blue = 0x80;
-//         } else {
-//             arg0->unk_00->data.sobj->sprite.red = 0xFF;
-//             arg0->unk_00->data.sobj->sprite.green = 0xFF;
-//             arg0->unk_00->data.sobj->sprite.blue = 0xFF;
-//         }
+        if (arg2 & 1) {
+            arg0->unk_14->unk_54 = 0;
+            arg0->unk_14->sprite.attr &= ~SP_HIDDEN;
+            if (temp_v0->unk_18_0x20000000 || temp_v0->unk_18_0x10000000) {
+                arg0->unk_14->sprite.alpha = 0xFF;
+                arg0->unk_18->sprite.attr |= SP_HIDDEN;
+                if (arg2 & 8) {
+                    arg0->unk_14->unk_54 = 2;
+                } else {
+                    arg0->unk_14->unk_54 = 1;
+                }
+            } else {
+                if (arg2 & 0x10) {
+                    arg0->unk_14->sprite.attr |= SP_HIDDEN;
+                } else {
+                    arg0->unk_14->sprite.alpha = 0x80;
+                    arg0->unk_14->unk_54 = 0;
+                    if (1) {
+                    }
+                }
 
-//         if (arg2 & 1) {
-//             arg0->unk_14->unk_54 = 0;
-//             arg0->unk_14->sprite.attr &= ~SP_HIDDEN;
-//             if (temp_v0->unk_18_0x20000000 || temp_v0->unk_18_0x10000000) {
-//                 arg0->unk_14->sprite.alpha = 0xFF;
-//                 arg0->unk_18->sprite.attr |= SP_HIDDEN;
-//                 if (arg2 & 8) {
-//                     arg0->unk_14->unk_54 = 2;
-//                 } else {
-//                     arg0->unk_14->unk_54 = 1;
-//                 }
-//             } else {
-//                 if (arg2 & 0x10) {
-//                     arg0->unk_14->sprite.attr |= SP_HIDDEN;
-//                 } else {
-//                     arg0->unk_14->sprite.alpha = 0x80;
-//                     arg0->unk_14->unk_54 = 0;
-//                 }
+                if (arg2 & 0x80) {
+                    arg0->unk_18->sprite.attr &= ~SP_HIDDEN;
+                } else {
+                    arg0->unk_18->sprite.attr |= SP_HIDDEN;
+                }
+            }
+        } else {
+            arg0->unk_14->sprite.attr |= SP_HIDDEN;
+            arg0->unk_18->sprite.attr |= SP_HIDDEN;
+        }
 
-//                 if (arg2 & 0x80) {
-//                     arg0->unk_18->sprite.attr &= ~SP_HIDDEN;
-//                 } else {
-//                     arg0->unk_18->sprite.attr |= SP_HIDDEN;
-//                 }
-//             }
-//         } else {
-//             arg0->unk_14->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_18->sprite.attr |= SP_HIDDEN;
-//         }
-
-//         if (arg2 & 4) {
-//             arg0->unk_10->unk_54 = 0;
-//             arg0->unk_10->sprite.attr &= ~SP_HIDDEN;
-//             if (temp_v0->unk_18_0x08000000) {
-//                 arg0->unk_10->sprite.alpha = 0xFF;
-//                 arg0->unk_1C->sprite.attr |= SP_HIDDEN;
-//                 if (arg2 & 8) {
-//                     arg0->unk_10->unk_54 = 2;
-//                 } else {
-//                     arg0->unk_10->unk_54 = 1;
-//                 }
-//             } else {
-//                 if (arg2 & 0x10) {
-//                     arg0->unk_10->sprite.attr |= SP_HIDDEN;
-//                 } else {
-//                     arg0->unk_10->sprite.alpha = 0x80;
-//                     arg0->unk_10->unk_54 = 0;
-//                 }
-//                 if (arg2 & 0x100) {
-//                     arg0->unk_1C->sprite.attr &= ~SP_HIDDEN;
-//                 } else {
-//                     arg0->unk_1C->sprite.attr |= SP_HIDDEN;
-//                 }
-//             }
-//         } else {
-//             arg0->unk_10->sprite.attr |= SP_HIDDEN;
-//             arg0->unk_1C->sprite.attr |= SP_HIDDEN;
-//         }
-//     }
-// }
+        if (temp_t4 & 0xFFFFFFFF) { // TODO & 0xFFFFFFFF required to match
+            arg0->unk_10->unk_54 = 0;
+            arg0->unk_10->sprite.attr &= ~SP_HIDDEN;
+            if (temp_v0->unk_18_0x08000000) {
+                arg0->unk_10->sprite.alpha = 0xFF;
+                arg0->unk_1C->sprite.attr |= SP_HIDDEN;
+                if (arg2 & 8) {
+                    arg0->unk_10->unk_54 = 2;
+                } else {
+                    arg0->unk_10->unk_54 = 1;
+                }
+            } else {
+                if (arg2 & 0x10) {
+                    arg0->unk_10->sprite.attr |= SP_HIDDEN;
+                } else {
+                    arg0->unk_10->sprite.alpha = 0x80;
+                    arg0->unk_10->unk_54 = 0;
+                }
+                if (arg2 & 0x100) {
+                    arg0->unk_1C->sprite.attr &= ~SP_HIDDEN;
+                } else {
+                    arg0->unk_1C->sprite.attr |= SP_HIDDEN;
+                }
+            }
+        } else {
+            arg0->unk_10->sprite.attr |= SP_HIDDEN;
+            arg0->unk_1C->sprite.attr |= SP_HIDDEN;
+        }
+    }
+}
 
 void func_camera_check_801DD630(s32 arg0, s32 arg1) {
     s32 i;
@@ -261,11 +291,51 @@ void func_camera_check_801DD630(s32 arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DD6D0.s")
+void func_camera_check_801DD6D0(s32 arg0, s32 arg1) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DD83C.s")
+    for (i = 0; i < 6; i++) {
+        if (func_camera_check_801E2484(arg0 + i) == 0) {
+            D_camera_check_802499C0[i].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
+            osWritebackDCache(&D_camera_check_802499C0[i].unk_00->data.sobj->sprite, 0x44);
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DD93C.s")
+    ohWait(3);
+
+    for (i = 0; i < 6; i++, arg0++) {
+        if (func_80374714_847EC4(func_camera_check_801E2484(arg0), &D_camera_check_802499C0[i].unk_0C->sprite) != 0) {
+            D_camera_check_802499C0[i].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
+        } else {
+            D_camera_check_802499C0[i].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        }
+        func_camera_check_801DD238(&D_camera_check_802499C0[arg0 % 6], arg0, arg1);
+        ohWait(1);
+    }
+}
+
+void func_camera_check_801DD83C(s32 arg0, s32 arg1) {
+    s32 i;
+
+    for (i = 0; i < 6; i++, arg0++) {
+        if (func_80374714_847EC4(func_800BF8BC_5C75C(arg0), &D_camera_check_802499C0[i].unk_0C->sprite) != 0) {
+            D_camera_check_802499C0[i].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
+        } else {
+            D_camera_check_802499C0[i].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        }
+        func_camera_check_801DD238(&D_camera_check_802499C0[arg0 % 6], -1, 0);
+    }
+}
+
+void func_camera_check_801DD93C(s32 rgb) {
+    s32 i;
+
+    for (i = 0; i < 6; i++) {
+        D_camera_check_802499C0[i].unk_00->data.sobj->sprite.red = rgb;
+        D_camera_check_802499C0[i].unk_00->data.sobj->sprite.green = rgb;
+        D_camera_check_802499C0[i].unk_00->data.sobj->sprite.blue = rgb;
+    }
+}
 
 void func_camera_check_801DDA44(s32 arg0) {
     s32 i;
@@ -506,7 +576,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         }
 //         sprintf(sp48, "%s", levelName, levelName);
 //         func_8036CB58_840308(temp_s0, 8);
-//         func_8036B9EC_83F19C(temp_s0, 0x2D - func_8036D4F0_840CA0(sp48), 0xC);
+//         func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0xC);
 //         func_8036C898_840048(temp_s0, sp48);
 //         sprintf(sp48, "%s", get_player_name());
 
@@ -514,12 +584,10 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         }
 
 //         func_8036CB58_840308(temp_s0, 8);
-//         func_8036B9EC_83F19C(temp_s0, 0x2D - func_8036D4F0_840CA0(sp48), 0x28);
+//         func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0x28);
 //         func_8036C898_840048(temp_s0, sp48);
-//         var_a3_2 = "";
 //         if (!(arg0->unk_18_0x04000000)) {
 //             sprintf(sp48, "%s", getPokemonName(arg0->unk_08));
-//             sp68 = sp48;
 //             var_a3_2 = sp48;
 //             if (func_camera_check_801E2EA0(arg0->unk_08)) {
 //                 if (arg0->unk_18_0x80000000) {
@@ -528,6 +596,8 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //                     var_a3_2 = "Sign";
 //                 }
 //             }
+//         } else {
+//             var_a3_2 = "";
 //         }
 //         sp68 = var_a3_2;
 //         func_8036A8E4_83E094(D_camera_check_80249918);
@@ -645,10 +715,24 @@ UnkSnowHerring* func_camera_check_801DEA50(void) {
     return D_camera_check_80249910;
 }
 
-extern s32 D_camera_check_80208954;
+void func_camera_check_801DEA5C(GObj* arg0) {
+    s32 var_v0 = (s32) arg0->userData;
 
-void func_camera_check_801DEA5C(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DEA5C.s")
+    if (var_v0 > 0) {
+        var_v0 -= 14;
+        if (var_v0 <= 0) {
+            omDeleteGObj(arg0);
+            var_v0 = 0;
+        }
+    } else {
+        var_v0 += 14;
+        if (var_v0 >= 0) {
+            omDeleteGObj(arg0);
+            var_v0 = 0;
+        }
+    }
+    arg0->userData = (void*) var_v0;
+}
 
 // TODO unused? arg type may be wrong, requiring the weird temp
 void func_camera_check_801DEAC0(s32 arg0) {
@@ -665,7 +749,7 @@ void func_camera_check_801DEAC0(s32 arg0) {
         func_8036A8E4_83E094(D_camera_check_80249914);
         func_8036EE40_8425F0();
         if (D_camera_check_80208954 == 3) {
-            func_800A86A4(&func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
+            func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
         }
         func_8036D1A4_840954(sp34, 1);
         func_8036FF20_8436D0(sp30);

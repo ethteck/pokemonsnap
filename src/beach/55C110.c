@@ -1,17 +1,20 @@
 #include "common.h"
+#include "sys/om.h"
 #include "beach.h"
 #include "world/world.h"
 #include "ld_addrs.h"
+#include "app_level/app_level.h"
+#include "app_render/app_render.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     DObj* a0;
-    struct Mtx3Float* position;
+    Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* roomA;
     PokemonDef def = D_beach_802CBFF4;
 
-    roomA = getCurrentWorldBlock(); // TODO: type
+    roomA = getCurrentWorldBlock();
     spawn.id = PokemonID_MAGIKARP;
     spawn.translation.x = 0.0;
     spawn.translation.y = 0.0;
@@ -32,6 +35,7 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     GET_TRANSFORM(a0)->pos.v.z = position->v.z;
 }
 
+void func_beach_802C416C(GObj*, GroundResult*);
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
 
 void beachPokemonAdd(WorldBlock* param_1, WorldBlock* param_2) {
@@ -66,13 +70,27 @@ void func_beach_802C43CC(s32 arg0) {
     func_800067DC();
 }
 
-void func_beach_802C4430(s32 arg0) {
+void func_beach_802C4430(GObj* arg0) {
 }
 
 void func_beach_802C4438(s32 arg0) {
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C4440.s")
+void func_beach_802C4440(WorldBlock* arg0) {
+    WorldBlock* next;
+
+    if (D_beach_802CC018 <= 0) {
+        if (arg0->next != NULL) {
+            next = arg0->next;
+            Items_DisplaceAllItems(
+                (arg0->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                (arg0->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                (arg0->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+        } else {
+            func_beach_802C43CC(2);
+        }
+    }
+}
 
 void func_beach_802C44D4(void) {
     void* sp1C;
@@ -94,7 +112,34 @@ void func_beach_802C44D4(void) {
     func_800A5DF4(0xC0, 0x30);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C45C0.s")
+void func_beach_802C45C0(void) {
+    s32 i;
+    u8 r, g, b;
+
+    D_beach_802CC01C.zBuffer = gtlMalloc(0x25800, 0x40);
+    viApplyScreenSettings(&D_beach_802CC01C);
+    // clang-format off
+    for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
+    // clang-format on
+    func_8009CE00();
+    omAddGObj(0, func_beach_802C4430, 0, 0x80000000);
+    Pokemons_Init();
+    func_beach_802C4340();
+    getBackgroundColor(&r, &g, &b);
+    createMainCameras(r << 0x18 | g << 0x10 | b << 8);
+    if (func_8009A8E4() != 0) {
+        setIdleScript(func_800A73C0((u32) AAA660_ROM_START, (u32) AAA660_ROM_END));
+    }
+    initUI(func_beach_802C4440, func_beach_802C4800, NULL, 0, func_beach_802C416C);
+
+    setEndLevelCallback(func_beach_802C43CC);
+    setPauseCallback(func_beach_802C4438);
+    EnvSound_Init(&D_beach_802CBE10, 0x35);
+    func_beach_802C44D4();
+    PokemonDetector_Create();
+    PokemonDetector_Enable();
+    func_beach_802C55CC();
+}
 
 void func_beach_802C4738(s32 arg0) {
 }

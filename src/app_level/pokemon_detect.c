@@ -238,12 +238,12 @@ void PokemonDetector_FindPokemonInFocus(void) {
     }
 }
 
-s32 PokemonDetector_ReturnZero(GObj* arg0) {
-    return 0;
+bool PokemonDetector_ReturnFalse(GObj* arg0) {
+    return false;
 }
 
 void renderPokemonModelTypeIFogged(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renderModelTypeIFogged(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -252,7 +252,7 @@ void renderPokemonModelTypeIFogged(GObj* arg0) {
 }
 
 void renderPokemonModelTypeJFogged(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renderModelTypeJFogged(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -261,7 +261,7 @@ void renderPokemonModelTypeJFogged(GObj* arg0) {
 }
 
 void renderPokemonModelTypeBFogged(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renderModelTypeBFogged(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -270,7 +270,7 @@ void renderPokemonModelTypeBFogged(GObj* arg0) {
 }
 
 void renderPokemonModelTypeDFogged(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renderModelTypeDFogged(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -279,7 +279,7 @@ void renderPokemonModelTypeDFogged(GObj* arg0) {
 }
 
 void renderPokemonModelTypeI(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renRenderModelTypeI(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -288,7 +288,7 @@ void renderPokemonModelTypeI(GObj* arg0) {
 }
 
 void renderPokemonModelTypeB(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renRenderModelTypeB(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);
@@ -297,7 +297,7 @@ void renderPokemonModelTypeB(GObj* arg0) {
 }
 
 void renderPokemonModelTypeD(GObj* arg0) {
-    if (!Pokemon_GetFlag100(arg0) && PokemonDetector_ReturnZero(arg0) == 0) {
+    if (!Pokemon_GetFlag100(arg0) && !PokemonDetector_ReturnFalse(arg0)) {
         renRenderModelTypeD(arg0);
         if (PokemonDetector_IsEnabled) {
             PokemonDetector_SaveRegion(arg0);

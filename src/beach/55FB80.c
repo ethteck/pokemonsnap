@@ -3,7 +3,21 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/beach/55FB80/func_beach_802C7B10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55FB80/func_beach_802C7BB8.s")
+// clang-format off
+void func_beach_802C7BB8(GObj* arg0) { \
+    Pokemon* pokemon = GET_POKEMON(arg0);
+    // clang-format on
+    Pokemon_SetAnimation(arg0, &D_beach_802CCD24);
+    pokemon->counter = randRange(600) + 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    pokemon->transitionGraph = D_beach_802CCD60;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_WAIT_ENDED);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    Pokemon_SetAnimation(arg0, &D_beach_802CCD38);
+    pokemon->transitionGraph = D_beach_802CCD60;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    Pokemon_SetState(arg0, func_beach_802C7BB8);
+}
 
 void func_beach_802C7C7C(GObj* obj) {
     UNUSED s32 pad[3];

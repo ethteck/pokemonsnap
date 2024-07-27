@@ -89,8 +89,8 @@ void func_802CA948_7A3ED8(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->flags |= 0x200;
-    pokemon->flags |= 0x800;
+    pokemon->flags |= POKEMON_FLAG_200;
+    pokemon->flags |= POKEMON_FLAG_800;
     pokemon->tangible = 1;
     obj->flags = 0;
     Pokemon_SetAnimation(obj, &D_802D31FC_7AC78C);

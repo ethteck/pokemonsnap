@@ -1,6 +1,8 @@
 #include "common.h"
 #include "beach.h"
 
+void func_beach_802C94F0(GObj* obj);
+
 void func_beach_802C9240(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -11,7 +13,7 @@ void func_beach_802C9240(GObj* obj) {
 void func_beach_802C9274(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->flags |= 0x200;
+    pokemon->flags |= POKEMON_FLAG_200;
     Pokemon_StartPathProc(obj, func_beach_802C9348);
     Pokemon_SetState(obj, func_beach_802C92BC);
 }
@@ -21,7 +23,7 @@ void func_beach_802C92BC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    pokemon->flags |= 8;
+    pokemon->flags |= POKEMON_FLAG_8;
     Pokemon_SetScale(obj, 0.5f);
 
     Pokemon_SetAnimation(obj, &D_beach_802CD2A8);
@@ -54,7 +56,21 @@ void func_beach_802C93B8(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/5612B0/func_beach_802C943C.s")
+// clang-format off
+void func_beach_802C943C(GObj* arg0) { Pokemon* pokemon = GET_POKEMON(arg0);
+    // clang-format on
+    cmdSendCommandToLink(3, 0x20, arg0);
+    Pokemon_StartAuxProc(arg0, func_beach_802C94F0);
+    Pokemon_StartPathProc(arg0, NULL);
+    Pokemon_SetAnimation(arg0, &D_beach_802CD2D0);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    pokemon->flags &= ~POKEMON_FLAG_8;
+    Pokemon_SetAnimation(arg0, &D_beach_802CD348);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(arg0, func_beach_802C9580);
+}
 
 void func_beach_802C94F0(GObj* obj) {
     f32 var_f20;

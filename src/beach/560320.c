@@ -22,7 +22,7 @@ void func_beach_802C8354(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->flags |= 0x200;
+    pokemon->flags |= POKEMON_FLAG_200;
     obj->flags = 0;
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_beach_802CCF00);

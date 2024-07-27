@@ -1,12 +1,38 @@
 #include "common.h"
 #include "beach.h"
 
+void func_beach_802C85E0(GObj* arg0);
+void func_beach_802C87BC(GObj* obj);
+void func_beach_802C8C7C(GObj* obj);
+void func_beach_802C8CFC(GObj* obj);
+
 void func_beach_802C85B0(GObj* arg0) {
     arg0->flags |= 1;
     Pokemon_SetState(arg0, func_beach_802C85E0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/560620/func_beach_802C85E0.s")
+// clang-format off
+void func_beach_802C85E0(GObj* arg0) { \
+    Pokemon* pokemon = GET_POKEMON(arg0);
+    // clang-format on
+
+    Pokemon_StartPathProc(arg0, func_beach_802C87BC);
+    // clang-format off
+    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    // clang-format on
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, 4);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    if (pokemon->behavior == 2) {
+        Pokemon_SetState(arg0, func_beach_802C8C7C);
+    }
+    if (pokemon->behavior == 3) {
+        Pokemon_SetState(arg0, func_beach_802C8CFC);
+    }
+    pokemon->transitionGraph = D_beach_802CD040;
+    Pokemon_WaitForFlag(arg0, 0);
+    Pokemon_SetState(arg0, NULL);
+}
 
 void func_beach_802C86A8(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
@@ -50,7 +76,6 @@ void func_beach_802C8828(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->unk_10E = 0;
-    pokemon = pokemon;
     Pokemon_StartPathProc(obj, func_beach_802C8894);
     pokemon->transitionGraph = D_beach_802CD010;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);

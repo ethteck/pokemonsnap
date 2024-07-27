@@ -24,7 +24,7 @@ void func_beach_802CA300(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->flags |= 4;
+    pokemon->flags |= POKEMON_FLAG_4;
 
     while (true) {
         getLevelProgress(&sp2C, &sp28);
@@ -39,7 +39,7 @@ void func_beach_802CA300(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->flags &= ~0x4;
+    pokemon->flags &= ~POKEMON_FLAG_4;
     Pokemon_SetState(obj, NULL);
 }
 

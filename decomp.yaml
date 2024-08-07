@@ -1,0 +1,26 @@
+name: Pokemon Snap
+github: https://github.com/ethteck/pokemonsnap
+platform: n64
+versions:
+- name: us
+  fullname: US
+  sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
+  paths:
+    baserom: "pokemonsnap.z64"
+    build: "build/pokemonsnap.z64"
+    asm: "asm"
+    nonmatchings: "asm/nonmatchings"
+    map: "build/pokemonsnap.map"
+    elf: "build/pokemonsnap.elf"
+tools:
+  decompme:
+    preset: 125
+  permuter:
+    decompme_compilers:
+      tools/ido7.1/cc: ido7.1
+      tools/ido5.3/cc: ido5.3
+  frogress:
+    project: pokemonsnap
+    versions:
+      us: # corresponds with top-level version snames
+        version: us

@@ -4,15 +4,235 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
-extern PokemonDef D_802E0D44_731F44;
-extern s32 D_802E0EB8_7320B8;
-extern SceneSetup D_802E0ED8_7320D8;
-extern s32 D_802E0EB8_7320B8;
+extern EnvSoundData D_802E0C80_731E80[] = {
+    { 0x3a, 0, 0xf },
+    { 0x3b, 0, 0x12 },
+    { 0x3e, 0, 0x12 },
+    { 0x3c, 0, 0x23 },
+    { 0x3d, 0, 0x23 },
+    { 0x11b, 1, 0xa },
+    { 0x11c, 1, 0xa },
+    { 0x11d, 1, 0xa },
+    { 0x11e, 1, 0xa },
+    { 0x11f, 1, 0xa },
+    { 0x8d, 0, 0xa },
+    { 0xbd, 3, 0x1e },
+    { 0x8b, 0, 0x16 },
+    { 0x78, 0, 0x12 },
+    { 0x15b, 1, 0xb },
+    { 0x80, 0, 0x8 },
+    { 0x81, 0, 0x8 },
+    { 0x82, 0, 0x8 },
+    { 0x83, 0, 0x8 },
+    { 0x112, 1, 0xd },
+    { 0x113, 1, 0xd },
+    { 0x114, 1, 0xd },
+    { 0x115, 1, 0xd },
+    { 0x75, 0, 0xb },
+    { 0x117, 1, 0x6 },
+    { 0x118, 1, 0x6 },
+    { 0x119, 1, 0x6 },
+    { 0x11a, 1, 0x6 },
+    { 0x116, 1, 0x6 },
+    { 0x175, 0, 0x5 },
+    { 0x86, 0, 0xc },
+    { 0x18b, 0, 0xc },
+    { 0xd2, 1, 0x7 },
+    { 0xd3, 1, 0x7 },
+    { 0x178, 0, 0x7 },
+    { 0x72, 0, 0x7 },
+    { 0x120, 1, 0xf },
+    { 0x121, 1, 0xf },
+    { 0x122, 1, 0xf },
+    { 0xbe, 1, 0x2d },
+    { 0xbf, 1, 0x2d },
+    { 0x8c, 0, 0x2d },
+    { 0x123, 1, 0x7 },
+    { 0x124, 1, 0x7 },
+    { 0x10e, 1, 0x11 },
+    { 0x10f, 1, 0x11 },
+    { 0x110, 1, 0x11 },
+    { 0x111, 1, 0x11 },
+    { 0x184, 0, 0x10 },
+};
+
+GObj* func_802D7F28_729128(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802D9CB8_72AEB8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DD214_72E414(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DD7AC_72E9AC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DC018_72D218(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DB558_72C758(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DEA44_72FC44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DE6B4_72F8B4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DE52C_72F72C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DED34_72FF34(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DDEC0_72F0C0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DE34C_72F54C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DF378_730578(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DDA98_72EC98(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DF240_730440(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DFB44_730D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* func_802DFA38_730C38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+
+void func_802D6A14_727C14(GObj*, f32, f32, f32, f32, f32, f32);
+
+PokemonDef D_802E0D44_731F44[] = {
+    { 0x0000007E,
+      func_802D7F28_729128,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x0000004E,
+      func_802D8A5C_729C5C,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 4,
+      func_802D9CB8_72AEB8,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x25,
+      func_802DAA9C_72BC9C,
+      Pokemon_ChangeBlockAndRemove,
+      pokemonRemoveOne },
+    { 5,
+      func_802DD214_72E414,
+      func_802D6A14_727C14,
+      pokemonRemoveOne },
+    { 6,
+      func_802DD7AC_72E9AC,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x3b,
+      func_802DC018_72D218,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x3a,
+      func_802DB558_72C758,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x403,
+      func_802DEA44_72FC44,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x405,
+      func_802DE6B4_72F8B4,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x404,
+      func_802DE52C_72F72C,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x000003EA,
+      func_802DED34_72FF34,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x00000258,
+      func_802DDEC0_72F0C0,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x00000092,
+      func_802DE34C_72F54C,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x00000081,
+      func_802DF378_730578,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { 0x000003EB,
+      func_8035E0D4_4FE4E4,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x00000402,
+      func_802DDA98_72EC98,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x00000406,
+      func_802DF240_730440,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0x00000407,
+      func_802DFB44_730D44,
+      pokemonChangeBlock,
+      NULL },
+    { 0x000003E9,
+      func_802DFA38_730C38,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0, NULL, NULL, NULL }
+};
+
+PokemonDef D_802E0E94_732094 = {
+    0x00000081,
+    func_802DF378_730578,
+    pokemonChangeBlockOnGround,
+    pokemonRemoveOne
+};
+
+// TODO type
+u32 D_802E0EA4_7320A4[] = {
+    0x03000000,
+    func_802D60E0_7272E0,
+    0x07000000,
+    0,
+};
+
+s16 D_802E0EB4_7320B4[] = { 0, 0 };
+s32 D_802E0EB8_7320B8 = 0;
+
+ScreenSettings D_802E0EBC_7320BC = {
+    D_803B5000,    /* fb1 */
+    D_803DA800,    /* fb2 */
+    NULL,          /* fb3 */
+    NULL,          /* zbuffer */
+    SCREEN_WIDTH,  /* width*/
+    SCREEN_HEIGHT, /* height */
+    0x00000A99     /* flags*/
+};
+
+SceneSetup D_802E0ED8_7320D8 = {
+    {
+        0,                      /* unk_00*/
+        omUpdateAll,            /* fnUpdate */
+        omDrawAll,              /* fnDraw */
+        volcano_VRAM_END,       /* heapBase */ // D_801A9900
+        0,                      /* heapSize */
+        1,                      /* unk_14 */
+        2,                      /* numContexts */
+        0x5000,                 /* dlBufferSize0 */
+        0x1400,                 /* dlBufferSize1 */
+        0x0400,                 /* dlBufferSize2 */
+        0x0000,                 /* dlBufferSize3 */
+        0xC800,                 /* gfxHeapSize */
+        0x20000,                /* unk30 */
+        0x4000,                 /* rdpOutputBufferSize */
+        func_800A1A50,          /* fnPreRender */
+        contUpdate              /* fnUpdateInput */
+    },
+    0,                /* numOMThreads */
+    1024,             /* omThreadStackSize */
+    0,                /* numOMStacks */
+    0,                /* unk4C */
+    0,                /* numOMProcesses */
+    0,                /* numOMGobjs */
+    sizeof(GObj),     /* objectSize */
+    0,                /* numOMMtx */
+    0,                /* unk60 */
+    func_802D6780_727980, /* unk64 */
+    0,                /* numOMAobjs */
+    0,                /* numOMMobjs */
+    0,                /* numOMDobjs */
+    sizeof(DObj),     /* omDobjSize */
+    0,                /* numOMSobjs */
+    0x58,             /* omSobjSize */
+    0,                /* numOMCameras */
+    sizeof(OMCamera), /* omCameraSize */
+    func_802D6630_727830     /* postInitFunc */
+};
+
 extern HeightMap D_8031D4D0_76E6D0;
 extern WorldSetup D_800FFFB8;
-extern PokemonDef D_802E0E94_732094;
-extern ScreenSettings D_802E0EBC_7320BC;
-extern EnvSoundData D_802E0C80_731E80[0x31];
 
 void func_802DFB80_730D80(s32, f32);
 void func_802D61AC_7273AC(GObj*, GroundResult*);
@@ -50,15 +270,15 @@ void func_802D60E0_7272E0(GObj* obj) {
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D61AC_7273AC.s")
 
 void func_802D6344_727544(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonAdd(arg0, arg1, &D_802E0D44_731F44);
+    pokemonAdd(arg0, arg1, D_802E0D44_731F44);
 }
 
 void func_802D6368_727568(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonsChangeBlock(arg0, arg1, &D_802E0D44_731F44);
+    pokemonsChangeBlock(arg0, arg1, D_802E0D44_731F44);
 }
 
 void func_802D638C_72758C(WorldBlock* arg0) {
-    pokemonRemove(arg0, &D_802E0D44_731F44);
+    pokemonRemove(arg0, D_802E0D44_731F44);
 }
 
 void func_802D63B0_7275B0(void) {

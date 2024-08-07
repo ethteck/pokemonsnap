@@ -698,7 +698,7 @@ void func_8009C604(UnkThing* arg0) {
         ptr = sp60[count - i - 1].unk_00;
         arg0->main.unk_1A0[i].unk_00 = ptr->unk_0A;
         arg0->main.unk_1A0[i].unk_01 = ptr->unk_0B;
-        arg0->main.unk_1A0[i].unk_03 = (ptr->unk_06 >> 4) & 0xFF;
+        arg0->main.unk_1A0[i].unk_03 = (ptr->flags >> 4) & 0xFF;
         arg0->main.unk_1A0[i].unk_02 = ptr->unk_08 & 7;
         arg0->main.unk_1A0[i].unk_04 = ptr->unk_20.x * 8.0f;
         arg0->main.unk_1A0[i].unk_06 = ptr->unk_20.y * 8.0f;

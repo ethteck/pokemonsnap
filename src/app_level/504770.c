@@ -1,9 +1,6 @@
 #include "common.h"
 #include "ld_addrs.h"
 
-extern u8 gSPImemOkay;
-extern u8 gSPDmemOkay;
-
 #define UNK_STUFF_VRAM 0x80200000
 
 #define UNK_STUFF_SP_IMEM_OK *(u8*) (UNK_STUFF_VRAM - 0x10)

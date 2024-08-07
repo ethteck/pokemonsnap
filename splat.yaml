@@ -856,7 +856,8 @@ segments:
     - [0x730480, c]
     - [0x730D80, c]
     - [0x731860, c]
-    - [0x731E80, bin] # , data]
+    - [0x731E80, .data, 7272E0]
+    - [0x731E80, data] # TODO rom addr
 
     - [0x734A10, .rodata, 7272E0]
     - [0x734A30, .rodata, 728490]

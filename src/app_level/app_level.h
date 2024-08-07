@@ -216,6 +216,7 @@ void Pokemon_SetStateRandom(GObj* obj, RandomState* nextStates);
 void Pokemon_StartPathProc(GObj* obj, GObjFunc func);
 void Pokemon_SetAnimation(GObj*, AnimationHeader*);
 void Pokemon_ForceAnimation(GObj*, AnimationHeader*);
+void Pokemon_SetAnimationAtTime(GObj* obj, AnimationHeader* header, f32 time);
 void Pokemon_SetAnimationCommon(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
 void Pokemon_WaitForFlag(GObj* obj, u32 flags);
 void Pokemon_RunCleanup(GObj* obj);

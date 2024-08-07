@@ -23,8 +23,8 @@ void func_beach_802CAC80(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->flags |= 0x200;
-    pokemon->flags |= 0x800;
+    pokemon->flags |= POKEMON_FLAG_200;
+    pokemon->flags |= POKEMON_FLAG_800;
     pokemon->transitionGraph = D_beach_802CDC60;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);

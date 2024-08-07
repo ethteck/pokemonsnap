@@ -9,8 +9,8 @@ void func_beach_802C72E0(GObj* obj) {
     }
     pokemon->path = D_beach_802CD3F4;
     ohWait(60);
-    pokemon->flags |= 0x200;
-    pokemon->flags |= 0x800;
+    pokemon->flags |= POKEMON_FLAG_200;
+    pokemon->flags |= POKEMON_FLAG_800;
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, func_beach_802C78B0);
     }

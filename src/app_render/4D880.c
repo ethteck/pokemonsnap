@@ -393,6 +393,7 @@ void func_800A2AA8(UnkRustRat* arg0, UnkGreenLeopard* arg1, f32 arg2) {
     }
 }
 
+#if 0
 extern u16 sSinTable[];
 #define INTERP(a, b, c) a = ((a << 0x10) + (b - a) * (0x10000 / c)) >> 0x10;
 #define SINCOS(inAngle, sinVal, cosVal)                  \
@@ -901,6 +902,10 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
     }
     return arg0->next;
 }
+#else
+UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A2B3C.s")
+#endif
 
 void func_800A4798(GObj* camObj) {
     u32 flags = camObj->flags;
@@ -1372,7 +1377,7 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
     arg1->z = spB8[0][2] * x + spB8[1][2] * y + spB8[2][2] * z;
 }
 
-#if 1
+#if 0
 void func_800A63BC(GObj* obj) {
     UnkPinkRat* ptr;
     Vec3f sp128;

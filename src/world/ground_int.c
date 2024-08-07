@@ -1,8 +1,9 @@
 #include "world.h"
 
-#ifdef NON_MATCHING
-void func_800E4460_61C10(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) {
+// clang-format off
+void func_800E4460_61C10(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) { \
     while (true) {
+        // clang-format on
         if (tree->leftPatch != (void*) -1 && ((uintptr_t) tree->leftPatch & 0xFF000000) == 0) {
             if (!patchArray) {
             } // for regalloc
@@ -34,14 +35,11 @@ void func_800E4460_61C10(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, 
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/world/ground_int/func_800E4460_61C10.s")
-void func_800E4460_61C10(HeightMapTreeNode* arg0, HeightMapTreeNode* arg1, HeightMapPatch* arg2);
-#endif
 
-#ifdef NON_MATCHING
-void func_800E4584_61D34(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) {
+// clang-format off
+void func_800E4584_61D34(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray) { \
     while (true) {
+        // clang-format on
         if (tree->leftPatch == (void*) -1) {
             tree->leftPatch = NULL;
         }
@@ -65,10 +63,6 @@ void func_800E4584_61D34(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, 
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/world/ground_int/func_800E4584_61D34.s")
-void func_800E4584_61D34(HeightMapTreeNode* nodeArray, HeightMapTreeNode* tree, HeightMapPatch* patchArray);
-#endif
 
 void createHeightMapTree(HeightMapTreeNode* tree, HeightMapPatch* patches) {
     func_800E4460_61C10(tree, tree, patches);

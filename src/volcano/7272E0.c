@@ -180,25 +180,25 @@ SceneSetup volcano_SceneSetup = {
         func_800A1A50,    /* fnPreRender */
         contUpdate        /* fnUpdateInput */
     },
-    0,                    /* numOMThreads */
-    1024,                 /* omThreadStackSize */
-    0,                    /* numOMStacks */
-    0,                    /* unk4C */
-    0,                    /* numOMProcesses */
-    0,                    /* numOMGobjs */
-    sizeof(GObj),         /* objectSize */
-    0,                    /* numOMMtx */
-    0,                    /* unk60 */
+    0,                            /* numOMThreads */
+    1024,                         /* omThreadStackSize */
+    0,                            /* numOMStacks */
+    0,                            /* unk4C */
+    0,                            /* numOMProcesses */
+    0,                            /* numOMGobjs */
+    sizeof(GObj),                 /* objectSize */
+    0,                            /* numOMMtx */
+    0,                            /* unk60 */
     volcano_func_802D6780_727980, /* unk64 */
-    0,                    /* numOMAobjs */
-    0,                    /* numOMMobjs */
-    0,                    /* numOMDobjs */
-    sizeof(DObj),         /* omDobjSize */
-    0,                    /* numOMSobjs */
-    0x58,                 /* omSobjSize */
-    0,                    /* numOMCameras */
-    sizeof(OMCamera),     /* omCameraSize */
-    volcano_Init  /* postInitFunc */
+    0,                            /* numOMAobjs */
+    0,                            /* numOMMobjs */
+    0,                            /* numOMDobjs */
+    sizeof(DObj),                 /* omDobjSize */
+    0,                            /* numOMSobjs */
+    0x58,                         /* omSobjSize */
+    0,                            /* numOMCameras */
+    sizeof(OMCamera),             /* omCameraSize */
+    volcano_Init                  /* postInitFunc */
 };
 
 PokemonDef volcano_ArcanineDef = {

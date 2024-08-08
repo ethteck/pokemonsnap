@@ -242,7 +242,7 @@ void start_scene_manager(s32 arg0) {
     func_800AAF20();
     dmaLoadOverlay(&D_800ABD14);
     dmaLoadOverlay(&D_800ABDA4);
-    dmaReadVPK((u32*) AA0B80_ROM_START, VPK_VRAM);
+    dmaReadVPK0((u32*) AA0B80_ROM_START, VPK_VRAM);
     func_800E1C5C_AA0A0C();
     if (func_8009B2BC() == 0) {
         func_8009B40C();
@@ -371,7 +371,7 @@ void start_scene_manager(s32 arg0) {
             case SCENE_8:
                 setLevelId(SCENE_BEACH);
                 func_800AAF20();
-                dmaReadVPK((u32*) A0F830_ROM_START, VPK_VRAM);
+                dmaReadVPK0((u32*) A0F830_ROM_START, VPK_VRAM);
                 dmaLoadOverlay(&D_800ABD38);
                 sceneId = func_800E4830_A0BDC0(sceneId);
                 if (sceneId == SCENE_BEACH) {

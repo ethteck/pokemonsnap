@@ -743,6 +743,7 @@ segments:
     subsegments:
     - [0x6401B0, c]
     - [0x640900, c]
+    - [0x640CC0, pad]
     - [0x640CD0, c]
     - [0x6414C0, pad]
     - [0x6414D0, c]

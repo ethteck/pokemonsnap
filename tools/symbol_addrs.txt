@@ -4,7 +4,6 @@ scMain = 0x80002510;
 dmaLoadOverlay = 0x80002B64;
 dmaReadRom = 0x80002C20;
 dmaWriteRom = 0x80002C5C;
-dmaReadVPK = 0x8000350C;
 gtlInit = 0x800076F0;
 omEndProcess = 0x80008F2C;
 cmdSendCommandToLink = 0x8000B830;
@@ -384,8 +383,6 @@ scTaskQueue = 0x80048868;
 scBeforeReset = 0x8004888C;
 scSetPostProcessFunc = 0x800029C8;
 scRemovePostProcessFunc = 0x800029D4;
-
-dmaDecodeVPK = 0x80002C94;
 
 contReadAndUpdate = 0x80004838;
 contUpdate = 0x80004860;

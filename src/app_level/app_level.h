@@ -172,6 +172,7 @@ void Items_DeleteItem(GObj*);
 void Items_DisplaceAllItems(f32 deltaX, f32 deltaY, f32 deltaZ);
 
 u32 getProgressFlags(void);
+void setPitchLimits(f32 minValue, f32 maxValue);
 void mainCameraSetScissor(Gfx** gfxPtr);
 int func_80353D68_4F4178(void);
 void func_803570B0_4F74C0(void);

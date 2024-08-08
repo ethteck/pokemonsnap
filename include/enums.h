@@ -178,6 +178,7 @@ enum PokemonIds {
     PokemonID_STARMIE = 121,
     PokemonID_SCYTHER = 123,
     PokemonID_MAGIKARP = 129,
+    PokemonID_DITTO = 132,
     PokemonID_MEW = 151,
     POKEDEX_MAX = 151,
     PokemonID_500 = 500,

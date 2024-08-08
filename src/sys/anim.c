@@ -1,6 +1,7 @@
 #include "sys/om.h"
 #include "sys/anim.h"
 #include "macros.h"
+#include "gu.h"
 
 #include "sys/anim.h"
 
@@ -1335,131 +1336,104 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
     return false;
 }
 
-#ifdef NON_MATCHING
-void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, AObj* arg5) {
+// #ifdef NON_MATCHING
+#define TAKE_MAX(a, b) \
+    if ((a) < (b))     \
+    (a) = (b)
+
+void anim_func_8000EECC(s32 track, f32 translate, f32 rotate, f32 scale, f32* arg4, AObj* aobj) {
     f32 sp3C;
     f32 sp38;
+    f32 sp34;
+    UNUSED f32 unused;
+    f32 value;
 
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
-
-    f32 sp20;
-    f32 sp1C;
-
-    f32 temp;
-
-    switch (arg0) {
+    switch (track) {
         case 1:
         case 2:
         case 3:
-            sp2C = arg2;
+            value = rotate;
             break;
         case 5:
         case 6:
         case 7:
-            sp2C = arg1;
+            value = translate;
             break;
         case 8:
         case 9:
         case 10:
-            sp2C = arg3;
+            value = scale;
             break;
     }
-    if (!sp2C) {
-        return;
-    }
 
-    sp3C = 2.0f * arg5->rate + arg5->targetRate;
-    sp28 = -6.0f * sp2C;
-    sp38 = sp28 * (arg5->targetValue - arg5->initialValue);
+    if (value != 0.0F) {
+        if (1) {
+            // TODO required to match
+        }
 
-    sp24 = SQ(sp3C);
-    sp20 = sp24 - sp38;
-    sp1C = -sp3C;
+        sp3C = (2.0f * aobj->rate) + aobj->targetRate;
+        sp38 = ((-6.0f) * value) * (aobj->targetValue - aobj->initialValue);
 
-    if (sp38 < sp24) {
-        temp = (sqrtf(sp20) + sp1C) / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-        temp = (sp1C - sqrtf(sp20)) / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    } else if (sp24 - sp38 == 0.0f) {
-        temp = -sp3C / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    }
+        if (sp38 < SQ(sp3C)) {
+            sp34 = (sqrtf(SQ(sp3C) - sp38) + -sp3C) / value;
 
-    sp20 = sp24 + sp38;
-    sp1C = -sp3C;
+            TAKE_MAX(*arg4, sp34);
 
-    if (sp20 > 0.0f) {
-        temp = (sqrtf(sp20) + sp1C) / -sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-        temp = (sp1C - sqrtf(sp20)) / sp24;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    } else if (sp20 == 0.0f) {
-        temp = -sp3C / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    }
+            sp34 = (-sp3C - sqrtf(SQ(sp3C) - sp38)) / value;
 
-    sp3C = -(arg5->rate + 2.0f * arg5->targetRate);
-    sp38 = sp28 * (arg5->initialValue - arg5->targetValue);
+            TAKE_MAX(*arg4, sp34);
+        } else if (SQ(sp3C) + -sp38 == (0, 0.0f)) {
+            sp34 = -sp3C / value;
 
-    sp24 = SQ(sp3C);
-    sp20 = sp24 - sp38;
-    sp1C = -sp3C;
+            TAKE_MAX(*arg4, sp34);
+        }
 
-    if (sp38 < sp24) {
-        temp = (sqrtf(sp20) + sp1C) / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-        temp = (sp1C - sqrtf(sp20)) / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    } else if (sp24 - sp38 == 0.0f) {
-        temp = -sp3C / sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
-        }
-    }
+        if (SQ(sp3C) + sp38 > 0.0F) {
+            sp34 = (sqrtf(SQ(sp3C) + sp38) + -sp3C) / -value;
 
-    sp20 = sp24 + sp38;
-    sp1C = -sp3C;
-    sp24 = -sp2C;
-    t1 if (sp20 > 0.0f) {
-        temp = (sqrtf(sp20) + sp1C) / sp24;
-        if (*arg4 < temp) {
-            *arg4 = temp;
+            TAKE_MAX(*arg4, sp34);
+
+            sp34 = (-sp3C - sqrtf(SQ(sp3C) + sp38)) / -value;
+
+            TAKE_MAX(*arg4, sp34);
+        } else if (SQ(sp3C) + sp38 == (0, 0.0f)) {
+            sp34 = -sp3C / -value;
+
+            TAKE_MAX(*arg4, sp34);
         }
-        temp = (sp1C - sqrtf(sp20)) / sp24;
-        if (*arg4 < temp) {
-            *arg4 = temp;
+
+        sp3C = -(aobj->rate + (2.0f * aobj->targetRate));
+        sp38 = (-6.0f * value) * (aobj->initialValue - aobj->targetValue);
+
+        if (sp38 < SQ(sp3C)) {
+            sp34 = (sqrtf(SQ(sp3C) - sp38) + -sp3C) / value;
+
+            TAKE_MAX(*arg4, sp34);
+
+            sp34 = (-sp3C - sqrtf(SQ(sp3C) - sp38)) / value;
+
+            TAKE_MAX(*arg4, sp34);
+        } else if (SQ(sp3C) + -sp38 == (0, 0.0f)) {
+            sp34 = -sp3C / value;
+
+            TAKE_MAX(*arg4, sp34);
         }
-    }
-    else if (sp20 == 0.0f) {
-        temp = -sp3C / -sp2C;
-        if (*arg4 < temp) {
-            *arg4 = temp;
+
+        if ((SQ(sp3C) + sp38) > 0.0f) {
+            sp34 = (sqrtf(SQ(sp3C) + sp38) + -sp3C) / -value;
+
+            TAKE_MAX(*arg4, sp34);
+
+            sp34 = (-sp3C - sqrtf(sp38 + SQ(sp3C))) / -value;
+
+            TAKE_MAX(*arg4, sp34);
+        } else if ((SQ(sp3C) + sp38) == (0, 0.0f)) {
+            sp34 = -sp3C / -value;
+
+            TAKE_MAX(*arg4, sp34);
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/anim/anim_func_8000EECC.s")
-void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, struct AObj* arg5);
-#endif
 
 f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* arg3, s32 setRate, f32 duration,
                        f32 arg6, f32 arg7, f32 arg8) {

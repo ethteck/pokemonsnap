@@ -151,7 +151,7 @@ void func_beach_802CB594(GObj* arg0) { \
     if (!(pokemon->processFlags & 0x10)) {
         Pokemon_SetState(arg0, func_beach_802CB36C);
     }
-    Pokemon_SetAnimation(arg0, D_beach_802CDC10);
+    Pokemon_SetAnimation(arg0, &D_beach_802CDC10);
     Pokemon_StartPathProc(arg0, NULL);
     // clang-format off
     pokemon->counter = 17; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
@@ -263,7 +263,7 @@ void func_beach_802CBA48(GObj* obj) {
     Vec3f sp34;
 
     model = obj->data.dobj;
-    ohWait(0x3C);
+    ohWait(60);
     func_8001FCE8(&sp34, pokemon->path, 0.99999f);
     temp_f0 = atan2f(sp34.x, sp34.z);
     temp_f20 = temp_f0 - ((s32) (temp_f0 / 6.2831855f) * 6.2831855f);

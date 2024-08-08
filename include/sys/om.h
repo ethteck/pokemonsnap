@@ -280,10 +280,10 @@ union Mtx3fi {
     struct Mtx3Int i;
 }; // size == 0x10
 
-struct Mtx4Float {
+typedef struct Mtx4Float {
     /* 0x00 */ struct OMMtx* mtx;
     /* 0x04 */ f32 f[4];
-}; // size == 0x14
+} Mtx4Float; // size == 0x14
 
 struct MtxCameraPersp {
     /* 0x00 */ struct OMMtx* mtx;

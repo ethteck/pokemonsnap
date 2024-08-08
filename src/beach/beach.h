@@ -192,7 +192,7 @@ extern AnimationHeader D_beach_802CDBC0;
 extern AnimationHeader D_beach_802CDBD4;
 extern AnimationHeader D_beach_802CDBE8;
 extern AnimationHeader D_beach_802CDBFC;
-extern InteractionHandler D_beach_802CDC10[];
+extern AnimationHeader D_beach_802CDC10;
 extern InteractionHandler D_beach_802CDC60[];
 extern InteractionHandler D_beach_802CDC80[];
 extern InteractionHandler D_beach_802CDCA0[];

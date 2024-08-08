@@ -18,7 +18,8 @@
         "cstdlib": "c",
         "string": "c",
         "algorithm": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "ostream": "c"
     },
     "files.insertFinalNewline": true,
 }

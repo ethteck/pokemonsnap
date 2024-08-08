@@ -109,6 +109,14 @@ enum MovementFlags {
     MOVEMENT_FLAG_TURN_GRADUALLY = 0x80 // affects only movement along path
 };
 
+enum PitchModifiers {
+    PITCH_MOD_0 = 0,
+    PITCH_MOD_1 = 1,
+    PITCH_MOD_2 = 2,
+    PITCH_MOD_3 = 3,
+    PITCH_MOD_4 = 4
+};
+
 #define ITEM_CMD_REMOVE 100
 
 #define CAMERA_CMD_BLINK 1

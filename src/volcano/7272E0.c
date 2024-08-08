@@ -4,6 +4,9 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+void func_802D60E0_7272E0(GObj* obj);
+void func_802D6780_727980(s32 arg0);
+
 extern EnvSoundData D_802E0C80_731E80[] = {
     { 0x3a, 0, 0xf },
     { 0x3b, 0, 0x12 },
@@ -78,6 +81,7 @@ GObj* func_802DFB44_730D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DFA38_730C38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 
 void func_802D6A14_727C14(GObj*, f32, f32, f32, f32, f32, f32);
+void func_802D6630_727830(void);
 
 PokemonDef D_802E0D44_731F44[] = {
     { 0x0000007E,
@@ -196,7 +200,7 @@ SceneSetup D_802E0ED8_7320D8 = {
         0,                      /* unk_00*/
         omUpdateAll,            /* fnUpdate */
         omDrawAll,              /* fnDraw */
-        volcano_VRAM_END,       /* heapBase */ // D_801A9900
+        _326C10_VRAM_END,       /* heapBase */
         0,                      /* heapSize */
         1,                      /* unk_14 */
         2,                      /* numContexts */
@@ -205,7 +209,7 @@ SceneSetup D_802E0ED8_7320D8 = {
         0x0400,                 /* dlBufferSize2 */
         0x0000,                 /* dlBufferSize3 */
         0xC800,                 /* gfxHeapSize */
-        0x20000,                /* unk30 */
+        2,                      /* unk30 */
         0x4000,                 /* rdpOutputBufferSize */
         func_800A1A50,          /* fnPreRender */
         contUpdate              /* fnUpdateInput */
@@ -229,6 +233,12 @@ SceneSetup D_802E0ED8_7320D8 = {
     0,                /* numOMCameras */
     sizeof(OMCamera), /* omCameraSize */
     func_802D6630_727830     /* postInitFunc */
+};
+
+u32 D_802E0F64_732164[] = {
+    0x0000003B,
+    func_802DC018_72D218,
+    pokemonChangeBlockOnGround
 };
 
 extern HeightMap D_8031D4D0_76E6D0;

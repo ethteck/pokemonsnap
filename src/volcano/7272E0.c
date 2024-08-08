@@ -4,6 +4,8 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+extern DObj* gPlayerDObj;
+
 void func_802D60E0_7272E0(GObj* obj);
 void func_802D6780_727980(s32 arg0);
 
@@ -174,15 +176,12 @@ PokemonDef D_802E0E94_732094 = {
     pokemonRemoveOne
 };
 
-// TODO type
-u32 D_802E0EA4_7320A4[] = {
-    0x03000000,
-    func_802D60E0_7272E0,
-    0x07000000,
-    0,
+RandomState2 D_802E0EA4_7320A4[] = {
+    { 3, func_802D60E0_7272E0 },
+    { 7, NULL },
 };
 
-s16 D_802E0EB4_7320B4[] = { 0, 0 };
+u16 D_802E0EB4_7320B4 = 0;
 s32 D_802E0EB8_7320B8 = 0;
 
 ScreenSettings D_802E0EBC_7320BC = {
@@ -197,49 +196,75 @@ ScreenSettings D_802E0EBC_7320BC = {
 
 SceneSetup D_802E0ED8_7320D8 = {
     {
-        0,                      /* unk_00*/
-        omUpdateAll,            /* fnUpdate */
-        omDrawAll,              /* fnDraw */
-        _326C10_VRAM_END,       /* heapBase */
-        0,                      /* heapSize */
-        1,                      /* unk_14 */
-        2,                      /* numContexts */
-        0x5000,                 /* dlBufferSize0 */
-        0x1400,                 /* dlBufferSize1 */
-        0x0400,                 /* dlBufferSize2 */
-        0x0000,                 /* dlBufferSize3 */
-        0xC800,                 /* gfxHeapSize */
-        2,                      /* unk30 */
-        0x4000,                 /* rdpOutputBufferSize */
-        func_800A1A50,          /* fnPreRender */
-        contUpdate              /* fnUpdateInput */
+        0,                /* unk_00*/
+        omUpdateAll,      /* fnUpdate */
+        omDrawAll,        /* fnDraw */
+        _326C10_VRAM_END, /* heapBase */
+        0,                /* heapSize */
+        1,                /* unk_14 */
+        2,                /* numContexts */
+        0x5000,           /* dlBufferSize0 */
+        0x1400,           /* dlBufferSize1 */
+        0x0400,           /* dlBufferSize2 */
+        0x0000,           /* dlBufferSize3 */
+        0xC800,           /* gfxHeapSize */
+        2,                /* unk30 */
+        0x4000,           /* rdpOutputBufferSize */
+        func_800A1A50,    /* fnPreRender */
+        contUpdate        /* fnUpdateInput */
     },
-    0,                /* numOMThreads */
-    1024,             /* omThreadStackSize */
-    0,                /* numOMStacks */
-    0,                /* unk4C */
-    0,                /* numOMProcesses */
-    0,                /* numOMGobjs */
-    sizeof(GObj),     /* objectSize */
-    0,                /* numOMMtx */
-    0,                /* unk60 */
+    0,                    /* numOMThreads */
+    1024,                 /* omThreadStackSize */
+    0,                    /* numOMStacks */
+    0,                    /* unk4C */
+    0,                    /* numOMProcesses */
+    0,                    /* numOMGobjs */
+    sizeof(GObj),         /* objectSize */
+    0,                    /* numOMMtx */
+    0,                    /* unk60 */
     func_802D6780_727980, /* unk64 */
-    0,                /* numOMAobjs */
-    0,                /* numOMMobjs */
-    0,                /* numOMDobjs */
-    sizeof(DObj),     /* omDobjSize */
-    0,                /* numOMSobjs */
-    0x58,             /* omSobjSize */
-    0,                /* numOMCameras */
-    sizeof(OMCamera), /* omCameraSize */
-    func_802D6630_727830     /* postInitFunc */
+    0,                    /* numOMAobjs */
+    0,                    /* numOMMobjs */
+    0,                    /* numOMDobjs */
+    sizeof(DObj),         /* omDobjSize */
+    0,                    /* numOMSobjs */
+    0x58,                 /* omSobjSize */
+    0,                    /* numOMCameras */
+    sizeof(OMCamera),     /* omCameraSize */
+    func_802D6630_727830  /* postInitFunc */
 };
 
-u32 D_802E0F64_732164[] = {
+PokemonDef D_802E0F64_732164 = {
     0x0000003B,
     func_802DC018_72D218,
-    pokemonChangeBlockOnGround
+    pokemonChangeBlockOnGround,
+    pokemonRemoveOne
 };
+
+PokemonDef D_802E0F74_732174 = {
+    0x0000003A,
+    func_802DB558_72C758,
+    pokemonChangeBlockOnGround,
+    pokemonRemoveOne
+};
+
+PokemonDef D_802E0F84_732184 = {
+    0x0000006,
+    func_802DD7AC_72E9AC,
+    pokemonChangeBlockOnGround,
+    pokemonRemoveOne
+};
+
+PokemonDef D_802E0F94_732194 = {
+    0x00000406,
+    func_802DF240_730440,
+    pokemonChangeBlock,
+    pokemonRemoveOne
+};
+
+u16 D_802E0FA4_7321A4 = 4;
+
+Vec3f D_802E0FA8_7321A8 = { 0, 0, 0 };
 
 extern HeightMap D_8031D4D0_76E6D0;
 extern WorldSetup D_800FFFB8;
@@ -277,7 +302,37 @@ void func_802D60E0_7272E0(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D61AC_7273AC.s")
+void func_802D61AC_7273AC(GObj* obj, GroundResult* groundResult) {
+    DObj* model = obj->data.dobj;
+    Item* item = GET_ITEM(obj);
+    s32 i;
+    s32 numOptions = ARRAY_COUNT(D_802E0EA4_7320A4);
+    s32 sumWeight;
+    s32 randValue;
+
+    if (groundResult->surfaceType != SURFACE_TYPE_00FF00) {
+        if (groundResult->surfaceType == SURFACE_TYPE_337FB2 && Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 50.0f) {
+            sumWeight = 0;
+            for (i = 0; i < numOptions; i++) {
+                sumWeight += D_802E0EA4_7320A4[i].weight;
+            }
+            randValue = randRange(sumWeight);
+            sumWeight = 0;
+            for (i = 0; i < numOptions; i++) {
+                sumWeight += D_802E0EA4_7320A4[i].weight;
+                if (sumWeight > randValue) {
+                    if (D_802E0EA4_7320A4[i].func != NULL && !D_802E0EB4_7320B4) {
+                        D_802E0EA4_7320A4[i].func(obj);
+                        D_802E0EB4_7320B4 = true;
+                    }
+                    break;
+                }
+            }
+        }
+    } else if (item->itemID == ITEM_ID_PESTER_BALL) {
+        cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_38, obj);
+    }
+}
 
 void func_802D6344_727544(WorldBlock* arg0, WorldBlock* arg1) {
     pokemonAdd(arg0, arg1, D_802E0D44_731F44);
@@ -403,19 +458,126 @@ s32 func_802D67C4_7279C4(s32 arg0) {
     return SCENE_13;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6864_727A64.s")
+void func_802D6864_727A64(GObj* obj) {
+    DObj* model;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    PokemonDef def = D_802E0F64_732164;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D693C_727B3C.s")
+    block = getCurrentWorldBlock();
+    spawn.id = PokemonID_ARCANINE;
+    spawn.translation.x = 0.0;
+    spawn.translation.y = 0.0;
+    spawn.translation.z = 0.0;
+    spawn.euler.x = 0.0;
+    spawn.euler.y = 0.0;
+    spawn.euler.z = 0.0;
+    spawn.scale.x = 1.0;
+    spawn.scale.y = 1.0;
+    spawn.scale.z = 1.0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6A14_727C14.s")
+    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6A5C_727C5C.s")
+    position = &GET_TRANSFORM(obj->data.dobj)->pos;
+    model = pokemonObj->data.dobj;
+    GET_TRANSFORM(model)->pos.v.x = position->v.x;
+    GET_TRANSFORM(model)->pos.v.y = position->v.y;
+    GET_TRANSFORM(model)->pos.v.z = position->v.z;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6B2C_727D2C.s")
+void func_802D693C_727B3C(GObj* obj) {
+    DObj* model;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    PokemonDef def = D_802E0F74_732174;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6B64_727D64.s")
+    block = getCurrentWorldBlock();
+    spawn.id = PokemonID_GROWLITHE;
+    spawn.translation.x = 0.0;
+    spawn.translation.y = 0.0;
+    spawn.translation.z = 0.0;
+    spawn.euler.x = 0.0;
+    spawn.euler.y = 0.0;
+    spawn.euler.z = 0.0;
+    spawn.scale.x = 1.0;
+    spawn.scale.y = 1.0;
+    spawn.scale.z = 1.0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6BB0_727DB0.s")
+    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
+
+    position = &GET_TRANSFORM(obj->data.dobj)->pos;
+    model = pokemonObj->data.dobj;
+    GET_TRANSFORM(model)->pos.v.x = position->v.x;
+    GET_TRANSFORM(model)->pos.v.y = position->v.y;
+    GET_TRANSFORM(model)->pos.v.z = position->v.z;
+    omEndProcess(NULL);
+}
+
+void func_802D6A14_727C14(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+    pokemonChangeBlockOnGround(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+}
+
+void func_802D6A5C_727C5C(GObj* obj) {
+    DObj* model;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    PokemonDef def = D_802E0F84_732184;
+
+    block = getCurrentWorldBlock();
+    spawn.id = PokemonID_CHARIZARD;
+    spawn.translation.x = 0.0;
+    spawn.translation.y = 0.0;
+    spawn.translation.z = 0.0;
+    spawn.euler.x = 0.0;
+    spawn.euler.y = 0.0;
+    spawn.euler.z = 0.0;
+    spawn.scale.x = 1.0;
+    spawn.scale.y = 1.0;
+    spawn.scale.z = 1.0;
+
+    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
+
+    position = &GET_TRANSFORM(obj->data.dobj)->pos;
+    model = pokemonObj->data.dobj;
+    GET_TRANSFORM(model)->pos.v.x = position->v.x;
+    GET_TRANSFORM(model)->pos.v.y = position->v.y;
+    GET_TRANSFORM(model)->pos.v.z = position->v.z;
+}
+
+void func_802D6B2C_727D2C(GObj* obj) {
+    GObj* var;
+
+    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    GET_POKEMON(var)->behavior = 0;
+    omEndProcess(NULL);
+}
+
+void func_802D6B64_727D64(GObj* obj) {
+    GObj* var;
+
+    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    GET_POKEMON(var)->behavior = 4;
+    GET_POKEMON(obj)->miscVars[1].obj = var;
+    omEndProcess(NULL);
+}
+
+void func_802D6BB0_727DB0(GObj* obj) {
+    GObj* var;
+
+    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    GET_POKEMON(var)->behavior = 1;
+    GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.z *= 4.0f;
+    omEndProcess(NULL);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6C38_727E38.s")
 

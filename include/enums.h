@@ -166,7 +166,10 @@ enum ObjIDs {
 
 enum PokemonIds {
     PokemonID_BULBASAUR = 1,
+    PokemonID_CHARIZARD = 6,
     PokemonID_PIDGEY = 16,
+    PokemonID_GROWLITHE = 58,
+    PokemonID_ARCANINE = 59,
     PokemonID_MAGNETON = 82,
     PokemonID_MUK = 89,
     PokemonID_SHELLDER = 90,

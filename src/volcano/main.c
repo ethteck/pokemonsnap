@@ -622,4 +622,4 @@ f32 func_802D6F38_728138(f32 x, f32 z) {
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6F68_728168.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/volcano/main/func_802D6F68_728168.s")

@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern UnkEC64Arg3 D_803AAA30_54AE40[];
+extern ModelTreeDef D_803AAA30_54AE40[];
 extern Texture** D_8039D938_53DD48[];
 
 GObj* PlayerModel_Init(void) {

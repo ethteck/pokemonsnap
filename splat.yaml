@@ -836,7 +836,8 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x7272E0, c, main]
-    - [0x728490, c]
+    - [0x728490, c, magmar]
+    - [0x729160, c]
     - [0x729CA0, c]
     - [0x72AEF0, pad]
     - [0x72AF00, c]
@@ -858,10 +859,11 @@ segments:
     - [0x730D80, c]
     - [0x731860, c]
     - [0x731E80, .data, main]
-    - [0x7321C0, data]
+    - [0x7321C0, .data, magmar]
+    - [0x732710, data]
 
     - [0x734A10, .rodata, main]
-    - [0x734A30, .rodata, 728490]
+    - [0x734A30, .rodata, magmar]
     - [0x734A50, .rodata, 729CA0]
     - [0x734A90, .rodata, 72AF00]
     - [0x734AB0, .rodata, 72BCE0]

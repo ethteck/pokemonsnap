@@ -4,7 +4,7 @@
 
 extern AnimCmd* D_800EAFB0[];
 extern AnimCmd** D_800EB0C0[];
-extern UnkEC64Arg3 D_800EB430[];
+extern ModelTreeDef D_800EB430[];
 extern Texture** D_800EB510[];
 
 void func_8035DF20_4FE330(GObj* obj);

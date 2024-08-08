@@ -50,7 +50,7 @@ typedef struct WorldBlockGFX {
     /* 0x04 */ Texture*** textures;
     /* 0x08 */ AnimCmd*** unk_08;
     /* 0x0C */ GObjFunc renderFunc;
-    /* 0x10 */ UnkEC64Arg3* uvScrollAnim;
+    /* 0x10 */ ModelTreeDef* uvScrollAnim;
     /* 0x14 */ s32 numControlPoints;
     /* 0x18 */ AnimCmd** movementAnim;
     /* 0x1C */ s32 movementAnimDuration;
@@ -60,7 +60,7 @@ typedef struct WorldBlockGFX {
 typedef struct PayloadStruct {
     union {
         Gfx* gfx;
-        UnkEC64Arg3* treeDef;
+        ModelTreeDef* treeDef;
     } d;
 } PayloadStruct;
 

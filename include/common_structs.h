@@ -52,7 +52,7 @@ typedef union {
 } misc;
 
 typedef struct PokemonInitData {
-    /* 0x00 */ UnkEC64Arg3* tree;
+    /* 0x00 */ ModelTreeDef* tree;
     /* 0x04 */ Texture*** textures;
     /* 0x08 */ GObjFunc fnRender;
     /* 0x0C */ PokemonAnimationSetup* animSetup;

@@ -18,21 +18,21 @@ typedef struct ItemObjectListEntry {
 } ItemObjectListEntry; // size = 0x10
 
 extern Texture** D_800E8EB8[];
-extern UnkEC64Arg3 D_800E9138[];
+extern ModelTreeDef D_800E9138[];
 extern AnimCmd** D_800E91C0[];
 
 extern Texture** D_800EAC58[];
-extern UnkEC64Arg3 D_800EAED0[];
+extern ModelTreeDef D_800EAED0[];
 extern AnimCmd** D_800EAF60[];
 
 extern AnimCmd* D_800EAFB0[];
 extern AnimCmd** D_800EB0C0[];
-extern UnkEC64Arg3 D_800EB430[];
+extern ModelTreeDef D_800EB430[];
 extern Texture** D_800EB510[];
 
 extern AnimCmd* D_800ED5B0[];
 extern AnimCmd** D_800ED6B0[];
-extern UnkEC64Arg3 D_800EDAB0[];
+extern ModelTreeDef D_800EDAB0[];
 extern Texture** D_800EDB90[];
 
 extern DObj* gPlayerDObj;
@@ -289,7 +289,7 @@ void Items_UpdateFume(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void Items_CreateSplash(GObj* pesterBallObj, UnkEC64Arg3* treeDef, Texture*** textures, AnimCmd** modelAnim, AnimCmd*** texturesAnim) {
+void Items_CreateSplash(GObj* pesterBallObj, ModelTreeDef* treeDef, Texture*** textures, AnimCmd** modelAnim, AnimCmd*** texturesAnim) {
     DObj* ballModel = pesterBallObj->data.dobj;
     GObj* fumeObj;
     GroundResult groundResult;

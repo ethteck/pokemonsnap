@@ -1,15 +1,6 @@
-#include "common.h"
-#include "ld_addrs.h"
-#include "../world/world.h"
-#include "app_level/app_level.h"
-#include "app_render/app_render.h"
+#include "volcano.h"
 
-extern DObj* gPlayerDObj;
-
-void func_802D60E0_7272E0(GObj* obj);
-void func_802D6780_727980(s32 arg0);
-
-extern EnvSoundData D_802E0C80_731E80[] = {
+extern EnvSoundData volcano_EnvSounds[] = {
     { 0x3a, 0, 0xf },
     { 0x3b, 0, 0x12 },
     { 0x3e, 0, 0x12 },
@@ -61,130 +52,106 @@ extern EnvSoundData D_802E0C80_731E80[] = {
     { 0x184, 0, 0x10 },
 };
 
-GObj* func_802D7F28_729128(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802D9CB8_72AEB8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DD214_72E414(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DD7AC_72E9AC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DC018_72D218(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DB558_72C758(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DEA44_72FC44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DE6B4_72F8B4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DE52C_72F72C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DED34_72FF34(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DDEC0_72F0C0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DE34C_72F54C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DF378_730578(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DDA98_72EC98(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DF240_730440(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DFB44_730D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DFA38_730C38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-
-void func_802D6A14_727C14(GObj*, f32, f32, f32, f32, f32, f32);
-void func_802D6630_727830(void);
-
-PokemonDef D_802E0D44_731F44[] = {
-    { 0x0000007E,
+PokemonDef volcano_PokemonDefs[] = {
+    { PokemonID_MAGMAR,
       func_802D7F28_729128,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x0000004E,
+    { PokemonID_RAPIDASH,
       func_802D8A5C_729C5C,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 4,
+    { PokemonID_CHARMANDER,
       func_802D9CB8_72AEB8,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x25,
+    { PokemonID_VULPIX,
       func_802DAA9C_72BC9C,
       Pokemon_ChangeBlockAndRemove,
       pokemonRemoveOne },
-    { 5,
+    { PokemonID_CHARMELEON,
       func_802DD214_72E414,
-      func_802D6A14_727C14,
+      volcano_CharmeleonChangeBlock,
       pokemonRemoveOne },
-    { 6,
+    { PokemonID_CHARIZARD,
       func_802DD7AC_72E9AC,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x3b,
+    { PokemonID_ARCANINE,
       func_802DC018_72D218,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x3a,
+    { PokemonID_GROWLITHE,
       func_802DB558_72C758,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x403,
+    { PokemonID_1027,
       func_802DEA44_72FC44,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x405,
+    { PokemonID_1029,
       func_802DE6B4_72F8B4,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x404,
+    { PokemonID_1028,
       func_802DE52C_72F72C,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x000003EA,
+    { PokemonID_1002,
       func_802DED34_72FF34,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x00000258,
+    { PokemonID_600,
       func_802DDEC0_72F0C0,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x00000092,
+    { PokemonID_MOLTRES,
       func_802DE34C_72F54C,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x00000081,
+    { PokemonID_MAGIKARP,
       func_802DF378_730578,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { 0x000003EB,
+    { PokemonID_1003,
       func_8035E0D4_4FE4E4,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x00000402,
+    { PokemonID_1026,
       func_802DDA98_72EC98,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x00000406,
+    { PokemonID_1030,
       func_802DF240_730440,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { 0x00000407,
+    { PokemonID_1031,
       func_802DFB44_730D44,
       pokemonChangeBlock,
       NULL },
-    { 0x000003E9,
+    { PokemonID_1001,
       func_802DFA38_730C38,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { 0, NULL, NULL, NULL }
 };
 
-PokemonDef D_802E0E94_732094 = {
-    0x00000081,
+PokemonDef volcano_MagikarpDef = {
+    PokemonID_MAGIKARP,
     func_802DF378_730578,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
 
-RandomState2 D_802E0EA4_7320A4[] = {
-    { 3, func_802D60E0_7272E0 },
+RandomState2 volcano_MagikarpProbabilities[] = {
+    { 3, volcano_SpawnMagikarp },
     { 7, NULL },
 };
 
 u16 D_802E0EB4_7320B4 = 0;
-s32 D_802E0EB8_7320B8 = 0;
+s32 volcano_EndLevelReason = 0;
 
-ScreenSettings D_802E0EBC_7320BC = {
+ScreenSettings volcano_ScreenSettings = {
     D_803B5000,    /* fb1 */
     D_803DA800,    /* fb2 */
     NULL,          /* fb3 */
@@ -194,7 +161,7 @@ ScreenSettings D_802E0EBC_7320BC = {
     0x00000A99     /* flags*/
 };
 
-SceneSetup D_802E0ED8_7320D8 = {
+SceneSetup volcano_SceneSetup = {
     {
         0,                /* unk_00*/
         omUpdateAll,      /* fnUpdate */
@@ -222,7 +189,7 @@ SceneSetup D_802E0ED8_7320D8 = {
     sizeof(GObj),         /* objectSize */
     0,                    /* numOMMtx */
     0,                    /* unk60 */
-    func_802D6780_727980, /* unk64 */
+    volcano_func_802D6780_727980, /* unk64 */
     0,                    /* numOMAobjs */
     0,                    /* numOMMobjs */
     0,                    /* numOMDobjs */
@@ -231,32 +198,32 @@ SceneSetup D_802E0ED8_7320D8 = {
     0x58,                 /* omSobjSize */
     0,                    /* numOMCameras */
     sizeof(OMCamera),     /* omCameraSize */
-    func_802D6630_727830  /* postInitFunc */
+    volcano_Init  /* postInitFunc */
 };
 
-PokemonDef D_802E0F64_732164 = {
-    0x0000003B,
+PokemonDef volcano_ArcanineDef = {
+    PokemonID_ARCANINE,
     func_802DC018_72D218,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
 
-PokemonDef D_802E0F74_732174 = {
-    0x0000003A,
+PokemonDef volcano_GrowlitheDef = {
+    PokemonID_GROWLITHE,
     func_802DB558_72C758,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
 
-PokemonDef D_802E0F84_732184 = {
-    0x0000006,
+PokemonDef volcano_CharizardDef = {
+    PokemonID_CHARIZARD,
     func_802DD7AC_72E9AC,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
 
-PokemonDef D_802E0F94_732194 = {
-    0x00000406,
+PokemonDef volcano_Pokemon1030Def = {
+    PokemonID_1030,
     func_802DF240_730440,
     pokemonChangeBlock,
     pokemonRemoveOne
@@ -266,20 +233,13 @@ u16 D_802E0FA4_7321A4 = 4;
 
 Vec3f D_802E0FA8_7321A8 = { 0, 0, 0 };
 
-extern HeightMap D_8031D4D0_76E6D0;
-extern WorldSetup D_800FFFB8;
-
-void func_802DFB80_730D80(s32, f32);
-void func_802D61AC_7273AC(GObj*, GroundResult*);
-void func_802E0C28_731E28(void);
-
-void func_802D60E0_7272E0(GObj* obj) {
+void volcano_SpawnMagikarp(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_802E0E94_732094;
+    PokemonDef def = volcano_MagikarpDef;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_MAGIKARP;
@@ -302,11 +262,11 @@ void func_802D60E0_7272E0(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
 }
 
-void func_802D61AC_7273AC(GObj* obj, GroundResult* groundResult) {
+void volcano_HandleCollision(GObj* obj, GroundResult* groundResult) {
     DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
     s32 i;
-    s32 numOptions = ARRAY_COUNT(D_802E0EA4_7320A4);
+    s32 numOptions = ARRAY_COUNT(volcano_MagikarpProbabilities);
     s32 sumWeight;
     s32 randValue;
 
@@ -314,15 +274,15 @@ void func_802D61AC_7273AC(GObj* obj, GroundResult* groundResult) {
         if (groundResult->surfaceType == SURFACE_TYPE_337FB2 && Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 50.0f) {
             sumWeight = 0;
             for (i = 0; i < numOptions; i++) {
-                sumWeight += D_802E0EA4_7320A4[i].weight;
+                sumWeight += volcano_MagikarpProbabilities[i].weight;
             }
             randValue = randRange(sumWeight);
             sumWeight = 0;
             for (i = 0; i < numOptions; i++) {
-                sumWeight += D_802E0EA4_7320A4[i].weight;
+                sumWeight += volcano_MagikarpProbabilities[i].weight;
                 if (sumWeight > randValue) {
-                    if (D_802E0EA4_7320A4[i].func != NULL && !D_802E0EB4_7320B4) {
-                        D_802E0EA4_7320A4[i].func(obj);
+                    if (volcano_MagikarpProbabilities[i].func != NULL && !D_802E0EB4_7320B4) {
+                        volcano_MagikarpProbabilities[i].func(obj);
                         D_802E0EB4_7320B4 = true;
                     }
                     break;
@@ -334,28 +294,28 @@ void func_802D61AC_7273AC(GObj* obj, GroundResult* groundResult) {
     }
 }
 
-void func_802D6344_727544(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonAdd(arg0, arg1, D_802E0D44_731F44);
+void volcano_PokemonAdd(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonAdd(arg0, arg1, volcano_PokemonDefs);
 }
 
-void func_802D6368_727568(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonsChangeBlock(arg0, arg1, D_802E0D44_731F44);
+void volcano_PokemonChangeBlock(WorldBlock* arg0, WorldBlock* arg1) {
+    pokemonsChangeBlock(arg0, arg1, volcano_PokemonDefs);
 }
 
-void func_802D638C_72758C(WorldBlock* arg0) {
-    pokemonRemove(arg0, D_802E0D44_731F44);
+void volcano_PokemonRemove(WorldBlock* arg0) {
+    pokemonRemove(arg0, volcano_PokemonDefs);
 }
 
-void func_802D63B0_7275B0(void) {
+void volcano_InitWorld(void) {
     setHeightMap(&D_8031D4D0_76E6D0);
-    createWorld(&D_800FFFB8, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, func_802D6344_727544, func_802D638C_72758C, func_802D6368_727568);
+    createWorld(&D_800FFFB8, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, volcano_PokemonAdd, volcano_PokemonRemove, volcano_PokemonChangeBlock);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(OBJID_128, OBJID_228, LINK_POKEMON, 5);
 }
 
-void func_802D643C_72763C(s32 arg0) {
-    D_802E0EB8_7320B8 = arg0;
-    func_800A19D8(arg0);
+void volcano_EndLevel(s32 endLevelReason) {
+    volcano_EndLevelReason = endLevelReason;
+    func_800A19D8(endLevelReason);
     PokemonDetector_Disable();
     EnvSound_Cleanup();
     auStopBGM();
@@ -366,16 +326,16 @@ void func_802D643C_72763C(s32 arg0) {
     func_800067DC();
 }
 
-void func_802D64A0_7276A0(GObj* obj) {
+void volcano_func_802D64A0_7276A0(GObj* obj) {
 }
 
-void func_802D64A8_7276A8(s32 arg0) {
+void volcano_Pause(s32 arg0) {
 }
 
-void func_802D64B0_7276B0(WorldBlock* arg0) {
+void volcano_ExitBlock(WorldBlock* arg0) {
     WorldBlock* next;
 
-    if (D_802E0EB8_7320B8 <= 0) {
+    if (volcano_EndLevelReason <= 0) {
         if (arg0->next != NULL) {
             next = arg0->next;
             Items_DisplaceAllItems(
@@ -383,12 +343,12 @@ void func_802D64B0_7276B0(WorldBlock* arg0) {
                 (arg0->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
                 (arg0->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
         } else {
-            func_802D643C_72763C(2);
+            volcano_EndLevel(END_LEVEL_REASON_FINISH);
         }
     }
 }
 
-void func_802D6544_727744(void) {
+void volcano_LoadEffects(void) {
     void* sp1C;
     void* temp_v0;
     void* temp_v0_2;
@@ -408,47 +368,47 @@ void func_802D6544_727744(void) {
     func_800A5DF4(0xC0, 0x30);
 }
 
-void func_802D6630_727830(void) {
+void volcano_Init(void) {
     s32 i;
     u8 r, g, b;
 
-    D_802E0EBC_7320BC.zBuffer = gtlMalloc(0x25800, 0x40);
-    viApplyScreenSettings(&D_802E0EBC_7320BC);
+    volcano_ScreenSettings.zBuffer = gtlMalloc(0x25800, 0x40);
+    viApplyScreenSettings(&volcano_ScreenSettings);
     // clang-format off
     for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
     // clang-format on
     func_8009CE00();
-    omAddGObj(0, func_802D64A0_7276A0, 0, 0x80000000);
+    omAddGObj(OBJID_0, volcano_func_802D64A0_7276A0, LINK_0, 0x80000000);
     Pokemons_Init();
-    func_802D63B0_7275B0();
+    volcano_InitWorld();
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
-    initUI(func_802D64B0_7276B0, func_802DFB80_730D80, NULL, 0, func_802D61AC_7273AC);
-    setEndLevelCallback(func_802D643C_72763C);
-    setPauseCallback(func_802D64A8_7276A8);
-    EnvSound_Init(D_802E0C80_731E80, ARRAY_COUNT(D_802E0C80_731E80));
-    func_802D6544_727744();
+    initUI(volcano_ExitBlock, func_802DFB80_730D80, NULL, 0, volcano_HandleCollision);
+    setEndLevelCallback(volcano_EndLevel);
+    setPauseCallback(volcano_Pause);
+    EnvSound_Init(volcano_EnvSounds, ARRAY_COUNT(volcano_EnvSounds));
+    volcano_LoadEffects();
     PokemonDetector_Create();
     PokemonDetector_Enable();
     func_802E0C28_731E28();
 }
 
-void func_802D6780_727980(s32 arg0) {
+void volcano_func_802D6780_727980(s32 arg0) {
 }
 
-void func_802D6788_727988(void) {
+void volcano_func_802D6788_727988(void) {
     if (!gSPImemOkay || !gSPDmemOkay) {
         setPlayerFlag(PFID_21, true);
     }
 }
 
-s32 func_802D67C4_7279C4(s32 arg0) {
-    D_802E0ED8_7320D8.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) _326C10_VRAM_END;
+s32 volcano_Start(s32 arg0) {
+    volcano_SceneSetup.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) _326C10_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
-    func_802D6788_727988();
-    omSetupScene(&D_802E0ED8_7320D8);
-    if (D_802E0EB8_7320B8 == 6) {
+    volcano_func_802D6788_727988();
+    omSetupScene(&volcano_SceneSetup);
+    if (volcano_EndLevelReason == END_LEVEL_REASON_RETRY) {
         return SCENE_VOLCANO;
     }
     if (func_8009BC68() > 0) {
@@ -458,13 +418,13 @@ s32 func_802D67C4_7279C4(s32 arg0) {
     return SCENE_13;
 }
 
-void func_802D6864_727A64(GObj* obj) {
+void volcano_SpawnArcanine(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_802E0F64_732164;
+    PokemonDef def = volcano_ArcanineDef;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_ARCANINE;
@@ -488,13 +448,13 @@ void func_802D6864_727A64(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D693C_727B3C(GObj* obj) {
+void volcano_SpawnGrowlithe(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_802E0F74_732174;
+    PokemonDef def = volcano_GrowlitheDef;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_GROWLITHE;
@@ -518,7 +478,7 @@ void func_802D693C_727B3C(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D6A14_727C14(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+void volcano_CharmeleonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
     pokemonChangeBlockOnGround(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
@@ -528,7 +488,7 @@ void func_802D6A5C_727C5C(GObj* obj) {
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_802E0F84_732184;
+    PokemonDef def = volcano_CharizardDef;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_CHARIZARD;
@@ -554,7 +514,7 @@ void func_802D6A5C_727C5C(GObj* obj) {
 void func_802D6B2C_727D2C(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 0;
     omEndProcess(NULL);
 }
@@ -562,7 +522,7 @@ void func_802D6B2C_727D2C(GObj* obj) {
 void func_802D6B64_727D64(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 4;
     GET_POKEMON(obj)->miscVars[1].obj = var;
     omEndProcess(NULL);
@@ -571,7 +531,7 @@ void func_802D6B64_727D64(GObj* obj) {
 void func_802D6BB0_727DB0(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, 0x406, &D_802E0F94_732194);
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 1;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -579,18 +539,87 @@ void func_802D6BB0_727DB0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6C38_727E38.s")
+void func_802D6C38_727E38(GObj* obj) {
+    GObj* var;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6CC0_727EC0.s")
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    GET_POKEMON(var)->behavior = 5;
+    GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.z *= 4.0f;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6CFC_727EFC.s")
+void func_802D6CC0_727EC0(GObj* obj) {
+    GObj* var;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6D6C_727F6C.s")
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    GET_POKEMON(var)->behavior = 5;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6E14_728014.s")
+void func_802D6CFC_727EFC(GObj* obj) {
+    GObj* var;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6EA8_7280A8.s")
+    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    GET_POKEMON(var)->behavior = 2;
+    GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.0f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.0f;
+    GET_TRANSFORM(var->data.dobj)->scale.v.z *= 2.0f;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6F38_728138.s")
+s32 func_802D6D6C_727F6C(GObj* obj) {
+    u16 randomValue;
+
+    randomValue = randRange(10);
+    if (D_802E0FA4_7321A4 == 0) {
+        return false;
+    }
+    if (randomValue < 2) {
+        // 20 %
+        omCreateProcess(obj, volcano_SpawnArcanine, 1, 1);
+    } else if (randomValue < 7) {
+        // 60 %
+        omCreateProcess(obj, volcano_SpawnGrowlithe, 1, 1);
+    } else {
+        // 20 %
+        return false;
+    }
+    D_802E0FA4_7321A4--;
+    return true;
+}
+
+void func_802D6E14_728014(GObj* obj) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 hSpeed = pokemon->hSpeed * 0.033;
+    f32 yaw = GET_TRANSFORM(model)->rot.f[2];
+    f32 speedX = sinf(yaw) * hSpeed;
+    f32 speedZ = cosf(yaw) * hSpeed;
+
+    GET_TRANSFORM(model)->pos.v.x += speedX;
+    GET_TRANSFORM(model)->pos.v.z += speedZ;
+}
+
+void func_802D6EA8_7280A8(GObj* obj, f32 heading) {
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    f32 hSpeed = pokemon->hSpeed * 0.033;
+    f32 speedX = sinf(heading) * hSpeed;
+    f32 speedZ = cosf(heading) * hSpeed;
+
+    GET_TRANSFORM(model)->pos.v.x += speedX;
+    GET_TRANSFORM(model)->pos.v.z += speedZ;
+}
+
+f32 func_802D6F38_728138(f32 x, f32 z) {
+    GroundResult result;
+
+    if (getGroundAt(x, z, &result)) {
+        return result.height;
+    }
+    return 0.0f;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/7272E0/func_802D6F68_728168.s")

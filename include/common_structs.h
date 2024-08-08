@@ -48,6 +48,7 @@ typedef struct {
 typedef union {
     f32 field0;
     s32 field1;
+    GObj* obj;
 } misc;
 
 typedef struct PokemonInitData {
@@ -180,6 +181,11 @@ typedef struct RandomState {
     /* 0x00 */ s32 weight;
     /* 0x04 */ GObjFunc func;
 } RandomState; // size = 0x8
+
+typedef struct RandomState2 {
+    /* 0x00 */ u8 weight;
+    /* 0x04 */ GObjFunc func;
+} RandomState2; // size = 0x8
 
 typedef struct {
     /* 0x00 */ u32 id;

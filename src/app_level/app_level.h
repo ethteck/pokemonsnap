@@ -109,6 +109,14 @@ enum MovementFlags {
     MOVEMENT_FLAG_TURN_GRADUALLY = 0x80 // affects only movement along path
 };
 
+enum PitchModifiers {
+    PITCH_MOD_0 = 0,
+    PITCH_MOD_1 = 1,
+    PITCH_MOD_2 = 2,
+    PITCH_MOD_3 = 3,
+    PITCH_MOD_4 = 4
+};
+
 #define ITEM_CMD_REMOVE 100
 
 #define CAMERA_CMD_BLINK 1
@@ -233,6 +241,7 @@ void Pokemon_RunToTarget(GObj*, f32, f32, u32);
 GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnOnGroundDlLink4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData);
+void Pokemon_ChangeBlockAndRemove(GObj* obj, f32 prevBlockX, f32 prevBlockY, f32 prevBlockZ, f32 currBlockX, f32 currBlockY, f32 currBlockZ);
 void Pokemons_Init(void);
 
 void EnvSound_Init(EnvSoundData* data, s32 numEntries);

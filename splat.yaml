@@ -835,7 +835,7 @@ segments:
     bss_size: 0x170
     exclusive_ram_id: level
     subsegments:
-    - [0x7272E0, c]
+    - [0x7272E0, c, main]
     - [0x728490, c]
     - [0x729CA0, c]
     - [0x72AEF0, pad]
@@ -857,9 +857,10 @@ segments:
     - [0x730480, c]
     - [0x730D80, c]
     - [0x731860, c]
-    - [0x731E80, bin] # , data]
+    - [0x731E80, .data, main]
+    - [0x7321C0, data]
 
-    - [0x734A10, .rodata, 7272E0]
+    - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, 728490]
     - [0x734A50, .rodata, 729CA0]
     - [0x734A90, .rodata, 72AF00]

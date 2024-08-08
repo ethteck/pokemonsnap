@@ -182,19 +182,19 @@ void EnvSound_PlaySoundInt(GObj* obj, u8 category, s32 soundID, u8 pitchModifier
     pitchModifier = pitchModifier > 0x7F ? 0x7F : pitchModifier;
 
     switch (pitchModifier) {
-        case 0:
+        case PITCH_MOD_0:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 1.0f, 0);
             break;
-        case 1:
+        case PITCH_MOD_1:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.8f, 0);
             break;
-        case 2:
+        case PITCH_MOD_2:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.7f, 0);
             break;
-        case 3:
+        case PITCH_MOD_3:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.75f, 0);
             break;
-        case 4:
+        case PITCH_MOD_4:
             ptr->soundHandle = auPlaySoundWithParams(soundID, volume, pan, 0.5f, 0);
             break;
         default:

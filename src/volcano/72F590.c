@@ -55,6 +55,6 @@ void func_802DE4C0_72F6C0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void spawnKoffingSmoke(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
+void func_802DE52C_72F72C(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     Pokemon_Spawn(gObjID, id, roomA, roomB, spawn, &koffingSmokeData);
 }

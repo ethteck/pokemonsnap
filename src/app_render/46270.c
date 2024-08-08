@@ -2,6 +2,7 @@
 #include "os_cache.h"
 #include "camera_check/camera_check.h"
 #include "unk_end_level_7/unk_end_level_7.h"
+#include "volcano/volcano.h"
 
 #include "ld_addrs.h"
 
@@ -296,7 +297,7 @@ void start_scene_manager(s32 arg0) {
                 func_800AAF20();
                 func_8009AE0C(SCENE_VOLCANO);
                 setLevelId(SCENE_VOLCANO);
-                sceneId = func_802D67C4_7279C4(sceneId);
+                sceneId = volcano_Start(sceneId);
                 break;
             case SCENE_VALLEY:
                 func_800AAF20();

@@ -41,7 +41,7 @@ void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct 
 }
 
 void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2) {
-    ModelTreeDef* treePtr = arg2.d.treeDef;
+    UnkEC64Arg3* treePtr = arg2.d.treeDef;
 
     if (block->blockModel->fnRender == &renRenderModelTypeA ||
         block->blockModel->fnRender == &renRenderModelTypeB)

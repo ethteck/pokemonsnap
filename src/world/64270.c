@@ -155,7 +155,7 @@ Gfx D_800E9020_667D0[] =
 // ROM: 0x668E8 - 0x6696C
 // VRAM: 0x800E9138 - 0x800E91BC
 /*
-ModelTreeDef D_800E9138[3] = {
+UnkEC64Arg3 D_800E9138[3] = {
     {
         0,
         NULL,

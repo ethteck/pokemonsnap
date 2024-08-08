@@ -1233,7 +1233,7 @@ f32 animGetModelParamValue(DObj* dobj, s32 paramID) {
     }
 }
 
-f32 func_8000EB98(ModelTreeDef* arg0, s32 paramID) {
+f32 func_8000EB98(UnkEC64Arg3* arg0, s32 paramID) {
     switch (paramID) {
         case ANIM_PARAM_ROLL:
             return arg0->rotation.x;
@@ -1256,7 +1256,7 @@ f32 func_8000EB98(ModelTreeDef* arg0, s32 paramID) {
     }
 }
 
-s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* aobjList, ModelTreeDef* arg5,
+s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* aobjList, UnkEC64Arg3* arg5,
                        s32 paramID, s32 setRate, Vec3f* interpPos, s32* interpPosReady) {
     AObj* aobj;
 
@@ -1461,7 +1461,7 @@ void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, AObj*
 void anim_func_8000EECC(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32* arg4, struct AObj* arg5);
 #endif
 
-f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, ModelTreeDef* arg3, s32 setRate, f32 duration,
+f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* arg3, s32 setRate, f32 duration,
                        f32 arg6, f32 arg7, f32 arg8) {
     AObj* origAobjList;
     AObj* spC0;
@@ -1572,7 +1572,7 @@ f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, ModelTreeDef* 
     return spA4;
 }
 
-f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, ModelTreeDef* arg3, s32 arg4, f32 arg5,
+f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3, s32 arg4, f32 arg5,
                        f32 arg6, f32 arg7, f32 arg8, f32 arg9) {
     f32 ret;
     UNUSED f32 tmp;
@@ -1632,7 +1632,7 @@ f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, ModelTreeDef* arg3,
 }
 
 #ifdef NON_MATCHING
-void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, ModelTreeDef* arg3) {
+void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64Arg3* arg3) {
     f32 value;
     DObj* dobj;
     s32 i;
@@ -1709,7 +1709,7 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, ModelTre
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/anim/anim_func_8000F8E4.s")
-void anim_func_8000F8E4(GObj* arg0, AnimCmd** arg1, f32 arg2, ModelTreeDef* arg3);
+void anim_func_8000F8E4(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3);
 #endif
 
 void anim_func_8000FAFC(DObj* dobj) {
@@ -1744,7 +1744,7 @@ DObj* anim_func_8000FB94(DObj* arg0, void* arg1) {
     return dobj;
 }
 
-void anim_func_8000FBC4(GObj* obj, ModelTreeDef* arg1, DObj** arg2) {
+void anim_func_8000FBC4(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2) {
     int i;
     DObj* dobj;
     s32 trunc;
@@ -1913,7 +1913,7 @@ void anim_func_8000FE08(DObj* arg0, u8 arg1, u8 arg2, u8 arg3, s32 arg4) {
     }
 }
 
-void anim_func_800100A0(GObj* obj, ModelTreeDef* arg1, DObj** arg2, u8 arg3, u8 arg4, u8 arg5) {
+void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 arg4, u8 arg5) {
     int i;
     DObj* dobj;
     s32 trunc;
@@ -1949,7 +1949,7 @@ void anim_func_800100A0(GObj* obj, ModelTreeDef* arg1, DObj** arg2, u8 arg3, u8 
     }
 }
 
-void anim_func_80010230(GObj* arg0, ModelTreeDef* arg1, Texture*** arg2, DObj** arg3,
+void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** arg3,
                         u8 arg4, u8 arg5, u8 arg6) {
     int i;
     DObj* dobj;
@@ -2021,7 +2021,7 @@ void anim_func_80010404(GObj* arg0, Texture*** arg1) {
     }
 }
 
-void anim_func_80010498(GObj* obj, ModelTreeDef* arg1) {
+void anim_func_80010498(GObj* obj, UnkEC64Arg3* arg1) {
     DObj* dobj;
 
     dobj = obj->data.dobj;

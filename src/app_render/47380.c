@@ -21,7 +21,7 @@ typedef struct Unk8009C604 {
 typedef struct Unk1C {
     /* 0x00 */ u32 id;
     /* 0x04 */ f32 scale;
-    /* 0x08 */ ModelTreeDef* unk_8;
+    /* 0x08 */ UnkEC64Arg3* unk_8;
     /* 0x0C */ Texture*** unk_C;
     /* 0x10 */ void (*unk_10)(GObj*);
     /* 0x14 */ AnimCmd** unk_14;
@@ -31,7 +31,7 @@ typedef struct Unk1C {
 typedef struct UnkV0 {
     u32 unk_00;
     f32 unk_04;
-    ModelTreeDef* unk_08;
+    UnkEC64Arg3* unk_08;
     Texture*** unk_0C;
     void (*unk_10)(GObj*);
 } UnkV0; // substruct of Unk1C?
@@ -243,22 +243,22 @@ extern s32 D_800BDF60;
 extern s32 D_800BDF68[];
 
 extern Texture** D_800E8EB8;
-extern ModelTreeDef D_800E9138;
+extern UnkEC64Arg3 D_800E9138;
 extern UNK_PTR* D_800E9168;
 extern AnimCmd** D_800E91C0;
 extern Texture** D_800EAC58;
-extern ModelTreeDef D_800EAED0;
+extern UnkEC64Arg3 D_800EAED0;
 extern UNK_PTR* D_800EAF00;
 extern AnimCmd** D_800EAF60;
 extern AnimCmd* D_800EAFB0;
 extern AnimCmd** D_800EB0C0;
-extern ModelTreeDef D_800EB430;
+extern UnkEC64Arg3 D_800EB430;
 extern UNK_PTR* D_800EB460;
 extern Texture** D_800EB510;
 extern AnimCmd* D_800ED5B0;
 extern AnimCmd** D_800ED6B0;
 extern UNK_PTR* D_800EDAE0;
-extern ModelTreeDef D_800EDAB0;
+extern UnkEC64Arg3 D_800EDAB0;
 extern Texture** D_800EDB90;
 
 extern WorldSetup D_800F5DA0;
@@ -1101,7 +1101,7 @@ void func_8009D8A8(OMCamera* cam, PhotoData* photoData) {
     func_800A1E6C(&sp24);
 }
 
-GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, ModelTreeDef* arg2, Texture*** arg3, void (*arg4)(GObj*)) {
+GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture*** arg3, void (*arg4)(GObj*)) {
     GObj* gobj;
     Unkfunc_8009BDDC* v00;
     s32 i;
@@ -1240,7 +1240,7 @@ void func_8009DEF0(PhotoData* photoData) {
     }
 }
 
-GObj* func_8009E050(ItemPhotoData* arg0, ModelTreeDef* arg1, Texture*** arg2, void (*arg3)(GObj*)) {
+GObj* func_8009E050(ItemPhotoData* arg0, UnkEC64Arg3* arg1, Texture*** arg2, void (*arg3)(GObj*)) {
     GObj* gobj;
     DObj* dobj;
 

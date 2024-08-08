@@ -100,7 +100,7 @@ DObj* func_800A8764(DObj* dobj) {
     return dobj;
 }
 
-void func_800A87B0(GObj* obj, ModelTreeDef* treeDef, DObj** nodeList) {
+void func_800A87B0(GObj* obj, UnkEC64Arg3* treeDef, DObj** nodeList) {
     int i;
     DObj* dobj;
     DObj* sp44[18];
@@ -128,7 +128,7 @@ void func_800A87B0(GObj* obj, ModelTreeDef* treeDef, DObj** nodeList) {
     }
 }
 
-GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, ModelTreeDef* treeDef, DObj** nodeList) {
+GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, UnkEC64Arg3* treeDef, DObj** nodeList) {
     s32 unused;
     GObj* gobj;
     s32 cameraTag;
@@ -153,7 +153,7 @@ GObj* func_800A88E4(void (*procFunc)(GObj*), s32 link, s32 dllink, ModelTreeDef*
     return gobj;
 }
 
-GObj* func_800A89B4(void (*procFunc)(GObj*), s32 link, s32 dllink, ModelTreeDef* treeDef, DObj** nodeList) {
+GObj* func_800A89B4(void (*procFunc)(GObj*), s32 link, s32 dllink, UnkEC64Arg3* treeDef, DObj** nodeList) {
     s32 unused;
     GObj* gobj;
     s32 cameraTag;

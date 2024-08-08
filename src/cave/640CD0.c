@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "cave.h"
 
 extern AnimationHeader D_802C6538_6489E8;
 extern AnimationHeader D_802C654C_6489FC;
@@ -36,7 +37,7 @@ void func_802BE820_640CD0(GObj* obj) {
 
     pokemon = Pokemon_AddAtGeo(obj, PokemonID_DITTO, &def);
 
-    GET_TRANSFORM_BASE(pokemon->data.dobj)->xform.rot.f[2] = GET_TRANSFORM_BASE(obj->data.dobj)->xform.rot.f[2];
+    GET_TRANSFORM(pokemon->data.dobj)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2];
 
     omEndProcess(NULL);
 }

@@ -1,13 +1,14 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
-
-void func_802BF68C_641B3C(GObj*);
+#include "cave.h"
 
 extern AnimationHeader D_802C6A18_648EC8;
 extern AnimationHeader D_802C6A2C_648EDC;
 extern InteractionHandler D_802C6AD8_648F88[];
 extern PokemonInitData D_802C6B5C_64900C;
+
+void func_802BF68C_641B3C(GObj*);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/641A50/func_802BF5A0_641A50.s")
 

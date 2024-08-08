@@ -229,6 +229,7 @@ void Pokemon_SetAnimation(GObj*, AnimationHeader*);
 void Pokemon_ForceAnimation(GObj*, AnimationHeader*);
 void Pokemon_SetAnimationAtTime(GObj* obj, AnimationHeader* header, f32 time);
 void Pokemon_SetAnimationCommon(GObj*, AnimationHeader*, f32 start, s32 forceUpdate);
+f32 Pokemon_GetDistance(GObj* obj1, GObj* obj2);
 void Pokemon_WaitForFlag(GObj* obj, u32 flags);
 void Pokemon_RunCleanup(GObj* obj);
 GObj* Pokemon_AddAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);

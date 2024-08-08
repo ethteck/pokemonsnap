@@ -73,7 +73,7 @@ void func_beach_802C7E70(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     obj->flags |= 2 | 1;
     if (pokemon->behavior == 2) {
         pokemon = pokemon;
@@ -102,7 +102,7 @@ void func_beach_802C7F1C(GObj* obj) {
 void func_beach_802C7F74(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     obj->flags |= 2 | 1;
     Pokemon_ForceAnimation(obj, &D_beach_802CCE08);
 
@@ -111,7 +111,7 @@ void func_beach_802C7F74(GObj* obj) {
     // clang-format on
 
     Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_WAIT_ENDED);
-    pokemon->tangible = 1;
+    pokemon->tangible = true;
     obj->flags = 0;
     Pokemon_ForceAnimation(obj, &D_beach_802CCDE8);
     Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

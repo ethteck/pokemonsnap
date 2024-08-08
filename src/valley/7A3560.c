@@ -19,7 +19,7 @@ void func_802C9FD0_7A3560(GObj* arg0) {
     UNUSED s32 padding[3];
     Pokemon* pokemon = GET_POKEMON(arg0);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     arg0->flags |= 0x2 | 0x1;
     pokemon->transitionGraph = D_802D2FF8_7AC588;
     Pokemon_WaitForFlag(arg0, 0);
@@ -38,7 +38,7 @@ void func_802C9FD0_7A3560(GObj* arg0) {
 //     temp_v1_2 = temp_v1 + 0x28;
 //     temp_v1_2->unk_8 = temp_v1->unk_30 * 15.0f;
 //     temp_v1_2->unk_C = temp_v1->unk_34 * 10.0f;
-//     pokemon->tangible = 1;
+//     pokemon->tangible = true;
 //     arg0->flags = 0;
 //     Pokemon_ForceAnimation(arg0, &D_802D2F8C_7AC51C);
 //     pokemon->transitionGraph = NULL;

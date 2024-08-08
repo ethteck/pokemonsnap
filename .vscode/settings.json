@@ -19,7 +19,8 @@
         "string": "c",
         "algorithm": "c",
         "type_traits": "c",
-        "ostream": "c"
+        "ostream": "c",
+        "optional": "c"
     },
     "files.insertFinalNewline": true,
 }

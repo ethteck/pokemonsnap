@@ -26,7 +26,7 @@ void func_802C95E4_7A2B74(GObj* arg0) {
     UNUSED s32 padding[3];
     Pokemon* pokemon = GET_POKEMON(arg0);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     arg0->flags |= 0x2 | 0x1;
     pokemon->transitionGraph = D_802D2DAC_7AC33C;
     Pokemon_WaitForFlag(arg0, 0);
@@ -38,7 +38,7 @@ void func_802C9634_7A2BC4(GObj* arg0) {
     Pokemon* pokemon = GET_POKEMON(arg0);
 
     D_802D2D78_7AC308 = 1;
-    pokemon->tangible = 1;
+    pokemon->tangible = true;
     arg0->flags = 0;
     Pokemon_SetAnimation(arg0, &D_802D2D10_7AC2A0);
     pokemon->transitionGraph = NULL;

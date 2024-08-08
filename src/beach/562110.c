@@ -20,7 +20,7 @@ void func_beach_802CA0F4(GObj* obj) {
 void func_beach_802CA148(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
     pokemon->transitionGraph = D_beach_802CD858;
     Pokemon_WaitForFlag(obj, 0);

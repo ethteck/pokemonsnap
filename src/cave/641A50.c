@@ -32,7 +32,7 @@ void func_802BF5A0_641A50(GObj* obj) {
     s32 sp3C;
     f32 sp38;
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
 
     while (true) {
@@ -43,7 +43,7 @@ void func_802BF5A0_641A50(GObj* obj) {
         ohWait(1);
     }
 
-    pokemon->tangible = 1;
+    pokemon->tangible = true;
     obj->flags = 0;
     pokemon->forbiddenGround = &D_802C6AA4_648F54;
     if (obj) {

@@ -113,7 +113,7 @@ typedef struct {
     /* 0x004 */ char unk_04[0x4];
     /* 0x008 */ u16 flags;
     /* 0x00A */ char unk_0A[0x6];
-    /* 0x010 */ s32 tangible;
+    /* 0x010 */ bool tangible;
     /* 0x014 */ s32 loopCount;
     /* 0x018 */ s32 unk_18;
     /* 0x01C */ Vec3f pos1;

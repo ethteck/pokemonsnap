@@ -52,7 +52,7 @@ void func_beach_802CAD58(GObj* obj) {
 void func_beach_802CAD7C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = 0;
+    pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
     pokemon->transitionGraph = D_beach_802CDC80;
     Pokemon_WaitForFlag(obj, 0);
@@ -62,7 +62,7 @@ void func_beach_802CAD7C(GObj* obj) {
 void func_beach_802CADCC(GObj* ob) {
     Pokemon* pokemon = GET_POKEMON(ob);
 
-    pokemon->tangible = 1;
+    pokemon->tangible = true;
     ob->flags = 0;
     Pokemon_StartPathProc(ob, func_beach_802CAEB0);
     Pokemon_SetState(ob, func_beach_802CAE14);
@@ -72,7 +72,7 @@ void func_beach_802CAE14(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = 1;
+    pokemon->tangible = true;
     obj->flags = 0;
     Pokemon_SetAnimation(obj, &D_beach_802CDBAC);
     pokemon->transitionGraph = D_beach_802CDCA0;

@@ -17,6 +17,32 @@ extern AnimCmd** D_8015DD50[];
 extern AnimCmd** D_8015F2B0[];
 extern AnimCmd** D_8015C800[];
 
+void func_802D893C_729B3C(GObj*);
+void func_802D89B0_729BB0(GObj*);
+void func_802D8018_729218(GObj*);
+void func_802D8118_729318(GObj*);
+void func_802D7F60_729160(GObj*);
+void func_802D8218_729418(GObj*);
+void func_802D8288_729488(GObj*);
+void func_802D859C_72979C(GObj*);
+void func_802D8830_729A30(GObj*);
+void func_802D7FA8_7291A8(GObj*);
+void func_802D82F8_7294F8(GObj*);
+void func_802D8750_729950(GObj*);
+void func_802D87C0_7299C0(GObj*);
+void func_802D8368_729568(GObj*);
+void func_802D85C0_7297C0(GObj*);
+void func_802D8868_729A68(GObj*);
+void func_802D88D0_729AD0(GObj*);
+void func_802D8620_729820(GObj*);
+void func_802D86E0_7298E0(GObj*);
+void func_802D80BC_7292BC(GObj*);
+void func_802D81BC_7293BC(GObj*);
+void func_802D842C_72962C(GObj*);
+void func_802D8478_729678(GObj*);
+void func_802D84FC_7296FC(GObj*);
+void func_802D8694_729894(GObj*);
+
 s32 D_802E1510_732710[] = { 0, 0x81, 0x82 };
 s32 D_802E151C_73271C[] = { 0x80, 0x81, 0x82, 0x83 };
 s32 D_802E152C_73272C[] = { 0x15b };
@@ -70,32 +96,6 @@ AnimationHeader D_802E15A4_7327A4 = {
     D_8015C800,
     D_802E153C_73273C
 };
-
-void func_802D893C_729B3C(GObj*);
-void func_802D89B0_729BB0(GObj*);
-void func_802D8018_729218(GObj*);
-void func_802D8118_729318(GObj*);
-void func_802D7F60_729160(GObj*);
-void func_802D8218_729418(GObj*);
-void func_802D8288_729488(GObj*);
-void func_802D859C_72979C(GObj*);
-void func_802D8830_729A30(GObj*);
-void func_802D7FA8_7291A8(GObj*);
-void func_802D82F8_7294F8(GObj*);
-void func_802D8750_729950(GObj*);
-void func_802D87C0_7299C0(GObj*);
-void func_802D8368_729568(GObj*);
-void func_802D85C0_7297C0(GObj*);
-void func_802D8868_729A68(GObj*);
-void func_802D88D0_729AD0(GObj*);
-void func_802D8620_729820(GObj*);
-void func_802D86E0_7298E0(GObj*);
-void func_802D80BC_7292BC(GObj*);
-void func_802D81BC_7293BC(GObj*);
-void func_802D842C_72962C(GObj*);
-void func_802D8478_729678(GObj*);
-void func_802D84FC_7296FC(GObj*);
-void func_802D8694_729894(GObj*);
 
 InteractionHandler D_802E15B8_7327B8[] = {
     { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
@@ -487,7 +487,7 @@ void func_802D893C_729B3C(GObj* obj) {
 void func_802D89B0_729BB0(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
-    InteractionHandler saved[3] = D_802E18C8_732AC8; // why??
+    InteractionHandler saved[3] = D_802E18C8_732AC8;
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);

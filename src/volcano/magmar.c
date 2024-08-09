@@ -25,7 +25,7 @@ extern AnimCmd** D_8013FA30[];
 
 extern GObj* D_802E1A30_732C30;
 
-void func_802D73A8_7285A8(GObj*);
+void volcano_magmar_StateInitial(GObj*);
 void func_802D7E90_729090(GObj*);
 void func_802D7510_728710(GObj*);
 void func_802D7584_728784(GObj*);
@@ -238,20 +238,20 @@ InteractionHandler D_802E14A4_7326A4[] = {
     { POKEMON_CMD_58, NULL, NULL, NULL },
 };
 
-PokemonAnimationSetup D_802E14C4_7326C4 = {
+PokemonAnimationSetup volcano_magmar_AnimSetup = {
     &D_802E0FD8_7321D8,
-    func_802D73A8_7285A8,
+    volcano_magmar_StateInitial,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E14D8_7326D8 = {
+PokemonInitData volcano_magmar_InitData = {
     D_80323C30,
     D_8031F238,
     renderPokemonModelTypeJFogged,
-    &D_802E14C4_7326C4,
+    &volcano_magmar_AnimSetup,
     { 1.3, 1.3, 1.3 },
     { 0, 110, 0 },
     68,
@@ -292,7 +292,7 @@ void func_802D7290_728490(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_802D73A8_7285A8(GObj* obj) {
+void volcano_magmar_StateInitial(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -334,7 +334,8 @@ void func_802D7510_728710(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E10C4_7322C4;
-    Pokemon_WaitForFlag(obj, 1);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_SetStateRandom(obj, D_802E1484_732684);
 }
 
@@ -346,6 +347,7 @@ void func_802D7584_728784(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E10C4_7322C4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_SetStateRandom(obj, D_802E1484_732684);
 }
 
@@ -358,6 +360,7 @@ void func_802D75F4_7287F4(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802D7698_728898);
     pokemon->transitionGraph = D_802E1154_732354;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802D7510_728710);
     }
@@ -584,7 +587,7 @@ void func_802D7D84_728F84(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
     pokemon->transitionGraph = D_802E14A4_7326A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     Pokemon_SetState(obj, func_802D7510_728710);
 }
 
@@ -600,11 +603,11 @@ void func_802D7E90_729090(GObj* obj) { \
     Pokemon_SetAnimation(obj, &D_802E103C_73223C);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     Pokemon_SetAnimation(obj, &D_802E1050_732250);
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_802D7F28_729128(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E14D8_7326D8);
+GObj* volcano_magmar_Init(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &volcano_magmar_InitData);
 }

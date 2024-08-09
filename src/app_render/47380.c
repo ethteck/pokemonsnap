@@ -262,7 +262,7 @@ extern UnkEC64Arg3 D_800EDAB0;
 extern Texture** D_800EDB90;
 
 extern WorldSetup D_800F5DA0;
-extern WorldSetup D_800FFFB8;
+extern WorldSetup volcano_WorldSetup;
 extern WorldSetup D_80100720;
 extern WorldSetup D_8011E6CC;
 extern WorldSetup D_8012A0E8;
@@ -976,7 +976,7 @@ void func_8009D37C(u8 levelID) {
             D_800BDF2C.a = 0;
             break;
         case SCENE_VOLCANO:
-            func_8009D184(&D_800FFFB8);
+            func_8009D184(&volcano_WorldSetup);
             func_8009D1E8((u32) ACF9A0_ROM_START, (u32) ACF9A0_ROM_END, (s32) &D_801CF770);
             func_8009D21C(0, &D_801CF770);
             D_800BDF2C.r = 0xFF;

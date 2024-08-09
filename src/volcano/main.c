@@ -54,7 +54,7 @@ extern EnvSoundData volcano_EnvSounds[] = {
 
 PokemonDef volcano_PokemonDefs[] = {
     { PokemonID_MAGMAR,
-      func_802D7F28_729128,
+      volcano_magmar_Init,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_RAPIDASH,
@@ -308,7 +308,7 @@ void volcano_PokemonRemove(WorldBlock* arg0) {
 
 void volcano_InitWorld(void) {
     setHeightMap(&D_8031D4D0_76E6D0);
-    createWorld(&D_800FFFB8, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, volcano_PokemonAdd, volcano_PokemonRemove, volcano_PokemonChangeBlock);
+    createWorld(&volcano_WorldSetup, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, volcano_PokemonAdd, volcano_PokemonRemove, volcano_PokemonChangeBlock);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(OBJID_128, OBJID_228, LINK_POKEMON, 5);
 }

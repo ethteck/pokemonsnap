@@ -1,109 +1,109 @@
 #include "volcano/volcano.h"
 
-extern Texture** D_8031F238[];
-extern UnkEC64Arg3 D_80323C30[];
+extern UnkEC64Arg3 volcano_magmar_assetModel[];
+extern Texture** volcano_magmar_assetMaterials[];
 
-extern AnimCmd* D_80133BF0[];
-extern AnimCmd* D_80132FD0[];
-extern AnimCmd* D_80136140[];
-extern AnimCmd* D_80137800[];
-extern AnimCmd* D_80138890[];
-extern AnimCmd* D_80138FD0[];
-extern AnimCmd* D_80139AD0[];
-extern AnimCmd* D_8013AB20[];
-extern AnimCmd* D_8013C2B0[];
-extern AnimCmd* D_8013D460[];
+extern AnimCmd* volcano_magmar_assetAnimModel1[];
+extern AnimCmd* volcano_magmar_assetAnimModel2[];
+extern AnimCmd* volcano_magmar_assetAnimModel3[];
+extern AnimCmd* volcano_magmar_assetAnimModel4[];
+extern AnimCmd* volcano_magmar_assetAnimModel5[];
+extern AnimCmd* volcano_magmar_assetAnimModel6[];
+extern AnimCmd* volcano_magmar_assetAnimModel7[];
+extern AnimCmd* volcano_magmar_assetAnimModel8[];
+extern AnimCmd* volcano_magmar_assetAnimModel9[];
+extern AnimCmd* volcano_magmar_assetAnimModel10[];
 
-extern AnimCmd** D_8013E640[];
-extern AnimCmd** D_8013E770[];
-extern AnimCmd** D_8013EE20[];
-extern AnimCmd** D_8013ECF0[];
-extern AnimCmd** D_8013F190[];
-extern AnimCmd** D_8013F480[];
-extern AnimCmd** D_8013F6E0[];
-extern AnimCmd** D_8013FA30[];
+extern AnimCmd** volcano_magmar_assetAnimMat1[];
+extern AnimCmd** volcano_magmar_assetAnimMat2[];
+extern AnimCmd** volcano_magmar_assetAnimMat4[];
+extern AnimCmd** volcano_magmar_assetAnimMat3[];
+extern AnimCmd** volcano_magmar_assetAnimMat6[];
+extern AnimCmd** volcano_magmar_assetAnimMat7[];
+extern AnimCmd** volcano_magmar_assetAnimMat8[];
+extern AnimCmd** volcano_magmar_assetAnimMat9[];
 
 extern GObj* D_802E1A30_732C30;
 
-void func_802D73A8_7285A8(GObj*);
+void volcano_magmar_StateInitial(GObj*);
 void func_802D7E90_729090(GObj*);
-void func_802D7510_728710(GObj*);
-void func_802D7584_728784(GObj*);
-void func_802D75F4_7287F4(GObj*);
-void func_802D76F4_7288F4(GObj*);
-void func_802D77BC_7289BC(GObj*);
-void func_802D7830_728A30(GObj*);
+void volcano_magmar_Idle1(GObj*);
+void volcano_magmar_Idle2(GObj*);
+void volcano_magmar_Idle3(GObj*);
+void volcano_magmar_HitByPB(GObj*);
+void volcano_magmar_HitByApple(GObj*);
+void volcano_magmar_AffectedByPB(GObj*);
 void func_802D7CB4_728EB4(GObj*);
-void func_802D7A94_728C94(GObj*);
-void func_802D7B54_728D54(GObj*);
-void func_802D7A10_728C10(GObj*);
-void func_802D78A4_728AA4(GObj*);
+void volcano_magmar_HearsFlute(GObj*);
+void volcano_magmar_InteractWithPokemon(GObj*);
+void volcano_magmar_SearchApple(GObj*);
+void volcano_magmar_DoSearchApple(GObj*);
 void func_802D7458_728658(GObj*);
-void func_802D7698_728898(GObj*);
+void volcano_magmar_Walk(GObj*);
 void func_802D7A34_728C34(GObj*);
-void func_802D798C_728B8C(GObj*);
+void volcano_magmar_RunToApple(GObj*);
 void func_802D7B08_728D08(GObj*);
-void func_802D7D84_728F84(GObj*);
+void volcano_magmar_BurnCharmander(GObj*);
 void func_802D7C30_728E30(GObj*);
 
-s32 D_802E0FC0_7321C0[] = { 0x11b };
-s32 D_802E0FC4_7321C4[] = { 0x11c };
-s32 D_802E0FC8_7321C8[] = { 0x11d };
-s32 D_802E0FCC_7321CC[] = { 0x11e };
-s32 D_802E0FD0_7321D0[] = { 0x11f, 0x8d };
+s32 volcano_magmar_Sounds8[] = { SOUND_ID_283 };
+s32 volcano_magmar_Sounds10[] = { SOUND_ID_284 };
+s32 volcano_magmar_Sounds7[] = { SOUND_ID_285 };
+s32 volcano_magmar_Sounds9[] = { SOUND_ID_286 };
+s32 volcano_magmar_Sounds2[] = { SOUND_ID_287, SOUND_ID_141 };
 
-AnimationHeader D_802E0FD8_7321D8 = {
+AnimationHeader volcano_magmar_animIdle1 = {
     0.45,
     50,
-    D_80137800,
-    D_8013EE20,
+    volcano_magmar_assetAnimModel4,
+    volcano_magmar_assetAnimMat4,
     NULL
 };
 
-AnimationHeader D_802E0FEC_7321EC = {
+AnimationHeader volcano_magmar_animIdle2 = {
     0.4,
     60,
-    D_80138FD0,
-    D_8013F190,
+    volcano_magmar_assetAnimModel6,
+    volcano_magmar_assetAnimMat6,
     NULL
 };
 
-AnimationHeader D_802E1000_732200 = {
+AnimationHeader volcano_magmar_animIdle3 = {
     0.6,
     60,
-    D_80132FD0,
-    D_8013E640,
+    volcano_magmar_assetAnimModel1,
+    volcano_magmar_assetAnimMat1,
     NULL
 };
 
 AnimationHeader D_802E1014_732214 = {
     1,
     30,
-    D_80136140,
-    D_8013ECF0,
+    volcano_magmar_assetAnimModel3,
+    volcano_magmar_assetAnimMat3,
     NULL
 };
 
 AnimationHeader D_802E1028_732228 = {
     0.7,
     90,
-    D_8013AB20,
-    D_8013F6E0,
-    D_802E0FC0_7321C0
+    volcano_magmar_assetAnimModel8,
+    volcano_magmar_assetAnimMat8,
+    volcano_magmar_Sounds8
 };
 
 AnimationHeader D_802E103C_73223C = {
     0.6,
     60,
-    D_8013D460,
+    volcano_magmar_assetAnimModel10,
     NULL,
-    D_802E0FC4_7321C4
+    volcano_magmar_Sounds10
 };
 
 AnimationHeader D_802E1050_732250 = {
     0.5,
     20,
-    D_80138890,
+    volcano_magmar_assetAnimModel5,
     NULL,
     NULL
 };
@@ -111,158 +111,158 @@ AnimationHeader D_802E1050_732250 = {
 AnimationHeader D_802E1064_732264 = {
     0.35,
     52,
-    D_80139AD0,
-    D_8013F480,
-    D_802E0FC8_7321C8
+    volcano_magmar_assetAnimModel7,
+    volcano_magmar_assetAnimMat7,
+    volcano_magmar_Sounds7
 };
 
 AnimationHeader D_802E1078_732278 = {
     0.35,
     60,
-    D_8013C2B0,
-    D_8013FA30,
-    D_802E0FCC_7321CC
+    volcano_magmar_assetAnimModel9,
+    volcano_magmar_assetAnimMat9,
+    volcano_magmar_Sounds9
 };
 
 AnimationHeader D_802E108C_73228C = {
     0.5,
     145,
-    D_80133BF0,
-    D_8013E770,
-    D_802E0FD0_7321D0
+    volcano_magmar_assetAnimModel2,
+    volcano_magmar_assetAnimMat2,
+    volcano_magmar_Sounds2
 };
 
 GObj* D_802E10A0_7322A0 = NULL;
 
-InteractionHandler D_802E10A4_7322A4[] = {
-    { POKEMON_CMD_30, func_802D7510_728710, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler volcano_magmar_tgWaitForCmd30[] = {
+    { POKEMON_CMD_30, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E10C4_7322C4[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_15, func_802D7A10_728C10, NULL, NULL },
-    { POKEMON_CMD_5, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_6, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_7, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler volcano_magmar_tgIdle[] = {
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1154_732354[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_15, func_802D7A10_728C10, NULL, NULL },
-    { POKEMON_CMD_5, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_6, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_7, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_26, func_802D7B54_728D54, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler volcano_magmar_tgIdle3[] = {
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E11F4_7323F4[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_21, func_802D7510_728710, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_5, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_6, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_7, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_26, func_802D7B54_728D54, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler volcano_magmar_tgEatingApple[] = {
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_21, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1294_732494[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_21, func_802D7510_728710, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_5, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_6, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_7, func_802D7A94_728C94, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_21, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1324_732524[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1374_732574[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_15, func_802D7A10_728C10, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E13C4_7325C4[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E13F4_7325F4[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1434_732634[] = {
-    { POKEMON_CMD_9, func_802D76F4_7288F4, NULL, NULL },
-    { POKEMON_CMD_13, func_802D77BC_7289BC, NULL, NULL },
-    { POKEMON_CMD_10, func_802D7830_728A30, NULL, NULL },
-    { POKEMON_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E1484_732684[] = {
-    { 100, func_802D7510_728710 },
-    { 100, func_802D7584_728784 },
-    { 100, func_802D75F4_7287F4 },
+RandomState volcano_magmar_IdleStates[] = {
+    { 100, volcano_magmar_Idle1 },
+    { 100, volcano_magmar_Idle2 },
+    { 100, volcano_magmar_Idle3 },
     { 0, NULL },
 };
 
 InteractionHandler D_802E14A4_7326A4[] = {
-    { POKEMON_CMD_41, func_802D7E90_729090, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_41, func_802D7E90_729090, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E14C4_7326C4 = {
-    &D_802E0FD8_7321D8,
-    func_802D73A8_7285A8,
+PokemonAnimationSetup volcano_magmar_AnimSetup = {
+    &volcano_magmar_animIdle1,
+    volcano_magmar_StateInitial,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E14D8_7326D8 = {
-    D_80323C30,
-    D_8031F238,
+PokemonInitData volcano_magmar_InitData = {
+    volcano_magmar_assetModel,
+    volcano_magmar_assetMaterials,
     renderPokemonModelTypeJFogged,
-    &D_802E14C4_7326C4,
+    &volcano_magmar_AnimSetup,
     { 1.3, 1.3, 1.3 },
     { 0, 110, 0 },
     68,
-    0x25,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,
     0,
     { 0, 0, 0 }
 };
 
-void func_802D7290_728490(GObj* obj) {
+void volcano_magmar_DeleteLater(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
     s32 blockIndex;
@@ -271,6 +271,7 @@ void func_802D7290_728490(GObj* obj) {
     f32 blockPart2;
 
     if (pokemon->behavior == 1) {
+        // standing alone magmar
         while (true) {
             getLevelProgress(&blockIndex, &blockPart);
             if (blockIndex > 4 || blockIndex == 4 && blockPart >= 0.35) {
@@ -279,6 +280,7 @@ void func_802D7290_728490(GObj* obj) {
             ohWait(1);
         }
     } else {
+        // pair of magmars
         while (true) {
             getLevelProgress(&blockIndex2, &blockPart2);
             if (blockIndex2 > 5 || blockIndex2 == 5 && blockPart2 >= 0.35) {
@@ -292,18 +294,19 @@ void func_802D7290_728490(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_802D73A8_7285A8(GObj* obj) {
+void volcano_magmar_StateInitial(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[0].field1 = 0;
     pokemon->flags |= POKEMON_FLAG_200;
-    Pokemon_StartAuxProc(obj, func_802D7290_728490);
+    Pokemon_StartAuxProc(obj, volcano_magmar_DeleteLater);
     if (pokemon->behavior == 1) {
+        // standing alone magmar
         Pokemon_SetState(obj, func_802D7458_728658);
     }
-    Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
-    pokemon->transitionGraph = D_802E10A4_7322A4;
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle1);
+    pokemon->transitionGraph = volcano_magmar_tgWaitForCmd30;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
@@ -315,7 +318,7 @@ void func_802D7458_728658(GObj* obj) {
     f32 blockPart;
 
     D_802E10A0_7322A0 = obj;
-    Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle1);
     while (true) {
         getLevelProgress(&blockIndex, &blockPart);
         if (blockIndex > 3 || blockIndex == 3 && blockPart >= 0.5f) {
@@ -323,48 +326,51 @@ void func_802D7458_728658(GObj* obj) {
         }
         ohWait(1);
     }
-    Pokemon_SetState(obj, func_802D7510_728710);
+    Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void func_802D7510_728710(GObj* obj) {
+void volcano_magmar_Idle1(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->unk_10E = 0;
-    Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle1);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E10C4_7322C4;
-    Pokemon_WaitForFlag(obj, 1);
-    Pokemon_SetStateRandom(obj, D_802E1484_732684);
-}
-
-void func_802D7584_728784(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
-    Pokemon_ForceAnimation(obj, &D_802E0FEC_7321EC);
-    Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E10C4_7322C4;
+    pokemon->transitionGraph = volcano_magmar_tgIdle;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, D_802E1484_732684);
+
+    Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void func_802D75F4_7287F4(GObj* obj) {
+void volcano_magmar_Idle2(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_SetAnimation(obj, &D_802E1000_732200);
-    pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802D7698_728898);
-    pokemon->transitionGraph = D_802E1154_732354;
-    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802D7510_728710);
-    }
-    Pokemon_SetStateRandom(obj, D_802E1484_732684);
+    Pokemon_ForceAnimation(obj, &volcano_magmar_animIdle2);
+    Pokemon_StartPathProc(obj, NULL);
+    pokemon->transitionGraph = volcano_magmar_tgIdle;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
+    Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void func_802D7698_728898(GObj* obj) {
+void volcano_magmar_Idle3(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle3);
+    pokemon->pokemonLoopTarget = 5;
+    Pokemon_StartPathProc(obj, volcano_magmar_Walk);
+    pokemon->transitionGraph = volcano_magmar_tgIdle3;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
+
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
+        Pokemon_SetState(obj, volcano_magmar_Idle1);
+    }
+    Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
+}
+
+void volcano_magmar_Walk(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -375,7 +381,7 @@ void func_802D7698_728898(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D76F4_7288F4(GObj* obj) {
+void volcano_magmar_HitByPB(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -400,7 +406,7 @@ void func_802D76F4_7288F4(GObj* obj) {
     }
 }
 
-void func_802D77BC_7289BC(GObj* obj) {
+void volcano_magmar_HitByApple(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -409,10 +415,10 @@ void func_802D77BC_7289BC(GObj* obj) {
     Pokemon_ForceAnimation(obj, &D_802E1028_732228);
     pokemon->transitionGraph = D_802E13F4_7325F4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, D_802E1484_732684);
+    Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void func_802D7830_728A30(GObj* obj) {
+void volcano_magmar_AffectedByPB(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -421,20 +427,20 @@ void func_802D7830_728A30(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E13F4_7325F4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, D_802E1484_732684);
+    Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void func_802D78A4_728AA4(GObj* obj) {
+void volcano_magmar_DoSearchApple(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[0].field1 = 1;
-    Pokemon_StartPathProc(obj, func_802D798C_728B8C);
-    pokemon->transitionGraph = D_802E11F4_7323F4;
+    Pokemon_StartPathProc(obj, volcano_magmar_RunToApple);
+    pokemon->transitionGraph = volcano_magmar_tgEatingApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802D7510_728710);
+        Pokemon_SetState(obj, volcano_magmar_Idle1);
     }
 
     Pokemon_SetAnimation(obj, &D_802E1078_732278);
@@ -449,7 +455,7 @@ void func_802D78A4_728AA4(GObj* obj) {
     Pokemon_SetState(obj, func_802D7A34_728C34);
 }
 
-void func_802D798C_728B8C(GObj* obj) {
+void volcano_magmar_RunToApple(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
@@ -462,8 +468,8 @@ void func_802D798C_728B8C(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D7A10_728C10(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802D78A4_728AA4);
+void volcano_magmar_SearchApple(GObj* arg0) {
+    Pokemon_SetState(arg0, volcano_magmar_DoSearchApple);
 }
 
 void func_802D7A34_728C34(GObj* obj) {
@@ -475,18 +481,18 @@ void func_802D7A34_728C34(GObj* obj) {
     pokemon->transitionGraph = D_802E1374_732574;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetState(obj, func_802D7510_728710);
+    Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void func_802D7A94_728C94(GObj* obj) {
+void volcano_magmar_HearsFlute(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_SetAnimation(obj, &D_802E1000_732200);
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle3);
     Pokemon_StartPathProc(obj, func_802D7B08_728D08);
     pokemon->transitionGraph = D_802E13C4_7325C4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    Pokemon_SetState(obj, func_802D7510_728710);
+    Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
 void func_802D7B08_728D08(GObj* obj) {
@@ -499,12 +505,13 @@ void func_802D7B08_728D08(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D7B54_728D54(GObj* obj) {
+void volcano_magmar_InteractWithPokemon(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802D7D84_728F84);
+        // standing alone magmar
+        Pokemon_SetState(obj, volcano_magmar_BurnCharmander);
     }
     pokemon->unk_10E = 11;
 
@@ -514,12 +521,12 @@ void func_802D7B54_728D54(GObj* obj) {
     pokemon->transitionGraph = D_802E1434_732634;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    cmdSendCommand(pokemon->interactionTarget, POKEMON_CMD_37, obj);
+    cmdSendCommand(pokemon->interactionTarget, VOLCANO_CMD_37, obj);
     pokemon->transitionGraph = D_802E1434_732634;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->unk_10E = 0;
-    Pokemon_SetState(obj, func_802D7510_728710);
+    Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
 void func_802D7C30_728E30(GObj* obj) {
@@ -533,7 +540,8 @@ void func_802D7C30_728E30(GObj* obj) {
     } while (pokemon->interactionTarget == target);
 
     pokemon->pathProc = NULL;
-    if (1) { } // required to match
+    if (1) {
+    } // required to match
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
@@ -562,12 +570,12 @@ void func_802D7CB4_728EB4(GObj* obj) {
     Pokemon_SetState(obj, func_802D7A34_728C34);
 }
 
-void func_802D7D84_728F84(GObj* obj) {
+void volcano_magmar_BurnCharmander(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
     if (pokemon->miscVars[0].field1 == 0) {
-        Pokemon_SetState(obj, func_802D7510_728710);
+        Pokemon_SetState(obj, volcano_magmar_Idle1);
     }
 
     Pokemon_SetAnimation(obj, &D_802E108C_73228C);
@@ -576,22 +584,22 @@ void func_802D7D84_728F84(GObj* obj) {
     pokemon->transitionGraph = D_802E1434_732634;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    cmdSendCommand(D_802E1A30_732C30, POKEMON_CMD_37, obj);
+    cmdSendCommand(D_802E1A30_732C30, VOLCANO_CMD_37, obj);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E14A4_7326A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E0FD8_7321D8);
+    Pokemon_SetAnimation(obj, &volcano_magmar_animIdle1);
     pokemon->transitionGraph = D_802E14A4_7326A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
-    Pokemon_SetState(obj, func_802D7510_728710);
+
+    Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
-
+// clang-format off
 void func_802D7E90_729090(GObj* obj) { \
-    UNUSED s32 pad[3];  \
+    UNUSED s32 pad[3]; \
     Pokemon* pokemon = GET_POKEMON(obj);
-
+    // clang-format on
     Pokemon_StartPathProc(obj, NULL);
     pokemon->counter = 80, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -600,11 +608,11 @@ void func_802D7E90_729090(GObj* obj) { \
     Pokemon_SetAnimation(obj, &D_802E103C_73223C);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     Pokemon_SetAnimation(obj, &D_802E1050_732250);
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_802D7F28_729128(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E14D8_7326D8);
+GObj* volcano_magmar_Init(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &volcano_magmar_InitData);
 }

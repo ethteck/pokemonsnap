@@ -644,7 +644,7 @@ void Pokemon_RunInteractions(GObj* obj) {
         return;
     }
 
-    for (i = 0; continueSearch && transitionGraph[i].cmd != 58; i++) {
+    for (i = 0; continueSearch && transitionGraph[i].cmd != POKEMON_CMD_58; i++) {
         if (transitionGraph[i].state == NULL && transitionGraph[i].aux == NULL) {
             continue;
         }

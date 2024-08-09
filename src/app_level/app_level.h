@@ -217,6 +217,7 @@ void Pokemon_Jump(GObj*, f32, f32, f32, f32);
 void Pokemon_Fall(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32);
 s32 Pokemon_StepWalkInDirectionFacing(GObj*, u32);
+s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags);
 s32 Pokemon_Turn(DObj*, f32, f32);
 s32 Pokemon_HearsPokeFlute(GObj*);
 void Pokemon_SetTargetPos(GObj*, f32, f32);

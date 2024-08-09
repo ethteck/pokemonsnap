@@ -7,7 +7,7 @@
 #define VOLCANO_CMD_37 POKEMON_CMD_37
 
 extern HeightMap D_8031D4D0_76E6D0;
-extern WorldSetup D_800FFFB8;
+extern WorldSetup volcano_WorldSetup;
 
 s32 volcano_Start(s32);
 

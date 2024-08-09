@@ -81,7 +81,7 @@ void func_802D9380_72A580(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->hSpeed = 80.0f;
-    Pokemon_RunAwayFromTarget(obj, 600.0f, 0.1f, 1);
+    Pokemon_RunAwayFromTarget(obj, 600.0f, 0.1f, MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

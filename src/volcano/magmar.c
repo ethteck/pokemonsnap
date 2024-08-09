@@ -1,7 +1,7 @@
 #include "volcano/volcano.h"
 
-extern Texture** volcano_magmar_assetMaterials[];
 extern UnkEC64Arg3 volcano_magmar_assetModel[];
+extern Texture** volcano_magmar_assetMaterials[];
 
 extern AnimCmd* volcano_magmar_assetAnimModel1[];
 extern AnimCmd* volcano_magmar_assetAnimModel2[];
@@ -135,95 +135,95 @@ AnimationHeader D_802E108C_73228C = {
 GObj* D_802E10A0_7322A0 = NULL;
 
 InteractionHandler volcano_magmar_tgWaitForCmd30[] = {
-    { POKEMON_CMD_30, volcano_magmar_Idle1, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_30, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler volcano_magmar_tgIdle[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { POKEMON_CMD_15, volcano_magmar_SearchApple, NULL, NULL },
-    { POKEMON_CMD_5, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_6, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_7, volcano_magmar_HearsFlute, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler volcano_magmar_tgIdle3[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { POKEMON_CMD_15, volcano_magmar_SearchApple, NULL, NULL },
-    { POKEMON_CMD_5, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_6, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_7, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler volcano_magmar_tgEatingApple[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_21, volcano_magmar_Idle1, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { POKEMON_CMD_5, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_6, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_7, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_21, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_26, volcano_magmar_InteractWithPokemon, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1294_732494[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_21, volcano_magmar_Idle1, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { POKEMON_CMD_5, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_6, volcano_magmar_HearsFlute, NULL, NULL },
-    { POKEMON_CMD_7, volcano_magmar_HearsFlute, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_21, volcano_magmar_Idle1, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { POKEMON_CMD_5, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, volcano_magmar_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, volcano_magmar_HearsFlute, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1324_732524[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1374_732574[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_15, volcano_magmar_SearchApple, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_15, volcano_magmar_SearchApple, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E13C4_7325C4[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E13F4_7325F4[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E1434_732634[] = {
-    { POKEMON_CMD_9, volcano_magmar_HitByPB, NULL, NULL },
-    { POKEMON_CMD_13, volcano_magmar_HitByApple, NULL, NULL },
-    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, NULL, NULL },
-    { VOLCANO_CMD_37, func_802D7CB4_728EB4, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_9, volcano_magmar_HitByPB, 0, NULL },
+    { POKEMON_CMD_13, volcano_magmar_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, volcano_magmar_AffectedByPB, 0, NULL },
+    { VOLCANO_CMD_37, func_802D7CB4_728EB4, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 RandomState volcano_magmar_IdleStates[] = {
@@ -234,8 +234,8 @@ RandomState volcano_magmar_IdleStates[] = {
 };
 
 InteractionHandler D_802E14A4_7326A4[] = {
-    { POKEMON_CMD_41, func_802D7E90_729090, NULL, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+    { POKEMON_CMD_41, func_802D7E90_729090, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 PokemonAnimationSetup volcano_magmar_AnimSetup = {
@@ -595,11 +595,11 @@ void volcano_magmar_BurnCharmander(GObj* obj) {
 
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
-
-void func_802D7E90_729090(GObj* obj) {
-    UNUSED s32 pad[3];
+// clang-format off
+void func_802D7E90_729090(GObj* obj) { \
+    UNUSED s32 pad[3]; \
     Pokemon* pokemon = GET_POKEMON(obj);
-
+    // clang-format on
     Pokemon_StartPathProc(obj, NULL);
     pokemon->counter = 80, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;

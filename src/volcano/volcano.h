@@ -4,6 +4,8 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define VOLCANO_CMD_37 POKEMON_CMD_37
+
 extern HeightMap D_8031D4D0_76E6D0;
 extern WorldSetup D_800FFFB8;
 

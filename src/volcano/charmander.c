@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "volcano/volcano.h"
 
 extern UnkEC64Arg3 D_8033A030[];
 extern Texture** D_80336500[];
@@ -65,11 +63,11 @@ void func_802D976C_72A96C(GObj*);
 void func_802D9A80_72AC80(GObj*);
 void func_802D9B44_72AD44(GObj*);
 
-s32 D_802E1940_732B40[] = { 0x119 };
-s32 D_802E1944_732B44[] = { 0x11a };
-s32 D_802E1948_732B48[] = { 0x117 };
-s32 D_802E194C_732B4C[] = { 0x118, 0x175 };
-s32 D_802E1954_732B54[] = { 0x116 };
+s32 D_802E1940_732B40[] = { SOUND_ID_281 };
+s32 D_802E1944_732B44[] = { SOUND_ID_282 };
+s32 D_802E1948_732B48[] = { SOUND_ID_279 };
+s32 D_802E194C_732B4C[] = { SOUND_ID_280, SOUND_ID_373 };
+s32 D_802E1954_732B54[] = { SOUND_ID_278 };
 
 AnimationHeader D_802E1958_732B58 = {
     0.5,

@@ -18,6 +18,9 @@ void volcano_Init(void);
 void func_802DFB80_730D80(s32, f32);
 void volcano_HandleCollision(GObj*, GroundResult*);
 void func_802E0C28_731E28(void);
+void func_802D6E14_728014(GObj* obj);
+void func_802D6F68_728168(GObj*, f32*, f32, f32, s32);
+void func_802D6A5C_727C5C(GObj* obj);
 
 GObj* volcano_magmar_Init(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

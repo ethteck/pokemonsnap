@@ -43,8 +43,8 @@ void func_802DA848_72BA48(GObj*);
 void func_802DA8A4_72BAA4(GObj*);
 void func_802DA930_72BB30(GObj*);
 
-s32 D_802E1FF0_7331F0[] = { 0x123 };
-s32 D_802E1FF4_7331F4[] = { 0x124 };
+s32 D_802E1FF0_7331F0[] = { SOUND_ID_291 };
+s32 D_802E1FF4_7331F4[] = { SOUND_ID_292 };
 
 AnimationHeader D_802E1FF8_7331F8 = {
     0.4,

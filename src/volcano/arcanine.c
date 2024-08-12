@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "volcano/volcano.h"
 
 extern UnkEC64Arg3 D_8034DBB0[];
 extern Texture** D_803470B0[];

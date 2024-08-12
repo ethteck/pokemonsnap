@@ -865,7 +865,8 @@ segments:
     - [0x7331F0, .data, vulpix]
     - [0x733590, .data, growlithe]
     - [0x733950, .data, arcanine]
-    - [0x733CE0, data]
+    - [0x733CE0, .data, 72D260]
+    - [0x734050, data]
 
     - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, magmar]

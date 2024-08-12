@@ -2,16 +2,203 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 
+extern UnkEC64Arg3 D_8034DBB0[];
+extern Texture** D_803470B0[];
+
+extern AnimCmd* D_8019F220[];
+extern AnimCmd* D_801A0A00[];
+extern AnimCmd* D_80199120[];
+extern AnimCmd* D_8019E850[];
+extern AnimCmd* D_801A3460[];
+extern AnimCmd* D_801A7210[];
+extern AnimCmd* D_80199FC0[];
+extern AnimCmd* D_801A4E60[];
+
+extern AnimCmd** D_801A94C0[];
+extern AnimCmd** D_801A95C0[];
+extern AnimCmd** D_801A92C0[];
+extern AnimCmd** D_801A9420[];
+extern AnimCmd** D_801A96C0[];
+extern AnimCmd** D_801A9820[];
+extern AnimCmd** D_801A9360[];
+extern AnimCmd** D_801A9760[];
+
 void func_802DBB78_72CD78(GObj*);
 void func_802DBDB8_72CFB8(GObj*);
+void func_802DB6F8_72C8F8(GObj*);
+void func_802DB768_72C968(GObj*);
+void func_802DB868_72CA68(GObj*);
+void func_802DB968_72CB68(GObj*);
+void func_802DB5A0_72C7A0(GObj*);
+void func_802DBAB8_72CCB8(GObj*);
+void func_802DBD94_72CF94(GObj*);
+void func_802DBE18_72D018(GObj*);
+void func_802DBED8_72D0D8(GObj*);
+void func_802DBFA8_72D1A8(GObj*);
+void func_802DB9D8_72CBD8(GObj*);
+void func_802DBA48_72CC48(GObj*);
 
-extern AnimationHeader D_802E2764_733964;
-extern AnimationHeader D_802E2778_733978;
-extern AnimationHeader D_802E27B4_7339B4;
-extern InteractionHandler D_802E2804_733A04[];
-extern InteractionHandler D_802E2984_733B84[];
-extern RandomState D_802E2A64_733C64[];
-extern PokemonInitData D_802E2AA8_733CA8;
+s32 D_802E2750_733950[] = { 0x10f };
+s32 D_802E2754_733954[] = { 0x110 };
+s32 D_802E2758_733958[] = { 0x10e };
+s32 D_802E275C_73395C[] = { 0x111, 0x184 };
+
+AnimationHeader D_802E2764_733964 = {
+    0.5,
+    135,
+    D_8019F220,
+    D_801A94C0,
+    NULL
+};
+
+AnimationHeader D_802E2778_733978 = {
+    0.6,
+    135,
+    D_801A0A00,
+    D_801A95C0,
+    D_802E2750_733950
+};
+
+AnimationHeader D_802E278C_73398C = {
+    0.4,
+    40,
+    D_80199120,
+    D_801A92C0,
+    NULL
+};
+
+AnimationHeader D_802E27A0_7339A0 = {
+    0.35,
+    20,
+    D_8019E850,
+    D_801A9420,
+    NULL
+};
+
+AnimationHeader D_802E27B4_7339B4 = {
+    0.5,
+    40,
+    D_801A3460,
+    D_801A96C0,
+    D_802E2754_733954
+};
+
+AnimationHeader D_802E27C8_7339C8 = {
+    0.5,
+    90,
+    D_801A7210,
+    D_801A9820,
+    D_802E2758_733958
+};
+
+AnimationHeader D_802E27DC_7339DC = {
+    0.7,
+    55,
+    D_80199FC0,
+    D_801A9360,
+    NULL
+};
+
+AnimationHeader D_802E27F0_7339F0 = {
+    0.7,
+    85,
+    D_801A4E60,
+    D_801A9760,
+    D_802E275C_73395C
+};
+
+InteractionHandler D_802E2804_733A04[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_10, func_802DBAB8_72CCB8, 0, NULL },
+    { POKEMON_CMD_14, func_802DBB78_72CD78, 0, NULL },
+    { POKEMON_CMD_15, func_802DBD94_72CF94, 0, NULL },
+    { POKEMON_CMD_5, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_6, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_7, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_16, func_802DBED8_72D0D8, 1000.0 / 3.0, NULL },
+    { POKEMON_CMD_23, func_802DBFA8_72D1A8, 60, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E28B4_733AB4[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_10, func_802DBAB8_72CCB8, 0, NULL },
+    { POKEMON_CMD_14, func_802DBB78_72CD78, 0, NULL },
+    { POKEMON_CMD_5, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_6, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_7, func_802DBE18_72D018, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E2934_733B34[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_10, func_802DBAB8_72CCB8, 0, NULL },
+    { POKEMON_CMD_14, func_802DBB78_72CD78, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E2984_733B84[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E29B4_733BB4[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E29E4_733BE4[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_15, func_802DBD94_72CF94, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802E2A24_733C24[] = {
+    { POKEMON_CMD_9, func_802DB9D8_72CBD8, 0, NULL },
+    { POKEMON_CMD_13, func_802DBA48_72CC48, 0, NULL },
+    { POKEMON_CMD_10, func_802DBAB8_72CCB8, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+RandomState D_802E2A64_733C64[] = {
+    { 100, func_802DB6F8_72C8F8 },
+    { 100, func_802DB768_72C968 },
+    { 100, func_802DB868_72CA68 },
+    { 100, func_802DB968_72CB68 },
+    { 0, NULL },
+};
+
+f32 D_802E2A8C_733C8C[] = { 8349235, 0 };
+
+PokemonAnimationSetup D_802E2A94_733C94 = {
+    &D_802E2764_733964,
+    func_802DB5A0_72C7A0,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_802E2AA8_733CA8 = {
+    D_8034DBB0,
+    D_803470B0,
+    renderPokemonModelTypeIFogged,
+    &D_802E2A94_733C94,
+    { 1.4, 1.4, 1.4 },
+    { 0, 118, 10 },
+    105,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DB5A0_72C7A0.s")
 
@@ -124,6 +311,6 @@ void func_802DBF4C_72D14C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/72C7A0/func_802DBFA8_72D1A8.s")
 
-GObj* func_802DC018_72D218(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* func_802DC018_72D218(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2AA8_733CA8);
 }

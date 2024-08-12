@@ -862,7 +862,8 @@ segments:
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
     - [0x732B40, .data, charmander]
-    - [0x7331F0, data]
+    - [0x7331F0, .data, 72AF00]
+    - [0x733590, data]
 
     - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, magmar]

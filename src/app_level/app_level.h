@@ -204,6 +204,7 @@ void PokemonDetector_CleanupPokemon(GObj* pokemonObj);
 void func_80357428_4F7838(GObj* arg0);
 
 void renderPokemonModelTypeI(GObj* arg0);
+void renderPokemonModelTypeIFogged(GObj* arg0);
 void renderPokemonModelTypeJFogged(GObj* arg0);
 
 s32 Pokemon_GetFlag100(GObj*);

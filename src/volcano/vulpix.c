@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "volcano/volcano.h"
 
 extern UnkEC64Arg3 D_80346B30[];
 extern Texture** D_80341BD0[];
@@ -590,6 +588,6 @@ void func_802DAA34_72BC34(GObj* obj) {
     Pokemon_SetState(obj, func_802DA7A4_72B9A4);
 }
 
-GObj* func_802DAA9C_72BC9C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* func_802DAA9C_72BC9C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2358_733558);
 }

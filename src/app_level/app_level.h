@@ -148,6 +148,12 @@ typedef struct EnvSoundData {
     /* 0x03 */ u8 hearingRange;
 } EnvSoundData; // size 0x4
 
+// todo this is dumb, figure out a better type
+typedef struct UnkBlueShark {
+    /* 0x0 */ u16 unk_0;
+    /* 0x2 */ u16 unk2;
+} UnkBlueShark; // size: 0x4
+
 extern f32 gCamTargetX;
 extern f32 gCamTargetY;
 extern f32 gCamTargetZ;

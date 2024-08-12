@@ -4,13 +4,6 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 
-// TODO: move to a common header
-
-typedef struct UnkBlueShark {
-    /* 0x0 */ u16 unk_0;
-    /* 0x2 */ u16 unk2;
-} UnkBlueShark; // size: 0x4
-
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;
 extern AnimCmd* D_8013B030;

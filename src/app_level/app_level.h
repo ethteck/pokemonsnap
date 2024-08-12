@@ -243,6 +243,7 @@ void Pokemon_RunCleanup(GObj* obj);
 GObj* Pokemon_AddAtGeo(GObj* obj, u16 PokemonID, PokemonDef* def);
 void Pokemon_ResetPathPos(GObj*);
 void Pokemon_FollowPath(GObj* obj, f32 start, f32 end, f32 dt, f32 yawStep, u32 flags);
+void func_80362414_502824(Pokemon* obj, EggStruct* egg, f32 arg2);
 GObj* Pokemon_Spawn(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 void Pokemon_StopAuxProc(GObj*);
 void Pokemon_SetFlag100(GObj*, s32);

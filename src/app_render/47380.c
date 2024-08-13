@@ -294,13 +294,13 @@ char* getPokemonName(s32 pkmnID) {
         return D_800AE284[pkmnID];
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
-        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
+        pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
             return "？";
         }
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
-        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
+        pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (!func_800BF3D4_5C274(pkmnID)) {
             return "Ｓｉｇｎ？";
         }
@@ -312,7 +312,7 @@ char* getPokemonName(s32 pkmnID) {
         case PokemonID_1010:
         case PokemonID_1018:
         case PokemonID_1022:
-        case PokemonID_1028:
+        case PokemonID_KOFFING_SMOKE:
         case PokemonID_1035:
             return "Ｓｉｇｎ";
         case PokemonID_500:
@@ -342,7 +342,7 @@ s32 func_8009BB4C(s32 pkmnID) {
             case PokemonID_1010:
                 ret = temp + 2;
                 break;
-            case PokemonID_1028:
+            case PokemonID_KOFFING_SMOKE:
                 ret = temp + 3;
                 break;
             case PokemonID_1022:
@@ -486,8 +486,8 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_1010:
         case PokemonID_1012:
         case PokemonID_1013:
-        case PokemonID_1028:
-        case PokemonID_1029:
+        case PokemonID_KOFFING_SMOKE:
+        case PokemonID_SMOKE_PUFF:
         case PokemonID_1030:
         case PokemonID_1031:
         case PokemonID_1033:

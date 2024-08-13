@@ -296,7 +296,7 @@ void func_801DDCA8_9FB968(s32 arg0) {
             if (func_800BF3D4_5C274(PokemonID_1010)) {
                 sp30++;
             }
-            if (func_800BF3D4_5C274(PokemonID_1028)) {
+            if (func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE)) {
                 sp30++;
             }
             if (func_800BF3D4_5C274(PokemonID_1022)) {

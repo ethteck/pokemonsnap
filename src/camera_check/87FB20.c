@@ -297,7 +297,7 @@ s32 func_camera_check_801E2E04(void) {
 
 bool func_camera_check_801E2E5C(s32 id) {
     if (id == PokemonID_1004 || id == PokemonID_1010 || id == PokemonID_1018 || id == PokemonID_1022 ||
-        id == PokemonID_1028 || id == PokemonID_1035) {
+        id == PokemonID_KOFFING_SMOKE || id == PokemonID_1035) {
         return true;
     }
     return false;

@@ -213,6 +213,7 @@ void renderPokemonModelTypeI(GObj* arg0);
 void renderPokemonModelTypeIFogged(GObj* arg0);
 void renderPokemonModelTypeJFogged(GObj* arg0);
 void renderPokemonModelTypeBFogged(GObj* arg0);
+void renderPokemonModelTypeDFogged(GObj* arg0);
 
 s32 Pokemon_GetFlag100(GObj*);
 void Pokemon_RunAwayFromTarget(GObj* obj, f32 targetDistance, f32 turnSpeed, u32 flags);

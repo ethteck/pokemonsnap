@@ -11,19 +11,6 @@ typedef struct Bytes12 {
     /* 0x00 */ u8 unk_00[12];
 } Bytes12; // size = 0xC
 
-typedef struct SomeBits {
-    /* 0x00 */ u8 unk_00_0 : 1;
-    /* 0x00 */ u8 unk_00_1 : 1;
-    /* 0x00 */ u8 unk_00_2 : 1;
-    /* 0x00 */ u8 unk_00_3 : 1;
-    /* 0x00 */ u8 unk_00_4 : 1;
-    /* 0x00 */ u8 unk_00_5 : 1;
-    /* 0x00 */ u8 unk_00_6 : 1;
-    /* 0x00 */ u8 unk_00_7 : 1;
-    /* 0x01 */ u8 unk_01_0 : 1;
-    /* 0x01 */ u8 unk_01_1 : 1;
-} SomeBits;
-
 extern GObj* D_802C6D4C_6491FC[];
 extern AnimationHeader D_802C71FC_6496AC;
 extern AnimationHeader D_802C7210_6496C0;
@@ -49,8 +36,6 @@ extern InteractionHandler3 D_802C74EC_64999C;
 extern InteractionHandler3 D_802C751C_6499CC;
 extern InteractionHandler D_802C754C_6499FC[];
 extern PokemonInitData D_802C7590_649A40;
-
-extern SomeBits D_8033E138_6C05E8;
 
 void func_802C157C_643A2C(GObj*);
 void func_802C1660_643B10(GObj*);

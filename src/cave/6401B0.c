@@ -15,8 +15,6 @@ extern SceneSetup D_802C6398_648848;
 extern HeightMap D_80317610_699AC0;
 extern HeightMap D_80317618_699AC8;
 
-extern s32 D_8033E138_6C05E8;
-
 void func_802BDD00_6401B0(GObj* obj) {
     DObj* a0;
     Mtx3Float* position;
@@ -149,7 +147,7 @@ void func_802BE22C_6406DC(void) {
     PokemonDetector_Enable();
     func_802C60F4_6485A4();
     setPitchLimits(-1.0471976f, 0.7853982f);
-    D_8033E138_6C05E8 = 0;
+    *((s32*) &D_8033E138_6C05E8) = 0; // TODO how do you clear a bitfield?
 }
 
 void func_802BE3A8_640858(s32 arg0) {

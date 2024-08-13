@@ -21,7 +21,23 @@ typedef struct InteractionHandler7 { // needed for struct copy
     /* 0x00 */ InteractionHandler data[7];
 } InteractionHandler7; // size = 0x70
 
+typedef struct SomeBits {
+    /* 0x00 */ u8 unk_00_0 : 1;
+    /* 0x00 */ u8 unk_00_1 : 1;
+    /* 0x00 */ u8 unk_00_2 : 1;
+    /* 0x00 */ u8 unk_00_3 : 1;
+    /* 0x00 */ u8 unk_00_4 : 1;
+    /* 0x00 */ u8 unk_00_5 : 1;
+    /* 0x00 */ u8 unk_00_6 : 1;
+    /* 0x00 */ u8 unk_00_7 : 1;
+    /* 0x01 */ u8 unk_01_0 : 1;
+    /* 0x01 */ u8 unk_01_1 : 1;
+    /* 0x01 */ u8 unk_01_2 : 1;
+} SomeBits;
+
 void func_802BE450_640900(s32, f32);
 void func_802C60F4_6485A4(void);
+
+extern SomeBits D_8033E138_6C05E8;
 
 #endif

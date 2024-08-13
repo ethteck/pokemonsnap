@@ -1,14 +1,54 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "cave.h"
 
 void func_802C33E4_645894(GObj*);
 
+extern s16 D_802C6354_648804;
+extern GObj* D_802C75EC_649A9C;
+extern s32 D_802C75F0_649AA0;
+extern AnimationHeader D_802C779C_649C4C;
 extern PokemonInitData D_802C77FC_649CAC;
+extern AnimationHeader D_802C7880_649D30;
+extern AnimationHeader D_802C78BC_649D6C;
+extern AnimationHeader D_802C78D0_649D80;
+extern f32 D_802C7980_649E30;
+extern InteractionHandler4 D_802C7984_649E34;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3290_645740.s")
+void func_802C3348_6457F8(GObj*);
+void func_802C34E0_645990(GObj*);
+void func_802C3494_645944(GObj*);
+void func_802C3580_645A30(GObj*);
+void func_802C3658_645B08(GObj*);
+void func_802C36F0_645BA0(GObj*);
+void func_802C3784_645C34(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3348_6457F8.s")
+void func_802C3290_645740(GObj* obj) {
+    UNUSED s32 pad[1];
+    DObj* dobj = obj->data.dobj;
+    Mtx4Float* rot = &GET_TRANSFORM(dobj)->rot;
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_SetAnimation(obj, &D_802C779C_649C4C);
+    rot->f[2] = (randRange(360) * PI) / 180.0f;
+    Pokemon_StartPathProc(obj, func_802C3348_6457F8);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    D_802C6354_648804 = 0;
+    Pokemon_RunCleanup(obj);
+    Pokemon_SetState(obj, NULL);
+}
+
+void func_802C3348_6457F8(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    func_8035E298_4FE6A8(obj);
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 GObj* func_802C3388_645838(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C77FC_649CAC);
@@ -18,7 +58,24 @@ void func_802C33C0_645870(GObj* arg0) {
     Pokemon_SetState(arg0, func_802C33E4_645894);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C33E4_645894.s")
+void func_802C33E4_645894(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    pokemon->forbiddenGround = &D_802C7980_649E30;
+    Pokemon_SetAnimation(obj, &D_802C7880_649D30);
+    Pokemon_StartPathProc(obj, func_802C3494_645944);
+
+    while (true) {
+        if (D_802C75EC_649A9C != NULL) {
+            if (Pokemon_GetDistance(obj, D_802C75EC_649A9C) < 100.0f) {
+                break;
+            }
+        }
+        ohWait(1);
+    }
+    Pokemon_SetState(obj, func_802C34E0_645990);
+}
 
 void func_802C3494_645944(GObj* obj) {
     UNUSED s32 pad[3];
@@ -30,16 +87,68 @@ void func_802C3494_645944(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C34E0_645990.s")
+// clang-format off
+void func_802C34E0_645990(GObj* obj) { \
+    UNUSED s32 pad[3]; \
+    Pokemon* pokemon = GET_POKEMON(obj);
+    // clang-format on
+
+    Pokemon_SetAnimation(obj, &D_802C78BC_649D6C);
+    Pokemon_StartPathProc(obj, func_802C3580_645A30);
+    pokemon->counter = 2, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+    EnvSound_PlaySound(obj, 0, 0x107);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    Pokemon_SetState(obj, func_802C3658_645B08);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3580_645A30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3658_645B08.s")
+void func_802C3658_645B08(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C36F0_645BA0.s")
+    pokemon = obj->userData;
+    pokemon->tangible = false;
+    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    while (D_802C75F0_649AA0 == 0) {
+        ohWait(1);
+    }
+    pokemon->tangible = true;
+    obj->flags = 0;
+    Pokemon_StartPathProc(obj, func_802C3784_645C34);
+    Pokemon_SetState(obj, func_802C36F0_645BA0);
+}
+
+void func_802C36F0_645BA0(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+    InteractionHandler4 sp18;
+
+    sp18 = D_802C7984_649E34;
+
+    Pokemon_ForceAnimation(obj, &D_802C7880_649D30);
+    pokemon->transitionGraph = sp18.data;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_802C36F0_645BA0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3784_645C34.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3840_645CF0.s")
+void func_802C3840_645CF0(GObj* obj) {
+    cmdSendCommandToLink(3, 0x21, obj);
+    Pokemon_StopAuxProc(obj);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3874_645D24.s")
+void func_802C3874_645D24(GObj* obj) {
+    UNUSED s32 pad[3];
+    Pokemon* pokemon = GET_POKEMON(obj);
+
+    Pokemon_SetAnimation(obj, &D_802C78D0_649D80);
+    Pokemon_StartPathProc(obj, func_802C38E0_645D90);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    Pokemon_SetState(obj, func_802C39B8_645E68);
+}

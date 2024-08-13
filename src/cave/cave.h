@@ -36,6 +36,8 @@ typedef struct SomeBits {
 } SomeBits;
 
 void func_802BE450_640900(s32, f32);
+void func_802C38E0_645D90(GObj*);
+void func_802C39B8_645E68(GObj*);
 void func_802C60F4_6485A4(void);
 
 extern SomeBits D_8033E138_6C05E8;

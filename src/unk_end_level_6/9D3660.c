@@ -151,8 +151,8 @@ s32 func_801DCF5C_9D38CC(s32* arg0) {
         sp28 += func_800BF818_5C6B8(PokemonID_1010);
         sp24++;
     }
-    if (func_800BF3D4_5C274(PokemonID_1028)) {
-        sp28 += func_800BF818_5C6B8(PokemonID_1028);
+    if (func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE)) {
+        sp28 += func_800BF818_5C6B8(PokemonID_KOFFING_SMOKE);
         sp24++;
     }
     if (func_800BF3D4_5C274(PokemonID_1022)) {
@@ -1272,7 +1272,7 @@ void func_801E0DB4_9D7724(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3) {
         sprintf(sp28, "%s", "Find rare Pokεmon!");
     } else if (func_800BFC5C_5CAFC() == 5) {
         if (checkPlayerFlag(PFID_HAS_FLUTE)) {
-            if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_1028) &&
+            if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
                 func_800BF3D4_5C274(PokemonID_1022) && func_800BF3D4_5C274(PokemonID_1018) && func_800BF3D4_5C274(PokemonID_1035)) {
                 func_8036B9EC_83F19C(arg0, 82 - (func_8036D4F0_840CA0("Well, this is the final course!") / 2), 51);
                 sprintf(sp28, "%s", "Well, this is the final course!");

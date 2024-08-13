@@ -294,13 +294,13 @@ char* getPokemonName(s32 pkmnID) {
         return D_800AE284[pkmnID];
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
-        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
+        pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
             return "？";
         }
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
-        pkmnID == PokemonID_1028 || pkmnID == PokemonID_1035) {
+        pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (!func_800BF3D4_5C274(pkmnID)) {
             return "Ｓｉｇｎ？";
         }
@@ -312,11 +312,11 @@ char* getPokemonName(s32 pkmnID) {
         case PokemonID_1010:
         case PokemonID_1018:
         case PokemonID_1022:
-        case PokemonID_1028:
+        case PokemonID_KOFFING_SMOKE:
         case PokemonID_1035:
             return "Ｓｉｇｎ";
         case PokemonID_500:
-        case PokemonID_600:
+        case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_602:
             return "？";
@@ -342,7 +342,7 @@ s32 func_8009BB4C(s32 pkmnID) {
             case PokemonID_1010:
                 ret = temp + 2;
                 break;
-            case PokemonID_1028:
+            case PokemonID_KOFFING_SMOKE:
                 ret = temp + 3;
                 break;
             case PokemonID_1022:
@@ -473,7 +473,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
     }
 
     switch (pokemonID) {
-        case PokemonID_600:
+        case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_602:
         case PokemonID_603:
@@ -486,8 +486,8 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_1010:
         case PokemonID_1012:
         case PokemonID_1013:
-        case PokemonID_1028:
-        case PokemonID_1029:
+        case PokemonID_KOFFING_SMOKE:
+        case PokemonID_SMOKE_PUFF:
         case PokemonID_1030:
         case PokemonID_1031:
         case PokemonID_1033:
@@ -1227,7 +1227,7 @@ void func_8009DEF0(PhotoData* photoData) {
                 gobj = func_8009D9A0(&photoData->unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
                 if ((photoData->unk_20[i].pokemonID > 0 && photoData->unk_20[i].pokemonID <= POKEDEX_MAX) ||
                     photoData->unk_20[i].pokemonID == PokemonID_603 ||
-                    photoData->unk_20[i].pokemonID == PokemonID_600 ||
+                    photoData->unk_20[i].pokemonID == PokemonID_MOLTRES_EGG ||
                     photoData->unk_20[i].pokemonID == PokemonID_601 ||
                     photoData->unk_20[i].pokemonID == PokemonID_602) {
                     D_800BDF30[D_800BDF60] = gobj;

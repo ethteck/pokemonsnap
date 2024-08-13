@@ -85,15 +85,15 @@ PokemonDef volcano_PokemonDefs[] = {
       func_802DB558_72C758,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { PokemonID_1027,
+    { PokemonID_SMOKE_SPAWNER,
       func_802DEA44_72FC44,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1029,
+    { PokemonID_SMOKE_PUFF,
       func_802DE6B4_72F8B4,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1028,
+    { PokemonID_KOFFING_SMOKE,
       func_802DE52C_72F72C,
       pokemonChangeBlock,
       pokemonRemoveOne },
@@ -101,7 +101,7 @@ PokemonDef volcano_PokemonDefs[] = {
       func_802DED34_72FF34,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { PokemonID_600,
+    { PokemonID_MOLTRES_EGG,
       func_802DDEC0_72F0C0,
       pokemonChangeBlock,
       pokemonRemoveOne },
@@ -117,7 +117,7 @@ PokemonDef volcano_PokemonDefs[] = {
       func_8035E0D4_4FE4E4,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1026,
+    { PokemonID_GROWLITHE_SPAWNER,
       func_802DDA98_72EC98,
       pokemonChangeBlock,
       pokemonRemoveOne },
@@ -148,7 +148,7 @@ RandomState2 volcano_MagikarpProbabilities[] = {
     { 7, NULL },
 };
 
-u16 D_802E0EB4_7320B4 = 0;
+u16 D_802E0EB4_7320B4 = false;
 s32 volcano_EndLevelReason = 0;
 
 ScreenSettings volcano_ScreenSettings = {
@@ -569,7 +569,7 @@ void func_802D6CFC_727EFC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-s32 func_802D6D6C_727F6C(GObj* obj) {
+bool func_802D6D6C_727F6C(GObj* obj) {
     u16 randomValue;
 
     randomValue = randRange(10);

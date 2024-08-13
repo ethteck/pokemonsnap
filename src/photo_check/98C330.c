@@ -2203,7 +2203,7 @@ void func_801E2ED4_992944(s32 arg0) {
         func_800BF3D4_5C274(PokemonID_1010) &&
         func_800BF3D4_5C274(PokemonID_1018) &&
         func_800BF3D4_5C274(PokemonID_1022) &&
-        func_800BF3D4_5C274(PokemonID_1028) &&
+        func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
         func_800BF3D4_5C274(PokemonID_1035) &&
         (func_800BFC5C_5CAFC() < 6)) {
         D_801F3E28_9A3898 = 0x400;

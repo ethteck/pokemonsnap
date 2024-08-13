@@ -310,7 +310,7 @@ s32 func_camera_check_801E2EA0(s32 id) {
 bool func_camera_check_801E2EC0(s32 id) {
     switch (id) {
         case PokemonID_500:
-        case PokemonID_600:
+        case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_602:
             return true;

@@ -101,7 +101,7 @@ PokemonDef volcano_PokemonDefs[] = {
       func_802DED34_72FF34,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
-    { PokemonID_600,
+    { PokemonID_MOLTRES_EGG,
       func_802DDEC0_72F0C0,
       pokemonChangeBlock,
       pokemonRemoveOne },
@@ -117,7 +117,7 @@ PokemonDef volcano_PokemonDefs[] = {
       func_8035E0D4_4FE4E4,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1026,
+    { PokemonID_GROWLITHE_SPAWNER,
       func_802DDA98_72EC98,
       pokemonChangeBlock,
       pokemonRemoveOne },
@@ -569,7 +569,7 @@ void func_802D6CFC_727EFC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-s32 func_802D6D6C_727F6C(GObj* obj) {
+bool func_802D6D6C_727F6C(GObj* obj) {
     u16 randomValue;
 
     randomValue = randRange(10);

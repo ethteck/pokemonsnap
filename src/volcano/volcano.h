@@ -22,6 +22,8 @@ void func_802D6E14_728014(GObj* obj);
 void func_802D6F68_728168(GObj*, f32*, f32, f32, s32);
 void func_802D6A5C_727C5C(GObj* obj);
 void func_802D6CFC_727EFC(GObj* obj);
+void func_802D6B2C_727D2C(GObj* obj);
+bool func_802D6D6C_727F6C(GObj* obj);
 
 GObj* volcano_magmar_Init(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

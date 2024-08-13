@@ -316,7 +316,7 @@ char* getPokemonName(s32 pkmnID) {
         case PokemonID_1035:
             return "Ｓｉｇｎ";
         case PokemonID_500:
-        case PokemonID_600:
+        case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_602:
             return "？";
@@ -473,7 +473,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
     }
 
     switch (pokemonID) {
-        case PokemonID_600:
+        case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_602:
         case PokemonID_603:
@@ -1227,7 +1227,7 @@ void func_8009DEF0(PhotoData* photoData) {
                 gobj = func_8009D9A0(&photoData->unk_20[i], it->unk_04, it->unk_08, it->unk_0C, it->unk_10);
                 if ((photoData->unk_20[i].pokemonID > 0 && photoData->unk_20[i].pokemonID <= POKEDEX_MAX) ||
                     photoData->unk_20[i].pokemonID == PokemonID_603 ||
-                    photoData->unk_20[i].pokemonID == PokemonID_600 ||
+                    photoData->unk_20[i].pokemonID == PokemonID_MOLTRES_EGG ||
                     photoData->unk_20[i].pokemonID == PokemonID_601 ||
                     photoData->unk_20[i].pokemonID == PokemonID_602) {
                     D_800BDF30[D_800BDF60] = gobj;

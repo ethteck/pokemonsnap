@@ -541,7 +541,7 @@ void func_802DCA28_72DC28(GObj* obj) {
         position->v.x += dx;
         position->v.z += dz;
         position->v.y -= 6.0f;
-        rotation->f[2] += 0.017453292f;
+        rotation->f[2] += PI / 180.0f;
         ohWait(1);
     }
 

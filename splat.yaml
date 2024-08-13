@@ -849,7 +849,7 @@ segments:
     - [0x72E4E0, c, charizard]
     - [0x72E9F0, c, growlithe_spawner]
     - [0x72ECD0, c, moltres_egg]
-    - [0x72F100, c]
+    - [0x72F100, c, moltres]
     - [0x72F590, c]
     - [0x72F770, c]
     - [0x72F8F0, c]
@@ -869,7 +869,8 @@ segments:
     - [0x734050, .data, charizard]
     - [0x734190, .data, growlithe_spawner]
     - [0x734210, .data, moltres_egg]
-    - [0x7342C0, data]
+    - [0x7342C0, .data, moltres]
+    - [0x7343F0, data]
 
     - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, magmar]

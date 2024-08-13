@@ -143,6 +143,7 @@ void func_802DDD04_72EF04(GObj* obj) { \
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_30, obj);
+    
     pokemon->counter = 2, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);

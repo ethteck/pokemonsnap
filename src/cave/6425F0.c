@@ -1,18 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
-
-typedef struct InteractionHandler3 { // needed for struct copy
-    /* 0x00 */ InteractionHandler data[3];
-} InteractionHandler3; // size = 0x30
-
-typedef struct InteractionHandler5 { // needed for struct copy
-    /* 0x00 */ InteractionHandler data[5];
-} InteractionHandler5; // size = 0x30
-
-typedef struct InteractionHandler6 { // needed for struct copy
-    /* 0x00 */ InteractionHandler data[6];
-} InteractionHandler6; // size = 0x30
+#include "cave.h"
 
 extern AnimationHeader D_802C6CD4_649184;
 extern AnimationHeader D_802C6CFC_6491AC;

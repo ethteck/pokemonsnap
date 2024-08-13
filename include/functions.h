@@ -141,7 +141,7 @@ s32 func_80346EF0_826660(s32);
 void bindCameraNextBlock(f32, f32, f32);
 void setBackgroundMusic(s32);
 void func_80356FBC_4F73CC(void);
-void getLevelProgress(s32*, f32*);
+void getLevelProgress(s32* blockCount, f32* blockPart);
 void removeMainCamera(void);
 OMCamera* getMainCamera(void);
 void PokemonDetector_Disable(void);

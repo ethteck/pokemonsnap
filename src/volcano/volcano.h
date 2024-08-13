@@ -9,6 +9,8 @@
 extern HeightMap D_8031D4D0_76E6D0;
 extern WorldSetup volcano_WorldSetup;
 
+extern u16 D_802E0EB4_7320B4;
+
 s32 volcano_Start(s32);
 
 void volcano_SpawnMagikarp(GObj* obj);

@@ -148,7 +148,7 @@ RandomState2 volcano_MagikarpProbabilities[] = {
     { 7, NULL },
 };
 
-u16 D_802E0EB4_7320B4 = 0;
+u16 D_802E0EB4_7320B4 = false;
 s32 volcano_EndLevelReason = 0;
 
 ScreenSettings volcano_ScreenSettings = {

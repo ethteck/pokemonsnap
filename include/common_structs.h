@@ -158,23 +158,6 @@ typedef struct {
     /* 0x10E */ u16 unk_10E;
 } Pokemon; // size = 0x110
 
-typedef struct {
-    /* 0x00 */ char unk_00[0x1];
-    /* 0x01 */ s8 oob;
-    /* 0x02 */ s8 unk_02;
-    /* 0x03 */ s8 flags;
-    /* 0x04 */ f32 timer;
-    /* 0x08 */ Vec3f vel;
-    /* 0x14 */ Vec3f oldVel;
-    /* 0x20 */ Vec3f prevPos;
-    /* 0x2C */ char unk_2C[0x4];
-} projectileData; // size = 0x30
-
-typedef union {
-    Pokemon* pokemon;
-    projectileData* projectileData;
-} gobjData;
-
 typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
 
 typedef struct RandomState {

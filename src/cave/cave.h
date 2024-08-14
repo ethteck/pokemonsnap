@@ -1,6 +1,10 @@
 #ifndef _CAVE_H_
 #define _CAVE_H_
 
+typedef struct InteractionHandler2 { // needed for struct copy
+    /* 0x00 */ InteractionHandler data[2];
+} InteractionHandler2; // size = 0x20
+
 typedef struct InteractionHandler3 { // needed for struct copy
     /* 0x00 */ InteractionHandler data[3];
 } InteractionHandler3; // size = 0x30

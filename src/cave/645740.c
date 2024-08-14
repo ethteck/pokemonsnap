@@ -7,7 +7,7 @@ void func_802C33E4_645894(GObj*);
 
 extern s16 D_802C6354_648804;
 extern GObj* D_802C75EC_649A9C;
-extern s32 D_802C75F0_649AA0;
+extern GObj* D_802C75F0_649AA0;
 extern AnimationHeader D_802C779C_649C4C;
 extern PokemonInitData D_802C77FC_649CAC;
 extern AnimationHeader D_802C7880_649D30;
@@ -104,7 +104,42 @@ void func_802C34E0_645990(GObj* obj) { \
     Pokemon_SetState(obj, func_802C3658_645B08);
 }
 
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3580_645A30.s")
+#else
+void func_802C3580_645A30(GObj* obj) {
+    DObj* dobj = obj->data.dobj;
+    Pokemon* pokemon;
+    PokemonTransform* transform1; // TODO likely not transforms
+    PokemonTransform* transform2; // TODO likely not transforms
+    Mtx3Float* pos1;
+    Mtx3Float* pos2;
+    Mtx4Float* rot1;
+    Mtx4Float* rot2;
+
+    transform1 = GET_TRANSFORM(dobj);                         // TODO likely not transforms
+    transform2 = GET_TRANSFORM(D_802C75EC_649A9C->data.dobj); // TODO likely not transforms
+
+    pokemon = GET_POKEMON(obj);
+
+    pos1 = &transform1->pos;
+    rot1 = &transform1->rot;
+
+    pos2 = &transform2->pos;
+    rot2 = &transform2->rot;
+
+    while (D_802C75EC_649A9C != NULL) {
+        pos1->v.x = pos2->v.x;
+        pos1->v.y = pos2->v.y - 50.0f;
+        pos1->v.z = pos2->v.z;
+        rot1->f[2] = rot2->f[2];
+        ohWait(1);
+    }
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
+#endif
 
 void func_802C3658_645B08(GObj* obj) {
     UNUSED s32 pad[3];
@@ -113,7 +148,7 @@ void func_802C3658_645B08(GObj* obj) {
     pokemon = obj->userData;
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
-    while (D_802C75F0_649AA0 == 0) {
+    while (D_802C75F0_649AA0 == NULL) {
         ohWait(1);
     }
     pokemon->tangible = true;
@@ -135,7 +170,39 @@ void func_802C36F0_645BA0(GObj* obj) {
     Pokemon_SetState(obj, func_802C36F0_645BA0);
 }
 
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3784_645C34.s")
+#else
+void func_802C3784_645C34(GObj* obj) {
+    DObj* dobj = obj->data.dobj;
+    Pokemon* pokemon;
+    PokemonTransform* transform1; // TODO likely not transforms
+    PokemonTransform* transform2; // TODO likely not transforms
+    Mtx3Float* pos1;
+    Mtx3Float* pos2;
+    Mtx4Float* rot1;
+    Mtx4Float* rot2;
+
+    transform1 = GET_TRANSFORM(dobj);                         // TODO likely not transforms
+    transform2 = GET_TRANSFORM(D_802C75F0_649AA0->data.dobj); // TODO likely not transforms
+
+    pokemon = GET_POKEMON(obj);
+
+    pos1 = &transform1->pos;
+    rot1 = &transform1->rot;
+
+    pos2 = &transform2->pos;
+    rot2 = &transform2->rot;
+
+    while (true) {
+        pos1->v.x = pos2->v.x;
+        pos1->v.y = pos2->v.y - 50.0f;
+        pos1->v.z = pos2->v.z;
+        rot1->f[2] = rot2->f[2];
+        ohWait(1);
+    }
+}
+#endif
 
 void func_802C3840_645CF0(GObj* obj) {
     cmdSendCommandToLink(3, 0x21, obj);

@@ -95,12 +95,23 @@ enum SoundIds {
     SOUND_ID_15 = 15,
     SOUND_ID_TAKE_PHOTO_2 = 16,
     SOUND_ID_20 = 20,
+    SOUND_ID_21 = 21,
     SOUND_ID_24 = 24,
     SOUND_ID_25 = 25,
     SOUND_ID_26 = 26,
     SOUND_ID_27 = 27,
     SOUND_ID_29 = 29,
+    SOUND_ID_30 = 30,
     SOUND_ID_31 = 31,
+    SOUND_ID_38 = 38,
+    SOUND_ID_39 = 39,
+    SOUND_ID_40 = 40,
+    SOUND_ID_41 = 41,
+    SOUND_ID_50 = 50,
+    SOUND_ID_54 = 54,
+    SOUND_ID_55 = 55,
+    SOUND_ID_56 = 56,
+    SOUND_ID_57 = 57,
     SOUND_ID_58 = 58,
     SOUND_ID_59 = 59,
     SOUND_ID_60 = 60,
@@ -108,6 +119,7 @@ enum SoundIds {
     SOUND_ID_62 = 62,
     SOUND_ID_65 = 65,
     SOUND_ID_66 = 66,
+    SOUND_ID_101 = 101,
     SOUND_ID_114 = 114,
     SOUND_ID_117 = 117,
     SOUND_ID_120 = 120,
@@ -157,7 +169,8 @@ enum SoundIds {
 enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
-    SONG_ID_3 = 3
+    SONG_ID_3 = 3,
+    SONG_ID_6 = 6
 };
 
 enum Links {

@@ -228,11 +228,11 @@ void func_802DB5A0_72C7A0(GObj* obj) {
 
     Pokemon_SetState(obj, func_802DB6F8_72C8F8);
 }
-
-#ifdef NON_MATCHING
-void func_802DB660_72C860(GObj* obj) {
-    UNUSED s32 pad[1];
+// clang-format off
+void func_802DB660_72C860(GObj* obj) { \
+    UNUSED s32 pad[1]; \
     Pokemon* pokemon = GET_POKEMON(obj);
+    // clang-format on
     DObj* model = obj->data.dobj;
     PokemonTransform* transform = GET_TRANSFORM(model);
     GroundResult result;
@@ -247,9 +247,6 @@ void func_802DB660_72C860(GObj* obj) {
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/arcanine/func_802DB660_72C860.s")
-#endif
 
 void func_802DB6F8_72C8F8(GObj* obj) {
     UNUSED s32 pad[3];

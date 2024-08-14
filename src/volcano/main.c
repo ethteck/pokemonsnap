@@ -622,4 +622,83 @@ f32 func_802D6F38_728138(f32 x, f32 z) {
     return 0.0f;
 }
 
+#ifdef NON_MATCHING
+void func_802D6F68_728168(GObj* obj, f32* arg1, f32 arg2, f32 arg3, s32 arg4) {
+    DObj* temp_s1 = obj->data.dobj;
+    Vec3f sp88 = D_802E0FA8_7321A8;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    f32 var_f20 = *arg1;
+    Vec3f sp74;
+    f32 angle;
+    f32 sp6C;
+
+    while (true) {
+        if (pokemon->path != NULL) {
+            break;
+        }
+        ohWait(1);
+    }
+
+    sp6C = 1.0f / pokemon->path->unk_0C * arg3;
+
+    while (true) {
+        if (!(var_f20 >= 0.0f && var_f20 <= 1.0f)) {
+            ohWait(1);
+            continue;
+        }
+        if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
+            GET_TRANSFORM(temp_s1)->pos.v.x -= sp88.x * 100.0f;
+            GET_TRANSFORM(temp_s1)->pos.v.z -= sp88.z * 100.0f;
+            if (arg4 & 1) {
+                GET_TRANSFORM(temp_s1)->pos.v.y -= sp88.y;
+            } else {
+                GET_TRANSFORM(temp_s1)->pos.v.y -= sp88.y * 100.0f;
+            }
+
+            func_8001FCE8(&sp74, pokemon->path, var_f20);
+
+            angle = atan2f(sp74.x, sp74.z);
+            if (angle < 0.0f) {
+                angle += TAU;
+            } else if (angle > TAU) {
+                angle -= (s32) (angle / TAU) * TAU;
+            }
+            GET_TRANSFORM(temp_s1)->rot.f[2] = angle;
+
+            switch (pokemon->path->type) {
+                case 1:
+                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    break;
+                case 2:
+                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    break;
+                case 3:
+                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    break;
+            }
+
+            GET_TRANSFORM(temp_s1)->pos.v.x += sp88.x * 100.0f;
+            GET_TRANSFORM(temp_s1)->pos.v.z += sp88.z * 100.0f;
+            if (arg4 & 1) {
+                sp88.y = func_802D6F38_728138(GET_TRANSFORM(temp_s1)->pos.v.x, GET_TRANSFORM(temp_s1)->pos.v.z);
+                GET_TRANSFORM(temp_s1)->pos.v.y += sp88.y;
+            } else {
+                GET_TRANSFORM(temp_s1)->pos.v.y += sp88.y * 100.0f;
+            }
+
+            var_f20 += sp6C;
+
+            if (arg2 > 0.0f && arg2 < var_f20) {
+                return;
+            }
+            if (var_f20 > 1.0f) {
+                var_f20 -= 1.0f;
+            }
+            *arg1 = var_f20;
+        }
+        ohWait(1);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/volcano/main/func_802D6F68_728168.s")
+#endif

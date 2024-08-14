@@ -227,11 +227,11 @@ void func_802DAAE0_72BCE0(GObj* obj) {
 
     Pokemon_SetState(obj, func_802DAC38_72BE38);
 }
-
-#ifdef NON_MATCHING
-void func_802DAB90_72BD90(GObj* obj) {
-    UNUSED s32 pad[1];
+// clang-format off
+void func_802DAB90_72BD90(GObj* obj) { \
+    UNUSED s32 pad[1]; \
     Pokemon* pokemon = GET_POKEMON(obj);
+    // clang-format on
     DObj* model = obj->data.dobj;
     PokemonTransform* transform = GET_TRANSFORM(model);
     GroundResult result;
@@ -246,9 +246,6 @@ void func_802DAB90_72BD90(GObj* obj) {
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/growlithe/func_802DAB90_72BD90.s")
-#endif
 
 void func_802DAC38_72BE38(GObj* obj) {
     UNUSED s32 pad[3];
@@ -415,7 +412,7 @@ void func_802DB1C4_72C3C4(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_802E2408_733608);
     pokemon->transitionGraph = D_802E2574_733774;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     if (pokemon->interactionTarget != NULL) {
         Pokemon_SetState(obj, func_802DB1C4_72C3C4);
     }

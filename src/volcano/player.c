@@ -3,8 +3,9 @@
 extern AnimCmd D_80118D90[];
 extern AnimCmd* D_801174E0[];
 extern AnimCmd** D_801182F0[];
-extern s32 D_802E3800_734A00;
-extern GObj* D_802E3804_734A04;
+
+s32 D_802E3800_734A00 = 0;
+GObj* D_802E3804_734A04 = NULL;
 
 extern u8 D_8034E108_79F308;
 extern u8 D_8034E109_79F309;

@@ -860,7 +860,7 @@ segments:
     - [0x7305B0, c, pkmn_1001]
     - [0x730C70, c, pkmn_1031]
     - [0x730D80, c, sounds]
-    - [0x731860, c]
+    - [0x731860, c, player]
     - [0x731E80, .data, main]
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
@@ -882,8 +882,7 @@ segments:
     - [0x7348B0, .data, pkmn_1001]
     - [0x734980, .data, pkmn_1031]
     - [0x7349F0, .data, sounds]
-    - [0x734A00, data]
-
+    - [0x734A00, .data, player]
     - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, magmar]
     - [0x734A50, .rodata, charmander]

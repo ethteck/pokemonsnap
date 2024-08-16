@@ -47,7 +47,7 @@ LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -wo
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
 PIGMENT64 = "pigment64"
-BIN2C = "python3 tools/bin2c.py"
+BIN2C = "tools/bin2c.py"
 
 
 def clean():

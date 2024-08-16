@@ -25,6 +25,10 @@ typedef struct InteractionHandler7 { // needed for struct copy
     /* 0x00 */ InteractionHandler data[7];
 } InteractionHandler7; // size = 0x70
 
+typedef struct InteractionHandler8 { // needed for struct copy
+    /* 0x00 */ InteractionHandler data[8];
+} InteractionHandler8; // size = 0x80
+
 typedef struct SomeBits {
     /* 0x00 */ u8 unk_00_0 : 1;
     /* 0x00 */ u8 unk_00_1 : 1;

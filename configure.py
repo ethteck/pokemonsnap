@@ -228,31 +228,40 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         if entry.object_path is None:
             continue
         
+        # images embedded inside data aren't linked, but they do need to be built into .bin files
+        if seg.type == ".data" and isinstance(seg, splat.segtypes.common.group.CommonSegGroup):
+            for seg in seg.subsegments:
+                if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
+                    flags = ""
+                    if seg.n64img.flip_h:
+                        flags += "--flip-x "
+                    if seg.n64img.flip_v:
+                        flags += "--flip-y "
+
+                    bin_path = Path("build/" + str(seg.out_path()) + ".bin")
+                    inc_path = Path(str(bin_path) + ".c")
+                    src_path = seg.out_path()
+
+                    build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": flags })
+                    build(inc_path, [bin_path], "bin2c")
+                elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
+                    bin_path = Path("build/" + str(seg.out_path().with_suffix(".pal")) + ".bin")
+                    inc_path = Path(str(bin_path) + ".c")
+                    src_path = seg.out_path()
+                    build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": "" })
+                    build(inc_path, [bin_path], "bin2c")
+
+    for entry in linker_entries:
+        seg = entry.segment
+
+        if entry.object_path is None:
+            continue
+
+        if seg.type[0] == ".":
+            continue
+        
         if isinstance(seg, splat.segtypes.n64.header.N64SegHeader):
             build(entry.object_path, entry.src_paths, "as")
-        elif seg.type[0] == ".":
-            # images embedded inside data aren't linked, but they do need to be built into .bin files
-            if seg.type == ".data" and isinstance(seg, splat.segtypes.common.group.CommonSegGroup):
-                for seg in seg.subsegments:
-                    if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
-                        flags = ""
-                        if seg.n64img.flip_h:
-                            flags += "--flip-x "
-                        if seg.n64img.flip_v:
-                            flags += "--flip-y "
-
-                        bin_path = Path("build/" + str(seg.out_path()) + ".bin")
-                        inc_path = Path(str(bin_path) + ".c")
-                        src_path = seg.out_path()
-
-                        build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": flags })
-                        build(inc_path, [bin_path], "bin2c")
-                    elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
-                        bin_path = Path("build/" + str(seg.out_path().with_suffix(".pal")) + ".bin")
-                        inc_path = Path(str(bin_path) + ".c")
-                        src_path = seg.out_path()
-                        build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": "" })
-                        build(inc_path, [bin_path], "bin2c")
         elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
             seg, splat.segtypes.common.data.CommonSegData
         ):

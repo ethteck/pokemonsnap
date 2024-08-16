@@ -32,9 +32,7 @@ void func_802BFE34_6422E4(GObj* obj) {
     if (Pokemon_GetDistance(obj, pokemon->interactionTarget) > 500.0f) {
         Pokemon_SetState(obj, func_802BFDE0_642290);
     }
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     cmdSendCommand(pokemon->interactionTarget, 0x1E, obj);

@@ -164,11 +164,7 @@ void func_beach_802C62E4(GObj* obj) {
         Pokemon_SetState(obj, func_beach_802C5E88);
     }
     Pokemon_SetAnimation(obj, &D_beach_802CC3E4);
-
-    // clang-format off
-    pokemon->counter = 33; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
-
+    pokemon->counter = 33, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_beach_802CC564;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     if (pokemon->interactionTarget == NULL) {

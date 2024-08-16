@@ -206,6 +206,6 @@ s32 getGroundAt(f32 arg0, f32 arg1, GroundResult* arg2);
 s32 getCeilingAt(f32 arg0, f32 arg1, GroundResult* arg2);
 s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
 void world_func_800E6778(UnkChestnutCougar* arg0);
-s32 world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
+bool world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
 
 #endif

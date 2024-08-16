@@ -31,15 +31,11 @@ void func_beach_802C8E90(GObj* arg0) { \
     Pokemon* pokemon = GET_POKEMON(arg0);
     // clang-format on
     Pokemon_SetAnimation(arg0, &D_beach_802CD1B8);
-    // clang-format off
-    pokemon->counter = 240; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 240, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_beach_802CD1E4;
     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_SetAnimation(arg0, &D_beach_802CD1CC);
-    // clang-format off
-    pokemon->counter = 240; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 240, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_beach_802CD1E4;
     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_SetState(arg0, func_beach_802C8E90);

@@ -105,11 +105,7 @@ void func_beach_802C7F74(GObj* obj) {
     pokemon->tangible = false;
     obj->flags |= 2 | 1;
     Pokemon_ForceAnimation(obj, &D_beach_802CCE08);
-
-    // clang-format off
-    pokemon->counter = randRange(600) + 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
-
+    pokemon->counter = randRange(600) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_WAIT_ENDED);
     pokemon->tangible = true;
     obj->flags = 0;

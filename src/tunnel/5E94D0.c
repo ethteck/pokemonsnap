@@ -48,7 +48,26 @@ void func_802ECAC0_5E9B90(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECC18_5E9CE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECC44_5E9D14.s")
+void func_802ECC44_5E9D14(GObj* obj) {
+    f32 fader;
+    s32 i;
+    u32 vol;
+
+    f32 steps = 240;
+    fader = 1.0f;
+
+    for (i = 239; i > 0; i--) {
+        fader += -1.0f / steps;
+        vol = 32512.0f * fader;
+        auSetBGMVolume(0, vol);
+        auSetBGMVolume(1, vol);
+        ohWait(1);
+    }
+
+    auSetBGMVolume(0, 0);
+    auSetBGMVolume(1, 0);
+    Pokemon_StopAuxProc(obj);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E94D0/func_802ECD84_5E9E54.s")
 

@@ -7,9 +7,7 @@ void func_beach_802C82B0(GObj* obj) {
 
     obj->flags |= GOBJ_FLAG_HIDDEN;
     Pokemon_StartPathProc(obj, func_beach_802C8438);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
@@ -62,9 +60,7 @@ void func_beach_802C84A4(GObj* obj) {
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     Pokemon_SetAnimation(obj, &D_beach_802CCED8);
-    // clang-format off
-    pokemon->counter = 120; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 120, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_SetAnimation(obj, &D_beach_802CCEEC);

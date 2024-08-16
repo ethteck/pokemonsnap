@@ -17,7 +17,7 @@ options:
   data_string_guesser_level: 2
   rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
-  subalign: null
+  subalign: 16
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -30,6 +30,7 @@ segments:
     subsegments:
     - [0x1000, hasm, entry]
     - [0x1060, c, sys/main]
+    - [0x1510, pad]
     - [0x1520, c, sys/sched]
     - [0x35E0, c, sys/dma]
     - [0x4680, c, sys/cont]
@@ -41,12 +42,13 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, pad, padding_11E20]
+    - [0x11E20, pad]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]
     - [0x1BCF0, c, sys/matrix]
     - [0x1F960, c]
+    - [0x20930, pad]
     - [0x20940, c, sys/audio]
     - [0x245E0, asm]
     - [0x26D40, c, ../ultralib/src/sp/color]
@@ -861,6 +863,7 @@ segments:
     - [0x730C70, c, pkmn_1031]
     - [0x730D80, c, sounds]
     - [0x731860, c, player]
+    - [0x731E80, c, assets]
     - [0x731E80, .data, main]
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
@@ -899,6 +902,17 @@ segments:
     - [0x734B70, .rodata, sounds]
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
+
+    - start: 0x798080
+      type: .data
+      name: assets
+      linker_section_order: .rodata
+      subsegments:
+      - [0x798088, palette, test_image]
+      - [0x7980A8]
+      - [0x7980B0, ci4, test_image, 32, 32]
+    
+    - { start: 0x7982B0, type: bin, linker_section_order: .rodata }
 
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
@@ -1071,6 +1085,7 @@ segments:
     - [0x8A7360, c]
     - [0x8A8A50, c]
     - [0x8A9CC0, c]
+    - [0x8AAF50, pad]
     - [0x8AAF60, c]
     - [0x8ABEF0, .data, 8A70E0]
     - [0x8AC010, data] # sprite data. Should be in the same file as the next segment

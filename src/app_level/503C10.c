@@ -7,8 +7,11 @@ typedef struct PokemonListEntry {
     /* 0x04 */ struct PokemonListEntry* next;
 } PokemonListEntry; // size = 0x08
 
-extern s32 D_8038A460_52A870;
+s32 D_8038A460_52A870 = 1;
+
 // file split
+static s32 probably_file_split[3] = { 0, 0, 0 };
+
 s32 sMinPokemonObjId = 0;
 s32 sMaxPokemonObjId = 0;
 s32 sPokemonLink = 0;
@@ -36,13 +39,13 @@ void func_80363828_503C38(GObj* arg0) {
     EnvSound_FixParams(arg0);
 }
 
-f32 func_80363848_503C58(GObj* arg0, Vec3f* arg1) {
-    Pokemon* pokemon = GET_POKEMON(arg0);
+f32 func_80363848_503C58(GObj* obj, Vec3f* pos) {
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    if (arg1 != NULL) {
-        arg1->x = pokemon->collPosition.x;
-        arg1->y = pokemon->collPosition.y;
-        arg1->z = pokemon->collPosition.z;
+    if (pos != NULL) {
+        pos->x = pokemon->collPosition.x;
+        pos->y = pokemon->collPosition.y;
+        pos->z = pokemon->collPosition.z;
     }
     return pokemon->collisionRadius;
 }

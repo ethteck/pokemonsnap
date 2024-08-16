@@ -24,7 +24,7 @@ ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
 OK_PATH = f"build/{BASENAME}.ok"
 
-COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src -I build/include"
+COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src -I build/include -I build"
 IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
 CROSS = "mips-linux-gnu-"
@@ -45,6 +45,9 @@ GAME_CC_CMD = f"python3 tools/asm_processor/build.py --input-enc=utf-8 --output-
 LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
+
+PIGMENT64 = "pigment64"
+BIN2C = "tools/bin2c.py"
 
 
 def clean():
@@ -207,17 +210,49 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{CROSS_OBJCOPY} $in $out -O binary",
     )
 
+    ninja.rule(
+        "pigment",
+        description="img($img_type) $in",
+        command=f"{PIGMENT64} to-bin $img_flags -f $img_type -o $out $in",
+    )
+
+    ninja.rule(
+        "bin2c",
+        description="bin2c $in",
+        command=f"{BIN2C} $in $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
-        if seg.type[0] == ".":
-            continue
-
         if entry.object_path is None:
             continue
-
+        
         if isinstance(seg, splat.segtypes.n64.header.N64SegHeader):
             build(entry.object_path, entry.src_paths, "as")
+        elif seg.type[0] == ".":
+            # images embedded inside data aren't linked, but they do need to be built into .bin files
+            if seg.type == ".data" and isinstance(seg, splat.segtypes.common.group.CommonSegGroup):
+                for seg in seg.subsegments:
+                    if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
+                        flags = ""
+                        if seg.n64img.flip_h:
+                            flags += "--flip-x "
+                        if seg.n64img.flip_v:
+                            flags += "--flip-y "
+
+                        bin_path = Path("build/" + str(seg.out_path()) + ".bin")
+                        inc_path = Path(str(bin_path) + ".c")
+                        src_path = seg.out_path()
+
+                        build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": flags })
+                        build(inc_path, [bin_path], "bin2c")
+                    elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
+                        bin_path = Path("build/" + str(seg.out_path().with_suffix(".pal")) + ".bin")
+                        inc_path = Path(str(bin_path) + ".c")
+                        src_path = seg.out_path()
+                        build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": "" })
+                        build(inc_path, [bin_path], "bin2c")
         elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
             seg, splat.segtypes.common.data.CommonSegData
         ):

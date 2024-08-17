@@ -942,7 +942,7 @@ segments:
     - [0x7A8DD0, c]
     - [0x7AA110, c]
     - [0x7AA720, c]
-    - [0x7AA780, textbin] # Weird extra nops, possibly infinite loop somewhere?
+    - [0x7AA780, pad]
     - [0x7AA790, c]
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
@@ -1185,8 +1185,8 @@ segments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
     - { start: auto, name: A084B0, type: bss, vram: 0x801DD240 }
-  - name: unk_level_end_9
-    dir: unk_level_end_9
+  - name: unk_end_level_9
+    dir: unk_end_level_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
@@ -1236,10 +1236,10 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xA93460, c]
-    - [0xA937B0, asm] # nops
+    - [0xA937B0, pad]
     - [0xA937C0, c]
     - [0xA94480, c]
-    - [0xA94930, asm] # nops
+    - [0xA94930, pad]
     - [0xA94940, c]
     - [0xA95760, data, A93460]
     - [0xA95880, data] # sprite

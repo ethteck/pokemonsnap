@@ -11,6 +11,10 @@ extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
 
+extern Texture** charizard_materials[];
+extern UnkEC64Arg3 charizard_model[];
+extern Texture** vulpix_materials[];
+extern UnkEC64Arg3 vulpix_model[];
 extern Texture** arcanine_materials[];
 extern UnkEC64Arg3 arcanine_model[];
 

@@ -901,6 +901,56 @@ segments:
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
 
+    - { start: 0x78FA70, type: c, name: charizard, dir: assets, linker_section_order: .rodata }
+    - start: 0x78FA70
+      type: .data
+      dir: charizard
+      name: charizard
+      linker_section_order: .rodata
+      subsegments:
+      - [0x78FB40, vtx, model]
+      - [0x791050, gfx, first]
+      - [0x791088, gfx, part0_draw_near]
+      - [0x7911E8, gfx, part0_draw]
+      - [0x791208, gfx, part1_pre_near]
+      - [0x791240, gfx, part1_pre]
+      - [0x791258, gfx, part1_draw_near]
+      - [0x7913C0, gfx, part1_draw]
+      - [0x7913D8, gfx, part2_draw_near]
+      - [0x791590, gfx, part2_draw]
+      - [0x7915A8, gfx, part3_pre_near]
+      - [0x7915E8, gfx, part3_pre]
+      - [0x791600, gfx, part3_draw_near]
+      - [0x791778, gfx, part3_draw]
+      - [0x791790, gfx, part4_draw_near]
+      - [0x791948, gfx, part4_draw]
+      - [0x791960, gfx, part5_pre_near]
+      - [0x7919E8, gfx, part5_pre]
+      - [0x791A00, gfx, part5_draw_near]
+      - [0x791A70, gfx, part5_draw]
+      - [0x791A88, gfx, part6_draw_near]
+      - [0x791AF8, gfx, part6_draw]
+      - [0x791B10, gfx, part7_draw_near]
+      - [0x7920C0, gfx, part7_draw]
+      - [0x7920D8, gfx, part8_draw_near]
+      - [0x7922C8, gfx, part8_draw]
+      - [0x7922E0, gfx, part9_draw_near]
+      - [0x7923A0, gfx, part9_draw]
+      - [0x7923B8, gfx, part10_draw_near]
+      - [0x792498, gfx, part10_draw]
+      - [0x7924B0, gfx, part11_pre_near]
+      - [0x792530, gfx, part11_pre]
+      - [0x792548, gfx, part11_draw_near]
+      - [0x7925D8, gfx, part11_draw]
+      - [0x7925F0, gfx, part12_draw_near]
+      - [0x792748, gfx, part12_draw]
+      - [0x792760, gfx, part13_pre_near]
+      - [0x7927E8, gfx, part13_pre]
+      - [0x792800, gfx, part13_draw_near]
+      - [0x792890, gfx, part13_draw]
+      - [0x7928A8, gfx, part14_draw_near]
+      - [0x792A00, gfx, part14_draw]
+      - [0x792A18, gfx, last]
     - { start: 0x792DD0, type: c, name: vulpix, dir: assets, linker_section_order: .rodata }
     - start: 0x792DD0
       type: .data
@@ -976,9 +1026,7 @@ segments:
       - [0x7979E8, gfx, part15_draw_near]
       - [0x797B98, gfx, part15_draw_far]
       - [0x797C60, gfx, part15_draw]
-      - [0x797C88, gfx, last]
-
-    
+      - [0x797C88, gfx, last]    
     - { start: 0x798080, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
     - start: 0x798080
       type: .data

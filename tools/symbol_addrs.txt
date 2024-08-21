@@ -1,3 +1,5 @@
+D_0E000000 = 0xE000000;
+
 osTvType = 0x80000300;
 osRomBase = 0x80000308;
 scMain = 0x80002510;
@@ -1078,3 +1080,6 @@ arcanine_tex13_pal = 0x80198FF8; // segment:volcano_code
 arcanine_tex13_png = 0x80199020; // segment:volcano_code
 arcanine_tex14_pal = 0x80346E88; // segment:volcano_code
 arcanine_tex14_png = 0x80346EB0; // segment:volcano_code
+arcanine_part2_mat0_image0 = 0x80197FD0; // segment:volcano_code
+arcanine_part2_mat0_image1 = 0x80198400; // segment:volcano_code
+arcanine_part2_mat0_image2 = 0x80198830; // segment:volcano_code

@@ -863,7 +863,6 @@ segments:
     - [0x730C70, c, pkmn_1031]
     - [0x730D80, c, sounds]
     - [0x731860, c, player]
-    - [0x731E80, c, assetswqe]
     - [0x731E80, .data, main]
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
@@ -902,25 +901,18 @@ segments:
     - [0x734B70, .rodata, sounds]
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
-
-    - start: 0x798080
-      type: .data
-      name: assetswqe
-      linker_section_order: .rodata
-      subsegments:
-      - [0x798088, palette, test_image]
-      - [0x7980A8]
-      - [0x7980B0, ci4, test_image, 32, 32]
-
-    - { start: 0x7982B0, type: bin, linker_section_order: .rodata }
     
-    - { start: 0x798398, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
-    - start: 0x798398
+    - { start: 0x798080, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
+    - start: 0x798080
       type: .data
       dir: arcanine
       name: arcanine
       linker_section_order: .rodata
       subsegments:
+      - [0x798088, palette, tex14]
+      - [0x7980A8]
+      - [0x7980B0, ci4, tex14, 32, 32]
+      - [0x7982B0]
       - [0x798398, vtx, model]
       - [0x79A8B8, gfx, first]
       - [0x79A8E0, gfx, part0_draw_near]
@@ -1018,7 +1010,6 @@ segments:
       - [0x79ECC0, gfx, part20_draw]
       - [0x79ECE8, gfx, last]
       - [0x79ED08]
-    - { start: 0x79F1B0, type: bin, linker_section_order: .rodata }
     - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     dir: valley

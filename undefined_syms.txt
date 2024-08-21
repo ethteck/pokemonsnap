@@ -36,6 +36,10 @@ D_803DA800 = 0x803DA800;
 
 D_0E000000 = 0xE000000;
 
+arcanine_part2_mat0_image0 = 0x80197FD0;
+arcanine_part2_mat0_image1 = 0x80198400;
+arcanine_part2_mat0_image2 = 0x80198830;
+
 D_80136803_AB1B53 = 0x80136803;
 D_8004B250 = 0x8004B250;
 D_beach_8034757B = 0x8034757B;

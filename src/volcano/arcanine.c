@@ -1,8 +1,5 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_8034DBB0[];
-extern Texture** D_803470B0[];
-
 extern AnimCmd* D_8019F220[];
 extern AnimCmd* D_801A0A00[];
 extern AnimCmd* D_80199120[];
@@ -193,8 +190,8 @@ PokemonAnimationSetup D_802E2A94_733C94 = {
 };
 
 PokemonInitData D_802E2AA8_733CA8 = {
-    D_8034DBB0,
-    D_803470B0,
+    arcanine_model,
+    arcanine_materials,
     renderPokemonModelTypeIFogged,
     &D_802E2A94_733C94,
     { 1.4, 1.4, 1.4 },

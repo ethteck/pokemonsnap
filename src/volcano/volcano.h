@@ -11,6 +11,9 @@ extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
 
+extern Texture** arcanine_materials[];
+extern UnkEC64Arg3 arcanine_model[];
+
 s32 volcano_Start(s32);
 
 void volcano_SpawnMagikarp(GObj* obj);

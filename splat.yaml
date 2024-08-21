@@ -834,7 +834,6 @@ segments:
     start: 0x7272E0
     vram: 0x802D60E0
     bss_size: 0x170
-    subalign: 8
     exclusive_ram_id: level
     subsegments:
     - [0x7272E0, c, main]
@@ -901,6 +900,84 @@ segments:
     - [0x734B70, .rodata, sounds]
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
+
+    - { start: 0x792DD0, type: c, name: vulpix, dir: assets, linker_section_order: .rodata }
+    - start: 0x792DD0
+      type: .data
+      dir: vulpix
+      name: vulpix
+      linker_section_order: .rodata
+      subsegments:
+      - [0x792F40, vtx, model]
+      - [0x795150, gfx, first]
+      - [0x795180, gfx, part0_draw_near]
+      - [0x795288, gfx, part0_draw_far]
+      - [0x795380, gfx, part0_draw]
+      - [0x7953B0, gfx, part1_pre_near]
+      - [0x795408, gfx, part1_pre_far]
+      - [0x795460, gfx, part1_pre]
+      - [0x795488, gfx, part1_draw_near]
+      - [0x7954F8, gfx, part1_draw_far]
+      - [0x795558, gfx, part1_draw]
+      - [0x795580, gfx, part2_draw_near]
+      - [0x795750, gfx, part2_draw_far]
+      - [0x795878, gfx, part2_draw]
+      - [0x7958A0, gfx, part3_pre_near]
+      - [0x795900, gfx, part3_pre_far]
+      - [0x795958, gfx, part3_pre]
+      - [0x795980, gfx, part3_draw_near]
+      - [0x7959F0, gfx, part3_draw_far]
+      - [0x795A50, gfx, part3_draw]
+      - [0x795A78, gfx, part4_draw_near]
+      - [0x795C28, gfx, part4_draw_far]
+      - [0x795D50, gfx, part4_draw]
+      - [0x795D78, gfx, part5_pre_near]
+      - [0x795DC0, gfx, part5_pre_far]
+      - [0x795DF8, gfx, part5_pre]
+      - [0x795E20, gfx, part5_draw_near]
+      - [0x7962E0, gfx, part5_draw_far]
+      - [0x7966A0, gfx, part5_draw]
+      - [0x7966C8, gfx, part6_pre_near]
+      - [0x796748, gfx, part6_pre_far]
+      - [0x796790, gfx, part6_pre]
+      - [0x7967B8, gfx, part6_draw_near]
+      - [0x796900, gfx, part6_draw_far]
+      - [0x796A18, gfx, part6_draw]
+      - [0x796A40, gfx, part7_draw_near]
+      - [0x796B50, gfx, part7_draw_far]
+      - [0x796C20, gfx, part7_draw]
+      - [0x796C48, gfx, part8_draw_near]
+      - [0x796D58, gfx, part8_draw_far]
+      - [0x796E28, gfx, part8_draw]
+      - [0x796E50, gfx, part9_draw_near]
+      - [0x796F60, gfx, part9_draw_far]
+      - [0x797030, gfx, part9_draw]
+      - [0x797058, gfx, part10_pre_near]
+      - [0x7970C0, gfx, part10_pre_far]
+      - [0x797118, gfx, part10_pre]
+      - [0x797140, gfx, part10_draw_near]
+      - [0x7971F0, gfx, part10_draw_far]
+      - [0x797260, gfx, part10_draw]
+      - [0x797288, gfx, part11_draw_near]
+      - [0x797308, gfx, part11_draw_far]
+      - [0x797370, gfx, part11_draw]
+      - [0x797398, gfx, part12_draw_near]
+      - [0x797548, gfx, part12_draw_far]
+      - [0x797688, gfx, part12_draw]
+      - [0x7976B0, gfx, part13_pre_near]
+      - [0x797718, gfx, part13_pre_far]
+      - [0x797768, gfx, part13_pre]
+      - [0x797790, gfx, part13_draw_near]
+      - [0x797840, gfx, part13_draw_far]
+      - [0x7978B0, gfx, part13_draw]
+      - [0x7978D8, gfx, part14_draw_near]
+      - [0x797958, gfx, part14_draw_far]
+      - [0x7979C0, gfx, part14_draw]
+      - [0x7979E8, gfx, part15_draw_near]
+      - [0x797B98, gfx, part15_draw_far]
+      - [0x797C60, gfx, part15_draw]
+      - [0x797C88, gfx, last]
+
     
     - { start: 0x798080, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
     - start: 0x798080

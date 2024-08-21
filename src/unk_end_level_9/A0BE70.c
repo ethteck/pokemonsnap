@@ -1,7 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 
-#include "unk_level_end_9.h"
+#include "unk_end_level_9.h"
 #include "sys/anim.h"
 
 extern s32 D_800E82F4_A0F884;

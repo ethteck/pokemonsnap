@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include "unk_level_end_9.h"
+#include "unk_end_level_9.h"
 
 typedef struct PanData {
     /* 0x00 */ s32 data[4];

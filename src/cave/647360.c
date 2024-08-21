@@ -139,9 +139,7 @@ void func_802C5188_647638(GObj* obj) { \
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802C7DDC_64A28C;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_SetState(obj, func_802C4FB8_647468);

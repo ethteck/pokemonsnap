@@ -60,9 +60,7 @@ void func_802BF68C_641B3C(GObj* obj) {
     Pokemon_ResetPathPos(obj);
     Pokemon_SetAnimation(obj, &D_802C6A40_648EF0);
     Pokemon_StartPathProc(obj, func_802BF750_641C00);
-    // clang-format off
-    pokemon->counter = randRange(120) + 120; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = randRange(120) + 120, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802C6AD8_648F88;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
@@ -211,9 +209,7 @@ void func_802BFBF0_6420A0(GObj* obj) { \
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     cmdSendCommand(pokemon->interactionTarget, 0x1F, obj);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);

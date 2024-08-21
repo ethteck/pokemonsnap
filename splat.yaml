@@ -611,8 +611,7 @@ segments:
     - { start: 0x52A7B0, type: .rodata, name: icons, linker_section_order: .data }
     - { start: 0x52A7D0, type: .rodata, name: 4FE330, linker_section_order: .data }
     - [0x52A7E0, .data, pokemon]
-    - [0x52A870, data]
-    - [0x52A880, .data, 503C10]
+    - [0x52A870, .data, 503C10]
     - [0x52A8A0, data]
     - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
@@ -912,7 +911,7 @@ segments:
       - [0x798088, palette, test_image]
       - [0x7980A8]
       - [0x7980B0, ci4, test_image, 32, 32]
-    
+
     - { start: 0x7982B0, type: bin, linker_section_order: .rodata }
     
     - { start: 0x798398, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
@@ -1049,7 +1048,7 @@ segments:
     - [0x7A8DD0, c]
     - [0x7AA110, c]
     - [0x7AA720, c]
-    - [0x7AA780, textbin] # Weird extra nops, possibly infinite loop somewhere?
+    - [0x7AA780, pad]
     - [0x7AA790, c]
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
@@ -1292,8 +1291,8 @@ segments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
     - { start: auto, name: A084B0, type: bss, vram: 0x801DD240 }
-  - name: unk_level_end_9
-    dir: unk_level_end_9
+  - name: unk_end_level_9
+    dir: unk_end_level_9
     type: code
     start: 0xA08E30
     vram: 0x800E18A0
@@ -1343,10 +1342,10 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0xA93460, c]
-    - [0xA937B0, asm] # nops
+    - [0xA937B0, pad]
     - [0xA937C0, c]
     - [0xA94480, c]
-    - [0xA94930, asm] # nops
+    - [0xA94930, pad]
     - [0xA94940, c]
     - [0xA95760, data, A93460]
     - [0xA95880, data] # sprite

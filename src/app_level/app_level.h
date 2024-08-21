@@ -176,6 +176,7 @@ void Items_StopPokeFlute(void);
 void Items_SetCustomFunctions(GObjFunc, u8, void (*)(GObj*, GroundResult*));
 void Items_RemoveFlyingItems(void);
 s32 Items_GetPokeFluteState(void);
+void Items_func_8035CA1C(s32 (*arg0)(Vec3f*, Vec3f*, Vec3f*, Vec3f*));
 void Items_Pause(void);
 void Items_UnPause(void);
 void Items_InitIterator(void);

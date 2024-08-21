@@ -153,9 +153,7 @@ void func_beach_802CB594(GObj* arg0) { \
     }
     Pokemon_SetAnimation(arg0, &D_beach_802CDC10);
     Pokemon_StartPathProc(arg0, NULL);
-    // clang-format off
-    pokemon->counter = 17; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 17, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_beach_802CDEF8;
     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_WAIT_ENDED);
     if (pokemon->interactionTarget == NULL) {

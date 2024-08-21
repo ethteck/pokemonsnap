@@ -133,7 +133,7 @@ void func_802DF42C_73062C(GObj* obj) {
     Pokemon_SetState(obj, func_802DF880_730A80);
 }
 
-void func_802DF508_730708(s32 arg0, s32 arg1, s32 arg2) {
+void func_802DF508_730708(DObj* arg0, s32 arg1, f32 arg2) {
     if (arg1 == -2 || arg1 == -1) {
         D_802E3704_734904 = 1;
     }

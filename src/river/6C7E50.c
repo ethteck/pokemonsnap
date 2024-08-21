@@ -16,7 +16,26 @@ void func_802E0070_6C7E50(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E01C8_6C7FA8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E01F4_6C7FD4.s")
+void func_802E01F4_6C7FD4(GObj* obj) {
+    f32 fader;
+    s32 i;
+    u32 vol;
+
+    f32 steps = 240;
+    fader = 1.0f;
+
+    for (i = 239; i > 0; i--) {
+        fader += -1.0f / steps;
+        vol = 32512.0f * fader;
+        auSetBGMVolume(0, vol);
+        auSetBGMVolume(1, vol);
+        ohWait(1);
+    }
+
+    auSetBGMVolume(0, 0);
+    auSetBGMVolume(1, 0);
+    Pokemon_StopAuxProc(obj);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E0334_6C8114.s")
 

@@ -17,9 +17,7 @@ void func_beach_802C85E0(GObj* arg0) { \
     // clang-format on
 
     Pokemon_StartPathProc(arg0, func_beach_802C87BC);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(arg0, 4);
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
@@ -185,7 +183,7 @@ void func_beach_802C8BC4(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->counter = 0x80;
+    pokemon->counter = 128;
     pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon = pokemon;
     Pokemon_WaitForFlagNoInteraction(obj, POKEMON_PROCESS_WAIT_ENDED);

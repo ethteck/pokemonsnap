@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include "unk_level_end_9.h"
+#include "unk_end_level_9.h"
 
 extern GObj* D_800E8334_A0F8C4;
 extern GObj* D_800E8338_A0F8C8;
@@ -52,7 +52,7 @@ void func_800E5F48_A0D4D8(void) {
     SObj* sobj;
 
     D_800E8334_A0F8C4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_802DABC0, 0, NULL, 1);
+                                       &D_802DABC0, 0, NULL, 1);
     sobj = D_800E8334_A0F8C4->data.sobj;
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = 0x66;
@@ -62,7 +62,7 @@ void func_800E5FDC_A0D56C(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E8338_A0F8C8 =  ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
+    gobj = D_800E8338_A0F8C8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
                                               &D_803128E0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 40, 36);
@@ -229,7 +229,7 @@ void func_800E672C_A0DCBC(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = D_800E8344_A0F8D4 =  ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
+    gobj = D_800E8344_A0F8D4 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
                                               &D_8032F360, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
@@ -261,7 +261,7 @@ void func_800E6880_A0DE10(void) {
     SObj* sobj;
 
     D_800E8348_A0F8D8 = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80332CB0, 0, NULL, 1);
+                                       &D_80332CB0, 0, NULL, 1);
     sobj = D_800E8348_A0F8D8->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
@@ -298,7 +298,6 @@ void func_800E6880_A0DE10(void) {
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 41, 168);
     sobj->sprite.attr = SP_TEXSHUF | SP_HIDDEN | SP_TRANSPARENT;
-
 }
 
 void func_800E6ADC_A0E06C(void) {

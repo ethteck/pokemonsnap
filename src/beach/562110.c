@@ -36,10 +36,7 @@ void func_beach_802CA1BC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     omCreateProcess(obj, func_beach_802CA0A0, 1, 1);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
-
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);
@@ -51,9 +48,7 @@ void func_beach_802CA23C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     omCreateProcess(obj, func_beach_802CA0F4, 1, 1);
-    // clang-format off
-    pokemon->counter = 1; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    // clang-format on
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);

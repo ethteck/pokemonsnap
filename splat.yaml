@@ -835,6 +835,7 @@ segments:
     start: 0x7272E0
     vram: 0x802D60E0
     bss_size: 0x170
+    subalign: 8
     exclusive_ram_id: level
     subsegments:
     - [0x7272E0, c, main]
@@ -864,7 +865,6 @@ segments:
     - [0x730D80, c, sounds]
     - [0x731860, c, player]
     - [0x731E80, c, assetswqe]
-    - [0x731E80, c, assets/arcanine]
     - [0x731E80, .data, main]
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
@@ -915,6 +915,7 @@ segments:
     
     - { start: 0x7982B0, type: bin, linker_section_order: .rodata }
     
+    - { start: 0x798398, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
     - start: 0x798398
       type: .data
       dir: arcanine

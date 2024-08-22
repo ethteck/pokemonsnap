@@ -52,4 +52,8 @@
 #define SET_SPRITE_POS(s, _x, _y) (s).x = _x; (s).y = _y;
 #define SET_SPRITE_POS_PTR(s, _x, _y) (s)->x = _x; (s)->y = _y;
 
+#define __CONCAT__(x, y) x##y
+#define __CONCAT2__(x, y) __CONCAT__(x, y)
+#define __ALIGNER static u8 __CONCAT2__(aligner,__LINE__) [] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+
 #endif

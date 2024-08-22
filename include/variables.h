@@ -34,4 +34,7 @@ extern u16 D_803DA800[SCREEN_WIDTH * SCREEN_HEIGHT];
 extern DynamicBuffer sGeneralHeap;
 extern u8 D_801ED020[];
 
+extern Gfx D_0E000000[];
+extern Gfx D_0E000008[];
+
 #endif

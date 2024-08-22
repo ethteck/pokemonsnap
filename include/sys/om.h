@@ -420,7 +420,6 @@ typedef struct Texture {
     /* 0x04 */ u8** images;        // should this be a pointer to an array of images (sprite set)?
     /* 0x08 */ u16 scale;
     /* 0x0A */ u16 unk0A;
-    ///* 0x0C */ f32 unk0C;
     /* 0x0C */ u16 widthMain;
     /* 0x0E */ u16 heightMain;
     /* 0x10 */ s32 unk_10; // could be f32??

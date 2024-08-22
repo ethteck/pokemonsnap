@@ -898,8 +898,10 @@ segments:
     - [0x734B50, .rodata, pkmn_1030]
     - [0x734B60, .rodata, magikarp]
     - [0x734B70, .rodata, sounds]
-
-    - { start: 0x734C00, type: bin, linker_section_order: .rodata }
+    - { start: 0x734C00, type: c, name: height_map_data, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x734C00, type: .data, name: height_map_data, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x76E6D0, type: c, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x76E6D0, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
     - { start: 0x76E6E0, type: c, name: magmar, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data

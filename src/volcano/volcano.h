@@ -6,7 +6,7 @@
 
 #define VOLCANO_CMD_37 POKEMON_CMD_37
 
-extern HeightMap D_8031D4D0_76E6D0;
+extern HeightMap volcano_heightMap;
 extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
@@ -36,7 +36,7 @@ void volcano_SpawnMagikarp(GObj* obj);
 void volcano_func_802D6780_727980(s32 arg0);
 void volcano_CharmeleonChangeBlock(GObj*, f32, f32, f32, f32, f32, f32);
 void volcano_Init(void);
-void func_802DFB80_730D80(s32, f32); 
+void func_802DFB80_730D80(s32, f32);
 void volcano_HandleCollision(GObj*, GroundResult*);
 void func_802E0C28_731E28(void);
 void func_802D6E14_728014(GObj* obj);

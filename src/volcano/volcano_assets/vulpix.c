@@ -1,8 +1,5 @@
 #include <common.h>
 
-extern Gfx D_0E000000[];
-extern Gfx D_0E000008[];
-
 extern u8 vulpix_tex0_pal[];
 extern u8 vulpix_tex0_png[];
 extern u8 vulpix_tex1_pal[];

@@ -1,7 +1,5 @@
 #include <common.h>
 
-extern Gfx D_0E000000[];
-
 extern u8 arcanine_tex0_png[];
 extern u8 arcanine_tex1_png[];
 extern u8 arcanine_tex2_png[];

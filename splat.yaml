@@ -901,7 +901,7 @@ segments:
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
 
-    - { start: 0x78FA70, type: c, name: charizard, dir: assets, linker_section_order: .rodata }
+    - { start: 0x78FA70, type: c, name: charizard, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x78FA70
       type: .data
       dir: charizard
@@ -951,7 +951,7 @@ segments:
       - [0x7928A8, gfx, part14_draw_near]
       - [0x792A00, gfx, part14_draw]
       - [0x792A18, gfx, last]
-    - { start: 0x792DD0, type: c, name: vulpix, dir: assets, linker_section_order: .rodata }
+    - { start: 0x792DD0, type: c, name: vulpix, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x792DD0
       type: .data
       dir: vulpix
@@ -1027,7 +1027,7 @@ segments:
       - [0x797B98, gfx, part15_draw_far]
       - [0x797C60, gfx, part15_draw]
       - [0x797C88, gfx, last]    
-    - { start: 0x798080, type: c, name: arcanine, dir: assets, linker_section_order: .rodata }
+    - { start: 0x798080, type: c, name: arcanine, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x798080
       type: .data
       dir: arcanine

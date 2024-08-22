@@ -80,6 +80,16 @@ rapidash_tex3_var7_png = 0x80151590;
 rapidash_tex2_var0_png = 0x8014F5F0;
 rapidash_tex2_var1_png = 0x8014FC00;
 rapidash_tex2_var2_png = 0x80150210;
+moltres_tex0_var0_png = 0x8013FF60;
+moltres_tex0_var1_png = 0x80140190;
+moltres_tex0_var2_png = 0x801403C0;
+moltres_tex0_var3_png = 0x801405F0;
+moltres_tex0_var4_png = 0x80140820;
+moltres_tex0_var5_png = 0x80140A50;
+moltres_tex0_var6_png = 0x80140C80;
+moltres_tex0_var7_png = 0x80140EB0;
+moltres_tex4_var0_png = 0x801412F8;
+moltres_tex4_var1_png = 0x80141728;
 
 D_80136803_AB1B53 = 0x80136803;
 D_8004B250 = 0x8004B250;
@@ -235,9 +245,6 @@ D_80113990 = 0x80113990;
 D_8014F080 = 0x8014F080;
 D_8014E550 = 0x8014E550;
 D_8014E650 = 0x8014E650;
-
-D_8032A688 = 0x8032A688;
-D_80323FD0 = 0x80323FD0;
 
 D_80143E20 = 0x80143E20;
 D_801429B0 = 0x801429B0;

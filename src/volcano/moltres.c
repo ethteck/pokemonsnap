@@ -1,8 +1,5 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_8032A688[];
-extern Texture** D_80323FD0[];
-
 extern AnimCmd* D_80143E20[];
 extern AnimCmd* D_801429B0[];
 extern AnimCmd* D_80143110[];
@@ -90,8 +87,8 @@ PokemonAnimationSetup D_802E319C_73439C = {
 };
 
 PokemonInitData D_802E31B0_7343B0 = {
-    D_8032A688,
-    D_80323FD0,
+    moltres_model,
+    moltres_materials,
     func_802DE26C_72F46C,
     &D_802E319C_73439C,
     { 1.5, 1.5, 1.5 },

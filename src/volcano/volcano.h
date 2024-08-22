@@ -11,6 +11,8 @@ extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
 
+extern Texture** moltres_materials[];
+extern UnkEC64Arg3 moltres_model[];
 extern Texture** rapidash_materials[];
 extern UnkEC64Arg3 rapidash_model[];
 extern Texture** growlithe_materials[];

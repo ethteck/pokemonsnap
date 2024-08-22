@@ -1,8 +1,5 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 volcano_magmar_assetModel[];
-extern Texture** volcano_magmar_assetMaterials[];
-
 extern AnimCmd* volcano_magmar_assetAnimModel1[];
 extern AnimCmd* volcano_magmar_assetAnimModel2[];
 extern AnimCmd* volcano_magmar_assetAnimModel3[];
@@ -248,8 +245,8 @@ PokemonAnimationSetup volcano_magmar_AnimSetup = {
 };
 
 PokemonInitData volcano_magmar_InitData = {
-    volcano_magmar_assetModel,
-    volcano_magmar_assetMaterials,
+    magmar_model,
+    magmar_materials,
     renderPokemonModelTypeJFogged,
     &volcano_magmar_AnimSetup,
     { 1.3, 1.3, 1.3 },

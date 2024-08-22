@@ -901,6 +901,70 @@ segments:
 
     - { start: 0x734C00, type: bin, linker_section_order: .rodata }
 
+    - { start: 0x787700, type: c, name: charmander, dir: volcano_assets, linker_section_order: .rodata }
+    - start: 0x787700
+      type: .data
+      dir: charmander
+      name: charmander
+      linker_section_order: .rodata
+      subsegments:
+      - [0x787870, vtx, model]
+      - [0x7892B0, gfx, first]
+      - [0x7892E8, gfx, part0_draw_near]
+      - [0x789428, gfx, part0_draw_far]
+      - [0x789508, gfx, part0_draw]
+      - [0x789538, gfx, part1_pre_near]
+      - [0x789570, gfx, part1_pre_far]
+      - [0x7895A0, gfx, part1_pre]
+      - [0x7895C8, gfx, part1_draw_near]
+      - [0x789638, gfx, part1_draw_far]
+      - [0x789688, gfx, part1_draw]
+      - [0x7896B0, gfx, part2_draw_near]
+      - [0x789730, gfx, part2_draw_far]
+      - [0x789790, gfx, part2_draw]
+      - [0x7897B8, gfx, part3_pre_near]
+      - [0x7897F0, gfx, part3_pre_far]
+      - [0x789820, gfx, part3_pre]
+      - [0x789848, gfx, part3_draw_near]
+      - [0x7898B8, gfx, part3_draw_far]
+      - [0x789908, gfx, part3_draw]
+      - [0x789930, gfx, part4_draw_near]
+      - [0x7899B0, gfx, part4_draw_far]
+      - [0x789A10, gfx, part4_draw]
+      - [0x789A38, gfx, part5_pre_near]
+      - [0x789A78, gfx, part5_pre_far]
+      - [0x789AB0, gfx, part5_pre]
+      - [0x789AD8, gfx, part5_draw_near]
+      - [0x789EC0, gfx, part5_draw_far]
+      - [0x78A1A0, gfx, part5_draw]
+      - [0x78A1C8, gfx, part6_draw_near]
+      - [0x78A3B8, gfx, part6_draw_far]
+      - [0x78A4D8, gfx, part6_draw]
+      - [0x78A500, gfx, part7_draw_near]
+      - [0x78A570, gfx, part7_draw_far]
+      - [0x78A5D8, gfx, part7_draw]
+      - [0x78A600, gfx, part8_draw_near]
+      - [0x78A738, gfx, part8_draw_far]
+      - [0x78A860, gfx, part8_draw]
+      - [0x78A888, gfx, part9_draw_near]
+      - [0x78A8F8, gfx, part9_draw_far]
+      - [0x78A960, gfx, part9_draw]
+      - [0x78A988, gfx, part10_draw_near]
+      - [0x78AAC0, gfx, part10_draw_far]
+      - [0x78ABE8, gfx, part10_draw]
+      - [0x78AC10, gfx, part11_pre_near]
+      - [0x78AC48, gfx, part11_pre_far]
+      - [0x78AC78, gfx, part11_pre]
+      - [0x78ACA0, gfx, part11_draw_near]
+      - [0x78AD30, gfx, part11_draw_far]
+      - [0x78ADB0, gfx, part11_draw]
+      - [0x78ADD8, gfx, part12_draw_near]
+      - [0x78AE58, gfx, part12_draw_far]
+      - [0x78AEB0, gfx, part12_draw]
+      - [0x78AED8, gfx, last]
+      - [0x78AF00, gfx, part13_draw_near]
+      - [0x78AFD8, gfx, part13_draw_far]
+      - [0x78B0B0, gfx, part13_draw]
     - { start: 0x78B4F0, type: c, name: charmeleon, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x78B4F0
       type: .data

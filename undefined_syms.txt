@@ -55,6 +55,18 @@ charmeleon_tex8_var0_png = 0x8017C048;
 charmeleon_tex8_var1_png = 0x8017C450;
 charmeleon_tex8_var2_png = 0x8017C858;
 charmeleon_tex8_var3_png = 0x8017CC60;
+charmander_tex0_var0_png = 0x801739D0;
+charmander_tex0_var1_png = 0x80171C80;
+charmander_tex0_var2_png = 0x801720B0;
+charmander_tex0_var3_png = 0x801724E0;
+charmander_tex0_var4_png = 0x80172910;
+charmander_tex0_var5_png = 0x80172D40;
+charmander_tex0_var6_png = 0x80173170;
+charmander_tex0_var7_png = 0x801735A0;
+charmander_tex6_var0_png = 0x80173DD8;
+charmander_tex6_var1_png = 0x801741E0;
+charmander_tex6_var2_png = 0x801745E8;
+charmander_tex6_var3_png = 0x801749F0;
 
 D_80136803_AB1B53 = 0x80136803;
 D_8004B250 = 0x8004B250;
@@ -96,9 +108,6 @@ D_8015F2B0 = 0x8015F2B0;
 D_8015C800 = 0x8015C800;
 D_80330610 = 0x80330610;
 D_8032AA50 = 0x8032AA50;
-
-D_8033A030 = 0x8033A030;
-D_80336500 = 0x80336500;
 
 D_80177600 = 0x80177600;
 D_80178070 = 0x80178070;

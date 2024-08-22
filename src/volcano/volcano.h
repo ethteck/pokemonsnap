@@ -11,6 +11,8 @@ extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
 
+extern Texture** charmander_materials[];
+extern UnkEC64Arg3 charmander_model[];
 extern Texture** charmeleon_materials[];
 extern UnkEC64Arg3 charmeleon_model[];
 extern Texture** charizard_materials[];

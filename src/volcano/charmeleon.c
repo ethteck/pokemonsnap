@@ -1,8 +1,5 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_8033E520[];
-extern Texture** D_8033A2F0[];
-
 extern AnimCmd* D_8017E7F0[];
 extern AnimCmd* D_80180830[];
 extern AnimCmd* D_8017F660[];
@@ -222,8 +219,8 @@ PokemonAnimationSetup D_802E2DF4_733FF4 = {
 };
 
 PokemonInitData D_802E2E08_734008 = {
-    D_8033E520,
-    D_8033A2F0,
+    charmeleon_model,
+    charmeleon_materials,
     renderPokemonModelTypeJFogged,
     &D_802E2DF4_733FF4,
     { 1.8, 1.8, 1.8 },

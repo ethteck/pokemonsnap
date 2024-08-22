@@ -48,6 +48,13 @@ arcanine_tex8_var2_png = 0x80198830;
 charizard_tex2_var0_png = 0x801857F0;
 charizard_tex2_var1_png = 0x80184F90;
 charizard_tex2_var2_png = 0x801853C0;
+charmeleon_tex1_var0_png = 0x8017B9E0;
+charmeleon_tex1_var1_png = 0x8017BC10;
+charmeleon_tex1_var2_png = 0x8017BE40;
+charmeleon_tex8_var0_png = 0x8017C048;
+charmeleon_tex8_var1_png = 0x8017C450;
+charmeleon_tex8_var2_png = 0x8017C858;
+charmeleon_tex8_var3_png = 0x8017CC60;
 
 D_80136803_AB1B53 = 0x80136803;
 D_8004B250 = 0x8004B250;
@@ -170,9 +177,6 @@ D_801A96C0 = 0x801A96C0;
 D_801A9820 = 0x801A9820;
 D_801A9360 = 0x801A9360;
 D_801A9760 = 0x801A9760;
-
-D_8033E520 = 0x8033E520;
-D_8033A2F0 = 0x8033A2F0;
 
 D_8017E7F0 = 0x8017E7F0;
 D_80180830 = 0x80180830;

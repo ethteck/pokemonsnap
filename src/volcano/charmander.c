@@ -1,27 +1,28 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_80177600[];
-extern AnimCmd* D_80178070[];
 extern AnimCmd* D_80175AE0[];
 extern AnimCmd* D_80176030[];
-extern AnimCmd* D_80179210[];
-extern AnimCmd* D_80177BC0[];
-extern AnimCmd* D_8017C080[];
-extern AnimCmd* D_80179780[];
-extern AnimCmd* D_801786F0[];
-extern AnimCmd* D_80179ED0[];
 extern AnimCmd* D_80176500[];
+extern AnimCmd* D_80177600[];
+extern AnimCmd* D_80177BC0[];
+extern AnimCmd* D_80178070[];
+extern AnimCmd* D_801786F0[];
+extern AnimCmd* D_80179210[];
+extern AnimCmd* D_80179780[];
+extern AnimCmd* D_80179ED0[];
 
-extern AnimCmd** D_8017ADF0[];
-extern AnimCmd** D_8017B0C0[];
+extern AnimCmd* D_8017C080[];
+
 extern AnimCmd** D_8017AB20[];
 extern AnimCmd** D_8017ABF0[];
+extern AnimCmd** D_8017AC80[];
+extern AnimCmd** D_8017ADF0[];
+extern AnimCmd** D_8017AF90[];
+extern AnimCmd** D_8017B0C0[];
+extern AnimCmd** D_8017B280[];
 extern AnimCmd** D_8017B400[];
 extern AnimCmd** D_8017B500[];
-extern AnimCmd** D_8017AF90[];
-extern AnimCmd** D_8017B280[];
 extern AnimCmd** D_8017B630[];
-extern AnimCmd** D_8017AC80[];
 
 extern GObj* D_802E10A0_7322A0;
 extern void func_802DED6C_72FF6C(GObj*);

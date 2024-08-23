@@ -461,6 +461,7 @@ segments:
     subsegments:
     - [0x99F70, bin] # , data]
   - type: code
+    name: beach_assets
     start: 0xA74E0
     vram: 0x8011B050
     bss_size: 0x20
@@ -518,13 +519,14 @@ segments:
     - [0x29A1A0, bin] # , data]
     - { start: auto, name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
   - type: code
-    name: stage3_extra
+    name: volcano_extra
     start: 0x30AF90
     vram: 0x8019AEE0
     exclusive_ram_id: unk30AF90
     subsegments:
     - [0x30AF90, bin] # , data]
   - type: code
+    name: volcano_assets
     start: 0x326C10
     vram: 0x800FFF90
     bss_size: 0x20
@@ -899,7 +901,7 @@ segments:
     - [0x734B50, .rodata, pkmn_1030]
     - [0x734B60, .rodata, magikarp]
     - [0x734B70, .rodata, sounds]
-    - { start: 0x734C00, type: c, name: height_map_data, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x734C00, type: c, name: height_map_data, dir: models, linker_section_order: .rodata }
     - start: 0x734C00
       type: .data
       name: height_map_data
@@ -907,9 +909,9 @@ segments:
       subsegments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
-    - { start: 0x76E6D0, type: c, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
-    - { start: 0x76E6D0, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
-    - { start: 0x76E6E0, type: c, name: magmar, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x76E6D0, type: c, name: height_map, dir: models, linker_section_order: .rodata }
+    - { start: 0x76E6D0, type: .data, name: height_map, dir: models, linker_section_order: .rodata }
+    - { start: 0x76E6E0, type: c, name: magmar, dir: models, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
       dir: magmar
@@ -999,7 +1001,7 @@ segments:
       - [0x774AC0, gfx, part3_draw_near]
       - [0x774B88, gfx, part3_draw_far]
       - [0x774C50, gfx, part3_draw]
-    - { start: 0x7751D0, type: c, name: moltres, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x7751D0, type: c, name: moltres, dir: models, linker_section_order: .rodata }
     - start: 0x7751D0
       type: .data
       dir: moltres
@@ -1078,7 +1080,7 @@ segments:
       - [0x77B608, gfx, part19_draw_far]
       - [0x77B790, gfx, part19_draw]
       - [0x77B7B8, gfx, last]
-    - { start: 0x77BC50, type: c, name: rapidash, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x77BC50, type: c, name: rapidash, dir: models, linker_section_order: .rodata }
     - start: 0x77BC50
       type: .data
       dir: rapidash
@@ -1161,7 +1163,7 @@ segments:
       - [0x781628, gfx, part20_draw_far]
       - [0x781708, gfx, part20_draw]
       - [0x781730, gfx, last]
-    - { start: 0x781C10, type: c, name: growlithe, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x781C10, type: c, name: growlithe, dir: models, linker_section_order: .rodata }
     - start: 0x781C10
       type: .data
       dir: growlithe
@@ -1243,7 +1245,7 @@ segments:
       - [0x787150, gfx, part17_draw_far]
       - [0x7872B0, gfx, part17_draw]
       - [0x7872D8, gfx, last]
-    - { start: 0x787700, type: c, name: charmander, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x787700, type: c, name: charmander, dir: models, linker_section_order: .rodata }
     - start: 0x787700
       type: .data
       dir: charmander
@@ -1307,7 +1309,7 @@ segments:
       - [0x78AF00, gfx, part13_draw_near]
       - [0x78AFD8, gfx, part13_draw_far]
       - [0x78B0B0, gfx, part13_draw]
-    - { start: 0x78B4F0, type: c, name: charmeleon, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x78B4F0, type: c, name: charmeleon, dir: models, linker_section_order: .rodata }
     - start: 0x78B4F0
       type: .data
       dir: charmeleon
@@ -1380,7 +1382,7 @@ segments:
       - [0x78F3F8, gfx, part12_draw_near]
       - [0x78F4A8, gfx, part12_draw_far]
       - [0x78F558, gfx, part12_draw]
-    - { start: 0x78FA70, type: c, name: charizard, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x78FA70, type: c, name: charizard, dir: models, linker_section_order: .rodata }
     - start: 0x78FA70
       type: .data
       dir: charizard
@@ -1430,7 +1432,7 @@ segments:
       - [0x7928A8, gfx, part14_draw_near]
       - [0x792A00, gfx, part14_draw]
       - [0x792A18, gfx, last]
-    - { start: 0x792DD0, type: c, name: vulpix, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x792DD0, type: c, name: vulpix, dir: models, linker_section_order: .rodata }
     - start: 0x792DD0
       type: .data
       dir: vulpix
@@ -1506,7 +1508,7 @@ segments:
       - [0x797B98, gfx, part15_draw_far]
       - [0x797C60, gfx, part15_draw]
       - [0x797C88, gfx, last]    
-    - { start: 0x798080, type: c, name: arcanine, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: 0x798080, type: c, name: arcanine, dir: models, linker_section_order: .rodata }
     - start: 0x798080
       type: .data
       dir: arcanine

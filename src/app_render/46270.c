@@ -21,21 +21,21 @@ Overlay overlayMenuNewGame = OVERLAY(menu_new_game);
 Overlay overlayCredits = OVERLAY(credits);
 Overlay D_800ABDA4 = OVERLAY(intro_code);
 Overlay D_800ABDC8 = OVERLAY(app_level);
-Overlay D_800ABDEC = OVERLAY(world);
-Overlay D_800ABE10 = OVERLAY(A74E0);
-Overlay D_800ABE34 = OVERLAY(beach_code);
-Overlay D_800ABE58 = OVERLAY(_162CB0);
-Overlay D_800ABE7C = OVERLAY(tunnel_code);
-Overlay D_800ABEA0 = OVERLAY(_1F5E70);
-Overlay D_800ABEC4 = OVERLAY(cave_code);
-Overlay D_800ABEE8 = OVERLAY(_29A190);
-Overlay D_800ABF0C = OVERLAY(river_code);
-Overlay D_800ABF30 = OVERLAY(_326C10);
-Overlay D_800ABF54 = OVERLAY(volcano_code);
-Overlay D_800ABF78 = OVERLAY(_3F63D0);
-Overlay D_800ABF9C = OVERLAY(valley_code);
-Overlay D_800ABFC0 = OVERLAY(_4A8160);
-Overlay D_800ABFE4 = OVERLAY(rainbow_code);
+Overlay overlayWorld = OVERLAY(world);
+Overlay overlayBeachAssets = OVERLAY(beach_assets);
+Overlay overlayBeach = OVERLAY(beach_code);
+Overlay overlayTunnelAssets = OVERLAY(_162CB0);
+Overlay overlayTunnel = OVERLAY(tunnel_code);
+Overlay overlayCaveAssets = OVERLAY(_1F5E70);
+Overlay overlayCave = OVERLAY(cave_code);
+Overlay overlayRiverAssets = OVERLAY(_29A190);
+Overlay overlayRiver = OVERLAY(river_code);
+Overlay overlayVolcanoAssets = OVERLAY(volcano_assets);
+Overlay overlayVolcano = OVERLAY(volcano_code);
+Overlay overlayValleyAssets = OVERLAY(_3F63D0);
+Overlay overlayValley = OVERLAY(valley_code);
+Overlay overlayRainbowAssets = OVERLAY(_4A8160);
+Overlay overlayRainbow = OVERLAY(rainbow_code);
 
 static s32 padding2[1] = { 0 };
 s32 D_800AC00C = 0;
@@ -62,7 +62,7 @@ s32 func_8009A8E4(void) {
 void func_8009A8F0(s32 levelID) {
     switch (levelID) {
         case SCENE_BEACH:
-            dmaLoadOverlay(&D_800ABE10);
+            dmaLoadOverlay(&overlayBeachAssets);
             dmaReadRom(stage0_extra_ROM_START, stage0_extra_VRAM, stage0_extra_ROM_END - stage0_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
@@ -70,7 +70,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             return;
         case SCENE_TUNNEL:
-            dmaLoadOverlay(&D_800ABE58);
+            dmaLoadOverlay(&overlayTunnelAssets);
             dmaReadRom(stage1_extra_ROM_START, stage1_extra_VRAM, stage1_extra_ROM_END - stage1_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
@@ -80,7 +80,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
             break;
         case SCENE_CAVE:
-            dmaLoadOverlay(&D_800ABEA0);
+            dmaLoadOverlay(&overlayCaveAssets);
             dmaReadRom(stage4_extra_ROM_START, stage4_extra_VRAM, stage4_extra_ROM_END - stage4_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
@@ -92,8 +92,8 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
             break;
         case SCENE_RIVER:
-            dmaLoadOverlay(&D_800ABEE8);
-            dmaReadRom(stage3_extra_ROM_START, stage3_extra_VRAM, stage3_extra_ROM_END - stage3_extra_ROM_START);
+            dmaLoadOverlay(&overlayRiverAssets);
+            dmaReadRom(volcano_extra_ROM_START, volcano_extra_VRAM, volcano_extra_ROM_END - volcano_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -102,39 +102,39 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             break;
         case SCENE_VOLCANO:
-            dmaLoadOverlay(&D_800ABF30);
+            dmaLoadOverlay(&overlayVolcanoAssets);
             dmaReadRom(stage2_extra_ROM_START, stage2_extra_VRAM, stage2_extra_ROM_END - stage2_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
         case SCENE_VALLEY:
-            dmaLoadOverlay(&D_800ABF78);
+            dmaLoadOverlay(&overlayValleyAssets);
             dmaReadRom(stage5_extra_ROM_START, stage5_extra_VRAM, stage5_extra_ROM_END - stage5_extra_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
         case SCENE_RAINBOW:
-            dmaLoadOverlay(&D_800ABFC0);
+            dmaLoadOverlay(&overlayRainbowAssets);
             dmaReadRom(stage6_extra_ROM_START, stage6_extra_VRAM, stage6_extra_ROM_END - stage6_extra_ROM_START);
             break;
     }
 }
 
 void func_8009AE0C(u32 sceneId) {
-    dmaLoadOverlay(&D_800ABDEC);
+    dmaLoadOverlay(&overlayWorld);
     dmaLoadOverlay(&D_800ABDC8);
     switch (sceneId) {
         case SCENE_BEACH:
-            dmaLoadOverlay(&D_800ABE34);
-            dmaLoadOverlay(&D_800ABE10);
+            dmaLoadOverlay(&overlayBeach);
+            dmaLoadOverlay(&overlayBeachAssets);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
             break;
         case SCENE_TUNNEL:
-            dmaLoadOverlay(&D_800ABE7C);
-            dmaLoadOverlay(&D_800ABE58);
+            dmaLoadOverlay(&overlayTunnel);
+            dmaLoadOverlay(&overlayTunnelAssets);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
@@ -143,8 +143,8 @@ void func_8009AE0C(u32 sceneId) {
             dmaReadRom(zubat3_ROM_START, zubat3_VRAM, zubat3_ROM_END - zubat3_ROM_START);
             break;
         case SCENE_CAVE:
-            dmaLoadOverlay(&D_800ABEC4);
-            dmaLoadOverlay(&D_800ABEA0);
+            dmaLoadOverlay(&overlayCave);
+            dmaLoadOverlay(&overlayCaveAssets);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur3_ROM_START, bulbasaur3_VRAM, bulbasaur3_ROM_END - bulbasaur3_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -155,8 +155,8 @@ void func_8009AE0C(u32 sceneId) {
             dmaReadRom(zubat3_ROM_START, zubat3_VRAM, zubat3_ROM_END - zubat3_ROM_START);
             break;
         case SCENE_RIVER:
-            dmaLoadOverlay(&D_800ABF0C);
-            dmaLoadOverlay(&D_800ABEE8);
+            dmaLoadOverlay(&overlayRiver);
+            dmaLoadOverlay(&overlayRiverAssets);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur3_ROM_START, bulbasaur3_VRAM, bulbasaur3_ROM_END - bulbasaur3_ROM_START);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
@@ -165,20 +165,20 @@ void func_8009AE0C(u32 sceneId) {
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
             break;
         case SCENE_VOLCANO:
-            dmaLoadOverlay(&D_800ABF54);
-            dmaLoadOverlay(&D_800ABF30);
+            dmaLoadOverlay(&overlayVolcano);
+            dmaLoadOverlay(&overlayVolcanoAssets);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             break;
         case SCENE_VALLEY:
-            dmaLoadOverlay(&D_800ABF9C);
-            dmaLoadOverlay(&D_800ABF78);
+            dmaLoadOverlay(&overlayValley);
+            dmaLoadOverlay(&overlayValleyAssets);
             dmaReadRom(magikarp1_ROM_START, magikarp1_VRAM, magikarp1_ROM_END - magikarp1_ROM_START);
             dmaReadRom(magikarp3_ROM_START, magikarp3_VRAM, magikarp3_ROM_END - magikarp3_ROM_START);
             break;
         case SCENE_RAINBOW:
-            dmaLoadOverlay(&D_800ABFE4);
-            dmaLoadOverlay(&D_800ABFC0);
+            dmaLoadOverlay(&overlayRainbow);
+            dmaLoadOverlay(&overlayRainbowAssets);
             break;
     }
 }
@@ -224,7 +224,7 @@ void func_8009B40C(void) {
     s32 i;
 
     for (i = 0; i < 0x11; i++) {
-        dmaLoadOverlay(&D_800ABDEC);
+        dmaLoadOverlay(&overlayWorld);
         dmaLoadOverlay(&D_800ABBD0);
         if (func_801DD010_AA2050(i) != 0) {
             PANIC();
@@ -320,21 +320,21 @@ void start_scene_manager(s32 arg0) {
             case SCENE_11:
             case SCENE_13:
                 func_800AAF20();
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC3C);
                 sceneId = func_oaks_lab_800E1AD8(sceneId);
                 break;
             case SCENE_12:
                 func_800AAF20();
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC60);
                 sceneId = func_801DCCA0_9A6EF0(sceneId);
                 break;
             case SCENE_14:
                 func_800AAF20();
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABC84);
                 sceneId = func_801DCC74_9D35E4(sceneId);
@@ -348,13 +348,13 @@ void start_scene_manager(s32 arg0) {
             case SCENE_22:
                 func_800AAF20();
             case SCENE_23:
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCCC);
                 sceneId = func_801DCEBC_9FAB7C(sceneId);
                 break;
             case SCENE_24:
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&D_800ABCF0);
                 sceneId = func_801DD09C_A08C8C(sceneId);
@@ -364,7 +364,7 @@ void start_scene_manager(s32 arg0) {
             case SCENE_CREDITS_19:
             case SCENE_CREDITS_20:
                 func_800AAF20();
-                dmaLoadOverlay(&D_800ABDEC);
+                dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&D_800ABBF4);
                 dmaLoadOverlay(&overlayCredits);
                 sceneId = func_credits_801DCB24(sceneId);
@@ -376,7 +376,7 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&D_800ABD38);
                 sceneId = func_800E4830_A0BDC0(sceneId);
                 if (sceneId == SCENE_BEACH) {
-                    dmaLoadOverlay(&D_800ABDEC);
+                    dmaLoadOverlay(&overlayWorld);
                     dmaLoadOverlay(&D_800ABBF4);
                     dmaLoadOverlay(&overlayMenuNewGame);
                     sceneId = menu_new_game_entry(sceneId);

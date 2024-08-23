@@ -136,10 +136,7 @@ void func_802DE7DC_72F9DC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802DE8C8_72FAC8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE8C8_72FAC8)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
@@ -147,18 +144,13 @@ void func_802DE8C8_72FAC8(GObj* obj) {
     Pokemon_SetState(obj, func_802DE91C_72FB1C);
 }
 
-void func_802DE91C_72FB1C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE91C_72FB1C)
     pokemon->transitionGraph = D_802E3378_734578;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DE95C_72FB5C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802DE95C_72FB5C)
     GroundResult result;
     DObj* targetModel = pokemon->interactionTarget->data.dobj;
 
@@ -170,18 +162,12 @@ void func_802DE95C_72FB5C(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_802E33B8_7345B8);
 }
 
-void func_802DE9C4_72FBC4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE9C4_72FBC4)
     omCreateProcess(obj, func_802DE7DC_72F9DC, 1, 1);
     Pokemon_SetState(obj, func_802DEA04_72FC04);
 }
 
-void func_802DEA04_72FC04(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DEA04_72FC04)
     pokemon->transitionGraph = D_802E3398_734598;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);

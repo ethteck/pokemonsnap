@@ -205,20 +205,14 @@ PokemonInitData D_802E190C_732B0C = {
     { 0, 0, 0 }
 };
 
-void func_802D7F60_729160(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D7F60_729160)
     if (pokemon->behavior != 0) {
         Pokemon_SetState(obj, func_802D86E0_7298E0);
     }
     Pokemon_SetState(obj, func_802D7FA8_7291A8);
 }
 
-void func_802D7FA8_7291A8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D7FA8_7291A8)
     Pokemon_SetAnimation(obj, &D_802E1540_732740);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E15B8_7327B8;
@@ -226,10 +220,7 @@ void func_802D7FA8_7291A8(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
 }
 
-void func_802D8018_729218(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8018_729218)
     Pokemon_SetAnimation(obj, &D_802E1554_732754);
     pokemon->pokemonLoopTarget = 5;
     Pokemon_StartPathProc(obj, func_802D80BC_7292BC);    
@@ -241,10 +232,7 @@ void func_802D8018_729218(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
 }
 
-void func_802D80BC_7292BC(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D80BC_7292BC)
     pokemon->hSpeed = 40.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -252,10 +240,7 @@ void func_802D80BC_7292BC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D8118_729318(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8118_729318)
     Pokemon_SetAnimation(obj, &D_802E1568_732768);
     pokemon->pokemonLoopTarget = 5;
     Pokemon_StartPathProc(obj, func_802D81BC_7293BC);    
@@ -267,10 +252,7 @@ void func_802D8118_729318(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
 }
 
-void func_802D81BC_7293BC(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D81BC_7293BC)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -278,10 +260,7 @@ void func_802D81BC_7293BC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D8218_729418(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8218_729418)
     Pokemon_SetAnimation(obj, &D_802E157C_73277C);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1718_732918;
@@ -289,10 +268,7 @@ void func_802D8218_729418(GObj* obj) {
     Pokemon_SetState(obj, func_802D85C0_7297C0);
 }
 
-void func_802D8288_729488(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8288_729488)
     Pokemon_SetAnimation(obj, &D_802E157C_73277C);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1718_732918;
@@ -300,10 +276,7 @@ void func_802D8288_729488(GObj* obj) {
     Pokemon_SetState(obj, func_802D85C0_7297C0);
 }
 
-void func_802D82F8_7294F8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D82F8_7294F8)
     Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1718_732918;
@@ -311,10 +284,7 @@ void func_802D82F8_7294F8(GObj* obj) {
     Pokemon_SetState(obj, func_802D7FA8_7291A8);
 }
 
-void func_802D8368_729568(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8368_729568)
     Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
     Pokemon_StartPathProc(obj, func_802D842C_72962C);
     pokemon->transitionGraph = D_802E1718_732918;
@@ -330,20 +300,14 @@ void func_802D8368_729568(GObj* obj) {
     Pokemon_SetState(obj, func_802D84FC_7296FC);
 }
 
-void func_802D842C_72962C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D842C_72962C)
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-void func_802D8478_729678(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8478_729678)
     Pokemon_SetAnimation(obj, &D_802E1568_732768);
     pokemon->hSpeed = 160.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
@@ -353,10 +317,7 @@ void func_802D8478_729678(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D84FC_7296FC(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D84FC_7296FC)
     if (pokemon->interactionTarget == NULL) {
         Pokemon_SetState(obj, func_802D7FA8_7291A8);
     }
@@ -371,14 +332,11 @@ void func_802D84FC_7296FC(GObj* obj) {
     Pokemon_SetState(obj, func_802D85C0_7297C0);
 }
 
-void func_802D859C_72979C(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802D8368_729568);
+POKEMON_FUNC(func_802D859C_72979C)
+    Pokemon_SetState(obj, func_802D8368_729568);
 }
 
-void func_802D85C0_7297C0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D85C0_7297C0)
     pokemon->apple = NULL;
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802E1778_732978;
@@ -387,10 +345,7 @@ void func_802D85C0_7297C0(GObj* obj) {
     Pokemon_SetState(obj, func_802D7FA8_7291A8);
 }
 
-void func_802D8620_729820(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8620_729820)
     Pokemon_SetAnimation(obj, &D_802E1554_732754);
     Pokemon_StartPathProc(obj, func_802D8694_729894);
     pokemon->transitionGraph = D_802E1748_732948;
@@ -399,20 +354,14 @@ void func_802D8620_729820(GObj* obj) {
     Pokemon_SetState(obj, func_802D7FA8_7291A8);
 }
 
-void func_802D8694_729894(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8694_729894)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-void func_802D86E0_7298E0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D86E0_7298E0)
     Pokemon_SetAnimation(obj, &D_802E1540_732740);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1818_732A18;
@@ -420,10 +369,7 @@ void func_802D86E0_7298E0(GObj* obj) {
     Pokemon_SetState(obj, func_802D86E0_7298E0);
 }
 
-void func_802D8750_729950(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8750_729950)
     Pokemon_SetAnimation(obj, &D_802E157C_73277C);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1818_732A18;
@@ -431,10 +377,7 @@ void func_802D8750_729950(GObj* obj) {
     Pokemon_SetState(obj, func_802D8830_729A30);
 }
 
-void func_802D87C0_7299C0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D87C0_7299C0)
     Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E1818_732A18;
@@ -442,15 +385,12 @@ void func_802D87C0_7299C0(GObj* obj) {
     Pokemon_SetState(obj, func_802D8830_729A30);
 }
 
-void func_802D8830_729A30(GObj* arg0) {
-    Pokemon_StartPathProc(arg0, func_802D88D0_729AD0);
-    Pokemon_SetState(arg0, func_802D8868_729A68);
+POKEMON_FUNC(func_802D8830_729A30)
+    Pokemon_StartPathProc(obj, func_802D88D0_729AD0);
+    Pokemon_SetState(obj, func_802D8868_729A68);
 }
 
-void func_802D8868_729A68(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D8868_729A68)
     Pokemon_SetAnimation(obj, &D_802E1568_732768);
     pokemon->transitionGraph = D_802E1878_732A78;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -458,10 +398,7 @@ void func_802D8868_729A68(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802D88D0_729AD0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D88D0_729AD0)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.15f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
@@ -469,10 +406,7 @@ void func_802D88D0_729AD0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D893C_729B3C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D893C_729B3C)
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_802E157C_73277C);
     pokemon->transitionGraph = NULL;
@@ -481,9 +415,7 @@ void func_802D893C_729B3C(GObj* obj) {
     Pokemon_SetState(obj, func_802D8868_729A68);
 }
 
-void func_802D89B0_729BB0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802D89B0_729BB0)
     InteractionHandler saved[3] = D_802E18C8_732AC8;
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;

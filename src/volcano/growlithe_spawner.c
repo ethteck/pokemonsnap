@@ -50,9 +50,7 @@ PokemonInitData D_802E2FD8_7341D8 = {
     { 0, 0, 0 }
 };
 
-void func_802DD7F0_72E9F0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802DD7F0_72E9F0)
     s32 blockIndex;
     f32 blockPart;
 
@@ -75,10 +73,7 @@ void func_802DD7F0_72E9F0(GObj* obj) {
     Pokemon_SetState(obj, func_802DD8F8_72EAF8);
 }
 
-void func_802DD8F8_72EAF8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DD8F8_72EAF8)
     Pokemon_SetAnimation(obj, &D_802E2F90_734190);
     pokemon->transitionGraph = D_802E2FA4_7341A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -86,11 +81,7 @@ void func_802DD8F8_72EAF8(GObj* obj) {
     Pokemon_SetState(obj, func_802DD8F8_72EAF8);
 }
 
-// clang-format off
-void func_802DD954_72EB54(GObj* obj) { \
-    UNUSED s32 pad[3]; \
-    Pokemon* pokemon = GET_POKEMON(obj);
-    // clang-format on
+POKEMON_FUNC(func_802DD954_72EB54)
     omCreateProcess(obj, func_802D6B2C_727D2C, 1, 1);
 
     if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && func_802D6D6C_727F6C(obj)) {
@@ -104,10 +95,7 @@ void func_802DD954_72EB54(GObj* obj) { \
     Pokemon_SetState(obj, func_802DD8F8_72EAF8);
 }
 
-void func_802DDA0C_72EC0C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DDA0C_72EC0C)
     while (pokemon->miscVars[0].field1 == 0) {
         cmdSendCommand(pokemon->miscVars[1].obj, POKEMON_CMD_34, obj);
         ohWait(randRange(180) + 120);

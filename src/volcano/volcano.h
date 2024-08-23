@@ -6,11 +6,23 @@
 
 #define VOLCANO_CMD_37 POKEMON_CMD_37
 
-extern HeightMap D_8031D4D0_76E6D0;
+extern HeightMap volcano_heightMap;
 extern WorldSetup volcano_WorldSetup;
 
 extern u16 D_802E0EB4_7320B4;
 
+extern Texture** magmar_materials[];
+extern UnkEC64Arg3 magmar_model[];
+extern Texture** moltres_materials[];
+extern UnkEC64Arg3 moltres_model[];
+extern Texture** rapidash_materials[];
+extern UnkEC64Arg3 rapidash_model[];
+extern Texture** growlithe_materials[];
+extern UnkEC64Arg3 growlithe_model[];
+extern Texture** charmander_materials[];
+extern UnkEC64Arg3 charmander_model[];
+extern Texture** charmeleon_materials[];
+extern UnkEC64Arg3 charmeleon_model[];
 extern Texture** charizard_materials[];
 extern UnkEC64Arg3 charizard_model[];
 extern Texture** vulpix_materials[];

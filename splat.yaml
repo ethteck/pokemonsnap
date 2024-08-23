@@ -8,6 +8,7 @@ options:
   platform: n64
   base_path: .
   target_path: pokemonsnap.z64
+  extensions_path: tools/splat_ext
   ld_script_path: pokemonsnap.ld
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
@@ -899,7 +900,13 @@ segments:
     - [0x734B60, .rodata, magikarp]
     - [0x734B70, .rodata, sounds]
     - { start: 0x734C00, type: c, name: height_map_data, dir: volcano_assets, linker_section_order: .rodata }
-    - { start: 0x734C00, type: .data, name: height_map_data, dir: volcano_assets, linker_section_order: .rodata }
+    - start: 0x734C00
+      type: .data
+      name: height_map_data
+      linker_section_order: .rodata
+      subsegments:
+      - [0x734C00, snap_height_map_patches, patches]
+      - [0x74CC88, snap_height_map_tree, tree]
     - { start: 0x76E6D0, type: c, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
     - { start: 0x76E6D0, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
     - { start: 0x76E6E0, type: c, name: magmar, dir: volcano_assets, linker_section_order: .rodata }

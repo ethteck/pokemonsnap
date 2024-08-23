@@ -259,9 +259,7 @@ PokemonInitData volcano_magmar_InitData = {
     { 0, 0, 0 }
 };
 
-void volcano_magmar_DeleteLater(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(volcano_magmar_DeleteLater)
     s32 blockIndex;
     f32 blockPart;
     s32 blockIndex2;
@@ -291,10 +289,7 @@ void volcano_magmar_DeleteLater(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void volcano_magmar_StateInitial(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_StateInitial)
     pokemon->miscVars[0].field1 = 0;
     pokemon->flags |= POKEMON_FLAG_200;
     Pokemon_StartAuxProc(obj, volcano_magmar_DeleteLater);
@@ -308,9 +303,7 @@ void volcano_magmar_StateInitial(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802D7458_728658(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802D7458_728658)
     s32 blockIndex;
     f32 blockPart;
 
@@ -326,10 +319,7 @@ void func_802D7458_728658(GObj* obj) {
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void volcano_magmar_Idle1(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_Idle1)
     pokemon->unk_10E = 0;
     Pokemon_SetAnimation(obj, &volcano_magmar_animIdle1);
     Pokemon_StartPathProc(obj, NULL);
@@ -339,10 +329,7 @@ void volcano_magmar_Idle1(GObj* obj) {
     Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void volcano_magmar_Idle2(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_Idle2)
     Pokemon_ForceAnimation(obj, &volcano_magmar_animIdle2);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = volcano_magmar_tgIdle;
@@ -351,10 +338,7 @@ void volcano_magmar_Idle2(GObj* obj) {
     Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void volcano_magmar_Idle3(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_Idle3)
     Pokemon_SetAnimation(obj, &volcano_magmar_animIdle3);
     pokemon->pokemonLoopTarget = 5;
     Pokemon_StartPathProc(obj, volcano_magmar_Walk);
@@ -367,10 +351,7 @@ void volcano_magmar_Idle3(GObj* obj) {
     Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void volcano_magmar_Walk(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_Walk)
     pokemon->hSpeed = 40.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -378,10 +359,7 @@ void volcano_magmar_Walk(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void volcano_magmar_HitByPB(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_HitByPB)
     pokemon->unk_10E = 0;
     pokemon->flags |= POKEMON_FLAG_800;
     Pokemon_StartPathProc(obj, NULL);
@@ -403,10 +381,7 @@ void volcano_magmar_HitByPB(GObj* obj) {
     }
 }
 
-void volcano_magmar_HitByApple(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_HitByApple)
     pokemon->unk_10E = 0;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimation(obj, &D_802E1028_732228);
@@ -415,10 +390,7 @@ void volcano_magmar_HitByApple(GObj* obj) {
     Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void volcano_magmar_AffectedByPB(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_AffectedByPB)
     pokemon->unk_10E = 0;
     Pokemon_SetAnimation(obj, &D_802E1028_732228);
     Pokemon_StartPathProc(obj, NULL);
@@ -427,10 +399,7 @@ void volcano_magmar_AffectedByPB(GObj* obj) {
     Pokemon_SetStateRandom(obj, volcano_magmar_IdleStates);
 }
 
-void volcano_magmar_DoSearchApple(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_DoSearchApple)
     pokemon->miscVars[0].field1 = 1;
     Pokemon_StartPathProc(obj, volcano_magmar_RunToApple);
     pokemon->transitionGraph = volcano_magmar_tgEatingApple;
@@ -452,10 +421,7 @@ void volcano_magmar_DoSearchApple(GObj* obj) {
     Pokemon_SetState(obj, func_802D7A34_728C34);
 }
 
-void volcano_magmar_RunToApple(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_RunToApple)
     Pokemon_SetAnimation(obj, &D_802E1014_732214);
     pokemon->hSpeed = 160.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
@@ -465,14 +431,11 @@ void volcano_magmar_RunToApple(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void volcano_magmar_SearchApple(GObj* arg0) {
-    Pokemon_SetState(arg0, volcano_magmar_DoSearchApple);
+POKEMON_FUNC(volcano_magmar_SearchApple)
+    Pokemon_SetState(obj, volcano_magmar_DoSearchApple);
 }
 
-void func_802D7A34_728C34(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D7A34_728C34)
     pokemon->apple = NULL;
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802E1374_732574;
@@ -481,10 +444,7 @@ void func_802D7A34_728C34(GObj* obj) {
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void volcano_magmar_HearsFlute(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_HearsFlute)
     Pokemon_SetAnimation(obj, &volcano_magmar_animIdle3);
     Pokemon_StartPathProc(obj, func_802D7B08_728D08);
     pokemon->transitionGraph = D_802E13C4_7325C4;
@@ -492,20 +452,14 @@ void volcano_magmar_HearsFlute(GObj* obj) {
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void func_802D7B08_728D08(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D7B08_728D08)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-void volcano_magmar_InteractWithPokemon(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_InteractWithPokemon)
     if (pokemon->behavior == 1) {
         // standing alone magmar
         Pokemon_SetState(obj, volcano_magmar_BurnCharmander);
@@ -526,9 +480,7 @@ void volcano_magmar_InteractWithPokemon(GObj* obj) {
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
 
-void func_802D7C30_728E30(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802D7C30_728E30)
     GObj* target = pokemon->interactionTarget;
 
     do {
@@ -543,10 +495,7 @@ void func_802D7C30_728E30(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D7CB4_728EB4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D7CB4_728EB4)
     pokemon->unk_10E = 11;
     pokemon->flags |= POKEMON_FLAG_800;
     Pokemon_StartPathProc(obj, NULL);
@@ -567,10 +516,7 @@ void func_802D7CB4_728EB4(GObj* obj) {
     Pokemon_SetState(obj, func_802D7A34_728C34);
 }
 
-void volcano_magmar_BurnCharmander(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(volcano_magmar_BurnCharmander)
     if (pokemon->miscVars[0].field1 == 0) {
         Pokemon_SetState(obj, volcano_magmar_Idle1);
     }
@@ -592,11 +538,8 @@ void volcano_magmar_BurnCharmander(GObj* obj) {
 
     Pokemon_SetState(obj, volcano_magmar_Idle1);
 }
-// clang-format off
-void func_802D7E90_729090(GObj* obj) { \
-    UNUSED s32 pad[3]; \
-    Pokemon* pokemon = GET_POKEMON(obj);
-    // clang-format on
+
+POKEMON_FUNC(func_802D7E90_729090)
     Pokemon_StartPathProc(obj, NULL);
     pokemon->counter = 80, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;

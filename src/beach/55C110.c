@@ -35,8 +35,33 @@ void beachSpawnMagikarpAtGObj(GObj* obj) {
     GET_TRANSFORM(a0)->pos.v.z = position->v.z;
 }
 
-void func_beach_802C416C(GObj*, GroundResult*);
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55C110/func_beach_802C416C.s")
+void func_beach_802C416C(GObj* obj, GroundResult* groundResult) {
+    DObj* model = obj->data.dobj;
+    Item* item = GET_ITEM(obj);
+    s32 i;
+    s32 numOptions = 2; // ARRAY_COUNT(D_beach_802CC004);
+    s32 sumWeight;
+    s32 randValue;
+
+    if (groundResult->surfaceType == SURFACE_TYPE_337FB2 && Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 50.0f) {
+        sumWeight = 0;
+        for (i = 0; i < numOptions; i++) {
+            sumWeight += D_beach_802CC004[i].weight;
+        }
+        randValue = randRange(sumWeight);
+        sumWeight = 0;
+        for (i = 0; i < numOptions; i++) {
+            sumWeight += D_beach_802CC004[i].weight;
+            if (sumWeight > randValue) {
+                if (D_beach_802CC004[i].func != NULL && !D_beach_802CC014) {
+                    D_beach_802CC004[i].func(obj);
+                    D_beach_802CC014 = true;
+                }
+                break;
+            }
+        }
+    }
+}
 
 void beachPokemonAdd(WorldBlock* param_1, WorldBlock* param_2) {
     pokemonAdd(param_1, param_2, beachPokemonData);

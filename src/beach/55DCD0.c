@@ -1,7 +1,37 @@
 #include "common.h"
 #include "beach.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/55DCD0/func_beach_802C5C60.s")
+void func_beach_802C5C60(GObj* obj) {
+    UNUSED s32 pad[3];
+    DObj* model = obj->data.dobj;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    s32 timer;
+    
+    pokemon->miscVars[4].field1 = true;
+
+    timer = 38;
+    while (pokemon->miscVars[4].field1 && timer--) {
+        ohWait(1);
+    }
+
+    if (pokemon->miscVars[4].field1) {
+        pokemon->collisionOffset.x = -60.0f / (GET_TRANSFORM(model)->scale.v.x / 0.1f);
+        pokemon->collisionOffset.y = 207.0f / (GET_TRANSFORM(model)->scale.v.y / 0.1f);
+        pokemon->collisionOffset.z = 31.0f / (GET_TRANSFORM(model)->scale.v.z / 0.1f);
+        pokemon->collisionRadius = 38.3f * (GET_TRANSFORM(model)->scale.v.y / 0.1f);
+    }
+
+    timer = 42;
+    while (pokemon->miscVars[4].field1 && timer--) {
+        ohWait(1);
+    }
+
+    pokemon->collisionOffset.x = pokemon->miscVars[0].field0;
+    pokemon->collisionOffset.y = pokemon->miscVars[1].field0;
+    pokemon->collisionOffset.z = pokemon->miscVars[2].field0;
+    pokemon->collisionRadius = pokemon->miscVars[3].field0;
+    Pokemon_StopAuxProc(obj);
+}
 
 void func_beach_802C5DAC(GObj* obj) {
     UNUSED s32 pad[3];

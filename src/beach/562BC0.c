@@ -1,7 +1,21 @@
 #include "common.h"
 #include "beach.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/562BC0/func_beach_802CAB50.s")
+void func_beach_802CAB50(GObj* obj) {
+    UNUSED s32 pad[1];
+    DObj* model = obj->data.dobj;
+    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
+    Pokemon* pokemon = GET_POKEMON(obj);    
+
+    Pokemon_SetAnimation(obj, &D_beach_802CDAB4);
+    rotation->f[2] = randRange(360) * PI / 180.0f;
+    Pokemon_StartPathProc(obj, func_beach_802CAC08);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    D_beach_802CC014 = false;
+    Pokemon_RunCleanup(obj);
+    Pokemon_SetState(obj, NULL);
+}
 
 void func_beach_802CAC08(GObj* obj) {
     UNUSED s32 pad[3];

@@ -1,28 +1,28 @@
 #include <common.h>
 
-extern u8 charmander_tex0_pal[];
-extern u8 charmander_tex0_var0_png[];
-extern u8 charmander_tex0_var1_png[];
-extern u8 charmander_tex0_var2_png[];
-extern u8 charmander_tex0_var3_png[];
-extern u8 charmander_tex0_var4_png[];
-extern u8 charmander_tex0_var5_png[];
-extern u8 charmander_tex0_var6_png[];
-extern u8 charmander_tex0_var7_png[];
-extern u8 charmander_tex1_pal[];
-extern u8 charmander_tex1_png[];
-extern u8 charmander_tex2_pal[];
-extern u8 charmander_tex2_png[];
-extern u8 charmander_tex3_pal[];
-extern u8 charmander_tex3_png[];
-extern u8 charmander_tex4_pal[];
-extern u8 charmander_tex4_png[];
-extern u8 charmander_tex5_pal[];
-extern u8 charmander_tex5_png[];
-extern u8 charmander_tex6_var0_png[];
-extern u8 charmander_tex6_var1_png[];
-extern u8 charmander_tex6_var2_png[];
-extern u8 charmander_tex6_var3_png[];
+extern u8 charmander_tex_eye_pal[];
+extern u8 charmander_tex_eye_frame0_png[];
+extern u8 charmander_tex_eye_frame1_png[];
+extern u8 charmander_tex_eye_frame2_png[];
+extern u8 charmander_tex_eye_frame3_png[];
+extern u8 charmander_tex_eye_frame4_png[];
+extern u8 charmander_tex_eye_frame5_png[];
+extern u8 charmander_tex_eye_frame6_png[];
+extern u8 charmander_tex_eye_frame7_png[];
+extern u8 charmander_tex_nostril_pal[];
+extern u8 charmander_tex_nostril_png[];
+extern u8 charmander_tex_skin_pal[];
+extern u8 charmander_tex_skin_png[];
+extern u8 charmander_tex_tongue_pal[];
+extern u8 charmander_tex_tongue_png[];
+extern u8 charmander_tex_claw_pal[];
+extern u8 charmander_tex_claw_png[];
+extern u8 charmander_tex_mouth_pal[];
+extern u8 charmander_tex_mouth_png[];
+extern u8 charmander_tex_flame_frame0_png[];
+extern u8 charmander_tex_flame_frame1_png[];
+extern u8 charmander_tex_flame_frame2_png[];
+extern u8 charmander_tex_flame_frame3_png[];
 
 extern Texture* charmander_part5_mat[];
 extern Texture* charmander_part13_mat[];
@@ -47,21 +47,21 @@ Texture** charmander_materials[] = {
 };
 
 u8* charmander_part5_mat0_images[] = {
-    charmander_tex0_var0_png,
-    charmander_tex0_var1_png,
-    charmander_tex0_var2_png,
-    charmander_tex0_var3_png,
-    charmander_tex0_var4_png,
-    charmander_tex0_var5_png,
-    charmander_tex0_var6_png,
-    charmander_tex0_var7_png,
+    charmander_tex_eye_frame0_png,
+    charmander_tex_eye_frame1_png,
+    charmander_tex_eye_frame2_png,
+    charmander_tex_eye_frame3_png,
+    charmander_tex_eye_frame4_png,
+    charmander_tex_eye_frame5_png,
+    charmander_tex_eye_frame6_png,
+    charmander_tex_eye_frame7_png,
 };
 
 u8* charmander_part13_mat0_images[] = {
-    charmander_tex6_var0_png,
-    charmander_tex6_var1_png,
-    charmander_tex6_var2_png,
-    charmander_tex6_var3_png,
+    charmander_tex_flame_frame0_png,
+    charmander_tex_flame_frame1_png,
+    charmander_tex_flame_frame2_png,
+    charmander_tex_flame_frame3_png,
     NULL,
 };
 

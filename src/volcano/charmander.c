@@ -11,8 +11,6 @@ extern AnimCmd* D_80179210[];
 extern AnimCmd* D_80179780[];
 extern AnimCmd* D_80179ED0[];
 
-extern AnimCmd* D_8017C080[];
-
 extern AnimCmd** D_8017AB20[];
 extern AnimCmd** D_8017ABF0[];
 extern AnimCmd** D_8017AC80[];

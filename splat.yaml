@@ -527,6 +527,7 @@ segments:
     - [0x30AF90, bin] # , data]
   - type: code
     name: volcano_assets
+    dir: volcano
     start: 0x326C10
     vram: 0x800FFF90
     bss_size: 0x20
@@ -534,6 +535,72 @@ segments:
     subsegments:
     - [0x326C10, c]
     - [0x326C20, bin] # , data]
+    - { start: 0x3988D0, type: c, name: charmander, dir: images }
+    - start: 0x3988D0
+      type: .data
+      dir: charmander
+      name: charmander
+      subsegments:
+      - [0x3988D8, palette, tex_eye_frame1, 32, 64]
+      - [0x3988F8]
+      - { start: 0x398900, type: ci4, name: tex_eye_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x398D00]
+      - [0x398D08, palette, tex_eye_frame2, 32, 64]
+      - [0x398D28]
+      - { start: 0x398D30, type: ci4, name: tex_eye_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x399130]
+      - [0x399138, palette, tex_eye_frame3, 32, 64]
+      - [0x399158]
+      - { start: 0x399160, type: ci4, name: tex_eye_frame3, flip_y: true, width: 32, height: 64 }
+      - [0x399560]
+      - [0x399568, palette, tex_eye_frame4, 32, 64]
+      - [0x399588]
+      - { start: 0x399590, type: ci4, name: tex_eye_frame4, flip_y: true, width: 32, height: 64 }
+      - [0x399990]
+      - [0x399998, palette, tex_eye_frame5, 32, 64]
+      - [0x3999B8]
+      - { start: 0x3999C0, type: ci4, name: tex_eye_frame5, flip_y: true, width: 32, height: 64 }
+      - [0x399DC0]
+      - [0x399DC8, palette, tex_eye_frame6, 32, 64]
+      - [0x399DE8]
+      - { start: 0x399DF0, type: ci4, name: tex_eye_frame6, flip_y: true, width: 32, height: 64 }
+      - [0x39A1F0]
+      - [0x39A1F8, palette, tex_eye_frame7, 32, 64]
+      - [0x39A218]
+      - { start: 0x39A220, type: ci4, name: tex_eye_frame7, flip_y: true, width: 32, height: 64 }
+      - [0x39A620]
+      - [0x39A628, palette, tex_eye_frame0, 32, 64]
+      - [0x39A648]
+      - { start: 0x39A650, type: ci4, name: tex_eye_frame0, flip_y: true, width: 32, height: 64 }
+      - [0x39AA50]
+      - { start: 0x39AA58, type: ia16, name: tex_flame_frame0, flip_y: true, width: 16, height: 32 }
+      - [0x39AE58]
+      - { start: 0x39AE60, type: ia16, name: tex_flame_frame1, flip_y: true, width: 16, height: 32 }
+      - [0x39B260]
+      - { start: 0x39B268, type: ia16, name: tex_flame_frame2, flip_y: true, width: 16, height: 32 }
+      - [0x39B668]
+      - { start: 0x39B670, type: ia16, name: tex_flame_frame3, flip_y: true, width: 16, height: 32 }
+      - [0x39BA70]
+      - [0x39BA78, palette, tex_nostril]
+      - [0x39BA98]
+      - { start: 0x39BAA0, type: ci4, name: tex_nostril, flip_y: true, width: 32, height: 32 }
+      - [0x39BCA0]
+      - [0x39BCA8, palette, tex_skin]
+      - [0x39BCC8]
+      - { start: 0x39BCD0, type: ci4, name: tex_skin, flip_y: true, width: 32, height: 64 }
+      - [0x39C0D0]
+      - [0x39C0D8, palette, tex_tongue]
+      - [0x39C0F8]
+      - { start: 0x39C100, type: ci4, name: tex_tongue, flip_y: true, width: 32, height: 32 }
+      - [0x39C300]
+      - [0x39C308, palette, tex_claw]
+      - [0x39C328]
+      - { start: 0x39C330, type: ci4, name: tex_claw, flip_y: true, width: 32, height: 32 }
+      - [0x39C530]
+      - [0x39C538, palette, tex_mouth]
+      - [0x39C558]
+      - { start: 0x39C560, type: ci4, name: tex_mouth, flip_y: true, width: 32, height: 32 }
+    - [0x39C760, bin]
     - { start: auto, name: bss_801A98E0, type: bss, vram: 0x801A98E0 }
   - type: code
     name: stage2_extra

@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "volcano/volcano.h"
 
 extern UnkEC64Arg3 D_80113BA0[];
 extern Texture** D_80113C50[];
@@ -46,10 +44,7 @@ PokemonInitData D_802E32C8_7344C8 = {
     { 0, 0, 0 }
 };
 
-void func_802DE570_72F770(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE570_72F770)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
@@ -70,10 +65,7 @@ void func_802DE570_72F770(GObj* obj) {
     Pokemon_SetState(obj, func_802DE570_72F770);
 }
 
-void func_802DE648_72F848(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE648_72F848)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.05f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;

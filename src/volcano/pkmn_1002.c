@@ -80,10 +80,7 @@ PokemonDef D_802E34DC_7346DC = {
     pokemonRemoveOne
 };
 
-void func_802DEA80_72FC80(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DEA80_72FC80)
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, func_802DEC78_72FE78);
     }
@@ -96,12 +93,13 @@ void func_802DEA80_72FC80(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
+// TODO: figure out if POKEMON_FUNC macro can be used
 void func_802DEAFC_72FCFC(GObj* obj) {
     UNUSED s32 pad[3];
     DObj* model = obj->data.dobj;
     Mtx3Float* position = &GET_TRANSFORM(model)->pos;
-    Pokemon* pokemon = GET_POKEMON(obj);    
-    Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;    
+    Pokemon* pokemon = GET_POKEMON(obj);  
+    Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;
 
     if (SQ(position->v.x - targetPos->v.x) + SQ(position->v.z - targetPos->v.z) < 100000.0f) {
         cmdSendCommand(pokemon->interactionTarget, POKEMON_CMD_29, obj);
@@ -111,19 +109,13 @@ void func_802DEAFC_72FCFC(GObj* obj) {
     Pokemon_SetState(obj, func_802DEA80_72FC80);
 }
 
-void func_802DEBB0_72FDB0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DEBB0_72FDB0)
     pokemon->transitionGraph = D_802E3474_734674;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DEBF0_72FDF0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DEBF0_72FDF0)
     pokemon->tangible = true;
     obj->flags = 0;
 
@@ -137,10 +129,7 @@ void func_802DEBF0_72FDF0(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DEC78_72FE78(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DEC78_72FE78)
     pokemon->tangible = true;
     obj->flags = 0;
 

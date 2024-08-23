@@ -45,14 +45,11 @@ PokemonInitData D_802E37B8_7349B8 = {
     { 0, 0, 0 }
 };
 
-void func_802DFA70_730C70(GObj* obj) {
+POKEMON_FUNC(func_802DFA70_730C70)
     Pokemon_SetState(obj, func_802DFA94_730C94);
 }
 
-void func_802DFA94_730C94(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DFA94_730C94)
     Pokemon_SetAnimation(obj, &D_802E3780_734980);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, 0);
@@ -60,10 +57,7 @@ void func_802DFA94_730C94(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DFAE4_730CE4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DFAE4_730CE4)
     gDPSetTextureLUT(gMainGfxPos[1]++, G_TT_NONE);
     gDPSetCycleType(gMainGfxPos[1]++, G_CYC_2CYCLE);
     renderModelTypeDFogged(obj);

@@ -101,10 +101,7 @@ PokemonInitData D_802E31B0_7343B0 = {
     { 0, 0, 0 }
 };
 
-void func_802DDF00_72F100(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DDF00_72F100)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
@@ -116,10 +113,7 @@ void func_802DDF00_72F100(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DDF7C_72F17C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-    DObj* model = obj->data.dobj;
+POKEMON_FUNC(func_802DDF7C_72F17C)
     DObj* targetModel = pokemon->interactionTarget->data.dobj;
 
     GET_TRANSFORM(model)->pos.v.x = GET_TRANSFORM(targetModel)->pos.v.x;
@@ -156,11 +150,7 @@ void func_802DDF7C_72F17C(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-// clang-format off
-void func_802DE0DC_72F2DC(GObj* obj) { \
-    UNUSED s32 pad[3]; \
-    Pokemon* pokemon = GET_POKEMON(obj);
-// clang-format on
+POKEMON_FUNC(func_802DE0DC_72F2DC)
     pokemon->hSpeed = pokemon->jumpVel = 400.0f;
     Pokemon_Jump(obj, 5000.0f, 0.0f, 0.0f, 0.0f);
     pokemon->pathProc = NULL;
@@ -168,10 +158,7 @@ void func_802DE0DC_72F2DC(GObj* obj) { \
     omEndProcess(NULL);
 }
 
-void func_802DE144_72F344(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE144_72F344)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.13333334f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
@@ -179,19 +166,13 @@ void func_802DE144_72F344(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802DE1B0_72F3B0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE1B0_72F3B0)
     pokemon->transitionGraph = D_802E317C_73437C;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DE1F0_72F3F0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE1F0_72F3F0)
     pokemon->tangible = true;
     obj->flags = 0;
 
@@ -204,10 +185,7 @@ void func_802DE1F0_72F3F0(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DE26C_72F46C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DE26C_72F46C)
     gDPPipeSync(gMainGfxPos[0]++);
     gDPSetCycleType(gMainGfxPos[0]++, G_CYC_2CYCLE);
     gDPSetRenderMode(gMainGfxPos[0]++, G_RM_PASS, G_RM_AA_ZB_XLU_SURF2);

@@ -913,9 +913,12 @@ segments:
     - start: 0x734C00
       type: .data
       name: height_map_data
+      linker_section_order: .rodata
       subsegments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
+      - [0x76E6D0]
+    - { start: auto, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
       dir: magmar

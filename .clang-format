@@ -21,3 +21,4 @@ AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: false
 AlignEscapedNewlines: Left
 SortIncludes: false
+MacroBlockBegin: "^POKEMON_FUNC"

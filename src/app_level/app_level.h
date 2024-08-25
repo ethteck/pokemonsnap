@@ -8,6 +8,13 @@
 #define GET_TRANSFORM(p) ((PokemonTransform*) ((p)->unk_4C->data))
 #define GET_TRANSFORM_BASE(p) ((PokemonTransformBase*) ((p)->unk_4C))
 
+#define POKEMON_FUNC(name)                                \
+    void name(GObj* obj) {                                \
+        DObj* model = obj->data.dobj;                     \
+        Mtx3Float* position = &GET_TRANSFORM(model)->pos; \
+        Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
+        Pokemon* pokemon = GET_POKEMON(obj);
+
 enum ItemIds {
     ITEM_ID_POKEFLUTE = 161,
     ITEM_ID_PESTER_BALL = 162,

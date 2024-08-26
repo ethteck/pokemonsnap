@@ -93,14 +93,11 @@ PokemonInitData D_802E3740_734940 = {
 extern u8 D_8034E0F8_79F2F8;
 extern u8 D_8034E0F9_79F2F9;
 
-void func_802DF3B0_7305B0(GObj* obj) {
+POKEMON_FUNC(func_802DF3B0_7305B0)
     Pokemon_SetState(obj, func_802DF3D4_7305D4);
 }
 
-void func_802DF3D4_7305D4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DF3D4_7305D4)
     Pokemon_SetAnimation(obj, &D_802E36B0_7348B0);
     pokemon->transitionGraph = D_802E3708_734908;
     Pokemon_WaitForFlag(obj, 0);
@@ -108,10 +105,7 @@ void func_802DF3D4_7305D4(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DF42C_73062C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DF42C_73062C)
     cmdSendCommand(gObjPlayer, PLAYER_CMD_9, NULL);
     auPlaySound(SOUND_ID_38);
 
@@ -139,7 +133,7 @@ void func_802DF508_730708(DObj* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-void func_802DF534_730734(GObj* obj) {
+POKEMON_FUNC(func_802DF534_730734)
     f32 var_f20 = 1.0f;
     f32 N = 240;
     s32 i;
@@ -160,7 +154,7 @@ void func_802DF534_730734(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_802DF7F4_7309F4(GObj* obj) {
+POKEMON_FUNC(func_802DF7F4_7309F4)
     s32 i;
 
     for (i = 0; i < 220; i++) {
@@ -175,9 +169,7 @@ void func_802DF7F4_7309F4(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_802DF880_730A80(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802DF880_730A80)
     OMCamera* camera;
     GObj* camObj;
     GObj* player;

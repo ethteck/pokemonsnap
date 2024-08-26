@@ -227,7 +227,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
         if entry.object_path is None:
             continue
-        
+
         # images embedded inside data aren't linked, but they do need to be built into .bin files
         if seg.type == ".data" and isinstance(seg, splat.segtypes.common.group.CommonSegGroup):
             for seg in seg.subsegments:
@@ -259,7 +259,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
         if seg.type[0] == ".":
             continue
-        
+
         if isinstance(seg, splat.segtypes.n64.header.N64SegHeader):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
@@ -389,6 +389,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
             if seg.sibling is None:
+                build(entry.object_path, entry.src_paths, "as")
+            elif seg.get_linker_section() == ".text":
+                # Only build the .text section file for a textbin with siblings
                 build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")

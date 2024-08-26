@@ -1,9 +1,9 @@
-from splat.segtypes.n64.segment import N64Segment
+from splat.segtypes.segment import Segment
 from splat.util import options
 from pathlib import Path
 import struct
 
-class N64SegSnap_height_map_tree(N64Segment):
+class N64SegSnap_height_map_tree(Segment):
     def scan(self, rom_bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
         self.file_text = self.disassemble_data(data)

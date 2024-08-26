@@ -64,7 +64,30 @@ void func_beach_802CB128(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/beach/563000/func_beach_802CB194.s")
+extern Vec3f D_beach_802CE018;
+
+s32 func_beach_802CB194(GObj* obj) {
+    Vec3f sp2C = D_beach_802CE018;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    WorldBlock* block;
+    DObj* model = obj->data.dobj;
+    UNUSED s32 pad[1];
+
+    block = getCurrentWorldBlock();
+    pokemon->pos1.x = -(block->descriptor->worldPos.x * 100.0f);
+    pokemon->pos1.y = -(block->descriptor->worldPos.y * 100.0f);
+    pokemon->pos1.z = -(block->descriptor->worldPos.z * 100.0f);
+    func_8001FCA4(&sp2C, pokemon->path, 0.99999f);
+    pokemon->pos1.x += sp2C.x * 100.0f;
+    pokemon->pos1.y += sp2C.y * 100.0f;
+    pokemon->pos1.z += sp2C.z * 100.0f;
+
+    if (SQ(pokemon->pos1.x - GET_TRANSFORM(model)->pos.v.x) + SQ(pokemon->pos1.z - GET_TRANSFORM(model)->pos.v.z) < 225000.0f) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 void func_beach_802CB2D8(GObj* obj) {
     UNUSED s32 pad[3];

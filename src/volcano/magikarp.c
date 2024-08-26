@@ -76,12 +76,7 @@ PokemonInitData D_802E3674_734874 = {
     { 0, 0, 0 }
 };
 
-void func_802DF280_730480(GObj* obj) {
-    UNUSED s32 pad[1];
-    DObj* model = obj->data.dobj;
-    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DF280_730480)
     Pokemon_SetAnimation(obj, &D_802E3634_734834);
     rotation->f[2] = randRange(360) * PI / 180.0f;
     Pokemon_StartPathProc(obj, func_802DF338_730538);
@@ -93,10 +88,7 @@ void func_802DF280_730480(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802DF338_730538(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802DF338_730538)
     func_8035E298_4FE6A8(obj);
 
     pokemon->pathProc = NULL;

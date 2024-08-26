@@ -4,6 +4,12 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define POKEMON_FUNC(name) void name(GObj* obj) { \
+    DObj* model = obj->data.dobj; \
+    Mtx3Float* position = &GET_TRANSFORM(model)->pos; \
+    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
+    Pokemon* pokemon = GET_POKEMON(obj);
+
 #define VOLCANO_CMD_37 POKEMON_CMD_37
 
 extern HeightMap volcano_heightMap;

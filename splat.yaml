@@ -107,7 +107,7 @@ segments:
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, c, ../ultralib/src/audio/cspstop]
-    - [0x33030, pad, padding_33030]
+    - [0x33030, pad]
     - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, c, ../ultralib/src/audio/sndpallocate]
@@ -932,6 +932,17 @@ segments:
     - [0x730C70, c, pkmn_1031]
     - [0x730D80, c, sounds]
     - [0x731860, c, player]
+    - { start: auto, type: c, name: height_map_data, dir: volcano_assets }
+    - { start: auto, type: c, name: height_map, dir: volcano_assets }
+    - { start: auto, type: c, name: magmar_data, dir: volcano_assets }
+    - { start: auto, type: c, name: moltres_data, dir: volcano_assets }
+    - { start: auto, type: c, name: rapidash_data, dir: volcano_assets }
+    - { start: auto, type: c, name: growlithe_data, dir: volcano_assets }
+    - { start: auto, type: c, name: charmander_data, dir: volcano_assets }
+    - { start: auto, type: c, name: charmeleon_data, dir: volcano_assets }
+    - { start: auto, type: c, name: charizard_data, dir: volcano_assets }
+    - { start: auto, type: c, name: vulpix_data, dir: volcano_assets }
+    - { start: auto, type: c, name: arcanine_data, dir: volcano_assets }
     - [0x731E80, .data, main]
     - [0x7321C0, .data, magmar]
     - [0x732710, .data, rapidash]
@@ -968,7 +979,6 @@ segments:
     - [0x734B50, .rodata, pkmn_1030]
     - [0x734B60, .rodata, magikarp]
     - [0x734B70, .rodata, sounds]
-    - { start: 0x734C00, type: c, name: height_map_data, dir: models, linker_section_order: .rodata }
     - start: 0x734C00
       type: .data
       name: height_map_data
@@ -976,14 +986,13 @@ segments:
       subsegments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
-    - { start: 0x76E6D0, type: c, name: height_map, dir: models, linker_section_order: .rodata }
-    - { start: 0x76E6D0, type: .data, name: height_map, dir: models, linker_section_order: .rodata }
-    - { start: 0x76E6E0, type: c, name: magmar, dir: models, linker_section_order: .rodata }
+      - [0x76E6D0]
+    - { start: auto, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
       dir: magmar
-      name: magmar
       linker_section_order: .rodata
+      name: magmar_data
       subsegments:
       - [0x76E6E8, rgba16, tex8, 16, 8]
       - [0x76E7E8]
@@ -1068,11 +1077,10 @@ segments:
       - [0x774AC0, gfx, part3_draw_near]
       - [0x774B88, gfx, part3_draw_far]
       - [0x774C50, gfx, part3_draw]
-    - { start: 0x7751D0, type: c, name: moltres, dir: models, linker_section_order: .rodata }
     - start: 0x7751D0
       type: .data
       dir: moltres
-      name: moltres
+      name: moltres_data
       linker_section_order: .rodata
       subsegments:
       - [0x775AC0, vtx, model]
@@ -1147,11 +1155,10 @@ segments:
       - [0x77B608, gfx, part19_draw_far]
       - [0x77B790, gfx, part19_draw]
       - [0x77B7B8, gfx, last]
-    - { start: 0x77BC50, type: c, name: rapidash, dir: models, linker_section_order: .rodata }
     - start: 0x77BC50
       type: .data
       dir: rapidash
-      name: rapidash
+      name: rapidash_data
       linker_section_order: .rodata
       subsegments:
       - [0x77C378, vtx, model]
@@ -1230,11 +1237,10 @@ segments:
       - [0x781628, gfx, part20_draw_far]
       - [0x781708, gfx, part20_draw]
       - [0x781730, gfx, last]
-    - { start: 0x781C10, type: c, name: growlithe, dir: models, linker_section_order: .rodata }
     - start: 0x781C10
       type: .data
       dir: growlithe
-      name: growlithe
+      name: growlithe_data
       linker_section_order: .rodata
       subsegments:
       - [0x781CE8, vtx, model]
@@ -1312,11 +1318,10 @@ segments:
       - [0x787150, gfx, part17_draw_far]
       - [0x7872B0, gfx, part17_draw]
       - [0x7872D8, gfx, last]
-    - { start: 0x787700, type: c, name: charmander, dir: models, linker_section_order: .rodata }
     - start: 0x787700
       type: .data
       dir: charmander
-      name: charmander
+      name: charmander_data
       linker_section_order: .rodata
       subsegments:
       - [0x787870, vtx, model]
@@ -1376,11 +1381,10 @@ segments:
       - [0x78AF00, gfx, part13_draw_near]
       - [0x78AFD8, gfx, part13_draw_far]
       - [0x78B0B0, gfx, part13_draw]
-    - { start: 0x78B4F0, type: c, name: charmeleon, dir: models, linker_section_order: .rodata }
     - start: 0x78B4F0
       type: .data
       dir: charmeleon
-      name: charmeleon
+      name: charmeleon_data
       linker_section_order: .rodata
       subsegments:
       - [0x78B658, vtx, model]
@@ -1449,11 +1453,10 @@ segments:
       - [0x78F3F8, gfx, part12_draw_near]
       - [0x78F4A8, gfx, part12_draw_far]
       - [0x78F558, gfx, part12_draw]
-    - { start: 0x78FA70, type: c, name: charizard, dir: models, linker_section_order: .rodata }
     - start: 0x78FA70
       type: .data
       dir: charizard
-      name: charizard
+      name: charizard_data
       linker_section_order: .rodata
       subsegments:
       - [0x78FB40, vtx, model]
@@ -1499,11 +1502,10 @@ segments:
       - [0x7928A8, gfx, part14_draw_near]
       - [0x792A00, gfx, part14_draw]
       - [0x792A18, gfx, last]
-    - { start: 0x792DD0, type: c, name: vulpix, dir: models, linker_section_order: .rodata }
     - start: 0x792DD0
       type: .data
       dir: vulpix
-      name: vulpix
+      name: vulpix_data
       linker_section_order: .rodata
       subsegments:
       - [0x792F40, vtx, model]
@@ -1574,12 +1576,11 @@ segments:
       - [0x7979E8, gfx, part15_draw_near]
       - [0x797B98, gfx, part15_draw_far]
       - [0x797C60, gfx, part15_draw]
-      - [0x797C88, gfx, last]    
-    - { start: 0x798080, type: c, name: arcanine, dir: models, linker_section_order: .rodata }
+      - [0x797C88, gfx, last]
     - start: 0x798080
       type: .data
       dir: arcanine
-      name: arcanine
+      name: arcanine_data
       linker_section_order: .rodata
       subsegments:
       - [0x798088, palette, tex14]
@@ -2047,6 +2048,7 @@ segments:
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - [0xAAA610, bin] # VPK0 compressed data
+
   - [0xAAA660, bin]
   - [0xAB1470, bin]
   - [0xAB5860, bin]

@@ -472,7 +472,7 @@ POKEMON_FUNC(func_802DA8A4_72BAA4)
     Pokemon_SetAnimation(obj, &D_802E2084_733284);
     if (pokemon->miscVars[1].field1 == 0) {
         pokemon->miscVars[1].field1 = 1;
-        Pokemon_StartPathProc(obj, func_802DA930_72BB30);    
+        Pokemon_StartPathProc(obj, func_802DA930_72BB30);
     }
     pokemon->transitionGraph = D_802E2304_733504;
     Pokemon_WaitForFlag(obj, 0);

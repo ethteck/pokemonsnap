@@ -535,11 +535,11 @@ segments:
     subsegments:
     - [0x326C10, c]
     - [0x326C20, bin] # , data]
-    - { start: 0x3988D0, type: c, name: charmander, dir: images }
+    - { start: 0x3988D0, type: c, name: images, dir: charmander }
     - start: 0x3988D0
       type: .data
       dir: charmander
-      name: charmander
+      name: images
       subsegments:
       - [0x3988D8, palette, tex_eye_frame1, 32, 64]
       - [0x3988F8]
@@ -907,77 +907,77 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x7272E0, c, main]
-    - [0x728490, c, magmar]
-    - [0x729160, c, rapidash]
-    - [0x729CA0, c, charmander]
+    - [0x728490, c, magmar/code]
+    - [0x729160, c, rapidash/code]
+    - [0x729CA0, c, charmander/code]
     - [0x72AEF0, pad]
-    - [0x72AF00, c, vulpix]
-    - [0x72BCE0, c, growlithe]
+    - [0x72AF00, c, vulpix/code]
+    - [0x72BCE0, c, growlithe/code]
     - [0x72C790, pad]
-    - [0x72C7A0, c, arcanine]
+    - [0x72C7A0, c, arcanine/code]
     - [0x72D250, pad]
-    - [0x72D260, c, charmeleon]
-    - [0x72E4E0, c, charizard]
-    - [0x72E9F0, c, growlithe_spawner]
-    - [0x72ECD0, c, moltres_egg]
-    - [0x72F100, c, moltres]
-    - [0x72F590, c, koffing_smoke]
-    - [0x72F770, c, smoke_puff]
-    - [0x72F8F0, c, smoke_spawner]
-    - [0x72FC80, c, pkmn_1002]
+    - [0x72D260, c, charmeleon/code]
+    - [0x72E4E0, c, charizard/code]
+    - [0x72E9F0, c, growlithe_spawner/code]
+    - [0x72ECD0, c, moltres_egg/code]
+    - [0x72F100, c, moltres/code]
+    - [0x72F590, c, koffing_smoke/code]
+    - [0x72F770, c, smoke_puff/code]
+    - [0x72F8F0, c, smoke_spawner/code]
+    - [0x72FC80, c, pkmn_1002/code]
     - [0x72FFD0, pad]
-    - [0x72FFE0, c, pkmn_1030]
-    - [0x730480, c, magikarp]
-    - [0x7305B0, c, pkmn_1001]
-    - [0x730C70, c, pkmn_1031]
+    - [0x72FFE0, c, pkmn_1030/code]
+    - [0x730480, c, magikarp/code]
+    - [0x7305B0, c, pkmn_1001/code]
+    - [0x730C70, c, pkmn_1031/code]
     - [0x730D80, c, sounds]
     - [0x731860, c, player]
-    - { start: auto, type: c, name: height_map_data, dir: volcano_assets }
-    - { start: auto, type: c, name: height_map, dir: volcano_assets }
-    - { start: auto, type: c, name: magmar_data, dir: volcano_assets }
-    - { start: auto, type: c, name: moltres_data, dir: volcano_assets }
-    - { start: auto, type: c, name: rapidash_data, dir: volcano_assets }
-    - { start: auto, type: c, name: growlithe_data, dir: volcano_assets }
-    - { start: auto, type: c, name: charmander_data, dir: volcano_assets }
-    - { start: auto, type: c, name: charmeleon_data, dir: volcano_assets }
-    - { start: auto, type: c, name: charizard_data, dir: volcano_assets }
-    - { start: auto, type: c, name: vulpix_data, dir: volcano_assets }
-    - { start: auto, type: c, name: arcanine_data, dir: volcano_assets }
+    - [auto, c, height_map_data]
+    - [auto, c, height_map]
+    - [auto, c, magmar/model]
+    - [auto, c, moltres/model]
+    - [auto, c, rapidash/model]
+    - [auto, c, growlithe/model]
+    - [auto, c, charmander/model]
+    - [auto, c, charmeleon/model]
+    - [auto, c, charizard/model]
+    - [auto, c, vulpix/model]
+    - [auto, c, arcanine/model]
     - [0x731E80, .data, main]
-    - [0x7321C0, .data, magmar]
-    - [0x732710, .data, rapidash]
-    - [0x732B40, .data, charmander]
-    - [0x7331F0, .data, vulpix]
-    - [0x733590, .data, growlithe]
-    - [0x733950, .data, arcanine]
-    - [0x733CE0, .data, charmeleon]
-    - [0x734050, .data, charizard]
-    - [0x734190, .data, growlithe_spawner]
-    - [0x734210, .data, moltres_egg]
-    - [0x7342C0, .data, moltres]
-    - [0x7343F0, .data, koffing_smoke]
-    - [0x734490, .data, smoke_puff]
-    - [0x734500, .data, smoke_spawner]
-    - [0x734610, .data, pkmn_1002]
-    - [0x7346F0, .data, pkmn_1030]
-    - [0x7347D0, .data, magikarp]
-    - [0x7348B0, .data, pkmn_1001]
-    - [0x734980, .data, pkmn_1031]
+    - [0x7321C0, .data, magmar/code]
+    - [0x732710, .data, rapidash/code]
+    - [0x732B40, .data, charmander/code]
+    - [0x7331F0, .data, vulpix/code]
+    - [0x733590, .data, growlithe/code]
+    - [0x733950, .data, arcanine/code]
+    - [0x733CE0, .data, charmeleon/code]
+    - [0x734050, .data, charizard/code]
+    - [0x734190, .data, growlithe_spawner/code]
+    - [0x734210, .data, moltres_egg/code]
+    - [0x7342C0, .data, moltres/code]
+    - [0x7343F0, .data, koffing_smoke/code]
+    - [0x734490, .data, smoke_puff/code]
+    - [0x734500, .data, smoke_spawner/code]
+    - [0x734610, .data, pkmn_1002/code]
+    - [0x7346F0, .data, pkmn_1030/code]
+    - [0x7347D0, .data, magikarp/code]
+    - [0x7348B0, .data, pkmn_1001/code]
+    - [0x734980, .data, pkmn_1031/code]
     - [0x7349F0, .data, sounds]
     - [0x734A00, .data, player]
     - [0x734A10, .rodata, main]
-    - [0x734A30, .rodata, magmar]
-    - [0x734A50, .rodata, charmander]
-    - [0x734A90, .rodata, vulpix]
-    - [0x734AB0, .rodata, growlithe]
-    - [0x734AC0, .rodata, arcanine]
-    - [0x734AD0, .rodata, charmeleon]
-    - [0x734B10, .rodata, charizard]
-    - [0x734B20, .rodata, growlithe_spawner]
-    - [0x734B30, .rodata, moltres_egg]
-    - [0x734B40, .rodata, pkmn_1002]
-    - [0x734B50, .rodata, pkmn_1030]
-    - [0x734B60, .rodata, magikarp]
+    - [0x734A30, .rodata, magmar/code]
+    - [0x734A50, .rodata, charmander/code]
+    - [0x734A90, .rodata, vulpix/code]
+    - [0x734AB0, .rodata, growlithe/code]
+    - [0x734AC0, .rodata, arcanine/code]
+    - [0x734AD0, .rodata, charmeleon/code]
+    - [0x734B10, .rodata, charizard/code]
+    - [0x734B20, .rodata, growlithe_spawner/code]
+    - [0x734B30, .rodata, moltres_egg/code]
+    - [0x734B40, .rodata, pkmn_1002/code]
+    - [0x734B50, .rodata, pkmn_1030/code]
+    - [0x734B60, .rodata, magikarp/code]
     - [0x734B70, .rodata, sounds]
     - start: 0x734C00
       type: .data
@@ -987,12 +987,12 @@ segments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
       - [0x76E6D0]
-    - { start: auto, type: .data, name: height_map, dir: volcano_assets, linker_section_order: .rodata }
+    - { start: auto, type: .data, name: height_map, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
-      dir: magmar
       linker_section_order: .rodata
-      name: magmar_data
+      name: magmar/model
+      dir: magmar
       subsegments:
       - [0x76E6E8, rgba16, tex8, 16, 8]
       - [0x76E7E8]
@@ -1080,7 +1080,7 @@ segments:
     - start: 0x7751D0
       type: .data
       dir: moltres
-      name: moltres_data
+      name: moltres/model
       linker_section_order: .rodata
       subsegments:
       - [0x775AC0, vtx, model]
@@ -1157,8 +1157,8 @@ segments:
       - [0x77B7B8, gfx, last]
     - start: 0x77BC50
       type: .data
+      name: rapidash/model
       dir: rapidash
-      name: rapidash_data
       linker_section_order: .rodata
       subsegments:
       - [0x77C378, vtx, model]
@@ -1240,7 +1240,7 @@ segments:
     - start: 0x781C10
       type: .data
       dir: growlithe
-      name: growlithe_data
+      name: growlithe/model
       linker_section_order: .rodata
       subsegments:
       - [0x781CE8, vtx, model]
@@ -1320,8 +1320,8 @@ segments:
       - [0x7872D8, gfx, last]
     - start: 0x787700
       type: .data
+      name: charmander/model
       dir: charmander
-      name: charmander_data
       linker_section_order: .rodata
       subsegments:
       - [0x787870, vtx, model]
@@ -1384,7 +1384,7 @@ segments:
     - start: 0x78B4F0
       type: .data
       dir: charmeleon
-      name: charmeleon_data
+      name: charmeleon/model
       linker_section_order: .rodata
       subsegments:
       - [0x78B658, vtx, model]
@@ -1456,7 +1456,7 @@ segments:
     - start: 0x78FA70
       type: .data
       dir: charizard
-      name: charizard_data
+      name: charizard/model
       linker_section_order: .rodata
       subsegments:
       - [0x78FB40, vtx, model]
@@ -1504,8 +1504,8 @@ segments:
       - [0x792A18, gfx, last]
     - start: 0x792DD0
       type: .data
+      name: vulpix/model
       dir: vulpix
-      name: vulpix_data
       linker_section_order: .rodata
       subsegments:
       - [0x792F40, vtx, model]
@@ -1580,7 +1580,7 @@ segments:
     - start: 0x798080
       type: .data
       dir: arcanine
-      name: arcanine_data
+      name: arcanine/model
       linker_section_order: .rodata
       subsegments:
       - [0x798088, palette, tex14]

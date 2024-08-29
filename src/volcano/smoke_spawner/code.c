@@ -39,7 +39,7 @@ InteractionHandler D_802E3378_734578[] = {
 };
 
 InteractionHandler D_802E3398_734598[] = {
-    { POKEMON_CMD_33, func_802DE91C_72FB1C, 0, NULL },
+    { VOLCANO_CMD_33, func_802DE91C_72FB1C, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 

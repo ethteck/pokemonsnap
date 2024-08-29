@@ -91,7 +91,7 @@ POKEMON_FUNC(func_802DE450_72F650)
     Pokemon_SetAnimation(obj, &D_802E321C_73441C);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_33, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_33, obj);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

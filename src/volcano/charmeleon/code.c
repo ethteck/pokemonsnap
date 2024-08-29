@@ -132,19 +132,19 @@ AnimationHeader D_802E2B8C_733D8C = {
 InteractionHandler D_802E2BA0_733DA0[] = {
     { POKEMON_CMD_9, func_802DC590_72D790, 0, NULL },
     { POKEMON_CMD_13, func_802DC4F0_72D6F0, 0, NULL },
-    { POKEMON_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E2BE0_733DE0[] = {
-    { POKEMON_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E2C00_733E00[] = {
     { POKEMON_CMD_9, func_802DC758_72D958, 0, NULL },
     { POKEMON_CMD_13, func_802DC7A8_72D9A8, 0, NULL },
-    { POKEMON_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -390,7 +390,7 @@ POKEMON_FUNC(func_802DC6B4_72D8B4)
     Pokemon_FallDownOnGround(obj, -9.8f, true);
 
     if (pokemon->currGround.surfaceType == SURFACE_TYPE_FF4C19) {
-        cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_28, obj);
+        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_28, obj);
     }
 
     pokemon->pathProc = NULL;
@@ -429,7 +429,7 @@ POKEMON_FUNC(func_802DC850_72DA50)
     if (pokemon->currGround.surfaceType == SURFACE_TYPE_FF4C19) {
         pokemon->miscVars[0].field1++;
         if (pokemon->miscVars[0].field1 > 10) {
-            cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_28, obj);
+            cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_28, obj);
         }
     } else {
         pokemon->miscVars[0].field1 = 0;

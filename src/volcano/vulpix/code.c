@@ -114,7 +114,7 @@ InteractionHandler D_802E2098_733298[] = {
     { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
     { POKEMON_CMD_15, func_802DA5B4_72B7B4, 0, NULL },
     { POKEMON_CMD_16, func_802DA68C_72B88C, 1000.0 / 3.0, NULL },
-    { POKEMON_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -123,7 +123,7 @@ InteractionHandler D_802E2118_733318[] = {
     { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
     { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
     { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { POKEMON_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -160,7 +160,7 @@ InteractionHandler D_802E2278_733478[] = {
     { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
     { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
     { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { POKEMON_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -227,7 +227,7 @@ POKEMON_FUNC(func_802D9DFC_72AFFC)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_1000;
     while (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_1000)) {
         if (func_802D9D00_72AF00(obj)) {
-            cmdSendCommand(obj, POKEMON_CMD_44, obj);
+            cmdSendCommand(obj, VOLCANO_CMD_44, obj);
         }
         ohWait(1);
     }

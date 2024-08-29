@@ -62,7 +62,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_CHARMANDER,
-      func_802D9CB8_72AEB8,
+      charmander_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_VULPIX,
@@ -290,7 +290,7 @@ void volcano_HandleCollision(GObj* obj, GroundResult* groundResult) {
             }
         }
     } else if (item->itemID == ITEM_ID_PESTER_BALL) {
-        cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_38, obj);
+        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_38, obj);
     }
 }
 

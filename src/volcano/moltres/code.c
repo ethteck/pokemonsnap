@@ -67,7 +67,7 @@ AnimationHeader D_802E3138_734338 = {
 };
 
 InteractionHandler D_802E314C_73434C[] = {
-    { POKEMON_CMD_30, func_802DDF7C_72F17C, 0, NULL },
+    { VOLCANO_CMD_30, func_802DDF7C_72F17C, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };

@@ -1,6 +1,8 @@
 D_0E000000 = 0xE000000;
 D_0E000008 = 0xE000008;
 
+game_main = 0x80000870;
+
 osTvType = 0x80000300;
 osRomBase = 0x80000308;
 scMain = 0x80002510;

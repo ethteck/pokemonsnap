@@ -627,13 +627,13 @@ void animUpdateModelAnimatedParams(DObj* dobj) {
                     }
 
                     switch (aobj->paramID) {
-                        case ANIM_PARAM_ROLL:
+                        case ANIM_PARAM_ROTATION_X:
                             dobj->rotation.f[1] = value;
                             break;
-                        case ANIM_PARAM_PITCH:
+                        case ANIM_PARAM_ROTATION_Y:
                             dobj->rotation.f[2] = value;
                             break;
-                        case ANIM_PARAM_YAW:
+                        case ANIM_PARAM_ROTATION_Z:
                             dobj->rotation.f[3] = value;
                             break;
                         case ANIM_PARAM_4:
@@ -1213,11 +1213,11 @@ void animSetModelAnimDuration(DObj* dobj, f32 duration) {
 
 f32 animGetModelParamValue(DObj* dobj, s32 paramID) {
     switch (paramID) {
-        case ANIM_PARAM_ROLL:
+        case ANIM_PARAM_ROTATION_X:
             return dobj->rotation.f[1];
-        case ANIM_PARAM_PITCH:
+        case ANIM_PARAM_ROTATION_Y:
             return dobj->rotation.f[2];
-        case ANIM_PARAM_YAW:
+        case ANIM_PARAM_ROTATION_Z:
             return dobj->rotation.f[3];
         case ANIM_PARAM_POSITION_X:
             return dobj->position.v.x;
@@ -1236,11 +1236,11 @@ f32 animGetModelParamValue(DObj* dobj, s32 paramID) {
 
 f32 func_8000EB98(UnkEC64Arg3* arg0, s32 paramID) {
     switch (paramID) {
-        case ANIM_PARAM_ROLL:
+        case ANIM_PARAM_ROTATION_X:
             return arg0->rotation.x;
-        case ANIM_PARAM_PITCH:
+        case ANIM_PARAM_ROTATION_Y:
             return arg0->rotation.y;
-        case ANIM_PARAM_YAW:
+        case ANIM_PARAM_ROTATION_Z:
             return arg0->rotation.z;
         case ANIM_PARAM_POSITION_X:
             return arg0->position.x;
@@ -1492,7 +1492,7 @@ f32 anim_func_8000F34C(DObj* dobj, AnimCmd** animLists, f32 arg2, UnkEC64Arg3* a
         if (newValue != oldValue || newRate != oldRate) {
             newAObj = omDObjAddAObj(dobj, i);
 
-            if (i == ANIM_PARAM_ROLL || i == ANIM_PARAM_PITCH || i == ANIM_PARAM_YAW) {
+            if (i == ANIM_PARAM_ROTATION_X || i == ANIM_PARAM_ROTATION_Y || i == ANIM_PARAM_ROTATION_Z) {
                 if (ABS(newValue - oldValue) > ABS(newValue - (oldValue + TAU))) {
                     oldValue += TAU;
                 }
@@ -1633,13 +1633,13 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
                 anim_func_8000EC08(0, dobj, &value, NULL, dobj->aobjList, arg3, i, 0, &sp70, &sp7C);
 
                 switch (i) {
-                    case ANIM_PARAM_ROLL:
+                    case ANIM_PARAM_ROTATION_X:
                         dobj->rotation.f[1] = value;
                         break;
-                    case ANIM_PARAM_PITCH:
+                    case ANIM_PARAM_ROTATION_Y:
                         dobj->rotation.f[2] = value;
                         break;
-                    case ANIM_PARAM_YAW:
+                    case ANIM_PARAM_ROTATION_Z:
                         dobj->rotation.f[3] = value;
                         break;
                     case ANIM_PARAM_POSITION_X:

@@ -44,11 +44,11 @@ void func_credits_801DCA1C(void* arg0) {
             func_8009FC38(temp_v0_2);
         }
         osSetThreadPri(NULL, 0x31);
-        osStopThread(func_80000460());
+        osStopThread(get_main_thread());
         osSetThreadPri(NULL, 0x34);
         func_credits_801DE8A0(sp34, temp_v0);
         osSetThreadPri(NULL, 0x31);
-        osStartThread(func_80000460());
+        osStartThread(get_main_thread());
     }
 }
 

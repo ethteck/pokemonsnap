@@ -1,8 +1,3 @@
-func_80000460 = 0x80000460;
-func_80000870 = 0x80000870;
-func_84001008 = 0x84001008;
-func_84001064 = 0x84001064;
-
 func_8036A5B8 = 0x8036A5B8;
 func_8036A8E4 = 0x8036A8E4;
 func_8036B9EC = 0x8036B9EC;
@@ -142,7 +137,6 @@ charmander_modelanim_run = 0x80176030;
 charmander_modelanim_shakehands = 0x80179210;
 charmander_modelanim_lie = 0x80177BC0;
 charmander_modelanim_fall = 0x80179780;
-D_8017C080 = 0x8017C080;
 charmander_modelanim_hit = 0x801786F0;
 charmander_modelanim_jump = 0x80179ED0;
 charmander_modelanim_roar = 0x80176500;

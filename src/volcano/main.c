@@ -62,7 +62,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_CHARMANDER,
-      func_802D9CB8_72AEB8,
+      charmander_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_VULPIX,
@@ -166,7 +166,7 @@ SceneSetup volcano_SceneSetup = {
         0,                /* unk_00*/
         omUpdateAll,      /* fnUpdate */
         omDrawAll,        /* fnDraw */
-        _326C10_VRAM_END, /* heapBase */
+        volcano_assets_VRAM_END, /* heapBase */
         0,                /* heapSize */
         1,                /* unk_14 */
         2,                /* numContexts */
@@ -290,7 +290,7 @@ void volcano_HandleCollision(GObj* obj, GroundResult* groundResult) {
             }
         }
     } else if (item->itemID == ITEM_ID_PESTER_BALL) {
-        cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_38, obj);
+        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_38, obj);
     }
 }
 
@@ -403,7 +403,7 @@ void volcano_func_802D6788_727988(void) {
 }
 
 s32 volcano_Start(s32 arg0) {
-    volcano_SceneSetup.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) _326C10_VRAM_END;
+    volcano_SceneSetup.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) volcano_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     volcano_func_802D6788_727988();

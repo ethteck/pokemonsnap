@@ -22,7 +22,7 @@ AnimationHeader D_802E2F90_734190 = {
 };
 
 InteractionHandler D_802E2FA4_7341A4[] = {
-    { POKEMON_CMD_38, func_802DD954_72EB54, 0, NULL },
+    { VOLCANO_CMD_38, func_802DD954_72EB54, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -97,11 +97,11 @@ POKEMON_FUNC(func_802DD954_72EB54)
 
 POKEMON_FUNC(func_802DDA0C_72EC0C)
     while (pokemon->miscVars[0].field1 == 0) {
-        cmdSendCommand(pokemon->miscVars[1].obj, POKEMON_CMD_34, obj);
+        cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_34, obj);
         ohWait(randRange(180) + 120);
     }
 
-    cmdSendCommand(pokemon->miscVars[1].obj, POKEMON_CMD_35, obj);
+    cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_35, obj);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

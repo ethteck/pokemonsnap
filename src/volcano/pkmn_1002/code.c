@@ -40,12 +40,12 @@ AnimationHeader D_802E3440_734640 = {
 };
 
 InteractionHandler D_802E3454_734654[] = {
-    { POKEMON_CMD_28, func_802DEAFC_72FCFC, 0, NULL },
+    { VOLCANO_CMD_28, func_802DEAFC_72FCFC, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E3474_734674[] = {
-    { POKEMON_CMD_32, func_802DEBF0_72FDF0, 0, NULL },
+    { VOLCANO_CMD_32, func_802DEBF0_72FDF0, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -102,7 +102,7 @@ void func_802DEAFC_72FCFC(GObj* obj) {
     Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;
 
     if (SQ(position->v.x - targetPos->v.x) + SQ(position->v.z - targetPos->v.z) < 100000.0f) {
-        cmdSendCommand(pokemon->interactionTarget, POKEMON_CMD_29, obj);
+        cmdSendCommand(pokemon->interactionTarget, VOLCANO_CMD_29, obj);
         Pokemon_SetState(obj, func_802DEBB0_72FDB0);
     }
 
@@ -121,7 +121,7 @@ POKEMON_FUNC(func_802DEBF0_72FDF0)
 
     Pokemon_ForceAnimation(obj, &D_802E342C_73462C);
     Pokemon_StartPathProc(obj, NULL);
-    cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_31, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_31, obj);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -140,7 +140,7 @@ POKEMON_FUNC(func_802DEC78_72FE78)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_41, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_CHARMANDER_EVOLVE, obj);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 

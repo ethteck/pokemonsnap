@@ -76,7 +76,7 @@ InteractionHandler D_802E2EC8_7340C8[] = {
 };
 
 InteractionHandler D_802E2F08_734108[] = {
-    { POKEMON_CMD_31, func_802DD328_72E528, 0, NULL },
+    { VOLCANO_CMD_31, func_802DD328_72E528, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -112,7 +112,7 @@ PokemonInitData D_802E2F54_734154 = {
 
 POKEMON_FUNC(func_802DD2E0_72E4E0)
     obj->flags |= GOBJ_FLAG_HIDDEN;
-    cmdSendCommandToLink(LINK_POKEMON, POKEMON_CMD_32, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_32, obj);
     Pokemon_SetState(obj, func_802DD328_72E528);
 }
 

@@ -10,7 +10,23 @@
     Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
     Pokemon* pokemon = GET_POKEMON(obj);
 
-#define VOLCANO_CMD_37 POKEMON_CMD_37
+#define VOLCANO_CMD_28 POKEMON_CMD_28
+#define VOLCANO_CMD_29 POKEMON_CMD_29
+#define VOLCANO_CMD_30 POKEMON_CMD_30
+#define VOLCANO_CMD_31 POKEMON_CMD_31
+#define VOLCANO_CMD_32 POKEMON_CMD_32
+#define VOLCANO_CMD_33 POKEMON_CMD_33
+#define VOLCANO_CMD_34 POKEMON_CMD_34
+#define VOLCANO_CMD_35 POKEMON_CMD_35
+#define VOLCANO_CMD_ANOTHER_CHARMANDER_HIT POKEMON_CMD_36
+#define VOLCANO_CMD_MAGMAR_SPEW_FIRE POKEMON_CMD_37
+#define VOLCANO_CMD_38 POKEMON_CMD_38
+#define VOLCANO_CMD_GROUP3_SUMMONED POKEMON_CMD_39
+#define VOLCANO_CMD_GROUP4_SUMMONED POKEMON_CMD_40
+#define VOLCANO_CMD_CHARMANDER_EVOLVE POKEMON_CMD_41
+#define VOLCANO_CMD_HOWLING_ENDED POKEMON_CMD_42
+#define VOLCANO_CMD_HOWL_IN_RESPONSE POKEMON_CMD_43
+#define VOLCANO_CMD_44 POKEMON_CMD_44
 
 extern HeightMap volcano_heightMap;
 extern WorldSetup volcano_WorldSetup;
@@ -54,7 +70,7 @@ bool func_802D6D6C_727F6C(GObj* obj);
 
 GObj* volcano_magmar_Init(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802D9CB8_72AEB8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* charmander_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DD214_72E414(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DD7AC_72E9AC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

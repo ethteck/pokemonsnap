@@ -74,7 +74,7 @@ PokemonDef volcano_PokemonDefs[] = {
       volcano_CharmeleonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_CHARIZARD,
-      func_802DD7AC_72E9AC,
+      charizard_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_ARCANINE,
@@ -217,7 +217,7 @@ PokemonDef volcano_GrowlitheDef = {
 
 PokemonDef volcano_CharizardDef = {
     PokemonID_CHARIZARD,
-    func_802DD7AC_72E9AC,
+    charizard_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };

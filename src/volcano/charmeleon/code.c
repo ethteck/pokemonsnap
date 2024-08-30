@@ -138,19 +138,19 @@ AnimationHeader charmeleon_animation_getup = {
 InteractionHandler charmeleon_tg_Bounce[] = {
     { POKEMON_CMD_9, charmeleon_BounceOfPesterBall, 0, NULL },
     { POKEMON_CMD_13, charmeleon_BounceOfApple, 0, NULL },
-    { VOLCANO_CMD_29, charmeleon_EvolveIntoCharizard, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler charmeleon_tg_Lying[] = {
-    { VOLCANO_CMD_29, charmeleon_EvolveIntoCharizard, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler charmeleon_tg_Normal[] = {
     { POKEMON_CMD_9, charmeleon_HitByPesterBall, 0, NULL },
     { POKEMON_CMD_13, charmeleon_HitByApple, 0, NULL },
-    { VOLCANO_CMD_29, charmeleon_EvolveIntoCharizard, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 

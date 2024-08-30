@@ -224,17 +224,17 @@ charmeleon_matanim_fall = 0x80184580;
 charmeleon_matanim_lie = 0x80183CB0;
 charmeleon_matanim_getup = 0x801841C0;
 
-D_8018A750 = 0x8018A750;
-D_80188E30 = 0x80188E30;
-D_801893F0 = 0x801893F0;
-D_80189FF0 = 0x80189FF0;
-D_801883C0 = 0x801883C0;
+charizard_modelanim_appear = 0x8018A750;
+charizard_modelanim_idle = 0x80188E30;
+charizard_modelanim_roar = 0x801893F0;
+charizard_modelanim_spin = 0x80189FF0;
+charizard_modelanim_spewfire = 0x801883C0;
 
-D_8018B670 = 0x8018B670;
-D_8018B3E0 = 0x8018B3E0;
-D_8018B4A0 = 0x8018B4A0;
-D_8018B5A0 = 0x8018B5A0;
-D_8018B320 = 0x8018B320;
+charizard_matanim_appear = 0x8018B670;
+charizard_matanim_idle = 0x8018B3E0;
+charizard_matanim_roar = 0x8018B4A0;
+charizard_matanim_spin = 0x8018B5A0;
+charizard_matanim_spewfire = 0x8018B320;
 
 D_80113830 = 0x80113830;
 D_801138C0 = 0x801138C0;

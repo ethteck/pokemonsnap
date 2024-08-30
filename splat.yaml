@@ -537,6 +537,7 @@ segments:
     - [auto, c, growlithe/images]
     - [auto, c, charmander/images]
     - [auto, c, charmeleon/images]
+    - [auto, c, charizard/images]
     - [auto, c, arcanine/images]
     - [0x326C20, bin]
     - start: 0x388870
@@ -716,6 +717,58 @@ segments:
       - [0x3A43A8]
       - { start: 0x3A43B0, type: ci4, name: tex_mouth, flip_y: true, width: 32, height: 32 }
     - [0x3A45B0, bin]
+    - start: 0x3AB380
+      type: .data
+      dir: charizard
+      name: charizard/images
+      subsegments:
+      - [0x3AB380]
+      - [0x3AB388, palette, tex_mouth1]
+      - [0x3AB3A8]
+      - { start: 0x3AB3B0, type: ci4, name: tex_mouth1, flip_y: true, width: 32, height: 64 }
+      - [0x3AB7B0]
+      - [0x3AB7B8, palette, tex_mouth2]
+      - [0x3AB7D8]
+      - { start: 0x3AB7E0, type: ci4, name: tex_mouth2, flip_y: true, width: 32, height: 64 }
+      - [0x3ABBE0]
+      - [0x3ABBE8, palette, tex_eye_frame1]
+      - [0x3ABC08]
+      - { start: 0x3ABC10, type: ci4, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x3AC010]
+      - [0x3AC018, palette, tex_eye_frame2]
+      - [0x3AC038]
+      - { start: 0x3AC040, type: ci4, name: tex_eye_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x3AC440]
+      - [0x3AC448, palette, tex_eye_frame0]
+      - [0x3AC468]
+      - { start: 0x3AC470, type: ci4, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x3AC870]
+      - [0x3AC878, palette, tex_nostril]
+      - [0x3AC898]
+      - { start: 0x3AC8A0, type: ci4, name: tex_nostril, flip_y: true, width: 16, height: 16 }
+      - [0x3AC920]
+      - { start: 0x3AC928, type: ia16, name: tex_wingshade, flip_y: true, width: 32, height: 64 }
+      - [0x3AD928]
+      - [0x3AD930, palette, tex_wing1]
+      - [0x3ADB30]
+      - { start: 0x3ADB38, type: ci8, name: tex_wing1, flip_y: true, width: 32, height: 64 }
+      - [0x3AE338]
+      - [0x3AE340, palette, tex_wing2]
+      - [0x3AE360]
+      - { start: 0x3AE368, type: ci4, name: tex_wing2, flip_y: true, width: 64, height: 32 }
+      - [0x3AE768]
+      - [0x3AE770, palette, tex_skin]
+      - [0x3AE790]
+      - { start: 0x3AE798, type: ci4, name: tex_skin, flip_y: true, width: 32, height: 64 }
+      - [0x3AEB98]
+      - [0x3AEBA0, palette, tex_tongue]
+      - [0x3AEBC0]
+      - { start: 0x3AEBC8, type: ci4, name: tex_tongue, flip_y: true, width: 32, height: 64 }
+      - [0x3AEFC8]
+      - [0x3AEFD0, palette, tex_claw]
+      - [0x3AEFF0]
+      - { start: 0x3AEFF8, type: ci4, name: tex_claw, flip_y: true, width: 16, height: 8 }
+    - [0x3AF040, bin]
     - start: 0x3BD680
       type: .data
       dir: arcanine

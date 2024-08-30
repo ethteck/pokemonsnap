@@ -1,27 +1,27 @@
 #include <common.h>
 
-extern u8 charizard_tex0_pal[];
-extern u8 charizard_tex0_png[];
-extern u8 charizard_tex1_pal[];
-extern u8 charizard_tex1_png[];
-extern u8 charizard_tex2_pal[];
-extern u8 charizard_tex2_var0_png[];
-extern u8 charizard_tex2_var1_png[];
-extern u8 charizard_tex2_var2_png[];
-extern u8 charizard_tex3_pal[];
-extern u8 charizard_tex3_png[];
-extern u8 charizard_tex4_pal[];
-extern u8 charizard_tex4_png[];
-extern u8 charizard_tex5_pal[];
-extern u8 charizard_tex5_png[];
-extern u8 charizard_tex6_pal[];
-extern u8 charizard_tex6_png[];
-extern u8 charizard_tex7_pal[];
-extern u8 charizard_tex7_png[];
-extern u8 charizard_tex8_pal[];
-extern u8 charizard_tex8_png[];
-extern u8 charizard_tex9_pal[];
-extern u8 charizard_tex9_png[];
+extern u8 charizard_tex_mouth1_pal[];
+extern u8 charizard_tex_mouth1_png[];
+extern u8 charizard_tex_mouth2_pal[];
+extern u8 charizard_tex_mouth2_png[];
+extern u8 charizard_tex_eye_frame0_pal[];
+extern u8 charizard_tex_eye_frame0_png[];
+extern u8 charizard_tex_eye_frame1_png[];
+extern u8 charizard_tex_eye_frame2_png[];
+extern u8 charizard_tex_nostril_pal[];
+extern u8 charizard_tex_nostril_png[];
+extern u8 charizard_tex_wingshade_pal[];
+extern u8 charizard_tex_wingshade_png[];
+extern u8 charizard_tex_wing1_pal[];
+extern u8 charizard_tex_wing1_png[];
+extern u8 charizard_tex_wing2_pal[];
+extern u8 charizard_tex_wing2_png[];
+extern u8 charizard_tex_skin_pal[];
+extern u8 charizard_tex_skin_png[];
+extern u8 charizard_tex_tongue_pal[];
+extern u8 charizard_tex_tongue_png[];
+extern u8 charizard_tex_claw_pal[];
+extern u8 charizard_tex_claw_png[];
 
 
 extern Texture* charizard_part7_mat[];
@@ -48,9 +48,9 @@ Texture** charizard_materials[] = {
 };
 
 u8* charizard_part7_mat0_images[] = {
-    charizard_tex2_var0_png,
-    charizard_tex2_var1_png,
-    charizard_tex2_var2_png,
+    charizard_tex_eye_frame0_png,
+    charizard_tex_eye_frame1_png,
+    charizard_tex_eye_frame2_png,
 };
 
 Texture charizard_part7_mat0 = {

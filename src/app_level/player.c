@@ -78,8 +78,8 @@ f32 StickYAccum = 0.0f;
 OMCamera* gMainCamera = NULL;
 s32 D_80382C34_523044_unused = 0;
 GObj* D_80382C38_523048 = NULL;
-s32 D_80382C3C_52304C = 0;
-GObj* D_80382C40_523050 = NULL;
+s32 D_80382C3C_52304C = false;
+GObj* gPreviousPokemonInFocus = NULL;
 f32 TotalSpeedMult = 0.0005f;
 f32 CameraShakingDeltaY = 0.0f;
 s32 TargetDirectionZoomedIn = 0;
@@ -122,7 +122,7 @@ f32 DirectionsList[5] = {
 f32 MinPitch = -PI / 8;
 f32 MaxPitch = PI / 4;
 s32 LastItemId = 0;
-u32 D_80382CF8_523108 = 0;
+u32 sPhotoSeriesCount = 0;
 s32 D_80382CFC_52310C = 0;
 s8 D_80382D00_523110 = 2;
 s8 D_80382D04_523114 = 0;
@@ -480,7 +480,7 @@ void handleAnalogStick(GObj* obj) {
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0 ||
             ZoomSwitchMode == 0 && (gContInputCurrentButtons & Z_TRIG) && gDirectionIndex >= 0) {
-            D_80382C3C_52304C = 0;
+            D_80382C3C_52304C = false;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
             omCreateProcess(obj, processZoomingIn, 0, 9);
@@ -1007,7 +1007,7 @@ void processZoomingOut(GObj* obj) {
     s32 i = 0;
 
     auPlaySound(SOUND_ID_6);
-    D_80382CF8_523108 = 0;
+    sPhotoSeriesCount = 0;
     D_80382CFC_52310C = 0;
     StickXAccum = 0.0f;
 
@@ -1322,26 +1322,26 @@ void updateCameraZoomedIn(GObj* obj) {
             gHasPokemonInFocus = false;
         }
         if (gHasPokemonInFocus == true && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
-            if (D_80382C40_523050 == gPokemonInFocus) {
-                D_80382CF8_523108++;
+            if (gPreviousPokemonInFocus == gPokemonInFocus) {
+                sPhotoSeriesCount++;
             } else {
-                D_80382CF8_523108 = 0;
-                D_80382C3C_52304C = 0;
+                sPhotoSeriesCount = 0;
+                D_80382C3C_52304C = false;
             }
             D_80382CFC_52310C = 2;
-            if ((D_80382C3C_52304C == 0 || D_803AE474_54E884 != (gPokemonFlagsInFocus & POKEMON_FLAG_8)) && gDirectionIndex == -1) {
+            if ((!D_80382C3C_52304C || D_803AE474_54E884 != (gPokemonFlagsInFocus & POKEMON_FLAG_8)) && gDirectionIndex == -1) {
                 omCreateProcess(D_80382C38_523048, func_80356074_4F6484, 0, 9);
                 auPlaySound(SOUND_ID_1);
-                D_80382C3C_52304C = 1;
-                D_80382C40_523050 = gPokemonInFocus;
+                D_80382C3C_52304C = true;
+                gPreviousPokemonInFocus = gPokemonInFocus;
                 D_803AE470_54E880 = gPokemonIdInFocus;
                 D_803AE474_54E884 = gPokemonFlagsInFocus & POKEMON_FLAG_8;
             }
         } else if (D_80382CFC_52310C != 0) {
             D_80382CFC_52310C--;
         } else {
-            D_80382CF8_523108 = 0;
-            D_80382C3C_52304C = 0;
+            sPhotoSeriesCount = 0;
+            D_80382C3C_52304C = false;
         }
         if (sTimerAfterPhotoTaken < 0) {
             if (TargetDirectionZoomedIn == 0 && (gContInputPressedButtons & A_BUTTON)) {
@@ -1990,7 +1990,7 @@ void func_803552B0_4F56C0(GObj* obj) {
     if (D_80382D04_523114 == 1) {
         if (ZoomSwitchMode == 0 && (gContInputPressedButtons & Z_TRIG) ||
             ZoomSwitchMode == 1 && (gContInputPressedButtons & Z_TRIG) && gDirectionIndex >= 0) {
-            D_80382C3C_52304C = 0;
+            D_80382C3C_52304C = false;
             auPlaySound(SOUND_ID_5);
             gDirectionIndex = -2;
             omCreateProcess(gObjPlayer, processZoomingIn, 0, 9);
@@ -2664,9 +2664,9 @@ void resetMainCameraSettings(void) {
 }
 
 void func_80357428_4F7838(GObj* arg0) {
-    if (D_80382C3C_52304C != 0 && arg0 == D_80382C40_523050) {
-        D_80382C40_523050 = 0;
-        D_80382C3C_52304C = 0;
+    if (D_80382C3C_52304C && arg0 == gPreviousPokemonInFocus) {
+        gPreviousPokemonInFocus = NULL;
+        D_80382C3C_52304C = false;
     }
 }
 

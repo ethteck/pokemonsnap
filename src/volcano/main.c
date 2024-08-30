@@ -78,7 +78,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_ARCANINE,
-      func_802DC018_72D218,
+      arcanine_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_GROWLITHE,
@@ -203,7 +203,7 @@ SceneSetup volcano_SceneSetup = {
 
 PokemonDef volcano_ArcanineDef = {
     PokemonID_ARCANINE,
-    func_802DC018_72D218,
+    arcanine_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };

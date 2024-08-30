@@ -534,9 +534,68 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
+    - [auto, c, growlithe/images]
     - [auto, c, charmander/images]
     - [auto, c, arcanine/images]
     - [0x326C20, bin]
+    - start: 0x388870
+      type: .data
+      dir: growlithe
+      name: growlithe/images
+      subsegments:
+      - [0x388870]
+      - [0x388878, palette, tex_nose]
+      - [0x388898]
+      - { start: 0x3888A0, type: ci4, name: tex_nose, flip_y: true, width: 16, height: 16 }
+      - [0x388920]
+      - [0x388928, palette, tex_eye_frame0]
+      - [0x388948]
+      - { start: 0x388950, type: ci4, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x388D50]
+      - [0x388D58, palette, tex_eye_frame1]
+      - [0x388D78]
+      - { start: 0x388D80, type: ci4, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x389180]
+      - [0x389188, palette, tex_fur1]
+      - [0x3891A8]
+      - { start: 0x3891B0, type: ci4, name: tex_fur1, flip_y: true, width: 64, height: 32 }
+      - [0x3895B0]
+      - [0x3895B8, palette, tex_fur2]
+      - [0x3895D8]
+      - { start: 0x3895E0, type: ci4, name: tex_fur2, flip_y: true, width: 32, height: 64 }
+      - [0x3899E0]
+      - [0x3899E8, palette, tex_mouth]
+      - [0x389A08]
+      - { start: 0x389A10, type: ci4, name: tex_mouth, flip_y: true, width: 32, height: 16 }
+      - [0x389B10]
+      - [0x389B18, palette, tex_skin1]
+      - [0x389B38]
+      - { start: 0x389B40, type: ci4, name: tex_skin1, flip_y: true, width: 64, height: 32 }
+      - [0x389F40]
+      - [0x389F48, palette, tex_ear]
+      - [0x389F68]
+      - { start: 0x389F70, type: ci4, name: tex_ear, flip_y: true, width: 32, height: 32 }
+      - [0x38A170]
+      - [0x38A178, palette, tex_fur3]
+      - [0x38A198]
+      - { start: 0x38A1A0, type: ci4, name: tex_fur3, flip_y: true, width: 64, height: 32 }
+      - [0x38A5A0]
+      - { start: 0x38A5A8, type: palette, name: tex_tongue, size: 0x18 }
+      - [0x38A5C0]
+      - { start: 0x38A5C8, type: ci4, name: tex_tongue, flip_y: true, width: 32, height: 64 }
+      - [0x38A9C8]
+      - [0x38A9D0, palette, tex_skin2]
+      - [0x38A9F0]
+      - { start: 0x38A9F8, type: ci4, name: tex_skin2, flip_y: true, width: 64, height: 32 }
+      - [0x38ADF8]
+      - [0x38AE00, palette, tex_fingers]
+      - [0x38AE20]
+      - { start: 0x38AE28, type: ci4, name: tex_fingers, flip_y: true, width: 32, height: 32 }
+      - [0x38B028]
+      - [0x38B030, palette, tex_foot]
+      - [0x38B050]
+      - { start: 0x38B058, type: ci4, name: tex_foot, flip_y: true, width: 32, height: 32 }
+    - [0x38B260, bin]
     - start: 0x3988D0
       type: .data
       dir: charmander

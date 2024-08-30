@@ -1,30 +1,30 @@
 #include <common.h>
 
-extern u8 growlithe_tex0_pal[];
-extern u8 growlithe_tex0_png[];
-extern u8 growlithe_tex1_pal[];
-extern u8 growlithe_tex1_var0_png[];
-extern u8 growlithe_tex1_var1_png[];
-extern u8 growlithe_tex2_pal[];
-extern u8 growlithe_tex2_png[];
-extern u8 growlithe_tex3_pal[];
-extern u8 growlithe_tex3_png[];
-extern u8 growlithe_tex4_pal[];
-extern u8 growlithe_tex4_png[];
-extern u8 growlithe_tex5_pal[];
-extern u8 growlithe_tex5_png[];
-extern u8 growlithe_tex6_pal[];
-extern u8 growlithe_tex6_png[];
-extern u8 growlithe_tex7_pal[];
-extern u8 growlithe_tex7_png[];
-extern u8 growlithe_tex8_pal[];
-extern u8 growlithe_tex8_png[];
-extern u8 growlithe_tex9_pal[];
-extern u8 growlithe_tex9_png[];
-extern u8 growlithe_tex10_pal[];
-extern u8 growlithe_tex10_png[];
-extern u8 growlithe_tex11_pal[];
-extern u8 growlithe_tex11_png[];
+extern u8 growlithe_tex_nose_pal[];
+extern u8 growlithe_tex_nose_png[];
+extern u8 growlithe_tex_eye_frame0_pal[];
+extern u8 growlithe_tex_eye_frame0_png[];
+extern u8 growlithe_tex_eye_frame1_png[];
+extern u8 growlithe_tex_fur1_pal[];
+extern u8 growlithe_tex_fur1_png[];
+extern u8 growlithe_tex_fur2_pal[];
+extern u8 growlithe_tex_fur2_png[];
+extern u8 growlithe_tex_mouth_pal[];
+extern u8 growlithe_tex_mouth_png[];
+extern u8 growlithe_tex_skin1_pal[];
+extern u8 growlithe_tex_skin1_png[];
+extern u8 growlithe_tex_ear_pal[];
+extern u8 growlithe_tex_ear_png[];
+extern u8 growlithe_tex_fur3_pal[];
+extern u8 growlithe_tex_fur3_png[];
+extern u8 growlithe_tex_tongue_pal[];
+extern u8 growlithe_tex_tongue_png[];
+extern u8 growlithe_tex_skin2_pal[];
+extern u8 growlithe_tex_skin2_png[];
+extern u8 growlithe_tex_fingers_pal[];
+extern u8 growlithe_tex_fingers_png[];
+extern u8 growlithe_tex_foot_pal[];
+extern u8 growlithe_tex_foot_png[];
 
 extern Texture* growlithe_part2_mat[];
 extern Gfx growlithe_part0_draw[];
@@ -52,8 +52,8 @@ Texture** growlithe_materials[] = {
 };
 
 u8* growlithe_part2_mat0_images[] = {
-    growlithe_tex1_var0_png,
-    growlithe_tex1_var1_png,
+    growlithe_tex_eye_frame0_png,
+    growlithe_tex_eye_frame1_png,
     NULL,
 };
 

@@ -1,200 +1,200 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_80168F70[];
-extern AnimCmd* D_8016A970[];
-extern AnimCmd* D_801645E0[];
-extern AnimCmd* D_80168280[];
-extern AnimCmd* D_8016BCD0[];
-extern AnimCmd* D_8016E950[];
-extern AnimCmd* D_80164F50[];
-extern AnimCmd* D_8016DCF0[];
+extern AnimCmd* growlithe_modelanim_walk[];
+extern AnimCmd* growlithe_modelanim_shakehead[];
+extern AnimCmd* growlithe_modelanim_run[];
+extern AnimCmd* growlithe_modelanim_idle[];
+extern AnimCmd* growlithe_modelanim_roar[];
+extern AnimCmd* growlithe_modelanim_hit[];
+extern AnimCmd* growlithe_modelanim_jump[];
+extern AnimCmd* growlithe_modelanim_eat[];
 
-extern AnimCmd** D_80171980[];
-extern AnimCmd** D_80171A20[];
-extern AnimCmd** D_801717A0[];
-extern AnimCmd** D_80171BD0[];
-extern AnimCmd** D_801718F0[];
-extern AnimCmd** D_80171A90[];
-extern AnimCmd** D_80171830[];
-extern AnimCmd** D_80171B30[];
+extern AnimCmd** growlithe_matanim_walk[];
+extern AnimCmd** growlithe_matanim_shakehead[];
+extern AnimCmd** growlithe_matanim_run[];
+extern AnimCmd** growlithe_matanim_idle[];
+extern AnimCmd** growlithe_matanim_roar[];
+extern AnimCmd** growlithe_matanim_hit[];
+extern AnimCmd** growlithe_matanim_jump[];
+extern AnimCmd** growlithe_matanim_eat[];
 
-void func_802DB0B8_72C2B8(GObj*);
-void func_802DB2F8_72C4F8(GObj*);
-void func_802DAAE0_72BCE0(GObj*);
-void func_802DACA8_72BEA8(GObj*);
-void func_802DADA8_72BFA8(GObj*);
-void func_802DAFF8_72C1F8(GObj*);
-void func_802DB2D4_72C4D4(GObj*);
-void func_802DB358_72C558(GObj*);
-void func_802DAF18_72C118(GObj*);
-void func_802DAF88_72C188(GObj*);
-void func_802DAC38_72BE38(GObj*);
-void func_802DAEA8_72C0A8(GObj*);
-void func_802DB418_72C618(GObj*);
-void func_802DB4E8_72C6E8(GObj*);
-void func_802DAB90_72BD90(GObj*);
-void func_802DAD4C_72BF4C(GObj*);
-void func_802DAE4C_72C04C(GObj*);
-void func_802DB06C_72C26C(GObj*);
-void func_802DB140_72C340(GObj*);
-void func_802DB1C4_72C3C4(GObj*);
-void func_802DB274_72C474(GObj*);
-void func_802DB3CC_72C5CC(GObj*);
-void func_802DB48C_72C68C(GObj*);
+void growlithe_AppleNearby(GObj*);
+void growlithe_Restore(GObj*);
+void growlithe_InitialState(GObj*);
+void growlithe_Walk(GObj*);
+void growlithe_Run(GObj*);
+void growlithe_AffectedByPesterBall(GObj*);
+void growlithe_SearchApple(GObj*);
+void growlithe_Dance(GObj*);
+void growlithe_HitByPesterBall(GObj*);
+void growlithe_HitByApple(GObj*);
+void growlithe_Idle(GObj*);
+void growlithe_Roar(GObj*);
+void growlithe_RunAwayFromPlayer(GObj*);
+void growlithe_PhotoTaken(GObj*);
+void growlithe_MoveJump(GObj*);
+void growlithe_MoveWalk(GObj*);
+void growlithe_MoveRun(GObj*);
+void growlithe_TurnToFume(GObj*);
+void growlithe_RunToApple(GObj*);
+void growlithe_WithApple(GObj*);
+void growlithe_TurnToApple(GObj*);
+void growlithe_TurnToPlayer(GObj*);
+void growlithe_RunAway(GObj*);
 
-s32 D_802E2390_733590[] = { SOUND_ID_275 };
-s32 D_802E2394_733594[] = { SOUND_ID_276 };
-s32 D_802E2398_733598[] = { SOUND_ID_274 };
-s32 D_802E239C_73359C[] = { SOUND_ID_277, SOUND_ID_117 };
+s32 growlithe_animsounds_roar[] = { SOUND_ID_275 };
+s32 growlithe_animsounds_hit[] = { SOUND_ID_276 };
+s32 growlithe_animsounds_eat[] = { SOUND_ID_274 };
+s32 growlithe_animsounds_jump[] = { SOUND_ID_277, SOUND_ID_117 };
 
-AnimationHeader D_802E23A4_7335A4 = {
+AnimationHeader growlithe_animation_idle = {
     0.6,
     140,
-    D_80168F70,
-    D_80171980,
+    growlithe_modelanim_idle,
+    growlithe_matanim_idle,
     NULL
 };
 
-AnimationHeader D_802E23B8_7335B8 = {
+AnimationHeader growlithe_animation_roar = {
     0.5,
     36,
-    D_8016A970,
-    D_80171A20,
-    D_802E2390_733590
+    growlithe_modelanim_roar,
+    growlithe_matanim_roar,
+    growlithe_animsounds_roar
 };
 
-AnimationHeader D_802E23CC_7335CC = {
+AnimationHeader growlithe_animation_walk = {
     0.5,
     24,
-    D_801645E0,
-    D_801717A0,
+    growlithe_modelanim_walk,
+    growlithe_matanim_walk,
     NULL
 };
 
-AnimationHeader D_802E23E0_7335E0 = {
+AnimationHeader growlithe_animation_run = {
     1.0,
     40,
-    D_80168280,
-    D_801718F0,
+    growlithe_modelanim_run,
+    growlithe_matanim_run,
     NULL
 };
 
-AnimationHeader D_802E23F4_7335F4 = {
+AnimationHeader growlithe_animation_hit = {
     0.4,
     90,
-    D_8016BCD0,
-    D_80171A90,
-    D_802E2394_733594
+    growlithe_modelanim_hit,
+    growlithe_matanim_hit,
+    growlithe_animsounds_hit
 };
 
-AnimationHeader D_802E2408_733608 = {
+AnimationHeader growlithe_animation_eat = {
     0.5,
     120,
-    D_8016E950,
-    D_80171BD0,
-    D_802E2398_733598
+    growlithe_modelanim_eat,
+    growlithe_matanim_eat,
+    growlithe_animsounds_eat
 };
 
-AnimationHeader D_802E241C_73361C = {
+AnimationHeader growlithe_animation_shakehead = {
     0.7,
     90,
-    D_80164F50,
-    D_80171830,
+    growlithe_modelanim_shakehead,
+    growlithe_matanim_shakehead,
     NULL
 };
 
-AnimationHeader D_802E2430_733630 = {
+AnimationHeader growlithe_animation_jump = {
     0.7,
     55,
-    D_8016DCF0,
-    D_80171B30,
-    D_802E239C_73359C
+    growlithe_modelanim_jump,
+    growlithe_matanim_jump,
+    growlithe_animsounds_jump
 };
 
-InteractionHandler D_802E2444_733644[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
-    { POKEMON_CMD_10, func_802DAFF8_72C1F8, 0, NULL },
-    { POKEMON_CMD_14, func_802DB0B8_72C2B8, 0, NULL },
-    { POKEMON_CMD_15, func_802DB2D4_72C4D4, 0, NULL },
-    { POKEMON_CMD_5, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_6, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_7, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_16, func_802DB418_72C618, 1000.0 / 3.0, NULL },
-    { POKEMON_CMD_23, func_802DB4E8_72C6E8, 60, NULL },
+InteractionHandler growlithe_tg_Normal[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, growlithe_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, growlithe_AppleNearby, 0, NULL },
+    { POKEMON_CMD_15, growlithe_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_6, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_7, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_16, growlithe_RunAwayFromPlayer, 1000.0 / 3.0, NULL },
+    { POKEMON_CMD_23, growlithe_PhotoTaken, 60, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E24F4_7336F4[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
-    { POKEMON_CMD_10, func_802DAFF8_72C1F8, 0, NULL },
-    { POKEMON_CMD_14, func_802DB0B8_72C2B8, 0, NULL },
-    { POKEMON_CMD_5, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_6, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_7, func_802DB358_72C558, 0, NULL },
+InteractionHandler growlithe_tg_SearchApple[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, growlithe_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, growlithe_AppleNearby, 0, NULL },
+    { POKEMON_CMD_5, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_6, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_7, growlithe_Dance, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2574_733774[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
-    { POKEMON_CMD_10, func_802DAFF8_72C1F8, 0, NULL },
-    { POKEMON_CMD_14, func_802DB0B8_72C2B8, 0, NULL },
-    { POKEMON_CMD_5, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_6, func_802DB358_72C558, 0, NULL },
-    { POKEMON_CMD_7, func_802DB358_72C558, 0, NULL },
+InteractionHandler growlithe_tg_WithApple[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, growlithe_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, growlithe_AppleNearby, 0, NULL },
+    { POKEMON_CMD_5, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_6, growlithe_Dance, 0, NULL },
+    { POKEMON_CMD_7, growlithe_Dance, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E25F4_7337F4[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
+InteractionHandler growlithe_tg_shakehead[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2624_733824[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
+InteractionHandler growlithe_tg_Dance[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2654_733854[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
-    { POKEMON_CMD_15, func_802DB2D4_72C4D4, 0, NULL },
+InteractionHandler growlithe_tg_Restore[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
+    { POKEMON_CMD_15, growlithe_SearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2694_733894[] = {
-    { POKEMON_CMD_9, func_802DAF18_72C118, 0, NULL },
-    { POKEMON_CMD_13, func_802DAF88_72C188, 0, NULL },
-    { POKEMON_CMD_10, func_802DAFF8_72C1F8, 0, NULL },
+InteractionHandler growlithe_tg_RunAway[] = {
+    { POKEMON_CMD_9, growlithe_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, growlithe_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, growlithe_AffectedByPesterBall, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E26D4_7338D4[] = {
-    { 100, func_802DAC38_72BE38 },
-    { 100, func_802DACA8_72BEA8 },
-    { 100, func_802DADA8_72BFA8 },
-    { 100, func_802DAEA8_72C0A8 },
+RandomState growlithe_idleStates[] = {
+    { 100, growlithe_Idle },
+    { 100, growlithe_Walk },
+    { 100, growlithe_Run },
+    { 100, growlithe_Roar },
     { 0, NULL },
 };
 
-PokemonAnimationSetup D_802E26FC_7338FC = {
-    &D_802E23A4_7335A4,
-    func_802DAAE0_72BCE0,
+PokemonAnimationSetup growlithe_animSetup = {
+    &growlithe_animation_idle,
+    growlithe_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E2710_733910 = {
+PokemonInitData growlithe_initData = {
     growlithe_model,
     growlithe_materials,
     renderPokemonModelTypeIFogged,
-    &D_802E26FC_7338FC,
+    &growlithe_animSetup,
     { 2.2, 2.2, 2.2 },
     { 0, 127, 4 },
     37,
@@ -205,24 +205,24 @@ PokemonInitData D_802E2710_733910 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DAAE0_72BCE0)
+POKEMON_FUNC(growlithe_InitialState)
     pokemon->flags |= POKEMON_FLAG_200;
     pokemon->flags |= POKEMON_FLAG_800;
 
-    Pokemon_SetAnimation(obj, &D_802E2430_733630);
-    Pokemon_StartPathProc(obj, func_802DAB90_72BD90);
+    Pokemon_SetAnimation(obj, &growlithe_animation_jump);
+    Pokemon_StartPathProc(obj, growlithe_MoveJump);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E241C_73361C);
+    Pokemon_SetAnimation(obj, &growlithe_animation_shakehead);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E25F4_7337F4;
+    pokemon->transitionGraph = growlithe_tg_shakehead;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DAC38_72BE38);
+    Pokemon_SetState(obj, growlithe_Idle);
 }
 
-POKEMON_FUNC(func_802DAB90_72BD90)
+POKEMON_FUNC(growlithe_MoveJump)
     GroundResult result;
 
     Pokemon_TurnToTarget(obj, TAU, MOVEMENT_FLAG_TURN_TO_PLAYER);
@@ -236,30 +236,30 @@ POKEMON_FUNC(func_802DAB90_72BD90)
     }
 }
 
-POKEMON_FUNC(func_802DAC38_72BE38)
-    Pokemon_SetAnimation(obj, &D_802E23A4_7335A4);
+POKEMON_FUNC(growlithe_Idle)
+    Pokemon_SetAnimation(obj, &growlithe_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2444_733644;
+    pokemon->transitionGraph = growlithe_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E26D4_7338D4);
+    Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
-POKEMON_FUNC(func_802DACA8_72BEA8)
-    Pokemon_SetAnimation(obj, &D_802E23CC_7335CC);
+POKEMON_FUNC(growlithe_Walk)
+    Pokemon_SetAnimation(obj, &growlithe_animation_walk);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DAD4C_72BF4C);
-    pokemon->transitionGraph = D_802E2444_733644;
+    Pokemon_StartPathProc(obj, growlithe_MoveWalk);
+    pokemon->transitionGraph = growlithe_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802DAC38_72BE38);
+        Pokemon_SetState(obj, growlithe_Idle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E26D4_7338D4);
+    Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
-POKEMON_FUNC(func_802DAD4C_72BF4C)
+POKEMON_FUNC(growlithe_MoveWalk)
     pokemon->hSpeed = 80.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -267,21 +267,21 @@ POKEMON_FUNC(func_802DAD4C_72BF4C)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DADA8_72BFA8)
-    Pokemon_SetAnimation(obj, &D_802E23E0_7335E0);
+POKEMON_FUNC(growlithe_Run)
+    Pokemon_SetAnimation(obj, &growlithe_animation_run);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DAE4C_72C04C);
-    pokemon->transitionGraph = D_802E2444_733644;
+    Pokemon_StartPathProc(obj, growlithe_MoveRun);
+    pokemon->transitionGraph = growlithe_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802DAC38_72BE38);
+        Pokemon_SetState(obj, growlithe_Idle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E26D4_7338D4);
+    Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
-POKEMON_FUNC(func_802DAE4C_72C04C)
+POKEMON_FUNC(growlithe_MoveRun)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -289,63 +289,63 @@ POKEMON_FUNC(func_802DAE4C_72C04C)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DAEA8_72C0A8)
-    Pokemon_ForceAnimation(obj, &D_802E23B8_7335B8);
+POKEMON_FUNC(growlithe_Roar)
+    Pokemon_ForceAnimation(obj, &growlithe_animation_roar);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2444_733644;
+    pokemon->transitionGraph = growlithe_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E26D4_7338D4);
+    Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
-POKEMON_FUNC(func_802DAF18_72C118)
-    Pokemon_SetAnimation(obj, &D_802E23F4_7335F4);
+POKEMON_FUNC(growlithe_HitByPesterBall)
+    Pokemon_SetAnimation(obj, &growlithe_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E25F4_7337F4;
+    pokemon->transitionGraph = growlithe_tg_shakehead;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DB2F8_72C4F8);
+    Pokemon_SetState(obj, growlithe_Restore);
 }
 
-POKEMON_FUNC(func_802DAF88_72C188)
-    Pokemon_SetAnimation(obj, &D_802E23F4_7335F4);
+POKEMON_FUNC(growlithe_HitByApple)
+    Pokemon_SetAnimation(obj, &growlithe_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E25F4_7337F4;
+    pokemon->transitionGraph = growlithe_tg_shakehead;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DB2F8_72C4F8);
+    Pokemon_SetState(obj, growlithe_Restore);
 }
 
-POKEMON_FUNC(func_802DAFF8_72C1F8)
-    Pokemon_SetAnimation(obj, &D_802E241C_73361C);
-    Pokemon_StartPathProc(obj, func_802DB06C_72C26C);
-    pokemon->transitionGraph = D_802E25F4_7337F4;
+POKEMON_FUNC(growlithe_AffectedByPesterBall)
+    Pokemon_SetAnimation(obj, &growlithe_animation_shakehead);
+    Pokemon_StartPathProc(obj, growlithe_TurnToFume);
+    pokemon->transitionGraph = growlithe_tg_shakehead;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DAC38_72BE38);
+    Pokemon_SetState(obj, growlithe_Idle);
 }
 
-POKEMON_FUNC(func_802DB06C_72C26C)
+POKEMON_FUNC(growlithe_TurnToFume)
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DB0B8_72C2B8)
-    Pokemon_StartPathProc(obj, func_802DB140_72C340);
-    pokemon->transitionGraph = D_802E24F4_7336F4;
+POKEMON_FUNC(growlithe_AppleNearby)
+    Pokemon_StartPathProc(obj, growlithe_RunToApple);
+    pokemon->transitionGraph = growlithe_tg_SearchApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802DAC38_72BE38);
+        Pokemon_SetState(obj, growlithe_Idle);
     }
 
-    Pokemon_SetState(obj, func_802DB1C4_72C3C4);
+    Pokemon_SetState(obj, growlithe_WithApple);
 }
 
-POKEMON_FUNC(func_802DB140_72C340)
-    Pokemon_SetAnimation(obj, &D_802E23E0_7335E0);
+POKEMON_FUNC(growlithe_RunToApple)
+    Pokemon_SetAnimation(obj, &growlithe_animation_run);
     pokemon->hSpeed = 160.0f;
     Pokemon_RunToTarget(obj, 100.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     Pokemon_TurnToTarget(obj, 0.1f, 0);
@@ -354,69 +354,69 @@ POKEMON_FUNC(func_802DB140_72C340)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DB1C4_72C3C4)
+POKEMON_FUNC(growlithe_WithApple)
     if (pokemon->interactionTarget == NULL) {
-        Pokemon_SetState(obj, func_802DAC38_72BE38);
+        Pokemon_SetState(obj, growlithe_Idle);
     }
 
-    Pokemon_StartPathProc(obj, func_802DB274_72C474);
-    Pokemon_SetAnimation(obj, &D_802E2408_733608);
-    pokemon->transitionGraph = D_802E2574_733774;
+    Pokemon_StartPathProc(obj, growlithe_TurnToApple);
+    Pokemon_SetAnimation(obj, &growlithe_animation_eat);
+    pokemon->transitionGraph = growlithe_tg_WithApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     if (pokemon->interactionTarget != NULL) {
-        Pokemon_SetState(obj, func_802DB1C4_72C3C4);
+        Pokemon_SetState(obj, growlithe_WithApple);
     }
 
-    Pokemon_SetState(obj, func_802DB2F8_72C4F8);
+    Pokemon_SetState(obj, growlithe_Restore);
 }
 
-POKEMON_FUNC(func_802DB274_72C474)
+POKEMON_FUNC(growlithe_TurnToApple)
     while (true) {
         Pokemon_TurnToTarget(obj, 0.1f, 0);
         ohWait(1);
     }
 }
 
-POKEMON_FUNC(func_802DB2D4_72C4D4)
-    Pokemon_SetState(obj, func_802DB0B8_72C2B8);
+POKEMON_FUNC(growlithe_SearchApple)
+    Pokemon_SetState(obj, growlithe_AppleNearby);
 }
 
-POKEMON_FUNC(func_802DB2F8_72C4F8)
+POKEMON_FUNC(growlithe_Restore)
     pokemon->apple = NULL;
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = D_802E2654_733854;
+    pokemon->transitionGraph = growlithe_tg_Restore;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetState(obj, func_802DAC38_72BE38);
+    Pokemon_SetState(obj, growlithe_Idle);
 }
 
-POKEMON_FUNC(func_802DB358_72C558)
-    Pokemon_SetAnimation(obj, &D_802E23CC_7335CC);
-    Pokemon_StartPathProc(obj, func_802DB3CC_72C5CC);
-    pokemon->transitionGraph = D_802E2624_733824;
+POKEMON_FUNC(growlithe_Dance)
+    Pokemon_SetAnimation(obj, &growlithe_animation_walk);
+    Pokemon_StartPathProc(obj, growlithe_TurnToPlayer);
+    pokemon->transitionGraph = growlithe_tg_Dance;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802DAC38_72BE38);
+    Pokemon_SetState(obj, growlithe_Idle);
 }
 
-POKEMON_FUNC(func_802DB3CC_72C5CC)
+POKEMON_FUNC(growlithe_TurnToPlayer)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DB418_72C618)
-    Pokemon_SetAnimation(obj, &D_802E23E0_7335E0);
-    Pokemon_StartPathProc(obj, func_802DB48C_72C68C);
-    pokemon->transitionGraph = D_802E2694_733894;
+POKEMON_FUNC(growlithe_RunAwayFromPlayer)
+    Pokemon_SetAnimation(obj, &growlithe_animation_run);
+    Pokemon_StartPathProc(obj, growlithe_RunAway);
+    pokemon->transitionGraph = growlithe_tg_RunAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802DAC38_72BE38);
+    Pokemon_SetState(obj, growlithe_Idle);
 }
 
-POKEMON_FUNC(func_802DB48C_72C68C)
+POKEMON_FUNC(growlithe_RunAway)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunAwayFromTarget(obj, 1000.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -424,15 +424,15 @@ POKEMON_FUNC(func_802DB48C_72C68C)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DB4E8_72C6E8)
+POKEMON_FUNC(growlithe_PhotoTaken)
     Pokemon_StartPathProc(obj, NULL);
-    Pokemon_ForceAnimation(obj, &D_802E23B8_7335B8);
-    pokemon->transitionGraph = D_802E2694_733894;
+    Pokemon_ForceAnimation(obj, &growlithe_animation_roar);
+    pokemon->transitionGraph = growlithe_tg_RunAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E26D4_7338D4);
+    Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
 GObj* func_802DB558_72C758(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2710_733910);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &growlithe_initData);
 }

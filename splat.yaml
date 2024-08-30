@@ -534,42 +534,43 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
-    - [0x326C20, bin] # , data]
-    - { start: 0x3988D0, type: c, name: images, dir: charmander }
+    - [auto, c, charmander/images]
+    - [auto, c, arcanine/images]
+    - [0x326C20, bin]
     - start: 0x3988D0
       type: .data
       dir: charmander
-      name: images
+      name: charmander/images
       subsegments:
-      - [0x3988D8, palette, tex_eye_frame1, 32, 64]
+      - [0x3988D8, palette, tex_eye_frame1]
       - [0x3988F8]
       - { start: 0x398900, type: ci4, name: tex_eye_frame1, flip_y: true, width: 32, height: 64 }
       - [0x398D00]
-      - [0x398D08, palette, tex_eye_frame2, 32, 64]
+      - [0x398D08, palette, tex_eye_frame2]
       - [0x398D28]
       - { start: 0x398D30, type: ci4, name: tex_eye_frame2, flip_y: true, width: 32, height: 64 }
       - [0x399130]
-      - [0x399138, palette, tex_eye_frame3, 32, 64]
+      - [0x399138, palette, tex_eye_frame3]
       - [0x399158]
       - { start: 0x399160, type: ci4, name: tex_eye_frame3, flip_y: true, width: 32, height: 64 }
       - [0x399560]
-      - [0x399568, palette, tex_eye_frame4, 32, 64]
+      - [0x399568, palette, tex_eye_frame4]
       - [0x399588]
       - { start: 0x399590, type: ci4, name: tex_eye_frame4, flip_y: true, width: 32, height: 64 }
       - [0x399990]
-      - [0x399998, palette, tex_eye_frame5, 32, 64]
+      - [0x399998, palette, tex_eye_frame5]
       - [0x3999B8]
       - { start: 0x3999C0, type: ci4, name: tex_eye_frame5, flip_y: true, width: 32, height: 64 }
       - [0x399DC0]
-      - [0x399DC8, palette, tex_eye_frame6, 32, 64]
+      - [0x399DC8, palette, tex_eye_frame6]
       - [0x399DE8]
       - { start: 0x399DF0, type: ci4, name: tex_eye_frame6, flip_y: true, width: 32, height: 64 }
       - [0x39A1F0]
-      - [0x39A1F8, palette, tex_eye_frame7, 32, 64]
+      - [0x39A1F8, palette, tex_eye_frame7]
       - [0x39A218]
       - { start: 0x39A220, type: ci4, name: tex_eye_frame7, flip_y: true, width: 32, height: 64 }
       - [0x39A620]
-      - [0x39A628, palette, tex_eye_frame0, 32, 64]
+      - [0x39A628, palette, tex_eye_frame0]
       - [0x39A648]
       - { start: 0x39A650, type: ci4, name: tex_eye_frame0, flip_y: true, width: 32, height: 64 }
       - [0x39AA50]
@@ -601,6 +602,76 @@ segments:
       - [0x39C558]
       - { start: 0x39C560, type: ci4, name: tex_mouth, flip_y: true, width: 32, height: 32 }
     - [0x39C760, bin]
+    - start: 0x3BD680
+      type: .data
+      dir: arcanine
+      name: arcanine/images
+      subsegments:
+      - [0x3BD680]
+      - [0x3BD688, palette, tex_skin1]
+      - [0x3BD6A8]
+      - { start: 0x3BD6B0, type: ci4, name: tex_skin1, flip_y: true, width: 32, height: 36 }
+      - [0x3BD8F0]
+      - [0x3BD8F8, palette, tex_skin2]
+      - [0x3BD918]
+      - { start: 0x3BD920, type: ci4, name: tex_skin2, flip_y: true, width: 32, height: 16 }
+      - [0x3BDA20]
+      - [0x3BDA28, palette, tex_skin3]
+      - [0x3BDA48]
+      - { start: 0x3BDA50, type: ci4, name: tex_skin3, flip_y: true, width: 64, height: 32 }
+      - [0x3BDE50]
+      - { start: 0x3BDE58, type: palette, name: tex_skin4, size: 16 }
+      - [0x3BDE68]
+      - { start: 0x3BDE70, type: ci4, name: tex_skin4, flip_y: true, width: 32, height: 64 }
+      - [0x3BE270]
+      - { start: 0x3BE278, type: palette, name: tex_skin5, size: 16 }
+      - [0x3BE288]
+      - { start: 0x3BE290, type: ci4, name: tex_skin5, flip_y: true, width: 16, height: 16 }
+      - [0x3BE310]
+      - [0x3BE318, palette, tex_nose]
+      - [0x3BE338]
+      - { start: 0x3BE340, type: ci4, name: tex_nose, flip_y: true, width: 16, height: 16 }
+      - [0x3BE3C0]
+      - [0x3BE3C8, palette, tex_fur1]
+      - [0x3BE3E8]
+      - { start: 0x3BE3F0, type: ci4, name: tex_fur1, flip_y: true, width: 64, height: 32 }
+      - [0x3BE7F0]
+      - [0x3BE7F8, palette, tex_fur2]
+      - [0x3BE818]
+      - { start: 0x3BE820, type: ci4, name: tex_fur2, flip_y: true, width: 32, height: 64 }
+      - [0x3BEC20]
+      - [0x3BEC28, palette, tex_eye_frame0]
+      - [0x3BEC48]
+      - { start: 0x3BEC50, type: ci4, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x3BF050]
+      - [0x3BF058, palette, tex_eye_frame1]
+      - [0x3BF078]
+      - { start: 0x3BF080, type: ci4, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x3BF480]
+      - [0x3BF488, palette, tex_eye_frame2]
+      - [0x3BF4A8]
+      - { start: 0x3BF4B0, type: ci4, name: tex_eye_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x3BF8B0]
+      - [0x3BF8B8, palette, tex_ear]
+      - [0x3BF8D8]
+      - { start: 0x3BF8E0, type: ci4, name: tex_ear, flip_y: true, width: 16, height: 16 }
+      - [0x3BF960]
+      - [0x3BF968, palette, tex_tongue]
+      - [0x3BF988]
+      - { start: 0x3BF990, type: ci4, name: tex_tongue, flip_y: true, width: 32, height: 16 }
+      - [0x3BFA90]
+      - [0x3BFA98, palette, tex_mouth]
+      - [0x3BFAB8]
+      - { start: 0x3BFAC0, type: ci4, name: tex_mouth, flip_y: true, width: 32, height: 16 }
+      - [0x3BFBC0]
+      - [0x3BFBC8, palette, tex_foot]
+      - [0x3BFBE8]
+      - { start: 0x3BFBF0, type: ci4, name: tex_foot, flip_y: true, width: 16, height: 16 }
+      - [0x3BFC70]
+      - [0x3BFC78, palette, tex_fingers]
+      - [0x3BFC98]
+      - { start: 0x3BFCA0, type: ci4, name: tex_fingers, flip_y: true, width: 32, height: 16 }
+    - [0x3BFDA0, bin]
     - { start: auto, name: bss_801A98E0, type: bss, vram: 0x801A98E0 }
   - type: code
     name: stage2_extra
@@ -1583,9 +1654,9 @@ segments:
       name: arcanine/model
       linker_section_order: .rodata
       subsegments:
-      - [0x798088, palette, tex14]
+      - [0x798088, palette, tex_skin6]
       - [0x7980A8]
-      - [0x7980B0, ci4, tex14, 32, 32]
+      - { start: 0x7980B0, type: ci4, name: tex_skin6, flip_y: true, width: 32, height: 32 }
       - [0x7982B0]
       - [0x798398, vtx, model]
       - [0x79A8B8, gfx, first]

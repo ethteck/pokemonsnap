@@ -24,7 +24,7 @@ extern AnimCmd** charmander_matanim_jump[];
 
 extern GObj* D_802E10A0_7322A0; // magmar
 extern void func_802DED6C_72FF6C(GObj*);
-extern void func_802DD24C_72E44C(GObj*);
+extern void charmeleon_EvolvedSpawn(GObj*);
 
 void charmander_AppleNearby(GObj*);
 void charmander_InitialState(GObj*);
@@ -713,7 +713,7 @@ POKEMON_FUNC(charmander_LieOnGround)
 }
 
 POKEMON_FUNC(charmander_EvolveIntoCharmeleon)
-    func_802DD24C_72E44C(obj);
+    charmeleon_EvolvedSpawn(obj);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

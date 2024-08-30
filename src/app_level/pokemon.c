@@ -694,7 +694,7 @@ void Pokemon_RunInteractions(GObj* obj) {
                 }
                 break;
             case POKEMON_CMD_23:
-                if (D_80382CF8_523108 > transitionGraph[i].value && obj == gPokemonInFocus) {
+                if (sPhotoSeriesCount > transitionGraph[i].value && obj == gPokemonInFocus) {
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
                     continueSearch = false;

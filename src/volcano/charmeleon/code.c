@@ -1,228 +1,234 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_8017E7F0[];
-extern AnimCmd* D_80180830[];
-extern AnimCmd* D_8017F660[];
-extern AnimCmd* D_8017D930[];
-extern AnimCmd* D_8017E0F0[];
-extern AnimCmd* D_80182130[];
-extern AnimCmd* D_80182CB0[];
-extern AnimCmd* D_8017F000[];
-extern AnimCmd* D_801815D0[];
+#define CHARMELEON_0 0
+#define CHARMELEON_PATH_PARAM 3
+#define CHARMELEON_PATH_END 4
+#define CHARMELEON_PATH_SPEED 5
+#define CHARMELEON_TARGET_SET 6
 
-extern AnimCmd** D_80183AD0[];
-extern AnimCmd** D_80184010[];
-extern AnimCmd** D_80183DE0[];
-extern AnimCmd** D_80183900[];
-extern AnimCmd** D_80183A20[];
-extern AnimCmd** D_801843E0[];
-extern AnimCmd** D_80184580[];
-extern AnimCmd** D_80183CB0[];
-extern AnimCmd** D_801841C0[];
+extern AnimCmd* charmeleon_modelanim_walk[];
+extern AnimCmd* charmeleon_modelanim_run[];
+extern AnimCmd* charmeleon_modelanim_idle[];
+extern AnimCmd* charmeleon_modelanim_lie[];
+extern AnimCmd* charmeleon_modelanim_lookaround[];
+extern AnimCmd* charmeleon_modelanim_roar[];
+extern AnimCmd* charmeleon_modelanim_getup[];
+extern AnimCmd* charmeleon_modelanim_hit[];
+extern AnimCmd* charmeleon_modelanim_fall[];
 
-GObj* func_802DD214_72E414(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_802DC108_72D308(GObj*);
-void func_802DCE40_72E040(GObj*);
-void func_802DCF44_72E144(GObj*);
-void func_802DCFAC_72E1AC(GObj*);
-void func_802DCC40_72DE40(GObj*);
-void func_802DCD40_72DF40(GObj*);
-void func_802DC170_72D370(GObj*);
-void func_802DC1F8_72D3F8(GObj*);
-void func_802DC3A0_72D5A0(GObj*);
-void func_802DC410_72D610(GObj*);
-void func_802DC758_72D958(GObj*);
-void func_802DC7A8_72D9A8(GObj*);
-void func_802DC99C_72DB9C(GObj*);
-void func_802DC590_72D790(GObj*);
-void func_802DC4F0_72D6F0(GObj*);
-void func_802DC480_72D680(GObj*);
-void func_802DCBD0_72DDD0(GObj*);
-void func_802DCB44_72DD44(GObj*);
-void func_802DC280_72D480(GObj*);
-void func_802DC6B4_72D8B4(GObj*);
-void func_802DC7F8_72D9F8(GObj*);
-void func_802DC6B4_72D8B4(GObj*);
-void func_802DC924_72DB24(GObj*);
-void func_802DC850_72DA50(GObj*);
+extern AnimCmd** charmeleon_matanim_walk[];
+extern AnimCmd** charmeleon_matanim_run[];
+extern AnimCmd** charmeleon_matanim_idle[];
+extern AnimCmd** charmeleon_matanim_lie[];
+extern AnimCmd** charmeleon_matanim_lookaround[];
+extern AnimCmd** charmeleon_matanim_roar[];
+extern AnimCmd** charmeleon_matanim_getup[];
+extern AnimCmd** charmeleon_matanim_hit[];
+extern AnimCmd** charmeleon_matanim_fall[];
+
+GObj* charmeleon_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void charmeleon_InitialState(GObj*);
+void charmeleon_EvolvedHitByPesterBall(GObj*);
+void charmeleon_EvolvedHit(GObj*);
+void charmeleon_EvolvedSearchApple(GObj*);
+void charmeleon_EvolvedWalk(GObj*);
+void charmeleon_EvolvedRun(GObj*);
+void charmeleon_Walk(GObj*);
+void charmeleon_Run(GObj*);
+void charmeleon_LookAround(GObj*);
+void charmeleon_Roar(GObj*);
+void charmeleon_HitByPesterBall(GObj*);
+void charmeleon_HitByApple(GObj*);
+void charmeleon_EvolveIntoCharizard(GObj*);
+void charmeleon_BounceOfPesterBall(GObj*);
+void charmeleon_BounceOfApple(GObj*);
+void charmeleon_Idle(GObj*);
+void charmeleon_EvolvedIdle(GObj*);
+void charmeleon_EvolvedInit(GObj*);
+void charmeleon_FollowPath(GObj*);
+void charmeleon_BounceBack(GObj*);
+void charmeleon_Return(GObj*);
+void charmeleon_BounceBack(GObj*);
+void charmeleon_RunToOrigPos(GObj*);
+void charmeleon_StepToOrigPos(GObj*);
 void func_802D6CC0_727EC0(GObj*);
-void func_802DCA28_72DC28(GObj*);
-void func_802DCCE4_72DEE4(GObj*);
-void func_802DCDE4_72DFE4(GObj*);
-void func_802DD0E8_72E2E8(GObj*);
-void func_802DD034_72E234(GObj*);
-void func_802DD1C0_72E3C0(GObj*);
+void charmeleon_DiveInLava(GObj*);
+void charmeleon_EvolvedMoveWalk(GObj*);
+void charmeleon_EvolvedMoveRun(GObj*);
+void charmeleon_EvolvedWithApple(GObj*);
+void charmeleon_EvolvedRunToApple(GObj*);
+void charmeleon_EvolvedTurnToApple(GObj*);
 
-s32 D_802E2AE0_733CE0[] = { SOUND_ID_288 };
-s32 D_802E2AE4_733CE4[] = { SOUND_ID_289 };
-s32 D_802E2AE8_733CE8[] = { SOUND_ID_290 };
+s32 charmeleon_animsounds_roar[] = { SOUND_ID_288 };
+s32 charmeleon_animsounds_hit[] = { SOUND_ID_289 };
+s32 charmeleon_animsounds_getup[] = { SOUND_ID_290 };
 
-AnimationHeader D_802E2AEC_733CEC = {
+AnimationHeader charmeleon_animation_idle = {
     0.6,
     60,
-    D_8017E7F0,
-    D_80183AD0,
+    charmeleon_modelanim_idle,
+    charmeleon_matanim_idle,
     NULL
 };
 
-AnimationHeader D_802E2B00_733D00 = {
+AnimationHeader charmeleon_animation_roar = {
     0.8,
     100,
-    D_80180830,
-    D_80184010,
-    D_802E2AE0_733CE0
+    charmeleon_modelanim_roar,
+    charmeleon_matanim_roar,
+    charmeleon_animsounds_roar
 };
 
-AnimationHeader D_802E2B14_733D14 = {
+AnimationHeader charmeleon_animation_lookaround = {
     0.7,
     105,
-    D_8017F660,
-    D_80183DE0,
+    charmeleon_modelanim_lookaround,
+    charmeleon_matanim_lookaround,
     NULL
 };
 
-AnimationHeader D_802E2B28_733D28 = {
+AnimationHeader charmeleon_animation_walk = {
     0.69,
     40,
-    D_8017D930,
-    D_80183900,
+    charmeleon_modelanim_walk,
+    charmeleon_matanim_walk,
     NULL
 };
 
-AnimationHeader D_802E2B3C_733D3C = {
+AnimationHeader charmeleon_animation_run = {
     0.75,
     16,
-    D_8017E0F0,
-    D_80183A20,
+    charmeleon_modelanim_run,
+    charmeleon_matanim_run,
     NULL
 };
 
-AnimationHeader D_802E2B50_733D50 = {
+AnimationHeader charmeleon_animation_hit = {
     1.1,
     100,
-    D_80182130,
-    D_801843E0,
-    D_802E2AE4_733CE4
+    charmeleon_modelanim_hit,
+    charmeleon_matanim_hit,
+    charmeleon_animsounds_hit
 };
 
-AnimationHeader D_802E2B64_733D64 = {
+AnimationHeader charmeleon_animation_fall = {
     1.17,
     120,
-    D_80182CB0,
-    D_80184580,
+    charmeleon_modelanim_fall,
+    charmeleon_matanim_fall,
     NULL
 };
 
-AnimationHeader D_802E2B78_733D78 = {
+AnimationHeader charmeleon_animation_lie = {
     1.0,
     75,
-    D_8017F000,
-    D_80183CB0,
+    charmeleon_modelanim_lie,
+    charmeleon_matanim_lie,
     NULL
 };
 
-AnimationHeader D_802E2B8C_733D8C = {
+AnimationHeader charmeleon_animation_getup = {
     0.7,
     145,
-    D_801815D0,
-    D_801841C0,
-    D_802E2AE8_733CE8
+    charmeleon_modelanim_getup,
+    charmeleon_matanim_getup,
+    charmeleon_animsounds_getup
 };
 
-InteractionHandler D_802E2BA0_733DA0[] = {
-    { POKEMON_CMD_9, func_802DC590_72D790, 0, NULL },
-    { POKEMON_CMD_13, func_802DC4F0_72D6F0, 0, NULL },
-    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+InteractionHandler charmeleon_tg_Bounce[] = {
+    { POKEMON_CMD_9, charmeleon_BounceOfPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_BounceOfApple, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2BE0_733DE0[] = {
-    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+InteractionHandler charmeleon_tg_Lying[] = {
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2C00_733E00[] = {
-    { POKEMON_CMD_9, func_802DC758_72D958, 0, NULL },
-    { POKEMON_CMD_13, func_802DC7A8_72D9A8, 0, NULL },
-    { VOLCANO_CMD_29, func_802DC99C_72DB9C, 0, NULL },
+InteractionHandler charmeleon_tg_Normal[] = {
+    { POKEMON_CMD_9, charmeleon_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_HitByApple, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_EVOLVE, charmeleon_EvolveIntoCharizard, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E2C40_733E40[] = {
-    { 1, func_802DC170_72D370 },
-    { 1, func_802DC1F8_72D3F8 },
-    { 1, func_802DC480_72D680 },
-    { 1, func_802DC3A0_72D5A0 },
-    { 1, func_802DC410_72D610 },
+RandomState charmeleon_idleStates[] = {
+    { 1, charmeleon_Walk },
+    { 1, charmeleon_Run },
+    { 1, charmeleon_Idle },
+    { 1, charmeleon_LookAround },
+    { 1, charmeleon_Roar },
     { 0, NULL },
 };
 
-RandomState D_802E2C70_733E70[] = {
-    { 1, func_802DC170_72D370 },
-    { 1, func_802DC1F8_72D3F8 },
+RandomState charmeleon_moveStates[] = {
+    { 1, charmeleon_Walk },
+    { 1, charmeleon_Run },
     { 0, NULL },
 };
 
-RandomState D_802E2C88_733E88[] = {
-    { 1, func_802DC3A0_72D5A0 },
-    { 1, func_802DC410_72D610 },
+RandomState charmeleon_stopStates[] = {
+    { 1, charmeleon_LookAround },
+    { 1, charmeleon_Roar },
     { 0, NULL },
 };
 
-f32 D_802E2CA0_733EA0[] = { 0 };
+f32 charmeleon_forbiddenGround[] = { 0 };
 
-InteractionHandler D_802E2CA4_733EA4[] = {
-    { POKEMON_CMD_9, func_802DCE40_72E040, 0, NULL },
-    { POKEMON_CMD_13, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_10, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_14, func_802DCFAC_72E1AC, 0, NULL },
-    { POKEMON_CMD_15, func_802DCFAC_72E1AC, 0, NULL },
+InteractionHandler charmeleon_tg_evolved_Normal[] = {
+    { POKEMON_CMD_9, charmeleon_EvolvedHitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_10, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_14, charmeleon_EvolvedSearchApple, 0, NULL },
+    { POKEMON_CMD_15, charmeleon_EvolvedSearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E2D04_733F04[] = {
-    { 100, func_802DCBD0_72DDD0 },
-    { 100, func_802DCC40_72DE40 },
-    { 100, func_802DCD40_72DF40 },
+RandomState charmeleon_evolved_idleStates[] = {
+    { 100, charmeleon_EvolvedIdle },
+    { 100, charmeleon_EvolvedWalk },
+    { 100, charmeleon_EvolvedRun },
     { 0, NULL },
 };
 
-InteractionHandler D_802E2D24_733F24[] = {
-    { POKEMON_CMD_9, func_802DCE40_72E040, 0, NULL },
-    { POKEMON_CMD_13, func_802DCF44_72E144, 0, NULL },
+InteractionHandler charmeleon_tg_evolved_Hit[] = {
+    { POKEMON_CMD_9, charmeleon_EvolvedHitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_EvolvedHit, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2D54_733F54[] = {
-    { POKEMON_CMD_9, func_802DCE40_72E040, 0, NULL },
-    { POKEMON_CMD_13, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_10, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_14, func_802DCFAC_72E1AC, 0, NULL },
+InteractionHandler charmeleon_tg_evolved_SearchApple[] = {
+    { POKEMON_CMD_9, charmeleon_EvolvedHitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_10, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_14, charmeleon_EvolvedSearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2DA4_733FA4[] = {
-    { POKEMON_CMD_9, func_802DCE40_72E040, 0, NULL },
-    { POKEMON_CMD_13, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_10, func_802DCF44_72E144, 0, NULL },
-    { POKEMON_CMD_14, func_802DCFAC_72E1AC, 0, NULL },
+InteractionHandler charmeleon_tg_evolved_WithApple[] = {
+    { POKEMON_CMD_9, charmeleon_EvolvedHitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_10, charmeleon_EvolvedHit, 0, NULL },
+    { POKEMON_CMD_14, charmeleon_EvolvedSearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E2DF4_733FF4 = {
-    &D_802E2AEC_733CEC,
-    func_802DC108_72D308,
+PokemonAnimationSetup charmeleon_animSetup = {
+    &charmeleon_animation_idle,
+    charmeleon_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E2E08_734008 = {
+PokemonInitData charmeleon_initData = {
     charmeleon_model,
     charmeleon_materials,
     renderPokemonModelTypeJFogged,
-    &D_802E2DF4_733FF4,
+    &charmeleon_animSetup,
     { 1.8, 1.8, 1.8 },
     { 0, 166, -2.6 },
     53,
@@ -233,14 +239,7 @@ PokemonInitData D_802E2E08_734008 = {
     { 0, 0, 0 }
 };
 
-PokemonDef D_802E2E3C_73403C = {
-    PokemonID_CHARMELEON,
-    func_802DD214_72E414,
-    pokemonChangeBlockOnGround,
-    pokemonRemoveOne
-};
-
-POKEMON_FUNC(func_802DC060_72D260)
+POKEMON_FUNC(charmeleon_DeleteLater)
     s32 blockIndex;
     f32 blockPart;
 
@@ -255,55 +254,57 @@ POKEMON_FUNC(func_802DC060_72D260)
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802DC108_72D308)
+POKEMON_FUNC(charmeleon_InitialState)
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802DCB44_72DD44);
+        Pokemon_SetState(obj, charmeleon_EvolvedInit);
     }
-    pokemon->forbiddenGround = D_802E2CA0_733EA0;
-    pokemon->miscVars[3].field0 = 0.0f;
-    Pokemon_SetStateRandom(obj, D_802E2C40_733E40);
+    pokemon->forbiddenGround = charmeleon_forbiddenGround;
+    pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 = 0.0f;
+    Pokemon_SetStateRandom(obj, charmeleon_idleStates);
 }
 
-POKEMON_FUNC(func_802DC170_72D370)
-    pokemon->miscVars[5].field0 = 0.04f;
+POKEMON_FUNC(charmeleon_Walk)
+    pokemon->miscVars[CHARMELEON_PATH_SPEED].field0 = 0.04f;
     Pokemon_ResetPathPos(obj);
-    Pokemon_SetAnimation(obj, &D_802E2B28_733D28);
-    Pokemon_StartPathProc(obj, func_802DC280_72D480);
-    pokemon->transitionGraph = D_802E2C00_733E00;
+    Pokemon_SetAnimation(obj, &charmeleon_animation_walk);
+    Pokemon_StartPathProc(obj, charmeleon_FollowPath);
+    pokemon->transitionGraph = charmeleon_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2C40_733E40);
+    Pokemon_SetStateRandom(obj, charmeleon_idleStates);
 }
 
-POKEMON_FUNC(func_802DC1F8_72D3F8)
-    pokemon->miscVars[5].field0 = 0.08f;
+POKEMON_FUNC(charmeleon_Run)
+    pokemon->miscVars[CHARMELEON_PATH_SPEED].field0 = 0.08f;
     Pokemon_ResetPathPos(obj);
-    Pokemon_SetAnimation(obj, &D_802E2B3C_733D3C);
-    Pokemon_StartPathProc(obj, func_802DC280_72D480);
-    pokemon->transitionGraph = D_802E2C00_733E00;
+    Pokemon_SetAnimation(obj, &charmeleon_animation_run);
+    Pokemon_StartPathProc(obj, charmeleon_FollowPath);
+    pokemon->transitionGraph = charmeleon_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2C40_733E40);
+    Pokemon_SetStateRandom(obj, charmeleon_idleStates);
 }
 
-POKEMON_FUNC(func_802DC280_72D480)
-    if (pokemon->miscVars[3].field0 < 0.7) {
-        pokemon->miscVars[4].field0 = pokemon->miscVars[3].field0 + 0.3 + randFloat() * 0.3;
-        if (pokemon->miscVars[4].field0 > 1.0f) {
-            pokemon->miscVars[4].field0 = 1.0f;
+POKEMON_FUNC(charmeleon_FollowPath)
+    if (pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 < 0.7) {
+        pokemon->miscVars[CHARMELEON_PATH_END].field0 = pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 + 0.3 + randFloat() * 0.3;
+        if (pokemon->miscVars[CHARMELEON_PATH_END].field0 > 1.0f) {
+            pokemon->miscVars[CHARMELEON_PATH_END].field0 = 1.0f;
         }
     } else {
-        pokemon->miscVars[4].field0 = 1.0f;
+        pokemon->miscVars[CHARMELEON_PATH_END].field0 = 1.0f;
     }
 
-    func_802D6F68_728168(obj, &pokemon->miscVars[3].field0, pokemon->miscVars[4].field0, pokemon->miscVars[5].field0, 3);
+    func_802D6F68_728168(obj, &pokemon->miscVars[CHARMELEON_PATH_PARAM].field0,
+                         pokemon->miscVars[CHARMELEON_PATH_END].field0,
+                         pokemon->miscVars[CHARMELEON_PATH_SPEED].field0, 3);
 
-    if (pokemon->miscVars[4].field0 == 1.0f) {
-        pokemon->miscVars[3].field0 = 0.0f;
+    if (pokemon->miscVars[CHARMELEON_PATH_END].field0 == 1.0f) {
+        pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 = 0.0f;
     }
 
-    if (pokemon->miscVars[3].field0 > 1.0f) {
-        pokemon->miscVars[3].field0 -= 1.0f;
+    if (pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 > 1.0f) {
+        pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 -= 1.0f;
     }
 
     pokemon->pathProc = NULL;
@@ -311,78 +312,78 @@ POKEMON_FUNC(func_802DC280_72D480)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DC3A0_72D5A0)
-    Pokemon_ForceAnimation(obj, &D_802E2B14_733D14);
+POKEMON_FUNC(charmeleon_LookAround)
+    Pokemon_ForceAnimation(obj, &charmeleon_animation_lookaround);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2C00_733E00;
+    pokemon->transitionGraph = charmeleon_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2C70_733E70);
+    Pokemon_SetStateRandom(obj, charmeleon_moveStates);
 }
 
-POKEMON_FUNC(func_802DC410_72D610)
-    Pokemon_ForceAnimation(obj, &D_802E2B00_733D00);
+POKEMON_FUNC(charmeleon_Roar)
+    Pokemon_ForceAnimation(obj, &charmeleon_animation_roar);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2C00_733E00;
+    pokemon->transitionGraph = charmeleon_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2C70_733E70);
+    Pokemon_SetStateRandom(obj, charmeleon_moveStates);
 }
 
-POKEMON_FUNC(func_802DC480_72D680)
-    Pokemon_SetAnimation(obj, &D_802E2AEC_733CEC);
+POKEMON_FUNC(charmeleon_Idle)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2C00_733E00;
+    pokemon->transitionGraph = charmeleon_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2C70_733E70);
+    Pokemon_SetStateRandom(obj, charmeleon_moveStates);
 }
 
-POKEMON_FUNC(func_802DC4F0_72D6F0)
-    Pokemon_SetAnimation(obj, &D_802E2B50_733D50);
-    Pokemon_StartPathProc(obj, func_802DC6B4_72D8B4);
-    pokemon->transitionGraph = D_802E2BA0_733DA0;
+POKEMON_FUNC(charmeleon_BounceOfApple)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_hit);
+    Pokemon_StartPathProc(obj, charmeleon_BounceBack);
+    pokemon->transitionGraph = charmeleon_tg_Bounce;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (obj && obj && obj) {
     } // TODO fake match
 
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = D_802E2BE0_733DE0;
+    pokemon->transitionGraph = charmeleon_tg_Lying;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetState(obj, func_802DC7F8_72D9F8);
+    Pokemon_SetState(obj, charmeleon_Return);
 }
 
-POKEMON_FUNC(func_802DC590_72D790)
-    Pokemon_SetAnimation(obj, &D_802E2B50_733D50);
-    Pokemon_StartPathProc(obj, func_802DC6B4_72D8B4);
-    pokemon->transitionGraph = D_802E2BA0_733DA0;
+POKEMON_FUNC(charmeleon_BounceOfPesterBall)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_hit);
+    Pokemon_StartPathProc(obj, charmeleon_BounceBack);
+    pokemon->transitionGraph = charmeleon_tg_Bounce;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = D_802E2BE0_733DE0;
+    pokemon->transitionGraph = charmeleon_tg_Lying;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2B64_733D64);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_fall);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2B78_733D78);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_lie);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2B8C_733D8C);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_getup);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DC7F8_72D9F8);
+    Pokemon_SetState(obj, charmeleon_Return);
 }
 
-POKEMON_FUNC(func_802DC6B4_72D8B4)
+POKEMON_FUNC(charmeleon_BounceBack)
     pokemon->hSpeed = 300.0f;
     pokemon->jumpVel = 150.0f;
     // TODO check it's an item
@@ -398,53 +399,54 @@ POKEMON_FUNC(func_802DC6B4_72D8B4)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DC758_72D958)
+POKEMON_FUNC(charmeleon_HitByPesterBall)
     pokemon->pos1.x = position->v.x;
     pokemon->pos1.y = position->v.y;
     pokemon->pos1.z = position->v.z;
-    pokemon->miscVars[6].field1 = 0;
-    Pokemon_SetState(obj, func_802DC590_72D790);
+    pokemon->miscVars[CHARMELEON_TARGET_SET].field1 = 0;
+    Pokemon_SetState(obj, charmeleon_BounceOfPesterBall);
 }
 
-POKEMON_FUNC(func_802DC7A8_72D9A8)
+POKEMON_FUNC(charmeleon_HitByApple)
     pokemon->pos1.x = position->v.x;
     pokemon->pos1.y = position->v.y;
     pokemon->pos1.z = position->v.z;
-    pokemon->miscVars[6].field1 = 0;
-    Pokemon_SetState(obj, func_802DC4F0_72D6F0);
+    pokemon->miscVars[CHARMELEON_TARGET_SET].field1 = 0;
+    Pokemon_SetState(obj, charmeleon_BounceOfApple);
 }
 
-POKEMON_FUNC(func_802DC7F8_72D9F8)
-    Pokemon_SetAnimation(obj, &D_802E2B3C_733D3C);
-    Pokemon_StartPathProc(obj, func_802DC924_72DB24);
-    pokemon->miscVars[0].field1 = 0;
-    Pokemon_SetState(obj, func_802DC850_72DA50);
+POKEMON_FUNC(charmeleon_Return)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_run);
+    Pokemon_StartPathProc(obj, charmeleon_RunToOrigPos);
+    pokemon->miscVars[CHARMELEON_0].field1 = 0;
+    Pokemon_SetState(obj, charmeleon_StepToOrigPos);
 }
 
-POKEMON_FUNC(func_802DC850_72DA50)
+POKEMON_FUNC(charmeleon_StepToOrigPos)
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = D_802E2BA0_733DA0;
+    pokemon->transitionGraph = charmeleon_tg_Bounce;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->currGround.surfaceType == SURFACE_TYPE_FF4C19) {
-        pokemon->miscVars[0].field1++;
-        if (pokemon->miscVars[0].field1 > 10) {
+        pokemon->miscVars[CHARMELEON_0].field1++;
+        // 10 steps on lava
+        if (pokemon->miscVars[CHARMELEON_0].field1 > 10) {
             cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_28, obj);
         }
     } else {
-        pokemon->miscVars[0].field1 = 0;
+        pokemon->miscVars[CHARMELEON_0].field1 = 0;
     }
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802DC850_72DA50);
+        Pokemon_SetState(obj, charmeleon_StepToOrigPos);
     }
-    Pokemon_SetStateRandom(obj, D_802E2C88_733E88);
+    Pokemon_SetStateRandom(obj, charmeleon_stopStates);
 }
 
-POKEMON_FUNC(func_802DC924_72DB24)
-    if (!pokemon->miscVars[6].field1) {
+POKEMON_FUNC(charmeleon_RunToOrigPos)
+    if (!pokemon->miscVars[CHARMELEON_TARGET_SET].field1) {
         Pokemon_SetTargetPos(obj, pokemon->pos1.x, pokemon->pos1.z);
-        pokemon->miscVars[6].field1 = true;
+        pokemon->miscVars[CHARMELEON_TARGET_SET].field1 = true;
     }
     Pokemon_RunToTargetPos(obj, 0.1f);
     pokemon->pathProc = FALSE;
@@ -452,10 +454,10 @@ POKEMON_FUNC(func_802DC924_72DB24)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DC99C_72DB9C)
+POKEMON_FUNC(charmeleon_EvolveIntoCharizard)
     omCreateProcess(obj, func_802D6CC0_727EC0, 1, 1);
     obj->flags |= GOBJ_FLAG_2;
-    Pokemon_StartPathProc(obj, func_802DCA28_72DC28);
+    Pokemon_StartPathProc(obj, charmeleon_DiveInLava);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
@@ -464,7 +466,7 @@ POKEMON_FUNC(func_802DC99C_72DB9C)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DCA28_72DC28)
+POKEMON_FUNC(charmeleon_DiveInLava)
     Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;
     f32 dx, dz;
     s32 i;
@@ -485,41 +487,41 @@ POKEMON_FUNC(func_802DCA28_72DC28)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DCB44_72DD44)
+POKEMON_FUNC(charmeleon_EvolvedInit)
     pokemon->flags |= POKEMON_FLAG_200;
     pokemon->flags |= POKEMON_FLAG_800;
-    Pokemon_StartAuxProc(obj, func_802DC060_72D260);
-    Pokemon_SetAnimation(obj, &D_802E2B8C_733D8C);
+    Pokemon_StartAuxProc(obj, charmeleon_DeleteLater);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_getup);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+    Pokemon_SetState(obj, charmeleon_EvolvedIdle);
 }
 
-POKEMON_FUNC(func_802DCBD0_72DDD0)
-    Pokemon_SetAnimation(obj, &D_802E2AEC_733CEC);
+POKEMON_FUNC(charmeleon_EvolvedIdle)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2CA4_733EA4;
+    pokemon->transitionGraph = charmeleon_tg_evolved_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, D_802E2D04_733F04);
+    Pokemon_SetStateRandom(obj, charmeleon_evolved_idleStates);
 }
 
-POKEMON_FUNC(func_802DCC40_72DE40)
-    Pokemon_SetAnimation(obj, &D_802E2B28_733D28);
+POKEMON_FUNC(charmeleon_EvolvedWalk)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_walk);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DCCE4_72DEE4);
-    pokemon->transitionGraph = D_802E2CA4_733EA4;
+    Pokemon_StartPathProc(obj, charmeleon_EvolvedMoveWalk);
+    pokemon->transitionGraph = charmeleon_tg_evolved_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+        Pokemon_SetState(obj, charmeleon_EvolvedIdle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E2D04_733F04);
+    Pokemon_SetStateRandom(obj, charmeleon_evolved_idleStates);
 }
 
-POKEMON_FUNC(func_802DCCE4_72DEE4)
+POKEMON_FUNC(charmeleon_EvolvedMoveWalk)
     pokemon->hSpeed = 20.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -527,21 +529,21 @@ POKEMON_FUNC(func_802DCCE4_72DEE4)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DCD40_72DF40)
-    Pokemon_SetAnimation(obj, &D_802E2B3C_733D3C);
+POKEMON_FUNC(charmeleon_EvolvedRun)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_run);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DCDE4_72DFE4);
-    pokemon->transitionGraph = D_802E2CA4_733EA4;
+    Pokemon_StartPathProc(obj, charmeleon_EvolvedMoveRun);
+    pokemon->transitionGraph = charmeleon_tg_evolved_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+        Pokemon_SetState(obj, charmeleon_EvolvedIdle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E2D04_733F04);
+    Pokemon_SetStateRandom(obj, charmeleon_evolved_idleStates);
 }
 
-POKEMON_FUNC(func_802DCDE4_72DFE4)
+POKEMON_FUNC(charmeleon_EvolvedMoveRun)
     pokemon->hSpeed = 80.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -549,50 +551,50 @@ POKEMON_FUNC(func_802DCDE4_72DFE4)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DCE40_72E040)
-    InteractionHandler saved[3] = D_802E2D24_733F24;
+POKEMON_FUNC(charmeleon_EvolvedHitByPesterBall)
+    InteractionHandler saved[3] = charmeleon_tg_evolved_Hit;
 
-    Pokemon_SetAnimation(obj, &D_802E2B64_733D64);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_fall);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2B78_733D78);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_lie);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2B8C_733D8C);
+    Pokemon_SetAnimation(obj, &charmeleon_animation_getup);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = saved;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+    Pokemon_SetState(obj, charmeleon_EvolvedIdle);
 }
 
-POKEMON_FUNC(func_802DCF44_72E144)
-    Pokemon_SetAnimation(obj, &D_802E2B50_733D50);
+POKEMON_FUNC(charmeleon_EvolvedHit)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+    Pokemon_SetState(obj, charmeleon_EvolvedIdle);
 }
 
-POKEMON_FUNC(func_802DCFAC_72E1AC)
-    Pokemon_StartPathProc(obj, func_802DD034_72E234);
-    pokemon->transitionGraph = D_802E2D54_733F54;
+POKEMON_FUNC(charmeleon_EvolvedSearchApple)
+    Pokemon_StartPathProc(obj, charmeleon_EvolvedRunToApple);
+    pokemon->transitionGraph = charmeleon_tg_evolved_SearchApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+        Pokemon_SetState(obj, charmeleon_EvolvedIdle);
     }
 
-    Pokemon_SetState(obj, func_802DD0E8_72E2E8);
+    Pokemon_SetState(obj, charmeleon_EvolvedWithApple);
 }
 
-POKEMON_FUNC(func_802DD034_72E234)
-    Pokemon_SetAnimation(obj, &D_802E2B3C_733D3C);
+POKEMON_FUNC(charmeleon_EvolvedRunToApple)
+    Pokemon_SetAnimation(obj, &charmeleon_animation_run);
     pokemon->hSpeed = randFloat() * 80.0f * 0.6 + 80.0;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     Pokemon_TurnToTarget(obj, 0.1f, 0);
@@ -601,34 +603,39 @@ POKEMON_FUNC(func_802DD034_72E234)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DD0E8_72E2E8)
-    InteractionHandler saved[5] = D_802E2DA4_733FA4;
+POKEMON_FUNC(charmeleon_EvolvedWithApple)
+    InteractionHandler saved[5] = charmeleon_tg_evolved_WithApple;
 
-    Pokemon_ForceAnimation(obj, &D_802E2B00_733D00);
-    Pokemon_StartPathProc(obj, func_802DD1C0_72E3C0);
+    Pokemon_ForceAnimation(obj, &charmeleon_animation_roar);
+    Pokemon_StartPathProc(obj, charmeleon_EvolvedTurnToApple);
     pokemon->transitionGraph = saved;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     if (pokemon->interactionTarget != NULL) {
-        Pokemon_SetState(obj, func_802DD0E8_72E2E8);
+        Pokemon_SetState(obj, charmeleon_EvolvedWithApple);
     }
 
-    Pokemon_SetState(obj, func_802DCBD0_72DDD0);
+    Pokemon_SetState(obj, charmeleon_EvolvedIdle);
 }
 
-POKEMON_FUNC(func_802DD1C0_72E3C0)
+POKEMON_FUNC(charmeleon_EvolvedTurnToApple)
     while (true) {
         Pokemon_TurnToTarget(obj, 0.1f, 0);
         ohWait(1);
     }
 }
 
-GObj* func_802DD214_72E414(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2E08_734008);
+GObj* charmeleon_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &charmeleon_initData);
 }
 
-void func_802DD24C_72E44C(GObj* obj) {
-    PokemonDef def = D_802E2E3C_73403C;
+void charmeleon_EvolvedSpawn(GObj* obj) {
+    PokemonDef def = {
+        PokemonID_CHARMELEON,
+        charmeleon_Spawn,
+        pokemonChangeBlockOnGround,
+        pokemonRemoveOne
+    };
     GObj* var;
     DObj* newModel;
 

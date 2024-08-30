@@ -102,7 +102,7 @@ void func_802DEAFC_72FCFC(GObj* obj) {
     Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;
 
     if (SQ(position->v.x - targetPos->v.x) + SQ(position->v.z - targetPos->v.z) < 100000.0f) {
-        cmdSendCommand(pokemon->interactionTarget, VOLCANO_CMD_29, obj);
+        cmdSendCommand(pokemon->interactionTarget, VOLCANO_CMD_CHARMELEON_EVOLVE, obj);
         Pokemon_SetState(obj, func_802DEBB0_72FDB0);
     }
 

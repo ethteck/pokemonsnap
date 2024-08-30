@@ -1,105 +1,105 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_8018A750[];
-extern AnimCmd* D_80188E30[];
-extern AnimCmd* D_801893F0[];
-extern AnimCmd* D_80189FF0[];
-extern AnimCmd* D_801883C0[];
+extern AnimCmd* charizard_modelanim_spewfire[];
+extern AnimCmd* charizard_modelanim_idle[];
+extern AnimCmd* charizard_modelanim_roar[];
+extern AnimCmd* charizard_modelanim_spin[];
+extern AnimCmd* charizard_modelanim_appear[];
 
-extern AnimCmd** D_8018B670[];
-extern AnimCmd** D_8018B3E0[];
-extern AnimCmd** D_8018B4A0[];
-extern AnimCmd** D_8018B5A0[];
-extern AnimCmd** D_8018B320[];
+extern AnimCmd** charizard_matanim_spewfire[];
+extern AnimCmd** charizard_matanim_idle[];
+extern AnimCmd** charizard_matanim_roar[];
+extern AnimCmd** charizard_matanim_spin[];
+extern AnimCmd** charizard_matanim_appear[];
 
-void func_802DD2E0_72E4E0(GObj*);
-void func_802DD500_72E700(GObj*);
-void func_802DD570_72E770(GObj*);
-void func_802DD5E0_72E7E0(GObj*);
-void func_802DD740_72E940(GObj*);
-void func_802DD6D4_72E8D4(GObj*);
-void func_802DD328_72E528(GObj*);
-void func_802DD3B0_72E5B0(GObj*);
+void charizard_InititalState(GObj*);
+void charizard_Idle(GObj*);
+void charizard_Roar(GObj*);
+void charizard_HitByPesterBall(GObj*);
+void charizard_AffectedByPesterBall(GObj*);
+void charizard_HitByApple(GObj*);
+void charizard_Appear(GObj*);
+void charizard_MoveOutOfLava(GObj*);
 void func_802DD4A4_72E6A4(GObj*);
-void func_802DD67C_72E87C(GObj*);
+void charizard_TurnToPlayer(GObj*);
 
-s32 D_802E2E50_734050[] = { SOUND_ID_190 };
-s32 D_802E2E54_734054[] = { SOUND_ID_190 };
-s32 D_802E2E58_734058[] = { SOUND_ID_191 };
-s32 D_802E2E5C_73405C[] = { 0, SOUND_ID_140 };
+s32 charizard_animsounds_appear[] = { SOUND_ID_190 };
+s32 charizard_animsounds_roar[] = { SOUND_ID_190 };
+s32 charizard_animsounds_spin[] = { SOUND_ID_191 };
+s32 charizard_animsounds_spewfire[] = { 0, SOUND_ID_140 };
 
-AnimationHeader D_802E2E64_734064 = {
+AnimationHeader charizard_animation_appear = {
     0.45,
     135,
-    D_8018A750,
-    D_8018B670,
-    D_802E2E50_734050
+    charizard_modelanim_appear,
+    charizard_matanim_appear,
+    charizard_animsounds_appear
 };
 
-AnimationHeader D_802E2E78_734078 = {
+AnimationHeader charizard_animation_idle = {
     0.6,
     60,
-    D_80188E30,
-    D_8018B3E0,
+    charizard_modelanim_idle,
+    charizard_matanim_idle,
     NULL
 };
 
-AnimationHeader D_802E2E8C_73408C = {
+AnimationHeader charizard_animation_roar = {
     0.55,
     125,
-    D_801893F0,
-    D_8018B4A0,
-    D_802E2E54_734054
+    charizard_modelanim_roar,
+    charizard_matanim_roar,
+    charizard_animsounds_roar
 };
 
-AnimationHeader D_802E2EA0_7340A0 = {
+AnimationHeader charizard_animation_spin = {
     0.45,
     60,
-    D_80189FF0,
-    D_8018B5A0,
-    D_802E2E58_734058
+    charizard_modelanim_spin,
+    charizard_matanim_spin,
+    charizard_animsounds_spin
 };
 
-AnimationHeader D_802E2EB4_7340B4 = {
+AnimationHeader charizard_animation_spewfire = {
     0.6,
     150,
-    D_801883C0,
-    D_8018B320,
-    D_802E2E5C_73405C
+    charizard_modelanim_spewfire,
+    charizard_matanim_spewfire,
+    charizard_animsounds_spewfire
 };
 
-InteractionHandler D_802E2EC8_7340C8[] = {
-    { POKEMON_CMD_9, func_802DD5E0_72E7E0, 0, NULL },
-    { POKEMON_CMD_10, func_802DD740_72E940, 0, NULL },
-    { POKEMON_CMD_13, func_802DD6D4_72E8D4, 0, NULL },
+InteractionHandler charizard_tg_Normal[] = {
+    { POKEMON_CMD_9, charizard_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_10, charizard_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, charizard_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2F08_734108[] = {
-    { VOLCANO_CMD_31, func_802DD328_72E528, 0, NULL },
+InteractionHandler charizard_tg_Unused[] = {
+    { VOLCANO_CMD_31, charizard_Appear, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E2F28_734128[] = {
-    { 1, func_802DD500_72E700 },
-    { 1, func_802DD570_72E770 },
+RandomState charizard_idleStates[] = {
+    { 1, charizard_Idle },
+    { 1, charizard_Roar },
     { 0, NULL },
 };
 
-PokemonAnimationSetup D_802E2F40_734140 = {
-    &D_802E2E78_734078,
-    func_802DD2E0_72E4E0,
+PokemonAnimationSetup charizard_animSetup = {
+    &charizard_animation_idle,
+    charizard_InititalState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E2F54_734154 = {
+PokemonInitData charizard_initData = {
     charizard_model,
     charizard_materials,
     renderPokemonModelTypeIFogged,
-    &D_802E2F40_734140,
+    &charizard_animSetup,
     { 3.5, 3.5, 3.5 },
     { 0, 1088, 0 },
     76,
@@ -110,24 +110,24 @@ PokemonInitData D_802E2F54_734154 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DD2E0_72E4E0)
+POKEMON_FUNC(charizard_InititalState)
     obj->flags |= GOBJ_FLAG_HIDDEN;
     cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_32, obj);
-    Pokemon_SetState(obj, func_802DD328_72E528);
+    Pokemon_SetState(obj, charizard_Appear);
 }
 
-POKEMON_FUNC(func_802DD328_72E528)
+POKEMON_FUNC(charizard_Appear)
     cmdSendCommand(gObjPlayer, PLAYER_CMD_SHAKE_CAMERA, obj);
     obj->flags = 0;
-    Pokemon_SetAnimation(obj, &D_802E2E64_734064);
-    Pokemon_StartPathProc(obj, func_802DD3B0_72E5B0);
+    Pokemon_SetAnimation(obj, &charizard_animation_appear);
+    Pokemon_StartPathProc(obj, charizard_MoveOutOfLava);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DD500_72E700);
+    Pokemon_SetState(obj, charizard_Idle);
 }
 
-POKEMON_FUNC(func_802DD3B0_72E5B0)
+POKEMON_FUNC(charizard_MoveOutOfLava)
     GroundResult result;
 
     Pokemon_TurnToTarget(obj, TAU, MOVEMENT_FLAG_TURN_TO_PLAYER);
@@ -154,63 +154,63 @@ POKEMON_FUNC(func_802DD4A4_72E6A4)
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802DD500_72E700)
-    Pokemon_ForceAnimation(obj, &D_802E2E78_734078);
+POKEMON_FUNC(charizard_Idle)
+    Pokemon_ForceAnimation(obj, &charizard_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2EC8_7340C8;
+    pokemon->transitionGraph = charizard_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2F28_734128);
+    Pokemon_SetStateRandom(obj, charizard_idleStates);
 }
 
-POKEMON_FUNC(func_802DD570_72E770)
-    Pokemon_ForceAnimation(obj, &D_802E2E8C_73408C);
+POKEMON_FUNC(charizard_Roar)
+    Pokemon_ForceAnimation(obj, &charizard_animation_roar);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2EC8_7340C8;
+    pokemon->transitionGraph = charizard_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2F28_734128);
+    Pokemon_SetStateRandom(obj, charizard_idleStates);
 }
 
-POKEMON_FUNC(func_802DD5E0_72E7E0)
-    Pokemon_SetAnimation(obj, &D_802E2EA0_7340A0);
+POKEMON_FUNC(charizard_HitByPesterBall)
+    Pokemon_SetAnimation(obj, &charizard_animation_spin);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     
-    Pokemon_SetAnimation(obj, &D_802E2EB4_7340B4);
-    Pokemon_StartPathProc(obj, func_802DD67C_72E87C);
+    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2F28_734128);
+    Pokemon_SetStateRandom(obj, charizard_idleStates);
 }
 
-POKEMON_FUNC(func_802DD67C_72E87C)
+POKEMON_FUNC(charizard_TurnToPlayer)
     while (true) {
         Pokemon_TurnToTarget(obj, PI / 180, MOVEMENT_FLAG_TURN_TO_PLAYER);
         ohWait(1);
     }
 }
 
-POKEMON_FUNC(func_802DD6D4_72E8D4)
-    Pokemon_SetAnimation(obj, &D_802E2EB4_7340B4);
-    Pokemon_StartPathProc(obj, func_802DD67C_72E87C);
+POKEMON_FUNC(charizard_HitByApple)
+    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E2F28_734128);
+    Pokemon_SetStateRandom(obj, charizard_idleStates);
 }
 
-POKEMON_FUNC(func_802DD740_72E940)
-    Pokemon_SetAnimation(obj, &D_802E2EB4_7340B4);
-    Pokemon_StartPathProc(obj, func_802DD67C_72E87C);
+POKEMON_FUNC(charizard_AffectedByPesterBall)
+    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DD500_72E700);
+    Pokemon_SetState(obj, charizard_Idle);
 }
 
-GObj* func_802DD7AC_72E9AC(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2F54_734154);
+GObj* charizard_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &charizard_initData);
 }

@@ -57,8 +57,8 @@ OSMesg sPIcmdBuf[100];
 OSMesgQueue sPIcmdQ;
 u8 sThreadArgBuf[128];
 
-u64* get_thread4_stack_start(void) {
-    return sThread4Stack + THREAD4_STACK_SIZE;
+OSThread* get_main_thread(void) {
+    return &gThread5;
 }
 
 u64* func_8000046C(void) {

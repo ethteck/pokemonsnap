@@ -24,7 +24,6 @@ GObj* func_8035E1D4_4FE5E4(GObj*);
 
 void ren_func_800192DC(GObj* obj);
 
-OSThread* func_80000460(void);
 void func_8009A8F0(s32);
 char* getPokemonName(s32);
 s32 func_8009BB4C(s32 pkmnID);

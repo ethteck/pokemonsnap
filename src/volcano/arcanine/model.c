@@ -1,47 +1,47 @@
 #include <common.h>
 
-extern u8 arcanine_tex0_png[];
-extern u8 arcanine_tex1_png[];
-extern u8 arcanine_tex2_png[];
-extern u8 arcanine_tex3_png[];
-extern u8 arcanine_tex4_png[];
-extern u8 arcanine_tex5_png[];
-extern u8 arcanine_tex6_png[];
-extern u8 arcanine_tex7_png[];
-extern u8 arcanine_tex8_var0_png[];
-extern u8 arcanine_tex8_var1_png[];
-extern u8 arcanine_tex8_var2_png[];
-extern u8 arcanine_tex9_png[];
-extern u8 arcanine_tex10_png[];
-extern u8 arcanine_tex11_png[];
-extern u8 arcanine_tex12_png[];
-extern u8 arcanine_tex13_png[];
-extern u8 arcanine_tex0_pal[];
-extern u8 arcanine_tex1_pal[];
-extern u8 arcanine_tex2_pal[];
-extern u8 arcanine_tex3_pal[];
-extern u8 arcanine_tex4_pal[];
-extern u8 arcanine_tex5_pal[];
-extern u8 arcanine_tex6_pal[];
-extern u8 arcanine_tex7_pal[];
-extern u8 arcanine_tex8_pal[];
-extern u8 arcanine_tex9_pal[];
-extern u8 arcanine_tex10_pal[];
-extern u8 arcanine_tex11_pal[];
-extern u8 arcanine_tex12_pal[];
-extern u8 arcanine_tex13_pal[];
+extern u8 arcanine_tex_skin1_png[];
+extern u8 arcanine_tex_skin2_png[];
+extern u8 arcanine_tex_skin3_png[];
+extern u8 arcanine_tex_skin4_png[];
+extern u8 arcanine_tex_skin5_png[];
+extern u8 arcanine_tex_nose_png[];
+extern u8 arcanine_tex_fur1_png[];
+extern u8 arcanine_tex_fur2_png[];
+extern u8 arcanine_tex_eye_frame0_png[];
+extern u8 arcanine_tex_eye_frame1_png[];
+extern u8 arcanine_tex_eye_frame2_png[];
+extern u8 arcanine_tex_ear_png[];
+extern u8 arcanine_tex_tongue_png[];
+extern u8 arcanine_tex_mouth_png[];
+extern u8 arcanine_tex_foot_png[];
+extern u8 arcanine_tex_fingers_png[];
+extern u8 arcanine_tex_skin1_pal[];
+extern u8 arcanine_tex_skin2_pal[];
+extern u8 arcanine_tex_skin3_pal[];
+extern u8 arcanine_tex_skin4_pal[];
+extern u8 arcanine_tex_skin5_pal[];
+extern u8 arcanine_tex_nose_pal[];
+extern u8 arcanine_tex_fur1_pal[];
+extern u8 arcanine_tex_fur2_pal[];
+extern u8 arcanine_tex_eye_frame0_pal[];
+extern u8 arcanine_tex_ear_pal[];
+extern u8 arcanine_tex_tongue_pal[];
+extern u8 arcanine_tex_mouth_pal[];
+extern u8 arcanine_tex_foot_pal[];
+extern u8 arcanine_tex_fingers_pal[];
 
 extern Texture* arcanine_part2_mat[];
 extern Gfx arcanine_part0_draw[];
 
 __ALIGNER
-u8 arcanine_tex14_pal[] = {
-#include "assets/volcano/arcanine/tex14.pal.bin.c"
+u8 arcanine_tex_skin6_pal[] = {
+#include "assets/volcano/arcanine/tex_skin6.pal.bin.c"
 };
 
 __ALIGNER
-u8 arcanine_tex14_png[] = {
-#include "assets/volcano/arcanine/tex14.png.bin.c"
+u8 arcanine_tex_skin6_png[] = {
+#include "assets/volcano/arcanine/tex_skin6.png.bin.c"
 };
 
 Texture** arcanine_materials[] = {
@@ -70,9 +70,9 @@ Texture** arcanine_materials[] = {
 };
 
 u8* arcanine_part2_mat0_images[] = {
-    arcanine_tex8_var0_png,
-    arcanine_tex8_var1_png,
-    arcanine_tex8_var2_png,
+    arcanine_tex_eye_frame0_png,
+    arcanine_tex_eye_frame1_png,
+    arcanine_tex_eye_frame2_png,
     NULL,
 };
 

@@ -117,9 +117,9 @@ enum AnimCommand {
 enum AnimParam {
     // model
     ANIM_PARAM_MODEL_MIN = 1,
-    ANIM_PARAM_ROLL = 1,
-    ANIM_PARAM_PITCH = 2,
-    ANIM_PARAM_YAW = 3,
+    ANIM_PARAM_ROTATION_X = 1,
+    ANIM_PARAM_ROTATION_Y = 2,
+    ANIM_PARAM_ROTATION_Z = 3,
     ANIM_PARAM_4 = 4,
     ANIM_PARAM_POSITION_X = 5,
     ANIM_PARAM_POSITION_Y = 6,

@@ -1,27 +1,27 @@
 #include <common.h>
 
-extern u8 charmeleon_tex0_pal[];
-extern u8 charmeleon_tex0_png[];
-extern u8 charmeleon_tex1_pal[];
-extern u8 charmeleon_tex2_pal[];
-extern u8 charmeleon_tex2_png[];
-extern u8 charmeleon_tex3_pal[];
-extern u8 charmeleon_tex3_png[];
-extern u8 charmeleon_tex4_pal[];
-extern u8 charmeleon_tex4_png[];
-extern u8 charmeleon_tex5_pal[];
-extern u8 charmeleon_tex5_png[];
-extern u8 charmeleon_tex6_pal[];
-extern u8 charmeleon_tex6_png[];
-extern u8 charmeleon_tex7_pal[];
-extern u8 charmeleon_tex7_png[];
-extern u8 charmeleon_tex1_var0_png[];
-extern u8 charmeleon_tex1_var1_png[];
-extern u8 charmeleon_tex1_var2_png[];
-extern u8 charmeleon_tex8_var0_png[];
-extern u8 charmeleon_tex8_var1_png[];
-extern u8 charmeleon_tex8_var2_png[];
-extern u8 charmeleon_tex8_var3_png[];
+extern u8 charmeleon_tex_skin_pal[];
+extern u8 charmeleon_tex_skin_png[];
+extern u8 charmeleon_tex_eye_frame0_pal[];
+extern u8 charmeleon_tex_foot_pal[];
+extern u8 charmeleon_tex_foot_png[];
+extern u8 charmeleon_tex_nostrils_pal[];
+extern u8 charmeleon_tex_nostrils_png[];
+extern u8 charmeleon_tex_claw_pal[];
+extern u8 charmeleon_tex_claw_png[];
+extern u8 charmeleon_tex_tongue_pal[];
+extern u8 charmeleon_tex_tongue_png[];
+extern u8 charmeleon_tex_tail_pal[];
+extern u8 charmeleon_tex_tail_png[];
+extern u8 charmeleon_tex_mouth_pal[];
+extern u8 charmeleon_tex_mouth_png[];
+extern u8 charmeleon_tex_eye_frame0_png[];
+extern u8 charmeleon_tex_eye_frame1_png[];
+extern u8 charmeleon_tex_eye_frame2_png[];
+extern u8 charmeleon_tex_flame_frame0_png[];
+extern u8 charmeleon_tex_flame_frame1_png[];
+extern u8 charmeleon_tex_flame_frame2_png[];
+extern u8 charmeleon_tex_flame_frame3_png[];
 
 extern Texture* charmeleon_part7_mat[];
 extern Texture* charmeleon_part12_mat[];
@@ -49,15 +49,15 @@ Texture** charmeleon_materials[] = {
 };
 
 u8* charmeleon_part7_mat0_images[] = {
-    charmeleon_tex1_var0_png,
-    charmeleon_tex1_var1_png,
-    charmeleon_tex1_var2_png,
+    charmeleon_tex_eye_frame0_png,
+    charmeleon_tex_eye_frame1_png,
+    charmeleon_tex_eye_frame2_png,
 };
 u8* charmeleon_part12_mat0_images[] = {
-    charmeleon_tex8_var0_png,
-    charmeleon_tex8_var1_png,
-    charmeleon_tex8_var2_png,
-    charmeleon_tex8_var3_png,
+    charmeleon_tex_flame_frame0_png,
+    charmeleon_tex_flame_frame1_png,
+    charmeleon_tex_flame_frame2_png,
+    charmeleon_tex_flame_frame3_png,
     NULL,
 };
 

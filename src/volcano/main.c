@@ -118,7 +118,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_GROWLITHE_SPAWNER,
-      func_802DDA98_72EC98,
+      growlithe_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_1030,
@@ -580,10 +580,10 @@ bool func_802D6D6C_727F6C(GObj* obj) {
         // 20 %
         omCreateProcess(obj, volcano_SpawnArcanine, 1, 1);
     } else if (randomValue < 7) {
-        // 60 %
+        // 50 %
         omCreateProcess(obj, volcano_SpawnGrowlithe, 1, 1);
     } else {
-        // 20 %
+        // 30 %
         return false;
     }
     D_802E0FA4_7321A4--;

@@ -534,12 +534,51 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
+    - [auto, c, growlithe_spawner/model]
+    - [auto, c, growlithe_spawner/materials]
+    - [auto, c, growlithe_spawner/images]
     - [auto, c, growlithe/images]
     - [auto, c, charmander/images]
     - [auto, c, charmeleon/images]
     - [auto, c, charizard/images]
     - [auto, c, arcanine/images]
     - [0x326C20, bin]
+    - start: 0x33A2B0
+      type: .data
+      name: growlithe_spawner/model
+      dir: growlithe_spawner
+      subsegments:
+      - [0x33A2B0, gfx, draw]
+      - [0x33A3C0, vtx, model]
+      - [0x33A4B0]
+    - [0x33A550, .data, growlithe_spawner/materials]
+    - [0x33A5E0, bin]
+    - start: 0x34A380
+      type: .data
+      dir: growlithe_spawner
+      name: growlithe_spawner/images
+      subsegments:
+      - [0x34A380]
+      - [0x34A388, palette, lava_frame0]
+      - [0x34A3A8]
+      - { start: 0x34A3B0, type: ci4, name: lava_frame0, flip_y: true, width: 64, height: 64 }
+      - [0x34ABB0]
+      - [0x34ABB8, palette, lava_frame1]
+      - [0x34ABD8]
+      - { start: 0x34ABE0, type: ci4, name: lava_frame1, flip_y: true, width: 64, height: 64 }
+      - [0x34B3E0]
+      - [0x34B3E8, palette, lava_frame2]
+      - [0x34B408]
+      - { start: 0x34B410, type: ci4, name: lava_frame2, flip_y: true, width: 64, height: 64 }
+      - [0x34BC10]
+      - [0x34BC18, palette, lava_frame3]
+      - [0x34BC38]
+      - { start: 0x34BC40, type: ci4, name: lava_frame3, flip_y: true, width: 64, height: 64 }
+      - [0x34C440]
+      - [0x34C448, palette, lava_frame4]
+      - [0x34C468]
+      - { start: 0x34C470, type: ci4, name: lava_frame4, flip_y: true, width: 64, height: 64 }
+    - [0x34CC70, bin]
     - start: 0x388870
       type: .data
       dir: growlithe

@@ -1,45 +1,44 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_80113830[];
-extern Texture** D_801138C0[];
+extern UnkEC64Arg3 growlithe_spawner_model[];
+extern Texture** growlithe_spawner_materials[];
 
-extern AnimCmd* D_80113960[];
+extern AnimCmd* growlithe_spawner_modelanim[];
+extern AnimCmd** growlithe_spawner_matanim[];
 
-extern AnimCmd** D_80113990[];
-
-void func_802DD7F0_72E9F0(GObj*);
-void func_802DD954_72EB54(GObj*);
+void growlithe_spawner_InitialState(GObj*);
+void growlithe_spawner_SpawnPokemon(GObj*);
 void func_802D6B64_727D64(GObj*);
-void func_802DDA0C_72EC0C(GObj*);
-void func_802DD8F8_72EAF8(GObj*);
+void growlithe_spawner_SendCommands(GObj*);
+void growlithe_spawner_Idle(GObj*);
 
-AnimationHeader D_802E2F90_734190 = {
+AnimationHeader growlithe_spawner_animation = {
     1.5,
     100,
-    D_80113960,
-    D_80113990,
+    growlithe_spawner_modelanim,
+    growlithe_spawner_matanim,
     NULL
 };
 
-InteractionHandler D_802E2FA4_7341A4[] = {
-    { VOLCANO_CMD_38, func_802DD954_72EB54, 0, NULL },
+InteractionHandler growlithe_spawner_tg_Normal[] = {
+    { VOLCANO_CMD_38, growlithe_spawner_SpawnPokemon, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E2FC4_7341C4 = {
-    &D_802E2F90_734190,
-    func_802DD7F0_72E9F0,
+PokemonAnimationSetup growlithe_spawner_animSetup = {
+    &growlithe_spawner_animation,
+    growlithe_spawner_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E2FD8_7341D8 = {
-    D_80113830,
-    D_801138C0,
+PokemonInitData growlithe_spawner_initData = {
+    growlithe_spawner_model,
+    growlithe_spawner_materials,
     renderModelTypeBFogged,
-    &D_802E2FC4_7341C4,
+    &growlithe_spawner_animSetup,
     { 10, 10, 10 },
     { 0, -300, 0 },
     0,
@@ -50,7 +49,7 @@ PokemonInitData D_802E2FD8_7341D8 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DD7F0_72E9F0)
+POKEMON_FUNC(growlithe_spawner_InitialState)
     s32 blockIndex;
     f32 blockPart;
 
@@ -67,36 +66,36 @@ POKEMON_FUNC(func_802DD7F0_72E9F0)
 
     pokemon->tangible = true;
     obj->flags = 0;
-    pokemon->miscVars[0].field1 = 0;
+    pokemon->miscVars[0].field1 = false;
     omCreateProcess(obj, func_802D6B64_727D64, 1, 1);
-    Pokemon_StartPathProc(obj, func_802DDA0C_72EC0C);
-    Pokemon_SetState(obj, func_802DD8F8_72EAF8);
+    Pokemon_StartPathProc(obj, growlithe_spawner_SendCommands);
+    Pokemon_SetState(obj, growlithe_spawner_Idle);
 }
 
-POKEMON_FUNC(func_802DD8F8_72EAF8)
-    Pokemon_SetAnimation(obj, &D_802E2F90_734190);
-    pokemon->transitionGraph = D_802E2FA4_7341A4;
+POKEMON_FUNC(growlithe_spawner_Idle)
+    Pokemon_SetAnimation(obj, &growlithe_spawner_animation);
+    pokemon->transitionGraph = growlithe_spawner_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DD8F8_72EAF8);
+    Pokemon_SetState(obj, growlithe_spawner_Idle);
 }
 
-POKEMON_FUNC(func_802DD954_72EB54)
+POKEMON_FUNC(growlithe_spawner_SpawnPokemon)
     omCreateProcess(obj, func_802D6B2C_727D2C, 1, 1);
 
     if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && func_802D6D6C_727F6C(obj)) {
         pokemon->miscVars[0].field1 = true;
     }
 
-    Pokemon_SetAnimation(obj, &D_802E2F90_734190);
+    Pokemon_SetAnimation(obj, &growlithe_spawner_animation);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DD8F8_72EAF8);
+    Pokemon_SetState(obj, growlithe_spawner_Idle);
 }
 
-POKEMON_FUNC(func_802DDA0C_72EC0C)
-    while (pokemon->miscVars[0].field1 == 0) {
+POKEMON_FUNC(growlithe_spawner_SendCommands)
+    while (!pokemon->miscVars[0].field1) {
         cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_34, obj);
         ohWait(randRange(180) + 120);
     }
@@ -107,6 +106,6 @@ POKEMON_FUNC(func_802DDA0C_72EC0C)
     omEndProcess(NULL);
 }
 
-GObj* func_802DDA98_72EC98(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802E2FD8_7341D8);
+GObj* growlithe_spawner_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &growlithe_spawner_initData);
 }

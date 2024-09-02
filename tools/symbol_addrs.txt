@@ -1819,3 +1819,12 @@ magmar_tex10_pal = 0x8031E000; // segment:volcano_code
 magmar_tex10_png = 0x8031E208; // segment:volcano_code
 magmar_tex11_pal = 0x8031EA10; // segment:volcano_code
 magmar_tex11_png = 0x8031EA38; // segment:volcano_code
+
+growlithe_spawner_gfx = 0x80113630; // segment:volcano_assets
+growlithe_spawner_vtx = 0x80113740; // segment:volcano_assets size:0xF0
+growlithe_spawner_lava_frame0_pal = 0x80123708; // segment:volcano_assets
+growlithe_spawner_lava_frame0_png = 0x80123730; // segment:volcano_assets
+growlithe_spawner_lava_frame1_png = 0x80123F60; // segment:volcano_assets
+growlithe_spawner_lava_frame2_png = 0x80124790; // segment:volcano_assets
+growlithe_spawner_lava_frame3_png = 0x80124FC0; // segment:volcano_assets
+growlithe_spawner_lava_frame4_png = 0x801257F0; // segment:volcano_assets

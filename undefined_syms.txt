@@ -236,10 +236,8 @@ charizard_matanim_roar = 0x8018B4A0;
 charizard_matanim_spin = 0x8018B5A0;
 charizard_matanim_spewfire = 0x8018B320;
 
-D_80113830 = 0x80113830;
-D_801138C0 = 0x801138C0;
-D_80113960 = 0x80113960;
-D_80113990 = 0x80113990;
+growlithe_spawner_modelanim = 0x80113960;
+growlithe_spawner_matanim = 0x80113990;
 
 D_8014F080 = 0x8014F080;
 D_8014E550 = 0x8014E550;
@@ -304,3 +302,9 @@ D_80114EA0 = 0x80114EA0;
 D_801151C0 = 0x801151C0;
 D_80115610 = 0x80115610;
 D_80115C50 = 0x80115C50;
+
+growlithe_spawner_lava_frame0_png = 0x80123730;
+growlithe_spawner_lava_frame1_png = 0x80123F60;
+growlithe_spawner_lava_frame2_png = 0x80124790;
+growlithe_spawner_lava_frame3_png = 0x80124FC0;
+growlithe_spawner_lava_frame4_png = 0x801257F0;

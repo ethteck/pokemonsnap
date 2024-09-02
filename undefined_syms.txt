@@ -236,8 +236,8 @@ charizard_matanim_roar = 0x8018B4A0;
 charizard_matanim_spin = 0x8018B5A0;
 charizard_matanim_spewfire = 0x8018B320;
 
-growlithe_spawner_modelanim = 0x80113960;
-growlithe_spawner_matanim = 0x80113990;
+growlitheSpawner_modelanim = 0x80113960;
+growlitheSpawner_matanim = 0x80113990;
 
 D_8014F080 = 0x8014F080;
 D_8014E550 = 0x8014E550;
@@ -255,16 +255,13 @@ D_801491B0 = 0x801491B0;
 D_80144470 = 0x80144470;
 D_80145D30 = 0x80145D30;
 
-D_801140C0 = 0x801140C0;
-D_80114150 = 0x80114150;
+koffingSmoke_modelanim_show = 0x80114210;
+koffingSmoke_modelanim_reveal = 0x80114280;
+koffingSmoke_modelanim_hide = 0x80114300;
 
-D_80114210 = 0x80114210;
-D_80114280 = 0x80114280;
-D_80114300 = 0x80114300;
-
-D_80114240 = 0x80114240;
-D_801142C0 = 0x801142C0;
-D_80114330 = 0x80114330;
+koffingSmoke_matanim_show = 0x80114240;
+koffingSmoke_matanim_reveal = 0x801142C0;
+koffingSmoke_matanim_hide = 0x80114330;
 
 D_80113BA0 = 0x80113BA0;
 D_80113C50 = 0x80113C50;
@@ -303,8 +300,21 @@ D_801151C0 = 0x801151C0;
 D_80115610 = 0x80115610;
 D_80115C50 = 0x80115C50;
 
-growlithe_spawner_lava_frame0_png = 0x80123730;
-growlithe_spawner_lava_frame1_png = 0x80123F60;
-growlithe_spawner_lava_frame2_png = 0x80124790;
-growlithe_spawner_lava_frame3_png = 0x80124FC0;
-growlithe_spawner_lava_frame4_png = 0x801257F0;
+growlitheSpawner_lava_frame0_png = 0x80123730;
+growlitheSpawner_lava_frame1_png = 0x80123F60;
+growlitheSpawner_lava_frame2_png = 0x80124790;
+growlitheSpawner_lava_frame3_png = 0x80124FC0;
+growlitheSpawner_lava_frame4_png = 0x801257F0;
+
+koffingSmoke_part0_mat0_image0 = 0x80118E38;
+koffingSmoke_part0_mat0_image1 = 0x80119640;
+koffingSmoke_part0_mat0_image2 = 0x80119E48;
+koffingSmoke_part0_mat0_image3 = 0x8011A650;
+koffingSmoke_part0_mat0_image4 = 0x8011AE58;
+koffingSmoke_part0_mat0_image5 = 0x8011B660;
+koffingSmoke_part0_mat0_image6 = 0x8011BE68;
+koffingSmoke_part0_mat0_image7 = 0x8011C670;
+koffingSmoke_part0_mat0_image8 = 0x8011CE78;
+koffingSmoke_part0_mat0_image9 = 0x8011D680;
+koffingSmoke_part0_mat0_image10 = 0x8011DE88;
+koffingSmoke_part0_mat0_image11 = 0x8011E690;

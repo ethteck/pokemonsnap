@@ -169,7 +169,7 @@ extern GObj* gObjPlayer;
 extern s32 gDirectionIndex;
 extern OMCamera* gMainCamera;
 extern MovementState gMovementState;
-extern u32 sPhotoSeriesCount;
+extern u32 sTimerInFocus;
 
 extern s32 LastItemId;
 

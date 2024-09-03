@@ -110,7 +110,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MAGIKARP,
-      func_802DF378_730578,
+      volcano_magikarp_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_1003,
@@ -138,7 +138,7 @@ PokemonDef volcano_PokemonDefs[] = {
 
 PokemonDef volcano_MagikarpDef = {
     PokemonID_MAGIKARP,
-    func_802DF378_730578,
+    volcano_magikarp_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };

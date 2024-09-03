@@ -1,12 +1,12 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_8034FEB8[];
+extern UnkEC64Arg3 magikarp_model[];
 extern AnimCmd* D_800FDC70[];
 extern AnimCmd* D_800FAE40[];
 extern AnimCmd* D_800FBF50[];
 extern AnimCmd* D_800FD080[];
 
-void func_802DF280_730480(GObj*);
+void volcano_magikarp_InitialState(GObj*);
 void func_802DF338_730538(GObj*);
 
 s32 D_802E35D0_7347D0[] = { SOUND_ID_211 };
@@ -52,20 +52,20 @@ InteractionHandler D_802E3648_734848[] = {
 
 s32 D_802E3658_734858[] = { 0, 0 }; // split here ?
 
-PokemonAnimationSetup D_802E3660_734860 = {
+PokemonAnimationSetup volcano_magikarp_animSetup = {
     &D_802E360C_73480C,
-    func_802DF280_730480,
+    volcano_magikarp_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E3674_734874 = {
-    D_8034FEB8,
+PokemonInitData volcano_magikarp_initData = {
+    magikarp_model,
     NULL,
     renderPokemonModelTypeBFogged,
-    &D_802E3660_734860,
+    &volcano_magikarp_animSetup,
     { 1.6, 1.6, 1.6 },
     { 0, -40, -11 },
     35,
@@ -76,7 +76,7 @@ PokemonInitData D_802E3674_734874 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DF280_730480)
+POKEMON_FUNC(volcano_magikarp_InitialState)
     Pokemon_SetAnimation(obj, &D_802E3634_734834);
     rotation->f[2] = randRange(360) * PI / 180.0f;
     Pokemon_StartPathProc(obj, func_802DF338_730538);
@@ -96,6 +96,6 @@ POKEMON_FUNC(func_802DF338_730538)
     omEndProcess(NULL);
 }
 
-GObj* func_802DF378_730578(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E3674_734874);
+GObj* volcano_magikarp_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &volcano_magikarp_initData);
 }

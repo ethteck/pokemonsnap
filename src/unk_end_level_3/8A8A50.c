@@ -45,19 +45,15 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     return 0;
 }
 
-#if 0
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A8A50/func_800E3404_8A8C24.s")
-#else
 s32 func_800E3404_8A8C24(void) {
     UnkStruct800BEDF8* var_v0;
     s32 sp40;
-    s32 temp_s0_2;
     s32 var_s2;
     UnkCyanBass* bass;
 
     var_s2 = -1;
     sp40 = 0;
-    if ((getLevelId() >= 0) && (getLevelId() < 7)) {
+    if (getLevelId() >= 0 && getLevelId() < 7) {
         sp40 = getLevelId();
     }
     func_80370038_8437E8(0x3E, 0xD);
@@ -138,7 +134,6 @@ s32 func_800E3404_8A8C24(void) {
         ohWait(1);
     }
 }
-#endif
 
 s32 func_800E3774_8A8F94(void) {
     s32 i;

@@ -1,14 +1,24 @@
 #include "common.h"
 #include "unk_end_level_3.h"
 
+extern Bitmap* D_801C5404_98AC24[4];
+extern Bitmap* D_801C5414_98AC34[6];
+extern Bitmap* D_801C542C_98AC4C[9];
+extern Bitmap* D_801C5450_98AC70[6];
+extern Bitmap* D_801C5468_98AC88[3];
+extern Vec3f D_801C5494_98ACB4[];
+extern Vec3f D_801C54E8_98AD08;
+extern Vec3f D_801C54F4_98AD14;
+extern Vec3f D_801C5500_98AD20;
+
 void func_800E5740_8AAF60(GObj* obj) {
     s32 frame;
     s32 var_s1;
 
     frame = 0;
     var_s1 = 0xC;
-    while (1) {
-        var_s1 -= 1;
+    while (true) {
+        var_s1--;
         switch (D_801C5510_98AD30) {
             case 0:
                 D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
@@ -28,193 +38,146 @@ void func_800E5740_8AAF60(GObj* obj) {
                 break;
         }
         if (var_s1 == 0) {
-            var_s1 = 0xC;
-            frame += 1;
+            var_s1 = 12;
+            frame++;
         }
         ohWait(1);
     }
 }
 
-#if 1
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8AAF60/func_800E58D0_8AB0F0.s")
 #else
-Vec3f* Vec3fAdd(Vec3f* dst, Vec3f* addend);
-Vec3f* Vec3fScale(Vec3f* v, f32 scale);
-Vec3f* Vec3fSub(Vec3f* dst, Vec3f* subtrahend);
-
-extern Bitmap* D_801C5404_98AC24[4];
-extern Bitmap* D_801C5414_98AC34[6];
-extern Bitmap* D_801C542C_98AC4C[9];
-extern Bitmap* D_801C5450_98AC70[6];
-extern Bitmap* D_801C5468_98AC88[3];
-extern Vec3f D_801C5494_98ACB4[];
-extern Vec3f D_801C54E8_98AD08;
-extern Vec3f D_801C54F4_98AD14;
-extern Vec3f D_801C5500_98AD20;
-
-extern s32 D_801C550C_98AD2C;
-extern s32 D_801C5510_98AD30;
-extern volatile u32 D_801C5514_98AD34;
-extern s32 D_801C5518_98AD38;
-
 void func_800E58D0_8AB0F0(GObj* arg0) {
     Vec3f sp6C;
-    Vec3f* temp_t1;
-    f32 temp_f0;
+    s32 new_var;
     f32 temp_f20;
-    s32 frame_counter;
-    s32 frame;
-    s32 var_s2;
-    s32 var_s2_2;
-    s32 var_s2_3;
-    s32 var_v0;
-    u32 temp_v0;
+    s32 frameCounter;
+    u32 idx;
+    s32 i;
 
-    while (1) {
+    while (true) {
         switch (D_801C5514_98AD34) {
             case 0:
-                temp_v0 = D_801C5514_98AD34;
-                frame_counter = 0xC;
-                frame = 0;
-                while (temp_v0 == D_801C5514_98AD34) {
-                    frame_counter -= 1;
-                    if (frame_counter == 0) {
-                        frame = (frame + 1) & 3;
-                        frame_counter = 0xC;
-                        D_80206B64_9CC384->sprite.bitmap = D_801C5404_98AC24[frame];
+                frameCounter = 12;
+                idx = 0;
+                while (D_801C5514_98AD34 == 0) {
+                    frameCounter -= 1;
+                    if (frameCounter == 0) {
+                        frameCounter = 12;
+                        idx++;
+                        idx %= 4;
+                        D_80206B64_9CC384->sprite.bitmap = D_801C5404_98AC24[idx];
                     }
-
                     ohWait(1);
                 }
                 break;
-
             case 1:
                 D_80206B68_9CC388->sprite.x = 137;
                 D_80206B68_9CC388->sprite.y = 121;
-                var_s2 = 0;
 
-                frame = 0;
-                frame_counter = 0;
                 D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
                 D_80206B68_9CC388->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 2;
-                do {
-                    frame_counter += 1;
-                    if (frame_counter >= 4) {
-                        frame = (frame + 1) % 6U;
-                        frame_counter = 0;
-                        D_80206B68_9CC388->sprite.bitmap = D_801C5414_98AC34[frame];
+
+                for (frameCounter = 0, idx = 0, i = 0; i < 15; i++, ohWait(1)) {
+                    frameCounter++;
+                    if (frameCounter >= 4) {
+                        frameCounter = 0;
+                        idx++;
+                        idx %= 6;
+                        D_80206B68_9CC388->sprite.bitmap = D_801C5414_98AC34[idx];
                     }
                     sp6C = D_801C54F4_98AD14;
                     Vec3fSub(&sp6C, &D_801C54E8_98AD08);
-                    Vec3fScale(&sp6C, (f32) var_s2 / 15.0f);
+                    Vec3fScale(&sp6C, i / 15.0f);
                     Vec3fAdd(&sp6C, &D_801C54E8_98AD08);
-                    var_s2 += 1;
                     D_80206B68_9CC388->sprite.x = sp6C.x;
                     D_80206B68_9CC388->sprite.y = sp6C.y;
-                    ohWait(1);
-                } while (var_s2 != 0xF);
+                }
                 break;
-
             case 2:
                 D_80206B70_9CC390->sprite.x = 105;
                 D_80206B70_9CC390->sprite.y = 117;
-                frame = 0;
                 D_80206B60_9CC380->sprite.attr |= SP_HIDDEN;
-                var_s2_2 = 0;
-                frame_counter = 0;
                 D_80206B68_9CC388->sprite.attr |= SP_HIDDEN;
                 D_80206B70_9CC390->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 3;
                 D_801C5510_98AD30 = 2;
                 auPlaySound(0x16);
-                while (1) {
-                    frame_counter += 1;
-                    var_s2_2 += 1;
-                    if (frame_counter >= 4) {
-                        frame += 1;
-                        frame_counter = 0;
 
-                        if (frame >= 6) {
-                            break;
+                for (i = 0, idx = 0, frameCounter = 0; i < 21; i++, ohWait(1)) {
+                    frameCounter++;
+                    if (frameCounter >= 4) {
+                        frameCounter = 0;
+                        idx++;
+                        if (idx < 6) {
+                            D_80206B70_9CC390->sprite.bitmap = D_801C5450_98AC70[idx];
                         }
-
-                        D_80206B70_9CC390->sprite.bitmap = D_801C5450_98AC70[frame];
-                    }
-
-                    ohWait(1);
-                    if (var_s2_2 == 0x15) {
-                        break;
                     }
                 }
-
                 break;
-
             case 3:
                 D_80206B74_9CC394->sprite.x = 170;
                 D_80206B74_9CC394->sprite.y = 121;
                 D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
-                var_s2_3 = 0;
-                frame = 0;
-                frame_counter = 0;
                 D_80206B74_9CC394->sprite.attr &= ~SP_HIDDEN;
-                while (var_s2_3 != 0x3C) {
-                    frame_counter += 1;
-                    if (frame_counter >= 4) {
-                        frame = (u32) (frame + 1) % 3U;
-                        frame_counter = 0;
-                        D_80206B74_9CC394->sprite.bitmap = D_801C5468_98AC88[frame];
+
+                idx = 0;
+                frameCounter = 0;
+                for (i = 0; i < 60; i++, ohWait(1)) {
+                    frameCounter++;
+                    if (frameCounter >= 4) {
+                        frameCounter = 0;
+                        idx++;
+                        idx %= 3;
+                        D_80206B74_9CC394->sprite.bitmap = D_801C5468_98AC88[idx];
                     }
-                    temp_f20 = (f32) var_s2_3 / 60.0f;
+                    temp_f20 = i / 60.0f;
                     sp6C = D_801C5494_98ACB4[D_801C5518_98AD38];
                     Vec3fSub(&sp6C, &D_801C5500_98AD20);
                     Vec3fScale(&sp6C, temp_f20);
                     Vec3fAdd(&sp6C, &D_801C5500_98AD20);
-                    var_s2_3 += 1;
                     D_80206B74_9CC394->sprite.x = sp6C.x;
-                    D_80206B74_9CC394->sprite.y = (s16) (s32) sp6C.y;
-                    temp_f0 = (f32) (1.0 - (f64) temp_f20);
-                    D_80206B74_9CC394->sprite.scalex = temp_f0;
-                    D_80206B74_9CC394->sprite.scaley = temp_f0;
-                    ohWait(1);
+                    D_80206B74_9CC394->sprite.y = sp6C.y;
+                    D_80206B74_9CC394->sprite.scalex = 1.0 - temp_f20;
+                    D_80206B74_9CC394->sprite.scaley = 1.0 - temp_f20;
                 }
+
                 D_801C551C_98AD3C = 0;
 
-                while (1) {
+                while (true) {
                     D_801C550C_98AD2C = 0;
                     ohWait(1);
                 }
                 break;
-
             case 4:
                 D_801C5514_98AD34 = 0;
                 D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
-                frame = 0;
                 D_80206B6C_9CC38C->sprite.attr &= ~SP_HIDDEN;
-                frame_counter = 0;
                 D_80206B6C_9CC38C->sprite.bitmap = D_801C542C_98AC4C[0];
-                auPlaySoundWithParams(0xA1U, 0x7FFF, 0x40, 0.75f, 0);
-                while (1) {
-                    frame_counter += 1;
-                    if (frame_counter >= 7) {
-                        frame += 1;
-                        frame_counter = 0;
-                        if (frame >= 9) {
-                            var_v0 = D_80206B6C_9CC38C->sprite.attr & 4;
+                auPlaySoundWithParams(0xA1, 0x7FFF, 0x40, 0.75f, 0);
+
+                frameCounter = 0;
+                idx = 0;
+                while (true) {
+                    frameCounter++;
+                    if (frameCounter >= 7) {
+                        frameCounter = 0;
+                        idx++;
+                        if (idx >= 9) {
                             break;
                         }
-                        D_80206B6C_9CC38C->sprite.bitmap = D_801C542C_98AC4C[frame];
+                        D_80206B6C_9CC38C->sprite.bitmap = D_801C542C_98AC4C[idx];
                     }
-
-                    var_v0 = D_80206B6C_9CC38C->sprite.attr & 4;
-                    if (var_v0 != 0) {
+                    if (D_80206B6C_9CC38C->sprite.attr & SP_HIDDEN) {
                         break;
                     }
                     ohWait(1);
                 }
 
-                if (var_v0 == 0) {
-                    ohWait(0x1E);
+                if (!(D_80206B6C_9CC38C->sprite.attr & SP_HIDDEN)) {
+                    ohWait(30);
                     D_80206B64_9CC384->sprite.attr &= ~SP_HIDDEN;
                     D_80206B6C_9CC38C->sprite.attr |= SP_HIDDEN;
                 }
@@ -223,7 +186,6 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
         }
     }
 }
-
 #endif
 
 void func_800E5EBC_8AB6DC(void) {

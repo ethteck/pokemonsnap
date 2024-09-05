@@ -189,7 +189,7 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
 #endif
 
 void func_800E5EBC_8AB6DC(void) {
-    if ((rand() & 0x12) == 0) {
+    if ((rand16() & 0x12) == 0) {
         func_800BF780_5C620(randT());
     }
 }

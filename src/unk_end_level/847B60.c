@@ -1,6 +1,7 @@
 #include "common.h"
 #include "sys/gtl.h"
 #include "app_render/app_render.h"
+#include "photo_check/photo_check.h"
 
 extern s32 D_803A6660_879E10;
 extern s32 D_803A6664_879E14;
@@ -13,6 +14,7 @@ extern PhotoData* D_803A667C_879E2C;
 extern u16* D_803A6684_879E34;
 extern u16* D_803A6C10_87A3C0;
 extern u16* D_803A6C14_87A3C4;
+extern Unk803A6C18 D_803A6C18_87A3C8;
 
 void func_803743B0_847B60(f32 arg0) {
     D_803A6668_879E18 = arg0;
@@ -53,7 +55,19 @@ void func_803743BC_847B6C(GObj* camGobj) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/847B60/func_8037452C_847CDC.s")
+Unk803A6C18* func_8037452C_847CDC(PhotoData* arg0) {
+    SubUnk803A6C18* temp_v0;
+
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    temp_v0 = func_800A0EA4(D_803A666C_879E1C, arg0, D_803A6C10_87A3C0, D_803A6660_879E10, D_803A6664_879E14, D_803A6C14_87A3C4);
+
+    D_803A6C18_87A3C8.unk_00 = *arg0;
+    D_803A6C18_87A3C8.unk_3A0 = *temp_v0;
+
+    return &D_803A6C18_87A3C8;
+}
 
 u16** func_80374608_847DB8(s32 arg0, s32 arg1, PhotoData* arg2) {
     D_803A6684_879E34 = D_803A6C10_87A3C0;

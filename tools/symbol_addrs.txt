@@ -576,13 +576,13 @@ atan2f = 0x80019ABC;
 asinf = 0x80019BBC;
 acosf = 0x80019C40;
 setRandSeed = 0x80019D48;
-rand = 0x80019D60;
+rand16 = 0x80019D60;
 randFloat = 0x80019DB0;
 randRange = 0x80019E14;
 randT = 0x80019E54;
 randTRange = 0x80019EB0;
 qsortInternal = 0x80019F38;
-qsort = 0x8001A094;
+qsort2 = 0x8001A094;
 
 Vec3fNormalize = 0x8001A360;
 Vec3fAdd = 0x8001A43C;

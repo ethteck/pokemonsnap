@@ -115,7 +115,7 @@ s32 getRandSeed(void) {
     return sRandSeed;
 }
 
-u16 rand(void) {
+u16 rand16(void) {
     // Required to be one line to match.
     // clang-format off
     sRandSeed = (sRandSeed * 0x343FD) + 0x269EC3; \
@@ -129,7 +129,7 @@ f32 randFloat(void) {
 }
 
 s32 randRange(s32 range) {
-    return rand() * range / 0x10000;
+    return rand16() * range / 0x10000;
 }
 
 u8 randT(void) {
@@ -195,7 +195,7 @@ void qsortInternal(u8* first, u8* last) {
     }
 }
 
-void qsort(void* _base, u32 count, u32 itemSize, s32 (*compare)(const void*, const void*)) {
+void qsort2(void* _base, u32 count, u32 itemSize, s32 (*compare)(const void*, const void*)) {
     u8 *curr, *next;
     s32 s0;
     s32 foundInversion;

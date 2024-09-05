@@ -194,37 +194,37 @@ s32 func_801E4AA4_994514(const void* arg0, const void* arg1) {
 void func_801E4BA0_994610(u32 arg0) {
     switch (arg0) {
         case 0:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4690_994100);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4690_994100);
             if (D_801F4198_9A3C08 != func_801E4690_994100) {
                 D_801F4198_9A3C08 = func_801E4690_994100;
             }
             break;
         case 1:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4704_994174);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4704_994174);
             if (D_801F4198_9A3C08 != func_801E4704_994174) {
                 D_801F4198_9A3C08 = func_801E4704_994174;
             }
             break;
         case 2:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E47F0_994260);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E47F0_994260);
             if (D_801F4198_9A3C08 != func_801E47F0_994260) {
                 D_801F4198_9A3C08 = func_801E47F0_994260;
             }
             break;
         case 3:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E48CC_99433C);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E48CC_99433C);
             if (D_801F4198_9A3C08 != func_801E48CC_99433C) {
                 D_801F4198_9A3C08 = func_801E48CC_99433C;
             }
             break;
         case 4:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E49A8_994418);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E49A8_994418);
             if (D_801F4198_9A3C08 != func_801E49A8_994418) {
                 D_801F4198_9A3C08 = func_801E49A8_994418;
             }
             break;
         case 5:
-            qsort(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4AA4_994514);
+            qsort2(D_802291A0_9D8C10, func_800BFB84_5CA24(), sizeof(Photo), func_801E4AA4_994514);
             if (D_801F4198_9A3C08 != func_801E4AA4_994514) {
                 D_801F4198_9A3C08 = func_801E4AA4_994514;
             }
@@ -308,7 +308,7 @@ s32 func_801E5030_994AA0(void) {
         } else {
             sp30 = func_8037452C_847CDC(sp24->var_0);
             photo->unk_0 = sp24->var_0;
-            if (sp30->unk_3AA == 0) {
+            if (sp30->unk_3A0.unk_0A == 0) {
                 photo->unk_4 = 0;
                 photo->pkmnID = 9999;
                 photo->unk_1A_15 = 0;
@@ -323,19 +323,19 @@ s32 func_801E5030_994AA0(void) {
                 photo->unk_9 = 0;
                 photo->samePkmnBonus = 0;
             } else {
-                photo->unk_4 = sp30->unk_3A0;
-                photo->pkmnID = sp30->unk_3AA;
+                photo->unk_4 = sp30->unk_3A0.unk_00;
+                photo->pkmnID = sp30->unk_3A0.unk_0A;
                 photo->unk_1A_15 = !func_800BF3D4_5C274(photo->pkmnID);
                 photo->unk_1A_11 = 0;
-                photo->specialID = sp30->unk_3B4;
-                photo->isWellFramed = sp30->unk_3A7;
-                photo->sizeParam1 = sp30->unk_3AE;
-                photo->sizeParam2 = sp30->unk_3AC;
-                photo->commentID = sp30->unk_3A8;
-                photo->posePts = sp30->unk_3B0;
-                photo->specialBonus = sp30->unk_3B2;
-                photo->samePkmnBonus = sp30->unk_3A4;
-                photo->unk_9 = sp30->unk_3A6;
+                photo->specialID = sp30->unk_3A0.unk_14;
+                photo->isWellFramed = sp30->unk_3A0.unk_07;
+                photo->sizeParam1 = sp30->unk_3A0.unk_0E;
+                photo->sizeParam2 = sp30->unk_3A0.unk_0C;
+                photo->commentID = sp30->unk_3A0.unk_08;
+                photo->posePts = sp30->unk_3A0.unk_10;
+                photo->specialBonus = sp30->unk_3A0.unk_12;
+                photo->samePkmnBonus = sp30->unk_3A0.unk_04;
+                photo->unk_9 = sp30->unk_3A0.unk_06;
                 sp34++;
             }
         }

@@ -31,21 +31,25 @@ typedef struct Photo {
     // /* 0x1A */ s16 unk_1A_0 : 1;
 } Photo; // size = 0x1C
 
+typedef struct SubUnk803A6C18 {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ u16 unk_04;
+    /* 0x06 */ u8 unk_06;
+    /* 0x07 */ u8 unk_07;
+    /* 0x08 */ u8 unk_08;
+    /* 0x09 */ char unk_09[0x1];
+    /* 0x0A */ s16 unk_0A; // some pokemon id
+    /* 0x0C */ u16 unk_0C;
+    /* 0x0E */ u16 unk_0E;
+    /* 0x10 */ u16 unk_10;
+    /* 0x12 */ s16 unk_12;
+    /* 0x14 */ u8 unk_14;
+} SubUnk803A6C18; // size = 0x18
+
 typedef struct Unk803A6C18 {
     /* 0x000 */ PhotoData unk_00;
-    /* 0x3A0 */ s32 unk_3A0;
-    /* 0x3A4 */ u16 unk_3A4;
-    /* 0x3A6 */ u8 unk_3A6;
-    /* 0x3A7 */ u8 unk_3A7;
-    /* 0x3A8 */ u8 unk_3A8;
-    /* 0x3A9 */ char unk_3A9[0x1];
-    /* 0x3AA */ s16 unk_3AA; // some pokemon id
-    /* 0x3AC */ u16 unk_3AC;
-    /* 0x3AE */ u16 unk_3AE;
-    /* 0x3B0 */ u16 unk_3B0;
-    /* 0x3B2 */ s16 unk_3B2;
-    /* 0x3B4 */ u8 unk_3B4;
-} Unk803A6C18;
+    /* 0x3A0 */ SubUnk803A6C18 unk_3A0;
+} Unk803A6C18; // size = 0x3B8
 
 Unk803A6C18* func_8037452C_847CDC(PhotoData*);
 

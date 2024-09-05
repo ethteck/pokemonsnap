@@ -410,7 +410,7 @@ void func_800E2848_8A8068(void) {
     sobj->sprite.x = 40;
     sobj->sprite.y = 50;
 
-    sobj = func_80371C68_845418(&func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68)->data.sobj;
+    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68)->data.sobj;
     D_80206B18_9CC338 = sobj;
     sobj->sprite.x = 208;
     sobj->sprite.y = 13;

@@ -231,12 +231,12 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         if (D_80230DC0_A27730 == 0) {
             func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 0);
             func_8036C898_840048(D_80230C30_A275A0, "Special");
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3B2));
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_12));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 40 - func_8036D4F0_840CA0(sp2C), 12);
             func_8036C898_840048(D_80230C30_A275A0, sp2C);
             func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 0);
             func_8036C898_840048(D_80230C30_A275A0, "Technique");
-            if (D_80230C20_A27590->unk_3A7 != 0) {
+            if (D_80230C20_A27590->unk_3A0.unk_07 != 0) {
                 sprintf(sp2C, "That's nice.");
             } else {
                 sprintf(sp2C, "Oh, dear...");
@@ -245,19 +245,19 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             func_8036C898_840048(D_80230C30_A275A0, sp2C);
             func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 0);
             func_8036C898_840048(D_80230C30_A275A0, "Size");
-            sp4C = (D_80230C20_A27590->unk_3AE / 10000.0f);
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->unk_3AC * sp4C) + 5.0f) / 10.0f) * 10));
+            sp4C = (D_80230C20_A27590->unk_3A0.unk_0E / 10000.0f);
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->unk_3A0.unk_0C * sp4C) + 5.0f) / 10.0f) * 10));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 85 - func_8036D4F0_840CA0(sp2C), 12);
             func_8036C898_840048(D_80230C30_A275A0, sp2C);
             func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 0);
             func_8036C898_840048(D_80230C30_A275A0, "Pose");
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3B0));
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_10));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 130 - func_8036D4F0_840CA0(sp2C), 12);
             func_8036C898_840048(D_80230C30_A275A0, sp2C);
-            if (D_80230C20_A27590->unk_3A6 != 0) {
+            if (D_80230C20_A27590->unk_3A0.unk_06 != 0) {
                 func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 24);
                 func_8036C898_840048(D_80230C30_A275A0, "Same PKMN");
-                sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A4));
+                sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_04));
                 func_8036B9EC_83F19C(D_80230C30_A275A0, 188 - func_8036D4F0_840CA0(sp2C), 36);
                 func_8036C898_840048(D_80230C30_A275A0, sp2C);
             }
@@ -265,31 +265,31 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 0);
             func_8036C898_840048(D_80230C30_A275A0, "スペシャル"); // special
             func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 12);
-            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3B4));
+            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_14));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 24);
             func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 36);
             func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 0);
             func_8036C898_840048(D_80230C30_A275A0, "めんせき");
             func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 12);
-            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3AC));
+            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_0C));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 24);
             func_8036C898_840048(D_80230C30_A275A0, "まるみえ"); // full view
             func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 36);
-            if (D_80230C20_A27590->unk_3AE < 10000) {
-                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->unk_3AE / 100));
-                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->unk_3AE % 100) / 10));
+            if (D_80230C20_A27590->unk_3A0.unk_0E < 10000) {
+                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->unk_3A0.unk_0E / 100));
+                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->unk_3A0.unk_0E % 100) / 10));
             } else {
                 func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
             }
             func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 0);
             func_8036C898_840048(D_80230C30_A275A0, "コメント"); // comment
             func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A8));
+            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_08));
             func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 24);
             func_8036C898_840048(D_80230C30_A275A0, "むきタイプ"); // muki type
             func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 36);
 
-            switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->unk_3AA)]) {
+            switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->unk_3A0.unk_0A)]) {
                 case 1:
                     func_8036C898_840048(D_80230C30_A275A0, "            Ａ");
                     break;
@@ -311,7 +311,7 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 24);
             func_8036C898_840048(D_80230C30_A275A0, "なかま"); // friend ???
             func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 36);
-            func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->unk_3A6));
+            func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->unk_3A0.unk_06));
         }
     }
 }
@@ -493,25 +493,25 @@ void func_801DE5A8_9D4F18(s32 arg0) {
 
     switch (arg0) {
         case 13:
-            qsort(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE118_9D4A88);
+            qsort2(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE118_9D4A88);
             if (func_801DE118_9D4A88 != D_80202D2C_9F969C) {
                 D_80202D2C_9F969C = func_801DE118_9D4A88;
             }
             break;
         case 14:
-            qsort(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE18C_9D4AFC);
+            qsort2(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE18C_9D4AFC);
             if (func_801DE18C_9D4AFC != D_80202D2C_9F969C) {
                 D_80202D2C_9F969C = func_801DE18C_9D4AFC;
             }
             break;
         case 15:
-            qsort(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE204_9D4B74);
+            qsort2(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE204_9D4B74);
             if (func_801DE204_9D4B74 != D_80202D2C_9F969C) {
                 D_80202D2C_9F969C = func_801DE204_9D4B74;
             }
             break;
         case 16:
-            qsort(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE318_9D4C88);
+            qsort2(D_80230CB0_A27620, func_800BF864_5C704(), 4, func_801DE318_9D4C88);
             if (func_801DE318_9D4C88 != D_80202D2C_9F969C) {
                 D_80202D2C_9F969C = func_801DE318_9D4C88;
             }
@@ -910,7 +910,7 @@ GObj* func_801DFD68_9D66D8(void) {
     GObj* gobj;
     SObj* sobj;
 
-    D_80230C10_A27580 = gobj = func_80371C68_845418(0, 6, &D_801F5120_9EBA90);
+    D_80230C10_A27580 = gobj = func_80371C68_845418(NULL, 6, &D_801F5120_9EBA90);
 
     sobj = gobj->data.sobj;
     sobj->sprite.x = 130;
@@ -1060,7 +1060,7 @@ void func_801E0480_9D6DF0(void) {
     gobj = D_80230C40_A275B0;
     sobj = omGObjAddSprite(gobj, &D_801EE150_9E4AC0);
     sobj->unk_58 = NULL;
-    sobj->unk_5C = 0;
+    sobj->unk_5C = NULL;
     sobj->sprite.width = SCREEN_WIDTH;
     sobj->sprite.height = SCREEN_HEIGHT;
     sobj->sprite.istep = 0;
@@ -1069,7 +1069,7 @@ void func_801E0480_9D6DF0(void) {
     gobj = D_80230C60_A275D0;
     sobj = omGObjAddSprite(gobj, &D_801F3A10_9EA380);
     sobj->unk_58 = NULL;
-    sobj->unk_5C = 0;
+    sobj->unk_5C = NULL;
     sobj->sprite.x = 112;
     sobj->sprite.y = 63;
     sobj->sprite.attr &= ~SP_SCALE;
@@ -1134,7 +1134,7 @@ void func_801E07C0_9D7130(void) {
     gobj = D_80230C40_A275B0;
     sobj = omGObjAddSprite(gobj, &D_801EE150_9E4AC0);
     sobj->unk_58 = NULL;
-    sobj->unk_5C = 0;
+    sobj->unk_5C = NULL;
     sobj->sprite.width = SCREEN_WIDTH;
     sobj->sprite.height = SCREEN_HEIGHT;
     sobj->sprite.istep = 0;

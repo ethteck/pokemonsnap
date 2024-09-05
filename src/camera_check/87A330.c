@@ -91,7 +91,7 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
     s32 x;
     u8* src;
 
-    gobj = func_80371C68_845418(0, 6, &D_camera_check_801FE318);
+    gobj = func_80371C68_845418(NULL, 6, &D_camera_check_801FE318);
     sobj = gobj->data.sobj;
     D_camera_check_802499C0[arg0].unk_00 = gobj;
 

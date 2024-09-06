@@ -57,7 +57,7 @@ typedef struct PokemonInitData {
     /* 0x08 */ GObjFunc fnRender;
     /* 0x0C */ PokemonAnimationSetup* animSetup;
     /* 0x10 */ Vec3f scale;
-    /* 0x1C */ Vec3f scaleNumerator;
+    /* 0x1C */ Vec3f collisionCenter;
     /* 0x28 */ f32 radius;
     /* 0x2C */ u16 flags;
     /* 0x2E */ u8 matrix1;

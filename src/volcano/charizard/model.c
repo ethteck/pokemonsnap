@@ -47,7 +47,7 @@ Texture** charizard_materials[] = {
     NULL,
 };
 
-u8* charizard_part7_mat0_images[] = {
+u8* charizard_part7_mat0_textures[] = {
     charizard_tex_eye_frame0_png,
     charizard_tex_eye_frame1_png,
     charizard_tex_eye_frame2_png,
@@ -57,7 +57,7 @@ Texture charizard_part7_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    charizard_part7_mat0_images,
+    charizard_part7_mat0_textures,
     128,
     64,
     64, 32,

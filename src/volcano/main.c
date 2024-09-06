@@ -54,7 +54,7 @@ extern EnvSoundData volcano_EnvSounds[] = {
 
 PokemonDef volcano_PokemonDefs[] = {
     { PokemonID_MAGMAR,
-      volcano_magmar_Init,
+      magmar_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_RAPIDASH,
@@ -94,7 +94,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_KOFFING_SMOKE,
-      func_802DE52C_72F72C,
+      koffing_smoke_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_1002,
@@ -106,11 +106,11 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MOLTRES,
-      func_802DE34C_72F54C,
+      moltres_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MAGIKARP,
-      func_802DF378_730578,
+      volcano_magikarp_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_1003,
@@ -118,7 +118,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_GROWLITHE_SPAWNER,
-      func_802DDA98_72EC98,
+      growlithe_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_1030,
@@ -138,7 +138,7 @@ PokemonDef volcano_PokemonDefs[] = {
 
 PokemonDef volcano_MagikarpDef = {
     PokemonID_MAGIKARP,
-    func_802DF378_730578,
+    volcano_magikarp_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
@@ -580,10 +580,10 @@ bool func_802D6D6C_727F6C(GObj* obj) {
         // 20 %
         omCreateProcess(obj, volcano_SpawnArcanine, 1, 1);
     } else if (randomValue < 7) {
-        // 60 %
+        // 50 %
         omCreateProcess(obj, volcano_SpawnGrowlithe, 1, 1);
     } else {
-        // 20 %
+        // 30 %
         return false;
     }
     D_802E0FA4_7321A4--;

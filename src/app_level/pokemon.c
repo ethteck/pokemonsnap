@@ -694,7 +694,7 @@ void Pokemon_RunInteractions(GObj* obj) {
                 }
                 break;
             case POKEMON_CMD_23:
-                if (sPhotoSeriesCount > transitionGraph[i].value && obj == gPokemonInFocus) {
+                if (sTimerInFocus > transitionGraph[i].value && obj == gPokemonInFocus) {
                     stateProc = transitionGraph[i].state;
                     auxProc = transitionGraph[i].aux;
                     continueSearch = false;
@@ -895,9 +895,9 @@ void Pokemon_SetScale(GObj* obj, f32 newScale) {
     GET_TRANSFORM(model)->scale.v.y = initData->scale.y * 0.1f * newScale;
     GET_TRANSFORM(model)->scale.v.z = initData->scale.z * 0.1f * newScale;
 
-    pokemon->collisionOffset.x = initData->scaleNumerator.x / initData->scale.x * newScale;
-    pokemon->collisionOffset.y = initData->scaleNumerator.y / initData->scale.y * newScale;
-    pokemon->collisionOffset.z = initData->scaleNumerator.z / initData->scale.z * newScale;
+    pokemon->collisionOffset.x = initData->collisionCenter.x / initData->scale.x * newScale;
+    pokemon->collisionOffset.y = initData->collisionCenter.y / initData->scale.y * newScale;
+    pokemon->collisionOffset.z = initData->collisionCenter.z / initData->scale.z * newScale;
     pokemon->collisionRadius = initData->radius * initData->scale.y * newScale;
 }
 
@@ -2180,9 +2180,9 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     pokemon->euler.x = GET_TRANSFORM(model)->rot.f[1];
     pokemon->euler.y = GET_TRANSFORM(model)->rot.f[2];
     pokemon->euler.z = GET_TRANSFORM(model)->rot.f[3];
-    pokemon->collisionOffset.x = initData->scaleNumerator.x / initData->scale.x;
-    pokemon->collisionOffset.y = initData->scaleNumerator.y / initData->scale.y;
-    pokemon->collisionOffset.z = initData->scaleNumerator.z / initData->scale.z;
+    pokemon->collisionOffset.x = initData->collisionCenter.x / initData->scale.x;
+    pokemon->collisionOffset.y = initData->collisionCenter.y / initData->scale.y;
+    pokemon->collisionOffset.z = initData->collisionCenter.z / initData->scale.z;
     pokemon->collisionRadius = initData->radius * initData->scale.y;
     pokemon->flags = initData->flags;
     pokemon->id = id;

@@ -61,7 +61,7 @@ Texture** rapidash_materials[] = {
     rapidash_part20_mat,
 };
 
-u8* rapidash_part0_mat0_images[] = {
+u8* rapidash_part0_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -72,7 +72,7 @@ u8* rapidash_part0_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part1_mat0_images[] = {
+u8* rapidash_part1_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -83,13 +83,13 @@ u8* rapidash_part1_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part2_mat0_images[] = {
+u8* rapidash_part2_mat0_textures[] = {
     rapidash_tex2_var0_png,
     rapidash_tex2_var1_png,
     rapidash_tex2_var2_png,
 };
 
-u8* rapidash_part3_mat0_images[] = {
+u8* rapidash_part3_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -100,7 +100,7 @@ u8* rapidash_part3_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part4_mat0_images[] = {
+u8* rapidash_part4_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -111,7 +111,7 @@ u8* rapidash_part4_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part6_mat0_images[] = {
+u8* rapidash_part6_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -122,7 +122,7 @@ u8* rapidash_part6_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part10_mat0_images[] = {
+u8* rapidash_part10_mat0_textures[] = {
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
     rapidash_tex3_var3_png,
@@ -133,7 +133,7 @@ u8* rapidash_part10_mat0_images[] = {
     rapidash_tex3_var0_png,
 };
 
-u8* rapidash_part13_mat0_images[] = {
+u8* rapidash_part13_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -144,7 +144,7 @@ u8* rapidash_part13_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part17_mat0_images[] = {
+u8* rapidash_part17_mat0_textures[] = {
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
     rapidash_tex3_var3_png,
@@ -155,7 +155,7 @@ u8* rapidash_part17_mat0_images[] = {
     rapidash_tex3_var0_png,
 };
 
-u8* rapidash_part19_mat0_images[] = {
+u8* rapidash_part19_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -166,7 +166,7 @@ u8* rapidash_part19_mat0_images[] = {
     rapidash_tex3_var7_png,
 };
 
-u8* rapidash_part20_mat0_images[] = {
+u8* rapidash_part20_mat0_textures[] = {
     rapidash_tex3_var0_png,
     rapidash_tex3_var1_png,
     rapidash_tex3_var2_png,
@@ -182,7 +182,7 @@ Texture rapidash_part0_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part0_mat0_images,
+    rapidash_part0_mat0_textures,
     128,
     64,
     64, 32,
@@ -221,7 +221,7 @@ Texture rapidash_part1_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part1_mat0_images,
+    rapidash_part1_mat0_textures,
     128,
     64,
     64, 32,
@@ -260,7 +260,7 @@ Texture rapidash_part2_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part2_mat0_images,
+    rapidash_part2_mat0_textures,
     128,
     64,
     32, 32,
@@ -299,7 +299,7 @@ Texture rapidash_part3_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part3_mat0_images,
+    rapidash_part3_mat0_textures,
     128,
     64,
     32, 32,
@@ -338,7 +338,7 @@ Texture rapidash_part4_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part4_mat0_images,
+    rapidash_part4_mat0_textures,
     128,
     64,
     32, 32,
@@ -377,7 +377,7 @@ Texture rapidash_part6_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part6_mat0_images,
+    rapidash_part6_mat0_textures,
     128,
     64,
     32, 32,
@@ -416,7 +416,7 @@ Texture rapidash_part10_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part10_mat0_images,
+    rapidash_part10_mat0_textures,
     128,
     64,
     32, 32,
@@ -455,7 +455,7 @@ Texture rapidash_part13_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part13_mat0_images,
+    rapidash_part13_mat0_textures,
     128,
     64,
     32, 32,
@@ -494,7 +494,7 @@ Texture rapidash_part17_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part17_mat0_images,
+    rapidash_part17_mat0_textures,
     128,
     64,
     32, 32,
@@ -533,7 +533,7 @@ Texture rapidash_part19_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part19_mat0_images,
+    rapidash_part19_mat0_textures,
     128,
     64,
     128, 32,
@@ -572,7 +572,7 @@ Texture rapidash_part20_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    rapidash_part20_mat0_images,
+    rapidash_part20_mat0_textures,
     128,
     64,
     128, 32,

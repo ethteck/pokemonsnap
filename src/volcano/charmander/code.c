@@ -22,7 +22,7 @@ extern AnimCmd** charmander_matanim_shakehands[];
 extern AnimCmd** charmander_matanim_fall[];
 extern AnimCmd** charmander_matanim_jump[];
 
-extern GObj* D_802E10A0_7322A0; // magmar
+extern GObj* magmar_loneMagmar; // magmar
 extern void func_802DED6C_72FF6C(GObj*);
 extern void charmeleon_EvolvedSpawn(GObj*);
 
@@ -461,7 +461,7 @@ POKEMON_FUNC(charmander_HitOrBurnt)
     pokemon->transitionGraph = saved1;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    if (pokemon->interactionTarget == D_802E10A0_7322A0) {
+    if (pokemon->interactionTarget == magmar_loneMagmar) {
         Pokemon_SetState(obj, charmander_PlayEvolveEffect);
     }
 

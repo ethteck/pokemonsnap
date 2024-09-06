@@ -122,7 +122,7 @@ f32 DirectionsList[5] = {
 f32 MinPitch = -PI / 8;
 f32 MaxPitch = PI / 4;
 s32 LastItemId = 0;
-u32 sPhotoSeriesCount = 0;
+u32 sTimerInFocus = 0;
 s32 D_80382CFC_52310C = 0;
 s8 D_80382D00_523110 = 2;
 s8 D_80382D04_523114 = 0;
@@ -1007,7 +1007,7 @@ void processZoomingOut(GObj* obj) {
     s32 i = 0;
 
     auPlaySound(SOUND_ID_6);
-    sPhotoSeriesCount = 0;
+    sTimerInFocus = 0;
     D_80382CFC_52310C = 0;
     StickXAccum = 0.0f;
 
@@ -1323,9 +1323,9 @@ void updateCameraZoomedIn(GObj* obj) {
         }
         if (gHasPokemonInFocus == true && (gPokemonFlagsInFocus & POKEMON_FLAG_4)) {
             if (gPreviousPokemonInFocus == gPokemonInFocus) {
-                sPhotoSeriesCount++;
+                sTimerInFocus++;
             } else {
-                sPhotoSeriesCount = 0;
+                sTimerInFocus = 0;
                 D_80382C3C_52304C = false;
             }
             D_80382CFC_52310C = 2;
@@ -1340,7 +1340,7 @@ void updateCameraZoomedIn(GObj* obj) {
         } else if (D_80382CFC_52310C != 0) {
             D_80382CFC_52310C--;
         } else {
-            sPhotoSeriesCount = 0;
+            sTimerInFocus = 0;
             D_80382C3C_52304C = false;
         }
         if (sTimerAfterPhotoTaken < 0) {

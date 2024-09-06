@@ -46,7 +46,7 @@ Texture** charmander_materials[] = {
     charmander_part13_mat,
 };
 
-u8* charmander_part5_mat0_images[] = {
+u8* charmander_part5_mat0_textures[] = {
     charmander_tex_eye_frame0_png,
     charmander_tex_eye_frame1_png,
     charmander_tex_eye_frame2_png,
@@ -57,7 +57,7 @@ u8* charmander_part5_mat0_images[] = {
     charmander_tex_eye_frame7_png,
 };
 
-u8* charmander_part13_mat0_images[] = {
+u8* charmander_part13_mat0_textures[] = {
     charmander_tex_flame_frame0_png,
     charmander_tex_flame_frame1_png,
     charmander_tex_flame_frame2_png,
@@ -69,7 +69,7 @@ Texture charmander_part5_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    charmander_part5_mat0_images,
+    charmander_part5_mat0_textures,
     128,
     64,
     32,
@@ -122,7 +122,7 @@ Texture charmander_part13_mat0 = {
     0,
     G_IM_FMT_IA,
     G_IM_SIZ_16b,
-    charmander_part13_mat0_images,
+    charmander_part13_mat0_textures,
     128,
     64,
     16,

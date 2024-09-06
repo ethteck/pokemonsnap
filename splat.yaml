@@ -429,13 +429,55 @@ segments:
     - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
     - { start: auto, name: ground_int, type: .bss, vram: 0x800F5D40 }
   - type: code
-    name: magikarp1
-    dir: pokemon/magikarp
+    name: magikarp_textures
+    dir: pokemon_common
     start: 0x731B0
     vram: 0x800F5D90
     exclusive_ram_id: unk800F5D90
     subsegments:
-    - [0x731B0, bin] # , data]
+    - [auto, c, magikarp/textures]
+    - start: 0x731B0
+      type: .data
+      dir: magikarp
+      name: magikarp/textures
+      subsegments:
+      - [0x731B0]
+      - { start: 0x731B8, type: rgba16, name: tex_scales, flip_y: true, width: 32, height: 64 }
+      - [0x741B8]
+      - { start: 0x741C0, type: rgba16, name: tex_tongue, flip_y: true, width: 32, height: 32 }
+      - [0x749C0]
+      - { start: 0x749C8, type: rgba16, name: tex_barbel, flip_y: true, width: 32, height: 32 }
+      - [0x751C8]
+      - [0x751D0, palette, tex_arm_fin]
+      - [0x753D0]
+      - { start: 0x753D8, type: ci8, name: tex_arm_fin, flip_y: true, width: 64, height: 32 }
+      - [0x75BD8]
+      - { start: 0x75BE0, type: palette, name: tex_belly_fin, size: 0xE0 }
+      - [0x75CC0]
+      - { start: 0x75CC8, type: ci8, name: tex_belly_fin, flip_y: true, width: 32, height: 32 }
+      - [0x760C8]
+      - { start: 0x760D0, type: palette, name: tex_skin1, size: 0xB0 }
+      - [0x76180]
+      - { start: 0x76188, type: ci8, name: tex_skin1, flip_y: true, width: 32, height: 32 }
+      - [0x76588]
+      - { start: 0x76590, type: rgba16, name: tex_mouth, flip_y: true, width: 32, height: 32 }
+      - [0x76D90]
+      - [0x76D98, palette, tex_eye]
+      - [0x76DB8]
+      - { start: 0x76DC0, type: ci4, name: tex_eye, flip_y: true, width: 32, height: 32 }
+      - [0x76FC0]
+      - { start: 0x76FC8, type: palette, name: tex_skin2, size: 0xF8 }
+      - [0x770C0]
+      - { start: 0x770C8, type: ci8, name: tex_skin2, flip_y: true, width: 32, height: 32 }
+      - [0x774C8]
+      - { start: 0x774D0, type: palette, name: tex_tail_fin, size: 0xC0 }
+      - [0x77590]
+      - { start: 0x77598, type: ci8, name: tex_tail_fin, flip_y: true, width: 64, height: 32 }
+      - [0x77D98]
+      - { start: 0x77DA0, type: palette, name: tex_skin3, size: 0xB8 }
+      - [0x77E58]
+      - { start: 0x77E60, type: ci8, name: tex_skin3, flip_y: true, width: 32, height: 32 }
+    - [0x78260, bin]
   - type: code
     name: pikachu1
     dir: pokemon/pikachu
@@ -534,16 +576,225 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
-    - [auto, c, growlithe/images]
-    - [auto, c, charmander/images]
-    - [auto, c, charmeleon/images]
-    - [auto, c, charizard/images]
-    - [auto, c, arcanine/images]
+    - [auto, c, growlithe_spawner/model]
+    - [auto, c, growlithe_spawner/materials]
+    - [auto, c, koffing_smoke/model]
+    - [auto, c, koffing_smoke/materials]
+    - [auto, c, koffing_smoke/textures]
+    - [auto, c, growlithe_spawner/textures]    
+    - [auto, c, magmar/textures]
+    - [auto, c, moltres/textures]
+    - [auto, c, growlithe/textures]
+    - [auto, c, charmander/textures]
+    - [auto, c, charmeleon/textures]
+    - [auto, c, charizard/textures]
+    - [auto, c, arcanine/textures]
     - [0x326C20, bin]
+    - start: 0x33A2B0
+      type: .data
+      name: growlithe_spawner/model
+      dir: growlithe_spawner
+      subsegments:
+      - [0x33A2B0, gfx, draw]
+      - [0x33A3C0, vtx, model]
+      - [0x33A4B0]
+    - [0x33A550, .data, growlithe_spawner/materials]
+    - [0x33A5E0, bin]
+    - start: 0x33A9E0
+      type: .data
+      name: koffing_smoke/model
+      dir: koffing_smoke
+      subsegments:
+      - [0x33A9E0, gfx, part1]
+      - [0x33AA78, gfx, part0]
+      - [0x33AB50, vtx, model]
+      - [0x33AD20]
+    - [0x33ADD0, .data, koffing_smoke/materials]
+    - [0x33AE90, bin]
+    - start: 0x33FAB0
+      type: .data
+      dir: koffing_smoke
+      name: koffing_smoke/textures
+      subsegments:
+      - [0x33FAB0]
+      - { start: 0x33FAB8, type: ia8, name: frame0, flip_y: true, width: 32, height: 64 }
+      - [0x3402B8]
+      - { start: 0x3402C0, type: ia8, name: frame1, flip_y: true, width: 32, height: 64 }
+      - [0x340AC0]
+      - { start: 0x340AC8, type: ia8, name: frame2, flip_y: true, width: 32, height: 64 }
+      - [0x3412C8]
+      - { start: 0x3412D0, type: ia8, name: frame3, flip_y: true, width: 32, height: 64 }
+      - [0x341AD0]
+      - { start: 0x341AD8, type: ia8, name: frame4, flip_y: true, width: 32, height: 64 }
+      - [0x3422D8]
+      - { start: 0x3422E0, type: ia8, name: frame5, flip_y: true, width: 32, height: 64 }
+      - [0x342AE0]
+      - { start: 0x342AE8, type: ia8, name: frame6, flip_y: true, width: 32, height: 64 }
+      - [0x3432E8]
+      - { start: 0x3432F0, type: ia8, name: frame7, flip_y: true, width: 32, height: 64 }
+      - [0x343AF0]
+      - { start: 0x343AF8, type: ia8, name: frame8, flip_y: true, width: 32, height: 64 }
+      - [0x3442F8]
+      - { start: 0x344300, type: ia8, name: frame9, flip_y: true, width: 32, height: 64 }
+      - [0x344B00]
+      - { start: 0x344B08, type: ia8, name: frame10, flip_y: true, width: 32, height: 64 }
+      - [0x345308]
+      - { start: 0x345310, type: ia8, name: frame11, flip_y: true, width: 32, height: 64 }
+    - [0x345B10, bin]
+    - start: 0x34A380
+      type: .data
+      dir: growlithe_spawner
+      name: growlithe_spawner/textures
+      subsegments:
+      - [0x34A380]
+      - [0x34A388, palette, lava_frame0]
+      - [0x34A3A8]
+      - { start: 0x34A3B0, type: ci4, name: lava_frame0, flip_y: true, width: 64, height: 64 }
+      - [0x34ABB0]
+      - [0x34ABB8, palette, lava_frame1]
+      - [0x34ABD8]
+      - { start: 0x34ABE0, type: ci4, name: lava_frame1, flip_y: true, width: 64, height: 64 }
+      - [0x34B3E0]
+      - [0x34B3E8, palette, lava_frame2]
+      - [0x34B408]
+      - { start: 0x34B410, type: ci4, name: lava_frame2, flip_y: true, width: 64, height: 64 }
+      - [0x34BC10]
+      - [0x34BC18, palette, lava_frame3]
+      - [0x34BC38]
+      - { start: 0x34BC40, type: ci4, name: lava_frame3, flip_y: true, width: 64, height: 64 }
+      - [0x34C440]
+      - [0x34C448, palette, lava_frame4]
+      - [0x34C468]
+      - { start: 0x34C470, type: ci4, name: lava_frame4, flip_y: true, width: 64, height: 64 }
+    - [0x34CC70, bin]
+    - start: 0x354760
+      type: .data
+      dir: magmar
+      name: magmar/textures
+      subsegments:
+      - [0x354760]
+      - [0x354768, palette, tex_skin1]
+      - [0x354788]
+      - { start: 0x354790, type: ci4, name: tex_skin1, flip_y: true, width: 64, height: 32 }
+      - [0x354B90]
+      - [0x354B98, palette, tex_eye_frame0]
+      - [0x354D98]
+      - { start: 0x354DA0, type: ci8, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x3555A0]
+      - [0x3555A8, palette, tex_eye_frame1]
+      - [0x3557A8]
+      - { start: 0x3557B0, type: ci8, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x355FB0]
+      - [0x355FB8, palette, tex_eye_frame2]
+      - [0x3561B8]
+      - { start: 0x3561C0, type: ci8, name: tex_eye_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x3569C0]
+      - [0x3569C8, palette, tex_eye_frame3]
+      - [0x356BC8]
+      - { start: 0x356BD0, type: ci8, name: tex_eye_frame3, flip_y: true, width: 64, height: 32 }
+      - [0x3573D0]
+      - { start: 0x3573D8, type: ia16, name: tex_flame_frame0, flip_y: true, width: 16, height: 32 }
+      - [0x3577D8]
+      - { start: 0x3577E0, type: ia16, name: tex_flame_frame1, flip_y: true, width: 16, height: 32 }
+      - [0x357BE0]
+      - { start: 0x357BE8, type: ia16, name: tex_flame_frame2, flip_y: true, width: 16, height: 32 }
+      - [0x357FE8]
+      - { start: 0x357FF0, type: ia16, name: tex_flame_frame3, flip_y: true, width: 16, height: 32 }
+      - [0x3583F0]
+      - [0x3583F8, palette, tex_shackles]
+      - [0x358418]
+      - { start: 0x358420, type: ci4, name: tex_shackles, flip_y: true, width: 16, height: 8 }
+      - [0x358460]
+      - [0x358468, palette, tex_beak]
+      - [0x358668]
+      - { start: 0x358670, type: ci8, name: tex_beak, flip_y: true, width: 16, height: 32 }
+      - [0x358870]
+      - [0x358878, palette, tex_mouth]
+      - [0x358A78]
+      - { start: 0x358A80, type: ci8, name: tex_mouth, flip_y: true, width: 8, height: 32 }
+      - [0x358B80]
+      - [0x358B88, palette, tex_claw]
+      - [0x358BA8]
+      - { start: 0x358BB0, type: ci4, name: tex_claw, flip_y: true, width: 16, height: 16 }
+      - [0x358C30]
+      - [0x358C38, palette, tex_arm1]
+      - [0x358E38]
+      - { start: 0x358E40, type: ci8, name: tex_arm1, flip_y: true, width: 32, height: 32 }
+      - [0x359240]
+      - [0x359248, palette, tex_skin2]
+      - [0x359448]
+      - { start: 0x359450, type: ci8, name: tex_skin2, flip_y: true, width: 64, height: 32 }
+    - [0x359C50, bin]
+    - start: 0x366BB0
+      type: .data
+      dir: moltres
+      name: moltres/textures
+      subsegments:
+      - [0x366BB0]
+      - [0x366BB8, palette, tex_flame_frame0]
+      - [0x366BD8]
+      - { start: 0x366BE0, type: ci4, name: tex_flame_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x366DE0]
+      - [0x366DE8, palette, tex_flame_frame1]
+      - [0x366E08]
+      - { start: 0x366E10, type: ci4, name: tex_flame_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x367010]
+      - [0x367018, palette, tex_flame_frame2]
+      - [0x367038]
+      - { start: 0x367040, type: ci4, name: tex_flame_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x367240]
+      - [0x367248, palette, tex_flame_frame3]
+      - [0x367268]
+      - { start: 0x367270, type: ci4, name: tex_flame_frame3, flip_y: true, width: 32, height: 32 }
+      - [0x367470]
+      - [0x367478, palette, tex_flame_frame4]
+      - [0x367498]
+      - { start: 0x3674A0, type: ci4, name: tex_flame_frame4, flip_y: true, width: 32, height: 32 }
+      - [0x3676A0]
+      - [0x3676A8, palette, tex_flame_frame5]
+      - [0x3676C8]
+      - { start: 0x3676D0, type: ci4, name: tex_flame_frame5, flip_y: true, width: 32, height: 32 }
+      - [0x3678D0]
+      - [0x3678D8, palette, tex_flame_frame6]
+      - [0x3678F8]
+      - { start: 0x367900, type: ci4, name: tex_flame_frame6, flip_y: true, width: 32, height: 32 }
+      - [0x367B00]
+      - [0x367B08, palette, tex_flame_frame7]
+      - [0x367B28]
+      - { start: 0x367B30, type: ci4, name: tex_flame_frame7, flip_y: true, width: 32, height: 32 }
+      - [0x367D30]
+      - [0x367D38, palette, tex2]
+      - [0x367D58]
+      - { start: 0x367D60, type: ci4, name: tex2, flip_y: true, width: 16, height: 48 }
+      - [0x367EE0]
+      - { start: 0x367EE8, type: palette, name: tex3, size: 0x18 }
+      - [0x367F00]
+      - { start: 0x367F08, type: ci4, name: tex3, flip_y: true, width: 16, height: 8 }
+      - [0x367F48]
+      - [0x367F50, palette, tex_eye_frame0]
+      - [0x367F70]
+      - { start: 0x367F78, type: ci4, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x368378]
+      - [0x368380, palette, tex_eye_frame1]
+      - [0x3683A0]
+      - { start: 0x3683A8, type: ci4, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x3687A8]
+      - [0x3687B0, palette, tex_beak]
+      - [0x3687D0]
+      - { start: 0x3687D8, type: ci4, name: tex_beak, flip_y: true, width: 16, height: 16 }
+      - [0x368858]
+      - [0x368860, palette, tex6]
+      - [0x368880]
+      - { start: 0x368888, type: ci4, name: tex6, flip_y: true, width: 16, height: 8 }
+      - [0x3688C8]
+      - { start: 0x3688D0, type: palette, name: tex_skin, size: 0x18 }
+      - [0x3688E0]
+      - { start: 0x3688E8, type: ci4, name: tex_skin, flip_y: true, width: 16, height: 16 }
+    - [0x368970, bin]
     - start: 0x388870
       type: .data
       dir: growlithe
-      name: growlithe/images
+      name: growlithe/textures
       subsegments:
       - [0x388870]
       - [0x388878, palette, tex_nose]
@@ -601,7 +852,7 @@ segments:
     - start: 0x3988D0
       type: .data
       dir: charmander
-      name: charmander/images
+      name: charmander/textures
       subsegments:
       - [0x3988D8, palette, tex_eye_frame1]
       - [0x3988F8]
@@ -666,7 +917,7 @@ segments:
     - start: 0x3A2410
       type: .data
       dir: charmeleon
-      name: charmeleon/images
+      name: charmeleon/textures
       subsegments:
       - [0x3A2410]
       - { start: 0x3A2418, type: palette, name: tex_skin, size: 0x10 }
@@ -720,7 +971,7 @@ segments:
     - start: 0x3AB380
       type: .data
       dir: charizard
-      name: charizard/images
+      name: charizard/textures
       subsegments:
       - [0x3AB380]
       - [0x3AB388, palette, tex_mouth1]
@@ -772,7 +1023,7 @@ segments:
     - start: 0x3BD680
       type: .data
       dir: arcanine
-      name: arcanine/images
+      name: arcanine/textures
       subsegments:
       - [0x3BD680]
       - [0x3BD688, palette, tex_skin1]
@@ -932,13 +1183,54 @@ segments:
     #- { name: 503C10, type: bss, vram: 0x803B0F60 }
     #- { start: auto, name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
   - type: code
-    name: magikarp3
-    dir: pokemon/magikarp
+    name: magikarp_model
+    dir: pokemon_common
     start: 0x54B5D0
     vram: 0x8034E130
     exclusive_ram_id: unk8034E130
     subsegments:
-    - [0x54B5D0, bin] # , data]
+    - [auto, c, magikarp/model]
+    - start: 0x54B5D0
+      type: .data
+      dir: magikarp
+      name: magikarp/model
+      subsegments:
+      - [0x54B5D0, vtx, model]
+      - [0x54C4E0, gfx, first]
+      - [0x54C510, gfx, part0_draw]
+      - [0x54C8B8, gfx, part0]
+      - [0x54C8D8, gfx, part1_draw]
+      - [0x54C9B0, gfx, part1]
+      - [0x54C9C8, gfx, part2_draw]
+      - [0x54CAE0, gfx, part2]
+      - [0x54CAF8, gfx, part3_draw]
+      - [0x54CB98, gfx, part3]
+      - [0x54CBB0, gfx, part4_draw]
+      - [0x54CC68, gfx, part4]
+      - [0x54CC80, gfx, part5_draw]
+      - [0x54CD48, gfx, part5]
+      - [0x54CD60, gfx, part6_draw]
+      - [0x54CE30, gfx, part6]
+      - [0x54CE48, gfx, part7_draw]
+      - [0x54CEC0, gfx, part7]
+      - [0x54CED8, gfx, part8_draw]
+      - [0x54CF30, gfx, part8]
+      - [0x54CF48, gfx, part9_draw]
+      - [0x54CF90, gfx, part9]
+      - [0x54CFA8, gfx, part10_draw]
+      - [0x54D010, gfx, part10]
+      - [0x54D028, gfx, part11_draw]
+      - [0x54D080, gfx, part11]
+      - [0x54D098, gfx, part12_draw]
+      - [0x54D0E0, gfx, part12]
+      - [0x54D0F8, gfx, part13_draw]
+      - [0x54D198, gfx, part13]
+      - [0x54D1B0, gfx, part14_draw]
+      - [0x54D1D8, gfx, part14]
+      - [0x54D1F0, gfx, part15_draw]
+      - [0x54D320, gfx, part15]
+      - [0x54D338, gfx, last]
+      - [0x54D360]
   - type: code
     name: pikachu3
     dir: pokemon/pikachu
@@ -1232,19 +1524,19 @@ segments:
       name: magmar/model
       dir: magmar
       subsegments:
-      - [0x76E6E8, rgba16, tex8, 16, 8]
+      - { start: 0x76E6E8, type: rgba16, name: tex_foot, flip_y: true, width: 16, height: 8 }
       - [0x76E7E8]
-      - [0x76E7F0, palette, tex9]
+      - [0x76E7F0, palette, tex_arm2]
       - [0x76E9F0]
-      - [0x76E9F8, ci8, tex9, 64, 32]
+      - { start: 0x76E9F8, type: ci8, name: tex_arm2, flip_y: true, width: 64, height: 32 }
       - [0x76F1F8]
-      - [0x76F200, palette, tex10]
+      - [0x76F200, palette, tex_arm3]
       - [0x76F400]
-      - [0x76F408, ci8, tex10, 64, 32]
+      - { start: 0x76F408, type: ci8, name: tex_arm3, flip_y: true, width: 64, height: 32 }
       - [0x76FC08]
-      - [0x76FC10, palette, tex11]
+      - [0x76FC10, palette, tex_hand_claw]
       - [0x76FC30]
-      - [0x76FC38, ci4, tex11, 64, 64]
+      - { start: 0x76FC38, type: ci4, name: tex_hand_claw, flip_y: true, width: 64, height: 64 }
       - [0x770438]
       - [0x7705A8, vtx, model]
       - [0x7720E8, gfx, first]

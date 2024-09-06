@@ -1,65 +1,65 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_801140C0[];
-extern Texture** D_80114150[];
+extern UnkEC64Arg3 koffing_smoke_model[];
+extern Texture** koffing_smoke_materials[];
 
-extern AnimCmd* D_80114210[];
-extern AnimCmd* D_80114280[];
-extern AnimCmd* D_80114300[];
+extern AnimCmd* koffing_smoke_modelanim_show[];
+extern AnimCmd* koffing_smoke_modelanim_reveal[];
+extern AnimCmd* koffing_smoke_modelanim_hide[];
 
-extern AnimCmd** D_80114240[];
-extern AnimCmd** D_801142C0[];
-extern AnimCmd** D_80114330[];
+extern AnimCmd** koffing_smoke_matanim_show[];
+extern AnimCmd** koffing_smoke_matanim_reveal[];
+extern AnimCmd** koffing_smoke_matanim_hide[];
 
-void func_802DE3FC_72F5FC(GObj* obj);
-void func_802DE450_72F650(GObj* obj);
-void func_802DE4C0_72F6C0(GObj* obj);
-void func_802DE390_72F590(GObj*);
+void koffing_smoke_RevealFace(GObj* obj);
+void koffing_smoke_Hide(GObj* obj);
+void koffing_smoke_Rise(GObj* obj);
+void koffing_smoke_InitialState(GObj*);
 
-s32 D_802E31F0_7343F0[] = { SOUND_ID_61 };
+s32 koffing_smoke_animsounds_reveal[] = { SOUND_ID_61 };
 
-AnimationHeader D_802E31F4_7343F4 = {
+AnimationHeader koffing_smoke_animation_show = {
     1.0,
     100,
-    D_80114210,
-    D_80114240,
+    koffing_smoke_modelanim_show,
+    koffing_smoke_matanim_show,
     NULL
 };
 
-AnimationHeader D_802E3208_734408 = {
+AnimationHeader koffing_smoke_animation_reveal = {
     1.0,
     100,
-    D_80114280,
-    D_801142C0,
-    D_802E31F0_7343F0
+    koffing_smoke_modelanim_reveal,
+    koffing_smoke_matanim_reveal,
+    koffing_smoke_animsounds_reveal
 };
 
-AnimationHeader D_802E321C_73441C = {
+AnimationHeader koffing_smoke_animation_hide = {
     1.0,
     100,
-    D_80114300,
-    D_80114330,
+    koffing_smoke_modelanim_hide,
+    koffing_smoke_matanim_hide,
     NULL
 };
 
-InteractionHandler D_802E3230_734430[] = {
+InteractionHandler koffing_smoke_tg_Unused[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E3240_734440 = {
-    &D_802E31F4_7343F4,
-    func_802DE390_72F590,
+PokemonAnimationSetup koffing_smoke_animSetup = {
+    &koffing_smoke_animation_show,
+    koffing_smoke_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData koffingSmokeData = {
-    D_801140C0,
-    D_80114150,
+PokemonInitData koffing_smoke_initData = {
+    koffing_smoke_model,
+    koffing_smoke_materials,
     renderPokemonModelTypeDFogged,
-    &D_802E3240_734440,
+    &koffing_smoke_animSetup,
     { 30, 30, 30 },
     { 0, 0, 0 },
     0,
@@ -70,33 +70,34 @@ PokemonInitData koffingSmokeData = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DE390_72F590)
-    Pokemon_ForceAnimation(obj, &D_802E31F4_7343F4);
-    Pokemon_StartPathProc(obj, func_802DE4C0_72F6C0);
+POKEMON_FUNC(koffing_smoke_InitialState)
+    Pokemon_ForceAnimation(obj, &koffing_smoke_animation_show);
+    Pokemon_StartPathProc(obj, koffing_smoke_Rise);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DE3FC_72F5FC);
+    Pokemon_SetState(obj, koffing_smoke_RevealFace);
 }
 
-POKEMON_FUNC(func_802DE3FC_72F5FC)
-    Pokemon_ForceAnimation(obj, &D_802E3208_734408);
+POKEMON_FUNC(koffing_smoke_RevealFace)
+    Pokemon_ForceAnimation(obj, &koffing_smoke_animation_reveal);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DE450_72F650);
+    Pokemon_SetState(obj, koffing_smoke_Hide);
 }
 
-POKEMON_FUNC(func_802DE450_72F650)
-    Pokemon_SetAnimation(obj, &D_802E321C_73441C);
+POKEMON_FUNC(koffing_smoke_Hide)
+    Pokemon_SetAnimation(obj, &koffing_smoke_animation_hide);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_33, obj);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DE4C0_72F6C0)
+POKEMON_FUNC(koffing_smoke_Rise)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.05f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
@@ -104,6 +105,6 @@ POKEMON_FUNC(func_802DE4C0_72F6C0)
     omEndProcess(NULL);
 }
 
-GObj* func_802DE52C_72F72C(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
-    return Pokemon_Spawn(gObjID, id, roomA, roomB, spawn, &koffingSmokeData);
+GObj* koffing_smoke_Spawn(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
+    return Pokemon_Spawn(gObjID, id, roomA, roomB, spawn, &koffing_smoke_initData);
 }

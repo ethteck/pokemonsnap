@@ -1,22 +1,22 @@
 #include <common.h>
 
-extern u8 growlitheSpawner_lava_frame0_pal[];
+extern u8 growlithe_spawner_lava_frame0_pal[];
 
-extern Vtx growlitheSpawner_vtx[];
+extern Vtx growlithe_spawner_vtx[];
 
-#include "assets/volcano/growlitheSpawner/draw.gfx.inc.c"
+#include "assets/volcano/growlithe_spawner/draw.gfx.inc.c"
 __ALIGNER
 // file split here ??
-#include "assets/volcano/growlitheSpawner/model.vtx.inc.c"
+#include "assets/volcano/growlithe_spawner/model.vtx.inc.c"
 
-UnkEC64Arg3 growlitheSpawner_model[] = {
+UnkEC64Arg3 growlithe_spawner_model[] = {
     { 0,
       NULL,
       { 0.0, 0.0, 0.0 },
       { 0.0, 0.0, 0.0 },
       { 1.0, 1.0, 1.0 } },
     { 1,
-      growlitheSpawner_gfx,
+      growlithe_spawner_gfx,
       { 0.0, 0.0, 0.0 },
       { 0.0, 0.0, 0.0 },
       { 1.0, 1.0, 1.0 } },

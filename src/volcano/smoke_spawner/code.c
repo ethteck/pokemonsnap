@@ -28,7 +28,7 @@ PokemonDef D_802E3358_734558 = {
 
 PokemonDef D_802E3368_734568 = {
     PokemonID_KOFFING_SMOKE,
-    koffingSmoke_Spawn,
+    koffing_smoke_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };

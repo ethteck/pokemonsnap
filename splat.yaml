@@ -429,17 +429,17 @@ segments:
     - { start: auto, name: block, type: .bss, vram: 0x800F5A00 }
     - { start: auto, name: ground_int, type: .bss, vram: 0x800F5D40 }
   - type: code
-    name: magikarp_images
+    name: magikarp_textures
     dir: pokemon_common
     start: 0x731B0
     vram: 0x800F5D90
     exclusive_ram_id: unk800F5D90
     subsegments:
-    - [auto, c, magikarp/images]
+    - [auto, c, magikarp/textures]
     - start: 0x731B0
       type: .data
       dir: magikarp
-      name: magikarp/images
+      name: magikarp/textures
       subsegments:
       - [0x731B0]
       - { start: 0x731B8, type: rgba16, name: tex_scales, flip_y: true, width: 32, height: 64 }
@@ -576,45 +576,45 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
-    - [auto, c, growlitheSpawner/model]
-    - [auto, c, growlitheSpawner/materials]
-    - [auto, c, koffingSmoke/model]
-    - [auto, c, koffingSmoke/materials]
-    - [auto, c, koffingSmoke/images]
-    - [auto, c, growlitheSpawner/images]    
-    - [auto, c, magmar/images]
-    - [auto, c, moltres/images]
-    - [auto, c, growlithe/images]
-    - [auto, c, charmander/images]
-    - [auto, c, charmeleon/images]
-    - [auto, c, charizard/images]
-    - [auto, c, arcanine/images]
+    - [auto, c, growlithe_spawner/model]
+    - [auto, c, growlithe_spawner/materials]
+    - [auto, c, koffing_smoke/model]
+    - [auto, c, koffing_smoke/materials]
+    - [auto, c, koffing_smoke/textures]
+    - [auto, c, growlithe_spawner/textures]    
+    - [auto, c, magmar/textures]
+    - [auto, c, moltres/textures]
+    - [auto, c, growlithe/textures]
+    - [auto, c, charmander/textures]
+    - [auto, c, charmeleon/textures]
+    - [auto, c, charizard/textures]
+    - [auto, c, arcanine/textures]
     - [0x326C20, bin]
     - start: 0x33A2B0
       type: .data
-      name: growlitheSpawner/model
-      dir: growlitheSpawner
+      name: growlithe_spawner/model
+      dir: growlithe_spawner
       subsegments:
       - [0x33A2B0, gfx, draw]
       - [0x33A3C0, vtx, model]
       - [0x33A4B0]
-    - [0x33A550, .data, growlitheSpawner/materials]
+    - [0x33A550, .data, growlithe_spawner/materials]
     - [0x33A5E0, bin]
     - start: 0x33A9E0
       type: .data
-      name: koffingSmoke/model
-      dir: koffingSmoke
+      name: koffing_smoke/model
+      dir: koffing_smoke
       subsegments:
       - [0x33A9E0, gfx, part1]
       - [0x33AA78, gfx, part0]
       - [0x33AB50, vtx, model]
       - [0x33AD20]
-    - [0x33ADD0, .data, koffingSmoke/materials]
+    - [0x33ADD0, .data, koffing_smoke/materials]
     - [0x33AE90, bin]
     - start: 0x33FAB0
       type: .data
-      dir: koffingSmoke
-      name: koffingSmoke/images
+      dir: koffing_smoke
+      name: koffing_smoke/textures
       subsegments:
       - [0x33FAB0]
       - { start: 0x33FAB8, type: ia8, name: frame0, flip_y: true, width: 32, height: 64 }
@@ -643,8 +643,8 @@ segments:
     - [0x345B10, bin]
     - start: 0x34A380
       type: .data
-      dir: growlitheSpawner
-      name: growlitheSpawner/images
+      dir: growlithe_spawner
+      name: growlithe_spawner/textures
       subsegments:
       - [0x34A380]
       - [0x34A388, palette, lava_frame0]
@@ -670,7 +670,7 @@ segments:
     - start: 0x354760
       type: .data
       dir: magmar
-      name: magmar/images
+      name: magmar/textures
       subsegments:
       - [0x354760]
       - [0x354768, palette, tex_skin1]
@@ -728,7 +728,7 @@ segments:
     - start: 0x366BB0
       type: .data
       dir: moltres
-      name: moltres/images
+      name: moltres/textures
       subsegments:
       - [0x366BB0]
       - [0x366BB8, palette, tex_flame_frame0]
@@ -794,7 +794,7 @@ segments:
     - start: 0x388870
       type: .data
       dir: growlithe
-      name: growlithe/images
+      name: growlithe/textures
       subsegments:
       - [0x388870]
       - [0x388878, palette, tex_nose]
@@ -852,7 +852,7 @@ segments:
     - start: 0x3988D0
       type: .data
       dir: charmander
-      name: charmander/images
+      name: charmander/textures
       subsegments:
       - [0x3988D8, palette, tex_eye_frame1]
       - [0x3988F8]
@@ -917,7 +917,7 @@ segments:
     - start: 0x3A2410
       type: .data
       dir: charmeleon
-      name: charmeleon/images
+      name: charmeleon/textures
       subsegments:
       - [0x3A2410]
       - { start: 0x3A2418, type: palette, name: tex_skin, size: 0x10 }
@@ -971,7 +971,7 @@ segments:
     - start: 0x3AB380
       type: .data
       dir: charizard
-      name: charizard/images
+      name: charizard/textures
       subsegments:
       - [0x3AB380]
       - [0x3AB388, palette, tex_mouth1]
@@ -1023,7 +1023,7 @@ segments:
     - start: 0x3BD680
       type: .data
       dir: arcanine
-      name: arcanine/images
+      name: arcanine/textures
       subsegments:
       - [0x3BD680]
       - [0x3BD688, palette, tex_skin1]
@@ -1448,10 +1448,10 @@ segments:
     - [0x72D250, pad]
     - [0x72D260, c, charmeleon/code]
     - [0x72E4E0, c, charizard/code]
-    - [0x72E9F0, c, growlitheSpawner/code]
+    - [0x72E9F0, c, growlithe_spawner/code]
     - [0x72ECD0, c, moltres_egg/code]
     - [0x72F100, c, moltres/code]
-    - [0x72F590, c, koffingSmoke/code]
+    - [0x72F590, c, koffing_smoke/code]
     - [0x72F770, c, smoke_puff/code]
     - [0x72F8F0, c, smoke_spawner/code]
     - [0x72FC80, c, pkmn_1002/code]
@@ -1482,10 +1482,10 @@ segments:
     - [0x733950, .data, arcanine/code]
     - [0x733CE0, .data, charmeleon/code]
     - [0x734050, .data, charizard/code]
-    - [0x734190, .data, growlitheSpawner/code]
+    - [0x734190, .data, growlithe_spawner/code]
     - [0x734210, .data, moltres_egg/code]
     - [0x7342C0, .data, moltres/code]
-    - [0x7343F0, .data, koffingSmoke/code]
+    - [0x7343F0, .data, koffing_smoke/code]
     - [0x734490, .data, smoke_puff/code]
     - [0x734500, .data, smoke_spawner/code]
     - [0x734610, .data, pkmn_1002/code]
@@ -1503,7 +1503,7 @@ segments:
     - [0x734AC0, .rodata, arcanine/code]
     - [0x734AD0, .rodata, charmeleon/code]
     - [0x734B10, .rodata, charizard/code]
-    - [0x734B20, .rodata, growlitheSpawner/code]
+    - [0x734B20, .rodata, growlithe_spawner/code]
     - [0x734B30, .rodata, moltres_egg/code]
     - [0x734B40, .rodata, pkmn_1002/code]
     - [0x734B50, .rodata, pkmn_1030/code]

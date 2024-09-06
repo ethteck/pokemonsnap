@@ -51,7 +51,7 @@ Texture** growlithe_materials[] = {
     NULL,
 };
 
-u8* growlithe_part2_mat0_images[] = {
+u8* growlithe_part2_mat0_textures[] = {
     growlithe_tex_eye_frame0_png,
     growlithe_tex_eye_frame1_png,
     NULL,
@@ -61,7 +61,7 @@ Texture growlithe_part2_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    growlithe_part2_mat0_images,
+    growlithe_part2_mat0_textures,
     128,
     64,
     64, 32,

@@ -69,7 +69,7 @@ Texture** arcanine_materials[] = {
     NULL,
 };
 
-u8* arcanine_part2_mat0_images[] = {
+u8* arcanine_part2_mat0_textures[] = {
     arcanine_tex_eye_frame0_png,
     arcanine_tex_eye_frame1_png,
     arcanine_tex_eye_frame2_png,
@@ -80,7 +80,7 @@ Texture arcanine_part2_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    arcanine_part2_mat0_images,
+    arcanine_part2_mat0_textures,
     128,
     64,
     64, 32,

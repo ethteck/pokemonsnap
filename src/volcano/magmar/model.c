@@ -86,14 +86,14 @@ Texture** magmar_materials[] = {
     NULL,
 };
 
-u8* magmar_part3_mat0_images[] = {
+u8* magmar_part3_mat0_textures[] = {
     magmar_tex_flame_frame0_png,
     magmar_tex_flame_frame1_png,
     magmar_tex_flame_frame2_png,
     magmar_tex_flame_frame3_png,
 };
 
-u8* magmar_part5_mat0_images[] = {
+u8* magmar_part5_mat0_textures[] = {
     magmar_tex_eye_frame0_png,
     magmar_tex_eye_frame1_png,
     magmar_tex_eye_frame2_png,
@@ -104,7 +104,7 @@ Texture magmar_part3_mat0 = {
     0,
     G_IM_FMT_IA,
     G_IM_SIZ_16b,
-    magmar_part3_mat0_images,
+    magmar_part3_mat0_textures,
     128,
     64,
     16,
@@ -157,7 +157,7 @@ Texture magmar_part5_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    magmar_part5_mat0_images,
+    magmar_part5_mat0_textures,
     128,
     64,
     64,

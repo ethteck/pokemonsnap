@@ -52,7 +52,7 @@ Texture** vulpix_materials[] = {
     NULL,
 };
 
-u8* vulpix_part5_mat0_images[] = {
+u8* vulpix_part5_mat0_textures[] = {
     vulpix_tex8_var0_png,
     vulpix_tex8_var1_png,
     vulpix_tex8_var2_png,
@@ -60,7 +60,7 @@ u8* vulpix_part5_mat0_images[] = {
     vulpix_tex8_var4_png,
 };
 
-u8* vulpix_part5_mat1_images[] = {
+u8* vulpix_part5_mat1_textures[] = {
     vulpix_tex8_var0_png,
     vulpix_tex8_var1_png,
     vulpix_tex8_var2_png,
@@ -72,7 +72,7 @@ Texture vulpix_part5_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    vulpix_part5_mat0_images,
+    vulpix_part5_mat0_textures,
     128,
     64,
     32, 32,
@@ -111,7 +111,7 @@ Texture vulpix_part5_mat1 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    vulpix_part5_mat1_images,
+    vulpix_part5_mat1_textures,
     128,
     64,
     32, 32,

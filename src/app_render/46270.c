@@ -64,7 +64,7 @@ void func_8009A8F0(s32 levelID) {
         case SCENE_BEACH:
             dmaLoadOverlay(&overlayBeachAssets);
             dmaReadRom(stage0_extra_ROM_START, stage0_extra_VRAM, stage0_extra_ROM_END - stage0_extra_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
@@ -72,7 +72,7 @@ void func_8009A8F0(s32 levelID) {
         case SCENE_TUNNEL:
             dmaLoadOverlay(&overlayTunnelAssets);
             dmaReadRom(stage1_extra_ROM_START, stage1_extra_VRAM, stage1_extra_ROM_END - stage1_extra_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
@@ -84,7 +84,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(stage4_extra_ROM_START, stage4_extra_VRAM, stage4_extra_ROM_END - stage4_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
@@ -96,7 +96,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(volcano_extra_ROM_START, volcano_extra_VRAM, volcano_extra_ROM_END - volcano_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
@@ -104,13 +104,13 @@ void func_8009A8F0(s32 levelID) {
         case SCENE_VOLCANO:
             dmaLoadOverlay(&overlayVolcanoAssets);
             dmaReadRom(stage2_extra_ROM_START, stage2_extra_VRAM, stage2_extra_ROM_END - stage2_extra_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
         case SCENE_VALLEY:
             dmaLoadOverlay(&overlayValleyAssets);
             dmaReadRom(stage5_extra_ROM_START, stage5_extra_VRAM, stage5_extra_ROM_END - stage5_extra_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
         case SCENE_RAINBOW:
@@ -127,7 +127,7 @@ void func_8009AE0C(u32 sceneId) {
         case SCENE_BEACH:
             dmaLoadOverlay(&overlayBeach);
             dmaLoadOverlay(&overlayBeachAssets);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
@@ -135,7 +135,7 @@ void func_8009AE0C(u32 sceneId) {
         case SCENE_TUNNEL:
             dmaLoadOverlay(&overlayTunnel);
             dmaLoadOverlay(&overlayTunnelAssets);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
@@ -147,7 +147,7 @@ void func_8009AE0C(u32 sceneId) {
             dmaLoadOverlay(&overlayCaveAssets);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur3_ROM_START, bulbasaur3_VRAM, bulbasaur3_ROM_END - bulbasaur3_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
@@ -159,7 +159,7 @@ void func_8009AE0C(u32 sceneId) {
             dmaLoadOverlay(&overlayRiverAssets);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur3_ROM_START, bulbasaur3_VRAM, bulbasaur3_ROM_END - bulbasaur3_ROM_START);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu3_ROM_START, pikachu3_VRAM, pikachu3_ROM_END - pikachu3_ROM_START);
@@ -167,13 +167,13 @@ void func_8009AE0C(u32 sceneId) {
         case SCENE_VOLCANO:
             dmaLoadOverlay(&overlayVolcano);
             dmaLoadOverlay(&overlayVolcanoAssets);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             break;
         case SCENE_VALLEY:
             dmaLoadOverlay(&overlayValley);
             dmaLoadOverlay(&overlayValleyAssets);
-            dmaReadRom(magikarp_images_ROM_START, magikarp_images_VRAM, magikarp_images_ROM_END - magikarp_images_ROM_START);
+            dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp_model_ROM_START, magikarp_model_VRAM, magikarp_model_ROM_END - magikarp_model_ROM_START);
             break;
         case SCENE_RAINBOW:

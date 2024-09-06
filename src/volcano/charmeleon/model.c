@@ -48,12 +48,12 @@ Texture** charmeleon_materials[] = {
     NULL,
 };
 
-u8* charmeleon_part7_mat0_images[] = {
+u8* charmeleon_part7_mat0_textures[] = {
     charmeleon_tex_eye_frame0_png,
     charmeleon_tex_eye_frame1_png,
     charmeleon_tex_eye_frame2_png,
 };
-u8* charmeleon_part12_mat0_images[] = {
+u8* charmeleon_part12_mat0_textures[] = {
     charmeleon_tex_flame_frame0_png,
     charmeleon_tex_flame_frame1_png,
     charmeleon_tex_flame_frame2_png,
@@ -65,7 +65,7 @@ Texture charmeleon_part7_mat0 = {
     0,
     G_IM_FMT_CI,
     G_IM_SIZ_16b,
-    charmeleon_part7_mat0_images,
+    charmeleon_part7_mat0_textures,
     128,
     64,
     32,
@@ -118,7 +118,7 @@ Texture charmeleon_part12_mat0 = {
     0,
     G_IM_FMT_IA,
     G_IM_SIZ_16b,
-    charmeleon_part12_mat0_images,
+    charmeleon_part12_mat0_textures,
     128,
     64,
     16,

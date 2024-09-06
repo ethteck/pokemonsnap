@@ -1,27 +1,27 @@
 #include <common.h>
 
-extern u8 moltres_tex0_pal[];
-extern u8 moltres_tex0_var0_png[];
-extern u8 moltres_tex0_var1_png[];
-extern u8 moltres_tex0_var2_png[];
-extern u8 moltres_tex0_var3_png[];
-extern u8 moltres_tex0_var4_png[];
-extern u8 moltres_tex0_var5_png[];
-extern u8 moltres_tex0_var6_png[];
-extern u8 moltres_tex0_var7_png[];
+extern u8 moltres_tex_flame_frame0_pal[];
+extern u8 moltres_tex_flame_frame0_png[];
+extern u8 moltres_tex_flame_frame1_png[];
+extern u8 moltres_tex_flame_frame2_png[];
+extern u8 moltres_tex_flame_frame3_png[];
+extern u8 moltres_tex_flame_frame4_png[];
+extern u8 moltres_tex_flame_frame5_png[];
+extern u8 moltres_tex_flame_frame6_png[];
+extern u8 moltres_tex_flame_frame7_png[];
 extern u8 moltres_tex2_pal[];
 extern u8 moltres_tex2_png[];
 extern u8 moltres_tex3_pal[];
 extern u8 moltres_tex3_png[];
-extern u8 moltres_tex4_pal[];
-extern u8 moltres_tex4_var0_png[];
-extern u8 moltres_tex4_var1_png[];
-extern u8 moltres_tex5_pal[];
-extern u8 moltres_tex5_png[];
+extern u8 moltres_tex_eye_frame0_pal[];
+extern u8 moltres_tex_eye_frame0_png[];
+extern u8 moltres_tex_eye_frame1_png[];
+extern u8 moltres_tex_beak_pal[];
+extern u8 moltres_tex_beak_png[];
 extern u8 moltres_tex6_pal[];
 extern u8 moltres_tex6_png[];
-extern u8 moltres_tex7_pal[];
-extern u8 moltres_tex7_png[];
+extern u8 moltres_tex_skin_pal[];
+extern u8 moltres_tex_skin_png[];
 
 extern Texture* moltres_part6_mat[];
 extern Texture* moltres_part8_mat[];
@@ -60,151 +60,151 @@ Texture** moltres_materials[] = {
 };
 
 u8* moltres_part6_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part6_mat1_images[] = {
-    moltres_tex4_var0_png,
-    moltres_tex4_var1_png,
+    moltres_tex_eye_frame0_png,
+    moltres_tex_eye_frame1_png,
 };
 
 u8* moltres_part8_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part9_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part10_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part11_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part12_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part13_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part14_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part14_mat1_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part15_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part15_mat1_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part16_mat0_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
 };
 
 u8* moltres_part16_mat1_images[] = {
-    moltres_tex0_var0_png,
-    moltres_tex0_var1_png,
-    moltres_tex0_var2_png,
-    moltres_tex0_var3_png,
-    moltres_tex0_var4_png,
-    moltres_tex0_var5_png,
-    moltres_tex0_var6_png,
-    moltres_tex0_var7_png,
+    moltres_tex_flame_frame0_png,
+    moltres_tex_flame_frame1_png,
+    moltres_tex_flame_frame2_png,
+    moltres_tex_flame_frame3_png,
+    moltres_tex_flame_frame4_png,
+    moltres_tex_flame_frame5_png,
+    moltres_tex_flame_frame6_png,
+    moltres_tex_flame_frame7_png,
     NULL
 };
 

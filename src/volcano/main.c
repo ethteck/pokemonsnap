@@ -106,7 +106,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MOLTRES,
-      func_802DE34C_72F54C,
+      moltres_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MAGIKARP,

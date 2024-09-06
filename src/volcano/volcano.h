@@ -81,7 +81,7 @@ GObj* func_802DE6B4_72F8B4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* koffingSmoke_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DED34_72FF34(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DDEC0_72F0C0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DE34C_72F54C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* moltres_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* volcano_magikarp_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* growlitheSpawner_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

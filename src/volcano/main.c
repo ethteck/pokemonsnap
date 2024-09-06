@@ -54,7 +54,7 @@ extern EnvSoundData volcano_EnvSounds[] = {
 
 PokemonDef volcano_PokemonDefs[] = {
     { PokemonID_MAGMAR,
-      volcano_magmar_Init,
+      magmar_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_RAPIDASH,

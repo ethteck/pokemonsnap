@@ -68,7 +68,7 @@ void func_802D6CFC_727EFC(GObj* obj);
 void func_802D6B2C_727D2C(GObj* obj);
 bool func_802D6D6C_727F6C(GObj* obj);
 
-GObj* volcano_magmar_Init(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* magmar_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802D8A5C_729C5C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charmander_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

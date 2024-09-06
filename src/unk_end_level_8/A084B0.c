@@ -8,7 +8,7 @@ extern OMCamera* D_801DD244_A08E34;
 extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
-extern s32 D_801DD254_A08E44;
+extern UnkFireHerring* D_801DD254_A08E44;
 extern UnkSnowHerring* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
@@ -76,7 +76,7 @@ SceneSetup D_801DD14C_A08D3C = {
 
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
-    s32 sp2C;
+    UnkFireHerring* sp2C;
     UnkSnowHerring* sp28;
     ucolor sp24;
 
@@ -148,11 +148,11 @@ void func_801DC9E8_A085D8(GObj* arg0) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
                     func_8036F0DC_84288C(D_801DD254_A08E44, 1);
-                    func_8036F0A0_842850(D_801DD254_A08E44, 1);
+                    func_8036F0A0_842850(D_801DD254_A08E44, true);
                     func_8036D1A4_840954(D_801DD258_A08E48, 0);
                 } else {
                     func_8036F0DC_84288C(D_801DD254_A08E44, 0);
-                    func_8036F0A0_842850(D_801DD254_A08E44, 0);
+                    func_8036F0A0_842850(D_801DD254_A08E44, false);
                     func_8036D1A4_840954(D_801DD258_A08E48, 1);
                 }
             }

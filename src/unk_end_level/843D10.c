@@ -5,10 +5,14 @@
 extern s32 D_803A6604_879DB4;
 extern s32 D_803A660C_879DBC;
 extern s32 D_803A6614_879DC4;
+extern s32 D_803A6618_879DC8;
+extern s32 D_803A6630_879DE0;
 extern s32 D_803A6648_879DF8; // xmin
 extern s32 D_803A664C_879DFC; // ymin
 extern s32 D_803A6650_879E00; // xmax
 extern s32 D_803A6654_879E04; // ymax
+
+extern UnkCanaryScallop D_803A6BA0_87A350;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80370560_843D10.s")
 
@@ -30,7 +34,9 @@ void func_803705F0_843DA0(s32 arg0) {
     D_803A660C_879DBC = arg0 != 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80370600_843DB0.s")
+UnkCanaryScallop* func_80370600_843DB0(void) {
+    return &D_803A6BA0_87A350;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_8037060C_843DBC.s")
 
@@ -48,11 +54,17 @@ void func_803705F0_843DA0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80370F34_8446E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803713C8_844B78.s")
+void func_803713C8_844B78(s32 arg0) {
+    D_803A6618_879DC8 = arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803713D4_844B84.s")
+void func_803713D4_844B84(s32 arg0) {
+    D_803A6618_879DC8 |= arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803713EC_844B9C.s")
+void func_803713EC_844B9C(s32 arg0) {
+    D_803A6618_879DC8 &= ~arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80371408_844BB8.s")
 
@@ -62,11 +74,21 @@ void func_803705F0_843DA0(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_8037161C_844DCC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_8037172C_844EDC.s")
+void func_8037172C_844EDC(s32 arg0) {
+    D_803A6630_879DE0 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_80371738_844EE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803717A8_844F58.s")
+char* func_803717A8_844F58(UnkCyanBass* arg0, s32 arg1) {
+    while (arg0->unk_00 != 0x23) {
+        if (arg1 == arg0->unk_00) {
+            return arg0->unk_04;
+        }
+        arg0++;
+    }
+    return "";
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/843D10/func_803717E8_844F98.s")
 
@@ -166,8 +188,8 @@ SObj* func_80371E68_845618(SObj* arg0, Sprite* arg1) {
 
     temp_v0 = omGetSObj();
     if (arg0->unk_58 != NULL) {
-        var_v1 = arg0->unk_58->next;
         var_a0 = arg0->unk_58;
+        var_v1 = arg0->unk_58->next;
         while (var_v1 != NULL) {
             var_a0 = var_v1;
             var_v1 = var_v1->next;

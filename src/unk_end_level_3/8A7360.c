@@ -27,7 +27,7 @@ UnkSnowHerring* func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
 }
 
-s32 func_800E1B4C_8A736C(void) {
+UnkFireHerring* func_800E1B4C_8A736C(void) {
     return D_80206B20_9CC340;
 }
 
@@ -506,7 +506,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused2[3];
     s32 i;
     UnkSnowHerring* sp4C;
-    s32 temp_v0;
+    UnkFireHerring* temp_v0;
     ucolor sp44;
     s32 unused1;
     s32 sp3C;
@@ -588,7 +588,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         func_80375284_848A34(3);
         func_803700A4_843854(0);
         func_8036D1A4_840954(D_80206B1C_9CC33C, 1);
-        func_8036F0A0_842850(temp_v0, 1);
+        func_8036F0A0_842850(temp_v0, true);
         func_803713C8_844B78(0);
         func_803705F0_843DA0(0);
         func_80370A48_8441F8();

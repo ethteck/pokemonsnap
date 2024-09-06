@@ -606,12 +606,12 @@ void func_801DE87C_9FC53C(void) {
                     if (sp3C != 0) {
                         auPlaySound(0x60);
                         func_8036F0DC_84288C(D_80230878_A4E538, 1);
-                        func_8036F0A0_842850(D_80230878_A4E538, 1);
+                        func_8036F0A0_842850(D_80230878_A4E538, true);
                         func_8036D1A4_840954(D_80230880_A4E540, 0);
                     } else {
                         auPlaySound(0x4A);
                         func_8036F0DC_84288C(D_80230878_A4E538, 0);
-                        func_8036F0A0_842850(D_80230878_A4E538, 0);
+                        func_8036F0A0_842850(D_80230878_A4E538, false);
                         func_8036D1A4_840954(D_80230880_A4E540, 1);
                     }
                 }
@@ -650,7 +650,7 @@ void func_801DE87C_9FC53C(void) {
     }
 
     func_8036F0DC_84288C(D_80230878_A4E538, 1);
-    func_8036F0A0_842850(D_80230878_A4E538, 1);
+    func_8036F0A0_842850(D_80230878_A4E538, true);
     func_8036D1A4_840954(D_80230880_A4E540, 0);
     sp4C->flags |= GOBJ_FLAG_HIDDEN;
     sp50->flags &= ~GOBJ_FLAG_HIDDEN;
@@ -721,11 +721,10 @@ void func_801DEE88_9FCB48(void) {
     }
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_7/9FAC10/func_801DF078_9FCD38.s")
 void func_801DF078_9FCD38(GObj* arg0) {
     s32 pad[2];
     s32 i;
-    s32 sp38;
+    UnkFireHerring* sp38;
     UnkSnowHerring* sp34;
     ucolor sp30;
     GObj* gobj;

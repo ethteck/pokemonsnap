@@ -41,7 +41,7 @@ extern SObj* D_80230C14_A27584;
 extern UnkSnowHerring* D_80230C1C_A2758C;
 extern Unk803A6C18* D_80230C20_A27590;
 extern s32 D_80230C24_A27594;
-extern s32 D_80230C28_A27598;
+extern UnkFireHerring* D_80230C28_A27598;
 extern UnkSnowHerring* D_80230C30_A275A0;
 extern UnkSnowHerring* D_80230C34_A275A4;
 extern UnkSnowHerring* D_80230C38_A275A8;
@@ -1493,7 +1493,7 @@ void func_801E1BEC_9D855C(void) {
     s32 i;
     s32 sp38;
     ucolor sp34;
-    s32 sp30;
+    UnkFireHerring* sp30;
     UnkSnowHerring* sp2C;
 
     auPlaySong(0, 0x1E);

@@ -100,7 +100,7 @@ typedef struct ObjPair {
 // BSS
 ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
-s32 D_802290D8_9D8B48;
+UnkFireHerring* D_802290D8_9D8B48;
 UnkSnowHerring* D_802290DC_9D8B4C;
 UnkSnowHerring* D_802290E0_9D8B50;
 UnkSnowHerring* D_802290E4_9D8B54;
@@ -404,16 +404,16 @@ UnkSnowHerring* func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
-void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
+void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
     s32 sp2C;
     s32 i;
     s32 sp24;
     s32 sp20;
     s32 sp1C;
-    s32 sp18;
+    s32 alpha;
 
     func_8036F684_842E34(arg0, 1);
-    func_8036F0A0_842850(arg0, 1);
+    func_8036F0A0_842850(arg0, true);
     for (i = 0; i <= D_801F3E38_9A38A8; i++) {
         if (arg1 != 0) {
             sp2C = i;
@@ -423,10 +423,10 @@ void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
         sp24 = (sp2C * -92) / D_801F3E38_9A38A8 + 148;
         sp20 = (sp2C * 92) / D_801F3E38_9A38A8 + 172;
         sp1C = (sp2C * -36) / D_801F3E38_9A38A8 + 201;
-        sp18 = (sp2C * 0xFF) / D_801F3E38_9A38A8;
+        alpha = (sp2C * 0xFF) / D_801F3E38_9A38A8;
         func_8036F1F4_8429A4(arg0, sp24, sp1C);
         func_8036F378_842B28(arg0, sp20 - sp24, 225 - sp1C);
-        func_8036F198_842948(arg0, sp18);
+        func_8036F198_842948(arg0, alpha);
         ohWait(1);
     }
 
@@ -436,15 +436,15 @@ void func_801DCCFC_98C76C(s32 arg0, s32 arg1) {
     }
 }
 
-void func_801DCF4C_98C9BC(s32 arg0) {
+void func_801DCF4C_98C9BC(UnkFireHerring* arg0) {
     func_8036F0DC_84288C(arg0, 1);
     func_801DCCFC_98C76C(arg0, 1);
     func_8036F198_842948(arg0, 0xFF);
-    func_8036F0A0_842850(arg0, 0);
+    func_8036F0A0_842850(arg0, false);
 }
 
-void func_801DCFA0_98CA10(s32 arg0) {
-    func_8036F0A0_842850(arg0, 1);
+void func_801DCFA0_98CA10(UnkFireHerring* arg0) {
+    func_8036F0A0_842850(arg0, true);
     func_801DCCFC_98C76C(arg0, 0);
     func_8036F0DC_84288C(arg0, 0);
 }
@@ -2327,7 +2327,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     s32 i;
     UNUSED s32 pad2;
     UnkSnowHerring* sp3C;
-    s32 sp38;
+    UnkFireHerring* sp38;
     ucolor sp34; // ?
     s32 sp30;
     char* levelName;

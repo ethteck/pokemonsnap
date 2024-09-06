@@ -74,7 +74,7 @@ extern SObj* D_80206B10_9CC330;
 extern SObj* D_80206B14_9CC334;
 extern SObj* D_80206B18_9CC338;
 extern UnkSnowHerring* D_80206B1C_9CC33C;
-extern s32 D_80206B20_9CC340;
+extern UnkFireHerring* D_80206B20_9CC340;
 extern SObj* D_80206B28_9CC348[];
 extern SObj* D_80206B30_9CC350;
 extern void* D_80206B40_9CC360;
@@ -94,7 +94,7 @@ extern u8 D_80206B90[];
 
 void func_800E1A60_8A7280(void);
 UnkSnowHerring* func_800E1B40_8A7360(void);
-s32 func_800E1B4C_8A736C(void);
+UnkFireHerring* func_800E1B4C_8A736C(void);
 void func_800E1BF4_8A7414(u32 intensity);
 void func_800E1C18_8A7438(s32);
 void func_800E1CA0_8A74C0(s32);

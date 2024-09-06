@@ -737,7 +737,7 @@ void func_camera_check_801DEA5C(GObj* arg0) {
 // TODO unused? arg type may be wrong, requiring the weird temp
 void func_camera_check_801DEAC0(s32 arg0) {
     UnkSnowHerring* sp34;
-    s32 sp30;
+    UnkFireHerring* sp30;
     ucolor sp2C;
     s32* weird;
 
@@ -908,7 +908,7 @@ void func_camera_check_801DF0D4(UnkSnowHerring* arg0, UnkSnowHerring* arg1, s32 
 void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];
     UnkSnowHerring* sp6C;
-    s32 sp68;
+    UnkFireHerring* sp68;
     ucolor sp64;
     char pad2[0x8];
     UnkSnowHerring* temp_s0;

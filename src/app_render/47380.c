@@ -240,7 +240,6 @@ extern s32 D_800BDF20[3];
 extern ucolor D_800BDF2C;
 extern GObj* D_800BDF30[];
 extern s32 D_800BDF60;
-extern s32 D_800BDF68[];
 
 extern Texture** D_800E8EB8;
 extern UnkEC64Arg3 D_800E9138;
@@ -689,11 +688,11 @@ void func_8009C604(UnkThing* arg0) {
     ptr = sp60[count - i - 1].unk_00; // TODO fake match
 
     if (count > 32) {
-        qsort(sp60, count, sizeof(Unk8009C604), func_8009C5C4);
+        qsort2(sp60, count, sizeof(Unk8009C604), func_8009C5C4);
         count = 32;
     }
 
-    qsort(sp60, count, sizeof(Unk8009C604), func_8009C584);
+    qsort2(sp60, count, sizeof(Unk8009C604), func_8009C584);
     for (i = 0; i < count; i++) {
         ptr = sp60[count - i - 1].unk_00;
         arg0->main.unk_1A0[i].unk_00 = ptr->unk_0A;

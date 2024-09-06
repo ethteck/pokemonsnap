@@ -1,12 +1,14 @@
 #include "common.h"
 #include "unk_end_level.h"
 #include "string.h"
+#include "ultralib/src/libc/xstdio.h"
 
 extern s32 D_803A66A0_879E50[];
 extern s32 D_803A66BC_879E6C;
 extern s32 D_803A66C0_879E70; // song id
 extern s32 D_803A66C4_879E74;
 extern GObj* D_803A66C8_879E78;
+extern char D_803A7010_87A7C0[];
 
 s32 func_80374F30_8486E0(UnkSnowHerring* arg0, bool arg1) {
     s32 sp1C;
@@ -42,13 +44,43 @@ s32 func_80374F30_8486E0(UnkSnowHerring* arg0, bool arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/8486E0/func_8037501C_8487CC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/8486E0/func_803750CC_84887C.s")
+// string comparator used for pokemon names
+s32 func_803750CC_84887C(char* arg0, char* arg1) {
+    s32 diff;
 
-s32 func_80375128_8488D8(void* dest, void* src, s32 len) {
-    return (uintptr_t) memcpy(dest, src, len) + len;
+    if (arg0 == NULL || arg1 == NULL) {
+        return 0;
+    }
+
+    while (true) {
+        diff = *arg0 - *arg1;
+        if (diff != 0) {
+            return diff;
+        }
+
+        // If strings haven't ended (null terminator), increment to next char and loop
+        if (*arg0 != 0 && *arg1 != 0) {
+            arg0++;
+            arg1++;
+        } else {
+            return 0;
+        }
+    }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/8486E0/func_8037514C_8488FC.s")
+char* func_80375128_8488D8(char* dest, const char* src, size_t len) {
+    return (char*) memcpy(dest, src, len) + len;
+}
+
+s32 func_8037514C_8488FC(char* str, const char* fmt, va_list args) {
+    s32 len;
+
+    len = _Printf(func_80375128_8488D8, str, fmt, args);
+    if (len >= 0) {
+        str[len] = 0;
+    }
+    return len;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/8486E0/func_8037519C_84894C.s")
 

@@ -170,47 +170,47 @@ char* func_801DD12C_9A737C(Unk803A6C18* arg0, u32 arg1) {
             D_80208B88_9D2DD8 = 0;
             return "スペシャル"; // special
         case 1:
-            return func_8037501C_8487CC("%5d", arg0->unk_3B4);
+            return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_14);
         case 2:
             return "おおきさ"; // size
         case 3:
-            if (arg0->unk_3AC != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3AC);
+            if (arg0->unk_3A0.unk_0C != 0) {
+                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_0C);
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 4:
             return "まるみえ"; // "full view" (view?)
         case 5:
-            if (arg0->unk_3AE != 0) {
-                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->unk_3AE / 10000));
+            if (arg0->unk_3A0.unk_0E != 0) {
+                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->unk_3A0.unk_0E / 10000));
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 6:
             return "コメント"; // comment
         case 7:
-            if (arg0->unk_3A8 != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A8);
+            if (arg0->unk_3A0.unk_08 != 0) {
+                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_08);
             } else {
                 return "　　　なし";
             }
         case 8:
-            if (arg0->unk_3A8 != 0) {
+            if (arg0->unk_3A0.unk_08 != 0) {
                 return "ポーズ";
             } else {
                 return "むき";
             }
         case 9:
-            if (arg0->unk_3B0 != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3B0);
+            if (arg0->unk_3A0.unk_10 != 0) {
+                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_10);
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 10:
             return "センサー"; // sensor
         case 11:
-            if (arg0->unk_3A7 != 0) {
+            if (arg0->unk_3A0.unk_07 != 0) {
                 return "　　　あり";
             } else {
 
@@ -222,13 +222,13 @@ char* func_801DD12C_9A737C(Unk803A6C18* arg0, u32 arg1) {
             if (D_80208B88_9D2DD8 != 0) {
                 return "−−−−−";
             } else {
-                return func_8037501C_8487CC("%3d", arg0->unk_3A6);
+                return func_8037501C_8487CC("%3d", arg0->unk_3A0.unk_06);
             }
         case 14:
             if (D_80208B88_9D2DD8 != 0) {
                 return "−−−−−";
             } else {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A4);
+                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_04);
             }
     }
 }
@@ -473,7 +473,7 @@ void* func_801DE0C8_9A8318(void) {
     SObj* sobj;
     UNUSED s32 pad[2];
 
-    gobj = func_80371C68_845418(0, 6, &D_80200058_9CA2A8);
+    gobj = func_80371C68_845418(NULL, 6, &D_80200058_9CA2A8);
     D_80250108_A1A358 = gobj;
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
@@ -546,7 +546,7 @@ GObj* func_801DE3DC_9A862C(void) {
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 3; j++) {
-            gobj = func_80371C68_845418(0, 6, &D_801F3108_9BD358);
+            gobj = func_80371C68_845418(NULL, 6, &D_801F3108_9BD358);
             sobj = gobj->data.sobj;
             D_80250080_A1A2D0[(i * 3) + j] = sobj;
             sobj->sprite.x = (j * 66) + 102;
@@ -564,7 +564,7 @@ GObj* func_801DE3DC_9A862C(void) {
         }
     }
 
-    gobj = func_80371C68_845418(0, 6, &D_801F3108_9BD358);
+    gobj = func_80371C68_845418(NULL, 6, &D_801F3108_9BD358);
     sobj = gobj->data.sobj;
     D_80250080_A1A2D0[6] = sobj;
     sobj->sprite.x = 125;
@@ -614,7 +614,7 @@ void* func_801DE768_9A89B8(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(0, 6, &D_801F6B50_9C0DA0);
+    gobj = func_80371C68_845418(NULL, 6, &D_801F6B50_9C0DA0);
     sobj = gobj->data.sobj;
 
     sobj->sprite.x = 101;
@@ -637,7 +637,7 @@ GObj* func_801DE830_9A8A80(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(0, 6, &D_801FFC80_9C9ED0);
+    gobj = func_80371C68_845418(NULL, 6, &D_801FFC80_9C9ED0);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 115;
     sobj->sprite.y = 196;
@@ -727,7 +727,7 @@ void* func_801DECE8_9A8F38(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(0, 6, &D_801FB1D0_9C5420);
+    gobj = func_80371C68_845418(NULL, 6, &D_801FB1D0_9C5420);
     sobj = gobj->data.sobj;
 
     sobj->sprite.x = 308;
@@ -886,7 +886,7 @@ void func_801DF428_9A9678(s32 arg0, s32 arg1) {
         func_8037519C_84894C(D_80250008_A1A258[3], "%s", sp28);
         func_8036B9EC_83F19C(D_80250008_A1A258[4], 0, 0);
         func_8036C898_840048(D_80250008_A1A258[4], "Focus");
-        sprintf(sp28, "%s", (sp4C->unk_3AA > 0 && sp4C->unk_3AA <= POKEDEX_MAX) ? getPokemonName(sp4C->unk_3AA) : "−−−−−");
+        sprintf(sp28, "%s", (sp4C->unk_3A0.unk_0A > 0 && sp4C->unk_3A0.unk_0A <= POKEDEX_MAX) ? getPokemonName(sp4C->unk_3A0.unk_0A) : "−−−−−");
         func_8036B9EC_83F19C(D_80250008_A1A258[5], 60 - func_8036D4F0_840CA0(sp28), 0);
         func_8037519C_84894C(D_80250008_A1A258[5], "%s", sp28);
     } else {
@@ -937,7 +937,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             ohWait(1);
             break;
         case 1:
-            if (D_802500B8_A1A308->unk_3AA > 0) {
+            if (D_802500B8_A1A308->unk_3A0.unk_0A > 0) {
                 D_8024EFE0_A19230 ^= 1;
                 func_801DF428_9A9678(D_8024EFE0_A19230, arg1);
             }
@@ -1419,7 +1419,7 @@ void* func_801E10D0_9AB320(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(0, 6, &D_801FFA10_9C9C60);
+    gobj = func_80371C68_845418(NULL, 6, &D_801FFA10_9C9C60);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
     sobj->sprite.y = 53;
@@ -1472,7 +1472,7 @@ void func_801E1320_9AB570(s32 arg0) {
     SObj* sobj;
     s32 i;
 
-    gobj = func_80371C68_845418(0, 6, &D_80200058_9CA2A8);
+    gobj = func_80371C68_845418(NULL, 6, &D_80200058_9CA2A8);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
     sobj->sprite.y = 53;

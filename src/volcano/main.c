@@ -163,22 +163,22 @@ ScreenSettings volcano_ScreenSettings = {
 
 SceneSetup volcano_SceneSetup = {
     {
-        0,                /* unk_00*/
-        omUpdateAll,      /* fnUpdate */
-        omDrawAll,        /* fnDraw */
+        0,                       /* unk_00*/
+        omUpdateAll,             /* fnUpdate */
+        omDrawAll,               /* fnDraw */
         volcano_assets_VRAM_END, /* heapBase */
-        0,                /* heapSize */
-        1,                /* unk_14 */
-        2,                /* numContexts */
-        0x5000,           /* dlBufferSize0 */
-        0x1400,           /* dlBufferSize1 */
-        0x0400,           /* dlBufferSize2 */
-        0x0000,           /* dlBufferSize3 */
-        0xC800,           /* gfxHeapSize */
-        2,                /* unk30 */
-        0x4000,           /* rdpOutputBufferSize */
-        func_800A1A50,    /* fnPreRender */
-        contUpdate        /* fnUpdateInput */
+        0,                       /* heapSize */
+        1,                       /* unk_14 */
+        2,                       /* numContexts */
+        0x5000,                  /* dlBufferSize0 */
+        0x1400,                  /* dlBufferSize1 */
+        0x0400,                  /* dlBufferSize2 */
+        0x0000,                  /* dlBufferSize3 */
+        0xC800,                  /* gfxHeapSize */
+        2,                       /* unk30 */
+        0x4000,                  /* rdpOutputBufferSize */
+        func_800A1A50,           /* fnPreRender */
+        contUpdate               /* fnUpdateInput */
     },
     0,                            /* numOMThreads */
     1024,                         /* omThreadStackSize */

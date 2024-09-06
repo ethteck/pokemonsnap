@@ -625,37 +625,37 @@ s32 func_camera_check_801E3870(const void* arg0, const void* arg1) {
 void func_camera_check_801E3910(s32 arg0) {
     switch (arg0) {
         case 0:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3620);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3620);
             if (D_camera_check_802089F4 != func_camera_check_801E3620) {
                 D_camera_check_802089F4 = func_camera_check_801E3620;
             }
             break;
         case 1:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3658);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3658);
             if (D_camera_check_802089F4 != func_camera_check_801E3658) {
                 D_camera_check_802089F4 = func_camera_check_801E3658;
             }
             break;
         case 2:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E36DC);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E36DC);
             if (D_camera_check_802089F4 != func_camera_check_801E36DC) {
                 D_camera_check_802089F4 = func_camera_check_801E36DC;
             }
             break;
         case 4:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3758);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3758);
             if (D_camera_check_802089F4 != func_camera_check_801E3758) {
                 D_camera_check_802089F4 = func_camera_check_801E3758;
             }
             break;
         case 5:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E37E4);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E37E4);
             if (D_camera_check_802089F4 != func_camera_check_801E37E4) {
                 D_camera_check_802089F4 = func_camera_check_801E37E4;
             }
             break;
         case 6:
-            qsort(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3870);
+            qsort2(D_camera_check_80249B30, func_8009BC68(), sizeof(UnkIndigoHalibut), func_camera_check_801E3870);
             if (D_camera_check_802089F4 != func_camera_check_801E37E4) {
                 D_camera_check_802089F4 = func_camera_check_801E37E4;
             }
@@ -752,7 +752,7 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
 
     temp_v0 = func_8037452C_847CDC(arg0);
     arg1->unk_00 = arg0;
-    if (temp_v0->unk_3AA == 0) {
+    if (temp_v0->unk_3A0.unk_0A == 0) {
         arg1->unk_04 = NULL;
         arg1->unk_08 = 9999;
         arg1->unk_18_0x80000000 = false;
@@ -765,17 +765,17 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
         arg1->unk_14 = 0;
         arg1->unk_16 = 0;
     } else {
-        arg1->unk_04 = temp_v0->unk_3A0;
-        arg1->unk_08 = temp_v0->unk_3AA;
+        arg1->unk_04 = temp_v0->unk_3A0.unk_00;
+        arg1->unk_08 = temp_v0->unk_3A0.unk_0A;
         arg1->unk_18_0x80000000 = func_camera_check_801E30CC(arg1->unk_08);
         arg1->unk_18_0x04000000 = false;
-        arg1->unk_0A = temp_v0->unk_3B4;
-        arg1->unk_0C = temp_v0->unk_3A7;
-        arg1->unk_0E = temp_v0->unk_3B0;
-        arg1->unk_10 = temp_v0->unk_3AE;
-        arg1->unk_12 = temp_v0->unk_3AC;
-        arg1->unk_14 = temp_v0->unk_3B2;
-        arg1->unk_16 = temp_v0->unk_3A4;
+        arg1->unk_0A = temp_v0->unk_3A0.unk_14;
+        arg1->unk_0C = temp_v0->unk_3A0.unk_07;
+        arg1->unk_0E = temp_v0->unk_3A0.unk_10;
+        arg1->unk_10 = temp_v0->unk_3A0.unk_0E;
+        arg1->unk_12 = temp_v0->unk_3A0.unk_0C;
+        arg1->unk_14 = temp_v0->unk_3A0.unk_12;
+        arg1->unk_16 = temp_v0->unk_3A0.unk_04;
         D_camera_check_8024A1D4 += (s32) arg1->unk_04;
         func_camera_check_801E23A8(arg1->unk_08, 1);
     }

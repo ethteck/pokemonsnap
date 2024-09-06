@@ -2272,9 +2272,10 @@ segments:
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
+    - [0x848B80, c]
 
     - [0x848BC0, bin] # , data]
-    - [0x879E80, data, 848B50]
+    - [0x879E80, data, 848B80]
 
     - [0x879F20, .rodata, 840A50]
     - [0x879FF0, .rodata, 843790]

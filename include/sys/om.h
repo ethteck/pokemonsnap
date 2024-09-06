@@ -492,7 +492,7 @@ typedef struct SObj {
     /* 0x10 */ Sprite sprite;
     /* 0x54 */ s32 unk_54;
     /* 0x58 */ struct SObj* unk_58;
-    /* 0x5C */ UNK_PTR unk_5C;
+    /* 0x5C */ struct SObj* unk_5C;
 } SObj; // size >= 0x5C
 
 typedef struct OMCamera {
@@ -550,10 +550,9 @@ typedef struct {
     /* 0x68 */ s32 cameraSize;
 } OMSetup; // size == 0x6C
 
+SObj* omGetSObj(void);
 GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32 pri);
 void omDeleteGObj(GObj* obj);
-void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 arg3, s32 arg4);
-OMCamera* omGObjSetCamera(GObj* obj);
 DObj* omGObjAddDObj(GObj* obj, void* arg1);
 void omEndProcess(GObjProcess* proc);
 GObj* omAddGObj(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority);
@@ -561,6 +560,7 @@ OMMtx* omDObjAppendMtx(DObj* dobj, u8 kind, u8 arg2);
 OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2);
 void omDObjRemoveAllMObj(DObj* dobj);
 SObj* omGObjAddSprite(GObj* obj, Sprite* sprite);
+OMCamera* omGObjSetCamera(GObj* obj);
 void omLinkGObjDL(GObj* obj, void (*arg1)(GObj*), u8 dlLink, u32 dlPriority, s32 cameraTag);
 void omLinkGObjDLCamera(GObj* obj, void (*renderFunc)(GObj*), u32 dlPriority, s32 dlLinkBitMask, s32 cameraTag);
 void omGObjRemoveSprite(SObj* obj);

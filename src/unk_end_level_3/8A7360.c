@@ -9,10 +9,13 @@ s32 D_801957E8_95B008 = 0;
 
 s32 D_801957EC_95B00C = 0;
 
+extern Bitmap* D_80195810_95B030[];
+extern Bitmap* D_80195828_95B048[];
 extern s32 D_80195850_95B070;
 extern s32 D_80195854_95B074;
 extern s32 D_80195858_95B078;
 extern s32 D_8019585C_95B07C;
+extern s32 D_80195860_95B080[4];
 extern s32 D_80195870_95B090;
 extern s32 D_80195874_95B094[5];
 
@@ -188,15 +191,9 @@ void func_800E1FEC_8A780C(s32 stage) {
     }
 }
 
-#if 1
+#ifndef NON_MATCHING
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level_3/8A7360/func_800E2058_8A7878.s")
 #else
-extern Bitmap* D_80195810_95B030[];
-extern Bitmap* D_80195828_95B048[];
-extern u32 D_80195854_95B074;
-extern s32 D_8019585C_95B07C;
-extern s32 D_80195860_95B080[4];
-
 void func_800E2058_8A7878(GObj* gobj) {
     s32 var_s4;
     u32 var_s6;
@@ -210,7 +207,7 @@ void func_800E2058_8A7878(GObj* gobj) {
             gobj->data.sobj->unk_58->next->sprite.bitmap = D_80195810_95B030[D_80195850_95B070];
             gobj->data.sobj->unk_58->sprite.bitmap = D_80195828_95B048[D_80195850_95B070];
         } else {
-            if (D_80195854_95B074 > 0) {
+            if (D_80195854_95B074 != 0) {
                 D_80195854_95B074--;
                 if (D_80195854_95B074 == 0) {
                     var_s4 = 0;
@@ -220,9 +217,10 @@ void func_800E2058_8A7878(GObj* gobj) {
                 } else {
                     var_s6++;
                     var_s6 %= ARRAY_COUNT(D_80195860_95B080);
-                    var_s4 = D_80195860_95B080[var_s6];
                     var_s5 = 7;
+                    var_s4 = D_80195860_95B080[var_s6];
                 }
+
                 gobj->data.sobj->unk_58->next->sprite.bitmap = D_80195810_95B030[(var_s4 * 2) + D_80195850_95B070];
             }
 
@@ -412,7 +410,7 @@ void func_800E2848_8A8068(void) {
     sobj->sprite.x = 40;
     sobj->sprite.y = 50;
 
-    sobj = func_80371C68_845418(&func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68)->data.sobj;
+    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68)->data.sobj;
     D_80206B18_9CC338 = sobj;
     sobj->sprite.x = 208;
     sobj->sprite.y = 13;

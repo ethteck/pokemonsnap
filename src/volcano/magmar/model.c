@@ -1,66 +1,66 @@
 #include <common.h>
 
-extern u8 magmar_tex0_pal[];
-extern u8 magmar_tex0_png[];
-extern u8 magmar_tex1_pal[];
-extern u8 magmar_tex1_var0_png[];
-extern u8 magmar_tex1_var1_png[];
-extern u8 magmar_tex1_var2_png[];
-extern u8 magmar_tex1_var3_png[];
-extern u8 magmar_tex2_pal[];
-extern u8 magmar_tex2_png[];
-extern u8 magmar_tex3_pal[];
-extern u8 magmar_tex3_png[];
-extern u8 magmar_tex4_pal[];
-extern u8 magmar_tex4_png[];
-extern u8 magmar_tex5_pal[];
-extern u8 magmar_tex5_png[];
-extern u8 magmar_tex6_pal[];
-extern u8 magmar_tex6_png[];
-extern u8 magmar_tex7_pal[];
-extern u8 magmar_tex7_png[];
-extern u8 magmar_tex12_var0_png[];
-extern u8 magmar_tex12_var1_png[];
-extern u8 magmar_tex12_var2_png[];
-extern u8 magmar_tex12_var3_png[];
+extern u8 magmar_tex_skin1_pal[];
+extern u8 magmar_tex_skin1_png[];
+extern u8 magmar_tex_eye_frame0_pal[];
+extern u8 magmar_tex_eye_frame0_png[];
+extern u8 magmar_tex_eye_frame1_png[];
+extern u8 magmar_tex_eye_frame2_png[];
+extern u8 magmar_tex_eye_frame3_png[];
+extern u8 magmar_tex_shackles_pal[];
+extern u8 magmar_tex_shackles_png[];
+extern u8 magmar_tex_beak_pal[];
+extern u8 magmar_tex_beak_png[];
+extern u8 magmar_tex_mouth_pal[];
+extern u8 magmar_tex_mouth_png[];
+extern u8 magmar_tex_claw_pal[];
+extern u8 magmar_tex_claw_png[];
+extern u8 magmar_tex_arm1_pal[];
+extern u8 magmar_tex_arm1_png[];
+extern u8 magmar_tex_skin2_pal[];
+extern u8 magmar_tex_skin2_png[];
+extern u8 magmar_tex_flame_frame0_png[];
+extern u8 magmar_tex_flame_frame1_png[];
+extern u8 magmar_tex_flame_frame2_png[];
+extern u8 magmar_tex_flame_frame3_png[];
 
 extern Texture* magmar_part3_mat[];
 extern Texture* magmar_part5_mat[];
 extern Gfx magmar_part0_draw[];
 
 __ALIGNER
-u8 magmar_tex8_png[] = {
-#include "assets/volcano/magmar/tex8.png.bin.c"
+u8 magmar_tex_foot_png[] = {
+#include "assets/volcano/magmar/tex_foot.png.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex9_pal[] = {
-#include "assets/volcano/magmar/tex9.pal.bin.c"
+u8 magmar_tex_arm2_pal[] = {
+#include "assets/volcano/magmar/tex_arm2.pal.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex9_png[] = {
-#include "assets/volcano/magmar/tex9.png.bin.c"
+u8 magmar_tex_arm2_png[] = {
+#include "assets/volcano/magmar/tex_arm2.png.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex10_pal[] = {
-#include "assets/volcano/magmar/tex10.pal.bin.c"
+u8 magmar_tex_arm3_pal[] = {
+#include "assets/volcano/magmar/tex_arm3.pal.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex10_png[] = {
-#include "assets/volcano/magmar/tex10.png.bin.c"
+u8 magmar_tex_arm3_png[] = {
+#include "assets/volcano/magmar/tex_arm3.png.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex11_pal[] = {
-#include "assets/volcano/magmar/tex11.pal.bin.c"
+u8 magmar_tex_hand_claw_pal[] = {
+#include "assets/volcano/magmar/tex_hand_claw.pal.bin.c"
 };
 
 __ALIGNER
-u8 magmar_tex11_png[] = {
-#include "assets/volcano/magmar/tex11.png.bin.c"
+u8 magmar_tex_hand_claw_png[] = {
+#include "assets/volcano/magmar/tex_hand_claw.png.bin.c"
 };
 
 Texture** magmar_materials[] = {
@@ -87,17 +87,17 @@ Texture** magmar_materials[] = {
 };
 
 u8* magmar_part3_mat0_images[] = {
-    magmar_tex12_var0_png,
-    magmar_tex12_var1_png,
-    magmar_tex12_var2_png,
-    magmar_tex12_var3_png,
+    magmar_tex_flame_frame0_png,
+    magmar_tex_flame_frame1_png,
+    magmar_tex_flame_frame2_png,
+    magmar_tex_flame_frame3_png,
 };
 
 u8* magmar_part5_mat0_images[] = {
-    magmar_tex1_var0_png,
-    magmar_tex1_var1_png,
-    magmar_tex1_var2_png,
-    magmar_tex1_var3_png,
+    magmar_tex_eye_frame0_png,
+    magmar_tex_eye_frame1_png,
+    magmar_tex_eye_frame2_png,
+    magmar_tex_eye_frame3_png,
 };
 
 Texture magmar_part3_mat0 = {

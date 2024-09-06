@@ -175,36 +175,6 @@ InteractionHandler D_802E1878_732A78[] = {
     { POKEMON_CMD_58, NULL, NULL, NULL },
 };
 
-InteractionHandler D_802E18C8_732AC8[] = {
-    { POKEMON_CMD_9, func_802D893C_729B3C, 0, NULL },
-    { POKEMON_CMD_13, func_802D893C_729B3C, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
-};
-
-PokemonAnimationSetup D_802E18F8_732AF8 = {
-    &D_802E1540_732740,
-    func_802D7F60_729160,
-    0,
-    { 0, 0, 0 },
-    NULL,
-    NULL
-};
-
-PokemonInitData D_802E190C_732B0C = {
-    rapidash_model,
-    rapidash_materials,
-    renderPokemonModelTypeI,
-    &D_802E18F8_732AF8,
-    { 1.2, 1.2, 1.2 },
-    { 0, 140, 0 },
-    75,
-    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
-    0,
-    0,
-    0,
-    { 0, 0, 0 }
-};
-
 POKEMON_FUNC(func_802D7F60_729160)
     if (pokemon->behavior != 0) {
         Pokemon_SetState(obj, func_802D86E0_7298E0);
@@ -223,7 +193,7 @@ POKEMON_FUNC(func_802D7FA8_7291A8)
 POKEMON_FUNC(func_802D8018_729218)
     Pokemon_SetAnimation(obj, &D_802E1554_732754);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802D80BC_7292BC);    
+    Pokemon_StartPathProc(obj, func_802D80BC_7292BC);
     pokemon->transitionGraph = D_802E15B8_7327B8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
@@ -243,7 +213,7 @@ POKEMON_FUNC(func_802D80BC_7292BC)
 POKEMON_FUNC(func_802D8118_729318)
     Pokemon_SetAnimation(obj, &D_802E1568_732768);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802D81BC_7293BC);    
+    Pokemon_StartPathProc(obj, func_802D81BC_7293BC);
     pokemon->transitionGraph = D_802E15B8_7327B8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
@@ -416,7 +386,11 @@ POKEMON_FUNC(func_802D893C_729B3C)
 }
 
 POKEMON_FUNC(func_802D89B0_729BB0)
-    InteractionHandler saved[3] = D_802E18C8_732AC8;
+    InteractionHandler saved[3] = {
+        { POKEMON_CMD_9, func_802D893C_729B3C, 0, NULL },
+        { POKEMON_CMD_13, func_802D893C_729B3C, 0, NULL },
+        { POKEMON_CMD_58, NULL, 0, NULL },
+    };
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
@@ -425,6 +399,30 @@ POKEMON_FUNC(func_802D89B0_729BB0)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetState(obj, func_802D8868_729A68);
 }
+
+PokemonAnimationSetup D_802E18F8_732AF8 = {
+    &D_802E1540_732740,
+    func_802D7F60_729160,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_802E190C_732B0C = {
+    rapidash_model,
+    rapidash_materials,
+    renderPokemonModelTypeI,
+    &D_802E18F8_732AF8,
+    { 1.2, 1.2, 1.2 },
+    { 0, 140, 0 },
+    75,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 GObj* func_802D8A5C_729C5C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E190C_732B0C);

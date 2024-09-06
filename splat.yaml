@@ -578,10 +578,11 @@ segments:
     - [0x326C10, c]
     - [auto, c, growlitheSpawner/model]
     - [auto, c, growlitheSpawner/materials]
-    - [auto, c, growlitheSpawner/images]
     - [auto, c, koffingSmoke/model]
     - [auto, c, koffingSmoke/materials]
     - [auto, c, koffingSmoke/images]
+    - [auto, c, growlitheSpawner/images]    
+    - [auto, c, magmar/images]
     - [auto, c, growlithe/images]
     - [auto, c, charmander/images]
     - [auto, c, charmeleon/images]
@@ -665,6 +666,64 @@ segments:
       - [0x34C468]
       - { start: 0x34C470, type: ci4, name: lava_frame4, flip_y: true, width: 64, height: 64 }
     - [0x34CC70, bin]
+    - start: 0x354760
+      type: .data
+      dir: magmar
+      name: magmar/images
+      subsegments:
+      - [0x354760]
+      - [0x354768, palette, tex_skin1]
+      - [0x354788]
+      - { start: 0x354790, type: ci4, name: tex_skin1, flip_y: true, width: 64, height: 32 }
+      - [0x354B90]
+      - [0x354B98, palette, tex_eye_frame0]
+      - [0x354D98]
+      - { start: 0x354DA0, type: ci8, name: tex_eye_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x3555A0]
+      - [0x3555A8, palette, tex_eye_frame1]
+      - [0x3557A8]
+      - { start: 0x3557B0, type: ci8, name: tex_eye_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x355FB0]
+      - [0x355FB8, palette, tex_eye_frame2]
+      - [0x3561B8]
+      - { start: 0x3561C0, type: ci8, name: tex_eye_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x3569C0]
+      - [0x3569C8, palette, tex_eye_frame3]
+      - [0x356BC8]
+      - { start: 0x356BD0, type: ci8, name: tex_eye_frame3, flip_y: true, width: 64, height: 32 }
+      - [0x3573D0]
+      - { start: 0x3573D8, type: ia16, name: tex_flame_frame0, flip_y: true, width: 16, height: 32 }
+      - [0x3577D8]
+      - { start: 0x3577E0, type: ia16, name: tex_flame_frame1, flip_y: true, width: 16, height: 32 }
+      - [0x357BE0]
+      - { start: 0x357BE8, type: ia16, name: tex_flame_frame2, flip_y: true, width: 16, height: 32 }
+      - [0x357FE8]
+      - { start: 0x357FF0, type: ia16, name: tex_flame_frame3, flip_y: true, width: 16, height: 32 }
+      - [0x3583F0]
+      - [0x3583F8, palette, tex_shackles]
+      - [0x358418]
+      - { start: 0x358420, type: ci4, name: tex_shackles, flip_y: true, width: 16, height: 8 }
+      - [0x358460]
+      - [0x358468, palette, tex_beak]
+      - [0x358668]
+      - { start: 0x358670, type: ci8, name: tex_beak, flip_y: true, width: 16, height: 32 }
+      - [0x358870]
+      - [0x358878, palette, tex_mouth]
+      - [0x358A78]
+      - { start: 0x358A80, type: ci8, name: tex_mouth, flip_y: true, width: 8, height: 32 }
+      - [0x358B80]
+      - [0x358B88, palette, tex_claw]
+      - [0x358BA8]
+      - { start: 0x358BB0, type: ci4, name: tex_claw, flip_y: true, width: 16, height: 16 }
+      - [0x358C30]
+      - [0x358C38, palette, tex_arm1]
+      - [0x358E38]
+      - { start: 0x358E40, type: ci8, name: tex_arm1, flip_y: true, width: 32, height: 32 }
+      - [0x359240]
+      - [0x359248, palette, tex_skin2]
+      - [0x359448]
+      - { start: 0x359450, type: ci8, name: tex_skin2, flip_y: true, width: 64, height: 32 }
+    - [0x359C50, bin]
     - start: 0x388870
       type: .data
       dir: growlithe
@@ -1398,19 +1457,19 @@ segments:
       name: magmar/model
       dir: magmar
       subsegments:
-      - [0x76E6E8, rgba16, tex8, 16, 8]
+      - { start: 0x76E6E8, type: rgba16, name: tex_foot, flip_y: true, width: 16, height: 8 }
       - [0x76E7E8]
-      - [0x76E7F0, palette, tex9]
+      - [0x76E7F0, palette, tex_arm2]
       - [0x76E9F0]
-      - [0x76E9F8, ci8, tex9, 64, 32]
+      - { start: 0x76E9F8, type: ci8, name: tex_arm2, flip_y: true, width: 64, height: 32 }
       - [0x76F1F8]
-      - [0x76F200, palette, tex10]
+      - [0x76F200, palette, tex_arm3]
       - [0x76F400]
-      - [0x76F408, ci8, tex10, 64, 32]
+      - { start: 0x76F408, type: ci8, name: tex_arm3, flip_y: true, width: 64, height: 32 }
       - [0x76FC08]
-      - [0x76FC10, palette, tex11]
+      - [0x76FC10, palette, tex_hand_claw]
       - [0x76FC30]
-      - [0x76FC38, ci4, tex11, 64, 64]
+      - { start: 0x76FC38, type: ci4, name: tex_hand_claw, flip_y: true, width: 64, height: 64 }
       - [0x770438]
       - [0x7705A8, vtx, model]
       - [0x7720E8, gfx, first]

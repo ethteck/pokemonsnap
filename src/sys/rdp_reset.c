@@ -72,7 +72,7 @@ void rdpReset(Gfx** pGfxPos) {
     s32 x = 0;
     s32 y = 0;
     gSPSegment(gfxPos++, 0x00, 0x00000000);
-    gtl_set_segment_F(&gfxPos);
+    gtlSetSegmentF(&gfxPos);
     gDPSetDepthImage(gfxPos++, viZBuffer);
     func_80007CBC(&sViewport);
     gSPDisplayList(gfxPos++, srdpReset);

@@ -1831,6 +1831,20 @@ void hal_rotate_rpy_translate_deg(Mtx* m, f32 dx, f32 dy, f32 dz, f32 r, f32 p, 
     hal_mtx_f2l_fixed_w(mf, m);
 }
 
+void func_8001EA90(Mtx4f m,
+                   f32 x, f32 y, f32 z,
+                   f32 rotX, f32 rotY, f32 rotZ,
+                   f32 renScaleX, f32 renScaleY, f32 renScaleZ,
+                   f32 scaleX, f32 scaleY, f32 scaleZ);
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/func_8001EA90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/func_8001ECD0.s")
+void func_8001ECD0(Mtx* m,
+                   f32 x, f32 y, f32 z,
+                   f32 rotX, f32 rotY, f32 rotZ,
+                   f32 renScaleX, f32 renScaleY, f32 renScaleZ,
+                   f32 scaleX, f32 scaleY, f32 scaleZ) {
+    Mtx4f sp40;
+
+    func_8001EA90(sp40, x, y, z, rotX, rotY, rotZ, renScaleX, renScaleY, renScaleZ, scaleX, scaleY, scaleZ);
+    hal_mtx_f2l_fixed_w(sp40, m);
+}

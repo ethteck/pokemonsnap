@@ -522,7 +522,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     func_8036F684_842E34(temp_v0, 1);
     func_8036F738_842EE8(temp_v0, &sp44);
     func_8036F1F4_8429A4(temp_v0, 0xB8, 0x140);
-    func_8036F0DC_84288C(temp_v0, 0);
+    func_8036F0DC_84288C(temp_v0, false);
     sp4C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
     D_80206B1C_9CC33C = sp4C;
     func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);

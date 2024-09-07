@@ -167,7 +167,7 @@ void func_800E1A0C_A5CDBC(void) {
     func_8036F684_842E34(unk, 1);
     func_8036F738_842EE8(unk, &sp28);
     func_8036F1F4_8429A4(unk, 184, 320);
-    func_8036F0DC_84288C(unk, 1);
+    func_8036F0DC_84288C(unk, true);
     func_8036F0A0_842850(unk, false);
     func_8036FE54_843604(unk, 1);
 

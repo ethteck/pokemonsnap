@@ -2,6 +2,7 @@
 
 extern s32 D_8037EAA0_852250;
 extern s32 D_8037EAAC_85225C[];
+extern ucolor D_8037EAC0_852270;
 extern s32 D_8037EAC4_852274;
 extern s32 D_8037EAC8_852278;
 extern s32 D_8037EAE0_852290;
@@ -56,7 +57,12 @@ s32 func_8036D774_840F24(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/840A50/func_8036D77C_840F2C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/840A50/func_8036DC4C_8413FC.s")
+void func_8036DC4C_8413FC(s32 r, s32 g, s32 b, s32 a) {
+    D_8037EAC0_852270.r = r;
+    D_8037EAC0_852270.g = g;
+    D_8037EAC0_852270.b = b;
+    D_8037EAC0_852270.a = a;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/840A50/func_8036DC68_841418.s")
 

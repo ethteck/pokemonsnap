@@ -14,7 +14,17 @@ void func_8036F0A0_842850(UnkFireHerring* arg0, bool show) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/unk_end_level/842850/func_8036F0DC_84288C.s")
+void func_8036F0DC_84288C(UnkFireHerring* arg0, bool show) {
+    s32 i;
+
+    for (i = 0; i < ARRAY_COUNT(arg0->unk_00); i++) {
+        if (show) {
+            arg0->unk_00[i]->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        } else {
+            arg0->unk_00[i]->data.sobj->sprite.attr |= SP_HIDDEN;
+        }
+    }
+}
 
 void func_8036F198_842948(UnkFireHerring* arg0, s32 alpha) {
     s32 i;

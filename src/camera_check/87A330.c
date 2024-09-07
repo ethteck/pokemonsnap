@@ -933,7 +933,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_8036F684_842E34(sp68, 0);
     func_8036F738_842EE8(sp68, &sp64);
     func_8036F1F4_8429A4(sp68, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp68, 0);
+    func_8036F0DC_84288C(sp68, false);
 
     sp6C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);

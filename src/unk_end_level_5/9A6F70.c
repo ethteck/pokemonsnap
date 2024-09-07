@@ -1440,7 +1440,7 @@ void func_801E1168_9AB3B8(s32 arg0) {
         sp34 = func_8036F78C_842F3C();
         D_8025005C_A1A2AC = sp34;
         func_8036F1F4_8429A4(sp34, 0xB8, 0x140);
-        func_8036F0DC_84288C(sp34, 0);
+        func_8036F0DC_84288C(sp34, false);
         sp30 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
         D_80250000_A1A250 = sp30;
         func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);

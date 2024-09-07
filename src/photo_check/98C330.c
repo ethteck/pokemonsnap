@@ -437,7 +437,7 @@ void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
 }
 
 void func_801DCF4C_98C9BC(UnkFireHerring* arg0) {
-    func_8036F0DC_84288C(arg0, 1);
+    func_8036F0DC_84288C(arg0, true);
     func_801DCCFC_98C76C(arg0, 1);
     func_8036F198_842948(arg0, 0xFF);
     func_8036F0A0_842850(arg0, false);
@@ -446,7 +446,7 @@ void func_801DCF4C_98C9BC(UnkFireHerring* arg0) {
 void func_801DCFA0_98CA10(UnkFireHerring* arg0) {
     func_8036F0A0_842850(arg0, true);
     func_801DCCFC_98C76C(arg0, 0);
-    func_8036F0DC_84288C(arg0, 0);
+    func_8036F0DC_84288C(arg0, false);
 }
 
 void func_801DCFE8_98CA58(Photo* arg0) {
@@ -2371,7 +2371,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_8036F684_842E34(sp38, 1);
     func_8036F738_842EE8(sp38, &sp34);
     func_8036F1F4_8429A4(sp38, 0xB8, SCREEN_WIDTH);
-    func_8036F0DC_84288C(sp38, 0);
+    func_8036F0DC_84288C(sp38, false);
     sp3C = func_8036AC6C_83E41C(0x40, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);

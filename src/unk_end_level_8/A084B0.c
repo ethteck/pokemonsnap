@@ -85,7 +85,7 @@ void func_801DC8C0_A084B0(void) {
     D_801DD254_A08E44 = sp2C;
     func_8036F738_842EE8(sp2C, &sp24);
     func_8036F1F4_8429A4(sp2C, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp2C, 0);
+    func_8036F0DC_84288C(sp2C, false);
     sp28 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
@@ -147,11 +147,11 @@ void func_801DC9E8_A085D8(GObj* arg0) {
             if (sp3C->unk_18 & 0x2000) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, 1);
+                    func_8036F0DC_84288C(D_801DD254_A08E44, true);
                     func_8036F0A0_842850(D_801DD254_A08E44, true);
                     func_8036D1A4_840954(D_801DD258_A08E48, 0);
                 } else {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, 0);
+                    func_8036F0DC_84288C(D_801DD254_A08E44, false);
                     func_8036F0A0_842850(D_801DD254_A08E44, false);
                     func_8036D1A4_840954(D_801DD258_A08E48, 1);
                 }

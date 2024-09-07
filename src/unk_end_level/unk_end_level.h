@@ -96,7 +96,7 @@ void func_8036EE40_8425F0(void);
 void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
 void func_8036F0A0_842850(UnkFireHerring*, bool show);
-void func_8036F0DC_84288C(UnkFireHerring*, s32);
+void func_8036F0DC_84288C(UnkFireHerring*, bool show);
 void func_8036F198_842948(UnkFireHerring*, s32 alpha);
 void func_8036F1F4_8429A4(UnkFireHerring*, s32, s32);
 void func_8036F378_842B28(UnkFireHerring*, s32, s32);

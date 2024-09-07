@@ -2215,10 +2215,10 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
 void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode);
 #endif
 
-#ifdef NON_MATCHING
 void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width, s32 height, u16* zbuffer) {
-    s32 xmin, ymin, xmax, ymax;
     Gfx* gfxPos;
+    s32 xmin, ymin, xmax, ymax;
+    UNUSED s32 pad;
 
     gfxPos = *gfxPtr;
     gSPViewport(gfxPos++, &cam->vp);
@@ -2275,9 +2275,6 @@ void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 wid
 
     *gfxPtr = gfxPos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renInitCameraEx.s")
-#endif
 
 #ifdef NON_MATCHING
 void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {

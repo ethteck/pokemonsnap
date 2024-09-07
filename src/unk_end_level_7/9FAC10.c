@@ -605,12 +605,12 @@ void func_801DE87C_9FC53C(void) {
                     sp3C ^= 1;
                     if (sp3C != 0) {
                         auPlaySound(0x60);
-                        func_8036F0DC_84288C(D_80230878_A4E538, 1);
+                        func_8036F0DC_84288C(D_80230878_A4E538, true);
                         func_8036F0A0_842850(D_80230878_A4E538, true);
                         func_8036D1A4_840954(D_80230880_A4E540, 0);
                     } else {
                         auPlaySound(0x4A);
-                        func_8036F0DC_84288C(D_80230878_A4E538, 0);
+                        func_8036F0DC_84288C(D_80230878_A4E538, false);
                         func_8036F0A0_842850(D_80230878_A4E538, false);
                         func_8036D1A4_840954(D_80230880_A4E540, 1);
                     }
@@ -649,7 +649,7 @@ void func_801DE87C_9FC53C(void) {
         ohWait(1);
     }
 
-    func_8036F0DC_84288C(D_80230878_A4E538, 1);
+    func_8036F0DC_84288C(D_80230878_A4E538, true);
     func_8036F0A0_842850(D_80230878_A4E538, true);
     func_8036D1A4_840954(D_80230880_A4E540, 0);
     sp4C->flags |= GOBJ_FLAG_HIDDEN;
@@ -755,7 +755,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     D_80230878_A4E538 = sp38;
     func_8036F738_842EE8(sp38, &sp30);
     func_8036F1F4_8429A4(sp38, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp38, 0);
+    func_8036F0DC_84288C(sp38, false);
     sp34 = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp34, 0, 0xDA, 0x6C, 0, 0);

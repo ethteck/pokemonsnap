@@ -266,11 +266,9 @@ s32 func_800BF864_5C704(void) {
     return ret;
 }
 
-#ifdef NON_EQUIVALENT
 PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     s32 i;
     PhotoData* sp28;
-    s32 t;
 
     sp28 = NULL;
     for (i = PokemonID_BULBASAUR; i <= POKEDEX_MAX; i++) {
@@ -280,16 +278,12 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
             continue;
         }
 
-        t = func_8009BB4C(i);
-        sp28 = &D_800C21B0_5F050->data.unk_180[t];
+        sp28 = D_800C21B0_5F050->data.unk_180 + func_8009BB4C(i);
         break;
     }
 
     return sp28;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF8BC_5C75C.s")
-#endif
 
 void func_800BF954_5C7F4(s32 arg0, PhotoData* photoData, UnkFuzzyCaterpillar* arg2) {
     if (arg0 < 0 || arg0 >= 60) {

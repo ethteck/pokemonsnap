@@ -2082,8 +2082,11 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
 }
 
 #ifdef NON_MATCHING
-// stack diff
+//  stack diff
 void processOutOfFilm(GObj* arg0) {
+    UNUSED s32 pad;
+    UNUSED s32 pad2;
+    UNUSED s32 pad3;
     s32 var_s2;
     SObj* sobj1;
     s32 i;

@@ -61,7 +61,7 @@ extern s32     osFlashSectorErase(u32 page_num);
 extern s32     osFlashWriteBuffer(OSIoMesg *mb, s32 priority,
                 void *dramAddr, OSMesgQueue *mq);
 extern s32     osFlashWriteArray(u32 page_num);
-extern s32     osFlashReadArray(OSIoMesg *mb, s32 priority, u32 page_num,
+extern s32     osFlashReadArray(OSIoMesg *mb, s32 priority, s32 page_num,
                 void *dramAddr, u32 n_pages, OSMesgQueue *mq);
 extern void    osFlashChange(u32 flash_num);
 extern void    osFlashAllEraseThrough(void);

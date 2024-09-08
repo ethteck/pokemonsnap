@@ -60,9 +60,4 @@ s32 func_800C06A8_5D548(uintptr_t, s32 size);
 s32 func_800C09C0_5D860(uintptr_t, s32 size);
 s32 func_800C0AB4_5D954(uintptr_t, s32);
 UnkBigBoy* func_800C16EC_5E58C(void*, s32);
-void func_800C1A38_5E8D8(s32*, s32*);
-s32 func_800C1CD8_5EB78(s32);
-s32 func_800C1E04_5ECA4(s32*, s32, s32, OSMesgQueue*);
-s32 func_800C1ED0_5ED70(s32);
-void func_800C1FD4_5EE74(s32*, s32, s32, uintptr_t, s32, OSMesgQueue*);
 #endif

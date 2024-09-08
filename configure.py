@@ -298,7 +298,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
             c_path = entry.src_paths[0]
 
-            if c_path.stem in ["5E630"]:
+            if c_path.stem == "osFlash":
                 opt_level = "-O0"
                 ido = "5.3"
                 build(

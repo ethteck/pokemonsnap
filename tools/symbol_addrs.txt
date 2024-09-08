@@ -1899,3 +1899,7 @@ magikarp_tex_tail_fin_pal = 0x800FA0B0; // segment:magikarp_model
 magikarp_tex_tail_fin_png = 0x800FA178; // segment:magikarp_model
 magikarp_tex_skin3_pal = 0x800FA980; // segment:magikarp_model
 magikarp_tex_skin3_png = 0x800FAA40; // segment:magikarp_model
+
+moltres_egg_vtx = 0x8014E7F0; // segment:volcano_assets size:0x620
+moltres_egg_tex_flame_png = 0x8014DD48; // segment:volcano_assets
+moltres_egg_draw = 0x8014EE10; // segment:volcano_assets

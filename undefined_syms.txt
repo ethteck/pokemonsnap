@@ -239,9 +239,9 @@ charizard_matanim_spewfire = 0x8018B320;
 growlithe_spawner_modelanim = 0x80113960;
 growlithe_spawner_matanim = 0x80113990;
 
-D_8014F080 = 0x8014F080;
-D_8014E550 = 0x8014E550;
-D_8014E650 = 0x8014E650;
+moltres_egg_model = 0x8014F080;
+moltres_egg_modelanim_idle = 0x8014E550;
+moltres_egg_modelanim_drown = 0x8014E650;
 
 moltres_modelanim_fly = 0x80143E20;
 moltres_modelanim_fly2 = 0x801429B0;

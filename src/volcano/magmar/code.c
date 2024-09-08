@@ -132,7 +132,7 @@ AnimationHeader magmar_animation_spewfire = {
 GObj* magmar_loneMagmar = NULL;
 
 InteractionHandler magmar_tg_WaitMoltres[] = {
-    { VOLCANO_CMD_30, magmar_Idle, 0, NULL },
+    { VOLCANO_CMD_SPAWN_MOLTRES, magmar_Idle, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 

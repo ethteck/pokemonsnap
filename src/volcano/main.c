@@ -102,7 +102,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_MOLTRES_EGG,
-      func_802DDEC0_72F0C0,
+      moltres_egg_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MOLTRES,

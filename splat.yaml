@@ -581,9 +581,11 @@ segments:
     - [auto, c, koffing_smoke/model]
     - [auto, c, koffing_smoke/materials]
     - [auto, c, koffing_smoke/textures]
-    - [auto, c, growlithe_spawner/textures]    
+    - [auto, c, growlithe_spawner/textures]
     - [auto, c, magmar/textures]
     - [auto, c, moltres/textures]
+    - [auto, c, moltres_egg/textures]
+    - [auto, c, moltres_egg/model]
     - [auto, c, growlithe/textures]
     - [auto, c, charmander/textures]
     - [auto, c, charmeleon/textures]
@@ -791,6 +793,23 @@ segments:
       - [0x3688E0]
       - { start: 0x3688E8, type: ci4, name: tex_skin, flip_y: true, width: 16, height: 16 }
     - [0x368970, bin]
+    - start: 0x3749C0
+      type: .data
+      dir: moltres_egg
+      name: moltres_egg/textures
+      subsegments:
+      - [0x3749C0]
+      - { start: 0x3749C8, type: rgba16, name: tex_flame, flip_y: true, width: 32, height: 32 }
+    - [0x3751D0, bin]
+    - start: 0x375470
+      type: .data
+      name: moltres_egg/model
+      dir: moltres_egg
+      subsegments:
+      - [0x375470, vtx, model]
+      - [0x375A90, gfx, draw]
+      - [0x375D00]
+    - [0x375D90, bin]
     - start: 0x388870
       type: .data
       dir: growlithe

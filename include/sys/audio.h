@@ -1,6 +1,7 @@
 #ifndef SYS_AUDIO_H
 #define SYS_AUDIO_H
 
+extern u32 D_80096250;
 extern OSTime D_80096968;
 extern s32* auPlayingSound;
 

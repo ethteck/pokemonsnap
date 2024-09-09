@@ -85,6 +85,8 @@ extern Gfx* gSavedGfxPos[4];
 extern s32 gtlContextId;
 extern DLBuffer gtlDLBuffers[2][4];
 extern DynamicBuffer gtlCurrentGfxHeap;
+extern u32 gtlD_8004A8F0;
+extern u32 gtlD_8004A8F4;
 extern u16 gtlD_8004A906;
 extern u16 gtlD_8004A908;
 

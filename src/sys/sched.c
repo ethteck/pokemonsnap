@@ -45,8 +45,8 @@ u32 scUnknownInt;
 void* scCurrentFrameBuffer; // currently displayed
 s32 scTimestampSetFb;
 s32 scTimestampAudioTaskStarted;
-s32 scTimeSpentGfx;
-s32 scTimeSpentAudio;
+u32 scTimeSpentGfx;
+u32 scTimeSpentAudio;
 ViSettings scViSettings;
 u64 scUnknownU64;
 s32 scRDPOutputBufferUsed;
@@ -954,7 +954,7 @@ void scHandleSPTaskDone(void) {
             scRDPOutputBufferUsed += (s32) scUnknownU64;
             scRDPOutputBufferUsed = OS_DCACHE_ROUNDUP_SIZE(scRDPOutputBufferUsed);
             if (scRDPOutputBufferUsed < scUnknownU64) {
-                fatal_printf("rdp_output_buff over !! size = %d\n byte", scRDPOutputBufferUsed);
+                error_printf("rdp_output_buff over !! size = %d\n byte", scRDPOutputBufferUsed);
                 PANIC();
             }
 

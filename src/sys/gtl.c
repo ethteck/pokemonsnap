@@ -87,8 +87,8 @@ DynamicBuffer gtlCurrentGfxHeap;
 DynamicBuffer sGeneralHeap;
 FnBundle gtlCallbackBundle;
 s32 gtlTimestamp;
-s32 gtlD_8004A8F0;
-s32 gtlD_8004A8F4;
+u32 gtlD_8004A8F0;
+u32 gtlD_8004A8F4;
 void* gtlRPDOutputBuffer;
 u32 gtlRPDOutputBufferSize;
 s32 gtlNoNearclipping;
@@ -179,14 +179,14 @@ void gtlCheckBuffers(void) {
     for (i = 0; i < 4; i++) {
         if (gtlDLBuffers[gtlContextId][i].length + (uintptr_t) gtlDLBuffers[gtlContextId][i].start <
             (uintptr_t) gMainGfxPos[i]) {
-            fatal_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i,
+            error_printf("gtl : DLBuffer over flow !  kind = %d  vol = %d byte\n", i,
                          (uintptr_t) gMainGfxPos[i] - (uintptr_t) gtlDLBuffers[gtlContextId][i].start);
             PANIC();
         }
     }
 
     if ((uintptr_t) gtlCurrentGfxHeap.end < (uintptr_t) gtlCurrentGfxHeap.ptr) {
-        fatal_printf("gtl : DynamicBuffer over flow !  %d byte\n",
+        error_printf("gtl : DynamicBuffer over flow !  %d byte\n",
                      (uintptr_t) gtlCurrentGfxHeap.ptr - (uintptr_t) gtlCurrentGfxHeap.start);
         PANIC();
     }
@@ -201,7 +201,7 @@ void gtlSetRDPOutput(void* buffer, s32 size) {
     task.size = size;
     scExecuteBlocking(&task.info);
     if ((s32) &scUnknownU64 & 7) {
-        fatal_printf("bad addr sc_rdp_output_len = %x\n", &scUnknownU64);
+        error_printf("bad addr sc_rdp_output_len = %x\n", &scUnknownU64);
         PANIC();
     }
 }
@@ -213,7 +213,7 @@ void gtlSetRDPOutputSettings(s32 type, void* buffer, u32 size) {
 
     if (type == 2 || type == 1) {
         if (size == 0) {
-            fatal_printf("gtl : Buffer size for RDP is zero !!\n");
+            error_printf("gtl : Buffer size for RDP is zero !!\n");
             PANIC();
         }
     }
@@ -227,12 +227,12 @@ SCTaskGfx* gtlGetTaskGfx(void) {
     SCTaskGfx* task;
 
     if (gtlGfxTasksBufferStart[gtlContextId] == NULL) {
-        fatal_printf("gtl : not defined SCTaskGfx\n");
+        error_printf("gtl : not defined SCTaskGfx\n");
         PANIC();
     }
 
     if (gtlGfxTasksBufferPtr[gtlContextId] == gtlGfxTasksBufferEnd[gtlContextId]) {
-        fatal_printf("gtl : couldn\'t get SCTaskGfx\n");
+        error_printf("gtl : couldn\'t get SCTaskGfx\n");
         PANIC();
     }
     task = gtlGfxTasksBufferPtr[gtlContextId]++;
@@ -267,7 +267,7 @@ void gtlCancelCurrentGfxTask(void) {
     SCTaskGfxEnd* task = gtlGfxEndTasks[gtlContextId];
 
     if (task == NULL) {
-        fatal_printf("gtl : not defined SCTaskGfxEnd\n");
+        error_printf("gtl : not defined SCTaskGfxEnd\n");
         PANIC();
     }
 
@@ -282,7 +282,7 @@ void gtlReset(void) {
     SCTaskGfxEnd* task = gtlGfxEndTasks[gtlContextId];
 
     if (task == NULL) {
-        fatal_printf("gtl : not defined SCTaskGfxEnd\n");
+        error_printf("gtl : not defined SCTaskGfxEnd\n");
         PANIC();
     }
 
@@ -327,7 +327,7 @@ void gtlScheduleGfx(SCTaskGfx* t, s32* fb, u32 ucodeIdx, s32 contextId, u64* dli
 
     ucode = &gtlD_80040CFC[ucodeIdx];
     if (ucode->text == NULL) {
-        fatal_printf("gtl : ucode isn\'t included  kind = %d\n", ucodeIdx);
+        error_printf("gtl : ucode isn\'t included  kind = %d\n", ucodeIdx);
         PANIC();
     }
     t->task.t.ucode = (u64*) ucode->text;
@@ -835,7 +835,7 @@ void func_80006F8C(GObj* arg0) {
     gtlProcessAllDLists();
     task = gtlGfxEndTasks[gtlContextId];
     if (task == NULL) {
-        fatal_printf("gtl : not defined SCTaskGfxEnd\n");
+        error_printf("gtl : not defined SCTaskGfxEnd\n");
         PANIC();
     }
     tmp = gtlContextId;

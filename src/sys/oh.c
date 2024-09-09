@@ -103,7 +103,7 @@ void ohUpdateDefault(UNUSED GObj* arg0) {
 
 void ohWait(s32 numFrames) {
     if (omCurrentProcess->unk_1C.thread->osStack[7] != 0xFEDCBA98) {
-        fatal_printf("gobjthread stack over  gobjid = %d\n", omCurrentProcess->object->id);
+        error_printf("gobjthread stack over  gobjid = %d\n", omCurrentProcess->object->id);
     }
 
     while (numFrames) {

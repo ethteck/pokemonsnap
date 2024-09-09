@@ -5,6 +5,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj);
 void renLoadTextures(DObj* dobj, Gfx** gfxPtr);
 void ren_func_800191D8(GObj*);
 void ren_func_80015448(void);
+void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode);
 void ren_func_80018CD0(s32);
 void renCameraPreRender(OMCamera* cam, s32 arg1);
 void renSpriteCameraRender(GObj* obj);

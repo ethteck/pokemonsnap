@@ -15,7 +15,7 @@ cmdSendCommandToLink = 0x8000B830;
 alHeapDBAlloc = 0x8001FD74;
 auThreadMain = 0x800216A8;
 start_thread8_rmon = 0x80025C38;
-fatal_printf = 0x80025F24;
+error_printf = 0x80025F24;
 
 gRomPiHandle = 0x800488A0;
 sDmaOSMesg = 0x800488A4;

@@ -86,7 +86,7 @@ void check_sp_dmem(void) {
 }
 
 void fatal_stack_overflow_thread(s32 tid) {
-    fatal_printf("thread stack overflow  id = %d\n", tid);
+    error_printf("thread stack overflow  id = %d\n", tid);
     PANIC();
 }
 

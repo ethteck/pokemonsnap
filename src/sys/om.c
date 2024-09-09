@@ -76,7 +76,7 @@ GObjThread* omGetThread(void) {
     }
 
     if (omFreeThreadList == NULL) {
-        fatal_printf("om : couldn't get GObjThread\n");
+        error_printf("om : couldn't get GObjThread\n");
         PANIC();
     }
 
@@ -152,7 +152,7 @@ void omFreeStack(ThreadStackNode* node) {
     }
 
     if (parent == NULL) {
-        fatal_printf("om : Illegal GObjThreadStack Link\n");
+        error_printf("om : Illegal GObjThreadStack Link\n");
         PANIC();
     }
 
@@ -169,7 +169,7 @@ GObjProcess* omGetProcess(void) {
     }
 
     if (omFreeProcessList == NULL) {
-        fatal_printf("om : couldn't get GObjProcess\n");
+        error_printf("om : couldn't get GObjProcess\n");
         PANIC();
     }
 
@@ -318,12 +318,12 @@ GObj* omGetGObj(void) {
             ret = omFreeGObjList;
         }
     } else {
-        fatal_printf("om : limit over get GObj\n");
+        error_printf("om : limit over get GObj\n");
         PANIC();
     }
 
     if (ret == NULL) {
-        fatal_printf("om : couldn't get GObj\n");
+        error_printf("om : couldn't get GObj\n");
         PANIC();
     }
     if (ret == NULL) {
@@ -469,7 +469,7 @@ OMMtx* omGetMtx(void) {
     }
 
     if (omFreeMtxList == NULL) {
-        fatal_printf("om : couldn't get OMMtx\n");
+        error_printf("om : couldn't get OMMtx\n");
         PANIC();
     }
 
@@ -493,7 +493,7 @@ AObj* omGetAObj(void) {
     }
 
     if (omFreeAObjList == NULL) {
-        fatal_printf("om : couldn't get AObj\n");
+        error_printf("om : couldn't get AObj\n");
         PANIC();
     }
 
@@ -532,7 +532,7 @@ MObj* omGetMObj(void) {
     }
 
     if (omFreeMObjList == NULL) {
-        fatal_printf("om : couldn't get MObj\n");
+        error_printf("om : couldn't get MObj\n");
         PANIC();
     }
 
@@ -557,7 +557,7 @@ DObj* omGetDObj(void) {
     }
 
     if (omFreeDObjList == NULL) {
-        fatal_printf("om : couldn't get DObj\n");
+        error_printf("om : couldn't get DObj\n");
         PANIC();
     }
 
@@ -582,7 +582,7 @@ SObj* omGetSObj(void) {
     }
 
     if (omFreeSObjList == NULL) {
-        fatal_printf("om : couldn't get SObj\n");
+        error_printf("om : couldn't get SObj\n");
         PANIC();
     }
 
@@ -607,7 +607,7 @@ OMCamera* omGetCamera(void) {
     }
 
     if (omFreeCameraList == NULL) {
-        fatal_printf("om : couldn't get Camera\n");
+        error_printf("om : couldn't get Camera\n");
         PANIC();
     }
 
@@ -635,7 +635,7 @@ GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32
 
     process = omGetProcess();
     if (pri > 11) {
-        fatal_printf("om : GObjProcess's priority is bad value\n");
+        error_printf("om : GObjProcess's priority is bad value\n");
         PANIC();
     }
     process->priority = pri;
@@ -664,7 +664,7 @@ GObjProcess* omCreateProcess(GObj* obj, void (*func)(struct GObj*), u8 kind, u32
             process->unk_1C.cb = func;
             break;
         default:
-            fatal_printf("om : GObjProcess's kind is bad value\n");
+            error_printf("om : GObjProcess's kind is bad value\n");
             PANIC();
     }
 
@@ -685,7 +685,7 @@ GObjProcess* omCreateProcessThreaded(GObj* obj, void (*entry)(GObj*), u32 pri, s
     process = omGetProcess();
 
     if (pri > 11) {
-        fatal_printf("om : GObjProcess's priority is bad value\n");
+        error_printf("om : GObjProcess's priority is bad value\n");
         PANIC();
     }
 
@@ -753,7 +753,7 @@ OMMtx* omDObjAddMtx(DObj* dobj, u8 kind, u8 arg2, s32 index) {
     s32 num = dobj->numMatrices;
 
     if (dobj->numMatrices == 5) {
-        fatal_printf("om : couldn\'t add OMMtx for DObj\n");
+        error_printf("om : couldn\'t add OMMtx for DObj\n");
         PANIC();
     }
 
@@ -918,7 +918,7 @@ OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2) {
     OMMtx* mtx;
 
     if (arg0->numMatrices == 2) {
-        fatal_printf("om : couldn't add OMMtx for Camera\n");
+        error_printf("om : couldn't add OMMtx for Camera\n");
         PANIC();
     }
 
@@ -1399,7 +1399,7 @@ GObj* omAddGObjCommon(u32 id, void (*fnUpdate)(GObj*), u8 link, u32 priority) {
     GObj* obj;
 
     if (link >= 32) {
-        fatal_printf("omGAddCommon() : link num over : link = %d : id = %d\n", link, id);
+        error_printf("omGAddCommon() : link num over : link = %d : id = %d\n", link, id);
         PANIC();
     }
 
@@ -1512,7 +1512,7 @@ void omMoveGObjCommon(s32 moveType, GObj* obj, u8 link, u32 priority, GObj* refO
     GObjProcess* next;
 
     if (link >= 32) {
-        fatal_printf("omGMoveCommon() : link num over : link = %d : id = %d\n", link, obj->id);
+        error_printf("omGMoveCommon() : link num over : link = %d : id = %d\n", link, obj->id);
         PANIC();
     }
 
@@ -1575,7 +1575,7 @@ void omMoveGObjBefore(GObj* arg0, GObj* arg1) {
 void omLinkGObjDLCommon(GObj* obj, void (*renderFunc)(GObj*), u8 dlLink, s32 dlPriority,
                         s32 cameraTag) {
     if (dlLink >= 32) {
-        fatal_printf("omGLinkObjDLCommon() : dl_link num over : dl_link = %d : id = %d\n", dlLink, obj->id);
+        error_printf("omGLinkObjDLCommon() : dl_link num over : dl_link = %d : id = %d\n", dlLink, obj->id);
         PANIC();
     }
 
@@ -1666,7 +1666,7 @@ void omLinkGObjDLCameraBefore(GObj* arg0, void (*arg1)(GObj*), s32 arg2, s32 arg
 
 void omMoveGObjDL(GObj* arg0, u8 dlLink, u32 dlPriority) {
     if (dlLink >= 32) {
-        fatal_printf("omGMoveObjDL() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
+        error_printf("omGMoveObjDL() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
         PANIC();
     }
 
@@ -1678,7 +1678,7 @@ void omMoveGObjDL(GObj* arg0, u8 dlLink, u32 dlPriority) {
 
 void omMoveGObjDLHead(GObj* arg0, u8 dlLink, u32 dlPriority) {
     if (dlLink >= 32) {
-        fatal_printf("omGMoveObjDLHead() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
+        error_printf("omGMoveObjDLHead() : dl_link num over : dl_link = %d : id = %d\n", dlLink, arg0->id);
         PANIC();
     }
     omUnlinkGObjDL(arg0);

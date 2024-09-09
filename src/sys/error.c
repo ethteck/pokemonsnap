@@ -132,17 +132,21 @@ s32 error_mesgPosX = 30;
 s32 error_mesgPosY = 25;
 
 // bss
+Rect* D_80096980;
+OSThread error_thread8CPUFault;
+u8 error_Thread8CPUStack[0x800];
+OSMesgQueue error_mesgQueueCPUFault;
+OSMesg error_mesgCPUFault[1];
+u32 D_80097354;
+void (*error_printFunc)(void);
+SCClient D_80097360;
+OSMesg D_80097368[1];
+OSMesgQueue D_80097370;
+OSThread error_thread8Hang;
+u8 error_thread8HangStack[0x800];
+
+// ???
 extern OSThread D_80046880;
-extern Rect* D_80096980;
-extern OSThread D_80096988;
-extern OSMesgQueue D_80097338;
-extern OSMesg D_80097350[1];
-extern void (*D_80097358)(void);
-extern SCClient D_80097360;
-extern OSMesg D_80097368[1];
-extern OSMesgQueue D_80097370;
-extern OSThread D_80097388;
-extern void* D_80097D38;
 
 void func_800239E0(s32 arg0, s32 arg1, s32 arg2, bool arg3) {
     if (arg2 >= 0 && arg2 < ARRAY_COUNT(D_800424A0)) {
@@ -610,7 +614,7 @@ OSThread* error_getFaultThread(void) {
 }
 
 void error_setPrintFunc(void (*printFunc)(void)) {
-    D_80097358 = printFunc;
+    error_printFunc = printFunc;
 }
 
 void error_setMesgPos(s32 x, s32 y) {
@@ -668,11 +672,11 @@ void error_reportCPUBreakFault(UNUSED void* arg0) {
     OSMesg mesg[1];
     OSThread* thread;
 
-    osSetEventMesg(OS_EVENT_CPU_BREAK, &D_80097338, HAL_CRASH_MSG_CPU_BREAK);
-    osSetEventMesg(OS_EVENT_FAULT, &D_80097338, HAL_CRASH_MSG_FAULT);
+    osSetEventMesg(OS_EVENT_CPU_BREAK, &error_mesgQueueCPUFault, HAL_CRASH_MSG_CPU_BREAK);
+    osSetEventMesg(OS_EVENT_FAULT, &error_mesgQueueCPUFault, HAL_CRASH_MSG_FAULT);
 
     do {
-        osRecvMesg(&D_80097338, mesg, OS_MESG_BLOCK);
+        osRecvMesg(&error_mesgQueueCPUFault, mesg, OS_MESG_BLOCK);
         thread = error_getFaultThread();
     } while (thread == NULL);
 
@@ -690,13 +694,13 @@ void error_reportCPUBreakFault(UNUSED void* arg0) {
 
     error_framebufPrintThreadStatus(thread, 1);
 
-    if (D_80097358 != NULL) {
+    if (error_printFunc != NULL) {
         while (true) {
             error_waitFramebufOrCont(0, NULL);
             error_waitFramebufOrCont(Z_TRIG | L_TRIG | R_TRIG, NULL);
             error_framebufDrawBlackRect(25, 20, 270, 210);
             error_setMesgPos(30, 25);
-            D_80097358();
+            error_printFunc();
             error_waitFramebufOrCont(0, NULL);
             error_waitFramebufOrCont(Z_TRIG | L_TRIG | R_TRIG, NULL);
             error_framebufPrintThreadStatus(thread, 0);
@@ -707,9 +711,9 @@ void error_reportCPUBreakFault(UNUSED void* arg0) {
 }
 
 void start_thread8_rmon(void) {
-    osCreateMesgQueue(&D_80097338, D_80097350, ARRAY_COUNT(D_80097350));
-    osCreateThread(&D_80096988, 8, error_reportCPUBreakFault, NULL, &D_80097338, OS_PRIORITY_RMON);
-    osStartThread(&D_80096988);
+    osCreateMesgQueue(&error_mesgQueueCPUFault, error_mesgCPUFault, ARRAY_COUNT(error_mesgCPUFault));
+    osCreateThread(&error_thread8CPUFault, 8, error_reportCPUBreakFault, NULL, &error_mesgQueueCPUFault, OS_PRIORITY_RMON);
+    osStartThread(&error_thread8CPUFault);
 }
 
 void error_fileLoaderThread8(void* arg0) {
@@ -745,12 +749,12 @@ void error_fileLoaderThread8(void* arg0) {
                 error_waitFramebufOrCont(0, NULL);
                 error_waitFramebufOrCont(D_JPAD | D_CBUTTONS, NULL);
                 error_framebufPrintThreadStatus(&D_80046880, TRUE);
-                if (D_80097358 != NULL) {
+                if (error_printFunc != NULL) {
                     error_waitFramebufOrCont(0, NULL);
                     error_waitFramebufOrCont(Z_TRIG | L_TRIG | R_TRIG, NULL);
                     error_framebufDrawBlackRect(25, 20, 270, 210);
                     error_setMesgPos(30, 25);
-                    D_80097358();
+                    error_printFunc();
                 }
                 error_waitFramebufOrCont(0, NULL);
                 error_waitFramebufOrCont(Z_TRIG | L_TRIG | R_TRIG, NULL);
@@ -763,8 +767,8 @@ void error_fileLoaderThread8(void* arg0) {
 }
 
 void func_80025ED0(void) {
-    osCreateThread(&D_80097388, 8, error_fileLoaderThread8, NULL, &D_80097D38, THREAD8_MAIN_HANG_PRI);
-    osStartThread(&D_80097388);
+    osCreateThread(&error_thread8Hang, 8, error_fileLoaderThread8, NULL, &error_thread8HangStack + sizeof(*error_thread8HangStack), THREAD8_MAIN_HANG_PRI);
+    osStartThread(&error_thread8Hang);
 }
 
 void error_printf(const char* fmt, ...) {

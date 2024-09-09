@@ -198,7 +198,7 @@ segments:
     - [0x39B50, c, ../ultralib/src/io/epiread]
     - [0x39BA0, c, ../ultralib/src/os/settime]
     - [0x39BD0, c, ../ultralib/src/io/visetevent]
-    - [0x39C40, asm] # c, ../ultralib/src/io/cartrominit] # TODO
+    - [0x39C40, c, ../ultralib/src/io/cartrominit]
     - [0x39E20, c, ../ultralib/src/io/gbpakreadid]
     - [0x39FE0, c, ../ultralib/src/io/pfsselectbank]
     - [0x3A060, hasm, ../ultralib/src/os/setfpccsr]
@@ -273,7 +273,7 @@ segments:
     - [0x439B0, .data, ../ultralib/src/vimodes/vimodentsclan1]
     - [0x43A00, .data, ../ultralib/src/vimodes/vimodempallan1]
     - [0x43A50, .data, ../ultralib/src/io/vi]
-    - [0x43AC0, data]  # .data, ../ultralib/src/io/cartrominit] # TODO
+    - [0x43AC0, .data, ../ultralib/src/io/cartrominit]
     - [0x43AD0, .data, ../ultralib/src/io/gbpakreadid]
     - [0x43B20, .data, ../ultralib/src/io/contpfs]
     - [0x43B30, .data, ../ultralib/src/io/contramread]
@@ -331,7 +331,7 @@ segments:
     - { start: auto, name: sys/cmd, type: .bss, vram: 0x8004AF00 }
     - { start: auto, name: sys/render, type: .bss, vram: 0x8004AF20 }
     - { start: auto, name: sys/audio, type: .bss, vram: 0x8004B250 }
-    - { start: auto, name: bss_80096980, type: bss, vram: 0x80096980 }
+    - { start: auto, name: sys/error, type: .bss, vram: 0x80096980 }
     - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
@@ -339,12 +339,11 @@ segments:
     - { start: auto, name: ../ultralib/src/io/controller, type: .bss, vram: 0x80097EB0 }
     - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
     - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
-    - { start: auto, name: bss_80097F90, type: bss, vram: 0x80097F90 }
+    - { start: auto, name: __osThreadSave, type: bss, vram: 0x80097F90 } # todo
     - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
     - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
-    - { start: auto, name: bss_unk, type: bss, vram: 0x800994E0 }
-    - { start: auto, name: bss_unk2, type: bss, vram: 0x80099500 }
+    - { start: auto, name: ../ultralib/src/io/cartrominit, type: .bss, vram: 0x800994E0 }
     - { start: auto, name: ../ultralib/src/io/contpfs, type: .bss, vram: 0x80099560 }
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
     - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996A0 }

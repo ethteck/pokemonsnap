@@ -910,9 +910,8 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
     return mtxCount;
 }
 
-#ifdef NON_MATCHING
 void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
-    s32 count;
+    s32 mobjCount;
     s32 i;
     MObj* mobj;
     Gfx* gfxPos;
@@ -924,7 +923,8 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
     f32 spD0;
     f32 spCC;
     f32 spC8;
-    f32 zero = 0.0f;
+    s32 uls, ult;
+    s32 s, t;
 
     if (dobj->mobjList == NULL) {
         return;
@@ -932,18 +932,15 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
 
     gSPSegment((*gfxPtr)++, 0x0E, gtlCurrentGfxHeap.ptr);
 
-    count = 0;
-    mobj = dobj->mobjList;
-    while (mobj != NULL) {
+    for (mobjCount = 0, mobj = dobj->mobjList; mobj != NULL; mobjCount++) {
         mobj = mobj->next;
-        count++;
     }
     mobj = dobj->mobjList;
 
-    gfxPos = &((Gfx*) gtlCurrentGfxHeap.ptr)[count];
+    gfxPos = &((Gfx*) gtlCurrentGfxHeap.ptr)[mobjCount];
     baseDl = gtlCurrentGfxHeap.ptr;
 
-    for (i = 0; i < count; i++) {
+    for (i = 0; i < mobjCount; i++, mobj = mobj->next) {
         flags = mobj->texture.flags;
         if (flags == 0) {
             flags = 0x80 | 0x20 | 0x01;
@@ -963,7 +960,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
             }
         }
 
-        gSPBranchList(baseDl, gfxPos);
+        gSPBranchList(&baseDl[i], gfxPos);
 
         if (flags & 0x04) {
             // load palette
@@ -978,7 +975,7 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
             }
         }
 
-        baseDl++;
+        // baseDl++;
 
         if (flags & 0x1000) {
             gSPLightColor(gfxPos++, LIGHT_1, mobj->texture.lightColor1);
@@ -1055,49 +1052,22 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         }
 
         if (flags & 0x20) {
-            s32 uls, ult;
-            if (ABS(scaleS) > 1.0f / 65535) {
-                uls = ((spD4 * mobj->texture.widthMain + mobj->texture.unk0A) / scaleS) * 4.0f;
-            } else {
-                uls = zero;
-            }
-            if (ABS(scaleT) > 1.0f / 65535) {
-                ult = (((1.0f - scaleT - spD0) * mobj->texture.heightMain + mobj->texture.unk0A) / scaleT) * 4.0f;
-            } else {
-                ult = zero;
-            }
+            uls = (ABS(scaleS) > 1.0f / 65535) ? ((spD4 * mobj->texture.widthMain + mobj->texture.unk0A) / scaleS) * 4.0f : 0;
+            ult = (ABS(scaleT) > 1.0f / 65535) ? (((1.0f - scaleT - spD0) * mobj->texture.heightMain + mobj->texture.unk0A) / scaleT) * 4.0f : 0;
             gDPSetTileSize(gfxPos++, G_TX_RENDERTILE, uls, ult, ((mobj->texture.widthMain - 1) << 2) + uls,
                            ((mobj->texture.heightMain - 1) << 2) + ult);
         }
 
         if (flags & 0x40) {
-            s32 uls, ult;
-            if (ABS(scaleS) > 1.0f / 65535) {
-                uls = ((spCC * mobj->texture.widthAux + mobj->texture.unk0A) / scaleS) * 4.0f;
-            } else {
-                uls = zero;
-            }
-            if (ABS(scaleT) > 1.0f / 65535) {
-                ult = (((1.0f - scaleT - spC8) * mobj->texture.heightAux + mobj->texture.unk0A) / scaleT) * 4.0f;
-            } else {
-                ult = zero;
-            }
+            uls = (ABS(scaleS) > 1.0f / 65535) ? ((spCC * mobj->texture.widthAux + mobj->texture.unk0A) / scaleS) * 4.0f : 0;
+            ult = (ABS(scaleT) > 1.0f / 65535) ? (((1.0f - scaleT - spC8) * mobj->texture.heightAux + mobj->texture.unk0A) / scaleT) * 4.0f : 0;
             gDPSetTileSize(gfxPos++, G_TX_RENDERTILE + 1, uls, ult, ((mobj->texture.widthAux - 1) << 2) + uls,
                            ((mobj->texture.heightAux - 1) << 2) + ult);
         }
 
         if (flags & 0x80) {
-            s32 s, t;
-            if (ABS(scaleS) > 1.0f / 65535) {
-                s = 2097152.0f / mobj->texture.scale / scaleS;
-            } else {
-                s = zero;
-            }
-            if (ABS(scaleT) > 1.0f / 65535) {
-                t = 2097152.0f / mobj->texture.scale / scaleT;
-            } else {
-                t = zero;
-            }
+            s = (ABS(scaleS) > 1.0f / 65535) ? 2097152.0f / mobj->texture.scale / scaleS : 0;
+            t = (ABS(scaleT) > 1.0f / 65535) ? 2097152.0f / mobj->texture.scale / scaleT : 0;
             if (s > 0xFFFF) {
                 s = 0xFFFF;
             }
@@ -1112,10 +1082,6 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
 
     gtlCurrentGfxHeap.ptr = gfxPos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renLoadTextures.s")
-void renLoadTextures(DObj* dobj, Gfx** gfxPtr);
-#endif
 
 void renRenderModelTypeACommon(GObj* gobj, Gfx** gfxPtr) {
     s32 ret;
@@ -1284,20 +1250,15 @@ void renRenderModelTypeC(GObj* obj) {
     renRenderModelNodeTypeC(dobj, dobj->payload.typeC);
 }
 
-#ifdef NON_MATCHING
 void ren_func_80015448(void) {
     s32 i;
 
     ren_D_8004B03C = ren_D_8004B050;
 
-    for (i = 0; i < 4; i++) {
-        ren_D_8004B040[i] = ren_D_8004B050;
-    }
+    // clang-format off
+    for (i = 0; i < ARRAY_COUNT(ren_D_8004B040); i++) { ren_D_8004B040[i] = ren_D_8004B050; }
+    // clang-format on
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/ren_func_80015448.s")
-void ren_func_80015448(void);
-#endif
 
 void renRenderModelNodeTypeD(DObj* dobj) {
     void* segaddr = NULL;
@@ -2098,22 +2059,22 @@ void renDrawSprite(GObj* arg0) {
     }
 }
 
-#ifdef NON_MATCHING
 void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
+    Gfx* gfxPos = *gfxPtr;
+    Vp_t* vp = &cam->vp.vp;
     s32 xmin, ymin, xmax, ymax;
-    Gfx* gfxPos;
 
     if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
-        gtl_load_ucode(gfxPtr, gtlD_8004A906);
+        gtlLoadUcode(gfxPtr, gtlD_8004A906);
         gtlD_8004A908 = true;
+        gfxPos = *gfxPtr;
     }
-    gfxPos = *gfxPtr;
 
     gSPViewport(gfxPos++, &cam->vp);
-    xmin = cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4;
-    ymin = cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4;
-    xmax = cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4;
-    ymax = cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4;
+    xmin = vp->vtrans[0] / 4 - vp->vscale[0] / 4;
+    ymin = vp->vtrans[1] / 4 - vp->vscale[1] / 4;
+    xmax = vp->vtrans[0] / 4 + vp->vscale[0] / 4;
+    ymax = vp->vtrans[1] / 4 + vp->vscale[1] / 4;
 
     if (xmin < viScreenWidth / SCREEN_WIDTH * renCameraScisLeft) {
         xmin = viScreenWidth / SCREEN_WIDTH * renCameraScisLeft;
@@ -2141,27 +2102,23 @@ void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
 
     *gfxPtr = gfxPos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/ren_func_800177D8.s")
-void ren_func_800177D8(Gfx** gfxPtr, OMCamera* cam, s32 mode);
-#endif
 
-#ifdef NON_MATCHING
 void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
+    Gfx* gfxPos = *gfxPtr;
+    Vp_t* vp = &cam->vp.vp;
     s32 xmin, ymin, xmax, ymax;
-    Gfx* gfxPos;
 
     if ((mode == 0 || mode == 1) && (cam->flags & CAMERA_FLAG_20)) {
-        gtl_load_ucode(gfxPtr, gtlD_8004A906);
+        gtlLoadUcode(gfxPtr, gtlD_8004A906);
         gtlD_8004A908 = true;
+        gfxPos = *gfxPtr;
     }
-    gfxPos = *gfxPtr;
 
     gSPViewport(gfxPos++, &cam->vp);
-    xmin = cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4;
-    ymin = cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4;
-    xmax = cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4;
-    ymax = cam->vp.vp.vtrans[1] / 4 + cam->vp.vp.vscale[1] / 4;
+    xmin = vp->vtrans[0] / 4 - vp->vscale[0] / 4;
+    ymin = vp->vtrans[1] / 4 - vp->vscale[1] / 4;
+    xmax = vp->vtrans[0] / 4 + vp->vscale[0] / 4;
+    ymax = vp->vtrans[1] / 4 + vp->vscale[1] / 4;
 
     if (xmin < viScreenWidth / SCREEN_WIDTH * renCameraScisLeft) {
         xmin = viScreenWidth / SCREEN_WIDTH * renCameraScisLeft;
@@ -2210,10 +2167,6 @@ void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode) {
 
     *gfxPtr = gfxPos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renInitCamera.s")
-void renInitCamera(Gfx** gfxPtr, OMCamera* cam, s32 mode);
-#endif
 
 void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 width, s32 height, u16* zbuffer) {
     Gfx* gfxPos;
@@ -2316,7 +2269,7 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_2:
                         break;
                     case MTX_TYPE_PERSP_FAST:
-                        hal_perspective_fast_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                        hal_perspective_fast_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
                                                cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
                                                cam->perspMtx.persp.near, cam->perspMtx.persp.far,
                                                cam->perspMtx.persp.scale);
@@ -2324,7 +2277,7 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         renProjectionMatrix = mtx;
                         break;
                     case MTX_TYPE_PERSP:
-                        hal_perspective_f(&renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                        hal_perspective_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
                                           cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
                                           cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
                         hal_mtx_f2l(renPerspectiveMatrixF, mtx);
@@ -2340,8 +2293,8 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_LOOKAT_MVIEW:
                         hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
                                     cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
-                                    cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp, cam->viewMtx.lookAt.zUp);
-                        if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
+                                    cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.z);
+                        if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
                             s3 = 1;
                         } else {
                             s3 = 2;
@@ -2349,17 +2302,17 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         break;
                     case MTX_TYPE_LOOKAT_ROLL:
                     case MTX_TYPE_LOOKAT_ROLL_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
-                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
+                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                         cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
+                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
                                          cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_ROLL_Z:
                     case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                                         cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x,
-                                         cam->viewMtx.lookAtRoll.at.y, cam->viewMtx.lookAtRoll.at.z,
+                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                         cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
+                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
                                          cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
                         s3 = 2;
                         break;
@@ -2368,9 +2321,9 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y,
                                             cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y,
-                                            cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.xUp, cam->viewMtx.lookAt.yUp,
-                                            cam->viewMtx.lookAt.zUp);
-                        if (cam->viewMtx.lookAt.zUp < cam->viewMtx.lookAt.yUp) {
+                                            cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y,
+                                            cam->viewMtx.lookAt.up.z);
+                        if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
                             s3 = 1;
                         } else {
                             s3 = 2;
@@ -2380,18 +2333,18 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_MVIEW:
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect_roll(
-                            mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
-                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                            mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                            cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
+                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
                         s3 = 1;
                         break;
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z_MVIEW:
                         lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
                         hal_look_at_reflect_roll(
-                            mtx, lookat, cam->viewMtx.lookAtRoll.eye.x, cam->viewMtx.lookAtRoll.eye.y,
-                            cam->viewMtx.lookAtRoll.eye.z, cam->viewMtx.lookAtRoll.at.x, cam->viewMtx.lookAtRoll.at.y,
-                            cam->viewMtx.lookAtRoll.at.z, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                            mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                            cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
+                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
                         s3 = 2;
                         break;
                     default:

@@ -159,17 +159,17 @@ void func_800E19E4_A5CD94(void) {
 
 void func_800E1A0C_A5CDBC(void) {
     UnkSnowHerring* id;
-    s32 id2;
+    UnkFireHerring* unk;
     s8 i;
     ucolor sp28;
 
-    id2 = func_8036F78C_842F3C();
-    func_8036F684_842E34(id2, 1);
-    func_8036F738_842EE8(id2, &sp28);
-    func_8036F1F4_8429A4(id2, 184, 320);
-    func_8036F0DC_84288C(id2, 1);
-    func_8036F0A0_842850(id2, 0);
-    func_8036FE54_843604(id2, 1);
+    unk = func_8036F78C_842F3C();
+    func_8036F684_842E34(unk, 1);
+    func_8036F738_842EE8(unk, &sp28);
+    func_8036F1F4_8429A4(unk, 184, 320);
+    func_8036F0DC_84288C(unk, true);
+    func_8036F0A0_842850(unk, false);
+    func_8036FE54_843604(unk, 1);
 
     // description
     id = func_8036AC6C_83E41C(104, 173, 192, 47, 0);

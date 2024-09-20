@@ -497,7 +497,7 @@ loop_1:
             if (sp4C->unk_18 & 0x4000) {
                 D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
                 sp48 = 1;
-                func_80370090_843840(1);
+                func_80370090_843840(true);
                 func_803713EC_844B9C(3);
                 func_801E1A50_9ABCA0(NULL, NULL);
                 func_801DDDF8_9A8048(-1, -1);
@@ -507,9 +507,9 @@ loop_1:
                 func_801E1FE4_9AC234(NULL, &sp38, &sp34, sp3C);
                 sp3C = func_801E3B34_9ADD84(D_80208B94_9D2DE4);
                 if (sp3C != 0) {
-                    func_80370090_843840(0);
+                    func_80370090_843840(false);
                 } else {
-                    func_80370090_843840(1);
+                    func_80370090_843840(true);
                 }
             }
             break;

@@ -309,10 +309,18 @@ typedef struct PhotoDataExt {
 } PhotoDataExt; // size = 0x3E0
 
 typedef struct UnkCyanBass {
-    /* 0x00 */ char unk_00[0x4];
+    /* 0x00 */ s32 unk_00;
     /* 0x04 */ char* unk_04;
-    /* 0x08 */ char unk_08[0xC];
-    /* 0x14 */ char* unk_14;
-} UnkCyanBass; // size = > 0x18
+} UnkCyanBass; // size = 0x8
+
+typedef struct UnkFireHerring {
+    /* 0x00 */ GObj* unk_00[9];
+    /* 0x24 */ s32 unk_24;
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s32 unk_2C;
+    /* 0x30 */ s32 unk_30;
+    /* 0x34 */ s32 unk_34;
+    /* 0x38 */ s32 unk_38;
+} UnkFireHerring;
 
 #endif

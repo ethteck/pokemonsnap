@@ -41,7 +41,7 @@ extern SObj* D_80230C14_A27584;
 extern UnkSnowHerring* D_80230C1C_A2758C;
 extern Unk803A6C18* D_80230C20_A27590;
 extern s32 D_80230C24_A27594;
-extern s32 D_80230C28_A27598;
+extern UnkFireHerring* D_80230C28_A27598;
 extern UnkSnowHerring* D_80230C30_A275A0;
 extern UnkSnowHerring* D_80230C34_A275A4;
 extern UnkSnowHerring* D_80230C38_A275A8;
@@ -1493,7 +1493,7 @@ void func_801E1BEC_9D855C(void) {
     s32 i;
     s32 sp38;
     ucolor sp34;
-    s32 sp30;
+    UnkFireHerring* sp30;
     UnkSnowHerring* sp2C;
 
     auPlaySong(0, 0x1E);
@@ -1678,7 +1678,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     D_80230C28_A27598 = func_8036F78C_842F3C();
     func_8036F684_842E34(D_80230C28_A27598, 1);
     func_8036F1F4_8429A4(D_80230C28_A27598, 0xB8, 0x140);
-    func_8036F0DC_84288C(D_80230C28_A27598, 0);
+    func_8036F0DC_84288C(D_80230C28_A27598, false);
     sp30 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
     func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp30, 0, 0x85, 0x93, 0xAB, 0);

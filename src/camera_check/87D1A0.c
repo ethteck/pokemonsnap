@@ -17,25 +17,25 @@ UnkCyanBass* func_camera_check_801DF9B0(void) {
         return &D_camera_check_80208994;
     }
     // clang-format off
-    if (!func_camera_check_801E3140()) D_camera_check_802089BC.unk_04 = "There's no picture to show to\nProf. Oak.";
+    if (!func_camera_check_801E3140()) D_camera_check_802089BC[0].unk_04 = "There's no picture to show to\nProf. Oak.";
     // clang-format on
     else {
-        D_camera_check_802089BC.unk_04 = "I'll choose which pictures to\nshow to Prof. Oak!";
+        D_camera_check_802089BC[0].unk_04 = "I'll choose which pictures to\nshow to Prof. Oak!";
     }
 
     if (func_camera_check_801E2E04() != 0) {
-        D_camera_check_802089BC.unk_14 = "I'll choose which pictures to\nsave in my PKMN Album.";
+        D_camera_check_802089BC[2].unk_04 = "I'll choose which pictures to\nsave in my PKMN Album.";
     } else {
-        D_camera_check_802089BC.unk_14 = "The Album is full.\nNo picture can be saved.";
+        D_camera_check_802089BC[2].unk_04 = "The Album is full.\nNo picture can be saved.";
     }
-    return &D_camera_check_802089BC;
+    return D_camera_check_802089BC;
 }
 
 UnkCyanBass* func_camera_check_801DFA4C(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     } else {
-        return &D_camera_check_802089BC;
+        return D_camera_check_802089BC;
     }
 }
 

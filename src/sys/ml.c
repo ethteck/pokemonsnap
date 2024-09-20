@@ -14,14 +14,14 @@ void* mlHeapAlloc(DynamicBuffer* heap, u32 size, u32 alignment) {
 
     if (alignment != 0) {
         offset = alignment - 1;
-        aligned = (u8*)(((uintptr_t)heap->ptr + (offset)) & ~(offset));
+        aligned = (u8*) (((uintptr_t) heap->ptr + (offset)) & ~(offset));
     } else {
         aligned = heap->ptr;
     }
 
-    heap->ptr = (void*)(aligned + size);
+    heap->ptr = (void*) (aligned + size);
     if (heap->end < heap->ptr) {
-        fatal_printf("ml : alloc overflow #%d\n", heap->id);
+        error_printf("ml : alloc overflow #%d\n", heap->id);
         PANIC();
     }
 
@@ -32,6 +32,6 @@ void mlHeapInit(DynamicBuffer* heap, u32 id, void* start, u32 size) {
     heap->id = id;
     heap->ptr = start;
     heap->start = start;
-    heap->end = (void*)((uintptr_t)start + size);
+    heap->end = (void*) ((uintptr_t) start + size);
     bzero(start, size);
 }

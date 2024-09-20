@@ -12,7 +12,7 @@ typedef struct Unk800E1510 {
 
 extern char D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
 extern s32 D_800C20F0_5EF90;      // s32 D_800C20F0_5EF90 = 0;
-extern u32 D_800C20F4_5EF94;
+extern bool D_800C20F4_5EF94;
 extern UnkBigBoy* D_800C21B0_5F050;
 extern UnkBigBoy* D_800C21B8_5F058[]; // Likely wrong type, but so far it's only being used in one place and it works for now.
 extern u8 D_800E14FC_7E39C[4];
@@ -25,19 +25,19 @@ UnkBigBoy* func_800BF080_5BF20(void) {
     return D_800C21B0_5F050;
 }
 
-s32 func_800BF08C_5BF2C(void) {
-    UnkBigBoy* temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
+bool func_800BF08C_5BF2C(void) {
+    UnkBigBoy* temp_v0 = (UnkBigBoy*) func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
 
     if (temp_v0->unk_0 != D_800C21B0_5F050->unk_0 || temp_v0->unk_4 != D_800C21B0_5F050->unk_4 ||
         temp_v0->unk_8 != D_800C21B0_5F050->unk_8 || temp_v0->unk_C != D_800C21B0_5F050->unk_C) {
-        return 1;
+        return true;
     } else {
-        return 0;
+        return false;
     }
 }
 
 void func_800BF10C_5BFAC(void) {
-    UnkBigBoy* temp_v0 = func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
+    UnkBigBoy* temp_v0 = (UnkBigBoy*) func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
 
     D_800C21B0_5F050->unk_0 = temp_v0->unk_0;
     D_800C21B0_5F050->unk_4 = temp_v0->unk_4;
@@ -61,7 +61,7 @@ s32 func_800BF178_5C018(void) {
         comparisonStringBytes++;
         i++;
         if (i == sizeof(D_800C20E0_5EF80)) {
-            if (func_800BF08C_5BF2C() != 0) {
+            if (func_800BF08C_5BF2C()) {
                 return true;
             }
             return false;
@@ -98,7 +98,7 @@ s32 func_800BF244_5C0E4(void) {
     sp24 = D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_30 = osGetTime();
     func_800BF10C_5BFAC();
-    if (func_800C09C0_5D860(sp24, 0x1F2A4) != 0) {
+    if (func_800C09C0_5D860((uintptr_t) sp24, sizeof(*sp24)) != 0) {
         return 1;
     }
     if (contIsPrinterAvailable()) {
@@ -115,12 +115,12 @@ s32 func_800BF244_5C0E4(void) {
 
 void func_800BF37C_5C21C(void) {
     UnkBigBoy* arg0 = D_800C21B0_5F050;
-    func_800C06A8_5D548(arg0, sizeof(UnkBigBoy));
+    func_800C06A8_5D548((uintptr_t) arg0, sizeof(UnkBigBoy));
 }
 
 void func_800BF3A8_5C248(void) {
     UnkBigBoy* arg0 = D_800C21B0_5F050;
-    func_800C0AB4_5D954(arg0, sizeof(UnkBigBoy));
+    func_800C0AB4_5D954((uintptr_t) arg0, sizeof(UnkBigBoy));
 }
 
 bool func_800BF3D4_5C274(s32 pkmnID) {
@@ -266,11 +266,9 @@ s32 func_800BF864_5C704(void) {
     return ret;
 }
 
-#ifdef NON_EQUIVALENT
 PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     s32 i;
     PhotoData* sp28;
-    s32 t;
 
     sp28 = NULL;
     for (i = PokemonID_BULBASAUR; i <= POKEDEX_MAX; i++) {
@@ -280,16 +278,12 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
             continue;
         }
 
-        t = func_8009BB4C(i);
-        sp28 = &D_800C21B0_5F050->data.unk_180[t];
+        sp28 = D_800C21B0_5F050->data.unk_180 + func_8009BB4C(i);
         break;
     }
 
     return sp28;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/more_funcs/5BF20/func_800BF8BC_5C75C.s")
-#endif
 
 void func_800BF954_5C7F4(s32 arg0, PhotoData* photoData, UnkFuzzyCaterpillar* arg2) {
     if (arg0 < 0 || arg0 >= 60) {
@@ -402,8 +396,8 @@ void func_800BFC70_5CB10(s32 arg0) {
     }
 }
 
-s32 checkPlayerFlag(s32 arg0) {
-    switch (arg0) {
+s32 checkPlayerFlag(s32 pfid) {
+    switch (pfid) {
         case PFID_HAS_APPLE:
             return D_800C21B0_5F050->data.hasApple;
         case PFID_HAS_PESTER_BALL:
@@ -603,20 +597,20 @@ void func_800C0314_5D1B4(s32 arg0, s32 arg1) {
     }
 }
 
-s32 func_800C03D4_5D274(void) {
+bool func_800C03D4_5D274(void) {
     if (D_800E1504_7E3A4 == 0) {
-        return 0;
+        return false;
     }
     D_800E1504_7E3A4 = 0;
-    return 1;
+    return true;
 }
 
-s32 func_800C0400_5D2A0(void) {
+bool func_800C0400_5D2A0(void) {
     if (D_800E1508_7E3A8 == 0) {
-        return 0;
+        return false;
     }
     D_800E1508_7E3A8 = 0;
-    return 1;
+    return true;
 }
 
 s32 func_800C042C_5D2CC(void) {
@@ -648,7 +642,7 @@ s32 func_800C042C_5D2CC(void) {
     D_800C21B0_5F050->data.unk_64_22 = 0x4C;
     D_800C21B0_5F050->data.unk_64_16 = 0x24;
     D_800C20F0_5EF90 = 0;
-    D_800C20F4_5EF94 = 0;
+    D_800C20F4_5EF94 = false;
     D_800C21B0_5F050->data.unk_20 = (uintptr_t) D_800C21B0_5F050->data.unk_6C - (uintptr_t) D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_24 = (uintptr_t) D_800C21B0_5F050->data.unk_180 - (uintptr_t) D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_28 = (uintptr_t) D_800C21B0_5F050->data.unk_FBA0 - (uintptr_t) D_800C21B0_5F050;

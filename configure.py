@@ -40,9 +40,13 @@ IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
 
 O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
+RAW_BUILD_PREAMBLE = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS}"
+
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
-LIBULTRA_CC_CMD = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
+RAW_CC_CMD = f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out"
+
+LIBULTRA_CC_CMD = f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
@@ -181,6 +185,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "cc_raw",
+        description="cc $in",
+        command=f"{RAW_CC_CMD}",
+    )
+
+    ninja.rule(
         "cc_libultra",
         description="cc $in",
         command=f"{LIBULTRA_CC_CMD}",
@@ -287,106 +297,127 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
             c_path = entry.src_paths[0]
-            opt_level = "-O2"
 
-            if c_path.stem in ["5E630", "848B50", "98C330", "98D0F0", "993F80", "993C50", "9A6B10", "9A6F70", "9ABB50", "9ADAD0", "9D3230", "9D3660", "9D91C0", "A084B0", "9FAC10", "9FA580", "9FD510", "9FEC10"]:
-                opt_level = "-g"
+            if c_path.stem == "osFlash":
+                opt_level = "-O0"
+                ido = "5.3"
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc_raw",
+                    variables={
+                        "flags": opt_level,
+                        "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                    }
+                )
+                continue
 
             if "ultralib" not in str(c_path):
+                opt_level = "-O2"
+                ido = "7.1"
+
+                if c_path.stem in ["98C330", "98D0F0", "993F80", "993C50", "9A6B10", "9A6F70", "9ABB50", "9ADAD0", "9D3230", "9D3660", "9D91C0", "A084B0", "9FAC10", "9FA580", "9FD510", "9FEC10"]:
+                    opt_level = "-g"
+                elif c_path.stem in ["848B50"]:
+                    opt_level = "-O2 -g3"
+
                 build(
                     entry.object_path,
                     entry.src_paths,
                     "cc",
-                    variables={"flags": opt_level},
-                )
-            else:
-                opt_level = "-O2"
-                mips = "-mips2"
-                ido = "5.3"
-                libultra = "VERSION_I"
-
-                if (
-                    c_path.stem
-                    in [
-                        "pigetcmdq",
-                        "controller",
-                    ]
-                    or "ultralib/src/os" in str(c_path)
-                    or "ultralib/src/io" in str(c_path)
-                ):
-                    opt_level = "-O1"
-                elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
-                    c_path
-                ):
-                    opt_level = "-O3"
-                    if "color" in str(c_path):
-                        ido = "7.1"
-                    if c_path.stem == "spriteex2":
-                        opt_level = "-O2"
-                        ido = "7.1"
-                elif "ultralib/src/libc" in str(c_path):
-                    opt_level = "-O3"
-                    mips = "-mips2 -32"
-
-                    if c_path.stem in ["ll", "llbit", "llcvt"]:
-                        opt_level = "-O1"
-                        mips = "-mips3 -32"
-                elif "ultralib/src/audio" in str(c_path):
-                    ido = "7.1"
-
-                if c_path.stem in [
-                    "aisetfreq",
-                    "cartrominit",
-                    "contpfs",
-                    "contramread",
-                    "contramwrite",
-                    "contreaddata",
-                    "crc",
-                    "epirawdma",
-                    "epirawread",
-                    "epirawwrite",
-                    "gbpakcheckconnector",
-                    "gbpakgetstatus",
-                    "gbpakinit",
-                    "gbpakpower",
-                    "gbpakreadid",
-                    "gbpakreadwrite",
-                    "gbpaksetbank",
-                    "motor",
-                    "pfschecker",
-                    "pfsfilestate",
-                    "pfsgetstatus",
-                    "pfsinitpak",
-                    "pimgr",
-                    "pfsselectbank",
-                    "sirawdma",
-                    "vimgr",
-                    "viswapcontext",
-                ]:
-                    opt_level = "-O2"
-                    libultra = "VERSION_J"
-                elif c_path.stem in [
-                    "devmgr",
-                    "epiread",
-                    "epiwrite",
-                    "initialize",
-                    "pirawdma",
-                    "pirawread",
-                    "sirawread",
-                ]:
-                    opt_level = "-O1"
-                    libultra = "VERSION_J"
-
-                build(
-                    entry.object_path,
-                    entry.src_paths,
-                    "cc_libultra",
                     variables={
-                        "flags": f"{opt_level} {mips}",
-                        "ido": TOOLS_DIR / ("ido" + ido) / "cc",
-                        "libultra": libultra,
+                        "flags": opt_level,
                     },
                 )
+                continue
+
+            opt_level = "-O2"
+            mips = "-mips2"
+            ido = "5.3"
+            libultra = "VERSION_I"
+
+            if (
+                c_path.stem
+                in [
+                    "pigetcmdq",
+                    "controller",
+                ]
+                or "ultralib/src/os" in str(c_path)
+                or "ultralib/src/io" in str(c_path)
+            ):
+                opt_level = "-O1"
+            elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
+                c_path
+            ):
+                opt_level = "-O3"
+                if "color" in str(c_path):
+                    ido = "7.1"
+                if c_path.stem == "spriteex2":
+                    opt_level = "-O2"
+                    ido = "7.1"
+            elif "ultralib/src/libc" in str(c_path):
+                opt_level = "-O3"
+                mips = "-mips2 -32"
+
+                if c_path.stem in ["ll", "llbit", "llcvt"]:
+                    opt_level = "-O1"
+                    mips = "-mips3 -32"
+            elif "ultralib/src/audio" in str(c_path):
+                ido = "7.1"
+
+            if c_path.stem in [
+                "aisetfreq",
+                "cartrominit",
+                "contpfs",
+                "contramread",
+                "contramwrite",
+                "contreaddata",
+                "crc",
+                "epirawdma",
+                "epirawread",
+                "epirawwrite",
+                "gbpakcheckconnector",
+                "gbpakgetstatus",
+                "gbpakinit",
+                "gbpakpower",
+                "gbpakreadid",
+                "gbpakreadwrite",
+                "gbpaksetbank",
+                "motor",
+                "pfschecker",
+                "pfsfilestate",
+                "pfsgetstatus",
+                "pfsinitpak",
+                "pimgr",
+                "pfsselectbank",
+                "sirawdma",
+                "vimgr",
+                "viswapcontext",
+            ]:
+                opt_level = "-O2"
+                libultra = "VERSION_J"
+            elif c_path.stem in [
+                "devmgr",
+                "epiread",
+                "epiwrite",
+                "initialize",
+                "pirawdma",
+                "pirawread",
+                "sirawread",
+            ]:
+                opt_level = "-O1"
+                libultra = "VERSION_J"
+
+            build(
+                entry.object_path,
+                entry.src_paths,
+                "cc_libultra",
+                variables={
+                    "flags": f"{opt_level} {mips}",
+                    "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                    "libultra": libultra,
+                },
+            )
         elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
             if seg.sibling is None:
                 build(entry.object_path, entry.src_paths, "as")

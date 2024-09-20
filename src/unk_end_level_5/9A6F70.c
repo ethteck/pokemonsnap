@@ -49,7 +49,7 @@ extern UnkSnowHerring* D_80250000_A1A250;
 extern UnkSnowHerring* D_80250008_A1A258[20]; // references in the code to this being 6 long and 20 long. what?
 extern UnkSnowHerring* D_8025004C_A1A29C[3];
 extern UnkSnowHerring* D_80250058_A1A2A8;
-extern s32 D_8025005C_A1A2AC;
+extern UnkFireHerring* D_8025005C_A1A2AC;
 extern SObj* D_80250060_A1A2B0;
 extern GObj* D_80250064_A1A2B4;
 extern SObj* D_80250068_A1A2B8[5];
@@ -1433,14 +1433,14 @@ void* func_801E10D0_9AB320(void) {
 
 void func_801E1168_9AB3B8(s32 arg0) {
     UNUSED s32 pad[2];
-    s32 sp34;
+    UnkFireHerring* sp34;
     UnkSnowHerring* sp30;
 
     if (arg0 != 0) {
         sp34 = func_8036F78C_842F3C();
         D_8025005C_A1A2AC = sp34;
         func_8036F1F4_8429A4(sp34, 0xB8, 0x140);
-        func_8036F0DC_84288C(sp34, 0);
+        func_8036F0DC_84288C(sp34, false);
         sp30 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
         D_80250000_A1A250 = sp30;
         func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);

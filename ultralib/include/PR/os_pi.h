@@ -63,7 +63,7 @@ typedef struct {
     u32      sectorSize;        /* size of transfering sector */
     u32      C1ErrNum;          /* total # of C1 errors */
     u32      C1ErrSector[4];    /* error sectors */
-} __OSBlockInfo;
+} __OSBlockInfo; // size = 0x24
 
 typedef struct {
     u32             cmdType;        /* for disk only */
@@ -74,7 +74,7 @@ typedef struct {
     u32             bmCtlShadow;    /* asic bm_ctl(510) register shadow ram */
     u32             seqCtlShadow;   /* asic seq_ctl(518) register shadow ram */
     __OSBlockInfo   block[2];       /* bolck transfer info */
-} __OSTranxInfo;
+} __OSTranxInfo; // size = 0x60
 
 
 typedef struct OSPiHandle_s {

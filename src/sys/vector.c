@@ -185,7 +185,6 @@ Vec3f* Vec3f_func_8001A8B8(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
 
     return arg0;
 }
-
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/vector/Vec3f_func_8001A8B8.s")
 #endif

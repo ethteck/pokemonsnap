@@ -59,6 +59,7 @@ void func_800E4970_62120(Mtx4f dst, Mtx4f src) {
     dst[3][3] = src[3][3];
 }
 
+// identical to guMtxCatF
 void func_800E49F4_621A4(Mtx4f arg0, Mtx4f arg1, Mtx4f arg2) {
     s32 i, j, k;
     Mtx4f temp;

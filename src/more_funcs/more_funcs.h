@@ -56,8 +56,8 @@ typedef struct UnkBigBoy {
 void func_800BF954_5C7F4(s32, PhotoData*, UnkFuzzyCaterpillar*);
 s32 func_800C0224_5D0C4(s32);
 void func_800C0254_5D0F4(s32, s32);
-void func_800C06A8_5D548(UnkBigBoy*, s32);
-s32 func_800C09C0_5D860(UnkBigBoy* arg0, s32 arg1);
-void func_800C0AB4_5D954(UnkBigBoy*, s32);
+s32 func_800C06A8_5D548(uintptr_t, s32 size);
+s32 func_800C09C0_5D860(uintptr_t, s32 size);
+s32 func_800C0AB4_5D954(uintptr_t, s32);
 UnkBigBoy* func_800C16EC_5E58C(void*, s32);
 #endif

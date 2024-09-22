@@ -50,7 +50,7 @@ s32 func_802E2BB8_5DFC88(s32 arg0) {
             return SCENE_TUNNEL;
         case 7:
         case 8:
-            return SCENE_8;
+            return SCENE_MAIN_MENU;
     }
 
     if (func_8009BC68() > 0) {
@@ -58,7 +58,7 @@ s32 func_802E2BB8_5DFC88(s32 arg0) {
     }
 
     func_800AAED0(0x10);
-    return SCENE_13;
+    return SCENE_OAKS_LAB_2;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5DF5D0/func_802E2C70_5DFD40.s")

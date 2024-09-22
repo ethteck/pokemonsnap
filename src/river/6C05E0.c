@@ -62,5 +62,5 @@ s32 func_802D9210_6C0FF0(s32 sceneId) {
 
     func_800AAED0(0x10);
 
-    return SCENE_13;
+    return SCENE_OAKS_LAB_2;
 }

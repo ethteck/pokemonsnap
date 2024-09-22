@@ -96,11 +96,11 @@ s32 func_802C6544_79FAD4(s32 arg0) {
     gtlDisableNearClipping(1);
     omSetupScene(&D_802D29F0_7ABF80);
     if (D_802D297C_7ABF0C == 6) {
-        return 5;
+        return SCENE_VALLEY;
     }
     if (func_8009BC68() > 0) {
-        return 9;
+        return SCENE_CAMERA_CHECK;
     }
     func_800AAED0(0x10);
-    return 13;
+    return SCENE_OAKS_LAB_2;
 }

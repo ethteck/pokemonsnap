@@ -2321,8 +2321,8 @@ segments:
     exclusive_ram_id: unk83A1E0
     subsegments:
     - [0x83A1E0, bin] # , data]
-  - name: unk_end_level
-    dir: unk_end_level
+  - name: window
+    dir: window
     type: code
     start: 0x83D730
     vram: 0x80369F80
@@ -2378,8 +2378,8 @@ segments:
     - [0x8A70C0, .rodata, 87FB20]
 
     - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
-  - name: unk_end_level_3
-    dir: unk_end_level_3
+  - name: oaks_lab
+    dir: oaks_lab
     type: code
     start: 0x8A70E0
     vram: 0x800E18C0
@@ -2424,8 +2424,8 @@ segments:
     - [0x9A3C10, .rodata, 98C330]
     - [0x9A5AA0, .rodata, 98D0F0]
     - [0x9A6AF0, .rodata, 993F80]
-  - name: unk_end_level_5
-    dir: unk_end_level_5
+  - name: pokemon_album
+    dir: pokemon_album
     type: code
     start: 0x9A6B10
     vram: 0x801DC8C0
@@ -2443,8 +2443,8 @@ segments:
     - [0x9D31A0, .rodata, 9ABB50]
 
     - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
-  - name: unk_end_level_6
-    dir: unk_end_level_6
+  - name: pokemon_report
+    dir: pokemon_report
     type: code
     start: 0x9D3230
     vram: 0x801DC8C0
@@ -2461,8 +2461,8 @@ segments:
     - [0x9FA550, .rodata, 9D91C0]
 
     - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
-  - name: unk_end_level_7
-    dir: unk_end_level_7
+  - name: gallery
+    dir: gallery
     type: code
     start: 0x9FA580
     vram: 0x801DC8C0
@@ -2491,8 +2491,8 @@ segments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
     - { start: auto, name: A084B0, type: bss, vram: 0x801DD240 }
-  - name: unk_end_level_9
-    dir: unk_end_level_9
+  - name: main_menu
+    dir: main_menu
     type: code
     start: 0xA08E30
     vram: 0x800E18A0

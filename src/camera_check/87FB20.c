@@ -1,7 +1,7 @@
 #include "common.h"
 #include "camera_check.h"
 #include "photo_check/photo_check.h"
-#include "unk_end_level/unk_end_level.h"
+#include "window/window.h"
 
 s32 func_camera_check_801E2330(s32 arg0) {
     arg0 = func_8009BB4C(arg0);

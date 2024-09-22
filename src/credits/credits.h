@@ -1,7 +1,7 @@
 #ifndef _CREDITS_H
 #define _CREDITS_H
 
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 
 typedef struct Credit {
     u32 unk_0;

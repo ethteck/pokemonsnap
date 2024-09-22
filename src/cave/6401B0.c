@@ -169,5 +169,5 @@ s32 func_802BE3B0_640860(s32 arg0) {
 
     func_800AAED0(0x10);
 
-    return SCENE_13;
+    return SCENE_OAKS_LAB_2;
 }

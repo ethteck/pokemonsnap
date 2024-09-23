@@ -129,8 +129,8 @@ PokemonDef volcano_PokemonDefs[] = {
       func_802DFB44_730D44,
       pokemonChangeBlock,
       NULL },
-    { PokemonID_1001,
-      func_802DFA38_730C38,
+    { PokemonID_GATE,
+      volcano_gate_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { 0, NULL, NULL, NULL }

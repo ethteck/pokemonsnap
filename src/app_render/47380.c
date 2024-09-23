@@ -476,7 +476,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_601:
         case PokemonID_602:
         case PokemonID_603:
-        case PokemonID_1001:
+        case PokemonID_GATE:
         case PokemonID_1002:
         case PokemonID_1003:
         case PokemonID_1006:

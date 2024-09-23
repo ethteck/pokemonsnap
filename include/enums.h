@@ -255,7 +255,7 @@ enum PokemonIds {
     PokemonID_602 = 602,
     PokemonID_603 = 603,
     PokemonID_1000 = 1000,
-    PokemonID_1001 = 1001,
+    PokemonID_GATE = 1001,
     PokemonID_1002 = 1002,
     PokemonID_1003 = 1003,
     PokemonID_1004 = 1004,

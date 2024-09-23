@@ -602,7 +602,7 @@ s32 func_80348FF0_828760(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
     temp_v0 = GET_TRANSFORM(D_8034AF2C_82A69C->data.dobj);
     temp_t1 = &GET_TRANSFORM(D_8034AF2C_82A69C->data.dobj)->rot;
     if (world_func_800E67E4(arg0, arg1, arg2, arg3, &D_8034AF20_82A690, temp_v0->pos.v, temp_t1->v)) {
-        return PokemonID_1001;
+        return PokemonID_GATE;
     }
     return -1;
 }
@@ -620,7 +620,7 @@ void func_80349084_8287F4(GObj* obj) {
     PokemonDef def = D_8034AFAC_82A71C;
 
     block = getCurrentWorldBlock();
-    spawn.id = PokemonID_1001;
+    spawn.id = PokemonID_GATE;
     spawn.translation.x = 0.0;
     spawn.translation.y = 0.0;
     spawn.translation.z = 0.0;

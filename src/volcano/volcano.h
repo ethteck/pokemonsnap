@@ -87,4 +87,4 @@ GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* growlithe_spawner_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DF240_730440(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DFB44_730D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DFA38_730C38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* volcano_gate_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

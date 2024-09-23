@@ -1,7 +1,7 @@
 #include "common.h"
 
 #include "sys/oh.h"
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 
 #include "photo_check.h"
 

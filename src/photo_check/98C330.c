@@ -2,7 +2,7 @@
 
 #include "gbi.h"
 #include "string.h"
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 
 #include "photo_check.h"
 
@@ -2441,7 +2441,7 @@ void func_801E39DC_99344C(GObj* arg0) {
         func_803705A4_843D54();
         func_80374D20_8484D0();
         if (sp48 < 0) {
-            func_800AADF0(0xD);
+            func_800AADF0(SCENE_OAKS_LAB_2);
         } else {
             func_800AADF0(sp48);
         }

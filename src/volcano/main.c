@@ -415,7 +415,7 @@ s32 volcano_Start(s32 arg0) {
         return SCENE_CAMERA_CHECK;
     }
     func_800AAED0(0x10);
-    return SCENE_13;
+    return SCENE_OAKS_LAB_2;
 }
 
 void volcano_SpawnArcanine(GObj* obj) {

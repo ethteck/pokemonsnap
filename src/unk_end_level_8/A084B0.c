@@ -1,7 +1,7 @@
 #include "common.h"
 #include "ld_addrs.h"
 
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 
 extern GObj* D_801DD240_A08E30;
 extern OMCamera* D_801DD244_A08E34;
@@ -190,7 +190,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
 
     D_801DD240_A08E30->flags |= 1;
     func_8009FBC4();
-    func_800AADF0(0x17);
+    func_800AADF0(SCENE_GALLERY_2);
 
     while (true) {
         ohWait(1);
@@ -248,8 +248,8 @@ void func_801DD070_A08C60(UNK_PTR arg0) {
 s32 func_801DD09C_A08C8C(s32 arg0) {
     D_801DD250_A08E40 = 0x10000000;
     D_801DD24C_A08E3C = 0;
-    D_800AF3C0 = SCENE_23;
-    D_801DD14C_A08D3C.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) unk_end_level_8_VRAM_END;
+    D_800AF3C0 = SCENE_GALLERY_2;
+    D_801DD14C_A08D3C.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) unk_end_level_8_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801DD14C_A08D3C);
 

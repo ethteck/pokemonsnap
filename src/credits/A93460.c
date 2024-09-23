@@ -1,5 +1,5 @@
 #include "common.h"
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 #include "credits.h"
 
 void func_credits_801DC8A0(Gfx** gfx) {
@@ -68,5 +68,5 @@ s32 func_credits_801DCB24(s32 sceneId) {
     osStopThread(&D_credits_801E9A90);
     osDestroyThread(&D_credits_801E9A90);
 
-    return SCENE_8;
+    return SCENE_MAIN_MENU;
 }

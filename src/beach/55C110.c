@@ -180,12 +180,12 @@ s32 func_beach_802C4740(s32 sceneID) {
             return SCENE_BEACH;
         case 7:
         case 8:
-            return SCENE_8;
+            return SCENE_MAIN_MENU;
         default:
             if (func_8009BC68() > 0) {
                 return SCENE_CAMERA_CHECK;
             }
             func_800AAED0(0x10);
-            return SCENE_13;
+            return SCENE_OAKS_LAB_2;
     }
 }

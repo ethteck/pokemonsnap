@@ -266,5 +266,5 @@ s32 func_80346EF0_826660(s32 arg0) {
     }
 
     func_800AAED0(0x10);
-    return SCENE_13;
+    return SCENE_OAKS_LAB_2;
 }

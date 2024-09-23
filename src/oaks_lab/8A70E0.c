@@ -1,10 +1,8 @@
 #include "common.h"
 #include "ld_addrs.h"
-#include "camera_check.h"
+#include "oaks_lab.h"
 
-void func_camera_check_801DCA60(void);
-
-Gfx D_camera_check_801E3FF0[] = {
+Gfx D_800E66D0_8ABEF0[] = {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_NPRIMITIVE),
     gsSPClearGeometryMode(G_LIGHTING),
@@ -18,7 +16,7 @@ Gfx D_camera_check_801E3FF0[] = {
     gsSPEndDisplayList(),
 };
 
-ScreenSettings D_camera_check_801E4060 = {
+ScreenSettings D_800E6740_8ABF60 = {
     D_803B5000,
     D_803DA800,
     NULL,
@@ -28,22 +26,22 @@ ScreenSettings D_camera_check_801E4060 = {
     0x16A99,
 };
 
-SceneSetup D_camera_check_801E407C = {
+SceneSetup D_800E675C_8ABF7C = {
     {
         0,
         omUpdateAll,
         omDrawAll,
-        camera_check_VRAM_END,
+        D_80206B90,
         0,
-        0x1,
-        0x1,
-        0xD000,
+        2,
+        1,
+        0x10000,
+        0x400,
+        0,
+        0,
+        0x400,
+        2,
         0x2000,
-        0,
-        0,
-        0x3000,
-        0x2,
-        0x3000,
         func_800A1A50,
         contUpdate,
     },
@@ -65,32 +63,31 @@ SceneSetup D_camera_check_801E407C = {
     0x60,
     0x4,
     sizeof(OMCamera),
-    func_camera_check_801DCA60,
+    func_800E1A60_8A7280,
 };
 
-static void nullsub() {
+void func_800E18C0_8A70E0(void) {
 }
 
-static void nullsub2() {
+void func_800E18C8_8A70E8(void) {
 }
 
-void func_camera_check_801DC8D0(GObj* arg0) {
-    while (true) {
+void func_800E18D0_8A70F0(GObj* arg0) {
+    while (1) {
         ohWait(1);
     }
 }
 
-void func_camera_check_801DC910(void) {
-    UNUSED s32 temp_t3;
-    OMCamera* camera;
+void func_800E1910_8A7130(void) {
     GObj* camObj;
+    OMCamera* camera;
 
     camObj = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, ren_func_800191D8, 0x14, 0x100000, 0x100000, 1, 0,
-                            func_camera_check_801DC8D0, 0, 1);
+                            func_800E18D0_8A70F0, 0, 1);
     camera = camObj->data.cam;
     camObj->unk_38 = 0x100000;
-    camera->flags |= CAMERA_FLAG_2 | CAMERA_FLAG_4;
-    camera->flags &= ~(CAMERA_FLAG_1 | CAMERA_FLAG_2);
+    camera->flags |= CAMERA_FLAG_4 | CAMERA_FLAG_2;
+    camera->flags &= ~(CAMERA_FLAG_2 | CAMERA_FLAG_1);
     func_800A844C(camera, 0, 0, 640, 480);
     camera->viewMtx.lookAt.up.x = 0.0f;
     camera->viewMtx.lookAt.up.y = 0.0f;
@@ -104,23 +101,26 @@ void func_camera_check_801DC910(void) {
     camera->perspMtx.persp.near = camera->perspMtx.persp.far / 128.0;
 }
 
-void func_camera_check_801DCA60(void) {
-    func_8036A3F8_83DBA8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
+void func_800E1A60_8A7280(void) {
+    func_8036A3F8_83DBA8(D_801C6B10_98C330, sizeof(D_801C6B10_98C330));
     func_800AAE28();
-    func_camera_check_801DC910();
-    func_80374D40_8484F0();
+    func_800E1910_8A7130();
     func_8036EB98_842348();
+    func_800A7F68(1, 0x101);
     func_80375284_848A34(3);
-    func_80375284_848A34(2);
+    func_80375284_848A34(0);
     auSetBGMVolume(0, 0x7F00);
-    func_camera_check_801DF938();
+    func_800E3190_8A89B0();
 }
 
-s32 func_camera_check_801DCACC(s32 arg0) {
+void func_800E1AD0_8A72F0(void) {
+}
+
+s32 func_oaks_lab_800E1AD8(s32 sceneId) {
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
-    viApplyScreenSettings(&D_camera_check_801E4060);
-    D_camera_check_801E407C.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) camera_check_VRAM_END;
-    omSetupScene(&D_camera_check_801E407C);
+    viApplyScreenSettings(&D_800E6740_8ABF60);
+    D_800E675C_8ABF7C.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) oaks_lab_VRAM_END;
+    omSetupScene(&D_800E675C_8ABF7C);
     return D_800AF3C0;
 }

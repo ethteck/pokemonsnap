@@ -2,7 +2,7 @@
 #include "ld_addrs.h"
 #include "sys/vi.h"
 #include "sys/gtl.h"
-#include "../unk_end_level/unk_end_level.h"
+#include "../window/window.h"
 
 extern Sprite D_80117F98_A93348; // card
 extern Sprite D_80109880_A84C30; // background
@@ -358,9 +358,9 @@ SceneSetup menu_new_game_setup = {
 
 s32 menu_new_game_entry(s32 arg0) {
     viApplyScreenSettings(&menu_new_game_video_settings);
-    menu_new_game_setup.gtlSetup.heapSize = (uintptr_t) unk_end_level_VRAM - (uintptr_t) menu_new_game_VRAM_END;
+    menu_new_game_setup.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) menu_new_game_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&menu_new_game_setup);
     setPlayerFlag(PFID_16, 1);
-    return SCENE_11;
+    return SCENE_OAKS_LAB;
 }

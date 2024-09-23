@@ -1054,10 +1054,10 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_8036EE40_8425F0();
         func_80374D20_8484D0();
         if (func_camera_check_801E27FC()) {
-            func_800AADF0(0xF);
+            func_800AADF0(SCENE_PHOTO_CHECK);
         } else {
-            func_800AAED0(0x10);
-            func_800AADF0(0xD);
+            func_800AAED0(SCENE_16);
+            func_800AADF0(SCENE_OAKS_LAB_2);
         }
         ohWait(1);
     }

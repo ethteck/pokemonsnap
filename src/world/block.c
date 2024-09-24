@@ -536,7 +536,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     return obj;
 }
 
-WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, BlockFunc2 addCb, BlockFunc deleteCb, BlockFunc2 changeBlockCb) {
+WorldBlock** createWorldBlocks(WorldBlockSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, BlockFunc2 addCb, BlockFunc deleteCb, BlockFunc2 changeBlockCb) {
     s32 i;
     s32 num1;
     WorldBlock* s0;
@@ -651,7 +651,7 @@ s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockM
         return false;
     }
     func_800E354C_60CFC(arg0->unk_04, arg0->unk_08);
-    InitCollisionModels(arg0->unk_0C);
+    InitCollisionModels(arg0->collisionModels);
     setFogDistance(arg0->fogDistanceMin, arg0->fogDistanceMax);
     setFogColor(arg0->fogR, arg0->fogG, arg0->fogB);
     setBackgroundColor(arg0->backgroundR, arg0->backgroundG, arg0->backgroundB);

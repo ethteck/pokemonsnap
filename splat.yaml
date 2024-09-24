@@ -651,6 +651,8 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x326C10, c]
+    - [auto, c, world]
+    - [auto, c, blocks]
     - [auto, c, growlithe_spawner/model]
     - [auto, c, growlithe_spawner/materials]
     - [auto, c, koffing_smoke/model]
@@ -666,7 +668,9 @@ segments:
     - [auto, c, charmeleon/textures]
     - [auto, c, charizard/textures]
     - [auto, c, arcanine/textures]
-    - [0x326C20, bin]
+    - [0x326C20, .data, world]
+    - [0x326C60, bin]
+    - [0x339A40, .data, blocks]
     - start: 0x33A2B0
       type: .data
       name: growlithe_spawner/model

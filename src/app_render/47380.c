@@ -916,7 +916,7 @@ void func_8009D0B4(WorldBlock* b1, WorldBlock* b2) {
 }
 
 void func_8009D184(WorldSetup* arg0) {
-    arg0->unk_0C = NULL;
+    arg0->collisionModels = NULL;
     createWorld(arg0, 99, 100, 126, D_800BDF1D, D_800BDF1C, func_8009D0B4, 0, 0);
     func_800E1A78_5F228(0.0f);
 }

@@ -90,17 +90,17 @@ typedef struct WorldBlock {
     /* 0x18 */ DObj** cpObjects;
 } WorldBlock; // size = 0x1C
 
-typedef struct UnkBoneFox {
+typedef struct WorldBlockSetup {
     /* 0x00 */ WorldBlockDescriptor** unk_00;
     /* 0x04 */ WorldBlockDescriptor** unk_04;
     /* 0x08 */ SkyBox* skybox;
-} UnkBoneFox; // size >= 0xC
+} WorldBlockSetup; // size >= 0xC
 
 typedef struct WorldSetup {
-    /* 0x00 */ UnkBoneFox* blocksSetup;
+    /* 0x00 */ WorldBlockSetup* blocksSetup;
     /* 0x04 */ UnkVioletMarlin* unk_04;
     /* 0x08 */ s32 unk_08;
-    /* 0x0C */ CollisionModel* unk_0C;
+    /* 0x0C */ CollisionModel* collisionModels;
     /* 0x10 */ f32 unk_10;
     /* 0x14 */ u16 fogDistanceMin;
     /* 0x16 */ u16 fogDistanceMax;
@@ -172,6 +172,8 @@ typedef void (*BlockFunc)(WorldBlock*);
 typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
 extern WorldSetup D_80100720;
+
+extern Collider D_800EDF78[];
 
 void InitCollisionModels(CollisionModel* arg0);
 WorldBlock* enterFirstBlock(s32 arg0);

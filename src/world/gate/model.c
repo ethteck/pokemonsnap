@@ -9,13 +9,13 @@ extern u8 gate_tex2_png[];
 
 extern Gfx gate_part0[];
 
-#include "assets/world/model.vtx.inc.c"
-#include "assets/world/first.gfx.inc.c"
-#include "assets/world/part0.gfx.inc.c"
-#include "assets/world/part1.gfx.inc.c"
-#include "assets/world/part3.gfx.inc.c"
-#include "assets/world/last.gfx.inc.c"
-#include "assets/world/part2.gfx.inc.c"
+#include "assets/world/gate/model.vtx.inc.c"
+#include "assets/world/gate/first.gfx.inc.c"
+#include "assets/world/gate/part0.gfx.inc.c"
+#include "assets/world/gate/part1.gfx.inc.c"
+#include "assets/world/gate/part3.gfx.inc.c"
+#include "assets/world/gate/last.gfx.inc.c"
+#include "assets/world/gate/part2.gfx.inc.c"
 
 DObjPayloadTypeC gate_gfxdata[] = {
     { 0, gate_first },

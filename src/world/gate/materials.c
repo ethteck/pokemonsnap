@@ -194,7 +194,4 @@ Texture* gate_part2_mat[] = {
 Texture* gate_part3_mat[] = {
     &gate_part3_mat0,
     NULL,
-    // TODO split!
-    NULL,
-    NULL,
 };

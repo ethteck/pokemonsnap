@@ -639,7 +639,7 @@ void charmeleon_EvolvedSpawn(GObj* obj) {
     GObj* var;
     DObj* newModel;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &def);
     GET_POKEMON(var)->behavior = 1;
     GET_POKEMON(var)->path = GET_POKEMON(obj)->path;
     newModel = var->data.dobj;

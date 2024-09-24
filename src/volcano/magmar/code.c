@@ -202,7 +202,7 @@ InteractionHandler magmar_tg_Recover[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E13C4_7325C4[] = {
+InteractionHandler magmar_tg_HearsFlute[] = {
     { POKEMON_CMD_9, magmar_HitByPesterBall, 0, NULL },
     { POKEMON_CMD_13, magmar_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
@@ -450,7 +450,7 @@ POKEMON_FUNC(magmar_Recover)
 POKEMON_FUNC(magmar_HearsFlute)
     Pokemon_SetAnimation(obj, &magmar_animation_walk);
     Pokemon_StartPathProc(obj, magmar_TurnToPlayer);
-    pokemon->transitionGraph = D_802E13C4_7325C4;
+    pokemon->transitionGraph = magmar_tg_HearsFlute;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     Pokemon_SetState(obj, magmar_Idle);

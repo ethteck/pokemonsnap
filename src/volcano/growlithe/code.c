@@ -433,6 +433,6 @@ POKEMON_FUNC(growlithe_PhotoTaken)
     Pokemon_SetStateRandom(obj, growlithe_idleStates);
 }
 
-GObj* func_802DB558_72C758(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+GObj* growlithe_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &growlithe_initData);
 }

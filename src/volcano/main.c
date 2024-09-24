@@ -82,7 +82,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_GROWLITHE,
-      func_802DB558_72C758,
+      growlithe_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_SMOKE_SPAWNER,
@@ -97,8 +97,8 @@ PokemonDef volcano_PokemonDefs[] = {
       koffing_smoke_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1002,
-      func_802DED34_72FF34,
+    { PokemonID_EVOLUTION_CONTROLLER,
+      evolution_controller_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_MOLTRES_EGG,
@@ -121,8 +121,8 @@ PokemonDef volcano_PokemonDefs[] = {
       growlithe_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1030,
-      func_802DF240_730440,
+    { PokemonID_VOLCANO_EFFECT,
+      volcano_effect_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_1031,
@@ -210,7 +210,7 @@ PokemonDef volcano_ArcanineDef = {
 
 PokemonDef volcano_GrowlitheDef = {
     PokemonID_GROWLITHE,
-    func_802DB558_72C758,
+    growlithe_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
@@ -223,8 +223,8 @@ PokemonDef volcano_CharizardDef = {
 };
 
 PokemonDef volcano_Pokemon1030Def = {
-    PokemonID_1030,
-    func_802DF240_730440,
+    PokemonID_VOLCANO_EFFECT,
+    volcano_effect_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };
@@ -514,7 +514,7 @@ void func_802D6A5C_727C5C(GObj* obj) {
 void func_802D6B2C_727D2C(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 0;
     omEndProcess(NULL);
 }
@@ -522,7 +522,7 @@ void func_802D6B2C_727D2C(GObj* obj) {
 void func_802D6B64_727D64(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 4;
     GET_POKEMON(obj)->miscVars[1].obj = var;
     omEndProcess(NULL);
@@ -531,7 +531,7 @@ void func_802D6B64_727D64(GObj* obj) {
 void func_802D6BB0_727DB0(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 1;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -542,7 +542,7 @@ void func_802D6BB0_727DB0(GObj* obj) {
 void func_802D6C38_727E38(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 5;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -553,7 +553,7 @@ void func_802D6C38_727E38(GObj* obj) {
 void func_802D6CC0_727EC0(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 5;
     omEndProcess(NULL);
 }
@@ -561,7 +561,7 @@ void func_802D6CC0_727EC0(GObj* obj) {
 void func_802D6CFC_727EFC(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 2;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.0f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.0f;

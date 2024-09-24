@@ -318,3 +318,6 @@ gate_matanim_closed = 0x800F1E40;
 gate_matanim_raise_bar = 0x800F1F20;
 gate_matanim_opening = 0x800F2020;
 gate_matanim_opened = 0x800F2110;
+
+D_800F31D0_70980 = 0x800F31D0;
+D_800F21C8_6F978 = 0x800F21C8;

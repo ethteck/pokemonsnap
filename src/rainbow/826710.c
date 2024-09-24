@@ -45,7 +45,7 @@ extern AnimationHeader D_8034AED0_82A640;
 extern AnimationHeader D_8034AEE4_82A654;
 extern AnimationHeader D_8034AEF8_82A668;
 extern AnimationHeader D_8034AF0C_82A67C;
-extern UnkChestnutCougar D_8034AF20_82A690;
+extern CollisionModel D_8034AF20_82A690;
 extern GObj* D_8034AF2C_82A69C;
 extern s32 D_8034AF30_82A6A0;
 extern s32 D_8034AF34_82A6A4;
@@ -601,7 +601,7 @@ s32 func_80348FF0_828760(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
     }
     temp_v0 = GET_TRANSFORM(D_8034AF2C_82A69C->data.dobj);
     temp_t1 = &GET_TRANSFORM(D_8034AF2C_82A69C->data.dobj)->rot;
-    if (world_func_800E67E4(arg0, arg1, arg2, arg3, &D_8034AF20_82A690, temp_v0->pos.v, temp_t1->v)) {
+    if (StaticObject_CollideOne(arg0, arg1, arg2, arg3, &D_8034AF20_82A690, temp_v0->pos.v, temp_t1->v)) {
         return PokemonID_GATE;
     }
     return -1;
@@ -639,7 +639,7 @@ void func_80349084_8287F4(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.x = 0.0f;
     GET_TRANSFORM(model)->pos.v.y = 0.0f;
     GET_TRANSFORM(model)->pos.v.z = D_8034B6F4_82AE64;
-    world_func_800E6778(&D_8034AF20_82A690);
+    InitOneCollisionModel(&D_8034AF20_82A690);
     Items_func_8035CA1C(&func_80348FF0_828760);
     omEndProcess(NULL);
 }

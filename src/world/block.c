@@ -21,9 +21,9 @@ f32 GlobalTimer = 0.0f;
 f32 SkyBoxAnimationSpeed = 1.0f;
 s32 SkyBoxMaxAngle = 10000;
 AnimCmd*** SkyBoxAnimation = NULL;
-BlockFunc2 D_800E6AFC_642AC = NULL;
+BlockFunc2 WorldBlockAddCb = NULL;
 BlockFunc WorldBlockDeleteCb = NULL;
-BlockFunc2 D_800E6B04_642B4 = NULL;
+BlockFunc2 WorldBlockChangeBlockCb = NULL;
 
 // bss
 static char D_800F5A00_731B0[8]; // padding
@@ -319,8 +319,8 @@ void func_800E23A8_5FB58(WorldBlock* arg0) {
                 return;
             }
         }
-        if (D_800E6AFC_642AC != NULL) {
-            D_800E6AFC_642AC(next, arg0);
+        if (WorldBlockAddCb != NULL) {
+            WorldBlockAddCb(next, arg0);
         }
     }
 }
@@ -351,8 +351,8 @@ WorldBlock* enterNextBlock(void) {
         if (worldBlocks[i] == NULL) {
             break;
         }
-        if (D_800E6B04_642B4 != NULL) {
-            D_800E6B04_642B4(worldBlocks[i], next);
+        if (WorldBlockChangeBlockCb != NULL) {
+            WorldBlockChangeBlockCb(worldBlocks[i], next);
         }
     }
 
@@ -363,8 +363,8 @@ WorldBlock* enterNextBlock(void) {
         if (worldBlocks[next->index + i] == NULL) {
             break;
         }
-        if (D_800E6B04_642B4 != NULL) {
-            D_800E6B04_642B4(worldBlocks[next->index + i], next);
+        if (WorldBlockChangeBlockCb != NULL) {
+            WorldBlockChangeBlockCb(worldBlocks[next->index + i], next);
         }
     }
 
@@ -381,8 +381,8 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
 
     CurrentWorldBlock = arg0;
     func_800E2280_5FA30(arg0);
-    if (D_800E6AFC_642AC != NULL) {
-        D_800E6AFC_642AC(arg0, arg0);
+    if (WorldBlockAddCb != NULL) {
+        WorldBlockAddCb(arg0, arg0);
     }
 
     for (i = -1; i >= -1; i--) {
@@ -390,8 +390,8 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
             break;
         }
         v1 = arg0->prev;
-        if (D_800E6AFC_642AC != NULL) {
-            D_800E6AFC_642AC(v1, arg0);
+        if (WorldBlockAddCb != NULL) {
+            WorldBlockAddCb(v1, arg0);
         }
     }
 
@@ -400,8 +400,8 @@ WorldBlock* func_800E25E4_5FD94(WorldBlock* arg0) {
             break;
         }
         v1 = arg0->next;
-        if (D_800E6AFC_642AC != NULL) {
-            D_800E6AFC_642AC(v1, arg0);
+        if (WorldBlockAddCb != NULL) {
+            WorldBlockAddCb(v1, arg0);
         }
     }
 
@@ -536,7 +536,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     return obj;
 }
 
-WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, BlockFunc2 arg6, BlockFunc deleteCb, BlockFunc2 arg8) {
+WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dlLink, BlockFunc2 addCb, BlockFunc deleteCb, BlockFunc2 changeBlockCb) {
     s32 i;
     s32 num1;
     WorldBlock* s0;
@@ -547,9 +547,9 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     WorldBlockMaxObjId = blockMaxObjId;
     WorldLink = link;
     WorldDlLink = dlLink;
-    D_800E6AFC_642AC = arg6;
+    WorldBlockAddCb = addCb;
     WorldBlockDeleteCb = deleteCb;
-    D_800E6B04_642B4 = arg8;
+    WorldBlockChangeBlockCb = changeBlockCb;
 
     for (i = 0; i < MAX_BLOCKS; i++) {
         worldBlocks[i] = NULL;
@@ -645,17 +645,17 @@ WorldBlock** createWorldBlocks(UnkBoneFox* arg0, s32 skyBoxObjId, s32 blockMinOb
     return worldBlocks;
 }
 
-s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8) {
+s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 fnPokemonAdd, BlockFunc fnPokemonRemove, BlockFunc2 fnPokemonChangeBlock) {
     func_800E1924_5F0D4();
     if (arg0 == NULL || arg0->blocksSetup == NULL) {
         return false;
     }
     func_800E354C_60CFC(arg0->unk_04, arg0->unk_08);
-    func_800E66BC_63E6C(arg0->unk_0C);
+    InitCollisionModels(arg0->unk_0C);
     setFogDistance(arg0->fogDistanceMin, arg0->fogDistanceMax);
     setFogColor(arg0->fogR, arg0->fogG, arg0->fogB);
     setBackgroundColor(arg0->backgroundR, arg0->backgroundG, arg0->backgroundB);
-    createWorldBlocks(arg0->blocksSetup, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, arg6, arg7, arg8);
+    createWorldBlocks(arg0->blocksSetup, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, fnPokemonAdd, fnPokemonRemove, fnPokemonChangeBlock);
     func_800E1A78_5F228(arg0->unk_10);
     return true;
 }

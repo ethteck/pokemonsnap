@@ -1106,7 +1106,7 @@ void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f3
             velDir.y = velY;
             velDir.z = velZ;
             currentSpeed = Vec3fNormalize(&velDir);
-            Vec3f_func_8001AC98(&velDir, &pokemon->currGround.normal);
+            Vec3fReflect(&velDir, &pokemon->currGround.normal);
             velX = velDir.x * currentSpeed;
             velY = velDir.y * currentSpeed;
             velZ = velDir.z * currentSpeed;

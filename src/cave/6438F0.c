@@ -271,7 +271,7 @@ void func_802C1C48_6440F8(GObj* obj) {
     sp64 = D_802C7410_6498C0;
 
     pokemon->path = (InterpData*) pokemon->miscVars[2].field1;
-    func_8001FCA4(&sp64, pokemon->path, pokemon->path->unk_10[1]);
+    GetInterpolatedPosition(&sp64, pokemon->path, pokemon->path->paramPoints[1]);
     blockDesc = getCurrentWorldBlock()->descriptor;
     x = (sp64.x - blockDesc->worldPos.x) * 100.0f;
     y = (sp64.y - blockDesc->worldPos.y) * 100.0f;
@@ -296,7 +296,7 @@ void func_802C1C48_6440F8(GObj* obj) {
     transform->pos.v.z = z;
 
     Pokemon_ResetPathPos(obj);
-    Pokemon_FollowPath(obj, pokemon->path->unk_10[1], 1.0f, 0.25f, 0.0f, 2);
+    Pokemon_FollowPath(obj, pokemon->path->paramPoints[1], 1.0f, 0.25f, 0.0f, 2);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

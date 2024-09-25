@@ -639,7 +639,7 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
         ohWait(1);
     }
 
-    sp6C = 1.0f / pokemon->path->unk_0C * speedMult;
+    sp6C = 1.0f / pokemon->path->duration * speedMult;
 
     while (true) {
         if (!(var_f20 >= 0.0f && var_f20 <= 1.0f)) {
@@ -655,7 +655,7 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
                 GET_TRANSFORM(temp_s1)->pos.v.y -= sp88.y * 100.0f;
             }
 
-            func_8001FCE8(&sp74, pokemon->path, var_f20);
+            GetInterpolatedVelocity(&sp74, pokemon->path, var_f20);
 
             angle = atan2f(sp74.x, sp74.z);
             if (angle < 0.0f) {
@@ -667,13 +667,13 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
 
             switch (pokemon->path->type) {
                 case 1:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
                 case 2:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
                 case 3:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
             }
 

@@ -1937,3 +1937,6 @@ evolution_controller_part3 = 0x800F5178; // segment:world
 evolution_controller_part4 = 0x800F5250; // segment:world
 evolution_controller_part5 = 0x800F5328; // segment:world
 evolution_controller_last = 0x800F5400; // segment:world
+
+GetInterpolatedPosition = 0x8001FCA4;
+GetInterpolatedVelocity = 0x8001FCE8;

@@ -77,7 +77,7 @@ s32 func_beach_802CB194(GObj* obj) {
     pokemon->pos1.x = -(block->descriptor->worldPos.x * 100.0f);
     pokemon->pos1.y = -(block->descriptor->worldPos.y * 100.0f);
     pokemon->pos1.z = -(block->descriptor->worldPos.z * 100.0f);
-    func_8001FCA4(&sp2C, pokemon->path, 0.99999f);
+    GetInterpolatedPosition(&sp2C, pokemon->path, 0.99999f);
     pokemon->pos1.x += sp2C.x * 100.0f;
     pokemon->pos1.y += sp2C.y * 100.0f;
     pokemon->pos1.z += sp2C.z * 100.0f;
@@ -285,7 +285,7 @@ void func_beach_802CBA48(GObj* obj) {
 
     model = obj->data.dobj;
     ohWait(60);
-    func_8001FCE8(&sp34, pokemon->path, 0.99999f);
+    GetInterpolatedVelocity(&sp34, pokemon->path, 0.99999f);
     temp_f0 = atan2f(sp34.x, sp34.z);
     temp_f20 = temp_f0 - ((s32) (temp_f0 / 6.2831855f) * 6.2831855f);
     while (Pokemon_Turn(model, temp_f20, 0.13962634f) == 0) {

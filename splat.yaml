@@ -670,7 +670,7 @@ segments:
     - [auto, c, arcanine/textures]
     - [0x326C20, .data, world]
     - [0x326C60, bin]
-    - [0x339A40, .data, blocks]
+    - [0x338FE0, .data, blocks]
     - start: 0x33A2B0
       type: .data
       name: growlithe_spawner/model

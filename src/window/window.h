@@ -1,8 +1,6 @@
 #ifndef _WINDOW_H
 #define _WINDOW_H
 
-typedef struct UnkSnowHerring UnkSnowHerring;
-
 enum FrameStyle {
     FRAME_STYLE_0,
     FRAME_STYLE_1,
@@ -10,7 +8,12 @@ enum FrameStyle {
     FRAME_STYLE_3
 };
 
-struct UnkSnowHerring {
+typedef struct UnkSnow2 {
+    /* 0x00 */ s32 unk_00;
+    /* 0x04 */ s32 unk_04;
+} UnkSnow2;
+
+typedef struct UnkSnowHerring {
     /*  0x00 */ s32 unk_0;
     /*  0x04 */ s32 unk_4;
     /*  0x08 */ s32 unk_8;
@@ -26,20 +29,21 @@ struct UnkSnowHerring {
     /*  0x30 */ s32 unk_30;
     /*  0x34 */ s32 unk_34;
     /*  0x38 */ s32 unk_38;
-    /*  0x3C */ UnkSnowHerring* unk_3C;
-    /*  0x40 */ UnkSnowHerring* unk_40;
+    /*  0x3C */ struct UnkSnowHerring* unk_3C;
+    /*  0x40 */ struct UnkSnowHerring* unk_40;
     /*  0x44 */ s32 unk_44;
     /*  0x48 */ ucolor unk_48;
     /*  0x4C */ ucolor unk_4C;
     /*  0x50 */ GObj* unk_50;
-    /*  0x54 */ s32 unk_54;
-    /*  0x58 */ u8 pad_58[0x60 - 0x58];
+    /*  0x54 */ u8* unk_54;
+    /*  0x58 */ u8* unk_58;
+    /*  0x5C */ s32 unk_5C;
     /*  0x60 */ s32 unk_60;
     /*  0x64 */ Sprite unk_64;
     /*  0xA8 */ Sprite unk_A8;
-    /*  0xEC */ char unk_EC[0xF0 - 0xEC];
-    /*  0xF0 */ void* unk_F0;
-    /*  0xF4 */ s32 unk_F4;
+    /*  0xEC */ Gfx* unk_EC;
+    /*  0xF0 */ Bitmap* unk_F0;
+    /*  0xF4 */ Bitmap* unk_F4;
     /*  0xF8 */ s32 unk_F8;
     /*  0xFC */ s32 unk_FC;
     /* 0x100 */ s32 unk_100;
@@ -49,11 +53,12 @@ struct UnkSnowHerring {
     /* 0x110 */ s32 unk_110;
     /* 0x114 */ s32 unk_114;
     /* 0x118 */ s32 unk_118;
-    /* 0x11C */ u8 pad_11C[4];
+    /* 0x11C */ s32 unk_11C;
     /* 0x120 */ s32 unk_120; // x
     /* 0x124 */ s32 unk_124; // y
-    /* 0x128 */ u8 pad_128[8];
-}; // size == 0x130
+    /* 0x128 */ s32 unk_128;
+    /* 0x12C */ u8 pad_12C[4];
+} UnkSnowHerring; // size == 0x130
 
 extern ucolor D_8037EA70_852220;
 extern ucolor D_8037EA74_852224;

@@ -27,7 +27,7 @@ UnkSnowHerring* func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
 }
 
-UnkFireHerring* func_800E1B4C_8A736C(void) {
+UIFrame* func_800E1B4C_8A736C(void) {
     return D_80206B20_9CC340;
 }
 
@@ -506,7 +506,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused2[3];
     s32 i;
     UnkSnowHerring* sp4C;
-    UnkFireHerring* temp_v0;
+    UIFrame* temp_v0;
     ucolor sp44;
     s32 unused1;
     s32 sp3C;
@@ -517,12 +517,12 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     func_803700A4_843854(0);
     func_80370038_8437E8(0x78, 0x1A);
     func_8036FFE0_843790(0x32, 0x2C);
-    temp_v0 = func_8036F78C_842F3C();
+    temp_v0 = UIFrame_Create();
     D_80206B20_9CC340 = temp_v0;
-    func_8036F684_842E34(temp_v0, 1);
-    func_8036F738_842EE8(temp_v0, &sp44);
-    func_8036F1F4_8429A4(temp_v0, 0xB8, 0x140);
-    func_8036F0DC_84288C(temp_v0, false);
+    UIFrame_SetStyle(temp_v0, FRAME_STYLE_1);
+    UIFrame_GetBackgroundColor(temp_v0, &sp44);
+    UIFrame_SetPos(temp_v0, 184, 320);
+    UIFrame_Show(temp_v0, false);
     sp4C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
     D_80206B1C_9CC33C = sp4C;
     func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -574,7 +574,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         func_80370780_843F30(1, 3);
     }
     func_803705A4_843D54();
-    func_8036FE54_843604(temp_v0, 1);
+    UIFrame_FadeIn(temp_v0, FRAME_STYLE_1);
     func_8036D1A4_840954(sp4C, 0);
     func_8036D4A0_840C50(0);
     func_8036CB58_840308(sp4C, 0xC);
@@ -588,7 +588,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         func_80375284_848A34(3);
         func_803700A4_843854(0);
         func_8036D1A4_840954(D_80206B1C_9CC33C, 1);
-        func_8036F0A0_842850(temp_v0, true);
+        UIFrame_ShowBackground(temp_v0, true);
         func_803713C8_844B78(0);
         func_803705F0_843DA0(0);
         func_80370A48_8441F8();
@@ -597,7 +597,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
 
         for (i = 10; i >= 0; i--) {
             func_800E1B58_8A7378(i * 255 / 10);
-            func_8036F198_842948(temp_v0, i * 255 / 10);
+            UIFrame_SetOpacity(temp_v0, i * 255 / 10);
             ohWait(1);
         }
 

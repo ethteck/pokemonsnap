@@ -96,7 +96,7 @@ extern GObj* D_80230868_A4E528;
 extern SObj* D_8023086C_A4E52C;
 extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
-extern UnkFireHerring* D_80230878_A4E538;
+extern UIFrame* D_80230878_A4E538;
 extern UnkSnowHerring* D_8023087C_A4E53C;
 extern UnkSnowHerring* D_80230880_A4E540;
 extern UnkSnowHerring* D_80230884_A4E544;

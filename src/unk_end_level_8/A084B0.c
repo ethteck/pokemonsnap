@@ -8,7 +8,7 @@ extern OMCamera* D_801DD244_A08E34;
 extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
-extern UnkFireHerring* D_801DD254_A08E44;
+extern UIFrame* D_801DD254_A08E44;
 extern UnkSnowHerring* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
@@ -76,16 +76,16 @@ SceneSetup D_801DD14C_A08D3C = {
 
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
-    UnkFireHerring* sp2C;
+    UIFrame* sp2C;
     UnkSnowHerring* sp28;
     ucolor sp24;
 
-    sp2C = func_8036F78C_842F3C();
-    func_8036F684_842E34(sp2C, 1);
+    sp2C = UIFrame_Create();
+    UIFrame_SetStyle(sp2C, FRAME_STYLE_1);
     D_801DD254_A08E44 = sp2C;
-    func_8036F738_842EE8(sp2C, &sp24);
-    func_8036F1F4_8429A4(sp2C, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp2C, false);
+    UIFrame_GetBackgroundColor(sp2C, &sp24);
+    UIFrame_SetPos(sp2C, 184, 320);
+    UIFrame_Show(sp2C, false);
     sp28 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
@@ -121,7 +121,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
     func_800A7860(1, 1.0f);
     func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
     D_801DD240_A08E30->flags &= ~1;
-    func_8036FE54_843604(D_801DD254_A08E44, 1);
+    UIFrame_FadeIn(D_801DD254_A08E44, FRAME_STYLE_1);
 
     while (func_800A7460() != 0) {
         ohWait(1);
@@ -147,12 +147,12 @@ void func_801DC9E8_A085D8(GObj* arg0) {
             if (sp3C->unk_18 & 0x2000) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, true);
-                    func_8036F0A0_842850(D_801DD254_A08E44, true);
+                    UIFrame_Show(D_801DD254_A08E44, true);
+                    UIFrame_ShowBackground(D_801DD254_A08E44, true);
                     func_8036D1A4_840954(D_801DD258_A08E48, 0);
                 } else {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, false);
-                    func_8036F0A0_842850(D_801DD254_A08E44, false);
+                    UIFrame_Show(D_801DD254_A08E44, false);
+                    UIFrame_ShowBackground(D_801DD254_A08E44, false);
                     func_8036D1A4_840954(D_801DD258_A08E48, 1);
                 }
             }

@@ -737,7 +737,7 @@ void func_camera_check_801DEA5C(GObj* arg0) {
 // TODO unused? arg type may be wrong, requiring the weird temp
 void func_camera_check_801DEAC0(s32 arg0) {
     UnkSnowHerring* sp34;
-    UnkFireHerring* sp30;
+    UIFrame* sp30;
     ucolor sp2C;
     s32* weird;
 
@@ -752,24 +752,24 @@ void func_camera_check_801DEAC0(s32 arg0) {
             func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
         }
         func_8036D1A4_840954(sp34, 1);
-        func_8036FF20_8436D0(sp30);
+        UIFrame_FadeOut(sp30);
         switch (*weird) {
             case 1:
-                func_8036FE54_843604(sp30, 1);
+                UIFrame_FadeIn(sp30, FRAME_STYLE_1);
                 break;
             case 2:
-                func_8036FE54_843604(sp30, 1);
+                UIFrame_FadeIn(sp30, FRAME_STYLE_1);
                 break;
             case 3:
                 func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) -0xFF;
-                func_8036FE54_843604(sp30, 2);
+                UIFrame_FadeIn(sp30, FRAME_STYLE_2);
                 break;
             case 4:
-                func_8036FE54_843604(sp30, 3);
+                UIFrame_FadeIn(sp30, FRAME_STYLE_3);
                 break;
         }
         func_8036D1A4_840954(sp34, 0);
-        func_8036F738_842EE8(sp30, &sp2C);
+        UIFrame_GetBackgroundColor(sp30, &sp2C);
         func_8036B870_83F020(sp34, 0, sp2C.r, sp2C.g, sp2C.b, 0xFF);
         D_camera_check_80208954 = arg0;
     }
@@ -908,7 +908,7 @@ void func_camera_check_801DF0D4(UnkSnowHerring* arg0, UnkSnowHerring* arg1, s32 
 void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];
     UnkSnowHerring* sp6C;
-    UnkFireHerring* sp68;
+    UIFrame* sp68;
     ucolor sp64;
     char pad2[0x8];
     UnkSnowHerring* temp_s0;
@@ -928,12 +928,12 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         // TODO fake match - fixes regalloc
     }
 
-    sp68 = func_8036F78C_842F3C();
+    sp68 = UIFrame_Create();
     D_camera_check_80249920 = sp68;
-    func_8036F684_842E34(sp68, 0);
-    func_8036F738_842EE8(sp68, &sp64);
-    func_8036F1F4_8429A4(sp68, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp68, false);
+    UIFrame_SetStyle(sp68, FRAME_STYLE_0);
+    UIFrame_GetBackgroundColor(sp68, &sp64);
+    UIFrame_SetPos(sp68, 184, 320);
+    UIFrame_Show(sp68, false);
 
     sp6C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -973,7 +973,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_80370780_843F30(1, 0x18);
     }
     func_803705A4_843D54();
-    func_8036FE54_843604(sp68, 0);
+    UIFrame_FadeIn(sp68, FRAME_STYLE_0);
     func_8036D1A4_840954(sp6C, 0);
     func_8036D4A0_840C50(0);
     func_8036CB58_840308(sp6C, 0xC);
@@ -1039,7 +1039,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         }
         func_803713C8_844B78(0);
         func_80370A48_8441F8();
-        func_8036FF20_8436D0(sp68);
+        UIFrame_FadeOut(sp68);
 
         for (i = 10; i >= 0; i--) {
             func_camera_check_801DCB58(i * 255 / 10);

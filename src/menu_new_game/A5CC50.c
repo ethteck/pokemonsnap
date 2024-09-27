@@ -159,17 +159,17 @@ void func_800E19E4_A5CD94(void) {
 
 void func_800E1A0C_A5CDBC(void) {
     UnkSnowHerring* id;
-    UnkFireHerring* unk;
+    UIFrame* unk;
     s8 i;
     ucolor sp28;
 
-    unk = func_8036F78C_842F3C();
-    func_8036F684_842E34(unk, 1);
-    func_8036F738_842EE8(unk, &sp28);
-    func_8036F1F4_8429A4(unk, 184, 320);
-    func_8036F0DC_84288C(unk, true);
-    func_8036F0A0_842850(unk, false);
-    func_8036FE54_843604(unk, 1);
+    unk = UIFrame_Create();
+    UIFrame_SetStyle(unk, FRAME_STYLE_1);
+    UIFrame_GetBackgroundColor(unk, &sp28);
+    UIFrame_SetPos(unk, 184, 320);
+    UIFrame_Show(unk, true);
+    UIFrame_ShowBackground(unk, false);
+    UIFrame_FadeIn(unk, FRAME_STYLE_1);
 
     // description
     id = func_8036AC6C_83E41C(104, 173, 192, 47, 0);

@@ -1905,3 +1905,10 @@ magikarp_tex_tail_fin_pal = 0x800FA0B0; // segment:magikarp_model
 magikarp_tex_tail_fin_png = 0x800FA178; // segment:magikarp_model
 magikarp_tex_skin3_pal = 0x800FA980; // segment:magikarp_model
 magikarp_tex_skin3_png = 0x800FAA40; // segment:magikarp_model
+
+UIFrame_ShowBackground = 0x8036F0A0; // segment:window
+UIFrame_SetOpacity = 0x8036F198; // segment:window
+UIFrame_SetPos = 0x8036F1F4; // segment:window
+UIFrame_SetSize = 0x8036F378; // segment:window
+UIFrame_SetStyle = 0x8036F684; // segment:window
+UIFrame_Create = 0x8036F78C;

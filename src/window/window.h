@@ -3,6 +3,13 @@
 
 typedef struct UnkSnowHerring UnkSnowHerring;
 
+enum FrameStyle {
+    FRAME_STYLE_0,
+    FRAME_STYLE_1,
+    FRAME_STYLE_2,
+    FRAME_STYLE_3
+};
+
 struct UnkSnowHerring {
     /*  0x00 */ s32 unk_0;
     /*  0x04 */ s32 unk_4;
@@ -95,16 +102,16 @@ void func_8036EB98_842348(void);
 void func_8036EE40_8425F0(void);
 void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
-void func_8036F0A0_842850(UnkFireHerring*, bool show);
-void func_8036F0DC_84288C(UnkFireHerring*, bool show);
-void func_8036F198_842948(UnkFireHerring*, s32 alpha);
-void func_8036F1F4_8429A4(UnkFireHerring*, s32, s32);
-void func_8036F378_842B28(UnkFireHerring*, s32, s32);
-void func_8036F684_842E34(UnkFireHerring*, s32);
-void func_8036F738_842EE8(UnkFireHerring*, ucolor*);
-UnkFireHerring* func_8036F78C_842F3C(void);
-void func_8036FE54_843604(UnkFireHerring*, s32);
-void func_8036FF20_8436D0(UnkFireHerring*);
+void UIFrame_ShowBackground(UIFrame*, bool show);
+void UIFrame_Show(UIFrame*, bool show);
+void UIFrame_SetOpacity(UIFrame*, s32 alpha);
+void UIFrame_SetPos(UIFrame*, s32, s32); // top left corner is (80, 80)
+void UIFrame_SetSize(UIFrame*, s32, s32);
+void UIFrame_SetStyle(UIFrame*, s32);
+void UIFrame_GetBackgroundColor(UIFrame*, ucolor*);
+UIFrame* UIFrame_Create(void);
+void UIFrame_FadeIn(UIFrame*, s32);
+void UIFrame_FadeOut(UIFrame*);
 s32 func_8036FFE0_843790(s32, s32);
 void func_80370004_8437B4(s32, s32);
 void func_80370038_8437E8(s32, s32);

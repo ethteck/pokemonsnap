@@ -41,7 +41,7 @@ extern SObj* D_80230C14_A27584;
 extern UnkSnowHerring* D_80230C1C_A2758C;
 extern Unk803A6C18* D_80230C20_A27590;
 extern s32 D_80230C24_A27594;
-extern UnkFireHerring* D_80230C28_A27598;
+extern UIFrame* D_80230C28_A27598;
 extern UnkSnowHerring* D_80230C30_A275A0;
 extern UnkSnowHerring* D_80230C34_A275A4;
 extern UnkSnowHerring* D_80230C38_A275A8;
@@ -1493,7 +1493,7 @@ void func_801E1BEC_9D855C(void) {
     s32 i;
     s32 sp38;
     ucolor sp34;
-    UnkFireHerring* sp30;
+    UIFrame* sp30;
     UnkSnowHerring* sp2C;
 
     auPlaySong(0, 0x1E);
@@ -1502,7 +1502,7 @@ void func_801E1BEC_9D855C(void) {
         func_801E072C_9D709C();
         func_801DCD78_9D36E8(0);
         sp30 = D_80230C28_A27598;
-        func_8036F738_842EE8(sp30, &sp34);
+        UIFrame_GetBackgroundColor(sp30, &sp34);
         sp2C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
         func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
@@ -1535,7 +1535,7 @@ void func_801E1BEC_9D855C(void) {
         func_803713D4_844B84(4);
         ohWait(21);
         func_8036D1A4_840954(D_80230C34_A275A4, 0);
-        func_8036FE54_843604(sp30, 1);
+        UIFrame_FadeIn(sp30, FRAME_STYLE_1);
         func_8036D1A4_840954(sp2C, 0);
         func_8036D4A0_840C50((0, 0));
         func_8036CB58_840308(sp2C, 0xC);
@@ -1562,7 +1562,7 @@ void func_801E1F20_9D8890(void) {
     func_803713C8_844B78(0);
     func_8036B5F0_83EDA0(D_80230C34_A275A4);
     func_8036B5F0_83EDA0(D_80230C30_A275A0);
-    func_8036FF20_8436D0(D_80230C28_A27598);
+    UIFrame_FadeOut(D_80230C28_A27598);
     func_80370A48_8441F8();
     ohWait(21);
     auSetBGMVolumeSmooth(0, 0, sp18);
@@ -1675,10 +1675,10 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     func_803700A4_843854(0);
     sp3C = func_801DCF5C_9D38CC(&sp34);
     sp38 = func_800BF864_5C704();
-    D_80230C28_A27598 = func_8036F78C_842F3C();
-    func_8036F684_842E34(D_80230C28_A27598, 1);
-    func_8036F1F4_8429A4(D_80230C28_A27598, 0xB8, 0x140);
-    func_8036F0DC_84288C(D_80230C28_A27598, false);
+    D_80230C28_A27598 = UIFrame_Create();
+    UIFrame_SetStyle(D_80230C28_A27598, FRAME_STYLE_1);
+    UIFrame_SetPos(D_80230C28_A27598, 184, 320);
+    UIFrame_Show(D_80230C28_A27598, false);
     sp30 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
     func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp30, 0, 0x85, 0x93, 0xAB, 0);

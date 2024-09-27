@@ -100,7 +100,7 @@ typedef struct ObjPair {
 // BSS
 ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
-UnkFireHerring* D_802290D8_9D8B48;
+UIFrame* D_802290D8_9D8B48;
 UnkSnowHerring* D_802290DC_9D8B4C;
 UnkSnowHerring* D_802290E0_9D8B50;
 UnkSnowHerring* D_802290E4_9D8B54;
@@ -400,11 +400,13 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     return D_800AF3C0;
 }
 
+// split here?
+
 UnkSnowHerring* func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
-void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
+void func_801DCCFC_98C76C(UIFrame* arg0, s32 arg1) {
     s32 sp2C;
     s32 i;
     s32 sp24;
@@ -412,8 +414,8 @@ void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
     s32 sp1C;
     s32 alpha;
 
-    func_8036F684_842E34(arg0, 1);
-    func_8036F0A0_842850(arg0, true);
+    UIFrame_SetStyle(arg0, FRAME_STYLE_1);
+    UIFrame_ShowBackground(arg0, true);
     for (i = 0; i <= D_801F3E38_9A38A8; i++) {
         if (arg1 != 0) {
             sp2C = i;
@@ -424,29 +426,29 @@ void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
         sp20 = (sp2C * 92) / D_801F3E38_9A38A8 + 172;
         sp1C = (sp2C * -36) / D_801F3E38_9A38A8 + 201;
         alpha = (sp2C * 0xFF) / D_801F3E38_9A38A8;
-        func_8036F1F4_8429A4(arg0, sp24, sp1C);
-        func_8036F378_842B28(arg0, sp20 - sp24, 225 - sp1C);
-        func_8036F198_842948(arg0, alpha);
+        UIFrame_SetPos(arg0, sp24, sp1C);
+        UIFrame_SetSize(arg0, sp20 - sp24, 225 - sp1C);
+        UIFrame_SetOpacity(arg0, alpha);
         ohWait(1);
     }
 
     if (arg1 != 0) {
-        func_8036F1F4_8429A4(arg0, 0x38, 0xA5);
-        func_8036F378_842B28(arg0, 0xD0, 0x3C);
+        UIFrame_SetPos(arg0, 56, 165);
+        UIFrame_SetSize(arg0, 208, 60);
     }
 }
 
-void func_801DCF4C_98C9BC(UnkFireHerring* arg0) {
-    func_8036F0DC_84288C(arg0, true);
+void func_801DCF4C_98C9BC(UIFrame* arg0) {
+    UIFrame_Show(arg0, true);
     func_801DCCFC_98C76C(arg0, 1);
-    func_8036F198_842948(arg0, 0xFF);
-    func_8036F0A0_842850(arg0, false);
+    UIFrame_SetOpacity(arg0, 255);
+    UIFrame_ShowBackground(arg0, false);
 }
 
-void func_801DCFA0_98CA10(UnkFireHerring* arg0) {
-    func_8036F0A0_842850(arg0, true);
+void func_801DCFA0_98CA10(UIFrame* arg0) {
+    UIFrame_ShowBackground(arg0, true);
     func_801DCCFC_98C76C(arg0, 0);
-    func_8036F0DC_84288C(arg0, false);
+    UIFrame_Show(arg0, false);
 }
 
 void func_801DCFE8_98CA58(Photo* arg0) {
@@ -2327,7 +2329,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     s32 i;
     UNUSED s32 pad2;
     UnkSnowHerring* sp3C;
-    UnkFireHerring* sp38;
+    UIFrame* sp38;
     ucolor sp34; // ?
     s32 sp30;
     char* levelName;
@@ -2366,12 +2368,12 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_8036D1A4_840954(sp3C, 1);
     func_8036B9EC_83F19C(sp3C, 90 - (strlen(levelName) * 3), 62);
     func_8036C898_840048(sp3C, levelName);
-    sp38 = func_8036F78C_842F3C();
+    sp38 = UIFrame_Create();
     D_802290D8_9D8B48 = sp38;
-    func_8036F684_842E34(sp38, 1);
-    func_8036F738_842EE8(sp38, &sp34);
-    func_8036F1F4_8429A4(sp38, 0xB8, SCREEN_WIDTH);
-    func_8036F0DC_84288C(sp38, false);
+    UIFrame_SetStyle(sp38, FRAME_STYLE_1);
+    UIFrame_GetBackgroundColor(sp38, &sp34);
+    UIFrame_SetPos(sp38, 184, 320);
+    UIFrame_Show(sp38, false);
     sp3C = func_8036AC6C_83E41C(0x40, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);

@@ -77,7 +77,7 @@ extern UnkSnowHerring* D_camera_check_80249910;
 extern UnkSnowHerring* D_camera_check_80249914;
 extern UnkSnowHerring* D_camera_check_80249918;
 extern UnkSnowHerring* D_camera_check_8024991C;
-extern UnkFireHerring* D_camera_check_80249920;
+extern UIFrame* D_camera_check_80249920;
 extern char D_camera_check_80249928[];
 extern SObj* D_camera_check_802499A8;
 extern SObj* D_camera_check_802499B0;

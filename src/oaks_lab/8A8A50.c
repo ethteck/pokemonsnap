@@ -380,8 +380,8 @@ s32 func_800E3ED4_8A96F4(void) {
                     }
                     func_803700A4_843854(0);
                     func_800A7860(1, 0.2f);
-                    func_8036F684_842E34(func_800E1B4C_8A736C(), 0);
-                    func_8036F738_842EE8(func_800E1B4C_8A736C(), &sp64);
+                    UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_0);
+                    UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);
                     func_8036B870_83F020(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
                     func_8036A8E4_83E094(func_800E1B40_8A7360());
                     func_800E60D8_8AB8F8(1);
@@ -401,8 +401,8 @@ s32 func_800E3ED4_8A96F4(void) {
                         }
                         func_803700A4_843854(0);
                         func_800A7860(1, 0.2f);
-                        func_8036F684_842E34(func_800E1B4C_8A736C(), 1);
-                        func_8036F738_842EE8(func_800E1B4C_8A736C(), &sp64);
+                        UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_1);
+                        UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);
                         func_8036B870_83F020(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
                         func_8036A8E4_83E094(func_800E1B40_8A7360());
                         func_800E1C18_8A7438(0);

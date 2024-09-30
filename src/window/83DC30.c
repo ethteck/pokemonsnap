@@ -72,31 +72,31 @@ void func_8036A968_83E118(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s3
 // #pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036AC6C_83E41C.s")
 
 UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    void* temp_a2_2;
-    UnkSnow2* var_v1_2;
+    u8* temp_a2_2;
+    s32 tmp;
     s32 sp9C;
     s32 sp98;
-    s32 unused;
-    s32 sp88;
-    u32 sp84;
-    s32 sp80;
-    s32 sp78;
-    GObj* temp_v0_2;
-    s32 var_a0_3;
-    s32 var_a2;
-    s32 var_a2_2;
-    s32 var_v1_4;
-    void* temp_a1_2;
     s32 i;
     s32 var0;
+    s32 sp24;
+    s32 sp88;
+    s32 sp84;
+    s32 sp80;
+    u32 sp20;
+    s32 sp78;    
+    s32 new_var;
+    Bitmap *new_var3;
+    u8* temp_a1_2;    
+    u64* ptr;
+    s32 new_var2;
     UnkSnowHerring* sp60;
     s32 sp38;
     s32 sp34;
-    s32 sp30;
-    s32 sp24;
-    s32 sp20;
-    s32 temp_a1;    
+    s32 objsize;    
+    GObj* temp_v0_2;
 
+    objsize = 0x130;
+    
     if (arg4 & 1) {
         sp9C = 4;
         sp98 = 4;
@@ -116,26 +116,35 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
         sp78 = 2;
     }
 
-    var0 = (sp9C * 2) + arg2;
-    sp38 = (sp98 * 2) + arg3;
-    sp34 = (var0 + 0x20 + ((sp78 >> 2) * 0x10) + 0xF) & ~0xF;
+    var0 = arg2 + sp9C * 2;
+    sp38 = arg3 + sp98 * 2;
+    sp34 = (32 + var0 + (sp78 >> 2) * 0x10 + 0xF) & ~0xF;
+    
     sp88 = 0x1000 / sp78 / sp34;
     sp24 = (sp38 + sp88 - 1) / sp88;
-    sp80 = ((sp24 * 0x10) + 7) & ~7;
+    
+    
+    sp80 = sp24 * 0x10;
+    sp80 = ((u32)(sp80) + 7) & ~7;
+    
     sp84 = sp34 * sp88 * sp24 * sp78;
     sp84 = (sp84 + 7) & ~7;
+
     if (arg4 & 0x80) {
         sp84 *= 2;
         sp80 *= 2;
     }
-    sp20 = sp24 * 12 + 24;
-    sp30 = sp88;
-    sp60 = func_8036A194_83D944(0x130 + sp84 + sp80 + sp20 * 8);
-    temp_a1_2 = &sp60[1];
-    temp_a2_2 = ((s32) temp_a1_2) + sp84;
+    
+    //sp20 = sp24 * 12 + 24;
+    sp20 = (new_var2 = sp24 ^ (sp38 *0)) * 12;
+    new_var = 24;
+    sp20 += new_var;
+    sp60 = func_8036A194_83D944(objsize + sp84 + sp80 + sp20 * 8);
+    temp_a1_2 = (u8*)sp60 + objsize;
+    temp_a2_2 = temp_a1_2 + sp84;
     sp60->unk_54 = temp_a1_2;
     sp60->unk_F0 = temp_a2_2;
-    sp60->unk_EC = (void*) ((s32) (temp_a2_2) + sp80);
+    sp60->unk_EC = temp_a2_2 + sp80;
 
     sp60->unk_0 = arg0;
     sp60->unk_4 = arg1;
@@ -145,15 +154,16 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
     sp60->unk_14 = arg3;
     sp60->unk_18 = arg4;
 
-    sp60->unk_44 = sp34;
-    sp60->unk_48 = D_8037EA70_852220;    
+    sp60->unk_48 = D_8037EA70_852220;
     sp60->unk_4C = D_8037EA74_852224;
-        
+    sp60->unk_44 = sp34;
+
     sp60->unk_114 = D_8037EA84_852234;
     sp60->unk_118 = 0;
     sp60->unk_11C = D_8037EA80_852230;
+    
     sp60->unk_120 = 0;
-    sp60->unk_124 = 0;    
+    sp60->unk_124 = 0;
     sp60->unk_128 = D_8037EA88_852238++;
 
     sp60->unk_1C = 0;
@@ -162,14 +172,16 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
     sp60->unk_28 = 0;
 
     sp60->unk_60 = sp78;
-
-    for (i = sp84 / 8; i >= 0; i--) {
-        ((u64*)sp60->unk_54)[i] = 0;
-    }
+    
+    ptr = sp60->unk_54;
+    tmp = ((u32)sp84 >> 3) + 1;
+#pragma _permuter sameline start
+    while (--tmp > 0) { *ptr++ = 0; }
+#pragma _permuter sameline end
 
     if (arg4 & 0x80) {
         sp84 /= 2;
-        sp80 /= 2;
+        sp80 /= 2;        
         sp60->unk_58 = sp60->unk_54 + sp84;
         sp60->unk_F4 = (Bitmap*) ((uintptr_t) (sp60->unk_F0) + sp80);
         sp60->unk_5C = sp84;
@@ -183,7 +195,7 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
     sp60->unk_A8.y = arg1;
     sp60->unk_104 = sp78;
     sp60->unk_34 = sp60->unk_A8.width;
-    sp60->unk_38 = sp60->unk_A8.height;    
+    sp60->unk_38 = sp60->unk_A8.height;
 
     if (arg4 & 0x800) {
         sp60->unk_108 = 1;
@@ -201,9 +213,9 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
         sp60->unk_64.bmsiz = 2;
     }
 
-    sp60->unk_64.width = sp34;
     sp60->unk_64.x = sp60->unk_0 - sp60->unk_8;
     sp60->unk_64.y = sp60->unk_4 - sp60->unk_C;
+    sp60->unk_64.width = sp34;
     sp60->unk_64.height = sp38;
     sp60->unk_64.scalex = 1.0f;
     sp60->unk_64.scaley = 1.0f;
@@ -225,16 +237,18 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
     sp60->unk_64.LUT = 0;
     sp60->unk_64.istart = 0;
     sp60->unk_64.istep = 1;
-    sp60->unk_64.nbitmaps = sp24;
+    sp60->unk_64.nbitmaps = new_var2;
+    sp60->unk_64.ndisplist = sp20;
     sp60->unk_64.bmheight = sp88;
     sp60->unk_64.bmHreal = sp88;
+#pragma _permuter sameline start
+    sp60->unk_64.frac_t = 0;\
+    sp60->unk_64.frac_s = 0;\
+    new_var3 = sp60->unk_F0;\
+    sp60->unk_64.rsp_dl = sp60->unk_EC;\
     sp60->unk_64.rsp_dl_next = 0;
-    sp60->unk_64.frac_s = 0;
-    sp60->unk_64.frac_t = 0;
-    sp60->unk_64.bitmap = sp60->unk_F0;
-    sp60->unk_64.rsp_dl = sp60->unk_EC;
-    sp60->unk_64.ndisplist = sp20;
-
+#pragma _permuter sameline end
+    sp60->unk_64.bitmap = new_var3;
     for (i = 0; i < sp24; i++) {
         sp60->unk_F0[i].width = var0;
         sp60->unk_F0[i].width_img = sp34;
@@ -253,6 +267,7 @@ UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32
             sp60->unk_F4[i].t = 0;
             sp60->unk_F4[i].buf = sp60->unk_58 + i * sp34 * sp88 * sp78;
             sp60->unk_F4[i].actualHeight = sp88 < sp38 - sp88 * i ? sp88 : sp38 - sp88 * i;
+            if (!sp84) {} // fake?
             sp60->unk_F4[i].LUToffset = 0;
         }
         sp60->unk_64.bitmap = sp60->unk_F4;

@@ -533,8 +533,8 @@ void* func_camera_check_801DDFC4(void) {
     D_camera_check_802498F0.unk_1C = sobj;
 
     temp_v0_2 = UIElement_Create(0x100, 0x32, 0x54, 0x70, 0x10);
-    func_8036B870_83F020(temp_v0_2, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(temp_v0_2, 0, 0, 0, 0, 0);
+    UIElement_SetColor(temp_v0_2, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(temp_v0_2, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(temp_v0_2);
     func_8036D1A4_840954(temp_v0_2, 1);
     D_camera_check_80249910 = temp_v0_2;
@@ -561,11 +561,11 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //     char* levelName;
 
 //     temp_s0 = D_camera_check_80249910;
-//     func_8036A5B8_83DD68(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
-//     func_8036A5B8_83DD68(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
-//     func_8036A5B8_83DD68(temp_s0, 0, 0x38, 0x53, 0x42, 0, 0, 0, 0);
-//     func_8036A5B8_83DD68(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
-//     func_8036A5B8_83DD68(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
+//     UIElement_FillRect(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
+//     UIElement_FillRect(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
+//     UIElement_FillRect(temp_s0, 0, 0x38, 0x53, 0x42, 0, 0, 0, 0);
+//     UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
+//     UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
 //     if (arg0 != NULL) {
 //         func_8036D448_840BF8(1);
 //         func_8036D3E8_840B98(-1, 3);
@@ -620,10 +620,10 @@ void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
     UNUSED s32 pad;
 
     temp_s0 = D_camera_check_80249910;
-    func_8036A5B8_83DD68(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
-    func_8036A5B8_83DD68(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
-    func_8036A5B8_83DD68(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
-    func_8036A5B8_83DD68(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
     func_8036B9EC_83F19C(temp_s0, 0, 0x38);
     func_8036C898_840048(temp_s0, "Score");
 
@@ -770,7 +770,7 @@ void func_camera_check_801DEAC0(s32 arg0) {
         }
         func_8036D1A4_840954(sp34, 0);
         UIFrame_GetBackgroundColor(sp30, &sp2C);
-        func_8036B870_83F020(sp34, 0, sp2C.r, sp2C.g, sp2C.b, 0xFF);
+        UIElement_SetColor(sp34, 0, sp2C.r, sp2C.g, sp2C.b, 0xFF);
         D_camera_check_80208954 = arg0;
     }
 }
@@ -790,7 +790,7 @@ void func_camera_check_801DEC84(void) {
     func_camera_check_801DDA44(0);
     func_803700A4_843854(0);
     func_803713EC_844B9C(3);
-    func_8036B5F0_83EDA0(D_camera_check_80249910);
+    UIElement_Delete(D_camera_check_80249910);
 }
 
 void func_camera_check_801DECCC(s32 arg0) {
@@ -801,7 +801,7 @@ void func_camera_check_801DECCC(s32 arg0) {
     switch (arg0) {
         case 1:
         case 9:
-            func_8036A968_83E118(sp4C, 0, 0, 0xBF, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 0xBF, 0xE);
             sprintf(sp24, "\\i%d\\g pictures have been taken.", arg0 + 1);
             break;
         case 0:
@@ -812,11 +812,11 @@ void func_camera_check_801DECCC(s32 arg0) {
         case 6:
         case 7:
         case 8:
-            func_8036A968_83E118(sp4C, 0, 0, 9, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 9, 0xE);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
             break;
         default:
-            func_8036A968_83E118(sp4C, 0, 0, 0x12, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 0x12, 0xE);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
             break;
     }
@@ -839,19 +839,19 @@ void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
         func_8036B9EC_83F19C(arg0, 54 - (strlen(sp34) * 3), 0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        func_8036B870_83F020(arg0, 0, 0x40, 0x40, 0x40, 0);
+        UIElement_SetColor(arg0, 0, 0x40, 0x40, 0x40, 0);
         func_8037519C_84894C(arg0, "%s Course", sp34);
         func_8036CB58_840308(arg0, 8);
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        func_8036B870_83F020(arg0, 0, 0, 0, 0, 0);
+        UIElement_SetColor(arg0, 0, 0, 0, 0, 0);
 
         if (checkPlayerFlag(PFID_11)) {
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
-                func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
             } else {
-                func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
             }
             func_8036B9EC_83F19C(arg0, 0, 16);
             func_8036C898_840048(arg0, "HI-SCORE");
@@ -860,16 +860,16 @@ void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
             func_8036C898_840048(arg0, D_camera_check_80249928);
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
-                func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
             } else {
-                func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
             }
             func_8036B9EC_83F19C(arg0, 0, 28);
             func_8036C898_840048(arg0, "CHALLENGE SCORE");
             sprintf(D_camera_check_80249928, "\\i%8d\\g pts", func_803751F8_8489A8(getLevelId()));
             func_8036B9EC_83F19C(arg0, 85, 28);
             func_8036C898_840048(arg0, D_camera_check_80249928);
-            func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+            UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         }
     }
 }
@@ -892,7 +892,7 @@ void func_camera_check_801DF0D4(UnkSnowHerring* arg0, UnkSnowHerring* arg1, s32 
             func_800C0254_5D0F4(getLevelId(), arg2);
             if (func_803751F8_8489A8(getLevelId()) < arg2) {
                 auPlaySong(1, 0x21);
-                func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
             }
             func_camera_check_801DEDEC(arg1);
         }
@@ -901,7 +901,7 @@ void func_camera_check_801DF0D4(UnkSnowHerring* arg0, UnkSnowHerring* arg1, s32 
         sprintf(D_camera_check_80249928, "\\i%10d\\g pts", arg2);
         func_8036B9EC_83F19C(arg0, 0x38, 0x20);
         func_8036C898_840048(arg0, D_camera_check_80249928);
-        func_8036B870_83F020(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     }
 }
 
@@ -936,8 +936,8 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIFrame_Show(sp68, false);
 
     sp6C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-    func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp6C, 0, 0xDA, 0x6C, 0, 0);
+    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp6C, 0, 0xDA, 0x6C, 0, 0);
     func_8036B734_83EEE4(sp6C);
     func_8036CB58_840308(sp6C, 0xC);
     func_8036D448_840BF8(1);
@@ -946,15 +946,15 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     D_camera_check_80249918 = sp6C;
 
     sp6C = UIElement_Create(0, 0x35, 0x5C, 0xC, 0);
-    func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp6C, 0, 0, 0, 0, 0);
+    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp6C, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp6C);
     func_8036D1A4_840954(sp6C, 1);
     D_camera_check_8024991C = sp6C;
 
     sp6C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-    func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp6C, 0, sp64.r, sp64.g, sp64.b, 0xFF);
+    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp6C, 0, sp64.r, sp64.g, sp64.b, 0xFF);
     func_8036B734_83EEE4(sp6C);
     func_8036D1A4_840954(sp6C, 1);
     ohWait(1);
@@ -989,8 +989,8 @@ void func_camera_check_801DF2D8(GObj* arg0) {
 
     sp44 = UIElement_Create(0x80, 0x6E, 0xA0, 38, 0);
     new_var = sp44;
-    func_8036B870_83F020(new_var, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp44, 0, 0, 0, 0, 0);
+    UIElement_SetColor(new_var, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp44, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp44);
     func_camera_check_801DEDEC(sp44);
 
@@ -1022,7 +1022,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_80374F30_8486E0(temp_s0, true);
     func_8036D1A4_840954(new_var, 1);
     ohWait(1);
-    func_8036B5F0_83EDA0(new_var);
+    UIElement_Delete(new_var);
     omDeleteGObj(gobj);
     func_camera_check_801DD1F0();
     func_camera_check_801DDA44(0);
@@ -1035,7 +1035,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_803700A4_843854(0);
         func_8036D1A4_840954(D_camera_check_80249914, 1);
         if (D_camera_check_80249910 != NULL) {
-            func_8036B5F0_83EDA0(D_camera_check_80249910);
+            UIElement_Delete(D_camera_check_80249910);
         }
         func_803713C8_844B78(0);
         func_80370A48_8441F8();

@@ -525,8 +525,8 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     UIFrame_Show(temp_v0, false);
     sp4C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
     D_80206B1C_9CC33C = sp4C;
-    func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp4C, 0, sp44.r, sp44.g, sp44.b, 0xFF);
+    UIElement_SetColor(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp4C, 0, sp44.r, sp44.g, sp44.b, 0xFF);
     func_8036B734_83EEE4(sp4C);
     func_8036D1A4_840954(sp4C, 1);
     if (func_800BF864_5C704() >= 4) {

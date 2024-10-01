@@ -294,7 +294,7 @@ void func_800E2A84_A5DE34(char* arg0) {
     }
     func_8036A8E4_83E094(D_80118114);
     func_8036B9EC_83F19C(D_80118114, 0, 0);
-    func_8036CBA0_840350(D_80118114, sp1A, 0x40);
+    UIElement_SetPos(D_80118114, sp1A, 0x40);
     func_8036C898_840048(D_80118114, arg0);
 }
 

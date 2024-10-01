@@ -382,7 +382,7 @@ s32 func_800E3ED4_8A96F4(void) {
                     func_800A7860(1, 0.2f);
                     UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_0);
                     UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);
-                    func_8036B870_83F020(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
+                    UIElement_SetColor(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
                     func_8036A8E4_83E094(func_800E1B40_8A7360());
                     func_800E60D8_8AB8F8(1);
                 }
@@ -403,7 +403,7 @@ s32 func_800E3ED4_8A96F4(void) {
                         func_800A7860(1, 0.2f);
                         UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_1);
                         UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);
-                        func_8036B870_83F020(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
+                        UIElement_SetColor(func_800E1B40_8A7360(), 0, sp64.r, sp64.g, sp64.b, 0xFF);
                         func_8036A8E4_83E094(func_800E1B40_8A7360());
                         func_800E1C18_8A7438(0);
                         func_800E60D8_8AB8F8(0);
@@ -422,9 +422,9 @@ s32 func_800E3ED4_8A96F4(void) {
                     temp_s1 = func_800E1B40_8A7360();
                     temp_s0 = func_803751F8_8489A8(D_80195894_95B0B4);
                     if (temp_s0 < func_800C0224_5D0C4(D_80195894_95B0B4)) {
-                        func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0, 0xFF);
+                        UIElement_SetColor(temp_s1, 1, 0xFF, 0xFF, 0, 0xFF);
                     } else {
-                        func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                        UIElement_SetColor(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
                     }
                     func_8036B9EC_83F19C(temp_s1, 0, 0);
                     func_8036C898_840048(temp_s1, "HI-SCORE");
@@ -433,16 +433,16 @@ s32 func_800E3ED4_8A96F4(void) {
                     func_8036C898_840048(temp_s1, sp44);
                     temp_s0 = func_803751F8_8489A8(D_80195894_95B0B4);
                     if (temp_s0 < func_800C0224_5D0C4(D_80195894_95B0B4)) {
-                        func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                        UIElement_SetColor(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
                     } else {
-                        func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0, 0xFF);
+                        UIElement_SetColor(temp_s1, 1, 0xFF, 0xFF, 0, 0xFF);
                     }
                     func_8036B9EC_83F19C(temp_s1, 0, 0x10);
                     func_8036C898_840048(temp_s1, "CHALLENGE SCORE");
                     sprintf(sp44, "\\i%8d\\g pts", func_803751F8_8489A8(D_80195894_95B0B4));
                     func_8036B9EC_83F19C(temp_s1, 96, 32);
                     func_8036C898_840048(temp_s1, sp44);
-                    func_8036B870_83F020(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                    UIElement_SetColor(temp_s1, 1, 0xFF, 0xFF, 0xFF, 0xFF);
                 }
                 func_800E1D1C_8A753C(0);
                 func_800E1BF4_8A7414(0xFF);

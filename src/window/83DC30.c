@@ -1,7 +1,17 @@
 #include "common.h"
 #include "window.h"
 
-void func_8036A480_83DC30(void) {
+extern ucolor D_8037EA70_852220;
+extern ucolor D_8037EA74_852224;
+extern ucolor D_8037EA78_852228;
+extern ucolor D_8037EA7C_85222C;
+extern s32 D_8037EA80_852230;
+extern s32 D_8037EA84_852234;
+extern s32 D_8037EA88_852238;
+extern UnkSnowHerring* D_8037EA8C_85223C;
+extern UnkSnowHerring* D_8037EA90_852240;
+
+void UIElement_ResetList(void) {
     D_8037EA80_852230 = 0;
     D_8037EA84_852234 = 0;
     D_8037EA88_852238 = 0;
@@ -37,85 +47,209 @@ void UIElement_LinkTail(UnkSnowHerring* el) {
     }
 }
 
-void UIElement_Unlink(UnkSnowHerring* arg0) {
-    if (arg0->next == NULL && arg0->prev == NULL) {
+void UIElement_Unlink(UnkSnowHerring* el) {
+    if (el->next == NULL && el->prev == NULL) {
         D_8037EA8C_85223C = NULL;
         D_8037EA90_852240 = NULL;
-    } else if (arg0->next == NULL) {
-        D_8037EA90_852240 = arg0->prev;
-        arg0->prev->next = NULL;
-    } else if (arg0->prev == NULL) {
-        arg0->next->prev = NULL;
-        D_8037EA8C_85223C = arg0->next;
+    } else if (el->next == NULL) {
+        D_8037EA90_852240 = el->prev;
+        el->prev->next = NULL;
+    } else if (el->prev == NULL) {
+        el->next->prev = NULL;
+        D_8037EA8C_85223C = el->next;
     } else {
-        arg0->next->prev = arg0->prev;
-        arg0->prev->next = arg0->next;
+        el->next->prev = el->prev;
+        el->prev->next = el->next;
     }
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036A5B8_83DD68.s")
-void func_8036A5B8_83DD68(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+void UIElement_FillRect(UnkSnowHerring* el, s32 x1, s32 y1, s32 x2, s32 y2, s32 r, s32 g, s32 b, s32 a) {
     s32 temp;
-    s32 height;
-    s32 t1;
+    s32 fillHeight;
+    s32 fillWidth;
+    s32 skipPixels;
+    s32 i;
+    s32 j;
 
-    if (arg1 < 0) {
-        arg1 = 0;
-    } else if (arg1 > arg0->width) {
-        arg1 = arg0->width - 1;
+    if (x1 < 0) {
+        x1 = 0;
+    } else if (x1 >= el->width) {
+        x1 = el->width - 1;
     }
 
-    if (arg3 < 0) {
-        arg3 = 0;
-    } else if (arg3 > arg0->width) {
-        arg3 = arg0->width - 1;
+    if (x2 < 0) {
+        x2 = 0;
+    } else if (x2 >= el->width) {
+        x2 = el->width - 1;
     }
 
-    if (arg2 < 0) {
-        arg2 = 0;
-    } else if (arg2 > arg0->height) {
-        arg2 = arg0->height - 1;
+    if (y1 < 0) {
+        y1 = 0;
+    } else if (y1 >= el->height) {
+        y1 = el->height - 1;
     }
 
-    if (arg4 < 0) {
-        arg4 = 0;
-    } else if (arg4 > arg0->height) {
-        arg4 = arg0->height - 1;
+    if (y2 < 0) {
+        y2 = 0;
+    } else if (y2 >= el->height) {
+        y2 = el->height - 1;
     }
 
-    if (arg3 < arg1) {
-        temp = arg1;
-        arg1 = arg3;
-        arg3 = temp;
+    if (x2 < x1) {
+        temp = x1;
+        x1 = x2;
+        x2 = temp;
     }
 
-    if (arg4 < arg2) {
-        temp = arg2;
-        arg2 = arg4;
-        arg4 = temp;
+    if (y2 < y1) {
+        temp = y1;
+        y1 = y2;
+        y2 = temp;
     }
 
-    height = arg4 - arg2 + 1;
-    t1 = arg0->unk_44 * (arg2 + arg0->borderHeight) + arg0->borderWidth + arg1;
+    fillHeight = y2 - y1 + 1;
+    fillWidth = x2 - x1 + 1;
+
+    skipPixels = el->imageWidth * (el->borderHeight + y1) + el->borderWidth + x1;
+
+    if (el->flags & 0x200) {
+        u8 val;
+        u8* ptr;
+
+        val = (r & 0xF0) | ((a >> 4) & 0xF);
+        ptr = (u8*) el->image + skipPixels;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += el->imageWidth - fillWidth;
+        }
+    } else if (el->flags & 0x400) {
+        u32 val;
+        u32* ptr;
+
+        val = (r << 0x18) | (g << 0x10) | (b << 8) | a;
+        ptr = (u32*) el->image + skipPixels;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += el->imageWidth - fillWidth;
+        }
+    } else {
+        u16 val;
+        u16* ptr;
+
+        if (el->flags & 0x800) {
+            if (el->flags & 0x10) {
+                val = a;
+                val |= 0xFF00;
+            } else {
+                val = (r << 8) | 0xFF;
+            }
+        } else {
+            val = ((r << 8) & 0xF800) | ((g * 8) & 0x7C0) | ((b >> 2) & 0x3E) | (a & 1);
+        }
+
+        ptr = (u16*) el->image + skipPixels;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += el->imageWidth - fillWidth;
+        }
+    }
+}
+
+void func_8036A8E4_83E094(UnkSnowHerring* el) {
+    UIElement_FillRect(el, 0, 0, el->width, el->height, el->unk_4C.r, el->unk_4C.g, el->unk_4C.b, el->unk_4C.a);
+    el->unk_120 = 0;
+    el->unk_124 = 0;
+    el->unk_118 = 0;
+    func_8036EEB0_842660(el->x, el->y, el->x + el->width, el->y + el->height);
+}
+
+void UIElement_FillRectDefault(UnkSnowHerring* el, s32 x1, s32 y1, s32 x2, s32 y2) {
+    UIElement_FillRect(el, x1, y1, x2, y2, el->unk_4C.r, el->unk_4C.g, el->unk_4C.b, el->unk_4C.a);
+}
+
+void UIElement_FillRectWithBorder(UnkSnowHerring* arg0, s32 x1, s32 y1, s32 x2, s32 y2, s32 r, s32 g, s32 b, s32 a) {
+    s32 temp;
+    s32 fillHeight;
+    s32 fillWidth;
+    s32 skipPixels;
+    s32 i;
+    s32 j;
+
+    if (x2 < x1) {
+        temp = x1;
+        x1 = x2;
+        x2 = temp;
+    }
+
+    if (y2 < y1) {
+        temp = y1;
+        y1 = y2;
+        y2 = temp;
+    }
+
+    fillHeight = y2 - y1 + 1;
+    fillWidth = x2 - x1 + 1;
 
     if (arg0->flags & 0x200) {
+        u8 val;
+        u8* ptr;
 
+        val = (r & 0xF0) | ((a >> 4) & 0xF);
+        ptr = (u8*) arg0->image + arg0->imageWidth * y1 + x1;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += arg0->imageWidth - fillWidth;
+        }
+    } else if (arg0->flags & 0x400) {
+        u32 val;
+        u32* ptr;
+
+        val = (r << 0x18) | (g << 0x10) | (b << 8) | a;
+        ptr = (u32*) arg0->image + arg0->imageWidth * y1 + x1;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += arg0->imageWidth - fillWidth;
+        }
+    } else {
+        u16 val;
+        u16* ptr;
+
+        if (arg0->flags & 0x800) {
+            if (arg0->flags & 0x10) {
+                val = a;
+                val |= 0xFF00;
+            } else {
+                val = (r << 8) | 0xFF;
+            }
+        } else {
+            val = ((r << 8) & 0xF800) | ((g * 8) & 0x7C0) | ((b >> 2) & 0x3E) | (a & 1);
+        }
+
+        ptr = (u16*) arg0->image + arg0->imageWidth * y1 + x1;
+        while (fillHeight > 0) {
+            // clang-format off
+            for (j = fillWidth; j > 0; j--) { *ptr++ = val; }
+            // clang-format on
+            fillHeight--;
+            ptr += arg0->imageWidth - fillWidth;
+        }
     }
 }
-
-void func_8036A8E4_83E094(UnkSnowHerring* arg0) {
-    func_8036A5B8_83DD68(arg0, 0, 0, arg0->width, arg0->height, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
-    arg0->unk_120 = 0;
-    arg0->unk_124 = 0;
-    arg0->unk_118 = 0;
-    func_8036EEB0_842660(arg0->x, arg0->y, arg0->x + arg0->width, arg0->y + arg0->height);
-}
-
-void func_8036A968_83E118(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    func_8036A5B8_83DD68(arg0, arg1, arg2, arg3, arg4, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036A9AC_83E15C.s")
 
 UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags) {
     u8* bitmaps_ptr;
@@ -186,9 +320,9 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
     el = func_8036A194_83D944(objsize + rastersBytes + bitmapsBytes + ndisplist * sizeof(Gfx));
     rasters_ptr = (u8*) el + objsize;
     bitmaps_ptr = rasters_ptr + rastersBytes;
-    el->rasters = rasters_ptr;
-    el->bitmaps = bitmaps_ptr;
-    el->rsp_dl = bitmaps_ptr + bitmapsBytes;
+    el->image = rasters_ptr;
+    el->bitmaps = (Bitmap*) bitmaps_ptr;
+    el->rsp_dl = (Gfx*) (bitmaps_ptr + bitmapsBytes);
 
     el->x = x;
     el->y = y;
@@ -200,7 +334,7 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
 
     el->unk_48 = D_8037EA70_852220;
     el->unk_4C = D_8037EA74_852224;
-    el->unk_44 = tileWidth;
+    el->imageWidth = tileWidth;
 
     el->unk_114 = D_8037EA84_852234;
     el->unk_118 = 0;
@@ -217,7 +351,7 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
 
     el->bpp = bytesPerPixel;
 
-    ptr = el->rasters;
+    ptr = (u64*) el->image;
     tmp = ((u32) rastersBytes >> 3) + 1;
     // clang-format off
     while (--tmp > 0) { *ptr++ = 0; }
@@ -226,26 +360,26 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
     if (flags & 0x80) {
         rastersBytes /= 2;
         bitmapsBytes /= 2;
-        el->unk_58 = el->rasters + rastersBytes;
-        el->unk_F4 = (Bitmap*) ((uintptr_t) (el->bitmaps) + bitmapsBytes);
+        el->altImage = el->image + rastersBytes;
+        el->altBitmaps = (Bitmap*) ((uintptr_t) (el->bitmaps) + bitmapsBytes);
         el->unk_5C = rastersBytes;
     } else {
-        el->unk_58 = NULL;
-        el->unk_F4 = NULL;
+        el->altImage = NULL;
+        el->altBitmaps = NULL;
         el->unk_5C = rastersBytes;
     }
     el->unk_2C = x;
     el->unk_A8.x = x;
     el->unk_A8.y = y;
-    el->unk_104 = bytesPerPixel;
+    el->unk_F8.bpp = bytesPerPixel;
     el->unk_34 = el->unk_A8.width;
     el->unk_38 = el->unk_A8.height;
 
     if (flags & 0x800) {
-        el->unk_108 = true;
+        el->unk_F8.unk_10 = true;
         el->sprite.bmfmt = G_IM_FMT_IA;
     } else {
-        el->unk_108 = false;
+        el->unk_F8.unk_10 = false;
         el->sprite.bmfmt = G_IM_FMT_RGBA;
     }
 
@@ -298,24 +432,24 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
         el->bitmaps[i].width_img = tileWidth;
         el->bitmaps[i].s = 0;
         el->bitmaps[i].t = 0;
-        el->bitmaps[i].buf = el->rasters + i * tileWidth * tileHeight * bytesPerPixel;
+        el->bitmaps[i].buf = el->image + i * tileWidth * tileHeight * bytesPerPixel;
         el->bitmaps[i].actualHeight = tileHeight < totalHeight - tileHeight * i ? tileHeight : totalHeight - tileHeight * i;
         el->bitmaps[i].LUToffset = 0;
     }
 
     if (flags & 0x80) {
         for (i = 0; i < numTiles; i++) {
-            el->unk_F4[i].width = totalWidth;
-            el->unk_F4[i].width_img = tileWidth;
-            el->unk_F4[i].s = 0;
-            el->unk_F4[i].t = 0;
-            el->unk_F4[i].buf = el->unk_58 + i * tileWidth * tileHeight * bytesPerPixel;
-            el->unk_F4[i].actualHeight = tileHeight < totalHeight - tileHeight * i ? tileHeight : totalHeight - tileHeight * i;
+            el->altBitmaps[i].width = totalWidth;
+            el->altBitmaps[i].width_img = tileWidth;
+            el->altBitmaps[i].s = 0;
+            el->altBitmaps[i].t = 0;
+            el->altBitmaps[i].buf = el->altImage + i * tileWidth * tileHeight * bytesPerPixel;
+            el->altBitmaps[i].actualHeight = tileHeight < totalHeight - tileHeight * i ? tileHeight : totalHeight - tileHeight * i;
             if (!rastersBytes) {
             } // fake?
-            el->unk_F4[i].LUToffset = 0;
+            el->altBitmaps[i].LUToffset = 0;
         }
-        el->sprite.bitmap = el->unk_F4;
+        el->sprite.bitmap = el->altBitmaps;
     }
 
     obj = func_800A9F10(NULL, LINK_6, &el->sprite);
@@ -324,20 +458,48 @@ UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags)
         return NULL;
     }
     el->spriteObj = obj;
-    el->prev = 0;
+    el->prev = NULL;
     UIElement_LinkHead(el);
     return el;
 }
 
-void func_8036B5F0_83EDA0(UnkSnowHerring* arg0) {
-    if (arg0 != 0) {
-        UIElement_Unlink(arg0);
-        omDeleteGObj(arg0->spriteObj);
-        func_8036A228_83D9D8(arg0);
+void UIElement_Delete(UnkSnowHerring* el) {
+    if (el != NULL) {
+        UIElement_Unlink(el);
+        omDeleteGObj(el->spriteObj);
+        func_8036A228_83D9D8(el);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036B628_83EDD8.s")
+void UIElement_SwapImages(UnkSnowHerring* arg0) {
+    void* temp;
+
+    if (!(arg0->flags & 0x80) || arg0->altImage == NULL) {
+        arg0->spriteObj->data.sobj->sprite = arg0->sprite;
+    } else {
+        s32 tmp = ((u32) arg0->unk_5C >> 3);
+        u64* src = (u64*) arg0->image;
+        u64* dst = (u64*) arg0->altImage;
+
+        while (tmp > 0) {
+            *dst = *src;
+            src++;
+            dst++;
+            tmp--;
+        }
+
+        temp = arg0->image;
+        arg0->image = arg0->altImage;
+        arg0->altImage = temp;
+
+        temp = arg0->bitmaps;
+        arg0->bitmaps = arg0->altBitmaps;
+        arg0->altBitmaps = temp;
+
+        arg0->sprite.bitmap = arg0->altBitmaps;
+        arg0->spriteObj->data.sobj->sprite = arg0->sprite;
+    }
+}
 
 void func_8036B734_83EEE4(UnkSnowHerring* arg0) {
     arg0->unk_1C = 0;
@@ -346,26 +508,26 @@ void func_8036B734_83EEE4(UnkSnowHerring* arg0) {
     arg0->unk_28 = 0;
 
     if (arg0->flags & 1) {
-        func_8036A9AC_83E15C(arg0, 0, 0, arg0->width + (arg0->borderWidth * 2), arg0->height + (arg0->borderHeight * 2), arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+        UIElement_FillRectWithBorder(arg0, 0, 0, arg0->width + arg0->borderWidth * 2, arg0->height + arg0->borderHeight * 2, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
     } else {
-        func_8036A5B8_83DD68(arg0, 0, 0, arg0->width - 1, arg0->height - 1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+        UIElement_FillRect(arg0, 0, 0, arg0->width - 1, arg0->height - 1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
     }
 
     arg0->sprite.attr &= ~SP_HIDDEN;
     arg0->unk_118 = func_8036D774_840F24();
-    func_8036B628_83EDD8(arg0);
+    UIElement_SwapImages(arg0);
     arg0->spriteObj->data.sobj->sprite = arg0->sprite;
 }
 
-void func_8036B870_83F020(UnkSnowHerring* arg0, s32 arg1, s32 r, s32 g, s32 b, s32 a) {
+void UIElement_SetColor(UnkSnowHerring* el, s32 arg1, s32 r, s32 g, s32 b, s32 a) {
     if (arg1) {
         D_8037EA70_852220.r = r;
         D_8037EA70_852220.a = a;
         D_8037EA70_852220.g = g;
         D_8037EA70_852220.b = b;
         D_8037EA78_852228.a = a;
-        if (arg0) {
-            arg0->unk_48 = D_8037EA70_852220;
+        if (el) {
+            el->unk_48 = D_8037EA70_852220;
         }
     } else {
         D_8037EA74_852224.a = a;
@@ -373,26 +535,26 @@ void func_8036B870_83F020(UnkSnowHerring* arg0, s32 arg1, s32 r, s32 g, s32 b, s
         D_8037EA74_852224.g = g;
         D_8037EA74_852224.b = b;
         D_8037EA7C_85222C.a = a;
-        if (arg0) {
-            arg0->unk_4C = D_8037EA74_852224;
+        if (el) {
+            el->unk_4C = D_8037EA74_852224;
         }
     }
 
-    if (!arg0) {
+    if (!el) {
         return;
     }
 
-    if (arg0->flags & 0x800) {
-        func_8036D77C_840F2C(&arg0->unk_F8, &D_8037EA78_852228, &D_8037EA7C_85222C);
-        arg0->sprite.red = D_8037EA70_852220.r;
-        arg0->sprite.green = D_8037EA70_852220.g;
-        arg0->sprite.blue = D_8037EA70_852220.b;
-        return;
+    if (el->flags & 0x800) {
+        func_8036D77C_840F2C(&el->unk_F8, &D_8037EA78_852228, &D_8037EA7C_85222C);
+        el->sprite.red = D_8037EA70_852220.r;
+        el->sprite.green = D_8037EA70_852220.g;
+        el->sprite.blue = D_8037EA70_852220.b;
+    } else {
+        func_8036D77C_840F2C(&el->unk_F8, &D_8037EA70_852220, &D_8037EA74_852224);
     }
-    func_8036D77C_840F2C(&arg0->unk_F8, &D_8037EA70_852220, &D_8037EA74_852224);
 }
 
-u32 func_8036B988_83F138(UnkSnowHerring* arg0, s32 arg1) {
+u32 UIElement_GetColor(UnkSnowHerring* arg0, s32 arg1) {
     u32 out;
 
     if (arg1) {
@@ -420,26 +582,316 @@ void func_8036B9EC_83F19C(UnkSnowHerring* arg0, s32 x, s32 y) {
     arg0->unk_118 = func_8036D774_840F24();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036BA50_83F200.s")
+void func_8036BA50_83F200(UnkSnowHerring* arg0, s32 arg1, s32 arg2) {
+    s32 i, j;
+    u8* src8;
+    u8* ptr8;
+    u16* src16;
+    u16* ptr16;
+    u32* src32;
+    u32* ptr32;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036C2FC_83FAAC.s")
+    if (arg1 == 0) {
+        return;
+    }
+
+    switch (arg2) {
+        case 0:
+            if (arg0->flags & 0x200) {
+                src8 = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1) + arg0->borderWidth;
+                ptr8 = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr8 = *src8;
+                        src8++;
+                        ptr8++;
+                    }
+                    ptr8 += arg0->imageWidth - arg0->width;
+                    src8 += arg0->imageWidth - arg0->width;
+                }
+            } else if (arg0->flags & 0x400) {
+                src32 = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1) + arg0->borderWidth;
+                ptr32 = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr32 = *src32;
+                        src32++;
+                        ptr32++;
+                    }
+                    ptr32 += arg0->imageWidth - arg0->width;
+                    src32 += arg0->imageWidth - arg0->width;
+                }
+            } else {
+                src16 = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1) + arg0->borderWidth;
+                ptr16 = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr16 = *src16;
+                        src16++;
+                        ptr16++;
+                    }
+                    ptr16 += arg0->imageWidth - arg0->width;
+                    src16 += arg0->imageWidth - arg0->width;
+                }
+            }
+            UIElement_FillRect(arg0, 0, arg0->height - arg1, arg0->width, arg0->height, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+        case 1:
+            if (arg0->flags & 0x200) {
+                src8 = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                ptr8 = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr8 = *src8;
+                        src8++;
+                        ptr8++;
+                    }
+                    ptr8 -= arg0->imageWidth + arg0->width;
+                    src8 -= arg0->imageWidth + arg0->width;
+                }
+            } else if (arg0->flags & 0x400) {
+                src32 = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                ptr32 = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr32 = *src32;
+                        src32++;
+                        ptr32++;
+                    }
+                    ptr32 -= arg0->imageWidth + arg0->width;
+                    src32 -= arg0->imageWidth + arg0->width;
+                }
+            } else {
+                src16 = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                ptr16 = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr16 = *src16;
+                        src16++;
+                        ptr16++;
+                    }
+                    ptr16 -= arg0->imageWidth + arg0->width;
+                    src16 -= arg0->imageWidth + arg0->width;
+                }
+            }
+            UIElement_FillRect(arg0, 0, 0, arg0->width, arg1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+        case 2:
+            if (arg0->flags & 0x200) {
+                src8 = (u8*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - arg1 - 1;
+                ptr8 = (u8*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - 1;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr8 = *src8;
+                        src8--;
+                        ptr8--;
+                    }
+                    ptr8 += arg0->imageWidth + arg0->width - arg1;
+                    src8 += arg0->imageWidth + arg0->width - arg1;
+                }
+            } else if (arg0->flags & 0x400) {
+                src32 = (u32*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - arg1 - 1;
+                ptr32 = (u32*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - 1;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr32 = *src32;
+                        src32--;
+                        ptr32--;
+                    }
+                    ptr32 += arg0->imageWidth + arg0->width - arg1;
+                    src32 += arg0->imageWidth + arg0->width - arg1;
+                }
+            } else {
+                src16 = (u16*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - arg1 - 1;
+                ptr16 = (u16*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg0->width - 1;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr16 = *src16;
+                        src16--;
+                        ptr16--;
+                    }
+                    ptr16 += arg0->imageWidth + arg0->width - arg1;
+                    src16 += arg0->imageWidth + arg0->width - arg1;
+                }
+            }
+            UIElement_FillRect(arg0, 0, 0, arg1 - 1, arg0->height, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+        case 3:
+            if (arg0->flags & 0x200) {
+                src8 = (u8*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg1;
+                ptr8 = (u8*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr8 = *src8;
+                        src8++;
+                        ptr8++;
+                    }
+                    ptr8 += arg0->imageWidth + arg0->width - arg1;
+                    src8 += arg0->imageWidth + arg0->width - arg1;
+                }
+            } else if (arg0->flags & 0x400) {
+                src32 = (u32*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg1;
+                ptr32 = (u32*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr32 = *src32;
+                        src32++;
+                        ptr32++;
+                    }
+                    ptr32 += arg0->imageWidth + arg0->width - arg1;
+                    src32 += arg0->imageWidth + arg0->width - arg1;
+                }
+            } else {
+                src16 = (u16*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth + arg1;
+                ptr16 = (u16*) arg0->image + arg0->imageWidth * arg0->borderHeight + arg0->borderWidth;
+                for (i = arg0->height; i > 0; i--) {
+                    for (j = arg0->width - arg1; j > 0; j--) {
+                        *ptr16 = *src16;
+                        src16++;
+                        ptr16++;
+                    }
+                    ptr16 += arg0->imageWidth - arg0->width + arg1;
+                    src16 += arg0->imageWidth - arg0->width + arg1;
+                }
+            }
+            UIElement_FillRect(arg0, arg0->width - arg1, 0, arg0->width - 1, arg0->height, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+    }
+}
+
+void func_8036C2FC_83FAAC(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 x1, s32 y1, s32 x2, s32 y2) {
+    s32 fillHeight;
+    s32 fillWidth;
+    s32 i, j;
+    s32 skipPixels;
+
+    if (x1 < 0) {
+        x1 = 0;
+    }
+    if (y1 < 0) {
+        y1 = 0;
+    }
+    if (x2 < 0) {
+        x2 = 0;
+    }
+    if (y2 < 0) {
+        y2 = 0;
+    }
+
+    if (x1 > arg0->width) {
+        x1 = arg0->width;
+    }
+    if (y1 > arg0->height) {
+        y1 = arg0->height;
+    }
+    if (x2 > arg0->width) {
+        x2 = arg0->width;
+    }
+    if (y2 > arg0->height) {
+        y2 = arg0->height;
+    }
+
+    fillWidth = x2 - x1;
+    fillHeight = y2 - y1 - arg1;
+
+    switch (arg2) {
+        case 0:
+            if (arg0->flags & 0x200) {
+                for (i = 0; i <= fillHeight; i++) {
+                    u8* src = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1 + i) + arg0->borderWidth + x1;
+                    u8* ptr = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + i) + arg0->borderWidth + x1;
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                }
+            } else if (arg0->flags & 0x400) {
+                for (i = 0; i <= fillHeight; i++) {
+                    u32* src = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1 + i) + arg0->borderWidth;
+                    u32* ptr = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + i) + arg0->borderWidth;
+                    for (j = 0; j <= fillWidth; j++) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                }
+            } else {
+                for (i = 0; i <= fillHeight; i++) {
+                    u16* src = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg1 + i) + arg0->borderWidth + x1;
+                    u16* ptr = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + i) + arg0->borderWidth + x1;
+                    for (j = 0; j <= fillWidth; j++) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                }
+            }
+            UIElement_FillRect(arg0, x1, y2 - arg1, x2, y2, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+        case 1:
+            if (arg0->flags & 0x200) {
+                u8* src = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                u8* ptr = (u8*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                    ptr -= arg0->imageWidth + arg0->width;
+                    src -= arg0->imageWidth + arg0->width;
+                }
+            } else if (arg0->flags & 0x400) {
+                u32* src = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                u32* ptr = (u32*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                    ptr -= arg0->imageWidth + arg0->width;
+                    src -= arg0->imageWidth + arg0->width;
+                }
+            } else {
+                u16* src = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - arg1 - 1) + arg0->borderWidth;
+                u16* ptr = (u16*) arg0->image + arg0->imageWidth * (arg0->borderHeight + arg0->height - 1) + arg0->borderWidth;
+                for (i = arg0->height - arg1; i > 0; i--) {
+                    for (j = arg0->width; j > 0; j--) {
+                        *ptr = *src;
+                        src++;
+                        ptr++;
+                    }
+                    ptr -= arg0->imageWidth + arg0->width;
+                    src -= arg0->imageWidth + arg0->width;
+                }
+            }
+            UIElement_FillRect(arg0, 0, 0, arg0->width, arg1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+    }
+}
 
 void func_8036C898_840048(UnkSnowHerring* arg0, char* arg1) {
     UNUSED s32 pad[6];
     ucolor a1;
     ucolor a2;
 
-    if (!arg1) {
+    if (arg1 == NULL) {
         return;
     }
 
     func_8036D344_840AF4(arg0->unk_114);
-    arg0->unk_FC = arg0->unk_44;
-    arg0->unk_F8 = (arg0->rasters + (((arg0->unk_44 * arg0->borderHeight) + arg0->borderWidth) * arg0->bpp));
-    arg0->unk_104 = arg0->bpp;
-    arg0->unk_100 = arg0->height;
-    arg0->unk_10C = arg0->x + arg0->borderWidth;
-    arg0->unk_110 = arg0->y + arg0->borderHeight;
+    arg0->unk_F8.imageWidth = arg0->imageWidth;
+    arg0->unk_F8.image = arg0->image + (arg0->imageWidth * arg0->borderHeight + arg0->borderWidth) * arg0->bpp;
+    arg0->unk_F8.bpp = arg0->bpp;
+    arg0->unk_F8.height = arg0->height;
+    arg0->unk_F8.x = arg0->x + arg0->borderWidth;
+    arg0->unk_F8.y = arg0->y + arg0->borderHeight;
     if (arg0->flags & 0x800) {
         a1 = D_8037EA78_852228;
         a2 = D_8037EA7C_85222C;
@@ -452,50 +904,50 @@ void func_8036C898_840048(UnkSnowHerring* arg0, char* arg1) {
 
     func_8036E490_841C40(&arg0->unk_F8, &arg0->unk_120, &arg0->unk_124, arg1);
 
-    osWritebackDCache(arg0->bitmaps, arg0->unk_44 * arg0->height);
+    osWritebackDCache(arg0->bitmaps, arg0->imageWidth * arg0->height); // doesn't make sense
 }
 
-void func_8036C9C0_840170(UnkSnowHerring* arg0, char* arg1) {
+void UIElement_PrintText2(UnkSnowHerring* el, char* text) {
     UNUSED s32 pad[6];
     ucolor a1;
     ucolor a2;
 
-    if (!arg1) {
+    if (text == NULL) {
         return;
     }
 
-    func_8036D344_840AF4(arg0->unk_114);
-    arg0->unk_FC = arg0->unk_44;
-    arg0->unk_F8 = (arg0->rasters + (((arg0->unk_44 * arg0->borderHeight) + arg0->borderWidth) * arg0->bpp));
-    arg0->unk_104 = arg0->bpp;
-    arg0->unk_100 = arg0->height;
-    arg0->unk_10C = arg0->x + arg0->borderWidth;
-    arg0->unk_110 = arg0->y + arg0->borderHeight;
-    if (arg0->flags & 0x800) {
+    func_8036D344_840AF4(el->unk_114);
+    el->unk_F8.imageWidth = el->imageWidth;
+    el->unk_F8.image = el->image + (el->imageWidth * el->borderHeight + el->borderWidth) * el->bpp;
+    el->unk_F8.bpp = el->bpp;
+    el->unk_F8.height = el->height;
+    el->unk_F8.x = el->x + el->borderWidth;
+    el->unk_F8.y = el->y + el->borderHeight;
+    if (el->flags & 0x800) {
         a1 = D_8037EA78_852228;
         a2 = D_8037EA7C_85222C;
-        a1.a = arg0->unk_48.a;
-        a2.a = arg0->unk_4C.a;
-        func_8036D77C_840F2C(&arg0->unk_F8, &a1, &a2);
+        a1.a = el->unk_48.a;
+        a2.a = el->unk_4C.a;
+        func_8036D77C_840F2C(&el->unk_F8, &a1, &a2);
     } else {
-        func_8036D77C_840F2C(&arg0->unk_F8, &arg0->unk_48, &arg0->unk_4C);
+        func_8036D77C_840F2C(&el->unk_F8, &el->unk_48, &el->unk_4C);
     }
 
-    func_8036E9BC_84216C(&arg0->unk_F8, &arg0->unk_120, &arg0->unk_124, arg1);
+    func_8036E9BC_84216C(&el->unk_F8, &el->unk_120, &el->unk_124, text);
 
-    osWritebackDCache(arg0->bitmaps, arg0->unk_44 * arg0->height);
+    osWritebackDCache(el->bitmaps, el->imageWidth * el->height);// doesn't make sense
 }
 
-void func_8036CAE8_840298(UnkSnowHerring* arg0, s32 arg1) {
-    char sp1C[2];
+void UIElement_PrintChar(UnkSnowHerring* arg0, s32 chr) {
+    char str[2];
 
-    sp1C[0] = arg1;
-    sp1C[1] = '\0';
-    func_8036C898_840048(arg0, sp1C);
+    str[0] = chr;
+    str[1] = '\0';
+    func_8036C898_840048(arg0, str);
 }
 
-void func_8036CB10_8402C0(UnkSnowHerring* arg0, f32 scalex, f32 scaley) {
-    if ((arg0 != NULL) && (arg0->flags & 0x100)) {
+void UIElement_SetScale(UnkSnowHerring* arg0, f32 scalex, f32 scaley) {
+    if (arg0 != NULL && (arg0->flags & 0x100)) {
         arg0->spriteObj->data.sobj->sprite.scalex = scalex;
         arg0->spriteObj->data.sobj->sprite.scaley = scaley;
         arg0->sprite.scalex = scalex;
@@ -515,18 +967,18 @@ void func_8036CB58_840308(UnkSnowHerring* arg0, s32 arg1) {
     }
 }
 
-void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 x, s32 y) {
-    if (!arg0) {
+void UIElement_SetPos(UnkSnowHerring* el, s32 x, s32 y) {
+    if (!el) {
         return;
     }
 
-    arg0->x = x;
-    arg0->y = y;
-    arg0->sprite.x = x - arg0->borderWidth;
-    arg0->sprite.y = y - arg0->borderHeight;
-    if (!(arg0->flags & 0x40)) {
-        arg0->spriteObj->data.sobj->sprite.x = arg0->sprite.x;
-        arg0->spriteObj->data.sobj->sprite.y = arg0->sprite.y;
+    el->x = x;
+    el->y = y;
+    el->sprite.x = x - el->borderWidth;
+    el->sprite.y = y - el->borderHeight;
+    if (!(el->flags & 0x40)) {
+        el->spriteObj->data.sobj->sprite.x = el->sprite.x;
+        el->spriteObj->data.sobj->sprite.y = el->sprite.y;
     }
 }
 
@@ -545,19 +997,19 @@ void func_8036CBFC_8403AC(UnkSnowHerring* arg0, s32 x, s32 y) {
     }
 }
 
-void func_8036CC48_8403F8(UnkSnowHerring* arg0, Sprite* arg1) {
-    if (arg0 != NULL && arg1 != NULL) {
-        arg0->unk_34 = arg1->width;
-        arg0->unk_38 = arg1->height;
+void func_8036CC48_8403F8(UnkSnowHerring* el, Sprite* arg1) {
+    if (el != NULL && arg1 != NULL) {
+        el->unk_34 = arg1->width;
+        el->unk_38 = arg1->height;
 
-        arg0->unk_A8 = *arg1;
+        el->unk_A8 = *arg1;
 
-        arg0->unk_A8.x = arg0->unk_2C;
-        arg0->unk_A8.y = arg0->unk_30;
+        el->unk_A8.x = el->unk_2C;
+        el->unk_A8.y = el->unk_30;
 
-        if (arg0->flags & 0x40) {
-            arg0->spriteObj->data.sobj->sprite.x = arg0->unk_A8.x;
-            arg0->spriteObj->data.sobj->sprite.y = arg0->unk_A8.y;
+        if (el->flags & 0x40) {
+            el->spriteObj->data.sobj->sprite.x = el->unk_A8.x;
+            el->spriteObj->data.sobj->sprite.y = el->unk_A8.y;
         }
     }
 }
@@ -574,15 +1026,77 @@ void func_8036CCEC_84049C(UnkSnowHerring* arg0, s32 arg1) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036CDAC_84055C.s")
+void UIElement_DrawImage(UnkSnowHerring* arg0, s32 x, s32 y, s32 width, s32 height, u8* image) {
+    s32 fillHeight;
+    s32 fillWidth;
+    s32 i;
+    s32 j;
+    s32 skipPixels;
 
-UnkSnowHerring* func_8036D018_8407C8(void) {
+    if (!arg0 || width <= 0 || height <= 0) {
+        return;
+    }
+
+    if (x < 0) {
+        x = 0;
+    } else if (x >= arg0->width) {
+        x = arg0->width - 1;
+    }
+
+    if (y < 0) {
+        y = 0;
+    } else if (y >= arg0->height) {
+        y = arg0->height - 1;
+    }
+
+    skipPixels = arg0->imageWidth * (arg0->borderHeight + y) + arg0->borderWidth + x;
+
+    if (arg0->flags & 0x200) {
+        u8* ptr;
+        u8* src;
+
+        ptr = (u8*) arg0->image + skipPixels;
+        src = (u8*) image;
+        for (i = height; i > 0; i--) {
+            // clang-format off
+            for (j = width; j > 0; j--) { *ptr++ = *src++; }
+            // clang-format on
+            ptr += arg0->imageWidth - width;
+        }
+    } else if (arg0->flags & 0x400) {
+        u32* ptr;
+        u32* src;
+
+        ptr = (u32*) arg0->image + skipPixels;
+        src = (u32*) image;
+        for (i = height; i > 0; i--) {
+            // clang-format off
+            for (j = width; j > 0; j--) { *ptr++ = *src++; }
+            // clang-format on
+            ptr += arg0->imageWidth - width;
+        }
+    } else {
+        u16* ptr;
+        u16* src;
+
+        ptr = (u16*) arg0->image + skipPixels;
+        src = (u16*) image;
+        for (i = height; i > 0; i--) {
+            // clang-format off
+            for (j = width; j > 0; j--) { *ptr++ = *src++; }
+            // clang-format on
+            ptr += arg0->imageWidth - width;
+        }
+    }
+}
+
+UnkSnowHerring* UIElement_GetList(void) {
     return D_8037EA8C_85223C;
 }
 
-UnkSnowHerring* func_8036D024_8407D4(UnkSnowHerring* arg0) {
+UnkSnowHerring* UIElement_GetNext(UnkSnowHerring* arg0) {
     if (arg0 == NULL) {
-        return 0;
+        return NULL;
     }
     return arg0->next;
 }
@@ -590,7 +1104,7 @@ UnkSnowHerring* func_8036D024_8407D4(UnkSnowHerring* arg0) {
 void func_8036D040_8407F0(UnkSnowHerring* arg0) {
     GObj* gobj;
 
-    if ((D_8037EA8C_85223C != NULL) && (arg0 != D_8037EA8C_85223C) && (arg0 != NULL)) {
+    if (D_8037EA8C_85223C != NULL && arg0 != D_8037EA8C_85223C && arg0 != NULL) {
         gobj = arg0->spriteObj;
         omMoveGObjDL(gobj, gobj->dlLink, gobj->dlPriority);
         UIElement_Unlink(arg0);
@@ -599,34 +1113,34 @@ void func_8036D040_8407F0(UnkSnowHerring* arg0) {
 }
 
 void func_8036D09C_84084C(UnkSnowHerring* arg0) {
-    GObj* temp_a0;
+    GObj* gobj;
 
-    if ((D_8037EA8C_85223C != NULL) && (arg0 != D_8037EA8C_85223C) && (arg0 != NULL)) {
-        temp_a0 = arg0->spriteObj;
-        omMoveGObjDLHead(temp_a0, temp_a0->dlLink, temp_a0->dlPriority);
+    if (D_8037EA8C_85223C != NULL && arg0 != D_8037EA8C_85223C && arg0 != NULL) {
+        gobj = arg0->spriteObj;
+        omMoveGObjDLHead(gobj, gobj->dlLink, gobj->dlPriority);
         UIElement_Unlink(arg0);
         UIElement_LinkTail(arg0);
     }
 }
 
-UnkSnowHerring* func_8036D0F8_8408A8(s32 arg0, s32 arg1, char* arg2, s32 arg3, s32 arg4) {
-    UnkSnowHerring* temp_v0;
+UnkSnowHerring* func_8036D0F8_8408A8(s32 x, s32 y, char* text, s32 arg3, s32 flags) {
+    UnkSnowHerring* el;
     s32 temp_s0;
 
     func_8036D344_840AF4(arg3);
-    temp_s0 = func_8036D4F0_840CA0(arg2);
+    temp_s0 = func_8036D4F0_840CA0(text);
     // TODO: look into a "ceil to multiple of" macro
-    temp_v0 = UIElement_Create(arg0, arg1, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, arg4);
-    func_8036CB58_840308(temp_v0, arg3);
-    func_8036B734_83EEE4(temp_v0);
-    func_8036B9EC_83F19C(temp_v0, 0, 0);
-    func_8036C898_840048(temp_v0, arg2);
+    el = UIElement_Create(x, y, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, flags);
+    func_8036CB58_840308(el, arg3);
+    func_8036B734_83EEE4(el);
+    func_8036B9EC_83F19C(el, 0, 0);
+    func_8036C898_840048(el, text);
 
-    return temp_v0;
+    return el;
 }
 
 void func_8036D1A4_840954(UnkSnowHerring* arg0, s32 arg1) {
-    if (!arg0) {
+    if (arg0 == NULL) {
         return;
     }
 
@@ -640,22 +1154,22 @@ void func_8036D1A4_840954(UnkSnowHerring* arg0, s32 arg1) {
 }
 
 GObj* func_8036D22C_8409DC(UnkSnowHerring* arg0) {
-    if (!arg0) {
+    if (arg0 == NULL) {
         return NULL;
     }
 
     return arg0->spriteObj;
 }
 
-void func_8036D248_8409F8(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    if (arg0 != NULL) {
-        arg0->spriteObj->data.sobj->sprite.red = arg1;
-        arg0->spriteObj->data.sobj->sprite.green = arg2;
-        arg0->spriteObj->data.sobj->sprite.blue = arg3;
-        arg0->spriteObj->data.sobj->sprite.alpha = arg4;
+void func_8036D248_8409F8(UnkSnowHerring* el, s32 r, s32 g, s32 b, s32 a) {
+    if (el != NULL) {
+        el->spriteObj->data.sobj->sprite.red = r;
+        el->spriteObj->data.sobj->sprite.green = g;
+        el->spriteObj->data.sobj->sprite.blue = b;
+        el->spriteObj->data.sobj->sprite.alpha = a;
     }
 }
 
-s32 func_8036D28C_840A3C(UnkSnowHerring* arg0) {
-    return arg0->width;
+s32 func_8036D28C_840A3C(UnkSnowHerring* el) {
+    return el->width;
 }

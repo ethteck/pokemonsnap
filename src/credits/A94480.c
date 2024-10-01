@@ -117,7 +117,7 @@ void func_credits_801DDB60(void) {
     var_s0 = D_credits_801ECCB0;
     while (var_s0->unk_C != 0) {
         var_s0->unk_4 -= var_f20;
-        func_8036CBA0_840350(var_s0->unk_C, var_s0->unk_0, var_s0->unk_4);
+        UIElement_SetPos(var_s0->unk_C, var_s0->unk_0, var_s0->unk_4);
         var_s0++;
     }
 }
@@ -159,7 +159,7 @@ void func_credits_801DDC70(void) {
         func_8036CB58_840308(temp_v0, 0xC);
         func_8036B734_83EEE4(var_s0->unk_C);
         func_8036B9EC_83F19C(var_s0->unk_C, 0, 0);
-        func_8036B870_83F020(var_s0->unk_C, 0, 0, 0, 0, 0);
+        UIElement_SetColor(var_s0->unk_C, 0, 0, 0, 0, 0);
         var_s0++;
     }
     var_s0->unk_C = 0;

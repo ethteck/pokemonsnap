@@ -740,8 +740,8 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_801DE0B8_9FBD78();
     func_801DE290_9FBF50(0);
     sp34 = UIElement_Create(0xAA, 0x99, 0x3C, 0x12, 0x400);
-    func_8036B870_83F020(sp34, 1, 0, 0, 0, 0xFF);
-    func_8036B870_83F020(sp34, 0, 0, 0, 0, 0);
+    UIElement_SetColor(sp34, 1, 0, 0, 0, 0xFF);
+    UIElement_SetColor(sp34, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);
     func_8036B734_83EEE4(sp34);
@@ -757,8 +757,8 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIFrame_SetPos(sp38, 184, 320);
     UIFrame_Show(sp38, false);
     sp34 = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-    func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp34, 0, 0xDA, 0x6C, 0, 0);
+    UIElement_SetColor(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp34, 0, 0xDA, 0x6C, 0, 0);
     func_8036B734_83EEE4(sp34);
     func_8036CB58_840308(sp34, 0xC);
     func_8036D448_840BF8(1);
@@ -768,8 +768,8 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_8036D1A4_840954(sp34, 1);
     D_8023087C_A4E53C = sp34;
     sp34 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-    func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp34, 0, sp30.r, sp30.g, sp30.b, 0xFF);
+    UIElement_SetColor(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp34, 0, sp30.r, sp30.g, sp30.b, 0xFF);
     func_8036B734_83EEE4(sp34);
     func_8036D1A4_840954(sp34, 1);
     D_80230880_A4E540 = sp34;
@@ -845,11 +845,11 @@ void func_801DF078_9FCD38(GObj* arg0) {
         }
 
         func_803700A4_843854(0);
-        func_8036B5F0_83EDA0(D_80230880_A4E540);
+        UIElement_Delete(D_80230880_A4E540);
         UIFrame_FadeOut(D_80230878_A4E538);
         func_803713C8_844B78(0);
-        func_8036B5F0_83EDA0(D_8023087C_A4E53C);
-        func_8036B5F0_83EDA0(D_80230884_A4E544);
+        UIElement_Delete(D_8023087C_A4E53C);
+        UIElement_Delete(D_80230884_A4E544);
         func_80370A48_8441F8();
         func_803705A4_843D54();
 

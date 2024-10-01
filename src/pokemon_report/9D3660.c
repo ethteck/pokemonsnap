@@ -485,8 +485,8 @@ const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall 
 
 void func_801DE5A8_9D4F18(s32 arg0) {
     func_8036A8E4_83E094(D_80230C1C_A2758C);
-    func_8036B870_83F020(D_80230C1C_A2758C, 1, 0, 0, 0, 0xFF);
-    func_8036B870_83F020(D_80230C1C_A2758C, 0, 0x85, 0x93, 0xAB, 0);
+    UIElement_SetColor(D_80230C1C_A2758C, 1, 0, 0, 0, 0xFF);
+    UIElement_SetColor(D_80230C1C_A2758C, 0, 0x85, 0x93, 0xAB, 0);
     func_8036B9EC_83F19C(D_80230C1C_A2758C, 0, 0);
     D_80230C24_A27594 = arg0;
     func_801DE414_9D4D84(arg0);
@@ -540,15 +540,15 @@ void func_801DE898_9D5208(s32 arg0) {
         func_803705A4_843D54();
         func_801DCEA8_9D3818(0);
         func_801DFBD0_9D6540(0);
-        func_8036B5F0_83EDA0(D_80230C38_A275A8);
-        func_8036B5F0_83EDA0(D_80230C30_A275A0);
+        UIElement_Delete(D_80230C38_A275A8);
+        UIElement_Delete(D_80230C30_A275A0);
         func_801DDCD4_9D4644(1);
         func_8036D1A4_840954(D_80230C1C_A2758C, 0);
         D_80230C48_A275B8[0]->sprite.attr &= ~SP_HIDDEN;
         for (i = 0; i < ARRAY_COUNT(D_80230C80_A275F0); i++) {
             D_80230C80_A275F0[i] = UIElement_Create(112, (i * 15) + 69, 184, 8, 0x400);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
+            UIElement_SetColor(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
+            UIElement_SetColor(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
             func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
         }
         func_801DDD58_9D46C8();
@@ -563,18 +563,18 @@ void func_801DE898_9D5208(s32 arg0) {
         func_8036D1A4_840954(D_80230C1C_A2758C, 1);
 
         for (i = 0; i < ARRAY_COUNT(D_80230C80_A275F0); i++) {
-            func_8036B5F0_83EDA0(D_80230C80_A275F0[i]);
+            UIElement_Delete(D_80230C80_A275F0[i]);
         }
 
         func_801DFBD0_9D6540(1);
         D_80230C38_A275A8 = UIElement_Create(0x9E, 0x9D, 0x54, 0xC, 0x400);
-        func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
+        UIElement_SetColor(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
+        UIElement_SetColor(D_80230C38_A275A8, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C38_A275A8);
         func_8036D1A4_840954(D_80230C38_A275A8, 1);
         D_80230C30_A275A0 = UIElement_Create(0x70, 0xAD, 0xC0, 0x34, 0x400);
-        func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
+        UIElement_SetColor(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
+        UIElement_SetColor(D_80230C30_A275A0, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C30_A275A0);
         func_8036D1A4_840954(D_80230C30_A275A0, 1);
         if (D_80230DB4_A27724 > 0) {
@@ -1322,8 +1322,8 @@ void func_801E1378_9D7CE8(void) {
         func_801E02F4_9D6C64();
         func_801DCD78_9D36E8(0);
         sp38 = UIElement_Create(0x76, 0x7B, 0xB6, 0x61, 0x400);
-        func_8036B870_83F020(sp38, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp38, 0, 0x85, 0x93, 0xAB, 0);
+        UIElement_SetColor(sp38, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetColor(sp38, 0, 0x85, 0x93, 0xAB, 0);
         func_8036B734_83EEE4(sp38);
         func_8036D1A4_840954(sp38, 1);
         D_80230C1C_A2758C = sp38;
@@ -1384,7 +1384,7 @@ void func_801E1568_9D7ED8(s32 arg0) {
     }
 
     func_801DCD78_9D36E8(0);
-    func_8036B5F0_83EDA0(D_80230C1C_A2758C);
+    UIElement_Delete(D_80230C1C_A2758C);
     func_801DCE3C_9D37AC();
     D_80230C74_A275E4 = 0;
     func_8037172C_844EDC(0);
@@ -1399,8 +1399,8 @@ void func_801E16DC_9D804C(void) {
         func_801E0480_9D6DF0();
         func_801DCD78_9D36E8(0);
         sp2C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
+        UIElement_SetColor(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetColor(sp2C, 0, 0xDA, 0x6C, 0, 0);
         func_8036B734_83EEE4(sp2C);
         func_8036CB58_840308(sp2C, 0xC);
         func_8036D448_840BF8(1);
@@ -1410,16 +1410,16 @@ void func_801E16DC_9D804C(void) {
         func_8036D1A4_840954(sp2C, 1);
         D_80230C34_A275A4 = sp2C;
         sp2C = UIElement_Create(0x70, 0x32, 0xB0, 0xF, 0);
-        func_8036B870_83F020(sp2C, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0x85, 0x93, 0xAB, 0);
+        UIElement_SetColor(sp2C, 1, 0, 0, 0, 0xFF);
+        UIElement_SetColor(sp2C, 0, 0x85, 0x93, 0xAB, 0);
         func_8036B734_83EEE4(sp2C);
         func_8036D1A4_840954(sp2C, 1);
         D_80230C1C_A2758C = sp2C;
 
         for (i = 0; i < 10; i++) {
             D_80230C80_A275F0[i] = UIElement_Create(0x70, (i * 15) + 69, 184, 8, 0x400);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
+            UIElement_SetColor(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
+            UIElement_SetColor(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
             func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
         }
 
@@ -1464,7 +1464,7 @@ void func_801E1AC4_9D8434(void) {
     s32 i;
 
     func_803700A4_843854(0);
-    func_8036B5F0_83EDA0(D_80230C34_A275A4);
+    UIElement_Delete(D_80230C34_A275A4);
     func_803713C8_844B78(0);
     func_80370A48_8441F8();
     ohWait(21);
@@ -1476,10 +1476,10 @@ void func_801E1AC4_9D8434(void) {
     }
 
     func_801DCD78_9D36E8(0);
-    func_8036B5F0_83EDA0(D_80230C1C_A2758C);
+    UIElement_Delete(D_80230C1C_A2758C);
 
     for (i = 0; i < 10; i++) {
-        func_8036B5F0_83EDA0(D_80230C80_A275F0[i]);
+        UIElement_Delete(D_80230C80_A275F0[i]);
     }
 
     func_801DCE3C_9D37AC();
@@ -1504,8 +1504,8 @@ void func_801E1BEC_9D855C(void) {
         sp30 = D_80230C28_A27598;
         UIFrame_GetBackgroundColor(sp30, &sp34);
         sp2C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
+        UIElement_SetColor(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetColor(sp2C, 0, 0xDA, 0x6C, 0, 0);
         func_8036B734_83EEE4(sp2C);
         func_8036CB58_840308(sp2C, 0xC);
         func_8036D448_840BF8(1);
@@ -1515,8 +1515,8 @@ void func_801E1BEC_9D855C(void) {
         func_8036D1A4_840954(sp2C, 1);
         D_80230C34_A275A4 = sp2C;
         sp2C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
+        UIElement_SetColor(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetColor(sp2C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
         func_8036B734_83EEE4(sp2C);
         func_8036D1A4_840954(sp2C, 1);
         D_80230C30_A275A0 = sp2C;
@@ -1560,8 +1560,8 @@ void func_801E1F20_9D8890(void) {
     func_8036D1A4_840954(D_80230C30_A275A0, 1);
     func_8036D1A4_840954(D_80230C34_A275A4, 1);
     func_803713C8_844B78(0);
-    func_8036B5F0_83EDA0(D_80230C34_A275A4);
-    func_8036B5F0_83EDA0(D_80230C30_A275A0);
+    UIElement_Delete(D_80230C34_A275A4);
+    UIElement_Delete(D_80230C30_A275A0);
     UIFrame_FadeOut(D_80230C28_A27598);
     func_80370A48_8441F8();
     ohWait(21);
@@ -1594,13 +1594,13 @@ void func_801E20B4_9D8A24(void) {
         func_801DCD78_9D36E8(0);
         func_801DFD24_9D6694(0);
         D_80230C38_A275A8 = UIElement_Create(0x9E, 0x93, 0x54, 0xC, 0x400);
-        func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
+        UIElement_SetColor(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
+        UIElement_SetColor(D_80230C38_A275A8, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C38_A275A8);
         func_8036D1A4_840954(D_80230C38_A275A8, 0);
         D_80230C30_A275A0 = UIElement_Create(0x70, 0xAD, 0xC0, 0x34, 0x400);
-        func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
+        UIElement_SetColor(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
+        UIElement_SetColor(D_80230C30_A275A0, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C30_A275A0);
         func_8036D1A4_840954(D_80230C30_A275A0, 0);
         ohWait(1);
@@ -1647,8 +1647,8 @@ void func_801E2340_9D8CB0(void) {
 
     func_801DCD78_9D36E8(0);
     func_801DFD24_9D6694(0);
-    func_8036B5F0_83EDA0(D_80230C38_A275A8);
-    func_8036B5F0_83EDA0(D_80230C30_A275A0);
+    UIElement_Delete(D_80230C38_A275A8);
+    UIElement_Delete(D_80230C30_A275A0);
     func_801DCE3C_9D37AC();
     func_801DFBD0_9D6540(0);
     D_80230C74_A275E4 = 0;
@@ -1680,8 +1680,8 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     UIFrame_SetPos(D_80230C28_A27598, 184, 320);
     UIFrame_Show(D_80230C28_A27598, false);
     sp30 = UIElement_Create(0x76, 0x7B, 0xB6, 0x61, 0x400);
-    func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp30, 0, 0x85, 0x93, 0xAB, 0);
+    UIElement_SetColor(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_SetColor(sp30, 0, 0x85, 0x93, 0xAB, 0);
     func_8036B734_83EEE4(sp30);
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);

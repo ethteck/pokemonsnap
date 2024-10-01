@@ -546,7 +546,7 @@ void func_801DE898_9D5208(s32 arg0) {
         func_8036D1A4_840954(D_80230C1C_A2758C, 0);
         D_80230C48_A275B8[0]->sprite.attr &= ~SP_HIDDEN;
         for (i = 0; i < ARRAY_COUNT(D_80230C80_A275F0); i++) {
-            D_80230C80_A275F0[i] = func_8036AC6C_83E41C(112, (i * 15) + 69, 184, 8, 0x400);
+            D_80230C80_A275F0[i] = UIElement_Create(112, (i * 15) + 69, 184, 8, 0x400);
             func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
             func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
             func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
@@ -567,12 +567,12 @@ void func_801DE898_9D5208(s32 arg0) {
         }
 
         func_801DFBD0_9D6540(1);
-        D_80230C38_A275A8 = func_8036AC6C_83E41C(0x9E, 0x9D, 0x54, 0xC, 0x400);
+        D_80230C38_A275A8 = UIElement_Create(0x9E, 0x9D, 0x54, 0xC, 0x400);
         func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C38_A275A8);
         func_8036D1A4_840954(D_80230C38_A275A8, 1);
-        D_80230C30_A275A0 = func_8036AC6C_83E41C(0x70, 0xAD, 0xC0, 0x34, 0x400);
+        D_80230C30_A275A0 = UIElement_Create(0x70, 0xAD, 0xC0, 0x34, 0x400);
         func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C30_A275A0);
@@ -1321,7 +1321,7 @@ void func_801E1378_9D7CE8(void) {
     if (D_80230C74_A275E4 <= 0) {
         func_801E02F4_9D6C64();
         func_801DCD78_9D36E8(0);
-        sp38 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
+        sp38 = UIElement_Create(0x76, 0x7B, 0xB6, 0x61, 0x400);
         func_8036B870_83F020(sp38, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp38, 0, 0x85, 0x93, 0xAB, 0);
         func_8036B734_83EEE4(sp38);
@@ -1398,7 +1398,7 @@ void func_801E16DC_9D804C(void) {
     if (D_80230C74_A275E4 <= 0) {
         func_801E0480_9D6DF0();
         func_801DCD78_9D36E8(0);
-        sp2C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+        sp2C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
         func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
         func_8036B734_83EEE4(sp2C);
@@ -1409,7 +1409,7 @@ void func_801E16DC_9D804C(void) {
         func_8036C898_840048(sp2C, "PKMN Report");
         func_8036D1A4_840954(sp2C, 1);
         D_80230C34_A275A4 = sp2C;
-        sp2C = func_8036AC6C_83E41C(0x70, 0x32, 0xB0, 0xF, 0);
+        sp2C = UIElement_Create(0x70, 0x32, 0xB0, 0xF, 0);
         func_8036B870_83F020(sp2C, 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(sp2C, 0, 0x85, 0x93, 0xAB, 0);
         func_8036B734_83EEE4(sp2C);
@@ -1417,7 +1417,7 @@ void func_801E16DC_9D804C(void) {
         D_80230C1C_A2758C = sp2C;
 
         for (i = 0; i < 10; i++) {
-            D_80230C80_A275F0[i] = func_8036AC6C_83E41C(0x70, (i * 15) + 69, 184, 8, 0x400);
+            D_80230C80_A275F0[i] = UIElement_Create(0x70, (i * 15) + 69, 184, 8, 0x400);
             func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
             func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
             func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
@@ -1503,7 +1503,7 @@ void func_801E1BEC_9D855C(void) {
         func_801DCD78_9D36E8(0);
         sp30 = D_80230C28_A27598;
         UIFrame_GetBackgroundColor(sp30, &sp34);
-        sp2C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+        sp2C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
         func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
         func_8036B734_83EEE4(sp2C);
@@ -1514,7 +1514,7 @@ void func_801E1BEC_9D855C(void) {
         func_8036C898_840048(sp2C, "PKMN Signs");
         func_8036D1A4_840954(sp2C, 1);
         D_80230C34_A275A4 = sp2C;
-        sp2C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+        sp2C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
         func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp2C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
         func_8036B734_83EEE4(sp2C);
@@ -1593,12 +1593,12 @@ void func_801E20B4_9D8A24(void) {
         func_801E07C0_9D7130();
         func_801DCD78_9D36E8(0);
         func_801DFD24_9D6694(0);
-        D_80230C38_A275A8 = func_8036AC6C_83E41C(0x9E, 0x93, 0x54, 0xC, 0x400);
+        D_80230C38_A275A8 = UIElement_Create(0x9E, 0x93, 0x54, 0xC, 0x400);
         func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C38_A275A8);
         func_8036D1A4_840954(D_80230C38_A275A8, 0);
-        D_80230C30_A275A0 = func_8036AC6C_83E41C(0x70, 0xAD, 0xC0, 0x34, 0x400);
+        D_80230C30_A275A0 = UIElement_Create(0x70, 0xAD, 0xC0, 0x34, 0x400);
         func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(D_80230C30_A275A0);
@@ -1679,7 +1679,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     UIFrame_SetStyle(D_80230C28_A27598, FRAME_STYLE_1);
     UIFrame_SetPos(D_80230C28_A27598, 184, 320);
     UIFrame_Show(D_80230C28_A27598, false);
-    sp30 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
+    sp30 = UIElement_Create(0x76, 0x7B, 0xB6, 0x61, 0x400);
     func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp30, 0, 0x85, 0x93, 0xAB, 0);
     func_8036B734_83EEE4(sp30);

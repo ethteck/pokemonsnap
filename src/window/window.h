@@ -14,13 +14,13 @@ typedef struct UnkSnow2 {
 } UnkSnow2;
 
 typedef struct UnkSnowHerring {
-    /*  0x00 */ s32 unk_0;
-    /*  0x04 */ s32 unk_4;
-    /*  0x08 */ s32 unk_8;
-    /*  0x0C */ s32 unk_C;
-    /*  0x10 */ s32 unk_10; // x limit
-    /*  0x14 */ s32 unk_14; // y limit
-    /*  0x18 */ u32 unk_18; // flags
+    /*  0x00 */ s32 x;
+    /*  0x04 */ s32 y;
+    /*  0x08 */ s32 borderWidth;
+    /*  0x0C */ s32 borderHeight;
+    /*  0x10 */ s32 width; // x limit
+    /*  0x14 */ s32 height; // y limit
+    /*  0x18 */ u32 flags; // flags
     /*  0x1C */ u32 unk_1C;
     /*  0x20 */ u32 unk_20;
     /*  0x24 */ u32 unk_24;
@@ -29,20 +29,20 @@ typedef struct UnkSnowHerring {
     /*  0x30 */ s32 unk_30;
     /*  0x34 */ s32 unk_34;
     /*  0x38 */ s32 unk_38;
-    /*  0x3C */ struct UnkSnowHerring* unk_3C;
-    /*  0x40 */ struct UnkSnowHerring* unk_40;
+    /*  0x3C */ struct UnkSnowHerring* next;
+    /*  0x40 */ struct UnkSnowHerring* prev;
     /*  0x44 */ s32 unk_44;
     /*  0x48 */ ucolor unk_48;
     /*  0x4C */ ucolor unk_4C;
-    /*  0x50 */ GObj* unk_50;
-    /*  0x54 */ u8* unk_54;
+    /*  0x50 */ GObj* spriteObj;
+    /*  0x54 */ u8* rasters;
     /*  0x58 */ u8* unk_58;
     /*  0x5C */ s32 unk_5C;
-    /*  0x60 */ s32 unk_60;
-    /*  0x64 */ Sprite unk_64;
+    /*  0x60 */ s32 bpp;
+    /*  0x64 */ Sprite sprite;
     /*  0xA8 */ Sprite unk_A8;
-    /*  0xEC */ Gfx* unk_EC;
-    /*  0xF0 */ Bitmap* unk_F0;
+    /*  0xEC */ Gfx* rsp_dl;
+    /*  0xF0 */ Bitmap* bitmaps;
     /*  0xF4 */ Bitmap* unk_F4;
     /*  0xF8 */ s32 unk_F8;
     /*  0xFC */ s32 unk_FC;
@@ -56,7 +56,7 @@ typedef struct UnkSnowHerring {
     /* 0x11C */ s32 unk_11C;
     /* 0x120 */ s32 unk_120; // x
     /* 0x124 */ s32 unk_124; // y
-    /* 0x128 */ s32 unk_128;
+    /* 0x128 */ s32 id;
     /* 0x12C */ u8 pad_12C[4];
 } UnkSnowHerring; // size == 0x130
 
@@ -77,7 +77,7 @@ void func_8036A5B8_83DD68(UnkSnowHerring*, s32, s32, s32, s32, s32, s32, s32, s3
 void func_8036A8E4_83E094(UnkSnowHerring*);
 void func_8036A968_83E118(UnkSnowHerring*, s32, s32, s32, s32);
 void func_8036A9AC_83E15C(UnkSnowHerring*, UNK_TYPE, UNK_TYPE, s32, s32, s32, s32, s32, s32);
-UnkSnowHerring* func_8036AC6C_83E41C(s32, s32, s32, s32, s32);
+UnkSnowHerring* UIElement_Create(s32, s32, s32, s32, s32);
 void func_8036B5F0_83EDA0(UnkSnowHerring*);
 void func_8036B628_83EDD8(UnkSnowHerring*);
 void func_8036B734_83EEE4(UnkSnowHerring*);
@@ -110,7 +110,7 @@ void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
 void UIFrame_ShowBackground(UIFrame*, bool show);
 void UIFrame_Show(UIFrame*, bool show);
 void UIFrame_SetOpacity(UIFrame*, s32 alpha);
-void UIFrame_SetPos(UIFrame*, s32, s32); // top left corner is (80, 80)
+void UIFrame_SetPos(UIFrame*, s32, s32);
 void UIFrame_SetSize(UIFrame*, s32, s32);
 void UIFrame_SetStyle(UIFrame*, s32);
 void UIFrame_GetBackgroundColor(UIFrame*, ucolor*);

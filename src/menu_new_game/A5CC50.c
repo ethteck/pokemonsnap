@@ -172,7 +172,7 @@ void func_800E1A0C_A5CDBC(void) {
     UIFrame_FadeIn(unk, FRAME_STYLE_1);
 
     // description
-    id = func_8036AC6C_83E41C(104, 173, 192, 47, 0);
+    id = UIElement_Create(104, 173, 192, 47, 0);
     func_8036B870_83F020(id, 1, 255, 255, 255, 255);
     func_8036B870_83F020(id, 0, sp28.r, sp28.g, sp28.b, 255);
     func_8036B734_83EEE4(id);
@@ -189,7 +189,7 @@ void func_800E1A0C_A5CDBC(void) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        id = func_8036AC6C_83E41C(23, i * 10 + 20, 60, 8, 0);
+        id = UIElement_Create(23, i * 10 + 20, 60, 8, 0);
         func_8036CB58_840308(id, 8);
         func_8036B870_83F020(id, 0, 0, 0, 0, 0);
         func_8036B734_83EEE4(id);
@@ -201,7 +201,7 @@ void func_800E1A0C_A5CDBC(void) {
     func_8036D3E8_840B98(0, 4);
 
     // name input
-    id = func_8036AC6C_83E41C(203, 64, 62, 12, 0x400);
+    id = UIElement_Create(203, 64, 62, 12, 0x400);
     func_8036CB58_840308(id, 12);
     func_8036B870_83F020(id, 0, 0, 0, 0, 0);
     func_8036B870_83F020(id, 1, 0, 0, 0, 255);
@@ -212,7 +212,7 @@ void func_800E1A0C_A5CDBC(void) {
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);
 
-    id = func_8036AC6C_83E41C(206, 64, 12, 12, 0x400);
+    id = UIElement_Create(206, 64, 12, 12, 0x400);
     func_8036CB58_840308(id, 12);
     func_8036B870_83F020(id, 0, 0, 0, 0, 0);
     func_8036B870_83F020(id, 1, 255, 0, 0, 255);

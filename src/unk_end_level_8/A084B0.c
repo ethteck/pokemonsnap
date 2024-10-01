@@ -86,7 +86,7 @@ void func_801DC8C0_A084B0(void) {
     UIFrame_GetBackgroundColor(sp2C, &sp24);
     UIFrame_SetPos(sp2C, 184, 320);
     UIFrame_Show(sp2C, false);
-    sp28 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+    sp28 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
     func_8036B734_83EEE4(sp28);

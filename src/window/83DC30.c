@@ -9,58 +9,106 @@ void func_8036A480_83DC30(void) {
     D_8037EA90_852240 = NULL;
 }
 
-void func_8036A4AC_83DC5C(UnkSnowHerring* arg0) {
+void UIElement_LinkHead(UnkSnowHerring* el) {
     if (D_8037EA8C_85223C == NULL) {
-        D_8037EA8C_85223C = arg0;
-        D_8037EA90_852240 = arg0;
-        arg0->unk_3C = NULL;
-        arg0->unk_40 = 0;
+        D_8037EA8C_85223C = el;
+        D_8037EA90_852240 = el;
+        el->next = NULL;
+        el->prev = NULL;
     } else {
-        D_8037EA8C_85223C->unk_40 = arg0;
-        arg0->unk_3C = (void*) D_8037EA8C_85223C;
-        arg0->unk_40 = 0;
-        D_8037EA8C_85223C = arg0;
+        D_8037EA8C_85223C->prev = el;
+        el->next = (void*) D_8037EA8C_85223C;
+        el->prev = NULL;
+        D_8037EA8C_85223C = el;
     }
 }
 
-void func_8036A4F4_83DCA4(UnkSnowHerring* arg0) {
+void UIElement_LinkTail(UnkSnowHerring* el) {
     if (D_8037EA90_852240 == NULL) {
-        D_8037EA8C_85223C = arg0;
-        D_8037EA90_852240 = arg0;
-        arg0->unk_3C = NULL;
-        arg0->unk_40 = NULL;
+        D_8037EA8C_85223C = el;
+        D_8037EA90_852240 = el;
+        el->next = NULL;
+        el->prev = NULL;
     } else {
-        D_8037EA90_852240->unk_3C = arg0;
-        arg0->unk_3C = NULL;
-        arg0->unk_40 = D_8037EA90_852240;
-        D_8037EA90_852240 = arg0;
+        D_8037EA90_852240->next = el;
+        el->next = NULL;
+        el->prev = D_8037EA90_852240;
+        D_8037EA90_852240 = el;
     }
 }
 
-void func_8036A53C_83DCEC(UnkSnowHerring* arg0) {
-    if (!arg0->unk_3C && !arg0->unk_40) {
+void UIElement_Unlink(UnkSnowHerring* arg0) {
+    if (arg0->next == NULL && arg0->prev == NULL) {
         D_8037EA8C_85223C = NULL;
         D_8037EA90_852240 = NULL;
-    } else if (!arg0->unk_3C) {
-        D_8037EA90_852240 = arg0->unk_40;
-        arg0->unk_40->unk_3C = NULL;
-    } else if (!arg0->unk_40) {
-        arg0->unk_3C->unk_40 = NULL;
-        D_8037EA8C_85223C = arg0->unk_3C;
+    } else if (arg0->next == NULL) {
+        D_8037EA90_852240 = arg0->prev;
+        arg0->prev->next = NULL;
+    } else if (arg0->prev == NULL) {
+        arg0->next->prev = NULL;
+        D_8037EA8C_85223C = arg0->next;
     } else {
-        arg0->unk_3C->unk_40 = arg0->unk_40;
-        arg0->unk_40->unk_3C = arg0->unk_3C;
+        arg0->next->prev = arg0->prev;
+        arg0->prev->next = arg0->next;
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036A5B8_83DD68.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036A5B8_83DD68.s")
+void func_8036A5B8_83DD68(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg8) {
+    s32 temp;
+    s32 height;
+    s32 t1;
+
+    if (arg1 < 0) {
+        arg1 = 0;
+    } else if (arg1 > arg0->width) {
+        arg1 = arg0->width - 1;
+    }
+
+    if (arg3 < 0) {
+        arg3 = 0;
+    } else if (arg3 > arg0->width) {
+        arg3 = arg0->width - 1;
+    }
+
+    if (arg2 < 0) {
+        arg2 = 0;
+    } else if (arg2 > arg0->height) {
+        arg2 = arg0->height - 1;
+    }
+
+    if (arg4 < 0) {
+        arg4 = 0;
+    } else if (arg4 > arg0->height) {
+        arg4 = arg0->height - 1;
+    }
+
+    if (arg3 < arg1) {
+        temp = arg1;
+        arg1 = arg3;
+        arg3 = temp;
+    }
+
+    if (arg4 < arg2) {
+        temp = arg2;
+        arg2 = arg4;
+        arg4 = temp;
+    }
+
+    height = arg4 - arg2 + 1;
+    t1 = arg0->unk_44 * (arg2 + arg0->borderHeight) + arg0->borderWidth + arg1;
+
+    if (arg0->flags & 0x200) {
+
+    }
+}
 
 void func_8036A8E4_83E094(UnkSnowHerring* arg0) {
-    func_8036A5B8_83DD68(arg0, 0, 0, arg0->unk_10, arg0->unk_14, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+    func_8036A5B8_83DD68(arg0, 0, 0, arg0->width, arg0->height, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
     arg0->unk_120 = 0;
     arg0->unk_124 = 0;
     arg0->unk_118 = 0;
-    func_8036EEB0_842660(arg0->unk_0, arg0->unk_4, arg0->unk_0 + arg0->unk_10, arg0->unk_4 + arg0->unk_14);
+    func_8036EEB0_842660(arg0->x, arg0->y, arg0->x + arg0->width, arg0->y + arg0->height);
 }
 
 void func_8036A968_83E118(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
@@ -69,225 +117,222 @@ void func_8036A968_83E118(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s3
 
 #pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036A9AC_83E15C.s")
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/window/83DC30/func_8036AC6C_83E41C.s")
-
-UnkSnowHerring* func_8036AC6C_83E41C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    u8* temp_a2_2;
+UnkSnowHerring* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags) {
+    u8* bitmaps_ptr;
     s32 tmp;
-    s32 sp9C;
-    s32 sp98;
+    s32 borderWidth;
+    s32 borderHeight;
     s32 i;
-    s32 var0;
-    s32 sp24;
-    s32 sp88;
-    s32 sp84;
-    s32 sp80;
-    u32 sp20;
-    s32 sp78;    
+    s32 totalWidth;
+    s32 numTiles;
+    s32 tileHeight;
+    s32 rastersBytes;
+    s32 bitmapsBytes;
+    u32 ndisplist;
+    s32 bytesPerPixel;
     s32 new_var;
-    Bitmap *new_var3;
-    u8* temp_a1_2;    
+    Bitmap* new_var3;
+    u8* rasters_ptr;
     u64* ptr;
-    s32 new_var2;
-    UnkSnowHerring* sp60;
-    s32 sp38;
-    s32 sp34;
-    s32 objsize;    
-    GObj* temp_v0_2;
+    s32 numTiles2;
+    UnkSnowHerring* el;
+    s32 totalHeight;
+    s32 tileWidth;
+    s32 objsize;
+    GObj* obj;
 
-    objsize = 0x130;
-    
-    if (arg4 & 1) {
-        sp9C = 4;
-        sp98 = 4;
-    } else if (arg4 & 2) {
-        sp9C = 8;
-        sp98 = 8;
+    objsize = sizeof(UnkSnowHerring);
+
+    if (flags & 1) {
+        borderWidth = 4;
+        borderHeight = 4;
+    } else if (flags & 2) {
+        borderWidth = 8;
+        borderHeight = 8;
     } else {
-        sp9C = 0;
-        sp98 = 0;
+        borderWidth = 0;
+        borderHeight = 0;
     }
 
-    if (arg4 & 0x200) {
-        sp78 = 1;
-    } else if (arg4 & 0x400) {
-        sp78 = 4;
+    if (flags & 0x200) {
+        bytesPerPixel = 1;
+    } else if (flags & 0x400) {
+        bytesPerPixel = 4;
     } else {
-        sp78 = 2;
+        bytesPerPixel = 2;
     }
 
-    var0 = arg2 + sp9C * 2;
-    sp38 = arg3 + sp98 * 2;
-    sp34 = (32 + var0 + (sp78 >> 2) * 0x10 + 0xF) & ~0xF;
-    
-    sp88 = 0x1000 / sp78 / sp34;
-    sp24 = (sp38 + sp88 - 1) / sp88;
-    
-    
-    sp80 = sp24 * 0x10;
-    sp80 = ((u32)(sp80) + 7) & ~7;
-    
-    sp84 = sp34 * sp88 * sp24 * sp78;
-    sp84 = (sp84 + 7) & ~7;
+    totalWidth = width + borderWidth * 2;
+    totalHeight = height + borderHeight * 2;
+    tileWidth = (32 + totalWidth + (bytesPerPixel >> 2) * 0x10 + 0xF) & ~0xF;
 
-    if (arg4 & 0x80) {
-        sp84 *= 2;
-        sp80 *= 2;
+    tileHeight = 0x1000 / bytesPerPixel / tileWidth;
+    numTiles = (totalHeight + tileHeight - 1) / tileHeight;
+
+    bitmapsBytes = numTiles * sizeof(Bitmap);
+    bitmapsBytes = ((u32) (bitmapsBytes) + 7) & ~7;
+
+    rastersBytes = tileWidth * tileHeight * numTiles * bytesPerPixel;
+    rastersBytes = (rastersBytes + 7) & ~7;
+
+    if (flags & 0x80) {
+        rastersBytes *= 2;
+        bitmapsBytes *= 2;
     }
-    
-    //sp20 = sp24 * 12 + 24;
-    sp20 = (new_var2 = sp24 ^ (sp38 *0)) * 12;
+
+    ndisplist = (numTiles2 = numTiles ^ (totalHeight * 0)) * 12;
     new_var = 24;
-    sp20 += new_var;
-    sp60 = func_8036A194_83D944(objsize + sp84 + sp80 + sp20 * 8);
-    temp_a1_2 = (u8*)sp60 + objsize;
-    temp_a2_2 = temp_a1_2 + sp84;
-    sp60->unk_54 = temp_a1_2;
-    sp60->unk_F0 = temp_a2_2;
-    sp60->unk_EC = temp_a2_2 + sp80;
+    ndisplist += new_var;
+    el = func_8036A194_83D944(objsize + rastersBytes + bitmapsBytes + ndisplist * sizeof(Gfx));
+    rasters_ptr = (u8*) el + objsize;
+    bitmaps_ptr = rasters_ptr + rastersBytes;
+    el->rasters = rasters_ptr;
+    el->bitmaps = bitmaps_ptr;
+    el->rsp_dl = bitmaps_ptr + bitmapsBytes;
 
-    sp60->unk_0 = arg0;
-    sp60->unk_4 = arg1;
-    sp60->unk_8 = sp9C;
-    sp60->unk_C = sp98;
-    sp60->unk_10 = arg2;
-    sp60->unk_14 = arg3;
-    sp60->unk_18 = arg4;
+    el->x = x;
+    el->y = y;
+    el->borderWidth = borderWidth;
+    el->borderHeight = borderHeight;
+    el->width = width;
+    el->height = height;
+    el->flags = flags;
 
-    sp60->unk_48 = D_8037EA70_852220;
-    sp60->unk_4C = D_8037EA74_852224;
-    sp60->unk_44 = sp34;
+    el->unk_48 = D_8037EA70_852220;
+    el->unk_4C = D_8037EA74_852224;
+    el->unk_44 = tileWidth;
 
-    sp60->unk_114 = D_8037EA84_852234;
-    sp60->unk_118 = 0;
-    sp60->unk_11C = D_8037EA80_852230;
-    
-    sp60->unk_120 = 0;
-    sp60->unk_124 = 0;
-    sp60->unk_128 = D_8037EA88_852238++;
+    el->unk_114 = D_8037EA84_852234;
+    el->unk_118 = 0;
+    el->unk_11C = D_8037EA80_852230;
 
-    sp60->unk_1C = 0;
-    sp60->unk_20 = 0;
-    sp60->unk_24 = 0;
-    sp60->unk_28 = 0;
+    el->unk_120 = 0;
+    el->unk_124 = 0;
+    el->id = D_8037EA88_852238++;
 
-    sp60->unk_60 = sp78;
-    
-    ptr = sp60->unk_54;
-    tmp = ((u32)sp84 >> 3) + 1;
-#pragma _permuter sameline start
+    el->unk_1C = 0;
+    el->unk_20 = 0;
+    el->unk_24 = 0;
+    el->unk_28 = 0;
+
+    el->bpp = bytesPerPixel;
+
+    ptr = el->rasters;
+    tmp = ((u32) rastersBytes >> 3) + 1;
+    // clang-format off
     while (--tmp > 0) { *ptr++ = 0; }
-#pragma _permuter sameline end
+    // clang-format on
 
-    if (arg4 & 0x80) {
-        sp84 /= 2;
-        sp80 /= 2;        
-        sp60->unk_58 = sp60->unk_54 + sp84;
-        sp60->unk_F4 = (Bitmap*) ((uintptr_t) (sp60->unk_F0) + sp80);
-        sp60->unk_5C = sp84;
+    if (flags & 0x80) {
+        rastersBytes /= 2;
+        bitmapsBytes /= 2;
+        el->unk_58 = el->rasters + rastersBytes;
+        el->unk_F4 = (Bitmap*) ((uintptr_t) (el->bitmaps) + bitmapsBytes);
+        el->unk_5C = rastersBytes;
     } else {
-        sp60->unk_58 = NULL;
-        sp60->unk_F4 = NULL;
-        sp60->unk_5C = sp84;
+        el->unk_58 = NULL;
+        el->unk_F4 = NULL;
+        el->unk_5C = rastersBytes;
     }
-    sp60->unk_2C = arg0;
-    sp60->unk_A8.x = arg0;
-    sp60->unk_A8.y = arg1;
-    sp60->unk_104 = sp78;
-    sp60->unk_34 = sp60->unk_A8.width;
-    sp60->unk_38 = sp60->unk_A8.height;
+    el->unk_2C = x;
+    el->unk_A8.x = x;
+    el->unk_A8.y = y;
+    el->unk_104 = bytesPerPixel;
+    el->unk_34 = el->unk_A8.width;
+    el->unk_38 = el->unk_A8.height;
 
-    if (arg4 & 0x800) {
-        sp60->unk_108 = 1;
-        sp60->unk_64.bmfmt = 3;
+    if (flags & 0x800) {
+        el->unk_108 = true;
+        el->sprite.bmfmt = G_IM_FMT_IA;
     } else {
-        sp60->unk_108 = 0;
-        sp60->unk_64.bmfmt = 0;
+        el->unk_108 = false;
+        el->sprite.bmfmt = G_IM_FMT_RGBA;
     }
 
-    if (arg4 & 0x200) {
-        sp60->unk_64.bmsiz = 1;
-    } else if (arg4 & 0x400) {
-        sp60->unk_64.bmsiz = 3;
+    if (flags & 0x200) {
+        el->sprite.bmsiz = G_IM_SIZ_8b;
+    } else if (flags & 0x400) {
+        el->sprite.bmsiz = G_IM_SIZ_32b;
     } else {
-        sp60->unk_64.bmsiz = 2;
+        el->sprite.bmsiz = G_IM_SIZ_16b;
     }
 
-    sp60->unk_64.x = sp60->unk_0 - sp60->unk_8;
-    sp60->unk_64.y = sp60->unk_4 - sp60->unk_C;
-    sp60->unk_64.width = sp34;
-    sp60->unk_64.height = sp38;
-    sp60->unk_64.scalex = 1.0f;
-    sp60->unk_64.scaley = 1.0f;
-    sp60->unk_64.expx = 0;
-    sp60->unk_64.expy = 0;
+    el->sprite.x = el->x - el->borderWidth;
+    el->sprite.y = el->y - el->borderHeight;
+    el->sprite.width = tileWidth;
+    el->sprite.height = totalHeight;
+    el->sprite.scalex = 1.0f;
+    el->sprite.scaley = 1.0f;
+    el->sprite.expx = 0;
+    el->sprite.expy = 0;
 
-    sp60->unk_64.attr = 5;
-    if (arg4 & 0x100) {
-        sp60->unk_64.attr |= 0x10;
+    el->sprite.attr = 5;
+    if (flags & 0x100) {
+        el->sprite.attr |= 0x10;
     }
 
-    sp60->unk_64.zdepth = 0x100;
-    sp60->unk_64.red = 255;
-    sp60->unk_64.green = 255;
-    sp60->unk_64.blue = 255;
-    sp60->unk_64.alpha = 255;
-    sp60->unk_64.startTLUT = 0;
-    sp60->unk_64.nTLUT = 0;
-    sp60->unk_64.LUT = 0;
-    sp60->unk_64.istart = 0;
-    sp60->unk_64.istep = 1;
-    sp60->unk_64.nbitmaps = new_var2;
-    sp60->unk_64.ndisplist = sp20;
-    sp60->unk_64.bmheight = sp88;
-    sp60->unk_64.bmHreal = sp88;
-#pragma _permuter sameline start
-    sp60->unk_64.frac_t = 0;\
-    sp60->unk_64.frac_s = 0;\
-    new_var3 = sp60->unk_F0;\
-    sp60->unk_64.rsp_dl = sp60->unk_EC;\
-    sp60->unk_64.rsp_dl_next = 0;
-#pragma _permuter sameline end
-    sp60->unk_64.bitmap = new_var3;
-    for (i = 0; i < sp24; i++) {
-        sp60->unk_F0[i].width = var0;
-        sp60->unk_F0[i].width_img = sp34;
-        sp60->unk_F0[i].s = 0;
-        sp60->unk_F0[i].t = 0;
-        sp60->unk_F0[i].buf = sp60->unk_54 + i * sp34 * sp88 * sp78;
-        sp60->unk_F0[i].actualHeight = sp88 < sp38 - sp88 * i ? sp88 : sp38 - sp88 * i;
-        sp60->unk_F0[i].LUToffset = 0;
+    el->sprite.zdepth = 0x100;
+    el->sprite.red = 255;
+    el->sprite.green = 255;
+    el->sprite.blue = 255;
+    el->sprite.alpha = 255;
+    el->sprite.startTLUT = 0;
+    el->sprite.nTLUT = 0;
+    el->sprite.LUT = 0;
+    el->sprite.istart = 0;
+    el->sprite.istep = 1;
+    el->sprite.nbitmaps = numTiles2;
+    el->sprite.ndisplist = ndisplist;
+    el->sprite.bmheight = tileHeight;
+    el->sprite.bmHreal = tileHeight;
+    // clang-format off
+    el->sprite.frac_t = 0; \
+    el->sprite.frac_s = 0; \
+    new_var3 = el->bitmaps; \
+    el->sprite.rsp_dl = el->rsp_dl; \
+    el->sprite.rsp_dl_next = 0;
+    // clang-format on
+    el->sprite.bitmap = new_var3;
+    for (i = 0; i < numTiles; i++) {
+        el->bitmaps[i].width = totalWidth;
+        el->bitmaps[i].width_img = tileWidth;
+        el->bitmaps[i].s = 0;
+        el->bitmaps[i].t = 0;
+        el->bitmaps[i].buf = el->rasters + i * tileWidth * tileHeight * bytesPerPixel;
+        el->bitmaps[i].actualHeight = tileHeight < totalHeight - tileHeight * i ? tileHeight : totalHeight - tileHeight * i;
+        el->bitmaps[i].LUToffset = 0;
     }
 
-    if (arg4 & 0x80) {
-        for (i = 0; i < sp24; i++) {
-            sp60->unk_F4[i].width = var0;
-            sp60->unk_F4[i].width_img = sp34;
-            sp60->unk_F4[i].s = 0;
-            sp60->unk_F4[i].t = 0;
-            sp60->unk_F4[i].buf = sp60->unk_58 + i * sp34 * sp88 * sp78;
-            sp60->unk_F4[i].actualHeight = sp88 < sp38 - sp88 * i ? sp88 : sp38 - sp88 * i;
-            if (!sp84) {} // fake?
-            sp60->unk_F4[i].LUToffset = 0;
+    if (flags & 0x80) {
+        for (i = 0; i < numTiles; i++) {
+            el->unk_F4[i].width = totalWidth;
+            el->unk_F4[i].width_img = tileWidth;
+            el->unk_F4[i].s = 0;
+            el->unk_F4[i].t = 0;
+            el->unk_F4[i].buf = el->unk_58 + i * tileWidth * tileHeight * bytesPerPixel;
+            el->unk_F4[i].actualHeight = tileHeight < totalHeight - tileHeight * i ? tileHeight : totalHeight - tileHeight * i;
+            if (!rastersBytes) {
+            } // fake?
+            el->unk_F4[i].LUToffset = 0;
         }
-        sp60->unk_64.bitmap = sp60->unk_F4;
+        el->sprite.bitmap = el->unk_F4;
     }
 
-    temp_v0_2 = func_800A9F10(NULL, 6, &sp60->unk_64);
-    if (temp_v0_2 == NULL) {
-        func_8036A228_83D9D8(sp60);
+    obj = func_800A9F10(NULL, LINK_6, &el->sprite);
+    if (obj == NULL) {
+        func_8036A228_83D9D8(el);
         return NULL;
     }
-    sp60->unk_50 = temp_v0_2;
-    sp60->unk_40 = 0;
-    func_8036A4AC_83DC5C(sp60);
-    return sp60;
+    el->spriteObj = obj;
+    el->prev = 0;
+    UIElement_LinkHead(el);
+    return el;
 }
 
 void func_8036B5F0_83EDA0(UnkSnowHerring* arg0) {
     if (arg0 != 0) {
-        func_8036A53C_83DCEC(arg0);
-        omDeleteGObj(arg0->unk_50);
+        UIElement_Unlink(arg0);
+        omDeleteGObj(arg0->spriteObj);
         func_8036A228_83D9D8(arg0);
     }
 }
@@ -300,16 +345,16 @@ void func_8036B734_83EEE4(UnkSnowHerring* arg0) {
     arg0->unk_24 = 0;
     arg0->unk_28 = 0;
 
-    if (arg0->unk_18 & 1) {
-        func_8036A9AC_83E15C(arg0, 0, 0, arg0->unk_10 + (arg0->unk_8 * 2), arg0->unk_14 + (arg0->unk_C * 2), arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+    if (arg0->flags & 1) {
+        func_8036A9AC_83E15C(arg0, 0, 0, arg0->width + (arg0->borderWidth * 2), arg0->height + (arg0->borderHeight * 2), arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
     } else {
-        func_8036A5B8_83DD68(arg0, 0, 0, arg0->unk_10 - 1, arg0->unk_14 - 1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
+        func_8036A5B8_83DD68(arg0, 0, 0, arg0->width - 1, arg0->height - 1, arg0->unk_4C.r, arg0->unk_4C.g, arg0->unk_4C.b, arg0->unk_4C.a);
     }
 
-    arg0->unk_64.attr &= ~SP_HIDDEN;
+    arg0->sprite.attr &= ~SP_HIDDEN;
     arg0->unk_118 = func_8036D774_840F24();
     func_8036B628_83EDD8(arg0);
-    arg0->unk_50->data.sobj->sprite = arg0->unk_64;
+    arg0->spriteObj->data.sobj->sprite = arg0->sprite;
 }
 
 void func_8036B870_83F020(UnkSnowHerring* arg0, s32 arg1, s32 r, s32 g, s32 b, s32 a) {
@@ -337,11 +382,11 @@ void func_8036B870_83F020(UnkSnowHerring* arg0, s32 arg1, s32 r, s32 g, s32 b, s
         return;
     }
 
-    if (arg0->unk_18 & 0x800) {
+    if (arg0->flags & 0x800) {
         func_8036D77C_840F2C(&arg0->unk_F8, &D_8037EA78_852228, &D_8037EA7C_85222C);
-        arg0->unk_64.red = D_8037EA70_852220.r;
-        arg0->unk_64.green = D_8037EA70_852220.g;
-        arg0->unk_64.blue = D_8037EA70_852220.b;
+        arg0->sprite.red = D_8037EA70_852220.r;
+        arg0->sprite.green = D_8037EA70_852220.g;
+        arg0->sprite.blue = D_8037EA70_852220.b;
         return;
     }
     func_8036D77C_840F2C(&arg0->unk_F8, &D_8037EA70_852220, &D_8037EA74_852224);
@@ -362,12 +407,12 @@ u32 func_8036B988_83F138(UnkSnowHerring* arg0, s32 arg1) {
 void func_8036B9EC_83F19C(UnkSnowHerring* arg0, s32 x, s32 y) {
     if (x < 0) {
         x = 0;
-    } else if (x >= arg0->unk_10) {
-        x = arg0->unk_10 - 1;
+    } else if (x >= arg0->width) {
+        x = arg0->width - 1;
     }
 
-    if (y >= arg0->unk_14) {
-        y = arg0->unk_14 - 1;
+    if (y >= arg0->height) {
+        y = arg0->height - 1;
     }
 
     arg0->unk_120 = x;
@@ -390,12 +435,12 @@ void func_8036C898_840048(UnkSnowHerring* arg0, char* arg1) {
 
     func_8036D344_840AF4(arg0->unk_114);
     arg0->unk_FC = arg0->unk_44;
-    arg0->unk_F8 = (arg0->unk_54 + (((arg0->unk_44 * arg0->unk_C) + arg0->unk_8) * arg0->unk_60));
-    arg0->unk_104 = arg0->unk_60;
-    arg0->unk_100 = arg0->unk_14;
-    arg0->unk_10C = arg0->unk_0 + arg0->unk_8;
-    arg0->unk_110 = arg0->unk_4 + arg0->unk_C;
-    if (arg0->unk_18 & 0x800) {
+    arg0->unk_F8 = (arg0->rasters + (((arg0->unk_44 * arg0->borderHeight) + arg0->borderWidth) * arg0->bpp));
+    arg0->unk_104 = arg0->bpp;
+    arg0->unk_100 = arg0->height;
+    arg0->unk_10C = arg0->x + arg0->borderWidth;
+    arg0->unk_110 = arg0->y + arg0->borderHeight;
+    if (arg0->flags & 0x800) {
         a1 = D_8037EA78_852228;
         a2 = D_8037EA7C_85222C;
         a1.a = arg0->unk_48.a;
@@ -407,7 +452,7 @@ void func_8036C898_840048(UnkSnowHerring* arg0, char* arg1) {
 
     func_8036E490_841C40(&arg0->unk_F8, &arg0->unk_120, &arg0->unk_124, arg1);
 
-    osWritebackDCache(arg0->unk_F0, arg0->unk_44 * arg0->unk_14);
+    osWritebackDCache(arg0->bitmaps, arg0->unk_44 * arg0->height);
 }
 
 void func_8036C9C0_840170(UnkSnowHerring* arg0, char* arg1) {
@@ -421,12 +466,12 @@ void func_8036C9C0_840170(UnkSnowHerring* arg0, char* arg1) {
 
     func_8036D344_840AF4(arg0->unk_114);
     arg0->unk_FC = arg0->unk_44;
-    arg0->unk_F8 = (arg0->unk_54 + (((arg0->unk_44 * arg0->unk_C) + arg0->unk_8) * arg0->unk_60));
-    arg0->unk_104 = arg0->unk_60;
-    arg0->unk_100 = arg0->unk_14;
-    arg0->unk_10C = arg0->unk_0 + arg0->unk_8;
-    arg0->unk_110 = arg0->unk_4 + arg0->unk_C;
-    if (arg0->unk_18 & 0x800) {
+    arg0->unk_F8 = (arg0->rasters + (((arg0->unk_44 * arg0->borderHeight) + arg0->borderWidth) * arg0->bpp));
+    arg0->unk_104 = arg0->bpp;
+    arg0->unk_100 = arg0->height;
+    arg0->unk_10C = arg0->x + arg0->borderWidth;
+    arg0->unk_110 = arg0->y + arg0->borderHeight;
+    if (arg0->flags & 0x800) {
         a1 = D_8037EA78_852228;
         a2 = D_8037EA7C_85222C;
         a1.a = arg0->unk_48.a;
@@ -438,7 +483,7 @@ void func_8036C9C0_840170(UnkSnowHerring* arg0, char* arg1) {
 
     func_8036E9BC_84216C(&arg0->unk_F8, &arg0->unk_120, &arg0->unk_124, arg1);
 
-    osWritebackDCache(arg0->unk_F0, arg0->unk_44 * arg0->unk_14);
+    osWritebackDCache(arg0->bitmaps, arg0->unk_44 * arg0->height);
 }
 
 void func_8036CAE8_840298(UnkSnowHerring* arg0, s32 arg1) {
@@ -450,11 +495,11 @@ void func_8036CAE8_840298(UnkSnowHerring* arg0, s32 arg1) {
 }
 
 void func_8036CB10_8402C0(UnkSnowHerring* arg0, f32 scalex, f32 scaley) {
-    if ((arg0 != NULL) && (arg0->unk_18 & 0x100)) {
-        arg0->unk_50->data.sobj->sprite.scalex = scalex;
-        arg0->unk_50->data.sobj->sprite.scaley = scaley;
-        arg0->unk_64.scalex = scalex;
-        arg0->unk_64.scaley = scaley;
+    if ((arg0 != NULL) && (arg0->flags & 0x100)) {
+        arg0->spriteObj->data.sobj->sprite.scalex = scalex;
+        arg0->spriteObj->data.sobj->sprite.scaley = scaley;
+        arg0->sprite.scalex = scalex;
+        arg0->sprite.scaley = scaley;
     }
 }
 
@@ -475,13 +520,13 @@ void func_8036CBA0_840350(UnkSnowHerring* arg0, s32 x, s32 y) {
         return;
     }
 
-    arg0->unk_0 = x;
-    arg0->unk_4 = y;
-    arg0->unk_64.x = x - arg0->unk_8;
-    arg0->unk_64.y = y - arg0->unk_C;
-    if (!(arg0->unk_18 & 0x40)) {
-        arg0->unk_50->data.sobj->sprite.x = arg0->unk_64.x;
-        arg0->unk_50->data.sobj->sprite.y = arg0->unk_64.y;
+    arg0->x = x;
+    arg0->y = y;
+    arg0->sprite.x = x - arg0->borderWidth;
+    arg0->sprite.y = y - arg0->borderHeight;
+    if (!(arg0->flags & 0x40)) {
+        arg0->spriteObj->data.sobj->sprite.x = arg0->sprite.x;
+        arg0->spriteObj->data.sobj->sprite.y = arg0->sprite.y;
     }
 }
 
@@ -494,9 +539,9 @@ void func_8036CBFC_8403AC(UnkSnowHerring* arg0, s32 x, s32 y) {
     arg0->unk_30 = y;
     arg0->unk_A8.x = x;
     arg0->unk_A8.y = y;
-    if (arg0->unk_18 & 0x40) {
-        arg0->unk_50->data.sobj->sprite.x = arg0->unk_A8.x;
-        arg0->unk_50->data.sobj->sprite.y = arg0->unk_A8.y;
+    if (arg0->flags & 0x40) {
+        arg0->spriteObj->data.sobj->sprite.x = arg0->unk_A8.x;
+        arg0->spriteObj->data.sobj->sprite.y = arg0->unk_A8.y;
     }
 }
 
@@ -510,9 +555,9 @@ void func_8036CC48_8403F8(UnkSnowHerring* arg0, Sprite* arg1) {
         arg0->unk_A8.x = arg0->unk_2C;
         arg0->unk_A8.y = arg0->unk_30;
 
-        if (arg0->unk_18 & 0x40) {
-            arg0->unk_50->data.sobj->sprite.x = arg0->unk_A8.x;
-            arg0->unk_50->data.sobj->sprite.y = arg0->unk_A8.y;
+        if (arg0->flags & 0x40) {
+            arg0->spriteObj->data.sobj->sprite.x = arg0->unk_A8.x;
+            arg0->spriteObj->data.sobj->sprite.y = arg0->unk_A8.y;
         }
     }
 }
@@ -520,11 +565,11 @@ void func_8036CC48_8403F8(UnkSnowHerring* arg0, Sprite* arg1) {
 void func_8036CCEC_84049C(UnkSnowHerring* arg0, s32 arg1) {
     if (arg0 != NULL) {
         if (arg1 != 0) {
-            arg0->unk_50->data.sobj->sprite = arg0->unk_A8;
-            arg0->unk_18 |= 0x40;
+            arg0->spriteObj->data.sobj->sprite = arg0->unk_A8;
+            arg0->flags |= 0x40;
         } else {
-            arg0->unk_50->data.sobj->sprite = arg0->unk_64;
-            arg0->unk_18 &= ~0x40;
+            arg0->spriteObj->data.sobj->sprite = arg0->sprite;
+            arg0->flags &= ~0x40;
         }
     }
 }
@@ -539,17 +584,17 @@ UnkSnowHerring* func_8036D024_8407D4(UnkSnowHerring* arg0) {
     if (arg0 == NULL) {
         return 0;
     }
-    return arg0->unk_3C;
+    return arg0->next;
 }
 
 void func_8036D040_8407F0(UnkSnowHerring* arg0) {
     GObj* gobj;
 
     if ((D_8037EA8C_85223C != NULL) && (arg0 != D_8037EA8C_85223C) && (arg0 != NULL)) {
-        gobj = arg0->unk_50;
+        gobj = arg0->spriteObj;
         omMoveGObjDL(gobj, gobj->dlLink, gobj->dlPriority);
-        func_8036A53C_83DCEC(arg0);
-        func_8036A4AC_83DC5C(arg0);
+        UIElement_Unlink(arg0);
+        UIElement_LinkHead(arg0);
     }
 }
 
@@ -557,10 +602,10 @@ void func_8036D09C_84084C(UnkSnowHerring* arg0) {
     GObj* temp_a0;
 
     if ((D_8037EA8C_85223C != NULL) && (arg0 != D_8037EA8C_85223C) && (arg0 != NULL)) {
-        temp_a0 = arg0->unk_50;
+        temp_a0 = arg0->spriteObj;
         omMoveGObjDLHead(temp_a0, temp_a0->dlLink, temp_a0->dlPriority);
-        func_8036A53C_83DCEC(arg0);
-        func_8036A4F4_83DCA4(arg0);
+        UIElement_Unlink(arg0);
+        UIElement_LinkTail(arg0);
     }
 }
 
@@ -571,7 +616,7 @@ UnkSnowHerring* func_8036D0F8_8408A8(s32 arg0, s32 arg1, char* arg2, s32 arg3, s
     func_8036D344_840AF4(arg3);
     temp_s0 = func_8036D4F0_840CA0(arg2);
     // TODO: look into a "ceil to multiple of" macro
-    temp_v0 = func_8036AC6C_83E41C(arg0, arg1, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, arg4);
+    temp_v0 = UIElement_Create(arg0, arg1, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, arg4);
     func_8036CB58_840308(temp_v0, arg3);
     func_8036B734_83EEE4(temp_v0);
     func_8036B9EC_83F19C(temp_v0, 0, 0);
@@ -585,12 +630,12 @@ void func_8036D1A4_840954(UnkSnowHerring* arg0, s32 arg1) {
         return;
     }
 
-    func_8036EFEC_84279C(arg1, arg0->unk_0, arg0->unk_4, arg0->unk_0 + arg0->unk_10, arg0->unk_4 + arg0->unk_14);
+    func_8036EFEC_84279C(arg1, arg0->x, arg0->y, arg0->x + arg0->width, arg0->y + arg0->height);
 
     if (arg1) {
-        arg0->unk_50->data.sobj->sprite.attr |= SP_HIDDEN;
+        arg0->spriteObj->data.sobj->sprite.attr |= SP_HIDDEN;
     } else {
-        arg0->unk_50->data.sobj->sprite.attr &= ~SP_HIDDEN;
+        arg0->spriteObj->data.sobj->sprite.attr &= ~SP_HIDDEN;
     }
 }
 
@@ -599,18 +644,18 @@ GObj* func_8036D22C_8409DC(UnkSnowHerring* arg0) {
         return NULL;
     }
 
-    return arg0->unk_50;
+    return arg0->spriteObj;
 }
 
 void func_8036D248_8409F8(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (arg0 != NULL) {
-        arg0->unk_50->data.sobj->sprite.red = arg1;
-        arg0->unk_50->data.sobj->sprite.green = arg2;
-        arg0->unk_50->data.sobj->sprite.blue = arg3;
-        arg0->unk_50->data.sobj->sprite.alpha = arg4;
+        arg0->spriteObj->data.sobj->sprite.red = arg1;
+        arg0->spriteObj->data.sobj->sprite.green = arg2;
+        arg0->spriteObj->data.sobj->sprite.blue = arg3;
+        arg0->spriteObj->data.sobj->sprite.alpha = arg4;
     }
 }
 
 s32 func_8036D28C_840A3C(UnkSnowHerring* arg0) {
-    return arg0->unk_10;
+    return arg0->width;
 }

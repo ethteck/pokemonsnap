@@ -2153,7 +2153,7 @@ void func_801E2ED4_992944(s32 arg0) {
     func_8036A8E4_83E094(D_802290E4_9D8B54);
     func_8036A8E4_83E094(D_802290DC_9D8B4C);
     func_8036B5F0_83EDA0(D_802290E0_9D8B50);
-    D_802290E0_9D8B50 = func_8036AC6C_83E41C(0x36, 0x58, 0xD8, 0x48, 0);
+    D_802290E0_9D8B50 = UIElement_Create(0x36, 0x58, 0xD8, 0x48, 0);
     func_8036B734_83EEE4(D_802290E0_9D8B50);
     func_8036CB58_840308(D_802290E0_9D8B50, 0xC);
     func_8036D448_840BF8(0);
@@ -2340,7 +2340,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_803717E8_844F98();
     func_80370428_843BD8();
     func_803700A4_843854(0);
-    sp3C = func_8036AC6C_83E41C(0x47, 0x19, 0xCC, 0x30, 0);
+    sp3C = UIElement_Create(0x47, 0x19, 0xCC, 0x30, 0);
     D_802290E4_9D8B54 = sp3C;
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, 0x11, 0x4E, 0x7D, 0);
@@ -2357,7 +2357,7 @@ void func_801E39DC_99344C(GObj* arg0) {
         sprintf(D_802290E8_9D8B58, "%s Course", levelName);
         levelName = D_802290E8_9D8B58;
     }
-    sp3C = func_8036AC6C_83E41C(0x47, 0x32, 0xCC, 0x78, 0);
+    sp3C = UIElement_Create(0x47, 0x32, 0xCC, 0x78, 0);
     D_802290E0_9D8B50 = sp3C;
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, 0, 0, 0, 0);
@@ -2374,7 +2374,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     UIFrame_GetBackgroundColor(sp38, &sp34);
     UIFrame_SetPos(sp38, 184, 320);
     UIFrame_Show(sp38, false);
-    sp3C = func_8036AC6C_83E41C(0x40, 0xAD, 0xC0, 0x2F, 0);
+    sp3C = UIElement_Create(0x40, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
     func_8036B734_83EEE4(sp3C);
@@ -2408,7 +2408,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_8036D4A0_840C50(0);
     func_801DD5F0_98D060(0);
     func_8036B5F0_83EDA0(D_802290E0_9D8B50);
-    sp3C = func_8036AC6C_83E41C(0x47, 0x58, 0xC0, 0x48, 0);
+    sp3C = UIElement_Create(0x47, 0x58, 0xC0, 0x48, 0);
     func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
     func_8036B870_83F020(sp3C, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp3C);

@@ -523,7 +523,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     UIFrame_GetBackgroundColor(temp_v0, &sp44);
     UIFrame_SetPos(temp_v0, 184, 320);
     UIFrame_Show(temp_v0, false);
-    sp4C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+    sp4C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
     D_80206B1C_9CC33C = sp4C;
     func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp4C, 0, sp44.r, sp44.g, sp44.b, 0xFF);

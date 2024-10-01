@@ -645,7 +645,7 @@ GObj* func_801DE830_9A8A80(void) {
     D_802500A4_A1A2F4 = sobj;
     D_80208B74_9D2DC4 = true;
     func_800A85E8(func_801DCED4_9A7124, LINK_6, DL_LINK_0, NULL);
-    D_8024FFF0_A1A240 = func_8036AC6C_83E41C(0x74, 0xC5, 0xC, 0xC, 0x400);
+    D_8024FFF0_A1A240 = UIElement_Create(0x74, 0xC5, 0xC, 0xC, 0x400);
     func_8036B870_83F020(D_8024FFF0_A1A240, 1, 0xFF, 0xF, 0x19, 0xFF);
     func_8036B870_83F020(D_8024FFF0_A1A240, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
@@ -750,7 +750,7 @@ void func_801DEDB0_9A9000(void) {
     s32 i;
 
     for (i = 0; i < 6; i++) {
-        D_80250008_A1A258[i] = func_8036AC6C_83E41C(234, ((i / 2) * 36) + ((i % 2) * 12) + 67, 0x3C, 8, 0x400);
+        D_80250008_A1A258[i] = UIElement_Create(234, ((i / 2) * 36) + ((i % 2) * 12) + 67, 0x3C, 8, 0x400);
         func_8036B870_83F020(D_80250008_A1A258[i], 1, 0, 0, 0, 0xFF);
         func_8036B870_83F020(D_80250008_A1A258[i], 0, 0, 0, 0, 0);
         func_8036D448_840BF8(0);
@@ -962,7 +962,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
 
             ohWait(30);
 
-            D_8024FFF8_A1A248 = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+            D_8024FFF8_A1A248 = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
             func_8036B870_83F020(D_8024FFF8_A1A248, 1, 0xFF, 0xFF, 0xFF, 0xFF);
             func_8036B870_83F020(D_8024FFF8_A1A248, 0, 0xDA, 0x6C, 0, 0);
             func_8036B734_83EEE4(D_8024FFF8_A1A248);
@@ -980,7 +980,7 @@ void func_801DFB48_9A9D98(void) {
     s32 i;
 
     for (i = 0; i < 17; i++) {
-        D_80250008_A1A258[i] = func_8036AC6C_83E41C(23, (i * 10) + 20, 0x3C, 8, 0);
+        D_80250008_A1A258[i] = UIElement_Create(23, (i * 10) + 20, 0x3C, 8, 0);
         func_8036B870_83F020(D_80250008_A1A258[i], 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(D_80250008_A1A258[i], 0, 0, 0, 0, 0);
         func_8036D448_840BF8(0);
@@ -991,7 +991,7 @@ void func_801DFB48_9A9D98(void) {
     }
 
     for (i = 0; i < ARRAY_COUNT(D_8025004C_A1A29C); i++) {
-        D_8025004C_A1A29C[i] = func_8036AC6C_83E41C(23, (i * 10) + 190, 0x3C, 8, 0);
+        D_8025004C_A1A29C[i] = UIElement_Create(23, (i * 10) + 190, 0x3C, 8, 0);
         func_8036B870_83F020(D_8025004C_A1A29C[i], 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(D_8025004C_A1A29C[i], 0, 0, 0, 0, 0);
         func_8036D448_840BF8(0);
@@ -1218,7 +1218,7 @@ void func_801E0774_9AA9C4(void) {
     func_801DD5A0_9A77F0(0);
     func_801DD4C0_9A7710(0);
     func_801DF120_9A9370(1);
-    sp4C = func_8036AC6C_83E41C(0x7C, 0x83, 0xB8, 0x95, 0x400);
+    sp4C = UIElement_Create(0x7C, 0x83, 0xB8, 0x95, 0x400);
     func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp4C, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
@@ -1298,7 +1298,7 @@ void func_801E0AF0_9AAD40(void) {
     func_801DD500_9A7750(0);
     func_801DD5A0_9A77F0(0);
     func_801DD4C0_9A7710(0);
-    sp34 = func_8036AC6C_83E41C(0xA8, 0xA5, 0x3C, 0x12, 0x400);
+    sp34 = UIElement_Create(0xA8, 0xA5, 0x3C, 0x12, 0x400);
     func_8036B870_83F020(sp34, 1, 0, 0, 0, 0xFF);
     func_8036B870_83F020(sp34, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
@@ -1309,7 +1309,7 @@ void func_801E0AF0_9AAD40(void) {
     func_8036C898_840048(sp34, "\\i−\\g   \\i−\\g");
     func_8036D1A4_840954(sp34, 1);
     D_80250058_A1A2A8 = sp34;
-    sp34 = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+    sp34 = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp34, 0, 0xDA, 0x6C, 0, 0);
     func_8036B734_83EEE4(sp34);
@@ -1320,7 +1320,7 @@ void func_801E0AF0_9AAD40(void) {
     func_8036C898_840048(sp34, "PKMN Album");
     func_8036D1A4_840954(sp34, 1);
     D_8024FFF8_A1A248 = sp34;
-    sp34 = func_8036AC6C_83E41C(0x74, 0xC5, 0xA8, 0xC, 0x400);
+    sp34 = UIElement_Create(0x74, 0xC5, 0xA8, 0xC, 0x400);
     func_8036B870_83F020(sp34, 1, 0, 0, 0, 0xFF);
     func_8036B870_83F020(sp34, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp34);
@@ -1441,7 +1441,7 @@ void func_801E1168_9AB3B8(s32 arg0) {
         D_8025005C_A1A2AC = sp34;
         UIFrame_SetPos(sp34, 184, 320);
         UIFrame_Show(sp34, false);
-        sp30 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+        sp30 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
         D_80250000_A1A250 = sp30;
         func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
         func_8036B870_83F020(sp30, 0, 0xA3, 0x46, 0x46, 0xFF);
@@ -1540,7 +1540,7 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     func_801DE3DC_9A862C();
     func_801DDE64_9A80B4();
     func_801DE03C_9A828C(0);
-    sp64 = func_8036AC6C_83E41C(0x7C, 0x83, 0x3C, 0x12, 0x400);
+    sp64 = UIElement_Create(0x7C, 0x83, 0x3C, 0x12, 0x400);
     func_8036B870_83F020(sp64, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp64, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);

@@ -532,7 +532,7 @@ void* func_camera_check_801DDFC4(void) {
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802498F0.unk_1C = sobj;
 
-    temp_v0_2 = func_8036AC6C_83E41C(0x100, 0x32, 0x54, 0x70, 0x10);
+    temp_v0_2 = UIElement_Create(0x100, 0x32, 0x54, 0x70, 0x10);
     func_8036B870_83F020(temp_v0_2, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(temp_v0_2, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(temp_v0_2);
@@ -935,7 +935,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIFrame_SetPos(sp68, 184, 320);
     UIFrame_Show(sp68, false);
 
-    sp6C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+    sp6C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp6C, 0, 0xDA, 0x6C, 0, 0);
     func_8036B734_83EEE4(sp6C);
@@ -945,14 +945,14 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_8036D1A4_840954(sp6C, 0);
     D_camera_check_80249918 = sp6C;
 
-    sp6C = func_8036AC6C_83E41C(0, 0x35, 0x5C, 0xC, 0);
+    sp6C = UIElement_Create(0, 0x35, 0x5C, 0xC, 0);
     func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp6C, 0, 0, 0, 0, 0);
     func_8036B734_83EEE4(sp6C);
     func_8036D1A4_840954(sp6C, 1);
     D_camera_check_8024991C = sp6C;
 
-    sp6C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+    sp6C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp6C, 0, sp64.r, sp64.g, sp64.b, 0xFF);
     func_8036B734_83EEE4(sp6C);
@@ -987,7 +987,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     gobj->data.sobj->sprite.x = 96;
     gobj->data.sobj->sprite.y = 42;
 
-    sp44 = func_8036AC6C_83E41C(0x80, 0x6E, 0xA0, 38, 0);
+    sp44 = UIElement_Create(0x80, 0x6E, 0xA0, 38, 0);
     new_var = sp44;
     func_8036B870_83F020(new_var, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp44, 0, 0, 0, 0, 0);

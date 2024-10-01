@@ -154,7 +154,7 @@ void func_credits_801DDC70(void) {
         var_s0->unk_0 = SCREEN_WIDTH / 2;
         var_f20 += 18.0f;
         func_8036D4A0_840C50(0);
-        temp_v0 = func_8036AC6C_83E41C(var_s0->unk_0, var_s0->unk_4, 0xFC, 0xF, 0x400);
+        temp_v0 = UIElement_Create(var_s0->unk_0, var_s0->unk_4, 0xFC, 0xF, 0x400);
         var_s0->unk_C = temp_v0;
         func_8036CB58_840308(temp_v0, 0xC);
         func_8036B734_83EEE4(var_s0->unk_C);

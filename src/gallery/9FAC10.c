@@ -739,7 +739,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_801DD0AC_9FAD6C(0);
     func_801DE0B8_9FBD78();
     func_801DE290_9FBF50(0);
-    sp34 = func_8036AC6C_83E41C(0xAA, 0x99, 0x3C, 0x12, 0x400);
+    sp34 = UIElement_Create(0xAA, 0x99, 0x3C, 0x12, 0x400);
     func_8036B870_83F020(sp34, 1, 0, 0, 0, 0xFF);
     func_8036B870_83F020(sp34, 0, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
@@ -756,7 +756,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIFrame_GetBackgroundColor(sp38, &sp30);
     UIFrame_SetPos(sp38, 184, 320);
     UIFrame_Show(sp38, false);
-    sp34 = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
+    sp34 = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
     func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp34, 0, 0xDA, 0x6C, 0, 0);
     func_8036B734_83EEE4(sp34);
@@ -767,7 +767,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_8036C898_840048(sp34, "Gallery");
     func_8036D1A4_840954(sp34, 1);
     D_8023087C_A4E53C = sp34;
-    sp34 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+    sp34 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
     func_8036B870_83F020(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
     func_8036B870_83F020(sp34, 0, sp30.r, sp30.g, sp30.b, 0xFF);
     func_8036B734_83EEE4(sp34);

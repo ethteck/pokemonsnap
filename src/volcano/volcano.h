@@ -12,7 +12,7 @@
 
 #define VOLCANO_CMD_28 POKEMON_CMD_28
 #define VOLCANO_CMD_CHARMELEON_EVOLVE POKEMON_CMD_29
-#define VOLCANO_CMD_30 POKEMON_CMD_30
+#define VOLCANO_CMD_SPAWN_MOLTRES POKEMON_CMD_30
 #define VOLCANO_CMD_31 POKEMON_CMD_31
 #define VOLCANO_CMD_32 POKEMON_CMD_32
 #define VOLCANO_CMD_33 POKEMON_CMD_33
@@ -75,16 +75,16 @@ GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charmeleon_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charizard_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* arcanine_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DB558_72C758(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* growlithe_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DEA44_72FC44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DE6B4_72F8B4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* koffing_smoke_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DED34_72FF34(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DDEC0_72F0C0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* evolution_controller_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* moltres_egg_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* moltres_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* volcano_magikarp_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* growlithe_spawner_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DF240_730440(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* volcano_effect_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802DFB44_730D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DFA38_730C38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* volcano_gate_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

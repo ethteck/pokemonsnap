@@ -1,57 +1,57 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_8014F080[];
-extern AnimCmd* D_8014E550[];
-extern AnimCmd* D_8014E650[];
+extern UnkEC64Arg3 moltres_egg_model[];
+extern AnimCmd* moltres_egg_modelanim_idle[];
+extern AnimCmd* moltres_egg_modelanim_drown[];
 
-void func_802DDAD0_72ECD0(GObj*);
-void func_802DDB60_72ED60(GObj*);
-void func_802DDB04_72ED04(GObj*);
-void func_802DDC30_72EE30(GObj*);
-void func_802DDCA0_72EEA0(GObj*);
-void func_802DDD04_72EF04(GObj*);
+void moltres_egg_InitialState(GObj*);
+void moltres_egg_Hit(GObj*);
+void moltres_egg_Idle(GObj*);
+void moltres_egg_FallIntoLava(GObj*);
+void moltres_egg_Jump(GObj*);
+void moltres_egg_SpawnMoltres(GObj*);
 void func_802D6C38_727E38(GObj*);
-void func_802DDE00_72F000(GObj*);
+void moltres_egg_DrownInLava(GObj*);
 void func_802D6BB0_727DB0(GObj*);
 
-AnimationHeader D_802E3010_734210 = {
+AnimationHeader moltres_egg_animation_idle = {
     0.5,
     60,
-    D_8014E550,
+    moltres_egg_modelanim_idle,
     NULL,
     NULL
 };
 
-AnimationHeader D_802E3024_734224 = {
+AnimationHeader moltres_egg_animation_drown = {
     0.5,
     60,
-    D_8014E650,
+    moltres_egg_modelanim_drown,
     NULL,
     NULL
 };
 
-InteractionHandler D_802E3038_734238[] = {
-    { POKEMON_CMD_9, func_802DDB60_72ED60, 0, NULL },
-    { POKEMON_CMD_13, func_802DDB60_72ED60, 0, NULL },
+InteractionHandler moltres_egg_tg_Normal[] = {
+    { POKEMON_CMD_9, moltres_egg_Hit, 0, NULL },
+    { POKEMON_CMD_13, moltres_egg_Hit, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-f32 D_802E3068_734268[] = { 0 };
+f32 moltres_egg_forbiddenGround[] = { 0 };
 
-PokemonAnimationSetup D_802E306C_73426C = {
-    &D_802E3010_734210,
-    func_802DDAD0_72ECD0,
+PokemonAnimationSetup moltres_egg_animSetup = {
+    &moltres_egg_animation_idle,
+    moltres_egg_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E3080_734280 = {
-    D_8014F080,
+PokemonInitData moltres_egg_initData = {
+    moltres_egg_model,
     NULL,
     renderPokemonModelTypeBFogged,
-    &D_802E306C_73426C,
+    &moltres_egg_animSetup,
     { 1.7, 1.7, 1.7 },
     { 0, 123, 0 },
     60,
@@ -62,37 +62,38 @@ PokemonInitData D_802E3080_734280 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DDAD0_72ECD0)
-    pokemon->forbiddenGround = D_802E3068_734268;
-    Pokemon_SetState(obj, func_802DDB04_72ED04);
+POKEMON_FUNC(moltres_egg_InitialState)
+    pokemon->forbiddenGround = moltres_egg_forbiddenGround;
+    Pokemon_SetState(obj, moltres_egg_Idle);
 }
 
-POKEMON_FUNC(func_802DDB04_72ED04)
-    Pokemon_SetAnimation(obj, &D_802E3010_734210);
-    pokemon->transitionGraph = D_802E3038_734238;
+POKEMON_FUNC(moltres_egg_Idle)
+    Pokemon_SetAnimation(obj, &moltres_egg_animation_idle);
+    pokemon->transitionGraph = moltres_egg_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DDB04_72ED04);
+    Pokemon_SetState(obj, moltres_egg_Idle);
 }
 
-POKEMON_FUNC(func_802DDB60_72ED60)
+POKEMON_FUNC(moltres_egg_Hit)
     if (pokemon->playerDist < 1200.0f) {
-        Pokemon_SetAnimation(obj, &D_802E3024_734224);
-        Pokemon_StartPathProc(obj, func_802DDC30_72EE30);
+        Pokemon_SetAnimation(obj, &moltres_egg_animation_drown);
+        Pokemon_StartPathProc(obj, moltres_egg_FallIntoLava);
         pokemon->transitionGraph = NULL;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     } else {
-        Pokemon_SetAnimation(obj, &D_802E3010_734210);
-        Pokemon_StartPathProc(obj, func_802DDCA0_72EEA0);
+        Pokemon_SetAnimation(obj, &moltres_egg_animation_idle);
+        Pokemon_StartPathProc(obj, moltres_egg_Jump);
         pokemon->transitionGraph = NULL;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-        Pokemon_SetState(obj, func_802DDB04_72ED04);
+
+        Pokemon_SetState(obj, moltres_egg_Idle);
     }
 
-    Pokemon_SetState(obj, func_802DDD04_72EF04);
+    Pokemon_SetState(obj, moltres_egg_SpawnMoltres);
 }
 
-POKEMON_FUNC(func_802DDC30_72EE30)
+POKEMON_FUNC(moltres_egg_FallIntoLava)
     pokemon->hSpeed = 200.0f;
     pokemon->jumpVel = 300.0f;
     pokemon->facingYaw = PI;
@@ -102,7 +103,7 @@ POKEMON_FUNC(func_802DDC30_72EE30)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DDCA0_72EEA0)
+POKEMON_FUNC(moltres_egg_Jump)
     pokemon->hSpeed = 0.0f;
     pokemon->jumpVel = 100.0f;
     pokemon->facingYaw = 0.0f;
@@ -112,10 +113,10 @@ POKEMON_FUNC(func_802DDCA0_72EEA0)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DDD04_72EF04)
+POKEMON_FUNC(moltres_egg_SpawnMoltres)
     omCreateProcess(obj, func_802D6C38_727E38, 1, 1);
-    Pokemon_SetAnimation(obj, &D_802E3024_734224);
-    Pokemon_StartPathProc(obj, func_802DDE00_72F000);
+    Pokemon_SetAnimation(obj, &moltres_egg_animation_drown);
+    Pokemon_StartPathProc(obj, moltres_egg_DrownInLava);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
@@ -124,8 +125,8 @@ POKEMON_FUNC(func_802DDD04_72EF04)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_30, obj);
-    
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_SPAWN_MOLTRES, obj);
+
     pokemon->counter = 2, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
@@ -134,7 +135,7 @@ POKEMON_FUNC(func_802DDD04_72EF04)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DDE00_72F000)
+POKEMON_FUNC(moltres_egg_DrownInLava)
     s32 i;
 
     for (i = 0; i < 100; i++) {
@@ -148,6 +149,6 @@ POKEMON_FUNC(func_802DDE00_72F000)
     omEndProcess(NULL);
 }
 
-GObj* func_802DDEC0_72F0C0(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E3080_734280);
+GObj* moltres_egg_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &moltres_egg_initData);
 }

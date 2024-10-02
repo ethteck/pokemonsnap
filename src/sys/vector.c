@@ -257,14 +257,14 @@ Vec3f* Vec3f_func_8001AA88(Vec3f* v, u32 flags) {
     return v;
 }
 
-Vec3f* Vec3f_func_8001AC98(Vec3f* v1, Vec3f* v2) {
+Vec3f* Vec3fReflect(Vec3f* v, Vec3f* dir) {
     f32 dot;
 
-    dot = VEC_DOT(v2, v1) * -2.0f;
-    v1->x += (v2->x * dot);
-    v1->y += (v2->y * dot);
-    v1->z += (v2->z * dot);
-    return v1;
+    dot = VEC_DOT(dir, v) * -2.0f;
+    v->x += (dir->x * dot);
+    v->y += (dir->y * dot);
+    v->z += (dir->z * dot);
+    return v;
 }
 
 Vec3f* Vec3f_func_8001AD08(Vec3f* v1, Vec3f* v2) {

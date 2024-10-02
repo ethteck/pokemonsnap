@@ -7,35 +7,35 @@
 
 struct WorldBlock;
 
-typedef struct UnkIndigoDingo {
-    /* 0x00 */ u8 unk_00;
-    /* 0x04 */ Mtx4f unk_04;
-    /* 0x44 */ Mtx4f unk_44;
+typedef struct HitBox {
+    /* 0x00 */ u8 type;
+    /* 0x04 */ Mtx4f mtxLocalToGlobal;
+    /* 0x44 */ Mtx4f mtxGlobalToLocal;
     /* 0x84 */ f32 unk_84;
     /* 0x88 */ f32 unk_88;
-    /* 0x88 */ f32 unk_8C;
-} UnkIndigoDingo; // size >= 0x8C
+    /* 0x8C */ f32 unk_8C;
+} HitBox; // size >= 0x8C
 
-typedef struct UnkCaramelBoa {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ UnkIndigoDingo* unk_04;
+typedef struct Collider {
+    /* 0x00 */ s32 depth;
+    /* 0x04 */ HitBox* hitBox;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ Vec3f rotation;
     /* 0x20 */ Vec3f scale;
-} UnkCaramelBoa; // size = 0x2C
+} Collider; // size = 0x2C
 
-typedef struct UnkChestnutCougar {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ UnkCaramelBoa* unk_04;
-    /* 0x08 */ f32 unk_08;
-} UnkChestnutCougar; // size = 0xC
+typedef struct CollisionModel {
+    /* 0x00 */ s32 id;
+    /* 0x04 */ Collider* colliders;
+    /* 0x08 */ f32 scale;
+} CollisionModel; // size = 0xC
 
-typedef struct UnkBeigeServal {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ Vec3f unk_04;
-    /* 0x10 */ Vec3f unk_10;
-    /* 0x1C */ Vec3f unk_1C;
-} UnkBeigeServal; // size = 0x28
+typedef struct StaticObject {
+    /* 0x00 */ s32 id;
+    /* 0x04 */ Vec3f position;
+    /* 0x10 */ Vec3f rotation;
+    /* 0x1C */ Vec3f scale;
+} StaticObject; // size = 0x28
 
 typedef struct SkyBox {
     /* 0x00 */ Gfx* gfxData;
@@ -65,8 +65,8 @@ typedef struct PayloadStruct {
 } PayloadStruct;
 
 typedef struct UnkVioletMarlin {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ void (*unk_04)(struct WorldBlock*, UnkBeigeServal*, PayloadStruct);
+    /* 0x00 */ s32 id;
+    /* 0x04 */ void (*unk_04)(struct WorldBlock*, StaticObject*, PayloadStruct);
     /* 0x08 */ PayloadStruct unk_08;
 } UnkVioletMarlin; // size = 0x28
 
@@ -75,9 +75,9 @@ typedef struct WorldBlockDescriptor {
     /* 0x04 */ Vec3f worldPos;
     /* 0x10 */ f32 yaw;
     /* 0x14 */ s32 reversed;
-    /* 0x18 */ UnkBeigeServal* unk_18;
+    /* 0x18 */ StaticObject* unk_18;
     /* 0x1C */ ObjectSpawn* spawn;
-    /* 0x20 */ UnkBeigeServal* unk_20;
+    /* 0x20 */ StaticObject* staticObjects;
 } WorldBlockDescriptor; // size >= 0x24
 
 typedef struct WorldBlock {
@@ -90,17 +90,17 @@ typedef struct WorldBlock {
     /* 0x18 */ DObj** cpObjects;
 } WorldBlock; // size = 0x1C
 
-typedef struct UnkBoneFox {
+typedef struct WorldBlockSetup {
     /* 0x00 */ WorldBlockDescriptor** unk_00;
     /* 0x04 */ WorldBlockDescriptor** unk_04;
     /* 0x08 */ SkyBox* skybox;
-} UnkBoneFox; // size >= 0xC
+} WorldBlockSetup; // size >= 0xC
 
 typedef struct WorldSetup {
-    /* 0x00 */ UnkBoneFox* blocksSetup;
+    /* 0x00 */ WorldBlockSetup* blocksSetup;
     /* 0x04 */ UnkVioletMarlin* unk_04;
     /* 0x08 */ s32 unk_08;
-    /* 0x0C */ UnkChestnutCougar* unk_0C;
+    /* 0x0C */ CollisionModel* collisionModels;
     /* 0x10 */ f32 unk_10;
     /* 0x14 */ u16 fogDistanceMin;
     /* 0x16 */ u16 fogDistanceMax;
@@ -173,7 +173,9 @@ typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
 extern WorldSetup D_80100720;
 
-void func_800E66BC_63E6C(UnkChestnutCougar* arg0);
+extern Collider D_800EDF78[];
+
+void InitCollisionModels(CollisionModel* arg0);
 WorldBlock* enterFirstBlock(s32 arg0);
 WorldBlock* enterNextBlock(void);
 void createHeightMapTree(HeightMapTreeNode* arg0, HeightMapPatch* arg1);
@@ -194,8 +196,8 @@ f32 getGlobalTime(void);
 f32 world_func_800E21A8(f32 arg0);
 s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockMaxObjId, s32 link, s32 dllink, BlockFunc2 arg6, BlockFunc arg7, BlockFunc2 arg8);
 void destroyWorld(void);
-void func_800E30B0_60860(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
-void func_800E3258_60A08(WorldBlock* block, UnkBeigeServal* arg1, PayloadStruct arg2);
+void func_800E30B0_60860(WorldBlock* block, StaticObject* arg1, PayloadStruct arg2);
+void func_800E3258_60A08(WorldBlock* block, StaticObject* arg1, PayloadStruct arg2);
 void Movement_Update(MovementState* arg0);
 void Movement_Init(MovementState* arg0, s32 arg1, void (*arg2)(WorldBlock*), void (*arg3)(s32, f32));
 s32 inRange_DEBUG(u32, s32, s32, const char*);
@@ -204,8 +206,8 @@ s32 setHeightMap(HeightMap* arg0);
 s32 setCeilingMap(HeightMap* arg0);
 s32 getGroundAt(f32 arg0, f32 arg1, GroundResult* arg2);
 s32 getCeilingAt(f32 arg0, f32 arg1, GroundResult* arg2);
-s32 func_800E6238_639E8(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
-void world_func_800E6778(UnkChestnutCougar* arg0);
-bool world_func_800E67E4(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, UnkChestnutCougar* arg4, Vec3f arg5, Vec3f arg8);
+s32 StaticObject_Collide(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3);
+void InitOneCollisionModel(CollisionModel* arg0);
+bool StaticObject_CollideOne(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, CollisionModel* arg4, Vec3f arg5, Vec3f arg8);
 
 #endif

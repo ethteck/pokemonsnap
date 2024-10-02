@@ -386,7 +386,7 @@ sPokemonListEntries = 0x803B0F68; // segment:app_level
 sPokemonLists = 0x803B1288; // segment:app_level
 cartGObj = 0x803937F0; // segment:app_level rom:0x533C00
 beachPokemonAdd = 0x802C42D4; // type:func rom:0x55C344 segment:beach_code
-func_800E6238_639E8 = 0x800E6238; // type:func rom:0x0639E8 segment:world
+StaticObject_Collide = 0x800E6238; // type:func rom:0x0639E8 segment:world
 
 scExecuteBlocking = 0x800009A0;
 scAddClient = 0x80000A08;
@@ -600,7 +600,7 @@ Vec3fAddScaled = 0x8001A5AC;
 Vec3fAngleDiff = 0x8001A67C;
 Vec3fGetEulerRotation = 0x8001A750;
 Vec3f_func_8001A8B8 = 0x8001A8B8;
-Vec3f_func_8001AC98 = 0x8001AC98;
+Vec3fReflect = 0x8001AC98;
 Vec3fNormalizedCross = 0x8001AE00;
 Vec3fDistance = 0x8001AF30;
 sSinTable = 0x80040F50;
@@ -740,8 +740,8 @@ destroyWorld = 0x800E3064;
 setHeightMap = 0x800E4040;
 setCeilingMap = 0x800E40A4;
 getGroundAt = 0x800E41D8;
-world_func_800E6778 = 0x800E6778;
-world_func_800E67E4 = 0x800E67E4;
+InitOneCollisionModel = 0x800E6778;
+StaticObject_CollideOne = 0x800E67E4;
 
 D_8038812C_52853C = 0x8038812C; // segment:app_level size:0xC0
 D_80388224_528634 = 0x80388224; // segment:app_level size:0xC
@@ -1905,3 +1905,38 @@ magikarp_tex_tail_fin_pal = 0x800FA0B0; // segment:magikarp_model
 magikarp_tex_tail_fin_png = 0x800FA178; // segment:magikarp_model
 magikarp_tex_skin3_pal = 0x800FA980; // segment:magikarp_model
 magikarp_tex_skin3_png = 0x800FAA40; // segment:magikarp_model
+
+moltres_egg_vtx = 0x8014E7F0; // segment:volcano_assets size:0x620
+moltres_egg_tex_flame_png = 0x8014DD48; // segment:volcano_assets
+moltres_egg_draw = 0x8014EE10; // segment:volcano_assets
+
+gate_tex0_pal = 0x800EE118; // segment:world
+gate_tex1_pal = 0x800EE130; // segment:world
+gate_tex2_pal = 0x800EE150; // segment:world
+gate_tex0_png = 0x800EE178; // segment:world
+gate_tex3_png = 0x800EE380; // segment:world
+gate_tex4_png = 0x800EF388; // segment:world
+gate_tex1_png = 0x800EFB90; // segment:world
+gate_tex2_png = 0x800F0398; // segment:world
+gate_vtx = 0x800F0940; // segment:world size:0xD70
+gate_first = 0x800F16B0; // segment:world
+gate_part0 = 0x800F16E0; // segment:world
+gate_part1 = 0x800F1978; // segment:world
+gate_part3 = 0x800F1A28; // segment:world
+gate_last = 0x800F1BA0; // segment:world
+gate_part2 = 0x800F1BC8; // segment:world
+
+evolution_controller_tex0_png = 0x800F21C8; // segment:world
+evolution_controller_tex1_png = 0x800F31D0; // segment:world
+evolution_controller_vtx = 0x800F44F0; // segment:world size:0xA40
+evolution_controller_first = 0x800F4F30; // segment:world
+evolution_controller_part0 = 0x800F4F60; // segment:world
+evolution_controller_part1 = 0x800F4FC8; // segment:world
+evolution_controller_part2 = 0x800F50A0; // segment:world
+evolution_controller_part3 = 0x800F5178; // segment:world
+evolution_controller_part4 = 0x800F5250; // segment:world
+evolution_controller_part5 = 0x800F5328; // segment:world
+evolution_controller_last = 0x800F5400; // segment:world
+
+GetInterpolatedPosition = 0x8001FCA4;
+GetInterpolatedVelocity = 0x8001FCE8;

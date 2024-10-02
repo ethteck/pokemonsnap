@@ -380,7 +380,7 @@ void Items_CollideWithGround(GObj* obj, GroundResult* groundResult) {
     velocity.y = item->velocity.y;
     velocity.z = item->velocity.z;
     speed = Vec3fNormalize(&velocity);
-    Vec3f_func_8001AC98(&velocity, &normal);
+    Vec3fReflect(&velocity, &normal);
 
     if (item->itemID == ITEM_ID_PESTER_BALL) {
         Items_PlaySound(model, SOUND_ID_10);
@@ -547,7 +547,7 @@ void Items_CollideWithCeiling(GObj* obj, GroundResult* result) {
     } else {
     }
     Vec3fAddScaled(&model->position.v, &normal, 12.0f);
-    Vec3f_func_8001AC98(&velocity, &normal);
+    Vec3fReflect(&velocity, &normal);
 
     if (item->itemID == ITEM_ID_PESTER_BALL) {
         Items_PlaySound(model, SOUND_ID_10);
@@ -845,7 +845,7 @@ void Items_BounceFromCeilingAndGround(GObj* obj, GroundResult* result) {
         }
     }
 
-    Vec3f_func_8001AC98(&vel, &result->normal);
+    Vec3fReflect(&vel, &result->normal);
     item->velocity.x = vel.x * speed;
     item->velocity.y = vel.y * speed;
     item->velocity.z = vel.z * speed;
@@ -938,7 +938,7 @@ void Items_UpdateItemMovement(GObj* obj) {
     vel2.z = item->velocity.z * 0.5f;
 
     // bounce from something
-    somethingID = func_800E6238_639E8(&model->position.v, &vel2, &outPos, &outVel);
+    somethingID = StaticObject_Collide(&model->position.v, &vel2, &outPos, &outVel);
     if (somethingID >= 0) {
         item->flags |= ITEM_FLAG_BOUNCED;
         if (item->itemID == ITEM_ID_PESTER_BALL) {
@@ -1051,7 +1051,7 @@ void Items_UpdateItemMovement(GObj* obj) {
         sp90.y = pos.y + sp11C * vel.y;
         sp90.z = pos.z + sp11C * vel.z;
         Vec3fDirection(&sp6C, &sp90, &sp108);
-        Vec3f_func_8001AC98(&vel, &sp6C);
+        Vec3fReflect(&vel, &sp6C);
         sp60.x = vel.x = vel.x * speed * 0.5f;
         sp60.y = vel.y = vel.y * speed * 0.5f - g * 0.5f;
         sp60.z = vel.z = vel.z * speed * 0.5f;

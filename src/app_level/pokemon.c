@@ -1106,7 +1106,7 @@ void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f3
             velDir.y = velY;
             velDir.z = velZ;
             currentSpeed = Vec3fNormalize(&velDir);
-            Vec3f_func_8001AC98(&velDir, &pokemon->currGround.normal);
+            Vec3fReflect(&velDir, &pokemon->currGround.normal);
             velX = velDir.x * currentSpeed;
             velY = velDir.y * currentSpeed;
             velZ = velDir.z * currentSpeed;
@@ -1648,19 +1648,19 @@ void Pokemon_TurnToPokeFlute(GObj* obj, f32 turnSpeed) {
     }
 }
 
-void func_80361FBC_5023CC(Vec3f* arg0, InterpData* arg1, f32 arg2) {
-    switch (arg1->type) {
-        case 1:
-            func_8001FCA4(arg0, arg1, arg2);
+void func_80361FBC_5023CC(Vec3f* pos, InterpData* path, f32 arg2) {
+    switch (path->type) {
+        case HAL_INTERP_BEZIER_S3:
+            GetInterpolatedPosition(pos, path, arg2);
             break;
-        case 2:
-            func_8001FCA4(arg0, arg1, arg2);
+        case HAL_INTERP_BEZIER:
+            GetInterpolatedPosition(pos, path, arg2);
             break;
-        case 3:
-            func_8001FCA4(arg0, arg1, arg2);
+        case HAL_INTERP_CATROM:
+            GetInterpolatedPosition(pos, path, arg2);
             break;
-        case 0:
-            func_8001FCA4(arg0, arg1, arg2);
+        case HAL_INTERP_LINEAR:
+            GetInterpolatedPosition(pos, path, arg2);
             break;
     }
 }
@@ -1679,8 +1679,8 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
     DObj* model = obj->data.dobj;
     Vec3f worldPos = { 0, 0, 0 };
     Pokemon* pokemon = GET_POKEMON(obj);
-    Vec3f sp70;
-    f32 f2;
+    Vec3f vel;
+    f32 heading;
     f32 paramStep;
 
     pokemon->pathParam = startParam;
@@ -1691,7 +1691,7 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
         }
     }
 
-    paramStep = 1.0f / pokemon->path->unk_0C * speedMult;
+    paramStep = 1.0f / pokemon->path->duration * speedMult;
 
     while (true) {
         if (!(pokemon->pathParam >= 0.0f) || !(pokemon->pathParam <= 1.0f)) {
@@ -1711,17 +1711,17 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
             }
 
             if (flags & (MOVEMENT_FLAG_TURN_GRADUALLY | MOVEMENT_FLAG_UPDATE_TARGET_POS)) {
-                func_8001FCE8(&sp70, pokemon->path, pokemon->pathParam);
-                f2 = atan2f(sp70.x, sp70.z);
-                if (f2 < 0.0f) {
-                    f2 += TAU;
-                } else if (f2 > TAU) {
-                    f2 -= (s32) (f2 / TAU) * TAU;
+                GetInterpolatedVelocity(&vel, pokemon->path, pokemon->pathParam);
+                heading = atan2f(vel.x, vel.z);
+                if (heading < 0.0f) {
+                    heading += TAU;
+                } else if (heading > TAU) {
+                    heading -= (s32) (heading / TAU) * TAU;
                 }
                 if (flags & MOVEMENT_FLAG_TURN_GRADUALLY) {
-                    Pokemon_Turn(model, f2, turnSpeed);
+                    Pokemon_Turn(model, heading, turnSpeed);
                 } else {
-                    GET_TRANSFORM(model)->rot.f[2] = f2;
+                    GET_TRANSFORM(model)->rot.f[2] = heading;
                 }
             }
 

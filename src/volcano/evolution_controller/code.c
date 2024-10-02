@@ -1,16 +1,16 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_800F5490[];
-extern Texture** D_800F41D0[];
+extern UnkEC64Arg3 evolution_controller_model[];
+extern Texture** evolution_controller_materials[];
 extern AnimCmd* D_800F55F0[];
 extern AnimCmd** D_800F58C0[];
 
-void func_802DEA80_72FC80(GObj*);
+void evolution_controller_InitialState(GObj*);
 void func_802DEBF0_72FDF0(GObj*);
 void func_802DEAFC_72FCFC(GObj*);
-void func_802DEC78_72FE78(GObj*);
-void func_802DEBB0_72FDB0(GObj*);
-void func_802DEA80_72FC80(GObj*);
+void evolution_controller_EvolveIntoCharmeleon(GObj*);
+void evolution_controller_EvolveIntoCharizard(GObj*);
+void evolution_controller_InitialState(GObj*);
 
 s32 D_802E3410_734610[] = { SOUND_ID_60 };
 s32 D_802E3414_734614[] = { SOUND_ID_134 };
@@ -39,7 +39,7 @@ AnimationHeader D_802E3440_734640 = {
     D_802E3414_734614
 };
 
-InteractionHandler D_802E3454_734654[] = {
+InteractionHandler evolution_controller_tg_Wait[] = {
     { VOLCANO_CMD_28, func_802DEAFC_72FCFC, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
@@ -49,20 +49,20 @@ InteractionHandler D_802E3474_734674[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E3494_734694 = {
+PokemonAnimationSetup evolution_controller_animSetup = {
     &D_802E3418_734618,
-    func_802DEA80_72FC80,
+    evolution_controller_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E34A8_7346A8 = {
-    D_800F5490,
-    D_800F41D0,
+PokemonInitData evolution_controller_initData = {
+    evolution_controller_model,
+    evolution_controller_materials,
     renderModelTypeDFogged,
-    &D_802E3494_734694,
+    &evolution_controller_animSetup,
     { 20, 20, 20 },
     { 0, 0, 0 },
     0,
@@ -73,22 +73,15 @@ PokemonInitData D_802E34A8_7346A8 = {
     { 0, 0, 0 }
 };
 
-PokemonDef D_802E34DC_7346DC = {
-    PokemonID_1002,
-    func_802DED34_72FF34,
-    pokemonChangeBlockOnGround,
-    pokemonRemoveOne
-};
-
-POKEMON_FUNC(func_802DEA80_72FC80)
+POKEMON_FUNC(evolution_controller_InitialState)
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802DEC78_72FE78);
+        Pokemon_SetState(obj, evolution_controller_EvolveIntoCharmeleon);
     }
 
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    pokemon->transitionGraph = D_802E3454_734654;
+    pokemon->transitionGraph = evolution_controller_tg_Wait;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
@@ -98,18 +91,18 @@ void func_802DEAFC_72FCFC(GObj* obj) {
     UNUSED s32 pad[3];
     DObj* model = obj->data.dobj;
     Mtx3Float* position = &GET_TRANSFORM(model)->pos;
-    Pokemon* pokemon = GET_POKEMON(obj);  
+    Pokemon* pokemon = GET_POKEMON(obj);
     Mtx3Float* targetPos = &GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos;
 
     if (SQ(position->v.x - targetPos->v.x) + SQ(position->v.z - targetPos->v.z) < 100000.0f) {
         cmdSendCommand(pokemon->interactionTarget, VOLCANO_CMD_CHARMELEON_EVOLVE, obj);
-        Pokemon_SetState(obj, func_802DEBB0_72FDB0);
+        Pokemon_SetState(obj, evolution_controller_EvolveIntoCharizard);
     }
 
-    Pokemon_SetState(obj, func_802DEA80_72FC80);
+    Pokemon_SetState(obj, evolution_controller_InitialState);
 }
 
-POKEMON_FUNC(func_802DEBB0_72FDB0)
+POKEMON_FUNC(evolution_controller_EvolveIntoCharizard)
     pokemon->transitionGraph = D_802E3474_734674;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -129,7 +122,7 @@ POKEMON_FUNC(func_802DEBF0_72FDF0)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DEC78_72FE78)
+POKEMON_FUNC(evolution_controller_EvolveIntoCharmeleon)
     pokemon->tangible = true;
     obj->flags = 0;
 
@@ -148,14 +141,19 @@ POKEMON_FUNC(func_802DEC78_72FE78)
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_802DED34_72FF34(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGroundDlLink4(objID, id, block, blockB, spawn, &D_802E34A8_7346A8);
+GObj* evolution_controller_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGroundDlLink4(objID, id, block, blockB, spawn, &evolution_controller_initData);
 }
 
-void func_802DED6C_72FF6C(GObj* obj) {    
-    PokemonDef def = D_802E34DC_7346DC;
-    GObj* var; 
+void func_802DED6C_72FF6C(GObj* obj) {
+    PokemonDef def = {
+        PokemonID_EVOLUTION_CONTROLLER,
+        evolution_controller_Spawn,
+        pokemonChangeBlockOnGround,
+        pokemonRemoveOne
+    };
+    GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &def);
     GET_POKEMON(var)->behavior = 1;
 }

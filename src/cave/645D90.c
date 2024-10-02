@@ -134,7 +134,7 @@ void func_802C3C40_6460F0(GObj* obj) {
 
     sp34 = D_802C79C4_649E74;
 
-    func_8001FCA4(&sp34, pokemon->path, 0.99999f);
+    GetInterpolatedPosition(&sp34, pokemon->path, 0.99999f);
     blockDesc = getCurrentWorldBlock()->descriptor;
     x = (sp34.x - blockDesc->worldPos.x) * 100.0f;
     z = (sp34.z - blockDesc->worldPos.z) * 100.0f;

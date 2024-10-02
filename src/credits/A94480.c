@@ -117,7 +117,7 @@ void func_credits_801DDB60(void) {
     var_s0 = D_credits_801ECCB0;
     while (var_s0->unk_C != 0) {
         var_s0->unk_4 -= var_f20;
-        func_8036CBA0_840350(var_s0->unk_C, var_s0->unk_0, var_s0->unk_4);
+        UIElement_SetPos(var_s0->unk_C, var_s0->unk_0, var_s0->unk_4);
         var_s0++;
     }
 }
@@ -144,7 +144,7 @@ void func_credits_801DDC70(void) {
     Credit* var_s0;
     f32 var_f20;
     s16 i;
-    UnkSnowHerring* temp_v0;
+    UIElement* temp_v0;
 
     var_f20 = 0.0f;
     var_s0 = D_credits_801ECCB0;
@@ -153,13 +153,13 @@ void func_credits_801DDC70(void) {
         var_s0->unk_4 = var_f20;
         var_s0->unk_0 = SCREEN_WIDTH / 2;
         var_f20 += 18.0f;
-        func_8036D4A0_840C50(0);
-        temp_v0 = func_8036AC6C_83E41C(var_s0->unk_0, var_s0->unk_4, 0xFC, 0xF, 0x400);
+        UIText_SetPrintDelay(0);
+        temp_v0 = UIElement_Create(var_s0->unk_0, var_s0->unk_4, 252, 15, UI_FLAG_32BIT);
         var_s0->unk_C = temp_v0;
-        func_8036CB58_840308(temp_v0, 0xC);
-        func_8036B734_83EEE4(var_s0->unk_C);
-        func_8036B9EC_83F19C(var_s0->unk_C, 0, 0);
-        func_8036B870_83F020(var_s0->unk_C, 0, 0, 0, 0, 0);
+        UIElement_SetFont(temp_v0, FONT_12);
+        UIElement_DrawBackground(var_s0->unk_C);
+        UIElement_SetTextPos(var_s0->unk_C, 0, 0);
+        UIElement_SetColor(var_s0->unk_C, UI_BACKGROUND, 0, 0, 0, 0);
         var_s0++;
     }
     var_s0->unk_C = 0;

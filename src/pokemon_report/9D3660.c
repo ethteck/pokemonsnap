@@ -38,13 +38,13 @@ extern char** D_80202EA4_9F9814[6];
 
 extern GObj* D_80230C10_A27580;
 extern SObj* D_80230C14_A27584;
-extern UnkSnowHerring* D_80230C1C_A2758C;
+extern UIElement* D_80230C1C_A2758C;
 extern Unk803A6C18* D_80230C20_A27590;
 extern s32 D_80230C24_A27594;
-extern UnkFireHerring* D_80230C28_A27598;
-extern UnkSnowHerring* D_80230C30_A275A0;
-extern UnkSnowHerring* D_80230C34_A275A4;
-extern UnkSnowHerring* D_80230C38_A275A8;
+extern UIFrame* D_80230C28_A27598;
+extern UIElement* D_80230C30_A275A0;
+extern UIElement* D_80230C34_A275A4;
+extern UIElement* D_80230C38_A275A8;
 extern SObj* D_80230C3C_A275AC;
 extern GObj* D_80230C40_A275B0;
 extern SObj* D_80230C48_A275B8[6];
@@ -53,7 +53,7 @@ extern SObj* D_80230C68_A275D8[2];
 extern GObj* D_80230C70_A275E0;
 extern s32 D_80230C74_A275E4;
 extern Unk803A6C18* D_80230C78_A275E8;
-extern UnkSnowHerring* D_80230C80_A275F0[10];
+extern UIElement* D_80230C80_A275F0[10];
 extern s32 D_80230CA8_A27618;
 extern s32 D_80230CAC_A2761C;
 extern s32 D_80230CB0_A27620[];
@@ -75,10 +75,10 @@ s32 func_801DCCF0_9D3660(s32 arg0) {
     return D_80202D34_9F96A4[arg0];
 }
 
-void func_801DCD30_9D36A0(UnkSnowHerring* arg0, s32 arg1) {
+void func_801DCD30_9D36A0(UIElement* arg0, s32 arg1) {
     UNUSED s32 pad;
 
-    func_8036D248_8409F8(arg0, arg1, arg1, arg1, 0xFF);
+    UIElement_SetSpriteColor(arg0, arg1, arg1, arg1, 255);
 }
 
 void func_801DCD78_9D36E8(s32 arg0) {
@@ -125,7 +125,7 @@ void func_801DCEA8_9D3818(s32 arg0) {
     }
 }
 
-UnkSnowHerring* func_801DCF40_9D38B0(void) {
+UIElement* func_801DCF40_9D38B0(void) {
     return D_80230C30_A275A0;
 }
 
@@ -185,33 +185,33 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
     f32 sp4C;
     char sp2C[0x20];
 
-    func_8036D1A4_840954(D_80230C38_A275A8, 0);
-    func_8036D1A4_840954(D_80230C30_A275A0, 0);
+    UIElement_SetState(D_80230C38_A275A8, UI_NORMAL);
+    UIElement_SetState(D_80230C30_A275A0, UI_NORMAL);
 
     if (arg0 == 0) {
-        func_8036A8E4_83E094(D_80230C38_A275A8);
-        func_8036A8E4_83E094(D_80230C30_A275A0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036CB58_840308(D_80230C38_A275A8, 0xC);
+        UIElement_Draw(D_80230C38_A275A8);
+        UIElement_Draw(D_80230C30_A275A0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetFont(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
-        func_8036B9EC_83F19C(D_80230C38_A275A8, (84 - func_8036D4F0_840CA0(sp2C)) / 2, 0);
-        func_8036C898_840048(D_80230C38_A275A8, sp2C);
-        func_8036CB58_840308(D_80230C30_A275A0, 0xC);
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 22, 0);
+        UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
+        UIElement_PrintText(D_80230C38_A275A8, sp2C);
+        UIElement_SetFont(D_80230C30_A275A0, FONT_12);
+        UIElement_SetTextPos(D_80230C30_A275A0, 22, 0);
         func_8037519C_84894C(D_80230C30_A275A0, "Course");
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 22, 16);
+        UIElement_SetTextPos(D_80230C30_A275A0, 22, 16);
         func_8037519C_84894C(D_80230C30_A275A0, "Photo by");
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 22, 32);
+        UIElement_SetTextPos(D_80230C30_A275A0, 22, 32);
         func_8037519C_84894C(D_80230C30_A275A0, "Score");
         sprintf(sp2C, "%s", getLevelName(func_800BF710_5C5B0(arg1)->levelID));
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 0);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 0);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
         sprintf(sp2C, "%s", get_player_name());
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 16);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 16);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
         sprintf(sp2C, "\\i%5d\\g", func_800BF818_5C6B8(arg1));
-        func_8036B9EC_83F19C(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 32);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 32);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
     } else {
         if (D_80202D30_9F96A0 != arg1) {
@@ -219,98 +219,98 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             D_80202D30_9F96A0 = arg1;
         }
         D_80230C20_A27590 = D_80230C78_A275E8;
-        func_8036A8E4_83E094(D_80230C38_A275A8);
-        func_8036A8E4_83E094(D_80230C30_A275A0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036CB58_840308(D_80230C38_A275A8, 0xC);
+        UIElement_Draw(D_80230C38_A275A8);
+        UIElement_Draw(D_80230C30_A275A0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetFont(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
-        func_8036B9EC_83F19C(D_80230C38_A275A8, (84 - func_8036D4F0_840CA0(sp2C)) / 2, 0);
-        func_8036C898_840048(D_80230C38_A275A8, sp2C);
-        func_8036CB58_840308(D_80230C30_A275A0, 8);
+        UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
+        UIElement_PrintText(D_80230C38_A275A8, sp2C);
+        UIElement_SetFont(D_80230C30_A275A0, FONT_8);
         if (D_80230DC0_A27730 == 0) {
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "Special");
+            UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "Special");
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_12));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 40 - func_8036D4F0_840CA0(sp2C), 12);
-            func_8036C898_840048(D_80230C30_A275A0, sp2C);
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "Technique");
+            UIElement_SetTextPos(D_80230C30_A275A0, 40 - UIText_GetStringWidth(sp2C), 12);
+            UIElement_PrintText(D_80230C30_A275A0, sp2C);
+            UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "Technique");
             if (D_80230C20_A27590->unk_3A0.unk_07 != 0) {
                 sprintf(sp2C, "That's nice.");
             } else {
                 sprintf(sp2C, "Oh, dear...");
             }
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 188 - func_8036D4F0_840CA0(sp2C), 12);
-            func_8036C898_840048(D_80230C30_A275A0, sp2C);
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "Size");
+            UIElement_SetTextPos(D_80230C30_A275A0, 188 - UIText_GetStringWidth(sp2C), 12);
+            UIElement_PrintText(D_80230C30_A275A0, sp2C);
+            UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "Size");
             sp4C = (D_80230C20_A27590->unk_3A0.unk_0E / 10000.0f);
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->unk_3A0.unk_0C * sp4C) + 5.0f) / 10.0f) * 10));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 85 - func_8036D4F0_840CA0(sp2C), 12);
-            func_8036C898_840048(D_80230C30_A275A0, sp2C);
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "Pose");
+            UIElement_SetTextPos(D_80230C30_A275A0, 85 - UIText_GetStringWidth(sp2C), 12);
+            UIElement_PrintText(D_80230C30_A275A0, sp2C);
+            UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "Pose");
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_10));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 130 - func_8036D4F0_840CA0(sp2C), 12);
-            func_8036C898_840048(D_80230C30_A275A0, sp2C);
+            UIElement_SetTextPos(D_80230C30_A275A0, 130 - UIText_GetStringWidth(sp2C), 12);
+            UIElement_PrintText(D_80230C30_A275A0, sp2C);
             if (D_80230C20_A27590->unk_3A0.unk_06 != 0) {
-                func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 24);
-                func_8036C898_840048(D_80230C30_A275A0, "Same PKMN");
+                UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
+                UIElement_PrintText(D_80230C30_A275A0, "Same PKMN");
                 sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_04));
-                func_8036B9EC_83F19C(D_80230C30_A275A0, 188 - func_8036D4F0_840CA0(sp2C), 36);
-                func_8036C898_840048(D_80230C30_A275A0, sp2C);
+                UIElement_SetTextPos(D_80230C30_A275A0, 188 - UIText_GetStringWidth(sp2C), 36);
+                UIElement_PrintText(D_80230C30_A275A0, sp2C);
             }
         } else {
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "スペシャル"); // special
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 12);
-            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_14));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 24);
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 36);
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "めんせき");
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 12);
-            func_8036C898_840048(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_0C));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 24);
-            func_8036C898_840048(D_80230C30_A275A0, "まるみえ"); // full view
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 45, 36);
+            UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "スペシャル"); // special
+            UIElement_SetTextPos(D_80230C30_A275A0, 0, 12);
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_14));
+            UIElement_SetTextPos(D_80230C30_A275A0, 0, 24);
+            UIElement_SetTextPos(D_80230C30_A275A0, 0, 36);
+            UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "めんせき");
+            UIElement_SetTextPos(D_80230C30_A275A0, 45, 12);
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_0C));
+            UIElement_SetTextPos(D_80230C30_A275A0, 45, 24);
+            UIElement_PrintText(D_80230C30_A275A0, "まるみえ"); // full view
+            UIElement_SetTextPos(D_80230C30_A275A0, 45, 36);
             if (D_80230C20_A27590->unk_3A0.unk_0E < 10000) {
                 func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->unk_3A0.unk_0E / 100));
                 func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->unk_3A0.unk_0E % 100) / 10));
             } else {
                 func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
             }
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "コメント"); // comment
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "コメント"); // comment
+            UIElement_SetTextPos(D_80230C30_A275A0, 90, 12);
             func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_08));
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 24);
-            func_8036C898_840048(D_80230C30_A275A0, "むきタイプ"); // muki type
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 90, 36);
+            UIElement_SetTextPos(D_80230C30_A275A0, 90, 24);
+            UIElement_PrintText(D_80230C30_A275A0, "むきタイプ"); // muki type
+            UIElement_SetTextPos(D_80230C30_A275A0, 90, 36);
 
             switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->unk_3A0.unk_0A)]) {
                 case 1:
-                    func_8036C898_840048(D_80230C30_A275A0, "            Ａ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            Ａ");
                     break;
                 case 2:
-                    func_8036C898_840048(D_80230C30_A275A0, "            Ｂ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            Ｂ");
                     break;
                 case 3:
-                    func_8036C898_840048(D_80230C30_A275A0, "            Ｃ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            Ｃ");
                     break;
                 default:
-                    func_8036C898_840048(D_80230C30_A275A0, "               ");
+                    UIElement_PrintText(D_80230C30_A275A0, "               ");
                     // fallthrough
             }
 
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 0);
-            func_8036C898_840048(D_80230C30_A275A0, "センサー"); // sensor
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
+            UIElement_PrintText(D_80230C30_A275A0, "センサー"); // sensor
+            UIElement_SetTextPos(D_80230C30_A275A0, 135, 12);
             func_8037519C_84894C(D_80230C30_A275A0, "         %s", (D_80230C20_A27590->unk_00.unk_00_16 & 0xE0) ? "オン" : "オフ"); // on / off
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 24);
-            func_8036C898_840048(D_80230C30_A275A0, "なかま"); // friend ???
-            func_8036B9EC_83F19C(D_80230C30_A275A0, 135, 36);
+            UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
+            UIElement_PrintText(D_80230C30_A275A0, "なかま"); // friend ???
+            UIElement_SetTextPos(D_80230C30_A275A0, 135, 36);
             func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->unk_3A0.unk_06));
         }
     }
@@ -337,34 +337,34 @@ void func_801DDD58_9D46C8(void) {
         if (sp48 == 0) {
 
         } else {
-            func_8036CB58_840308(D_80230C80_A275F0[i], 8);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036A8E4_83E094(D_80230C80_A275F0[i]);
+            UIElement_SetFont(D_80230C80_A275F0[i], FONT_8);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_Draw(D_80230C80_A275F0[i]);
             func_8036D4B4_840C64(1, 0);
-            func_8036B9EC_83F19C(D_80230C80_A275F0[i], 0, 0);
+            UIElement_SetTextPos(D_80230C80_A275F0[i], 0, 0);
             func_8037519C_84894C(D_80230C80_A275F0[i], "%03d", sp48);
             func_8036D4B4_840C64(1, 1);
-            func_8036B9EC_83F19C(D_80230C80_A275F0[i], 28, 0);
+            UIElement_SetTextPos(D_80230C80_A275F0[i], 28, 0);
             func_8037519C_84894C(D_80230C80_A275F0[i], "%s", getPokemonName(sp48));
-            func_8036B9EC_83F19C(D_80230C80_A275F0[i], 92, 0);
+            UIElement_SetTextPos(D_80230C80_A275F0[i], 92, 0);
             func_8037519C_84894C(D_80230C80_A275F0[i], "%s", getLevelName(func_800BF710_5C5B0(sp48)->levelID));
             func_8036D4B4_840C64(1, 0);
             sprintf(sp28, "%s", func_8037501C_8487CC("%5d", func_800BF818_5C6B8(sp48)));
-            func_8036B9EC_83F19C(D_80230C80_A275F0[i], 166 - func_8036D4F0_840CA0(sp28), 0);
+            UIElement_SetTextPos(D_80230C80_A275F0[i], 166 - UIText_GetStringWidth(sp28), 0);
             func_8037519C_84894C(D_80230C80_A275F0[i], "%5s", sp28);
             func_8036D4B4_840C64(1, 1);
-            func_8036D1A4_840954(D_80230C80_A275F0[i], 0);
+            UIElement_SetState(D_80230C80_A275F0[i], UI_NORMAL);
         }
     }
 
     if (D_80230CA8_A27618 > 0) {
-        func_8036B9EC_83F19C(D_80230C80_A275F0[0], 174, 0);
-        func_8036C898_840048(D_80230C80_A275F0[0], "▲");
+        UIElement_SetTextPos(D_80230C80_A275F0[0], 174, 0);
+        UIElement_PrintText(D_80230C80_A275F0[0], "▲");
     }
     if (D_80230CAC_A2761C < func_800BF864_5C704() - 1) {
-        func_8036B9EC_83F19C(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], 174, 0);
-        func_8036C898_840048(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "▼");
+        UIElement_SetTextPos(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], 174, 0);
+        UIElement_PrintText(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "▼");
     }
 }
 
@@ -443,20 +443,20 @@ s32 func_801DE318_9D4C88(const void* arg0, const void* arg1) {
 }
 
 void func_801DE414_9D4D84(s32 arg0) {
-    func_8036B9EC_83F19C(D_80230C1C_A2758C, 0, 0);
-    func_8036C898_840048(D_80230C1C_A2758C, ((arg0 - 13) ^ 0) ? "No." : "\\eNo.");
-    func_8036B9EC_83F19C(D_80230C1C_A2758C, 28, 0);
-    func_8036C898_840048(D_80230C1C_A2758C, ((arg0 - 14) ^ 0) ? "NAME" : "\\eNAME");
-    func_8036B9EC_83F19C(D_80230C1C_A2758C, 92, 0);
+    UIElement_SetTextPos(D_80230C1C_A2758C, 0, 0);
+    UIElement_PrintText(D_80230C1C_A2758C, ((arg0 - 13) ^ 0) ? "No." : "\\eNo.");
+    UIElement_SetTextPos(D_80230C1C_A2758C, 28, 0);
+    UIElement_PrintText(D_80230C1C_A2758C, ((arg0 - 14) ^ 0) ? "NAME" : "\\eNAME");
+    UIElement_SetTextPos(D_80230C1C_A2758C, 92, 0);
     if (arg0 == 15) {
-        func_8036C898_840048(D_80230C1C_A2758C, "\\e");
+        UIElement_PrintText(D_80230C1C_A2758C, "\\e");
     }
-    func_8036C898_840048(D_80230C1C_A2758C, ((arg0 - 15) ^ 0) ? "COURSE" : "\\eCOURSE");
-    func_8036B9EC_83F19C(D_80230C1C_A2758C, 137, 0);
+    UIElement_PrintText(D_80230C1C_A2758C, ((arg0 - 15) ^ 0) ? "COURSE" : "\\eCOURSE");
+    UIElement_SetTextPos(D_80230C1C_A2758C, 137, 0);
     if (arg0 == 16) {
-        func_8036C898_840048(D_80230C1C_A2758C, "\\e");
+        UIElement_PrintText(D_80230C1C_A2758C, "\\e");
     }
-    func_8036C898_840048(D_80230C1C_A2758C, ((arg0 - 16) ^ 0) ? "SCORE" : "\\eSCORE");
+    UIElement_PrintText(D_80230C1C_A2758C, ((arg0 - 16) ^ 0) ? "SCORE" : "\\eSCORE");
 }
 
 const char otherText[] = "It is said that somewhere on\nthis island is a mysterious\ngroup of huge rocks.";
@@ -484,10 +484,10 @@ const char otherText22[] = "This mountain looks like a\nPokεmon... This is it!\
 const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall this ”MT. DUGTRIO!”";
 
 void func_801DE5A8_9D4F18(s32 arg0) {
-    func_8036A8E4_83E094(D_80230C1C_A2758C);
-    func_8036B870_83F020(D_80230C1C_A2758C, 1, 0, 0, 0, 0xFF);
-    func_8036B870_83F020(D_80230C1C_A2758C, 0, 0x85, 0x93, 0xAB, 0);
-    func_8036B9EC_83F19C(D_80230C1C_A2758C, 0, 0);
+    UIElement_Draw(D_80230C1C_A2758C);
+    UIElement_SetColor(D_80230C1C_A2758C, UI_FOREGROUND, 0, 0, 0, 255);
+    UIElement_SetColor(D_80230C1C_A2758C, UI_BACKGROUND, 133, 147, 171, 0);
+    UIElement_SetTextPos(D_80230C1C_A2758C, 0, 0);
     D_80230C24_A27594 = arg0;
     func_801DE414_9D4D84(arg0);
 
@@ -540,16 +540,16 @@ void func_801DE898_9D5208(s32 arg0) {
         func_803705A4_843D54();
         func_801DCEA8_9D3818(0);
         func_801DFBD0_9D6540(0);
-        func_8036B5F0_83EDA0(D_80230C38_A275A8);
-        func_8036B5F0_83EDA0(D_80230C30_A275A0);
+        UIElement_Delete(D_80230C38_A275A8);
+        UIElement_Delete(D_80230C30_A275A0);
         func_801DDCD4_9D4644(1);
-        func_8036D1A4_840954(D_80230C1C_A2758C, 0);
+        UIElement_SetState(D_80230C1C_A2758C, UI_NORMAL);
         D_80230C48_A275B8[0]->sprite.attr &= ~SP_HIDDEN;
         for (i = 0; i < ARRAY_COUNT(D_80230C80_A275F0); i++) {
-            D_80230C80_A275F0[i] = func_8036AC6C_83E41C(112, (i * 15) + 69, 184, 8, 0x400);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
-            func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
+            D_80230C80_A275F0[i] = UIElement_Create(112, (i * 15) + 69, 184, 8, UI_FLAG_32BIT);
+            UIElement_SetColor(D_80230C80_A275F0[i], UI_FOREGROUND, 0, 0, 0, 255);
+            UIElement_SetColor(D_80230C80_A275F0[i], UI_BACKGROUND, 0, 0, 0, 0);
+            UIElement_SetState(D_80230C80_A275F0[i], UI_HIDDEN);
         }
         func_801DDD58_9D46C8();
     } else {
@@ -560,23 +560,23 @@ void func_801DE898_9D5208(s32 arg0) {
         func_803700A4_843854(1);
         func_801DDCD4_9D4644(0);
         func_801DCEA8_9D3818(0);
-        func_8036D1A4_840954(D_80230C1C_A2758C, 1);
+        UIElement_SetState(D_80230C1C_A2758C, UI_HIDDEN);
 
         for (i = 0; i < ARRAY_COUNT(D_80230C80_A275F0); i++) {
-            func_8036B5F0_83EDA0(D_80230C80_A275F0[i]);
+            UIElement_Delete(D_80230C80_A275F0[i]);
         }
 
         func_801DFBD0_9D6540(1);
-        D_80230C38_A275A8 = func_8036AC6C_83E41C(0x9E, 0x9D, 0x54, 0xC, 0x400);
-        func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
-        func_8036B734_83EEE4(D_80230C38_A275A8);
-        func_8036D1A4_840954(D_80230C38_A275A8, 1);
-        D_80230C30_A275A0 = func_8036AC6C_83E41C(0x70, 0xAD, 0xC0, 0x34, 0x400);
-        func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
-        func_8036B734_83EEE4(D_80230C30_A275A0);
-        func_8036D1A4_840954(D_80230C30_A275A0, 1);
+        D_80230C38_A275A8 = UIElement_Create(158, 157, 84, 12, UI_FLAG_32BIT);
+        UIElement_SetColor(D_80230C38_A275A8, UI_FOREGROUND, 0, 0, 0, 255);
+        UIElement_SetColor(D_80230C38_A275A8, UI_BACKGROUND, 0, 0, 0, 0);
+        UIElement_DrawBackground(D_80230C38_A275A8);
+        UIElement_SetState(D_80230C38_A275A8, UI_HIDDEN);
+        D_80230C30_A275A0 = UIElement_Create(112, 173, 192, 52, UI_FLAG_32BIT);
+        UIElement_SetColor(D_80230C30_A275A0, UI_FOREGROUND, 0, 0, 0, 255);
+        UIElement_SetColor(D_80230C30_A275A0, UI_BACKGROUND, 0, 0, 0, 0);
+        UIElement_DrawBackground(D_80230C30_A275A0);
+        UIElement_SetState(D_80230C30_A275A0, UI_HIDDEN);
         if (D_80230DB4_A27724 > 0) {
             func_803713D4_844B84(1);
         } else {
@@ -1193,14 +1193,14 @@ void func_801E07C0_9D7130(void) {
     D_80230C14_A27584 = sobj;
 }
 
-s32 func_801E0B8C_9D74FC(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
+s32 func_801E0B8C_9D74FC(UIElement* arg0, char** arg1, s32 arg2) {
     s32 sp1C;
 
-    func_8036D4A0_840C50(2);
+    UIText_SetPrintDelay(2);
 
     for (; *arg1 != 0; arg1++) {
-        func_8036A8E4_83E094(arg0);
-        func_8036C898_840048(arg0, *arg1);
+        UIElement_Draw(arg0);
+        UIElement_PrintText(arg0, *arg1);
         sp1C = func_80374F30_8486E0(arg0, true);
         if (arg2 != 0 && sp1C == 0x4000) {
             return 0x4000;
@@ -1221,11 +1221,11 @@ void func_801E0C3C_9D75AC(s32 arg0) {
     } else {
         func_801E0B8C_9D74FC(D_80230C30_A275A0, D_80202EA4_9F9814[arg0], 0);
     }
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     func_801DCF5C_9D38CC(&sp1C);
-    func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 0);
-    func_8036C898_840048(D_80230C30_A275A0, "You have collected");
-    func_8036B9EC_83F19C(D_80230C30_A275A0, 0, 18);
+    UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
+    UIElement_PrintText(D_80230C30_A275A0, "You have collected");
+    UIElement_SetTextPos(D_80230C30_A275A0, 0, 18);
     func_8037519C_84894C(D_80230C30_A275A0, "%d PKMN Signs.", sp1C);
 }
 
@@ -1239,30 +1239,30 @@ void func_801E0D84_9D76F4(void) {
     func_801DF7F0_9D6160(0);
 }
 
-void func_801E0DB4_9D7724(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
     char sp28[0x80];
 
-    func_8036A8E4_83E094(arg0);
+    UIElement_Draw(arg0);
     sp28[0] = sp28[1] = 0;
 
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-        func_8036B9EC_83F19C(arg0, 8, 0);
-        func_8036C898_840048(arg0, "No. of PKMN seen");
-        func_8036B9EC_83F19C(arg0, 0x58, 0);
+        UIElement_SetTextPos(arg0, 8, 0);
+        UIElement_PrintText(arg0, "No. of PKMN seen");
+        UIElement_SetTextPos(arg0, 88, 0);
         func_8037519C_84894C(arg0, "\\i%7d\\g kind%s", arg1, (arg1 >= 2) ? "s" : "");
-        func_8036B9EC_83F19C(arg0, 8, 0x10);
+        UIElement_SetTextPos(arg0, 8, 16);
         func_8037519C_84894C(arg0, "No. of PKMN Signs seen", (arg2 != 1) ? "s" : "");
-        func_8036B9EC_83F19C(arg0, 0x58, 0x10);
+        UIElement_SetTextPos(arg0, 88, 16);
         func_8037519C_84894C(arg0, "\\i%7d\\g Sign%s", arg2, (arg2 != 1) ? "s" : "");
     } else {
-        func_8036B9EC_83F19C(arg0, 8, 0x10);
-        func_8036C898_840048(arg0, "No. of PKMN seen");
-        func_8036B9EC_83F19C(arg0, 0x58, 0x10);
+        UIElement_SetTextPos(arg0, 8, 16);
+        UIElement_PrintText(arg0, "No. of PKMN seen");
+        UIElement_SetTextPos(arg0, 88, 16);
         func_8037519C_84894C(arg0, "\\i%7d\\g kind%s", arg1, (arg1 >= 2) ? "s" : "");
     }
-    func_8036B9EC_83F19C(arg0, 8, 0x20);
-    func_8036C898_840048(arg0, "Report Score");
-    func_8036B9EC_83F19C(arg0, 88, 0x20);
+    UIElement_SetTextPos(arg0, 8, 32);
+    UIElement_PrintText(arg0, "Report Score");
+    UIElement_SetTextPos(arg0, 88, 32);
     func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     if (checkPlayerFlag(PFID_14)) {
         sprintf(sp28, "%s", "Boost your PKMN Report Score!");
@@ -1274,7 +1274,7 @@ void func_801E0DB4_9D7724(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (checkPlayerFlag(PFID_HAS_FLUTE)) {
             if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
                 func_800BF3D4_5C274(PokemonID_1022) && func_800BF3D4_5C274(PokemonID_1018) && func_800BF3D4_5C274(PokemonID_1035)) {
-                func_8036B9EC_83F19C(arg0, 82 - (func_8036D4F0_840CA0("Well, this is the final course!") / 2), 51);
+                UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth("Well, this is the final course!") / 2), 51);
                 sprintf(sp28, "%s", "Well, this is the final course!");
             } else {
                 sprintf(sp28, "%s", "Collect all the PKMN Signs!");
@@ -1305,7 +1305,7 @@ void func_801E0DB4_9D7724(UnkSnowHerring* arg0, s32 arg1, s32 arg2, s32 arg3) {
     } else {
         sprintf(sp28, "%s", "Collect more Pokεmon for the Report!");
     }
-    func_8036B9EC_83F19C(arg0, 82 - (func_8036D4F0_840CA0(sp28) / 2), 51);
+    UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth(sp28) / 2), 51);
     func_8037519C_84894C(arg0, "%s", sp28);
 }
 
@@ -1315,28 +1315,28 @@ void func_801E1378_9D7CE8(void) {
     s32 sp44;
     s32 sp40;
     s32 sp3C;
-    UnkSnowHerring* sp38;
+    UIElement* sp38;
     UNUSED s32 pad[3];
 
     if (D_80230C74_A275E4 <= 0) {
         func_801E02F4_9D6C64();
         func_801DCD78_9D36E8(0);
-        sp38 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
-        func_8036B870_83F020(sp38, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp38, 0, 0x85, 0x93, 0xAB, 0);
-        func_8036B734_83EEE4(sp38);
-        func_8036D1A4_840954(sp38, 1);
+        sp38 = UIElement_Create(118, 123, 182, 97, UI_FLAG_32BIT);
+        UIElement_SetColor(sp38, UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_SetColor(sp38, UI_BACKGROUND, 133, 147, 171, 0);
+        UIElement_DrawBackground(sp38);
+        UIElement_SetState(sp38, UI_HIDDEN);
         D_80230C1C_A2758C = sp38;
-        func_8036CB58_840308(sp38, 8);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036D4A0_840C50(0);
+        UIElement_SetFont(sp38, FONT_8);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIText_SetPrintDelay(0);
         sp44 = func_801DCF5C_9D38CC(&sp3C);
         sp40 = func_800BF864_5C704();
-        func_8036A8E4_83E094(sp38);
+        UIElement_Draw(sp38);
         func_801E0DB4_9D7724(sp38, sp40, sp3C, sp44);
         ohWait(1);
-        func_8036D1A4_840954(sp38, 0);
+        UIElement_SetState(sp38, UI_NORMAL);
 
         for (i = 0; i < 10; i++) {
             func_801DCD30_9D36A0(sp38, (i * 0xFF) / 10);
@@ -1384,7 +1384,7 @@ void func_801E1568_9D7ED8(s32 arg0) {
     }
 
     func_801DCD78_9D36E8(0);
-    func_8036B5F0_83EDA0(D_80230C1C_A2758C);
+    UIElement_Delete(D_80230C1C_A2758C);
     func_801DCE3C_9D37AC();
     D_80230C74_A275E4 = 0;
     func_8037172C_844EDC(0);
@@ -1393,34 +1393,34 @@ void func_801E1568_9D7ED8(s32 arg0) {
 void func_801E16DC_9D804C(void) {
     s32 i;
     UNUSED s32 pad;
-    UnkSnowHerring* sp2C;
+    UIElement* sp2C;
 
     if (D_80230C74_A275E4 <= 0) {
         func_801E0480_9D6DF0();
         func_801DCD78_9D36E8(0);
-        sp2C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
-        func_8036B734_83EEE4(sp2C);
-        func_8036CB58_840308(sp2C, 0xC);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036B9EC_83F19C(sp2C, (108 - func_8036D4F0_840CA0("PKMN Report")) / 2, 0);
-        func_8036C898_840048(sp2C, "PKMN Report");
-        func_8036D1A4_840954(sp2C, 1);
+        sp2C = UIElement_Create(146, 22, 108, 16, 0);
+        UIElement_SetColor(sp2C, UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_SetColor(sp2C, UI_BACKGROUND, 218, 108, 0, 0);
+        UIElement_DrawBackground(sp2C);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Report")) / 2, 0);
+        UIElement_PrintText(sp2C, "PKMN Report");
+        UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C34_A275A4 = sp2C;
-        sp2C = func_8036AC6C_83E41C(0x70, 0x32, 0xB0, 0xF, 0);
-        func_8036B870_83F020(sp2C, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0x85, 0x93, 0xAB, 0);
-        func_8036B734_83EEE4(sp2C);
-        func_8036D1A4_840954(sp2C, 1);
+        sp2C = UIElement_Create(112, 50, 176, 15, 0);
+        UIElement_SetColor(sp2C, UI_FOREGROUND, 0, 0, 0, 255);
+        UIElement_SetColor(sp2C, UI_BACKGROUND, 133, 147, 171, 0);
+        UIElement_DrawBackground(sp2C);
+        UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C1C_A2758C = sp2C;
 
         for (i = 0; i < 10; i++) {
-            D_80230C80_A275F0[i] = func_8036AC6C_83E41C(0x70, (i * 15) + 69, 184, 8, 0x400);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 1, 0, 0, 0, 0xFF);
-            func_8036B870_83F020(D_80230C80_A275F0[i], 0, 0, 0, 0, 0);
-            func_8036D1A4_840954(D_80230C80_A275F0[i], 1);
+            D_80230C80_A275F0[i] = UIElement_Create(112, (i * 15) + 69, 184, 8, UI_FLAG_32BIT);
+            UIElement_SetColor(D_80230C80_A275F0[i], UI_FOREGROUND, 0, 0, 0, 255);
+            UIElement_SetColor(D_80230C80_A275F0[i], UI_BACKGROUND, 0, 0, 0, 0);
+            UIElement_SetState(D_80230C80_A275F0[i], UI_HIDDEN);
         }
 
         D_80230CA8_A27618 = 0;
@@ -1430,18 +1430,18 @@ void func_801E16DC_9D804C(void) {
         D_80230DB4_A27724 = 0;
         func_801DDD58_9D46C8();
         func_801DFBD0_9D6540(0);
-        func_8036CB58_840308(sp2C, 8);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036D4A0_840C50(0);
-        func_8036A8E4_83E094(sp2C);
+        UIElement_SetFont(sp2C, FONT_8);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIText_SetPrintDelay(0);
+        UIElement_Draw(sp2C);
         if (D_80230C24_A27594 == -1) {
             func_801DE414_9D4D84(13);
         } else {
             func_801DE414_9D4D84(D_80230C24_A27594);
         }
-        func_8036D248_8409F8(sp2C, 0, 0, 0, 0);
-        func_8036D1A4_840954(sp2C, 0);
+        UIElement_SetSpriteColor(sp2C, 0, 0, 0, 0);
+        UIElement_SetState(sp2C, UI_NORMAL);
         ohWait(1);
 
         for (i = 0; i < 10; i++) {
@@ -1455,7 +1455,7 @@ void func_801E16DC_9D804C(void) {
         func_803713D4_844B84(4);
         func_801DE078_9D49E8(0);
         ohWait(30);
-        func_8036D1A4_840954(D_80230C34_A275A4, 0);
+        UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
         func_803700A4_843854(1);
     }
 }
@@ -1464,7 +1464,7 @@ void func_801E1AC4_9D8434(void) {
     s32 i;
 
     func_803700A4_843854(0);
-    func_8036B5F0_83EDA0(D_80230C34_A275A4);
+    UIElement_Delete(D_80230C34_A275A4);
     func_803713C8_844B78(0);
     func_80370A48_8441F8();
     ohWait(21);
@@ -1476,10 +1476,10 @@ void func_801E1AC4_9D8434(void) {
     }
 
     func_801DCD78_9D36E8(0);
-    func_8036B5F0_83EDA0(D_80230C1C_A2758C);
+    UIElement_Delete(D_80230C1C_A2758C);
 
     for (i = 0; i < 10; i++) {
-        func_8036B5F0_83EDA0(D_80230C80_A275F0[i]);
+        UIElement_Delete(D_80230C80_A275F0[i]);
     }
 
     func_801DCE3C_9D37AC();
@@ -1493,8 +1493,8 @@ void func_801E1BEC_9D855C(void) {
     s32 i;
     s32 sp38;
     ucolor sp34;
-    UnkFireHerring* sp30;
-    UnkSnowHerring* sp2C;
+    UIFrame* sp30;
+    UIElement* sp2C;
 
     auPlaySong(0, 0x1E);
     auSetBGMVolumeSmooth(0, 0x7F00, 0xF);
@@ -1502,23 +1502,23 @@ void func_801E1BEC_9D855C(void) {
         func_801E072C_9D709C();
         func_801DCD78_9D36E8(0);
         sp30 = D_80230C28_A27598;
-        func_8036F738_842EE8(sp30, &sp34);
-        sp2C = func_8036AC6C_83E41C(0x92, 0x16, 0x6C, 0x10, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, 0xDA, 0x6C, 0, 0);
-        func_8036B734_83EEE4(sp2C);
-        func_8036CB58_840308(sp2C, 0xC);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036B9EC_83F19C(sp2C, (108 - func_8036D4F0_840CA0("PKMN Signs")) / 2, 0);
-        func_8036C898_840048(sp2C, "PKMN Signs");
-        func_8036D1A4_840954(sp2C, 1);
+        UIFrame_GetBackgroundColor(sp30, &sp34);
+        sp2C = UIElement_Create(146, 22, 108, 16, 0);
+        UIElement_SetColor(sp2C, UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_SetColor(sp2C, UI_BACKGROUND, 218, 108, 0, 0);
+        UIElement_DrawBackground(sp2C);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Signs")) / 2, 0);
+        UIElement_PrintText(sp2C, "PKMN Signs");
+        UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C34_A275A4 = sp2C;
-        sp2C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
-        func_8036B870_83F020(sp2C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036B870_83F020(sp2C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
-        func_8036B734_83EEE4(sp2C);
-        func_8036D1A4_840954(sp2C, 1);
+        sp2C = UIElement_Create(104, 173, 192, 47, 0);
+        UIElement_SetColor(sp2C, UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_SetColor(sp2C, UI_BACKGROUND, sp34.r, sp34.g, sp34.b, 255);
+        UIElement_DrawBackground(sp2C);
+        UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C30_A275A0 = sp2C;
         ohWait(1);
         func_801DF7F0_9D6160(1);
@@ -1534,19 +1534,19 @@ void func_801E1BEC_9D855C(void) {
         func_8037172C_844EDC(1);
         func_803713D4_844B84(4);
         ohWait(21);
-        func_8036D1A4_840954(D_80230C34_A275A4, 0);
-        func_8036FE54_843604(sp30, 1);
-        func_8036D1A4_840954(sp2C, 0);
-        func_8036D4A0_840C50((0, 0));
-        func_8036CB58_840308(sp2C, 0xC);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036CB58_840308(sp2C, 0xC);
-        func_8036D4A0_840C50(0);
+        UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
+        UIFrame_FadeIn(sp30, FRAME_STYLE_1);
+        UIElement_SetState(sp2C, UI_NORMAL);
+        UIText_SetPrintDelay((0, 0));
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetPrintDelay(0);
         func_801DCF5C_9D38CC(&sp38);
-        func_8036B9EC_83F19C(sp2C, 0, 0);
-        func_8036C898_840048(sp2C, "You have collected");
-        func_8036B9EC_83F19C(sp2C, 0, 18);
+        UIElement_SetTextPos(sp2C, 0, 0);
+        UIElement_PrintText(sp2C, "You have collected");
+        UIElement_SetTextPos(sp2C, 0, 18);
         func_8037519C_84894C(sp2C, "%d PKMN Signs.", sp38);
     }
 }
@@ -1557,12 +1557,12 @@ void func_801E1F20_9D8890(void) {
 
     sp18 = 30;
     func_803700A4_843854(0);
-    func_8036D1A4_840954(D_80230C30_A275A0, 1);
-    func_8036D1A4_840954(D_80230C34_A275A4, 1);
+    UIElement_SetState(D_80230C30_A275A0, UI_HIDDEN);
+    UIElement_SetState(D_80230C34_A275A4, UI_HIDDEN);
     func_803713C8_844B78(0);
-    func_8036B5F0_83EDA0(D_80230C34_A275A4);
-    func_8036B5F0_83EDA0(D_80230C30_A275A0);
-    func_8036FF20_8436D0(D_80230C28_A27598);
+    UIElement_Delete(D_80230C34_A275A4);
+    UIElement_Delete(D_80230C30_A275A0);
+    UIFrame_FadeOut(D_80230C28_A27598);
     func_80370A48_8441F8();
     ohWait(21);
     auSetBGMVolumeSmooth(0, 0, sp18);
@@ -1593,16 +1593,16 @@ void func_801E20B4_9D8A24(void) {
         func_801E07C0_9D7130();
         func_801DCD78_9D36E8(0);
         func_801DFD24_9D6694(0);
-        D_80230C38_A275A8 = func_8036AC6C_83E41C(0x9E, 0x93, 0x54, 0xC, 0x400);
-        func_8036B870_83F020(D_80230C38_A275A8, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C38_A275A8, 0, 0, 0, 0, 0);
-        func_8036B734_83EEE4(D_80230C38_A275A8);
-        func_8036D1A4_840954(D_80230C38_A275A8, 0);
-        D_80230C30_A275A0 = func_8036AC6C_83E41C(0x70, 0xAD, 0xC0, 0x34, 0x400);
-        func_8036B870_83F020(D_80230C30_A275A0, 1, 0, 0, 0, 0xFF);
-        func_8036B870_83F020(D_80230C30_A275A0, 0, 0, 0, 0, 0);
-        func_8036B734_83EEE4(D_80230C30_A275A0);
-        func_8036D1A4_840954(D_80230C30_A275A0, 0);
+        D_80230C38_A275A8 = UIElement_Create(158, 147, 84, 12, UI_FLAG_32BIT);
+        UIElement_SetColor(D_80230C38_A275A8, UI_FOREGROUND, 0, 0, 0, 255);
+        UIElement_SetColor(D_80230C38_A275A8, UI_BACKGROUND, 0, 0, 0, 0);
+        UIElement_DrawBackground(D_80230C38_A275A8);
+        UIElement_SetState(D_80230C38_A275A8, UI_NORMAL);
+        D_80230C30_A275A0 = UIElement_Create(112, 173, 192, 52, UI_FLAG_32BIT);
+        UIElement_SetColor(D_80230C30_A275A0, UI_FOREGROUND, 0, 0, 0, 255);
+        UIElement_SetColor(D_80230C30_A275A0, UI_BACKGROUND, 0, 0, 0, 0);
+        UIElement_DrawBackground(D_80230C30_A275A0);
+        UIElement_SetState(D_80230C30_A275A0, UI_NORMAL);
         ohWait(1);
         func_801DFBD0_9D6540(1);
         sp30 = func_801E00E0_9D6A50(0);
@@ -1621,8 +1621,8 @@ void func_801E20B4_9D8A24(void) {
             D_80202D30_9F96A0 = sp30;
         }
 
-        func_8036D1A4_840954(D_80230C30_A275A0, 0);
-        func_8036D4A0_840C50(0);
+        UIElement_SetState(D_80230C30_A275A0, UI_NORMAL);
+        UIText_SetPrintDelay(0);
         func_8037172C_844EDC(1);
         ohWait(21);
     }
@@ -1647,8 +1647,8 @@ void func_801E2340_9D8CB0(void) {
 
     func_801DCD78_9D36E8(0);
     func_801DFD24_9D6694(0);
-    func_8036B5F0_83EDA0(D_80230C38_A275A8);
-    func_8036B5F0_83EDA0(D_80230C30_A275A0);
+    UIElement_Delete(D_80230C38_A275A8);
+    UIElement_Delete(D_80230C30_A275A0);
     func_801DCE3C_9D37AC();
     func_801DFBD0_9D6540(0);
     D_80230C74_A275E4 = 0;
@@ -1665,7 +1665,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     s32 sp3C;
     s32 sp38;
     s32 sp34;
-    UnkSnowHerring* sp30;
+    UIElement* sp30;
     s32 sp2C;
 
     sp2C = 1;
@@ -1675,26 +1675,26 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     func_803700A4_843854(0);
     sp3C = func_801DCF5C_9D38CC(&sp34);
     sp38 = func_800BF864_5C704();
-    D_80230C28_A27598 = func_8036F78C_842F3C();
-    func_8036F684_842E34(D_80230C28_A27598, 1);
-    func_8036F1F4_8429A4(D_80230C28_A27598, 0xB8, 0x140);
-    func_8036F0DC_84288C(D_80230C28_A27598, false);
-    sp30 = func_8036AC6C_83E41C(0x76, 0x7B, 0xB6, 0x61, 0x400);
-    func_8036B870_83F020(sp30, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp30, 0, 0x85, 0x93, 0xAB, 0);
-    func_8036B734_83EEE4(sp30);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036CB58_840308(sp30, 8);
-    func_8036A8E4_83E094(sp30);
-    func_8036D1A4_840954(sp30, 1);
+    D_80230C28_A27598 = UIFrame_Create();
+    UIFrame_SetStyle(D_80230C28_A27598, FRAME_STYLE_1);
+    UIFrame_SetPos(D_80230C28_A27598, 184, 320);
+    UIFrame_Show(D_80230C28_A27598, false);
+    sp30 = UIElement_Create(118, 123, 182, 97, UI_FLAG_32BIT);
+    UIElement_SetColor(sp30, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp30, UI_BACKGROUND, 133, 147, 171, 0);
+    UIElement_DrawBackground(sp30);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetFont(sp30, FONT_8);
+    UIElement_Draw(sp30);
+    UIElement_SetState(sp30, UI_HIDDEN);
     func_801E0DB4_9D7724(sp30, sp38, sp34, sp3C);
     D_80230C1C_A2758C = sp30;
     func_801DF704_9D6074();
     func_801DF7F0_9D6160(0);
     func_801DFD68_9D66D8();
     ohWait(1);
-    func_8036D1A4_840954(sp30, 0);
+    UIElement_SetState(sp30, UI_NORMAL);
 
     for (i = 0; i < 60; i++) {
         func_801DCD30_9D36A0(sp30, (i * 0xFF) / 60);

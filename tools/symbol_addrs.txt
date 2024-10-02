@@ -1906,6 +1906,13 @@ magikarp_tex_tail_fin_png = 0x800FA178; // segment:magikarp_model
 magikarp_tex_skin3_pal = 0x800FA980; // segment:magikarp_model
 magikarp_tex_skin3_png = 0x800FAA40; // segment:magikarp_model
 
+UIFrame_ShowBackground = 0x8036F0A0; // segment:window
+UIFrame_SetOpacity = 0x8036F198; // segment:window
+UIFrame_SetPos = 0x8036F1F4; // segment:window
+UIFrame_SetSize = 0x8036F378; // segment:window
+UIFrame_SetStyle = 0x8036F684; // segment:window
+UIFrame_Create = 0x8036F78C;
+UIElement_PrintText = 0x8036C898; // segment:window
 moltres_egg_vtx = 0x8014E7F0; // segment:volcano_assets size:0x620
 moltres_egg_tex_flame_png = 0x8014DD48; // segment:volcano_assets
 moltres_egg_draw = 0x8014EE10; // segment:volcano_assets
@@ -1940,3 +1947,7 @@ evolution_controller_last = 0x800F5400; // segment:world
 
 GetInterpolatedPosition = 0x8001FCA4;
 GetInterpolatedVelocity = 0x8001FCE8;
+
+UIText_ShadowPalette = 0x803A6980; //segment:window
+UIText_TextPalette = 0x803A6940; //segment:window
+UIText_ShadowedTextPalette = 0x803A69C0; //segment:window

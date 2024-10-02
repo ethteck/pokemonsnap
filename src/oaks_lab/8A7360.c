@@ -23,11 +23,11 @@ s32 func_800E3ED4_8A96F4(void);
 void func_800E5298_8AAAB8(void);
 void func_800E6410_8ABC30(void);
 
-UnkSnowHerring* func_800E1B40_8A7360(void) {
+UIElement* func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
 }
 
-UnkFireHerring* func_800E1B4C_8A736C(void) {
+UIFrame* func_800E1B4C_8A736C(void) {
     return D_80206B20_9CC340;
 }
 
@@ -183,8 +183,8 @@ void func_800E1D68_8A7588(u32 arg0) {
 void func_800E1FEC_8A780C(s32 stage) {
     if (stage >= 0 && stage < 7U) {
         D_80206B28_9CC348[1]->sprite.bitmap = D_801957F4_95B014[stage];
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         func_800E1D1C_8A753C(1);
     } else {
         func_800E1D1C_8A753C(0);
@@ -428,11 +428,11 @@ void func_800E2848_8A8068(void) {
     D_80206B28_9CC348[0] = sobj;
 }
 
-s32 func_800E2960_8A8180(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
+s32 func_800E2960_8A8180(UIElement* arg0, char** arg1, s32 arg2) {
     s32 temp_v0;
 
     while (*arg1) {
-        func_8036A8E4_83E094(arg0);
+        UIElement_Draw(arg0);
         func_8037519C_84894C(arg0, *arg1, get_player_name());
         temp_v0 = func_80374F30_8486E0(arg0, true);
         if (arg2 && (temp_v0 == 0x4000)) {
@@ -445,24 +445,24 @@ s32 func_800E2960_8A8180(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
 }
 
 void func_800E2A04_8A8224(void) {
-    UnkSnowHerring* sp24;
+    UIElement* sp24;
     s32 temp_a1;
     s32 temp_s0;
     s32 i;
 
     sp24 = D_80206B1C_9CC33C;
-    func_8036CB58_840308(D_80206B1C_9CC33C, 0xC);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(D_80206B1C_9CC33C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     temp_s0 = func_800C0290_5D130();
     if (func_800BFC5C_5CAFC() < temp_s0) {
         func_800BFC70_5CB10(func_800C0290_5D130());
         ohWait(1);
         if (func_800BFC5C_5CAFC() != 2 && func_800BFC5C_5CAFC() != 4 && func_800BFC5C_5CAFC() != 6) {
             func_8036EB80_842330(0);
-            func_8036D4A0_840C50(2);
+            UIText_SetPrintDelay(2);
             func_800E2960_8A8180(sp24, D_80195888_95B0A8, 0);
-            func_8036D4A0_840C50(0);
+            UIText_SetPrintDelay(0);
         } else {
             ohWait(42);
         }
@@ -480,7 +480,7 @@ void func_800E2A04_8A8224(void) {
         }
         func_80370990_844140(1.0f, temp_a1);
         func_800E61B4_8AB9D4(3, 0);
-        func_8036A8E4_83E094(sp24);
+        UIElement_Draw(sp24);
     }
     ohWait(15);
 }
@@ -505,8 +505,8 @@ s32 func_800E2BB4_8A83D4(void) {
 void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused2[3];
     s32 i;
-    UnkSnowHerring* sp4C;
-    UnkFireHerring* temp_v0;
+    UIElement* sp4C;
+    UIFrame* temp_v0;
     ucolor sp44;
     s32 unused1;
     s32 sp3C;
@@ -517,18 +517,18 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     func_803700A4_843854(0);
     func_80370038_8437E8(0x78, 0x1A);
     func_8036FFE0_843790(0x32, 0x2C);
-    temp_v0 = func_8036F78C_842F3C();
+    temp_v0 = UIFrame_Create();
     D_80206B20_9CC340 = temp_v0;
-    func_8036F684_842E34(temp_v0, 1);
-    func_8036F738_842EE8(temp_v0, &sp44);
-    func_8036F1F4_8429A4(temp_v0, 0xB8, 0x140);
-    func_8036F0DC_84288C(temp_v0, false);
-    sp4C = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
+    UIFrame_SetStyle(temp_v0, FRAME_STYLE_1);
+    UIFrame_GetBackgroundColor(temp_v0, &sp44);
+    UIFrame_SetPos(temp_v0, 184, 320);
+    UIFrame_Show(temp_v0, false);
+    sp4C = UIElement_Create(104, 173, 192, 47, 0);
     D_80206B1C_9CC33C = sp4C;
-    func_8036B870_83F020(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp4C, 0, sp44.r, sp44.g, sp44.b, 0xFF);
-    func_8036B734_83EEE4(sp4C);
-    func_8036D1A4_840954(sp4C, 1);
+    UIElement_SetColor(sp4C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp4C, UI_BACKGROUND, sp44.r, sp44.g, sp44.b, 255);
+    UIElement_DrawBackground(sp4C);
+    UIElement_SetState(sp4C, UI_HIDDEN);
     if (func_800BF864_5C704() >= 4) {
         setPlayerFlag(PFID_HAS_FINISHED_TUTORIAL, 1);
     }
@@ -574,12 +574,12 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         func_80370780_843F30(1, 3);
     }
     func_803705A4_843D54();
-    func_8036FE54_843604(temp_v0, 1);
-    func_8036D1A4_840954(sp4C, 0);
-    func_8036D4A0_840C50(0);
-    func_8036CB58_840308(sp4C, 0xC);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIFrame_FadeIn(temp_v0, FRAME_STYLE_1);
+    UIElement_SetState(sp4C, UI_NORMAL);
+    UIText_SetPrintDelay(0);
+    UIElement_SetFont(sp4C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     func_800E5298_8AAAB8();
     func_800E6410_8ABC30();
 
@@ -587,8 +587,8 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         sp3C = func_800E3ED4_8A96F4();
         func_80375284_848A34(3);
         func_803700A4_843854(0);
-        func_8036D1A4_840954(D_80206B1C_9CC33C, 1);
-        func_8036F0A0_842850(temp_v0, true);
+        UIElement_SetState(D_80206B1C_9CC33C, UI_HIDDEN);
+        UIFrame_ShowBackground(temp_v0, true);
         func_803713C8_844B78(0);
         func_803705F0_843DA0(0);
         func_80370A48_8441F8();
@@ -597,7 +597,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
 
         for (i = 10; i >= 0; i--) {
             func_800E1B58_8A7378(i * 255 / 10);
-            func_8036F198_842948(temp_v0, i * 255 / 10);
+            UIFrame_SetOpacity(temp_v0, i * 255 / 10);
             ohWait(1);
         }
 
@@ -625,14 +625,14 @@ void func_800E30B8_8A88D8(void) {
     sobj->sprite.y = 92;
     func_8036FFE0_843790(40, 92);
     func_80370038_8437E8(240, 56);
-    func_8036D4A0_840C50(1);
+    UIText_SetPrintDelay(1);
     func_8036EB80_842330(0);
     auSetBGMVolumeSmooth(0, 0x3F80, 60);
-    func_8036CB58_840308(D_80206B1C_9CC33C, 0xC);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    func_8036A8E4_83E094(D_80206B1C_9CC33C);
-    func_8036C898_840048(D_80206B1C_9CC33C, "\n\\OThis is... awful!");
+    UIElement_SetFont(D_80206B1C_9CC33C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIElement_Draw(D_80206B1C_9CC33C);
+    UIElement_PrintText(D_80206B1C_9CC33C, "\n\\OThis is... awful!");
 
     while (1) {
         ohWait(1);

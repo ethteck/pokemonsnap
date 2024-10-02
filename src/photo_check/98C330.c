@@ -100,10 +100,10 @@ typedef struct ObjPair {
 // BSS
 ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
-UnkFireHerring* D_802290D8_9D8B48;
-UnkSnowHerring* D_802290DC_9D8B4C;
-UnkSnowHerring* D_802290E0_9D8B50;
-UnkSnowHerring* D_802290E4_9D8B54;
+UIFrame* D_802290D8_9D8B48;
+UIElement* D_802290DC_9D8B4C;
+UIElement* D_802290E0_9D8B50;
+UIElement* D_802290E4_9D8B54;
 char D_802290E8_9D8B58[0x80];
 SObj* D_80229168_9D8BD8;
 SObj* D_80229170_9D8BE0[4];
@@ -400,11 +400,13 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     return D_800AF3C0;
 }
 
-UnkSnowHerring* func_801DCCE0_98C750(void) {
+// split here?
+
+UIElement* func_801DCCE0_98C750(void) {
     return D_802290DC_9D8B4C;
 }
 
-void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
+void func_801DCCFC_98C76C(UIFrame* arg0, s32 arg1) {
     s32 sp2C;
     s32 i;
     s32 sp24;
@@ -412,8 +414,8 @@ void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
     s32 sp1C;
     s32 alpha;
 
-    func_8036F684_842E34(arg0, 1);
-    func_8036F0A0_842850(arg0, true);
+    UIFrame_SetStyle(arg0, FRAME_STYLE_1);
+    UIFrame_ShowBackground(arg0, true);
     for (i = 0; i <= D_801F3E38_9A38A8; i++) {
         if (arg1 != 0) {
             sp2C = i;
@@ -424,29 +426,29 @@ void func_801DCCFC_98C76C(UnkFireHerring* arg0, s32 arg1) {
         sp20 = (sp2C * 92) / D_801F3E38_9A38A8 + 172;
         sp1C = (sp2C * -36) / D_801F3E38_9A38A8 + 201;
         alpha = (sp2C * 0xFF) / D_801F3E38_9A38A8;
-        func_8036F1F4_8429A4(arg0, sp24, sp1C);
-        func_8036F378_842B28(arg0, sp20 - sp24, 225 - sp1C);
-        func_8036F198_842948(arg0, alpha);
+        UIFrame_SetPos(arg0, sp24, sp1C);
+        UIFrame_SetSize(arg0, sp20 - sp24, 225 - sp1C);
+        UIFrame_SetOpacity(arg0, alpha);
         ohWait(1);
     }
 
     if (arg1 != 0) {
-        func_8036F1F4_8429A4(arg0, 0x38, 0xA5);
-        func_8036F378_842B28(arg0, 0xD0, 0x3C);
+        UIFrame_SetPos(arg0, 56, 165);
+        UIFrame_SetSize(arg0, 208, 60);
     }
 }
 
-void func_801DCF4C_98C9BC(UnkFireHerring* arg0) {
-    func_8036F0DC_84288C(arg0, true);
+void func_801DCF4C_98C9BC(UIFrame* arg0) {
+    UIFrame_Show(arg0, true);
     func_801DCCFC_98C76C(arg0, 1);
-    func_8036F198_842948(arg0, 0xFF);
-    func_8036F0A0_842850(arg0, false);
+    UIFrame_SetOpacity(arg0, 255);
+    UIFrame_ShowBackground(arg0, false);
 }
 
-void func_801DCFA0_98CA10(UnkFireHerring* arg0) {
-    func_8036F0A0_842850(arg0, true);
+void func_801DCFA0_98CA10(UIFrame* arg0) {
+    UIFrame_ShowBackground(arg0, true);
     func_801DCCFC_98C76C(arg0, 0);
-    func_8036F0DC_84288C(arg0, false);
+    UIFrame_Show(arg0, false);
 }
 
 void func_801DCFE8_98CA58(Photo* arg0) {
@@ -460,12 +462,12 @@ void func_801DCFE8_98CA58(Photo* arg0) {
     }
 }
 
-s32 func_801DD05C_98CACC(UnkSnowHerring* arg0, s32 arg1) {
+s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
     s32 ret = 0;
     UnkStruct800BEDF8* sp18;
 
-    func_8036B9EC_83F19C(arg0, 180, 32);
-    func_8036C898_840048(arg0, "\\l");
+    UIElement_SetTextPos(arg0, 180, 32);
+    UIElement_PrintText(arg0, "\\l");
     func_8036EB80_842330(0);
     ohWait(1);
 
@@ -486,8 +488,8 @@ s32 func_801DD05C_98CACC(UnkSnowHerring* arg0, s32 arg1) {
     if (arg1 != 0) {
         auPlaySound(0x4D);
     }
-    func_8036B9EC_83F19C(arg0, 180, 32);
-    func_8036C898_840048(arg0, "　");
+    UIElement_SetTextPos(arg0, 180, 32);
+    UIElement_PrintText(arg0, "　");
     ohWait(1);
     func_8036EE40_8425F0();
     func_8036EB80_842330(1);
@@ -701,42 +703,42 @@ void func_801DDA68_98D4D8(s32 arg0) {
     }
 
     if (arg0 != 0) {
-        func_8036D1A4_840954(D_802290E0_9D8B50, 0);
+        UIElement_SetState(D_802290E0_9D8B50, UI_NORMAL);
     } else {
-        func_8036D1A4_840954(D_802290E0_9D8B50, 1);
+        UIElement_SetState(D_802290E0_9D8B50, UI_HIDDEN);
     }
 }
 
 void func_801DDAD8_98D548(s32 arg0, s32 arg1) {
     char str[0x10];
 
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036D4A0_840C50(0);
-    func_8036A5B8_83DD68(D_802290E0_9D8B50, 0, 0x3C, 0xC8, 0x48, 0, 0, 0, 0);
-    func_8036B870_83F020(D_802290E0_9D8B50, 1, 0xFF, 0xFF, 0, 0xFF);
-    func_8036CB58_840308(D_802290E0_9D8B50, 8);
-    func_8036D4A0_840C50(0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Total")) / 2) - 71, 60);
-    func_8036C898_840048(D_802290E0_9D8B50, "Total");
-    func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-    func_8036D4A0_840C50(0);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIText_SetPrintDelay(0);
+    UIElement_FillRect(D_802290E0_9D8B50, 0, 60, 200, 72, 0, 0, 0, 0);
+    UIElement_SetColor(D_802290E0_9D8B50, UI_FOREGROUND, 255, 255, 0, 255);
+    UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+    UIText_SetPrintDelay(0);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Total")) / 2) - 71, 60);
+    UIElement_PrintText(D_802290E0_9D8B50, "Total");
+    UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+    UIText_SetPrintDelay(0);
     if (D_801F3E60_9A38D0) {
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 60);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 60);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         sprintf(str, "%5d", arg0);
-        func_8036C9C0_840170(D_802290E0_9D8B50, str);
+        UIElement_PrintAsciiString(D_802290E0_9D8B50, str);
     }
-    func_8036B9EC_83F19C(D_802290E0_9D8B50, 146, 60);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIElement_SetTextPos(D_802290E0_9D8B50, 146, 60);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     sprintf(str, "%5d", arg1);
-    func_8036C9C0_840170(D_802290E0_9D8B50, str);
-    func_8036D4A0_840C50(2);
-    func_8036B870_83F020(D_802290E0_9D8B50, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+    UIElement_PrintAsciiString(D_802290E0_9D8B50, str);
+    UIText_SetPrintDelay(2);
+    UIElement_SetColor(D_802290E0_9D8B50, UI_FOREGROUND, 255, 255, 255, 255);
 }
 
 void func_801DDCF8_98D768(GObj* arg0) {
@@ -846,8 +848,8 @@ void func_801DE02C_98DA9C(GObj* arg0) {
 
 s32 func_801DE204_98DC74(Photo* photo) {
     Unk803A6C18* sp25C;
-    UnkSnowHerring* sp258;
-    UnkSnowHerring* sp254;
+    UIElement* sp258;
+    UIElement* sp254;
     char sp214[0x40];
     s32 sp210;
     s32 sp20C;
@@ -908,7 +910,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     sp1E8 = false;
     sp258 = D_802290E0_9D8B50;
     sp254 = D_802290DC_9D8B4C;
-    func_8036A5B8_83DD68(sp258, 0xE, 0x4E, 0x8E, 0x72, 0, 0, 0, 0);
+    UIElement_FillRect(sp258, 14, 78, 142, 114, 0, 0, 0, 0);
     if (func_800BF3D4_5C274(photo->pkmnID)) {
         sp20C = true;
         D_801F3E60_9A38D0 = true;
@@ -927,67 +929,67 @@ s32 func_801DE204_98DC74(Photo* photo) {
         D_801F3E60_9A38D0 = false;
     }
     sp208 = !(photo->pkmnID < PokemonID_1004); // == 0;
-    func_8036A8E4_83E094(D_802290E0_9D8B50);
+    UIElement_Draw(D_802290E0_9D8B50);
 
     // Special pokemon (and forms)
     if (photo->specialID != 0) {
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "\\CWow! Isn't this \n");
-        func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0, 0xFF);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "\\CWow! Isn't this \n");
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
         auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
-        func_8036C898_840048(D_802290DC_9D8B4C, SpecialPokemonNames[photo->specialID]);
-        func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036C898_840048(D_802290DC_9D8B4C, "!?!");
+        UIElement_PrintText(D_802290DC_9D8B4C, SpecialPokemonNames[photo->specialID]);
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_PrintText(D_802290DC_9D8B4C, "!?!");
         if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
             D_801F3E34_9A38A4 = true;
         }
-        func_8036CB58_840308(D_802290E0_9D8B50, 8);
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Special")) / 2) - 71, 48);
-        func_8036C898_840048(D_802290E0_9D8B50, "Special");
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+        UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Special")) / 2) - 71, 48);
+        UIElement_PrintText(D_802290E0_9D8B50, "Special");
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
         if (D_801F3E60_9A38D0 && sp25C->unk_3A0.unk_14 != 0) {
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp1D4, "%5d", sp25C->unk_3A0.unk_12);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp1D4);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp1D4);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
         }
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0, 0xFF);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         func_8037519C_84894C(D_802290DC_9D8B4C, SpecialPokemonNames[photo->specialID]);
-        func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "\nhas a value of ");
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "\nhas a value of ");
         auPlaySound(0x5D);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         sprintf(sp1C4, "%5d", photo->specialBonus);
-        func_8036D4A0_840C50(0);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-        func_8036C9C0_840170(D_802290E0_9D8B50, sp1C4);
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIText_SetPrintDelay(0);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+        UIElement_PrintAsciiString(D_802290E0_9D8B50, sp1C4);
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         func_8037519C_84894C(D_802290DC_9D8B4C, "%d", photo->specialBonus);
-        func_8036C898_840048(D_802290DC_9D8B4C, "pts!");
+        UIElement_PrintText(D_802290DC_9D8B4C, "pts!");
         sp210 += photo->specialBonus;
         if (sp20C) {
             D_801F3E64_9A38D4 = sp25C->unk_3A0.unk_14 ? sp25C->unk_3A0.unk_12 : 0;
         }
     } else if (!D_801F3E34_9A38A4) {
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         if (sp208) {
-            func_8036C898_840048(D_802290DC_9D8B4C, "\\BOh! This is exactly the PKMN\nSign I've been looking for!");
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\BOh! This is exactly the PKMN\nSign I've been looking for!");
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "Let me see...\nThis is %s!!", getPokemonName(photo->pkmnID));
         }
@@ -1006,13 +1008,13 @@ s32 func_801DE204_98DC74(Photo* photo) {
             if (1) {
             }
         } else if (D_801F3E60_9A38D0) {
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036CB58_840308(D_802290E4_9D8B54, 8);
-            func_8036B9EC_83F19C(D_802290E4_9D8B54, 0, 0);
-            func_8036C898_840048(D_802290E4_9D8B54, "Last time");
-            func_8036B9EC_83F19C(D_802290E4_9D8B54, 0x90, 0);
-            func_8036C898_840048(D_802290E4_9D8B54, "This time");
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetFont(D_802290E4_9D8B54, FONT_8);
+            UIElement_SetTextPos(D_802290E4_9D8B54, 0, 0);
+            UIElement_PrintText(D_802290E4_9D8B54, "Last time");
+            UIElement_SetTextPos(D_802290E4_9D8B54, 144, 0);
+            UIElement_PrintText(D_802290E4_9D8B54, "This time");
             if (!sp1E8) {
                 D_801F3E2C_9A389C = 0;
                 sp1BC = func_800A85E8(func_801DDCF8_98D768, LINK_6, DL_LINK_0, NULL);
@@ -1036,43 +1038,43 @@ s32 func_801DE204_98DC74(Photo* photo) {
             D_801F3E2C_9A389C = 0;
             sp1B4 = func_800A85E8(func_801DDCF8_98D768, LINK_6, DL_LINK_0, NULL);
             sp1B4->userData = func_800BF710_5C5B0(photo->pkmnID);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
             auPlaySound(0x4D);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%s's picture\nis in the PKMN Report already.", getPokemonName(photo->pkmnID));
-            func_8036D4A0_840C50(0);
+            UIText_SetPrintDelay(0);
             if (photo->specialID != 0) {
                 auPlaySound(0x4E);
             }
             if (D_801F3E60_9A38D0 && sp25C->unk_3A0.unk_14 != 0) {
-                func_8036CB58_840308(D_802290E0_9D8B50, 8);
-                func_8036D4A0_840C50(0);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Special")) / 2) - 71, 48);
-                func_8036C898_840048(D_802290E0_9D8B50, "Special");
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+                UIText_SetPrintDelay(0);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
+                UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Special")) / 2) - 71, 48);
+                UIElement_PrintText(D_802290E0_9D8B50, "Special");
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp1A4, "%5d", sp25C->unk_3A0.unk_12);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp1A4);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp1A4);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 D_801F3E64_9A38D4 = sp25C->unk_3A0.unk_12;
             }
             if (D_801F3E60_9A38D0) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
-                func_8036CB58_840308(D_802290E4_9D8B54, 8);
-                func_8036B9EC_83F19C(D_802290E4_9D8B54, 0, 0);
-                func_8036C898_840048(D_802290E4_9D8B54, "Last time");
-                func_8036B9EC_83F19C(D_802290E4_9D8B54, 0x90, 0);
-                func_8036C898_840048(D_802290E4_9D8B54, "This time");
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
+                UIElement_SetFont(D_802290E4_9D8B54, FONT_8);
+                UIElement_SetTextPos(D_802290E4_9D8B54, 0, 0);
+                UIElement_PrintText(D_802290E4_9D8B54, "Last time");
+                UIElement_SetTextPos(D_802290E4_9D8B54, 144, 0);
+                UIElement_PrintText(D_802290E4_9D8B54, "This time");
             }
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
-            func_8036D4A0_840C50(2);
+            UIText_SetPrintDelay(2);
             if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
                 D_801F3E34_9A38A4 = true;
             }
@@ -1082,29 +1084,29 @@ s32 func_801DE204_98DC74(Photo* photo) {
     }
 
     if (!sp208 && !D_801F3E34_9A38A4) {
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
         auPlaySound(0x4D);
-        func_8036CB58_840308(D_802290E0_9D8B50, 8);
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Size")) / 2) - 71, 48);
-        func_8036C898_840048(D_802290E0_9D8B50, "Size");
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "How's the Size?");
+        UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Size")) / 2) - 71, 48);
+        UIElement_PrintText(D_802290E0_9D8B50, "Size");
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "How's the Size?");
         if (D_801F3E60_9A38D0) {
             sp19C = sp25C->unk_3A0.unk_0E / 10000.0f;
             sp1A0 = ((u32) (((sp25C->unk_3A0.unk_0C * sp19C) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp18C, "%5d", sp1A0);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp18C);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp18C);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp25C->unk_3A0.unk_0C < 245.0f || sp25C->unk_3A0.unk_0E < 6000.0f) {
                 sp1FC = true;
             }
@@ -1121,84 +1123,84 @@ s32 func_801DE204_98DC74(Photo* photo) {
         if (photo->sizeParam2 < 245.0f || photo->sizeParam1 < 6000.0f) {
             sp204 = 1;
             auPlaySound(0x5F);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp17C, "%5d", sp1FA);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp17C);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp17C);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%d", sp1FA);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "pts. Hmm...");
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-            func_8036C898_840048(D_802290DC_9D8B4C, "It's not very good.");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "pts. Hmm...");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+            UIElement_PrintText(D_802290DC_9D8B4C, "It's not very good.");
             if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
                 D_801F3E34_9A38A4 = true;
             }
             sp200 = 1;
             auPlaySound(0x4D);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "\\HYou were close.");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close.");
             if (photo->sizeParam2 < 245.0f) {
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
-                func_8036C898_840048(D_802290DC_9D8B4C, "But it would have been better\nif it were a larger shot.");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
+                UIElement_PrintText(D_802290DC_9D8B4C, "But it would have been better\nif it were a larger shot.");
             } else {
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
-                func_8036C898_840048(D_802290DC_9D8B4C, "It would be better if more of\nthe Pokεmon were in the shot.");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
+                UIElement_PrintText(D_802290DC_9D8B4C, "It would be better if more of\nthe Pokεmon were in the shot.");
             }
         } else if (sp1FA < 795.0f) {
             auPlaySound(0x5E);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp16C, "%5d", sp1FA);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp16C);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp16C);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%d", sp1FA);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "pts! Hmm...");
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-            func_8036C898_840048(D_802290DC_9D8B4C, "It's so-so.");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "pts! Hmm...");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+            UIElement_PrintText(D_802290DC_9D8B4C, "It's so-so.");
         } else {
             auPlaySound(0x5D);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp15C, "%5d", sp1FA);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp15C);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp15C);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%d", sp1FA);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "pts! All right!");
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-            func_8036C898_840048(D_802290DC_9D8B4C, "It's very nice!");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "pts! All right!");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+            UIElement_PrintText(D_802290DC_9D8B4C, "It's very nice!");
         }
         auPlaySound(0x4E);
         func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
@@ -1207,28 +1209,28 @@ s32 func_801DE204_98DC74(Photo* photo) {
         }
     }
     if (!sp208 && !D_801F3E34_9A38A4 && sp204 == 0) {
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
         auPlaySound(0x4D);
-        func_8036CB58_840308(D_802290E0_9D8B50, 8);
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Pose")) / 2) - 71, 48);
-        func_8036C898_840048(D_802290E0_9D8B50, "Pose");
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "How's the Pose?");
+        UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Pose")) / 2) - 71, 48);
+        UIElement_PrintText(D_802290E0_9D8B50, "Pose");
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "How's the Pose?");
         if (D_801F3E60_9A38D0 && !sp1FC) {
             sp158 = sp25C->unk_3A0.unk_10;
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp148, "%5d", sp158);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp148);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp148);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp158 < 200) {
                 sp1FC = true;
             }
@@ -1247,32 +1249,32 @@ s32 func_801DE204_98DC74(Photo* photo) {
         if (photo->commentID != 0) {
             if (photo->posePts > 1000) {
                 auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
-                func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
             }
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
-            func_8036C898_840048(D_802290DC_9D8B4C, PhotoComments[photo->commentID]);
-            func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
+            UIElement_PrintText(D_802290DC_9D8B4C, PhotoComments[photo->commentID]);
+            UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
             if (photo->posePts < 200) {
                 auPlaySound(0x5F);
             } else {
                 auPlaySound(0x5D);
             }
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp138, "%5d", photo->posePts);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, sp138);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, sp138);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%d", photo->posePts);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "pts!");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "pts!");
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
             if (photo->posePts < 200) {
@@ -1280,82 +1282,82 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
                     D_801F3E34_9A38A4 = true;
                 }
-                func_8036A8E4_83E094(D_802290DC_9D8B4C);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "Hmm...\nNot so good.");
+                UIElement_Draw(D_802290DC_9D8B4C);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "Hmm...\nNot so good.");
             }
         } else {
             if (photo->posePts < 200) {
                 sp204 = 2;
                 auPlaySound(0x5F);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp128, "%5d", photo->posePts);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp128);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp128);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
                 func_8037519C_84894C(D_802290DC_9D8B4C, "%d", photo->posePts);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "pts! Hmm...");
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-                func_8036C898_840048(D_802290DC_9D8B4C, "It's not very good.");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "pts! Hmm...");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+                UIElement_PrintText(D_802290DC_9D8B4C, "It's not very good.");
                 if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
                     D_801F3E34_9A38A4 = true;
                 }
                 sp200 = 1;
                 auPlaySound(0x4D);
-                func_8036A8E4_83E094(D_802290DC_9D8B4C);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "\\HYou were close, but you see...\nIt disappoints Pokεmon to\nbe photographed from behind!");
+                UIElement_Draw(D_802290DC_9D8B4C);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close, but you see...\nIt disappoints Pokεmon to\nbe photographed from behind!");
             } else if (photo->posePts < 800) {
                 auPlaySound(0x5E);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp118, "%5d", photo->posePts);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp118);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp118);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
                 func_8037519C_84894C(D_802290DC_9D8B4C, "%d", photo->posePts);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "pts! Hmm...");
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-                func_8036C898_840048(D_802290DC_9D8B4C, "It's so-so.");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "pts! Hmm...");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+                UIElement_PrintText(D_802290DC_9D8B4C, "It's so-so.");
             } else {
                 auPlaySound(0x5D);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp108, "%5d", photo->posePts);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp108);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp108);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
                 func_8037519C_84894C(D_802290DC_9D8B4C, "%d", photo->posePts);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "pts! All right!");
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-                func_8036C898_840048(D_802290DC_9D8B4C, "It's very nice!");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "pts! All right!");
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+                UIElement_PrintText(D_802290DC_9D8B4C, "It's very nice!");
             }
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
@@ -1365,29 +1367,29 @@ s32 func_801DE204_98DC74(Photo* photo) {
         }
     }
     if (!sp208 && !D_801F3E34_9A38A4 && sp204 == 0) {
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
         auPlaySound(0x4D);
-        func_8036CB58_840308(D_802290E0_9D8B50, 8);
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Technique")) / 2) - 71, 48);
-        func_8036C898_840048(D_802290E0_9D8B50, "Technique");
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "How's the Technique?");
+        UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Technique")) / 2) - 71, 48);
+        UIElement_PrintText(D_802290E0_9D8B50, "Technique");
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "How's the Technique?");
         if (D_801F3E60_9A38D0 && !sp1FC) {
             if (sp25C->unk_3A0.unk_07 != 0) {
-                func_8036CB58_840308(D_802290E0_9D8B50, 8);
-                func_8036D4A0_840C50(0);
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+                UIText_SetPrintDelay(0);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp214, "ｘ２");
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 38 - func_8036D4F0_840CA0(sp214), 48);
-                func_8036C898_840048(D_802290E0_9D8B50, sp214);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
+                UIElement_PrintText(D_802290E0_9D8B50, sp214);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 D_801F3E64_9A38D4 += D_801F3E64_9A38D4; // TODO points?
             } else {
                 sp1FC = true;
@@ -1401,38 +1403,38 @@ s32 func_801DE204_98DC74(Photo* photo) {
         auPlaySoundWithParams(0x56, 0x7FFF, 0x40, D_801F3E3C_9A38AC[sp1F0++] + 1.0, 0x1E);
         func_801DD1A8_98CC18(0x2D);
         if (photo->isWellFramed) {
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
-            func_8036C898_840048(D_802290DC_9D8B4C, "OK! The Pokεmon is right in");
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-            func_8036C898_840048(D_802290DC_9D8B4C, "the middle of the frame.");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
+            UIElement_PrintText(D_802290DC_9D8B4C, "OK! The Pokεmon is right in");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+            UIElement_PrintText(D_802290DC_9D8B4C, "the middle of the frame.");
             if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
                 D_801F3E34_9A38A4 = true;
             }
             auPlaySound(0x4D);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "I can ");
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "I can ");
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp214, "ｘ２");
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0xB8 - func_8036D4F0_840CA0(sp214), 48);
-            func_8036C898_840048(D_802290E0_9D8B50, sp214);
-            func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0, 0xFF);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "double ");
-            func_8036B870_83F020(D_802290DC_9D8B4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - UIText_GetStringWidth(sp214), 48);
+            UIElement_PrintText(D_802290E0_9D8B50, sp214);
+            UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "double ");
+            UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
             auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "the score for you!");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "the score for you!");
             sp210 *= 2;
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
@@ -1440,19 +1442,19 @@ s32 func_801DE204_98DC74(Photo* photo) {
             sp204 = 3;
             auPlaySound(0x5F);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "\\QWait...\nYour Pokεmon isn't\nin the middle of the frame.");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\QWait...\nYour Pokεmon isn't\nin the middle of the frame.");
             if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
                 D_801F3E34_9A38A4 = true;
             }
             sp200 = 1;
             auPlaySound(0x4D);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
         }
         if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
             D_801F3E34_9A38A4 = true;
@@ -1460,59 +1462,59 @@ s32 func_801DE204_98DC74(Photo* photo) {
     }
     if (!sp208 && !D_801F3E34_9A38A4 && sp204 == 0) {
         if (photo->unk_9 != 0 && photo->samePkmnBonus != 0) {
-            func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+            UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
             if (D_801F3E60_9A38D0 && sp25C->unk_3A0.unk_04 != 0) {
                 sp104 = sp25C->unk_3A0.unk_04;
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(spF4, "%5d", sp104);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, spF4);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, spF4);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 D_801F3E64_9A38D4 += sp104;
             }
             sp210 += photo->samePkmnBonus;
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
-            func_8036C898_840048(D_802290E0_9D8B50, "Same †‡");
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "\\CWow!");
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\CWow!");
             auPlaySoundWithParams(0x56, 0x7FFF, 0x40, D_801F3E3C_9A38AC[sp1F0++] + 1.0, 0x1E);
             func_801DD1A8_98CC18(0x2D);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x10);
-            func_8036C898_840048(D_802290DC_9D8B4C, "There are other ");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
+            UIElement_PrintText(D_802290DC_9D8B4C, "There are other ");
             auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%s", getPokemonName(photo->pkmnID));
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-            func_8036C898_840048(D_802290DC_9D8B4C, "in the picture.");
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+            UIElement_PrintText(D_802290DC_9D8B4C, "in the picture.");
             if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
                 D_801F3E34_9A38A4 = true;
             }
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "I'll give you an extra\n");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "I'll give you an extra\n");
             auPlaySound(0x5D);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(spE4, "%5d", photo->samePkmnBonus);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, spE4);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, spE4);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
             func_8037519C_84894C(D_802290DC_9D8B4C, "%spts.", func_8037501C_8487CC("%d", photo->samePkmnBonus));
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
@@ -1521,22 +1523,22 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 D_801F3E34_9A38A4 = true;
             }
         } else if (D_801F3E60_9A38D0 && sp25C->unk_3A0.unk_04 != 0) {
-            func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
-            func_8036C898_840048(D_802290E0_9D8B50, "Same †‡");
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             spE0 = sp25C->unk_3A0.unk_04;
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(spD0, "%5d", spE0);
-            func_8036D4A0_840C50(0);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-            func_8036C9C0_840170(D_802290E0_9D8B50, spD0);
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIText_SetPrintDelay(0);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+            UIElement_PrintAsciiString(D_802290E0_9D8B50, spD0);
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             D_801F3E64_9A38D4 += spE0;
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
         }
@@ -1553,156 +1555,156 @@ s32 func_801DE204_98DC74(Photo* photo) {
         spC4 = photo->sizeParam1 / 10000.0f;
         spCA = ((u32) (((photo->sizeParam2 * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
         auPlaySound(0x4D);
-        func_8036A8E4_83E094(D_802290E0_9D8B50);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036D4A0_840C50(0);
+        UIElement_Draw(D_802290E0_9D8B50);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIText_SetPrintDelay(0);
         if ((sp20C && sp25C->unk_3A0.unk_14 != 0) || photo->specialID != 0) {
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x4B, 0x30);
-            func_8036C898_840048(D_802290E0_9D8B50, "Special");
+            UIElement_SetTextPos(D_802290E0_9D8B50, 75, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Special");
             if (sp20C) {
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
                 if (sp25C->unk_3A0.unk_14 != 0) {
-                    func_8036D448_840BF8(0);
-                    func_8036D3E8_840B98(0, 4);
+                    UIText_SetShadowOffset(0);
+                    UIText_SetSpacing(0, 4);
                     sprintf(spB4, "%5d", sp25C->unk_3A0.unk_12);
-                    func_8036D4A0_840C50(0);
-                    func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                    func_8036C9C0_840170(D_802290E0_9D8B50, spB4);
-                    func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                    UIText_SetPrintDelay(0);
+                    UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                    UIElement_PrintAsciiString(D_802290E0_9D8B50, spB4);
+                    UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 }
             }
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
             if (photo->specialID != 0) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(spA4, "%5d", photo->specialBonus);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, spA4);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, spA4);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             }
             ohWait(2);
         }
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
-        func_8036CB58_840308(D_802290E0_9D8B50, 8);
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Size")) / 2) - 71, 48);
-        func_8036C898_840048(D_802290E0_9D8B50, "Size");
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
+        UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Size")) / 2) - 71, 48);
+        UIElement_PrintText(D_802290E0_9D8B50, "Size");
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
         if (sp20C) {
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
             spCE = spCC;
             if (spCE != 0) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp94, "%5d", spCE);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp94);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp94);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             }
         }
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         sprintf(sp84, "%5d", spCA);
-        func_8036D4A0_840C50(0);
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-        func_8036C9C0_840170(D_802290E0_9D8B50, sp84);
-        func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+        UIText_SetPrintDelay(0);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+        UIElement_PrintAsciiString(D_802290E0_9D8B50, sp84);
+        UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
         ohWait(2);
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
         if ((sp20C && sp25C->unk_3A0.unk_10 != 0) || photo->posePts != 0) {
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Pose")) / 2) - 71, 48);
-            func_8036C898_840048(D_802290E0_9D8B50, "Pose");
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Pose")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Pose");
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp20C) {
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
                 spCE = sp25C->unk_3A0.unk_10;
                 if (spCE != 0) {
-                    func_8036D448_840BF8(0);
-                    func_8036D3E8_840B98(0, 4);
+                    UIText_SetShadowOffset(0);
+                    UIText_SetSpacing(0, 4);
                     sprintf(sp74, "%5d", spCE);
-                    func_8036D4A0_840C50(0);
-                    func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                    func_8036C9C0_840170(D_802290E0_9D8B50, sp74);
-                    func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                    UIText_SetPrintDelay(0);
+                    UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                    UIElement_PrintAsciiString(D_802290E0_9D8B50, sp74);
+                    UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 }
             }
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
             if (photo->posePts != 0) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp64, "%5d", photo->posePts);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp64);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp64);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             }
             ohWait(2);
         }
-        func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
+        UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
         if ((sp20C && sp25C->unk_3A0.unk_07 != 0) || photo->isWellFramed) {
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Technique")) / 2) - 71, 48);
-            func_8036C898_840048(D_802290E0_9D8B50, "Technique");
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Technique")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Technique");
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             sprintf(sp214, "ｘ２");
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x26 - func_8036D4F0_840CA0(sp214), 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
             if (sp20C && sp25C->unk_3A0.unk_07 != 0) {
-                func_8036C898_840048(D_802290E0_9D8B50, sp214);
+                UIElement_PrintText(D_802290E0_9D8B50, sp214);
             }
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0xB8 - func_8036D4F0_840CA0(sp214), 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - UIText_GetStringWidth(sp214), 48);
             if (photo->isWellFramed) {
-                func_8036C898_840048(D_802290E0_9D8B50, sp214);
+                UIElement_PrintText(D_802290E0_9D8B50, sp214);
             }
         }
         ohWait(2);
         if ((sp20C && sp25C->unk_3A0.unk_04 > 0) || photo->samePkmnBonus > 0) {
-            func_8036C2FC_83FAAC(D_802290E0_9D8B50, 0xC, 0, 0, 0, 0x104, 0x3B);
-            func_8036CB58_840308(D_802290E0_9D8B50, 8);
-            func_8036D4A0_840C50(0);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
-            func_8036C898_840048(D_802290E0_9D8B50, "Same †‡");
-            func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+            UIElement_VertScroll(D_802290E0_9D8B50, 12, 0, 0, 0, 260, 59);
+            UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
+            UIText_SetPrintDelay(0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp20C) {
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
                 spCE = sp25C->unk_3A0.unk_04;
                 if (spCE != 0) {
-                    func_8036D448_840BF8(0);
-                    func_8036D3E8_840B98(0, 4);
+                    UIText_SetShadowOffset(0);
+                    UIText_SetSpacing(0, 4);
                     sprintf(sp54, "%5d", spCE);
-                    func_8036D4A0_840C50(0);
-                    func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 0x30);
-                    func_8036C9C0_840170(D_802290E0_9D8B50, sp54);
-                    func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                    UIText_SetPrintDelay(0);
+                    UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
+                    UIElement_PrintAsciiString(D_802290E0_9D8B50, sp54);
+                    UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
                 }
             }
-            func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
             if (photo->samePkmnBonus != 0) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
                 sprintf(sp44, "%5d", photo->samePkmnBonus);
-                func_8036D4A0_840C50(0);
-                func_8036B9EC_83F19C(D_802290E0_9D8B50, 0x92, 0x30);
-                func_8036C9C0_840170(D_802290E0_9D8B50, sp44);
-                func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
+                UIText_SetPrintDelay(0);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 146, 48);
+                UIElement_PrintAsciiString(D_802290E0_9D8B50, sp44);
+                UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             }
             ohWait(2);
         }
@@ -1719,15 +1721,15 @@ s32 func_801DE204_98DC74(Photo* photo) {
         if (D_801F3E34_9A38A4 != 0 && sp204 != 0) {
             auPlaySound(0x55);
             if (sp200 == 0) {
-                func_8036A8E4_83E094(D_802290DC_9D8B4C);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "\\HYou were close.\nI expect a better shot\nnext time.");
+                UIElement_Draw(D_802290DC_9D8B4C);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close.\nI expect a better shot\nnext time.");
                 func_801DD05C_98CACC(D_802290DC_9D8B4C, 1);
             }
             sp1EC = 0;
-            func_8036A8E4_83E094(D_802290E4_9D8B54);
-            func_8036A8E4_83E094(D_802290E0_9D8B50);
+            UIElement_Draw(D_802290E4_9D8B54);
+            UIElement_Draw(D_802290E0_9D8B50);
         }
         if (sp204 == 0) {
             if (!sp208) {
@@ -1735,14 +1737,14 @@ s32 func_801DE204_98DC74(Photo* photo) {
             } else {
                 auPlaySound(0x61);
             }
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "\\GWonderful!\nYour work is impeccable.\nKeep up the good work!");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\GWonderful!\nYour work is impeccable.\nKeep up the good work!");
             sp1EC = 0xA;
             func_801DD05C_98CACC(D_802290DC_9D8B4C, 1);
-            func_8036A8E4_83E094(D_802290E4_9D8B54);
-            func_8036A8E4_83E094(D_802290E0_9D8B50);
+            UIElement_Draw(D_802290E4_9D8B54);
+            UIElement_Draw(D_802290E0_9D8B50);
         }
         func_801DCFE8_98CA58(photo);
     } else if (sp210 > D_801F3E64_9A38D4) {
@@ -1751,43 +1753,43 @@ s32 func_801DE204_98DC74(Photo* photo) {
         } else {
             auPlaySound(0x61);
         }
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "\\FWell done.\nThis picture is much better\nthan the last one.");
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "\\FWell done.\nThis picture is much better\nthan the last one.");
         func_801DD05C_98CACC(D_802290DC_9D8B4C, 1);
         D_801F3E2C_9A389C = 3;
         sp1EC = 0x3C;
-        func_8036A8E4_83E094(D_802290E4_9D8B54);
-        func_8036A8E4_83E094(D_802290E0_9D8B50);
+        UIElement_Draw(D_802290E4_9D8B54);
+        UIElement_Draw(D_802290E0_9D8B50);
         func_801DCFE8_98CA58(photo);
     } else {
         sp3C = 0;
         if (sp210 == D_801F3E64_9A38D4) {
             auPlaySound(0x4D);
             if (sp208) {
-                func_8036A8E4_83E094(D_802290DC_9D8B4C);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "Hmm...\nBoth pictures are\npretty good.");
+                UIElement_Draw(D_802290DC_9D8B4C);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "Hmm...\nBoth pictures are\npretty good.");
             } else {
-                func_8036A8E4_83E094(D_802290DC_9D8B4C);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
-                func_8036C898_840048(D_802290DC_9D8B4C, "Hmm... It's the same score\nas last time.");
+                UIElement_Draw(D_802290DC_9D8B4C);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
+                UIElement_PrintText(D_802290DC_9D8B4C, "Hmm... It's the same score\nas last time.");
             }
         } else {
             auPlaySound(0x55);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(D_802290DC_9D8B4C, "Oh, dear... Your last shot\nwas better than this.");
+            UIElement_Draw(D_802290DC_9D8B4C);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
+            UIElement_PrintText(D_802290DC_9D8B4C, "Oh, dear... Your last shot\nwas better than this.");
         }
         func_801DD05C_98CACC(D_802290DC_9D8B4C, 1);
-        func_8036A8E4_83E094(D_802290DC_9D8B4C);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036C898_840048(D_802290DC_9D8B4C, "Which picture are you going\nto save to your Report?\nPress \\a to Save.");
+        UIElement_Draw(D_802290DC_9D8B4C);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_PrintText(D_802290DC_9D8B4C, "Which picture are you going\nto save to your Report?\nPress \\a to Save.");
         func_801E41FC_993C6C(NULL, &sp3C);
         ohWait(8);
 
@@ -1812,16 +1814,16 @@ s32 func_801DE204_98DC74(Photo* photo) {
             ohWait(1);
         }
 
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0x20);
-        func_8036C898_840048(D_802290DC_9D8B4C, "                             ");
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
+        UIElement_PrintText(D_802290DC_9D8B4C, "                             ");
     }
 
     ohWait(1);
-    func_8036A8E4_83E094(D_802290E4_9D8B54);
-    func_8036A8E4_83E094(D_802290E0_9D8B50);
-    func_8036A8E4_83E094(D_802290DC_9D8B4C);
+    UIElement_Draw(D_802290E4_9D8B54);
+    UIElement_Draw(D_802290E0_9D8B50);
+    UIElement_Draw(D_802290DC_9D8B4C);
     func_8036EE40_8425F0();
     ohWait(2);
     func_801DD638_98D0A8(0);
@@ -1889,7 +1891,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
         sp5C->sprite.x = sp48 + sp58 + arg2;
 
         if (ABS(sp54 - sp58) < 0.1) {
-            func_8036D4A0_840C50(2);
+            UIText_SetPrintDelay(2);
             func_8036EB80_842330(1);
             sp40 = true;
             i = func_801DE204_98DC74(arg0);
@@ -1910,7 +1912,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
             for (i--; i > 0; i--) {
                 ohWait(1);
             }
-            func_8036D4A0_840C50(0);
+            UIText_SetPrintDelay(0);
             func_8036EB80_842330(0);
             sp54 = -250.0f;
         }
@@ -1934,7 +1936,7 @@ void func_801E2454_991EC4(void) {
     char* sp48;
     Photo* photo;
     UNUSED s32 pad2;
-    UnkSnowHerring* sp3C;
+    UIElement* sp3C;
 
     sp54 = -26;
     sp50 = 0;
@@ -1955,9 +1957,9 @@ void func_801E2454_991EC4(void) {
         return;
     }
     sp3C = D_802290E0_9D8B50;
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036CB58_840308(sp3C, 8);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetFont(sp3C, FONT_8);
 
     for (i = 0, sp58 = 0; i < 60; i++) {
         photo = func_801E459C_99400C(i);
@@ -1969,23 +1971,23 @@ void func_801E2454_991EC4(void) {
         } else if (photo->pkmnID >= PokemonID_1004) {
 
         } else {
-            func_8036A5B8_83DD68(sp3C, sp54 + 0x4C, 0x5A, sp54 + 0x84, 0x64, 0, 0, 0, 0);
-            func_8036A5B8_83DD68(sp3C, sp54 + 71, 0xF, sp54 + 0x7F, 0x19, 0, 0, 0, 0);
+            UIElement_FillRect(sp3C, sp54 + 76, 90, sp54 + 132, 100, 0, 0, 0, 0);
+            UIElement_FillRect(sp3C, sp54 + 71, 15, sp54 + 127, 25, 0, 0, 0, 0);
             if (sp54 == 0) {
                 sprintf(D_802290E8_9D8B58, "%7d", photo->unk_4);
-                func_8036B9EC_83F19C(sp3C, sp54 + 0x4C, 0x5A);
-                func_8036C9C0_840170(sp3C, D_802290E8_9D8B58);
+                UIElement_SetTextPos(sp3C, sp54 + 76, 90);
+                UIElement_PrintAsciiString(sp3C, D_802290E8_9D8B58);
             }
-            func_8036A8E4_83E094(D_802290E4_9D8B54);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
+            UIElement_Draw(D_802290E4_9D8B54);
+            UIElement_Draw(D_802290DC_9D8B4C);
             sp48 = getPokemonName(photo->pkmnID);
             if (sp48 != NULL) {
-                func_8036D448_840BF8(0);
-                func_8036D3E8_840B98(0, 4);
-                func_8036CB58_840308(D_802290E4_9D8B54, 0xC);
-                func_8036B9EC_83F19C(D_802290E4_9D8B54, ((SCREEN_WIDTH - func_8036D4F0_840CA0(sp48)) / 2) - 71, 28);
-                func_8036C898_840048(D_802290E4_9D8B54, sp48);
-                func_8036D1A4_840954(D_802290E4_9D8B54, 0);
+                UIText_SetShadowOffset(0);
+                UIText_SetSpacing(0, 4);
+                UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
+                UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth(sp48)) / 2) - 71, 28);
+                UIElement_PrintText(D_802290E4_9D8B54, sp48);
+                UIElement_SetState(D_802290E4_9D8B54, UI_NORMAL);
             }
             if (sp54 != 0) {
                 func_801E1FA8_991A18(photo, 0, sp54);
@@ -2008,23 +2010,23 @@ void func_801E2454_991EC4(void) {
         if (photo->pkmnID < PokemonID_1004) {
 
         } else {
-            func_8036A8E4_83E094(D_802290E0_9D8B50);
-            func_8036A8E4_83E094(D_802290E4_9D8B54);
-            func_8036A8E4_83E094(D_802290DC_9D8B4C);
+            UIElement_Draw(D_802290E0_9D8B50);
+            UIElement_Draw(D_802290E4_9D8B54);
+            UIElement_Draw(D_802290DC_9D8B4C);
             photo->unk_1A_13 = 1;
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
-            func_8036CB58_840308(D_802290E4_9D8B54, 0xC);
-            func_8036B9EC_83F19C(D_802290E4_9D8B54, 0x3C, 0x1C);
-            func_8036C898_840048(D_802290E4_9D8B54, "PKMN Sign");
-            func_8036D1A4_840954(D_802290E4_9D8B54, 0);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
+            UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
+            UIElement_SetTextPos(D_802290E4_9D8B54, 60, 28);
+            UIElement_PrintText(D_802290E4_9D8B54, "PKMN Sign");
+            UIElement_SetState(D_802290E4_9D8B54, UI_NORMAL);
             func_801E1FA8_991A18(photo, 0, sp54);
             break;
         }
     }
-    func_8036A8E4_83E094(D_802290E4_9D8B54);
-    func_8036A8E4_83E094(sp3C);
-    func_8036A8E4_83E094(D_802290DC_9D8B4C);
+    UIElement_Draw(D_802290E4_9D8B54);
+    UIElement_Draw(sp3C);
+    UIElement_Draw(D_802290DC_9D8B4C);
     func_8036EE40_8425F0();
 }
 
@@ -2084,39 +2086,39 @@ s32 func_801E2A68_9924D8(void) {
 void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
     UNUSED s32 pad[0x7];
 
-    func_8036A8E4_83E094(D_802290E0_9D8B50);
-    func_8036D4A0_840C50(0);
-    func_8036CB58_840308(D_802290E0_9D8B50, 0xC);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIElement_Draw(D_802290E0_9D8B50);
+    UIText_SetPrintDelay(0);
+    UIElement_SetFont(D_802290E0_9D8B50, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
 
     if (arg2 < 0) {
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 10);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 10);
         func_8037519C_84894C(D_802290E0_9D8B50, "Pokεmon in Report");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 10);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 10);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g kind%s", numPokemon, numPokemon != 1 ? "s" : "");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 42);
-        func_8036C898_840048(D_802290E0_9D8B50, "Report Score");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 42);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 42);
+        UIElement_PrintText(D_802290E0_9D8B50, "Report Score");
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 42);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g point%s", numPoints, numPoints != 1 ? "s" : "");
     } else {
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 2);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 2);
         func_8037519C_84894C(D_802290E0_9D8B50, "Pokεmon in Report", numPokemon != 1 ? "s" : "");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 2);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 2);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g kind%s", numPokemon, numPokemon != 1 ? "s" : "");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 18);
-        func_8036C898_840048(D_802290E0_9D8B50, "Report Score");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 18);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 18);
+        UIElement_PrintText(D_802290E0_9D8B50, "Report Score");
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 18);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g point%s", numPoints, numPoints != 1 ? "s" : "");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 34);
-        func_8036C898_840048(D_802290E0_9D8B50, "Pictures in Album");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 34);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 34);
+        UIElement_PrintText(D_802290E0_9D8B50, "Pictures in Album");
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 34);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s",
                              func_801E2A68_9924D8() - arg2,
                              (func_801E2A68_9924D8() - arg2) != 1 ? "s" : "");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 0, 50);
-        func_8036C898_840048(D_802290E0_9D8B50, "Left in Album");
-        func_8036B9EC_83F19C(D_802290E0_9D8B50, 109, 50);
+        UIElement_SetTextPos(D_802290E0_9D8B50, 0, 50);
+        UIElement_PrintText(D_802290E0_9D8B50, "Left in Album");
+        UIElement_SetTextPos(D_802290E0_9D8B50, 109, 50);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s",
                              (func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2,
                              ((func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2) != 1 ? "s" : "");
@@ -2148,19 +2150,19 @@ void func_801E2ED4_992944(s32 arg0) {
     sp34 = 0;
     sp30 = 0;
 
-    func_8036A8E4_83E094(D_802290E4_9D8B54);
-    func_8036A8E4_83E094(D_802290DC_9D8B4C);
-    func_8036B5F0_83EDA0(D_802290E0_9D8B50);
-    D_802290E0_9D8B50 = func_8036AC6C_83E41C(0x36, 0x58, 0xD8, 0x48, 0);
-    func_8036B734_83EEE4(D_802290E0_9D8B50);
-    func_8036CB58_840308(D_802290E0_9D8B50, 0xC);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036A8E4_83E094(D_802290E0_9D8B50);
-    func_8036D1A4_840954(D_802290E0_9D8B50, 0);
-    func_8036CB58_840308(D_802290E4_9D8B54, 0xC);
-    func_8036B9EC_83F19C(D_802290E4_9D8B54, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Evaluation")) / 2) - 71, 34);
-    func_8036C898_840048(D_802290E4_9D8B54, "Evaluation");
+    UIElement_Draw(D_802290E4_9D8B54);
+    UIElement_Draw(D_802290DC_9D8B4C);
+    UIElement_Delete(D_802290E0_9D8B50);
+    D_802290E0_9D8B50 = UIElement_Create(54, 88, 216, 72, 0);
+    UIElement_DrawBackground(D_802290E0_9D8B50);
+    UIElement_SetFont(D_802290E0_9D8B50, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_Draw(D_802290E0_9D8B50);
+    UIElement_SetState(D_802290E0_9D8B50, UI_NORMAL);
+    UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
+    UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth("Evaluation")) / 2) - 71, 34);
+    UIElement_PrintText(D_802290E4_9D8B54, "Evaluation");
 
     for (i = 0; i < 60; i++) {
         photo = func_801E459C_99400C(i);
@@ -2179,17 +2181,17 @@ void func_801E2ED4_992944(s32 arg0) {
     func_801E4E04_994874();
     sp48 = func_801E28CC_99233C(&sp44);
     func_801E2AE8_992558(sp54, sp4C, sp30 ? sp30 : -1);
-    func_8036D4A0_840C50(2);
-    func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIText_SetPrintDelay(2);
+    UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 0);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
 
     if (sp48 != sp4C && sp30 > 0) {
-        func_8036C898_840048(D_802290DC_9D8B4C, "I'll save the results of today's\ntrip in the PKMN Report\nand the PKMN Album!");
+        UIElement_PrintText(D_802290DC_9D8B4C, "I'll save the results of today's\ntrip in the PKMN Report\nand the PKMN Album!");
     } else if (sp30 == 0) {
-        func_8036C898_840048(D_802290DC_9D8B4C, "I'll save the results of\ntoday's trip in the\nPKMN Report!");
+        UIElement_PrintText(D_802290DC_9D8B4C, "I'll save the results of\ntoday's trip in the\nPKMN Report!");
     } else {
-        func_8036C898_840048(D_802290DC_9D8B4C, "I'll save the results of today's\ntrip in the PKMN Album!");
+        UIElement_PrintText(D_802290DC_9D8B4C, "I'll save the results of today's\ntrip in the PKMN Album!");
     }
 
     func_80374F30_8486E0(D_802290DC_9D8B4C, true);
@@ -2250,10 +2252,10 @@ void func_801E2ED4_992944(s32 arg0) {
             func_800C0314_5D1B4(0, 1);
         }
     }
-    func_8036B9EC_83F19C(D_802290DC_9D8B4C, 0, 0);
-    func_8036D4A0_840C50(2);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 0);
+    UIText_SetPrintDelay(2);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
 
     if (sp38 != 0 || D_801F3E28_9A3898 != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", get_player_name());
@@ -2303,7 +2305,7 @@ void func_801E2ED4_992944(s32 arg0) {
 // TODO probably needs a struct on the stack - this is broken
 void func_801E3934_9933A4(void) {
     UNUSED s32 pad[1];
-    UnkSnowHerring* sp28 = D_802290DC_9D8B4C;
+    UIElement* sp28 = D_802290DC_9D8B4C;
     UNUSED s32 pad2[2];
     s32 sp1C;
 
@@ -2316,9 +2318,9 @@ void func_801E3934_9933A4(void) {
         D_801F3E28_9A3898 = 0x20;
     }
     func_800AAED0(D_801F3E28_9A3898);
-    func_8036D1A4_840954(D_802290E4_9D8B54, 1);
-    func_8036D1A4_840954(D_802290E0_9D8B50, 1);
-    func_8036D1A4_840954(D_802290DC_9D8B4C, 1);
+    UIElement_SetState(D_802290E4_9D8B54, UI_HIDDEN);
+    UIElement_SetState(D_802290E0_9D8B50, UI_HIDDEN);
+    UIElement_SetState(D_802290DC_9D8B4C, UI_HIDDEN);
 }
 
 void func_801E39DC_99344C(GObj* arg0) {
@@ -2326,8 +2328,8 @@ void func_801E39DC_99344C(GObj* arg0) {
     s32 sp48;
     s32 i;
     UNUSED s32 pad2;
-    UnkSnowHerring* sp3C;
-    UnkFireHerring* sp38;
+    UIElement* sp3C;
+    UIFrame* sp38;
     ucolor sp34; // ?
     s32 sp30;
     char* levelName;
@@ -2338,15 +2340,15 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_803717E8_844F98();
     func_80370428_843BD8();
     func_803700A4_843854(0);
-    sp3C = func_8036AC6C_83E41C(0x47, 0x19, 0xCC, 0x30, 0);
+    sp3C = UIElement_Create(71, 25, 204, 48, 0);
     D_802290E4_9D8B54 = sp3C;
-    func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
-    func_8036B870_83F020(sp3C, 0, 0x11, 0x4E, 0x7D, 0);
-    func_8036B734_83EEE4(sp3C);
-    func_8036CB58_840308(sp3C, 8);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036D1A4_840954(sp3C, 1);
+    UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp3C, UI_BACKGROUND, 17, 78, 125, 0);
+    UIElement_DrawBackground(sp3C);
+    UIElement_SetFont(sp3C, FONT_8);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetState(sp3C, UI_HIDDEN);
 
     levelName = getLevelName(getLevelId());
     if (levelName == NULL) {
@@ -2355,28 +2357,28 @@ void func_801E39DC_99344C(GObj* arg0) {
         sprintf(D_802290E8_9D8B58, "%s Course", levelName);
         levelName = D_802290E8_9D8B58;
     }
-    sp3C = func_8036AC6C_83E41C(0x47, 0x32, 0xCC, 0x78, 0);
+    sp3C = UIElement_Create(71, 50, 204, 120, 0);
     D_802290E0_9D8B50 = sp3C;
-    func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
-    func_8036B870_83F020(sp3C, 0, 0, 0, 0, 0);
-    func_8036B734_83EEE4(sp3C);
-    func_8036CB58_840308(sp3C, 0xC);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    func_8036D1A4_840954(sp3C, 1);
-    func_8036B9EC_83F19C(sp3C, 90 - (strlen(levelName) * 3), 62);
-    func_8036C898_840048(sp3C, levelName);
-    sp38 = func_8036F78C_842F3C();
+    UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp3C, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_DrawBackground(sp3C);
+    UIElement_SetFont(sp3C, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetState(sp3C, UI_HIDDEN);
+    UIElement_SetTextPos(sp3C, 90 - (strlen(levelName) * 3), 62);
+    UIElement_PrintText(sp3C, levelName);
+    sp38 = UIFrame_Create();
     D_802290D8_9D8B48 = sp38;
-    func_8036F684_842E34(sp38, 1);
-    func_8036F738_842EE8(sp38, &sp34);
-    func_8036F1F4_8429A4(sp38, 0xB8, SCREEN_WIDTH);
-    func_8036F0DC_84288C(sp38, false);
-    sp3C = func_8036AC6C_83E41C(0x40, 0xAD, 0xC0, 0x2F, 0);
-    func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
-    func_8036B870_83F020(sp3C, 0, sp34.r, sp34.g, sp34.b, 0xFF);
-    func_8036B734_83EEE4(sp3C);
-    func_8036D1A4_840954(sp3C, 1);
+    UIFrame_SetStyle(sp38, FRAME_STYLE_1);
+    UIFrame_GetBackgroundColor(sp38, &sp34);
+    UIFrame_SetPos(sp38, 184, 320);
+    UIFrame_Show(sp38, false);
+    sp3C = UIElement_Create(64, 173, 192, 47, 0);
+    UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp3C, UI_BACKGROUND, sp34.r, sp34.g, sp34.b, 255);
+    UIElement_DrawBackground(sp3C);
+    UIElement_SetState(sp3C, UI_HIDDEN);
     ohWait(1);
 
     for (i = 0; i < 60; i++) {
@@ -2390,30 +2392,30 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_8037172C_844EDC(0);
     func_803713C8_844B78(0);
     ohWait(1);
-    func_8036CB58_840308(sp3C, 0xC);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    func_8036CB58_840308(sp3C, 0xC);
-    func_8036D4A0_840C50(0);
+    UIElement_SetFont(sp3C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIElement_SetFont(sp3C, FONT_12);
+    UIText_SetPrintDelay(0);
     D_802290DC_9D8B4C = sp3C;
     func_801DCF4C_98C9BC(sp38);
-    func_8036D4A0_840C50((0, 0)); // fake match or typo?
-    func_8036D1A4_840954(sp3C, 0);
-    func_8036B9EC_83F19C(sp3C, 0, 0);
-    func_8036C898_840048(sp3C, "Hmm...\nWhat's new this time?");
-    func_8036D1A4_840954(D_802290E0_9D8B50, 0);
+    UIText_SetPrintDelay((0, 0)); // fake match or typo?
+    UIElement_SetState(sp3C, UI_NORMAL);
+    UIElement_SetTextPos(sp3C, 0, 0);
+    UIElement_PrintText(sp3C, "Hmm...\nWhat's new this time?");
+    UIElement_SetState(D_802290E0_9D8B50, UI_NORMAL);
     func_80374F30_8486E0(sp3C, true);
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     func_801DD5F0_98D060(0);
-    func_8036B5F0_83EDA0(D_802290E0_9D8B50);
-    sp3C = func_8036AC6C_83E41C(0x47, 0x58, 0xC0, 0x48, 0);
-    func_8036B870_83F020(sp3C, 1, 255, 255, 0xFF, 0xFF);
-    func_8036B870_83F020(sp3C, 0, 0, 0, 0, 0);
-    func_8036B734_83EEE4(sp3C);
-    func_8036D1A4_840954(sp3C, 1);
-    func_8036CB58_840308(sp3C, 0xC);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIElement_Delete(D_802290E0_9D8B50);
+    sp3C = UIElement_Create(71, 88, 192, 72, 0);
+    UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp3C, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_DrawBackground(sp3C);
+    UIElement_SetState(sp3C, UI_HIDDEN);
+    UIElement_SetFont(sp3C, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     func_801DD8F4_98D364();
     func_801DD9E4_98D454(0);
     ohWait(1);
@@ -2423,8 +2425,8 @@ void func_801E39DC_99344C(GObj* arg0) {
         sp48 = func_801E4428_993E98();
         func_800AAED0(0x20);
         func_803700A4_843854(0);
-        func_8036D1A4_840954(sp3C, 1);
-        func_8036D1A4_840954(D_802290DC_9D8B4C, 1);
+        UIElement_SetState(sp3C, UI_HIDDEN);
+        UIElement_SetState(D_802290DC_9D8B4C, UI_HIDDEN);
         func_803713C8_844B78(0);
         func_80370A48_8441F8();
         func_801DCFA0_98CA10(sp38);

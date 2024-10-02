@@ -8,8 +8,8 @@ extern OMCamera* D_801DD244_A08E34;
 extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
-extern UnkFireHerring* D_801DD254_A08E44;
-extern UnkSnowHerring* D_801DD258_A08E48;
+extern UIFrame* D_801DD254_A08E44;
+extern UIElement* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
 
@@ -76,30 +76,30 @@ SceneSetup D_801DD14C_A08D3C = {
 
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
-    UnkFireHerring* sp2C;
-    UnkSnowHerring* sp28;
+    UIFrame* sp2C;
+    UIElement* sp28;
     ucolor sp24;
 
-    sp2C = func_8036F78C_842F3C();
-    func_8036F684_842E34(sp2C, 1);
+    sp2C = UIFrame_Create();
+    UIFrame_SetStyle(sp2C, FRAME_STYLE_1);
     D_801DD254_A08E44 = sp2C;
-    func_8036F738_842EE8(sp2C, &sp24);
-    func_8036F1F4_8429A4(sp2C, 0xB8, 0x140);
-    func_8036F0DC_84288C(sp2C, false);
-    sp28 = func_8036AC6C_83E41C(0x68, 0xAD, 0xC0, 0x2F, 0);
-    func_8036B870_83F020(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    func_8036B870_83F020(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
-    func_8036B734_83EEE4(sp28);
-    func_8036CB58_840308(sp28, 0xC);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    func_8036D4A0_840C50(0);
-    func_8036C898_840048(
+    UIFrame_GetBackgroundColor(sp2C, &sp24);
+    UIFrame_SetPos(sp2C, 184, 320);
+    UIFrame_Show(sp2C, false);
+    sp28 = UIElement_Create(104, 173, 192, 47, 0);
+    UIElement_SetColor(sp28, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp28, UI_BACKGROUND, sp24.r, sp24.g, sp24.b, 255);
+    UIElement_DrawBackground(sp28);
+    UIElement_SetFont(sp28, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIText_SetPrintDelay(0);
+    UIElement_PrintText(
         sp28,
         "ほれぼれする　しゃしんだね!\n"
         "\\aつぎをみる　\\bもういいや\n"
         "\\zメッセージを　けす・ひょうじ");
-    func_8036D1A4_840954(sp28, 1);
+    UIElement_SetState(sp28, true);
     D_801DD258_A08E48 = sp28;
 }
 
@@ -121,13 +121,13 @@ void func_801DC9E8_A085D8(GObj* arg0) {
     func_800A7860(1, 1.0f);
     func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
     D_801DD240_A08E30->flags &= ~1;
-    func_8036FE54_843604(D_801DD254_A08E44, 1);
+    UIFrame_FadeIn(D_801DD254_A08E44, FRAME_STYLE_1);
 
     while (func_800A7460() != 0) {
         ohWait(1);
     }
 
-    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+    UIElement_SetState(D_801DD258_A08E48, UI_NORMAL);
     D_801DD25C_A08E4C = 0;
 
     while (D_801DD250_A08E40 == 0x10000000) {
@@ -147,13 +147,13 @@ void func_801DC9E8_A085D8(GObj* arg0) {
             if (sp3C->unk_18 & 0x2000) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, true);
-                    func_8036F0A0_842850(D_801DD254_A08E44, true);
-                    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+                    UIFrame_Show(D_801DD254_A08E44, true);
+                    UIFrame_ShowBackground(D_801DD254_A08E44, true);
+                    UIElement_SetState(D_801DD258_A08E48, UI_NORMAL);
                 } else {
-                    func_8036F0DC_84288C(D_801DD254_A08E44, false);
-                    func_8036F0A0_842850(D_801DD254_A08E44, false);
-                    func_8036D1A4_840954(D_801DD258_A08E48, 1);
+                    UIFrame_Show(D_801DD254_A08E44, false);
+                    UIFrame_ShowBackground(D_801DD254_A08E44, false);
+                    UIElement_SetState(D_801DD258_A08E48, UI_HIDDEN);
                 }
             }
             if (sp3C->unk_18 & 4 && D_801DD12C_A08D1C > 0) {

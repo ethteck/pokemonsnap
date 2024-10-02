@@ -90,10 +90,10 @@ void func_801DC8C0_A084B0(void) {
     UIElement_SetColor(sp28, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp28, UI_BACKGROUND, sp24.r, sp24.g, sp24.b, 255);
     UIElement_DrawBackground(sp28);
-    UIElement_SetTextStyle(sp28, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    func_8036D4A0_840C50(0);
+    UIElement_SetFont(sp28, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIText_SetPrintDelay(0);
     UIElement_PrintText(
         sp28,
         "ほれぼれする　しゃしんだね!\n"

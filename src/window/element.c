@@ -955,7 +955,7 @@ void UIElement_SetScale(UIElement* el, f32 scalex, f32 scaley) {
     }
 }
 
-void UIElement_SetTextStyle(UIElement* el, s32 style) {
+void UIElement_SetFont(UIElement* el, s32 style) {
     if (UIText_SetFont(style)) {
         return;
     }
@@ -1131,7 +1131,7 @@ UIElement* UIElement_CreateText(s32 x, s32 y, char* str, s32 font, s32 flags) {
     temp_s0 = UIText_GetStringWidth(str);
     // TODO: look into a "ceil to multiple of" macro
     el = UIElement_Create(x, y, (temp_s0 + 1 + 0xF) & ~0xF, ((UIText_GetCharsWidth() + 1) & ~1) + 4, flags);
-    UIElement_SetTextStyle(el, font);
+    UIElement_SetFont(el, font);
     UIElement_DrawBackground(el);
     UIElement_SetTextPos(el, 0, 0);
     UIElement_PrintText(el, str);

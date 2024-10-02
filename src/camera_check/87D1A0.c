@@ -87,8 +87,8 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
         if (temp_v0_2 != 0) {
             UIElement_Draw(func_camera_check_801DCB40());
             UIElement_SetTextPos(func_camera_check_801DCB40(), 0, 0);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
             UIElement_PrintText(func_camera_check_801DCB40(), temp_v0_2);
         }
         return 1;

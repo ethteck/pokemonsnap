@@ -53,9 +53,9 @@ void func_801E433C_993DAC(s32 arg0) {
     UIElement_Draw(sp1C);
     func_8036EE40_8425F0();
     UIElement_SetTextPos(sp1C, 0, 0);
-    UIElement_SetTextStyle(sp1C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(sp1C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
 }
 
 void func_801E43AC_993E1C(void) {

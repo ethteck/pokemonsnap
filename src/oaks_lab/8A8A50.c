@@ -126,8 +126,8 @@ s32 func_800E3404_8A8C24(void) {
             var_s2 = sp40;
             UIElement_Draw(func_800E1B40_8A7360());
             UIElement_SetTextPos(func_800E1B40_8A7360(), 0, 0);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
             UIElement_PrintText(func_800E1B40_8A7360(),
                                  func_803717A8_844F58(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], (*D_80206B44_9CC364)[sp40].unk_0));
         }
@@ -212,8 +212,8 @@ s32 func_800E37CC_8A8FEC(void) {
             sp78 = sp80;
             UIElement_Draw(func_800E1B40_8A7360());
             UIElement_SetTextPos(func_800E1B40_8A7360(), 0, 0);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
 
             switch ((*D_80206B44_9CC364)[sp80].unk_0) {
 
@@ -363,7 +363,7 @@ s32 func_800E3ED4_8A96F4(void) {
     if (levelID < 0 || levelID >= 7) {
         D_80195894_95B0B4 = 0;
     }
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     D_80206B48_9CC368 = func_800E5EBC_8AB6DC;
 
     while (true) {
@@ -414,8 +414,8 @@ s32 func_800E3ED4_8A96F4(void) {
                 }
                 UIElement_Draw(func_800E1B40_8A7360());
                 UIElement_SetTextPos(func_800E1B40_8A7360(), 0, 0);
-                func_8036D448_840BF8(1);
-                func_8036D3E8_840B98(-1, 3);
+                UIText_SetShadowOffset(1);
+                UIText_SetSpacing(-1, 3);
                 if (!checkPlayerFlag(PFID_11)) {
                     UIElement_PrintText(func_800E1B40_8A7360(), "Should I take this course?\n\\a Let's go!   \\b Maybe later.");
                 } else {

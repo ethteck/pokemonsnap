@@ -538,10 +538,10 @@ void* func_camera_check_801DDFC4(void) {
     UIElement_DrawBackground(temp_v0_2);
     UIElement_SetState(temp_v0_2, UI_HIDDEN);
     D_camera_check_80249910 = temp_v0_2;
-    func_8036D4A0_840C50(0);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    UIElement_SetTextStyle(temp_v0_2, FONT_8);
+    UIText_SetPrintDelay(0);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIElement_SetFont(temp_v0_2, FONT_8);
     UIElement_SetTextPos(temp_v0_2, 0, 0);
     UIElement_PrintText(temp_v0_2, "Course");
     UIElement_SetTextPos(temp_v0_2, 0, 28);
@@ -567,15 +567,15 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //     UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
 //     UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
 //     if (arg0 != NULL) {
-//         func_8036D448_840BF8(1);
-//         func_8036D3E8_840B98(-1, 3);
-//         UIElement_SetTextStyle(temp_s0, FONT_8);
+//         UIText_SetShadowOffset(1);
+//         UIText_SetSpacing(-1, 3);
+//         UIElement_SetFont(temp_s0, FONT_8);
 //         levelName = getLevelName(arg0->unk_00->levelID);
 //         if (levelName == NULL) {
 //             levelName = "ーーー";
 //         }
 //         sprintf(sp48, "%s", levelName, levelName);
-//         UIElement_SetTextStyle(temp_s0, FONT_8);
+//         UIElement_SetFont(temp_s0, FONT_8);
 //         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0xC);
 //         UIElement_PrintText(temp_s0, sp48);
 //         sprintf(sp48, "%s", get_player_name());
@@ -583,7 +583,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         if (var_a3_2 && var_a3_2 && var_a3_2) {
 //         }
 
-//         UIElement_SetTextStyle(temp_s0, FONT_8);
+//         UIElement_SetFont(temp_s0, FONT_8);
 //         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0x28);
 //         UIElement_PrintText(temp_s0, sp48);
 //         if (!(arg0->unk_18_0x04000000)) {
@@ -601,7 +601,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         }
 //         sp68 = var_a3_2;
 //         UIElement_Draw(D_camera_check_80249918);
-//         UIElement_SetTextStyle(D_camera_check_80249918, FONT_12);
+//         UIElement_SetFont(D_camera_check_80249918, FONT_12);
 //         UIElement_SetTextPos(D_camera_check_80249918, (108 - UIText_GetStringWidth(sp68)) / 2, 0);
 //         UIElement_PrintText(D_camera_check_80249918, sp68);
 //     } else {
@@ -628,9 +628,9 @@ void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
     UIElement_PrintText(temp_s0, "Score");
 
     if (sp6C) {
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        UIElement_SetTextStyle(temp_s0, FONT_8);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetFont(temp_s0, FONT_8);
         levelName = getLevelName(arg0->unk_00->levelID);
         if (levelName == NULL) {
             levelName = "ーーー";
@@ -780,7 +780,7 @@ void func_camera_check_801DEC2C(char* arg0) {
 
     UIElement_Draw(D_camera_check_80249914);
     temp_a0 = D_camera_check_80249914;
-    UIElement_SetTextStyle(temp_a0, FONT_8);
+    UIElement_SetFont(temp_a0, FONT_8);
     UIElement_SetTextPos(temp_a0, 0, 0);
     UIElement_PrintText(temp_a0, arg0);
 }
@@ -835,15 +835,15 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
     sp34 = getLevelName(getLevelId());
     if (sp34 != NULL) {
         UIElement_Draw(arg0);
-        UIElement_SetTextStyle(arg0, FONT_12);
+        UIElement_SetFont(arg0, FONT_12);
         UIElement_SetTextPos(arg0, 54 - (strlen(sp34) * 3), 0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         UIElement_SetColor(arg0, UI_BACKGROUND, 64, 64, 64, 0);
         func_8037519C_84894C(arg0, "%s Course", sp34);
-        UIElement_SetTextStyle(arg0, FONT_8);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIElement_SetFont(arg0, FONT_8);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         UIElement_SetColor(arg0, UI_BACKGROUND, 0, 0, 0, 0);
 
         if (checkPlayerFlag(PFID_11)) {
@@ -939,9 +939,9 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIElement_SetColor(sp6C, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp6C, UI_BACKGROUND, 218, 108, 0, 0);
     UIElement_DrawBackground(sp6C);
-    UIElement_SetTextStyle(sp6C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(sp6C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     UIElement_SetState(sp6C, UI_NORMAL);
     D_camera_check_80249918 = sp6C;
 
@@ -975,12 +975,12 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_803705A4_843D54();
     UIFrame_FadeIn(sp68, FRAME_STYLE_0);
     UIElement_SetState(sp6C, UI_NORMAL);
-    func_8036D4A0_840C50(0);
-    UIElement_SetTextStyle(sp6C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    UIElement_SetTextStyle(sp6C, FONT_12);
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
+    UIElement_SetFont(sp6C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIElement_SetFont(sp6C, FONT_12);
+    UIText_SetPrintDelay(0);
     D_camera_check_80249914 = sp6C;
 
     gobj = func_80371D14_8454C4(0, 6, &D_camera_check_801F0560);
@@ -995,10 +995,10 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     func_camera_check_801DEDEC(sp44);
 
     temp_s0 = D_camera_check_80249914;
-    func_8036D4A0_840C50(2);
+    UIText_SetPrintDelay(2);
     UIElement_SetTextPos(temp_s0, 0, 0);
     UIElement_PrintText(temp_s0, "\\i1\\g picture has been taken.");
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     func_camera_check_801E3EEC(func_camera_check_801DECCC);
     temp_s2 = func_camera_check_801E246C();
     temp_s1 = func_camera_check_801E2478() * temp_s2;
@@ -1014,7 +1014,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_80374F30_8486E0(temp_s0, true);
         UIElement_Draw(temp_s0);
         func_8036EB80_842330(0);
-        func_8036D4A0_840C50(2);
+        UIText_SetPrintDelay(2);
         UIElement_PrintText(temp_s0, "I can use the \"\\hAlbum Mark\\p \\u\"\nto save my favorite pictures\nin the Album.");
         func_8036EB80_842330(1);
     }

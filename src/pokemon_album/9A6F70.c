@@ -350,9 +350,9 @@ void func_801DD954_9A7BA4(s32 arg0) {
     }
 
     UIElement_Draw(D_80250058_A1A2A8);
-    func_8036D4A0_840C50(0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetPrintDelay(0);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(D_80250058_A1A2A8, 0, 0);
     UIElement_PrintText(D_80250058_A1A2A8, "  \\i−\\g      \\i−\\g  ");
     sprintf(sp24, "%d", D_802500B4_A1A304 + 1);
@@ -508,9 +508,9 @@ void func_801DE1FC_9A844C(s32 arg0) {
     if (func_801E3A34_9ADC84(arg0) == NULL) {
         return;
     }
-    UIElement_SetTextStyle(D_8024FFFC_A1A24C, FONT_12);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIElement_SetFont(D_8024FFFC_A1A24C, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(D_8024FFFC_A1A24C, 0, 0);
     func_801DCD7C_9A6FCC(func_801E3A34_9ADC84(arg0), sp28);
     UIElement_PrintText(D_8024FFFC_A1A24C, sp28);
@@ -648,10 +648,10 @@ GObj* func_801DE830_9A8A80(void) {
     D_8024FFF0_A1A240 = UIElement_Create(116, 197, 12, 12, UI_FLAG_32BIT);
     UIElement_SetColor(D_8024FFF0_A1A240, UI_FOREGROUND, 255, 15, 25, 255);
     UIElement_SetColor(D_8024FFF0_A1A240, UI_BACKGROUND, 0, 0, 0, 0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(D_8024FFF0_A1A240);
-    UIElement_SetTextStyle(D_8024FFF0_A1A240, FONT_12);
+    UIElement_SetFont(D_8024FFF0_A1A240, FONT_12);
     UIElement_SetState(D_8024FFF0_A1A240, UI_HIDDEN);
     func_800A85E8(func_801DCFB8_9A7208, LINK_6, DL_LINK_0, NULL);
 
@@ -753,10 +753,10 @@ void func_801DEDB0_9A9000(void) {
         D_80250008_A1A258[i] = UIElement_Create(234, ((i / 2) * 36) + ((i % 2) * 12) + 67, 60, 8, UI_FLAG_32BIT);
         UIElement_SetColor(D_80250008_A1A258[i], UI_FOREGROUND, 0, 0, 0, 255);
         UIElement_SetColor(D_80250008_A1A258[i], UI_BACKGROUND, 0, 0, 0, 0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         UIElement_DrawBackground(D_80250008_A1A258[i]);
-        UIElement_SetTextStyle(D_80250008_A1A258[i], FONT_8);
+        UIElement_SetFont(D_80250008_A1A258[i], FONT_8);
         UIElement_SetState(D_80250008_A1A258[i], UI_HIDDEN);
     }
 }
@@ -966,9 +966,9 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             UIElement_SetColor(D_8024FFF8_A1A248, UI_FOREGROUND, 255, 255, 255, 255);
             UIElement_SetColor(D_8024FFF8_A1A248, UI_BACKGROUND, 218, 108, 0, 0);
             UIElement_DrawBackground(D_8024FFF8_A1A248);
-            UIElement_SetTextStyle(D_8024FFF8_A1A248, FONT_12);
-            func_8036D448_840BF8(1);
-            func_8036D3E8_840B98(-1, 3);
+            UIElement_SetFont(D_8024FFF8_A1A248, FONT_12);
+            UIText_SetShadowOffset(1);
+            UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_8024FFF8_A1A248, (108 - UIText_GetStringWidth("PKMN Album")) / 2, 0);
             UIElement_PrintText(D_8024FFF8_A1A248, "PKMN Album");
             UIElement_SetState(D_8024FFF8_A1A248, UI_NORMAL);
@@ -983,10 +983,10 @@ void func_801DFB48_9A9D98(void) {
         D_80250008_A1A258[i] = UIElement_Create(23, (i * 10) + 20, 60, 8, 0);
         UIElement_SetColor(D_80250008_A1A258[i], UI_FOREGROUND, 255, 255, 255, 255);
         UIElement_SetColor(D_80250008_A1A258[i], UI_BACKGROUND, 0, 0, 0, 0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         UIElement_DrawBackground(D_80250008_A1A258[i]);
-        UIElement_SetTextStyle(D_80250008_A1A258[i], FONT_8);
+        UIElement_SetFont(D_80250008_A1A258[i], FONT_8);
         UIElement_SetState(D_80250008_A1A258[i], UI_HIDDEN);
     }
 
@@ -994,10 +994,10 @@ void func_801DFB48_9A9D98(void) {
         D_8025004C_A1A29C[i] = UIElement_Create(23, (i * 10) + 190, 60, 8, 0);
         UIElement_SetColor(D_8025004C_A1A29C[i], UI_FOREGROUND, 255, 255, 255, 255);
         UIElement_SetColor(D_8025004C_A1A29C[i], UI_BACKGROUND, 0, 0, 0, 0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         UIElement_DrawBackground(D_8025004C_A1A29C[i]);
-        UIElement_SetTextStyle(D_8025004C_A1A29C[i], FONT_8);
+        UIElement_SetFont(D_8025004C_A1A29C[i], FONT_8);
         UIElement_SetState(D_8025004C_A1A29C[i], UI_HIDDEN);
     }
 }
@@ -1060,9 +1060,9 @@ void func_801E008C_9AA2DC(s16* arg0, s32 arg1) {
         return;
     }
     UIElement_Draw(D_8024FFFC_A1A24C);
-    UIElement_SetTextStyle(D_8024FFFC_A1A24C, FONT_12);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIElement_SetFont(D_8024FFFC_A1A24C, FONT_12);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(D_8024FFFC_A1A24C, 0, 0);
     sp1C = func_801DCD7C_9A6FCC(arg0, sp20);
     if (*arg0 != 0) {
@@ -1221,10 +1221,10 @@ void func_801E0774_9AA9C4(void) {
     sp4C = UIElement_Create(124, 131, 184, 149, UI_FLAG_32BIT);
     UIElement_SetColor(sp4C, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp4C, UI_BACKGROUND, 0, 0, 0, 0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(sp4C);
-    UIElement_SetTextStyle(sp4C, FONT_8);
+    UIElement_SetFont(sp4C, FONT_8);
     UIElement_SetTextPos(sp4C, 10, 0);
     func_8037519C_84894C(sp4C, "\\i%2d \\gTaken", func_801E3AB8_9ADD08());
     UIElement_SetTextPos(sp4C, 10, 9);
@@ -1253,7 +1253,7 @@ void func_801E0774_9AA9C4(void) {
     func_80370C34_8443E4(func_801E1900_9ABB50());
     func_803705A4_843D54();
     func_803700A4_843854(1);
-    func_8036D4A0_840C50((0, 0));
+    UIText_SetPrintDelay((0, 0));
 }
 
 void func_801E09A0_9AABF0(s32 arg0) {
@@ -1301,10 +1301,10 @@ void func_801E0AF0_9AAD40(void) {
     sp34 = UIElement_Create(168, 165, 60, 18, UI_FLAG_32BIT);
     UIElement_SetColor(sp34, UI_FOREGROUND, 0, 0, 0, 255);
     UIElement_SetColor(sp34, UI_BACKGROUND, 0, 0, 0, 0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(sp34);
-    UIElement_SetTextStyle(sp34, FONT_12);
+    UIElement_SetFont(sp34, FONT_12);
     UIElement_Draw(sp34);
     UIElement_PrintText(sp34, "\\i−\\g   \\i−\\g");
     UIElement_SetState(sp34, UI_HIDDEN);
@@ -1313,9 +1313,9 @@ void func_801E0AF0_9AAD40(void) {
     UIElement_SetColor(sp34, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp34, UI_BACKGROUND, 218, 108, 0, 0);
     UIElement_DrawBackground(sp34);
-    UIElement_SetTextStyle(sp34, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(sp34, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     UIElement_SetTextPos(sp34, (108 - UIText_GetStringWidth("PKMN Album")) / 2, 0);
     UIElement_PrintText(sp34, "PKMN Album");
     UIElement_SetState(sp34, UI_HIDDEN);
@@ -1324,7 +1324,7 @@ void func_801E0AF0_9AAD40(void) {
     UIElement_SetColor(sp34, UI_FOREGROUND, 0, 0, 0, 255);
     UIElement_SetColor(sp34, UI_BACKGROUND, 0, 0, 0, 0);
     UIElement_DrawBackground(sp34);
-    UIElement_SetTextStyle(sp34, FONT_12);
+    UIElement_SetFont(sp34, FONT_12);
     UIElement_SetState(sp34, UI_HIDDEN);
     D_8024FFFC_A1A24C = sp34;
     ohWait(1);
@@ -1394,7 +1394,7 @@ void func_801E0F90_9AB1E0(void) {
     func_801DE620_9A8870(1, 1);
     func_801DE350_9A85A0(1, sp20);
     UIElement_SetState(D_8024FFF4_A1A244, UI_NORMAL);
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     func_8037172C_844EDC(1);
     func_803700A4_843854(1);
     ohWait(21);
@@ -1448,15 +1448,15 @@ void func_801E1168_9AB3B8(s32 arg0) {
         UIElement_DrawBackground(sp30);
         UIElement_SetState(sp30, UI_HIDDEN);
         ohWait(1);
-        UIElement_SetTextStyle(sp30, FONT_12);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIElement_SetFont(sp30, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         UIElement_SetTextPos(sp30, 0, 0);
         UIElement_PrintText(sp30, "Delete this picture?\n\n");
         ohWait(1);
         UIFrame_FadeIn(sp34, FRAME_STYLE_0);
         UIElement_SetState(sp30, UI_NORMAL);
-        func_8036D4A0_840C50((0, 0));
+        UIText_SetPrintDelay((0, 0));
         UIElement_SetTextPos(sp30, 0, 32);
         UIElement_PrintText(sp30, "\\a Yes   \\b No");
     } else {
@@ -1543,10 +1543,10 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     sp64 = UIElement_Create(124, 131, 60, 18, UI_FLAG_32BIT);
     UIElement_SetColor(sp64, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp64, UI_BACKGROUND, 0, 0, 0, 0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(sp64);
-    UIElement_SetTextStyle(sp64, FONT_8);
+    UIElement_SetFont(sp64, FONT_8);
     UIElement_SetTextPos(sp64, 10, 0);
     func_8037519C_84894C(sp64, "\\i%2d \\gTaken", func_801E3AB8_9ADD08());
     UIElement_SetTextPos(sp64, 10, 9);
@@ -1571,7 +1571,7 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     func_80370C34_8443E4(func_801E1900_9ABB50());
     func_803705A4_843D54();
     func_803700A4_843854(1);
-    func_8036D4A0_840C50((0, 0));
+    UIText_SetPrintDelay((0, 0));
 
     while (true) {
         func_801E37A0_9AD9F0();

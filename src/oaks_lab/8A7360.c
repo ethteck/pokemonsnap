@@ -183,8 +183,8 @@ void func_800E1D68_8A7588(u32 arg0) {
 void func_800E1FEC_8A780C(s32 stage) {
     if (stage >= 0 && stage < 7U) {
         D_80206B28_9CC348[1]->sprite.bitmap = D_801957F4_95B014[stage];
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
         func_800E1D1C_8A753C(1);
     } else {
         func_800E1D1C_8A753C(0);
@@ -451,18 +451,18 @@ void func_800E2A04_8A8224(void) {
     s32 i;
 
     sp24 = D_80206B1C_9CC33C;
-    UIElement_SetTextStyle(D_80206B1C_9CC33C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(D_80206B1C_9CC33C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     temp_s0 = func_800C0290_5D130();
     if (func_800BFC5C_5CAFC() < temp_s0) {
         func_800BFC70_5CB10(func_800C0290_5D130());
         ohWait(1);
         if (func_800BFC5C_5CAFC() != 2 && func_800BFC5C_5CAFC() != 4 && func_800BFC5C_5CAFC() != 6) {
             func_8036EB80_842330(0);
-            func_8036D4A0_840C50(2);
+            UIText_SetPrintDelay(2);
             func_800E2960_8A8180(sp24, D_80195888_95B0A8, 0);
-            func_8036D4A0_840C50(0);
+            UIText_SetPrintDelay(0);
         } else {
             ohWait(42);
         }
@@ -576,10 +576,10 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     func_803705A4_843D54();
     UIFrame_FadeIn(temp_v0, FRAME_STYLE_1);
     UIElement_SetState(sp4C, UI_NORMAL);
-    func_8036D4A0_840C50(0);
-    UIElement_SetTextStyle(sp4C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIText_SetPrintDelay(0);
+    UIElement_SetFont(sp4C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     func_800E5298_8AAAB8();
     func_800E6410_8ABC30();
 
@@ -625,12 +625,12 @@ void func_800E30B8_8A88D8(void) {
     sobj->sprite.y = 92;
     func_8036FFE0_843790(40, 92);
     func_80370038_8437E8(240, 56);
-    func_8036D4A0_840C50(1);
+    UIText_SetPrintDelay(1);
     func_8036EB80_842330(0);
     auSetBGMVolumeSmooth(0, 0x3F80, 60);
-    UIElement_SetTextStyle(D_80206B1C_9CC33C, FONT_12);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
+    UIElement_SetFont(D_80206B1C_9CC33C, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
     UIElement_Draw(D_80206B1C_9CC33C);
     UIElement_PrintText(D_80206B1C_9CC33C, "\n\\OThis is... awful!");
 

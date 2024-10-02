@@ -177,43 +177,43 @@ void func_800E1A0C_A5CDBC(void) {
     UIElement_SetColor(id, UI_BACKGROUND, sp28.r, sp28.g, sp28.b, 255);
     UIElement_DrawBackground(id);
     UIElement_SetTextPos(id, 0, 0);
-    func_8036D448_840BF8(1);
-    func_8036D3E8_840B98(-1, 3);
-    UIElement_SetTextStyle(id, FONT_12);
+    UIText_SetShadowOffset(1);
+    UIText_SetSpacing(-1, 3);
+    UIElement_SetFont(id, FONT_12);
     UIElement_PrintText(id, "Enter your name on the card.\n"
                              "Choose with the Control Stick\n"
                              "and select with the \\a Button!");
 
     // character grid
     for (i = 0; i < ARRAY_COUNT(D_801180C0); i++) {
-        func_8036D4A0_840C50(0);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIText_SetPrintDelay(0);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         id = UIElement_Create(23, i * 10 + 20, 60, 8, 0);
-        UIElement_SetTextStyle(id, FONT_8);
+        UIElement_SetFont(id, FONT_8);
         UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
         UIElement_DrawBackground(id);
         D_801180C0[i] = id;
     }
 
-    func_8036D4A0_840C50(0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetPrintDelay(0);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
 
     // name input
     id = UIElement_Create(203, 64, 62, 12, UI_FLAG_32BIT);
-    UIElement_SetTextStyle(id, FONT_12);
+    UIElement_SetFont(id, FONT_12);
     UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
     UIElement_SetColor(id, UI_FOREGROUND, 0, 0, 0, 255);
     UIElement_DrawBackground(id);
     D_80118110 = id;
 
-    func_8036D4A0_840C50(0);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
+    UIText_SetPrintDelay(0);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
 
     id = UIElement_Create(206, 64, 12, 12, UI_FLAG_32BIT);
-    UIElement_SetTextStyle(id, FONT_12);
+    UIElement_SetFont(id, FONT_12);
     UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
     UIElement_SetColor(id, UI_FOREGROUND, 255, 0, 0, 255);
     UIElement_DrawBackground(id);

@@ -1947,3 +1947,7 @@ evolution_controller_last = 0x800F5400; // segment:world
 
 GetInterpolatedPosition = 0x8001FCA4;
 GetInterpolatedVelocity = 0x8001FCE8;
+
+UIText_ShadowPalette = 0x803A6980; //segment:window
+UIText_TextPalette = 0x803A6940; //segment:window
+UIText_ShadowedTextPalette = 0x803A69C0; //segment:window

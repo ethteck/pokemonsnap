@@ -153,10 +153,10 @@ void func_credits_801DDC70(void) {
         var_s0->unk_4 = var_f20;
         var_s0->unk_0 = SCREEN_WIDTH / 2;
         var_f20 += 18.0f;
-        func_8036D4A0_840C50(0);
+        UIText_SetPrintDelay(0);
         temp_v0 = UIElement_Create(var_s0->unk_0, var_s0->unk_4, 252, 15, UI_FLAG_32BIT);
         var_s0->unk_C = temp_v0;
-        UIElement_SetTextStyle(temp_v0, FONT_12);
+        UIElement_SetFont(temp_v0, FONT_12);
         UIElement_DrawBackground(var_s0->unk_C);
         UIElement_SetTextPos(var_s0->unk_C, 0, 0);
         UIElement_SetColor(var_s0->unk_C, UI_BACKGROUND, 0, 0, 0, 0);

@@ -423,9 +423,9 @@ void func_800E5120_8AA940(void) {
 
     sp1C = func_800E1B40_8A7360();
     func_8036EB80_842330(0);
-    func_8036D4A0_840C50(2);
+    UIText_SetPrintDelay(2);
     UIElement_PrintText(sp1C, "Well then, \\Tsee you!");
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     UIElement_SetTextPos(sp1C, 0, 32);
     UIElement_PrintText(sp1C, "Press \\a or \\b to save.");
     ohWait(1);
@@ -465,7 +465,7 @@ void func_800E5298_8AAAB8(void) {
 
     sp28 = 0;
     D_80206B50_9CC370 = 0;
-    func_8036D4A0_840C50(2);
+    UIText_SetPrintDelay(2);
     if (func_800AAEE8(0x100000) != 0) {
         D_80206B50_9CC370 = 6;
         return;
@@ -585,5 +585,5 @@ void func_800E5298_8AAAB8(void) {
         func_800AAF10();
         func_800AADF0(SCENE_CREDITS_17);
     }
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
 }

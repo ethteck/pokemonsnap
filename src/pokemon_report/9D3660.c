@@ -191,13 +191,13 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
     if (arg0 == 0) {
         UIElement_Draw(D_80230C38_A275A8);
         UIElement_Draw(D_80230C30_A275A0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextStyle(D_80230C38_A275A8, FONT_12);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetFont(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
         UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
         UIElement_PrintText(D_80230C38_A275A8, sp2C);
-        UIElement_SetTextStyle(D_80230C30_A275A0, FONT_12);
+        UIElement_SetFont(D_80230C30_A275A0, FONT_12);
         UIElement_SetTextPos(D_80230C30_A275A0, 22, 0);
         func_8037519C_84894C(D_80230C30_A275A0, "Course");
         UIElement_SetTextPos(D_80230C30_A275A0, 22, 16);
@@ -221,13 +221,13 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         D_80230C20_A27590 = D_80230C78_A275E8;
         UIElement_Draw(D_80230C38_A275A8);
         UIElement_Draw(D_80230C30_A275A0);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextStyle(D_80230C38_A275A8, FONT_12);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIElement_SetFont(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
         UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
         UIElement_PrintText(D_80230C38_A275A8, sp2C);
-        UIElement_SetTextStyle(D_80230C30_A275A0, FONT_8);
+        UIElement_SetFont(D_80230C30_A275A0, FONT_8);
         if (D_80230DC0_A27730 == 0) {
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Special");
@@ -337,9 +337,9 @@ void func_801DDD58_9D46C8(void) {
         if (sp48 == 0) {
 
         } else {
-            UIElement_SetTextStyle(D_80230C80_A275F0[i], FONT_8);
-            func_8036D448_840BF8(0);
-            func_8036D3E8_840B98(0, 4);
+            UIElement_SetFont(D_80230C80_A275F0[i], FONT_8);
+            UIText_SetShadowOffset(0);
+            UIText_SetSpacing(0, 4);
             UIElement_Draw(D_80230C80_A275F0[i]);
             func_8036D4B4_840C64(1, 0);
             UIElement_SetTextPos(D_80230C80_A275F0[i], 0, 0);
@@ -1196,7 +1196,7 @@ void func_801E07C0_9D7130(void) {
 s32 func_801E0B8C_9D74FC(UIElement* arg0, char** arg1, s32 arg2) {
     s32 sp1C;
 
-    func_8036D4A0_840C50(2);
+    UIText_SetPrintDelay(2);
 
     for (; *arg1 != 0; arg1++) {
         UIElement_Draw(arg0);
@@ -1221,7 +1221,7 @@ void func_801E0C3C_9D75AC(s32 arg0) {
     } else {
         func_801E0B8C_9D74FC(D_80230C30_A275A0, D_80202EA4_9F9814[arg0], 0);
     }
-    func_8036D4A0_840C50(0);
+    UIText_SetPrintDelay(0);
     func_801DCF5C_9D38CC(&sp1C);
     UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
     UIElement_PrintText(D_80230C30_A275A0, "You have collected");
@@ -1327,10 +1327,10 @@ void func_801E1378_9D7CE8(void) {
         UIElement_DrawBackground(sp38);
         UIElement_SetState(sp38, UI_HIDDEN);
         D_80230C1C_A2758C = sp38;
-        UIElement_SetTextStyle(sp38, FONT_8);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036D4A0_840C50(0);
+        UIElement_SetFont(sp38, FONT_8);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIText_SetPrintDelay(0);
         sp44 = func_801DCF5C_9D38CC(&sp3C);
         sp40 = func_800BF864_5C704();
         UIElement_Draw(sp38);
@@ -1402,9 +1402,9 @@ void func_801E16DC_9D804C(void) {
         UIElement_SetColor(sp2C, UI_FOREGROUND, 255, 255, 255, 255);
         UIElement_SetColor(sp2C, UI_BACKGROUND, 218, 108, 0, 0);
         UIElement_DrawBackground(sp2C);
-        UIElement_SetTextStyle(sp2C, FONT_12);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Report")) / 2, 0);
         UIElement_PrintText(sp2C, "PKMN Report");
         UIElement_SetState(sp2C, UI_HIDDEN);
@@ -1430,10 +1430,10 @@ void func_801E16DC_9D804C(void) {
         D_80230DB4_A27724 = 0;
         func_801DDD58_9D46C8();
         func_801DFBD0_9D6540(0);
-        UIElement_SetTextStyle(sp2C, FONT_8);
-        func_8036D448_840BF8(0);
-        func_8036D3E8_840B98(0, 4);
-        func_8036D4A0_840C50(0);
+        UIElement_SetFont(sp2C, FONT_8);
+        UIText_SetShadowOffset(0);
+        UIText_SetSpacing(0, 4);
+        UIText_SetPrintDelay(0);
         UIElement_Draw(sp2C);
         if (D_80230C24_A27594 == -1) {
             func_801DE414_9D4D84(13);
@@ -1507,9 +1507,9 @@ void func_801E1BEC_9D855C(void) {
         UIElement_SetColor(sp2C, UI_FOREGROUND, 255, 255, 255, 255);
         UIElement_SetColor(sp2C, UI_BACKGROUND, 218, 108, 0, 0);
         UIElement_DrawBackground(sp2C);
-        UIElement_SetTextStyle(sp2C, FONT_12);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
         UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Signs")) / 2, 0);
         UIElement_PrintText(sp2C, "PKMN Signs");
         UIElement_SetState(sp2C, UI_HIDDEN);
@@ -1537,12 +1537,12 @@ void func_801E1BEC_9D855C(void) {
         UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
         UIFrame_FadeIn(sp30, FRAME_STYLE_1);
         UIElement_SetState(sp2C, UI_NORMAL);
-        func_8036D4A0_840C50((0, 0));
-        UIElement_SetTextStyle(sp2C, FONT_12);
-        func_8036D448_840BF8(1);
-        func_8036D3E8_840B98(-1, 3);
-        UIElement_SetTextStyle(sp2C, FONT_12);
-        func_8036D4A0_840C50(0);
+        UIText_SetPrintDelay((0, 0));
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetFont(sp2C, FONT_12);
+        UIText_SetPrintDelay(0);
         func_801DCF5C_9D38CC(&sp38);
         UIElement_SetTextPos(sp2C, 0, 0);
         UIElement_PrintText(sp2C, "You have collected");
@@ -1622,7 +1622,7 @@ void func_801E20B4_9D8A24(void) {
         }
 
         UIElement_SetState(D_80230C30_A275A0, UI_NORMAL);
-        func_8036D4A0_840C50(0);
+        UIText_SetPrintDelay(0);
         func_8037172C_844EDC(1);
         ohWait(21);
     }
@@ -1683,9 +1683,9 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     UIElement_SetColor(sp30, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp30, UI_BACKGROUND, 133, 147, 171, 0);
     UIElement_DrawBackground(sp30);
-    func_8036D448_840BF8(0);
-    func_8036D3E8_840B98(0, 4);
-    UIElement_SetTextStyle(sp30, FONT_8);
+    UIText_SetShadowOffset(0);
+    UIText_SetSpacing(0, 4);
+    UIElement_SetFont(sp30, FONT_8);
     UIElement_Draw(sp30);
     UIElement_SetState(sp30, UI_HIDDEN);
     func_801E0DB4_9D7724(sp30, sp38, sp34, sp3C);

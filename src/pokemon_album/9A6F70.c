@@ -109,7 +109,7 @@ s32 func_801DCD7C_9A6FCC(s16* arg0, char* arg1) {
     }
 
     sp20[sp18] = 0;
-    return func_8036D4F0_840CA0(sp20);
+    return UIText_GetStringWidth(sp20);
 }
 
 void func_801DCED4_9A7124(GObj* arg0) {
@@ -356,7 +356,7 @@ void func_801DD954_9A7BA4(s32 arg0) {
     UIElement_SetTextPos(D_80250058_A1A2A8, 0, 0);
     UIElement_PrintText(D_80250058_A1A2A8, "  \\i−\\g      \\i−\\g  ");
     sprintf(sp24, "%d", D_802500B4_A1A304 + 1);
-    UIElement_SetTextPos(D_80250058_A1A2A8, 30 - (func_8036D4F0_840CA0(sp24) / 2), 0);
+    UIElement_SetTextPos(D_80250058_A1A2A8, 30 - (UIText_GetStringWidth(sp24) / 2), 0);
     UIElement_PrintText(D_80250058_A1A2A8, sp24);
     UIElement_SetState(D_80250058_A1A2A8, UI_NORMAL);
 }
@@ -714,7 +714,7 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
     }
 
     x = func_801DCD7C_9A6FCC(sp64, sp20);
-    if ((D_802500BE_A1A30E < 31) || 168 - func_8036D4F0_840CA0(sp60) < x) {
+    if ((D_802500BE_A1A30E < 31) || 168 - UIText_GetStringWidth(sp60) < x) {
         x += 116;
     } else {
         x = -16;
@@ -873,21 +873,21 @@ void func_801DF428_9A9678(s32 arg0, s32 arg1) {
     sp4C = func_8037452C_847CDC(func_801E38E0_9ADB30(arg1));
     if (arg0 == 0) {
         func_801DF0D0_9A9320();
-        func_8036D344_840AF4(FONT_8);
+        UIText_SetFont(FONT_8);
         UIElement_SetTextPos(D_80250008_A1A258[0], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[0], "Course");
         sprintf(sp28, "%s", getLevelName(func_800BFA44_5C8E4(arg1)->levelID));
-        UIElement_SetTextPos(D_80250008_A1A258[1], 60 - func_8036D4F0_840CA0(sp28), 0);
+        UIElement_SetTextPos(D_80250008_A1A258[1], 60 - UIText_GetStringWidth(sp28), 0);
         func_8037519C_84894C(D_80250008_A1A258[1], "%s", sp28);
         UIElement_SetTextPos(D_80250008_A1A258[2], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[2], "Photo by");
         sprintf(sp28, "%s", get_player_name());
-        UIElement_SetTextPos(D_80250008_A1A258[3], 60 - func_8036D4F0_840CA0(sp28), 0);
+        UIElement_SetTextPos(D_80250008_A1A258[3], 60 - UIText_GetStringWidth(sp28), 0);
         func_8037519C_84894C(D_80250008_A1A258[3], "%s", sp28);
         UIElement_SetTextPos(D_80250008_A1A258[4], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[4], "Focus");
         sprintf(sp28, "%s", (sp4C->unk_3A0.unk_0A > 0 && sp4C->unk_3A0.unk_0A <= POKEDEX_MAX) ? getPokemonName(sp4C->unk_3A0.unk_0A) : "−−−−−");
-        UIElement_SetTextPos(D_80250008_A1A258[5], 60 - func_8036D4F0_840CA0(sp28), 0);
+        UIElement_SetTextPos(D_80250008_A1A258[5], 60 - UIText_GetStringWidth(sp28), 0);
         func_8037519C_84894C(D_80250008_A1A258[5], "%s", sp28);
     } else {
         func_801DF0D0_9A9320();
@@ -969,7 +969,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             UIElement_SetTextStyle(D_8024FFF8_A1A248, FONT_12);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            UIElement_SetTextPos(D_8024FFF8_A1A248, (108 - func_8036D4F0_840CA0("PKMN Album")) / 2, 0);
+            UIElement_SetTextPos(D_8024FFF8_A1A248, (108 - UIText_GetStringWidth("PKMN Album")) / 2, 0);
             UIElement_PrintText(D_8024FFF8_A1A248, "PKMN Album");
             UIElement_SetState(D_8024FFF8_A1A248, UI_NORMAL);
             break;
@@ -1316,7 +1316,7 @@ void func_801E0AF0_9AAD40(void) {
     UIElement_SetTextStyle(sp34, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    UIElement_SetTextPos(sp34, (108 - func_8036D4F0_840CA0("PKMN Album")) / 2, 0);
+    UIElement_SetTextPos(sp34, (108 - UIText_GetStringWidth("PKMN Album")) / 2, 0);
     UIElement_PrintText(sp34, "PKMN Album");
     UIElement_SetState(sp34, UI_HIDDEN);
     D_8024FFF8_A1A248 = sp34;

@@ -195,7 +195,7 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         func_8036D3E8_840B98(0, 4);
         UIElement_SetTextStyle(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
-        UIElement_SetTextPos(D_80230C38_A275A8, (84 - func_8036D4F0_840CA0(sp2C)) / 2, 0);
+        UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
         UIElement_PrintText(D_80230C38_A275A8, sp2C);
         UIElement_SetTextStyle(D_80230C30_A275A0, FONT_12);
         UIElement_SetTextPos(D_80230C30_A275A0, 22, 0);
@@ -205,13 +205,13 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         UIElement_SetTextPos(D_80230C30_A275A0, 22, 32);
         func_8037519C_84894C(D_80230C30_A275A0, "Score");
         sprintf(sp2C, "%s", getLevelName(func_800BF710_5C5B0(arg1)->levelID));
-        UIElement_SetTextPos(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 0);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 0);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
         sprintf(sp2C, "%s", get_player_name());
-        UIElement_SetTextPos(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 16);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 16);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
         sprintf(sp2C, "\\i%5d\\g", func_800BF818_5C6B8(arg1));
-        UIElement_SetTextPos(D_80230C30_A275A0, 162 - func_8036D4F0_840CA0(sp2C), 32);
+        UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 32);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
     } else {
         if (D_80202D30_9F96A0 != arg1) {
@@ -225,14 +225,14 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         func_8036D3E8_840B98(0, 4);
         UIElement_SetTextStyle(D_80230C38_A275A8, FONT_12);
         sprintf(sp2C, "%s", getPokemonName(arg1));
-        UIElement_SetTextPos(D_80230C38_A275A8, (84 - func_8036D4F0_840CA0(sp2C)) / 2, 0);
+        UIElement_SetTextPos(D_80230C38_A275A8, (84 - UIText_GetStringWidth(sp2C)) / 2, 0);
         UIElement_PrintText(D_80230C38_A275A8, sp2C);
         UIElement_SetTextStyle(D_80230C30_A275A0, FONT_8);
         if (D_80230DC0_A27730 == 0) {
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Special");
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_12));
-            UIElement_SetTextPos(D_80230C30_A275A0, 40 - func_8036D4F0_840CA0(sp2C), 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 40 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Technique");
@@ -241,24 +241,24 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             } else {
                 sprintf(sp2C, "Oh, dear...");
             }
-            UIElement_SetTextPos(D_80230C30_A275A0, 188 - func_8036D4F0_840CA0(sp2C), 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 188 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Size");
             sp4C = (D_80230C20_A27590->unk_3A0.unk_0E / 10000.0f);
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->unk_3A0.unk_0C * sp4C) + 5.0f) / 10.0f) * 10));
-            UIElement_SetTextPos(D_80230C30_A275A0, 85 - func_8036D4F0_840CA0(sp2C), 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 85 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Pose");
             sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_10));
-            UIElement_SetTextPos(D_80230C30_A275A0, 130 - func_8036D4F0_840CA0(sp2C), 12);
+            UIElement_SetTextPos(D_80230C30_A275A0, 130 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             if (D_80230C20_A27590->unk_3A0.unk_06 != 0) {
                 UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
                 UIElement_PrintText(D_80230C30_A275A0, "Same PKMN");
                 sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_04));
-                UIElement_SetTextPos(D_80230C30_A275A0, 188 - func_8036D4F0_840CA0(sp2C), 36);
+                UIElement_SetTextPos(D_80230C30_A275A0, 188 - UIText_GetStringWidth(sp2C), 36);
                 UIElement_PrintText(D_80230C30_A275A0, sp2C);
             }
         } else {
@@ -351,7 +351,7 @@ void func_801DDD58_9D46C8(void) {
             func_8037519C_84894C(D_80230C80_A275F0[i], "%s", getLevelName(func_800BF710_5C5B0(sp48)->levelID));
             func_8036D4B4_840C64(1, 0);
             sprintf(sp28, "%s", func_8037501C_8487CC("%5d", func_800BF818_5C6B8(sp48)));
-            UIElement_SetTextPos(D_80230C80_A275F0[i], 166 - func_8036D4F0_840CA0(sp28), 0);
+            UIElement_SetTextPos(D_80230C80_A275F0[i], 166 - UIText_GetStringWidth(sp28), 0);
             func_8037519C_84894C(D_80230C80_A275F0[i], "%5s", sp28);
             func_8036D4B4_840C64(1, 1);
             UIElement_SetState(D_80230C80_A275F0[i], UI_NORMAL);
@@ -1274,7 +1274,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (checkPlayerFlag(PFID_HAS_FLUTE)) {
             if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
                 func_800BF3D4_5C274(PokemonID_1022) && func_800BF3D4_5C274(PokemonID_1018) && func_800BF3D4_5C274(PokemonID_1035)) {
-                UIElement_SetTextPos(arg0, 82 - (func_8036D4F0_840CA0("Well, this is the final course!") / 2), 51);
+                UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth("Well, this is the final course!") / 2), 51);
                 sprintf(sp28, "%s", "Well, this is the final course!");
             } else {
                 sprintf(sp28, "%s", "Collect all the PKMN Signs!");
@@ -1305,7 +1305,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
     } else {
         sprintf(sp28, "%s", "Collect more Pokεmon for the Report!");
     }
-    UIElement_SetTextPos(arg0, 82 - (func_8036D4F0_840CA0(sp28) / 2), 51);
+    UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth(sp28) / 2), 51);
     func_8037519C_84894C(arg0, "%s", sp28);
 }
 
@@ -1405,7 +1405,7 @@ void func_801E16DC_9D804C(void) {
         UIElement_SetTextStyle(sp2C, FONT_12);
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        UIElement_SetTextPos(sp2C, (108 - func_8036D4F0_840CA0("PKMN Report")) / 2, 0);
+        UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Report")) / 2, 0);
         UIElement_PrintText(sp2C, "PKMN Report");
         UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C34_A275A4 = sp2C;
@@ -1510,7 +1510,7 @@ void func_801E1BEC_9D855C(void) {
         UIElement_SetTextStyle(sp2C, FONT_12);
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        UIElement_SetTextPos(sp2C, (108 - func_8036D4F0_840CA0("PKMN Signs")) / 2, 0);
+        UIElement_SetTextPos(sp2C, (108 - UIText_GetStringWidth("PKMN Signs")) / 2, 0);
         UIElement_PrintText(sp2C, "PKMN Signs");
         UIElement_SetState(sp2C, UI_HIDDEN);
         D_80230C34_A275A4 = sp2C;

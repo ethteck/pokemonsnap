@@ -268,8 +268,8 @@ void func_800E2A84_A5DE34(char* arg0) {
     s16 sp1A;
     SObj* unk_48;
 
-    func_8036D344_840AF4(FONT_12);
-    sp1A = func_8036D4F0_840CA0(D_80168130) + 203;
+    UIText_SetFont(FONT_12);
+    sp1A = UIText_GetStringWidth(D_80168130) + 203;
     unk_48 = D_80168148->data.sobj;
     SET_SPRITE_POS(unk_48->sprite, sp1A, 64);
     if (D_80168143 >= 14 || menu_new_game_CursorY >= 19) {

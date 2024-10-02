@@ -885,7 +885,7 @@ void UIElement_PrintText(UIElement* el, char* str) {
         return;
     }
 
-    func_8036D344_840AF4(el->text.font);
+    UIText_SetFont(el->text.font);
     el->text.width = el->imageWidth;
     el->text.image = el->image + (el->imageWidth * el->borderHeight + el->borderWidth) * el->bpp;
     el->text.bpp = el->bpp;
@@ -916,7 +916,7 @@ void UIElement_PrintAsciiString(UIElement* el, char* str) {
         return;
     }
 
-    func_8036D344_840AF4(el->text.font);
+    UIText_SetFont(el->text.font);
     el->text.width = el->imageWidth;
     el->text.image = el->image + (el->imageWidth * el->borderHeight + el->borderWidth) * el->bpp;
     el->text.bpp = el->bpp;
@@ -956,7 +956,7 @@ void UIElement_SetScale(UIElement* el, f32 scalex, f32 scaley) {
 }
 
 void UIElement_SetTextStyle(UIElement* el, s32 style) {
-    if (func_8036D344_840AF4(style)) {
+    if (UIText_SetFont(style)) {
         return;
     }
 
@@ -1127,10 +1127,10 @@ UIElement* UIElement_CreateText(s32 x, s32 y, char* str, s32 font, s32 flags) {
     UIElement* el;
     s32 temp_s0;
 
-    func_8036D344_840AF4(font);
-    temp_s0 = func_8036D4F0_840CA0(str);
+    UIText_SetFont(font);
+    temp_s0 = UIText_GetStringWidth(str);
     // TODO: look into a "ceil to multiple of" macro
-    el = UIElement_Create(x, y, (temp_s0 + 1 + 0xF) & ~0xF, ((func_8036D758_840F08() + 1) & ~1) + 4, flags);
+    el = UIElement_Create(x, y, (temp_s0 + 1 + 0xF) & ~0xF, ((UIText_GetCharsWidth() + 1) & ~1) + 4, flags);
     UIElement_SetTextStyle(el, font);
     UIElement_DrawBackground(el);
     UIElement_SetTextPos(el, 0, 0);

@@ -261,7 +261,7 @@ void func_credits_801DE060(void) {
             if (temp_v0 == NULL) {
 
             } else if (credit->unk_0 != 0) {
-                temp_v0->unk_0 = (SCREEN_WIDTH / 2) - (func_8036D4F0_840CA0(credit->unk_8) / 2);
+                temp_v0->unk_0 = (SCREEN_WIDTH / 2) - (UIText_GetStringWidth(credit->unk_8) / 2);
                 temp_v0->unk_4 += 252.0f;
                 UIElement_Draw(temp_v0->unk_C);
                 UIElement_PrintText(temp_v0->unk_C, credit->unk_8);
@@ -332,7 +332,7 @@ void func_credits_801DE35C(void) {
             if (temp_v0 == NULL) {
 
             } else if (credit->unk_0 != 0) {
-                temp_v0->unk_0 = (SCREEN_WIDTH / 2) - (func_8036D4F0_840CA0(credit->unk_8) / 2);
+                temp_v0->unk_0 = (SCREEN_WIDTH / 2) - (UIText_GetStringWidth(credit->unk_8) / 2);
                 temp_v0->unk_4 += 252.0f;
                 UIElement_Draw(temp_v0->unk_C);
                 UIElement_PrintText(temp_v0->unk_C, credit->unk_8);

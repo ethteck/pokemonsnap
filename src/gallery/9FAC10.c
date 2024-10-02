@@ -259,13 +259,13 @@ void func_801DD8F8_9FB5B8(s32 arg0, s32 arg1) {
     } else {
         UIElement_Draw(D_80230884_A4E544);
         func_8036D4A0_840C50(0);
-        func_8036D344_840AF4(FONT_12);
+        UIText_SetFont(FONT_12);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
         UIElement_SetTextPos(D_80230884_A4E544, 0, 0);
         UIElement_PrintText(D_80230884_A4E544, "  \\i−\\g      \\i−\\g  ");
         sprintf(sp28, "%d", arg1 + 1);
-        UIElement_SetTextPos(D_80230884_A4E544, 30 - (func_8036D4F0_840CA0(sp28) / 2), 0);
+        UIElement_SetTextPos(D_80230884_A4E544, 30 - (UIText_GetStringWidth(sp28) / 2), 0);
         UIElement_PrintText(D_80230884_A4E544, sp28);
         UIElement_SetState(D_80230884_A4E544, UI_NORMAL);
     }
@@ -488,7 +488,7 @@ void func_801DE5D0_9FC290(s32 arg0) {
             func_801DD8F8_9FB5B8(0, 0);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - UIText_GetStringWidth("Gallery")) / 2, 0);
             UIElement_PrintText(D_8023087C_A4E53C, "Gallery");
             break;
         case 1:
@@ -496,8 +496,8 @@ void func_801DE5D0_9FC290(s32 arg0) {
             func_801DD8F8_9FB5B8(1, D_8023088C_A4E54C);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036D344_840AF4(FONT_12);
-            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Album")) / 2, 0);
+            UIText_SetFont(FONT_12);
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - UIText_GetStringWidth("PKMN Album")) / 2, 0);
             UIElement_PrintText(D_8023087C_A4E53C, "PKMN Album");
             break;
         case 2:
@@ -505,8 +505,8 @@ void func_801DE5D0_9FC290(s32 arg0) {
             func_801DD8F8_9FB5B8(2, D_80230888_A4E548);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036D344_840AF4(FONT_12);
-            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Report")) / 2, 0);
+            UIText_SetFont(FONT_12);
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - UIText_GetStringWidth("PKMN Report")) / 2, 0);
             UIElement_PrintText(D_8023087C_A4E53C, "PKMN Report");
             break;
     }
@@ -763,7 +763,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIElement_SetTextStyle(sp34, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    UIElement_SetTextPos(sp34, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
+    UIElement_SetTextPos(sp34, (108 - UIText_GetStringWidth("Gallery")) / 2, 0);
     UIElement_PrintText(sp34, "Gallery");
     UIElement_SetState(sp34, UI_HIDDEN);
     D_8023087C_A4E53C = sp34;

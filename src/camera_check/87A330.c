@@ -576,7 +576,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         }
 //         sprintf(sp48, "%s", levelName, levelName);
 //         UIElement_SetTextStyle(temp_s0, FONT_8);
-//         UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0xC);
+//         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0xC);
 //         UIElement_PrintText(temp_s0, sp48);
 //         sprintf(sp48, "%s", get_player_name());
 
@@ -584,7 +584,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         }
 
 //         UIElement_SetTextStyle(temp_s0, FONT_8);
-//         UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0x28);
+//         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0x28);
 //         UIElement_PrintText(temp_s0, sp48);
 //         if (!(arg0->unk_18_0x04000000)) {
 //             sprintf(sp48, "%s", getPokemonName(arg0->unk_08));
@@ -602,7 +602,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         sp68 = var_a3_2;
 //         UIElement_Draw(D_camera_check_80249918);
 //         UIElement_SetTextStyle(D_camera_check_80249918, FONT_12);
-//         UIElement_SetTextPos(D_camera_check_80249918, (108 - func_8036D4F0_840CA0(sp68)) / 2, 0);
+//         UIElement_SetTextPos(D_camera_check_80249918, (108 - UIText_GetStringWidth(sp68)) / 2, 0);
 //         UIElement_PrintText(D_camera_check_80249918, sp68);
 //     } else {
 //         UIElement_SetTextPos(temp_s0, 0, 12);
@@ -636,13 +636,13 @@ void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
             levelName = "ーーー";
         }
         sprintf(sp44, "%s", levelName);
-        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 12);
+        UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 12);
         UIElement_PrintText(temp_s0, sp44);
         sprintf(sp44, "%s", get_player_name());
-        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 40);
+        UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 40);
         UIElement_PrintText(temp_s0, sp44);
         sprintf(sp44, "%d", arg0->unk_04);
-        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 68);
+        UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 68);
         UIElement_PrintText(temp_s0, sp44);
     } else {
         UIElement_SetTextPos(temp_s0, 0, 12);

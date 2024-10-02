@@ -721,7 +721,7 @@ void func_801DDAD8_98D548(s32 arg0, s32 arg1) {
     func_8036D4A0_840C50(0);
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);
-    UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Total")) / 2) - 71, 60);
+    UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Total")) / 2) - 71, 60);
     UIElement_PrintText(D_802290E0_9D8B50, "Total");
     func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
     func_8036D4A0_840C50(0);
@@ -948,7 +948,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Special")) / 2) - 71, 48);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Special")) / 2) - 71, 48);
         UIElement_PrintText(D_802290E0_9D8B50, "Special");
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
         if (D_801F3E60_9A38D0 && sp25C->unk_3A0.unk_14 != 0) {
@@ -1052,7 +1052,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036D4A0_840C50(0);
                 func_8036D448_840BF8(0);
                 func_8036D3E8_840B98(0, 4);
-                UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Special")) / 2) - 71, 48);
+                UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Special")) / 2) - 71, 48);
                 UIElement_PrintText(D_802290E0_9D8B50, "Special");
                 func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
                 func_8036D448_840BF8(0);
@@ -1090,7 +1090,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Size")) / 2) - 71, 48);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Size")) / 2) - 71, 48);
         UIElement_PrintText(D_802290E0_9D8B50, "Size");
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
         UIElement_Draw(D_802290DC_9D8B4C);
@@ -1215,7 +1215,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Pose")) / 2) - 71, 48);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Pose")) / 2) - 71, 48);
         UIElement_PrintText(D_802290E0_9D8B50, "Pose");
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
         UIElement_Draw(D_802290DC_9D8B4C);
@@ -1373,7 +1373,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Technique")) / 2) - 71, 48);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Technique")) / 2) - 71, 48);
         UIElement_PrintText(D_802290E0_9D8B50, "Technique");
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
         UIElement_Draw(D_802290DC_9D8B4C);
@@ -1387,7 +1387,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 func_8036D448_840BF8(0);
                 func_8036D3E8_840B98(0, 4);
                 sprintf(sp214, "ｘ２");
-                UIElement_SetTextPos(D_802290E0_9D8B50, 38 - func_8036D4F0_840CA0(sp214), 48);
+                UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
                 UIElement_PrintText(D_802290E0_9D8B50, sp214);
                 func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
                 D_801F3E64_9A38D4 += D_801F3E64_9A38D4; // TODO points?
@@ -1424,7 +1424,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
             sprintf(sp214, "ｘ２");
-            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - func_8036D4F0_840CA0(sp214), 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - UIText_GetStringWidth(sp214), 48);
             UIElement_PrintText(D_802290E0_9D8B50, sp214);
             UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
             func_8036D448_840BF8(1);
@@ -1479,7 +1479,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(0);
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
             UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             UIElement_Draw(D_802290DC_9D8B4C);
@@ -1528,7 +1528,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(0);
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
             UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             spE0 = sp25C->unk_3A0.unk_04;
@@ -1591,7 +1591,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         func_8036D4A0_840C50(0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Size")) / 2) - 71, 48);
+        UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Size")) / 2) - 71, 48);
         UIElement_PrintText(D_802290E0_9D8B50, "Size");
         func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
         if (sp20C) {
@@ -1622,7 +1622,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(0);
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Pose")) / 2) - 71, 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Pose")) / 2) - 71, 48);
             UIElement_PrintText(D_802290E0_9D8B50, "Pose");
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp20C) {
@@ -1656,7 +1656,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(0);
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Technique")) / 2) - 71, 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Technique")) / 2) - 71, 48);
             UIElement_PrintText(D_802290E0_9D8B50, "Technique");
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             UIElement_SetTextStyle(D_802290E0_9D8B50, FONT_8);
@@ -1664,11 +1664,11 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
             sprintf(sp214, "ｘ２");
-            UIElement_SetTextPos(D_802290E0_9D8B50, 38 - func_8036D4F0_840CA0(sp214), 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
             if (sp20C && sp25C->unk_3A0.unk_07 != 0) {
                 UIElement_PrintText(D_802290E0_9D8B50, sp214);
             }
-            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - func_8036D4F0_840CA0(sp214), 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, 184 - UIText_GetStringWidth(sp214), 48);
             if (photo->isWellFramed) {
                 UIElement_PrintText(D_802290E0_9D8B50, sp214);
             }
@@ -1680,7 +1680,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8036D4A0_840C50(0);
             func_8036D448_840BF8(0);
             func_8036D3E8_840B98(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Same †‡")) / 2) - 71, 48);
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
             UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
             func_8036D4A0_840C50(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp20C) {
@@ -1985,7 +1985,7 @@ void func_801E2454_991EC4(void) {
                 func_8036D448_840BF8(0);
                 func_8036D3E8_840B98(0, 4);
                 UIElement_SetTextStyle(D_802290E4_9D8B54, FONT_12);
-                UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - func_8036D4F0_840CA0(sp48)) / 2) - 71, 28);
+                UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth(sp48)) / 2) - 71, 28);
                 UIElement_PrintText(D_802290E4_9D8B54, sp48);
                 UIElement_SetState(D_802290E4_9D8B54, UI_NORMAL);
             }
@@ -2161,7 +2161,7 @@ void func_801E2ED4_992944(s32 arg0) {
     UIElement_Draw(D_802290E0_9D8B50);
     UIElement_SetState(D_802290E0_9D8B50, UI_NORMAL);
     UIElement_SetTextStyle(D_802290E4_9D8B54, FONT_12);
-    UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - func_8036D4F0_840CA0("Evaluation")) / 2) - 71, 34);
+    UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth("Evaluation")) / 2) - 71, 34);
     UIElement_PrintText(D_802290E4_9D8B54, "Evaluation");
 
     for (i = 0; i < 60; i++) {

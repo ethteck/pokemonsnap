@@ -2347,7 +2347,8 @@ segments:
 
     - [0x848BC0, data]
     - [0x852220, .data, element]
-    - [0x852250, data]
+    - [0x852250, .data, text]
+    - [0x852920, data]
     - [0x879E80, data, 848B80]
 
     - [0x879F20, .rodata, text]

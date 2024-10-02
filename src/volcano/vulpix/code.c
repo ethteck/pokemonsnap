@@ -212,7 +212,7 @@ s32 func_802D9D00_72AF00(GObj* obj) {
     UNUSED s32 pad[1];
 
     block = getCurrentWorldBlock();
-    func_8001FCA4(&sp2C, pokemon->path, 0.99999f);
+    GetInterpolatedPosition(&sp2C, pokemon->path, 0.99999f);
     pokemon->pos1.x = (sp2C.x - block->descriptor->worldPos.x) * 100.0f;
     pokemon->pos1.z = (sp2C.z - block->descriptor->worldPos.z) * 100.0f;
 

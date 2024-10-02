@@ -230,9 +230,9 @@ charizard_matanim_spewfire = 0x8018B320;
 growlithe_spawner_modelanim = 0x80113960;
 growlithe_spawner_matanim = 0x80113990;
 
-D_8014F080 = 0x8014F080;
-D_8014E550 = 0x8014E550;
-D_8014E650 = 0x8014E650;
+moltres_egg_model = 0x8014F080;
+moltres_egg_modelanim_idle = 0x8014E550;
+moltres_egg_modelanim_drown = 0x8014E650;
 
 moltres_modelanim_fly = 0x80143E20;
 moltres_modelanim_fly2 = 0x801429B0;
@@ -274,8 +274,7 @@ D_800FAE40 = 0x800FAE40;
 D_800FBF50 = 0x800FBF50;
 D_800FD080 = 0x800FD080;
 
-D_800F1D10 = 0x800F1D10;
-D_800F07A0 = 0x800F07A0;
+gate_materials = 0x800F07A0;
 D_800F1DF0 = 0x800F1DF0;
 D_800F1ED0 = 0x800F1ED0;
 D_800F1FD0 = 0x800F1FD0;
@@ -308,3 +307,35 @@ koffing_smoke_part0_mat0_image8 = 0x8011CE78;
 koffing_smoke_part0_mat0_image9 = 0x8011D680;
 koffing_smoke_part0_mat0_image10 = 0x8011DE88;
 koffing_smoke_part0_mat0_image11 = 0x8011E690;
+
+D_800EE380_6BB30 = 0x800EE380;
+D_800EF388_6CB38 = 0x800EF388;
+
+gate_modelanim_closed = 0x800F1DF0;
+gate_modelanim_raise_bar = 0x800F1ED0;
+gate_modelanim_opening = 0x800F1FD0;
+gate_modelanim_opened = 0x800F20D0;
+gate_matanim_closed = 0x800F1E40;
+gate_matanim_raise_bar = 0x800F1F20;
+gate_matanim_opening = 0x800F2020;
+gate_matanim_opened = 0x800F2110;
+
+D_800F31D0_70980 = 0x800F31D0;
+D_800F21C8_6F978 = 0x800F21C8;
+
+D_800EDF78 = 0x800EDF78;
+volcano_blocksSetup = 0x80113624;
+D_800FFFE0_326C60 = 0x800FFFE0;
+D_80101510_328190 = 0x80101510;
+D_80101534_3281B4 = 0x80101534;
+D_80101558_3281D8 = 0x80101558;
+D_8010157C_3281FC = 0x8010157C;
+D_801015A0_328220 = 0x801015A0;
+D_801015C4_328244 = 0x801015C4;
+D_801015E8_328268 = 0x801015E8;
+D_80112DC4_339A44 = 0x80112DC4;
+D_80112E84_339B04 = 0x80112E84;
+D_80112FD4_339C54 = 0x80112FD4;
+D_80113034_339CB4 = 0x80113034;
+D_80113154_339DD4 = 0x80113154;
+D_80113364_339FE4 = 0x80113364;

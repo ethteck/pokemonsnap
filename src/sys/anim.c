@@ -642,7 +642,7 @@ void animUpdateModelAnimatedParams(DObj* dobj) {
                             } else if (value > 1.0f) {
                                 value = 1.0f;
                             }
-                            func_8001FCA4(&dobj->position.v, aobj->unk_20, value);
+                            GetInterpolatedPosition(&dobj->position.v, aobj->unk_20, value);
                             break;
                         case ANIM_PARAM_POSITION_X:
                             dobj->position.v.x = value;
@@ -1297,7 +1297,7 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
                     } else if (*outValue > 1.0f) {
                         *outValue = 1.0f;
                     }
-                    func_8001FCA4(interpPos, aobj->unk_20, *outValue);
+                    GetInterpolatedPosition(interpPos, aobj->unk_20, *outValue);
                     switch (paramID) {
                         case ANIM_PARAM_POSITION_X:
                             *outValue = interpPos->x;
@@ -2316,7 +2316,7 @@ void animUpdateCameraAnimatedParams(OMCamera* camera) {
                             } else if (tmp > 1.0f) {
                                 tmp = 1.0f;
                             }
-                            func_8001FCA4(&camera->viewMtx.lookAt.eye, aobj->unk_20, tmp);
+                            GetInterpolatedPosition(&camera->viewMtx.lookAt.eye, aobj->unk_20, tmp);
                             break;
                         case ANIM_PARAM_CAMERA_XAT:
                             camera->viewMtx.lookAt.at.x = animGetAObjValue(aobj);
@@ -2334,7 +2334,7 @@ void animUpdateCameraAnimatedParams(OMCamera* camera) {
                             } else if (tmp > 1.0f) {
                                 tmp = 1.0f;
                             }
-                            func_8001FCA4(&camera->viewMtx.lookAt.at, aobj->unk_20, tmp);
+                            GetInterpolatedPosition(&camera->viewMtx.lookAt.at, aobj->unk_20, tmp);
                             break;
                         case ANIM_PARAM_CAMERA_ROLL:
                             camera->viewMtx.lookAtRoll.roll = animGetAObjValue(aobj);

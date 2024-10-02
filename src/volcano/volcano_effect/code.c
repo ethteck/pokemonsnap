@@ -5,45 +5,45 @@ extern Texture** D_80114710[];
 extern AnimCmd* D_80114840[];
 extern AnimCmd** D_80114980[];
 
-void func_802DEDE0_72FFE0(GObj*);
+void volcano_effect_InitialState(GObj*);
 void func_802DF1B4_7303B4(GObj*);
 void func_802DF214_730414(GObj*);
-void func_802DEEE0_7300E0(GObj*);
-void func_802DEF4C_73014C(GObj*);
-void func_802DEFB8_7301B8(GObj*);
-void func_802DF0B4_7302B4(GObj*);
-void func_802DF164_730364(GObj*);
-void func_802DF028_730228(GObj*);
+void volcano_effect_Type1(GObj*);
+void volcano_effect_Type5(GObj*);
+void volcano_effect_Type2(GObj*);
+void volcano_effect_Type3(GObj*);
+void volcano_effect_Type4(GObj*);
+void volcano_effect_Type2Inflate(GObj*);
 
-s32 D_802E34F0_7346F0[] = { SOUND_ID_58 };
-s32 D_802E34F4_7346F4[] = { SOUND_ID_62 };
-s32 D_802E34F8_7346F8[] = { SOUND_ID_59 };
+s32 volcano_effect_animsounds_type5[] = { SOUND_ID_58 };
+s32 volcano_effect_animsounds_type1[] = { SOUND_ID_62 };
+s32 volcano_effect_animsounds_type3[] = { SOUND_ID_59 };
 
-AnimationHeader D_802E34FC_7346FC = {
+AnimationHeader volcano_effect_animation_type3 = {
     2,
     100,
     D_80114840,
     D_80114980,
-    D_802E34F8_7346F8
+    volcano_effect_animsounds_type3
 };
 
-AnimationHeader D_802E3510_734710 = {
+AnimationHeader volcano_effect_animation_type1 = {
     2,
     100,
     D_80114840,
     D_80114980,
-    D_802E34F4_7346F4
+    volcano_effect_animsounds_type1
 };
 
-AnimationHeader D_802E3524_734724 = {
+AnimationHeader volcano_effect_animation_type5 = {
     2,
     100,
     D_80114840,
     D_80114980,
-    D_802E34F0_7346F0
+    volcano_effect_animsounds_type5
 };
 
-AnimationHeader D_802E3538_734738 = {
+AnimationHeader volcano_effect_animation_type2 = {
     2,
     100,
     D_80114840,
@@ -51,26 +51,26 @@ AnimationHeader D_802E3538_734738 = {
     NULL
 };
 
-InteractionHandler D_802E354C_73474C[] = {
+InteractionHandler volcano_effect_tg_Type4[] = {
     { VOLCANO_CMD_34, func_802DF1B4_7303B4, 0, NULL },
     { VOLCANO_CMD_35, func_802DF214_730414, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E357C_73477C = {
-    &D_802E34FC_7346FC,
-    func_802DEDE0_72FFE0,
+PokemonAnimationSetup volcano_effect_animSetup = {
+    &volcano_effect_animation_type3,
+    volcano_effect_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E3590_734790 = {
+PokemonInitData volcano_effect_initData = {
     D_80114660,
     D_80114710,
     renderModelTypeDFogged,
-    &D_802E357C_73477C,
+    &volcano_effect_animSetup,
     { 10, 10, 10 },
     { 0, 0, 0 },
     0,
@@ -81,24 +81,24 @@ PokemonInitData D_802E3590_734790 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802DEDE0_72FFE0)
+POKEMON_FUNC(volcano_effect_InitialState)
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802DEEE0_7300E0);
+        Pokemon_SetState(obj, volcano_effect_Type1);
     }
     if (pokemon->behavior == 5) {
-        Pokemon_SetState(obj, func_802DEF4C_73014C);
+        Pokemon_SetState(obj, volcano_effect_Type5);
     }
     if (pokemon->behavior == 2) {
-        Pokemon_SetState(obj, func_802DEFB8_7301B8);
+        Pokemon_SetState(obj, volcano_effect_Type2);
     }
     if (pokemon->behavior == 3) {
-        Pokemon_SetState(obj, func_802DF0B4_7302B4);
+        Pokemon_SetState(obj, volcano_effect_Type3);
     }
     if (pokemon->behavior == 4) {
-        Pokemon_SetState(obj, func_802DF164_730364);
+        Pokemon_SetState(obj, volcano_effect_Type4);
     }
 
-    Pokemon_ForceAnimation(obj, &D_802E34FC_7346FC);
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type3);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -108,8 +108,8 @@ POKEMON_FUNC(func_802DEDE0_72FFE0)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DEEE0_7300E0)
-    Pokemon_ForceAnimation(obj, &D_802E3510_734710);
+POKEMON_FUNC(volcano_effect_Type1)
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type1);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -118,8 +118,8 @@ POKEMON_FUNC(func_802DEEE0_7300E0)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DEF4C_73014C)
-    Pokemon_ForceAnimation(obj, &D_802E3524_734724);
+POKEMON_FUNC(volcano_effect_Type5)
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type5);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -128,9 +128,9 @@ POKEMON_FUNC(func_802DEF4C_73014C)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DEFB8_7301B8)
-    Pokemon_ForceAnimation(obj, &D_802E3538_734738);
-    Pokemon_StartPathProc(obj, func_802DF028_730228);
+POKEMON_FUNC(volcano_effect_Type2)
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type2);
+    Pokemon_StartPathProc(obj, volcano_effect_Type2Inflate);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -138,7 +138,7 @@ POKEMON_FUNC(func_802DEFB8_7301B8)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DF028_730228)
+POKEMON_FUNC(volcano_effect_Type2Inflate)
     while (true) {
         GET_TRANSFORM(model)->scale.v.x *= 1.04;
         GET_TRANSFORM(model)->scale.v.y *= 1.04;
@@ -147,8 +147,8 @@ POKEMON_FUNC(func_802DF028_730228)
     }
 }
 
-POKEMON_FUNC(func_802DF0B4_7302B4)
-    Pokemon_ForceAnimation(obj, &D_802E34FC_7346FC);
+POKEMON_FUNC(volcano_effect_Type3)
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type3);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -162,14 +162,14 @@ POKEMON_FUNC(func_802DF0B4_7302B4)
 
     pokemon->tangible = true;
     obj->flags = 0;
-    Pokemon_SetState(obj, func_802DF0B4_7302B4);
+    Pokemon_SetState(obj, volcano_effect_Type3);
 }
 
-POKEMON_FUNC(func_802DF164_730364)
+POKEMON_FUNC(volcano_effect_Type4)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    pokemon->transitionGraph = D_802E354C_73474C;
+    pokemon->transitionGraph = volcano_effect_tg_Type4;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
@@ -178,11 +178,10 @@ POKEMON_FUNC(func_802DF1B4_7303B4)
     pokemon->tangible = true;
     obj->flags = 0;
 
-    Pokemon_ForceAnimation(obj, &D_802E34FC_7346FC);
-
+    Pokemon_ForceAnimation(obj, &volcano_effect_animation_type3);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802DF164_730364);
+    Pokemon_SetState(obj, volcano_effect_Type4);
 }
 
 POKEMON_FUNC(func_802DF214_730414)
@@ -190,6 +189,6 @@ POKEMON_FUNC(func_802DF214_730414)
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_802DF240_730440(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802E3590_734790);
+GObj* volcano_effect_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &volcano_effect_initData);
 }

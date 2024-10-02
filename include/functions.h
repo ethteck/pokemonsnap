@@ -7,7 +7,7 @@
 f32 __cosf(f32);
 f32 __sinf(f32);
 
-void func_8001FCA4(Vec3f*, InterpData*, f32);
+void GetInterpolatedPosition(Vec3f*, InterpData*, f32);
 
 GObj* pokemonAddOne(struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonDef* def);
 void pokemonAdd(struct WorldBlock*, struct WorldBlock*, PokemonDef* def);

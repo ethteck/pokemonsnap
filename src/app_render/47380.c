@@ -476,8 +476,8 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_601:
         case PokemonID_602:
         case PokemonID_603:
-        case PokemonID_1001:
-        case PokemonID_1002:
+        case PokemonID_GATE:
+        case PokemonID_EVOLUTION_CONTROLLER:
         case PokemonID_1003:
         case PokemonID_1006:
         case PokemonID_1008:
@@ -487,7 +487,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_1013:
         case PokemonID_KOFFING_SMOKE:
         case PokemonID_SMOKE_PUFF:
-        case PokemonID_1030:
+        case PokemonID_VOLCANO_EFFECT:
         case PokemonID_1031:
         case PokemonID_1033:
         case PokemonID_1037:
@@ -916,7 +916,7 @@ void func_8009D0B4(WorldBlock* b1, WorldBlock* b2) {
 }
 
 void func_8009D184(WorldSetup* arg0) {
-    arg0->unk_0C = NULL;
+    arg0->collisionModels = NULL;
     createWorld(arg0, 99, 100, 126, D_800BDF1D, D_800BDF1C, func_8009D0B4, 0, 0);
     func_800E1A78_5F228(0.0f);
 }

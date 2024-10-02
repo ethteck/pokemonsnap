@@ -37,7 +37,7 @@ void func_8034A09C_82980C(GObj* obj) {
     PokemonDef def = D_8034B5EC_82AD5C;
 
     block = getCurrentWorldBlock();
-    spawn.id = PokemonID_1002;
+    spawn.id = PokemonID_EVOLUTION_CONTROLLER;
     spawn.translation.x = 0.0;
     spawn.translation.y = 0.0;
     spawn.translation.z = 0.0;

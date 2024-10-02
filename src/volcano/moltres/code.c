@@ -67,7 +67,7 @@ AnimationHeader moltres_animation_flyaway = {
 };
 
 InteractionHandler moltres_tg_WaitForEgg[] = {
-    { VOLCANO_CMD_30, moltres_Appear, 0, NULL },
+    { VOLCANO_CMD_SPAWN_MOLTRES, moltres_Appear, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
@@ -130,7 +130,7 @@ POKEMON_FUNC(moltres_Appear)
     Pokemon_SetAnimation(obj, &moltres_animation_fly);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &moltres_animation_shakeoff);
     pokemon->transitionGraph = NULL;

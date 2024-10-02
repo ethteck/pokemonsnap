@@ -82,7 +82,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_GROWLITHE,
-      func_802DB558_72C758,
+      growlithe_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_SMOKE_SPAWNER,
@@ -97,12 +97,12 @@ PokemonDef volcano_PokemonDefs[] = {
       koffing_smoke_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1002,
-      func_802DED34_72FF34,
+    { PokemonID_EVOLUTION_CONTROLLER,
+      evolution_controller_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_MOLTRES_EGG,
-      func_802DDEC0_72F0C0,
+      moltres_egg_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_MOLTRES,
@@ -121,16 +121,16 @@ PokemonDef volcano_PokemonDefs[] = {
       growlithe_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1030,
-      func_802DF240_730440,
+    { PokemonID_VOLCANO_EFFECT,
+      volcano_effect_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_1031,
       func_802DFB44_730D44,
       pokemonChangeBlock,
       NULL },
-    { PokemonID_1001,
-      func_802DFA38_730C38,
+    { PokemonID_GATE,
+      volcano_gate_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { 0, NULL, NULL, NULL }
@@ -210,7 +210,7 @@ PokemonDef volcano_ArcanineDef = {
 
 PokemonDef volcano_GrowlitheDef = {
     PokemonID_GROWLITHE,
-    func_802DB558_72C758,
+    growlithe_Spawn,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
 };
@@ -223,8 +223,8 @@ PokemonDef volcano_CharizardDef = {
 };
 
 PokemonDef volcano_Pokemon1030Def = {
-    PokemonID_1030,
-    func_802DF240_730440,
+    PokemonID_VOLCANO_EFFECT,
+    volcano_effect_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };
@@ -514,7 +514,7 @@ void func_802D6A5C_727C5C(GObj* obj) {
 void func_802D6B2C_727D2C(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 0;
     omEndProcess(NULL);
 }
@@ -522,7 +522,7 @@ void func_802D6B2C_727D2C(GObj* obj) {
 void func_802D6B64_727D64(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 4;
     GET_POKEMON(obj)->miscVars[1].obj = var;
     omEndProcess(NULL);
@@ -531,7 +531,7 @@ void func_802D6B64_727D64(GObj* obj) {
 void func_802D6BB0_727DB0(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 1;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -542,7 +542,7 @@ void func_802D6BB0_727DB0(GObj* obj) {
 void func_802D6C38_727E38(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 5;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -553,7 +553,7 @@ void func_802D6C38_727E38(GObj* obj) {
 void func_802D6CC0_727EC0(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 5;
     omEndProcess(NULL);
 }
@@ -561,7 +561,7 @@ void func_802D6CC0_727EC0(GObj* obj) {
 void func_802D6CFC_727EFC(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_1030, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
     GET_POKEMON(var)->behavior = 2;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.0f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.0f;
@@ -639,7 +639,7 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
         ohWait(1);
     }
 
-    sp6C = 1.0f / pokemon->path->unk_0C * speedMult;
+    sp6C = 1.0f / pokemon->path->duration * speedMult;
 
     while (true) {
         if (!(var_f20 >= 0.0f && var_f20 <= 1.0f)) {
@@ -655,7 +655,7 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
                 GET_TRANSFORM(temp_s1)->pos.v.y -= sp88.y * 100.0f;
             }
 
-            func_8001FCE8(&sp74, pokemon->path, var_f20);
+            GetInterpolatedVelocity(&sp74, pokemon->path, var_f20);
 
             angle = atan2f(sp74.x, sp74.z);
             if (angle < 0.0f) {
@@ -667,13 +667,13 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
 
             switch (pokemon->path->type) {
                 case 1:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
                 case 2:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
                 case 3:
-                    func_8001FCA4(&sp88, pokemon->path, var_f20);
+                    GetInterpolatedPosition(&sp88, pokemon->path, var_f20);
                     break;
             }
 

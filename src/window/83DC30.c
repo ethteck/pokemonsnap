@@ -886,7 +886,7 @@ void func_8036C898_840048(UnkSnowHerring* arg0, char* arg1) {
     }
 
     func_8036D344_840AF4(arg0->unk_114);
-    arg0->unk_F8.imageWidth = arg0->imageWidth;
+    arg0->unk_F8.width = arg0->imageWidth;
     arg0->unk_F8.image = arg0->image + (arg0->imageWidth * arg0->borderHeight + arg0->borderWidth) * arg0->bpp;
     arg0->unk_F8.bpp = arg0->bpp;
     arg0->unk_F8.height = arg0->height;
@@ -917,7 +917,7 @@ void UIElement_PrintText2(UnkSnowHerring* el, char* text) {
     }
 
     func_8036D344_840AF4(el->unk_114);
-    el->unk_F8.imageWidth = el->imageWidth;
+    el->unk_F8.width = el->imageWidth;
     el->unk_F8.image = el->image + (el->imageWidth * el->borderHeight + el->borderWidth) * el->bpp;
     el->unk_F8.bpp = el->bpp;
     el->unk_F8.height = el->height;

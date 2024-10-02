@@ -15,7 +15,7 @@ typedef struct UnkSnow2 {
 
 typedef struct UIText {
     /* 0x00 */ u8* image;
-    /* 0x04 */ s32 imageWidth;
+    /* 0x04 */ s32 width;
     /* 0x08 */ s32 height;
     /* 0x0C */ s32 bpp;
     /* 0x10 */ s32 unk_10;

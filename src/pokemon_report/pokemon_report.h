@@ -13,7 +13,7 @@ void func_801DE7F8_9D5168(s32);
 s32 func_801DF020_9D5990(s32);
 void func_801DFB10_9D6480(s32);
 void func_801DFC20_9D6590(s32);
-UnkSnowHerring* func_801DCF40_9D38B0(void);
+UIElement* func_801DCF40_9D38B0(void);
 s32 func_801E00E0_9D6A50(s32);
 void func_801E0C3C_9D75AC(s32);
 void func_801E0D54_9D76C4(void);

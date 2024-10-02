@@ -3,11 +3,11 @@
 #include "more_funcs/more_funcs.h"
 #include "string.h"
 
-UnkSnowHerring* func_camera_check_801DCB40(void) {
+UIElement* func_camera_check_801DCB40(void) {
     return D_camera_check_80249914;
 }
 
-UnkSnowHerring* func_camera_check_801DCB4C(void) {
+UIElement* func_camera_check_801DCB4C(void) {
     return D_camera_check_80249918;
 }
 
@@ -370,10 +370,10 @@ void func_camera_check_801DDB08(s32 arg0) {
 
     if (arg0) {
         D_camera_check_802499C0[6].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
-        func_8036D1A4_840954(D_camera_check_8024991C, 0);
+        UIElement_SetState(D_camera_check_8024991C, UI_NORMAL);
     } else {
         D_camera_check_802499C0[6].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
-        func_8036D1A4_840954(D_camera_check_8024991C, 1);
+        UIElement_SetState(D_camera_check_8024991C, UI_HIDDEN);
     }
 }
 
@@ -397,12 +397,12 @@ void func_camera_check_801DDB80(s32 arg0, s32 arg1, s32 arg2) {
 
     if (func_80374714_847EC4(photoData, &D_camera_check_802499C0[6].unk_0C->sprite) != 0) {
         D_camera_check_802499C0[6].unk_00->data.sobj->sprite.attr |= SP_HIDDEN;
-        func_8036D1A4_840954(D_camera_check_8024991C, 1);
+        UIElement_SetState(D_camera_check_8024991C, UI_HIDDEN);
         return;
     }
 
     D_camera_check_802499C0[6].unk_00->data.sobj->sprite.attr &= ~SP_HIDDEN;
-    func_8036A8E4_83E094(D_camera_check_8024991C);
+    UIElement_Draw(D_camera_check_8024991C);
     sp1C = "";
     if (var_a2 != NULL) {
         func_camera_check_801DD238(&D_camera_check_802499C0[6], func_camera_check_801E2948(var_a2), arg2 | 0x10 | 0x20);
@@ -416,11 +416,11 @@ void func_camera_check_801DDB80(s32 arg0, s32 arg1, s32 arg2) {
         }
     }
     if (!(arg2 & 0x40)) {
-        func_8036B9EC_83F19C(D_camera_check_8024991C, 0, 2);
+        UIElement_SetTextPos(D_camera_check_8024991C, 0, 2);
     }
-    func_8036B9EC_83F19C(D_camera_check_8024991C, 0, 2);
-    func_8036C898_840048(D_camera_check_8024991C, sp1C);
-    func_8036D1A4_840954(D_camera_check_8024991C, 0);
+    UIElement_SetTextPos(D_camera_check_8024991C, 0, 2);
+    UIElement_PrintText(D_camera_check_8024991C, sp1C);
+    UIElement_SetState(D_camera_check_8024991C, UI_NORMAL);
 }
 
 void func_camera_check_801DDD28(s32 arg0) {
@@ -429,12 +429,12 @@ void func_camera_check_801DDD28(s32 arg0) {
     }
 
     if (arg0) {
-        func_8036D1A4_840954(D_camera_check_80249910, 0);
+        UIElement_SetState(D_camera_check_80249910, UI_NORMAL);
         func_803713D4_844B84(4);
-        func_8036D1A4_840954(D_camera_check_80249918, 0);
+        UIElement_SetState(D_camera_check_80249918, UI_NORMAL);
     } else {
-        func_8036D1A4_840954(D_camera_check_80249910, 1);
-        func_8036D1A4_840954(D_camera_check_80249918, 1);
+        UIElement_SetState(D_camera_check_80249910, UI_HIDDEN);
+        UIElement_SetState(D_camera_check_80249918, UI_HIDDEN);
         func_803713EC_844B9C(4);
     }
 }
@@ -472,7 +472,7 @@ void func_camera_check_801DDDA4(SObj* sobj, f32 arg1, f32* arg2, s32 x, s32 y) {
 void* func_camera_check_801DDFC4(void) {
     GObj* temp_v0;
     SObj* sobj;
-    UnkSnowHerring* temp_v0_2;
+    UIElement* temp_v0_2;
 
     temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
     D_camera_check_802498F0.unk_00 = temp_v0;
@@ -532,20 +532,20 @@ void* func_camera_check_801DDFC4(void) {
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802498F0.unk_1C = sobj;
 
-    temp_v0_2 = UIElement_Create(0x100, 0x32, 0x54, 0x70, 0x10);
-    UIElement_SetColor(temp_v0_2, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(temp_v0_2, 0, 0, 0, 0, 0);
-    func_8036B734_83EEE4(temp_v0_2);
-    func_8036D1A4_840954(temp_v0_2, 1);
+    temp_v0_2 = UIElement_Create(256, 50, 84, 112, UI_FLAG_10);
+    UIElement_SetColor(temp_v0_2, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(temp_v0_2, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_DrawBackground(temp_v0_2);
+    UIElement_SetState(temp_v0_2, UI_HIDDEN);
     D_camera_check_80249910 = temp_v0_2;
     func_8036D4A0_840C50(0);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036CB58_840308(temp_v0_2, 8);
-    func_8036B9EC_83F19C(temp_v0_2, 0, 0);
-    func_8036C898_840048(temp_v0_2, "Course");
-    func_8036B9EC_83F19C(temp_v0_2, 0, 0x1C);
-    func_8036C898_840048(temp_v0_2, "Photo by");
+    UIElement_SetTextStyle(temp_v0_2, FONT_8);
+    UIElement_SetTextPos(temp_v0_2, 0, 0);
+    UIElement_PrintText(temp_v0_2, "Course");
+    UIElement_SetTextPos(temp_v0_2, 0, 28);
+    UIElement_PrintText(temp_v0_2, "Photo by");
 
     return temp_v0;
 }
@@ -557,7 +557,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //     char* sp68;
 //     char* var_a3_2;
 //     char sp48[0x20];
-//     UnkSnowHerring* temp_s0;
+//     UIElement* temp_s0;
 //     char* levelName;
 
 //     temp_s0 = D_camera_check_80249910;
@@ -569,23 +569,23 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //     if (arg0 != NULL) {
 //         func_8036D448_840BF8(1);
 //         func_8036D3E8_840B98(-1, 3);
-//         func_8036CB58_840308(temp_s0, 8);
+//         UIElement_SetTextStyle(temp_s0, FONT_8);
 //         levelName = getLevelName(arg0->unk_00->levelID);
 //         if (levelName == NULL) {
 //             levelName = "ーーー";
 //         }
 //         sprintf(sp48, "%s", levelName, levelName);
-//         func_8036CB58_840308(temp_s0, 8);
-//         func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0xC);
-//         func_8036C898_840048(temp_s0, sp48);
+//         UIElement_SetTextStyle(temp_s0, FONT_8);
+//         UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0xC);
+//         UIElement_PrintText(temp_s0, sp48);
 //         sprintf(sp48, "%s", get_player_name());
 
 //         if (var_a3_2 && var_a3_2 && var_a3_2) {
 //         }
 
-//         func_8036CB58_840308(temp_s0, 8);
-//         func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0x28);
-//         func_8036C898_840048(temp_s0, sp48);
+//         UIElement_SetTextStyle(temp_s0, FONT_8);
+//         UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp48), 0x28);
+//         UIElement_PrintText(temp_s0, sp48);
 //         if (!(arg0->unk_18_0x04000000)) {
 //             sprintf(sp48, "%s", getPokemonName(arg0->unk_08));
 //             var_a3_2 = sp48;
@@ -600,57 +600,57 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //             var_a3_2 = "";
 //         }
 //         sp68 = var_a3_2;
-//         func_8036A8E4_83E094(D_camera_check_80249918);
-//         func_8036CB58_840308(D_camera_check_80249918, 0xC);
-//         func_8036B9EC_83F19C(D_camera_check_80249918, (108 - func_8036D4F0_840CA0(sp68)) / 2, 0);
-//         func_8036C898_840048(D_camera_check_80249918, sp68);
+//         UIElement_Draw(D_camera_check_80249918);
+//         UIElement_SetTextStyle(D_camera_check_80249918, FONT_12);
+//         UIElement_SetTextPos(D_camera_check_80249918, (108 - func_8036D4F0_840CA0(sp68)) / 2, 0);
+//         UIElement_PrintText(D_camera_check_80249918, sp68);
 //     } else {
-//         func_8036B9EC_83F19C(temp_s0, 0, 12);
-//         func_8036C898_840048(temp_s0, "ーーーーー");
-//         func_8036B9EC_83F19C(temp_s0, 0, 40);
-//         func_8036C898_840048(temp_s0, "ーーーーー");
+//         UIElement_SetTextPos(temp_s0, 0, 12);
+//         UIElement_PrintText(temp_s0, "ーーーーー");
+//         UIElement_SetTextPos(temp_s0, 0, 40);
+//         UIElement_PrintText(temp_s0, "ーーーーー");
 //     }
 // }
 
 void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
     s32 sp6C; // BUG: never set?
-    UnkSnowHerring* temp_s0;
+    UIElement* temp_s0;
     char* levelName;
     char sp44[0x20];
     UNUSED s32 pad;
 
     temp_s0 = D_camera_check_80249910;
-    UIElement_FillRect(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
-    UIElement_FillRect(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
-    UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
-    UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
-    func_8036B9EC_83F19C(temp_s0, 0, 0x38);
-    func_8036C898_840048(temp_s0, "Score");
+    UIElement_FillRect(temp_s0, 0, 12, 83, 22, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 40, 83, 50, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 68, 83, 78, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 84, 83, 106, 0, 0, 0, 0);
+    UIElement_SetTextPos(temp_s0, 0, 56);
+    UIElement_PrintText(temp_s0, "Score");
 
     if (sp6C) {
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        func_8036CB58_840308(temp_s0, 8);
+        UIElement_SetTextStyle(temp_s0, FONT_8);
         levelName = getLevelName(arg0->unk_00->levelID);
         if (levelName == NULL) {
             levelName = "ーーー";
         }
         sprintf(sp44, "%s", levelName);
-        func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 12);
-        func_8036C898_840048(temp_s0, sp44);
+        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 12);
+        UIElement_PrintText(temp_s0, sp44);
         sprintf(sp44, "%s", get_player_name());
-        func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 40);
-        func_8036C898_840048(temp_s0, sp44);
+        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 40);
+        UIElement_PrintText(temp_s0, sp44);
         sprintf(sp44, "%d", arg0->unk_04);
-        func_8036B9EC_83F19C(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 68);
-        func_8036C898_840048(temp_s0, sp44);
+        UIElement_SetTextPos(temp_s0, 45 - func_8036D4F0_840CA0(sp44), 68);
+        UIElement_PrintText(temp_s0, sp44);
     } else {
-        func_8036B9EC_83F19C(temp_s0, 0, 12);
-        func_8036C898_840048(temp_s0, "ーーーーー");
-        func_8036B9EC_83F19C(temp_s0, 0, 40);
-        func_8036C898_840048(temp_s0, "ーーーーー");
-        func_8036B9EC_83F19C(temp_s0, 0, 68);
-        func_8036C898_840048(temp_s0, "ーーーーー");
+        UIElement_SetTextPos(temp_s0, 0, 12);
+        UIElement_PrintText(temp_s0, "ーーーーー");
+        UIElement_SetTextPos(temp_s0, 0, 40);
+        UIElement_PrintText(temp_s0, "ーーーーー");
+        UIElement_SetTextPos(temp_s0, 0, 68);
+        UIElement_PrintText(temp_s0, "ーーーーー");
     }
 }
 
@@ -711,7 +711,7 @@ void func_camera_check_801DEA20(s32 arg0, s32 arg1) {
     func_camera_check_801DD238(&D_camera_check_802498F0, arg0, arg1);
 }
 
-UnkSnowHerring* func_camera_check_801DEA50(void) {
+UIElement* func_camera_check_801DEA50(void) {
     return D_camera_check_80249910;
 }
 
@@ -736,7 +736,7 @@ void func_camera_check_801DEA5C(GObj* arg0) {
 
 // TODO unused? arg type may be wrong, requiring the weird temp
 void func_camera_check_801DEAC0(s32 arg0) {
-    UnkSnowHerring* sp34;
+    UIElement* sp34;
     UIFrame* sp30;
     ucolor sp2C;
     s32* weird;
@@ -746,12 +746,12 @@ void func_camera_check_801DEAC0(s32 arg0) {
     if (D_camera_check_80208954 != *weird) {
         sp34 = D_camera_check_80249914;
         sp30 = D_camera_check_80249920;
-        func_8036A8E4_83E094(D_camera_check_80249914);
+        UIElement_Draw(D_camera_check_80249914);
         func_8036EE40_8425F0();
         if (D_camera_check_80208954 == 3) {
             func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
         }
-        func_8036D1A4_840954(sp34, 1);
+        UIElement_SetState(sp34, UI_HIDDEN);
         UIFrame_FadeOut(sp30);
         switch (*weird) {
             case 1:
@@ -768,21 +768,21 @@ void func_camera_check_801DEAC0(s32 arg0) {
                 UIFrame_FadeIn(sp30, FRAME_STYLE_3);
                 break;
         }
-        func_8036D1A4_840954(sp34, 0);
+        UIElement_SetState(sp34, UI_NORMAL);
         UIFrame_GetBackgroundColor(sp30, &sp2C);
-        UIElement_SetColor(sp34, 0, sp2C.r, sp2C.g, sp2C.b, 0xFF);
+        UIElement_SetColor(sp34, UI_BACKGROUND, sp2C.r, sp2C.g, sp2C.b, 255);
         D_camera_check_80208954 = arg0;
     }
 }
 
 void func_camera_check_801DEC2C(char* arg0) {
-    UnkSnowHerring* temp_a0;
+    UIElement* temp_a0;
 
-    func_8036A8E4_83E094(D_camera_check_80249914);
+    UIElement_Draw(D_camera_check_80249914);
     temp_a0 = D_camera_check_80249914;
-    func_8036CB58_840308(temp_a0, 8);
-    func_8036B9EC_83F19C(temp_a0, 0, 0);
-    func_8036C898_840048(temp_a0, arg0);
+    UIElement_SetTextStyle(temp_a0, FONT_8);
+    UIElement_SetTextPos(temp_a0, 0, 0);
+    UIElement_PrintText(temp_a0, arg0);
 }
 
 void func_camera_check_801DEC84(void) {
@@ -794,14 +794,14 @@ void func_camera_check_801DEC84(void) {
 }
 
 void func_camera_check_801DECCC(s32 arg0) {
-    UnkSnowHerring* sp4C;
+    UIElement* sp4C;
     char sp24[0x28];
 
     sp4C = D_camera_check_80249914;
     switch (arg0) {
         case 1:
         case 9:
-            UIElement_FillRectDefault(sp4C, 0, 0, 0xBF, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 191, 14);
             sprintf(sp24, "\\i%d\\g pictures have been taken.", arg0 + 1);
             break;
         case 0:
@@ -812,21 +812,21 @@ void func_camera_check_801DECCC(s32 arg0) {
         case 6:
         case 7:
         case 8:
-            UIElement_FillRectDefault(sp4C, 0, 0, 9, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 9, 14);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
             break;
         default:
-            UIElement_FillRectDefault(sp4C, 0, 0, 0x12, 0xE);
+            UIElement_FillRectDefault(sp4C, 0, 0, 18, 14);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
             break;
     }
-    func_8036B9EC_83F19C(sp4C, 0, 0);
-    func_8036C898_840048(sp4C, sp24);
+    UIElement_SetTextPos(sp4C, 0, 0);
+    UIElement_PrintText(sp4C, sp24);
     auPlaySound(0x5C);
     ohWait(1);
 }
 
-void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
+void func_camera_check_801DEDEC(UIElement* arg0) {
     char* sp34;
     s32 pad;
     s32 sp2C;
@@ -834,90 +834,90 @@ void func_camera_check_801DEDEC(UnkSnowHerring* arg0) {
 
     sp34 = getLevelName(getLevelId());
     if (sp34 != NULL) {
-        func_8036A8E4_83E094(arg0);
-        func_8036CB58_840308(arg0, 0xC);
-        func_8036B9EC_83F19C(arg0, 54 - (strlen(sp34) * 3), 0);
+        UIElement_Draw(arg0);
+        UIElement_SetTextStyle(arg0, FONT_12);
+        UIElement_SetTextPos(arg0, 54 - (strlen(sp34) * 3), 0);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        UIElement_SetColor(arg0, 0, 0x40, 0x40, 0x40, 0);
+        UIElement_SetColor(arg0, UI_BACKGROUND, 64, 64, 64, 0);
         func_8037519C_84894C(arg0, "%s Course", sp34);
-        func_8036CB58_840308(arg0, 8);
+        UIElement_SetTextStyle(arg0, FONT_8);
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
-        UIElement_SetColor(arg0, 0, 0, 0, 0, 0);
+        UIElement_SetColor(arg0, UI_BACKGROUND, 0, 0, 0, 0);
 
         if (checkPlayerFlag(PFID_11)) {
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
-                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 0, 255);
             } else {
-                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 255, 255);
             }
-            func_8036B9EC_83F19C(arg0, 0, 16);
-            func_8036C898_840048(arg0, "HI-SCORE");
+            UIElement_SetTextPos(arg0, 0, 16);
+            UIElement_PrintText(arg0, "HI-SCORE");
             sprintf(D_camera_check_80249928, "\\i%8d\\g pts", func_800C0224_5D0C4(getLevelId()));
-            func_8036B9EC_83F19C(arg0, 85, 16);
-            func_8036C898_840048(arg0, D_camera_check_80249928);
+            UIElement_SetTextPos(arg0, 85, 16);
+            UIElement_PrintText(arg0, D_camera_check_80249928);
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
-                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+                UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 255, 255);
             } else {
-                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 0, 255);
             }
-            func_8036B9EC_83F19C(arg0, 0, 28);
-            func_8036C898_840048(arg0, "CHALLENGE SCORE");
+            UIElement_SetTextPos(arg0, 0, 28);
+            UIElement_PrintText(arg0, "CHALLENGE SCORE");
             sprintf(D_camera_check_80249928, "\\i%8d\\g pts", func_803751F8_8489A8(getLevelId()));
-            func_8036B9EC_83F19C(arg0, 85, 28);
-            func_8036C898_840048(arg0, D_camera_check_80249928);
-            UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+            UIElement_SetTextPos(arg0, 85, 28);
+            UIElement_PrintText(arg0, D_camera_check_80249928);
+            UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 255, 255);
         }
     }
 }
 
-void func_camera_check_801DF0D4(UnkSnowHerring* arg0, UnkSnowHerring* arg1, s32 arg2, s32 arg3) {
-    func_8036A8E4_83E094(arg0);
-    func_8036B9EC_83F19C(arg0, 0, 0);
-    func_8036C898_840048(arg0, "Pictures");
+void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 arg3) {
+    UIElement_Draw(arg0);
+    UIElement_SetTextPos(arg0, 0, 0);
+    UIElement_PrintText(arg0, "Pictures");
     sprintf(D_camera_check_80249928, "\\i%10d\\g pts", func_camera_check_801E246C());
-    func_8036B9EC_83F19C(arg0, 56, 0);
-    func_8036C898_840048(arg0, D_camera_check_80249928);
-    func_8036B9EC_83F19C(arg0, 0, 16);
-    func_8036C898_840048(arg0, "Pokεmon");
+    UIElement_SetTextPos(arg0, 56, 0);
+    UIElement_PrintText(arg0, D_camera_check_80249928);
+    UIElement_SetTextPos(arg0, 0, 16);
+    UIElement_PrintText(arg0, "Pokεmon");
     sprintf(D_camera_check_80249928, "\\i       x%2d\\g kinds", func_camera_check_801E2478());
-    func_8036B9EC_83F19C(arg0, 56, 16);
-    func_8036C898_840048(arg0, D_camera_check_80249928);
+    UIElement_SetTextPos(arg0, 56, 16);
+    UIElement_PrintText(arg0, D_camera_check_80249928);
 
     if (arg3) {
         if (func_800C0224_5D0C4(getLevelId()) < arg2) {
             func_800C0254_5D0F4(getLevelId(), arg2);
             if (func_803751F8_8489A8(getLevelId()) < arg2) {
                 auPlaySong(1, 0x21);
-                UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0, 0xFF);
+                UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 0, 255);
             }
             func_camera_check_801DEDEC(arg1);
         }
-        func_8036B9EC_83F19C(arg0, 0, 0x20);
-        func_8036C898_840048(arg0, "Score");
+        UIElement_SetTextPos(arg0, 0, 32);
+        UIElement_PrintText(arg0, "Score");
         sprintf(D_camera_check_80249928, "\\i%10d\\g pts", arg2);
-        func_8036B9EC_83F19C(arg0, 0x38, 0x20);
-        func_8036C898_840048(arg0, D_camera_check_80249928);
-        UIElement_SetColor(arg0, 1, 0xFF, 0xFF, 0xFF, 0xFF);
+        UIElement_SetTextPos(arg0, 56, 32);
+        UIElement_PrintText(arg0, D_camera_check_80249928);
+        UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 255, 255);
     }
 }
 
 void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];
-    UnkSnowHerring* sp6C;
+    UIElement* sp6C;
     UIFrame* sp68;
     ucolor sp64;
     char pad2[0x8];
-    UnkSnowHerring* temp_s0;
+    UIElement* temp_s0;
     s32 temp_s1;
     s32 temp_s2;
     GObj* gobj;
     s32 i;
-    UnkSnowHerring* new_var;
-    UnkSnowHerring* sp44;
+    UIElement* new_var;
+    UIElement* sp44;
 
     func_803717E8_844F98();
     func_80370428_843BD8();
@@ -935,28 +935,28 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIFrame_SetPos(sp68, 184, 320);
     UIFrame_Show(sp68, false);
 
-    sp6C = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp6C, 0, 0xDA, 0x6C, 0, 0);
-    func_8036B734_83EEE4(sp6C);
-    func_8036CB58_840308(sp6C, 0xC);
+    sp6C = UIElement_Create(146, 22, 108, 16, 0);
+    UIElement_SetColor(sp6C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp6C, UI_BACKGROUND, 218, 108, 0, 0);
+    UIElement_DrawBackground(sp6C);
+    UIElement_SetTextStyle(sp6C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036D1A4_840954(sp6C, 0);
+    UIElement_SetState(sp6C, UI_NORMAL);
     D_camera_check_80249918 = sp6C;
 
-    sp6C = UIElement_Create(0, 0x35, 0x5C, 0xC, 0);
-    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp6C, 0, 0, 0, 0, 0);
-    func_8036B734_83EEE4(sp6C);
-    func_8036D1A4_840954(sp6C, 1);
+    sp6C = UIElement_Create(0, 53, 92, 12, 0);
+    UIElement_SetColor(sp6C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp6C, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_DrawBackground(sp6C);
+    UIElement_SetState(sp6C, UI_HIDDEN);
     D_camera_check_8024991C = sp6C;
 
-    sp6C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-    UIElement_SetColor(sp6C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp6C, 0, sp64.r, sp64.g, sp64.b, 0xFF);
-    func_8036B734_83EEE4(sp6C);
-    func_8036D1A4_840954(sp6C, 1);
+    sp6C = UIElement_Create(104, 173, 192, 47, 0);
+    UIElement_SetColor(sp6C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp6C, UI_BACKGROUND, sp64.r, sp64.g, sp64.b, 255);
+    UIElement_DrawBackground(sp6C);
+    UIElement_SetState(sp6C, UI_HIDDEN);
     ohWait(1);
 
     for (i = 0; i < 60; i++) {
@@ -974,12 +974,12 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     }
     func_803705A4_843D54();
     UIFrame_FadeIn(sp68, FRAME_STYLE_0);
-    func_8036D1A4_840954(sp6C, 0);
+    UIElement_SetState(sp6C, UI_NORMAL);
     func_8036D4A0_840C50(0);
-    func_8036CB58_840308(sp6C, 0xC);
+    UIElement_SetTextStyle(sp6C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036CB58_840308(sp6C, 0xC);
+    UIElement_SetTextStyle(sp6C, FONT_12);
     func_8036D4A0_840C50(0);
     D_camera_check_80249914 = sp6C;
 
@@ -987,17 +987,17 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     gobj->data.sobj->sprite.x = 96;
     gobj->data.sobj->sprite.y = 42;
 
-    sp44 = UIElement_Create(0x80, 0x6E, 0xA0, 38, 0);
+    sp44 = UIElement_Create(128, 110, 160, 38, 0);
     new_var = sp44;
-    UIElement_SetColor(new_var, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp44, 0, 0, 0, 0, 0);
-    func_8036B734_83EEE4(sp44);
+    UIElement_SetColor(new_var, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp44, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_DrawBackground(sp44);
     func_camera_check_801DEDEC(sp44);
 
     temp_s0 = D_camera_check_80249914;
     func_8036D4A0_840C50(2);
-    func_8036B9EC_83F19C(temp_s0, 0, 0);
-    func_8036C898_840048(temp_s0, "\\i1\\g picture has been taken.");
+    UIElement_SetTextPos(temp_s0, 0, 0);
+    UIElement_PrintText(temp_s0, "\\i1\\g picture has been taken.");
     func_8036D4A0_840C50(0);
     func_camera_check_801E3EEC(func_camera_check_801DECCC);
     temp_s2 = func_camera_check_801E246C();
@@ -1012,15 +1012,15 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     if (!checkPlayerFlag(PFID_18) && func_800BF864_5C704() >= 4) {
         setPlayerFlag(PFID_18, 1);
         func_80374F30_8486E0(temp_s0, true);
-        func_8036A8E4_83E094(temp_s0);
+        UIElement_Draw(temp_s0);
         func_8036EB80_842330(0);
         func_8036D4A0_840C50(2);
-        func_8036C898_840048(temp_s0, "I can use the \"\\hAlbum Mark\\p \\u\"\nto save my favorite pictures\nin the Album.");
+        UIElement_PrintText(temp_s0, "I can use the \"\\hAlbum Mark\\p \\u\"\nto save my favorite pictures\nin the Album.");
         func_8036EB80_842330(1);
     }
 
     func_80374F30_8486E0(temp_s0, true);
-    func_8036D1A4_840954(new_var, 1);
+    UIElement_SetState(new_var, UI_HIDDEN);
     ohWait(1);
     UIElement_Delete(new_var);
     omDeleteGObj(gobj);
@@ -1033,7 +1033,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     while (true) {
         func_camera_check_801E21E8();
         func_803700A4_843854(0);
-        func_8036D1A4_840954(D_camera_check_80249914, 1);
+        UIElement_SetState(D_camera_check_80249914, UI_HIDDEN);
         if (D_camera_check_80249910 != NULL) {
             UIElement_Delete(D_camera_check_80249910);
         }

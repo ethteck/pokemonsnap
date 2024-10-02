@@ -85,11 +85,11 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
         D_camera_check_802089E4 = temp_v0;
         temp_v0_2 = func_803717A8_844F58(arg3, D_camera_check_80249AA8[temp_v0].unk_0);
         if (temp_v0_2 != 0) {
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
-            func_8036B9EC_83F19C(func_camera_check_801DCB40(), 0, 0);
+            UIElement_Draw(func_camera_check_801DCB40());
+            UIElement_SetTextPos(func_camera_check_801DCB40(), 0, 0);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036C898_840048(func_camera_check_801DCB40(), temp_v0_2);
+            UIElement_PrintText(func_camera_check_801DCB40(), temp_v0_2);
         }
         return 1;
     }
@@ -349,7 +349,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
     var_s5 = true;
     func_803700A4_843854(0);
     func_camera_check_801DDD28(1);
-    func_8036A8E4_83E094(func_camera_check_801DCB40());
+    UIElement_Draw(func_camera_check_801DCB40());
     func_camera_check_801E24D8(D_camera_check_80208960);
     auPlaySound(0x47);
     prevMode = -1;
@@ -370,59 +370,59 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                 switch (mode) {
                     case 2:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "No Pokεmon are in this picture.\nPress \\a or \\b to return.");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "No Pokεmon are in this picture.\nPress \\a or \\b to return.");
                         }
                         break;
                     case 3:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "Mmm?\nThis is not clear.\nPress \\a or \\b to return.");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "Mmm?\nThis is not clear.\nPress \\a or \\b to return.");
                         }
                         break;
                     case 4:
                     case 13:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "I've shown that one to\nProf. Oak, but is this better?\nPress \\z to compare.");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "I've shown that one to\nProf. Oak, but is this better?\nPress \\z to compare.");
                         }
                         break;
                     case 5:
                     case 10:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "Should I show this to Prof. Oak?\n\\a Yeah, this is it!\n\\b No, I don't think so...");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "Should I show this to Prof. Oak?\n\\a Yeah, this is it!\n\\b No, I don't think so...");
                         }
                         break;
                     case 6:
                         if (prevMode != mode || prevPokemonName != pokemonName) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
+                            UIElement_Draw(func_camera_check_801DCB40());
                             func_8037519C_84894C(func_camera_check_801DCB40(), "I've decided on %s.\nWell, what should I do?\n\\a Try again.   \\b Keep it!", pokemonName);
                         }
                         break;
                     case 7:
                     case 8:
                         if (prevMode != mode || prevPokemonName != pokemonName) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
+                            UIElement_Draw(func_camera_check_801DCB40());
                             func_8037519C_84894C(func_camera_check_801DCB40(), "%s's picture\nlooks pretty cool, doesn't it?\nPress \\z to compare.", pokemonName);
                         }
                         break;
                     case 9:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "I chose this Sign, but should\nI choose something else?\n\\a Yes!   \\b No thanks!");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "I chose this Sign, but should\nI choose something else?\n\\a Yes!   \\b No thanks!");
                         }
                         break;
                     case 11:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "This Sign picture is also\npretty good.\nPress \\z to compare.");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "This Sign picture is also\npretty good.\nPress \\z to compare.");
                         }
                         break;
                     case 12:
                         if (prevMode != mode) {
-                            func_8036A8E4_83E094(func_camera_check_801DCB40());
-                            func_8036C898_840048(func_camera_check_801DCB40(), "I chose this Sign, but should\nI choose something else?\n\\a Yes!   \\b No thanks!");
+                            UIElement_Draw(func_camera_check_801DCB40());
+                            UIElement_PrintText(func_camera_check_801DCB40(), "I chose this Sign, but should\nI choose something else?\n\\a Yes!   \\b No thanks!");
                         }
                         break;
                 }
@@ -430,7 +430,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                 prevPokemonName = pokemonName;
             } else {
                 prevMode = -1;
-                func_8036A8E4_83E094(func_camera_check_801DCB40());
+                UIElement_Draw(func_camera_check_801DCB40());
                 func_camera_check_801DDB08(0);
             }
         }
@@ -449,11 +449,11 @@ s32 func_camera_check_801E04F4(s32 arg0) {
 
         temp_s1 = func_camera_check_801E24D8(D_camera_check_80208960);
         if ((temp_s4->unk_18 & 0x8000) && temp_s1 != NULL) {
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
+            UIElement_Draw(func_camera_check_801DCB40());
             if (!(temp_s1->unk_18_0x20000000) && !(temp_s1->unk_18_0x10000000)) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "I choose this!");
+                UIElement_PrintText(func_camera_check_801DCB40(), "I choose this!");
             } else {
-                func_8036C898_840048(func_camera_check_801DCB40(), "I don't want to use this one.\0\0\0(unidentified)");
+                UIElement_PrintText(func_camera_check_801DCB40(), "I don't want to use this one.\0\0\0(unidentified)");
             }
             if (func_camera_check_801E04B0(temp_s1)) {
                 func_camera_check_801E0118(1);
@@ -476,12 +476,12 @@ s32 func_camera_check_801E04F4(s32 arg0) {
             auPlaySound(0x4B);
             func_camera_check_801DE934(1, temp_s1->unk_08, 9);
             func_camera_check_801DDB08(0);
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
+            UIElement_Draw(func_camera_check_801DCB40());
 
             if (func_camera_check_801E2540(temp_s1->unk_08)) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "This is the one I chose\nbefore...");
+                UIElement_PrintText(func_camera_check_801DCB40(), "This is the one I chose\nbefore...");
             } else {
-                func_8036C898_840048(func_camera_check_801DCB40(), "This is the picture I showed to\nProf. Oak.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "This is the picture I showed to\nProf. Oak.");
             }
 
             ohWait(6);
@@ -705,80 +705,80 @@ s32 func_camera_check_801E0F10(void) {
                         switch (mode) {
                             case 1:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "I've chosen pictures to show to\nProf. Oak! Press \\b to return\nand choose \"\\hTo Prof. Oak\\p!\"");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "I've chosen pictures to show to\nProf. Oak! Press \\b to return\nand choose \"\\hTo Prof. Oak\\p!\"");
                                 }
                                 break;
                             case 2:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokεmon.");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokεmon.");
                                 }
                                 break;
                             case 3:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "What's this?\nIt's kind of odd...");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "What's this?\nIt's kind of odd...");
                                 }
                                 break;
                             case 4:
                                 if (numPics < 2) {
                                     if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
-                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        UIElement_Draw(func_camera_check_801DCB40());
                                         func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Prof. Oak has\nseen it already. Check with \\a", numPics, pokemonName);
                                     }
                                 } else if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    UIElement_Draw(func_camera_check_801DCB40());
                                     func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Prof. Oak has\nseen this one. Check with \\a", numPics, pokemonName);
                                 }
                                 break;
                             case 5:
                                 if (numPics < 2) {
                                     if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
-                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        UIElement_Draw(func_camera_check_801DCB40());
                                         func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Press \\a.", numPics, pokemonName);
                                     }
                                 } else if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    UIElement_Draw(func_camera_check_801DCB40());
                                     func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Press \\a.", numPics, pokemonName);
                                 }
                                 break;
                             case 6:
                             case 7:
                                 if (prevMode != mode || prevPokemonName != pokemonName) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                    UIElement_Draw(func_camera_check_801DCB40());
                                     func_8037519C_84894C(func_camera_check_801DCB40(), "I have decided to show\n%s's picture.", pokemonName);
                                 }
                                 break;
                             case 8:
                             case 9:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "I have decided which picture to\nshow for this Sign.");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "I have decided which picture to\nshow for this Sign.");
                                 }
                                 break;
                             case 10:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "Is this the PKMN Sign Prof. Oak\nwas talking about?\nPress \\a.");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "Is this the PKMN Sign Prof. Oak\nwas talking about?\nPress \\a.");
                                 }
                                 break;
                             case 11:
                             case 12:
                                 if (prevMode != mode) {
-                                    func_8036A8E4_83E094(func_camera_check_801DCB40());
-                                    func_8036C898_840048(func_camera_check_801DCB40(), "I have decided on the Sign\npicture.");
+                                    UIElement_Draw(func_camera_check_801DCB40());
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "I have decided on the Sign\npicture.");
                                 }
                                 break;
                             case 13:
                                 if (numPics <= 1) {
                                     if (prevMode != mode || prevNumPics != numPics) {
-                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        UIElement_Draw(func_camera_check_801DCB40());
                                         func_8037519C_84894C(func_camera_check_801DCB40(), "There is \\h%d\\p Sign picture. I\nshowed it to Prof. Oak already.\nCheck with \\a.", numPics);
                                     }
                                 } else {
                                     if (prevMode != mode || prevNumPics != numPics) {
-                                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                                        UIElement_Draw(func_camera_check_801DCB40());
                                         func_8037519C_84894C(func_camera_check_801DCB40(), "There are \\h%d\\p Sign pictures.\nProf. Oak has seen this one.\nCheck with \\a.", numPics);
                                     }
                                 }
@@ -789,7 +789,7 @@ s32 func_camera_check_801E0F10(void) {
                         prevPokemonName = pokemonName;
                     } else {
                         prevMode = -1;
-                        func_8036A8E4_83E094(func_camera_check_801DCB40());
+                        UIElement_Draw(func_camera_check_801DCB40());
                         func_camera_check_801DDB08(0);
                     }
                 }
@@ -812,7 +812,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
     var_s5 = true;
     func_803700A4_843854(0);
     func_camera_check_801DDD28(1);
-    func_8036A8E4_83E094(func_camera_check_801DCB40());
+    UIElement_Draw(func_camera_check_801DCB40());
     temp_s4 = func_camera_check_801E2E04();
     auPlaySound(0x47);
     ohWait(1);
@@ -823,21 +823,21 @@ s32 func_camera_check_801E15B4(s32 arg0) {
         temp_s2 = func_camera_check_801E2CC0();
         if (var_s5) {
             var_s5 = false;
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
+            UIElement_Draw(func_camera_check_801DCB40());
             temp_s0 = temp_s4 == temp_s2;
             func_camera_check_801DEA20(D_camera_check_80208960, (temp_s0 << 8) | 0xC);
             func_camera_check_801E0374();
             if (temp_s4 == 0) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "The Album is full.\nI can't save any more pictures.\nPress \\b to return.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "The Album is full.\nI can't save any more pictures.\nPress \\b to return.");
             } else if (temp_v0->unk_18_0x08000000) {
                 func_8037519C_84894C(func_camera_check_801DCB40(), "Should I drop this picture?\n\\a Pick again.   \\b Keep it.\n");
                 if (temp_s0) {
-                    func_8036C898_840048(func_camera_check_801DCB40(), "\\hThe Album is full\\p.");
+                    UIElement_PrintText(func_camera_check_801DCB40(), "\\hThe Album is full\\p.");
                 } else {
                     func_8037519C_84894C(func_camera_check_801DCB40(), "I can save %d more.", temp_s4 - temp_s2);
                 }
             } else if (temp_s0) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "To save this picture, I have to\ndelete the \"\\hAlbum Mark\\p \\u.\"\nPress \\a or \\b to return.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "To save this picture, I have to\ndelete the \"\\hAlbum Mark\\p \\u.\"\nPress \\a or \\b to return.");
             } else {
                 func_8037519C_84894C(func_camera_check_801DCB40(), "Shall I save this in the Album?\n\\a Yes!   \\b No thanks!\nI can save %d more.", temp_s4 - temp_s2);
             }
@@ -853,11 +853,11 @@ s32 func_camera_check_801E15B4(s32 arg0) {
         }
 
         if ((temp_v1 & 0x8000) && temp_v0 != NULL) {
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
+            UIElement_Draw(func_camera_check_801DCB40());
             if (!(temp_v0->unk_18_0x08000000)) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "I choose this!");
+                UIElement_PrintText(func_camera_check_801DCB40(), "I choose this!");
             } else {
-                func_8036C898_840048(func_camera_check_801DCB40(), "I don't want to use this one.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "I don't want to use this one.");
             }
             func_camera_check_801E0034(1);
             func_camera_check_801DE80C(1, D_camera_check_80208960, 4);
@@ -891,7 +891,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
 }
 
 s32 func_camera_check_801E1918(void) {
-    UnkSnowHerring* temp_a0;
+    UIElement* temp_a0;
     UnkStruct800BEDF8* temp_v0;
     s32 sp5C;
     s32 sp58;
@@ -909,8 +909,8 @@ s32 func_camera_check_801E1918(void) {
     D_camera_check_80208960 -= D_camera_check_80208960 % 6;
     func_80370038_8437E8(0x33, 0x26);
     func_camera_check_801DFCD4(NULL, &sp5C, &sp58, 0);
-    func_8036A8E4_83E094(func_camera_check_801DCB40());
-    func_8036C898_840048(func_camera_check_801DCB40(), D_camera_check_80249AB0);
+    UIElement_Draw(func_camera_check_801DCB40());
+    UIElement_PrintText(func_camera_check_801DCB40(), D_camera_check_80249AB0);
     temp_s3 = func_camera_check_801E2E04();
     ohWait(1);
 
@@ -921,11 +921,11 @@ s32 func_camera_check_801E1918(void) {
             var_s1 = false;
             func_camera_check_801E03EC();
             temp_s0 = func_camera_check_801E2CC0();
-            func_8036A8E4_83E094(func_camera_check_801DCB40());
+            UIElement_Draw(func_camera_check_801DCB40());
             if (temp_s3 == 0) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "I can't save any more pictures.\nThe Album is full.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "I can't save any more pictures.\nThe Album is full.");
             } else if (temp_s3 == temp_s0) {
-                func_8036C898_840048(func_camera_check_801DCB40(), "Delete \"\\hAlbum Marks\\p \\u\" to\nsave other pictures.");
+                UIElement_PrintText(func_camera_check_801DCB40(), "Delete \"\\hAlbum Marks\\p \\u\" to\nsave other pictures.");
             } else {
                 spaceLeft = temp_s3 - temp_s0;
                 temp_a0 = func_camera_check_801DCB40();
@@ -1029,14 +1029,14 @@ u32 func_camera_check_801E1EA4(void) {
     func_camera_check_801E3C24(1);
     func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
     func_8037060C_843DBC(1, 0x16);
-    func_8036A8E4_83E094(func_camera_check_801DCB40());
+    UIElement_Draw(func_camera_check_801DCB40());
     if (!func_camera_check_801E27FC()) {
-        func_8036C898_840048(func_camera_check_801DCB40(), "No pictures to show to\nProf. Oak?\n\\a No.   \\b I have some.");
+        UIElement_PrintText(func_camera_check_801DCB40(), "No pictures to show to\nProf. Oak?\n\\a No.   \\b I have some.");
     } else {
         if ((func_camera_check_801E2A00() + func_camera_check_801E2B60()) != 0) {
-            func_8036C898_840048(func_camera_check_801DCB40(), "Show this picture to Prof. Oak?\n\\a Yeah!\n\\b Maybe not...");
+            UIElement_PrintText(func_camera_check_801DCB40(), "Show this picture to Prof. Oak?\n\\a Yeah!\n\\b Maybe not...");
         } else {
-            func_8036C898_840048(func_camera_check_801DCB40(), "Save this picture in the Album?\n\\a Yeah!\n\\b Maybe not...");
+            UIElement_PrintText(func_camera_check_801DCB40(), "Save this picture in the Album?\n\\a Yeah!\n\\b Maybe not...");
         }
     }
     func_camera_check_801E03EC();
@@ -1109,7 +1109,7 @@ s32 func_camera_check_801E21E8(void) {
                 var_s1 = func_camera_check_801E1EA4();
                 break;
             case 16:
-                func_8036A8E4_83E094(func_camera_check_801DCB40());
+                UIElement_Draw(func_camera_check_801DCB40());
                 func_camera_check_801E0330();
                 func_camera_check_801E3CE8();
                 return -1;

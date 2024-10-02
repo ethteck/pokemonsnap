@@ -255,19 +255,19 @@ void func_801DD8F8_9FB5B8(s32 arg0, s32 arg1) {
     }
 
     if (arg0 == 0) {
-        func_8036D1A4_840954(D_80230884_A4E544, 1);
+        UIElement_SetState(D_80230884_A4E544, UI_HIDDEN);
     } else {
-        func_8036A8E4_83E094(D_80230884_A4E544);
+        UIElement_Draw(D_80230884_A4E544);
         func_8036D4A0_840C50(0);
-        func_8036D344_840AF4(12);
+        func_8036D344_840AF4(FONT_12);
         func_8036D448_840BF8(0);
         func_8036D3E8_840B98(0, 4);
-        func_8036B9EC_83F19C(D_80230884_A4E544, 0, 0);
-        func_8036C898_840048(D_80230884_A4E544, "  \\i−\\g      \\i−\\g  ");
+        UIElement_SetTextPos(D_80230884_A4E544, 0, 0);
+        UIElement_PrintText(D_80230884_A4E544, "  \\i−\\g      \\i−\\g  ");
         sprintf(sp28, "%d", arg1 + 1);
-        func_8036B9EC_83F19C(D_80230884_A4E544, 30 - (func_8036D4F0_840CA0(sp28) / 2), 0);
-        func_8036C898_840048(D_80230884_A4E544, sp28);
-        func_8036D1A4_840954(D_80230884_A4E544, 0);
+        UIElement_SetTextPos(D_80230884_A4E544, 30 - (func_8036D4F0_840CA0(sp28) / 2), 0);
+        UIElement_PrintText(D_80230884_A4E544, sp28);
+        UIElement_SetState(D_80230884_A4E544, UI_NORMAL);
     }
 }
 
@@ -281,8 +281,8 @@ void func_801DDCA8_9FB968(s32 arg0) {
     s32 bestShotID;
     s32 sp28;
 
-    func_8036A8E4_83E094(D_80230880_A4E540);
-    func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0);
+    UIElement_Draw(D_80230880_A4E540);
+    UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
 
@@ -320,7 +320,7 @@ void func_801DDCA8_9FB968(s32 arg0) {
         case 1:
             switch (func_801E0F50_9FEC10()) {
                 case 0:
-                    func_8036C898_840048(D_80230880_A4E540, "Go to the course and take a lot\nof pictures!\nFile them in your Album.");
+                    UIElement_PrintText(D_80230880_A4E540, "Go to the course and take a lot\nof pictures!\nFile them in your Album.");
                     break;
                 case 1:
                     func_8037519C_84894C(D_80230880_A4E540, "Are you choosing from the\nAlbum? There is a total of\n%d saved picture.", 1, "");
@@ -331,34 +331,34 @@ void func_801DDCA8_9FB968(s32 arg0) {
             }
             break;
         case 2:
-            func_8036C898_840048(D_80230880_A4E540, "Arrange the photos\nany way you want!\n");
+            UIElement_PrintText(D_80230880_A4E540, "Arrange the photos\nany way you want!\n");
             break;
         case 3:
-            func_8036C898_840048(D_80230880_A4E540, "Enlarge your favorite picture.");
+            UIElement_PrintText(D_80230880_A4E540, "Enlarge your favorite picture.");
             break;
         case 11:
-            func_8036C898_840048(D_80230880_A4E540, "Choose the picture you'd like\nto enlarge with the Control\nStick. Press \\a to decide.");
+            UIElement_PrintText(D_80230880_A4E540, "Choose the picture you'd like\nto enlarge with the Control\nStick. Press \\a to decide.");
             break;
         case 12:
-            func_8036C898_840048(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
+            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
             break;
         case 13:
-            func_8036C898_840048(D_80230880_A4E540, "How's this?\n\\a Cool! 　\\b Not so good...");
+            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool! 　\\b Not so good...");
             break;
         case 8:
-            func_8036C898_840048(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
+            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
             break;
         case 9:
-            func_8036C898_840048(D_80230880_A4E540, "What an amazing picture!\n\\a Continue.   \\b I'm done.\n\\z Shows the full picture.");
+            UIElement_PrintText(D_80230880_A4E540, "What an amazing picture!\n\\a Continue.   \\b I'm done.\n\\z Shows the full picture.");
             break;
         case 10:
-            func_8036C898_840048(D_80230880_A4E540, "Choose ”\\hSave\\p” to return to\nthe Title Screen.");
+            UIElement_PrintText(D_80230880_A4E540, "Choose ”\\hSave\\p” to return to\nthe Title Screen.");
             break;
         case 6:
-            func_8036C898_840048(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists\nthen press \\a to print.");
+            UIElement_PrintText(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists\nthen press \\a to print.");
             break;
         default:
-            func_8036C898_840048(D_80230880_A4E540, "Return to the Title Screen\nby saving.");
+            UIElement_PrintText(D_80230880_A4E540, "Return to the Title Screen\nby saving.");
             break;
     }
 }
@@ -479,8 +479,8 @@ void func_801DE538_9FC1F8(void) {
 
 void func_801DE5D0_9FC290(s32 arg0) {
     func_801DE4A0_9FC160();
-    func_8036A8E4_83E094(D_8023087C_A4E53C);
-    func_8036B9EC_83F19C(D_8023087C_A4E53C, 0, 0);
+    UIElement_Draw(D_8023087C_A4E53C);
+    UIElement_SetTextPos(D_8023087C_A4E53C, 0, 0);
 
     switch (arg0) {
         case 0:
@@ -488,33 +488,33 @@ void func_801DE5D0_9FC290(s32 arg0) {
             func_801DD8F8_9FB5B8(0, 0);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036B9EC_83F19C(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
-            func_8036C898_840048(D_8023087C_A4E53C, "Gallery");
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
+            UIElement_PrintText(D_8023087C_A4E53C, "Gallery");
             break;
         case 1:
             func_801DE318_9FBFD8(1);
             func_801DD8F8_9FB5B8(1, D_8023088C_A4E54C);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036D344_840AF4(12);
-            func_8036B9EC_83F19C(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Album")) / 2, 0);
-            func_8036C898_840048(D_8023087C_A4E53C, "PKMN Album");
+            func_8036D344_840AF4(FONT_12);
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Album")) / 2, 0);
+            UIElement_PrintText(D_8023087C_A4E53C, "PKMN Album");
             break;
         case 2:
             func_801DE318_9FBFD8(2);
             func_801DD8F8_9FB5B8(2, D_80230888_A4E548);
             func_8036D448_840BF8(1);
             func_8036D3E8_840B98(-1, 3);
-            func_8036D344_840AF4(12);
-            func_8036B9EC_83F19C(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Report")) / 2, 0);
-            func_8036C898_840048(D_8023087C_A4E53C, "PKMN Report");
+            func_8036D344_840AF4(FONT_12);
+            UIElement_SetTextPos(D_8023087C_A4E53C, (108 - func_8036D4F0_840CA0("PKMN Report")) / 2, 0);
+            UIElement_PrintText(D_8023087C_A4E53C, "PKMN Report");
             break;
     }
 
     func_801DE538_9FC1F8();
     func_803713D4_844B84(4);
     ohWait(30);
-    func_8036D1A4_840954(D_8023087C_A4E53C, 0);
+    UIElement_SetState(D_8023087C_A4E53C, UI_NORMAL);
 }
 
 void func_801DE804_9FC4C4(void) {
@@ -559,7 +559,7 @@ void func_801DE87C_9FC53C(void) {
     cam = sp4C->data.cam;
     sp40 = 0;
     sp3B = 0;
-    func_8036D1A4_840954(D_8023087C_A4E53C, 1);
+    UIElement_SetState(D_8023087C_A4E53C, UI_HIDDEN);
     func_803713C8_844B78(0);
     func_803700A4_843854(0);
     func_80370A48_8441F8();
@@ -607,12 +607,12 @@ void func_801DE87C_9FC53C(void) {
                         auPlaySound(0x60);
                         UIFrame_Show(D_80230878_A4E538, true);
                         UIFrame_ShowBackground(D_80230878_A4E538, true);
-                        func_8036D1A4_840954(D_80230880_A4E540, 0);
+                        UIElement_SetState(D_80230880_A4E540, UI_NORMAL);
                     } else {
                         auPlaySound(0x4A);
                         UIFrame_Show(D_80230878_A4E538, false);
                         UIFrame_ShowBackground(D_80230878_A4E538, false);
-                        func_8036D1A4_840954(D_80230880_A4E540, 1);
+                        UIElement_SetState(D_80230880_A4E540, UI_HIDDEN);
                     }
                 }
 
@@ -651,7 +651,7 @@ void func_801DE87C_9FC53C(void) {
 
     UIFrame_Show(D_80230878_A4E538, true);
     UIFrame_ShowBackground(D_80230878_A4E538, true);
-    func_8036D1A4_840954(D_80230880_A4E540, 0);
+    UIElement_SetState(D_80230880_A4E540, UI_NORMAL);
     sp4C->flags |= GOBJ_FLAG_HIDDEN;
     sp50->flags &= ~GOBJ_FLAG_HIDDEN;
     func_801DDCA8_9FB968(10);
@@ -668,7 +668,7 @@ void func_801DE87C_9FC53C(void) {
     func_80370C34_8443E4(func_801DF850_9FD510());
     func_80370780_843F30(contIsPrinterAvailable() ? 0 : 1, 0x20);
     ohWait(18);
-    func_8036D1A4_840954(D_8023087C_A4E53C, 0);
+    UIElement_SetState(D_8023087C_A4E53C, UI_NORMAL);
     func_803705A4_843D54();
     func_803700A4_843854(1);
     func_801DDCA8_9FB968(10);
@@ -681,9 +681,9 @@ void func_801DEE88_9FCB48(void) {
     if (D_801EA1F4_A07EB4 != 0 && contIsPrinterAvailable()) {
         func_803700A4_843854(0);
         func_80370780_843F30(1, 0x20);
-        func_8036A8E4_83E094(D_80230880_A4E540);
-        func_8036B9EC_83F19C(D_80230880_A4E540, 0, 32);
-        func_8036C898_840048(D_80230880_A4E540, "\\eNow Saving...");
+        UIElement_Draw(D_80230880_A4E540);
+        UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
+        UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
         if (func_801E1504_9FF1C4(1) != 0) {
             sp28 = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
             sp28->data.sobj->sprite.x = 40;
@@ -725,7 +725,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     s32 pad[2];
     s32 i;
     UIFrame* sp38;
-    UnkSnowHerring* sp34;
+    UIElement* sp34;
     ucolor sp30;
     GObj* gobj;
 
@@ -739,16 +739,16 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_801DD0AC_9FAD6C(0);
     func_801DE0B8_9FBD78();
     func_801DE290_9FBF50(0);
-    sp34 = UIElement_Create(0xAA, 0x99, 0x3C, 0x12, 0x400);
-    UIElement_SetColor(sp34, 1, 0, 0, 0, 0xFF);
-    UIElement_SetColor(sp34, 0, 0, 0, 0, 0);
+    sp34 = UIElement_Create(170, 153, 60, 18, UI_FLAG_32BIT);
+    UIElement_SetColor(sp34, UI_FOREGROUND, 0, 0, 0, 255);
+    UIElement_SetColor(sp34, UI_BACKGROUND, 0, 0, 0, 0);
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);
-    func_8036B734_83EEE4(sp34);
-    func_8036CB58_840308(sp34, 0xC);
-    func_8036A8E4_83E094(sp34);
-    func_8036C898_840048(sp34, "\\i−\\g   \\i−\\g");
-    func_8036D1A4_840954(sp34, 1);
+    UIElement_DrawBackground(sp34);
+    UIElement_SetTextStyle(sp34, FONT_12);
+    UIElement_Draw(sp34);
+    UIElement_PrintText(sp34, "\\i−\\g   \\i−\\g");
+    UIElement_SetState(sp34, UI_HIDDEN);
     D_80230884_A4E544 = sp34;
     sp38 = UIFrame_Create();
     UIFrame_SetStyle(sp38, FRAME_STYLE_1);
@@ -756,22 +756,22 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIFrame_GetBackgroundColor(sp38, &sp30);
     UIFrame_SetPos(sp38, 184, 320);
     UIFrame_Show(sp38, false);
-    sp34 = UIElement_Create(0x92, 0x16, 0x6C, 0x10, 0);
-    UIElement_SetColor(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp34, 0, 0xDA, 0x6C, 0, 0);
-    func_8036B734_83EEE4(sp34);
-    func_8036CB58_840308(sp34, 0xC);
+    sp34 = UIElement_Create(146, 22, 108, 16, 0);
+    UIElement_SetColor(sp34, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp34, UI_BACKGROUND, 218, 108, 0, 0);
+    UIElement_DrawBackground(sp34);
+    UIElement_SetTextStyle(sp34, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036B9EC_83F19C(sp34, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
-    func_8036C898_840048(sp34, "Gallery");
-    func_8036D1A4_840954(sp34, 1);
+    UIElement_SetTextPos(sp34, (108 - func_8036D4F0_840CA0("Gallery")) / 2, 0);
+    UIElement_PrintText(sp34, "Gallery");
+    UIElement_SetState(sp34, UI_HIDDEN);
     D_8023087C_A4E53C = sp34;
-    sp34 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-    UIElement_SetColor(sp34, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp34, 0, sp30.r, sp30.g, sp30.b, 0xFF);
-    func_8036B734_83EEE4(sp34);
-    func_8036D1A4_840954(sp34, 1);
+    sp34 = UIElement_Create(104, 173, 192, 47, 0);
+    UIElement_SetColor(sp34, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp34, UI_BACKGROUND, sp30.r, sp30.g, sp30.b, 255);
+    UIElement_DrawBackground(sp34);
+    UIElement_SetState(sp34, UI_HIDDEN);
     D_80230880_A4E540 = sp34;
     func_803713C8_844B78(0);
     ohWait(1);
@@ -785,17 +785,17 @@ void func_801DF078_9FCD38(GObj* arg0) {
     func_801DD0AC_9FAD6C(0xFF);
     func_801DD074_9FAD34(0xFF);
     UIFrame_FadeIn(sp38, FRAME_STYLE_1);
-    func_8036D1A4_840954(sp34, 0);
+    UIElement_SetState(sp34, UI_NORMAL);
     func_8036D4A0_840C50((0, 0));
-    func_8036CB58_840308(sp34, 0xC);
+    UIElement_SetTextStyle(sp34, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036CB58_840308(sp34, 0xC);
+    UIElement_SetTextStyle(sp34, FONT_12);
     func_8036D4A0_840C50(0);
     func_803713D4_844B84(4);
     func_8037172C_844EDC(1);
     ohWait(30);
-    func_8036D1A4_840954(D_8023087C_A4E53C, 0);
+    UIElement_SetState(D_8023087C_A4E53C, UI_NORMAL);
     func_80370C34_8443E4(func_801DF850_9FD510());
 
     if (func_801E0F50_9FEC10() == 0) {
@@ -807,10 +807,10 @@ void func_801DF078_9FCD38(GObj* arg0) {
     D_801EA1F4_A07EB4 = 1;
 
     if (D_80230890_A4E550 != 0) {
-        func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0);
+        UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
         func_8037519C_84894C(D_80230880_A4E540, "Pick your four best shots!");
         func_80374F30_8486E0(D_80230880_A4E540, true);
-        func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0);
+        UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
         func_8037519C_84894C(D_80230880_A4E540, "Choose your favorite shots\nfrom the Report and Album.");
         func_80374F30_8486E0(D_80230880_A4E540, true);
         func_801DDCA8_9FB968(0);
@@ -829,9 +829,9 @@ void func_801DF078_9FCD38(GObj* arg0) {
         if (D_801EA1FC_A07EBC != 0) {
             func_801E1504_9FF1C4(0);
         } else {
-            func_8036A8E4_83E094(D_80230880_A4E540);
-            func_8036B9EC_83F19C(D_80230880_A4E540, 0, 0x20);
-            func_8036C898_840048(D_80230880_A4E540, "\\eNow Saving...");
+            UIElement_Draw(D_80230880_A4E540);
+            UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
+            UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
             if (func_801E1504_9FF1C4(1) != 0) {
                 gobj = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
                 gobj->data.sobj->sprite.x = 40;

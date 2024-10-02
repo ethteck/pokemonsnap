@@ -1912,3 +1912,4 @@ UIFrame_SetPos = 0x8036F1F4; // segment:window
 UIFrame_SetSize = 0x8036F378; // segment:window
 UIFrame_SetStyle = 0x8036F684; // segment:window
 UIFrame_Create = 0x8036F78C;
+UIElement_PrintText = 0x8036C898; // segment:window

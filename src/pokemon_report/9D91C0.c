@@ -386,7 +386,7 @@ s32 func_801E3604_9D9F74(void) {
                 func_80370038_8437E8(0x3E, 0xC);
                 func_801E28D8_9D9248(NULL, NULL);
                 sp30 = false;
-                func_8036A8E4_83E094(func_801DCF40_9D38B0());
+                UIElement_Draw(func_801DCF40_9D38B0());
             } else if (sp3C->unk_18 & 0x8000) {
                 if (func_800BF3D4_5C274(func_801DCCF0_9D3660((sp28 * 3) + sp2C))) {
                     auPlaySound(0x47);

@@ -10,13 +10,13 @@ extern s32 D_803A66C4_879E74;
 extern GObj* D_803A66C8_879E78;
 extern char D_803A7010_87A7C0[];
 
-s32 func_80374F30_8486E0(UnkSnowHerring* arg0, bool arg1) {
+s32 func_80374F30_8486E0(UIElement* arg0, bool arg1) {
     s32 sp1C;
     UnkStruct800BEDF8* var_v0;
 
     sp1C = 0;
-    func_8036B9EC_83F19C(arg0, 180, 32);
-    func_8036C898_840048(arg0, "\\l");
+    UIElement_SetTextPos(arg0, 180, 32);
+    UIElement_PrintText(arg0, "\\l");
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
@@ -37,7 +37,7 @@ s32 func_80374F30_8486E0(UnkSnowHerring* arg0, bool arg1) {
         auPlaySound(0x4D);
     }
     ohWait(1);
-    func_8036A8E4_83E094(arg0);
+    UIElement_Draw(arg0);
     func_8036EB80_842330(1);
     return sp1C;
 }

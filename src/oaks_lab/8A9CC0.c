@@ -8,7 +8,7 @@ s32 D_80195D14 = 0;
 void func_800E44A0_8A9CC0(void) {
 }
 
-s32 func_800E44A8_8A9CC8(UnkSnowHerring* arg0, s32 arg1) {
+s32 func_800E44A8_8A9CC8(UIElement* arg0, s32 arg1) {
     s32 sp1C;
     UnkStruct800BEDF8* var_v0;
     s32 temp_v1;
@@ -35,17 +35,17 @@ s32 func_800E44A8_8A9CC8(UnkSnowHerring* arg0, s32 arg1) {
         auPlaySound(0x4D);
     }
     ohWait(1);
-    func_8036A8E4_83E094(arg0);
+    UIElement_Draw(arg0);
     func_8036EB80_842330(1);
     return sp1C;
 }
 
-s32 func_800E4578_8A9D98(UnkSnowHerring* arg0, char** arg1, s32 arg2, bool arg3) {
+s32 func_800E4578_8A9D98(UIElement* arg0, char** arg1, s32 arg2, bool arg3) {
     s32 temp_t8;
     s32 var_v0;
 
     for (; *arg1; arg1++) {
-        func_8036A8E4_83E094(arg0);
+        UIElement_Draw(arg0);
         func_8037519C_84894C(arg0, *arg1, get_player_name());
         if (arg2 == 2 && arg1[1] == 0) {
             return 0;
@@ -67,7 +67,7 @@ void func_800E4674_8A9E94(void) {
 }
 
 void func_800E467C_8A9E9C(void) {
-    UnkSnowHerring* temp_v0;
+    UIElement* temp_v0;
 
     char* sp54[] = {
         "\\w\\1\\LHello there\\t, %s!\nI'm Oak, the Pokεmon professor.",
@@ -133,7 +133,7 @@ void func_800E482C_8AA04C(void) {
 }
 
 void func_800E4878_8AA098(void) {
-    UnkSnowHerring* var;
+    UIElement* var;
     char* sp1C[] = {
         "Are you going to take\nPokεmon pictures?\nGood luck, %s!",
         0x00000000,
@@ -162,7 +162,7 @@ void func_800E48C4_8AA0E4(void) {
 }
 
 void func_800E4974_8AA194(void) {
-    UnkSnowHerring* sp2C;
+    UIElement* sp2C;
 
     char* sp20[] = {
         "How have you been, %s?\nI have completed part of\nmy research.",
@@ -200,7 +200,7 @@ void func_800E4A10_8AA230(void) {
 }
 
 void func_800E4AC0_8AA2E0(void) {
-    UnkSnowHerring* var;
+    UIElement* var;
     char* sp18[] = {
         "I saw the pictures taken\nby %s.",
         "I saved those pictures in\nthe PKMN Report.",
@@ -215,20 +215,20 @@ void func_800E4AC0_8AA2E0(void) {
 }
 
 void func_800E4B2C_8AA34C(void) {
-    UnkSnowHerring* sp24;
+    UIElement* sp24;
     char* sp1C[] = {
         "\\w\\EWelcome back!\\t",
         0x00000000,
     };
     sp24 = func_800E1B40_8A7360();
-    func_8036A8E4_83E094(sp24);
+    UIElement_Draw(sp24);
     func_8037519C_84894C(sp24, "\\w\\EWelcome back!\\t", get_player_name());
     ohWait(0x36);
     func_80374F30_8486E0(sp24, false);
 }
 
 void func_800E4BA0_8AA3C0(void) {
-    UnkSnowHerring* temp_v0;
+    UIElement* temp_v0;
 
     char* sp4C[] = {
         "\\w\\1Here's something to make your\\t\nsearch for PKMN Signs easier!",
@@ -268,7 +268,7 @@ void func_800E4BA0_8AA3C0(void) {
 }
 
 void func_800E4CCC_8AA4EC(void) {
-    UnkSnowHerring* var;
+    UIElement* var;
     char* sp1C[] = {
         "You are doing a fine\njob, %s.\nChoose \xA1\xC9\\hGo to Course\\p.\xA1\xC9",
         0x00000000,
@@ -279,7 +279,7 @@ void func_800E4CCC_8AA4EC(void) {
 }
 
 void func_800E4D18_8AA538(void) {
-    UnkSnowHerring* i;
+    UIElement* i;
     char* sp18[] = {
         "%s, you found a split\nin the path! According\nto my research, that split\n",
         "should link to a new course.\nI've also made a link from my\nlab. You should go right away!",
@@ -291,7 +291,7 @@ void func_800E4D18_8AA538(void) {
 }
 
 void func_800E4D6C_8AA58C(void) {
-    UnkSnowHerring* i;
+    UIElement* i;
     char* sp18[] = {
         "You finally got all of\nthe \\hPKMN Sign\\p pictures!",
         "\\JHmm... After looking at these\nsix pictures, I've noticed that\nthe Signs are just like the",
@@ -309,7 +309,7 @@ void func_800E4D6C_8AA58C(void) {
 }
 
 void func_800E4DD4_8AA5F4(void) {
-    UnkSnowHerring* i;
+    UIElement* i;
     char* sp18[] = {
         "I've seen your \\hPKMN Sign\\p in\npictures!",
         "\\OWe have solved a Pokεmon\nIsland mystery.\nKeep going!",
@@ -321,7 +321,7 @@ void func_800E4DD4_8AA5F4(void) {
 }
 
 void func_800E4E28_8AA648(s32 arg0) {
-    UnkSnowHerring* temp_v0;
+    UIElement* temp_v0;
     char* sp88[] = {
         "You take pictures at a good\npace. To make your work easier,\n\\Dhere is a present for you.\n",
         "It will come in handy for taking\nPokεmon pictures.",
@@ -382,7 +382,7 @@ void func_800E4E28_8AA648(s32 arg0) {
 }
 
 void func_800E502C_8AA84C(void) {
-    UnkSnowHerring* i;
+    UIElement* i;
     char* sp18[] = {
         "You have completed the\nPKMN Report!",
         "%s is a genuine Pokεmon\nphotographer.\n\\KCongratulations!",
@@ -398,7 +398,7 @@ void func_800E502C_8AA84C(void) {
 }
 
 void func_800E50A0_8AA8C0(void) {
-    UnkSnowHerring* i;
+    UIElement* i;
     char* sp1C[] = {
         "\\UYou made it, %s!\nI never believed that MEW lived\non this island!",
         "Our PKMN Report now has a\nvery memorable picture.",
@@ -419,15 +419,15 @@ s32 func_800E510C_8AA92C(void) {
 }
 
 void func_800E5120_8AA940(void) {
-    UnkSnowHerring* sp1C;
+    UIElement* sp1C;
 
     sp1C = func_800E1B40_8A7360();
     func_8036EB80_842330(0);
     func_8036D4A0_840C50(2);
-    func_8036C898_840048(sp1C, "Well then, \\Tsee you!");
+    UIElement_PrintText(sp1C, "Well then, \\Tsee you!");
     func_8036D4A0_840C50(0);
-    func_8036B9EC_83F19C(sp1C, 0, 0x20);
-    func_8036C898_840048(sp1C, "Press \\a or \\b to save.");
+    UIElement_SetTextPos(sp1C, 0, 32);
+    UIElement_PrintText(sp1C, "Press \\a or \\b to save.");
     ohWait(1);
 
     while (!(func_800AA38C(0)->unk_18 & 0xC000)) {
@@ -435,18 +435,18 @@ void func_800E5120_8AA940(void) {
     }
 
     auPlaySound(0x53);
-    func_8036A8E4_83E094(sp1C);
-    func_8036B9EC_83F19C(sp1C, 0, 0);
-    func_8036C898_840048(sp1C, "Well then, see you later!");
-    func_8036B9EC_83F19C(sp1C, 0, 0x20);
-    func_8036C898_840048(sp1C, "\\eSaving...\\p");
+    UIElement_Draw(sp1C);
+    UIElement_SetTextPos(sp1C, 0, 0);
+    UIElement_PrintText(sp1C, "Well then, see you later!");
+    UIElement_SetTextPos(sp1C, 0, 32);
+    UIElement_PrintText(sp1C, "\\eSaving...\\p");
     auSetBGMVolumeSmooth(0, 0, 30);
     ohWait(0x21);
     if (func_800BF244_5C0E4() != 0) {
         func_800E30B8_8A88D8();
     }
     ohWait(6);
-    func_8036A8E4_83E094(sp1C);
+    UIElement_Draw(sp1C);
     func_800A7860(0, 1.0f);
     ohWait(1);
 

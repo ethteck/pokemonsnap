@@ -115,9 +115,9 @@ Gfx D_800E35B0[] = {
 static GObj* D_801180B0;
 static GObj* D_801180B4;
 static GObj* D_801180B8;
-static UnkSnowHerring* D_801180C0[20];
-UnkSnowHerring* D_80118110;
-UnkSnowHerring* D_80118114;
+static UIElement* D_801180C0[20];
+UIElement* D_80118110;
+UIElement* D_80118114;
 static u8 D_80118118[0x50000];
 
 void func_800E2ED0_A5E280(void);
@@ -158,7 +158,7 @@ void func_800E19E4_A5CD94(void) {
 }
 
 void func_800E1A0C_A5CDBC(void) {
-    UnkSnowHerring* id;
+    UIElement* id;
     UIFrame* unk;
     s8 i;
     ucolor sp28;
@@ -173,14 +173,14 @@ void func_800E1A0C_A5CDBC(void) {
 
     // description
     id = UIElement_Create(104, 173, 192, 47, 0);
-    UIElement_SetColor(id, 1, 255, 255, 255, 255);
-    UIElement_SetColor(id, 0, sp28.r, sp28.g, sp28.b, 255);
-    func_8036B734_83EEE4(id);
-    func_8036B9EC_83F19C(id, 0, 0);
+    UIElement_SetColor(id, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(id, UI_BACKGROUND, sp28.r, sp28.g, sp28.b, 255);
+    UIElement_DrawBackground(id);
+    UIElement_SetTextPos(id, 0, 0);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036CB58_840308(id, 12);
-    func_8036C898_840048(id, "Enter your name on the card.\n"
+    UIElement_SetTextStyle(id, FONT_12);
+    UIElement_PrintText(id, "Enter your name on the card.\n"
                              "Choose with the Control Stick\n"
                              "and select with the \\a Button!");
 
@@ -190,9 +190,9 @@ void func_800E1A0C_A5CDBC(void) {
         func_8036D448_840BF8(1);
         func_8036D3E8_840B98(-1, 3);
         id = UIElement_Create(23, i * 10 + 20, 60, 8, 0);
-        func_8036CB58_840308(id, 8);
-        UIElement_SetColor(id, 0, 0, 0, 0, 0);
-        func_8036B734_83EEE4(id);
+        UIElement_SetTextStyle(id, FONT_8);
+        UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
+        UIElement_DrawBackground(id);
         D_801180C0[i] = id;
     }
 
@@ -201,34 +201,34 @@ void func_800E1A0C_A5CDBC(void) {
     func_8036D3E8_840B98(0, 4);
 
     // name input
-    id = UIElement_Create(203, 64, 62, 12, 0x400);
-    func_8036CB58_840308(id, 12);
-    UIElement_SetColor(id, 0, 0, 0, 0, 0);
-    UIElement_SetColor(id, 1, 0, 0, 0, 255);
-    func_8036B734_83EEE4(id);
+    id = UIElement_Create(203, 64, 62, 12, UI_FLAG_32BIT);
+    UIElement_SetTextStyle(id, FONT_12);
+    UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_SetColor(id, UI_FOREGROUND, 0, 0, 0, 255);
+    UIElement_DrawBackground(id);
     D_80118110 = id;
 
     func_8036D4A0_840C50(0);
     func_8036D448_840BF8(0);
     func_8036D3E8_840B98(0, 4);
 
-    id = UIElement_Create(206, 64, 12, 12, 0x400);
-    func_8036CB58_840308(id, 12);
-    UIElement_SetColor(id, 0, 0, 0, 0, 0);
-    UIElement_SetColor(id, 1, 255, 0, 0, 255);
-    func_8036B734_83EEE4(id);
+    id = UIElement_Create(206, 64, 12, 12, UI_FLAG_32BIT);
+    UIElement_SetTextStyle(id, FONT_12);
+    UIElement_SetColor(id, UI_BACKGROUND, 0, 0, 0, 0);
+    UIElement_SetColor(id, UI_FOREGROUND, 255, 0, 0, 255);
+    UIElement_DrawBackground(id);
     D_80118114 = id;
 }
 
 void func_800E1CF8_A5D0A8(s8 arg0) {
     s16 i;
     s16 j;
-    UnkSnowHerring* temp_s2;
+    UIElement* temp_s2;
     s16 temp_s1;
     char** temp_s4 = func_800E18B4_A5CC64(arg0);
 
     for (i = 0; i < ARRAY_COUNT(D_801180C0); i++) {
-        func_8036A8E4_83E094(D_801180C0[i]);
+        UIElement_Draw(D_801180C0[i]);
     }
 
     temp_s1 = 0;
@@ -237,8 +237,8 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
     for (i = 0; i < ARRAY_COUNT(D_801180C0) - 1; i++) {
         temp_s2 = D_801180C0[i];
         for (j = 0; j < 5; j++) {
-            func_8036B9EC_83F19C(temp_s2, j * 13, 0);
-            func_8036C898_840048(temp_s2, temp_s4[temp_s1++]);
+            UIElement_SetTextPos(temp_s2, j * 13, 0);
+            UIElement_PrintText(temp_s2, temp_s4[temp_s1++]);
         }
     }
 
@@ -246,8 +246,8 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
     temp_s1 = 0;
     temp_s2 = D_801180C0[i];
     for (j = 0; j < 4; j++) {
-        func_8036B9EC_83F19C(temp_s2, j * 13, 0);
-        func_8036C898_840048(temp_s2, D_800E356C[temp_s1++]);
+        UIElement_SetTextPos(temp_s2, j * 13, 0);
+        UIElement_PrintText(temp_s2, D_800E356C[temp_s1++]);
     }
 }
 

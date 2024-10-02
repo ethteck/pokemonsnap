@@ -4,8 +4,8 @@
 extern Sprite D_80118068_A93418; // cursor
 
 // BSS
-extern UnkSnowHerring* D_80118110;
-extern UnkSnowHerring* D_80118114;
+extern UIElement* D_80118110;
+extern UIElement* D_80118114;
 static s32 menu_new_game_CursorX;
 static s32 menu_new_game_CursorY;
 static s32 D_80168128;
@@ -144,9 +144,9 @@ void func_800E25C0_A5D970(void) {
         *dst++ = *src++;
     }
 
-    func_8036A8E4_83E094(D_80118110);
-    func_8036B9EC_83F19C(D_80118110, 0, 0);
-    func_8036C898_840048(D_80118110, D_80168130);
+    UIElement_Draw(D_80118110);
+    UIElement_SetTextPos(D_80118110, 0, 0);
+    UIElement_PrintText(D_80118110, D_80168130);
     if (D_80168143 < 14) {
         D_80168143 += 2;
     }
@@ -207,9 +207,9 @@ void func_800E2800_A5DBB0(void) {
         D_80168130[--D_80168143] = 0;
         auPlaySound(74);
     }
-    func_8036A8E4_83E094(D_80118110);
-    func_8036B9EC_83F19C(D_80118110, 0, 0);
-    func_8036C898_840048(D_80118110, D_80168130);
+    UIElement_Draw(D_80118110);
+    UIElement_SetTextPos(D_80118110, 0, 0);
+    UIElement_PrintText(D_80118110, D_80168130);
 }
 
 void func_800E28C0_A5DC70(void) {
@@ -241,9 +241,9 @@ void func_800E28C0_A5DC70(void) {
             }
             sp30++;
         }
-        func_8036A8E4_83E094(D_80118110);
-        func_8036B9EC_83F19C(D_80118110, 0, 0);
-        func_8036C898_840048(D_80118110, D_80168130);
+        UIElement_Draw(D_80118110);
+        UIElement_SetTextPos(D_80118110, 0, 0);
+        UIElement_PrintText(D_80118110, D_80168130);
         auPlaySoundWithParams(96, 0x7FFF, 84, 1.0f, 10);
     }
 
@@ -268,7 +268,7 @@ void func_800E2A84_A5DE34(char* arg0) {
     s16 sp1A;
     SObj* unk_48;
 
-    func_8036D344_840AF4(12);
+    func_8036D344_840AF4(FONT_12);
     sp1A = func_8036D4F0_840CA0(D_80168130) + 203;
     unk_48 = D_80168148->data.sobj;
     SET_SPRITE_POS(unk_48->sprite, sp1A, 64);
@@ -278,7 +278,7 @@ void func_800E2A84_A5DE34(char* arg0) {
         } else {
             D_8016814C = 0;
         }
-        func_8036D1A4_840954(D_80118114, 1);
+        UIElement_SetState(D_80118114, UI_HIDDEN);
         return;
     }
     temp_v0 = func_800E18B4_A5CC64(D_8016812C);
@@ -287,15 +287,15 @@ void func_800E2A84_A5DE34(char* arg0) {
     arg0[2] = 0;
     if (func_800E2A24_A5DDD4(arg0) != 0) {
         D_8016814C = 1;
-        func_8036D1A4_840954(D_80118114, 1);
+        UIElement_SetState(D_80118114, UI_HIDDEN);
     } else {
         D_8016814C = 0;
-        func_8036D1A4_840954(D_80118114, 0);
+        UIElement_SetState(D_80118114, UI_NORMAL);
     }
-    func_8036A8E4_83E094(D_80118114);
-    func_8036B9EC_83F19C(D_80118114, 0, 0);
-    UIElement_SetPos(D_80118114, sp1A, 0x40);
-    func_8036C898_840048(D_80118114, arg0);
+    UIElement_Draw(D_80118114);
+    UIElement_SetTextPos(D_80118114, 0, 0);
+    UIElement_SetPos(D_80118114, sp1A, 64);
+    UIElement_PrintText(D_80118114, arg0);
 }
 
 void func_800E2C38_A5DFE8(GObj* arg0) {
@@ -312,9 +312,9 @@ void func_800E2C38_A5DFE8(GObj* arg0) {
             var_s1 = 5;
         }
         if (var_s0 > 160) {
-            func_8036D248_8409F8(D_80118114, 255, 255, 255, 255);
+            UIElement_SetSpriteColor(D_80118114, 255, 255, 255, 255);
         } else {
-            func_8036D248_8409F8(D_80118114, 255, 255, 255, 0);
+            UIElement_SetSpriteColor(D_80118114, 255, 255, 255, 0);
         }
         ohWait(1);
     }

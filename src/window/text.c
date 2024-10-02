@@ -29,7 +29,6 @@ extern ucolor D_803A6A08_87A1B8;
 extern void (*D_803A6A0C_87A1BC)(s32);
 
 s32 func_8036E44C_841BFC(s32 arg0);
-
 void* func_8036ECFC_8424AC(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 
 s32 func_8036D2A0_840A50(s32 arg0) {
@@ -43,12 +42,12 @@ s32 func_8036D2A0_840A50(s32 arg0) {
     return 0;
 }
 
-s32 func_8036D344_840AF4(s32 arg0) {
-    switch (arg0) {
-        case 8:
+s32 func_8036D344_840AF4(s32 font) {
+    switch (font) {
+        case FONT_8:
             D_8037EAA0_852250 = 0;
             break;
-        case 12:
+        case FONT_12:
             D_8037EAA0_852250 = 1;
             break;
         default:
@@ -116,7 +115,7 @@ s32 func_8036D4F0_840CA0(char* ptr) {
                 printedChar = ((text[0] << 8) & 0xFF00) | (text[1] & 0xFF);
             }
         }
-        // BUG: specialChar may be uninitialized
+        // BUG: printedChar may be uninitialized
         switch (printedChar) {
             case '\\a':
             case '\\b':
@@ -189,30 +188,30 @@ s32 func_8036D774_840F24(void) {
     return 0;
 }
 
-void func_8036D77C_840F2C(UIText* unused, ucolor* arg1, ucolor* arg2) {
+void UIText_MakePalettes(UIText* unused, ucolor* fgColor, ucolor* bgColor) {
     s32 i;
     s32 r, g, b, a;
 
-    D_803A6A04_87A1B4 = *arg1;
-    D_803A6A08_87A1B8 = *arg2;
+    D_803A6A04_87A1B4 = *fgColor;
+    D_803A6A08_87A1B8 = *bgColor;
 
     for (i = 0; i < 16; i++) {
-        r = (arg1->r - arg2->r) * i / 15 + arg2->r;
-        g = (arg1->g - arg2->g) * i / 15 + arg2->g;
-        b = (arg1->b - arg2->b) * i / 15 + arg2->b;
-        a = (arg1->a - arg2->a) * i / 15 + arg2->a;
+        r = (fgColor->r - bgColor->r) * i / 15 + bgColor->r;
+        g = (fgColor->g - bgColor->g) * i / 15 + bgColor->g;
+        b = (fgColor->b - bgColor->b) * i / 15 + bgColor->b;
+        a = (fgColor->a - bgColor->a) * i / 15 + bgColor->a;
         D_803A6940_87A0F0[i] = ((r << 8) & 0xF800) | ((g << 3) & 0x7C0) | ((b >> 2) & 0x3E) | ((a != 0) & 0x1);
 
-        r = (D_8037EAC0_852270.r - arg2->r) * i / 15 + arg2->r;
-        g = (D_8037EAC0_852270.g - arg2->g) * i / 15 + arg2->g;
-        b = (D_8037EAC0_852270.b - arg2->b) * i / 15 + arg2->b;
-        a = (D_8037EAC0_852270.a - arg2->a) * i / 15 + arg2->a;
+        r = (D_8037EAC0_852270.r - bgColor->r) * i / 15 + bgColor->r;
+        g = (D_8037EAC0_852270.g - bgColor->g) * i / 15 + bgColor->g;
+        b = (D_8037EAC0_852270.b - bgColor->b) * i / 15 + bgColor->b;
+        a = (D_8037EAC0_852270.a - bgColor->a) * i / 15 + bgColor->a;
         D_803A6980_87A130[i] = ((r << 8) & 0xF800) | ((g << 3) & 0x7C0) | ((b >> 2) & 0x3E) | ((a != 0) & 0x1);
 
-        r = (arg1->r - D_8037EAC0_852270.r) * i / 15 + D_8037EAC0_852270.r;
-        g = (arg1->g - D_8037EAC0_852270.g) * i / 15 + D_8037EAC0_852270.g;
-        b = (arg1->b - D_8037EAC0_852270.b) * i / 15 + D_8037EAC0_852270.b;
-        a = (arg1->a - D_8037EAC0_852270.a) * i / 15 + D_8037EAC0_852270.a;
+        r = (fgColor->r - D_8037EAC0_852270.r) * i / 15 + D_8037EAC0_852270.r;
+        g = (fgColor->g - D_8037EAC0_852270.g) * i / 15 + D_8037EAC0_852270.g;
+        b = (fgColor->b - D_8037EAC0_852270.b) * i / 15 + D_8037EAC0_852270.b;
+        a = (fgColor->a - D_8037EAC0_852270.a) * i / 15 + D_8037EAC0_852270.a;
         D_803A69C0_87A170[i] = ((r << 8) & 0xF800) | ((g << 3) & 0x7C0) | ((b >> 2) & 0x3E) | ((a != 0) & 0x1);
     }
 }
@@ -351,27 +350,27 @@ s32 func_8036E44C_841BFC(s32 c) {
     return c;
 }
 
-void func_8036E490_841C40(UIText* arg0, s32* arg1, s32* arg2, char* ptr) {
+void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
     s32 printedChar;
-    u8* text = ptr;
+    u8* ptr = str;
     s32 i;
     s32 var_a1;
 
-    while (*text) {
-        u32 c = text[0] & 0xFF;
+    while (*ptr) {
+        u32 c = ptr[0] & 0xFF;
 
         if (c == '\n') {
-            text--;
+            ptr--;
             goto LABEL3;
         } else {
             printedChar = '　';
             if (c == ' ') {
-                text--;
+                ptr--;
             } else if ((s32) c > ' ' && c < 0x7F && c != '\\') {
-                text--;
+                ptr--;
                 printedChar = func_8036E44C_841BFC(c);
             } else {
-                printedChar = ((text[0] << 8) & 0xFF00) | (text[1] & 0xFF);
+                printedChar = ((ptr[0] << 8) & 0xFF00) | (ptr[1] & 0xFF);
             }
         }
         // BUG: specialChar may be uninitialized
@@ -387,16 +386,16 @@ void func_8036E490_841C40(UIText* arg0, s32* arg1, s32* arg2, char* ptr) {
             case '\\s':
             case '\\u':
             case '\\z':
-                func_8036ECFC_8424AC(*arg1 + arg0->x, *arg2 + arg0->y, printedChar, D_8037EAAC_85225C[D_8037EAA0_852250]);
+                func_8036ECFC_8424AC(*x + text->screenX, *y + text->screenY, printedChar, D_8037EAAC_85225C[D_8037EAA0_852250]);
                 goto LABEL2;
             case '\\e':
-                func_8036D77C_840F2C(arg0, &D_8037EAD8_852288, &D_803A6A08_87A1B8);
+                UIText_MakePalettes(text, &D_8037EAD8_852288, &D_803A6A08_87A1B8);
                 goto END;
             case '\\h':
-                func_8036D77C_840F2C(arg0, &D_8037EADC_85228C, &D_803A6A08_87A1B8);
+                UIText_MakePalettes(text, &D_8037EADC_85228C, &D_803A6A08_87A1B8);
                 goto END;
             case '\\p':
-                func_8036D77C_840F2C(arg0, &D_8037EAD4_852284, &D_803A6A08_87A1B8);
+                UIText_MakePalettes(text, &D_8037EAD4_852284, &D_803A6A08_87A1B8);
                 goto END;
             case '\\w':
                 D_8037EAC8_852278 = false;
@@ -412,10 +411,10 @@ void func_8036E490_841C40(UIText* arg0, s32* arg1, s32* arg2, char* ptr) {
                 func_8036D4B4_840C64(1, 0);
                 goto END;
             case '\\j':
-                func_8036D344_840AF4(0);
+                func_8036D344_840AF4(0); // BUG: 0 is not valid font
                 goto END;
             case '\\k':
-                func_8036D344_840AF4(1);
+                func_8036D344_840AF4(1); // BUG: 1 is not valid font
                 goto END;
             case '\\n':
                 goto LABEL3;
@@ -437,15 +436,15 @@ void func_8036E490_841C40(UIText* arg0, s32* arg1, s32* arg2, char* ptr) {
         }
 
         if (D_8037EACC_85227C & 1) {
-            var_a1 = *arg1;
+            var_a1 = *x;
         } else {
             s32 tmp = D_8037EAA0_852250 != 0 ? 9 : 6;
-            var_a1 = *arg1 + (s32) ((tmp - D_8037EE8C_85263C[D_8037EAA0_852250][func_8036D2A0_840A50(printedChar)]) * .5 + 0.5);
+            var_a1 = *x + (s32) ((tmp - D_8037EE8C_85263C[D_8037EAA0_852250][func_8036D2A0_840A50(printedChar)]) * .5 + 0.5);
         }
-        if (arg0->bpp == 4) {
-            UIText_PrintChar32(arg0, var_a1, *arg2, printedChar);
+        if (text->bpp == 4) {
+            UIText_PrintChar32(text, var_a1, *y, printedChar);
         } else {
-            UIText_PrintChar16(arg0, var_a1, *arg2, printedChar);
+            UIText_PrintChar16(text, var_a1, *y, printedChar);
         }
         if (D_803A6A0C_87A1BC != NULL && !D_8037EAC8_852278) {
             D_803A6A0C_87A1BC(printedChar);
@@ -459,35 +458,35 @@ void func_8036E490_841C40(UIText* arg0, s32* arg1, s32* arg2, char* ptr) {
 
         if (D_8037EACC_85227C & 1) {
             if (printedChar == '　') {
-                *arg1 += D_8037EAA0_852250 != 0 ? 4 : 2;
+                *x += D_8037EAA0_852250 != 0 ? 4 : 2;
             } else {
-                *arg1 += D_8037EE8C_85263C[D_8037EAA0_852250][func_8036D2A0_840A50(printedChar)] + 1;
+                *x += D_8037EE8C_85263C[D_8037EAA0_852250][func_8036D2A0_840A50(printedChar)] + 1;
             }
         } else {
-            *arg1 += D_8037EAA0_852250 != 0 ? 9 : 6;
+            *x += D_8037EAA0_852250 != 0 ? 9 : 6;
         }
 
-        if (*arg1 > arg0->width - D_8037EAB8_852268) {
+        if (*x > text->width - D_8037EAB8_852268) {
         LABEL3:
-            *arg1 = 0;
+            *x = 0;
         } else {
             goto END;
         }
 
     LABEL1:
-        *arg2 += D_8037EABC_85226C;
-        if (*arg2 > arg0->height - D_8037EAAC_85225C[D_8037EAA0_852250] - D_8037EAB4_852264) {
-            *arg2 = 0;
+        *y += D_8037EABC_85226C;
+        if (*y > text->height - D_8037EAAC_85225C[D_8037EAA0_852250] - D_8037EAB4_852264) {
+            *y = 0;
         }
 
     END:
-        text += 2;
+        ptr += 2;
     }
 
     D_8037EAC8_852278 = false;
 }
 
-void func_8036E9BC_84216C(UIText* text, s32* x, s32* y, u8* str) {
+void UIText_PrintAsciiString(UIText* text, s32* x, s32* y, u8* str) {
     s32 temp_a3;
     u8* ptr = str;
 

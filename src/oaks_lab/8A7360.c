@@ -23,7 +23,7 @@ s32 func_800E3ED4_8A96F4(void);
 void func_800E5298_8AAAB8(void);
 void func_800E6410_8ABC30(void);
 
-UnkSnowHerring* func_800E1B40_8A7360(void) {
+UIElement* func_800E1B40_8A7360(void) {
     return D_80206B1C_9CC33C;
 }
 
@@ -428,11 +428,11 @@ void func_800E2848_8A8068(void) {
     D_80206B28_9CC348[0] = sobj;
 }
 
-s32 func_800E2960_8A8180(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
+s32 func_800E2960_8A8180(UIElement* arg0, char** arg1, s32 arg2) {
     s32 temp_v0;
 
     while (*arg1) {
-        func_8036A8E4_83E094(arg0);
+        UIElement_Draw(arg0);
         func_8037519C_84894C(arg0, *arg1, get_player_name());
         temp_v0 = func_80374F30_8486E0(arg0, true);
         if (arg2 && (temp_v0 == 0x4000)) {
@@ -445,13 +445,13 @@ s32 func_800E2960_8A8180(UnkSnowHerring* arg0, char** arg1, s32 arg2) {
 }
 
 void func_800E2A04_8A8224(void) {
-    UnkSnowHerring* sp24;
+    UIElement* sp24;
     s32 temp_a1;
     s32 temp_s0;
     s32 i;
 
     sp24 = D_80206B1C_9CC33C;
-    func_8036CB58_840308(D_80206B1C_9CC33C, 0xC);
+    UIElement_SetTextStyle(D_80206B1C_9CC33C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
     temp_s0 = func_800C0290_5D130();
@@ -480,7 +480,7 @@ void func_800E2A04_8A8224(void) {
         }
         func_80370990_844140(1.0f, temp_a1);
         func_800E61B4_8AB9D4(3, 0);
-        func_8036A8E4_83E094(sp24);
+        UIElement_Draw(sp24);
     }
     ohWait(15);
 }
@@ -505,7 +505,7 @@ s32 func_800E2BB4_8A83D4(void) {
 void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused2[3];
     s32 i;
-    UnkSnowHerring* sp4C;
+    UIElement* sp4C;
     UIFrame* temp_v0;
     ucolor sp44;
     s32 unused1;
@@ -523,12 +523,12 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     UIFrame_GetBackgroundColor(temp_v0, &sp44);
     UIFrame_SetPos(temp_v0, 184, 320);
     UIFrame_Show(temp_v0, false);
-    sp4C = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
+    sp4C = UIElement_Create(104, 173, 192, 47, 0);
     D_80206B1C_9CC33C = sp4C;
-    UIElement_SetColor(sp4C, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp4C, 0, sp44.r, sp44.g, sp44.b, 0xFF);
-    func_8036B734_83EEE4(sp4C);
-    func_8036D1A4_840954(sp4C, 1);
+    UIElement_SetColor(sp4C, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp4C, UI_BACKGROUND, sp44.r, sp44.g, sp44.b, 255);
+    UIElement_DrawBackground(sp4C);
+    UIElement_SetState(sp4C, UI_HIDDEN);
     if (func_800BF864_5C704() >= 4) {
         setPlayerFlag(PFID_HAS_FINISHED_TUTORIAL, 1);
     }
@@ -575,9 +575,9 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     }
     func_803705A4_843D54();
     UIFrame_FadeIn(temp_v0, FRAME_STYLE_1);
-    func_8036D1A4_840954(sp4C, 0);
+    UIElement_SetState(sp4C, UI_NORMAL);
     func_8036D4A0_840C50(0);
-    func_8036CB58_840308(sp4C, 0xC);
+    UIElement_SetTextStyle(sp4C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
     func_800E5298_8AAAB8();
@@ -587,7 +587,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         sp3C = func_800E3ED4_8A96F4();
         func_80375284_848A34(3);
         func_803700A4_843854(0);
-        func_8036D1A4_840954(D_80206B1C_9CC33C, 1);
+        UIElement_SetState(D_80206B1C_9CC33C, UI_HIDDEN);
         UIFrame_ShowBackground(temp_v0, true);
         func_803713C8_844B78(0);
         func_803705F0_843DA0(0);
@@ -628,11 +628,11 @@ void func_800E30B8_8A88D8(void) {
     func_8036D4A0_840C50(1);
     func_8036EB80_842330(0);
     auSetBGMVolumeSmooth(0, 0x3F80, 60);
-    func_8036CB58_840308(D_80206B1C_9CC33C, 0xC);
+    UIElement_SetTextStyle(D_80206B1C_9CC33C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
-    func_8036A8E4_83E094(D_80206B1C_9CC33C);
-    func_8036C898_840048(D_80206B1C_9CC33C, "\n\\OThis is... awful!");
+    UIElement_Draw(D_80206B1C_9CC33C);
+    UIElement_PrintText(D_80206B1C_9CC33C, "\n\\OThis is... awful!");
 
     while (1) {
         ohWait(1);

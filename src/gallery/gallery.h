@@ -1,7 +1,7 @@
 #ifndef _GALLERY_H
 #define _GALLERY_H
 
-// TODO maybe get rid of this include at some point, but UnkSnowHerring is defined in window.h
+// TODO maybe get rid of this include at some point, but UIElement is defined in window.h
 #include "window/window.h"
 
 typedef struct UnkLimeHaddock {
@@ -97,9 +97,9 @@ extern SObj* D_8023086C_A4E52C;
 extern GObj* D_80230870_A4E530;
 extern SObj* D_80230874_A4E534;
 extern UIFrame* D_80230878_A4E538;
-extern UnkSnowHerring* D_8023087C_A4E53C;
-extern UnkSnowHerring* D_80230880_A4E540;
-extern UnkSnowHerring* D_80230884_A4E544;
+extern UIElement* D_8023087C_A4E53C;
+extern UIElement* D_80230880_A4E540;
+extern UIElement* D_80230884_A4E544;
 extern s32 D_80230888_A4E548;
 extern s32 D_8023088C_A4E54C;
 extern s32 D_80230890_A4E550;

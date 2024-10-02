@@ -13,7 +13,7 @@ extern void* D_80229190_9D8C00;
 extern UnkCanaryScallop* D_80229194_9D8C04;
 
 s32 func_800BFB84_5CA24(void);
-UnkSnowHerring* func_801DCCE0_98C750(void);
+UIElement* func_801DCCE0_98C750(void);
 void func_801DD9E4_98D454(s32);
 void func_801DDA68_98D4D8(s32);
 void func_801E3934_9933A4(void);
@@ -47,13 +47,13 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
 }
 
 void func_801E433C_993DAC(s32 arg0) {
-    UnkSnowHerring* sp1C;
+    UIElement* sp1C;
 
     sp1C = func_801DCCE0_98C750();
-    func_8036A8E4_83E094(sp1C);
+    UIElement_Draw(sp1C);
     func_8036EE40_8425F0();
-    func_8036B9EC_83F19C(sp1C, 0, 0);
-    func_8036CB58_840308(sp1C, 0xC);
+    UIElement_SetTextPos(sp1C, 0, 0);
+    UIElement_SetTextStyle(sp1C, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
 }

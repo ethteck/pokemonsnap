@@ -9,7 +9,7 @@ extern s32 D_801DD248_A08E38; // padding
 extern s32 D_801DD24C_A08E3C;
 extern s32 D_801DD250_A08E40;
 extern UIFrame* D_801DD254_A08E44;
-extern UnkSnowHerring* D_801DD258_A08E48;
+extern UIElement* D_801DD258_A08E48;
 extern s32 D_801DD25C_A08E4C;
 extern u8 D_801DD260_A08E50[0x32000];
 
@@ -77,7 +77,7 @@ SceneSetup D_801DD14C_A08D3C = {
 void func_801DC8C0_A084B0(void) {
     s32 unk0[2];
     UIFrame* sp2C;
-    UnkSnowHerring* sp28;
+    UIElement* sp28;
     ucolor sp24;
 
     sp2C = UIFrame_Create();
@@ -86,20 +86,20 @@ void func_801DC8C0_A084B0(void) {
     UIFrame_GetBackgroundColor(sp2C, &sp24);
     UIFrame_SetPos(sp2C, 184, 320);
     UIFrame_Show(sp2C, false);
-    sp28 = UIElement_Create(0x68, 0xAD, 0xC0, 0x2F, 0);
-    UIElement_SetColor(sp28, 1, 0xFF, 0xFF, 0xFF, 0xFF);
-    UIElement_SetColor(sp28, 0, sp24.r, sp24.g, sp24.b, 0xFF);
-    func_8036B734_83EEE4(sp28);
-    func_8036CB58_840308(sp28, 0xC);
+    sp28 = UIElement_Create(104, 173, 192, 47, 0);
+    UIElement_SetColor(sp28, UI_FOREGROUND, 255, 255, 255, 255);
+    UIElement_SetColor(sp28, UI_BACKGROUND, sp24.r, sp24.g, sp24.b, 255);
+    UIElement_DrawBackground(sp28);
+    UIElement_SetTextStyle(sp28, FONT_12);
     func_8036D448_840BF8(1);
     func_8036D3E8_840B98(-1, 3);
     func_8036D4A0_840C50(0);
-    func_8036C898_840048(
+    UIElement_PrintText(
         sp28,
         "ほれぼれする　しゃしんだね!\n"
         "\\aつぎをみる　\\bもういいや\n"
         "\\zメッセージを　けす・ひょうじ");
-    func_8036D1A4_840954(sp28, 1);
+    UIElement_SetState(sp28, true);
     D_801DD258_A08E48 = sp28;
 }
 
@@ -127,7 +127,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
         ohWait(1);
     }
 
-    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+    UIElement_SetState(D_801DD258_A08E48, UI_NORMAL);
     D_801DD25C_A08E4C = 0;
 
     while (D_801DD250_A08E40 == 0x10000000) {
@@ -149,11 +149,11 @@ void func_801DC9E8_A085D8(GObj* arg0) {
                 if (sp34 != 0) {
                     UIFrame_Show(D_801DD254_A08E44, true);
                     UIFrame_ShowBackground(D_801DD254_A08E44, true);
-                    func_8036D1A4_840954(D_801DD258_A08E48, 0);
+                    UIElement_SetState(D_801DD258_A08E48, UI_NORMAL);
                 } else {
                     UIFrame_Show(D_801DD254_A08E44, false);
                     UIFrame_ShowBackground(D_801DD254_A08E44, false);
-                    func_8036D1A4_840954(D_801DD258_A08E48, 1);
+                    UIElement_SetState(D_801DD258_A08E48, UI_HIDDEN);
                 }
             }
             if (sp3C->unk_18 & 4 && D_801DD12C_A08D1C > 0) {

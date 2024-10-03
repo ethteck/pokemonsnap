@@ -2535,12 +2535,12 @@ segments:
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, .data, 9A6B10]
-    - [0x9AE550, bin]
-
+    - [0x9AE550, bin, sprites]
+    - [0x9D2DA0, .data, 9A6F70]
+    - [0x9D2DE0, .data, 9ABB50]
+    - [0x9D2E90, .data, 9ADAD0]
     - [0x9D2EA0, .rodata, 9A6F70]
     - [0x9D31A0, .rodata, 9ABB50]
-
-    - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: pokemon_report
     dir: pokemon_report
     type: code

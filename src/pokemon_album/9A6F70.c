@@ -9,7 +9,6 @@ typedef struct UnkBordeauxBetta {
     u8 unk_8;
 } UnkBordeauxBetta; // size: 0xC
 
-// DATA
 extern Sprite D_801E4518_9AE768;
 extern Sprite D_801ED550_9B77A0;
 extern Sprite D_801F2D28_9BCF78;
@@ -28,51 +27,56 @@ extern Sprite D_802005B8_9CA808;
 extern Sprite D_802006E8_9CA938;
 extern Sprite D_80201728_9CB978;
 extern Sprite D_80208B10_9D2D60;
-extern s32 D_80208B54_9D2DA4;
-extern s32 D_80208B58_9D2DA8[6];
-extern char* D_80208B70_9D2DC0[]; // this seems to be length 3, but that would have it overlap with the following symbols
-extern s32 D_80208B74_9D2DC4;
-extern s32 D_80208B78_9D2DC8;
-extern s32 D_80208B7C_9D2DCC;
-extern s32 D_80208B80_9D2DD0;
-extern s32 D_80208B84_9D2DD4;
-extern UNK_TYPE D_80208B88_9D2DD8;
 
-// BSS
-extern s32 D_8024EFE0_A19230;
-extern s32 D_8024FFE8_A1A238;
-extern UIElement* D_8024FFF0_A1A240;
-extern UIElement* D_8024FFF4_A1A244;
-extern UIElement* D_8024FFF8_A1A248;
-extern UIElement* D_8024FFFC_A1A24C;
-extern UIElement* D_80250000_A1A250;
-extern UIElement* D_80250008_A1A258[20]; // references in the code to this being 6 long and 20 long. what?
-extern UIElement* D_8025004C_A1A29C[3];
-extern UIElement* D_80250058_A1A2A8;
-extern UIFrame* D_8025005C_A1A2AC;
-extern SObj* D_80250060_A1A2B0;
-extern GObj* D_80250064_A1A2B4;
-extern SObj* D_80250068_A1A2B8[5];
-extern GObj* D_80250078_A1A2C8; // TODO this is in the middle of the previous symbol..
-extern SObj* D_80250080_A1A2D0[7];
-extern SObj* D_8025009C_A1A2EC;
-extern SObj* D_802500A0_A1A2F0;
-extern SObj* D_802500A4_A1A2F4;
-extern SObj* D_802500A8_A1A2F8;
-extern GObj* D_802500AC_A1A2FC;
-extern SObj* D_802500B0_A1A300;
-extern s32 D_802500B4_A1A304;
-extern Unk803A6C18* D_802500B8_A1A308;
-extern u8 D_802500BC_A1A30C;
-extern s16 D_802500BE_A1A30E;
-extern UnkBordeauxBetta D_802500C0_A1A310[6];
-extern GObj* D_80250108_A1A358;
-extern SObj* D_8025010C_A1A35C;
+s32 D_80208B50_9D2DA0 = 0; // TODO belongs to sprites
 
-const char D_80208C50_9D2EA0[] = "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ０１２３４５６７８９†‡¶〜！？＠＃％＆＊（）＿＋＝ー’”；：／＄．，＜＞♂♀［］ε　";
+s32 D_80208B54_9D2DA4 = -1;
+s32 D_80208B58_9D2DA8[6] = { 0x3ec, 0x3f2, 0x3fa, 0x3fe, 0x404, 0x40b };
+char* D_80208B70_9D2DC0[] = {
+    "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ０１２３４５６７８９†‡¶〜！？＠＃％＆＊（）＿＋＝ー’”；：／＄．，＜＞♂♀［］ε　",
+};
+s32 D_80208B74_9D2DC4 = 1;
+s32 D_80208B78_9D2DC8 = 10;
+s32 D_80208B7C_9D2DCC = 5;
+s32 D_80208B80_9D2DD0 = 10;
+s32 D_80208B84_9D2DD4 = 5;
+UNK_TYPE D_80208B88_9D2DD8 = 0;
+
+s32 D_8024FFE0_A1A230;
+u8 D_8024EFE0_A19230[0x1000];
+s32 D_8024FFE8_A1A238;
+s32 D_8024FFEC_A1A23C;
+UIElement* D_8024FFF0_A1A240;
+UIElement* D_8024FFF4_A1A244;
+UIElement* D_8024FFF8_A1A248;
+UIElement* D_8024FFFC_A1A24C;
+UIElement* D_80250000_A1A250;
+UIElement* D_80250008_A1A258[20]; // references in the code to this being 6 long and 20 long. what?
+UIElement* D_80250058_A1A2A8;
+UIFrame* D_8025005C_A1A2AC;
+SObj* D_80250060_A1A2B0;
+GObj* D_80250064_A1A2B4;
+SObj* D_80250068_A1A2B8[4];
+GObj* D_80250078_A1A2C8;
+s32 D_8025007C_A1A2CC;
+SObj* D_80250080_A1A2D0[7];
+SObj* D_8025009C_A1A2EC;
+SObj* D_802500A0_A1A2F0;
+SObj* D_802500A4_A1A2F4;
+SObj* D_802500A8_A1A2F8;
+GObj* D_802500AC_A1A2FC;
+SObj* D_802500B0_A1A300;
+s32 album_AlbumPage;
+Unk803A6C18* D_802500B8_A1A308;
+u8 D_802500BC_A1A30C;
+s16 D_802500BE_A1A30E;
+UnkBordeauxBetta D_802500C0_A1A310[6];
+GObj* D_80250108_A1A358;
+SObj* D_8025010C_A1A35C;
+s32 D_80250110_A1A360;
 
 s32 func_801DCD20_9A6F70(void) {
-    return D_802500B4_A1A304;
+    return album_AlbumPage;
 }
 
 s32 func_801DCD3C_9A6F8C(s32 arg0) {
@@ -82,45 +86,46 @@ s32 func_801DCD3C_9A6F8C(s32 arg0) {
     return D_80208B58_9D2DA8[arg0];
 }
 
-s32 func_801DCD7C_9A6FCC(s16* arg0, char* arg1) {
-    char sp28[0x40];
-    char* sp24;
-    char* sp20;
-    s32 sp1C;
-    s32 sp18;
+s32 func_801DCD7C_9A6FCC(s16* wideStr, char* dst) {
+    char temp[0x40];
+    char* srcPtr;
+    char* dstPtr;
+    s32 srcIndex;
+    s32 dstIndex;
 
-    sp24 = arg0; // todo what is going on with the type of this
-    sp20 = (arg1 != NULL) ? (arg1) : (sp28);
-    sp1C = 0;
-    sp18 = 0;
+    srcPtr = wideStr; // todo what is going on with the type of this
+    dstPtr = dst != NULL ? dst : temp;
+    srcIndex = 0;
+    dstIndex = 0;
 
-    while (sp24[sp1C] != 0) {
-        if (*((u16*) (sp24 + sp1C)) == '　') {
-            sp20[sp18] = ' ';
-            sp20[sp18 + 1] = 0;
-            sp1C += 2;
-            sp18 += 1;
+    while (srcPtr[srcIndex] != 0) {
+        if (*((u16*) (srcPtr + srcIndex)) == '　') {
+            // convert wide space to normal space
+            dstPtr[dstIndex] = ' ';
+            dstPtr[dstIndex + 1] = 0;
+            srcIndex += 2;
+            dstIndex += 1;
         } else {
-            sp20[sp18] = sp24[sp1C];
-            sp20[sp18 + 1] = *(sp24 + sp1C + 1);
-            sp1C += 2;
-            sp18 += 2;
+            dstPtr[dstIndex] = srcPtr[srcIndex];
+            dstPtr[dstIndex + 1] = *(srcPtr + srcIndex + 1);
+            srcIndex += 2;
+            dstIndex += 2;
         }
     }
 
-    sp20[sp18] = 0;
-    return UIText_GetStringWidth(sp20);
+    dstPtr[dstIndex] = 0;
+    return UIText_GetStringWidth(dstPtr);
 }
 
 void func_801DCED4_9A7124(GObj* arg0) {
     while (D_80208B74_9D2DC4) {
         D_80208B78_9D2DC8 += D_80208B7C_9D2DCC;
-        if (D_80208B78_9D2DC8 > 0xFF) {
-            D_80208B78_9D2DC8 = 0xFF;
+        if (D_80208B78_9D2DC8 > 255) {
+            D_80208B78_9D2DC8 = 255;
             D_80208B7C_9D2DCC = -5;
         }
-        if (D_80208B78_9D2DC8 < 0x78) {
-            D_80208B78_9D2DC8 = 0x78;
+        if (D_80208B78_9D2DC8 < 120) {
+            D_80208B78_9D2DC8 = 120;
             D_80208B7C_9D2DCC = 5;
         }
         D_802500A4_A1A2F4->sprite.alpha = D_80208B78_9D2DC8;
@@ -170,47 +175,47 @@ char* func_801DD12C_9A737C(Unk803A6C18* arg0, u32 arg1) {
             D_80208B88_9D2DD8 = 0;
             return "スペシャル"; // special
         case 1:
-            return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_14);
+            return func_8037501C_8487CC("%5d", arg0->score.specialID);
         case 2:
             return "おおきさ"; // size
         case 3:
-            if (arg0->unk_3A0.unk_0C != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_0C);
+            if (arg0->score.sizeParam2 != 0) {
+                return func_8037501C_8487CC("%5d", arg0->score.sizeParam2);
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 4:
             return "まるみえ"; // "full view" (view?)
         case 5:
-            if (arg0->unk_3A0.unk_0E != 0) {
-                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->unk_3A0.unk_0E / 10000));
+            if (arg0->score.sizeParam1 != 0) {
+                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->score.sizeParam1 / 10000));
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 6:
             return "コメント"; // comment
         case 7:
-            if (arg0->unk_3A0.unk_08 != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_08);
+            if (arg0->score.commentID != 0) {
+                return func_8037501C_8487CC("%5d", arg0->score.commentID);
             } else {
                 return "　　　なし";
             }
         case 8:
-            if (arg0->unk_3A0.unk_08 != 0) {
+            if (arg0->score.commentID != 0) {
                 return "ポーズ";
             } else {
                 return "むき";
             }
         case 9:
-            if (arg0->unk_3A0.unk_10 != 0) {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_10);
+            if (arg0->score.posePts != 0) {
+                return func_8037501C_8487CC("%5d", arg0->score.posePts);
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 10:
             return "センサー"; // sensor
         case 11:
-            if (arg0->unk_3A0.unk_07 != 0) {
+            if (arg0->score.isWellFramed) {
                 return "　　　あり";
             } else {
 
@@ -219,30 +224,30 @@ char* func_801DD12C_9A737C(Unk803A6C18* arg0, u32 arg1) {
         case 12:
             return "なかま";
         case 13:
-            if (D_80208B88_9D2DD8 != 0) {
+            if (D_80208B88_9D2DD8) {
                 return "−−−−−";
             } else {
-                return func_8037501C_8487CC("%3d", arg0->unk_3A0.unk_06);
+                return func_8037501C_8487CC("%3d", arg0->score.samePkmnNumber);
             }
         case 14:
-            if (D_80208B88_9D2DD8 != 0) {
+            if (D_80208B88_9D2DD8) {
                 return "−−−−−";
             } else {
-                return func_8037501C_8487CC("%5d", arg0->unk_3A0.unk_04);
+                return func_8037501C_8487CC("%5d", arg0->score.samePkmnBonus);
             }
     }
 }
 
-void func_801DD404_9A7654(s32 arg0) {
+void func_801DD404_9A7654(s32 color) {
     s32 i;
 
-    D_80250060_A1A2B0->sprite.red = arg0;
-    D_80250060_A1A2B0->sprite.green = arg0;
-    D_80250060_A1A2B0->sprite.blue = arg0;
+    D_80250060_A1A2B0->sprite.red = color;
+    D_80250060_A1A2B0->sprite.green = color;
+    D_80250060_A1A2B0->sprite.blue = color;
 
-    for (i = 0; i < ARRAY_COUNT(D_80250068_A1A2B8) - 1; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_80250068_A1A2B8); i++) {
         if (D_80250068_A1A2B8[i]) {
-            D_80250068_A1A2B8[i]->sprite.red = D_80250068_A1A2B8[i]->sprite.green = D_80250068_A1A2B8[i]->sprite.blue = arg0;
+            D_80250068_A1A2B8[i]->sprite.red = D_80250068_A1A2B8[i]->sprite.green = D_80250068_A1A2B8[i]->sprite.blue = color;
         }
     }
 }
@@ -273,8 +278,8 @@ void func_801DD638_9A7888(s32 arg0) {
     D_80250108_A1A358->data.sobj->sprite.red = D_80250108_A1A358->data.sobj->sprite.green = D_80250108_A1A358->data.sobj->sprite.blue = arg0;
 }
 
-void func_801DD684_9A78D4(UIElement* arg0, s32 arg1) {
-    UIElement_SetSpriteColor(arg0, arg1, arg1, arg1, 255);
+void func_801DD684_9A78D4(UIElement* el, s32 color) {
+    UIElement_SetSpriteColor(el, color, color, color, 255);
 }
 
 GObj* func_801DD6CC_9A791C(s32 arg0) {
@@ -333,14 +338,14 @@ void func_801DD914_9A7B64(void) {
     }
 }
 
-void func_801DD954_9A7BA4(s32 arg0) {
+void func_801DD954_9A7BA4(s32 idx) {
     s32 i;
     char sp24[0x20];
 
-    D_802500B4_A1A304 = arg0 / 6;
+    album_AlbumPage = idx / 6;
 
-    for (i = 0; i < ARRAY_COUNT(D_802500C0_A1A310); arg0++, i++) {
-        if (func_80374714_847EC4(func_801E38E0_9ADB30(arg0), &D_802500C0_A1A310[i].unk_4->sprite) != NULL) {
+    for (i = 0; i < ARRAY_COUNT(D_802500C0_A1A310); idx++, i++) {
+        if (func_80374714_847EC4(album_GetAlbumPhoto(idx), &D_802500C0_A1A310[i].unk_4->sprite) != NULL) {
             D_802500C0_A1A310[i].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
             D_802500C0_A1A310[i].unk_8 = 0;
         } else {
@@ -355,7 +360,7 @@ void func_801DD954_9A7BA4(s32 arg0) {
     UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(D_80250058_A1A2A8, 0, 0);
     UIElement_PrintText(D_80250058_A1A2A8, "  \\i−\\g      \\i−\\g  ");
-    sprintf(sp24, "%d", D_802500B4_A1A304 + 1);
+    sprintf(sp24, "%d", album_AlbumPage + 1);
     UIElement_SetTextPos(D_80250058_A1A2A8, 30 - (UIText_GetStringWidth(sp24) / 2), 0);
     UIElement_PrintText(D_80250058_A1A2A8, sp24);
     UIElement_SetState(D_80250058_A1A2A8, UI_NORMAL);
@@ -365,7 +370,7 @@ void func_801DDB54_9A7DA4(s32 arg0) {
     s32 idx;
 
     idx = arg0 % ARRAY_COUNT(D_802500C0_A1A310);
-    if (func_80374714_847EC4(func_801E38E0_9ADB30(arg0), &D_802500C0_A1A310[idx].unk_4->sprite)) {
+    if (func_80374714_847EC4(album_GetAlbumPhoto(arg0), &D_802500C0_A1A310[idx].unk_4->sprite)) {
         D_802500C0_A1A310[idx].unk_0->data.sobj->sprite.attr |= SP_HIDDEN;
         D_802500C0_A1A310[idx].unk_8 = 0;
     } else {
@@ -502,18 +507,18 @@ void* func_801DE0C8_9A8318(void) {
 }
 
 void func_801DE1FC_9A844C(s32 arg0) {
-    char sp28[0x40];
+    char comment[0x40];
 
     UIElement_Draw(D_8024FFFC_A1A24C);
-    if (func_801E3A34_9ADC84(arg0) == NULL) {
+    if (album_GetPhotoComment(arg0) == NULL) {
         return;
     }
     UIElement_SetFont(D_8024FFFC_A1A24C, FONT_12);
     UIText_SetShadowOffset(0);
     UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(D_8024FFFC_A1A24C, 0, 0);
-    func_801DCD7C_9A6FCC(func_801E3A34_9ADC84(arg0), sp28);
-    UIElement_PrintText(D_8024FFFC_A1A24C, sp28);
+    func_801DCD7C_9A6FCC(album_GetPhotoComment(arg0), comment);
+    UIElement_PrintText(D_8024FFFC_A1A24C, comment);
     UIElement_SetState(D_8024FFFC_A1A24C, UI_NORMAL);
 }
 
@@ -521,7 +526,7 @@ void func_801DE2BC_9A850C(s32 arg0) {
     if (D_80208B54_9D2DA4 != arg0) {
         D_80208B54_9D2DA4 = arg0;
     }
-    func_80374714_847EC4(func_801E38E0_9ADB30(arg0), &D_8025010C_A1A35C->sprite);
+    func_80374714_847EC4(album_GetAlbumPhoto(arg0), &D_8025010C_A1A35C->sprite);
     UIElement_SetState(D_8024FFFC_A1A24C, UI_HIDDEN);
     func_801DE1FC_9A844C(arg0);
     UIElement_SetState(D_8024FFFC_A1A24C, UI_NORMAL);
@@ -663,7 +668,7 @@ void func_801DE998_9A8BE8(s32 arg0) {
 }
 
 void func_801DE9B0_9A8C00(s32 arg0) {
-    if (arg0 != 0) {
+    if (arg0) {
         if (D_8024FFE8_A1A238 != 0) {
             UIElement_SetState(D_8024FFF0_A1A240, UI_NORMAL);
         } else {
@@ -681,7 +686,7 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
     char sp20[0x40];
     s32 x;
 
-    sp64 = func_801E3A34_9ADC84(D_80208B54_9D2DA4);
+    sp64 = album_GetPhotoComment(D_80208B54_9D2DA4);
     if (sp64 == NULL) {
         return;
     }
@@ -809,7 +814,7 @@ void func_801DF120_9A9370(s32 arg0) {
         D_80250064_A1A2B4->data.sobj->sprite.attr |= SP_HIDDEN;
     }
 
-    for (i = ARRAY_COUNT(D_80250068_A1A2B8); i >= 0; i--) {
+    for (i = ARRAY_COUNT(D_80250068_A1A2B8) + 1; i >= 0; i--) {
         if (D_80250068_A1A2B8[i] != NULL) {
             if (arg0) {
                 D_80250068_A1A2B8[i]->sprite.attr &= ~SP_HIDDEN;
@@ -861,34 +866,41 @@ void func_801DF2E0_9A9530(void) {
 
     D_80250068_A1A2B8[2] = NULL;
     D_80250068_A1A2B8[3] = NULL;
+
     D_80250068_A1A2B8[4] = NULL;
     D_80250068_A1A2B8[5] = NULL;
 }
 
-void func_801DF428_9A9678(s32 arg0, s32 arg1) {
+void album_PrintPhotoDescription(s32 descType, s32 entryIndex) {
     Unk803A6C18* sp4C;
     s32 i;
-    char sp28[0x20];
+    char str[32];
 
-    sp4C = func_8037452C_847CDC(func_801E38E0_9ADB30(arg1));
-    if (arg0 == 0) {
+    sp4C = func_8037452C_847CDC(album_GetAlbumPhoto(entryIndex));
+    if (descType == 0) {
         func_801DF0D0_9A9320();
+
         UIText_SetFont(FONT_8);
         UIElement_SetTextPos(D_80250008_A1A258[0], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[0], "Course");
-        sprintf(sp28, "%s", getLevelName(func_800BFA44_5C8E4(arg1)->levelID));
-        UIElement_SetTextPos(D_80250008_A1A258[1], 60 - UIText_GetStringWidth(sp28), 0);
-        func_8037519C_84894C(D_80250008_A1A258[1], "%s", sp28);
+
+        sprintf(str, "%s", getLevelName(getAlbumPhoto(entryIndex)->levelID));
+        UIElement_SetTextPos(D_80250008_A1A258[1], 60 - UIText_GetStringWidth(str), 0);
+        func_8037519C_84894C(D_80250008_A1A258[1], "%s", str);
+
         UIElement_SetTextPos(D_80250008_A1A258[2], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[2], "Photo by");
-        sprintf(sp28, "%s", get_player_name());
-        UIElement_SetTextPos(D_80250008_A1A258[3], 60 - UIText_GetStringWidth(sp28), 0);
-        func_8037519C_84894C(D_80250008_A1A258[3], "%s", sp28);
+
+        sprintf(str, "%s", get_player_name());
+        UIElement_SetTextPos(D_80250008_A1A258[3], 60 - UIText_GetStringWidth(str), 0);
+        func_8037519C_84894C(D_80250008_A1A258[3], "%s", str);
+
         UIElement_SetTextPos(D_80250008_A1A258[4], 0, 0);
         UIElement_PrintText(D_80250008_A1A258[4], "Focus");
-        sprintf(sp28, "%s", (sp4C->unk_3A0.unk_0A > 0 && sp4C->unk_3A0.unk_0A <= POKEDEX_MAX) ? getPokemonName(sp4C->unk_3A0.unk_0A) : "−−−−−");
-        UIElement_SetTextPos(D_80250008_A1A258[5], 60 - UIText_GetStringWidth(sp28), 0);
-        func_8037519C_84894C(D_80250008_A1A258[5], "%s", sp28);
+
+        sprintf(str, "%s", (sp4C->score.pokemonInFocus > 0 && sp4C->score.pokemonInFocus <= POKEDEX_MAX) ? getPokemonName(sp4C->score.pokemonInFocus) : "−−−−−");
+        UIElement_SetTextPos(D_80250008_A1A258[5], 60 - UIText_GetStringWidth(str), 0);
+        func_8037519C_84894C(D_80250008_A1A258[5], "%s", str);
     } else {
         func_801DF0D0_9A9320();
 
@@ -908,7 +920,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
 
     switch (arg0) {
         case 0:
-            D_8024EFE0_A19230 = 0;
+            D_8024FFE0_A1A230 = 0;
             D_80250064_A1A2B4->data.sobj->sprite.width = 400;
             func_803700A4_843854(0);
             func_80370A48_8441F8();
@@ -916,7 +928,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             func_8037172C_844EDC(0);
             UIElement_Delete(D_8024FFF8_A1A248);
             func_801DEDB0_9A9000();
-            func_801DF428_9A9678(D_8024EFE0_A19230, arg1);
+            album_PrintPhotoDescription(D_8024FFE0_A1A230, arg1);
             func_803713C8_844B78(0);
             ohWait(30);
             func_801DEF6C_9A91BC(1);
@@ -937,9 +949,9 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             ohWait(1);
             break;
         case 1:
-            if (D_802500B8_A1A308->unk_3A0.unk_0A > 0) {
-                D_8024EFE0_A19230 ^= 1;
-                func_801DF428_9A9678(D_8024EFE0_A19230, arg1);
+            if (D_802500B8_A1A308->score.pokemonInFocus > 0) {
+                D_8024FFE0_A1A230 ^= 1;
+                album_PrintPhotoDescription(D_8024FFE0_A1A230, arg1);
             }
             break;
         case 2:
@@ -990,15 +1002,15 @@ void func_801DFB48_9A9D98(void) {
         UIElement_SetState(D_80250008_A1A258[i], UI_HIDDEN);
     }
 
-    for (i = 0; i < ARRAY_COUNT(D_8025004C_A1A29C); i++) {
-        D_8025004C_A1A29C[i] = UIElement_Create(23, (i * 10) + 190, 60, 8, 0);
-        UIElement_SetColor(D_8025004C_A1A29C[i], UI_FOREGROUND, 255, 255, 255, 255);
-        UIElement_SetColor(D_8025004C_A1A29C[i], UI_BACKGROUND, 0, 0, 0, 0);
+    for (i = 0; i < 3; i++) {
+        D_80250008_A1A258[17 + i] = UIElement_Create(23, (i * 10) + 190, 60, 8, 0);
+        UIElement_SetColor(D_80250008_A1A258[17 + i], UI_FOREGROUND, 255, 255, 255, 255);
+        UIElement_SetColor(D_80250008_A1A258[17 + i], UI_BACKGROUND, 0, 0, 0, 0);
         UIText_SetShadowOffset(0);
         UIText_SetSpacing(0, 4);
-        UIElement_DrawBackground(D_8025004C_A1A29C[i]);
-        UIElement_SetFont(D_8025004C_A1A29C[i], FONT_8);
-        UIElement_SetState(D_8025004C_A1A29C[i], UI_HIDDEN);
+        UIElement_DrawBackground(D_80250008_A1A258[17 + i]);
+        UIElement_SetFont(D_80250008_A1A258[17 + i], FONT_8);
+        UIElement_SetState(D_80250008_A1A258[17 + i], UI_HIDDEN);
     }
 }
 
@@ -1010,7 +1022,7 @@ void func_801DFDA0_9A9FF0(void) {
     }
 }
 
-void func_801DFDF0_9AA040(s32 arg0) {
+void album_DrawCharacterGrid(s32 page) {
     s32 i;
     s32 j;
     char sp18[0x8];
@@ -1022,8 +1034,8 @@ void func_801DFDF0_9AA040(s32 arg0) {
 
         for (j = 0; j < 5; j++) {
             UIElement_SetTextPos(D_80250008_A1A258[i], j * 13, 0);
-            sp18[0] = D_80208B70_9D2DC0[arg0][i * 10 + 2 * j];
-            sp18[1] = D_80208B70_9D2DC0[arg0][i * 10 + 2 * j + 1];
+            sp18[0] = D_80208B70_9D2DC0[page][i * 10 + 2 * j];
+            sp18[1] = D_80208B70_9D2DC0[page][i * 10 + 2 * j + 1];
             sp18[2] = 0;
             UIElement_PrintText(D_80250008_A1A258[i], sp18);
         }
@@ -1038,10 +1050,10 @@ void func_801DFDF0_9AA040(s32 arg0) {
     UIElement_PrintText(D_80250008_A1A258[ARRAY_COUNT(D_80250008_A1A258) - 1], "End");
 }
 
-void func_801DFFEC_9AA23C(s32 arg0) {
+void func_801DFFEC_9AA23C(s32 show) {
     s32 i;
 
-    if (arg0 != 0) {
+    if (show) {
         for (i = 0; i < 20; i++) {
             UIElement_SetState(D_80250008_A1A258[i], UI_NORMAL);
         }
@@ -1078,35 +1090,35 @@ void func_801E008C_9AA2DC(s16* arg0, s32 arg1) {
     func_801DE9B0_9A8C00(1);
 }
 
-void func_801E0194_9AA3E4(u32 arg0) {
+void album_SwitchCharacterGridPage(u32 opId) {
     UNUSED s32 pad;
 
-    switch (arg0) {
+    switch (opId) {
         case 0:
             D_802500BC_A1A30C = 0;
             func_801DFB48_9A9D98();
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             func_801DFFEC_9AA23C(1);
             break;
         case 1:
             D_802500BC_A1A30C++, D_802500BC_A1A30C %= 3;
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             break;
         case 2:
             D_802500BC_A1A30C--, D_802500BC_A1A30C %= 3;
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             break;
         case 3:
             D_802500BC_A1A30C = 0;
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             break;
         case 4:
             D_802500BC_A1A30C = 1;
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             break;
         case 5:
             D_802500BC_A1A30C = 2;
-            func_801DFDF0_9AA040(D_802500BC_A1A30C);
+            album_DrawCharacterGrid(D_802500BC_A1A30C);
             break;
         case 6:
             func_801DFDA0_9A9FF0();
@@ -1118,7 +1130,7 @@ void func_801E0194_9AA3E4(u32 arg0) {
 void func_801E0300_9AA550(void) {
     s16* sp1C;
 
-    sp1C = func_801E3A34_9ADC84(D_80208B54_9D2DA4);
+    sp1C = album_GetPhotoComment(D_80208B54_9D2DA4);
     if (sp1C == 0) {
         return;
     }
@@ -1129,61 +1141,63 @@ void func_801E0300_9AA550(void) {
     return;
 }
 
-void func_801E0398_9AA5E8(s32 arg0, s32 arg1) {
-    s16* sp2C;
+void album_PressedCharacterInGrid(s32 x, s32 y) {
+    s16* comment;
     char* temp_t7;
 
-    sp2C = func_801E3A34_9ADC84(D_80208B54_9D2DA4);
-    if (sp2C == NULL) {
+    comment = album_GetPhotoComment(D_80208B54_9D2DA4);
+    if (comment == NULL) {
         return;
     }
-    sp2C[31] = 0;
+    comment[31] = 0;
 
+    // clear comment
     for (D_802500BE_A1A30E = 0; D_802500BE_A1A30E < 31; D_802500BE_A1A30E++) {
-        if (sp2C[D_802500BE_A1A30E] == 0) {
+        if (comment[D_802500BE_A1A30E] == 0) {
             break;
         }
     }
 
-    if (arg1 == 19) {
-        switch (arg0) {
+    if (y == 19) {
+        // last line
+        switch (x) {
             case 0:
                 auPlaySound(0x4A);
                 func_801E0300_9AA550();
                 return;
             case 1:
                 if (D_802500BE_A1A30E < 31) {
-                    sp2C[D_802500BE_A1A30E] = '　';
+                    comment[D_802500BE_A1A30E] = '　';
                     D_802500BE_A1A30E++;
-                    sp2C[D_802500BE_A1A30E] = 0;
-                    if (func_801DCD7C_9A6FCC(sp2C, 0) >= 169) {
+                    comment[D_802500BE_A1A30E] = 0;
+                    if (func_801DCD7C_9A6FCC(comment, 0) >= 169) {
                         auPlaySound(0x55);
                         ohWait(0xA);
-                        sp2C[--D_802500BE_A1A30E] = 0;
+                        comment[--D_802500BE_A1A30E] = 0;
                     } else {
                         auPlaySound(0x42);
                     }
                 }
                 /* fallthrough */
             default:
-                func_801E008C_9AA2DC(sp2C, D_802500BE_A1A30E);
+                func_801E008C_9AA2DC(comment, D_802500BE_A1A30E);
         }
         return;
     }
 
     if (D_802500BE_A1A30E < 31) {
-        sp2C[D_802500BE_A1A30E] = (D_80208B70_9D2DC0[D_802500BC_A1A30C][arg1 * 10 + arg0 * 2] << 8) |
-                                  D_80208B70_9D2DC0[D_802500BC_A1A30C][arg1 * 10 + arg0 * 2 + 1];
+        comment[D_802500BE_A1A30E] = (D_80208B70_9D2DC0[D_802500BC_A1A30C][y * 10 + x * 2] << 8) |
+                                     D_80208B70_9D2DC0[D_802500BC_A1A30C][y * 10 + x * 2 + 1];
         D_802500BE_A1A30E++;
-        sp2C[D_802500BE_A1A30E] = 0;
-        if (func_801DCD7C_9A6FCC(sp2C, 0) >= 169) {
+        comment[D_802500BE_A1A30E] = 0;
+        if (func_801DCD7C_9A6FCC(comment, 0) >= 169) {
             auPlaySound(0x55);
             ohWait(10);
-            sp2C[--D_802500BE_A1A30E] = 0;
+            comment[--D_802500BE_A1A30E] = 0;
         } else {
             auPlaySound(0x42);
         }
-        func_801E008C_9AA2DC(sp2C, D_802500BE_A1A30E);
+        func_801E008C_9AA2DC(comment, D_802500BE_A1A30E);
     }
 }
 
@@ -1226,9 +1240,9 @@ void func_801E0774_9AA9C4(void) {
     UIElement_DrawBackground(sp4C);
     UIElement_SetFont(sp4C, FONT_8);
     UIElement_SetTextPos(sp4C, 10, 0);
-    func_8037519C_84894C(sp4C, "\\i%2d \\gTaken", func_801E3AB8_9ADD08());
+    func_8037519C_84894C(sp4C, "\\i%2d \\gTaken", album_GetPhotoCount());
     UIElement_SetTextPos(sp4C, 10, 9);
-    func_8037519C_84894C(sp4C, "\\i%2d \\gLeft", 60 - func_801E3AB8_9ADD08());
+    func_8037519C_84894C(sp4C, "\\i%2d \\gLeft", 60 - album_GetPhotoCount());
     UIElement_SetState(sp4C, UI_HIDDEN);
     D_8024FFF4_A1A244 = sp4C;
     ohWait(1);
@@ -1540,6 +1554,7 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     func_801DE3DC_9A862C();
     func_801DDE64_9A80B4();
     func_801DE03C_9A828C(0);
+
     sp64 = UIElement_Create(124, 131, 60, 18, UI_FLAG_32BIT);
     UIElement_SetColor(sp64, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp64, UI_BACKGROUND, 0, 0, 0, 0);
@@ -1548,21 +1563,22 @@ void func_801E1598_9AB7E8(GObj* arg0) {
     UIElement_DrawBackground(sp64);
     UIElement_SetFont(sp64, FONT_8);
     UIElement_SetTextPos(sp64, 10, 0);
-    func_8037519C_84894C(sp64, "\\i%2d \\gTaken", func_801E3AB8_9ADD08());
+    func_8037519C_84894C(sp64, "\\i%2d \\gTaken", album_GetPhotoCount());
     UIElement_SetTextPos(sp64, 10, 9);
-    func_8037519C_84894C(sp64, "\\i%2d \\gLeft", 60 - func_801E3AB8_9ADD08());
+    func_8037519C_84894C(sp64, "\\i%2d \\gLeft", 60 - album_GetPhotoCount());
     UIElement_SetState(sp64, UI_HIDDEN);
     ohWait(1);
     D_8024FFF4_A1A244 = sp64;
+
     UIElement_SetState(D_8024FFF4_A1A244, UI_NORMAL);
 
     for (i = 0; i < 60; i++) {
-        func_801DD684_9A78D4(D_8024FFF4_A1A244, (i * 0xFF) / 60);
-        func_801DD404_9A7654((i * 0xFF) / 60);
+        func_801DD684_9A78D4(D_8024FFF4_A1A244, i * 255 / 60);
+        func_801DD404_9A7654(i * 255 / 60);
         ohWait(1);
     }
 
-    func_801DD404_9A7654(0xFF);
+    func_801DD404_9A7654(255);
     func_8037172C_844EDC(1);
     func_803713C8_844B78(0);
 

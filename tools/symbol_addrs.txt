@@ -1951,3 +1951,9 @@ GetInterpolatedVelocity = 0x8001FCE8;
 UIText_ShadowPalette = 0x803A6980; //segment:window
 UIText_TextPalette = 0x803A6940; //segment:window
 UIText_ShadowedTextPalette = 0x803A69C0; //segment:window
+
+album_PhotoCount = 0x8025093C; // segment:pokemon_album
+album_LastPhotoIndex = 0x80250940; // segment:pokemon_album
+album_FirstPhotoIndex = 0x80250944; // segment:pokemon_album
+D_8025007C_A1A2CC = 0x8025007C; // segment:pokemon_album
+album_AlbumPage = 0x802500B4; // segment:pokemon_album

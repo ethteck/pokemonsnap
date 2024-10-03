@@ -15,9 +15,9 @@ void func_801DE2BC_9A850C(s32);
 void func_801DE998_9A8BE8(s32);
 void func_801DEA4C_9A8C9C(s32, s32, s32);
 void func_801DF744_9A9994(s32, s32);
-void func_801E0194_9AA3E4(u32);
+void album_SwitchCharacterGridPage(u32);
 void func_801E0300_9AA550(void);
-void func_801E0398_9AA5E8(s32, s32);
+void album_PressedCharacterInGrid(s32, s32);
 void func_801E0774_9AA9C4(void);
 void func_801E09A0_9AABF0(s32);
 void func_801E0AF0_9AAD40(void);
@@ -36,18 +36,16 @@ s32 func_801E2438_9AC688(UnkStruct800BEDF8*, s32*, s32*);
 s32 func_801E29A8_9ACBF8(void);
 void func_801E37A0_9AD9F0(void);
 void func_801E3880_9ADAD0(void);
-PhotoData* func_801E38E0_9ADB30(s32);
+PhotoData* album_GetAlbumPhoto(s32);
 void func_801E3914_9ADB64(s32);
-s16* func_801E3A34_9ADC84(s32);
+s16* album_GetPhotoComment(s32);
 s32 func_801E3A80_9ADCD0(void);
 s32 func_801E3A9C_9ADCEC(void);
-s32 func_801E3AB8_9ADD08(void);
+s32 album_GetPhotoCount(void);
 s32 func_801E3B34_9ADD84(s32);
 void func_801E3F00_9AE150(void);
 PhotoData* func_801E4068_9AE2B8(void);
 void func_801E4084_9AE2D4(void);
 void func_801E41AC_9AE3FC(void);
-
-extern UnkCanaryScallop* D_80250124_A1A374;
 
 #endif

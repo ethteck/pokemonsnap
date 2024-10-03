@@ -308,7 +308,7 @@ void new_game_init(void) {
     func_800AAE28();
     func_800AA85C(24, 6);
     func_800AA870(0xF0000);
-    func_8036EB98_842348();
+    UIText_Initialize();
     ohCreateCameraWrapper(0, 0x80000000, 100, 6, 0);
     D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, true, 1, NULL, 1, true);
     D_801180B0->data.cam->flags = CAMERA_FLAG_8;

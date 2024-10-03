@@ -131,7 +131,7 @@ void func_801DCBF4_9D3564(void) {
     func_801DCA48_9D33B8();
     func_80374D40_8484F0();
     func_800A7F68(1, 0x101);
-    func_8036EB98_842348();
+    UIText_Initialize();
     auPlaySong(0, 0x1D);
     auSetBGMVolume(0, 0x7F00);
     func_801E2790_9D9100();

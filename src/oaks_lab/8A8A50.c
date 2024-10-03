@@ -140,7 +140,7 @@ s32 func_800E3774_8A8F94(void) {
     s32 ret = 0;
 
     for (i = 0; i < 60; i++) {
-        if (func_800BFA44_5C8E4(i) != 0) {
+        if (getAlbumPhoto(i) != 0) {
             ret++;
         }
     }
@@ -219,7 +219,7 @@ s32 func_800E37CC_8A8FEC(void) {
 
                 case 3:
                     for (numPics = 0, i = 0; i < 60; i++) {
-                        if (func_800BFA44_5C8E4(i) != NULL) {
+                        if (getAlbumPhoto(i) != NULL) {
                             numPics++;
                         }
                     }

@@ -125,7 +125,7 @@ void UIText_PrintAsciiString(UIText* arg0, s32* arg1, s32* arg2, u8* arg3);
 void UIText_PrintAsciiString(UIText*, s32*, s32*, u8*);
 void func_8036EB80_842330(s32);
 void func_8036EB8C_84233C(void (*)(s32));
-void func_8036EB98_842348(void);
+void UIText_Initialize(void);
 void func_8036EE40_8425F0(void);
 void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8036EFEC_84279C(s32, s32, s32, s32, s32);

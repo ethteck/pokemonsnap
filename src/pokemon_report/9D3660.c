@@ -231,12 +231,12 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         if (D_80230DC0_A27730 == 0) {
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Special");
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_12));
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.specialBonus));
             UIElement_SetTextPos(D_80230C30_A275A0, 40 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Technique");
-            if (D_80230C20_A27590->unk_3A0.unk_07 != 0) {
+            if (D_80230C20_A27590->score.isWellFramed != 0) {
                 sprintf(sp2C, "That's nice.");
             } else {
                 sprintf(sp2C, "Oh, dear...");
@@ -245,19 +245,19 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Size");
-            sp4C = (D_80230C20_A27590->unk_3A0.unk_0E / 10000.0f);
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->unk_3A0.unk_0C * sp4C) + 5.0f) / 10.0f) * 10));
+            sp4C = (D_80230C20_A27590->score.sizeParam1 / 10000.0f);
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->score.sizeParam2 * sp4C) + 5.0f) / 10.0f) * 10));
             UIElement_SetTextPos(D_80230C30_A275A0, 85 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Pose");
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_10));
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.posePts));
             UIElement_SetTextPos(D_80230C30_A275A0, 130 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
-            if (D_80230C20_A27590->unk_3A0.unk_06 != 0) {
+            if (D_80230C20_A27590->score.samePkmnNumber != 0) {
                 UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
                 UIElement_PrintText(D_80230C30_A275A0, "Same PKMN");
-                sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_04));
+                sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.samePkmnBonus));
                 UIElement_SetTextPos(D_80230C30_A275A0, 188 - UIText_GetStringWidth(sp2C), 36);
                 UIElement_PrintText(D_80230C30_A275A0, sp2C);
             }
@@ -265,31 +265,31 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
             UIElement_PrintText(D_80230C30_A275A0, "スペシャル"); // special
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 12);
-            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_14));
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.specialID));
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 24);
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 36);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "めんせき");
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 12);
-            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_0C));
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.sizeParam2));
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 24);
             UIElement_PrintText(D_80230C30_A275A0, "まるみえ"); // full view
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 36);
-            if (D_80230C20_A27590->unk_3A0.unk_0E < 10000) {
-                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->unk_3A0.unk_0E / 100));
-                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->unk_3A0.unk_0E % 100) / 10));
+            if (D_80230C20_A27590->score.sizeParam1 < 10000) {
+                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.sizeParam1 / 100));
+                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.sizeParam1 % 100) / 10));
             } else {
                 func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
             }
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
             UIElement_PrintText(D_80230C30_A275A0, "コメント"); // comment
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->unk_3A0.unk_08));
+            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.commentID));
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 24);
             UIElement_PrintText(D_80230C30_A275A0, "むきタイプ"); // muki type
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 36);
 
-            switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->unk_3A0.unk_0A)]) {
+            switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->score.pokemonInFocus)]) {
                 case 1:
                     UIElement_PrintText(D_80230C30_A275A0, "            Ａ");
                     break;
@@ -307,11 +307,11 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
             UIElement_PrintText(D_80230C30_A275A0, "センサー"); // sensor
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "         %s", (D_80230C20_A27590->unk_00.unk_00_16 & 0xE0) ? "オン" : "オフ"); // on / off
+            func_8037519C_84894C(D_80230C30_A275A0, "         %s", (D_80230C20_A27590->photo.unk_00_16 & 0xE0) ? "オン" : "オフ"); // on / off
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
             UIElement_PrintText(D_80230C30_A275A0, "なかま"); // friend ???
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 36);
-            func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->unk_3A0.unk_06));
+            func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->score.samePkmnNumber));
         }
     }
 }

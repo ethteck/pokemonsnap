@@ -170,7 +170,8 @@ enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
     SONG_ID_3 = 3,
-    SONG_ID_6 = 6
+    SONG_ID_6 = 6,
+    SONG_ID_10 = 10
 };
 
 enum Links {
@@ -204,6 +205,7 @@ enum DlLinks {
     DL_LINK_3 = 3,
     DL_LINK_4 = 4,
     DL_LINK_5 = 5,
+    DL_LINK_19 = 19,
     DL_LINK_30 = 30
 };
 

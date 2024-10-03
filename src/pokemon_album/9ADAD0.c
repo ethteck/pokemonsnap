@@ -3,77 +3,76 @@
 #include "more_funcs/more_funcs.h"
 #include "pokemon_album.h"
 
-extern s32 D_80208C40_9D2E90;
+s32 D_80208C40_9D2E90 = false;
 
-extern f32 D_8025055C_A1A7AC;
-extern s32 D_80250938_A1AB88;
-extern s32 D_8025093C_A1AB8C;
-extern s32 D_80250940_A1AB90;
-extern s32 D_80250944_A1AB94;
-extern UnkFuzzyCaterpillar D_80250130_A1A380;
-extern PhotoDataExt D_80250170_A1A3C0;
-extern f32 D_80250174_A1A3C4;
-extern s32 D_80250550_A1A7A0;
-extern PhotoDataExt D_80250558_A1A7A8;
+AlbumComment D_80250130_A1A380;
+AlbumPhotoData D_80250170_A1A3C0;
+s32 D_80250550_A1A7A0;
+s32 D_80250554_A1A7A4;
+AlbumPhotoData D_80250558_A1A7A8;
+s32 D_80250938_A1AB88;
+s32 album_PhotoCount;
+s32 album_LastPhotoIndex;
+s32 album_FirstPhotoIndex;
 
-UnkFuzzyCaterpillar* func_800BF534_5C3D4(s32);
-void func_800BF4A8_5C348(UnkFuzzyCaterpillar* arg0, s32 arg1);
+AlbumComment* get_album_comment(s32);
+void set_album_comment(AlbumComment* arg0, s32 arg1);
 void func_800BF9F4_5C894(s32);
 
 void func_801E3880_9ADAD0(void) {
     D_80208C40_9D2E90 = true;
 }
 
-void func_801E389C_9ADAEC(const UnkFuzzyCaterpillar* src, UnkFuzzyCaterpillar* dst) {
+void album_CopyComment(const AlbumComment* src, AlbumComment* dst) {
     s32 i;
 
-    for (i = 0; i < ARRAY_COUNT(src->data.s) - 1; i++) {
-        dst->data.s[i] = src->data.s[i];
+    for (i = 0; i < ARRAY_COUNT(src->text) - 1; i++) {
+        dst->text[i] = src->text[i];
     }
 }
 
-PhotoData* func_801E38E0_9ADB30(s32 arg0) {
-    return func_800BFA44_5C8E4(arg0);
+PhotoData* album_GetAlbumPhoto(s32 arg0) {
+    return getAlbumPhoto(arg0);
 }
 
-void func_801E3914_9ADB64(s32 arg0) {
-    func_800BF4A8_5C348(&D_80250130_A1A380, arg0);
-    func_800BF9F4_5C894(arg0);
-    D_8025093C_A1AB8C--;
+void func_801E3914_9ADB64(s32 index) {
+    set_album_comment(&D_80250130_A1A380, index);
+    func_800BF9F4_5C894(index);
+    album_PhotoCount--;
 
-    if (arg0 == D_80250940_A1AB90) {
-        while (arg0 >= 0 && func_800BFA44_5C8E4(arg0) == NULL) {
-            arg0--;
+    if (index == album_LastPhotoIndex) {
+        while (index >= 0 && getAlbumPhoto(index) == NULL) {
+            index--;
         }
-        D_80250940_A1AB90 = arg0;
+        album_LastPhotoIndex = index;
     }
 
-    if (arg0 == D_80250944_A1AB94) {
-        while (arg0 < 60 && func_800BFA44_5C8E4(arg0) == NULL) {
-            arg0++;
+    if (index == album_FirstPhotoIndex) {
+        while (index < 60 && getAlbumPhoto(index) == NULL) {
+            index++;
         }
-        D_80250944_A1AB94 = arg0;
+        album_FirstPhotoIndex = index;
     }
 }
 
-s16* func_801E3A34_9ADC84(s32 arg0) {
-    if (!func_800BFA44_5C8E4(arg0)) {
+s16* album_GetPhotoComment(s32 idx) {
+    if (!getAlbumPhoto(idx)) {
         return NULL;
     }
 
-    return func_800BF534_5C3D4(arg0)->data.s;
+    return get_album_comment(idx)->text;
 }
 
 s32 func_801E3A80_9ADCD0(void) {
-    return D_80250940_A1AB90;
+    return album_LastPhotoIndex;
 }
 
 s32 func_801E3A9C_9ADCEC(void) {
-    return D_80250944_A1AB94;
+    return album_FirstPhotoIndex;
 }
 
-s32 func_801E3AB8_9ADD08(void) {
-    return D_8025093C_A1AB8C;
+s32 album_GetPhotoCount(void) {
+    return album_PhotoCount;
 }
 
 s32 func_801E3AD4_9ADD24(s32 arg0) {
@@ -86,57 +85,57 @@ s32 func_801E3AD4_9ADD24(s32 arg0) {
     return 0;
 }
 
-s32 func_801E3B34_9ADD84(s32 arg0) {
+s32 func_801E3B34_9ADD84(s32 index) {
     PhotoData* photoData;
 
-    if (D_80250174_A1A3C4 >= 0.0f) {
+    if (D_80250170_A1A3C0.photoData.unk_04.f32 >= 0.0f) {
         auPlaySound(0x5D);
-        if (func_800BFA44_5C8E4(arg0) != NULL) {
+        if (getAlbumPhoto(index) != NULL) {
             D_80250558_A1A7A8.photoData = D_80250170_A1A3C0.photoData;
-            func_801E389C_9ADAEC(&D_80250170_A1A3C0.unk_3A0, &D_80250558_A1A7A8.unk_3A0);
-            D_80250170_A1A3C0.photoData = *func_800BFA44_5C8E4(arg0);
-            func_801E389C_9ADAEC(func_800BF534_5C3D4(arg0), &D_80250170_A1A3C0.unk_3A0);
-            func_800BF954_5C7F4(arg0, &D_80250558_A1A7A8.photoData, &D_80250558_A1A7A8.unk_3A0);
+            album_CopyComment(&D_80250170_A1A3C0.comment, &D_80250558_A1A7A8.comment);
+            D_80250170_A1A3C0.photoData = *getAlbumPhoto(index);
+            album_CopyComment(get_album_comment(index), &D_80250170_A1A3C0.comment);
+            func_800BF954_5C7F4(index, &D_80250558_A1A7A8.photoData, &D_80250558_A1A7A8.comment);
             func_801DE080_9A82D0();
-            func_801DDB54_9A7DA4(arg0);
+            func_801DDB54_9A7DA4(index);
             return 1;
         } else {
-            func_800BF954_5C7F4(arg0, &D_80250170_A1A3C0.photoData, &D_80250170_A1A3C0.unk_3A0);
-            if (func_801E3AD4_9ADD24(arg0) != 0) {
-                func_801DDB54_9A7DA4(arg0);
+            func_800BF954_5C7F4(index, &D_80250170_A1A3C0.photoData, &D_80250170_A1A3C0.comment);
+            if (func_801E3AD4_9ADD24(index) != 0) {
+                func_801DDB54_9A7DA4(index);
             }
-            D_80250174_A1A3C4 = -1.0f;
+            D_80250170_A1A3C0.photoData.unk_04.f32 = -1.0f;
             D_80250550_A1A7A0 = -1;
-            D_8025093C_A1AB8C++;
-            if (D_80250940_A1AB90 < arg0) {
-                D_80250940_A1AB90 = arg0;
+            album_PhotoCount++;
+            if (album_LastPhotoIndex < index) {
+                album_LastPhotoIndex = index;
             }
-            if (D_80250944_A1AB94 > arg0) {
-                D_80250944_A1AB94 = arg0;
+            if (album_FirstPhotoIndex > index) {
+                album_FirstPhotoIndex = index;
             }
             return 0;
         }
-    } else if (func_800BFA44_5C8E4(arg0) != NULL) {
+    } else if (getAlbumPhoto(index) != NULL) {
         auPlaySound(0x5E);
-        D_80250170_A1A3C0.photoData = *func_800BFA44_5C8E4(arg0);
-        func_801E389C_9ADAEC(func_800BF534_5C3D4(arg0), &D_80250170_A1A3C0.unk_3A0);
+        D_80250170_A1A3C0.photoData = *getAlbumPhoto(index);
+        album_CopyComment(get_album_comment(index), &D_80250170_A1A3C0.comment);
         func_801DE080_9A82D0();
-        func_800BF4A8_5C348(&D_80250130_A1A380, arg0);
-        func_800BF9F4_5C894(arg0);
-        func_801DDD28_9A7F78(arg0, 0);
-        D_80250550_A1A7A0 = arg0;
-        D_8025093C_A1AB8C--;
-        if (arg0 == D_80250940_A1AB90) {
-            while (arg0 >= 0 && func_800BFA44_5C8E4(arg0) == NULL) {
-                arg0--;
+        set_album_comment(&D_80250130_A1A380, index);
+        func_800BF9F4_5C894(index);
+        func_801DDD28_9A7F78(index, 0);
+        D_80250550_A1A7A0 = index;
+        album_PhotoCount--;
+        if (index == album_LastPhotoIndex) {
+            while (index >= 0 && getAlbumPhoto(index) == NULL) {
+                index--;
             }
-            D_80250940_A1AB90 = arg0;
+            album_LastPhotoIndex = index;
         }
-        if (arg0 == D_80250944_A1AB94) {
-            while (arg0 < 60 && func_800BFA44_5C8E4(arg0) == NULL) {
-                arg0++;
+        if (index == album_FirstPhotoIndex) {
+            while (index < 60 && getAlbumPhoto(index) == NULL) {
+                index++;
             }
-            D_80250944_A1AB94 = arg0;
+            album_FirstPhotoIndex = index;
         }
         return 1;
     } else {
@@ -150,27 +149,27 @@ void func_801E3F00_9AE150(void) {
     s32 sp1C;
 
     sp1C = D_80250550_A1A7A0;
-    if (D_80250174_A1A3C4 < 0.0f) {
+    if (D_80250170_A1A3C0.photoData.unk_04.f32 < 0.0f) {
         auPlaySound(0x41);
         return;
     }
     auPlaySound(0x4A);
     D_80250558_A1A7A8.photoData = D_80250170_A1A3C0.photoData;
-    func_801E389C_9ADAEC(&D_80250170_A1A3C0.unk_3A0, &D_80250558_A1A7A8.unk_3A0);
-    func_800BF954_5C7F4(sp1C, &D_80250558_A1A7A8.photoData, &D_80250558_A1A7A8.unk_3A0);
+    album_CopyComment(&D_80250170_A1A3C0.comment, &D_80250558_A1A7A8.comment);
+    func_800BF954_5C7F4(sp1C, &D_80250558_A1A7A8.photoData, &D_80250558_A1A7A8.comment);
     if (func_801E3AD4_9ADD24(sp1C) != 0) {
         func_801DDB54_9A7DA4(sp1C);
     }
 
-    D_80250174_A1A3C4 = -1.0f;
+    D_80250170_A1A3C0.photoData.unk_04.f32 = -1.0f;
     D_80250550_A1A7A0 = -1;
-    D_8025093C_A1AB8C++;
+    album_PhotoCount++;
 
-    if (D_80250940_A1AB90 < sp1C) {
-        D_80250940_A1AB90 = sp1C;
+    if (album_LastPhotoIndex < sp1C) {
+        album_LastPhotoIndex = sp1C;
     }
-    if (D_80250944_A1AB94 > sp1C) {
-        D_80250944_A1AB94 = sp1C;
+    if (album_FirstPhotoIndex > sp1C) {
+        album_FirstPhotoIndex = sp1C;
     }
 }
 
@@ -180,39 +179,39 @@ PhotoData* func_801E4068_9AE2B8(void) {
 
 void func_801E4084_9AE2D4(void) {
     s32 i;
-    s32 sp28;
-    s32 sp24;
-    s32 sp20;
+    s32 photoCount;
+    s32 lastPhotoIndex;
+    s32 firstPhotoIndex;
     UNUSED s32 pad;
 
-    sp20 = -1;
+    firstPhotoIndex = -1;
 
-    for (i = 0, sp28 = 0; i < 60; i++) {
-        if (func_800BFA44_5C8E4(i) == NULL) {
+    for (i = 0, photoCount = 0; i < 60; i++) {
+        if (getAlbumPhoto(i) == NULL) {
 
         } else {
-            if (sp20 < 0) {
-                sp20 = i;
+            if (firstPhotoIndex < 0) {
+                firstPhotoIndex = i;
             }
-            sp28++;
-            sp24 = i;
+            photoCount++;
+            lastPhotoIndex = i;
         }
     }
-    D_80250944_A1AB94 = sp20;
-    D_80250940_A1AB90 = sp24;
-    D_8025093C_A1AB8C = sp28;
-    D_80250174_A1A3C4 = -1.0f;
-    D_80250170_A1A3C0.unk_3A0.data.s[0] = 0;
+    album_FirstPhotoIndex = firstPhotoIndex;
+    album_LastPhotoIndex = lastPhotoIndex;
+    album_PhotoCount = photoCount;
+    D_80250170_A1A3C0.photoData.unk_04.f32 = -1.0f;
+    D_80250170_A1A3C0.comment.text[0] = 0;
     D_80250550_A1A7A0 = -1;
-    D_8025055C_A1A7AC = -1.0f;
-    D_80250558_A1A7A8.unk_3A0.data.s[0] = 0;
+    D_80250558_A1A7A8.photoData.unk_04.f32 = -1.0f;
+    D_80250558_A1A7A8.comment.text[0] = 0;
     D_80250938_A1AB88 = -1;
 
-    for (i = 0; i < ARRAY_COUNT(D_80250130_A1A380.data.c); i++) {
-        D_80250130_A1A380.data.c[i] = 0;
+    for (i = 0; i < (s32) sizeof(AlbumComment); i++) {
+        ((u8*) &D_80250130_A1A380)[i] = 0;
     }
 
-    D_80208C40_9D2E90 = 0;
+    D_80208C40_9D2E90 = false;
 }
 
 void func_801E41AC_9AE3FC(void) {

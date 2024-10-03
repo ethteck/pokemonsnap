@@ -2,34 +2,43 @@
 
 #include "pokemon_album.h"
 
-extern s32 D_80208B90_9D2DE0;
-extern UNK_TYPE D_80208B98_9D2DE8;
-extern s32 D_80208B94_9D2DE4;
-extern UNK_TYPE D_80208BB8_9D2E08;
-extern UNK_TYPE D_80208BE8_9D2E38;
-extern s32 D_80208C18_9D2E68;
-extern s32 D_80208C1C_9D2E6C;
-extern s32 D_80208C20_9D2E70;
-extern s32 D_80208C24_9D2E74;
-extern s32 D_80208C28_9D2E78;
-extern s32 D_80208C2C_9D2E7C;
-extern s32 D_80208C30_9D2E80;
+s32 D_80208B90_9D2DE0 = 0;
+s32 D_80208B94_9D2DE4 = 0;
+UnkCanaryScallop D_80208B98_9D2DE8[] = {
+    { 30, "ひらく" },
+    { 34, NULL },
+    { 17, "けんきゅうじょへ" },
+    { 35, NULL },
+};
+UnkCanaryScallop D_80208B98_9D2DE8_4[] = {
+    { 20, "みる" },
+    { 26, "いれかえ" },
+    { 19, "けす" },
+    { 34, NULL },
+    { 31, "ひょうしへ" },
+    { 35, NULL },
+};
+UnkCanaryScallop D_80208B98_9D2DE8_10[] = {
+    { 28, "くわしく" },
+    { 27, "コメント" },
+    { 19, "けす" },
+    { 34, NULL },
+    { 5, "もどる" },
+    { 35, NULL },
+};
+s32 D_80208C18_9D2E68 = -1;
+s32 D_80208C1C_9D2E6C = -1;
+s32 D_80208C20_9D2E70 = -1;
+s32 D_80208C24_9D2E74 = -1;
+s32 D_80208C28_9D2E78 = -1;
+s32 D_80208C2C_9D2E7C = -1;
+s32 D_80208C30_9D2E80 = -1;
 
-extern UNK_TYPE* D_80250120_A1A370;
-
-const char D_80208F50_9D31A0[] = "ひらく";
-const char D_80208F58_menustr[] = "けんきゅうじょへ";
-const char D_80208F6C_menustr[] = "みる";
-const char D_80208F74_menustr[] = "いれかえ";
-const char D_80208F80_menustr[] = "けす";
-const char D_80208F88_menustr[] = "ひょうしへ";
-const char D_80208F94_menustr[] = "くわしく";
-const char D_80208FA0_menustr[] = "コメント";
-const char D_80208FAC_menustr[] = "けす";
-const char D_80208FB4_menustr[] = "もどる";
+UNK_TYPE* D_80250120_A1A370;
+UnkCanaryScallop* D_80250124_A1A374;
 
 UNK_TYPE* func_801E1900_9ABB50(void) {
-    return &D_80208B98_9D2DE8;
+    return D_80208B98_9D2DE8;
 }
 
 s32 func_801E191C_9ABB6C(void) {
@@ -40,7 +49,7 @@ s32 func_801E1938_9ABB88(s32 arg0) {
     s32 i = arg0;
 
     for (i++; i <= func_801E3A80_9ADCD0(); i++) {
-        if (func_801E38E0_9ADB30(i) != NULL) {
+        if (album_GetAlbumPhoto(i) != NULL) {
             return i;
         }
     }
@@ -52,7 +61,7 @@ s32 func_801E19C4_9ABC14(s32 arg0) {
     s32 i = arg0;
 
     for (i--; i >= func_801E3A9C_9ADCEC(); i--) {
-        if (func_801E38E0_9ADB30(i) != NULL) {
+        if (album_GetAlbumPhoto(i) != NULL) {
             return i;
         }
     }
@@ -284,7 +293,7 @@ s32 func_801E2874_9ACAC4(void) {
     }
     D_80208B90_9D2DE0 = true;
     sp28 = 0;
-    func_80370C34_8443E4(&D_80208B98_9D2DE8);
+    func_80370C34_8443E4(D_80208B98_9D2DE8);
     func_80370038_8437E8(0x3E, 0xC);
     func_803700A4_843854(1);
 
@@ -332,7 +341,7 @@ s32 func_801E29A8_9ACBF8(void) {
     func_801E0AF0_9AAD40();
     func_80370038_8437E8(0x3E, 0xC);
     sp48 = 0;
-    func_80370C34_8443E4(&D_80208BB8_9D2E08);
+    func_80370C34_8443E4(D_80208B98_9D2DE8_4);
     func_803705A4_843D54();
     func_803700A4_843854(1);
 loop_1:
@@ -395,13 +404,13 @@ loop_1:
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 0;
             } else if (sp4C->unk_18 & 0x8000) {
-                if (func_801E38E0_9ADB30(D_80208B94_9D2DE4) == NULL) {
+                if (album_GetAlbumPhoto(D_80208B94_9D2DE4) == NULL) {
                     break;
                 }
 
                 auPlaySound(0x42);
                 sp48 = 0;
-                func_80370C34_8443E4(&D_80208BE8_9D2E38);
+                func_80370C34_8443E4(D_80208B98_9D2DE8_10);
                 func_801E0FFC_9AB24C(2);
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 2;
@@ -427,7 +436,7 @@ loop_1:
                 func_803713EC_844B9C(3);
                 func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                 sp48 = 0;
-                func_80370C34_8443E4(&D_80208BB8_9D2E08);
+                func_80370C34_8443E4(D_80208B98_9D2DE8_4);
                 sp40 = 1;
             } else if (sp4C->unk_18 & 0x8000) {
                 switch (D_80250124_A1A374[sp48].unk_0) {
@@ -443,7 +452,7 @@ loop_1:
                         func_803713EC_844B9C(3);
                         func_80370A48_8441F8();
                         ohWait(30);
-                        func_801E0194_9AA3E4(0);
+                        album_SwitchCharacterGridPage(0);
                         sp28 = 0;
                         sp2C = 0;
                         func_80370038_8437E8(4, 5);
@@ -468,7 +477,7 @@ loop_1:
                         func_8036FFE0_843790((sp38 * 66) + 107, (sp34 * 55) + 56);
                         func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                         sp48 = 0;
-                        func_80370C34_8443E4(&D_80208BB8_9D2E08);
+                        func_80370C34_8443E4(D_80208B98_9D2DE8_4);
                         sp40 = 1;
                         break;
                 }
@@ -518,7 +527,7 @@ loop_1:
                 auPlaySound(0x43);
                 func_801DF744_9A9994(2, D_80208B94_9D2DE4);
                 sp48 = 0;
-                func_80370C34_8443E4(&D_80208BE8_9D2E38);
+                func_80370C34_8443E4(D_80208B98_9D2DE8_10);
                 ohWait(21);
                 func_801E1A50_9ABCA0(NULL, &sp48);
                 func_803700A4_843854(1);
@@ -549,8 +558,8 @@ loop_1:
                 if ((sp2C >= 2) && (sp28 == 0x13)) {
                     auPlaySound(0x42);
                     func_803700A4_843854(0);
-                    func_801E0194_9AA3E4(6);
-                    func_80370C34_8443E4(&D_80208BE8_9D2E38);
+                    album_SwitchCharacterGridPage(6);
+                    func_80370C34_8443E4(D_80208B98_9D2DE8_10);
                     ohWait(21);
                     sp48 = 1;
                     func_801E1A50_9ABCA0(NULL, &sp48);
@@ -558,7 +567,7 @@ loop_1:
                     sp40 = 2;
                     func_800AA85C(0x18, 0xC);
                 } else {
-                    func_801E0398_9AA5E8(sp2C, sp28);
+                    album_PressedCharacterInGrid(sp2C, sp28);
                     func_801DEA4C_9A8C9C(0, sp2C, sp28);
                 }
                 if (func_801DD0CC_9A731C() >= 0x1F) {
@@ -588,7 +597,7 @@ loop_1:
                 func_8036FFE0_843790((sp38 * 66) + 107, (sp34 * 55) + 56);
                 func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                 sp48 = 0;
-                func_80370C34_8443E4(&D_80208BB8_9D2E08);
+                func_80370C34_8443E4(D_80208B98_9D2DE8_4);
                 func_803700A4_843854(1);
                 sp40 = 1;
                 break;
@@ -614,7 +623,7 @@ loop_1:
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 0;
             } else if (sp4C->unk_18 & 0x8000) {
-                if (func_801E38E0_9ADB30(D_80208B94_9D2DE4) == NULL) {
+                if (album_GetAlbumPhoto(D_80208B94_9D2DE4) == NULL) {
                     break;
                 }
 
@@ -657,7 +666,7 @@ void func_801E37A0_9AD9F0(void) {
     s32 sp28;
 
     sp28 = 1;
-    D_80250120_A1A370 = &D_80208B98_9D2DE8;
+    D_80250120_A1A370 = D_80208B98_9D2DE8;
     D_80250124_A1A374 = func_80370600_843DB0();
     D_80208B94_9D2DE4 = 0;
     func_80370134_8438E4();

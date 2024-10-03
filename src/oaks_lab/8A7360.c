@@ -494,7 +494,7 @@ s32 func_800E2BB4_8A83D4(void) {
 
     ret = 0;
     for (i = 0; i < 60; i++) {
-        if (func_800BFA44_5C8E4(i) != 0) {
+        if (getAlbumPhoto(i) != 0) {
             ret++;
         }
     }

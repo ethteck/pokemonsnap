@@ -235,7 +235,7 @@ void func_801DCFE0_A08BD0(void) {
     func_8036A3F8_83DBA8(D_801DD260_A08E50, sizeof(D_801DD260_A08E50));
     func_800AAE28();
     func_801DCE64_A08A54();
-    func_8036EB98_842348();
+    UIText_Initialize();
     auSetBGMVolume(0, 0x7F00);
     func_800A7F68(1, 0x101);
     func_801DCE2C_A08A1C();

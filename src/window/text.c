@@ -662,7 +662,7 @@ void func_8036EB8C_84233C(void (*arg0)(s32)) {
     D_803A6A0C_87A1BC = arg0;
 }
 
-void func_8036EB98_842348(void) {
+void UIText_Initialize(void) {
     func_800A86A4(func_8036EB34_8422E4, LINK_6, DL_LINK_0, NULL);
     UIText_PrintDelay = 0;
     D_803A6A0C_87A1BC = NULL;

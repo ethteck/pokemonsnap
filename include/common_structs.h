@@ -245,7 +245,7 @@ typedef struct UnkThing {
 
 typedef struct UnkCanaryScallop {
     s32 unk_0;
-    s32 unk_4;
+    char* unk_4;
 } UnkCanaryScallop; // size = 0x8
 
 typedef union UnkPinkRatSub {
@@ -296,17 +296,14 @@ typedef struct IdleScript {
     /* 0x10 */ IdleScriptEntry inputs[1];
 } IdleScript; // VLA
 
-typedef struct UnkFuzzyCaterpillar {
-    /* 0x00 */ union {
-        s16 s[0x20];
-        s8 c[0x40];
-    } data;
-} UnkFuzzyCaterpillar;
+typedef struct AlbumComment {
+    /* 0x00 */ s16 text[32];
+} AlbumComment;
 
-typedef struct PhotoDataExt {
+typedef struct AlbumPhotoData {
     /* 0x000 */ PhotoData photoData;
-    /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
-} PhotoDataExt; // size = 0x3E0
+    /* 0x3A0 */ AlbumComment comment;
+} AlbumPhotoData; // size = 0x3E0
 
 typedef struct UnkCyanBass {
     /* 0x00 */ s32 unk_00;

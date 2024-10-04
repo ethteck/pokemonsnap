@@ -4,6 +4,7 @@
 
 s32 D_80208B90_9D2DE0 = 0;
 s32 D_80208B94_9D2DE4 = 0;
+
 UnkCanaryScallop D_80208B98_9D2DE8[] = {
     { 30, "ひらく" },
     { 34, NULL },
@@ -26,6 +27,7 @@ UnkCanaryScallop D_80208B98_9D2DE8_10[] = {
     { 5, "もどる" },
     { 35, NULL },
 };
+
 s32 D_80208C18_9D2E68 = -1;
 s32 D_80208C1C_9D2E6C = -1;
 s32 D_80208C20_9D2E70 = -1;
@@ -37,7 +39,7 @@ s32 D_80208C30_9D2E80 = -1;
 UNK_TYPE* D_80250120_A1A370;
 UnkCanaryScallop* D_80250124_A1A374;
 
-UNK_TYPE* func_801E1900_9ABB50(void) {
+UnkCanaryScallop* func_801E1900_9ABB50(void) {
     return D_80208B98_9D2DE8;
 }
 
@@ -86,13 +88,13 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_80250124_A1A374[*arg1].unk_0 == 35);
+        } while (D_80250124_A1A374[*arg1].unk_00 == 35);
         auPlaySound(0x41);
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_80250124_A1A374[*arg1].unk_0 == 35);
+        } while (D_80250124_A1A374[*arg1].unk_00 == 35);
         auPlaySound(0x41);
     }
     if (arg0->unk_18 & 0x4000) {
@@ -306,7 +308,7 @@ s32 func_801E2874_9ACAC4(void) {
         }
         if (sp2C->unk_18 & 0x8000) {
             auPlaySound(0x42);
-            switch (D_80250124_A1A374[sp28].unk_0) {
+            switch (D_80250124_A1A374[sp28].unk_00) {
                 case 30:
                     func_80370A48_8441F8();
                     func_801E09A0_9AABF0(0);
@@ -357,7 +359,7 @@ loop_1:
             }
             if (sp4C->unk_18 & 0x8000) {
                 auPlaySound(0x42);
-                switch (D_80250124_A1A374[sp48].unk_0) {
+                switch (D_80250124_A1A374[sp48].unk_00) {
                     case 20:
                         func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                         func_80370038_8437E8(0x32, 0x25);
@@ -439,7 +441,7 @@ loop_1:
                 func_80370C34_8443E4(D_80208B98_9D2DE8_4);
                 sp40 = 1;
             } else if (sp4C->unk_18 & 0x8000) {
-                switch (D_80250124_A1A374[sp48].unk_0) {
+                switch (D_80250124_A1A374[sp48].unk_00) {
                     case 28:
                         auPlaySound(0x42);
                         func_801DF744_9A9994(0, D_80208B94_9D2DE4);

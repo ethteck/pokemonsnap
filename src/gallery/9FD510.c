@@ -25,14 +25,14 @@ s32 func_801DF8A4_9FD564(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_802308A0_A4E560[*arg1].unk_0 == 0x23);
+        } while (D_802308A0_A4E560[*arg1].unk_00 == 0x23);
         func_801DDCA8_9FB968(*arg1);
         auPlaySound(0x41);
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_802308A0_A4E560[*arg1].unk_0 == 0x23);
+        } while (D_802308A0_A4E560[*arg1].unk_00 == 0x23);
         func_801DDCA8_9FB968(*arg1);
         auPlaySound(0x41);
     }
@@ -185,7 +185,7 @@ u32 func_801E0328_9FDFE8(void) {
             sp1C = D_802308A4_A4E564 = 7;
         }
         if (sp24->unk_18 & 0x8000) {
-            switch (D_802308A0_A4E560[D_802308A4_A4E564].unk_0) {
+            switch (D_802308A0_A4E560[D_802308A4_A4E564].unk_00) {
                 case 2:
                     auPlaySound(0x42);
                     return 1;

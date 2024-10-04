@@ -49,7 +49,7 @@ extern char* D_80195888_95B0A8[];
 extern s32 D_80195894_95B0B4;
 extern s32 D_801958C0_95B0E0;
 extern s32 D_801958F0_95B110;
-extern UnkCyanBass* D_80195CEC_95B50C[];
+extern UnkCanaryScallop* D_80195CEC_95B50C[];
 extern Sprite D_80197EB0_95D6D0;
 extern Sprite D_80198FB8_95E7D8;
 extern Sprite D_8019C2D0_961AF0;

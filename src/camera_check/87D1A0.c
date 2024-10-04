@@ -12,7 +12,7 @@ const char D_camera_check_80208D98[] = "I'll choose which pictures to\nshow to P
 const char D_camera_check_80208DCC[] = "I'll choose which pictures to\nsave in my PKMN Album.";
 const char D_camera_check_80208E04[] = "Let's show the marked\npicture(s) to Prof. Oak.";
 
-UnkCyanBass* func_camera_check_801DF9B0(void) {
+UnkCanaryScallop* func_camera_check_801DF9B0(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     }
@@ -31,7 +31,7 @@ UnkCyanBass* func_camera_check_801DF9B0(void) {
     return D_camera_check_802089BC;
 }
 
-UnkCyanBass* func_camera_check_801DFA4C(void) {
+UnkCanaryScallop* func_camera_check_801DFA4C(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     } else {
@@ -39,7 +39,7 @@ UnkCyanBass* func_camera_check_801DFA4C(void) {
     }
 }
 
-s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UnkCyanBass* arg3) {
+s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UnkCanaryScallop* arg3) {
     s32 temp_v0;
     char* temp_v0_2;
     s32 new_var;
@@ -58,7 +58,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_camera_check_80249AA8[*arg1].unk_0 == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].unk_00 == 0x23);
 
         if (arg2 != 0) {
             auPlaySound(0x41);
@@ -68,7 +68,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_camera_check_80249AA8[*arg1].unk_0 == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].unk_00 == 0x23);
 
         if (arg2 != 0) {
             auPlaySound(0x41);
@@ -83,7 +83,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     temp_v0 = new_var;
     if (D_camera_check_802089E4 != (temp_v0 ^ 0)) {
         D_camera_check_802089E4 = temp_v0;
-        temp_v0_2 = func_803717A8_844F58(arg3, D_camera_check_80249AA8[temp_v0].unk_0);
+        temp_v0_2 = func_803717A8_844F58(arg3, D_camera_check_80249AA8[temp_v0].unk_00);
         if (temp_v0_2 != 0) {
             UIElement_Draw(func_camera_check_801DCB40());
             UIElement_SetTextPos(func_camera_check_801DCB40(), 0, 0);
@@ -983,7 +983,7 @@ s32 func_camera_check_801E1BD4(void) {
         if (temp_s0->unk_18 & 0x8000) {
             auPlaySound(0x42);
 
-            switch (D_camera_check_80249AA8[sp38].unk_0) {
+            switch (D_camera_check_80249AA8[sp38].unk_00) {
 
                 case 23:
                     if (func_camera_check_801E3140()) {

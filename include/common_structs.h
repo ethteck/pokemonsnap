@@ -244,8 +244,8 @@ typedef struct UnkThing {
 } UnkThing;
 
 typedef struct UnkCanaryScallop {
-    s32 unk_0;
-    char* unk_4;
+    s32 unk_00;
+    char* unk_04;
 } UnkCanaryScallop; // size = 0x8
 
 typedef union UnkPinkRatSub {
@@ -304,11 +304,6 @@ typedef struct AlbumPhotoData {
     /* 0x000 */ PhotoData photoData;
     /* 0x3A0 */ AlbumComment comment;
 } AlbumPhotoData; // size = 0x3E0
-
-typedef struct UnkCyanBass {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ char* unk_04;
-} UnkCyanBass; // size = 0x8
 
 typedef struct UIFrame {
     /* 0x00 */ GObj* sprites[9];

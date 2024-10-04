@@ -25,7 +25,7 @@ void func_801E0FFC_9AB24C(s32);
 void func_801E0E58_9AB0A8(void);
 void func_801E1168_9AB3B8(s32);
 void func_801E1320_9AB570(s32);
-UNK_TYPE* func_801E1900_9ABB50(void);
+UnkCanaryScallop* func_801E1900_9ABB50(void);
 s32 func_801E191C_9ABB6C(void);
 s32 func_801E1938_9ABB88(s32);
 s32 func_801E19C4_9ABC14(s32);

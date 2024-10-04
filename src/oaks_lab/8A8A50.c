@@ -25,7 +25,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].unk_0 == 35);
+        } while ((*D_80206B44_9CC364)[*arg1].unk_00 == 35);
 
         auPlaySound(0x41);
     }
@@ -33,7 +33,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].unk_0 == 35);
+        } while ((*D_80206B44_9CC364)[*arg1].unk_00 == 35);
 
         auPlaySound(0x41);
     }
@@ -49,7 +49,7 @@ s32 func_800E3404_8A8C24(void) {
     UnkStruct800BEDF8* var_v0;
     s32 sp40;
     s32 var_s2;
-    UnkCyanBass* bass;
+    UnkCanaryScallop* bass;
 
     var_s2 = -1;
     sp40 = 0;
@@ -92,8 +92,8 @@ s32 func_800E3404_8A8C24(void) {
 
         if (var_v0->unk_18 & 0x8000) {
             auPlaySound(0x42);
-            func_8037060C_843DBC(1, (*D_80206B44_9CC364)[sp40].unk_0);
-            switch ((*D_80206B44_9CC364)[sp40].unk_0) {
+            func_8037060C_843DBC(1, (*D_80206B44_9CC364)[sp40].unk_00);
+            switch ((*D_80206B44_9CC364)[sp40].unk_00) {
                 case 6:
                     D_80195894_95B0B4 = 0;
                     return 4;
@@ -118,7 +118,7 @@ s32 func_800E3404_8A8C24(void) {
                 case 5:
                     D_80206B48_9CC368 = &func_800E307C_8A889C;
                     func_800E1D1C_8A753C(0);
-                    func_8037060C_843DBC(0, (*D_80206B44_9CC364)[sp40].unk_0);
+                    func_8037060C_843DBC(0, (*D_80206B44_9CC364)[sp40].unk_00);
                     return 0;
             }
         }
@@ -129,7 +129,7 @@ s32 func_800E3404_8A8C24(void) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(func_800E1B40_8A7360(),
-                                 func_803717A8_844F58(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], (*D_80206B44_9CC364)[sp40].unk_0));
+                                 func_803717A8_844F58(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], (*D_80206B44_9CC364)[sp40].unk_00));
         }
         ohWait(1);
     }
@@ -191,7 +191,7 @@ s32 func_800E37CC_8A8FEC(void) {
         if (temp_v0_2->unk_18 & 0x8000) {
             auPlaySound(0x42);
 
-            switch ((*D_80206B44_9CC364)[sp80].unk_0) {
+            switch ((*D_80206B44_9CC364)[sp80].unk_00) {
                 case 1:
                     return 1;
                 case 2:
@@ -215,7 +215,7 @@ s32 func_800E37CC_8A8FEC(void) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
 
-            switch ((*D_80206B44_9CC364)[sp80].unk_0) {
+            switch ((*D_80206B44_9CC364)[sp80].unk_00) {
 
                 case 3:
                     for (numPics = 0, i = 0; i < 60; i++) {
@@ -272,7 +272,7 @@ s32 func_800E37CC_8A8FEC(void) {
                     UIElement_PrintText(func_800E1B40_8A7360(), sp4C);
                     break;
                 default:
-                    UIElement_PrintText(func_800E1B40_8A7360(), func_803717A8_844F58(func_800E3230_8A8A50(), (*D_80206B44_9CC364)[sp80].unk_0));
+                    UIElement_PrintText(func_800E1B40_8A7360(), func_803717A8_844F58(func_800E3230_8A8A50(), (*D_80206B44_9CC364)[sp80].unk_00));
                     break;
             }
         }

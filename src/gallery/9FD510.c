@@ -25,14 +25,14 @@ s32 func_801DF8A4_9FD564(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_802308A0_A4E560[*arg1].unk_00 == 0x23);
+        } while (D_802308A0_A4E560[*arg1].id == 0x23);
         func_801DDCA8_9FB968(*arg1);
         auPlaySound(0x41);
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_802308A0_A4E560[*arg1].unk_00 == 0x23);
+        } while (D_802308A0_A4E560[*arg1].id == 0x23);
         func_801DDCA8_9FB968(*arg1);
         auPlaySound(0x41);
     }
@@ -185,7 +185,7 @@ u32 func_801E0328_9FDFE8(void) {
             sp1C = D_802308A4_A4E564 = 7;
         }
         if (sp24->unk_18 & 0x8000) {
-            switch (D_802308A0_A4E560[D_802308A4_A4E564].unk_00) {
+            switch (D_802308A0_A4E560[D_802308A4_A4E564].id) {
                 case 2:
                     auPlaySound(0x42);
                     return 1;
@@ -237,14 +237,14 @@ u32 func_801E04E8_9FE1A8(void) {
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
         if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F6C_9FEC2C() - 6)) {
-            func_803713D4_844B84(2);
+            UILayout_ShowHeaderElement(HEADER_NEXT);
         } else {
-            func_803713EC_844B9C(2);
+            UILayout_HideHeaderElement(HEADER_NEXT);
         }
         if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) > 0) {
-            func_803713D4_844B84(1);
+            UILayout_ShowHeaderElement(HEADER_PREV);
         } else {
-            func_803713EC_844B9C(1);
+            UILayout_HideHeaderElement(HEADER_PREV);
         }
         D_801EA288_A07F48 = D_801EA294_A07F54;
         if (sp1C->unk_18 & 0x4000) {
@@ -252,7 +252,7 @@ u32 func_801E04E8_9FE1A8(void) {
             func_803700A4_843854(0);
             func_801DE5D0_9FC290(0);
             func_801E1024_9FECE4(2, -1);
-            func_803713EC_844B9C(3);
+            UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(0);
             return 0U;
         }
@@ -260,7 +260,7 @@ u32 func_801E04E8_9FE1A8(void) {
             auPlaySound(0x42);
             func_803700A4_843854(0);
             func_801E1024_9FECE4(2, D_801EA294_A07F54);
-            func_803713EC_844B9C(3);
+            UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(0xC);
             return 2U;
         }
@@ -287,14 +287,14 @@ s32 func_801E06F0_9FE3B0(void) {
         sp1C = func_800AA38C(0);
         func_801DFA94_9FD754(sp1C, &D_802308A8_A4E568, &D_802308AC_A4E56C, 1);
         if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) < (func_801E0F50_9FEC10() - 6)) {
-            func_803713D4_844B84(2);
+            UILayout_ShowHeaderElement(HEADER_NEXT);
         } else {
-            func_803713EC_844B9C(2);
+            UILayout_HideHeaderElement(HEADER_NEXT);
         }
         if ((D_801EA294_A07F54 - ((s32) D_801EA294_A07F54 % 6)) > 0) {
-            func_803713D4_844B84(1);
+            UILayout_ShowHeaderElement(HEADER_PREV);
         } else {
-            func_803713EC_844B9C(1);
+            UILayout_HideHeaderElement(HEADER_PREV);
         }
         D_801EA28C_A07F4C = D_801EA294_A07F54;
         if (sp1C->unk_18 & 0x4000) {
@@ -302,7 +302,7 @@ s32 func_801E06F0_9FE3B0(void) {
             func_803700A4_843854(0);
             func_801DE5D0_9FC290(0);
             func_801E1024_9FECE4(1, -1);
-            func_803713EC_844B9C(3);
+            UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(1);
             return 0;
         }
@@ -310,7 +310,7 @@ s32 func_801E06F0_9FE3B0(void) {
             auPlaySound(0x42);
             func_803700A4_843854(0);
             func_801E1024_9FECE4(1, D_801EA294_A07F54);
-            func_803713EC_844B9C(3);
+            UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(0xC);
             return 4;
         }
@@ -448,7 +448,7 @@ void func_801E0DEC_9FEAAC(void) {
     u32 sp18;
 
     sp18 = 0;
-    D_802308A0_A4E560 = func_80370600_843DB0();
+    D_802308A0_A4E560 = UILayout_GetButtons();
     if (func_801DC904_9FA5C4 != NULL) { // BUG! forgot to actually call the function
         D_802308A4_A4E564 = 0;
     } else {

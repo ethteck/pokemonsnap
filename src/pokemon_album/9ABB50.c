@@ -5,27 +5,27 @@
 s32 D_80208B90_9D2DE0 = 0;
 s32 D_80208B94_9D2DE4 = 0;
 
-UnkCanaryScallop D_80208B98_9D2DE8[] = {
-    { 30, "ひらく" },
-    { 34, NULL },
-    { 17, "けんきゅうじょへ" },
-    { 35, NULL },
+UIButton album_MainButtonsDef[] = {
+    { BUTTON_OPEN, "ひらく" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_GO_TO_LAB, "けんきゅうじょへ" },
+    { BUTTON_END, NULL },
 };
-UnkCanaryScallop D_80208B98_9D2DE8_4[] = {
-    { 20, "みる" },
-    { 26, "いれかえ" },
-    { 19, "けす" },
-    { 34, NULL },
-    { 31, "ひょうしへ" },
-    { 35, NULL },
+UIButton album_PhotoButtonsDef[] = {
+    { BUTTON_ENLARGE, "みる" },
+    { BUTTON_ARRANGE, "いれかえ" },
+    { BUTTON_DELETE, "けす" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN_TO_COVER, "ひょうしへ" },
+    { BUTTON_END, NULL },
 };
-UnkCanaryScallop D_80208B98_9D2DE8_10[] = {
-    { 28, "くわしく" },
-    { 27, "コメント" },
-    { 19, "けす" },
-    { 34, NULL },
-    { 5, "もどる" },
-    { 35, NULL },
+UIButton album_ViewButtonsDef[] = {
+    { BUTTON_CHECK, "くわしく" },
+    { BUTTON_COMMENT, "コメント" },
+    { BUTTON_DELETE, "けす" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, "もどる" },
+    { BUTTON_END, NULL },
 };
 
 s32 D_80208C18_9D2E68 = -1;
@@ -37,10 +37,10 @@ s32 D_80208C2C_9D2E7C = -1;
 s32 D_80208C30_9D2E80 = -1;
 
 UNK_TYPE* D_80250120_A1A370;
-UnkCanaryScallop* D_80250124_A1A374;
+UIButton* D_80250124_A1A374;
 
-UnkCanaryScallop* func_801E1900_9ABB50(void) {
-    return D_80208B98_9D2DE8;
+UIButton* func_801E1900_9ABB50(void) {
+    return album_MainButtonsDef;
 }
 
 s32 func_801E191C_9ABB6C(void) {
@@ -88,13 +88,13 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_80250124_A1A374[*arg1].unk_00 == 35);
+        } while (D_80250124_A1A374[*arg1].id == 35);
         auPlaySound(0x41);
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_80250124_A1A374[*arg1].unk_00 == 35);
+        } while (D_80250124_A1A374[*arg1].id == 35);
         auPlaySound(0x41);
     }
     if (arg0->unk_18 & 0x4000) {
@@ -295,7 +295,7 @@ s32 func_801E2874_9ACAC4(void) {
     }
     D_80208B90_9D2DE0 = true;
     sp28 = 0;
-    func_80370C34_8443E4(D_80208B98_9D2DE8);
+    UILayout_CreateButtons(album_MainButtonsDef);
     func_80370038_8437E8(0x3E, 0xC);
     func_803700A4_843854(1);
 
@@ -308,9 +308,9 @@ s32 func_801E2874_9ACAC4(void) {
         }
         if (sp2C->unk_18 & 0x8000) {
             auPlaySound(0x42);
-            switch (D_80250124_A1A374[sp28].unk_00) {
+            switch (D_80250124_A1A374[sp28].id) {
                 case 30:
-                    func_80370A48_8441F8();
+                    UILayout_HideButtons();
                     func_801E09A0_9AABF0(0);
                     return 0;
                 case 17:
@@ -343,8 +343,8 @@ s32 func_801E29A8_9ACBF8(void) {
     func_801E0AF0_9AAD40();
     func_80370038_8437E8(0x3E, 0xC);
     sp48 = 0;
-    func_80370C34_8443E4(D_80208B98_9D2DE8_4);
-    func_803705A4_843D54();
+    UILayout_CreateButtons(album_PhotoButtonsDef);
+    UILayout_WaitPanelTransitionComplete();
     func_803700A4_843854(1);
 loop_1:
     sp4C = func_800AA38C(0);
@@ -359,7 +359,7 @@ loop_1:
             }
             if (sp4C->unk_18 & 0x8000) {
                 auPlaySound(0x42);
-                switch (D_80250124_A1A374[sp48].unk_00) {
+                switch (D_80250124_A1A374[sp48].id) {
                     case 20:
                         func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                         func_80370038_8437E8(0x32, 0x25);
@@ -387,21 +387,21 @@ loop_1:
         case 1:
             func_801E1C30_9ABE80(sp4C, &sp38, &sp34);
             if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) < func_800BF9EC_5C88C() - 6) {
-                func_803713D4_844B84(2);
+                UILayout_ShowHeaderElement(HEADER_NEXT);
             } else {
-                func_803713EC_844B9C(2);
+                UILayout_HideHeaderElement(HEADER_NEXT);
             }
 
             if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) > 0) {
-                func_803713D4_844B84(1);
+                UILayout_ShowHeaderElement(HEADER_PREV);
             } else {
-                func_803713EC_844B9C(1);
+                UILayout_HideHeaderElement(HEADER_PREV);
             }
 
             if (sp4C->unk_18 & 0x4000) {
                 auPlaySound(0x41);
                 D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
-                func_803713EC_844B9C(3);
+                UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                 sp48 = 0;
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 0;
@@ -412,7 +412,7 @@ loop_1:
 
                 auPlaySound(0x42);
                 sp48 = 0;
-                func_80370C34_8443E4(D_80208B98_9D2DE8_10);
+                UILayout_CreateButtons(album_ViewButtonsDef);
                 func_801E0FFC_9AB24C(2);
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 2;
@@ -421,27 +421,27 @@ loop_1:
         case 2:
             func_801E1A50_9ABCA0(sp4C, &sp48);
             if (D_80208B94_9D2DE4 < func_801E3A80_9ADCD0()) {
-                func_803713D4_844B84(2);
+                UILayout_ShowHeaderElement(HEADER_NEXT);
             } else {
-                func_803713EC_844B9C(2);
+                UILayout_HideHeaderElement(HEADER_NEXT);
             }
             if (func_801E3A9C_9ADCEC() < D_80208B94_9D2DE4) {
-                func_803713D4_844B84(1);
+                UILayout_ShowHeaderElement(HEADER_PREV);
             } else {
-                func_803713EC_844B9C(1);
+                UILayout_HideHeaderElement(HEADER_PREV);
             }
             if (sp4C->unk_18 & 0x4000) {
                 auPlaySound(0x43);
                 func_801E0FFC_9AB24C(1);
                 func_80370038_8437E8(0x32, 0x25);
                 func_8036FFE0_843790((sp38 * 66) + 107, (sp34 * 55) + 56);
-                func_803713EC_844B9C(3);
+                UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                 func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                 sp48 = 0;
-                func_80370C34_8443E4(D_80208B98_9D2DE8_4);
+                UILayout_CreateButtons(album_PhotoButtonsDef);
                 sp40 = 1;
             } else if (sp4C->unk_18 & 0x8000) {
-                switch (D_80250124_A1A374[sp48].unk_00) {
+                switch (D_80250124_A1A374[sp48].id) {
                     case 28:
                         auPlaySound(0x42);
                         func_801DF744_9A9994(0, D_80208B94_9D2DE4);
@@ -451,8 +451,8 @@ loop_1:
                     case 27:
                         auPlaySound(0x42);
                         func_803700A4_843854(0);
-                        func_803713EC_844B9C(3);
-                        func_80370A48_8441F8();
+                        UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
+                        UILayout_HideButtons();
                         ohWait(30);
                         album_SwitchCharacterGridPage(0);
                         sp28 = 0;
@@ -468,7 +468,7 @@ loop_1:
                     case 19:
                         auPlaySound(0x42);
                         func_803700A4_843854(0);
-                        func_803713EC_844B9C(3);
+                        UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                         func_801E1168_9AB3B8(1);
                         sp40 = 6;
                         break;
@@ -479,7 +479,7 @@ loop_1:
                         func_8036FFE0_843790((sp38 * 66) + 107, (sp34 * 55) + 56);
                         func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                         sp48 = 0;
-                        func_80370C34_8443E4(D_80208B98_9D2DE8_4);
+                        UILayout_CreateButtons(album_PhotoButtonsDef);
                         sp40 = 1;
                         break;
                 }
@@ -496,20 +496,20 @@ loop_1:
         case 3:
             func_801E1FE4_9AC234(sp4C, &sp38, &sp34, sp3C);
             if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) < (func_800BF9EC_5C88C() - 6)) {
-                func_803713D4_844B84(2);
+                UILayout_ShowHeaderElement(HEADER_NEXT);
             } else {
-                func_803713EC_844B9C(2);
+                UILayout_HideHeaderElement(HEADER_NEXT);
             }
             if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) > 0) {
-                func_803713D4_844B84(1);
+                UILayout_ShowHeaderElement(HEADER_PREV);
             } else {
-                func_803713EC_844B9C(1);
+                UILayout_HideHeaderElement(HEADER_PREV);
             }
             if (sp4C->unk_18 & 0x4000) {
                 D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
                 sp48 = 1;
                 func_80370090_843840(true);
-                func_803713EC_844B9C(3);
+                UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                 func_801E1A50_9ABCA0(NULL, NULL);
                 func_801DDDF8_9A8048(-1, -1);
                 func_801E3F00_9AE150();
@@ -529,7 +529,7 @@ loop_1:
                 auPlaySound(0x43);
                 func_801DF744_9A9994(2, D_80208B94_9D2DE4);
                 sp48 = 0;
-                func_80370C34_8443E4(D_80208B98_9D2DE8_10);
+                UILayout_CreateButtons(album_ViewButtonsDef);
                 ohWait(21);
                 func_801E1A50_9ABCA0(NULL, &sp48);
                 func_803700A4_843854(1);
@@ -561,7 +561,7 @@ loop_1:
                     auPlaySound(0x42);
                     func_803700A4_843854(0);
                     album_SwitchCharacterGridPage(6);
-                    func_80370C34_8443E4(D_80208B98_9D2DE8_10);
+                    UILayout_CreateButtons(album_ViewButtonsDef);
                     ohWait(21);
                     sp48 = 1;
                     func_801E1A50_9ABCA0(NULL, &sp48);
@@ -599,7 +599,7 @@ loop_1:
                 func_8036FFE0_843790((sp38 * 66) + 107, (sp34 * 55) + 56);
                 func_801E1C30_9ABE80(NULL, &sp38, &sp34);
                 sp48 = 0;
-                func_80370C34_8443E4(D_80208B98_9D2DE8_4);
+                UILayout_CreateButtons(album_PhotoButtonsDef);
                 func_803700A4_843854(1);
                 sp40 = 1;
                 break;
@@ -608,19 +608,19 @@ loop_1:
         case 7:
             func_801E1C30_9ABE80(sp4C, &sp38, &sp34);
             if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) < (func_800BF9EC_5C88C() - 6)) {
-                func_803713D4_844B84(2);
+                UILayout_ShowHeaderElement(HEADER_NEXT);
             } else {
-                func_803713EC_844B9C(2);
+                UILayout_HideHeaderElement(HEADER_NEXT);
             }
             if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) > 0) {
-                func_803713D4_844B84(1);
+                UILayout_ShowHeaderElement(HEADER_PREV);
             } else {
-                func_803713EC_844B9C(1);
+                UILayout_HideHeaderElement(HEADER_PREV);
             }
             if (sp4C->unk_18 & 0x4000) {
                 auPlaySound(0x41);
                 D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
-                func_803713EC_844B9C(3);
+                UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                 sp48 = 2;
                 func_801E1A50_9ABCA0(NULL, NULL);
                 sp40 = 0;
@@ -630,7 +630,7 @@ loop_1:
                 }
 
                 auPlaySound(0x42);
-                func_803713EC_844B9C(3);
+                UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                 func_801E0FFC_9AB24C(2);
                 func_803700A4_843854(0);
                 ohWait(30);
@@ -668,8 +668,8 @@ void func_801E37A0_9AD9F0(void) {
     s32 sp28;
 
     sp28 = 1;
-    D_80250120_A1A370 = D_80208B98_9D2DE8;
-    D_80250124_A1A374 = func_80370600_843DB0();
+    D_80250120_A1A370 = album_MainButtonsDef;
+    D_80250124_A1A374 = UILayout_GetButtons();
     D_80208B94_9D2DE4 = 0;
     func_80370134_8438E4();
     func_800AA85C(0x18, 0xC);

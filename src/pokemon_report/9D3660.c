@@ -371,17 +371,17 @@ void func_801DDD58_9D46C8(void) {
 void func_801DE078_9D49E8(s32 arg0) {
     if (arg0 != 0) {
         if (D_80230CAC_A2761C < func_800BF864_5C704() - 1) {
-            func_803713D4_844B84(2);
+            UILayout_ShowHeaderElement(HEADER_NEXT);
         } else {
-            func_803713EC_844B9C(2);
+            UILayout_HideHeaderElement(HEADER_NEXT);
         }
         if (D_80230CA8_A27618 > 0) {
-            func_803713D4_844B84(1);
+            UILayout_ShowHeaderElement(HEADER_PREV);
         } else {
-            func_803713EC_844B9C(1);
+            UILayout_HideHeaderElement(HEADER_PREV);
         }
     } else {
-        func_803713EC_844B9C(3);
+        UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
     }
 }
 
@@ -536,8 +536,8 @@ void func_801DE898_9D5208(s32 arg0) {
 
     if (arg0 != 0) {
         func_803700A4_843854(0);
-        func_80370C34_8443E4(func_801E28A0_9D9210(0));
-        func_803705A4_843D54();
+        UILayout_CreateButtons(func_801E28A0_9D9210(0));
+        UILayout_WaitPanelTransitionComplete();
         func_801DCEA8_9D3818(0);
         func_801DFBD0_9D6540(0);
         UIElement_Delete(D_80230C38_A275A8);
@@ -554,9 +554,9 @@ void func_801DE898_9D5208(s32 arg0) {
         func_801DDD58_9D46C8();
     } else {
         func_80374714_847EC4(func_800BF710_5C5B0(D_80230CB0_A27620[D_80230DB4_A27724]), &D_80230C14_A27584->sprite);
-        func_803713EC_844B9C(3);
-        func_80370C34_8443E4(func_801E28A0_9D9210(1));
-        func_803705A4_843D54();
+        UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
+        UILayout_CreateButtons(func_801E28A0_9D9210(1));
+        UILayout_WaitPanelTransitionComplete();
         func_803700A4_843854(1);
         func_801DDCD4_9D4644(0);
         func_801DCEA8_9D3818(0);
@@ -578,14 +578,14 @@ void func_801DE898_9D5208(s32 arg0) {
         UIElement_DrawBackground(D_80230C30_A275A0);
         UIElement_SetState(D_80230C30_A275A0, UI_HIDDEN);
         if (D_80230DB4_A27724 > 0) {
-            func_803713D4_844B84(1);
+            UILayout_ShowHeaderElement(HEADER_PREV);
         } else {
-            func_803713EC_844B9C(1);
+            UILayout_HideHeaderElement(HEADER_PREV);
         }
         if (D_80230DB4_A27724 < func_800BF864_5C704() - 1) {
-            func_803713D4_844B84(2);
+            UILayout_ShowHeaderElement(HEADER_NEXT);
         } else {
-            func_803713EC_844B9C(2);
+            UILayout_HideHeaderElement(HEADER_NEXT);
         }
         func_801DE7F8_9D5168(0);
         ohWait(21);
@@ -644,14 +644,14 @@ s32 func_801DEC60_9D55D0(s32 arg0, s32 arg1) {
     func_801DFBD0_9D6540(1);
     func_801DE7F8_9D5168(arg0);
     if (D_80230DB4_A27724 > 0) {
-        func_803713D4_844B84(1);
+        UILayout_ShowHeaderElement(HEADER_PREV);
     } else {
-        func_803713EC_844B9C(1);
+        UILayout_HideHeaderElement(HEADER_PREV);
     }
     if (D_80230DB4_A27724 < func_800BF864_5C704() - 1) {
-        func_803713D4_844B84(2);
+        UILayout_ShowHeaderElement(HEADER_NEXT);
     } else {
-        func_803713EC_844B9C(2);
+        UILayout_HideHeaderElement(HEADER_NEXT);
     }
     ohWait(12);
     return D_80230DB0_A27720;
@@ -1348,10 +1348,10 @@ void func_801E1378_9D7CE8(void) {
         func_801DCD30_9D36A0(sp38, 0xFF);
     }
 
-    func_8037172C_844EDC(1);
+    UILayout_ShowPanel(true);
     ohWait(21);
-    func_80370C34_8443E4(func_801E2850_9D91C0());
-    func_803705A4_843D54();
+    UILayout_CreateButtons(func_801E2850_9D91C0());
+    UILayout_WaitPanelTransitionComplete();
     func_803700A4_843854(1);
 }
 
@@ -1364,8 +1364,8 @@ void func_801E1568_9D7ED8(s32 arg0) {
     s32 sp18;
 
     func_803700A4_843854(0);
-    func_803713C8_844B78(0);
-    func_80370A48_8441F8();
+    UILayout_SetHeaderFlags(0);
+    UILayout_HideButtons();
     ohWait(21);
 
     sp24 = func_801DCF5C_9D38CC(&sp1C);
@@ -1387,7 +1387,7 @@ void func_801E1568_9D7ED8(s32 arg0) {
     UIElement_Delete(D_80230C1C_A2758C);
     func_801DCE3C_9D37AC();
     D_80230C74_A275E4 = 0;
-    func_8037172C_844EDC(0);
+    UILayout_ShowPanel(false);
 }
 
 void func_801E16DC_9D804C(void) {
@@ -1451,8 +1451,8 @@ void func_801E16DC_9D804C(void) {
         }
 
         func_801DCD78_9D36E8(0xFF);
-        func_8037172C_844EDC(1);
-        func_803713D4_844B84(4);
+        UILayout_ShowPanel(true);
+        UILayout_ShowHeaderElement(HEADER_TITLE);
         func_801DE078_9D49E8(0);
         ohWait(30);
         UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
@@ -1465,8 +1465,8 @@ void func_801E1AC4_9D8434(void) {
 
     func_803700A4_843854(0);
     UIElement_Delete(D_80230C34_A275A4);
-    func_803713C8_844B78(0);
-    func_80370A48_8441F8();
+    UILayout_SetHeaderFlags(0);
+    UILayout_HideButtons();
     ohWait(21);
 
     for (i = 10; i >= 0; i--) {
@@ -1486,7 +1486,7 @@ void func_801E1AC4_9D8434(void) {
     func_801DEFC8_9D5938();
     func_801DFBD0_9D6540(0);
     D_80230C74_A275E4 = 0;
-    func_8037172C_844EDC(0);
+    UILayout_ShowPanel(false);
 }
 
 void func_801E1BEC_9D855C(void) {
@@ -1531,8 +1531,8 @@ void func_801E1BEC_9D855C(void) {
 
         func_801DCD78_9D36E8(0xFF);
         func_801DFB68_9D64D8(0xFF);
-        func_8037172C_844EDC(1);
-        func_803713D4_844B84(4);
+        UILayout_ShowPanel(true);
+        UILayout_ShowHeaderElement(HEADER_TITLE);
         ohWait(21);
         UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
         UIFrame_FadeIn(sp30, FRAME_STYLE_1);
@@ -1559,11 +1559,11 @@ void func_801E1F20_9D8890(void) {
     func_803700A4_843854(0);
     UIElement_SetState(D_80230C30_A275A0, UI_HIDDEN);
     UIElement_SetState(D_80230C34_A275A4, UI_HIDDEN);
-    func_803713C8_844B78(0);
+    UILayout_SetHeaderFlags(0);
     UIElement_Delete(D_80230C34_A275A4);
     UIElement_Delete(D_80230C30_A275A0);
     UIFrame_FadeOut(D_80230C28_A27598);
-    func_80370A48_8441F8();
+    UILayout_HideButtons();
     ohWait(21);
     auSetBGMVolumeSmooth(0, 0, sp18);
 
@@ -1578,7 +1578,7 @@ void func_801E1F20_9D8890(void) {
     func_801DCE3C_9D37AC();
     func_801DF7F0_9D6160(0);
     D_80230C74_A275E4 = 0;
-    func_803705A4_843D54();
+    UILayout_WaitPanelTransitionComplete();
     auPlaySong(0, 0x1D);
     auSetBGMVolumeSmooth(0, 0x7F00, 0xF);
 }
@@ -1623,7 +1623,7 @@ void func_801E20B4_9D8A24(void) {
 
         UIElement_SetState(D_80230C30_A275A0, UI_NORMAL);
         UIText_SetPrintDelay(0);
-        func_8037172C_844EDC(1);
+        UILayout_ShowPanel(true);
         ohWait(21);
     }
 }
@@ -1634,8 +1634,8 @@ void func_801E2340_9D8CB0(void) {
 
     sp18 = 30;
     func_803700A4_843854(0);
-    func_803713C8_844B78(0);
-    func_80370A48_8441F8();
+    UILayout_SetHeaderFlags(0);
+    UILayout_HideButtons();
     ohWait(21);
     auSetBGMVolumeSmooth(0, 0U, sp18);
 
@@ -1652,7 +1652,7 @@ void func_801E2340_9D8CB0(void) {
     func_801DCE3C_9D37AC();
     func_801DFBD0_9D6540(0);
     D_80230C74_A275E4 = 0;
-    func_803705A4_843D54();
+    UILayout_WaitPanelTransitionComplete();
     auPlaySong(0, 0x1D);
     auSetBGMVolumeSmooth(0, 0x7F00, 0xF);
 }
@@ -1670,7 +1670,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
 
     sp2C = 1;
     D_80230DC0_A27730 = 0;
-    func_803717E8_844F98();
+    UILayout_Init();
     func_80370428_843BD8();
     func_803700A4_843854(0);
     sp3C = func_801DCF5C_9D38CC(&sp34);
@@ -1711,17 +1711,17 @@ void func_801E24B4_9D8E24(GObj* arg0) {
         }
     }
 
-    func_8037172C_844EDC(1);
-    func_803713C8_844B78(0);
+    UILayout_ShowPanel(true);
+    UILayout_SetHeaderFlags(0);
     ohWait(30);
-    func_80370C34_8443E4(func_801E2850_9D91C0());
-    func_803705A4_843D54();
+    UILayout_CreateButtons(func_801E2850_9D91C0());
+    UILayout_WaitPanelTransitionComplete();
     func_803700A4_843854(1);
 
     while (true) {
         sp30 = D_80230C30_A275A0;
         func_801E3B18_9DA488();
-        func_8037172C_844EDC(0);
+        UILayout_ShowPanel(false);
         func_800AADF0(SCENE_OAKS_LAB_2);
         ohWait(1);
     }

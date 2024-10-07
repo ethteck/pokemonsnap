@@ -430,12 +430,12 @@ void func_camera_check_801DDD28(s32 arg0) {
 
     if (arg0) {
         UIElement_SetState(D_camera_check_80249910, UI_NORMAL);
-        func_803713D4_844B84(4);
+        UILayout_ShowHeaderElement(HEADER_TITLE);
         UIElement_SetState(D_camera_check_80249918, UI_NORMAL);
     } else {
         UIElement_SetState(D_camera_check_80249910, UI_HIDDEN);
         UIElement_SetState(D_camera_check_80249918, UI_HIDDEN);
-        func_803713EC_844B9C(4);
+        UILayout_HideHeaderElement(HEADER_TITLE);
     }
 }
 
@@ -789,7 +789,7 @@ void func_camera_check_801DEC84(void) {
     auPlaySong(0, 0x10);
     func_camera_check_801DDA44(0);
     func_803700A4_843854(0);
-    func_803713EC_844B9C(3);
+    UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
     UIElement_Delete(D_camera_check_80249910);
 }
 
@@ -919,7 +919,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIElement* new_var;
     UIElement* sp44;
 
-    func_803717E8_844F98();
+    UILayout_Init();
     func_80370428_843BD8();
     func_803700A4_843854(0);
     func_8036EE40_8425F0();
@@ -965,14 +965,14 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     }
 
     func_camera_check_801DCB58(0xFF);
-    func_8037172C_844EDC(1);
-    func_803713C8_844B78(0);
+    UILayout_ShowPanel(true);
+    UILayout_SetHeaderFlags(0);
     ohWait(12);
-    func_80370C34_8443E4(func_camera_check_801DFA4C());
+    UILayout_CreateButtons(func_camera_check_801DFA4C());
     if (!checkPlayerFlag(8)) {
-        func_80370780_843F30(1, 0x18);
+        UILayout_DisableButton(1, 0x18);
     }
-    func_803705A4_843D54();
+    UILayout_WaitPanelTransitionComplete();
     UIFrame_FadeIn(sp68, FRAME_STYLE_0);
     UIElement_SetState(sp6C, UI_NORMAL);
     UIText_SetPrintDelay(0);
@@ -1037,8 +1037,8 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         if (D_camera_check_80249910 != NULL) {
             UIElement_Delete(D_camera_check_80249910);
         }
-        func_803713C8_844B78(0);
-        func_80370A48_8441F8();
+        UILayout_SetHeaderFlags(0);
+        UILayout_HideButtons();
         UIFrame_FadeOut(sp68);
 
         for (i = 10; i >= 0; i--) {
@@ -1049,7 +1049,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
 
         func_camera_check_801DCB58(0);
         func_camera_check_801DD93C(0);
-        func_803705A4_843D54();
+        UILayout_WaitPanelTransitionComplete();
         ohWait(3);
         func_8036EE40_8425F0();
         func_80374D20_8484D0();

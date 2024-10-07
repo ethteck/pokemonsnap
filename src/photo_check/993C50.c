@@ -10,7 +10,7 @@ extern s32 D_801F4144_9A3BB4;
 extern s32 D_801F4148_9A3BB8;
 extern s32 D_801F4180_9A3BF0;
 extern void* D_80229190_9D8C00;
-extern UnkCanaryScallop* D_80229194_9D8C04;
+extern UIButton* D_80229194_9D8C04;
 
 s32 func_800BFB84_5CA24(void);
 UIElement* func_801DCCE0_98C750(void);
@@ -61,7 +61,7 @@ void func_801E433C_993DAC(s32 arg0) {
 void func_801E43AC_993E1C(void) {
     func_801DDA68_98D4D8(1);
     func_801DD9E4_98D454(0);
-    func_803713EC_844B9C(7);
+    UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT | HEADER_TITLE);
 }
 
 s32 func_801E43E4_993E54(void) {
@@ -77,7 +77,7 @@ s32 func_801E4428_993E98(void) {
     s32 sp24 = 2;
 
     D_80229190_9D8C00 = &D_801F4150_9A3BC0;
-    D_80229194_9D8C04 = func_80370600_843DB0();
+    D_80229194_9D8C04 = UILayout_GetButtons();
     D_801F4144_9A3BB4 = 0;
     D_801F4148_9A3BB8 = func_800BFB84_5CA24();
     func_80370134_8438E4();

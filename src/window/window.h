@@ -35,6 +35,33 @@ enum UiFonts {
     FONT_12 = 12
 };
 
+enum Buttons {
+    BUTTON_RETURN = 5,
+    BUTTON_GO_TO_LAB = 17,
+    BUTTON_DELETE = 19,
+    BUTTON_ENLARGE = 20,
+    BUTTON_ARRANGE = 26,
+    BUTTON_COMMENT = 27,
+    BUTTON_CHECK = 28,
+    BUTTON_OPEN = 30,
+    BUTTON_RETURN_TO_COVER = 31,
+    BUTTON_MAX = 32,
+    BUTTON_SPLITTER = 34,
+    BUTTON_END = 35
+};
+
+enum HeaderFlags {
+    HEADER_PREV = 1,
+    HEADER_NEXT = 2,
+    HEADER_TITLE = 4
+};
+
+enum HeaderStates {
+    PANEL_STATE_COLLAPSING = 0,
+    PANEL_STATE_EXPANDING = 1,    
+    PANEL_STATE_STABLE = 2
+};
+
 typedef struct UnkSnow2 {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
@@ -147,21 +174,21 @@ void func_80370090_843840(bool);
 void func_803700A4_843854(s32);
 void func_80370134_8438E4(void);
 void func_80370428_843BD8(void);
-void func_803705A4_843D54(void);
-void func_803705F0_843DA0(s32);
-UnkCanaryScallop* func_80370600_843DB0(void);
-void func_8037060C_843DBC(s32, s32);
-void func_80370780_843F30(s32, s32);
-void func_80370900_8440B0(s32, s32);
-void func_80370990_844140(f32, s32);
-void func_80370A48_8441F8(void);
-void func_80370C34_8443E4(UnkCanaryScallop*);
-void func_803713C8_844B78(s32);
-void func_803713D4_844B84(s32);
-void func_803713EC_844B9C(s32);
-void func_8037172C_844EDC(s32);
-char* func_803717A8_844F58(UnkCanaryScallop*, s32);
-void func_803717E8_844F98(void);
+void UILayout_WaitPanelTransitionComplete(void);
+void UILayout_SetInstantTransition(s32);
+UIButton* func_80370600_843DB0(void);
+void UILayout_DisableAllButtonsExcept(s32, s32);
+void UILayout_DisableButton(s32, s32);
+void UILayout_ShowButton(s32, s32);
+void UILayout_SetButtonScale(f32, s32);
+void UILayout_HideButtons(void);
+void UILayout_CreateButtons(UIButton*);
+void UILayout_SetHeaderFlags(s32);
+void UILayout_ShowHeaderElement(s32);
+void UILayout_HideHeaderElement(s32);
+void UILayout_ShowPanel(s32);
+char* UILayout_GetButtonText(UIButton*, s32);
+void UILayout_Init(void);
 void func_803719B0_845160(SObj*, s32, s32, s32, s32, s32, s32);
 GObj* func_80371C68_845418(void (*func)(GObj*), s32 link, Sprite* sprite);
 SObj* func_80371DC0_845570(SObj*, Sprite*);

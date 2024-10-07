@@ -1957,3 +1957,10 @@ album_LastPhotoIndex = 0x80250940; // segment:pokemon_album
 album_FirstPhotoIndex = 0x80250944; // segment:pokemon_album
 D_8025007C_A1A2CC = 0x8025007C; // segment:pokemon_album
 album_AlbumPage = 0x802500B4; // segment:pokemon_album
+
+UILayout_ButtonObjects = 0x803A6A90; //segment:window
+UILayout_Panel = 0x803A6B14; //segment:window
+UILayout_PreviousPageIndicator = 0x803A6A80; //segment:window
+UILayout_NextPageIndicator = 0x803A6A84; //segment:window
+UILayout_Title = 0x803A6A88; //segment:window
+UILayout_ButtonPhase = 0x803A6B18; //segment:window

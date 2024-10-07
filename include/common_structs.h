@@ -243,10 +243,10 @@ typedef struct UnkThing {
     /* 0x3A4 */ GObj* pokemonObjects[12];
 } UnkThing;
 
-typedef struct UnkCanaryScallop {
-    s32 unk_00;
-    char* unk_04;
-} UnkCanaryScallop; // size = 0x8
+typedef struct UIButton {
+    s32 id;
+    char* text;
+} UIButton; // size = 0x8
 
 typedef union UnkPinkRatSub {
     Vec3f data1;

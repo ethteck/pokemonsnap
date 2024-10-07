@@ -26,7 +26,7 @@ extern s32 D_80203008_9F9978;
 extern s32 D_8020300C_9F997C;
 extern s32 D_80203014_9F9984;
 extern UNK_PTR D_80230E10_A27780;
-extern UnkCanaryScallop* D_80230E14_A27784;
+extern UIButton* D_80230E14_A27784;
 
 UNK_PTR func_801E2850_9D91C0(void) {
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
@@ -61,13 +61,13 @@ s32 func_801E28D8_9D9248(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_80230E14_A27784[*arg1].unk_00 == 35);
+        } while (D_80230E14_A27784[*arg1].id == 35);
         auPlaySound(0x41);
     }
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_80230E14_A27784[*arg1].unk_00 == 35);
+        } while (D_80230E14_A27784[*arg1].id == 35);
         auPlaySound(0x41);
     }
     if (arg0->unk_18 & 0x4000) {
@@ -149,7 +149,7 @@ s32 func_801E2EB0_9D9820(void) {
 
     func_801E1378_9D7CE8();
     func_800AA85C(0x18, 0xC);
-    func_80370C34_8443E4(func_801E2850_9D91C0());
+    UILayout_CreateButtons(func_801E2850_9D91C0());
     func_80370038_8437E8(0x3E, 0xC);
 
     while (true) {
@@ -160,7 +160,7 @@ s32 func_801E2EB0_9D9820(void) {
         }
         if (sp2C->unk_18 & 0x8000) {
             auPlaySound(0x42);
-            switch (D_80230E14_A27784[D_80202EC0_9F9830].unk_00) {
+            switch (D_80230E14_A27784[D_80202EC0_9F9830].id) {
                 case 2:
                     func_801E1568_9D7ED8(0);
                     return 1;
@@ -186,8 +186,8 @@ s32 func_801E3000_9D9970(void) {
     func_801E16DC_9D804C();
     func_80370038_8437E8(0x3E, 0xC);
     sp28 = 0;
-    func_80370C34_8443E4(&D_80202F20_9F9890);
-    func_803705A4_843D54();
+    UILayout_CreateButtons(&D_80202F20_9F9890);
+    UILayout_WaitPanelTransitionComplete();
 
     while (true) {
         sp2C = func_800AA38C(0);
@@ -202,7 +202,7 @@ s32 func_801E3000_9D9970(void) {
 
                 if (sp2C->unk_18 & 0x8000) {
                     auPlaySound(0x42);
-                    switch (D_80230E14_A27784[sp28].unk_00) {
+                    switch (D_80230E14_A27784[sp28].id) {
                         case 29:
                             if (func_800BF864_5C704() != 0) {
                                 func_801DDCD4_9D4644(1);
@@ -215,8 +215,8 @@ s32 func_801E3000_9D9970(void) {
                             break;
                         case 0:
                             sp28 = 0;
-                            func_80370C34_8443E4(&D_80202FC0_9F9930);
-                            func_803705A4_843D54();
+                            UILayout_CreateButtons(&D_80202FC0_9F9930);
+                            UILayout_WaitPanelTransitionComplete();
                             D_80203008_9F9978 = 4;
                             break;
                         case 31:
@@ -257,12 +257,12 @@ s32 func_801E3000_9D9970(void) {
                 } else if (sp2C->unk_18 & 0x8000) {
                     auPlaySound(0x42);
 
-                    switch (D_80230E14_A27784[sp28].unk_00) {
+                    switch (D_80230E14_A27784[sp28].id) {
                         case 28:
-                            func_80370C34_8443E4(&D_80202FA8_9F9918);
+                            UILayout_CreateButtons(&D_80202FA8_9F9918);
                             func_8036FFE0_843790(0x16, 0xC5);
                             func_801DE7F8_9D5168(1);
-                            func_803705A4_843D54();
+                            UILayout_WaitPanelTransitionComplete();
                             D_80203008_9F9978 = 3;
                             break;
                         case 5:
@@ -292,10 +292,10 @@ s32 func_801E3000_9D9970(void) {
                 }
 
                 if (sp2C->unk_18 & 0xC000) {
-                    func_80370C34_8443E4(&D_80202F48_9F98B8);
+                    UILayout_CreateButtons(&D_80202F48_9F98B8);
                     func_8036FFE0_843790(0x16, 0x1D);
                     func_801DE7F8_9D5168(0);
-                    func_803705A4_843D54();
+                    UILayout_WaitPanelTransitionComplete();
                     D_80203008_9F9978 = 2;
                     break;
                 }
@@ -311,22 +311,22 @@ s32 func_801E3000_9D9970(void) {
                 if (func_801E28D8_9D9248(sp2C, &sp28) != 0) {
                     sp28 = 1;
                     func_801E28D8_9D9248(NULL, NULL);
-                    func_80370C34_8443E4(&D_80202F20_9F9890);
-                    func_803705A4_843D54();
+                    UILayout_CreateButtons(&D_80202F20_9F9890);
+                    UILayout_WaitPanelTransitionComplete();
                     D_80203008_9F9978 = 0;
                 } else if (sp2C->unk_18 & 0x8000) {
-                    if (D_80230E14_A27784[sp28].unk_00 == 5) {
+                    if (D_80230E14_A27784[sp28].id == 5) {
                         auPlaySound(0x42);
                         func_801DDCD4_9D4644(0);
                         func_801DE078_9D49E8(0);
                         func_803700A4_843854(1);
                         sp28 = 1;
-                        func_80370C34_8443E4(&D_80202F20_9F9890);
-                        func_803705A4_843D54();
+                        UILayout_CreateButtons(&D_80202F20_9F9890);
+                        UILayout_WaitPanelTransitionComplete();
                         D_80203008_9F9978 = 0;
                     } else {
                         auPlaySound(0x44);
-                        func_801DE5A8_9D4F18(D_80230E14_A27784[sp28].unk_00);
+                        func_801DE5A8_9D4F18(D_80230E14_A27784[sp28].id);
                     }
                 }
         }
@@ -348,7 +348,7 @@ s32 func_801E3604_9D9F74(void) {
     sp28 = 0;
     func_801E1BEC_9D855C();
     sp38 = 0;
-    func_80370C34_8443E4(&D_80202F68_9F98D8);
+    UILayout_CreateButtons(&D_80202F68_9F98D8);
     func_801E28D8_9D9248(NULL, &sp38);
     func_803700A4_843854(1);
 
@@ -364,7 +364,7 @@ s32 func_801E3604_9D9F74(void) {
             }
             if (sp3C->unk_18 & 0x8000) {
                 auPlaySound(0x42);
-                switch (D_80230E14_A27784[sp38].unk_00) {
+                switch (D_80230E14_A27784[sp38].id) {
                     case 29:
                         sp2C = 0;
                         sp28 = 0;
@@ -417,10 +417,10 @@ s32 func_801E38DC_9DA24C(void) {
     func_801E20B4_9D8A24();
     sp28 = 0;
     func_801E28D8_9D9248(NULL, NULL);
-    func_80370C34_8443E4(&D_80202F88_9F98F8);
+    UILayout_CreateButtons(&D_80202F88_9F98F8);
     func_8036FFE0_843790(0x16, 0x1D);
     func_80370038_8437E8(0x3E, 0xC);
-    func_803705A4_843D54();
+    UILayout_WaitPanelTransitionComplete();
     func_803700A4_843854(1);
 
     while (true) {
@@ -437,12 +437,12 @@ s32 func_801E38DC_9DA24C(void) {
                 if (sp2C->unk_18 & 0x8000) {
                     auPlaySound(0x42);
 
-                    switch (D_80230E14_A27784[sp28].unk_00) {
+                    switch (D_80230E14_A27784[sp28].id) {
                         case 28:
-                            func_80370C34_8443E4(&D_80202FA8_9F9918);
+                            UILayout_CreateButtons(&D_80202FA8_9F9918);
                             func_8036FFE0_843790(0x16, 0xC5);
                             func_801E00E0_9D6A50(1);
-                            func_803705A4_843D54();
+                            UILayout_WaitPanelTransitionComplete();
                             D_80203014_9F9984 = 3;
                             break;
                         case 31:
@@ -461,10 +461,10 @@ s32 func_801E38DC_9DA24C(void) {
                     auPlaySound(0x43);
                 }
                 if (sp2C->unk_18 & 0xC000) {
-                    func_80370C34_8443E4(&D_80202F88_9F98F8);
+                    UILayout_CreateButtons(&D_80202F88_9F98F8);
                     func_8036FFE0_843790(0x16, 0x1D);
                     func_801E00E0_9D6A50(0);
-                    func_803705A4_843D54();
+                    UILayout_WaitPanelTransitionComplete();
                     D_80203014_9F9984 = 0;
                 }
                 break;
@@ -479,7 +479,7 @@ void func_801E3B18_9DA488(void) {
 
     sp18 = 0;
     D_80230E10_A27780 = func_801E2850_9D91C0();
-    D_80230E14_A27784 = func_80370600_843DB0();
+    D_80230E14_A27784 = UILayout_GetButtons();
     func_80370134_8438E4();
     D_80202EC0_9F9830 = 0;
     func_800AA85C(0x18, 0xC);

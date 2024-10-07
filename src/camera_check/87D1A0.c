@@ -12,26 +12,26 @@ const char D_camera_check_80208D98[] = "I'll choose which pictures to\nshow to P
 const char D_camera_check_80208DCC[] = "I'll choose which pictures to\nsave in my PKMN Album.";
 const char D_camera_check_80208E04[] = "Let's show the marked\npicture(s) to Prof. Oak.";
 
-UnkCanaryScallop* func_camera_check_801DF9B0(void) {
+UIButton* func_camera_check_801DF9B0(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     }
     // clang-format off
-    if (!func_camera_check_801E3140()) D_camera_check_802089BC[0].unk_04 = "There's no picture to show to\nProf. Oak.";
+    if (!func_camera_check_801E3140()) D_camera_check_802089BC[0].text = "There's no picture to show to\nProf. Oak.";
     // clang-format on
     else {
-        D_camera_check_802089BC[0].unk_04 = "I'll choose which pictures to\nshow to Prof. Oak!";
+        D_camera_check_802089BC[0].text = "I'll choose which pictures to\nshow to Prof. Oak!";
     }
 
     if (func_camera_check_801E2E04() != 0) {
-        D_camera_check_802089BC[2].unk_04 = "I'll choose which pictures to\nsave in my PKMN Album.";
+        D_camera_check_802089BC[2].text = "I'll choose which pictures to\nsave in my PKMN Album.";
     } else {
-        D_camera_check_802089BC[2].unk_04 = "The Album is full.\nNo picture can be saved.";
+        D_camera_check_802089BC[2].text = "The Album is full.\nNo picture can be saved.";
     }
     return D_camera_check_802089BC;
 }
 
-UnkCanaryScallop* func_camera_check_801DFA4C(void) {
+UIButton* func_camera_check_801DFA4C(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
         return &D_camera_check_80208994;
     } else {
@@ -39,7 +39,7 @@ UnkCanaryScallop* func_camera_check_801DFA4C(void) {
     }
 }
 
-s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UnkCanaryScallop* arg3) {
+s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIButton* arg3) {
     s32 temp_v0;
     char* temp_v0_2;
     s32 new_var;
@@ -58,7 +58,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_camera_check_80249AA8[*arg1].unk_00 == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].id == 0x23);
 
         if (arg2 != 0) {
             auPlaySound(0x41);
@@ -68,7 +68,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_camera_check_80249AA8[*arg1].unk_00 == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].id == 0x23);
 
         if (arg2 != 0) {
             auPlaySound(0x41);
@@ -83,7 +83,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, Unk
     temp_v0 = new_var;
     if (D_camera_check_802089E4 != (temp_v0 ^ 0)) {
         D_camera_check_802089E4 = temp_v0;
-        temp_v0_2 = func_803717A8_844F58(arg3, D_camera_check_80249AA8[temp_v0].unk_00);
+        temp_v0_2 = UILayout_GetButtonText(arg3, D_camera_check_80249AA8[temp_v0].id);
         if (temp_v0_2 != 0) {
             UIElement_Draw(func_camera_check_801DCB40());
             UIElement_SetTextPos(func_camera_check_801DCB40(), 0, 0);
@@ -270,7 +270,7 @@ void func_camera_check_801E0258(s32 arg0) {
     if (arg0 == 0) {
         func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 21);
     }
-    func_803713EC_844B9C(3);
+    UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
 }
 
 void func_camera_check_801E02D0(void) {
@@ -286,38 +286,38 @@ void func_camera_check_801E0330(void) {
     func_camera_check_801DDD28(0);
     func_camera_check_801DE80C(0, D_camera_check_80208960, 0);
     func_camera_check_801DDA44(0);
-    func_803713EC_844B9C(7);
+    UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT | HEADER_TITLE);
 }
 
 void func_camera_check_801E0374(void) {
     if (D_camera_check_80208960 <= 0) {
-        func_803713EC_844B9C(1);
+        UILayout_HideHeaderElement(HEADER_PREV);
     } else {
-        func_803713D4_844B84(1);
+        UILayout_ShowHeaderElement(HEADER_PREV);
     }
     if (D_camera_check_80208960 >= (func_camera_check_801E2534() - 1)) {
-        func_803713EC_844B9C(2);
+        UILayout_HideHeaderElement(HEADER_NEXT);
     } else {
-        func_803713D4_844B84(2);
+        UILayout_ShowHeaderElement(HEADER_NEXT);
     }
 }
 
 void func_camera_check_801E03EC(void) {
     if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) <= 0) {
-        func_803713EC_844B9C(1);
+        UILayout_HideHeaderElement(HEADER_PREV);
     } else {
-        func_803713D4_844B84(1);
+        UILayout_ShowHeaderElement(HEADER_PREV);
     }
     if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) >= func_camera_check_801E2534() - 6) {
-        func_803713EC_844B9C(2);
+        UILayout_HideHeaderElement(HEADER_NEXT);
     } else {
-        func_803713D4_844B84(2);
+        UILayout_ShowHeaderElement(HEADER_NEXT);
     }
 }
 
 void func_camera_check_801E0480(void) {
-    func_803713EC_844B9C(1);
-    func_803713EC_844B9C(2);
+    UILayout_HideHeaderElement(HEADER_PREV);
+    UILayout_HideHeaderElement(HEADER_NEXT);
 }
 
 void nullsub() {
@@ -961,15 +961,15 @@ s32 func_camera_check_801E1BD4(void) {
 
     sp38 = 0;
     sp30 = func_camera_check_801E2E04();
-    func_80370C34_8443E4(func_camera_check_801DF9B0());
+    UILayout_CreateButtons(func_camera_check_801DF9B0());
     if (checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) == 0) {
-        func_80370780_843F30(1, 0x18);
+        UILayout_DisableButton(1, 0x18);
     }
     if (!func_camera_check_801E3140()) {
-        func_80370780_843F30(1, 0x17);
+        UILayout_DisableButton(1, 0x17);
     }
     if (sp30 == 0) {
-        func_80370780_843F30(1, 0x18);
+        UILayout_DisableButton(1, 0x18);
     }
     func_camera_check_801E0258(0);
     func_camera_check_801E0480();
@@ -983,7 +983,7 @@ s32 func_camera_check_801E1BD4(void) {
         if (temp_s0->unk_18 & 0x8000) {
             auPlaySound(0x42);
 
-            switch (D_camera_check_80249AA8[sp38].unk_00) {
+            switch (D_camera_check_80249AA8[sp38].id) {
 
                 case 23:
                     if (func_camera_check_801E3140()) {
@@ -1028,7 +1028,7 @@ u32 func_camera_check_801E1EA4(void) {
     D_camera_check_80208960 = 0;
     func_camera_check_801E3C24(1);
     func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
-    func_8037060C_843DBC(1, 0x16);
+    UILayout_DisableAllButtonsExcept(1, 0x16);
     UIElement_Draw(func_camera_check_801DCB40());
     if (!func_camera_check_801E27FC()) {
         UIElement_PrintText(func_camera_check_801DCB40(), "No pictures to show to\nProf. Oak?\n\\a No.   \\b I have some.");
@@ -1053,7 +1053,7 @@ u32 func_camera_check_801E1EA4(void) {
         }
         if (temp_v0->unk_18 & 0x4000) {
             func_camera_check_801E3C24(0);
-            func_8037060C_843DBC(0, 0);
+            UILayout_DisableAllButtonsExcept(0, 0);
             func_803700A4_843854(1);
             D_camera_check_80208960 = 0;
             auPlaySound(0x43);
@@ -1081,7 +1081,7 @@ s32 func_camera_check_801E21E8(void) {
     UNUSED s32 pad;
 
     D_camera_check_80249AA4 = &D_camera_check_8020896C;
-    D_camera_check_80249AA8 = func_80370600_843DB0();
+    D_camera_check_80249AA8 = UILayout_GetButtons();
     D_camera_check_80208960 = 0;
     D_camera_check_80208964 = func_8009BC68();
     D_camera_check_80249AA0 = func_camera_check_801DD6D0;

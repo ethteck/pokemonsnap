@@ -2337,7 +2337,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     sp30 = 1;
     func_801E5030_994AA0();
     D_801F3E28_9A3898 = 0;
-    func_803717E8_844F98();
+    UILayout_Init();
     func_80370428_843BD8();
     func_803700A4_843854(0);
     sp3C = UIElement_Create(71, 25, 204, 48, 0);
@@ -2389,8 +2389,8 @@ void func_801E39DC_99344C(GObj* arg0) {
 
     func_801DD46C_98CEDC(0xFF);
     func_801DD528_98CF98(0xFF);
-    func_8037172C_844EDC(0);
-    func_803713C8_844B78(0);
+    UILayout_ShowPanel(false);
+    UILayout_SetHeaderFlags(0);
     ohWait(1);
     UIElement_SetFont(sp3C, FONT_12);
     UIText_SetShadowOffset(1);
@@ -2427,8 +2427,8 @@ void func_801E39DC_99344C(GObj* arg0) {
         func_803700A4_843854(0);
         UIElement_SetState(sp3C, UI_HIDDEN);
         UIElement_SetState(D_802290DC_9D8B4C, UI_HIDDEN);
-        func_803713C8_844B78(0);
-        func_80370A48_8441F8();
+        UILayout_SetHeaderFlags(0);
+        UILayout_HideButtons();
         func_801DCFA0_98CA10(sp38);
         auSetBGMVolumeSmooth(0, 0, 30);
 
@@ -2440,7 +2440,7 @@ void func_801E39DC_99344C(GObj* arg0) {
 
         func_801DD46C_98CEDC(0);
         func_801DD964_98D3D4(0);
-        func_803705A4_843D54();
+        UILayout_WaitPanelTransitionComplete();
         func_80374D20_8484D0();
         if (sp48 < 0) {
             func_800AADF0(SCENE_OAKS_LAB_2);

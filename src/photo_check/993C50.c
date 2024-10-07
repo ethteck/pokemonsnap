@@ -26,9 +26,9 @@ void* func_801E41E0_993C50(void) {
 
 s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
     if (arg0 == NULL) {
-        func_80370004_8437B4(0x3C, 0x27);
-        func_8037005C_84380C(0x36, 0x29);
-        func_803700A4_843854(1);
+        FocusMark_SetPos(0x3C, 0x27);
+        FocusMark_SetSize(0x36, 0x29);
+        FocusMark_Show(true);
         D_801F4180_9A3BF0 = -1;
         return 0;
     }
@@ -41,7 +41,7 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
     if (*arg1 != D_801F4180_9A3BF0) {
         D_801F4180_9A3BF0 = *arg1;
         auPlaySound(0x45);
-        func_8036FFE0_843790((*arg1 * 0x93) + 0x3C, 0x27);
+        FocusMark_SetTargetPos((*arg1 * 0x93) + 0x3C, 0x27);
     }
     return 0;
 }
@@ -69,7 +69,7 @@ s32 func_801E43E4_993E54(void) {
 
     func_801E43AC_993E1C();
     func_801E3934_9933A4();
-    func_80370004_8437B4(0x15, 0xC5);
+    FocusMark_SetPos(0x15, 0xC5);
     return 9;
 }
 
@@ -80,7 +80,7 @@ s32 func_801E4428_993E98(void) {
     D_80229194_9D8C04 = UILayout_GetButtons();
     D_801F4144_9A3BB4 = 0;
     D_801F4148_9A3BB8 = func_800BFB84_5CA24();
-    func_80370134_8438E4();
+    FocusMark_MoveFront();
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
     func_801E4BA0_994610(0);

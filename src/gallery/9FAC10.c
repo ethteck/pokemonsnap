@@ -51,7 +51,7 @@ void func_801DD0AC_9FAD6C(s32 arg0) {
 UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     UnkStruct800BEDF8* sp24;
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801DE04C_9FBD0C(-1, -1);
     UIText_SetPrintDelay(0);
     func_801DDCA8_9FB968(13);
@@ -561,7 +561,7 @@ void func_801DE87C_9FC53C(void) {
     sp3B = 0;
     UIElement_SetState(D_8023087C_A4E53C, UI_HIDDEN);
     UILayout_SetHeaderFlags(0);
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UILayout_HideButtons();
     UILayout_WaitPanelTransitionComplete();
     func_800A7860(0, 1.0f);
@@ -670,7 +670,7 @@ void func_801DE87C_9FC53C(void) {
     ohWait(18);
     UIElement_SetState(D_8023087C_A4E53C, UI_NORMAL);
     UILayout_WaitPanelTransitionComplete();
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     func_801DDCA8_9FB968(10);
 }
 
@@ -679,7 +679,7 @@ void func_801DEE88_9FCB48(void) {
     GObj* sp28;
 
     if (D_801EA1F4_A07EB4 != 0 && contIsPrinterAvailable()) {
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UILayout_DisableButton(1, 0x20);
         UIElement_Draw(D_80230880_A4E540);
         UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
@@ -717,7 +717,7 @@ void func_801DEE88_9FCB48(void) {
             func_801DDCA8_9FB968(sp2C);
             auPlaySound(0x41);
         }
-        func_803700A4_843854(1);
+        FocusMark_Show(true);
     }
 }
 
@@ -730,9 +730,9 @@ void func_801DF078_9FCD38(GObj* arg0) {
     GObj* gobj;
 
     UILayout_Init();
-    func_80370428_843BD8();
+    FocusMark_Create();
     func_801E1384_9FF044();
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     D_801EA1F4_A07EB4 = 0;
     func_801DD708_9FB3C8();
     func_801DD8F8_9FB5B8(0, 0);
@@ -814,14 +814,14 @@ void func_801DF078_9FCD38(GObj* arg0) {
         func_8037519C_84894C(D_80230880_A4E540, "Choose your favorite shots\nfrom the Report and Album.");
         func_80374F30_8486E0(D_80230880_A4E540, true);
         func_801DDCA8_9FB968(0);
-        func_8036FFE0_843790(0x16, 0x1D);
+        FocusMark_SetTargetPos(0x16, 0x1D);
     } else {
         func_801DDCA8_9FB968(0xA);
-        func_80370038_8437E8(0x3E, 0xC);
-        func_8036FFE0_843790(0x16, 0x65);
+        FocusMark_SetTargetSize(0x3E, 0xC);
+        FocusMark_SetTargetPos(0x16, 0x65);
     }
 
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     UIText_SetPrintDelay((0, 0));
 
     while (true) {
@@ -844,7 +844,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
             }
         }
 
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UIElement_Delete(D_80230880_A4E540);
         UIFrame_FadeOut(D_80230878_A4E538);
         UILayout_SetHeaderFlags(0);

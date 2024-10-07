@@ -47,13 +47,13 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
     if (arg0 == NULL) {
         D_camera_check_802089E4 = -1;
         if (arg1 != NULL) {
-            func_80370004_8437B4(21, (*arg1 * 24) + 29);
-            func_8037005C_84380C(0x3E, 0xD);
+            FocusMark_SetPos(21, (*arg1 * 24) + 29);
+            FocusMark_SetSize(0x3E, 0xD);
         }
         return 0;
     }
 
-    func_8036FFE0_843790(21, (*arg1 * 24) + 29);
+    FocusMark_SetTargetPos(21, (*arg1 * 24) + 29);
 
     if ((arg0->pressedButtons & 0x10000) && !(arg0->currentButtons & 0xC0000)) {
         do {
@@ -116,7 +116,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         D_camera_check_802089EC = -1;
         D_camera_check_802089E8 = -1;
         if (arg3 != 0) {
-            func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
         }
         return 0;
     }
@@ -174,9 +174,9 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         D_camera_check_80208960 = ((new_var + D_camera_check_80208960) - (D_camera_check_80208960 % 6)) + (temp_v0_3 * 3);
         D_camera_check_802089E8 = *arg1;
         if (var_t0) {
-            func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
         } else {
-            func_8036FFE0_843790((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            FocusMark_SetTargetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
         }
         if (sp24) {
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
@@ -347,7 +347,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
     bool var_s5;
 
     var_s5 = true;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_camera_check_801DDD28(1);
     UIElement_Draw(func_camera_check_801DCB40());
     func_camera_check_801E24D8(D_camera_check_80208960);
@@ -437,13 +437,13 @@ s32 func_camera_check_801E04F4(s32 arg0) {
 
         if (temp_s4->pressedButtons & 0x4000) {
             auPlaySound(0x48);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             return 0;
         }
 
         if ((temp_s4->pressedButtons & 0x8000) && !func_camera_check_801E2EF4(temp_s1->unk_08)) {
             auPlaySound(0x48);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             return 0;
         }
 
@@ -464,7 +464,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
             func_camera_check_801DE80C(1, D_camera_check_80208960, 1);
             ohWait(60);
             auPlaySound(0x48);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             return 1;
         }
 
@@ -569,7 +569,7 @@ s32 func_camera_check_801E0B5C(bool arg0) {
     sp60 = (D_camera_check_80208960 % 6) % 3, sp5C = (D_camera_check_80208960 % 6) / 3;
     var_s0 = func_camera_check_801E24D8(D_camera_check_80208960);
     var_s1 = true;
-    func_80370038_8437E8(0x33, 0x26);
+    FocusMark_SetTargetSize(0x33, 0x26);
     func_camera_check_801DFCD4(NULL, &sp60, &sp5C, 0);
     ohWait(1);
 
@@ -662,7 +662,7 @@ s32 func_camera_check_801E0F10(void) {
     a2 = D_camera_check_80208960 % 6;
     sp6C = a2 % 3, sp68 = a2 / 3;
     D_camera_check_80208960 -= (D_camera_check_80208960 % 6);
-    func_80370038_8437E8(0x33, 0x26);
+    FocusMark_SetTargetSize(0x33, 0x26);
     func_camera_check_801DFCD4(NULL, &sp6C, &sp68, 0);
     prevMode = -1;
     prevNumPics = -1;
@@ -810,7 +810,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
     s32 var_s5;
 
     var_s5 = true;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_camera_check_801DDD28(1);
     UIElement_Draw(func_camera_check_801DCB40());
     temp_s4 = func_camera_check_801E2E04();
@@ -847,7 +847,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
         temp_v1 = temp_s6->pressedButtons;
         if ((temp_v1 & 0x4000) || ((temp_v1 & 0x8000) && (temp_s4 == temp_s2) && !(temp_v0->unk_18_0x08000000))) {
             func_camera_check_801E0258(0);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             auPlaySound(0x48);
             return 2;
         }
@@ -864,7 +864,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
             ohWait(60);
             func_camera_check_801E0258(0);
             auPlaySound(0x48);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             return 1;
         }
 
@@ -907,7 +907,7 @@ s32 func_camera_check_801E1918(void) {
 
     sp5C = temp_hi % 3, sp58 = temp_hi / 3;
     D_camera_check_80208960 -= D_camera_check_80208960 % 6;
-    func_80370038_8437E8(0x33, 0x26);
+    FocusMark_SetTargetSize(0x33, 0x26);
     func_camera_check_801DFCD4(NULL, &sp5C, &sp58, 0);
     UIElement_Draw(func_camera_check_801DCB40());
     UIElement_PrintText(func_camera_check_801DCB40(), D_camera_check_80249AB0);
@@ -974,7 +974,7 @@ s32 func_camera_check_801E1BD4(void) {
     func_camera_check_801E0258(0);
     func_camera_check_801E0480();
     func_camera_check_801E3910(0);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     ohWait(1);
 
     while (1) {
@@ -996,7 +996,7 @@ s32 func_camera_check_801E1BD4(void) {
                         func_camera_check_801DDB08(0);
                         func_camera_check_801E31E4(0, 0);
                         func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
-                        func_80370038_8437E8(0x3E, 0xD);
+                        FocusMark_SetTargetSize(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
                     break;
@@ -1007,7 +1007,7 @@ s32 func_camera_check_801E1BD4(void) {
                         auPlaySound(0x43);
                         func_camera_check_801E0480();
                         func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
-                        func_80370038_8437E8(0x3E, 0xD);
+                        FocusMark_SetTargetSize(0x3E, 0xD);
                         func_camera_check_801DFA80(NULL, NULL, 0, 0);
                     }
                     break;
@@ -1024,7 +1024,7 @@ s32 func_camera_check_801E1BD4(void) {
 u32 func_camera_check_801E1EA4(void) {
     UnkStruct800BEDF8* temp_v0;
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     D_camera_check_80208960 = 0;
     func_camera_check_801E3C24(1);
     func_camera_check_801DD6D0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
@@ -1054,7 +1054,7 @@ u32 func_camera_check_801E1EA4(void) {
         if (temp_v0->pressedButtons & 0x4000) {
             func_camera_check_801E3C24(0);
             UILayout_DisableAllButtonsExcept(0, 0);
-            func_803700A4_843854(1);
+            FocusMark_Show(true);
             D_camera_check_80208960 = 0;
             auPlaySound(0x43);
             return 0;
@@ -1085,7 +1085,7 @@ s32 func_camera_check_801E21E8(void) {
     D_camera_check_80208960 = 0;
     D_camera_check_80208964 = func_8009BC68();
     D_camera_check_80249AA0 = func_camera_check_801DD6D0;
-    func_80370134_8438E4();
+    FocusMark_MoveFront();
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
     func_camera_check_801DCB40();

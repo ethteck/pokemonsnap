@@ -2,8 +2,8 @@
 #include "../window/window.h"
 #include "gallery.h"
 
-UNK_TYPE* func_801DF850_9FD510(void) {
-    return contIsPrinterAvailable() ? &D_801EA248_A07F08 : &D_801EA210_A07ED0;
+UIButton* func_801DF850_9FD510(void) {
+    return contIsPrinterAvailable() ? D_801EA248_A07F08 : D_801EA210_A07ED0;
 }
 
 s32 func_801DF8A4_9FD564(UnkStruct800BEDF8* arg0, s32* arg1) {
@@ -36,7 +36,7 @@ s32 func_801DF8A4_9FD564(UnkStruct800BEDF8* arg0, s32* arg1) {
         func_801DDCA8_9FB968(*arg1);
         auPlaySound(0x41);
     }
-    func_8036FFE0_843790(22, (*arg1 * 24) + 29);
+    FocusMark_SetTargetPos(22, (*arg1 * 24) + 29);
     return 0;
 }
 
@@ -62,7 +62,7 @@ s32 func_801DFA94_9FD754(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3
                 auPlaySound(0x4B);
                 D_801EA294_A07F54 += 6;
                 *arg1 = 0;
-                func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+                FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
                 func_801DD8F8_9FB5B8(arg3, (D_801EA294_A07F54 - (D_801EA294_A07F54 % 6)) / 6);
             }
         }
@@ -75,7 +75,7 @@ s32 func_801DFA94_9FD754(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3
             auPlaySound(0x4B);
             D_801EA294_A07F54 -= 6;
             *arg1 = 2;
-            func_80370004_8437B4((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
             func_801DD8F8_9FB5B8(arg3, (D_801EA294_A07F54 - (D_801EA294_A07F54 % 6)) / 6);
         }
     }
@@ -87,7 +87,7 @@ s32 func_801DFA94_9FD754(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3
         D_801EA29C_A07F5C = *arg1;
         D_801EA2A0_A07F60 = *arg2;
         D_801EA294_A07F54 = ((D_801EA294_A07F54 - (D_801EA294_A07F54 % 6)) + (*arg2 * 3)) + *arg1;
-        func_8036FFE0_843790((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+        FocusMark_SetTargetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
     }
     return 0;
 }
@@ -117,7 +117,7 @@ s32 func_801DFE74_9FDB34(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
         D_801EA2A8_A07F68 = *arg2;
         auPlaySound(0x45);
         D_801EA290_A07F50 = (*arg2 * 2) + *arg1;
-        func_8036FFE0_843790((*arg1 * 67) + 140, (*arg2 * 56) + 56);
+        FocusMark_SetTargetPos((*arg1 * 67) + 140, (*arg2 * 56) + 56);
     }
 
     return 0;
@@ -153,12 +153,12 @@ s32 func_801E006C_9FDD2C(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3
     }
 
     if (arg3 != 0) {
-        func_80370090_843840(false);
-        func_8036FFE0_843790((*arg1 * 67) + 133, (*arg2 * 56) + 49);
+        FocusMark_StopAnimation(false);
+        FocusMark_SetTargetPos((*arg1 * 67) + 133, (*arg2 * 56) + 49);
         func_801DE04C_9FBD0C((*arg1 * 67) + 130, (*arg2 * 56) + 46);
     } else {
-        func_80370090_843840(true);
-        func_8036FFE0_843790((*arg1 * 67) + 140, (*arg2 * 56) + 56);
+        FocusMark_StopAnimation(true);
+        FocusMark_SetTargetPos((*arg1 * 67) + 140, (*arg2 * 56) + 56);
         func_801DE04C_9FBD0C(-1, -1);
     }
     return 0;
@@ -169,8 +169,8 @@ u32 func_801E0328_9FDFE8(void) {
     UNUSED s32 pad;
     s32 sp1C;
 
-    func_80370038_8437E8(0x3E, 0xC);
-    func_803700A4_843854(1);
+    FocusMark_SetTargetSize(0x3E, 0xC);
+    FocusMark_Show(true);
     func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
     sp1C = -1;
 
@@ -224,12 +224,12 @@ u32 func_801E04E8_9FE1A8(void) {
 
     D_802308A4_A4E564 = 0;
     D_801EA294_A07F54 = D_801EA288_A07F48;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801DE5D0_9FC290(2);
     D_802308AC_A4E56C = 0;
     D_802308A8_A4E568 = 0;
-    func_80370038_8437E8(0x32, 0x25);
-    func_803700A4_843854(1);
+    FocusMark_SetTargetSize(0x32, 0x25);
+    FocusMark_Show(true);
     func_801DFA94_9FD754(NULL, &D_802308A8_A4E568, &D_802308AC_A4E56C, 2);
     func_801DDCA8_9FB968(0xB);
 
@@ -249,7 +249,7 @@ u32 func_801E04E8_9FE1A8(void) {
         D_801EA288_A07F48 = D_801EA294_A07F54;
         if (sp1C->pressedButtons & 0x4000) {
             auPlaySound(0x43);
-            func_803700A4_843854(0);
+            FocusMark_Show(false);
             func_801DE5D0_9FC290(0);
             func_801E1024_9FECE4(2, -1);
             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
@@ -258,7 +258,7 @@ u32 func_801E04E8_9FE1A8(void) {
         }
         if ((func_801E0FAC_9FEC6C(D_801EA294_A07F54) != 0) && (sp1C->pressedButtons & 0x8000)) {
             auPlaySound(0x42);
-            func_803700A4_843854(0);
+            FocusMark_Show(false);
             func_801E1024_9FECE4(2, D_801EA294_A07F54);
             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(0xC);
@@ -273,12 +273,12 @@ s32 func_801E06F0_9FE3B0(void) {
 
     D_802308A4_A4E564 = 1;
     D_801EA294_A07F54 = D_801EA28C_A07F4C;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801DE5D0_9FC290(1);
     D_802308AC_A4E56C = 0;
     D_802308A8_A4E568 = 0;
-    func_80370038_8437E8(0x32, 0x25);
-    func_803700A4_843854(1);
+    FocusMark_SetTargetSize(0x32, 0x25);
+    FocusMark_Show(true);
     func_801DFA94_9FD754(NULL, &D_802308A8_A4E568, &D_802308AC_A4E56C, 1);
     func_801DDCA8_9FB968(0xB);
 
@@ -299,7 +299,7 @@ s32 func_801E06F0_9FE3B0(void) {
         D_801EA28C_A07F4C = D_801EA294_A07F54;
         if (sp1C->pressedButtons & 0x4000) {
             auPlaySound(0x43);
-            func_803700A4_843854(0);
+            FocusMark_Show(false);
             func_801DE5D0_9FC290(0);
             func_801E1024_9FECE4(1, -1);
             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
@@ -308,7 +308,7 @@ s32 func_801E06F0_9FE3B0(void) {
         }
         if ((func_801E0FE4_9FECA4(D_801EA294_A07F54) != 0) && (sp1C->pressedButtons & 0x8000)) {
             auPlaySound(0x42);
-            func_803700A4_843854(0);
+            FocusMark_Show(false);
             func_801E1024_9FECE4(1, D_801EA294_A07F54);
             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
             func_801DDCA8_9FB968(0xC);
@@ -326,22 +326,22 @@ s32 func_801E08FC_9FE5BC(s32 arg0) {
     } else {
         D_802308A4_A4E564 = 1;
     }
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801DE5D0_9FC290(0);
     D_802308B4_A4E574 = 0;
     D_802308B0_A4E570 = 0;
-    func_80370038_8437E8(0x32, 0x25);
+    FocusMark_SetTargetSize(0x32, 0x25);
     D_802308B8_A4E578 = 1;
     func_801E006C_9FDD2C(NULL, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 
     while (true) {
         sp1C = func_800AA38C(0);
         func_801E006C_9FDD2C(sp1C, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
         if (sp1C->pressedButtons & 0x4000) {
             auPlaySound(0x43);
-            func_80370090_843840(true);
-            func_803700A4_843854(0);
+            FocusMark_StopAnimation(true);
+            FocusMark_Show(false);
             func_801DE04C_9FBD0C(-1, -1);
             if (arg0 == 2) {
                 return 1;
@@ -357,14 +357,14 @@ s32 func_801E08FC_9FE5BC(s32 arg0) {
             sp1C = func_801DD1A8_9FAE68();
             if (sp1C->pressedButtons & 0x8000) {
                 func_801E1024_9FECE4(0, -1);
-                func_80370090_843840(true);
+                FocusMark_StopAnimation(true);
                 func_801DF8A4_9FD564(NULL, &D_802308A4_A4E564);
                 return 0;
             } else {
                 auPlaySound(0x43);
                 func_801E1170_9FEE30((D_802308B4_A4E574 * 2) + D_802308B0_A4E570, 0);
                 func_801DDC50_9FB910((D_802308B4_A4E574 * 2) + D_802308B0_A4E570);
-                func_803700A4_843854(1);
+                FocusMark_Show(true);
                 func_801DE04C_9FBD0C((D_802308B0_A4E570 * 0x43) + 0x82, (D_802308B4_A4E574 * 0x38) + 0x2E);
             }
         }
@@ -380,11 +380,11 @@ s32 func_801E0B7C_9FE83C(void) {
     D_802308A4_A4E564 = 2;
     D_802308B4_A4E574 = 0;
     D_802308B0_A4E570 = 0;
-    func_803700A4_843854(0);
-    func_80370038_8437E8(0x32, 0x25);
+    FocusMark_Show(false);
+    FocusMark_SetTargetSize(0x32, 0x25);
     D_802308B8_A4E578 = 0;
     func_801E006C_9FDD2C(NULL, &D_802308B0_A4E570, &D_802308B4_A4E574, D_802308B8_A4E578);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 
     while (true) {
         ohWait(1);
@@ -395,7 +395,7 @@ s32 func_801E0B7C_9FE83C(void) {
 
             if (func_801E1008_9FECC8() == 0) {
                 auPlaySound(0x43);
-                func_803700A4_843854(0);
+                FocusMark_Show(false);
                 ohWait(1);
                 return 0;
             } else {
@@ -455,7 +455,7 @@ void func_801E0DEC_9FEAAC(void) {
         D_802308A4_A4E564 = 3;
     }
     D_801EA294_A07F54 = 0;
-    func_80370134_8438E4();
+    FocusMark_MoveFront();
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
 

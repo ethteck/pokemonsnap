@@ -14,18 +14,18 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     int temp;
     if (arg0 == NULL) {
         if (arg1 != NULL) {
-            func_80370004_8437B4(0x16, (*arg1 * 24) + 29);
-            func_8037005C_84380C(0x3E, 0xD);
+            FocusMark_SetPos(0x16, (*arg1 * 24) + 29);
+            FocusMark_SetSize(0x3E, 0xD);
         }
         return 0;
     }
 
-    func_8036FFE0_843790(0x16, (*arg1 * 24) + 29);
+    FocusMark_SetTargetPos(0x16, (*arg1 * 24) + 29);
 
     if ((arg0->pressedButtons & 0x10000) && !(arg0->currentButtons & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].id == 35);
+        } while (D_80206B44_9CC364[*arg1].id == 35);
 
         auPlaySound(0x41);
     }
@@ -33,7 +33,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
     if ((arg0->pressedButtons & 0x20000) && !(arg0->currentButtons & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while ((*D_80206B44_9CC364)[*arg1].id == 35);
+        } while (D_80206B44_9CC364[*arg1].id == 35);
 
         auPlaySound(0x41);
     }
@@ -56,26 +56,26 @@ s32 func_800E3404_8A8C24(void) {
     if (getLevelId() >= 0 && getLevelId() < 7) {
         sp40 = getLevelId();
     }
-    func_80370038_8437E8(0x3E, 0xD);
+    FocusMark_SetTargetSize(0x3E, 0xD);
     func_800E1D1C_8A753C(1);
     func_800E1C18_8A7438(1);
     func_800E61B4_8AB9D4(1, 0);
     if (func_800C0290_5D130() > func_800BFC5C_5CAFC()) {
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UILayout_ShowButton(false, func_800C0290_5D130() + 6);
         bass = D_80195CEC_95B50C[func_800C0290_5D130()];
         UILayout_CreateButtons(bass);
         UILayout_WaitPanelTransitionComplete();
         func_800E2A04_8A8224();
         sp40 = func_800BFC5C_5CAFC();
-        func_803700A4_843854(1);
+        FocusMark_Show(true);
     } else {
         sp40 = D_80195894_95B0B4;
         bass = D_80195CEC_95B50C[func_800BFC5C_5CAFC()];
         UILayout_CreateButtons(bass);
     }
     func_800E3264_8A8A84(NULL, &sp40);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 
     while (true) {
         if (func_800E6404_8ABC24() != 0) {
@@ -92,8 +92,8 @@ s32 func_800E3404_8A8C24(void) {
 
         if (var_v0->pressedButtons & 0x8000) {
             auPlaySound(0x42);
-            UILayout_DisableAllButtonsExcept(1, (*D_80206B44_9CC364)[sp40].id);
-            switch ((*D_80206B44_9CC364)[sp40].id) {
+            UILayout_DisableAllButtonsExcept(1, D_80206B44_9CC364[sp40].id);
+            switch (D_80206B44_9CC364[sp40].id) {
                 case 6:
                     D_80195894_95B0B4 = 0;
                     return 4;
@@ -118,7 +118,7 @@ s32 func_800E3404_8A8C24(void) {
                 case 5:
                     D_80206B48_9CC368 = &func_800E307C_8A889C;
                     func_800E1D1C_8A753C(0);
-                    UILayout_DisableAllButtonsExcept(0, (*D_80206B44_9CC364)[sp40].id);
+                    UILayout_DisableAllButtonsExcept(0, D_80206B44_9CC364[sp40].id);
                     return 0;
             }
         }
@@ -129,7 +129,7 @@ s32 func_800E3404_8A8C24(void) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(func_800E1B40_8A7360(),
-                                 UILayout_GetButtonText(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], (*D_80206B44_9CC364)[sp40].id));
+                                 UILayout_GetButtonText(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], D_80206B44_9CC364[sp40].id));
         }
         ohWait(1);
     }
@@ -177,13 +177,13 @@ s32 func_800E37CC_8A8FEC(void) {
     if (func_800E3774_8A8F94() == 0) {
         UILayout_DisableButton(1, 3);
     }
-    func_80370038_8437E8(0x3E, 0xD);
+    FocusMark_SetTargetSize(0x3E, 0xD);
     ohWait(1);
     while (func_800A7460() != 0) {
         ohWait(1);
     }
     func_800E3264_8A8A84(NULL, &sp80);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 
     while (true) {
         temp_v0_2 = func_800AA38C(0);
@@ -191,7 +191,7 @@ s32 func_800E37CC_8A8FEC(void) {
         if (temp_v0_2->pressedButtons & 0x8000) {
             auPlaySound(0x42);
 
-            switch ((*D_80206B44_9CC364)[sp80].id) {
+            switch (D_80206B44_9CC364[sp80].id) {
                 case 1:
                     return 1;
                 case 2:
@@ -215,7 +215,7 @@ s32 func_800E37CC_8A8FEC(void) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
 
-            switch ((*D_80206B44_9CC364)[sp80].id) {
+            switch (D_80206B44_9CC364[sp80].id) {
 
                 case 3:
                     for (numPics = 0, i = 0; i < 60; i++) {
@@ -272,7 +272,7 @@ s32 func_800E37CC_8A8FEC(void) {
                     UIElement_PrintText(func_800E1B40_8A7360(), sp4C);
                     break;
                 default:
-                    UIElement_PrintText(func_800E1B40_8A7360(), UILayout_GetButtonText(func_800E3230_8A8A50(), (*D_80206B44_9CC364)[sp80].id));
+                    UIElement_PrintText(func_800E1B40_8A7360(), UILayout_GetButtonText(func_800E3230_8A8A50(), D_80206B44_9CC364[sp80].id));
                     break;
             }
         }
@@ -294,7 +294,7 @@ s32 func_800E3CE8_8A9508(void) {
     ohWait(1);
     UIElement_PrintText(sp2C, "Shall I save your progress?\n\\a Yes!   \\b No!");
     func_800E3264_8A8A84(func_800AA740(0), &sp38);
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
 
     while (1) {
         temp_v1 = func_800AA38C(0)->pressedButtons;
@@ -354,7 +354,7 @@ s32 func_800E3ED4_8A96F4(void) {
     var_s0 = 0;
     D_80206B40_9CC360 = func_800E3230_8A8A50();
     D_80206B44_9CC364 = UILayout_GetButtons();
-    func_80370134_8438E4();
+    FocusMark_MoveFront();
     func_800AA85C(0x18, 0xC);
     func_800AA870(0xF0000);
     UILayout_SetInstantTransition(true);
@@ -378,7 +378,7 @@ s32 func_800E3ED4_8A96F4(void) {
                             ohWait(1);
                         } while (func_800A7460() != 0);
                     }
-                    func_803700A4_843854(0);
+                    FocusMark_Show(false);
                     func_800A7860(1, 0.2f);
                     UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_0);
                     UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);
@@ -399,7 +399,7 @@ s32 func_800E3ED4_8A96F4(void) {
                         while (func_800A7460() != 0) {
                             ohWait(1);
                         }
-                        func_803700A4_843854(0);
+                        FocusMark_Show(false);
                         func_800A7860(1, 0.2f);
                         UIFrame_SetStyle(func_800E1B4C_8A736C(), FRAME_STYLE_1);
                         UIFrame_GetBackgroundColor(func_800E1B4C_8A736C(), &sp64);

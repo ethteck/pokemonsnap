@@ -535,7 +535,7 @@ void func_801DE898_9D5208(s32 arg0) {
     s32 i;
 
     if (arg0 != 0) {
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UILayout_CreateButtons(func_801E28A0_9D9210(0));
         UILayout_WaitPanelTransitionComplete();
         func_801DCEA8_9D3818(0);
@@ -557,7 +557,7 @@ void func_801DE898_9D5208(s32 arg0) {
         UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
         UILayout_CreateButtons(func_801E28A0_9D9210(1));
         UILayout_WaitPanelTransitionComplete();
-        func_803700A4_843854(1);
+        FocusMark_Show(true);
         func_801DDCD4_9D4644(0);
         func_801DCEA8_9D3818(0);
         UIElement_SetState(D_80230C1C_A2758C, UI_HIDDEN);
@@ -1352,7 +1352,7 @@ void func_801E1378_9D7CE8(void) {
     ohWait(21);
     UILayout_CreateButtons(func_801E2850_9D91C0());
     UILayout_WaitPanelTransitionComplete();
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 }
 
 void func_801E1568_9D7ED8(s32 arg0) {
@@ -1363,7 +1363,7 @@ void func_801E1568_9D7ED8(s32 arg0) {
     s32 sp1C;
     s32 sp18;
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
     ohWait(21);
@@ -1456,14 +1456,14 @@ void func_801E16DC_9D804C(void) {
         func_801DE078_9D49E8(0);
         ohWait(30);
         UIElement_SetState(D_80230C34_A275A4, UI_NORMAL);
-        func_803700A4_843854(1);
+        FocusMark_Show(true);
     }
 }
 
 void func_801E1AC4_9D8434(void) {
     s32 i;
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UIElement_Delete(D_80230C34_A275A4);
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
@@ -1556,7 +1556,7 @@ void func_801E1F20_9D8890(void) {
     s32 sp18;
 
     sp18 = 30;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UIElement_SetState(D_80230C30_A275A0, UI_HIDDEN);
     UIElement_SetState(D_80230C34_A275A4, UI_HIDDEN);
     UILayout_SetHeaderFlags(0);
@@ -1633,7 +1633,7 @@ void func_801E2340_9D8CB0(void) {
     s32 sp18;
 
     sp18 = 30;
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
     ohWait(21);
@@ -1671,8 +1671,8 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     sp2C = 1;
     D_80230DC0_A27730 = 0;
     UILayout_Init();
-    func_80370428_843BD8();
-    func_803700A4_843854(0);
+    FocusMark_Create();
+    FocusMark_Show(false);
     sp3C = func_801DCF5C_9D38CC(&sp34);
     sp38 = func_800BF864_5C704();
     D_80230C28_A27598 = UIFrame_Create();
@@ -1716,7 +1716,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     ohWait(30);
     UILayout_CreateButtons(func_801E2850_9D91C0());
     UILayout_WaitPanelTransitionComplete();
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
 
     while (true) {
         sp30 = D_80230C30_A275A0;

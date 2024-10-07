@@ -24,17 +24,17 @@ u8** func_800E18B4_A5CC64(s32 arg0);
 
 void func_800E2200_A5D5B0(void) {
     if (menu_new_game_CursorY < 19) {
-        func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+        FocusMark_SetTargetSize(4, 5);
+        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
     if (menu_new_game_CursorX < 2) {
-        func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+        FocusMark_SetTargetSize(4, 5);
+        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
-    func_80370038_8437E8(15, 5);
-    func_8036FFE0_843790(63, menu_new_game_CursorY * 10 + 22);
+    FocusMark_SetTargetSize(15, 5);
+    FocusMark_SetTargetPos(63, menu_new_game_CursorY * 10 + 22);
 }
 
 void func_800E2314_A5D6C4(void) {

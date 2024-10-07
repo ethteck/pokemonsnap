@@ -66,7 +66,7 @@ void func_800E1C18_8A7438(s32 arg0) {
     }
 }
 
-void func_800E1CA0_8A74C0(s32 arg0) {
+void func_800E1CA0_8A74C0(GObj* arg0) {
     f32 temp_f2;
     f32 var_f0;
     static f32 bla = -72;
@@ -512,11 +512,11 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     s32 sp3C;
 
     UILayout_Init();
-    func_80370428_843BD8();
+    FocusMark_Create();
     func_8036EE40_8425F0();
-    func_803700A4_843854(0);
-    func_80370038_8437E8(0x78, 0x1A);
-    func_8036FFE0_843790(0x32, 0x2C);
+    FocusMark_Show(false);
+    FocusMark_SetTargetSize(0x78, 0x1A);
+    FocusMark_SetTargetPos(0x32, 0x2C);
     temp_v0 = UIFrame_Create();
     D_80206B20_9CC340 = temp_v0;
     UIFrame_SetStyle(temp_v0, FRAME_STYLE_1);
@@ -586,7 +586,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     while (true) {
         sp3C = func_800E3ED4_8A96F4();
         func_80375284_848A34(3);
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UIElement_SetState(D_80206B1C_9CC33C, UI_HIDDEN);
         UIFrame_ShowBackground(temp_v0, true);
         UILayout_SetHeaderFlags(0);
@@ -623,8 +623,8 @@ void func_800E30B8_8A88D8(void) {
     sobj = func_80371D14_8454C4(NULL, 6, &D_80128F38_8EE758)->data.sobj;
     sobj->sprite.x = 40;
     sobj->sprite.y = 92;
-    func_8036FFE0_843790(40, 92);
-    func_80370038_8437E8(240, 56);
+    FocusMark_SetTargetPos(40, 92);
+    FocusMark_SetTargetSize(240, 56);
     UIText_SetPrintDelay(1);
     func_8036EB80_842330(0);
     auSetBGMVolumeSmooth(0, 0x3F80, 60);

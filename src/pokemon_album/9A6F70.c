@@ -94,7 +94,7 @@ s32 func_801DCD7C_9A6FCC(s16* wideStr, char* dst) {
     s32 srcIndex;
     s32 dstIndex;
 
-    srcPtr = wideStr; // todo what is going on with the type of this
+    srcPtr = (char*)wideStr; // todo what is going on with the type of this
     dstPtr = dst != NULL ? dst : temp;
     srcIndex = 0;
     dstIndex = 0;
@@ -923,7 +923,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
         case 0:
             album_D_8024EFE0_A19230 = 0;
             album_D_80250064_A1A2B4->data.sobj->sprite.width = 400;
-            func_803700A4_843854(0);
+            FocusMark_Show(false);
             UILayout_HideButtons();
             UILayout_WaitPanelTransitionComplete();
             UILayout_ShowPanel(false);
@@ -1267,7 +1267,7 @@ void func_801E0774_9AA9C4(void) {
 
     UILayout_CreateButtons(func_801E1900_9ABB50());
     UILayout_WaitPanelTransitionComplete();
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     UIText_SetPrintDelay((0, 0));
 }
 
@@ -1283,7 +1283,7 @@ void func_801E09A0_9AABF0(s32 arg0) {
         sp1C = 10;
     }
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
     UILayout_WaitPanelTransitionComplete();
@@ -1368,7 +1368,7 @@ void func_801E0E58_9AB0A8(void) {
     s32 sp1C;
     s32 i;
 
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UIElement_SetState(album_D_8024FFF8_A1A248, UI_HIDDEN);
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
@@ -1411,7 +1411,7 @@ void func_801E0F90_9AB1E0(void) {
     UIElement_SetState(album_D_8024FFF4_A1A244, UI_NORMAL);
     UIText_SetPrintDelay(0);
     UILayout_ShowPanel(true);
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     ohWait(21);
 }
 
@@ -1541,9 +1541,9 @@ void func_801E1598_9AB7E8(GObj* arg0) {
 
     sp5C = 1;
     UILayout_Init();
-    func_80370428_843BD8();
+    FocusMark_Create();
     func_801E4084_9AE2D4();
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801DE768_9A89B8();
     func_801DE830_9A8A80();
     func_801DECE8_9A8F38();
@@ -1587,7 +1587,7 @@ void func_801E1598_9AB7E8(GObj* arg0) {
 
     UILayout_CreateButtons(func_801E1900_9ABB50());
     UILayout_WaitPanelTransitionComplete();
-    func_803700A4_843854(1);
+    FocusMark_Show(true);
     UIText_SetPrintDelay((0, 0));
 
     while (true) {

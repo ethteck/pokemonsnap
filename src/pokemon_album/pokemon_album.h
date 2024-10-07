@@ -33,7 +33,7 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8*, s32*);
 s32 func_801E1C30_9ABE80(UnkStruct800BEDF8*, s32*, s32*);
 s32 func_801E1FE4_9AC234(UnkStruct800BEDF8*, s32*, s32*, s32);
 s32 func_801E2438_9AC688(UnkStruct800BEDF8*, s32*, s32*);
-s32 func_801E29A8_9ACBF8(void);
+s32 album_UpdateAlbumPage(void);
 void func_801E37A0_9AD9F0(void);
 void func_801E3880_9ADAD0(void);
 PhotoData* album_GetAlbumPhoto(s32);

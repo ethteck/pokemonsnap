@@ -358,7 +358,7 @@ void func_8036DC4C_8413FC(s32 r, s32 g, s32 b, s32 a) {
     UIText_ShadowColor.a = a;
 }
 
-s32 UIText_GetGlyph(s32 ch) {
+u8* UIText_GetGlyph(s32 ch) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(UIText_CharTable); i++) {
@@ -459,14 +459,14 @@ s32 UIText_PrintChar32(UIText* arg0, s32 x, s32 y, s32 ch) {
                     continue;
                 }
 
-                UIText_GetBlendedColor(img, &D_803A6A04_87A1B4, ci);
+                UIText_GetBlendedColor((ucolor*)img, &D_803A6A04_87A1B4, ci);
 
                 for (v1 = img, k = UIText_ShadowOffset; k > 0; k--) {
                     v1 += arg0->width + 1;
                     if (k == 1) {
-                        UIText_GetBlendedColor(v1, &UIText_ShadowColor, ci);
+                        UIText_GetBlendedColor((ucolor*)v1, &UIText_ShadowColor, ci);
                     } else {
-                        UIText_GetBlendedColor(v1, &UIText_ShadowColor, 15);
+                        UIText_GetBlendedColor((ucolor*)v1, &UIText_ShadowColor, 15);
                     }
                 }
             }

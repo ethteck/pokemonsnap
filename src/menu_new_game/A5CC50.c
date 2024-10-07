@@ -252,12 +252,12 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
 }
 
 void func_800E1E94_A5D244(void) {
-    func_80370428_843BD8();
-    func_803700A4_843854(0);
-    func_80370038_8437E8(4, 5);
-    func_8036FFE0_843790(25, 22);
-    func_80370134_8438E4();
-    func_803700A4_843854(1);
+    FocusMark_Create();
+    FocusMark_Show(false);
+    FocusMark_SetTargetSize(4, 5);
+    FocusMark_SetTargetPos(25, 22);
+    FocusMark_MoveFront();
+    FocusMark_Show(true);
 }
 
 void func_800E1EE4_A5D294(void) {

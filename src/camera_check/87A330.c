@@ -788,7 +788,7 @@ void func_camera_check_801DEC2C(char* arg0) {
 void func_camera_check_801DEC84(void) {
     auPlaySong(0, 0x10);
     func_camera_check_801DDA44(0);
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
     UIElement_Delete(D_camera_check_80249910);
 }
@@ -920,8 +920,8 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIElement* sp44;
 
     UILayout_Init();
-    func_80370428_843BD8();
-    func_803700A4_843854(0);
+    FocusMark_Create();
+    FocusMark_Show(false);
     func_8036EE40_8425F0();
 
     if (temp_s0 && temp_s0 && temp_s0) {
@@ -1032,7 +1032,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
 
     while (true) {
         func_camera_check_801E21E8();
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UIElement_SetState(D_camera_check_80249914, UI_HIDDEN);
         if (D_camera_check_80249910 != NULL) {
             UIElement_Delete(D_camera_check_80249910);

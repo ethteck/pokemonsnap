@@ -1797,7 +1797,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             sp40 = func_800AA38C(0);
             func_801E41FC_993C6C(sp40, &sp3C);
             if (sp40->pressedButtons & 0x8000) {
-                func_803700A4_843854(0);
+                FocusMark_Show(false);
                 if (sp3C != NULL) {
                     auPlaySound(0x5F);
                     func_801DCFE8_98CA58(photo);
@@ -2310,7 +2310,7 @@ void func_801E3934_9933A4(void) {
     s32 sp1C;
 
     func_801DD9E4_98D454(0);
-    func_803700A4_843854(0);
+    FocusMark_Show(false);
     func_801E2454_991EC4();
     sp1C = 0;
     func_801E2ED4_992944(sp1C);
@@ -2338,8 +2338,8 @@ void func_801E39DC_99344C(GObj* arg0) {
     func_801E5030_994AA0();
     D_801F3E28_9A3898 = 0;
     UILayout_Init();
-    func_80370428_843BD8();
-    func_803700A4_843854(0);
+    FocusMark_Create();
+    FocusMark_Show(false);
     sp3C = UIElement_Create(71, 25, 204, 48, 0);
     D_802290E4_9D8B54 = sp3C;
     UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
@@ -2424,7 +2424,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     while (true) {
         sp48 = func_801E4428_993E98();
         func_800AAED0(0x20);
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UIElement_SetState(sp3C, UI_HIDDEN);
         UIElement_SetState(D_802290DC_9D8B4C, UI_HIDDEN);
         UILayout_SetHeaderFlags(0);

@@ -85,13 +85,13 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* input, s32* arg1) {
 
     FocusMark_SetTargetPos(22, (*arg1 * 24) + 29);
 
-    if ((input->pressedButtons & STICK_SLOW_UP) && !(input->currentButtons & STICK_MASK_SLOW)) {
+    if ((input->pressedButtons & STICK_SLOW_UP) && !(input->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
             *arg1 = (*arg1 + 7) % 8;
         } while (album_PanelButtons[*arg1].id == BUTTON_END);
         auPlaySound(0x41);
     }
-    if ((input->pressedButtons & STICK_SLOW_DOWN) && !(input->currentButtons & STICK_MASK_SLOW)) {
+    if ((input->pressedButtons & STICK_SLOW_DOWN) && !(input->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
             *arg1 = (*arg1 + 1) % 8;
         } while (album_PanelButtons[*arg1].id == BUTTON_END);
@@ -672,7 +672,7 @@ void func_801E37A0_9AD9F0(void) {
     album_PanelButtons = UILayout_GetButtons();
     D_80208B94_9D2DE4 = 0;
     FocusMark_MoveFront();
-    func_800AA85C(0x18, 0xC);
+    func_800AA85C(24, 12);
     func_800AA870(0xF0000);
 
     while (true) {

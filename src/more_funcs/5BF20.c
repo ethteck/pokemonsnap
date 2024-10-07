@@ -146,20 +146,20 @@ char* get_player_name(void) {
     return D_800C21B0_5F050->data.playerName.data;
 }
 
-void func_800BF4A8_5C348(UnkFuzzyCaterpillar* arg0, s32 arg1) {
-    if (arg1 < 0 || arg1 >= ARRAY_COUNT(D_800C21B0_5F050->data.var_10A20)) {
+void set_album_comment(AlbumComment* comment, s32 index) {
+    if (index < 0 || index >= ARRAY_COUNT(D_800C21B0_5F050->data.albumPhotos)) {
         return;
     }
 
-    D_800C21B0_5F050->data.var_10A20[arg1].unk_3A0 = *arg0;
+    D_800C21B0_5F050->data.albumPhotos[index].comment = *comment;
 }
 
-UnkFuzzyCaterpillar* func_800BF534_5C3D4(s32 arg0) {
-    if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_800C21B0_5F050->data.var_10A20)) {
+AlbumComment* get_album_comment(s32 index) {
+    if (index < 0 || index >= ARRAY_COUNT(D_800C21B0_5F050->data.albumPhotos)) {
         return NULL;
     }
 
-    return &D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0;
+    return &D_800C21B0_5F050->data.albumPhotos[index].comment;
 }
 
 PhotoData* func_800BF574_5C414(s32 arg0) {
@@ -285,16 +285,16 @@ PhotoData* func_800BF8BC_5C75C(s32 arg0) {
     return sp28;
 }
 
-void func_800BF954_5C7F4(s32 arg0, PhotoData* photoData, UnkFuzzyCaterpillar* arg2) {
-    if (arg0 < 0 || arg0 >= 60) {
+void func_800BF954_5C7F4(s32 index, PhotoData* photo, AlbumComment* comment) {
+    if (index < 0 || index >= 60) {
         return;
     }
 
-    if (photoData != NULL) {
-        D_800C21B0_5F050->data.var_10A20[arg0].photoData = *photoData;
+    if (photo != NULL) {
+        D_800C21B0_5F050->data.albumPhotos[index].photoData = *photo;
     }
-    if (arg2 != 0) {
-        func_800BF4A8_5C348(arg2, arg0);
+    if (comment != 0) {
+        set_album_comment(comment, index);
     }
 }
 
@@ -308,24 +308,24 @@ void func_800BF9F4_5C894(s32 arg0) {
         return;
     }
 
-    D_800C21B0_5F050->data.var_10A20[arg0].photoData.unk_04.s32 = -1;
-    D_800C21B0_5F050->data.var_10A20[arg0].unk_3A0.data.s[0] = 0;
+    D_800C21B0_5F050->data.albumPhotos[arg0].photoData.unk_04.s32 = -1;
+    D_800C21B0_5F050->data.albumPhotos[arg0].comment.text[0] = 0;
 }
 
-PhotoData* func_800BFA44_5C8E4(s32 arg0) {
+PhotoData* getAlbumPhoto(s32 arg0) {
     PhotoData* ret;
     if (arg0 < 0 || arg0 >= 60) {
         return NULL;
     }
 
-    if (D_800C21B0_5F050->data.var_10A20[arg0].photoData.unk_04.s32 == -1) {
+    if (D_800C21B0_5F050->data.albumPhotos[arg0].photoData.unk_04.s32 == -1) {
         ret = NULL;
     } else {
-        ret = &D_800C21B0_5F050->data.var_10A20[arg0].photoData;
+        ret = &D_800C21B0_5F050->data.albumPhotos[arg0].photoData;
     }
 
     if (ret) {
-        return &D_800C21B0_5F050->data.var_10A20[arg0].photoData;
+        return &D_800C21B0_5F050->data.albumPhotos[arg0].photoData;
     }
 
     return NULL;
@@ -627,7 +627,7 @@ s32 func_800C042C_5D2CC(void) {
     }
 
     for (var_v1 = 0; var_v1 < 60; var_v1++) {
-        D_800C21B0_5F050->data.var_10A20[var_v1].photoData.unk_04.s32 = -1;
+        D_800C21B0_5F050->data.albumPhotos[var_v1].photoData.unk_04.s32 = -1;
     }
 
     func_800BF650_5C4F0(0);
@@ -646,7 +646,7 @@ s32 func_800C042C_5D2CC(void) {
     D_800C21B0_5F050->data.unk_20 = (uintptr_t) D_800C21B0_5F050->data.unk_6C - (uintptr_t) D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_24 = (uintptr_t) D_800C21B0_5F050->data.unk_180 - (uintptr_t) D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_28 = (uintptr_t) D_800C21B0_5F050->data.unk_FBA0 - (uintptr_t) D_800C21B0_5F050;
-    D_800C21B0_5F050->data.unk_2C = (uintptr_t) D_800C21B0_5F050->data.var_10A20 - (uintptr_t) D_800C21B0_5F050;
+    D_800C21B0_5F050->data.unk_2C = (uintptr_t) D_800C21B0_5F050->data.albumPhotos - (uintptr_t) D_800C21B0_5F050;
     D_800C21B0_5F050->data.unk_30 = osGetTime();
     func_800BF1F0_5C090();
     return 0;

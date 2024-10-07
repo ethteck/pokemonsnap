@@ -330,7 +330,7 @@ void start_scene_manager(s32 arg0) {
                 dmaLoadOverlay(&overlayWorld);
                 dmaLoadOverlay(&overlayWindow);
                 dmaLoadOverlay(&overlayPokemonAlbum);
-                sceneId = func_801DCCA0_9A6EF0(sceneId);
+                sceneId = album_Start(sceneId);
                 break;
             case SCENE_REPORT:
                 func_800AAF20();

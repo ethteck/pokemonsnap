@@ -156,15 +156,15 @@ void func_800E6F68_A0E4F8(void) {
             break;
         }
 
-        if (temp_v0_2->unk_18 & 0x10000) {
+        if (temp_v0_2->pressedButtons & 0x10000) {
             topBottomCur--;
-        } else if (temp_v0_2->unk_18 & 0x20000) {
+        } else if (temp_v0_2->pressedButtons & 0x20000) {
             topBottomCur++;
         }
 
-        if (temp_v0_2->unk_18 & 0x80000) {
+        if (temp_v0_2->pressedButtons & 0x80000) {
             leftRightCur--;
-        } else if (temp_v0_2->unk_18 & 0x40000) {
+        } else if (temp_v0_2->pressedButtons & 0x40000) {
             leftRightCur++;
         }
 
@@ -343,13 +343,13 @@ s8 func_800E7700_A0EC90(void) {
             pressedB = true;
             break;
         } else {
-            if (temp_v0_2->unk_18 & 0x10000) {
+            if (temp_v0_2->pressedButtons & 0x10000) {
                 auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
                 D_800E8374_A0F904--;
                 if (D_800E8374_A0F904 < 0) {
                     D_800E8374_A0F904 = 4;
                 }
-            } else if (temp_v0_2->unk_18 & 0x20000) {
+            } else if (temp_v0_2->pressedButtons & 0x20000) {
                 auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
                 D_800E8374_A0F904++;
                 D_800E8374_A0F904 %= 5;
@@ -513,14 +513,14 @@ void func_800E7C40_A0F1D0(void) {
             }
             break;
         } else {
-            if (temp_v0_2->unk_18 & 0x80000) {
+            if (temp_v0_2->pressedButtons & 0x80000) {
                 auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
                 D_800E8375_A0F905 = 0;
-            } else if (temp_v0_2->unk_18 & 0x40000) {
+            } else if (temp_v0_2->pressedButtons & 0x40000) {
                 auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
                 D_800E8375_A0F905 = 1;
             }
-            if (D_800E8374_A0F904 == 1 && temp_v0_2->unk_18 & (0x80000 | 0x40000)) {
+            if (D_800E8374_A0F904 == 1 && temp_v0_2->pressedButtons & (0x80000 | 0x40000)) {
                 auSetSoundQuality(!D_800E8375_A0F905);
             }
             ohWait(1);

@@ -109,7 +109,7 @@ void func_camera_check_801DCA60(void) {
     func_800AAE28();
     func_camera_check_801DC910();
     func_80374D40_8484F0();
-    func_8036EB98_842348();
+    UIText_Initialize();
     func_80375284_848A34(3);
     func_80375284_848A34(2);
     auSetBGMVolume(0, 0x7F00);

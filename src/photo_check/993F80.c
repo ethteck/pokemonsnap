@@ -241,16 +241,16 @@ void func_801E4E04_994874(void) {
     Photo* sp28;
     Foo2* sp24;
 
-    sp30 = !!func_800BFA44_5C8E4(0x3B);
+    sp30 = !!getAlbumPhoto(0x3B);
     sp2C = 0;
     if (sp30 == 0) {
         for (loop_i = 0; loop_i < 0x3B; loop_i++) {
-            if (func_800BFA44_5C8E4(loop_i) != 0) {
+            if (getAlbumPhoto(loop_i) != 0) {
                 sp2C = loop_i + 1;
             }
         }
     } else {
-        for (loop_i = 0; func_800BFA44_5C8E4(loop_i) != 0; loop_i++) {
+        for (loop_i = 0; getAlbumPhoto(loop_i) != 0; loop_i++) {
         }
         sp2C = loop_i;
     }
@@ -260,7 +260,7 @@ void func_801E4E04_994874(void) {
     for (loop_i = 0, sp28 = &D_802291A0_9D8C10[0]; loop_i < loop_end; sp28++, loop_i++) {
         if (sp28->unk_1A_14 || sp28->unk_1A_13) {
             func_800BF690_5C530(sp28->pkmnID, sp28->unk_0);
-            func_800BF7D4_5C674(sp28->pkmnID, sp28->unk_4);
+            func_800BF7D4_5C674(sp28->pkmnID, sp28->totalScore);
             if (D_80229838_9D92A8 < 3) {
                 // D_80229838_9D92A8 is being pre-incremented here. It seems to match better this way so far. Weird though...
                 func_800BF5D8_5C478(++D_80229838_9D92A8, sp28->unk_0);
@@ -273,7 +273,7 @@ void func_801E4E04_994874(void) {
                 sp30 = 1;
             }
             if (sp30 != 0) {
-                for (sp3C = 0; func_800BFA44_5C8E4(sp3C) != 0; sp3C++) {
+                for (sp3C = 0; getAlbumPhoto(sp3C) != 0; sp3C++) {
                 }
                 sp2C = sp3C;
             } else {
@@ -308,8 +308,8 @@ s32 func_801E5030_994AA0(void) {
         } else {
             sp30 = func_8037452C_847CDC(sp24->var_0);
             photo->unk_0 = sp24->var_0;
-            if (sp30->unk_3A0.unk_0A == 0) {
-                photo->unk_4 = 0;
+            if (sp30->score.pokemonInFocus == 0) {
+                photo->totalScore = 0;
                 photo->pkmnID = 9999;
                 photo->unk_1A_15 = 0;
                 photo->unk_1A_11 = 1;
@@ -320,22 +320,22 @@ s32 func_801E5030_994AA0(void) {
                 photo->commentID = 0;
                 photo->sizeParam2 = 0;
                 photo->specialBonus = 0;
-                photo->unk_9 = 0;
+                photo->samePkmnNumber = 0;
                 photo->samePkmnBonus = 0;
             } else {
-                photo->unk_4 = sp30->unk_3A0.unk_00;
-                photo->pkmnID = sp30->unk_3A0.unk_0A;
+                photo->totalScore = sp30->score.totalScore;
+                photo->pkmnID = sp30->score.pokemonInFocus;
                 photo->unk_1A_15 = !func_800BF3D4_5C274(photo->pkmnID);
                 photo->unk_1A_11 = 0;
-                photo->specialID = sp30->unk_3A0.unk_14;
-                photo->isWellFramed = sp30->unk_3A0.unk_07;
-                photo->sizeParam1 = sp30->unk_3A0.unk_0E;
-                photo->sizeParam2 = sp30->unk_3A0.unk_0C;
-                photo->commentID = sp30->unk_3A0.unk_08;
-                photo->posePts = sp30->unk_3A0.unk_10;
-                photo->specialBonus = sp30->unk_3A0.unk_12;
-                photo->samePkmnBonus = sp30->unk_3A0.unk_04;
-                photo->unk_9 = sp30->unk_3A0.unk_06;
+                photo->specialID = sp30->score.specialID;
+                photo->isWellFramed = sp30->score.isWellFramed;
+                photo->sizeParam1 = sp30->score.sizeParam1;
+                photo->sizeParam2 = sp30->score.sizeParam2;
+                photo->commentID = sp30->score.commentID;
+                photo->posePts = sp30->score.posePts;
+                photo->specialBonus = sp30->score.specialBonus;
+                photo->samePkmnBonus = sp30->score.samePkmnBonus;
+                photo->samePkmnNumber = sp30->score.samePkmnNumber;
                 sp34++;
             }
         }

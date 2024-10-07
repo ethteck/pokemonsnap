@@ -2,11 +2,11 @@
 #include "ld_addrs.h"
 #include "window/window.h"
 
-extern u8 D_80208FE0_9D3230[];
+u8 album_D_80208FE0_9D3230[0x46000];
 
 void func_801E1858_9ABAA8(void);
 void func_801DCC74_9A6EC4(void* arg0);
-void func_801DCBF4_9A6E44(void);
+void album_Init(void);
 
 Gfx D_801E41E0_9AE430[] = {
     gsDPPipeSync(),
@@ -22,7 +22,7 @@ Gfx D_801E41E0_9AE430[] = {
     gsSPEndDisplayList(),
 };
 
-ScreenSettings D_801E4250_9AE4A0 = {
+ScreenSettings album_ScreenSettings = {
     D_803B5000,
     D_803DA800,
     NULL,
@@ -32,7 +32,7 @@ ScreenSettings D_801E4250_9AE4A0 = {
     0x16A99,
 };
 
-SceneSetup D_801E426C_9AE4BC = {
+SceneSetup album_SceneSetup = {
     {
         0,
         omUpdateAll,
@@ -69,7 +69,7 @@ SceneSetup D_801E426C_9AE4BC = {
     0x60,
     0,
     sizeof(OMCamera),
-    func_801DCBF4_9A6E44,
+    album_Init,
 };
 
 void func_801DC8C0_9A6B10(Gfx** arg0) {
@@ -99,7 +99,7 @@ void func_801DCA14_9A6C64(GObj* obj) {
     }
 }
 
-void func_801DCA48_9A6C98(void) {
+void album_InitCamera(void) {
     GObj* sp54;
     struct OMCamera* cam;
     UNUSED s32 pad[4];
@@ -108,8 +108,8 @@ void func_801DCA48_9A6C98(void) {
     sp54->unk_38 = 0x100000;
 
     cam = sp54->data.cam;
-    cam->flags |= 6;
-    cam->flags &= ~3;
+    cam->flags |= CAMERA_FLAG_4 | CAMERA_FLAG_2;
+    cam->flags &= ~(CAMERA_FLAG_1 | CAMERA_FLAG_2);
     func_800A844C(cam, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     cam->viewMtx.lookAt.up.x = 0.0f;
     cam->viewMtx.lookAt.up.y = 0.0f;
@@ -123,16 +123,16 @@ void func_801DCA48_9A6C98(void) {
     cam->bgColor = 1;
 }
 
-void func_801DCBF4_9A6E44(void) {
+void album_Init(void) {
     UNUSED s32 pad[2];
 
-    func_8036A3F8_83DBA8(D_80208FE0_9D3230, 0x46000);
+    func_8036A3F8_83DBA8(album_D_80208FE0_9D3230, sizeof(album_D_80208FE0_9D3230));
     func_800AAE28();
-    func_801DCA48_9A6C98();
+    album_InitCamera();
     func_80374D40_8484F0();
     func_800A7F68(1, 0x101);
-    func_8036EB98_842348();
-    auPlaySong(0, 0xA);
+    UIText_Initialize();
+    auPlaySong(BGM_PLAYER_MAIN, SONG_ID_10);
     auSetBGMVolume(0, 0x7F00);
     func_801E1858_9ABAA8();
 }
@@ -141,13 +141,13 @@ void func_801DCC74_9A6EC4(void* arg0) {
     func_8036A228_83D9D8(arg0);
 }
 
-s32 func_801DCCA0_9A6EF0(s32 sceneId) {
+s32 album_Start(s32 sceneId) {
     UNUSED s32 pad[3];
 
-    viApplyScreenSettings(&D_801E4250_9AE4A0);
-    D_801E426C_9AE4BC.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) pokemon_album_VRAM_END;
+    viApplyScreenSettings(&album_ScreenSettings);
+    album_SceneSetup.gtlSetup.heapSize = (uintptr_t) window_VRAM - (uintptr_t) pokemon_album_VRAM_END;
     gtlDisableNearClipping(1);
-    omSetupScene(&D_801E426C_9AE4BC);
+    omSetupScene(&album_SceneSetup);
     func_800AAED0(0x100000);
 
     return D_800AF3C0;

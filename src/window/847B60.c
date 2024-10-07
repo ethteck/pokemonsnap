@@ -56,15 +56,15 @@ void func_803743BC_847B6C(GObj* camGobj) {
 }
 
 Unk803A6C18* func_8037452C_847CDC(PhotoData* arg0) {
-    SubUnk803A6C18* temp_v0;
+    ScoreData* temp_v0;
 
     if (arg0 == NULL) {
         return NULL;
     }
     temp_v0 = func_800A0EA4(D_803A666C_879E1C, arg0, D_803A6C10_87A3C0, D_803A6660_879E10, D_803A6664_879E14, D_803A6C14_87A3C4);
 
-    D_803A6C18_87A3C8.unk_00 = *arg0;
-    D_803A6C18_87A3C8.unk_3A0 = *temp_v0;
+    D_803A6C18_87A3C8.photo = *arg0;
+    D_803A6C18_87A3C8.score = *temp_v0;
 
     return &D_803A6C18_87A3C8;
 }
@@ -120,12 +120,12 @@ void func_80374D40_8484F0(void) {
 
     D_803A6C10_87A3C0 = gtlMalloc(0x20D00, 0x80);
     D_803A6C14_87A3C4 = gtlMalloc(0x20D00, 0x80);
-    camera = ohCreateCamera(0x200, ohUpdateDefault, 5, 5, func_803743BC_847B6C, 0x13, 0x80000, -1, 0, 0, NULL, 0, 1);
+    camera = ohCreateCamera(0x200, ohUpdateDefault, LINK_5, 5, func_803743BC_847B6C, 19, 1 << 19, -1, 0, 0, NULL, 0, 1);
     cam = camera->data.cam;
     omCameraAddMtx(cam, MTX_TYPE_PERSP_FAST, 0);
     omCameraAddMtx(cam, MTX_TYPE_LOOKAT_REFLECT, 0);
     cam->flags |= CAMERA_FLAG_10 | CAMERA_FLAG_4 | CAMERA_FLAG_2 | CAMERA_FLAG_1;
-    func_800A844C(cam, 0, 0, 0x140, 0xD2);
+    func_800A844C(cam, 0, 0, SCREEN_WIDTH, 210);
     cam->viewMtx.lookAt.up.x = 0.0f;
     cam->viewMtx.lookAt.up.y = 0.0f;
     cam->viewMtx.lookAt.up.z = 1.0f;

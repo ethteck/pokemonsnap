@@ -26,8 +26,8 @@ void func_801E1BEC_9D855C(void);
 void func_801E1F20_9D8890(void);
 void func_801E20B4_9D8A24(void);
 void func_801E2340_9D8CB0(void);
-UNK_PTR func_801E2850_9D91C0(void);
-UNK_PTR func_801E28A0_9D9210(s32);
+UIButton* func_801E2850_9D91C0(void);
+UIButton* func_801E28A0_9D9210(s32);
 void func_801E3B18_9DA488(void);
 
 #endif

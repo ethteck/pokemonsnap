@@ -170,7 +170,8 @@ enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
     SONG_ID_3 = 3,
-    SONG_ID_6 = 6
+    SONG_ID_6 = 6,
+    SONG_ID_10 = 10
 };
 
 enum Links {
@@ -204,6 +205,7 @@ enum DlLinks {
     DL_LINK_3 = 3,
     DL_LINK_4 = 4,
     DL_LINK_5 = 5,
+    DL_LINK_19 = 19,
     DL_LINK_30 = 30
 };
 
@@ -309,6 +311,17 @@ enum MsgAlignment {
     MSG_ALIGN_LEFT = 0,
     MSG_ALIGN_RIGHT = 1,
     MSG_ALIGN_CENTER = 2
+};
+
+enum StickDirecton {
+    STICK_SLOW_UP = 0x10000,
+    STICK_SLOW_DOWN = 0x20000,
+    STICK_SLOW_RIGHT = 0x40000,
+    STICK_SLOW_LEFT = 0x80000,
+    STICK_UP = 0x100000,
+    STICK_DOWN = 0x200000,
+    STICK_RIGHT = 0x400000,
+    STICK_LEFT = 0x800000
 };
 
 #endif

@@ -150,7 +150,7 @@ void func_801E1384_9FF044(void) {
 
     for (i = 0, count = 0; i < 60; i++) {
         // TODO weird for this to be an if
-        if (D_802308C0_A4E580[count] = func_800BFA44_5C8E4(i)) {
+        if (D_802308C0_A4E580[count] = getAlbumPhoto(i)) {
             count++;
         }
     }

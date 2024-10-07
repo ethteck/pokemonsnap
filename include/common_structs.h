@@ -5,6 +5,7 @@
 #include "types.h"
 #include "sys/om.h"
 #include "sys/anim.h"
+#include "sys/cont.h"
 
 typedef struct {
     /* 0x00 */ s32 cmd;
@@ -179,13 +180,13 @@ typedef struct {
 
 typedef struct UnkStruct800BEDF8 {
     /* 0x00 */ u64 unk_00;
-    /* 0x08 */ f32 unk_08;
-    /* 0x0C */ f32 unk_0C;
+    /* 0x08 */ f32 stickX;
+    /* 0x0C */ f32 stickY;
     /* 0x10 */ f32 unk_10;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-    /* 0x1C */ s32 unk_1C;
-    /* 0x20 */ s32 unk_20;
+    /* 0x14 */ s32 currentButtons;
+    /* 0x18 */ s32 pressedButtons;
+    /* 0x1C */ s32 releasedButtons;
+    /* 0x20 */ s32 notPressedButtons;
     /* 0x24 */ s32 unk_24;
 } UnkStruct800BEDF8; // size = 0x28
 
@@ -243,10 +244,10 @@ typedef struct UnkThing {
     /* 0x3A4 */ GObj* pokemonObjects[12];
 } UnkThing;
 
-typedef struct UnkCanaryScallop {
-    s32 unk_0;
-    s32 unk_4;
-} UnkCanaryScallop; // size = 0x8
+typedef struct UIButton {
+    s32 id;
+    char* text;
+} UIButton; // size = 0x8
 
 typedef union UnkPinkRatSub {
     Vec3f data1;
@@ -279,39 +280,22 @@ typedef struct UnkPinkRat {
     /* 0x4C */ UnkPinkRatSub unk_4C;
 } UnkPinkRat; // size = 0x58
 
-typedef struct IdleScriptEntry {
-    /* 0x00 */ u16 currentButtons;
-    /* 0x02 */ u16 pressedButtons;
-    /* 0x04 */ u16 heldButtons;
-    /* 0x06 */ u16 releasedButtons;
-    /* 0x08 */ s8 stickX;
-    /* 0x09 */ s8 stickY;
-} IdleScriptEntry; // size = 0xA
-
 typedef struct IdleScript {
     /* 0x00 */ u32 dataSize;
     /* 0x04 */ char unk_04[4];
     /* 0x08 */ s32 randSeed;
     /* 0x0C */ u32 playerFlags;
-    /* 0x10 */ IdleScriptEntry inputs[1];
+    /* 0x10 */ ControllerInput inputs[1];
 } IdleScript; // VLA
 
-typedef struct UnkFuzzyCaterpillar {
-    /* 0x00 */ union {
-        s16 s[0x20];
-        s8 c[0x40];
-    } data;
-} UnkFuzzyCaterpillar;
+typedef struct AlbumComment {
+    /* 0x00 */ s16 text[32];
+} AlbumComment;
 
-typedef struct PhotoDataExt {
+typedef struct AlbumPhotoData {
     /* 0x000 */ PhotoData photoData;
-    /* 0x3A0 */ UnkFuzzyCaterpillar unk_3A0;
-} PhotoDataExt; // size = 0x3E0
-
-typedef struct UnkCyanBass {
-    /* 0x00 */ s32 unk_00;
-    /* 0x04 */ char* unk_04;
-} UnkCyanBass; // size = 0x8
+    /* 0x3A0 */ AlbumComment comment;
+} AlbumPhotoData; // size = 0x3E0
 
 typedef struct UIFrame {
     /* 0x00 */ GObj* sprites[9];

@@ -17,11 +17,11 @@ s32 func_800E44A8_8A9CC8(UIElement* arg0, s32 arg1) {
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
-    while (!(var_v0->unk_18 & 0xC000)) {
+    while (!(var_v0->pressedButtons & 0xC000)) {
         ohWait(1);
         var_v0 = func_800AA38C(0);
     }
-    temp_v1 = var_v0->unk_14;
+    temp_v1 = var_v0->currentButtons;
     if (temp_v1 & 0x8000) {
         sp1C = 0x8000;
     }
@@ -147,18 +147,18 @@ void func_800E48C4_8AA0E4(void) {
     s32 i;
 
     auPlaySound(0x52);
-    func_803705F0_843DA0(1);
-    func_80370C34_8443E4(func_800E3230_8A8A50());
-    func_80370900_8440B0(1, 3);
-    func_80370990_844140(0.1f, 3);
+    UILayout_SetInstantTransition(true);
+    UILayout_CreateButtons(func_800E3230_8A8A50());
+    UILayout_ShowButton(1, 3);
+    UILayout_SetButtonScale(0.1f, 3);
 
     for (i = 1; i < 30;) {
-        func_80370990_844140(i / 30.0f, 3);
+        UILayout_SetButtonScale(i / 30.0f, 3);
         i++;
         ohWait(1);
     }
 
-    func_80370990_844140(1.0f, 3);
+    UILayout_SetButtonScale(1.0f, 3);
 }
 
 void func_800E4974_8AA194(void) {
@@ -185,18 +185,18 @@ void func_800E4A10_8AA230(void) {
     s32 i;
 
     auPlaySound(0x52);
-    func_803705F0_843DA0(1);
-    func_80370C34_8443E4(func_800E3230_8A8A50());
-    func_80370900_8440B0(1, 2);
-    func_80370990_844140(0.1f, 2);
+    UILayout_SetInstantTransition(true);
+    UILayout_CreateButtons(func_800E3230_8A8A50());
+    UILayout_ShowButton(1, 2);
+    UILayout_SetButtonScale(0.1f, 2);
 
     for (i = 1; i < 30;) {
-        func_80370990_844140(i / 30.0f, 2);
+        UILayout_SetButtonScale(i / 30.0f, 2);
         i++;
         ohWait(1);
     }
 
-    func_80370990_844140(1.0f, 2);
+    UILayout_SetButtonScale(1.0f, 2);
 }
 
 void func_800E4AC0_8AA2E0(void) {
@@ -430,7 +430,7 @@ void func_800E5120_8AA940(void) {
     UIElement_PrintText(sp1C, "Press \\a or \\b to save.");
     ohWait(1);
 
-    while (!(func_800AA38C(0)->unk_18 & 0xC000)) {
+    while (!(func_800AA38C(0)->pressedButtons & 0xC000)) {
         ohWait(1);
     }
 

@@ -252,12 +252,12 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
 }
 
 void func_800E1E94_A5D244(void) {
-    func_80370428_843BD8();
-    func_803700A4_843854(0);
-    func_80370038_8437E8(4, 5);
-    func_8036FFE0_843790(25, 22);
-    func_80370134_8438E4();
-    func_803700A4_843854(1);
+    FocusMark_Create();
+    FocusMark_Show(false);
+    FocusMark_SetTargetSize(4, 5);
+    FocusMark_SetTargetPos(25, 22);
+    FocusMark_MoveFront();
+    FocusMark_Show(true);
 }
 
 void func_800E1EE4_A5D294(void) {
@@ -308,7 +308,7 @@ void new_game_init(void) {
     func_800AAE28();
     func_800AA85C(24, 6);
     func_800AA870(0xF0000);
-    func_8036EB98_842348();
+    UIText_Initialize();
     ohCreateCameraWrapper(0, 0x80000000, 100, 6, 0);
     D_801180B0 = ohCreateCamera(3, ohUpdateDefault, 0, 0x80000000, renSpriteCameraRender, 3, 2, -1, true, 1, NULL, 1, true);
     D_801180B0->data.cam->flags = CAMERA_FLAG_8;

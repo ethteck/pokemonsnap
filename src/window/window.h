@@ -35,6 +35,33 @@ enum UiFonts {
     FONT_12 = 12
 };
 
+enum Buttons {
+    BUTTON_RETURN = 5,
+    BUTTON_GO_TO_LAB = 17,
+    BUTTON_DELETE = 19,
+    BUTTON_ENLARGE = 20,
+    BUTTON_ARRANGE = 26,
+    BUTTON_COMMENT = 27,
+    BUTTON_CHECK = 28,
+    BUTTON_OPEN = 30,
+    BUTTON_RETURN_TO_COVER = 31,
+    BUTTON_MAX = 32,
+    BUTTON_SPLITTER = 34,
+    BUTTON_END = 35
+};
+
+enum HeaderFlags {
+    HEADER_PREV = 1,
+    HEADER_NEXT = 2,
+    HEADER_TITLE = 4
+};
+
+enum HeaderStates {
+    PANEL_STATE_COLLAPSING = 0,
+    PANEL_STATE_EXPANDING = 1,    
+    PANEL_STATE_STABLE = 2
+};
+
 typedef struct UnkSnow2 {
     /* 0x00 */ s32 unk_00;
     /* 0x04 */ s32 unk_04;
@@ -125,7 +152,7 @@ void UIText_PrintAsciiString(UIText* arg0, s32* arg1, s32* arg2, u8* arg3);
 void UIText_PrintAsciiString(UIText*, s32*, s32*, u8*);
 void func_8036EB80_842330(s32);
 void func_8036EB8C_84233C(void (*)(s32));
-void func_8036EB98_842348(void);
+void UIText_Initialize(void);
 void func_8036EE40_8425F0(void);
 void func_8036EEB0_842660(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8036EFEC_84279C(s32, s32, s32, s32, s32);
@@ -139,31 +166,31 @@ void UIFrame_GetBackgroundColor(UIFrame*, ucolor*);
 UIFrame* UIFrame_Create(void);
 void UIFrame_FadeIn(UIFrame*, s32);
 void UIFrame_FadeOut(UIFrame*);
-s32 func_8036FFE0_843790(s32, s32);
-void func_80370004_8437B4(s32, s32);
-void func_80370038_8437E8(s32, s32);
-void func_8037005C_84380C(s32, s32);
-void func_80370090_843840(bool);
-void func_803700A4_843854(s32);
-void func_80370134_8438E4(void);
-void func_80370428_843BD8(void);
-void func_803705A4_843D54(void);
-void func_803705F0_843DA0(s32);
-UnkCanaryScallop* func_80370600_843DB0(void);
-void func_8037060C_843DBC(s32, s32);
-void func_80370780_843F30(s32, s32);
-void func_80370900_8440B0(s32, s32);
-void func_80370990_844140(f32, s32);
-void func_80370A48_8441F8(void);
-void func_80370C34_8443E4(void*);
-void func_803713C8_844B78(s32);
-void func_803713D4_844B84(s32);
-void func_803713EC_844B9C(s32);
-void func_8037172C_844EDC(s32);
-char* func_803717A8_844F58(UnkCyanBass*, s32);
-void func_803717E8_844F98(void);
+s32 FocusMark_SetTargetPos(s32, s32);
+void FocusMark_SetPos(s32, s32);
+void FocusMark_SetTargetSize(s32, s32);
+void FocusMark_SetSize(s32, s32);
+void FocusMark_StopAnimation(bool);
+void FocusMark_Show(s32);
+void FocusMark_MoveFront(void);
+void FocusMark_Create(void);
+void UILayout_WaitPanelTransitionComplete(void);
+void UILayout_SetInstantTransition(s32);
+UIButton* func_80370600_843DB0(void);
+void UILayout_DisableAllButtonsExcept(s32, s32);
+void UILayout_DisableButton(s32, s32);
+void UILayout_ShowButton(s32, s32);
+void UILayout_SetButtonScale(f32, s32);
+void UILayout_HideButtons(void);
+void UILayout_CreateButtons(UIButton*);
+void UILayout_SetHeaderFlags(s32);
+void UILayout_ShowHeaderElement(s32);
+void UILayout_HideHeaderElement(s32);
+void UILayout_ShowPanel(s32);
+char* UILayout_GetButtonText(UIButton*, s32);
+void UILayout_Init(void);
 void func_803719B0_845160(SObj*, s32, s32, s32, s32, s32, s32);
-GObj* func_80371C68_845418(void*, s32, Sprite*);
+GObj* func_80371C68_845418(void (*func)(GObj*), s32 link, Sprite* sprite);
 SObj* func_80371DC0_845570(SObj*, Sprite*);
 SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80371F30_8456E0(s32, s32, s32, s32);
@@ -178,6 +205,7 @@ s32 func_803750CC_84887C(char*, char*);
 void func_8037519C_84894C(UIElement*, char*, ...);
 s32 func_803751F8_8489A8(s32);
 void func_80375284_848A34(s32);
+UIButton* UILayout_GetButtons(void);
 
 #if !defined(M2CTX) && !defined(PERMUTER)
 GObj* func_80371D14_8454C4(void (*gfxFunc)(GObj*), s32 arg1, Sprite* sprite);

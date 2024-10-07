@@ -5,6 +5,7 @@
 #include "macros.h"
 #include "sys/main.h"
 #include "sys/sched.h"
+#include "sys/cont.h"
 #include "types.h"
 
 // TODO can't use #include "PR/os_motor.h"
@@ -58,15 +59,6 @@ typedef struct {
     /* 0x1C */ u8 errno;
     /* 0x1D */ u8 status;
 } ControllerInfo; // size = 0x20
-
-typedef struct {
-    /* 0x00 */ u16 buttons;
-    /* 0x02 */ u16 pressedButtons;
-    /* 0x04 */ u16 heldButtons;
-    /* 0x06 */ u16 releasedButtons;
-    /* 0x08 */ s8 stickX;
-    /* 0x09 */ s8 stickY;
-} ControllerInput; // size = 0x0A
 
 typedef struct {
     /* 0x00 */ u8 status;

@@ -9,6 +9,7 @@ extern Sprite D_803A22C0_875A70;
 extern Sprite D_803A51A0_878950;
 extern Bitmap D_803A6210_8799C0;
 extern Sprite D_803A6220_8799D0;
+extern Bitmap D_803A6390_879B40;
 extern Bitmap D_803A6510_879CC0;
 
 extern Bitmap* D_803A6564_879D14[];
@@ -18,6 +19,9 @@ extern s32 D_803A660C_879DBC;
 extern UnkCanaryScallop* D_803A6610_879DC0;
 extern s32 D_803A6614_879DC4;
 extern s32 D_803A6618_879DC8;
+extern f32 D_803A661C_879DCC;
+extern f32 D_803A6620_879DD0;
+extern s32 D_803A6624_879DD4;
 extern f32 D_803A6628_879DD8;
 extern s32 D_803A662C_879DDC;
 extern s32 D_803A6630_879DE0;
@@ -284,8 +288,37 @@ void func_80370C34_8443E4(UnkCanaryScallop* arg0) {
     D_803A6610_879DC0 = arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/843D10/func_80370F34_8446E4.s")
-void func_80370F34_8446E4(GObj*);
+// #pragma GLOBAL_ASM("asm/nonmatchings/window/843D10/func_80370F34_8446E4.s")
+void func_80370F34_8446E4(GObj* unused) {
+    s32 i;
+    GObj* obj;
+    s32 s4 = 0;
+
+    while (true) {
+        for (i = 0; i <= 32; i++) {
+            obj = D_803A6A90_87A240[i];
+            if (D_803A6604_879DB4 == 1) {
+                if ((obj->data.sobj->sprite.attr ^ 0x4) & 0x14) {
+                    D_803A6B18_87A2C8[i] += (f32)((D_803A6614_879DC4 + 1) * 90.0 / 30.0) / PI * 180.0f;
+                    if (D_803A660C_879DBC) {
+                        D_803A6B18_87A2C8[i] = PI_2;
+                    }
+                    if (D_803A6B18_87A2C8[i] >= PI_2) {
+                        D_803A6B18_87A2C8[i] = PI_2;
+                    } else {
+
+                    }
+                }
+            } else {
+            }
+        }
+        if (s4 == 0) {
+            D_803A6604_879DB4 = 2;
+        }
+        s4 = 0;
+        ohWait(1);
+    }
+}
 
 void func_803713C8_844B78(s32 arg0) {
     D_803A6618_879DC8 = arg0;
@@ -299,11 +332,63 @@ void func_803713EC_844B9C(s32 arg0) {
     D_803A6618_879DC8 &= ~arg0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/843D10/func_80371408_844BB8.s")
-void func_80371408_844BB8(GObj*);
+void func_80371408_844BB8(GObj* arg0) {
+    f32 var_f0;
+    f32 tmp;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/843D10/func_8037147C_844C2C.s")
-void func_8037147C_844C2C(GObj*);
+    if (D_803A6618_879DC8 & 4) {
+        var_f0 = 0.0f;
+    } else {
+        var_f0 = -40.0f;
+    }
+    tmp = D_803A661C_879DCC;
+    tmp += (var_f0 - tmp) * 0.2;
+    arg0->data.sobj->sprite.y = tmp;
+    var_f0 = tmp;
+    if (1) {
+    }
+    D_803A661C_879DCC = var_f0;
+}
+
+void func_8037147C_844C2C(GObj* arg0) {
+    f32 var_f0;
+    f32 tmp;
+    s32 tmp2;
+    s32 tmp3;
+    s32 tmp4;
+    s32 tmp5;
+
+    if (D_803A6618_879DC8 & 1) {
+        var_f0 = 0.0f;
+    } else {
+        var_f0 = -40.0f;
+    }
+    tmp3 = D_803A6624_879DD4 + 1;
+    tmp = D_803A6620_879DD0;
+    tmp2 = tmp3;
+    tmp = tmp + (var_f0 - tmp) * 0.2;
+
+    arg0->data.sobj->sprite.y = tmp;
+    var_f0 = tmp;
+    if (1) {
+    }
+    D_803A6620_879DD0 = var_f0;
+
+    if (tmp2 < 0) {
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6390_879B40;
+    } else {
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6210_8799C0;
+    }
+    D_803A6624_879DD4 = (unsigned long long) tmp2;
+    tmp4 = 48;
+    if (tmp2 > tmp4) {
+        tmp4 = -tmp4;
+        tmp5 = tmp4;
+        if (1) {
+            D_803A6624_879DD4 = tmp5;
+        }
+    }
+}
 
 void func_8037154C_844CFC(GObj* arg0) {
     f32 var_f0;
@@ -319,13 +404,14 @@ void func_8037154C_844CFC(GObj* arg0) {
         var_f0 = -40.0f;
     }
     tmp3 = D_803A662C_879DDC + 1;
-    tmp = D_803A6628_879DD8;    
+    tmp = D_803A6628_879DD8;
     tmp2 = tmp3;
     tmp = tmp + (var_f0 - tmp) * 0.2;
 
     arg0->data.sobj->sprite.y = tmp;
     var_f0 = tmp;
-    if (1) {}
+    if (1) {
+    }
     D_803A6628_879DD8 = var_f0;
 
     if (tmp2 < 0) {
@@ -333,13 +419,13 @@ void func_8037154C_844CFC(GObj* arg0) {
     } else {
         arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6210_8799C0;
     }
-    D_803A662C_879DDC = (unsigned long long)tmp2;
+    D_803A662C_879DDC = (unsigned long long) tmp2;
     tmp4 = 48;
     if (tmp2 > tmp4) {
         tmp4 = -tmp4;
         tmp5 = tmp4;
         if (1) {
-        D_803A662C_879DDC = tmp5;
+            D_803A662C_879DDC = tmp5;
         }
     }
 }
@@ -377,13 +463,13 @@ void func_8037172C_844EDC(s32 arg0) {
 void func_80371738_844EE8(GObj* arg0) {
     f32 var_f0;
     f32 tmp;
-    
+
     if (D_803A6630_879DE0) {
         var_f0 = 0.0f;
     } else {
         var_f0 = -180.0f;
     }
-    tmp = D_803A6634_879DE4;    
+    tmp = D_803A6634_879DE4;
     tmp += (var_f0 - tmp) * 0.15;
     arg0->data.sobj->sprite.x = tmp;
     var_f0 = tmp;

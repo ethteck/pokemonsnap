@@ -59,11 +59,11 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     while (true) {
         ohWait(1);
         sp24 = func_800AA38C(0);
-        if (sp24->unk_18 & 0x4000) {
+        if (sp24->pressedButtons & 0x4000) {
             func_801DDCA8_9FB968(8);
             break;
         }
-        if (sp24->unk_18 & 0x8000) {
+        if (sp24->pressedButtons & 0x8000) {
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             func_801DDCA8_9FB968(10);
             break;
@@ -591,17 +591,17 @@ void func_801DE87C_9FC53C(void) {
             sp54 = func_800AA38C(0);
             if (D_801EA204_A07EC4 != 0 && --D_80230810_A4E4D0 == 0) {
 
-            } else if (sp54->unk_18 & 0x8000) {
+            } else if (sp54->pressedButtons & 0x8000) {
                 auPlaySound(0x4B);
                 D_801EA204_A07EC4 = 0;
                 ;
-            } else if (sp54->unk_18 & 0x4000) {
+            } else if (sp54->pressedButtons & 0x4000) {
                 auPlaySound(0x4D);
                 D_801EA204_A07EC4 = 0;
                 sp40 = true;
                 ;
             } else {
-                if (sp54->unk_18 & 0x2000) {
+                if (sp54->pressedButtons & 0x2000) {
                     sp3C ^= 1;
                     if (sp3C != 0) {
                         auPlaySound(0x60);
@@ -616,12 +616,12 @@ void func_801DE87C_9FC53C(void) {
                     }
                 }
 
-                if (sp54->unk_18 & 4 && D_801EA204_A07EC4 > 0) {
+                if (sp54->pressedButtons & 4 && D_801EA204_A07EC4 > 0) {
                     sp3B = (sp3B - 1) % 4;
                     auPlaySound(0x43);
                     D_801EA204_A07EC4--;
                     ;
-                } else if ((sp54->unk_18 & 8) && D_801EA204_A07EC4 < 5) {
+                } else if ((sp54->pressedButtons & 8) && D_801EA204_A07EC4 < 5) {
                     auPlaySound(0x42);
                     D_801EA204_A07EC4++;
                     ;

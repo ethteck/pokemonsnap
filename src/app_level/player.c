@@ -272,10 +272,10 @@ void updateIdle(GObj* obj) {
     f32 var_f20;
     s32 i;
     f32 duration = 120.0f;
-    IdleScriptEntry* input = gIdleScript->inputs;
+    ControllerInput* input = gIdleScript->inputs;
 
-    for (i = gIdleScript->dataSize / sizeof(IdleScriptEntry); i > 0; i--, input++) {
-        gContInputCurrentButtons = input->currentButtons;
+    for (i = gIdleScript->dataSize / sizeof(ControllerInput); i > 0; i--, input++) {
+        gContInputCurrentButtons = input->buttons;
         gContInputPressedButtons = input->pressedButtons;
         gContInputHeldButtons = input->heldButtons;
         gContInputReleasedButtons = input->releasedButtons;

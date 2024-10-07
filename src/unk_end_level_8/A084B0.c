@@ -137,14 +137,14 @@ void func_801DC9E8_A085D8(GObj* arg0) {
         sp3C = func_800AA38C(0);
         if (D_801DD12C_A08D1C && (--D_801DD25C_A08E4C == 0)) {
 
-        } else if (sp3C->unk_18 & 0x8000) {
+        } else if (sp3C->pressedButtons & 0x8000) {
 
-        } else if (sp3C->unk_18 & 0x4000) {
+        } else if (sp3C->pressedButtons & 0x4000) {
             s8 scopedTemp1;
 
             D_801DD250_A08E40 = 0x20000000;
         } else {
-            if (sp3C->unk_18 & 0x2000) {
+            if (sp3C->pressedButtons & 0x2000) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
                     UIFrame_Show(D_801DD254_A08E44, true);
@@ -156,12 +156,12 @@ void func_801DC9E8_A085D8(GObj* arg0) {
                     UIElement_SetState(D_801DD258_A08E48, UI_HIDDEN);
                 }
             }
-            if (sp3C->unk_18 & 4 && D_801DD12C_A08D1C > 0) {
+            if (sp3C->pressedButtons & 4 && D_801DD12C_A08D1C > 0) {
                 s8 scopedTemp2;
 
                 auPlaySound(0x43);
                 D_801DD12C_A08D1C--;
-            } else if (sp3C->unk_18 & 8 && D_801DD12C_A08D1C < 5) {
+            } else if (sp3C->pressedButtons & 8 && D_801DD12C_A08D1C < 5) {
                 s8 scopedTemp3;
 
                 auPlaySound(0x42);

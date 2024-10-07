@@ -649,7 +649,7 @@ void UIText_PrintAsciiString(UIText* text, s32* x, s32* y, u8* str) {
 }
 
 void func_8036EB34_8422E4(GObj* arg0) {
-    if (D_8037EAE0_852290 && (func_800AA38C(0)->unk_18 & (0x8000 | 0x4000))) {
+    if (D_8037EAE0_852290 && (func_800AA38C(0)->pressedButtons & (0x8000 | 0x4000))) {
         UIText_DelayDisabled = true;
     }
 }

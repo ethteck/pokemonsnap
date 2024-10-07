@@ -472,17 +472,17 @@ s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
     ohWait(1);
 
     sp18 = func_800AA38C(0);
-    while (!(sp18->unk_18 & (0x8000 | 0x4000))) {
+    while (!(sp18->pressedButtons & (0x8000 | 0x4000))) {
         ohWait(1);
         sp18 = func_800AA38C(0);
     }
-    if (sp18->unk_14 & 0x8000) {
+    if (sp18->currentButtons & 0x8000) {
         ret = 0x8000;
     }
-    if (sp18->unk_14 & 0x4000) {
+    if (sp18->currentButtons & 0x4000) {
         ret = 0x4000;
     }
-    if (sp18->unk_14 & 0x1000) {
+    if (sp18->currentButtons & 0x1000) {
         ret = 0x1000;
     }
     if (arg1 != 0) {
@@ -504,11 +504,11 @@ s32 func_801DD1A8_98CC18(s32 arg0) {
     for (i = 0; i < arg0; i++) {
         ohWait(1);
         sp1C = func_800AA38C(0);
-        if (sp1C->unk_14 & 0x8000) {
+        if (sp1C->currentButtons & 0x8000) {
             ret = 0x8000;
             break;
         }
-        if (sp1C->unk_14 & 0x4000) {
+        if (sp1C->currentButtons & 0x4000) {
             ret = 0x4000;
             break;
         }
@@ -1796,7 +1796,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         while (true) {
             sp40 = func_800AA38C(0);
             func_801E41FC_993C6C(sp40, &sp3C);
-            if (sp40->unk_18 & 0x8000) {
+            if (sp40->pressedButtons & 0x8000) {
                 func_803700A4_843854(0);
                 if (sp3C != NULL) {
                     auPlaySound(0x5F);

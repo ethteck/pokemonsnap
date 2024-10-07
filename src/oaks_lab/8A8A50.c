@@ -22,7 +22,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
 
     func_8036FFE0_843790(0x16, (*arg1 * 24) + 29);
 
-    if ((arg0->unk_18 & 0x10000) && !(arg0->unk_14 & 0xC0000)) {
+    if ((arg0->pressedButtons & 0x10000) && !(arg0->currentButtons & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 7) % 8;
         } while ((*D_80206B44_9CC364)[*arg1].id == 35);
@@ -30,7 +30,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
         auPlaySound(0x41);
     }
 
-    if ((arg0->unk_18 & 0x20000) && !(arg0->unk_14 & 0xC0000)) {
+    if ((arg0->pressedButtons & 0x20000) && !(arg0->currentButtons & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
         } while ((*D_80206B44_9CC364)[*arg1].id == 35);
@@ -38,7 +38,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
         auPlaySound(0x41);
     }
 
-    if (arg0->unk_18 & 0x4000) {
+    if (arg0->pressedButtons & 0x4000) {
         return -1;
     }
 
@@ -90,7 +90,7 @@ s32 func_800E3404_8A8C24(void) {
         }
         func_800E1FEC_8A780C(sp40);
 
-        if (var_v0->unk_18 & 0x8000) {
+        if (var_v0->pressedButtons & 0x8000) {
             auPlaySound(0x42);
             UILayout_DisableAllButtonsExcept(1, (*D_80206B44_9CC364)[sp40].id);
             switch ((*D_80206B44_9CC364)[sp40].id) {
@@ -188,7 +188,7 @@ s32 func_800E37CC_8A8FEC(void) {
     while (true) {
         temp_v0_2 = func_800AA38C(0);
         func_800E3264_8A8A84(temp_v0_2, &sp80);
-        if (temp_v0_2->unk_18 & 0x8000) {
+        if (temp_v0_2->pressedButtons & 0x8000) {
             auPlaySound(0x42);
 
             switch ((*D_80206B44_9CC364)[sp80].id) {
@@ -297,7 +297,7 @@ s32 func_800E3CE8_8A9508(void) {
     func_803700A4_843854(0);
 
     while (1) {
-        temp_v1 = func_800AA38C(0)->unk_18;
+        temp_v1 = func_800AA38C(0)->pressedButtons;
         if (temp_v1 & 0x8000) {
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             auPlaySound(0x53);
@@ -318,7 +318,7 @@ s32 func_800E3CE8_8A9508(void) {
             UIElement_Draw(sp2C);
             UIElement_PrintText(sp2C, "Would you like to keep going?\n\\a Yes!  \\b No!");
             while (1) {
-                temp_v1_2 = func_800AA38C(0)->unk_18;
+                temp_v1_2 = func_800AA38C(0)->pressedButtons;
                 if (temp_v1_2 & 0x4000) {
                     auPlaySound(0x53);
                     UIElement_Draw(sp2C);
@@ -451,7 +451,7 @@ s32 func_800E3ED4_8A96F4(void) {
                 while (true) {
                 loop_28:
                     func_800E3264_8A8A84(func_800AA740(0), &D_80195894_95B0B4);
-                    temp_v1 = func_800AA38C(0)->unk_18;
+                    temp_v1 = func_800AA38C(0)->pressedButtons;
                     if (temp_v1 & 0x8000) {
                         auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
                         func_800E61B4_8AB9D4(2, D_80195894_95B0B4);

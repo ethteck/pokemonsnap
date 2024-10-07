@@ -122,7 +122,7 @@ void func_800E23E0_A5D790(s32 buttons) {
 }
 
 void func_800E2590_A5D940(UnkStruct800BEDF8* arg0) {
-    func_800E23E0_A5D790(arg0->unk_18);
+    func_800E23E0_A5D790(arg0->pressedButtons);
     func_800E2200_A5D5B0();
 }
 
@@ -365,7 +365,7 @@ void func_800E2ED0_A5E280(void) {
     func_800E2A84_A5DE34(D_80168140);
     while (true) {
         UnkStruct800BEDF8* temp_v0 = func_800AA38C(0);
-        s32 temp_v1 = temp_v0->unk_18;
+        s32 temp_v1 = temp_v0->pressedButtons;
         if (temp_v1 & 0xF0000) {
             func_800E2590_A5D940(temp_v0);
             func_800E2A84_A5DE34(D_80168140);

@@ -17,11 +17,11 @@ s32 func_800E44A8_8A9CC8(UIElement* arg0, s32 arg1) {
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
-    while (!(var_v0->unk_18 & 0xC000)) {
+    while (!(var_v0->pressedButtons & 0xC000)) {
         ohWait(1);
         var_v0 = func_800AA38C(0);
     }
-    temp_v1 = var_v0->unk_14;
+    temp_v1 = var_v0->currentButtons;
     if (temp_v1 & 0x8000) {
         sp1C = 0x8000;
     }
@@ -430,7 +430,7 @@ void func_800E5120_8AA940(void) {
     UIElement_PrintText(sp1C, "Press \\a or \\b to save.");
     ohWait(1);
 
-    while (!(func_800AA38C(0)->unk_18 & 0xC000)) {
+    while (!(func_800AA38C(0)->pressedButtons & 0xC000)) {
         ohWait(1);
     }
 

@@ -98,7 +98,7 @@ void func_801DCDDC_9FAA9C(void) {
     func_800AAE28();
     func_801DCC60_9FA920();
     func_80374D40_8484F0();
-    func_8036EB98_842348();
+    UIText_Initialize();
     if (D_801EA7F0_A084B0 != 0) {
         auPlaySong(0, 0x22);
         auSetBGMVolume(0, 0x7F00);

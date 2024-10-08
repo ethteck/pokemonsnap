@@ -3,6 +3,15 @@
 
 #include <PR/ultratypes.h>
 
+typedef struct {
+    /* 0x00 */ u16 buttons;
+    /* 0x02 */ u16 pressedButtons;
+    /* 0x04 */ u16 heldButtons;
+    /* 0x06 */ u16 releasedButtons;
+    /* 0x08 */ s8 stickX;
+    /* 0x09 */ s8 stickY;
+} ControllerInput; // size = 0x0A
+
 void contUpdate(void);
 void contReadAndUpdate(void);
 void contSetUpdateEveryTick(s32);
@@ -19,5 +28,6 @@ extern u16 gContInputReleasedButtons;
 extern s8 gContInputStickX;
 extern s8 gContInputStickY;
 extern s32 gNumControllers;
+extern ControllerInput gContInput[MAXCONTROLLERS];
 
 #endif /* SYS_CONT_H */

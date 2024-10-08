@@ -48,12 +48,12 @@ typedef struct UnkBigBoy {
         /* 0x06C */ s32 unk_6C[69];
         /* 0x180 */ PhotoData unk_180[69];
         /* 0xFBA0 */ PhotoData unk_FBA0[4];
-        /* 0x10A20 */ PhotoDataExt var_10A20[60];
+        /* 0x10A20 */ AlbumPhotoData albumPhotos[60];
         /* 0x1f2a0 */ u8 pad_1F2A0[4];
     } data;
 } UnkBigBoy; // size = 0x1F2A4
 
-void func_800BF954_5C7F4(s32, PhotoData*, UnkFuzzyCaterpillar*);
+void func_800BF954_5C7F4(s32, PhotoData*, AlbumComment*);
 s32 func_800C0224_5D0C4(s32);
 void func_800C0254_5D0F4(s32, s32);
 s32 func_800C06A8_5D548(uintptr_t, s32 size);

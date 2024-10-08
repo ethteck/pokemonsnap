@@ -7,6 +7,12 @@ typedef struct Unk_800A8F0C {
     /* 0x54 */ Vec3f unk_54;
 } Unk_800A8F0C; // size >= 0x60
 
+typedef struct Unk800BEDF0 {
+    /* 0x0 */ u8 stickX;
+    /* 0x1 */ u8 stickY;
+    /* 0x2 */ u16 buttons;
+} Unk800BEDF0; // size = 0x4
+
 extern UNK_TYPE D_800AF0D4;
 extern f32 D_800AF378[];
 extern s32 D_800AF3A0;
@@ -16,9 +22,12 @@ extern s32 D_800AF3AC;
 extern u64 D_800AF3B0;
 extern s32 D_800AF3B8;
 extern s32 D_800AF3BC;
+
 extern s32 D_800BE2F0[4][24];
 extern s32 D_800BE470[4][24];
+extern Unk800BEDF0 D_800BEDF0;
 extern UnkStruct800BEDF8 D_800BEDF8[4];
+extern UnkStruct800BEDF8* D_800BEE98;
 extern UnkStruct800BEDF8 D_800BEEA0[4];
 extern s32 D_800BEF48;
 
@@ -509,31 +518,103 @@ void func_800AA1DC(void) {
     func_800A844C(camObj->data.cam, 0, 0, viScreenWidth, viScreenHeight);
 }
 
-s32 func_800AA28C(s32 arg0, s32 arg1) {
+s32 func_800AA28C(s32 buttons, s32 contId) {
     s32 i;
     s32 v1 = 0;
     s32 mask = 1;
 
     for (i = 0; i < 24; i++, mask *= 2) {
         if (!(D_800AF3AC & mask)) {
-            v1 |= mask & arg0;
-        } else if (!(mask & arg0)) {
-            D_800BE2F0[arg1][i] = 0;
-        } else if (D_800BE2F0[arg1][i] < D_800AF3A4) {
-            D_800BE2F0[arg1][i]++;
-            D_800BE470[arg1][i] = D_800AF3A8;
-            v1 |= arg0 & mask;
-        } else if (D_800BE470[arg1][i] >= D_800AF3A8) {
-            D_800BE470[arg1][i] = 0;
+            v1 |= mask & buttons;
+        } else if (!(mask & buttons)) {
+            D_800BE2F0[contId][i] = 0;
+        } else if (D_800BE2F0[contId][i] < D_800AF3A4) {
+            D_800BE2F0[contId][i]++;
+            D_800BE470[contId][i] = D_800AF3A8;
+            v1 |= buttons & mask;
+        } else if (D_800BE470[contId][i] >= D_800AF3A8) {
+            D_800BE470[contId][i] = 0;
         } else {
-            D_800BE470[arg1][i]++;
+            D_800BE470[contId][i]++;
             v1 |= mask;
         }
     }
     return v1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA38C.s")
+UnkStruct800BEDF8* func_800AA38C(s32 arg0) {
+    UnkStruct800BEDF8* ptr;
+    ControllerInput* contInput;
+    u32 buttons;
+    s32 i;
+
+    if (arg0 < 0 || arg0 > 3) {
+        return &D_800BEDF8[0];
+    }
+
+    if (D_800AF3A0 != 0) {
+        return &D_800BEDF8[arg0];
+    }
+
+    ptr = D_800BEDF8;
+    for (i = 0; i < 4; ptr++, i++) {
+        contInput = &gContInput[i];
+
+        if (D_800AF3B8 == 1 && i == 0) {
+            contInput->stickX = D_800BEDF0.stickX;
+            contInput->stickY = D_800BEDF0.stickY;
+            contInput->buttons = D_800BEDF0.buttons;
+        }
+
+        ptr->stickX = (f32)contInput->stickX / 80.0;
+        ptr->stickY = (f32)contInput->stickY / 80.0;
+        ptr->unk_10 = 0.0f;
+
+        if (ptr->stickX > 1.0) {
+            ptr->stickX = 1.0f;
+        } else if (ptr->stickX < -1.0) {
+            ptr->stickX = -1.0f;
+        }
+        if (ptr->stickY > 1.0) {
+            ptr->stickY = 1.0f;
+        } else if (ptr->stickY < -1.0) {
+            ptr->stickY = -1.0f;
+        }
+
+        buttons = contInput->buttons;
+        if (ptr->stickX > 0.3) {
+            buttons |= STICK_SLOW_RIGHT;
+        } else if (ptr->stickX < -0.3) {
+            buttons |= STICK_SLOW_LEFT;
+        }
+        if (ptr->stickY > 0.3) {
+            buttons |= STICK_SLOW_UP;
+        } else if (ptr->stickY < -0.3) {
+            buttons |= STICK_SLOW_DOWN;
+        }
+        if (ptr->stickX > 0.7) {
+            buttons |= STICK_RIGHT;
+        } else if (ptr->stickX < -0.7) {
+            buttons |= STICK_LEFT;
+        }
+        if (ptr->stickY > 0.7) {
+            buttons |= STICK_UP;
+        } else if (ptr->stickY < -0.7) {
+            buttons |= STICK_DOWN;
+        }
+
+        ptr->currentButtons = func_800AA28C(buttons, i);
+        ptr->pressedButtons = ptr->notPressedButtons & ptr->currentButtons;
+        ptr->releasedButtons = ~(ptr->notPressedButtons | ptr->currentButtons);
+        ptr->notPressedButtons = ~(ptr->currentButtons);
+        ptr->unk_00 = D_800AF3B0;
+        D_800AF3A0 = 1;
+    }
+
+    D_800BEE98 = ptr;
+    D_800AF3B0++;
+    return &D_800BEDF8[arg0];
+}
 
 // TODO requires bss migration
 #ifdef NON_MATCHING
@@ -551,13 +632,13 @@ UnkStruct800BEDF8* func_800AA740(s32 arg0) {
 
     ptr = D_800BEEA0;
     for (i = 0; i < gNumControllers; i++, ptr++) {
-        ptr->unk_08 = 0.0f;
-        ptr->unk_0C = 0.0f;
+        ptr->stickX = 0.0f;
+        ptr->stickY = 0.0f;
         ptr->unk_10 = 0.0f;
-        ptr->unk_14 = 0;
-        ptr->unk_18 = 0;
-        ptr->unk_1C = 0;
-        ptr->unk_20 = -1;
+        ptr->currentButtons = 0;
+        ptr->pressedButtons = 0;
+        ptr->releasedButtons = 0;
+        ptr->notPressedButtons = ~0;
         ptr->unk_00 = D_800AF3B0;
     }
     return &D_800BEEA0[arg0];
@@ -690,7 +771,7 @@ void func_800AAE20(void) {
 void func_800AAE28(void) {
     s32 i, j;
 
-    // D_800AF3B0.unk_00 = D_800AF3B0.unk_04 = 0;
+    D_800AF3B0 = 0;
     func_800A85E8(func_800AAB5C, LINK_PLAYER, DL_LINK_0, NULL);
     func_800A8B2C(NULL, DL_LINK_0);
     func_800AA1DC();

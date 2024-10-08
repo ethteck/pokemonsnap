@@ -2432,8 +2432,9 @@ segments:
     - [0x842850, c, frame]
     - [0x843050, c, frame_fade]
     - [0x843780, pad]
-    - [0x843790, c]
-    - [0x843D10, c]
+    - [0x843790, c, focus_mark]
+    - [0x843D10, c, layout]
+    - [0x845160, c]
     - [0x846E20, c]
     - [0x847B60, c]
     - [0x8486E0, c]
@@ -2444,11 +2445,13 @@ segments:
     - [0x852220, .data, element]
     - [0x852250, .data, text]
     - [0x852920, data]
+    - [0x879DB0, .data, layout]
+    - [0x879DF0, data]
     - [0x879E80, data, 848B80]
 
     - [0x879F20, .rodata, text]
-    - [0x879FF0, .rodata, 843790]
-    - [0x87A000, .rodata, 843D10]
+    - [0x879FF0, .rodata, focus_mark]
+    - [0x87A000, .rodata, layout]
     - [0x87A090, .rodata, 846E20]
     - [0x87A0A0, .rodata, 8486E0]
 
@@ -2535,12 +2538,12 @@ segments:
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, .data, 9A6B10]
-    - [0x9AE550, bin]
-
+    - [0x9AE550, bin, sprites]
+    - [0x9D2DA0, .data, 9A6F70]
+    - [0x9D2DE0, .data, 9ABB50]
+    - [0x9D2E90, .data, 9ADAD0]
     - [0x9D2EA0, .rodata, 9A6F70]
     - [0x9D31A0, .rodata, 9ABB50]
-
-    - { start: auto, name: bss_80208FE0, type: bss, vram: 0x80208FE0 }
   - name: pokemon_report
     dir: pokemon_report
     type: code

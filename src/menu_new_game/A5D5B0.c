@@ -24,17 +24,17 @@ u8** func_800E18B4_A5CC64(s32 arg0);
 
 void func_800E2200_A5D5B0(void) {
     if (menu_new_game_CursorY < 19) {
-        func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+        FocusMark_SetTargetSize(4, 5);
+        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
     if (menu_new_game_CursorX < 2) {
-        func_80370038_8437E8(4, 5);
-        func_8036FFE0_843790(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+        FocusMark_SetTargetSize(4, 5);
+        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
-    func_80370038_8437E8(15, 5);
-    func_8036FFE0_843790(63, menu_new_game_CursorY * 10 + 22);
+    FocusMark_SetTargetSize(15, 5);
+    FocusMark_SetTargetPos(63, menu_new_game_CursorY * 10 + 22);
 }
 
 void func_800E2314_A5D6C4(void) {
@@ -122,7 +122,7 @@ void func_800E23E0_A5D790(s32 buttons) {
 }
 
 void func_800E2590_A5D940(UnkStruct800BEDF8* arg0) {
-    func_800E23E0_A5D790(arg0->unk_18);
+    func_800E23E0_A5D790(arg0->pressedButtons);
     func_800E2200_A5D5B0();
 }
 
@@ -365,7 +365,7 @@ void func_800E2ED0_A5E280(void) {
     func_800E2A84_A5DE34(D_80168140);
     while (true) {
         UnkStruct800BEDF8* temp_v0 = func_800AA38C(0);
-        s32 temp_v1 = temp_v0->unk_18;
+        s32 temp_v1 = temp_v0->pressedButtons;
         if (temp_v1 & 0xF0000) {
             func_800E2590_A5D940(temp_v0);
             func_800E2A84_A5DE34(D_80168140);

@@ -20,17 +20,17 @@ s32 func_80374F30_8486E0(UIElement* arg0, bool arg1) {
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
-    while (!(var_v0->unk_18 & 0xC000)) {
+    while (!(var_v0->pressedButtons & 0xC000)) {
         ohWait(1);
         var_v0 = func_800AA38C(0);
     }
-    if (var_v0->unk_14 & 0x8000) {
+    if (var_v0->currentButtons & 0x8000) {
         sp1C = 0x8000;
     }
-    if (var_v0->unk_14 & 0x4000) {
+    if (var_v0->currentButtons & 0x4000) {
         sp1C = 0x4000;
     }
-    if (var_v0->unk_14 & 0x1000) {
+    if (var_v0->currentButtons & 0x1000) {
         sp1C = 0x1000;
     }
     if (arg1) {

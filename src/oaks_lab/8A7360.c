@@ -66,7 +66,7 @@ void func_800E1C18_8A7438(s32 arg0) {
     }
 }
 
-void func_800E1CA0_8A74C0(s32 arg0) {
+void func_800E1CA0_8A74C0(GObj* arg0) {
     f32 temp_f2;
     f32 var_f0;
     static f32 bla = -72;
@@ -468,17 +468,17 @@ void func_800E2A04_8A8224(void) {
         }
         auPlaySound(0x52);
         temp_a1 = func_800C0290_5D130() + 6;
-        func_80370900_8440B0(1, temp_a1);
-        func_80370990_844140(0.1f, temp_a1);
+        UILayout_ShowButton(1, temp_a1);
+        UILayout_SetButtonScale(0.1f, temp_a1);
         if (func_800C0290_5D130() == 6) {
             func_800E60C8_8AB8E8();
         }
         for (i = 1; i < 30;) {
-            func_80370990_844140((f32) i / 30.0f, temp_a1);
+            UILayout_SetButtonScale((f32) i / 30.0f, temp_a1);
             i++;
             ohWait(1);
         }
-        func_80370990_844140(1.0f, temp_a1);
+        UILayout_SetButtonScale(1.0f, temp_a1);
         func_800E61B4_8AB9D4(3, 0);
         UIElement_Draw(sp24);
     }
@@ -494,7 +494,7 @@ s32 func_800E2BB4_8A83D4(void) {
 
     ret = 0;
     for (i = 0; i < 60; i++) {
-        if (func_800BFA44_5C8E4(i) != 0) {
+        if (getAlbumPhoto(i) != 0) {
             ret++;
         }
     }
@@ -511,12 +511,12 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     s32 unused1;
     s32 sp3C;
 
-    func_803717E8_844F98();
-    func_80370428_843BD8();
+    UILayout_Init();
+    FocusMark_Create();
     func_8036EE40_8425F0();
-    func_803700A4_843854(0);
-    func_80370038_8437E8(0x78, 0x1A);
-    func_8036FFE0_843790(0x32, 0x2C);
+    FocusMark_Show(false);
+    FocusMark_SetTargetSize(0x78, 0x1A);
+    FocusMark_SetTargetPos(0x32, 0x2C);
     temp_v0 = UIFrame_Create();
     D_80206B20_9CC340 = temp_v0;
     UIFrame_SetStyle(temp_v0, FRAME_STYLE_1);
@@ -539,7 +539,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     }
 
     func_800E1B58_8A7378(255);
-    func_8037172C_844EDC(1);
+    UILayout_ShowPanel(true);
 
     ohWait(30);
 
@@ -547,33 +547,33 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         func_800AAED0(8);
         if (checkPlayerFlag(PFID_6) == 0) {
             setPlayerFlag(PFID_6, 1);
-            func_80370C34_8443E4(func_800E3230_8A8A50());
+            UILayout_CreateButtons(func_800E3230_8A8A50());
             setPlayerFlag(PFID_6, 0);
-            func_80370900_8440B0(0, 3);
+            UILayout_ShowButton(0, 3);
         } else {
-            func_80370C34_8443E4(func_800E3230_8A8A50());
+            UILayout_CreateButtons(func_800E3230_8A8A50());
         }
     } else if (func_800AAEE8(0x20) != 0) {
         func_800AAED0(0x20);
         if (checkPlayerFlag(PFID_7) == 0) {
             setPlayerFlag(PFID_7, 1);
-            func_80370C34_8443E4(func_800E3230_8A8A50());
+            UILayout_CreateButtons(func_800E3230_8A8A50());
             setPlayerFlag(PFID_7, 0);
-            func_80370900_8440B0(0, 2);
+            UILayout_ShowButton(0, 2);
         } else {
-            func_80370C34_8443E4(func_800E3230_8A8A50());
+            UILayout_CreateButtons(func_800E3230_8A8A50());
         }
     } else {
-        func_80370C34_8443E4(func_800E3230_8A8A50());
+        UILayout_CreateButtons(func_800E3230_8A8A50());
     }
     if (func_800BFC5C_5CAFC() != func_800C0290_5D130()) {
         func_800AAED0(0x400);
         setPlayerFlag(PFID_19, 0);
     }
     if (func_800E2BB4_8A83D4() == 0) {
-        func_80370780_843F30(1, 3);
+        UILayout_DisableButton(1, 3);
     }
-    func_803705A4_843D54();
+    UILayout_WaitPanelTransitionComplete();
     UIFrame_FadeIn(temp_v0, FRAME_STYLE_1);
     UIElement_SetState(sp4C, UI_NORMAL);
     UIText_SetPrintDelay(0);
@@ -586,14 +586,14 @@ void func_800E2C0C_8A842C(GObj* arg0) {
     while (true) {
         sp3C = func_800E3ED4_8A96F4();
         func_80375284_848A34(3);
-        func_803700A4_843854(0);
+        FocusMark_Show(false);
         UIElement_SetState(D_80206B1C_9CC33C, UI_HIDDEN);
         UIFrame_ShowBackground(temp_v0, true);
-        func_803713C8_844B78(0);
-        func_803705F0_843DA0(0);
-        func_80370A48_8441F8();
-        func_803705A4_843D54();
-        func_8037172C_844EDC(0);
+        UILayout_SetHeaderFlags(0);
+        UILayout_SetInstantTransition(false);
+        UILayout_HideButtons();
+        UILayout_WaitPanelTransitionComplete();
+        UILayout_ShowPanel(false);
 
         for (i = 10; i >= 0; i--) {
             func_800E1B58_8A7378(i * 255 / 10);
@@ -603,7 +603,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
 
         func_800E1B58_8A7378(0);
         func_8036EE40_8425F0();
-        func_803705A4_843D54();
+        UILayout_WaitPanelTransitionComplete();
         func_800AAF10();
         ohWait(6);
         func_800AADF0(sp3C);
@@ -623,8 +623,8 @@ void func_800E30B8_8A88D8(void) {
     sobj = func_80371D14_8454C4(NULL, 6, &D_80128F38_8EE758)->data.sobj;
     sobj->sprite.x = 40;
     sobj->sprite.y = 92;
-    func_8036FFE0_843790(40, 92);
-    func_80370038_8437E8(240, 56);
+    FocusMark_SetTargetPos(40, 92);
+    FocusMark_SetTargetSize(240, 56);
     UIText_SetPrintDelay(1);
     func_8036EB80_842330(0);
     auSetBGMVolumeSmooth(0, 0x3F80, 60);

@@ -287,7 +287,7 @@ s32 func_camera_check_801E2E04(void) {
 
     ret = 0;
     for (i = 0; i < 60; i++) { // TODO: PHOTOS_COUNT ?
-        if (func_800BFA44_5C8E4(i) == 0) {
+        if (getAlbumPhoto(i) == 0) {
             ret++;
         }
     }
@@ -752,7 +752,7 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
 
     temp_v0 = func_8037452C_847CDC(arg0);
     arg1->unk_00 = arg0;
-    if (temp_v0->unk_3A0.unk_0A == 0) {
+    if (temp_v0->score.pokemonInFocus == 0) {
         arg1->unk_04 = NULL;
         arg1->unk_08 = 9999;
         arg1->unk_18_0x80000000 = false;
@@ -765,17 +765,17 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
         arg1->unk_14 = 0;
         arg1->unk_16 = 0;
     } else {
-        arg1->unk_04 = temp_v0->unk_3A0.unk_00;
-        arg1->unk_08 = temp_v0->unk_3A0.unk_0A;
+        arg1->unk_04 = temp_v0->score.totalScore;
+        arg1->unk_08 = temp_v0->score.pokemonInFocus;
         arg1->unk_18_0x80000000 = func_camera_check_801E30CC(arg1->unk_08);
         arg1->unk_18_0x04000000 = false;
-        arg1->unk_0A = temp_v0->unk_3A0.unk_14;
-        arg1->unk_0C = temp_v0->unk_3A0.unk_07;
-        arg1->unk_0E = temp_v0->unk_3A0.unk_10;
-        arg1->unk_10 = temp_v0->unk_3A0.unk_0E;
-        arg1->unk_12 = temp_v0->unk_3A0.unk_0C;
-        arg1->unk_14 = temp_v0->unk_3A0.unk_12;
-        arg1->unk_16 = temp_v0->unk_3A0.unk_04;
+        arg1->unk_0A = temp_v0->score.specialID;
+        arg1->unk_0C = temp_v0->score.isWellFramed;
+        arg1->unk_0E = temp_v0->score.posePts;
+        arg1->unk_10 = temp_v0->score.sizeParam1;
+        arg1->unk_12 = temp_v0->score.sizeParam2;
+        arg1->unk_14 = temp_v0->score.specialBonus;
+        arg1->unk_16 = temp_v0->score.samePkmnBonus;
         D_camera_check_8024A1D4 += (s32) arg1->unk_04;
         func_camera_check_801E23A8(arg1->unk_08, 1);
     }

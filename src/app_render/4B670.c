@@ -19,7 +19,7 @@ extern u16 D_800BE01A;
 extern s32 D_800BE0B0[];
 extern s32 D_800BE110[];
 extern s32 D_800BE140[];
-extern SubUnk803A6C18 D_800BE170;
+extern ScoreData D_800BE170;
 extern s8 D_800BE178;
 
 s32 func_8009FCC0(void) {
@@ -108,7 +108,7 @@ f32 func_800A0504(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 }
 
 #ifdef NON_MATCHING
-void func_800A0534(SubUnk803A6C18* arg0, UnkThing* arg1, s32 arg2, s32 arg3) {
+void func_800A0534(ScoreData* arg0, UnkThing* arg1, s32 arg2, s32 arg3) {
     f32 var_f2;
     u16 new_var;
     s32 temp_lo;
@@ -143,24 +143,24 @@ void func_800A0534(SubUnk803A6C18* arg0, UnkThing* arg1, s32 arg2, s32 arg3) {
         if (var_f2 > 1.0) {
             var_f2 = 1.0f;
         }
-        arg0->unk_04 += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
-        arg0->unk_00 += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
-        arg0->unk_06++;
+        arg0->samePkmnBonus += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
+        arg0->totalScore += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
+        arg0->samePkmnNumber++;
     }
 }
 #else
-void func_800A0534(SubUnk803A6C18*, UnkThing* arg1, s32 arg2, s32 arg3);
+void func_800A0534(ScoreData*, UnkThing* arg1, s32 arg2, s32 arg3);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0534.s")
 #endif
 
-void func_800A081C(SubUnk803A6C18*, PhotoData*, s32);
+void func_800A081C(ScoreData*, PhotoData*, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A081C.s")
 
-void func_800A0E9C(SubUnk803A6C18* arg0) {
+void func_800A0E9C(ScoreData* arg0) {
 }
 
 #ifdef NON_MATCHING
-struct SubUnk803A6C18* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3, s32 arg4, u16* arg5) {
+struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3, s32 arg4, u16* arg5) {
     s32 sp40;
     s32 sp3C;
     s32 sp24;
@@ -181,84 +181,84 @@ struct SubUnk803A6C18* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32
     s32* temp_a1;
     s32* var_a3;
 
-    D_800BE170.unk_00 = 0;
-    D_800BE170.unk_0A = 0;
-    D_800BE170.unk_14 = 0;
-    D_800BE170.unk_0C = 0;
-    D_800BE170.unk_0E = 0;
-    D_800BE170.unk_12 = 0;
-    D_800BE170.unk_08 = 0;
-    D_800BE170.unk_08 = 0;
-    D_800BE170.unk_10 = 0;
+    D_800BE170.totalScore = 0;
+    D_800BE170.pokemonInFocus = 0;
+    D_800BE170.specialID = 0;
+    D_800BE170.sizeParam2 = 0;
+    D_800BE170.sizeParam1 = 0;
+    D_800BE170.specialBonus = 0;
+    D_800BE170.commentID = 0;
+    D_800BE170.commentID = 0;
+    D_800BE170.posePts = 0;
     D_800BE178 = 0;
-    D_800BE170.unk_07 = 0;
-    D_800BE170.unk_04 = 0;
-    D_800BE170.unk_06 = 0;
+    D_800BE170.isWellFramed = 0;
+    D_800BE170.samePkmnBonus = 0;
+    D_800BE170.samePkmnNumber = 0;
 
     temp_v0 = func_8009BCC4(arg1);
     if (temp_v0 > 0) {
         switch (temp_v0) {
             case PokemonID_1004:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1010:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1018:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1022:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_KOFFING_SMOKE:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1035:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
-                    D_800BE170.unk_00 = 0;
-                    D_800BE170.unk_0A = temp_v0;
+                    D_800BE170.totalScore = 0;
+                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_MOLTRES_EGG:
             case PokemonID_601:
             case PokemonID_602:
-                D_800BE170.unk_0A = temp_v0;
+                D_800BE170.pokemonInFocus = temp_v0;
                 break;
             default:
                 if (func_8009BDDC(arg1->unk_20[0].pokemonID, arg1->unk_20[0].unk_00_13) < 0.0f) {
-                    D_800BE170.unk_0A = 500;
+                    D_800BE170.pokemonInFocus = 500;
                 }
                 break;
         }
 
-        if (D_800BE170.unk_0A > 0) {
+        if (D_800BE170.pokemonInFocus > 0) {
             func_800A0E9C(&D_800BE170);
 
             return &D_800BE170;

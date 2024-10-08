@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 void func_802DD6F0_6C54D0(GObj*);
 void func_802DDCB8_6C5A98(GObj*);

@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 void func_802E142C_6C920C(GObj*);
 void func_802E1488_6C9268(GObj*);
@@ -9,11 +10,33 @@ void func_802E1594_6C9374(GObj*);
 extern AnimationHeader D_802E46D0_6CC4B0;
 extern AnimationHeader D_802E46E4_6CC4C4;
 extern AnimationHeader D_802E46F8_6CC4D8;
+extern AnimationHeader D_802E4748_6CC528;
+extern AnimationHeader D_802E475C_6CC53C;
+extern AnimationHeader D_802E4770_6CC550;
 extern InteractionHandler D_802E4838_6CC618[];
 extern RandomState D_802E4978_6CC758[];
+extern f32 D_802E4A60_6CC840;
 extern PokemonInitData D_802E4AA8_6CC888;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E0900_6C86E0.s")
+void func_802E12D8_6C90B8(GObj*);
+void func_802E17D4_6C95B4(GObj*);
+
+void func_802E0900_6C86E0(GObj* arg0) {
+    UNUSED s32 pad[4];
+    s32 sp34;
+    f32 sp30;
+
+    while (true) {
+        getLevelProgress(&sp34, &sp30);
+        if ((sp34 < 3) && ((sp34 != 2) || !(sp30 >= 0.9))) {
+            ohWait(1);
+        } else {
+            break;
+        }
+    }
+    Pokemon_RunCleanup(arg0);
+    Pokemon_StopAuxProc(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E09A8_6C8788.s")
 
@@ -97,6 +120,7 @@ void func_802E1094_6C8E74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E115C_6C8F3C.s")
 
+void func_802E1194_6C8F74(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1194_6C8F74.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E11D4_6C8FB4.s")
@@ -135,7 +159,23 @@ void func_802E1570_6C9350(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E1678_6C9458.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E171C_6C94FC.s")
+void func_802E171C_6C94FC(GObj* arg0) {
+    Pokemon* pokemon = GET_POKEMON(arg0);
+
+    pokemon->forbiddenGround = &D_802E4A60_6CC840;
+    Pokemon_SetAnimation(arg0, &D_802E4748_6CC528);
+    Pokemon_StartPathProc(arg0, func_802E17D4_6C95B4);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(arg0, &D_802E475C_6CC53C);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(arg0, &D_802E4770_6CC550);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    pokemon->forbiddenGround = NULL;
+    Pokemon_SetState(arg0, &func_802E0A48_6C8828);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E17D4_6C95B4.s")
 

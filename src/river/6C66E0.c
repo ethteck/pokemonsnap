@@ -2,6 +2,7 @@
 
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 extern PokemonInitData D_802E3D68_6CBB48;
 extern PokemonInitData D_802E3DCC_6CBBAC;

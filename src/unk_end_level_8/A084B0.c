@@ -159,12 +159,12 @@ void func_801DC9E8_A085D8(GObj* arg0) {
             if (sp3C->pressedButtons & 4 && D_801DD12C_A08D1C > 0) {
                 s8 scopedTemp2;
 
-                auPlaySound(0x43);
+                auPlaySound(SOUND_ID_67);
                 D_801DD12C_A08D1C--;
             } else if (sp3C->pressedButtons & 8 && D_801DD12C_A08D1C < 5) {
                 s8 scopedTemp3;
 
-                auPlaySound(0x42);
+                auPlaySound(SOUND_ID_66);
                 D_801DD12C_A08D1C++;
             } else {
                 goto label;

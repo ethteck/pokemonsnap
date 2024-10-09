@@ -1162,7 +1162,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIElement_PrintText(D_802290DC_9D8B4C, "It would be better if more of\nthe Pokεmon were in the shot.");
             }
         } else if (sp1FA < 795.0f) {
-            auPlaySound(0x5E);
+            auPlaySound(SOUND_ID_94);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
             sprintf(sp16C, "%5d", sp1FA);
@@ -1319,7 +1319,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIText_SetSpacing(-1, 3);
                 UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close, but you see...\nIt disappoints Pokεmon to\nbe photographed from behind!");
             } else if (photo->posePts < 800) {
-                auPlaySound(0x5E);
+                auPlaySound(SOUND_ID_94);
                 UIText_SetShadowOffset(0);
                 UIText_SetSpacing(0, 4);
                 sprintf(sp118, "%5d", photo->posePts);
@@ -1719,7 +1719,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     }
     if (!sp20C) {
         if (D_801F3E34_9A38A4 != 0 && sp204 != 0) {
-            auPlaySound(0x55);
+            auPlaySound(SOUND_ID_85);
             if (sp200 == 0) {
                 UIElement_Draw(D_802290DC_9D8B4C);
                 UIText_SetShadowOffset(1);
@@ -1779,7 +1779,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIElement_PrintText(D_802290DC_9D8B4C, "Hmm... It's the same score\nas last time.");
             }
         } else {
-            auPlaySound(0x55);
+            auPlaySound(SOUND_ID_85);
             UIElement_Draw(D_802290DC_9D8B4C);
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
@@ -2073,7 +2073,7 @@ s32 func_801E28CC_99233C(s32* arg0) {
 s32 func_801E2A68_9924D8(void) {
     s32 i, ret;
 
-    for (i = 0, ret = 0; i < func_800BF9EC_5C88C(); i++) {
+    for (i = 0, ret = 0; i < getAlbumCapacity(); i++) {
         if (getAlbumPhoto(i) != 0) {
             ret++;
         }
@@ -2120,8 +2120,8 @@ void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
         UIElement_PrintText(D_802290E0_9D8B50, "Left in Album");
         UIElement_SetTextPos(D_802290E0_9D8B50, 109, 50);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g shot%s",
-                             (func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2,
-                             ((func_800BF9EC_5C88C() - func_801E2A68_9924D8()) + arg2) != 1 ? "s" : "");
+                             (getAlbumCapacity() - func_801E2A68_9924D8()) + arg2,
+                             ((getAlbumCapacity() - func_801E2A68_9924D8()) + arg2) != 1 ? "s" : "");
     }
 }
 
@@ -2258,9 +2258,9 @@ void func_801E2ED4_992944(s32 arg0) {
     UIText_SetSpacing(-1, 3);
 
     if (sp38 != 0 || D_801F3E28_9A3898 != 0) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", get_player_name());
+        func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", getPlayerName());
     } else if (checkPlayerFlag(PFID_14) != 0) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", get_player_name());
+        func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", getPlayerName());
     } else if (func_800BF3D4_5C274(0x97)) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
@@ -2271,18 +2271,18 @@ void func_801E2ED4_992944(s32 arg0) {
         } else if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 130000 - sp48));
         } else if (func_801E4510_993F80() == 5) {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", get_player_name());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", getPlayerName());
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", get_player_name());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", getPlayerName());
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 40 - sp44));
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (checkPlayerFlag(PFID_HAS_PESTER_BALL) != 0) {
             if (func_801E4510_993F80() == 3) {
-                func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", get_player_name());
+                func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", getPlayerName());
             } else {
-                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", get_player_name());
+                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", getPlayerName());
             }
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 72500 - sp48));
@@ -2292,7 +2292,7 @@ void func_801E2ED4_992944(s32 arg0) {
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (checkPlayerFlag(PFID_HAS_APPLE) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "There is a \\hhidden path\\p in the\nTunnel!\n");
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Good luck, %s!", get_player_name());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Good luck, %s!", getPlayerName());
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 24000 - sp48));
         }

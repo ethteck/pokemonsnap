@@ -433,7 +433,7 @@ s32 func_800E2960_8A8180(UIElement* arg0, char** arg1, s32 arg2) {
 
     while (*arg1) {
         UIElement_Draw(arg0);
-        func_8037519C_84894C(arg0, *arg1, get_player_name());
+        func_8037519C_84894C(arg0, *arg1, getPlayerName());
         temp_v0 = func_80374F30_8486E0(arg0, true);
         if (arg2 && (temp_v0 == 0x4000)) {
             return 0x4000;

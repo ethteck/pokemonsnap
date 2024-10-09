@@ -47,7 +47,7 @@ enum Buttons {
     BUTTON_RETURN_TO_COVER = 31,
     BUTTON_MAX = 32,
     BUTTON_SPLITTER = 34,
-    BUTTON_END = 35
+    BUTTON_NONE = 35
 };
 
 enum HeaderFlags {
@@ -196,7 +196,7 @@ SObj* func_80371E68_845618(SObj*, Sprite*);
 void func_80371F30_8456E0(s32, s32, s32, s32);
 void func_80373670_846E20(Sprite*);
 PhotoData* func_803746B4_847E64(s32);
-UNK_TYPE func_80374714_847EC4(PhotoData*, Sprite*);
+bool func_80374714_847EC4(PhotoData*, Sprite*);
 void func_80374D20_8484D0(void);
 void func_80374D40_8484F0(void);
 s32 func_80374F30_8486E0(UIElement*, bool);

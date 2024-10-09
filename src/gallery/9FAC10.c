@@ -592,7 +592,7 @@ void func_801DE87C_9FC53C(void) {
             if (D_801EA204_A07EC4 != 0 && --D_80230810_A4E4D0 == 0) {
 
             } else if (sp54->pressedButtons & 0x8000) {
-                auPlaySound(0x4B);
+                auPlaySound(SOUND_ID_75);
                 D_801EA204_A07EC4 = 0;
                 ;
             } else if (sp54->pressedButtons & 0x4000) {
@@ -609,7 +609,7 @@ void func_801DE87C_9FC53C(void) {
                         UIFrame_ShowBackground(D_80230878_A4E538, true);
                         UIElement_SetState(D_80230880_A4E540, UI_NORMAL);
                     } else {
-                        auPlaySound(0x4A);
+                        auPlaySound(SOUND_ID_74);
                         UIFrame_Show(D_80230878_A4E538, false);
                         UIFrame_ShowBackground(D_80230878_A4E538, false);
                         UIElement_SetState(D_80230880_A4E540, UI_HIDDEN);
@@ -618,11 +618,11 @@ void func_801DE87C_9FC53C(void) {
 
                 if (sp54->pressedButtons & 4 && D_801EA204_A07EC4 > 0) {
                     sp3B = (sp3B - 1) % 4;
-                    auPlaySound(0x43);
+                    auPlaySound(SOUND_ID_67);
                     D_801EA204_A07EC4--;
                     ;
                 } else if ((sp54->pressedButtons & 8) && D_801EA204_A07EC4 < 5) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                     D_801EA204_A07EC4++;
                     ;
 
@@ -715,7 +715,7 @@ void func_801DEE88_9FCB48(void) {
         } else {
             sp2C = 7;
             func_801DDCA8_9FB968(sp2C);
-            auPlaySound(0x41);
+            auPlaySound(SOUND_ID_65);
         }
         FocusMark_Show(true);
     }

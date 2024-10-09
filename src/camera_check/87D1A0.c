@@ -61,7 +61,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
         } while (D_camera_check_80249AA8[*arg1].id == 0x23);
 
         if (arg2 != 0) {
-            auPlaySound(0x41);
+            auPlaySound(SOUND_ID_65);
         }
     }
 
@@ -71,7 +71,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
         } while (D_camera_check_80249AA8[*arg1].id == 0x23);
 
         if (arg2 != 0) {
-            auPlaySound(0x41);
+            auPlaySound(SOUND_ID_65);
         }
     }
 
@@ -139,7 +139,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         } else {
             var_t0 = false;
             if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) < func_camera_check_801E2534() - 6) {
-                auPlaySound(0x4B);
+                auPlaySound(SOUND_ID_75);
                 D_camera_check_80208960 += 4;
                 *arg1 = 0;
                 sp24 = true;
@@ -152,7 +152,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         if (*arg1 > 0) {
             (*arg1)--;
         } else if (D_camera_check_80208960 - (D_camera_check_80208960 % 6) > 0) {
-            auPlaySound(0x4B);
+            auPlaySound(SOUND_ID_75);
             sp24 = true;
             var_t0 = true;
             D_camera_check_80208960 -= 4;
@@ -166,7 +166,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
 
     if (D_camera_check_802089E8 != *arg1 || D_camera_check_802089EC != *arg2) {
         if (D_camera_check_802089E8 >= 0) {
-            auPlaySound(0x45);
+            auPlaySound(SOUND_ID_69);
         }
         new_var = *arg1;
         temp_v0_3 = *arg2;
@@ -197,7 +197,7 @@ void func_camera_check_801E0034(s32 arg0) {
     }
 
     if (temp_v0->unk_18_0x08000000) {
-        auPlaySound(0x4A);
+        auPlaySound(SOUND_ID_74);
         temp_v0->unk_18_0x08000000 = 0;
     } else {
         if (func_camera_check_801E2CC0() >= func_camera_check_801E2E04()) {
@@ -222,7 +222,7 @@ void func_camera_check_801E0118(s32 arg0) {
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) &&
         (temp_v0 = func_camera_check_801E24D8(D_camera_check_80208960), (temp_v0 != NULL))) {
         if (temp_v0->unk_18_0x10000000) {
-            auPlaySound(0x4A);
+            auPlaySound(SOUND_ID_74);
             temp_v0->unk_18_0x10000000 = 0;
             return;
         }
@@ -246,7 +246,7 @@ void func_camera_check_801E01C0(s32 arg0) {
     }
 
     if (temp_v0->unk_18_0x20000000) {
-        auPlaySound(0x4A);
+        auPlaySound(SOUND_ID_74);
         temp_v0->unk_18_0x20000000 = 0;
         return;
     }
@@ -351,7 +351,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
     func_camera_check_801DDD28(1);
     UIElement_Draw(func_camera_check_801DCB40());
     func_camera_check_801E24D8(D_camera_check_80208960);
-    auPlaySound(0x47);
+    auPlaySound(SOUND_ID_71);
     prevMode = -1;
     prevPokemonName = NULL;
     ohWait(1);
@@ -473,7 +473,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
             var_s5 = true;
             prevMode = -1;
             pokemonName = getPokemonName(new_var);
-            auPlaySound(0x4B);
+            auPlaySound(SOUND_ID_75);
             func_camera_check_801DE934(1, temp_s1->unk_08, 9);
             func_camera_check_801DDB08(0);
             UIElement_Draw(func_camera_check_801DCB40());
@@ -490,7 +490,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                 ohWait(1);
             }
 
-            auPlaySound(0x4B);
+            auPlaySound(SOUND_ID_75);
             func_camera_check_801DE80C(1, D_camera_check_80208960, 9);
             func_camera_check_801DDB80(temp_s1->unk_08, 0, 5);
             ohWait(6);
@@ -502,7 +502,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                     D_camera_check_80208960++;
                     func_camera_check_801DE80C(1, D_camera_check_80208960, 9);
                     var_s5 = true;
-                    auPlaySound(0x45);
+                    auPlaySound(SOUND_ID_69);
                 }
             }
             if (temp_s4->pressedButtons & 0x800000) {
@@ -510,7 +510,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                     D_camera_check_80208960--;
                     func_camera_check_801DE80C(1, D_camera_check_80208960, 9);
                     var_s5 = true;
-                    auPlaySound(0x45);
+                    auPlaySound(SOUND_ID_69);
                 }
             }
         }
@@ -814,7 +814,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
     func_camera_check_801DDD28(1);
     UIElement_Draw(func_camera_check_801DCB40());
     temp_s4 = func_camera_check_801E2E04();
-    auPlaySound(0x47);
+    auPlaySound(SOUND_ID_71);
     ohWait(1);
 
     while (true) {
@@ -874,7 +874,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
                     D_camera_check_80208960++;
                     func_camera_check_801DE80C(1, D_camera_check_80208960, 0xC);
                     var_s5 = true;
-                    auPlaySound(0x45);
+                    auPlaySound(SOUND_ID_69);
                 }
             }
             if (temp_s6->pressedButtons & 0x800000) {
@@ -882,7 +882,7 @@ s32 func_camera_check_801E15B4(s32 arg0) {
                     D_camera_check_80208960--;
                     func_camera_check_801DE80C(1, D_camera_check_80208960, 0xC);
                     var_s5 = true;
-                    auPlaySound(0x45);
+                    auPlaySound(SOUND_ID_69);
                 }
             }
         }
@@ -981,7 +981,7 @@ s32 func_camera_check_801E1BD4(void) {
         temp_s0 = func_800AA38C(0);
         func_camera_check_801DFA80(temp_s0, &sp38, 1, func_camera_check_801DF9B0());
         if (temp_s0->pressedButtons & 0x8000) {
-            auPlaySound(0x42);
+            auPlaySound(SOUND_ID_66);
 
             switch (D_camera_check_80249AA8[sp38].id) {
 
@@ -991,7 +991,7 @@ s32 func_camera_check_801E1BD4(void) {
                         func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
                         func_camera_check_801DDB08(1);
                         func_camera_check_801E0F10();
-                        auPlaySound(0x43);
+                        auPlaySound(SOUND_ID_67);
                         func_camera_check_801E0480();
                         func_camera_check_801DDB08(0);
                         func_camera_check_801E31E4(0, 0);
@@ -1004,7 +1004,7 @@ s32 func_camera_check_801E1BD4(void) {
                 case 24:
                     if ((checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL) != 0) && (sp30 != 0)) {
                         func_camera_check_801E1918();
-                        auPlaySound(0x43);
+                        auPlaySound(SOUND_ID_67);
                         func_camera_check_801E0480();
                         func_camera_check_801DD630(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
                         FocusMark_SetTargetSize(0x3E, 0xD);
@@ -1056,17 +1056,17 @@ u32 func_camera_check_801E1EA4(void) {
             UILayout_DisableAllButtonsExcept(0, 0);
             FocusMark_Show(true);
             D_camera_check_80208960 = 0;
-            auPlaySound(0x43);
+            auPlaySound(SOUND_ID_67);
             return 0;
         }
         if ((temp_v0->pressedButtons & 0x40000) && ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) < (func_camera_check_801E2534() - 6))) {
-            auPlaySound(0x4B);
+            auPlaySound(SOUND_ID_75);
             D_camera_check_80208960 += 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();
         }
         if ((temp_v0->pressedButtons & 0x80000) && ((D_camera_check_80208960 - (D_camera_check_80208960 % 6)) > 0)) {
-            auPlaySound(0x4B);
+            auPlaySound(SOUND_ID_75);
             D_camera_check_80208960 -= 6;
             D_camera_check_80249AA0(D_camera_check_80208960 - (D_camera_check_80208960 % 6), 0x15);
             func_camera_check_801E03EC();

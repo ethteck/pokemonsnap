@@ -41,7 +41,7 @@ void func_800E2314_A5D6C4(void) {
     menu_new_game_CursorX = 2;
     menu_new_game_CursorY = 19;
     func_800E2200_A5D5B0();
-    auPlaySound(65);
+    auPlaySound(SOUND_ID_65);
 }
 
 void func_800E2350_A5D700(void) {
@@ -88,7 +88,7 @@ void func_800E23E0_A5D790(s32 buttons) {
         if (menu_new_game_CursorY >= 19) {
             D_80168128 = menu_new_game_CursorX;
             menu_new_game_CursorX = menu_new_game_CursorX / 3;
-            auPlaySound(65);
+            auPlaySound(SOUND_ID_65);
         } else {
             auPlaySound(69);
         }
@@ -116,7 +116,7 @@ void func_800E23E0_A5D790(s32 buttons) {
             menu_new_game_CursorX = D_80168128;
             auPlaySound(69);
         } else {
-            auPlaySound(65);
+            auPlaySound(SOUND_ID_65);
         }
     }
 }
@@ -247,7 +247,7 @@ void func_800E28C0_A5DC70(void) {
         auPlaySoundWithParams(96, 0x7FFF, 84, 1.0f, 10);
     }
 
-    func_800BF44C_5C2EC((PlayerName*) D_80168130); // todo cast ??
+    setPlayerName((PlayerName*) D_80168130); // todo cast ??
     auPlaySound(66);
 }
 

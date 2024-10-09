@@ -3,41 +3,53 @@
 
 #include "../window/window.h"
 
-s32 func_801DCD20_9A6F70(void);
+enum AlbumPages {
+    ALBUM_MAIN_PAGE = 0,
+    ALBUM_PAGE_SELECT_PHOTO_TO_VIEW = 1,
+    ALBUM_PAGE_VIEW_PHOTO = 2,
+    ALBUM_PAGE_ARRANGE_PHOTO = 3,
+    ALBUM_PAGE_PHOTO_DETAILS = 4,
+    ALBUM_PAGE_EDIT_COMMENT = 5,
+    ALBUM_PAGE_DELETE_PHOTO = 6,
+    ALBUM_PAGE_SELECT_PHOTO_TO_DELETE = 7,
+    ALBUM_PAGE_DELETE_PHOTO_FROM_ALBUM = 8
+};
+
+s32 album_GetCurrentPage(void);
 s16 func_801DD0CC_9A731C(void);
 void func_801DD954_9A7BA4(s32);
 void func_801DDB54_9A7DA4(s32);
 void func_801DDD28_9A7F78(s32, s32);
 void func_801DDDF8_9A8048(s32 x, s32 y);
 void func_801DE080_9A82D0(void);
-void func_801DE1FC_9A844C(s32);
+void album_PrintPhotoComment(s32);
 void func_801DE2BC_9A850C(s32);
 void func_801DE998_9A8BE8(s32);
 void func_801DEA4C_9A8C9C(s32, s32, s32);
 void func_801DF744_9A9994(s32, s32);
 void album_SwitchCharacterGridPage(u32);
-void func_801E0300_9AA550(void);
+void album_DeleteCharInComment(void);
 void album_PressedCharacterInGrid(s32, s32);
 void func_801E0774_9AA9C4(void);
 void func_801E09A0_9AABF0(s32);
 void func_801E0AF0_9AAD40(void);
 void func_801E0FFC_9AB24C(s32);
 void func_801E0E58_9AB0A8(void);
-void func_801E1168_9AB3B8(s32);
-void func_801E1320_9AB570(s32);
-UIButton* func_801E1900_9ABB50(void);
-s32 func_801E191C_9ABB6C(void);
+void album_DrawDeletePhotoPrompt(s32);
+void album_DeletePhoto(s32);
+UIButton* album_GetCoverButtons(void);
+s32 album_GetSelectedPhoto(void);
 s32 album_GetNextPhotoIndex(s32);
 s32 album_GetPreviousPhotoIndex(s32);
-s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8*, s32*);
-s32 func_801E1C30_9ABE80(UnkStruct800BEDF8*, s32*, s32*);
-s32 func_801E1FE4_9AC234(UnkStruct800BEDF8*, s32*, s32*, s32);
-s32 func_801E2438_9AC688(UnkStruct800BEDF8*, s32*, s32*);
+s32 album_UpdateButtonSelection(UnkStruct800BEDF8*, s32*);
+s32 album_UpdatePhotoSelection(UnkStruct800BEDF8*, s32*, s32*);
+s32 album_DragPhoto(UnkStruct800BEDF8*, s32*, s32*, s32);
+s32 album_EditComment(UnkStruct800BEDF8*, s32*, s32*);
 s32 album_UpdateAlbumPage(void);
-void func_801E37A0_9AD9F0(void);
+void album_Update(void);
 void func_801E3880_9ADAD0(void);
 PhotoData* album_GetAlbumPhoto(s32);
-void func_801E3914_9ADB64(s32);
+void album_DeleteAlbumPhoto(s32);
 s16* album_GetPhotoComment(s32);
 s32 album_GetLastPhotoIndex(void);
 s32 album_GetFirstPhotoIndex(void);

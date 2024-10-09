@@ -4,7 +4,7 @@
 
 u8 album_D_80208FE0_9D3230[0x46000];
 
-void func_801E1858_9ABAA8(void);
+void album_CreateUI(void);
 void func_801DCC74_9A6EC4(void* arg0);
 void album_Init(void);
 
@@ -134,7 +134,7 @@ void album_Init(void) {
     UIText_Initialize();
     auPlaySong(BGM_PLAYER_MAIN, SONG_ID_10);
     auSetBGMVolume(0, 0x7F00);
-    func_801E1858_9ABAA8();
+    album_CreateUI();
 }
 
 void func_801DCC74_9A6EC4(void* arg0) {

@@ -46,7 +46,7 @@ s32 func_800E4578_8A9D98(UIElement* arg0, char** arg1, s32 arg2, bool arg3) {
 
     for (; *arg1; arg1++) {
         UIElement_Draw(arg0);
-        func_8037519C_84894C(arg0, *arg1, get_player_name());
+        func_8037519C_84894C(arg0, *arg1, getPlayerName());
         if (arg2 == 2 && arg1[1] == 0) {
             return 0;
         }
@@ -222,7 +222,7 @@ void func_800E4B2C_8AA34C(void) {
     };
     sp24 = func_800E1B40_8A7360();
     UIElement_Draw(sp24);
-    func_8037519C_84894C(sp24, "\\w\\EWelcome back!\\t", get_player_name());
+    func_8037519C_84894C(sp24, "\\w\\EWelcome back!\\t", getPlayerName());
     ohWait(0x36);
     func_80374F30_8486E0(sp24, false);
 }

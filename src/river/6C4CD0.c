@@ -11,23 +11,23 @@ extern AnimationHeader D_802E3724_6CB504;
 extern RandomState D_802E3748_6CB528[];
 extern PokemonInitData D_802E377C_6CB55C;
 
-void func_802DCEF0_6C4CD0(GObj* arg0) {
-    Pokemon_SetStateRandom(arg0, D_802E3748_6CB528);
+void func_802DCEF0_6C4CD0(GObj* obj) {
+    Pokemon_SetStateRandom(obj, D_802E3748_6CB528);
 }
 
-void func_802DCF14_6C4CF4(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E36FC_6CB4DC);
-    Pokemon_SetState(arg0, func_802DCFBC_6C4D9C);
+void func_802DCF14_6C4CF4(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E36FC_6CB4DC);
+    Pokemon_SetState(obj, func_802DCFBC_6C4D9C);
 }
 
-void func_802DCF4C_6C4D2C(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E3710_6CB4F0);
-    Pokemon_SetState(arg0, func_802DCFBC_6C4D9C);
+void func_802DCF4C_6C4D2C(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E3710_6CB4F0);
+    Pokemon_SetState(obj, func_802DCFBC_6C4D9C);
 }
 
-void func_802DCF84_6C4D64(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E3724_6CB504);
-    Pokemon_SetState(arg0, func_802DCFBC_6C4D9C);
+void func_802DCF84_6C4D64(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E3724_6CB504);
+    Pokemon_SetState(obj, func_802DCFBC_6C4D9C);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCFBC_6C4D9C.s")

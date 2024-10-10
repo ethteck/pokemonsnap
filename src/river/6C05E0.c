@@ -47,7 +47,7 @@ void func_802D88F8_6C06D8(s32 arg0) {
     func_800067DC();
 }
 
-void func_802D895C_6C073C(GObj* arg0) {
+void func_802D895C_6C073C(GObj* obj) {
     if (Items_GetPokeFluteCmd() == 0) {
         auSetBGMChannelVolume(0, 0xA, D_802E2620_6CA400);
     }

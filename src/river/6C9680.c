@@ -28,18 +28,18 @@ extern u8 D_8033F681_727461;
 
 void func_802E18C4_6C96A4(GObj*);
 
-void func_802E18A0_6C9680(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802E18C4_6C96A4);
+void func_802E18A0_6C9680(GObj* obj) {
+    Pokemon_SetState(obj, func_802E18C4_6C96A4);
 }
 
-void func_802E18C4_6C96A4(GObj* arg0) {
+void func_802E18C4_6C96A4(GObj* obj) {
     UNUSED s32 padding[3];
-    Pokemon* pokemon = GET_POKEMON(arg0);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_SetAnimation(arg0, &D_802E4AE0_6CC8C0);
+    Pokemon_SetAnimation(obj, &D_802E4AE0_6CC8C0);
     pokemon->transitionGraph = D_802E4B14_6CC8F4;
-    Pokemon_WaitForFlag(arg0, 0);
-    Pokemon_SetState(arg0, 0);
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, 0);
 }
 
 void func_802E191C_6C96FC(f32 animSpeed) {
@@ -81,7 +81,7 @@ void func_802E19A0_6C9780(DObj* arg0, s32 arg1, f32 arg2) {
 void func_802E1A3C_6C981C(DObj*, s32, f32);
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C9680/func_802E1A3C_6C981C.s")
 
-void func_802E1A4C_6C982C(GObj* arg0) {
+void func_802E1A4C_6C982C(GObj* obj) {
     func_800AB9A4();
 
     for (D_8033F67C_72745C = 0;; D_8033F67C_72745C++) {
@@ -133,7 +133,7 @@ void func_802E1CBC_6C9A9C(void) {
     omCreateProcess(D_8033F678_727458, func_802E1A4C_6C982C, 0, 1);
 }
 
-void func_802E1D10_6C9AF0(GObj* arg0) {
+void func_802E1D10_6C9AF0(GObj* obj) {
     UNUSED s32 padding[7];
     f32 sp34;
     GObj* temp_s0;
@@ -160,8 +160,8 @@ void func_802E1D10_6C9AF0(GObj* arg0) {
     ohPauseObjectProcesses(temp_s0);
     omCreateProcess(temp_s0, animUpdateCameraAnimation, 1, 1);
     playerGobj = PlayerModel_Init();
-    arg0->fnAnimCallback = func_802E1A3C_6C981C;
-    animSetModelAnimationSpeed(arg0, 0.5f);
+    obj->fnAnimCallback = func_802E1A3C_6C981C;
+    animSetModelAnimationSpeed(obj, 0.5f);
     func_802E1950_6C9730(0.0f);
     func_802E191C_6C96FC(0.5f);
     func_802E1CBC_6C9A9C();
@@ -195,7 +195,7 @@ void func_802E1D10_6C9AF0(GObj* arg0) {
     cmdSendCommand(gObjPlayer, 7, NULL);
     omEndProcess(NULL);
     omDeleteGObj(D_8033F678_727458);
-    Pokemon_SetState(arg0, 0);
+    Pokemon_SetState(obj, 0);
 }
 
 GObj* func_802E2084_6C9E64(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {

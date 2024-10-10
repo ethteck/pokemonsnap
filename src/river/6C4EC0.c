@@ -78,8 +78,8 @@ void func_802DD96C_6C574C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DDC28_6C5A08.s")
 
-void func_802DDC94_6C5A74(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802DDCB8_6C5A98);
+void func_802DDC94_6C5A74(GObj* obj) {
+    Pokemon_SetState(obj, func_802DDCB8_6C5A98);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DDCB8_6C5A98.s")
@@ -107,8 +107,8 @@ void func_802DDE20_6C5C00(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DE024_6C5E04.s")
 
-void func_802DE0DC_6C5EBC(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802DE100_6C5EE0);
+void func_802DE0DC_6C5EBC(GObj* obj) {
+    Pokemon_SetState(obj, func_802DE100_6C5EE0);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C4EC0/func_802DE100_6C5EE0.s")

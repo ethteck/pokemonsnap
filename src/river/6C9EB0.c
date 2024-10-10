@@ -11,9 +11,9 @@ extern GObj* D_802E4B84_6CC964;
 extern u8 D_8033F698_727478;
 extern u8 D_8033F699_727479;
 
-void func_802E20D0_6C9EB0(GObj* arg0) {
+void func_802E20D0_6C9EB0(GObj* obj) {
     func_803571C4_4F75D4();
-    func_80357120_4F7530(arg0);
+    func_80357120_4F7530(obj);
     func_803570B0_4F74C0();
 }
 
@@ -52,7 +52,7 @@ void func_802E2194_6C9F74(void) {
     omDeleteGObj(NULL);
 }
 
-void func_802E222C_6CA00C(GObj* arg0) {
+void func_802E222C_6CA00C(GObj* obj) {
     s32 i;
 
     for (i = 0; i < 60; i++) {

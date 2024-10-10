@@ -174,7 +174,7 @@ void album_BlinkLetter(GObj* arg0) {
     ohWait(99);
 }
 
-s16 func_801DD0CC_9A731C(void) {
+s16 album_GetCursorPos(void) {
     return album_CommentCursorPos;
 }
 
@@ -356,19 +356,19 @@ void album_CreatePhotos(void) {
     }
 }
 
-void func_801DD954_9A7BA4(s32 photoId) {
+void album_DrawAlbumPage(s32 firstPhotoOnPage) {
     s32 i;
     char strPageNum[0x20];
 
-    album_AlbumPage = photoId / 6;
+    album_AlbumPage = firstPhotoOnPage / 6;
 
-    for (i = 0; i < ARRAY_COUNT(album_Photos); photoId++, i++) {
-        if (func_80374714_847EC4(album_GetAlbumPhoto(photoId), &album_Photos[i].sObj->sprite) != NULL) {
+    for (i = 0; i < ARRAY_COUNT(album_Photos); firstPhotoOnPage++, i++) {
+        if (func_80374714_847EC4(album_GetAlbumPhoto(firstPhotoOnPage), &album_Photos[i].sObj->sprite)) {
             album_Photos[i].gObj->data.sobj->sprite.attr |= SP_HIDDEN;
-            album_Photos[i].isShown = 0;
+            album_Photos[i].isShown = false;
         } else {
             album_Photos[i].gObj->data.sobj->sprite.attr &= ~SP_HIDDEN;
-            album_Photos[i].isShown = 1;
+            album_Photos[i].isShown = true;
         }
     }
 
@@ -1223,7 +1223,7 @@ void album_PressedCharacterInGrid(s32 column, s32 row) {
     }
 }
 
-void func_801E0678_9AA8C8(s32 arg0) {
+void album_SetBackgroundTexture(s32 arg0) {
     GObj* gobj = album_BackgroundGObj;
     SObj* sobj = gobj->data.sobj;
 
@@ -1241,14 +1241,14 @@ void func_801E0678_9AA8C8(s32 arg0) {
     album_BackgroundSObj = sobj;
 }
 
-void func_801E0774_9AA9C4(void) {
+void album_CreateCoverPage(void) {
     s32 sp54;
     s32 i;
     UIElement* sp4C;
     UNUSED s32 pad[7];
 
     func_801DF2E0_9A9530();
-    func_801E0678_9AA8C8(0);
+    album_SetBackgroundTexture(0);
     album_SetCoverColor(0);
     func_801DD500_9A7750(0);
     func_801DD5A0_9A77F0(0);
@@ -1328,7 +1328,7 @@ void func_801E0AF0_9AAD40(void) {
     s32 i;
     UIElement* el;
 
-    func_801E0678_9AA8C8(1);
+    album_SetBackgroundTexture(1);
     func_801DE620_9A8870(2, 1);
     album_ShowCommentBackground(true);
     album_ShowPhotoDescBackground(false);
@@ -1384,7 +1384,7 @@ void func_801E0AF0_9AAD40(void) {
     album_SetCoverColor(255);
     func_801DD500_9A7750(255);
     func_801DD5A0_9A77F0(255);
-    func_801DD954_9A7BA4(album_GetSelectedPhoto() - (album_GetSelectedPhoto() % 6));
+    album_DrawAlbumPage(album_GetSelectedPhoto() - (album_GetSelectedPhoto() % 6));
     ohWait(21);
     UIElement_SetState(album_UiAlbumHeader, UI_NORMAL);
     UILayout_ShowPanel(true);
@@ -1447,7 +1447,7 @@ void func_801E0FFC_9AB24C(s32 arg0) {
         case 1:
             func_801DE350_9A85A0(false, 0);
             func_801DE620_9A8870(2, 1);
-            func_801DD954_9A7BA4(album_GetSelectedPhoto() - (album_GetSelectedPhoto() % 6));
+            album_DrawAlbumPage(album_GetSelectedPhoto() - (album_GetSelectedPhoto() % 6));
             break;
         case 2:
             func_801DE620_9A8870(1, 1);

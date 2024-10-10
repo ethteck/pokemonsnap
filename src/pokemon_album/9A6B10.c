@@ -2,7 +2,7 @@
 #include "ld_addrs.h"
 #include "window/window.h"
 
-u8 album_D_80208FE0_9D3230[0x46000];
+u8 album_Heap[0x46000];
 
 void album_CreateUI(void);
 void func_801DCC74_9A6EC4(void* arg0);
@@ -126,7 +126,7 @@ void album_InitCamera(void) {
 void album_Init(void) {
     UNUSED s32 pad[2];
 
-    func_8036A3F8_83DBA8(album_D_80208FE0_9D3230, sizeof(album_D_80208FE0_9D3230));
+    func_8036A3F8_83DBA8(album_Heap, sizeof(album_Heap));
     func_800AAE28();
     album_InitCamera();
     func_80374D40_8484F0();

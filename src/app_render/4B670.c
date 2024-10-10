@@ -11,12 +11,17 @@ extern GObj* D_800BDF30[];
 extern s32 D_800BDF60;
 extern GObj* D_800BDFA8;
 extern PhotoData* D_800BDFAC;
-extern s32 D_800BDFB0;
-extern s32 D_800BDFB4;
-extern s32 D_800BDFB8[];
-extern s32 D_800BDFE8[];
+extern u16* D_800BDFB0;
+extern u16* D_800BDFB4;
+extern u16* D_800BDFB8[];
+extern u16* D_800BDFE8[];
+extern u16 D_800BE018;
 extern u16 D_800BE01A;
+extern s32 D_800BE020[];
+extern s32 D_800BE050[];
+extern s32 D_800BE080[];
 extern s32 D_800BE0B0[];
+extern s32 D_800BE0E0[];
 extern s32 D_800BE110[];
 extern s32 D_800BE140[];
 extern ScoreData D_800BE170;
@@ -26,7 +31,7 @@ s32 func_8009FCC0(void) {
     return 0xA4;
 }
 
-void func_8009FCC8(GObj* obj) {
+void func_8009FCC8(GObj* camObj) {
     OMCamera* cam;
     GObj* it;
     s32 dllink;
@@ -40,8 +45,8 @@ void func_8009FCC8(GObj* obj) {
 
     func_8009FA68(D_800BDFA8->data.cam, D_800BDFAC);
     D_800AE7C8 = 0;
-    omCurrentCamera = obj;
-    cam = obj->data.cam;
+    omCurrentCamera = camObj;
+    cam = camObj->data.cam;
     cam->flags |= CAMERA_FLAG_10;
     if (D_800AE7C4) {
         cam->perspMtx.persp.fovy *= 2.0f;
@@ -64,12 +69,12 @@ void func_8009FCC8(GObj* obj) {
 
     D_800BE01A = 0;
     dllink = 0;
-    bitMask = obj->dlLinkBitMask;
-    unk_38 = obj->unk_38;
+    bitMask = camObj->dlLinkBitMask;
+    unk_38 = camObj->unk_38;
     while (bitMask != 0) {
         if (bitMask & 1) {
             for (it = omGObjListDlHead[dllink]; it != NULL; it = it->nextDl) {
-                if ((it->flags & GOBJ_FLAG_HIDDEN) || !(obj->cameraTag & it->cameraTag)) {
+                if ((it->flags & GOBJ_FLAG_HIDDEN) || !(camObj->cameraTag & it->cameraTag)) {
                     continue;
                 }
                 omRenderedObject = it;
@@ -100,46 +105,138 @@ void func_8009FCC8(GObj* obj) {
     }
 }
 
-void func_800A007C(GObj*, PhotoData*, u16, u16*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A007C.s")
+void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
+    s32 unused[4];
+    GObjFunc sp3C;
+    s32 idx;
+    s32 i;
+    s32 x, y;
+
+    D_800BDFA8 = arg0;
+    sp3C = arg0->fnRender;
+    arg0->fnRender = func_8009FCC8;
+    D_800BDFAC = arg1;
+    D_800BE018 = arg2;
+
+    D_800BDFB0 = arg3;
+    arg3 += 64*48;
+    D_800BDFB4 = arg3;
+    arg3 += 64*48;
+
+    for (i = 0; i < 12; i++) {
+        D_800BDFB8[i] = arg3;
+        arg3 += 64*48;
+    }
+
+    for (i = 0; i < 12; i++) {
+        D_800BDFE8[i] = arg3;
+        arg3 += 64*48;
+    }
+
+    D_800AE7C8 = 1;
+    D_800AE7C4 = 1;
+
+    bzero(D_800BDFB0, 0x27000);
+    osWritebackDCacheAll();
+    osInvalDCache(D_800BDFB0, 0x27000);
+    func_80006F8C(D_800BDFA8);
+
+    for (i = 0; i < 12; i++) {
+        D_800BE020[i] = D_800BE050[i] = 0;
+
+        for (y = 0; y < 48; y++) {
+            for (x = 0; x < 64; x++) {
+                idx = y * 64 + x;
+                if (D_800BDFB8[i][idx] != 0xFFFC) {
+                    D_800BE020[i]++;
+                    if (x >= 17 && x <= 46 && y >= 13 && y <= 34) {
+                        D_800BE050[i]++;
+                    }
+                }
+            }
+        }
+    }
+
+    D_800AE7C8 = 1;
+    D_800AE7C4 = 0;
+
+    bzero(D_800BDFB0, 0x27000);
+    osWritebackDCacheAll();
+    osInvalDCache(D_800BDFB0, 0x27000);
+    func_80006F8C(D_800BDFA8);
+
+    arg0->fnRender = sp3C;
+
+    for (i = 0; i < 12; i++) {
+        D_800BE080[i] = D_800BE0B0[i] = D_800BE0E0[i] = D_800BE140[i] = 0;
+
+        for (y = 0; y < 48; y++) {
+            for (x = 0; x < 64; x++) {
+                idx = y * 64 + x;
+                if (D_800BDFB8[i][idx] != 0xFFFC) {
+                    D_800BE080[i]++;
+                    if (x >= 30 && x <= 33 && y >= 22 && y <= 25) {
+                        D_800BE140[i]++;
+                    }
+                    if (D_800BDFB8[i][idx] == D_800BDFB4[idx] && D_800BDFE8[i][idx] != D_800BDFB4[idx]) {
+                        D_800BE0B0[i]++;
+                        if (x >= 31 && x <= 32 && y >= 23 && y <= 24) {
+                            D_800BE0E0[i]++;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (D_800BE050[i] != 0) {
+            D_800BE110[i] = D_800BE020[i] * D_800BE080[i] / D_800BE050[i];
+        } else {
+            D_800BE110[i] = D_800BE020[i] * 4;
+        }
+    }
+
+    for (i = 0; i < D_800BE01A; i++) {
+        if (arg1->unk_20[i].animationTime < 0.0f) {
+            auPlaySound(SOUND_ID_85);
+            ohWait(60);
+        }
+    }
+    ohWait(1);
+}
 
 f32 func_800A0504(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (arg4 - arg3) * (arg0 - arg1) / (arg2 - arg1) + arg3;
 }
 
-#ifdef NON_MATCHING
-void func_800A0534(ScoreData* arg0, UnkThing* arg1, s32 arg2, s32 arg3) {
+//#ifdef NON_MATCHING
+void func_800A0534(ScoreData* arg0, PhotoData* arg1, s32 arg2, s32 arg3) {
     f32 var_f2;
     u16 new_var;
-    s32 temp_lo;
     s32 new_var2;
     s32 var_v1;
     s32* temp_a0;
-    s32* temp_a1;
 
     if (arg3 == PokemonID_SHELLDER || arg3 == PokemonID_603) {
-        if (arg1->main.unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_SHELLDER &&
-            arg1->main.unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_603) {
+        if (arg1->unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_SHELLDER &&
+            arg1->unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_603) {
             return;
         }
-    } else if (arg3 != arg1->main.unk_20[D_800BDF68[arg2]].pokemonID) {
+    } else if (arg3 != arg1->unk_20[D_800BDF68[arg2]].pokemonID) {
         return;
     }
 
-    temp_a1 = &D_800BE0B0[arg2];
-    temp_a0 = &D_800BE110[arg2];
-    var_v1 = *temp_a1;
+    var_v1 = D_800BE0B0[arg2];
     if (var_v1 > 0x300) {
         var_v1 = 0x300;
     }
-    if (var_v1 >= 4 && (*temp_a0) > 0) {
+    if (var_v1 >= 4 && D_800BE110[arg2] > 0) {
         // TODO remove dumb
         if (1) {
         }
         new_var2 = 10;
         new_var = ((func_800A0504(var_v1, 4.0f, 768.0f, 0.2f, 1.0f) * 1000.0f) + 5.0f) / 10.0f;
         new_var2 = new_var * new_var2;
-        var_f2 = ((f32) (*temp_a1)) / ((f32) (*temp_a0));
+        var_f2 = ((f32) D_800BE0B0[arg2]) / ((f32) D_800BE110[arg2]);
         if (var_f2 > 1.0) {
             var_f2 = 1.0f;
         }
@@ -148,10 +245,10 @@ void func_800A0534(ScoreData* arg0, UnkThing* arg1, s32 arg2, s32 arg3) {
         arg0->samePkmnNumber++;
     }
 }
-#else
-void func_800A0534(ScoreData*, UnkThing* arg1, s32 arg2, s32 arg3);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0534.s")
-#endif
+//#else
+//void func_800A0534(ScoreData*, PhotoData* arg1, s32 arg2, s32 arg3);
+//#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0534.s")
+//#endif
 
 void func_800A081C(ScoreData*, PhotoData*, s32);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A081C.s")

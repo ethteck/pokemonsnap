@@ -16,8 +16,8 @@ enum AlbumPages {
 };
 
 s32 album_GetCurrentPage(void);
-s16 func_801DD0CC_9A731C(void);
-void func_801DD954_9A7BA4(s32);
+s16 album_GetCursorPos(void);
+void album_DrawAlbumPage(s32);
 void func_801DDB54_9A7DA4(s32);
 void func_801DDD28_9A7F78(s32, s32);
 void func_801DDDF8_9A8048(s32 x, s32 y);
@@ -30,7 +30,7 @@ void func_801DF744_9A9994(s32, s32);
 void album_SwitchCharacterGridPage(u32);
 void album_DeleteCharInComment(void);
 void album_PressedCharacterInGrid(s32, s32);
-void func_801E0774_9AA9C4(void);
+void album_CreateCoverPage(void);
 void func_801E09A0_9AABF0(s32);
 void func_801E0AF0_9AAD40(void);
 void func_801E0FFC_9AB24C(s32);

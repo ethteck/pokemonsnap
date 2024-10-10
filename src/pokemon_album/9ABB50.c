@@ -124,7 +124,7 @@ s32 album_UpdatePhotoSelection(UnkStruct800BEDF8* input, s32* column, s32* row) 
             album_SelectedPhoto += 6;
             *column = 0;
             FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
-            func_801DD954_9A7BA4(album_SelectedPhoto - (album_SelectedPhoto % 6));
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
     if (input->pressedButtons & STICK_SLOW_LEFT) {
@@ -135,7 +135,7 @@ s32 album_UpdatePhotoSelection(UnkStruct800BEDF8* input, s32* column, s32* row) 
             album_SelectedPhoto -= 6;
             *column = 2;
             FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
-            func_801DD954_9A7BA4(album_SelectedPhoto - (album_SelectedPhoto % 6));
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
     if ((*column != album_CurrentColumn) || (*row != album_CurrentRow)) {
@@ -173,7 +173,7 @@ s32 album_DragPhoto(UnkStruct800BEDF8* input, s32* column, s32* row, s32 isDragg
             album_SelectedPhoto += 6;
             *column = 0;
             FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
-            func_801DD954_9A7BA4(album_SelectedPhoto - (album_SelectedPhoto % 6));
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
     if (input->pressedButtons & STICK_SLOW_LEFT) {
@@ -184,7 +184,7 @@ s32 album_DragPhoto(UnkStruct800BEDF8* input, s32* column, s32* row, s32 isDragg
             album_SelectedPhoto -= 6;
             *column = 2;
             FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
-            func_801DD954_9A7BA4(album_SelectedPhoto - (album_SelectedPhoto % 6));
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
     if ((*column != album_DraggedPhotoColumn) || (*row != album_DraggedPhotoRow)) {
@@ -291,7 +291,7 @@ s32 album_UpdateCoverPage(void) {
     s32 row;
 
     if (D_80208B90_9D2DE0) {
-        func_801E0774_9AA9C4();
+        album_CreateCoverPage();
     }
     D_80208B90_9D2DE0 = true;
     row = 0;
@@ -309,11 +309,11 @@ s32 album_UpdateCoverPage(void) {
         if (input->pressedButtons & A_BUTTON) {
             auPlaySound(SOUND_ID_66);
             switch (album_PanelButtons[row].id) {
-                case 30:
+                case BUTTON_OPEN:
                     UILayout_HideButtons();
                     func_801E09A0_9AABF0(0);
                     return 0;
-                case 17:
+                case BUTTON_GO_TO_LAB:
                     func_801E09A0_9AABF0(60);
                     return 6;
             }
@@ -539,7 +539,7 @@ s32 album_UpdateAlbumPage(void) {
             case ALBUM_PAGE_EDIT_COMMENT:
                 album_EditComment(input, &gridColumn, &gridRow);
                 if (input->pressedButtons & B_BUTTON) {
-                    if (func_801DD0CC_9A731C() != 0) {
+                    if (album_GetCursorPos() != 0) {
                         auPlaySound(SOUND_ID_74);
                         album_DeleteCharInComment();
                     } else {
@@ -571,7 +571,7 @@ s32 album_UpdateAlbumPage(void) {
                         album_PressedCharacterInGrid(gridColumn, gridRow);
                         func_801DEA4C_9A8C9C(0, gridColumn, gridRow);
                     }
-                    if (func_801DD0CC_9A731C() >= 31) {
+                    if (album_GetCursorPos() >= 31) {
                         gridColumn = 2;
                         gridRow = 19;
                     }

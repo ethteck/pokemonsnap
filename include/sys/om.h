@@ -443,24 +443,15 @@ typedef struct Texture {
     /* 0x44 */ f32 unk_44;
     /* 0x48 */ char unk_48[0x4];
     /* 0x4C */ u32 unk_4C;
-    /* 0x50 */ u8 primR; // primitive color r
-    /* 0x51 */ u8 primG; // primitive color g
-    /* 0x52 */ u8 primB; // primitive color b
-    /* 0x53 */ u8 primA; // primitive color a
+    /* 0x50 */ ColorPack primRGBA;
     /* 0x54 */ u8 unk_54;
     /* 0x55 */ u8 minLodValue;
     /* 0x56 */ u8 unk_56;
     /* 0x57 */ u8 unk_57;
-    /* 0x58 */ u8 envR;         // env color r
-    /* 0x59 */ u8 envG;         // env color g
-    /* 0x5A */ u8 envB;         // env color b
-    /* 0x5B */ u8 envA;         // env color a
-    /* 0x5C */ u8 blendR;       // blend color r
-    /* 0x5D */ u8 blendG;       // blend color g
-    /* 0x5E */ u8 blendB;       // blend color b
-    /* 0x5F */ u8 blendA;       // blend color a
-    /* 0x60 */ u32 lightColor1; // light 1 color?
-    /* 0x64 */ u32 lightColor2; // light 2 color?
+    /* 0x58 */ ColorPack envRGBA;
+    /* 0x5C */ ColorPack blendRGBA;
+    /* 0x60 */ ColorPack lightColor1; // light 1 color?
+    /* 0x64 */ ColorPack lightColor2; // light 2 color?
     /* 0x68 */ s32 unk68;
     /* 0x6C */ s32 unk6C;
     /* 0x70 */ s32 unk70;

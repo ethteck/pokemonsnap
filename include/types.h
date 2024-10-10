@@ -26,4 +26,11 @@ typedef f32 Mtx4f[4][4];
 
 typedef f32 Mtx3f[3][3];
 
+typedef union ColorPack {
+    struct color {
+        u8 r, g, b, a;
+    } color;
+    u32 pack;
+} ColorPack;
+
 #endif

@@ -42,7 +42,7 @@ s32 D_80208B80_9D2DD0 = 10;
 s32 D_80208B84_9D2DD4 = 5;
 UNK_TYPE D_80208B88_9D2DD8 = 0;
 
-u8 album_blabla[0x1000];
+u8 album_D_8024EFE4[0x1000];
 s32 album_D_8024FFE8_A1A238;
 s32 album_D_8024FFEC_A1A23C;
 UIElement* album_D_8024FFF0_A1A240;
@@ -75,7 +75,6 @@ SObj* album_D_8025010C_A1A35C;
 s32 album_D_80250110_A1A360;
 s32 album_D_8024EFE0_A19230;
 
-
 s32 func_801DCD20_9A6F70(void) {
     return album_AlbumPage;
 }
@@ -94,7 +93,7 @@ s32 func_801DCD7C_9A6FCC(s16* wideStr, char* dst) {
     s32 srcIndex;
     s32 dstIndex;
 
-    srcPtr = (char*)wideStr; // todo what is going on with the type of this
+    srcPtr = (char*) wideStr; // todo what is going on with the type of this
     dstPtr = dst != NULL ? dst : temp;
     srcIndex = 0;
     dstIndex = 0;
@@ -1188,7 +1187,7 @@ void album_PressedCharacterInGrid(s32 x, s32 y) {
 
     if (album_D_802500BE_A1A30E < 31) {
         comment[album_D_802500BE_A1A30E] = (D_80208B70_9D2DC0[album_D_802500BC_A1A30C][y * 10 + x * 2] << 8) |
-                                     D_80208B70_9D2DC0[album_D_802500BC_A1A30C][y * 10 + x * 2 + 1];
+                                           D_80208B70_9D2DC0[album_D_802500BC_A1A30C][y * 10 + x * 2 + 1];
         album_D_802500BE_A1A30E++;
         comment[album_D_802500BE_A1A30E] = 0;
         if (func_801DCD7C_9A6FCC(comment, 0) >= 169) {

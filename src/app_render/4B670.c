@@ -2,6 +2,10 @@
 #include "app_render.h"
 #include "photo_check/photo_check.h"
 
+extern s16 D_800AE580[];
+extern s16 D_800AE59C[];
+extern s16 D_800AE6E4[][12];
+extern s16 D_800AE744[];
 extern u16 D_800AE7C4;
 extern u16 D_800AE7C8;
 extern Gfx D_800AE7D0[];
@@ -25,7 +29,6 @@ extern s32 D_800BE0E0[];
 extern s32 D_800BE110[];
 extern s32 D_800BE140[];
 extern ScoreData D_800BE170;
-extern s8 D_800BE178;
 
 s32 func_8009FCC0(void) {
     return 0xA4;
@@ -119,18 +122,18 @@ void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
     D_800BE018 = arg2;
 
     D_800BDFB0 = arg3;
-    arg3 += 64*48;
+    arg3 += 64 * 48;
     D_800BDFB4 = arg3;
-    arg3 += 64*48;
+    arg3 += 64 * 48;
 
     for (i = 0; i < 12; i++) {
         D_800BDFB8[i] = arg3;
-        arg3 += 64*48;
+        arg3 += 64 * 48;
     }
 
     for (i = 0; i < 12; i++) {
         D_800BDFE8[i] = arg3;
-        arg3 += 64*48;
+        arg3 += 64 * 48;
     }
 
     D_800AE7C8 = 1;
@@ -208,7 +211,6 @@ f32 func_800A0504(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     return (arg4 - arg3) * (arg0 - arg1) / (arg2 - arg1) + arg3;
 }
 
-//#ifdef NON_MATCHING
 void func_800A0534(ScoreData* arg0, PhotoData* arg1, s32 arg2, s32 arg3) {
     f32 var_f2;
     u16 new_var;
@@ -236,47 +238,153 @@ void func_800A0534(ScoreData* arg0, PhotoData* arg1, s32 arg2, s32 arg3) {
         new_var2 = 10;
         new_var = ((func_800A0504(var_v1, 4.0f, 768.0f, 0.2f, 1.0f) * 1000.0f) + 5.0f) / 10.0f;
         new_var2 = new_var * new_var2;
+
         var_f2 = ((f32) D_800BE0B0[arg2]) / ((f32) D_800BE110[arg2]);
         if (var_f2 > 1.0) {
             var_f2 = 1.0f;
         }
+
         arg0->samePkmnBonus += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
         arg0->totalScore += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
         arg0->samePkmnNumber++;
     }
 }
-//#else
-//void func_800A0534(ScoreData*, PhotoData* arg1, s32 arg2, s32 arg3);
-//#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0534.s")
-//#endif
 
-void func_800A081C(ScoreData*, PhotoData*, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A081C.s")
+void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
+    s32 s3;
+    s32 s0;
+    f32 f0;
+    f32 f2;
+    s32 i;
+    s32 specialID;
+    f32 f22;
+    s32 tmp2;
+    s32 tmp3;
+    s32 tmp4;
+    s32 tmp5;
+    s32 poseID;
+    f32 tmp6;
+    f32 tmp7;
+    f32 tmp8;
+
+    arg0->totalScore = 0;
+    tmp3 = D_800BDF68[arg2];
+    s3 = arg1->unk_20[tmp3].pokemonID;
+    if (s3 == PokemonID_603) {
+        arg0->pokemonInFocus = PokemonID_SHELLDER;
+    } else {
+        arg0->pokemonInFocus = s3;
+    }
+
+    if (func_8009BDDC(arg1->unk_20[tmp3].pokemonID, arg1->unk_20[tmp3].unk_00_13) < 0.0f) {
+        arg0->pokemonInFocus = PokemonID_500;
+        return;
+    }
+
+    specialID = arg1->unk_20[tmp3].unk_00_19;
+    if (specialID > 0) {
+        arg0->specialID = specialID;
+        arg0->specialBonus = D_800AE580[specialID];
+        arg0->totalScore += arg0->specialBonus;
+    }
+
+    s0 = D_800BE0B0[arg2];
+    if (s0 > 0x300) {
+        s0 = 0x300;
+    }
+    if (s0 < 4) {
+        return;
+    }
+
+    f0 = func_800A0504(s0, 4.0f, 768.0f, 0.2f, 1.0f);
+    arg0->sizeParam2 = ((u16) ((f0 * 1000.0f + 5.0f) / 10.0f)) * 10;
+
+    if (s0 < 4 || D_800BE110[arg2] <= 0) {
+        return;
+    }
+
+    f2 = (f32)D_800BE0B0[arg2] / (f32) D_800BE110[arg2];
+    if (f2 > 1.0) {
+        f2 = 1.0f;
+    }
+    
+    arg0->sizeParam1 = f2 * 10000.0f + 0.5f;
+    tmp8 = arg0->sizeParam2;
+    f2 = arg0->sizeParam1 / 10000.f;
+    tmp6 = f2 * tmp8;
+    tmp5 = ((u16) ((tmp6 + 5.0f) / 10.0f)) * 10;
+    arg0->totalScore += tmp5;
+
+    if (f0 < 0.245f || f2 < 0.6f) {
+        return;
+    }
+
+    poseID = arg1->unk_20[tmp3].unk_03;
+    arg0->poseID = poseID;
+    if (poseID > 0) {
+        arg0->posePts = D_800AE59C[poseID];
+        arg0->totalScore += arg0->posePts;
+        if (arg0->posePts < 200) {
+            return;
+        }
+    } else {
+        f22 = arg1->unk_20[tmp3].yaw - atan2f(arg1->unk_08.x - arg1->unk_14.x, arg1->unk_08.z - arg1->unk_14.z);
+        while (f22 > PI) {
+            f22 -= TAU;
+        }
+        while (f22 < -PI) {
+            f22 += TAU;
+        }
+        if (f22 < 0.0f) {
+            f22 = -f22;
+        }
+
+        tmp4 = D_800AE744[func_8009BB4C(s3)];
+        tmp2 = f22 * 180.0f / PI / 15.0f;
+        arg0->posePts = D_800AE6E4[tmp4][tmp2];
+        arg0->totalScore += arg0->posePts;
+        if (arg0->posePts < 200) {
+            return;
+        }
+    }
+
+    if (D_800BE140[arg2] != 0) {
+        arg0->isWellFramed = true;
+        arg0->totalScore *= 2;
+
+        for (i = 0; i < arg2; i++) {
+            func_800A0534(arg0, arg1, i, s3);
+        }
+        for (i = arg2 + 1; i < D_800BE01A; i++) {
+            func_800A0534(arg0, arg1, i, s3);
+        }
+    }
+}
 
 void func_800A0E9C(ScoreData* arg0) {
 }
 
 #ifdef NON_MATCHING
+s32 func_8009BCC4(UnkThing* arg0);
 struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3, s32 arg4, u16* arg5) {
-    s32 sp40;
-    s32 sp3C;
+    s32 tmp;
+    s32 photoIdType1;
+    s32 photoIdType2;
+    s32 photoIdType3;
+    s32 photoIdType4;
+    s32 scoreType2;
+    s32 scoreType1;
+    s32 scoreType4;
     s32 sp24;
+    s32 scoreType3;
+
     f32 temp_f0;
-    s32 temp_v0;
     s32 id;
-    s32 temp_v0_3;
     s32 temp_v1;
-    s32 photoIdx;
-    s32 var_a2;
-    s32 var_ra;
+    s32 j;
     s32 var_t0;
-    s32 var_t0_2;
-    s32 var_t1;
-    s32 var_t2;
-    s32 var_t3;
-    s32 var_v1;
-    s32* temp_a1;
-    s32* var_a3;
+
+    s32 i;
 
     D_800BE170.totalScore = 0;
     D_800BE170.pokemonInFocus = 0;
@@ -284,61 +392,59 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
     D_800BE170.sizeParam2 = 0;
     D_800BE170.sizeParam1 = 0;
     D_800BE170.specialBonus = 0;
-    D_800BE170.commentID = 0;
-    D_800BE170.commentID = 0;
+    D_800BE170.poseID = 0;
     D_800BE170.posePts = 0;
-    D_800BE178 = 0;
     D_800BE170.isWellFramed = 0;
     D_800BE170.samePkmnBonus = 0;
     D_800BE170.samePkmnNumber = 0;
 
-    temp_v0 = func_8009BCC4(arg1);
-    if (temp_v0 > 0) {
-        switch (temp_v0) {
+    tmp = func_8009BCC4(arg1);
+    if (tmp > 0) {
+        switch (tmp) {
             case PokemonID_1004:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1010:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1018:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1022:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_KOFFING_SMOKE:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
             case PokemonID_1035:
                 if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {
+                    D_800BE170.pokemonInFocus = tmp;
                     D_800BE170.totalScore = 0;
-                    D_800BE170.pokemonInFocus = temp_v0;
                 } else {
                     D_800BE170.pokemonInFocus = 500;
                 }
@@ -346,7 +452,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
             case PokemonID_MOLTRES_EGG:
             case PokemonID_601:
             case PokemonID_602:
-                D_800BE170.pokemonInFocus = temp_v0;
+                D_800BE170.pokemonInFocus = tmp;
                 break;
             default:
                 if (func_8009BDDC(arg1->unk_20[0].pokemonID, arg1->unk_20[0].unk_00_13) < 0.0f) {
@@ -357,14 +463,12 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
 
         if (D_800BE170.pokemonInFocus > 0) {
             func_800A0E9C(&D_800BE170);
-
             return &D_800BE170;
         }
     }
 
-    var_t0 = 0;
-    for (var_v1 = 0; var_v1 < 12; var_v1++) {
-        id = arg1->unk_20[var_v1].pokemonID;
+    for (var_t0 = 0, i = 0; i < 12; i++) {
+        id = arg1->unk_20[i].pokemonID;
         if (id == -1) {
             break;
         }
@@ -377,77 +481,75 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
     }
 
     func_800A007C(arg0, arg1, var_t0, arg2);
-    if (temp_v0 > 0 && D_800BE0B0[0] >= 12 && D_800BE110[0] > 0 && (((f32) D_800BE0B0[0] / (f32) D_800BE110[0]) >= 0.05f)) {
+    if (tmp > 0 && D_800BE0B0[0] >= 12 && D_800BE110[0] > 0 && (f32) D_800BE0B0[0] / (f32) D_800BE110[0] >= 0.05f) {
         func_800A081C(&D_800BE170, arg1, 0);
         func_800A0E9C(&D_800BE170);
-    } else {
-        temp_v0 = -1;
-        sp3C = -1;
-        sp40 = -1;
-        sp24 = -1;
-        var_t0_2 = -1;
-        var_t1 = -1;
-        var_t2 = -1;
-        var_t3 = -1;
-        var_ra = -1;
-        photoIdx = 0;
+        return &D_800BE170;
+    }
 
-        var_a3 = D_800BE0B0;
-        var_a2 = 0;
-        while (var_a2 < D_800BE01A) {
+    tmp = -1;
+    photoIdType4 = -1;
+    photoIdType1 = -1;
+    photoIdType2 = -1;
+    sp24 = -1;
+    scoreType2 = -1;
+    scoreType1 = -1;
+    scoreType4 = -1;
+    scoreType3 = -1;
 
-            temp_v1 = *var_a3;
-            var_a3++;
-            if (temp_v1 >= 0xC) {
-                temp_v0_3 = D_800BE110[var_a2];
-                if (temp_v0_3 != 0) {
-                    temp_f0 = (f32) temp_v1 / (f32) temp_v0_3;
-                    if (!(temp_f0 < 0.2f)) {
-                        id = arg1->unk_20[photoIdx].pokemonID;
-                        temp_a1 = &D_800BE140[var_a2];
-                        if ((id > POKEDEX_MAX && id != PokemonID_603) || temp_f0 < 0.65f) {
-                            if (*temp_a1 == 0) {
-                                if (var_t2 < temp_v1) {
-                                    var_t2 = temp_v1;
-                                    sp3C = photoIdx;
-                                }
-                            } else if (var_t0_2 < temp_v1) {
-                                var_t0_2 = temp_v1;
-                                var_ra = photoIdx;
-                            }
-                        } else if (*temp_a1 == 0) {
-                            if (var_t3 < temp_v1) {
-                                var_t3 = temp_v1;
-                                temp_v0 = photoIdx;
-                            }
-                        } else if (var_t1 < temp_v1) {
-                            var_t1 = temp_v1;
-                            sp40 = photoIdx;
-                        }
-                    }
+    for (j = 0; j < D_800BE01A; j++) {
+        temp_v1 = D_800BE0B0[j];
+        if (temp_v1 < 12 || D_800BE110[j] == 0) {
+            continue;
+        }
+
+        temp_f0 = (f32) temp_v1 / (f32) D_800BE110[j];
+        if (temp_f0 < 0.2f) {
+            continue;
+        }
+
+        id = arg1->unk_20[j].pokemonID;
+        if (id > POKEDEX_MAX && id != PokemonID_603 || temp_f0 < 0.65f) {
+            if (D_800BE140[j] == 0) {
+                if (scoreType4 < temp_v1) {
+                    scoreType4 = temp_v1;
+                    photoIdType4 = j;
                 }
+            } else if (scoreType2 < temp_v1) {
+                scoreType2 = temp_v1;
+                photoIdType2 = j;
             }
-            photoIdx++;
-            var_a2++;
-        }
-        arg1->unk_00_10 = 0;
-        if (sp40 >= 0) {
-            sp24 = sp40;
-        } else if (var_ra >= 0) {
-            sp24 = var_ra;
-        } else if (temp_v0 >= 0) {
-            sp24 = temp_v0;
-        } else if (sp3C >= 0) {
-            sp24 = sp3C;
-        }
-        if (sp24 == -1) {
-            func_800A0E9C(&D_800BE170);
-        } else {
-            func_800A081C(&D_800BE170, arg1, sp24);
-            func_800A0E9C(&D_800BE170);
+        } else if (D_800BE140[j] == 0) {
+            if (scoreType3 < temp_v1) {
+                scoreType3 = temp_v1;
+                tmp = j;
+            }
+        } else if (scoreType1 < temp_v1) {
+            scoreType1 = temp_v1;
+            photoIdType1 = j;
         }
     }
-    return &D_800BE170;
+
+    arg1->unk_00_16 &= ~0x20;
+
+    if (photoIdType1 >= 0) {
+        sp24 = photoIdType1;
+    } else if (photoIdType2 >= 0) {
+        sp24 = photoIdType2;
+    } else if (tmp >= 0) {
+        sp24 = tmp;
+    } else if (photoIdType4 >= 0) {
+        sp24 = photoIdType4;
+    }
+
+    if (sp24 == -1) {
+        func_800A0E9C(&D_800BE170);
+        return &D_800BE170;
+    } else {
+        func_800A081C(&D_800BE170, arg1, sp24);
+        func_800A0E9C(&D_800BE170);
+        return &D_800BE170;
+    }
 }
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0EA4.s")

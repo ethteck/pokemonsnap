@@ -213,13 +213,13 @@ char* album_GetPhotoParam(Unk803A6C18* arg0, u32 paramId) {
         case 6:
             return "コメント"; // comment
         case 7:
-            if (arg0->score.commentID != 0) {
-                return func_8037501C_8487CC("%5d", arg0->score.commentID);
+            if (arg0->score.poseID != 0) {
+                return func_8037501C_8487CC("%5d", arg0->score.poseID);
             } else {
                 return "　　　なし";
             }
         case 8:
-            if (arg0->score.commentID != 0) {
+            if (arg0->score.poseID != 0) {
                 return "ポーズ";
             } else {
                 return "むき";

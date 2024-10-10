@@ -3,7 +3,7 @@
 typedef struct Photo {
     /* 0x00 */ PhotoData* unk_0;
     /* 0x04 */ u32 totalScore;
-    /* 0x08 */ u8 commentID;
+    /* 0x08 */ u8 poseID;
     /* 0x09 */ u8 samePkmnNumber;
     /* 0x0A */ s16 pkmnID;
     /* 0x0C */ s16 specialID;
@@ -36,7 +36,7 @@ typedef struct ScoreData {
     /* 0x04 */ u16 samePkmnBonus;
     /* 0x06 */ u8 samePkmnNumber;
     /* 0x07 */ u8 isWellFramed;
-    /* 0x08 */ u8 commentID;
+    /* 0x08 */ u8 poseID;
     /* 0x0A */ s16 pokemonInFocus;
     /* 0x0C */ u16 sizeParam2;
     /* 0x0E */ u16 sizeParam1;

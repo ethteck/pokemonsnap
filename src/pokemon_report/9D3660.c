@@ -284,7 +284,7 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
             UIElement_PrintText(D_80230C30_A275A0, "コメント"); // comment
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.commentID));
+            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.poseID));
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 24);
             UIElement_PrintText(D_80230C30_A275A0, "むきタイプ"); // muki type
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 36);

@@ -1246,7 +1246,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     if (!isPokemonSign && !D_801F3E34_9A38A4 && sp204 == 0) {
         auPlaySoundWithParams(0x56, 0x7FFF, 0x40, D_801F3E3C_9A38AC[sp1F0++] + 1.0, 0x1E);
         func_801DD1A8_98CC18(0x2D);
-        if (photo->commentID != 0) {
+        if (photo->poseID != 0) {
             if (photo->posePts > 1000) {
                 auPlaySoundWithParams(0x60, 0x7FFF, 0x40, 0.7f, 0xA);
                 UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
@@ -1254,7 +1254,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
-            UIElement_PrintText(D_802290DC_9D8B4C, PhotoComments[photo->commentID]);
+            UIElement_PrintText(D_802290DC_9D8B4C, PhotoComments[photo->poseID]);
             UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
             if (photo->posePts < 200) {
                 auPlaySound(0x5F);

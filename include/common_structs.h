@@ -198,7 +198,7 @@ typedef struct PokemonPhotoData {
     /* 0x00 */ s32 pokemonID : 13;
     /* 0x00 */ u32 unk_00_13 : 6;
     /* 0x02 */ u16 unk_00_19 : 5;
-    /* 0x03 */ s8 unk_03;
+    /* 0x03 */ u8 unk_03;
     /* 0x04 */ f32 animationTime;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ f32 yaw;

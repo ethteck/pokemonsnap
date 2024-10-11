@@ -155,8 +155,8 @@ typedef struct {
     /* 0x0F8 */ EggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
-    /* 0x10C */ u16 unk_10C;
-    /* 0x10E */ u16 unk_10E;
+    /* 0x10C */ u16 poseID;
+    /* 0x10E */ u16 specialPoseID;
 } Pokemon; // size = 0x110
 
 typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
@@ -197,8 +197,8 @@ typedef struct PlayerName {
 typedef struct PokemonPhotoData {
     /* 0x00 */ s32 pokemonID : 13;
     /* 0x00 */ u32 unk_00_13 : 6;
-    /* 0x02 */ u16 unk_00_19 : 5;
-    /* 0x03 */ u8 unk_03;
+    /* 0x02 */ u16 specialID : 5;
+    /* 0x03 */ u8 poseID;
     /* 0x04 */ f32 animationTime;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ f32 yaw;

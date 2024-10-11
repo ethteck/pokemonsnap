@@ -27,7 +27,7 @@ void func_803743BC_847B6C(GObj* camGobj) {
     if (D_803A6670_879E20) {
         D_803A6670_879E20 = false;
         gtlWaitAllGfxTasksDone();
-        func_8009FA68(D_803A666C_879E1C->data.cam, D_803A667C_879E2C);
+        initObjectsOnPhoto(D_803A666C_879E1C->data.cam, D_803A667C_879E2C);
 
         gobj = omGObjListHead[LINK_18];
         while (gobj != NULL) {

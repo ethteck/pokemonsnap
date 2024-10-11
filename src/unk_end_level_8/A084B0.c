@@ -119,7 +119,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
     func_8009FB50(5, 9, 8);
     func_801DC8C0_A084B0();
     func_800A7860(1, 1.0f);
-    func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
+    initObjectsOnPhoto(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
     D_801DD240_A08E30->flags &= ~1;
     UIFrame_FadeIn(D_801DD254_A08E44, FRAME_STYLE_1);
 
@@ -175,7 +175,7 @@ void func_801DC9E8_A085D8(GObj* arg0) {
             D_801DD24C_A08E3C = (D_801DD24C_A08E3C + 1) % 4;
             D_801DD240_A08E30->flags |= 1;
             gtlWaitAllGfxTasksDone();
-            func_8009FA68(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
+            initObjectsOnPhoto(D_801DD244_A08E34, func_800BF574_5C414(D_801DD24C_A08E3C));
             D_801DD240_A08E30->flags &= ~1;
             ohWait(10);
             D_801DD25C_A08E4C = (D_801DD12C_A08D1C != 0) ? ((sp2C * sp28) / D_801DD12C_A08D1C) : 0;

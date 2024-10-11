@@ -31,7 +31,7 @@ s32 func_8009BC68(void);
 s32 func_8009C584(const void* a, const void* b);
 s32 func_8009C5C4(const void* a, const void* b);
 void func_8009CE00(void);
-void func_8009FA68(OMCamera*, PhotoData*);
+void initObjectsOnPhoto(OMCamera*, PhotoData*);
 void func_8009FBC4(void);
 void func_8009FB50(u8 arg0, u8 arg1, u8 arg2);
 void func_8009FC38(PhotoData*);

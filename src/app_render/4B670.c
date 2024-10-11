@@ -2,14 +2,123 @@
 #include "app_render.h"
 #include "photo_check/photo_check.h"
 
-extern s16 D_800AE580[];
-extern s16 D_800AE59C[];
-extern s16 D_800AE6E4[][12];
-extern s16 D_800AE744[];
-extern u16 D_800AE7C4;
-extern u16 D_800AE7C8;
-extern Gfx D_800AE7D0[];
-extern Gfx D_800AE8F8[];
+s16 score_SpecialBonuses[] = {
+    0,
+    1000,
+    600,
+    1600,
+    800,
+    1300,
+    2000,
+    500,
+    500,
+    500,
+    2500,
+    800,
+    1200,
+    0
+};
+s16 score_PoseBonuses[] = {
+    0, 1250, 1300, 1250, 1000, 1200, 1200, 1300, 1300, 1200, 1300, 1300,
+    1200, 1350, 1150, 1000, 1150, 1200, 1350, 1350, 1000, 1000, 1200, 1200,
+    1000, 1200, 1400, 500, 1200, 800, 800, 800, 1000, 1200, 800, 1000, 150,
+    1000, 1200, 1000, 800, 1200, 1200, 1200, 1250, 1250, 800, 800, 1200, 800,
+    1000, 1200, 1000, 800, 1200, 800, 800, 800, 1150, 800, 800, 800, 1350, 800,
+    1000, 800, 800, 800, 1400, 850, 1050, 1000, 800, 1200, 800, 800, 800, 500,
+    150, 900, 1100, 1000, 1000, 1400, 1000, 1200, 1350, 1200, 1200, 1000, 1000,
+    800, 1200, 1000, 1000, 800, 800, 800, 800, 1200, 1350, 900, 1250, 800, 800,
+    800, 1200, 1000, 800, 800, 800, 1200, 800, 800, 800, 1200, 800, 800, 800,
+    1000, 0, 0, 1200, 1300, 1300, 1300, 1000, 1050, 800, 800, 800, 1200, 800,
+    1200, 1300, 1250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1400, 0, 0, 0, 800, 800, 1350,
+    1250, 1500, 1200, 1200, 1000, 1200, 1000, 150, 1000, 1000, 800, 1000
+};
+s16 D_800AE6E4[][12] = {
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+    { 1000, 750, 800, 750, 750, 800, 1000, 350, 200, 100, 50, 10 }, 
+    { 500, 700, 750, 800, 850, 1000, 1000, 700, 700, 350, 50, 10 }, 
+    { 1000, 900, 800, 700, 600, 500, 500, 350, 200, 100, 50, 10},
+};
+s16 D_800AE744[] = {
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    3, 2, 2, 3, 1, 1, 3, 3, 2, 1,
+    1, 3, 3, 1, 1, 1, 1, 1, 1, 3,
+    1, 3, 1, 1, 3, 3, 1, 1, 1, 1,
+    1, 3, 1, 3, 1, 1, 1, 1, 1, 1,
+    1, 1, 3, 1
+};
+u16 D_800AE7C4 = false;
+u16 D_800AE7C8 = false;
+Gfx D_800AE7D0[] = {
+    gsDPPipeSync(),
+    gsDPSetCycleType(G_CYC_COPY),
+    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
+    gsDPSetTexturePersp(G_TP_NONE),
+    gsDPSetAlphaCompare(G_AC_NONE),
+    gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48),
+
+    gsDPLoadTextureBlock(0x0C000000, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 24, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0B000000),
+    gsSPTextureRectangle(0, 0, 0x00FC, 0x005C, G_TX_RENDERTILE, 0, 0, 0x1000, 0x0400),
+    gsDPPipeSync(),
+
+    gsDPLoadTextureBlock(0x0C000C00, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 24, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD),
+    gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0B000C00),
+    gsSPTextureRectangle(0, 0, 0x00FC, 0x005C, G_TX_RENDERTILE, 0, 0, 0x1000, 0x0400),
+    gsDPPipeSync(),
+    
+    gsDPSetCycleType(G_CYC_2CYCLE),
+    gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0F000000),
+    gsDPSetDepthImage(0x0A000000),
+    gsDPPipeSync(),
+    gsSPEndDisplayList(),
+};
+Gfx D_800AE8F8[] = {
+    gsDPPipeSync(),
+    // clear depth buffer and 12 images
+    gsDPSetCycleType(G_CYC_FILL),
+    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
+    gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0C000000),
+    gsDPSetFillColor(0xFFFCFFFC),
+    gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48 * 13),
+    gsDPFillRectangle(0, 0, 64 - 1, 48 * 13 - 1),
+    gsDPPipeSync(),
+
+    gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0F000000),
+    gsDPSetDepthImage(0x0C000000),
+    gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48),
+    gsDPSetCycleType(G_CYC_FILL),
+    gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
+    gsDPSetFillColor(0x00010001),
+    gsDPFillRectangle(0, 0, 63, 47),
+    gsDPPipeSync(),
+
+    gsSPClearGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH | G_CLIPPING),
+    gsSPClipRatio(FRUSTRATIO_1),
+    gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
+    gsSPMatrix(&gIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION),
+    gsSPMatrix(&gIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
+    gsDPPipelineMode(G_PM_1PRIMITIVE),
+    gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),
+    gsDPSetTextureLOD(G_TL_TILE),
+    gsDPSetTextureLUT(G_TT_NONE),
+    gsDPSetTextureDetail(G_TD_CLAMP),
+    gsDPSetTexturePersp(G_TP_PERSP),
+    gsDPSetTextureFilter(G_TF_BILERP),
+    gsDPSetTextureConvert(G_TC_FILT),
+    gsDPSetCombineKey(G_CK_NONE),
+    gsDPSetAlphaCompare(G_AC_NONE),
+    gsDPSetColorDither(G_CD_MAGICSQ),
+    gsDPSetAlphaDither(G_AD_PATTERN),
+    gsDPSetCycleType(G_CYC_1CYCLE),
+    gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
+    gsDPSetDepthSource(G_ZS_PIXEL),
+    gsDPPipeSync(),
+    gsSPEndDisplayList(),
+};
 
 extern GObj* D_800BDF30[];
 extern s32 D_800BDF60;
@@ -30,45 +139,45 @@ extern s32 D_800BE110[];
 extern s32 D_800BE140[];
 extern ScoreData D_800BE170;
 
-s32 func_8009FCC0(void) {
-    return 0xA4;
+s32 getNumberOfPoses(void) {
+    return 164;
 }
 
 void func_8009FCC8(GObj* camObj) {
-    OMCamera* cam;
+    OMCamera* camera;
     GObj* it;
     s32 dllink;
     u32 bitMask;
     u32 unk_38;
     f32 aspect;
 
-    if (D_800AE7C8 == 0) {
+    if (!D_800AE7C8) {
         return;
     }
 
-    func_8009FA68(D_800BDFA8->data.cam, D_800BDFAC);
-    D_800AE7C8 = 0;
+    initObjectsOnPhoto(D_800BDFA8->data.cam, D_800BDFAC);
+    D_800AE7C8 = false;
     omCurrentCamera = camObj;
-    cam = camObj->data.cam;
-    cam->flags |= CAMERA_FLAG_10;
+    camera = camObj->data.cam;
+    camera->flags |= CAMERA_FLAG_10;
     if (D_800AE7C4) {
-        cam->perspMtx.persp.fovy *= 2.0f;
+        camera->perspMtx.persp.fovy *= 2.0f;
     }
 
-    cam->vp.vp.vscale[0] = 128;
-    cam->vp.vp.vscale[1] = 96;
-    cam->vp.vp.vtrans[0] = 128;
-    cam->vp.vp.vtrans[1] = 96;
+    camera->vp.vp.vscale[0] = 128;
+    camera->vp.vp.vscale[1] = 96;
+    camera->vp.vp.vtrans[0] = 128;
+    camera->vp.vp.vtrans[1] = 96;
 
-    gSPViewport(gMainGfxPos[0]++, &cam->vp);
+    gSPViewport(gMainGfxPos[0]++, &camera->vp);
     gSPSegment(gMainGfxPos[0]++, 0x0F, D_800BDFB0);
     gSPSegment(gMainGfxPos[0]++, 0x0C, D_800BDFB4);
     gSPDisplayList(gMainGfxPos[0]++, D_800AE8F8);
 
-    aspect = cam->perspMtx.persp.aspect;
-    cam->perspMtx.persp.aspect = 4.0f / 3.0f;
-    renPrepareCameraMatrix(&gMainGfxPos[0], cam);
-    cam->perspMtx.persp.aspect = aspect;
+    aspect = camera->perspMtx.persp.aspect;
+    camera->perspMtx.persp.aspect = 4.0f / 3.0f;
+    renPrepareCameraMatrix(&gMainGfxPos[0], camera);
+    camera->perspMtx.persp.aspect = aspect;
 
     D_800BE01A = 0;
     dllink = 0;
@@ -90,6 +199,7 @@ void func_8009FCC8(GObj* camObj) {
                     gDPPipeSync(gMainGfxPos[0]++);
                     gDPSetDepthImage(gMainGfxPos[0]++, 0x0C000000);
                 }
+
                 it->fnRender(it);
                 it->lastDrawFrame = gtlDrawnFrameCounter;
                 if (1) {
@@ -101,10 +211,10 @@ void func_8009FCC8(GObj* camObj) {
         dllink++;
     }
 
-    renCameraPostRender(cam);
-    cam->flags &= ~CAMERA_FLAG_10;
+    renCameraPostRender(camera);
+    camera->flags &= ~CAMERA_FLAG_10;
     if (D_800AE7C4) {
-        cam->perspMtx.persp.fovy /= 2.0f;
+        camera->perspMtx.persp.fovy /= 2.0f;
     }
 }
 
@@ -136,8 +246,8 @@ void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
         arg3 += 64 * 48;
     }
 
-    D_800AE7C8 = 1;
-    D_800AE7C4 = 1;
+    D_800AE7C8 = true;
+    D_800AE7C4 = true;
 
     bzero(D_800BDFB0, 0x27000);
     osWritebackDCacheAll();
@@ -160,8 +270,8 @@ void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
         }
     }
 
-    D_800AE7C8 = 1;
-    D_800AE7C4 = 0;
+    D_800AE7C8 = true;
+    D_800AE7C4 = false;
 
     bzero(D_800BDFB0, 0x27000);
     osWritebackDCacheAll();
@@ -281,10 +391,10 @@ void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
         return;
     }
 
-    specialID = arg1->unk_20[tmp3].unk_00_19;
+    specialID = arg1->unk_20[tmp3].specialID;
     if (specialID > 0) {
         arg0->specialID = specialID;
-        arg0->specialBonus = D_800AE580[specialID];
+        arg0->specialBonus = score_SpecialBonuses[specialID];
         arg0->totalScore += arg0->specialBonus;
     }
 
@@ -303,11 +413,11 @@ void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
         return;
     }
 
-    f2 = (f32)D_800BE0B0[arg2] / (f32) D_800BE110[arg2];
+    f2 = (f32) D_800BE0B0[arg2] / (f32) D_800BE110[arg2];
     if (f2 > 1.0) {
         f2 = 1.0f;
     }
-    
+
     arg0->sizeParam1 = f2 * 10000.0f + 0.5f;
     tmp8 = arg0->sizeParam2;
     f2 = arg0->sizeParam1 / 10000.f;
@@ -319,10 +429,10 @@ void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
         return;
     }
 
-    poseID = arg1->unk_20[tmp3].unk_03;
+    poseID = arg1->unk_20[tmp3].poseID;
     arg0->poseID = poseID;
     if (poseID > 0) {
-        arg0->posePts = D_800AE59C[poseID];
+        arg0->posePts = score_PoseBonuses[poseID];
         arg0->totalScore += arg0->posePts;
         if (arg0->posePts < 200) {
             return;
@@ -366,7 +476,7 @@ void func_800A0E9C(ScoreData* arg0) {
 
 #ifdef NON_MATCHING
 s32 func_8009BCC4(UnkThing* arg0);
-struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3, s32 arg4, u16* arg5) {
+struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32 width, s32 height, u16* zbuffer) {
     s32 tmp;
     s32 photoIdType1;
     s32 photoIdType2;
@@ -398,7 +508,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
     D_800BE170.samePkmnBonus = 0;
     D_800BE170.samePkmnNumber = 0;
 
-    tmp = func_8009BCC4(arg1);
+    tmp = func_8009BCC4(photo);
     if (tmp > 0) {
         switch (tmp) {
             case PokemonID_1004:
@@ -455,7 +565,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
                 D_800BE170.pokemonInFocus = tmp;
                 break;
             default:
-                if (func_8009BDDC(arg1->unk_20[0].pokemonID, arg1->unk_20[0].unk_00_13) < 0.0f) {
+                if (func_8009BDDC(photo->unk_20[0].pokemonID, photo->unk_20[0].unk_00_13) < 0.0f) {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
@@ -468,7 +578,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
     }
 
     for (var_t0 = 0, i = 0; i < 12; i++) {
-        id = arg1->unk_20[i].pokemonID;
+        id = photo->unk_20[i].pokemonID;
         if (id == -1) {
             break;
         }
@@ -480,9 +590,9 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
         }
     }
 
-    func_800A007C(arg0, arg1, var_t0, arg2);
+    func_800A007C(camera, photo, var_t0, buffer);
     if (tmp > 0 && D_800BE0B0[0] >= 12 && D_800BE110[0] > 0 && (f32) D_800BE0B0[0] / (f32) D_800BE110[0] >= 0.05f) {
-        func_800A081C(&D_800BE170, arg1, 0);
+        func_800A081C(&D_800BE170, photo, 0);
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     }
@@ -508,7 +618,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
             continue;
         }
 
-        id = arg1->unk_20[j].pokemonID;
+        id = photo->unk_20[j].pokemonID;
         if (id > POKEDEX_MAX && id != PokemonID_603 || temp_f0 < 0.65f) {
             if (D_800BE140[j] == 0) {
                 if (scoreType4 < temp_v1) {
@@ -530,7 +640,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
         }
     }
 
-    arg1->unk_00_16 &= ~0x20;
+    photo->unk_00_16 &= ~0x20;
 
     if (photoIdType1 >= 0) {
         sp24 = photoIdType1;
@@ -546,7 +656,7 @@ struct ScoreData* func_800A0EA4(GObj* arg0, PhotoData* arg1, u16* arg2, s32 arg3
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     } else {
-        func_800A081C(&D_800BE170, arg1, sp24);
+        func_800A081C(&D_800BE170, photo, sp24);
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     }

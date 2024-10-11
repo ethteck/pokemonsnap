@@ -252,7 +252,7 @@ void func_beach_802CB874(GObj* arg0) { \
     Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_PATH_ENDED);
     pokemon->flags &= ~POKEMON_FLAG_200;
     pokemon->flags &= ~POKEMON_FLAG_800;
-    pokemon->unk_10E = 1;
+    pokemon->specialPoseID = 1;
     Pokemon_SetAnimation(arg0, &D_beach_802CDBD4);
     Pokemon_StartPathProc(arg0, func_beach_802CBA48);
     pokemon->transitionGraph = D_beach_802CDFD8;

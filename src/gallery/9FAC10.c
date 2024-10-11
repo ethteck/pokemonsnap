@@ -566,7 +566,7 @@ void func_801DE87C_9FC53C(void) {
     UILayout_WaitPanelTransitionComplete();
     func_800A7860(0, 1.0f);
     ohWait(30);
-    func_8009FA68(cam, func_801E0F88_9FEC48(sp3B));
+    initObjectsOnPhoto(cam, func_801E0F88_9FEC48(sp3B));
     func_801DE804_9FC4C4();
 
     while (func_800A7460() != 0) {
@@ -635,7 +635,7 @@ void func_801DE87C_9FC53C(void) {
                 sp3B = (sp3B + 1) % 4;
                 sp4C->flags |= GOBJ_FLAG_HIDDEN;
                 gtlWaitAllGfxTasksDone();
-                func_8009FA68(cam, func_801E0F88_9FEC48(sp3B));
+                initObjectsOnPhoto(cam, func_801E0F88_9FEC48(sp3B));
                 func_801DE804_9FC4C4();
                 sp4C->flags &= ~GOBJ_FLAG_HIDDEN;
                 D_80230810_A4E4D0 = D_801EA204_A07EC4 != 0 ? (sp30 * sp2C) / D_801EA204_A07EC4 : 0;

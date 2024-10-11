@@ -3,6 +3,8 @@
 
 #include <PR/gbi.h>
 
+extern Mtx gIdentityMatrix;
+
 extern void rdpSetPreRenderFunc(void (*func)(Gfx**));
 void rdpReset(Gfx** pGfxPos);
 void func_80007CBC(Vp *vp);

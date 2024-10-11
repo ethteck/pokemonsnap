@@ -8,7 +8,7 @@
 #endif
 #include "world/world.h"
 
-s32 func_8009FCC0(void);
+s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
 s32 func_80364494_5048A4(UnkRustRat* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 
@@ -502,23 +502,23 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
 
     arg0->pokemonID = pokemonID;
     if (pokemonID < PokemonID_1000) {
-        arg0->unk_00_19 = pokemon->unk_10E;
+        arg0->specialID = pokemon->specialPoseID;
         arg0->unk_00_13 = func_8009BD4C(pokemonID, pokemon->modelAnims, D_800AD4B8, ARRAY_COUNT(D_800AD4B8));
-        if (pokemon->unk_10C > 0) {
-            arg0->unk_03 = pokemon->unk_10C;
+        if (pokemon->poseID > 0) {
+            arg0->poseID = pokemon->poseID;
         } else {
             sp24 = func_8009BDDC(arg0->pokemonID, arg0->unk_00_13);
-            if (sp24 >= func_8009FCC0()) {
-                arg0->unk_03 = 0;
+            if (sp24 >= getNumberOfPoses()) {
+                arg0->poseID = 0;
             } else if (sp24 > 0) {
-                arg0->unk_03 = sp24;
+                arg0->poseID = sp24;
             } else {
-                arg0->unk_03 = 0;
+                arg0->poseID = 0;
             }
         }
     } else {
-        arg0->unk_03 = 0;
-        arg0->unk_00_19 = 0;
+        arg0->poseID = 0;
+        arg0->specialID = 0;
         arg0->unk_00_13 = func_8009BD4C(pokemonID, pokemon->modelAnims, D_800AD9A4, ARRAY_COUNT(D_800AD9A4));
     }
 
@@ -1321,7 +1321,7 @@ void func_8009FA00(OMCamera* cam, PhotoData* photoData) {
     omLinkGObjDL(gobj, func_8009E3D0, D_800BDF1C, 0, -1);
 }
 
-void func_8009FA68(OMCamera* cam, PhotoData* photoData) {
+void initObjectsOnPhoto(OMCamera* cam, PhotoData* photoData) {
     GObj* next;
     GObj* it;
     s32 levelID = photoData->levelID;

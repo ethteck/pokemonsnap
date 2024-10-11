@@ -6,7 +6,7 @@ Vp sViewport;
 
 void (*sPreRenderFunc)(Gfx**) = NULL;
 
-Mtx sIdentityMatrix = { {
+Mtx gIdentityMatrix = { {
     /* Integer Portion */
     { 0x00010000, 0x00000000, 0x00000001, 0x00000000 },
     { 0x00000000, 0x00010000, 0x00000000, 0x00000001 },
@@ -23,8 +23,8 @@ Gfx srdpReset[] = {
     gsSPClipRatio(FRUSTRATIO_1),
     gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
     gsSPSetGeometryMode(G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH),
-    gsSPMatrix(&sIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION),
-    gsSPMatrix(&sIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
+    gsSPMatrix(&gIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION),
+    gsSPMatrix(&gIdentityMatrix, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW),
     gsDPSetCycleType(G_CYC_1CYCLE),
     gsDPPipelineMode(G_PM_NPRIMITIVE),
     gsDPSetCombineMode(G_CC_SHADE, G_CC_SHADE),

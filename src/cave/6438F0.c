@@ -339,9 +339,9 @@ void func_802C1F74_644424(GObj* obj) { \
 
     pokemon->miscVars[1].field1 = 0;
     if (D_8033E138_6C05E8.unk_00_7 == true && D_8033E138_6C05E8.unk_01_0 == true && D_8033E138_6C05E8.unk_01_1 == true) {
-        pokemon->unk_10E = 12;
+        pokemon->specialPoseID = 12;
     } else {
-        pokemon->unk_10E = 8;
+        pokemon->specialPoseID = 8;
     }
     Pokemon_ForceAnimation(obj, &D_802C7260_649710);
     pokemon->transitionGraph = sp18.data;
@@ -448,7 +448,7 @@ void func_802C2504_6449B4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[1].field1 = 1;
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetAnimation(obj, &D_802C724C_6496FC);
     Pokemon_StartPathProc(obj, func_802C1A7C_643F2C);
     pokemon->transitionGraph = NULL;
@@ -472,7 +472,7 @@ void func_802C25D8_644A88(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->miscVars[1].field1 = 1;
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetAnimation(obj, &D_802C7274_649724);
     func_802C1440_6438F0(obj, NULL);

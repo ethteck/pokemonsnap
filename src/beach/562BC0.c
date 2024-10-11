@@ -91,7 +91,7 @@ void func_beach_802CAE14(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_beach_802CDBAC);
     pokemon->transitionGraph = D_beach_802CDCA0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    pokemon->unk_10E = 5;
+    pokemon->specialPoseID = 5;
     Pokemon_SetAnimation(obj, &D_beach_802CDBFC);
     pokemon->transitionGraph = D_beach_802CDCA0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

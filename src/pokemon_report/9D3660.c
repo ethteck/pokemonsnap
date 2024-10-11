@@ -207,7 +207,7 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
         sprintf(sp2C, "%s", getLevelName(func_800BF710_5C5B0(arg1)->levelID));
         UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 0);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
-        sprintf(sp2C, "%s", get_player_name());
+        sprintf(sp2C, "%s", getPlayerName());
         UIElement_SetTextPos(D_80230C30_A275A0, 162 - UIText_GetStringWidth(sp2C), 16);
         func_8037519C_84894C(D_80230C30_A275A0, sp2C);
         sprintf(sp2C, "\\i%5d\\g", func_800BF818_5C6B8(arg1));
@@ -245,8 +245,8 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Size");
-            sp4C = (D_80230C20_A27590->score.sizeParam1 / 10000.0f);
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->score.sizeParam2 * sp4C) + 5.0f) / 10.0f) * 10));
+            sp4C = (D_80230C20_A27590->score.completenessScore / 10000.0f);
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->score.proximityScore * sp4C) + 5.0f) / 10.0f) * 10));
             UIElement_SetTextPos(D_80230C30_A275A0, 85 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
@@ -271,20 +271,20 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "めんせき");
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 12);
-            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.sizeParam2));
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.proximityScore));
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 24);
             UIElement_PrintText(D_80230C30_A275A0, "まるみえ"); // full view
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 36);
-            if (D_80230C20_A27590->score.sizeParam1 < 10000) {
-                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.sizeParam1 / 100));
-                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.sizeParam1 % 100) / 10));
+            if (D_80230C20_A27590->score.completenessScore < 10000) {
+                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.completenessScore / 100));
+                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.completenessScore % 100) / 10));
             } else {
                 func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
             }
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
             UIElement_PrintText(D_80230C30_A275A0, "コメント"); // comment
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.commentID));
+            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.poseID));
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 24);
             UIElement_PrintText(D_80230C30_A275A0, "むきタイプ"); // muki type
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 36);
@@ -607,7 +607,7 @@ s32 func_801DEC60_9D55D0(s32 arg0, s32 arg1) {
             D_80230DB4_A27724--;
             D_80230DB0_A27720--;
             if (D_80230DB4_A27724 >= 0) {
-                auPlaySound(0x45);
+                auPlaySound(SOUND_ID_69);
             }
             if ((D_80230DBC_A2772C != 0) && D_80230DB0_A27720 <= 0) {
                 D_80230CA8_A27618--;
@@ -622,7 +622,7 @@ s32 func_801DEC60_9D55D0(s32 arg0, s32 arg1) {
             D_80230DB4_A27724++;
             D_80230DB0_A27720++;
             if (D_80230DB4_A27724 < func_800BF864_5C704()) {
-                auPlaySound(0x45);
+                auPlaySound(SOUND_ID_69);
             }
             if (D_80230DB8_A27728 != 0 && D_80230DB0_A27720 >= 9) {
                 D_80230CA8_A27618++;

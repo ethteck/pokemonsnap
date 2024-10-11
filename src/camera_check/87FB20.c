@@ -772,8 +772,8 @@ void func_camera_check_801E3D8C(PhotoData* arg0, UnkIndigoHalibut* arg1) {
         arg1->unk_0A = temp_v0->score.specialID;
         arg1->unk_0C = temp_v0->score.isWellFramed;
         arg1->unk_0E = temp_v0->score.posePts;
-        arg1->unk_10 = temp_v0->score.sizeParam1;
-        arg1->unk_12 = temp_v0->score.sizeParam2;
+        arg1->unk_10 = temp_v0->score.completenessScore;
+        arg1->unk_12 = temp_v0->score.proximityScore;
         arg1->unk_14 = temp_v0->score.specialBonus;
         arg1->unk_16 = temp_v0->score.samePkmnBonus;
         D_camera_check_8024A1D4 += (s32) arg1->unk_04;

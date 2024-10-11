@@ -3,13 +3,13 @@
 #include "pokemon_album.h"
 
 s32 D_80208B90_9D2DE0 = false;
-s32 D_80208B94_9D2DE4 = 0;
+s32 album_SelectedPhoto = 0;
 
 UIButton album_CoverButtonsDef[] = {
     { BUTTON_OPEN, "ひらく" },
     { BUTTON_SPLITTER, NULL },
     { BUTTON_GO_TO_LAB, "けんきゅうじょへ" },
-    { BUTTON_END, NULL },
+    { BUTTON_NONE, NULL },
 };
 UIButton album_AlbumButtonsDef[] = {
     { BUTTON_ENLARGE, "みる" },
@@ -17,7 +17,7 @@ UIButton album_AlbumButtonsDef[] = {
     { BUTTON_DELETE, "けす" },
     { BUTTON_SPLITTER, NULL },
     { BUTTON_RETURN_TO_COVER, "ひょうしへ" },
-    { BUTTON_END, NULL },
+    { BUTTON_NONE, NULL },
 };
 UIButton album_PhotoButtonsDef[] = {
     { BUTTON_CHECK, "くわしく" },
@@ -25,26 +25,26 @@ UIButton album_PhotoButtonsDef[] = {
     { BUTTON_DELETE, "けす" },
     { BUTTON_SPLITTER, NULL },
     { BUTTON_RETURN, "もどる" },
-    { BUTTON_END, NULL },
+    { BUTTON_NONE, NULL },
 };
 
 s32 D_80208C18_9D2E68 = -1;
-s32 D_80208C1C_9D2E6C = -1;
-s32 D_80208C20_9D2E70 = -1;
-s32 D_80208C24_9D2E74 = -1;
-s32 D_80208C28_9D2E78 = -1;
+s32 album_CurrentColumn = -1;
+s32 album_CurrentRow = -1;
+s32 album_DraggedPhotoColumn = -1;
+s32 album_DraggedPhotoRow = -1;
 s32 D_80208C2C_9D2E7C = -1;
 s32 D_80208C30_9D2E80 = -1;
 
 UIButton* album_CoverButtons;
 UIButton* album_PanelButtons;
 
-UIButton* func_801E1900_9ABB50(void) {
+UIButton* album_GetCoverButtons(void) {
     return album_CoverButtonsDef;
 }
 
-s32 func_801E191C_9ABB6C(void) {
-    return D_80208B94_9D2DE4;
+s32 album_GetSelectedPhoto(void) {
+    return album_SelectedPhoto;
 }
 
 s32 album_GetNextPhotoIndex(s32 index) {
@@ -71,11 +71,11 @@ s32 album_GetPreviousPhotoIndex(s32 arg0) {
     return arg0;
 }
 
-s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* input, s32* arg1) {
+s32 album_UpdateButtonSelection(UnkStruct800BEDF8* input, s32* row) {
     if (input == NULL) {
         D_80208C18_9D2E68 = -1;
-        if (arg1 != NULL) {
-            FocusMark_SetPos(22, (*arg1 * 24) + 29);
+        if (row != NULL) {
+            FocusMark_SetPos(22, (*row * 24) + 29);
             FocusMark_SetSize(62, 12);
         } else {
             FocusMark_SetTargetSize(62, 12);
@@ -83,19 +83,19 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* input, s32* arg1) {
         return 0;
     }
 
-    FocusMark_SetTargetPos(22, (*arg1 * 24) + 29);
+    FocusMark_SetTargetPos(22, (*row * 24) + 29);
 
     if ((input->pressedButtons & STICK_SLOW_UP) && !(input->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
-            *arg1 = (*arg1 + 7) % 8;
-        } while (album_PanelButtons[*arg1].id == BUTTON_END);
-        auPlaySound(0x41);
+            *row = (*row + 7) % 8;
+        } while (album_PanelButtons[*row].id == BUTTON_NONE);
+        auPlaySound(SOUND_ID_65);
     }
     if ((input->pressedButtons & STICK_SLOW_DOWN) && !(input->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
-            *arg1 = (*arg1 + 1) % 8;
-        } while (album_PanelButtons[*arg1].id == BUTTON_END);
-        auPlaySound(0x41);
+            *row = (*row + 1) % 8;
+        } while (album_PanelButtons[*row].id == BUTTON_NONE);
+        auPlaySound(SOUND_ID_65);
     }
     if (input->pressedButtons & B_BUTTON) {
         return -1;
@@ -103,218 +103,218 @@ s32 func_801E1A50_9ABCA0(UnkStruct800BEDF8* input, s32* arg1) {
     return 0;
 }
 
-s32 func_801E1C30_9ABE80(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
-    if (arg0 == NULL) {
-        D_80208C1C_9D2E6C = -1;
-        D_80208C20_9D2E70 = -1;
-        func_801DE1FC_9A844C(D_80208B94_9D2DE4);
+s32 album_UpdatePhotoSelection(UnkStruct800BEDF8* input, s32* column, s32* row) {
+    if (input == NULL) {
+        album_CurrentColumn = -1;
+        album_CurrentRow = -1;
+        album_PrintPhotoComment(album_SelectedPhoto);
         return 0;
     }
-    if ((arg0->pressedButtons & 0x20000) && *arg2 <= 0) {
-        (*arg2)++;
+    if ((input->pressedButtons & STICK_SLOW_DOWN) && *row <= 0) {
+        (*row)++;
     }
-    if ((arg0->pressedButtons & 0x10000) && *arg2 > 0) {
-        (*arg2)--;
+    if ((input->pressedButtons & STICK_SLOW_UP) && *row > 0) {
+        (*row)--;
     }
-    if (arg0->pressedButtons & 0x40000) {
-        if (*arg1 < 2) {
-            (*arg1)++;
-        } else if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) < func_800BF9EC_5C88C() - 6) {
-            auPlaySound(0x4B);
-            D_80208B94_9D2DE4 += 6;
-            *arg1 = 0;
-            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
-            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+    if (input->pressedButtons & STICK_SLOW_RIGHT) {
+        if (*column < 2) {
+            (*column)++;
+        } else if ((album_SelectedPhoto - (album_SelectedPhoto % 6)) < getAlbumCapacity() - 6) {
+            auPlaySound(SOUND_ID_75);
+            album_SelectedPhoto += 6;
+            *column = 0;
+            FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
-    if (arg0->pressedButtons & 0x80000) {
-        if (*arg1 > 0) {
-            (*arg1)--;
-        } else if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) > 0) {
-            auPlaySound(0x4B);
-            D_80208B94_9D2DE4 -= 6;
-            *arg1 = 2;
-            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
-            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+    if (input->pressedButtons & STICK_SLOW_LEFT) {
+        if (*column > 0) {
+            (*column)--;
+        } else if (album_SelectedPhoto - (album_SelectedPhoto % 6) > 0) {
+            auPlaySound(SOUND_ID_75);
+            album_SelectedPhoto -= 6;
+            *column = 2;
+            FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
-    if ((*arg1 != D_80208C1C_9D2E6C) || (*arg2 != D_80208C20_9D2E70)) {
+    if ((*column != album_CurrentColumn) || (*row != album_CurrentRow)) {
         // bug? using the same variable twice. silly mask needed to match
-        if (!((D_80208C1C_9D2E6C < 0) & 0xFFFFFFFF) || !(D_80208C1C_9D2E6C < 0)) {
-            auPlaySound(0x45);
+        if (!((album_CurrentColumn < 0) & 0xFFFFFFFF) || !(album_CurrentColumn < 0)) {
+            auPlaySound(SOUND_ID_69);
         }
-        D_80208C1C_9D2E6C = *arg1;
-        D_80208C20_9D2E70 = *arg2;
-        D_80208B94_9D2DE4 = ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) + (*arg2 * 3)) + *arg1;
-        FocusMark_SetTargetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
-        func_801DE1FC_9A844C(D_80208B94_9D2DE4);
+        album_CurrentColumn = *column;
+        album_CurrentRow = *row;
+        album_SelectedPhoto = ((album_SelectedPhoto - (album_SelectedPhoto % 6)) + (*row * 3)) + *column;
+        FocusMark_SetTargetPos((*column * 66) + 107, (*row * 55) + 56);
+        album_PrintPhotoComment(album_SelectedPhoto);
     }
     return 0;
 }
 
-s32 func_801E1FE4_9AC234(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3) {
-    if (arg0 == NULL) {
-        D_80208C24_9D2E74 = -1;
-        D_80208C28_9D2E78 = -1;
+s32 album_DragPhoto(UnkStruct800BEDF8* input, s32* column, s32* row, s32 isDragged) {
+    if (input == NULL) {
+        album_DraggedPhotoColumn = -1;
+        album_DraggedPhotoRow = -1;
         return 0;
     }
     func_801E3880_9ADAD0();
-    if ((arg0->pressedButtons & 0x20000) && *arg2 <= 0) {
-        (*arg2)++;
+    if ((input->pressedButtons & STICK_SLOW_DOWN) && *row <= 0) {
+        (*row)++;
     }
-    if ((arg0->pressedButtons & 0x10000) && *arg2 > 0) {
-        (*arg2)--;
+    if ((input->pressedButtons & STICK_SLOW_UP) && *row > 0) {
+        (*row)--;
     }
-    if (arg0->pressedButtons & 0x40000) {
-        if (*arg1 < 2) {
-            (*arg1)++;
-        } else if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) < func_800BF9EC_5C88C() - 6) {
-            auPlaySound(0x4B);
-            D_80208B94_9D2DE4 += 6;
-            *arg1 = 0;
-            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
-            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+    if (input->pressedButtons & STICK_SLOW_RIGHT) {
+        if (*column < 2) {
+            (*column)++;
+        } else if (album_SelectedPhoto - (album_SelectedPhoto % 6) < getAlbumCapacity() - 6) {
+            auPlaySound(SOUND_ID_75);
+            album_SelectedPhoto += 6;
+            *column = 0;
+            FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
-    if (arg0->pressedButtons & 0x80000) {
-        if (*arg1 > 0) {
-            (*arg1)--;
-        } else if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) > 0) {
-            auPlaySound(0x4B);
-            D_80208B94_9D2DE4 -= 6;
-            *arg1 = 2;
-            FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
-            func_801DD954_9A7BA4(D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6));
+    if (input->pressedButtons & STICK_SLOW_LEFT) {
+        if (*column > 0) {
+            (*column)--;
+        } else if (album_SelectedPhoto - (album_SelectedPhoto % 6) > 0) {
+            auPlaySound(SOUND_ID_75);
+            album_SelectedPhoto -= 6;
+            *column = 2;
+            FocusMark_SetPos((*column * 66) + 107, (*row * 55) + 56);
+            album_DrawAlbumPage(album_SelectedPhoto - (album_SelectedPhoto % 6));
         }
     }
-    if ((*arg1 != D_80208C24_9D2E74) || (*arg2 != D_80208C28_9D2E78)) {
+    if ((*column != album_DraggedPhotoColumn) || (*row != album_DraggedPhotoRow)) {
         // bug? using the same variable twice. silly mask needed to match
-        if (!((D_80208C24_9D2E74 < 0) & 0xFFFFFFFF) || !(D_80208C24_9D2E74 < 0)) {
-            auPlaySound(0x45);
+        if (!((album_DraggedPhotoColumn < 0) & 0xFFFFFFFF) || !(album_DraggedPhotoColumn < 0)) {
+            auPlaySound(SOUND_ID_69);
         }
-        D_80208C24_9D2E74 = *arg1;
-        D_80208C28_9D2E78 = *arg2;
-        D_80208B94_9D2DE4 = ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) + (*arg2 * 3)) + *arg1;
-        if (arg3 != 0) {
-            FocusMark_SetTargetPos((*arg1 * 66) + 99, (*arg2 * 55) + 48);
-            func_801DDDF8_9A8048((*arg1 * 66) + 96, (*arg2 * 55) + 45);
+        album_DraggedPhotoColumn = *column;
+        album_DraggedPhotoRow = *row;
+        album_SelectedPhoto = ((album_SelectedPhoto - (album_SelectedPhoto % 6)) + (*row * 3)) + *column;
+        if (isDragged != 0) {
+            FocusMark_SetTargetPos((*column * 66) + 99, (*row * 55) + 48);
+            func_801DDDF8_9A8048((*column * 66) + 96, (*row * 55) + 45);
         } else {
-            FocusMark_SetTargetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
+            FocusMark_SetTargetPos((*column * 66) + 107, (*row * 55) + 56);
             func_801DDDF8_9A8048(-1, -1);
         }
-        func_801DE1FC_9A844C(D_80208B94_9D2DE4);
+        album_PrintPhotoComment(album_SelectedPhoto);
     }
     return 0;
 }
 
-s32 func_801E2438_9AC688(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
-    if (arg0 == NULL) {
+s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
+    if (input == NULL) {
         D_80208C2C_9D2E7C = -1;
         D_80208C30_9D2E80 = -1;
         func_801DEA4C_9A8C9C(1, 0, 0);
         return 0;
     }
     func_801E3880_9ADAD0();
-    if (arg0->pressedButtons & 0x20000) {
-        if (*arg2 < 0x13) {
-            (*arg2)++;
+    if (input->pressedButtons & STICK_SLOW_DOWN) {
+        if (*row < 19) {
+            (*row)++;
         } else {
-            *arg2 = 0;
+            *row = 0;
         }
     }
-    if (arg0->pressedButtons & 0x10000) {
-        if (*arg2 > 0) {
-            (*arg2)--;
+    if (input->pressedButtons & STICK_SLOW_UP) {
+        if (*row > 0) {
+            (*row)--;
         } else {
-            *arg2 = 19;
+            *row = 19;
         }
     }
-    if (arg0->pressedButtons & 0x40000) {
-        if (*arg2 < 0x13) {
-            if (*arg1 < 4) {
-                (*arg1)++;
+    if (input->pressedButtons & STICK_SLOW_RIGHT) {
+        if (*row < 19) {
+            if (*column < 4) {
+                (*column)++;
             } else {
-                *arg1 = 0;
+                *column = 0;
             }
-        } else if (*arg1 < 2) {
-            (*arg1)++;
+        } else if (*column < 2) {
+            (*column)++;
         } else {
-            *arg1 = 0;
+            *column = 0;
         }
     }
-    if (arg0->pressedButtons & 0x80000) {
-        if (*arg2 < 19) {
-            if (*arg1 > 0) {
-                *arg1 -= 1;
+    if (input->pressedButtons & STICK_SLOW_LEFT) {
+        if (*row < 19) {
+            if (*column > 0) {
+                *column -= 1;
             } else {
-                *arg1 = 4;
+                *column = 4;
             }
-        } else if (*arg1 > 0) {
-            *arg1 -= 1;
+        } else if (*column > 0) {
+            *column -= 1;
         } else {
-            *arg1 = 2;
+            *column = 2;
         }
     }
 
-    if (*arg2 < 19) {
-        if ((*arg1 != D_80208C2C_9D2E7C) || (*arg2 != D_80208C30_9D2E80)) {
+    if (*row < 19) {
+        if ((*column != D_80208C2C_9D2E7C) || (*row != D_80208C30_9D2E80)) {
             // bug? using the same variable twice. silly mask needed to match
             if (!((D_80208C2C_9D2E7C < 0) & 0xFFFFFFFF) || !(D_80208C2C_9D2E7C < 0)) {
-                auPlaySound(0x45);
+                auPlaySound(SOUND_ID_69);
             }
-            D_80208C2C_9D2E7C = *arg1;
-            D_80208C30_9D2E80 = *arg2;
-            func_801DE998_9A8BE8(1);
+            D_80208C2C_9D2E7C = *column;
+            D_80208C30_9D2E80 = *row;
+            func_801DE998_9A8BE8(true);
             FocusMark_SetTargetSize(4, 5);
-            FocusMark_SetTargetPos((*arg1 * 13) + 25, (*arg2 * 10) + 22);
-            func_801DEA4C_9A8C9C(0, *arg1, *arg2);
+            FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
+            func_801DEA4C_9A8C9C(0, *column, *row);
         }
-    } else if (*arg1 != D_80208C2C_9D2E7C || *arg2 != D_80208C30_9D2E80) {
-        D_80208C2C_9D2E7C = *arg1;
-        D_80208C30_9D2E80 = *arg2;
-        auPlaySound(0x41);
-        func_801DE998_9A8BE8(0);
-        if (*arg1 < 2) {
+    } else if (*column != D_80208C2C_9D2E7C || *row != D_80208C30_9D2E80) {
+        D_80208C2C_9D2E7C = *column;
+        D_80208C30_9D2E80 = *row;
+        auPlaySound(SOUND_ID_65);
+        func_801DE998_9A8BE8(false);
+        if (*column < 2) {
             FocusMark_SetTargetSize(4, 5);
-            FocusMark_SetTargetPos((*arg1 * 13) + 25, (*arg2 * 10) + 22);
+            FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
         } else {
-            FocusMark_SetTargetSize(0xD, 5);
-            FocusMark_SetTargetPos(68, (*arg2 * 10) + 22);
+            FocusMark_SetTargetSize(13, 5);
+            FocusMark_SetTargetPos(68, (*row * 10) + 22);
         }
-        func_801DEA4C_9A8C9C(0, *arg1, *arg2);
+        func_801DEA4C_9A8C9C(0, *column, *row);
     }
     return 0;
 }
 
 s32 album_UpdateCoverPage(void) {
     UnkStruct800BEDF8* input;
-    s32 sp28;
+    s32 row;
 
     if (D_80208B90_9D2DE0) {
-        func_801E0774_9AA9C4();
+        album_CreateCoverPage();
     }
     D_80208B90_9D2DE0 = true;
-    sp28 = 0;
+    row = 0;
     UILayout_CreateButtons(album_CoverButtonsDef);
     FocusMark_SetTargetSize(62, 12);
     FocusMark_Show(true);
 
     while (true) {
         input = func_800AA38C(0);
-        if (func_801E1A50_9ABCA0(input, &sp28) != 0) {
-            auPlaySound(0x43);
-            func_801E09A0_9AABF0(0x3C);
+        if (album_UpdateButtonSelection(input, &row) != 0) {
+            auPlaySound(SOUND_ID_67);
+            func_801E09A0_9AABF0(60);
             return 6;
         }
         if (input->pressedButtons & A_BUTTON) {
-            auPlaySound(0x42);
-            switch (album_PanelButtons[sp28].id) {
-                case 30:
+            auPlaySound(SOUND_ID_66);
+            switch (album_PanelButtons[row].id) {
+                case BUTTON_OPEN:
                     UILayout_HideButtons();
                     func_801E09A0_9AABF0(0);
                     return 0;
-                case 17:
-                    func_801E09A0_9AABF0(0x3C);
+                case BUTTON_GO_TO_LAB:
+                    func_801E09A0_9AABF0(60);
                     return 6;
             }
         }
@@ -324,337 +324,336 @@ s32 album_UpdateCoverPage(void) {
 
 s32 album_UpdateAlbumPage(void) {
     UnkStruct800BEDF8* input;
-    s32 sp48;
+    s32 buttonIndex;
     s32 pad;
     u32 pageId;
-    s32 sp3C;
-    s32 sp38;
-    s32 sp34;
+    s32 isDragged;
+    s32 column;
+    s32 row;
     s32 sp30;
-    s32 sp2C;
-    s32 sp28;
+    s32 gridColumn;
+    s32 gridRow;
     s32 sp24;
 
     pageId = 0;
-    sp3C = 0;
-    sp30 = D_80208B94_9D2DE4 % 6;
-    sp38 = sp30 % 3;
-    sp34 = sp30 / 3;
+    isDragged = false;
+    sp30 = album_SelectedPhoto % 6;
+    column = sp30 % 3;
+    row = sp30 / 3;
     func_801E0AF0_9AAD40();
     FocusMark_SetTargetSize(62, 12);
-    sp48 = 0;
+    buttonIndex = 0;
     UILayout_CreateButtons(album_AlbumButtonsDef);
     UILayout_WaitPanelTransitionComplete();
     FocusMark_Show(true);
     while (true) {
         input = func_800AA38C(0);
         switch (pageId) {
-            case 0:
-                if (func_801E1A50_9ABCA0(input, &sp48) != 0) {
-                    sp48 = 0;
-                    auPlaySound(0x43);
+            case ALBUM_MAIN_PAGE:
+                if (album_UpdateButtonSelection(input, &buttonIndex) != 0) {
+                    buttonIndex = 0;
+                    auPlaySound(SOUND_ID_67);
                     func_801E0E58_9AB0A8();
-                    func_801E1A50_9ABCA0(NULL, &sp48);
+                    album_UpdateButtonSelection(NULL, &buttonIndex);
                     return 1;
                 }
-                if (input->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
-                    switch (album_PanelButtons[sp48].id) {
-                        case 20:
-                            func_801E1C30_9ABE80(NULL, &sp38, &sp34);
-                            FocusMark_SetTargetSize(0x32, 0x25);
-                            pageId = 1;
+                if (input->pressedButtons & A_BUTTON) {
+                    auPlaySound(SOUND_ID_66);
+                    switch (album_PanelButtons[buttonIndex].id) {
+                        case BUTTON_ENLARGE:
+                            album_UpdatePhotoSelection(NULL, &column, &row);
+                            FocusMark_SetTargetSize(50, 37);
+                            pageId = ALBUM_PAGE_SELECT_PHOTO_TO_VIEW;
                             break;
-                        case 26:
-                            FocusMark_SetTargetSize(0x32, 0x25);
-                            pageId = 3;
-                            sp3C = 0;
-                            func_801E1FE4_9AC234(NULL, &sp38, &sp34, sp3C);
+                        case BUTTON_ARRANGE:
+                            FocusMark_SetTargetSize(50, 37);
+                            pageId = ALBUM_PAGE_ARRANGE_PHOTO;
+                            isDragged = false;
+                            album_DragPhoto(NULL, &column, &row, isDragged);
                             break;
-                        case 19:
-                            func_801E1C30_9ABE80(NULL, &sp38, &sp34);
-                            FocusMark_SetTargetSize(0x32, 0x25);
-                            pageId = 7;
+                        case BUTTON_DELETE:
+                            album_UpdatePhotoSelection(NULL, &column, &row);
+                            FocusMark_SetTargetSize(50, 37);
+                            pageId = ALBUM_PAGE_SELECT_PHOTO_TO_DELETE;
                             break;
-                        case 31:
-                            sp48 = 0;
-                            func_801E1A50_9ABCA0(NULL, &sp48);
+                        case BUTTON_RETURN_TO_COVER:
+                            buttonIndex = 0;
+                            album_UpdateButtonSelection(NULL, &buttonIndex);
                             func_801E0E58_9AB0A8();
                             return 1;
                     }
                 }
                 break;
-            case 1:
-                func_801E1C30_9ABE80(input, &sp38, &sp34);
-                if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) < func_800BF9EC_5C88C() - 6) {
+            case ALBUM_PAGE_SELECT_PHOTO_TO_VIEW:
+                album_UpdatePhotoSelection(input, &column, &row);
+                if (album_SelectedPhoto - (album_SelectedPhoto % 6) < getAlbumCapacity() - 6) {
                     UILayout_ShowHeaderElement(HEADER_NEXT);
                 } else {
                     UILayout_HideHeaderElement(HEADER_NEXT);
                 }
 
-                if (D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6) > 0) {
+                if (album_SelectedPhoto - (album_SelectedPhoto % 6) > 0) {
                     UILayout_ShowHeaderElement(HEADER_PREV);
                 } else {
                     UILayout_HideHeaderElement(HEADER_PREV);
                 }
 
-                if (input->pressedButtons & 0x4000) {
-                    auPlaySound(0x41);
-                    D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
+                if (input->pressedButtons & B_BUTTON) {
+                    auPlaySound(SOUND_ID_65);
+                    album_SelectedPhoto -= album_SelectedPhoto % 6;
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
-                    sp48 = 0;
-                    func_801E1A50_9ABCA0(NULL, NULL);
-                    pageId = 0;
-                } else if (input->pressedButtons & 0x8000) {
-                    if (album_GetAlbumPhoto(D_80208B94_9D2DE4) == NULL) {
+                    buttonIndex = 0;
+                    album_UpdateButtonSelection(NULL, NULL);
+                    pageId = ALBUM_MAIN_PAGE;
+                } else if (input->pressedButtons & A_BUTTON) {
+                    if (album_GetAlbumPhoto(album_SelectedPhoto) == NULL) {
                         break;
                     }
-
-                    auPlaySound(0x42);
-                    sp48 = 0;
+                    auPlaySound(SOUND_ID_66);
+                    buttonIndex = 0;
                     UILayout_CreateButtons(album_PhotoButtonsDef);
                     func_801E0FFC_9AB24C(2);
-                    func_801E1A50_9ABCA0(NULL, NULL);
-                    pageId = 2;
+                    album_UpdateButtonSelection(NULL, NULL);
+                    pageId = ALBUM_PAGE_VIEW_PHOTO;
                 }
                 break;
-            case 2:
-                func_801E1A50_9ABCA0(input, &sp48);
-                if (D_80208B94_9D2DE4 < album_GetLastPhotoIndex()) {
+            case ALBUM_PAGE_VIEW_PHOTO:
+                album_UpdateButtonSelection(input, &buttonIndex);
+                if (album_SelectedPhoto < album_GetLastPhotoIndex()) {
                     UILayout_ShowHeaderElement(HEADER_NEXT);
                 } else {
                     UILayout_HideHeaderElement(HEADER_NEXT);
                 }
-                if (album_GetFirstPhotoIndex() < D_80208B94_9D2DE4) {
+                if (album_GetFirstPhotoIndex() < album_SelectedPhoto) {
                     UILayout_ShowHeaderElement(HEADER_PREV);
                 } else {
                     UILayout_HideHeaderElement(HEADER_PREV);
                 }
-                if (input->pressedButtons & 0x4000) {
-                    auPlaySound(0x43);
+                if (input->pressedButtons & B_BUTTON) {
+                    auPlaySound(SOUND_ID_67);
                     func_801E0FFC_9AB24C(1);
-                    FocusMark_SetTargetSize(0x32, 0x25);
-                    FocusMark_SetTargetPos((sp38 * 66) + 107, (sp34 * 55) + 56);
+                    FocusMark_SetTargetSize(50, 37);
+                    FocusMark_SetTargetPos((column * 66) + 107, (row * 55) + 56);
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
-                    func_801E1C30_9ABE80(NULL, &sp38, &sp34);
-                    sp48 = 0;
+                    album_UpdatePhotoSelection(NULL, &column, &row);
+                    buttonIndex = 0;
                     UILayout_CreateButtons(album_AlbumButtonsDef);
-                    pageId = 1;
-                } else if (input->pressedButtons & 0x8000) {
-                    switch (album_PanelButtons[sp48].id) {
-                        case 28:
-                            auPlaySound(0x42);
-                            func_801DF744_9A9994(0, D_80208B94_9D2DE4);
+                    pageId = ALBUM_PAGE_SELECT_PHOTO_TO_VIEW;
+                } else if (input->pressedButtons & A_BUTTON) {
+                    switch (album_PanelButtons[buttonIndex].id) {
+                        case BUTTON_CHECK:
+                            auPlaySound(SOUND_ID_66);
+                            func_801DF744_9A9994(0, album_SelectedPhoto);
                             sp24 = 0;
-                            pageId = 4;
+                            pageId = ALBUM_PAGE_PHOTO_DETAILS;
                             break;
-                        case 27:
-                            auPlaySound(0x42);
+                        case BUTTON_COMMENT:
+                            auPlaySound(SOUND_ID_66);
                             FocusMark_Show(false);
                             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                             UILayout_HideButtons();
                             ohWait(30);
                             album_SwitchCharacterGridPage(0);
-                            sp28 = 0;
-                            sp2C = 0;
+                            gridRow = 0;
+                            gridColumn = 0;
                             FocusMark_SetTargetSize(4, 5);
-                            FocusMark_SetTargetPos(0x19, 0x16);
-                            func_801E2438_9AC688(NULL, &sp2C, &sp28);
-                            func_801DE998_9A8BE8(1);
+                            FocusMark_SetTargetPos(25, 22);
+                            album_EditComment(NULL, &gridColumn, &gridRow);
+                            func_801DE998_9A8BE8(true);
                             FocusMark_Show(true);
-                            pageId = 5;
-                            func_800AA85C(0x18, 6);
+                            pageId = ALBUM_PAGE_EDIT_COMMENT;
+                            func_800AA85C(24, 6);
                             break;
-                        case 19:
-                            auPlaySound(0x42);
+                        case BUTTON_DELETE:
+                            auPlaySound(SOUND_ID_66);
                             FocusMark_Show(false);
                             UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
-                            func_801E1168_9AB3B8(1);
-                            pageId = 6;
+                            album_DrawDeletePhotoPrompt(true);
+                            pageId = ALBUM_PAGE_DELETE_PHOTO;
                             break;
-                        case 5:
-                            auPlaySound(0x43);
+                        case BUTTON_RETURN:
+                            auPlaySound(SOUND_ID_67);
                             func_801E0FFC_9AB24C(1);
-                            FocusMark_SetTargetSize(0x32, 0x25);
-                            FocusMark_SetTargetPos((sp38 * 66) + 107, (sp34 * 55) + 56);
-                            func_801E1C30_9ABE80(NULL, &sp38, &sp34);
-                            sp48 = 0;
+                            FocusMark_SetTargetSize(50, 37);
+                            FocusMark_SetTargetPos((column * 66) + 107, (row * 55) + 56);
+                            album_UpdatePhotoSelection(NULL, &column, &row);
+                            buttonIndex = 0;
                             UILayout_CreateButtons(album_AlbumButtonsDef);
-                            pageId = 1;
+                            pageId = ALBUM_PAGE_SELECT_PHOTO_TO_VIEW;
                             break;
                     }
-                } else if ((input->pressedButtons & 0x40000) && (D_80208B94_9D2DE4 < album_GetLastPhotoIndex())) {
-                    auPlaySound(0x45);
-                    D_80208B94_9D2DE4 = album_GetNextPhotoIndex(D_80208B94_9D2DE4);
-                    func_801DE2BC_9A850C(D_80208B94_9D2DE4);
-                } else if ((input->pressedButtons & 0x80000) && (album_GetFirstPhotoIndex() < D_80208B94_9D2DE4)) {
-                    auPlaySound(0x45);
-                    D_80208B94_9D2DE4 = album_GetPreviousPhotoIndex(D_80208B94_9D2DE4);
-                    func_801DE2BC_9A850C(D_80208B94_9D2DE4);
+                } else if ((input->pressedButtons & STICK_SLOW_RIGHT) && (album_SelectedPhoto < album_GetLastPhotoIndex())) {
+                    auPlaySound(SOUND_ID_69);
+                    album_SelectedPhoto = album_GetNextPhotoIndex(album_SelectedPhoto);
+                    func_801DE2BC_9A850C(album_SelectedPhoto);
+                } else if ((input->pressedButtons & STICK_SLOW_LEFT) && (album_GetFirstPhotoIndex() < album_SelectedPhoto)) {
+                    auPlaySound(SOUND_ID_69);
+                    album_SelectedPhoto = album_GetPreviousPhotoIndex(album_SelectedPhoto);
+                    func_801DE2BC_9A850C(album_SelectedPhoto);
                 }
                 break;
-            case 3:
-                func_801E1FE4_9AC234(input, &sp38, &sp34, sp3C);
-                if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) < (func_800BF9EC_5C88C() - 6)) {
+            case ALBUM_PAGE_ARRANGE_PHOTO:
+                album_DragPhoto(input, &column, &row, isDragged);
+                if ((album_SelectedPhoto - (album_SelectedPhoto % 6)) < (getAlbumCapacity() - 6)) {
                     UILayout_ShowHeaderElement(HEADER_NEXT);
                 } else {
                     UILayout_HideHeaderElement(HEADER_NEXT);
                 }
-                if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) > 0) {
+                if ((album_SelectedPhoto - (album_SelectedPhoto % 6)) > 0) {
                     UILayout_ShowHeaderElement(HEADER_PREV);
                 } else {
                     UILayout_HideHeaderElement(HEADER_PREV);
                 }
-                if (input->pressedButtons & 0x4000) {
-                    D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
-                    sp48 = 1;
+                if (input->pressedButtons & B_BUTTON) {
+                    album_SelectedPhoto -= album_SelectedPhoto % 6;
+                    buttonIndex = 1;
                     FocusMark_StopAnimation(true);
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
-                    func_801E1A50_9ABCA0(NULL, NULL);
+                    album_UpdateButtonSelection(NULL, NULL);
                     func_801DDDF8_9A8048(-1, -1);
                     func_801E3F00_9AE150();
-                    pageId = 0;
-                } else if (input->pressedButtons & 0x8000) {
-                    func_801E1FE4_9AC234(NULL, &sp38, &sp34, sp3C);
-                    sp3C = func_801E3B34_9ADD84(D_80208B94_9D2DE4);
-                    if (sp3C != 0) {
+                    pageId = ALBUM_MAIN_PAGE;
+                } else if (input->pressedButtons & A_BUTTON) {
+                    album_DragPhoto(NULL, &column, &row, isDragged);
+                    isDragged = func_801E3B34_9ADD84(album_SelectedPhoto);
+                    if (isDragged) {
                         FocusMark_StopAnimation(false);
                     } else {
                         FocusMark_StopAnimation(true);
                     }
                 }
                 break;
-            case 4:
+            case ALBUM_PAGE_PHOTO_DETAILS:
                 if (input->pressedButtons & 0xC000) {
-                    auPlaySound(0x43);
-                    func_801DF744_9A9994(2, D_80208B94_9D2DE4);
-                    sp48 = 0;
+                    auPlaySound(SOUND_ID_67);
+                    func_801DF744_9A9994(2, album_SelectedPhoto);
+                    buttonIndex = 0;
                     UILayout_CreateButtons(album_PhotoButtonsDef);
                     ohWait(21);
-                    func_801E1A50_9ABCA0(NULL, &sp48);
+                    album_UpdateButtonSelection(NULL, &buttonIndex);
                     FocusMark_Show(true);
-                    pageId = 2;
+                    pageId = ALBUM_PAGE_VIEW_PHOTO;
                     break;
                 }
                 break;
-            case 5:
-                func_801E2438_9AC688(input, &sp2C, &sp28);
-                if (input->pressedButtons & 0x4000) {
-                    if (func_801DD0CC_9A731C() != 0) {
-                        auPlaySound(0x4A);
-                        func_801E0300_9AA550();
+            case ALBUM_PAGE_EDIT_COMMENT:
+                album_EditComment(input, &gridColumn, &gridRow);
+                if (input->pressedButtons & B_BUTTON) {
+                    if (album_GetCursorPos() != 0) {
+                        auPlaySound(SOUND_ID_74);
+                        album_DeleteCharInComment();
                     } else {
-                        sp2C = 3;
-                        sp28 = 0x13;
+                        gridColumn = 3;
+                        gridRow = 19;
                     }
                     break;
                 }
 
-                if (input->pressedButtons & 0x1000) {
-                    sp2C = 3;
-                    sp28 = 0x13;
+                if (input->pressedButtons & START_BUTTON) {
+                    gridColumn = 3;
+                    gridRow = 19;
                     break;
                 }
 
-                if (input->pressedButtons & 0x8000) {
-                    if ((sp2C >= 2) && (sp28 == 0x13)) {
-                        auPlaySound(0x42);
+                if (input->pressedButtons & A_BUTTON) {
+                    if (gridColumn >= 2 && gridRow == 19) {
+                        auPlaySound(SOUND_ID_66);
                         FocusMark_Show(false);
                         album_SwitchCharacterGridPage(6);
                         UILayout_CreateButtons(album_PhotoButtonsDef);
                         ohWait(21);
-                        sp48 = 1;
-                        func_801E1A50_9ABCA0(NULL, &sp48);
+                        buttonIndex = 1;
+                        album_UpdateButtonSelection(NULL, &buttonIndex);
                         FocusMark_Show(true);
-                        pageId = 2;
-                        func_800AA85C(0x18, 0xC);
+                        pageId = ALBUM_PAGE_VIEW_PHOTO;
+                        func_800AA85C(24, 12);
                     } else {
-                        album_PressedCharacterInGrid(sp2C, sp28);
-                        func_801DEA4C_9A8C9C(0, sp2C, sp28);
+                        album_PressedCharacterInGrid(gridColumn, gridRow);
+                        func_801DEA4C_9A8C9C(0, gridColumn, gridRow);
                     }
-                    if (func_801DD0CC_9A731C() >= 0x1F) {
-                        sp2C = 2;
-                        sp28 = 0x13;
+                    if (album_GetCursorPos() >= 31) {
+                        gridColumn = 2;
+                        gridRow = 19;
                     }
                     break;
                 }
                 break;
-            case 6:
-                if (input->pressedButtons & 0x4000) {
-                    auPlaySound(0x43);
-                    func_801E1168_9AB3B8(0);
-                    func_801E1A50_9ABCA0(NULL, &sp48);
+            case ALBUM_PAGE_DELETE_PHOTO:
+                if (input->pressedButtons & B_BUTTON) {
+                    auPlaySound(SOUND_ID_67);
+                    album_DrawDeletePhotoPrompt(false);
+                    album_UpdateButtonSelection(NULL, &buttonIndex);
                     FocusMark_Show(true);
-                    pageId = 2;
+                    pageId = ALBUM_PAGE_VIEW_PHOTO;
                     break;
                 }
 
-                if (input->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                if (input->pressedButtons & A_BUTTON) {
+                    auPlaySound(SOUND_ID_66);
                     func_801E3880_9ADAD0();
-                    func_801E1168_9AB3B8(0);
-                    func_801E1320_9AB570(D_80208B94_9D2DE4);
+                    album_DrawDeletePhotoPrompt(false);
+                    album_DeletePhoto(album_SelectedPhoto);
                     func_801E0FFC_9AB24C(1);
-                    FocusMark_SetTargetSize(0x32, 0x25);
-                    FocusMark_SetTargetPos((sp38 * 66) + 107, (sp34 * 55) + 56);
-                    func_801E1C30_9ABE80(NULL, &sp38, &sp34);
-                    sp48 = 0;
+                    FocusMark_SetTargetSize(50, 37);
+                    FocusMark_SetTargetPos((column * 66) + 107, (row * 55) + 56);
+                    album_UpdatePhotoSelection(NULL, &column, &row);
+                    buttonIndex = 0;
                     UILayout_CreateButtons(album_AlbumButtonsDef);
                     FocusMark_Show(true);
-                    pageId = 1;
+                    pageId = ALBUM_PAGE_SELECT_PHOTO_TO_VIEW;
                     break;
                 }
                 break;
-            case 7:
-                func_801E1C30_9ABE80(input, &sp38, &sp34);
-                if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) < (func_800BF9EC_5C88C() - 6)) {
+            case ALBUM_PAGE_SELECT_PHOTO_TO_DELETE:
+                album_UpdatePhotoSelection(input, &column, &row);
+                if ((album_SelectedPhoto - (album_SelectedPhoto % 6)) < (getAlbumCapacity() - 6)) {
                     UILayout_ShowHeaderElement(HEADER_NEXT);
                 } else {
                     UILayout_HideHeaderElement(HEADER_NEXT);
                 }
-                if ((D_80208B94_9D2DE4 - (D_80208B94_9D2DE4 % 6)) > 0) {
+                if ((album_SelectedPhoto - (album_SelectedPhoto % 6)) > 0) {
                     UILayout_ShowHeaderElement(HEADER_PREV);
                 } else {
                     UILayout_HideHeaderElement(HEADER_PREV);
                 }
                 if (input->pressedButtons & 0x4000) {
-                    auPlaySound(0x41);
-                    D_80208B94_9D2DE4 -= D_80208B94_9D2DE4 % 6;
+                    auPlaySound(SOUND_ID_65);
+                    album_SelectedPhoto -= album_SelectedPhoto % 6;
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
-                    sp48 = 2;
-                    func_801E1A50_9ABCA0(NULL, NULL);
-                    pageId = 0;
-                } else if (input->pressedButtons & 0x8000) {
-                    if (album_GetAlbumPhoto(D_80208B94_9D2DE4) == NULL) {
+                    buttonIndex = 2;
+                    album_UpdateButtonSelection(NULL, NULL);
+                    pageId = ALBUM_MAIN_PAGE;
+                } else if (input->pressedButtons & A_BUTTON) {
+                    if (album_GetAlbumPhoto(album_SelectedPhoto) == NULL) {
                         break;
                     }
 
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);
                     func_801E0FFC_9AB24C(2);
                     FocusMark_Show(false);
                     ohWait(30);
-                    func_801E1168_9AB3B8(1);
-                    pageId = 8;
+                    album_DrawDeletePhotoPrompt(true);
+                    pageId = ALBUM_PAGE_DELETE_PHOTO_FROM_ALBUM;
                 }
                 break;
-            case 8:
-                if (input->pressedButtons & 0xC000) {
-                    if (input->pressedButtons & 0x8000) {
-                        auPlaySound(0x42);
+            case ALBUM_PAGE_DELETE_PHOTO_FROM_ALBUM:
+                if (input->pressedButtons & (A_BUTTON | B_BUTTON)) {
+                    if (input->pressedButtons & A_BUTTON) {
+                        auPlaySound(SOUND_ID_66);
                         func_801E3880_9ADAD0();
-                        func_801E1168_9AB3B8(0);
-                        func_801E1320_9AB570(D_80208B94_9D2DE4);
+                        album_DrawDeletePhotoPrompt(false);
+                        album_DeletePhoto(album_SelectedPhoto);
                     } else {
-                        auPlaySound(0x43);
-                        func_801E1168_9AB3B8(0);
+                        auPlaySound(SOUND_ID_67);
+                        album_DrawDeletePhotoPrompt(false);
                         func_801E0FFC_9AB24C(1);
                     }
-                    FocusMark_SetTargetSize(0x32, 0x25);
-                    FocusMark_SetTargetPos((sp38 * 66) + 107, (sp34 * 55) + 56);
-                    func_801E1C30_9ABE80(NULL, &sp38, &sp34);
+                    FocusMark_SetTargetSize(50, 37);
+                    FocusMark_SetTargetPos((column * 66) + 107, (row * 55) + 56);
+                    album_UpdatePhotoSelection(NULL, &column, &row);
                     FocusMark_Show(true);
-                    pageId = 7;
+                    pageId = ALBUM_PAGE_SELECT_PHOTO_TO_DELETE;
                     break;
                 }
                 break;
@@ -663,14 +662,14 @@ s32 album_UpdateAlbumPage(void) {
     }
 }
 
-void func_801E37A0_9AD9F0(void) {
+void album_Update(void) {
     UNUSED s32 pad;
     s32 sp28;
 
     sp28 = 1;
     album_CoverButtons = album_CoverButtonsDef;
     album_PanelButtons = UILayout_GetButtons();
-    D_80208B94_9D2DE4 = 0;
+    album_SelectedPhoto = 0;
     FocusMark_MoveFront();
     func_800AA85C(24, 12);
     func_800AA870(0xF0000);

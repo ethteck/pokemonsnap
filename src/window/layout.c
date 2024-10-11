@@ -147,7 +147,7 @@ void UILayout_SetButtonScale(f32 scale, s32 id) {
 }
 
 void UILayout_SetButtonText(UIButton* buttonList, char* text, s32 id) {
-    while (buttonList->id != BUTTON_END) {
+    while (buttonList->id != BUTTON_NONE) {
         if (buttonList->id == id) {
             buttonList->text = text;
         }
@@ -168,7 +168,7 @@ void UILayout_HideButtons(void) {
     }
 
     button = UILayout_Buttons;
-    while (button->id != BUTTON_END) {
+    while (button->id != BUTTON_NONE) {
         if (button->id <= BUTTON_MAX) {
         }
         button++;
@@ -177,7 +177,7 @@ void UILayout_HideButtons(void) {
     button = UILayout_Buttons;
     phase = (UILayout_AnimationFrames + 1) * PI_2;
 
-    while (button->id != BUTTON_END) {
+    while (button->id != BUTTON_NONE) {
         if (button->id <= BUTTON_MAX) {
             GObj* obj = UILayout_ButtonObjects[button->id];
 
@@ -227,14 +227,14 @@ void UILayout_CreateButtons(UIButton* buttons) {
     }
 
     for (i = 0; i < 8; i++) {
-        D_803A6BA0_87A350[i].id = BUTTON_END;
+        D_803A6BA0_87A350[i].id = BUTTON_NONE;
         D_803A6BE8_87A398[i] = 0;
     }
 
     numButtons = 0;
     splitterPos = 0;
     button = buttons;
-    while (button->id != BUTTON_END) {
+    while (button->id != BUTTON_NONE) {
         if (button->id <= BUTTON_MAX) {
             numButtons++;
         }
@@ -248,7 +248,7 @@ void UILayout_CreateButtons(UIButton* buttons) {
     phase = 0.0f;
     i = 0;
 
-    while (button->id != BUTTON_END) {
+    while (button->id != BUTTON_NONE) {
         if (button->id <= BUTTON_MAX) {
             GObj* obj = UILayout_ButtonObjects[button->id];
 
@@ -525,7 +525,7 @@ void UILayout_UpdatePanel(GObj* panel) {
 }
 
 char* UILayout_GetButtonText(UIButton* tabs, s32 id) {
-    while (tabs->id != BUTTON_END) {
+    while (tabs->id != BUTTON_NONE) {
         if (id == tabs->id) {
             return tabs->text;
         }
@@ -539,7 +539,7 @@ void UILayout_Init(void) {
     GObj* tabObj;
     s32 i;
 
-    panelObj = func_80371C68_845418(UILayout_UpdatePanel, 6, &D_803A1360_874B10);
+    panelObj = func_80371C68_845418(UILayout_UpdatePanel, LINK_6, &D_803A1360_874B10);
     panelObj->data.sobj->sprite.x = -180;
     panelObj->data.sobj->sprite.y = 0;
     panelObj->data.sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
@@ -549,7 +549,7 @@ void UILayout_Init(void) {
     UILayout_Panel = panelObj;
 
     for (i = 0; i <= BUTTON_MAX; i++) {
-        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, 6, &D_80382CE0_856490);
+        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, LINK_6, &D_80382CE0_856490);
         tabObj->data.sobj->sprite.bitmap = D_803A6564_879D14[i];
         tabObj->data.sobj->sprite.x = 0;
         tabObj->data.sobj->sprite.y = 20 + i * 30;

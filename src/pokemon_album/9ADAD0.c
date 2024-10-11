@@ -5,7 +5,7 @@
 
 s32 album_D_80208C40_9D2E90 = false;
 
-AlbumComment album_D_80250130_A1A380;
+AlbumComment album_EmptyComment;
 AlbumPhotoData album_D_80250170_A1A3C0;
 s32 album_D_80250550_A1A7A0;
 s32 album_D_80250554_A1A7A4;
@@ -15,9 +15,9 @@ s32 album_PhotoCount;
 s32 album_LastPhotoIndex;
 s32 album_FirstPhotoIndex;
 
-AlbumComment* get_album_comment(s32);
-void set_album_comment(AlbumComment* arg0, s32 arg1);
-void func_800BF9F4_5C894(s32);
+AlbumComment* getAlbumComment(s32);
+void setAlbumComment(AlbumComment* arg0, s32 arg1);
+void removeAlbumPhoto(s32);
 
 void func_801E3880_9ADAD0(void) {
     album_D_80208C40_9D2E90 = true;
@@ -35,9 +35,9 @@ PhotoData* album_GetAlbumPhoto(s32 arg0) {
     return getAlbumPhoto(arg0);
 }
 
-void func_801E3914_9ADB64(s32 index) {
-    set_album_comment(&album_D_80250130_A1A380, index);
-    func_800BF9F4_5C894(index);
+void album_DeleteAlbumPhoto(s32 index) {
+    setAlbumComment(&album_EmptyComment, index);
+    removeAlbumPhoto(index);
     album_PhotoCount--;
 
     if (index == album_LastPhotoIndex) {
@@ -60,7 +60,7 @@ s16* album_GetPhotoComment(s32 idx) {
         return NULL;
     }
 
-    return get_album_comment(idx)->text;
+    return getAlbumComment(idx)->text;
 }
 
 s32 album_GetLastPhotoIndex(void) {
@@ -75,14 +75,14 @@ s32 album_GetPhotoCount(void) {
     return album_PhotoCount;
 }
 
-s32 func_801E3AD4_9ADD24(s32 arg0) {
-    s32 sp1C;
+s32 album_IsOnCurrentPage(s32 photoId) {
+    s32 page;
 
-    sp1C = arg0 / 6;
-    if (func_801DCD20_9A6F70() == sp1C) {
-        return 1;
+    page = photoId / 6;
+    if (album_GetCurrentPage() == page) {
+        return true;
     }
-    return 0;
+    return false;
 }
 
 s32 func_801E3B34_9ADD84(s32 index) {
@@ -94,14 +94,14 @@ s32 func_801E3B34_9ADD84(s32 index) {
             album_D_80250558_A1A7A8.photoData = album_D_80250170_A1A3C0.photoData;
             album_CopyComment(&album_D_80250170_A1A3C0.comment, &album_D_80250558_A1A7A8.comment);
             album_D_80250170_A1A3C0.photoData = *getAlbumPhoto(index);
-            album_CopyComment(get_album_comment(index), &album_D_80250170_A1A3C0.comment);
+            album_CopyComment(getAlbumComment(index), &album_D_80250170_A1A3C0.comment);
             func_800BF954_5C7F4(index, &album_D_80250558_A1A7A8.photoData, &album_D_80250558_A1A7A8.comment);
             func_801DE080_9A82D0();
             func_801DDB54_9A7DA4(index);
             return 1;
         } else {
             func_800BF954_5C7F4(index, &album_D_80250170_A1A3C0.photoData, &album_D_80250170_A1A3C0.comment);
-            if (func_801E3AD4_9ADD24(index) != 0) {
+            if (album_IsOnCurrentPage(index)) {
                 func_801DDB54_9A7DA4(index);
             }
             album_D_80250170_A1A3C0.photoData.unk_04.f32 = -1.0f;
@@ -116,12 +116,12 @@ s32 func_801E3B34_9ADD84(s32 index) {
             return 0;
         }
     } else if (getAlbumPhoto(index) != NULL) {
-        auPlaySound(0x5E);
+        auPlaySound(SOUND_ID_94);
         album_D_80250170_A1A3C0.photoData = *getAlbumPhoto(index);
-        album_CopyComment(get_album_comment(index), &album_D_80250170_A1A3C0.comment);
+        album_CopyComment(getAlbumComment(index), &album_D_80250170_A1A3C0.comment);
         func_801DE080_9A82D0();
-        set_album_comment(&album_D_80250130_A1A380, index);
-        func_800BF9F4_5C894(index);
+        setAlbumComment(&album_EmptyComment, index);
+        removeAlbumPhoto(index);
         func_801DDD28_9A7F78(index, 0);
         album_D_80250550_A1A7A0 = index;
         album_PhotoCount--;
@@ -150,14 +150,14 @@ void func_801E3F00_9AE150(void) {
 
     sp1C = album_D_80250550_A1A7A0;
     if (album_D_80250170_A1A3C0.photoData.unk_04.f32 < 0.0f) {
-        auPlaySound(0x41);
+        auPlaySound(SOUND_ID_65);
         return;
     }
-    auPlaySound(0x4A);
+    auPlaySound(SOUND_ID_74);
     album_D_80250558_A1A7A8.photoData = album_D_80250170_A1A3C0.photoData;
     album_CopyComment(&album_D_80250170_A1A3C0.comment, &album_D_80250558_A1A7A8.comment);
     func_800BF954_5C7F4(sp1C, &album_D_80250558_A1A7A8.photoData, &album_D_80250558_A1A7A8.comment);
-    if (func_801E3AD4_9ADD24(sp1C) != 0) {
+    if (album_IsOnCurrentPage(sp1C)) {
         func_801DDB54_9A7DA4(sp1C);
     }
 
@@ -208,7 +208,7 @@ void func_801E4084_9AE2D4(void) {
     album_D_80250938_A1AB88 = -1;
 
     for (i = 0; i < (s32) sizeof(AlbumComment); i++) {
-        ((u8*) &album_D_80250130_A1A380)[i] = 0;
+        ((u8*) &album_EmptyComment)[i] = 0;
     }
 
     album_D_80208C40_9D2E90 = false;

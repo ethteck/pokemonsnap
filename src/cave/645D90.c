@@ -57,13 +57,13 @@ void func_802C39B8_645E68(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->unk_10E = 3;
+    pokemon->specialPoseID = 3;
     Pokemon_SetAnimation(obj, &D_802C7934_649DE4);
     Pokemon_StartAuxProc(obj, func_802C3B34_645FE4);
     Pokemon_StartPathProc(obj, func_802C3A44_645EF4);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetState(obj, func_802C3B68_646018);
 }
 
@@ -249,7 +249,7 @@ void func_802C413C_6465EC(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802C4378_646828);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    pokemon->unk_10E = 6;
+    pokemon->specialPoseID = 6;
     Pokemon_StartPathProc(obj, func_802C4264_646714);
     Pokemon_SetState(obj, func_802C41D0_646680);
 }

@@ -62,16 +62,16 @@ s32 func_801E28D8_9D9248(UnkStruct800BEDF8* arg0, s32* arg1) {
         do {
             *arg1 = (*arg1 + 7) % 8;
         } while (D_80230E14_A27784[*arg1].id == 35);
-        auPlaySound(0x41);
+        auPlaySound(SOUND_ID_65);
     }
     if ((arg0->pressedButtons & 0x20000) && !(arg0->currentButtons & 0xC0000)) {
         do {
             *arg1 = (*arg1 + 1) % 8;
         } while (D_80230E14_A27784[*arg1].id == 35);
-        auPlaySound(0x41);
+        auPlaySound(SOUND_ID_65);
     }
     if (arg0->pressedButtons & 0x4000) {
-        auPlaySound(0x43);
+        auPlaySound(SOUND_ID_67);
         return -1;
     }
     return 0;
@@ -101,7 +101,7 @@ s32 func_801E2AC0_9D9430(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2) {
 
     if (*arg1 != D_80202FFC_9F996C || *arg2 != D_80203000_9F9970) {
         if (D_80202FFC_9F996C >= 0) {
-            auPlaySound(0x45);
+            auPlaySound(SOUND_ID_69);
         }
         D_80202FFC_9F996C = *arg1;
         D_80203000_9F9970 = *arg2;
@@ -133,9 +133,9 @@ s32 func_801E2CF8_9D9668(UnkStruct800BEDF8* arg0, s32* arg1) {
         if (D_80203004_9F9974 >= 0) {
             func_801DE078_9D49E8(1);
             if (arg0->pressedButtons & 0x30000) {
-                auPlaySound(0x45);
+                auPlaySound(SOUND_ID_69);
             } else {
-                auPlaySound(0x4B);
+                auPlaySound(SOUND_ID_75);
             }
         }
         D_80203004_9F9974 = *arg1;
@@ -159,7 +159,7 @@ s32 func_801E2EB0_9D9820(void) {
             return 5;
         }
         if (sp2C->pressedButtons & 0x8000) {
-            auPlaySound(0x42);
+            auPlaySound(SOUND_ID_66);
             switch (D_80230E14_A27784[D_80202EC0_9F9830].id) {
                 case 2:
                     func_801E1568_9D7ED8(0);
@@ -201,7 +201,7 @@ s32 func_801E3000_9D9970(void) {
                 }
 
                 if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                     switch (D_80230E14_A27784[sp28].id) {
                         case 29:
                             if (func_800BF864_5C704() != 0) {
@@ -230,7 +230,7 @@ s32 func_801E3000_9D9970(void) {
             case 1:
                 func_801E2CF8_9D9668(sp2C, &D_8020300C_9F997C);
                 if (sp2C->pressedButtons & 0x4000) {
-                    auPlaySound(0x43);
+                    auPlaySound(SOUND_ID_67);
                     func_801DDCD4_9D4644(0);
                     func_801DE078_9D49E8(0);
                     func_801E28D8_9D9248(NULL, NULL);
@@ -239,7 +239,7 @@ s32 func_801E3000_9D9970(void) {
                     D_80203008_9F9978 = 0;
                 }
                 if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                     func_801DE898_9D5208(0);
                     func_801DEC60_9D55D0(0, 0);
                     D_80203008_9F9978 = 2;
@@ -255,7 +255,7 @@ s32 func_801E3000_9D9970(void) {
                     func_800AA85C(0x18, 6);
                     D_80203008_9F9978 = 1;
                 } else if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
 
                     switch (D_80230E14_A27784[sp28].id) {
                         case 28:
@@ -285,10 +285,10 @@ s32 func_801E3000_9D9970(void) {
                 break;
             case 3:
                 if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                 }
                 if (sp2C->pressedButtons & 0x4000) {
-                    auPlaySound(0x43);
+                    auPlaySound(SOUND_ID_67);
                 }
 
                 if (sp2C->pressedButtons & 0xC000) {
@@ -316,7 +316,7 @@ s32 func_801E3000_9D9970(void) {
                     D_80203008_9F9978 = 0;
                 } else if (sp2C->pressedButtons & 0x8000) {
                     if (D_80230E14_A27784[sp28].id == 5) {
-                        auPlaySound(0x42);
+                        auPlaySound(SOUND_ID_66);
                         func_801DDCD4_9D4644(0);
                         func_801DE078_9D49E8(0);
                         FocusMark_Show(true);
@@ -363,7 +363,7 @@ s32 func_801E3604_9D9F74(void) {
                 return 0;
             }
             if (sp3C->pressedButtons & 0x8000) {
-                auPlaySound(0x42);
+                auPlaySound(SOUND_ID_66);
                 switch (D_80230E14_A27784[sp38].id) {
                     case 29:
                         sp2C = 0;
@@ -382,14 +382,14 @@ s32 func_801E3604_9D9F74(void) {
         } else {
             func_801E2AC0_9D9430(sp3C, &sp2C, &sp28);
             if (sp3C->pressedButtons & 0x4000) {
-                auPlaySound(0x43);
+                auPlaySound(SOUND_ID_67);
                 FocusMark_SetTargetSize(0x3E, 0xC);
                 func_801E28D8_9D9248(NULL, NULL);
                 sp30 = false;
                 UIElement_Draw(func_801DCF40_9D38B0());
             } else if (sp3C->pressedButtons & 0x8000) {
                 if (func_800BF3D4_5C274(func_801DCCF0_9D3660((sp28 * 3) + sp2C))) {
-                    auPlaySound(0x47);
+                    auPlaySound(SOUND_ID_71);
                     func_801E0D84_9D76F4();
                     func_801DFC20_9D6590((sp28 * 3) + sp2C);
                     FocusMark_Show(false);
@@ -435,7 +435,7 @@ s32 func_801E38DC_9DA24C(void) {
                     return 0;
                 }
                 if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
 
                     switch (D_80230E14_A27784[sp28].id) {
                         case 28:
@@ -455,10 +455,10 @@ s32 func_801E38DC_9DA24C(void) {
                 break;
             case 3:
                 if (sp2C->pressedButtons & 0x8000) {
-                    auPlaySound(0x42);
+                    auPlaySound(SOUND_ID_66);
                 }
                 if (sp2C->pressedButtons & 0x4000) {
-                    auPlaySound(0x43);
+                    auPlaySound(SOUND_ID_67);
                 }
                 if (sp2C->pressedButtons & 0xC000) {
                     UILayout_CreateButtons(D_80202F88_9F98F8);

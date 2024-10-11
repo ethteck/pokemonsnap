@@ -27,7 +27,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
             *arg1 = (*arg1 + 7) % 8;
         } while (D_80206B44_9CC364[*arg1].id == 35);
 
-        auPlaySound(0x41);
+        auPlaySound(SOUND_ID_65);
     }
 
     if ((arg0->pressedButtons & 0x20000) && !(arg0->currentButtons & 0xC0000)) {
@@ -35,7 +35,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
             *arg1 = (*arg1 + 1) % 8;
         } while (D_80206B44_9CC364[*arg1].id == 35);
 
-        auPlaySound(0x41);
+        auPlaySound(SOUND_ID_65);
     }
 
     if (arg0->pressedButtons & 0x4000) {
@@ -84,14 +84,14 @@ s32 func_800E3404_8A8C24(void) {
             var_v0 = func_800AA38C(0);
         }
         if (func_800E3264_8A8A84(var_v0, &sp40) != 0) {
-            auPlaySound(0x43);
+            auPlaySound(SOUND_ID_67);
             func_800E1D1C_8A753C(0);
             return 0;
         }
         func_800E1FEC_8A780C(sp40);
 
         if (var_v0->pressedButtons & 0x8000) {
-            auPlaySound(0x42);
+            auPlaySound(SOUND_ID_66);
             UILayout_DisableAllButtonsExcept(1, D_80206B44_9CC364[sp40].id);
             switch (D_80206B44_9CC364[sp40].id) {
                 case 6:
@@ -189,7 +189,7 @@ s32 func_800E37CC_8A8FEC(void) {
         temp_v0_2 = func_800AA38C(0);
         func_800E3264_8A8A84(temp_v0_2, &sp80);
         if (temp_v0_2->pressedButtons & 0x8000) {
-            auPlaySound(0x42);
+            auPlaySound(SOUND_ID_66);
 
             switch (D_80206B44_9CC364[sp80].id) {
                 case 1:
@@ -458,7 +458,7 @@ s32 func_800E3ED4_8A96F4(void) {
                         return D_80195894_95B0B4;
                     }
                     if (temp_v1 & 0x4000) {
-                        auPlaySound(0x43);
+                        auPlaySound(SOUND_ID_67);
                         UILayout_DisableAllButtonsExcept(0, 0);
                         ohWait(1);
                         var_s0 = 1;

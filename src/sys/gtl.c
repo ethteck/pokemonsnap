@@ -823,7 +823,7 @@ void gtlDraw(FnBundle* self) {
     }
 }
 
-void func_80006F8C(GObj* arg0) {
+void gtlDrawOne(GObj* cam) {
     s32 idx;
     s32 tmp;
     SCTaskGfxEnd* task;
@@ -831,7 +831,7 @@ void func_80006F8C(GObj* arg0) {
     gtlSwitchContext(0);
     gtlResetHeap();
     gtlInitDLists();
-    arg0->fnRender(arg0);
+    cam->fnRender(cam);
     gtlProcessAllDLists();
     task = gtlGfxEndTasks[gtlContextId];
     if (task == NULL) {

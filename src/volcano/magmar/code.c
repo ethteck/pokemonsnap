@@ -321,7 +321,7 @@ POKEMON_FUNC(magmar_LoneInit)
 }
 
 POKEMON_FUNC(magmar_Idle)
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetAnimation(obj, &magmar_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = magmar_tg_Normal;
@@ -361,7 +361,7 @@ POKEMON_FUNC(magmar_MoveWalk)
 }
 
 POKEMON_FUNC(magmar_HitByPesterBall)
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     pokemon->flags |= POKEMON_FLAG_800;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_SetAnimation(obj, &magmar_animation_fall);
@@ -383,7 +383,7 @@ POKEMON_FUNC(magmar_HitByPesterBall)
 }
 
 POKEMON_FUNC(magmar_HitByApple)
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimation(obj, &magmar_animation_hit);
     pokemon->transitionGraph = magmar_tg_Hit;
@@ -393,7 +393,7 @@ POKEMON_FUNC(magmar_HitByApple)
 }
 
 POKEMON_FUNC(magmar_AffectedByPesterBall)
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetAnimation(obj, &magmar_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = magmar_tg_Hit;
@@ -468,7 +468,7 @@ POKEMON_FUNC(magmar_InteractWithPokemon)
         // standing alone magmar
         Pokemon_SetState(obj, magmar_BurnCharmander);
     }
-    pokemon->unk_10E = 11;
+    pokemon->specialPoseID = 11;
 
     Pokemon_SetAnimation(obj, &magmar_animation_spewfire);
     Pokemon_StartPathProc(obj, magmar_TurnToRival);
@@ -480,7 +480,7 @@ POKEMON_FUNC(magmar_InteractWithPokemon)
     pokemon->transitionGraph = magmar_tg_Fighting;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetState(obj, magmar_Idle);
 }
 
@@ -501,14 +501,14 @@ POKEMON_FUNC(magmar_TurnToRival)
 }
 
 POKEMON_FUNC(magmar_BurnedDown)
-    pokemon->unk_10E = 11;
+    pokemon->specialPoseID = 11;
     pokemon->flags |= POKEMON_FLAG_800;
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_SetAnimation(obj, &magmar_animation_fall);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->unk_10E = 0;
+    pokemon->specialPoseID = 0;
     Pokemon_SetAnimation(obj, &magmar_animation_lie);
     pokemon->transitionGraph = NULL;
     pokemon->flags &= ~POKEMON_FLAG_800;

@@ -77,7 +77,7 @@ void gtlSetSegmentF(Gfx**);
 void gtlInit(void);
 void gtlDisableNearClipping(s32);
 void func_800067DC(void);
-void func_80006F8C(GObj*);
+void gtlDrawOne(GObj*);
 
 extern s32 gtlDrawnFrameCounter;
 extern Gfx* gMainGfxPos[4];

@@ -578,7 +578,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         UIElement_SetFont(temp_s0, FONT_8);
 //         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0xC);
 //         UIElement_PrintText(temp_s0, sp48);
-//         sprintf(sp48, "%s", get_player_name());
+//         sprintf(sp48, "%s", getPlayerName());
 
 //         if (var_a3_2 && var_a3_2 && var_a3_2) {
 //         }
@@ -638,7 +638,7 @@ void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
         sprintf(sp44, "%s", levelName);
         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 12);
         UIElement_PrintText(temp_s0, sp44);
-        sprintf(sp44, "%s", get_player_name());
+        sprintf(sp44, "%s", getPlayerName());
         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 40);
         UIElement_PrintText(temp_s0, sp44);
         sprintf(sp44, "%d", arg0->unk_04);

@@ -40,7 +40,7 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
     }
     if (*arg1 != D_801F4180_9A3BF0) {
         D_801F4180_9A3BF0 = *arg1;
-        auPlaySound(0x45);
+        auPlaySound(SOUND_ID_69);
         FocusMark_SetTargetPos((*arg1 * 0x93) + 0x3C, 0x27);
     }
     return 0;

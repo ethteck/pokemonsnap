@@ -42,7 +42,7 @@ void func_801DC8A0_AA18E0(s32 arg0) {
 void func_801DC930_AA1970(OMCamera* cam, PhotoData* photoData) {
     GObj* obj;
 
-    func_8009FA68(cam, photoData);
+    initObjectsOnPhoto(cam, photoData);
     obj = omGObjListHead[D_801E54C0_AAA500];
     while (obj != NULL) {
         ohPauseObjectProcesses(obj);

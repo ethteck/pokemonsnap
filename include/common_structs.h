@@ -183,8 +183,8 @@ typedef struct {
     /* 0x0F8 */ EggStruct* eggGeo;
     /* 0x0FC */ char unk_FC[0x4];
     /* 0x100 */ Vec3f collPosition;
-    /* 0x10C */ u16 unk_10C;
-    /* 0x10E */ u16 unk_10E;
+    /* 0x10C */ u16 poseID;
+    /* 0x10E */ u16 specialPoseID;
 } Pokemon; // size = 0x110
 
 typedef GObj* (*pokemonInit)(s32 arg0, u16 id, struct WorldBlock* blockA, struct WorldBlock* blockB, ObjectSpawn* spawn);
@@ -225,8 +225,8 @@ typedef struct PlayerName {
 typedef struct PokemonPhotoData {
     /* 0x00 */ s32 pokemonID : 13;
     /* 0x00 */ u32 unk_00_13 : 6;
-    /* 0x02 */ u16 unk_00_19 : 5;
-    /* 0x03 */ s8 unk_03;
+    /* 0x02 */ u16 specialID : 5;
+    /* 0x03 */ u8 poseID;
     /* 0x04 */ f32 animationTime;
     /* 0x08 */ Vec3f position;
     /* 0x14 */ f32 yaw;
@@ -238,7 +238,7 @@ typedef struct ItemPhotoData {
     /* 0x04 */ Vec3f pos;
 } ItemPhotoData; // size = 0x10
 
-typedef struct PhotoDataSub3 {
+typedef struct EffectPhotoData {
     /* 0x00 */ s8 unk_00;
     /* 0x01 */ s8 unk_01;
     /* 0x01 */ s8 unk_02;
@@ -248,7 +248,7 @@ typedef struct PhotoDataSub3 {
     /* 0x08 */ s16 unk_08;
     /* 0x0A */ u16 unk_0A;
     /* 0x0C */ ucolor unk_0C;
-} PhotoDataSub3; // size = 0x10
+} EffectPhotoData; // size = 0x10
 
 typedef struct PhotoData {
     /* 0x000 */ s8 levelID : 7;
@@ -261,9 +261,9 @@ typedef struct PhotoData {
     } unk_04;
     /* 0x008 */ Vec3f unk_08;
     /* 0x014 */ Vec3f unk_14;
-    /* 0x020 */ PokemonPhotoData unk_20[12];
-    /* 0x140 */ ItemPhotoData unk_140[6];
-    /* 0x1A0 */ PhotoDataSub3 unk_1A0[32];
+    /* 0x020 */ PokemonPhotoData pokemons[12];
+    /* 0x140 */ ItemPhotoData items[6];
+    /* 0x1A0 */ EffectPhotoData effects[32];
 } PhotoData; // size = 0x3A0
 
 typedef struct UnkThing {

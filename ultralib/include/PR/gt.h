@@ -260,7 +260,7 @@ typedef union {
  *
  * Notice also that many of these commands do not make sense for
  * the turbo ucode (they control features not supported, like mip-mapping).
- * They are only included here for completeness.
+ * They are only included here for completenessScore.
  *
  */
 typedef enum {

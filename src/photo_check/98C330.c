@@ -1079,8 +1079,8 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 D_801F3E34_9A38A4 = true;
             }
         }
-        sp1F4 = photo->sizeParam1 / 10000.0f;
-        sp1FA = ((u32) (((photo->sizeParam2 * sp1F4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+        sp1F4 = photo->completenessScore / 10000.0f;
+        sp1FA = ((u32) (((photo->proximityScore * sp1F4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
     }
 
     if (!isPokemonSign && !D_801F3E34_9A38A4) {
@@ -1098,8 +1098,8 @@ s32 func_801DE204_98DC74(Photo* photo) {
         UIText_SetSpacing(-1, 3);
         UIElement_PrintText(D_802290DC_9D8B4C, "How's the Size?");
         if (D_801F3E60_9A38D0) {
-            sp19C = sp25C->score.sizeParam1 / 10000.0f;
-            sp1A0 = ((u32) (((sp25C->score.sizeParam2 * sp19C) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+            sp19C = sp25C->score.completenessScore / 10000.0f;
+            sp1A0 = ((u32) (((sp25C->score.proximityScore * sp19C) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
             sprintf(sp18C, "%5d", sp1A0);
@@ -1107,7 +1107,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
             UIElement_PrintAsciiString(D_802290E0_9D8B50, sp18C);
             UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
-            if (sp25C->score.sizeParam2 < 245.0f || sp25C->score.sizeParam1 < 6000.0f) {
+            if (sp25C->score.proximityScore < 245.0f || sp25C->score.completenessScore < 6000.0f) {
                 sp1FC = true;
             }
             D_801F3E64_9A38D4 += sp1A0;
@@ -1120,7 +1120,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     if (!isPokemonSign && !D_801F3E34_9A38A4) {
         auPlaySoundWithParams(0x56, 0x7FFF, 0x40, D_801F3E3C_9A38AC[sp1F0++] + 1.0, 0x1E);
         func_801DD1A8_98CC18(0x2D);
-        if (photo->sizeParam2 < 245.0f || photo->sizeParam1 < 6000.0f) {
+        if (photo->proximityScore < 245.0f || photo->completenessScore < 6000.0f) {
             sp204 = 1;
             auPlaySound(0x5F);
             UIText_SetShadowOffset(0);
@@ -1150,7 +1150,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close.");
-            if (photo->sizeParam2 < 245.0f) {
+            if (photo->proximityScore < 245.0f) {
                 UIText_SetShadowOffset(1);
                 UIText_SetSpacing(-1, 3);
                 UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
@@ -1549,11 +1549,11 @@ s32 func_801DE204_98DC74(Photo* photo) {
     }
     if (!isPokemonSign && (D_801F3E34_9A38A4 != 0 || sp204 != 0)) {
         if (sp20C) {
-            spC4 = sp25C->score.sizeParam1 / 10000.0f;
-            spCC = ((u32) (((sp25C->score.sizeParam2 * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+            spC4 = sp25C->score.completenessScore / 10000.0f;
+            spCC = ((u32) (((sp25C->score.proximityScore * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
         }
-        spC4 = photo->sizeParam1 / 10000.0f;
-        spCA = ((u32) (((photo->sizeParam2 * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
+        spC4 = photo->completenessScore / 10000.0f;
+        spCA = ((u32) (((photo->proximityScore * spC4) + 5.0f) / 10.0f) & 0xFFFF) * 0xA;
         auPlaySound(0x4D);
         UIElement_Draw(D_802290E0_9D8B50);
         UIText_SetShadowOffset(0);
@@ -1713,7 +1713,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             D_801F3E64_9A38D4 = sp25C->score.totalScore;
         }
         func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
-        if (sp204 == 0 && (photo->sizeParam2 < 245 || photo->sizeParam1 < 6000 || photo->posePts < 200 || !photo->isWellFramed)) {
+        if (sp204 == 0 && (photo->proximityScore < 245 || photo->completenessScore < 6000 || photo->posePts < 200 || !photo->isWellFramed)) {
             sp204 = 1;
         }
     }

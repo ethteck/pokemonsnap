@@ -47,21 +47,23 @@ s16 D_800AE744[] = {
     1, 3, 1, 3, 1, 1, 1, 1, 1, 1,
     1, 1, 3, 1
 };
-u16 D_800AE7C4 = false;
-u16 D_800AE7C8 = false;
-Gfx D_800AE7D0[] = {
+u16 score_WideFOV = false;
+u16 score_ReadyToRender = false;
+
+Gfx score_GfxCopyZBuffer[] = {
     gsDPPipeSync(),
     gsDPSetCycleType(G_CYC_COPY),
     gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
     gsDPSetTexturePersp(G_TP_NONE),
     gsDPSetAlphaCompare(G_AC_NONE),
     gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48),
-
+    // copy z buffer to current pokemon z buffer
+    // upper part
     gsDPLoadTextureBlock(0x0C000000, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 24, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0B000000),
     gsSPTextureRectangle(0, 0, 0x00FC, 0x005C, G_TX_RENDERTILE, 0, 0, 0x1000, 0x0400),
     gsDPPipeSync(),
-
+    // lower part
     gsDPLoadTextureBlock(0x0C000C00, G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 24, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD),
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0B000C00),
     gsSPTextureRectangle(0, 0, 0x00FC, 0x005C, G_TX_RENDERTILE, 0, 0, 0x1000, 0x0400),
@@ -75,9 +77,9 @@ Gfx D_800AE7D0[] = {
     gsDPPipeSync(),
     gsSPEndDisplayList(),
 };
-Gfx D_800AE8F8[] = {
+Gfx score_GfxSetupBuffers[] = {
     gsDPPipeSync(),
-    // clear depth buffer and 12 images
+    // clear current z buffer and 12 pokemon z buffers
     gsDPSetCycleType(G_CYC_FILL),
     gsDPSetRenderMode(G_RM_NOOP, G_RM_NOOP2),
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0C000000),
@@ -85,7 +87,7 @@ Gfx D_800AE8F8[] = {
     gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48 * 13),
     gsDPFillRectangle(0, 0, 64 - 1, 48 * 13 - 1),
     gsDPPipeSync(),
-
+    // clear image buffer
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, 0x0F000000),
     gsDPSetDepthImage(0x0C000000),
     gsDPSetScissor(G_SC_NON_INTERLACE, 0, 0, 64, 48),
@@ -120,30 +122,30 @@ Gfx D_800AE8F8[] = {
     gsSPEndDisplayList(),
 };
 
-extern GObj* D_800BDF30[];
-extern s32 D_800BDF60;
-extern GObj* D_800BDFA8;
-extern PhotoData* D_800BDFAC;
-extern u16* D_800BDFB0;
-extern u16* D_800BDFB4;
-extern u16* D_800BDFB8[];
-extern u16* D_800BDFE8[];
+extern GObj* photo_PokemonObjs[];
+extern s32 photo_PokemonCount;
+extern GObj* score_CameraObject;
+extern PhotoData* score_CurrentPhoto;
+extern u16* score_ImageBuffer;
+extern u16* score_CurrentZBuffer;
+extern u16* score_PokemonZBuffer[];
+extern u16* score_ZBufferBefore[];
 extern u16 D_800BE018;
-extern u16 D_800BE01A;
-extern s32 D_800BE020[];
-extern s32 D_800BE050[];
-extern s32 D_800BE080[];
-extern s32 D_800BE0B0[];
-extern s32 D_800BE0E0[];
-extern s32 D_800BE110[];
-extern s32 D_800BE140[];
+extern u16 score_PokemonCount;
+extern s32 score_PixelCountWide[];
+extern s32 score_PixelCountCenterPartWide[];
+extern s32 score_PixelCount[];
+extern s32 score_PixelCountUnobstructed[];
+extern s32 score_PixelCountUnobstructedInCenter[];
+extern s32 score_ApproxTotalPixelCount[];
+extern s32 score_PixelCountInCenter[];
 extern ScoreData D_800BE170;
 
 s32 getNumberOfPoses(void) {
     return 164;
 }
 
-void func_8009FCC8(GObj* camObj) {
+void score_Render(GObj* camObj) {
     OMCamera* camera;
     GObj* it;
     s32 dllink;
@@ -151,16 +153,16 @@ void func_8009FCC8(GObj* camObj) {
     u32 unk_38;
     f32 aspect;
 
-    if (!D_800AE7C8) {
+    if (!score_ReadyToRender) {
         return;
     }
 
-    initObjectsOnPhoto(D_800BDFA8->data.cam, D_800BDFAC);
-    D_800AE7C8 = false;
+    initObjectsOnPhoto(score_CameraObject->data.cam, score_CurrentPhoto);
+    score_ReadyToRender = false;
     omCurrentCamera = camObj;
     camera = camObj->data.cam;
     camera->flags |= CAMERA_FLAG_10;
-    if (D_800AE7C4) {
+    if (score_WideFOV) {
         camera->perspMtx.persp.fovy *= 2.0f;
     }
 
@@ -170,16 +172,16 @@ void func_8009FCC8(GObj* camObj) {
     camera->vp.vp.vtrans[1] = 96;
 
     gSPViewport(gMainGfxPos[0]++, &camera->vp);
-    gSPSegment(gMainGfxPos[0]++, 0x0F, D_800BDFB0);
-    gSPSegment(gMainGfxPos[0]++, 0x0C, D_800BDFB4);
-    gSPDisplayList(gMainGfxPos[0]++, D_800AE8F8);
+    gSPSegment(gMainGfxPos[0]++, 0x0F, score_ImageBuffer);
+    gSPSegment(gMainGfxPos[0]++, 0x0C, score_CurrentZBuffer);
+    gSPDisplayList(gMainGfxPos[0]++, score_GfxSetupBuffers);
 
     aspect = camera->perspMtx.persp.aspect;
     camera->perspMtx.persp.aspect = 4.0f / 3.0f;
     renPrepareCameraMatrix(&gMainGfxPos[0], camera);
     camera->perspMtx.persp.aspect = aspect;
 
-    D_800BE01A = 0;
+    score_PokemonCount = 0;
     dllink = 0;
     bitMask = camObj->dlLinkBitMask;
     unk_38 = camObj->unk_38;
@@ -190,13 +192,14 @@ void func_8009FCC8(GObj* camObj) {
                     continue;
                 }
                 omRenderedObject = it;
-                if (it == D_800BDF30[D_800BE01A] && D_800BE01A < D_800BDF60) {
-                    gSPSegment(gMainGfxPos[0]++, 0x0A, D_800BDFB8[D_800BE01A]);
-                    gSPSegment(gMainGfxPos[0]++, 0x0B, D_800BDFE8[D_800BE01A]);
-                    D_800BE01A++;
-                    gSPDisplayList(gMainGfxPos[0]++, D_800AE7D0);
+                if (it == photo_PokemonObjs[score_PokemonCount] && score_PokemonCount < photo_PokemonCount) {
+                    gSPSegment(gMainGfxPos[0]++, 0x0A, score_PokemonZBuffer[score_PokemonCount]);
+                    gSPSegment(gMainGfxPos[0]++, 0x0B, score_ZBufferBefore[score_PokemonCount]);
+                    score_PokemonCount++;
+                    gSPDisplayList(gMainGfxPos[0]++, score_GfxCopyZBuffer);
                     it->fnRender(it);
                     gDPPipeSync(gMainGfxPos[0]++);
+                    // restore z buffer to score_CurrentZBuffer
                     gDPSetDepthImage(gMainGfxPos[0]++, 0x0C000000);
                 }
 
@@ -213,103 +216,103 @@ void func_8009FCC8(GObj* camObj) {
 
     renCameraPostRender(camera);
     camera->flags &= ~CAMERA_FLAG_10;
-    if (D_800AE7C4) {
+    if (score_WideFOV) {
         camera->perspMtx.persp.fovy /= 2.0f;
     }
 }
 
-void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
+void func_800A007C(GObj* camObj, PhotoData* photo, u16 arg2, u16* buffer) {
     s32 unused[4];
-    GObjFunc sp3C;
-    s32 idx;
+    GObjFunc originalRenderFunc;
+    s32 pixelIdx;
     s32 i;
     s32 x, y;
 
-    D_800BDFA8 = arg0;
-    sp3C = arg0->fnRender;
-    arg0->fnRender = func_8009FCC8;
-    D_800BDFAC = arg1;
+    score_CameraObject = camObj;
+    originalRenderFunc = camObj->fnRender;
+    camObj->fnRender = score_Render;
+    score_CurrentPhoto = photo;
     D_800BE018 = arg2;
 
-    D_800BDFB0 = arg3;
-    arg3 += 64 * 48;
-    D_800BDFB4 = arg3;
-    arg3 += 64 * 48;
+    score_ImageBuffer = buffer;
+    buffer += 64 * 48;
+    score_CurrentZBuffer = buffer;
+    buffer += 64 * 48;
 
     for (i = 0; i < 12; i++) {
-        D_800BDFB8[i] = arg3;
-        arg3 += 64 * 48;
+        score_PokemonZBuffer[i] = buffer;
+        buffer += 64 * 48;
     }
 
     for (i = 0; i < 12; i++) {
-        D_800BDFE8[i] = arg3;
-        arg3 += 64 * 48;
+        score_ZBufferBefore[i] = buffer;
+        buffer += 64 * 48;
     }
 
-    D_800AE7C8 = true;
-    D_800AE7C4 = true;
+    score_ReadyToRender = true;
+    score_WideFOV = true;
 
-    bzero(D_800BDFB0, 0x27000);
+    bzero(score_ImageBuffer, 0x27000);
     osWritebackDCacheAll();
-    osInvalDCache(D_800BDFB0, 0x27000);
-    func_80006F8C(D_800BDFA8);
+    osInvalDCache(score_ImageBuffer, 0x27000);
+    gtlDrawOne(score_CameraObject);
 
     for (i = 0; i < 12; i++) {
-        D_800BE020[i] = D_800BE050[i] = 0;
+        score_PixelCountWide[i] = score_PixelCountCenterPartWide[i] = 0;
 
         for (y = 0; y < 48; y++) {
             for (x = 0; x < 64; x++) {
-                idx = y * 64 + x;
-                if (D_800BDFB8[i][idx] != 0xFFFC) {
-                    D_800BE020[i]++;
+                pixelIdx = y * 64 + x;
+                if (score_PokemonZBuffer[i][pixelIdx] != 0xFFFC) {
+                    score_PixelCountWide[i]++;
                     if (x >= 17 && x <= 46 && y >= 13 && y <= 34) {
-                        D_800BE050[i]++;
+                        score_PixelCountCenterPartWide[i]++;
                     }
                 }
             }
         }
     }
 
-    D_800AE7C8 = true;
-    D_800AE7C4 = false;
+    score_ReadyToRender = true;
+    score_WideFOV = false;
 
-    bzero(D_800BDFB0, 0x27000);
+    bzero(score_ImageBuffer, 0x27000);
     osWritebackDCacheAll();
-    osInvalDCache(D_800BDFB0, 0x27000);
-    func_80006F8C(D_800BDFA8);
+    osInvalDCache(score_ImageBuffer, 0x27000);
+    gtlDrawOne(score_CameraObject);
 
-    arg0->fnRender = sp3C;
+    camObj->fnRender = originalRenderFunc;
 
     for (i = 0; i < 12; i++) {
-        D_800BE080[i] = D_800BE0B0[i] = D_800BE0E0[i] = D_800BE140[i] = 0;
+        score_PixelCount[i] = score_PixelCountUnobstructed[i] = score_PixelCountUnobstructedInCenter[i] = score_PixelCountInCenter[i] = 0;
 
         for (y = 0; y < 48; y++) {
             for (x = 0; x < 64; x++) {
-                idx = y * 64 + x;
-                if (D_800BDFB8[i][idx] != 0xFFFC) {
-                    D_800BE080[i]++;
+                pixelIdx = y * 64 + x;
+                if (score_PokemonZBuffer[i][pixelIdx] != 0xFFFC) {
+                    score_PixelCount[i]++;
                     if (x >= 30 && x <= 33 && y >= 22 && y <= 25) {
-                        D_800BE140[i]++;
+                        score_PixelCountInCenter[i]++;
                     }
-                    if (D_800BDFB8[i][idx] == D_800BDFB4[idx] && D_800BDFE8[i][idx] != D_800BDFB4[idx]) {
-                        D_800BE0B0[i]++;
+                    if (score_PokemonZBuffer[i][pixelIdx] == score_CurrentZBuffer[pixelIdx] && score_ZBufferBefore[i][pixelIdx] != score_CurrentZBuffer[pixelIdx]) {
+                        score_PixelCountUnobstructed[i]++;
                         if (x >= 31 && x <= 32 && y >= 23 && y <= 24) {
-                            D_800BE0E0[i]++;
+                            score_PixelCountUnobstructedInCenter[i]++;
                         }
                     }
                 }
             }
         }
 
-        if (D_800BE050[i] != 0) {
-            D_800BE110[i] = D_800BE020[i] * D_800BE080[i] / D_800BE050[i];
+        if (score_PixelCountCenterPartWide[i] != 0) {
+            score_ApproxTotalPixelCount[i] = score_PixelCountWide[i] * score_PixelCount[i] / score_PixelCountCenterPartWide[i];
         } else {
-            D_800BE110[i] = D_800BE020[i] * 4;
+            score_ApproxTotalPixelCount[i] = score_PixelCountWide[i] * 4;
         }
     }
 
-    for (i = 0; i < D_800BE01A; i++) {
-        if (arg1->unk_20[i].animationTime < 0.0f) {
+    for (i = 0; i < score_PokemonCount; i++) {
+        if (photo->pokemons[i].animationTime < 0.0f) {
             auPlaySound(SOUND_ID_85);
             ohWait(60);
         }
@@ -317,128 +320,129 @@ void func_800A007C(GObj* arg0, PhotoData* arg1, u16 arg2, u16* arg3) {
     ohWait(1);
 }
 
-f32 func_800A0504(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    return (arg4 - arg3) * (arg0 - arg1) / (arg2 - arg1) + arg3;
+f32 score_Interpolate(f32 value, f32 xmin, f32 xmax, f32 ymin, f32 ymax) {
+    return (ymax - ymin) * (value - xmin) / (xmax - xmin) + ymin;
 }
 
-void func_800A0534(ScoreData* arg0, PhotoData* arg1, s32 arg2, s32 arg3) {
-    f32 var_f2;
+void score_AddSamePkmnBonus(ScoreData* score, PhotoData* photo, s32 idx, s32 thisPokemon) {
+    f32 visiblePart;
     u16 new_var;
-    s32 new_var2;
-    s32 var_v1;
+    s32 visiblePixelScore; // from 200 to 1000
+    s32 visiblePixels;
     s32* temp_a0;
 
-    if (arg3 == PokemonID_SHELLDER || arg3 == PokemonID_603) {
-        if (arg1->unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_SHELLDER &&
-            arg1->unk_20[D_800BDF68[arg2]].pokemonID != PokemonID_603) {
+    if (thisPokemon == PokemonID_SHELLDER || thisPokemon == PokemonID_603) {
+        if (photo->pokemons[photo_PokemonIndexes[idx]].pokemonID != PokemonID_SHELLDER &&
+            photo->pokemons[photo_PokemonIndexes[idx]].pokemonID != PokemonID_603) {
             return;
         }
-    } else if (arg3 != arg1->unk_20[D_800BDF68[arg2]].pokemonID) {
+    } else if (thisPokemon != photo->pokemons[photo_PokemonIndexes[idx]].pokemonID) {
         return;
     }
 
-    var_v1 = D_800BE0B0[arg2];
-    if (var_v1 > 0x300) {
-        var_v1 = 0x300;
+    visiblePixels = score_PixelCountUnobstructed[idx];
+    if (visiblePixels > 768) {
+        visiblePixels = 768;
     }
-    if (var_v1 >= 4 && D_800BE110[arg2] > 0) {
+    if (visiblePixels >= 4 && score_ApproxTotalPixelCount[idx] > 0) {
         // TODO remove dumb
         if (1) {
         }
-        new_var2 = 10;
-        new_var = ((func_800A0504(var_v1, 4.0f, 768.0f, 0.2f, 1.0f) * 1000.0f) + 5.0f) / 10.0f;
-        new_var2 = new_var * new_var2;
+        visiblePixelScore = 10;
+        new_var = ((score_Interpolate(visiblePixels, 4.0f, 768.0f, 0.2f, 1.0f) * 1000.0f) + 5.0f) / 10.0f;
+        visiblePixelScore = new_var * visiblePixelScore;
 
-        var_f2 = ((f32) D_800BE0B0[arg2]) / ((f32) D_800BE110[arg2]);
-        if (var_f2 > 1.0) {
-            var_f2 = 1.0f;
+        visiblePart = ((f32) score_PixelCountUnobstructed[idx]) / ((f32) score_ApproxTotalPixelCount[idx]);
+        if (visiblePart > 1.0) {
+            visiblePart = 1.0f;
         }
 
-        arg0->samePkmnBonus += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
-        arg0->totalScore += ((u16) (((var_f2 * new_var2) + 5.0f) / 10.0f)) * 10;
-        arg0->samePkmnNumber++;
+        score->samePkmnBonus += ((u16) (((visiblePart * visiblePixelScore) + 5.0f) / 10.0f)) * 10;
+        score->totalScore += ((u16) (((visiblePart * visiblePixelScore) + 5.0f) / 10.0f)) * 10;
+        score->samePkmnNumber++;
     }
 }
 
-void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
-    s32 s3;
-    s32 s0;
-    f32 f0;
-    f32 f2;
+void score_CalculateScore(ScoreData* score, PhotoData* photo, s32 id) {
+    s32 pkmnID;
+    s32 visiblePixels;
+    f32 visiblePixelScore;
+    f32 visiblePart;
     s32 i;
     s32 specialID;
     f32 f22;
     s32 tmp2;
-    s32 tmp3;
+    s32 idx;
     s32 tmp4;
-    s32 tmp5;
+    s32 roundedSizeScore;
     s32 poseID;
-    f32 tmp6;
+    f32 sizeScore;
     f32 tmp7;
     f32 tmp8;
 
-    arg0->totalScore = 0;
-    tmp3 = D_800BDF68[arg2];
-    s3 = arg1->unk_20[tmp3].pokemonID;
-    if (s3 == PokemonID_603) {
-        arg0->pokemonInFocus = PokemonID_SHELLDER;
+    score->totalScore = 0;
+
+    idx = photo_PokemonIndexes[id];
+    pkmnID = photo->pokemons[idx].pokemonID;
+    if (pkmnID == PokemonID_603) {
+        score->pokemonInFocus = PokemonID_SHELLDER;
     } else {
-        arg0->pokemonInFocus = s3;
+        score->pokemonInFocus = pkmnID;
     }
 
-    if (func_8009BDDC(arg1->unk_20[tmp3].pokemonID, arg1->unk_20[tmp3].unk_00_13) < 0.0f) {
-        arg0->pokemonInFocus = PokemonID_500;
+    if (func_8009BDDC(photo->pokemons[idx].pokemonID, photo->pokemons[idx].unk_00_13) < 0.0f) {
+        score->pokemonInFocus = PokemonID_500;
         return;
     }
 
-    specialID = arg1->unk_20[tmp3].specialID;
+    specialID = photo->pokemons[idx].specialID;
     if (specialID > 0) {
-        arg0->specialID = specialID;
-        arg0->specialBonus = score_SpecialBonuses[specialID];
-        arg0->totalScore += arg0->specialBonus;
+        score->specialID = specialID;
+        score->specialBonus = score_SpecialBonuses[specialID];
+        score->totalScore += score->specialBonus;
     }
 
-    s0 = D_800BE0B0[arg2];
-    if (s0 > 0x300) {
-        s0 = 0x300;
+    visiblePixels = score_PixelCountUnobstructed[id];
+    if (visiblePixels > 768) {
+        visiblePixels = 768;
     }
-    if (s0 < 4) {
+    if (visiblePixels < 4) {
         return;
     }
 
-    f0 = func_800A0504(s0, 4.0f, 768.0f, 0.2f, 1.0f);
-    arg0->sizeParam2 = ((u16) ((f0 * 1000.0f + 5.0f) / 10.0f)) * 10;
+    visiblePixelScore = score_Interpolate(visiblePixels, 4.0f, 768.0f, 0.2f, 1.0f);
+    score->proximityScore = ((u16) ((visiblePixelScore * 1000.0f + 5.0f) / 10.0f)) * 10;
 
-    if (s0 < 4 || D_800BE110[arg2] <= 0) {
+    if (visiblePixels < 4 || score_ApproxTotalPixelCount[id] <= 0) {
         return;
     }
 
-    f2 = (f32) D_800BE0B0[arg2] / (f32) D_800BE110[arg2];
-    if (f2 > 1.0) {
-        f2 = 1.0f;
+    visiblePart = (f32) score_PixelCountUnobstructed[id] / (f32) score_ApproxTotalPixelCount[id];
+    if (visiblePart > 1.0) {
+        visiblePart = 1.0f;
     }
 
-    arg0->sizeParam1 = f2 * 10000.0f + 0.5f;
-    tmp8 = arg0->sizeParam2;
-    f2 = arg0->sizeParam1 / 10000.f;
-    tmp6 = f2 * tmp8;
-    tmp5 = ((u16) ((tmp6 + 5.0f) / 10.0f)) * 10;
-    arg0->totalScore += tmp5;
+    score->completenessScore = visiblePart * 10000.0f + 0.5f;
+    tmp8 = score->proximityScore;
+    visiblePart = score->completenessScore / 10000.f;
+    sizeScore = visiblePart * tmp8;
+    roundedSizeScore = ((u16) ((sizeScore + 5.0f) / 10.0f)) * 10;
+    score->totalScore += roundedSizeScore;
 
-    if (f0 < 0.245f || f2 < 0.6f) {
+    if (visiblePixelScore < 0.245f || visiblePart < 0.6f) {
         return;
     }
 
-    poseID = arg1->unk_20[tmp3].poseID;
-    arg0->poseID = poseID;
+    poseID = photo->pokemons[idx].poseID;
+    score->poseID = poseID;
     if (poseID > 0) {
-        arg0->posePts = score_PoseBonuses[poseID];
-        arg0->totalScore += arg0->posePts;
-        if (arg0->posePts < 200) {
+        score->posePts = score_PoseBonuses[poseID];
+        score->totalScore += score->posePts;
+        if (score->posePts < 200) {
             return;
         }
     } else {
-        f22 = arg1->unk_20[tmp3].yaw - atan2f(arg1->unk_08.x - arg1->unk_14.x, arg1->unk_08.z - arg1->unk_14.z);
+        f22 = photo->pokemons[idx].yaw - atan2f(photo->unk_08.x - photo->unk_14.x, photo->unk_08.z - photo->unk_14.z);
         while (f22 > PI) {
             f22 -= TAU;
         }
@@ -449,24 +453,24 @@ void func_800A081C(ScoreData* arg0, PhotoData* arg1, s32 arg2) {
             f22 = -f22;
         }
 
-        tmp4 = D_800AE744[func_8009BB4C(s3)];
+        tmp4 = D_800AE744[func_8009BB4C(pkmnID)];
         tmp2 = f22 * 180.0f / PI / 15.0f;
-        arg0->posePts = D_800AE6E4[tmp4][tmp2];
-        arg0->totalScore += arg0->posePts;
-        if (arg0->posePts < 200) {
+        score->posePts = D_800AE6E4[tmp4][tmp2];
+        score->totalScore += score->posePts;
+        if (score->posePts < 200) {
             return;
         }
     }
 
-    if (D_800BE140[arg2] != 0) {
-        arg0->isWellFramed = true;
-        arg0->totalScore *= 2;
+    if (score_PixelCountInCenter[id] != 0) {
+        score->isWellFramed = true;
+        score->totalScore *= 2;
 
-        for (i = 0; i < arg2; i++) {
-            func_800A0534(arg0, arg1, i, s3);
+        for (i = 0; i < id; i++) {
+            score_AddSamePkmnBonus(score, photo, i, pkmnID);
         }
-        for (i = arg2 + 1; i < D_800BE01A; i++) {
-            func_800A0534(arg0, arg1, i, s3);
+        for (i = id + 1; i < score_PokemonCount; i++) {
+            score_AddSamePkmnBonus(score, photo, i, pkmnID);
         }
     }
 }
@@ -499,8 +503,8 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
     D_800BE170.totalScore = 0;
     D_800BE170.pokemonInFocus = 0;
     D_800BE170.specialID = 0;
-    D_800BE170.sizeParam2 = 0;
-    D_800BE170.sizeParam1 = 0;
+    D_800BE170.proximityScore = 0;
+    D_800BE170.completenessScore = 0;
     D_800BE170.specialBonus = 0;
     D_800BE170.poseID = 0;
     D_800BE170.posePts = 0;
@@ -565,7 +569,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                 D_800BE170.pokemonInFocus = tmp;
                 break;
             default:
-                if (func_8009BDDC(photo->unk_20[0].pokemonID, photo->unk_20[0].unk_00_13) < 0.0f) {
+                if (func_8009BDDC(photo->pokemons[0].pokemonID, photo->pokemons[0].unk_00_13) < 0.0f) {
                     D_800BE170.pokemonInFocus = 500;
                 }
                 break;
@@ -578,7 +582,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
     }
 
     for (var_t0 = 0, i = 0; i < 12; i++) {
-        id = photo->unk_20[i].pokemonID;
+        id = photo->pokemons[i].pokemonID;
         if (id == -1) {
             break;
         }
@@ -591,8 +595,8 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
     }
 
     func_800A007C(camera, photo, var_t0, buffer);
-    if (tmp > 0 && D_800BE0B0[0] >= 12 && D_800BE110[0] > 0 && (f32) D_800BE0B0[0] / (f32) D_800BE110[0] >= 0.05f) {
-        func_800A081C(&D_800BE170, photo, 0);
+    if (tmp > 0 && score_PixelCountUnobstructed[0] >= 12 && score_ApproxTotalPixelCount[0] > 0 && (f32) score_PixelCountUnobstructed[0] / (f32) score_ApproxTotalPixelCount[0] >= 0.05f) {
+        score_CalculateScore(&D_800BE170, photo, 0);
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     }
@@ -607,20 +611,20 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
     scoreType4 = -1;
     scoreType3 = -1;
 
-    for (j = 0; j < D_800BE01A; j++) {
-        temp_v1 = D_800BE0B0[j];
-        if (temp_v1 < 12 || D_800BE110[j] == 0) {
+    for (j = 0; j < score_PokemonCount; j++) {
+        temp_v1 = score_PixelCountUnobstructed[j];
+        if (temp_v1 < 12 || score_ApproxTotalPixelCount[j] == 0) {
             continue;
         }
 
-        temp_f0 = (f32) temp_v1 / (f32) D_800BE110[j];
+        temp_f0 = (f32) temp_v1 / (f32) score_ApproxTotalPixelCount[j];
         if (temp_f0 < 0.2f) {
             continue;
         }
 
-        id = photo->unk_20[j].pokemonID;
+        id = photo->pokemons[j].pokemonID;
         if (id > POKEDEX_MAX && id != PokemonID_603 || temp_f0 < 0.65f) {
-            if (D_800BE140[j] == 0) {
+            if (score_PixelCountInCenter[j] == 0) {
                 if (scoreType4 < temp_v1) {
                     scoreType4 = temp_v1;
                     photoIdType4 = j;
@@ -629,7 +633,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                 scoreType2 = temp_v1;
                 photoIdType2 = j;
             }
-        } else if (D_800BE140[j] == 0) {
+        } else if (score_PixelCountInCenter[j] == 0) {
             if (scoreType3 < temp_v1) {
                 scoreType3 = temp_v1;
                 tmp = j;
@@ -656,11 +660,11 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     } else {
-        func_800A081C(&D_800BE170, photo, sp24);
+        score_CalculateScore(&D_800BE170, photo, sp24);
         func_800A0E9C(&D_800BE170);
         return &D_800BE170;
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4B670/func_800A0EA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/score/func_800A0EA4.s")
 #endif

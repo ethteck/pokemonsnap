@@ -91,7 +91,7 @@ u16** func_80374608_847DB8(s32 arg0, s32 arg1, PhotoData* arg2) {
     D_803A6678_879E28 = arg1;
     D_803A667C_879E2C = arg2;
     D_803A6670_879E20 = true;
-    func_80006F8C(D_803A666C_879E1C);
+    gtlDrawOne(D_803A666C_879E1C);
     return &D_803A6684_879E34;
 }
 

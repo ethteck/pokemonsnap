@@ -197,16 +197,16 @@ char* album_GetPhotoParam(Unk803A6C18* arg0, u32 paramId) {
         case 2:
             return "おおきさ"; // size
         case 3:
-            if (arg0->score.sizeParam2 != 0) {
-                return func_8037501C_8487CC("%5d", arg0->score.sizeParam2);
+            if (arg0->score.proximityScore != 0) {
+                return func_8037501C_8487CC("%5d", arg0->score.proximityScore);
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }
         case 4:
             return "まるみえ"; // "full view" (view?)
         case 5:
-            if (arg0->score.sizeParam1 != 0) {
-                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->score.sizeParam1 / 10000));
+            if (arg0->score.completenessScore != 0) {
+                return func_8037501C_8487CC("%5.2f", (s32) (f32) (arg0->score.completenessScore / 10000));
             } else {
                 return func_801DD0E8_9A7338(&D_80208B88_9D2DD8);
             }

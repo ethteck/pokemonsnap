@@ -316,9 +316,9 @@ s32 func_801E5030_994AA0(void) {
                 photo->specialID = 0;
                 photo->isWellFramed = false;
                 photo->posePts = 0;
-                photo->sizeParam1 = 0;
+                photo->completenessScore = 0;
                 photo->poseID = 0;
-                photo->sizeParam2 = 0;
+                photo->proximityScore = 0;
                 photo->specialBonus = 0;
                 photo->samePkmnNumber = 0;
                 photo->samePkmnBonus = 0;
@@ -329,8 +329,8 @@ s32 func_801E5030_994AA0(void) {
                 photo->unk_1A_11 = 0;
                 photo->specialID = sp30->score.specialID;
                 photo->isWellFramed = sp30->score.isWellFramed;
-                photo->sizeParam1 = sp30->score.sizeParam1;
-                photo->sizeParam2 = sp30->score.sizeParam2;
+                photo->completenessScore = sp30->score.completenessScore;
+                photo->proximityScore = sp30->score.proximityScore;
                 photo->poseID = sp30->score.poseID;
                 photo->posePts = sp30->score.posePts;
                 photo->specialBonus = sp30->score.specialBonus;

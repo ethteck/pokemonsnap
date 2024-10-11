@@ -245,8 +245,8 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "Size");
-            sp4C = (D_80230C20_A27590->score.sizeParam1 / 10000.0f);
-            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->score.sizeParam2 * sp4C) + 5.0f) / 10.0f) * 10));
+            sp4C = (D_80230C20_A27590->score.completenessScore / 10000.0f);
+            sprintf(sp2C, "%s", func_8037501C_8487CC("%5d", (s32) (((D_80230C20_A27590->score.proximityScore * sp4C) + 5.0f) / 10.0f) * 10));
             UIElement_SetTextPos(D_80230C30_A275A0, 85 - UIText_GetStringWidth(sp2C), 12);
             UIElement_PrintText(D_80230C30_A275A0, sp2C);
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
@@ -271,13 +271,13 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
             UIElement_PrintText(D_80230C30_A275A0, "めんせき");
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 12);
-            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.sizeParam2));
+            UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.proximityScore));
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 24);
             UIElement_PrintText(D_80230C30_A275A0, "まるみえ"); // full view
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 36);
-            if (D_80230C20_A27590->score.sizeParam1 < 10000) {
-                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.sizeParam1 / 100));
-                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.sizeParam1 % 100) / 10));
+            if (D_80230C20_A27590->score.completenessScore < 10000) {
+                func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.completenessScore / 100));
+                func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.completenessScore % 100) / 10));
             } else {
                 func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
             }

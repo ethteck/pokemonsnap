@@ -776,17 +776,17 @@ void Pokemon_RunCleanup(GObj* obj) {
 
 void Pokemon_RemovePokemons(u16* exceptionList) {
     GObj* pokemonObj;
-    u16* ptr;
+    u16* it;
 
     for (pokemonObj = omGObjListHead[LINK_POKEMON]; pokemonObj != NULL; pokemonObj = pokemonObj->next) {
         u16 id = GET_POKEMON(pokemonObj)->id;
 
-        for (ptr = exceptionList; *ptr != 0; ptr++) {
-            if (*ptr == id) {
+        for (it = exceptionList; *it != NULL; it++) {
+            if (*it == id) {
                 break;
             }
         }
-        if (*ptr == 0) {
+        if (*it == NULL) {
             Pokemon_RunCleanup(pokemonObj);
         }
     }
@@ -1227,7 +1227,7 @@ s32 Pokemon_StepWalkInDirection(GObj* obj, f32 direction, u32 flags) {
     return false;
 }
 
-s32 Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
+bool Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
 
@@ -1244,7 +1244,7 @@ s32 Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
     return false;
 }
 
-s32 Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
+bool Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
     f32 yaw;
     f32 delta;
     f32 sign;

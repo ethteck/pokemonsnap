@@ -5,7 +5,6 @@
 #include "app_render/app_render.h"
 #include "river.h"
 
-extern f32 D_8012ACA0;
 extern AnimCmd* D_8014BFB0;
 extern AnimCmd** D_8014CEC0;
 extern AnimCmd D_8014EA10[];

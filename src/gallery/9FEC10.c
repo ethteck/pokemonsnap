@@ -1,13 +1,13 @@
 #include "common.h"
 #include "gallery.h"
 
-PhotoData* D_802308C0_A4E580[60];
 PhotoData* D_802309B0_A4E670[4];
 PhotoData* D_802309C0_A4E680[69];
 PhotoData* D_80230AD4_A4E794;
 UnkEmeraldCod D_80230AD8_A4E798;
 s32 D_80230ADC_A4E79C; // num album photos
 s32 D_80230AE0_A4E7A0;
+PhotoData* D_802308C0_A4E580[60];
 
 // get number of album photos
 s32 func_801E0F50_9FEC10(void) {

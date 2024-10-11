@@ -282,6 +282,7 @@ void PokemonDetector_Disable(void);
 GObj* PlayerModel_Init(void);
 void PlayerModel_SetAnimation(AnimCmd** modelAnim, AnimCmd*** matAnim, f32 startTime, f32 speed);
 void PlayerModel_SetAnimationSpeed(f32 speed);
+void PlayerModel_ChangeAnimation(AnimCmd** modelAnim, AnimCmd*** matAnim, f32 startTime);
 
 void pokemonChangeBlock(GObj* obj, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 void pokemonChangeBlockOnGround(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);

@@ -111,7 +111,7 @@ s32 album_GetCommentTextWidth(s16* wideStr, char* dst) {
     s32 srcIndex;
     s32 dstIndex;
 
-    srcPtr = (char*)wideStr; // todo what is going on with the type of this
+    srcPtr = (char*) wideStr; // todo what is going on with the type of this
     dstPtr = dst != NULL ? dst : temp;
     srcIndex = 0;
     dstIndex = 0;

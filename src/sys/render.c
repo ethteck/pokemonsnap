@@ -978,32 +978,32 @@ void renLoadTextures(DObj* dobj, Gfx** gfxPtr) {
         // baseDl++;
 
         if (flags & 0x1000) {
-            gSPLightColor(gfxPos++, LIGHT_1, mobj->texture.lightColor1);
+            gSPLightColor(gfxPos++, LIGHT_1, mobj->texture.lightColor1.pack);
         }
         if (flags & 0x2000) {
-            gSPLightColor(gfxPos++, LIGHT_2, mobj->texture.lightColor2);
+            gSPLightColor(gfxPos++, LIGHT_2, mobj->texture.lightColor2.pack);
         }
 
         if (flags & (0x200 | 0x10 | 0x08)) {
             if (flags & 0x10) {
                 s32 lodLevelInt = (s32) mobj->lodLevel;
                 gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, (mobj->lodLevel - lodLevelInt) * 256.0f,
-                                mobj->texture.primR, mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
+                                mobj->texture.primRGBA.color.r, mobj->texture.primRGBA.color.g, mobj->texture.primRGBA.color.b, mobj->texture.primRGBA.color.a);
                 mobj->imageIndex = lodLevelInt;
                 mobj->nextImageIndex = lodLevelInt + 1;
             } else {
-                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, mobj->lodLevel * 255.0f, mobj->texture.primR,
-                                mobj->texture.primG, mobj->texture.primB, mobj->texture.primA);
+                gDPSetPrimColor(gfxPos++, mobj->texture.minLodValue, mobj->lodLevel * 255.0f, mobj->texture.primRGBA.color.r,
+                                mobj->texture.primRGBA.color.g, mobj->texture.primRGBA.color.b, mobj->texture.primRGBA.color.a);
             }
         }
 
         if (flags & 0x400) {
-            gDPSetEnvColor(gfxPos++, mobj->texture.envR, mobj->texture.envG, mobj->texture.envB, mobj->texture.envA);
+            gDPSetEnvColor(gfxPos++, mobj->texture.envRGBA.color.r, mobj->texture.envRGBA.color.g, mobj->texture.envRGBA.color.b, mobj->texture.envRGBA.color.a);
         }
 
         if (flags & 0x800) {
-            gDPSetBlendColor(gfxPos++, mobj->texture.blendR, mobj->texture.blendG, mobj->texture.blendB,
-                             mobj->texture.blendA);
+            gDPSetBlendColor(gfxPos++, mobj->texture.blendRGBA.color.r, mobj->texture.blendRGBA.color.g, mobj->texture.blendRGBA.color.b,
+                             mobj->texture.blendRGBA.color.a);
         }
 
         if (flags & (0x10 | 0x2)) {

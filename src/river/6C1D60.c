@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 extern AnimationHeader D_802E2C1C_6CA9FC;
 extern AnimationHeader D_802E2C30_6CAA10;

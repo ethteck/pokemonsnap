@@ -133,6 +133,7 @@ NULL = "int"
 
 def create_build_script(linker_entries: List[LinkerEntry]):
     built_objects: Set[Path] = set()
+    img_incs = []
 
     def build(
         object_paths: Union[Path, List[Path]],
@@ -153,6 +154,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 outputs=object_strs,
                 rule=task,
                 inputs=[str(s) for s in src_paths],
+                implicit=["img_incs"] if task == "cc" else [], # all standard c files depend on all image incs
                 variables=variables,
                 implicit_outputs=implicit_outputs,
             )
@@ -254,12 +256,14 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
                     build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": flags })
                     build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
                 elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
                     bin_path = Path("build/" + str(seg.out_path().with_suffix(".pal")) + ".bin")
                     inc_path = Path(str(bin_path) + ".c")
                     src_path = seg.out_path()
                     build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": "" })
                     build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
 
     for entry in linker_entries:
         seg = entry.segment
@@ -450,6 +454,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "checksum.sha1",
         implicit=[Z64_PATH],
     )
+
+    ninja.build("img_incs", "phony", img_incs)
 
 
 def graph_segments():

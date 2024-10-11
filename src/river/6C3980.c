@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 void func_802DBD04_6C3AE4(GObj*);
 
@@ -19,19 +20,19 @@ extern PokemonInitData D_802E3684_6CB464;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C3980/func_802DBBA0_6C3980.s")
 
-void func_802DBC5C_6C3A3C(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E339C_6CB17C);
-    Pokemon_SetState(arg0, func_802DBD04_6C3AE4);
+void func_802DBC5C_6C3A3C(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E339C_6CB17C);
+    Pokemon_SetState(obj, func_802DBD04_6C3AE4);
 }
 
-void func_802DBC94_6C3A74(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E33B0_6CB190);
-    Pokemon_SetState(arg0, func_802DBD04_6C3AE4);
+void func_802DBC94_6C3A74(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E33B0_6CB190);
+    Pokemon_SetState(obj, func_802DBD04_6C3AE4);
 }
 
-void func_802DBCCC_6C3AAC(GObj* arg0) {
-    Pokemon_SetAnimation(arg0, &D_802E33C4_6CB1A4);
-    Pokemon_SetState(arg0, func_802DBD04_6C3AE4);
+void func_802DBCCC_6C3AAC(GObj* obj) {
+    Pokemon_SetAnimation(obj, &D_802E33C4_6CB1A4);
+    Pokemon_SetState(obj, func_802DBD04_6C3AE4);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C3980/func_802DBD04_6C3AE4.s")

@@ -1,13 +1,14 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 void func_802E0094_6C7E74(GObj*);
 
 extern PokemonInitData D_802E44B4_6CC294;
 
-void func_802E0070_6C7E50(GObj* arg0) {
-    Pokemon_SetState(arg0, func_802E0094_6C7E74);
+void func_802E0070_6C7E50(GObj* obj) {
+    Pokemon_SetState(obj, func_802E0094_6C7E74);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/river/6C7E50/func_802E0094_6C7E74.s")

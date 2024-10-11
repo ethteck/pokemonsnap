@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "river.h"
 
 extern RandomState D_802E3048_6CAE28[];
 extern PokemonInitData D_802E3074_6CAE54;

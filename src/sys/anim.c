@@ -5,36 +5,27 @@
 
 #include "sys/anim.h"
 
-#ifdef NON_MATCHING
 DObj* animModelTreeNextNode(DObj* obj) {
-    DObj* child;
-    DObj* next;
-    DObj* parent;
-
-    child = obj->firstChild;
     if (obj->firstChild != NULL) {
-        return child;
-    }
-    next = obj->next;
-    if (obj->next != NULL) {
-        return next;
-    }
-    while (true) {
-        parent = obj->parent;
-        if ((uintptr_t) parent == 1) {
-            return NULL;
+        obj = obj->firstChild;
+    } else if (obj->next != NULL) {
+        obj = obj->next;
+    } else {
+        while (true) {
+            if ((uintptr_t) obj->parent == 1) {
+                obj = NULL;
+                break;
+            }
+            if (obj->parent->next != NULL) {
+                obj = obj->parent->next;
+                break;
+            } else {
+                obj = obj->parent;
+            }
         }
-        if (parent->next != NULL) {
-            return parent->next;
-        }
-        obj = parent;
     }
     return obj;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/anim/animModelTreeNextNode.s")
-DObj* animModelTreeNextNode(DObj* obj);
-#endif
 
 void animSetModelAnimationSpeed(GObj* obj, f32 speed) {
     DObj* dobj = obj->data.dobj;
@@ -1014,25 +1005,24 @@ void animProcessTextureAnimation(MObj* mobj) {
     } while (mobj->timeLeft <= 0.0f);
 }
 
-#ifdef NON_MATCHING
-union Bytes4 {
-    u8 b[4];
-    u32 i;
-};
-
-union Bytes2 {
-    u8 b[2];
-    u16 h;
-};
-
 void animUpdateTextureAnimatedParams(MObj* mobj) {
-    AObj* aobj;
     f32 value;
-    union Bytes4 color;
-    s32 i;
+    AObj* aobj;
+    f32 temp_f16;
+    f32 temp_f12;
+    f32 temp_f18;
+    f32 temp_f14;
+    f32 temp_f20;
+    f32 temp_f22;
+    ColorPack color;
+    f32 temp_f24;
+    s32 interp;
+    ColorPack sp38;
+    ColorPack sp34;
 
     if (mobj->timeLeft != ANIMATION_DISABLED) {
         aobj = mobj->aobjList;
+
         while (aobj != NULL) {
             if (aobj->kind != ANIM_TYPE_NONE) {
                 if (mobj->timeLeft != ANIMATION_FINISHED) {
@@ -1044,13 +1034,13 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             value = aobj->initialValue + (aobj->time * aobj->rate);
                             break;
                         case ANIM_TYPE_CUBIC: {
-                            f32 temp_f16 = SQ(aobj->invDuration);
-                            f32 temp_f12 = SQ(aobj->time);
-                            f32 temp_f18 = aobj->invDuration * temp_f12;
-                            f32 temp_f14 = aobj->time * temp_f12 * temp_f16;
-                            f32 temp_f20 = 2.0f * temp_f14 * aobj->invDuration;
-                            f32 temp_f22 = 3.0f * temp_f12 * temp_f16;
-                            f32 temp_f24 = temp_f14 - temp_f18;
+                            temp_f16 = SQ(aobj->invDuration);
+                            temp_f12 = SQ(aobj->time);
+                            temp_f18 = aobj->invDuration * temp_f12;
+                            temp_f14 = aobj->time * temp_f12 * temp_f16;
+                            temp_f20 = 2.0f * temp_f14 * aobj->invDuration;
+                            temp_f22 = 3.0f * temp_f12 * temp_f16;
+                            temp_f24 = temp_f14 - temp_f18;
 
                             value = (aobj->initialValue * ((temp_f20 - temp_f22) + 1.0f)) +
                                     (aobj->targetValue * (temp_f22 - temp_f20)) +
@@ -1098,41 +1088,65 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
                             break;
                     }
                 } else {
-                    if (aobj->kind != ANIM_TYPE_STEP) {
-                        if (aobj->kind == ANIM_TYPE_LINEAR) {
-                            s32 v1;
+                    switch (aobj->kind) {
+                        case 2:
+                            interp = (s32) (aobj->time * aobj->invDuration * 256.0f);
 
-                            v1 = (s32) (aobj->time * aobj->invDuration * 256.0f);
-                            if (v1 < 0) {
-                                v1 = 0;
-                            }
-                            if (v1 > 256) {
-                                v1 = 256;
+                            if (interp < 0) {
+                                interp = 0;
                             }
 
-                            for (i = 0; i < 4; i++) {
-                                color.b[i] = ((256 - v1) * aobj->unk_10_color[i] + aobj->unk_14_color[i] * v1) / 256;
+                            if (interp > 0x100) {
+                                interp = 0x100;
                             }
-                        }
-                    } else {
-                        color.i = *(u32*) (aobj->invDuration <= aobj->time ? aobj->unk_14_color : aobj->unk_10_color);
+
+                            sp34.pack = 0;
+                            sp38.pack = 0;
+
+                            sp38.color.g = ((u8*) &aobj->initialValue)[0]; // TODO: wut
+                            sp38.color.a = ((u8*) &aobj->initialValue)[1]; // TODO: wut
+
+                            sp34.color.g = ((u8*) &aobj->targetValue)[0]; // TODO: wut
+                            sp34.color.a = ((u8*) &aobj->targetValue)[1]; // TODO: wut
+
+                            sp38.pack = ((0x100 - interp) * sp38.pack) + (sp34.pack * interp);
+
+                            color.color.r = sp38.color.r;
+                            color.color.g = sp38.color.b;
+
+                            sp38.pack = 0;
+
+                            sp38.color.g = ((u8*) &aobj->initialValue)[2]; // TODO: wut
+                            sp38.color.a = ((u8*) &aobj->initialValue)[3]; // TODO: wut
+
+                            sp34.color.g = ((u8*) &aobj->targetValue)[2]; // TODO: wut
+                            sp34.color.a = ((u8*) &aobj->targetValue)[3]; // TODO: wut
+
+                            sp38.pack = ((0x100 - interp) * sp38.pack) + (sp34.pack * interp);
+
+                            color.color.b = sp38.color.r;
+                            color.color.a = sp38.color.b;
+                            break;
+                        case 1:
+                            color = (aobj->invDuration <= aobj->time ? *(ColorPack*) &aobj->targetValue : *(ColorPack*) &aobj->initialValue);
+                            break;
                     }
 
                     switch (aobj->paramID) {
                         case 37:
-                            mobj->texture.primR = color.i;
+                            mobj->texture.primRGBA = color;
                             break;
                         case 38:
-                            mobj->texture.envR = color.i;
+                            mobj->texture.envRGBA = color;
                             break;
                         case 39:
-                            mobj->texture.blendR = color.i;
+                            mobj->texture.blendRGBA = color;
                             break;
                         case 40:
-                            mobj->texture.lightColor1 = color.i;
+                            mobj->texture.lightColor1 = color;
                             break;
                         case 41:
-                            mobj->texture.lightColor2 = color.i;
+                            mobj->texture.lightColor2 = color;
                             break;
                     }
                 }
@@ -1145,10 +1159,6 @@ void animUpdateTextureAnimatedParams(MObj* mobj) {
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/anim/animUpdateTextureAnimatedParams.s")
-void animUpdateTextureAnimatedParams(MObj* mobj);
-#endif
 
 void animUpdateModelTreeAnimation(GObj* obj) {
     DObj* dobj;

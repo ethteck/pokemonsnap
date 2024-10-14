@@ -1,12 +1,12 @@
 #include "volcano/volcano.h"
 
 extern AnimCmd* magmar_modelanim_walk[];
-extern AnimCmd* magmar_modelanim_spewfire[];
+extern AnimCmd* magmar_modelanim_spew_fire[];
 extern AnimCmd* magmar_modelanim_run[];
 extern AnimCmd* magmar_modelanim_idle[];
 extern AnimCmd* magmar_modelanim_lie[];
-extern AnimCmd* magmar_modelanim_lookaround[];
-extern AnimCmd* magmar_modelanim_getup[];
+extern AnimCmd* magmar_modelanim_look_around[];
+extern AnimCmd* magmar_modelanim_get_up[];
 extern AnimCmd* magmar_modelanim_hit[];
 extern AnimCmd* magmar_modelanim_eat[];
 extern AnimCmd* magmar_modelanim_fall[];
@@ -60,7 +60,7 @@ AnimationHeader magmar_animation_idle = {
 AnimationHeader magmar_animation_lookaround = {
     0.4,
     60,
-    magmar_modelanim_lookaround,
+    magmar_modelanim_look_around,
     magmar_matanim_lookaround,
     NULL
 };
@@ -108,7 +108,7 @@ AnimationHeader magmar_animation_lie = {
 AnimationHeader magmar_animation_getup = {
     0.35,
     52,
-    magmar_modelanim_getup,
+    magmar_modelanim_get_up,
     magmar_matanim_getup,
     magmar_animsounds_getup
 };
@@ -124,7 +124,7 @@ AnimationHeader magmar_animation_eat = {
 AnimationHeader magmar_animation_spewfire = {
     0.5,
     145,
-    magmar_modelanim_spewfire,
+    magmar_modelanim_spew_fire,
     magmar_matanim_spewfire,
     magmar_animsounds_spewfire
 };

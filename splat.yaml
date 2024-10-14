@@ -661,6 +661,16 @@ segments:
     - [auto, c, koffing_smoke/textures]
     - [auto, c, growlithe_spawner/textures]
     - [auto, c, magmar/textures]
+    - [auto, c, magmar/anim/walk]
+    - [auto, c, magmar/anim/spew_fire]
+    - [auto, c, magmar/anim/run]
+    - [auto, c, magmar/anim/idle]
+    - [auto, c, magmar/anim/lie]
+    - [auto, c, magmar/anim/look_around]
+    - [auto, c, magmar/anim/get_up]
+    - [auto, c, magmar/anim/hit]
+    - [auto, c, magmar/anim/eat]
+    - [auto, c, magmar/anim/fall]
     - [auto, c, moltres/textures]
     - [auto, c, moltres_egg/textures]
     - [auto, c, moltres_egg/model]
@@ -806,7 +816,67 @@ segments:
       - [0x359248, palette, tex_skin2]
       - [0x359448]
       - { start: 0x359450, type: ci8, name: tex_skin2, flip_y: true, width: 64, height: 32 }
-    - [0x359C50, bin]
+    - start: 0x359C50
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/walk
+      subsegments:
+      - [0x359C50, snap_anim, walk]
+    - start: 0x35A870
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/spew_fire
+      subsegments:
+      - [0x35A870, snap_anim, spew_fire]
+    - start: 0x35CDC0
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/run
+      subsegments:
+      - [0x35CDC0, snap_anim, run]
+    - start: 0x35E480
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/idle
+      subsegments:
+      - [0x35E480, snap_anim, idle]
+    - start: 0x35F510
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/lie
+      subsegments:
+      - [0x35F510, snap_anim, lie]
+    - start: 0x35FC50
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/look_around
+      subsegments:
+      - [0x35FC50, snap_anim, look_around]
+    - start: 0x360750
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/get_up
+      subsegments:
+      - [0x360750, snap_anim, get_up]
+    - start: 0x3617A0
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/hit
+      subsegments:
+      - [0x3617A0, snap_anim, hit]
+    - start: 0x362F30
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/eat
+      subsegments:
+      - [0x362F30, snap_anim, eat]
+    - start: 0x3640E0
+      type: .data
+      dir: magmar/anim/
+      name: magmar/anim/fall
+      subsegments:
+      - [0x3640E0, snap_anim, fall]
+    - [0x3652C0, bin]
     - start: 0x366BB0
       type: .data
       dir: moltres

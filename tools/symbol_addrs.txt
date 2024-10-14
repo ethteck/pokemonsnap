@@ -1977,3 +1977,14 @@ score_ApproxTotalPixelCount = 0x800BE110;
 score_PixelCountInCenter = 0x800BE140;
 score_PokemonCount = 0x800BE01A;
 score_CalculateScore = 0x800A081C;
+
+magmar_modelanim_walk = 0x80132FD0; // segment:volcano_assets
+magmar_modelanim_spew_fire = 0x80133BF0; // segment:volcano_assets
+magmar_modelanim_run = 0x80136140; // segment:volcano_assets
+magmar_modelanim_idle = 0x80137800; // segment:volcano_assets
+magmar_modelanim_lie = 0x80138890; // segment:volcano_assets
+magmar_modelanim_look_around = 0x80138FD0; // segment:volcano_assets
+magmar_modelanim_get_up = 0x80139AD0; // segment:volcano_assets
+magmar_modelanim_hit = 0x8013AB20; // segment:volcano_assets
+magmar_modelanim_eat = 0x8013C2B0; // segment:volcano_assets
+magmar_modelanim_fall = 0x8013D460; // segment:volcano_assets

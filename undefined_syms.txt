@@ -91,15 +91,6 @@ D_beach_8034757B = 0x8034757B;
 
 volcano_WorldSetup = 0x800FFFB8;
 
-magmar_matanim_walk = 0x8013E640;
-magmar_matanim_spewfire = 0x8013E770;
-magmar_matanim_idle = 0x8013EE20;
-magmar_matanim_run = 0x8013ECF0;
-magmar_matanim_lookaround = 0x8013F190;
-magmar_matanim_getup = 0x8013F480;
-magmar_matanim_hit = 0x8013F6E0;
-magmar_matanim_eat = 0x8013FA30;
-
 D_80152DA0 = 0x80152DA0;
 D_801518F0 = 0x801518F0;
 D_801522E0 = 0x801522E0;

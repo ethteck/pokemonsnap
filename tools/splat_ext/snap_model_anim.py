@@ -4,7 +4,7 @@ from splat.util import options
 from struct import unpack_from
 import random, string
 
-class N64SegSnap_anim(Segment):
+class N64SegSnap_model_anim(Segment):
     def cmd_get_param_number(self, cmd):
         if cmd in (7, 8, 9, 10, 11):
             return 1
@@ -171,4 +171,4 @@ class N64SegSnap_anim(Segment):
             f.write(self.file_text)
 
     def out_path(self) -> Path:
-        return options.opts.asset_path / self.dir / f"{self.name}.anim.inc.c"
+        return options.opts.asset_path / self.dir / f"{self.name}.modelanim.inc.c"

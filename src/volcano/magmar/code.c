@@ -45,9 +45,9 @@ void magmar_TurnToRival(GObj*);
 
 s32 magmar_animsounds_hit[] = { SOUND_ID_283 };
 s32 magmar_animsounds_fall[] = { SOUND_ID_284 };
-s32 magmar_animsounds_getup[] = { SOUND_ID_285 };
+s32 magmar_animsounds_get_up[] = { SOUND_ID_285 };
 s32 magmar_animsounds_eat[] = { SOUND_ID_286 };
-s32 magmar_animsounds_spewfire[] = { SOUND_ID_287, SOUND_ID_141 };
+s32 magmar_animsounds_spew_fire[] = { SOUND_ID_287, SOUND_ID_141 };
 
 AnimationHeader magmar_animation_idle = {
     0.45,
@@ -110,7 +110,7 @@ AnimationHeader magmar_animation_getup = {
     52,
     magmar_modelanim_get_up,
     magmar_matanim_get_up,
-    magmar_animsounds_getup
+    magmar_animsounds_get_up
 };
 
 AnimationHeader magmar_animation_eat = {
@@ -126,7 +126,7 @@ AnimationHeader magmar_animation_spewfire = {
     145,
     magmar_modelanim_spew_fire,
     magmar_matanim_spew_fire,
-    magmar_animsounds_spewfire
+    magmar_animsounds_spew_fire
 };
 
 GObj* magmar_loneMagmar = NULL;

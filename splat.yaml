@@ -661,6 +661,26 @@ segments:
     - [auto, c, koffing_smoke/textures]
     - [auto, c, growlithe_spawner/textures]
     - [auto, c, magmar/textures]
+    - [auto, c, magmar/anim/model/walk]
+    - [auto, c, magmar/anim/model/spew_fire]
+    - [auto, c, magmar/anim/model/run]
+    - [auto, c, magmar/anim/model/idle]
+    - [auto, c, magmar/anim/model/lie]
+    - [auto, c, magmar/anim/model/look_around]
+    - [auto, c, magmar/anim/model/get_up]
+    - [auto, c, magmar/anim/model/hit]
+    - [auto, c, magmar/anim/model/eat]
+    - [auto, c, magmar/anim/model/fall]
+    - [auto, c, magmar/anim/material/walk]
+    - [auto, c, magmar/anim/material/spew_fire]
+    - [auto, c, magmar/anim/material/run]
+    - [auto, c, magmar/anim/material/idle]
+    - [auto, c, magmar/anim/material/lie]
+    - [auto, c, magmar/anim/material/look_around]
+    - [auto, c, magmar/anim/material/get_up]
+    - [auto, c, magmar/anim/material/hit]
+    - [auto, c, magmar/anim/material/eat]
+    - [auto, c, magmar/anim/material/fall]
     - [auto, c, moltres/textures]
     - [auto, c, moltres_egg/textures]
     - [auto, c, moltres_egg/model]
@@ -806,7 +826,126 @@ segments:
       - [0x359248, palette, tex_skin2]
       - [0x359448]
       - { start: 0x359450, type: ci8, name: tex_skin2, flip_y: true, width: 64, height: 32 }
-    - [0x359C50, bin]
+    - start: 0x359C50
+      type: .data
+      dir: magmar/anim/model
+      name: magmar/anim/model/walk
+      subsegments:
+      - [0x359C50, snap_model_anim, walk]
+    - start: 0x35A870
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/spew_fire
+      subsegments:
+      - [0x35A870, snap_model_anim, spew_fire]
+    - start: 0x35CDC0
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/run
+      subsegments:
+      - [0x35CDC0, snap_model_anim, run]
+    - start: 0x35E480
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/idle
+      subsegments:
+      - [0x35E480, snap_model_anim, idle]
+    - start: 0x35F510
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/lie
+      subsegments:
+      - [0x35F510, snap_model_anim, lie]
+    - start: 0x35FC50
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/look_around
+      subsegments:
+      - [0x35FC50, snap_model_anim, look_around]
+    - start: 0x360750
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/get_up
+      subsegments:
+      - [0x360750, snap_model_anim, get_up]
+    - start: 0x3617A0
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/hit
+      subsegments:
+      - [0x3617A0, snap_model_anim, hit]
+    - start: 0x362F30
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/eat
+      subsegments:
+      - [0x362F30, snap_model_anim, eat]
+    - start: 0x3640E0
+      type: .data
+      dir: magmar/anim/model/
+      name: magmar/anim/model/fall
+      subsegments:
+      - [0x3640E0, snap_model_anim, fall]
+    - start: 0x3652C0
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/walk
+      subsegments:
+      - [0x3652C0, snap_material_anim, walk]
+    - start: 0x3653F0
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/spew_fire
+      subsegments:
+      - [0x3653F0, snap_material_anim, spew_fire]
+    - start: 0x365970
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/run
+      subsegments:
+      - [0x365970, snap_material_anim, run]
+    - start: 0x365AA0
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/idle
+      subsegments:
+      - [0x365AA0, snap_material_anim, idle]
+    - start: 0x365CE0
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/lie
+      subsegments:
+      - [0x365CE0, snap_material_anim, lie]
+    - start: 0x365E10
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/look_around
+      subsegments:
+      - [0x365E10, snap_material_anim, look_around]
+    - start: 0x366100
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/get_up
+      subsegments:
+      - [0x366100, snap_material_anim, get_up]
+    - start: 0x366360
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/hit
+      subsegments:
+      - [0x366360, snap_material_anim, hit]
+    - start: 0x3666B0
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/eat
+      subsegments:
+      - [0x3666B0, snap_material_anim, eat]
+    - start: 0x366940
+      type: .data
+      dir: magmar/anim/material/
+      name: magmar/anim/material/fall
+      subsegments:
+      - [0x366940, snap_material_anim, fall]
     - start: 0x366BB0
       type: .data
       dir: moltres

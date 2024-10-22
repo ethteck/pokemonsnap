@@ -1,22 +1,22 @@
 #include "volcano/volcano.h"
 
 extern AnimCmd* magmar_modelanim_walk[];
-extern AnimCmd* magmar_modelanim_spewfire[];
+extern AnimCmd* magmar_modelanim_spew_fire[];
 extern AnimCmd* magmar_modelanim_run[];
 extern AnimCmd* magmar_modelanim_idle[];
 extern AnimCmd* magmar_modelanim_lie[];
-extern AnimCmd* magmar_modelanim_lookaround[];
-extern AnimCmd* magmar_modelanim_getup[];
+extern AnimCmd* magmar_modelanim_look_around[];
+extern AnimCmd* magmar_modelanim_get_up[];
 extern AnimCmd* magmar_modelanim_hit[];
 extern AnimCmd* magmar_modelanim_eat[];
 extern AnimCmd* magmar_modelanim_fall[];
 
 extern AnimCmd** magmar_matanim_walk[];
-extern AnimCmd** magmar_matanim_spewfire[];
+extern AnimCmd** magmar_matanim_spew_fire[];
 extern AnimCmd** magmar_matanim_idle[];
 extern AnimCmd** magmar_matanim_run[];
-extern AnimCmd** magmar_matanim_lookaround[];
-extern AnimCmd** magmar_matanim_getup[];
+extern AnimCmd** magmar_matanim_look_around[];
+extern AnimCmd** magmar_matanim_get_up[];
 extern AnimCmd** magmar_matanim_hit[];
 extern AnimCmd** magmar_matanim_eat[];
 
@@ -45,9 +45,9 @@ void magmar_TurnToRival(GObj*);
 
 s32 magmar_animsounds_hit[] = { SOUND_ID_283 };
 s32 magmar_animsounds_fall[] = { SOUND_ID_284 };
-s32 magmar_animsounds_getup[] = { SOUND_ID_285 };
+s32 magmar_animsounds_get_up[] = { SOUND_ID_285 };
 s32 magmar_animsounds_eat[] = { SOUND_ID_286 };
-s32 magmar_animsounds_spewfire[] = { SOUND_ID_287, SOUND_ID_141 };
+s32 magmar_animsounds_spew_fire[] = { SOUND_ID_287, SOUND_ID_141 };
 
 AnimationHeader magmar_animation_idle = {
     0.45,
@@ -60,8 +60,8 @@ AnimationHeader magmar_animation_idle = {
 AnimationHeader magmar_animation_lookaround = {
     0.4,
     60,
-    magmar_modelanim_lookaround,
-    magmar_matanim_lookaround,
+    magmar_modelanim_look_around,
+    magmar_matanim_look_around,
     NULL
 };
 
@@ -108,9 +108,9 @@ AnimationHeader magmar_animation_lie = {
 AnimationHeader magmar_animation_getup = {
     0.35,
     52,
-    magmar_modelanim_getup,
-    magmar_matanim_getup,
-    magmar_animsounds_getup
+    magmar_modelanim_get_up,
+    magmar_matanim_get_up,
+    magmar_animsounds_get_up
 };
 
 AnimationHeader magmar_animation_eat = {
@@ -124,9 +124,9 @@ AnimationHeader magmar_animation_eat = {
 AnimationHeader magmar_animation_spewfire = {
     0.5,
     145,
-    magmar_modelanim_spewfire,
-    magmar_matanim_spewfire,
-    magmar_animsounds_spewfire
+    magmar_modelanim_spew_fire,
+    magmar_matanim_spew_fire,
+    magmar_animsounds_spew_fire
 };
 
 GObj* magmar_loneMagmar = NULL;

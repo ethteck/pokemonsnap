@@ -653,6 +653,7 @@ segments:
     subsegments:
     - [0x326C10, c]
     - [auto, c, world]
+    - [auto, c, world_gfx]
     - [auto, c, blocks]
     - [auto, c, growlithe_spawner/model]
     - [auto, c, growlithe_spawner/materials]
@@ -691,6 +692,8 @@ segments:
     - [auto, c, arcanine/textures]
     - [0x326C20, .data, world]
     - [0x326C60, bin]
+    - [0x328190, .data, world_gfx]
+    - [0x328290, bin]
     - [0x338FE0, .data, blocks]
     - start: 0x33A2B0
       type: .data

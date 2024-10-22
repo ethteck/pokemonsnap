@@ -1,15 +1,14 @@
-#include <common.h>
 #include "world/world.h"
 
 extern SkyBox D_800FFFE0_326C60;
 
-extern WorldBlockGFX D_80101510_328190;
-extern WorldBlockGFX D_80101534_3281B4;
-extern WorldBlockGFX D_80101558_3281D8;
-extern WorldBlockGFX D_8010157C_3281FC;
-extern WorldBlockGFX D_801015A0_328220;
-extern WorldBlockGFX D_801015C4_328244;
-extern WorldBlockGFX D_801015E8_328268;
+extern WorldBlockGFX volcano_block0_gfx;
+extern WorldBlockGFX volcano_block1_gfx;
+extern WorldBlockGFX volcano_block2_gfx;
+extern WorldBlockGFX volcano_block3_gfx;
+extern WorldBlockGFX volcano_block4_gfx;
+extern WorldBlockGFX volcano_block5_gfx;
+extern WorldBlockGFX volcano_uvBlock0_gfx;
 
 Vec3f smoke_spawner_path_points[] = {
     { 26.570312, -9.117575, 10.786863 },
@@ -461,7 +460,7 @@ StaticObject volcano_block5_staticObjects[] = {
 };
 
 WorldBlockDescriptor volcano_block0 = {
-    &D_80101510_328190,
+    &volcano_block0_gfx,
     { 0.0, 0.0, 0.0 },
     0.0,
     0,
@@ -471,7 +470,7 @@ WorldBlockDescriptor volcano_block0 = {
 };
 
 WorldBlockDescriptor volcano_block1 = {
-    &D_80101534_3281B4,
+    &volcano_block1_gfx,
     { 20.0, 0.0, 15.0 },
     0.0,
     0,
@@ -481,7 +480,7 @@ WorldBlockDescriptor volcano_block1 = {
 };
 
 WorldBlockDescriptor volcano_block2 = {
-    &D_80101558_3281D8,
+    &volcano_block2_gfx,
     { 10.0, 0.0, 35.0 },
     0.0,
     0,
@@ -491,7 +490,7 @@ WorldBlockDescriptor volcano_block2 = {
 };
 
 WorldBlockDescriptor volcano_block3 = {
-    &D_8010157C_3281FC,
+    &volcano_block3_gfx,
     { -25.0, 0.0, 20.0 },
     0.0,
     0,
@@ -501,7 +500,7 @@ WorldBlockDescriptor volcano_block3 = {
 };
 
 WorldBlockDescriptor volcano_block4 = {
-    &D_801015A0_328220,
+    &volcano_block4_gfx,
     { -70.0, 0.0, 10.0 },
     0.0,
     0,
@@ -511,7 +510,7 @@ WorldBlockDescriptor volcano_block4 = {
 };
 
 WorldBlockDescriptor volcano_block5 = {
-    &D_801015C4_328244,
+    &volcano_block5_gfx,
     { -100.0, 0.0, 30.0 },
     0.0,
     0,
@@ -521,7 +520,7 @@ WorldBlockDescriptor volcano_block5 = {
 };
 
 WorldBlockDescriptor volcano_uvBlock0 = {
-    &D_801015E8_328268,
+    &volcano_uvBlock0_gfx,
     { -45.0, 0.0, -10.0 },
     0.0,
     0,

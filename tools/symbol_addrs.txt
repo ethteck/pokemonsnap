@@ -2056,3 +2056,6 @@ volcano_block5_movement = 0x80110F00; // segment:volcano_assets
 volcano_block6_gfx_data = 0x80111580; // segment:volcano_assets
 volcano_block6_vtx = 0x801118E0; // segment:volcano_assets size:0x980
 volcano_block6_uvAnim = 0x80112300; // segment:volcano_assets
+volcano_skybox_texture = 0x80100008; // segment:volcano_assets
+volcano_skybox_vtx = 0x80101008; // segment:volcano_assets size:0x3E0
+volcano_skybox_gfx = 0x801013E8; // segment:volcano_assets

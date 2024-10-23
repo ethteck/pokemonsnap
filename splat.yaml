@@ -653,6 +653,7 @@ segments:
     subsegments:
     - [0x326C10, c]
     - [auto, c, world]
+    - [auto, c, skybox]
     - [auto, c, world_gfx]
     - [auto, c, block0]
     - [auto, c, block1]
@@ -698,8 +699,14 @@ segments:
     - [auto, c, charizard/textures]
     - [auto, c, arcanine/textures]
     - [0x326C20, .data, world]
-    - [0x326C60, bin]
-    - [0x328190, .data, world_gfx]
+    - start: 0x326C60
+      type: .data
+      name: skybox
+      subsegments:
+      - [0x326C60]
+      - { start: 0x326C88, type: rgba16, name: skybox, flip_y: true, width: 64, height: 32 }
+      - [0x327C88, vtx, skybox]
+      - [0x328068, gfx, skybox]
     - start: 0x328290
       type: .data
       name: block0

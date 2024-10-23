@@ -1,6 +1,6 @@
 #include "world/world.h"
 
-extern SkyBox D_800FFFE0_326C60;
+extern SkyBox volcano_skybox;
 
 extern WorldBlockGFX volcano_block0_gfx;
 extern WorldBlockGFX volcano_block1_gfx;
@@ -547,5 +547,5 @@ WorldBlockDescriptor* volcano_uvScrollBlocks[] = {
 WorldBlockSetup volcano_blocksSetup = {
     volcano_modelBlocks,
     volcano_uvScrollBlocks,
-    &D_800FFFE0_326C60,
+    &volcano_skybox,
 };

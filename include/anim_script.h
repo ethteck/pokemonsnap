@@ -67,11 +67,12 @@ typedef struct AnimLinePtr {
     void* ptr;
 } AnimLinePtr;
 
-#define __ANIMLINENAME __CONCAT2__(animline,__LINE__)
+#define __ANIMLINENAME __CONCAT2_3__(__ANIMFILE, animline, __LINE__)
 
 #define ROTX (1 << (ANIM_PARAM_ROTATION_X - ANIM_PARAM_MODEL_MIN))
 #define ROTY (1 << (ANIM_PARAM_ROTATION_Y - ANIM_PARAM_MODEL_MIN))
 #define ROTZ (1 << (ANIM_PARAM_ROTATION_Z - ANIM_PARAM_MODEL_MIN))
+#define PATH_PARAM (1 << (ANIM_PARAM_4 - ANIM_PARAM_MODEL_MIN))
 #define POSX (1 << (ANIM_PARAM_POSITION_X - ANIM_PARAM_MODEL_MIN))
 #define POSY (1 << (ANIM_PARAM_POSITION_Y - ANIM_PARAM_MODEL_MIN))
 #define POSZ (1 << (ANIM_PARAM_POSITION_Z - ANIM_PARAM_MODEL_MIN))
@@ -84,11 +85,18 @@ typedef struct AnimLinePtr {
 #define OFFSET_T (1 << (ANIM_PARAM_TEXTURE_15 - ANIM_PARAM_TEXTURE_MIN))
 #define SCALE_S (1 << (ANIM_PARAM_TEXTURE_16 - ANIM_PARAM_TEXTURE_MIN))
 #define SCALE_T (1 << (ANIM_PARAM_TEXTURE_17 - ANIM_PARAM_TEXTURE_MIN))
+#define MAT_PARAM_5 (1 << (ANIM_PARAM_TEXTURE_18 - ANIM_PARAM_TEXTURE_MIN))
+#define MAT_PARAM_6 (1 << (ANIM_PARAM_TEXTURE_19 - ANIM_PARAM_TEXTURE_MIN))
+#define MAT_PARAM_7 (1 << (ANIM_PARAM_TEXTURE_20 - ANIM_PARAM_TEXTURE_MIN))
+#define MAT_PARAM_8 (1 << (ANIM_PARAM_TEXTURE_21 - ANIM_PARAM_TEXTURE_MIN))
 
 #define asWait(n) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_WAIT << 25) | (0 << 15) | n) }
 #define asWaitf(n) {  ((ANIM_CMD_WAIT << 25) | (0 << 15) | n) }
 
 #define asRestart(script) static AnimLinePtr __ANIMLINENAME = {  ((ANIM_CMD_SET_ANIMATION << 25) | (0 << 15) | 0), &script }
+
+#define asSetPath(path) static AnimLinePtr __ANIMLINENAME = {  ((ANIM_CMD_13 << 25) | (8 << 15) | 0), &path }
+#define asSetPathf(path) {  ((ANIM_CMD_13 << 25) | (8 << 15) | 0), &path }
 
 #define asEnd() static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_END << 25) | (0 << 15) | 0) }
 
@@ -107,6 +115,17 @@ typedef struct AnimLinePtr {
 #define asBegin_9(script) static AnimLine9 script =
 #define asBegin_10(script) static AnimLine10 script =
 #define asBegin_12(script) static AnimLine12 script =
+#define asBegin_ptr(script) static AnimLinePtr script =
+
+#define asSetBlock_1(n, param1, val1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1) << 15) | n), { val1 } }
+#define asSetBlock_2(n, param1, val1, param2, val2) static AnimLine2 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2) << 15) | n), { val1, val2 } }
+#define asSetBlock_3(n, param1, val1, param2, val2, param3, val3) static AnimLine3 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
+#define asSetBlock_4(n, param1, val1, param2, val2, param3, val3, param4, val4) static AnimLine4 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3 | param4) << 15) | n), { val1, val2, val3, val4 } }
+#define asSetBlock_1f(n, param1, val1) {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1) << 15) | n), { val1 } }
+
+#define asSet_1(n, param1, val1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1) << 15) | n), { val1 } }
+#define asSet_2(n, param1, val1, param2, val2) static AnimLine2 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2) << 15) | n), { val1, val2 } }
+#define asSet_3f(n, param1, val1, param2, val2, param3, val3) {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
 
 #define asSetWithRateBlock_2(n, param1, val1, rate1) static AnimLine2 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((param1) << 15) | n), { val1, rate1 } }
 #define asSetWithRateBlock_4(n, param1, val1, rate1, param2, val2, rate2) static AnimLine4 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((param1 | param2) << 15) | n), { val1, rate1, val2, rate2 } }
@@ -173,11 +192,18 @@ typedef struct AnimLinePtr {
 
 #define asSetAfter_1(n, param1, val1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1) << 15) | n), { val1 } }
 #define asSetAfter_3(n, param1, val1, param2, val2, param3, val3) static AnimLine3 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
+#define asSetAfter_6(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5, param6, val6) static AnimLine6 __ANIMLINENAME = { ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1 | param2 | param3 | param4 | param5 | param6) << 15) | n), { val1, val2, val3, val4, val5, val6} }
 #define asSetAfter_3f(n, param1, val1, param2, val2, param3, val3) {  ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
 #define asSetAfter_5f(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5) {  ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1 | param2 | param3 | param4 | param5) << 15) | n), { val1, val2, val3, val4, val5 } }
 #define asSetAfter_9f(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5, param6, val6, param7, val7, param8, val8, param9, val9) {  ((ANIM_CMD_SET_VALUE_AFTER << 25) | ((param1 | param2 | param3 | param4 | param5 | param6 | param7 | param8 | param9) << 15) | n), { val1, val2, val3, val4, val5, val6, val7, val8, val9} }
 
 #define asSkip_1(n, param1) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1) << 15) | n) }
 #define asSkip_2(n, param1, param2) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2) << 15) | n) }
+
+#define asSetVisible_2(n, b1, b2) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2)) } }
+#define asSetVisible_3(n, b1, b2, b3) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3)) } }
+#define asSetVisible_4(n, b1, b2, b3, b4) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3) | (1 << b4)) } }
+#define asSetVisible_3f(n, b1, b2, b3) { ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3)) } }
+#define asSetVisible_4f(n, b1, b2, b3, b4) {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3) | (1 << b4)) } }
 
 #endif

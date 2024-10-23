@@ -60,7 +60,6 @@ s32 album_LetterAlpha = 10;
 s32 album_LetterAlphaRate = 5;
 bool D_80208B88_9D2DD8 = false;
 
-SObj* album_D_8025010C_A1A35C;
 s32 album_D_80250110_A1A360;
 s32 album_D_8024EFE0_A19230;
 u8 album_unused[0x1000];
@@ -92,6 +91,7 @@ u8 album_CharGridId;
 s16 album_CommentCursorPos;
 UnkBordeauxBetta album_Photos[6];
 GObj* album_D_80250108_A1A358;
+SObj* album_D_8025010C_A1A35C;
 
 s32 album_GetCurrentPage(void) {
     return album_AlbumPage;

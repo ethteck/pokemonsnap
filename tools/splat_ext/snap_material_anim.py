@@ -50,10 +50,10 @@ class N64SegSnap_material_anim(SnapAnimSegmentCommon):
 
         while True:
             try:
+                base_name = self.anim_array_names[offset + vram_base]
                 if lists_text != "":
                     lists_text += "};\n\n"
                     ended = True
-                base_name = self.anim_array_names[offset + vram_base]
                 lists_text += f"AnimCmd* {base_name}[] = {{\n"
                 externs += f"extern AnimCmd* {base_name}[];\n"
                 i = 0
@@ -93,7 +93,7 @@ class N64SegSnap_material_anim(SnapAnimSegmentCommon):
             if isFirstLine:
                 animcmd_text += "\n"
 
-        return "#include <anim_script.h>\n\n" + externs + "\n" + header_text + animcmd_text + lists_text
+        return f"#undef __ANIMFILE\n#define __ANIMFILE {name}\n\n" + "#include <anim_script.h>\n\n" + externs + "\n" + header_text + animcmd_text + lists_text
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.matanim.inc.c"

@@ -654,6 +654,13 @@ segments:
     - [0x326C10, c]
     - [auto, c, world]
     - [auto, c, world_gfx]
+    - [auto, c, block0]
+    - [auto, c, block1]
+    - [auto, c, block2]
+    - [auto, c, block3]
+    - [auto, c, block4]
+    - [auto, c, block5]
+    - [auto, c, block6]
     - [auto, c, blocks]
     - [auto, c, growlithe_spawner/model]
     - [auto, c, growlithe_spawner/materials]
@@ -693,7 +700,85 @@ segments:
     - [0x326C20, .data, world]
     - [0x326C60, bin]
     - [0x328190, .data, world_gfx]
-    - [0x328290, bin]
+    - start: 0x328290
+      type: .data
+      name: block0
+      dir: block0
+      subsegments:
+      - [0x328290, gfx, draw]
+      - [0x328AD0, vtx, model]
+      - [0x32A410]
+      - [0x32A540, snap_material_anim, anim1]
+      - [0x32A5B0, gfx, unk]
+      - [0x32A6B0]
+      - [0x32A760, snap_model_anim, movement]
+    - start: 0x32A900
+      type: .data
+      name: block1
+      dir: block1
+      subsegments:
+      - [0x32A900, gfx, draw]
+      - [0x32AF30, vtx, model]
+      - [0x32C020]
+      - [0x32C0C0, snap_material_anim, anim1]
+      - [0x32C100, gfx, unk]
+      - [0x32C200]
+      - [0x32C2B0, snap_model_anim, movement]
+    - start: 0x32C4E0
+      type: .data
+      name: block2
+      dir: block2
+      subsegments:
+      - [0x32C4E0, gfx, draw]
+      - [0x32C830, vtx, model]
+      - [0x32CE80, gfx, unk]
+      - [0x32CF80]
+      - [0x32D030, snap_model_anim, movement]
+    - start: 0x32D270
+      type: .data
+      name: block3
+      dir: block3
+      subsegments:
+      - [0x32D270, gfx, draw]
+      - [0x32DCC0, vtx, model]
+      - [0x32FF80]
+      - [0x3300B0, snap_material_anim, anim1]
+      - [0x330140, gfx, unk]
+      - [0x330240]
+      - [0x3302F0, snap_model_anim, movement]
+    - start: 0x330A60
+      type: .data
+      name: block4
+      dir: block4
+      subsegments:
+      - [0x330A60, gfx, draw]
+      - [0x3314A0, vtx, model]
+      - [0x3333B0]
+      - [0x333570, snap_material_anim, anim1]
+      - [0x333610, gfx, unk]
+      - [0x333710]
+      - [0x3337C0, snap_model_anim, movement]
+    - start: 0x333B60
+      type: .data
+      name: block5
+      dir: block5
+      subsegments:
+      - [0x333B60, gfx, draw]
+      - [0x334940, vtx, model]
+      - [0x337770]
+      - [0x337930, snap_material_anim, anim1]
+      - [0x3379D0, gfx, unk]
+      - [0x337AD0]
+      - [0x337B80, snap_model_anim, movement]
+    - start: 0x338200
+      type: .data
+      name: block6
+      dir: block6
+      subsegments:
+      - [0x338200, gfx, draw]
+      - [0x338560, vtx, model]
+      - [0x338EE0]
+      - [0x338F80, snap_material_anim, anim1]
     - [0x338FE0, .data, blocks]
     - start: 0x33A2B0
       type: .data

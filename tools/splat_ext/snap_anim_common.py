@@ -14,16 +14,16 @@ class SnapAnimSegmentCommon(Segment):
             f.write(self.file_text)
 
     def cmd_get_param_count(self, cmd):
-        if cmd in (7, 8, 9, 10, 11):
+        if cmd in (3, 4, 7, 8, 9, 10, 11, 17):
             return 1
-        elif cmd in (0, 2, 12, 14, 16):
+        elif cmd in (0, 2, 12, 13, 14, 16):
             return 0
         elif cmd in (5, 6):
             return 2
         raise ValueError(cmd)
     
     def cmd_require_pointer(self, cmd):
-        return cmd in (14,)
+        return cmd in (13, 14)
 
     def cmd_split(self, value):
         binStr = '{:032b}'.format(value)
@@ -32,6 +32,8 @@ class SnapAnimSegmentCommon(Segment):
     CMD_NAMES = {
         0: "asEnd",
         2: "asWait",
+        3: "asSetBlock",
+        4: "asSet",
         5: "asSetWithRateBlock",
         6: "asSetWithRate",
         7: "asSetTargetRate",
@@ -40,8 +42,10 @@ class SnapAnimSegmentCommon(Segment):
         10: "asSetAfterBlock",
         11: "asSetAfter",
         12: "asSkip",
+        13: "asSetPath",
         14: "asRestart",
-        16: ("asPlaySound", "asPlayEffect")
+        16: ("asPlaySound", "asPlayEffect"),
+        17: "asSetVisible",
     }
 
     def parse_line(self, data, name, offset, isFirstLine, text) -> Tuple[bool, int, str, str]:
@@ -56,7 +60,7 @@ class SnapAnimSegmentCommon(Segment):
                 value, offset = unpack_from(">f", data, offset)[0], offset + 4
                 floats.append(value)
         if self.cmd_require_pointer(cmd):
-            value, offset = unpack_from(">I", data, offset)[0], offset + 4
+            pointer, offset = unpack_from(">I", data, offset)[0], offset + 4
 
         try:
             cmdName = self.CMD_NAMES[cmd]
@@ -71,8 +75,12 @@ class SnapAnimSegmentCommon(Segment):
         firstLineText = ""
         forwardDecl = ""
         if isFirstLine:
-            firstLineText = f"asBegin_{numParams * floatsPerParam}({name})\n"
-            forwardDecl = f"static AnimLine{numParams * floatsPerParam} {name};\n"
+            if self.cmd_require_pointer(cmd):
+                firstLineText = f"asBegin_ptr({name})\n"
+                forwardDecl = f"static AnimLinePtr {name};\n"
+            else:
+                firstLineText = f"asBegin_{numParams * floatsPerParam}({name})\n"
+                forwardDecl = f"static AnimLine{numParams * floatsPerParam} {name};\n"
         
         lineText = ""
 
@@ -81,9 +89,11 @@ class SnapAnimSegmentCommon(Segment):
 
         lineText += cmdName
 
-        if cmd not in (0, 2, 14, 16):
+        if cmd not in (0, 2, 13, 14, 16):
             if cmd == 12:
                 lineText += f"_{numParams}"
+            elif cmd == 17:
+                lineText += f"_{int(floats[0]).bit_count()}"
             else:    
                 lineText += f"_{numParams * floatsPerParam}"
 
@@ -94,6 +104,8 @@ class SnapAnimSegmentCommon(Segment):
 
         if cmd == 0:
             pass
+        elif cmd == 13:
+            lineText += f"{name}_path"
         elif cmd == 14:
             lineText += f"{name}"
         elif cmd == 16:
@@ -101,6 +113,12 @@ class SnapAnimSegmentCommon(Segment):
                 lineText += f"{duration}, {mask >> 8}, {mask & 0xFF}"
             else:
                 lineText += f"{duration}, {mask >> 8}, {(mask - 1) & 0xFF}"
+        elif cmd == 17:
+            lineText += f"{duration}"
+            visMask = int(floats[0])
+            for i in range(31):
+                if (visMask & (1 << i)):
+                    lineText += f", {i}"
         else:
             lineText += f"{duration}"
 

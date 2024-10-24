@@ -211,9 +211,6 @@ charizard_matanim_roar = 0x8018B4A0;
 charizard_matanim_spin = 0x8018B5A0;
 charizard_matanim_spewfire = 0x8018B320;
 
-growlithe_spawner_modelanim = 0x80113960;
-growlithe_spawner_matanim = 0x80113990;
-
 moltres_egg_model = 0x8014F080;
 moltres_egg_modelanim_idle = 0x8014E550;
 moltres_egg_modelanim_drown = 0x8014E650;
@@ -230,28 +227,10 @@ moltres_matanim_shakeoff = 0x801491B0;
 moltres_matanim_appear = 0x80144470;
 moltres_matanim_flyaway = 0x80145D30;
 
-koffing_smoke_modelanim_show = 0x80114210;
-koffing_smoke_modelanim_reveal = 0x80114280;
-koffing_smoke_modelanim_hide = 0x80114300;
-
-koffing_smoke_matanim_show = 0x80114240;
-koffing_smoke_matanim_reveal = 0x801142C0;
-koffing_smoke_matanim_hide = 0x80114330;
-
-D_80113BA0 = 0x80113BA0;
-D_80113C50 = 0x80113C50;
-D_80113D00 = 0x80113D00;
-D_80113D30 = 0x80113D30;
-
 D_800F5490 = 0x800F5490;
 D_800F41D0 = 0x800F41D0;
 D_800F55F0 = 0x800F55F0;
 D_800F58C0 = 0x800F58C0;
-
-D_80114660 = 0x80114660;
-D_80114710 = 0x80114710;
-D_80114840 = 0x80114840;
-D_80114980 = 0x80114980;
 
 D_800FDC70 = 0x800FDC70;
 D_800FAE40 = 0x800FAE40;
@@ -268,29 +247,11 @@ D_800F1F20 = 0x800F1F20;
 D_800F2020 = 0x800F2020;
 D_800F2110 = 0x800F2110;
 
-D_80114EA0 = 0x80114EA0;
-D_801151C0 = 0x801151C0;
-D_80115610 = 0x80115610;
-D_80115C50 = 0x80115C50;
-
 growlithe_spawner_lava_frame0_png = 0x80123730;
 growlithe_spawner_lava_frame1_png = 0x80123F60;
 growlithe_spawner_lava_frame2_png = 0x80124790;
 growlithe_spawner_lava_frame3_png = 0x80124FC0;
 growlithe_spawner_lava_frame4_png = 0x801257F0;
-
-koffing_smoke_part0_mat0_image0 = 0x80118E38;
-koffing_smoke_part0_mat0_image1 = 0x80119640;
-koffing_smoke_part0_mat0_image2 = 0x80119E48;
-koffing_smoke_part0_mat0_image3 = 0x8011A650;
-koffing_smoke_part0_mat0_image4 = 0x8011AE58;
-koffing_smoke_part0_mat0_image5 = 0x8011B660;
-koffing_smoke_part0_mat0_image6 = 0x8011BE68;
-koffing_smoke_part0_mat0_image7 = 0x8011C670;
-koffing_smoke_part0_mat0_image8 = 0x8011CE78;
-koffing_smoke_part0_mat0_image9 = 0x8011D680;
-koffing_smoke_part0_mat0_image10 = 0x8011DE88;
-koffing_smoke_part0_mat0_image11 = 0x8011E690;
 
 D_800EE380_6BB30 = 0x800EE380;
 D_800EF388_6CB38 = 0x800EF388;
@@ -309,10 +270,6 @@ D_800F21C8_6F978 = 0x800F21C8;
 
 D_800EDF78 = 0x800EDF78;
 
-D_80111580_338200 = 0x80111580;
-D_80112260_338EE0 = 0x80112260;
-D_80112300_338F80 = 0x80112300;
-
 volcano_world_tex5_var0_png = 0x8012B238;
 volcano_world_tex5_var1_png = 0x8012B668;
 volcano_world_tex5_var2_png = 0x8012BA98;
@@ -323,3 +280,7 @@ volcano_world_tex8_var2_png = 0x8012A9D8;
 volcano_world_tex8_var3_png = 0x8012AE08;
 
 D_8010E190_334E10 = 0x8010E190;
+
+volcano_effect_frame0_png = 0x8012C2D0;
+volcano_effect_frame1_png = 0x8012CAD8;
+volcano_effect_frame2_png = 0x8012D2E0;

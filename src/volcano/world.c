@@ -23,3 +23,6 @@ WorldSetup volcano_WorldSetup = {
     90,
     57,
 };
+
+void volcano_stub() {
+}

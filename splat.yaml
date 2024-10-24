@@ -651,7 +651,6 @@ segments:
     bss_size: 0x20
     exclusive_ram_id: unk800FFF90
     subsegments:
-    - [0x326C10, c]
     - [auto, c, world]
     - [auto, c, skybox]
     - [auto, c, world_gfx]
@@ -665,9 +664,29 @@ segments:
     - [auto, c, blocks]
     - [auto, c, growlithe_spawner/model]
     - [auto, c, growlithe_spawner/materials]
+    - [auto, c, growlithe_spawner/anim/modelanim]
+    - [auto, c, growlithe_spawner/anim/matanim]
+    - [auto, c, smoke_puff/model]
+    - [auto, c, smoke_puff/anim/modelanim]
+    - [auto, c, smoke_puff/anim/matanim]
     - [auto, c, koffing_smoke/model]
     - [auto, c, koffing_smoke/materials]
+    - [auto, c, koffing_smoke/anim/model/show]
+    - [auto, c, koffing_smoke/anim/material/show]
+    - [auto, c, koffing_smoke/anim/model/reveal]
+    - [auto, c, koffing_smoke/anim/material/reveal]
+    - [auto, c, koffing_smoke/anim/model/hide]
+    - [auto, c, koffing_smoke/anim/material/hide]
+    - [auto, c, volcano_effect/model]
+    - [auto, c, volcano_effect/materials]
+    - [auto, c, volcano_effect/anim/modelanim]
+    - [auto, c, volcano_effect/anim/matanim]
+    - [auto, c, pkmn_1031/model]
+    - [auto, c, pkmn_1031/materials]
+    - [auto, c, pkmn_1031/anim/modelanim]
+    - [auto, c, pkmn_1031/anim/matanim]
     - [auto, c, koffing_smoke/textures]
+    - [auto, c, smoke_puff/textures]
     - [auto, c, growlithe_spawner/textures]
     - [auto, c, magmar/textures]
     - [auto, c, magmar/anim/model/walk]
@@ -796,7 +815,38 @@ segments:
       - [0x33A3C0, vtx, model]
       - [0x33A4B0]
     - [0x33A550, .data, growlithe_spawner/materials]
-    - [0x33A5E0, bin]
+    - start: 0x33A5E0
+      type: .data
+      dir: growlithe_spawner/anim/
+      name: growlithe_spawner/anim/modelanim
+      subsegments:
+      - [0x33A5E0, snap_model_anim, modelanim]
+    - start: 0x33A610
+      type: .data
+      dir: growlithe_spawner/anim/
+      name: growlithe_spawner/anim/matanim
+      subsegments:
+      - [0x33A610, snap_material_anim, matanim]
+    - start: 0x33A670
+      type: .data
+      name: smoke_puff/model
+      dir: smoke_puff
+      subsegments:
+      - [0x33A670, gfx, draw]
+      - [0x33A750, vtx, model]
+      - [0x33A810]
+    - start: 0x33A980
+      type: .data
+      dir: smoke_puff/anim/
+      name: smoke_puff/anim/modelanim
+      subsegments:
+      - [0x33A980, snap_model_anim, modelanim]
+    - start: 0x33A9B0
+      type: .data
+      dir: smoke_puff/anim/
+      name: smoke_puff/anim/matanim
+      subsegments:
+      - [0x33A9B0, snap_material_anim, matanim]
     - start: 0x33A9E0
       type: .data
       name: koffing_smoke/model
@@ -807,7 +857,97 @@ segments:
       - [0x33AB50, vtx, model]
       - [0x33AD20]
     - [0x33ADD0, .data, koffing_smoke/materials]
-    - [0x33AE90, bin]
+    - start: 0x33AE90
+      type: .data
+      dir: koffing_smoke/anim/model/
+      name: koffing_smoke/anim/model/show
+      subsegments:
+      - [0x33AE90, snap_model_anim, show]
+    - start: 0x33AEC0
+      type: .data
+      dir: koffing_smoke/anim/material/
+      name: koffing_smoke/anim/material/show
+      subsegments:
+      - [0x33AEC0, snap_material_anim, show]
+    - start: 0x33AF00
+      type: .data
+      dir: koffing_smoke/anim/model/
+      name: koffing_smoke/anim/model/reveal
+      subsegments:
+      - [0x33AF00, snap_model_anim, reveal]
+    - start: 0x33AF40
+      type: .data
+      dir: koffing_smoke/anim/material/
+      name: koffing_smoke/anim/material/reveal
+      subsegments:
+      - [0x33AF40, snap_material_anim, reveal]
+    - start: 0x33AF80
+      type: .data
+      dir: koffing_smoke/anim/model/
+      name: koffing_smoke/anim/model/hide
+      subsegments:
+      - [0x33AF80, snap_model_anim, hide]
+    - start: 0x33AFB0
+      type: .data
+      dir: koffing_smoke/anim/material/
+      name: koffing_smoke/anim/material/hide
+      subsegments:
+      - [0x33AFB0, snap_material_anim, hide]
+    - start: 0x33AFF0
+      type: .data
+      name: volcano_effect/model
+      dir: volcano_effect
+      subsegments:
+      - [0x33AFF0, gfx, first]
+      - [0x33B028, gfx, part0_draw]
+      - [0x33B098, gfx, part1_draw]
+      - [0x33B108, gfx, last]
+      - [0x33B140, vtx, model]
+      - [0x33B2C0]
+    - [0x33B390, .data, volcano_effect/materials]
+    - start: 0x33B4C0
+      type: .data
+      dir: volcano_effect/anim/
+      name: volcano_effect/anim/modelanim
+      subsegments:
+      - [0x33B4C0, snap_model_anim, modelanim]
+    - start: 0x33B600
+      type: .data
+      dir: volcano_effect/anim/
+      name: volcano_effect/anim/matanim
+      subsegments:
+      - [0x33B600, snap_material_anim, matanim]
+    - start: 0x33B690
+      type: .data
+      name: pkmn_1031/model
+      dir: pkmn_1031
+      subsegments:
+      - [0x33B690, gfx, first]
+      - [0x33B6F0, gfx, part0]
+      - [0x33B748, gfx, part1]
+      - [0x33B7A0, gfx, part2]
+      - [0x33B7F8, gfx, part3]
+      - [0x33B850, gfx, part4]
+      - [0x33B8A8, gfx, part5]
+      - [0x33B900, gfx, part6]
+      - [0x33B958, gfx, part7]
+      - [0x33B9B0, gfx, last]
+      - [0x33B9D0, vtx, model]
+      - [0x33BAA0]
+    - [0x33BE40, .data, pkmn_1031/materials]
+    - start: 0x33C290
+      type: .data
+      dir: pkmn_1031/anim/
+      name: pkmn_1031/anim/modelanim
+      subsegments:
+      - [0x33C290, snap_model_anim, modelanim]
+    - start: 0x33C8D0
+      type: .data
+      dir: pkmn_1031/anim/
+      name: pkmn_1031/anim/matanim
+      subsegments:
+      - [0x33C8D0, snap_material_anim, matanim]
+    - [0x33CB00, bin]
     - start: 0x33FAB0
       type: .data
       dir: koffing_smoke
@@ -837,7 +977,31 @@ segments:
       - { start: 0x344B08, type: ia8, name: frame10, flip_y: true, width: 32, height: 64 }
       - [0x345308]
       - { start: 0x345310, type: ia8, name: frame11, flip_y: true, width: 32, height: 64 }
-    - [0x345B10, bin]
+    - start: 0x345B10
+      type: .data
+      dir: smoke_puff
+      name: smoke_puff/textures
+      subsegments:
+      - [0x345B10]
+      - { start: 0x345B18, type: ia8, name: frame0, flip_y: true, width: 32, height: 64 }
+      - [0x346318]
+      - { start: 0x346320, type: ia8, name: frame1, flip_y: true, width: 32, height: 64 }
+      - [0x346B20]
+      - { start: 0x346B28, type: ia8, name: frame2, flip_y: true, width: 32, height: 64 }
+      - [0x347328]
+      - { start: 0x347330, type: ia8, name: frame3, flip_y: true, width: 32, height: 64 }
+      - [0x347B30]
+      - { start: 0x347B38, type: ia8, name: frame4, flip_y: true, width: 32, height: 64 }
+      - [0x348338]
+      - { start: 0x348340, type: ia8, name: frame5, flip_y: true, width: 32, height: 64 }
+      - [0x348B40]
+      - { start: 0x348B48, type: ia8, name: frame6, flip_y: true, width: 32, height: 64 }
+      - [0x349348]
+      - { start: 0x349350, type: ia8, name: frame7, flip_y: true, width: 32, height: 64 }
+      - [0x349B50]
+      - [0x349B58, palette, unknown]
+      - [0x349B78]
+      - { start: 0x349B80, type: ci4, name: unknown, flip_y: true, width: 64, height: 64 }
     - start: 0x34A380
       type: .data
       dir: growlithe_spawner

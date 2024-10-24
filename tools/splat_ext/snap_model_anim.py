@@ -14,6 +14,8 @@ class N64SegSnap_model_anim(SnapAnimSegmentCommon):
         pointer, offset = 0, 0
         while pointer == 0:
             pointer, offset = unpack_from(">I", data, offset)[0], offset + 4
+        if pointer - vram_base > 200:
+            pointer = unpack_from(">I", data, pointer - 0x18 + 0x8 - vram_base)[0]
         return pointer - vram_base
     
     def parse_header(self, data, name, vram_base):
@@ -36,11 +38,10 @@ class N64SegSnap_model_anim(SnapAnimSegmentCommon):
                 header_text += f"    (AnimCmd*)&{array_name},\n"
                 anim_array_names[addr] = array_name
         header_text += "};\n\n"
-
         return header_text, anim_array_names
     
-    def parse_path(self, name, data, offset, size):
-
+    def parse_path(self, name, data, offset, size, vram_base):
+        self.pathnames[vram_base + offset + size - 0x18] = f"{name}_path"
         interp_offset = offset + size - 0x18
         interp_data = unpack_from(f">BBhfIfII", data, interp_offset)
         interp_data_text = f"InterpData {name}_path = {{\n"
@@ -79,6 +80,7 @@ class N64SegSnap_model_anim(SnapAnimSegmentCommon):
         header_text, anim_array_names = self.parse_header(data, name, vram_base)
         externs = ""
         cmd_ptr = self.header_length
+        self.pathnames = {}
         
         isFirstLine = True
         animcmd_text = ""
@@ -96,7 +98,7 @@ class N64SegSnap_model_anim(SnapAnimSegmentCommon):
                         skipped += 4
             
                 if skipped:
-                    animcmd_text += self.parse_path(animationName, data, cmd_ptr - skipped, skipped) + "\n"
+                    animcmd_text += self.parse_path(animationName, data, cmd_ptr - skipped, skipped, vram_base) + "\n"
 
             isFirstLine, cmd_ptr, animcmd_text, forward_decl = self.parse_line(data, animationName, cmd_ptr, isFirstLine, animcmd_text)
             externs += forward_decl

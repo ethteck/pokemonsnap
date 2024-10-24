@@ -1,17 +1,17 @@
 #include <common.h>
 
-extern u8 koffing_smoke_part0_mat0_image0[];
-extern u8 koffing_smoke_part0_mat0_image1[];
-extern u8 koffing_smoke_part0_mat0_image2[];
-extern u8 koffing_smoke_part0_mat0_image3[];
-extern u8 koffing_smoke_part0_mat0_image4[];
-extern u8 koffing_smoke_part0_mat0_image5[];
-extern u8 koffing_smoke_part0_mat0_image6[];
-extern u8 koffing_smoke_part0_mat0_image7[];
-extern u8 koffing_smoke_part0_mat0_image8[];
-extern u8 koffing_smoke_part0_mat0_image9[];
-extern u8 koffing_smoke_part0_mat0_image10[];
-extern u8 koffing_smoke_part0_mat0_image11[];
+extern u8 koffing_smoke_frame0_png[];
+extern u8 koffing_smoke_frame1_png[];
+extern u8 koffing_smoke_frame2_png[];
+extern u8 koffing_smoke_frame3_png[];
+extern u8 koffing_smoke_frame4_png[];
+extern u8 koffing_smoke_frame5_png[];
+extern u8 koffing_smoke_frame6_png[];
+extern u8 koffing_smoke_frame7_png[];
+extern u8 koffing_smoke_frame8_png[];
+extern u8 koffing_smoke_frame9_png[];
+extern u8 koffing_smoke_frame10_png[];
+extern u8 koffing_smoke_frame11_png[];
 
 extern Texture* koffing_smoke_part0_mat[];
 
@@ -21,19 +21,19 @@ Texture** koffing_smoke_materials[] = {
 };
 
 u8* koffing_smoke_part0_mat0_textures[] = {
-    koffing_smoke_part0_mat0_image0,
-    koffing_smoke_part0_mat0_image1,
-    koffing_smoke_part0_mat0_image2,
-    koffing_smoke_part0_mat0_image3,
-    koffing_smoke_part0_mat0_image4,
-    koffing_smoke_part0_mat0_image5,
-    koffing_smoke_part0_mat0_image6,
-    koffing_smoke_part0_mat0_image7,
-    koffing_smoke_part0_mat0_image8,
-    koffing_smoke_part0_mat0_image9,
-    koffing_smoke_part0_mat0_image10,
-    koffing_smoke_part0_mat0_image11,
-    koffing_smoke_part0_mat0_image11,
+    koffing_smoke_frame0_png,
+    koffing_smoke_frame1_png,
+    koffing_smoke_frame2_png,
+    koffing_smoke_frame3_png,
+    koffing_smoke_frame4_png,
+    koffing_smoke_frame5_png,
+    koffing_smoke_frame6_png,
+    koffing_smoke_frame7_png,
+    koffing_smoke_frame8_png,
+    koffing_smoke_frame9_png,
+    koffing_smoke_frame10_png,
+    koffing_smoke_frame11_png,
+    koffing_smoke_frame11_png,
     NULL,
 };
 

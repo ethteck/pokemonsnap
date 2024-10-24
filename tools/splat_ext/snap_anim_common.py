@@ -14,7 +14,7 @@ class SnapAnimSegmentCommon(Segment):
             f.write(self.file_text)
 
     def cmd_get_param_count(self, cmd):
-        if cmd in (3, 4, 7, 8, 9, 10, 11, 17):
+        if cmd in (3, 4, 7, 8, 9, 10, 11, 17, 20):
             return 1
         elif cmd in (0, 2, 12, 13, 14, 16):
             return 0
@@ -24,6 +24,9 @@ class SnapAnimSegmentCommon(Segment):
     
     def cmd_require_pointer(self, cmd):
         return cmd in (13, 14)
+    
+    def cmd_require_integers(self, cmd):
+        return cmd in (20,)
 
     def cmd_split(self, value):
         binStr = '{:032b}'.format(value)
@@ -46,6 +49,7 @@ class SnapAnimSegmentCommon(Segment):
         14: "asRestart",
         16: ("asPlaySound", "asPlayEffect"),
         17: "asSetVisible",
+        20: "asSetExtraBlock",
     }
 
     def parse_line(self, data, name, offset, isFirstLine, text) -> Tuple[bool, int, str, str]:
@@ -55,10 +59,15 @@ class SnapAnimSegmentCommon(Segment):
         numParams = mask.bit_count()
         floatsPerParam = self.cmd_get_param_count(cmd)
         floats = []
-        if cmd != 12:            
-            for j in range(numParams * floatsPerParam):
-                value, offset = unpack_from(">f", data, offset)[0], offset + 4
-                floats.append(value)
+        if cmd != 12:
+            if self.cmd_require_integers(cmd):
+                for j in range(numParams * floatsPerParam):
+                    value, offset = unpack_from(">I", data, offset)[0], offset + 4
+                    floats.append(value)
+            else:    
+                for j in range(numParams * floatsPerParam):
+                    value, offset = unpack_from(">f", data, offset)[0], offset + 4
+                    floats.append(value)
         if self.cmd_require_pointer(cmd):
             pointer, offset = unpack_from(">I", data, offset)[0], offset + 4
 
@@ -78,6 +87,9 @@ class SnapAnimSegmentCommon(Segment):
             if self.cmd_require_pointer(cmd):
                 firstLineText = f"asBegin_ptr({name})\n"
                 forwardDecl = f"static AnimLinePtr {name};\n"
+            elif self.cmd_require_integers(cmd):
+                firstLineText = f"asBegin_I{numParams * floatsPerParam}({name})\n"
+                forwardDecl = f"static AnimLineI{numParams * floatsPerParam} {name};\n"
             else:
                 firstLineText = f"asBegin_{numParams * floatsPerParam}({name})\n"
                 forwardDecl = f"static AnimLine{numParams * floatsPerParam} {name};\n"
@@ -105,7 +117,7 @@ class SnapAnimSegmentCommon(Segment):
         if cmd == 0:
             pass
         elif cmd == 13:
-            lineText += f"{name}_path"
+            lineText += f"{self.pathnames[pointer]}"
         elif cmd == 14:
             lineText += f"{name}"
         elif cmd == 16:
@@ -119,6 +131,13 @@ class SnapAnimSegmentCommon(Segment):
             for i in range(31):
                 if (visMask & (1 << i)):
                     lineText += f", {i}"
+        elif cmd == 20:
+            lineText += f"{duration}"
+            paramNames = [self.cmd_get_extra_param_name(i) for i in range(5) if (mask & (1 << i))]
+            for i in range(numParams):
+                lineText += f", {paramNames[i]}"
+                rgba = floats[i]
+                lineText += f", {(rgba >> 24) & 0xFF}, {(rgba >> 16) & 0xFF}, {(rgba >> 8) & 0xFF}, {(rgba >> 0) & 0xFF}"
         else:
             lineText += f"{duration}"
 

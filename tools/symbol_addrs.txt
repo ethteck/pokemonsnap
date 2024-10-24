@@ -1855,22 +1855,12 @@ growlithe_spawner_lava_frame1_png = 0x80123F60; // segment:volcano_assets
 growlithe_spawner_lava_frame2_png = 0x80124790; // segment:volcano_assets
 growlithe_spawner_lava_frame3_png = 0x80124FC0; // segment:volcano_assets
 growlithe_spawner_lava_frame4_png = 0x801257F0; // segment:volcano_assets
+growlithe_spawner_modelanim = 0x80113960; // segment:volcano_assets
+growlithe_spawner_matanim = 0x80113990; // segment:volcano_assets
 
 koffing_smoke_part1 = 0x80113D60; // segment:volcano_assets
 koffing_smoke_part0 = 0x80113DF8; // segment:volcano_assets
 koffing_smoke_vtx = 0x80113ED0; // segment:volcano_assets size:0x1D0
-koffing_smoke_part0_mat0_image0 = 0x80118E38; // segment:volcano_assets
-koffing_smoke_part0_mat0_image1 = 0x80119640; // segment:volcano_assets
-koffing_smoke_part0_mat0_image2 = 0x80119E48; // segment:volcano_assets
-koffing_smoke_part0_mat0_image3 = 0x8011A650; // segment:volcano_assets
-koffing_smoke_part0_mat0_image4 = 0x8011AE58; // segment:volcano_assets
-koffing_smoke_part0_mat0_image5 = 0x8011B660; // segment:volcano_assets
-koffing_smoke_part0_mat0_image6 = 0x8011BE68; // segment:volcano_assets
-koffing_smoke_part0_mat0_image7 = 0x8011C670; // segment:volcano_assets
-koffing_smoke_part0_mat0_image8 = 0x8011CE78; // segment:volcano_assets
-koffing_smoke_part0_mat0_image9 = 0x8011D680; // segment:volcano_assets
-koffing_smoke_part0_mat0_image10 = 0x8011DE88; // segment:volcano_assets
-koffing_smoke_part0_mat0_image11 = 0x8011E690; // segment:volcano_assets
 
 magikarp_vtx = 0x8034E130; // segment:magikarp_model size:0xF10
 magikarp_first = 0x8034F040; // segment:magikarp_model
@@ -2059,3 +2049,39 @@ volcano_block6_uvAnim = 0x80112300; // segment:volcano_assets
 volcano_skybox_texture = 0x80100008; // segment:volcano_assets
 volcano_skybox_vtx = 0x80101008; // segment:volcano_assets size:0x3E0
 volcano_skybox_gfx = 0x801013E8; // segment:volcano_assets
+
+smoke_puff_draw = 0x801139F0; // segment:volcano_assets
+smoke_puff_vtx = 0x80113AD0; // segment:volcano_assets size:0xC0
+smoke_puff_unknown_pal = 0x80122ED8; // segment:volcano_assets
+smoke_puff_unknown_png = 0x80122F00; // segment:volcano_assets
+smoke_puff_modelanim = 0x80113D00; // segment:volcano_assets
+smoke_puff_matanim = 0x80113D30; // segment:volcano_assets
+
+koffing_smoke_modelanim_show = 0x80114210; // segment:volcano_assets
+koffing_smoke_matanim_show = 0x80114240; // segment:volcano_assets
+koffing_smoke_modelanim_reveal = 0x80114280; // segment:volcano_assets
+koffing_smoke_matanim_reveal = 0x801142C0; // segment:volcano_assets
+koffing_smoke_modelanim_hide = 0x80114300; // segment:volcano_assets
+koffing_smoke_matanim_hide = 0x80114330; // segment:volcano_assets
+
+volcano_effect_vtx = 0x801144C0; // segment:volcano_assets size:0x180
+volcano_effect_first = 0x80114370; // segment:volcano_assets
+volcano_effect_part0_draw = 0x801143A8; // segment:volcano_assets
+volcano_effect_part1_draw = 0x80114418; // segment:volcano_assets
+volcano_effect_last = 0x80114488; // segment:volcano_assets
+volcano_effect_modelanim = 0x80114840; // segment:volcano_assets
+volcano_effect_matanim = 0x80114980; // segment:volcano_assets
+
+pkmn_1031_first = 0x80114A10; // segment:volcano_assets
+pkmn_1031_part0 = 0x80114A70; // segment:volcano_assets
+pkmn_1031_part1 = 0x80114AC8; // segment:volcano_assets
+pkmn_1031_part2 = 0x80114B20; // segment:volcano_assets
+pkmn_1031_part3 = 0x80114B78; // segment:volcano_assets
+pkmn_1031_part4 = 0x80114BD0; // segment:volcano_assets
+pkmn_1031_part5 = 0x80114C28; // segment:volcano_assets
+pkmn_1031_part6 = 0x80114C80; // segment:volcano_assets
+pkmn_1031_part7 = 0x80114CD8; // segment:volcano_assets
+pkmn_1031_last = 0x80114D30; // segment:volcano_assets
+pkmn_1031_vtx = 0x80114D50; // segment:volcano_assets size:0xD0
+pkmn_1031_modelanim = 0x80115610; // segment:volcano_assets
+pkmn_1031_matanim = 0x80115C50; // segment:volcano_assets

@@ -3,6 +3,8 @@
 
 extern WorldBlockSetup volcano_blocksSetup[];
 
+s32 volcano_unused_bss[8];
+
 CollisionModel volcano_collisionModels[] = {
     { PokemonID_GATE, D_800EDF78, 1.0 },
     { -1, NULL, 0 }

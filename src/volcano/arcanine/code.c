@@ -1,7 +1,7 @@
 #include "volcano/volcano.h"
 
 extern AnimCmd* arcanine_modelanim_walk[];
-extern AnimCmd* arcanine_modelanim_shakehead[];
+extern AnimCmd* arcanine_modelanim_shake_head[];
 extern AnimCmd* arcanine_modelanim_run[];
 extern AnimCmd* arcanine_modelanim_idle[];
 extern AnimCmd* arcanine_modelanim_roar[];
@@ -10,7 +10,7 @@ extern AnimCmd* arcanine_modelanim_jump[];
 extern AnimCmd* arcanine_modelanim_eat[];
 
 extern AnimCmd** arcanine_matanim_walk[];
-extern AnimCmd** arcanine_matanim_shakehead[];
+extern AnimCmd** arcanine_matanim_shake_head[];
 extern AnimCmd** arcanine_matanim_run[];
 extern AnimCmd** arcanine_matanim_idle[];
 extern AnimCmd** arcanine_matanim_roar[];
@@ -98,8 +98,8 @@ AnimationHeader arcanine_animation_eat = {
 AnimationHeader arcanine_animation_shakehead = {
     0.7,
     55,
-    arcanine_modelanim_shakehead,
-    arcanine_matanim_shakehead,
+    arcanine_modelanim_shake_head,
+    arcanine_matanim_shake_head,
     NULL
 };
 

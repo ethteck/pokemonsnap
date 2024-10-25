@@ -7,7 +7,7 @@ extern AnimCmd* charmander_modelanim_idle[];
 extern AnimCmd* charmander_modelanim_lie[];
 extern AnimCmd* charmander_modelanim_howl[];
 extern AnimCmd* charmander_modelanim_hit[];
-extern AnimCmd* charmander_modelanim_shakehands[];
+extern AnimCmd* charmander_modelanim_shake_hands[];
 extern AnimCmd* charmander_modelanim_fall[];
 extern AnimCmd* charmander_modelanim_jump[];
 
@@ -18,7 +18,7 @@ extern AnimCmd** charmander_matanim_idle[];
 extern AnimCmd** charmander_matanim_lie[];
 extern AnimCmd** charmander_matanim_howl[];
 extern AnimCmd** charmander_matanim_hit[];
-extern AnimCmd** charmander_matanim_shakehands[];
+extern AnimCmd** charmander_matanim_shake_hands[];
 extern AnimCmd** charmander_matanim_fall[];
 extern AnimCmd** charmander_matanim_jump[];
 
@@ -100,8 +100,8 @@ AnimationHeader charmander_animation_run = {
 AnimationHeader charmander_animation_shakehands = {
     0.5,
     30,
-    charmander_modelanim_shakehands,
-    charmander_matanim_shakehands,
+    charmander_modelanim_shake_hands,
+    charmander_matanim_shake_hands,
     charmander_animsounds_shakehands
 };
 

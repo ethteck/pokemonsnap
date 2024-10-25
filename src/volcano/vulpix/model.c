@@ -16,7 +16,7 @@ extern u8 vulpix_tex6_pal[];
 extern u8 vulpix_tex6_png[];
 extern u8 vulpix_tex7_pal[];
 extern u8 vulpix_tex7_png[];
-extern u8 vulpix_tex8_pal[];
+extern u8 vulpix_tex8_var0_pal[];
 extern u8 vulpix_tex8_var0_png[];
 extern u8 vulpix_tex8_var1_png[];
 extern u8 vulpix_tex8_var2_png[];

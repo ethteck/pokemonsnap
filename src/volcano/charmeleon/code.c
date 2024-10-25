@@ -10,9 +10,9 @@ extern AnimCmd* charmeleon_modelanim_walk[];
 extern AnimCmd* charmeleon_modelanim_run[];
 extern AnimCmd* charmeleon_modelanim_idle[];
 extern AnimCmd* charmeleon_modelanim_lie[];
-extern AnimCmd* charmeleon_modelanim_lookaround[];
+extern AnimCmd* charmeleon_modelanim_look_around[];
 extern AnimCmd* charmeleon_modelanim_roar[];
-extern AnimCmd* charmeleon_modelanim_getup[];
+extern AnimCmd* charmeleon_modelanim_get_up[];
 extern AnimCmd* charmeleon_modelanim_hit[];
 extern AnimCmd* charmeleon_modelanim_fall[];
 
@@ -20,9 +20,9 @@ extern AnimCmd** charmeleon_matanim_walk[];
 extern AnimCmd** charmeleon_matanim_run[];
 extern AnimCmd** charmeleon_matanim_idle[];
 extern AnimCmd** charmeleon_matanim_lie[];
-extern AnimCmd** charmeleon_matanim_lookaround[];
+extern AnimCmd** charmeleon_matanim_look_around[];
 extern AnimCmd** charmeleon_matanim_roar[];
-extern AnimCmd** charmeleon_matanim_getup[];
+extern AnimCmd** charmeleon_matanim_get_up[];
 extern AnimCmd** charmeleon_matanim_hit[];
 extern AnimCmd** charmeleon_matanim_fall[];
 
@@ -82,8 +82,8 @@ AnimationHeader charmeleon_animation_roar = {
 AnimationHeader charmeleon_animation_lookaround = {
     0.7,
     105,
-    charmeleon_modelanim_lookaround,
-    charmeleon_matanim_lookaround,
+    charmeleon_modelanim_look_around,
+    charmeleon_matanim_look_around,
     NULL
 };
 
@@ -130,8 +130,8 @@ AnimationHeader charmeleon_animation_lie = {
 AnimationHeader charmeleon_animation_getup = {
     0.7,
     145,
-    charmeleon_modelanim_getup,
-    charmeleon_matanim_getup,
+    charmeleon_modelanim_get_up,
+    charmeleon_matanim_get_up,
     charmeleon_animsounds_getup
 };
 

@@ -1,7 +1,7 @@
 #include "volcano/volcano.h"
 
 extern AnimCmd* growlithe_modelanim_walk[];
-extern AnimCmd* growlithe_modelanim_shakehead[];
+extern AnimCmd* growlithe_modelanim_shake_head[];
 extern AnimCmd* growlithe_modelanim_run[];
 extern AnimCmd* growlithe_modelanim_idle[];
 extern AnimCmd* growlithe_modelanim_roar[];
@@ -10,7 +10,7 @@ extern AnimCmd* growlithe_modelanim_jump[];
 extern AnimCmd* growlithe_modelanim_eat[];
 
 extern AnimCmd** growlithe_matanim_walk[];
-extern AnimCmd** growlithe_matanim_shakehead[];
+extern AnimCmd** growlithe_matanim_shake_head[];
 extern AnimCmd** growlithe_matanim_run[];
 extern AnimCmd** growlithe_matanim_idle[];
 extern AnimCmd** growlithe_matanim_roar[];
@@ -98,8 +98,8 @@ AnimationHeader growlithe_animation_eat = {
 AnimationHeader growlithe_animation_shakehead = {
     0.7,
     90,
-    growlithe_modelanim_shakehead,
-    growlithe_matanim_shakehead,
+    growlithe_modelanim_shake_head,
+    growlithe_matanim_shake_head,
     NULL
 };
 

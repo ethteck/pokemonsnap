@@ -9,6 +9,9 @@ from snap_anim_common import SnapAnimSegmentCommon
 class N64SegSnap_material_anim(SnapAnimSegmentCommon):    
     def cmd_get_param_name(self, index):
         return ("IMG_INDEX", "OFFSET_S", "OFFSET_T", "SCALE_S", "SCALE_T", "MAT_PARAM_5", "MAT_PARAM_6", "MAT_PARAM_7", "MAT_PARAM_8", "MAT_PARAM_9")[index]
+    
+    def cmd_get_extra_param_name(self, index):
+        return ("PRIM_COLOR", "ENV_COLOR", "BLEND_COLOR", "LIGHT_COLOR_1", "LIGHT_COLOR_2")[index]
 
     def get_header_length(self, data, vram_base):
         pointer, offset = 0, 0
@@ -50,10 +53,10 @@ class N64SegSnap_material_anim(SnapAnimSegmentCommon):
 
         while True:
             try:
+                base_name = self.anim_array_names[offset + vram_base]
                 if lists_text != "":
                     lists_text += "};\n\n"
                     ended = True
-                base_name = self.anim_array_names[offset + vram_base]
                 lists_text += f"AnimCmd* {base_name}[] = {{\n"
                 externs += f"extern AnimCmd* {base_name}[];\n"
                 i = 0
@@ -93,7 +96,7 @@ class N64SegSnap_material_anim(SnapAnimSegmentCommon):
             if isFirstLine:
                 animcmd_text += "\n"
 
-        return "#include <anim_script.h>\n\n" + externs + "\n" + header_text + animcmd_text + lists_text
+        return f"#undef __ANIMFILE\n#define __ANIMFILE {name}\n\n" + "#include <anim_script.h>\n\n" + externs + "\n" + header_text + animcmd_text + lists_text
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.matanim.inc.c"

@@ -1,6 +1,6 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd D_80118D90[];
+extern AnimCmd volcano_camera_anim_intro[];
 extern AnimCmd* D_801174E0[];
 extern AnimCmd** D_801182F0[];
 
@@ -89,7 +89,7 @@ void func_802E0948_731B48(GObj* obj) {
     spA0 = temp_s1->viewMtx.lookAt.at.y;
     sp9C = temp_s1->viewMtx.lookAt.at.z;
     temp_s1->animSpeed = 0.5f;
-    animSetCameraAnimation(temp_s1, D_80118D90, 0);
+    animSetCameraAnimation(temp_s1, volcano_camera_anim_intro, 0);
     temp_s5 = omCreateProcess(temp_s0, animUpdateCameraAnimation, 1, 1);
     PlayerModel_SetAnimation(D_801174E0, D_801182F0, 0, 0.5f);
     D_802E3800_734A00 = 0;

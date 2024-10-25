@@ -93,7 +93,7 @@ void func_8009A8F0(s32 levelID) {
             break;
         case SCENE_RIVER:
             dmaLoadOverlay(&overlayRiverAssets);
-            dmaReadRom(volcano_extra_ROM_START, volcano_extra_VRAM, volcano_extra_ROM_END - volcano_extra_ROM_START);
+            dmaReadRom(river_extra_ROM_START, river_extra_VRAM, river_extra_ROM_END - river_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
@@ -103,7 +103,7 @@ void func_8009A8F0(s32 levelID) {
             break;
         case SCENE_VOLCANO:
             dmaLoadOverlay(&overlayVolcanoAssets);
-            dmaReadRom(stage2_extra_ROM_START, stage2_extra_VRAM, stage2_extra_ROM_END - stage2_extra_ROM_START);
+            dmaReadRom(volcano_extra_ROM_START, volcano_extra_VRAM, volcano_extra_ROM_END - volcano_extra_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;

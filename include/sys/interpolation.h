@@ -16,7 +16,7 @@ typedef struct InterpData {
     /* 0x0C */ f32 duration;
     /* 0x10 */ f32* paramPoints;
     /* 0x14 */ FittingParams* speedFunc;
-} InterpData; // size >= 0x10
+} InterpData; // size = 0x18
 
 enum HalInterpolationKind {
     HAL_INTERP_LINEAR,

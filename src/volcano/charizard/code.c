@@ -1,12 +1,12 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* charizard_modelanim_spewfire[];
+extern AnimCmd* charizard_modelanim_spew_fire[];
 extern AnimCmd* charizard_modelanim_idle[];
 extern AnimCmd* charizard_modelanim_roar[];
 extern AnimCmd* charizard_modelanim_spin[];
 extern AnimCmd* charizard_modelanim_appear[];
 
-extern AnimCmd** charizard_matanim_spewfire[];
+extern AnimCmd** charizard_matanim_spew_fire[];
 extern AnimCmd** charizard_matanim_idle[];
 extern AnimCmd** charizard_matanim_roar[];
 extern AnimCmd** charizard_matanim_spin[];
@@ -63,8 +63,8 @@ AnimationHeader charizard_animation_spin = {
 AnimationHeader charizard_animation_spewfire = {
     0.6,
     150,
-    charizard_modelanim_spewfire,
-    charizard_matanim_spewfire,
+    charizard_modelanim_spew_fire,
+    charizard_matanim_spew_fire,
     charizard_animsounds_spewfire
 };
 

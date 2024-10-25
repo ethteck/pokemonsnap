@@ -1,20 +1,20 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_80191B20[];
-extern AnimCmd* D_80190AC0[];
-extern AnimCmd* D_80191260[];
-extern AnimCmd* D_801935B0[];
-extern AnimCmd* D_80193CD0[];
-extern AnimCmd* D_80191F40[];
-extern AnimCmd* D_80192340[];
-extern AnimCmd* D_801950B0[];
+extern AnimCmd* vulpix_modelanim_anim1[];
+extern AnimCmd* vulpix_modelanim_anim2[];
+extern AnimCmd* vulpix_modelanim_anim3[];
+extern AnimCmd* vulpix_modelanim_anim4[];
+extern AnimCmd* vulpix_modelanim_anim5[];
+extern AnimCmd* vulpix_modelanim_anim6[];
+extern AnimCmd* vulpix_modelanim_anim7[];
+extern AnimCmd* vulpix_modelanim_anim8[];
 
-extern AnimCmd** D_801965B0[];
-extern AnimCmd** D_80196830[];
-extern AnimCmd** D_801968D0[];
-extern AnimCmd** D_801966D0[];
-extern AnimCmd** D_80196770[];
-extern AnimCmd** D_80196960[];
+extern AnimCmd** vulpix_matanim_anim2[];
+extern AnimCmd** vulpix_matanim_anim3[];
+extern AnimCmd** vulpix_matanim_anim5[];
+extern AnimCmd** vulpix_matanim_anim6[];
+extern AnimCmd** vulpix_matanim_anim7[];
+extern AnimCmd** vulpix_matanim_anim8[];
 
 void func_802DA3A0_72B5A0(GObj*);
 void func_802D9F24_72B124(GObj*);
@@ -46,15 +46,15 @@ s32 D_802E1FF4_7331F4[] = { SOUND_ID_292 };
 AnimationHeader D_802E1FF8_7331F8 = {
     0.4,
     40,
-    D_80191B20,
-    D_801965B0,
+    vulpix_modelanim_anim2,
+    vulpix_matanim_anim2,
     NULL
 };
 
 AnimationHeader D_802E200C_73320C = {
     0.8,
     40,
-    D_80190AC0,
+    vulpix_modelanim_anim1,
     NULL,
     NULL
 };
@@ -62,7 +62,7 @@ AnimationHeader D_802E200C_73320C = {
 AnimationHeader D_802E2020_733220 = {
     1.2,
     37,
-    D_80191260,
+    vulpix_modelanim_anim4,
     NULL,
     NULL
 };
@@ -70,40 +70,40 @@ AnimationHeader D_802E2020_733220 = {
 AnimationHeader D_802E2034_733234 = {
     0.5,
     15,
-    D_801935B0,
-    D_80196830,
+    vulpix_modelanim_anim6,
+    vulpix_matanim_anim6,
     NULL
 };
 
 AnimationHeader D_802E2048_733248 = {
     0.7,
     52,
-    D_80193CD0,
-    D_801968D0,
+    vulpix_modelanim_anim7,
+    vulpix_matanim_anim7,
     D_802E1FF0_7331F0
 };
 
 AnimationHeader D_802E205C_73325C = {
     0.5,
     10,
-    D_80191F40,
-    D_801966D0,
+    vulpix_modelanim_anim3,
+    vulpix_matanim_anim3,
     NULL
 };
 
 AnimationHeader D_802E2070_733270 = {
     0.35,
     45,
-    D_80192340,
-    D_80196770,
+    vulpix_modelanim_anim5,
+    vulpix_matanim_anim5,
     NULL
 };
 
 AnimationHeader D_802E2084_733284 = {
     0.5,
     54,
-    D_801950B0,
-    D_80196960,
+    vulpix_modelanim_anim8,
+    vulpix_matanim_anim8,
     D_802E1FF4_7331F4
 };
 

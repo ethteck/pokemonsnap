@@ -1,9 +1,9 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_80113BA0[];
-extern Texture** D_80113C50[];
-extern AnimCmd* D_80113D00[];
-extern AnimCmd** D_80113D30[];
+extern UnkEC64Arg3 smoke_puff_model[];
+extern Texture** smoke_puff_materials[];
+extern AnimCmd* smoke_puff_modelanim[];
+extern AnimCmd** smoke_puff_matanim[];
 
 void func_802DE570_72F770(GObj*);
 void func_802DE648_72F848(GObj*);
@@ -11,8 +11,8 @@ void func_802DE648_72F848(GObj*);
 AnimationHeader D_802E3290_734490 = {
     1.0,
     100,
-    D_80113D00,
-    D_80113D30,
+    smoke_puff_modelanim,
+    smoke_puff_matanim,
     NULL
 };
 
@@ -30,8 +30,8 @@ PokemonAnimationSetup D_802E32B4_7344B4 = {
 };
 
 PokemonInitData D_802E32C8_7344C8 = {
-    D_80113BA0,
-    D_80113C50,
+    smoke_puff_model,
+    smoke_puff_materials,
     renderModelTypeDFogged,
     &D_802E32B4_7344B4,
     { 30, 30, 30 },

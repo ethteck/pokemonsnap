@@ -13,8 +13,7 @@ extern AnimCmd** gate_matanim_raise_bar[];
 extern AnimCmd** gate_matanim_opening[];
 extern AnimCmd** gate_matanim_opened[];
 
-extern AnimCmd D_8011749C[];
-extern f32 D_800FFFC8;
+extern AnimCmd volcano_camera_anim_end[];
 
 extern AnimCmd* D_80115E80[];
 extern AnimCmd** D_80116A80[];
@@ -190,9 +189,9 @@ POKEMON_FUNC(volcano_gate_Cutscene)
 
     ohPauseObjectProcesses(camObj);
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, D_8011749C, 0);
+    animSetCameraAnimation(camera, volcano_camera_anim_end, 0);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    func_800E1A78_5F228(D_800FFFC8);
+    func_800E1A78_5F228(volcano_WorldSetup.unk_10);
 
     player = PlayerModel_Init();
     if (player == NULL) {

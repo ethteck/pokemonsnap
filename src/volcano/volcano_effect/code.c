@@ -1,9 +1,9 @@
 #include "volcano/volcano.h"
 
-extern UnkEC64Arg3 D_80114660[];
-extern Texture** D_80114710[];
-extern AnimCmd* D_80114840[];
-extern AnimCmd** D_80114980[];
+extern UnkEC64Arg3 volcano_effect_model[];
+extern Texture** volcano_effect_materials[];
+extern AnimCmd* volcano_effect_modelanim[];
+extern AnimCmd** volcano_effect_matanim[];
 
 void volcano_effect_InitialState(GObj*);
 void func_802DF1B4_7303B4(GObj*);
@@ -22,32 +22,32 @@ s32 volcano_effect_animsounds_type3[] = { SOUND_ID_59 };
 AnimationHeader volcano_effect_animation_type3 = {
     2,
     100,
-    D_80114840,
-    D_80114980,
+    volcano_effect_modelanim,
+    volcano_effect_matanim,
     volcano_effect_animsounds_type3
 };
 
 AnimationHeader volcano_effect_animation_type1 = {
     2,
     100,
-    D_80114840,
-    D_80114980,
+    volcano_effect_modelanim,
+    volcano_effect_matanim,
     volcano_effect_animsounds_type1
 };
 
 AnimationHeader volcano_effect_animation_type5 = {
     2,
     100,
-    D_80114840,
-    D_80114980,
+    volcano_effect_modelanim,
+    volcano_effect_matanim,
     volcano_effect_animsounds_type5
 };
 
 AnimationHeader volcano_effect_animation_type2 = {
     2,
     100,
-    D_80114840,
-    D_80114980,
+    volcano_effect_modelanim,
+    volcano_effect_matanim,
     NULL
 };
 
@@ -67,8 +67,8 @@ PokemonAnimationSetup volcano_effect_animSetup = {
 };
 
 PokemonInitData volcano_effect_initData = {
-    D_80114660,
-    D_80114710,
+    volcano_effect_model,
+    volcano_effect_materials,
     renderModelTypeDFogged,
     &volcano_effect_animSetup,
     { 10, 10, 10 },

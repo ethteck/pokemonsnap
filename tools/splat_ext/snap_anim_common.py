@@ -14,9 +14,9 @@ class SnapAnimSegmentCommon(Segment):
             f.write(self.file_text)
 
     def cmd_get_param_count(self, cmd):
-        if cmd in (3, 4, 7, 8, 9, 10, 11, 17, 20):
+        if cmd in (3, 4, 7, 8, 9, 10, 11, 17, 18, 20, 21):
             return 1
-        elif cmd in (0, 2, 12, 13, 14, 16):
+        elif cmd in (0, 2, 12, 13, 14, 15, 16):
             return 0
         elif cmd in (5, 6):
             return 2
@@ -26,7 +26,7 @@ class SnapAnimSegmentCommon(Segment):
         return cmd in (13, 14)
     
     def cmd_require_integers(self, cmd):
-        return cmd in (20,)
+        return cmd in (18, 20, 21)
 
     def cmd_split(self, value):
         binStr = '{:032b}'.format(value)
@@ -47,9 +47,12 @@ class SnapAnimSegmentCommon(Segment):
         12: "asSkip",
         13: "asSetPath",
         14: "asRestart",
+        15: "asSetFlags",
         16: ("asPlaySound", "asPlayEffect"),
         17: "asSetVisible",
+        18: "asSetExtraAfterBlock",
         20: "asSetExtraBlock",
+        21: "asSetExtra",
     }
 
     def parse_line(self, data, name, offset, isFirstLine, text) -> Tuple[bool, int, str, str]:
@@ -59,7 +62,7 @@ class SnapAnimSegmentCommon(Segment):
         numParams = mask.bit_count()
         floatsPerParam = self.cmd_get_param_count(cmd)
         floats = []
-        if cmd != 12:
+        if cmd != 12 and cmd != 15:
             if self.cmd_require_integers(cmd):
                 for j in range(numParams * floatsPerParam):
                     value, offset = unpack_from(">I", data, offset)[0], offset + 4
@@ -101,7 +104,7 @@ class SnapAnimSegmentCommon(Segment):
 
         lineText += cmdName
 
-        if cmd not in (0, 2, 13, 14, 16):
+        if cmd not in (0, 2, 13, 14, 15, 16):
             if cmd == 12:
                 lineText += f"_{numParams}"
             elif cmd == 17:
@@ -120,6 +123,8 @@ class SnapAnimSegmentCommon(Segment):
             lineText += f"{self.pathnames[pointer]}"
         elif cmd == 14:
             lineText += f"{name}"
+        elif cmd == 15:
+            lineText += f"{duration}, {mask}"
         elif cmd == 16:
             if "_root" in name:
                 lineText += f"{duration}, {mask >> 8}, {mask & 0xFF}"
@@ -131,7 +136,7 @@ class SnapAnimSegmentCommon(Segment):
             for i in range(31):
                 if (visMask & (1 << i)):
                     lineText += f", {i}"
-        elif cmd == 20:
+        elif cmd in (18, 20, 21):
             lineText += f"{duration}"
             paramNames = [self.cmd_get_extra_param_name(i) for i in range(5) if (mask & (1 << i))]
             for i in range(numParams):

@@ -29,31 +29,6 @@ vulpix_tex8_var1_png = 0x8018F260;
 vulpix_tex8_var2_png = 0x8018F870;
 vulpix_tex8_var3_png = 0x801906C0;
 vulpix_tex8_var4_png = 0x8018D3F0;
-arcanine_tex_eye_frame0_png = 0x80197FD0;
-arcanine_tex_eye_frame1_png = 0x80198400;
-arcanine_tex_eye_frame2_png = 0x80198830;
-charizard_tex_eye_frame0_png = 0x801857F0;
-charizard_tex_eye_frame1_png = 0x80184F90;
-charizard_tex_eye_frame2_png = 0x801853C0;
-charmeleon_tex_eye_frame0_png = 0x8017B9E0;
-charmeleon_tex_eye_frame1_png = 0x8017BC10;
-charmeleon_tex_eye_frame2_png = 0x8017BE40;
-charmeleon_tex_flame_frame0_png = 0x8017C048;
-charmeleon_tex_flame_frame1_png = 0x8017C450;
-charmeleon_tex_flame_frame2_png = 0x8017C858;
-charmeleon_tex_flame_frame3_png = 0x8017CC60;
-charmander_tex_eye_frame0_png = 0x801739D0;
-charmander_tex_eye_frame1_png = 0x80171C80;
-charmander_tex_eye_frame2_png = 0x801720B0;
-charmander_tex_eye_frame3_png = 0x801724E0;
-charmander_tex_eye_frame4_png = 0x80172910;
-charmander_tex_eye_frame5_png = 0x80172D40;
-charmander_tex_eye_frame6_png = 0x80173170;
-charmander_tex_eye_frame7_png = 0x801735A0;
-charmander_tex_flame_frame0_png = 0x80173DD8;
-charmander_tex_flame_frame1_png = 0x801741E0;
-charmander_tex_flame_frame2_png = 0x801745E8;
-charmander_tex_flame_frame3_png = 0x801749F0;
 growlithe_tex_eye_frame0_png = 0x80161CD0;
 growlithe_tex_eye_frame1_png = 0x80162100;
 rapidash_tex3_var0_png = 0x80150640;
@@ -89,21 +64,6 @@ magmar_tex_flame_frame3_png = 0x80131370;
 D_80136803_AB1B53 = 0x80136803;
 D_8004B250 = 0x8004B250;
 D_beach_8034757B = 0x8034757B;
-
-volcano_WorldSetup = 0x800FFFB8;
-
-D_80152DA0 = 0x80152DA0;
-D_801518F0 = 0x801518F0;
-D_801522E0 = 0x801522E0;
-D_801553E0 = 0x801553E0;
-D_80156930 = 0x80156930;
-D_80153810 = 0x80153810;
-D_8015A380 = 0x8015A380;
-D_80158F80 = 0x80158F80;
-D_80159D40 = 0x80159D40;
-D_8015DD50 = 0x8015DD50;
-D_8015F2B0 = 0x8015F2B0;
-D_8015C800 = 0x8015C800;
 
 charmander_modelanim_idle = 0x80177600;
 charmander_modelanim_howl = 0x80178070;
@@ -142,24 +102,6 @@ D_801968D0 = 0x801968D0;
 D_801966D0 = 0x801966D0;
 D_80196770 = 0x80196770;
 D_80196960 = 0x80196960;
-
-growlithe_modelanim_idle = 0x80168F70;
-growlithe_modelanim_roar = 0x8016A970;
-growlithe_modelanim_walk = 0x801645E0;
-growlithe_modelanim_run = 0x80168280;
-growlithe_modelanim_hit = 0x8016BCD0;
-growlithe_modelanim_eat = 0x8016E950;
-growlithe_modelanim_shakehead = 0x80164F50;
-growlithe_modelanim_jump = 0x8016DCF0;
-
-growlithe_matanim_idle = 0x80171980;
-growlithe_matanim_roar = 0x80171A20;
-growlithe_matanim_walk = 0x801717A0;
-growlithe_matanim_eat = 0x80171BD0;
-growlithe_matanim_run = 0x801718F0;
-growlithe_matanim_hit = 0x80171A90;
-growlithe_matanim_shakehead = 0x80171830;
-growlithe_matanim_jump = 0x80171B30;
 
 arcanine_modelanim_walk = 0x80199120;
 arcanine_modelanim_shakehead = 0x80199FC0;
@@ -211,22 +153,6 @@ charizard_matanim_roar = 0x8018B4A0;
 charizard_matanim_spin = 0x8018B5A0;
 charizard_matanim_spewfire = 0x8018B320;
 
-moltres_egg_model = 0x8014F080;
-moltres_egg_modelanim_idle = 0x8014E550;
-moltres_egg_modelanim_drown = 0x8014E650;
-
-moltres_modelanim_fly = 0x80143E20;
-moltres_modelanim_fly2 = 0x801429B0;
-moltres_modelanim_shakeoff = 0x80143110;
-moltres_modelanim_appear = 0x80141CF0;
-moltres_modelanim_flyaway = 0x80142370;
-
-moltres_matanim_fly = 0x8014C300;
-moltres_matanim_fly2 = 0x80147770;
-moltres_matanim_shakeoff = 0x801491B0;
-moltres_matanim_appear = 0x80144470;
-moltres_matanim_flyaway = 0x80145D30;
-
 D_800F5490 = 0x800F5490;
 D_800F41D0 = 0x800F41D0;
 D_800F55F0 = 0x800F55F0;
@@ -270,17 +196,4 @@ D_800F21C8_6F978 = 0x800F21C8;
 
 D_800EDF78 = 0x800EDF78;
 
-volcano_world_tex5_var0_png = 0x8012B238;
-volcano_world_tex5_var1_png = 0x8012B668;
-volcano_world_tex5_var2_png = 0x8012BA98;
-volcano_world_tex5_var3_png = 0x8012BEC8;
-volcano_world_tex8_var0_png = 0x8012A178;
-volcano_world_tex8_var1_png = 0x8012A5A8;
-volcano_world_tex8_var2_png = 0x8012A9D8;
-volcano_world_tex8_var3_png = 0x8012AE08;
-
 D_8010E190_334E10 = 0x8010E190;
-
-volcano_effect_frame0_png = 0x8012C2D0;
-volcano_effect_frame1_png = 0x8012CAD8;
-volcano_effect_frame2_png = 0x8012D2E0;

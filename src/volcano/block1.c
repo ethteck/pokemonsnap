@@ -13,7 +13,7 @@ extern u8 volcano_world_tex3_pal[];
 extern u8 volcano_world_tex3_png[];
 extern u8 volcano_world_tex4_pal[];
 extern u8 volcano_world_tex4_png[];
-extern u8 volcano_world_tex5_pal[];
+extern u8 volcano_world_tex5_var1_pal[];
 extern u8 volcano_world_tex5_var0_png[];
 extern u8 volcano_world_tex5_var1_png[];
 extern u8 volcano_world_tex5_var2_png[];

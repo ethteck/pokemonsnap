@@ -1,18 +1,18 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* D_80152DA0[];
-extern AnimCmd* D_801518F0[];
-extern AnimCmd* D_801522E0[];
-extern AnimCmd* D_801553E0[];
-extern AnimCmd* D_80156930[];
-extern AnimCmd* D_80153810[];
+extern AnimCmd* rapidash_modelanim_anim1[];
+extern AnimCmd* rapidash_modelanim_anim2[];
+extern AnimCmd* rapidash_modelanim_anim3[];
+extern AnimCmd* rapidash_modelanim_anim4[];
+extern AnimCmd* rapidash_modelanim_anim5[];
+extern AnimCmd* rapidash_modelanim_anim6[];
 
-extern AnimCmd** D_8015A380[];
-extern AnimCmd** D_80158F80[];
-extern AnimCmd** D_80159D40[];
-extern AnimCmd** D_8015DD50[];
-extern AnimCmd** D_8015F2B0[];
-extern AnimCmd** D_8015C800[];
+extern AnimCmd** rapidash_matanim_anim1[];
+extern AnimCmd** rapidash_matanim_anim2[];
+extern AnimCmd** rapidash_matanim_anim3[];
+extern AnimCmd** rapidash_matanim_anim4[];
+extern AnimCmd** rapidash_matanim_anim5[];
+extern AnimCmd** rapidash_matanim_anim6[];
 
 void func_802D893C_729B3C(GObj*);
 void func_802D89B0_729BB0(GObj*);
@@ -49,48 +49,48 @@ s32 D_802E153C_73273C[] = { SOUND_ID_347 };
 AnimationHeader D_802E1540_732740 = {
     0.5,
     112,
-    D_80152DA0,
-    D_8015A380,
+    rapidash_modelanim_anim3,
+    rapidash_matanim_anim3,
     D_802E1510_732710
 };
 
 AnimationHeader D_802E1554_732754 = {
     0.5,
     40,
-    D_801518F0,
-    D_80158F80,
+    rapidash_modelanim_anim1,
+    rapidash_matanim_anim1,
     NULL
 };
 
 AnimationHeader D_802E1568_732768 = {
     0.5,
     16,
-    D_801522E0,
-    D_80159D40,
+    rapidash_modelanim_anim2,
+    rapidash_matanim_anim2,
     D_802E151C_73271C
 };
 
 AnimationHeader D_802E157C_73277C = {
     0.5,
     64,
-    D_801553E0,
-    D_8015DD50,
+    rapidash_modelanim_anim5,
+    rapidash_matanim_anim5,
     D_802E152C_73272C
 };
 
 AnimationHeader D_802E1590_732790 = {
     0.5,
     128,
-    D_80156930,
-    D_8015F2B0,
+    rapidash_modelanim_anim6,
+    rapidash_matanim_anim6,
     D_802E1530_732730
 };
 
 AnimationHeader D_802E15A4_7327A4 = {
     0.5,
     64,
-    D_80153810,
-    D_8015C800,
+    rapidash_modelanim_anim4,
+    rapidash_matanim_anim4,
     D_802E153C_73273C
 };
 

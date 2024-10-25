@@ -2,15 +2,15 @@
 
 extern AnimCmd* moltres_modelanim_fly[];
 extern AnimCmd* moltres_modelanim_fly2[];
-extern AnimCmd* moltres_modelanim_shakeoff[];
+extern AnimCmd* moltres_modelanim_shake_off[];
 extern AnimCmd* moltres_modelanim_appear[];
-extern AnimCmd* moltres_modelanim_flyaway[];
+extern AnimCmd* moltres_modelanim_fly_away[];
 
 extern AnimCmd** moltres_matanim_fly[];
 extern AnimCmd** moltres_matanim_fly2[];
-extern AnimCmd** moltres_matanim_shakeoff[];
+extern AnimCmd** moltres_matanim_shake_off[];
 extern AnimCmd** moltres_matanim_appear[];
-extern AnimCmd** moltres_matanim_flyaway[];
+extern AnimCmd** moltres_matanim_fly_away[];
 
 void moltres_Render(GObj*);
 void moltres_InitialState(GObj*);
@@ -22,9 +22,9 @@ void moltres_FlyAway(GObj*);
 
 s32 moltres_animsounds_fly[] = { 0, SOUND_ID_120 };
 s32 moltres_animsounds_fly2[] = { 0, SOUND_ID_120 };
-s32 moltres_animsounds_shakeoff[] = { SOUND_ID_189, SOUND_ID_139, SOUND_ID_120 };
+s32 moltres_animsounds_shake_off[] = { SOUND_ID_189, SOUND_ID_139, SOUND_ID_120 };
 s32 moltres_animsounds_appear[] = { SOUND_ID_189 };
-s32 moltres_animsounds_flyaway[] = { SOUND_ID_189, SOUND_ID_120 };
+s32 moltres_animsounds_fly_away[] = { SOUND_ID_189, SOUND_ID_120 };
 
 AnimationHeader moltres_animation_fly = {
     0.6,
@@ -42,12 +42,12 @@ AnimationHeader moltres_animation_fly2 = {
     moltres_animsounds_fly2
 };
 
-AnimationHeader moltres_animation_shakeoff = {
+AnimationHeader moltres_animation_shake_off = {
     0.6,
     117,
-    moltres_modelanim_shakeoff,
-    moltres_matanim_shakeoff,
-    moltres_animsounds_shakeoff
+    moltres_modelanim_shake_off,
+    moltres_matanim_shake_off,
+    moltres_animsounds_shake_off
 };
 
 AnimationHeader moltres_animation_appear = {
@@ -58,12 +58,12 @@ AnimationHeader moltres_animation_appear = {
     moltres_animsounds_appear
 };
 
-AnimationHeader moltres_animation_flyaway = {
+AnimationHeader moltres_animation_fly_away = {
     0.6,
     60,
-    moltres_modelanim_flyaway,
-    moltres_matanim_flyaway,
-    moltres_animsounds_flyaway
+    moltres_modelanim_fly_away,
+    moltres_matanim_fly_away,
+    moltres_animsounds_fly_away
 };
 
 InteractionHandler moltres_tg_WaitForEgg[] = {
@@ -132,7 +132,7 @@ POKEMON_FUNC(moltres_Appear)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    Pokemon_SetAnimation(obj, &moltres_animation_shakeoff);
+    Pokemon_SetAnimation(obj, &moltres_animation_shake_off);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -141,7 +141,7 @@ POKEMON_FUNC(moltres_Appear)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetAnimation(obj, &moltres_animation_flyaway);
+    Pokemon_SetAnimation(obj, &moltres_animation_fly_away);
     Pokemon_StartPathProc(obj, moltres_FlyAway);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);

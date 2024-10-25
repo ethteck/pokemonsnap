@@ -39,14 +39,3 @@ __ALIGNER
 u8 smoke_puff_frame7_png[] = {
 #include "assets/volcano/smoke_puff/frame7.png.bin.c"
 };
-
-// TODO move to another file
-__ALIGNER
-u8 smoke_puff_unknown_pal[] = {
-#include "assets/volcano/smoke_puff/unknown.pal.bin.c"
-};
-
-__ALIGNER
-u8 smoke_puff_unknown_png[] = {
-#include "assets/volcano/smoke_puff/unknown.png.bin.c"
-};

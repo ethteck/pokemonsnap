@@ -831,20 +831,20 @@ segments:
     - [auto, c, charizard/anim/material/spin]
     - [auto, c, charizard/anim/material/appear]
     - [auto, c, vulpix/textures]
-    - [auto, c, vulpix/anim/model/anim1]
-    - [auto, c, vulpix/anim/model/anim4]
-    - [auto, c, vulpix/anim/model/anim2]
-    - [auto, c, vulpix/anim/model/anim3]
-    - [auto, c, vulpix/anim/model/anim5]
-    - [auto, c, vulpix/anim/model/anim6]
-    - [auto, c, vulpix/anim/model/anim7]
-    - [auto, c, vulpix/anim/model/anim8]
-    - [auto, c, vulpix/anim/material/anim2]
-    - [auto, c, vulpix/anim/material/anim3]
-    - [auto, c, vulpix/anim/material/anim5]
-    - [auto, c, vulpix/anim/material/anim6]
-    - [auto, c, vulpix/anim/material/anim7]
-    - [auto, c, vulpix/anim/material/anim8]
+    - [auto, c, vulpix/anim/model/walk]
+    - [auto, c, vulpix/anim/model/run]
+    - [auto, c, vulpix/anim/model/idle]
+    - [auto, c, vulpix/anim/model/lie]
+    - [auto, c, vulpix/anim/model/get_up]
+    - [auto, c, vulpix/anim/model/hit]
+    - [auto, c, vulpix/anim/model/fall]
+    - [auto, c, vulpix/anim/model/eat]
+    - [auto, c, vulpix/anim/material/idle]
+    - [auto, c, vulpix/anim/material/lie]
+    - [auto, c, vulpix/anim/material/get_up]
+    - [auto, c, vulpix/anim/material/hit]
+    - [auto, c, vulpix/anim/material/fall]
+    - [auto, c, vulpix/anim/material/eat]
     - [auto, c, arcanine/textures]
     - [auto, c, arcanine/anim/model/walk]
     - [auto, c, arcanine/anim/model/shake_head]
@@ -1618,65 +1618,65 @@ segments:
       name: rapidash/textures
       subsegments:
       - [0x375D90]
-      - { start: 0x375D98, type: palette, name: tex0, size: 0x10 }
+      - { start: 0x375D98, type: palette, name: hoof, size: 0x10 }
       - [0x375DA8]
-      - { start: 0x375DB0, type: ci4, name: tex0, flip_y: true, width: 16, height: 16 }
+      - { start: 0x375DB0, type: ci4, name: hoof, flip_y: true, width: 16, height: 16 }
       - [0x375E30]
-      - [0x375E38, palette, tex1]
+      - [0x375E38, palette, ear]
       - [0x375E58]
-      - { start: 0x375E60, type: ci4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - { start: 0x375E60, type: ci4, name: ear, flip_y: true, width: 32, height: 32 }
       - [0x376060]
-      - [0x376068, palette, tex2_var0]
+      - [0x376068, palette, tex_eye_frame0]
       - [0x376268]
-      - { start: 0x376270, type: ci8, name: tex2_var0, flip_y: true, width: 32, height: 32 }
+      - { start: 0x376270, type: ci8, name: tex_eye_frame0, flip_y: true, width: 32, height: 32 }
       - [0x376670]
-      - [0x376678, palette, tex2_var1]
+      - [0x376678, palette, tex_eye_frame1]
       - [0x376878]
-      - { start: 0x376880, type: ci8, name: tex2_var1, flip_y: true, width: 32, height: 32 }
+      - { start: 0x376880, type: ci8, name: tex_eye_frame1, flip_y: true, width: 32, height: 32 }
       - [0x376C80]
-      - [0x376C88, palette, tex2_var2]
+      - [0x376C88, palette, tex_eye_frame2]
       - [0x376E88]
-      - { start: 0x376E90, type: ci8, name: tex2_var2, flip_y: true, width: 32, height: 32 }
+      - { start: 0x376E90, type: ci8, name: tex_eye_frame2, flip_y: true, width: 32, height: 32 }
       - [0x377290]
-      - [0x377298, palette, tex3_var0]
+      - [0x377298, palette, tex_flame_frame0]
       - [0x3772B8]
-      - { start: 0x3772C0, type: ci4, name: tex3_var0, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3772C0, type: ci4, name: tex_flame_frame0, flip_y: true, width: 32, height: 32 }
       - [0x3774C0]
-      - [0x3774C8, palette, tex3_var1]
+      - [0x3774C8, palette, tex_flame_frame1]
       - [0x3774E8]
-      - { start: 0x3774F0, type: ci4, name: tex3_var1, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3774F0, type: ci4, name: tex_flame_frame1, flip_y: true, width: 32, height: 32 }
       - [0x3776F0]
-      - [0x3776F8, palette, tex3_var2]
+      - [0x3776F8, palette, tex_flame_frame2]
       - [0x377718]
-      - { start: 0x377720, type: ci4, name: tex3_var2, flip_y: true, width: 32, height: 32 }
+      - { start: 0x377720, type: ci4, name: tex_flame_frame2, flip_y: true, width: 32, height: 32 }
       - [0x377920]
-      - [0x377928, palette, tex3_var3]
+      - [0x377928, palette, tex_flame_frame3]
       - [0x377948]
-      - { start: 0x377950, type: ci4, name: tex3_var3, flip_y: true, width: 32, height: 32 }
+      - { start: 0x377950, type: ci4, name: tex_flame_frame3, flip_y: true, width: 32, height: 32 }
       - [0x377B50]
-      - [0x377B58, palette, tex3_var4]
+      - [0x377B58, palette, tex_flame_frame4]
       - [0x377B78]
-      - { start: 0x377B80, type: ci4, name: tex3_var4, flip_y: true, width: 32, height: 32 }
+      - { start: 0x377B80, type: ci4, name: tex_flame_frame4, flip_y: true, width: 32, height: 32 }
       - [0x377D80]
-      - [0x377D88, palette, tex3_var5]
+      - [0x377D88, palette, tex_flame_frame5]
       - [0x377DA8]
-      - { start: 0x377DB0, type: ci4, name: tex3_var5, flip_y: true, width: 32, height: 32 }
+      - { start: 0x377DB0, type: ci4, name: tex_flame_frame5, flip_y: true, width: 32, height: 32 }
       - [0x377FB0]
-      - [0x377FB8, palette, tex3_var6]
+      - [0x377FB8, palette, tex_flame_frame6]
       - [0x377FD8]
-      - { start: 0x377FE0, type: ci4, name: tex3_var6, flip_y: true, width: 32, height: 32 }
+      - { start: 0x377FE0, type: ci4, name: tex_flame_frame6, flip_y: true, width: 32, height: 32 }
       - [0x3781E0]
-      - [0x3781E8, palette, tex3_var7]
+      - [0x3781E8, palette, tex_flame_frame7]
       - [0x378208]
-      - { start: 0x378210, type: ci4, name: tex3_var7, flip_y: true, width: 32, height: 32 }
+      - { start: 0x378210, type: ci4, name: tex_flame_frame7, flip_y: true, width: 32, height: 32 }
       - [0x378410]
-      - [0x378418, palette, tex5]
+      - [0x378418, palette, tex_nostril]
       - [0x378438]
-      - { start: 0x378440, type: ci4, name: tex5, flip_y: true, width: 16, height: 16 }
+      - { start: 0x378440, type: ci4, name: tex_nostril, flip_y: true, width: 16, height: 16 }
       - [0x3784C0]
-      - { start: 0x3784C8, type: palette, name: tex6, size: 0x18 }
+      - { start: 0x3784C8, type: palette, name: tex_skin, size: 0x18 }
       - [0x3784E0]
-      - { start: 0x3784E8, type: ci4, name: tex6, flip_y: true, width: 16, height: 16 }
+      - { start: 0x3784E8, type: ci4, name: tex_skin, flip_y: true, width: 16, height: 16 }
     - start: 0x378570
       type: .data
       dir: rapidash/anim/model/
@@ -2426,87 +2426,87 @@ segments:
     - start: 0x3B7740
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim1
+      name: vulpix/anim/model/walk
       subsegments:
-      - [0x3B7740, snap_model_anim, anim1]
+      - [0x3B7740, snap_model_anim, walk]
     - start: 0x3B7EE0
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim4
+      name: vulpix/anim/model/run
       subsegments:
-      - [0x3B7EE0, snap_model_anim, anim4]
+      - [0x3B7EE0, snap_model_anim, run]
     - start: 0x3B87A0
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim2
+      name: vulpix/anim/model/idle
       subsegments:
-      - [0x3B87A0, snap_model_anim, anim2]
+      - [0x3B87A0, snap_model_anim, idle]
     - start: 0x3B8BC0
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim3
+      name: vulpix/anim/model/lie
       subsegments:
-      - [0x3B8BC0, snap_model_anim, anim3]
+      - [0x3B8BC0, snap_model_anim, lie]
     - start: 0x3B8FC0
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim5
+      name: vulpix/anim/model/get_up
       subsegments:
-      - [0x3B8FC0, snap_model_anim, anim5]
+      - [0x3B8FC0, snap_model_anim, get_up]
     - start: 0x3BA230
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim6
+      name: vulpix/anim/model/hit
       subsegments:
-      - [0x3BA230, snap_model_anim, anim6]
+      - [0x3BA230, snap_model_anim, hit]
     - start: 0x3BA950
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim7
+      name: vulpix/anim/model/fall
       subsegments:
-      - [0x3BA950, snap_model_anim, anim7]
+      - [0x3BA950, snap_model_anim, fall]
     - start: 0x3BBD30
       type: .data
       dir: vulpix/anim/model/
-      name: vulpix/anim/model/anim8
+      name: vulpix/anim/model/eat
       subsegments:
-      - [0x3BBD30, snap_model_anim, anim8]
+      - [0x3BBD30, snap_model_anim, eat]
     - start: 0x3BD230
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim2
+      name: vulpix/anim/material/idle
       subsegments:
-      - [0x3BD230, snap_material_anim, anim2]
+      - [0x3BD230, snap_material_anim, idle]
     - start: 0x3BD350
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim3
+      name: vulpix/anim/material/lie
       subsegments:
-      - [0x3BD350, snap_material_anim, anim3]
+      - [0x3BD350, snap_material_anim, lie]
     - start: 0x3BD3F0
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim5
+      name: vulpix/anim/material/get_up
       subsegments:
-      - [0x3BD3F0, snap_material_anim, anim5]
+      - [0x3BD3F0, snap_material_anim, get_up]
     - start: 0x3BD4B0
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim6
+      name: vulpix/anim/material/hit
       subsegments:
-      - [0x3BD4B0, snap_material_anim, anim6]
+      - [0x3BD4B0, snap_material_anim, hit]
     - start: 0x3BD550
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim7
+      name: vulpix/anim/material/fall
       subsegments:
-      - [0x3BD550, snap_material_anim, anim7]
+      - [0x3BD550, snap_material_anim, fall]
     - start: 0x3BD5E0
       type: .data
       dir: vulpix/anim/material/
-      name: vulpix/anim/material/anim8
+      name: vulpix/anim/material/eat
       subsegments:
-      - [0x3BD5E0, snap_material_anim, anim8]
+      - [0x3BD5E0, snap_material_anim, eat]
     - start: 0x3BD680
       type: .data
       dir: arcanine

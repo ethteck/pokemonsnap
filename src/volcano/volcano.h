@@ -26,7 +26,7 @@
 #define VOLCANO_CMD_CHARMANDER_EVOLVE POKEMON_CMD_41
 #define VOLCANO_CMD_HOWLING_ENDED POKEMON_CMD_42
 #define VOLCANO_CMD_HOWL_IN_RESPONSE POKEMON_CMD_43
-#define VOLCANO_CMD_44 POKEMON_CMD_44
+#define VOLCANO_CMD_VULPIX_RUN POKEMON_CMD_44
 
 extern HeightMap volcano_heightMap;
 extern WorldSetup volcano_WorldSetup;
@@ -71,7 +71,7 @@ bool volcano_SpawnGrowlitheOrArcanine(GObj* obj);
 GObj* magmar_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* rapidash_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charmander_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DAA9C_72BC9C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* vulpix_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charmeleon_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charizard_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* arcanine_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

@@ -66,7 +66,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_VULPIX,
-      func_802DAA9C_72BC9C,
+      vulpix_Spawn,
       Pokemon_ChangeBlockAndRemove,
       pokemonRemoveOne },
     { PokemonID_CHARMELEON,

@@ -1,27 +1,27 @@
 #include <common.h>
 
-extern u8 rapidash_tex0_pal[];
-extern u8 rapidash_tex0_png[];
-extern u8 rapidash_tex1_pal[];
-extern u8 rapidash_tex1_png[];
-extern u8 rapidash_tex2_var0_pal[];
-extern u8 rapidash_tex2_var0_png[];
-extern u8 rapidash_tex2_var1_png[];
-extern u8 rapidash_tex2_var2_png[];
-extern u8 rapidash_tex3_var0_pal[];
-extern u8 rapidash_tex3_var0_png[];
-extern u8 rapidash_tex3_var1_pal[];
-extern u8 rapidash_tex3_var1_png[];
-extern u8 rapidash_tex3_var2_png[];
-extern u8 rapidash_tex3_var3_png[];
-extern u8 rapidash_tex3_var4_png[];
-extern u8 rapidash_tex3_var5_png[];
-extern u8 rapidash_tex3_var6_png[];
-extern u8 rapidash_tex3_var7_png[];
-extern u8 rapidash_tex5_pal[];
-extern u8 rapidash_tex5_png[];
-extern u8 rapidash_tex6_pal[];
-extern u8 rapidash_tex6_png[];
+extern u8 rapidash_tex_hoof_pal[];
+extern u8 rapidash_tex_hoof_png[];
+extern u8 rapidash_tex_ear_pal[];
+extern u8 rapidash_tex_ear_png[];
+extern u8 rapidash_tex_eye_frame0_pal[];
+extern u8 rapidash_tex_eye_frame0_png[];
+extern u8 rapidash_tex_eye_frame1_png[];
+extern u8 rapidash_tex_eye_frame2_png[];
+extern u8 rapidash_tex_flame_frame0_pal[];
+extern u8 rapidash_tex_flame_frame0_png[];
+extern u8 rapidash_tex_flame_frame1_pal[];
+extern u8 rapidash_tex_flame_frame1_png[];
+extern u8 rapidash_tex_flame_frame2_png[];
+extern u8 rapidash_tex_flame_frame3_png[];
+extern u8 rapidash_tex_flame_frame4_png[];
+extern u8 rapidash_tex_flame_frame5_png[];
+extern u8 rapidash_tex_flame_frame6_png[];
+extern u8 rapidash_tex_flame_frame7_png[];
+extern u8 rapidash_tex_nostril_pal[];
+extern u8 rapidash_tex_nostril_png[];
+extern u8 rapidash_tex_skin_pal[];
+extern u8 rapidash_tex_skin_png[];
 
 extern Texture* rapidash_part0_mat[];
 extern Texture* rapidash_part1_mat[];
@@ -62,119 +62,119 @@ Texture** rapidash_materials[] = {
 };
 
 u8* rapidash_part0_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part1_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part2_mat0_textures[] = {
-    rapidash_tex2_var0_png,
-    rapidash_tex2_var1_png,
-    rapidash_tex2_var2_png,
+    rapidash_tex_eye_frame0_png,
+    rapidash_tex_eye_frame1_png,
+    rapidash_tex_eye_frame2_png,
 };
 
 u8* rapidash_part3_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part4_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part6_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part10_mat0_textures[] = {
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
-    rapidash_tex3_var0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
+    rapidash_tex_flame_frame0_png,
 };
 
 u8* rapidash_part13_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part17_mat0_textures[] = {
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
-    rapidash_tex3_var0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
+    rapidash_tex_flame_frame0_png,
 };
 
 u8* rapidash_part19_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
 };
 
 u8* rapidash_part20_mat0_textures[] = {
-    rapidash_tex3_var0_png,
-    rapidash_tex3_var1_png,
-    rapidash_tex3_var2_png,
-    rapidash_tex3_var3_png,
-    rapidash_tex3_var4_png,
-    rapidash_tex3_var5_png,
-    rapidash_tex3_var6_png,
-    rapidash_tex3_var7_png,
+    rapidash_tex_flame_frame0_png,
+    rapidash_tex_flame_frame1_png,
+    rapidash_tex_flame_frame2_png,
+    rapidash_tex_flame_frame3_png,
+    rapidash_tex_flame_frame4_png,
+    rapidash_tex_flame_frame5_png,
+    rapidash_tex_flame_frame6_png,
+    rapidash_tex_flame_frame7_png,
     NULL,
 };
 

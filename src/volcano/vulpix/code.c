@@ -1,199 +1,199 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* vulpix_modelanim_anim1[];
-extern AnimCmd* vulpix_modelanim_anim2[];
-extern AnimCmd* vulpix_modelanim_anim3[];
-extern AnimCmd* vulpix_modelanim_anim4[];
-extern AnimCmd* vulpix_modelanim_anim5[];
-extern AnimCmd* vulpix_modelanim_anim6[];
-extern AnimCmd* vulpix_modelanim_anim7[];
-extern AnimCmd* vulpix_modelanim_anim8[];
+extern AnimCmd* vulpix_modelanim_walk[];
+extern AnimCmd* vulpix_modelanim_idle[];
+extern AnimCmd* vulpix_modelanim_lie[];
+extern AnimCmd* vulpix_modelanim_run[];
+extern AnimCmd* vulpix_modelanim_get_up[];
+extern AnimCmd* vulpix_modelanim_hit[];
+extern AnimCmd* vulpix_modelanim_fall[];
+extern AnimCmd* vulpix_modelanim_eat[];
 
-extern AnimCmd** vulpix_matanim_anim2[];
-extern AnimCmd** vulpix_matanim_anim3[];
-extern AnimCmd** vulpix_matanim_anim5[];
-extern AnimCmd** vulpix_matanim_anim6[];
-extern AnimCmd** vulpix_matanim_anim7[];
-extern AnimCmd** vulpix_matanim_anim8[];
+extern AnimCmd** vulpix_matanim_idle[];
+extern AnimCmd** vulpix_matanim_lie[];
+extern AnimCmd** vulpix_matanim_get_up[];
+extern AnimCmd** vulpix_matanim_hit[];
+extern AnimCmd** vulpix_matanim_fall[];
+extern AnimCmd** vulpix_matanim_eat[];
 
-void func_802DA3A0_72B5A0(GObj*);
-void func_802D9F24_72B124(GObj*);
-void func_802DA97C_72BB7C(GObj*);
-void func_802DAA34_72BC34(GObj*);
-void func_802DA000_72B200(GObj*);
-void func_802DA100_72B300(GObj*);
-void func_802DA200_72B400(GObj*);
-void func_802DA2C8_72B4C8(GObj*);
-void func_802DA7A4_72B9A4(GObj*);
-void func_802DA5B4_72B7B4(GObj*);
-void func_802DA68C_72B88C(GObj*);
-void func_802DA330_72B530(GObj*);
-void func_802D9F90_72B190(GObj*);
-void func_802DA0A4_72B2A4(GObj*);
-void func_802DA1A4_72B3A4(GObj*);
-void func_802DA5D8_72B7D8(GObj*);
-void func_802DA428_72B628(GObj*);
-void func_802DA4AC_72B6AC(GObj*);
-void func_802DA55C_72B75C(GObj*);
-void func_802DA748_72B948(GObj*);
-void func_802DA848_72BA48(GObj*);
-void func_802DA8A4_72BAA4(GObj*);
-void func_802DA930_72BB30(GObj*);
+void vulpix_AppleNearby(GObj*);
+void vulpix_InitialState(GObj*);
+void vulpix_RunningHitByPesterBall(GObj*);
+void vulpix_RunningHit(GObj*);
+void vulpix_Walk(GObj*);
+void vulpix_Run(GObj*);
+void vulpix_HitByPesterBall(GObj*);
+void vulpix_HitByApple(GObj*);
+void vulpix_RunAlongPath(GObj*);
+void vulpix_SearchApple(GObj*);
+void vulpix_RunAwayFromPlayer(GObj*);
+void vulpix_AffectedByPesterBall(GObj*);
+void vulpix_Idle(GObj*);
+void vulpix_MoveWalk(GObj*);
+void vulpix_MoveRun(GObj*);
+void vulpix_Recover(GObj*);
+void vulpix_RunToApple(GObj*);
+void vulpix_EatApple(GObj*);
+void vulpix_TurnToApple(GObj*);
+void vulpix_MoveRunAway(GObj*);
+void vulpix_MoveRunToPathEnd(GObj*);
+void vulpix_IdleAtPathEnd(GObj*);
+void vulpix_TurnToPlayer(GObj*);
 
-s32 D_802E1FF0_7331F0[] = { SOUND_ID_291 };
-s32 D_802E1FF4_7331F4[] = { SOUND_ID_292 };
+s32 vulpix_animsounds_fall[] = { SOUND_ID_291 };
+s32 vulpix_animsounds_eat[] = { SOUND_ID_292 };
 
-AnimationHeader D_802E1FF8_7331F8 = {
+AnimationHeader vulpix_animation_idle = {
     0.4,
     40,
-    vulpix_modelanim_anim2,
-    vulpix_matanim_anim2,
+    vulpix_modelanim_idle,
+    vulpix_matanim_idle,
     NULL
 };
 
-AnimationHeader D_802E200C_73320C = {
+AnimationHeader vulpix_animation_walk = {
     0.8,
     40,
-    vulpix_modelanim_anim1,
+    vulpix_modelanim_walk,
     NULL,
     NULL
 };
 
-AnimationHeader D_802E2020_733220 = {
+AnimationHeader vulpix_animation_run = {
     1.2,
     37,
-    vulpix_modelanim_anim4,
+    vulpix_modelanim_run,
     NULL,
     NULL
 };
 
-AnimationHeader D_802E2034_733234 = {
+AnimationHeader vulpix_animation_hit = {
     0.5,
     15,
-    vulpix_modelanim_anim6,
-    vulpix_matanim_anim6,
+    vulpix_modelanim_hit,
+    vulpix_matanim_hit,
     NULL
 };
 
-AnimationHeader D_802E2048_733248 = {
+AnimationHeader vulpix_animation_fall = {
     0.7,
     52,
-    vulpix_modelanim_anim7,
-    vulpix_matanim_anim7,
-    D_802E1FF0_7331F0
+    vulpix_modelanim_fall,
+    vulpix_matanim_fall,
+    vulpix_animsounds_fall
 };
 
-AnimationHeader D_802E205C_73325C = {
+AnimationHeader vulpix_animation_lie = {
     0.5,
     10,
-    vulpix_modelanim_anim3,
-    vulpix_matanim_anim3,
+    vulpix_modelanim_lie,
+    vulpix_matanim_lie,
     NULL
 };
 
-AnimationHeader D_802E2070_733270 = {
+AnimationHeader vulpix_animation_get_up = {
     0.35,
     45,
-    vulpix_modelanim_anim5,
-    vulpix_matanim_anim5,
+    vulpix_modelanim_get_up,
+    vulpix_matanim_get_up,
     NULL
 };
 
-AnimationHeader D_802E2084_733284 = {
+AnimationHeader vulpix_animation_eat = {
     0.5,
     54,
-    vulpix_modelanim_anim8,
-    vulpix_matanim_anim8,
-    D_802E1FF4_7331F4
+    vulpix_modelanim_eat,
+    vulpix_matanim_eat,
+    vulpix_animsounds_eat
 };
 
-InteractionHandler D_802E2098_733298[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
-    { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
-    { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { POKEMON_CMD_15, func_802DA5B4_72B7B4, 0, NULL },
-    { POKEMON_CMD_16, func_802DA68C_72B88C, 1000.0 / 3.0, NULL },
-    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+InteractionHandler vulpix_tg_Normal[] = {
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, vulpix_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, vulpix_AppleNearby, 0, NULL },
+    { POKEMON_CMD_15, vulpix_SearchApple, 0, NULL },
+    { POKEMON_CMD_16, vulpix_RunAwayFromPlayer, 1000.0 / 3.0, NULL },
+    { VOLCANO_CMD_VULPIX_RUN, vulpix_RunAlongPath, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E2118_733318[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
-    { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
-    { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, vulpix_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, vulpix_AppleNearby, 0, NULL },
+    { VOLCANO_CMD_VULPIX_RUN, vulpix_RunAlongPath, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2178_733378[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
-    { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
-    { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { POKEMON_CMD_16, func_802DA68C_72B88C, 1000.0 / 3.0, NULL },
+InteractionHandler vulpix_tg_Eating[] = {
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, vulpix_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, vulpix_AppleNearby, 0, NULL },
+    { POKEMON_CMD_16, vulpix_RunAwayFromPlayer, 1000.0 / 3.0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E21D8_7333D8[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
+InteractionHandler vulpix_tg_Distracted[] = {
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E2208_733408[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E2238_733438[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
-    { POKEMON_CMD_15, func_802DA5B4_72B7B4, 0, NULL },
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
+    { POKEMON_CMD_15, vulpix_SearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E2278_733478[] = {
-    { POKEMON_CMD_9, func_802DA200_72B400, 0, NULL },
-    { POKEMON_CMD_13, func_802DA2C8_72B4C8, 0, NULL },
-    { POKEMON_CMD_10, func_802DA330_72B530, 0, NULL },
-    { POKEMON_CMD_14, func_802DA3A0_72B5A0, 0, NULL },
-    { VOLCANO_CMD_44, func_802DA7A4_72B9A4, 0, NULL },
+InteractionHandler vulpix_tg_RunningAway[] = {
+    { POKEMON_CMD_9, vulpix_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, vulpix_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, vulpix_AppleNearby, 0, NULL },
+    { VOLCANO_CMD_VULPIX_RUN, vulpix_RunAlongPath, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E22D8_7334D8[] = {
-    { 100, func_802D9F90_72B190 },
-    { 100, func_802DA000_72B200 },
-    { 100, func_802DA100_72B300 },
+RandomState vulpix_idleStates[] = {
+    { 100, vulpix_Idle },
+    { 100, vulpix_Walk },
+    { 100, vulpix_Run },
     { 0, NULL },
 };
 
-Vec3f D_802E22F8_7334F8 = { 0, 0, 0 };
+Vec3f vulpix_ZeroVector = { 0, 0, 0 };
 
-InteractionHandler D_802E2304_733504[] = {
-    { POKEMON_CMD_9, func_802DA97C_72BB7C, 0, NULL },
-    { POKEMON_CMD_13, func_802DAA34_72BC34, 0, NULL },
-    { POKEMON_CMD_10, func_802DAA34_72BC34, 0, NULL },
+InteractionHandler vulpix_tg_Running[] = {
+    { POKEMON_CMD_9, vulpix_RunningHitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, vulpix_RunningHit, 0, NULL },
+    { POKEMON_CMD_10, vulpix_RunningHit, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802E2344_733544 = {
-    &D_802E1FF8_7331F8,
-    func_802D9F24_72B124,
+PokemonAnimationSetup vulpix_animSetup = {
+    &vulpix_animation_idle,
+    vulpix_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E2358_733558 = {
+PokemonInitData vulpix_initData = {
     vulpix_model,
     vulpix_materials,
     renderPokemonModelTypeIFogged,
-    &D_802E2344_733544,
+    &vulpix_animSetup,
     { 1.7, 1.7, 1.7 },
     { 0, 60, 0 },
     30,
@@ -204,17 +204,17 @@ PokemonInitData D_802E2358_733558 = {
     { 0, 0, 0 }
 };
 
-s32 func_802D9D00_72AF00(GObj* obj) {
-    Vec3f sp2C = D_802E22F8_7334F8;
+s32 vulpix_CloseToPathEnd(GObj* obj) {
+    Vec3f endPos = vulpix_ZeroVector;
     Pokemon* pokemon = GET_POKEMON(obj);
     WorldBlock* block;
     DObj* model = obj->data.dobj;
     UNUSED s32 pad[1];
 
     block = getCurrentWorldBlock();
-    GetInterpolatedPosition(&sp2C, pokemon->path, 0.99999f);
-    pokemon->pos1.x = (sp2C.x - block->descriptor->worldPos.x) * 100.0f;
-    pokemon->pos1.z = (sp2C.z - block->descriptor->worldPos.z) * 100.0f;
+    GetInterpolatedPosition(&endPos, pokemon->path, 0.99999f);
+    pokemon->pos1.x = (endPos.x - block->descriptor->worldPos.x) * 100.0f;
+    pokemon->pos1.z = (endPos.z - block->descriptor->worldPos.z) * 100.0f;
 
     if (SQ(pokemon->pos1.x - GET_TRANSFORM(model)->pos.v.x) + SQ(pokemon->pos1.z - GET_TRANSFORM(model)->pos.v.z) < SQ(1000.0f)) {
         return true;
@@ -223,18 +223,18 @@ s32 func_802D9D00_72AF00(GObj* obj) {
     }
 }
 
-POKEMON_FUNC(func_802D9DFC_72AFFC)
+POKEMON_FUNC(vulpix_SendRunCommand)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_1000;
     while (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_1000)) {
-        if (func_802D9D00_72AF00(obj)) {
-            cmdSendCommand(obj, VOLCANO_CMD_44, obj);
+        if (vulpix_CloseToPathEnd(obj)) {
+            cmdSendCommand(obj, VOLCANO_CMD_VULPIX_RUN, obj);
         }
         ohWait(1);
     }
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802D9E7C_72B07C)
+POKEMON_FUNC(vulpix_DeleteLater)
     s32 blockIndex;
     f32 blockPart;
 
@@ -249,44 +249,44 @@ POKEMON_FUNC(func_802D9E7C_72B07C)
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802D9F24_72B124)
+POKEMON_FUNC(vulpix_InitialState)
     pokemon->flags |= POKEMON_FLAG_200;
     pokemon->flags |= POKEMON_FLAG_800;
-    pokemon->miscVars[1].field1 = 0;
+    pokemon->miscVars[1].field1 = false;
 
-    Pokemon_StartAuxProc(obj, func_802D9DFC_72AFFC);
-    Pokemon_StartAuxProc(obj, func_802D9E7C_72B07C);
+    Pokemon_StartAuxProc(obj, vulpix_SendRunCommand);
+    Pokemon_StartAuxProc(obj, vulpix_DeleteLater);
 
-    Pokemon_SetState(obj, func_802D9F90_72B190);
+    Pokemon_SetState(obj, vulpix_Idle);
 }
 
 static void nullsub() {
 }
 
-POKEMON_FUNC(func_802D9F90_72B190)
-    Pokemon_SetAnimation(obj, &D_802E1FF8_7331F8);
+POKEMON_FUNC(vulpix_Idle)
+    Pokemon_SetAnimation(obj, &vulpix_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E2098_733298;
+    pokemon->transitionGraph = vulpix_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802E22D8_7334D8);
+    Pokemon_SetStateRandom(obj, vulpix_idleStates);
 }
 
-POKEMON_FUNC(func_802DA000_72B200)
-    Pokemon_SetAnimation(obj, &D_802E200C_73320C);
+POKEMON_FUNC(vulpix_Walk)
+    Pokemon_SetAnimation(obj, &vulpix_animation_walk);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DA0A4_72B2A4);
-    pokemon->transitionGraph = D_802E2098_733298;
+    Pokemon_StartPathProc(obj, vulpix_MoveWalk);
+    pokemon->transitionGraph = vulpix_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802D9F90_72B190);
+        Pokemon_SetState(obj, vulpix_Idle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E22D8_7334D8);
+    Pokemon_SetStateRandom(obj, vulpix_idleStates);
 }
 
-POKEMON_FUNC(func_802DA0A4_72B2A4)
+POKEMON_FUNC(vulpix_MoveWalk)
     pokemon->hSpeed = 40.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -294,21 +294,21 @@ POKEMON_FUNC(func_802DA0A4_72B2A4)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA100_72B300)
-    Pokemon_SetAnimation(obj, &D_802E2020_733220);
+POKEMON_FUNC(vulpix_Run)
+    Pokemon_SetAnimation(obj, &vulpix_animation_run);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802DA1A4_72B3A4);
-    pokemon->transitionGraph = D_802E2098_733298;
+    Pokemon_StartPathProc(obj, vulpix_MoveRun);
+    pokemon->transitionGraph = vulpix_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802D9F90_72B190);
+        Pokemon_SetState(obj, vulpix_Idle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E22D8_7334D8);
+    Pokemon_SetStateRandom(obj, vulpix_idleStates);
 }
 
-POKEMON_FUNC(func_802DA1A4_72B3A4)
+POKEMON_FUNC(vulpix_MoveRun)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -316,57 +316,57 @@ POKEMON_FUNC(func_802DA1A4_72B3A4)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA200_72B400)
-    Pokemon_SetAnimation(obj, &D_802E2048_733248);
+POKEMON_FUNC(vulpix_HitByPesterBall)
+    Pokemon_SetAnimation(obj, &vulpix_animation_fall);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E205C_73325C);
+    Pokemon_SetAnimation(obj, &vulpix_animation_lie);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2070_733270);
+    Pokemon_SetAnimation(obj, &vulpix_animation_get_up);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DA5D8_72B7D8);
+    Pokemon_SetState(obj, vulpix_Recover);
 }
 
-POKEMON_FUNC(func_802DA2C8_72B4C8)
-    Pokemon_SetAnimation(obj, &D_802E2034_733234);
+POKEMON_FUNC(vulpix_HitByApple)
+    Pokemon_SetAnimation(obj, &vulpix_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DA5D8_72B7D8);
+    Pokemon_SetState(obj, vulpix_Recover);
 }
 
-POKEMON_FUNC(func_802DA330_72B530)
-    Pokemon_SetAnimation(obj, &D_802E2034_733234);
+POKEMON_FUNC(vulpix_AffectedByPesterBall)
+    Pokemon_SetAnimation(obj, &vulpix_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E21D8_7333D8;
+    pokemon->transitionGraph = vulpix_tg_Distracted;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802D9F90_72B190);
+    Pokemon_SetState(obj, vulpix_Idle);
 }
 
-POKEMON_FUNC(func_802DA3A0_72B5A0)
-    Pokemon_StartPathProc(obj, func_802DA428_72B628);
+POKEMON_FUNC(vulpix_AppleNearby)
+    Pokemon_StartPathProc(obj, vulpix_RunToApple);
     pokemon->transitionGraph = D_802E2118_733318;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802D9F90_72B190);
+        Pokemon_SetState(obj, vulpix_Idle);
     }
 
-    Pokemon_SetState(obj, func_802DA4AC_72B6AC);
+    Pokemon_SetState(obj, vulpix_EatApple);
 }
 
-POKEMON_FUNC(func_802DA428_72B628)
-    Pokemon_SetAnimation(obj, &D_802E2020_733220);
+POKEMON_FUNC(vulpix_RunToApple)
+    Pokemon_SetAnimation(obj, &vulpix_animation_run);
     pokemon->hSpeed = 160.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     Pokemon_TurnToTarget(obj, 0.1f, 0);
@@ -375,70 +375,70 @@ POKEMON_FUNC(func_802DA428_72B628)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA4AC_72B6AC)
+POKEMON_FUNC(vulpix_EatApple)
     if (pokemon->interactionTarget == NULL) {
-        Pokemon_SetState(obj, func_802D9F90_72B190);
+        Pokemon_SetState(obj, vulpix_Idle);
     }
 
-    Pokemon_SetAnimation(obj, &D_802E2084_733284);
-    Pokemon_StartPathProc(obj, func_802DA55C_72B75C);
-    pokemon->transitionGraph = D_802E2178_733378;
+    Pokemon_SetAnimation(obj, &vulpix_animation_eat);
+    Pokemon_StartPathProc(obj, vulpix_TurnToApple);
+    pokemon->transitionGraph = vulpix_tg_Eating;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     if (pokemon->interactionTarget != NULL) {
-        Pokemon_SetState(obj, func_802DA4AC_72B6AC);
+        Pokemon_SetState(obj, vulpix_EatApple);
     }
 
-    Pokemon_SetState(obj, func_802DA5D8_72B7D8);
+    Pokemon_SetState(obj, vulpix_Recover);
 }
 
-POKEMON_FUNC(func_802DA55C_72B75C)
+POKEMON_FUNC(vulpix_TurnToApple)
     while (true) {
         Pokemon_TurnToTarget(obj, 0.1f, 0);
         ohWait(1);
     }
 }
 
-POKEMON_FUNC(func_802DA5B4_72B7B4)
-    Pokemon_SetState(obj, func_802DA3A0_72B5A0);
+POKEMON_FUNC(vulpix_SearchApple)
+    Pokemon_SetState(obj, vulpix_AppleNearby);
 }
 
-POKEMON_FUNC(func_802DA5D8_72B7D8)
+POKEMON_FUNC(vulpix_Recover)
     pokemon->apple = NULL;
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802E2238_733438;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetState(obj, func_802D9F90_72B190);
+    Pokemon_SetState(obj, vulpix_Idle);
 }
 
 static void nullsub2() {
 }
 
-POKEMON_FUNC(func_802DA640_72B840)
+POKEMON_FUNC(vulpix_unused_TurnToPlayer)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA68C_72B88C)
-    Pokemon_SetAnimation(obj, &D_802E2020_733220);
-    Pokemon_StartPathProc(obj, func_802DA748_72B948);
-    pokemon->transitionGraph = D_802E2278_733478;
+POKEMON_FUNC(vulpix_RunAwayFromPlayer)
+    Pokemon_SetAnimation(obj, &vulpix_animation_run);
+    Pokemon_StartPathProc(obj, vulpix_MoveRunAway);
+    pokemon->transitionGraph = vulpix_tg_RunningAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED) {
-        Pokemon_SetState(obj, func_802D9F90_72B190);
+        Pokemon_SetState(obj, vulpix_Idle);
     }
 
-    pokemon->transitionGraph = D_802E2278_733478;
+    pokemon->transitionGraph = vulpix_tg_RunningAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802D9F90_72B190);
+    Pokemon_SetState(obj, vulpix_Idle);
 }
 
-POKEMON_FUNC(func_802DA748_72B948)
+POKEMON_FUNC(vulpix_MoveRunAway)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunAwayFromTarget(obj, 1000.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -446,21 +446,21 @@ POKEMON_FUNC(func_802DA748_72B948)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA7A4_72B9A4)
+POKEMON_FUNC(vulpix_RunAlongPath)
     pokemon->flags &= ~POKEMON_FLAG_200;
     pokemon->flags &= ~POKEMON_FLAG_800;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_1000;
 
-    Pokemon_SetAnimation(obj, &D_802E2020_733220);
+    Pokemon_SetAnimation(obj, &vulpix_animation_run);
     pokemon->hSpeed = 160.0f;
-    Pokemon_StartPathProc(obj, func_802DA848_72BA48);
-    pokemon->transitionGraph = D_802E2304_733504;
+    Pokemon_StartPathProc(obj, vulpix_MoveRunToPathEnd);
+    pokemon->transitionGraph = vulpix_tg_Running;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802DA8A4_72BAA4);
+    Pokemon_SetState(obj, vulpix_IdleAtPathEnd);
 }
 
-POKEMON_FUNC(func_802DA848_72BA48)
+POKEMON_FUNC(vulpix_MoveRunToPathEnd)
     Pokemon_SetTargetPos(obj, pokemon->pos1.x, pokemon->pos1.z);
     Pokemon_RunToTargetPos(obj, 0.1f);
     pokemon->pathProc = FALSE;
@@ -468,50 +468,51 @@ POKEMON_FUNC(func_802DA848_72BA48)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA8A4_72BAA4)
-    Pokemon_SetAnimation(obj, &D_802E2084_733284);
-    if (pokemon->miscVars[1].field1 == 0) {
-        pokemon->miscVars[1].field1 = 1;
-        Pokemon_StartPathProc(obj, func_802DA930_72BB30);
+POKEMON_FUNC(vulpix_IdleAtPathEnd)
+    Pokemon_SetAnimation(obj, &vulpix_animation_eat);
+    if (!pokemon->miscVars[1].field1) {
+        pokemon->miscVars[1].field1 = true;
+        Pokemon_StartPathProc(obj, vulpix_TurnToPlayer);
     }
-    pokemon->transitionGraph = D_802E2304_733504;
+    pokemon->transitionGraph = vulpix_tg_Running;
     Pokemon_WaitForFlag(obj, 0);
-    Pokemon_SetState(obj, func_802DA8A4_72BAA4);
+
+    Pokemon_SetState(obj, vulpix_IdleAtPathEnd);
 }
 
-POKEMON_FUNC(func_802DA930_72BB30)
+POKEMON_FUNC(vulpix_TurnToPlayer)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DA97C_72BB7C)
-    Pokemon_SetAnimation(obj, &D_802E2048_733248);
+POKEMON_FUNC(vulpix_RunningHitByPesterBall)
+    Pokemon_SetAnimation(obj, &vulpix_animation_fall);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E205C_73325C);
+    Pokemon_SetAnimation(obj, &vulpix_animation_lie);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802E2070_733270);
-    pokemon->transitionGraph = D_802E2304_733504;
+    Pokemon_SetAnimation(obj, &vulpix_animation_get_up);
+    pokemon->transitionGraph = vulpix_tg_Running;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DA7A4_72B9A4);
+    Pokemon_SetState(obj, vulpix_RunAlongPath);
 }
 
-POKEMON_FUNC(func_802DAA34_72BC34)
-    Pokemon_SetAnimation(obj, &D_802E2034_733234);
+POKEMON_FUNC(vulpix_RunningHit)
+    Pokemon_SetAnimation(obj, &vulpix_animation_hit);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802DA7A4_72B9A4);
+    Pokemon_SetState(obj, vulpix_RunAlongPath);
 }
 
-GObj* func_802DAA9C_72BC9C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E2358_733558);
+GObj* vulpix_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &vulpix_initData);
 }

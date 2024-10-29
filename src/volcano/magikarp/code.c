@@ -83,7 +83,7 @@ POKEMON_FUNC(volcano_magikarp_InitialState)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    D_802E0EB4_7320B4 = false;
+    volcano_MagikarpHasSpawned = false;
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

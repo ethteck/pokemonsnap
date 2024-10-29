@@ -2,8 +2,8 @@
 
 extern UnkEC64Arg3 evolution_controller_model[];
 extern Texture** evolution_controller_materials[];
-extern AnimCmd* D_800F55F0[];
-extern AnimCmd** D_800F58C0[];
+extern AnimCmd* evolution_controller_modelanim[];
+extern AnimCmd** evolution_controller_matanim[];
 
 void evolution_controller_InitialState(GObj*);
 void func_802DEBF0_72FDF0(GObj*);
@@ -18,24 +18,24 @@ s32 D_802E3414_734614[] = { SOUND_ID_134 };
 AnimationHeader D_802E3418_734618 = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
     NULL
 };
 
 AnimationHeader D_802E342C_73462C = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
     D_802E3410_734610
 };
 
 AnimationHeader D_802E3440_734640 = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
     D_802E3414_734614
 };
 
@@ -154,6 +154,6 @@ void func_802DED6C_72FF6C(GObj* obj) {
     };
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &def);
     GET_POKEMON(var)->behavior = 1;
 }

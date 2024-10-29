@@ -156,6 +156,7 @@ typedef struct AnimLinePtr2 {
 #define asSetBlock_6(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5, param6, val6) static AnimLine6 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3 | param4 | param5 | param6) << 15) | n), { val1, val2, val3, val4, val5, val6 } }
 #define asSetBlock_1f(n, param1, val1) {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1) << 15) | n), { val1 } }
 #define asSetBlock_3f(n, param1, val1, param2, val2, param3, val3) {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
+#define asSetBlock_4f(n, param1, val1, param2, val2, param3, val3, param4, val4) {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3 | param4) << 15) | n), { val1, val2, val3, val4 } }
 #define asSetBlock_6f(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5, param6, val6) {  ((ANIM_CMD_SET_VALUE_LAST << 25) | ((param1 | param2 | param3 | param4 | param5 | param6) << 15) | n), { val1, val2, val3, val4, val5, val6 } }
 
 #define asSet_1(n, param1, val1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1) << 15) | n), { val1 } }

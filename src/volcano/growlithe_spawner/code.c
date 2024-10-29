@@ -8,7 +8,7 @@ extern AnimCmd** growlithe_spawner_matanim[];
 
 void growlithe_spawner_InitialState(GObj*);
 void growlithe_spawner_SpawnPokemon(GObj*);
-void func_802D6B64_727D64(GObj*);
+void volcano_CreateSplashFromGrowlitheOrArcanine(GObj*);
 void growlithe_spawner_SendCommands(GObj*);
 void growlithe_spawner_Idle(GObj*);
 
@@ -67,7 +67,7 @@ POKEMON_FUNC(growlithe_spawner_InitialState)
     pokemon->tangible = true;
     obj->flags = 0;
     pokemon->miscVars[0].field1 = false;
-    omCreateProcess(obj, func_802D6B64_727D64, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromGrowlitheOrArcanine, 1, 1);
     Pokemon_StartPathProc(obj, growlithe_spawner_SendCommands);
     Pokemon_SetState(obj, growlithe_spawner_Idle);
 }
@@ -81,9 +81,9 @@ POKEMON_FUNC(growlithe_spawner_Idle)
 }
 
 POKEMON_FUNC(growlithe_spawner_SpawnPokemon)
-    omCreateProcess(obj, func_802D6B2C_727D2C, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromGrowlitheSpawner, 1, 1);
 
-    if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && func_802D6D6C_727F6C(obj)) {
+    if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && volcano_SpawnGrowlitheOrArcanine(obj)) {
         pokemon->miscVars[0].field1 = true;
     }
 

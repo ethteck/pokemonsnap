@@ -58,7 +58,7 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_RAPIDASH,
-      func_802D8A5C_729C5C,
+      rapidash_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_CHARMANDER,
@@ -121,12 +121,12 @@ PokemonDef volcano_PokemonDefs[] = {
       growlithe_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_VOLCANO_EFFECT,
-      volcano_effect_Spawn,
+    { PokemonID_LAVA_SPLASH,
+      lava_splash_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_1031,
-      func_802DFB44_730D44,
+    { PokemonID_VOLCANO_SMOKE,
+      volcano_smoke_Spawn,
       pokemonChangeBlock,
       NULL },
     { PokemonID_GATE,
@@ -148,7 +148,7 @@ RandomState2 volcano_MagikarpProbabilities[] = {
     { 7, NULL },
 };
 
-u16 D_802E0EB4_7320B4 = false;
+u16 volcano_MagikarpHasSpawned = false;
 s32 volcano_EndLevelReason = 0;
 
 ScreenSettings volcano_ScreenSettings = {
@@ -222,14 +222,14 @@ PokemonDef volcano_CharizardDef = {
     pokemonRemoveOne
 };
 
-PokemonDef volcano_Pokemon1030Def = {
-    PokemonID_VOLCANO_EFFECT,
-    volcano_effect_Spawn,
+PokemonDef volcano_LavaSplashDef = {
+    PokemonID_LAVA_SPLASH,
+    lava_splash_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };
 
-u16 D_802E0FA4_7321A4 = 4;
+u16 volcano_GrowlitheAndArcanineCounter = 4;
 
 Vec3f D_802E0FA8_7321A8 = { 0, 0, 0 };
 
@@ -281,9 +281,9 @@ void volcano_HandleCollision(GObj* obj, GroundResult* groundResult) {
             for (i = 0; i < numOptions; i++) {
                 sumWeight += volcano_MagikarpProbabilities[i].weight;
                 if (sumWeight > randValue) {
-                    if (volcano_MagikarpProbabilities[i].func != NULL && !D_802E0EB4_7320B4) {
+                    if (volcano_MagikarpProbabilities[i].func != NULL && !volcano_MagikarpHasSpawned) {
                         volcano_MagikarpProbabilities[i].func(obj);
-                        D_802E0EB4_7320B4 = true;
+                        volcano_MagikarpHasSpawned = true;
                     }
                     break;
                 }
@@ -365,7 +365,7 @@ void volcano_LoadEffects(void) {
     }
     D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
     D_80382D14_523124 = func_800A5E08(0xA);
-    func_800A5DF4(0xC0, 0x30);
+    func_800A5DF4(G_CD_DISABLE, G_AD_DISABLE);
 }
 
 void volcano_Init(void) {
@@ -482,7 +482,7 @@ void volcano_CharmeleonChangeBlock(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32
     pokemonChangeBlockOnGround(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
 }
 
-void func_802D6A5C_727C5C(GObj* obj) {
+void volcano_SpawnCharizard(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
@@ -511,27 +511,27 @@ void func_802D6A5C_727C5C(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
 }
 
-void func_802D6B2C_727D2C(GObj* obj) {
+void volcano_CreateSplashFromGrowlitheSpawner(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 0;
     omEndProcess(NULL);
 }
 
-void func_802D6B64_727D64(GObj* obj) {
+void volcano_CreateSplashFromGrowlitheOrArcanine(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 4;
     GET_POKEMON(obj)->miscVars[1].obj = var;
     omEndProcess(NULL);
 }
 
-void func_802D6BB0_727DB0(GObj* obj) {
+void volcano_CreateSplashFromMoltres(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 1;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -539,10 +539,10 @@ void func_802D6BB0_727DB0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D6C38_727E38(GObj* obj) {
+void volcano_CreateSplashFromMoltresEgg(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 5;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.5f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.5f;
@@ -550,18 +550,18 @@ void func_802D6C38_727E38(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802D6CC0_727EC0(GObj* obj) {
+void volcano_CreateSplashFromCharmeleon(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 5;
     omEndProcess(NULL);
 }
 
-void func_802D6CFC_727EFC(GObj* obj) {
+void volcano_CreateSplashFromCharizard(GObj* obj) {
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &volcano_Pokemon1030Def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &volcano_LavaSplashDef);
     GET_POKEMON(var)->behavior = 2;
     GET_TRANSFORM(var->data.dobj)->scale.v.x *= 1.0f;
     GET_TRANSFORM(var->data.dobj)->scale.v.y *= 1.0f;
@@ -569,11 +569,11 @@ void func_802D6CFC_727EFC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-bool func_802D6D6C_727F6C(GObj* obj) {
+bool volcano_SpawnGrowlitheOrArcanine(GObj* obj) {
     u16 randomValue;
 
     randomValue = randRange(10);
-    if (D_802E0FA4_7321A4 == 0) {
+    if (volcano_GrowlitheAndArcanineCounter == 0) {
         return false;
     }
     if (randomValue < 2) {
@@ -586,7 +586,7 @@ bool func_802D6D6C_727F6C(GObj* obj) {
         // 30 %
         return false;
     }
-    D_802E0FA4_7321A4--;
+    volcano_GrowlitheAndArcanineCounter--;
     return true;
 }
 

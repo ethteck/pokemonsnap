@@ -487,8 +487,8 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         case PokemonID_1013:
         case PokemonID_KOFFING_SMOKE:
         case PokemonID_SMOKE_PUFF:
-        case PokemonID_VOLCANO_EFFECT:
-        case PokemonID_1031:
+        case PokemonID_LAVA_SPLASH:
+        case PokemonID_VOLCANO_SMOKE:
         case PokemonID_1033:
         case PokemonID_1037:
         case PokemonID_1038:

@@ -26,7 +26,7 @@ void charizard_TurnToPlayer(GObj*);
 s32 charizard_animsounds_appear[] = { SOUND_ID_190 };
 s32 charizard_animsounds_roar[] = { SOUND_ID_190 };
 s32 charizard_animsounds_spin[] = { SOUND_ID_191 };
-s32 charizard_animsounds_spewfire[] = { 0, SOUND_ID_140 };
+s32 charizard_animsounds_spew_fire[] = { 0, SOUND_ID_140 };
 
 AnimationHeader charizard_animation_appear = {
     0.45,
@@ -60,12 +60,12 @@ AnimationHeader charizard_animation_spin = {
     charizard_animsounds_spin
 };
 
-AnimationHeader charizard_animation_spewfire = {
+AnimationHeader charizard_animation_spew_fire = {
     0.6,
     150,
     charizard_modelanim_spew_fire,
     charizard_matanim_spew_fire,
-    charizard_animsounds_spewfire
+    charizard_animsounds_spew_fire
 };
 
 InteractionHandler charizard_tg_Normal[] = {
@@ -150,7 +150,7 @@ POKEMON_FUNC(func_802DD4A4_72E6A4)
         ohWait(1);
     }
 
-    omCreateProcess(obj, func_802D6CFC_727EFC, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromCharizard, 1, 1);
     Pokemon_StopAuxProc(obj);
 }
 
@@ -178,7 +178,7 @@ POKEMON_FUNC(charizard_HitByPesterBall)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     
-    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_SetAnimation(obj, &charizard_animation_spew_fire);
     Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -194,7 +194,7 @@ POKEMON_FUNC(charizard_TurnToPlayer)
 }
 
 POKEMON_FUNC(charizard_HitByApple)
-    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_SetAnimation(obj, &charizard_animation_spew_fire);
     Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -203,7 +203,7 @@ POKEMON_FUNC(charizard_HitByApple)
 }
 
 POKEMON_FUNC(charizard_AffectedByPesterBall)
-    Pokemon_SetAnimation(obj, &charizard_animation_spewfire);
+    Pokemon_SetAnimation(obj, &charizard_animation_spew_fire);
     Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

@@ -295,7 +295,7 @@ POKEMON_FUNC(charmeleon_FollowPath)
         pokemon->miscVars[CHARMELEON_PATH_END].field0 = 1.0f;
     }
 
-    func_802D6F68_728168(obj, &pokemon->miscVars[CHARMELEON_PATH_PARAM].field0,
+    volcano_FollowPath(obj, &pokemon->miscVars[CHARMELEON_PATH_PARAM].field0,
                          pokemon->miscVars[CHARMELEON_PATH_END].field0,
                          pokemon->miscVars[CHARMELEON_PATH_SPEED].field0, 3);
 
@@ -391,7 +391,7 @@ POKEMON_FUNC(charmeleon_BounceBack)
     Pokemon_FallDownOnGround(obj, -9.8f, true);
 
     if (pokemon->currGround.surfaceType == SURFACE_TYPE_FF4C19) {
-        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_28, obj);
+        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA, obj);
     }
 
     pokemon->pathProc = NULL;
@@ -431,7 +431,7 @@ POKEMON_FUNC(charmeleon_StepToOrigPos)
         pokemon->miscVars[CHARMELEON_0].field1++;
         // 10 steps on lava
         if (pokemon->miscVars[CHARMELEON_0].field1 > 10) {
-            cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_28, obj);
+            cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA, obj);
         }
     } else {
         pokemon->miscVars[CHARMELEON_0].field1 = 0;

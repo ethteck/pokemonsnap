@@ -1,31 +1,31 @@
 #include <common.h>
 
-extern u8 vulpix_tex0_pal[];
-extern u8 vulpix_tex0_png[];
-extern u8 vulpix_tex1_pal[];
-extern u8 vulpix_tex1_png[];
-extern u8 vulpix_tex2_pal[];
-extern u8 vulpix_tex2_png[];
-extern u8 vulpix_tex3_pal[];
-extern u8 vulpix_tex3_png[];
-extern u8 vulpix_tex4_pal[];
-extern u8 vulpix_tex4_png[];
-extern u8 vulpix_tex5_pal[];
-extern u8 vulpix_tex5_png[];
-extern u8 vulpix_tex6_pal[];
-extern u8 vulpix_tex6_png[];
-extern u8 vulpix_tex7_pal[];
-extern u8 vulpix_tex7_png[];
-extern u8 vulpix_tex8_var0_pal[];
-extern u8 vulpix_tex8_var0_png[];
-extern u8 vulpix_tex8_var1_png[];
-extern u8 vulpix_tex8_var2_png[];
-extern u8 vulpix_tex8_var3_png[];
-extern u8 vulpix_tex8_var4_png[];
-extern u8 vulpix_tex9_pal[];
-extern u8 vulpix_tex9_png[];
-extern u8 vulpix_tex10_pal[];
-extern u8 vulpix_tex10_png[];
+extern u8 vulpix_tex_claw_pal[];
+extern u8 vulpix_tex_claw_png[];
+extern u8 vulpix_tex_paw_pal[];
+extern u8 vulpix_tex_paw_png[];
+extern u8 vulpix_tex_pad_pal[];
+extern u8 vulpix_tex_pad_png[];
+extern u8 vulpix_tex_nose_pal[];
+extern u8 vulpix_tex_nose_png[];
+extern u8 vulpix_tex_belly_pal[];
+extern u8 vulpix_tex_belly_png[];
+extern u8 vulpix_tex_curl_pal[];
+extern u8 vulpix_tex_curl_png[];
+extern u8 vulpix_tex_hair_pal[];
+extern u8 vulpix_tex_hair_png[];
+extern u8 vulpix_tex_bang_pal[];
+extern u8 vulpix_tex_bang_png[];
+extern u8 vulpix_tex_eye_frame0_pal[];
+extern u8 vulpix_tex_eye_frame0_png[];
+extern u8 vulpix_tex_eye_frame1_png[];
+extern u8 vulpix_tex_eye_frame2_png[];
+extern u8 vulpix_tex_eye_frame3_png[];
+extern u8 vulpix_tex_eye_frame4_png[];
+extern u8 vulpix_tex_ear_pal[];
+extern u8 vulpix_tex_ear_png[];
+extern u8 vulpix_tex_tail_pal[];
+extern u8 vulpix_tex_tail_png[];
 extern u8 vulpix_tex11_pal[];
 extern u8 vulpix_tex11_png[];
 extern Texture* vulpix_part5_mat[];
@@ -53,19 +53,19 @@ Texture** vulpix_materials[] = {
 };
 
 u8* vulpix_part5_mat0_textures[] = {
-    vulpix_tex8_var0_png,
-    vulpix_tex8_var1_png,
-    vulpix_tex8_var2_png,
-    vulpix_tex8_var3_png,
-    vulpix_tex8_var4_png,
+    vulpix_tex_eye_frame0_png,
+    vulpix_tex_eye_frame1_png,
+    vulpix_tex_eye_frame2_png,
+    vulpix_tex_eye_frame3_png,
+    vulpix_tex_eye_frame4_png,
 };
 
 u8* vulpix_part5_mat1_textures[] = {
-    vulpix_tex8_var0_png,
-    vulpix_tex8_var1_png,
-    vulpix_tex8_var2_png,
-    vulpix_tex8_var3_png,
-    vulpix_tex8_var4_png,
+    vulpix_tex_eye_frame0_png,
+    vulpix_tex_eye_frame1_png,
+    vulpix_tex_eye_frame2_png,
+    vulpix_tex_eye_frame3_png,
+    vulpix_tex_eye_frame4_png,
 };
 
 Texture vulpix_part5_mat0 = {

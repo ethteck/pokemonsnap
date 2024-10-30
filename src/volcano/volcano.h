@@ -10,14 +10,14 @@
     Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
     Pokemon* pokemon = GET_POKEMON(obj);
 
-#define VOLCANO_CMD_28 POKEMON_CMD_28
+#define VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA POKEMON_CMD_28
 #define VOLCANO_CMD_CHARMELEON_EVOLVE POKEMON_CMD_29
 #define VOLCANO_CMD_SPAWN_MOLTRES POKEMON_CMD_30
-#define VOLCANO_CMD_31 POKEMON_CMD_31
-#define VOLCANO_CMD_32 POKEMON_CMD_32
-#define VOLCANO_CMD_33 POKEMON_CMD_33
-#define VOLCANO_CMD_34 POKEMON_CMD_34
-#define VOLCANO_CMD_35 POKEMON_CMD_35
+#define VOLCANO_CMD_UNUSED_CHARIZARD POKEMON_CMD_31
+#define VOLCANO_CMD_CHARIZARD_APPEARED POKEMON_CMD_32
+#define VOLCANO_CMD_SMOKE_FADED POKEMON_CMD_33
+#define VOLCANO_CMD_LAVA_SPLASH_START POKEMON_CMD_34
+#define VOLCANO_CMD_LAVA_SPLASH_END POKEMON_CMD_35
 #define VOLCANO_CMD_ANOTHER_CHARMANDER_HIT POKEMON_CMD_36
 #define VOLCANO_CMD_MAGMAR_SPEW_FIRE POKEMON_CMD_37
 #define VOLCANO_CMD_38 POKEMON_CMD_38
@@ -58,11 +58,11 @@ void volcano_SpawnMagikarp(GObj* obj);
 void volcano_func_802D6780_727980(s32 arg0);
 void volcano_CharmeleonChangeBlock(GObj*, f32, f32, f32, f32, f32, f32);
 void volcano_Init(void);
-void func_802DFB80_730D80(s32, f32);
+void volcano_UpdateSounds(s32, f32);
 void volcano_HandleCollision(GObj*, GroundResult*);
-void func_802E0C28_731E28(void);
-void func_802D6E14_728014(GObj* obj);
-void func_802D6F68_728168(GObj*, f32*, f32, f32, s32);
+void volcano_StartIntro(void);
+void volcano_PokemonMove(GObj* obj);
+void volcano_FollowPath(GObj*, f32*, f32, f32, s32);
 void volcano_SpawnCharizard(GObj* obj);
 void volcano_CreateSplashFromCharizard(GObj* obj);
 void volcano_CreateSplashFromGrowlitheSpawner(GObj* obj);
@@ -76,8 +76,8 @@ GObj* charmeleon_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* charizard_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* arcanine_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* growlithe_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DEA44_72FC44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802DE6B4_72F8B4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* smoke_spawner_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* smoke_puff_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* koffing_smoke_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* evolution_controller_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* moltres_egg_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

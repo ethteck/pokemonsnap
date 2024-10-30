@@ -1,5 +1,7 @@
 #include "volcano/volcano.h"
 
+// TODO figure out if this file is included in all levels
+
 extern UnkEC64Arg3 magikarp_model[];
 extern AnimCmd* D_800FDC70[];
 extern AnimCmd* D_800FAE40[];

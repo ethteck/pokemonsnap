@@ -6,8 +6,8 @@ extern AnimCmd* lava_splash_modelanim[];
 extern AnimCmd** lava_splash_matanim[];
 
 void lava_splash_InitialState(GObj*);
-void func_802DF1B4_7303B4(GObj*);
-void func_802DF214_730414(GObj*);
+void lava_splash_StartType4(GObj*);
+void lava_splash_EndType4(GObj*);
 void lava_splash_Type1(GObj*);
 void lava_splash_Type5(GObj*);
 void lava_splash_Type2(GObj*);
@@ -52,8 +52,8 @@ AnimationHeader lava_splash_animation_type2 = {
 };
 
 InteractionHandler lava_splash_tg_Type4[] = {
-    { VOLCANO_CMD_34, func_802DF1B4_7303B4, 0, NULL },
-    { VOLCANO_CMD_35, func_802DF214_730414, 0, NULL },
+    { VOLCANO_CMD_LAVA_SPLASH_START, lava_splash_StartType4, 0, NULL },
+    { VOLCANO_CMD_LAVA_SPLASH_END, lava_splash_EndType4, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -174,17 +174,18 @@ POKEMON_FUNC(lava_splash_Type4)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DF1B4_7303B4)
+POKEMON_FUNC(lava_splash_StartType4)
     pokemon->tangible = true;
     obj->flags = 0;
 
     Pokemon_ForceAnimation(obj, &lava_splash_animation_type3);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_SetState(obj, lava_splash_Type4);
 }
 
-POKEMON_FUNC(func_802DF214_730414)
+POKEMON_FUNC(lava_splash_EndType4)
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

@@ -177,7 +177,7 @@ enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
     SONG_ID_3 = 3,
-    SONG_ID_6 = 6,
+    SONG_VOLCANO = 6,
     SONG_ID_10 = 10
 };
 

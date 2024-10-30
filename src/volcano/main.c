@@ -86,11 +86,11 @@ PokemonDef volcano_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_SMOKE_SPAWNER,
-      func_802DEA44_72FC44,
+      smoke_spawner_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_SMOKE_PUFF,
-      func_802DE6B4_72F8B4,
+      smoke_puff_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_KOFFING_SMOKE,
@@ -383,14 +383,14 @@ void volcano_Init(void) {
     volcano_InitWorld();
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
-    initUI(volcano_ExitBlock, func_802DFB80_730D80, NULL, 0, volcano_HandleCollision);
+    initUI(volcano_ExitBlock, volcano_UpdateSounds, NULL, 0, volcano_HandleCollision);
     setEndLevelCallback(volcano_EndLevel);
     setPauseCallback(volcano_Pause);
     EnvSound_Init(volcano_EnvSounds, ARRAY_COUNT(volcano_EnvSounds));
     volcano_LoadEffects();
     PokemonDetector_Create();
     PokemonDetector_Enable();
-    func_802E0C28_731E28();
+    volcano_StartIntro();
 }
 
 void volcano_func_802D6780_727980(s32 arg0) {
@@ -590,7 +590,7 @@ bool volcano_SpawnGrowlitheOrArcanine(GObj* obj) {
     return true;
 }
 
-void func_802D6E14_728014(GObj* obj) {
+void volcano_PokemonMove(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
     f32 hSpeed = pokemon->hSpeed * 0.033;
@@ -602,7 +602,7 @@ void func_802D6E14_728014(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.z += speedZ;
 }
 
-void func_802D6EA8_7280A8(GObj* obj, f32 heading) {
+void volcano_PokemonMoveInDirection(GObj* obj, f32 heading) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
     f32 hSpeed = pokemon->hSpeed * 0.033;
@@ -613,7 +613,7 @@ void func_802D6EA8_7280A8(GObj* obj, f32 heading) {
     GET_TRANSFORM(model)->pos.v.z += speedZ;
 }
 
-f32 func_802D6F38_728138(f32 x, f32 z) {
+f32 volcano_GetHeightAt(f32 x, f32 z) {
     GroundResult result;
 
     if (getGroundAt(x, z, &result)) {
@@ -623,7 +623,7 @@ f32 func_802D6F38_728138(f32 x, f32 z) {
 }
 
 #ifdef NON_MATCHING
-void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s32 flags) {
+void volcano_FollowPath(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s32 flags) {
     DObj* temp_s1 = obj->data.dobj;
     Vec3f sp88 = D_802E0FA8_7321A8;
     Pokemon* pokemon = GET_POKEMON(obj);
@@ -680,7 +680,7 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
             GET_TRANSFORM(temp_s1)->pos.v.x += sp88.x * 100.0f;
             GET_TRANSFORM(temp_s1)->pos.v.z += sp88.z * 100.0f;
             if (flags & 1) {
-                sp88.y = func_802D6F38_728138(GET_TRANSFORM(temp_s1)->pos.v.x, GET_TRANSFORM(temp_s1)->pos.v.z);
+                sp88.y = volcano_GetHeightAt(GET_TRANSFORM(temp_s1)->pos.v.x, GET_TRANSFORM(temp_s1)->pos.v.z);
                 GET_TRANSFORM(temp_s1)->pos.v.y += sp88.y;
             } else {
                 GET_TRANSFORM(temp_s1)->pos.v.y += sp88.y * 100.0f;
@@ -700,5 +700,5 @@ void func_802D6F68_728168(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult,
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/main/func_802D6F68_728168.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/volcano/main/volcano_FollowPath.s")
 #endif

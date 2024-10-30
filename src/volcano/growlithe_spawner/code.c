@@ -96,11 +96,11 @@ POKEMON_FUNC(growlithe_spawner_SpawnPokemon)
 
 POKEMON_FUNC(growlithe_spawner_SendCommands)
     while (!pokemon->miscVars[0].field1) {
-        cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_34, obj);
+        cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_LAVA_SPLASH_START, obj);
         ohWait(randRange(180) + 120);
     }
 
-    cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_35, obj);
+    cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_LAVA_SPLASH_END, obj);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

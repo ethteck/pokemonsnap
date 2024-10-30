@@ -154,7 +154,7 @@ void func_beach_802CA950(GObj* obj) {
     cam->animSpeed = 0.5f;
     animSetCameraAnimation(cam, D_8013C530, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    func_800E1A78_5F228(D_8011B924);
+    setSkyBoxAnimationSpeed(D_8011B924);
     temp_v0_2 = PlayerModel_Init();
     if (temp_v0_2 == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, 0);

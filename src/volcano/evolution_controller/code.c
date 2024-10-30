@@ -40,12 +40,12 @@ AnimationHeader D_802E3440_734640 = {
 };
 
 InteractionHandler evolution_controller_tg_Wait[] = {
-    { VOLCANO_CMD_28, func_802DEAFC_72FCFC, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA, func_802DEAFC_72FCFC, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler D_802E3474_734674[] = {
-    { VOLCANO_CMD_32, func_802DEBF0_72FDF0, 0, NULL },
+    { VOLCANO_CMD_CHARIZARD_APPEARED, func_802DEBF0_72FDF0, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -114,7 +114,7 @@ POKEMON_FUNC(func_802DEBF0_72FDF0)
 
     Pokemon_ForceAnimation(obj, &D_802E342C_73462C);
     Pokemon_StartPathProc(obj, NULL);
-    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_31, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_UNUSED_CHARIZARD, obj);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 

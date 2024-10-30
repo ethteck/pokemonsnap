@@ -73,7 +73,7 @@ void func_800E19A4_5F154(DObj* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-void func_800E1A78_5F228(f32 arg0) {
+void setSkyBoxAnimationSpeed(f32 arg0) {
     SkyBoxAnimationSpeed = arg0;
     if (SkyBoxAnimation != NULL) {
         animSetTextureAnimationSpeed(SkyBoxObject, arg0);
@@ -656,7 +656,7 @@ s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockM
     setFogColor(arg0->fogR, arg0->fogG, arg0->fogB);
     setBackgroundColor(arg0->backgroundR, arg0->backgroundG, arg0->backgroundB);
     createWorldBlocks(arg0->blocksSetup, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, fnPokemonAdd, fnPokemonRemove, fnPokemonChangeBlock);
-    func_800E1A78_5F228(arg0->unk_10);
+    setSkyBoxAnimationSpeed(arg0->unk_10);
     return true;
 }
 

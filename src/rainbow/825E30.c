@@ -177,9 +177,9 @@ void func_80346B0C_82627C(GObj* arg0) {
 
 void func_80346B94_826304(s32 arg0) {
     if (arg0 == 0) {
-        func_800E1A78_5F228(D_800F5DB0);
+        setSkyBoxAnimationSpeed(D_800F5DB0);
     } else {
-        func_800E1A78_5F228(0.0f);
+        setSkyBoxAnimationSpeed(0.0f);
     }
 }
 

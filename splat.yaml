@@ -666,9 +666,9 @@ segments:
     bss_size: 0x20
     exclusive_ram_id: unk800FFF90
     subsegments:
-    - [auto, c, world]
-    - [auto, c, skybox]
-    - [auto, c, world_gfx]
+    - [auto, c, world/world]
+    - [auto, c, world/skybox]
+    - [auto, c, world/world_gfx]
     - [auto, c, world/block0]
     - [auto, c, world/block1]
     - [auto, c, world/block2]
@@ -700,12 +700,12 @@ segments:
     - [auto, c, volcano_smoke/materials]
     - [auto, c, volcano_smoke/anim/modelanim]
     - [auto, c, volcano_smoke/anim/matanim]
-    - [auto, c, player/anim1/modelanim]
-    - [auto, c, player/anim1/matanim]
-    - [auto, c, player/anim_end]
-    - [auto, c, player/anim2/modelanim]
-    - [auto, c, player/anim2/matanim]
-    - [auto, c, player/anim_intro]
+    - [auto, c, outro/modelanim]
+    - [auto, c, outro/matanim]
+    - [auto, c, outro/camera]
+    - [auto, c, intro/modelanim]
+    - [auto, c, intro/matanim]
+    - [auto, c, intro/camera]
     - [auto, c, koffing_smoke/textures]
     - [auto, c, smoke_puff/textures]
     - [auto, c, world/textures1]
@@ -862,10 +862,10 @@ segments:
     - [auto, c, arcanine/anim/material/hit]
     - [auto, c, arcanine/anim/material/jump]
     - [auto, c, arcanine/anim/material/eat]
-    - [0x326C20, .data, world]
+    - [0x326C20, .data, world/world]
     - start: 0x326C60
       type: .data
-      name: skybox
+      name: world/skybox
       subsegments:
       - [0x326C60]
       - { start: 0x326C88, type: rgba16, name: skybox, flip_y: true, width: 64, height: 32 }
@@ -1094,30 +1094,30 @@ segments:
       - [0x33C8D0, snap_material_anim, matanim]
     - start: 0x33CB00
       type: .data
-      dir: player/anim1/
-      name: player/anim1/modelanim
+      dir: outro/
+      name: outro/modelanim
       subsegments:
       - [0x33CB00, snap_model_anim, modelanim]
     - start: 0x33D700
       type: .data
-      dir: player/anim1/
-      name: player/anim1/matanim
+      dir: outro/
+      name: outro/matanim
       subsegments:
       - [0x33D700, snap_material_anim, matanim]
-    - [0x33E080, .data, player/anim_end]
+    - [0x33E080, .data, outro/camera]
     - start: 0x33E160
       type: .data
-      dir: player/anim2/
-      name: player/anim2/modelanim
+      dir: intro
+      name: intro/modelanim
       subsegments:
       - [0x33E160, snap_model_anim, modelanim]
     - start: 0x33EF70
       type: .data
-      dir: player/anim2/
-      name: player/anim2/matanim
+      dir: intro
+      name: intro/matanim
       subsegments:
       - [0x33EF70, snap_material_anim, matanim]
-    - [0x33F940, .data, player/anim_intro]
+    - [0x33F940, .data, intro/camera]
     - start: 0x33FAB0
       type: .data
       dir: koffing_smoke
@@ -2364,65 +2364,65 @@ segments:
       name: vulpix/textures
       subsegments:
       - [0x3B23D0]
-      - [0x3B23D8, palette, tex0]
+      - [0x3B23D8, palette, tex_claw]
       - [0x3B25D8]
-      - { start: 0x3B25E0, type: ci8, name: tex0, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B25E0, type: ci8, name: tex_claw, flip_y: true, width: 32, height: 32 }
       - [0x3B29E0]
-      - [0x3B29E8, palette, tex1]
+      - [0x3B29E8, palette, tex_paw]
       - [0x3B2BE8]
-      - { start: 0x3B2BF0, type: ci8, name: tex1, flip_y: true, width: 64, height: 32 }
+      - { start: 0x3B2BF0, type: ci8, name: tex_paw, flip_y: true, width: 64, height: 32 }
       - [0x3B33F0]
-      - [0x3B33F8, palette, tex2]
+      - [0x3B33F8, palette, tex_pad]
       - [0x3B3418]
-      - { start: 0x3B3420, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B3420, type: ci4, name: tex_pad, flip_y: true, width: 32, height: 32 }
       - [0x3B3620]
-      - [0x3B3628, palette, tex3]
+      - [0x3B3628, palette, tex_nose]
       - [0x3B3648]
-      - { start: 0x3B3650, type: ci4, name: tex3, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B3650, type: ci4, name: tex_nose, flip_y: true, width: 32, height: 32 }
       - [0x3B3850]
-      - [0x3B3858, palette, tex4]
+      - [0x3B3858, palette, tex_belly]
       - [0x3B3A58]
-      - { start: 0x3B3A60, type: ci8, name: tex4, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B3A60, type: ci8, name: tex_belly, flip_y: true, width: 32, height: 32 }
       - [0x3B3E60]
-      - [0x3B3E68, palette, tex8_var4]
+      - [0x3B3E68, palette, tex_eye_frame4]
       - [0x3B4068]
-      - { start: 0x3B4070, type: ci8, name: tex8_var4, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B4070, type: ci8, name: tex_eye_frame4, flip_y: true, width: 32, height: 32 }
       - [0x3B4470]
-      - [0x3B4478, palette, tex5]
+      - [0x3B4478, palette, tex_curl]
       - [0x3B4678]
-      - { start: 0x3B4680, type: ci8, name: tex5, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B4680, type: ci8, name: tex_curl, flip_y: true, width: 32, height: 32 }
       - [0x3B4A80]
-      - [0x3B4A88, palette, tex6]
+      - [0x3B4A88, palette, tex_hair]
       - [0x3B4C88]
-      - { start: 0x3B4C90, type: ci8, name: tex6, flip_y: true, width: 64, height: 32 }
+      - { start: 0x3B4C90, type: ci8, name: tex_hair, flip_y: true, width: 64, height: 32 }
       - [0x3B5490]
-      - [0x3B5498, palette, tex7]
+      - [0x3B5498, palette, tex_bang]
       - [0x3B54B8]
-      - { start: 0x3B54C0, type: ci4, name: tex7, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B54C0, type: ci4, name: tex_bang, flip_y: true, width: 32, height: 32 }
       - [0x3B56C0]
-      - [0x3B56C8, palette, tex8_var0]
+      - [0x3B56C8, palette, tex_eye_frame0]
       - [0x3B58C8]
-      - { start: 0x3B58D0, type: ci8, name: tex8_var0, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B58D0, type: ci8, name: tex_eye_frame0, flip_y: true, width: 32, height: 32 }
       - [0x3B5CD0]
-      - [0x3B5CD8, palette, tex8_var1]
+      - [0x3B5CD8, palette, tex_eye_frame1]
       - [0x3B5ED8]
-      - { start: 0x3B5EE0, type: ci8, name: tex8_var1, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B5EE0, type: ci8, name: tex_eye_frame1, flip_y: true, width: 32, height: 32 }
       - [0x3B62E0]
-      - [0x3B62E8, palette, tex8_var2]
+      - [0x3B62E8, palette, tex_eye_frame2]
       - [0x3B64E8]
-      - { start: 0x3B64F0, type: ci8, name: tex8_var2, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B64F0, type: ci8, name: tex_eye_frame2, flip_y: true, width: 32, height: 32 }
       - [0x3B68F0]
-      - [0x3B68F8, palette, tex9]
+      - [0x3B68F8, palette, tex_ear]
       - [0x3B6AF8]
-      - { start: 0x3B6B00, type: ci8, name: tex9, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B6B00, type: ci8, name: tex_ear, flip_y: true, width: 32, height: 32 }
       - [0x3B6F00]
-      - [0x3B6F08, palette, tex10]
+      - [0x3B6F08, palette, tex_tail]
       - [0x3B6F28]
-      - { start: 0x3B6F30, type: ci4, name: tex10, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B6F30, type: ci4, name: tex_tail, flip_y: true, width: 32, height: 32 }
       - [0x3B7130]
-      - [0x3B7138, palette, tex8_var3]
+      - [0x3B7138, palette, tex_eye_frame3]
       - [0x3B7338]
-      - { start: 0x3B7340, type: ci8, name: tex8_var3, flip_y: true, width: 32, height: 32 }
+      - { start: 0x3B7340, type: ci8, name: tex_eye_frame3, flip_y: true, width: 32, height: 32 }
     - start: 0x3B7740
       type: .data
       dir: vulpix/anim/model/
@@ -2672,7 +2672,7 @@ segments:
       name: arcanine/anim/material/eat
       subsegments:
       - [0x3D04A0, snap_material_anim, eat]
-    - [auto, .bss, world]
+    - [auto, .bss, world/world]
   - type: code
     name: volcano_extra
     start: 0x3D0560
@@ -3043,9 +3043,9 @@ segments:
     - [0x7305B0, c, gate/code]
     - [0x730C70, c, volcano_smoke/code]
     - [0x730D80, c, sounds]
-    - [0x731860, c, player/player]
-    - [auto, c, height_map_data]
-    - [auto, c, height_map]
+    - [0x731860, c, intro/code]
+    - [auto, c, world/height_map_data]
+    - [auto, c, world/height_map]
     - [auto, c, magmar/model]
     - [auto, c, moltres/model]
     - [auto, c, rapidash/model]
@@ -3076,7 +3076,7 @@ segments:
     - [0x7348B0, .data, gate/code]
     - [0x734980, .data, volcano_smoke/code]
     - [0x7349F0, .data, sounds]
-    - [0x734A00, .data, player/player]
+    - [0x734A00, .data, intro/code]
     - [0x734A10, .rodata, main]
     - [0x734A30, .rodata, magmar/code]
     - [0x734A50, .rodata, charmander/code]
@@ -3093,13 +3093,13 @@ segments:
     - [0x734B70, .rodata, sounds]
     - start: 0x734C00
       type: .data
-      name: height_map_data
+      name: world/height_map_data
       linker_section_order: .rodata
       subsegments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
       - [0x76E6D0]
-    - { start: auto, type: .data, name: height_map, linker_section_order: .rodata }
+    - { start: auto, type: .data, name: world/height_map, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
       linker_section_order: .rodata

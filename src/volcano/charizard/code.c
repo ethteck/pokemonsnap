@@ -20,7 +20,7 @@ void charizard_AffectedByPesterBall(GObj*);
 void charizard_HitByApple(GObj*);
 void charizard_Appear(GObj*);
 void charizard_MoveOutOfLava(GObj*);
-void func_802DD4A4_72E6A4(GObj*);
+void charizard_CreateSplash(GObj*);
 void charizard_TurnToPlayer(GObj*);
 
 s32 charizard_animsounds_appear[] = { SOUND_ID_190 };
@@ -76,7 +76,7 @@ InteractionHandler charizard_tg_Normal[] = {
 };
 
 InteractionHandler charizard_tg_Unused[] = {
-    { VOLCANO_CMD_31, charizard_Appear, 0, NULL },
+    { VOLCANO_CMD_UNUSED_CHARIZARD, charizard_Appear, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -112,7 +112,7 @@ PokemonInitData charizard_initData = {
 
 POKEMON_FUNC(charizard_InititalState)
     obj->flags |= GOBJ_FLAG_HIDDEN;
-    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_32, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_CHARIZARD_APPEARED, obj);
     Pokemon_SetState(obj, charizard_Appear);
 }
 
@@ -131,7 +131,7 @@ POKEMON_FUNC(charizard_MoveOutOfLava)
     GroundResult result;
 
     Pokemon_TurnToTarget(obj, TAU, MOVEMENT_FLAG_TURN_TO_PLAYER);
-    Pokemon_StartAuxProc(obj, func_802DD4A4_72E6A4);
+    Pokemon_StartAuxProc(obj, charizard_CreateSplash);
     getGroundAt(position->v.x, position->v.z, &result);
     while (position->v.y + 50.0f < result.height) {
         position->v.y += 5.0f;
@@ -143,7 +143,7 @@ POKEMON_FUNC(charizard_MoveOutOfLava)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DD4A4_72E6A4)
+POKEMON_FUNC(charizard_CreateSplash)
     s32 waitTimer = 48;
 
     while (waitTimer--) {

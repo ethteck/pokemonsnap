@@ -229,7 +229,7 @@ POKEMON_FUNC(growlithe_MoveJump)
     pokemon->hSpeed = 150.0f;
 
     while (true) {
-        func_802D6E14_728014(obj);
+        volcano_PokemonMove(obj);
         getGroundAt(position->v.x, position->v.z, &result);
         position->v.y = result.height;
         ohWait(1);

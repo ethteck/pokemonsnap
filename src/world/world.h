@@ -185,7 +185,7 @@ Vec3f* getPatchNormal(HeightMapPatch* arg0);
 s32 getPatchSurfaceType(HeightMapPatch*);
 
 // Public functions
-void func_800E1A78_5F228(f32 arg0);
+void setSkyBoxAnimationSpeed(f32 arg0);
 void drawSkyBox1Cycle(GObj* obj);
 void drawSkyBox2Cycle(GObj* obj);
 void setSkyBoxFollowPlayer(void);

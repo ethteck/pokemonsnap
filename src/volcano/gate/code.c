@@ -191,7 +191,7 @@ POKEMON_FUNC(volcano_gate_Cutscene)
     camera->animSpeed = 0.5f;
     animSetCameraAnimation(camera, volcano_camera_anim_end, 0);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    func_800E1A78_5F228(volcano_WorldSetup.unk_10);
+    setSkyBoxAnimationSpeed(volcano_WorldSetup.unk_10);
 
     player = PlayerModel_Init();
     if (player == NULL) {

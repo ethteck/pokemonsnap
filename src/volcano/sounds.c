@@ -9,8 +9,7 @@ extern u8 D_8034E0F9_79F2F9;
 extern u8 D_8034E0FA_79F2FA;
 extern u8 D_8034E0FB_79F2FB;
 
-void func_802DFB80_730D80(s32 blockCount, f32 blockPart) {
-
+void volcano_UpdateSounds(s32 blockCount, f32 blockPart) {
     switch (D_802E37F0_7349F0) {
         case 0:
             if (blockCount + blockPart <= 0.0f) {
@@ -20,7 +19,7 @@ void func_802DFB80_730D80(s32 blockCount, f32 blockPart) {
             break;
         case 1:
             if (blockCount + blockPart > 0.0f) {
-                setBackgroundMusic(SONG_ID_6);
+                setBackgroundMusic(SONG_VOLCANO);
                 D_802E37F0_7349F0 = 2;
             }
             break;

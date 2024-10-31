@@ -42,6 +42,8 @@ void arcanine_TurnToApple(GObj*);
 void arcanine_TurnToPlayer(GObj*);
 void arcanine_RunAway(GObj*);
 
+__ALIGNER2
+
 s32 arcanine_animsounds_roar[] = { SOUND_ID_271 };
 s32 arcanine_animsounds_hit[] = { SOUND_ID_272 };
 s32 arcanine_animsounds_eat[] = { SOUND_ID_270 };
@@ -230,7 +232,7 @@ POKEMON_FUNC(arcanine_MoveJump)
     pokemon->hSpeed = 150.0f;
 
     while (true) {
-        func_802D6E14_728014(obj);
+        volcano_PokemonMove(obj);
         getGroundAt(position->v.x, position->v.z, &result);
         position->v.y = result.height;
         ohWait(1);

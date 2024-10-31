@@ -34,7 +34,7 @@ void getMovementPos(WorldBlock* block, f32 moveTime, f32 cpTime, f32* posX, f32*
         return;
     }
 
-    numSegments = block->descriptor->gfx->numControlPoints - 1;
+    numSegments = block->descriptor->gfx->numControlLines - 1;
     if (numSegments <= 0) {
         return;
     }
@@ -126,7 +126,7 @@ void getNextBlockSpeed(WorldBlock* arg0, f32 cpTime, f32* speed) {
         return;
     }
 
-    temp_a1 = block->descriptor->gfx->numControlPoints - 1;
+    temp_a1 = block->descriptor->gfx->numControlLines - 1;
     if (temp_a1 <= 0) {
         return;
     }
@@ -191,9 +191,9 @@ void Movement_UpdatePos(WorldBlock* block, f32 moveTime, f32 cpTime, MovementSta
         block->next->cpObjects == NULL ||
         block->next->descriptor == NULL ||
         block->next->descriptor->gfx == NULL ||
-        block->next->descriptor->gfx->uvScrollAnim == NULL ||
+        block->next->descriptor->gfx->road == NULL ||
         block->next->descriptor->gfx->movementAnim == NULL ||
-        block->next->descriptor->gfx->numControlPoints < 2) {
+        block->next->descriptor->gfx->numControlLines < 2) {
         animSpeed = speed;
     } else {
         getNextBlockSpeed(block->next, cpTime, &nextBlockSpeed);

@@ -42,6 +42,8 @@ void growlithe_TurnToApple(GObj*);
 void growlithe_TurnToPlayer(GObj*);
 void growlithe_RunAway(GObj*);
 
+__ALIGNER2
+
 s32 growlithe_animsounds_roar[] = { SOUND_ID_275 };
 s32 growlithe_animsounds_hit[] = { SOUND_ID_276 };
 s32 growlithe_animsounds_eat[] = { SOUND_ID_274 };
@@ -229,7 +231,7 @@ POKEMON_FUNC(growlithe_MoveJump)
     pokemon->hSpeed = 150.0f;
 
     while (true) {
-        func_802D6E14_728014(obj);
+        volcano_PokemonMove(obj);
         getGroundAt(position->v.x, position->v.z, &result);
         position->v.y = result.height;
         ohWait(1);

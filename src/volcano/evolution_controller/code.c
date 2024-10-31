@@ -2,55 +2,57 @@
 
 extern UnkEC64Arg3 evolution_controller_model[];
 extern Texture** evolution_controller_materials[];
-extern AnimCmd* D_800F55F0[];
-extern AnimCmd** D_800F58C0[];
+extern AnimCmd* evolution_controller_modelanim[];
+extern AnimCmd** evolution_controller_matanim[];
 
 void evolution_controller_InitialState(GObj*);
-void func_802DEBF0_72FDF0(GObj*);
-void func_802DEAFC_72FCFC(GObj*);
+void evolution_controller_CharizardAppeared(GObj*);
+void evolution_controller_CharmeleonFellInLava(GObj*);
 void evolution_controller_EvolveIntoCharmeleon(GObj*);
 void evolution_controller_EvolveIntoCharizard(GObj*);
 void evolution_controller_InitialState(GObj*);
 
-s32 D_802E3410_734610[] = { SOUND_ID_60 };
-s32 D_802E3414_734614[] = { SOUND_ID_134 };
+__ALIGNER2
 
-AnimationHeader D_802E3418_734618 = {
+s32 evolution_controller_animsounds_charmeleon_evolves[] = { SOUND_ID_60 };
+s32 evolution_controller_animsounds_charmander_evolves[] = { SOUND_ID_134 };
+
+AnimationHeader evolution_controller_animation_idle = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
     NULL
 };
 
-AnimationHeader D_802E342C_73462C = {
+AnimationHeader evolution_controller_animation_charmeleon_evolves = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
-    D_802E3410_734610
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
+    evolution_controller_animsounds_charmeleon_evolves
 };
 
-AnimationHeader D_802E3440_734640 = {
+AnimationHeader evolution_controller_animation_charmander_evolves = {
     0.5,
     60,
-    D_800F55F0,
-    D_800F58C0,
-    D_802E3414_734614
+    evolution_controller_modelanim,
+    evolution_controller_matanim,
+    evolution_controller_animsounds_charmander_evolves
 };
 
 InteractionHandler evolution_controller_tg_Wait[] = {
-    { VOLCANO_CMD_28, func_802DEAFC_72FCFC, 0, NULL },
+    { VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA, evolution_controller_CharmeleonFellInLava, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E3474_734674[] = {
-    { VOLCANO_CMD_32, func_802DEBF0_72FDF0, 0, NULL },
+InteractionHandler evolution_controller_tg_Working[] = {
+    { VOLCANO_CMD_CHARIZARD_APPEARED, evolution_controller_CharizardAppeared, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 PokemonAnimationSetup evolution_controller_animSetup = {
-    &D_802E3418_734618,
+    &evolution_controller_animation_idle,
     evolution_controller_InitialState,
     0,
     { 0, 0, 0 },
@@ -87,7 +89,7 @@ POKEMON_FUNC(evolution_controller_InitialState)
 }
 
 // TODO: figure out if POKEMON_FUNC macro can be used
-void func_802DEAFC_72FCFC(GObj* obj) {
+void evolution_controller_CharmeleonFellInLava(GObj* obj) {
     UNUSED s32 pad[3];
     DObj* model = obj->data.dobj;
     Mtx3Float* position = &GET_TRANSFORM(model)->pos;
@@ -103,18 +105,18 @@ void func_802DEAFC_72FCFC(GObj* obj) {
 }
 
 POKEMON_FUNC(evolution_controller_EvolveIntoCharizard)
-    pokemon->transitionGraph = D_802E3474_734674;
+    pokemon->transitionGraph = evolution_controller_tg_Working;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DEBF0_72FDF0)
+POKEMON_FUNC(evolution_controller_CharizardAppeared)
     pokemon->tangible = true;
     obj->flags = 0;
 
-    Pokemon_ForceAnimation(obj, &D_802E342C_73462C);
+    Pokemon_ForceAnimation(obj, &evolution_controller_animation_charmeleon_evolves);
     Pokemon_StartPathProc(obj, NULL);
-    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_31, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_UNUSED_CHARIZARD, obj);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -127,7 +129,7 @@ POKEMON_FUNC(evolution_controller_EvolveIntoCharmeleon)
     obj->flags = 0;
 
     Pokemon_StartPathProc(obj, NULL);
-    Pokemon_ForceAnimation(obj, &D_802E3440_734640);
+    Pokemon_ForceAnimation(obj, &evolution_controller_animation_charmander_evolves);
     pokemon->counter = 20, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     EnvSound_PlaySound(obj, 1, SOUND_ID_395);
     pokemon->transitionGraph = NULL;
@@ -154,6 +156,6 @@ void func_802DED6C_72FF6C(GObj* obj) {
     };
     GObj* var;
 
-    var = Pokemon_AddAtGeo(obj, PokemonID_VOLCANO_EFFECT, &def);
+    var = Pokemon_AddAtGeo(obj, PokemonID_LAVA_SPLASH, &def);
     GET_POKEMON(var)->behavior = 1;
 }

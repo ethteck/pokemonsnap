@@ -153,7 +153,7 @@ void func_802E1D10_6C9AF0(GObj* obj) {
         ohResumeObjectProcesses(D_802E4230_6CC010);
     }
     auSetBGMVolumeSmooth(0, 0, 240);
-    func_800E1A78_5F228(D_8012ACA0);
+    setSkyBoxAnimationSpeed(D_8012ACA0);
     D_802E4B04_6CC8E4 = getMainCamera();
     temp_s0 = D_802E4B04_6CC8E4->obj;
     ohPauseObjectProcesses(temp_s0);

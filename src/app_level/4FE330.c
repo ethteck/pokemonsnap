@@ -71,6 +71,7 @@ void func_8035DF20_4FE330(GObj* obj) {
     Pokemon_StartPathProc(obj, func_8035DFB0_4FE3C0);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

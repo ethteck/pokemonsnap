@@ -2052,7 +2052,7 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
     stopLevelProcesses();
     ohPauseProcessByFunction(gObjPlayer, func_80352F20_4F3330);
     freezePokemons(pokemon);
-    func_800E1A78_5F228(0);
+    setSkyBoxAnimationSpeed(0);
     if (animation != NULL) {
         animSetCameraAnimation(gMainCamera, animation, time);
         animUpdateCameraAnimation(gMainCamera->obj);

@@ -59,6 +59,8 @@ void charmeleon_EvolvedWithApple(GObj*);
 void charmeleon_EvolvedRunToApple(GObj*);
 void charmeleon_EvolvedTurnToApple(GObj*);
 
+__ALIGNER2
+
 s32 charmeleon_animsounds_roar[] = { SOUND_ID_288 };
 s32 charmeleon_animsounds_hit[] = { SOUND_ID_289 };
 s32 charmeleon_animsounds_get_up[] = { SOUND_ID_290 };

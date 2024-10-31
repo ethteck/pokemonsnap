@@ -12,6 +12,8 @@ void volcano_CreateSplashFromGrowlitheOrArcanine(GObj*);
 void growlithe_spawner_SendCommands(GObj*);
 void growlithe_spawner_Idle(GObj*);
 
+__ALIGNER2
+
 AnimationHeader growlithe_spawner_animation = {
     1.5,
     100,
@@ -21,7 +23,7 @@ AnimationHeader growlithe_spawner_animation = {
 };
 
 InteractionHandler growlithe_spawner_tg_Normal[] = {
-    { VOLCANO_CMD_38, growlithe_spawner_SpawnPokemon, 0, NULL },
+    { VOLCANO_CMD_PESTER_BALL_IN_LAVA, growlithe_spawner_SpawnPokemon, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 

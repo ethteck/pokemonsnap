@@ -43,6 +43,8 @@ void magmar_TurnToPlayer(GObj*);
 void magmar_BurnCharmander(GObj*);
 void magmar_TurnToRival(GObj*);
 
+__ALIGNER2
+
 s32 magmar_animsounds_hit[] = { SOUND_ID_283 };
 s32 magmar_animsounds_fall[] = { SOUND_ID_284 };
 s32 magmar_animsounds_get_up[] = { SOUND_ID_285 };

@@ -512,7 +512,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     if (block == NULL || block->descriptor == NULL || block->descriptor->gfx == NULL) {
         return NULL;
     }
-    if (block->descriptor->gfx->numControlPoints < 2) {
+    if (block->descriptor->gfx->numControlLines < 2) {
         return NULL;
     }
 
@@ -523,7 +523,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
 
     obj = omAddGObj(id, &ohUpdateDefault, WorldLink, 0x80000000);
     omLinkGObjDL(obj, renRenderModelTypeB, WorldDlLink, 0x80000000, -1);
-    anim_func_8000FBC4(obj, block->descriptor->gfx->uvScrollAnim, block->cpObjects);
+    anim_func_8000FBC4(obj, block->descriptor->gfx->road, block->cpObjects);
     animSetModelAnimationSpeed(obj, 0.0f);
     if (block->descriptor->reversed) {
         skipFrames = block->descriptor->gfx->movementAnimDuration;
@@ -585,7 +585,7 @@ WorldBlock** createWorldBlocks(WorldBlockSetup* arg0, s32 skyBoxObjId, s32 block
             s0->prev = NULL;
         }
         s0->next = NULL;
-        if (s0->descriptor->gfx->numControlPoints <= 0 || s0->descriptor->gfx->numControlPoints >= 4) {
+        if (s0->descriptor->gfx->numControlLines <= 0 || s0->descriptor->gfx->numControlLines >= 4) {
             s0->cpObjects = NULL;
         } else {
             s0->cpObjects = &D_800F5BB0_73360[3 * i];

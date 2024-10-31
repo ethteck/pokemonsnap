@@ -1,5 +1,7 @@
 #include "volcano.h"
 
+__ALIGNER2
+
 extern EnvSoundData volcano_EnvSounds[] = {
     { SOUND_ID_58, PITCH_MOD_0, 15 },
     { SOUND_ID_59, PITCH_MOD_0, 18 },
@@ -290,7 +292,7 @@ void volcano_HandleCollision(GObj* obj, GroundResult* groundResult) {
             }
         }
     } else if (item->itemID == ITEM_ID_PESTER_BALL) {
-        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_38, obj);
+        cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_PESTER_BALL_IN_LAVA, obj);
     }
 }
 

@@ -1,16 +1,18 @@
 #include "volcano/volcano.h"
 
 extern AnimCmd volcano_camera_anim_intro[];
-extern AnimCmd* D_801174E0[];
-extern AnimCmd** D_801182F0[];
+extern AnimCmd* volcano_player_modelanim_intro[];
+extern AnimCmd** volcano_player_matanim_intro[];
+
+__ALIGNER2
 
 s32 volcano_IntroEnded = false;
 GObj* volcano_PlayerObj = NULL;
 
-extern u8 D_8034E108_79F308;
-extern u8 D_8034E109_79F309;
-extern u8 D_8034E10A_79F30A;
-extern u8 D_8034E10B_79F30B;
+u8 volcano_intro_SoundHandle1;
+u8 volcano_intro_SoundHandle2;
+u8 volcano_intro_SoundHandle3;
+u8 volcano_intro_SoundHandle4;
 
 void volcano_IntroStartCutscene(GObj* obj) {
     func_803571C4_4F75D4();
@@ -34,17 +36,17 @@ void volcano_IntroAnimationCallback(struct DObj* dobj, s32 param, f32 value) {
 }
 
 void volcano_StopIntro(void) {
-    if (auPlayingSound[D_8034E108_79F308] == SOUND_ID_21) {
-        auStopSound(D_8034E108_79F308);
+    if (auPlayingSound[volcano_intro_SoundHandle1] == SOUND_ID_21) {
+        auStopSound(volcano_intro_SoundHandle1);
     }
-    if (auPlayingSound[D_8034E109_79F309] == SOUND_ID_101) {
-        auStopSound(D_8034E109_79F309);
+    if (auPlayingSound[volcano_intro_SoundHandle2] == SOUND_ID_101) {
+        auStopSound(volcano_intro_SoundHandle2);
     }
-    if (auPlayingSound[D_8034E10A_79F30A] == SOUND_ID_30) {
-        auStopSound(D_8034E10A_79F30A);
+    if (auPlayingSound[volcano_intro_SoundHandle3] == SOUND_ID_30) {
+        auStopSound(volcano_intro_SoundHandle3);
     }
-    if (auPlayingSound[D_8034E10B_79F30B] == SOUND_ID_50) {
-        auStopSound(D_8034E10B_79F30B);
+    if (auPlayingSound[volcano_intro_SoundHandle4] == SOUND_ID_50) {
+        auStopSound(volcano_intro_SoundHandle4);
     }
     func_80357170_4F7580();
     resetMainCameraSettings();
@@ -58,16 +60,16 @@ void volcano_PlayIntroSounds(GObj* obj) {
     for (i = 0; i < 60; i++) {
         ohWait(1);
     }
-    D_8034E108_79F308 = auPlaySoundWithParams(SOUND_ID_21, 32256, 64, 1.0f, 30);
+    volcano_intro_SoundHandle1 = auPlaySoundWithParams(SOUND_ID_21, 32256, 64, 1.0f, 30);
     for (; i < 178; i++) {
         ohWait(1);
     }
-    D_8034E109_79F309 = auPlaySoundWithParams(SOUND_ID_101, 12288, 64, 1.5f, 30);
-    D_8034E10A_79F30A = auPlaySoundWithParams(SOUND_ID_30, 8192, 64, 0.6f, 30);
+    volcano_intro_SoundHandle2 = auPlaySoundWithParams(SOUND_ID_101, 12288, 64, 1.5f, 30);
+    volcano_intro_SoundHandle3 = auPlaySoundWithParams(SOUND_ID_30, 8192, 64, 0.6f, 30);
     for (; i < 196; i++) {
         ohWait(1);
     }
-    D_8034E10B_79F30B = auPlaySoundWithParams(SOUND_ID_50, 12288, 64, 0.74f, 30);
+    volcano_intro_SoundHandle4 = auPlaySoundWithParams(SOUND_ID_50, 12288, 64, 0.74f, 30);
     omEndProcess(NULL);
 }
 
@@ -91,7 +93,7 @@ void volcano_UpdateIntro(GObj* obj) {
     camera->animSpeed = 0.5f;
     animSetCameraAnimation(camera, volcano_camera_anim_intro, 0);
     animProc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(D_801174E0, D_801182F0, 0, 0.5f);
+    PlayerModel_SetAnimation(volcano_player_modelanim_intro, volcano_player_matanim_intro, 0, 0.5f);
     volcano_IntroEnded = false;
     obj->fnAnimCallback = volcano_IntroAnimationCallback;
     omCreateProcess(obj, volcano_PlayIntroSounds, 0, 1);

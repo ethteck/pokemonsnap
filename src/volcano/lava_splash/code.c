@@ -15,6 +15,8 @@ void lava_splash_Type3(GObj*);
 void lava_splash_Type4(GObj*);
 void lava_splash_Type2Inflate(GObj*);
 
+__ALIGNER2
+
 s32 lava_splash_animsounds_type5[] = { SOUND_ID_58 };
 s32 lava_splash_animsounds_type1[] = { SOUND_ID_62 };
 s32 lava_splash_animsounds_type3[] = { SOUND_ID_59 };

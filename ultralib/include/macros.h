@@ -59,5 +59,6 @@
 #define __CONCAT2_3__(x, y, z) __CONCAT_3__(x, y, z)
 
 #define __ALIGNER static u8 __CONCAT2__(aligner,__LINE__) [] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+#define __ALIGNER2 static u8 __CONCAT2__(aligner,__LINE__) [8];
 
 #endif

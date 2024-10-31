@@ -9,6 +9,8 @@ void volcano_smoke_Idle(GObj*);
 void volcano_smoke_Render(GObj*);
 void volcano_smoke_InitialState(GObj*);
 
+__ALIGNER2
+
 AnimationHeader volcano_smoke_animation = {
     0.4,
     100,

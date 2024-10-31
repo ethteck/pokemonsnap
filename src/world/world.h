@@ -50,8 +50,8 @@ typedef struct WorldBlockGFX {
     /* 0x04 */ Texture*** textures;
     /* 0x08 */ AnimCmd*** unk_08;
     /* 0x0C */ GObjFunc renderFunc;
-    /* 0x10 */ UnkEC64Arg3* uvScrollAnim;
-    /* 0x14 */ s32 numControlPoints;
+    /* 0x10 */ UnkEC64Arg3* road;
+    /* 0x14 */ s32 numControlLines;
     /* 0x18 */ AnimCmd** movementAnim;
     /* 0x1C */ s32 movementAnimDuration;
     /* 0x20 */ f32 cpTimeStamps[1]; // variable size, depends on unk_14
@@ -74,7 +74,7 @@ typedef struct WorldBlockDescriptor {
     /* 0x00 */ WorldBlockGFX* gfx;
     /* 0x04 */ Vec3f worldPos;
     /* 0x10 */ f32 yaw;
-    /* 0x14 */ s32 reversed;
+    /* 0x14 */ bool reversed;
     /* 0x18 */ StaticObject* unk_18;
     /* 0x1C */ ObjectSpawn* spawn;
     /* 0x20 */ StaticObject* staticObjects;

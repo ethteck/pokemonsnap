@@ -23,6 +23,8 @@ void charizard_MoveOutOfLava(GObj*);
 void charizard_CreateSplash(GObj*);
 void charizard_TurnToPlayer(GObj*);
 
+__ALIGNER2
+
 s32 charizard_animsounds_appear[] = { SOUND_ID_190 };
 s32 charizard_animsounds_roar[] = { SOUND_ID_190 };
 s32 charizard_animsounds_spin[] = { SOUND_ID_191 };

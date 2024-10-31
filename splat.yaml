@@ -1174,9 +1174,9 @@ segments:
       name: world/textures1
       subsegments:
       - [0x349B50]
-      - [0x349B58, palette, texA]
+      - [0x349B58, palette, tex_rocks0]
       - [0x349B78]
-      - { start: 0x349B80, type: ci4, name: texA, flip_y: true, width: 64, height: 64 }
+      - { start: 0x349B80, type: ci4, name: tex_rocks0, flip_y: true, width: 64, height: 64 }
     - start: 0x34A380
       type: .data
       dir: growlithe_spawner
@@ -1214,65 +1214,65 @@ segments:
       dir: world
       name: world/textures2
       subsegments:
-      - [0x34D480, palette, tex0]
+      - [0x34D480, palette, tex_road]
       - [0x34D4A0]
-      - { start: 0x34D4A8, type: ci4, name: tex0, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34D4A8, type: ci4, name: tex_road, flip_y: true, width: 64, height: 64 }
       - [0x34DCA8]
-      - [0x34DCB0, palette, tex1]
+      - [0x34DCB0, palette, tex_rocks1]
       - [0x34DCD0]
-      - { start: 0x34DCD8, type: ci4, name: tex1, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34DCD8, type: ci4, name: tex_rocks1, flip_y: true, width: 64, height: 64 }
       - [0x34E4D8]
-      - [0x34E4E0, palette, tex2]
+      - [0x34E4E0, palette, tex_rocks2]
       - [0x34E500]
-      - { start: 0x34E508, type: ci4, name: tex2, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34E508, type: ci4, name: tex_rocks2, flip_y: true, width: 64, height: 64 }
       - [0x34ED08]
-      - [0x34ED10, palette, tex3]
+      - [0x34ED10, palette, tex_rocks3]
       - [0x34ED30]
-      - { start: 0x34ED38, type: ci4, name: tex3, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34ED38, type: ci4, name: tex_rocks3, flip_y: true, width: 64, height: 64 }
       - [0x34F538]
-      - [0x34F540, palette, tex4]
+      - [0x34F540, palette, tex_rocks4]
       - [0x34F560]
-      - { start: 0x34F568, type: ci4, name: tex4, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34F568, type: ci4, name: tex_rocks4, flip_y: true, width: 64, height: 64 }
       - [0x34FD68]
-      - [0x34FD70, palette, tex7]
+      - [0x34FD70, palette, tex_rocks5]
       - [0x34FD90]
-      - { start: 0x34FD98, type: ci4, name: tex7, flip_y: true, width: 64, height: 64 }
+      - { start: 0x34FD98, type: ci4, name: tex_rocks5, flip_y: true, width: 64, height: 64 }
       - [0x350598]
-      - [0x3505A0, palette, tex6]
+      - [0x3505A0, palette, tex_rocks6]
       - [0x3505C0]
-      - { start: 0x3505C8, type: ci4, name: tex6, flip_y: true, width: 64, height: 64 }
+      - { start: 0x3505C8, type: ci4, name: tex_rocks6, flip_y: true, width: 64, height: 64 }
       - [0x350DC8]
-      - [0x350DD0, palette, tex8_var0]
+      - [0x350DD0, palette, tex_water_frame0]
       - [0x350DF0]
-      - { start: 0x350DF8, type: ci4, name: tex8_var0, flip_y: true, width: 32, height: 64 }
+      - { start: 0x350DF8, type: ci4, name: tex_water_frame0, flip_y: true, width: 32, height: 64 }
       - [0x3511F8]
-      - [0x351200, palette, tex8_var1]
+      - [0x351200, palette, tex_water_frame1]
       - [0x351220]
-      - { start: 0x351228, type: ci4, name: tex8_var1, flip_y: true, width: 32, height: 64 }
+      - { start: 0x351228, type: ci4, name: tex_water_frame1, flip_y: true, width: 32, height: 64 }
       - [0x351628]
-      - [0x351630, palette, tex8_var2]
+      - [0x351630, palette, tex_water_frame2]
       - [0x351650]
-      - { start: 0x351658, type: ci4, name: tex8_var2, flip_y: true, width: 32, height: 64 }
+      - { start: 0x351658, type: ci4, name: tex_water_frame2, flip_y: true, width: 32, height: 64 }
       - [0x351A58]
-      - [0x351A60, palette, tex8_var3]
+      - [0x351A60, palette, tex_water_frame3]
       - [0x351A80]
-      - { start: 0x351A88, type: ci4, name: tex8_var3, flip_y: true, width: 32, height: 64 }
+      - { start: 0x351A88, type: ci4, name: tex_water_frame3, flip_y: true, width: 32, height: 64 }
       - [0x351E88]
-      - [0x351E90, palette, tex5_var0]
+      - [0x351E90, palette, tex_lava_frame0]
       - [0x351EB0]
-      - { start: 0x351EB8, type: ci4, name: tex5_var0, flip_y: true, width: 32, height: 64 }
+      - { start: 0x351EB8, type: ci4, name: tex_lava_frame0, flip_y: true, width: 32, height: 64 }
       - [0x3522B8]
-      - [0x3522C0, palette, tex5_var1]
+      - [0x3522C0, palette, tex_lava_frame1]
       - [0x3522E0]
-      - { start: 0x3522E8, type: ci4, name: tex5_var1, flip_y: true, width: 32, height: 64 }
+      - { start: 0x3522E8, type: ci4, name: tex_lava_frame1, flip_y: true, width: 32, height: 64 }
       - [0x3526E8]
-      - [0x3526F0, palette, tex5_var2]
+      - [0x3526F0, palette, tex_lava_frame2]
       - [0x352710]
-      - { start: 0x352718, type: ci4, name: tex5_var2, flip_y: true, width: 32, height: 64 }
+      - { start: 0x352718, type: ci4, name: tex_lava_frame2, flip_y: true, width: 32, height: 64 }
       - [0x352B18]
-      - [0x352B20, palette, tex5_var3]
+      - [0x352B20, palette, tex_lava_frame3]
       - [0x352B40]
-      - { start: 0x352B48, type: ci4, name: tex5_var3, flip_y: true, width: 32, height: 64 }
+      - { start: 0x352B48, type: ci4, name: tex_lava_frame3, flip_y: true, width: 32, height: 64 }
     - start: 0x352F50
       type: .data
       dir: lava_splash
@@ -3796,7 +3796,6 @@ segments:
       - [0x79ECC0, gfx, part20_draw]
       - [0x79ECE8, gfx, last]
       - [0x79ED08]
-    - { start: auto, name: bss_8034DFB0, type: bss, vram: 0x8034DFB0 }
   - name: valley_code
     dir: valley
     type: code

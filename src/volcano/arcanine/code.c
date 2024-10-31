@@ -42,6 +42,8 @@ void arcanine_TurnToApple(GObj*);
 void arcanine_TurnToPlayer(GObj*);
 void arcanine_RunAway(GObj*);
 
+__ALIGNER2
+
 s32 arcanine_animsounds_roar[] = { SOUND_ID_271 };
 s32 arcanine_animsounds_hit[] = { SOUND_ID_272 };
 s32 arcanine_animsounds_eat[] = { SOUND_ID_270 };

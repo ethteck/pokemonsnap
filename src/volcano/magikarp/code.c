@@ -11,6 +11,8 @@ extern AnimCmd* D_800FD080[];
 void volcano_magikarp_InitialState(GObj*);
 void func_802DF338_730538(GObj*);
 
+__ALIGNER2
+
 s32 D_802E35D0_7347D0[] = { SOUND_ID_211 };
 s32 D_802E35D4_7347D4[] = { SOUND_ID_210, SOUND_ID_376, SOUND_ID_114 };
 s32 D_802E35E0_7347E0[] = { SOUND_ID_211, SOUND_ID_376, SOUND_ID_114 };

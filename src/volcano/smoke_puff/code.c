@@ -8,6 +8,8 @@ extern AnimCmd** smoke_puff_matanim[];
 void smoke_puff_InitialState(GObj*);
 void smoke_puff_Rise(GObj*);
 
+__ALIGNER2
+
 AnimationHeader smoke_puff_animation = {
     1.0,
     100,

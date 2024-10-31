@@ -40,6 +40,8 @@ void vulpix_MoveRunToPathEnd(GObj*);
 void vulpix_IdleAtPathEnd(GObj*);
 void vulpix_TurnToPlayer(GObj*);
 
+__ALIGNER2
+
 s32 vulpix_animsounds_fall[] = { SOUND_ID_291 };
 s32 vulpix_animsounds_eat[] = { SOUND_ID_292 };
 

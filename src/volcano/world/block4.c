@@ -1,28 +1,8 @@
 #include <common.h>
+#include "../volcano.h"
 
 extern Vtx volcano_block4_vtx[];
 extern Texture* volcano_block4_materials_mat[];
-
-extern u8 volcano_world_tex0_pal[];
-extern u8 volcano_world_tex0_png[];
-extern u8 volcano_world_tex1_pal[];
-extern u8 volcano_world_tex1_png[];
-extern u8 volcano_world_tex2_pal[];
-extern u8 volcano_world_tex2_png[];
-extern u8 volcano_world_tex3_pal[];
-extern u8 volcano_world_tex3_png[];
-extern u8 volcano_world_tex4_pal[];
-extern u8 volcano_world_tex4_png[];
-extern u8 volcano_world_tex5_var1_pal[];
-extern u8 volcano_world_tex5_var0_png[];
-extern u8 volcano_world_tex5_var1_png[];
-extern u8 volcano_world_tex5_var2_png[];
-extern u8 volcano_world_tex5_var3_png[];
-extern u8 volcano_world_tex5_var0_pal[];
-extern u8 volcano_world_tex6_pal[];
-extern u8 volcano_world_tex6_png[];
-extern u8 volcano_world_tex7_pal[];
-extern u8 volcano_world_tex7_png[];
 
 #include "assets/volcano/block4/draw.gfx.inc.c"
 #include "assets/volcano/block4/model.vtx.inc.c"
@@ -32,27 +12,27 @@ Texture** volcano_block4_materials[] = {
 };
 
 u8* volcano_block4_materials_mat0_textures[] = {
-    volcano_world_tex5_var0_png,
-    volcano_world_tex5_var1_png,
-    volcano_world_tex5_var2_png,
-    volcano_world_tex5_var3_png,
-    volcano_world_tex5_var3_png,
+    volcano_world_tex_lava_frame0_png,
+    volcano_world_tex_lava_frame1_png,
+    volcano_world_tex_lava_frame2_png,
+    volcano_world_tex_lava_frame3_png,
+    volcano_world_tex_lava_frame3_png,
 };
 
 u8* volcano_block4_materials_mat1_textures[] = {
-    volcano_world_tex5_var0_png,
-    volcano_world_tex5_var1_png,
-    volcano_world_tex5_var2_png,
-    volcano_world_tex5_var3_png,
-    volcano_world_tex5_var3_png,
+    volcano_world_tex_lava_frame0_png,
+    volcano_world_tex_lava_frame1_png,
+    volcano_world_tex_lava_frame2_png,
+    volcano_world_tex_lava_frame3_png,
+    volcano_world_tex_lava_frame3_png,
 };
 
 u8* volcano_block4_materials_mat2_textures[] = {
-    volcano_world_tex5_var0_png,
-    volcano_world_tex5_var1_png,
-    volcano_world_tex5_var2_png,
-    volcano_world_tex5_var3_png,
-    volcano_world_tex5_var3_png,
+    volcano_world_tex_lava_frame0_png,
+    volcano_world_tex_lava_frame1_png,
+    volcano_world_tex_lava_frame2_png,
+    volcano_world_tex_lava_frame3_png,
+    volcano_world_tex_lava_frame3_png,
 };
 
 Texture volcano_block4_materials_mat0 = {
@@ -219,7 +199,7 @@ Texture* volcano_block4_materials_mat[] = {
 __ALIGNER 
 #include "assets/volcano/block4/unk.gfx.inc.c"
 
-UnkEC64Arg3 volcano_block4_model[] = {
+UnkEC64Arg3 volcano_block4_road[] = {
     { 0,
       NULL,
       { 0.0, 0.0, 0.0 },

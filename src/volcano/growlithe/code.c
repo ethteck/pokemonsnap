@@ -42,6 +42,8 @@ void growlithe_TurnToApple(GObj*);
 void growlithe_TurnToPlayer(GObj*);
 void growlithe_RunAway(GObj*);
 
+__ALIGNER2
+
 s32 growlithe_animsounds_roar[] = { SOUND_ID_275 };
 s32 growlithe_animsounds_hit[] = { SOUND_ID_276 };
 s32 growlithe_animsounds_eat[] = { SOUND_ID_274 };

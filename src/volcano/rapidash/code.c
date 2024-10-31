@@ -40,6 +40,8 @@ void rapidash_RunToApple(GObj*);
 void rapidash_EatApple(GObj*);
 void rapidash_TurnToPlayer(GObj*);
 
+__ALIGNER2
+
 s32 rapidash_animsounds_idle[] = { 0, SOUND_ID_129, SOUND_ID_130 };
 s32 rapidash_animsounds_run[] = { SOUND_ID_128, SOUND_ID_129, SOUND_ID_130, SOUND_ID_131 };
 s32 rapidash_animsounds_shake_head[] = { SOUND_ID_347 };

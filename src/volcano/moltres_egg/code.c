@@ -14,6 +14,8 @@ void volcano_CreateSplashFromMoltresEgg(GObj*);
 void moltres_egg_DrownInLava(GObj*);
 void volcano_CreateSplashFromMoltres(GObj*);
 
+__ALIGNER2
+
 AnimationHeader moltres_egg_animation_idle = {
     0.5,
     60,

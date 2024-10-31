@@ -6,6 +6,8 @@ void smoke_spawner_Idle(GObj*);
 void smoke_spawner_PesterBallThrown(GObj*);
 void smoke_spawner_WaitSmokeFade(GObj*);
 
+__ALIGNER2
+
 UnkEC64Arg3 smoke_spawner_model[] = {
     { 0,
       NULL,

@@ -8,7 +8,7 @@ extern WorldBlockGFX volcano_block2_gfx;
 extern WorldBlockGFX volcano_block3_gfx;
 extern WorldBlockGFX volcano_block4_gfx;
 extern WorldBlockGFX volcano_block5_gfx;
-extern WorldBlockGFX volcano_uvBlock0_gfx;
+extern WorldBlockGFX volcano_block6_gfx;
 
 Vec3f smoke_spawner_path_points[] = {
     { 26.570312, -9.117575, 10.786863 },
@@ -463,7 +463,7 @@ WorldBlockDescriptor volcano_block0 = {
     &volcano_block0_gfx,
     { 0.0, 0.0, 0.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block0_spawn,
     NULL,
@@ -473,7 +473,7 @@ WorldBlockDescriptor volcano_block1 = {
     &volcano_block1_gfx,
     { 20.0, 0.0, 15.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block1_spawn,
     NULL,
@@ -483,7 +483,7 @@ WorldBlockDescriptor volcano_block2 = {
     &volcano_block2_gfx,
     { 10.0, 0.0, 35.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block2_spawn,
     NULL,
@@ -493,7 +493,7 @@ WorldBlockDescriptor volcano_block3 = {
     &volcano_block3_gfx,
     { -25.0, 0.0, 20.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block3_spawn,
     NULL,
@@ -503,7 +503,7 @@ WorldBlockDescriptor volcano_block4 = {
     &volcano_block4_gfx,
     { -70.0, 0.0, 10.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block4_spawn,
     NULL,
@@ -513,17 +513,17 @@ WorldBlockDescriptor volcano_block5 = {
     &volcano_block5_gfx,
     { -100.0, 0.0, 30.0 },
     0.0,
-    0,
+    false,
     NULL,
     volcano_block5_spawn,
     volcano_block5_staticObjects,
 };
 
-WorldBlockDescriptor volcano_uvBlock0 = {
-    &volcano_uvBlock0_gfx,
+WorldBlockDescriptor volcano_block6 = {
+    &volcano_block6_gfx,
     { -45.0, 0.0, -10.0 },
     0.0,
-    0,
+    false,
     NULL,
     NULL,
     NULL,
@@ -540,7 +540,7 @@ WorldBlockDescriptor* volcano_modelBlocks[] = {
 };
 
 WorldBlockDescriptor* volcano_uvScrollBlocks[] = {
-    &volcano_uvBlock0,
+    &volcano_block6,
     NULL,
 };
 

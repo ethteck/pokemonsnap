@@ -307,7 +307,7 @@ s32 func_800E3CE8_8A9508(void) {
             ohWait(48);
             auSetBGMVolumeSmooth(0, 0, 30);
             ohWait(33);
-            if (checkPlayerFlag(PFID_21)) {
+            if (checkPlayerFlag(PFID_ILLEGAL_COPY)) {
                 D_80206B48_9CC368();
             }
             if (func_800BF244_5C0E4() != 0) {

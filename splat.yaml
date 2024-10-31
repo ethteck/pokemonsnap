@@ -2884,7 +2884,7 @@ segments:
     bss_size: 0x1690
     exclusive_ram_id: level
     subsegments:
-    - [0x5DF5D0, c]
+    - [0x5DF5D0, c, main]
     - [0x5DFD40, c]
     - [0x5E0A70, c]
     - [0x5E1C10, c]
@@ -2900,7 +2900,8 @@ segments:
     - [0x5E9010, c]
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
-    - [0x5EAFD0, bin] # , data]
+    - [0x5EAFD0, .data, main]
+    - [0x5EB2B0, bin] # , data]
 
     - [0x5ED360, .rodata, 5DFD40]
     - [0x5ED420, .rodata, 5E0A70]

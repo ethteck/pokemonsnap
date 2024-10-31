@@ -1,151 +1,151 @@
 #include <common.h>
 
 // no aligner
-u8 volcano_world_tex0_pal[] = {
-#include "assets/volcano/world/tex0.pal.bin.c"
+u8 volcano_world_tex_road_pal[] = {
+#include "assets/volcano/world/tex_road.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex0_png[] = {
-#include "assets/volcano/world/tex0.png.bin.c"
+u8 volcano_world_tex_road_png[] = {
+#include "assets/volcano/world/tex_road.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex1_pal[] = {
-#include "assets/volcano/world/tex1.pal.bin.c"
+u8 volcano_world_tex_rocks1_pal[] = {
+#include "assets/volcano/world/tex_rocks1.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex1_png[] = {
-#include "assets/volcano/world/tex1.png.bin.c"
+u8 volcano_world_tex_rocks1_png[] = {
+#include "assets/volcano/world/tex_rocks1.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex2_pal[] = {
-#include "assets/volcano/world/tex2.pal.bin.c"
+u8 volcano_world_tex_rocks2_pal[] = {
+#include "assets/volcano/world/tex_rocks2.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex2_png[] = {
-#include "assets/volcano/world/tex2.png.bin.c"
+u8 volcano_world_tex_rocks2_png[] = {
+#include "assets/volcano/world/tex_rocks2.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex3_pal[] = {
-#include "assets/volcano/world/tex3.pal.bin.c"
+u8 volcano_world_tex_rocks3_pal[] = {
+#include "assets/volcano/world/tex_rocks3.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex3_png[] = {
-#include "assets/volcano/world/tex3.png.bin.c"
+u8 volcano_world_tex_rocks3_png[] = {
+#include "assets/volcano/world/tex_rocks3.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex4_pal[] = {
-#include "assets/volcano/world/tex4.pal.bin.c"
+u8 volcano_world_tex_rocks4_pal[] = {
+#include "assets/volcano/world/tex_rocks4.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex4_png[] = {
-#include "assets/volcano/world/tex4.png.bin.c"
+u8 volcano_world_tex_rocks4_png[] = {
+#include "assets/volcano/world/tex_rocks4.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex7_pal[] = {
-#include "assets/volcano/world/tex7.pal.bin.c"
+u8 volcano_world_tex_rocks5_pal[] = {
+#include "assets/volcano/world/tex_rocks5.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex7_png[] = {
-#include "assets/volcano/world/tex7.png.bin.c"
+u8 volcano_world_tex_rocks5_png[] = {
+#include "assets/volcano/world/tex_rocks5.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex6_pal[] = {
-#include "assets/volcano/world/tex6.pal.bin.c"
+u8 volcano_world_tex_rocks6_pal[] = {
+#include "assets/volcano/world/tex_rocks6.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex6_png[] = {
-#include "assets/volcano/world/tex6.png.bin.c"
+u8 volcano_world_tex_rocks6_png[] = {
+#include "assets/volcano/world/tex_rocks6.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var0_pal[] = {
-#include "assets/volcano/world/tex8_var0.pal.bin.c"
+u8 volcano_world_tex_water_frame0_pal[] = {
+#include "assets/volcano/world/tex_water_frame0.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var0_png[] = {
-#include "assets/volcano/world/tex8_var0.png.bin.c"
+u8 volcano_world_tex_water_frame0_png[] = {
+#include "assets/volcano/world/tex_water_frame0.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var1_pal[] = {
-#include "assets/volcano/world/tex8_var1.pal.bin.c"
+u8 volcano_world_tex_water_frame1_pal[] = {
+#include "assets/volcano/world/tex_water_frame1.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var1_png[] = {
-#include "assets/volcano/world/tex8_var1.png.bin.c"
+u8 volcano_world_tex_water_frame1_png[] = {
+#include "assets/volcano/world/tex_water_frame1.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var2_pal[] = {
-#include "assets/volcano/world/tex8_var2.pal.bin.c"
+u8 volcano_world_tex_water_frame2_pal[] = {
+#include "assets/volcano/world/tex_water_frame2.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var2_png[] = {
-#include "assets/volcano/world/tex8_var2.png.bin.c"
+u8 volcano_world_tex_water_frame2_png[] = {
+#include "assets/volcano/world/tex_water_frame2.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var3_pal[] = {
-#include "assets/volcano/world/tex8_var3.pal.bin.c"
+u8 volcano_world_tex_water_frame3_pal[] = {
+#include "assets/volcano/world/tex_water_frame3.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex8_var3_png[] = {
-#include "assets/volcano/world/tex8_var3.png.bin.c"
+u8 volcano_world_tex_water_frame3_png[] = {
+#include "assets/volcano/world/tex_water_frame3.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var0_pal[] = {
-#include "assets/volcano/world/tex5_var0.pal.bin.c"
+u8 volcano_world_tex_lava_frame0_pal[] = {
+#include "assets/volcano/world/tex_lava_frame0.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var0_png[] = {
-#include "assets/volcano/world/tex5_var0.png.bin.c"
+u8 volcano_world_tex_lava_frame0_png[] = {
+#include "assets/volcano/world/tex_lava_frame0.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var1_pal[] = {
-#include "assets/volcano/world/tex5_var1.pal.bin.c"
+u8 volcano_world_tex_lava_frame1_pal[] = {
+#include "assets/volcano/world/tex_lava_frame1.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var1_png[] = {
-#include "assets/volcano/world/tex5_var1.png.bin.c"
+u8 volcano_world_tex_lava_frame1_png[] = {
+#include "assets/volcano/world/tex_lava_frame1.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var2_pal[] = {
-#include "assets/volcano/world/tex5_var2.pal.bin.c"
+u8 volcano_world_tex_lava_frame2_pal[] = {
+#include "assets/volcano/world/tex_lava_frame2.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var2_png[] = {
-#include "assets/volcano/world/tex5_var2.png.bin.c"
+u8 volcano_world_tex_lava_frame2_png[] = {
+#include "assets/volcano/world/tex_lava_frame2.png.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var3_pal[] = {
-#include "assets/volcano/world/tex5_var3.pal.bin.c"
+u8 volcano_world_tex_lava_frame3_pal[] = {
+#include "assets/volcano/world/tex_lava_frame3.pal.bin.c"
 };
 
 __ALIGNER
-u8 volcano_world_tex5_var3_png[] = {
-#include "assets/volcano/world/tex5_var3.png.bin.c"
+u8 volcano_world_tex_lava_frame3_png[] = {
+#include "assets/volcano/world/tex_lava_frame3.png.bin.c"
 };

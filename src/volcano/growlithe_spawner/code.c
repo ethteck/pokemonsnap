@@ -8,9 +8,11 @@ extern AnimCmd** growlithe_spawner_matanim[];
 
 void growlithe_spawner_InitialState(GObj*);
 void growlithe_spawner_SpawnPokemon(GObj*);
-void func_802D6B64_727D64(GObj*);
+void volcano_CreateSplashFromGrowlitheOrArcanine(GObj*);
 void growlithe_spawner_SendCommands(GObj*);
 void growlithe_spawner_Idle(GObj*);
+
+__ALIGNER2
 
 AnimationHeader growlithe_spawner_animation = {
     1.5,
@@ -21,7 +23,7 @@ AnimationHeader growlithe_spawner_animation = {
 };
 
 InteractionHandler growlithe_spawner_tg_Normal[] = {
-    { VOLCANO_CMD_38, growlithe_spawner_SpawnPokemon, 0, NULL },
+    { VOLCANO_CMD_PESTER_BALL_IN_LAVA, growlithe_spawner_SpawnPokemon, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -67,7 +69,7 @@ POKEMON_FUNC(growlithe_spawner_InitialState)
     pokemon->tangible = true;
     obj->flags = 0;
     pokemon->miscVars[0].field1 = false;
-    omCreateProcess(obj, func_802D6B64_727D64, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromGrowlitheOrArcanine, 1, 1);
     Pokemon_StartPathProc(obj, growlithe_spawner_SendCommands);
     Pokemon_SetState(obj, growlithe_spawner_Idle);
 }
@@ -81,9 +83,9 @@ POKEMON_FUNC(growlithe_spawner_Idle)
 }
 
 POKEMON_FUNC(growlithe_spawner_SpawnPokemon)
-    omCreateProcess(obj, func_802D6B2C_727D2C, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromGrowlitheSpawner, 1, 1);
 
-    if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && func_802D6D6C_727F6C(obj)) {
+    if (!pokemon->miscVars[0].field1 && Pokemon_GetDistance(obj, pokemon->interactionTarget) < 200.0f && volcano_SpawnGrowlitheOrArcanine(obj)) {
         pokemon->miscVars[0].field1 = true;
     }
 
@@ -96,11 +98,11 @@ POKEMON_FUNC(growlithe_spawner_SpawnPokemon)
 
 POKEMON_FUNC(growlithe_spawner_SendCommands)
     while (!pokemon->miscVars[0].field1) {
-        cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_34, obj);
+        cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_LAVA_SPLASH_START, obj);
         ohWait(randRange(180) + 120);
     }
 
-    cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_35, obj);
+    cmdSendCommand(pokemon->miscVars[1].obj, VOLCANO_CMD_LAVA_SPLASH_END, obj);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

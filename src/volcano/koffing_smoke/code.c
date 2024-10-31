@@ -16,6 +16,8 @@ void koffing_smoke_Hide(GObj* obj);
 void koffing_smoke_Rise(GObj* obj);
 void koffing_smoke_InitialState(GObj*);
 
+__ALIGNER2
+
 s32 koffing_smoke_animsounds_reveal[] = { SOUND_ID_61 };
 
 AnimationHeader koffing_smoke_animation_show = {
@@ -92,7 +94,7 @@ POKEMON_FUNC(koffing_smoke_Hide)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_33, obj);
+    cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_SMOKE_FADED, obj);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

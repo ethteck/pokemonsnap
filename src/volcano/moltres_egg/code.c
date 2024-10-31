@@ -10,9 +10,11 @@ void moltres_egg_Idle(GObj*);
 void moltres_egg_FallIntoLava(GObj*);
 void moltres_egg_Jump(GObj*);
 void moltres_egg_SpawnMoltres(GObj*);
-void func_802D6C38_727E38(GObj*);
+void volcano_CreateSplashFromMoltresEgg(GObj*);
 void moltres_egg_DrownInLava(GObj*);
-void func_802D6BB0_727DB0(GObj*);
+void volcano_CreateSplashFromMoltres(GObj*);
+
+__ALIGNER2
 
 AnimationHeader moltres_egg_animation_idle = {
     0.5,
@@ -114,13 +116,13 @@ POKEMON_FUNC(moltres_egg_Jump)
 }
 
 POKEMON_FUNC(moltres_egg_SpawnMoltres)
-    omCreateProcess(obj, func_802D6C38_727E38, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromMoltresEgg, 1, 1);
     Pokemon_SetAnimation(obj, &moltres_egg_animation_drown);
     Pokemon_StartPathProc(obj, moltres_egg_DrownInLava);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    omCreateProcess(obj, func_802D6BB0_727DB0, 1, 1);
+    omCreateProcess(obj, volcano_CreateSplashFromMoltres, 1, 1);
     pokemon->counter = 6, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);

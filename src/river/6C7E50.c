@@ -123,7 +123,7 @@ void func_802E03C0_6C81A0(GObj* obj) {
     cam->animSpeed = 0.5f;
     animSetCameraAnimation(cam, D_8014A600, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    func_800E1A78_5F228(D_8012ACA0);
+    setSkyBoxAnimationSpeed(D_8012ACA0);
     playerModelObj = PlayerModel_Init();
     if (playerModelObj == NULL) {
         cmdSendCommand(gObjPlayer, 7, NULL);

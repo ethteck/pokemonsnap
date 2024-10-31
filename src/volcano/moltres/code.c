@@ -20,6 +20,8 @@ void moltres_UnusedBehavior(GObj*);
 void moltres_Fly(GObj*);
 void moltres_FlyAway(GObj*);
 
+__ALIGNER2
+
 s32 moltres_animsounds_fly[] = { 0, SOUND_ID_120 };
 s32 moltres_animsounds_fly2[] = { 0, SOUND_ID_120 };
 s32 moltres_animsounds_shake_off[] = { SOUND_ID_189, SOUND_ID_139, SOUND_ID_120 };

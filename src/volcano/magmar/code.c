@@ -43,6 +43,8 @@ void magmar_TurnToPlayer(GObj*);
 void magmar_BurnCharmander(GObj*);
 void magmar_TurnToRival(GObj*);
 
+__ALIGNER2
+
 s32 magmar_animsounds_hit[] = { SOUND_ID_283 };
 s32 magmar_animsounds_fall[] = { SOUND_ID_284 };
 s32 magmar_animsounds_get_up[] = { SOUND_ID_285 };
@@ -57,7 +59,7 @@ AnimationHeader magmar_animation_idle = {
     NULL
 };
 
-AnimationHeader magmar_animation_lookaround = {
+AnimationHeader magmar_animation_look_around = {
     0.4,
     60,
     magmar_modelanim_look_around,
@@ -105,7 +107,7 @@ AnimationHeader magmar_animation_lie = {
     NULL
 };
 
-AnimationHeader magmar_animation_getup = {
+AnimationHeader magmar_animation_get_up = {
     0.35,
     52,
     magmar_modelanim_get_up,
@@ -121,7 +123,7 @@ AnimationHeader magmar_animation_eat = {
     magmar_animsounds_eat
 };
 
-AnimationHeader magmar_animation_spewfire = {
+AnimationHeader magmar_animation_spew_fire = {
     0.5,
     145,
     magmar_modelanim_spew_fire,
@@ -331,7 +333,7 @@ POKEMON_FUNC(magmar_Idle)
 }
 
 POKEMON_FUNC(magmar_LookAround)
-    Pokemon_ForceAnimation(obj, &magmar_animation_lookaround);
+    Pokemon_ForceAnimation(obj, &magmar_animation_look_around);
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = magmar_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -373,7 +375,7 @@ POKEMON_FUNC(magmar_HitByPesterBall)
     pokemon->flags &= ~POKEMON_FLAG_800;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &magmar_animation_getup);
+    Pokemon_SetAnimation(obj, &magmar_animation_get_up);
     pokemon->transitionGraph = magmar_tg_Hit;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -470,7 +472,7 @@ POKEMON_FUNC(magmar_InteractWithPokemon)
     }
     pokemon->specialPoseID = 11;
 
-    Pokemon_SetAnimation(obj, &magmar_animation_spewfire);
+    Pokemon_SetAnimation(obj, &magmar_animation_spew_fire);
     Pokemon_StartPathProc(obj, magmar_TurnToRival);
     pokemon->counter = 90, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = magmar_tg_Fighting;
@@ -514,7 +516,7 @@ POKEMON_FUNC(magmar_BurnedDown)
     pokemon->flags &= ~POKEMON_FLAG_800;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &magmar_animation_getup);
+    Pokemon_SetAnimation(obj, &magmar_animation_get_up);
     pokemon->transitionGraph = magmar_tg_Hit;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
@@ -526,7 +528,7 @@ POKEMON_FUNC(magmar_BurnCharmander)
         Pokemon_SetState(obj, magmar_Idle);
     }
 
-    Pokemon_SetAnimation(obj, &magmar_animation_spewfire);
+    Pokemon_SetAnimation(obj, &magmar_animation_spew_fire);
     Pokemon_StartPathProc(obj, magmar_TurnToRival);
     pokemon->counter = 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = magmar_tg_Fighting;

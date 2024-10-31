@@ -73,7 +73,7 @@ void func_800E19A4_5F154(DObj* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-void func_800E1A78_5F228(f32 arg0) {
+void setSkyBoxAnimationSpeed(f32 arg0) {
     SkyBoxAnimationSpeed = arg0;
     if (SkyBoxAnimation != NULL) {
         animSetTextureAnimationSpeed(SkyBoxObject, arg0);
@@ -512,7 +512,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
     if (block == NULL || block->descriptor == NULL || block->descriptor->gfx == NULL) {
         return NULL;
     }
-    if (block->descriptor->gfx->numControlPoints < 2) {
+    if (block->descriptor->gfx->numControlLines < 2) {
         return NULL;
     }
 
@@ -523,7 +523,7 @@ GObj* createWorldBlockUV(WorldBlock* block) {
 
     obj = omAddGObj(id, &ohUpdateDefault, WorldLink, 0x80000000);
     omLinkGObjDL(obj, renRenderModelTypeB, WorldDlLink, 0x80000000, -1);
-    anim_func_8000FBC4(obj, block->descriptor->gfx->uvScrollAnim, block->cpObjects);
+    anim_func_8000FBC4(obj, block->descriptor->gfx->road, block->cpObjects);
     animSetModelAnimationSpeed(obj, 0.0f);
     if (block->descriptor->reversed) {
         skipFrames = block->descriptor->gfx->movementAnimDuration;
@@ -585,7 +585,7 @@ WorldBlock** createWorldBlocks(WorldBlockSetup* arg0, s32 skyBoxObjId, s32 block
             s0->prev = NULL;
         }
         s0->next = NULL;
-        if (s0->descriptor->gfx->numControlPoints <= 0 || s0->descriptor->gfx->numControlPoints >= 4) {
+        if (s0->descriptor->gfx->numControlLines <= 0 || s0->descriptor->gfx->numControlLines >= 4) {
             s0->cpObjects = NULL;
         } else {
             s0->cpObjects = &D_800F5BB0_73360[3 * i];
@@ -656,7 +656,7 @@ s32 createWorld(WorldSetup* arg0, s32 skyBoxObjId, s32 blockMinObjId, s32 blockM
     setFogColor(arg0->fogR, arg0->fogG, arg0->fogB);
     setBackgroundColor(arg0->backgroundR, arg0->backgroundG, arg0->backgroundB);
     createWorldBlocks(arg0->blocksSetup, skyBoxObjId, blockMinObjId, blockMaxObjId, link, dllink, fnPokemonAdd, fnPokemonRemove, fnPokemonChangeBlock);
-    func_800E1A78_5F228(arg0->unk_10);
+    setSkyBoxAnimationSpeed(arg0->unk_10);
     return true;
 }
 

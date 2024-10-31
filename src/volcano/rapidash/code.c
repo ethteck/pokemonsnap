@@ -1,208 +1,212 @@
 #include "volcano/volcano.h"
 
-extern AnimCmd* rapidash_modelanim_anim1[];
-extern AnimCmd* rapidash_modelanim_anim2[];
-extern AnimCmd* rapidash_modelanim_anim3[];
-extern AnimCmd* rapidash_modelanim_anim4[];
-extern AnimCmd* rapidash_modelanim_anim5[];
-extern AnimCmd* rapidash_modelanim_anim6[];
+extern AnimCmd* rapidash_modelanim_walk[];
+extern AnimCmd* rapidash_modelanim_run[];
+extern AnimCmd* rapidash_modelanim_idle[];
+extern AnimCmd* rapidash_modelanim_rear[];
+extern AnimCmd* rapidash_modelanim_shake_head[];
+extern AnimCmd* rapidash_modelanim_kick[];
 
-extern AnimCmd** rapidash_matanim_anim1[];
-extern AnimCmd** rapidash_matanim_anim2[];
-extern AnimCmd** rapidash_matanim_anim3[];
-extern AnimCmd** rapidash_matanim_anim4[];
-extern AnimCmd** rapidash_matanim_anim5[];
-extern AnimCmd** rapidash_matanim_anim6[];
+extern AnimCmd** rapidash_matanim_walk[];
+extern AnimCmd** rapidash_matanim_run[];
+extern AnimCmd** rapidash_matanim_idle[];
+extern AnimCmd** rapidash_matanim_rear[];
+extern AnimCmd** rapidash_matanim_shake_head[];
+extern AnimCmd** rapidash_matanim_kick[];
 
-void func_802D893C_729B3C(GObj*);
-void func_802D89B0_729BB0(GObj*);
-void func_802D8018_729218(GObj*);
-void func_802D8118_729318(GObj*);
-void func_802D7F60_729160(GObj*);
-void func_802D8218_729418(GObj*);
-void func_802D8288_729488(GObj*);
-void func_802D859C_72979C(GObj*);
-void func_802D8830_729A30(GObj*);
-void func_802D7FA8_7291A8(GObj*);
-void func_802D82F8_7294F8(GObj*);
-void func_802D8750_729950(GObj*);
-void func_802D87C0_7299C0(GObj*);
-void func_802D8368_729568(GObj*);
-void func_802D85C0_7297C0(GObj*);
-void func_802D8868_729A68(GObj*);
-void func_802D88D0_729AD0(GObj*);
-void func_802D8620_729820(GObj*);
-void func_802D86E0_7298E0(GObj*);
-void func_802D80BC_7292BC(GObj*);
-void func_802D81BC_7293BC(GObj*);
-void func_802D842C_72962C(GObj*);
-void func_802D8478_729678(GObj*);
-void func_802D84FC_7296FC(GObj*);
-void func_802D8694_729894(GObj*);
+void rapidash_RunningHit(GObj*);
+void rapidash_RunningAffectedByItem(GObj*);
+void rapidash_Walk(GObj*);
+void rapidash_Run(GObj*);
+void rapidash_InitialState(GObj*);
+void rapidash_HitByPesterBall(GObj*);
+void rapidash_HitByApple(GObj*);
+void rapidash_SearchApple(GObj*);
+void rapidash_StartRun(GObj*);
+void rapidash_Idle(GObj*);
+void rapidash_AffectedByPesterBall(GObj*);
+void rapidash_HitBeforeRun(GObj*);
+void rapidash_AffectedByItemBeforeRun(GObj*);
+void rapidash_AppleNearby(GObj*);
+void rapidash_Recover(GObj*);
+void rapidash_RunAlongPath(GObj*);
+void rapidash_MoveRunAlongPath(GObj*);
+void rapidash_HearsFlute(GObj*);
+void rapidash_IdleBeforeRun(GObj*);
+void rapidash_MoveWalk(GObj*);
+void rapidash_MoveRun(GObj*);
+void rapidash_TurnToApple(GObj*);
+void rapidash_RunToApple(GObj*);
+void rapidash_EatApple(GObj*);
+void rapidash_TurnToPlayer(GObj*);
 
-s32 D_802E1510_732710[] = { 0, SOUND_ID_129, SOUND_ID_130 };
-s32 D_802E151C_73271C[] = { SOUND_ID_128, SOUND_ID_129, SOUND_ID_130, SOUND_ID_131 };
-s32 D_802E152C_73272C[] = { SOUND_ID_347 };
-s32 D_802E1530_732730[] = { 0, SOUND_ID_129, SOUND_ID_130 };
-s32 D_802E153C_73273C[] = { SOUND_ID_347 };
+__ALIGNER2
 
-AnimationHeader D_802E1540_732740 = {
+s32 rapidash_animsounds_idle[] = { 0, SOUND_ID_129, SOUND_ID_130 };
+s32 rapidash_animsounds_run[] = { SOUND_ID_128, SOUND_ID_129, SOUND_ID_130, SOUND_ID_131 };
+s32 rapidash_animsounds_shake_head[] = { SOUND_ID_347 };
+s32 rapidash_animsounds_kick[] = { 0, SOUND_ID_129, SOUND_ID_130 };
+s32 rapidash_animsounds_rear[] = { SOUND_ID_347 };
+
+AnimationHeader rapidash_animation_idle = {
     0.5,
     112,
-    rapidash_modelanim_anim3,
-    rapidash_matanim_anim3,
-    D_802E1510_732710
+    rapidash_modelanim_idle,
+    rapidash_matanim_idle,
+    rapidash_animsounds_idle
 };
 
-AnimationHeader D_802E1554_732754 = {
+AnimationHeader rapidash_animation_walk = {
     0.5,
     40,
-    rapidash_modelanim_anim1,
-    rapidash_matanim_anim1,
+    rapidash_modelanim_walk,
+    rapidash_matanim_walk,
     NULL
 };
 
-AnimationHeader D_802E1568_732768 = {
+AnimationHeader rapidash_animation_run = {
     0.5,
     16,
-    rapidash_modelanim_anim2,
-    rapidash_matanim_anim2,
-    D_802E151C_73271C
+    rapidash_modelanim_run,
+    rapidash_matanim_run,
+    rapidash_animsounds_run
 };
 
-AnimationHeader D_802E157C_73277C = {
+AnimationHeader rapidash_animation_shake_head = {
     0.5,
     64,
-    rapidash_modelanim_anim5,
-    rapidash_matanim_anim5,
-    D_802E152C_73272C
+    rapidash_modelanim_shake_head,
+    rapidash_matanim_shake_head,
+    rapidash_animsounds_shake_head
 };
 
-AnimationHeader D_802E1590_732790 = {
+AnimationHeader rapidash_animation_kick = {
     0.5,
     128,
-    rapidash_modelanim_anim6,
-    rapidash_matanim_anim6,
-    D_802E1530_732730
+    rapidash_modelanim_kick,
+    rapidash_matanim_kick,
+    rapidash_animsounds_kick
 };
 
-AnimationHeader D_802E15A4_7327A4 = {
+AnimationHeader rapidash_animation_rear = {
     0.5,
     64,
-    rapidash_modelanim_anim4,
-    rapidash_matanim_anim4,
-    D_802E153C_73273C
+    rapidash_modelanim_rear,
+    rapidash_matanim_rear,
+    rapidash_animsounds_rear
 };
 
-InteractionHandler D_802E15B8_7327B8[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
-    { POKEMON_CMD_10, func_802D82F8_7294F8, 0, NULL },
-    { POKEMON_CMD_14, func_802D8368_729568, 0, NULL },
-    { POKEMON_CMD_15, func_802D859C_72979C, 0, NULL },
-    { POKEMON_CMD_5, func_802D8620_729820, 0, NULL },
-    { POKEMON_CMD_6, func_802D8620_729820, 0, NULL },
-    { POKEMON_CMD_7, func_802D8620_729820, 0, NULL },
+InteractionHandler rapidash_tg_Normal[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, rapidash_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, rapidash_AppleNearby, 0, NULL },
+    { POKEMON_CMD_15, rapidash_SearchApple, 0, NULL },
+    { POKEMON_CMD_5, rapidash_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, rapidash_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, rapidash_HearsFlute, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1648_732848[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
-    { POKEMON_CMD_10, func_802D82F8_7294F8, 0, NULL },
-    { POKEMON_CMD_14, func_802D8368_729568, 0, NULL },
-    { POKEMON_CMD_5, func_802D8620_729820, 0, NULL },
-    { POKEMON_CMD_6, func_802D8620_729820, 0, NULL },
-    { POKEMON_CMD_7, func_802D8620_729820, 0, NULL },
+InteractionHandler rapidash_tg_SearchingApple[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, rapidash_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, rapidash_AppleNearby, 0, NULL },
+    { POKEMON_CMD_5, rapidash_HearsFlute, 0, NULL },
+    { POKEMON_CMD_6, rapidash_HearsFlute, 0, NULL },
+    { POKEMON_CMD_7, rapidash_HearsFlute, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E16C8_7328C8[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
-    { POKEMON_CMD_10, func_802D82F8_7294F8, 0, NULL },
-    { POKEMON_CMD_14, func_802D8368_729568, 0, NULL },
+InteractionHandler rapidash_tg_Eating[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, rapidash_AffectedByPesterBall, 0, NULL },
+    { POKEMON_CMD_14, rapidash_AppleNearby, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1718_732918[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
+InteractionHandler rapidash_tg_Distracted[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1748_732948[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
+InteractionHandler rapidash_tg_HearsFlute[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1778_732978[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
-    { POKEMON_CMD_15, func_802D859C_72979C, 0, NULL },
+InteractionHandler rapidash_tg_Recover[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
+    { POKEMON_CMD_15, rapidash_SearchApple, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E17B8_7329B8[] = {
-    { POKEMON_CMD_9, func_802D8218_729418, 0, NULL },
-    { POKEMON_CMD_13, func_802D8288_729488, 0, NULL },
-    { POKEMON_CMD_10, func_802D82F8_7294F8, 0, NULL },
+InteractionHandler rapidash_tg_Unused[] = {
+    { POKEMON_CMD_9, rapidash_HitByPesterBall, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitByApple, 0, NULL },
+    { POKEMON_CMD_10, rapidash_AffectedByPesterBall, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E17F8_7329F8[] = {
-    { 100, func_802D7FA8_7291A8 },
-    { 100, func_802D8018_729218 },
-    { 100, func_802D8118_729318 },
+RandomState rapidash_idleStates[] = {
+    { 100, rapidash_Idle },
+    { 100, rapidash_Walk },
+    { 100, rapidash_Run },
     { 0, NULL },
 };
 
-InteractionHandler D_802E1818_732A18[] = {
-    { POKEMON_CMD_9, func_802D8750_729950, 0, NULL },
-    { POKEMON_CMD_13, func_802D8750_729950, 0, NULL },
-    { POKEMON_CMD_10, func_802D87C0_7299C0, 0, NULL },
-    { POKEMON_CMD_14, func_802D87C0_7299C0, 0, NULL },
-    { POKEMON_CMD_16, func_802D8830_729A30, 4000, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler rapidash_tg_IdleBeforeRun[] = {
+    { POKEMON_CMD_9, rapidash_HitBeforeRun, 0, NULL },
+    { POKEMON_CMD_13, rapidash_HitBeforeRun, 0, NULL },
+    { POKEMON_CMD_10, rapidash_AffectedByItemBeforeRun, 0, NULL },
+    { POKEMON_CMD_14, rapidash_AffectedByItemBeforeRun, 0, NULL },
+    { POKEMON_CMD_16, rapidash_StartRun, 4000, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E1878_732A78[] = {
-    { POKEMON_CMD_9, func_802D893C_729B3C, 0, NULL },
-    { POKEMON_CMD_13, func_802D893C_729B3C, 0, NULL },
-    { POKEMON_CMD_10, func_802D89B0_729BB0, 0, NULL },
-    { POKEMON_CMD_14, func_802D89B0_729BB0, 0, NULL },
-    { POKEMON_CMD_58, NULL, NULL, NULL },
+InteractionHandler rapidash_tg_Running[] = {
+    { POKEMON_CMD_9, rapidash_RunningHit, 0, NULL },
+    { POKEMON_CMD_13, rapidash_RunningHit, 0, NULL },
+    { POKEMON_CMD_10, rapidash_RunningAffectedByItem, 0, NULL },
+    { POKEMON_CMD_14, rapidash_RunningAffectedByItem, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-POKEMON_FUNC(func_802D7F60_729160)
+POKEMON_FUNC(rapidash_InitialState)
     if (pokemon->behavior != 0) {
-        Pokemon_SetState(obj, func_802D86E0_7298E0);
+        Pokemon_SetState(obj, rapidash_IdleBeforeRun);
     }
-    Pokemon_SetState(obj, func_802D7FA8_7291A8);
+    Pokemon_SetState(obj, rapidash_Idle);
 }
 
-POKEMON_FUNC(func_802D7FA8_7291A8)
-    Pokemon_SetAnimation(obj, &D_802E1540_732740);
+POKEMON_FUNC(rapidash_Idle)
+    Pokemon_SetAnimation(obj, &rapidash_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E15B8_7327B8;
+    pokemon->transitionGraph = rapidash_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
+
+    Pokemon_SetStateRandom(obj, rapidash_idleStates);
 }
 
-POKEMON_FUNC(func_802D8018_729218)
-    Pokemon_SetAnimation(obj, &D_802E1554_732754);
+POKEMON_FUNC(rapidash_Walk)
+    Pokemon_SetAnimation(obj, &rapidash_animation_walk);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802D80BC_7292BC);
-    pokemon->transitionGraph = D_802E15B8_7327B8;
+    Pokemon_StartPathProc(obj, rapidash_MoveWalk);
+    pokemon->transitionGraph = rapidash_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802D7FA8_7291A8);
+        Pokemon_SetState(obj, rapidash_Idle);
     }
-    Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
+    Pokemon_SetStateRandom(obj, rapidash_idleStates);
 }
 
-POKEMON_FUNC(func_802D80BC_7292BC)
+POKEMON_FUNC(rapidash_MoveWalk)
     pokemon->hSpeed = 40.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -210,19 +214,20 @@ POKEMON_FUNC(func_802D80BC_7292BC)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D8118_729318)
-    Pokemon_SetAnimation(obj, &D_802E1568_732768);
+POKEMON_FUNC(rapidash_Run)
+    Pokemon_SetAnimation(obj, &rapidash_animation_run);
     pokemon->pokemonLoopTarget = 5;
-    Pokemon_StartPathProc(obj, func_802D81BC_7293BC);
-    pokemon->transitionGraph = D_802E15B8_7327B8;
+    Pokemon_StartPathProc(obj, rapidash_MoveRun);
+    pokemon->transitionGraph = rapidash_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802D7FA8_7291A8);
+        Pokemon_SetState(obj, rapidash_Idle);
     }
-    Pokemon_SetStateRandom(obj, D_802E17F8_7329F8);
+    Pokemon_SetStateRandom(obj, rapidash_idleStates);
 }
 
-POKEMON_FUNC(func_802D81BC_7293BC)
+POKEMON_FUNC(rapidash_MoveRun)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunInCircles(obj, 500.0f, 0.1f, 1);
     pokemon->pathProc = NULL;
@@ -230,145 +235,153 @@ POKEMON_FUNC(func_802D81BC_7293BC)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D8218_729418)
-    Pokemon_SetAnimation(obj, &D_802E157C_73277C);
+POKEMON_FUNC(rapidash_HitByPesterBall)
+    Pokemon_SetAnimation(obj, &rapidash_animation_shake_head);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1718_732918;
+    pokemon->transitionGraph = rapidash_tg_Distracted;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D85C0_7297C0);
+
+    Pokemon_SetState(obj, rapidash_Recover);
 }
 
-POKEMON_FUNC(func_802D8288_729488)
-    Pokemon_SetAnimation(obj, &D_802E157C_73277C);
+POKEMON_FUNC(rapidash_HitByApple)
+    Pokemon_SetAnimation(obj, &rapidash_animation_shake_head);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1718_732918;
+    pokemon->transitionGraph = rapidash_tg_Distracted;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D85C0_7297C0);
+
+    Pokemon_SetState(obj, rapidash_Recover);
 }
 
-POKEMON_FUNC(func_802D82F8_7294F8)
-    Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
+POKEMON_FUNC(rapidash_AffectedByPesterBall)
+    Pokemon_ForceAnimation(obj, &rapidash_animation_rear);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1718_732918;
+    pokemon->transitionGraph = rapidash_tg_Distracted;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D7FA8_7291A8);
+
+    Pokemon_SetState(obj, rapidash_Idle);
 }
 
-POKEMON_FUNC(func_802D8368_729568)
-    Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
-    Pokemon_StartPathProc(obj, func_802D842C_72962C);
-    pokemon->transitionGraph = D_802E1718_732918;
+POKEMON_FUNC(rapidash_AppleNearby)
+    Pokemon_ForceAnimation(obj, &rapidash_animation_rear);
+    Pokemon_StartPathProc(obj, rapidash_TurnToApple);
+    pokemon->transitionGraph = rapidash_tg_Distracted;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_StartPathProc(obj, func_802D8478_729678);
-    pokemon->transitionGraph = D_802E1648_732848;
+    Pokemon_StartPathProc(obj, rapidash_RunToApple);
+    pokemon->transitionGraph = rapidash_tg_SearchingApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802D7FA8_7291A8);
+        Pokemon_SetState(obj, rapidash_Idle);
     }
-    Pokemon_SetState(obj, func_802D84FC_7296FC);
+    Pokemon_SetState(obj, rapidash_EatApple);
 }
 
-POKEMON_FUNC(func_802D842C_72962C)
+POKEMON_FUNC(rapidash_TurnToApple)
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D8478_729678)
-    Pokemon_SetAnimation(obj, &D_802E1568_732768);
+POKEMON_FUNC(rapidash_RunToApple)
+    Pokemon_SetAnimation(obj, &rapidash_animation_run);
     pokemon->hSpeed = 160.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
+
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D84FC_7296FC)
+POKEMON_FUNC(rapidash_EatApple)
     if (pokemon->interactionTarget == NULL) {
-        Pokemon_SetState(obj, func_802D7FA8_7291A8);
+        Pokemon_SetState(obj, rapidash_Idle);
     }
 
-    Pokemon_SetAnimation(obj, &D_802E1590_732790);
-    pokemon->transitionGraph = D_802E16C8_7328C8;
+    Pokemon_SetAnimation(obj, &rapidash_animation_kick);
+    pokemon->transitionGraph = rapidash_tg_Eating;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     if (pokemon->interactionTarget != NULL) {
-        Pokemon_SetState(obj, func_802D84FC_7296FC);
+        Pokemon_SetState(obj, rapidash_EatApple);
     }
-    Pokemon_SetState(obj, func_802D85C0_7297C0);
+    Pokemon_SetState(obj, rapidash_Recover);
 }
 
-POKEMON_FUNC(func_802D859C_72979C)
-    Pokemon_SetState(obj, func_802D8368_729568);
+POKEMON_FUNC(rapidash_SearchApple)
+    Pokemon_SetState(obj, rapidash_AppleNearby);
 }
 
-POKEMON_FUNC(func_802D85C0_7297C0)
+POKEMON_FUNC(rapidash_Recover)
     pokemon->apple = NULL;
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = D_802E1778_732978;
+    pokemon->transitionGraph = rapidash_tg_Recover;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetState(obj, func_802D7FA8_7291A8);
+    Pokemon_SetState(obj, rapidash_Idle);
 }
 
-POKEMON_FUNC(func_802D8620_729820)
-    Pokemon_SetAnimation(obj, &D_802E1554_732754);
-    Pokemon_StartPathProc(obj, func_802D8694_729894);
-    pokemon->transitionGraph = D_802E1748_732948;
+POKEMON_FUNC(rapidash_HearsFlute)
+    Pokemon_SetAnimation(obj, &rapidash_animation_walk);
+    Pokemon_StartPathProc(obj, rapidash_TurnToPlayer);
+    pokemon->transitionGraph = rapidash_tg_HearsFlute;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802D7FA8_7291A8);
+    Pokemon_SetState(obj, rapidash_Idle);
 }
 
-POKEMON_FUNC(func_802D8694_729894)
+POKEMON_FUNC(rapidash_TurnToPlayer)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D86E0_7298E0)
-    Pokemon_SetAnimation(obj, &D_802E1540_732740);
+POKEMON_FUNC(rapidash_IdleBeforeRun)
+    Pokemon_SetAnimation(obj, &rapidash_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1818_732A18;
+    pokemon->transitionGraph = rapidash_tg_IdleBeforeRun;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D86E0_7298E0);
+
+    Pokemon_SetState(obj, rapidash_IdleBeforeRun);
 }
 
-POKEMON_FUNC(func_802D8750_729950)
-    Pokemon_SetAnimation(obj, &D_802E157C_73277C);
+POKEMON_FUNC(rapidash_HitBeforeRun)
+    Pokemon_SetAnimation(obj, &rapidash_animation_shake_head);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1818_732A18;
+    pokemon->transitionGraph = rapidash_tg_IdleBeforeRun;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D8830_729A30);
+
+    Pokemon_SetState(obj, rapidash_StartRun);
 }
 
-POKEMON_FUNC(func_802D87C0_7299C0)
-    Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
+POKEMON_FUNC(rapidash_AffectedByItemBeforeRun)
+    Pokemon_ForceAnimation(obj, &rapidash_animation_rear);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802E1818_732A18;
+    pokemon->transitionGraph = rapidash_tg_IdleBeforeRun;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(obj, func_802D8830_729A30);
+
+    Pokemon_SetState(obj, rapidash_StartRun);
 }
 
-POKEMON_FUNC(func_802D8830_729A30)
-    Pokemon_StartPathProc(obj, func_802D88D0_729AD0);
-    Pokemon_SetState(obj, func_802D8868_729A68);
+POKEMON_FUNC(rapidash_StartRun)
+    Pokemon_StartPathProc(obj, rapidash_MoveRunAlongPath);
+    Pokemon_SetState(obj, rapidash_RunAlongPath);
 }
 
-POKEMON_FUNC(func_802D8868_729A68)
-    Pokemon_SetAnimation(obj, &D_802E1568_732768);
-    pokemon->transitionGraph = D_802E1878_732A78;
+POKEMON_FUNC(rapidash_RunAlongPath)
+    Pokemon_SetAnimation(obj, &rapidash_animation_run);
+    pokemon->transitionGraph = rapidash_tg_Running;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802D88D0_729AD0)
+POKEMON_FUNC(rapidash_MoveRunAlongPath)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.15f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
@@ -376,44 +389,46 @@ POKEMON_FUNC(func_802D88D0_729AD0)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802D893C_729B3C)
+POKEMON_FUNC(rapidash_RunningHit)
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    Pokemon_ForceAnimation(obj, &D_802E157C_73277C);
+    Pokemon_ForceAnimation(obj, &rapidash_animation_shake_head);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    Pokemon_SetState(obj, func_802D8868_729A68);
+    Pokemon_SetState(obj, rapidash_RunAlongPath);
 }
 
-POKEMON_FUNC(func_802D89B0_729BB0)
+POKEMON_FUNC(rapidash_RunningAffectedByItem)
     InteractionHandler saved[3] = {
-        { POKEMON_CMD_9, func_802D893C_729B3C, 0, NULL },
-        { POKEMON_CMD_13, func_802D893C_729B3C, 0, NULL },
+        { POKEMON_CMD_9, rapidash_RunningHit, 0, NULL },
+        { POKEMON_CMD_13, rapidash_RunningHit, 0, NULL },
         { POKEMON_CMD_58, NULL, 0, NULL },
     };
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    Pokemon_ForceAnimation(obj, &D_802E15A4_7327A4);
+    Pokemon_ForceAnimation(obj, &rapidash_animation_rear);
     pokemon->transitionGraph = saved;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    Pokemon_SetState(obj, func_802D8868_729A68);
+    Pokemon_SetState(obj, rapidash_RunAlongPath);
 }
 
-PokemonAnimationSetup D_802E18F8_732AF8 = {
-    &D_802E1540_732740,
-    func_802D7F60_729160,
+PokemonAnimationSetup rapidash_animSetup = {
+    &rapidash_animation_idle,
+    rapidash_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E190C_732B0C = {
+PokemonInitData rapidash_initData = {
     rapidash_model,
     rapidash_materials,
     renderPokemonModelTypeI,
-    &D_802E18F8_732AF8,
+    &rapidash_animSetup,
     { 1.2, 1.2, 1.2 },
     { 0, 140, 0 },
     75,
@@ -424,6 +439,6 @@ PokemonInitData D_802E190C_732B0C = {
     { 0, 0, 0 }
 };
 
-GObj* func_802D8A5C_729C5C(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E190C_732B0C);
+GObj* rapidash_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &rapidash_initData);
 }

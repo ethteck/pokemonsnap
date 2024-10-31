@@ -1,5 +1,7 @@
 #include "volcano/volcano.h"
 
+// TODO figure out if this file is included in all levels
+
 extern UnkEC64Arg3 magikarp_model[];
 extern AnimCmd* D_800FDC70[];
 extern AnimCmd* D_800FAE40[];
@@ -8,6 +10,8 @@ extern AnimCmd* D_800FD080[];
 
 void volcano_magikarp_InitialState(GObj*);
 void func_802DF338_730538(GObj*);
+
+__ALIGNER2
 
 s32 D_802E35D0_7347D0[] = { SOUND_ID_211 };
 s32 D_802E35D4_7347D4[] = { SOUND_ID_210, SOUND_ID_376, SOUND_ID_114 };
@@ -83,7 +87,7 @@ POKEMON_FUNC(volcano_magikarp_InitialState)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    D_802E0EB4_7320B4 = false;
+    volcano_MagikarpHasSpawned = false;
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }

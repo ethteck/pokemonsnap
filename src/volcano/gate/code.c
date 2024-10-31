@@ -15,13 +15,15 @@ extern AnimCmd** gate_matanim_opened[];
 
 extern AnimCmd volcano_camera_anim_end[];
 
-extern AnimCmd* D_80115E80[];
-extern AnimCmd** D_80116A80[];
+extern AnimCmd* volcano_player_modelanim_outro[];
+extern AnimCmd** volcano_player_matanim_outro[];
 
 void volcano_gate_Idle(GObj*);
 void volcano_gate_InitialState(GObj*);
 void volcano_gate_PlayerApproaching(GObj*);
 void volcano_gate_Cutscene(GObj*);
+
+__ALIGNER2
 
 AnimationHeader volcano_gate_animation_closed = {
     1,
@@ -89,8 +91,8 @@ PokemonInitData volcano_gate_initData = {
     { 0, 0, 0 }
 };
 
-extern u8 D_8034E0F8_79F2F8;
-extern u8 D_8034E0F9_79F2F9;
+extern u8 volcano_SoundHandle1;
+extern u8 volcano_SoundHandle2;
 
 POKEMON_FUNC(volcano_gate_InitialState)
     Pokemon_SetState(obj, volcano_gate_Idle);
@@ -141,15 +143,15 @@ POKEMON_FUNC(volcano_gate_LowerVolume)
         volume += -1.0f / N;
         auSetBGMVolume(BGM_PLAYER_MAIN, 32512.0f * volume);
         auSetBGMVolume(BGM_PLAYER_AUX, 32512.0f * volume);
-        auSetSoundVolume(D_8034E0F9_79F2F9, 22528.0f * volume);
-        auSetSoundVolume(D_8034E0F8_79F2F8, 26624.0f * volume);
+        auSetSoundVolume(volcano_SoundHandle2, 22528.0f * volume);
+        auSetSoundVolume(volcano_SoundHandle1, 26624.0f * volume);
         ohWait(1);
     }
 
     auSetBGMVolume(BGM_PLAYER_MAIN, 0);
     auSetBGMVolume(BGM_PLAYER_AUX, 0);
-    auSetSoundVolume(D_8034E0F9_79F2F9, 0);
-    auSetSoundVolume(D_8034E0F8_79F2F8, 0);
+    auSetSoundVolume(volcano_SoundHandle2, 0);
+    auSetSoundVolume(volcano_SoundHandle1, 0);
     Pokemon_StopAuxProc(obj);
 }
 
@@ -191,7 +193,7 @@ POKEMON_FUNC(volcano_gate_Cutscene)
     camera->animSpeed = 0.5f;
     animSetCameraAnimation(camera, volcano_camera_anim_end, 0);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    func_800E1A78_5F228(volcano_WorldSetup.unk_10);
+    setSkyBoxAnimationSpeed(volcano_WorldSetup.unk_10);
 
     player = PlayerModel_Init();
     if (player == NULL) {
@@ -199,7 +201,7 @@ POKEMON_FUNC(volcano_gate_Cutscene)
         omEndProcess(NULL);
     }
 
-    PlayerModel_SetAnimation(D_80115E80, D_80116A80, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(volcano_player_modelanim_outro, volcano_player_matanim_outro, 0.0f, 0.5f);
     volcano_gate_IsPlayerNearGate = false;
     player->fnAnimCallback = volcano_gate_PlayerAnimCallback;
 

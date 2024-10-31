@@ -177,7 +177,7 @@ enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
     SONG_ID_3 = 3,
-    SONG_ID_6 = 6,
+    SONG_VOLCANO = 6,
     SONG_ID_10 = 10
 };
 
@@ -281,8 +281,8 @@ enum PokemonIds {
     PokemonID_SMOKE_SPAWNER = 1027,
     PokemonID_KOFFING_SMOKE = 1028,
     PokemonID_SMOKE_PUFF = 1029,
-    PokemonID_VOLCANO_EFFECT = 1030,
-    PokemonID_1031 = 1031,
+    PokemonID_LAVA_SPLASH = 1030,
+    PokemonID_VOLCANO_SMOKE = 1031,
     PokemonID_1033 = 1033,
     PokemonID_1035 = 1035,
     PokemonID_1037 = 1037,

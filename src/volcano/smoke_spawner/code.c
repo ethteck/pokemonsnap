@@ -1,12 +1,14 @@
 #include "volcano/volcano.h"
 
-void func_802DE8C8_72FAC8(GObj*);
-void func_802DE9C4_72FBC4(GObj*);
-void func_802DE91C_72FB1C(GObj*);
-void func_802DE95C_72FB5C(GObj*);
-void func_802DEA04_72FC04(GObj*);
+void smoke_spawner_InitialState(GObj*);
+void smoke_spawner_SpawnKoffingSmoke(GObj*);
+void smoke_spawner_Idle(GObj*);
+void smoke_spawner_PesterBallThrown(GObj*);
+void smoke_spawner_WaitSmokeFade(GObj*);
 
-UnkEC64Arg3 D_802E3300_734500[] = {
+__ALIGNER2
+
+UnkEC64Arg3 smoke_spawner_model[] = {
     { 0,
       NULL,
       { 0.0f, 0.0f, 0.0f },
@@ -19,49 +21,49 @@ UnkEC64Arg3 D_802E3300_734500[] = {
       { 0.0f, 0.0f, 0.0f } }
 };
 
-PokemonDef D_802E3358_734558 = {
+PokemonDef volcano_smoke_puff_def = {
     PokemonID_SMOKE_PUFF,
-    func_802DE6B4_72F8B4,
+    smoke_puff_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };
 
-PokemonDef D_802E3368_734568 = {
+PokemonDef volcano_koffing_smoke_def = {
     PokemonID_KOFFING_SMOKE,
     koffing_smoke_Spawn,
     pokemonChangeBlock,
     pokemonRemoveOne
 };
 
-InteractionHandler D_802E3378_734578[] = {
-    { POKEMON_CMD_10, func_802DE95C_72FB5C, 0, NULL },
+InteractionHandler smoke_spawner_tg_Idle[] = {
+    { POKEMON_CMD_10, smoke_spawner_PesterBallThrown, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802E3398_734598[] = {
-    { VOLCANO_CMD_33, func_802DE91C_72FB1C, 0, NULL },
+InteractionHandler smoke_spawner_tg_WaitSmokeFade[] = {
+    { VOLCANO_CMD_SMOKE_FADED, smoke_spawner_Idle, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802E33B8_7345B8[] = {
-    { 30, func_802DE9C4_72FBC4 },
+RandomState smoke_spawner_randomStates[] = {
+    { 30, smoke_spawner_SpawnKoffingSmoke },
     { 0, NULL },
 };
 
-PokemonAnimationSetup D_802E33C8_7345C8 = {
+PokemonAnimationSetup smoke_spawner_animSetup = {
     NULL,
-    func_802DE8C8_72FAC8,
+    smoke_spawner_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802E33DC_7345DC = {
-    D_802E3300_734500,
+PokemonInitData smoke_spawner_initData = {
+    smoke_spawner_model,
     NULL,
     renRenderModelTypeB,
-    &D_802E33C8_7345C8,
+    &smoke_spawner_animSetup,
     { 10, 10, 10 },
     { 0, 0, 0 },
     0,
@@ -72,14 +74,14 @@ PokemonInitData D_802E33DC_7345DC = {
     { 0, 0, 0 }
 };
 
-void func_802DE6F0_72F8F0(GObj* obj) {
+void smoke_spawner_CreateSmokePuff(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
     Pokemon* pokemon = GET_POKEMON(obj);
-    PokemonDef def = D_802E3358_734558;
+    PokemonDef def = volcano_smoke_puff_def;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_SMOKE_PUFF;
@@ -104,14 +106,14 @@ void func_802DE6F0_72F8F0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-void func_802DE7DC_72F9DC(GObj* obj) {
+void smoke_spawner_CreateKoffingSmoke(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
     Pokemon* pokemon = GET_POKEMON(obj);
-    PokemonDef def = D_802E3368_734568;
+    PokemonDef def = volcano_koffing_smoke_def;
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_KOFFING_SMOKE;
@@ -136,43 +138,45 @@ void func_802DE7DC_72F9DC(GObj* obj) {
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802DE8C8_72FAC8)
+POKEMON_FUNC(smoke_spawner_InitialState)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    omCreateProcess(obj, func_802DE6F0_72F8F0, 1, 1);
-    Pokemon_SetState(obj, func_802DE91C_72FB1C);
+    omCreateProcess(obj, smoke_spawner_CreateSmokePuff, 1, 1);
+    Pokemon_SetState(obj, smoke_spawner_Idle);
 }
 
-POKEMON_FUNC(func_802DE91C_72FB1C)
-    pokemon->transitionGraph = D_802E3378_734578;
+POKEMON_FUNC(smoke_spawner_Idle)
+    pokemon->transitionGraph = smoke_spawner_tg_Idle;
     Pokemon_WaitForFlag(obj, 0);
+
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802DE95C_72FB5C)
+POKEMON_FUNC(smoke_spawner_PesterBallThrown)
     GroundResult result;
-    DObj* targetModel = pokemon->interactionTarget->data.dobj;
+    DObj* itemModel = pokemon->interactionTarget->data.dobj;
 
-    getGroundAt(targetModel->position.v.x, targetModel->position.v.z, &result);
+    getGroundAt(itemModel->position.v.x, itemModel->position.v.z, &result);
     if (result.surfaceType != SURFACE_TYPE_FF4C19) {
-        Pokemon_SetState(obj, func_802DE91C_72FB1C);
+        Pokemon_SetState(obj, smoke_spawner_Idle);
     }
 
-    Pokemon_SetStateRandom(obj, D_802E33B8_7345B8);
+    Pokemon_SetStateRandom(obj, smoke_spawner_randomStates);
 }
 
-POKEMON_FUNC(func_802DE9C4_72FBC4)
-    omCreateProcess(obj, func_802DE7DC_72F9DC, 1, 1);
-    Pokemon_SetState(obj, func_802DEA04_72FC04);
+POKEMON_FUNC(smoke_spawner_SpawnKoffingSmoke)
+    omCreateProcess(obj, smoke_spawner_CreateKoffingSmoke, 1, 1);
+    Pokemon_SetState(obj, smoke_spawner_WaitSmokeFade);
 }
 
-POKEMON_FUNC(func_802DEA04_72FC04)
-    pokemon->transitionGraph = D_802E3398_734598;
+POKEMON_FUNC(smoke_spawner_WaitSmokeFade)
+    pokemon->transitionGraph = smoke_spawner_tg_WaitSmokeFade;
     Pokemon_WaitForFlag(obj, 0);
+
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_802DEA44_72FC44(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802E33DC_7345DC);
+GObj* smoke_spawner_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &smoke_spawner_initData);
 }

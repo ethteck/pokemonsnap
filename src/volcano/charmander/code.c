@@ -59,6 +59,8 @@ void charmander_MoveTurnToPlayer2(GObj*);
 void charmander_RunToSummoner(GObj*);
 void charmander_RunToSummoner2(GObj*);
 
+__ALIGNER2
+
 s32 charmander_animsounds_howl[] = { SOUND_ID_281 };
 s32 charmander_animsounds_shakehands[] = { SOUND_ID_282 };
 s32 charmander_animsounds_fall[] = { SOUND_ID_279 };

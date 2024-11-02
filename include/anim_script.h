@@ -265,9 +265,11 @@ typedef struct AnimLinePtr2 {
 #define asSkip_2(n, param1, param2) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2) << 15) | n) }
 #define asSkip_3(n, param1, param2, param3) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2 | param3) << 15) | n) }
 
+#define asSetVisible_1(n, b1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1)) } }
 #define asSetVisible_2(n, b1, b2) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2)) } }
 #define asSetVisible_3(n, b1, b2, b3) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3)) } }
 #define asSetVisible_4(n, b1, b2, b3, b4) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3) | (1 << b4)) } }
+#define asSetVisible_2f(n, b1, b2) {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2)) } }
 #define asSetVisible_3f(n, b1, b2, b3) { ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3)) } }
 #define asSetVisible_4f(n, b1, b2, b3, b4) {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2) | (1 << b3) | (1 << b4)) } }
 

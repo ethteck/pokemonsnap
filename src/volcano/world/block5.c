@@ -1,4 +1,3 @@
-#include <common.h>
 #include "../volcano.h"
 
 extern Vtx volcano_block5_vtx[];

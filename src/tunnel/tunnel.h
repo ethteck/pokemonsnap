@@ -4,6 +4,45 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+extern u8 D_8014E5E8_194748[];
+extern u8 D_8014E610_194770[];
+extern u8 D_8014EE18_194F78[];
+extern u8 D_8014EE40_194FA0[];
+extern u8 D_8014F648_1957A8[];
+extern u8 D_8014F670_1957D0[];
+extern u8 D_8014FE78_195FD8[];
+extern u8 D_8014FEA0_196000[];
+extern u8 D_801506A8_196808[];
+extern u8 D_801506D0_196830[];
+extern u8 D_80150ED8_197038[];
+extern u8 D_80150F00_197060[];
+extern u8 D_80151708_197868[];
+extern u8 D_80151730_197890[];
+extern u8 D_80151B38_197C98[];
+extern u8 D_80151B60_197CC0[];
+extern u8 D_80151F68_1980C8[];
+extern u8 D_80151F90_1980F0[];
+extern u8 D_80152398_1984F8[];
+extern u8 D_801523C0_198520[];
+extern u8 D_801527C8_198928[];
+extern u8 D_801527F0_198950[];
+extern u8 D_80152BF8_198D58[];
+extern u8 D_80152C20_198D80[];
+extern u8 D_80153028_199188[];
+extern u8 D_80153050_1991B0[];
+extern u8 D_80153458_1995B8[];
+extern u8 D_80153480_1995E0[];
+extern u8 D_80153888_1999E8[];
+extern u8 D_801538A8_199A08[];
+extern u8 D_80153CB0_199E10[];
+extern u8 D_80153CD8_199E38[];
+extern u8 D_801544E0_19A640[];
+extern u8 D_801544F8_19A658[];
+extern u8 D_801565B8_19C718[];
+extern u8 D_801575C0_19D720[];
+extern u8 D_801585C8_19E728[];
+extern u8 D_801585F0_19E750[];
+
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;

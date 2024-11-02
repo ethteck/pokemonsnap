@@ -619,9 +619,66 @@ segments:
     exclusive_ram_id: unk8011CB50
     subsegments:
     - [auto, c, world/world]
+    - [auto, c, world/block1]
+    - [auto, c, world/block2]
+    - [auto, c, world/block3]
+    - [auto, c, world/block4]
+    - [auto, c, world/block5]
     - [auto, c, world/blocks]
     - [0x162CC0, .data, world/world]
     - [0x164850, bin]
+    - start: 0x1669A0
+      type: .data
+      name: world/block1
+      dir: block1
+      subsegments:
+      - [0x1669A0, gfx, draw]
+      - [0x167300, vtx, model]
+      - [0x1689B0, gfx, unk]
+      - [0x168AB0]
+      - [0x168B60, snap_model_anim, movement]
+    - start: 0x169260
+      type: .data
+      name: world/block2
+      dir: block2
+      subsegments:
+      - [0x169260, gfx, draw]
+      - [0x169FC0, vtx, model]
+      - [0x16C4B0]
+      - [0x16C540, snap_material_anim, anim1]
+      - [0x16C5C0, gfx, unk]
+      - [0x16C6C0]
+      - [0x16C770, snap_model_anim, movement]
+    - start: 0x16CE50
+      type: .data
+      name: world/block3
+      dir: block3
+      subsegments:
+      - [0x16CE50, gfx, draw]
+      - [0x16DA30, vtx, model]
+      - [0x16F870, gfx, unk]
+      - [0x16F970]
+      - [0x16FA20, snap_model_anim, movement]
+    - start: 0x16FEB0
+      type: .data
+      name: world/block4
+      dir: block4
+      subsegments:
+      - [0x16FEB0, gfx, draw]
+      - [0x1704E0, vtx, model]
+      - [0x1714C0, gfx, unk]
+      - [0x1715C0]
+      - [0x171670, snap_model_anim, movement]
+    - start: 0x171940
+      type: .data
+      name: world/block5
+      dir: block5
+      subsegments:
+      - [0x171940, gfx, draw]
+      - [0x172260, vtx, model]
+      - [0x173D50, gfx, unk]
+      - [0x173E50]
+      - [0x173F00, snap_model_anim, movement]
     - [0x174340, .data, world/blocks]
     - [0x175FF0, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }

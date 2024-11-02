@@ -6,7 +6,7 @@
 
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
-extern WorldSetup D_8011E6CC;
+extern WorldSetup tunnel_WorldSetup;
 
 void func_802E2C70_5DFD40(s32, f32);
 void func_802ED5C8_5EA698(void);

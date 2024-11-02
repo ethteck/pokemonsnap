@@ -10,33 +10,33 @@ extern WorldBlockGFX volcano_block4_gfx;
 extern WorldBlockGFX volcano_block5_gfx;
 extern WorldBlockGFX volcano_block6_gfx;
 
-Vec3f smoke_spawner_path_points[] = {
+Vec3f volcano_smoke_spawner_path_points[] = {
     { 26.570312, -9.117575, 10.786863 },
     { 26.570312, 2.192231, 10.743836 },
     { 26.570312, 13.502036, 10.700809 },
     { 26.570312, 24.811842, 10.657783 },
 };
 
-f32 smoke_spawner_path_timestamps[] = {
+f32 volcano_smoke_spawner_path_timestamps[] = {
     0.000000,
     1.000000,
 };
 
-FittingParams smoke_spawner_path_speedData[] = {
+FittingParams volcano_smoke_spawner_path_speedData[] = {
     { 0.000000, 0.000000, 0.000043, -0.000022, 127.913544 },
 };
 
-InterpData smoke_spawner_path = {
+InterpData volcano_smoke_spawner_path = {
     HAL_INTERP_BEZIER,
     2,
     0,
-    smoke_spawner_path_points,
+    volcano_smoke_spawner_path_points,
     11.309887,
-    smoke_spawner_path_timestamps,
-    smoke_spawner_path_speedData
+    volcano_smoke_spawner_path_timestamps,
+    volcano_smoke_spawner_path_speedData
 };
 
-Vec3f rapidash_path1_points[] = {
+Vec3f volcano_rapidash_path1_points[] = {
     { -11.275351, -3.375000, 14.931845 },
     { -2.738348, -1.582031, 22.819855 },
     { 5.798654, 0.210938, 30.707865 },
@@ -53,7 +53,7 @@ Vec3f rapidash_path1_points[] = {
     { 27.412979, 3.339844, -22.078276 },
 };
 
-f32 rapidash_path1_timestamps[] = {
+f32 volcano_rapidash_path1_timestamps[] = {
     0.000000,
     0.108264,
     0.175515,
@@ -68,7 +68,7 @@ f32 rapidash_path1_timestamps[] = {
     1.000000,
 };
 
-FittingParams rapidash_path1_speedData[] = {
+FittingParams volcano_rapidash_path1_speedData[] = {
     { 9.124516, 0.000002, -71.001389, -0.000008, 138.315857 },
     { 23.024820, -26.823320, 71.541656, -105.504715, 76.438980 },
     { 37.821396, -72.381233, 1.855537, 49.207951, 38.677422 },
@@ -82,17 +82,17 @@ FittingParams rapidash_path1_speedData[] = {
     { 2.412452, -9.649809, 7.918426, 3.462763, 127.875076 },
 };
 
-InterpData rapidash_path1 = {
+InterpData volcano_rapidash_path1 = {
     HAL_INTERP_BEZIER,
     12,
     0,
-    rapidash_path1_points,
+    volcano_rapidash_path1_points,
     99.33809,
-    rapidash_path1_timestamps,
-    rapidash_path1_speedData
+    volcano_rapidash_path1_timestamps,
+    volcano_rapidash_path1_speedData
 };
 
-Vec3f rapidash_path2_points[] = {
+Vec3f volcano_rapidash_path2_points[] = {
     { 14.154409, -0.882812, 37.187485 },
     { 15.724806, 0.683594, 26.340075 },
     { 17.295202, 2.250000, 15.492662 },
@@ -108,7 +108,7 @@ Vec3f rapidash_path2_points[] = {
     { 19.383585, 5.773682, -17.290600 },
 };
 
-f32 rapidash_path2_timestamps[] = {
+f32 volcano_rapidash_path2_timestamps[] = {
     0.000000,
     0.116911,
     0.211292,
@@ -122,7 +122,7 @@ f32 rapidash_path2_timestamps[] = {
     1.000000,
 };
 
-FittingParams rapidash_path2_speedData[] = {
+FittingParams volcano_rapidash_path2_speedData[] = {
     { 25.928291, -0.000010, -71.860161, 0.000041, 122.586105 },
     { 54.373737, -147.897278, 110.611290, -40.007149, 76.654274 },
     { 38.227619, -60.711136, 62.908833, -44.981518, 53.734848 },
@@ -135,17 +135,17 @@ FittingParams rapidash_path2_speedData[] = {
     { 35.048466, -140.193848, 182.728973, -85.070244, 38.216518 },
 };
 
-InterpData rapidash_path2 = {
+InterpData volcano_rapidash_path2 = {
     HAL_INTERP_BEZIER,
     11,
     0,
-    rapidash_path2_points,
+    volcano_rapidash_path2_points,
     86.92006,
-    rapidash_path2_timestamps,
-    rapidash_path2_speedData
+    volcano_rapidash_path2_timestamps,
+    volcano_rapidash_path2_speedData
 };
 
-Vec3f rapidash_path3_points[] = {
+Vec3f volcano_rapidash_path3_points[] = {
     { -9.690323, -3.375000, 10.567410 },
     { -3.457331, -1.582031, 19.481787 },
     { 2.775661, 0.210938, 28.396164 },
@@ -163,7 +163,7 @@ Vec3f rapidash_path3_points[] = {
     { 26.820009, 3.339844, -31.969074 },
 };
 
-f32 rapidash_path3_timestamps[] = {
+f32 volcano_rapidash_path3_timestamps[] = {
     0.000000,
     0.109233,
     0.205115,
@@ -179,7 +179,7 @@ f32 rapidash_path3_timestamps[] = {
     1.000000,
 };
 
-FittingParams rapidash_path3_speedData[] = {
+FittingParams volcano_rapidash_path3_speedData[] = {
     { 0.576907, 0.000000, -7.254888, 0.000006, 121.531052 },
     { 31.015152, 12.427073, -76.675789, -12.202147, 114.853058 },
     { 53.029922, -140.661240, 78.346069, -4.211842, 69.417336 },
@@ -194,97 +194,97 @@ FittingParams rapidash_path3_speedData[] = {
     { 56.762131, -227.048462, 93.723892, 266.648987, 157.215363 },
 };
 
-InterpData rapidash_path3 = {
+InterpData volcano_rapidash_path3 = {
     HAL_INTERP_BEZIER,
     13,
     0,
-    rapidash_path3_points,
+    volcano_rapidash_path3_points,
     99.9589,
-    rapidash_path3_timestamps,
-    rapidash_path3_speedData
+    volcano_rapidash_path3_timestamps,
+    volcano_rapidash_path3_speedData
 };
 
-Vec3f vulpix_path1_points[] = {
+Vec3f volcano_vulpix_path1_points[] = {
     { 12.083276, 0.449219, 37.877117 },
     { -34.292488, 0.449219, 21.257080 },
 };
 
-f32 vulpix_path1_timestamps[] = {
+f32 volcano_vulpix_path1_timestamps[] = {
     0.000000,
     1.000000,
 };
 
-InterpData vulpix_path1 = {
+InterpData volcano_vulpix_path1 = {
     HAL_INTERP_LINEAR,
     2,
     0,
-    vulpix_path1_points,
+    volcano_vulpix_path1_points,
     49.263954,
-    vulpix_path1_timestamps,
+    volcano_vulpix_path1_timestamps,
     NULL
 };
 
-Vec3f charmander_path_points[] = {
+Vec3f volcano_charmander_path_points[] = {
     { -48.974190, 0.000000, 33.725616 },
     { -73.852776, 0.000000, 33.123596 },
 };
 
-f32 charmander_path_timestamps[] = {
+f32 volcano_charmander_path_timestamps[] = {
     0.000000,
     1.000000,
 };
 
-InterpData charmander_path = {
+InterpData volcano_charmander_path = {
     HAL_INTERP_LINEAR,
     2,
     0,
-    charmander_path_points,
+    volcano_charmander_path_points,
     24.885868,
-    charmander_path_timestamps,
+    volcano_charmander_path_timestamps,
     NULL
 };
 
-Vec3f vulpix_path2_points[] = {
+Vec3f volcano_vulpix_path2_points[] = {
     { -4.278325, 2.171875, 16.094757 },
     { -32.001377, 2.172269, 17.779566 },
 };
 
-f32 vulpix_path2_timestamps[] = {
+f32 volcano_vulpix_path2_timestamps[] = {
     0.000000,
     1.000000,
 };
 
-InterpData vulpix_path2 = {
+InterpData volcano_vulpix_path2 = {
     HAL_INTERP_LINEAR,
     2,
     0,
-    vulpix_path2_points,
+    volcano_vulpix_path2_points,
     27.7742,
-    vulpix_path2_timestamps,
+    volcano_vulpix_path2_timestamps,
     NULL
 };
 
-Vec3f vulpix_path3_points[] = {
+Vec3f volcano_vulpix_path3_points[] = {
     { -0.313998, 1.578125, 23.235800 },
     { -35.087563, 1.578125, 18.267374 },
 };
 
-f32 vulpix_path3_timestamps[] = {
+f32 volcano_vulpix_path3_timestamps[] = {
     0.000000,
     1.000000,
 };
 
-InterpData vulpix_path3 = {
+InterpData volcano_vulpix_path3 = {
     HAL_INTERP_LINEAR,
     2,
     0,
-    vulpix_path3_points,
+    volcano_vulpix_path3_points,
     35.126713,
-    vulpix_path3_timestamps,
+    volcano_vulpix_path3_timestamps,
     NULL
 };
 
-Vec3f moltres_path_points[] = {
+Vec3f volcano_moltres_path_points[] = {
     { -56.841537, -9.473475, 13.161154 },
     { -65.412956, -2.234375, 5.118658 },
     { -73.984375, 5.004725, -2.923837 },
@@ -304,7 +304,7 @@ Vec3f moltres_path_points[] = {
     { -19.097656, 21.904947, -37.330757 },
 };
 
-f32 moltres_path_timestamps[] = {
+f32 volcano_moltres_path_timestamps[] = {
     0.000000,
     0.071020,
     0.113779,
@@ -322,7 +322,7 @@ f32 moltres_path_timestamps[] = {
     1.000000,
 };
 
-FittingParams moltres_path_speedData[] = {
+FittingParams volcano_moltres_path_speedData[] = {
     { 9.819123, 0.000000, -59.390144, -0.000004, 190.555542 },
     { 91.213280, -16.164539, -132.041428, -79.503799, 140.984497 },
     { 172.053818, -500.116699, 395.552643, -27.227173, 4.488017 },
@@ -339,17 +339,17 @@ FittingParams moltres_path_speedData[] = {
     { 10.955049, -43.820190, -32.743973, 153.128281, 294.777527 },
 };
 
-InterpData moltres_path = {
+InterpData volcano_moltres_path = {
     HAL_INTERP_BEZIER,
     15,
     0,
-    moltres_path_points,
+    volcano_moltres_path_points,
     184.86777,
-    moltres_path_timestamps,
-    moltres_path_speedData
+    volcano_moltres_path_timestamps,
+    volcano_moltres_path_speedData
 };
 
-Vec3f charmeleon_path_points[] = {
+Vec3f volcano_charmeleon_path_points[] = {
     { -87.531021, 5.142990, 27.282108 },
     { -85.449486, 5.142990, 29.052105 },
     { -85.189293, 5.142990, 31.134449 },
@@ -364,7 +364,7 @@ Vec3f charmeleon_path_points[] = {
     { -85.189293, 5.142990, 31.134449 },
 };
 
-f32 charmeleon_path_timestamps[] = {
+f32 volcano_charmeleon_path_timestamps[] = {
     0.000000,
     0.084205,
     0.167915,
@@ -377,7 +377,7 @@ f32 charmeleon_path_timestamps[] = {
     1.000000,
 };
 
-FittingParams charmeleon_path_speedData[] = {
+FittingParams volcano_charmeleon_path_speedData[] = {
     { 0.414338, -2.372266, 4.275527, -3.061821, 5.081055 },
     { 0.078538, 0.297878, -0.092393, 0.029789, 4.336834 },
     { 0.200496, -0.416908, -0.651025, 1.052790, 4.650646 },
@@ -389,18 +389,18 @@ FittingParams charmeleon_path_speedData[] = {
     { 1.545302, -5.396471, 4.845253, -2.744123, 6.831093 },
 };
 
-InterpData charmeleon_path = {
+InterpData volcano_charmeleon_path = {
     HAL_INTERP_BEZIER,
     10,
     0,
-    charmeleon_path_points,
+    volcano_charmeleon_path_points,
     25.088354,
-    charmeleon_path_timestamps,
-    charmeleon_path_speedData
+    volcano_charmeleon_path_timestamps,
+    volcano_charmeleon_path_speedData
 };
 
 ObjectSpawn volcano_block0_spawn[] = {
-    { PokemonID_SMOKE_SPAWNER, 0, { 26.5703, 2.19223, 10.7438 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &smoke_spawner_path },
+    { PokemonID_SMOKE_SPAWNER, 0, { 26.5703, 2.19223, 10.7438 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_smoke_spawner_path },
     { PokemonID_RAPIDASH, 0, { 34.2705, 0.169739, 2.61987 }, { 0.0, 0.046, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_RAPIDASH, 0, { 19.1184, -0.345276, 4.54273 }, { 0.0, -0.038, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { -1, 0, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, NULL }
@@ -410,22 +410,22 @@ ObjectSpawn volcano_block1_spawn[] = {
     { PokemonID_LAVA_SPLASH, 3, { 6.31607, 2.06901, -2.76967 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_LAVA_SPLASH, 3, { 5.20564, 2.06901, -4.77762 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_LAVA_SPLASH, 3, { 7.36789, 2.06901, -4.93974 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
-    { PokemonID_RAPIDASH, 1, { -22.7383, -1.58203, 7.81985 }, { 0.0, 1.004, 0.0 }, { 1.0, 1.0, 1.0 }, &rapidash_path1 },
-    { PokemonID_RAPIDASH, 1, { -4.27519, 0.683594, 11.3401 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &rapidash_path2 },
-    { PokemonID_RAPIDASH, 1, { -23.4573, -1.58203, 4.48179 }, { 0.0, 1.004, 0.0 }, { 1.0, 1.0, 1.0 }, &rapidash_path3 },
+    { PokemonID_RAPIDASH, 1, { -22.7383, -1.58203, 7.81985 }, { 0.0, 1.004, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_rapidash_path1 },
+    { PokemonID_RAPIDASH, 1, { -4.27519, 0.683594, 11.3401 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_rapidash_path2 },
+    { PokemonID_RAPIDASH, 1, { -23.4573, -1.58203, 4.48179 }, { 0.0, 1.004, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_rapidash_path3 },
     { -1, 0, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, NULL }
 };
 
 ObjectSpawn volcano_block2_spawn[] = {
-    { PokemonID_VULPIX, 1, { 2.08328, 0.449219, 2.87712 }, { 0.0, 2.794, 0.0 }, { 1.0, 1.0, 1.0 }, &vulpix_path1 },
+    { PokemonID_VULPIX, 1, { 2.08328, 0.449219, 2.87712 }, { 0.0, 2.794, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_vulpix_path1 },
     { -1, 0, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, NULL }
 };
 
 ObjectSpawn volcano_block3_spawn[] = {
     { PokemonID_MAGMAR, 1, { -19.9109, 4.07471, 15.3729 }, { 0.0, -8.95802, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
-    { PokemonID_CHARMANDER, 5, { -23.9742, 0.0, 13.7256 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &charmander_path },
-    { PokemonID_VULPIX, 1, { 20.7217, 2.17188, -3.90524 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &vulpix_path2 },
-    { PokemonID_VULPIX, 1, { 24.686, 1.57812, 3.2358 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &vulpix_path3 },
+    { PokemonID_CHARMANDER, 5, { -23.9742, 0.0, 13.7256 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_charmander_path },
+    { PokemonID_VULPIX, 1, { 20.7217, 2.17188, -3.90524 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_vulpix_path2 },
+    { PokemonID_VULPIX, 1, { 24.686, 1.57812, 3.2358 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_vulpix_path3 },
     { PokemonID_VOLCANO_SMOKE, 0, { -20.0, 25.0, -35.0 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { -1, 0, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, NULL }
 };
@@ -434,7 +434,7 @@ ObjectSpawn volcano_block4_spawn[] = {
     { PokemonID_MAGMAR, 0, { -10.4394, 4.07471, -9.71333 }, { 0.0, -5.80801, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_MAGMAR, 0, { -6.34335, 3.71422, -12.5297 }, { 0.0, -5.606, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_MOLTRES_EGG, 0, { 4.74962, 1.5, 1.84203 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
-    { PokemonID_MOLTRES, 0, { 4.58704, -2.23438, -4.88134 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &moltres_path },
+    { PokemonID_MOLTRES, 0, { 4.58704, -2.23438, -4.88134 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_moltres_path },
     { PokemonID_CHARMANDER, 1, { 1.84956, 1.15484, 7.33554 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_CHARMANDER, 2, { -4.35545, 1.52299, 0.678629 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_CHARMANDER, 3, { -10.0561, 6.64637, 17.2347 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
@@ -449,7 +449,7 @@ ObjectSpawn volcano_block5_spawn[] = {
     { PokemonID_GROWLITHE_SPAWNER, 0, { -10.3015, 2.61608, -6.84823 }, { 0.0, 1.3, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_GROWLITHE_SPAWNER, 0, { -5.66958, 2.83189, -20.8215 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { PokemonID_GROWLITHE_SPAWNER, 0, { -11.0348, 2.81804, -13.4768 }, { 0.0, 0.528, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
-    { PokemonID_CHARMELEON, 0, { 14.247, 5.14299, -0.895836 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &charmeleon_path },
+    { PokemonID_CHARMELEON, 0, { 14.247, 5.14299, -0.895836 }, { 0.0, 0.0, 0.0 }, { 1.0, 1.0, 1.0 }, &volcano_charmeleon_path },
     { PokemonID_EVOLUTION_CONTROLLER, 0, { 10.8459, 3.85002, 1.70108 }, { 0.0, -1.9, 0.0 }, { 1.0, 1.0, 1.0 }, NULL },
     { -1, 0, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, { 0.0, 0.0, 0.0 }, NULL }
 };

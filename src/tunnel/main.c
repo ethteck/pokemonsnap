@@ -83,7 +83,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       func_802EB818_5E88E8,
       pokemonChangeBlock,
       pokemonRemoveOne },
-    { PokemonID_602,
+    { PokemonID_ZAPDOS_EGG,
       func_802EC3BC_5E948C,
       pokemonChangeBlock,
       func_802EC398_5E9468 },
@@ -162,42 +162,42 @@ ScreenSettings tunnel_ScreenSettings = {
 
 SceneSetup tunnel_SceneSetup = {
     {
-        0,                       /* unk_00*/
-        omUpdateAll,             /* fnUpdate */
-        omDrawAll,               /* fnDraw */
-        _162CB0_VRAM_END,        /* heapBase */
-        0,                       /* heapSize */
-        1,                       /* unk_14 */
-        2,                       /* numContexts */
-        0x5400,                  /* dlBufferSize0 */
-        0x0C00,                  /* dlBufferSize1 */
-        0x0400,                  /* dlBufferSize2 */
-        0x0000,                  /* dlBufferSize3 */
-        0xC800,                  /* gfxHeapSize */
-        2,                       /* unk30 */
-        0x4000,                  /* rdpOutputBufferSize */
-        func_800A1A50,           /* fnPreRender */
-        contUpdate               /* fnUpdateInput */
+        0,                      /* unk_00*/
+        omUpdateAll,            /* fnUpdate */
+        omDrawAll,              /* fnDraw */
+        tunnel_assets_VRAM_END, /* heapBase */
+        0,                      /* heapSize */
+        1,                      /* unk_14 */
+        2,                      /* numContexts */
+        0x5400,                 /* dlBufferSize0 */
+        0x0C00,                 /* dlBufferSize1 */
+        0x0400,                 /* dlBufferSize2 */
+        0x0000,                 /* dlBufferSize3 */
+        0xC800,                 /* gfxHeapSize */
+        2,                      /* unk30 */
+        0x4000,                 /* rdpOutputBufferSize */
+        func_800A1A50,          /* fnPreRender */
+        contUpdate              /* fnUpdateInput */
     },
-    0,                            /* numOMThreads */
-    1088,                         /* omThreadStackSize */
-    0,                            /* numOMStacks */
-    0,                            /* unk4C */
-    0,                            /* numOMProcesses */
-    0,                            /* numOMGobjs */
-    sizeof(GObj),                 /* objectSize */
-    0,                            /* numOMMtx */
-    0,                            /* unk60 */
-    func_802E2BB0_5DFC80,         /* unk64 */
-    0,                            /* numOMAobjs */
-    0,                            /* numOMMobjs */
-    0,                            /* numOMDobjs */
-    sizeof(DObj),                 /* omDobjSize */
-    0,                            /* numOMSobjs */
-    0x58,                         /* omSobjSize */
-    0,                            /* numOMCameras */
-    sizeof(OMCamera),             /* omCameraSize */
-    tunnel_Init                   /* postInitFunc */
+    0,                    /* numOMThreads */
+    1088,                 /* omThreadStackSize */
+    0,                    /* numOMStacks */
+    0,                    /* unk4C */
+    0,                    /* numOMProcesses */
+    0,                    /* numOMGobjs */
+    sizeof(GObj),         /* objectSize */
+    0,                    /* numOMMtx */
+    0,                    /* unk60 */
+    func_802E2BB0_5DFC80, /* unk64 */
+    0,                    /* numOMAobjs */
+    0,                    /* numOMMobjs */
+    0,                    /* numOMDobjs */
+    sizeof(DObj),         /* omDobjSize */
+    0,                    /* numOMSobjs */
+    0x58,                 /* omSobjSize */
+    0,                    /* numOMCameras */
+    sizeof(OMCamera),     /* omCameraSize */
+    tunnel_Init           /* postInitFunc */
 };
 
 extern s32 D_803430E8_6401B8;
@@ -275,7 +275,7 @@ void tunnel_PokemonRemove(WorldBlock* arg0) {
 void tunnel_InitWorld(void) {
     setHeightMap(&D_80326EE0_623FB0);
     setCeilingMap(&D_80326EE8_623FB8);
-    createWorld(&D_8011E6CC, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, tunnel_PokemonAdd, tunnel_PokemonRemove, tunnel_PokemonChangeBlock);
+    createWorld(&tunnel_WorldSetup, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, tunnel_PokemonAdd, tunnel_PokemonRemove, tunnel_PokemonChangeBlock);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(OBJID_128, OBJID_228, LINK_POKEMON, 5);
 }
@@ -367,8 +367,8 @@ void tunnel_Init(void) {
 void func_802E2BB0_5DFC80(s32 arg0) {
 }
 
-s32 func_802E2BB8_5DFC88(s32 arg0) {
-    tunnel_SceneSetup.gtlSetup.heapSize = (uintptr_t) tunnel_code_VRAM - (uintptr_t) _162CB0_VRAM_END;
+s32 tunnel_Start(s32 arg0) {
+    tunnel_SceneSetup.gtlSetup.heapSize = (uintptr_t) tunnel_code_VRAM - (uintptr_t) tunnel_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&tunnel_SceneSetup);

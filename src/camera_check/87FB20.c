@@ -312,7 +312,7 @@ bool func_camera_check_801E2EC0(s32 id) {
         case PokemonID_500:
         case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
-        case PokemonID_602:
+        case PokemonID_ZAPDOS_EGG:
             return true;
         default:
             return false;

@@ -7,6 +7,30 @@
 
 struct WorldBlock;
 
+typedef struct HitBoxType1 {
+    /* 0x00 */ u8 type;
+    /* 0x04 */ Mtx4f mtxLocalToGlobal;
+    /* 0x44 */ Mtx4f mtxGlobalToLocal;
+    /* 0x84 */ f32 unk_84;
+} HitBoxType1; // size = 0x88
+
+typedef struct HitBoxType3 {
+    /* 0x00 */ u8 type;
+    /* 0x04 */ Mtx4f mtxLocalToGlobal;
+    /* 0x44 */ Mtx4f mtxGlobalToLocal;
+    /* 0x84 */ f32 unk_84;
+    /* 0x88 */ f32 unk_88;
+} HitBoxType3; // size = 0x8C
+
+typedef struct HitBoxType4 {
+    /* 0x00 */ u8 type;
+    /* 0x04 */ Mtx4f mtxLocalToGlobal;
+    /* 0x44 */ Mtx4f mtxGlobalToLocal;
+    /* 0x84 */ f32 unk_84;
+    /* 0x88 */ f32 unk_88;
+    /* 0x8C */ f32 unk_8C;
+} HitBoxType4; // size = 0x90
+
 typedef struct HitBox {
     /* 0x00 */ u8 type;
     /* 0x04 */ Mtx4f mtxLocalToGlobal;

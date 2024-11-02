@@ -611,13 +611,19 @@ segments:
     subsegments:
     - [0x13C780, bin] # , data]
   - type: code
+    name: tunnel_assets
+    dir: tunnel
     start: 0x162CB0
     vram: 0x8011CB50
     bss_size: 0x20
     exclusive_ram_id: unk8011CB50
     subsegments:
-    - [0x162CB0, c]
-    - [0x162CC0, bin] # , data]
+    - [auto, c, world/world]
+    - [auto, c, world/blocks]
+    - [0x162CC0, .data, world/world]
+    - [0x164850, bin]
+    - [0x174340, .data, world/blocks]
+    - [0x175FF0, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra

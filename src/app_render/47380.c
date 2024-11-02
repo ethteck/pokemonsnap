@@ -263,7 +263,7 @@ extern Texture** D_800EDB90;
 extern WorldSetup D_800F5DA0;
 extern WorldSetup volcano_WorldSetup;
 extern WorldSetup D_80100720;
-extern WorldSetup D_8011E6CC;
+extern WorldSetup tunnel_WorldSetup;
 extern WorldSetup D_8012A0E8;
 extern WorldSetup D_8012AC90;
 
@@ -317,7 +317,7 @@ char* getPokemonName(s32 pkmnID) {
         case PokemonID_500:
         case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
-        case PokemonID_602:
+        case PokemonID_ZAPDOS_EGG:
             return "？";
         default:
             return NULL;
@@ -474,7 +474,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
     switch (pokemonID) {
         case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
-        case PokemonID_602:
+        case PokemonID_ZAPDOS_EGG:
         case PokemonID_603:
         case PokemonID_GATE:
         case PokemonID_EVOLUTION_CONTROLLER:
@@ -946,7 +946,7 @@ void func_8009D37C(u8 levelID) {
             D_800BDF2C.a = 0;
             break;
         case SCENE_TUNNEL:
-            func_8009D184(&D_8011E6CC);
+            func_8009D184(&tunnel_WorldSetup);
             func_8009D1E8((u32) ABEBD0_ROM_START, (u32) ABEBD0_ROM_END, (s32) &D_801B1230);
             func_8009D21C(0, &D_801B1230);
             D_800BDF2C.r = 0x80;
@@ -1167,7 +1167,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
                 model->scale.v.z *= 0.5f;
             }
             break;
-        case PokemonID_602:
+        case PokemonID_ZAPDOS_EGG:
             if (D_800AD474[arg0->unk_00_13].unk_00 == &D_80188CB0) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
@@ -1228,7 +1228,7 @@ void func_8009DEF0(PhotoData* photoData) {
                     photoData->pokemons[i].pokemonID == PokemonID_603 ||
                     photoData->pokemons[i].pokemonID == PokemonID_MOLTRES_EGG ||
                     photoData->pokemons[i].pokemonID == PokemonID_601 ||
-                    photoData->pokemons[i].pokemonID == PokemonID_602) {
+                    photoData->pokemons[i].pokemonID == PokemonID_ZAPDOS_EGG) {
                     photo_PokemonObjs[photo_PokemonCount] = gobj;
                     photo_PokemonIndexes[photo_PokemonCount] = i;
                     photo_PokemonCount++;

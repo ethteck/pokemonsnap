@@ -132,7 +132,7 @@ s32 func_802C6544_79FAD4(s32);
 
 s32 func_802D9210_6C0FF0(s32);
 
-s32 func_802E2BB8_5DFC88(s32);
+s32 tunnel_Start(s32);
 
 s32 func_80346EF0_826660(s32);
 

@@ -55,8 +55,6 @@ PokemonDef D_8038837C_52878C = {
 
 Vec3f D_8038838C_52879C = { 0.0f, 0.0f, 0.0f };
 
-void func_800A5E98(Vec3f*, Vec3f*, DObj*);
-
 void func_8035E034_4FE444(GObj*);
 void func_8035DFB0_4FE3C0(GObj*);
 

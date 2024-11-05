@@ -1,5 +1,12 @@
 #include "world/world.h"
 
+extern WorldBlockGFX tunnel_block0_gfx;
+extern WorldBlockGFX tunnel_block1_gfx;
+extern WorldBlockGFX tunnel_block2_gfx;
+extern WorldBlockGFX tunnel_block3_gfx;
+extern WorldBlockGFX tunnel_block4_gfx;
+extern WorldBlockGFX tunnel_block5_gfx;
+
 Vec3f tunnel_electrode_path1_points[] = {
     { 25.758865, 0.000000, 14.188783 },
     { 12.718971, 0.000000, 4.983940 },
@@ -603,8 +610,8 @@ StaticObject tunnel_block2_staticObjects[] = {
 };
 
 StaticObject tunnel_block3_unk18[] = {
-    { PokemonID_1015, { 0.711048, 4.441059, -8.595047 }, { 0.0, -4.702008, 0.0 }, { 0.5, 0.5, 0.5 } },
-    { PokemonID_1015, { 3.245579, 4.441051, 10.106644 }, { 0.0, -4.744004, 0.0 }, { 0.5, 0.5, 0.5 } },
+    { PokemonID_COMPUTER, { 0.711048, 4.441059, -8.595047 }, { 0.0, -4.702008, 0.0 }, { 0.5, 0.5, 0.5 } },
+    { PokemonID_COMPUTER, { 3.245579, 4.441051, 10.106644 }, { 0.0, -4.744004, 0.0 }, { 0.5, 0.5, 0.5 } },
     { PokemonID_1016, { 17.930977, 4.000000, 6.960526 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
     { PokemonID_1017, { 12.684059, 4.224472, -3.981682 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
     { PokemonID_1017, { 13.144218, 5.394747, -10.532372 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
@@ -626,8 +633,8 @@ ObjectSpawn tunnel_block3_spawn[] = {
 };
 
 StaticObject tunnel_block3_staticObjects[] = {
-    { PokemonID_1015, { 0.711048, 4.441059, -8.595047 }, { 0.0, -4.702008, 0.0 }, { 0.5, 0.5, 0.5 } },
-    { PokemonID_1015, { 3.245579, 4.441051, 10.106644 }, { 0.0, -4.744004, 0.0 }, { 0.5, 0.5, 0.5 } },
+    { PokemonID_COMPUTER, { 0.711048, 4.441059, -8.595047 }, { 0.0, -4.702008, 0.0 }, { 0.5, 0.5, 0.5 } },
+    { PokemonID_COMPUTER, { 3.245579, 4.441051, 10.106644 }, { 0.0, -4.744004, 0.0 }, { 0.5, 0.5, 0.5 } },
     { PokemonID_1016, { 17.930977, 4.000000, 6.960526 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
     { PokemonID_1017, { 12.684059, 4.224472, -3.981682 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
     { PokemonID_1017, { 13.144218, 5.394747, -10.532372 }, { 0.0, -1.570796, 0.0 }, { 1.0, 1.0, 1.0 } },
@@ -667,7 +674,7 @@ StaticObject tunnel_block5_staticObjects[] = {
 };
 
 WorldBlockDescriptor tunnel_block0 = {
-    0x8011E6F0,
+    &tunnel_block0_gfx,
     { 0.0, 0.0, 0.0 },
     0.0,
     false,
@@ -677,7 +684,7 @@ WorldBlockDescriptor tunnel_block0 = {
 };
 
 WorldBlockDescriptor tunnel_block1 = {
-    0x8011E714,
+    &tunnel_block1_gfx,
     { 0.0, 0.0, 40.0 },
     0.0,
     false,
@@ -687,7 +694,7 @@ WorldBlockDescriptor tunnel_block1 = {
 };
 
 WorldBlockDescriptor tunnel_block2 = {
-    0x8011E738,
+    &tunnel_block2_gfx,
     { 40.0, 0.0, 40.0 },
     0.0,
     false,
@@ -697,7 +704,7 @@ WorldBlockDescriptor tunnel_block2 = {
 };
 
 WorldBlockDescriptor tunnel_block3 = {
-    0x8011E75C,
+    &tunnel_block3_gfx,
     { 40.0, 0.0, 80.0 },
     0.0,
     false,
@@ -707,7 +714,7 @@ WorldBlockDescriptor tunnel_block3 = {
 };
 
 WorldBlockDescriptor tunnel_block4 = {
-    0x8011E780,
+    &tunnel_block4_gfx,
     { 40.0, 0.0, 120.0 },
     0.0,
     false,
@@ -717,7 +724,7 @@ WorldBlockDescriptor tunnel_block4 = {
 };
 
 WorldBlockDescriptor tunnel_block5 = {
-    0x8011E7A4,
+    &tunnel_block5_gfx,
     { 80.0, 0.0, 120.0 },
     0.0,
     false,

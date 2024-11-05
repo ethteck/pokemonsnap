@@ -321,7 +321,7 @@ enum PokemonIds {
     PokemonID_1012 = 1012,
     PokemonID_1013 = 1013,
     PokemonID_1014 = 1014,
-    PokemonID_1015 = 1015,
+    PokemonID_COMPUTER = 1015,
     PokemonID_1016 = 1016,
     PokemonID_1017 = 1017,
     PokemonID_1018 = 1018,

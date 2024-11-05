@@ -2,13 +2,14 @@
 #include "world/world.h"
 
 extern WorldBlockSetup tunnel_blocksSetup[];
+extern Gfx computer_draw[];
+extern Gfx pkmn_1016_draw[];
+extern Gfx pkmn_1017_draw[];
 
-// TODO symbols
-
-extern UnkVioletMarlin D_8011CB60[] = {
-    { PokemonID_1015, func_800E30B0_60860, 0x8013AB90 },
-    { PokemonID_1016, func_800E30B0_60860, 0x8013B080 },
-    { PokemonID_1017, func_800E30B0_60860, 0x8013BA20 },
+UnkVioletMarlin D_8011CB60[] = {
+    { PokemonID_COMPUTER, func_800E30B0_60860, computer_draw },
+    { PokemonID_1016, func_800E30B0_60860, pkmn_1016_draw },
+    { PokemonID_1017, func_800E30B0_60860, pkmn_1017_draw },
     { -1, NULL, NULL }
 };
 
@@ -418,10 +419,10 @@ Collider D_8011DBF8[] = {
     },
 };
 
-DEFAULT_HITBOX_TYPE_4(D_8011E1B4_hitbox_0);
-DEFAULT_HITBOX_TYPE_1(D_8011E1B4_hitbox_1);
+DEFAULT_HITBOX_TYPE_4(computer_hitbox_0);
+DEFAULT_HITBOX_TYPE_1(computer_hitbox_1);
 
-Collider D_8011E1B4[] = {
+Collider computer_collision_model[] = {
     {
         0,
         NULL,
@@ -438,14 +439,14 @@ Collider D_8011E1B4[] = {
     },
     {
         2,
-        (HitBox*)&D_8011E1B4_hitbox_0,
+        (HitBox*)&computer_hitbox_0,
         { 0.0, 1.4, 0.0 },
         { 0.0, 0.0, 0.0 },
         { 2.0, 2.8, 1.5 },
     },
     {
         1,
-        (HitBox*)&D_8011E1B4_hitbox_1,
+        (HitBox*)&computer_hitbox_1,
         { 0.0, 0.0, 0.0 },
         { 0.0, 0.0, 0.0 },
         { 1.4, 1.4, 1.4 },
@@ -545,7 +546,7 @@ CollisionModel tunnel_CollisionModels[] = {
     { PokemonID_GATE, D_800EDF78, 1.0 },
     { PokemonID_1008, D_8011CF54, 1.0 },
     { PokemonID_1010, D_8011DBF8, 1.0 },
-    { PokemonID_1015, D_8011E1B4, -1.0 },
+    { PokemonID_COMPUTER, computer_collision_model, -1.0 },
     { PokemonID_1016, D_8011E3A8, -1.0 },
     { PokemonID_1017, D_8011E59C, -1.0 },
     { -1, NULL, 0 }

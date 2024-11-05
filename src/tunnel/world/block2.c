@@ -1,27 +1,27 @@
 #include "../tunnel.h"
 
 extern Vtx tunnel_block2_vtx[];
-extern Texture* tunnel_block1_materials_mat[];
+extern Texture* tunnel_block2_materials_mat[];
 
 #include "assets/tunnel/block2/draw.gfx.inc.c"
 __ALIGNER
 #include "assets/tunnel/block2/model.vtx.inc.c"
 
-Texture** tunnel_block1_materials[] = {
-    tunnel_block1_materials_mat,
+Texture** tunnel_block2_materials[] = {
+    tunnel_block2_materials_mat,
 };
 
-u8* tunnel_block1_materials_mat0_textures[] = {
-    0x80158DF8, //tunnel_world_tex_lava_frame0_png,
-    0x8014DDE0, //tunnel_world_tex_lava_frame0_png,
-    NULL, //tunnel_world_tex_lava_frame0_png,
+u8* tunnel_block2_materials_mat0_textures[] = {
+    D_80158DF8_19EF58,
+    D_8014DDE0_193F40,
+    NULL,
 };
 
-Texture tunnel_block1_materials_mat0 = {
+Texture tunnel_block2_materials_mat0 = {
     0,
     G_IM_FMT_RGBA,
     G_IM_SIZ_16b,
-    tunnel_block1_materials_mat0_textures,
+    tunnel_block2_materials_mat0_textures,
     32,
     39,
     192,
@@ -67,8 +67,8 @@ Texture tunnel_block1_materials_mat0 = {
     0,
 };
 
-Texture* tunnel_block1_materials_mat[] = {
-    &tunnel_block1_materials_mat0,
+Texture* tunnel_block2_materials_mat[] = {
+    &tunnel_block2_materials_mat0,
     NULL,
 };
 

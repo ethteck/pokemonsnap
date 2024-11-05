@@ -4,6 +4,7 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_44 POKEMON_CMD_44
 #define TUNNEL_CMD_45 POKEMON_CMD_45
 #define TUNNEL_CMD_46 POKEMON_CMD_46
 #define TUNNEL_CMD_55 POKEMON_CMD_55

@@ -3017,7 +3017,8 @@ segments:
     - [0x5EA6F0, c]
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
-    - [0x5EB2D0, bin] # , data]
+    - [0x5EB2D0, .data, 5E0A70]
+    - [0x5EB770, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, 5E0A70]

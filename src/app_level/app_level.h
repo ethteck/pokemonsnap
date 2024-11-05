@@ -202,6 +202,7 @@ void func_80357120_4F7530(GObj* arg0);
 void func_80357170_4F7580(void);
 void func_803571C4_4F75D4(void);
 void func_803572B0_4F76C0(void);
+void func_8035E174_4FE584(GObj* obj, Vec3f*);
 void func_8035E298_4FE6A8(GObj* obj);
 
 void Icons_SetDashEngineEnabled(s32 enabled);

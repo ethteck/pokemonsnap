@@ -43,7 +43,6 @@ Gfx D_8038A400_52A810[] = {
 extern DObj* gPlayerDObj;
 extern GObj* gPokemonInFocus;
 
-void func_800A5E98(Vec3f*, Vec3f*, DObj*);
 void func_800AB1F8(EggStruct*);
 s32 func_800AB138(EggStruct* arg0, f32 arg1);
 void func_80360074_500484(GObj*);

@@ -4,12 +4,6 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
-#define POKEMON_FUNC(name) void name(GObj* obj) { \
-    DObj* model = obj->data.dobj; \
-    Mtx3Float* position = &GET_TRANSFORM(model)->pos; \
-    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
-    Pokemon* pokemon = GET_POKEMON(obj);
-
 #define VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA POKEMON_CMD_28
 #define VOLCANO_CMD_CHARMELEON_EVOLVE POKEMON_CMD_29
 #define VOLCANO_CMD_SPAWN_MOLTRES POKEMON_CMD_30

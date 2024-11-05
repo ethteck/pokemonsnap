@@ -353,7 +353,7 @@ void tunnel_Init(void) {
     if (func_8009A8E4() != 0) {
         setIdleScript(func_800A73C0((u32) AB1470_ROM_START, (u32) AB1470_ROM_END));
     }
-    initUI(tunnel_ExitBlock, func_802E2C70_5DFD40, NULL, 0, tunnel_HandleCollision);
+    initUI(tunnel_ExitBlock, tunnel_UpdateSounds, NULL, 0, tunnel_HandleCollision);
     setEndLevelCallback(tunnel_EndLevel);
     setPauseCallback(tunnel_Pause);
     EnvSound_Init(tunnel_EnvSounds, ARRAY_COUNT(tunnel_EnvSounds));

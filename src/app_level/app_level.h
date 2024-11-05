@@ -237,6 +237,7 @@ void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32);
 bool Pokemon_StepWalkInDirectionFacing(GObj*, u32);
 s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags);
 bool Pokemon_Turn(DObj*, f32, f32);
+void Pokemon_RunAwayDefault(GObj* obj, f32 minDistance);
 s32 Pokemon_HearsPokeFlute(GObj*);
 void Pokemon_SetTargetPos(GObj*, f32, f32);
 void Pokemon_RunToTargetPos(GObj*, f32);

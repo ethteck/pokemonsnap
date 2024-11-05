@@ -10,7 +10,7 @@ extern s32 D_803430F8_6401C8;
 extern u8 D_803430FC_6401CC;
 extern u8 D_803430FD_6401CD;
 
-void func_802E2C70_5DFD40(s32 blockCount, f32 blockPart) {
+void tunnel_UpdateSounds(s32 blockCount, f32 blockPart) {
     switch (D_802EE1E0_5EB2B0) {
         case 0:
             if (blockCount + blockPart >= 0.0f) {
@@ -27,7 +27,7 @@ void func_802E2C70_5DFD40(s32 blockCount, f32 blockPart) {
             break;
         case 1:
             if (blockCount + blockPart > 0.0f) {
-                setBackgroundMusic(SONG_ID_4);
+                setBackgroundMusic(SONG_TUNNEL);
                 D_802EE1E0_5EB2B0 = 2;
             }
             break;

@@ -4,6 +4,10 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_45 POKEMON_CMD_45
+#define TUNNEL_CMD_46 POKEMON_CMD_46
+#define TUNNEL_CMD_55 POKEMON_CMD_55
+
 extern u8 D_8014DDE0_193F40[];
 extern u8 D_8014E5E8_194748[];
 extern u8 D_8014E610_194770[];
@@ -53,11 +57,12 @@ extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;
 
-void func_802E2C70_5DFD40(s32, f32);
+void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);
 void func_802E2BB0_5DFC80(s32 arg0);
 void tunnel_Init(void);
 void tunnel_SpawnMagikarp(GObj*);
+void func_802E5094_5E2164(void);
 
 GObj* func_802E4AFC_5E1BCC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E505C_5E212C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

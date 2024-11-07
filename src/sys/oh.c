@@ -267,7 +267,29 @@ DObj* ohAddDObjChildRad(DObj* dobj, void* arg1) {
     return ret;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/oh/func_8000C0D8.s")
+void func_8000C0D8(GObj* gobj, DObjTraDesc* dobjtra, DObj** dobjs) {
+    s32 i;
+    DObj* dobj;
+    DObj* arrayDobjs[18];
+
+    for (i = 0; i < ARRAY_COUNT(arrayDobjs); i++) {
+        arrayDobjs[i] = NULL;
+    }
+
+    while (dobjtra->id != 18) {
+        if (dobjtra->id != 0) {
+            dobj = arrayDobjs[dobjtra->id] = ohAddDObjChild(arrayDobjs[dobjtra->id - 1], dobjtra->dl);
+        } else {
+            dobj = arrayDobjs[0] = ohAddDObj(gobj, dobjtra->dl);
+        }
+        dobj->position.v = dobjtra->translate;
+        if (dobjs != NULL) {
+            *dobjs = dobj;
+            dobjs++;
+        }
+        dobjtra++;
+    }
+}
 
 void ohRemoveDObj(GObj* obj) {
     if (obj == NULL) {

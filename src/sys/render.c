@@ -277,11 +277,11 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
             Mtx** unk;
             Mtx* mtx;
 
-            unk = (Mtx**) &ommtx->unk08;
-            mtx = &ommtx->unk08;
+            unk = (Mtx**) &ommtx->unk_08;
+            mtx = &ommtx->unk_08;
 
-            if (ommtx->unk05 != 2) {
-                if (ommtx->unk05 == 4) {
+            if (ommtx->unk_05 != 2) {
+                if (ommtx->unk_05 == 4) {
                     if (dobj->obj->lastDrawFrame != (u8) gtlDrawnFrameCounter) {
                         *unk = gtlCurrentGfxHeap.ptr;
                         mtx = gtlCurrentGfxHeap.ptr;
@@ -352,7 +352,7 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                                     mtx = gtlCurrentGfxHeap.ptr;
                                     gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                                 } else {
-                                    if (ommtx->unk05 != 3) {
+                                    if (ommtx->unk_05 != 3) {
                                         goto END2;
                                     }
                                     mtx = gtlCurrentGfxHeap.ptr;
@@ -834,8 +834,8 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         break;
                 }
             END2:
-                if (ommtx->unk05 == 1 && &ommtx->unk08 == mtx) {
-                    ommtx->unk05 = 2;
+                if (ommtx->unk_05 == 1 && &ommtx->unk_08 == mtx) {
+                    ommtx->unk_05 = 2;
                 }
             }
             if (ommtx->kind != MTX_TYPE_2) {
@@ -868,11 +868,11 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                 continue;
             }
 
-            unk = (Mtx**) &ommtx->unk08;
-            mtx = &ommtx->unk08;
+            unk = (Mtx**) &ommtx->unk_08;
+            mtx = &ommtx->unk_08;
 
-            if (ommtx->unk05 != 2) {
-                if (ommtx->unk05 == 4) {
+            if (ommtx->unk_05 != 2) {
+                if (ommtx->unk_05 == 4) {
                     if (dobj->obj->lastDrawFrame != (u8) gtlDrawnFrameCounter) {
                         *unk = gtlCurrentGfxHeap.ptr;
                         mtx = gtlCurrentGfxHeap.ptr;
@@ -886,7 +886,7 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                         mtx = gtlCurrentGfxHeap.ptr;
                         gtlCurrentGfxHeap.ptr = (u8*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
                     } else if (dobj->obj->lastDrawFrame == (u8) gtlDrawnFrameCounter) {
-                        if (ommtx->unk05 != 3) {
+                        if (ommtx->unk_05 != 3) {
                             goto END;
                         }
                         mtx = gtlCurrentGfxHeap.ptr;
@@ -896,8 +896,8 @@ s32 ren_func_80013C5C(Gfx** gfxPtr, DObj* dobj) {
                 hal_scale(mtx, renScaleX, renScaleY, renScaleZ);
                 renIsScaleMtxPushed = true;
             END:
-                if (ommtx->unk05 == 1 && &ommtx->unk08 == mtx) {
-                    ommtx->unk05 = 2;
+                if (ommtx->unk_05 == 1 && &ommtx->unk_08 == mtx) {
+                    ommtx->unk_05 = 2;
                 }
             }
 
@@ -2229,38 +2229,127 @@ void renInitCameraEx(Gfx** gfxPtr, OMCamera* cam, s32 mode, u16* buffer, s32 wid
     *gfxPtr = gfxPos;
 }
 
-#ifdef NON_MATCHING
 void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
-    Gfx* spDC;
+    Gfx* gfx;
     s32 i;
+    OMMtx* ommtx;
+    Mtx* mtx;
     s32 s3;
-    LookAt* lookat;
-    f32 f2;
     s32 spC8;
-    f32 sp9C;
-    f32 sp98;
-    f32 sp94;
-    f32 sp90;
-    f32 sp8C;
-    f32 sp88;
+    LookAt* lookat;
 
-    spDC = *gfxPtr;
+    gfx = *gfxPtr;
     spC8 = 0;
     s3 = 0;
 
-    if (cam->numMatrices == 0) {
-        return;
-    }
+    if (cam->numMatrices != 0) {
+        for (i = 0; i < cam->numMatrices; i++) {
+            ommtx = cam->matrices[i];
+            if (ommtx != NULL) {
+                mtx = &ommtx->unk_08;
 
-    for (i = 0; i < cam->numMatrices; i++) {
-        OMMtx* ommtx = cam->matrices[i];
-        if (ommtx != NULL) {
-            Mtx* mtx = &ommtx->unk08;
+                if (ommtx->unk_05 != 2) {
+                    if (gtlContextId > 0) {
+                        mtx = gtlCurrentGfxHeap.ptr;
+                        gtlCurrentGfxHeap.ptr = (char*) mtx + sizeof(Mtx);
+                    }
 
-            if (ommtx->unk05 != 2) {
-                if (gtlContextId > 0) {
-                    mtx = gtlCurrentGfxHeap.ptr;
-                    gtlCurrentGfxHeap.ptr = (char*) gtlCurrentGfxHeap.ptr + sizeof(Mtx);
+                    switch (ommtx->kind) {
+                        case MTX_TYPE_1:
+                            break;
+                        case MTX_TYPE_2:
+                            break;
+                        case MTX_TYPE_PERSP_FAST:
+                            hal_perspective_fast_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                                                   cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
+                                                   cam->perspMtx.persp.near, cam->perspMtx.persp.far,
+                                                   cam->perspMtx.persp.scale);
+                            hal_mtx_f2l(renPerspectiveMatrixF, mtx);
+                            renProjectionMatrix = mtx;
+                            break;
+                        case MTX_TYPE_PERSP:
+                            hal_perspective_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
+                                              cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
+                                              cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
+                            hal_mtx_f2l(renPerspectiveMatrixF, mtx);
+                            renProjectionMatrix = mtx;
+                            break;
+                        case MTX_TYPE_ORTHO:
+                            hal_ortho(mtx, cam->perspMtx.ortho.l, cam->perspMtx.ortho.r, cam->perspMtx.ortho.b,
+                                      cam->perspMtx.ortho.t, cam->perspMtx.ortho.n, cam->perspMtx.ortho.f,
+                                      cam->perspMtx.ortho.scale);
+                            renProjectionMatrix = mtx;
+                            break;
+                        case MTX_TYPE_LOOKAT:
+                        case MTX_TYPE_LOOKAT_MVIEW:
+                            hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
+                                        cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
+                                        cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y, cam->viewMtx.lookAt.up.z);
+                            if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
+                                s3 = 1;
+                            } else {
+                                s3 = 2;
+                            }
+                            break;
+                        case MTX_TYPE_LOOKAT_ROLL:
+                        case MTX_TYPE_LOOKAT_ROLL_MVIEW:
+                            hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                             cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
+                                             cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
+                                             cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                            s3 = 1;
+                            break;
+                        case MTX_TYPE_LOOKAT_ROLL_Z:
+                        case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
+                            hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                             cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
+                                             cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
+                                             cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                            s3 = 2;
+                            break;
+                        case MTX_TYPE_LOOKAT_REFLECT:
+                        case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
+                            lookat = mlHeapAlloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
+                            hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y,
+                                                cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y,
+                                                cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y,
+                                                cam->viewMtx.lookAt.up.z);
+                            if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
+                                s3 = 1;
+                            } else {
+                                s3 = 2;
+                            }
+                            break;
+                        case MTX_TYPE_LOOKAT_REFLECT_ROLL:
+                        case MTX_TYPE_LOOKAT_REFLECT_ROLL_MVIEW:
+                            lookat = mlHeapAlloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
+                            s3 = 1;
+                            hal_look_at_reflect_roll(
+                                mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
+                                cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+                            break;
+                        case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
+                        case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z_MVIEW:
+                            lookat = mlHeapAlloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
+                            s3 = 2;
+                            hal_look_at_reflect_roll(
+                                mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
+                                cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
+                                cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
+                            break;
+                        default:
+                            if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
+                                if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00 != NULL) {
+                                    renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00(mtx, cam, &gfx);
+                                }
+                            }
+                            break;
+                    }
+
+                    if (ommtx->unk_05 == 1 && &ommtx->unk_08 == mtx) {
+                        ommtx->unk_05 = 2;
+                    }
                 }
 
                 switch (ommtx->kind) {
@@ -2269,231 +2358,130 @@ void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam) {
                     case MTX_TYPE_2:
                         break;
                     case MTX_TYPE_PERSP_FAST:
-                        hal_perspective_fast_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
-                                               cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
-                                               cam->perspMtx.persp.near, cam->perspMtx.persp.far,
-                                               cam->perspMtx.persp.scale);
-                        hal_mtx_f2l(renPerspectiveMatrixF, mtx);
-                        renProjectionMatrix = mtx;
-                        break;
                     case MTX_TYPE_PERSP:
-                        hal_perspective_f(renPerspectiveMatrixF, &cam->perspMtx.persp.perspNorm,
-                                          cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
-                                          cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
-                        hal_mtx_f2l(renPerspectiveMatrixF, mtx);
-                        renProjectionMatrix = mtx;
+                        gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+                        gSPPerspNormalize(gfx++, cam->perspMtx.persp.perspNorm);
                         break;
                     case MTX_TYPE_ORTHO:
-                        hal_ortho(mtx, cam->perspMtx.ortho.l, cam->perspMtx.ortho.r, cam->perspMtx.ortho.b,
-                                  cam->perspMtx.ortho.t, cam->perspMtx.ortho.n, cam->perspMtx.ortho.f,
-                                  cam->perspMtx.ortho.scale);
-                        renProjectionMatrix = mtx;
-                        break;
-                    case MTX_TYPE_LOOKAT:
-                    case MTX_TYPE_LOOKAT_MVIEW:
-                        hal_look_at(mtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
-                                    cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
-                                    cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.z);
-                        if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
-                            s3 = 1;
-                        } else {
-                            s3 = 2;
-                        }
-                        break;
-                    case MTX_TYPE_LOOKAT_ROLL:
-                    case MTX_TYPE_LOOKAT_ROLL_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
-                                         cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
-                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
-                                         cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
-                        s3 = 1;
-                        break;
-                    case MTX_TYPE_LOOKAT_ROLL_Z:
-                    case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
-                        hal_look_at_roll(mtx, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
-                                         cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt,
-                                         cam->viewMtx.lookAtRoll.yAt, cam->viewMtx.lookAtRoll.zAt,
-                                         cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
-                        s3 = 2;
+                        gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
                         break;
                     case MTX_TYPE_LOOKAT_REFLECT:
-                    case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
-                        lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
-                        hal_look_at_reflect(mtx, lookat, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y,
-                                            cam->viewMtx.lookAt.eye.z, cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y,
-                                            cam->viewMtx.lookAt.at.z, cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y,
-                                            cam->viewMtx.lookAt.up.z);
-                        if (cam->viewMtx.lookAt.up.z < cam->viewMtx.lookAt.up.y) {
-                            s3 = 1;
-                        } else {
-                            s3 = 2;
-                        }
-                        break;
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL:
-                    case MTX_TYPE_LOOKAT_REFLECT_ROLL_MVIEW:
-                        lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
-                        hal_look_at_reflect_roll(
-                            mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
-                            cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
-                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
-                        s3 = 1;
-                        break;
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
+                        gSPLookAt(gfx++, lookat);
+                        /*  fallthrough */
+                    case MTX_TYPE_LOOKAT:
+                    case MTX_TYPE_LOOKAT_ROLL:
+                    case MTX_TYPE_LOOKAT_ROLL_Z:
+                        gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
+                        break;
+                    case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
+                    case MTX_TYPE_LOOKAT_REFLECT_ROLL_MVIEW:
                     case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z_MVIEW:
-                        lookat = bump_alloc(&gtlCurrentGfxHeap, sizeof(LookAt), 8);
-                        hal_look_at_reflect_roll(
-                            mtx, lookat, cam->viewMtx.lookAtRoll.xEye, cam->viewMtx.lookAtRoll.yEye,
-                            cam->viewMtx.lookAtRoll.zEye, cam->viewMtx.lookAtRoll.xAt, cam->viewMtx.lookAtRoll.yAt,
-                            cam->viewMtx.lookAtRoll.zAt, cam->viewMtx.lookAtRoll.roll, 0.0f, 0.0f, 1.0f);
-                        s3 = 2;
+                        gSPLookAt(gfx++, lookat);
+                        /*  fallthrough */
+                    case MTX_TYPE_LOOKAT_MVIEW:
+                    case MTX_TYPE_LOOKAT_ROLL_MVIEW:
+                    case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
+                        gSPMatrix(gfx++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                         break;
                     default:
                         if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
-                            if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00 != NULL) {
-                                renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_00(mtx, cam, &spDC);
+                            if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04 != NULL) {
+                                renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04(mtx, cam, &gfx);
                             }
                         }
                         break;
                 }
-
-                if (ommtx->unk05 == 1 && &ommtx->unk08 == mtx) {
-                    ommtx->unk05 = 2;
-                }
-            }
-
-            switch (ommtx->kind) {
-                case MTX_TYPE_1:
-                    break;
-                case MTX_TYPE_2:
-                    break;
-                case MTX_TYPE_PERSP_FAST:
-                case MTX_TYPE_PERSP:
-                    gSPMatrix(spDC++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-                    gSPPerspNormalize(spDC++, cam->perspMtx.persp.perspNorm);
-                    break;
-                case MTX_TYPE_ORTHO:
-                    gSPMatrix(spDC++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-                    break;
-                case MTX_TYPE_LOOKAT_REFLECT:
-                case MTX_TYPE_LOOKAT_REFLECT_ROLL:
-                case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z:
-                    gSPLookAt(spDC++, lookat);
-                    /*  fallthrough */
-                case MTX_TYPE_LOOKAT:
-                case MTX_TYPE_LOOKAT_ROLL:
-                case MTX_TYPE_LOOKAT_ROLL_Z:
-                    gSPMatrix(spDC++, mtx, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-                    break;
-                case MTX_TYPE_LOOKAT_REFLECT_MVIEW:
-                case MTX_TYPE_LOOKAT_REFLECT_ROLL_MVIEW:
-                case MTX_TYPE_LOOKAT_REFLECT_ROLL_Z_MVIEW:
-                    gSPLookAt(spDC++, lookat);
-                    /*  fallthrough */
-                case MTX_TYPE_LOOKAT_MVIEW:
-                case MTX_TYPE_LOOKAT_ROLL_MVIEW:
-                case MTX_TYPE_LOOKAT_ROLL_Z_MVIEW:
-                    gSPMatrix(spDC++, mtx, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-                    break;
-                default:
-                    if (ommtx->kind >= MTX_TYPE_66 && renCustomMatrixHandler != NULL) {
-                        if (renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04 != NULL) {
-                            renCustomMatrixHandler[ommtx->kind - MTX_TYPE_66].unk_04(mtx, cam, &spDC);
-                        }
-                    }
-                    break;
             }
         }
-    }
 
-    switch (ren_D_8004B028) {
-        case 0:
-            spC8 = s3;
-            break;
-        case 1:
-            s3 = 0;
-            break;
-        case 2:
-            spC8 = 1;
-            s3 = 1;
-            break;
-        case 3:
-            s3 = 1;
-            break;
-        case 4:
-            spC8 = 1;
-            s3 = 0;
-            break;
-        case 5:
-            spC8 = 2;
-            s3 = 2;
-            break;
-        case 6:
-            s3 = 2;
-            break;
-        case 7:
-            spC8 = 2;
-            s3 = 0;
-            break;
-    }
-
-    if (s3 != 0) {
-        switch (s3) {
+        switch (ren_D_8004B028) {
+            case 0:
+                spC8 = s3;
+                break;
             case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
-                sp98 = cam->viewMtx.lookAt.eye.y;
-                sp94 = cam->viewMtx.lookAt.at.y;
+                s3 = 0;
                 break;
             case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
-                sp98 = cam->viewMtx.lookAt.eye.z;
-                sp94 = cam->viewMtx.lookAt.at.z;
+                spC8 = 1;
+                s3 = 1;
                 break;
-            default:
-                f2 = sp9C;
+            case 3:
+                s3 = 1;
+                break;
+            case 4:
+                spC8 = 1;
+                s3 = 0;
+                break;
+            case 5:
+                spC8 = 2;
+                s3 = 2;
+                break;
+            case 6:
+                s3 = 2;
+                break;
+            case 7:
+                spC8 = 2;
+                s3 = 0;
                 break;
         }
-        if (f2 < 0.0001f) {
-            hal_scale_f(&ren_D_8004AFA8, 0.0f, 0.0f, 0.0f);
-        } else {
-            hal_look_at_f(&ren_D_8004AFA8, 0.0f, sp98, f2, 0.0f, sp94, 0.0f, 0.0f, 1.0f, 0.0f);
-            guMtxCatF(ren_D_8004AFA8, renPerspectiveMatrixF, ren_D_8004AFA8);
-        }
-    }
 
-    if (spC8 != 0) {
-        switch (spC8) {
-            case 1:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
-                           SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z));
-                sp8C = cam->viewMtx.lookAt.eye.x;
-                sp88 = cam->viewMtx.lookAt.at.x;
-                break;
-            case 2:
-                f2 = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
-                           SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
-                sp8C = cam->viewMtx.lookAt.eye.y;
-                sp88 = cam->viewMtx.lookAt.at.y;
-                break;
-            default:
-                f2 = sp90;
-                break;
-        }
-        if (f2 < 0.0001f) {
-            hal_scale_f(&ren_D_8004AFE8, 0.0f, 0.0f, 0.0f);
-        } else {
-            hal_look_at_f(&ren_D_8004AFE8, sp8C, 0.0f, f2, sp88, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-            guMtxCatF(ren_D_8004AFE8, renPerspectiveMatrixF, ren_D_8004AFE8);
-        }
-    }
+        if (s3 != 0) {
+            f32 eyeZ, eyeY, atY;
 
-    *gfxPtr = spDC;
+            switch (s3) {
+                case 1:
+                    eyeZ = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
+                                 SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                    eyeY = cam->viewMtx.lookAt.eye.y;
+                    atY = cam->viewMtx.lookAt.at.y;
+                    break;
+                case 2:
+                    eyeZ = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
+                                 SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                    eyeY = cam->viewMtx.lookAt.eye.z;
+                    atY = cam->viewMtx.lookAt.at.z;
+                    break;
+            }
+
+            if (eyeZ < 0.0001f) {
+                hal_scale_f(ren_D_8004AFA8, 0.0f, 0.0f, 0.0f);
+            } else {
+                hal_look_at_f(ren_D_8004AFA8, 0.0f, eyeY, eyeZ, 0.0f, atY, 0.0f, 0.0f, 1.0f, 0.0f);
+                guMtxCatF(ren_D_8004AFA8, renPerspectiveMatrixF, ren_D_8004AFA8);
+            }
+        }
+
+        if (spC8 != 0) {
+            f32 eyeZ, eyeX, atX;
+
+            switch (spC8) {
+                case 1:
+                    eyeZ = sqrtf(SQ(cam->viewMtx.lookAt.at.y - cam->viewMtx.lookAt.eye.y) +
+                                 SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z));
+                    eyeX = cam->viewMtx.lookAt.eye.x;
+                    atX = cam->viewMtx.lookAt.at.x;
+                    break;
+                case 2:
+                    eyeZ = sqrtf(SQ(cam->viewMtx.lookAt.at.z - cam->viewMtx.lookAt.eye.z) +
+                                 SQ(cam->viewMtx.lookAt.at.x - cam->viewMtx.lookAt.eye.x));
+                    eyeX = cam->viewMtx.lookAt.eye.y;
+                    atX = cam->viewMtx.lookAt.at.y;
+                    break;
+            }
+
+            if (eyeZ < 0.0001f) {
+                hal_scale_f(ren_D_8004AFE8, 0.0f, 0.0f, 0.0f);
+            } else {
+                hal_look_at_f(ren_D_8004AFE8, eyeX, 0.0f, eyeZ, atX, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+                guMtxCatF(ren_D_8004AFE8, renPerspectiveMatrixF, ren_D_8004AFE8);
+            }
+        }
+
+        *gfxPtr = gfx;
+    }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/render/renPrepareCameraMatrix.s")
-void renPrepareCameraMatrix(Gfx** gfxPtr, OMCamera* cam);
-#endif
 
 void ren_func_80018CD0(s32 val) {
     ren_D_8004B028 = val;

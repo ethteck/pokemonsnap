@@ -640,10 +640,6 @@ s32 func_camera_check_801E0B5C(bool arg0) {
     }
 }
 
-// #else
-// #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801E0B5C.s")
-// #endif
-
 s32 func_camera_check_801E0F10(void) {
     UnkIndigoHalibut* temp_v0_2;
     UnkStruct800BEDF8* temp_v0;

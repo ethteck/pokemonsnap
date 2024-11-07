@@ -115,7 +115,6 @@ void func_802DB270_6C3050(GObj* obj) {
     omEndProcess(NULL);
 }
 
-// clang-format off
 POKEMON_FUNC(func_802DB388_6C3168)
     Pokemon_SetAnimation(obj, &D_802E31D8_6CAFB8);
     Pokemon_StartPathProc(obj, func_802DB41C_6C31FC);

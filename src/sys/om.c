@@ -906,7 +906,7 @@ OMMtx* omDObjAddMtx(DObj* dobj, u8 kind, u8 arg2, s32 index) {
             break;
     }
 
-    mtx->unk05 = arg2;
+    mtx->unk_05 = arg2;
     return mtx;
 }
 
@@ -958,7 +958,7 @@ OMMtx* omCameraAddMtx(OMCamera* arg0, u8 kind, u8 arg2) {
             break;
     }
 
-    mtx->unk05 = arg2;
+    mtx->unk_05 = arg2;
     return mtx;
 }
 

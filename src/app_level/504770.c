@@ -13,6 +13,6 @@ void func_80364360_504770(void) {
     UNK_STUFF_SP_DMEM_OK = gSPDmemOkay;
     ((void (*)(void)) UNK_STUFF_VRAM)();
     if (UNK_STUFF_MINUS_8 != 0) {
-        setPlayerFlag(PFID_21, true);
+        setPlayerFlag(PFID_ILLEGAL_COPY, true);
     }
 }

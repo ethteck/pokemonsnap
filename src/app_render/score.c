@@ -565,7 +565,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                 break;
             case PokemonID_MOLTRES_EGG:
             case PokemonID_601:
-            case PokemonID_602:
+            case PokemonID_ZAPDOS_EGG:
                 D_800BE170.pokemonInFocus = tmp;
                 break;
             default:
@@ -589,7 +589,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
 
         if ((id > 0 && id <= POKEDEX_MAX) ||
             id == PokemonID_603 || id == PokemonID_MOLTRES_EGG ||
-            id == PokemonID_601 || id == PokemonID_602) {
+            id == PokemonID_601 || id == PokemonID_ZAPDOS_EGG) {
             var_t0++;
         }
     }

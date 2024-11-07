@@ -438,7 +438,7 @@ s32 checkPlayerFlag(s32 pfid) {
             return D_800C21B0_5F050->data.unk_68_28;
         case PFID_20:
             return D_800C21B0_5F050->data.unk_68_27;
-        case PFID_21:
+        case PFID_ILLEGAL_COPY:
             return D_800C21B0_5F050->data.unk_64_04;
         case PFID_15:
             return D_800C20F4_5EF94;
@@ -509,7 +509,7 @@ void setPlayerFlag(s32 arg0, s32 arg1) {
         case PFID_20:
             D_800C21B0_5F050->data.unk_68_27 = arg1 != 0;
             break;
-        case PFID_21:
+        case PFID_ILLEGAL_COPY:
             D_800C21B0_5F050->data.unk_64_04 = arg1 != 0;
             break;
         case PFID_15:

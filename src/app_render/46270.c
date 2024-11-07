@@ -24,7 +24,7 @@ Overlay D_800ABDC8 = OVERLAY(app_level);
 Overlay overlayWorld = OVERLAY(world);
 Overlay overlayBeachAssets = OVERLAY(beach_assets);
 Overlay overlayBeach = OVERLAY(beach_code);
-Overlay overlayTunnelAssets = OVERLAY(_162CB0);
+Overlay overlayTunnelAssets = OVERLAY(tunnel_assets);
 Overlay overlayTunnel = OVERLAY(tunnel_code);
 Overlay overlayCaveAssets = OVERLAY(_1F5E70);
 Overlay overlayCave = OVERLAY(cave_code);
@@ -279,7 +279,7 @@ void start_scene_manager(s32 arg0) {
                 func_800AAF20();
                 func_8009AE0C(SCENE_TUNNEL);
                 setLevelId(SCENE_TUNNEL);
-                sceneId = func_802E2BB8_5DFC88(sceneId);
+                sceneId = tunnel_Start(sceneId);
                 break;
             case SCENE_CAVE:
                 func_800AAF20();

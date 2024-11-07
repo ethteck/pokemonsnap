@@ -2,7 +2,7 @@
 
 __ALIGNER2
 
-extern EnvSoundData volcano_EnvSounds[] = {
+EnvSoundData volcano_EnvSounds[] = {
     { SOUND_ID_58, PITCH_MOD_0, 15 },
     { SOUND_ID_59, PITCH_MOD_0, 18 },
     { SOUND_ID_62, PITCH_MOD_0, 18 },
@@ -398,9 +398,9 @@ void volcano_Init(void) {
 void volcano_func_802D6780_727980(s32 arg0) {
 }
 
-void volcano_func_802D6788_727988(void) {
+void volcano_CheckIllegalCopy(void) {
     if (!gSPImemOkay || !gSPDmemOkay) {
-        setPlayerFlag(PFID_21, true);
+        setPlayerFlag(PFID_ILLEGAL_COPY, true);
     }
 }
 
@@ -408,7 +408,7 @@ s32 volcano_Start(s32 arg0) {
     volcano_SceneSetup.gtlSetup.heapSize = (uintptr_t) volcano_code_VRAM - (uintptr_t) volcano_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
-    volcano_func_802D6788_727988();
+    volcano_CheckIllegalCopy();
     omSetupScene(&volcano_SceneSetup);
     if (volcano_EndLevelReason == END_LEVEL_REASON_RETRY) {
         return SCENE_VOLCANO;

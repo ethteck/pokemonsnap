@@ -9,4 +9,7 @@ void func_802E25C4_6CA3A4(void);
 
 extern f32 D_8012ACA0;
 
+extern s16 D_802E28AC_6CA68C;
+extern s16 D_802E28B0_6CA690;
+
 #endif

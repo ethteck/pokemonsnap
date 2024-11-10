@@ -4,3 +4,4 @@ ninja_syntax>=1.7.2
 argparse
 GitPython
 requests
+mapfile_parser

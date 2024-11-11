@@ -48,7 +48,7 @@ EnvSoundData tunnel_EnvSounds[] = {
 
 PokemonDef tunnel_PokemonDefs[] = {
     { PokemonID_MAGNEMITE,
-      func_802E4AFC_5E1BCC,
+      magnemite_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_MAGNETON,

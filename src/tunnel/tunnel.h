@@ -4,10 +4,10 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
-#define TUNNEL_CMD_44 POKEMON_CMD_44
-#define TUNNEL_CMD_45 POKEMON_CMD_45
-#define TUNNEL_CMD_46 POKEMON_CMD_46
-#define TUNNEL_CMD_55 POKEMON_CMD_55
+#define TUNNEL_CMD_MAGNEMITE_ATTRACT POKEMON_CMD_44
+#define TUNNEL_CMD_3_MAGNEMITES_COMBINED POKEMON_CMD_45
+#define TUNNEL_CMD_DELETE_MAGNEMITE POKEMON_CMD_46
+#define TUNNEL_CMD_MAGNEMITE_ZOOMED_IN POKEMON_CMD_55
 
 extern u8 D_8014DDE0_193F40[];
 extern u8 D_8014E5E8_194748[];
@@ -65,7 +65,7 @@ void tunnel_Init(void);
 void tunnel_SpawnMagikarp(GObj*);
 void func_802E5094_5E2164(void);
 
-GObj* func_802E4AFC_5E1BCC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E505C_5E212C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E5C74_5E2D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E6420_5E34F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

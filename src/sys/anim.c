@@ -1346,7 +1346,6 @@ s32 anim_func_8000EC08(s32 arg0, DObj* dobj, f32* outValue, f32* outRate, AObj* 
     return false;
 }
 
-// #ifdef NON_MATCHING
 #define TAKE_MAX(a, b) \
     if ((a) < (b))     \
     (a) = (b)
@@ -1615,11 +1614,11 @@ f32 anim_func_8000F708(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3, 
     return arg5;
 }
 
-#ifdef NON_MATCHING
 void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64Arg3* arg3) {
-    f32 value;
-    DObj* dobj;
     s32 i;
+    DObj* dobj;
+    f32 value;
+    UNUSED s32 pad;
     s32 sp7C;
     Vec3f sp70;
     s32 sp6C;
@@ -1636,40 +1635,39 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
             sp6C = 0;
 
             for (i = ANIM_PARAM_MODEL_MIN; i <= ANIM_PARAM_MODEL_MAX; i++) {
-                if (i == ANIM_PARAM_4) {
-                    continue;
-                }
+                if (i != ANIM_PARAM_4) {
 
-                anim_func_8000EC08(0, dobj, &value, NULL, dobj->aobjList, arg3, i, 0, &sp70, &sp7C);
+                    anim_func_8000EC08(0, dobj, &value, NULL, dobj->aobjList, arg3, i, 0, &sp70, &sp7C);
 
-                switch (i) {
-                    case ANIM_PARAM_ROTATION_X:
-                        dobj->rotation.f[1] = value;
-                        break;
-                    case ANIM_PARAM_ROTATION_Y:
-                        dobj->rotation.f[2] = value;
-                        break;
-                    case ANIM_PARAM_ROTATION_Z:
-                        dobj->rotation.f[3] = value;
-                        break;
-                    case ANIM_PARAM_POSITION_X:
-                        dobj->position.v.x = value;
-                        break;
-                    case ANIM_PARAM_POSITION_Y:
-                        dobj->position.v.y = value;
-                        break;
-                    case ANIM_PARAM_POSITION_Z:
-                        dobj->position.v.z = value;
-                        break;
-                    case ANIM_PARAM_SCALE_X:
-                        dobj->scale.v.x = value;
-                        break;
-                    case ANIM_PARAM_SCALE_Y:
-                        dobj->scale.v.y = value;
-                        break;
-                    case ANIM_PARAM_SCALE_Z:
-                        dobj->scale.v.z = value;
-                        break;
+                    switch (i) {
+                        case ANIM_PARAM_ROTATION_X:
+                            dobj->rotation.f[1] = value;
+                            break;
+                        case ANIM_PARAM_ROTATION_Y:
+                            dobj->rotation.f[2] = value;
+                            break;
+                        case ANIM_PARAM_ROTATION_Z:
+                            dobj->rotation.f[3] = value;
+                            break;
+                        case ANIM_PARAM_POSITION_X:
+                            dobj->position.v.x = value;
+                            break;
+                        case ANIM_PARAM_POSITION_Y:
+                            dobj->position.v.y = value;
+                            break;
+                        case ANIM_PARAM_POSITION_Z:
+                            dobj->position.v.z = value;
+                            break;
+                        case ANIM_PARAM_SCALE_X:
+                            dobj->scale.v.x = value;
+                            break;
+                        case ANIM_PARAM_SCALE_Y:
+                            dobj->scale.v.y = value;
+                            break;
+                        case ANIM_PARAM_SCALE_Z:
+                            dobj->scale.v.z = value;
+                            break;
+                    }
                 }
             }
         } else {
@@ -1691,10 +1689,6 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
         dobj = animModelTreeNextNode(dobj);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/anim/anim_func_8000F8E4.s")
-void anim_func_8000F8E4(GObj* arg0, AnimCmd** arg1, f32 arg2, UnkEC64Arg3* arg3);
-#endif
 
 void anim_func_8000FAFC(DObj* dobj) {
     omDObjAppendMtx(dobj, MTX_TYPE_ROTATE_RPY_TRANSLATE, 0);

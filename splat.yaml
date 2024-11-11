@@ -613,11 +613,128 @@ segments:
   - type: code
     name: tunnel_assets
     dir: tunnel
+    name: tunnel_assets
+    dir: tunnel
     start: 0x162CB0
     vram: 0x8011CB50
     bss_size: 0x20
     exclusive_ram_id: unk8011CB50
     subsegments:
+    - [auto, c, world/world]
+    - [auto, c, world/world_gfx]
+    - [auto, c, world/block0]
+    - [auto, c, world/block1]
+    - [auto, c, world/block2]
+    - [auto, c, world/block3]
+    - [auto, c, world/block4]
+    - [auto, c, world/block5]
+    - [auto, c, world/blocks]
+    - [auto, c, computer/model]
+    - [auto, c, pkmn_1016/model]
+    - [auto, c, pkmn_1017/model]
+    - [auto, c, computer/textures]
+    - [0x162CC0, .data, world/world]
+    - [0x164850, .data, world/world_gfx]
+    - start: 0x164930
+      type: .data
+      name: world/block0
+      dir: block0
+      subsegments:
+      - [0x164930, gfx, draw]
+      - [0x165290, vtx, model]
+      - [0x166560, gfx, unk]
+      - [0x166660]
+      - [0x166710, snap_model_anim, movement]
+    - start: 0x1669A0
+      type: .data
+      name: world/block1
+      dir: block1
+      subsegments:
+      - [0x1669A0, gfx, draw]
+      - [0x167300, vtx, model]
+      - [0x1689B0, gfx, unk]
+      - [0x168AB0]
+      - [0x168B60, snap_model_anim, movement]
+    - start: 0x169260
+      type: .data
+      name: world/block2
+      dir: block2
+      subsegments:
+      - [0x169260, gfx, draw]
+      - [0x169FC0, vtx, model]
+      - [0x16C4B0]
+      - [0x16C540, snap_material_anim, anim1]
+      - [0x16C5C0, gfx, unk]
+      - [0x16C6C0]
+      - [0x16C770, snap_model_anim, movement]
+    - start: 0x16CE50
+      type: .data
+      name: world/block3
+      dir: block3
+      subsegments:
+      - [0x16CE50, gfx, draw]
+      - [0x16DA30, vtx, model]
+      - [0x16F870, gfx, unk]
+      - [0x16F970]
+      - [0x16FA20, snap_model_anim, movement]
+    - start: 0x16FEB0
+      type: .data
+      name: world/block4
+      dir: block4
+      subsegments:
+      - [0x16FEB0, gfx, draw]
+      - [0x1704E0, vtx, model]
+      - [0x1714C0, gfx, unk]
+      - [0x1715C0]
+      - [0x171670, snap_model_anim, movement]
+    - start: 0x171940
+      type: .data
+      name: world/block5
+      dir: block5
+      subsegments:
+      - [0x171940, gfx, draw]
+      - [0x172260, vtx, model]
+      - [0x173D50, gfx, unk]
+      - [0x173E50]
+      - [0x173F00, snap_model_anim, movement]
+    - [0x174340, .data, world/blocks]
+    - [0x175FF0, bin]
+    - start: 0x180CF0
+      type: .data
+      name: computer/model
+      dir: computer
+      subsegments:
+      - [0x180CF0, gfx, draw]
+      - [0x180EC0, vtx, model]
+    - start: 0x1811E0
+      type: .data
+      name: pkmn_1016/model
+      dir: pkmn_1016
+      subsegments:
+      - [0x1811E0, gfx, draw]
+      - [0x181570, vtx, model]
+    - start: 0x181B80
+      type: .data
+      name: pkmn_1017/model
+      dir: pkmn_1017
+      subsegments:
+      - [0x181B80, gfx, draw]
+      - [0x181EF0, vtx, model]
+    - [0x182390, bin]
+    - start: 0x18E020
+      type: .data
+      dir: computer
+      name: computer/textures
+      subsegments:
+      - [0x18E020]
+      - { start: 0x18E028, type: rgba16, name: tex_front, flip_y: true, width: 32, height: 64 }
+      - [0x18F028]
+      - { start: 0x18F030, type: rgba16, name: tex_side, flip_y: true, width: 32, height: 64 }
+      - [0x190030]
+      - { start: 0x190038, type: palette, name: tex_back, size: 0x18 }
+      - [0x190050]
+      - { start: 0x190058, type: ci4, name: tex_back, flip_y: true, width: 32, height: 32 }
+    - [0x190260, bin]
     - [auto, c, world/world]
     - [auto, c, world/world_gfx]
     - [auto, c, world/block0]

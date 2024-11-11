@@ -11,6 +11,8 @@ extern AnimationHeader D_802E3724_6CB504;
 extern RandomState D_802E3748_6CB528[];
 extern PokemonInitData D_802E377C_6CB55C;
 
+void func_802DD068_6C4E48(GObj*);
+
 void func_802DCEF0_6C4CD0(GObj* obj) {
     Pokemon_SetStateRandom(obj, D_802E3748_6CB528);
 }
@@ -30,7 +32,15 @@ void func_802DCF84_6C4D64(GObj* obj) {
     Pokemon_SetState(obj, func_802DCFBC_6C4D9C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C4CD0/func_802DCFBC_6C4D9C.s")
+POKEMON_FUNC(func_802DCFBC_6C4D9C)
+    rotation->f[2] = (randRange(360) * PI) / 180.0f;
+    Pokemon_StartPathProc(obj, func_802DD068_6C4E48);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    D_802E28AC_6CA68C = 0;
+    Pokemon_RunCleanup(obj);
+    Pokemon_SetState(obj, NULL);
+}
 
 void func_802DD068_6C4E48(GObj* obj) {
     UNUSED s32 pad[3];

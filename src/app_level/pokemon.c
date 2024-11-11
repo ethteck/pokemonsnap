@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level.h"
+#include "app_render/app_render.h"
 
 typedef struct PokemonObjectListEntry {
     /* 0x00 */ struct PokemonObjectListEntry* prev;
@@ -31,6 +32,7 @@ Gfx D_8038A3D0_52A7E0[] = {
     gsSPSetGeometryMode(G_FOG),
     gsSPEndDisplayList(),
 };
+
 Gfx D_8038A400_52A810[] = {
     gsDPPipeSync(),
     gsDPSetCycleType(G_CYC_1CYCLE),

@@ -13,9 +13,6 @@ void func_802DB630_6C3410(GObj*);
 void func_802DB71C_6C34FC(GObj*);
 void func_802DB85C_6C363C(GObj*);
 
-extern s16 D_802E28AC_6CA68C;
-extern s16 D_802E28B0_6CA690;
-
 extern AnimationHeader D_802E319C_6CAF7C;
 extern AnimationHeader D_802E31B0_6CAF90;
 extern AnimationHeader D_802E31C4_6CAFA4;
@@ -115,7 +112,6 @@ void func_802DB270_6C3050(GObj* obj) {
     omEndProcess(NULL);
 }
 
-// clang-format off
 POKEMON_FUNC(func_802DB388_6C3168)
     Pokemon_SetAnimation(obj, &D_802E31D8_6CAFB8);
     Pokemon_StartPathProc(obj, func_802DB41C_6C31FC);
@@ -140,7 +136,7 @@ void func_802DB41C_6C31FC(GObj* obj) {
 void func_802DB468_6C3248(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->miscVars[0].field1 = 0;
+    pokemon->miscVars[0].field1 = false;
     Pokemon_StartAuxProc(obj, func_802DB630_6C3410);
     Pokemon_SetState(obj, func_802DB4A8_6C3288);
 }
@@ -157,7 +153,7 @@ void func_802DB4A8_6C3288(GObj* obj) {
     }
     pokemon->transitionGraph = D_802E328C_6CB06C;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    pokemon->miscVars[0].field1 = 1;
+    pokemon->miscVars[0].field1 = true;
     Pokemon_SetState(obj, func_802DB71C_6C34FC);
 }
 
@@ -183,7 +179,26 @@ void func_802DB5C0_6C33A0(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB630_6C3410.s")
+void func_802DB630_6C3410(GObj* obj) {
+    f32 temp_f2;
+    f32 var_f20;
+    f32 var_f22;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+
+    var_f20 = 0.0f;
+    var_f22 = 0.0f;
+    while (!pokemon->miscVars[0].field1) {
+        temp_f2 = (-__sinf(var_f20)) * 7.0f;
+        transform->pos.v.y += temp_f2 - var_f22;
+        var_f22 = temp_f2;
+        var_f20 += 2 * PI / 45;
+        var_f20 -= (s32) (var_f20 / TAU) * TAU;
+        ohWait(1);
+    }
+    Pokemon_StopAuxProc(obj);
+}
 
 void func_802DB71C_6C34FC(GObj* obj) {
     UNUSED s32 pad[3];
@@ -218,7 +233,22 @@ void func_802DB78C_6C356C(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB85C_6C363C.s")
+void func_802DB85C_6C363C(GObj* obj) {
+    s32 i;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    DObj* model = obj->data.dobj;
+    PokemonTransform* transform = GET_TRANSFORM(model);
+
+    pokemon->miscVars[0].field1 = true;
+
+    for (i = 59; i > 0; i--) {
+        transform->pos.v.y -= 1.0f;
+        ohWait(1);
+    }
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 void func_802DB8EC_6C36CC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);

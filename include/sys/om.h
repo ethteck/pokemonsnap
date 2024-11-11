@@ -261,8 +261,8 @@ typedef struct GObj {
 typedef struct OMMtx {
     /* 0x00 */ struct OMMtx* next;
     /* 0x04 */ u8 kind;
-    /* 0x05 */ u8 unk05;
-    /* 0x08 */ Mtx unk08;
+    /* 0x05 */ u8 unk_05;
+    /* 0x08 */ Mtx unk_08;
 } OMMtx; // size == 0x48
 
 typedef struct Mtx3Float {
@@ -398,6 +398,13 @@ typedef struct DObj {
     /* 0x80 */ struct MObj* mobjList;
     /* 0x84 */ u32 unk84;
 } DObj; // size == 0x88, but it's dynamic..?
+
+// Got this from SSB decomp
+typedef struct DObjTraDesc {
+    /* 0x00 */ s32 id;
+    /* 0x04 */ void* dl;
+    /* 0x08 */ Vec3f translate;
+} DObjTraDesc;
 
 typedef struct AObj {
     /* 0x00 */ struct AObj* next;

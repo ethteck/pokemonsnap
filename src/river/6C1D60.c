@@ -8,9 +8,12 @@ extern AnimationHeader D_802E2C30_6CAA10;
 extern AnimationHeader D_802E2C44_6CAA24;
 extern AnimationHeader D_802E2C58_6CAA38;
 extern AnimationHeader D_802E2C6C_6CAA4C;
+extern AnimationHeader D_802E2C80_6CAA60;
 extern AnimationHeader D_802E2C94_6CAA74;
 extern InteractionHandler D_802E2CA8_6CAA88[];
+extern InteractionHandler D_802E2D40_6CAB20[];
 extern InteractionHandler D_802E2D80_6CAB60[];
+extern InteractionHandler D_802E2DC0_6CABA0[];
 extern RandomState D_802E2D18_6CAAF8[];
 extern PokemonInitData D_802E2E04_6CABE4;
 
@@ -84,7 +87,24 @@ void func_802DA1AC_6C1F8C(GObj* obj) {
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C1D60/func_802DA208_6C1FE8.s")
+POKEMON_FUNC(func_802DA208_6C1FE8)
+    Pokemon_SetAnimation(obj, &D_802E2C44_6CAA24);
+    Pokemon_StartPathProc(obj, func_802DA30C_6C20EC);
+    pokemon->transitionGraph = D_802E2D40_6CAB20;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
+        Pokemon_SetState(obj, func_802DA04C_6C1E2C);
+    }
+    Pokemon_SetAnimation(obj, &D_802E2C80_6CAA60);
+    Pokemon_StartPathProc(obj, NULL);
+    pokemon->counter = 68, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    pokemon->transitionGraph = D_802E2D80_6CAB60;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+    Pokemon_EatApple(obj);
+    pokemon->transitionGraph = D_802E2DC0_6CABA0;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_802DA04C_6C1E2C);
+}
 
 void func_802DA30C_6C20EC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);

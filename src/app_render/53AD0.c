@@ -381,8 +381,37 @@ s32 func_800A9254(GObj* obj, GObjFunc func) {
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A929C.s")
 void func_800A929C(s32, s32, s32, s32);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A98B0.s")
-void func_800A98B0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5);
+void func_800A98B0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
+    s32 s6 = 0;
+    s32 i;
+
+    if (arg3 > 0 && (arg3 < (SCREEN_WIDTH - arg0) / 7)) {
+        arg0 += (arg3 * 7);
+        arg0 -= 7;
+
+        if (arg2 < 0) {
+            arg2 = -arg2;
+            s6 = 1;
+        }
+        if (arg4 <= 0) {
+            arg4 = -1;
+        }
+
+        for (i = 0; s6 < arg3; i++, arg0 -= 7, arg3--) {
+            func_800A929C(arg0, arg1, (arg2 % 10) % 16U, arg4-- == 0);
+
+            arg2 /= 10;
+
+            if (arg5 != 0 && arg2 == 0 && arg4 < 0) {
+                arg0 -= 7;
+                break;
+            }
+        }
+        if (s6 != 0) {
+            func_800A929C(arg0, arg1, 16, FALSE);
+        }
+    }
+}
 
 void func_800A9A54(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     func_800A98B0(arg0, arg1, arg2, arg3, 0, arg4);
@@ -566,8 +595,8 @@ UnkStruct800BEDF8* func_800AA38C(s32 arg0) {
             contInput->buttons = D_800BEDF0.buttons;
         }
 
-        ptr->stickX = (f32)contInput->stickX / 80.0;
-        ptr->stickY = (f32)contInput->stickY / 80.0;
+        ptr->stickX = (f32) contInput->stickX / 80.0;
+        ptr->stickY = (f32) contInput->stickY / 80.0;
         ptr->unk_10 = 0.0f;
 
         if (ptr->stickX > 1.0) {

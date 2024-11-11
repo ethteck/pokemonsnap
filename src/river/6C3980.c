@@ -232,7 +232,7 @@ POKEMON_FUNC(func_802DC358_6C4138)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_AUX_ENDED;
     pokemon->transitionGraph = D_802E34D4_6CB2B4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_AUX_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & 2)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED)) {
         Pokemon_SetState(obj, func_802DC358_6C4138);
     }
     pokemon->miscVars[0].field1 = pokemon->miscVars[1].field1;
@@ -331,7 +331,7 @@ POKEMON_FUNC(func_802DC6BC_6C449C)
 }
 
 POKEMON_FUNC(func_802DC7AC_6C458C)
-    Pokemon_FollowPath(obj, pokemon->path->paramPoints[pokemon->miscVars[0].field1], 1.0f, 0.1f, 0.0f, 0x10U);
+    Pokemon_FollowPath(obj, pokemon->path->paramPoints[pokemon->miscVars[0].field1], 1.0f, 0.1f, 0.0f, 0x10);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);

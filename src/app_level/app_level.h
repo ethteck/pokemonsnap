@@ -234,6 +234,7 @@ void Pokemon_EatApple(GObj*);
 void Pokemon_SetScale(GObj*, f32);
 void Pokemon_Jump(GObj*, f32, f32, f32, f32);
 void Pokemon_Fall(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
+void Pokemon_FallToHeight(GObj* obj, f32 minHeight, f32 acceleration, f32 minFallSpeed, f32 maxFallSpeed);
 void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32);
 bool Pokemon_StepWalkInDirectionFacing(GObj*, u32);
 s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags);

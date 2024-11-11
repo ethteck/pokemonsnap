@@ -13,9 +13,6 @@ void func_802DB630_6C3410(GObj*);
 void func_802DB71C_6C34FC(GObj*);
 void func_802DB85C_6C363C(GObj*);
 
-extern s16 D_802E28AC_6CA68C;
-extern s16 D_802E28B0_6CA690;
-
 extern AnimationHeader D_802E319C_6CAF7C;
 extern AnimationHeader D_802E31B0_6CAF90;
 extern AnimationHeader D_802E31C4_6CAFA4;

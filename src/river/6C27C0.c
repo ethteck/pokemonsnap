@@ -17,11 +17,69 @@ void func_802DADD8_6C2BB8(GObj*);
 void func_802DAE68_6C2C48(GObj*);
 void func_802DAED4_6C2CB4(GObj*);
 
-void func_802DA9E0_6C27C0(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DA9E0_6C27C0.s")
+void func_802DA9E0_6C27C0(GObj* obj) {
+    DObj* model;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    PokemonDef def = D_802E3008_6CADE8;
 
-void func_802DAACC_6C28AC(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C27C0/func_802DAACC_6C28AC.s")
+    block = getCurrentWorldBlock();
+    spawn.id = PokemonID_SHELLDER;
+    spawn.translation.x = 0.0;
+    spawn.translation.y = 0.0;
+    spawn.translation.z = 0.0;
+    spawn.euler.x = 0.0;
+    spawn.euler.y = 0.0;
+    spawn.euler.z = 0.0;
+    spawn.scale.x = 1.0;
+    spawn.scale.y = 1.0;
+    spawn.scale.z = 1.0;
+    spawn.path = pokemon->path;
+
+    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
+
+    position = &GET_TRANSFORM(obj->data.dobj)->pos;
+    model = pokemonObj->data.dobj;
+    GET_TRANSFORM(model)->pos.v.x = position->v.x;
+    GET_TRANSFORM(model)->pos.v.y = position->v.y;
+    GET_TRANSFORM(model)->pos.v.z = position->v.z;
+    omEndProcess(NULL);
+}
+
+void func_802DAACC_6C28AC(GObj* obj) {
+    DObj* model;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* block;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    PokemonDef def = D_802E3018_6CADF8;
+
+    block = getCurrentWorldBlock();
+    spawn.id = PokemonID_CLOYSTER;
+    spawn.translation.x = 0.0;
+    spawn.translation.y = 0.0;
+    spawn.translation.z = 0.0;
+    spawn.euler.x = 0.0;
+    spawn.euler.y = 0.0;
+    spawn.euler.z = 0.0;
+    spawn.scale.x = 1.0;
+    spawn.scale.y = 1.0;
+    spawn.scale.z = 1.0;
+    spawn.path = pokemon->path;
+
+    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
+
+    position = &GET_TRANSFORM(obj->data.dobj)->pos;
+    model = pokemonObj->data.dobj;
+    GET_TRANSFORM(model)->pos.v.x = position->v.x;
+    GET_TRANSFORM(model)->pos.v.y = position->v.y;
+    GET_TRANSFORM(model)->pos.v.z = position->v.z;
+    omEndProcess(NULL);
+}
 
 void func_802DABB8_6C2998(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);

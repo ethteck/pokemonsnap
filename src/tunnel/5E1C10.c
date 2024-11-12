@@ -1,28 +1,28 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4B40_5E1C10.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_InitialState.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4B64_5E1C34.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_Idle.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4BD4_5E1CA4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_Roam1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4C6C_5E1D3C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_MoveRoam1.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4CBC_5E1D8C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_Roam2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4D54_5E1E24.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_MoveRoam2.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4DA4_5E1E74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_AppleNearby.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4E2C_5E1EFC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_MoveToApple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4EA4_5E1F74.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_SearchApple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4EC8_5E1F98.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_WithApple.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E4F4C_5E201C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_RunAway.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E5008_5E20D8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/magneton_MoveRunAway.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E1C10/func_802E505C_5E212C.s")
 

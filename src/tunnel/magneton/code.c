@@ -2,73 +2,73 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 
-void func_802E4B64_5E1C34(GObj*);
-void func_802E4DA4_5E1E74(GObj*);
-void func_802E4C6C_5E1D3C(GObj*);
-void func_802E4D54_5E1E24(GObj*);
-void func_802E4EC8_5E1F98(GObj*);
-void func_802E4E2C_5E1EFC(GObj*);
-void func_802E5008_5E20D8(GObj*);
-void func_802E4B40_5E1C10(GObj*);
-void func_802E4BD4_5E1CA4(GObj*);
-void func_802E4CBC_5E1D8C(GObj*);
-void func_802E4EA4_5E1F74(GObj*);
-void func_802E4F4C_5E201C(GObj*);
+void magneton_Idle(GObj*);
+void magneton_AppleNearby(GObj*);
+void magneton_MoveRoam1(GObj*);
+void magneton_MoveRoam2(GObj*);
+void magneton_WithApple(GObj*);
+void magneton_MoveToApple(GObj*);
+void magneton_MoveRunAway(GObj*);
+void magneton_InitialState(GObj*);
+void magneton_Roam1(GObj*);
+void magneton_Roam2(GObj*);
+void magneton_SearchApple(GObj*);
+void magneton_RunAway(GObj*);
 
-s32 D_802EE6A0_5EB770[] = { 353 };
+s32 magneton_animsounds[] = { 353 };
 
-AnimationHeader D_802EE6A4_5EB774 = {
+AnimationHeader magneton_animation = {
     0.5,
     59,
     0x80181F40,
     NULL,
-    D_802EE6A0_5EB770
+    magneton_animsounds
 };
 
-InteractionHandler D_802EE6B8_5EB788[] = {
-    { POKEMON_CMD_14, func_802E4DA4_5E1E74, 0, NULL },
-    { POKEMON_CMD_15, func_802E4EA4_5E1F74, 0, NULL },
-    { POKEMON_CMD_16, func_802E4F4C_5E201C, 250, NULL },
+InteractionHandler magneton_tg_Normal[] = {
+    { POKEMON_CMD_14, magneton_AppleNearby, 0, NULL },
+    { POKEMON_CMD_15, magneton_SearchApple, 0, NULL },
+    { POKEMON_CMD_16, magneton_RunAway, 250, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-RandomState D_802EE6F8_5EB7C8[] = {
-    { 100, func_802E4B64_5E1C34 },
-    { 100, func_802E4BD4_5E1CA4 },
-    { 100, func_802E4CBC_5E1D8C },
+RandomState magneton_idleStates[] = {
+    { 100, magneton_Idle },
+    { 100, magneton_Roam1 },
+    { 100, magneton_Roam2 },
     { 0, NULL },
 };
 
-InteractionHandler D_802EE718_5EB7E8[] = {
-    { POKEMON_CMD_14, func_802E4DA4_5E1E74, 0, NULL },
-    { POKEMON_CMD_16, func_802E4F4C_5E201C, 250, NULL },
+InteractionHandler magneton_tg_SearchApple[] = {
+    { POKEMON_CMD_14, magneton_AppleNearby, 0, NULL },
+    { POKEMON_CMD_16, magneton_RunAway, 250, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EE748_5EB818[] = {
-    { POKEMON_CMD_14, func_802E4DA4_5E1E74, 0, NULL },
-    { POKEMON_CMD_16, func_802E4F4C_5E201C, 250, NULL },
+InteractionHandler magneton_tg_WithApple[] = {
+    { POKEMON_CMD_14, magneton_AppleNearby, 0, NULL },
+    { POKEMON_CMD_16, magneton_RunAway, 250, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EE778_5EB848[] = {
+InteractionHandler magneton_tg_RunAway[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802EE788_5EB858 = {
-    &D_802EE6A4_5EB774,
-    func_802E4B40_5E1C10,
+PokemonAnimationSetup magneton_animSetup = {
+    &magneton_animation,
+    magneton_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802EE79C_5EB86C = {
+PokemonInitData magneton_initData = {
     0x8033FE00,
     NULL,
     renderPokemonModelTypeBFogged,
-    &D_802EE788_5EB858,
+    &magneton_animSetup,
     { 2.2, 2.2, 2.2 },
     { 0, 320, 0 },
     42,
@@ -79,33 +79,33 @@ PokemonInitData D_802EE79C_5EB86C = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802E4B40_5E1C10)
-    Pokemon_SetState(obj, func_802E4B64_5E1C34);
+POKEMON_FUNC(magneton_InitialState)
+    Pokemon_SetState(obj, magneton_Idle);
 }
 
-POKEMON_FUNC(func_802E4B64_5E1C34)
-    Pokemon_SetAnimation(obj, &D_802EE6A4_5EB774);
+POKEMON_FUNC(magneton_Idle)
+    Pokemon_SetAnimation(obj, &magneton_animation);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802EE6B8_5EB788;
+    pokemon->transitionGraph = magneton_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetStateRandom(obj, D_802EE6F8_5EB7C8);
+    Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
-POKEMON_FUNC(func_802E4BD4_5E1CA4)
-    Pokemon_SetAnimation(obj, &D_802EE6A4_5EB774);
-    Pokemon_StartPathProc(obj, func_802E4C6C_5E1D3C);
-    pokemon->transitionGraph = D_802EE6B8_5EB788;
+POKEMON_FUNC(magneton_Roam1)
+    Pokemon_SetAnimation(obj, &magneton_animation);
+    Pokemon_StartPathProc(obj, magneton_MoveRoam1);
+    pokemon->transitionGraph = magneton_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802E4B64_5E1C34);
+        Pokemon_SetState(obj, magneton_Idle);
     }
     
-    Pokemon_SetStateRandom(obj, D_802EE6F8_5EB7C8);
+    Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
-POKEMON_FUNC(func_802E4C6C_5E1D3C)
+POKEMON_FUNC(magneton_MoveRoam1)
     pokemon->hSpeed = 20.0f;
     Pokemon_RunInCirclesDefault(obj, 500.0f);
     pokemon->pathProc = NULL;
@@ -113,20 +113,20 @@ POKEMON_FUNC(func_802E4C6C_5E1D3C)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E4CBC_5E1D8C)
-    Pokemon_SetAnimation(obj, &D_802EE6A4_5EB774);
-    Pokemon_StartPathProc(obj, func_802E4D54_5E1E24);
-    pokemon->transitionGraph = D_802EE6B8_5EB788;
+POKEMON_FUNC(magneton_Roam2)
+    Pokemon_SetAnimation(obj, &magneton_animation);
+    Pokemon_StartPathProc(obj, magneton_MoveRoam2);
+    pokemon->transitionGraph = magneton_tg_Normal;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
-        Pokemon_SetState(obj, func_802E4B64_5E1C34);
+        Pokemon_SetState(obj, magneton_Idle);
     }
     
-    Pokemon_SetStateRandom(obj, D_802EE6F8_5EB7C8);
+    Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
-POKEMON_FUNC(func_802E4D54_5E1E24)
+POKEMON_FUNC(magneton_MoveRoam2)
     pokemon->hSpeed = 20.0f;
     Pokemon_RunInCirclesDefault(obj, 500.0f);
     pokemon->pathProc = NULL;
@@ -134,19 +134,19 @@ POKEMON_FUNC(func_802E4D54_5E1E24)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E4DA4_5E1E74)
-    Pokemon_StartPathProc(obj, func_802E4E2C_5E1EFC);
-    pokemon->transitionGraph = D_802EE718_5EB7E8;
+POKEMON_FUNC(magneton_AppleNearby)
+    Pokemon_StartPathProc(obj, magneton_MoveToApple);
+    pokemon->transitionGraph = magneton_tg_SearchApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
-        Pokemon_SetState(obj, func_802E4B64_5E1C34);
+        Pokemon_SetState(obj, magneton_Idle);
     }
     
-    Pokemon_SetState(obj, func_802E4EC8_5E1F98);
+    Pokemon_SetState(obj, magneton_WithApple);
 }
 
-POKEMON_FUNC(func_802E4E2C_5E1EFC)
+POKEMON_FUNC(magneton_MoveToApple)
     Pokemon_TurnToTarget(obj, 0.1f, 0);
     pokemon->hSpeed = 80.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
@@ -155,39 +155,39 @@ POKEMON_FUNC(func_802E4E2C_5E1EFC)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E4EA4_5E1F74)
-    Pokemon_SetState(obj, func_802E4DA4_5E1E74);
+POKEMON_FUNC(magneton_SearchApple)
+    Pokemon_SetState(obj, magneton_AppleNearby);
 }
 
-POKEMON_FUNC(func_802E4EC8_5E1F98)
-    Pokemon_SetAnimation(obj, &D_802EE6A4_5EB774);
-    pokemon->transitionGraph = D_802EE748_5EB818;
+POKEMON_FUNC(magneton_WithApple)
+    Pokemon_SetAnimation(obj, &magneton_animation);
+    pokemon->transitionGraph = magneton_tg_WithApple;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     if (pokemon->interactionTarget != NULL) {
-        Pokemon_SetState(obj, func_802E4EC8_5E1F98);
+        Pokemon_SetState(obj, magneton_WithApple);
     }
     
-    Pokemon_SetStateRandom(obj, D_802EE6F8_5EB7C8);
+    Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
-POKEMON_FUNC(func_802E4F4C_5E201C)
-    Pokemon_SetAnimation(obj, &D_802EE6A4_5EB774);
-    Pokemon_StartPathProc(obj, func_802E5008_5E20D8);
-    pokemon->transitionGraph = D_802EE778_5EB848;
+POKEMON_FUNC(magneton_RunAway)
+    Pokemon_SetAnimation(obj, &magneton_animation);
+    Pokemon_StartPathProc(obj, magneton_MoveRunAway);
+    pokemon->transitionGraph = magneton_tg_RunAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     if (pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED) {
-        Pokemon_SetState(obj, func_802E4B64_5E1C34);
+        Pokemon_SetState(obj, magneton_Idle);
     }
     
-    pokemon->transitionGraph = D_802EE778_5EB848;
+    pokemon->transitionGraph = magneton_tg_RunAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetState(obj, func_802E4B64_5E1C34);
+    Pokemon_SetState(obj, magneton_Idle);
 }
 
-POKEMON_FUNC(func_802E5008_5E20D8)
+POKEMON_FUNC(magneton_MoveRunAway)
     pokemon->hSpeed = 160.0f;
     Pokemon_RunAwayDefault(obj, 1500.0f);
     pokemon->pathProc = NULL;
@@ -196,7 +196,7 @@ POKEMON_FUNC(func_802E5008_5E20D8)
 }
 
 GObj* magneton_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EE79C_5EB86C);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &magneton_initData);
 }
 
 void tunnel_SpawnMagneton(GObj* obj) {

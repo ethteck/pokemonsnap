@@ -54,6 +54,9 @@ extern u8 D_801585C8_19E728[];
 extern u8 D_801585F0_19E750[];
 extern u8 D_80158DF8_19EF58[];
 
+extern Texture** magnemite_materials[];
+extern UnkEC64Arg3 magnemite_model[];
+
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;

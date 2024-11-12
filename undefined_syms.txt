@@ -65,3 +65,20 @@ D_8010E190_334E10 = 0x8010E190;
 D_80158DF8_19EF58 = 0x80158DF8;
 D_8014DDE0_193F40 = 0x8014DDE0;
 D_803430FD_6401CD = 0x803430FD;
+
+magnemite_part0_mat0_texture0 = 0x8015BEC0;
+magnemite_part0_mat0_texture1 = 0x8015B660;
+magnemite_part0_mat0_texture2 = 0x8015BA90;
+magnemite_part0_mat0_texture3 = 0x8015E2A0;
+magnemite_part0_mat0_texture4 = 0x8015DA40;
+magnemite_part0_mat0_texture5 = 0x8015DE70;
+magnemite_part0_mat0_texture6 = 0x8015B430;
+magnemite_part0_mat0_texture7 = 0x8015AFD0;
+magnemite_part0_mat0_texture8 = 0x8015B200;
+magnemite_part0_mat0_texture9 = 0x8015C2F0;
+magnemite_part1_mat0_texture0 = 0x8015C520;
+magnemite_part1_mat0_texture1 = 0x8015C750;
+magnemite_part1_mat0_texture2 = 0x8015D610;
+magnemite_part1_mat0_texture3 = 0x8015CDB0;
+magnemite_part1_mat0_texture4 = 0x8015D1E0;
+

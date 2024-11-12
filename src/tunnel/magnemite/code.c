@@ -1,4 +1,4 @@
-#include "tunnel.h"
+#include "../tunnel.h"
 
 #define MAGNEMITE_VAR_ATTRACTED_OBJ 0
 #define MAGNEMITE_VAR_IS_ATTRACTED 1
@@ -585,8 +585,8 @@ PokemonAnimationSetup magnemite_animSetup = {
 };
 
 PokemonInitData magnemite_initData = {
-    0x8032C180,
-    0x80329B40,
+    magnemite_model,
+    magnemite_materials,
     renderPokemonModelTypeDFogged,
     &magnemite_animSetup,
     { 2.2, 2.2, 2.2 },

@@ -3003,7 +3003,7 @@ segments:
     subsegments:
     - [0x5DF5D0, c, main]
     - [0x5DFD40, c, sounds]
-    - [0x5E0A70, c]
+    - [0x5E0A70, c, magnemite/code]
     - [0x5E1C10, c]
     - [0x5E21C0, c]
     - [0x5E2D80, c]
@@ -3017,13 +3017,14 @@ segments:
     - [0x5E9010, c]
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
+    - [auto, c, magnemite/model]
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
-    - [0x5EB2D0, .data, 5E0A70]
+    - [0x5EB2D0, .data, magnemite/code]
     - [0x5EB770, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
-    - [0x5ED420, .rodata, 5E0A70]
+    - [0x5ED420, .rodata, magnemite/code]
     - [0x5ED430, .rodata, 5E21C0]
     - [0x5ED440, .rodata, 5E3D80]
     - [0x5ED450, .rodata, 5E4750]
@@ -3035,6 +3036,31 @@ segments:
     - [0x5ED4E0, .rodata, 5EA6F0]
 
     - { start: 0x5ED4F0, type: bin, linker_section_order: .rodata }
+    - start: 0x626C10
+      type: .data
+      name: magnemite/model
+      dir: magnemite
+      linker_section_order: .rodata
+      subsegments:
+      - [0x626C10]
+      - [0x627120, vtx, model]
+      - [0x628740, gfx, first]
+      - [0x628778, gfx, part0_draw_near]
+      - [0x628998, gfx, part0_draw]
+      - [0x6289B8, gfx, part1_draw_near]
+      - [0x628B40, gfx, part1_draw]
+      - [0x628B58, gfx, part2_draw_near]
+      - [0x628C18, gfx, part2_draw]
+      - [0x628C30, gfx, part3_draw_near]
+      - [0x628D90, gfx, part3_draw]
+      - [0x628DA8, gfx, part4_draw_near]
+      - [0x628F08, gfx, part4_draw]
+      - [0x628F20, gfx, part5_draw_near_near]
+      - [0x6290A0, gfx, part5_draw_near]
+      - [0x6290B8, gfx, part5_draw]
+      - [0x6290E0, gfx, part6_draw]
+      - [0x6291C0, gfx, last]
+    - { start: 0x629490, type: bin, linker_section_order: .rodata }
 
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code

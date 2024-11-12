@@ -133,6 +133,8 @@ typedef struct AnimLinePtr2 {
 #define asPlaySound(duration, category, id) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id)) << 15) | duration) }
 #define asPlayEffect(duration, category, id) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id + 1)) << 15) | duration) }
 
+#define asPlaySoundf(duration, category, id) {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id)) << 15) | duration) }
+
 #define asBegin_0(script) static AnimLine0 script =
 #define asBegin_1(script) static AnimLine1 script =
 #define asBegin_2(script) static AnimLine2 script =

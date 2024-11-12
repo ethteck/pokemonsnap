@@ -122,7 +122,7 @@ typedef struct Struct_800AB050 {
 typedef struct {
     /* 0x00 */ Struct_800AB050* data;
     /* 0x04 */ Struct_800AB050** tempBuffer;
-    /* 0x08 */ s32 vertex_screw_threadount;
+    /* 0x08 */ s32 vertexCount;
     /* 0x0C */ s32 end;
     /* 0x10 */ f32 timer;
 } EggStruct; // size = 0x14

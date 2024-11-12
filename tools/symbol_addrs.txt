@@ -2292,3 +2292,11 @@ magnemite_tex_eye_frame0_pal = 0x8015C2C8; // segment:tunnel_code
 magnemite_tex_wave_png = 0x8015C980; // segment:tunnel_code
 magnemite_tex_magnet_frame0_pal = 0x8015D5E8; // segment:tunnel_code
 magnemite_tex_screw_thread_frame0_pal = 0x8015E278; // segment:tunnel_code
+
+magnemite_modelanim_move = 0x8015EBD0; // segment:tunnel_assets
+magnemite_modelanim_idle = 0x8015EE30; // segment:tunnel_assets
+magnemite_modelanim_pulse = 0x8015E8C0; // segment:tunnel_assets
+magnemite_modelanim_run = 0x8015E6A0; // segment:tunnel_assets
+magnemite_modelanim_hit = 0x8015F3B0; // segment:tunnel_assets
+magnemite_modelanim_react = 0x8015F900; // segment:tunnel_assets
+magnemite_matanim_pulse = 0x80160260; // segment:tunnel_assets

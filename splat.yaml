@@ -632,6 +632,13 @@ segments:
     - [auto, c, pkmn_1017/model]
     - [auto, c, computer/textures]
     - [auto, c, magnemite/textures]
+    - [auto, c, magnemite/anim/model/run]
+    - [auto, c, magnemite/anim/model/pulse]
+    - [auto, c, magnemite/anim/model/move]
+    - [auto, c, magnemite/anim/model/idle]
+    - [auto, c, magnemite/anim/model/hit]
+    - [auto, c, magnemite/anim/model/react]
+    - [auto, c, magnemite/anim/material/pulse]
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -801,7 +808,49 @@ segments:
       - [0x1A43D8, palette, tex_screw_thread_frame0]
       - [0x1A43F8]
       - { start: 0x1A4400, type: ci4, name: tex_screw_thread_frame0, flip_y: true, width: 32, height: 64 }
-    - [0x1A4800, bin]
+    - start: 0x1A4800
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/run
+      subsegments:
+      - [0x1A4800, snap_model_anim, run]
+    - start: 0x1A4A20
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/pulse
+      subsegments:
+      - [0x1A4A20, snap_model_anim, pulse]
+    - start: 0x1A4D30
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/move
+      subsegments:
+      - [0x1A4D30, snap_model_anim, move]
+    - start: 0x1A4F90
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/idle
+      subsegments:
+      - [0x1A4F90, snap_model_anim, idle]
+    - start: 0x1A5510
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/hit
+      subsegments:
+      - [0x1A5510, snap_model_anim, hit]
+    - start: 0x1A5A60
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/react
+      subsegments:
+      - [0x1A5A60, snap_model_anim, react]
+    - start: 0x1A63C0
+      type: .data
+      dir: magnemite/anim/material/
+      name: magnemite/anim/material/pulse
+      subsegments:
+      - [0x1A63C0, snap_material_anim, pulse]
+    - [0x1A6630, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra

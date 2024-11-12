@@ -4,6 +4,15 @@
 #define MAGNEMITE_VAR_IS_ATTRACTED 1
 #define MAGNEMITE_VAR_COLLISION_RADIUS 2
 
+extern AnimCmd* magnemite_modelanim_move[];
+extern AnimCmd* magnemite_modelanim_idle[];
+extern AnimCmd* magnemite_modelanim_pulse[];
+extern AnimCmd* magnemite_modelanim_run[];
+extern AnimCmd* magnemite_modelanim_hit[];
+extern AnimCmd* magnemite_modelanim_react[];
+
+extern AnimCmd** magnemite_matanim_pulse[];
+
 void magnemite_HitByPesterBall(GObj*);
 void magnemite_AppleNearby(GObj*);
 void magnemite_FindNeighbours(GObj*);
@@ -38,7 +47,7 @@ s32 magnemite_animsounds_react[] = { SOUND_ID_222 };
 AnimationHeader magnemite_animation_move = {
     1.0,
     60,
-    0x8015EBD0,
+    magnemite_modelanim_move,
     NULL,
     NULL
 };
@@ -46,7 +55,7 @@ AnimationHeader magnemite_animation_move = {
 AnimationHeader magnemite_animation_idle = {
     0.6,
     80,
-    0x8015EE30,
+    magnemite_modelanim_idle,
     NULL,
     NULL
 };
@@ -54,15 +63,15 @@ AnimationHeader magnemite_animation_idle = {
 AnimationHeader magnemite_animation_pulse = {
     1.0,
     60,
-    0x8015E8C0,
-    0x80160260,
+    magnemite_modelanim_pulse,
+    magnemite_matanim_pulse,
     magnemite_animsounds_pulse
 };
 
 AnimationHeader magnemite_animation_run = {
     1.0,
     60,
-    0x8015E6A0,
+    magnemite_modelanim_run,
     NULL,
     NULL
 };
@@ -70,7 +79,7 @@ AnimationHeader magnemite_animation_run = {
 AnimationHeader magnemite_animation_hit = {
     0.7,
     60,
-    0x8015F3B0,
+    magnemite_modelanim_hit,
     NULL,
     magnemite_animsounds_hit
 };
@@ -78,7 +87,7 @@ AnimationHeader magnemite_animation_hit = {
 AnimationHeader magnemite_animation_react = {
     0.85,
     104,
-    0x8015F900,
+    magnemite_modelanim_react,
     NULL,
     magnemite_animsounds_react
 };

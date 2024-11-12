@@ -54,7 +54,7 @@ s32 func_800AB138(EggStruct* arg0, f32 arg1) {
 
     n = arg0->timer;
     next = arg0->tempBuffer[n + 1];
-    func_800AB050(arg0->timer - n, arg0->vertex_screw_threadount, arg0->data, arg0->tempBuffer[n], next);
+    func_800AB050(arg0->timer - n, arg0->vertexCount, arg0->data, arg0->tempBuffer[n], next);
     arg0->timer += arg1;
     if ((s32) arg0->timer >= arg0->end - 1) {
         arg0->timer = arg0->end - 2 + 0.9999f;
@@ -65,7 +65,7 @@ s32 func_800AB138(EggStruct* arg0, f32 arg1) {
 }
 
 void func_800AB1F8(EggStruct* arg0) {
-    memcpy(arg0->tempBuffer[0], arg0->data, arg0->vertex_screw_threadount * sizeof(Struct_800AB050));
+    memcpy(arg0->tempBuffer[0], arg0->data, arg0->vertexCount * sizeof(Struct_800AB050));
     arg0->timer = 0.0f;
 }
 

@@ -613,8 +613,6 @@ segments:
   - type: code
     name: tunnel_assets
     dir: tunnel
-    name: tunnel_assets
-    dir: tunnel
     start: 0x162CB0
     vram: 0x8011CB50
     bss_size: 0x20
@@ -633,6 +631,7 @@ segments:
     - [auto, c, pkmn_1016/model]
     - [auto, c, pkmn_1017/model]
     - [auto, c, computer/textures]
+    - [auto, c, magnemite/textures]
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -735,6 +734,74 @@ segments:
       - [0x190050]
       - { start: 0x190058, type: ci4, name: tex_back, flip_y: true, width: 32, height: 32 }
     - [0x190260, bin]
+    - start: 0x1A1100
+      type: .data
+      dir: magnemite
+      name: magnemite/textures
+      subsegments:
+      - [0x1A1100]
+      - [0x1A1108, palette, tex_screw_frame1]
+      - [0x1A1128]
+      - { start: 0x1A1130, type: ci4, name: tex_screw_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A1330]
+      - [0x1A1338, palette, tex_screw_frame2]
+      - [0x1A1358]
+      - { start: 0x1A1360, type: ci4, name: tex_screw_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1A1560]
+      - [0x1A1568, palette, tex_screw_frame0]
+      - [0x1A1588]
+      - { start: 0x1A1590, type: ci4, name: tex_screw_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A1790]
+      - [0x1A1798, palette, tex_body_frame1]
+      - [0x1A17B8]
+      - { start: 0x1A17C0, type: ci4, name: tex_body_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A1BC0]
+      - [0x1A1BC8, palette, tex_body_frame2]
+      - [0x1A1BE8]
+      - { start: 0x1A1BF0, type: ci4, name: tex_body_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A1FF0]
+      - [0x1A1FF8, palette, tex_body_frame0]
+      - [0x1A2018]
+      - { start: 0x1A2020, type: ci4, name: tex_body_frame0, flip_y: true, width: 32, height: 64 }
+      - [0x1A2420]
+      - [0x1A2428, palette, tex_eye_frame0]
+      - [0x1A2448]
+      - { start: 0x1A2450, type: ci4, name: tex_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A2650]
+      - [0x1A2658, palette, tex_eye_frame1]
+      - [0x1A2678]
+      - { start: 0x1A2680, type: ci4, name: tex_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A2880]
+      - [0x1A2888, palette, tex_eye_frame2]
+      - [0x1A28A8]
+      - { start: 0x1A28B0, type: ci4, name: tex_eye_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1A2AB0]
+      - { start: 0x1A2AE0, type: ia8, name: tex_wave, flip_y: true, width: 32, height: 32 }
+      - [0x1A2EE0]
+      - [0x1A2EE8, palette, tex_magnet_frame1]
+      - [0x1A2F08]
+      - { start: 0x1A2F10, type: ci4, name: tex_magnet_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A3310]
+      - [0x1A3318, palette, tex_magnet_frame2]
+      - [0x1A3338]
+      - { start: 0x1A3340, type: ci4, name: tex_magnet_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A3740]
+      - [0x1A3748, palette, tex_magnet_frame0]
+      - [0x1A3768]
+      - { start: 0x1A3770, type: ci4, name: tex_magnet_frame0, flip_y: true, width: 32, height: 64 }
+      - [0x1A3B70]
+      - [0x1A3B78, palette, tex_screw_thread_frame1]
+      - [0x1A3B98]
+      - { start: 0x1A3BA0, type: ci4, name: tex_screw_thread_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A3FA0]
+      - [0x1A3FA8, palette, tex_screw_thread_frame2]
+      - [0x1A3FC8]
+      - { start: 0x1A3FD0, type: ci4, name: tex_screw_thread_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A43D0]
+      - [0x1A43D8, palette, tex_screw_thread_frame0]
+      - [0x1A43F8]
+      - { start: 0x1A4400, type: ci4, name: tex_screw_thread_frame0, flip_y: true, width: 32, height: 64 }
+    - [0x1A4800, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra
@@ -3055,11 +3122,11 @@ segments:
       - [0x628D90, gfx, part3_draw]
       - [0x628DA8, gfx, part4_draw_near]
       - [0x628F08, gfx, part4_draw]
-      - [0x628F20, gfx, part5_draw_near_near]
-      - [0x6290A0, gfx, part5_draw_near]
-      - [0x6290B8, gfx, part5_draw]
-      - [0x6290E0, gfx, part6_draw]
-      - [0x6291C0, gfx, last]
+      - [0x628F20, gfx, part5_draw_near]
+      - [0x6290A0, gfx, part5_draw]
+      - [0x6290B8, gfx, last]
+      - [0x6290E0, gfx, part6_draw_near]
+      - [0x6291C0, gfx, part6_draw]
     - { start: 0x629490, type: bin, linker_section_order: .rodata }
 
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }

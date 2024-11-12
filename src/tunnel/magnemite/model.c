@@ -2,29 +2,29 @@
 
 extern Gfx magnemite_part0_draw[];
 
-extern u8 magnemite_tex0_pal[];
-extern u8 magnemite_tex1_pal[];
-extern u8 magnemite_tex2_pal[];
-extern u8 magnemite_tex3_png[];
-extern u8 magnemite_tex4_pal[];
-extern u8 magnemite_tex5_pal[];
+extern u8 magnemite_tex_body_frame0_pal[];
+extern u8 magnemite_tex_screw_thread_frame0_pal[];
+extern u8 magnemite_tex_screw_frame0_pal[];
+extern u8 magnemite_tex_magnet_frame0_pal[];
+extern u8 magnemite_tex_eye_frame0_pal[];
+extern u8 magnemite_tex_wave_png[];
 
-extern u8 magnemite_part0_mat0_texture0[];
-extern u8 magnemite_part0_mat0_texture1[];
-extern u8 magnemite_part0_mat0_texture2[];
-extern u8 magnemite_part0_mat0_texture3[];
-extern u8 magnemite_part0_mat0_texture4[];
-extern u8 magnemite_part0_mat0_texture5[];
-extern u8 magnemite_part0_mat0_texture6[];
-extern u8 magnemite_part0_mat0_texture7[];
-extern u8 magnemite_part0_mat0_texture8[];
-extern u8 magnemite_part0_mat0_texture9[];
+extern u8 magnemite_tex_body_frame0_png[];
+extern u8 magnemite_tex_body_frame1_png[];
+extern u8 magnemite_tex_body_frame2_png[];
+extern u8 magnemite_tex_screw_thread_frame0_png[];
+extern u8 magnemite_tex_screw_thread_frame1_png[];
+extern u8 magnemite_tex_screw_thread_frame2_png[];
+extern u8 magnemite_tex_screw_frame0_png[];
+extern u8 magnemite_tex_screw_frame1_png[];
+extern u8 magnemite_tex_screw_frame2_png[];
+extern u8 magnemite_tex_eye_frame0_png[];
 
-extern u8 magnemite_part1_mat0_texture0[];
-extern u8 magnemite_part1_mat0_texture1[];
-extern u8 magnemite_part1_mat0_texture2[];
-extern u8 magnemite_part1_mat0_texture3[];
-extern u8 magnemite_part1_mat0_texture4[];
+extern u8 magnemite_tex_eye_frame1_png[];
+extern u8 magnemite_tex_eye_frame2_png[];
+extern u8 magnemite_tex_magnet_frame0_png[];
+extern u8 magnemite_tex_magnet_frame1_png[];
+extern u8 magnemite_tex_magnet_frame2_png[];
 
 extern Texture* magnemite_part0_mat[];
 extern Texture* magnemite_part1_mat[];
@@ -50,52 +50,52 @@ Texture** magnemite_materials[] = {
 };
 
 u8* magnemite_part0_mat0_textures[] = {
-    magnemite_part0_mat0_texture0,
-    magnemite_part0_mat0_texture1,
-    magnemite_part0_mat0_texture2
+    magnemite_tex_body_frame0_png,
+    magnemite_tex_body_frame1_png,
+    magnemite_tex_body_frame2_png
 };
 
 u8* magnemite_part1_mat0_textures[] = {
-    magnemite_part0_mat0_texture3,
-    magnemite_part0_mat0_texture4,
-    magnemite_part0_mat0_texture5
+    magnemite_tex_screw_thread_frame0_png,
+    magnemite_tex_screw_thread_frame1_png,
+    magnemite_tex_screw_thread_frame2_png
 };
 
 u8* magnemite_part1_mat1_textures[] = {
-    magnemite_part0_mat0_texture6,
-    magnemite_part0_mat0_texture7,
-    magnemite_part0_mat0_texture8,
+    magnemite_tex_screw_frame0_png,
+    magnemite_tex_screw_frame1_png,
+    magnemite_tex_screw_frame2_png,
 };
 
 u8* magnemite_part2_mat0_textures[] = {
-    magnemite_part0_mat0_texture9,
+    magnemite_tex_eye_frame0_png,
     NULL,
-    magnemite_part1_mat0_texture0,
-    magnemite_part1_mat0_texture1,
+    magnemite_tex_eye_frame1_png,
+    magnemite_tex_eye_frame2_png,
 };
 
 u8* magnemite_part4_mat0_textures[] = {
-    magnemite_part1_mat0_texture2,
-    magnemite_part1_mat0_texture3,
-    magnemite_part1_mat0_texture4
+    magnemite_tex_magnet_frame0_png,
+    magnemite_tex_magnet_frame1_png,
+    magnemite_tex_magnet_frame2_png
 };
 
 u8* magnemite_part6_mat0_textures[] = {
-    magnemite_part1_mat0_texture2,
-    magnemite_part1_mat0_texture3,
-    magnemite_part1_mat0_texture4
+    magnemite_tex_magnet_frame0_png,
+    magnemite_tex_magnet_frame1_png,
+    magnemite_tex_magnet_frame2_png
 };
 
 u8* magnemite_part7_mat0_textures[] = {
-    magnemite_part0_mat0_texture3,
-    magnemite_part0_mat0_texture4,
-    magnemite_part0_mat0_texture5
+    magnemite_tex_screw_thread_frame0_png,
+    magnemite_tex_screw_thread_frame1_png,
+    magnemite_tex_screw_thread_frame2_png
 };
 
 u8* magnemite_part7_mat1_textures[] = {    
-    magnemite_part0_mat0_texture6,
-    magnemite_part0_mat0_texture7,
-    magnemite_part0_mat0_texture8,
+    magnemite_tex_screw_frame0_png,
+    magnemite_tex_screw_frame1_png,
+    magnemite_tex_screw_frame2_png,
     NULL
 };
 
@@ -500,11 +500,11 @@ Texture* magnemite_part8_mat[] = {
 #include "assets/tunnel/magnemite/part3_draw.gfx.inc.c"
 #include "assets/tunnel/magnemite/part4_draw_near.gfx.inc.c"
 #include "assets/tunnel/magnemite/part4_draw.gfx.inc.c"
-#include "assets/tunnel/magnemite/part5_draw_near_near.gfx.inc.c"
 #include "assets/tunnel/magnemite/part5_draw_near.gfx.inc.c"
 #include "assets/tunnel/magnemite/part5_draw.gfx.inc.c"
-#include "assets/tunnel/magnemite/part6_draw.gfx.inc.c"
 #include "assets/tunnel/magnemite/last.gfx.inc.c"
+#include "assets/tunnel/magnemite/part6_draw_near.gfx.inc.c"
+#include "assets/tunnel/magnemite/part6_draw.gfx.inc.c"
 
 DObjPayloadTypeC magnemite_gfxdata[] = {
     { 0, magnemite_first },
@@ -517,9 +517,9 @@ DObjPayloadTypeC magnemite_gfxdata[] = {
     { 4, NULL },
     { 0, magnemite_part4_draw },
     { 4, NULL },
-    { 0, magnemite_part5_draw },
+    { 0, magnemite_last },
     { 4, NULL },
-    { 1, magnemite_last },
+    { 1, magnemite_part6_draw },
     { 4, NULL },
 };
 

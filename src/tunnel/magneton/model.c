@@ -1,11 +1,11 @@
 #include <common.h>
 
-extern u8 D_8017F2E0_tunnel_code[];
-extern u8 D_80180738_tunnel_code[];
-extern u8 D_8017F6E8_tunnel_code[];
-extern u8 D_8017FF30_tunnel_code[];
-extern u8 D_8017EAD8_tunnel_code[];
-extern u8 D_80180F40_tunnel_code[];
+extern u8 magneton_tex_screw_head_png[];
+extern u8 magneton_tex_unk_circles_png[];
+extern u8 magneton_tex_eye_png[];
+extern u8 magneton_tex_magnet_blue_png[];
+extern u8 magneton_tex_magnet_red_png[];
+extern u8 magneton_tex_screw_thread_png[];
 
 extern Gfx magneton_part0[];
 

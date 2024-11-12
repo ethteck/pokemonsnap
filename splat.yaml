@@ -639,6 +639,7 @@ segments:
     - [auto, c, magnemite/anim/model/hit]
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
+    - [auto, c, magneton/textures]
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -851,6 +852,24 @@ segments:
       subsegments:
       - [0x1A63C0, snap_material_anim, pulse]
     - [0x1A6630, bin]
+    - start: 0x1C4C30
+      type: .data
+      dir: magneton
+      name: magneton/textures
+      subsegments:
+      - [0x1C4C30]
+      - { start: 0x1C4C38, type: rgba16, name: tex_screw_head, flip_y: true, width: 32, height: 32 }
+      - [0x1C5438]
+      - { start: 0x1C5440, type: ia8, name: tex_unk_circles, flip_y: true, width: 32, height: 32 }
+      - [0x1C5840]
+      - { start: 0x1C5848, type: ia8, name: tex_eye, flip_y: true, width: 48, height: 44 }
+      - [0x1C6088]
+      - { start: 0x1C6090, type: rgba16, name: tex_magnet_blue, flip_y: true, width: 32, height: 32 }
+      - [0x1C6890]
+      - { start: 0x1C6898, type: rgba16, name: tex_magnet_red, flip_y: true, width: 32, height: 32 }
+      - [0x1C7098]
+      - { start: 0x1C70A0, type: rgba16, name: tex_screw_thread, flip_y: true, width: 32, height: 64 }
+    - [0x1C80A0, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra

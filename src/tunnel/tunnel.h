@@ -66,7 +66,7 @@ void func_802ED5C8_5EA698(void);
 void func_802E2BB0_5DFC80(s32 arg0);
 void tunnel_Init(void);
 void tunnel_SpawnMagikarp(GObj*);
-void func_802E5094_5E2164(void);
+void tunnel_SpawnMagneton(void);
 
 GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

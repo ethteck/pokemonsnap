@@ -3120,7 +3120,7 @@ segments:
     - [0x5DF5D0, c, main]
     - [0x5DFD40, c, sounds]
     - [0x5E0A70, c, magnemite/code]
-    - [0x5E1C10, c]
+    - [0x5E1C10, c, magneton/code]
     - [0x5E21C0, c]
     - [0x5E2D80, c]
     - [0x5E3D80, c]
@@ -3137,7 +3137,8 @@ segments:
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
     - [0x5EB2D0, .data, magnemite/code]
-    - [0x5EB770, bin] # , data]
+    - [0x5EB770, .data, magneton/code]
+    - [0x5EB8B0, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, magnemite/code]

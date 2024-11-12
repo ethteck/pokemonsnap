@@ -3134,6 +3134,7 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [auto, c, magnemite/model]
+    - [auto, c, magneton/model]
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
     - [0x5EB2D0, .data, magnemite/code]
@@ -3178,6 +3179,36 @@ segments:
       - [0x6290E0, gfx, part6_draw_near]
       - [0x6291C0, gfx, part6_draw]
     - { start: 0x629490, type: bin, linker_section_order: .rodata }
+    - start: 0x6384C0
+      type: .data
+      name: magneton/model
+      dir: magneton
+      linker_section_order: .rodata
+      subsegments:
+      - [0x6384C0, vtx, model]
+      - [0x63B1C0, gfx, first]
+      - [0x63B1E0, gfx, part0]
+      - [0x63B3C8, gfx, part1]
+      - [0x63B4A0, gfx, part2]
+      - [0x63B658, gfx, part3]
+      - [0x63B810, gfx, part4]
+      - [0x63B958, gfx, part5]
+      - [0x63BAA0, gfx, part6]
+      - [0x63BC18, gfx, part7]
+      - [0x63BE00, gfx, part8]
+      - [0x63BED8, gfx, part9]
+      - [0x63C090, gfx, part10]
+      - [0x63C248, gfx, part11]
+      - [0x63C390, gfx, part12]
+      - [0x63C508, gfx, part13]
+      - [0x63C700, gfx, part14]
+      - [0x63C7D8, gfx, part15]
+      - [0x63C990, gfx, part16]
+      - [0x63CB48, gfx, part17]
+      - [0x63CC90, gfx, part18]
+      - [0x63CE08, gfx, part19]
+      - [0x63CEA8, gfx, last]
+    - { start: 0x63D3A0, type: bin, linker_section_order: .rodata }
 
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code

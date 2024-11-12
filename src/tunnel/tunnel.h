@@ -56,6 +56,7 @@ extern u8 D_80158DF8_19EF58[];
 
 extern Texture** magnemite_materials[];
 extern UnkEC64Arg3 magnemite_model[];
+extern UnkEC64Arg3 magneton_model[];
 
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
@@ -66,7 +67,7 @@ void func_802ED5C8_5EA698(void);
 void func_802E2BB0_5DFC80(s32 arg0);
 void tunnel_Init(void);
 void tunnel_SpawnMagikarp(GObj*);
-void tunnel_SpawnMagneton(void);
+void tunnel_SpawnMagneton(GObj*);
 
 GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

@@ -547,7 +547,7 @@ POKEMON_FUNC(magnemite_AllMagnemitesCombined)
 }
 
 POKEMON_FUNC(magnemite_EvolveIntoMagneton)
-    tunnel_SpawnMagneton();
+    tunnel_SpawnMagneton(obj);
     cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_DELETE_MAGNEMITE, obj);
     Pokemon_SetState(obj, magnemite_Delete);
 }

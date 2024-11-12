@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "../tunnel.h"
 
 void magneton_Idle(GObj*);
 void magneton_AppleNearby(GObj*);
@@ -65,7 +63,7 @@ PokemonAnimationSetup magneton_animSetup = {
 };
 
 PokemonInitData magneton_initData = {
-    0x8033FE00,
+    magneton_model,
     NULL,
     renderPokemonModelTypeBFogged,
     &magneton_animSetup,

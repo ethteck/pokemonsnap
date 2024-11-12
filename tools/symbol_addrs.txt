@@ -2331,3 +2331,5 @@ magneton_tex_eye_png = 0x8017F6E8; // segment:tunnel_code
 magneton_tex_magnet_blue_png = 0x8017FF30; // segment:tunnel_code
 magneton_tex_magnet_red_png = 0x80180738; // segment:tunnel_code
 magneton_tex_screw_thread_png = 0x80180F40; // segment:tunnel_code
+
+magneton_modelanim = 0x80181F40; // segment:tunnel_assets

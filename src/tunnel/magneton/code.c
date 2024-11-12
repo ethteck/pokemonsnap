@@ -1,5 +1,7 @@
 #include "../tunnel.h"
 
+extern AnimCmd* magneton_modelanim[];
+
 void magneton_Idle(GObj*);
 void magneton_AppleNearby(GObj*);
 void magneton_MoveRoam1(GObj*);
@@ -18,7 +20,7 @@ s32 magneton_animsounds[] = { 353 };
 AnimationHeader magneton_animation = {
     0.5,
     59,
-    0x80181F40,
+    magneton_modelanim,
     NULL,
     magneton_animsounds
 };

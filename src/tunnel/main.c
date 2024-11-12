@@ -52,7 +52,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_MAGNETON,
-      func_802E505C_5E212C,
+      magneton_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_ELECTRODE,

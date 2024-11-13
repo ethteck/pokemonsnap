@@ -1,27 +1,27 @@
 #include "../tunnel.h"
 
-void func_802E53DC_5E24AC(GObj*);
-void func_802E5668_5E2738(GObj*);
-void func_802E583C_5E290C(GObj*);
-void func_802E53B8_5E2488(GObj*);
-void func_802E55D8_5E26A8(GObj*);
-void func_802E5644_5E2714(GObj*);
-void func_802E54B4_5E2584(GObj*);
-void func_802E5818_5E28E8(GObj*);
-void func_802E5244_5E2314(GObj*);
-void func_802E5448_5E2518(GObj*);
-void func_802E54F0_5E25C0(GObj*);
-void func_802E556C_5E263C(GObj*);
-void func_802E56D8_5E27A8(GObj*);
-void func_802E58B0_5E2980(GObj*);
-void func_802E5134_5E2204(GObj*);
-void func_802E5968_5E2A38(GObj*);
-void func_802E5748_5E2818(GObj*);
-void func_802E529C_5E236C(GObj*);
+void electrode_Behavior1_Move(GObj*);
+void electrode_Behavior3_Move(GObj*);
+void electrode_HiddenPathGuardIdle(GObj*);
+void electrode_Behavior1(GObj*);
+void electrode_Behavior2(GObj*);
+void electrode_Behavior3(GObj*);
+void electrode_Behavior4(GObj*);
+void electrode_Behavior5(GObj*);
+void electrode_Idle(GObj*);
+void electrode_Behavior1_FollowPath(GObj*);
+void electrode_Behavior4_Move(GObj*);
+void electrode_Behavior4_FollowPath(GObj*);
+void electrode_Behavior3_FollowPath(GObj*);
+void electrode_WaitForPlayer(GObj*);
+void electrode_Remove(GObj*);
+void electrode_RevealHiddenPath(GObj*);
+void electrode_Behavior3Hit(GObj*);
+void electrode_tg_Explode(GObj*);
 
-s32 D_802EE7E0_5EB8B0[] = { 0, SOUND_ID_60, SOUND_ID_135 };
+s32 electrode_animsounds_explode[] = { 0, SOUND_ID_60, SOUND_ID_135 };
 
-AnimationHeader D_802EE7EC_5EB8BC = {
+AnimationHeader electrode_animation_idle = {
     0.58,
     80,
     0x8017D860,
@@ -29,15 +29,15 @@ AnimationHeader D_802EE7EC_5EB8BC = {
     NULL
 };
 
-AnimationHeader D_802EE800_5EB8D0 = {
+AnimationHeader electrode_animation_explode = {
     0.8,
     270,
     0x8017CAB0,
     0x8017E2B0,
-    D_802EE7E0_5EB8B0
+    electrode_animsounds_explode
 };
 
-AnimationHeader D_802EE814_5EB8E4 = {
+AnimationHeader electrode_animation_dead = {
     0.5,
     30,
     0x8017DBD0,
@@ -45,7 +45,7 @@ AnimationHeader D_802EE814_5EB8E4 = {
     NULL
 };
 
-AnimationHeader D_802EE828_5EB8F8 = {
+AnimationHeader electrode_animation_roll = {
     0.27,
     80,
     0x8017DE00,
@@ -53,81 +53,79 @@ AnimationHeader D_802EE828_5EB8F8 = {
     NULL
 };
 
-InteractionHandler D_802EE83C_5EB90C[] = {
-    { POKEMON_CMD_9, func_802E529C_5E236C, 0, NULL },
-    { POKEMON_CMD_13, func_802E529C_5E236C, 0, NULL },
-    { POKEMON_CMD_10, func_802E529C_5E236C, 0, NULL },
-    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+InteractionHandler electrode_tg_Idle[] = {
+    { POKEMON_CMD_9, electrode_tg_Explode, 0, NULL },
+    { POKEMON_CMD_13, electrode_tg_Explode, 0, NULL },
+    { POKEMON_CMD_10, electrode_tg_Explode, 0, NULL },
+    { TUNNEL_CMD_51, electrode_Remove, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EE88C_5EB95C[] = {
-    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+InteractionHandler electrode_tg_Dead[] = {
+    { TUNNEL_CMD_51, electrode_Remove, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 GObj* D_802EE8AC_5EB97C = NULL;
 
-InteractionHandler D_802EE8B0_5EB980[] = {
-    { POKEMON_CMD_9, func_802E5748_5E2818, 0, NULL },
-    { POKEMON_CMD_13, func_802E5748_5E2818, 0, NULL },
-    { POKEMON_CMD_10, func_802E5748_5E2818, 0, NULL },
-    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+InteractionHandler electrode_tg_Behavior3[] = {
+    { POKEMON_CMD_9, electrode_Behavior3Hit, 0, NULL },
+    { POKEMON_CMD_13, electrode_Behavior3Hit, 0, NULL },
+    { POKEMON_CMD_10, electrode_Behavior3Hit, 0, NULL },
+    { TUNNEL_CMD_51, electrode_Remove, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EE900_5EB9D0[] = {
-    { POKEMON_CMD_9, func_802E5968_5E2A38, 0, NULL },
-    { POKEMON_CMD_13, func_802E5968_5E2A38, 0, NULL },
-    { POKEMON_CMD_10, func_802E5968_5E2A38, 0, NULL },
+InteractionHandler electrode_tg_HiddenPathGuard[] = {
+    { POKEMON_CMD_9, electrode_RevealHiddenPath, 0, NULL },
+    { POKEMON_CMD_13, electrode_RevealHiddenPath, 0, NULL },
+    { POKEMON_CMD_10, electrode_RevealHiddenPath, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-extern GObj* D_802EEECC_5EBF9C;
-
-POKEMON_FUNC(func_802E50F0_5E21C0)
+POKEMON_FUNC(electrode_ChangeCollisionOffset)
     ohWait(260);
     pokemon->collisionOffset.x = 54.0f;
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802E5134_5E2204)
+POKEMON_FUNC(electrode_Remove)
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E5160_5E2230)
+POKEMON_FUNC(electrode_InitialState)
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802E53B8_5E2488);
+        Pokemon_SetState(obj, electrode_Behavior1);
     }
     if (pokemon->behavior == 2) {
-        Pokemon_SetState(obj, func_802E55D8_5E26A8);
+        Pokemon_SetState(obj, electrode_Behavior2);
     }
     if (pokemon->behavior == 3) {
-        Pokemon_SetState(obj, func_802E5644_5E2714);
+        Pokemon_SetState(obj, electrode_Behavior3);
     }
     if (pokemon->behavior == 4) {
-        Pokemon_SetState(obj, func_802E54B4_5E2584);
+        Pokemon_SetState(obj, electrode_Behavior4);
     }
     if (pokemon->behavior == 5) {
-        Pokemon_SetState(obj, func_802E5818_5E28E8);
+        Pokemon_SetState(obj, electrode_Behavior5);
     }
 
-    Pokemon_SetState(obj, func_802E5244_5E2314);
+    Pokemon_SetState(obj, electrode_Idle);
 }
 
-POKEMON_FUNC(func_802E5244_5E2314)
-    Pokemon_SetAnimation(obj, &D_802EE7EC_5EB8BC);
-    pokemon->transitionGraph = D_802EE83C_5EB90C;
+POKEMON_FUNC(electrode_Idle)
+    Pokemon_SetAnimation(obj, &electrode_animation_idle);
+    pokemon->transitionGraph = electrode_tg_Idle;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E529C_5E236C)
+POKEMON_FUNC(electrode_tg_Explode)
     Pokemon_StartPathProc(obj, NULL);
-    Pokemon_StartAuxProc(obj, func_802E50F0_5E21C0);
-    Pokemon_SetAnimation(obj, &D_802EE800_5EB8D0);
+    Pokemon_StartAuxProc(obj, electrode_ChangeCollisionOffset);
+    Pokemon_SetAnimation(obj, &electrode_animation_explode);
     pokemon->counter = 159, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
@@ -146,27 +144,27 @@ POKEMON_FUNC(func_802E529C_5E236C)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE814_5EB8E4);
-    pokemon->transitionGraph = D_802EE88C_5EB95C;
+    Pokemon_SetAnimation(obj, &electrode_animation_dead);
+    pokemon->transitionGraph = electrode_tg_Dead;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E53B8_5E2488)
-    Pokemon_SetState(obj, func_802E53DC_5E24AC);
+POKEMON_FUNC(electrode_Behavior1)
+    Pokemon_SetState(obj, electrode_Behavior1_Move);
 }
 
-POKEMON_FUNC(func_802E53DC_5E24AC)
-    Pokemon_SetAnimation(obj, &D_802EE828_5EB8F8);
-    Pokemon_StartPathProc(obj, func_802E5448_5E2518);
+POKEMON_FUNC(electrode_Behavior1_Move)
+    Pokemon_SetAnimation(obj, &electrode_animation_roll);
+    Pokemon_StartPathProc(obj, electrode_Behavior1_FollowPath);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802E529C_5E236C);
+    Pokemon_SetState(obj, electrode_tg_Explode);
 }
 
-POKEMON_FUNC(func_802E5448_5E2518)
+POKEMON_FUNC(electrode_Behavior1_FollowPath)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.033333335f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
@@ -174,23 +172,23 @@ POKEMON_FUNC(func_802E5448_5E2518)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E54B4_5E2584)
+POKEMON_FUNC(electrode_Behavior4)
     pokemon->flags |= POKEMON_FLAG_200;
     D_802EE8AC_5EB97C = obj;
-    Pokemon_SetState(obj, func_802E54F0_5E25C0);
+    Pokemon_SetState(obj, electrode_Behavior4_Move);
 }
 
-POKEMON_FUNC(func_802E54F0_5E25C0)
-    Pokemon_SetAnimation(obj, &D_802EE828_5EB8F8);
-    Pokemon_StartPathProc(obj, func_802E556C_5E263C);
+POKEMON_FUNC(electrode_Behavior4_Move)
+    Pokemon_SetAnimation(obj, &electrode_animation_roll);
+    Pokemon_StartPathProc(obj, electrode_Behavior4_FollowPath);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_40, obj);
-    Pokemon_SetState(obj, func_802E529C_5E236C);
+    Pokemon_SetState(obj, electrode_tg_Explode);
 }
 
-POKEMON_FUNC(func_802E556C_5E263C)
+POKEMON_FUNC(electrode_Behavior4_FollowPath)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 1, 0.043333337f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND);
     pokemon->pathProc = NULL;
@@ -198,29 +196,29 @@ POKEMON_FUNC(func_802E556C_5E263C)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E55D8_5E26A8)
-    Pokemon_SetAnimation(obj, &D_802EE7EC_5EB8BC);
+POKEMON_FUNC(electrode_Behavior2)
+    Pokemon_SetAnimation(obj, &electrode_animation_idle);
     Pokemon_StartPathProc(obj, NULL);
-    pokemon->transitionGraph = D_802EE83C_5EB90C;
+    pokemon->transitionGraph = electrode_tg_Idle;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E5644_5E2714)
-    Pokemon_SetState(obj, func_802E5668_5E2738);
+POKEMON_FUNC(electrode_Behavior3)
+    Pokemon_SetState(obj, electrode_Behavior3_Move);
 }
 
-POKEMON_FUNC(func_802E5668_5E2738)
-    Pokemon_SetAnimation(obj, &D_802EE828_5EB8F8);
-    Pokemon_StartPathProc(obj, func_802E56D8_5E27A8);
-    pokemon->transitionGraph = D_802EE8B0_5EB980;
+POKEMON_FUNC(electrode_Behavior3_Move)
+    Pokemon_SetAnimation(obj, &electrode_animation_roll);
+    Pokemon_StartPathProc(obj, electrode_Behavior3_FollowPath);
+    pokemon->transitionGraph = electrode_tg_Behavior3;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E56D8_5E27A8)
+POKEMON_FUNC(electrode_Behavior3_FollowPath)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0, 0, 0.033333335f, 0.0f, MOVEMENT_FLAG_UPDATE_TARGET_POS | MOVEMENT_FLAG_ON_GROUND); // BUG? start = end = 0
     pokemon->pathProc = NULL;
@@ -228,10 +226,10 @@ POKEMON_FUNC(func_802E56D8_5E27A8)
     omEndProcess(NULL);
 }
 
-POKEMON_FUNC(func_802E5748_5E2818)
+POKEMON_FUNC(electrode_Behavior3Hit)
     Pokemon_StartPathProc(obj, NULL);
-    Pokemon_StartAuxProc(obj, func_802E50F0_5E21C0);
-    Pokemon_SetAnimation(obj, &D_802EE800_5EB8D0);
+    Pokemon_StartAuxProc(obj, electrode_ChangeCollisionOffset);
+    Pokemon_SetAnimation(obj, &electrode_animation_explode);
     pokemon->counter = 159, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
@@ -240,27 +238,27 @@ POKEMON_FUNC(func_802E5748_5E2818)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE814_5EB8E4);
-    pokemon->transitionGraph = D_802EE88C_5EB95C;
+    Pokemon_SetAnimation(obj, &electrode_animation_dead);
+    pokemon->transitionGraph = electrode_tg_Dead;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E5818_5E28E8)
-    Pokemon_SetState(obj, func_802E583C_5E290C);
+POKEMON_FUNC(electrode_Behavior5)
+    Pokemon_SetState(obj, electrode_HiddenPathGuardIdle);
 }
 
-POKEMON_FUNC(func_802E583C_5E290C)
-    Pokemon_SetAnimation(obj, &D_802EE7EC_5EB8BC);
-    Pokemon_StartPathProc(obj, func_802E58B0_5E2980);
-    pokemon->transitionGraph = D_802EE900_5EB9D0;
+POKEMON_FUNC(electrode_HiddenPathGuardIdle)
+    Pokemon_SetAnimation(obj, &electrode_animation_idle);
+    Pokemon_StartPathProc(obj, electrode_WaitForPlayer);
+    pokemon->transitionGraph = electrode_tg_HiddenPathGuard;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, func_802E5244_5E2314);
+    Pokemon_SetState(obj, electrode_Idle);
 }
 
-POKEMON_FUNC(func_802E58B0_5E2980)
+POKEMON_FUNC(electrode_WaitForPlayer)
     s32 blockCount;
     f32 blockPart;
 
@@ -283,7 +281,7 @@ POKEMON_FUNC(func_802E58B0_5E2980)
     pokemon->transitionGraph = NULL;              \
     Pokemon_WaitForFlag(obj, flag);
 
-POKEMON_FUNC(func_802E5968_5E2A38)
+POKEMON_FUNC(electrode_RevealHiddenPath)
     InterpData* path;
     f32 eyex, eyey, eyez;
     s32 i;
@@ -292,7 +290,7 @@ POKEMON_FUNC(func_802E5968_5E2A38)
     u16 sp2C[] = { PokemonID_ELECTRODE, PokemonID_1014, PokemonID_GATE, 0 };
 
     Pokemon_StartPathProc(obj, NULL);
-    Pokemon_ForceAnimationAtTime(obj, &D_802EE800_5EB8D0, 0.0f);
+    Pokemon_ForceAnimationAtTime(obj, &electrode_animation_explode, 0.0f);
     SET_ANIM_FRAME(obj, pokemon, 170.0f, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_RemovePokemons(sp2C);
@@ -329,37 +327,37 @@ POKEMON_FUNC(func_802E5968_5E2A38)
             break;
         }
 
-        Pokemon_ForceAnimationAtTime(obj, &D_802EE800_5EB8D0, 130.0f);
+        Pokemon_ForceAnimationAtTime(obj, &electrode_animation_explode, 130.0f);
         SET_ANIM_FRAME(obj, pokemon, 170.0f, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     }
 
     auPlaySoundWithParams(SOUND_ID_60, 0x7000, 64, 1.0f, 0);
-    Pokemon_ForceAnimationAtTime(obj, &D_802EE800_5EB8D0, 130.0f);
+    Pokemon_ForceAnimationAtTime(obj, &electrode_animation_explode, 130.0f);
 
     SET_ANIM_FRAME(obj, pokemon, 220.0f, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_54, obj);
-    Pokemon_SetAnimation(obj, &D_802EE814_5EB8E4);
+    Pokemon_SetAnimation(obj, &electrode_animation_dead);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetState(obj, NULL);
 }
 
-PokemonAnimationSetup D_802EE948_5EBA18 = {
-    &D_802EE7EC_5EB8BC,
-    func_802E5160_5E2230,
+PokemonAnimationSetup electrode_animSetup = {
+    &electrode_animation_idle,
+    electrode_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802EE95C_5EBA2C = {
+PokemonInitData electrode_initData = {
     0x8033B0A0,
     0x803385C0,
     renderPokemonModelTypeDFogged,
-    &D_802EE948_5EBA18,
+    &electrode_animSetup,
     { 1.4, 1.4, 1.4 },
     { 0, 124, 0 },
     66,
@@ -371,5 +369,5 @@ PokemonInitData D_802EE95C_5EBA2C = {
 };
 
 GObj* electrode_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EE95C_5EBA2C);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &electrode_initData);
 }

@@ -1,5 +1,13 @@
 #include "../tunnel.h"
 
+extern AnimCmd* electrode_modelanim_idle[];
+extern AnimCmd* electrode_modelanim_explode[];
+extern AnimCmd* electrode_modelanim_dead[];
+extern AnimCmd* electrode_modelanim_roll[];
+
+extern AnimCmd** electrode_matanim_explode[];
+extern AnimCmd** electrode_matanim_dead[];
+
 void electrode_Behavior1_Move(GObj*);
 void electrode_Behavior3_Move(GObj*);
 void electrode_HiddenPathGuardIdle(GObj*);
@@ -24,7 +32,7 @@ s32 electrode_animsounds_explode[] = { 0, SOUND_ID_60, SOUND_ID_135 };
 AnimationHeader electrode_animation_idle = {
     0.58,
     80,
-    0x8017D860,
+    electrode_modelanim_idle,
     NULL,
     NULL
 };
@@ -32,23 +40,23 @@ AnimationHeader electrode_animation_idle = {
 AnimationHeader electrode_animation_explode = {
     0.8,
     270,
-    0x8017CAB0,
-    0x8017E2B0,
+    electrode_modelanim_explode,
+    electrode_matanim_explode,
     electrode_animsounds_explode
 };
 
 AnimationHeader electrode_animation_dead = {
     0.5,
     30,
-    0x8017DBD0,
-    0x8017E8A0,
+    electrode_modelanim_dead,
+    electrode_matanim_dead,
     NULL
 };
 
 AnimationHeader electrode_animation_roll = {
     0.27,
     80,
-    0x8017DE00,
+    electrode_modelanim_roll,
     NULL,
     NULL
 };

@@ -14,7 +14,7 @@ class SnapAnimSegmentCommon(Segment):
             f.write(self.file_text)
 
     def cmd_get_param_count(self, cmd):
-        if cmd in (3, 4, 7, 8, 9, 10, 11, 17, 18, 20, 21):
+        if cmd in (3, 4, 7, 8, 9, 10, 11, 17, 18, 19, 20, 21):
             return 1
         elif cmd in (0, 2, 12, 13, 14, 15, 16):
             return 0
@@ -26,7 +26,7 @@ class SnapAnimSegmentCommon(Segment):
         return cmd in (13, 14)
     
     def cmd_require_integers(self, cmd):
-        return cmd in (18, 20, 21)
+        return cmd in (18, 19, 20, 21)
 
     def cmd_split(self, value):
         binStr = '{:032b}'.format(value)
@@ -51,6 +51,7 @@ class SnapAnimSegmentCommon(Segment):
         16: ("asPlaySound", "asPlayEffect"),
         17: "asSetVisible",
         18: "asSetExtraAfterBlock",
+        19: "asSetExtraAfter",
         20: "asSetExtraBlock",
         21: "asSetExtra",
     }
@@ -136,7 +137,7 @@ class SnapAnimSegmentCommon(Segment):
             for i in range(31):
                 if (visMask & (1 << i)):
                     lineText += f", {i}"
-        elif cmd in (18, 20, 21):
+        elif cmd in (18, 19, 20, 21):
             lineText += f"{duration}"
             paramNames = [self.cmd_get_extra_param_name(i) for i in range(5) if (mask & (1 << i))]
             for i in range(numParams):

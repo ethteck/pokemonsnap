@@ -2373,3 +2373,10 @@ electrode_tex_explosion2_code = 0x801799C8; // segment:tunnel_code
 electrode_tex_explosion3_png = 0x80179BD0; // segment:tunnel_code
 electore_tex_bright_spot_png = 0x8017A030; // segment:tunnel_code
 electrode_tex_eyebrow_png = 0x8017A868; // segment:tunnel_code
+
+electrode_modelanim_explode = 0x8017CAB0; // segment:tunnel_assets
+electrode_modelanim_idle = 0x8017D860; // segment:tunnel_assets
+electrode_modelanim_dead = 0x8017DBD0; // segment:tunnel_assets
+electrode_modelanim_roll = 0x8017DE00; // segment:tunnel_assets
+electrode_matanim_explode = 0x8017E2B0; // segment:tunnel_assets
+electrode_matanim_dead = 0x8017E8A0; // segment:tunnel_assets

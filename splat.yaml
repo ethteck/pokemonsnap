@@ -640,6 +640,12 @@ segments:
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
     - [auto, c, electrode/textures]
+    - [auto, c, electrode/anim/model/explode]
+    - [auto, c, electrode/anim/model/idle]
+    - [auto, c, electrode/anim/model/dead]
+    - [auto, c, electrode/anim/model/roll]
+    - [auto, c, electrode/anim/material/explode]
+    - [auto, c, electrode/anim/material/dead]
     - [auto, c, magneton/textures]
     - [auto, c, magneton/anim/animation]
     - [0x162CC0, .data, world/world]
@@ -929,7 +935,42 @@ segments:
       - [0x1C29E0, palette, tex_top_frame0]
       - [0x1C2A00]
       - { start: 0x1C2A08, type: ci4, name: tex_top_frame0, flip_y: true, width: 32, height: 32 }
-    - [0x1C2C10, bin]
+    - start: 0x1C2C10
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/explode
+      subsegments:
+      - [0x1C2C10, snap_model_anim, explode]
+    - start: 0x1C39C0
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/idle
+      subsegments:
+      - [0x1C39C0, snap_model_anim, idle]
+    - start: 0x1C3D30
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/dead
+      subsegments:
+      - [0x1C3D30, snap_model_anim, dead]
+    - start: 0x1C3F60
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/roll
+      subsegments:
+      - [0x1C3F60, snap_model_anim, roll]
+    - start: 0x1C4410
+      type: .data
+      dir: electrode/anim/material/
+      name: electrode/anim/material/explode
+      subsegments:
+      - [0x1C4410, snap_material_anim, explode]
+    - start: 0x1C4A00
+      type: .data
+      dir: electrode/anim/material/
+      name: electrode/anim/material/dead
+      subsegments:
+      - [0x1C4A00, snap_material_anim, dead]
     - start: 0x1C4C30
       type: .data
       dir: magneton

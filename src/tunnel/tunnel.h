@@ -4,6 +4,16 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_37 POKEMON_CMD_37
+#define TUNNEL_CMD_39 POKEMON_CMD_39
+#define TUNNEL_CMD_40 POKEMON_CMD_40
+#define TUNNEL_CMD_MAGNEMITE_ATTRACT POKEMON_CMD_44
+#define TUNNEL_CMD_3_MAGNEMITES_COMBINED POKEMON_CMD_45
+#define TUNNEL_CMD_DELETE_MAGNEMITE POKEMON_CMD_46
+#define TUNNEL_CMD_51 POKEMON_CMD_51
+#define TUNNEL_CMD_54 POKEMON_CMD_54
+#define TUNNEL_CMD_MAGNEMITE_ZOOMED_IN POKEMON_CMD_55
+
 extern u8 D_8014DDE0_193F40[];
 extern u8 D_8014E5E8_194748[];
 extern u8 D_8014E610_194770[];
@@ -49,19 +59,28 @@ extern u8 D_801585C8_19E728[];
 extern u8 D_801585F0_19E750[];
 extern u8 D_80158DF8_19EF58[];
 
+extern Texture** magnemite_materials[];
+extern UnkEC64Arg3 magnemite_model[];
+extern UnkEC64Arg3 magneton_model[];
+extern Texture** electrode_materials[];
+extern UnkEC64Arg3 electrode_model[];
+
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;
 
-void func_802E2C70_5DFD40(s32, f32);
+extern GObj* D_802EEECC_5EBF9C;
+
+void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);
 void func_802E2BB0_5DFC80(s32 arg0);
 void tunnel_Init(void);
 void tunnel_SpawnMagikarp(GObj*);
+void tunnel_SpawnMagneton(GObj*);
 
-GObj* func_802E4AFC_5E1BCC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E505C_5E212C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E5C74_5E2D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* electrode_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E6420_5E34F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E6C28_5E3CF8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E7620_5E46F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

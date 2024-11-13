@@ -631,6 +631,23 @@ segments:
     - [auto, c, pkmn_1016/model]
     - [auto, c, pkmn_1017/model]
     - [auto, c, computer/textures]
+    - [auto, c, magnemite/textures]
+    - [auto, c, magnemite/anim/model/run]
+    - [auto, c, magnemite/anim/model/pulse]
+    - [auto, c, magnemite/anim/model/move]
+    - [auto, c, magnemite/anim/model/idle]
+    - [auto, c, magnemite/anim/model/hit]
+    - [auto, c, magnemite/anim/model/react]
+    - [auto, c, magnemite/anim/material/pulse]
+    - [auto, c, electrode/textures]
+    - [auto, c, electrode/anim/model/explode]
+    - [auto, c, electrode/anim/model/idle]
+    - [auto, c, electrode/anim/model/dead]
+    - [auto, c, electrode/anim/model/roll]
+    - [auto, c, electrode/anim/material/explode]
+    - [auto, c, electrode/anim/material/dead]
+    - [auto, c, magneton/textures]
+    - [auto, c, magneton/anim/animation]
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -733,6 +750,251 @@ segments:
       - [0x190050]
       - { start: 0x190058, type: ci4, name: tex_back, flip_y: true, width: 32, height: 32 }
     - [0x190260, bin]
+    - start: 0x1A1100
+      type: .data
+      dir: magnemite
+      name: magnemite/textures
+      subsegments:
+      - [0x1A1100]
+      - [0x1A1108, palette, tex_screw_frame1]
+      - [0x1A1128]
+      - { start: 0x1A1130, type: ci4, name: tex_screw_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A1330]
+      - [0x1A1338, palette, tex_screw_frame2]
+      - [0x1A1358]
+      - { start: 0x1A1360, type: ci4, name: tex_screw_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1A1560]
+      - [0x1A1568, palette, tex_screw_frame0]
+      - [0x1A1588]
+      - { start: 0x1A1590, type: ci4, name: tex_screw_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A1790]
+      - [0x1A1798, palette, tex_body_frame1]
+      - [0x1A17B8]
+      - { start: 0x1A17C0, type: ci4, name: tex_body_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A1BC0]
+      - [0x1A1BC8, palette, tex_body_frame2]
+      - [0x1A1BE8]
+      - { start: 0x1A1BF0, type: ci4, name: tex_body_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A1FF0]
+      - [0x1A1FF8, palette, tex_body_frame0]
+      - [0x1A2018]
+      - { start: 0x1A2020, type: ci4, name: tex_body_frame0, flip_y: true, width: 32, height: 64 }
+      - [0x1A2420]
+      - [0x1A2428, palette, tex_eye_frame0]
+      - [0x1A2448]
+      - { start: 0x1A2450, type: ci4, name: tex_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A2650]
+      - [0x1A2658, palette, tex_eye_frame1]
+      - [0x1A2678]
+      - { start: 0x1A2680, type: ci4, name: tex_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A2880]
+      - [0x1A2888, palette, tex_eye_frame2]
+      - [0x1A28A8]
+      - { start: 0x1A28B0, type: ci4, name: tex_eye_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1A2AB0]
+      - { start: 0x1A2AE0, type: ia8, name: tex_wave, flip_y: true, width: 32, height: 32 }
+      - [0x1A2EE0]
+      - [0x1A2EE8, palette, tex_magnet_frame1]
+      - [0x1A2F08]
+      - { start: 0x1A2F10, type: ci4, name: tex_magnet_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A3310]
+      - [0x1A3318, palette, tex_magnet_frame2]
+      - [0x1A3338]
+      - { start: 0x1A3340, type: ci4, name: tex_magnet_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A3740]
+      - [0x1A3748, palette, tex_magnet_frame0]
+      - [0x1A3768]
+      - { start: 0x1A3770, type: ci4, name: tex_magnet_frame0, flip_y: true, width: 32, height: 64 }
+      - [0x1A3B70]
+      - [0x1A3B78, palette, tex_screw_thread_frame1]
+      - [0x1A3B98]
+      - { start: 0x1A3BA0, type: ci4, name: tex_screw_thread_frame1, flip_y: true, width: 32, height: 64 }
+      - [0x1A3FA0]
+      - [0x1A3FA8, palette, tex_screw_thread_frame2]
+      - [0x1A3FC8]
+      - { start: 0x1A3FD0, type: ci4, name: tex_screw_thread_frame2, flip_y: true, width: 32, height: 64 }
+      - [0x1A43D0]
+      - [0x1A43D8, palette, tex_screw_thread_frame0]
+      - [0x1A43F8]
+      - { start: 0x1A4400, type: ci4, name: tex_screw_thread_frame0, flip_y: true, width: 32, height: 64 }
+    - start: 0x1A4800
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/run
+      subsegments:
+      - [0x1A4800, snap_model_anim, run]
+    - start: 0x1A4A20
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/pulse
+      subsegments:
+      - [0x1A4A20, snap_model_anim, pulse]
+    - start: 0x1A4D30
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/move
+      subsegments:
+      - [0x1A4D30, snap_model_anim, move]
+    - start: 0x1A4F90
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/idle
+      subsegments:
+      - [0x1A4F90, snap_model_anim, idle]
+    - start: 0x1A5510
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/hit
+      subsegments:
+      - [0x1A5510, snap_model_anim, hit]
+    - start: 0x1A5A60
+      type: .data
+      dir: magnemite/anim/model/
+      name: magnemite/anim/model/react
+      subsegments:
+      - [0x1A5A60, snap_model_anim, react]
+    - start: 0x1A63C0
+      type: .data
+      dir: magnemite/anim/material/
+      name: magnemite/anim/material/pulse
+      subsegments:
+      - [0x1A63C0, snap_material_anim, pulse]
+    - [0x1A6630, bin]
+    - start: 0x1BF8F0
+      type: .data
+      dir: electrode
+      name: electrode/textures
+      subsegments:
+      - [0x1BF8F0]
+      - [0x1BF8F8, palette, tex_bottom_frame0]
+      - [0x1BF918]
+      - { start: 0x1BF920, type: i4, name: tex_explosion1, flip_y: true, width: 32, height: 32 }
+      - [0x1BFB20]
+      - { start: 0x1BFB28, type: i4, name: tex_explosion2, flip_y: true, width: 32, height: 32 }
+      - [0x1BFD28]
+      - { start: 0x1BFD30, type: i4, name: tex_explosion3, flip_y: true, width: 32, height: 32 }
+      - [0x1BFF30]
+      - [0x1BFF38, palette, tex_mouth_frame1]
+      - [0x1BFF58]
+      - [0x1BFF60, palette, tex_eyes_frame1]
+      - [0x1BFF80]
+      - { start: 0x1BFF88, type: ci4, name: tex_bottom_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1C0188]
+      - { start: 0x1C0190, type: i8, name: tex_bright_spot, flip_y: true, width: 32, height: 32 }
+      - [0x1C0590]
+      - [0x1C0598, palette, tex_mouth_frame0]
+      - [0x1C05B8]
+      - { start: 0x1C05C0, type: ci4, name: tex_mouth_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x1C09C0]
+      - { start: 0x1C09C8, type: i4, name: tex_eyebrow, flip_y: true, width: 16, height: 32 }
+      - [0x1C0AC8]
+      - { start: 0x1C0AD0, type: rgba16, name: tex_body1_frame2, flip_y: true, width: 4, height: 8 }
+      - [0x1C0B10]
+      - { start: 0x1C0B18, type: rgba16, name: tex_body1_frame1, flip_y: true, width: 4, height: 8 }
+      - [0x1C0B58]
+      - { start: 0x1C0B60, type: rgba16, name: tex_body1_frame0, flip_y: true, width: 4, height: 8 }
+      - [0x1C0BA0]
+      - { start: 0x1C0BA8, type: rgba16, name: tex_body2_frame0, flip_y: true, width: 4, height: 8 }
+      - [0x1C0BE8]
+      - { start: 0x1C0BF0, type: rgba16, name: tex_body2_frame2, flip_y: true, width: 4, height: 8 }
+      - [0x1C0C30]
+      - { start: 0x1C0C38, type: rgba16, name: tex_body2_frame1, flip_y: true, width: 4, height: 8 }
+      - [0x1C0C78]
+      - [0x1C0C80, palette, tex_bottom_frame2]
+      - [0x1C0CA0]
+      - { start: 0x1C0CA8, type: ci4, name: tex_bottom_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1C0EA8]
+      - [0x1C0EB0, palette, tex_bottom_frame1]
+      - [0x1C0ED0]
+      - { start: 0x1C0ED8, type: ci4, name: tex_bottom_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1C10D8]
+      - [0x1C10E0, palette, tex_top_frame2]
+      - [0x1C1100]
+      - { start: 0x1C1108, type: ci4, name: tex_top_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1C1308]
+      - [0x1C1310, palette, tex_mouth_frame2]
+      - [0x1C1330]
+      - { start: 0x1C1338, type: ci4, name: tex_mouth_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x1C1738]
+      - [0x1C1740, palette, tex_eyes_frame2]
+      - [0x1C1760]
+      - { start: 0x1C1768, type: ci4, name: tex_eyes_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x1C1B68]
+      - { start: 0x1C1B70, type: ci4, name: tex_mouth_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x1C1F70]
+      - [0x1C1F78, palette, tex_eyes_frame0]
+      - [0x1C1F98]
+      - { start: 0x1C1FA0, type: ci4, name: tex_eyes_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x1C23A0]
+      - { start: 0x1C23A8, type: ci4, name: tex_eyes_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x1C27A8]
+      - [0x1C27B0, palette, tex_top_frame1]
+      - [0x1C27D0]
+      - { start: 0x1C27D8, type: ci4, name: tex_top_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1C29D8]
+      - [0x1C29E0, palette, tex_top_frame0]
+      - [0x1C2A00]
+      - { start: 0x1C2A08, type: ci4, name: tex_top_frame0, flip_y: true, width: 32, height: 32 }
+    - start: 0x1C2C10
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/explode
+      subsegments:
+      - [0x1C2C10, snap_model_anim, explode]
+    - start: 0x1C39C0
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/idle
+      subsegments:
+      - [0x1C39C0, snap_model_anim, idle]
+    - start: 0x1C3D30
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/dead
+      subsegments:
+      - [0x1C3D30, snap_model_anim, dead]
+    - start: 0x1C3F60
+      type: .data
+      dir: electrode/anim/model/
+      name: electrode/anim/model/roll
+      subsegments:
+      - [0x1C3F60, snap_model_anim, roll]
+    - start: 0x1C4410
+      type: .data
+      dir: electrode/anim/material/
+      name: electrode/anim/material/explode
+      subsegments:
+      - [0x1C4410, snap_material_anim, explode]
+    - start: 0x1C4A00
+      type: .data
+      dir: electrode/anim/material/
+      name: electrode/anim/material/dead
+      subsegments:
+      - [0x1C4A00, snap_material_anim, dead]
+    - start: 0x1C4C30
+      type: .data
+      dir: magneton
+      name: magneton/textures
+      subsegments:
+      - [0x1C4C30]
+      - { start: 0x1C4C38, type: rgba16, name: tex_screw_head, flip_y: true, width: 32, height: 32 }
+      - [0x1C5438]
+      - { start: 0x1C5440, type: ia8, name: tex_unk_circles, flip_y: true, width: 32, height: 32 }
+      - [0x1C5840]
+      - { start: 0x1C5848, type: ia8, name: tex_eye, flip_y: true, width: 48, height: 44 }
+      - [0x1C6088]
+      - { start: 0x1C6090, type: rgba16, name: tex_magnet_blue, flip_y: true, width: 32, height: 32 }
+      - [0x1C6890]
+      - { start: 0x1C6898, type: rgba16, name: tex_magnet_red, flip_y: true, width: 32, height: 32 }
+      - [0x1C7098]
+      - { start: 0x1C70A0, type: rgba16, name: tex_screw_thread, flip_y: true, width: 32, height: 64 }
+    - start: 0x1C80A0
+      type: .data
+      dir: magneton/anim/
+      name: magneton/anim/animation
+      subsegments:
+      - [0x1C80A0, snap_model_anim, animation]
+    - [0x1C8AC0, bin]
     - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra
@@ -3000,10 +3262,10 @@ segments:
     exclusive_ram_id: level
     subsegments:
     - [0x5DF5D0, c, main]
-    - [0x5DFD40, c]
-    - [0x5E0A70, c]
-    - [0x5E1C10, c]
-    - [0x5E21C0, c]
+    - [0x5DFD40, c, sounds]
+    - [0x5E0A70, c, magnemite/code]
+    - [0x5E1C10, c, magneton/code]
+    - [0x5E21C0, c, electrode/code]
     - [0x5E2D80, c]
     - [0x5E3D80, c]
     - [0x5E4730, pad]
@@ -3015,12 +3277,19 @@ segments:
     - [0x5E9010, c]
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
+    - [auto, c, magnemite/model]
+    - [auto, c, electrode/model]
+    - [auto, c, magneton/model]
     - [0x5EAFD0, .data, main]
-    - [0x5EB2B0, bin] # , data]
+    - [0x5EB2B0, .data, sounds]
+    - [0x5EB2D0, .data, magnemite/code]
+    - [0x5EB770, .data, magneton/code]
+    - [0x5EB8B0, .data, electrode/code]
+    - [0x5EBA60, bin] # , data]
 
-    - [0x5ED360, .rodata, 5DFD40]
-    - [0x5ED420, .rodata, 5E0A70]
-    - [0x5ED430, .rodata, 5E21C0]
+    - [0x5ED360, .rodata, sounds]
+    - [0x5ED420, .rodata, magnemite/code]
+    - [0x5ED430, .rodata, electrode/code]
     - [0x5ED440, .rodata, 5E3D80]
     - [0x5ED450, .rodata, 5E4750]
     - [0x5ED470, .rodata, 5E64A0]
@@ -3031,6 +3300,99 @@ segments:
     - [0x5ED4E0, .rodata, 5EA6F0]
 
     - { start: 0x5ED4F0, type: bin, linker_section_order: .rodata }
+    - start: 0x626C10
+      type: .data
+      name: magnemite/model
+      dir: magnemite
+      linker_section_order: .rodata
+      subsegments:
+      - [0x626C10]
+      - [0x627120, vtx, model]
+      - [0x628740, gfx, first]
+      - [0x628778, gfx, part0_draw_near]
+      - [0x628998, gfx, part0_draw]
+      - [0x6289B8, gfx, part1_draw_near]
+      - [0x628B40, gfx, part1_draw]
+      - [0x628B58, gfx, part2_draw_near]
+      - [0x628C18, gfx, part2_draw]
+      - [0x628C30, gfx, part3_draw_near]
+      - [0x628D90, gfx, part3_draw]
+      - [0x628DA8, gfx, part4_draw_near]
+      - [0x628F08, gfx, part4_draw]
+      - [0x628F20, gfx, part5_draw_near]
+      - [0x6290A0, gfx, part5_draw]
+      - [0x6290B8, gfx, last]
+      - [0x6290E0, gfx, part6_draw_near]
+      - [0x6291C0, gfx, part6_draw]
+    - { start: 0x629490, type: bin, linker_section_order: .rodata }
+    - start: 0x635690
+      type: .data
+      name: electrode/model
+      dir: electrode
+      linker_section_order: .rodata
+      subsegments:
+      - [0x635690]
+      - [0x635F58, vtx, model]
+      - [0x636F38, gfx, part8_draw_near]
+      - [0x637448, gfx, part8_draw]
+      - [0x637468, gfx, part10_draw_near]
+      - [0x637500, gfx, part10_draw]
+      - [0x637518, gfx, part11_draw_near]
+      - [0x6375B0, gfx, part11_draw]
+      - [0x6375C8, gfx, part12_draw_near]
+      - [0x637630, gfx, part12_draw]
+      - [0x637648, gfx, last]
+      - [0x637668, gfx, part0_draw_near]
+      - [0x637750, gfx, part0_draw]
+      - [0x637770, gfx, part1_draw_near]
+      - [0x637838, gfx, part1_draw]
+      - [0x637850, gfx, part2_draw_near]
+      - [0x637938, gfx, part2_draw]
+      - [0x637950, gfx, part3_draw_near]
+      - [0x637A38, gfx, part3_draw]
+      - [0x637A58, gfx, part4_draw_near]
+      - [0x637B48, gfx, part4_draw]
+      - [0x637B60, gfx, part5_draw_near]
+      - [0x637C58, gfx, part5_draw]
+      - [0x637C70, gfx, part6_draw_near]
+      - [0x637D68, gfx, part6_draw]
+      - [0x637D80, gfx, part7_draw_near]
+      - [0x637E68, gfx, part7_draw]
+      - [0x637E80, gfx, part9_draw_near]
+      - [0x637F68, gfx, part9_draw]
+      - [0x637F88, gfx, part13_draw_near]
+      - [0x638060, gfx, part13_draw]
+      - [0x638090]
+    - start: 0x6384C0
+      type: .data
+      name: magneton/model
+      dir: magneton
+      linker_section_order: .rodata
+      subsegments:
+      - [0x6384C0, vtx, model]
+      - [0x63B1C0, gfx, first]
+      - [0x63B1E0, gfx, part0]
+      - [0x63B3C8, gfx, part1]
+      - [0x63B4A0, gfx, part2]
+      - [0x63B658, gfx, part3]
+      - [0x63B810, gfx, part4]
+      - [0x63B958, gfx, part5]
+      - [0x63BAA0, gfx, part6]
+      - [0x63BC18, gfx, part7]
+      - [0x63BE00, gfx, part8]
+      - [0x63BED8, gfx, part9]
+      - [0x63C090, gfx, part10]
+      - [0x63C248, gfx, part11]
+      - [0x63C390, gfx, part12]
+      - [0x63C508, gfx, part13]
+      - [0x63C700, gfx, part14]
+      - [0x63C7D8, gfx, part15]
+      - [0x63C990, gfx, part16]
+      - [0x63CB48, gfx, part17]
+      - [0x63CC90, gfx, part18]
+      - [0x63CE08, gfx, part19]
+      - [0x63CEA8, gfx, last]
+    - { start: 0x63D3A0, type: bin, linker_section_order: .rodata }
 
     - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code

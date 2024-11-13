@@ -104,6 +104,7 @@ typedef struct AnimLinePtr2 {
 #define MAT_PARAM_6 (1 << (ANIM_PARAM_TEXTURE_19 - ANIM_PARAM_TEXTURE_MIN))
 #define MAT_PARAM_7 (1 << (ANIM_PARAM_TEXTURE_20 - ANIM_PARAM_TEXTURE_MIN))
 #define MAT_PARAM_8 (1 << (ANIM_PARAM_TEXTURE_21 - ANIM_PARAM_TEXTURE_MIN))
+#define MAT_PARAM_9 (1 << (ANIM_PARAM_TEXTURE_22 - ANIM_PARAM_TEXTURE_MIN))
 
 #define PRIM_COLOR (1 << (ANIM_PARAM_TEXTURE_EXTRA_37 - ANIM_PARAM_TEXTURE_EXTRA_MIN))
 #define ENV_COLOR (1 << (ANIM_PARAM_TEXTURE_EXTRA_38 - ANIM_PARAM_TEXTURE_EXTRA_MIN))
@@ -119,6 +120,7 @@ typedef struct AnimLinePtr2 {
 #define asWaitf(n) {  ((ANIM_CMD_WAIT << 25) | (0 << 15) | n) }
 
 #define asSetFlags(n, flags) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_SET_FLAGS << 25) | (flags << 15) | n) }
+#define asSetFlagsf(n, flags) {  ((ANIM_CMD_SET_FLAGS << 25) | (flags << 15) | n) }
 
 #define asRestart(script) static AnimLinePtr __ANIMLINENAME = {  ((ANIM_CMD_SET_ANIMATION << 25) | (0 << 15) | 0), &script }
 
@@ -132,6 +134,8 @@ typedef struct AnimLinePtr2 {
 
 #define asPlaySound(duration, category, id) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id)) << 15) | duration) }
 #define asPlayEffect(duration, category, id) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id + 1)) << 15) | duration) }
+
+#define asPlaySoundf(duration, category, id) {  ((ANIM_CMD_16 << 25) | ((((category) << 8) | (id)) << 15) | duration) }
 
 #define asBegin_0(script) static AnimLine0 script =
 #define asBegin_1(script) static AnimLine1 script =
@@ -280,5 +284,7 @@ typedef struct AnimLinePtr2 {
 #define asSetExtra_1f(n, param1, r, g, b, a) {  ((ANIM_CMD_SET_EXTRA_VALUE << 25) | ((param1) << 15) | n), { (r << 24) | (g << 16) | (b << 8) | a } }
 
 #define asSetExtraAfterBlock_2(n, param1, r1, g1, b1, a1, param2, r2, g2, b2, a2) static AnimLineI2 __ANIMLINENAME = {  ((ANIM_CMD_SET_EXTRA_VALUE_AFTER_LAST << 25) | ((param1 | param2) << 15) | n), { (r1 << 24) | (g1 << 16) | (b1 << 8) | a1, (r2 << 24) | (g2 << 16) | (b2 << 8) | a2 } }
+
+#define asSetExtraAfter_1f(n, param1, r1, g1, b1, a1) {  ((ANIM_CMD_SET_EXTRA_VALUE_AFTER << 25) | ((param1) << 15) | n), { (r1 << 24) | (g1 << 16) | (b1 << 8) | a1 } }
 
 #endif

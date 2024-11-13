@@ -107,9 +107,12 @@ enum SoundIds {
     SOUND_ID_39 = 39,
     SOUND_ID_40 = 40,
     SOUND_ID_41 = 41,
+    SOUND_ID_47 = 47,
+    SOUND_ID_48 = 48,
     SOUND_ID_49 = 49,
     SOUND_ID_50 = 50,
     SOUND_ID_51 = 51,
+    SOUND_ID_52 = 52,
     SOUND_ID_54 = 54,
     SOUND_ID_55 = 55,
     SOUND_ID_56 = 56,
@@ -212,8 +215,10 @@ enum SongIds {
     SONG_ID_1 = 1,
     SONG_ID_2 = 2,
     SONG_ID_3 = 3,
+    SONG_TUNNEL = 4,
     SONG_VOLCANO = 6,
-    SONG_ID_10 = 10
+    SONG_ID_10 = 10,
+    SONG_ID_21 = 21
 };
 
 enum Links {

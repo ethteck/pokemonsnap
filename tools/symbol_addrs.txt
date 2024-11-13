@@ -1,6 +1,9 @@
 D_0E000000 = 0xE000000;
 D_0E000008 = 0xE000008;
 D_0E000010 = 0xE000010;
+D_0E000018 = 0xE000018;
+D_0E000020 = 0xE000020;
+D_0E000028 = 0xE000028;
 
 game_main = 0x80000870;
 
@@ -2267,3 +2270,113 @@ pkmn_1016_draw = 0x8013B080; // segment:tunnel_assets
 pkmn_1016_vtx = 0x8013B410; // segment:tunnel_assets size:0x610
 pkmn_1017_draw = 0x8013BA20; // segment:tunnel_assets
 pkmn_1017_vtx = 0x8013BD90; // segment:tunnel_assets size:0x4A0
+
+magnemite_vtx = 0x8032A050; // segment:tunnel_code size:0x1620
+magnemite_first = 0x8032B670; // segment:tunnel_code
+magnemite_part0_draw_near = 0x8032B6A8; // segment:tunnel_code
+magnemite_part0_draw = 0x8032B8C8; // segment:tunnel_code
+magnemite_part1_draw_near = 0x8032B8E8; // segment:tunnel_code
+magnemite_part1_draw = 0x8032BA70; // segment:tunnel_code
+magnemite_part2_draw_near = 0x8032BA88; // segment:tunnel_code
+magnemite_part2_draw = 0x8032BB48; // segment:tunnel_code
+magnemite_part3_draw_near = 0x8032BB60; // segment:tunnel_code
+magnemite_part3_draw = 0x8032BCC0; // segment:tunnel_code
+magnemite_part4_draw_near = 0x8032BCD8; // segment:tunnel_code
+magnemite_part4_draw = 0x8032BE38; // segment:tunnel_code
+magnemite_part5_draw_near = 0x8032BE50; // segment:tunnel_code
+magnemite_part5_draw = 0x8032BFD0; // segment:tunnel_code
+magnemite_last = 0x8032BFE8; // segment:tunnel_code
+magnemite_part6_draw_near = 0x8032C010; // segment:tunnel_code
+magnemite_part6_draw = 0x8032C0F0; // segment:tunnel_code
+
+magnemite_tex_screw_frame0_pal = 0x8015B408; // segment:tunnel_code
+magnemite_tex_body_frame0_pal = 0x8015BE98; // segment:tunnel_code
+magnemite_tex_eye_frame0_pal = 0x8015C2C8; // segment:tunnel_code
+magnemite_tex_wave_png = 0x8015C980; // segment:tunnel_code
+magnemite_tex_magnet_frame0_pal = 0x8015D5E8; // segment:tunnel_code
+magnemite_tex_screw_thread_frame0_pal = 0x8015E278; // segment:tunnel_code
+
+magnemite_modelanim_move = 0x8015EBD0; // segment:tunnel_assets
+magnemite_modelanim_idle = 0x8015EE30; // segment:tunnel_assets
+magnemite_modelanim_pulse = 0x8015E8C0; // segment:tunnel_assets
+magnemite_modelanim_run = 0x8015E6A0; // segment:tunnel_assets
+magnemite_modelanim_hit = 0x8015F3B0; // segment:tunnel_assets
+magnemite_modelanim_react = 0x8015F900; // segment:tunnel_assets
+magnemite_matanim_pulse = 0x80160260; // segment:tunnel_assets
+
+magneton_vtx = 0x8033B3F0; // segment:tunnel_code size:0x2D00
+magneton_first = 0x8033E0F0; // segment:tunnel_code
+magneton_part0 = 0x8033E110; // segment:tunnel_code
+magneton_part1 = 0x8033E2F8; // segment:tunnel_code
+magneton_part2 = 0x8033E3D0; // segment:tunnel_code
+magneton_part3 = 0x8033E588; // segment:tunnel_code
+magneton_part4 = 0x8033E740; // segment:tunnel_code
+magneton_part5 = 0x8033E888; // segment:tunnel_code
+magneton_part6 = 0x8033E9D0; // segment:tunnel_code
+magneton_part7 = 0x8033EB48; // segment:tunnel_code
+magneton_part8 = 0x8033ED30; // segment:tunnel_code
+magneton_part9 = 0x8033EE08; // segment:tunnel_code
+magneton_part10 = 0x8033EFC0; // segment:tunnel_code
+magneton_part11 = 0x8033F178; // segment:tunnel_code
+magneton_part12 = 0x8033F2C0; // segment:tunnel_code
+magneton_part13 = 0x8033F438; // segment:tunnel_code
+magneton_part14 = 0x8033F630; // segment:tunnel_code
+magneton_part15 = 0x8033F708; // segment:tunnel_code
+magneton_part16 = 0x8033F8C0; // segment:tunnel_code
+magneton_part17 = 0x8033FA78; // segment:tunnel_code
+magneton_part18 = 0x8033FBC0; // segment:tunnel_code
+magneton_part19 = 0x8033FD38; // segment:tunnel_code
+magneton_last = 0x8033FDD8; // segment:tunnel_code
+
+magneton_tex_screw_head_png = 0x8017EAD8; // segment:tunnel_code
+magneton_tex_unk_circles_png = 0x8017F2E0; // segment:tunnel_code
+magneton_tex_eye_png = 0x8017F6E8; // segment:tunnel_code
+magneton_tex_magnet_blue_png = 0x8017FF30; // segment:tunnel_code
+magneton_tex_magnet_red_png = 0x80180738; // segment:tunnel_code
+magneton_tex_screw_thread_png = 0x80180F40; // segment:tunnel_code
+
+magneton_modelanim = 0x80181F40; // segment:tunnel_assets
+
+electrode_vtx = 0x80338E88; // segment:tunnel_code size:0xFE0
+electrode_part8_draw_near = 0x80339E68; // segment:tunnel_code
+electrode_part8_draw = 0x8033A378; // segment:tunnel_code
+electrode_part10_draw_near = 0x8033A398; // segment:tunnel_code
+electrode_part10_draw = 0x8033A430; // segment:tunnel_code
+electrode_part11_draw_near = 0x8033A448; // segment:tunnel_code
+electrode_part11_draw = 0x8033A4E0; // segment:tunnel_code
+electrode_part12_draw_near = 0x8033A4F8; // segment:tunnel_code
+electrode_part12_draw = 0x8033A560; // segment:tunnel_code
+electrode_last = 0x8033A578; // segment:tunnel_code
+electrode_part0_draw_near = 0x8033A598; // segment:tunnel_code
+electrode_part0_draw = 0x8033A680; // segment:tunnel_code
+electrode_part1_draw_near = 0x8033A6A0; // segment:tunnel_code
+electrode_part1_draw = 0x8033A768; // segment:tunnel_code
+electrode_part2_draw_near = 0x8033A780; // segment:tunnel_code
+electrode_part2_draw = 0x8033A868; // segment:tunnel_code
+electrode_part3_draw_near = 0x8033A880; // segment:tunnel_code
+electrode_part3_draw = 0x8033A968; // segment:tunnel_code
+electrode_part4_draw_near = 0x8033A988; // segment:tunnel_code
+electrode_part4_draw = 0x8033AA78; // segment:tunnel_code
+electrode_part5_draw_near = 0x8033AA90; // segment:tunnel_code
+electrode_part5_draw = 0x8033AB88; // segment:tunnel_code
+electrode_part6_draw_near = 0x8033ABA0; // segment:tunnel_code
+electrode_part6_draw = 0x8033AC98; // segment:tunnel_code
+electrode_part7_draw_near = 0x8033ACB0; // segment:tunnel_code
+electrode_part7_draw = 0x8033AD98; // segment:tunnel_code
+electrode_part9_draw_near = 0x8033ADB0; // segment:tunnel_code
+electrode_part9_draw = 0x8033AE98; // segment:tunnel_code
+electrode_part13_draw_near = 0x8033AEB8; // segment:tunnel_code
+electrode_part13_draw = 0x8033AF90; // segment:tunnel_code
+
+electrode_tex_explosion1_png = 0x801797C0; // segment:tunnel_code
+electrode_tex_explosion2_code = 0x801799C8; // segment:tunnel_code
+electrode_tex_explosion3_png = 0x80179BD0; // segment:tunnel_code
+electore_tex_bright_spot_png = 0x8017A030; // segment:tunnel_code
+electrode_tex_eyebrow_png = 0x8017A868; // segment:tunnel_code
+
+electrode_modelanim_explode = 0x8017CAB0; // segment:tunnel_assets
+electrode_modelanim_idle = 0x8017D860; // segment:tunnel_assets
+electrode_modelanim_dead = 0x8017DBD0; // segment:tunnel_assets
+electrode_modelanim_roll = 0x8017DE00; // segment:tunnel_assets
+electrode_matanim_explode = 0x8017E2B0; // segment:tunnel_assets
+electrode_matanim_dead = 0x8017E8A0; // segment:tunnel_assets

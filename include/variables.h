@@ -37,5 +37,8 @@ extern u8 D_801ED020[];
 extern Gfx D_0E000000[];
 extern Gfx D_0E000008[];
 extern Gfx D_0E000010[];
+extern Gfx D_0E000018[];
+extern Gfx D_0E000020[];
+extern Gfx D_0E000028[];
 
 #endif

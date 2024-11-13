@@ -723,7 +723,7 @@ void Pokemon_RunInteractions(GObj* obj) {
 }
 
 // if multiple flags specified, setting one of them is enough to stop this process
-void Pokemon_WaitForFlag(GObj* obj, u32 flags) {
+void Pokemon_WaitForFlag(GObj* obj, s32 flags) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     while (true) {

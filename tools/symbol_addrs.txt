@@ -2368,8 +2368,8 @@ electrode_part9_draw = 0x8033AE98; // segment:tunnel_code
 electrode_part13_draw_near = 0x8033AEB8; // segment:tunnel_code
 electrode_part13_draw = 0x8033AF90; // segment:tunnel_code
 
-D_801797C0_tunnel_code = 0x801797C0; // segment:tunnel_code
-D_801799C8_tunnel_code = 0x801799C8; // segment:tunnel_code
-D_80179BD0_tunnel_code = 0x80179BD0; // segment:tunnel_code
-D_8017A030_tunnel_code = 0x8017A030; // segment:tunnel_code
-D_8017A868_tunnel_code = 0x8017A868; // segment:tunnel_code
+electrode_tex_explosion1_png = 0x801797C0; // segment:tunnel_code
+electrode_tex_explosion2_code = 0x801799C8; // segment:tunnel_code
+electrode_tex_explosion3_png = 0x80179BD0; // segment:tunnel_code
+electore_tex_bright_spot_png = 0x8017A030; // segment:tunnel_code
+electrode_tex_eyebrow_png = 0x8017A868; // segment:tunnel_code

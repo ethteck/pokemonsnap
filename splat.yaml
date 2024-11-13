@@ -639,6 +639,7 @@ segments:
     - [auto, c, magnemite/anim/model/hit]
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
+    - [auto, c, electrode/textures]
     - [auto, c, magneton/textures]
     - [auto, c, magneton/anim/animation]
     - [0x162CC0, .data, world/world]
@@ -853,6 +854,82 @@ segments:
       subsegments:
       - [0x1A63C0, snap_material_anim, pulse]
     - [0x1A6630, bin]
+    - start: 0x1BF8F0
+      type: .data
+      dir: electrode
+      name: electrode/textures
+      subsegments:
+      - [0x1BF8F0]
+      - [0x1BF8F8, palette, tex_bottom_frame0]
+      - [0x1BF918]
+      - { start: 0x1BF920, type: i4, name: tex_explosion1, flip_y: true, width: 32, height: 32 }
+      - [0x1BFB20]
+      - { start: 0x1BFB28, type: i4, name: tex_explosion2, flip_y: true, width: 32, height: 32 }
+      - [0x1BFD28]
+      - { start: 0x1BFD30, type: i4, name: tex_explosion3, flip_y: true, width: 32, height: 32 }
+      - [0x1BFF30]
+      - [0x1BFF38, palette, tex_mouth_frame1]
+      - [0x1BFF58]
+      - [0x1BFF60, palette, tex_eyes_frame1]
+      - [0x1BFF80]
+      - { start: 0x1BFF88, type: ci4, name: tex_bottom_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1C0188]
+      - { start: 0x1C0190, type: i8, name: tex_bright_spot, flip_y: true, width: 32, height: 32 }
+      - [0x1C0590]
+      - [0x1C0598, palette, tex_mouth_frame0]
+      - [0x1C05B8]
+      - { start: 0x1C05C0, type: ci4, name: tex_mouth_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x1C09C0]
+      - { start: 0x1C09C8, type: i4, name: tex_eyebrow, flip_y: true, width: 16, height: 32 }
+      - [0x1C0AC8]
+      - { start: 0x1C0AD0, type: rgba16, name: tex_body1_frame2, flip_y: true, width: 4, height: 8 }
+      - [0x1C0B10]
+      - { start: 0x1C0B18, type: rgba16, name: tex_body1_frame1, flip_y: true, width: 4, height: 8 }
+      - [0x1C0B58]
+      - { start: 0x1C0B60, type: rgba16, name: tex_body1_frame0, flip_y: true, width: 4, height: 8 }
+      - [0x1C0BA0]
+      - { start: 0x1C0BA8, type: rgba16, name: tex_body2_frame0, flip_y: true, width: 4, height: 8 }
+      - [0x1C0BE8]
+      - { start: 0x1C0BF0, type: rgba16, name: tex_body2_frame2, flip_y: true, width: 4, height: 8 }
+      - [0x1C0C30]
+      - { start: 0x1C0C38, type: rgba16, name: tex_body2_frame1, flip_y: true, width: 4, height: 8 }
+      - [0x1C0C78]
+      - [0x1C0C80, palette, tex_bottom_frame2]
+      - [0x1C0CA0]
+      - { start: 0x1C0CA8, type: ci4, name: tex_bottom_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1C0EA8]
+      - [0x1C0EB0, palette, tex_bottom_frame1]
+      - [0x1C0ED0]
+      - { start: 0x1C0ED8, type: ci4, name: tex_bottom_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1C10D8]
+      - [0x1C10E0, palette, tex_top_frame2]
+      - [0x1C1100]
+      - { start: 0x1C1108, type: ci4, name: tex_top_frame2, flip_y: true, width: 32, height: 32 }
+      - [0x1C1308]
+      - [0x1C1310, palette, tex_mouth_frame2]
+      - [0x1C1330]
+      - { start: 0x1C1338, type: ci4, name: tex_mouth_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x1C1738]
+      - [0x1C1740, palette, tex_eyes_frame2]
+      - [0x1C1760]
+      - { start: 0x1C1768, type: ci4, name: tex_eyes_frame2, flip_y: true, width: 64, height: 32 }
+      - [0x1C1B68]
+      - { start: 0x1C1B70, type: ci4, name: tex_mouth_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x1C1F70]
+      - [0x1C1F78, palette, tex_eyes_frame0]
+      - [0x1C1F98]
+      - { start: 0x1C1FA0, type: ci4, name: tex_eyes_frame0, flip_y: true, width: 64, height: 32 }
+      - [0x1C23A0]
+      - { start: 0x1C23A8, type: ci4, name: tex_eyes_frame1, flip_y: true, width: 64, height: 32 }
+      - [0x1C27A8]
+      - [0x1C27B0, palette, tex_top_frame1]
+      - [0x1C27D0]
+      - { start: 0x1C27D8, type: ci4, name: tex_top_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1C29D8]
+      - [0x1C29E0, palette, tex_top_frame0]
+      - [0x1C2A00]
+      - { start: 0x1C2A08, type: ci4, name: tex_top_frame0, flip_y: true, width: 32, height: 32 }
+    - [0x1C2C10, bin]
     - start: 0x1C4C30
       type: .data
       dir: magneton

@@ -1,40 +1,40 @@
 #include <common.h>
 
-extern u8 D_80179798[];
-extern u8 D_801797C0_tunnel_code[];
-extern u8 D_801799C8_tunnel_code[];
-extern u8 D_80179BD0_tunnel_code[];
-extern u8 D_80179DD8[];
-extern u8 D_80179E00[];
-extern u8 D_80179E28[];
-extern u8 D_8017A030_tunnel_code[];
-extern u8 D_8017A438[];
-extern u8 D_8017A460[];
-extern u8 D_8017A868_tunnel_code[];
-extern u8 D_8017A970[];
-extern u8 D_8017A9B8[];
-extern u8 D_8017AA00[];
-extern u8 D_8017AA48[];
-extern u8 D_8017AA90[];
-extern u8 D_8017AAD8[];
-extern u8 D_8017AB48[];
-extern u8 D_8017AB20[];
-extern u8 D_8017AD50[];
-extern u8 D_8017AD78[];
-extern u8 D_8017AF80[];
-extern u8 D_8017AFA8[];
-extern u8 D_8017B1B0[];
-extern u8 D_8017B1D8[];
-extern u8 D_8017B5E0[];
-extern u8 D_8017B608[];
-extern u8 D_8017BA10[];
-extern u8 D_8017BE18[];
-extern u8 D_8017BE40[];
-extern u8 D_8017C248[];
-extern u8 D_8017C650[];
-extern u8 D_8017C678[];
-extern u8 D_8017C880[];
-extern u8 D_8017C8A8[];
+extern u8 electrode_tex_bottom_frame0_pal[];
+extern u8 electrode_tex_explosion1_png[];
+extern u8 electrode_tex_explosion2_code[];
+extern u8 electrode_tex_explosion3_png[];
+extern u8 electrode_tex_mouth_frame1_pal[];
+extern u8 electrode_tex_eyes_frame1_pal[];
+extern u8 electrode_tex_bottom_frame0_png[];
+extern u8 electore_tex_bright_spot_png[];
+extern u8 electrode_tex_mouth_frame0_pal[];
+extern u8 electrode_tex_mouth_frame0_png[];
+extern u8 electrode_tex_eyebrow_png[];
+extern u8 electrode_tex_body1_frame2_png[];
+extern u8 electrode_tex_body1_frame1_png[];
+extern u8 electrode_tex_body1_frame0_png[];
+extern u8 electrode_tex_body2_frame0_png[];
+extern u8 electrode_tex_body2_frame2_png[];
+extern u8 electrode_tex_body2_frame1_png[];
+extern u8 electrode_tex_bottom_frame2_png[];
+extern u8 electrode_tex_bottom_frame2_pal[];
+extern u8 electrode_tex_bottom_frame1_pal[];
+extern u8 electrode_tex_bottom_frame1_png[];
+extern u8 electrode_tex_top_frame2_pal[];
+extern u8 electrode_tex_top_frame2_png[];
+extern u8 electrode_tex_mouth_frame2_pal[];
+extern u8 electrode_tex_mouth_frame2_png[];
+extern u8 electrode_tex_eyes_frame2_pal[];
+extern u8 electrode_tex_eyes_frame2_png[];
+extern u8 electrode_tex_mouth_frame1_png[];
+extern u8 electrode_tex_eyes_frame0_pal[];
+extern u8 electrode_tex_eyes_frame0_png[];
+extern u8 electrode_tex_eyes_frame1_png[];
+extern u8 electrode_tex_top_frame1_pal[];
+extern u8 electrode_tex_top_frame1_png[];
+extern u8 electrode_tex_top_frame0_pal[];
+extern u8 electrode_tex_top_frame0_png[];
 
 extern Texture* electrode_part1_mat[];
 extern Texture* electrode_part2_mat[];
@@ -70,69 +70,69 @@ Texture** electrode_materials[] = {
 };
 
 u8* electrode_part11_mat0_textures[] = {
-    D_8017AA00,
-    D_8017A9B8,
-    D_8017A970,
-    D_8017A970
+    electrode_tex_body1_frame0_png,
+    electrode_tex_body1_frame1_png,
+    electrode_tex_body1_frame2_png,
+    electrode_tex_body1_frame2_png
 };
 
 u8* electrode_part11_mat1_textures[] = {
-    D_8017BE40,
-    D_8017C248,
-    D_8017B608,
-    D_8017B608
+    electrode_tex_eyes_frame0_png,
+    electrode_tex_eyes_frame1_png,
+    electrode_tex_eyes_frame2_png,
+    electrode_tex_eyes_frame2_png
 };
 
 u8* electrode_part11_mat1_palettes[] = {
-    D_8017BE18,
-    D_80179E00,
-    D_8017B5E0
+    electrode_tex_eyes_frame0_pal,
+    electrode_tex_eyes_frame1_pal,
+    electrode_tex_eyes_frame2_pal
 };
 
 u8* electrode_part11_mat2_textures[] = {
-    D_8017AA48,
-    D_8017AAD8,
-    D_8017AA90,
-    D_8017AA90
+    electrode_tex_body2_frame0_png,
+    electrode_tex_body2_frame1_png,
+    electrode_tex_body2_frame2_png,
+    electrode_tex_body2_frame2_png
 };
 
 u8* electrode_part11_mat3_textures[] = {
-    D_8017C8A8,
-    D_8017C678,
-    D_8017AFA8,
-    D_8017AFA8
+    electrode_tex_top_frame0_png,
+    electrode_tex_top_frame1_png,
+    electrode_tex_top_frame2_png,
+    electrode_tex_top_frame2_png
 };
 
 u8* electrode_part11_mat3_palettes[] = {
-    D_8017C880,
-    D_8017C650,
-    D_8017AF80
+    electrode_tex_top_frame0_pal,
+    electrode_tex_top_frame1_pal,
+    electrode_tex_top_frame2_pal
 };
 
 u8* electrode_part11_mat4_textures[] = {
-    D_8017A460,
-    D_8017BA10,
-    D_8017B1D8,
-    D_8017B1D8
+    electrode_tex_mouth_frame0_png,
+    electrode_tex_mouth_frame1_png,
+    electrode_tex_mouth_frame2_png,
+    electrode_tex_mouth_frame2_png
 };
 
 u8* electrode_part11_mat4_palettes[] = {
-    D_8017A438,
-    D_80179DD8,
-    D_8017B1B0
+    electrode_tex_mouth_frame0_pal,
+    electrode_tex_mouth_frame1_pal,
+    electrode_tex_mouth_frame2_pal
 };
 
 u8* electrode_part11_mat5_textures[] = {
-    D_80179E28,
-    D_8017AD78,
-    D_8017AB48,
-    D_8017AB48
+    electrode_tex_bottom_frame0_png,
+    electrode_tex_bottom_frame1_png,
+    electrode_tex_bottom_frame2_png,
+    electrode_tex_bottom_frame2_png
 };
 
 u8* electrode_part11_mat5_palettes[] = {
-    D_80179798,
-    D_8017AD50,
-    D_8017AB20
+    electrode_tex_bottom_frame0_pal,
+    electrode_tex_bottom_frame1_pal,
+    electrode_tex_bottom_frame2_pal
 };
 
 Texture electrode_part1_mat0 = {

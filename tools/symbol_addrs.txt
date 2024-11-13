@@ -1,6 +1,9 @@
 D_0E000000 = 0xE000000;
 D_0E000008 = 0xE000008;
 D_0E000010 = 0xE000010;
+D_0E000018 = 0xE000018;
+D_0E000020 = 0xE000020;
+D_0E000028 = 0xE000028;
 
 game_main = 0x80000870;
 
@@ -2333,3 +2336,40 @@ magneton_tex_magnet_red_png = 0x80180738; // segment:tunnel_code
 magneton_tex_screw_thread_png = 0x80180F40; // segment:tunnel_code
 
 magneton_modelanim = 0x80181F40; // segment:tunnel_assets
+
+electrode_vtx = 0x80338E88; // segment:tunnel_code size:0xFE0
+electrode_part8_draw_near = 0x80339E68; // segment:tunnel_code
+electrode_part8_draw = 0x8033A378; // segment:tunnel_code
+electrode_part10_draw_near = 0x8033A398; // segment:tunnel_code
+electrode_part10_draw = 0x8033A430; // segment:tunnel_code
+electrode_part11_draw_near = 0x8033A448; // segment:tunnel_code
+electrode_part11_draw = 0x8033A4E0; // segment:tunnel_code
+electrode_part12_draw_near = 0x8033A4F8; // segment:tunnel_code
+electrode_part12_draw = 0x8033A560; // segment:tunnel_code
+electrode_last = 0x8033A578; // segment:tunnel_code
+electrode_part0_draw_near = 0x8033A598; // segment:tunnel_code
+electrode_part0_draw = 0x8033A680; // segment:tunnel_code
+electrode_part1_draw_near = 0x8033A6A0; // segment:tunnel_code
+electrode_part1_draw = 0x8033A768; // segment:tunnel_code
+electrode_part2_draw_near = 0x8033A780; // segment:tunnel_code
+electrode_part2_draw = 0x8033A868; // segment:tunnel_code
+electrode_part3_draw_near = 0x8033A880; // segment:tunnel_code
+electrode_part3_draw = 0x8033A968; // segment:tunnel_code
+electrode_part4_draw_near = 0x8033A988; // segment:tunnel_code
+electrode_part4_draw = 0x8033AA78; // segment:tunnel_code
+electrode_part5_draw_near = 0x8033AA90; // segment:tunnel_code
+electrode_part5_draw = 0x8033AB88; // segment:tunnel_code
+electrode_part6_draw_near = 0x8033ABA0; // segment:tunnel_code
+electrode_part6_draw = 0x8033AC98; // segment:tunnel_code
+electrode_part7_draw_near = 0x8033ACB0; // segment:tunnel_code
+electrode_part7_draw = 0x8033AD98; // segment:tunnel_code
+electrode_part9_draw_near = 0x8033ADB0; // segment:tunnel_code
+electrode_part9_draw = 0x8033AE98; // segment:tunnel_code
+electrode_part13_draw_near = 0x8033AEB8; // segment:tunnel_code
+electrode_part13_draw = 0x8033AF90; // segment:tunnel_code
+
+D_801797C0_tunnel_code = 0x801797C0; // segment:tunnel_code
+D_801799C8_tunnel_code = 0x801799C8; // segment:tunnel_code
+D_80179BD0_tunnel_code = 0x80179BD0; // segment:tunnel_code
+D_8017A030_tunnel_code = 0x8017A030; // segment:tunnel_code
+D_8017A868_tunnel_code = 0x8017A868; // segment:tunnel_code

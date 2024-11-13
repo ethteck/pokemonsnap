@@ -354,8 +354,8 @@ PokemonAnimationSetup electrode_animSetup = {
 };
 
 PokemonInitData electrode_initData = {
-    0x8033B0A0,
-    0x803385C0,
+    electrode_model,
+    electrode_materials,
     renderPokemonModelTypeDFogged,
     &electrode_animSetup,
     { 1.4, 1.4, 1.4 },

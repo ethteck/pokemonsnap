@@ -62,6 +62,8 @@ extern u8 D_80158DF8_19EF58[];
 extern Texture** magnemite_materials[];
 extern UnkEC64Arg3 magnemite_model[];
 extern UnkEC64Arg3 magneton_model[];
+extern Texture** electrode_materials[];
+extern UnkEC64Arg3 electrode_model[];
 
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;

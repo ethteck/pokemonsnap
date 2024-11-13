@@ -3160,6 +3160,7 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [auto, c, magnemite/model]
+    - [auto, c, electrode/model]
     - [auto, c, magneton/model]
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
@@ -3206,6 +3207,44 @@ segments:
       - [0x6290E0, gfx, part6_draw_near]
       - [0x6291C0, gfx, part6_draw]
     - { start: 0x629490, type: bin, linker_section_order: .rodata }
+    - start: 0x635690
+      type: .data
+      name: electrode/model
+      dir: electrode
+      linker_section_order: .rodata
+      subsegments:
+      - [0x635690]
+      - [0x635F58, vtx, model]
+      - [0x636F38, gfx, part8_draw_near]
+      - [0x637448, gfx, part8_draw]
+      - [0x637468, gfx, part10_draw_near]
+      - [0x637500, gfx, part10_draw]
+      - [0x637518, gfx, part11_draw_near]
+      - [0x6375B0, gfx, part11_draw]
+      - [0x6375C8, gfx, part12_draw_near]
+      - [0x637630, gfx, part12_draw]
+      - [0x637648, gfx, last]
+      - [0x637668, gfx, part0_draw_near]
+      - [0x637750, gfx, part0_draw]
+      - [0x637770, gfx, part1_draw_near]
+      - [0x637838, gfx, part1_draw]
+      - [0x637850, gfx, part2_draw_near]
+      - [0x637938, gfx, part2_draw]
+      - [0x637950, gfx, part3_draw_near]
+      - [0x637A38, gfx, part3_draw]
+      - [0x637A58, gfx, part4_draw_near]
+      - [0x637B48, gfx, part4_draw]
+      - [0x637B60, gfx, part5_draw_near]
+      - [0x637C58, gfx, part5_draw]
+      - [0x637C70, gfx, part6_draw_near]
+      - [0x637D68, gfx, part6_draw]
+      - [0x637D80, gfx, part7_draw_near]
+      - [0x637E68, gfx, part7_draw]
+      - [0x637E80, gfx, part9_draw_near]
+      - [0x637F68, gfx, part9_draw]
+      - [0x637F88, gfx, part13_draw_near]
+      - [0x638060, gfx, part13_draw]
+      - [0x638090]
     - start: 0x6384C0
       type: .data
       name: magneton/model

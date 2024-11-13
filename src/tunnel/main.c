@@ -56,7 +56,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_ELECTRODE,
-      func_802E5C74_5E2D44,
+      electrode_Spawn,
       pokemonChangeBlockOnGround,
       pokemonRemoveOne },
     { PokemonID_DIGLETT,

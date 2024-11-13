@@ -4,9 +4,13 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_37 POKEMON_CMD_37
+#define TUNNEL_CMD_39 POKEMON_CMD_39
+#define TUNNEL_CMD_40 POKEMON_CMD_40
 #define TUNNEL_CMD_MAGNEMITE_ATTRACT POKEMON_CMD_44
 #define TUNNEL_CMD_3_MAGNEMITES_COMBINED POKEMON_CMD_45
 #define TUNNEL_CMD_DELETE_MAGNEMITE POKEMON_CMD_46
+#define TUNNEL_CMD_54 POKEMON_CMD_54
 #define TUNNEL_CMD_MAGNEMITE_ZOOMED_IN POKEMON_CMD_55
 
 extern u8 D_8014DDE0_193F40[];
@@ -71,7 +75,7 @@ void tunnel_SpawnMagneton(GObj*);
 
 GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E5C74_5E2D44(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* electrode_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E6420_5E34F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E6C28_5E3CF8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E7620_5E46F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

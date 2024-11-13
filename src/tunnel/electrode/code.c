@@ -1,4 +1,4 @@
-#include "tunnel.h"
+#include "../tunnel.h"
 
 void func_802E53DC_5E24AC(GObj*);
 void func_802E5668_5E2738(GObj*);
@@ -14,17 +14,74 @@ void func_802E54F0_5E25C0(GObj*);
 void func_802E556C_5E263C(GObj*);
 void func_802E56D8_5E27A8(GObj*);
 void func_802E58B0_5E2980(GObj*);
+void func_802E5134_5E2204(GObj*);
+void func_802E5968_5E2A38(GObj*);
+void func_802E5748_5E2818(GObj*);
+void func_802E529C_5E236C(GObj*);
 
-extern AnimationHeader D_802EE7EC_5EB8BC;
-extern AnimationHeader D_802EE800_5EB8D0;
-extern AnimationHeader D_802EE814_5EB8E4;
-extern AnimationHeader D_802EE828_5EB8F8;
-extern InteractionHandler D_802EE83C_5EB90C[];
-extern InteractionHandler D_802EE88C_5EB95C[];
-extern InteractionHandler D_802EE8B0_5EB980[];
-extern InteractionHandler D_802EE900_5EB9D0[];
-extern GObj* D_802EE8AC_5EB97C;
-extern PokemonInitData D_802EE95C_5EBA2C;
+s32 D_802EE7E0_5EB8B0[] = { 0, SOUND_ID_60, SOUND_ID_135 };
+
+AnimationHeader D_802EE7EC_5EB8BC = {
+    0.58,
+    80,
+    0x8017D860,
+    NULL,
+    NULL
+};
+
+AnimationHeader D_802EE800_5EB8D0 = {
+    0.8,
+    270,
+    0x8017CAB0,
+    0x8017E2B0,
+    D_802EE7E0_5EB8B0
+};
+
+AnimationHeader D_802EE814_5EB8E4 = {
+    0.5,
+    30,
+    0x8017DBD0,
+    0x8017E8A0,
+    NULL
+};
+
+AnimationHeader D_802EE828_5EB8F8 = {
+    0.27,
+    80,
+    0x8017DE00,
+    NULL,
+    NULL
+};
+
+InteractionHandler D_802EE83C_5EB90C[] = {
+    { POKEMON_CMD_9, func_802E529C_5E236C, 0, NULL },
+    { POKEMON_CMD_13, func_802E529C_5E236C, 0, NULL },
+    { POKEMON_CMD_10, func_802E529C_5E236C, 0, NULL },
+    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EE88C_5EB95C[] = {
+    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+GObj* D_802EE8AC_5EB97C = NULL;
+
+InteractionHandler D_802EE8B0_5EB980[] = {
+    { POKEMON_CMD_9, func_802E5748_5E2818, 0, NULL },
+    { POKEMON_CMD_13, func_802E5748_5E2818, 0, NULL },
+    { POKEMON_CMD_10, func_802E5748_5E2818, 0, NULL },
+    { TUNNEL_CMD_51, func_802E5134_5E2204, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EE900_5EB9D0[] = {
+    { POKEMON_CMD_9, func_802E5968_5E2A38, 0, NULL },
+    { POKEMON_CMD_13, func_802E5968_5E2A38, 0, NULL },
+    { POKEMON_CMD_10, func_802E5968_5E2A38, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
 
 extern GObj* D_802EEECC_5EBF9C;
 
@@ -219,21 +276,11 @@ POKEMON_FUNC(func_802E58B0_5E2980)
     pokemon->pathProc = NULL;
     omEndProcess(NULL);
 }
-typedef struct UnkBlueShark2 {
-    /* 0x0 */ u16 unk0;
-    /* 0x2 */ u16 unk2;
-    /* 0x0 */ u16 unk4;
-    /* 0x2 */ u16 unk6;
-} UnkBlueShark2; // size: 0x4
-
-extern UnkBlueShark2 D_802EE940_5EBA10;
-
-void Pokemon_WaitForFlag(GObj* obj, s32 flags);
 
 #define SET_ANIM_FRAME(obj, pokemon, frame, flag) \
-    pokemon->pokemonLoopTarget = 1; \
-    pokemon->lastAnimationFrame = frame; \
-    pokemon->transitionGraph = NULL; \
+    pokemon->pokemonLoopTarget = 1;               \
+    pokemon->lastAnimationFrame = frame;          \
+    pokemon->transitionGraph = NULL;              \
     Pokemon_WaitForFlag(obj, flag);
 
 POKEMON_FUNC(func_802E5968_5E2A38)
@@ -242,13 +289,13 @@ POKEMON_FUNC(func_802E5968_5E2A38)
     s32 i;
     Vec3f* point;
     WorldBlock* block;
-    UnkBlueShark2 sp2C = D_802EE940_5EBA10;
+    u16 sp2C[] = { PokemonID_ELECTRODE, PokemonID_1014, PokemonID_GATE, 0 };
 
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimationAtTime(obj, &D_802EE800_5EB8D0, 0.0f);
     SET_ANIM_FRAME(obj, pokemon, 170.0f, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_RemovePokemons(&sp2C);
+    Pokemon_RemovePokemons(sp2C);
     cmdSendCommand(gObjPlayer, PLAYER_CMD_8, obj);
     ohWait(1);
 
@@ -298,6 +345,30 @@ POKEMON_FUNC(func_802E5968_5E2A38)
 
     Pokemon_SetState(obj, NULL);
 }
+
+PokemonAnimationSetup D_802EE948_5EBA18 = {
+    &D_802EE7EC_5EB8BC,
+    func_802E5160_5E2230,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_802EE95C_5EBA2C = {
+    0x8033B0A0,
+    0x803385C0,
+    renderPokemonModelTypeDFogged,
+    &D_802EE948_5EBA18,
+    { 1.4, 1.4, 1.4 },
+    { 0, 124, 0 },
+    66,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 GObj* electrode_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EE95C_5EBA2C);

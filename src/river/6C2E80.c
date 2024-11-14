@@ -24,7 +24,7 @@ extern AnimationHeader D_802E3228_6CB008;
 extern InteractionHandler D_802E324C_6CB02C[];
 extern RandomState D_802E32BC_6CB09C;
 extern Vec3f D_802E32DC_6CB0BC;
-// extern ? D_802E3308_6CB0E8;
+extern Vec3f D_802E3308_6CB0E8;
 extern PokemonInitData D_802E3328_6CB108;
 extern InteractionHandler D_802E328C_6CB06C[];
 extern InteractionHandler D_802E32E8_6CB0C8[];
@@ -260,7 +260,40 @@ void func_802DB8EC_6C36CC(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C2E80/func_802DB93C_6C371C.s")
+void func_802DB93C_6C371C(GObj* obj) {
+    DObj* model = obj->data.dobj;
+    Mtx3Float* position = &GET_TRANSFORM(model)->pos;
+    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    Vec3f sp84 = D_802E3308_6CB0E8;
+    GroundResult ground;
+    WorldBlock* block;
+    s32 i;
+
+    for (i = 0; i < pokemon->path->numPoints; i++) {
+        pokemon->tangible = false;
+        obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+        ohWait(75);
+        pokemon->tangible = true;
+        obj->flags = 0;
+        block = getCurrentWorldBlock();
+        position->v.x = -(block->descriptor->worldPos.x * 100.0f);
+        position->v.z = -(block->descriptor->worldPos.z * 100.0f);
+        GetInterpolatedPosition(&sp84, pokemon->path, pokemon->path->paramPoints[i]);
+        position->v.x = (position->v.x + (sp84.x * 100.0f));
+        position->v.z = (position->v.z + (sp84.z * 100.0f));
+        getGroundAt(position->v.x, position->v.z, &ground);
+        position->v.y = ground.height;
+        func_8035E174_4FE584(obj, &position->v);
+        Pokemon_ForceAnimation(obj, &D_802E319C_6CAF7C);
+        rotation->f[2] = (randRange(360) * PI) / 180.0f;
+        Pokemon_StartPathProc(obj, func_802DB270_6C3050);
+        pokemon->transitionGraph = NULL;
+        Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    }
+    Pokemon_RunCleanup(obj);
+    Pokemon_SetState(obj, NULL);
+}
 
 GObj* func_802DBB54_6C3934(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802E3328_6CB108);

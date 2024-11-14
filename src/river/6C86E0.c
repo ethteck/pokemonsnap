@@ -282,7 +282,30 @@ void func_802E1194_6C8F74(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C86E0/func_802E11D4_6C8FB4.s")
+void func_802E11D4_6C8FB4(GObj* obj) {
+    WorldBlock* block;
+    Vec3f* point;
+    UNUSED s32 pad;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    UNUSED s32 pad2[5];
+    Mtx3Float* pos = &pokemon->interactionTarget->data.dobj->position;
+    f32 x, y, z;
+
+    block = getCurrentWorldBlock();
+    point = &pokemon->path->points[pokemon->path->numPoints];
+    x = ((point->x - block->descriptor->worldPos.x) * 100.0f);
+    y = ((point->y - block->descriptor->worldPos.y) * 100.0f);
+    z = ((point->z - block->descriptor->worldPos.z) * 100.0f);
+
+    x -= pos->v.x;
+    y -= pos->v.y;
+    z -= pos->v.z;
+
+    if (sqrtf(SQ(x) + SQ(y) + SQ(z)) < 310.0f) {
+        Pokemon_SetState(obj, func_802E12D8_6C90B8);
+    }
+    Pokemon_SetState(obj, func_802E1194_6C8F74);
+}
 
 void func_802E12D8_6C90B8(GObj* obj) {
     UNUSED s32 pad[3];

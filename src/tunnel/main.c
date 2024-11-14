@@ -62,7 +62,7 @@ PokemonDef tunnel_PokemonDefs[] = {
     { PokemonID_DIGLETT,
       diglett_Spawn,
       pokemonChangeBlockOnGround,
-      func_802E6458_5E3528 },
+      diglett_Remove },
     { PokemonID_DUGTRIO,
       dugtrio_Spawn,
       pokemonChangeBlockOnGround,

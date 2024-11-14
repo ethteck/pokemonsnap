@@ -4,9 +4,9 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
-#define TUNNEL_CMD_31 POKEMON_CMD_31
-#define TUNNEL_CMD_32 POKEMON_CMD_32
-#define TUNNEL_CMD_33 POKEMON_CMD_33
+#define TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP POKEMON_CMD_31
+#define TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP POKEMON_CMD_32
+#define TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP POKEMON_CMD_33
 #define TUNNEL_CMD_34 POKEMON_CMD_34
 #define TUNNEL_CMD_37 POKEMON_CMD_37
 #define TUNNEL_CMD_39 POKEMON_CMD_39
@@ -106,7 +106,7 @@ GObj* func_802EC720_5E97F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802ECA80_5E9B50(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EDEC0_5EAF90(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802ECFC8_5EA098(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_802E6458_5E3528(GObj*);
+void diglett_Remove(GObj*);
 void func_802E6C74_5E3D44(GObj*);
 void func_802EA45C_5E752C(GObj*);
 void func_802EC398_5E9468(GObj*);

@@ -1,16 +1,16 @@
 #include "../tunnel.h"
 
-void func_802E5D94_5E2E64(GObj*);
-void func_802E5F98_5E3068(GObj*);
-void func_802E61DC_5E32AC(GObj*);
-void func_802E5CB0_5E2D80(GObj*);
-void func_802E5D6C_5E2E3C(GObj*);
-void func_802E5FD8_5E30A8(GObj*);
-void func_802E621C_5E32EC(GObj*);
+void diglett_FirstRise(GObj*);
+void diglett_SecondIdle(GObj*);
+void diglett_ThirdIdle(GObj*);
+void diglett_InitialState(GObj*);
+void diglett_PhotoTaken(GObj*);
+void diglett_SecondRise(GObj*);
+void diglett_ThirdRise(GObj*);
 
-s32 D_802EE990_5EBA60[] = { SOUND_ID_218 };
+s32 diglett_animsounds_rise[] = { SOUND_ID_218 };
 
-AnimationHeader D_802EE994_5EBA64 = {
+AnimationHeader diglett_animation_look_around = {
     0.55,
     60,
     0x80161D70,
@@ -18,7 +18,7 @@ AnimationHeader D_802EE994_5EBA64 = {
     NULL
 };
 
-AnimationHeader D_802EE9A8_5EBA78 = {
+AnimationHeader diglett_animation_turn = {
     0.65,
     25,
     0x80162570,
@@ -26,7 +26,7 @@ AnimationHeader D_802EE9A8_5EBA78 = {
     NULL
 };
 
-AnimationHeader D_802EE9BC_5EBA8C = {
+AnimationHeader diglett_animation_unburrow = {
     0.6,
     70,
     0x80162EB0,
@@ -34,15 +34,15 @@ AnimationHeader D_802EE9BC_5EBA8C = {
     NULL
 };
 
-AnimationHeader D_802EE9D0_5EBAA0 = {
+AnimationHeader diglett_animation_rise = {
     0.6,
     10,
     0x80162960,
     0x80163D40,
-    D_802EE990_5EBA60
+    diglett_animsounds_rise
 };
 
-AnimationHeader D_802EE9E4_5EBAB4 = {
+AnimationHeader diglett_animation_burrow = {
     0.65,
     25,
     0x801622F0,
@@ -50,40 +50,40 @@ AnimationHeader D_802EE9E4_5EBAB4 = {
     NULL
 };
 
-InteractionHandler D_802EE9F8_5EBAC8[] = {
-    { POKEMON_CMD_24, NULL, 0, func_802E5D6C_5E2E3C },
+InteractionHandler diglett_tg_ReadyForPhoto[] = {
+    { POKEMON_CMD_24, NULL, 0, diglett_PhotoTaken },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EEA18_5EBAE8[] = {
-    { TUNNEL_CMD_31, func_802E5D94_5E2E64, 0, NULL },
+InteractionHandler diglett_tg_First[] = {
+    { TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, diglett_FirstRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EEA38_5EBB08[] = {
-    { TUNNEL_CMD_32, func_802E5FD8_5E30A8, 0, NULL },
+InteractionHandler diglett_tg_Second[] = {
+    { TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP, diglett_SecondRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-InteractionHandler D_802EEA58_5EBB28[] = {
-    { TUNNEL_CMD_33, func_802E621C_5E32EC, 0, NULL },
+InteractionHandler diglett_tg_Third[] = {
+    { TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP, diglett_ThirdRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802EEA78_5EBB48 = {
-    &D_802EE994_5EBA64,
-    func_802E5CB0_5E2D80,
+PokemonAnimationSetup diglett_animSetup = {
+    &diglett_animation_look_around,
+    diglett_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802EEA8C_5EBB5C = {
+PokemonInitData diglett_initData = {
     0x8032E3D0,
     0x8032C3C0,
     renderPokemonModelTypeBFogged,
-    &D_802EEA78_5EBB48,
+    &diglett_animSetup,
     { 2.4, 2.4, 2.4 },
     { 0, 47, 0 },
     13,
@@ -94,35 +94,35 @@ PokemonInitData D_802EEA8C_5EBB5C = {
     { 0, 0, 0 }
 };
 
-extern s32 D_80343138_640208;
+extern s32 diglett_IsPhotoTaken;
 
-POKEMON_FUNC(func_802E5CB0_5E2D80)
+POKEMON_FUNC(diglett_InitialState)
     pokemon->tangible = false;
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->miscVars->field0 = pokemon->collisionRadius;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
     if (pokemon->behavior == 1) {
-        Pokemon_SetState(obj, func_802E5D94_5E2E64);
+        Pokemon_SetState(obj, diglett_FirstRise);
     }
     if (pokemon->behavior == 2) {
-        Pokemon_SetState(obj, func_802E5F98_5E3068);
+        Pokemon_SetState(obj, diglett_SecondIdle);
     }
     if (pokemon->behavior == 3) {
-        Pokemon_SetState(obj, func_802E61DC_5E32AC);
+        Pokemon_SetState(obj, diglett_ThirdIdle);
     }
 
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E5D6C_5E2E3C)
-    D_80343138_640208 = true;
+POKEMON_FUNC(diglett_PhotoTaken)
+    diglett_IsPhotoTaken = true;
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(func_802E5D94_5E2E64)
+POKEMON_FUNC(diglett_FirstRise)
     D_802EEEC4_5EBF94 = obj;
-    D_80343138_640208 = false;
+    diglett_IsPhotoTaken = false;
 
     pokemon->counter = 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -131,7 +131,7 @@ POKEMON_FUNC(func_802E5D94_5E2E64)
     pokemon->tangible = true;
     obj->flags = 0;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9BC_5EBA8C);
+    Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
     pokemon->counter = 110, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -143,46 +143,46 @@ POKEMON_FUNC(func_802E5D94_5E2E64)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags &= ~POKEMON_FLAG_8;
-    Pokemon_SetAnimation(obj, &D_802EE9D0_5EBAA0);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_rise);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE994_5EBA64);
-    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE9A8_5EBA78);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_turn);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9E4_5EBAB4);
+    Pokemon_SetAnimation(obj, &diglett_animation_burrow);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    if (D_80343138_640208) {
+    if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 1;
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_32, obj);
-        pokemon->transitionGraph = D_802EEA18_5EBAE8;
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP, obj);
+        pokemon->transitionGraph = diglett_tg_First;
         Pokemon_WaitForFlag(obj, 0);
     }
 
-    Pokemon_SetState(obj, func_802E5D94_5E2E64);
+    Pokemon_SetState(obj, diglett_FirstRise);
 }
 
-POKEMON_FUNC(func_802E5F98_5E3068)
-    pokemon->transitionGraph = D_802EEA38_5EBB08;
+POKEMON_FUNC(diglett_SecondIdle)
+    pokemon->transitionGraph = diglett_tg_Second;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E5FD8_5E30A8)
+POKEMON_FUNC(diglett_SecondRise)
     D_802EEEC4_5EBF94 = obj;
-    D_80343138_640208 = false;
+    diglett_IsPhotoTaken = false;
 
     pokemon->counter = 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -191,7 +191,7 @@ POKEMON_FUNC(func_802E5FD8_5E30A8)
     pokemon->tangible = true;
     obj->flags = 0;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9BC_5EBA8C);
+    Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
     pokemon->counter = 110, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -203,46 +203,46 @@ POKEMON_FUNC(func_802E5FD8_5E30A8)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags &= ~POKEMON_FLAG_8;
-    Pokemon_SetAnimation(obj, &D_802EE9D0_5EBAA0);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_rise);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE994_5EBA64);
-    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE9A8_5EBA78);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_turn);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9E4_5EBAB4);
+    Pokemon_SetAnimation(obj, &diglett_animation_burrow);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    if (D_80343138_640208) {
+    if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 2;
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_33, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP, obj);
     } else {
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_31, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, obj);
     }
 
-    Pokemon_SetState(obj, func_802E5F98_5E3068);
+    Pokemon_SetState(obj, diglett_SecondIdle);
 }
 
-POKEMON_FUNC(func_802E61DC_5E32AC)
-    pokemon->transitionGraph = D_802EEA58_5EBB28;
+POKEMON_FUNC(diglett_ThirdIdle)
+    pokemon->transitionGraph = diglett_tg_Third;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(func_802E621C_5E32EC)
+POKEMON_FUNC(diglett_ThirdRise)
     D_802EEEC4_5EBF94 = obj;
-    D_80343138_640208 = false;
+    diglett_IsPhotoTaken = false;
 
     pokemon->counter = 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -251,7 +251,7 @@ POKEMON_FUNC(func_802E621C_5E32EC)
     pokemon->tangible = true;
     obj->flags = 0;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9BC_5EBA8C);
+    Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
     pokemon->counter = 110, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -263,42 +263,42 @@ POKEMON_FUNC(func_802E621C_5E32EC)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags &= ~POKEMON_FLAG_8;
-    Pokemon_SetAnimation(obj, &D_802EE9D0_5EBAA0);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_rise);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE994_5EBA64);
-    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EE9A8_5EBA78);
-    pokemon->transitionGraph = D_802EE9F8_5EBAC8;
+    Pokemon_SetAnimation(obj, &diglett_animation_turn);
+    pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->collisionRadius = 0.0f;
-    Pokemon_SetAnimation(obj, &D_802EE9E4_5EBAB4);
+    Pokemon_SetAnimation(obj, &diglett_animation_burrow);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    if (D_80343138_640208) {
+    if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 4;
         cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_34, obj);
     } else {
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_31, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, obj);
     }
 
-    Pokemon_SetState(obj, func_802E61DC_5E32AC);
+    Pokemon_SetState(obj, diglett_ThirdIdle);
 }
 
 GObj* diglett_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802EEA8C_5EBB5C);
+    return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &diglett_initData);
 }
 
-void func_802E6458_5E3528(GObj* obj) {
+void diglett_Remove(GObj* obj) {
     if (D_802EEEC4_5EBF94 == obj) {
         D_802EEEC4_5EBF94 = NULL;
     }

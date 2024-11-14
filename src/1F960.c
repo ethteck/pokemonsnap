@@ -13,7 +13,7 @@ void func_8001EEA4(Vec3f* arg0, Vec3f* arg1, f32 arg2, f32 arg3) {
     f32 temp_f8;
     f32 other;
 
-    temp_f0 = arg3 * arg3;
+    temp_f0 = SQ(arg3);
     temp_f2 = (-3.0f * temp_f0 + 4.0f * arg3 - 1.0f) * arg2;
     temp_f8 = arg2 - 3.0f;
     other = arg2;
@@ -39,7 +39,7 @@ void func_8001F190(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
     f32 temp_f2;
     f32 temp_f8;
 
-    temp_f0 = arg2 * arg2;
+    temp_f0 = SQ(arg2);
     temp_f8 = 1.0f - arg2;
     temp_f2 = -0.5f * temp_f8 * temp_f8;
     temp_f14 = ((3.0f * temp_f0) - (4.0f * arg2)) * 0.5f;

@@ -524,7 +524,7 @@ s32 album_UpdateAlbumPage(void) {
                 }
                 break;
             case ALBUM_PAGE_PHOTO_DETAILS:
-                if (input->pressedButtons & 0xC000) {
+                if (input->pressedButtons & (A_BUTTON | B_BUTTON)) {
                     auPlaySound(SOUND_ID_67);
                     func_801DF744_9A9994(2, album_SelectedPhoto);
                     buttonIndex = 0;
@@ -616,7 +616,7 @@ s32 album_UpdateAlbumPage(void) {
                 } else {
                     UILayout_HideHeaderElement(HEADER_PREV);
                 }
-                if (input->pressedButtons & 0x4000) {
+                if (input->pressedButtons & B_BUTTON) {
                     auPlaySound(SOUND_ID_65);
                     album_SelectedPhoto -= album_SelectedPhoto % 6;
                     UILayout_HideHeaderElement(HEADER_PREV | HEADER_NEXT);

@@ -1194,16 +1194,16 @@ void func_801E07C0_9D7130(void) {
 }
 
 s32 func_801E0B8C_9D74FC(UIElement* arg0, char** arg1, s32 arg2) {
-    s32 sp1C;
+    s32 button;
 
     UIText_SetPrintDelay(2);
 
     for (; *arg1 != 0; arg1++) {
         UIElement_Draw(arg0);
         UIElement_PrintText(arg0, *arg1);
-        sp1C = func_80374F30_8486E0(arg0, true);
-        if (arg2 != 0 && sp1C == 0x4000) {
-            return 0x4000;
+        button = func_80374F30_8486E0(arg0, true);
+        if (arg2 != 0 && button == B_BUTTON) {
+            return B_BUTTON;
         }
     }
 

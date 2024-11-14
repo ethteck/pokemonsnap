@@ -9,27 +9,27 @@ void func_800E44A0_8A9CC0(void) {
 }
 
 s32 func_800E44A8_8A9CC8(UIElement* arg0, s32 arg1) {
-    s32 sp1C;
+    s32 button;
     UnkStruct800BEDF8* var_v0;
     s32 temp_v1;
 
-    sp1C = 0;
+    button = 0;
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
-    while (!(var_v0->pressedButtons & 0xC000)) {
+    while (!(var_v0->pressedButtons & (A_BUTTON | B_BUTTON))) {
         ohWait(1);
         var_v0 = func_800AA38C(0);
     }
     temp_v1 = var_v0->currentButtons;
-    if (temp_v1 & 0x8000) {
-        sp1C = 0x8000;
+    if (temp_v1 & A_BUTTON) {
+        button = A_BUTTON;
     }
-    if (temp_v1 & 0x4000) {
-        sp1C = 0x4000;
+    if (temp_v1 & B_BUTTON) {
+        button = B_BUTTON;
     }
-    if (temp_v1 & 0x1000) {
-        sp1C = 0x1000;
+    if (temp_v1 & START_BUTTON) {
+        button = START_BUTTON;
     }
     if (arg1 != 0) {
         auPlaySound(0x4D);
@@ -37,12 +37,12 @@ s32 func_800E44A8_8A9CC8(UIElement* arg0, s32 arg1) {
     ohWait(1);
     UIElement_Draw(arg0);
     func_8036EB80_842330(1);
-    return sp1C;
+    return button;
 }
 
 s32 func_800E4578_8A9D98(UIElement* arg0, char** arg1, s32 arg2, bool arg3) {
     s32 temp_t8;
-    s32 var_v0;
+    s32 button;
 
     for (; *arg1; arg1++) {
         UIElement_Draw(arg0);
@@ -51,12 +51,12 @@ s32 func_800E4578_8A9D98(UIElement* arg0, char** arg1, s32 arg2, bool arg3) {
             return 0;
         }
         if (arg2 == 1) {
-            var_v0 = func_800E44A8_8A9CC8(arg0, arg3);
+            button = func_800E44A8_8A9CC8(arg0, arg3);
         } else {
-            var_v0 = func_80374F30_8486E0(arg0, arg3);
+            button = func_80374F30_8486E0(arg0, arg3);
         }
-        if (arg2 == 1 && var_v0 == 0x8000) {
-            return 0x8000;
+        if (arg2 == 1 && button == A_BUTTON) {
+            return A_BUTTON;
         }
     }
 
@@ -98,7 +98,7 @@ void func_800E467C_8A9E9C(void) {
 
     while (1) {
         func_800E4578_8A9D98(temp_v0, sp3C, 0, true);
-        if (!func_800E4578_8A9D98(temp_v0, sp34, 1, false)) {
+        if (func_800E4578_8A9D98(temp_v0, sp34, 1, false) == 0) {
             break;
         }
         auPlaySound(0x53);
@@ -256,7 +256,7 @@ void func_800E4BA0_8AA3C0(void) {
     func_800E4578_8A9D98(temp_v0, sp4C, 0, true);
     while (1) {
         func_800E4578_8A9D98(temp_v0, sp3C, 0, true);
-        if (!func_800E4578_8A9D98(temp_v0, sp34, 1, false)) {
+        if (func_800E4578_8A9D98(temp_v0, sp34, 1, false) == 0) {
             break;
         }
         auPlaySound(0x53);
@@ -371,7 +371,7 @@ void func_800E4E28_8AA648(s32 arg0) {
                 break;
         }
 
-        if (!func_800E4578_8A9D98(temp_v0, sp3C, 1, false)) {
+        if (func_800E4578_8A9D98(temp_v0, sp3C, 1, false) == 0) {
             break;
         }
         auPlaySound(0x53);
@@ -430,7 +430,7 @@ void func_800E5120_8AA940(void) {
     UIElement_PrintText(sp1C, "Press \\a or \\b to save.");
     ohWait(1);
 
-    while (!(func_800AA38C(0)->pressedButtons & 0xC000)) {
+    while (!(func_800AA38C(0)->pressedButtons & (A_BUTTON | B_BUTTON))) {
         ohWait(1);
     }
 

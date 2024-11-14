@@ -137,14 +137,14 @@ void func_801DC9E8_A085D8(GObj* arg0) {
         sp3C = func_800AA38C(0);
         if (D_801DD12C_A08D1C && (--D_801DD25C_A08E4C == 0)) {
 
-        } else if (sp3C->pressedButtons & 0x8000) {
+        } else if (sp3C->pressedButtons & A_BUTTON) {
 
-        } else if (sp3C->pressedButtons & 0x4000) {
+        } else if (sp3C->pressedButtons & B_BUTTON) {
             s8 scopedTemp1;
 
             D_801DD250_A08E40 = 0x20000000;
         } else {
-            if (sp3C->pressedButtons & 0x2000) {
+            if (sp3C->pressedButtons & Z_TRIG) {
                 sp34 ^= 1;
                 if (sp34 != 0) {
                     UIFrame_Show(D_801DD254_A08E44, true);

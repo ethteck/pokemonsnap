@@ -11,27 +11,27 @@ extern GObj* D_803A66C8_879E78;
 extern char D_803A7010_87A7C0[];
 
 s32 func_80374F30_8486E0(UIElement* arg0, bool arg1) {
-    s32 sp1C;
+    s32 button;
     UnkStruct800BEDF8* var_v0;
 
-    sp1C = 0;
+    button = 0;
     UIElement_SetTextPos(arg0, 180, 32);
     UIElement_PrintText(arg0, "\\l");
     func_8036EB80_842330(0);
     ohWait(1);
     var_v0 = func_800AA38C(0);
-    while (!(var_v0->pressedButtons & 0xC000)) {
+    while (!(var_v0->pressedButtons & (A_BUTTON | B_BUTTON))) {
         ohWait(1);
         var_v0 = func_800AA38C(0);
     }
-    if (var_v0->currentButtons & 0x8000) {
-        sp1C = 0x8000;
+    if (var_v0->currentButtons & A_BUTTON) {
+        button = A_BUTTON;
     }
-    if (var_v0->currentButtons & 0x4000) {
-        sp1C = 0x4000;
+    if (var_v0->currentButtons & B_BUTTON) {
+        button = B_BUTTON;
     }
-    if (var_v0->currentButtons & 0x1000) {
-        sp1C = 0x1000;
+    if (var_v0->currentButtons & START_BUTTON) {
+        button = START_BUTTON;
     }
     if (arg1) {
         auPlaySound(0x4D);
@@ -39,7 +39,7 @@ s32 func_80374F30_8486E0(UIElement* arg0, bool arg1) {
     ohWait(1);
     UIElement_Draw(arg0);
     func_8036EB80_842330(1);
-    return sp1C;
+    return button;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/window/8486E0/func_8037501C_8487CC.s")
@@ -82,7 +82,17 @@ s32 func_8037514C_8488FC(char* str, const char* fmt, va_list args) {
     return len;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/8486E0/func_8037519C_84894C.s")
+s32 func_8037519C_84894C(UIElement* arg0, const char* fmt, ...) {
+    s32 temp_v0;
+    va_list ap;
+
+    va_start(ap, fmt);
+    VA_LIST_ALIGN(ap, fmt);
+
+    temp_v0 = func_8037514C_8488FC(D_803A7010_87A7C0, fmt, ap);
+    UIElement_PrintText(arg0, D_803A7010_87A7C0);
+    return temp_v0;
+}
 
 s32 func_803751F8_8489A8(s32 levelID) {
     if (levelID < 0 || levelID >= 7U) {

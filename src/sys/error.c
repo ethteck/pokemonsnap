@@ -6,16 +6,6 @@
 // This file is almost the same as if not identical to
 // https://github.com/VetriTheRetri/ssb-decomp-re/blob/main/src/sys/error.c
 
-// The varargs functions in this file align the va_list
-// This might be due to a change in the va_list macro from 5.3 to 7.1
-// But, until that is known as a fact, only do the alignment when
-// building for matching IDO code
-#if defined(__sgi) && !defined(NON_MATCHING)
-#define VA_LIST_ALIGN(ap, paramN) ((ap) = (va_list) ALIGN((uintptr_t) (ap), sizeof((paramN))))
-#else
-#define VA_LIST_ALIGN(ap, paramN)
-#endif
-
 #define HAL_CRASH_MSG_CPU_BREAK ((OSMesg) 1)
 #define HAL_CRASH_MSG_FAULT ((OSMesg) 2)
 

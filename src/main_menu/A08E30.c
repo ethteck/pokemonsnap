@@ -727,7 +727,7 @@ s32 func_800E30EC_A0A67C(s8 arg0) {
                 ret = 0xA;
             }
             break;
-        } else if (temp_v0->pressedButtons & 0x9000) {
+        } else if (temp_v0->pressedButtons & (A_BUTTON | START_BUTTON)) {
             ret = 3;
             break;
         } else {
@@ -949,7 +949,7 @@ s32 func_800E3974_A0AF04(s8 arg0) {
             break;
         }
 
-        if (temp_v0->pressedButtons & 0x10000) {
+        if (temp_v0->pressedButtons & STICK_SLOW_UP) {
             auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
             ohEndAllObjectProcesses(sp54[var_s0]);
             func_800E18E0_A08E70((sp54[var_s0])->data.sobj, 0xC0, 0xC0, 0);
@@ -958,14 +958,14 @@ s32 func_800E3974_A0AF04(s8 arg0) {
                 var_s0 = temp_s3 - 1;
             }
             omCreateProcess(sp54[var_s0], func_800E3240_A0A7D0, 0, 1);
-        } else if (temp_v0->pressedButtons & 0x20000) {
+        } else if (temp_v0->pressedButtons & STICK_SLOW_DOWN) {
             auPlaySoundWithParams(0x41, 0x7FFF, 0x40, 1.0f, 0);
             ohEndAllObjectProcesses(sp54[var_s0]);
             func_800E18E0_A08E70(sp54[var_s0]->data.sobj, 0xC0, 0xC0, 0);
             var_s0++;
             var_s0 %= temp_s3;
             omCreateProcess(sp54[var_s0], func_800E3240_A0A7D0, 0, 1);
-        } else if (temp_v0->pressedButtons & 0x4000) {
+        } else if (temp_v0->pressedButtons & B_BUTTON) {
             auPlaySoundWithParams(0x43, 0x7FFF, 0x40, 1.0f, 0);
             ohEndAllObjectProcesses(sp54[var_s0]);
             for (i = 0; i < temp_s3; i++) {

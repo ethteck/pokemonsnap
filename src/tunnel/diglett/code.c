@@ -3,19 +3,96 @@
 void func_802E5D94_5E2E64(GObj*);
 void func_802E5F98_5E3068(GObj*);
 void func_802E61DC_5E32AC(GObj*);
+void func_802E5CB0_5E2D80(GObj*);
+void func_802E5D6C_5E2E3C(GObj*);
+void func_802E5FD8_5E30A8(GObj*);
+void func_802E621C_5E32EC(GObj*);
 
-extern AnimationHeader D_802EE994_5EBA64;
-extern AnimationHeader D_802EE9A8_5EBA78;
-extern AnimationHeader D_802EE9BC_5EBA8C;
-extern AnimationHeader D_802EE9D0_5EBAA0;
-extern AnimationHeader D_802EE9E4_5EBAB4;
-extern InteractionHandler D_802EE9F8_5EBAC8[];
-extern InteractionHandler D_802EEA18_5EBAE8[];
-extern InteractionHandler D_802EEA38_5EBB08[];
-extern InteractionHandler D_802EEA58_5EBB28[];
-extern PokemonInitData D_802EEA8C_5EBB5C;
-extern GObj* D_802EEEC4_5EBF94;
-extern s32 D_802EEED0_5EBFA0;
+s32 D_802EE990_5EBA60[] = { SOUND_ID_218 };
+
+AnimationHeader D_802EE994_5EBA64 = {
+    0.55,
+    60,
+    0x80161D70,
+    0x80163BC0,
+    NULL
+};
+
+AnimationHeader D_802EE9A8_5EBA78 = {
+    0.65,
+    25,
+    0x80162570,
+    NULL,
+    NULL
+};
+
+AnimationHeader D_802EE9BC_5EBA8C = {
+    0.6,
+    70,
+    0x80162EB0,
+    0x80163E20,
+    NULL
+};
+
+AnimationHeader D_802EE9D0_5EBAA0 = {
+    0.6,
+    10,
+    0x80162960,
+    0x80163D40,
+    D_802EE990_5EBA60
+};
+
+AnimationHeader D_802EE9E4_5EBAB4 = {
+    0.65,
+    25,
+    0x801622F0,
+    NULL,
+    NULL
+};
+
+InteractionHandler D_802EE9F8_5EBAC8[] = {
+    { POKEMON_CMD_24, NULL, 0, func_802E5D6C_5E2E3C },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEA18_5EBAE8[] = {
+    { TUNNEL_CMD_31, func_802E5D94_5E2E64, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEA38_5EBB08[] = {
+    { TUNNEL_CMD_32, func_802E5FD8_5E30A8, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEA58_5EBB28[] = {
+    { TUNNEL_CMD_33, func_802E621C_5E32EC, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+PokemonAnimationSetup D_802EEA78_5EBB48 = {
+    &D_802EE994_5EBA64,
+    func_802E5CB0_5E2D80,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_802EEA8C_5EBB5C = {
+    0x8032E3D0,
+    0x8032C3C0,
+    renderPokemonModelTypeBFogged,
+    &D_802EEA78_5EBB48,
+    { 2.4, 2.4, 2.4 },
+    { 0, 47, 0 },
+    13,
+    POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 extern s32 D_80343138_640208;
 

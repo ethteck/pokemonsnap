@@ -1,10 +1,10 @@
 #include "../tunnel.h"
 
-//extern AnimCmd* diglett_modelanim_look_around[];
-//extern AnimCmd* diglett_modelanim_turn[];
-//extern AnimCmd* diglett_modelanim_unburrow[];
-//extern AnimCmd* diglett_modelanim_rise[];
-//extern AnimCmd* diglett_modelanim_burrow[];
+extern AnimCmd* dugtrio_modelanim_look_around[];
+extern AnimCmd* dugtrio_modelanim_turn[];
+extern AnimCmd* dugtrio_modelanim_unburrow[];
+extern AnimCmd* dugtrio_modelanim_rise[];
+extern AnimCmd* dugtrio_modelanim_burrow[];
 
 void dugtrio_FirstIdle(GObj*);
 void dugtrio_SecondIdle(GObj*);
@@ -20,7 +20,7 @@ s32 dugtrio_animsounds_rise[] = { SOUND_ID_219 };
 AnimationHeader dugtrio_animation_look_around = {
     0.65,
     40,
-    0x80165250,
+    dugtrio_modelanim_look_around,
     NULL,
     NULL
 };
@@ -28,7 +28,7 @@ AnimationHeader dugtrio_animation_look_around = {
 AnimationHeader dugtrio_animation_turn = {
     0.7,
     70,
-    0x80165F90,
+    dugtrio_modelanim_turn,
     NULL,
     NULL
 };
@@ -36,7 +36,7 @@ AnimationHeader dugtrio_animation_turn = {
 AnimationHeader dugtrio_animation_unburrow = {
     0.7,
     35,
-    0x80167220,
+    dugtrio_modelanim_unburrow,
     NULL,
     NULL
 };
@@ -44,7 +44,7 @@ AnimationHeader dugtrio_animation_unburrow = {
 AnimationHeader dugtrio_animation_rise = {
     0.7,
     25,
-    0x80166B50,
+    dugtrio_modelanim_rise,
     NULL,
     dugtrio_animsounds_rise
 };
@@ -52,7 +52,7 @@ AnimationHeader dugtrio_animation_rise = {
 AnimationHeader dugtrio_animation_burrow = {
     0.7,
     35,
-    0x80165B30,
+    dugtrio_modelanim_burrow,
     NULL,
     NULL
 };

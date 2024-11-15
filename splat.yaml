@@ -650,6 +650,11 @@ segments:
     - [auto, c, diglett/anim/material/rise]
     - [auto, c, diglett/anim/material/unburrow]
     - [auto, c, dugtrio/textures]
+    - [auto, c, dugtrio/anim/model/look_around]
+    - [auto, c, dugtrio/anim/model/burrow]
+    - [auto, c, dugtrio/anim/model/turn]
+    - [auto, c, dugtrio/anim/model/rise]
+    - [auto, c, dugtrio/anim/model/unburrow]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -991,7 +996,37 @@ segments:
       - [0x1AAB88, palette, tex_soil]
       - [0x1AABA8]
       - { start: 0x1AABB0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
-    - [0x1AB3B0, bin]
+    - start: 0x1AB3B0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/look_around
+      subsegments:
+      - [0x1AB3B0, snap_model_anim, look_around]
+    - start: 0x1ABC90
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/burrow
+      subsegments:
+      - [0x1ABC90, snap_model_anim, burrow]
+    - start: 0x1AC0F0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/turn
+      subsegments:
+      - [0x1AC0F0, snap_model_anim, turn]
+    - start: 0x1ACCB0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/rise
+      subsegments:
+      - [0x1ACCB0, snap_model_anim, rise]
+    - start: 0x1AD380
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/unburrow
+      subsegments:
+      - [0x1AD380, snap_model_anim, unburrow]
+    - [0x1ADCB0, bin]
     - start: 0x1BF8F0
       type: .data
       dir: electrode

@@ -2473,3 +2473,9 @@ dugtrio_tex_nose_pal = 0x801647F8; // segment:tunnel_code
 dugtrio_tex_nose_png = 0x80164820; // segment:tunnel_code
 dugtrio_tex_soil_pal = 0x80164A28; // segment:tunnel_code
 dugtrio_tex_soil_png = 0x80164A50; // segment:tunnel_code
+
+dugtrio_modelanim_look_around = 0x80165250; // segment:tunnel_assets
+dugtrio_modelanim_burrow = 0x80165B30; // segment:tunnel_assets
+dugtrio_modelanim_turn = 0x80165F90; // segment:tunnel_assets
+dugtrio_modelanim_rise = 0x80166B50; // segment:tunnel_assets
+dugtrio_modelanim_unburrow = 0x80167220; // segment:tunnel_assets

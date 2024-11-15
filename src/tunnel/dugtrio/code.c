@@ -311,7 +311,7 @@ GObj* dugtrio_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, Ob
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 }
 
-void func_802E6C74_5E3D44(GObj* obj) {
+void dugtrio_Remove(GObj* obj) {
     if (D_802EEEC8_5EBF98 == obj) {
         D_802EEEC8_5EBF98 = NULL;
     }

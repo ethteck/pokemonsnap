@@ -66,7 +66,7 @@ PokemonDef tunnel_PokemonDefs[] = {
     { PokemonID_DUGTRIO,
       dugtrio_Spawn,
       pokemonChangeBlockOnGround,
-      func_802E6C74_5E3D44 },
+      dugtrio_Remove },
     { PokemonID_KAKUNA,
       func_802E7620_5E46F0,
       pokemonChangeBlock,

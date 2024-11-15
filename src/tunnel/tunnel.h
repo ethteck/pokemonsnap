@@ -113,6 +113,6 @@ GObj* func_802ECA80_5E9B50(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EDEC0_5EAF90(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802ECFC8_5EA098(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 void diglett_Remove(GObj*);
-void func_802E6C74_5E3D44(GObj*);
+void dugtrio_Remove(GObj*);
 void func_802EA45C_5E752C(GObj*);
 void func_802EC398_5E9468(GObj*);

@@ -296,7 +296,7 @@ POKEMON_FUNC(diglett_ThirdRise)
 
     if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 4;
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_34, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DUGTRIO_SHOW_UP, obj);
     } else {
         cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, obj);
     }

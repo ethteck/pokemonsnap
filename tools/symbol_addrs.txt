@@ -2460,3 +2460,16 @@ dugtrio_part11_draw = 0x80330590; // segment:tunnel_code
 dugtrio_part12_draw_near = 0x803305A8; // segment:tunnel_code
 dugtrio_part12_draw = 0x80330630; // segment:tunnel_code
 dugtrio_last = 0x80330648; // segment:tunnel_code
+
+dugtrio_tex_left_eye_pal = 0x80163F38; // segment:tunnel_code
+dugtrio_tex_left_eye_png = 0x80163F60; // segment:tunnel_code
+dugtrio_tex_right_eye_pal = 0x80164168; // segment:tunnel_code
+dugtrio_tex_right_eye_png = 0x80164190; // segment:tunnel_code
+dugtrio_tex_head_pal = 0x80164398; // segment:tunnel_code
+dugtrio_tex_head_png = 0x801643C0; // segment:tunnel_code
+dugtrio_tex_body_pal = 0x801645C8; // segment:tunnel_code
+dugtrio_tex_body_png = 0x801645F0; // segment:tunnel_code
+dugtrio_tex_nose_pal = 0x801647F8; // segment:tunnel_code
+dugtrio_tex_nose_png = 0x80164820; // segment:tunnel_code
+dugtrio_tex_soil_pal = 0x80164A28; // segment:tunnel_code
+dugtrio_tex_soil_png = 0x80164A50; // segment:tunnel_code

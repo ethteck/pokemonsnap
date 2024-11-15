@@ -1,17 +1,17 @@
 #include "common.h"
 
-extern u8 D_80163F38_tunnel_code[];
-extern u8 D_80163F60_tunnel_code[];
-extern u8 D_80164168_tunnel_code[];
-extern u8 D_80164190_tunnel_code[];
-extern u8 D_80164398_tunnel_code[];
-extern u8 D_801643C0_tunnel_code[];
-extern u8 D_801645C8_tunnel_code[];
-extern u8 D_801645F0_tunnel_code[];
-extern u8 D_801647F8_tunnel_code[];
-extern u8 D_80164820_tunnel_code[];
-extern u8 D_80164A28_tunnel_code[];
-extern u8 D_80164A50_tunnel_code[];
+extern u8 dugtrio_tex_left_eye_pal[];
+extern u8 dugtrio_tex_left_eye_png[];
+extern u8 dugtrio_tex_right_eye_pal[];
+extern u8 dugtrio_tex_right_eye_png[];
+extern u8 dugtrio_tex_head_pal[];
+extern u8 dugtrio_tex_head_png[];
+extern u8 dugtrio_tex_body_pal[];
+extern u8 dugtrio_tex_body_png[];
+extern u8 dugtrio_tex_nose_pal[];
+extern u8 dugtrio_tex_nose_png[];
+extern u8 dugtrio_tex_soil_pal[];
+extern u8 dugtrio_tex_soil_png[];
 
 extern Gfx dugtrio_part0_draw[];
 

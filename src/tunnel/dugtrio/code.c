@@ -63,17 +63,17 @@ InteractionHandler dugtrio_tg_ReadyForPhoto[] = {
 };
 
 InteractionHandler dugtrio_tg_First[] = {
-    { TUNNEL_CMD_34, dugtrio_FirstRise, 0, NULL },
+    { TUNNEL_CMD_FIRST_DUGTRIO_SHOW_UP, dugtrio_FirstRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler dugtrio_tg_Second[] = {
-    { TUNNEL_CMD_35, dugtrio_SecondRise, 0, NULL },
+    { TUNNEL_CMD_SECOND_DUGTRIO_SHOW_UP, dugtrio_SecondRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
 InteractionHandler dugtrio_tg_Third[] = {
-    { TUNNEL_CMD_36, dugtrio_ThirdRise, 0, NULL },
+    { TUNNEL_CMD_THIRD_DUGTRIO_SHOW_UP, dugtrio_ThirdRise, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
@@ -87,7 +87,7 @@ PokemonAnimationSetup dugtrio_animSetup = {
 };
 
 PokemonInitData dugtrio_initData = {
-    0x80330670,
+    dugtrio_model,
     NULL,
     renderPokemonModelTypeBFogged,
     &dugtrio_animSetup,
@@ -180,7 +180,7 @@ POKEMON_FUNC(dugtrio_FirstRise)
 
     if (dugtrio_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 8;
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_35, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_SECOND_DUGTRIO_SHOW_UP, obj);
     } else {
         cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, obj);
     }
@@ -242,7 +242,7 @@ POKEMON_FUNC(dugtrio_SecondRise)
     if (dugtrio_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 0x10;
         D_802EEEC8_5EBF98 = NULL;
-        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_36, obj);
+        cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_THIRD_DUGTRIO_SHOW_UP, obj);
     } else {
         if (dugtrio_MissedPhotoCount != 0) {
             cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP, obj);

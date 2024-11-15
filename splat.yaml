@@ -649,6 +649,7 @@ segments:
     - [auto, c, diglett/anim/material/unused]
     - [auto, c, diglett/anim/material/rise]
     - [auto, c, diglett/anim/material/unburrow]
+    - [auto, c, dugtrio/textures]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -961,7 +962,36 @@ segments:
       name: diglett/anim/material/unburrow
       subsegments:
       - [0x1A9F80, snap_material_anim, unburrow]    
-    - [0x1AA090, bin]
+    - start: 0x1AA090
+      type: .data
+      dir: dugtrio
+      name: dugtrio/textures
+      subsegments:
+      - [0x1AA090]
+      - [0x1AA098, palette, tex_left_eye]
+      - [0x1AA0B8]
+      - { start: 0x1AA0C0, type: ci4, name: tex_left_eye, flip_y: true, width: 32, height: 32 }
+      - [0x1AA2C0]
+      - [0x1AA2C8, palette, tex_right_eye]
+      - [0x1AA2E8]
+      - { start: 0x1AA2F0, type: ci4, name: tex_right_eye, flip_y: true, width: 32, height: 32 }
+      - [0x1AA4F0]
+      - [0x1AA4F8, palette, tex_head]
+      - [0x1AA518]
+      - { start: 0x1AA520, type: ci4, name: tex_head, flip_y: true, width: 32, height: 32 }
+      - [0x1AA720]
+      - [0x1AA728, palette, tex_body]
+      - [0x1AA748]
+      - { start: 0x1AA750, type: ci4, name: tex_body, flip_y: true, width: 32, height: 32 }
+      - [0x1AA950]
+      - [0x1AA958, palette, tex_nose]
+      - [0x1AA978]
+      - { start: 0x1AA980, type: ci4, name: tex_nose, flip_y: true, width: 32, height: 32 }
+      - [0x1AAB80]
+      - [0x1AAB88, palette, tex_soil]
+      - [0x1AABA8]
+      - { start: 0x1AABB0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
+    - [0x1AB3B0, bin]
     - start: 0x1BF8F0
       type: .data
       dir: electrode

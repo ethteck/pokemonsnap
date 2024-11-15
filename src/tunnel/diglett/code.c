@@ -1,5 +1,15 @@
 #include "../tunnel.h"
 
+extern AnimCmd* diglett_modelanim_look_around[];
+extern AnimCmd* diglett_modelanim_turn[];
+extern AnimCmd* diglett_modelanim_unburrow[];
+extern AnimCmd* diglett_modelanim_rise[];
+extern AnimCmd* diglett_modelanim_burrow[];
+
+extern AnimCmd** diglett_matanim_look_around[];
+extern AnimCmd** diglett_matanim_unburrow[];
+extern AnimCmd** diglett_matanim_rise[];
+
 void diglett_FirstRise(GObj*);
 void diglett_SecondIdle(GObj*);
 void diglett_ThirdIdle(GObj*);
@@ -13,15 +23,15 @@ s32 diglett_animsounds_rise[] = { SOUND_ID_218 };
 AnimationHeader diglett_animation_look_around = {
     0.55,
     60,
-    0x80161D70,
-    0x80163BC0,
+    diglett_modelanim_look_around,
+    diglett_matanim_look_around,
     NULL
 };
 
 AnimationHeader diglett_animation_turn = {
     0.65,
     25,
-    0x80162570,
+    diglett_modelanim_turn,
     NULL,
     NULL
 };
@@ -29,23 +39,23 @@ AnimationHeader diglett_animation_turn = {
 AnimationHeader diglett_animation_unburrow = {
     0.6,
     70,
-    0x80162EB0,
-    0x80163E20,
+    diglett_modelanim_unburrow,
+    diglett_matanim_unburrow,
     NULL
 };
 
 AnimationHeader diglett_animation_rise = {
     0.6,
     10,
-    0x80162960,
-    0x80163D40,
+    diglett_modelanim_rise,
+    diglett_matanim_rise,
     diglett_animsounds_rise
 };
 
 AnimationHeader diglett_animation_burrow = {
     0.65,
     25,
-    0x801622F0,
+    diglett_modelanim_burrow,
     NULL,
     NULL
 };

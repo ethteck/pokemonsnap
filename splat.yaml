@@ -640,6 +640,15 @@ segments:
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
     - [auto, c, diglett/textures]
+    - [auto, c, diglett/anim/model/look_around]
+    - [auto, c, diglett/anim/model/burrow]
+    - [auto, c, diglett/anim/model/turn]
+    - [auto, c, diglett/anim/model/rise]
+    - [auto, c, diglett/anim/model/unburrow]
+    - [auto, c, diglett/anim/material/look_around]
+    - [auto, c, diglett/anim/material/unused]
+    - [auto, c, diglett/anim/material/rise]
+    - [auto, c, diglett/anim/material/unburrow]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -898,7 +907,61 @@ segments:
       - [0x1A76A8, palette, tex_soil]
       - [0x1A76C8]
       - { start: 0x1A76D0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
-    - [0x1A7ED0, bin]
+    - start: 0x1A7ED0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/look_around
+      subsegments:
+      - [0x1A7ED0, snap_model_anim, look_around]
+    - start: 0x1A8450
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/burrow
+      subsegments:
+      - [0x1A8450, snap_model_anim, burrow]
+    - start: 0x1A86D0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/turn
+      subsegments:
+      - [0x1A86D0, snap_model_anim, turn]
+    - start: 0x1A8AC0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/rise
+      subsegments:
+      - [0x1A8AC0, snap_model_anim, rise]
+    - start: 0x1A9010
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/unburrow
+      subsegments:
+      - [0x1A9010, snap_model_anim, unburrow]
+    - start: 0x1A9D20
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/look_around
+      subsegments:
+      - [0x1A9D20, snap_material_anim, look_around]
+    - start: 0x1A9E40
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/unused
+      subsegments:
+      - [0x1A9E40, snap_material_anim, unused]
+    - start: 0x1A9EA0
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/rise
+      subsegments:
+      - [0x1A9EA0, snap_material_anim, rise]
+    - start: 0x1A9F80
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/unburrow
+      subsegments:
+      - [0x1A9F80, snap_material_anim, unburrow]    
+    - [0x1AA090, bin]
     - start: 0x1BF8F0
       type: .data
       dir: electrode

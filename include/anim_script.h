@@ -166,6 +166,7 @@ typedef struct AnimLinePtr2 {
 #define asSet_1(n, param1, val1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1) << 15) | n), { val1 } }
 #define asSet_2(n, param1, val1, param2, val2) static AnimLine2 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2) << 15) | n), { val1, val2 } }
 #define asSet_3(n, param1, val1, param2, val2, param3, val3) static AnimLine3 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
+#define asSet_6(n, param1, val1, param2, val2, param3, val3, param4, val4, param5, val5, param6, val6) static AnimLine6 __ANIMLINENAME = {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2 | param3 | param4 | param5 | param6) << 15) | n), { val1, val2, val3, val4, val5, val6 } }
 #define asSet_1f(n, param1, val1) {  ((ANIM_CMD_SET_VALUE << 25) | ((param1) << 15) | n), { val1 } }
 #define asSet_2f(n, param1, val1, param2, val2) {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2) << 15) | n), { val1, val2 } }
 #define asSet_3f(n, param1, val1, param2, val2, param3, val3) {  ((ANIM_CMD_SET_VALUE << 25) | ((param1 | param2 | param3) << 15) | n), { val1, val2, val3 } }
@@ -268,6 +269,8 @@ typedef struct AnimLinePtr2 {
 #define asSkip_1(n, param1) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1) << 15) | n) }
 #define asSkip_2(n, param1, param2) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2) << 15) | n) }
 #define asSkip_3(n, param1, param2, param3) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2 | param3) << 15) | n) }
+#define asSkip_4(n, param1, param2, param3, param4) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2 | param3 | param4) << 15) | n) }
+#define asSkip_5(n, param1, param2, param3, param4, param5) static AnimLine0 __ANIMLINENAME = {  ((ANIM_CMD_12 << 25) | ((param1 | param2 | param3 | param4 | param5) << 15) | n) }
 
 #define asSetVisible_1(n, b1) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1)) } }
 #define asSetVisible_2(n, b1, b2) static AnimLine1 __ANIMLINENAME = {  ((ANIM_CMD_17 << 25) | ((1) << 15) | n), { ((1 << b1) | (1 << b2)) } }

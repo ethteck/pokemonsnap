@@ -3369,7 +3369,7 @@ segments:
     - [0x5E1C10, c, magneton/code]
     - [0x5E21C0, c, electrode/code]
     - [0x5E2D80, c, diglett/code]
-    - [0x5E3560, c, dugtrio]
+    - [0x5E3560, c, dugtrio/code]
     - [0x5E3D80, c]
     - [0x5E4730, pad]
     - [0x5E4750, c]

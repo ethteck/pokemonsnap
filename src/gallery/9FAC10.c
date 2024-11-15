@@ -59,11 +59,11 @@ UnkStruct800BEDF8* func_801DD1A8_9FAE68(void) {
     while (true) {
         ohWait(1);
         sp24 = func_800AA38C(0);
-        if (sp24->pressedButtons & 0x4000) {
+        if (sp24->pressedButtons & B_BUTTON) {
             func_801DDCA8_9FB968(8);
             break;
         }
-        if (sp24->pressedButtons & 0x8000) {
+        if (sp24->pressedButtons & A_BUTTON) {
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             func_801DDCA8_9FB968(10);
             break;
@@ -591,17 +591,17 @@ void func_801DE87C_9FC53C(void) {
             sp54 = func_800AA38C(0);
             if (D_801EA204_A07EC4 != 0 && --D_80230810_A4E4D0 == 0) {
 
-            } else if (sp54->pressedButtons & 0x8000) {
+            } else if (sp54->pressedButtons & A_BUTTON) {
                 auPlaySound(SOUND_ID_75);
                 D_801EA204_A07EC4 = 0;
                 ;
-            } else if (sp54->pressedButtons & 0x4000) {
+            } else if (sp54->pressedButtons & B_BUTTON) {
                 auPlaySound(0x4D);
                 D_801EA204_A07EC4 = 0;
                 sp40 = true;
                 ;
             } else {
-                if (sp54->pressedButtons & 0x2000) {
+                if (sp54->pressedButtons & Z_TRIG) {
                     sp3C ^= 1;
                     if (sp3C != 0) {
                         auPlaySound(0x60);

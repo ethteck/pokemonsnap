@@ -463,7 +463,7 @@ void func_801DCFE8_98CA58(Photo* arg0) {
 }
 
 s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
-    s32 ret = 0;
+    s32 button = 0;
     UnkStruct800BEDF8* sp18;
 
     UIElement_SetTextPos(arg0, 180, 32);
@@ -472,18 +472,18 @@ s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
     ohWait(1);
 
     sp18 = func_800AA38C(0);
-    while (!(sp18->pressedButtons & (0x8000 | 0x4000))) {
+    while (!(sp18->pressedButtons & (A_BUTTON | B_BUTTON))) {
         ohWait(1);
         sp18 = func_800AA38C(0);
     }
-    if (sp18->currentButtons & 0x8000) {
-        ret = 0x8000;
+    if (sp18->currentButtons & A_BUTTON) {
+        button = A_BUTTON;
     }
-    if (sp18->currentButtons & 0x4000) {
-        ret = 0x4000;
+    if (sp18->currentButtons & B_BUTTON) {
+        button = B_BUTTON;
     }
-    if (sp18->currentButtons & 0x1000) {
-        ret = 0x1000;
+    if (sp18->currentButtons & START_BUTTON) {
+        button = START_BUTTON;
     }
     if (arg1 != 0) {
         auPlaySound(0x4D);
@@ -493,42 +493,42 @@ s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
     ohWait(1);
     func_8036EE40_8425F0();
     func_8036EB80_842330(1);
-    return ret;
+    return button;
 }
 
 s32 func_801DD1A8_98CC18(s32 arg0) {
     s32 i;
-    s32 ret = 0;
+    s32 button = 0;
     UnkStruct800BEDF8* sp1C;
 
     for (i = 0; i < arg0; i++) {
         ohWait(1);
         sp1C = func_800AA38C(0);
-        if (sp1C->currentButtons & 0x8000) {
-            ret = 0x8000;
+        if (sp1C->currentButtons & A_BUTTON) {
+            button = A_BUTTON;
             break;
         }
-        if (sp1C->currentButtons & 0x4000) {
-            ret = 0x4000;
+        if (sp1C->currentButtons & B_BUTTON) {
+            button = B_BUTTON;
             break;
         }
     }
-    return ret;
+    return button;
 }
 
 s32 func_801DD25C_98CCCC(s32 arg0, s32 arg1) {
-    s32 ret = 0;
+    s32 button = 0;
 
-    ret = func_801DD1A8_98CC18(arg1);
+    button = func_801DD1A8_98CC18(arg1);
 
-    if (ret == 0x4000) {
+    if (button == B_BUTTON) {
         if (arg0 != 0) {
             D_801F3E2C_9A389C = 4;
         } else {
             D_801F3E30_9A38A0 = 4;
         }
     }
-    return ret;
+    return button;
 }
 
 void func_801DD2D4_98CD44(s32 arg0) {
@@ -941,7 +941,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         UIElement_PrintText(D_802290DC_9D8B4C, SpecialPokemonNames[photo->specialID]);
         UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
         UIElement_PrintText(D_802290DC_9D8B4C, "!?!");
-        if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
+        if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == B_BUTTON) {
             D_801F3E34_9A38A4 = true;
         }
         UIElement_SetFont(D_802290E0_9D8B50, FONT_8);
@@ -994,7 +994,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "Let me see...\nThis is %s!!", getPokemonName(photo->pkmnID));
         }
     }
-    if (!D_801F3E34_9A38A4 && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+    if (!D_801F3E34_9A38A4 && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
         D_801F3E34_9A38A4 = true;
     }
     if (isPokemonSign) {
@@ -1075,7 +1075,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             }
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
             UIText_SetPrintDelay(2);
-            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
+            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
         }
@@ -1112,7 +1112,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             }
             D_801F3E64_9A38D4 += sp1A0;
         }
-        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1141,7 +1141,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
             UIElement_PrintText(D_802290DC_9D8B4C, "It's not very good.");
-            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
+            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
             sp200 = 1;
@@ -1204,7 +1204,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         }
         auPlaySound(0x4E);
         func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
-        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1236,7 +1236,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             }
             D_801F3E64_9A38D4 += sp158;
         }
-        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1279,7 +1279,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
             if (photo->posePts < 200) {
                 sp204 = 2;
-                if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
+                if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == B_BUTTON) {
                     D_801F3E34_9A38A4 = true;
                 }
                 UIElement_Draw(D_802290DC_9D8B4C);
@@ -1309,7 +1309,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIText_SetSpacing(-1, 3);
                 UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
                 UIElement_PrintText(D_802290DC_9D8B4C, "It's not very good.");
-                if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+                if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
                     D_801F3E34_9A38A4 = true;
                 }
                 sp200 = 1;
@@ -1362,7 +1362,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
         }
-        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1395,7 +1395,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 sp1FC = true;
             }
         }
-        if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
+        if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1411,7 +1411,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
             UIElement_PrintText(D_802290DC_9D8B4C, "the middle of the frame.");
-            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
+            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
             auPlaySound(0x4D);
@@ -1446,7 +1446,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(D_802290DC_9D8B4C, "\\QWait...\nYour Pokεmon isn't\nin the middle of the frame.");
-            if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+            if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
                 D_801F3E34_9A38A4 = true;
             }
             sp200 = 1;
@@ -1456,7 +1456,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
         }
-        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000)) {
+        if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
         }
     }
@@ -1498,7 +1498,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
             UIElement_PrintText(D_802290DC_9D8B4C, "in the picture.");
-            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == 0x4000) {
+            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 1) == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
             UIElement_Draw(D_802290DC_9D8B4C);
@@ -1519,7 +1519,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             auPlaySound(0x4E);
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
             func_801DD1A8_98CC18(0x2D);
-            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == 0x4000) {
+            if (!D_801F3E34_9A38A4 && func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
         } else if (D_801F3E60_9A38D0 && sp25C->score.samePkmnBonus != 0) {
@@ -1796,7 +1796,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
         while (true) {
             sp40 = func_800AA38C(0);
             func_801E41FC_993C6C(sp40, &sp3C);
-            if (sp40->pressedButtons & 0x8000) {
+            if (sp40->pressedButtons & A_BUTTON) {
                 FocusMark_Show(false);
                 if (sp3C != NULL) {
                     auPlaySound(0x5F);
@@ -1835,7 +1835,7 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     SObj* sp5C;
     f32 sp58;
     f32 sp54;
-    s32 sp50;
+    s32 button;
     ObjPair* sp4C;
     s32 sp48;
     s32 i;
@@ -1879,9 +1879,9 @@ s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
 
     sp40 = false;
     for (sp54 = 0.0f; sp58 > -240.0f;) {
-        sp50 = func_801DD1A8_98CC18(1);
-        if (!sp40 && sp50 != 0) {
-            if (sp50 == 0x4000) {
+        button = func_801DD1A8_98CC18(1);
+        if (!sp40 && button != 0) {
+            if (button == B_BUTTON) {
                 D_801F3E34_9A38A4 = true;
             }
             sp58 = 0.0f;
@@ -2261,7 +2261,7 @@ void func_801E2ED4_992944(s32 arg0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "\\SWait, %s...\nLet's return to the Lab!", getPlayerName());
     } else if (checkPlayerFlag(PFID_14) != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", getPlayerName());
-    } else if (func_800BF3D4_5C274(0x97)) {
+    } else if (func_800BF3D4_5C274(PokemonID_MEW)) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "Take pictures of Pokεmon\nthat live on the Rainbow Cloud!");

@@ -58,7 +58,7 @@ enum HeaderFlags {
 
 enum HeaderStates {
     PANEL_STATE_COLLAPSING = 0,
-    PANEL_STATE_EXPANDING = 1,    
+    PANEL_STATE_EXPANDING = 1,
     PANEL_STATE_STABLE = 2
 };
 
@@ -202,7 +202,7 @@ void func_80374D40_8484F0(void);
 s32 func_80374F30_8486E0(UIElement*, bool);
 char* func_8037501C_8487CC(char*, s32);
 s32 func_803750CC_84887C(char*, char*);
-void func_8037519C_84894C(UIElement*, char*, ...);
+s32 func_8037519C_84894C(UIElement*, const char*, ...);
 s32 func_803751F8_8489A8(s32);
 void func_80375284_848A34(s32);
 UIButton* UILayout_GetButtons(void);

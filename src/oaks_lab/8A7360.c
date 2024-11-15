@@ -429,14 +429,14 @@ void func_800E2848_8A8068(void) {
 }
 
 s32 func_800E2960_8A8180(UIElement* arg0, char** arg1, s32 arg2) {
-    s32 temp_v0;
+    s32 button;
 
     while (*arg1) {
         UIElement_Draw(arg0);
         func_8037519C_84894C(arg0, *arg1, getPlayerName());
-        temp_v0 = func_80374F30_8486E0(arg0, true);
-        if (arg2 && (temp_v0 == 0x4000)) {
-            return 0x4000;
+        button = func_80374F30_8486E0(arg0, true);
+        if (arg2 && (button == B_BUTTON)) {
+            return B_BUTTON;
         }
         arg1++;
     }

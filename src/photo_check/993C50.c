@@ -32,10 +32,10 @@ s32 func_801E41FC_993C6C(UnkStruct800BEDF8* arg0, s32* arg1) {
         D_801F4180_9A3BF0 = -1;
         return 0;
     }
-    if (arg0->pressedButtons & 0x40000 && *arg1 <= 0) {
+    if (arg0->pressedButtons & STICK_SLOW_RIGHT && *arg1 <= 0) {
         *arg1 += 1;
     }
-    if (arg0->pressedButtons & 0x80000 && *arg1 > 0) {
+    if (arg0->pressedButtons & STICK_SLOW_LEFT && *arg1 > 0) {
         *arg1 -= 1;
     }
     if (*arg1 != D_801F4180_9A3BF0) {

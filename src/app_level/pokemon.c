@@ -504,7 +504,6 @@ void Pokemon_CalcDistanceToPlayer(GObj* obj) {
     }
 }
 
-#ifdef NON_MATCHING
 GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance) {
     GObj* closestItem = NULL;
     GObj* currItem = NULL;
@@ -518,8 +517,8 @@ GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance) {
 
     Items_InitIterator();
     while ((currItem = Items_NextValidItem()) != NULL) {
-        DObj* itemModel = currItem->data.dobj;
-        f32 currDist2 = SQ(x - itemModel->position.v.x) + SQ(y - itemModel->position.v.y) + SQ(z - itemModel->position.v.z);
+        Mtx3Float* position = &currItem->data.dobj->position;
+        f32 currDist2 = SQ(x - position->v.x) + SQ(y - position->v.y) + SQ(z - position->v.z);
         if (closestDist2 > currDist2) {
             closestItem = currItem;
             closestDist2 = currDist2;
@@ -530,10 +529,6 @@ GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance) {
     }
     return closestItem;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/pokemon/Pokemon_GetClosestItem.s")
-GObj* Pokemon_GetClosestItem(GObj* obj, f32* distance);
-#endif
 
 f32 Pokemon_HeadingBetweenPoints(Vec3f* pointTo, Vec3f* pointFrom) {
     f32 dx = pointTo->x - pointFrom->x;

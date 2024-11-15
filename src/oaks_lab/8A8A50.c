@@ -22,7 +22,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
 
     FocusMark_SetTargetPos(0x16, (*arg1 * 24) + 29);
 
-    if ((arg0->pressedButtons & 0x10000) && !(arg0->currentButtons & 0xC0000)) {
+    if ((arg0->pressedButtons & STICK_SLOW_UP) && !(arg0->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
             *arg1 = (*arg1 + 7) % 8;
         } while (D_80206B44_9CC364[*arg1].id == 35);
@@ -30,7 +30,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
         auPlaySound(SOUND_ID_65);
     }
 
-    if ((arg0->pressedButtons & 0x20000) && !(arg0->currentButtons & 0xC0000)) {
+    if ((arg0->pressedButtons & STICK_SLOW_DOWN) && !(arg0->currentButtons & (STICK_SLOW_RIGHT | STICK_SLOW_LEFT))) {
         do {
             *arg1 = (*arg1 + 1) % 8;
         } while (D_80206B44_9CC364[*arg1].id == 35);
@@ -38,7 +38,7 @@ s32 func_800E3264_8A8A84(UnkStruct800BEDF8* arg0, s32* arg1) {
         auPlaySound(SOUND_ID_65);
     }
 
-    if (arg0->pressedButtons & 0x4000) {
+    if (arg0->pressedButtons & B_BUTTON) {
         return -1;
     }
 
@@ -90,7 +90,7 @@ s32 func_800E3404_8A8C24(void) {
         }
         func_800E1FEC_8A780C(sp40);
 
-        if (var_v0->pressedButtons & 0x8000) {
+        if (var_v0->pressedButtons & A_BUTTON) {
             auPlaySound(SOUND_ID_66);
             UILayout_DisableAllButtonsExcept(1, D_80206B44_9CC364[sp40].id);
             switch (D_80206B44_9CC364[sp40].id) {
@@ -129,7 +129,7 @@ s32 func_800E3404_8A8C24(void) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_PrintText(func_800E1B40_8A7360(),
-                                 UILayout_GetButtonText(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], D_80206B44_9CC364[sp40].id));
+                                UILayout_GetButtonText(D_80195CEC_95B50C[func_800BFC5C_5CAFC()], D_80206B44_9CC364[sp40].id));
         }
         ohWait(1);
     }
@@ -188,7 +188,7 @@ s32 func_800E37CC_8A8FEC(void) {
     while (true) {
         temp_v0_2 = func_800AA38C(0);
         func_800E3264_8A8A84(temp_v0_2, &sp80);
-        if (temp_v0_2->pressedButtons & 0x8000) {
+        if (temp_v0_2->pressedButtons & A_BUTTON) {
             auPlaySound(SOUND_ID_66);
 
             switch (D_80206B44_9CC364[sp80].id) {

@@ -2081,8 +2081,6 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
     func_80007C20(&gMainCamera->vp, 0.0f, 0.0f, 320.0f, 240.0f);
 }
 
-#ifdef NON_MATCHING
-//  stack diff
 void processOutOfFilm(GObj* arg0) {
     UNUSED s32 pad;
     UNUSED s32 pad2;
@@ -2104,10 +2102,10 @@ void processOutOfFilm(GObj* arg0) {
     Icons_SetDashEngineEnabled(0);
     sobj1 = omGObjAddSprite(ObjectPauseMenu, &D_80388E00_529210);
     spMove(&sobj1->sprite, 125, 97);
-    spColor(&sobj1->sprite, 255, 255, 255, 0);
+    spColor(&sobj1->sprite, 255, 255, 255, var_s2);
     sobj2 = omGObjAddSprite(ObjectPauseMenu, &D_80381B58_521F68);
     spMove(&sobj2->sprite, 149, 103);
-    spColor(&sobj2->sprite, 255, 255, 255, 0);
+    spColor(&sobj2->sprite, 255, 255, 255, var_s2);
 
     for (i = 59; i != 0; i--) {
         var_s2 += 10;
@@ -2143,10 +2141,6 @@ void processOutOfFilm(GObj* arg0) {
     EndLevelCb(END_LEVEL_REASON_OUT_OF_FILM);
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/player/processOutOfFilm.s")
-void processOutOfFilm(GObj* arg0);
-#endif
 
 void processBump(GObj* arg0) {
     s32 i;

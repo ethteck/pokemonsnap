@@ -77,8 +77,10 @@ void func_802E19A0_6C9780(DObj* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-void func_802E1A3C_6C981C(DObj*, s32, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C9680/func_802E1A3C_6C981C.s")
+void func_802E1A3C_6C981C(DObj* arg0, s32 arg1, f32 arg2) {
+    if (arg1 == -2 || arg1 == -1) {
+    }
+}
 
 void func_802E1A4C_6C982C(GObj* obj) {
     func_800AB9A4();

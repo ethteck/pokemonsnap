@@ -28,7 +28,7 @@ extern InteractionHandler D_802E35EC_6CB3CC[];
 extern InteractionHandler D_802E360C_6CB3EC[];
 extern InteractionHandler D_802E362C_6CB40C[];
 extern Vec3f D_802E364C_6CB42C;
-// extern ? D_802E3658_6CB438;
+extern Vec3f D_802E3658_6CB438;
 extern Vec3f D_802E3664_6CB444;
 extern PokemonInitData D_802E3684_6CB464;
 
@@ -337,7 +337,56 @@ POKEMON_FUNC(func_802DC7AC_6C458C)
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C3980/func_802DC820_6C4600.s")
+void func_802DC820_6C4600(GObj* obj) {
+    DObj* model = obj->data.dobj;
+    Mtx3Float* position = &GET_TRANSFORM(model)->pos;
+    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
+    Pokemon* pokemon = GET_POKEMON(obj);
+    Vec3f sp94 = D_802E3658_6CB438;
+    GroundResult ground;
+    Vec3f sp74;
+    WorldBlock* block;
+    f32 temp_f0;
+    f32 temp_f22;
+    f32 temp_f24;
+    f32 var_f20;
+    bool var_s1;
+    f32 new_var;
+
+    var_s1 = false;
+    block = getCurrentWorldBlock();
+    sp74.x = -(block->descriptor->worldPos.x * 100.0f);
+    sp74.z = -(block->descriptor->worldPos.z * 100.0f);
+    getGroundAt(position->v.x, position->v.z, &ground.height);
+    position->v.y = ground.height;
+    sp74.y = position->v.y;
+    GetInterpolatedPosition(&sp94, pokemon->path, 0.99999f);
+    sp74.x += sp94.x * 100.0f;
+    sp74.z += sp94.z * 100.0f;
+    getGroundAt(sp74.x, sp74.z, &ground);
+    sp74.y -= ground.height - 330.0f;
+    temp_f0 = sp74.y + 200.0f;
+    var_f20 = asinf(sp74.y / temp_f0);
+
+    new_var = (1.0f / pokemon->path->duration) * 0.1f;
+    new_var = (1.0f - pokemon->path->paramPoints[pokemon->miscVars[0].field1]) / new_var;
+    temp_f24 = (PI - var_f20) / new_var;
+    while (var_f20 < PI) {
+        var_f20 += temp_f24;
+        temp_f22 = __sinf(var_f20 - temp_f24);
+        position->v.y += temp_f0 * (__sinf(var_f20) - temp_f22);
+        if (!var_s1 && position->v.y < ground.height) {
+            sp74.x = position->v.x;
+            sp74.y = ground.height;
+            sp74.z = position->v.z;
+            EnvSound_PlaySound(obj, 1, 0x17E);
+            func_8035E174_4FE584(obj, &sp74);
+            var_s1 = true;
+        }
+        ohWait(1);
+    }
+    Pokemon_StopAuxProc(obj);
+}
 
 POKEMON_FUNC(func_802DCA7C_6C485C)
     Pokemon_ResetPathPos(obj);

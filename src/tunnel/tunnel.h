@@ -4,9 +4,16 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP POKEMON_CMD_31
+#define TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP POKEMON_CMD_32
+#define TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP POKEMON_CMD_33
+#define TUNNEL_CMD_FIRST_DUGTRIO_SHOW_UP POKEMON_CMD_34
+#define TUNNEL_CMD_SECOND_DUGTRIO_SHOW_UP POKEMON_CMD_35
+#define TUNNEL_CMD_THIRD_DUGTRIO_SHOW_UP POKEMON_CMD_36
 #define TUNNEL_CMD_37 POKEMON_CMD_37
 #define TUNNEL_CMD_39 POKEMON_CMD_39
 #define TUNNEL_CMD_40 POKEMON_CMD_40
+#define TUNNEL_CMD_43 POKEMON_CMD_43
 #define TUNNEL_CMD_MAGNEMITE_ATTRACT POKEMON_CMD_44
 #define TUNNEL_CMD_3_MAGNEMITES_COMBINED POKEMON_CMD_45
 #define TUNNEL_CMD_DELETE_MAGNEMITE POKEMON_CMD_46
@@ -64,12 +71,18 @@ extern UnkEC64Arg3 magnemite_model[];
 extern UnkEC64Arg3 magneton_model[];
 extern Texture** electrode_materials[];
 extern UnkEC64Arg3 electrode_model[];
+extern Texture** diglett_materials[];
+extern UnkEC64Arg3 diglett_model[];
+extern UnkEC64Arg3 dugtrio_model[];
 
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;
 
+extern GObj* D_802EEEC4_5EBF94;
+extern GObj* D_802EEEC8_5EBF98;
 extern GObj* D_802EEECC_5EBF9C;
+extern s32 D_802EEED0_5EBFA0;
 
 void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);
@@ -81,8 +94,8 @@ void tunnel_SpawnMagneton(GObj*);
 GObj* magnemite_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* electrode_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E6420_5E34F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E6C28_5E3CF8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* diglett_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* dugtrio_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E7620_5E46F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E9390_5E6460(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EA424_5E74F4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
@@ -99,7 +112,7 @@ GObj* func_802EC720_5E97F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802ECA80_5E9B50(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EDEC0_5EAF90(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802ECFC8_5EA098(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_802E6458_5E3528(GObj*);
-void func_802E6C74_5E3D44(GObj*);
+void diglett_Remove(GObj*);
+void dugtrio_Remove(GObj*);
 void func_802EA45C_5E752C(GObj*);
 void func_802EC398_5E9468(GObj*);

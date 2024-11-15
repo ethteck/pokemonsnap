@@ -5,7 +5,7 @@ from typing import Tuple
 class SnapAnimSegmentCommon(Segment):
     def scan(self, rom_bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
-        anim_name = self.get_symbol(self.vram_start, create=True)
+        anim_name = self.get_symbol(self.vram_start, in_segment=True, create=True)
         self.file_text = self.disassemble_data(data, anim_name, self.vram_start)
 
     def split(self, rom_bytes):

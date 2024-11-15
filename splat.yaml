@@ -639,6 +639,22 @@ segments:
     - [auto, c, magnemite/anim/model/hit]
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
+    - [auto, c, diglett/textures]
+    - [auto, c, diglett/anim/model/look_around]
+    - [auto, c, diglett/anim/model/burrow]
+    - [auto, c, diglett/anim/model/turn]
+    - [auto, c, diglett/anim/model/rise]
+    - [auto, c, diglett/anim/model/unburrow]
+    - [auto, c, diglett/anim/material/look_around]
+    - [auto, c, diglett/anim/material/unused]
+    - [auto, c, diglett/anim/material/rise]
+    - [auto, c, diglett/anim/material/unburrow]
+    - [auto, c, dugtrio/textures]
+    - [auto, c, dugtrio/anim/model/look_around]
+    - [auto, c, dugtrio/anim/model/burrow]
+    - [auto, c, dugtrio/anim/model/turn]
+    - [auto, c, dugtrio/anim/model/rise]
+    - [auto, c, dugtrio/anim/model/unburrow]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -860,6 +876,157 @@ segments:
       subsegments:
       - [0x1A63C0, snap_material_anim, pulse]
     - [0x1A6630, bin]
+    - start: 0x1A6750
+      type: .data
+      dir: diglett
+      name: diglett/textures
+      subsegments:
+      - [0x1A6750]
+      - [0x1A6758, palette, tex_right_eye_frame0]
+      - [0x1A6778]
+      - { start: 0x1A6780, type: ci4, name: tex_right_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A6980]
+      - [0x1A6988, palette, tex_right_eye_frame1]
+      - [0x1A69A8]
+      - { start: 0x1A69B0, type: ci4, name: tex_right_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A6BB0]
+      - [0x1A6BB8, palette, tex_left_eye_frame1]
+      - [0x1A6BD8]
+      - { start: 0x1A6BE0, type: ci4, name: tex_left_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A6DE0]
+      - [0x1A6DE8, palette, tex_left_eye_frame0]
+      - [0x1A6E08]
+      - { start: 0x1A6E10, type: ci4, name: tex_left_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A7010]
+      - [0x1A7018, palette, tex_head]
+      - [0x1A7038]
+      - { start: 0x1A7040, type: ci4, name: tex_head, flip_y: true, width: 32, height: 32 }
+      - [0x1A7240]
+      - [0x1A7248, palette, tex_body]
+      - [0x1A7268]
+      - { start: 0x1A7270, type: ci4, name: tex_body, flip_y: true, width: 32, height: 32 }
+      - [0x1A7470]
+      - [0x1A7478, palette, tex_nose]
+      - [0x1A7498]
+      - { start: 0x1A74A0, type: ci4, name: tex_nose, flip_y: true, width: 32, height: 32 }
+      - [0x1A76A0]
+      - [0x1A76A8, palette, tex_soil]
+      - [0x1A76C8]
+      - { start: 0x1A76D0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
+    - start: 0x1A7ED0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/look_around
+      subsegments:
+      - [0x1A7ED0, snap_model_anim, look_around]
+    - start: 0x1A8450
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/burrow
+      subsegments:
+      - [0x1A8450, snap_model_anim, burrow]
+    - start: 0x1A86D0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/turn
+      subsegments:
+      - [0x1A86D0, snap_model_anim, turn]
+    - start: 0x1A8AC0
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/rise
+      subsegments:
+      - [0x1A8AC0, snap_model_anim, rise]
+    - start: 0x1A9010
+      type: .data
+      dir: diglett/anim/model/
+      name: diglett/anim/model/unburrow
+      subsegments:
+      - [0x1A9010, snap_model_anim, unburrow]
+    - start: 0x1A9D20
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/look_around
+      subsegments:
+      - [0x1A9D20, snap_material_anim, look_around]
+    - start: 0x1A9E40
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/unused
+      subsegments:
+      - [0x1A9E40, snap_material_anim, unused]
+    - start: 0x1A9EA0
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/rise
+      subsegments:
+      - [0x1A9EA0, snap_material_anim, rise]
+    - start: 0x1A9F80
+      type: .data
+      dir: diglett/anim/material/
+      name: diglett/anim/material/unburrow
+      subsegments:
+      - [0x1A9F80, snap_material_anim, unburrow]    
+    - start: 0x1AA090
+      type: .data
+      dir: dugtrio
+      name: dugtrio/textures
+      subsegments:
+      - [0x1AA090]
+      - [0x1AA098, palette, tex_left_eye]
+      - [0x1AA0B8]
+      - { start: 0x1AA0C0, type: ci4, name: tex_left_eye, flip_y: true, width: 32, height: 32 }
+      - [0x1AA2C0]
+      - [0x1AA2C8, palette, tex_right_eye]
+      - [0x1AA2E8]
+      - { start: 0x1AA2F0, type: ci4, name: tex_right_eye, flip_y: true, width: 32, height: 32 }
+      - [0x1AA4F0]
+      - [0x1AA4F8, palette, tex_head]
+      - [0x1AA518]
+      - { start: 0x1AA520, type: ci4, name: tex_head, flip_y: true, width: 32, height: 32 }
+      - [0x1AA720]
+      - [0x1AA728, palette, tex_body]
+      - [0x1AA748]
+      - { start: 0x1AA750, type: ci4, name: tex_body, flip_y: true, width: 32, height: 32 }
+      - [0x1AA950]
+      - [0x1AA958, palette, tex_nose]
+      - [0x1AA978]
+      - { start: 0x1AA980, type: ci4, name: tex_nose, flip_y: true, width: 32, height: 32 }
+      - [0x1AAB80]
+      - [0x1AAB88, palette, tex_soil]
+      - [0x1AABA8]
+      - { start: 0x1AABB0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
+    - start: 0x1AB3B0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/look_around
+      subsegments:
+      - [0x1AB3B0, snap_model_anim, look_around]
+    - start: 0x1ABC90
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/burrow
+      subsegments:
+      - [0x1ABC90, snap_model_anim, burrow]
+    - start: 0x1AC0F0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/turn
+      subsegments:
+      - [0x1AC0F0, snap_model_anim, turn]
+    - start: 0x1ACCB0
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/rise
+      subsegments:
+      - [0x1ACCB0, snap_model_anim, rise]
+    - start: 0x1AD380
+      type: .data
+      dir: dugtrio/anim/model/
+      name: dugtrio/anim/model/unburrow
+      subsegments:
+      - [0x1AD380, snap_model_anim, unburrow]
+    - [0x1ADCB0, bin]
     - start: 0x1BF8F0
       type: .data
       dir: electrode
@@ -3266,7 +3433,8 @@ segments:
     - [0x5E0A70, c, magnemite/code]
     - [0x5E1C10, c, magneton/code]
     - [0x5E21C0, c, electrode/code]
-    - [0x5E2D80, c]
+    - [0x5E2D80, c, diglett/code]
+    - [0x5E3560, c, dugtrio/code]
     - [0x5E3D80, c]
     - [0x5E4730, pad]
     - [0x5E4750, c]
@@ -3278,14 +3446,18 @@ segments:
     - [0x5E94D0, c]
     - [0x5EA6F0, c]
     - [auto, c, magnemite/model]
+    - [auto, c, diglett/model]
+    - [auto, c, dugtrio/model]
     - [auto, c, electrode/model]
-    - [auto, c, magneton/model]
+    - [auto, c, magneton/model]    
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
     - [0x5EB2D0, .data, magnemite/code]
     - [0x5EB770, .data, magneton/code]
     - [0x5EB8B0, .data, electrode/code]
-    - [0x5EBA60, bin] # , data]
+    - [0x5EBA60, .data, diglett/code]
+    - [0x5EBB90, .data, dugtrio/code]
+    - [0x5EBCC0, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, magnemite/code]
@@ -3324,7 +3496,76 @@ segments:
       - [0x6290B8, gfx, last]
       - [0x6290E0, gfx, part6_draw_near]
       - [0x6291C0, gfx, part6_draw]
-    - { start: 0x629490, type: bin, linker_section_order: .rodata }
+    - start: 0x629490
+      type: .data
+      name: diglett/model
+      dir: diglett
+      linker_section_order: .rodata
+      subsegments:
+      - [0x629490]
+      - [0x6295D8, vtx, model]
+      - [0x62A638, gfx, first]
+      - [0x62A670, gfx, part0_draw_near]
+      - [0x62A920, gfx, part0_draw]
+      - [0x62A940, gfx, part1_draw_near]
+      - [0x62A9C8, gfx, part1_draw]
+      - [0x62A9E0, gfx, part2_draw_near]
+      - [0x62AB08, gfx, part2_draw]
+      - [0x62AB20, gfx, part3_draw_near]
+      - [0x62AC40, gfx, part3_draw]
+      - [0x62AC58, gfx, part4_draw_near]
+      - [0x62AFA0, gfx, part4_draw]
+      - [0x62AFB8, gfx, part5_draw_near]
+      - [0x62B078, gfx, part5_draw]
+      - [0x62B090, gfx, part6_draw_near]
+      - [0x62B140, gfx, part6_draw]
+      - [0x62B158, gfx, part7_draw_near]
+      - [0x62B208, gfx, part7_draw]
+      - [0x62B220, gfx, part8_draw_near]
+      - [0x62B2D0, gfx, part8_draw]
+      - [0x62B2E8, gfx, part9_draw_near]
+      - [0x62B398, gfx, part9_draw]
+      - [0x62B3B0, gfx, part10_draw_near]
+      - [0x62B460, gfx, part10_draw]
+      - [0x62B478, gfx, last]
+      - [0x62B4A0]
+    - start: 0x62B710
+      type: .data
+      name: dugtrio/model
+      dir: dugtrio
+      linker_section_order: .rodata
+      subsegments:
+      - [0x62B710, vtx, model]
+      - [0x62C6B0, gfx, first]
+      - [0x62C6F0, gfx, part0_draw_near]
+      - [0x62C7F0, gfx, part0_draw]
+      - [0x62C810, gfx, part1_draw_near]
+      - [0x62C8B0, gfx, part1_draw]
+      - [0x62C8C8, gfx, part2_draw_near]
+      - [0x62C9D0, gfx, part2_draw]
+      - [0x62C9E8, gfx, part3_draw_near]
+      - [0x62CCB0, gfx, part3_draw]
+      - [0x62CCC8, gfx, part4_draw_near]
+      - [0x62CD68, gfx, part4_draw]
+      - [0x62CD80, gfx, part5_draw_near]
+      - [0x62D048, gfx, part5_draw]
+      - [0x62D060, gfx, part6_draw_near]
+      - [0x62D100, gfx, part6_draw]
+      - [0x62D118, gfx, part7_draw_near]
+      - [0x62D3E0, gfx, part7_draw]
+      - [0x62D3F8, gfx, part8_draw_near]
+      - [0x62D480, gfx, part8_draw]
+      - [0x62D498, gfx, part9_draw_near]
+      - [0x62D520, gfx, part9_draw]
+      - [0x62D538, gfx, part10_draw_near]
+      - [0x62D5C0, gfx, part10_draw]
+      - [0x62D5D8, gfx, part11_draw_near]
+      - [0x62D660, gfx, part11_draw]
+      - [0x62D678, gfx, part12_draw_near]
+      - [0x62D700, gfx, part12_draw]
+      - [0x62D718, gfx, last]
+      - [0x62D740]
+    - { start: 0x62DA00, type: bin, linker_section_order: .rodata }
     - start: 0x635690
       type: .data
       name: electrode/model

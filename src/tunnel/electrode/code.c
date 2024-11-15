@@ -25,7 +25,7 @@ void electrode_WaitForPlayer(GObj*);
 void electrode_Remove(GObj*);
 void electrode_RevealHiddenPath(GObj*);
 void electrode_Behavior3Hit(GObj*);
-void electrode_tg_Explode(GObj*);
+void electrode_Explode(GObj*);
 
 s32 electrode_animsounds_explode[] = { 0, SOUND_ID_60, SOUND_ID_135 };
 
@@ -62,9 +62,9 @@ AnimationHeader electrode_animation_roll = {
 };
 
 InteractionHandler electrode_tg_Idle[] = {
-    { POKEMON_CMD_9, electrode_tg_Explode, 0, NULL },
-    { POKEMON_CMD_13, electrode_tg_Explode, 0, NULL },
-    { POKEMON_CMD_10, electrode_tg_Explode, 0, NULL },
+    { POKEMON_CMD_9, electrode_Explode, 0, NULL },
+    { POKEMON_CMD_13, electrode_Explode, 0, NULL },
+    { POKEMON_CMD_10, electrode_Explode, 0, NULL },
     { TUNNEL_CMD_51, electrode_Remove, 0, NULL },
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
@@ -130,7 +130,7 @@ POKEMON_FUNC(electrode_Idle)
     Pokemon_SetState(obj, NULL);
 }
 
-POKEMON_FUNC(electrode_tg_Explode)
+POKEMON_FUNC(electrode_Explode)
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_StartAuxProc(obj, electrode_ChangeCollisionOffset);
     Pokemon_SetAnimation(obj, &electrode_animation_explode);
@@ -169,7 +169,7 @@ POKEMON_FUNC(electrode_Behavior1_Move)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetState(obj, electrode_tg_Explode);
+    Pokemon_SetState(obj, electrode_Explode);
 }
 
 POKEMON_FUNC(electrode_Behavior1_FollowPath)
@@ -193,7 +193,7 @@ POKEMON_FUNC(electrode_Behavior4_Move)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
     cmdSendCommandToLink(LINK_POKEMON, TUNNEL_CMD_40, obj);
-    Pokemon_SetState(obj, electrode_tg_Explode);
+    Pokemon_SetState(obj, electrode_Explode);
 }
 
 POKEMON_FUNC(electrode_Behavior4_FollowPath)

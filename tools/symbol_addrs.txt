@@ -2406,3 +2406,14 @@ diglett_part9_draw = 0x8032E2C8; // segment:tunnel_code
 diglett_part10_draw_near = 0x032E2E0; // segment:tunnel_code
 diglett_part10_draw = 0x8032E390; // segment:tunnel_code
 diglett_last = 0x8032E3A8; // segment:tunnel_code
+
+diglett_tex_right_eye_frame0_pal = 0x801605F8; // segment:tunnel_code
+diglett_tex_left_eye_frame0_pal = 0x80160C88; // segment:tunnel_code
+diglett_tex_head_pal = 0x80160EB8; // segment:tunnel_code
+diglett_tex_head_png = 0x80160EE0; // segment:tunnel_code
+diglett_tex_body_pal = 0x801610E8; // segment:tunnel_code
+diglett_tex_body_png = 0x80161110; // segment:tunnel_code
+diglett_tex_nose_pal = 0x80161318; // segment:tunnel_code
+diglett_tex_nose_png = 0x80161340; // segment:tunnel_code
+diglett_tex_soil_pal = 0x80161548; // segment:tunnel_code
+diglett_tex_soil_png = 0x80161570; // segment:tunnel_code

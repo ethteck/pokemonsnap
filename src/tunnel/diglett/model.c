@@ -1,15 +1,19 @@
 #include "common.h"
 
-extern u8 D_801605F8_tunnel_code[];
-extern u8 D_80160C88_tunnel_code[];
-extern u8 D_80160EB8_tunnel_code[];
-extern u8 D_80160EE0_tunnel_code[];
-extern u8 D_801610E8_tunnel_code[];
-extern u8 D_80161110_tunnel_code[];
-extern u8 D_80161318_tunnel_code[];
-extern u8 D_80161340_tunnel_code[];
-extern u8 D_80161548_tunnel_code[];
-extern u8 D_80161570_tunnel_code[];
+extern u8 diglett_tex_right_eye_frame0_pal[];
+extern u8 diglett_tex_right_eye_frame0_png[];
+extern u8 diglett_tex_right_eye_frame1_png[];
+extern u8 diglett_tex_left_eye_frame1_png[];
+extern u8 diglett_tex_left_eye_frame0_pal[];
+extern u8 diglett_tex_left_eye_frame0_png[];
+extern u8 diglett_tex_head_pal[];
+extern u8 diglett_tex_head_png[];
+extern u8 diglett_tex_body_pal[];
+extern u8 diglett_tex_body_png[];
+extern u8 diglett_tex_nose_pal[];
+extern u8 diglett_tex_nose_png[];
+extern u8 diglett_tex_soil_pal[];
+extern u8 diglett_tex_soil_png[];
 
 extern Texture* diglett_part4_mat[];
 extern Gfx diglett_part0_draw[];
@@ -31,13 +35,13 @@ Texture** diglett_materials[] = {
 };
 
 u8* diglett_part4_mat0_images[] = {
-    0x80160620,
-    0x80160850,
+    diglett_tex_right_eye_frame0_png,
+    diglett_tex_right_eye_frame1_png,
 };
 
 u8* diglett_part4_mat1_images[] = {
-    0x80160CB0,
-    0x80160A80,
+    diglett_tex_left_eye_frame0_png,
+    diglett_tex_left_eye_frame1_png,
     NULL
 };
 

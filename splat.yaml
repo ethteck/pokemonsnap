@@ -639,6 +639,7 @@ segments:
     - [auto, c, magnemite/anim/model/hit]
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
+    - [auto, c, diglett/textures]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -860,6 +861,44 @@ segments:
       subsegments:
       - [0x1A63C0, snap_material_anim, pulse]
     - [0x1A6630, bin]
+    - start: 0x1A6750
+      type: .data
+      dir: diglett
+      name: diglett/textures
+      subsegments:
+      - [0x1A6750]
+      - [0x1A6758, palette, tex_right_eye_frame0]
+      - [0x1A6778]
+      - { start: 0x1A6780, type: ci4, name: tex_right_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A6980]
+      - [0x1A6988, palette, tex_right_eye_frame1]
+      - [0x1A69A8]
+      - { start: 0x1A69B0, type: ci4, name: tex_right_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A6BB0]
+      - [0x1A6BB8, palette, tex_left_eye_frame1]
+      - [0x1A6BD8]
+      - { start: 0x1A6BE0, type: ci4, name: tex_left_eye_frame1, flip_y: true, width: 32, height: 32 }
+      - [0x1A6DE0]
+      - [0x1A6DE8, palette, tex_left_eye_frame0]
+      - [0x1A6E08]
+      - { start: 0x1A6E10, type: ci4, name: tex_left_eye_frame0, flip_y: true, width: 32, height: 32 }
+      - [0x1A7010]
+      - [0x1A7018, palette, tex_head]
+      - [0x1A7038]
+      - { start: 0x1A7040, type: ci4, name: tex_head, flip_y: true, width: 32, height: 32 }
+      - [0x1A7240]
+      - [0x1A7248, palette, tex_body]
+      - [0x1A7268]
+      - { start: 0x1A7270, type: ci4, name: tex_body, flip_y: true, width: 32, height: 32 }
+      - [0x1A7470]
+      - [0x1A7478, palette, tex_nose]
+      - [0x1A7498]
+      - { start: 0x1A74A0, type: ci4, name: tex_nose, flip_y: true, width: 32, height: 32 }
+      - [0x1A76A0]
+      - [0x1A76A8, palette, tex_soil]
+      - [0x1A76C8]
+      - { start: 0x1A76D0, type: ci4, name: tex_soil, flip_y: true, width: 64, height: 64 }
+    - [0x1A7ED0, bin]
     - start: 0x1BF8F0
       type: .data
       dir: electrode

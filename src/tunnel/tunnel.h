@@ -69,6 +69,8 @@ extern UnkEC64Arg3 magnemite_model[];
 extern UnkEC64Arg3 magneton_model[];
 extern Texture** electrode_materials[];
 extern UnkEC64Arg3 electrode_model[];
+extern Texture** diglett_materials[];
+extern UnkEC64Arg3 diglett_model[];
 
 extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;

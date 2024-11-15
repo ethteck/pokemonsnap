@@ -80,8 +80,8 @@ PokemonAnimationSetup diglett_animSetup = {
 };
 
 PokemonInitData diglett_initData = {
-    0x8032E3D0,
-    0x8032C3C0,
+    diglett_model,
+    diglett_materials,
     renderPokemonModelTypeBFogged,
     &diglett_animSetup,
     { 2.4, 2.4, 2.4 },

@@ -616,7 +616,7 @@ void contPrinterReadWrite(ControllerEventPrinter* arg0) {
     }
 }
 
-s32 contIsPrinterAvailable(void) {
+bool contIsPrinterAvailable(void) {
     // check if it's inserted into the last slot
     if (sContDeviceTypes[3] == CONT_DEV_TYPE_PRINTER) {
         return true;

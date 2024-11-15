@@ -134,11 +134,11 @@ void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
     D_800BE200[arg0] = arg2;
 }
 
-#ifdef NON_MATCHING
 UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* arg4, s32 arg5, f32 arg6, f32 arg7,
                           f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkPinkRat* arg10) {
     UnkRustRat* ret = D_800BE1A0;
     s32 temp = 0;
+    s32 t;
 
     if (ret == NULL) {
         return NULL;
@@ -174,10 +174,10 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* a
     ret->unk_3C = argE;
     ret->unk_1E = arg5 + 1;
     ret->scriptPtr = arg4;
-    ret->unk_18 = 0;
-    ret->unk_1A = 0;
+    ret->unk_18 = ret->unk_1A = 0;
+
     if (argF) {
-        ret->flags = ((s16) arg2) | 0x10;
+        ret->flags = (u16) arg2 | 0x10;
     }
     if (arg4 != 0) {
         ret->unk_0C = true;
@@ -191,11 +191,6 @@ UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* a
     ret->unk_58 = arg10;
     return ret;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A21E0.s")
-UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* arg4, s32 arg5, f32 arg6, f32 arg7,
-                          f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkPinkRat* arg10);
-#endif
 
 UnkRustRat* func_800A2B3C(UnkRustRat*, UnkRustRat*, s32);
 

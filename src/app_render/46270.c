@@ -183,42 +183,41 @@ void func_8009AE0C(u32 sceneId) {
     }
 }
 
-#if 0
+#define VRAM_START (u32*) 0x80400000
+#define VRAM_END (u32*) 0x807FFFF0
 s32 func_8009B2BC(void) {
-    s32 i;
-    u32* VRAM_START = (u32*)0x80400000;
+    u32* it;
 
     if (!contIsPrinterAvailable()) {
         return -3;
     }
 
     osWritebackDCache(VRAM_START, 0x400000);
-    for (i = 0; i < 0x100000 - 4; i++) {
-        VRAM_START[i] = 0x55555555;
+    for (it = VRAM_START; it < VRAM_END; it++) {
+        *it = 0x55555555;
     }
     osInvalDCache(VRAM_START, 0x400000);
-    for (i = 0; i < 0x100000 - 4; i++) {
-        if (VRAM_START[i] != 0x55555555) {
+    for (it = VRAM_START; it < VRAM_END; it++) {
+        if (*it != 0x55555555) {
             return -1;
         }
     }
 
     osWritebackDCache(VRAM_START, 0x400000);
-    for (i = 0; i < 0x100000 - 4; i++) {
-        VRAM_START[i] = 0xAAAAAAAA;
+    for (it = VRAM_START; it < VRAM_END; it++) {
+        *it = 0xAAAAAAAA;
     }
     osInvalDCache(VRAM_START, 0x400000);
-    for (i = 0; i < 0x100000 - 4; i++) {
-        if (VRAM_START[i] != 0xAAAAAAAA) {
+    for (it = VRAM_START; it < VRAM_END; it++) {
+        if (*it != 0xAAAAAAAA) {
             return -1;
         }
     }
 
     return 0;
 }
-#endif
-s32 func_8009B2BC(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/46270/func_8009B2BC.s")
+#undef VRAM_START
+#undef VRAM_END
 
 void func_8009B40C(void) {
     s32 i;

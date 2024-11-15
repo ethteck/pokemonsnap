@@ -2427,3 +2427,6 @@ diglett_matanim_look_around = 0x80163BC0; // segment:tunnel_assets
 diglett_matanim_unused = 0x80163CE0; // segment:tunnel_assets
 diglett_matanim_rise = 0x80163D40; // segment:tunnel_assets
 diglett_matanim_unburrow = 0x80163E20; // segment:tunnel_assets
+
+D_80343148_640218 = 0x80343148;
+D_8034314C_64021C = 0x8034314C;

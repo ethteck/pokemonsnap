@@ -78,8 +78,9 @@ extern HeightMap D_80326EE0_623FB0;
 extern HeightMap D_80326EE8_623FB8;
 extern WorldSetup tunnel_WorldSetup;
 
-extern GObj* D_802EEECC_5EBF9C;
 extern GObj* D_802EEEC4_5EBF94;
+extern GObj* D_802EEEC8_5EBF98;
+extern GObj* D_802EEECC_5EBF9C;
 extern s32 D_802EEED0_5EBFA0;
 
 void tunnel_UpdateSounds(s32, f32);

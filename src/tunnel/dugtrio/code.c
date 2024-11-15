@@ -1,23 +1,108 @@
 #include "../tunnel.h"
 
+//extern AnimCmd* diglett_modelanim_look_around[];
+//extern AnimCmd* diglett_modelanim_turn[];
+//extern AnimCmd* diglett_modelanim_unburrow[];
+//extern AnimCmd* diglett_modelanim_rise[];
+//extern AnimCmd* diglett_modelanim_burrow[];
+
 void func_802E6574_5E3644(GObj*);
 void func_802E67B8_5E3888(GObj*);
 void func_802E6A30_5E3B00(GObj*);
+void func_802E6490_5E3560(GObj*);
+void func_802E654C_5E361C(GObj*);
+void func_802E65B4_5E3684(GObj*);
+void func_802E67F8_5E38C8(GObj*);
+void func_802E6A70_5E3B40(GObj*);
 
-extern AnimationHeader D_802EEAC4_5EBB94;
-extern AnimationHeader D_802EEAD8_5EBBA8;
-extern AnimationHeader D_802EEAEC_5EBBBC;
-extern AnimationHeader D_802EEB00_5EBBD0;
-extern AnimationHeader D_802EEB14_5EBBE4;
-extern InteractionHandler D_802EEB28_5EBBF8[];
-extern InteractionHandler D_802EEB48_5EBC18[];
-extern InteractionHandler D_802EEB68_5EBC38[];
-extern InteractionHandler D_802EEB88_5EBC58[];
-extern PokemonInitData D_802EEBBC_5EBC8C;
+s32 dugtrio_animsounds_rise[] = { SOUND_ID_219 };
+
+AnimationHeader D_802EEAC4_5EBB94 = {
+    0.65,
+    40,
+    0x80165250,
+    NULL,
+    NULL
+};
+
+AnimationHeader D_802EEAD8_5EBBA8 = {
+    0.7,
+    70,
+    0x80165F90,
+    NULL,
+    NULL
+};
+
+AnimationHeader D_802EEAEC_5EBBBC = {
+    0.7,
+    35,
+    0x80167220,
+    NULL,
+    NULL
+};
+
+AnimationHeader D_802EEB00_5EBBD0 = {
+    0.7,
+    25,
+    0x80166B50,
+    NULL,
+    dugtrio_animsounds_rise
+};
+
+AnimationHeader D_802EEB14_5EBBE4 = {
+    0.7,
+    35,
+    0x80165B30,
+    NULL,
+    NULL
+};
+
+InteractionHandler D_802EEB28_5EBBF8[] = {
+    { POKEMON_CMD_24, NULL, 0, func_802E654C_5E361C },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEB48_5EBC18[] = {
+    { TUNNEL_CMD_34, func_802E65B4_5E3684, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEB68_5EBC38[] = {
+    { TUNNEL_CMD_35, func_802E67F8_5E38C8, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_802EEB88_5EBC58[] = {
+    { TUNNEL_CMD_36, func_802E6A70_5E3B40, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+PokemonAnimationSetup dugtrio_animSetup = {
+    &D_802EEAC4_5EBB94,
+    func_802E6490_5E3560,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_802EEBBC_5EBC8C = {
+    0x80330670,
+    NULL,
+    renderPokemonModelTypeBFogged,
+    &dugtrio_animSetup,
+    { 1.7, 1.7, 1.7 },
+    { 0, 118, 0 },
+    47,
+    POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 extern s32 D_80343148_640218;
 extern s32 D_8034314C_64021C;
-extern GObj* D_802EEEC8_5EBF98;
 
 POKEMON_FUNC(func_802E6490_5E3560)
     pokemon->tangible = false;

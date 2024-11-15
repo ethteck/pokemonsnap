@@ -3390,7 +3390,8 @@ segments:
     - [0x5EB770, .data, magneton/code]
     - [0x5EB8B0, .data, electrode/code]
     - [0x5EBA60, .data, diglett/code]
-    - [0x5EBB90, bin] # , data]
+    - [0x5EBB90, .data, dugtrio/code]
+    - [0x5EBCC0, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, magnemite/code]

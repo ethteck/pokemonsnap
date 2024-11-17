@@ -3458,7 +3458,8 @@ segments:
     - [0x5EBA60, .data, diglett/code]
     - [0x5EBB90, .data, dugtrio/code]
     - [0x5EBCC0, .data, kakuna/code]
-    - [0x5EBE50, bin] # , data]
+    - [0x5EBE50, .data, 5E4750]
+    - [0x5EC3E0, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, magnemite/code]

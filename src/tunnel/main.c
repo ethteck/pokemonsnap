@@ -68,7 +68,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       dugtrio_Remove },
     { PokemonID_KAKUNA,
-      func_802E7620_5E46F0,
+      kakuna_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_PIKACHU,

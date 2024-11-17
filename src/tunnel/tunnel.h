@@ -4,6 +4,7 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_29 POKEMON_CMD_29
 #define TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP POKEMON_CMD_31
 #define TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP POKEMON_CMD_32
 #define TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP POKEMON_CMD_33
@@ -11,6 +12,7 @@
 #define TUNNEL_CMD_SECOND_DUGTRIO_SHOW_UP POKEMON_CMD_35
 #define TUNNEL_CMD_THIRD_DUGTRIO_SHOW_UP POKEMON_CMD_36
 #define TUNNEL_CMD_37 POKEMON_CMD_37
+#define TUNNEL_CMD_38 POKEMON_CMD_38
 #define TUNNEL_CMD_39 POKEMON_CMD_39
 #define TUNNEL_CMD_40 POKEMON_CMD_40
 #define TUNNEL_CMD_43 POKEMON_CMD_43
@@ -96,7 +98,7 @@ GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* electrode_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* diglett_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* dugtrio_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E7620_5E46F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* kakuna_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E9390_5E6460(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EA424_5E74F4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EB818_5E88E8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

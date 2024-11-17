@@ -966,7 +966,7 @@ segments:
       dir: diglett/anim/material/
       name: diglett/anim/material/unburrow
       subsegments:
-      - [0x1A9F80, snap_material_anim, unburrow]    
+      - [0x1A9F80, snap_material_anim, unburrow]
     - start: 0x1AA090
       type: .data
       dir: dugtrio
@@ -3435,7 +3435,7 @@ segments:
     - [0x5E21C0, c, electrode/code]
     - [0x5E2D80, c, diglett/code]
     - [0x5E3560, c, dugtrio/code]
-    - [0x5E3D80, c]
+    - [0x5E3D80, c, kakuna/code]
     - [0x5E4730, pad]
     - [0x5E4750, c]
     - [0x5E64A0, c]
@@ -3449,7 +3449,7 @@ segments:
     - [auto, c, diglett/model]
     - [auto, c, dugtrio/model]
     - [auto, c, electrode/model]
-    - [auto, c, magneton/model]    
+    - [auto, c, magneton/model]
     - [0x5EAFD0, .data, main]
     - [0x5EB2B0, .data, sounds]
     - [0x5EB2D0, .data, magnemite/code]
@@ -3457,12 +3457,13 @@ segments:
     - [0x5EB8B0, .data, electrode/code]
     - [0x5EBA60, .data, diglett/code]
     - [0x5EBB90, .data, dugtrio/code]
-    - [0x5EBCC0, bin] # , data]
+    - [0x5EBCC0, .data, kakuna/code]
+    - [0x5EBE50, bin] # , data]
 
     - [0x5ED360, .rodata, sounds]
     - [0x5ED420, .rodata, magnemite/code]
     - [0x5ED430, .rodata, electrode/code]
-    - [0x5ED440, .rodata, 5E3D80]
+    - [0x5ED440, .rodata, kakuna/code]
     - [0x5ED450, .rodata, 5E4750]
     - [0x5ED470, .rodata, 5E64A0]
     - [0x5ED480, .rodata, 5E7560]

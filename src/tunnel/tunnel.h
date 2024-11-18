@@ -87,6 +87,7 @@ extern GObj* D_802EEEC4_5EBF94;
 extern GObj* D_802EEEC8_5EBF98;
 extern GObj* D_802EEECC_5EBF9C;
 extern s32 D_802EEED0_5EBFA0;
+extern GObj* D_802EE8AC_5EB97C;
 
 void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);

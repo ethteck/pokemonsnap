@@ -29,6 +29,16 @@ void func_802E9150_5E6220(GObj*);
 void func_802E8F44_5E6014(GObj*);
 void func_802E90DC_5E61AC(GObj*);
 void func_802E9098_5E6168(GObj*);
+void func_802E8EAC_5E5F7C(GObj*);
+void func_802E8D84_5E5E54(GObj*);
+void func_802E8D38_5E5E08(GObj*);
+void func_802E8B1C_5E5BEC(GObj*);
+void func_802E8C94_5E5D64(GObj*);
+void func_802E8868_5E5938(GObj*);
+void func_802E8AA4_5E5B74(GObj*);
+void func_802E8990_5E5A60(GObj*);
+void func_802E88EC_5E59BC(GObj*);
+void func_802E86C4_5E5794(GObj*);
 
 s32 D_802EED80_5EBE50[] = { SOUND_ID_266 };
 s32 D_802EED84_5EBE54[] = { SOUND_ID_264, SOUND_ID_127, SOUND_ID_360 };
@@ -314,7 +324,7 @@ InteractionHandler D_802EF280_5EC350[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-s32 D_802EF2A0_5EC370 = 0;
+f32 D_802EF2A0_5EC370[] =  { 0 };
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E7AC8_5E4B98.s")
 
@@ -369,38 +379,147 @@ void func_802E7E5C_5E4F2C(GObj* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8754_5E5824.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E87F4_5E58C4.s")
+POKEMON_FUNC(func_802E87F4_5E58C4)
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    Pokemon_SetAnimation(obj, &D_802EEE20_5EBEF0);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8868_5E5938.s")
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
+    Pokemon_SetState(obj, func_802E86C4_5E5794);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E88EC_5E59BC.s")
+POKEMON_FUNC(func_802E8868_5E5938)
+    Pokemon_SetAnimation(obj, &D_802EEDBC_5EBE8C);
+    Pokemon_StartPathProc(obj, func_802E88EC_5E59BC);
+    Pokemon_StartAuxProc(obj, func_802E8990_5E5A60);
+    pokemon->transitionGraph = D_802EF220_5EC2F0;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8990_5E5A60.s")
+    Pokemon_SetState(obj, func_802E8AA4_5E5B74);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8A24_5E5AF4.s")
+POKEMON_FUNC(func_802E88EC_5E59BC)
+    while (Pokemon_GetDistance(obj, D_802EE8AC_5EB97C) > 200.0f) {
+        ohWait(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8AA4_5E5B74.s")
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = NULL;
+    omEndProcess(NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8B1C_5E5BEC.s")
+POKEMON_FUNC(func_802E8990_5E5A60)
+    while (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED)) {
+        pokemon->interactionTarget = D_802EE8AC_5EB97C;
+        Pokemon_TurnToTarget(obj, 0.1f, 0);
+        ohWait(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8C94_5E5D64.s")
+    Pokemon_StopAuxProc(obj);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8D38_5E5E08.s")
+POKEMON_FUNC(func_802E8A24_5E5AF4)
+    pokemon->flags |= POKEMON_FLAG_200;
+    pokemon->flags |= POKEMON_FLAG_800;
+    Pokemon_SetAnimation(obj, &D_802EEE20_5EBEF0);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8D84_5E5E54.s")
+    pokemon->flags &= ~POKEMON_FLAG_200;
+    pokemon->flags &= ~POKEMON_FLAG_800;
+    Pokemon_SetState(obj, func_802E8868_5E5938);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E4750/func_802E8E34_5E5F04.s")
+POKEMON_FUNC(func_802E8AA4_5E5B74)
+    pokemon->forbiddenGround = D_802EF2A0_5EC370;
+    Pokemon_SetAnimation(obj, &D_802EEE0C_5EBEDC);
+    Pokemon_StartPathProc(obj, func_802E8B1C_5E5BEC);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+
+    Pokemon_SetState(obj, func_802E8C94_5E5D64);
+}
+
+POKEMON_FUNC(func_802E8B1C_5E5BEC)
+    Mtx3Float* anotherPos = &GET_TRANSFORM(D_802EE8AC_5EB97C->data.dobj)->pos;
+    f32 f0;
+
+    do {
+        ohWait(1);
+        f0 = anotherPos->v.y + 150.0f - position->v.y;
+        if (ABS(f0) < 30.0f) {
+            position->v.y = anotherPos->v.y + 150.0f;
+        } else if (f0 > 0) {
+            position->v.y += 30.0f;
+        } else {
+            position->v.y -= 30.0f;
+        }
+        pokemon->hSpeed = 320.0f;
+        Pokemon_SetTargetPos(obj, anotherPos->v.x, anotherPos->v.z);
+    } while (Pokemon_StepToTargetPos(obj, 0.1f, 0) == 0);
+    
+    position->v.x = anotherPos->v.x;
+    position->v.z = anotherPos->v.z;
+    position->v.y = anotherPos->v.y + 150.0f; 
+
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = NULL;
+    omEndProcess(NULL);
+}
+
+POKEMON_FUNC(func_802E8C94_5E5D64)
+    EnvSound_PlaySound(obj, 0, SOUND_ID_265);
+    pokemon->specialPoseID = 2;
+    Pokemon_SetAnimation(obj, &D_802EEE0C_5EBEDC);
+    pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_4000;
+    Pokemon_StartAuxProc(obj, func_802E8D84_5E5E54);
+    Pokemon_StartPathProc(obj, func_802E8D38_5E5E08);
+    pokemon->transitionGraph = D_802EF260_5EC330;
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
+}
+
+POKEMON_FUNC(func_802E8D38_5E5E08)
+    Pokemon_TurnToTarget(obj, 0.2f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = NULL;
+    omEndProcess(NULL);
+}
+
+POKEMON_FUNC(func_802E8D84_5E5E54)
+    Mtx3Float* anotherPos = &GET_TRANSFORM(D_802EE8AC_5EB97C->data.dobj)->pos;
+
+    while (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_4000)) {
+        position->v.x = anotherPos->v.x;
+        position->v.z = anotherPos->v.z;
+        position->v.y = anotherPos->v.y + 150.0f;        
+        ohWait(1);
+    }
+    Pokemon_StopAuxProc(obj);
+}
+
+POKEMON_FUNC(func_802E8E34_5E5F04)
+    Pokemon_SetAnimation(obj, &D_802EEE5C_5EBF2C);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_4000;
+    Pokemon_StartPathProc(obj, NULL);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
+    Pokemon_SetState(obj, func_802E8EAC_5E5F7C);
+}
 
 POKEMON_FUNC(func_802E8EAC_5E5F7C)
     pokemon->specialPoseID = 0;
     Pokemon_SetAnimation(obj, &D_802EEE0C_5EBEDC);
-    pokemon->processFlags |= POKEMON_PROCESS_FLAG_1000;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_4000;
     Pokemon_StartPathProc(obj, func_802E8F44_5E6014);
     Pokemon_StartAuxProc(obj, func_802E9098_5E6168);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
 
-    Pokemon_SetAnimation(obj, &D_802EEDBC_5EBE8C);
+    pokemon->transitionGraph = NULL;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_AUX_ENDED);
 
     Pokemon_SetState(obj, func_802E90DC_5E61AC);
 }

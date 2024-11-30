@@ -61,7 +61,7 @@ void func_802D88F8_6C06D8(s32 arg0) {
 
 void func_802D895C_6C073C(GObj* obj) {
     if (Items_GetPokeFluteCmd() == 0) {
-        auSetBGMChannelVolume(0, 0xA, D_802E2620_6CA400);
+        auSetBGMChannelVolume(BGM_PLAYER_MAIN, 10, D_802E2620_6CA400);
     }
     if (D_802E2620_6CA400 != 0) {
         D_802E2620_6CA400--;

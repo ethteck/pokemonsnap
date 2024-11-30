@@ -2120,7 +2120,7 @@ void processOutOfFilm(GObj* arg0) {
     auStopBGM();
     auStopAllSounds();
     for (i = 0; i < 16; i++) {
-        auSetBGMChannelVolume(0, i, 127);
+        auSetBGMChannelVolume(BGM_PLAYER_MAIN, i, 127);
     }
     auPlaySong(0, 17);
     while (Msg_IsMessagePrinted() == 0) {

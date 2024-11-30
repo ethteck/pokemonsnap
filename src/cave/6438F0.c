@@ -402,7 +402,7 @@ void func_802C2058_644508(GObj* obj) {
         }
 
         for (i = 0; i < ARRAY_COUNT(sp54.unk_00); i++) {
-            auSetBGMChannelVolume(1, sp54.unk_00[i], vol);
+            auSetBGMChannelVolume(BGM_PLAYER_AUX, sp54.unk_00[i], vol);
         }
 
         ohWait(1);
@@ -429,7 +429,7 @@ void func_802C2308_6447B8(GObj* obj) {
         vol = (u32) (127.0f * temp_f20);
         if (Items_GetPokeFluteCmd() == 0) {
             for (i = 0; i < ARRAY_COUNT(sp70.unk_00); i++) {
-                auSetBGMChannelVolume(0, sp70.unk_00[i], vol);
+                auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp70.unk_00[i], vol);
             }
         }
         ohWait(1);

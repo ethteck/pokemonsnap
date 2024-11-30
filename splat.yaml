@@ -378,7 +378,6 @@ segments:
     - [0x5A580, data]
     - [0x5AD90, .rodata, 47330]
     - [0x5ADD0, .rodata, 47380]
-    - [0x5B830, .rodata, 47380]
     - [0x5BB30, .rodata, score]
     - [0x5BBF0, .rodata, 4D400]
     - [0x5BC10, .rodata, 4D880]

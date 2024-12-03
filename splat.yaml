@@ -332,14 +332,14 @@ segments:
     - { start: auto, name: sys/render, type: .bss, vram: 0x8004AF20 }
     - { start: auto, name: sys/audio, type: .bss, vram: 0x8004B250 }
     - { start: auto, name: sys/error, type: .bss, vram: 0x80096980 }
-    - { start: auto, name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
+    - { name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
     - { start: auto, name: ../ultralib/src/io/siacs, type: .bss, vram: 0x80097E90 }
     - { start: auto, name: ../ultralib/src/io/controller, type: .bss, vram: 0x80097EB0 }
     - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
     - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
-    - { start: auto, name: __osThreadSave, type: bss, vram: 0x80097F90 } # todo
+    - { name: __osThreadSave, type: bss, vram: 0x80097F90 } # todo
     - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
     - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
@@ -378,7 +378,6 @@ segments:
     - [0x5A580, data]
     - [0x5AD90, .rodata, 47330]
     - [0x5ADD0, .rodata, 47380]
-    - [0x5B830, .rodata, 47380]
     - [0x5BB30, .rodata, score]
     - [0x5BBF0, .rodata, 4D400]
     - [0x5BC10, .rodata, 4D880]
@@ -402,7 +401,7 @@ segments:
     - [0x5E630, c, ../os/osFlash]
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]
-    - { start: auto, name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
+    - { name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
   - name: world
     dir: world
     type: code
@@ -602,7 +601,7 @@ segments:
     subsegments:
     - [0xA74E0, c]
     - [0xA74F0, bin] # , data]
-    - { start: auto, name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
+    - { name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
   - type: code
     name: stage0_extra
     start: 0x13C780
@@ -1162,7 +1161,7 @@ segments:
       subsegments:
       - [0x1C80A0, snap_model_anim, animation]
     - [0x1C8AC0, bin]
-    - { start: auto, name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
+    - { name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: stage1_extra
     start: 0x1D1D90
@@ -1178,7 +1177,7 @@ segments:
     subsegments:
     - [0x1F5E70, c]
     - [0x1F5E80, bin] # , data]
-    - { start: auto, name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
+    - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
   - type: code
     name: stage4_extra
     start: 0x27AB80
@@ -1194,7 +1193,7 @@ segments:
     subsegments:
     - [0x29A190, c]
     - [0x29A1A0, bin] # , data]
-    - { start: auto, name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
+    - { name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
   - type: code
     name: river_extra
     start: 0x30AF90
@@ -3232,7 +3231,7 @@ segments:
     subsegments:
     - [0x3F63D0, c]
     - [0x3F63E0, bin] # , data]
-    - { start: auto, name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
+    - { name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
   - type: code
     name: stage5_extra
     start: 0x47CF30
@@ -3248,7 +3247,7 @@ segments:
     subsegments:
     - [0x4A8160, c]
     - [0x4A8170, bin] # , data]
-    - { start: auto, name: bss_80139C30, type: bss, vram: 0x80139C30 }
+    - { name: bss_80139C30, type: bss, vram: 0x80139C30 }
   - type: code
     name: stage6_extra
     start: 0x4EC000
@@ -3307,7 +3306,7 @@ segments:
     - { start: 0x536030, type: data, linker_section_order: .rodata }
     - { name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
     #- { name: 503C10, type: bss, vram: 0x803B0F60 }
-    #- { start: auto, name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
+    #- { name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
   - type: code
     name: magikarp_model
     dir: pokemon_common
@@ -3419,7 +3418,7 @@ segments:
 
     - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
 
-    - { start: auto, name: bss_80347560, type: bss, vram: 0x80347560 }
+    - { name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code
     dir: tunnel
     type: code
@@ -3637,7 +3636,7 @@ segments:
       - [0x63CEA8, gfx, last]
     - { start: 0x63D3A0, type: bin, linker_section_order: .rodata }
 
-    - { start: auto, name: bss_803430E0, type: bss, vram: 0x803430E0 }
+    - { name: bss_803430E0, type: bss, vram: 0x803430E0 }
   - name: cave_code
     dir: cave
     type: code
@@ -3681,7 +3680,7 @@ segments:
 
     - { start: 0x64A610, type: bin, linker_section_order: .rodata }
 
-    - { start: auto, name: bss_8033E130, type: bss, vram: 0x8033E130 }
+    - { name: bss_8033E130, type: bss, vram: 0x8033E130 }
   - name: river_code
     dir: river
     type: code
@@ -3731,7 +3730,7 @@ segments:
 
     - { start: 0x6CCA80, type: bin, linker_section_order: .rodata }
 
-    - { start: auto, name: bss_8033F500, type: bss, vram: 0x8033F500 }
+    - { name: bss_8033F500, type: bss, vram: 0x8033F500 }
   - name: volcano_code
     dir: volcano
     type: code
@@ -4571,7 +4570,7 @@ segments:
 
     - { start: 0x7C6770, type: bin, linker_section_order: .rodata }
 
-    - { start: auto, name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
+    - { name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
   - name: rainbow_code
     dir: rainbow
     type: code
@@ -4588,7 +4587,7 @@ segments:
     - [0x829670, c]
     - [0x829900, c]
     - [0x82A280, bin] # , data]
-    - { start: auto, name: bss_80350170, type: bss, vram: 0x80350170 }
+    - { name: bss_80350170, type: bss, vram: 0x80350170 }
   - type: code
     name: magikarp2
     dir: pokemon/magikarp
@@ -4660,7 +4659,7 @@ segments:
     - [0x87A090, .rodata, 846E20]
     - [0x87A0A0, .rodata, 8486E0]
 
-    - { start: auto, name: bss_803A6900, type: bss, vram: 0x803A6900 }
+    - { name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: camera_check
     dir: camera_check
     symbol_name_format: camera_check_$VRAM
@@ -4683,7 +4682,7 @@ segments:
     - [0x8A6450, .rodata, 87D1A0]
     - [0x8A70C0, .rodata, 87FB20]
 
-    - { start: auto, name: bss_802098F0, type: bss, vram: 0x802098F0 }
+    - { name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: oaks_lab
     dir: oaks_lab
     type: code
@@ -4711,7 +4710,7 @@ segments:
     - [0x98B170, .rodata, 8A9CC0]
     - [0x98C300, .rodata, 8AAF60]
 
-    - { start: auto, name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
+    - { name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
   - name: photo_check
     dir: photo_check
     type: code
@@ -4766,7 +4765,7 @@ segments:
     - [0x9F9990, .rodata, 9D3660]
     - [0x9FA550, .rodata, 9D91C0]
 
-    - { start: auto, name: bss_80203C10, type: bss, vram: 0x80203C10 }
+    - { name: bss_80203C10, type: bss, vram: 0x80203C10 }
   - name: gallery
     dir: gallery
     type: code
@@ -4784,7 +4783,7 @@ segments:
     - [0xA07F80, .rodata, 9FAC10]
     - [0xA08410, .rodata, 9FD510]
 
-    - { start: auto, name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
+    - { name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
     - { start: auto, name: 9FEC10, type: .bss, vram: 0x802308C0 }
   - name: unk_end_level_8
     dir: unk_end_level_8
@@ -4796,7 +4795,7 @@ segments:
     subsegments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
-    - { start: auto, name: A084B0, type: bss, vram: 0x801DD240 }
+    - { name: A084B0, type: bss, vram: 0x801DD240 }
   - name: main_menu
     dir: main_menu
     type: code
@@ -4814,7 +4813,7 @@ segments:
     - [0xA0F7B0, .rodata, A08E30]
     - [0xA0F800, .rodata, A0BE70]
     - [0xA0F810, .rodata, A0E190]
-    - { start: auto, name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
+    - { name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
   - [0xA0F830, bin] # VPK0 compressed data
 
@@ -4836,7 +4835,7 @@ segments:
     - { start: 0xA93390, type: data, name: sprite_cursor, linker_section_order: .rodata }
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
-    - { start: auto, name: sprite_bss, type: bss, vram: 0x80168150 }
+    - { name: sprite_bss, type: bss, vram: 0x80168150 }
 
   - name: credits
     dir: credits
@@ -4862,9 +4861,8 @@ segments:
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
     - [0xAA0000, .rodata, A937C0]
-    - [auto, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
-    - { start: auto, name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
+    - { name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
     type: code
     start: 0xAA0650

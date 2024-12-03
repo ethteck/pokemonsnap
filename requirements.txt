@@ -1,5 +1,5 @@
-splat64[mips]==0.27.0
-spimdisasm==1.28.1
+splat64[mips]==0.31.0
+spimdisasm==1.31.0
 ninja_syntax>=1.7.2
 argparse
 GitPython

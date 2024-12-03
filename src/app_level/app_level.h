@@ -266,6 +266,7 @@ void Pokemon_StopAuxProc(GObj*);
 void Pokemon_SetFlag100(GObj*, s32);
 void Pokemon_RunInCircles(GObj*, f32, f32, UNK_TYPE);
 void Pokemon_TurnToTarget(GObj*, f32, u32);
+void Pokemon_TurnToModelNode(GObj* obj, DObj* modelNode, f32 turnSpeed, u32 flags);
 void Pokemon_RunToTarget(GObj*, f32, f32, u32);
 GObj* Pokemon_SpawnOnGround(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);
 GObj* Pokemon_SpawnDlLink4(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn, PokemonInitData* initData);

@@ -467,7 +467,20 @@ void func_camera_check_801DDDA4(SObj* sobj, f32 arg1, f32* arg2, s32 x, s32 y) {
     sobj->sprite.y = y + delta;
 }
 
+#ifdef NON_MATCHING
+void func_camera_check_801DDF28(GObj* arg0) {
+    static f32 D_camera_check_80208944 = 0.0f; // TODO: address once data is split
+
+    D_camera_check_80208944 += 3.14159275f / 12;
+    if (D_camera_check_80208944 > 3.14159275f * 2) {
+        D_camera_check_80208944 -= 3.14159275f * 2;
+    }
+    func_camera_check_801DDDA4(D_camera_check_80249900, D_camera_check_80208944, &D_camera_check_80208948, 14, 72);
+    func_camera_check_801DDDA4(D_camera_check_80249904, D_camera_check_80208944, &D_camera_check_80208950, 100, 72);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DDF28.s")
+#endif
 
 void* func_camera_check_801DDFC4(void) {
     GObj* temp_v0;
@@ -580,8 +593,8 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
 //         UIElement_PrintText(temp_s0, sp48);
 //         sprintf(sp48, "%s", getPlayerName());
 
-//         if (var_a3_2 && var_a3_2 && var_a3_2) {
-//         }
+//         // if (var_a3_2 && var_a3_2 && var_a3_2) {
+//         // }
 
 //         UIElement_SetFont(temp_s0, FONT_8);
 //         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0x28);

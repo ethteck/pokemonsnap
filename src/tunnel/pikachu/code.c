@@ -1,4 +1,4 @@
-#include "tunnel.h"
+#include "../tunnel.h"
 
 extern AnimCmd* D_80112F20[];
 extern AnimCmd* D_80113740[];

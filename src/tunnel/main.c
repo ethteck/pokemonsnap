@@ -76,7 +76,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_ELECTABUZZ,
-      func_802EA424_5E74F4,
+      electabuzz_Spawn,
       pokemonChangeBlock,
       func_802EA45C_5E752C },
     { PokemonID_ZAPDOS,

@@ -200,8 +200,6 @@ SceneSetup tunnel_SceneSetup = {
     tunnel_Init           /* postInitFunc */
 };
 
-extern s32 D_803430E8_6401B8;
-
 void tunnel_SpawnMagikarp(GObj* obj) {
     DObj* model;
     Mtx3Float* position;
@@ -361,7 +359,7 @@ void tunnel_Init(void) {
     PokemonDetector_Create();
     PokemonDetector_Enable();
     func_802ED5C8_5EA698();
-    D_803430E8_6401B8 = 0;
+    D_803430E8_6401B8.intval = 0;
 }
 
 void func_802E2BB0_5DFC80(s32 arg0) {

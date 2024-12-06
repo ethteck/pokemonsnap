@@ -1,31 +1,63 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "tunnel.h"
 
+void func_802EA694_5E7764(GObj*);
+
+extern AnimationHeader D_802EF750_5EC820;
+extern InteractionHandler D_802EF778_5EC848[];
+extern InteractionHandler2 D_802EF788_5EC858;
 extern PokemonInitData D_802EF7BC_5EC88C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA490_5E7560.s")
+extern s32 D_803430F8_6401C8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA53C_5E760C.s")
+POKEMON_FUNC(func_802EA490_5E7560)
+    s32 blockIndex;
+    f32 blockPart;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA5D0_5E76A0.s")
+    while (true) {
+        getLevelProgress(&blockIndex, &blockPart);
+        if (blockIndex > 3 || blockIndex == 3 && blockPart >= 0.5) {
+            break;
+        }
+        ohWait(1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA694_5E7764.s")
-
-GObj* func_802EA6F8_5E77C8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802EF7BC_5EC88C);
+    Pokemon_RunCleanup(obj);
+    Pokemon_StopAuxProc(obj);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA730_5E7800.s")
+POKEMON_FUNC(func_802EA53C_5E760C)
+    InteractionHandler2 saved = D_802EF788_5EC858;
+    
+    pokemon->tangible = false;
+    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    pokemon->transitionGraph = &saved;
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA79C_5E786C.s")
+POKEMON_FUNC(func_802EA5D0_5E76A0)
+    Pokemon_StartAuxProc(obj, func_802EA490_5E7560);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EA970_5E7A40.s")
+    pokemon->tangible = true;
+    obj->flags = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EAB44_5E7C14.s")
+    while (D_803430E8_6401B8.bits.unk_00 == 0) {
+        pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+        pokemon->transitionGraph = D_802EF778_5EC848;
+        Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EADAC_5E7E7C.s")
+    Pokemon_SetState(obj, func_802EA694_5E7764);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EAE7C_5E7F4C.s")
+POKEMON_FUNC(func_802EA694_5E7764)
+    D_803430F8_6401C8 = 1;
+    Pokemon_SetAnimation(obj, &D_802EF750_5EC820);
+    pokemon->transitionGraph = D_802EF778_5EC848;
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/5E7560/func_802EAF18_5E7FE8.s")
+GObj* func_802EA6F8_5E77C8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
+    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_802EF7BC_5EC88C);
+}

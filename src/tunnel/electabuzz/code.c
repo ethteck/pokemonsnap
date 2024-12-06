@@ -47,7 +47,6 @@ extern s32 D_802EF6AC_5EC77C;
 extern InteractionHandler D_802EF6B0_5EC780[];
 extern PokemonInitData D_802EF714_5EC7E4;
 
-extern s32 D_803430E8_6401B8;
 extern GObj* D_802EFFD0_5ED0A0;
 extern GObj* D_802F0070_5ED140;
 
@@ -65,10 +64,9 @@ POKEMON_FUNC(func_802E93D0_5E64A0)
     Pokemon_SetState(obj, NULL);
 }
 
-#ifdef NON_MATCHING
 POKEMON_FUNC(func_802E944C_5E651C)
     if (pokemon->behavior == 2 || pokemon->behavior == 3) {
-        if (D_803430E8_6401B8 & 0x40000000) {
+        if (D_803430E8_6401B8.bits.unk_01) {
             Pokemon_SetState(obj, func_802E9BEC_5E6CBC);
         } else {
             if (pokemon->behavior == 2) {
@@ -83,7 +81,7 @@ POKEMON_FUNC(func_802E944C_5E651C)
         }
     }
 
-    if (!(D_803430E8_6401B8 & 0x40000000)) {
+    if (!(D_803430E8_6401B8.bits.unk_01)) {
         Pokemon_SetState(obj, func_802E9BEC_5E6CBC);
     }
 
@@ -91,10 +89,6 @@ POKEMON_FUNC(func_802E944C_5E651C)
     obj->flags = 0;
     Pokemon_SetState(obj, func_802E9538_5E6608);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/tunnel/electabuzz/code/func_802E944C_5E651C.s")
-void func_802E944C_5E651C(GObj*);
-#endif
 
 POKEMON_FUNC(func_802E9538_5E6608)
     pokemon->flags |= POKEMON_FLAG_200;
@@ -416,9 +410,9 @@ POKEMON_FUNC(func_802EA21C_5E72EC)
 
     cmdSendCommand(gObjPlayer, PLAYER_CMD_SHAKE_CAMERA, obj);
     if (pokemon->behavior == 2) {
-        cmdSendCommand(D_802EFFD0_5ED0A0, 48, obj);
+        cmdSendCommand(D_802EFFD0_5ED0A0, TUNNEL_CMD_48, obj);
     } else {
-        cmdSendCommand(D_802F0070_5ED140, 48, obj);
+        cmdSendCommand(D_802F0070_5ED140, TUNNEL_CMD_48, obj);
     }
 
     pokemon->transitionGraph = D_802EF6B0_5EC780;

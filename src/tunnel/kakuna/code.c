@@ -1,5 +1,14 @@
 #include "../tunnel.h"
 
+extern AnimCmd* D_8015AAE0[];
+extern AnimCmd* D_8015A4C0[];
+
+extern AnimCmd** D_8015AEF0[];
+extern AnimCmd** D_8015AE40[];
+
+extern UnkEC64Arg3 D_80329A00[];
+extern Texture** D_80327110[];
+
 void func_802E70BC_5E418C(GObj*);
 void func_802E70FC_5E41CC(GObj*);
 void func_802E6E0C_5E3EDC(GObj*);
@@ -11,7 +20,7 @@ void func_802E729C_5E436C(GObj*);
 void func_802E73D0_5E44A0(GObj*);
 void func_802E74A4_5E4574(GObj*);
 void func_802E7594_5E4664(GObj*);
-void func_802E6CB0_5E3D80(GObj*);
+void kakuna_InitialState(GObj*);
 void func_802E6E7C_5E3F4C(GObj*);
 void func_802E6FA8_5E4078(GObj*);
 void func_802E7324_5E43F4(GObj*);
@@ -23,16 +32,16 @@ s32 D_802EEBF0_5EBCC0[] = { SOUND_ID_327 };
 AnimationHeader D_802EEBF4_5EBCC4 = {
     0.25,
     40,
-    0x8015AAE0,
-    0x8015AEF0,
+    D_8015AAE0,
+    D_8015AEF0,
     NULL
 };
 
 AnimationHeader D_802EEC08_5EBCD8 = {
     0.25,
     40,
-    0x8015A4C0,
-    0x8015AE40,
+    D_8015A4C0,
+    D_8015AE40,
     D_802EEBF0_5EBCC0
 };
 
@@ -71,20 +80,20 @@ InteractionHandler D_802EECEC_5EBDBC[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-PokemonAnimationSetup D_802EED2C_5EBDFC = {
+PokemonAnimationSetup kakuna_animSetup = {
     &D_802EEBF4_5EBCC4,
-    func_802E6CB0_5E3D80,
+    kakuna_InitialState,
     0,
     { 0, 0, 0 },
     NULL,
     NULL
 };
 
-PokemonInitData D_802EED40_5EBE10 = {
-    0x80329A00,
-    0x80327110,
+PokemonInitData kakuna_initData = {
+    D_80329A00,
+    D_80327110,
     renderPokemonModelTypeBFogged,
-    &D_802EED2C_5EBDFC,
+    &kakuna_animSetup,
     { 2.2, 2.2, 2.2 },
     { 0, 152, -8.8 },
     32,
@@ -95,7 +104,7 @@ PokemonInitData D_802EED40_5EBE10 = {
     { 0, 0, 0 }
 };
 
-POKEMON_FUNC(func_802E6CB0_5E3D80)
+POKEMON_FUNC(kakuna_InitialState)
     pokemon->miscVars[0].field0 = position->v.y * 1;
     getGroundAt(position->v.x, position->v.z, &pokemon->currGround);
     pokemon->miscVars[1].field0 = pokemon->currGround.height + 25.0f;
@@ -305,5 +314,5 @@ POKEMON_FUNC(func_802E75F4_5E46C4)
 }
 
 GObj* kakuna_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
-    return Pokemon_Spawn(objID, id, block, blockB, spawn, &D_802EED40_5EBE10);
+    return Pokemon_Spawn(objID, id, block, blockB, spawn, &kakuna_initData);
 }

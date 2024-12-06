@@ -357,7 +357,7 @@ void func_802DC820_6C4600(GObj* obj) {
     block = getCurrentWorldBlock();
     sp74.x = -(block->descriptor->worldPos.x * 100.0f);
     sp74.z = -(block->descriptor->worldPos.z * 100.0f);
-    getGroundAt(position->v.x, position->v.z, &ground.height);
+    getGroundAt(position->v.x, position->v.z, &ground);
     position->v.y = ground.height;
     sp74.y = position->v.y;
     GetInterpolatedPosition(&sp94, pokemon->path, 0.99999f);

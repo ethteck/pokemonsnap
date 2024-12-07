@@ -4,6 +4,7 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 
+#define TUNNEL_CMD_29 POKEMON_CMD_29
 #define TUNNEL_CMD_FIRST_DIGLETT_SHOW_UP POKEMON_CMD_31
 #define TUNNEL_CMD_SECOND_DIGLETT_SHOW_UP POKEMON_CMD_32
 #define TUNNEL_CMD_THIRD_DIGLETT_SHOW_UP POKEMON_CMD_33
@@ -11,13 +12,20 @@
 #define TUNNEL_CMD_SECOND_DUGTRIO_SHOW_UP POKEMON_CMD_35
 #define TUNNEL_CMD_THIRD_DUGTRIO_SHOW_UP POKEMON_CMD_36
 #define TUNNEL_CMD_37 POKEMON_CMD_37
+#define TUNNEL_CMD_38 POKEMON_CMD_38
 #define TUNNEL_CMD_39 POKEMON_CMD_39
 #define TUNNEL_CMD_40 POKEMON_CMD_40
+#define TUNNEL_CMD_41 POKEMON_CMD_41
+#define TUNNEL_CMD_42 POKEMON_CMD_42
 #define TUNNEL_CMD_43 POKEMON_CMD_43
 #define TUNNEL_CMD_MAGNEMITE_ATTRACT POKEMON_CMD_44
 #define TUNNEL_CMD_3_MAGNEMITES_COMBINED POKEMON_CMD_45
 #define TUNNEL_CMD_DELETE_MAGNEMITE POKEMON_CMD_46
+#define TUNNEL_CMD_48 POKEMON_CMD_48
+#define TUNNEL_CMD_50 POKEMON_CMD_50
 #define TUNNEL_CMD_51 POKEMON_CMD_51
+#define TUNNEL_CMD_52 POKEMON_CMD_52
+#define TUNNEL_CMD_53 POKEMON_CMD_53
 #define TUNNEL_CMD_54 POKEMON_CMD_54
 #define TUNNEL_CMD_MAGNEMITE_ZOOMED_IN POKEMON_CMD_55
 
@@ -83,6 +91,18 @@ extern GObj* D_802EEEC4_5EBF94;
 extern GObj* D_802EEEC8_5EBF98;
 extern GObj* D_802EEECC_5EBF9C;
 extern s32 D_802EEED0_5EBFA0;
+extern GObj* D_802EE8AC_5EB97C;
+extern GObj* D_802EFBA4_5ECC74;
+extern GObj* D_802EFF28_5ECFF8;
+
+extern union {
+    struct {
+        u32 unk_00 : 1;
+        u32 unk_01 : 1;
+        u32 unk_02 : 30;
+    } bits;
+    u32 intval;
+} D_803430E8_6401B8;
 
 void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);
@@ -96,9 +116,9 @@ GObj* magneton_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* electrode_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* diglett_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* dugtrio_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802E7620_5E46F0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* kakuna_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802E9390_5E6460(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-GObj* func_802EA424_5E74F4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+GObj* electabuzz_Spawn(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EB818_5E88E8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EC3BC_5E948C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 GObj* func_802EBBA8_5E8C78(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);

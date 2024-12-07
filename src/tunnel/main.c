@@ -68,7 +68,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlockOnGround,
       dugtrio_Remove },
     { PokemonID_KAKUNA,
-      func_802E7620_5E46F0,
+      kakuna_Spawn,
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_PIKACHU,
@@ -76,7 +76,7 @@ PokemonDef tunnel_PokemonDefs[] = {
       pokemonChangeBlock,
       pokemonRemoveOne },
     { PokemonID_ELECTABUZZ,
-      func_802EA424_5E74F4,
+      electabuzz_Spawn,
       pokemonChangeBlock,
       func_802EA45C_5E752C },
     { PokemonID_ZAPDOS,
@@ -199,8 +199,6 @@ SceneSetup tunnel_SceneSetup = {
     sizeof(OMCamera),     /* omCameraSize */
     tunnel_Init           /* postInitFunc */
 };
-
-extern s32 D_803430E8_6401B8;
 
 void tunnel_SpawnMagikarp(GObj* obj) {
     DObj* model;
@@ -361,7 +359,7 @@ void tunnel_Init(void) {
     PokemonDetector_Create();
     PokemonDetector_Enable();
     func_802ED5C8_5EA698();
-    D_803430E8_6401B8 = 0;
+    D_803430E8_6401B8.intval = 0;
 }
 
 void func_802E2BB0_5DFC80(s32 arg0) {

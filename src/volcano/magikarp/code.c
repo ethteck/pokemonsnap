@@ -82,7 +82,7 @@ PokemonInitData volcano_magikarp_initData = {
 
 POKEMON_FUNC(volcano_magikarp_InitialState)
     Pokemon_SetAnimation(obj, &D_802E3634_734834);
-    rotation->f[2] = randRange(360) * PI / 180.0f;
+    rotation->v.y = randRange(360) * PI / 180.0f;
     Pokemon_StartPathProc(obj, func_802DF338_730538);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

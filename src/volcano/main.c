@@ -596,7 +596,7 @@ void volcano_PokemonMove(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
     f32 hSpeed = pokemon->hSpeed * 0.033;
-    f32 yaw = GET_TRANSFORM(model)->rot.f[2];
+    f32 yaw = GET_TRANSFORM(model)->rot.v.y;
     f32 speedX = sinf(yaw) * hSpeed;
     f32 speedZ = cosf(yaw) * hSpeed;
 
@@ -665,7 +665,7 @@ void volcano_FollowPath(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s
             } else if (angle > TAU) {
                 angle -= (s32) (angle / TAU) * TAU;
             }
-            GET_TRANSFORM(temp_s1)->rot.f[2] = angle;
+            GET_TRANSFORM(temp_s1)->rot.v.y = angle;
 
             switch (pokemon->path->type) {
                 case 1:

@@ -138,7 +138,7 @@ void drawSkyBox2Cycle(GObj* obj) {
 
 void setSkyBoxRotation(GObj* obj) {
     DObj* dobj = obj->data.dobj;
-    dobj->rotation.f[2] = 6.283185482f * GlobalTimer / SkyBoxMaxAngle;
+    dobj->rotation.v.y = 6.283185482f * GlobalTimer / SkyBoxMaxAngle;
 }
 
 void createSkyBox(SkyBox* skyBox) {
@@ -213,7 +213,7 @@ void setSkyBoxPos(f32 posX, f32 posY, f32 posZ, f32 yaw, f32 animationTime) {
         SkyBoxObject->data.dobj->position.v.z = posZ;
     }
 
-    SkyBoxObject->data.dobj->rotation.f[2] = yaw;
+    SkyBoxObject->data.dobj->rotation.v.y = yaw;
 
     if (SkyBoxAnimation != NULL) {
         animSetModelTreeTextureAnimation(SkyBoxObject, SkyBoxAnimation, animationTime);
@@ -498,8 +498,8 @@ GObj* createWorldBlockModel(WorldBlock* block) {
     }
 
     dobj = obj->data.dobj;
-    dobj->rotation.f[2] = block->descriptor->yaw;
-    dobj->rotation.f[1] = dobj->rotation.f[3] = 0.0f;
+    dobj->rotation.v.y = block->descriptor->yaw;
+    dobj->rotation.v.x = dobj->rotation.v.z = 0.0f;
     dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = 1.0f;
     return obj;
 }

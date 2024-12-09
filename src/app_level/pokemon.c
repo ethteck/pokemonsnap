@@ -905,7 +905,7 @@ void Pokemon_KickItem(GObj* obj, f32 speed) {
     f32 speedZ, speedX;
     f32 yaw;
 
-    yaw = GET_TRANSFORM(model)->rot.f[2];
+    yaw = GET_TRANSFORM(model)->rot.v.y;
     speedX = sinf(yaw) * speed;
     speedZ = cosf(yaw) * speed;
 
@@ -918,7 +918,7 @@ void Pokemon_MoveXZ(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     DObj* model = obj->data.dobj;
     f32 hSpeed = pokemon->hSpeed * 0.033;
-    f32 yaw = GET_TRANSFORM(model)->rot.f[2];
+    f32 yaw = GET_TRANSFORM(model)->rot.v.y;
     f32 speedX = sinf(yaw) * hSpeed;
     f32 speedZ = cosf(yaw) * hSpeed;
 
@@ -1077,7 +1077,7 @@ void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f3
 
     speed *= 0.033;
 
-    velYaw = GET_TRANSFORM(model)->rot.f[2] + (temp = PI * jumpBackwards); // temp required fo matching
+    velYaw = GET_TRANSFORM(model)->rot.v.y + (temp = PI * jumpBackwards); // temp required fo matching
     velYaw += arg3 * (randFloat() * TAU - PI);
     if (velYaw < 0.0f) {
         velYaw += TAU;
@@ -1229,7 +1229,7 @@ bool Pokemon_StepWalkInDirectionFacing(GObj* obj, u32 flags) {
 
     if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
         f32 hSpeed = pokemon->hSpeed * 0.033;
-        f32 direction = GET_TRANSFORM(model)->rot.f[2];
+        f32 direction = GET_TRANSFORM(model)->rot.v.y;
         f32 velX = sinf(direction) * hSpeed;
         f32 velZ = cosf(direction) * hSpeed;
 
@@ -1245,7 +1245,7 @@ bool Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
     f32 delta;
     f32 sign;
 
-    yaw = GET_TRANSFORM(model)->rot.f[2];
+    yaw = GET_TRANSFORM(model)->rot.v.y;
     yaw -= (s32) (yaw / TAU) * TAU;
     if (yaw < 0.0f) {
         yaw += TAU;
@@ -1258,9 +1258,9 @@ bool Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed) {
         } else {
             sign = -SIGN(delta);
         }
-        GET_TRANSFORM(model)->rot.f[2] = yaw + sign * turnSpeed;
+        GET_TRANSFORM(model)->rot.v.y = yaw + sign * turnSpeed;
     } else {
-        GET_TRANSFORM(model)->rot.f[2] = targetYaw;
+        GET_TRANSFORM(model)->rot.v.y = targetYaw;
         return true;
     }
     return false;
@@ -1281,13 +1281,13 @@ void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unus
 
     switch (randRange(300) % 3) {
         case 0:
-            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.f[2], PI / 6.0f);
+            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.v.y, PI / 6.0f);
             break;
         case 1:
-            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.f[2], -PI / 6.0f);
+            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.v.y, -PI / 6.0f);
             break;
         case 2:
-            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.f[2], PI);
+            nextYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.v.y, PI);
             break;
     }
 
@@ -1313,7 +1313,7 @@ void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unus
             return;
         }
 
-        currentYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.f[2], 0.0f);
+        currentYaw = Pokemon_WrapAngleSum(GET_TRANSFORM(model)->rot.v.y, 0.0f);
         deltaYaw = nextYaw - currentYaw;
         if (ABS(deltaYaw) > maxModelTurnSpeed) {
             if (ABS(deltaYaw) < PI) {
@@ -1321,9 +1321,9 @@ void Pokemon_RunInCircles(GObj* obj, f32 radius, f32 maxModelTurnSpeed, s32 unus
             } else {
                 sign = -SIGN(deltaYaw);
             }
-            GET_TRANSFORM(model)->rot.f[2] = Pokemon_WrapAngleSum(currentYaw, sign * maxModelTurnSpeed);
+            GET_TRANSFORM(model)->rot.v.y = Pokemon_WrapAngleSum(currentYaw, sign * maxModelTurnSpeed);
         } else {
-            GET_TRANSFORM(model)->rot.f[2] = nextYaw;
+            GET_TRANSFORM(model)->rot.v.y = nextYaw;
         }
         ohWait(1);
     }
@@ -1577,7 +1577,7 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
         return 2;
     }
 
-    currentYaw = GET_TRANSFORM(model)->rot.f[2];
+    currentYaw = GET_TRANSFORM(model)->rot.v.y;
     currentYaw -= (s32) (currentYaw / TAU) * TAU;
     if (currentYaw < 0.0f) {
         currentYaw += TAU;
@@ -1590,9 +1590,9 @@ s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags) {
         } else {
             sign = -SIGN(deltaYaw);
         }
-        GET_TRANSFORM(model)->rot.f[2] = currentYaw + sign * turnSpeed;
+        GET_TRANSFORM(model)->rot.v.y = currentYaw + sign * turnSpeed;
     } else {
-        GET_TRANSFORM(model)->rot.f[2] = targetYaw;
+        GET_TRANSFORM(model)->rot.v.y = targetYaw;
     }
 
     dx = pokemon->targetPos.x - GET_TRANSFORM(model)->pos.v.x;
@@ -1717,7 +1717,7 @@ void Pokemon_FollowPath(GObj* obj, f32 startParam, f32 endParam, f32 speedMult, 
                 if (flags & MOVEMENT_FLAG_TURN_GRADUALLY) {
                     Pokemon_Turn(model, heading, turnSpeed);
                 } else {
-                    GET_TRANSFORM(model)->rot.f[2] = heading;
+                    GET_TRANSFORM(model)->rot.v.y = heading;
                 }
             }
 
@@ -2158,9 +2158,9 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     GET_TRANSFORM(model)->pos.v.x = spawn->translation.x * 100.0f + (block->descriptor->worldPos.x - blockBX) * 100.0f;
     GET_TRANSFORM(model)->pos.v.z = spawn->translation.z * 100.0f + (block->descriptor->worldPos.z - blockBZ) * 100.0f;
     GET_TRANSFORM(model)->pos.v.y = Pokemon_GetGroundAt(GET_TRANSFORM(model)->pos.v.x, GET_TRANSFORM(model)->pos.v.z);
-    GET_TRANSFORM(model)->rot.f[1] = spawn->euler.x;
-    GET_TRANSFORM(model)->rot.f[2] = spawn->euler.y;
-    GET_TRANSFORM(model)->rot.f[3] = spawn->euler.z;
+    GET_TRANSFORM(model)->rot.v.x = spawn->euler.x;
+    GET_TRANSFORM(model)->rot.v.y = spawn->euler.y;
+    GET_TRANSFORM(model)->rot.v.z = spawn->euler.z;
     GET_TRANSFORM(model)->scale.v.x = initData->scale.x * 0.1f;
     GET_TRANSFORM(model)->scale.v.y = initData->scale.y * 0.1f;
     GET_TRANSFORM(model)->scale.v.z = initData->scale.z * 0.1f;
@@ -2173,9 +2173,9 @@ GObj* Pokemon_SpawnOnGround(s32 objID, u16 id, WorldBlock* block, WorldBlock* bl
     pokemon->targetPos.x = GET_TRANSFORM(model)->pos.v.x;
     pokemon->targetPos.y = GET_TRANSFORM(model)->pos.v.y;
     pokemon->targetPos.z = GET_TRANSFORM(model)->pos.v.z;
-    pokemon->euler.x = GET_TRANSFORM(model)->rot.f[1];
-    pokemon->euler.y = GET_TRANSFORM(model)->rot.f[2];
-    pokemon->euler.z = GET_TRANSFORM(model)->rot.f[3];
+    pokemon->euler.x = GET_TRANSFORM(model)->rot.v.x;
+    pokemon->euler.y = GET_TRANSFORM(model)->rot.v.y;
+    pokemon->euler.z = GET_TRANSFORM(model)->rot.v.z;
     pokemon->collisionOffset.x = initData->collisionCenter.x / initData->scale.x;
     pokemon->collisionOffset.y = initData->collisionCenter.y / initData->scale.y;
     pokemon->collisionOffset.z = initData->collisionCenter.z / initData->scale.z;
@@ -2228,9 +2228,9 @@ void func_8036334C_50375C(GObj* obj) {
     hal_rotate_rpy_translate_f(sp78, GET_TRANSFORM(model)->pos.v.x,
                                GET_TRANSFORM(model)->pos.v.y,
                                GET_TRANSFORM(model)->pos.v.z,
-                               GET_TRANSFORM(model)->rot.f[1],
-                               GET_TRANSFORM(model)->rot.f[2],
-                               GET_TRANSFORM(model)->rot.f[3]);
+                               GET_TRANSFORM(model)->rot.v.x,
+                               GET_TRANSFORM(model)->rot.v.y,
+                               GET_TRANSFORM(model)->rot.v.z);
     if (pokemon->flags & POKEMON_FLAG_1) {
         hal_translate_f(sp38, pokemon->collisionOffset.x + model->position.v.x * GET_TRANSFORM(model)->scale.v.x,
                         pokemon->collisionOffset.y + model->position.v.y * GET_TRANSFORM(model)->scale.v.y,

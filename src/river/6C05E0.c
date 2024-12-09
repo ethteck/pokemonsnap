@@ -114,7 +114,7 @@ void func_802D8A48_6C0828(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.x = position->v.x;
     GET_TRANSFORM(model)->pos.v.y = position->v.y;
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
-    GET_TRANSFORM(model)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2];
+    GET_TRANSFORM(model)->rot.v.y = GET_TRANSFORM(obj->data.dobj)->rot.v.y;
     omEndProcess(NULL);
 }
 
@@ -145,7 +145,7 @@ void func_802D8B34_6C0914(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.x = position->v.x;
     GET_TRANSFORM(model)->pos.v.y = position->v.y;
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
-    GET_TRANSFORM(model)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2] + D_802E4B90_6CC970;
+    GET_TRANSFORM(model)->rot.v.y = GET_TRANSFORM(obj->data.dobj)->rot.v.y + D_802E4B90_6CC970;
 }
 
 void func_802D8C24_6C0A04(GObj* obj) {

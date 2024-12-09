@@ -536,7 +536,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
                     csr += sizeof(union Mtx3fi);
                     break;
                 case 2:
-                    arg0->yaw = ((struct Mtx4Float*) csr)->f[2];
+                    arg0->yaw = ((struct Mtx4Float*) csr)->v.y;
                     csr += sizeof(struct Mtx4Float);
                     break;
                 case 3:
@@ -548,7 +548,7 @@ s32 func_8009BF48(PokemonPhotoData* arg0, GObj* arg1) {
         arg0->position.x = model->position.v.x;
         arg0->position.y = model->position.v.y;
         arg0->position.z = model->position.v.z;
-        arg0->yaw = model->rotation.f[2];
+        arg0->yaw = model->rotation.v.y;
     }
     return true;
 }
@@ -884,8 +884,8 @@ GObj* func_8009CEAC(WorldBlock* arg0, WorldBlock* arg1, ObjectSpawn* arg2, Unk1C
     dobj->position.v.x = (arg2->translation.x + (arg0->descriptor->worldPos.x - arg1->descriptor->worldPos.x)) * 100.0f;
     dobj->position.v.y = (arg2->translation.y + (arg0->descriptor->worldPos.y - arg1->descriptor->worldPos.y)) * 100.0f;
     dobj->position.v.z = (arg2->translation.z + (arg0->descriptor->worldPos.z - arg1->descriptor->worldPos.z)) * 100.0f;
-    dobj->rotation.f[1] = dobj->rotation.f[3] = 0.0f;
-    dobj->rotation.f[2] = arg2->euler.y;
+    dobj->rotation.v.x = dobj->rotation.v.z = 0.0f;
+    dobj->rotation.v.y = arg2->euler.y;
     temp_f0 = arg3->scale * 0.1f;
     dobj->scale.v.x = dobj->scale.v.y = dobj->scale.v.z = temp_f0;
     if (arg3->id == PokemonID_1018 && (D_800BDF18->unk_00_16 & 0xE0) != 0x80) { // todo bitfield
@@ -1148,13 +1148,13 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
     arg1 *= 0.1f;
     hal_rotate_rpy_translate_scale_f(spB4, arg0->position.x, arg0->position.y, arg0->position.z, 0.0f, arg0->yaw, 0.0f, arg1, arg1, arg1);
     hal_rotate_rpy_translate_scale_f(sp74, model->position.v.x, model->position.v.y, model->position.v.z,
-                                     model->rotation.f[1], model->rotation.f[2], model->rotation.f[3],
+                                     model->rotation.v.x, model->rotation.v.y, model->rotation.v.z,
                                      model->scale.v.x, model->scale.v.y, model->scale.v.z);
     guMtxCatF(sp74, spB4, spB4);
     model->position.v.x = spB4[3][0];
     model->position.v.y = spB4[3][1];
     model->position.v.z = spB4[3][2];
-    model->rotation.f[2] += arg0->yaw;
+    model->rotation.v.y += arg0->yaw;
     model->scale.v.x *= arg1;
     model->scale.v.y *= arg1;
     model->scale.v.z *= arg1;

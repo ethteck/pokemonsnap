@@ -142,7 +142,7 @@ void func_802BF9B4_641E64(GObj* obj) {
     pokemon->hSpeed = 200.0f;
     pokemon->jumpVel = 300.0f;
     temp_v1 = (PokemonTransform*) pokemon->interactionTarget->userData;
-    pokemon->facingYaw = atan2f(temp_v1->rot.f[0], temp_v1->rot.f[2]);
+    pokemon->facingYaw = atan2f(temp_v1->rot.a, temp_v1->rot.v.y);
     Pokemon_FallDownOnGround(obj, -9.8f, 1);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
@@ -237,9 +237,9 @@ void func_802BFBF0_6420A0(GObj* obj) { \
 //     z = (temp_v1->pos.v.z - temp_v0->pos.v.z) / 100.0f;
 
 //     for (i = 0; i < 100; i++) {
-//         flt->f[0] += z;
-//         flt->f[2] += x;
-//         flt->f[1] -= 3.0f;
+//         flt->a += z;
+//         flt->v.y += x;
+//         flt->v.x -= 3.0f;
 //         temp_v0->pos.v.z += 0.017453292f;
 //         ohWait(1);
 //     }
@@ -279,9 +279,9 @@ void func_802BFBF0_6420A0(GObj* obj) { \
 //     z = (interactionTransform->pos.v.z - temp_v0->pos.v.z) / 100.0f;
 
 //     for (i = 0; i < 100; i++) {
-//         flt->f[0] += x;
-//         flt->f[2] += z;
-//         flt->f[1] -= 3.0f;
+//         flt->a += x;
+//         flt->v.y += z;
+//         flt->v.x -= 3.0f;
 //         temp_v0->pos.v.z += PI / 180;
 //         ohWait(1);
 //     }

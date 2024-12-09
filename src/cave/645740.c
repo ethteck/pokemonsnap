@@ -31,7 +31,7 @@ void func_802C3290_645740(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_SetAnimation(obj, &D_802C779C_649C4C);
-    rot->f[2] = (randRange(360) * PI) / 180.0f;
+    rot->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802C3348_6457F8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -132,7 +132,7 @@ void func_802C3580_645A30(GObj* obj) {
         pos1->v.x = pos2->v.x;
         pos1->v.y = pos2->v.y - 50.0f;
         pos1->v.z = pos2->v.z;
-        rot1->f[2] = rot2->f[2];
+        rot1->v.y = rot2->v.y;
         ohWait(1);
     }
     pokemon->pathProc = NULL;
@@ -198,7 +198,7 @@ void func_802C3784_645C34(GObj* obj) {
         pos1->v.x = pos2->v.x;
         pos1->v.y = pos2->v.y - 50.0f;
         pos1->v.z = pos2->v.z;
-        rot1->f[2] = rot2->f[2];
+        rot1->v.y = rot2->v.y;
         ohWait(1);
     }
 }

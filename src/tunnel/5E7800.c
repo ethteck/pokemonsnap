@@ -129,16 +129,16 @@ s32 func_802EAB44_5E7C14(GObj* obj, DObj* node, Vec3f* inPos, Vec3f* inVel, Vec3
     pos = GET_TRANSFORM(obj->data.dobj)->pos;
     rot = GET_TRANSFORM(obj->data.dobj)->rot;
     scale = GET_TRANSFORM(obj->data.dobj)->scale;
-    yaw = rot.f[2];
+    yaw = rot.v.y;
     hal_rotate_rpy_translate_scale_f(mtx, pos.v.x, pos.v.y, pos.v.z,
-                                     0.0f, rot.f[2], 0.0f,
+                                     0.0f, rot.v.y, 0.0f,
                                      scale.v.x, scale.v.x, scale.v.x);
 
     pos = node->position;
     rot = node->rotation;
     scale = node->scale;
     hal_rotate_rpy_translate_scale_f(mtx2, pos.v.x, pos.v.y, pos.v.z,
-                                     rot.f[1], rot.f[2], rot.f[3],
+                                     rot.v.x, rot.v.y, rot.v.z,
                                      scale.v.x, scale.v.y, scale.v.z);
 
     guMtxCatF(mtx2, mtx, mtx);
@@ -146,9 +146,9 @@ s32 func_802EAB44_5E7C14(GObj* obj, DObj* node, Vec3f* inPos, Vec3f* inVel, Vec3
     pos.v.x = mtx[3][0];
     pos.v.y = mtx[3][1];
     pos.v.z = mtx[3][2];
-    rot.f[2] += yaw;
+    rot.v.y += yaw;
 
-    if (StaticObject_CollideOne(inPos, inVel, outPos, outVel, &D_802EF9E4_5ECAB4, pos.v, *(Vec3f*) (rot.f + 1))) {
+    if (StaticObject_CollideOne(inPos, inVel, outPos, outVel, &D_802EF9E4_5ECAB4, pos.v, rot.v)) {
         return PokemonID_1009;
     }
 

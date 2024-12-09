@@ -71,7 +71,7 @@ void func_802DB1C4_6C2FA4(GObj* obj) {
     Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    rotation->f[2] = (randRange(360) * PI) / 180.0f;
+    rotation->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802DB270_6C3050);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, 1);
@@ -286,7 +286,7 @@ void func_802DB93C_6C371C(GObj* obj) {
         position->v.y = ground.height;
         func_8035E174_4FE584(obj, &position->v);
         Pokemon_ForceAnimation(obj, &D_802E319C_6CAF7C);
-        rotation->f[2] = (randRange(360) * PI) / 180.0f;
+        rotation->v.y = (randRange(360) * PI) / 180.0f;
         Pokemon_StartPathProc(obj, func_802DB270_6C3050);
         pokemon->transitionGraph = NULL;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

@@ -619,13 +619,13 @@ void animUpdateModelAnimatedParams(DObj* dobj) {
 
                     switch (aobj->paramID) {
                         case ANIM_PARAM_ROTATION_X:
-                            dobj->rotation.f[1] = value;
+                            dobj->rotation.v.x = value;
                             break;
                         case ANIM_PARAM_ROTATION_Y:
-                            dobj->rotation.f[2] = value;
+                            dobj->rotation.v.y = value;
                             break;
                         case ANIM_PARAM_ROTATION_Z:
-                            dobj->rotation.f[3] = value;
+                            dobj->rotation.v.z = value;
                             break;
                         case ANIM_PARAM_4:
                             if (value < 0.0f) {
@@ -1224,11 +1224,11 @@ void animSetModelAnimDuration(DObj* dobj, f32 duration) {
 f32 animGetModelParamValue(DObj* dobj, s32 paramID) {
     switch (paramID) {
         case ANIM_PARAM_ROTATION_X:
-            return dobj->rotation.f[1];
+            return dobj->rotation.v.x;
         case ANIM_PARAM_ROTATION_Y:
-            return dobj->rotation.f[2];
+            return dobj->rotation.v.y;
         case ANIM_PARAM_ROTATION_Z:
-            return dobj->rotation.f[3];
+            return dobj->rotation.v.z;
         case ANIM_PARAM_POSITION_X:
             return dobj->position.v.x;
         case ANIM_PARAM_POSITION_Y:
@@ -1641,13 +1641,13 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
 
                     switch (i) {
                         case ANIM_PARAM_ROTATION_X:
-                            dobj->rotation.f[1] = value;
+                            dobj->rotation.v.x = value;
                             break;
                         case ANIM_PARAM_ROTATION_Y:
-                            dobj->rotation.f[2] = value;
+                            dobj->rotation.v.y = value;
                             break;
                         case ANIM_PARAM_ROTATION_Z:
-                            dobj->rotation.f[3] = value;
+                            dobj->rotation.v.z = value;
                             break;
                         case ANIM_PARAM_POSITION_X:
                             dobj->position.v.x = value;
@@ -1675,7 +1675,7 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
             dobj->animCBReceiver = false;
             if (arg3 != NULL) {
                 dobj->position.v = arg3->position;
-                *((Vec3f*) &dobj->rotation.f[1]) = arg3->rotation;
+                *((Vec3f*) &dobj->rotation.v.x) = arg3->rotation;
                 dobj->scale.v = arg3->scale;
             }
         }
@@ -1755,7 +1755,7 @@ void anim_func_8000FBC4(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2) {
             anim_func_8000FAFC(dobj);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1916,7 +1916,7 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
         }
 
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1953,7 +1953,7 @@ void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** a
             anim_func_8000FDA0(dobj, arg4, arg5, arg6);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -2005,7 +2005,7 @@ void anim_func_80010498(GObj* obj, UnkEC64Arg3* arg1) {
     dobj = obj->data.dobj;
     while (dobj != NULL && arg1->unk_00 != 18) {
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.f[1]) = arg1->rotation;
+        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         arg1++;

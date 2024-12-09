@@ -66,9 +66,9 @@ void getMovementPos(WorldBlock* block, f32 moveTime, f32 cpTime, f32* posX, f32*
         *posX = firstCP->position.v.x;
         *posY = firstCP->position.v.y;
         *posZ = firstCP->position.v.z;
-        *rotX = firstCP->rotation.f[1];
-        *rotY = firstCP->rotation.f[2];
-        *rotZ = firstCP->rotation.f[3];
+        *rotX = firstCP->rotation.v.x;
+        *rotY = firstCP->rotation.v.y;
+        *rotZ = firstCP->rotation.v.z;
         *speed = firstCP->scale.v.x;
         return;
     }
@@ -100,9 +100,9 @@ void getMovementPos(WorldBlock* block, f32 moveTime, f32 cpTime, f32* posX, f32*
         *posX = interpolateLinear(firstCP->position.v.x, secondCP->position.v.x, startTime, endTime, cpTime);
         *posY = interpolateLinear(firstCP->position.v.y, secondCP->position.v.y, startTime, endTime, cpTime);
         *posZ = interpolateLinear(firstCP->position.v.z, secondCP->position.v.z, startTime, endTime, cpTime);
-        *rotX = interpolateLinear(firstCP->rotation.f[1], secondCP->rotation.f[1], startTime, endTime, cpTime);
-        *rotY = interpolateLinear(firstCP->rotation.f[2], secondCP->rotation.f[2], startTime, endTime, cpTime);
-        *rotZ = interpolateLinear(firstCP->rotation.f[3], secondCP->rotation.f[3], startTime, endTime, cpTime);
+        *rotX = interpolateLinear(firstCP->rotation.v.x, secondCP->rotation.v.x, startTime, endTime, cpTime);
+        *rotY = interpolateLinear(firstCP->rotation.v.y, secondCP->rotation.v.y, startTime, endTime, cpTime);
+        *rotZ = interpolateLinear(firstCP->rotation.v.z, secondCP->rotation.v.z, startTime, endTime, cpTime);
         *speed = interpolateLinear(firstCP->scale.v.x, secondCP->scale.v.x, startTime, endTime, cpTime);
     }
 }

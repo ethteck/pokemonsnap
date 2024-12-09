@@ -39,7 +39,7 @@ void evolveIntoMuk(GObj* obj) {
 
     muk = Pokemon_AddAtGeo(obj, PokemonID_MUK, &def);
 
-    GET_TRANSFORM(muk->data.dobj)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2];
+    GET_TRANSFORM(muk->data.dobj)->rot.v.y = GET_TRANSFORM(obj->data.dobj)->rot.v.y;
     omEndProcess(NULL);
 }
 

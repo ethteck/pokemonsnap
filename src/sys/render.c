@@ -373,60 +373,60 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         hal_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z);
                         break;
                     case MTX_TYPE_ROTATE_DEG:
-                        hal_rotate_deg(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                       dobj->rotation.f[3]);
+                        hal_rotate_deg(mtx, dobj->rotation.a, dobj->rotation.v.x, dobj->rotation.v.y,
+                                       dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_DEG_TRANSLATE:
                         hal_rotate_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                                                 dobj->rotation.a, dobj->rotation.v.x, dobj->rotation.v.y,
+                                                 dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_RPY_DEG:
-                        hal_rotate_rpy_deg(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_rpy_deg(mtx, dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE_DEG:
                         hal_rotate_rpy_translate_deg(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                     dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                                                     dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE:
-                        hal_rotate(mtx, dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                   dobj->rotation.f[3]);
+                        hal_rotate(mtx, dobj->rotation.a, dobj->rotation.v.x, dobj->rotation.v.y,
+                                   dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_TRANSLATE:
                         hal_rotate_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                             dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                             dobj->rotation.f[3]);
+                                             dobj->rotation.a, dobj->rotation.v.x, dobj->rotation.v.y,
+                                             dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_TRANSLATE_SCALE:
                         hal_rotate_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                   dobj->rotation.f[0], dobj->rotation.f[1], dobj->rotation.f[2],
-                                                   dobj->rotation.f[3], dobj->scale.v.x, dobj->scale.v.y,
+                                                   dobj->rotation.a, dobj->rotation.v.x, dobj->rotation.v.y,
+                                                   dobj->rotation.v.z, dobj->scale.v.x, dobj->scale.v.y,
                                                    dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_RPY:
-                        hal_rotate_rpy(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_rpy(mtx, dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE:
                         hal_rotate_rpy_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                                                 dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_RPY_TRANSLATE_SCALE:
                         hal_rotate_rpy_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                       dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
+                                                       dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z,
                                                        dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
                     case MTX_TYPE_ROTATE_PYR:
-                        hal_rotate_pyr(mtx, dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                        hal_rotate_pyr(mtx, dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_PYR_TRANSLATE:
                         hal_rotate_pyr_translate(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                 dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3]);
+                                                 dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_ROTATE_PYR_TRANSLATE_SCALE:
                         hal_rotate_pyr_translate_scale(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                                       dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3],
+                                                       dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z,
                                                        dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         break;
@@ -462,10 +462,10 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         hal_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z);
                         break;
                     case MTX_TYPE_57:
-                        hal_rotate(mtx, sp2C4->f[0], sp2C4->f[1], sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate(mtx, sp2C4->a, sp2C4->v.x, sp2C4->v.y, sp2C4->v.z);
                         break;
                     case MTX_TYPE_58:
-                        hal_rotate_rpy(mtx, sp2C4->f[1], sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_rpy(mtx, sp2C4->v.x, sp2C4->v.y, sp2C4->v.z);
                         break;
                     case MTX_TYPE_59:
                         hal_scale(mtx, sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
@@ -474,24 +474,24 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_60:
-                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
-                                             sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->a, sp2C4->v.x,
+                                             sp2C4->v.y, sp2C4->v.z);
                         break;
                     case MTX_TYPE_61:
-                        hal_rotate_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0],
-                                                   sp2C4->f[1], sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y,
+                        hal_rotate_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->a,
+                                                   sp2C4->v.x, sp2C4->v.y, sp2C4->v.z, sp2C0->v.x, sp2C0->v.y,
                                                    sp2C0->v.z);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_62:
-                        hal_rotate_rpy_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
-                                                 sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_rpy_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->v.x,
+                                                 sp2C4->v.y, sp2C4->v.z);
                         break;
                     case MTX_TYPE_63:
-                        hal_rotate_rpy_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[1],
-                                                       sp2C4->f[2], sp2C4->f[3], sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
+                        hal_rotate_rpy_translate_scale(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->v.x,
+                                                       sp2C4->v.y, sp2C4->v.z, sp2C0->v.x, sp2C0->v.y, sp2C0->v.z);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
@@ -588,8 +588,8 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_45: {
-                        f32 sp1D4 = sinf(dobj->rotation.f[1]);
-                        f32 f0 = cosf(dobj->rotation.f[1]);
+                        f32 sp1D4 = sinf(dobj->rotation.v.x);
+                        f32 f0 = cosf(dobj->rotation.v.x);
 
                         f12 = dobj->scale.v.y * renScaleX;
                         renScaleX *= dobj->scale.v.x;
@@ -622,8 +622,8 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     }
                     case MTX_TYPE_46: {
-                        f32 sp1D4 = sinf(dobj->rotation.f[3]);
-                        f32 f0 = cosf(dobj->rotation.f[3]);
+                        f32 sp1D4 = sinf(dobj->rotation.v.z);
+                        f32 f0 = cosf(dobj->rotation.v.z);
 
                         f12 = dobj->scale.v.y * renScaleX;
                         renScaleX *= dobj->scale.v.x;
@@ -781,13 +781,13 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         continue;
                     case MTX_TYPE_51:
                         hal_rotate_rpy_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
-                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                                                 dobj->position.v.z * renScaleZ, dobj->rotation.v.x, dobj->rotation.v.y,
+                                                 dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_52:
                         hal_rotate_pyr_translate(mtx, dobj->position.v.x * renScaleX, dobj->position.v.y * renScaleY,
-                                                 dobj->position.v.z * renScaleZ, dobj->rotation.f[1], dobj->rotation.f[2],
-                                                 dobj->rotation.f[3]);
+                                                 dobj->position.v.z * renScaleZ, dobj->rotation.v.x, dobj->rotation.v.y,
+                                                 dobj->rotation.v.z);
                         break;
                     case MTX_TYPE_53:
                         renScaleX *= dobj->scale.v.x;
@@ -807,15 +807,15 @@ s32 renPrepareModelMatrix(Gfx** gfxPtr, DObj* dobj) {
                         renScaleZ *= sp2C0->v.z;
                         continue;
                     case MTX_TYPE_65:
-                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->f[0], sp2C4->f[1],
-                                             sp2C4->f[2], sp2C4->f[3]);
+                        hal_rotate_translate(mtx, sp2C8->f.v.x, sp2C8->f.v.y, sp2C8->f.v.z, sp2C4->a, sp2C4->v.x,
+                                             sp2C4->v.y, sp2C4->v.z);
                         renScaleX *= sp2C0->v.x;
                         renScaleY *= sp2C0->v.y;
                         renScaleZ *= sp2C0->v.z;
                         break;
                     case MTX_TYPE_54:
                         func_8001ECD0(mtx, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z,
-                                      dobj->rotation.f[1], dobj->rotation.f[2], dobj->rotation.f[3], renScaleX, renScaleY,
+                                      dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z, renScaleX, renScaleY,
                                       renScaleZ, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
                         renScaleX *= dobj->scale.v.x;
                         renScaleY *= dobj->scale.v.y;

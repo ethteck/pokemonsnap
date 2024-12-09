@@ -126,7 +126,7 @@ void func_800A87B0(GObj* obj, UnkEC64Arg3* treeDef, DObj** nodeList) {
         }
 
         dobj->position.v = treeDef->position;
-        *((Vec3f*) &dobj->rotation.f[1]) = treeDef->rotation;
+        *((Vec3f*) &dobj->rotation.v.x) = treeDef->rotation;
         dobj->scale.v = treeDef->scale;
 
         if (nodeList != NULL) {
@@ -218,9 +218,9 @@ void func_800A8B6C(DObj* arg0, void* arg1) {
     DObj* child;
 
     child = omDObjAddChild(arg0, arg1);
-    child->rotation.f[1] = 0.0f;
-    child->rotation.f[2] = 0.0f;
-    child->rotation.f[3] = 0.0f;
+    child->rotation.v.x = 0.0f;
+    child->rotation.v.y = 0.0f;
+    child->rotation.v.z = 0.0f;
     child->position.v.x = 0.0f;
     child->position.v.y = 0.0f;
     child->position.v.z = 0.0f;

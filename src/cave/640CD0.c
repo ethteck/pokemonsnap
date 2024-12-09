@@ -37,7 +37,7 @@ void func_802BE820_640CD0(GObj* obj) {
 
     pokemon = Pokemon_AddAtGeo(obj, PokemonID_DITTO, &def);
 
-    GET_TRANSFORM(pokemon->data.dobj)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2];
+    GET_TRANSFORM(pokemon->data.dobj)->rot.v.y = GET_TRANSFORM(obj->data.dobj)->rot.v.y;
 
     omEndProcess(NULL);
 }

@@ -69,7 +69,7 @@ void func_802C4EF4_6473A4(GObj* obj) {
         temp_a3 = &GET_TRANSFORM(dobj)->rot;\
         pokemon = GET_POKEMON(obj);
 
-        pokemon->miscVars[0].field0 = temp_a3->f[2];
+        pokemon->miscVars[0].field0 = temp_a3->v.y;
         pokemon->miscVars[1].field0 = -53.25f;
         pokemon->miscVars[2].field0 = 0.0f;
         func_802C4EB0_647360(transform, pokemon->miscVars[1].field0);
@@ -120,7 +120,7 @@ void func_802C502C_6474DC(GObj* obj) {
             pokemon->miscVars[2].field0 = 0.0f;
         }
 
-        rot->f[2] = pokemon->miscVars[0].field0 + pokemon->miscVars[2].field0;
+        rot->v.y = pokemon->miscVars[0].field0 + pokemon->miscVars[2].field0;
         ohWait(1);
     }
     pokemon->pathProc = NULL;
@@ -165,7 +165,7 @@ void func_802C5230_6476E0(GObj* obj) {
             pokemon->miscVars[2].field0 = TAU;
         }
 
-        rot->f[2] = pokemon->miscVars[0].field0 + pokemon->miscVars[2].field0;
+        rot->v.y = pokemon->miscVars[0].field0 + pokemon->miscVars[2].field0;
         ohWait(1);
     }
     pokemon->pathProc = NULL;

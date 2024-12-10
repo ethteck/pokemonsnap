@@ -1303,8 +1303,8 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
             hal_scale_f(sp78, arg2->scale.v.x, arg2->scale.v.y, arg2->scale.v.z);
             guMtxCatF(spB8, sp78, spB8);
         }
-        if (arg2->rotation.f[1] != 0.0f || arg2->rotation.f[2] != 0.0f || arg2->rotation.f[3] != 0.0f) {
-            hal_rotate_rpy_f(sp78, arg2->rotation.f[1], arg2->rotation.f[2], arg2->rotation.f[3]);
+        if (arg2->rotation.v.x != 0.0f || arg2->rotation.v.y != 0.0f || arg2->rotation.v.z != 0.0f) {
+            hal_rotate_rpy_f(sp78, arg2->rotation.v.x, arg2->rotation.v.y, arg2->rotation.v.z);
             guMtxCatF(spB8, sp78, spB8);
         }
         if (arg2->position.v.x != 0.0f || arg2->position.v.y != 0.0f || arg2->position.v.z != 0.0f) {
@@ -1340,8 +1340,8 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
                 hal_scale_f(sp78, var_t0->v.x, var_t0->v.y, var_t0->v.z);
                 guMtxCatF(spB8, sp78, spB8);
             }
-            if (var_t1 != NULL && (var_t1->f[1] != 0.0f || var_t1->f[2] != 0.0f || var_t1->f[3] != 0.0f)) {
-                hal_rotate_rpy_f(sp78, var_t1->f[1], var_t1->f[2], var_t1->f[3]);
+            if (var_t1 != NULL && (var_t1->v.x != 0.0f || var_t1->v.y != 0.0f || var_t1->v.z != 0.0f)) {
+                hal_rotate_rpy_f(sp78, var_t1->v.x, var_t1->v.y, var_t1->v.z);
                 guMtxCatF(spB8, sp78, spB8);
             }
             if (var_s0 != NULL && (var_s0->v.x != 0.0f || var_s0->v.y != 0.0f || var_s0->v.z != 0.0f)) {

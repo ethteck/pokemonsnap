@@ -511,8 +511,8 @@ POKEMON_FUNC(magnemite_CopyLeaderMovement)
         position->v.y = targetPos.y;
         position->v.z = targetPos.z;
         if (sameDirection) {
-            rotation->f[2] = leaderRotation->f[2];
-        } else if (Pokemon_Turn(model, leaderRotation->f[2], 0.034906585f)) {
+            rotation->v.y = leaderRotation->v.y;
+        } else if (Pokemon_Turn(model, leaderRotation->v.y, 0.034906585f)) {
             sameDirection = true;
         }
         ohWait(1);

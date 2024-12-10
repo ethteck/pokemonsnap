@@ -113,6 +113,7 @@ enum SoundIds {
     SOUND_ID_50 = 50,
     SOUND_ID_51 = 51,
     SOUND_ID_52 = 52,
+    SOUND_ID_53 = 53,
     SOUND_ID_54 = 54,
     SOUND_ID_55 = 55,
     SOUND_ID_56 = 56,
@@ -208,6 +209,7 @@ enum SoundIds {
     SOUND_ID_371 = 371,
     SOUND_ID_373 = 373,
     SOUND_ID_376 = 376,
+    SOUND_ID_377 = 377,
     SOUND_ID_388 = 388,
     SOUND_ID_393 = 393,
     SOUND_ID_395 = 395
@@ -264,6 +266,7 @@ enum ObjIDs {
     OBJID_UI_CAMERA = 3,
     OBJID_PLAYER = 7,
     OBJID_BUMP_DETECTOR = 8,
+    OBJID_14 = 14,
     OBJID_UI_RETICLE = 25,
     OBJID_UI_PAUSE = 26,
     OBJID_28 = 28,

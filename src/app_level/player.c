@@ -469,9 +469,9 @@ void handleAnalogStick(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.x = gMovementState.pos.x;
     GET_TRANSFORM(model)->pos.v.y = gMovementState.pos.y;
     GET_TRANSFORM(model)->pos.v.z = gMovementState.pos.z;
-    GET_TRANSFORM(model)->rot.f[1] = gMovementState.rotation.x;
-    GET_TRANSFORM(model)->rot.f[2] = gMovementState.rotation.y + D_80382CD4_5230E4;
-    GET_TRANSFORM(model)->rot.f[3] = gMovementState.rotation.z;
+    GET_TRANSFORM(model)->rot.v.x = gMovementState.rotation.x;
+    GET_TRANSFORM(model)->rot.v.y = gMovementState.rotation.y + D_80382CD4_5230E4;
+    GET_TRANSFORM(model)->rot.v.z = gMovementState.rotation.z;
 
     Vec3fDiff(&PlayerVelocity, &GET_TRANSFORM(model)->pos.v, &PlayerPos);
 
@@ -2385,9 +2385,9 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32, f32
     GET_TRANSFORM(playerDObj)->pos.v.x = gMovementState.pos.x;
     GET_TRANSFORM(playerDObj)->pos.v.y = gMovementState.pos.y;
     GET_TRANSFORM(playerDObj)->pos.v.z = gMovementState.pos.z;
-    GET_TRANSFORM(playerDObj)->rot.f[1] = gMovementState.rotation.x;
-    GET_TRANSFORM(playerDObj)->rot.f[2] = gMovementState.rotation.x; // BUG
-    GET_TRANSFORM(playerDObj)->rot.f[3] = gMovementState.rotation.z;
+    GET_TRANSFORM(playerDObj)->rot.v.x = gMovementState.rotation.x;
+    GET_TRANSFORM(playerDObj)->rot.v.y = gMovementState.rotation.x; // BUG
+    GET_TRANSFORM(playerDObj)->rot.v.z = gMovementState.rotation.z;
     objPlayer = gObjPlayer = obj;
     gPlayerDObj = playerDObj;
     TotalSpeedMult = 0.0005f;

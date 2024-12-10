@@ -33,7 +33,7 @@ void func_802DCF84_6C4D64(GObj* obj) {
 }
 
 POKEMON_FUNC(func_802DCFBC_6C4D9C)
-    rotation->f[2] = (randRange(360) * PI) / 180.0f;
+    rotation->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802DD068_6C4E48);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

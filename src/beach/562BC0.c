@@ -8,7 +8,7 @@ void func_beach_802CAB50(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);    
 
     Pokemon_SetAnimation(obj, &D_beach_802CDAB4);
-    rotation->f[2] = randRange(360) * PI / 180.0f;
+    rotation->v.y = randRange(360) * PI / 180.0f;
     Pokemon_StartPathProc(obj, func_beach_802CAC08);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

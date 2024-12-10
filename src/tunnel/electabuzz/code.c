@@ -339,7 +339,7 @@ POKEMON_FUNC(func_802E9F20_5E6FF0)
 }
 
 POKEMON_FUNC(func_802E9F80_5E7050)
-    f32 yaw = rotation->f[2];
+    f32 yaw = rotation->v.y;
 
     Pokemon_SetAnimation(obj, &D_802EF338_5EC408);
     Pokemon_StartPathProc(obj, func_802EA098_5E7168);
@@ -348,7 +348,7 @@ POKEMON_FUNC(func_802E9F80_5E7050)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     
-    rotation->f[2] = yaw;
+    rotation->v.y = yaw;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetState(obj, func_802EA030_5E7100);
 }

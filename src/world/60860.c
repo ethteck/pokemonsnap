@@ -28,9 +28,9 @@ void func_800E30B0_60860(WorldBlock* block, StaticObject* arg1, PayloadStruct ar
         child->position.v.y = arg1->position.y * 100.0f;
         child->position.v.z = arg1->position.z * 100.0f;
 
-        child->rotation.f[1] = arg1->rotation.x;
-        child->rotation.f[2] = arg1->rotation.y;
-        child->rotation.f[3] = arg1->rotation.z;
+        child->rotation.v.x = arg1->rotation.x;
+        child->rotation.v.y = arg1->rotation.y;
+        child->rotation.v.z = arg1->rotation.z;
 
         if (block->blockModel->fnRender == &renRenderModelTypeA) {
             block->blockModel->fnRender = &renRenderModelTypeB;
@@ -78,9 +78,9 @@ void func_800E3258_60A08(WorldBlock* block, StaticObject* arg1, PayloadStruct ar
             child->position.v.y = arg1->position.y * 100.0f;
             child->position.v.z = arg1->position.z * 100.0f;
 
-            child->rotation.f[1] = arg1->rotation.x;
-            child->rotation.f[2] = arg1->rotation.y;
-            child->rotation.f[3] = arg1->rotation.z;
+            child->rotation.v.x = arg1->rotation.x;
+            child->rotation.v.y = arg1->rotation.y;
+            child->rotation.v.z = arg1->rotation.z;
 
             treePtr++;
         }

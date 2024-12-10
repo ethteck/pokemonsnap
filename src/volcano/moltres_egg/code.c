@@ -142,7 +142,7 @@ POKEMON_FUNC(moltres_egg_DrownInLava)
 
     for (i = 0; i < 100; i++) {
         position->v.y -= 3.0f;
-        rotation->f[2] += PI / 180.0f;
+        rotation->v.y += PI / 180.0f;
         ohWait(1);
     }
 

@@ -282,7 +282,8 @@ union Mtx3fi {
 
 typedef struct Mtx4Float {
     /* 0x00 */ struct OMMtx* mtx;
-    /* 0x04 */ f32 f[4];
+    /* 0x04 */ f32 a;
+    /* 0x08 */ Vec3f v;
 } Mtx4Float; // size == 0x14
 
 struct MtxCameraPersp {

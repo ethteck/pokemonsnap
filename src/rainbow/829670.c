@@ -54,6 +54,6 @@ void func_8034A09C_82980C(GObj* obj) {
     GET_TRANSFORM(model)->pos.v.x = position->v.x;
     GET_TRANSFORM(model)->pos.v.y = position->v.y;
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
-    GET_TRANSFORM(model)->rot.f[1] = 90.0f;
+    GET_TRANSFORM(model)->rot.v.x = 90.0f;
     omEndProcess(NULL);
 }

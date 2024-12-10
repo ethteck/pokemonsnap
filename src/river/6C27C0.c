@@ -154,7 +154,7 @@ void func_802DAE68_6C2C48(GObj* obj) {
     Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
 
     while (true) {
-        rotation->f[2] += PI / 60;
+        rotation->v.y += PI / 60;
         ohWait(1);
     }
 }
@@ -197,7 +197,7 @@ void func_802DAFB8_6C2D98(GObj* obj) {
 
     var_f20 = 60.0f;
     while (var_f20-- != 0.0f) {
-        rot->f[2] += PI / 30;
+        rot->v.y += PI / 30;
         ohWait(1);
     }
     Pokemon_StopAuxProc(obj);

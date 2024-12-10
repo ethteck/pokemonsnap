@@ -480,7 +480,7 @@ POKEMON_FUNC(charmeleon_DiveInLava)
         position->v.x += dx;
         position->v.z += dz;
         position->v.y -= 6.0f;
-        rotation->f[2] += PI / 180.0f;
+        rotation->v.y += PI / 180.0f;
         ohWait(1);
     }
 
@@ -645,5 +645,5 @@ void charmeleon_EvolvedSpawn(GObj* obj) {
     GET_POKEMON(var)->behavior = 1;
     GET_POKEMON(var)->path = GET_POKEMON(obj)->path;
     newModel = var->data.dobj;
-    GET_TRANSFORM(newModel)->rot.f[2] = GET_TRANSFORM(obj->data.dobj)->rot.f[2];
+    GET_TRANSFORM(newModel)->rot.v.y = GET_TRANSFORM(obj->data.dobj)->rot.v.y;
 }

@@ -1,32 +1,30 @@
-#include "volcano/volcano.h"
+#include "tunnel.h"
 
-extern AnimCmd volcano_camera_anim_intro[];
-extern AnimCmd* volcano_player_modelanim_intro[];
-extern AnimCmd** volcano_player_matanim_intro[];
+extern AnimCmd D_8013EE60[];
+extern AnimCmd* D_8013D920[];
+extern AnimCmd** D_8013E3D0[];
 
-__ALIGNER2
+extern bool D_802F01E0_5ED2B0;
+extern GObj* D_802F01E4_5ED2B4;
 
-s32 volcano_IntroEnded = false;
-GObj* volcano_PlayerObj = NULL;
+extern u8 D_80344738_641808;
+extern u8 D_80344739_641809;
+extern u8 D_8034473A_64180A;
+extern u8 D_8034473B_64180B;
 
-u8 volcano_intro_SoundHandle1;
-u8 volcano_intro_SoundHandle2;
-u8 volcano_intro_SoundHandle3;
-u8 volcano_intro_SoundHandle4;
-
-void volcano_IntroStartCutscene(GObj* obj) {
+void func_802ED000_5EA0D0(GObj* obj) {
     func_803571C4_4F75D4();
     func_80357120_4F7530(obj);
     func_803570B0_4F74C0();
 }
 
-void volcano_IntroStopCutscene(void) {
+void func_802ED030_5EA100(void) {
     func_803572B0_4F76C0();
 }
 
-void volcano_IntroAnimationCallback(struct DObj* dobj, s32 param, f32 value) {
+void func_802ED050_5EA120(struct DObj* dobj, s32 param, f32 value) {
     if (param == -2 || param == -1) {
-        volcano_IntroEnded = true;
+        D_802F01E0_5ED2B0 = true;
     } else if ((s32) value - 1 >= 0) {
         UnkPinkRat* effect = func_800A6C48(param, (s32) value - 1);
         if (effect != NULL) {
@@ -35,45 +33,45 @@ void volcano_IntroAnimationCallback(struct DObj* dobj, s32 param, f32 value) {
     }
 }
 
-void volcano_StopIntro(void) {
-    if (auPlayingSound[volcano_intro_SoundHandle1] == SOUND_ID_21) {
-        auStopSound(volcano_intro_SoundHandle1);
+void func_802ED0C4_5EA194(void) {
+    if (auPlayingSound[D_80344738_641808] == SOUND_ID_21) {
+        auStopSound(D_80344738_641808);
     }
-    if (auPlayingSound[volcano_intro_SoundHandle2] == SOUND_ID_101) {
-        auStopSound(volcano_intro_SoundHandle2);
+    if (auPlayingSound[D_80344739_641809] == SOUND_ID_101) {
+        auStopSound(D_80344739_641809);
     }
-    if (auPlayingSound[volcano_intro_SoundHandle3] == SOUND_ID_30) {
-        auStopSound(volcano_intro_SoundHandle3);
+    if (auPlayingSound[D_8034473A_64180A] == SOUND_ID_30) {
+        auStopSound(D_8034473A_64180A);
     }
-    if (auPlayingSound[volcano_intro_SoundHandle4] == SOUND_ID_50) {
-        auStopSound(volcano_intro_SoundHandle4);
+    if (auPlayingSound[D_8034473B_64180B] == SOUND_ID_50) {
+        auStopSound(D_8034473B_64180B);
     }
     func_80357170_4F7580();
     resetMainCameraSettings();
-    volcano_IntroStopCutscene();
+    func_802ED030_5EA100();
     omDeleteGObj(NULL);
 }
 
-void volcano_PlayIntroSounds(GObj* obj) {
+void func_802ED1BC_5EA28C(GObj* obj) {
     s32 i;
 
     for (i = 0; i < 60; i++) {
         ohWait(1);
     }
-    volcano_intro_SoundHandle1 = auPlaySoundWithParams(SOUND_ID_21, 32256, 64, 1.0f, 30);
+    D_80344738_641808 = auPlaySoundWithParams(SOUND_ID_21, 32512, 64, 1.0f, 30);
     for (; i < 178; i++) {
         ohWait(1);
     }
-    volcano_intro_SoundHandle2 = auPlaySoundWithParams(SOUND_ID_101, 12288, 64, 1.5f, 30);
-    volcano_intro_SoundHandle3 = auPlaySoundWithParams(SOUND_ID_30, 8192, 64, 0.6f, 30);
+    D_80344739_641809 = auPlaySoundWithParams(SOUND_ID_101, 12288, 64, 1.5f, 30);
+    D_8034473A_64180A = auPlaySoundWithParams(SOUND_ID_30, 8192, 64, 0.6f, 30);
     for (; i < 196; i++) {
         ohWait(1);
     }
-    volcano_intro_SoundHandle4 = auPlaySoundWithParams(SOUND_ID_50, 12288, 64, 0.74f, 30);
+    D_8034473B_64180B = auPlaySoundWithParams(SOUND_ID_50, 12288, 64, 0.74f, 30);
     omEndProcess(NULL);
 }
 
-void volcano_UpdateIntro(GObj* obj) {
+void func_802ED2E8_5EA3B8(GObj* obj) {
     s32 unused[4];
     s32 i;
     OMCamera* camera = getMainCamera();
@@ -91,17 +89,17 @@ void volcano_UpdateIntro(GObj* obj) {
     origYAt = camera->viewMtx.lookAt.at.y;
     origZAt = camera->viewMtx.lookAt.at.z;
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, volcano_camera_anim_intro, 0);
+    animSetCameraAnimation(camera, D_8013EE60, 0);
     animProc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(volcano_player_modelanim_intro, volcano_player_matanim_intro, 0, 0.5f);
-    volcano_IntroEnded = false;
-    obj->fnAnimCallback = volcano_IntroAnimationCallback;
-    omCreateProcess(obj, volcano_PlayIntroSounds, 0, 1);
+    PlayerModel_SetAnimation(D_8013D920, D_8013E3D0, 0, 0.5f);
+    D_802F01E0_5ED2B0 = false;
+    obj->fnAnimCallback = func_802ED050_5EA120;
+    omCreateProcess(obj, func_802ED1BC_5EA28C, 0, 1);
 
-    for (i = 0; !volcano_IntroEnded && i < 290; i++) {
+    for (i = 0; !D_802F01E0_5ED2B0 && i < 290; i++) {
         if (gContInputPressedButtons & (START_BUTTON | A_BUTTON)) {
             omEndProcess(animProc);
-            volcano_StopIntro();
+            func_802ED0C4_5EA194();
         }
         ohWait(1);
     }
@@ -117,7 +115,7 @@ void volcano_UpdateIntro(GObj* obj) {
 
     for (i = 0; i < 11; i++) {
         if (gContInputPressedButtons & (START_BUTTON | A_BUTTON)) {
-            volcano_StopIntro();
+            func_802ED0C4_5EA194();
         }
         camera->viewMtx.lookAt.eye.x = i * (origXEye - xEye) / 10.0f + xEye;
         camera->viewMtx.lookAt.eye.y = i * (origYEye - yEye) / 10.0f + yEye;
@@ -128,17 +126,17 @@ void volcano_UpdateIntro(GObj* obj) {
         ohWait(1);
     };
 
-    volcano_StopIntro();
+    func_802ED0C4_5EA194();
     ohWait(1);
 }
 
-void volcano_StartIntro(void) {
+void func_802ED5C8_5EA698(void) {
     GObj* obj;
 
     obj = PlayerModel_Init();
-    volcano_PlayerObj = obj;
+    D_802F01E4_5ED2B4 = obj;
     if (obj != NULL) {
-        omCreateProcess(obj, volcano_UpdateIntro, 0, 1);
-        volcano_IntroStartCutscene(obj);
+        omCreateProcess(obj, func_802ED2E8_5EA3B8, 0, 1);
+        func_802ED000_5EA0D0(obj);
     }
 }

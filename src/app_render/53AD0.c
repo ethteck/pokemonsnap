@@ -126,7 +126,7 @@ void func_800A87B0(GObj* obj, UnkEC64Arg3* treeDef, DObj** nodeList) {
         }
 
         dobj->position.v = treeDef->position;
-        *((Vec3f*) &dobj->rotation.v.x) = treeDef->rotation;
+        dobj->rotation.v = treeDef->rotation;
         dobj->scale.v = treeDef->scale;
 
         if (nodeList != NULL) {

@@ -1675,7 +1675,7 @@ void anim_func_8000F8E4(GObj* obj, AnimCmd** animLists, f32 skipFrames, UnkEC64A
             dobj->animCBReceiver = false;
             if (arg3 != NULL) {
                 dobj->position.v = arg3->position;
-                *((Vec3f*) &dobj->rotation.v.x) = arg3->rotation;
+                dobj->rotation.v = arg3->rotation;
                 dobj->scale.v = arg3->scale;
             }
         }
@@ -1755,7 +1755,7 @@ void anim_func_8000FBC4(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2) {
             anim_func_8000FAFC(dobj);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
+        dobj->rotation.v = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1916,7 +1916,7 @@ void anim_func_800100A0(GObj* obj, UnkEC64Arg3* arg1, DObj** arg2, u8 arg3, u8 a
         }
 
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
+        dobj->rotation.v = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -1953,7 +1953,7 @@ void anim_func_80010230(GObj* arg0, UnkEC64Arg3* arg1, Texture*** arg2, DObj** a
             anim_func_8000FDA0(dobj, arg4, arg5, arg6);
         }
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
+        dobj->rotation.v = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         if (arg2 != NULL) {
@@ -2005,7 +2005,7 @@ void anim_func_80010498(GObj* obj, UnkEC64Arg3* arg1) {
     dobj = obj->data.dobj;
     while (dobj != NULL && arg1->unk_00 != 18) {
         dobj->position.v = arg1->position;
-        *((Vec3f*) &dobj->rotation.v.x) = arg1->rotation;
+        dobj->rotation.v = arg1->rotation;
         dobj->scale.v = arg1->scale;
 
         arg1++;

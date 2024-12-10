@@ -64,8 +64,8 @@ struct MtxCameraPersp omD_80040E84 = { NULL, 0, 30.0, 4.0 / 3.0, 100.0, 12800.0,
 struct MtxCameraOrtho omD_80040EA0 = { NULL, -160.0, 160.0, -120.0, 120.0, 100.0, 12800.0, 1.0 };
 struct MtxCameraLookAt omD_80040EC0 = { NULL, 1500.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
 struct Mtx3Float omD_80040EE8 = { NULL, { 0.0, 0.0, 0.0 } };
-struct Mtx4Float omD_80040EF8 = { NULL, { 0.0, 0.0, 0.0, 1.0 } };
-struct Mtx4Float omD_80040F0C = { NULL, { 0.0, 0.0, 0.0, 0.0 } };
+struct Mtx4Float omD_80040EF8 = { NULL, 0.0, { 0.0, 0.0, 1.0 } };
+struct Mtx4Float omD_80040F0C = { NULL, 0.0, { 0.0, 0.0, 0.0 } };
 struct Mtx3Float omD_80040F20 = { NULL, { 1.0, 1.0, 1.0 } };
 
 GObjThread* omGetThread(void) {

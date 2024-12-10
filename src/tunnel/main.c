@@ -137,7 +137,7 @@ PokemonDef tunnel_PokemonDefs[] = {
 u16 D_802EE10C_5EB1DC = false;
 
 PokemonDef tunnel_MagikarpDef = {
-    0x81,
+    PokemonID_MAGIKARP,
     func_802EBF04_5E8FD4,
     pokemonChangeBlockOnGround,
     pokemonRemoveOne
@@ -148,7 +148,7 @@ RandomState2 tunnel_MagikarpProbabilities[2] = {
     { 4, NULL }
 };
 
-s32 tunnel_EndLEvelReason = 0;
+s32 tunnel_EndLevelReason = 0;
 
 ScreenSettings tunnel_ScreenSettings = {
     D_803B5000,    /* fb1 */
@@ -279,7 +279,7 @@ void tunnel_InitWorld(void) {
 }
 
 void tunnel_EndLevel(s32 endLevelReason) {
-    tunnel_EndLEvelReason = endLevelReason;
+    tunnel_EndLevelReason = endLevelReason;
     func_800A19D8(endLevelReason);
     PokemonDetector_Disable();
     EnvSound_Cleanup();
@@ -300,7 +300,7 @@ void tunnel_Pause(s32 arg0) {
 void tunnel_ExitBlock(WorldBlock* arg0) {
     WorldBlock* next;
 
-    if (tunnel_EndLEvelReason <= 0) {
+    if (tunnel_EndLevelReason <= 0) {
         if (arg0->next != NULL) {
             next = arg0->next;
             Items_DisplaceAllItems(
@@ -371,7 +371,7 @@ s32 tunnel_Start(s32 arg0) {
     gtlDisableNearClipping(1);
     omSetupScene(&tunnel_SceneSetup);
 
-    switch (tunnel_EndLEvelReason) {
+    switch (tunnel_EndLevelReason) {
         case END_LEVEL_REASON_RETRY:
             return SCENE_TUNNEL;
         case END_LEVEL_REASON_IDLE_FINISHED:

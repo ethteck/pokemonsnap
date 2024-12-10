@@ -1,4 +1,4 @@
-#include "tunnel.h"
+#include "../tunnel.h"
 
 void func_802EA79C_5E786C(GObj*);
 void func_802EA970_5E7A40(GObj*);
@@ -142,7 +142,7 @@ s32 func_802EAB44_5E7C14(GObj* obj, DObj* node, Vec3f* inPos, Vec3f* inVel, Vec3
                                      scale.v.x, scale.v.y, scale.v.z);
 
     guMtxCatF(mtx2, mtx, mtx);
-    
+
     pos.v.x = mtx[3][0];
     pos.v.y = mtx[3][1];
     pos.v.z = mtx[3][2];

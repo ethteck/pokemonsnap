@@ -1,4 +1,4 @@
-#include "tunnel.h"
+#include "../tunnel.h"
 
 void func_802EA694_5E7764(GObj*);
 
@@ -41,7 +41,7 @@ POKEMON_FUNC(func_802EA5D0_5E76A0)
     pokemon->tangible = true;
     obj->flags = 0;
 
-    while (D_803430E8_6401B8.bits.unk_00 == 0) {
+    while (!D_803430E8_6401B8.bits.unk_00) {
         pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
         pokemon->transitionGraph = D_802EF778_5EC848;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);

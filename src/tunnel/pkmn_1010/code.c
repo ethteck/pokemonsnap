@@ -46,20 +46,20 @@ POKEMON_FUNC(func_802EB0CC_5E819C)
         pokemon->flags |= POKEMON_FLAG_4;
         Pokemon_SetAnimation(obj, &D_802EFAA0_5ECB70);
         pokemon->counter = 6, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-        pokemon->transitionGraph = &saved;
+        pokemon->transitionGraph = saved.data;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
         pokemon->flags &= ~(POKEMON_FLAG_4 & 0xFFu); // required to match
         Pokemon_SetAnimation(obj, &D_802EFAB4_5ECB84);
         pokemon->counter = 6, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-        pokemon->transitionGraph = &saved;
+        pokemon->transitionGraph = saved.data;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     }
 
     pokemon->flags |= POKEMON_FLAG_4;
     Pokemon_SetAnimation(obj, &D_802EFAA0_5ECB70);
     pokemon->counter = 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    pokemon->transitionGraph = &saved;
+    pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetState(obj, func_802EB0CC_5E819C);

@@ -15,7 +15,7 @@ POKEMON_FUNC(func_802EC760_5E9830)
 
     pokemon->counter = 6, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     Pokemon_SetAnimation(obj, &D_802F0074_5ED144);
-    pokemon->transitionGraph = &saved;
+    pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     if (D_803430E8_6401B8.bits.unk_00) {

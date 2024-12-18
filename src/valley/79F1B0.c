@@ -1,16 +1,19 @@
-#include "common.h"
+#include "valley.h"
 
-#include "ld_addrs.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
-
+extern EnvSoundData D_802D2740_7ABCD0[0x3A];
 extern f32 D_802D2828_7ABDB8;
 extern PokemonDef D_802D282C_7ABDBC;
 extern s32 D_802D297C_7ABF0C;
 extern GObj* D_802D2980_7ABF10;
+extern PokemonDef D_802D2984_7ABF14;
+extern PokemonDef D_802D2994_7ABF24;
 extern PokemonDef D_802D29A4_7ABF34;
+extern PokemonDef D_802D29B4_7ABF44;
+extern ScreenSettings D_802D29D4_7ABF64;
 extern SceneSetup D_802D29F0_7ABF80;
 extern UNK_TYPE D_802D2A00_7ABF90;
+extern GObj* D_802D3B34_7AD0C4;
+
 extern HeightMap D_8031F9C0_7F8F50;
 
 void func_802C5C20_79F1B0(WorldBlock* arg0, WorldBlock* arg1) {
@@ -52,16 +55,130 @@ void func_802C5D7C_79F30C(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C5DCC_79F35C.s")
+void func_802C5DCC_79F35C(s32 arg0) {
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C5DD4_79F364.s")
+void func_802C5DD4_79F364(WorldBlock* arg0) {
+    WorldBlock* next;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C5E68_79F3F8.s")
+    if (D_802D297C_7ABF0C <= 0) {
+        if (arg0->next != NULL) {
+            next = arg0->next;
+            Items_DisplaceAllItems(
+                (arg0->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                (arg0->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                (arg0->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+        } else {
+            func_802C5D18_79F2A8(END_LEVEL_REASON_FINISH);
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C5F70_79F500.s")
+void func_802C5E68_79F3F8(GObj* obj) {
+    DObj* a0;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* roomA;
+    PokemonDef def = D_802D2984_7ABF14;
+    UNUSED s32 pad[2];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C606C_79F5FC.s")
+    if (D_802D2980_7ABF10 == NULL) {
+        roomA = getCurrentWorldBlock();
+        spawn.id = PokemonID_GOLDEEN;
+        spawn.translation.x = 0.0;
+        spawn.translation.y = 0.0;
+        spawn.translation.z = 0.0;
+        spawn.euler.x = 0.0;
+        spawn.euler.y = 0.0;
+        spawn.euler.z = 0.0;
+        spawn.scale.x = 1.0;
+        spawn.scale.y = 1.0;
+        spawn.scale.z = 1.0;
 
+        pokemonObj = D_802D2980_7ABF10 = pokemonAddOne(roomA, roomA, &spawn, &def);
+        if (pokemonObj != NULL) {
+            cmdSendCommand(pokemonObj, 0x1F, obj);
+            pokemonObj = D_802D2980_7ABF10;
+        }
+
+        position = &obj->data.dobj->position;
+        a0 = pokemonObj->data.dobj;
+        GET_TRANSFORM(a0)->pos.v.x = position->v.x;
+        GET_TRANSFORM(a0)->pos.v.y = position->v.y;
+        GET_TRANSFORM(a0)->pos.v.z = position->v.z;
+    }
+}
+
+void func_802C5F70_79F500(GObj* obj) {
+    DObj* a0;
+    Mtx3Float* position;
+    GObj* pokemonObj;
+    ObjectSpawn spawn;
+    WorldBlock* roomA;
+    PokemonDef def = D_802D2994_7ABF24;
+
+    if (D_802D2980_7ABF10 == NULL) {
+        roomA = getCurrentWorldBlock();
+        spawn.id = PokemonID_ARTICUNO;
+        spawn.translation.x = 0.0;
+        spawn.translation.y = 0.0;
+        spawn.translation.z = 0.0;
+        spawn.euler.x = 0.0;
+        spawn.euler.y = 0.0;
+        spawn.euler.z = 0.0;
+        spawn.scale.x = 1.0;
+        spawn.scale.y = 1.0;
+        spawn.scale.z = 1.0;
+
+        pokemonObj = D_802D2980_7ABF10 = pokemonAddOne(roomA, roomA, &spawn, &def);
+
+        a0 = D_802D2980_7ABF10; // TODO required to match
+        GET_POKEMON(pokemonObj)->behavior = 0;
+
+        position = &obj->data.dobj->position;
+        a0 = D_802D2980_7ABF10->data.dobj;
+        GET_TRANSFORM(a0)->pos.v.x = position->v.x;
+        GET_TRANSFORM(a0)->pos.v.y = position->v.y;
+        GET_TRANSFORM(a0)->pos.v.z = position->v.z;
+    }
+}
+
+void func_802C606C_79F5FC(GObj* obj) {
+    DObj* a0;
+    Mtx3Float* position;
+    ObjectSpawn spawn;
+    WorldBlock* roomA;
+    PokemonDef def = D_802D29A4_7ABF34;
+    GObj* pokemonObj;
+
+    if (D_802D2980_7ABF10 == NULL) {
+        roomA = getCurrentWorldBlock();
+        spawn.id = PokemonID_MAGIKARP;
+        spawn.translation.x = 0.0;
+        spawn.translation.y = 0.0;
+        spawn.translation.z = 0.0;
+        spawn.euler.x = 0.0;
+        spawn.euler.y = 0.0;
+        spawn.euler.z = 0.0;
+        spawn.scale.x = 1.0;
+        spawn.scale.y = 1.0;
+        spawn.scale.z = 1.0;
+
+        pokemonObj = D_802D2980_7ABF10 = pokemonAddOne(roomA, roomA, &spawn, &def);
+
+        a0 = D_802D2980_7ABF10; // TODO required to match
+        GET_POKEMON(pokemonObj)->behavior = 0;
+
+        position = &obj->data.dobj->position;
+        a0 = D_802D2980_7ABF10->data.dobj;
+        GET_TRANSFORM(a0)->pos.v.x = position->v.x;
+        GET_TRANSFORM(a0)->pos.v.y = position->v.y;
+        GET_TRANSFORM(a0)->pos.v.z = position->v.z;
+    }
+}
+
+void func_802C6168_79F6F8(void*);
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C6168_79F6F8.s")
 
 void func_802C6300_79F890(void) {
@@ -84,7 +201,30 @@ void func_802C6300_79F890(void) {
     func_800A5DF4(0xC0, 0x30);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C63EC_79F97C.s")
+void func_802C63EC_79F97C(void) {
+    s32 i;
+    u8 r, g, b;
+
+    D_802D29D4_7ABF64.zBuffer = gtlMalloc(0x25800, 0x40);
+    viApplyScreenSettings(&D_802D29D4_7ABF64);
+    // clang-format off
+    for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
+    // clang-format on
+    func_8009CE00();
+    omAddGObj(OBJID_0, func_802C5D7C_79F30C, LINK_0, 0x80000000);
+    Pokemons_Init();
+    func_802C5C8C_79F21C();
+    getBackgroundColor(&r, &g, &b);
+    createMainCameras(r << 0x18 | g << 0x10 | b << 8);
+    initUI(func_802C5DD4_79F364, func_802C6B30_7A00C0, NULL, 0, func_802C6168_79F6F8);
+    setEndLevelCallback(func_802C5D18_79F2A8);
+    setPauseCallback(func_802C5DCC_79F35C);
+    EnvSound_Init(D_802D2740_7ABCD0, ARRAY_COUNT(D_802D2740_7ABCD0));
+    func_802C6300_79F890();
+    PokemonDetector_Create();
+    PokemonDetector_Enable();
+    func_802C6AD4_7A0064();
+}
 
 void func_802C653C_79FACC(s32 arg0) {
 }

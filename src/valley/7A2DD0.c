@@ -1,6 +1,4 @@
-#include "common.h"
-#include "../world/world.h"
-#include "app_level/app_level.h"
+#include "valley.h"
 
 void func_802C9840_7A2DD0(GObj*);
 void func_802C9990_7A2F20(GObj*);

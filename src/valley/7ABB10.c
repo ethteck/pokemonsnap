@@ -1,6 +1,4 @@
-#include "common.h"
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "valley.h"
 
 void spawnStaryuAtGeo(GObj* obj) {
     Pokemon_AddAtGeo(obj, PokemonID_STARYU, &extraStaryuDef);

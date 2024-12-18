@@ -30,7 +30,7 @@ POKEMON_FUNC(func_802EBF40_5E9010)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
 
-    pokemon->transitionGraph = &saved;
+    pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, 0);
 
     Pokemon_SetState(obj, func_802EBFDC_5E90AC);
@@ -76,8 +76,8 @@ POKEMON_FUNC(func_802EC078_5E9148)
 
 POKEMON_FUNC(func_802EC178_5E9248)
     s32 i, j;
-    struct TempStruct sp2C = D_802EFF6C_5ED03C;    
-    
+    struct TempStruct sp2C = D_802EFF6C_5ED03C;
+
     for (i = 0; i < 5; i++) {
         for (j = 0; j < sp2C.v[i]; j++) {
             ohWait(1);

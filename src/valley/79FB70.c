@@ -1,4 +1,4 @@
-#include "common.h"
+#include "valley.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/79FB70/func_802C65E0_79FB70.s")
 

@@ -1,7 +1,4 @@
-#include "common.h"
-
-#include "world/world.h"
-#include "app_level/app_level.h"
+#include "valley.h"
 
 extern AnimationHeader D_802D2F8C_7AC51C;
 extern AnimationHeader D_802D2FA0_7AC530;

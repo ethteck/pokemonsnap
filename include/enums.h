@@ -232,7 +232,8 @@ enum SongIds {
     SONG_TUNNEL = 4,
     SONG_VOLCANO = 6,
     SONG_ID_10 = 10,
-    SONG_ID_21 = 21
+    SONG_ID_21 = 21,
+    SONG_ID_28 = 28
 };
 
 enum Links {

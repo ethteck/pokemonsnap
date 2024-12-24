@@ -4589,17 +4589,18 @@ segments:
     subsegments:
     - [0x825E30, c, main]
     - [0x826700, pad]
-    - [0x826710, c]
+    - [0x826710, c, mew/code]
+    - [0x8280E0, c]
     - [0x8288F0, c]
     - [0x829660, pad]
     - [0x829670, c]
     - [0x829900, c]
 
     - [0x82A280, .data, main]
-    - [0x82A400, .data, 826710]
+    - [0x82A400, .data, mew/code]
     - [0x82A640, data]
 
-    - [0x82ADF0, .rodata, 826710]
+    - [0x82ADF0, .rodata, mew/code]
 
     - { start: 0x82AE70, type: bin, linker_section_order: .rodata }
     - { name: bss_80350170, type: bss, vram: 0x80350170 }

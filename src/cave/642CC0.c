@@ -49,9 +49,7 @@ void func_802C0888_642D38(GObj* obj) {
 
     pokemon->miscVars[1].field1 = 0;
     pokemon->miscVars[0].field1 = 0;
-    pokemon->tangible = false;
-
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 3) {
         Pokemon_SetState(obj, func_802C0960_642E10);
@@ -100,8 +98,7 @@ void func_802C0AF0_642FA0(GObj* obj) {
     DObj* dobj = obj->data.dobj;
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_SetAnimation(obj, &D_802C6F60_649410);
     animSetTextureAnimationSpeed(obj, (pokemon->miscVars[0].field1 * dobj->animSpeed) / 2);

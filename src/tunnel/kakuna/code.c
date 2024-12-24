@@ -195,8 +195,7 @@ POKEMON_FUNC(func_802E70FC_5E41CC)
     s32 blockCount;
     f32 blockPart;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     obj->flags |= GOBJ_FLAG_2;
 
     while (true) {
@@ -208,25 +207,20 @@ POKEMON_FUNC(func_802E70FC_5E41CC)
         }
     }
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-    goto label; label:; // TODO fake match
+    SHOW_POKEMON();
     obj->flags &= ~GOBJ_FLAG_2;
 
     Pokemon_SetState(obj, func_802E71D4_5E42A4);
 }
 
 POKEMON_FUNC(func_802E71D4_5E42A4)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->counter = randRange(300) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802EECEC_5EBDBC;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802EEBF4_5EBCC4);
     Pokemon_StartPathProc(obj, func_802E729C_5E436C);
     pokemon->transitionGraph = D_802EECEC_5EBDBC;
@@ -247,9 +241,7 @@ POKEMON_FUNC(func_802E729C_5E436C)
 }
 
 POKEMON_FUNC(func_802E7324_5E43F4)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802EEC08_5EBCD8);
     Pokemon_StartPathProc(obj, func_802E73D0_5E44A0);
     pokemon->transitionGraph = D_802EECCC_5EBD9C;

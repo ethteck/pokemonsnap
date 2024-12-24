@@ -27,8 +27,7 @@ POKEMON_FUNC(func_802EBF40_5E9010)
 
     pokemon->miscVars[0].field1 = 0;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, 0);
@@ -37,9 +36,7 @@ POKEMON_FUNC(func_802EBF40_5E9010)
 }
 
 POKEMON_FUNC(func_802EBFDC_5E90AC)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802EFEBC_5ECF8C);
     pokemon->transitionGraph = D_802EFF2C_5ECFFC;
     Pokemon_WaitForFlag(obj, 0);

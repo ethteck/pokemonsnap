@@ -107,10 +107,9 @@ PokemonInitData diglett_initData = {
 extern s32 diglett_IsPhotoTaken;
 
 POKEMON_FUNC(diglett_InitialState)
-    pokemon->tangible = false;
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->miscVars->field0 = pokemon->collisionRadius;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, diglett_FirstRise);
@@ -138,8 +137,7 @@ POKEMON_FUNC(diglett_FirstRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
@@ -171,8 +169,7 @@ POKEMON_FUNC(diglett_FirstRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 1;
@@ -198,8 +195,7 @@ POKEMON_FUNC(diglett_SecondRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
@@ -231,8 +227,7 @@ POKEMON_FUNC(diglett_SecondRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 2;
@@ -258,8 +253,7 @@ POKEMON_FUNC(diglett_ThirdRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &diglett_animation_unburrow);
 
@@ -291,8 +285,7 @@ POKEMON_FUNC(diglett_ThirdRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (diglett_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 4;

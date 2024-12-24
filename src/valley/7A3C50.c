@@ -75,8 +75,7 @@ void func_802CA8F8_7A3E88(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= 0x2 | 0x1;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802D32B4_7AC844;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -88,8 +87,7 @@ void func_802CA948_7A3ED8(GObj* obj) {
 
     pokemon->flags |= POKEMON_FLAG_200;
     pokemon->flags |= POKEMON_FLAG_800;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802D31FC_7AC78C);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

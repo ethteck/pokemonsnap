@@ -19,28 +19,26 @@ void func_802C95C0_7A2B50(GObj* arg0) {
     Pokemon_SetState(arg0, func_802C95E4_7A2B74);
 }
 
-void func_802C95E4_7A2B74(GObj* arg0) {
+void func_802C95E4_7A2B74(GObj* obj) {
     UNUSED s32 padding[3];
-    Pokemon* pokemon = GET_POKEMON(arg0);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    arg0->flags |= 0x2 | 0x1;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802D2DAC_7AC33C;
-    Pokemon_WaitForFlag(arg0, 0);
-    Pokemon_SetState(arg0, NULL);
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
 }
 
-void func_802C9634_7A2BC4(GObj* arg0) {
+void func_802C9634_7A2BC4(GObj* obj) {
     UNUSED s32 padding[3];
-    Pokemon* pokemon = GET_POKEMON(arg0);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     D_802D2D78_7AC308 = 1;
-    pokemon->tangible = true;
-    arg0->flags = 0;
-    Pokemon_SetAnimation(arg0, &D_802D2D10_7AC2A0);
+    SHOW_POKEMON();
+    Pokemon_SetAnimation(obj, &D_802D2D10_7AC2A0);
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(arg0, func_802C9750_7A2CE0);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_802C9750_7A2CE0);
 }
 
 void func_802C96A0_7A2C30(GObj* arg0) {

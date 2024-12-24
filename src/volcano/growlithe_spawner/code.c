@@ -55,8 +55,7 @@ POKEMON_FUNC(growlithe_spawner_InitialState)
     s32 blockIndex;
     f32 blockPart;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     while (true) {
         getLevelProgress(&blockIndex, &blockPart);
@@ -66,8 +65,7 @@ POKEMON_FUNC(growlithe_spawner_InitialState)
         ohWait(1);
     }
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->miscVars[0].field1 = false;
     omCreateProcess(obj, volcano_CreateSplashFromGrowlitheOrArcanine, 1, 1);
     Pokemon_StartPathProc(obj, growlithe_spawner_SendCommands);

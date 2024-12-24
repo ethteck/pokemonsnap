@@ -104,8 +104,7 @@ PokemonInitData moltres_initData = {
 };
 
 POKEMON_FUNC(moltres_InitialState)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, moltres_UnusedBehavior);
@@ -121,8 +120,7 @@ POKEMON_FUNC(moltres_Appear)
     GET_TRANSFORM(model)->pos.v.x = GET_TRANSFORM(eggModel)->pos.v.x;
     GET_TRANSFORM(model)->pos.v.y = GET_TRANSFORM(eggModel)->pos.v.y;
     GET_TRANSFORM(model)->pos.v.z = GET_TRANSFORM(eggModel)->pos.v.z;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
 
     Pokemon_ForceAnimation(obj, &moltres_animation_appear);
     Pokemon_StartPathProc(obj, moltres_Fly);
@@ -175,9 +173,7 @@ POKEMON_FUNC(moltres_UnusedBehavior)
 }
 
 POKEMON_FUNC(moltres_UnusedPlayerIsClose)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &moltres_animation_fly2);
     Pokemon_StartPathProc(obj, moltres_Fly);
     pokemon->transitionGraph = NULL;

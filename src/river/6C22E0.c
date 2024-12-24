@@ -105,8 +105,7 @@ void func_802DA768_6C2548(GObj* obj) {
 void func_802DA814_6C25F4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802E2E88_6CAC68;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -116,8 +115,7 @@ void func_802DA864_6C2644(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802DA590_6C2370);
     pokemon->transitionGraph = D_802E2E58_6CAC38;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);

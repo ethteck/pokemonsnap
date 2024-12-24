@@ -17,8 +17,7 @@ POKEMON_FUNC(func_802EBD20_5E8DF0)
 }
 
 POKEMON_FUNC(func_802EBD6C_5E8E3C)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->transitionGraph = D_802EFE48_5ECF18;
     Pokemon_WaitForFlag(obj, 0);
@@ -26,9 +25,7 @@ POKEMON_FUNC(func_802EBD6C_5E8E3C)
 }
 
 POKEMON_FUNC(func_802EBDBC_5E8E8C)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     EnvSound_PlaySound(obj, 1, SOUND_ID_377);
     func_8035E1D4_4FE5E4(obj);
     Pokemon_SetState(obj, func_802EBE0C_5E8EDC);

@@ -80,8 +80,7 @@ POKEMON_FUNC(evolution_controller_InitialState)
         Pokemon_SetState(obj, evolution_controller_EvolveIntoCharmeleon);
     }
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->transitionGraph = evolution_controller_tg_Wait;
     Pokemon_WaitForFlag(obj, 0);
@@ -111,9 +110,7 @@ POKEMON_FUNC(evolution_controller_EvolveIntoCharizard)
 }
 
 POKEMON_FUNC(evolution_controller_CharizardAppeared)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &evolution_controller_animation_charmeleon_evolves);
     Pokemon_StartPathProc(obj, NULL);
     cmdSendCommandToLink(LINK_POKEMON, VOLCANO_CMD_UNUSED_CHARIZARD, obj);
@@ -125,9 +122,7 @@ POKEMON_FUNC(evolution_controller_CharizardAppeared)
 }
 
 POKEMON_FUNC(evolution_controller_EvolveIntoCharmeleon)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, NULL);
     Pokemon_ForceAnimation(obj, &evolution_controller_animation_charmander_evolves);
     pokemon->counter = 20, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;

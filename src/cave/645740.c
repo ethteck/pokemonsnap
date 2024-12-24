@@ -104,55 +104,32 @@ void func_802C34E0_645990(GObj* obj) { \
     Pokemon_SetState(obj, func_802C3658_645B08);
 }
 
-#ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3580_645A30.s")
-#else
-void func_802C3580_645A30(GObj* obj) {
-    DObj* dobj = obj->data.dobj;
-    Pokemon* pokemon;
-    PokemonTransform* transform1; // TODO likely not transforms
-    PokemonTransform* transform2; // TODO likely not transforms
-    Mtx3Float* pos1;
-    Mtx3Float* pos2;
-    Mtx4Float* rot1;
-    Mtx4Float* rot2;
-
-    transform1 = GET_TRANSFORM(dobj);                         // TODO likely not transforms
-    transform2 = GET_TRANSFORM(D_802C75EC_649A9C->data.dobj); // TODO likely not transforms
-
-    pokemon = GET_POKEMON(obj);
-
-    pos1 = &transform1->pos;
-    rot1 = &transform1->rot;
-
-    pos2 = &transform2->pos;
-    rot2 = &transform2->rot;
+POKEMON_FUNC(func_802C3580_645A30)
+    Mtx3Float* pos2 = &GET_TRANSFORM(D_802C75EC_649A9C->data.dobj)->pos;
+    Mtx4Float* rot2 = &GET_TRANSFORM(D_802C75EC_649A9C->data.dobj)->rot;
 
     while (D_802C75EC_649A9C != NULL) {
-        pos1->v.x = pos2->v.x;
-        pos1->v.y = pos2->v.y - 50.0f;
-        pos1->v.z = pos2->v.z;
-        rot1->v.y = rot2->v.y;
+        position->v.x = pos2->v.x;
+        position->v.y = pos2->v.y - 50.0f;
+        position->v.z = pos2->v.z;
+        rotation->v.y = rot2->v.y;
         ohWait(1);
     }
+
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
-#endif
 
 void func_802C3658_645B08(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon = obj->userData;
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     while (D_802C75F0_649AA0 == NULL) {
         ohWait(1);
     }
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802C3784_645C34);
     Pokemon_SetState(obj, func_802C36F0_645BA0);
 }
@@ -170,38 +147,22 @@ void func_802C36F0_645BA0(GObj* obj) {
     Pokemon_SetState(obj, func_802C36F0_645BA0);
 }
 
-#ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3784_645C34.s")
-#else
-void func_802C3784_645C34(GObj* obj) {
-    DObj* dobj = obj->data.dobj;
-    Pokemon* pokemon;
-    PokemonTransform* transform1; // TODO likely not transforms
-    PokemonTransform* transform2; // TODO likely not transforms
-    Mtx3Float* pos1;
-    Mtx3Float* pos2;
-    Mtx4Float* rot1;
-    Mtx4Float* rot2;
-
-    transform1 = GET_TRANSFORM(dobj);                         // TODO likely not transforms
-    transform2 = GET_TRANSFORM(D_802C75F0_649AA0->data.dobj); // TODO likely not transforms
-
-    pokemon = GET_POKEMON(obj);
-
-    pos1 = &transform1->pos;
-    rot1 = &transform1->rot;
-
-    pos2 = &transform2->pos;
-    rot2 = &transform2->rot;
+#ifdef NON_MATCHING
+POKEMON_FUNC(func_802C3784_645C34)
+    Mtx3Float* pos2 = &GET_TRANSFORM(D_802C75F0_649AA0->data.dobj)->pos;
+    Mtx4Float* rot2 = &GET_TRANSFORM(D_802C75F0_649AA0->data.dobj)->rot;
 
     while (true) {
-        pos1->v.x = pos2->v.x;
-        pos1->v.y = pos2->v.y - 50.0f;
-        pos1->v.z = pos2->v.z;
-        rot1->v.y = rot2->v.y;
+        position->v.x = pos2->v.x;
+        position->v.y = pos2->v.y - 50.0f;
+        position->v.z = pos2->v.z;
+        rotation->v.y = rot2->v.y;
         ohWait(1);
     }
 }
+#else
+void func_802C3784_645C34(GObj*);
+#pragma GLOBAL_ASM("asm/nonmatchings/cave/645740/func_802C3784_645C34.s")
 #endif
 
 void func_802C3840_645CF0(GObj* obj) {

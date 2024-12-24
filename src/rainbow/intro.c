@@ -1,51 +1,14 @@
-#include "common.h"
-#include "../world/world.h"
-#include "app_level/app_level.h"
 #include "rainbow.h"
 
 extern AnimCmd* D_80119AE0;
 extern AnimCmd** D_8011A970;
 extern AnimCmd D_8011B3E0;
 
-extern AnimationHeader D_8034B600_82AD70;
-extern PokemonInitData D_8034B638_82ADA8;
 extern s32 D_8034B670_82ADE0;
 extern GObj* D_8034B674_82ADE4;
-extern f32 D_8034B720_82AE90;
-extern f32 D_8034B724_82AE94;
-extern f32 D_8034B728_82AE98;
-extern f32 D_8034B72C_82AE9C;
-extern f32 D_8034B730_82AEA0;
-extern f32 D_8034B734_82AEA4;
-extern f32 D_8034B738_82AEA8;
 extern u8 D_803501E8_82F958;
 extern u8 D_803501E9_82F959;
 extern u8 D_803501EA_82F95A;
-
-void func_8034A334_829AA4(GObj*);
-void func_8034A3A0_829B10(GObj*);
-
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A190_829900.s")
-
-void func_8034A27C_8299EC(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A27C_8299EC.s")
-
-void func_8034A334_829AA4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
-    Pokemon_SetAnimation(obj, &D_8034B600_82AD70);
-    Pokemon_StartPathProc(obj, func_8034A3A0_829B10);
-    pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    Pokemon_SetState(obj, func_8034A27C_8299EC);
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A3A0_829B10.s")
-
-GObj* func_8034A4E8_829C58(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
-    return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_8034B638_82ADA8);
-}
 
 void func_8034A520_829C90(GObj* obj) {
     func_803571C4_4F75D4();
@@ -55,7 +18,7 @@ void func_8034A520_829C90(GObj* obj) {
 
 void func_8034A550_829CC0(void) {
     func_803572B0_4F76C0();
-    setBackgroundMusic(0xE);
+    setBackgroundMusic(SONG_ID_14);
 }
 
 void func_8034A578_829CE8(DObj* arg0, s32 arg1, f32 arg2) {
@@ -77,13 +40,13 @@ void func_8034A578_829CE8(DObj* arg0, s32 arg1, f32 arg2) {
 }
 
 void func_8034A5EC_829D5C(void) {
-    if (auPlayingSound[D_803501E8_82F958] == 0x27) {
+    if (auPlayingSound[D_803501E8_82F958] == SOUND_ID_39) {
         auStopSound((u32) D_803501E8_82F958);
     }
-    if (auPlayingSound[D_803501E9_82F959] == 0x15) {
+    if (auPlayingSound[D_803501E9_82F959] == SOUND_ID_21) {
         auStopSound((u32) D_803501E9_82F959);
     }
-    if (auPlayingSound[D_803501EA_82F95A] == 0xF) {
+    if (auPlayingSound[D_803501EA_82F95A] == SOUND_ID_15) {
         auStopSound((u32) D_803501EA_82F95A);
     }
     func_80357170_4F7580();
@@ -99,8 +62,8 @@ void func_8034A6B4_829E24(GObj* arg0) {
         ohWait(1);
     }
 
-    D_803501E9_82F959 = auPlaySoundWithParams(0x15U, 0x7000, 0x40, 1.0f, 0x1E);
-    D_803501E8_82F958 = auPlaySoundWithParams(0x27U, 0x7000, 0x40, 1.0f, 0x14);
+    D_803501E9_82F959 = auPlaySoundWithParams(SOUND_ID_21, 0x7000, 0x40, 1.0f, 0x1E);
+    D_803501E8_82F958 = auPlaySoundWithParams(SOUND_ID_39, 0x7000, 0x40, 1.0f, 0x14);
     omEndProcess(NULL);
 }
 
@@ -111,7 +74,7 @@ void func_8034A748_829EB8(GObj* arg0) {
         ohWait(1);
     }
 
-    D_803501EA_82F95A = auPlaySoundWithParams(0xFU, 0x7000, 0x40, 1.0f, 0x1E);
+    D_803501EA_82F95A = auPlaySoundWithParams(SOUND_ID_15, 0x7000, 0x40, 1.0f, 0x1E);
     auStopSound(D_803501E8_82F958);
     omEndProcess(NULL);
 }

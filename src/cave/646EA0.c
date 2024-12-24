@@ -70,8 +70,7 @@ void func_802C4B04_646FB4(GObj* obj) { \
     Pokemon_StartPathProc(obj, func_802C4C18_6470C8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     D_802C7C3C_64A0EC = NULL;
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);

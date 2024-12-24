@@ -40,8 +40,7 @@ void func_802DF6BC_6C749C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->specialPoseID = 0;
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802E42A4_6CC084;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -50,8 +49,7 @@ void func_802DF6BC_6C749C(GObj* obj) {
 void func_802DF710_6C74F0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = TRUE;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802DF7D8_6C75B8);
     Pokemon_SetState(obj, func_802DF758_6C7538);
 }
@@ -144,14 +142,12 @@ void func_802DFA5C_6C783C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     s32 temp_t8;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     temp_t8 = randRange(60) + 60;
     pokemon->counter = temp_t8, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802E4314_6CC0F4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &D_802E4140_6CBF20);
     Pokemon_StartPathProc(obj, func_802DFB74_6C7954);
     pokemon->transitionGraph = D_802E42C4_6CC0A4;
@@ -213,8 +209,7 @@ void func_802DFCD0_6C7AB0(GObj* obj) {
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     cmdSendCommandToLink(3, 0x28, obj);
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802E4334_6CC114;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -229,8 +224,7 @@ void func_802DFD78_6C7B58(GObj* obj) {
 
     getGroundAt(pos->v.x, pos->v.z, &sp1C);
     pos->v.y = sp1C.height;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802DFE4C_6C7C2C);
     Pokemon_SetState(obj, func_802DFDF8_6C7BD8);
 }

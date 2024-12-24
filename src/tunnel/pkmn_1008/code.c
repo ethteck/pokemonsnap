@@ -28,8 +28,7 @@ POKEMON_FUNC(func_802EA490_5E7560)
 POKEMON_FUNC(func_802EA53C_5E760C)
     InteractionHandler2 saved = D_802EF788_5EC858;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -37,9 +36,7 @@ POKEMON_FUNC(func_802EA53C_5E760C)
 
 POKEMON_FUNC(func_802EA5D0_5E76A0)
     Pokemon_StartAuxProc(obj, func_802EA490_5E7560);
-
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
 
     while (!D_803430E8_6401B8.bits.unk_00) {
         pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;

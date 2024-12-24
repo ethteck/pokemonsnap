@@ -53,8 +53,7 @@ void func_802C0140_6425F0(GObj* obj, InteractionHandler* arg1) {
 void func_802C0220_6426D0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, func_802C027C_64272C);
@@ -86,8 +85,7 @@ void func_802C0330_6427E0(GObj* obj) {
     while (D_802C72A0_649750[pokemon->behavior] == 0) {
         ohWait(1);
     }
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802C04A4_642954);
     Pokemon_SetState(obj, func_802C03E4_642894);
 }

@@ -139,8 +139,7 @@ void smoke_spawner_CreateKoffingSmoke(GObj* obj) {
 }
 
 POKEMON_FUNC(smoke_spawner_InitialState)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     omCreateProcess(obj, smoke_spawner_CreateSmokePuff, 1, 1);
     Pokemon_SetState(obj, smoke_spawner_Idle);

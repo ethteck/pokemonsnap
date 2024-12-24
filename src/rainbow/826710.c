@@ -15,6 +15,7 @@ extern f32 D_800F5DB0;
 extern AnimCmd* D_801183E0;
 extern AnimCmd** D_80119050;
 extern AnimCmd D_80119A8C;
+
 extern GObj* D_8034AB94_82A304;
 extern GObj* D_8034AB98_82A308;
 extern s32 D_8034AB9C_82A30C;
@@ -41,6 +42,9 @@ extern Unk8 D_8034AE60_82A5D0;
 extern UNK_TYPE D_8034AE68_82A5D8;
 extern UNK_TYPE D_8034AE78_82A5E8;
 extern PokemonInitData D_8034AE90_82A600;
+
+// file split
+
 extern AnimationHeader D_8034AED0_82A640;
 extern AnimationHeader D_8034AEE4_82A654;
 extern AnimationHeader D_8034AEF8_82A668;
@@ -509,7 +513,7 @@ void func_803487CC_827F3C(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348850_827FC0.s")
 
-GObj* func_80348938_8280A8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* func_80348938_8280A8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_8034AE90_82A600);
 }
 
@@ -663,7 +667,7 @@ void func_80348DD4_828544(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-GObj* func_80348FB8_828728(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* func_80348FB8_828728(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_8034AF78_82A6E8);
 }
 

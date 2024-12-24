@@ -24,7 +24,7 @@ void func_80349F00_829670(GObj* obj) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829670/func_80349F88_8296F8.s")
 
-GObj* func_8034A064_8297D4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
+GObj* func_8034A064_8297D4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_8034B5B8_82AD28);
 }
 

@@ -70,16 +70,14 @@ POKEMON_FUNC(func_803491D4_828944)
 }
 
 POKEMON_FUNC(func_8034930C_828A7C)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_8034B188_82A8F8;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
 POKEMON_FUNC(func_8034935C_828ACC)
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
 
     if (gDirectionIndex < 0) {
         Pokemon_SetAnimation(obj, &D_8034B0FC_82A86C);
@@ -159,8 +157,7 @@ POKEMON_FUNC(func_803496BC_828E2C)
 }
 
 POKEMON_FUNC(func_80349714_828E84)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     Pokemon_StartPathProc(obj, func_803491D4_828944);
     pokemon->transitionGraph = D_8034B328_82AA98;
     Pokemon_WaitForFlag(obj, 0);
@@ -168,9 +165,7 @@ POKEMON_FUNC(func_80349714_828E84)
 }
 
 POKEMON_FUNC(func_8034977C_828EEC)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     if (gDirectionIndex < 0) {
         Pokemon_SetAnimation(obj, &D_8034B174_82A8E4);
     } else {
@@ -249,8 +244,7 @@ POKEMON_FUNC(func_80349ADC_82924C)
 }
 
 POKEMON_FUNC(func_80349B34_8292A4)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_8034B4E8_82AC58;
     Pokemon_WaitForFlag(obj, 0);
@@ -258,8 +252,7 @@ POKEMON_FUNC(func_80349B34_8292A4)
 }
 
 POKEMON_FUNC(func_80349B98_829308)
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_8034B174_82A8E4);
     Pokemon_StartPathProc(obj, func_80349C18_829388);
     pokemon->transitionGraph = D_8034B4E8_82AC58;

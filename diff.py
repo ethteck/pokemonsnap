@@ -1138,11 +1138,6 @@ def maybe_get_objdump_source_flags(config: Config) -> List[str]:
 def run_objdump(cmd: ObjdumpCommand, config: Config, project: ProjectSettings) -> str:
     flags, target, restrict = cmd
     try:
-        print([project.objdump_executable]
-            + config.arch.arch_flags
-            + project.objdump_flags
-            + flags
-            + [target])
         out = subprocess.run(
             [project.objdump_executable]
             + config.arch.arch_flags

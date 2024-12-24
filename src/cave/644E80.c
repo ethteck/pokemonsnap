@@ -30,8 +30,7 @@ void func_802C29D0_644E80(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 3) {
         Pokemon_SetState(obj, func_802C2E24_6452D4);
@@ -84,10 +83,7 @@ void func_802C2BDC_64508C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon = obj->userData;
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802C75D8_649A88);
 
     if (pokemon->behavior == 4 || pokemon->behavior == 5) {
@@ -150,8 +146,7 @@ void func_802C2E24_6452D4(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
     InteractionHandler2 sp18 = D_802C7674_649B24;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     pokemon->transitionGraph = sp18.data;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, func_802C2EBC_64536C);
@@ -162,8 +157,7 @@ void func_802C2EBC_64536C(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     D_802C75EC_649A9C = obj;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802C75D8_649A88);
     Pokemon_StartPathProc(obj, func_802C2F48_6453F8);
     pokemon->transitionGraph = NULL;
@@ -200,8 +194,7 @@ void func_802C2FF4_6454A4(GObj* obj) { \
     InteractionHandler4 sp20 = D_802C76D4_649B84;
 
     D_802C75F0_649AA0 = obj;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802C75D8_649A88);
     Pokemon_StartPathProc(obj, func_802C2C90_645140);
     pokemon->transitionGraph = sp20.data;

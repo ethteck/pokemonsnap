@@ -11,13 +11,6 @@ extern AnimationHeader D_8034B600_82AD70;
 extern PokemonInitData D_8034B638_82ADA8;
 extern s32 D_8034B670_82ADE0;
 extern GObj* D_8034B674_82ADE4;
-extern f32 D_8034B720_82AE90;
-extern f32 D_8034B724_82AE94;
-extern f32 D_8034B728_82AE98;
-extern f32 D_8034B72C_82AE9C;
-extern f32 D_8034B730_82AEA0;
-extern f32 D_8034B734_82AEA4;
-extern f32 D_8034B738_82AEA8;
 extern u8 D_803501E8_82F958;
 extern u8 D_803501E9_82F959;
 extern u8 D_803501EA_82F95A;
@@ -25,7 +18,21 @@ extern u8 D_803501EA_82F95A;
 void func_8034A334_829AA4(GObj*);
 void func_8034A3A0_829B10(GObj*);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A190_829900.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A190_829900.s")
+POKEMON_FUNC(func_8034A190_829900)
+    HIDE_POKEMON();
+    obj->flags |= GOBJ_FLAG_2;
+
+    ohWait(randRange(60));
+
+    position->v.x = 750.0f - randFloat() * 1500.0f;
+    position->v.y = 50.0f + randFloat() * 400.0f;
+    position->v.z = 5000.0f;
+
+    SHOW_POKEMON();
+    obj->flags &= ~GOBJ_FLAG_2;
+    Pokemon_SetState(obj, func_8034A334_829AA4);
+}
 
 void func_8034A27C_8299EC(GObj*);
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829900/func_8034A27C_8299EC.s")

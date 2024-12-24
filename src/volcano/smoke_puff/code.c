@@ -47,17 +47,14 @@ PokemonInitData smoke_puff_initData = {
 };
 
 POKEMON_FUNC(smoke_puff_InitialState)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     Pokemon_StartPathProc(obj, NULL);
     pokemon->counter = 30 + randRange(60), pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &smoke_puff_animation);
     Pokemon_StartPathProc(obj, smoke_puff_Rise);
     pokemon->transitionGraph = smoke_puff_tg_Normal;

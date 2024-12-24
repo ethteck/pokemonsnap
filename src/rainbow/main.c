@@ -49,7 +49,7 @@ void func_803466C0_825E30(void) {
     Pokemon* pokemon;
     DObj* model;
     Mtx3Float* position;
-    GObj* pokemonObj;
+    GObj* obj;
     ObjectSpawn spawn;
     WorldBlock* block;
     PokemonDef def = {
@@ -71,24 +71,23 @@ void func_803466C0_825E30(void) {
     spawn.scale.y = 1.0;
     spawn.scale.z = 1.0;
 
-    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
-    D_8034AB94_82A304 = pokemonObj;
+    obj = pokemonAddOne(block, block, &spawn, &def);
+    D_8034AB94_82A304 = obj;
     pokemon = GET_POKEMON(D_8034AB94_82A304);
-    pokemon->tangible = false;
-    pokemonObj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
-    model = pokemonObj->data.dobj;
+    model = obj->data.dobj;
     position = &GET_TRANSFORM(model)->pos;
     GET_TRANSFORM(model)->pos.v.x = 0.0f;
     GET_TRANSFORM(model)->pos.v.y = 100.0f;
     GET_TRANSFORM(model)->pos.v.z = 500.0f;
 }
 
-void func_803467A4_825F14(GObj* obj) {
+void func_803467A4_825F14(GObj* baseObj) {
     Pokemon* pokemon;
     DObj* model;
     Mtx3Float* position;
-    GObj* pokemonObj;
+    GObj* obj;
     ObjectSpawn spawn;
     WorldBlock* block;
     PokemonDef def = {
@@ -110,14 +109,13 @@ void func_803467A4_825F14(GObj* obj) {
     spawn.scale.y = 1.0;
     spawn.scale.z = 1.0;
 
-    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
-    D_8034AB98_82A308 = pokemonObj;
-    pokemon = GET_POKEMON(pokemonObj);
-    pokemon->tangible = false;
-    pokemonObj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    obj = pokemonAddOne(block, block, &spawn, &def);
+    D_8034AB98_82A308 = obj;
+    pokemon = GET_POKEMON(obj);
+    HIDE_POKEMON();
 
-    position = &GET_TRANSFORM(obj->data.dobj)->pos;
-    model = pokemonObj->data.dobj;
+    position = &GET_TRANSFORM(baseObj->data.dobj)->pos;
+    model = obj->data.dobj;
     GET_TRANSFORM(model)->pos.v.x = position->v.x;
     GET_TRANSFORM(model)->pos.v.y = position->v.y;
     GET_TRANSFORM(model)->pos.v.z = position->v.z;
@@ -127,7 +125,7 @@ void func_803467A4_825F14(GObj* obj) {
 void func_80346898_826008(void) {
     Pokemon* pokemon;
     DObj* model;
-    GObj* pokemonObj;
+    GObj* obj;
     ObjectSpawn spawn;
     WorldBlock* block;
     PokemonDef def = {
@@ -149,12 +147,11 @@ void func_80346898_826008(void) {
     spawn.scale.y = 1.0;
     spawn.scale.z = 1.0;
 
-    pokemonObj = pokemonAddOne(block, block, &spawn, &def);
+    obj = pokemonAddOne(block, block, &spawn, &def);
     pokemon = GET_POKEMON(D_8034AB94_82A304);
-    pokemon->tangible = false;
+    HIDE_POKEMON();
 
-    model = pokemonObj->data.dobj;
-    pokemonObj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    model = obj->data.dobj;
     GET_TRANSFORM(model)->pos.v.x = 0.0f;
     GET_TRANSFORM(model)->pos.v.y = 0.0f;
     GET_TRANSFORM(model)->pos.v.z = 0.0f;

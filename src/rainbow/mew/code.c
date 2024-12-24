@@ -210,9 +210,7 @@ POKEMON_FUNC(func_80347188_8268F8)
 }
 
 POKEMON_FUNC(func_803471D4_826944)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
-
+    HIDE_POKEMON();
     pokemon->counter = 180, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
@@ -226,9 +224,7 @@ POKEMON_FUNC(func_803471D4_826944)
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &D_8034ACD8_82A448);
     pokemon->transitionGraph = D_8034AD50_82A4C0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -283,11 +279,9 @@ POKEMON_FUNC(func_803475D0_826D40)
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-
+        
         cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
-
-        pokemon->tangible = false;
-        obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+        HIDE_POKEMON();
     } else {
         cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_29, obj);
         D_80350190_82F900 = true;
@@ -297,8 +291,7 @@ POKEMON_FUNC(func_803475D0_826D40)
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
         cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
-        pokemon->tangible = false;
-        obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+        HIDE_POKEMON();
         Pokemon_SetState(obj, func_80347724_826E94);
     }
     Pokemon_SetState(obj, func_803471D4_826944);
@@ -309,8 +302,7 @@ POKEMON_FUNC(func_80347724_826E94)
     pokemon->specialPoseID = 0;
     pokemon->flags |= POKEMON_FLAG_8;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     pokemon->counter = 150, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
@@ -327,9 +319,7 @@ POKEMON_FUNC(func_80347724_826E94)
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &D_8034ACD8_82A448);
     pokemon->transitionGraph = D_8034AD90_82A500;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
@@ -425,8 +415,7 @@ POKEMON_FUNC(func_80347E44_8275B4)
     pokemon->flags &= ~POKEMON_FLAG_8;
     pokemon->specialPoseID = 10;
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     pokemon->counter = 180, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
@@ -444,9 +433,7 @@ POKEMON_FUNC(func_80347E44_8275B4)
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_8034AD28_82A498);
     pokemon->transitionGraph = D_8034ADD0_82A540;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -606,8 +593,7 @@ POKEMON_FUNC(func_80348540_827CB0)
 
 POKEMON_FUNC(func_8034877C_827EEC)
     D_8034AE5C_82A5CC = 1;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_80348850_827FC0);
     Pokemon_SetState(obj, func_803487CC_827F3C);
 }

@@ -13,8 +13,7 @@ void func_802D2230_7AB7C0(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= 0x2 | 0x1;
+    HIDE_POKEMON();
     pokemon->counter = 1;
     pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_802EC9D0_7C5F60;
@@ -27,8 +26,7 @@ void func_802D22A0_7AB830(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetStateRandom(obj, D_802EC9F0_7C5F80);
 }
 

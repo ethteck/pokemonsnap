@@ -129,8 +129,7 @@ POKEMON_FUNC(func_802DD2BC_6C509C)
 
     pokemon->flags &= ~POKEMON_FLAG_8;
     Pokemon_SetAnimation(obj, &D_802E39A4_6CB784);
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartAuxProc(obj, func_802DD53C_6C531C);
     Pokemon_StartPathProc(obj, func_802DD4AC_6C528C);
     pokemon->transitionGraph = NULL;
@@ -147,8 +146,7 @@ POKEMON_FUNC(func_802DD398_6C5178)
 
     pokemon->flags &= ~POKEMON_FLAG_8;
     Pokemon_SetAnimation(obj, &D_802E3904_6CB6E4);
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartAuxProc(obj, func_802DD53C_6C531C);
     Pokemon_StartPathProc(obj, func_802DD4AC_6C528C);
     if (pokemon->behavior == 2) {

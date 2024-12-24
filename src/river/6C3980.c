@@ -419,8 +419,7 @@ POKEMON_FUNC(func_802DCB0C_6C48EC)
 void func_802DCBB8_6C4998(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     switch (pokemon->behavior) {
         case 4:
             pokemon->transitionGraph = D_802E35EC_6CB3CC;
@@ -450,15 +449,13 @@ void func_802DCC6C_6C4A4C(GObj* obj) {
     s32 flag = POKEMON_PROCESS_FLAG_ANIMATION_ENDED;
 
     for (i = 0; i < pokemon->path->numPoints; i++) {
-        pokemon->tangible = false;
-        obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+        HIDE_POKEMON();
         ohWait(75);
         if (!(pokemon->playerDist < 500.0)) {
-            pokemon->tangible = true;
+            SHOW_POKEMON();
             if (0) {
                 // todo required to match
             }
-            obj->flags = 0;
             block = getCurrentWorldBlock();
             pos->v.x = -(block->descriptor->worldPos.x * 100.0f);
             pos->v.z = -(block->descriptor->worldPos.z * 100.0f);

@@ -1,28 +1,34 @@
-#include "common.h"
-#include "../world/world.h"
-#include "app_level/app_level.h"
-#include "rainbow.h"
+#include "../rainbow.h"
 
+extern AnimationHeader D_8034B590_82AD00;
 extern PokemonInitData D_8034B5B8_82AD28;
 extern PokemonDef D_8034B5EC_82AD5C;
-extern AnimationHeader D_8034B590_82AD00;
 
 void func_80349F88_8296F8(GObj*);
 
-void func_80349F00_829670(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
-    cmdSendCommand(gObjPlayer, 3, obj);
+POKEMON_FUNC(func_80349F00_829670)
+    cmdSendCommand(gObjPlayer, PLAYER_CMD_SHAKE_CAMERA, obj);
     Pokemon_ForceAnimation(obj, &D_8034B590_82AD00);
     Pokemon_StartPathProc(obj, func_80349F88_8296F8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/829670/func_80349F88_8296F8.s")
+POKEMON_FUNC(func_80349F88_8296F8)
+    Mtx3Float* scale = &GET_TRANSFORM(model)->scale;
+
+    while (true) {
+        Pokemon_TurnToTarget(obj, TAU, MOVEMENT_FLAG_TURN_TO_PLAYER);
+        scale->v.x *= 1.1;
+        scale->v.y *= 1.1;
+        scale->v.z *= 1.1;
+        rotation->v.y += 3.0f;
+        ohWait(1);
+    }
+}
 
 GObj* func_8034A064_8297D4(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnDlLink4(objID, id, block, blockB, spawn, &D_8034B5B8_82AD28);

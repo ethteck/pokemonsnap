@@ -17,8 +17,7 @@ void func_802C493C_646DEC(GObj*);
 void func_802C46A0_646B50(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802C7B50_64A000;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -34,8 +33,7 @@ void func_802C46F0_646BA0(GObj* obj) {
     GET_TRANSFORM(dobj)->pos.v.y = GET_TRANSFORM(interactionTarget)->pos.v.y;
     GET_TRANSFORM(dobj)->pos.v.z = GET_TRANSFORM(interactionTarget)->pos.v.z;
     D_8033E138_6C05E8.unk_01_2 = true;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &D_802C7B10_649FC0);
     Pokemon_TurnToTarget(obj, 1.0f, 0x20);
     Pokemon_StartPathProc(obj, func_802C4820_646CD0);

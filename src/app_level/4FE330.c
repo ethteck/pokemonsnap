@@ -95,14 +95,12 @@ void func_8035E034_4FE444(GObj* obj) {
     s32 unused[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->miscVars[0].field1 = 0;
     do {
         ohWait(1);
     } while (pokemon->miscVars[0].field1 == 0);
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &D_80388310_528720);
     Pokemon_StartPathProc(obj, func_8035DFB0_4FE3C0);
     pokemon->transitionGraph = NULL;

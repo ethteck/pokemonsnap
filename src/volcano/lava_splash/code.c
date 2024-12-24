@@ -155,21 +155,18 @@ POKEMON_FUNC(lava_splash_Type3)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->counter = randRange(180) + 60, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetState(obj, lava_splash_Type3);
 }
 
 POKEMON_FUNC(lava_splash_Type4)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     pokemon->transitionGraph = lava_splash_tg_Type4;
     Pokemon_WaitForFlag(obj, 0);
@@ -177,9 +174,7 @@ POKEMON_FUNC(lava_splash_Type4)
 }
 
 POKEMON_FUNC(lava_splash_StartType4)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_ForceAnimation(obj, &lava_splash_animation_type3);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);

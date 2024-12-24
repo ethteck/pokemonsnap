@@ -268,8 +268,7 @@ void func_802E115C_6C8F3C(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     Pokemon_SetState(obj, func_802E1194_6C8F74);
 }
 
@@ -311,8 +310,7 @@ void func_802E12D8_6C90B8(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802E4720_6CC500);
     Pokemon_StartPathProc(obj, func_802E1374_6C9154);
     pokemon->transitionGraph = NULL;

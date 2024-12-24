@@ -21,17 +21,14 @@ POKEMON_FUNC(func_802EB860_5E8930)
         Pokemon_SetState(obj, func_802EBA48_5E8B18);
     }
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802EFC5C_5ECD2C;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, func_802EB908_5E89D8);
 }
 
 POKEMON_FUNC(func_802EB908_5E89D8)
-    pokemon->tangible = true;
-    obj->flags = 0;
-
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802EB98C_5E8A5C);
     Pokemon_SetAnimation(obj, &D_802EFC48_5ECD18);
     pokemon->transitionGraph = D_802EFC7C_5ECD4C;
@@ -51,8 +48,7 @@ POKEMON_FUNC(func_802EB98C_5E8A5C)
 }
 
 POKEMON_FUNC(func_802EB9F8_5E8AC8)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802EFCAC_5ECD7C;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);

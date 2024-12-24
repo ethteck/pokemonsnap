@@ -253,8 +253,7 @@ void func_802DB85C_6C363C(GObj* obj) {
 void func_802DB8EC_6C36CC(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802E32E8_6CB0C8;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
@@ -271,11 +270,9 @@ void func_802DB93C_6C371C(GObj* obj) {
     s32 i;
 
     for (i = 0; i < pokemon->path->numPoints; i++) {
-        pokemon->tangible = false;
-        obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+        HIDE_POKEMON();
         ohWait(75);
-        pokemon->tangible = true;
-        obj->flags = 0;
+        SHOW_POKEMON();
         block = getCurrentWorldBlock();
         position->v.x = -(block->descriptor->worldPos.x * 100.0f);
         position->v.z = -(block->descriptor->worldPos.z * 100.0f);

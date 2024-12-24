@@ -626,8 +626,7 @@ POKEMON_FUNC(charmander_SummonFriend)
 }
 
 POKEMON_FUNC(charmander_InitGroup3)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = charmander_tg_InitGroup3;
     Pokemon_WaitForFlag(obj, 0);
 
@@ -635,8 +634,7 @@ POKEMON_FUNC(charmander_InitGroup3)
 }
 
 POKEMON_FUNC(charmander_InitGroup4)
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
     pokemon->transitionGraph = charmander_tg_InitGroup4;
     Pokemon_WaitForFlag(obj, 0);
 
@@ -647,9 +645,7 @@ POKEMON_FUNC(charmander_SpawnFriend)
     pokemon->flags &= ~POKEMON_FLAG_800;
     pokemon->flags &= ~POKEMON_FLAG_200;
     pokemon->forbiddenGround = charmander_forbiddenGround;
-    pokemon->tangible = true;
-    obj->flags = 0;
-    
+    SHOW_POKEMON();    
     Pokemon_SetAnimation(obj, &charmander_animation_run);
     pokemon->hSpeed = 80.0f;
     Pokemon_StartPathProc(obj, charmander_RunToSummoner);

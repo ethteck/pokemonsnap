@@ -146,13 +146,11 @@ void func_802C3658_645B08(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon = obj->userData;
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
     while (D_802C75F0_649AA0 == NULL) {
         ohWait(1);
     }
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802C3784_645C34);
     Pokemon_SetState(obj, func_802C36F0_645BA0);
 }

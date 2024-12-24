@@ -12,15 +12,14 @@ extern PokemonInitData D_802D302C_7AC5BC;
 
 void func_802CA1B0_7A3740(GObj*);
 
-void func_802C9FD0_7A3560(GObj* arg0) {
+void func_802C9FD0_7A3560(GObj* obj) {
     UNUSED s32 padding[3];
-    Pokemon* pokemon = GET_POKEMON(arg0);
+    Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = false;
-    arg0->flags |= 0x2 | 0x1;
+    HIDE_POKEMON();
     pokemon->transitionGraph = D_802D2FF8_7AC588;
-    Pokemon_WaitForFlag(arg0, 0);
-    Pokemon_SetState(arg0, NULL);
+    Pokemon_WaitForFlag(obj, 0);
+    Pokemon_SetState(obj, NULL);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A3560/func_802CA020_7A35B0.s")

@@ -76,8 +76,7 @@ void func_802C14C4_643974(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
     pokemon->forbiddenGround = &D_802C729C_64974C;
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+    HIDE_POKEMON();
 
     switch (pokemon->behavior) {
         case 4:
@@ -102,8 +101,7 @@ void func_802C157C_643A2C(GObj* obj) {
     }
     pokemon->miscVars[2].field1 = (s32) pokemon->path;
     pokemon->path = GET_POKEMON(D_802C6D4C_6491FC[pokemon->behavior])->path;
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &D_802C71FC_6496AC);
     Pokemon_StartPathProc(obj, func_802C1728_643BD8);
     ohWait(60);
@@ -312,8 +310,7 @@ void func_802C1E4C_6442FC(GObj* obj) {
 void func_802C1EB0_644360(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartAuxProc(obj, func_802C2058_644508);
     Pokemon_StartPathProc(obj, func_802C1F08_6443B8);
     Pokemon_SetState(obj, func_802C1F74_644424);
@@ -497,8 +494,7 @@ void func_802C26AC_644B5C(GObj* obj) {
 void func_802C2710_644BC0(GObj* obj) {
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     Pokemon_StartPathProc(obj, func_802C27E4_644C94);
     Pokemon_SetState(obj, func_802C2758_644C08);
 }

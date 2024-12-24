@@ -105,10 +105,9 @@ extern s32 dugtrio_IsPhotoTaken;
 extern s32 dugtrio_MissedPhotoCount;
 
 POKEMON_FUNC(dugtrio_InitialState)
-    pokemon->tangible = false;
     pokemon->flags |= POKEMON_FLAG_8;
     pokemon->miscVars->field0 = pokemon->collisionRadius;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, dugtrio_FirstIdle);
@@ -142,8 +141,7 @@ POKEMON_FUNC(dugtrio_FirstRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &dugtrio_animation_unburrow);
 
@@ -175,8 +173,7 @@ POKEMON_FUNC(dugtrio_FirstRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (dugtrio_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 8;
@@ -203,8 +200,7 @@ POKEMON_FUNC(dugtrio_SecondRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &dugtrio_animation_unburrow);
 
@@ -236,8 +232,7 @@ POKEMON_FUNC(dugtrio_SecondRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     if (dugtrio_IsPhotoTaken) {
         D_802EEED0_5EBFA0 = 0x10;
@@ -266,8 +261,7 @@ POKEMON_FUNC(dugtrio_ThirdRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
-    pokemon->tangible = true;
-    obj->flags = 0;
+    SHOW_POKEMON();
     pokemon->collisionRadius = 0.0f;
     Pokemon_SetAnimation(obj, &dugtrio_animation_unburrow);
 
@@ -299,8 +293,7 @@ POKEMON_FUNC(dugtrio_ThirdRise)
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    pokemon->tangible = false;
-    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+    HIDE_POKEMON();
 
     Pokemon_SetState(obj, NULL);
 }

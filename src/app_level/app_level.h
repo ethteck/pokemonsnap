@@ -15,6 +15,9 @@
         Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
         Pokemon* pokemon = GET_POKEMON(obj);
 
+#define HIDE_POKEMON() pokemon->tangible = false; obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+#define SHOW_POKEMON() pokemon->tangible = true; obj->flags &= 0;
+
 enum ItemIds {
     ITEM_ID_POKEFLUTE = 161,
     ITEM_ID_PESTER_BALL = 162,

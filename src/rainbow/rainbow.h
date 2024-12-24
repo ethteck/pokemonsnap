@@ -13,6 +13,10 @@
 #define RAINBOW_CMD_34 POKEMON_CMD_34
 #define RAINBOW_CMD_35 POKEMON_CMD_35
 
+extern GObj* D_8034AB94_82A304;
+extern GObj* D_8034AB98_82A308;
+extern s32 D_8034AB9C_82A30C;
+
 GObj* func_80348938_8280A8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn);
 GObj* func_80349EB8_829628(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn);
 GObj* func_80348FB8_828728(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn);

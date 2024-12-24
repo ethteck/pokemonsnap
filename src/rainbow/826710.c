@@ -1,11 +1,4 @@
-#include "common.h"
-#include "../world/world.h"
-#include "app_level/app_level.h"
 #include "rainbow.h"
-
-typedef struct Unk8 {
-    /* 0x00 */ s32 unk_00[2];
-} Unk8;
 
 typedef struct Unks16 {
     /* 0x00 */ s16 unk_00[3];
@@ -15,55 +8,6 @@ extern f32 D_800F5DB0;
 extern AnimCmd* D_801183E0;
 extern AnimCmd** D_80119050;
 extern AnimCmd D_80119A8C;
-
-extern GObj* D_8034AB94_82A304;
-extern GObj* D_8034AB98_82A308;
-extern s32 D_8034AB9C_82A30C;
-extern AnimationHeader D_8034ACB0_82A420;
-extern AnimationHeader D_8034ACC4_82A434;
-extern AnimationHeader D_8034ACD8_82A448;
-extern AnimationHeader D_8034ACEC_82A45C;
-extern AnimationHeader D_8034AD00_82A470;
-extern AnimationHeader D_8034AD14_82A484;
-extern AnimationHeader D_8034AD28_82A498;
-extern AnimationHeader D_8034AD3C_82A4AC;
-extern InteractionHandler D_8034AD50_82A4C0[];
-extern InteractionHandler D_8034AD90_82A500[];
-extern InteractionHandler D_8034ADD0_82A540[];
-extern InteractionHandler D_8034AE10_82A580[];
-extern RandomState D_8034AE30_82A5A0[];
-extern s32 D_8034AE48_82A5B8;
-extern s32 D_8034AE4C_82A5BC;
-extern f32 D_8034AE50_82A5C0;
-extern f32 D_8034AE54_82A5C4;
-extern f32 D_8034AE58_82A5C8;
-extern s32 D_8034AE5C_82A5CC;
-extern Unk8 D_8034AE60_82A5D0;
-extern UNK_TYPE D_8034AE68_82A5D8;
-extern UNK_TYPE D_8034AE78_82A5E8;
-extern PokemonInitData D_8034AE90_82A600;
-
-// file split
-
-extern AnimationHeader D_8034AED0_82A640;
-extern AnimationHeader D_8034AEE4_82A654;
-extern AnimationHeader D_8034AEF8_82A668;
-extern AnimationHeader D_8034AF0C_82A67C;
-extern CollisionModel D_8034AF20_82A690;
-extern GObj* D_8034AF2C_82A69C;
-extern s32 D_8034AF30_82A6A0;
-extern s32 D_8034AF34_82A6A4;
-extern s32 D_8034AF38_82A6A8;
-extern InteractionHandler D_8034AF3C_82A6AC[];
-extern Unks16 D_8034AF5C_82A6CC;
-extern PokemonInitData D_8034AF78_82A6E8;
-extern PokemonDef D_8034AFAC_82A71C;
-
-extern f32 D_80350188_82F8F8;
-extern f32 D_8035018C_82F8FC;
-extern bool D_80350190_82F900;
-extern s32 D_80350194_82F904;
-extern s32 D_80350198_82F908;
 
 void func_803467A4_825F14(GObj*);
 void func_80347188_8268F8(GObj*);
@@ -87,16 +31,172 @@ void func_80348994_828104(GObj*);
 void func_80348B34_8282A4(GObj*);
 void func_80348DD4_828544(GObj*);
 void func_80349084_8287F4(GObj*);
+void func_803475D0_826D40(GObj*);
+void func_8034877C_827EEC(GObj*);
+void func_80347B88_8272F8(GObj*);
+void func_80348208_827978(GObj*);
+void func_80347574_826CE4(GObj*);
+
+extern AnimCmd* D_8012C9E0[];
+extern AnimCmd* D_8012D700[];
+extern AnimCmd* D_8012EFF0[];
+extern AnimCmd* D_8012FB60[];
+extern AnimCmd* D_80131D30[];
+extern AnimCmd* D_80133040[];
+extern AnimCmd* D_801358A0[];
+extern AnimCmd* D_801368F0[];
+
+extern AnimCmd** D_801394D0[];
+extern AnimCmd** D_801395A0[];
+extern AnimCmd** D_80139690[];
+extern AnimCmd** D_80139770[];
+extern AnimCmd** D_80139840[];
+extern AnimCmd** D_80139900[];
+extern AnimCmd** D_80139A00[];
+extern AnimCmd** D_80139B00[];
+
+extern UnkEC64Arg3 D_8034FB98[];
+extern Texture** D_8034B740[];
+
+s32 D_8034AC90_82A400[] = { SOUND_ID_349 };
+s32 D_8034AC94_82A404[] = { SOUND_ID_351 };
+s32 D_8034AC98_82A408[] = { SOUND_ID_350, SOUND_ID_147 };
+s32 D_8034ACA0_82A410[] = { SOUND_ID_349 };
+s32 D_8034ACA4_82A414[] = { SOUND_ID_351 };
+s32 D_8034ACA8_82A418[] = { SOUND_ID_352, SOUND_ID_145 };
+
+AnimationHeader D_8034ACB0_82A420 = {
+    0.5,
+    70,
+    D_8012EFF0,
+    D_80139690,
+    NULL
+};
+
+AnimationHeader D_8034ACC4_82A434 = {
+    0.65,
+    135,
+    D_801368F0,
+    D_80139B00,
+    D_8034AC90_82A400
+};
+
+AnimationHeader D_8034ACD8_82A448 = {
+    0.8,
+    140,
+    D_801358A0,
+    D_80139A00,
+    D_8034AC94_82A404
+};
+
+AnimationHeader D_8034ACEC_82A45C = {
+    0.6,
+    110,
+    D_80133040,
+    D_80139900,
+    D_8034AC98_82A408
+};
+
+AnimationHeader D_8034AD00_82A470 = {
+    0.5,
+    40,
+    D_8012C9E0,
+    D_801394D0,
+    NULL
+};
+
+AnimationHeader D_8034AD14_82A484 = {
+    0.5,
+    80,
+    D_8012D700,
+    D_801395A0,
+    D_8034ACA0_82A410
+};
+
+AnimationHeader D_8034AD28_82A498 = {
+    0.5,
+    90,
+    D_80131D30,
+    D_80139840,
+    D_8034ACA4_82A414
+};
+
+AnimationHeader D_8034AD3C_82A4AC = {
+    0.75,
+    200,
+    D_8012FB60,
+    D_80139770,
+    D_8034ACA8_82A418
+};
+
+InteractionHandler D_8034AD50_82A4C0[] = {
+    { POKEMON_CMD_9, func_803475D0_826D40, 0, NULL },
+    { POKEMON_CMD_13, func_803475D0_826D40, 0, NULL },
+    { RAINBOW_CMD_35, func_8034877C_827EEC, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_8034AD90_82A500[] = {
+    { POKEMON_CMD_9, func_80347B88_8272F8, 0, NULL },
+    { POKEMON_CMD_13, func_80347B88_8272F8, 0, NULL },
+    { RAINBOW_CMD_35, func_8034877C_827EEC, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_8034ADD0_82A540[] = {
+    { POKEMON_CMD_9, func_80348208_827978, 0, NULL },
+    { POKEMON_CMD_13, func_80348208_827978, 0, NULL },
+    { RAINBOW_CMD_35, func_8034877C_827EEC, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+InteractionHandler D_8034AE10_82A580[] = {
+    { RAINBOW_CMD_35, func_8034877C_827EEC, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+RandomState D_8034AE30_82A5A0[] = {
+    { 1, func_80347334_826AA4 },
+    { 1, func_80347574_826CE4 },
+    { 0, NULL }
+};
+
+s32 D_8034AE48_82A5B8 = 3;
+s32 D_8034AE4C_82A5BC = 3;
+f32 D_8034AE50_82A5C0 = 0;
+f32 D_8034AE54_82A5C4 = 0;
+f32 D_8034AE58_82A5C8 = 0;
+s32 D_8034AE5C_82A5CC = 0;
+
+// file split
+
+extern AnimationHeader D_8034AED0_82A640;
+extern AnimationHeader D_8034AEE4_82A654;
+extern AnimationHeader D_8034AEF8_82A668;
+extern AnimationHeader D_8034AF0C_82A67C;
+extern CollisionModel D_8034AF20_82A690;
+extern GObj* D_8034AF2C_82A69C;
+extern s32 D_8034AF30_82A6A0;
+extern s32 D_8034AF34_82A6A4;
+extern s32 D_8034AF38_82A6A8;
+extern InteractionHandler D_8034AF3C_82A6AC[];
+extern Unks16 D_8034AF5C_82A6CC;
+extern PokemonInitData D_8034AF78_82A6E8;
+extern PokemonDef D_8034AFAC_82A71C;
+
+extern f32 D_80350188_82F8F8;
+extern f32 D_8035018C_82F8FC;
+extern bool D_80350190_82F900;
+extern s32 D_80350194_82F904;
+extern s32 D_80350198_82F908;
 
 POKEMON_FUNC(func_80346FA0_826710)
-    Unk8 sp40;
+    s32 sp40[] = { 7200, 1800 };
     s32 i;
     s32 var_s0;
 
-    sp40 = D_8034AE60_82A5D0;
-
-    for (i = 0; i < (u32) ARRAY_COUNT(sp40.unk_00); i++) {
-        var_s0 = sp40.unk_00[i];
+    for (i = 0; i < (u32) ARRAY_COUNT(sp40); i++) {
+        var_s0 = sp40[i];
         while (var_s0--) {
             ohWait(1);
         }
@@ -485,6 +585,7 @@ void func_803484F0_827C60(s32 arg0, s32* arg1) {
     }
 }
 
+u8 D_8034AE68_82A5D8[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15 };
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348540_827CB0.s")
 
 void func_8034877C_827EEC(GObj* obj) {
@@ -511,7 +612,32 @@ void func_803487CC_827F3C(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
+u8 D_8034AE78_82A5E8[] = { 9, 10, 11, 0 };
 #pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80348850_827FC0.s")
+
+PokemonAnimationSetup D_8034AE7C_82A5EC = {
+    &D_8034ACB0_82A420,
+    func_803470CC_82683C,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_8034AE90_82A600 = {
+    D_8034FB98,
+    D_8034B740,
+    renderPokemonModelTypeIFogged,
+    &D_8034AE7C_82A5EC,
+    { 2, 2, 2 },
+    { 0, 117, 0 },
+    24,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_2 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
 
 GObj* func_80348938_8280A8(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_8034AE90_82A600);

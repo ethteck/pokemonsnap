@@ -45,29 +45,6 @@ s32 D_8034AB9C_82A30C = 0x761FF;
 s32 D_8034ABA0_82A310 = 0x761FF;
 s32 D_8034ABA4_82A314 = false;
 
-PokemonDef D_8034ABA8_82A318 = {
-    PokemonID_MEW,
-    func_80348938_8280A8,
-    pokemonChangeBlock,
-    pokemonRemoveOne
-};
-
-PokemonDef D_8034ABB8_82A328 = {
-    PokemonID_1037,
-    func_80349EB8_829628,
-    pokemonChangeBlock,
-    pokemonRemoveOne
-};
-
-PokemonDef D_8034ABC8_82A338 = {
-    PokemonID_1038,
-    func_8034A4E8_829C58,
-    pokemonChangeBlock,
-    pokemonRemoveOne
-};
-
-s32 D_8034ABD8_82A348 = 0;
-
 void func_803466C0_825E30(void) {
     Pokemon* pokemon;
     DObj* model;
@@ -75,7 +52,12 @@ void func_803466C0_825E30(void) {
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_8034ABA8_82A318;
+    PokemonDef def = {
+        PokemonID_MEW,
+        func_80348938_8280A8,
+        pokemonChangeBlock,
+        pokemonRemoveOne
+    };
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_MEW;
@@ -109,7 +91,12 @@ void func_803467A4_825F14(GObj* obj) {
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_8034ABB8_82A328;
+    PokemonDef def = {
+        PokemonID_1037,
+        func_80349EB8_829628,
+        pokemonChangeBlock,
+        pokemonRemoveOne
+    };
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_1037;
@@ -143,7 +130,12 @@ void func_80346898_826008(void) {
     GObj* pokemonObj;
     ObjectSpawn spawn;
     WorldBlock* block;
-    PokemonDef def = D_8034ABC8_82A338;
+    PokemonDef def = {
+        PokemonID_1038,
+        func_8034A4E8_829C58,
+        pokemonChangeBlock,
+        pokemonRemoveOne
+    };
 
     block = getCurrentWorldBlock();
     spawn.id = PokemonID_1038;
@@ -167,6 +159,8 @@ void func_80346898_826008(void) {
     GET_TRANSFORM(model)->pos.v.y = 0.0f;
     GET_TRANSFORM(model)->pos.v.z = 0.0f;
 }
+
+s32 D_8034ABD8_82A348 = 0;
 
 void func_80346968_8260D8(s32 arg0) {
     ohWait(1800);
@@ -310,42 +304,42 @@ void func_80346EE8_826658(s32 arg0) {
 
 SceneSetup D_8034ABF8_82A368 = {
     {
-        0,                       /* unk_00*/
-        omUpdateAll,             /* fnUpdate */
-        omDrawAll,               /* fnDraw */
-        _4A8160_VRAM_END,        /* heapBase */
-        0,                       /* heapSize */
-        1,                       /* unk_14 */
-        2,                       /* numContexts */
-        0x5000,                  /* dlBufferSize0 */
-        0x1000,                  /* dlBufferSize1 */
-        0x0400,                  /* dlBufferSize2 */
-        0x0000,                  /* dlBufferSize3 */
-        0xC800,                  /* gfxHeapSize */
-        2,                       /* unk30 */
-        0x4000,                  /* rdpOutputBufferSize */
-        func_800A1A50,           /* fnPreRender */
-        contUpdate               /* fnUpdateInput */
+        0,                /* unk_00*/
+        omUpdateAll,      /* fnUpdate */
+        omDrawAll,        /* fnDraw */
+        _4A8160_VRAM_END, /* heapBase */
+        0,                /* heapSize */
+        1,                /* unk_14 */
+        2,                /* numContexts */
+        0x5000,           /* dlBufferSize0 */
+        0x1000,           /* dlBufferSize1 */
+        0x0400,           /* dlBufferSize2 */
+        0x0000,           /* dlBufferSize3 */
+        0xC800,           /* gfxHeapSize */
+        2,                /* unk30 */
+        0x4000,           /* rdpOutputBufferSize */
+        func_800A1A50,    /* fnPreRender */
+        contUpdate        /* fnUpdateInput */
     },
-    0,                            /* numOMThreads */
-    768,                          /* omThreadStackSize */
-    0,                            /* numOMStacks */
-    0,                            /* unk4C */
-    0,                            /* numOMProcesses */
-    0,                            /* numOMGobjs */
-    sizeof(GObj),                 /* objectSize */
-    0,                            /* numOMMtx */
-    0,                            /* unk60 */
-    func_80346EE8_826658,         /* unk64 */
-    0,                            /* numOMAobjs */
-    0,                            /* numOMMobjs */
-    0,                            /* numOMDobjs */
-    sizeof(DObj),                 /* omDobjSize */
-    0,                            /* numOMSobjs */
-    0x58,                         /* omSobjSize */
-    0,                            /* numOMCameras */
-    sizeof(OMCamera),             /* omCameraSize */
-    func_80346D50_8264C0          /* postInitFunc */
+    0,                    /* numOMThreads */
+    768,                  /* omThreadStackSize */
+    0,                    /* numOMStacks */
+    0,                    /* unk4C */
+    0,                    /* numOMProcesses */
+    0,                    /* numOMGobjs */
+    sizeof(GObj),         /* objectSize */
+    0,                    /* numOMMtx */
+    0,                    /* unk60 */
+    func_80346EE8_826658, /* unk64 */
+    0,                    /* numOMAobjs */
+    0,                    /* numOMMobjs */
+    0,                    /* numOMDobjs */
+    sizeof(DObj),         /* omDobjSize */
+    0,                    /* numOMSobjs */
+    0x58,                 /* omSobjSize */
+    0,                    /* numOMCameras */
+    sizeof(OMCamera),     /* omCameraSize */
+    func_80346D50_8264C0  /* postInitFunc */
 };
 
 s32 func_80346EF0_826660(s32 arg0) {

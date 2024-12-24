@@ -1,4 +1,4 @@
-#include "rainbow.h"
+#include "../rainbow.h"
 
 typedef struct Unks16 {
     /* 0x00 */ s16 unk_00[3];

@@ -13,9 +13,9 @@ POKEMON_FUNC(func_802EC400_5E94D0)
 
     pokemon->counter = 6, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     Pokemon_SetAnimation(obj, &D_802EFFD4_5ED0A4);
-    pokemon->transitionGraph = &saved;    
+    pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    
+
     if (D_803430E8_6401B8.bits.unk_00) {
         Pokemon_SetState(obj, func_802EC6CC_5E979C);
     }
@@ -28,7 +28,7 @@ POKEMON_FUNC(func_802EC4E8_5E95B8)
     pokemon->counter = randRange(randRange(6) + 1) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    
+
     Pokemon_SetAnimation(obj, &D_802EFFD4_5ED0A4);
     pokemon->counter = randRange(randRange(30) + 1) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
@@ -46,7 +46,7 @@ POKEMON_FUNC(func_802EC5B0_5E9680)
         pokemon->counter = randRange(randRange(6) + 1) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
         pokemon->transitionGraph = NULL;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-        
+
         Pokemon_SetAnimation(obj, &D_802EFFD4_5ED0A4);
         pokemon->counter = randRange(randRange(30) + 1) + 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
         pokemon->transitionGraph = NULL;

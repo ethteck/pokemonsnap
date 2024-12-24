@@ -27,10 +27,10 @@ POKEMON_FUNC(func_802EA490_5E7560)
 
 POKEMON_FUNC(func_802EA53C_5E760C)
     InteractionHandler2 saved = D_802EF788_5EC858;
-    
+
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
-    pokemon->transitionGraph = &saved;
+    pokemon->transitionGraph = saved.data;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }

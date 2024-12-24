@@ -1,4 +1,4 @@
-#include "common.h"
+#include "valley.h"
 
 extern u32 D_802D2A90_7AC020;
 extern u32 D_802D2A94_7AC024;

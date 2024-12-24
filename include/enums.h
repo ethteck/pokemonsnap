@@ -123,6 +123,7 @@ enum SoundIds {
     SOUND_ID_60 = 60,
     SOUND_ID_61 = 61,
     SOUND_ID_62 = 62,
+    SOUND_ID_63 = 63,
     SOUND_ID_65 = 65,
     SOUND_ID_66 = 66,
     SOUND_ID_67 = 67,

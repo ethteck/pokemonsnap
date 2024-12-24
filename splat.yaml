@@ -4587,14 +4587,19 @@ segments:
     bss_size: 0x80
     exclusive_ram_id: level
     subsegments:
-    - [0x825E30, c]
+    - [0x825E30, c, main]
     - [0x826700, pad]
     - [0x826710, c]
     - [0x8288F0, c]
     - [0x829660, pad]
     - [0x829670, c]
     - [0x829900, c]
+
     - [0x82A280, bin] # , data]
+
+    - [0x82ADF0, .rodata, 826710]
+
+    - { start: 0x82AE70, type: bin, linker_section_order: .rodata }
     - { name: bss_80350170, type: bss, vram: 0x80350170 }
   - type: code
     name: magikarp2

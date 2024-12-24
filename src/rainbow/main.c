@@ -7,7 +7,7 @@
 
 extern f32 D_800F5DB0;
 
-extern EnvSoundData D_8034AB10_82A280;
+extern EnvSoundData D_8034AB10_82A280[9];
 extern PokemonDef D_8034AB34_82A2A4;
 extern GObj* D_8034AB94_82A304;
 extern GObj* D_8034AB98_82A308;
@@ -145,14 +145,14 @@ void func_80346A04_826174(WorldBlock* arg0) {
 }
 
 void func_80346A28_826198(void) {
-    createWorld(&D_800F5DA0, 0x63, 0x64, 0x7E, 9, 3, func_80346994_826104, func_80346A04_826174, func_803469E0_826150);
+    createWorld(&D_800F5DA0, OBJID_SKYBOX, OBJID_WORLD_BLOCK_MIN, OBJID_WORLD_BLOCK_MAX, LINK_PLAYER, DL_LINK_3, func_80346994_826104, func_80346A04_826174, func_803469E0_826150);
     setSkyBoxFollowPlayer();
-    func_80363928_503D38(0x80, 0xE4, 3, 5);
+    func_80363928_503D38(OBJID_128, OBJID_228, LINK_POKEMON, 5);
 }
 
-void func_80346AA8_826218(s32 arg0) {
-    D_8034ABD8_82A348 = arg0;
-    func_800A19D8(arg0);
+void func_80346AA8_826218(s32 endLevelReason) {
+    D_8034ABD8_82A348 = endLevelReason;
+    func_800A19D8(endLevelReason);
     PokemonDetector_Disable();
     EnvSound_Cleanup();
     auStopBGM();
@@ -169,7 +169,7 @@ void func_80346B0C_82627C(GObj* arg0) {
             D_8034ABA0_82A310 = D_8034AB9C_82A30C;
             D_8034ABA4_82A314 = 0;
         }
-        auSetBGMTempo(0, D_8034ABA0_82A310);
+        auSetBGMTempo(BGM_PLAYER_MAIN, D_8034ABA0_82A310);
         return;
     }
     D_8034ABA4_82A314 = 1;
@@ -237,11 +237,11 @@ void func_80346D50_8264C0(void) {
     initUI(func_80346BD0_826340, NULL, NULL, 0, NULL);
     setEndLevelCallback(func_80346AA8_826218);
     setPauseCallback(func_80346B94_826304);
-    EnvSound_Init(&D_8034AB10_82A280, 9);
-    auSetBGMExtraReverb(0, 0x19);
-    auSetSoundGlobalReverb(0x28);
-    auPlaySoundWithParams(0x3F, 0x4000, 0, 0.7f, 0x14);
-    auPlaySoundWithParams(0x3F, 0x4000, 0x7F, 0.8f, 0x14);
+    EnvSound_Init(D_8034AB10_82A280, ARRAY_COUNT(D_8034AB10_82A280));
+    auSetBGMExtraReverb(0, 25);
+    auSetSoundGlobalReverb(40);
+    auPlaySoundWithParams(SOUND_ID_63, 0x4000, 0, 0.7f, 20);
+    auPlaySoundWithParams(SOUND_ID_63, 0x4000, 127, 0.8f, 20);
     func_80346C64_8263D4();
     PokemonDetector_Create();
     PokemonDetector_Enable();
@@ -257,7 +257,7 @@ s32 func_80346EF0_826660(s32 arg0) {
     gtlDisableNearClipping(1);
     omSetupScene(&D_8034ABF8_82A368);
 
-    if (D_8034ABD8_82A348 == 6) {
+    if (D_8034ABD8_82A348 == END_LEVEL_REASON_RETRY) {
         return SCENE_RAINBOW;
     }
 

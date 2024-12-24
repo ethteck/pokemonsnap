@@ -30,7 +30,7 @@ extern InteractionHandler D_8034AD50_82A4C0[];
 extern InteractionHandler D_8034AD90_82A500[];
 extern InteractionHandler D_8034ADD0_82A540[];
 extern InteractionHandler D_8034AE10_82A580[];
-extern RandomState D_8034AE30_82A5A0;
+extern RandomState D_8034AE30_82A5A0[];
 extern s32 D_8034AE48_82A5B8;
 extern s32 D_8034AE4C_82A5BC;
 extern f32 D_8034AE50_82A5C0;
@@ -54,27 +54,7 @@ extern InteractionHandler D_8034AF3C_82A6AC[];
 extern Unks16 D_8034AF5C_82A6CC;
 extern PokemonInitData D_8034AF78_82A6E8;
 extern PokemonDef D_8034AFAC_82A71C;
-extern f32 D_8034B680_82ADF0;
-extern f32 D_8034B684_82ADF4;
-extern f64 D_8034B688_82ADF8;
-extern f32 D_8034B690_82AE00;
-extern f32 D_8034B694_82AE04;
-extern f32 D_8034B698_82AE08;
-extern f32 D_8034B69C_82AE0C;
-extern f32 D_8034B6A0_82AE10;
-extern f64 D_8034B6A8_82AE18;
-extern f32 D_8034B6B0_82AE20;
-extern f32 D_8034B6B4_82AE24;
-extern f32 D_8034B6B8_82AE28;
-extern f64 D_8034B6C0_82AE30;
-extern f32 D_8034B6C8_82AE38;
-extern f64 D_8034B6D0_82AE40;
-extern f32 D_8034B6D8_82AE48;
-extern f64 D_8034B6E0_82AE50;
-extern f32 D_8034B6E8_82AE58;
-extern f32 D_8034B6EC_82AE5C;
-extern f32 D_8034B6F0_82AE60;
-extern f32 D_8034B6F4_82AE64;
+
 extern f32 D_80350188_82F8F8;
 extern f32 D_8035018C_82F8FC;
 extern bool D_80350190_82F900;
@@ -104,11 +84,11 @@ void func_80348B34_8282A4(GObj*);
 void func_80348DD4_828544(GObj*);
 void func_80349084_8287F4(GObj*);
 
-void func_80346FA0_826710(GObj* obj) {
-    s32 pad[3];
-    s32 var_s0;
+POKEMON_FUNC(func_80346FA0_826710)
     Unk8 sp40;
     s32 i;
+    s32 var_s0;
+
     sp40 = D_8034AE60_82A5D0;
 
     for (i = 0; i < (u32) ARRAY_COUNT(sp40.unk_00); i++) {
@@ -123,7 +103,7 @@ void func_80346FA0_826710(GObj* obj) {
     omCreateProcess(obj, func_80349084_8287F4, 1, 1);
     while (D_8034AE5C_82A5CC == 0) {
         if (D_8034AF38_82A6A8 != 0) {
-            cmdSendCommand(obj, 0x23, obj);
+            cmdSendCommand(obj, RAINBOW_CMD_35, obj);
         }
         ohWait(1);
     }
@@ -131,84 +111,65 @@ void func_80346FA0_826710(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_803470CC_82683C(GObj* obj) {
-    DObj* dobj = obj->data.dobj;
-    PokemonTransform* transform = GET_TRANSFORM(dobj); // TODO could be an Item
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_803470CC_82683C)
     Pokemon_StartAuxProc(obj, func_80346FA0_826710);
     Pokemon_StartPathProc(obj, func_80347188_8268F8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     omCreateProcess(obj, func_803467A4_825F14, 1, 1);
-    D_80350188_82F8F8 = transform->pos.v.y;
-    D_8035018C_82F8FC = transform->pos.v.z;
+    D_80350188_82F8F8 = position->v.y;
+    D_8035018C_82F8FC = position->v.z;
     pokemon->specialPoseID = 0;
     pokemon->flags |= POKEMON_FLAG_8;
     Pokemon_SetState(obj, func_803471D4_826944);
 }
 
-void func_80347188_8268F8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
-    Pokemon_TurnToTarget(obj, TAU, 0x20);
+POKEMON_FUNC(func_80347188_8268F8)
+    Pokemon_TurnToTarget(obj, TAU, MOVEMENT_FLAG_TURN_TO_PLAYER);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-void func_803471D4_826944(GObj* obj) {
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_803471D4_826944)
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+
     pokemon->counter = 180, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    D_8034AE50_82A5C0 = (randRange(360) * D_8034B680_82ADF0) / 360.0f;
-    D_8034AE58_82A5C8 = (randRange(180) * D_8034B684_82ADF4) / 180.0f;
-    cmdSendCommand(D_8034AB98_82A308, 0x1E, obj);
+
+    D_8034AE50_82A5C0 = randRange(360) * TAU / 360.0f;
+    D_8034AE58_82A5C8 = randRange(180) * PI / 180.0f;
+
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_30, obj);
     Pokemon_StartPathProc(obj, func_80347398_826B08);
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+
     pokemon->tangible = true;
     obj->flags = 0;
+
     Pokemon_ForceAnimation(obj, &D_8034ACD8_82A448);
     pokemon->transitionGraph = D_8034AD50_82A4C0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_SetState(obj, func_80347334_826AA4);
 }
 
-void func_80347334_826AA4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_80347334_826AA4)
     D_80350190_82F900 = false;
     Pokemon_SetAnimation(obj, &D_8034ACB0_82A420);
     pokemon->transitionGraph = D_8034AD50_82A4C0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_8034AE30_82A5A0);
+
+    Pokemon_SetStateRandom(obj, D_8034AE30_82A5A0);
 }
 
-#ifndef NON_EQUIVALENT
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347398_826B08.s")
-#else
-void func_80347398_826B08(GObj* obj) {
-    DObj* dobj = obj->data.dobj;
-    PokemonTransform* transform;
-    f32 var_f20;
-    f32 new_var2;
-    f64 new_var;
-    f32 new_var3;
-
-    new_var2 = D_8034B690_82AE00;
-    new_var = D_8034B688_82ADF8;
-    new_var3 = D_8035018C_82F8FC;
-
-    var_f20 = 1.0f;
-    transform = (PokemonTransform*) dobj->unk_4C->data;
+POKEMON_FUNC(func_80347398_826B08)
+    f32 var_f20 = 1.0f;
 
     while (true) {
         var_f20 += randFloat() - 0.5;
@@ -218,49 +179,47 @@ void func_80347398_826B08(GObj* obj) {
             var_f20 = 4.0f;
         }
 
-        transform->pos.v.x = __sinf(D_8034AE50_82A5C0) * 200.0f;
-        D_8034AE50_82A5C0 += (var_f20 * D_8034B694_82AE04) / 180.0f;
-        D_8034AE50_82A5C0 -= ((s32) (D_8034AE50_82A5C0 / new_var2)) * new_var2;
-        transform->pos.v.z = (__sinf(D_8034AE58_82A5C8) * 150.0f) + new_var3;
-        D_8034AE58_82A5C8 += new_var;
-        D_8034AE58_82A5C8 -= ((s32) (D_8034AE58_82A5C8 / new_var2)) * new_var2;
+        position->v.x = sinf(D_8034AE50_82A5C0) * 200.0f;
+        D_8034AE50_82A5C0 += var_f20 * PI / 180.0f;
+        D_8034AE50_82A5C0 -= (s32) (D_8034AE50_82A5C0 / TAU) * TAU;
+
+        position->v.z = sinf(D_8034AE58_82A5C8) * 150.0f + D_8035018C_82F8FC;
+        D_8034AE58_82A5C8 += (PI / 225.0); // 0.8 deg
+        D_8034AE58_82A5C8 -= (s32) (D_8034AE58_82A5C8 / TAU) * TAU;
+
         ohWait(1);
     }
 }
-#endif
 
-void func_80347574_826CE4(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_80347574_826CE4)
     Pokemon_SetAnimation(obj, &D_8034ACC4_82A434);
     pokemon->transitionGraph = D_8034AD50_82A4C0;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_8034AE30_82A5A0);
+
+    Pokemon_SetStateRandom(obj, D_8034AE30_82A5A0);
 }
 
-void func_803475D0_826D40(GObj* obj) {
-    Pokemon* pokemon = GET_POKEMON(obj);
-
-    D_8034AE48_82A5B8--;
-
-    if (D_8034AE48_82A5B8 != 0) {
-        cmdSendCommand(D_8034AB98_82A308, 0x1C, obj);
+POKEMON_FUNC(func_803475D0_826D40)
+    if (--D_8034AE48_82A5B8 != 0) {
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_28, obj);
         Pokemon_StartPathProc(obj, func_80347CC8_827438);
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        cmdSendCommand(D_8034AB98_82A308, 0x1F, obj);
+
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
+
         pokemon->tangible = false;
         obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
     } else {
-        cmdSendCommand(D_8034AB98_82A308, 0x1D, obj);
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_29, obj);
         D_80350190_82F900 = true;
         Pokemon_StartPathProc(obj, func_80347CC8_827438);
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        cmdSendCommand(D_8034AB98_82A308, 0x1F, obj);
+
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
         pokemon->tangible = false;
         obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
         Pokemon_SetState(obj, func_80347724_826E94);
@@ -268,92 +227,157 @@ void func_803475D0_826D40(GObj* obj) {
     Pokemon_SetState(obj, func_803471D4_826944);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347724_826E94.s")
+POKEMON_FUNC(func_80347724_826E94)
+    D_80350190_82F900 = false;
+    pokemon->specialPoseID = 0;
+    pokemon->flags |= POKEMON_FLAG_8;
 
-void func_80347900_827070(GObj* obj) {
-    cmdSendCommand(D_8034AB98_82A308, 0x1F, obj);
+    pokemon->tangible = false;
+    obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+
+    pokemon->counter = 150, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    pokemon->transitionGraph = D_8034AE10_82A580;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+
+    D_8034AE50_82A5C0 = randRange(360) * TAU / 360.0f;
+    D_8034AE54_82A5C4 = randRange(360) * PI / 360.0f;
+
+    position->v.z = (randRange(50) + 80) * 10.0f + 200.0f;
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_30, obj);
+    Pokemon_StartPathProc(obj, func_8034799C_82710C);
+
+    pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
+    pokemon->transitionGraph = D_8034AE10_82A580;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+
+    pokemon->tangible = true;
+    obj->flags = 0;
+
+    Pokemon_ForceAnimation(obj, &D_8034ACD8_82A448);
+    pokemon->transitionGraph = D_8034AD90_82A500;
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
+
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
+        Pokemon_SetState(obj, func_80347900_827070);
+    }
+    Pokemon_SetState(obj, func_80347940_8270B0);
+}
+
+POKEMON_FUNC(func_80347900_827070)
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
     Pokemon_SetState(obj, func_80347724_826E94);
 }
 
-void func_80347940_8270B0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_80347940_8270B0)
     Pokemon_SetAnimation(obj, &D_8034ACB0_82A420);
     pokemon->transitionGraph = D_8034AD90_82A500;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+
     Pokemon_SetState(obj, func_80347900_827070);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_8034799C_82710C.s")
+POKEMON_FUNC(func_8034799C_82710C)
+    s32 counter = 120;
 
-void func_80347B88_8272F8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+    while (position->v.z > 200.0f && counter--) {
+        position->v.x = sinf(D_8034AE50_82A5C0) * 300.0f;
+        D_8034AE50_82A5C0 += PI / 180.0f;
+        D_8034AE50_82A5C0 -= (s32) (D_8034AE50_82A5C0 / TAU) * TAU;
 
-    D_8034AE4C_82A5BC--;
-    if (D_8034AE4C_82A5BC != 0) {
-        cmdSendCommand(D_8034AB98_82A308, 0x1C, obj);
+        position->v.z -= 10.0f;
+
+        position->v.y = sinf(D_8034AE54_82A5C4) * 20.0f + D_80350188_82F8F8;
+        D_8034AE54_82A5C4 += PI / 45.0; // 4 deg
+        D_8034AE54_82A5C4 -= (s32) (D_8034AE54_82A5C4 / TAU) * TAU;
+
+        ohWait(1);
+    }
+
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = FALSE;
+    omEndProcess(NULL);
+}
+
+POKEMON_FUNC(func_80347B88_8272F8)
+    if (--D_8034AE4C_82A5BC != 0) {
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_28, obj);
         Pokemon_StartPathProc(obj, func_80347CC8_827438);
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        cmdSendCommand(D_8034AB98_82A308, 0x1F, obj);
+
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
     } else {
-        cmdSendCommand(D_8034AB98_82A308, 0x1D, obj);
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_29, obj);
         D_80350190_82F900 = true;
         Pokemon_StartPathProc(obj, func_80347CC8_827438);
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        cmdSendCommand(D_8034AB98_82A308, 0x1F, obj);
+
+        cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
         Pokemon_SetState(obj, func_80347E0C_82757C);
     }
     Pokemon_SetState(obj, func_80347724_826E94);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_80347CC8_827438.s")
+POKEMON_FUNC(func_80347CC8_827438)
+    while (true) {
+        if (!(position->v.z < 2200.0f)) {
+            break;
+        }
+        position->v.z += 10.0f;
+        position->v.y = sinf(D_8034AE54_82A5C4) * 50.0f + D_80350188_82F8F8;
+        D_8034AE54_82A5C4 += PI / 30.0; // 6 deg
+        D_8034AE54_82A5C4 -= (s32) (D_8034AE54_82A5C4 / TAU) * TAU;
+        ohWait(1);
+    }
 
-void func_80347E0C_82757C(GObj* arg0) {
-    Pokemon_StartAuxProc(arg0, func_80348540_827CB0);
-    Pokemon_SetState(arg0, func_80347E44_8275B4);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = FALSE;
+    omEndProcess(NULL);
 }
 
-void func_80347E44_8275B4(GObj* obj) {
-    DObj* dobj = obj->data.dobj;
-    PokemonTransform* transform = GET_TRANSFORM(dobj);
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_80347E0C_82757C)
+    Pokemon_StartAuxProc(obj, func_80348540_827CB0);
+    Pokemon_SetState(obj, func_80347E44_8275B4);
+}
 
-    pokemon = obj->userData;
+POKEMON_FUNC(func_80347E44_8275B4)
     D_80350194_82F904 = 4;
     pokemon->flags &= ~POKEMON_FLAG_8;
-    pokemon->specialPoseID = 0xA;
+    pokemon->specialPoseID = 10;
+
     pokemon->tangible = false;
     obj->flags |= GOBJ_FLAG_2 | GOBJ_FLAG_HIDDEN;
+
     pokemon->counter = 180, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    transform->pos.v.y = 100.0f;
-    transform->pos.v.z = 200.0f;
-    transform->pos.v.x = randRange(2) != 0 ? ((D_80350194_82F904 * 60.0f) + 100.0f) : -((D_80350194_82F904 * 60.0f) + 100.0f);
+
+    position->v.y = 100.0f;
+    position->v.z = 200.0f;
+    position->v.x = randRange(2) != 0 ? ((D_80350194_82F904 * 60.0f) + 100.0f) : -((D_80350194_82F904 * 60.0f) + 100.0f);
+
     D_8034AE54_82A5C4 = 0.0f;
-    cmdSendCommand(D_8034AB98_82A308, 0x1E, obj);
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_30, obj);
     Pokemon_StartPathProc(obj, func_803480C0_827830);
+
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034AE10_82A580;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
+
     pokemon->tangible = true;
     obj->flags = 0;
+
     Pokemon_SetAnimation(obj, &D_8034AD28_82A498);
     pokemon->transitionGraph = D_8034ADD0_82A540;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     Pokemon_SetState(obj, func_8034800C_82777C);
 }
 
-void func_8034800C_82777C(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_8034800C_82777C)
     if (randRange(2) != 0) {
         Pokemon_SetAnimation(obj, &D_8034AD00_82A470);
     } else {
@@ -361,28 +385,40 @@ void func_8034800C_82777C(GObj* obj) {
     }
     pokemon->transitionGraph = D_8034ADD0_82A540;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    cmdSendCommand(D_8034AB98_82A308, 0x22, obj);
+
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_34, obj);
     D_8034AE4C_82A5BC = 1;
     D_80350198_82F908 = 0;
     Pokemon_SetState(obj, func_80347724_826E94);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_803480C0_827830.s")
+POKEMON_FUNC(func_803480C0_827830)
+    while (position->v.z < 2000.0f) {
+        position->v.z += 5.0f;
+        position->v.y = sinf(D_8034AE54_82A5C4) * 50.0f + D_80350188_82F8F8;
+        D_8034AE54_82A5C4 += PI / 60.0; // 3 deg
+        D_8034AE54_82A5C4 -= (s32) (D_8034AE54_82A5C4 / TAU) * TAU;
+        ohWait(1);
+    }
 
-void func_80348208_827978(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = FALSE;
+    omEndProcess(NULL);
+}
 
+POKEMON_FUNC(func_80348208_827978)
     D_80350198_82F908 = 2;
-    pokemon->poseID = 0x98;
+    pokemon->poseID = 152;
     Pokemon_StartPathProc(obj, func_803482EC_827A5C);
     Pokemon_ForceAnimation(obj, &D_8034AD3C_82A4AC);
     pokemon->counter = 192, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_8034ADD0_82A540;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    pokemon->poseID = 0x99;
+
+    pokemon->poseID = 153;
     pokemon->transitionGraph = D_8034ADD0_82A540;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+
     if (D_80350194_82F904 != 0) {
         D_80350194_82F904--;
     }
@@ -391,7 +427,49 @@ void func_80348208_827978(GObj* obj) {
     Pokemon_SetState(obj, func_80347E44_8275B4);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/rainbow/826710/func_803482EC_827A5C.s")
+POKEMON_FUNC(func_803482EC_827A5C)
+    f32 f20 = position->v.x;
+    s32 counter1 = 0x65; 
+    s32 counter2 = 0x60;
+    bool cond;
+
+    D_8034AE50_82A5C0 = 0.0f;
+    cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
+
+    while (true) {
+        if (counter2 == 0) {
+            if (position->v.z > 200.0f) {
+                position->v.z -= 2.0f;
+            } else {
+                break;
+            }
+        } else {
+            counter2--;
+        }
+
+        position->v.y = sinf(D_8034AE54_82A5C4) * 10.0f + D_80350188_82F8F8;
+        D_8034AE54_82A5C4 += PI / 90.0; // 2 deg
+        D_8034AE54_82A5C4 -= (s32) (D_8034AE54_82A5C4 / TAU) * TAU;
+
+        if (counter1-- > 0) {
+            if (ABS(f20) > 1.0f) {
+                if (f20 > 0) {
+                    f20 -= 1.0f;
+                } else {
+                    f20 += 1.0f;
+                }
+            } else {
+                f20 = 0.0f;
+            }
+        }
+        position->v.x = f20;
+        ohWait(1);
+    }
+
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    pokemon->pathProc = FALSE;
+    omEndProcess(NULL);
+}
 
 void func_803484F0_827C60(s32 arg0, s32* arg1) {
     if (ABS(arg0 - *arg1) < 6) {
@@ -625,7 +703,7 @@ void func_80349084_8287F4(GObj* obj) {
     spawn.translation.y = 0.0;
     spawn.translation.z = 0.0;
     spawn.euler.x = 0.0;
-    spawn.euler.y = D_8034B6F0_82AE60;
+    spawn.euler.y = PI;
     spawn.euler.z = 0.0;
     spawn.scale.x = 1.0;
     spawn.scale.y = 1.0;
@@ -638,7 +716,7 @@ void func_80349084_8287F4(GObj* obj) {
     model = pokemonObj->data.dobj;
     GET_TRANSFORM(model)->pos.v.x = 0.0f;
     GET_TRANSFORM(model)->pos.v.y = 0.0f;
-    GET_TRANSFORM(model)->pos.v.z = D_8034B6F4_82AE64;
+    GET_TRANSFORM(model)->pos.v.z = 10000.0f;
     InitOneCollisionModel(&D_8034AF20_82A690);
     Items_func_8035CA1C(&func_80348FF0_828760);
     omEndProcess(NULL);

@@ -7,14 +7,9 @@ extern PokemonInitData D_802C77FC_649CAC;
 
 void func_802C3348_6457F8(GObj*);
 
-void func_802C3290_645740(GObj* obj) {
-    UNUSED s32 pad[1];
-    DObj* dobj = obj->data.dobj;
-    Mtx4Float* rot = &GET_TRANSFORM(dobj)->rot;
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C3290_645740)
     Pokemon_SetAnimation(obj, &D_802C779C_649C4C);
-    rot->v.y = (randRange(360) * PI) / 180.0f;
+    rotation->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802C3348_6457F8);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -23,10 +18,7 @@ void func_802C3290_645740(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802C3348_6457F8(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C3348_6457F8)
     func_8035E298_4FE6A8(obj);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;

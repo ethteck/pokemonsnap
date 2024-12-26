@@ -1,5 +1,4 @@
 #include "common.h"
-//#include "world/world.h"
 #include "app_level/app_level.h"
 #include "cave.h"
 
@@ -23,10 +22,7 @@ void func_802C33C0_645870(GObj* arg0) {
     Pokemon_SetState(arg0, func_802C33E4_645894);
 }
 
-void func_802C33E4_645894(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C33E4_645894)
     pokemon->forbiddenGround = &D_802C7980_649E30;
     Pokemon_SetAnimation(obj, &D_802C7880_649D30);
     Pokemon_StartPathProc(obj, func_802C3494_645944);
@@ -42,22 +38,14 @@ void func_802C33E4_645894(GObj* obj) {
     Pokemon_SetState(obj, func_802C34E0_645990);
 }
 
-void func_802C3494_645944(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C3494_645944)
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER | MOVEMENT_FLAG_STOP_WHEN_TURN_COMPLETED | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 
-// clang-format off
-void func_802C34E0_645990(GObj* obj) { \
-    UNUSED s32 pad[3]; \
-    Pokemon* pokemon = GET_POKEMON(obj);
-    // clang-format on
-
+POKEMON_FUNC(func_802C34E0_645990)
     Pokemon_SetAnimation(obj, &D_802C78BC_649D6C);
     Pokemon_StartPathProc(obj, func_802C3580_645A30);
     pokemon->counter = 2, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
@@ -86,10 +74,7 @@ POKEMON_FUNC(func_802C3580_645A30)
     omEndProcess(NULL);
 }
 
-void func_802C3658_645B08(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C3658_645B08)
     HIDE_POKEMON();
     while (D_802C75F0_649AA0 == NULL) {
         ohWait(1);
@@ -99,12 +84,8 @@ void func_802C3658_645B08(GObj* obj) {
     Pokemon_SetState(obj, func_802C36F0_645BA0);
 }
 
-void func_802C36F0_645BA0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-    InteractionHandler4 sp18;
-
-    sp18 = D_802C7984_649E34;
+POKEMON_FUNC(func_802C36F0_645BA0)
+    InteractionHandler4 sp18 = D_802C7984_649E34;
 
     Pokemon_ForceAnimation(obj, &D_802C7880_649D30);
     pokemon->transitionGraph = sp18.data;
@@ -130,10 +111,7 @@ void func_802C3840_645CF0(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-void func_802C3874_645D24(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802C3874_645D24)
     Pokemon_SetAnimation(obj, &D_802C78D0_649D80);
     Pokemon_StartPathProc(obj, func_802C38E0_645D90);
     pokemon->transitionGraph = NULL;

@@ -48,7 +48,7 @@ void func_802C5D18_79F2A8(s32 arg0) {
     func_800067DC();
 }
 
-void func_802C5D7C_79F30C(s32 arg0) {
+void func_802C5D7C_79F30C(GObj* arg0) {
     D_802D2828_7ABDB8 -= M_PI_F / 45.0f;
     if (D_802D2828_7ABDB8 < 0.0f) {
         D_802D2828_7ABDB8 += 2 * M_PI_F;
@@ -133,7 +133,7 @@ void func_802C5F70_79F500(GObj* obj) {
 
         pokemonObj = D_802D2980_7ABF10 = pokemonAddOne(roomA, roomA, &spawn, &def);
 
-        a0 = D_802D2980_7ABF10; // TODO required to match
+        a0 = (DObj*) D_802D2980_7ABF10; // TODO required to match
         GET_POKEMON(pokemonObj)->behavior = 0;
 
         position = &obj->data.dobj->position;
@@ -167,7 +167,7 @@ void func_802C606C_79F5FC(GObj* obj) {
 
         pokemonObj = D_802D2980_7ABF10 = pokemonAddOne(roomA, roomA, &spawn, &def);
 
-        a0 = D_802D2980_7ABF10; // TODO required to match
+        a0 = (DObj*) D_802D2980_7ABF10; // TODO required to match
         GET_POKEMON(pokemonObj)->behavior = 0;
 
         position = &obj->data.dobj->position;
@@ -178,7 +178,7 @@ void func_802C606C_79F5FC(GObj* obj) {
     }
 }
 
-void func_802C6168_79F6F8(void*);
+void func_802C6168_79F6F8(GObj*, GroundResult*);
 #pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C6168_79F6F8.s")
 
 void func_802C6300_79F890(void) {

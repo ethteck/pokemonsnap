@@ -343,6 +343,7 @@ gLevelID = 0x800AC0C0;
 gLevelNames = 0x800AC0C4;
 gPhotoCount = 0x800AC0E0;
 getPlayerName = 0x800BF498;
+MD4_GlobalContext = 0x800E17C0;
 __osFlashID = 0x800E17E0;
 __osFlashMsg = 0x800E17F0;
 __osFlashMessageQ = 0x800E1808;

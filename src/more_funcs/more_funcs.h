@@ -4,11 +4,22 @@
 #include "types.h"
 #include "common_structs.h"
 
+#define	MD4_BLOCK_LENGTH 0x200
+
+typedef struct {
+    /* 0x00 */ u32 a;         // State variable A
+    /* 0x04 */ u32 b;         // State variable B
+    /* 0x08 */ u32 c;         // State variable C
+    /* 0x0C */ u32 d;         // State variable D
+    /* 0x10 */ u8 buffer[8];  // Buffer for bit count
+    /* 0x18 */ s32 finalized; // Indicates if the digest is finalized
+} MD4Ctx; // size = 0x1C
+
 typedef struct UnkBigBoy {
-    /* 0x000 */ s32 unk_0;
-    /* 0x004 */ s32 unk_4;
-    /* 0x008 */ s32 unk_8;
-    /* 0x00C */ s32 unk_C;
+    /* 0x000 */ s32 a; // MD4 variable 1
+    /* 0x004 */ s32 b; // MD4 variable 2
+    /* 0x008 */ s32 c; // MD4 variable 3
+    /* 0x00C */ s32 d; // MD4 variable 4
     struct {
         /* 0x010 */ char unk_10[4];
         /* 0x014 */ u8 pad_14[0xC];
@@ -59,5 +70,5 @@ void func_800C0254_5D0F4(s32, s32);
 s32 func_800C06A8_5D548(uintptr_t, s32 size);
 s32 func_800C09C0_5D860(uintptr_t, s32 size);
 s32 func_800C0AB4_5D954(uintptr_t, s32);
-UnkBigBoy* func_800C16EC_5E58C(void*, s32);
+MD4Ctx* MD4_Finalize(u32*, s32);
 #endif

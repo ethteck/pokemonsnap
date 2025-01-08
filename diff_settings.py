@@ -7,4 +7,5 @@ def apply(config, args):
     config['source_directories'] = ['.']
     config["make_command"] = ["ninja"]
     config["objdump_flags"] = ["-M", "reg-names=32"]
+    # config["objdump_flags"].append("-Mno-aliases")
     config["expected_dir"] = f"expected/"

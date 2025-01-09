@@ -101,7 +101,7 @@ void func_802DAC28_6C2A08(GObj* obj) {
     omCreateProcess(obj, func_802DA9E0_6C27C0, 1, 1);
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, 4);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
@@ -113,7 +113,7 @@ void func_802DACA8_6C2A88(GObj* obj) {
     omCreateProcess(obj, func_802DAACC_6C28AC, 1, 1);
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, 4);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
@@ -129,7 +129,7 @@ void func_802DAD60_6C2B40(GObj* obj) {
     Pokemon_ForceAnimation(obj, &D_802E30CC_6CAEAC);
     Pokemon_StartPathProc(obj, func_802DADD8_6C2BB8);
     pokemon->transitionGraph = D_802E30E0_6CAEC0;
-    Pokemon_WaitForFlag(obj, 2);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
@@ -143,7 +143,7 @@ void func_802DADD8_6C2BB8(GObj* obj) {
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, 0.0f, 1.0f, 0.06666667f, 0, 0);
     pokemon->pathProc = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

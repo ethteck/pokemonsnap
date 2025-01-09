@@ -15,8 +15,12 @@
         Mtx4Float* rotation = &GET_TRANSFORM(model)->rot; \
         Pokemon* pokemon = GET_POKEMON(obj);
 
-#define HIDE_POKEMON() pokemon->tangible = false; obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
-#define SHOW_POKEMON() pokemon->tangible = true; obj->flags &= 0;
+#define HIDE_POKEMON()         \
+    pokemon->tangible = false; \
+    obj->flags |= GOBJ_FLAG_HIDDEN | GOBJ_FLAG_2;
+#define SHOW_POKEMON()        \
+    pokemon->tangible = true; \
+    obj->flags &= 0;
 
 enum ItemIds {
     ITEM_ID_POKEFLUTE = 161,
@@ -207,6 +211,8 @@ void func_80357170_4F7580(void);
 void func_803571C4_4F75D4(void);
 void func_803572B0_4F76C0(void);
 void func_8035E174_4FE584(GObj* obj, Vec3f*);
+GObj* func_8035E238_4FE648(GObj* obj);
+void func_8035E264_4FE674(GObj* obj, Vec3f*);
 void func_8035E298_4FE6A8(GObj* obj);
 
 void Icons_SetDashEngineEnabled(s32 enabled);
@@ -235,14 +241,16 @@ void Pokemon_WaitForFlagNoInteraction(GObj*, u32);
 void Pokemon_RemovePokemons(u16*);
 void Pokemon_EatApple(GObj*);
 void Pokemon_SetScale(GObj*, f32);
+void Pokemon_KickItem(GObj* obj, f32 speed);
 void Pokemon_Jump(GObj*, f32, f32, f32, f32);
 void Pokemon_JumpToHeight(GObj* obj, f32 maxHeight, f32 acceleration, f32 minJumpSpeed, f32 maxJumpSpeed);
 void Pokemon_Fall(GObj* arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 void Pokemon_FallToHeight(GObj* obj, f32 minHeight, f32 acceleration, f32 minFallSpeed, f32 maxFallSpeed);
+void Pokemon_JumpAndBounceFromGround(GObj* obj, f32 speed, f32 jumpBackwards, f32 arg3);
 void Pokemon_FallDownOnGround(GObj* obj, f32 acceleration, s32);
 bool Pokemon_StepWalkInDirectionFacing(GObj*, u32);
 s32 Pokemon_StepToTargetPos(GObj* obj, f32 turnSpeed, u32 flags);
-bool Pokemon_Turn(DObj*, f32, f32);
+bool Pokemon_Turn(DObj* model, f32 targetYaw, f32 turnSpeed);
 void Pokemon_RunInCirclesDefault(GObj* obj, f32 radius);
 void Pokemon_RunAwayDefault(GObj* obj, f32 minDistance);
 s32 Pokemon_HearsPokeFlute(GObj*);
@@ -303,7 +311,12 @@ void resetMainCameraSettings(void);
 
 void Camera_StartCutScene(GObj* pokemon, AnimCmd* camAnim, f32 time);
 
+void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 colorR, u8 colorG, u8 colorB, u8 colorA, s32 delayBetweenChars, u8 alignment);
 void Msg_Reset(void);
+void Msg_SetSpecialHandler(void (*handler)(u8));
+void Msg_SetNonInteractive(void);
+void Msg_SetInteractive(void);
+s32 Msg_IsMessagePrinted(void);
 
 void EnvSound_PlaySound(GObj* obj, u8 category, s32 soundID);
 void EnvSound_StopSoundByCategory(GObj*, u8);

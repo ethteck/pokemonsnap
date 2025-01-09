@@ -397,7 +397,7 @@ s32 func_801E3604_9D9F74(void) {
                     FocusMark_Show(true);
                     func_801E0D54_9D76C4();
                 } else {
-                    auPlaySound(0x47U);
+                    auPlaySound(0x47);
                     FocusMark_Show(false);
                     func_801DFB10_9D6480((sp28 * 3) + sp2C);
                     func_801E0C3C_9D75AC((sp28 * 3) + sp2C);

@@ -105,7 +105,7 @@ POKEMON_FUNC(func_802DF91C_6C76FC)
     Pokemon_ForceAnimation(obj, &D_802E4154_6CBF34);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_1000 | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    if (pokemon->processFlags & 1) {
+    if (pokemon->processFlags & POKEMON_PROCESS_FLAG_ANIMATION_ENDED) {
         Pokemon_SetState(obj, func_802DF91C_6C76FC);
     }
     Pokemon_SetAnimation(obj, &D_802E4140_6CBF20);

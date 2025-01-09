@@ -116,7 +116,7 @@ void func_802C1660_643B10(GObj* obj) {
 
     Pokemon_SetAnimation(obj, &D_802C71FC_6496AC);
     pokemon->transitionGraph = sp20.data;
-    Pokemon_WaitForFlag(obj, 2 | 1);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED)) {
         Pokemon_SetState(obj, func_802C1660_643B10);
     }

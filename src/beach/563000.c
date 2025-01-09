@@ -162,30 +162,30 @@ void func_beach_802CB520(GObj* obj) {
 }
 
 // clang-format off
-void func_beach_802CB594(GObj* arg0) { \
-    Pokemon* pokemon = GET_POKEMON(arg0);
+void func_beach_802CB594(GObj* obj) { \
+    Pokemon* pokemon = GET_POKEMON(obj);
     // clang-format on
     UNUSED s32 pad[3];
 
-    Pokemon_SetAnimation(arg0, &D_beach_802CDBAC);
-    Pokemon_StartPathProc(arg0, func_beach_802CB710);
+    Pokemon_SetAnimation(obj, &D_beach_802CDBAC);
+    Pokemon_StartPathProc(obj, func_beach_802CB710);
     pokemon->transitionGraph = D_beach_802CDEF8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & 0x10)) {
-        Pokemon_SetState(arg0, func_beach_802CB36C);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
+        Pokemon_SetState(obj, func_beach_802CB36C);
     }
-    Pokemon_SetAnimation(arg0, &D_beach_802CDC10);
-    Pokemon_StartPathProc(arg0, NULL);
+    Pokemon_SetAnimation(obj, &D_beach_802CDC10);
+    Pokemon_StartPathProc(obj, NULL);
     pokemon->counter = 17, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = D_beach_802CDEF8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_WAIT_ENDED);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
     if (pokemon->interactionTarget == NULL) {
-        Pokemon_SetState(arg0, func_beach_802CB3DC);
+        Pokemon_SetState(obj, func_beach_802CB3DC);
     }
-    Pokemon_EatApple(arg0);
+    Pokemon_EatApple(obj);
     pokemon->transitionGraph = D_beach_802CDEF8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(arg0, func_beach_802CB3DC);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_beach_802CB3DC);
 }
 
 void func_beach_802CB6B4(GObj* obj) {
@@ -235,34 +235,34 @@ void func_beach_802CB814(GObj* obj) {
 }
 
 // clang-format off
-void func_beach_802CB874(GObj* arg0) { \
-    Pokemon* pokemon = GET_POKEMON(arg0);
+void func_beach_802CB874(GObj* obj) { \
+    Pokemon* pokemon = GET_POKEMON(obj);
     // clang-format on
-    Pokemon_ForceAnimation(arg0, &D_beach_802CDB70);
-    Pokemon_StartPathProc(arg0, NULL);
+    Pokemon_ForceAnimation(obj, &D_beach_802CDB70);
+    Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_beach_802CDF98;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetAnimation(arg0, &D_beach_802CDBE8);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(obj, &D_beach_802CDBE8);
     pokemon->transitionGraph = D_beach_802CDF98;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetAnimation(arg0, &D_beach_802CDBAC);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(obj, &D_beach_802CDBAC);
     pokemon->hSpeed = 80.0f;
-    Pokemon_StartPathProc(arg0, func_beach_802CBB34);
+    Pokemon_StartPathProc(obj, func_beach_802CBB34);
     pokemon->transitionGraph = D_beach_802CDF98;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     pokemon->flags &= ~POKEMON_FLAG_200;
     pokemon->flags &= ~POKEMON_FLAG_800;
     pokemon->specialPoseID = 1;
-    Pokemon_SetAnimation(arg0, &D_beach_802CDBD4);
-    Pokemon_StartPathProc(arg0, func_beach_802CBA48);
+    Pokemon_SetAnimation(obj, &D_beach_802CDBD4);
+    Pokemon_StartPathProc(obj, func_beach_802CBA48);
     pokemon->transitionGraph = D_beach_802CDFD8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetAnimation(arg0, &D_beach_802CDBFC);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetAnimation(obj, &D_beach_802CDBFC);
     pokemon->transitionGraph = D_beach_802CDFD8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_PATH_ENDED);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
     pokemon->transitionGraph = D_beach_802CDFD8;
-    Pokemon_WaitForFlag(arg0, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetState(arg0, func_beach_802CBB90);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
+    Pokemon_SetState(obj, func_beach_802CBB90);
 }
 
 void func_beach_802CB9E0(GObj* obj) {

@@ -9,7 +9,7 @@ void func_beach_802CA300(GObj* obj) {
     s32 sp2C;
     f32 sp28;
 
-    obj->flags |= 2;
+    obj->flags |= GOBJ_FLAG_2;
 
     while (true) {
         getLevelProgress(&sp34, &sp30);

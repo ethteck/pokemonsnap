@@ -199,6 +199,10 @@ typedef struct RandomState2 {
     /* 0x04 */ GObjFunc func;
 } RandomState2; // size = 0x8
 
+typedef struct RandomStates3 {
+    /* 0x00 */ RandomState data[3];
+} RandomStates3; // size = 0x18
+
 typedef struct {
     /* 0x00 */ u32 id;
     /* 0x04 */ pokemonInit init;

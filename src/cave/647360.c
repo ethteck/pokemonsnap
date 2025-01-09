@@ -502,7 +502,7 @@ void func_802C60F4_6485A4(void) {
     playerObj = PlayerModel_Init();
     D_802C8044_64A4F4 = playerObj;
     if (playerObj != NULL) {
-        omCreateProcess(playerObj, func_802C5DFC_6482AC, 0U, 1U);
+        omCreateProcess(playerObj, func_802C5DFC_6482AC, 0, 1);
         func_802C5B60_648010(playerObj);
     }
 }

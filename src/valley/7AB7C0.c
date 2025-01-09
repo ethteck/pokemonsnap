@@ -12,10 +12,7 @@ extern PokemonInitData D_802ECA30_7C5FC0;
 void func_802D237C_7AB90C(GObj*);
 void func_802D2428_7AB9B8(GObj*);
 
-void func_802D2230_7AB7C0(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D2230_7AB7C0)
     HIDE_POKEMON();
     pokemon->counter = 1;
     pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
@@ -25,52 +22,40 @@ void func_802D2230_7AB7C0(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802D22A0_7AB830(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D22A0_7AB830)
     SHOW_POKEMON();
     Pokemon_SetStateRandom(obj, D_802EC9F0_7C5F80);
 }
 
-void func_802D22D4_7AB864(GObj* obj) {
+POKEMON_FUNC(func_802D22D4_7AB864)
     Pokemon_ForceAnimation(obj, &D_802EC994_7C5F24);
     Pokemon_SetState(obj, func_802D237C_7AB90C);
 }
 
-void func_802D230C_7AB89C(GObj* obj) {
+POKEMON_FUNC(func_802D230C_7AB89C)
     Pokemon_ForceAnimation(obj, &D_802EC9A8_7C5F38);
     Pokemon_SetState(obj, func_802D237C_7AB90C);
 }
 
-void func_802D2344_7AB8D4(GObj* obj) {
+POKEMON_FUNC(func_802D2344_7AB8D4)
     Pokemon_ForceAnimation(obj, &D_802EC9BC_7C5F4C);
     Pokemon_SetState(obj, func_802D237C_7AB90C);
 }
 
-void func_802D237C_7AB90C(GObj* obj) {
-    UNUSED s32 pad;
-    DObj* model = obj->data.dobj;
-    Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D237C_7AB90C)
     rotation->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802D2428_7AB9B8);
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, 1);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     D_802D2980_7ABF10 = 0;
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802D2428_7AB9B8(GObj* obj) {
-    DObj* model = obj->data.dobj;
-    f32 sp50;
-    DObj* temp_s1;
-    Pokemon* pokemon = GET_POKEMON(obj);
+POKEMON_FUNC(func_802D2428_7AB9B8)
     Vec3f sp4C;
     Vec3f sp40;
-    UNUSED s32 pad[1];
+    DObj* temp_s1;
     GroundResult sp28;
 
     sp40 = D_802ECA10_7C5FA0;
@@ -91,7 +76,7 @@ void func_802D2428_7AB9B8(GObj* obj) {
         func_8035E174_4FE584(obj, &sp4C);
     }
     pokemon->pathProc = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

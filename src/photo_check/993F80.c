@@ -42,6 +42,7 @@ extern s32 D_801F4194_9A3C04;
 extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 
 Photo D_802291A0_9D8C10[60];
+static s32 D_80229830[2]; // padding?
 s32 D_80229838_9D92A8;
 
 void func_800BF5D8_5C478(s32, PhotoData*);

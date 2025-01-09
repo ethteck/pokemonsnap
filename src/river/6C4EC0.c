@@ -312,7 +312,7 @@ void func_802DD9DC_6C57BC(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DDAEC_6C58CC);
     pokemon->transitionGraph = D_802E3A38_6CB818;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & 0x10)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
         Pokemon_SetState(obj, func_802DD6F0_6C54D0);
     }
     Pokemon_SetState(obj, func_802DDB70_6C5950);

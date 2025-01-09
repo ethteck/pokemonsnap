@@ -147,7 +147,7 @@ POKEMON_FUNC(func_80348DD4_828544)
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
     animSetCameraAnimation(cam, &D_80119A8C, 0.0f);
-    omCreateProcess(camObj, animUpdateCameraAnimation, 1U, 1U);
+    omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
     setSkyBoxAnimationSpeed(D_800F5DB0);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
@@ -180,7 +180,7 @@ s32 func_80348FF0_828760(Vec3f* arg0, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3) {
     if (D_8034AF2C_82A69C == NULL) {
         return -1;
     }
-    
+
     model = D_8034AF2C_82A69C->data.dobj;
     position = &GET_TRANSFORM(model)->pos;
     rotation = &GET_TRANSFORM(model)->rot;

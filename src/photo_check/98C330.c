@@ -112,7 +112,7 @@ SObj* D_80229184_9D8BF4;
 SObj* D_80229188_9D8BF8;
 s32 D_8022918C_9D8BFC;
 s32 D_80229190_9D8C00;
-static s32 D_802291A0[4]; // padding?
+static s32 D_802291A0[2]; // padding?
 
 void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);

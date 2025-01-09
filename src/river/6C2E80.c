@@ -74,7 +74,7 @@ void func_802DB1C4_6C2FA4(GObj* obj) {
     rotation->v.y = (randRange(360) * PI) / 180.0f;
     Pokemon_StartPathProc(obj, func_802DB270_6C3050);
     pokemon->transitionGraph = NULL;
-    Pokemon_WaitForFlag(obj, 1);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     D_802E28AC_6CA68C = 0;
     Pokemon_RunCleanup(obj);
     Pokemon_SetState(obj, NULL);
@@ -108,7 +108,7 @@ void func_802DB270_6C3050(GObj* obj) {
         func_8035E174_4FE584(obj, &sp4C);
     }
     pokemon->pathProc = NULL;
-    pokemon->processFlags |= 2;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
 

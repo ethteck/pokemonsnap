@@ -76,7 +76,7 @@ void func_800E6D64_A0E2F4(void) {
     GObj* gobj;
     SObj* sobj;
 
-    D_800E838C_A0F91C = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1U, 0x80000000, -1,
+    D_800E838C_A0F91C = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
                                               &D_80344388, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 0, -3);

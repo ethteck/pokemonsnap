@@ -123,7 +123,7 @@ void func_802BF3D0_641880(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);
 
-    Pokemon_TurnToTarget(obj, 0.1f, 0U);
+    Pokemon_TurnToTarget(obj, 0.1f, 0);
     Pokemon_SetAnimation(obj, &D_802C6898_648D48);
     pokemon->hSpeed = 80.0f;
     Pokemon_RunToTarget(obj, 50.0f, 0.1f, 3);

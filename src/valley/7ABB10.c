@@ -1,23 +1,20 @@
 #include "valley.h"
 
-void spawnStaryuAtGeo(GObj* obj) {
+POKEMON_FUNC(spawnStaryuAtGeo)
     Pokemon_AddAtGeo(obj, PokemonID_STARYU, &extraStaryuDef);
     omEndProcess(NULL);
 }
 
-void spawnStarmieAtGeo(GObj* obj) {
+POKEMON_FUNC(spawnStarmieAtGeo)
     Pokemon_AddAtGeo(obj, PokemonID_STARMIE, &extraStarmieDef);
     omEndProcess(NULL);
 }
 
-void func_802D25E0(GObj* obj) {
+POKEMON_FUNC(func_802D25E0)
     Pokemon_SetStateRandom(obj, D_802ECB00_7C6090);
 }
 
-void func_802D2604(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D2604)
     omCreateProcess(obj, spawnStaryuAtGeo, 1, 1);
 
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
@@ -27,10 +24,7 @@ void func_802D2604(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-void func_802D2684(GObj* obj) {
-    UNUSED s32 pad[3];
-    Pokemon* pokemon = GET_POKEMON(obj);
-
+POKEMON_FUNC(func_802D2684)
     omCreateProcess(obj, spawnStarmieAtGeo, 1, 1);
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;

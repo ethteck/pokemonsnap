@@ -175,7 +175,7 @@ POKEMON_FUNC(func_802DC0A4_6C3E84)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_AUX_ENDED;
     pokemon->transitionGraph = D_802E34D4_6CB2B4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_AUX_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
-    if (!(pokemon->processFlags & 2)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED)) {
         Pokemon_SetState(obj, func_802DC0A4_6C3E84);
     }
     pokemon->miscVars[0].field1 = pokemon->miscVars[1].field1;
@@ -294,7 +294,7 @@ POKEMON_FUNC(func_802DC60C_6C43EC)
     Pokemon_SetAnimation(obj, &D_802E3400_6CB1E0);
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_AUX_ENDED;
     pokemon->transitionGraph = D_802E34D4_6CB2B4;
-    Pokemon_WaitForFlag(obj, 0xA);
+    Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_AUX_ENDED | POKEMON_PROCESS_FLAG_PATH_ENDED);
     if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED)) {
         Pokemon_SetState(obj, func_802DC60C_6C43EC);
     }

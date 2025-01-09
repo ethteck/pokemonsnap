@@ -573,7 +573,7 @@ s32 func_8009C304(ItemPhotoData* arg0, GObj* obj) {
     UNK_PTR* payload;
 
     dobj = obj->data.dobj;
-    if (obj->flags & 1) {
+    if (obj->flags & GOBJ_FLAG_HIDDEN) {
         return 0;
     }
 
@@ -609,7 +609,7 @@ void func_8009C450(UnkThing* arg0, u8 objIndex) {
     i = 0;
     obj = omGObjListHead[objIndex];
     while (obj != NULL && i < 6) {
-        if (!(obj->flags & 1) &&
+        if (!(obj->flags & GOBJ_FLAG_HIDDEN) &&
             (func_803647BC_504BCC(obj) == 0) &&
             (func_8009C304(&arg0->main.items[i], obj) != 0)) {
             i++;

@@ -152,8 +152,12 @@ GObj* func_8035E1D4_4FE5E4(GObj* obj) {
     return sp30;
 }
 
-void func_8035E238_4FE648(GObj* obj) {
-    GET_POKEMON(func_8035E1D4_4FE5E4(obj))->behavior = 1;
+GObj* func_8035E238_4FE648(GObj* obj) {
+    GObj* ret = func_8035E1D4_4FE5E4(obj);
+
+    GET_POKEMON(ret)->behavior = 1;
+
+    return ret;
 }
 
 void func_8035E264_4FE674(GObj* obj, Vec3f* arg1) {

@@ -208,7 +208,7 @@ void func_801DCE64_A08A54(void) {
     obj = ohCreateCamera(1, ohUpdateDefault, 0, 5, ren_func_800192DC, 0xA, 0x20, -1, 0, 1, NULL, 0, 0);
     cam = obj->data.cam;
     cam->flags = CAMERA_FLAG_4 | CAMERA_FLAG_1;
-    obj->flags |= 0x1;
+    obj->flags |= GOBJ_FLAG_HIDDEN;
     omCameraAddMtx(cam, 3, 0);
     omCameraAddMtx(cam, 0xE, 0);
     cam->perspMtx.persp.near = 10.0f;

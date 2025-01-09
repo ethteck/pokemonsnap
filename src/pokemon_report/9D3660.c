@@ -1637,7 +1637,7 @@ void func_801E2340_9D8CB0(void) {
     UILayout_SetHeaderFlags(0);
     UILayout_HideButtons();
     ohWait(21);
-    auSetBGMVolumeSmooth(0, 0U, sp18);
+    auSetBGMVolumeSmooth(0, 0, sp18);
 
     for (i = sp18 - 5; i >= 0; i--) {
         func_801DCD78_9D36E8((i * 0xFF) / (sp18 - 5));

@@ -5,17 +5,17 @@ extern MD4Ctx MD4_GlobalContext;
 
 #define ROL32(value, shift) (((value) << (shift)) | ((value) >> (32 - (shift))))
 
-#define F(x,y,z) ((x & y) | (~x & z))
-#define G(x,y,z) ((x & y) | (x & z) | (y & z))
-#define H(x,y,z) (x ^ y ^ z)
+#define F(x, y, z) ((x & y) | (~x & z))
+#define G(x, y, z) ((x & y) | (x & z) | (y & z))
+#define H(x, y, z) (x ^ y ^ z)
 
-#define STEP(a,b,c,d,k,s,constant,OP) \
-temp = a + OP(b,c,d) + data[k] + constant, \
-a = ROL32(temp, s)
+#define STEP(a, b, c, d, k, s, constant, OP)     \
+    temp = a + OP(b, c, d) + data[k] + constant, \
+    a = ROL32(temp, s)
 
-#define ROUND1(a,b,c,d,k,s) STEP(a,b,c,d,k,s,0,F)
-#define ROUND2(a,b,c,d,k,s) STEP(a,b,c,d,k,s,0x5A827999,G)
-#define ROUND3(a,b,c,d,k,s) STEP(a,b,c,d,k,s,0x6ED9EBA1,H)
+#define ROUND1(a, b, c, d, k, s) STEP(a, b, c, d, k, s, 0, F)
+#define ROUND2(a, b, c, d, k, s) STEP(a, b, c, d, k, s, 0x5A827999, G)
+#define ROUND3(a, b, c, d, k, s) STEP(a, b, c, d, k, s, 0x6ED9EBA1, H)
 
 void MD4_Init(MD4Ctx* ctx) {
     s32 i;
@@ -26,7 +26,9 @@ void MD4_Init(MD4Ctx* ctx) {
     ctx->d = 0x10325476;
 
     // Same-line needed for matching
+    // clang-format off
     for (i = 0; i < ARRAY_COUNT(ctx->buffer); i++) ctx->buffer[i] = 0;
+    // clang-format on
 
     ctx->finalized = FALSE; // Digest is not yet finalized
 }
@@ -45,69 +47,69 @@ void MD4_Transform(MD4Ctx* ctx, u32* data) {
 
     /* Round 1 */
 
-    ROUND1(A,B,C,D,0,3);
-    ROUND1(D,A,B,C,1,7);
-    ROUND1(C,D,A,B,2,11);
-    ROUND1(B,C,D,A,3,19);
+    ROUND1(A, B, C, D, 0, 3);
+    ROUND1(D, A, B, C, 1, 7);
+    ROUND1(C, D, A, B, 2, 11);
+    ROUND1(B, C, D, A, 3, 19);
 
-    ROUND1(A,B,C,D,4,3);
-    ROUND1(D,A,B,C,5,7);
-    ROUND1(C,D,A,B,6,11);
-    ROUND1(B,C,D,A,7,19);
+    ROUND1(A, B, C, D, 4, 3);
+    ROUND1(D, A, B, C, 5, 7);
+    ROUND1(C, D, A, B, 6, 11);
+    ROUND1(B, C, D, A, 7, 19);
 
-    ROUND1(A,B,C,D,8,3);
-    ROUND1(D,A,B,C,9,7);
-    ROUND1(C,D,A,B,10,11);
-    ROUND1(B,C,D,A,11,19);
+    ROUND1(A, B, C, D, 8, 3);
+    ROUND1(D, A, B, C, 9, 7);
+    ROUND1(C, D, A, B, 10, 11);
+    ROUND1(B, C, D, A, 11, 19);
 
-    ROUND1(A,B,C,D,12,3);
-    ROUND1(D,A,B,C,13,7);
-    ROUND1(C,D,A,B,14,11);
-    ROUND1(B,C,D,A,15,19);
+    ROUND1(A, B, C, D, 12, 3);
+    ROUND1(D, A, B, C, 13, 7);
+    ROUND1(C, D, A, B, 14, 11);
+    ROUND1(B, C, D, A, 15, 19);
 
     /* Round 2 */
 
-    ROUND2(A,B,C,D,0,3);
-    ROUND2(D,A,B,C,4,5);
-    ROUND2(C,D,A,B,8,9);
-    ROUND2(B,C,D,A,12,13);
+    ROUND2(A, B, C, D, 0, 3);
+    ROUND2(D, A, B, C, 4, 5);
+    ROUND2(C, D, A, B, 8, 9);
+    ROUND2(B, C, D, A, 12, 13);
 
-    ROUND2(A,B,C,D,1,3);
-    ROUND2(D,A,B,C,5,5);
-    ROUND2(C,D,A,B,9,9);
-    ROUND2(B,C,D,A,13,13);
+    ROUND2(A, B, C, D, 1, 3);
+    ROUND2(D, A, B, C, 5, 5);
+    ROUND2(C, D, A, B, 9, 9);
+    ROUND2(B, C, D, A, 13, 13);
 
-    ROUND2(A,B,C,D,2,3);
-    ROUND2(D,A,B,C,6,5);
-    ROUND2(C,D,A,B,10,9);
-    ROUND2(B,C,D,A,14,13);
+    ROUND2(A, B, C, D, 2, 3);
+    ROUND2(D, A, B, C, 6, 5);
+    ROUND2(C, D, A, B, 10, 9);
+    ROUND2(B, C, D, A, 14, 13);
 
-    ROUND2(A,B,C,D,3,3);
-    ROUND2(D,A,B,C,7,5);
-    ROUND2(C,D,A,B,11,9);
-    ROUND2(B,C,D,A,15,13);
+    ROUND2(A, B, C, D, 3, 3);
+    ROUND2(D, A, B, C, 7, 5);
+    ROUND2(C, D, A, B, 11, 9);
+    ROUND2(B, C, D, A, 15, 13);
 
     /* Round 3 */
 
-    ROUND3(A,B,C,D,0,3);
-    ROUND3(D,A,B,C,8,9);
-    ROUND3(C,D,A,B,4,11);
-    ROUND3(B,C,D,A,12,15);
+    ROUND3(A, B, C, D, 0, 3);
+    ROUND3(D, A, B, C, 8, 9);
+    ROUND3(C, D, A, B, 4, 11);
+    ROUND3(B, C, D, A, 12, 15);
 
-    ROUND3(A,B,C,D,2,3);
-    ROUND3(D,A,B,C,10,9);
-    ROUND3(C,D,A,B,6,11);
-    ROUND3(B,C,D,A,14,15);
+    ROUND3(A, B, C, D, 2, 3);
+    ROUND3(D, A, B, C, 10, 9);
+    ROUND3(C, D, A, B, 6, 11);
+    ROUND3(B, C, D, A, 14, 15);
 
-    ROUND3(A,B,C,D,1,3);
-    ROUND3(D,A,B,C,9,9);
-    ROUND3(C,D,A,B,5,11);
-    ROUND3(B,C,D,A,13,15);
+    ROUND3(A, B, C, D, 1, 3);
+    ROUND3(D, A, B, C, 9, 9);
+    ROUND3(C, D, A, B, 5, 11);
+    ROUND3(B, C, D, A, 13, 15);
 
-    ROUND3(A,B,C,D,3,3);
-    ROUND3(D,A,B,C,11,9);
-    ROUND3(C,D,A,B,7,11);
-    ROUND3(B,C,D,A,15,15);
+    ROUND3(A, B, C, D, 3, 3);
+    ROUND3(D, A, B, C, 11, 9);
+    ROUND3(C, D, A, B, 7, 11);
+    ROUND3(B, C, D, A, 15, 15);
 
     ctx->a += A;
     ctx->b += B;
@@ -157,7 +159,9 @@ void MD4_Update(MD4Ctx* ctx, u32* input, u32 byteCount) {
     }
 
     // Since the input is less than a full block, we will prepare our own buffer
+    // clang-format off
     for (i = tempOffset + 1; i < ARRAY_COUNT(buffer); i++) buffer[i] = 0;
+    // clang-format on
 
     buffer[tempOffset] = (buffer[tempOffset] | (1 << (7 - (byteCount & 7)))) & ~((1 << (7 - (byteCount & 7))) - 1);
 
@@ -199,7 +203,7 @@ MD4Ctx* MD4_Finalize(u32* input, s32 length) {
             currentBlock += 0x10;
         } while (length >= tempBytes);
         // required to match
-        if (!tempBytes && !tempBytes && !tempBytes) {
+        if (tempBytes && tempBytes && tempBytes) {
         }
     }
     MD4_Update(&MD4_GlobalContext, (u32*) ((u8*) input + remainingBytes), (length - remainingBytes) * 8);

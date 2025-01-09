@@ -25,11 +25,11 @@ UnkBigBoy* func_800BF080_5BF20(void) {
     return D_800C21B0_5F050;
 }
 
-bool func_800BF08C_5BF2C(void) {
-    UnkBigBoy* temp_v0 = (UnkBigBoy*) func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
+bool SaveFile_VerifyMD4Hash(void) {
+    MD4Ctx* temp_v0 = MD4_Finalize((u32*) &D_800C21B0_5F050->data.unk_10, sizeof(D_800C21B0_5F050->data));
 
-    if (temp_v0->unk_0 != D_800C21B0_5F050->unk_0 || temp_v0->unk_4 != D_800C21B0_5F050->unk_4 ||
-        temp_v0->unk_8 != D_800C21B0_5F050->unk_8 || temp_v0->unk_C != D_800C21B0_5F050->unk_C) {
+    if (temp_v0->a != D_800C21B0_5F050->a || temp_v0->b != D_800C21B0_5F050->b ||
+        temp_v0->c != D_800C21B0_5F050->c || temp_v0->d != D_800C21B0_5F050->d) {
         return true;
     } else {
         return false;
@@ -37,12 +37,12 @@ bool func_800BF08C_5BF2C(void) {
 }
 
 void func_800BF10C_5BFAC(void) {
-    UnkBigBoy* temp_v0 = (UnkBigBoy*) func_800C16EC_5E58C(&D_800C21B0_5F050->data, sizeof(D_800C21B0_5F050->data));
+    MD4Ctx* temp_v0 = MD4_Finalize((u32*) &D_800C21B0_5F050->data.unk_10, sizeof(D_800C21B0_5F050->data));
 
-    D_800C21B0_5F050->unk_0 = temp_v0->unk_0;
-    D_800C21B0_5F050->unk_4 = temp_v0->unk_4;
-    D_800C21B0_5F050->unk_8 = temp_v0->unk_8;
-    D_800C21B0_5F050->unk_C = temp_v0->unk_C;
+    D_800C21B0_5F050->a = temp_v0->a;
+    D_800C21B0_5F050->b = temp_v0->b;
+    D_800C21B0_5F050->c = temp_v0->c;
+    D_800C21B0_5F050->d = temp_v0->d;
 }
 
 s32 func_800BF178_5C018(void) {
@@ -61,7 +61,7 @@ s32 func_800BF178_5C018(void) {
         comparisonStringBytes++;
         i++;
         if (i == sizeof(D_800C20E0_5EF80)) {
-            if (func_800BF08C_5BF2C()) {
+            if (SaveFile_VerifyMD4Hash()) {
                 return true;
             }
             return false;

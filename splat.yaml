@@ -397,7 +397,7 @@ segments:
     subsegments:
     - [0x5BF20, c]
     - [0x5D500, c]
-    - [0x5DA50, c]
+    - [0x5DA50, c, md4]
     - [0x5E630, c, ../os/osFlash]
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]

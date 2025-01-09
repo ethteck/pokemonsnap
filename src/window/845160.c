@@ -1,11 +1,6 @@
 #include "common.h"
 #include "window.h"
 
-extern s32 D_803A6648_879DF8; // xmin
-extern s32 D_803A664C_879DFC; // ymin
-extern s32 D_803A6650_879E00; // xmax
-extern s32 D_803A6654_879E04; // ymax
-
 void func_803719B0_845160(SObj* arg0, s32 x, s32 y, s32 r, s32 g, s32 b, s32 a) {
     s32 origX;
     s32 origY;
@@ -134,12 +129,3 @@ SObj* func_80371E68_845618(SObj* arg0, Sprite* arg1) {
     temp_v0->unk_54 = 0;
     return temp_v0;
 }
-
-void func_80371F30_8456E0(s32 xMin, s32 xMax, s32 yMin, s32 yMax) {
-    D_803A6648_879DF8 = xMin;
-    D_803A664C_879DFC = yMin;
-    D_803A6650_879E00 = xMax;
-    D_803A6654_879E04 = yMax;
-}
-
-#pragma GLOBAL_ASM("asm/nonmatchings/window/845160/func_80371F54_845704.s")

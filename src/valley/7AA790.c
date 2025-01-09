@@ -195,21 +195,22 @@ POKEMON_FUNC(func_802D17D8_7AAD68)
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA790/func_802D18D8_7AAE68.s")
-// POKEMON_FUNC(func_802D18D8_7AAE68)
-//     Mtx3Float* temp_v1 = &GET_TRANSFORM(D_802D3FF4_7AD584->data.dobj)->pos;
-//     f32 temp_f20 = atan2f(temp_v1->v.x - position->v.x, temp_v1->v.z - position->v.z);
+POKEMON_FUNC(func_802D18D8_7AAE68)
+    Mtx3Float* temp_v1 = &GET_TRANSFORM(D_802D3FF4_7AD584->data.dobj)->pos;
+    f32 dx = temp_v1->v.x - position->v.x;
+    f32 dz = temp_v1->v.z - position->v.z;
+    f32 temp_f20 = atan2f(dx, dz);
 
-//     while (D_802EC890_7C5E20 == 0) {
-//         pokemon->hSpeed = 300.0f;
-//         pokemon->jumpVel = 500.0f;
-//         pokemon->facingYaw = temp_f20;
-//         Pokemon_FallDownOnGround(obj, -24.5f, 1);
-//     }
-//     pokemon->pathProc = NULL;
-//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
-//     omEndProcess(NULL);
-// }
+    while (D_802EC890_7C5E20 == 0) {
+        pokemon->hSpeed = 300.0f;
+        pokemon->jumpVel = 500.0f;
+        pokemon->facingYaw = temp_f20;
+        Pokemon_FallDownOnGround(obj, -24.5f, 1);
+    }
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 POKEMON_FUNC(func_802D19DC_7AAF6C)
     f32 var_f0 = Pokemon_GetDistance(obj, D_802D3FF4_7AD584);
@@ -324,30 +325,29 @@ POKEMON_FUNC(func_802D1F18_7AB4A8)
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7AA790/func_802D1FC0_7AB550.s")
-// POKEMON_FUNC(func_802D1FC0_7AB550)
-//     Vec3f sp5C = D_802EC914_7C5EA4;
-//     WorldBlockDescriptor* temp_v1 = getCurrentWorldBlock()->descriptor;
-//     f32 x;
-//     f32 z;
-//     f32 facingYaw;
+POKEMON_FUNC(func_802D1FC0_7AB550)
+    Vec3f sp5C = D_802EC914_7C5EA4;
+    WorldBlockDescriptor* temp_v1 = getCurrentWorldBlock()->descriptor;
+    f32 x;
+    f32 z;
+    f32 facingYaw;
 
-//     x = -(temp_v1->worldPos.x * 100.0f);
-//     z = -(temp_v1->worldPos.z * 100.0f);
-//     GetInterpolatedPosition(&sp5C, pokemon->path, 0.99999f);
-//     facingYaw = atan2f(
-//         (x + (sp5C.x * 100.0f)) - position->v.x,
-//         (z + (sp5C.z * 100.0f)) - position->v.z);
+    x = -(temp_v1->worldPos.x * 100.0f);
+    z = -(temp_v1->worldPos.z * 100.0f);
+    GetInterpolatedPosition(&sp5C, pokemon->path, 0.99999f);
+    x += sp5C.x * 100.0f;
+    z += sp5C.z * 100.0f;
+    facingYaw = atan2f(x - position->v.x, z - position->v.z);
 
-//     while (true) {
-//         pokemon->hSpeed = 300.0f;
-//         pokemon->jumpVel = 500.0f;
-//         pokemon->facingYaw = facingYaw;
-//         Pokemon_FallDownOnGround(obj, -24.5f, 1);
-//         EnvSound_PlaySound(obj, 1, 0x181);
-//         func_8035E174_4FE584(obj, &position->v);
-//     }
-// }
+    while (true) {
+        pokemon->hSpeed = 300.0f;
+        pokemon->jumpVel = 500.0f;
+        pokemon->facingYaw = facingYaw;
+        Pokemon_FallDownOnGround(obj, -24.5f, 1);
+        EnvSound_PlaySound(obj, 1, 0x181);
+        func_8035E174_4FE584(obj, &position->v);
+    }
+}
 
 POKEMON_FUNC(func_802D2128_7AB6B8)
     Mtx3Float* tmp = &GET_TRANSFORM(D_802D2D74_7AC304->data.dobj)->pos;

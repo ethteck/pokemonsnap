@@ -294,6 +294,7 @@ void func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
 #define SPRITE_SURF G_RM_TEX_EDGE
 #define SPRITE_SURF2 G_RM_TEX_EDGE2
 
+// slightly modified spDraw
 Gfx* func_80373670_846E20(Sprite* s) {
     int i;
     s32 x, y;

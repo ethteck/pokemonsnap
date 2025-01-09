@@ -39,7 +39,7 @@ void func_beach_802C416C(GObj* obj, GroundResult* groundResult) {
     DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
     s32 i;
-    s32 numOptions = 2; // ARRAY_COUNT(D_beach_802CC004);
+    s32 numOptions = ARRAY_COUNT(D_beach_802CC004);
     s32 sumWeight;
     s32 randValue;
 

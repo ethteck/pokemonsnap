@@ -1,5 +1,11 @@
 #include "valley.h"
 
+// TODO delete and replace with actual struct - this is bs
+typedef struct UnkGoof {
+    /* 0x00 */ char unk_00[0x14];
+    /* 0x14 */ Vec3f unk_14;
+} UnkGoof;
+
 extern AnimationHeader D_802D3450_7AC9E0;
 extern AnimationHeader D_802D3464_7AC9F4;
 extern AnimationHeader D_802D3478_7ACA08;
@@ -334,22 +340,18 @@ POKEMON_FUNC(func_802CBD74_7A5304)
     Pokemon_SetState(obj, func_802CBE9C_7A542C);
 }
 
-#ifdef NON_MATCHING
 POKEMON_FUNC(func_802CBE14_7A53A4)
-    void* temp_v1;
+    UnkGoof* userData; // TODO what is this? replace with actual struct
 
     pokemon->hSpeed = 600.0f;
     pokemon->jumpVel = 150.0f;
-    temp_v1 = pokemon->interactionTarget->userData;
-    pokemon->facingYaw = atan2f(temp_v1->unk_14, temp_v1->unk_1C);
+    userData = pokemon->interactionTarget->userData;
+    pokemon->facingYaw = atan2f(userData->unk_14.x, userData->unk_14.z);
     Pokemon_FallDownOnGround(obj, -9.8f, 1);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CBE14_7A53A4.s")
-#endif
 
 POKEMON_FUNC(func_802CBE9C_7A542C)
     Pokemon_SetAnimation(obj, &D_802D3554_7ACAE4);
@@ -498,7 +500,65 @@ POKEMON_FUNC(func_802CC514_7A5AA4)
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A4610/func_802CC5C0_7A5B50.s")
+POKEMON_FUNC(func_802CC5C0_7A5B50)
+    f32 temp_f0;
+    f32 xPlus;
+    f32 var_f16;
+    f32 xMinus;
+    f32 yPlus;
+    f32 yMinus;
+    f32 zPlus;
+    f32 zMinus;
+    f32 var_f2;
+    Mtx3Float* temp_a3;
+    PokemonTransform* temp_t0;
+    UnkGoof* interactionUserData; // TODO what is this actually?
+    GObj* interactionTarget = pokemon->interactionTarget;
+    bool var_s2;
+
+    temp_a3 = &interactionTarget->data.dobj->position;
+    temp_t0 = GET_TRANSFORM(D_802D3FF0_7AD580->data.dobj);
+    interactionUserData = interactionTarget->userData;
+    pokemon->hSpeed = 300.0f;
+    var_s2 = false;
+    var_f16 = atan2f(interactionUserData->unk_14.x, interactionUserData->unk_14.z);
+    temp_f0 = atan2f(temp_t0->pos.v.x - temp_a3->v.x, temp_t0->pos.v.z - temp_a3->v.z);
+    if (temp_f0 < var_f16) {
+        var_f2 = -(temp_f0 - var_f16);
+    } else {
+        var_f2 = temp_f0 - var_f16;
+    }
+    if (var_f2 < PI / 9) {
+        var_f16 = temp_f0;
+        var_s2 = true;
+    }
+    pokemon->facingYaw = var_f16;
+    rotation->v.y = var_f16;
+
+    xPlus = position->v.x + 4000.0f;
+    xMinus = position->v.x - 4000.0f;
+    yPlus = position->v.y + 4000.0f;
+    yMinus = position->v.y - 4000.0f;
+    zPlus = position->v.z + 4000.0f;
+    zMinus = position->v.z - 4000.0f;
+
+    while (pokemon->currGround.surfaceType != SURFACE_TYPE_337FB2 &&
+           pokemon->currGround.surfaceType != SURFACE_TYPE_007F66 &&
+           position->v.x < xPlus && xMinus < position->v.x &&
+           position->v.y < yPlus && yMinus < position->v.y &&
+           position->v.z < zPlus && zMinus < position->v.z) {
+
+        ohWait(1);
+        Pokemon_StepWalkInDirectionFacing(obj, 1);
+        if (var_s2 && Pokemon_GetDistance(obj, D_802D3FF0_7AD580) < 100.0f) {
+            var_s2 = false;
+            cmdSendCommandToLink(3, 0x21, obj);
+        }
+    }
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 GObj* func_802CC8A8_7A5E38(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802D37C0_7ACD50);

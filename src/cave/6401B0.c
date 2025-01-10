@@ -7,7 +7,9 @@
 
 extern EnvSoundData D_802C6150_648600;
 extern PokemonDef D_802C6234_6486E4;
+extern u16 D_802C6354_648804;
 extern PokemonDef D_802C6358_648808;
+extern RandomState2 D_802C6368_648818[2];
 extern s32 D_802C6378_648828;
 extern ScreenSettings D_802C637C_64882C;
 extern SceneSetup D_802C6398_648848;
@@ -44,8 +46,33 @@ void func_802BDD00_6401B0(GObj* obj) {
     GET_TRANSFORM(a0)->pos.v.z = position->v.z;
 }
 
-void func_802BDDCC_64027C(GObj*, GroundResult*);
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/6401B0/func_802BDDCC_64027C.s")
+void func_802BDDCC_64027C(GObj* obj, GroundResult* groundResult) {
+    DObj* model = obj->data.dobj;
+    Item* item = GET_ITEM(obj);
+    s32 i;
+    s32 numOptions = ARRAY_COUNT(D_802C6368_648818);
+    s32 sumWeight;
+    s32 randValue;
+
+    if (groundResult->surfaceType == SURFACE_TYPE_337FB2 && Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 50.0f) {
+        sumWeight = 0;
+        for (i = 0; i < numOptions; i++) {
+            sumWeight += D_802C6368_648818[i].weight;
+        }
+        randValue = randRange(sumWeight);
+        sumWeight = 0;
+        for (i = 0; i < numOptions; i++) {
+            sumWeight += D_802C6368_648818[i].weight;
+            if (sumWeight > randValue) {
+                if (D_802C6368_648818[i].func != NULL && !D_802C6354_648804) {
+                    D_802C6368_648818[i].func(obj);
+                    D_802C6354_648804 = true;
+                }
+                break;
+            }
+        }
+    }
+}
 
 void func_802BDF34_6403E4(WorldBlock* arg0, WorldBlock* arg1) {
     pokemonAdd(arg0, arg1, &D_802C6234_6486E4);

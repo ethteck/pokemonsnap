@@ -5,12 +5,6 @@
 #include "app_render/app_render.h"
 #include "river.h"
 
-typedef struct UnkTwo {
-    /* 0x00 */ u8 chance;
-    /* 0x01 */ char unk_01[0x3];
-    /* 0x04 */ void (*func)(GObj*);
-} UnkTwo;
-
 extern u8 D_802E2620_6CA400;
 extern EnvSoundData D_802E2624_6CA404[62];
 extern PokemonDef D_802E271C_6CA4FC;
@@ -20,7 +14,7 @@ extern PokemonDef D_802E28C8_6CA6A8;
 extern PokemonDef D_802E28D8_6CA6B8;
 extern PokemonDef D_802E28E8_6CA6C8;
 extern PokemonDef D_802E28F8_6CA6D8;
-extern UnkTwo D_802E2908_6CA6E8[];
+extern RandomState2 D_802E2908_6CA6E8[];
 extern ScreenSettings D_802E2920_6CA700;
 extern SceneSetup D_802E293C_6CA71C;
 extern f32 D_802E4B90_6CC970;
@@ -237,38 +231,33 @@ void func_802D8DC4_6C0BA4(GObj* obj) {
     GET_POKEMON(pokemonObj)->behavior = 0;
 }
 
-#ifdef NON_MATCHING
 void func_802D8E98_6C0C78(GObj* obj, GroundResult* ground) {
-    DObj* model = obj->data.cam; // TODO wrong type
+    DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
 
     switch (ground->surfaceType) {
         case SURFACE_TYPE_337FB2:
-            if (D_802E28AC_6CA68C == 0 && (Vec3fDistance(gPlayerDObj->unk_4C + 8, &model->position) > 500.0f)) { // TODO this line is wrong
-                if (randRange(100) < D_802E2908_6CA6E8[D_802E28B0_6CA690].chance) {
+            if (!D_802E28AC_6CA68C && Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 500.0f) {
+                if (randRange(100) < D_802E2908_6CA6E8[D_802E28B0_6CA690].weight) {
                     D_802E2908_6CA6E8[D_802E28B0_6CA690].func(obj);
-                    D_802E28AC_6CA68C = 1;
+                    D_802E28AC_6CA68C = true;
                     return;
                 }
             }
             return;
         case SURFACE_TYPE_FF7FB2:
             if (item->itemID == ITEM_ID_PESTER_BALL) {
-                cmdSendCommandToLink(3, 0x1D, obj);
+                cmdSendCommandToLink(LINK_POKEMON, 0x1D, obj);
                 return;
             }
             break;
         case SURFACE_TYPE_FF0000:
             if (item->itemID == ITEM_ID_PESTER_BALL) {
-                cmdSendCommandToLink(3, 0x2A, obj);
+                cmdSendCommandToLink(LINK_POKEMON, 0x2A, obj);
             }
             break;
     }
 }
-#else
-void func_802D8E98_6C0C78(GObj* obj, GroundResult* ground);
-#pragma GLOBAL_ASM("asm/nonmatchings/river/6C05E0/func_802D8E98_6C0C78.s")
-#endif
 
 void func_802D8FCC_6C0DAC(void) {
     void* sp1C;

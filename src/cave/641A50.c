@@ -214,80 +214,25 @@ void func_802BFBF0_6420A0(GObj* obj) { \
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/641A50/func_802BFC84_642134.s")
+POKEMON_FUNC(func_802BFC84_642134)
+    s32 i;
+    f32 f20, f22;
+    Mtx3Float* targetPos = &(GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos);
 
-// void func_802BFC84_642134(GObj* obj) {
-//     Pokemon* pokemon = GET_POKEMON(obj);
-//     s32 i;
-//     f32 x;
-//     f32 z;
-//     PokemonTransform* temp_v0;
-//     PokemonTransform* temp_v1;
-//     Mtx4Float* flt;
+    f20 = (targetPos->v.x - position->v.x) / 100.0f;
+    f22 = (targetPos->v.z - position->v.z) / 100.0f;
+    for (i = 0; i < 100; i++) {
+        position->v.x += f20;
+        position->v.z += f22;
+        position->v.y -= 3.0f;
+        rotation->v.y += PI / 180.0f;
+        ohWait(1);
+    }
 
-//     temp_v1 = GET_TRANSFORM(pokemon->interactionTarget->data.dobj);
-//     if (obj->data.dobj->unk_4C) {
-//     }
-//     temp_v0 = GET_TRANSFORM(obj->data.dobj);
-//     flt = &temp_v0->rot;
-
-//     x = (temp_v1->pos.v.x - temp_v0->pos.v.x) / 100.0f;
-//     z = (temp_v1->pos.v.z - temp_v0->pos.v.z) / 100.0f;
-
-//     for (i = 0; i < 100; i++) {
-//         flt->a += z;
-//         flt->v.y += x;
-//         flt->v.x -= 3.0f;
-//         temp_v0->pos.v.z += 0.017453292f;
-//         ohWait(1);
-//     }
-
-//     pokemon->pathProc = NULL;
-//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
-//     omEndProcess(NULL);
-// }
-
-// void func_802BFC84_642134(GObj* obj) {
-//     Pokemon* pokemon = (Pokemon*) obj->userData;
-//     s32 i;
-//     f32 x;
-//     f32 z;
-//     struct DObjDynamicStore* new_var;
-//     struct DObj* new_var2;
-//     PokemonTransform* temp_v0;
-//     PokemonTransform* interactionTransform;
-//     Mtx4Float* flt;
-
-//     interactionTransform = GET_TRANSFORM(pokemon->interactionTarget->data.dobj);
-
-//     // wtf?
-//     new_var2 = obj->data.dobj;
-//     if (new_var2->unk_4C) {
-//     }
-
-//     new_var = obj->data.dobj->unk_4C;
-//     temp_v0 = (PokemonTransform*) new_var->data;
-//     flt = &temp_v0->rot;
-
-//     // ug
-//     if (1) {
-//     }
-
-//     x = (interactionTransform->pos.v.x - temp_v0->pos.v.x) / 100.0f;
-//     z = (interactionTransform->pos.v.z - temp_v0->pos.v.z) / 100.0f;
-
-//     for (i = 0; i < 100; i++) {
-//         flt->a += x;
-//         flt->v.y += z;
-//         flt->v.x -= 3.0f;
-//         temp_v0->pos.v.z += PI / 180;
-//         ohWait(1);
-//     }
-
-//     pokemon->pathProc = NULL;
-//     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
-//     omEndProcess(NULL);
-// }
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 GObj* func_802BFDA0_642250(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, PokemonInitData* initData) {
     return Pokemon_SpawnOnGround(objID, id, block, blockB, spawn, &D_802C6B5C_64900C);

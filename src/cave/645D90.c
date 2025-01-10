@@ -269,7 +269,22 @@ void func_802C41D0_646680(GObj* obj) {
     Pokemon_SetState(obj, NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645D90/func_802C4264_646714.s")
+POKEMON_FUNC(func_802C4264_646714)
+    Mtx3Float* targetPos = &(GET_TRANSFORM(D_802C7B4C_649FFC->data.dobj)->pos);
+    Mtx4Float* targetRot = &(GET_TRANSFORM(D_802C7B4C_649FFC->data.dobj)->rot);
+
+    while (D_802C7B4C_649FFC != NULL) {
+        position->v.x = targetPos->v.x;
+        position->v.y = targetPos->v.y + 150.0f;
+        position->v.z = targetPos->v.z;
+        rotation->v.y = targetRot->v.y;
+        ohWait(1);
+    }
+
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 void func_802C433C_6467EC(GObj* obj) {
     ohWait(2);
@@ -277,71 +292,53 @@ void func_802C433C_6467EC(GObj* obj) {
     Pokemon_StopAuxProc(obj);
 }
 
-#ifdef NON_MATCHING
-void func_802C4378_646828(GObj* obj) {
-    UNUSED s32 pad[2];
-    DObj* dobj = obj->data.dobj;
-    Pokemon* pokemon;
-    f32 x;
-    f32 y;
-    f32 z;
-    PokemonTransform* transform1;
-    PokemonTransform* transform2;
-    Mtx3Float* pos1;
-    Mtx3Float* pos2;
+POKEMON_FUNC(func_802C4378_646828)
+    Mtx3Float* targetPos = &(GET_TRANSFORM(D_802C7B4C_649FFC->data.dobj)->pos);
+    f32 dx, dy, dz;
 
-    transform1 = GET_TRANSFORM(dobj);
-    pokemon = GET_POKEMON(obj);
-    transform2 = GET_TRANSFORM(D_802C7B4C_649FFC->data.dobj);
+    dx = targetPos->v.x - position->v.x;
+    dy = targetPos->v.y + 150.0f - position->v.y;
+    dz = targetPos->v.z - position->v.z;
 
-    pos1 = &transform1->pos;
-    pos2 = &transform2->pos;
-
-    x = transform2->pos.v.x - transform1->pos.v.x;
-    y = (transform2->pos.v.y + 150.0f) - transform1->pos.v.y;
-    z = transform2->pos.v.z - transform1->pos.v.z;
-
-    while (x != 0.0f || y != 0.0f || z != 0.0f) {
-        if (ABS(x) < 3.0f) {
-            x = 0.0f;
-        } else if (x > 0.0f) {
-            x -= 3.0f;
+    while (dx != 0 || dy != 0 || dz != 0) {
+        if (ABS(dx) < 3.0f) {
+            dx = 0;
+        } else if (dx > 0) {
+            dx -= 3.0f;
         } else {
-            x += 3.0f;
+            dx += 3.0f;
         }
 
-        if (ABS(y) < 15.0f) {
-            y = 0.0f;
-        } else if (y > 0.0f) {
-            y -= 15.0f;
+        if (ABS(dy) < 15.0f) {
+            dy = 0;
+        } else if (dy > 0) {
+            dy -= 15.0f;
         } else {
-            y += 15.0f;
+            dy += 15.0f;
         }
 
-        if (ABS(z) < 3.0f) {
-            z = 0.0f;
-        } else if (z > 0.0f) {
-            z -= 3.0f;
+        if (ABS(dz) < 3.0f) {
+            dz = 0;
+        } else if (dz > 0) {
+            dz -= 3.0f;
         } else {
-            z += 3.0f;
+            dz += 3.0f;
         }
 
-        pos1->v.x = pos2->v.x - x;
-        pos1->v.y = (pos2->v.y + 150.0f) - y;
-        pos1->v.z = pos2->v.z - z;
+        position->v.x = targetPos->v.x - dx;
+        position->v.y = targetPos->v.y + 150.0f - dy;
+        position->v.z = targetPos->v.z - dz;
         ohWait(1);
     }
 
-    pos1->v.x = pos2->v.x;
-    pos1->v.y += 150.0f;
-    pos1->v.z = pos2->v.z;
+    position->v.x = targetPos->v.x;
+    position->v.z = targetPos->v.z;
+    position->v.y = targetPos->v.y + 150.0f;
+
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     pokemon->pathProc = NULL;
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/645D90/func_802C4378_646828.s")
-#endif
 
 void func_802C45EC_646A9C(void) {
 }

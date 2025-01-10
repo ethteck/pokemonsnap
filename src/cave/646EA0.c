@@ -118,7 +118,30 @@ void func_802C4C70_647120(GObj* obj) { \
     omEndProcess(NULL);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/646EA0/func_802C4D60_647210.s")
+POKEMON_FUNC(func_802C4D60_647210)
+    Mtx3Float* targetPos = &(GET_TRANSFORM(D_802C7B4C_649FFC->data.dobj)->pos);
+    f32 targetX, targetY, targetZ;
+
+    targetX = targetPos->v.x;
+    targetY = targetPos->v.y - 250.0f;
+    targetZ = targetPos->v.z;
+    Pokemon_SetTargetPos(obj, targetX, targetZ);
+
+    while (true) {
+        Pokemon_StepToTargetPos(obj, TAU, 0);
+        if (targetY - position->v.y < 10.0f) {
+            position->v.y = targetY;
+            break;
+        }
+
+        position->v.y += 10.0f;
+        ohWait(1);
+    }
+
+    pokemon->pathProc = NULL;
+    pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
+    omEndProcess(NULL);
+}
 
 GObj* func_802C4E64_647314(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* roomB, ObjectSpawn* spawn) {
     D_802C7C3C_64A0EC = Pokemon_SpawnOnGround(gObjID, id, roomA, roomB, spawn, &D_802C7CCC_64A17C);

@@ -53,33 +53,26 @@ void func_802BFEF0_6423A0(GObj* obj) {
     Pokemon_SetState(obj, func_802C0058_642508);
 }
 
-#ifdef NON_MATCHING
-void func_802BFF74_642424(GObj* obj) {
-    Pokemon* pokemon = GET_POKEMON(obj);
-    PokemonTransform* temp_v1;
+POKEMON_FUNC(func_802BFF74_642424)
+    Mtx3Float* someScale;
 
-    PokemonTransformBase* targetTransform = GET_TRANSFORM_BASE(pokemon->interactionTarget->data.dobj); // wrong type?
-    PokemonTransform* transform = GET_TRANSFORM(obj->data.dobj);
-
-    transform->pos.v.y = targetTransform->xform.pos.v.y - 100.0f;
+    position->v.y = GET_TRANSFORM(pokemon->interactionTarget->data.dobj)->pos.v.y - 100.0f;
     ohWait(64);
     pokemon->flags |= POKEMON_FLAG_4;
 
-    temp_v1 = GET_TRANSFORM(func_8035E1D4_4FE5E4(obj)->data.dobj);
-    temp_v1->scale.v.x *= 2.0f;
-    temp_v1->scale.v.y *= 2.0f;
-    temp_v1->scale.v.z *= 2.0f;
+    someScale = &(GET_TRANSFORM(func_8035E1D4_4FE5E4(obj)->data.dobj)->scale);
+    someScale->v.x *= 2.0f;
+    someScale->v.y *= 2.0f;
+    someScale->v.z *= 2.0f;
 
     pokemon->hSpeed = 0.0f;
     pokemon->jumpVel = 700.0f;
     Pokemon_FallDownOnGround(obj, -9.8f, 1);
+
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/cave/642290/func_802BFF74_642424.s")
-#endif
 
 void func_802C0058_642508(GObj* obj) {
     UNUSED s32 pad[3];

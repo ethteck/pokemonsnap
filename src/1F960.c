@@ -33,44 +33,65 @@ void func_8001F030(Vec3f*, Vec3f*, f32);
 void func_8001F190(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
     UNUSED s32 pad[2];
     f32 temp_f0;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f18;
-    f32 temp_f2;
+    f32 w1;
+    f32 w2;
+    f32 w3;
+    f32 w0;
     f32 temp_f8;
-
-    temp_f0 = SQ(arg2);
+    
     temp_f8 = 1.0f - arg2;
-    temp_f2 = -0.5f * temp_f8 * temp_f8;
-    temp_f14 = ((3.0f * temp_f0) - (4.0f * arg2)) * 0.5f;
-    temp_f16 = ((-3.0f * temp_f0) + (2.0f * arg2) + 1.0f) * 0.5f;
-    temp_f18 = 0.5f * temp_f0;
+    temp_f0 = SQ(arg2);
+    
+    w0 = -0.5f * temp_f8 * temp_f8;
+    w1 = 0.5f * (3.0f * temp_f0 - 4.0f * arg2);
+    w2 = 0.5f * (-3.0f * temp_f0 + 2.0f * arg2 + 1.0f);
+    w3 = 0.5f * temp_f0;
 
-    arg0->x = (arg1->x * temp_f2) + (arg1[1].x * temp_f14) + (arg1[2].x * temp_f16) + (arg1[3].x * temp_f18);
-    arg0->y = (arg1->y * temp_f2) + (arg1[1].y * temp_f14) + (arg1[2].y * temp_f16) + (arg1[3].y * temp_f18);
-    arg0->z = (arg1->z * temp_f2) + (arg1[1].z * temp_f14) + (arg1[2].z * temp_f16) + (arg1[3].z * temp_f18);
+    arg0->x = arg1[0].x * w0 + arg1[1].x * w1 + arg1[2].x * w2 + arg1[3].x * w3;
+    arg0->y = arg1[0].y * w0 + arg1[1].y * w1 + arg1[2].y * w2 + arg1[3].y * w3;
+    arg0->z = arg1[0].z * w0 + arg1[1].z * w1 + arg1[2].z * w2 + arg1[3].z * w3;
 }
 
-void func_8001F2C4(Vec3f*, Vec3f*, f32);
-#pragma GLOBAL_ASM("asm/nonmatchings/1F960/func_8001F2C4.s")
+void func_8001F2C4(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
+    f32 temp_f0;
+    f32 w1;
+    f32 w2;
+    f32 w3;
+    f32 w0;
+    f32 temp_f8;
+    f32 temp2;
+    
+    temp_f8 = 1.0f - arg2;
+    temp_f0 = SQ(arg2);
+    temp2 = SQ(temp_f8);
+    
+    w0 = temp2 * temp_f8;
+    w1 = 3.0f * arg2 * temp2;
+    w2 = 3.0f * temp_f0 * temp_f8;
+    w3 = temp_f0 * arg2;
+
+    arg0->x = arg1[0].x * w0 + arg1[1].x * w1 + arg1[2].x * w2 + arg1[3].x * w3;
+    arg0->y = arg1[0].y * w0 + arg1[1].y * w1 + arg1[2].y * w2 + arg1[3].y * w3;
+    arg0->z = arg1[0].z * w0 + arg1[1].z * w1 + arg1[2].z * w2 + arg1[3].z * w3;
+}
 
 void func_8001F3D8(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
     f32 temp_f0;
-    f32 temp_f14;
-    f32 temp_f16;
-    f32 temp_f18;
-    f32 temp_f2;
+    f32 w3;
+    f32 w1;
+    f32 w2;
+    f32 w0;
 
     temp_f0 = arg2 - 1.0f;
-    temp_f2 = -3.0f * temp_f0 * temp_f0;
-    temp_f14 = SQ(arg2);
-    temp_f14 = 3.0f * temp_f14;
-    temp_f16 = ((1.0f - (4.0f * arg2)) + temp_f14) * 3.0f;
-    temp_f18 = ((2.0f * arg2) - temp_f14) * 3.0f;
+    
+    w0 = -3.0f * temp_f0 * temp_f0;
+    w1 = 3.0f * (1.0f - 4.0f * arg2 + 3.0f * SQ(arg2));
+    w2 = 3.0f * (2.0f * arg2 - 3.0f * SQ(arg2));
+    w3 = 3.0f * SQ(arg2);
 
-    arg0->x = (arg1->x * temp_f2) + (arg1[1].x * temp_f16) + (arg1[2].x * temp_f18) + (arg1[3].x * temp_f14);
-    arg0->y = (arg1->y * temp_f2) + (arg1[1].y * temp_f16) + (arg1[2].y * temp_f18) + (arg1[3].y * temp_f14);
-    arg0->z = (arg1->z * temp_f2) + (arg1[1].z * temp_f16) + (arg1[2].z * temp_f18) + (arg1[3].z * temp_f14);
+    arg0->x = arg1[0].x * w0 + arg1[1].x * w1 + arg1[2].x * w2 + arg1[3].x * w3;
+    arg0->y = arg1[0].y * w0 + arg1[1].y * w1 + arg1[2].y * w2 + arg1[3].y * w3;
+    arg0->z = arg1[0].z * w0 + arg1[1].z * w1 + arg1[2].z * w2 + arg1[3].z * w3;
 }
 
 // arg1->unk02 is total frames? elapsed frames?

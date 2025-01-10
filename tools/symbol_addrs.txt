@@ -974,8 +974,6 @@ EnvSound_MainCamera = 0x80393BD8; // segment:app_level
 EnvSound_InitData = 0x80393BDC; // segment:app_level
 EnvSound_InitDataSize = 0x80393BE0; // segment:app_level
 
-D_803A6C10_87A3C0 = 0x803A6C10; // rom:0x87A3C0 segment:window
-
 arcanine_vtx = 0x80347198; // segment:volcano_code size:0x2520
 arcanine_first = 0x803496B8; // segment:volcano_code
 arcanine_part0_draw_near = 0x803496E0; // segment:volcano_code
@@ -1962,17 +1960,6 @@ evolution_controller_last = 0x800F5400; // segment:world
 
 GetInterpolatedPosition = 0x8001FCA4;
 GetInterpolatedVelocity = 0x8001FCE8;
-
-UIText_ShadowPalette = 0x803A6980; //segment:window
-UIText_TextPalette = 0x803A6940; //segment:window
-UIText_ShadowedTextPalette = 0x803A69C0; //segment:window
-
-UILayout_ButtonObjects = 0x803A6A90; //segment:window
-UILayout_Panel = 0x803A6B14; //segment:window
-UILayout_PreviousPageIndicator = 0x803A6A80; //segment:window
-UILayout_NextPageIndicator = 0x803A6A84; //segment:window
-UILayout_Title = 0x803A6A88; //segment:window
-UILayout_ButtonPhase = 0x803A6B18; //segment:window
 
 photo_PokemonObjs = 0x800BDF30;
 photo_PokemonCount = 0x800BDF60;

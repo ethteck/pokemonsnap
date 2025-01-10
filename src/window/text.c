@@ -155,13 +155,14 @@ u8 UIText_WidthTable[2][370] = {
     }
 };
 // clang-format on
-
-extern u32 UIText_TextPalette[16];
-extern u32 UIText_ShadowPalette[16];
-extern u32 UIText_ShadowedTextPalette[16];
-extern ucolor D_803A6A04_87A1B4;
-extern ucolor D_803A6A08_87A1B8;
-extern void (*D_803A6A0C_87A1BC)(s32);
+static u8 padding[0x10];
+static u32 UIText_TextPalette[16];
+static u32 UIText_ShadowPalette[16];
+static u32 UIText_ShadowedTextPalette[16];
+static s32 padding2;
+static ucolor D_803A6A04_87A1B4;
+static ucolor D_803A6A08_87A1B8;
+static void (*D_803A6A0C_87A1BC)(s32);
 
 s32 UIText_Ascii2WideChar(s32 arg0);
 void* UIButton_Create(s32 arg0, s32 arg1, s32 arg2, s32 arg3);

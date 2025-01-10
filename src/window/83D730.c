@@ -18,10 +18,10 @@ typedef struct UnkCreamGrouperInner {
     /* 0x0C */ u8 pad_0C[4];
 } UnkCreamGrouperInner; // size = 0x10
 
-extern UnkCreamGrouper* D_803A6900_87A0B0;
-extern s32 D_803A6904_87A0B4;
-extern UnkCreamGrouper* D_803A6908_87A0B8;
-extern UnkCreamGrouper D_803A6910_87A0C0;
+static UnkCreamGrouper* D_803A6900_87A0B0;
+static s32 D_803A6904_87A0B4;
+static UnkCreamGrouper* D_803A6908_87A0B8;
+static UnkCreamGrouper D_803A6910_87A0C0;
 
 void func_80369F80_83D730(UnkCreamGrouper* arg0, UnkCreamGrouper* arg1, UnkCreamGrouper* arg2) {
     arg0->unk_10 = arg1;

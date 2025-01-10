@@ -169,7 +169,7 @@ void UIElement_Draw(UIElement* el) {
     el->text.curX = 0;
     el->text.curY = 0;
     el->text.unk_118 = 0;
-    func_8036EEB0_842660(el->x, el->y, el->x + el->width, el->y + el->height);
+    UIButton_DeleteInRect(el->x, el->y, el->x + el->width, el->y + el->height);
 }
 
 void UIElement_FillRectDefault(UIElement* el, s32 x1, s32 y1, s32 x2, s32 y2) {
@@ -1144,7 +1144,7 @@ void UIElement_SetState(UIElement* el, s32 state) {
         return;
     }
 
-    func_8036EFEC_84279C(state, el->x, el->y, el->x + el->width, el->y + el->height);
+    UIButton_SetStateInsideRect(state, el->x, el->y, el->x + el->width, el->y + el->height);
 
     if (state != UI_NORMAL) {
         el->spriteObj->data.sobj->sprite.attr |= SP_HIDDEN;

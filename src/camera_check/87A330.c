@@ -760,7 +760,7 @@ void func_camera_check_801DEAC0(s32 arg0) {
         sp34 = D_camera_check_80249914;
         sp30 = D_camera_check_80249920;
         UIElement_Draw(D_camera_check_80249914);
-        func_8036EE40_8425F0();
+        UIButton_DeleteAll();
         if (D_camera_check_80208954 == 3) {
             func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
         }
@@ -935,7 +935,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UILayout_Init();
     FocusMark_Create();
     FocusMark_Show(false);
-    func_8036EE40_8425F0();
+    UIButton_DeleteAll();
 
     if (temp_s0 && temp_s0 && temp_s0) {
         // TODO fake match - fixes regalloc
@@ -1064,7 +1064,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_camera_check_801DD93C(0);
         UILayout_WaitPanelTransitionComplete();
         ohWait(3);
-        func_8036EE40_8425F0();
+        UIButton_DeleteAll();
         func_80374D20_8484D0();
         if (func_camera_check_801E27FC()) {
             func_800AADF0(SCENE_PHOTO_CHECK);

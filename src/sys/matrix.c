@@ -1017,54 +1017,36 @@ void hal_translate_f(Mtx4f mf, f32 x, f32 y, f32 z) {
     mf[3][3] = 1.0f;
 }
 
-#ifdef NON_MATCHING
 void hal_translate(Mtx* m, f32 x, f32 y, f32 z) {
     u32 e1, e2;
 
-    e1 = FTOFIX32(1); // 0, 0
-    e2 = FTOFIX32(0); // 0, 1
-    m->m[0][0] = COMBINE_INTEGRAL(e1, e2);
-    m->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[0][0] = COMBINE_INTEGRAL(FTOFIX32(1.0F), FTOFIX32(0.0F));
+    m->m[2][0] = COMBINE_FRACTIONAL(FTOFIX32(1.0F), FTOFIX32(0.0F));
 
-    e1 = FTOFIX32(0); // 0, 2
-    e2 = FTOFIX32(0); // 0, 3
-    m->m[0][1] = COMBINE_INTEGRAL(e1, e2);
-    m->m[2][1] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[0][1] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
+    m->m[2][1] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
 
-    e1 = FTOFIX32(0); // 1 0
-    e2 = FTOFIX32(1); // 1 1
-    m->m[0][2] = COMBINE_INTEGRAL(e1, e2);
-    m->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[0][2] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(1.0F));
+    m->m[2][2] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(1.0F));
 
-    e1 = FTOFIX32(0); // 1 2
-    e2 = FTOFIX32(0);
-    m->m[0][3] = COMBINE_INTEGRAL(e1, e2);
-    m->m[2][3] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[0][3] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
+    m->m[2][3] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
 
-    e1 = FTOFIX32(0); // 2 0
-    e2 = FTOFIX32(0);
-    m->m[1][0] = COMBINE_INTEGRAL(e1, e2);
-    m->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[1][0] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
+    m->m[3][0] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
 
-    e1 = FTOFIX32(1); // 2 2
-    e2 = FTOFIX32(0);
-    m->m[1][1] = COMBINE_INTEGRAL(e1, e2);
-    m->m[3][1] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[1][1] = COMBINE_INTEGRAL(FTOFIX32(1.0F), FTOFIX32(0.0F));
+    m->m[3][1] = COMBINE_FRACTIONAL(FTOFIX32(1.0F), FTOFIX32(0.0F));
 
-    e1 = FTOFIX32(x); // 3 0
-    e2 = FTOFIX32(y); // 3 1
+    e1 = FTOFIX32(x);
+    e2 = FTOFIX32(y);
     m->m[1][2] = COMBINE_INTEGRAL(e1, e2);
     m->m[3][2] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = FTOFIX32(z); // 3 2
-    e2 = FTOFIX32(1); // 3 3
-    m->m[1][3] = COMBINE_INTEGRAL(e1, e2);
-    m->m[3][3] = COMBINE_FRACTIONAL(e1, e2);
+    e1 = FTOFIX32(z);
+    m->m[1][3] = COMBINE_INTEGRAL(e1, FTOFIX32(1.0F));
+    m->m[3][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(1.0F));
 }
-
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/hal_translate.s")
-#endif
 
 void hal_rotate_f(Mtx4f mf, f32 a, f32 x, f32 y, f32 z) {
     f32 sine;
@@ -1196,87 +1178,53 @@ void hal_rotate_rpy_f(Mtx4f mf, f32 r, f32 p, f32 h) {
     mf[0][3] = 0.0f;
 }
 
-#ifdef NON_MATCHING
 void hal_rotate_rpy(Mtx* m, f32 r, f32 p, f32 h) {
-    s32 sinr, sinp, sinh;
-    s32 cosr, cosp, cosh;
+    s32 sinr, sinp, siny;
+    s32 cosr, cosp, cosy;
+    u16 indexr, indexp, indexy;
     u32 e1, e2;
-    u16 idx;
 
-    idx = (s32) (r * 651.8986f) & 0xFFF;
-    sinr = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinr = -sinr;
-    }
-    cosr = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosr = -cosr;
-    }
-
-    idx = (s32) (p * 651.8986f) & 0xFFF;
-    sinp = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinp = -sinp;
-    }
-    cosp = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosp = -cosp;
-    }
-
-    idx = (s32) (h * 651.8986f) & 0xFFF;
-    sinh = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinh = -sinh;
-    }
-    cosh = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosh = -cosh;
-    }
+    hal_get_sin_cos_u_short(sinr, cosr, r, indexr);
+    hal_get_sin_cos_u_short(sinp, cosp, p, indexp);
+    hal_get_sin_cos_u_short(siny, cosy, h, indexy);
 
     // [0, 0] -> [0, 3]
-    e1 = (cosp * cosh) >> 14;
-    e2 = (cosp * sinh) >> 14;
-    // e3 = sinp * -2;
+    e1 = (cosp * cosy) >> 14;
+    e2 = (cosp * siny) >> 14;
     m->m[0][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = sinp * -2;
-    m->m[0][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][1] = COMBINE_FRACTIONAL(e1, 0);
+    e1 = -sinp * 2;
+    m->m[0][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [1, 0] -> [1, 3]
-    e1 = ((((sinr * sinp) >> 15) * cosh) >> 14) - ((cosr * sinh) >> 14);
-    e2 = ((((sinr * sinp) >> 15) * sinh) >> 14) + ((cosr * cosh) >> 14);
-    // e3 = (sinr * cosp) >> 14;
+    e1 = ((((sinr * sinp) >> 15) * cosy) >> 14) - ((cosr * siny) >> 14);
+    e2 = ((((sinr * sinp) >> 15) * siny) >> 14) + ((cosr * cosy) >> 14);
     m->m[0][2] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = (sinr * cosp) >> 14;
-    // e2 = 0;
-    m->m[0][3] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][3] = COMBINE_FRACTIONAL(e1, 0);
+    m->m[0][3] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [2, 0] -> [2, 3]
-    e1 = ((((cosr * sinp) >> 15) * cosh) >> 14) + ((sinr * sinh) >> 14);
-    e2 = ((((cosr * sinp) >> 15) * sinh) >> 14) - ((sinr * cosh) >> 14);
-    // e3 = (cosr * cosp) >> 14;
+    e1 = ((((cosr * sinp) >> 15) * cosy) >> 14) + ((sinr * siny) >> 14);
+    e2 = ((((cosr * sinp) >> 15) * siny) >> 14) - ((sinr * cosy) >> 14);
+
     m->m[1][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = (cosr * cosp) >> 14;
-    m->m[1][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[3][1] = COMBINE_FRACTIONAL(e1, 0);
+    m->m[1][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[3][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
-    // [3, 0] -> [3, 3]
-    m->m[1][2] = COMBINE_INTEGRAL(0, 0);
-    m->m[3][2] = COMBINE_FRACTIONAL(0, 0);
+    m->m[1][2] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
+    m->m[3][2] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(0.0F));
 
-    m->m[1][3] = COMBINE_INTEGRAL(0, FTOFIX32(1.0f));
-    m->m[3][3] = COMBINE_FRACTIONAL(0, FTOFIX32(1.0f));
+    m->m[1][3] = COMBINE_INTEGRAL(FTOFIX32(0.0F), FTOFIX32(1.0F));
+    m->m[3][3] = COMBINE_FRACTIONAL(FTOFIX32(0.0F), FTOFIX32(1.0F));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/hal_rotate_rpy.s")
-#endif
 
 void hal_rotate_rpy_translate_f(Mtx4f mf, f32 dx, f32 dy, f32 dz, f32 r, f32 p, f32 h) {
     hal_rotate_rpy_f(mf, r, p, h);
@@ -1285,77 +1233,48 @@ void hal_rotate_rpy_translate_f(Mtx4f mf, f32 dx, f32 dy, f32 dz, f32 r, f32 p, 
     mf[3][2] = dz;
 }
 
-#ifdef NON_MATCHING
 void hal_rotate_rpy_translate(Mtx* m, f32 dx, f32 dy, f32 dz, f32 r, f32 p, f32 h) {
-    s32 sinr, sinp, sinh;
-    s32 cosr, cosp, cosh;
+    s32 sinr, sinp, siny;
+    s32 cosr, cosp, cosy;
+    u16 indexr, indexp, indexy;
     u32 e1, e2;
-    u16 idx;
 
-    idx = (s32) (r * 651.8986f) & 0xFFF;
-    sinr = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinr = -sinr;
-    }
-    cosr = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosr = -cosr;
-    }
-
-    idx = (s32) (p * 651.8986f) & 0xFFF;
-    sinp = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinp = -sinp;
-    }
-    cosp = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosp = -cosp;
-    }
-
-    idx = (s32) (h * 651.8986f) & 0xFFF;
-    sinh = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinh = -sinh;
-    }
-    cosh = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosh = -cosh;
-    }
+    hal_get_sin_cos_u_short(sinr, cosr, r, indexr);
+    hal_get_sin_cos_u_short(sinp, cosp, p, indexp);
+    hal_get_sin_cos_u_short(siny, cosy, h, indexy);
 
     // [0, 0] -> [0, 3]
-    e1 = (cosp * cosh) >> 14;
-    e2 = (cosp * sinh) >> 14;
-    // e3 = sinp * -2;
+    e1 = (cosp * cosy) >> 14;
+    e2 = (cosp * siny) >> 14;
     m->m[0][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = sinp * -2;
-    m->m[0][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][1] = COMBINE_FRACTIONAL(e1, 0);
+    e1 = -sinp * 2;
+    m->m[0][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [1, 0] -> [1, 3]
-    e1 = ((((sinr * sinp) >> 15) * cosh) >> 14) - ((cosr * sinh) >> 14);
-    e2 = ((((sinr * sinp) >> 15) * sinh) >> 14) + ((cosr * cosh) >> 14);
-    // e3 = (sinr * cosp) >> 14;
+    e1 = ((((sinr * sinp) >> 15) * cosy) >> 14) - ((cosr * siny) >> 14);
+    e2 = ((((sinr * sinp) >> 15) * siny) >> 14) + ((cosr * cosy) >> 14);
     m->m[0][2] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = (sinr * cosp) >> 14;
-    // e2 = 0;
-    m->m[0][3] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][3] = COMBINE_FRACTIONAL(e1, 0);
+    m->m[0][3] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [2, 0] -> [2, 3]
-    e1 = ((((cosr * sinp) >> 15) * cosh) >> 14) + ((sinr * sinh) >> 14);
-    e2 = ((((cosr * sinp) >> 15) * sinh) >> 14) - ((sinr * cosh) >> 14);
-    // e3 = (cosr * cosp) >> 14;
+    e1 = ((((cosr * sinp) >> 15) * cosy) >> 14) + ((sinr * siny) >> 14);
+    e2 = ((((cosr * sinp) >> 15) * siny) >> 14) - ((sinr * cosy) >> 14);
+
     m->m[1][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = (cosr * cosp) >> 14;
-    m->m[1][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[3][1] = COMBINE_FRACTIONAL(e1, 0);
+    m->m[1][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[3][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
+    // [3, 0] -> [3, 3]
     // [3, 0] -> [3, 3]
     e1 = FTOFIX32(dx);
     e2 = FTOFIX32(dy);
@@ -1363,13 +1282,9 @@ void hal_rotate_rpy_translate(Mtx* m, f32 dx, f32 dy, f32 dz, f32 r, f32 p, f32 
     m->m[3][2] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = FTOFIX32(dz);
-    e2 = FTOFIX32(1.0f);
-    m->m[1][3] = COMBINE_INTEGRAL(e1, e2);
-    m->m[3][3] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[1][3] = COMBINE_INTEGRAL(e1, FTOFIX32(1.0F));
+    m->m[3][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(1.0F));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/hal_rotate_rpy_translate.s")
-#endif
 
 void hal_rotate_rpy_translate_scale_f(
     Mtx4f mf,
@@ -1389,7 +1304,6 @@ void hal_rotate_rpy_translate_scale_f(
     hal_scale_mul_f(mf, sx, sy, sz);
 }
 
-#ifdef NON_MATCHING
 void hal_rotate_rpy_translate_scale(
     Mtx* m,
     f32 dx,
@@ -1401,76 +1315,49 @@ void hal_rotate_rpy_translate_scale(
     f32 sx,
     f32 sy,
     f32 sz) {
-    s32 sinr, sinp, sinh;
-    s32 cosr, cosp, cosh;
-    s32 scaleX, scaleY, scaleZ;
+    s32 sinr, sinp, siny;
+    s32 cosr, cosp, cosy;
+    s32 scalex, scaley, scalez;
+    u16 indexr, indexp, indexy;
     u32 e1, e2;
-    u16 idx;
 
-    idx = (s32) (r * 651.8986f) & 0xFFF;
-    sinr = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinr = -sinr;
-    }
-    cosr = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosr = -cosr;
-    }
+    hal_get_sin_cos_u_short(sinr, cosr, r, indexr);
+    hal_get_sin_cos_u_short(sinp, cosp, p, indexp);
+    hal_get_sin_cos_u_short(siny, cosy, h, indexy);
 
-    idx = (s32) (p * 651.8986f) & 0xFFF;
-    sinp = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinp = -sinp;
-    }
-    cosp = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosp = -cosp;
-    }
-
-    idx = (s32) (h * 651.8986f) & 0xFFF;
-    sinh = sSinTable[idx & 0x7FF];
-    if (idx & 0x800) {
-        sinh = -sinh;
-    }
-    cosh = sSinTable[(idx + 0x400) & 0x7FF];
-    if ((idx + 0x400) & 0x800) {
-        cosh = -cosh;
-    }
-
-    scaleX = (s32) (sx * (f32) 0x100);
-    scaleY = (s32) (sy * (f32) 0x100);
-    scaleZ = (s32) (sz * (f32) 0x100);
+    scalex = sx * 256;
+    scaley = sy * 256;
+    scalez = sz * 256;
 
     // [0, 0] -> [0, 3]
-    e1 = (((cosp * cosh) >> 14) * scaleX) / 256;
-    e2 = (((cosp * sinh) >> 14) * scaleX) / 256;
+    e1 = (((cosp * cosy) >> 14) * scalex) >> 8;
+    e2 = (((cosp * siny) >> 14) * scalex) >> 8;
     m->m[0][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][0] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = (sinp * -2 * scaleX) / 256;
-    m->m[0][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][1] = COMBINE_FRACTIONAL(e1, 0);
+    e1 = (-sinp * scalex) >> 7;
+    m->m[0][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [1, 0] -> [1, 3]
-    e1 = (((((sinr * sinp) >> 14) * cosh) >> 14) - ((cosr * sinh) >> 14) * scaleY) / 256;
-    e2 = (((((sinr * sinp) >> 14) * sinh) >> 14) + ((cosr * cosh) >> 14) * scaleY) / 256;
+    e1 = ((((((sinr * sinp) >> 15) * cosy) >> 14) - ((cosr * siny) >> 14)) * scaley) >> 8;
+    e2 = ((((((sinr * sinp) >> 15) * siny) >> 14) + ((cosr * cosy) >> 14)) * scaley) >> 8;
     m->m[0][2] = COMBINE_INTEGRAL(e1, e2);
     m->m[2][2] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = (((sinr * cosp) >> 14) * scaleY) / 256;
-    // e2 = 0;
-    m->m[0][3] = COMBINE_INTEGRAL(e1, 0);
-    m->m[2][3] = COMBINE_FRACTIONAL(e1, 0);
+    e1 = (((sinr * cosp) >> 14) * scaley) >> 8;
+    m->m[0][3] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[2][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [2, 0] -> [2, 3]
-    e1 = (((((cosr * sinp) >> 14) * cosh) >> 14) + ((sinr * sinh) >> 14) * scaleZ) / 256;
-    e2 = (((((cosr * sinp) >> 14) * sinh) >> 14) - ((sinr * cosh) >> 14) * scaleZ) / 256;
+    e1 = ((((((cosr * sinp) >> 15) * cosy) >> 14) + ((sinr * siny) >> 14)) * scalez) >> 8;
+    e2 = ((((((cosr * sinp) >> 15) * siny) >> 14) - ((sinr * cosy) >> 14)) * scalez) >> 8;
     m->m[1][0] = COMBINE_INTEGRAL(e1, e2);
     m->m[3][0] = COMBINE_FRACTIONAL(e1, e2);
 
-    e1 = (((cosr * cosp) >> 14) * scaleZ) / 256;
-    m->m[1][1] = COMBINE_INTEGRAL(e1, 0);
-    m->m[3][1] = COMBINE_FRACTIONAL(e1, 0);
+    e1 = (((cosr * cosp) >> 14) * scalez) >> 8;
+    m->m[1][1] = COMBINE_INTEGRAL(e1, FTOFIX32(0.0F));
+    m->m[3][1] = COMBINE_FRACTIONAL(e1, FTOFIX32(0.0F));
 
     // [3, 0] -> [3, 3]
     e1 = FTOFIX32(dx);
@@ -1479,13 +1366,9 @@ void hal_rotate_rpy_translate_scale(
     m->m[3][2] = COMBINE_FRACTIONAL(e1, e2);
 
     e1 = FTOFIX32(dz);
-    e2 = FTOFIX32(1.0f);
-    m->m[1][3] = COMBINE_INTEGRAL(e1, e2);
-    m->m[3][3] = COMBINE_FRACTIONAL(e1, e2);
+    m->m[1][3] = COMBINE_INTEGRAL(e1, FTOFIX32(1.0F));
+    m->m[3][3] = COMBINE_FRACTIONAL(e1, FTOFIX32(1.0F));
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/hal_rotate_rpy_translate_scale.s")
-#endif
 
 void hal_rotate_pyr_f(Mtx4f mf, f32 r, f32 p, f32 h) {
     f32 sinr, sinp, sinh;

@@ -14,8 +14,8 @@ typedef struct FocusMarkData {
 extern Sprite D_80381A38_8551E8;
 extern Bitmap* D_80381D98_855548[];
 
-extern GObj* D_803A6A50_87A200[4];
-extern FocusMarkData D_803A6A60_87A210;
+static GObj* D_803A6A50_87A200[4];
+static FocusMarkData D_803A6A60_87A210;
 
 void FocusMark_SetTargetPos(s32 x, s32 y) {
     D_803A6A60_87A210.targetX = x;

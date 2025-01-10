@@ -29,7 +29,7 @@ POKEMON_FUNC(func_802D0B80_7AA110)
 
 POKEMON_FUNC(func_802D0BA4_7AA134)
     Pokemon_SetAnimation(obj, &D_802EC6C0_7C5C50);
-    pokemon->transitionGraph = &D_802EC718_7C5CA8;
+    pokemon->transitionGraph = D_802EC718_7C5CA8;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }

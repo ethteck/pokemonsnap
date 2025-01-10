@@ -30,14 +30,14 @@ s32 UILayout_PanelVisibility = 0;
 f32 UILayout_PanelPosX = -180.0f;
 
 // BSS
-extern GObj* UILayout_PreviousPageIndicator;
-extern GObj* UILayout_NextPageIndicator;
-extern GObj* UILayout_Title;
-extern GObj* UILayout_ButtonObjects[];
-extern GObj* UILayout_Panel;
-extern f32 UILayout_ButtonPhase[];
-extern UIButton D_803A6BA0_87A350[];
-extern s32 D_803A6BE8_87A398[];
+static GObj* UILayout_PreviousPageIndicator;
+static GObj* UILayout_NextPageIndicator;
+static GObj* UILayout_Title;
+static GObj* UILayout_ButtonObjects[BUTTON_MAX + 1];
+static GObj* UILayout_Panel;
+static f32 UILayout_ButtonPhase[BUTTON_MAX + 1];
+static UIButton D_803A6BA0_87A350[9];
+static s32 D_803A6BE8_87A398[9];
 
 void UILayout_ToggleAnimationDirection(void) {
     UILayout_IsAnimationHorizontal = !UILayout_IsAnimationHorizontal;

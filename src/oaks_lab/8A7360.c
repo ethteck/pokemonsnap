@@ -513,7 +513,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
 
     UILayout_Init();
     FocusMark_Create();
-    func_8036EE40_8425F0();
+    UIButton_DeleteAll();
     FocusMark_Show(false);
     FocusMark_SetTargetSize(0x78, 0x1A);
     FocusMark_SetTargetPos(0x32, 0x2C);
@@ -602,7 +602,7 @@ void func_800E2C0C_8A842C(GObj* arg0) {
         }
 
         func_800E1B58_8A7378(0);
-        func_8036EE40_8425F0();
+        UIButton_DeleteAll();
         UILayout_WaitPanelTransitionComplete();
         func_800AAF10();
         ohWait(6);

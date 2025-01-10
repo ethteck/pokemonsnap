@@ -4656,7 +4656,7 @@ segments:
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
     - [0x840A50, c, text]
-    - [0x842390, c]
+    - [0x842390, c, button]
     - [0x842850, c, frame]
     - [0x843050, c, frame_fade]
     - [0x843780, pad]

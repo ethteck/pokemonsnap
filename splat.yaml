@@ -4682,8 +4682,6 @@ segments:
     - [0x87A000, .rodata, layout]
     - [0x87A090, .rodata, 8456E0]
     - [0x87A0A0, .rodata, 8486E0]
-
-    - { name: bss_803A6900, type: bss, vram: 0x803A6900 }
   - name: camera_check
     dir: camera_check
     symbol_name_format: camera_check_$VRAM

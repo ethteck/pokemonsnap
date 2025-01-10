@@ -17,7 +17,6 @@ s32 sMaxPokemonObjId = 0;
 s32 sPokemonLink = 0;
 s32 D_8038A47C_52A88C = 0;
 s32 D_8038A480_52A890 = 0; // unused
-s32 sPokemonCounter = 0;
 
 // bss
 extern u8 padding_503C10[8];
@@ -83,9 +82,9 @@ void func_80363928_503D38(s32 minObjId, s32 maxObjId, s32 link, s32 arg3) {
 static void nullsub() {
 }
 
-#ifdef NON_MATCHING
-s32 func_8036396C_503D7C(void) {
+s32 getFreePokemonId(void) {
     s32 i;
+    static sPokemonCounter = 0;
 
     sPokemonCounter++;
     if (sPokemonCounter > sMaxPokemonObjId - sMinPokemonObjId) {
@@ -106,10 +105,6 @@ s32 func_8036396C_503D7C(void) {
 
     return sMaxPokemonObjId;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/503C10/func_8036396C_503D7C.s")
-s32 func_8036396C_503D7C(void);
-#endif
 
 void pokemonAdd(WorldBlock* block, WorldBlock* blockB, PokemonDef* def) {
     ObjectSpawn* spawn;
@@ -128,7 +123,7 @@ void pokemonAdd(WorldBlock* block, WorldBlock* blockB, PokemonDef* def) {
     spawn = block->descriptor->spawn;
 
     while (spawn->id != 0xFFFFFFFF) {
-        s32 objId = func_8036396C_503D7C();
+        s32 objId = getFreePokemonId();
         if (!inRange_DEBUG(objId, sMinPokemonObjId, sMaxPokemonObjId, "animalAdd()")) {
             return;
         }
@@ -171,7 +166,7 @@ GObj* pokemonAddOne(WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn, P
         return NULL;
     }
 
-    objId = func_8036396C_503D7C();
+    objId = getFreePokemonId();
     if (!inRange_DEBUG(objId, sMinPokemonObjId, sMaxPokemonObjId, "animalAddOne()")) {
         return NULL;
     }

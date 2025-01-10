@@ -3,7 +3,7 @@
 
 extern Sprite D_80380C88_854438;
 extern Bitmap* D_803818B0_855060[3][9];
-extern UIFrame D_803A6A10_87A1C0;
+static UIFrame D_803A6A10_87A1C0;
 
 void UIFrame_ShowBackground(UIFrame* f, bool show) {
     if (show) {

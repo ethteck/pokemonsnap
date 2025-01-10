@@ -4663,7 +4663,7 @@ segments:
     - [0x843790, c, focus_mark]
     - [0x843D10, c, layout]
     - [0x845160, c]
-    - [0x846E20, c]
+    - [0x8456E0, c]
     - [0x847B60, c]
     - [0x8486E0, c]
     - [0x848B50, c]
@@ -4680,7 +4680,7 @@ segments:
     - [0x879F20, .rodata, text]
     - [0x879FF0, .rodata, focus_mark]
     - [0x87A000, .rodata, layout]
-    - [0x87A090, .rodata, 846E20]
+    - [0x87A090, .rodata, 8456E0]
     - [0x87A0A0, .rodata, 8486E0]
 
     - { name: bss_803A6900, type: bss, vram: 0x803A6900 }

@@ -22,8 +22,8 @@ extern SomeC D_802EC51C_7C5AAC[];
 extern SomeC D_802EC5D0_7C5B60[];
 extern s32 D_802EC5E8_7C5B78;
 extern s32 D_802EC5EC_7C5B7C;
-extern s32 D_802EC5F0_7C5B80;
-extern s32 D_802EC608_7C5B98;
+extern Sprite* D_802EC5F0_7C5B80[];
+extern Sprite* D_802EC608_7C5B98[];
 extern Sprite* D_802EC620_7C5BB0[6];
 extern f32 D_802EC638_7C5BC8[3];
 extern GObj* D_802EC644_7C5BD4;
@@ -83,8 +83,41 @@ GObj* func_802CFA00_7A8F90(s32 gObjID, u16 id, WorldBlock* roomA, WorldBlock* ro
     return D_802D41A4_7AD734;
 }
 
-void func_802CFA40_7A8FD0(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8DD0/func_802CFA40_7A8FD0.s")
+void func_802CFA40_7A8FD0(GObj* obj) {
+    Sprite** var_s7;
+    s32 i;
+    s32 var_s2;
+
+    while (true) {
+        switch (D_802EC5EC_7C5B7C) {
+                // clang-format off
+            case 0:
+                var_s7 = D_802EC5F0_7C5B80; var_s2 = 200; break;
+            case 1:
+                var_s7 = D_802EC608_7C5B98; var_s2 = 200; break;
+                // clang-format on
+        }
+
+        for (i = 0; var_s7[i] != NULL; i++) {
+            D_8034E0A0_827630->sprite = *var_s7[i];
+            spMove(&D_8034E0A0_827630->sprite, 143, 66);
+            ohWait(4);
+        }
+
+        for (i = 0; i < var_s2; i++) {
+            switch (D_802EC5EC_7C5B7C) {
+                case 0:
+                    D_8034E0A0_827630->sprite = *D_802EC5F0_7C5B80[0];
+                    break;
+                case 1:
+                    D_8034E0A0_827630->sprite = *D_802EC608_7C5B98[0];
+                    break;
+            }
+            spMove(&D_8034E0A0_827630->sprite, 143, 66);
+            ohWait(1);
+        }
+    }
+}
 
 void func_802CFC6C_7A91FC(GObj* arg0) {
     s32 idx = 0;
@@ -303,9 +336,8 @@ void func_802D04BC_7A9A4C(DObj* arg0, s32 arg1, f32 arg2) {
 #ifdef NON_MATCHING
 void func_802D04CC_7A9A5C(GObj* arg0) {
     func_800AB9A4();
-    D_8034E0AC_82763C = 0;
 
-    while (true) {
+    for (D_8034E0AC_82763C = 0; ; D_8034E0AC_82763C++) {
         switch (D_8034E0AC_82763C) {
             case 1:
                 D_8034E0B0_827640 = auPlaySoundWithParams(SOUND_ID_36, 0x7000, 0x40, 1.0f, 30);
@@ -329,12 +361,13 @@ void func_802D04CC_7A9A5C(GObj* arg0) {
                 auPlaySong(0, SONG_ID_19);
                 break;
             case 720:
-            case 900:
                 break;
             case 830:
                 func_800AB700(D_8034E0B1_827641, 0x2800, 0x1800, 60);
                 func_800AB700(D_8034C8C8_825E58, 0x3800, 0x1C00, 60);
                 auSetBGMVolumeSmooth(1, 0x6000, 60);
+                break;
+            case 900:
                 break;
         }
 
@@ -345,7 +378,6 @@ void func_802D04CC_7A9A5C(GObj* arg0) {
             auSetBGMVolumeSmooth(1, 0, 120);
         }
         ohWait(1);
-        D_8034E0AC_82763C++;
     }
 }
 #else

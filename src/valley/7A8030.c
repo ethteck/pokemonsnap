@@ -64,10 +64,78 @@ POKEMON_FUNC(func_802CEB9C_7A812C)
     Pokemon_SetState(obj, NULL);
 }
 
-f32 func_802CEC18_7A81A8(Vec3f* arg0, Vec3f* arg1);
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CEC18_7A81A8.s")
+f32 func_802CEC18_7A81A8(Vec3f* arg0, Vec3f* arg1) {
+    f32 deltaX = arg0->x - arg1->x;
+    f32 deltaY = arg0->y - arg1->y;
+    f32 deltaZ = arg0->z - arg1->z;
+    f32 f2;
+    f32 angle;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CED44_7A82D4.s")
+    if (ABS(deltaZ) < 0.00001) {
+        deltaX = 1.0f;
+        deltaZ = 0.0f;
+    }
+
+    f2 = 1.0f / sqrtf(SQ(deltaX) + SQ(deltaY) + SQ(deltaZ));
+    deltaX *= f2;
+    deltaZ *= f2;
+
+    angle = atan2f(deltaX, deltaZ);
+    if (angle < 0.0f) {
+        angle += TAU;
+    } else if (angle > TAU) {
+        angle -= (s32) (angle / TAU) * TAU;
+    }
+    return angle;
+}
+
+POKEMON_FUNC(func_802CED44_7A82D4)
+    Vec3f* playerPos = &GET_TRANSFORM(gPlayerDObj)->pos.v;
+    Vec3f* pokemonPos = &GET_TRANSFORM(model)->pos.v;
+    f32 targetYaw;
+    f32 yaw;
+    f32 delta;
+    f32 sign;
+    f32 turnSpeed = 0.03f;
+    f32 x, z;
+
+    while (true) {
+        targetYaw = func_802CEC18_7A81A8(playerPos, pokemonPos);
+
+        yaw = GET_TRANSFORM(model)->rot.v.y;
+        yaw -= (s32) (yaw / TAU) * TAU;
+        if (yaw < 0.0f) {
+            yaw += TAU;
+        }
+
+        delta = targetYaw - yaw;
+        if (ABS(delta) > turnSpeed) {
+            if (ABS(delta) < PI) {
+                sign = SIGN(delta);
+            } else {
+                sign = -SIGN(delta);
+            }
+            targetYaw = yaw + sign * turnSpeed;
+        }
+        GET_TRANSFORM(model)->rot.v.y = targetYaw;
+
+        if (targetYaw < pokemon->euler.y) {
+            pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_1000;
+        } else {
+            pokemon->processFlags |= POKEMON_PROCESS_FLAG_1000;
+        }
+
+        if (targetYaw < pokemon->euler.y) {
+            targetYaw = pokemon->euler.y;
+        }
+
+        x = pokemon->pos1.x + sinf(targetYaw) * 500.0f;
+        z = pokemon->pos1.z + cosf(targetYaw) * 500.0f;
+        GET_TRANSFORM(model)->pos.v.x = x;
+        GET_TRANSFORM(model)->pos.v.z = z;
+        ohWait(1);
+    }
+}
 
 POKEMON_FUNC(func_802CEFB8_7A8548)
     InteractionHandler2 sp20 = D_802D404C_7AD5DC;

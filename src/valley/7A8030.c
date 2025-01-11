@@ -89,7 +89,6 @@ f32 func_802CEC18_7A81A8(Vec3f* arg0, Vec3f* arg1) {
     return angle;
 }
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8030/func_802CED44_7A82D4.s")
 POKEMON_FUNC(func_802CED44_7A82D4)
     Vec3f* playerPos = &GET_TRANSFORM(gPlayerDObj)->pos.v;
     Vec3f* pokemonPos = &GET_TRANSFORM(model)->pos.v;

@@ -8,7 +8,7 @@ extern GObj* D_802D2980_7ABF10;
 extern PokemonDef D_802D2984_7ABF14;
 extern PokemonDef D_802D2994_7ABF24;
 extern PokemonDef D_802D29A4_7ABF34;
-extern PokemonDef D_802D29B4_7ABF44;
+extern RandomState2 D_802D29B4_7ABF44[4];
 extern ScreenSettings D_802D29D4_7ABF64;
 extern SceneSetup D_802D29F0_7ABF80;
 extern UNK_TYPE D_802D2A00_7ABF90;
@@ -178,8 +178,43 @@ void func_802C606C_79F5FC(GObj* obj) {
     }
 }
 
-void func_802C6168_79F6F8(GObj*, GroundResult*);
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/79F1B0/func_802C6168_79F6F8.s")
+void func_802C6168_79F6F8(GObj* obj, GroundResult* ground) {
+    DObj* model = obj->data.dobj;
+    Item* item = GET_ITEM(obj);
+    s32 i;
+    s32 numOptions = ARRAY_COUNT(D_802D29B4_7ABF44);
+    s32 sumWeight;
+    s32 randValue;
+
+    switch (ground->surfaceType) {
+        case SURFACE_TYPE_0019FF:
+            if (D_802D3B34_7AD0C4 != NULL && item->itemID == ITEM_ID_PESTER_BALL) {
+                cmdSendCommand(D_802D3B34_7AD0C4, 43, NULL);
+                return;
+            }
+            break;
+        case SURFACE_TYPE_337FB2:
+            if (Vec3fDistance(&GET_TRANSFORM(gPlayerDObj)->pos.v, &model->position.v) > 500.0f) {
+                sumWeight = 0;
+                for (i = 0; i < numOptions; i++) {
+                    sumWeight += D_802D29B4_7ABF44[i].weight;
+                }
+                randValue = randRange(sumWeight);
+                sumWeight = 0;
+                for (i = 0; i < numOptions; i++) {
+                    sumWeight += D_802D29B4_7ABF44[i].weight;
+                    if (sumWeight > randValue) {
+                        if (D_802D29B4_7ABF44[i].func != NULL) {
+                            D_802D29B4_7ABF44[i].func(obj);
+                        }
+                        break;
+                    }
+                }
+                return;
+            }
+            break;
+    }
+}
 
 void func_802C6300_79F890(void) {
     void* sp1C;

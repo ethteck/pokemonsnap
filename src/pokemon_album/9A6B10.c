@@ -126,7 +126,7 @@ void album_InitCamera(void) {
 void album_Init(void) {
     UNUSED s32 pad[2];
 
-    func_8036A3F8_83DBA8(album_Heap, sizeof(album_Heap));
+    UIMem_CreateHeap(album_Heap, sizeof(album_Heap));
     func_800AAE28();
     album_InitCamera();
     func_80374D40_8484F0();
@@ -138,7 +138,7 @@ void album_Init(void) {
 }
 
 void func_801DCC74_9A6EC4(void* arg0) {
-    func_8036A228_83D9D8(arg0);
+    UIMem_Deallocate(arg0);
 }
 
 s32 album_Start(s32 sceneId) {

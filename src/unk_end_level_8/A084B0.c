@@ -232,7 +232,7 @@ void func_801DCFE0_A08BD0(void) {
 
     D_801DD130_A08D20.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_801DD130_A08D20);
-    func_8036A3F8_83DBA8(D_801DD260_A08E50, sizeof(D_801DD260_A08E50));
+    UIMem_CreateHeap(D_801DD260_A08E50, sizeof(D_801DD260_A08E50));
     func_800AAE28();
     func_801DCE64_A08A54();
     UIText_Initialize();
@@ -242,7 +242,7 @@ void func_801DCFE0_A08BD0(void) {
 }
 
 void func_801DD070_A08C60(UNK_PTR arg0) {
-    func_8036A228_83D9D8(arg0);
+    UIMem_Deallocate(arg0);
 }
 
 s32 func_801DD09C_A08C8C(s32 arg0) {

@@ -317,7 +317,7 @@ UIElement* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags) {
     ndisplist = (numTiles2 = numTiles ^ (totalHeight * 0)) * 12;
     new_var = 24;
     ndisplist += new_var;
-    el = func_8036A194_83D944(objsize + rastersBytes + bitmapsBytes + ndisplist * sizeof(Gfx));
+    el = UIMem_Allocate(objsize + rastersBytes + bitmapsBytes + ndisplist * sizeof(Gfx));
     rasters_ptr = (u8*) el + objsize;
     bitmaps_ptr = rasters_ptr + rastersBytes;
     el->image = rasters_ptr;
@@ -454,7 +454,7 @@ UIElement* UIElement_Create(s32 x, s32 y, s32 width, s32 height, s32 flags) {
 
     obj = func_800A9F10(NULL, LINK_6, &el->sprite);
     if (obj == NULL) {
-        func_8036A228_83D9D8(el);
+        UIMem_Deallocate(el);
         return NULL;
     }
     el->spriteObj = obj;
@@ -467,7 +467,7 @@ void UIElement_Delete(UIElement* el) {
     if (el != NULL) {
         UIElement_Unlink(el);
         omDeleteGObj(el->spriteObj);
-        func_8036A228_83D9D8(el);
+        UIMem_Deallocate(el);
     }
 }
 

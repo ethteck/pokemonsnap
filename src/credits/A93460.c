@@ -16,7 +16,7 @@ void func_credits_801DC8C4(void) {
     } else {
         var_a1 = 0x78000;
     }
-    func_8036A3F8_83DBA8(mlHeapAlloc(&sGeneralHeap, var_a1, 8), (s32) var_a1);
+    UIMem_CreateHeap(mlHeapAlloc(&sGeneralHeap, var_a1, 8), (s32) var_a1);
     func_800AAE28();
     func_80374D40_8484F0();
     ohCreateCameraWrapper(0, 0x80000000, 0x64, 6, 0xFF);
@@ -27,7 +27,7 @@ void func_credits_801DC8C4(void) {
 }
 
 void func_credits_801DC9FC(void* arg1) {
-    func_8036A228_83D9D8(arg1);
+    UIMem_Deallocate(arg1);
 }
 
 void func_credits_801DCA1C(void* arg0) {

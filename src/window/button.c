@@ -61,7 +61,7 @@ void* UIButton_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
 
     obj->userData = (void*) (pos - D_80380BD4_854384);
 
-    entry = (UIButtonListEntry*) func_8036A194_83D944(sizeof(UIButtonListEntry));
+    entry = (UIButtonListEntry*) UIMem_Allocate(sizeof(UIButtonListEntry));
     entry->obj = obj;
     entry->prev = D_80380BEC_85439C->next->prev;
     D_80380BEC_85439C->next->prev = entry;
@@ -76,7 +76,7 @@ void UIButton_DeleteAll(void) {
 
     for (csr = D_80380BEC_85439C->next; csr->obj != NULL; csr = csr->next) {
         omDeleteGObj(csr->obj);
-        func_8036A228_83D9D8(csr);
+        UIMem_Deallocate(csr);
     }
 
     D_80380BEC_85439C = &D_80380BE0_854390;
@@ -102,7 +102,7 @@ void UIButton_DeleteInRect(s32 minX, s32 minY, s32 maxX, s32 maxY) {
         omDeleteGObj(csr->obj);
         csr->prev->next = csr->next;
         csr->next->prev = csr->prev;
-        func_8036A228_83D9D8(csr);
+        UIMem_Deallocate(csr);
     }
 }
 

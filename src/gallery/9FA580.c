@@ -94,7 +94,7 @@ void func_801DCDDC_9FAA9C(void) {
 
     D_801E1690_9FF350.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_801E1690_9FF350);
-    func_8036A3F8_83DBA8(&D_801EA808_A084C8, 0x46000);
+    UIMem_CreateHeap(&D_801EA808_A084C8, 0x46000);
     func_800AAE28();
     func_801DCC60_9FA920();
     func_80374D40_8484F0();
@@ -108,7 +108,7 @@ void func_801DCDDC_9FAA9C(void) {
 }
 
 void func_801DCE90_9FAB50(void* arg0) {
-    func_8036A228_83D9D8(arg0);
+    UIMem_Deallocate(arg0);
 }
 
 s32 func_801DCEBC_9FAB7C(s32 arg0) {

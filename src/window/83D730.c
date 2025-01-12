@@ -1,112 +1,180 @@
 #include "common.h"
 #include "window.h"
 
-typedef struct UnkCreamGrouper UnkCreamGrouper;
-struct UnkCreamGrouper {
-    /* 0x00 */ UnkCreamGrouper* unk_00;
-    /* 0x04 */ s32 unk_04; // size ?
-    /* 0x08 */ s32 unk_08;
+typedef struct HeapChunk HeapChunk;
+struct HeapChunk {
+    /* 0x00 */ HeapChunk* prev;
+    /* 0x04 */ s32 size;
+    /* 0x08 */ s32 allocated;
     /* 0x0C */ u8 pad_0C[4];
-    /* 0x10 */ UnkCreamGrouper* unk_10;
-    /* 0x14 */ UnkCreamGrouper* unk_14;
-};
+    /* 0x10 */ union {
+        struct {
+            /* 0x10 */ struct HeapChunk* next;
+            /* 0x14 */ struct HeapChunk* prev;
+        } link;
+        u8 data[1];
+    } v;
+}; // size >= 0x18
 
-typedef struct UnkCreamGrouperInner {
-    /* 0x00 */ UnkCreamGrouper* unk_00;
-    /* 0x04 */ s32 unk_04; // size ?
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ u8 pad_0C[4];
-} UnkCreamGrouperInner; // size = 0x10
-
-static UnkCreamGrouper* D_803A6900_87A0B0;
+static HeapChunk* D_803A6900_87A0B0;
 static s32 D_803A6904_87A0B4;
-static UnkCreamGrouper* D_803A6908_87A0B8;
-static UnkCreamGrouper D_803A6910_87A0C0;
+static HeapChunk* D_803A6908_87A0B8;
+static HeapChunk D_803A6910_87A0C0;
 
-void func_80369F80_83D730(UnkCreamGrouper* arg0, UnkCreamGrouper* arg1, UnkCreamGrouper* arg2) {
-    arg0->unk_10 = arg1;
-    arg1->unk_10 = arg2;
-    arg2->unk_14 = arg1;
-    arg1->unk_14 = arg0;
+void UIMem_Link(HeapChunk* prev, HeapChunk* curr, HeapChunk* next) {
+    prev->v.link.next = curr;
+    curr->v.link.next = next;
+    next->v.link.prev = curr;
+    curr->v.link.prev = prev;
 }
 
-void func_80369F94_83D744(UnkCreamGrouper* arg0) {
-    func_80369F80_83D730(D_803A6910_87A0C0.unk_14, arg0, &D_803A6910_87A0C0);
+void UIMem_AddChunk(HeapChunk* arg0) {
+    UIMem_Link(D_803A6910_87A0C0.v.link.prev, arg0, &D_803A6910_87A0C0);
 }
 
-void func_80369FC0_83D770(UnkCreamGrouper* arg0) {
-    UnkCreamGrouper* temp_v0;
-    UnkCreamGrouper* temp_v1;
+void UIMem_Unlink(HeapChunk* chunk) {
+    HeapChunk* prev = chunk->v.link.prev;
+    HeapChunk* next = chunk->v.link.next;
 
-    temp_v0 = arg0->unk_14;
-    temp_v1 = arg0->unk_10;
-    temp_v0->unk_10 = temp_v1;
-    temp_v1->unk_14 = temp_v0;
+    prev->v.link.next = next;
+    next->v.link.prev = prev;
 }
 
-void func_80369FD4_83D784(UnkCreamGrouper*, u32);
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/func_80369FD4_83D784.s")
+#ifdef NON_MATCHING
+void UIMem_InitHeap(u8* base, s32 size) {
+    HeapChunk* header = base;
 
-UnkCreamGrouper* func_8036A038_83D7E8(s32 arg0) {
-    UnkCreamGrouper* var_v1;
+    D_803A6900_87A0B0 = header;
+    D_803A6904_87A0B4 = size;
+    D_803A6908_87A0B8 = (u32)base + size;
 
-    for (var_v1 = D_803A6910_87A0C0.unk_10; var_v1 != &D_803A6910_87A0C0; var_v1 = var_v1->unk_10) {
-        if (var_v1->unk_04 >= arg0) {
-            return var_v1;
+    header->prev = NULL;
+    header->size = size;
+    header->allocated = FALSE;
+    UIMem_Link(&D_803A6910_87A0C0, header, &D_803A6910_87A0C0);
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_InitHeap.s")
+void UIMem_InitHeap(u8*, u32);
+#endif
+
+HeapChunk* UIMem_FindChunk(s32 size) {
+    HeapChunk* cur;
+
+    for (cur = D_803A6910_87A0C0.v.link.next; cur != &D_803A6910_87A0C0; cur = cur->v.link.next) {
+        if (cur->size >= size) {
+            return cur;
         }
     }
 
     return NULL;
 }
 
-UnkCreamGrouper* func_8036A07C_83D82C(UnkCreamGrouper*, u32);
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/func_8036A07C_83D82C.s")
+#ifdef NON_MATCHING
+HeapChunk* UIMem_SplitChunk(HeapChunk* chunk, u32 offset) {
+    u32 newSize;
+    HeapChunk* child;
+    HeapChunk* next;
 
-void func_8036A0BC_83D86C(UnkCreamGrouper*);
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/func_8036A0BC_83D86C.s")
+    child = (HeapChunk*)((u32)chunk + offset);
 
-void* func_8036A194_83D944(u32 arg0) {
-    u32 temp_a1;
-    UnkCreamGrouper* temp_v0;
+    child->prev = chunk;
+    newSize = chunk->size - offset;
+    child->size = newSize;
+    child->allocated = FALSE;
 
-    if (arg0 < 8) {
-        arg0 = 8;
+    next = (HeapChunk*)((u32)child + newSize);
+    if ((u32)next < D_803A6908_87A0B8) {
+        next->prev = child;
     }
-    temp_a1 = (arg0 + 0x17) & ~7;
-    temp_v0 = func_8036A038_83D7E8(temp_a1);
-    if (temp_v0 == NULL) {
+
+    chunk->size = offset;
+    return child;
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_SplitChunk.s")
+HeapChunk* UIMem_SplitChunk(HeapChunk*, u32);
+#endif
+
+#ifdef NON_MATCHING
+void UIMem_MergeChunks(HeapChunk* chunk) {
+    s32 size;
+    HeapChunk* prev;
+    HeapChunk* nextNext;
+    HeapChunk* next;
+
+    prev = chunk->prev;
+    size = chunk->size;
+
+    next = (HeapChunk*)((u32)(chunk) + size);
+    if (prev != NULL && !prev->allocated) {
+        // merge with previous
+        prev->size += size;
+        size = (u32)next;
+        if (size < (u32)D_803A6908_87A0B8) {
+            next->prev = prev;
+        }
+        chunk = prev;
+    } else {
+        UIMem_AddChunk(chunk);
+        chunk->allocated = FALSE;
+    }
+    if ((u32)next < D_803A6908_87A0B8 && !next->allocated) {
+        nextNext = (HeapChunk*)((u32)next + next->size);
+        if ((u32)nextNext < (u32)D_803A6908_87A0B8) {
+            nextNext->prev = chunk;
+        }
+        chunk->size += next->size;
+        UIMem_Unlink(next);
+    }
+}
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_MergeChunks.s")
+void UIMem_MergeChunks(HeapChunk*);
+#endif
+
+void* UIMem_Allocate(u32 size) {
+    u32 size_with_header;
+    HeapChunk* chunk;
+
+    if (size < sizeof(chunk->v)) {
+        size = sizeof(chunk->v);
+    }
+
+    size_with_header = ALIGN(size + offsetof(HeapChunk, v.data), 8);
+    chunk = UIMem_FindChunk(size_with_header);
+    if (chunk == NULL) {
         return NULL;
     }
-    if (temp_v0->unk_04 - temp_a1 > 0x18) {
-        func_80369F94_83D744(func_8036A07C_83D82C(temp_v0, temp_a1));
+    if (chunk->size - size_with_header > sizeof(HeapChunk)) {
+        UIMem_AddChunk(UIMem_SplitChunk(chunk, size_with_header));
     }
-    func_80369FC0_83D770(temp_v0);
-    temp_v0->unk_08 = 1;
+    UIMem_Unlink(chunk);
+    chunk->allocated = true;
 
-    return &temp_v0->unk_10;
+    return chunk->v.data;
 }
 
-// Probably dealloc
-void func_8036A228_83D9D8(void* arg0) {
-    func_8036A0BC_83D86C((UnkCreamGrouper*) (((uintptr_t) arg0) - sizeof(UnkCreamGrouperInner)));
+void UIMem_Deallocate(void* data) {
+    UIMem_MergeChunks((HeapChunk*)((u32)data - offsetof(HeapChunk, v.data)));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/func_8036A248_83D9F8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_Reallocate.s")
 
-void func_8036A3F8_83DBA8(void* arg0, s32 arg1) {
-    func_80369FD4_83D784(arg0, arg1);
+void UIMem_CreateHeap(u8* buffer, s32 size) {
+    UIMem_InitHeap(buffer, size);
 }
 
-s32 func_8036A418_83DBC8(void) {
-    s32 end;
-    UnkCreamGrouper* cur;
+s32 UIMem_GetTotalAllocatedMemory(void) {
+    s32 total_size;
+    HeapChunk* cur;
 
-    end = 0;
-    for (cur = D_803A6900_87A0B0; cur < D_803A6908_87A0B8; cur = (UnkCreamGrouper*) ((uintptr_t) cur + cur->unk_04)) {
-        if (cur->unk_08 != 0) {
-            end += cur->unk_04;
+    total_size = 0;
+    for (cur = D_803A6900_87A0B0; cur < D_803A6908_87A0B8; cur = (HeapChunk*) ((uintptr_t) cur + cur->size)) {
+        if (cur->allocated) {
+            total_size += cur->size;
         }
     }
 
-    return end;
+    return total_size;
 }

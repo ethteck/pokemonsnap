@@ -379,7 +379,7 @@ void func_801DCA48_98C4B8(void) {
 void func_801DCBF4_98C664(void) {
     UNUSED s32 pad;
 
-    func_8036A3F8_83DBA8(D_801F70A0_9A6B10, sizeof(D_801F70A0_9A6B10));
+    UIMem_CreateHeap(D_801F70A0_9A6B10, sizeof(D_801F70A0_9A6B10));
     func_800AAE28();
     func_801DCA48_98C4B8();
     func_80374D40_8484F0();
@@ -651,8 +651,8 @@ GObj* func_801DD720_98D190(s32 idx) {
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     D_802290A0_9D8B10[idx].sobj = sobj; // ?
-    sp24 = func_8036A194_83D944(0x30);
-    sp20 = func_8036A194_83D944(0xFD8);
+    sp24 = UIMem_Allocate(0x30);
+    sp20 = UIMem_Allocate(0xFD8);
     sp1C = sobj->sprite.bitmap->buf;
     *sp24 = *sobj->sprite.bitmap;
     sp24->buf = sp20;

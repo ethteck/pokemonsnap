@@ -2467,3 +2467,13 @@ dugtrio_modelanim_burrow = 0x80165B30; // segment:tunnel_assets
 dugtrio_modelanim_turn = 0x80165F90; // segment:tunnel_assets
 dugtrio_modelanim_rise = 0x80166B50; // segment:tunnel_assets
 dugtrio_modelanim_unburrow = 0x80167220; // segment:tunnel_assets
+
+UIMem_Link = 0x80369F80; // segment:window
+UIMem_AddChunk = 0x80369F94; // segment:window
+UIMem_Unlink = 0x80369FC0; // segment:window
+UIMem_InitHeap = 0x80369FD4; // segment:window
+UIMem_Allocate = 0x8036A194; // segment:window
+UIMem_Deallocate = 0x8036A228; // segment:window
+UIMem_SplitChunk = 0x8036A07C; // segment:window
+UIMem_MergeChunks = 0x8036A0BC; // segment:window
+UIMem_Reallocate = 0x8036A248; // segment:window

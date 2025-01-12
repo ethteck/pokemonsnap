@@ -34,7 +34,7 @@ extern u8 Msg_TextColorB;
 extern u8 Msg_TextColorA;
 extern s32 Msg_LineSpacing;
 extern s32 Msg_IsInteractive;
-extern s32 Msg_IsPrinted;
+extern bool Msg_IsPrinted;
 extern s32 Msg_ShadowEnabled;
 extern s32 Msg_BlinkEnabled;
 extern f32 Msg_BlinkAlpha;
@@ -377,7 +377,7 @@ void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 colorR, u8 colorG, u8 c
     Msg_TextColorB = colorB;
     Msg_TextColorA = colorA;
     Msg_PrintDelay = delayBetweenChars;
-    Msg_IsPrinted = 0;
+    Msg_IsPrinted = false;
     if (Msg_PrintDelay > 0) {
         omCreateProcess(Msg_CameraObject, Msg_UpdatePrinter, 0, 1);
     } else {
@@ -403,6 +403,6 @@ void Msg_SetInteractive(void) {
     Msg_IsInteractive = true;
 }
 
-s32 Msg_IsMessagePrinted(void) {
+bool Msg_IsMessagePrinted(void) {
     return Msg_IsPrinted;
 }

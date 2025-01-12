@@ -198,8 +198,6 @@ void screenCoorsToWorld(f32*, f32*, f32*);
 void BumpDetector_Init(void);
 void func_8035E37C_4FE78C(void);
 GObj* Msg_InitCamera(void);
-void Msg_ShowMessage(char*, s32, s32, u8, u8, u8, u8, s32, u8);
-s32 Msg_IsMessagePrinted(void);
 IdleScript* getIdleScript(void);
 void func_800A7918(s32, f32);
 void func_800A7F40(f32, f32, s32, f32);
@@ -2123,7 +2121,7 @@ void processOutOfFilm(GObj* arg0) {
         auSetBGMChannelVolume(BGM_PLAYER_MAIN, i, 127);
     }
     auPlaySong(0, 17);
-    while (Msg_IsMessagePrinted() == 0) {
+    while (!Msg_IsMessagePrinted()) {
         ohWait(1);
     }
     for (i = 180; i != 0; i--) {

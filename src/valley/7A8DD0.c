@@ -231,13 +231,11 @@ void func_802CFE8C_7A941C(void) {
     Msg_SetNonInteractive();
 }
 
-#ifdef NON_MATCHING
 void func_802D017C_7A970C(void) {
-    UNUSED s32 pad[2];
     s32 i;
-    char message[0x100];
     GObj* gobj;
     SObj* sprite;
+    char message[0x100];
     s32 j;
 
     gobj = omAddGObj(0x1F, ohUpdateDefault, 0, 0x80000000);
@@ -258,13 +256,13 @@ void func_802D017C_7A970C(void) {
             if (!Msg_IsMessagePrinted()) {
                 continue;
             }
+
             if (gContInputPressedButtons & (B_BUTTON | A_BUTTON)) {
                 auPlaySound(SOUND_ID_77);
                 break;
             }
 
-            j += 1;
-            if (((j < 0xB5) ^ 1) != 0) {
+            if (j++ > 180) {
                 break;
             }
         }
@@ -273,10 +271,6 @@ void func_802D017C_7A970C(void) {
     Msg_Reset();
     Msg_SetNonInteractive();
 }
-#else
-void func_802D017C_7A970C(void);
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8DD0/func_802D017C_7A970C.s")
-#endif
 
 void func_802D0320_7A98B0(GObj* obj) {
     Pokemon_SetState(obj, func_802D0344_7A98D4);
@@ -333,11 +327,11 @@ void func_802D04BC_7A9A4C(DObj* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-#ifdef NON_MATCHING
-void func_802D04CC_7A9A5C(GObj* arg0) {
+POKEMON_FUNC(func_802D04CC_7A9A5C)
+    u32 tmp;
     func_800AB9A4();
 
-    for (D_8034E0AC_82763C = 0; ; D_8034E0AC_82763C++) {
+    for (D_8034E0AC_82763C = 0;; D_8034E0AC_82763C++) {
         switch (D_8034E0AC_82763C) {
             case 1:
                 D_8034E0B0_827640 = auPlaySoundWithParams(SOUND_ID_36, 0x7000, 0x40, 1.0f, 30);
@@ -371,19 +365,16 @@ void func_802D04CC_7A9A5C(GObj* arg0) {
                 break;
         }
 
-        if (D_802EC64C_7C5BDC == 1) {
-            if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 1) {
+        tmp = 1; // TODO - silly temp that is required for matching
+        if (D_802EC64C_7C5BDC == tmp) {
+            if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == tmp) {
                 auSetBGMVolumeSmooth(0, 0, 120);
             }
             auSetBGMVolumeSmooth(1, 0, 120);
         }
-        ohWait(1);
+        ohWait(tmp);
     }
 }
-#else
-void func_802D04CC_7A9A5C(GObj* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/valley/7A8DD0/func_802D04CC_7A9A5C.s")
-#endif
 
 void func_802D0700_7A9C90(void) {
     D_8034E0A8_827638 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);

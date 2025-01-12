@@ -316,7 +316,7 @@ void Msg_Reset(void);
 void Msg_SetSpecialHandler(void (*handler)(u8));
 void Msg_SetNonInteractive(void);
 void Msg_SetInteractive(void);
-s32 Msg_IsMessagePrinted(void);
+bool Msg_IsMessagePrinted(void);
 
 void EnvSound_PlaySound(GObj* obj, u8 category, s32 soundID);
 void EnvSound_StopSoundByCategory(GObj*, u8);

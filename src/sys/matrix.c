@@ -1718,8 +1718,45 @@ void func_8001EA90(Mtx4f m,
                    f32 x, f32 y, f32 z,
                    f32 rotX, f32 rotY, f32 rotZ,
                    f32 renScaleX, f32 renScaleY, f32 renScaleZ,
-                   f32 scaleX, f32 scaleY, f32 scaleZ);
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/matrix/func_8001EA90.s")
+                   f32 scaleX, f32 scaleY, f32 scaleZ) {
+    f32 sinRotX;
+    f32 sinRotY;
+    f32 sinRotZ;
+    f32 cosRotX;
+    f32 cosRotY;
+    f32 cosRotZ;
+    f32 invRenScaleX;
+    f32 invRenScaleY;
+    f32 invRenScaleZ;
+
+    invRenScaleX = 1.0f / renScaleX;
+    invRenScaleY = 1.0f / renScaleY;
+    invRenScaleZ = 1.0f / renScaleZ;
+
+    sinRotX = __sinf(rotX);
+    cosRotX = __cosf(rotX);
+    sinRotY = __sinf(rotY);
+    cosRotY = __cosf(rotY);
+    sinRotZ = __sinf(rotZ);
+    cosRotZ = __cosf(rotZ);
+
+    m[0][0] = cosRotY * cosRotZ * scaleX;
+    m[0][1] = cosRotY * sinRotZ * scaleX * renScaleX * invRenScaleY;
+    m[0][2] = -sinRotY * scaleX * renScaleX * invRenScaleZ;
+    m[1][0] = ((sinRotX * sinRotY * cosRotZ) - (cosRotX * sinRotZ)) * scaleY * renScaleY * invRenScaleX;
+    m[1][1] = ((sinRotX * sinRotY * sinRotZ) + (cosRotX * cosRotZ)) * scaleY;
+    m[1][2] = sinRotX * cosRotY * scaleY * renScaleY * invRenScaleZ;
+    m[2][0] = ((cosRotX * sinRotY * cosRotZ) + (sinRotX * sinRotZ)) * scaleZ * renScaleZ * invRenScaleX;
+    m[2][1] = ((cosRotX * sinRotY * sinRotZ) - (sinRotX * cosRotZ)) * scaleZ * renScaleZ * invRenScaleY;
+    m[2][2] = cosRotX * cosRotY * scaleZ;
+    m[3][0] = x;
+    m[3][1] = y;
+    m[3][2] = z;
+    m[2][3] = 0.0f;
+    m[3][3] = 1.0f;
+    m[1][3] = m[2][3];
+    m[0][3] = m[2][3];
+}
 
 void func_8001ECD0(Mtx* m,
                    f32 x, f32 y, f32 z,

@@ -65,7 +65,7 @@ void func_8009A8F0(s32 levelID) {
     switch (levelID) {
         case SCENE_BEACH:
             dmaLoadOverlay(&overlayBeachAssets);
-            dmaReadRom(stage0_extra_ROM_START, stage0_extra_VRAM, stage0_extra_ROM_END - stage0_extra_ROM_START);
+            dmaReadRom(beach_extra_ROM_START, beach_extra_VRAM, beach_extra_ROM_END - beach_extra_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
@@ -73,7 +73,7 @@ void func_8009A8F0(s32 levelID) {
             return;
         case SCENE_TUNNEL:
             dmaLoadOverlay(&overlayTunnelAssets);
-            dmaReadRom(stage1_extra_ROM_START, stage1_extra_VRAM, stage1_extra_ROM_END - stage1_extra_ROM_START);
+            dmaReadRom(tunnel_extra_ROM_START, tunnel_extra_VRAM, tunnel_extra_ROM_END - tunnel_extra_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
@@ -83,7 +83,7 @@ void func_8009A8F0(s32 levelID) {
             break;
         case SCENE_CAVE:
             dmaLoadOverlay(&overlayCaveAssets);
-            dmaReadRom(stage4_extra_ROM_START, stage4_extra_VRAM, stage4_extra_ROM_END - stage4_extra_ROM_START);
+            dmaReadRom(cave_extra_ROM_START, cave_extra_VRAM, cave_extra_ROM_END - cave_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
             dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
@@ -111,13 +111,13 @@ void func_8009A8F0(s32 levelID) {
             break;
         case SCENE_VALLEY:
             dmaLoadOverlay(&overlayValleyAssets);
-            dmaReadRom(stage5_extra_ROM_START, stage5_extra_VRAM, stage5_extra_ROM_END - stage5_extra_ROM_START);
+            dmaReadRom(valley_extra_ROM_START, valley_extra_VRAM, valley_extra_ROM_END - valley_extra_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             break;
         case SCENE_RAINBOW:
             dmaLoadOverlay(&overlayRainbowAssets);
-            dmaReadRom(stage6_extra_ROM_START, stage6_extra_VRAM, stage6_extra_ROM_END - stage6_extra_ROM_START);
+            dmaReadRom(rainbow_extra_ROM_START, rainbow_extra_VRAM, rainbow_extra_ROM_END - rainbow_extra_ROM_START);
             break;
     }
 }

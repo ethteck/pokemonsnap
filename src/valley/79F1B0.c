@@ -265,7 +265,7 @@ void func_802C653C_79FACC(s32 arg0) {
 }
 
 s32 func_802C6544_79FAD4(s32 arg0) {
-    D_802D2A00_7ABF90 = valley_code_VRAM - _3F63D0_VRAM_END; // TODO OR stage5_extra_VRAM
+    D_802D2A00_7ABF90 = valley_code_VRAM - _3F63D0_VRAM_END; // TODO OR valley_extra_VRAM
 
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);

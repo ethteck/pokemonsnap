@@ -603,7 +603,7 @@ segments:
     - [0xA74F0, bin] # , data]
     - { name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
   - type: code
-    name: stage0_extra
+    name: beach_extra
     start: 0x13C780
     vram: 0x801B0310
     exclusive_ram_id: unk8011CB50
@@ -1163,7 +1163,7 @@ segments:
     - [0x1C8AC0, bin]
     - { name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
-    name: stage1_extra
+    name: tunnel_extra
     start: 0x1D1D90
     vram: 0x8018BC50
     exclusive_ram_id: unk_01D1D90
@@ -1179,7 +1179,7 @@ segments:
     - [0x1F5E80, bin] # , data]
     - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
   - type: code
-    name: stage4_extra
+    name: cave_extra
     start: 0x27AB80
     vram: 0x801AEDF0
     exclusive_ram_id: unk27AB80
@@ -3233,7 +3233,7 @@ segments:
     - [0x3F63E0, bin] # , data]
     - { name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
   - type: code
-    name: stage5_extra
+    name: valley_extra
     start: 0x47CF30
     vram: 0x80186B10
     exclusive_ram_id: unk47CF30
@@ -3249,7 +3249,7 @@ segments:
     - [0x4A8170, bin] # , data]
     - { name: bss_80139C30, type: bss, vram: 0x80139C30 }
   - type: code
-    name: stage6_extra
+    name: rainbow_extra
     start: 0x4EC000
     vram: 0x80139C50
     exclusive_ram_id: unk4EC000

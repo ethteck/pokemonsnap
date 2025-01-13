@@ -60,7 +60,7 @@ s32 func_800A7460(void);
 void func_800A7470(s32, s32, s32);
 void func_800A7860(s32, f32);
 void func_800A7F68(s32, s32);
-void func_800A844C(OMCamera*, s32, s32, s32, s32);
+OMCamera* func_800A844C(OMCamera*, s32, s32, s32, s32);
 GObj* func_800A85E8(void (*procFunc)(GObj*), s32 link, s32 dllink, Gfx* dlist);
 GObj* func_800A86A4(void (*procFunc)(GObj*), s32 link, s32 dllink, Gfx* dlist);
 GObj* func_800A9F10(void (*procFunc)(GObj*), s32 link, Sprite* sprite);

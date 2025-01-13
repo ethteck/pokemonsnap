@@ -923,13 +923,13 @@ void func_8009D184(WorldSetup* arg0) {
     setSkyBoxAnimationSpeed(0.0f);
 }
 
-void func_8009D1E8(u32 arg0, s32 arg1, s32 arg2) {
-    if (arg1 >= arg0) {
-        dmaReadRom((void*) arg0, (void*) arg2, arg1 - arg0);
+void func_8009D1E8(u32 romStart, s32 romEnd, s32 ramDst) {
+    if (romEnd >= romStart) {
+        dmaReadRom((void*) romStart, (void*) ramDst, romEnd - romStart);
     }
 }
 
-void func_8009D21C(s32 arg0, s32* arg1);
+void func_8009D21C(s32 idx, s32* data);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D21C.s")
 
 void func_8009D37C(u8 levelID) {

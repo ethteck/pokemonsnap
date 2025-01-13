@@ -33,10 +33,21 @@ typedef struct UnkRustRat {
     /* 0x58 */ UnkPinkRat* unk_58;
 } UnkRustRat; // size = 0x5C
 
+typedef struct ParticleAnimData {
+    /* 0x00 */ u32 numFrames;
+    /* 0x04 */ s32 type;
+    /* 0x08 */ s32 fmt;
+    /* 0x0C */ s32 width;
+    /* 0x10 */ s32 height;
+    /* 0x14 */ s32 flags;
+    /* 0x18 */ u32 data[1]; // offsets followed by data
+} ParticleAnimData;
+
 extern s32 photo_PokemonIndexes[12];
 extern UnkRustRat* D_800BE1A8[16];
 extern s32 D_800BE228[8];
 extern s32 D_800BE248[8];
+extern ParticleAnimData** D_800BE288[8];
 
 extern struct WorldSetup D_800F5DA0;
 

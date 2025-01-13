@@ -69,7 +69,73 @@ void func_800A8344(Mtx arg0, Vec3f* arg1, f32 arg2) {
     func_800A8120(arg0, arg0, spC8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A844C.s")
+OMCamera* func_800A844C(OMCamera* cam, s32 xMin, s32 yMin, s32 xMax, s32 yMax) {
+    s32 xDiff;
+    s32 xDiffPlus;
+    f32 xDiffHalf;
+    s32 yDiff;
+    s32 yDiffPlus;
+    f32 yDiffHalf;
+    s32 tmp;
+    f64 one;
+
+    one = 1.0; // TODO required to match
+
+    if (xMax < xMin) {
+        tmp = xMin;
+        xMin = xMax;
+        xMax = tmp;
+    } else if (xMin == xMax) {
+        return cam;
+    }
+
+    if (yMax < yMin) {
+        tmp = yMin;
+        yMin = yMax;
+        yMax = tmp;
+    } else if (yMin == yMax) {
+        return cam;
+    }
+
+    xDiff = xMax - xMin;
+    xDiffPlus = xDiff + 1;
+
+    yDiff = yMax - yMin;
+    yDiffPlus = yDiff + 1;
+
+    cam->perspMtx.persp.aspect = ((f32) xDiffPlus / yDiffPlus) * one;
+
+    cam->vp.vp.vscale[0] = (xDiffPlus / 2) * 4;
+    cam->vp.vp.vscale[1] = (yDiffPlus / 2) * 4;
+    cam->vp.vp.vtrans[0] = ((xDiffPlus / 2) + xMin) * 4;
+    cam->vp.vp.vtrans[1] = ((yDiffPlus / 2) + yMin) * 4;
+
+    if (cam->perspMtx.persp.mtx->kind == MTX_TYPE_ORTHO) {
+        xDiffHalf = (f32) xDiff * 0.5;
+        yDiffHalf = (f32) yDiff * 0.5;
+        cam->perspMtx.ortho.l = -xDiffHalf;
+        cam->perspMtx.ortho.r = xDiffHalf;
+        cam->perspMtx.ortho.b = -yDiffHalf;
+        cam->perspMtx.ortho.t = yDiffHalf;
+        cam->perspMtx.ortho.n = -100.0f;
+        cam->perspMtx.ortho.f = 100.0f;
+        cam->perspMtx.ortho.scale = 1.0f;
+
+        cam->viewMtx.lookAt.eye.x = 0.0f;
+        cam->viewMtx.lookAt.eye.y = 0.0f;
+        cam->viewMtx.lookAt.eye.z = 0.0f;
+
+        cam->viewMtx.lookAt.at.x = 0.0f;
+        cam->viewMtx.lookAt.at.y = 0.0f;
+        cam->viewMtx.lookAt.at.z = -1.0f;
+
+        cam->viewMtx.lookAt.up.x = 0.0f;
+        cam->viewMtx.lookAt.up.y = 1.0f;
+        cam->viewMtx.lookAt.up.z = 0.0f;
+    }
+
+    return cam;
+}
 
 GObj* func_800A85E8(void (*procFunc)(GObj*), s32 link, s32 dllink, Gfx* dlist) {
     GObj* gobj;

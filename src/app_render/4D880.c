@@ -16,16 +16,6 @@ typedef struct UnkAsphaltLeopard {
     /* 0x30 */ u8 unk_30[1]; // variable length
 } UnkAsphaltLeopard;
 
-typedef struct UnkPinkLeopard {
-    /* 0x00 */ u32 unk_00;
-    /* 0x04 */ s32 unk_04;
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ s32 unk_0C;
-    /* 0x10 */ s32 unk_10;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ u32 unk_18[1]; // variable length
-} UnkPinkLeopard;
-
 typedef struct UnkGreenLeopard {
     /* 0x00 */ s32 unk_00[7];
     /* 0x1C */ Vec3f unk_1C;
@@ -53,7 +43,7 @@ UnkGreenLeopard* D_800BE208[8];
 s32 D_800BE228[8];
 s32 D_800BE248[8];
 UnkAsphaltLeopard** D_800BE268[8];
-UnkPinkLeopard** D_800BE288[8];
+ParticleAnimData** D_800BE288[8];
 void (*D_800BE2A8)(UnkPinkRat*, Vec3f*);
 void (*D_800BE2AC)(UnkPinkRat*);
 UnkPinkRat* D_800BE2B0;
@@ -62,36 +52,36 @@ void func_800A4798(GObj*);
 void func_800A4858(GObj*);
 void func_800A63BC(GObj*);
 
-void func_800A1ED0(s32 arg0, s32* arg1, s32* arg2) {
+void func_800A1ED0(s32 idx, s32* arg1, s32* arg2) {
     s32 i, j;
 
-    if (arg0 >= 8) {
+    if (idx >= 8) {
         return;
     }
 
-    D_800BE228[arg0] = *arg1;
-    D_800BE248[arg0] = *arg2;
-    D_800BE268[arg0] = (UnkAsphaltLeopard**) (arg1 + 1);
-    D_800BE288[arg0] = (UnkPinkLeopard**) (arg2 + 1);
+    D_800BE228[idx] = *arg1;
+    D_800BE248[idx] = *arg2;
+    D_800BE268[idx] = (UnkAsphaltLeopard**) (arg1 + 1);
+    D_800BE288[idx] = (ParticleAnimData**) (arg2 + 1);
 
-    for (i = 1; i <= D_800BE228[arg0]; i++) {
+    for (i = 1; i <= D_800BE228[idx]; i++) {
         arg1[i] = (u32) (arg1) + arg1[i];
     }
-    for (i = 1; i <= D_800BE248[arg0]; i++) {
+    for (i = 1; i <= D_800BE248[idx]; i++) {
         arg2[i] = (u32) (arg2) + arg2[i];
     }
 
-    for (i = 0; i < D_800BE248[arg0]; i++) {
-        for (j = 0; j < D_800BE288[arg0][i]->unk_00; j++) {
-            D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
+    for (i = 0; i < D_800BE248[idx]; i++) {
+        for (j = 0; j < D_800BE288[idx][i]->numFrames; j++) {
+            D_800BE288[idx][i]->data[j] += (u32) arg2;
         }
-        if (D_800BE288[arg0][i]->unk_04 == 2) {
-            if (D_800BE288[arg0][i]->unk_14 & 1) {
-                j = D_800BE288[arg0][i]->unk_00;
-                D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
+        if (D_800BE288[idx][i]->type == 2) {
+            if (D_800BE288[idx][i]->flags & 1) {
+                j = D_800BE288[idx][i]->numFrames;
+                D_800BE288[idx][i]->data[j] += (u32) arg2;
             } else {
-                for (j = D_800BE288[arg0][i]->unk_00; j < 2 * D_800BE288[arg0][i]->unk_00; j++) {
-                    D_800BE288[arg0][i]->unk_18[j] += (u32) arg2;
+                for (j = D_800BE288[idx][i]->numFrames; j < 2 * D_800BE288[idx][i]->numFrames; j++) {
+                    D_800BE288[idx][i]->data[j] += (u32) arg2;
                 }
             }
         }
@@ -131,9 +121,9 @@ GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     }
 }
 
-void func_800A21C0(s32 arg0, OMCamera* arg1, s32 arg2) {
-    D_800BE1F0[arg0] = arg1;
-    D_800BE200[arg0] = arg2;
+void func_800A21C0(s32 idx, OMCamera* cam, s32 arg2) {
+    D_800BE1F0[idx] = cam;
+    D_800BE200[idx] = arg2;
 }
 
 UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* arg4, s32 arg5, f32 arg6, f32 arg7,
@@ -209,7 +199,7 @@ UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
     temp_v0 = D_800BE268[id][arg2];
     return func_800A21E0(arg0, arg1, temp_v0->unk_08, temp_v0->unk_02, temp_v0->unk_30, temp_v0->unk_06,
                          0.0f, 0.0f, 0.0f, temp_v0->unk_14.x, temp_v0->unk_14.y, temp_v0->unk_14.z, temp_v0->unk_2C, temp_v0->unk_0C,
-                         temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
+                         temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->flags, NULL);
 }
 
 UnkRustRat* func_800A244C(s32 arg0, s32 arg1, u16 arg2, u8* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, s32 argE, UnkPinkRat* argF) {
@@ -246,7 +236,7 @@ UnkRustRat* func_800A2564(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     temp_v0 = D_800BE268[id][arg1];
     ret = func_800A21E0(NULL, arg0, temp_v0->unk_08, temp_v0->unk_02, temp_v0->unk_30, temp_v0->unk_06,
                         arg2, arg3, arg4, arg5, arg6, arg7, temp_v0->unk_2C, temp_v0->unk_0C,
-                        temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->unk_14, NULL);
+                        temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->flags, NULL);
     if (ret != NULL) {
         func_800A2B3C(ret, 0, arg0 >> 3);
     }
@@ -933,7 +923,7 @@ void func_800A4798(GObj* camObj) {
 #if 0
 void func_800A4858(GObj* camObj) {
     UnkRustRat* var_s7;
-    UnkPinkLeopard* v0;
+    ParticleAnimData* v0;
     s32 sp2D4;
     s32 sp2D0;
     s32 sp2CC;
@@ -1631,7 +1621,7 @@ UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
         ret->unk_3C = D_800BE268[id][arg1]->unk_24;
         ret->unk_40 = D_800BE268[id][arg1]->unk_28;
         ret->unk_44 = 0.0f;
-        if (D_800BE288[id][D_800BE268[id][arg1]->unk_02]->unk_14 != 0) {
+        if (D_800BE288[id][D_800BE268[id][arg1]->unk_02]->flags != 0) {
             ret->unk_06 |= 0x10;
         }
         ret->dobj = NULL;

@@ -33,7 +33,7 @@ typedef struct UnkRustRat {
     /* 0x58 */ UnkPinkRat* unk_58;
 } UnkRustRat; // size = 0x5C
 
-extern s32 photo_PokemonIndexes[];
+extern s32 photo_PokemonIndexes[12];
 extern UnkRustRat* D_800BE1A8[16];
 extern s32 D_800BE228[8];
 extern s32 D_800BE248[8];

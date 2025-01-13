@@ -13,10 +13,12 @@ extern s32 D_800AF054; // r
 extern s32 D_800AF058; // g
 extern s32 D_800AF05C; // b
 extern s32 D_800AF060; // a
-extern s32 D_800BE2C0;
-extern OMCamera* D_800BE2C8;
-extern s32 D_800BE2CC; // bool
-extern GObj* D_800BE2D0;
+
+static s32 D_800BE2C0;
+static s32 D_800BE2C4;
+static OMCamera* D_800BE2C8;
+static bool D_800BE2CC;
+static GObj* D_800BE2D0;
 
 f32 func_800A7430(f32 arg0) {
     return ABS(arg0);

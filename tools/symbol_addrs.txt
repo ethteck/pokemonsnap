@@ -1961,9 +1961,6 @@ evolution_controller_last = 0x800F5400; // segment:world
 GetInterpolatedPosition = 0x8001FCA4;
 GetInterpolatedVelocity = 0x8001FCE8;
 
-photo_PokemonObjs = 0x800BDF30;
-photo_PokemonCount = 0x800BDF60;
-photo_PokemonIndexes = 0x800BDF68;
 score_CameraObject = 0x800BDFA8;
 score_CurrentPhoto = 0x800BDFAC;
 score_ImageBuffer = 0x800BDFB0;

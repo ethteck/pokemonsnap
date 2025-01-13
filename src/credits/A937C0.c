@@ -47,12 +47,12 @@ void func_credits_801DCD60(SObj* arg0) {
 }
 
 void func_credits_801DCD80(SObj* sobj) {
-    Bitmap* list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
+    Bitmap* list = (Bitmap*) UIMem_Allocate(sizeof(Bitmap) * 8);
     u16* buf;
     u8 i;
 
     for (i = 0; i < 8u; i++) {
-        buf = func_8036A194_83D944(14 * 140 * sizeof(u16));
+        buf = UIMem_Allocate(14 * 140 * sizeof(u16));
 
         list[i] = sobj->sprite.bitmap[i];
         list[i].buf = buf;
@@ -221,10 +221,10 @@ void func_credits_801DD340(SObj* sobj) {
     u8 i;
 
     while (sobj != NULL) {
-        list = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap) * 8);
+        list = (Bitmap*) UIMem_Allocate(sizeof(Bitmap) * 8);
 
         for (i = 0; i < 8u; i++) {
-            buf = func_8036A194_83D944(1960 * sizeof(u16));
+            buf = UIMem_Allocate(1960 * sizeof(u16));
 
             list[i] = sobj->sprite.bitmap[i];
             list[i].buf = buf;

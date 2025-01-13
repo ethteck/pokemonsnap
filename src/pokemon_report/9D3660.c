@@ -777,7 +777,7 @@ GObj* func_801DF4AC_9D5E1C(s32 arg0) {
     sobj->sprite.y = 2;
 
     D_80230DC8_A27738[arg0].unk_04 = sobj;
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    dest = (u8*) UIMem_Allocate(0xFD8);
     src = D_80202DE8_9F9758[arg0];
     sobj->sprite.bitmap->buf = D_80230DC8_A27738[arg0].unk_08 = dest; // what's going on with the types here
 

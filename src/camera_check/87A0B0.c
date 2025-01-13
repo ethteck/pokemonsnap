@@ -105,7 +105,7 @@ void func_camera_check_801DC910(void) {
 }
 
 void func_camera_check_801DCA60(void) {
-    func_8036A3F8_83DBA8(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
+    UIMem_CreateHeap(D_camera_check_802098F0, sizeof(D_camera_check_802098F0));
     func_800AAE28();
     func_camera_check_801DC910();
     func_80374D40_8484F0();

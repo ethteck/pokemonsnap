@@ -335,8 +335,8 @@ GObj* album_CreatePhoto(s32 index) {
     sobj->sprite.y = 2;
     album_Photos[index].sObj = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap));
-    dest = (u8*) func_8036A194_83D944(4056);
+    bitmap = (Bitmap*) UIMem_Allocate(sizeof(Bitmap));
+    dest = (u8*) UIMem_Allocate(4056);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;
@@ -464,8 +464,8 @@ GObj* func_801DDE64_9A80B4(void) {
     album_DraggedPhotoGObj = gobj;
     album_DraggedPhotoSObj = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(sizeof(Bitmap));
-    dest = (u8*) func_8036A194_83D944(4056);
+    bitmap = (Bitmap*) UIMem_Allocate(sizeof(Bitmap));
+    dest = (u8*) UIMem_Allocate(4056);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;

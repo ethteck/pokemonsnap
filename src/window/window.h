@@ -118,9 +118,9 @@ typedef struct UIElement {
     /* 0x12C */ u8 pad_12C[4];
 } UIElement; // size == 0x130
 
-void* func_8036A194_83D944(u32);
-void func_8036A228_83D9D8(void*);
-void func_8036A3F8_83DBA8(void*, s32);
+void* UIMem_Allocate(u32);
+void UIMem_Deallocate(void*);
+void UIMem_CreateHeap(u8*, s32);
 void UIElement_FillRect(UIElement*, s32, s32, s32, s32, s32, s32, s32, s32);
 void UIElement_Draw(UIElement*);
 void UIElement_FillRectDefault(UIElement*, s32, s32, s32, s32);

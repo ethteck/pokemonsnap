@@ -2,7 +2,7 @@
 #include "ld_addrs.h"
 #include "window/window.h"
 
-extern UNK_TYPE D_80203C10_9FA580[];
+extern u8 D_80203C10_9FA580[0x2D000];
 
 void func_801DCBF4_9D3564(void);
 void func_801DCA48_9D33B8(void);
@@ -126,7 +126,7 @@ void func_801DCA48_9D33B8(void) {
 void func_801DCBF4_9D3564(void) {
     UNUSED s32 pad[2];
 
-    func_8036A3F8_83DBA8(D_80203C10_9FA580, 0x2D000);
+    UIMem_CreateHeap(D_80203C10_9FA580, sizeof(D_80203C10_9FA580));
     func_800AAE28();
     func_801DCA48_9D33B8();
     func_80374D40_8484F0();

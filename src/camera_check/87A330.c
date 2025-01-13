@@ -117,8 +117,8 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
     sobj->sprite.y = 2;
     D_camera_check_802499C0[arg0].unk_0C = sobj;
 
-    sp24 = func_8036A194_83D944(0x30);
-    dest = func_8036A194_83D944(0xFD8);
+    sp24 = UIMem_Allocate(0x30);
+    dest = UIMem_Allocate(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *sp24 = *sobj->sprite.bitmap;
     sp24->buf = dest;

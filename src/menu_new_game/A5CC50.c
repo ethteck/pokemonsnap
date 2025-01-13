@@ -304,7 +304,7 @@ void func_800E2054_A5D404(Gfx** gfxPtr) {
 }
 
 void new_game_init(void) {
-    func_8036A3F8_83DBA8(D_80118118, sizeof(D_80118118));
+    UIMem_CreateHeap(D_80118118, sizeof(D_80118118));
     func_800AAE28();
     func_800AA85C(24, 6);
     func_800AA870(0xF0000);

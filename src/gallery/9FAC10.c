@@ -112,8 +112,8 @@ GObj* func_801DD28C_9FAF4C(s32 arg0) {
     sobj->sprite.y = 2;
     D_80230818_A4E4D8[arg0].sobj = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    bitmap = (Bitmap*) UIMem_Allocate(0x10);
+    dest = (u8*) UIMem_Allocate(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;
@@ -160,8 +160,8 @@ GObj* func_801DD4C4_9FB184(s32 arg0) {
     sobj->sprite.y = 2;
     D_80230848_A4E508[arg0].sobj = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    bitmap = (Bitmap*) UIMem_Allocate(0x10);
+    dest = (u8*) UIMem_Allocate(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;
@@ -407,8 +407,8 @@ GObj* func_801DE0B8_9FBD78(void) {
     D_80230870_A4E530 = gobj;
     D_80230874_A4E534 = sobj;
 
-    bitmap = (Bitmap*) func_8036A194_83D944(0x10);
-    dest = (u8*) func_8036A194_83D944(0xFD8);
+    bitmap = (Bitmap*) UIMem_Allocate(0x10);
+    dest = (u8*) UIMem_Allocate(0xFD8);
     src = sobj->sprite.bitmap->buf;
     *bitmap = *sobj->sprite.bitmap;
     bitmap->buf = dest;

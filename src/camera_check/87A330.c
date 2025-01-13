@@ -3,6 +3,23 @@
 #include "more_funcs/more_funcs.h"
 #include "string.h"
 
+// part of Sprite structure
+s32 D_camera_check_80208940 = 0;
+
+UnkTealFlounder D_camera_check_802498F0;
+UIElement* D_camera_check_80249910;
+UIElement* D_camera_check_80249914;
+UIElement* D_camera_check_80249918;
+UIElement* D_camera_check_8024991C;
+UIFrame* D_camera_check_80249920;
+char D_camera_check_80249928[128];
+SObj* D_camera_check_802499A8;
+SObj* D_camera_check_802499B0;
+SObj* D_camera_check_802499B4;
+SObj* D_camera_check_802499B8;
+SObj* D_camera_check_802499BC;
+UnkTealFlounder D_camera_check_802499C0[7];
+
 UIElement* func_camera_check_801DCB40(void) {
     return D_camera_check_80249914;
 }
@@ -467,20 +484,19 @@ void func_camera_check_801DDDA4(SObj* sobj, f32 arg1, f32* arg2, s32 x, s32 y) {
     sobj->sprite.y = y + delta;
 }
 
-#ifdef NON_MATCHING
 void func_camera_check_801DDF28(GObj* arg0) {
-    static f32 D_camera_check_80208944 = 0.0f; // TODO: address once data is split
+    static f32 D_camera_check_80208944 = 0.0f;
+    static f32 D_camera_check_80208948 = 0.0f;
+    static f32 D_camera_check_8020894C = 0.0f; // unused
+    static f32 D_camera_check_80208950 = 0.0f;
 
-    D_camera_check_80208944 += 3.14159275f / 12;
-    if (D_camera_check_80208944 > 3.14159275f * 2) {
-        D_camera_check_80208944 -= 3.14159275f * 2;
+    D_camera_check_80208944 += PI / 12;
+    if (D_camera_check_80208944 > TAU) {
+        D_camera_check_80208944 -= TAU;
     }
-    func_camera_check_801DDDA4(D_camera_check_80249900, D_camera_check_80208944, &D_camera_check_80208948, 14, 72);
-    func_camera_check_801DDDA4(D_camera_check_80249904, D_camera_check_80208944, &D_camera_check_80208950, 100, 72);
+    func_camera_check_801DDDA4(D_camera_check_802498F0.unk_10, D_camera_check_80208944, &D_camera_check_80208948, 14, 72);
+    func_camera_check_801DDDA4(D_camera_check_802498F0.unk_14, D_camera_check_80208944, &D_camera_check_80208950, 100, 72);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DDF28.s")
-#endif
 
 void* func_camera_check_801DDFC4(void) {
     GObj* temp_v0;
@@ -563,67 +579,58 @@ void* func_camera_check_801DDFC4(void) {
     return temp_v0;
 }
 
-void func_camera_check_801DE288(UnkIndigoHalibut* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DE288.s")
+void func_camera_check_801DE288(UnkIndigoHalibut* arg0) {
+    UIElement* temp_s0;
+    char* levelName;
+    char sp48[32];    
+    s32 unused[2];
 
-// void func_camera_check_801DE288(UnkIndigoHalibut* arg0) {
-//     char* sp68;
-//     char* var_a3_2;
-//     char sp48[0x20];
-//     UIElement* temp_s0;
-//     char* levelName;
-
-//     temp_s0 = D_camera_check_80249910;
-//     UIElement_FillRect(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
-//     UIElement_FillRect(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
-//     UIElement_FillRect(temp_s0, 0, 0x38, 0x53, 0x42, 0, 0, 0, 0);
-//     UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
-//     UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
-//     if (arg0 != NULL) {
-//         UIText_SetShadowOffset(1);
-//         UIText_SetSpacing(-1, 3);
-//         UIElement_SetFont(temp_s0, FONT_8);
-//         levelName = getLevelName(arg0->unk_00->levelID);
-//         if (levelName == NULL) {
-//             levelName = "ーーー";
-//         }
-//         sprintf(sp48, "%s", levelName, levelName);
-//         UIElement_SetFont(temp_s0, FONT_8);
-//         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0xC);
-//         UIElement_PrintText(temp_s0, sp48);
-//         sprintf(sp48, "%s", getPlayerName());
-
-//         // if (var_a3_2 && var_a3_2 && var_a3_2) {
-//         // }
-
-//         UIElement_SetFont(temp_s0, FONT_8);
-//         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0x28);
-//         UIElement_PrintText(temp_s0, sp48);
-//         if (!(arg0->unk_18_0x04000000)) {
-//             sprintf(sp48, "%s", getPokemonName(arg0->unk_08));
-//             var_a3_2 = sp48;
-//             if (func_camera_check_801E2EA0(arg0->unk_08)) {
-//                 if (arg0->unk_18_0x80000000) {
-//                     var_a3_2 = "Sign?";
-//                 } else {
-//                     var_a3_2 = "Sign";
-//                 }
-//             }
-//         } else {
-//             var_a3_2 = "";
-//         }
-//         sp68 = var_a3_2;
-//         UIElement_Draw(D_camera_check_80249918);
-//         UIElement_SetFont(D_camera_check_80249918, FONT_12);
-//         UIElement_SetTextPos(D_camera_check_80249918, (108 - UIText_GetStringWidth(sp68)) / 2, 0);
-//         UIElement_PrintText(D_camera_check_80249918, sp68);
-//     } else {
-//         UIElement_SetTextPos(temp_s0, 0, 12);
-//         UIElement_PrintText(temp_s0, "ーーーーー");
-//         UIElement_SetTextPos(temp_s0, 0, 40);
-//         UIElement_PrintText(temp_s0, "ーーーーー");
-//     }
-// }
+    temp_s0 = D_camera_check_80249910;
+    UIElement_FillRect(temp_s0, 0, 0xC, 0x53, 0x16, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x28, 0x53, 0x32, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x38, 0x53, 0x42, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x44, 0x53, 0x4E, 0, 0, 0, 0);
+    UIElement_FillRect(temp_s0, 0, 0x54, 0x53, 0x6A, 0, 0, 0, 0);
+    if (arg0 != NULL) {
+        UIText_SetShadowOffset(1);
+        UIText_SetSpacing(-1, 3);
+        UIElement_SetFont(temp_s0, FONT_8);
+        levelName = getLevelName(arg0->unk_00->levelID);
+        if (levelName == NULL) {
+            levelName = "ーーー";
+        }
+        sprintf(sp48, "%s", levelName);
+        UIElement_SetFont(temp_s0, FONT_8);
+        UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0xC);
+        UIElement_PrintText(temp_s0, sp48);
+        sprintf(sp48, "%s", getPlayerName());
+        UIElement_SetFont(temp_s0, FONT_8);
+        UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp48), 0x28);
+        UIElement_PrintText(temp_s0, sp48);
+        if (!(arg0->unk_18_0x04000000)) {
+            sprintf(sp48, "%s", getPokemonName(arg0->unk_08));
+            levelName = sp48;
+            if (func_camera_check_801E2EA0(arg0->unk_08)) {
+                if (arg0->unk_18_0x80000000) {
+                    levelName = "Sign?";
+                } else {
+                    levelName = "Sign";
+                }
+            }
+        } else {
+            levelName = "";
+        }
+        UIElement_Draw(D_camera_check_80249918);
+        UIElement_SetFont(D_camera_check_80249918, FONT_12);
+        UIElement_SetTextPos(D_camera_check_80249918, (108 - UIText_GetStringWidth(levelName)) / 2, 0);
+        UIElement_PrintText(D_camera_check_80249918, levelName);
+    } else {
+        UIElement_SetTextPos(temp_s0, 0, 12);
+        UIElement_PrintText(temp_s0, "ーーーーー");
+        UIElement_SetTextPos(temp_s0, 0, 40);
+        UIElement_PrintText(temp_s0, "ーーーーー");
+    }
+}
 
 void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
     s32 sp6C; // BUG: never set?
@@ -716,7 +723,7 @@ void func_camera_check_801DE934(s32 arg0, s32 arg1, s32 arg2) {
             func_camera_check_801E3D8C(sp20, &sp24);
             func_camera_check_801DE59C(&sp24);
         }
-        func_80374714_847EC4(sp20, &D_camera_check_802498FC->sprite);
+        func_80374714_847EC4(sp20, &D_camera_check_802498F0.unk_0C->sprite);
     }
 }
 
@@ -747,26 +754,23 @@ void func_camera_check_801DEA5C(GObj* arg0) {
     arg0->userData = (void*) var_v0;
 }
 
-// TODO unused? arg type may be wrong, requiring the weird temp
 void func_camera_check_801DEAC0(s32 arg0) {
     UIElement* sp34;
     UIFrame* sp30;
     ucolor sp2C;
-    s32* weird;
+    static s32 D_camera_check_80208954 = 2;
 
-    weird = &arg0; // TODO required to match
-
-    if (D_camera_check_80208954 != *weird) {
+    if (D_camera_check_80208954 != arg0) {
         sp34 = D_camera_check_80249914;
         sp30 = D_camera_check_80249920;
         UIElement_Draw(D_camera_check_80249914);
-        UIButton_DeleteAll();
+        UIButtonImage_DeleteAll();
         if (D_camera_check_80208954 == 3) {
             func_800A86A4(func_camera_check_801DEA5C, 6, 0, NULL)->userData = (void*) 0xFF;
         }
         UIElement_SetState(sp34, UI_HIDDEN);
         UIFrame_FadeOut(sp30);
-        switch (*weird) {
+        switch (arg0) {
             case 1:
                 UIFrame_FadeIn(sp30, FRAME_STYLE_1);
                 break;
@@ -935,7 +939,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UILayout_Init();
     FocusMark_Create();
     FocusMark_Show(false);
-    UIButton_DeleteAll();
+    UIButtonImage_DeleteAll();
 
     if (temp_s0 && temp_s0 && temp_s0) {
         // TODO fake match - fixes regalloc
@@ -1064,7 +1068,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
         func_camera_check_801DD93C(0);
         UILayout_WaitPanelTransitionComplete();
         ohWait(3);
-        UIButton_DeleteAll();
+        UIButtonImage_DeleteAll();
         func_80374D20_8484D0();
         if (func_camera_check_801E27FC()) {
             func_800AADF0(SCENE_PHOTO_CHECK);

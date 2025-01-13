@@ -51,7 +51,7 @@ void func_801E433C_993DAC(s32 arg0) {
 
     sp1C = func_801DCCE0_98C750();
     UIElement_Draw(sp1C);
-    UIButton_DeleteAll();
+    UIButtonImage_DeleteAll();
     UIElement_SetTextPos(sp1C, 0, 0);
     UIElement_SetFont(sp1C, FONT_12);
     UIText_SetShadowOffset(1);

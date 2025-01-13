@@ -713,31 +713,31 @@ void Items_BounceFromCeiling(GObj* obj, GroundResult* ceilingResult) {
     Items_NotifyItemPosition(obj);
 }
 
-#ifdef NON_EQUIVALENT
 void Items_BounceFromGround(GObj* obj, GroundResult* groundResult) {
     DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
-    f32 x1, y1, z1;
-    f32 x2, y2, z2;
     s32 i;
+    f32 x2, y2, z2;
+    f32 x1, y1, z1;
     f32 deltaY;
 
     x1 = item->prevPos.x;
     y1 = item->prevPos.y;
     z1 = item->prevPos.z;
 
-    x2 = model->position.v.x;
-    y2 = model->position.v.y;
-    z2 = model->position.v.z;
-
     item->prevPos.x = model->position.v.x;
     item->prevPos.y = model->position.v.y;
     item->prevPos.z = model->position.v.z;
 
-    for (i = 15; i >= 0; i--) {
-        model->position.v.x = (x1 + model->position.v.x) * 0.5;
-        model->position.v.y = (y1 + model->position.v.y) * 0.5;
-        model->position.v.z = (z1 + model->position.v.z) * 0.5;
+    x2 = model->position.v.x;
+    y2 = model->position.v.y;
+    z2 = model->position.v.z;
+
+    i = 16;
+    while (i--) {
+        model->position.v.x = (x1 + x2) * 0.5;
+        model->position.v.y = (y1 + y2) * 0.5;
+        model->position.v.z = (z1 + z2) * 0.5;
         getGroundAt(model->position.v.x, model->position.v.z, groundResult);
         deltaY = ABS(model->position.v.y - groundResult->height);
         if (ABS(deltaY) <= 0.375f) {
@@ -766,10 +766,6 @@ void Items_BounceFromGround(GObj* obj, GroundResult* groundResult) {
     }
     Items_NotifyItemPosition(obj);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_BounceFromGround.s")
-void Items_BounceFromGround(GObj* arg0, GroundResult* arg1);
-#endif
 
 void Items_BounceFromCeilingAndGround(GObj* obj, GroundResult* result) {
     DObj* model = obj->data.dobj;

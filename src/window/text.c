@@ -165,7 +165,7 @@ static ucolor D_803A6A08_87A1B8;
 static void (*D_803A6A0C_87A1BC)(s32);
 
 s32 UIText_Ascii2WideChar(s32 arg0);
-void* UIButton_Create(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+void* UIButtonImage_Create(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 
 s32 UIText_GetCharIndex(s32 ch) {
     s32 i;
@@ -523,7 +523,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
             case '\\s':
             case '\\u':
             case '\\z':
-                UIButton_Create(*x + text->screenX, *y + text->screenY, printedChar, UIText_GlyphSize[UIText_Charset]);
+                UIButtonImage_Create(*x + text->screenX, *y + text->screenY, printedChar, UIText_GlyphSize[UIText_Charset]);
                 goto SKIP_PRINTING;
             case '\\e':
                 UIText_MakePalettes(text, &UIText_RedColor, &D_803A6A08_87A1B8);

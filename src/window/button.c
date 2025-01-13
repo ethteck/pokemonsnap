@@ -2,20 +2,20 @@
 #include "window.h"
 #include "string.h"
 
-typedef struct UIButtonListEntry {
-    /* 0x00 */ struct UIButtonListEntry* next;
-    /* 0x04 */ struct UIButtonListEntry* prev;
+typedef struct UIButtonImageListEntry {
+    /* 0x00 */ struct UIButtonImageListEntry* next;
+    /* 0x04 */ struct UIButtonImageListEntry* prev;
     /* 0x08 */ GObj* obj;
-} UIButtonListEntry; // size = 0xC
+} UIButtonImageListEntry; // size = 0xC
 
 extern Sprite D_8037F2A8_852A58;
 extern Bitmap* D_80380B50_854300[];
 extern s32 D_80380BA8_854358[];
 extern char D_80380BD4_854384[];
-extern UIButtonListEntry D_80380BE0_854390;
-extern UIButtonListEntry* D_80380BEC_85439C;
+extern UIButtonImageListEntry D_80380BE0_854390;
+extern UIButtonImageListEntry* D_80380BEC_85439C;
 
-void UIButton_SetAnimationInterval(s32 btnName, f32 speed) {
+void UIButtonImage_SetAnimationInterval(s32 btnName, f32 speed) {
     char* pos;
 
     pos = strchr(D_80380BD4_854384, (char) btnName);
@@ -27,7 +27,7 @@ void UIButton_SetAnimationInterval(s32 btnName, f32 speed) {
     }
 }
 
-void UIButton_Update(GObj* obj) {
+void UIButtonImage_Update(GObj* obj) {
     s32 btnId = (s32) obj->userData;
     s32 i = 0;
 
@@ -38,9 +38,9 @@ void UIButton_Update(GObj* obj) {
     }
 }
 
-void* UIButton_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
+void* UIButtonImage_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
     char* pos;
-    UIButtonListEntry* entry;
+    UIButtonImageListEntry* entry;
     GObj* obj;
 
     pos = strchr(D_80380BD4_854384, (char) btnName);
@@ -48,7 +48,7 @@ void* UIButton_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
         return NULL;
     }
 
-    obj = func_800A9F10(UIButton_Update, LINK_6, &D_8037F2A8_852A58);
+    obj = func_800A9F10(UIButtonImage_Update, LINK_6, &D_8037F2A8_852A58);
     obj->data.sobj->sprite.x = posX;
     obj->data.sobj->sprite.y = posY;
     obj->data.sobj->sprite.bitmap = D_80380B50_854300[2 * (pos - D_80380BD4_854384)];
@@ -61,7 +61,7 @@ void* UIButton_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
 
     obj->userData = (void*) (pos - D_80380BD4_854384);
 
-    entry = (UIButtonListEntry*) UIMem_Allocate(sizeof(UIButtonListEntry));
+    entry = (UIButtonImageListEntry*) UIMem_Allocate(sizeof(UIButtonImageListEntry));
     entry->obj = obj;
     entry->prev = D_80380BEC_85439C->next->prev;
     D_80380BEC_85439C->next->prev = entry;
@@ -71,8 +71,8 @@ void* UIButton_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
     return obj;
 }
 
-void UIButton_DeleteAll(void) {
-    UIButtonListEntry* csr;
+void UIButtonImage_DeleteAll(void) {
+    UIButtonImageListEntry* csr;
 
     for (csr = D_80380BEC_85439C->next; csr->obj != NULL; csr = csr->next) {
         omDeleteGObj(csr->obj);
@@ -85,9 +85,9 @@ void UIButton_DeleteAll(void) {
     D_80380BE0_854390.obj = NULL;
 }
 
-void UIButton_DeleteInRect(s32 minX, s32 minY, s32 maxX, s32 maxY) {
-    UIButtonListEntry* csr;
-    UIButtonListEntry* next;
+void UIButtonImage_DeleteInRect(s32 minX, s32 minY, s32 maxX, s32 maxY) {
+    UIButtonImageListEntry* csr;
+    UIButtonImageListEntry* next;
     s32 x, y;
 
     for (csr = D_80380BEC_85439C->next; csr->obj != NULL; csr = next) {
@@ -106,8 +106,8 @@ void UIButton_DeleteInRect(s32 minX, s32 minY, s32 maxX, s32 maxY) {
     }
 }
 
-void UIButton_SetState(s32 state) {
-    UIButtonListEntry* csr;
+void UIButtonImage_SetState(s32 state) {
+    UIButtonImageListEntry* csr;
 
     for (csr = D_80380BEC_85439C->next; csr->obj != NULL; csr = csr->next) {
         if (state) {
@@ -118,8 +118,8 @@ void UIButton_SetState(s32 state) {
     }
 }
 
-void UIButton_SetStateInsideRect(s32 state, s32 minX, s32 minY, s32 maxX, s32 maxY) {
-    UIButtonListEntry* csr;
+void UIButtonImage_SetStateInsideRect(s32 state, s32 minX, s32 minY, s32 maxX, s32 maxY) {
+    UIButtonImageListEntry* csr;
     s32 x, y;
 
     for (csr = D_80380BEC_85439C->next; csr->obj != NULL; csr = csr->next) {

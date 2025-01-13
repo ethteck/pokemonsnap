@@ -40,6 +40,9 @@ enum Buttons {
     BUTTON_GO_TO_LAB = 17,
     BUTTON_DELETE = 19,
     BUTTON_ENLARGE = 20,
+    BUTTON_22 = 22,
+    BUTTON_23 = 23,
+    BUTTON_24 = 24,
     BUTTON_ARRANGE = 26,
     BUTTON_COMMENT = 27,
     BUTTON_CHECK = 28,
@@ -153,9 +156,9 @@ void UIText_PrintAsciiString(UIText*, s32*, s32*, u8*);
 void func_8036EB80_842330(s32);
 void func_8036EB8C_84233C(void (*)(s32));
 void UIText_Initialize(void);
-void UIButton_DeleteAll(void);
-void UIButton_DeleteInRect(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-void UIButton_SetStateInsideRect(s32, s32, s32, s32, s32);
+void UIButtonImage_DeleteAll(void);
+void UIButtonImage_DeleteInRect(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+void UIButtonImage_SetStateInsideRect(s32, s32, s32, s32, s32);
 void UIFrame_ShowBackground(UIFrame*, bool show);
 void UIFrame_Show(UIFrame*, bool show);
 void UIFrame_SetOpacity(UIFrame*, s32 alpha);

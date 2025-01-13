@@ -4698,13 +4698,14 @@ segments:
     - [0x87FB20, c]
 
     - [0x8817E0, .data, 87A0B0]
-    - [0x881900, bin]
+    - [0x881900, data]
+    - [0x8A6130, .data, 87A330]
+    - [0x8A6150, .data, 87D1A0]
+    - [0x8A61E0, data]
 
     - [0x8A61F0, .rodata, 87A330]
     - [0x8A6450, .rodata, 87D1A0]
     - [0x8A70C0, .rodata, 87FB20]
-
-    - { name: bss_802098F0, type: bss, vram: 0x802098F0 }
   - name: oaks_lab
     dir: oaks_lab
     type: code

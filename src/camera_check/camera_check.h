@@ -55,46 +55,9 @@ extern Sprite D_camera_check_801FFC88;
 extern Sprite D_camera_check_802004E8;
 extern Sprite D_camera_check_80201520;
 extern Sprite D_camera_check_80208900;
-extern f32 D_camera_check_80208944;
-extern f32 D_camera_check_80208948;
-extern f32 D_camera_check_80208950;
-extern s32 D_camera_check_80208954;
-extern s32 D_camera_check_80208960;
-extern s32 D_camera_check_80208964;
-extern UNK_TYPE D_camera_check_8020896C;
-extern UIButton D_camera_check_80208994;
-extern UIButton D_camera_check_802089BC[];
-extern s32 D_camera_check_802089E4;
+
 extern s32 D_camera_check_802089F0;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);
-extern u8 D_camera_check_802098F0[0x40000];
-
-extern UnkTealFlounder D_camera_check_802498F0;
-extern SObj* D_camera_check_802498FC;
-extern SObj* D_camera_check_80249900;
-extern SObj* D_camera_check_80249904;
-extern UIElement* D_camera_check_80249910;
-extern UIElement* D_camera_check_80249914;
-extern UIElement* D_camera_check_80249918;
-extern UIElement* D_camera_check_8024991C;
-extern UIFrame* D_camera_check_80249920;
-extern char D_camera_check_80249928[];
-extern SObj* D_camera_check_802499A8;
-extern SObj* D_camera_check_802499B0;
-extern SObj* D_camera_check_802499B4;
-extern SObj* D_camera_check_802499B8;
-extern SObj* D_camera_check_802499BC;
-extern UnkTealFlounder D_camera_check_802499C0[6]; // 7 or more
-extern void (*D_camera_check_80249AA0)(s32, s32);
-extern UNK_PTR D_camera_check_80249AA4;
-extern UIButton* D_camera_check_80249AA8;
-extern char D_camera_check_80249AB0[];
-extern UnkIndigoHalibut D_camera_check_80249B30[];
-extern s32 D_camera_check_8024A1C0;
-extern s32 D_camera_check_8024A1C4;
-extern u8 D_camera_check_8024A1C8[];
-extern s32 D_camera_check_8024A1D4;
-extern s32 D_camera_check_8024A1D8;
 
 void func_camera_check_801DC910(void);
 s32 func_camera_check_801DCACC(s32);

@@ -491,7 +491,7 @@ s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
     UIElement_SetTextPos(arg0, 180, 32);
     UIElement_PrintText(arg0, "　");
     ohWait(1);
-    UIButton_DeleteAll();
+    UIButtonImage_DeleteAll();
     func_8036EB80_842330(1);
     return button;
 }
@@ -1824,7 +1824,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     UIElement_Draw(D_802290E4_9D8B54);
     UIElement_Draw(D_802290E0_9D8B50);
     UIElement_Draw(D_802290DC_9D8B4C);
-    UIButton_DeleteAll();
+    UIButtonImage_DeleteAll();
     ohWait(2);
     func_801DD638_98D0A8(0);
     D_801F3E34_9A38A4 = false;
@@ -2027,7 +2027,7 @@ void func_801E2454_991EC4(void) {
     UIElement_Draw(D_802290E4_9D8B54);
     UIElement_Draw(sp3C);
     UIElement_Draw(D_802290DC_9D8B4C);
-    UIButton_DeleteAll();
+    UIButtonImage_DeleteAll();
 }
 
 s32 func_801E28CC_99233C(s32* arg0) {

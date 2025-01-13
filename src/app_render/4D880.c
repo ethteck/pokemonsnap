@@ -43,18 +43,20 @@ extern u8 D_800AEC60;
 extern u8 D_800AEC64;
 extern u16 D_800AEC68;
 
-extern UnkRustRat* D_800BE1A0;
-extern UnkRustRat* D_800BE1A8[16];
-extern UnkPinkRat* D_800BE1E8;
-extern UnkPinkRat* D_800BE1EC;
-extern OMCamera* D_800BE1F0[4];
-extern u8 D_800BE200[4];
-extern UnkGreenLeopard* D_800BE204[9];
-extern UnkAsphaltLeopard** D_800BE268[];
-extern UnkPinkLeopard** D_800BE288[];
-extern void (*D_800BE2A8)(UnkPinkRat*, Vec3f*);
-extern void (*D_800BE2AC)(UnkPinkRat*);
-extern UnkPinkRat* D_800BE2B0;
+UnkRustRat* D_800BE1A0;
+UnkRustRat* D_800BE1A8[16];
+UnkPinkRat* D_800BE1E8;
+UnkPinkRat* D_800BE1EC;
+OMCamera* D_800BE1F0[4];
+u8 D_800BE200[4];
+UnkGreenLeopard* D_800BE208[8];
+s32 D_800BE228[8];
+s32 D_800BE248[8];
+UnkAsphaltLeopard** D_800BE268[8];
+UnkPinkLeopard** D_800BE288[8];
+void (*D_800BE2A8)(UnkPinkRat*, Vec3f*);
+void (*D_800BE2AC)(UnkPinkRat*);
+UnkPinkRat* D_800BE2B0;
 
 void func_800A4798(GObj*);
 void func_800A4858(GObj*);
@@ -648,12 +650,12 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                             break;
                         case 0xB7:
                             temp_s0 = *var_s1++;
-                            func_800A29AC(arg0, D_800BE204[temp_s0]);
+                            func_800A29AC(arg0, D_800BE204[temp_s0 - 1]);
                             break;
                         case 0xB8:
                             temp_s0 = *var_s1++;
                             var_s1 = func_800A27B0(var_s1, &sp80);
-                            func_800A2AA8(arg0, D_800BE204[temp_s0], sp80);
+                            func_800A2AA8(arg0, D_800BE204[temp_s0 - 1], sp80);
                             break;
                         case 0xB9:
                             temp_s0 = *var_s1++;
@@ -889,10 +891,10 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
     }
     if (arg0->flags & 0x8000) {
         temp_s0 = (arg0->flags & 0x7000) >> 12;
-        if (D_800BE204[temp_s0 + 1] != NULL) {
-            D_800BE204[temp_s0 + 1]->unk_1C.x = arg0->unk_20.x;
-            D_800BE204[temp_s0 + 1]->unk_1C.y = arg0->unk_20.y;
-            D_800BE204[temp_s0 + 1]->unk_1C.z = arg0->unk_20.z;
+        if (D_800BE204[temp_s0] != NULL) {
+            D_800BE204[temp_s0]->unk_1C.x = arg0->unk_20.x;
+            D_800BE204[temp_s0]->unk_1C.y = arg0->unk_20.y;
+            D_800BE204[temp_s0]->unk_1C.z = arg0->unk_20.z;
         }
     }
     return arg0->next;
@@ -1254,8 +1256,8 @@ void func_800A4858(GObj* camObj) {
 #endif
 
 void func_800A5DD0(s32 arg0, UnkGreenLeopard* arg1) {
-    if (arg0 > 0 && arg0 < ARRAY_COUNT(D_800BE204)) {
-        D_800BE204[arg0] = arg1;
+    if (arg0 > 0 && arg0 <= ARRAY_COUNT(D_800BE208)) {
+        D_800BE208[arg0 - 1] = arg1;
     }
 }
 
@@ -1264,15 +1266,14 @@ void func_800A5DF4(s32 arg0, s32 arg1) {
     D_800AEC64 = arg1;
 }
 
-#ifdef NON_MATCHING
-// regalloc
 GObj* func_800A5E08(s32 arg0) {
-    UnkPinkRat* tmp;
-
-    D_800BE1E8 = tmp = D_800BE1EC = NULL;
+    D_800BE1E8 = D_800BE1EC = NULL;
+    // TODO required to match
+    if (D_800BE1E8 && D_800BE1E8) {
+    }
 
     while (--arg0 >= 0) {
-        tmp = gtlMalloc(sizeof(UnkPinkRat), 4);
+        UnkPinkRat* tmp = gtlMalloc(sizeof(UnkPinkRat), 4);
         if (tmp == NULL) {
             return NULL;
         }
@@ -1282,10 +1283,6 @@ GObj* func_800A5E08(s32 arg0) {
 
     return omAddGObj(-7, func_800A63BC, LINK_0, 0x80000000);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A5E08.s")
-GObj* func_800A5E08(s32 arg0);
-#endif
 
 void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
     Mtx4f spB8;

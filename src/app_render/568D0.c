@@ -10,8 +10,8 @@ typedef struct Struct_800BEFD8 {
     /* 0x14 */ u32 unk_14;
 } Struct_800BEFD8; // size = 0x18
 
-extern Struct_800BEFD8 D_800BEF60[];
-extern Struct_800BEFD8 D_800BEFD8[];
+static Struct_800BEFD8 D_800BEF60[5];
+static Struct_800BEFD8 D_800BEFD8[5];
 
 void func_800AAF20(void) {
     s32 i;
@@ -73,11 +73,8 @@ void func_800AB1F8(EggStruct* arg0) {
 void func_800AB240(GObj* obj) {
     while (true) {
         Struct_800BEFD8* entry = &D_800BEFD8[(s32) obj->userData];
-        f32 unk_08 = entry->unk_08;
-        f32 unk_0C = entry->unk_0C;
-        f32 unk_10 = entry->unk_10;
-        f32 unk_14 = entry->unk_14;
-        auSetSoundPan(entry->unk_04, unk_08 + (unk_0C - unk_08) * unk_10 / unk_14);
+        u32 pan = ((f32)entry->unk_0C - (f32)entry->unk_08) * (f32)entry->unk_10 / (f32)entry->unk_14 + (f32)entry->unk_08;
+        auSetSoundPan(entry->unk_04, pan);
         if (entry->unk_10 >= entry->unk_14) {
             entry->unk_04 = 0;
             entry->unk_08 = 0;
@@ -128,8 +125,34 @@ s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     return -1;
 }
 
+#ifdef NON_MATCHING
+void func_800AB518(GObj* obj) {
+    while (true) {
+        Struct_800BEFD8* entry = &D_800BEF60[(s32) obj->userData];
+        u32 volume = ((f32)entry->unk_0C - (f32)entry->unk_08) * (f32)entry->unk_10 / (f32)entry->unk_14 + (f32)entry->unk_08;
+        if (volume > 0x7FFF) {
+            volume = 0x7FFF;
+        }
+        auSetSoundVolume(entry->unk_04, volume);
+        if (entry->unk_10 >= entry->unk_14) {
+            entry->unk_04 = 0;
+            entry->unk_08 = 0;
+            entry->unk_0C = 0;
+            entry->unk_10 = 0;
+            entry->unk_14 = 0;
+            omDeleteGObj(obj);
+            entry->unk_00 = NULL;
+            ohWait(1);
+        } else {
+            entry->unk_10++;
+        }
+        ohWait(1);
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB518.s")
-void func_800AB518(GObj*);
+void func_800AB518(GObj* obj);
+#endif
 
 s32 func_800AB700(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     s32 i;
@@ -161,10 +184,63 @@ s32 func_800AB700(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB7FC.s")
+void func_800AB7FC(s32 arg0) {
+    s32 i;
+    Struct_800BEFD8* ptr;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB874.s")
+    if (arg0 == 0) {
+        ptr = D_800BEF60;
+    } else if (arg0 == 1) {
+        ptr = D_800BEFD8;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB918.s")
+    for (i = 0; i < 5; i++, ptr++) {
+        ptr->unk_0C = 0;
+        ptr->unk_10 = ptr->unk_14;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB9A4.s")
+void func_800AB874(void) {
+    s32 i;
+    Struct_800BEFD8* ptr = D_800BEF60;
+    Struct_800BEFD8* ptr2 = D_800BEFD8;
+
+    for (i = 0; i < 5; i++, ptr++, ptr2++) {
+        ptr->unk_10 = ptr->unk_14;
+        ptr->unk_0C = 0;
+        ptr2->unk_10 = ptr2->unk_14;
+        ptr->unk_0C = 0; // BUG: should be ptr2->unk_0C = 0;
+    }
+}
+
+void func_800AB918(s32 arg0) {
+    s32 i;
+    Struct_800BEFD8* ptr = D_800BEF60;
+    Struct_800BEFD8* ptr2 = D_800BEFD8;
+
+    for (i = 0; i < 5; i++, ptr++, ptr2++) {
+        ptr->unk_10 = 0;
+        ptr->unk_14 = arg0;
+        ptr->unk_0C = 0;
+        ptr2->unk_10 = 0;
+        ptr2->unk_14 = arg0;
+        ptr->unk_0C = 0; // BUG: should be ptr2->unk_0C = 0;
+    }
+}
+
+void func_800AB9A4(void) {
+    s32 i;
+    Struct_800BEFD8* ptr = D_800BEF60;
+    Struct_800BEFD8* ptr2 = D_800BEFD8;
+
+    for (i = 0; i < 5; i++, ptr++, ptr2++) {
+        ptr->unk_00 = 0;
+        ptr->unk_04 = 0;
+        ptr->unk_08 = 0;
+        ptr->unk_0C = 0;
+        ptr->unk_10 = 0;
+        ptr->unk_14 = 0;
+
+        *ptr2 = *ptr;
+    }
+}

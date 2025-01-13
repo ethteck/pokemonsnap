@@ -37,11 +37,13 @@ Overlay overlayValley = OVERLAY(valley_code);
 Overlay overlayRainbowAssets = OVERLAY(_4A8160);
 Overlay overlayRainbow = OVERLAY(rainbow_code);
 
-static s32 padding2[1] = { 0 };
+static s32 padding[1] = { 0 };
 s32 D_800AC00C = 0;
 s32 D_800AC010 = 0;
 
-extern IdleScript* D_800B0578;
+static s32 padding2[2];
+IdleScript* D_800B0578;
+static s32 padding3[2];
 
 void setIdleScript(IdleScript* arg0) {
     D_800B0578 = arg0;

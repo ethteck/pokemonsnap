@@ -14,22 +14,31 @@ typedef struct Unk800BEDF0 {
 } Unk800BEDF0; // size = 0x4
 
 extern UNK_TYPE D_800AF0D4;
-extern f32 D_800AF378[];
-extern s32 D_800AF3A0;
-extern s32 D_800AF3A4;
-extern s32 D_800AF3A8;
-extern s32 D_800AF3AC;
-extern u64 D_800AF3B0;
-extern s32 D_800AF3B8;
-extern s32 D_800AF3BC;
+extern UNK_TYPE D_800AF0D4;
 
-extern s32 D_800BE2F0[4][24];
-extern s32 D_800BE470[4][24];
-extern Unk800BEDF0 D_800BEDF0;
-extern UnkStruct800BEDF8 D_800BEDF8[4];
-extern UnkStruct800BEDF8* D_800BEE98;
-extern UnkStruct800BEDF8 D_800BEEA0[4];
-extern s32 D_800BEF48;
+static padding3[] = { 0, 0 };
+f32 D_800AF378[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
+s32 D_800AF3A0 = false;
+s32 D_800AF3A4 = 36;
+s32 D_800AF3A8 = 12;
+s32 D_800AF3AC = 0;
+static u64 D_800AF3B0 = 0;
+s32 D_800AF3B8 = 0;
+s32 D_800AF3BC = 0;
+s32 D_800AF3C0 = SCENE_BEACH;
+
+static s32 D_800BE2E0;
+static s32 padding2[2];
+
+// file split ??
+
+static s32 D_800BE2F0[4][24];
+static s32 D_800BE470[4][24];
+static u8 D_800BE5F0[0x800];
+static Unk800BEDF0 D_800BEDF0;
+static UnkStruct800BEDF8 D_800BEDF8[4];
+static UnkStruct800BEDF8* D_800BEE98;
+static UnkStruct800BEDF8 D_800BEEA0[4];
 
 #ifdef NON_MATCHING
 void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2) {
@@ -581,7 +590,7 @@ UnkStruct800BEDF8* func_800AA38C(s32 arg0) {
         return &D_800BEDF8[0];
     }
 
-    if (D_800AF3A0 != 0) {
+    if (D_800AF3A0) {
         return &D_800BEDF8[arg0];
     }
 
@@ -637,7 +646,7 @@ UnkStruct800BEDF8* func_800AA38C(s32 arg0) {
         ptr->releasedButtons = ~(ptr->notPressedButtons | ptr->currentButtons);
         ptr->notPressedButtons = ~(ptr->currentButtons);
         ptr->unk_00 = D_800AF3B0;
-        D_800AF3A0 = 1;
+        D_800AF3A0 = true;
     }
 
     D_800BEE98 = ptr;
@@ -645,18 +654,16 @@ UnkStruct800BEDF8* func_800AA38C(s32 arg0) {
     return &D_800BEDF8[arg0];
 }
 
-// TODO requires bss migration
-#ifdef NON_MATCHING
 UnkStruct800BEDF8* func_800AA740(s32 arg0) {
     s32 i;
-    static UnkStruct800BEDF8* ptr; // D_800BEF40
+    static UnkStruct800BEDF8* ptr;
 
     if (arg0 < 0 || arg0 > 3) {
         return &D_800BEEA0[0];
     }
 
     // clang-format off
-    if (D_800AF3A0 != 0) { return &D_800BEEA0[arg0]; }
+    if (D_800AF3A0) { return &D_800BEEA0[arg0]; }
     // clang-format on
 
     ptr = D_800BEEA0;
@@ -672,13 +679,9 @@ UnkStruct800BEDF8* func_800AA740(s32 arg0) {
     }
     return &D_800BEEA0[arg0];
 }
-#else
-UnkStruct800BEDF8* func_800AA740(s32 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AA740.s")
-#endif
 
 void func_800AA81C(void) {
-    D_800AF3A0 = 0;
+    D_800AF3A0 = false;
 }
 
 void func_800AA828(s32 arg0) {
@@ -781,6 +784,7 @@ void func_800AAB30(u32 romDst, void* ramSrc, u32 nbytes) {
     dmaWriteRom(ramSrc, romDst, nbytes);
 }
 
+static s32 D_800BEF44;
 #pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AAB5C.s")
 void func_800AAB5C(GObj*);
 
@@ -790,13 +794,15 @@ void func_800AADF0(s32 arg0) {
 }
 
 void func_800AAE14(s32 arg0) {
+    static s32 D_800BEF48;
     D_800BEF48 = arg0;
 }
+
+static s32 padding[2];
 
 void func_800AAE20(void) {
 }
 
-#ifdef NON_MATCHING
 void func_800AAE28(void) {
     s32 i, j;
 
@@ -811,6 +817,3 @@ void func_800AAE28(void) {
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AAE28.s")
-#endif

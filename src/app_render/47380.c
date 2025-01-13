@@ -231,13 +231,15 @@ const char D_800AFE54[] = "ＤＲＡＧＯＮＩＴＥ";
 const char D_800AFE68[] = "ＭＥＷＴＷＯ";
 const char D_800AFE78[] = "ＭＥＷ";
 
-extern PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-extern PhotoData* D_800BDF18;
-extern u8 D_800BDF1C;
-extern u8 D_800BDF1D;
-extern u8 D_800BDF1E;
-extern s32 D_800BDF20[3];
-extern ucolor D_800BDF2C;
+static s32 padding[2];
+PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
+PhotoData* D_800BDF18;
+u8 D_800BDF1C;
+u8 D_800BDF1D;
+u8 D_800BDF1E;
+s32 D_800BDF20[3];
+ucolor D_800BDF2C;
+
 extern GObj* photo_PokemonObjs[];
 extern s32 photo_PokemonCount;
 

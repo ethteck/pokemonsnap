@@ -122,24 +122,30 @@ Gfx score_GfxSetupBuffers[] = {
     gsSPEndDisplayList(),
 };
 
-extern GObj* photo_PokemonObjs[];
-extern s32 photo_PokemonCount;
-extern GObj* score_CameraObject;
-extern PhotoData* score_CurrentPhoto;
-extern u16* score_ImageBuffer;
-extern u16* score_CurrentZBuffer;
-extern u16* score_PokemonZBuffer[];
-extern u16* score_ZBufferBefore[];
-extern u16 D_800BE018;
-extern u16 score_PokemonCount;
-extern s32 score_PixelCountWide[];
-extern s32 score_PixelCountCenterPartWide[];
-extern s32 score_PixelCount[];
-extern s32 score_PixelCountUnobstructed[];
-extern s32 score_PixelCountUnobstructedInCenter[];
-extern s32 score_ApproxTotalPixelCount[];
-extern s32 score_PixelCountInCenter[];
-extern ScoreData D_800BE170;
+GObj* photo_PokemonObjs[12];
+s32 photo_PokemonCount;
+s32 photo_PokemonIndexes[12];
+static s32 padding[4];
+
+// split ?
+
+GObj* score_CameraObject;
+PhotoData* score_CurrentPhoto;
+u16* score_ImageBuffer;
+u16* score_CurrentZBuffer;
+u16* score_PokemonZBuffer[12];
+u16* score_ZBufferBefore[12];
+u16 D_800BE018;
+u16 score_PokemonCount;
+s32 score_PixelCountWide[12];
+s32 score_PixelCountCenterPartWide[12];
+s32 score_PixelCount[12];
+s32 score_PixelCountUnobstructed[12];
+s32 score_PixelCountUnobstructedInCenter[12];
+s32 score_ApproxTotalPixelCount[12];
+s32 score_PixelCountInCenter[12];
+ScoreData D_800BE170;
+static s32 padding2[4];
 
 s32 getNumberOfPoses(void) {
     return 164;
@@ -479,7 +485,7 @@ void func_800A0E9C(ScoreData* arg0) {
 }
 
 #ifdef NON_MATCHING
-s32 func_8009BCC4(UnkThing* arg0);
+s32 func_8009BCC4(PhotoData* arg0);
 struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32 width, s32 height, u16* zbuffer) {
     s32 tmp;
     s32 photoIdType1;

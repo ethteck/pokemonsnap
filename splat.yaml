@@ -376,6 +376,8 @@ segments:
     - [0x59F30, .data, score]
     - [0x5A400, .data, 4CDB0]
     - [0x5A580, data]
+    - [0x5AD20, .data, 53AD0]
+    - [0x5AD80, data]
     - [0x5AD90, .rodata, 47330]
     - [0x5ADD0, .rodata, 47380]
     - [0x5BB30, .rodata, score]
@@ -385,8 +387,6 @@ segments:
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
     - { start: 0x5BF20, type: data, linker_section_order: .rodata }
-    - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
-    - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
     dir: more_funcs
     type: code

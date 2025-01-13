@@ -386,6 +386,7 @@ segments:
     - [0x5BF10, .rodata, 568D0]
     - { start: 0x5BF20, type: data, linker_section_order: .rodata }
     - { type: bss, name: bss_800B0570, vram: 0x800B0570 }
+    - { type: .bss, name: 568D0, vram: 0x800BEF60 }
     - { type: .bss, name: 574F0, vram: 0x800BF050 }
   - name: more_funcs
     dir: more_funcs

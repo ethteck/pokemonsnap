@@ -624,7 +624,6 @@ f32 volcano_GetHeightAt(f32 x, f32 z) {
     return 0.0f;
 }
 
-#ifdef NON_MATCHING
 void volcano_FollowPath(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s32 flags) {
     DObj* temp_s1 = obj->data.dobj;
     Vec3f sp88 = D_802E0FA8_7321A8;
@@ -644,9 +643,11 @@ void volcano_FollowPath(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s
     sp6C = 1.0f / pokemon->path->duration * speedMult;
 
     while (true) {
-        if (!(var_f20 >= 0.0f && var_f20 <= 1.0f)) {
+        while (true) {
+            if (var_f20 >= 0.0f && var_f20 <= 1.0f) {
+                break;
+            }
             ohWait(1);
-            continue;
         }
         if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED)) {
             GET_TRANSFORM(temp_s1)->pos.v.x -= sp88.x * 100.0f;
@@ -701,6 +702,3 @@ void volcano_FollowPath(GObj* obj, f32* pathParam, f32 pathEnd, f32 speedMult, s
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/volcano/main/volcano_FollowPath.s")
-#endif

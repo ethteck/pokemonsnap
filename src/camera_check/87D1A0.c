@@ -1,20 +1,42 @@
 #include "common.h"
 #include "camera_check.h"
 
-// Unreferenced strings
-const char D_camera_check_80208C60[] = "I'll choose which pictures to\nshow to Prof. Oak!";
-const char D_camera_check_80208C94[] = "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n";
-const char D_camera_check_80208CCC[] = "Let's show the marked\npicture(s) to Prof. Oak.";
-const char D_camera_check_80208CFC[] = "I'll choose which pictures to\nshow to Prof. Oak!";
-const char D_camera_check_80208D30[] = "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n";
-const char D_camera_check_80208D68[] = "Let's show the marked\npicture(s) to Prof. Oak.";
-const char D_camera_check_80208D98[] = "I'll choose which pictures to\nshow to Prof. Oak!";
-const char D_camera_check_80208DCC[] = "I'll choose which pictures to\nsave in my PKMN Album.";
-const char D_camera_check_80208E04[] = "Let's show the marked\npicture(s) to Prof. Oak.";
+extern s32 D_camera_check_80208960 = 0;
+extern s32 D_camera_check_80208964 = 0;
+extern f32 D_camera_check_80208968 = 1.0f; // unused
+
+UIButton D_camera_check_8020896C[] = {
+    { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_24, "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_camera_check_80208994[] = {
+    { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_24, "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_camera_check_802089BC[] = {
+    { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_24, "I'll choose which pictures to\nsave in my PKMN Album." },
+    { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
+    { BUTTON_NONE, NULL },
+};
+
+void (*D_camera_check_80249AA0)(s32, s32);
+UIButton* D_camera_check_80249AA4;
+UIButton* D_camera_check_80249AA8;
+char D_camera_check_80249AB0[128];
 
 UIButton* func_camera_check_801DF9B0(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
-        return &D_camera_check_80208994;
+        return D_camera_check_80208994;
     }
     // clang-format off
     if (!func_camera_check_801E3140()) D_camera_check_802089BC[0].text = "There's no picture to show to\nProf. Oak.";
@@ -33,16 +55,15 @@ UIButton* func_camera_check_801DF9B0(void) {
 
 UIButton* func_camera_check_801DFA4C(void) {
     if (!checkPlayerFlag(PFID_HAS_FINISHED_TUTORIAL)) {
-        return &D_camera_check_80208994;
+        return D_camera_check_80208994;
     } else {
         return D_camera_check_802089BC;
     }
 }
 
 s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIButton* arg3) {
-    s32 temp_v0;
-    char* temp_v0_2;
-    s32 new_var;
+    char* buttonText;
+    static s32 D_camera_check_802089E4 = -1;
 
     if (arg0 == NULL) {
         D_camera_check_802089E4 = -1;
@@ -58,7 +79,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
     if ((arg0->pressedButtons & STICK_SLOW_UP) && !(arg0->currentButtons & (STICK_SLOW_LEFT | STICK_SLOW_RIGHT))) {
         do {
             *arg1 = (*arg1 + 7) % 8;
-        } while (D_camera_check_80249AA8[*arg1].id == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].id == BUTTON_NONE);
 
         if (arg2 != 0) {
             auPlaySound(SOUND_ID_65);
@@ -68,7 +89,7 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
     if ((arg0->pressedButtons & STICK_SLOW_DOWN) && !(arg0->currentButtons & (STICK_SLOW_LEFT | STICK_SLOW_RIGHT))) {
         do {
             *arg1 = (*arg1 + 1) % 8;
-        } while (D_camera_check_80249AA8[*arg1].id == 0x23);
+        } while (D_camera_check_80249AA8[*arg1].id == BUTTON_NONE);
 
         if (arg2 != 0) {
             auPlaySound(SOUND_ID_65);
@@ -79,17 +100,15 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
         return -1;
     }
 
-    new_var = *arg1;
-    temp_v0 = new_var;
-    if (D_camera_check_802089E4 != (temp_v0 ^ 0)) {
-        D_camera_check_802089E4 = temp_v0;
-        temp_v0_2 = UILayout_GetButtonText(arg3, D_camera_check_80249AA8[temp_v0].id);
-        if (temp_v0_2 != 0) {
+    if (D_camera_check_802089E4 != *arg1) {
+        D_camera_check_802089E4 = *arg1;
+        buttonText = UILayout_GetButtonText(arg3, D_camera_check_80249AA8[*arg1].id);
+        if (buttonText != NULL) {
             UIElement_Draw(func_camera_check_801DCB40());
             UIElement_SetTextPos(func_camera_check_801DCB40(), 0, 0);
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
-            UIElement_PrintText(func_camera_check_801DCB40(), temp_v0_2);
+            UIElement_PrintText(func_camera_check_801DCB40(), buttonText);
         }
         return 1;
     }
@@ -97,17 +116,11 @@ s32 func_camera_check_801DFA80(UnkStruct800BEDF8* arg0, s32* arg1, s32 arg2, UIB
     return 0;
 }
 
-#ifndef NON_MATCHING
-s32 func_camera_check_801DFCD4(UnkStruct800BEDF8*, s32*, s32*, s32);
-#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87D1A0/func_camera_check_801DFCD4.s")
-#else
-extern s32 D_camera_check_802089E8;
-extern s32 D_camera_check_802089EC;
 s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s32 arg3) {
     bool sp24;
     bool var_t0;
-    s32 new_var;
-    s32 temp_v0_3;
+    static s32 D_camera_check_802089E8 = -1;
+    static s32 D_camera_check_802089EC = -1;
 
     sp24 = false;
     var_t0 = false;
@@ -122,7 +135,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
     }
 
     if (arg0->pressedButtons & STICK_SLOW_DOWN) {
-        if (((*arg2) <= 0) != 0) {
+        if (*arg2 <= 0) {
             (*arg2)++;
         }
     }
@@ -168,11 +181,11 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         if (D_camera_check_802089E8 >= 0) {
             auPlaySound(SOUND_ID_69);
         }
-        new_var = *arg1;
-        temp_v0_3 = *arg2;
-        D_camera_check_802089EC = temp_v0_3;
-        D_camera_check_80208960 = ((new_var + D_camera_check_80208960) - (D_camera_check_80208960 % 6)) + (temp_v0_3 * 3);
+
         D_camera_check_802089E8 = *arg1;
+        D_camera_check_802089EC = *arg2;
+        D_camera_check_80208960 = (D_camera_check_80208960 - D_camera_check_80208960 % 6) + *arg2 * 3 + *arg1;
+        
         if (var_t0) {
             FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
         } else {
@@ -185,7 +198,6 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
     }
     return sp24;
 }
-#endif
 
 void func_camera_check_801E0034(s32 arg0) {
     s32 pad;
@@ -1076,7 +1088,7 @@ s32 func_camera_check_801E21E8(void) {
     s32 sp30 = 0;
     UNUSED s32 pad;
 
-    D_camera_check_80249AA4 = &D_camera_check_8020896C;
+    D_camera_check_80249AA4 = D_camera_check_8020896C;
     D_camera_check_80249AA8 = UILayout_GetButtons();
     D_camera_check_80208960 = 0;
     D_camera_check_80208964 = func_8009BC68();

@@ -68,6 +68,8 @@ SceneSetup D_camera_check_801E407C = {
     func_camera_check_801DCA60,
 };
 
+u8 D_camera_check_802098F0[0x40000];
+
 static void nullsub() {
 }
 

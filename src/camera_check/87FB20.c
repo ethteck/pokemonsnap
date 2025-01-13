@@ -3,6 +3,13 @@
 #include "photo_check/photo_check.h"
 #include "window/window.h"
 
+UnkIndigoHalibut D_camera_check_80249B30[60];
+s32 D_camera_check_8024A1C0;
+s32 D_camera_check_8024A1C4;
+u8 D_camera_check_8024A1C8[9];
+s32 D_camera_check_8024A1D4;
+s32 D_camera_check_8024A1D8;
+
 s32 func_camera_check_801E2330(s32 arg0) {
     arg0 = func_8009BB4C(arg0);
     if (arg0 < 0 || arg0 >= 69) {

@@ -69,11 +69,19 @@ void func_800AB1F8(EggStruct* arg0) {
     arg0->timer = 0.0f;
 }
 
-#ifdef NON_MATCHING
 void func_800AB240(GObj* obj) {
+    f32 tmp;
+    f32 tmp2;
+    u32 pan;
+
     while (true) {
         Struct_800BEFD8* entry = &D_800BEFD8[(s32) obj->userData];
-        u32 pan = ((f32)entry->unk_0C - (f32)entry->unk_08) * (f32)entry->unk_10 / (f32)entry->unk_14 + (f32)entry->unk_08;
+
+        tmp = entry->unk_08;
+        tmp2 = entry->unk_0C;
+
+        pan = ((entry->unk_10 * (tmp2 - tmp)) / entry->unk_14) + tmp;
+
         auSetSoundPan(entry->unk_04, pan);
         if (entry->unk_10 >= entry->unk_14) {
             entry->unk_04 = 0;
@@ -90,10 +98,6 @@ void func_800AB240(GObj* obj) {
         ohWait(1);
     }
 }
-#else
-void func_800AB240(GObj* obj);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB240.s")
-#endif
 
 s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     s32 i;
@@ -125,15 +129,22 @@ s32 func_800AB41C(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     return -1;
 }
 
-#ifdef NON_MATCHING
 void func_800AB518(GObj* obj) {
+    f32 tmp;
+    f32 tmp2;
+    u32 vol;
+
     while (true) {
         Struct_800BEFD8* entry = &D_800BEF60[(s32) obj->userData];
-        u32 volume = ((f32)entry->unk_0C - (f32)entry->unk_08) * (f32)entry->unk_10 / (f32)entry->unk_14 + (f32)entry->unk_08;
-        if (volume > 0x7FFF) {
-            volume = 0x7FFF;
+
+        tmp = entry->unk_08;
+        tmp2 = entry->unk_0C;
+
+        vol = ((entry->unk_10 * (tmp2 - tmp)) / entry->unk_14) + tmp;
+        if (vol > 0x7FFF) {
+            vol = 0x7FFF;
         }
-        auSetSoundVolume(entry->unk_04, volume);
+        auSetSoundVolume(entry->unk_04, vol);
         if (entry->unk_10 >= entry->unk_14) {
             entry->unk_04 = 0;
             entry->unk_08 = 0;
@@ -149,10 +160,6 @@ void func_800AB518(GObj* obj) {
         ohWait(1);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/568D0/func_800AB518.s")
-void func_800AB518(GObj* obj);
-#endif
 
 s32 func_800AB700(s32 arg0, u32 arg1, u32 arg2, s32 arg3) {
     s32 i;

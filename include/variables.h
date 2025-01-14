@@ -9,6 +9,8 @@ extern OSThread* __osRunningThread;
 extern OSThread* __osRunQueue;
 extern s32 gPhotoCount;
 
+extern s8 sControllerIndices[MAXCONTROLLERS];
+
 // Valley code
 extern PokemonDef extraStaryuDef;
 extern PokemonDef extraStarmieDef;

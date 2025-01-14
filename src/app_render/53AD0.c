@@ -17,6 +17,7 @@ extern UNK_TYPE D_800AF0D4;
 extern UNK_TYPE D_800AF0D4;
 
 static padding3[] = { 0, 0 };
+
 f32 D_800AF378[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 s32 D_800AF3A0 = false;
 s32 D_800AF3A4 = 36;
@@ -28,6 +29,7 @@ s32 D_800AF3BC = 0;
 s32 D_800AF3C0 = SCENE_BEACH;
 
 static s32 D_800BE2E0;
+
 static s32 padding2[2];
 
 // file split ??
@@ -580,21 +582,25 @@ f32 func_800A9DAC(Vec3f* arg0) {
     }
 }
 
-#ifdef NON_MATCHING
 void func_800A9E1C(GObj* obj) {
-    gDPPipeSync(gMainGfxPos[0]++);
-    gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, obj->data.cam->bgColor >> 24, obj->data.cam->bgColor >> 16, obj->data.cam->bgColor >> 8, obj->data.cam->bgColor);
-    gDPSetBlendColor(gMainGfxPos[0]++, 0, 0, 0, 15);
-    gDPSetAlphaCompare(gMainGfxPos[0]++, G_AC_THRESHOLD);
+    OMCamera* cam = obj->data.cam;
+    Gfx* gfx;
+
+    gfx = gMainGfxPos[0];
+    gDPPipeSync(gfx++);
+    gDPSetPrimColor(gfx++, 0, 0, (cam->bgColor >> 24) & 0xFF, (cam->bgColor >> 16) & 0xFF, (cam->bgColor >> 8) & 0xFF, (cam->bgColor) & 0xFF);
+    gDPSetBlendColor(gfx++, 0, 0, 0, 15);
+    gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
+    gMainGfxPos[0] = gfx;
+
     renRenderModelTypeA(obj);
-    gDPPipeSync(gMainGfxPos[0]++);
-    gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, 255, 255, 255, 255);
-    gDPSetAlphaCompare(gMainGfxPos[0]++, G_AC_NONE);
+
+    gfx = gMainGfxPos[0];
+    gDPPipeSync(gfx++);
+    gDPSetPrimColor(gfx++, 0, 0, 255, 255, 255, 255);
+    gDPSetAlphaCompare(gfx++, G_AC_NONE);
+    gMainGfxPos[0] = gfx;
 }
-#else
-void func_800A9E1C(GObj* obj);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9E1C.s")
-#endif
 
 GObj* func_800A9F10(void (*procFunc)(GObj*), s32 link, Sprite* sprite) {
     return ohCreateSprite(1 << link, NULL, link, link, renDrawSprite, DL_LINK_2, link, CAM_MASK_DL_LINK_2, sprite, 0, procFunc, 0);
@@ -604,8 +610,53 @@ GObj* func_800A9F84(void (*procFunc)(GObj*), s32 link, Sprite* sprite) {
     return ohCreateSprite(1 << link, NULL, link, link, renDrawSprite, DL_LINK_30, link, CAM_MASK_DL_LINK_30, sprite, 0, procFunc, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A9FF8.s")
-void func_800A9FF8(GObj*);
+void func_800A9FF8(GObj* obj) {
+    OMCamera* cam = obj->data.cam;
+    s32 mode;
+    s32 xmin;
+    s32 ymin;
+    s32 xmax;
+    s32 ymax;
+    Gfx* gfx;
+
+    xmin = (cam->vp.vp.vtrans[0] / 4) - (cam->vp.vp.vscale[0] / 4);
+    ymin = (cam->vp.vp.vtrans[1] / 4) - (cam->vp.vp.vscale[1] / 4);
+    xmax = ((cam->vp.vp.vtrans[0] / 4) + (cam->vp.vp.vscale[0] / 4)) - 1;
+    ymax = ((cam->vp.vp.vtrans[1] / 4) + (cam->vp.vp.vscale[1] / 4)) - 1;
+
+    if (xmin < 0) {
+        xmin = 0;
+    }
+    if (ymin < 0) {
+        ymin = 0;
+    }
+    if (xmax > viScreenWidth) {
+        xmax = viScreenWidth;
+    }
+    if (ymax > viScreenHeight) {
+        ymax = viScreenHeight;
+    }
+
+    gfx = gMainGfxPos[0];
+    renInitCamera(&gfx, cam, 0);
+    spX2Init(&gfx);
+    spX2Scissor(xmin, xmax, ymin, ymax);
+    gDPSetAlphaCompare(gfx++, G_AC_THRESHOLD);
+    gDPSetBlendColor(gfx++, 0, 0, 0, 5);
+    gMainGfxPos[0] = gfx;
+    if (cam->flags & CAMERA_FLAG_8) {
+        mode = 1;
+    } else {
+        mode = 0;
+    }
+    renCameraRenderObjects(obj, mode);
+    gfx = gMainGfxPos[0];
+    spX2Finish(&gfx);
+    gfx--;
+    gDPSetTexturePersp(gfx++, G_TP_PERSP);
+    gDPSetAlphaCompare(gfx++, G_AC_NONE);
+    gMainGfxPos[0] = gfx;
+}
 
 void func_800AA1DC(void) {
     GObj* camObj;

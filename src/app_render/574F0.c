@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern s8 sControllerIndices[MAXCONTROLLERS];
-
 u8 D_800BF050;
 s8 D_800BF051;
 

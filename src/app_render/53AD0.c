@@ -42,27 +42,22 @@ static UnkStruct800BEDF8 D_800BEDF8[4];
 static UnkStruct800BEDF8* D_800BEE98;
 static UnkStruct800BEDF8 D_800BEEA0[4];
 
-#ifdef NON_MATCHING
 void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2) {
-    Mtx temp;
     f32 value;
     s32 i, j, k;
+    Mtx temp;
 
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
             value = 0.0f;
             for (k = 0; k < 4; k++) {
-                value += (arg1.m[i][k] / 65536.0f) * (arg2.m[k][j] / 65536.0f);
+                value += (arg1.m[j][i + k] / 65536.0f) * (arg2.m[j + k][i] / 65536.0f);
             }
-            temp.m[i][j] = value * 65536.0f;
+            temp.m[j][i] = value * 65536.0f;
         }
     }
     arg0 = temp;
 }
-#else
-void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8120.s")
-#endif
 
 void func_800A8344(Mtx arg0, Vec3f* arg1, f32 arg2) {
     Mtx spC8;

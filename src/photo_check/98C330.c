@@ -533,34 +533,34 @@ s32 func_801DD25C_98CCCC(s32 arg0, s32 arg1) {
 
 void func_801DD2D4_98CD44(s32 arg0) {
     switch (arg0) {
-        case 0x5C42:
+        case '\\B':
             auPlaySoundWithParams(0xA2, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C43:
+        case '\\C':
             auPlaySoundWithParams(0xA3, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C46:
+        case '\\F':
             auPlaySoundWithParams(0xA6, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C47:
+        case '\\G':
             auPlaySoundWithParams(0xA7, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C48:
+        case '\\H':
             auPlaySoundWithParams(0xA8, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C49:
+        case '\\I':
             auPlaySoundWithParams(0xA9, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C4A:
+        case '\\J':
             auPlaySoundWithParams(0xAA, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C51:
+        case '\\Q':
             auPlaySoundWithParams(0xAE, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C53:
+        case '\\S':
             auPlaySoundWithParams(0xAF, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 0x5C56:
+        case '\\V':
             auPlaySoundWithParams(0xB2, 0x7FFF, 0x40, 0.75f, 0);
             break;
         default:

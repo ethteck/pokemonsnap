@@ -260,133 +260,133 @@ void func_800E2350_8A7B70(void) {
     D_80195850_95B070 = 0;
 }
 
-void func_800E235C_8A7B7C(s32 arg0) { // TODO arg is bitfield?
+void func_800E235C_8A7B7C(s32 arg0) {
     D_80195854_95B074 = 12;
     switch (arg0) {
-        case 23630:
+        case '\\N':
             D_80195850_95B070 = 0;
             D_80195870_95B090 = 0;
             break;
-        case 23631:
+        case '\\O':
             D_80195850_95B070 = 1;
             break;
-        case 23629:
+        case '\\M':
             D_8019585C_95B07C = -36;
             break;
-        case 23600:
+        case '\\0':
             func_800E1D68_8A7588(0);
             break;
-        case 23601:
+        case '\\1':
             func_800E1D68_8A7588(1);
             break;
-        case 23602:
+        case '\\2':
             func_800E1D68_8A7588(2);
             break;
-        case 23603:
+        case '\\3':
             func_800E1D68_8A7588(3);
             break;
-        case 23604:
+        case '\\4':
             func_800E1D68_8A7588(4);
             break;
-        case 23605:
+        case '\\5':
             func_800E1D68_8A7588(5);
             break;
-        case 23606:
+        case '\\6':
             func_800E1D68_8A7588(6);
             break;
-        case 23607:
+        case '\\7':
             func_800E1D68_8A7588(7);
             if (D_80195870_95B090 == 0) {
                 auPlaySong(1, 0x20);
             }
             D_80195870_95B090 = 1;
             break;
-        case 23608:
+        case '\\8':
             func_800E1D68_8A7588(8);
             if (D_80195870_95B090 == 0) {
                 auPlaySong(1, 0x20);
             }
             D_80195870_95B090 = 1;
             break;
-        case 23609:
+        case '\\9':
             func_800E1D68_8A7588(9);
             if (D_80195870_95B090 == 0) {
                 auPlaySong(1, 0x20);
             }
             D_80195870_95B090 = 1;
             break;
-        case 23617:
+        case '\\A':
             func_800E1D68_8A7588(10);
             if (D_80195870_95B090 == 0) {
                 auPlaySong(1, 0x20);
             }
             D_80195870_95B090 = 1;
             break;
-        case 23618:
+        case '\\B':
             auPlaySoundWithParams(0xA2, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23619:
+        case '\\C':
             auPlaySoundWithParams(0xA3, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23620:
+        case '\\D':
             auPlaySoundWithParams(0xA4, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23621:
+        case '\\E':
             auPlaySoundWithParams(0xA5, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23622:
+        case '\\F':
             auPlaySoundWithParams(0xA6, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23623:
+        case '\\G':
             auPlaySoundWithParams(0xA7, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23624:
+        case '\\H':
             auPlaySoundWithParams(0xA8, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23625:
+        case '\\I':
             auPlaySoundWithParams(0xA9, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23626:
+        case '\\J':
             auPlaySoundWithParams(0xAA, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23627:
+        case '\\K':
             auPlaySoundWithParams(0xAB, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23628:
+        case '\\L':
             auPlaySoundWithParams(0xAC, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23632:
+        case '\\P':
             auPlaySoundWithParams(0xAD, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23633:
+        case '\\Q':
             auPlaySoundWithParams(0xAE, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23635:
+        case '\\S':
             auPlaySoundWithParams(0xAF, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23636:
+        case '\\T':
             auPlaySoundWithParams(0xB0, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23637:
+        case '\\U':
             auPlaySoundWithParams(0xB1, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23638:
+        case '\\V':
             auPlaySoundWithParams(0xB2, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23639:
+        case '\\W':
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             break;
-        case 23640:
+        case '\\X':
             auPlaySoundWithParams(0xA1, 0x7FFF, 0x40, 0.75f, 0);
             break;
         default:
-            if (arg0 >= 42146 && arg0 < 42211) {
-                D_80195858_95B078 = D_80195874_95B094[((s32) (arg0 + 0xFFFF5B5E) % ARRAY_COUNT(D_80195874_95B094))];
+            if (arg0 >= 'あ' && arg0 <= 'も') {
+                D_80195858_95B078 = D_80195874_95B094[(arg0 - 'あ') % ARRAY_COUNT(D_80195874_95B094)];
                 return;
-            } else if (arg0 >= 42402 && arg0 < 42467) {
-                D_80195858_95B078 = D_80195874_95B094[((s32) (arg0 + 0xFFFF5A5E) % ARRAY_COUNT(D_80195874_95B094))];
+            } else if (arg0 >= 'ア' && arg0 <= 'モ') {
+                D_80195858_95B078 = D_80195874_95B094[(arg0 - 'ア') % ARRAY_COUNT(D_80195874_95B094)];
                 return;
-            } else if (arg0 == 42227 || arg0 == 42483 || arg0 == 41377) {
+            } else if (arg0 == 'ん' || arg0 == 'ン' || arg0 == '　') {
                 D_80195858_95B078 = 0;
             } else if (arg0 & 0x8000) {
                 D_80195858_95B078 = -1;

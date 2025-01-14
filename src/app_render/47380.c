@@ -929,8 +929,36 @@ void func_8009D1E8(u32 romStart, s32 romEnd, s32 ramDst) {
     }
 }
 
-void func_8009D21C(s32 idx, s32* data);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009D21C.s")
+void func_8009D21C(s32 idx, s32* arg2) {
+    s32 i, j;
+
+    if (idx >= 8) {
+        return;
+    }
+
+    D_800BE248[idx] = *arg2;
+    D_800BE288[idx] = (ParticleAnimData**) (arg2 + 1);
+
+    for (i = 1; i <= D_800BE248[idx]; i++) {
+        arg2[i] = (u32) (arg2) + arg2[i];
+    }
+
+    for (i = 0; i < D_800BE248[idx]; i++) {
+        for (j = 0; j < D_800BE288[idx][i]->numFrames; j++) {
+            D_800BE288[idx][i]->data[j] += (u32) arg2;
+        }
+        if (D_800BE288[idx][i]->type == 2) {
+            if (D_800BE288[idx][i]->flags & 1) {
+                j = D_800BE288[idx][i]->numFrames;
+                D_800BE288[idx][i]->data[j] += (u32) arg2;
+            } else {
+                for (j = D_800BE288[idx][i]->numFrames; j < 2 * D_800BE288[idx][i]->numFrames; j++) {
+                    D_800BE288[idx][i]->data[j] += (u32) arg2;
+                }
+            }
+        }
+    }
+}
 
 void func_8009D37C(u8 levelID) {
     if (levelID < 0) {

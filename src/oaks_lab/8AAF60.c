@@ -56,7 +56,8 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
     while (true) {
         s32 tmp = D_801C5514_98AD34;
         switch (tmp) {
-            if (0) {} // TODO fake match
+            if (0) {
+            } // TODO fake match
             case 0:
                 frameCounter = 12;
                 idx = 0;
@@ -158,7 +159,8 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
                         }
                         D_80206B6C_9CC38C->sprite.bitmap = D_801C542C_98AC4C[idx];
                     }
-                    if (0) {} // TODO fake match
+                    if (0) {
+                    } // TODO fake match
                     if (D_80206B6C_9CC38C->sprite.attr & SP_HIDDEN) {
                         break;
                     }

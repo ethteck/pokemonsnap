@@ -1,6 +1,10 @@
 #include "common.h"
 #include "window.h"
 
+#define NEXT_CHUNK(x) (HeapChunk*) ((uintptr_t) (x) + x->size)
+#define PREV_CHUNK(x) (x)->prev
+#define GET_CHUNK(x) (HeapChunk*) ((u32) (x) - offsetof(HeapChunk, v.data))
+
 typedef struct HeapChunk HeapChunk;
 struct HeapChunk {
     /* 0x00 */ HeapChunk* prev;
@@ -46,7 +50,7 @@ void UIMem_InitHeap(u8* base, s32 size) {
 
     D_803A6900_87A0B0 = header;
     D_803A6904_87A0B4 = size;
-    D_803A6908_87A0B8 = (u32)base + size;
+    D_803A6908_87A0B8 = (u32) base + D_803A6904_87A0B4;
 
     header->prev = NULL;
     header->size = size;
@@ -70,48 +74,37 @@ HeapChunk* UIMem_FindChunk(s32 size) {
     return NULL;
 }
 
-#ifdef NON_MATCHING
 HeapChunk* UIMem_SplitChunk(HeapChunk* chunk, u32 offset) {
-    u32 newSize;
     HeapChunk* child;
     HeapChunk* next;
 
-    child = (HeapChunk*)((u32)chunk + offset);
+    child = (HeapChunk*) ((u32) chunk + offset);
 
     child->prev = chunk;
-    newSize = chunk->size - offset;
-    child->size = newSize;
+    child->size = chunk->size - offset;
     child->allocated = FALSE;
 
-    next = (HeapChunk*)((u32)child + newSize);
-    if ((u32)next < D_803A6908_87A0B8) {
-        next->prev = child;
+    next = NEXT_CHUNK(child);
+    if (next < D_803A6908_87A0B8) {
+        PREV_CHUNK(next) = child;
     }
 
     chunk->size = offset;
     return child;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_SplitChunk.s")
-HeapChunk* UIMem_SplitChunk(HeapChunk*, u32);
-#endif
 
-#ifdef NON_MATCHING
 void UIMem_MergeChunks(HeapChunk* chunk) {
-    s32 size;
     HeapChunk* prev;
-    HeapChunk* nextNext;
     HeapChunk* next;
+    HeapChunk* afterNext;
 
-    prev = chunk->prev;
-    size = chunk->size;
+    prev = PREV_CHUNK(chunk);
+    next = NEXT_CHUNK(chunk);
 
-    next = (HeapChunk*)((u32)(chunk) + size);
     if (prev != NULL && !prev->allocated) {
         // merge with previous
-        prev->size += size;
-        size = (u32)next;
-        if (size < (u32)D_803A6908_87A0B8) {
+        prev->size += chunk->size;
+        if (next < D_803A6908_87A0B8) {
             next->prev = prev;
         }
         chunk = prev;
@@ -119,19 +112,15 @@ void UIMem_MergeChunks(HeapChunk* chunk) {
         UIMem_AddChunk(chunk);
         chunk->allocated = FALSE;
     }
-    if ((u32)next < D_803A6908_87A0B8 && !next->allocated) {
-        nextNext = (HeapChunk*)((u32)next + next->size);
-        if ((u32)nextNext < (u32)D_803A6908_87A0B8) {
-            nextNext->prev = chunk;
+    if (next < D_803A6908_87A0B8 && !next->allocated) {
+        afterNext = NEXT_CHUNK(next);
+        if (afterNext < D_803A6908_87A0B8) {
+            afterNext->prev = chunk;
         }
         chunk->size += next->size;
         UIMem_Unlink(next);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_MergeChunks.s")
-void UIMem_MergeChunks(HeapChunk*);
-#endif
 
 void* UIMem_Allocate(u32 size) {
     u32 size_with_header;
@@ -156,10 +145,72 @@ void* UIMem_Allocate(u32 size) {
 }
 
 void UIMem_Deallocate(void* data) {
-    UIMem_MergeChunks((HeapChunk*)((u32)data - offsetof(HeapChunk, v.data)));
+    UIMem_MergeChunks(GET_CHUNK(data));
 }
 
+#ifdef NON_MATCHING
+u8* UIMem_Reallocate(u8* data_, u32 size) {
+    u8* data = data_;
+    HeapChunk* chunk;
+    HeapChunk* next;
+    HeapChunk* afterNext;
+    u8* newData;
+    s32 size_with_header;
+    s32 oldSize;
+    s32 i;
+
+    while (true) {
+        HeapChunk* chunk = GET_CHUNK(data);
+        if (size < sizeof(chunk->v)) {
+            size = sizeof(chunk->v);
+        }
+
+        size_with_header = ALIGN(size + offsetof(HeapChunk, v.data), 8);
+        if (chunk->size > size_with_header) {
+            if (chunk->size - size_with_header > sizeof(HeapChunk)) {
+                UIMem_MergeChunks(UIMem_SplitChunk(chunk, size_with_header));
+            }
+            return data;
+        }
+
+        if (chunk->size >= size_with_header) {
+            return data;
+        }
+
+        next = NEXT_CHUNK(chunk);
+        if (next >= D_803A6908_87A0B8 || next->allocated) {
+            break;
+        }
+
+        afterNext = NEXT_CHUNK(next);
+        if (chunk->size + next->size < size_with_header) {
+            break;
+        }
+
+        if (afterNext < D_803A6908_87A0B8) {
+            PREV_CHUNK(afterNext) = chunk;
+        }
+        chunk->size += next->size;
+        UIMem_Unlink(next);
+    }
+
+    oldSize = chunk->size;
+
+    newData = UIMem_Allocate(size);
+    if (newData == NULL) {
+        return NULL;
+    }
+
+    
+    for (i = 0; i < oldSize; i++) {
+        newData[i] = data[i];
+    }
+    UIMem_Deallocate(data);
+    return newData;
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_Reallocate.s")
+#endif
 
 void UIMem_CreateHeap(u8* buffer, s32 size) {
     UIMem_InitHeap(buffer, size);

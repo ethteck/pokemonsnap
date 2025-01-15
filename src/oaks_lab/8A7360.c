@@ -199,9 +199,6 @@ void func_800E1FEC_8A780C(s32 stage) {
     }
 }
 
-// #ifndef NON_MATCHING
-// #pragma GLOBAL_ASM("asm/nonmatchings/oaks_lab/8A7360/func_800E2058_8A7878.s")
-// #else
 void func_800E2058_8A7878(GObj* gobj) {
     s32 var_s4;
     u32 var_s6;
@@ -260,7 +257,6 @@ void func_800E2058_8A7878(GObj* gobj) {
         ohWait(1);
     }
 }
-// #endif
 
 void func_800E2350_8A7B70(void) {
     D_80195850_95B070 = 0;

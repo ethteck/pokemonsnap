@@ -45,28 +45,25 @@ void func_800E5740_8AAF60(GObj* obj) {
     }
 }
 
-#ifndef NON_MATCHING
-#pragma GLOBAL_ASM("asm/nonmatchings/oaks_lab/8AAF60/func_800E58D0_8AB0F0.s")
-#else
 void func_800E58D0_8AB0F0(GObj* arg0) {
-    Vec3f sp6C;
-    s32 new_var;
     f32 temp_f20;
     s32 frameCounter;
     u32 idx;
     s32 i;
+    Vec3f sp6C;
+    s32 tmp;
 
     while (true) {
-        switch (D_801C5514_98AD34) {
+        s32 tmp = D_801C5514_98AD34;
+        switch (tmp) {
+            if (0) {} // TODO fake match
             case 0:
                 frameCounter = 12;
                 idx = 0;
-                while (D_801C5514_98AD34 == 0) {
-                    frameCounter -= 1;
-                    if (frameCounter == 0) {
+                while (D_801C5514_98AD34 == tmp) {
+                    if (--frameCounter == 0) {
                         frameCounter = 12;
-                        idx++;
-                        idx %= 4;
+                        idx = (idx + 1) % 4;
                         D_80206B64_9CC384->sprite.bitmap = D_801C5404_98AC24[idx];
                     }
                     ohWait(1);
@@ -80,12 +77,10 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
                 D_80206B68_9CC388->sprite.attr &= ~SP_HIDDEN;
                 D_801C5514_98AD34 = 2;
 
-                for (frameCounter = 0, idx = 0, i = 0; i < 15; i++, ohWait(1)) {
-                    frameCounter++;
-                    if (frameCounter >= 4) {
+                for (i = 0, idx = 0, frameCounter = 0; i < 15; i++, ohWait(1)) {
+                    if (++frameCounter >= 4) {
                         frameCounter = 0;
-                        idx++;
-                        idx %= 6;
+                        idx = (idx + 1) % 6;
                         D_80206B68_9CC388->sprite.bitmap = D_801C5414_98AC34[idx];
                     }
                     sp6C = D_801C54F4_98AD14;
@@ -107,13 +102,12 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
                 auPlaySound(0x16);
 
                 for (i = 0, idx = 0, frameCounter = 0; i < 21; i++, ohWait(1)) {
-                    frameCounter++;
-                    if (frameCounter >= 4) {
+                    if (++frameCounter >= 4) {
                         frameCounter = 0;
-                        idx++;
-                        if (idx < 6) {
-                            D_80206B70_9CC390->sprite.bitmap = D_801C5450_98AC70[idx];
+                        if (++idx >= 6) {
+                            break;
                         }
+                        D_80206B70_9CC390->sprite.bitmap = D_801C5450_98AC70[idx];
                     }
                 }
                 break;
@@ -123,14 +117,10 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
                 D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
                 D_80206B74_9CC394->sprite.attr &= ~SP_HIDDEN;
 
-                idx = 0;
-                frameCounter = 0;
-                for (i = 0; i < 60; i++, ohWait(1)) {
-                    frameCounter++;
-                    if (frameCounter >= 4) {
+                for (i = 0, idx = 0, frameCounter = 0; i < 60; i++, ohWait(1)) {
+                    if (++frameCounter >= 4) {
                         frameCounter = 0;
-                        idx++;
-                        idx %= 3;
+                        idx = (idx + 1) % 3;
                         D_80206B74_9CC394->sprite.bitmap = D_801C5468_98AC88[idx];
                     }
                     temp_f20 = i / 60.0f;
@@ -160,20 +150,18 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
 
                 frameCounter = 0;
                 idx = 0;
-                while (true) {
-                    frameCounter++;
-                    if (frameCounter >= 7) {
+                for (i = 0;; i++, ohWait(1)) {
+                    if (++frameCounter >= 7) {
                         frameCounter = 0;
-                        idx++;
-                        if (idx >= 9) {
+                        if (++idx >= 9) {
                             break;
                         }
                         D_80206B6C_9CC38C->sprite.bitmap = D_801C542C_98AC4C[idx];
                     }
+                    if (0) {} // TODO fake match
                     if (D_80206B6C_9CC38C->sprite.attr & SP_HIDDEN) {
                         break;
                     }
-                    ohWait(1);
                 }
 
                 if (!(D_80206B6C_9CC38C->sprite.attr & SP_HIDDEN)) {
@@ -186,7 +174,6 @@ void func_800E58D0_8AB0F0(GObj* arg0) {
         }
     }
 }
-#endif
 
 void func_800E5EBC_8AB6DC(void) {
     if ((rand16() & 0x12) == 0) {

@@ -1,6 +1,7 @@
 #include "sys/vi.h"
 #include "sys/gtl.h"
 #include "PR/mbi.h"
+#include "macros.h"
 
 Vp sViewport;
 
@@ -66,23 +67,20 @@ void rdpSetPreRenderFunc(void (*func)(Gfx**)) {
     sPreRenderFunc = func;
 }
 
-#ifdef NON_MATCHING
 void rdpReset(Gfx** pGfxPos) {
     Gfx* gfxPos = *pGfxPos;
-    s32 x = 0;
-    s32 y = 0;
+
     gSPSegment(gfxPos++, 0x00, 0x00000000);
     gtlSetSegmentF(&gfxPos);
     gDPSetDepthImage(gfxPos++, viZBuffer);
     func_80007CBC(&sViewport);
     gSPDisplayList(gfxPos++, srdpReset);
-    gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, x, y, viScreenWidth, viScreenHeight);
+    gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, 
+            0 * (viScreenWidth / SCREEN_WIDTH), 0 * (viScreenHeight / SCREEN_HEIGHT),
+            viScreenWidth - 0 * (viScreenWidth / SCREEN_WIDTH),
+            viScreenHeight - 0 * (viScreenHeight / SCREEN_HEIGHT));
     if (sPreRenderFunc != NULL) {
         sPreRenderFunc(&gfxPos);
     }
     *pGfxPos = gfxPos;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/rdpReset.s")
-void rdpReset(Gfx**);
-#endif

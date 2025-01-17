@@ -1170,6 +1170,7 @@ segments:
     subsegments:
     - [0x1D1D90, bin] # , data]
   - type: code
+    name: cave_assets
     start: 0x1F5E70
     vram: 0x8012A0C0
     bss_size: 0x20
@@ -1186,6 +1187,7 @@ segments:
     subsegments:
     - [0x27AB80, bin] # , data]
   - type: code
+    name: river_assets
     start: 0x29A190
     vram: 0x8012A0C0
     bss_size: 0x20
@@ -3224,6 +3226,7 @@ segments:
     subsegments:
     - [0x3D0560, bin] # , data]
   - type: code
+    name: valley_assets
     start: 0x3F63D0
     vram: 0x800FFF90
     bss_size: 0x20
@@ -3240,6 +3243,7 @@ segments:
     subsegments:
     - [0x47CF30, bin] # , data]
   - type: code
+    name: rainbow_assets
     start: 0x4A8160
     vram: 0x800F5D90
     bss_size: 0x20

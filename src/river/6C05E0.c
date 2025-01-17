@@ -308,7 +308,7 @@ void func_802D9208_6C0FE8(s32 arg0) {
 }
 
 s32 func_802D9210_6C0FF0(s32 sceneId) {
-    D_802E293C_6CA71C.gtlSetup.heapSize = (uintptr_t) river_code_VRAM - (uintptr_t) _29A190_VRAM_END;
+    D_802E293C_6CA71C.gtlSetup.heapSize = (uintptr_t) river_code_VRAM - (uintptr_t) river_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_802E293C_6CA71C);

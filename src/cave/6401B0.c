@@ -181,7 +181,7 @@ void func_802BE3A8_640858(s32 arg0) {
 }
 
 s32 func_802BE3B0_640860(s32 arg0) {
-    D_802C6398_648848.gtlSetup.heapSize = (uintptr_t) cave_code_VRAM - (uintptr_t) _1F5E70_VRAM_END;
+    D_802C6398_648848.gtlSetup.heapSize = (uintptr_t) cave_code_VRAM - (uintptr_t) cave_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_802C6398_648848);

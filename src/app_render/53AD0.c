@@ -463,20 +463,20 @@ void func_800A929C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
         if (!*ptr) {
             continue;
         }
-        
+
         gDPFillRectangle(gfxPos++,
-            (arg0 + D_800BE2E0->ulx) * 320 / 320,
-            (arg1 + D_800BE2E0->uly) * 240 / 240,
-            (arg0 + D_800BE2E0->lrx) * 320 / 320,
-            (arg1 + D_800BE2E0->lry) * 240 / 240);
+                         (arg0 + D_800BE2E0->ulx) * 320 / 320,
+                         (arg1 + D_800BE2E0->uly) * 240 / 240,
+                         (arg0 + D_800BE2E0->lrx) * 320 / 320,
+                         (arg1 + D_800BE2E0->lry) * 240 / 240);
     }
 
     if (arg3) {
         gDPFillRectangle(gfxPos++,
-            (arg0 + D_800BE2E0->ulx) * 320 / 320,
-            (arg1 + D_800BE2E0->uly) * 240 / 240,
-            (arg0 + D_800BE2E0->lrx) * 320 / 320,
-            (arg1 + D_800BE2E0->lry) * 240 / 240);
+                         (arg0 + D_800BE2E0->ulx) * 320 / 320,
+                         (arg1 + D_800BE2E0->uly) * 240 / 240,
+                         (arg0 + D_800BE2E0->lrx) * 320 / 320,
+                         (arg1 + D_800BE2E0->lry) * 240 / 240);
     }
 
     gMainGfxPos[0] = gfxPos;
@@ -955,7 +955,7 @@ void func_800AAB5C(GObj* obj) {
 
         if (s7 != D_800AF3B8) {
             if (s7 == 2) {
-                func_800AAB30(D_800BE5F0, s1, 0x800);
+                func_800AAB30((u32) D_800BE5F0, (void*) s1, 0x800);
                 s1 += 0x800;
             }
 
@@ -1013,7 +1013,7 @@ void func_800AAB5C(GObj* obj) {
                     s4++;
                     if (s4 == &D_800BE5F0[0x100]) {
                         s4 = D_800BE5F0;
-                        func_800AAB30(D_800BE5F0, s1, 0x800);
+                        func_800AAB30((u32) D_800BE5F0, (void*) s1, 0x800);
                         s1 += 0x800;
                         if (s1 >= 0x1000000) {
                             D_800AF3B8 = 0;

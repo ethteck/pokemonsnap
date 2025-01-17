@@ -157,7 +157,7 @@ void func_80346898_826008(void) {
     GET_TRANSFORM(model)->pos.v.z = 0.0f;
 }
 
-s32 D_8034ABD8_82A348 = 0;
+s32 rainbow_endLevelReason = 0;
 
 void func_80346968_8260D8(s32 arg0) {
     ohWait(1800);
@@ -189,7 +189,7 @@ void func_80346A28_826198(void) {
 }
 
 void func_80346AA8_826218(s32 endLevelReason) {
-    D_8034ABD8_82A348 = endLevelReason;
+    rainbow_endLevelReason = endLevelReason;
     func_800A19D8(endLevelReason);
     PokemonDetector_Disable();
     EnvSound_Cleanup();
@@ -224,7 +224,7 @@ void func_80346B94_826304(s32 arg0) {
 void func_80346BD0_826340(WorldBlock* block) {
     WorldBlock* next;
 
-    if (D_8034ABD8_82A348 <= 0) {
+    if (rainbow_endLevelReason <= 0) {
         if (block->next != NULL) {
             next = block->next;
             Items_DisplaceAllItems(
@@ -301,22 +301,22 @@ void func_80346EE8_826658(s32 arg0) {
 
 SceneSetup D_8034ABF8_82A368 = {
     {
-        0,                /* unk_00*/
-        omUpdateAll,      /* fnUpdate */
-        omDrawAll,        /* fnDraw */
-        _4A8160_VRAM_END, /* heapBase */
-        0,                /* heapSize */
-        1,                /* unk_14 */
-        2,                /* numContexts */
-        0x5000,           /* dlBufferSize0 */
-        0x1000,           /* dlBufferSize1 */
-        0x0400,           /* dlBufferSize2 */
-        0x0000,           /* dlBufferSize3 */
-        0xC800,           /* gfxHeapSize */
-        2,                /* unk30 */
-        0x4000,           /* rdpOutputBufferSize */
-        func_800A1A50,    /* fnPreRender */
-        contUpdate        /* fnUpdateInput */
+        0,                       /* unk_00*/
+        omUpdateAll,             /* fnUpdate */
+        omDrawAll,               /* fnDraw */
+        rainbow_assets_VRAM_END, /* heapBase */
+        0,                       /* heapSize */
+        1,                       /* unk_14 */
+        2,                       /* numContexts */
+        0x5000,                  /* dlBufferSize0 */
+        0x1000,                  /* dlBufferSize1 */
+        0x0400,                  /* dlBufferSize2 */
+        0x0000,                  /* dlBufferSize3 */
+        0xC800,                  /* gfxHeapSize */
+        2,                       /* unk30 */
+        0x4000,                  /* rdpOutputBufferSize */
+        func_800A1A50,           /* fnPreRender */
+        contUpdate               /* fnUpdateInput */
     },
     0,                    /* numOMThreads */
     768,                  /* omThreadStackSize */
@@ -340,12 +340,12 @@ SceneSetup D_8034ABF8_82A368 = {
 };
 
 s32 func_80346EF0_826660(s32 arg0) {
-    D_8034ABF8_82A368.gtlSetup.heapSize = (uintptr_t) rainbow_code_VRAM - (uintptr_t) _4A8160_VRAM_END;
+    D_8034ABF8_82A368.gtlSetup.heapSize = (uintptr_t) rainbow_code_VRAM - (uintptr_t) rainbow_assets_VRAM_END;
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);
     omSetupScene(&D_8034ABF8_82A368);
 
-    if (D_8034ABD8_82A348 == END_LEVEL_REASON_RETRY) {
+    if (rainbow_endLevelReason == END_LEVEL_REASON_RETRY) {
         return SCENE_RAINBOW;
     }
 

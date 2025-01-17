@@ -11,12 +11,23 @@ typedef struct Unk800BEDF0 {
     /* 0x0 */ u8 stickX;
     /* 0x1 */ u8 stickY;
     /* 0x2 */ u16 buttons;
+    /* 0x4 */ s32 unk_04;
 } Unk800BEDF0; // size = 0x4
 
+typedef struct Rect {
+    s32 ulx;
+    s32 uly;
+    s32 lrx;
+    s32 lry;
+} Rect;
+
 extern UNK_TYPE D_800AF0D4;
 extern UNK_TYPE D_800AF0D4;
 
-static padding3[] = { 0, 0 };
+static s32 padding3[] = { 0, 0 };
+
+extern Rect D_800AF0D8[];
+extern s32 D_800AF158[8][8];
 
 f32 D_800AF378[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 s32 D_800AF3A0 = false;
@@ -27,20 +38,6 @@ static u64 D_800AF3B0 = 0;
 s32 D_800AF3B8 = 0;
 s32 D_800AF3BC = 0;
 s32 D_800AF3C0 = SCENE_BEACH;
-
-static s32 D_800BE2E0;
-
-static s32 padding2[2];
-
-// file split ??
-
-static s32 D_800BE2F0[4][24];
-static s32 D_800BE470[4][24];
-static u8 D_800BE5F0[0x800];
-static Unk800BEDF0 D_800BEDF0;
-static UnkStruct800BEDF8 D_800BEDF8[4];
-static UnkStruct800BEDF8* D_800BEE98;
-static UnkStruct800BEDF8 D_800BEEA0[4];
 
 void func_800A8120(Mtx arg0, Mtx arg1, Mtx arg2) {
     f32 value;
@@ -450,8 +447,52 @@ s32 func_800A9254(GObj* obj, GObjFunc func) {
     return false;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A929C.s")
-void func_800A929C(s32, s32, s32, s32);
+void func_800A929C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 i;
+    Gfx* gfxPos;
+    s32* ptr;
+    static Rect* D_800BE2E0;
+
+    if (arg2 < 0 || arg2 > 16) {
+        return;
+    }
+
+    gfxPos = gMainGfxPos[0];
+
+    for (D_800BE2E0 = D_800AF0D8, ptr = D_800AF158[arg2], i = 0; i < 7; ptr++, D_800BE2E0++, i++) {
+        if (!*ptr) {
+            continue;
+        }
+        
+        gDPFillRectangle(gfxPos++,
+            (arg0 + D_800BE2E0->ulx) * 320 / 320,
+            (arg1 + D_800BE2E0->uly) * 240 / 240,
+            (arg0 + D_800BE2E0->lrx) * 320 / 320,
+            (arg1 + D_800BE2E0->lry) * 240 / 240);
+    }
+
+    if (arg3) {
+        gDPFillRectangle(gfxPos++,
+            (arg0 + D_800BE2E0->ulx) * 320 / 320,
+            (arg1 + D_800BE2E0->uly) * 240 / 240,
+            (arg0 + D_800BE2E0->lrx) * 320 / 320,
+            (arg1 + D_800BE2E0->lry) * 240 / 240);
+    }
+
+    gMainGfxPos[0] = gfxPos;
+}
+
+static s32 padding2[2];
+
+// file split ??
+
+static s32 D_800BE2F0[4][24];
+static s32 D_800BE470[4][24];
+static Unk800BEDF0 D_800BE5F0[0x100];
+static Unk800BEDF0 D_800BEDF0;
+static UnkStruct800BEDF8 D_800BEDF8[4];
+static UnkStruct800BEDF8* D_800BEE98;
+static UnkStruct800BEDF8 D_800BEEA0[4];
 
 void func_800A98B0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 s6 = 0;
@@ -888,17 +929,103 @@ f32 func_800AAAA8(Vec3f* arg0, Vec3f* arg1) {
     return Vec3fDistance(&sp24, &sp18);
 }
 
-void func_800AAB10(void* romSrc, void* ramDst, u32 nbytes) {
-    dmaReadRom(romSrc, ramDst, nbytes);
+void func_800AAB10(u32 romSrc, void* ramDst, u32 nbytes) {
+    dmaReadRom((void*) romSrc, ramDst, nbytes);
 }
 
 void func_800AAB30(u32 romDst, void* ramSrc, u32 nbytes) {
     dmaWriteRom(ramSrc, romDst, nbytes);
 }
 
-static s32 D_800BEF44;
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800AAB5C.s")
-void func_800AAB5C(GObj*);
+void func_800AAB5C(GObj* obj) {
+    Unk800BEDF0* s5;
+    Unk800BEDF0* s4;
+    Unk800BEDF0 sp68;
+    Unk800BEDF0 sp60;
+    s32 s7 = -1;
+    s32 s2;
+    s32 unused;
+    u32 s1;
+    s32 s0;
+    static s32 D_800BEF44;
+
+    while (true) {
+        func_800AA81C();
+        D_800BEF44++;
+
+        if (s7 != D_800AF3B8) {
+            if (s7 == 2) {
+                func_800AAB30(D_800BE5F0, s1, 0x800);
+                s1 += 0x800;
+            }
+
+            s7 = D_800AF3B8;
+            s1 = 0xF00000;
+            s4 = D_800BE5F0;
+            s5 = D_800BE5F0;
+            s0 = 0;
+
+            sp60.stickX = 0;
+            sp60.stickY = 0;
+            sp60.buttons = 0;
+
+            D_800BEDF0.stickX = 0;
+            D_800BEDF0.stickY = 0;
+            D_800BEDF0.buttons = 0;
+
+            s2 = 0;
+        }
+
+        switch (D_800AF3B8) {
+            case 1:
+                if (s2 >= D_800AF3BC) {
+                    D_800AF3B8 = 0;
+                } else {
+                    s0--;
+                    if (s0 < 0) {
+                        if ((u32) (s2 % 256) <= 0) {
+                            func_800AAB10(s1, D_800BE5F0, 0x800);
+                            s1 += 0x800;
+                            s5 = D_800BE5F0;
+                        }
+                        s0 = s5->unk_04;
+                        D_800BEDF0 = *s5;
+                        s5++;
+                        s2++;
+                    }
+                }
+                break;
+            case 2:
+                sp68.stickX = gContInput[sControllerIndices[0]].stickX;
+                sp68.stickY = gContInput[sControllerIndices[0]].stickY;
+                sp68.buttons = gContInput[sControllerIndices[0]].buttons;
+                if (sp60.stickX == sp68.stickX &&
+                    sp60.stickY == sp68.stickY &&
+                    sp60.buttons == sp68.buttons) {
+                    s0++;
+                } else {
+                    *s4 = sp60;
+                    s4->unk_04 = s0;
+                    s2++;
+                    sp60 = sp68;
+                    s0 = 0;
+                    D_800AF3BC = s2;
+                    s4++;
+                    if (s4 == &D_800BE5F0[0x100]) {
+                        s4 = D_800BE5F0;
+                        func_800AAB30(D_800BE5F0, s1, 0x800);
+                        s1 += 0x800;
+                        if (s1 >= 0x1000000) {
+                            D_800AF3B8 = 0;
+                        }
+                    }
+                }
+                break;
+        }
+
+        ohWait(1);
+    }
+}
 
 void func_800AADF0(s32 arg0) {
     D_800AF3C0 = arg0;

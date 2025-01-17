@@ -37,15 +37,6 @@ extern Texture** D_800EDB90[];
 
 extern DObj* gPlayerDObj;
 
-s32 Items_ObjectCounter = 0;
-GObjFunc Items_FnUpdate = NULL;
-void (*Items_FnCollide)(GObj*, GroundResult*) = NULL;
-s32 (*D_80382EBC_5232CC)(Vec3f*, Vec3f*, Vec3f*, Vec3f*) = NULL;
-s32 Items_FluteSongsList[3] = { SONG_ID_1, SONG_ID_3, SONG_ID_2 };
-s32 Items_FluteCommandIds[3] = { POKEMON_CMD_5, POKEMON_CMD_6, POKEMON_CMD_7 };
-s32 Items_FluteSongIndex = 0;
-s32 Items_IsPokeFlutePlaying = false;
-OSTime Items_SongStartTime = 0;
 // bss
 extern ItemObjectListEntry Items_ListEntryArray[20];
 extern ItemObjectListEntry* Items_AllocatedObjectListHead;
@@ -194,10 +185,9 @@ void Items_UnlinkObject(GObj* obj) {
     Items_FreeObjectListHead = entry;
 }
 
-#ifdef NON_MATCHING
-// loop not unrolled
 s32 Items_GetFreeObjectID(void) {
     s32 i;
+    static s32 Items_ObjectCounter = 0;
 
     Items_ObjectCounter++;
     if (Items_ObjectCounter >= 20) {
@@ -216,10 +206,15 @@ s32 Items_GetFreeObjectID(void) {
     }
     return BASE_ITEM_OBJID;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_level/items/Items_GetFreeObjectID.s")
-s32 Items_GetFreeObjectID(void);
-#endif
+
+GObjFunc Items_FnUpdate = NULL;
+void (*Items_FnCollide)(GObj*, GroundResult*) = NULL;
+s32 (*D_80382EBC_5232CC)(Vec3f*, Vec3f*, Vec3f*, Vec3f*) = NULL;
+s32 Items_FluteSongsList[3] = { SONG_ID_1, SONG_ID_3, SONG_ID_2 };
+s32 Items_FluteCommandIds[3] = { POKEMON_CMD_5, POKEMON_CMD_6, POKEMON_CMD_7 };
+s32 Items_FluteSongIndex = 0;
+s32 Items_IsPokeFlutePlaying = false;
+OSTime Items_SongStartTime = 0;
 
 void Items_ShowDelayed(GObj* obj) {
     ohWait(3);

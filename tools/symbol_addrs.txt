@@ -2474,3 +2474,5 @@ UIMem_Deallocate = 0x8036A228; // segment:window
 UIMem_SplitChunk = 0x8036A07C; // segment:window
 UIMem_MergeChunks = 0x8036A0BC; // segment:window
 UIMem_Reallocate = 0x8036A248; // segment:window
+
+D_beach_802CC344 = 0x802CC344; // segment:beach_code type:s32

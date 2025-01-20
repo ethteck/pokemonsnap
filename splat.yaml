@@ -4910,32 +4910,42 @@ segments:
     bss_size: 0x20
     subsegments:
     - [0xAA18E0, c]
-    - [0xAA20A0, bin] # , data]
+    - [0xAA20A0, bin] # , data] # Image with rights notice printed on pictures
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - [0xAAA610, bin] # VPK0 compressed data
 
-  - [0xAAA660, bin]
-  - [0xAB1470, bin]
-  - [0xAB5860, bin]
-  - [0xAB5980, bin]
-  - [0xAB85E0, bin]
-  - [0xAB8780, bin]
-  - [0xABE7A0, bin]
-  - [0xABEBD0, bin]
-  - [0xAC6890, bin]
-  - [0xAC6A80, bin]
-  - [0xAC8510, bin]
-  - [0xAC8830, bin]
-  - [0xACF6F0, bin]
-  - [0xACF9A0, bin]
-  - [0xAD0E00, bin]
-  - [0xAD1640, bin]
-  - [0xADD310, bin]
-  - [0xADD5D0, bin]
-  - [0xADEC60, bin]
-  - [0xADEDF0, bin]
-  - [0xAE0510, bin]
+  - [0xAAA660, bin, idle_script_beach]
+  - [0xAB1470, bin, idle_script_tunnel]
+
+  - [0xAB5860, bin] # UnkAsphaltLeopard (common)
+  - [0xAB5980, bin, particle/common]
+
+  - [0xAB85E0, bin] # UnkAsphaltLeopard (beach)
+  - [0xAB8780, bin, particle/beach]
+
+  - [0xABE7A0, bin] # UnkAsphaltLeopard (tunnel)
+  - [0xABEBD0, bin, particle/tunnel]
+
+  - [0xAC6890, bin] # UnkAsphaltLeopard (cave)
+  - [0xAC6A80, bin, particle/cave]
+
+  - [0xAC8510, bin] # UnkAsphaltLeopard (river)
+  - [0xAC8830, bin, particle/river]
+
+  - [0xACF6F0, bin] # UnkAsphaltLeopard (volcano)
+  - [0xACF9A0, bin, particle/volcano]
+
+  - [0xAD0E00, bin] # UnkAsphaltLeopard (valley)
+  - [0xAD1640, bin, particle/valley]
+
+  - [0xADD310, bin] # UnkAsphaltLeopard (rainbow)
+  - [0xADD5D0, bin, particle/rainbow]
+
+  - [0xADEC60, bin] # UnkAsphaltLeopard (intro)
+  - [0xADEDF0, bin, particle/intro]
+
+  - [0xAE0510, bin] # unknown data
 
   # Sequences
   - [0xAEFC10, bin, audio/sbk]

@@ -401,7 +401,7 @@ void func_800E5C8C_A0D21C(void) {
     void* temp_a2;
 
     sp1C = func_800A73C0((u32) ADEC60_ROM_START, (u32) ADEC60_ROM_END);
-    temp_a2 = func_800A73C0((u32) ADEDF0_ROM_START, (u32) ADEDF0_ROM_END);
+    temp_a2 = func_800A73C0((u32) particle_intro_ROM_START, (u32) particle_intro_ROM_END);
     if (sp1C != NULL && temp_a2 != NULL) {
         func_800A1ED0(0, sp1C, temp_a2);
     }

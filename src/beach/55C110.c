@@ -123,12 +123,12 @@ void func_beach_802C44D4(void) {
     void* temp_v0_2;
 
     sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
     if (sp1C != NULL && temp_v0 != NULL) {
         func_800A1ED0(3, sp1C, temp_v0);
     }
     sp1C = func_800A73C0((u32) AB85E0_ROM_START, (u32) AB85E0_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) AB8780_ROM_START, (u32) AB8780_ROM_END);
+    temp_v0_2 = func_800A73C0((u32) particle_beach_ROM_START, (u32) particle_beach_ROM_END);
     if (sp1C != NULL && temp_v0_2 != NULL) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }
@@ -153,7 +153,7 @@ void func_beach_802C45C0(void) {
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
     if (func_8009A8E4() != 0) {
-        setIdleScript(func_800A73C0((u32) AAA660_ROM_START, (u32) AAA660_ROM_END));
+        setIdleScript(func_800A73C0((u32) idle_script_beach_ROM_START, (u32) idle_script_beach_ROM_END));
     }
     initUI(func_beach_802C4440, func_beach_802C4800, NULL, 0, func_beach_802C416C);
 

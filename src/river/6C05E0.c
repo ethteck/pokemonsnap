@@ -265,12 +265,12 @@ void func_802D8FCC_6C0DAC(void) {
     void* temp_v0_2;
 
     sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
     if (sp1C != NULL && temp_v0 != NULL) {
         func_800A1ED0(3, sp1C, temp_v0);
     }
     sp1C = func_800A73C0((u32) AC8510_ROM_START, (u32) AC8510_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) AC8830_ROM_START, (u32) AC8830_ROM_END);
+    temp_v0_2 = func_800A73C0((u32) particle_river_ROM_START, (u32) particle_river_ROM_END);
     if (sp1C != NULL && temp_v0_2 != NULL) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }

@@ -968,7 +968,7 @@ void func_8009D37C(u8 levelID) {
     switch (levelID) {
         case SCENE_BEACH:
             func_8009D184(&D_8011B914);
-            func_8009D1E8((u32) AB8780_ROM_START, (u32) AB8780_ROM_END, (s32) &D_801D6840);
+            func_8009D1E8((u32) particle_beach_ROM_START, (u32) particle_beach_ROM_END, (s32) &D_801D6840);
             func_8009D21C(0, &D_801D6840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -977,7 +977,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_TUNNEL:
             func_8009D184(&tunnel_WorldSetup);
-            func_8009D1E8((u32) ABEBD0_ROM_START, (u32) ABEBD0_ROM_END, (s32) &D_801B1230);
+            func_8009D1E8((u32) particle_tunnel_ROM_START, (u32) particle_tunnel_ROM_END, (s32) &D_801B1230);
             func_8009D21C(0, &D_801B1230);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -987,7 +987,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_CAVE:
             func_8009D184(&D_8012A0E8);
-            func_8009D1E8((u32) AC6A80_ROM_START, (u32) AC6A80_ROM_END, (s32) &D_801CF840);
+            func_8009D1E8((u32) particle_cave_ROM_START, (u32) particle_cave_ROM_END, (s32) &D_801CF840);
             func_8009D21C(0, &D_801CF840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -997,7 +997,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RIVER:
             func_8009D184(&D_8012AC90);
-            func_8009D1E8((u32) AC8830_ROM_START, (u32) AC8830_ROM_END, (s32) &D_801B6B60);
+            func_8009D1E8((u32) particle_river_ROM_START, (u32) particle_river_ROM_END, (s32) &D_801B6B60);
             func_8009D21C(0, &D_801B6B60);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -1006,7 +1006,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VOLCANO:
             func_8009D184(&volcano_WorldSetup);
-            func_8009D1E8((u32) ACF9A0_ROM_START, (u32) ACF9A0_ROM_END, (s32) &D_801CF770);
+            func_8009D1E8((u32) particle_volcano_ROM_START, (u32) particle_volcano_ROM_END, (s32) &D_801CF770);
             func_8009D21C(0, &D_801CF770);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0;
@@ -1015,7 +1015,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VALLEY:
             func_8009D184(&D_80100720);
-            func_8009D1E8((u32) AD1640_ROM_START, (u32) AD1640_ROM_END, (s32) &D_801B1D40);
+            func_8009D1E8((u32) particle_valley_ROM_START, (u32) particle_valley_ROM_END, (s32) &D_801B1D40);
             func_8009D21C(0, &D_801B1D40);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -1024,7 +1024,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RAINBOW:
             func_8009D184(&D_800F5DA0);
-            func_8009D1E8((u32) ADD5D0_ROM_START, (u32) ADD5D0_ROM_END, (s32) &D_8013E260);
+            func_8009D1E8((u32) particle_rainbow_ROM_START, (u32) particle_rainbow_ROM_END, (s32) &D_8013E260);
             func_8009D21C(0, &D_8013E260);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -1387,7 +1387,7 @@ void func_8009FB50(u8 arg0, u8 arg1, u8 arg2) {
     D_800BDF1D = arg1;
     D_800BDF1E = arg2;
     D_800AC0F0 = -1;
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
     if (temp_v0 != NULL) {
         func_8009D21C(3, temp_v0);
     }

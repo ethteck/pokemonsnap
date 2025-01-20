@@ -319,12 +319,12 @@ void tunnel_LoadEffects(void) {
     void* temp_v0_2;
 
     sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) AB5980_ROM_START, (u32) AB5980_ROM_END);
+    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
     if (sp1C != NULL && temp_v0 != NULL) {
         func_800A1ED0(3, sp1C, temp_v0);
     }
     sp1C = func_800A73C0((u32) ABE7A0_ROM_START, (u32) ABE7A0_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) ABEBD0_ROM_START, (u32) ABEBD0_ROM_END);
+    temp_v0_2 = func_800A73C0((u32) particle_tunnel_ROM_START, (u32) particle_tunnel_ROM_END);
     if (sp1C != NULL && temp_v0_2 != NULL) {
         func_800A1ED0(0, sp1C, temp_v0_2);
     }
@@ -349,7 +349,7 @@ void tunnel_Init(void) {
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
     if (func_8009A8E4() != 0) {
-        setIdleScript(func_800A73C0((u32) AB1470_ROM_START, (u32) AB1470_ROM_END));
+        setIdleScript(func_800A73C0((u32) idle_script_tunnel_ROM_START, (u32) idle_script_tunnel_ROM_END));
     }
     initUI(tunnel_ExitBlock, tunnel_UpdateSounds, NULL, 0, tunnel_HandleCollision);
     setEndLevelCallback(tunnel_EndLevel);

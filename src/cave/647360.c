@@ -1,6 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "app_render/particle.h"
 #include "cave.h"
 
 extern f32 D_8012A0F8;
@@ -372,8 +373,8 @@ void func_802C5B90_648040(void) {
     func_803572B0_4F76C0();
 }
 
-void func_802C5BB0_648060(DObj* arg0, s32 arg1, f32 arg2) {
-    UnkPinkRat* temp_v0;
+void func_802C5BB0_648060(DObj* dobj, s32 arg1, f32 arg2) {
+    ParticleGenerator* gen;
     s32 temp_a1;
 
     if (arg1 == -2 || arg1 == -1) {
@@ -383,9 +384,9 @@ void func_802C5BB0_648060(DObj* arg0, s32 arg1, f32 arg2) {
 
     temp_a1 = (s32) arg2 - 1;
     if (temp_a1 >= 0) {
-        temp_v0 = func_800A6C48(arg1, temp_a1);
-        if (temp_v0 != NULL) {
-            temp_v0->dobj = arg0;
+        gen = particle_makeGenerator(arg1, temp_a1);
+        if (gen != NULL) {
+            gen->dobj = dobj;
         }
     }
 }

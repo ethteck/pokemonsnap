@@ -1,87 +1,61 @@
 #include "app_render.h"
+#include "particle.h"
 
-typedef struct UnkAsphaltLeopard {
-    /* 0x00 */ u16 unk_00;
-    /* 0x02 */ u16 unk_02;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ s32 unk_08;
-    /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ f32 unk_10;
-    /* 0x14 */ Vec3f unk_14;
-    /* 0x20 */ f32 unk_20;
-    /* 0x24 */ f32 unk_24;
-    /* 0x28 */ f32 unk_28;
-    /* 0x2C */ f32 unk_2C;
-    /* 0x30 */ u8 unk_30[1]; // variable length
-} UnkAsphaltLeopard;
+extern u8 particle_colorDitherMode;
+extern u8 particle_alphaDitherMode;
+extern u16 particle_currentGeneratorID;
 
-typedef struct UnkGreenLeopard {
-    /* 0x00 */ s32 unk_00[7];
-    /* 0x1C */ Vec3f unk_1C;
-} UnkGreenLeopard;
-
-typedef struct Unk_800A7114 {
-    /* 0x00 */ char unk_00[4];
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ char unk_06[2];
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ u8 unk_09;
-} Unk_800A7114; // size >= 0xC
-
-extern u8 D_800AEC60;
-extern u8 D_800AEC64;
-extern u16 D_800AEC68;
-
-UnkRustRat* D_800BE1A0;
-UnkRustRat* D_800BE1A8[16];
-UnkPinkRat* D_800BE1E8;
-UnkPinkRat* D_800BE1EC;
+Particle* D_800BE1A0;
+Particle* D_800BE1A8[16];
+ParticleGenerator* D_800BE1E8;
+ParticleGenerator* D_800BE1EC;
 OMCamera* D_800BE1F0[4];
 u8 D_800BE200[4];
-UnkGreenLeopard* D_800BE208[8];
-s32 D_800BE228[8];
-s32 D_800BE248[8];
-UnkAsphaltLeopard** D_800BE268[8];
-ParticleAnimData** D_800BE288[8];
-void (*D_800BE2A8)(UnkPinkRat*, Vec3f*);
-void (*D_800BE2AC)(UnkPinkRat*);
-UnkPinkRat* D_800BE2B0;
+DObj* D_800BE208[8];
+s32 particle_ScriptBanksNum[PARTICLE_BANKS_MAX];
+s32 particle_SpriteBanksNum[PARTICLE_BANKS_MAX];
+ParticleScript** particle_ScriptBanks[PARTICLE_BANKS_MAX];
+ParticleSprites** particle_SpriteBanks[PARTICLE_BANKS_MAX];
+void (*particle_generatorProcDefault)(ParticleGenerator*, Vec3f*);
+void (*particle_generatorProcSetup)(ParticleGenerator*);
+ParticleGenerator* D_800BE2B0;
 
-void func_800A4798(GObj*);
-void func_800A4858(GObj*);
-void func_800A63BC(GObj*);
+Particle* particle_updateStruct(Particle*, Particle*, s32);
+void particle_structFuncRun(GObj*);
+void particle_draw(GObj*);
+void particle_generatorFuncRun(GObj*);
 
-void func_800A1ED0(s32 idx, s32* arg1, s32* arg2) {
+void particle_setupBankID(s32 bankID, s32* scriptDesc, s32* spritesDesc) { // TODO structs for these
     s32 i, j;
 
-    if (idx >= 8) {
+    if (bankID >= PARTICLE_BANKS_MAX) {
         return;
     }
 
-    D_800BE228[idx] = *arg1;
-    D_800BE248[idx] = *arg2;
-    D_800BE268[idx] = (UnkAsphaltLeopard**) (arg1 + 1);
-    D_800BE288[idx] = (ParticleAnimData**) (arg2 + 1);
+    particle_ScriptBanksNum[bankID] = *scriptDesc;
+    particle_SpriteBanksNum[bankID] = *spritesDesc;
+    particle_ScriptBanks[bankID] = scriptDesc + 1;
+    particle_SpriteBanks[bankID] = spritesDesc + 1;
 
-    for (i = 1; i <= D_800BE228[idx]; i++) {
-        arg1[i] = (u32) (arg1) + arg1[i];
+    for (i = 1; i <= particle_ScriptBanksNum[bankID]; i++) {
+        scriptDesc[i] = (u32) (scriptDesc) + scriptDesc[i];
     }
-    for (i = 1; i <= D_800BE248[idx]; i++) {
-        arg2[i] = (u32) (arg2) + arg2[i];
+    for (i = 1; i <= particle_SpriteBanksNum[bankID]; i++) {
+        spritesDesc[i] = (u32) (spritesDesc) + spritesDesc[i];
     }
 
-    for (i = 0; i < D_800BE248[idx]; i++) {
-        for (j = 0; j < D_800BE288[idx][i]->numFrames; j++) {
-            D_800BE288[idx][i]->data[j] += (u32) arg2;
+    for (i = 0; i < particle_SpriteBanksNum[bankID]; i++) {
+        for (j = 0; j < particle_SpriteBanks[bankID][i]->numFrames; j++) {
+            particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
         }
-        if (D_800BE288[idx][i]->type == 2) {
-            if (D_800BE288[idx][i]->flags & 1) {
-                j = D_800BE288[idx][i]->numFrames;
-                D_800BE288[idx][i]->data[j] += (u32) arg2;
+
+        if (particle_SpriteBanks[bankID][i]->fmt == G_IM_FMT_CI) {
+            if (particle_SpriteBanks[bankID][i]->flags & 1) {
+                j = particle_SpriteBanks[bankID][i]->numFrames;
+                particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
             } else {
-                for (j = D_800BE288[idx][i]->numFrames; j < 2 * D_800BE288[idx][i]->numFrames; j++) {
-                    D_800BE288[idx][i]->data[j] += (u32) arg2;
+                for (j = particle_SpriteBanks[bankID][i]->numFrames; j < 2 * particle_SpriteBanks[bankID][i]->numFrames; j++) {
+                    particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
                 }
             }
         }
@@ -90,7 +64,7 @@ void func_800A1ED0(s32 idx, s32* arg1, s32* arg2) {
 
 GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     s32 i;
-    UnkRustRat* temp;
+    Particle* temp;
 
     D_800BE1F0[0] = arg2;
     D_800BE200[0] = 1;
@@ -105,7 +79,7 @@ GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
 
     i = arg1 - 1;
     while (i >= 0) {
-        temp = gtlMalloc(sizeof(UnkRustRat), 4);
+        temp = gtlMalloc(sizeof(Particle), 4);
         if (temp == NULL) {
             return NULL;
         }
@@ -117,7 +91,7 @@ GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     if (ohFindById(-6) != NULL) {
         return NULL;
     } else {
-        return ohCreateCamera(-6, func_800A4798, LINK_0, 0x80000000, func_800A4858, dlPriority, 0, 0, false, 1, NULL, 1, false);
+        return ohCreateCamera(-6, particle_structFuncRun, LINK_0, 0x80000000, particle_draw, dlPriority, 0, 0, false, 1, NULL, 1, false);
     }
 }
 
@@ -126,139 +100,154 @@ void func_800A21C0(s32 idx, OMCamera* cam, s32 arg2) {
     D_800BE200[idx] = arg2;
 }
 
-UnkRustRat* func_800A21E0(UnkRustRat** arg0, s32 arg1, s32 arg2, u16 arg3, u8* arg4, s32 arg5, f32 arg6, f32 arg7,
-                          f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, f32 argE, s32 argF, UnkPinkRat* arg10) {
-    UnkRustRat* ret = D_800BE1A0;
-    s32 temp = 0;
-    s32 t;
+Particle* particle_makeStruct(
+    Particle* arg0, s32 bankID, s32 flags, u16 textureID, u8* bytecode, s32 lifetime,
+    f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ,
+    f32 size, f32 gravity, f32 friction, s32 argF, ParticleGenerator* gen) {
+
+    Particle* ret = D_800BE1A0;
 
     if (ret == NULL) {
         return NULL;
     }
 
-    if (arg10 != NULL) {
-        ret->unk_04 = arg10->unk_04;
+    if (gen != NULL) {
+        ret->generatorID = gen->generatorID;
     } else {
-        ret->unk_04 = ++D_800AEC68;
+        ret->generatorID = ++particle_currentGeneratorID;
     }
 
     D_800BE1A0 = ret->next;
 
     if (arg0 == NULL) {
-        ret->next = D_800BE1A8[arg1 >> 3];
-        D_800BE1A8[arg1 >> 3] = ret;
+        ret->next = D_800BE1A8[bankID >> 3];
+        D_800BE1A8[bankID >> 3] = ret;
     } else {
-        ret->next = *arg0;
-        *arg0 = ret;
+        ret->next = arg0->next;
+        arg0->next = ret;
     }
 
-    ret->unk_08 = arg1;
-    ret->flags = arg2;
-    ret->unk_0A = arg3;
-    ret->unk_20.x = arg6;
-    ret->unk_20.y = arg7;
-    ret->unk_20.z = arg8;
-    ret->unk_2C.x = arg9;
-    ret->unk_2C.y = argA;
-    ret->unk_2C.z = argB;
-    ret->unk_40 = argC;
-    ret->unk_38 = argD;
-    ret->unk_3C = argE;
-    ret->unk_1E = arg5 + 1;
-    ret->scriptPtr = arg4;
-    ret->unk_18 = ret->unk_1A = 0;
+    ret->bankID = bankID;
+    ret->flags = flags;
+    ret->textureID = textureID;
+
+    ret->pos.x = posX;
+    ret->pos.y = posY;
+    ret->pos.z = posZ;
+
+    ret->vel.x = velX;
+    ret->vel.y = velY;
+    ret->vel.z = velZ;
+
+    ret->size = size;
+    ret->gravity = gravity;
+    ret->friction = friction;
+
+    ret->lifetime = lifetime + 1;
+    ret->bytecode = bytecode;
+    ret->bytecodePos = ret->returnPtr = 0;
 
     if (argF) {
-        ret->flags = (u16) arg2 | 0x10;
+        ret->flags |= 0x10;
     }
-    if (arg4 != 0) {
-        ret->unk_0C = true;
+
+    if (bytecode != NULL) {
+        ret->bytecodeTimer = true;
     } else {
-        ret->unk_0C = false;
+        ret->bytecodeTimer = false;
     }
-    ret->unk_48.r = ret->unk_48.g = ret->unk_48.b = ret->unk_48.a = 0xFF;
-    ret->unk_0B = temp;
-    ret->unk_50.r = ret->unk_50.g = ret->unk_50.b = ret->unk_50.a = 0;
-    ret->unk_0E = ret->unk_10 = ret->unk_12 = temp;
-    ret->unk_58 = arg10;
+
+    ret->dataID = 0;
+
+    ret->primColor.r = ret->primColor.g = ret->primColor.b = ret->primColor.a = 0xFF;
+    ret->envColor.r = ret->envColor.g = ret->envColor.b = ret->envColor.a = 0;
+
+    ret->sizeTargetLength = ret->targetPrimColorLength = ret->targetEnvColorLength = 0;
+    ret->gen = gen;
     return ret;
 }
 
-UnkRustRat* func_800A2B3C(UnkRustRat*, UnkRustRat*, s32);
+Particle* particle_makeChildScriptID(Particle* particle, s32 bankID, s32 scriptID) {
+    ParticleScript* script;
+    s32 id = bankID & 7; // TODO mod 8?
 
-UnkRustRat* func_800A235C(UnkRustRat** arg0, s32 arg1, s32 arg2) {
-    UnkAsphaltLeopard* temp_v0;
-    s32 id = arg1 & 7;
-
-    if (id >= 8) {
+    if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (arg2 >= D_800BE228[id]) {
+    if (scriptID >= particle_ScriptBanksNum[id]) {
         return NULL;
     }
-    temp_v0 = D_800BE268[id][arg2];
-    return func_800A21E0(arg0, arg1, temp_v0->unk_08, temp_v0->unk_02, temp_v0->unk_30, temp_v0->unk_06,
-                         0.0f, 0.0f, 0.0f, temp_v0->unk_14.x, temp_v0->unk_14.y, temp_v0->unk_14.z, temp_v0->unk_2C, temp_v0->unk_0C,
-                         temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->flags, NULL);
+    script = particle_ScriptBanks[id][scriptID];
+
+    return particle_makeStruct(particle, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
+                               0.0f, 0.0f, 0.0f, script->vel.x, script->vel.y, script->vel.z, script->size, script->gravity,
+                               script->friction, particle_SpriteBanks[id][script->textureID]->flags, NULL);
 }
 
-UnkRustRat* func_800A244C(s32 arg0, s32 arg1, u16 arg2, u8* arg3, s32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9, f32 argA, f32 argB, f32 argC, f32 argD, s32 argE, UnkPinkRat* argF) {
-    UnkRustRat* ret;
+Particle* particle_makeParam(s32 bankID, s32 flags, u16 textureID, u8* bytecode, s32 lifetime,
+                             f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ,
+                             f32 size, f32 gravity, f32 friction, s32 argE, ParticleGenerator* gen) {
+    Particle* ret;
 
-    ret = func_800A21E0(NULL, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, argA, argB, argC, argD, argE, argF);
+    ret = particle_makeStruct(NULL, bankID, flags, textureID, bytecode, lifetime,
+                              posX, posY, posZ, velX,
+                              velY, velZ, size,
+                              gravity, friction, argE, gen);
     if (ret != NULL) {
-        func_800A2B3C(ret, 0, arg0 >> 3);
+        particle_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-UnkRustRat* func_800A2514(s32 arg0, s32 arg1) {
-    UnkRustRat* ret;
+Particle* particle_makeCommon(s32 bankID, s32 scriptID) {
+    Particle* ret;
 
-    ret = func_800A235C(NULL, arg0, arg1);
+    ret = particle_makeChildScriptID(NULL, bankID, scriptID);
     if (ret != NULL) {
-        func_800A2B3C(ret, 0, arg0 >> 3);
+        particle_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-UnkRustRat* func_800A2564(s32 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7) {
-    UnkRustRat* ret;
-    UnkAsphaltLeopard* temp_v0;
-    s32 id = arg0 & 7;
+Particle* particle_makePosVel(s32 bankID, s32 scriptID, f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ) {
+    Particle* ret;
+    ParticleScript* script;
+    s32 id = bankID & 7;
 
-    if (id >= 8) {
+    if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (arg1 >= D_800BE228[id]) {
+    if (scriptID >= particle_ScriptBanksNum[id]) {
         return NULL;
     }
-    temp_v0 = D_800BE268[id][arg1];
-    ret = func_800A21E0(NULL, arg0, temp_v0->unk_08, temp_v0->unk_02, temp_v0->unk_30, temp_v0->unk_06,
-                        arg2, arg3, arg4, arg5, arg6, arg7, temp_v0->unk_2C, temp_v0->unk_0C,
-                        temp_v0->unk_10, D_800BE288[id][temp_v0->unk_02]->flags, NULL);
+
+    script = particle_ScriptBanks[id][scriptID];
+
+    ret = particle_makeStruct(NULL, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
+                              posX, posY, posZ, velX, velY, velZ, script->size, script->gravity,
+                              script->friction, particle_SpriteBanks[id][script->textureID]->flags, NULL);
     if (ret != NULL) {
-        func_800A2B3C(ret, 0, arg0 >> 3);
+        particle_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-void func_800A268C(UnkRustRat* arg0) {
-    UnkRustRat* it;
-    UnkRustRat* prev;
-    s32 id = arg0->unk_08 >> 3;
+void particle_ejectStruct(Particle* particle) {
+    Particle* it;
+    Particle* prev;
+    s32 id = particle->bankID >> 3;
 
     prev = NULL;
     for (it = D_800BE1A8[id]; it != NULL; it = it->next) {
-        if (it == arg0) {
+        if (it == particle) {
             if (prev == NULL) {
                 D_800BE1A8[id] = it->next;
             } else {
                 prev->next = it->next;
             }
 
-            if (arg0->unk_58 != NULL && (arg0->flags & 4) && arg0->unk_58->unk_08 == 2) {
-                arg0->unk_58->unk_4C.data2.unk_04--;
+            if (particle->gen != NULL && (particle->flags & 4) && particle->gen->kind == 2) {
+                particle->gen->generatorVars.data2.unk_04--;
             }
 
             it->next = D_800BE1A0;
@@ -269,19 +258,20 @@ void func_800A268C(UnkRustRat* arg0) {
     }
 }
 
-void func_800A2740(void) {
+void particle_ejectStructAll(void) {
     s32 i;
-    UnkRustRat* it;
-    UnkRustRat* next;
+    Particle* it;
+    Particle* next;
 
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
         for (it = D_800BE1A8[i]; it != NULL; it = next) {
             next = it->next;
-            func_800A268C(it);
+            particle_ejectStruct(it);
         }
     }
 }
 
+// particle_readFloatBigEndian
 u8* func_800A27B0(u8* arg0, f32* arg1) {
     u8 sp4[4];
 
@@ -304,79 +294,85 @@ u8* func_800A27E8(u8* arg0, u16* arg1) {
     return arg0;
 }
 
-void func_800A2824(UnkRustRat* arg0, f32 arg1) {
-    f32 unused;
-    f32 x, y, z;
-    f32 sp5C;
-    f32 sp58;
-    f32 sp54;
-    f32 temp_f26, sp4C;
-    f32 sp48, sp44;
-    f32 temp_f20_2;
-    f32 temp_f2;
+void particle_rotateVel(Particle* particle, f32 angle) {
+    Vec3f vel;
+    f32 sinAngle;
+    f32 magnitude;
+    f32 pitch;
+    f32 yaw;
+    f32 sinPitch, cosPitch;
+    f32 sinYaw, cosYaw;
+    f32 cosAngle;
+    f32 t;
 
-    x = arg0->unk_2C.x;
-    y = arg0->unk_2C.y;
-    z = unused = arg0->unk_2C.z;
+    vel.x = particle->vel.x;
+    vel.y = particle->vel.y;
+    vel.z = particle->vel.z;
 
-    sp58 = atan2f(y, z);
-    temp_f26 = sinf(sp58);
-    sp4C = cosf(sp58);
+    pitch = atan2f(vel.y, vel.z);
+    sinPitch = sinf(pitch);
+    cosPitch = cosf(pitch);
 
-    sp54 = atan2f(x, y * temp_f26 + z * sp4C);
-    sp48 = sinf(sp54);
-    sp44 = cosf(sp54);
-    sp5C = sqrtf(SQ(x) + SQ(y) + SQ(z));
+    yaw = atan2f(vel.x, vel.y * sinPitch + vel.z * cosPitch);
+    sinYaw = sinf(yaw);
+    cosYaw = cosf(yaw);
 
-    temp_f20_2 = randFloat() * TAU;
-    z = sinf(arg1) * sp5C;
-    x = cosf(temp_f20_2) * z;
-    y = sinf(temp_f20_2) * z;
-    temp_f2 = cosf(arg1) * sp5C;
+    magnitude = sqrtf(SQ(vel.x) + SQ(vel.y) + SQ(vel.z));
 
-    arg0->unk_2C.x = x * sp44 + temp_f2 * sp48;
-    arg0->unk_2C.y = -x * temp_f26 * sp48 + y * sp4C + temp_f2 * temp_f26 * sp44;
-    arg0->unk_2C.z = -x * sp4C * sp48 - y * temp_f26 + temp_f2 * sp4C * sp44;
+    t = randFloat() * TAU;
+
+    sinAngle = sinf(angle) * magnitude;
+
+    vel.x = cosf(t) * sinAngle;
+    vel.y = sinf(t) * sinAngle;
+    vel.z = sinAngle;
+
+    cosAngle = cosf(angle) * magnitude;
+
+    particle->vel.x = vel.x * cosYaw + cosAngle * sinYaw;
+    particle->vel.y = -vel.x * sinPitch * sinYaw + vel.y * cosPitch + cosAngle * sinPitch * cosYaw;
+    particle->vel.z = -vel.x * cosPitch * sinYaw - vel.y * sinPitch + cosAngle * cosPitch * cosYaw;
 }
 
-void func_800A29AC(UnkRustRat* arg0, UnkGreenLeopard* arg1) {
+void particle_setDistVelDObj(Particle* particle, DObj* dobj) {
     f32 dx, dy, dz;
-    f32 f22;
+    f32 dist;
 
-    if (arg1 == NULL) {
+    if (dobj == NULL) {
         return;
     }
 
-    dx = arg1->unk_1C.x - arg0->unk_20.x;
-    dy = arg1->unk_1C.y - arg0->unk_20.y;
-    dz = arg1->unk_1C.z - arg0->unk_20.z;
+    dx = dobj->position.v.x - particle->pos.x;
+    dy = dobj->position.v.y - particle->pos.y;
+    dz = dobj->position.v.z - particle->pos.z;
 
-    f22 = sqrtf(SQ(arg0->unk_2C.x) + SQ(arg0->unk_2C.y) + SQ(arg0->unk_2C.z));
+    dist = sqrtf(SQ(particle->vel.x) + SQ(particle->vel.y) + SQ(particle->vel.z));
+
     if (SQ(dx) + SQ(dy) + SQ(dz) != 0.0f) {
-        f22 /= sqrtf(SQ(dx) + SQ(dy) + SQ(dz));
-        arg0->unk_2C.x = dx * f22;
-        arg0->unk_2C.y = dy * f22;
-        arg0->unk_2C.z = dz * f22;
+        dist /= sqrtf(SQ(dx) + SQ(dy) + SQ(dz));
+        particle->vel.x = dx * dist;
+        particle->vel.y = dy * dist;
+        particle->vel.z = dz * dist;
     }
 }
 
-void func_800A2AA8(UnkRustRat* arg0, UnkGreenLeopard* arg1, f32 arg2) {
-    f32 dx, dy, dz, dist2;
+void particle_addDistVelMagDObj(Particle* particle, DObj* dobj, f32 magnitude) {
+    f32 dx, dy, dz, dist;
 
-    if (arg1 == NULL) {
+    if (dobj == NULL) {
         return;
     }
 
-    dx = arg1->unk_1C.x - arg0->unk_20.x;
-    dy = arg1->unk_1C.y - arg0->unk_20.y;
-    dz = arg1->unk_1C.z - arg0->unk_20.z;
+    dx = dobj->position.v.x - particle->pos.x;
+    dy = dobj->position.v.y - particle->pos.y;
+    dz = dobj->position.v.z - particle->pos.z;
 
-    dist2 = SQ(dx) + SQ(dy) + SQ(dz);
-    if (dist2 != 0.0f) {
-        dist2 = arg2 / dist2;
-        arg0->unk_2C.x += dist2 * dx;
-        arg0->unk_2C.y += dist2 * dy;
-        arg0->unk_2C.z += dist2 * dz;
+    dist = SQ(dx) + SQ(dy) + SQ(dz);
+    if (dist != 0.0f) {
+        dist = magnitude / dist;
+        particle->vel.x += dist * dx;
+        particle->vel.y += dist * dy;
+        particle->vel.z += dist * dz;
     }
 }
 
@@ -397,9 +393,9 @@ extern u16 sSinTable[];
         }                                                \
     }
 
-UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
+Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
     UnkPinkRat* pinkRat;
-    UnkRustRat* temp_v0;
+    Particle* temp_v0;
     s32 unused1;
     u8* var_s1;
     u16 unused2;
@@ -416,7 +412,7 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
     f32 temp_f16_3;
     f32 temp_f2_2;
     f32 unused4;
-    UnkRustRat* next;
+    Particle* next;
     f32 sp5C;
     f32 sp58;
     f32 sp54;
@@ -524,21 +520,21 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            temp_v0 = func_800A235C(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
                                 temp_v0->unk_20.z = arg0->unk_20.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                func_800A2B3C(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
+                                particle_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xA5:
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            pinkRat = func_800A6C48(arg0->unk_08, temp_s0);
+                            pinkRat = particle_makeGenerator(arg0->unk_08, temp_s0);
                             if (pinkRat != NULL) {
                                 pinkRat->unk_14.x = arg0->unk_20.x;
                                 pinkRat->unk_14.y = arg0->unk_20.y;
@@ -572,7 +568,7 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                             break;
                         case 0xA9:
                             var_s1 = func_800A27B0(var_s1, &sp80);
-                            func_800A2824(arg0, sp80);
+                            particle_rotateVel(arg0, sp80);
                             break;
                         case 0xAA:
                             temp_s0 = *var_s1++;
@@ -582,14 +578,14 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                             sp88 <<= 8;
                             sp88 += *var_s1++;
                             temp_s0 += (s32) (sp88 * randFloat());
-                            temp_v0 = func_800A235C(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
                                 temp_v0->unk_20.z = arg0->unk_20.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                func_800A2B3C(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
+                                particle_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xAB:
@@ -640,18 +636,18 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                             break;
                         case 0xB7:
                             temp_s0 = *var_s1++;
-                            func_800A29AC(arg0, D_800BE204[temp_s0 - 1]);
+                            particle_setDistVelDObj(arg0, D_800BE204[temp_s0 - 1]);
                             break;
                         case 0xB8:
                             temp_s0 = *var_s1++;
                             var_s1 = func_800A27B0(var_s1, &sp80);
-                            func_800A2AA8(arg0, D_800BE204[temp_s0 - 1], sp80);
+                            particle_addDistVelMagDObj(arg0, D_800BE204[temp_s0 - 1], sp80);
                             break;
                         case 0xB9:
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            temp_v0 = func_800A235C(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
@@ -661,7 +657,7 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
                                 temp_v0->unk_2C.z = arg0->unk_2C.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                func_800A2B3C(temp_v0, arg0, arg0->unk_08 >> 3);
+                                particle_updateStruct(temp_v0, arg0, arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xBA:
@@ -890,16 +886,16 @@ UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2) {
     return arg0->next;
 }
 #else
-UnkRustRat* func_800A2B3C(UnkRustRat* arg0, UnkRustRat* arg1, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A2B3C.s")
+Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_updateStruct.s")
 #endif
 
-void func_800A4798(GObj* camObj) {
-    u32 flags = camObj->flags;
+void particle_structFuncRun(GObj* obj) {
+    u32 flags = obj->flags;
     s32 i;
-    UnkRustRat* prev;
-    UnkRustRat* it;
-    UnkRustRat* next;
+    Particle* prev;
+    Particle* it;
+    Particle* next;
 
     for (i = 0; i < 16; i++, flags >>= 1) {
         if (flags & 0x10000) {
@@ -909,7 +905,7 @@ void func_800A4798(GObj* camObj) {
         prev = NULL;
         it = D_800BE1A8[i];
         while (it != NULL) {
-            next = func_800A2B3C(it, prev, i);
+            next = particle_updateStruct(it, prev, i);
             if (it->next == next) {
                 prev = it;
                 it = next;
@@ -921,8 +917,8 @@ void func_800A4798(GObj* camObj) {
 }
 
 #if 0
-void func_800A4858(GObj* camObj) {
-    UnkRustRat* var_s7;
+void particle_draw(GObj* camObj) {
+    Particle* var_s7;
     ParticleAnimData* v0;
     s32 sp2D4;
     s32 sp2D0;
@@ -1018,8 +1014,8 @@ void func_800A4858(GObj* camObj) {
         }
         gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_NONE);
         gDPSetDepthSource(gMainGfxPos[0]++, G_ZS_PRIM);
-        gDPSetColorDither(gMainGfxPos[0]++, D_800AEC60);
-        gDPSetAlphaDither(gMainGfxPos[0]++, D_800AEC64);
+        gDPSetColorDither(gMainGfxPos[0]++, particle_colorDitherMode);
+        gDPSetAlphaDither(gMainGfxPos[0]++, particle_alphaDitherMode);
 
         for (j = 0; j < 16; j++) {
             for (var_s7 = D_800BE1A8[j]; var_s7 != NULL; var_s7 = var_s7->next) {
@@ -1060,7 +1056,7 @@ void func_800A4858(GObj* camObj) {
                     var_f18 = temp_f14 - (var_f18 - temp_f14);
                 }
 
-                v0 = D_800BE288[var_s7->unk_08 & 7][var_s7->unk_0A];
+                v0 = particle_SpriteBanks[var_s7->unk_08 & 7][var_s7->unk_0A];
                 temp_fp = v0->unk_04;
                 temp_t4 = v0->unk_08;
                 temp_s3 = v0->unk_0C;
@@ -1242,41 +1238,40 @@ void func_800A4858(GObj* camObj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A4858.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_draw.s")
 #endif
 
-void func_800A5DD0(s32 arg0, UnkGreenLeopard* arg1) {
-    if (arg0 > 0 && arg0 <= ARRAY_COUNT(D_800BE208)) {
-        D_800BE208[arg0 - 1] = arg1;
+void particle_addAttachDObj(s32 bankID, DObj* dobj) {
+    if (bankID > 0 && bankID <= ARRAY_COUNT(D_800BE208)) {
+        D_800BE208[bankID - 1] = dobj;
     }
 }
 
-void func_800A5DF4(s32 arg0, s32 arg1) {
-    D_800AEC60 = arg0;
-    D_800AEC64 = arg1;
+void particle_setDitherModes(s32 color, s32 alpha) {
+    particle_colorDitherMode = color;
+    particle_alphaDitherMode = alpha;
 }
 
-GObj* func_800A5E08(s32 arg0) {
+GObj* particle_allocGenerators(s32 num) {
+    s32 i;
+
     D_800BE1E8 = D_800BE1EC = NULL;
-    // TODO required to match
-    if (D_800BE1E8 && D_800BE1E8) {
-    }
 
-    while (--arg0 >= 0) {
-        UnkPinkRat* tmp = gtlMalloc(sizeof(UnkPinkRat), 4);
-        if (tmp == NULL) {
+    for (i = num - 1; i >= 0; i--) {
+        ParticleGenerator* gen = gtlMalloc(sizeof(ParticleGenerator), 4);
+        if (gen == NULL) {
             return NULL;
         }
-        tmp->next = D_800BE1E8;
-        D_800BE1E8 = tmp;
+        gen->next = D_800BE1E8;
+        D_800BE1E8 = gen;
     }
 
-    return omAddGObj(-7, func_800A63BC, LINK_0, 0x80000000);
+    return omAddGObj(-7, particle_generatorFuncRun, LINK_0, 0x80000000);
 }
 
-void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
-    Mtx4f spB8;
-    Mtx4f sp78;
+void particle_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj) {
+    Mtx4f dst;
+    Mtx4f tmp;
     f32 x, y, z;
     s32 i;
     uintptr_t csr;
@@ -1284,28 +1279,28 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
     struct Mtx4Float* var_t1;
     struct Mtx3Float* var_t0;
 
-    guMtxIdentF(spB8);
+    guMtxIdentF(dst);
     do {
-        if (arg2->scale.v.x != 1.0f || arg2->scale.v.y != 1.0f || arg2->scale.v.z != 1.0f) {
-            hal_scale_f(sp78, arg2->scale.v.x, arg2->scale.v.y, arg2->scale.v.z);
-            guMtxCatF(spB8, sp78, spB8);
+        if (dobj->scale.v.x != 1.0f || dobj->scale.v.y != 1.0f || dobj->scale.v.z != 1.0f) {
+            hal_scale_f(tmp, dobj->scale.v.x, dobj->scale.v.y, dobj->scale.v.z);
+            guMtxCatF(dst, tmp, dst);
         }
-        if (arg2->rotation.v.x != 0.0f || arg2->rotation.v.y != 0.0f || arg2->rotation.v.z != 0.0f) {
-            hal_rotate_rpy_f(sp78, arg2->rotation.v.x, arg2->rotation.v.y, arg2->rotation.v.z);
-            guMtxCatF(spB8, sp78, spB8);
+        if (dobj->rotation.v.x != 0.0f || dobj->rotation.v.y != 0.0f || dobj->rotation.v.z != 0.0f) {
+            hal_rotate_rpy_f(tmp, dobj->rotation.v.x, dobj->rotation.v.y, dobj->rotation.v.z);
+            guMtxCatF(dst, tmp, dst);
         }
-        if (arg2->position.v.x != 0.0f || arg2->position.v.y != 0.0f || arg2->position.v.z != 0.0f) {
-            hal_translate_f(sp78, arg2->position.v.x, arg2->position.v.y, arg2->position.v.z);
-            guMtxCatF(spB8, sp78, spB8);
+        if (dobj->position.v.x != 0.0f || dobj->position.v.y != 0.0f || dobj->position.v.z != 0.0f) {
+            hal_translate_f(tmp, dobj->position.v.x, dobj->position.v.y, dobj->position.v.z);
+            guMtxCatF(dst, tmp, dst);
         }
 
-        if (arg2->unk_4C != NULL) {
+        if (dobj->unk_4C != NULL) {
             var_s0 = NULL;
             var_t1 = NULL;
             var_t0 = NULL;
-            csr = (uintptr_t) arg2->unk_4C->data;
+            csr = (uintptr_t) dobj->unk_4C->data;
             for (i = 0; i < 3; i++) {
-                switch (arg2->unk_4C->kinds[i]) {
+                switch (dobj->unk_4C->kinds[i]) {
                     case 0:
                         break;
                     case 1:
@@ -1324,43 +1319,43 @@ void func_800A5E98(Vec3f* arg0, Vec3f* arg1, DObj* arg2) {
             }
 
             if (var_t0 != NULL && (var_t0->v.x != 1.0f || var_t0->v.y != 1.0f || var_t0->v.z != 1.0f)) {
-                hal_scale_f(sp78, var_t0->v.x, var_t0->v.y, var_t0->v.z);
-                guMtxCatF(spB8, sp78, spB8);
+                hal_scale_f(tmp, var_t0->v.x, var_t0->v.y, var_t0->v.z);
+                guMtxCatF(dst, tmp, dst);
             }
             if (var_t1 != NULL && (var_t1->v.x != 0.0f || var_t1->v.y != 0.0f || var_t1->v.z != 0.0f)) {
-                hal_rotate_rpy_f(sp78, var_t1->v.x, var_t1->v.y, var_t1->v.z);
-                guMtxCatF(spB8, sp78, spB8);
+                hal_rotate_rpy_f(tmp, var_t1->v.x, var_t1->v.y, var_t1->v.z);
+                guMtxCatF(dst, tmp, dst);
             }
             if (var_s0 != NULL && (var_s0->v.x != 0.0f || var_s0->v.y != 0.0f || var_s0->v.z != 0.0f)) {
-                hal_translate_f(sp78, var_s0->v.x, var_s0->v.y, var_s0->v.z);
-                guMtxCatF(spB8, sp78, spB8);
+                hal_translate_f(tmp, var_s0->v.x, var_s0->v.y, var_s0->v.z);
+                guMtxCatF(dst, tmp, dst);
             }
         }
-        arg2 = arg2->parent;
-    } while ((uintptr_t) arg2 != 1);
+        dobj = dobj->parent;
+    } while ((uintptr_t) dobj != 1);
 
-    arg0->x = spB8[3][0];
-    arg0->y = spB8[3][1];
-    arg0->z = spB8[3][2];
+    pos->x = dst[3][0];
+    pos->y = dst[3][1];
+    pos->z = dst[3][2];
     // clang-format off
-    x = arg1->x; y = arg1->y; z = arg1->z;
+    x = vel->x; y = vel->y; z = vel->z;
     // clang-format on
-    if (spB8[0][0] != 0.0f || spB8[1][0] != 0.0f || spB8[2][0] != 0.0f) {
-        guNormalize(&spB8[0][0], &spB8[1][0], &spB8[2][0]);
+    if (dst[0][0] != 0.0f || dst[1][0] != 0.0f || dst[2][0] != 0.0f) {
+        guNormalize(&dst[0][0], &dst[1][0], &dst[2][0]);
     }
-    if (spB8[0][1] != 0.0f || spB8[1][1] != 0.0f || spB8[2][1] != 0.0f) {
-        guNormalize(&spB8[0][1], &spB8[1][1], &spB8[2][1]);
+    if (dst[0][1] != 0.0f || dst[1][1] != 0.0f || dst[2][1] != 0.0f) {
+        guNormalize(&dst[0][1], &dst[1][1], &dst[2][1]);
     }
-    if (spB8[0][2] != 0.0f || spB8[1][2] != 0.0f || spB8[2][2] != 0.0f) {
-        guNormalize(&spB8[0][2], &spB8[1][2], &spB8[2][2]);
+    if (dst[0][2] != 0.0f || dst[1][2] != 0.0f || dst[2][2] != 0.0f) {
+        guNormalize(&dst[0][2], &dst[1][2], &dst[2][2]);
     }
-    arg1->x = spB8[0][0] * x + spB8[1][0] * y + spB8[2][0] * z;
-    arg1->y = spB8[0][1] * x + spB8[1][1] * y + spB8[2][1] * z;
-    arg1->z = spB8[0][2] * x + spB8[1][2] * y + spB8[2][2] * z;
+    vel->x = dst[0][0] * x + dst[1][0] * y + dst[2][0] * z;
+    vel->y = dst[0][1] * x + dst[1][1] * y + dst[2][1] * z;
+    vel->z = dst[0][2] * x + dst[1][2] * y + dst[2][2] * z;
 }
 
 #if 0
-void func_800A63BC(GObj* obj) {
+void particle_generatorFuncRun(GObj* obj) {
     UnkPinkRat* ptr;
     Vec3f sp128;
     Vec3f sp11C;
@@ -1422,7 +1417,7 @@ void func_800A63BC(GObj* obj) {
             sp11C.y = ptr->unk_20.y;
             sp11C.z = ptr->unk_20.z;
             if (ptr->dobj != NULL) {
-                func_800A5E98(&sp128, &sp11C, ptr->dobj);
+                particle_getPosVelDObj(&sp128, &sp11C, ptr->dobj);
                 ptr->unk_14.x = sp128.x;
                 ptr->unk_14.y = sp128.y;
                 ptr->unk_14.z = sp128.z;
@@ -1492,7 +1487,7 @@ void func_800A63BC(GObj* obj) {
                         var_f16 *= spB4;
                         var_f18 *= spB4;
                     }
-                    func_800A244C(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    particle_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                   spD0, spCC, spC8,
                                   var_f14, var_f16, var_f18,
                                   ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
@@ -1502,7 +1497,7 @@ void func_800A63BC(GObj* obj) {
                     x1 = ptr->unk_14.x + temp_f0 * (ptr->unk_4C.data1.x - ptr->unk_14.x);
                     y1 = ptr->unk_14.y + temp_f0 * (ptr->unk_4C.data1.y - ptr->unk_14.y);
                     z1 = ptr->unk_14.z + temp_f0 * (ptr->unk_4C.data1.z - ptr->unk_14.z);
-                    func_800A244C(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    particle_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                   x1, y1, z1,
                                   sp11C.x, sp11C.y, sp11C.z, ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
                     break;
@@ -1524,15 +1519,15 @@ void func_800A63BC(GObj* obj) {
                         spDC = randFloat() * 6.2831855f;
                     }
                     ptr->unk_4C.data2.unk_00 = temp_f22_2;
-                    if (func_800A244C(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    if (particle_makeParam(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                       0, 0, 0,
                                       spDC, var_f24_3, 0, ptr->unk_34, temp_f0_8, temp_f28_4, 0, ptr) != NULL) {
                         ptr->unk_4C.data2.unk_04++;
                     }
                     break;
                 default:
-                    if (D_800BE2A8 != NULL) {
-                        D_800BE2A8(ptr, &sp11C);
+                    if (particle_generatorProcDefault != NULL) {
+                        particle_generatorProcDefault(ptr, &sp11C);
                     }
                     break;
             }
@@ -1564,12 +1559,12 @@ void func_800A63BC(GObj* obj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/4D880/func_800A63BC.s")
-void func_800A63BC(GObj* obj);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_generatorFuncRun.s")
+void particle_generatorFuncRun(GObj* obj);
 #endif
 
-UnkPinkRat* func_800A6BDC(void) {
-    UnkPinkRat* ret;
+ParticleGenerator* particle_getGenerator(void) {
+    ParticleGenerator* ret;
 
     ret = D_800BE1E8;
     if (ret == NULL) {
@@ -1583,65 +1578,65 @@ UnkPinkRat* func_800A6BDC(void) {
         D_800BE2B0 = ret;
     }
 
-    ret->unk_04 = ++D_800AEC68;
+    ret->generatorID = ++particle_currentGeneratorID;
     return ret;
 }
 
-UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
-    UnkPinkRat* ret;
-    s32 id = arg0 & 7;
+ParticleGenerator* particle_makeGenerator(s32 bankID, s32 scriptID) {
+    ParticleGenerator* ret;
+    s32 id = bankID & 7;
     s32 unused;
 
-    if (id > 7) {
+    if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (arg1 >= D_800BE228[id]) {
+    if (scriptID >= particle_ScriptBanksNum[id]) {
         return NULL;
     }
 
-    ret = func_800A6BDC();
+    ret = particle_getGenerator();
     if (ret != NULL) {
-        ret->unk_08 = D_800BE268[id][arg1]->unk_00;
-        ret->unk_09 = arg0;
-        ret->unk_06 = D_800BE268[id][arg1]->unk_08;
-        ret->unk_0A = D_800BE268[id][arg1]->unk_02;
-        ret->unk_0C = D_800BE268[id][arg1]->unk_06;
-        ret->unk_0E = D_800BE268[id][arg1]->unk_04;
-        ret->unk_14.x = 0.0f;
-        ret->unk_14.y = 0.0f;
-        ret->unk_14.z = 0.0f;
-        ret->unk_20.x = D_800BE268[id][arg1]->unk_14.x;
-        ret->unk_20.y = D_800BE268[id][arg1]->unk_14.y;
-        ret->unk_20.z = D_800BE268[id][arg1]->unk_14.z;
-        ret->unk_2C = D_800BE268[id][arg1]->unk_0C;
-        ret->unk_30 = D_800BE268[id][arg1]->unk_10;
-        ret->unk_34 = D_800BE268[id][arg1]->unk_2C;
-        ret->unk_10 = D_800BE268[id][arg1]->unk_30;
-        ret->unk_38 = D_800BE268[id][arg1]->unk_20;
-        ret->unk_3C = D_800BE268[id][arg1]->unk_24;
-        ret->unk_40 = D_800BE268[id][arg1]->unk_28;
+        ret->kind = particle_ScriptBanks[id][scriptID]->kind;
+        ret->bankID = bankID;
+        ret->flags = particle_ScriptBanks[id][scriptID]->flags;
+        ret->textureID = particle_ScriptBanks[id][scriptID]->textureID;
+        ret->particleLifetime = particle_ScriptBanks[id][scriptID]->particleLifetime;
+        ret->generatorLifetime = particle_ScriptBanks[id][scriptID]->generatorLifetime;
+        ret->pos.x = 0.0f;
+        ret->pos.y = 0.0f;
+        ret->pos.z = 0.0f;
+        ret->vel.x = particle_ScriptBanks[id][scriptID]->vel.x;
+        ret->vel.y = particle_ScriptBanks[id][scriptID]->vel.y;
+        ret->vel.z = particle_ScriptBanks[id][scriptID]->vel.z;
+        ret->gravity = particle_ScriptBanks[id][scriptID]->gravity;
+        ret->friction = particle_ScriptBanks[id][scriptID]->friction;
+        ret->size = particle_ScriptBanks[id][scriptID]->size;
+        ret->bytecode = particle_ScriptBanks[id][scriptID]->bytecode;
+        ret->unk_38 = particle_ScriptBanks[id][scriptID]->unk_20;
+        ret->unk_3C = particle_ScriptBanks[id][scriptID]->unk_24;
+        ret->unk_40 = particle_ScriptBanks[id][scriptID]->unk_28;
         ret->unk_44 = 0.0f;
-        if (D_800BE288[id][D_800BE268[id][arg1]->unk_02]->flags != 0) {
-            ret->unk_06 |= 0x10;
+        if (particle_SpriteBanks[id][particle_ScriptBanks[id][scriptID]->textureID]->flags != 0) {
+            ret->flags |= 0x10;
         }
         ret->dobj = NULL;
 
-        switch (ret->unk_08) {
+        switch (ret->kind) {
             case 0:
             case 3:
             case 4:
                 break;
             case 1:
-                ret->unk_4C.data1.x = ret->unk_14.x + ret->unk_20.x;
-                ret->unk_4C.data1.y = ret->unk_14.y + ret->unk_20.y;
-                ret->unk_4C.data1.z = ret->unk_14.z + ret->unk_20.z;
+                ret->generatorVars.move.x = ret->pos.x + ret->vel.x;
+                ret->generatorVars.move.y = ret->pos.y + ret->vel.y;
+                ret->generatorVars.move.z = ret->pos.z + ret->vel.z;
                 break;
             case 2:
-                ret->unk_4C.data2.unk_04 = 0;
+                ret->generatorVars.data2.unk_04 = 0;
                 break;
             default:
-                if (D_800BE2AC != NULL) {
-                    D_800BE2AC(ret);
+                if (particle_generatorProcSetup != NULL) {
+                    particle_generatorProcSetup(ret);
                 }
                 break;
         }
@@ -1649,15 +1644,15 @@ UnkPinkRat* func_800A6C48(s32 arg0, s32 arg1) {
     return ret;
 }
 
-void func_800A6ED8(UnkPinkRat* arg0) {
-    UnkPinkRat* prev = NULL;
-    UnkPinkRat* it = D_800BE1EC;
+void particle_ejectGenerator(ParticleGenerator* gen) {
+    ParticleGenerator* prev = NULL;
+    ParticleGenerator* it = D_800BE1EC;
 
     while (it != NULL) {
-        if (it == arg0) {
-            if (arg0->unk_08 == 2 && arg0->unk_4C.data2.unk_04 != 0) {
-                arg0->unk_0E = 1;
-                arg0->unk_40 = 0.0f;
+        if (it == gen) {
+            if (gen->kind == 2 && gen->generatorVars.data2.unk_04 != 0) {
+                gen->generatorLifetime = 1;
+                gen->unk_40 = 0.0f;
                 return;
             }
             if (prev == NULL) {
@@ -1674,41 +1669,41 @@ void func_800A6ED8(UnkPinkRat* arg0) {
     }
 }
 
-void func_800A6F74(void) {
-    UnkPinkRat* it = D_800BE1EC;
+void particle_ejectGeneratorAll(void) {
+    ParticleGenerator* it = D_800BE1EC;
 
     while (it != NULL) {
-        UnkPinkRat* next = it->next;
+        ParticleGenerator* next = it->next;
 
-        func_800A6ED8(it);
+        particle_ejectGenerator(it);
         it = next;
     }
 }
 
-void func_800A6FBC(void (*arg0)(UnkPinkRat*), void (*arg1)(UnkPinkRat*, Vec3f*)) {
-    D_800BE2AC = arg0;
-    D_800BE2A8 = arg1;
+void particle_setGeneratorProcs(void (*procSetup)(ParticleGenerator*), void (*procBase)(ParticleGenerator*, Vec3f*)) {
+    particle_generatorProcSetup = procSetup;
+    particle_generatorProcDefault = procBase;
 }
 
-void func_800A6FD0(u16 arg0, s32 arg1) {
-    UnkRustRat* it;
-    UnkRustRat* next;
-    UnkRustRat* prev;
-    UnkPinkRat* it2;
-    UnkPinkRat* next2;
-    UnkPinkRat* prev2;
+void particle_ejectStructID(u16 generatorID, s32 linkID) {
+    Particle* it;
+    Particle* next;
+    Particle* prev;
+    ParticleGenerator* it2;
+    ParticleGenerator* next2;
+    ParticleGenerator* prev2;
 
     prev = NULL;
-    for (it = D_800BE1A8[arg1]; it != NULL; it = next) {
+    for (it = D_800BE1A8[linkID]; it != NULL; it = next) {
         next = it->next;
-        if (it->unk_04 == arg0) {
+        if (it->generatorID == generatorID) {
             if (prev == NULL) {
-                D_800BE1A8[arg1] = it->next;
+                D_800BE1A8[linkID] = it->next;
             } else {
                 prev->next = it->next;
             }
-            if (it->unk_58 != NULL && (it->flags & 4) && it->unk_58->unk_08 == 2) {
-                it->unk_58->unk_4C.data2.unk_04--;
+            if (it->gen != NULL && (it->flags & 4) && it->gen->kind == 2) {
+                it->gen->generatorVars.data2.unk_04--;
             }
             it->next = D_800BE1A0;
             D_800BE1A0 = it;
@@ -1720,10 +1715,10 @@ void func_800A6FD0(u16 arg0, s32 arg1) {
     prev2 = NULL;
     for (it2 = D_800BE1EC; it2 != NULL; it2 = next2) {
         next2 = it2->next;
-        if (it2->unk_04 == arg0) {
-            if (it2->unk_08 == 2 && it2->unk_4C.data2.unk_04 != 0) {
+        if (it2->generatorID == generatorID) {
+            if (it2->kind == 2 && it2->generatorVars.data2.unk_04 != 0) {
                 it2->unk_40 = 0.0f;
-                it2->unk_0E = 1;
+                it2->generatorLifetime = 1;
                 prev2 = it2;
             } else {
                 if (prev2 == NULL) {
@@ -1740,81 +1735,81 @@ void func_800A6FD0(u16 arg0, s32 arg1) {
     }
 }
 
-void func_800A7114(Unk_800A7114* arg0) {
-    func_800A6FD0(arg0->unk_04, arg0->unk_08 >> 3);
+void particle_ejectStructSelf(Particle* particle) {
+    particle_ejectStructID(particle->generatorID, particle->bankID >> 3);
 }
 
-void func_800A7140(Unk_800A7114* arg0) {
-    func_800A6FD0(arg0->unk_04, arg0->unk_09 >> 3);
+void particle_ejectStructGenerator(ParticleGenerator* gen) {
+    particle_ejectStructID(gen->generatorID, gen->bankID >> 3);
 }
 
-void func_800A716C(GObj* obj) {
-    DObj* node;
-    UnkPinkRat* it;
-    UnkPinkRat* next;
+void particle_ejectGeneratorDObj(GObj* obj) {
+    DObj* dobj;
+    ParticleGenerator* it;
+    ParticleGenerator* next;
 
     if (obj->type == 1) {
-        for (node = obj->data.dobj; node != NULL; node = animModelTreeNextNode(node)) {
+        for (dobj = obj->data.dobj; dobj != NULL; dobj = animModelTreeNextNode(dobj)) {
             for (it = D_800BE1EC; it != NULL; it = next) {
                 next = it->next;
-                if (it->dobj == node) {
-                    func_800A6ED8(it);
+                if (it->dobj == dobj) {
+                    particle_ejectGenerator(it);
                 }
             }
         }
     }
 }
 
-void func_800A71F8(f32 dx, f32 dy, f32 dz) {
-    UnkRustRat* ptr;
-    UnkPinkRat* ptr2;
+void particle_translatePosAll(f32 dx, f32 dy, f32 dz) {
+    Particle* particle;
+    ParticleGenerator* gen;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
-        for (ptr = D_800BE1A8[i]; ptr != NULL; ptr = ptr->next) {
-            ptr->unk_20.x += dx;
-            ptr->unk_20.y += dy;
-            ptr->unk_20.z += dz;
+        for (particle = D_800BE1A8[i]; particle != NULL; particle = particle->next) {
+            particle->pos.x += dx;
+            particle->pos.y += dy;
+            particle->pos.z += dz;
         }
     }
 
-    for (ptr2 = D_800BE1EC; ptr2 != NULL; ptr2 = ptr2->next) {
-        ptr2->unk_14.x += dx;
-        ptr2->unk_14.y += dy;
-        ptr2->unk_14.z += dz;
+    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
+        gen->pos.x += dx;
+        gen->pos.y += dy;
+        gen->pos.z += dz;
     }
 }
 
-void func_800A72AC(u16 arg0, s32 arg1) {
-    UnkRustRat* ptr;
-    UnkPinkRat* ptr2;
+void particle_pauseAllID(u16 generatorID, s32 linkID) {
+    Particle* particle;
+    ParticleGenerator* gen;
 
-    for (ptr = D_800BE1A8[arg1]; ptr != NULL; ptr = ptr->next) {
-        if (ptr->unk_04 == arg0) {
-            ptr->flags |= 0x800;
+    for (particle = D_800BE1A8[linkID]; particle != NULL; particle = particle->next) {
+        if (particle->generatorID == generatorID) {
+            particle->flags |= PARTICLE_FLAG_PAUSE;
         }
     }
 
-    for (ptr2 = D_800BE1EC; ptr2 != NULL; ptr2 = ptr2->next) {
-        if (ptr2->unk_04 == arg0) {
-            ptr2->unk_06 |= 0x800;
+    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
+        if (gen->generatorID == generatorID) {
+            gen->flags |= PARTICLE_FLAG_PAUSE;
         }
     }
 }
 
-void func_800A7330(u16 arg0, s32 arg1) {
-    UnkRustRat* ptr;
-    UnkPinkRat* ptr2;
+void particle_resumeAllID(u16 generatorID, s32 linkID) {
+    Particle* particle;
+    ParticleGenerator* gen;
 
-    for (ptr = D_800BE1A8[arg1]; ptr != NULL; ptr = ptr->next) {
-        if (ptr->unk_04 == arg0) {
-            ptr->flags &= ~0x800;
+    for (particle = D_800BE1A8[linkID]; particle != NULL; particle = particle->next) {
+        if (particle->generatorID == generatorID) {
+            particle->flags &= ~PARTICLE_FLAG_PAUSE;
         }
     }
 
-    for (ptr2 = D_800BE1EC; ptr2 != NULL; ptr2 = ptr2->next) {
-        if (ptr2->unk_04 == arg0) {
-            ptr2->unk_06 &= ~0x800;
+    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
+        if (gen->generatorID == generatorID) {
+            gen->flags &= ~PARTICLE_FLAG_PAUSE;
         }
     }
 }

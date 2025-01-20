@@ -2,6 +2,7 @@
 #include "world/world.h"
 #include "app_level.h"
 #include "app_render/app_render.h"
+#include "app_render/particle.h"
 
 extern AnimCmd* D_800EAFB0[];
 extern AnimCmd** D_800EB0C0[];
@@ -172,23 +173,23 @@ void func_8035E264_4FE674(GObj* obj, Vec3f* arg1) {
 }
 
 void func_8035E298_4FE6A8(GObj* obj) {
-    Vec3f sp4C;
-    Vec3f sp40;
+    Vec3f pos;
+    Vec3f vel;
     DObj* s1;
     GroundResult sp28;
 
-    sp40 = D_8038838C_52879C;
+    vel = D_8038838C_52879C;
     s1 = obj->data.dobj->firstChild->firstChild->next;
 
     ohWait(10);
     while (true) {
-        func_800A5E98(&sp4C, &sp40, s1);
-        getGroundAt(sp4C.x, sp4C.z, &sp28);
-        if (sp4C.y < sp28.height) {
+        particle_getPosVelDObj(&pos, &vel, s1);
+        getGroundAt(pos.x, pos.z, &sp28);
+        if (pos.y < sp28.height) {
             break;
         }
         ohWait(1);
     }
-    sp4C.y = sp28.height;
-    func_8035E174_4FE584(obj, &sp4C);
+    pos.y = sp28.height;
+    func_8035E174_4FE584(obj, &pos);
 }

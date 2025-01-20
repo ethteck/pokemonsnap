@@ -4,6 +4,8 @@
 #include "main_menu.h"
 #include "sys/anim.h"
 
+#include "app_render/particle.h"
+
 extern s32 D_800E82F4_A0F884;
 extern s32 D_800E82F8_A0F888;
 extern s32 D_800E82FC_A0F88C;
@@ -47,7 +49,7 @@ extern AnimCmd D_803A80D0;
 
 void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
-    UnkPinkRat* unk;
+    ParticleGenerator* gen;
 
     if (arg1 == -2 || arg1 == -1) {
         D_800E832B_A0F8BB = 3;
@@ -56,9 +58,9 @@ void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
 
     temp_f8 = arg2 - 1.0f;
     if (temp_f8 >= 0) {
-        unk = func_800A6C48(arg1, temp_f8);
-        if (unk != NULL) {
-            unk->dobj = dobj;
+        gen = particle_makeGenerator(arg1, temp_f8);
+        if (gen != NULL) {
+            gen->dobj = dobj;
         }
     }
 }
@@ -397,17 +399,17 @@ void func_800E5C38_A0D1C8(void) {
 }
 
 void func_800E5C8C_A0D21C(void) {
-    void* sp1C;
-    void* temp_a2;
+    void* scriptDesc;
+    void* spritesDesc;
 
-    sp1C = func_800A73C0((u32) ADEC60_ROM_START, (u32) ADEC60_ROM_END);
-    temp_a2 = func_800A73C0((u32) particle_intro_ROM_START, (u32) particle_intro_ROM_END);
-    if (sp1C != NULL && temp_a2 != NULL) {
-        func_800A1ED0(0, sp1C, temp_a2);
+    scriptDesc = func_800A73C0((u32) ADEC60_ROM_START, (u32) ADEC60_ROM_END);
+    spritesDesc = func_800A73C0((u32) particle_intro_ROM_START, (u32) particle_intro_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        particle_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_800E8320_A0F8B0 = func_800A2094(4, 100, D_800E82A8_A0F838->data.cam);
-    D_800E8324_A0F8B4 = func_800A5E08(0xA);
-    func_800A5DF4(0xC0, 0x30);
+    D_800E8324_A0F8B4 = particle_allocGenerators(0xA);
+    particle_setDitherModes(0xC0, 0x30);
 }
 
 void func_800E5D2C_A0D2BC(void) {

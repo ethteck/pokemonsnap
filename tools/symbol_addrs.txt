@@ -2476,3 +2476,19 @@ UIMem_MergeChunks = 0x8036A0BC; // segment:window
 UIMem_Reallocate = 0x8036A248; // segment:window
 
 D_beach_802CC344 = 0x802CC344; // segment:beach_code type:s32
+
+particle_makeChildScriptID = 0x800A235C; // segment:app_render
+particle_currentGeneratorID = 0x800AEC68; // segment:app_render
+particle_makeParam = 0x800A244C; // segment:app_render
+particle_updateStruct = 0x800A2B3C; // segment:app_render
+particle_rotateVel = 0x800A2824; // segment:app_render
+particle_setDistVelDObj = 0x800A29AC; // segment:app_render
+particle_addDistVelMagDObj = 0x800A2AA8; // segment:app_render
+particle_draw = 0x800A4858; // segment:app_render
+particle_colorDitherMode = 0x800AEC60; // segment:app_render
+particle_alphaDitherMode = 0x800AEC64; // segment:app_render
+particle_getPosVelDObj = 0x800A5E98; // segment:app_render
+particle_generatorFuncRun = 0x800A63BC; // segment:app_render
+particle_makeGenerator = 0x800A6C48; // segment:app_render
+particle_generatorProcDefault = 0x800BE2A8; // segment:app_render
+particle_ejectGeneratorDObj = 0x800A716C; // segment:app_render

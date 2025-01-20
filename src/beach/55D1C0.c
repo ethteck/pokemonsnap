@@ -12,15 +12,15 @@ void func_beach_802C5180(void) {
     func_803572B0_4F76C0();
 }
 
-void func_beach_802C51A0(DObj* arg0, s32 arg1, f32 arg2) {
-    UnkPinkRat* unk;
+void func_beach_802C51A0(DObj* dobj, s32 arg1, f32 arg2) {
+    ParticleGenerator* gen;
 
     if (arg1 == -2 || arg1 == -1) {
         D_beach_802CC0E0 = 1;
     } else if ((s32) arg2 - 1 >= 0) {
-        unk = func_800A6C48(arg1, (s32) arg2 - 1);
-        if (unk != NULL) {
-            unk->dobj = arg0;
+        gen = particle_makeGenerator(arg1, (s32) arg2 - 1);
+        if (gen != NULL) {
+            gen->dobj = dobj;
         }
     }
 }

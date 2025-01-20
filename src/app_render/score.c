@@ -526,7 +526,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_1010:
@@ -535,7 +535,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_1018:
@@ -544,7 +544,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_1022:
@@ -553,7 +553,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_KOFFING_SMOKE:
@@ -562,7 +562,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_1035:
@@ -571,7 +571,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                     at->totalScore = 0;
                     break;
                 } else {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                     break;
                 }
             case PokemonID_MOLTRES_EGG:
@@ -581,7 +581,7 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
                 break;
             default:
                 if (func_8009BDDC(photo->pokemons[0].pokemonID, photo->pokemons[0].unk_00_13) < 0.0f) {
-                    D_800BE170.pokemonInFocus = 500;
+                    D_800BE170.pokemonInFocus = PokemonID_500;
                 }
                 break;
         }
@@ -614,8 +614,8 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
         return &D_800BE170;
     }
 
-        tmp = photoIdType4 = photoIdType1 = photoIdType2 =
-            scoreType3 = scoreType4 = scoreType1 = scoreType2 = sp24 = -1;
+    tmp = photoIdType4 = photoIdType1 = photoIdType2 =
+        scoreType3 = scoreType4 = scoreType1 = scoreType2 = sp24 = -1;
 
     for (i = 0; i < score_PokemonCount; i++) {
         temp_v1 = score_PixelCountUnobstructed[i];

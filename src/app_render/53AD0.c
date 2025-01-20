@@ -15,11 +15,17 @@ typedef struct Unk800BEDF0 {
 } Unk800BEDF0; // size = 0x4
 
 typedef struct Rect {
-    s32 ulx;
-    s32 uly;
-    s32 lrx;
-    s32 lry;
-} Rect;
+    /* 0x0 */ s32 ulx;
+    /* 0x4 */ s32 uly;
+    /* 0x8 */ s32 lrx;
+    /* 0xC */ s32 lry;
+} Rect; // size = 0x10
+
+typedef struct Matrix3f {
+    /* 0x00 */ Vec3f x;
+    /* 0x0C */ Vec3f y;
+    /* 0x18 */ Vec3f z;
+} Matrix3f; // size = 0x24
 
 extern UNK_TYPE D_800AF0D4;
 extern UNK_TYPE D_800AF0D4;
@@ -336,31 +342,25 @@ Vec3f* func_800A8D04(Vec3f* arg0) {
     return arg0;
 }
 
-Vec3f* func_800A8D60(Vec3f* arg0, Mtx3f arg1, f32 arg2, f32 arg3, f32 arg4) {
-    arg0->x += arg1[0][0] * arg2 + arg1[1][0] * arg3 + arg1[2][0] * arg4;
-    arg0->y += arg1[0][1] * arg2 + arg1[1][1] * arg3 + arg1[2][1] * arg4;
-    arg0->z += arg1[0][2] * arg2 + arg1[1][2] * arg3 + arg1[2][2] * arg4;
+Vec3f* func_800A8D60(Vec3f* arg0, Matrix3f* arg1, f32 arg2, f32 arg3, f32 arg4) {
+    arg0->x += arg1->x.x * arg2 + arg1->y.x * arg3 + arg1->z.x * arg4;
+    arg0->y += arg1->x.y * arg2 + arg1->y.y * arg3 + arg1->z.y * arg4;
+    arg0->z += arg1->x.z * arg2 + arg1->y.z * arg3 + arg1->z.z * arg4;
     return arg0;
 }
 
-Vec3f* func_800A8E00(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2) {
+Vec3f* func_800A8E00(Vec3f* arg0, Matrix3f* arg1, Vec3f* arg2) {
     return func_800A8D60(arg0, arg1, arg2->x, arg2->y, arg2->z);
 }
 
-// void func_800A8E34(Vec3f* arg0, Mtx3f arg1, Vec3f* arg2, f32 arg3, f32 arg4, f32 arg5);
-#ifdef NON_MATCHING
-Vec3f* func_800A8E34(Vec3f* arg0, Vec3f* arg1, Mtx3f arg2, f32 arg3, f32 arg4, f32 arg5) {
-    arg0->x = arg1->x + arg2[0][0] * arg3 + arg2[1][0] * arg4 + arg2[2][0] * arg5;
-    arg0->y = arg1->y + arg2[0][1] * arg3 + arg2[1][1] * arg4 + arg2[2][1] * arg5;
-    arg0->z = arg1->z + arg2[0][2] * arg3 + arg2[1][2] * arg4 + arg2[2][2] * arg5;
+Vec3f* func_800A8E34(Vec3f* arg0, Vec3f* arg1, Matrix3f* arg2, f32 arg3, f32 arg4, f32 arg5) {
+    arg0->x = arg1->x + arg2->x.x * arg3 + arg2->y.x * arg4 + arg2->z.x * arg5;
+    arg0->y = arg1->y + arg2->x.y * arg3 + arg2->y.y * arg4 + arg2->z.y * arg5;
+    arg0->z = arg1->z + arg2->x.z * arg3 + arg2->y.z * arg4 + arg2->z.z * arg5;
     return arg0;
 }
-#else
-Vec3f* func_800A8E34(Vec3f* arg0, Vec3f* arg1, Mtx3f arg2, f32 arg3, f32 arg4, f32 arg5);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/53AD0/func_800A8E34.s")
-#endif
 
-void func_800A8ED4(Vec3f* arg0, Vec3f* arg1, Mtx3f arg2, Vec3f* arg3) {
+void func_800A8ED4(Vec3f* arg0, Vec3f* arg1, Matrix3f* arg2, Vec3f* arg3) {
     func_800A8E34(arg0, arg1, arg2, arg3->x, arg3->y, arg3->z);
 }
 

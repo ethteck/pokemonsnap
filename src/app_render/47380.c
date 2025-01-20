@@ -7,13 +7,13 @@
 #include "string.h"
 #endif
 #include "world/world.h"
+#include "particle.h"
 
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
-s32 func_80364494_5048A4(UnkRustRat* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 
 typedef struct Unk8009C604 {
-    /* 0x00 */ UnkRustRat* unk_00;
+    /* 0x00 */ Particle* particle;
     /* 0x04 */ f32 unk_04;
     /* 0x08 */ f32 unk_08;
 } Unk8009C604; // size = 0xC
@@ -658,25 +658,27 @@ s32 func_8009C5C4(const void* a, const void* b) {
     return 0;
 }
 
+s32 func_80364494_5048A4(Particle* particle, f32* x, f32* y, f32* z, f32* s);
+
 void func_8009C604(UnkThing* arg0) {
     s32 i;
     s32 count;
-    UnkRustRat* ptr;
-    f32 sp520, sp51C, sp518, sp514;
+    Particle* particle;
+    f32 x, y, z, s;
     s32 unused;
     Unk8009C604 sp60[100];
 
     count = 0;
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
-        for (ptr = D_800BE1A8[i]; ptr != NULL; ptr = ptr->next) {
-            if (func_80364494_5048A4(ptr, &sp520, &sp51C, &sp518, &sp514) || (s16) (ptr->unk_40 * 128.0f) == 0 || ptr->unk_48.a == 0) {
+        for (particle = D_800BE1A8[i]; particle != NULL; particle = particle->next) {
+            if (func_80364494_5048A4(particle, &x, &y, &z, &s) || (s16) (particle->size * 128.0f) == 0 || particle->primColor.a == 0) {
                 if (0) {
                 } // TODO fake match
                 continue;
             }
-            sp60[count].unk_00 = ptr;
-            sp60[count].unk_04 = ptr->unk_40 * sp514;
-            sp60[count].unk_08 = sp518;
+            sp60[count].particle = particle;
+            sp60[count].unk_04 = particle->size * s;
+            sp60[count].unk_08 = z;
             count++;
             if (count >= 100) {
                 break;
@@ -687,7 +689,7 @@ void func_8009C604(UnkThing* arg0) {
         }
     }
 
-    ptr = sp60[count - i - 1].unk_00; // TODO fake match
+    particle = sp60[count - i - 1].particle; // TODO fake match
 
     if (count > 32) {
         qsort2(sp60, count, sizeof(Unk8009C604), func_8009C5C4);
@@ -696,16 +698,16 @@ void func_8009C604(UnkThing* arg0) {
 
     qsort2(sp60, count, sizeof(Unk8009C604), func_8009C584);
     for (i = 0; i < count; i++) {
-        ptr = sp60[count - i - 1].unk_00;
-        arg0->main.effects[i].unk_00 = ptr->unk_0A;
-        arg0->main.effects[i].unk_01 = ptr->unk_0B;
-        arg0->main.effects[i].unk_03 = (ptr->flags >> 4) & 0xFF;
-        arg0->main.effects[i].unk_02 = ptr->unk_08 & 7;
-        arg0->main.effects[i].unk_04 = ptr->unk_20.x * 8.0f;
-        arg0->main.effects[i].unk_06 = ptr->unk_20.y * 8.0f;
-        arg0->main.effects[i].unk_08 = ptr->unk_20.z * 8.0f;
-        arg0->main.effects[i].unk_0A = ptr->unk_40 * 128.0f;
-        arg0->main.effects[i].unk_0C = ptr->unk_48;
+        particle = sp60[count - i - 1].particle;
+        arg0->main.effects[i].textureID = particle->textureID;
+        arg0->main.effects[i].dataID = particle->dataID;
+        arg0->main.effects[i].unk_03 = (particle->flags >> 4) & 0xFF;
+        arg0->main.effects[i].bankID = particle->bankID & 7;
+        arg0->main.effects[i].posX = particle->pos.x * 8.0f;
+        arg0->main.effects[i].posY = particle->pos.y * 8.0f;
+        arg0->main.effects[i].posZ = particle->pos.z * 8.0f;
+        arg0->main.effects[i].size = particle->size * 128.0f;
+        arg0->main.effects[i].primColor = particle->primColor;
     }
 }
 
@@ -717,7 +719,7 @@ void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
     // clang-format on
 
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(arg2->main.effects); i++) { arg2->main.effects[i].unk_00 = -1; }
+    for (i = 0; i < ARRAY_COUNT(arg2->main.effects); i++) { arg2->main.effects[i].textureID = -1; }
     // clang-format on
 
     for (i = 0; i < ARRAY_COUNT(arg2->main.pokemons); i++) {
@@ -929,31 +931,31 @@ void func_8009D1E8(u32 romStart, s32 romEnd, s32 ramDst) {
     }
 }
 
-void func_8009D21C(s32 idx, s32* arg2) {
+void func_8009D21C(s32 bankID, s32* spritesDesc) {
     s32 i, j;
 
-    if (idx >= 8) {
+    if (bankID >= PARTICLE_BANKS_MAX) {
         return;
     }
 
-    D_800BE248[idx] = *arg2;
-    D_800BE288[idx] = (ParticleAnimData**) (arg2 + 1);
+    particle_SpriteBanksNum[bankID] = *spritesDesc;
+    particle_SpriteBanks[bankID] = (ParticleSprites**) (spritesDesc + 1);
 
-    for (i = 1; i <= D_800BE248[idx]; i++) {
-        arg2[i] = (u32) (arg2) + arg2[i];
+    for (i = 1; i <= particle_SpriteBanksNum[bankID]; i++) {
+        spritesDesc[i] = (u32) (spritesDesc) + spritesDesc[i];
     }
 
-    for (i = 0; i < D_800BE248[idx]; i++) {
-        for (j = 0; j < D_800BE288[idx][i]->numFrames; j++) {
-            D_800BE288[idx][i]->data[j] += (u32) arg2;
+    for (i = 0; i < particle_SpriteBanksNum[bankID]; i++) {
+        for (j = 0; j < particle_SpriteBanks[bankID][i]->numFrames; j++) {
+            particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
         }
-        if (D_800BE288[idx][i]->type == 2) {
-            if (D_800BE288[idx][i]->flags & 1) {
-                j = D_800BE288[idx][i]->numFrames;
-                D_800BE288[idx][i]->data[j] += (u32) arg2;
+        if (particle_SpriteBanks[bankID][i]->fmt == G_IM_FMT_CI) {
+            if (particle_SpriteBanks[bankID][i]->flags & 1) {
+                j = particle_SpriteBanks[bankID][i]->numFrames;
+                particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
             } else {
-                for (j = D_800BE288[idx][i]->numFrames; j < 2 * D_800BE288[idx][i]->numFrames; j++) {
-                    D_800BE288[idx][i]->data[j] += (u32) arg2;
+                for (j = particle_SpriteBanks[bankID][i]->numFrames; j < 2 * particle_SpriteBanks[bankID][i]->numFrames; j++) {
+                    particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
                 }
             }
         }

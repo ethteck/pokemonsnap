@@ -1,5 +1,6 @@
 #include "rainbow.h"
 #include "ld_addrs.h"
+#include "app_render/particle.h"
 
 extern f32 D_800F5DB0;
 
@@ -238,23 +239,22 @@ void func_80346BD0_826340(WorldBlock* block) {
 }
 
 void func_80346C64_8263D4(void) {
-    void* sp1C;
-    void* temp_v0;
-    void* temp_v0_2;
+    void* scriptDesc;
+    void* spritesDesc;
 
-    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
-    if (sp1C != NULL && temp_v0 != NULL) {
-        func_800A1ED0(3, sp1C, temp_v0);
+    scriptDesc = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
+    spritesDesc = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        particle_setupBankID(3, scriptDesc, spritesDesc);
     }
-    sp1C = func_800A73C0((u32) ADD310_ROM_START, (u32) ADD310_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) particle_rainbow_ROM_START, (u32) particle_rainbow_ROM_END);
-    if (sp1C != NULL && temp_v0_2 != NULL) {
-        func_800A1ED0(0, sp1C, temp_v0_2);
+    scriptDesc = func_800A73C0((u32) ADD310_ROM_START, (u32) ADD310_ROM_END);
+    spritesDesc = func_800A73C0((u32) particle_rainbow_ROM_START, (u32) particle_rainbow_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        particle_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
-    D_80382D14_523124 = func_800A5E08(0xA);
-    func_800A5DF4(0xC0, 0x30);
+    D_80382D14_523124 = particle_allocGenerators(10);
+    particle_setDitherModes(0xC0, 0x30);
 }
 
 ScreenSettings D_8034ABDC_82A34C = {
@@ -274,7 +274,7 @@ void func_80346D50_8264C0(void) {
     D_8034ABDC_82A34C.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_8034ABDC_82A34C);
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
+    for (i = 0; i < ARRAY_COUNT(particle_SpriteBanksNum); i++) { particle_ScriptBanksNum[i] = particle_SpriteBanksNum[i] = 0; }
     // clang-format on
     func_8009CE00();
     omAddGObj(0, func_80346B0C_82627C, 0, 0x80000000);

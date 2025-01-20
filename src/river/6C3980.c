@@ -2,6 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
+#include "app_render/particle.h"
 #include "river.h"
 
 void func_802DBD04_6C3AE4(GObj*);
@@ -104,24 +105,24 @@ void func_802DBDB0_6C3B90(GObj* obj) {
     UNUSED s32 pad[2];
     DObj* model = obj->data.dobj;
     Pokemon* pokemon = GET_POKEMON(obj);
-    Vec3f sp4C;
-    Vec3f sp40 = D_802E364C_6CB42C;
+    Vec3f pos;
+    Vec3f vel = D_802E364C_6CB42C;
     DObj* temp_s1 = model->firstChild->firstChild->firstChild->firstChild;
     GroundResult ground;
 
     ohWait(10);
 
     while (true) {
-        func_800A5E98(&sp4C, &sp40, temp_s1);
-        getGroundAt(sp4C.x, sp4C.z, &ground);
-        if (sp4C.y < ground.height) {
+        particle_getPosVelDObj(&pos, &vel, temp_s1);
+        getGroundAt(pos.x, pos.z, &ground);
+        if (pos.y < ground.height) {
             break;
         }
         ohWait(1);
     }
-    sp4C.y = ground.height;
+    pos.y = ground.height;
     if (ground.surfaceType == SURFACE_TYPE_337FB2 || ground.surfaceType == SURFACE_TYPE_007F66) {
-        func_8035E174_4FE584(obj, &sp4C);
+        func_8035E174_4FE584(obj, &pos);
     }
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;

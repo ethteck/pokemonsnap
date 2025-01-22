@@ -1,4 +1,5 @@
 #include "valley.h"
+#include "app_render/effect.h"
 
 extern EnvSoundData D_802D2740_7ABCD0[0x3A];
 extern f32 D_802D2828_7ABDB8;
@@ -217,23 +218,22 @@ void func_802C6168_79F6F8(GObj* obj, GroundResult* ground) {
 }
 
 void func_802C6300_79F890(void) {
-    void* sp1C;
-    void* temp_v0;
-    void* temp_v0_2;
+    void* scriptDesc;
+    void* spritesDesc;
 
-    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
-    if ((sp1C != NULL) && (temp_v0 != NULL)) {
-        func_800A1ED0(3, sp1C, temp_v0);
+    scriptDesc = func_800A73C0((u32) fx_script_common_ROM_START, (u32) fx_script_common_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_common_ROM_START, (u32) fx_img_common_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        fx_setupBankID(3, scriptDesc, spritesDesc);
     }
-    sp1C = func_800A73C0((u32) AD0E00_ROM_START, (u32) AD0E00_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) particle_valley_ROM_START, (u32) particle_valley_ROM_END);
-    if ((sp1C != NULL) && (temp_v0_2 != NULL)) {
-        func_800A1ED0(0, sp1C, temp_v0_2);
+    scriptDesc = func_800A73C0((u32) fx_script_valley_ROM_START, (u32) fx_script_valley_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END);
+    if ((scriptDesc != NULL) && (spritesDesc != NULL)) {
+        fx_setupBankID(0, scriptDesc, spritesDesc);
     }
-    D_80382D10_523120 = func_800A2094(4, 0x64, getMainCamera());
-    D_80382D14_523124 = func_800A5E08(0xA);
-    func_800A5DF4(0xC0, 0x30);
+    D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
+    D_80382D14_523124 = fx_allocEffects(10);
+    fx_setDitherModes(0xC0, 0x30);
 }
 
 void func_802C63EC_79F97C(void) {
@@ -243,7 +243,7 @@ void func_802C63EC_79F97C(void) {
     D_802D29D4_7ABF64.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_802D29D4_7ABF64);
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
+    for (i = 0; i < ARRAY_COUNT(fx_SpriteBanksNum); i++) { fx_ScriptBanksNum[i] = fx_SpriteBanksNum[i] = 0; }
     // clang-format on
     func_8009CE00();
     omAddGObj(OBJID_0, func_802C5D7C_79F30C, LINK_0, 0x80000000);

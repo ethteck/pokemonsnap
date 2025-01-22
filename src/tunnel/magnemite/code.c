@@ -1,4 +1,5 @@
 #include "../tunnel.h"
+#include "app_render/effect.h"
 
 #define MAGNEMITE_VAR_ATTRACTED_OBJ 0
 #define MAGNEMITE_VAR_IS_ATTRACTED 1
@@ -432,7 +433,7 @@ void magnemite_CalcTargetPos(GObj* obj, Vec3f* targetPos) {
         modelNode = magnemite_GroupLeader->data.dobj->firstChild;
     }
 
-    func_800A5E98(targetPos, &offset, modelNode);
+    fx_getPosVelDObj(targetPos, &offset, modelNode);
 }
 
 POKEMON_FUNC(magnemite_Attract)

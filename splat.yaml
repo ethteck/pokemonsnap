@@ -362,7 +362,7 @@ segments:
     - [0x4B670, c, score]
     - [0x4CDB0, c]
     - [0x4D400, c]
-    - [0x4D880, c]
+    - [0x4D880, c, effect]
     - [0x52D70, c]
     - [0x52DE0, c]
     - [0x53AD0, c]
@@ -382,7 +382,7 @@ segments:
     - [0x5ADD0, .rodata, 47380]
     - [0x5BB30, .rodata, score]
     - [0x5BBF0, .rodata, 4D400]
-    - [0x5BC10, .rodata, 4D880]
+    - [0x5BC10, .rodata, effect]
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
@@ -4918,32 +4918,32 @@ segments:
   - [0xAAA660, bin, idle_script_beach]
   - [0xAB1470, bin, idle_script_tunnel]
 
-  - [0xAB5860, bin] # UnkAsphaltLeopard (common)
-  - [0xAB5980, bin, particle/common]
+  - [0xAB5860, bin, fx/script/common]
+  - [0xAB5980, bin, fx/img/common]
 
-  - [0xAB85E0, bin] # UnkAsphaltLeopard (beach)
-  - [0xAB8780, bin, particle/beach]
+  - [0xAB85E0, bin, fx/script/beach]
+  - [0xAB8780, bin, fx/img/beach]
 
-  - [0xABE7A0, bin] # UnkAsphaltLeopard (tunnel)
-  - [0xABEBD0, bin, particle/tunnel]
+  - [0xABE7A0, bin, fx/script/tunnel]
+  - [0xABEBD0, bin, fx/img/tunnel]
 
-  - [0xAC6890, bin] # UnkAsphaltLeopard (cave)
-  - [0xAC6A80, bin, particle/cave]
+  - [0xAC6890, bin, fx/script/cave]
+  - [0xAC6A80, bin, fx/img/cave]
 
-  - [0xAC8510, bin] # UnkAsphaltLeopard (river)
-  - [0xAC8830, bin, particle/river]
+  - [0xAC8510, bin, fx/script/river]
+  - [0xAC8830, bin, fx/img/river]
 
-  - [0xACF6F0, bin] # UnkAsphaltLeopard (volcano)
-  - [0xACF9A0, bin, particle/volcano]
+  - [0xACF6F0, bin, fx/script/volcano]
+  - [0xACF9A0, bin, fx/img/volcano]
 
-  - [0xAD0E00, bin] # UnkAsphaltLeopard (valley)
-  - [0xAD1640, bin, particle/valley]
+  - [0xAD0E00, bin, fx/script/valley]
+  - [0xAD1640, bin, fx/img/valley]
 
-  - [0xADD310, bin] # UnkAsphaltLeopard (rainbow)
-  - [0xADD5D0, bin, particle/rainbow]
+  - [0xADD310, bin, fx/script/rainbow]
+  - [0xADD5D0, bin, fx/img/rainbow]
 
-  - [0xADEC60, bin] # UnkAsphaltLeopard (intro)
-  - [0xADEDF0, bin, particle/intro]
+  - [0xADEC60, bin, fx/script/intro]
+  - [0xADEDF0, bin, fx/img/intro]
 
   - [0xAE0510, bin] # unknown data
 

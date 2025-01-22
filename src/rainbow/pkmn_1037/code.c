@@ -1,4 +1,5 @@
 #include "../rainbow.h"
+#include "app_render/effect.h"
 
 void func_80349E28_829598(GObj*);
 void func_803491D4_828944(GObj*);
@@ -53,18 +54,18 @@ POKEMON_FUNC(func_80349180_8288F0)
 
 POKEMON_FUNC(func_803491D4_828944)
     DObj* node;
-    Vec3f sp50;
-    Vec3f sp44 = D_8034B528_82AC98;
+    Vec3f pos;
+    Vec3f vel = D_8034B528_82AC98;
 
     node = D_8034AB94_82A304->data.dobj->firstChild->firstChild;
     while (true) {
-        func_800A5E98(&sp50, &sp44, node);
-        position->v.x = sp50.x;
-        position->v.y = sp50.y;
+        fx_getPosVelDObj(&pos, &vel, node);
+        position->v.x = pos.x;
+        position->v.y = pos.y;
         if (D_80350190_82F900 == 0 || position->v.z < 2000.0f) {
-            position->v.z = sp50.z;
+            position->v.z = pos.z;
         }
-        rotation->v.y = atan2f(sp50.x, sp50.z) + PI;
+        rotation->v.y = atan2f(pos.x, pos.z) + PI;
         ohWait(1);
     }
 }
@@ -266,10 +267,10 @@ POKEMON_FUNC(func_80349C18_829388)
     Vec3f sp3C = D_8034B534_82ACA4;
 
     node = D_8034AB94_82A304->data.dobj->firstChild->firstChild;
-    func_800A5E98(&sp48, &sp3C, node);
+    fx_getPosVelDObj(&sp48, &sp3C, node);
     position->v.z = sp48.z;
     while (true) {
-        func_800A5E98(&sp48, &sp3C, node);
+        fx_getPosVelDObj(&sp48, &sp3C, node);
         position->v.x = sp48.x;
         position->v.y = sp48.y;
         position->v.z += 15.0f;

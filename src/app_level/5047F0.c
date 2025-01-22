@@ -1,5 +1,6 @@
 #include "common.h"
 #include "app_level.h"
+#include "app_render/effect.h"
 
 typedef struct Unk80364494 {
     /* 0x00 */ char unk_00[0x20];
@@ -22,18 +23,18 @@ void func_803643E0_5047F0(OMCamera* cam) {
     guMtxCatF(D_803B14D8_5518E8, D_803B1518_551928, D_803B1518_551928);
 }
 
-s32 func_80364494_5048A4(Unk80364494* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4) {
-    f32 x, y, z;
+s32 func_80364494_5048A4(Particle* particle, f32* x, f32* y, f32* z, f32* s) {
+    f32 pX, pY, pZ;
     f32 outX, outY, outZ, outS;
 
-    x = arg0->unk_20.x;
-    y = arg0->unk_20.y;
-    z = arg0->unk_20.z;
+    pX = particle->pos.x;
+    pY = particle->pos.y;
+    pZ = particle->pos.z;
 
-    outX = D_803B1518_551928[0][0] * x + D_803B1518_551928[1][0] * y + D_803B1518_551928[2][0] * z + D_803B1518_551928[3][0];
-    outY = D_803B1518_551928[0][1] * x + D_803B1518_551928[1][1] * y + D_803B1518_551928[2][1] * z + D_803B1518_551928[3][1];
-    outZ = D_803B1518_551928[0][2] * x + D_803B1518_551928[1][2] * y + D_803B1518_551928[2][2] * z + D_803B1518_551928[3][2];
-    outS = D_803B1518_551928[0][3] * x + D_803B1518_551928[1][3] * y + D_803B1518_551928[2][3] * z + D_803B1518_551928[3][3];
+    outX = D_803B1518_551928[0][0] * pX + D_803B1518_551928[1][0] * pY + D_803B1518_551928[2][0] * pZ + D_803B1518_551928[3][0];
+    outY = D_803B1518_551928[0][1] * pX + D_803B1518_551928[1][1] * pY + D_803B1518_551928[2][1] * pZ + D_803B1518_551928[3][1];
+    outZ = D_803B1518_551928[0][2] * pX + D_803B1518_551928[1][2] * pY + D_803B1518_551928[2][2] * pZ + D_803B1518_551928[3][2];
+    outS = D_803B1518_551928[0][3] * pX + D_803B1518_551928[1][3] * pY + D_803B1518_551928[2][3] * pZ + D_803B1518_551928[3][3];
     if (outS == 0.0f) {
         return true;
     }
@@ -47,10 +48,10 @@ s32 func_80364494_5048A4(Unk80364494* arg0, f32* arg1, f32* arg2, f32* arg3, f32
         return true;
     }
 
-    *arg1 = outX;
-    *arg2 = outY;
-    *arg3 = outZ;
-    *arg4 = outS;
+    *x = outX;
+    *y = outY;
+    *z = outZ;
+    *s = outS;
     return false;
 }
 

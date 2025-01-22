@@ -3,6 +3,7 @@
 
 #include "world/world.h"
 #include "app_level/app_level.h"
+#include "app_render/effect.h"
 
 extern WorldSetup D_8011B914;
 extern f32 D_8011B924;

@@ -26,9 +26,9 @@ void func_802ED050_5EA120(struct DObj* dobj, s32 param, f32 value) {
     if (param == -2 || param == -1) {
         D_802F01E0_5ED2B0 = true;
     } else if ((s32) value - 1 >= 0) {
-        UnkPinkRat* effect = func_800A6C48(param, (s32) value - 1);
-        if (effect != NULL) {
-            effect->dobj = dobj;
+        Effect* fx = fx_createEffect(param, (s32) value - 1);
+        if (fx != NULL) {
+            fx->dobj = dobj;
         }
     }
 }

@@ -1,4 +1,5 @@
 #include "volcano.h"
+#include "app_render/effect.h"
 
 __ALIGNER2
 
@@ -351,23 +352,22 @@ void volcano_ExitBlock(WorldBlock* arg0) {
 }
 
 void volcano_LoadEffects(void) {
-    void* sp1C;
-    void* temp_v0;
-    void* temp_v0_2;
+    void* scriptDesc;
+    void* spritesDesc;
 
-    sp1C = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
-    if (sp1C != NULL && temp_v0 != NULL) {
-        func_800A1ED0(3, sp1C, temp_v0);
+    scriptDesc = func_800A73C0((u32) fx_script_common_ROM_START, (u32) fx_script_common_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_common_ROM_START, (u32) fx_img_common_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        fx_setupBankID(3, scriptDesc, spritesDesc);
     }
-    sp1C = func_800A73C0((u32) ACF6F0_ROM_START, (u32) ACF6F0_ROM_END);
-    temp_v0_2 = func_800A73C0((u32) particle_volcano_ROM_START, (u32) particle_volcano_ROM_END);
-    if (sp1C != NULL && temp_v0_2 != NULL) {
-        func_800A1ED0(0, sp1C, temp_v0_2);
+    scriptDesc = func_800A73C0((u32) fx_script_volcano_ROM_START, (u32) fx_script_volcano_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END);
+    if (scriptDesc != NULL && spritesDesc != NULL) {
+        fx_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
-    D_80382D14_523124 = func_800A5E08(0xA);
-    func_800A5DF4(G_CD_DISABLE, G_AD_DISABLE);
+    D_80382D14_523124 = fx_allocEffects(0xA);
+    fx_setDitherModes(G_CD_DISABLE, G_AD_DISABLE);
 }
 
 void volcano_Init(void) {
@@ -377,7 +377,7 @@ void volcano_Init(void) {
     volcano_ScreenSettings.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&volcano_ScreenSettings);
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(D_800BE248); i++) { D_800BE228[i] = D_800BE248[i] = 0; }
+    for (i = 0; i < ARRAY_COUNT(fx_SpriteBanksNum); i++) { fx_ScriptBanksNum[i] = fx_SpriteBanksNum[i] = 0; }
     // clang-format on
     func_8009CE00();
     omAddGObj(OBJID_0, volcano_func_802D64A0_7276A0, LINK_0, 0x80000000);

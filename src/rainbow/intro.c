@@ -1,4 +1,5 @@
 #include "rainbow.h"
+#include "app_render/effect.h"
 
 extern AnimCmd* D_80119AE0;
 extern AnimCmd** D_8011A970;
@@ -21,8 +22,8 @@ void func_8034A550_829CC0(void) {
     setBackgroundMusic(SONG_ID_14);
 }
 
-void func_8034A578_829CE8(DObj* arg0, s32 arg1, f32 arg2) {
-    UnkPinkRat* temp_v0;
+void func_8034A578_829CE8(DObj* dobj, s32 arg1, f32 arg2) {
+    Effect* fx;
     s32 temp_a1;
 
     if (arg1 == -2 || arg1 == -1) {
@@ -32,9 +33,9 @@ void func_8034A578_829CE8(DObj* arg0, s32 arg1, f32 arg2) {
 
     temp_a1 = (s32) arg2 - 1;
     if (temp_a1 >= 0) {
-        temp_v0 = func_800A6C48(arg1, temp_a1);
-        if (temp_v0 != NULL) {
-            temp_v0->dobj = arg0;
+        fx = fx_createEffect(arg1, temp_a1);
+        if (fx != NULL) {
+            fx->dobj = dobj;
         }
     }
 }

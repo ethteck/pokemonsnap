@@ -53,27 +53,27 @@ POKEMON_FUNC(func_802D237C_7AB90C)
 }
 
 POKEMON_FUNC(func_802D2428_7AB9B8)
-    Vec3f sp4C;
-    Vec3f sp40;
+    Vec3f pos;
+    Vec3f vel;
     DObj* temp_s1;
     GroundResult sp28;
 
-    sp40 = D_802ECA10_7C5FA0;
+    vel = D_802ECA10_7C5FA0;
     temp_s1 = model->firstChild->firstChild->next;
     ohWait(60);
 
     while (true) {
-        func_800A5E98(&sp4C, &sp40, temp_s1);
-        getGroundAt(sp4C.x, sp4C.z, &sp28);
-        if (!(sp4C.y < sp28.height)) {
+        fx_getPosVelDObj(&pos, &vel, temp_s1);
+        getGroundAt(pos.x, pos.z, &sp28);
+        if (!(pos.y < sp28.height)) {
             ohWait(1);
         } else {
             break;
         }
     }
-    sp4C.y = sp28.height;
+    pos.y = sp28.height;
     if ((sp28.surfaceType == SURFACE_TYPE_337FB2) || (sp28.surfaceType == SURFACE_TYPE_007F66)) {
-        func_8035E174_4FE584(obj, &sp4C);
+        func_8035E174_4FE584(obj, &pos);
     }
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;

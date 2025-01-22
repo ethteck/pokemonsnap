@@ -243,15 +243,15 @@ typedef struct ItemPhotoData {
 } ItemPhotoData; // size = 0x10
 
 typedef struct EffectPhotoData {
-    /* 0x00 */ s8 unk_00;
-    /* 0x01 */ s8 unk_01;
-    /* 0x01 */ s8 unk_02;
-    /* 0x01 */ u8 unk_03;
-    /* 0x04 */ s16 unk_04;
-    /* 0x06 */ s16 unk_06;
-    /* 0x08 */ s16 unk_08;
-    /* 0x0A */ u16 unk_0A;
-    /* 0x0C */ ucolor unk_0C;
+    /* 0x00 */ s8 textureID;
+    /* 0x01 */ s8 dataID;
+    /* 0x02 */ s8 bankID;
+    /* 0x03 */ u8 unk_03;
+    /* 0x04 */ s16 posX;
+    /* 0x06 */ s16 posY;
+    /* 0x08 */ s16 posZ;
+    /* 0x0A */ u16 size;
+    /* 0x0C */ ucolor primColor;
 } EffectPhotoData; // size = 0x10
 
 typedef struct PhotoData {
@@ -281,36 +281,37 @@ typedef struct UIButton {
     char* text;
 } UIButton; // size = 0x8
 
-typedef union UnkPinkRatSub {
-    Vec3f data1;
+typedef union EffectVars {
+    Vec3f move;
     struct {
         f32 unk_00;
         u16 unk_04;
     } data2;
-} UnkPinkRatSub; // size = 0xC
+} EffectVars; // size = 0xC
 
-typedef struct UnkPinkRat {
-    /* 0x00 */ struct UnkPinkRat* next;
-    /* 0x04 */ u16 unk_04;
-    /* 0x06 */ u16 unk_06;
-    /* 0x08 */ u8 unk_08;
-    /* 0x09 */ u8 unk_09;
-    /* 0x0A */ s16 unk_0A;
-    /* 0x0C */ u16 unk_0C;
-    /* 0x0E */ u16 unk_0E;
-    /* 0x10 */ u8* unk_10;
-    /* 0x14 */ Vec3f unk_14;
-    /* 0x20 */ Vec3f unk_20;
-    /* 0x2C */ f32 unk_2C;
-    /* 0x30 */ f32 unk_30;
-    /* 0x34 */ f32 unk_34;
+// TODO maybe move to effect.h
+typedef struct Effect {
+    /* 0x00 */ struct Effect* next;
+    /* 0x04 */ u16 effectID;
+    /* 0x06 */ u16 flags;
+    /* 0x08 */ u8 kind;
+    /* 0x09 */ u8 bankID;
+    /* 0x0A */ s16 textureID;
+    /* 0x0C */ u16 particleLifetime;
+    /* 0x0E */ u16 effectLifetime;
+    /* 0x10 */ u8* bytecode;
+    /* 0x14 */ Vec3f pos;
+    /* 0x20 */ Vec3f vel;
+    /* 0x2C */ f32 gravity;
+    /* 0x30 */ f32 friction;
+    /* 0x34 */ f32 size;
     /* 0x38 */ f32 unk_38;
     /* 0x3C */ f32 unk_3C;
     /* 0x40 */ f32 unk_40;
     /* 0x44 */ f32 unk_44;
     /* 0x48 */ DObj* dobj;
-    /* 0x4C */ UnkPinkRatSub unk_4C;
-} UnkPinkRat; // size = 0x58
+    /* 0x4C */ EffectVars effectVars;
+} Effect; // size = 0x58
 
 typedef struct IdleScript {
     /* 0x00 */ u32 dataSize;

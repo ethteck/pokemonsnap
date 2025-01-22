@@ -58,16 +58,16 @@ POKEMON_FUNC(func_802CF864_7A8DF4)
 }
 
 POKEMON_FUNC(func_802CF8BC_7A8E4C)
-    Vec3f sp54;
-    Vec3f sp48 = D_802D41C8_7AD758;
+    Vec3f pos;
+    Vec3f vel = D_802D41C8_7AD758;
     DObj* temp_s1 = pokemon->interactionTarget->data.dobj;
     f32 something = FLOAT_MAX;
 
     while (something > 100.0f) {
-        func_800A5E98(&sp54, &sp48, temp_s1);
-        sp54.x -= position->v.x;
-        sp54.z -= position->v.z;
-        something = SQ(sp54.x) + SQ(sp54.z);
+        fx_getPosVelDObj(&pos, &vel, temp_s1);
+        pos.x -= position->v.x;
+        pos.z -= position->v.z;
+        something = SQ(pos.x) + SQ(pos.z);
         ohWait(1);
     }
     Pokemon_SetAnimation(obj, &D_802D4190_7AD720);

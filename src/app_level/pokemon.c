@@ -2,6 +2,7 @@
 #include "world/world.h"
 #include "app_level.h"
 #include "app_render/app_render.h"
+#include "app_render/effect.h"
 
 typedef struct PokemonObjectListEntry {
     /* 0x00 */ struct PokemonObjectListEntry* prev;
@@ -49,7 +50,6 @@ void func_800AB1F8(EggStruct*);
 s32 func_800AB138(EggStruct* arg0, f32 arg1);
 void func_80360074_500484(GObj*);
 void deletePokemon(GObj* pokemonObj);
-void func_800A716C(GObj*);
 u8 getIsPaused(void);
 s32 func_8036381C_503C2C(void);
 s32 Pokemon_StepWalkInDirection(GObj* arg0, f32 arg1, u32 arg2);
@@ -762,7 +762,7 @@ void Pokemon_Cleanup(GObj* obj) {
     Pokemon_FreeTransform(GET_TRANSFORM_BASE(obj->data.dobj));
     Pokemon_FreePokemonData(GET_POKEMON(obj));
     Pokemon_UnLinkObject(obj);
-    func_800A716C(obj);
+    fx_ejectEffectDObj(obj);
     deletePokemon(obj);
 }
 
@@ -1395,13 +1395,13 @@ void Pokemon_TurnToModelNode(GObj* obj, DObj* modelNode, f32 turnSpeed, u32 flag
     s32 updateDir;
     Vec3f* currentPos;
     Vec3f targetPos;
-    Vec3f sp54 = { 0, 0, 0 };
+    Vec3f vel = { 0, 0, 0 };
 
     updateDir = true;
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
     while (true) {
-        func_800A5E98(&targetPos, &sp54, modelNode);
+        fx_getPosVelDObj(&targetPos, &vel, modelNode);
         if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
@@ -1791,9 +1791,9 @@ void Pokemon_AnimationCallback(DObj* model, s32 param, f32 value) {
             } else if (pokemon->tangible) {
                 s32 val = value;
                 if (val > 0 && D_80382D10_523120 != NULL && D_80382D14_523124 != NULL) {
-                    UnkPinkRat* unk = func_800A6C48(param, val - 1);
-                    if (unk != NULL) {
-                        unk->dobj = model;
+                    Effect* fx = fx_createEffect(param, val - 1);
+                    if (fx != NULL) {
+                        fx->dobj = model;
                     }
                 }
             }

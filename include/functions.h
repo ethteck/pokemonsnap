@@ -48,13 +48,8 @@ void func_800A19D8(s32);
 void func_800A1A50(Gfx**);
 
 void func_800A1E6C(Vec3f*);
-void func_800A1ED0(s32, UNK_PTR, UNK_PTR);
 GObj* func_800A2094(s32, s32, OMCamera*);
-void func_800A5DF4(s32, s32);
-GObj* func_800A5E08(s32);
 
-UnkPinkRat* func_800A6C48(s32, s32);
-void func_800A71F8(f32, f32, f32);
 void* func_800A73C0(u32 romSrcStart, u32 romSrcEnd);
 s32 func_800A7460(void);
 void func_800A7470(s32, s32, s32);

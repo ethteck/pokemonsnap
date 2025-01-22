@@ -1,4 +1,5 @@
 #include "world.h"
+#include "app_render/effect.h"
 
 void func_800E354C_60CFC(UnkVioletMarlin*, s32);
 void func_800E3464_60C14(WorldBlock*);
@@ -339,9 +340,9 @@ WorldBlock* enterNextBlock(void) {
     bindCameraNextBlock((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
-    func_800A71F8((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
-                  (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
-                  (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+    fx_translatePosAll((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                       (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                       (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
 
     func_800E2280_5FA30(next);
     func_800E2354_5FB04(curr);

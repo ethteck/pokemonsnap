@@ -7,13 +7,13 @@
 #include "string.h"
 #endif
 #include "world/world.h"
+#include "effect.h"
 
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
-s32 func_80364494_5048A4(UnkRustRat* arg0, f32* arg1, f32* arg2, f32* arg3, f32* arg4);
 
 typedef struct Unk8009C604 {
-    /* 0x00 */ UnkRustRat* unk_00;
+    /* 0x00 */ Particle* particle;
     /* 0x04 */ f32 unk_04;
     /* 0x08 */ f32 unk_08;
 } Unk8009C604; // size = 0xC
@@ -658,25 +658,27 @@ s32 func_8009C5C4(const void* a, const void* b) {
     return 0;
 }
 
+s32 func_80364494_5048A4(Particle* particle, f32* x, f32* y, f32* z, f32* s);
+
 void func_8009C604(UnkThing* arg0) {
     s32 i;
     s32 count;
-    UnkRustRat* ptr;
-    f32 sp520, sp51C, sp518, sp514;
+    Particle* particle;
+    f32 x, y, z, s;
     s32 unused;
     Unk8009C604 sp60[100];
 
     count = 0;
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
-        for (ptr = D_800BE1A8[i]; ptr != NULL; ptr = ptr->next) {
-            if (func_80364494_5048A4(ptr, &sp520, &sp51C, &sp518, &sp514) || (s16) (ptr->unk_40 * 128.0f) == 0 || ptr->unk_48.a == 0) {
+        for (particle = D_800BE1A8[i]; particle != NULL; particle = particle->next) {
+            if (func_80364494_5048A4(particle, &x, &y, &z, &s) || (s16) (particle->size * 128.0f) == 0 || particle->primColor.a == 0) {
                 if (0) {
                 } // TODO fake match
                 continue;
             }
-            sp60[count].unk_00 = ptr;
-            sp60[count].unk_04 = ptr->unk_40 * sp514;
-            sp60[count].unk_08 = sp518;
+            sp60[count].particle = particle;
+            sp60[count].unk_04 = particle->size * s;
+            sp60[count].unk_08 = z;
             count++;
             if (count >= 100) {
                 break;
@@ -687,7 +689,7 @@ void func_8009C604(UnkThing* arg0) {
         }
     }
 
-    ptr = sp60[count - i - 1].unk_00; // TODO fake match
+    particle = sp60[count - i - 1].particle; // TODO fake match
 
     if (count > 32) {
         qsort2(sp60, count, sizeof(Unk8009C604), func_8009C5C4);
@@ -696,16 +698,16 @@ void func_8009C604(UnkThing* arg0) {
 
     qsort2(sp60, count, sizeof(Unk8009C604), func_8009C584);
     for (i = 0; i < count; i++) {
-        ptr = sp60[count - i - 1].unk_00;
-        arg0->main.effects[i].unk_00 = ptr->unk_0A;
-        arg0->main.effects[i].unk_01 = ptr->unk_0B;
-        arg0->main.effects[i].unk_03 = (ptr->flags >> 4) & 0xFF;
-        arg0->main.effects[i].unk_02 = ptr->unk_08 & 7;
-        arg0->main.effects[i].unk_04 = ptr->unk_20.x * 8.0f;
-        arg0->main.effects[i].unk_06 = ptr->unk_20.y * 8.0f;
-        arg0->main.effects[i].unk_08 = ptr->unk_20.z * 8.0f;
-        arg0->main.effects[i].unk_0A = ptr->unk_40 * 128.0f;
-        arg0->main.effects[i].unk_0C = ptr->unk_48;
+        particle = sp60[count - i - 1].particle;
+        arg0->main.effects[i].textureID = particle->textureID;
+        arg0->main.effects[i].dataID = particle->dataID;
+        arg0->main.effects[i].unk_03 = (particle->flags >> 4) & 0xFF;
+        arg0->main.effects[i].bankID = particle->bankID & 7;
+        arg0->main.effects[i].posX = particle->pos.x * 8.0f;
+        arg0->main.effects[i].posY = particle->pos.y * 8.0f;
+        arg0->main.effects[i].posZ = particle->pos.z * 8.0f;
+        arg0->main.effects[i].size = particle->size * 128.0f;
+        arg0->main.effects[i].primColor = particle->primColor;
     }
 }
 
@@ -717,7 +719,7 @@ void func_8009C8E4(OMCamera* arg0, MovementState* arg1, UnkThing* arg2) {
     // clang-format on
 
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(arg2->main.effects); i++) { arg2->main.effects[i].unk_00 = -1; }
+    for (i = 0; i < ARRAY_COUNT(arg2->main.effects); i++) { arg2->main.effects[i].textureID = -1; }
     // clang-format on
 
     for (i = 0; i < ARRAY_COUNT(arg2->main.pokemons); i++) {
@@ -929,31 +931,31 @@ void func_8009D1E8(u32 romStart, s32 romEnd, s32 ramDst) {
     }
 }
 
-void func_8009D21C(s32 idx, s32* arg2) {
+void func_8009D21C(s32 bankID, s32* spritesDesc) {
     s32 i, j;
 
-    if (idx >= 8) {
+    if (bankID >= PARTICLE_BANKS_MAX) {
         return;
     }
 
-    D_800BE248[idx] = *arg2;
-    D_800BE288[idx] = (ParticleAnimData**) (arg2 + 1);
+    fx_SpriteBanksNum[bankID] = *spritesDesc;
+    fx_SpriteBanks[bankID] = (EffectSprites**) (spritesDesc + 1);
 
-    for (i = 1; i <= D_800BE248[idx]; i++) {
-        arg2[i] = (u32) (arg2) + arg2[i];
+    for (i = 1; i <= fx_SpriteBanksNum[bankID]; i++) {
+        spritesDesc[i] = (u32) (spritesDesc) + spritesDesc[i];
     }
 
-    for (i = 0; i < D_800BE248[idx]; i++) {
-        for (j = 0; j < D_800BE288[idx][i]->numFrames; j++) {
-            D_800BE288[idx][i]->data[j] += (u32) arg2;
+    for (i = 0; i < fx_SpriteBanksNum[bankID]; i++) {
+        for (j = 0; j < fx_SpriteBanks[bankID][i]->numFrames; j++) {
+            fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
         }
-        if (D_800BE288[idx][i]->type == 2) {
-            if (D_800BE288[idx][i]->flags & 1) {
-                j = D_800BE288[idx][i]->numFrames;
-                D_800BE288[idx][i]->data[j] += (u32) arg2;
+        if (fx_SpriteBanks[bankID][i]->fmt == G_IM_FMT_CI) {
+            if (fx_SpriteBanks[bankID][i]->flags & 1) {
+                j = fx_SpriteBanks[bankID][i]->numFrames;
+                fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
             } else {
-                for (j = D_800BE288[idx][i]->numFrames; j < 2 * D_800BE288[idx][i]->numFrames; j++) {
-                    D_800BE288[idx][i]->data[j] += (u32) arg2;
+                for (j = fx_SpriteBanks[bankID][i]->numFrames; j < 2 * fx_SpriteBanks[bankID][i]->numFrames; j++) {
+                    fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
                 }
             }
         }
@@ -968,7 +970,7 @@ void func_8009D37C(u8 levelID) {
     switch (levelID) {
         case SCENE_BEACH:
             func_8009D184(&D_8011B914);
-            func_8009D1E8((u32) particle_beach_ROM_START, (u32) particle_beach_ROM_END, (s32) &D_801D6840);
+            func_8009D1E8((u32) fx_img_beach_ROM_START, (u32) fx_img_beach_ROM_END, (s32) &D_801D6840);
             func_8009D21C(0, &D_801D6840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -977,7 +979,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_TUNNEL:
             func_8009D184(&tunnel_WorldSetup);
-            func_8009D1E8((u32) particle_tunnel_ROM_START, (u32) particle_tunnel_ROM_END, (s32) &D_801B1230);
+            func_8009D1E8((u32) fx_img_tunnel_ROM_START, (u32) fx_img_tunnel_ROM_END, (s32) &D_801B1230);
             func_8009D21C(0, &D_801B1230);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -987,7 +989,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_CAVE:
             func_8009D184(&D_8012A0E8);
-            func_8009D1E8((u32) particle_cave_ROM_START, (u32) particle_cave_ROM_END, (s32) &D_801CF840);
+            func_8009D1E8((u32) fx_img_cave_ROM_START, (u32) fx_img_cave_ROM_END, (s32) &D_801CF840);
             func_8009D21C(0, &D_801CF840);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -997,7 +999,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RIVER:
             func_8009D184(&D_8012AC90);
-            func_8009D1E8((u32) particle_river_ROM_START, (u32) particle_river_ROM_END, (s32) &D_801B6B60);
+            func_8009D1E8((u32) fx_img_river_ROM_START, (u32) fx_img_river_ROM_END, (s32) &D_801B6B60);
             func_8009D21C(0, &D_801B6B60);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -1006,7 +1008,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VOLCANO:
             func_8009D184(&volcano_WorldSetup);
-            func_8009D1E8((u32) particle_volcano_ROM_START, (u32) particle_volcano_ROM_END, (s32) &D_801CF770);
+            func_8009D1E8((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END, (s32) &D_801CF770);
             func_8009D21C(0, &D_801CF770);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0;
@@ -1015,7 +1017,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VALLEY:
             func_8009D184(&D_80100720);
-            func_8009D1E8((u32) particle_valley_ROM_START, (u32) particle_valley_ROM_END, (s32) &D_801B1D40);
+            func_8009D1E8((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END, (s32) &D_801B1D40);
             func_8009D21C(0, &D_801B1D40);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
@@ -1024,7 +1026,7 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_RAINBOW:
             func_8009D184(&D_800F5DA0);
-            func_8009D1E8((u32) particle_rainbow_ROM_START, (u32) particle_rainbow_ROM_END, (s32) &D_8013E260);
+            func_8009D1E8((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END, (s32) &D_8013E260);
             func_8009D21C(0, &D_8013E260);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
@@ -1387,7 +1389,7 @@ void func_8009FB50(u8 arg0, u8 arg1, u8 arg2) {
     D_800BDF1D = arg1;
     D_800BDF1E = arg2;
     D_800AC0F0 = -1;
-    temp_v0 = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
+    temp_v0 = func_800A73C0((u32) fx_img_common_ROM_START, (u32) fx_img_common_ROM_END);
     if (temp_v0 != NULL) {
         func_8009D21C(3, temp_v0);
     }

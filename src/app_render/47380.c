@@ -7,7 +7,7 @@
 #include "string.h"
 #endif
 #include "world/world.h"
-#include "particle.h"
+#include "effect.h"
 
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);

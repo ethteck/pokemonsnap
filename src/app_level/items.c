@@ -1,7 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 #define BASE_ITEM_OBJID 300
 

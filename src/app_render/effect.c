@@ -1,5 +1,5 @@
 #include "app_render.h"
-#include "particle.h"
+#include "effect.h"
 
 extern u8 fx_colorDitherMode;
 extern u8 fx_alphaDitherMode;
@@ -887,7 +887,7 @@ Particle* fx_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
 }
 #else
 Particle* fx_updateStruct(Particle* arg0, Particle* arg1, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_updateStruct.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/effect/fx_updateStruct.s")
 #endif
 
 void fx_structFuncRun(GObj* obj) {
@@ -1238,7 +1238,7 @@ void fx_draw(GObj* camObj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_draw.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/effect/fx_draw.s")
 #endif
 
 void fx_addAttachDObj(s32 bankID, DObj* dobj) {
@@ -1559,7 +1559,7 @@ void fx_effectFuncRun(GObj* obj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_effectFuncRun.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/effect/fx_effectFuncRun.s")
 void fx_effectFuncRun(GObj* obj);
 #endif
 

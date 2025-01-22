@@ -2,7 +2,7 @@
 #include "world/world.h"
 #include "app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern AnimCmd* D_800EAFB0[];
 extern AnimCmd** D_800EB0C0[];

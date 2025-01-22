@@ -4,7 +4,7 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 #include "cave.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern EnvSoundData D_802C6150_648600;
 extern PokemonDef D_802C6234_6486E4;

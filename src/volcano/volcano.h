@@ -3,7 +3,7 @@
 #include "../world/world.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 #define VOLCANO_CMD_CHARMELEON_FELL_IN_LAVA POKEMON_CMD_28
 #define VOLCANO_CMD_CHARMELEON_EVOLVE POKEMON_CMD_29

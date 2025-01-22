@@ -1,7 +1,7 @@
 #include "common.h"
 #include "app_level/app_level.h"
 #include "river.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern AnimCmd* D_8014A660;
 extern AnimCmd** D_8014B450;

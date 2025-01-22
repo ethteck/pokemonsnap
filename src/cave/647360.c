@@ -1,7 +1,7 @@
 #include "common.h"
 #include "world/world.h"
 #include "app_level/app_level.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 #include "cave.h"
 
 extern f32 D_8012A0F8;

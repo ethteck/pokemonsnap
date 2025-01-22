@@ -1,5 +1,5 @@
 #include "volcano.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 __ALIGNER2
 

@@ -1,5 +1,5 @@
 #include "world.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 void func_800E354C_60CFC(UnkVioletMarlin*, s32);
 void func_800E3464_60C14(WorldBlock*);

@@ -1,5 +1,5 @@
 #include "../tunnel.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 #define MAGNEMITE_VAR_ATTRACTED_OBJ 0
 #define MAGNEMITE_VAR_IS_ATTRACTED 1

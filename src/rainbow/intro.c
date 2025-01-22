@@ -1,5 +1,5 @@
 #include "rainbow.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern AnimCmd* D_80119AE0;
 extern AnimCmd** D_8011A970;

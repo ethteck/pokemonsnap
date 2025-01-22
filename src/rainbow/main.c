@@ -1,6 +1,6 @@
 #include "rainbow.h"
 #include "ld_addrs.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern f32 D_800F5DB0;
 

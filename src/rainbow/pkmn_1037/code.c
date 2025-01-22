@@ -1,5 +1,5 @@
 #include "../rainbow.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 void func_80349E28_829598(GObj*);
 void func_803491D4_828944(GObj*);

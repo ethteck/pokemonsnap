@@ -4,7 +4,7 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 #include "river.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern u8 D_802E2620_6CA400;
 extern EnvSoundData D_802E2624_6CA404[62];

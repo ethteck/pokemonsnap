@@ -1,7 +1,8 @@
-#ifndef _PARTICLE_H_
-#define _PARTICLE_H_
+#ifndef _EFFECT_H_
+#define _EFFECT_H_
 
 #include "types.h"
+#include "common_structs.h"
 
 #define PARTICLE_BANKS_MAX 8
 
@@ -22,8 +23,8 @@ typedef struct EffectScript {
     /* 0x24 */ f32 unk_24;
     /* 0x28 */ f32 unk_28;
     /* 0x2C */ f32 size;
-    /* 0x30 */ u8 bytecode[1];
-} EffectScript; // size > 0x30
+    /* 0x30 */ u8 bytecode[1]; // variable length
+} EffectScript;                // size > 0x30
 
 typedef struct ParticleScriptDesc {
     /* 0x00 */ s32 count;

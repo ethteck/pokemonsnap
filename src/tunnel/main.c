@@ -1,5 +1,5 @@
 #include "tunnel.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 EnvSoundData tunnel_EnvSounds[] = {
     { SOUND_ID_361, PITCH_MOD_1, 20 },

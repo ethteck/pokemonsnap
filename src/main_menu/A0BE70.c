@@ -4,7 +4,7 @@
 #include "main_menu.h"
 #include "sys/anim.h"
 
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern s32 D_800E82F4_A0F884;
 extern s32 D_800E82F8_A0F888;

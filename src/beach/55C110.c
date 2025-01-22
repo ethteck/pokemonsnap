@@ -5,7 +5,7 @@
 #include "ld_addrs.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     DObj* a0;

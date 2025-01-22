@@ -1,5 +1,5 @@
 #include "valley.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 extern EnvSoundData D_802D2740_7ABCD0[0x3A];
 extern f32 D_802D2828_7ABDB8;

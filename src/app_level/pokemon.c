@@ -2,7 +2,7 @@
 #include "world/world.h"
 #include "app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 typedef struct PokemonObjectListEntry {
     /* 0x00 */ struct PokemonObjectListEntry* prev;

@@ -1,6 +1,6 @@
 #include "common.h"
 #include "app_level.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 typedef struct Unk80364494 {
     /* 0x00 */ char unk_00[0x20];

@@ -289,7 +289,7 @@ typedef union EffectVars {
     } data2;
 } EffectVars; // size = 0xC
 
-// TODO maybe move to particle.h
+// TODO maybe move to effect.h
 typedef struct Effect {
     /* 0x00 */ struct Effect* next;
     /* 0x04 */ u16 effectID;

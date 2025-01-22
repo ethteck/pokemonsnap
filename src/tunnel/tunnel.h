@@ -3,7 +3,7 @@
 #include "../world/world.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 
 #define TUNNEL_CMD_28 POKEMON_CMD_28
 #define TUNNEL_CMD_29 POKEMON_CMD_29

@@ -2,7 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
-#include "app_render/particle.h"
+#include "app_render/effect.h"
 #include "river.h"
 
 void func_802DB1C4_6C2FA4(GObj*);

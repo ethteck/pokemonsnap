@@ -4919,31 +4919,31 @@ segments:
   - [0xAB1470, bin, idle_script_tunnel]
 
   - [0xAB5860, bin, fx/script/common]
-  - [0xAB5980, bin, fx/img/common]
+  - [0xAB5980, snap_effect_sprites, fx/img/common, sprite1, sprite2]
 
   - [0xAB85E0, bin, fx/script/beach]
-  - [0xAB8780, bin, fx/img/beach]
+  - [0xAB8780, snap_effect_sprites, fx/img/beach, sprite1, sprite2, sprite3, sprite4, sprite5, sprite6]
 
   - [0xABE7A0, bin, fx/script/tunnel]
-  - [0xABEBD0, bin, fx/img/tunnel]
+  - [0xABEBD0, snap_effect_sprites, fx/img/tunnel, sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7]
 
   - [0xAC6890, bin, fx/script/cave]
-  - [0xAC6A80, bin, fx/img/cave]
+  - [0xAC6A80, snap_effect_sprites, fx/img/cave, sprite1, sprite2, sprite3]
 
   - [0xAC8510, bin, fx/script/river]
-  - [0xAC8830, bin, fx/img/river]
+  - [0xAC8830, snap_effect_sprites, fx/img/river, sprite1, sprite2, sprite3, sprite4]
 
   - [0xACF6F0, bin, fx/script/volcano]
-  - [0xACF9A0, bin, fx/img/volcano]
+  - [0xACF9A0, snap_effect_sprites, fx/img/volcano, sprite1, sprite2]
 
   - [0xAD0E00, bin, fx/script/valley]
-  - [0xAD1640, bin, fx/img/valley]
+  - [0xAD1640, snap_effect_sprites, fx/img/valley, sprite1, sprite2, sprite3, sprite4, sprite5]
 
   - [0xADD310, bin, fx/script/rainbow]
-  - [0xADD5D0, bin, fx/img/rainbow]
+  - [0xADD5D0, snap_effect_sprites, fx/img/rainbow, sprite1, sprite2, sprite3]
 
   - [0xADEC60, bin, fx/script/intro]
-  - [0xADEDF0, bin, fx/img/intro]
+  - [0xADEDF0, snap_effect_sprites, fx/img/intro, sprite1, sprite2]
 
   - [0xAE0510, bin] # unknown data
 

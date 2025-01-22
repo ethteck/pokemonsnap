@@ -13,14 +13,14 @@ void func_beach_802C5180(void) {
 }
 
 void func_beach_802C51A0(DObj* dobj, s32 arg1, f32 arg2) {
-    ParticleGenerator* gen;
+    Effect* fx;
 
     if (arg1 == -2 || arg1 == -1) {
         D_beach_802CC0E0 = 1;
     } else if ((s32) arg2 - 1 >= 0) {
-        gen = particle_makeGenerator(arg1, (s32) arg2 - 1);
-        if (gen != NULL) {
-            gen->dobj = dobj;
+        fx = fx_createEffect(arg1, (s32) arg2 - 1);
+        if (fx != NULL) {
+            fx->dobj = dobj;
         }
     }
 }

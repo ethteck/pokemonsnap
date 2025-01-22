@@ -631,11 +631,11 @@ void Items_NotifyItemPosition(GObj* obj) {
     Item* item = GET_ITEM(obj);
 
     if (item->itemID == ITEM_ID_PESTER_BALL) {
-        ParticleGenerator* gen = particle_makeGenerator(3, 0);
-        if (gen != NULL) {
-            gen->pos.x = obj->data.dobj->position.v.x;
-            gen->pos.y = obj->data.dobj->position.v.y;
-            gen->pos.z = obj->data.dobj->position.v.z;
+        Effect* fx = fx_createEffect(3, 0);
+        if (fx != NULL) {
+            fx->pos.x = obj->data.dobj->position.v.x;
+            fx->pos.y = obj->data.dobj->position.v.y;
+            fx->pos.z = obj->data.dobj->position.v.z;
         }
     }
 
@@ -851,7 +851,7 @@ void Items_UpdateItemMovement(GObj* obj) {
     DObj* model = obj->data.dobj;
     Item* item = GET_ITEM(obj);
     Vec3f vel2;
-    ParticleGenerator* gen;
+    Effect* fx;
     f32 sp11C;
     GObj* closestPokemon;
     Pokemon* pokemon;
@@ -935,11 +935,11 @@ void Items_UpdateItemMovement(GObj* obj) {
         item->flags |= ITEM_FLAG_BOUNCED;
         if (item->itemID == ITEM_ID_PESTER_BALL) {
             Items_PlaySound(model, SOUND_ID_10);
-            gen = particle_makeGenerator(3, 0);
-            if (gen != NULL) {
-                gen->pos.x = obj->data.dobj->position.v.x;
-                gen->pos.y = obj->data.dobj->position.v.y;
-                gen->pos.z = obj->data.dobj->position.v.z;
+            fx = fx_createEffect(3, 0);
+            if (fx != NULL) {
+                fx->pos.x = obj->data.dobj->position.v.x;
+                fx->pos.y = obj->data.dobj->position.v.y;
+                fx->pos.z = obj->data.dobj->position.v.z;
             }
             obj->flags |= GOBJ_FLAG_HIDDEN;
             Items_EndProcessByFunction(obj, Items_ShowDelayed);
@@ -968,11 +968,11 @@ void Items_UpdateItemMovement(GObj* obj) {
         item->flags |= ITEM_FLAG_BOUNCED;
         if (item->itemID == ITEM_ID_PESTER_BALL) {
             Items_PlaySound(model, SOUND_ID_10);
-            gen = particle_makeGenerator(3, 0);
-            if (gen != NULL) {
-                gen->pos.x = obj->data.dobj->position.v.x;
-                gen->pos.y = obj->data.dobj->position.v.y;
-                gen->pos.z = obj->data.dobj->position.v.z;
+            fx = fx_createEffect(3, 0);
+            if (fx != NULL) {
+                fx->pos.x = obj->data.dobj->position.v.x;
+                fx->pos.y = obj->data.dobj->position.v.y;
+                fx->pos.z = obj->data.dobj->position.v.z;
             }
             obj->flags |= GOBJ_FLAG_HIDDEN;
             Items_EndProcessByFunction(obj, Items_ShowDelayed);
@@ -1053,11 +1053,11 @@ void Items_UpdateItemMovement(GObj* obj) {
             vel.z = sp6C.z * 10.0f;
         }
         if (item->itemID == ITEM_ID_PESTER_BALL) {
-            gen = particle_makeGenerator(3, 0);
-            if (gen != NULL) {
-                gen->pos.x = obj->data.dobj->position.v.x;
-                gen->pos.y = obj->data.dobj->position.v.y;
-                gen->pos.z = obj->data.dobj->position.v.z;
+            fx = fx_createEffect(3, 0);
+            if (fx != NULL) {
+                fx->pos.x = obj->data.dobj->position.v.x;
+                fx->pos.y = obj->data.dobj->position.v.y;
+                fx->pos.z = obj->data.dobj->position.v.z;
             }
             Items_PlaySound(model, SOUND_ID_10);
             cmdSendCommand(closestPokemon, POKEMON_CMD_9, NULL);

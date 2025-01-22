@@ -28,9 +28,9 @@ void volcano_IntroAnimationCallback(struct DObj* dobj, s32 param, f32 value) {
     if (param == -2 || param == -1) {
         volcano_IntroEnded = true;
     } else if ((s32) value - 1 >= 0) {
-        ParticleGenerator* gen = particle_makeGenerator(param, (s32) value - 1);
-        if (gen != NULL) {
-            gen->dobj = dobj;
+        Effect* fx = fx_createEffect(param, (s32) value - 1);
+        if (fx != NULL) {
+            fx->dobj = dobj;
         }
     }
 }

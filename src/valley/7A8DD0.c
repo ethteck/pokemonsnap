@@ -64,7 +64,7 @@ POKEMON_FUNC(func_802CF8BC_7A8E4C)
     f32 something = FLOAT_MAX;
 
     while (something > 100.0f) {
-        particle_getPosVelDObj(&pos, &vel, temp_s1);
+        fx_getPosVelDObj(&pos, &vel, temp_s1);
         pos.x -= position->v.x;
         pos.z -= position->v.z;
         something = SQ(pos.x) + SQ(pos.z);

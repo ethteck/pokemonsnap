@@ -60,7 +60,7 @@ POKEMON_FUNC(func_802CA434_7A39C4)
     ohWait(60);
 
     while (true) {
-        particle_getPosVelDObj(&pos, &vel, temp_s1);
+        fx_getPosVelDObj(&pos, &vel, temp_s1);
         getGroundAt(pos.x, pos.z, &ground);
         if (pos.y < ground.height) {
             break;

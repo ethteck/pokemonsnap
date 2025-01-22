@@ -433,7 +433,7 @@ void magnemite_CalcTargetPos(GObj* obj, Vec3f* targetPos) {
         modelNode = magnemite_GroupLeader->data.dobj->firstChild;
     }
 
-    particle_getPosVelDObj(targetPos, &offset, modelNode);
+    fx_getPosVelDObj(targetPos, &offset, modelNode);
 }
 
 POKEMON_FUNC(magnemite_Attract)

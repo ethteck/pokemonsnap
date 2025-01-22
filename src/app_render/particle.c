@@ -1,61 +1,61 @@
 #include "app_render.h"
 #include "particle.h"
 
-extern u8 particle_colorDitherMode;
-extern u8 particle_alphaDitherMode;
-extern u16 particle_currentGeneratorID;
+extern u8 fx_colorDitherMode;
+extern u8 fx_alphaDitherMode;
+extern u16 fx_currentEffectID;
 
 Particle* D_800BE1A0;
 Particle* D_800BE1A8[16];
-ParticleGenerator* D_800BE1E8;
-ParticleGenerator* D_800BE1EC;
+Effect* D_800BE1E8;
+Effect* D_800BE1EC;
 OMCamera* D_800BE1F0[4];
 u8 D_800BE200[4];
 DObj* D_800BE208[8];
-s32 particle_ScriptBanksNum[PARTICLE_BANKS_MAX];
-s32 particle_SpriteBanksNum[PARTICLE_BANKS_MAX];
-ParticleScript** particle_ScriptBanks[PARTICLE_BANKS_MAX];
-ParticleSprites** particle_SpriteBanks[PARTICLE_BANKS_MAX];
-void (*particle_generatorProcDefault)(ParticleGenerator*, Vec3f*);
-void (*particle_generatorProcSetup)(ParticleGenerator*);
-ParticleGenerator* D_800BE2B0;
+s32 fx_ScriptBanksNum[PARTICLE_BANKS_MAX];
+s32 fx_SpriteBanksNum[PARTICLE_BANKS_MAX];
+EffectScript** fx_ScriptBanks[PARTICLE_BANKS_MAX];
+EffectSprites** fx_SpriteBanks[PARTICLE_BANKS_MAX];
+void (*fx_effectProcDefault)(Effect*, Vec3f*);
+void (*fx_effectProcSetup)(Effect*);
+Effect* D_800BE2B0;
 
-Particle* particle_updateStruct(Particle*, Particle*, s32);
-void particle_structFuncRun(GObj*);
-void particle_draw(GObj*);
-void particle_generatorFuncRun(GObj*);
+Particle* fx_updateStruct(Particle*, Particle*, s32);
+void fx_structFuncRun(GObj*);
+void fx_draw(GObj*);
+void fx_effectFuncRun(GObj*);
 
-void particle_setupBankID(s32 bankID, s32* scriptDesc, s32* spritesDesc) { // TODO structs for these
+void fx_setupBankID(s32 bankID, s32* scriptDesc, s32* spritesDesc) { // TODO structs for these
     s32 i, j;
 
     if (bankID >= PARTICLE_BANKS_MAX) {
         return;
     }
 
-    particle_ScriptBanksNum[bankID] = *scriptDesc;
-    particle_SpriteBanksNum[bankID] = *spritesDesc;
-    particle_ScriptBanks[bankID] = scriptDesc + 1;
-    particle_SpriteBanks[bankID] = spritesDesc + 1;
+    fx_ScriptBanksNum[bankID] = *scriptDesc;
+    fx_SpriteBanksNum[bankID] = *spritesDesc;
+    fx_ScriptBanks[bankID] = scriptDesc + 1;
+    fx_SpriteBanks[bankID] = spritesDesc + 1;
 
-    for (i = 1; i <= particle_ScriptBanksNum[bankID]; i++) {
+    for (i = 1; i <= fx_ScriptBanksNum[bankID]; i++) {
         scriptDesc[i] = (u32) (scriptDesc) + scriptDesc[i];
     }
-    for (i = 1; i <= particle_SpriteBanksNum[bankID]; i++) {
+    for (i = 1; i <= fx_SpriteBanksNum[bankID]; i++) {
         spritesDesc[i] = (u32) (spritesDesc) + spritesDesc[i];
     }
 
-    for (i = 0; i < particle_SpriteBanksNum[bankID]; i++) {
-        for (j = 0; j < particle_SpriteBanks[bankID][i]->numFrames; j++) {
-            particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
+    for (i = 0; i < fx_SpriteBanksNum[bankID]; i++) {
+        for (j = 0; j < fx_SpriteBanks[bankID][i]->numFrames; j++) {
+            fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
         }
 
-        if (particle_SpriteBanks[bankID][i]->fmt == G_IM_FMT_CI) {
-            if (particle_SpriteBanks[bankID][i]->flags & 1) {
-                j = particle_SpriteBanks[bankID][i]->numFrames;
-                particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
+        if (fx_SpriteBanks[bankID][i]->fmt == G_IM_FMT_CI) {
+            if (fx_SpriteBanks[bankID][i]->flags & 1) {
+                j = fx_SpriteBanks[bankID][i]->numFrames;
+                fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
             } else {
-                for (j = particle_SpriteBanks[bankID][i]->numFrames; j < 2 * particle_SpriteBanks[bankID][i]->numFrames; j++) {
-                    particle_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
+                for (j = fx_SpriteBanks[bankID][i]->numFrames; j < 2 * fx_SpriteBanks[bankID][i]->numFrames; j++) {
+                    fx_SpriteBanks[bankID][i]->data[j] += (u32) spritesDesc;
                 }
             }
         }
@@ -91,7 +91,7 @@ GObj* func_800A2094(s32 dlPriority, s32 arg1, OMCamera* arg2) {
     if (ohFindById(-6) != NULL) {
         return NULL;
     } else {
-        return ohCreateCamera(-6, particle_structFuncRun, LINK_0, 0x80000000, particle_draw, dlPriority, 0, 0, false, 1, NULL, 1, false);
+        return ohCreateCamera(-6, fx_structFuncRun, LINK_0, 0x80000000, fx_draw, dlPriority, 0, 0, false, 1, NULL, 1, false);
     }
 }
 
@@ -100,10 +100,10 @@ void func_800A21C0(s32 idx, OMCamera* cam, s32 arg2) {
     D_800BE200[idx] = arg2;
 }
 
-Particle* particle_makeStruct(
+Particle* fx_createParticle(
     Particle* arg0, s32 bankID, s32 flags, u16 textureID, u8* bytecode, s32 lifetime,
     f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ,
-    f32 size, f32 gravity, f32 friction, s32 argF, ParticleGenerator* gen) {
+    f32 size, f32 gravity, f32 friction, s32 argF, Effect* fx) {
 
     Particle* ret = D_800BE1A0;
 
@@ -111,10 +111,10 @@ Particle* particle_makeStruct(
         return NULL;
     }
 
-    if (gen != NULL) {
-        ret->generatorID = gen->generatorID;
+    if (fx != NULL) {
+        ret->effectID = fx->effectID;
     } else {
-        ret->generatorID = ++particle_currentGeneratorID;
+        ret->effectID = ++fx_currentEffectID;
     }
 
     D_800BE1A0 = ret->next;
@@ -163,76 +163,76 @@ Particle* particle_makeStruct(
     ret->envColor.r = ret->envColor.g = ret->envColor.b = ret->envColor.a = 0;
 
     ret->sizeTargetLength = ret->targetPrimColorLength = ret->targetEnvColorLength = 0;
-    ret->gen = gen;
+    ret->fx = fx;
     return ret;
 }
 
-Particle* particle_makeChildScriptID(Particle* particle, s32 bankID, s32 scriptID) {
-    ParticleScript* script;
+Particle* fx_makeChildScriptID(Particle* particle, s32 bankID, s32 scriptID) {
+    EffectScript* script;
     s32 id = bankID & 7; // TODO mod 8?
 
     if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (scriptID >= particle_ScriptBanksNum[id]) {
+    if (scriptID >= fx_ScriptBanksNum[id]) {
         return NULL;
     }
-    script = particle_ScriptBanks[id][scriptID];
+    script = fx_ScriptBanks[id][scriptID];
 
-    return particle_makeStruct(particle, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
-                               0.0f, 0.0f, 0.0f, script->vel.x, script->vel.y, script->vel.z, script->size, script->gravity,
-                               script->friction, particle_SpriteBanks[id][script->textureID]->flags, NULL);
+    return fx_createParticle(particle, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
+                             0.0f, 0.0f, 0.0f, script->vel.x, script->vel.y, script->vel.z, script->size, script->gravity,
+                             script->friction, fx_SpriteBanks[id][script->textureID]->flags, NULL);
 }
 
-Particle* particle_makeParam(s32 bankID, s32 flags, u16 textureID, u8* bytecode, s32 lifetime,
-                             f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ,
-                             f32 size, f32 gravity, f32 friction, s32 argE, ParticleGenerator* gen) {
+Particle* fx_makeParam(s32 bankID, s32 flags, u16 textureID, u8* bytecode, s32 lifetime,
+                       f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ,
+                       f32 size, f32 gravity, f32 friction, s32 argE, Effect* fx) {
     Particle* ret;
 
-    ret = particle_makeStruct(NULL, bankID, flags, textureID, bytecode, lifetime,
-                              posX, posY, posZ, velX,
-                              velY, velZ, size,
-                              gravity, friction, argE, gen);
+    ret = fx_createParticle(NULL, bankID, flags, textureID, bytecode, lifetime,
+                            posX, posY, posZ, velX,
+                            velY, velZ, size,
+                            gravity, friction, argE, fx);
     if (ret != NULL) {
-        particle_updateStruct(ret, 0, bankID >> 3);
+        fx_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-Particle* particle_makeCommon(s32 bankID, s32 scriptID) {
+Particle* fx_makeCommon(s32 bankID, s32 scriptID) {
     Particle* ret;
 
-    ret = particle_makeChildScriptID(NULL, bankID, scriptID);
+    ret = fx_makeChildScriptID(NULL, bankID, scriptID);
     if (ret != NULL) {
-        particle_updateStruct(ret, 0, bankID >> 3);
+        fx_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-Particle* particle_makePosVel(s32 bankID, s32 scriptID, f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ) {
+Particle* fx_makePosVel(s32 bankID, s32 scriptID, f32 posX, f32 posY, f32 posZ, f32 velX, f32 velY, f32 velZ) {
     Particle* ret;
-    ParticleScript* script;
+    EffectScript* script;
     s32 id = bankID & 7;
 
     if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (scriptID >= particle_ScriptBanksNum[id]) {
+    if (scriptID >= fx_ScriptBanksNum[id]) {
         return NULL;
     }
 
-    script = particle_ScriptBanks[id][scriptID];
+    script = fx_ScriptBanks[id][scriptID];
 
-    ret = particle_makeStruct(NULL, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
-                              posX, posY, posZ, velX, velY, velZ, script->size, script->gravity,
-                              script->friction, particle_SpriteBanks[id][script->textureID]->flags, NULL);
+    ret = fx_createParticle(NULL, bankID, script->flags, script->textureID, script->bytecode, script->particleLifetime,
+                            posX, posY, posZ, velX, velY, velZ, script->size, script->gravity,
+                            script->friction, fx_SpriteBanks[id][script->textureID]->flags, NULL);
     if (ret != NULL) {
-        particle_updateStruct(ret, 0, bankID >> 3);
+        fx_updateStruct(ret, 0, bankID >> 3);
     }
     return ret;
 }
 
-void particle_ejectStruct(Particle* particle) {
+void fx_ejectStruct(Particle* particle) {
     Particle* it;
     Particle* prev;
     s32 id = particle->bankID >> 3;
@@ -246,8 +246,8 @@ void particle_ejectStruct(Particle* particle) {
                 prev->next = it->next;
             }
 
-            if (particle->gen != NULL && (particle->flags & 4) && particle->gen->kind == 2) {
-                particle->gen->generatorVars.data2.unk_04--;
+            if (particle->fx != NULL && (particle->flags & 4) && particle->fx->kind == 2) {
+                particle->fx->effectVars.data2.unk_04--;
             }
 
             it->next = D_800BE1A0;
@@ -258,7 +258,7 @@ void particle_ejectStruct(Particle* particle) {
     }
 }
 
-void particle_ejectStructAll(void) {
+void fx_ejectStructAll(void) {
     s32 i;
     Particle* it;
     Particle* next;
@@ -266,12 +266,12 @@ void particle_ejectStructAll(void) {
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
         for (it = D_800BE1A8[i]; it != NULL; it = next) {
             next = it->next;
-            particle_ejectStruct(it);
+            fx_ejectStruct(it);
         }
     }
 }
 
-// particle_readFloatBigEndian
+// fx_readFloatBigEndian
 u8* func_800A27B0(u8* arg0, f32* arg1) {
     u8 sp4[4];
 
@@ -294,7 +294,7 @@ u8* func_800A27E8(u8* arg0, u16* arg1) {
     return arg0;
 }
 
-void particle_rotateVel(Particle* particle, f32 angle) {
+void fx_rotateVel(Particle* particle, f32 angle) {
     Vec3f vel;
     f32 sinAngle;
     f32 magnitude;
@@ -334,7 +334,7 @@ void particle_rotateVel(Particle* particle, f32 angle) {
     particle->vel.z = -vel.x * cosPitch * sinYaw - vel.y * sinPitch + cosAngle * cosPitch * cosYaw;
 }
 
-void particle_setDistVelDObj(Particle* particle, DObj* dobj) {
+void fx_setDistVelDObj(Particle* particle, DObj* dobj) {
     f32 dx, dy, dz;
     f32 dist;
 
@@ -356,7 +356,7 @@ void particle_setDistVelDObj(Particle* particle, DObj* dobj) {
     }
 }
 
-void particle_addDistVelMagDObj(Particle* particle, DObj* dobj, f32 magnitude) {
+void fx_addDistVelMagDObj(Particle* particle, DObj* dobj, f32 magnitude) {
     f32 dx, dy, dz, dist;
 
     if (dobj == NULL) {
@@ -393,7 +393,7 @@ extern u16 sSinTable[];
         }                                                \
     }
 
-Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
+Particle* fx_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
     UnkPinkRat* pinkRat;
     Particle* temp_v0;
     s32 unused1;
@@ -520,21 +520,21 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = fx_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
                                 temp_v0->unk_20.z = arg0->unk_20.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                particle_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
+                                fx_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xA5:
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            pinkRat = particle_makeGenerator(arg0->unk_08, temp_s0);
+                            pinkRat = fx_createEffect(arg0->unk_08, temp_s0);
                             if (pinkRat != NULL) {
                                 pinkRat->unk_14.x = arg0->unk_20.x;
                                 pinkRat->unk_14.y = arg0->unk_20.y;
@@ -568,7 +568,7 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
                             break;
                         case 0xA9:
                             var_s1 = func_800A27B0(var_s1, &sp80);
-                            particle_rotateVel(arg0, sp80);
+                            fx_rotateVel(arg0, sp80);
                             break;
                         case 0xAA:
                             temp_s0 = *var_s1++;
@@ -578,14 +578,14 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
                             sp88 <<= 8;
                             sp88 += *var_s1++;
                             temp_s0 += (s32) (sp88 * randFloat());
-                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = fx_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
                                 temp_v0->unk_20.z = arg0->unk_20.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                particle_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
+                                fx_updateStruct(temp_v0, arg0, (s32) arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xAB:
@@ -636,18 +636,18 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
                             break;
                         case 0xB7:
                             temp_s0 = *var_s1++;
-                            particle_setDistVelDObj(arg0, D_800BE204[temp_s0 - 1]);
+                            fx_setDistVelDObj(arg0, D_800BE204[temp_s0 - 1]);
                             break;
                         case 0xB8:
                             temp_s0 = *var_s1++;
                             var_s1 = func_800A27B0(var_s1, &sp80);
-                            particle_addDistVelMagDObj(arg0, D_800BE204[temp_s0 - 1], sp80);
+                            fx_addDistVelMagDObj(arg0, D_800BE204[temp_s0 - 1], sp80);
                             break;
                         case 0xB9:
                             temp_s0 = *var_s1++;
                             temp_s0 <<= 8;
                             temp_s0 += *var_s1++;
-                            temp_v0 = particle_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
+                            temp_v0 = fx_makeChildScriptID(&arg0->next, arg0->unk_08, temp_s0);
                             if (temp_v0 != NULL) {
                                 temp_v0->unk_20.x = arg0->unk_20.x;
                                 temp_v0->unk_20.y = arg0->unk_20.y;
@@ -657,7 +657,7 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
                                 temp_v0->unk_2C.z = arg0->unk_2C.z;
                                 temp_v0->unk_04 = arg0->unk_04;
                                 temp_v0->unk_58 = arg0->unk_58;
-                                particle_updateStruct(temp_v0, arg0, arg0->unk_08 >> 3);
+                                fx_updateStruct(temp_v0, arg0, arg0->unk_08 >> 3);
                             }
                             break;
                         case 0xBA:
@@ -886,11 +886,11 @@ Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2) {
     return arg0->next;
 }
 #else
-Particle* particle_updateStruct(Particle* arg0, Particle* arg1, s32 arg2);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_updateStruct.s")
+Particle* fx_updateStruct(Particle* arg0, Particle* arg1, s32 arg2);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_updateStruct.s")
 #endif
 
-void particle_structFuncRun(GObj* obj) {
+void fx_structFuncRun(GObj* obj) {
     u32 flags = obj->flags;
     s32 i;
     Particle* prev;
@@ -905,7 +905,7 @@ void particle_structFuncRun(GObj* obj) {
         prev = NULL;
         it = D_800BE1A8[i];
         while (it != NULL) {
-            next = particle_updateStruct(it, prev, i);
+            next = fx_updateStruct(it, prev, i);
             if (it->next == next) {
                 prev = it;
                 it = next;
@@ -917,7 +917,7 @@ void particle_structFuncRun(GObj* obj) {
 }
 
 #if 0
-void particle_draw(GObj* camObj) {
+void fx_draw(GObj* camObj) {
     Particle* var_s7;
     ParticleAnimData* v0;
     s32 sp2D4;
@@ -1014,8 +1014,8 @@ void particle_draw(GObj* camObj) {
         }
         gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_NONE);
         gDPSetDepthSource(gMainGfxPos[0]++, G_ZS_PRIM);
-        gDPSetColorDither(gMainGfxPos[0]++, particle_colorDitherMode);
-        gDPSetAlphaDither(gMainGfxPos[0]++, particle_alphaDitherMode);
+        gDPSetColorDither(gMainGfxPos[0]++, fx_colorDitherMode);
+        gDPSetAlphaDither(gMainGfxPos[0]++, fx_alphaDitherMode);
 
         for (j = 0; j < 16; j++) {
             for (var_s7 = D_800BE1A8[j]; var_s7 != NULL; var_s7 = var_s7->next) {
@@ -1056,7 +1056,7 @@ void particle_draw(GObj* camObj) {
                     var_f18 = temp_f14 - (var_f18 - temp_f14);
                 }
 
-                v0 = particle_SpriteBanks[var_s7->unk_08 & 7][var_s7->unk_0A];
+                v0 = fx_SpriteBanks[var_s7->unk_08 & 7][var_s7->unk_0A];
                 temp_fp = v0->unk_04;
                 temp_t4 = v0->unk_08;
                 temp_s3 = v0->unk_0C;
@@ -1238,38 +1238,38 @@ void particle_draw(GObj* camObj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_draw.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_draw.s")
 #endif
 
-void particle_addAttachDObj(s32 bankID, DObj* dobj) {
+void fx_addAttachDObj(s32 bankID, DObj* dobj) {
     if (bankID > 0 && bankID <= ARRAY_COUNT(D_800BE208)) {
         D_800BE208[bankID - 1] = dobj;
     }
 }
 
-void particle_setDitherModes(s32 color, s32 alpha) {
-    particle_colorDitherMode = color;
-    particle_alphaDitherMode = alpha;
+void fx_setDitherModes(s32 color, s32 alpha) {
+    fx_colorDitherMode = color;
+    fx_alphaDitherMode = alpha;
 }
 
-GObj* particle_allocGenerators(s32 num) {
+GObj* fx_allocEffects(s32 num) {
     s32 i;
 
     D_800BE1E8 = D_800BE1EC = NULL;
 
     for (i = num - 1; i >= 0; i--) {
-        ParticleGenerator* gen = gtlMalloc(sizeof(ParticleGenerator), 4);
-        if (gen == NULL) {
+        Effect* fx = gtlMalloc(sizeof(Effect), 4);
+        if (fx == NULL) {
             return NULL;
         }
-        gen->next = D_800BE1E8;
-        D_800BE1E8 = gen;
+        fx->next = D_800BE1E8;
+        D_800BE1E8 = fx;
     }
 
-    return omAddGObj(-7, particle_generatorFuncRun, LINK_0, 0x80000000);
+    return omAddGObj(-7, fx_effectFuncRun, LINK_0, 0x80000000);
 }
 
-void particle_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj) {
+void fx_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj) {
     Mtx4f dst;
     Mtx4f tmp;
     f32 x, y, z;
@@ -1355,7 +1355,7 @@ void particle_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj) {
 }
 
 #if 0
-void particle_generatorFuncRun(GObj* obj) {
+void fx_effectFuncRun(GObj* obj) {
     UnkPinkRat* ptr;
     Vec3f sp128;
     Vec3f sp11C;
@@ -1417,7 +1417,7 @@ void particle_generatorFuncRun(GObj* obj) {
             sp11C.y = ptr->unk_20.y;
             sp11C.z = ptr->unk_20.z;
             if (ptr->dobj != NULL) {
-                particle_getPosVelDObj(&sp128, &sp11C, ptr->dobj);
+                fx_getPosVelDObj(&sp128, &sp11C, ptr->dobj);
                 ptr->unk_14.x = sp128.x;
                 ptr->unk_14.y = sp128.y;
                 ptr->unk_14.z = sp128.z;
@@ -1487,7 +1487,7 @@ void particle_generatorFuncRun(GObj* obj) {
                         var_f16 *= spB4;
                         var_f18 *= spB4;
                     }
-                    particle_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    fx_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                   spD0, spCC, spC8,
                                   var_f14, var_f16, var_f18,
                                   ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
@@ -1497,7 +1497,7 @@ void particle_generatorFuncRun(GObj* obj) {
                     x1 = ptr->unk_14.x + temp_f0 * (ptr->unk_4C.data1.x - ptr->unk_14.x);
                     y1 = ptr->unk_14.y + temp_f0 * (ptr->unk_4C.data1.y - ptr->unk_14.y);
                     z1 = ptr->unk_14.z + temp_f0 * (ptr->unk_4C.data1.z - ptr->unk_14.z);
-                    particle_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    fx_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                   x1, y1, z1,
                                   sp11C.x, sp11C.y, sp11C.z, ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
                     break;
@@ -1519,15 +1519,15 @@ void particle_generatorFuncRun(GObj* obj) {
                         spDC = randFloat() * 6.2831855f;
                     }
                     ptr->unk_4C.data2.unk_00 = temp_f22_2;
-                    if (particle_makeParam(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
+                    if (fx_makeParam(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
                                       0, 0, 0,
                                       spDC, var_f24_3, 0, ptr->unk_34, temp_f0_8, temp_f28_4, 0, ptr) != NULL) {
                         ptr->unk_4C.data2.unk_04++;
                     }
                     break;
                 default:
-                    if (particle_generatorProcDefault != NULL) {
-                        particle_generatorProcDefault(ptr, &sp11C);
+                    if (fx_effectProcDefault != NULL) {
+                        fx_effectProcDefault(ptr, &sp11C);
                     }
                     break;
             }
@@ -1559,12 +1559,12 @@ void particle_generatorFuncRun(GObj* obj) {
     }
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/particle_generatorFuncRun.s")
-void particle_generatorFuncRun(GObj* obj);
+#pragma GLOBAL_ASM("asm/nonmatchings/app_render/particle/fx_effectFuncRun.s")
+void fx_effectFuncRun(GObj* obj);
 #endif
 
-ParticleGenerator* particle_getGenerator(void) {
-    ParticleGenerator* ret;
+Effect* fx_getEffect(void) {
+    Effect* ret;
 
     ret = D_800BE1E8;
     if (ret == NULL) {
@@ -1578,45 +1578,45 @@ ParticleGenerator* particle_getGenerator(void) {
         D_800BE2B0 = ret;
     }
 
-    ret->generatorID = ++particle_currentGeneratorID;
+    ret->effectID = ++fx_currentEffectID;
     return ret;
 }
 
-ParticleGenerator* particle_makeGenerator(s32 bankID, s32 scriptID) {
-    ParticleGenerator* ret;
+Effect* fx_createEffect(s32 bankID, s32 scriptID) {
+    Effect* ret;
     s32 id = bankID & 7;
     s32 unused;
 
     if (id >= PARTICLE_BANKS_MAX) {
         return NULL;
     }
-    if (scriptID >= particle_ScriptBanksNum[id]) {
+    if (scriptID >= fx_ScriptBanksNum[id]) {
         return NULL;
     }
 
-    ret = particle_getGenerator();
+    ret = fx_getEffect();
     if (ret != NULL) {
-        ret->kind = particle_ScriptBanks[id][scriptID]->kind;
+        ret->kind = fx_ScriptBanks[id][scriptID]->kind;
         ret->bankID = bankID;
-        ret->flags = particle_ScriptBanks[id][scriptID]->flags;
-        ret->textureID = particle_ScriptBanks[id][scriptID]->textureID;
-        ret->particleLifetime = particle_ScriptBanks[id][scriptID]->particleLifetime;
-        ret->generatorLifetime = particle_ScriptBanks[id][scriptID]->generatorLifetime;
+        ret->flags = fx_ScriptBanks[id][scriptID]->flags;
+        ret->textureID = fx_ScriptBanks[id][scriptID]->textureID;
+        ret->particleLifetime = fx_ScriptBanks[id][scriptID]->particleLifetime;
+        ret->effectLifetime = fx_ScriptBanks[id][scriptID]->effectLifetime;
         ret->pos.x = 0.0f;
         ret->pos.y = 0.0f;
         ret->pos.z = 0.0f;
-        ret->vel.x = particle_ScriptBanks[id][scriptID]->vel.x;
-        ret->vel.y = particle_ScriptBanks[id][scriptID]->vel.y;
-        ret->vel.z = particle_ScriptBanks[id][scriptID]->vel.z;
-        ret->gravity = particle_ScriptBanks[id][scriptID]->gravity;
-        ret->friction = particle_ScriptBanks[id][scriptID]->friction;
-        ret->size = particle_ScriptBanks[id][scriptID]->size;
-        ret->bytecode = particle_ScriptBanks[id][scriptID]->bytecode;
-        ret->unk_38 = particle_ScriptBanks[id][scriptID]->unk_20;
-        ret->unk_3C = particle_ScriptBanks[id][scriptID]->unk_24;
-        ret->unk_40 = particle_ScriptBanks[id][scriptID]->unk_28;
+        ret->vel.x = fx_ScriptBanks[id][scriptID]->vel.x;
+        ret->vel.y = fx_ScriptBanks[id][scriptID]->vel.y;
+        ret->vel.z = fx_ScriptBanks[id][scriptID]->vel.z;
+        ret->gravity = fx_ScriptBanks[id][scriptID]->gravity;
+        ret->friction = fx_ScriptBanks[id][scriptID]->friction;
+        ret->size = fx_ScriptBanks[id][scriptID]->size;
+        ret->bytecode = fx_ScriptBanks[id][scriptID]->bytecode;
+        ret->unk_38 = fx_ScriptBanks[id][scriptID]->unk_20;
+        ret->unk_3C = fx_ScriptBanks[id][scriptID]->unk_24;
+        ret->unk_40 = fx_ScriptBanks[id][scriptID]->unk_28;
         ret->unk_44 = 0.0f;
-        if (particle_SpriteBanks[id][particle_ScriptBanks[id][scriptID]->textureID]->flags != 0) {
+        if (fx_SpriteBanks[id][fx_ScriptBanks[id][scriptID]->textureID]->flags != 0) {
             ret->flags |= 0x10;
         }
         ret->dobj = NULL;
@@ -1627,16 +1627,16 @@ ParticleGenerator* particle_makeGenerator(s32 bankID, s32 scriptID) {
             case 4:
                 break;
             case 1:
-                ret->generatorVars.move.x = ret->pos.x + ret->vel.x;
-                ret->generatorVars.move.y = ret->pos.y + ret->vel.y;
-                ret->generatorVars.move.z = ret->pos.z + ret->vel.z;
+                ret->effectVars.move.x = ret->pos.x + ret->vel.x;
+                ret->effectVars.move.y = ret->pos.y + ret->vel.y;
+                ret->effectVars.move.z = ret->pos.z + ret->vel.z;
                 break;
             case 2:
-                ret->generatorVars.data2.unk_04 = 0;
+                ret->effectVars.data2.unk_04 = 0;
                 break;
             default:
-                if (particle_generatorProcSetup != NULL) {
-                    particle_generatorProcSetup(ret);
+                if (fx_effectProcSetup != NULL) {
+                    fx_effectProcSetup(ret);
                 }
                 break;
         }
@@ -1644,15 +1644,15 @@ ParticleGenerator* particle_makeGenerator(s32 bankID, s32 scriptID) {
     return ret;
 }
 
-void particle_ejectGenerator(ParticleGenerator* gen) {
-    ParticleGenerator* prev = NULL;
-    ParticleGenerator* it = D_800BE1EC;
+void fx_ejectEffect(Effect* fx) {
+    Effect* prev = NULL;
+    Effect* it = D_800BE1EC;
 
     while (it != NULL) {
-        if (it == gen) {
-            if (gen->kind == 2 && gen->generatorVars.data2.unk_04 != 0) {
-                gen->generatorLifetime = 1;
-                gen->unk_40 = 0.0f;
+        if (it == fx) {
+            if (fx->kind == 2 && fx->effectVars.data2.unk_04 != 0) {
+                fx->effectLifetime = 1;
+                fx->unk_40 = 0.0f;
                 return;
             }
             if (prev == NULL) {
@@ -1669,41 +1669,41 @@ void particle_ejectGenerator(ParticleGenerator* gen) {
     }
 }
 
-void particle_ejectGeneratorAll(void) {
-    ParticleGenerator* it = D_800BE1EC;
+void fx_ejectEffectAll(void) {
+    Effect* it = D_800BE1EC;
 
     while (it != NULL) {
-        ParticleGenerator* next = it->next;
+        Effect* next = it->next;
 
-        particle_ejectGenerator(it);
+        fx_ejectEffect(it);
         it = next;
     }
 }
 
-void particle_setGeneratorProcs(void (*procSetup)(ParticleGenerator*), void (*procBase)(ParticleGenerator*, Vec3f*)) {
-    particle_generatorProcSetup = procSetup;
-    particle_generatorProcDefault = procBase;
+void fx_setEffectProcs(void (*procSetup)(Effect*), void (*procBase)(Effect*, Vec3f*)) {
+    fx_effectProcSetup = procSetup;
+    fx_effectProcDefault = procBase;
 }
 
-void particle_ejectStructID(u16 generatorID, s32 linkID) {
+void fx_ejectStructID(u16 effectID, s32 linkID) {
     Particle* it;
     Particle* next;
     Particle* prev;
-    ParticleGenerator* it2;
-    ParticleGenerator* next2;
-    ParticleGenerator* prev2;
+    Effect* it2;
+    Effect* next2;
+    Effect* prev2;
 
     prev = NULL;
     for (it = D_800BE1A8[linkID]; it != NULL; it = next) {
         next = it->next;
-        if (it->generatorID == generatorID) {
+        if (it->effectID == effectID) {
             if (prev == NULL) {
                 D_800BE1A8[linkID] = it->next;
             } else {
                 prev->next = it->next;
             }
-            if (it->gen != NULL && (it->flags & 4) && it->gen->kind == 2) {
-                it->gen->generatorVars.data2.unk_04--;
+            if (it->fx != NULL && (it->flags & 4) && it->fx->kind == 2) {
+                it->fx->effectVars.data2.unk_04--;
             }
             it->next = D_800BE1A0;
             D_800BE1A0 = it;
@@ -1715,10 +1715,10 @@ void particle_ejectStructID(u16 generatorID, s32 linkID) {
     prev2 = NULL;
     for (it2 = D_800BE1EC; it2 != NULL; it2 = next2) {
         next2 = it2->next;
-        if (it2->generatorID == generatorID) {
-            if (it2->kind == 2 && it2->generatorVars.data2.unk_04 != 0) {
+        if (it2->effectID == effectID) {
+            if (it2->kind == 2 && it2->effectVars.data2.unk_04 != 0) {
                 it2->unk_40 = 0.0f;
-                it2->generatorLifetime = 1;
+                it2->effectLifetime = 1;
                 prev2 = it2;
             } else {
                 if (prev2 == NULL) {
@@ -1735,34 +1735,34 @@ void particle_ejectStructID(u16 generatorID, s32 linkID) {
     }
 }
 
-void particle_ejectStructSelf(Particle* particle) {
-    particle_ejectStructID(particle->generatorID, particle->bankID >> 3);
+void fx_ejectStructSelf(Particle* particle) {
+    fx_ejectStructID(particle->effectID, particle->bankID >> 3);
 }
 
-void particle_ejectStructGenerator(ParticleGenerator* gen) {
-    particle_ejectStructID(gen->generatorID, gen->bankID >> 3);
+void fx_ejectStructEffect(Effect* fx) {
+    fx_ejectStructID(fx->effectID, fx->bankID >> 3);
 }
 
-void particle_ejectGeneratorDObj(GObj* obj) {
+void fx_ejectEffectDObj(GObj* obj) {
     DObj* dobj;
-    ParticleGenerator* it;
-    ParticleGenerator* next;
+    Effect* it;
+    Effect* next;
 
     if (obj->type == 1) {
         for (dobj = obj->data.dobj; dobj != NULL; dobj = animModelTreeNextNode(dobj)) {
             for (it = D_800BE1EC; it != NULL; it = next) {
                 next = it->next;
                 if (it->dobj == dobj) {
-                    particle_ejectGenerator(it);
+                    fx_ejectEffect(it);
                 }
             }
         }
     }
 }
 
-void particle_translatePosAll(f32 dx, f32 dy, f32 dz) {
+void fx_translatePosAll(f32 dx, f32 dy, f32 dz) {
     Particle* particle;
-    ParticleGenerator* gen;
+    Effect* fx;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_800BE1A8); i++) {
@@ -1773,43 +1773,43 @@ void particle_translatePosAll(f32 dx, f32 dy, f32 dz) {
         }
     }
 
-    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
-        gen->pos.x += dx;
-        gen->pos.y += dy;
-        gen->pos.z += dz;
+    for (fx = D_800BE1EC; fx != NULL; fx = fx->next) {
+        fx->pos.x += dx;
+        fx->pos.y += dy;
+        fx->pos.z += dz;
     }
 }
 
-void particle_pauseAllID(u16 generatorID, s32 linkID) {
+void fx_pauseAllID(u16 effectID, s32 linkID) {
     Particle* particle;
-    ParticleGenerator* gen;
+    Effect* fx;
 
     for (particle = D_800BE1A8[linkID]; particle != NULL; particle = particle->next) {
-        if (particle->generatorID == generatorID) {
+        if (particle->effectID == effectID) {
             particle->flags |= PARTICLE_FLAG_PAUSE;
         }
     }
 
-    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
-        if (gen->generatorID == generatorID) {
-            gen->flags |= PARTICLE_FLAG_PAUSE;
+    for (fx = D_800BE1EC; fx != NULL; fx = fx->next) {
+        if (fx->effectID == effectID) {
+            fx->flags |= PARTICLE_FLAG_PAUSE;
         }
     }
 }
 
-void particle_resumeAllID(u16 generatorID, s32 linkID) {
+void fx_resumeAllID(u16 effectID, s32 linkID) {
     Particle* particle;
-    ParticleGenerator* gen;
+    Effect* fx;
 
     for (particle = D_800BE1A8[linkID]; particle != NULL; particle = particle->next) {
-        if (particle->generatorID == generatorID) {
+        if (particle->effectID == effectID) {
             particle->flags &= ~PARTICLE_FLAG_PAUSE;
         }
     }
 
-    for (gen = D_800BE1EC; gen != NULL; gen = gen->next) {
-        if (gen->generatorID == generatorID) {
-            gen->flags &= ~PARTICLE_FLAG_PAUSE;
+    for (fx = D_800BE1EC; fx != NULL; fx = fx->next) {
+        if (fx->effectID == effectID) {
+            fx->flags &= ~PARTICLE_FLAG_PAUSE;
         }
     }
 }

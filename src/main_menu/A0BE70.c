@@ -49,7 +49,7 @@ extern AnimCmd D_803A80D0;
 
 void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
-    ParticleGenerator* gen;
+    Effect* fx;
 
     if (arg1 == -2 || arg1 == -1) {
         D_800E832B_A0F8BB = 3;
@@ -58,9 +58,9 @@ void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
 
     temp_f8 = arg2 - 1.0f;
     if (temp_f8 >= 0) {
-        gen = particle_makeGenerator(arg1, temp_f8);
-        if (gen != NULL) {
-            gen->dobj = dobj;
+        fx = fx_createEffect(arg1, temp_f8);
+        if (fx != NULL) {
+            fx->dobj = dobj;
         }
     }
 }
@@ -402,14 +402,14 @@ void func_800E5C8C_A0D21C(void) {
     void* scriptDesc;
     void* spritesDesc;
 
-    scriptDesc = func_800A73C0((u32) ADEC60_ROM_START, (u32) ADEC60_ROM_END);
-    spritesDesc = func_800A73C0((u32) particle_intro_ROM_START, (u32) particle_intro_ROM_END);
+    scriptDesc = func_800A73C0((u32) fx_script_intro_ROM_START, (u32) fx_script_intro_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_intro_ROM_START, (u32) fx_img_intro_ROM_END);
     if (scriptDesc != NULL && spritesDesc != NULL) {
-        particle_setupBankID(0, scriptDesc, spritesDesc);
+        fx_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_800E8320_A0F8B0 = func_800A2094(4, 100, D_800E82A8_A0F838->data.cam);
-    D_800E8324_A0F8B4 = particle_allocGenerators(0xA);
-    particle_setDitherModes(0xC0, 0x30);
+    D_800E8324_A0F8B4 = fx_allocEffects(0xA);
+    fx_setDitherModes(0xC0, 0x30);
 }
 
 void func_800E5D2C_A0D2BC(void) {

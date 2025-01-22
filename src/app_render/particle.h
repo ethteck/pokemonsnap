@@ -9,10 +9,10 @@ enum ParticleFlags {
     PARTICLE_FLAG_PAUSE = 0x800
 };
 
-typedef struct ParticleScript {
-    /* 0x00 */ u16 kind; // Generator kind
+typedef struct EffectScript {
+    /* 0x00 */ u16 kind; // Effect kind
     /* 0x02 */ u16 textureID;
-    /* 0x04 */ u16 generatorLifetime;
+    /* 0x04 */ u16 effectLifetime;
     /* 0x06 */ u16 particleLifetime;
     /* 0x08 */ u32 flags;
     /* 0x0C */ f32 gravity;
@@ -23,14 +23,14 @@ typedef struct ParticleScript {
     /* 0x28 */ f32 unk_28;
     /* 0x2C */ f32 size;
     /* 0x30 */ u8 bytecode[1];
-} ParticleScript; // size > 0x30
+} EffectScript; // size > 0x30
 
 typedef struct ParticleScriptDesc {
     /* 0x00 */ s32 count;
-    /* 0x04 */ ParticleScript* scripts[1]; // variable length
-} ParticleScriptDesc;                      // size > 0x4
+    /* 0x04 */ EffectScript* scripts[1]; // variable length
+} ParticleScriptDesc;                    // size > 0x4
 
-typedef struct ParticleSprites {
+typedef struct EffectSprites {
     /* 0x00 */ u32 numFrames;
     /* 0x04 */ s32 fmt;
     /* 0x08 */ s32 siz;
@@ -38,16 +38,16 @@ typedef struct ParticleSprites {
     /* 0x10 */ s32 height;
     /* 0x14 */ s32 flags;
     /* 0x18 */ u8* data[1]; // variable length
-} ParticleSprites;
+} EffectSprites;
 
 typedef struct ParticleSpritesDesc {
     /* 0x00 */ s32 count;
-    /* 0x04 */ ParticleSprites* sprites[1]; // variable length
-} ParticleSpritesDesc;                      // size > 0x4
+    /* 0x04 */ EffectSprites* sprites[1]; // variable length
+} ParticleSpritesDesc;                    // size > 0x4
 
 typedef struct Particle {
     /* 0x00 */ struct Particle* next;
-    /* 0x04 */ u16 generatorID;
+    /* 0x04 */ u16 effectID;
     /* 0x06 */ u16 flags;
     /* 0x08 */ u8 bankID;
     /* 0x09 */ u8 loopCount;
@@ -72,20 +72,20 @@ typedef struct Particle {
     /* 0x4C */ ucolor targetPrimColor;
     /* 0x50 */ ucolor envColor;
     /* 0x54 */ ucolor targetEnvColor;
-    /* 0x58 */ ParticleGenerator* gen;
+    /* 0x58 */ Effect* fx;
 } Particle; // size = 0x5C
 
 extern Particle* D_800BE1A8[16];
-extern s32 particle_ScriptBanksNum[PARTICLE_BANKS_MAX];
-extern s32 particle_SpriteBanksNum[PARTICLE_BANKS_MAX];
-extern ParticleSprites** particle_SpriteBanks[PARTICLE_BANKS_MAX];
+extern s32 fx_ScriptBanksNum[PARTICLE_BANKS_MAX];
+extern s32 fx_SpriteBanksNum[PARTICLE_BANKS_MAX];
+extern EffectSprites** fx_SpriteBanks[PARTICLE_BANKS_MAX];
 
-void particle_setupBankID(s32 bankID, UNK_PTR scriptDesc, UNK_PTR spritesDesc);
-void particle_setDitherModes(s32 color, s32 alpha);
-GObj* particle_allocGenerators(s32 num);
-void particle_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj);
-ParticleGenerator* particle_makeGenerator(s32 bankID, s32 scriptID);
-void particle_ejectGeneratorDObj(GObj* obj);
-void particle_translatePosAll(f32, f32, f32);
+void fx_setupBankID(s32 bankID, UNK_PTR scriptDesc, UNK_PTR spritesDesc);
+void fx_setDitherModes(s32 color, s32 alpha);
+GObj* fx_allocEffects(s32 num);
+void fx_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj);
+Effect* fx_createEffect(s32 bankID, s32 scriptID);
+void fx_ejectEffectDObj(GObj* obj);
+void fx_translatePosAll(f32, f32, f32);
 
 #endif

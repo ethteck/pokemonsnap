@@ -59,7 +59,7 @@ POKEMON_FUNC(func_803491D4_828944)
 
     node = D_8034AB94_82A304->data.dobj->firstChild->firstChild;
     while (true) {
-        particle_getPosVelDObj(&pos, &vel, node);
+        fx_getPosVelDObj(&pos, &vel, node);
         position->v.x = pos.x;
         position->v.y = pos.y;
         if (D_80350190_82F900 == 0 || position->v.z < 2000.0f) {
@@ -267,10 +267,10 @@ POKEMON_FUNC(func_80349C18_829388)
     Vec3f sp3C = D_8034B534_82ACA4;
 
     node = D_8034AB94_82A304->data.dobj->firstChild->firstChild;
-    particle_getPosVelDObj(&sp48, &sp3C, node);
+    fx_getPosVelDObj(&sp48, &sp3C, node);
     position->v.z = sp48.z;
     while (true) {
-        particle_getPosVelDObj(&sp48, &sp3C, node);
+        fx_getPosVelDObj(&sp48, &sp3C, node);
         position->v.x = sp48.x;
         position->v.y = sp48.y;
         position->v.z += 15.0f;

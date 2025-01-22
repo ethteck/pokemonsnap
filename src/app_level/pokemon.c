@@ -762,7 +762,7 @@ void Pokemon_Cleanup(GObj* obj) {
     Pokemon_FreeTransform(GET_TRANSFORM_BASE(obj->data.dobj));
     Pokemon_FreePokemonData(GET_POKEMON(obj));
     Pokemon_UnLinkObject(obj);
-    particle_ejectGeneratorDObj(obj);
+    fx_ejectEffectDObj(obj);
     deletePokemon(obj);
 }
 
@@ -1401,7 +1401,7 @@ void Pokemon_TurnToModelNode(GObj* obj, DObj* modelNode, f32 turnSpeed, u32 flag
     currentPos = &GET_TRANSFORM(model)->pos.v;
 
     while (true) {
-        particle_getPosVelDObj(&targetPos, &vel, modelNode);
+        fx_getPosVelDObj(&targetPos, &vel, modelNode);
         if ((flags & MOVEMENT_FLAG_STOP_WHEN_FLUTE_STOPPED_PLAYING) && !Pokemon_HearsPokeFlute(obj)) {
             break;
         }
@@ -1791,9 +1791,9 @@ void Pokemon_AnimationCallback(DObj* model, s32 param, f32 value) {
             } else if (pokemon->tangible) {
                 s32 val = value;
                 if (val > 0 && D_80382D10_523120 != NULL && D_80382D14_523124 != NULL) {
-                    ParticleGenerator* gen = particle_makeGenerator(param, val - 1);
-                    if (gen != NULL) {
-                        gen->dobj = model;
+                    Effect* fx = fx_createEffect(param, val - 1);
+                    if (fx != NULL) {
+                        fx->dobj = model;
                     }
                 }
             }

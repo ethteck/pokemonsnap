@@ -96,7 +96,7 @@ void func_802DB270_6C3050(GObj* obj) {
     ohWait(10);
 
     while (true) {
-        particle_getPosVelDObj(&pos, &vel, temp_s1);
+        fx_getPosVelDObj(&pos, &vel, temp_s1);
         getGroundAt(pos.x, pos.z, &sp28);
         if (!(pos.y < sp28.height)) {
             ohWait(1);

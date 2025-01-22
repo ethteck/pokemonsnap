@@ -281,24 +281,24 @@ typedef struct UIButton {
     char* text;
 } UIButton; // size = 0x8
 
-typedef union GeneratorVars {
+typedef union EffectVars {
     Vec3f move;
     struct {
         f32 unk_00;
         u16 unk_04;
     } data2;
-} GeneratorVars; // size = 0xC
+} EffectVars; // size = 0xC
 
 // TODO maybe move to particle.h
-typedef struct ParticleGenerator {
-    /* 0x00 */ struct ParticleGenerator* next;
-    /* 0x04 */ u16 generatorID;
+typedef struct Effect {
+    /* 0x00 */ struct Effect* next;
+    /* 0x04 */ u16 effectID;
     /* 0x06 */ u16 flags;
     /* 0x08 */ u8 kind;
     /* 0x09 */ u8 bankID;
     /* 0x0A */ s16 textureID;
     /* 0x0C */ u16 particleLifetime;
-    /* 0x0E */ u16 generatorLifetime;
+    /* 0x0E */ u16 effectLifetime;
     /* 0x10 */ u8* bytecode;
     /* 0x14 */ Vec3f pos;
     /* 0x20 */ Vec3f vel;
@@ -310,8 +310,8 @@ typedef struct ParticleGenerator {
     /* 0x40 */ f32 unk_40;
     /* 0x44 */ f32 unk_44;
     /* 0x48 */ DObj* dobj;
-    /* 0x4C */ GeneratorVars generatorVars;
-} ParticleGenerator; // size = 0x58
+    /* 0x4C */ EffectVars effectVars;
+} Effect; // size = 0x58
 
 typedef struct IdleScript {
     /* 0x00 */ u32 dataSize;

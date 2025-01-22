@@ -340,9 +340,9 @@ WorldBlock* enterNextBlock(void) {
     bindCameraNextBlock((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
                         (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
                         (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
-    particle_translatePosAll((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
-                             (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
-                             (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
+    fx_translatePosAll((curr->descriptor->worldPos.x - next->descriptor->worldPos.x) * 100.0f,
+                       (curr->descriptor->worldPos.y - next->descriptor->worldPos.y) * 100.0f,
+                       (curr->descriptor->worldPos.z - next->descriptor->worldPos.z) * 100.0f);
 
     func_800E2280_5FA30(next);
     func_800E2354_5FB04(curr);

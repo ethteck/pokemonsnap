@@ -242,19 +242,19 @@ void func_80346C64_8263D4(void) {
     void* scriptDesc;
     void* spritesDesc;
 
-    scriptDesc = func_800A73C0((u32) AB5860_ROM_START, (u32) AB5860_ROM_END);
-    spritesDesc = func_800A73C0((u32) particle_common_ROM_START, (u32) particle_common_ROM_END);
+    scriptDesc = func_800A73C0((u32) fx_script_common_ROM_START, (u32) fx_script_common_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_common_ROM_START, (u32) fx_img_common_ROM_END);
     if (scriptDesc != NULL && spritesDesc != NULL) {
-        particle_setupBankID(3, scriptDesc, spritesDesc);
+        fx_setupBankID(3, scriptDesc, spritesDesc);
     }
-    scriptDesc = func_800A73C0((u32) ADD310_ROM_START, (u32) ADD310_ROM_END);
-    spritesDesc = func_800A73C0((u32) particle_rainbow_ROM_START, (u32) particle_rainbow_ROM_END);
+    scriptDesc = func_800A73C0((u32) fx_script_rainbow_ROM_START, (u32) fx_script_rainbow_ROM_END);
+    spritesDesc = func_800A73C0((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END);
     if (scriptDesc != NULL && spritesDesc != NULL) {
-        particle_setupBankID(0, scriptDesc, spritesDesc);
+        fx_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
-    D_80382D14_523124 = particle_allocGenerators(10);
-    particle_setDitherModes(0xC0, 0x30);
+    D_80382D14_523124 = fx_allocEffects(10);
+    fx_setDitherModes(0xC0, 0x30);
 }
 
 ScreenSettings D_8034ABDC_82A34C = {
@@ -274,7 +274,7 @@ void func_80346D50_8264C0(void) {
     D_8034ABDC_82A34C.zBuffer = gtlMalloc(0x25800, 0x40);
     viApplyScreenSettings(&D_8034ABDC_82A34C);
     // clang-format off
-    for (i = 0; i < ARRAY_COUNT(particle_SpriteBanksNum); i++) { particle_ScriptBanksNum[i] = particle_SpriteBanksNum[i] = 0; }
+    for (i = 0; i < ARRAY_COUNT(fx_SpriteBanksNum); i++) { fx_ScriptBanksNum[i] = fx_SpriteBanksNum[i] = 0; }
     // clang-format on
     func_8009CE00();
     omAddGObj(0, func_80346B0C_82627C, 0, 0x80000000);

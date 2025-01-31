@@ -366,7 +366,7 @@ void volcano_LoadEffects(void) {
         fx_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_80382D10_523120 = func_800A2094(4, 100, getMainCamera());
-    D_80382D14_523124 = fx_allocEffects(0xA);
+    D_80382D14_523124 = fx_allocEffects(10);
     fx_setDitherModes(G_CD_DISABLE, G_AD_DISABLE);
 }
 

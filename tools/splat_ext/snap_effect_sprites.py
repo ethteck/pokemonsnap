@@ -1,5 +1,4 @@
 import struct
-from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
@@ -7,21 +6,12 @@ from splat.segtypes.segment import Segment
 from splat.util import options
 
 import n64img.image
+import yaml
+
+from tools.build.effect_sprites import SpriteData
+from tools.build.effect_sprites import get_format_name
 
 DEBUG = False
-
-
-@dataclass
-class ParticleAnimData:
-    num_frames: int
-    fmt: int
-    siz: int
-    width: int
-    height: int
-    flags: int
-    leftover_bytes: bytearray
-    frame_data: List[bytearray]
-    palette_data: List[bytearray]
 
 
 def debug_print(*args, **kwargs):
@@ -55,7 +45,7 @@ def check_unaccounted_bytes(data, pos, end_pos, offset_alignment):
             raise ValueError("Nonlinear stuff")
 
 
-def parse_sprites(data) -> List[ParticleAnimData]:
+def parse_sprites(data) -> List[SpriteData]:
     sprites = []
     pos = 0
 
@@ -71,7 +61,6 @@ def parse_sprites(data) -> List[ParticleAnimData]:
         debug_print(f"  sprite {i} offset 0x{offset:X}")
         frame_offsets = []
         palette_offsets = []
-        leftover_bytes = []
 
         if offset != pos:
             if offset > pos:
@@ -93,9 +82,7 @@ def parse_sprites(data) -> List[ParticleAnimData]:
             frame_offsets.append(struct.unpack(">I", data[pos : pos + 4])[0])
             pos += 4
 
-        particle = ParticleAnimData(
-            num_frames, fmt, siz, width, height, flags, leftover_bytes, [], []
-        )
+        particle = SpriteData(fmt, siz, width, height, flags, [], [])
         debug_print(f"    fmt {fmt}, siz {siz}, flags {flags}")
 
         assert flags == 1 or (flags == 0 and fmt == 2 and siz == 0)
@@ -185,12 +172,15 @@ def parse_sprites(data) -> List[ParticleAnimData]:
 
 class N64SegSnap_effect_sprites(Segment):
     def split(self, rom_bytes):
-        if not self.out_path().exists():
-            self.out_path().mkdir(parents=True)
+        out_path = options.opts.asset_path / self.dir / self.name
+        if not out_path.exists():
+            out_path.mkdir(parents=True)
 
         data = rom_bytes[self.rom_start : self.rom_end]
         sprites = parse_sprites(data)
         names = self.args
+
+        sprites_yaml = []
 
         if len(sprites) != len(names):
             raise ValueError(
@@ -201,27 +191,31 @@ class N64SegSnap_effect_sprites(Segment):
             sprite_name = names[i]
 
             for i, frame_data in enumerate(sprite.frame_data):
-                frame_path = Path(self.out_path() / f"{sprite_name}_{i}.png")
+                frame_path = Path(out_path / f"{sprite_name}-{i:02d}.png")
 
-                if sprite.siz == 0 and sprite.fmt == 2:
-                    img = n64img.image.CI4(frame_data, sprite.width, sprite.height)
-                elif sprite.siz == 0 and sprite.fmt == 4:
-                    img = n64img.image.I4(frame_data, sprite.width, sprite.height)
-                elif sprite.siz == 1 and sprite.fmt == 3:
-                    img = n64img.image.IA8(frame_data, sprite.width, sprite.height)
-                elif sprite.siz == 1 and sprite.fmt == 4:
-                    img = n64img.image.I8(frame_data, sprite.width, sprite.height)
-                elif sprite.siz == 2 and sprite.fmt == 0:
-                    img = n64img.image.RGBA16(frame_data, sprite.width, sprite.height)
-                elif sprite.siz == 3 and sprite.fmt == 0:
-                    img = n64img.image.RGBA32(frame_data, sprite.width, sprite.height)
-                else:
-                    raise ValueError("Unknown format")
+                fmt_name = get_format_name(sprite.fmt, sprite.siz)
+
+                if fmt_name not in n64img.image.__dict__:
+                    raise ValueError(f"Unknown format {fmt_name}")
+
+                img_cls = n64img.image.__dict__[fmt_name]
+                img = img_cls(frame_data, sprite.width, sprite.height)
 
                 if sprite.palette_data:
                     img.set_palette(sprite.palette_data[i])
 
                 img.write(frame_path)
+
+            sprites_yaml.append(
+                {
+                    "name": sprite_name,
+                    "type": get_format_name(sprite.fmt, sprite.siz),
+                }
+            )
+
+        yaml_path = Path(out_path / "config.yaml")
+        with open(yaml_path, "w") as f:
+            f.write(yaml.dump(sprites_yaml, sort_keys=False))
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / self.name

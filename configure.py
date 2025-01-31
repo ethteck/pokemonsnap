@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import argparse
+import glob
 import os
 import shutil
 import sys
@@ -15,6 +16,9 @@ from splat.segtypes.linker_entry import LinkerEntry
 
 ROOT = Path(__file__).parent.relative_to(os.getcwd())
 TOOLS_DIR = ROOT / "tools"
+
+# Allow importing from the tools/build directory
+sys.path.insert(0, str((TOOLS_DIR / "build").resolve()))
 
 YAML_FILE = "splat.yaml"
 BASENAME = "pokemonsnap"
@@ -44,9 +48,13 @@ RAW_BUILD_PREAMBLE = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul 
 
 GAME_CC_CMD = f"python3 tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
-RAW_CC_CMD = f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out"
+RAW_CC_CMD = (
+    f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out"
+)
 
-LIBULTRA_CC_CMD = f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
+LIBULTRA_CC_CMD = (
+    f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=$libultra -c -o $out $in && {O32_TOOL} $out"
+)
 
 LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 $flags {COMMON_INCLUDES} -D_FINALROM -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out && {CROSS_STRIP} $out -N asdasdasdasd"
 
@@ -139,6 +147,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         object_paths: Union[Path, List[Path]],
         src_paths: List[Path],
         task: str,
+        implicit=[],
         variables: Dict[str, str] = {},
         implicit_outputs: List[str] = [],
     ):
@@ -147,6 +156,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
         object_strs = [str(obj) for obj in object_paths]
 
+        if task == "cc":
+            implicit = ["img_incs"]  # all standard c files depend on all image incs
+
         for object_path in object_paths:
             if object_path.suffix == ".o":
                 built_objects.add(object_path)
@@ -154,7 +166,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 outputs=object_strs,
                 rule=task,
                 inputs=[str(s) for s in src_paths],
-                implicit=["img_incs"] if task == "cc" else [], # all standard c files depend on all image incs
+                implicit=implicit,
                 variables=variables,
                 implicit_outputs=implicit_outputs,
             )
@@ -234,6 +246,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{BIN2C} $in $out",
     )
 
+    ninja.rule(
+        "effect_sprites",
+        description="effect_sprites $in",
+        command="python3 tools/build/effect_sprites.py $in $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -241,7 +259,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             continue
 
         # images embedded inside data aren't linked, but they do need to be built into .bin files
-        if seg.type == ".data" and isinstance(seg, splat.segtypes.common.group.CommonSegGroup):
+        if seg.type == ".data" and isinstance(
+            seg, splat.segtypes.common.group.CommonSegGroup
+        ):
             for seg in seg.subsegments:
                 if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
                     flags = ""
@@ -254,14 +274,26 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     inc_path = Path(str(bin_path) + ".c")
                     src_path = seg.out_path()
 
-                    build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": flags })
+                    build(
+                        bin_path,
+                        [src_path],
+                        "pigment",
+                        variables={"img_type": seg.type, "img_flags": flags},
+                    )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
                 elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
-                    bin_path = Path("build/" + str(seg.out_path().with_suffix(".pal")) + ".bin")
+                    bin_path = Path(
+                        "build/" + str(seg.out_path().with_suffix(".pal")) + ".bin"
+                    )
                     inc_path = Path(str(bin_path) + ".c")
                     src_path = seg.out_path()
-                    build(bin_path, [src_path], "pigment", variables={ "img_type": seg.type, "img_flags": "" })
+                    build(
+                        bin_path,
+                        [src_path],
+                        "pigment",
+                        variables={"img_type": seg.type, "img_flags": ""},
+                    )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
 
@@ -312,7 +344,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     variables={
                         "flags": opt_level,
                         "ido": TOOLS_DIR / ("ido" + ido) / "cc",
-                    }
+                    },
                 )
                 continue
 
@@ -320,7 +352,24 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 opt_level = "-O2"
                 ido = "7.1"
 
-                if c_path.stem in ["98C330", "98D0F0", "993F80", "993C50", "9A6B10", "9A6F70", "9ABB50", "9ADAD0", "9D3230", "9D3660", "9D91C0", "A084B0", "9FAC10", "9FA580", "9FD510", "9FEC10"]:
+                if c_path.stem in [
+                    "98C330",
+                    "98D0F0",
+                    "993F80",
+                    "993C50",
+                    "9A6B10",
+                    "9A6F70",
+                    "9ABB50",
+                    "9ADAD0",
+                    "9D3230",
+                    "9D3660",
+                    "9D91C0",
+                    "A084B0",
+                    "9FAC10",
+                    "9FA580",
+                    "9FD510",
+                    "9FEC10",
+                ]:
                     opt_level = "-g"
                 elif c_path.stem in ["848B50"]:
                     opt_level = "-O2 -g3"
@@ -350,9 +399,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 or "ultralib/src/io" in str(c_path)
             ):
                 opt_level = "-O1"
-            elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(
-                c_path
-            ):
+            elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(c_path):
                 opt_level = "-O3"
                 if "color" in str(c_path):
                     ido = "7.1"
@@ -430,6 +477,15 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
+        elif seg.type == "snap_effect_sprites":
+            raw_bin = entry.object_path.with_suffix(".bin")
+            build(
+                raw_bin,
+                entry.src_paths,
+                "effect_sprites",
+                implicit=glob.glob(str(entry.src_paths[0]) + "/*"),
+            )
+            build(entry.object_path, [raw_bin], "bin")
         else:
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)
@@ -527,7 +583,9 @@ if __name__ == "__main__":
         print(f"{BASENAME}.z64 is missing!")
         sys.exit(1)
 
-    split.main([YAML_FILE], modes="all", verbose=False, disassemble_all=args.disassemble_all)
+    split.main(
+        [YAML_FILE], modes="all", verbose=False, disassemble_all=args.disassemble_all
+    )
 
     linker_entries = split.linker_writer.entries
 

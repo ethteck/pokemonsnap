@@ -6,3 +6,4 @@ GitPython
 requests
 mapfile_parser
 n64img
+pypng

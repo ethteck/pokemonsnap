@@ -516,9 +516,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
 
 def graph_segments():
 
-    import pandas as pd
-    import numpy as np
     import matplotlib.pyplot as plt
+    import numpy as np
+    import pandas as pd
     from splat.segtypes.segment import Segment
 
     graph_items = []

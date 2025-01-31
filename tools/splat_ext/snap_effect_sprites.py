@@ -2,14 +2,12 @@ import struct
 from pathlib import Path
 from typing import List
 
+import n64img.image
+import yaml
 from splat.segtypes.segment import Segment
 from splat.util import options
 
-import n64img.image
-import yaml
-
-from tools.build.effect_sprites import SpriteData
-from tools.build.effect_sprites import get_format_name
+from effect_sprites import SpriteData, get_format_name
 
 DEBUG = False
 

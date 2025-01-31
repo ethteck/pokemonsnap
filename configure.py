@@ -20,6 +20,8 @@ TOOLS_DIR = ROOT / "tools"
 # Allow importing from the tools/build directory
 sys.path.insert(0, str((TOOLS_DIR / "build").resolve()))
 
+print(sys.path)
+
 YAML_FILE = "splat.yaml"
 BASENAME = "pokemonsnap"
 LD_PATH = f"{BASENAME}.ld"

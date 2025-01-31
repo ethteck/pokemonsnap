@@ -408,7 +408,7 @@ void func_800E5C8C_A0D21C(void) {
         fx_setupBankID(0, scriptDesc, spritesDesc);
     }
     D_800E8320_A0F8B0 = func_800A2094(4, 100, D_800E82A8_A0F838->data.cam);
-    D_800E8324_A0F8B4 = fx_allocEffects(0xA);
+    D_800E8324_A0F8B4 = fx_allocEffects(10);
     fx_setDitherModes(0xC0, 0x30);
 }
 

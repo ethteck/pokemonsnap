@@ -1,3 +1,4 @@
+
 .splat/
 __pycache__/
 asm/
@@ -23,3 +24,5 @@ undefined_syms_auto.txt
 
 venv/
 .venv/
+
+!/tools/build/

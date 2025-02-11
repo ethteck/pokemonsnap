@@ -171,12 +171,11 @@ Vec3f* Vec3f_func_8001A8B8(Vec3f* arg0, Vec3f* arg1, f32 arg2) {
         var_f20 = arg0->y;
         var_f18 = arg0->z;
     }
-    
-    
+
     temp_f16 = f2 * sp3C - var_f18 * arg1->x;
     temp_f12 = f2 * arg1->x + var_f18 * sp3C;
     f2 = temp_f16 * sp28 - var_f20 * sp2C;
-    
+
     var_f20 = temp_f16 * sp2C + var_f20 * sp28;
     temp_f16 = f2 * sp3C + temp_f12 * arg1->x;
     temp_f12 = -f2 * arg1->x + temp_f12 * sp3C;
@@ -207,56 +206,43 @@ Vec3f* Vec3fNegateByAxis(Vec3f* v, enum VectorAxisFlags flag) {
 }
 
 Vec3f* Vec3f_func_8001AA88(Vec3f* v, u32 flags) {
-    do {
-        if (flags & 0x40) {
-            if ((flags & 1) && (v->x < 0.0f)) {
-                v->x = -v->x;
-            } else if ((flags & 8) && (v->x > 0.0f)) {
-                v->x = -v->x;
-            }
-            if ((flags & 2) && (v->y < 0.0f)) {
-                v->y = -v->y;
-            } else if ((flags & 0x10) && (0.0f < v->y)) {
-                v->y = -v->y;
-            }
-            if ((flags & 4) && (v->z < 0.0f)) {
-                v->z = -v->z;
-                break;
-            }
-            if (flags & 0x20) {
-                if (0.0f < v->z) {
-                    v->z = -v->z;
-                    break;
-                }
-            }
-        } else {
-            if ((flags & 1) && (0.0f < v->x)) {
-                v->x = -v->x;
-            } else if (flags & 8) {
-                if (v->x < 0.0f) {
-                    v->x = -v->x;
-                }
-            }
-            if ((flags & 2) && (0.0f < v->y)) {
-                v->y = -v->y;
-            } else if (flags & 0x10) {
-                if (v->y < 0.0f) {
-                    v->y = -v->y;
-                }
-            }
-            if (flags & 4) {
-                if (0.0f < v->z) {
-                    v->z = -v->z;
-                    break;
-                }
-            }
-            if ((flags & 0x20) && (v->z < 0.0f)) {
-                v->z = -v->z;
-            }
+    if (flags & 0x40) {
+        if (flags & 0x1 && v->x < 0.0f) {
+            v->x = -v->x;
+        } else if (flags & 0x8 && v->x > 0.0f) {
+            v->x = -v->x;
         }
-    } while (false);
 
-    // do while (0)... macro?
+        if (flags & 0x2 && v->y < 0.0f) {
+            v->y = -v->y;
+        } else if (flags & 0x10 && v->y > 0.0f) {
+            v->y = -v->y;
+        }
+
+        if (flags & 0x4 && v->z < 0.0f) {
+            v->z = -v->z;
+        } else if (flags & 0x20 && v->z > 0.0f) {
+            v->z = -v->z;
+        }
+    } else {
+        if (flags & 0x1 && v->x > 0.0f) {
+            v->x = -v->x;
+        } else if (flags & 0x8 && v->x < 0.0f) {
+            v->x = -v->x;
+        }
+
+        if (flags & 0x2 && v->y > 0.0f) {
+            v->y = -v->y;
+        } else if (flags & 0x10 && v->y < 0.0f) {
+            v->y = -v->y;
+        }
+
+        if (flags & 4 && v->z > 0.0f) {
+            v->z = -v->z;
+        } else if (flags & 0x20 && v->z < 0.0f) {
+            v->z = -v->z;
+        }
+    }
 
     return v;
 }

@@ -122,7 +122,7 @@ s32 func_801E3B34_9ADD84(s32 index) {
         func_801DE080_9A82D0();
         setAlbumComment(&album_EmptyComment, index);
         removeAlbumPhoto(index);
-        func_801DDD28_9A7F78(index, 0);
+        func_801DDD28_9A7F78(index, false);
         album_D_80250550_A1A7A0 = index;
         album_PhotoCount--;
         if (index == album_LastPhotoIndex) {

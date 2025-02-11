@@ -211,7 +211,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
     if (input == NULL) {
         D_80208C2C_9D2E7C = -1;
         D_80208C30_9D2E80 = -1;
-        func_801DEA4C_9A8C9C(1, 0, 0);
+        func_801DEA4C_9A8C9C(true, 0, 0);
         return 0;
     }
     func_801E3880_9ADAD0();
@@ -267,7 +267,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
             func_801DE998_9A8BE8(true);
             FocusMark_SetTargetSize(4, 5);
             FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
-            func_801DEA4C_9A8C9C(0, *column, *row);
+            func_801DEA4C_9A8C9C(false, *column, *row);
         }
     } else if (*column != D_80208C2C_9D2E7C || *row != D_80208C30_9D2E80) {
         D_80208C2C_9D2E7C = *column;
@@ -281,7 +281,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
             FocusMark_SetTargetSize(13, 5);
             FocusMark_SetTargetPos(68, (*row * 10) + 22);
         }
-        func_801DEA4C_9A8C9C(0, *column, *row);
+        func_801DEA4C_9A8C9C(false, *column, *row);
     }
     return 0;
 }
@@ -569,7 +569,7 @@ s32 album_UpdateAlbumPage(void) {
                         func_800AA85C(24, 12);
                     } else {
                         album_PressedCharacterInGrid(gridColumn, gridRow);
-                        func_801DEA4C_9A8C9C(0, gridColumn, gridRow);
+                        func_801DEA4C_9A8C9C(false, gridColumn, gridRow);
                     }
                     if (album_GetCursorPos() >= 31) {
                         gridColumn = 2;

@@ -3,11 +3,11 @@
 #include "pokemon_album.h"
 #include "photo_check/photo_check.h"
 
-typedef struct UnkBordeauxBetta {
+typedef struct AlbumPhoto {
     /* 0x00 */ GObj* gObj;
     /* 0x04 */ SObj* sObj;
     /* 0x08 */ u8 isShown;
-} UnkBordeauxBetta; // size: 0xC
+} AlbumPhoto; // size: 0xC
 
 extern Sprite D_801E4518_9AE768;
 extern Sprite D_801ED550_9B77A0;
@@ -31,7 +31,7 @@ extern Sprite D_80208B10_9D2D60;
 s32 D_80208B50_9D2DA0 = 0; // TODO belongs to sprites
 
 s32 D_80208B54_9D2DA4 = -1;
-s32 D_80208B58_9D2DA8[6] = { 0x3ec, 0x3f2, 0x3fa, 0x3fe, 0x404, 0x40b };
+s32 D_80208B58_9D2DA8[6] = { PokemonID_1004, PokemonID_1010, PokemonID_1018, PokemonID_1022, PokemonID_KOFFING_SMOKE, PokemonID_1035 };
 char* album_CharGrids[] = {
     "ＡＢＣＤＥ"
     "ＦＧＨＩＪ"
@@ -62,7 +62,7 @@ bool D_80208B88_9D2DD8 = false;
 
 s32 album_D_8024EFE0_A19230;
 u8 album_unused[0x1000];
-s32 album_D_8024FFE8_A1A238;
+bool album_D_8024FFE8_A1A238;
 s32 album_D_8024FFEC_A1A23C;
 UIElement* album_UiCommentActiveLetter;
 UIElement* album_UiAlbumStats;
@@ -88,7 +88,7 @@ s32 album_AlbumPage;
 Unk803A6C18* album_D_802500B8_A1A308;
 u8 album_CharGridId;
 s16 album_CommentCursorPos;
-UnkBordeauxBetta album_Photos[6];
+AlbumPhoto album_Photos[6];
 GObj* album_D_80250108_A1A358;
 SObj* album_D_8025010C_A1A35C;
 s32 album_D_80250110_A1A360;
@@ -97,11 +97,11 @@ s32 album_GetCurrentPage(void) {
     return album_AlbumPage;
 }
 
-s32 func_801DCD3C_9A6F8C(s32 arg0) {
-    if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_80208B58_9D2DA8)) {
+s32 func_801DCD3C_9A6F8C(s32 idx) {
+    if (idx < 0 || idx >= ARRAY_COUNT(D_80208B58_9D2DA8)) {
         return -1;
     }
-    return D_80208B58_9D2DA8[arg0];
+    return D_80208B58_9D2DA8[idx];
 }
 
 s32 album_GetCommentTextWidth(s16* wideStr, char* dst) {
@@ -135,7 +135,7 @@ s32 album_GetCommentTextWidth(s16* wideStr, char* dst) {
     return UIText_GetStringWidth(dstPtr);
 }
 
-void album_BlinkCursor(GObj* arg0) {
+void album_BlinkCursor(GObj* obj) {
     while (album_IsEditingComment) {
         album_CursorAlpha += album_CursorAlphaRate;
         if (album_CursorAlpha > 255) {
@@ -154,7 +154,7 @@ void album_BlinkCursor(GObj* arg0) {
     ohWait(99);
 }
 
-void album_BlinkLetter(GObj* arg0) {
+void album_BlinkLetter(GObj* obj) {
     while (album_IsEditingComment) {
         album_LetterAlpha += album_LetterAlphaRate;
         if (album_LetterAlpha > 255) {
@@ -282,18 +282,18 @@ void func_801DD500_9A7750(s32 color) {
     }
 }
 
-void func_801DD5A0_9A77F0(s32 arg0) {
+void func_801DD5A0_9A77F0(s32 color) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(album_PhotoCorners); i++) {
         if (album_PhotoCorners[i] != NULL) {
-            album_PhotoCorners[i]->sprite.red = album_PhotoCorners[i]->sprite.green = album_PhotoCorners[i]->sprite.blue = arg0;
+            album_PhotoCorners[i]->sprite.red = album_PhotoCorners[i]->sprite.green = album_PhotoCorners[i]->sprite.blue = color;
         }
     }
 }
 
-void func_801DD638_9A7888(s32 arg0) {
-    album_D_80250108_A1A358->data.sobj->sprite.red = album_D_80250108_A1A358->data.sobj->sprite.green = album_D_80250108_A1A358->data.sobj->sprite.blue = arg0;
+void func_801DD638_9A7888(s32 color) {
+    album_D_80250108_A1A358->data.sobj->sprite.red = album_D_80250108_A1A358->data.sobj->sprite.green = album_D_80250108_A1A358->data.sobj->sprite.blue = color;
 }
 
 void func_801DD684_9A78D4(UIElement* el, s32 color) {
@@ -397,7 +397,7 @@ void func_801DDB54_9A7DA4(s32 arg0) {
     }
 }
 
-void func_801DDC70_9A7EC0(s32 arg0) {
+void func_801DDC70_9A7EC0(bool arg0) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(album_Photos); i++) {
@@ -409,7 +409,7 @@ void func_801DDC70_9A7EC0(s32 arg0) {
     }
 }
 
-void func_801DDD28_9A7F78(s32 arg0, s32 arg1) {
+void func_801DDD28_9A7F78(s32 arg0, bool arg1) {
     if (arg1) {
         album_Photos[arg0 % ARRAY_COUNT(album_Photos)].gObj->data.sobj->sprite.attr =
             album_Photos[arg0 % ARRAY_COUNT(album_Photos)].gObj->data.sobj->sprite.attr & ~SP_HIDDEN;
@@ -420,10 +420,9 @@ void func_801DDD28_9A7F78(s32 arg0, s32 arg1) {
 }
 
 void func_801DDDF8_9A8048(s32 x, s32 y) {
-    SObj* sobj;
+    SObj* sobj = album_DraggedPhotoGObj->data.sobj;
 
-    sobj = album_DraggedPhotoGObj->data.sobj;
-    if ((x < 0) || (y < 0)) {
+    if (x < 0 || y < 0) {
         sobj->sprite.attr |= SP_HIDDEN;
     } else {
         sobj->sprite.x = x;
@@ -476,11 +475,12 @@ GObj* func_801DDE64_9A80B4(void) {
 
     return gobj;
 }
-void func_801DE03C_9A828C(s32 arg0) {
+
+void func_801DE03C_9A828C(bool arg0) {
     // BUG: this pointer is never assigned
     SObj* sp4;
 
-    if (arg0 != 0) {
+    if (arg0) {
         sp4->sprite.attr &= ~SP_HIDDEN;
     } else {
         sp4->sprite.attr |= SP_HIDDEN;
@@ -648,7 +648,7 @@ void* album_CreateCommentBackground(void) {
     return gobj;
 }
 
-void album_ShowCommentBackground(s32 show) {
+void album_ShowCommentBackground(bool show) {
     if (show) {
         album_CommentBackground->sprite.attr &= ~SP_HIDDEN;
     } else {
@@ -682,11 +682,11 @@ GObj* album_CreateCommentTextBox(void) {
     return gobj;
 }
 
-void func_801DE998_9A8BE8(s32 arg0) {
+void func_801DE998_9A8BE8(bool arg0) {
     album_D_8024FFE8_A1A238 = arg0;
 }
 
-void func_801DE9B0_9A8C00(s32 arg0) {
+void func_801DE9B0_9A8C00(bool arg0) {
     if (arg0) {
         if (album_D_8024FFE8_A1A238) {
             UIElement_SetState(album_UiCommentActiveLetter, UI_NORMAL);
@@ -699,7 +699,7 @@ void func_801DE9B0_9A8C00(s32 arg0) {
     }
 }
 
-void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
+void func_801DEA4C_9A8C9C(bool arg0, s32 column, s32 row) {
     s16* sp64;
     char sp60[0x4];
     char sp20[0x40];
@@ -711,7 +711,7 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
     }
     sp64[31] = 0;
 
-    if (arg0 != 0) {
+    if (arg0) {
         for (album_CommentCursorPos = 0; album_CommentCursorPos < 31; album_CommentCursorPos++) {
             if (sp64[album_CommentCursorPos] == 0) {
                 break;
@@ -720,8 +720,8 @@ void func_801DEA4C_9A8C9C(s32 arg0, s32 arg1, s32 arg2) {
     }
 
     if (album_D_8024FFE8_A1A238) {
-        sp60[0] = album_CharGrids[album_CharGridId][arg2 * 10 + 2 * arg1];
-        sp60[1] = album_CharGrids[album_CharGridId][arg2 * 10 + 2 * arg1 + 1];
+        sp60[0] = album_CharGrids[album_CharGridId][row * 10 + 2 * column];
+        sp60[1] = album_CharGrids[album_CharGridId][row * 10 + 2 * column + 1];
         sp60[2] = 0;
         UIElement_Draw(album_UiCommentActiveLetter);
         UIElement_PrintText(album_UiCommentActiveLetter, sp60);
@@ -762,7 +762,7 @@ void* album_CreatePhotoDescBackground(void) {
     return gobj;
 }
 
-void album_ShowPhotoDescBackground(s32 show) {
+void album_ShowPhotoDescBackground(bool show) {
     if (show) {
         album_PhotoDescBackground->sprite.attr &= ~SP_HIDDEN;
     } else {
@@ -793,10 +793,10 @@ void func_801DEF1C_9A916C(void) {
     }
 }
 
-void func_801DEF6C_9A91BC(s32 arg0) {
+void func_801DEF6C_9A91BC(bool arg0) {
     s32 i;
 
-    if (arg0 != 0) {
+    if (arg0) {
         for (i = 0; i < 6; i++) {
             UIElement_SetState(album_UiRows[i], UI_NORMAL);
         }
@@ -824,7 +824,7 @@ void func_801DF0D0_9A9320(void) {
     }
 }
 
-void func_801DF120_9A9370(s32 arg0) {
+void func_801DF120_9A9370(bool arg0) {
     s32 i;
 
     if (arg0) {
@@ -951,7 +951,7 @@ void func_801DF744_9A9994(s32 arg0, s32 arg1) {
             album_PrintPhotoDescription(album_D_8024EFE0_A19230, arg1);
             UILayout_SetHeaderFlags(0);
             ohWait(30);
-            func_801DEF6C_9A91BC(1);
+            func_801DEF6C_9A91BC(true);
             album_ShowPhotoDescBackground(true);
 
             for (i = 80; i > 0; i -= 8, ohWait(1)) {
@@ -1107,7 +1107,7 @@ void func_801E008C_9AA2DC(s16* comment, s32 arg1) {
     }
     UIElement_SetPos(album_UiCommentActiveLetter, width, 197);
     album_Cursor->sprite.x = width;
-    func_801DE9B0_9A8C00(1);
+    func_801DE9B0_9A8C00(true);
 }
 
 void album_SwitchCharacterGridPage(u32 opId) {
@@ -1142,7 +1142,7 @@ void album_SwitchCharacterGridPage(u32 opId) {
             break;
         case 6:
             func_801DFDA0_9A9FF0();
-            func_801DE9B0_9A8C00(0);
+            func_801DE9B0_9A8C00(false);
             break;
     }
 }
@@ -1223,7 +1223,7 @@ void album_PressedCharacterInGrid(s32 column, s32 row) {
     }
 }
 
-void album_SetBackgroundTexture(s32 arg0) {
+void album_SetBackgroundTexture(bool arg0) {
     GObj* gobj = album_BackgroundGObj;
     SObj* sobj = gobj->data.sobj;
 
@@ -1248,12 +1248,12 @@ void album_CreateCoverPage(void) {
     UNUSED s32 pad[7];
 
     func_801DF2E0_9A9530();
-    album_SetBackgroundTexture(0);
+    album_SetBackgroundTexture(false);
     album_SetCoverColor(0);
     func_801DD500_9A7750(0);
     func_801DD5A0_9A77F0(0);
     album_SetCommentBackgroundColor(0);
-    func_801DF120_9A9370(1);
+    func_801DF120_9A9370(true);
 
     sp4C = UIElement_Create(124, 131, 184, 149, UI_FLAG_32BIT);
     UIElement_SetColor(sp4C, UI_FOREGROUND, 255, 255, 255, 255);
@@ -1319,7 +1319,7 @@ void func_801E09A0_9AABF0(s32 arg0) {
 
     UIElement_Delete(album_UiAlbumStats);
     album_SetCoverColor(0);
-    func_801DF120_9A9370(0);
+    func_801DF120_9A9370(false);
     UILayout_ShowPanel(false);
 }
 
@@ -1328,7 +1328,7 @@ void func_801E0AF0_9AAD40(void) {
     s32 i;
     UIElement* el;
 
-    album_SetBackgroundTexture(1);
+    album_SetBackgroundTexture(true);
     func_801DE620_9A8870(2, 1);
     album_ShowCommentBackground(true);
     album_ShowPhotoDescBackground(false);
@@ -1418,8 +1418,8 @@ void func_801E0E58_9AB0A8(void) {
     UIElement_Delete(album_UiAlbumHeader);
     UIElement_Delete(album_UiPhotoComment);
     UIElement_Delete(album_UiPageNumber);
-    func_801DF120_9A9370(0);
-    func_801DDC70_9A7EC0(0);
+    func_801DF120_9A9370(false);
+    func_801DDC70_9A7EC0(false);
     func_801DE620_9A8870(2, 0);
     album_ShowCommentBackground(false);
     album_ShowPhotoDescBackground(false);
@@ -1451,7 +1451,7 @@ void func_801E0FFC_9AB24C(s32 arg0) {
             break;
         case 2:
             func_801DE620_9A8870(1, 1);
-            func_801DDC70_9A7EC0(0);
+            func_801DDC70_9A7EC0(false);
             func_801DE350_9A85A0(true, album_GetSelectedPhoto());
             break;
     }
@@ -1473,7 +1473,7 @@ GObj* func_801E10D0_9AB320(void) {
     return gobj;
 }
 
-void album_DrawDeletePhotoPrompt(s32 show) {
+void album_DrawDeletePhotoPrompt(bool show) {
     UNUSED s32 pad[2];
     UIFrame* frame;
     UIElement* message;
@@ -1578,12 +1578,12 @@ void album_CreateAlbumUI(GObj* arg0) {
     album_CreatePhotoDescBackground();
     func_801E10D0_9AB320();
     album_CreatePhotos();
-    func_801DDC70_9A7EC0(0);
+    func_801DDC70_9A7EC0(false);
     func_801DD500_9A7750(0);
     func_801DE0C8_9A8318();
     album_CreatePhotoCorners();
     func_801DDE64_9A80B4();
-    func_801DE03C_9A828C(0);
+    func_801DE03C_9A828C(false);
 
     sp64 = UIElement_Create(124, 131, 60, 18, UI_FLAG_32BIT);
     UIElement_SetColor(sp64, UI_FOREGROUND, 255, 255, 255, 255);

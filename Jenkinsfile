@@ -23,9 +23,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                withCredentials([string(credentialsId: 'pokemonsnap_frogress', variable: 'frogress_key')]) {
-                    sh 'python3 tools/progress.py --frogress $frogress_key'
-                }
+                sh 'python3 -m mapfile_parser objdiff_report report.json'
             }
         }
     }

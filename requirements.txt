@@ -4,6 +4,6 @@ ninja_syntax>=1.7.2
 argparse
 GitPython
 requests
-mapfile_parser
+mapfile_parser>=2.9.0,<3.0.0
 n64img
 pypng

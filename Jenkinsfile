@@ -24,11 +24,13 @@ pipeline {
             }
             steps {
                 sh 'python3 -m mapfile_parser objdiff_report report.json'
+                sh 'zip us_report.zip report.json'
             }
         }
     }
     post {
         always {
+            archiveArtifacts artifacts: '*_report.zip', fingerprint: true
             cleanWs()
         }
     }

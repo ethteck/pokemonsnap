@@ -19,9 +19,6 @@ pipeline {
             }
         }
         stage('Report Progress') {
-            when {
-                branch 'main'
-            }
             steps {
                 sh 'python3 -m mapfile_parser objdiff_report report.json'
                 sh 'zip us_report.zip report.json'

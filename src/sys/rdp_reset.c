@@ -43,19 +43,17 @@ Gfx srdpReset[] = {
     gsSPEndDisplayList(),
 };
 
-#ifdef NON_MATCHING
-void func_80007C20(Vp* vp, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    f32 temp1 = (arg1 + arg3) / 2.0f;
-    f32 temp2 = (arg2 + arg4) / 2.0f;
-    vp->vp.vscale[0] = (arg3 - temp1) * 4.0f;
-    vp->vp.vscale[1] = (arg4 - temp2) * 4.0f;
-    vp->vp.vtrans[0] = temp1 * 4.0f;
-    vp->vp.vtrans[1] = temp2 * 4.0f;
+void syRdpSetViewport(Vp* vp, f32 ulx, f32 uly, f32 lrx, f32 lry) {
+    f32 h = (ulx + lrx) / 2.0F;
+    f32 v = (uly + lry) / 2.0F;
+
+    vp->vp.vscale[0] = (s32) ((lrx - h) * 4.0F) & 0xFFFF;
+    vp->vp.vscale[1] = (s32) ((lry - v) * 4.0F) & 0xFFFF;
+    vp->vp.vtrans[0] = (s32) (h * 4.0F) & 0xFFFF;
+    vp->vp.vtrans[1] = (s32) (v * 4.0F) & 0xFFFF;
+
     vp->vp.vscale[2] = vp->vp.vtrans[2] = G_MAXZ / 2;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/rdp_reset/func_80007C20.s")
-#endif
 
 void func_80007CBC(Vp* vp) {
     vp->vp.vscale[0] = vp->vp.vtrans[0] = viScreenWidth * 2;
@@ -75,10 +73,10 @@ void rdpReset(Gfx** pGfxPos) {
     gDPSetDepthImage(gfxPos++, viZBuffer);
     func_80007CBC(&sViewport);
     gSPDisplayList(gfxPos++, srdpReset);
-    gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE, 
-            0 * (viScreenWidth / SCREEN_WIDTH), 0 * (viScreenHeight / SCREEN_HEIGHT),
-            viScreenWidth - 0 * (viScreenWidth / SCREEN_WIDTH),
-            viScreenHeight - 0 * (viScreenHeight / SCREEN_HEIGHT));
+    gDPSetScissor(gfxPos++, G_SC_NON_INTERLACE,
+                  0 * (viScreenWidth / SCREEN_WIDTH), 0 * (viScreenHeight / SCREEN_HEIGHT),
+                  viScreenWidth - 0 * (viScreenWidth / SCREEN_WIDTH),
+                  viScreenHeight - 0 * (viScreenHeight / SCREEN_HEIGHT));
     if (sPreRenderFunc != NULL) {
         sPreRenderFunc(&gfxPos);
     }

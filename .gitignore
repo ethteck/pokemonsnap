@@ -26,3 +26,6 @@ venv/
 .venv/
 
 !/tools/build/
+
+/report.json
+/*_report.zip

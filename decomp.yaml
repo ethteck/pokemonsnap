@@ -6,13 +6,17 @@ versions:
   fullname: US
   sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
   paths:
-    target: "/home/ethteck/repos/pokemonsnap/pokemonsnap.z64"
-    compiled_target: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.z64"
-    asm: "/home/ethteck/repos/pokemonsnap/asm"
-    nonmatchings: "/home/ethteck/repos/pokemonsnap/asm/nonmatchings"
-    map: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.map"
-    elf: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.elf"
+    target: "pokemonsnap.z64"
+
     build_dir: "build"
+    map: "build/pokemonsnap.map"
+    compiled_target: "build/pokemonsnap.z64"
+    elf: "build/pokemonsnap.elf"
+
+    expected_dir: "expected/"
+
+    asm: "asm"
+    nonmatchings: "asm/nonmatchings"
 tools:
   decompme:
     preset: 125
@@ -25,3 +29,827 @@ tools:
     versions:
       us: # corresponds with top-level version snames
         version: us
+
+  mapfile_parser:
+    progress_report:
+      # output: report.json # Optional
+      check_asm_paths: True
+      prefixes_to_trim:
+        - build/lib/
+        - build/src/
+        - build/asm/data/
+        - build/asm/
+        - build/
+      categories:
+        # Categories by path
+        - id: "header"
+          name: "header"
+          paths:
+            - "header"
+        - id: "assets"
+          name: "assets"
+          paths:
+            - "assets/"
+        - id: "entry"
+          name: "entry"
+          paths:
+            - "entry"
+        - id: "sys"
+          name: "sys"
+          paths:
+            - "sys/"
+        - id: "1F960"
+          name: "1F960"
+          paths:
+            - "1F960"
+        - id: "ultralib"
+          name: "ultralib"
+          paths:
+            - "ultralib/"
+        - id: "26D80"
+          name: "26D80"
+          paths:
+            - "26D80"
+        - id: "rsp"
+          name: "rsp"
+          paths:
+            - "rsp/"
+        - id: "434E0"
+          name: "434E0"
+          paths:
+            - "434E0"
+        - id: "438A0"
+          name: "438A0"
+          paths:
+            - "438A0"
+        - id: "app_render"
+          name: "app_render"
+          paths:
+            - "app_render/"
+        - id: "more_funcs"
+          name: "more_funcs"
+          paths:
+            - "more_funcs/"
+        - id: "os"
+          name: "os"
+          paths:
+            - "os/"
+        - id: "world"
+          name: "world"
+          paths:
+            - "world/"
+        - id: "pokemon_common"
+          name: "pokemon_common"
+          paths:
+            - "pokemon_common/"
+        - id: "A74E0"
+          name: "A74E0"
+          paths:
+            - "A74E0"
+        - id: "tunnel"
+          name: "tunnel"
+          paths:
+            - "tunnel/"
+        - id: "1F5E70"
+          name: "1F5E70"
+          paths:
+            - "1F5E70"
+        - id: "29A190"
+          name: "29A190"
+          paths:
+            - "29A190"
+        - id: "volcano"
+          name: "volcano"
+          paths:
+            - "volcano/"
+        - id: "3F63D0"
+          name: "3F63D0"
+          paths:
+            - "3F63D0"
+        - id: "4A8160"
+          name: "4A8160"
+          paths:
+            - "4A8160"
+        - id: "app_level"
+          name: "app_level"
+          paths:
+            - "app_level/"
+        - id: "beach"
+          name: "beach"
+          paths:
+            - "beach/"
+        - id: "cave"
+          name: "cave"
+          paths:
+            - "cave/"
+        - id: "river"
+          name: "river"
+          paths:
+            - "river/"
+        - id: "valley"
+          name: "valley"
+          paths:
+            - "valley/"
+        - id: "rainbow"
+          name: "rainbow"
+          paths:
+            - "rainbow/"
+        - id: "window"
+          name: "window"
+          paths:
+            - "window/"
+        - id: "camera_check"
+          name: "camera_check"
+          paths:
+            - "camera_check/"
+        - id: "oaks_lab"
+          name: "oaks_lab"
+          paths:
+            - "oaks_lab/"
+        - id: "photo_check"
+          name: "photo_check"
+          paths:
+            - "photo_check/"
+        - id: "pokemon_album"
+          name: "pokemon_album"
+          paths:
+            - "pokemon_album/"
+        - id: "pokemon_report"
+          name: "pokemon_report"
+          paths:
+            - "pokemon_report/"
+        - id: "gallery"
+          name: "gallery"
+          paths:
+            - "gallery/"
+        - id: "unk_end_level_8"
+          name: "unk_end_level_8"
+          paths:
+            - "unk_end_level_8/"
+        - id: "main_menu"
+          name: "main_menu"
+          paths:
+            - "main_menu/"
+        - id: "menu_new_game"
+          name: "menu_new_game"
+          paths:
+            - "menu_new_game/"
+        - id: "credits"
+          name: "credits"
+          paths:
+            - "credits/"
+        - id: "AA0650"
+          name: "AA0650"
+          paths:
+            - "AA0650"
+        - id: "AA18E0"
+          name: "AA18E0"
+          paths:
+            - "AA18E0"
+
+        # Categories by segment
+        - id: "segment_.header"
+          name: "Segment .header"
+          paths:
+            - "header"
+        - id: "segment_.boot"
+          name: "Segment .boot"
+          paths:
+            - "assets/boot"
+        - id: "segment_.main"
+          name: "Segment .main"
+          paths:
+            - "entry"
+            - "sys"
+            - "1F960"
+            - "ultralib"
+            - "26D80"
+            - "rsp"
+            - "434E0"
+            - "438A0"
+        - id: "segment_.app_render"
+          name: "Segment .app_render"
+          paths:
+            - "app_render"
+        - id: "segment_.more_funcs"
+          name: "Segment .more_funcs"
+          paths:
+            - "more_funcs"
+            - "os"
+        - id: "segment_.world"
+          name: "Segment .world"
+          paths:
+            - "world"
+        - id: "segment_.magikarp_textures"
+          name: "Segment .magikarp_textures"
+          paths:
+            - "pokemon_common/magikarp/textures"
+            - "assets/pokemon_common"
+        - id: "segment_.pikachu1"
+          name: "Segment .pikachu1"
+          paths:
+            - "assets/pokemon/pikachu/7D3B0"
+        - id: "segment_.zubat1"
+          name: "Segment .zubat1"
+          paths:
+            - "assets/pokemon/zubat/98470"
+        - id: "segment_.bulbasaur1"
+          name: "Segment .bulbasaur1"
+          paths:
+            - "assets/pokemon/bulbasaur/99F70"
+        - id: "segment_.beach_assets"
+          name: "Segment .beach_assets"
+          paths:
+            - "A74E0"
+            - "assets/A74F0"
+        - id: "segment_.beach_extra"
+          name: "Segment .beach_extra"
+          paths:
+            - "assets/13C780"
+        - id: "segment_.tunnel_assets"
+          name: "Segment .tunnel_assets"
+          paths:
+            - "tunnel/world"
+            - "assets/tunnel/175FF0"
+            - "tunnel/computer"
+            - "tunnel/pkmn_1016"
+            - "tunnel/pkmn_1017"
+            - "assets/tunnel/182390"
+            - "assets/tunnel/190260"
+            - "tunnel/magnemite/textures"
+            - "tunnel/magnemite/anim"
+            - "assets/tunnel/1A6630"
+            - "tunnel/diglett/textures"
+            - "tunnel/diglett/anim"
+            - "tunnel/dugtrio/textures"
+            - "tunnel/dugtrio/anim"
+            - "assets/tunnel/1ADCB0"
+            - "tunnel/electrode/textures"
+            - "tunnel/electrode/anim"
+            - "tunnel/magneton/textures"
+            - "tunnel/magneton/anim"
+            - "assets/tunnel/1C8AC0"
+        - id: "segment_.tunnel_extra"
+          name: "Segment .tunnel_extra"
+          paths:
+            - "assets/1D1D90"
+        - id: "segment_.cave_assets"
+          name: "Segment .cave_assets"
+          paths:
+            - "1F5E70"
+            - "assets/1F5E80"
+        - id: "segment_.cave_extra"
+          name: "Segment .cave_extra"
+          paths:
+            - "assets/27AB80"
+        - id: "segment_.river_assets"
+          name: "Segment .river_assets"
+          paths:
+            - "29A190"
+            - "assets/29A1A0"
+        - id: "segment_.river_extra"
+          name: "Segment .river_extra"
+          paths:
+            - "assets/30AF90"
+        - id: "segment_.volcano_assets"
+          name: "Segment .volcano_assets"
+          paths:
+            - "volcano/world/world"
+            - "volcano/world/skybox"
+            - "volcano/world/world_gfx"
+            - "volcano/world/block0"
+            - "volcano/world/block1"
+            - "volcano/world/block2"
+            - "volcano/world/block3"
+            - "volcano/world/block4"
+            - "volcano/world/block5"
+            - "volcano/world/block6"
+            - "volcano/world/blocks"
+            - "volcano/growlithe_spawner/model"
+            - "volcano/growlithe_spawner/materials"
+            - "volcano/growlithe_spawner/anim"
+            - "volcano/smoke_puff/model"
+            - "volcano/smoke_puff/anim"
+            - "volcano/koffing_smoke/model"
+            - "volcano/koffing_smoke/materials"
+            - "volcano/koffing_smoke/anim"
+            - "volcano/lava_splash/model"
+            - "volcano/lava_splash/materials"
+            - "volcano/lava_splash/anim"
+            - "volcano/volcano_smoke/model"
+            - "volcano/volcano_smoke/materials"
+            - "volcano/volcano_smoke/anim"
+            - "volcano/outro"
+            - "volcano/intro/modelanim"
+            - "volcano/intro/matanim"
+            - "volcano/intro/camera"
+            - "volcano/koffing_smoke/textures"
+            - "volcano/smoke_puff/textures"
+            - "volcano/world/textures1"
+            - "volcano/growlithe_spawner/textures"
+            - "volcano/volcano_smoke/textures"
+            - "volcano/world/textures2"
+            - "volcano/lava_splash/textures"
+            - "volcano/magmar/textures"
+            - "volcano/magmar/anim"
+            - "volcano/moltres/textures"
+            - "volcano/moltres/anim"
+            - "volcano/moltres_egg/textures"
+            - "volcano/moltres_egg/anim"
+            - "volcano/moltres_egg/model"
+            - "volcano/rapidash/textures"
+            - "volcano/rapidash/anim"
+            - "volcano/growlithe/textures"
+            - "volcano/growlithe/anim"
+            - "volcano/charmander/textures"
+            - "volcano/charmander/anim"
+            - "volcano/charmeleon/textures"
+            - "volcano/charmeleon/anim"
+            - "volcano/charizard/textures"
+            - "volcano/charizard/anim"
+            - "volcano/vulpix/textures"
+            - "volcano/vulpix/anim"
+            - "volcano/arcanine/textures"
+            - "volcano/arcanine/anim"
+        - id: "segment_.volcano_extra"
+          name: "Segment .volcano_extra"
+          paths:
+            - "assets/3D0560"
+        - id: "segment_.valley_assets"
+          name: "Segment .valley_assets"
+          paths:
+            - "3F63D0"
+            - "assets/3F63E0"
+        - id: "segment_.valley_extra"
+          name: "Segment .valley_extra"
+          paths:
+            - "assets/47CF30"
+        - id: "segment_.rainbow_assets"
+          name: "Segment .rainbow_assets"
+          paths:
+            - "4A8160"
+            - "assets/4A8170"
+        - id: "segment_.rainbow_extra"
+          name: "Segment .rainbow_extra"
+          paths:
+            - "assets/4EC000"
+        - id: "segment_.app_level"
+          name: "Segment .app_level"
+          paths:
+            - "app_level"
+        - id: "segment_.magikarp_model"
+          name: "Segment .magikarp_model"
+          paths:
+            - "pokemon_common/magikarp/model"
+        - id: "segment_.pikachu3"
+          name: "Segment .pikachu3"
+          paths:
+            - "assets/pokemon/pikachu/54D6A0"
+        - id: "segment_.zubat3"
+          name: "Segment .zubat3"
+          paths:
+            - "assets/pokemon/zubat/554130"
+        - id: "segment_.bulbasaur3"
+          name: "Segment .bulbasaur3"
+          paths:
+            - "assets/pokemon/bulbasaur/557050"
+        - id: "segment_.beach_code"
+          name: "Segment .beach_code"
+          paths:
+            - "beach"
+            - "assets/beach"
+        - id: "segment_.tunnel_code"
+          name: "Segment .tunnel_code"
+          paths:
+            - "tunnel/main"
+            - "tunnel/sounds"
+            - "tunnel/magnemite/code"
+            - "tunnel/magneton/code"
+            - "tunnel/electrode/code"
+            - "tunnel/diglett/code"
+            - "tunnel/dugtrio/code"
+            - "tunnel/kakuna"
+            - "tunnel/pikachu"
+            - "tunnel/electabuzz"
+            - "tunnel/pkmn_1008"
+            - "tunnel/pkmn_1009"
+            - "tunnel/pkmn_1010"
+            - "tunnel/zapdos"
+            - "tunnel/zubat"
+            - "tunnel/haunter"
+            - "tunnel/magikarp"
+            - "tunnel/zapdos_egg"
+            - "tunnel/pkmn_1012"
+            - "tunnel/pkmn_1013"
+            - "tunnel/gate"
+            - "tunnel/intro"
+            - "tunnel/pkmn_1014"
+            - "assets/tunnel/5EC3E0"
+            - "assets/tunnel/5ED4F0"
+            - "tunnel/magnemite/model"
+            - "tunnel/diglett/model"
+            - "tunnel/dugtrio/model"
+            - "assets/tunnel/62DA00"
+            - "tunnel/electrode/model"
+            - "tunnel/magneton/model"
+            - "assets/tunnel/63D3A0"
+        - id: "segment_.cave_code"
+          name: "Segment .cave_code"
+          paths:
+            - "cave"
+            - "assets/cave"
+        - id: "segment_.river_code"
+          name: "Segment .river_code"
+          paths:
+            - "river"
+            - "assets/river"
+        - id: "segment_.volcano_code"
+          name: "Segment .volcano_code"
+          paths:
+            - "volcano/main"
+            - "volcano/magmar/code"
+            - "volcano/rapidash/code"
+            - "volcano/charmander/code"
+            - "volcano/vulpix/code"
+            - "volcano/growlithe/code"
+            - "volcano/arcanine/code"
+            - "volcano/charmeleon/code"
+            - "volcano/charizard/code"
+            - "volcano/growlithe_spawner/code"
+            - "volcano/moltres_egg/code"
+            - "volcano/moltres/code"
+            - "volcano/koffing_smoke/code"
+            - "volcano/smoke_puff/code"
+            - "volcano/smoke_spawner"
+            - "volcano/evolution_controller"
+            - "volcano/lava_splash/code"
+            - "volcano/magikarp"
+            - "volcano/gate"
+            - "volcano/volcano_smoke/code"
+            - "volcano/sounds"
+            - "volcano/intro/code"
+            - "volcano/world/height_map_data"
+            - "volcano/world/height_map"
+            - "volcano/magmar/model"
+            - "volcano/moltres/model"
+            - "volcano/rapidash/model"
+            - "volcano/growlithe/model"
+            - "volcano/charmander/model"
+            - "volcano/charmeleon/model"
+            - "volcano/charizard/model"
+            - "volcano/vulpix/model"
+            - "volcano/arcanine/model"
+        - id: "segment_.valley_code"
+          name: "Segment .valley_code"
+          paths:
+            - "valley"
+            - "assets/valley"
+        - id: "segment_.rainbow_code"
+          name: "Segment .rainbow_code"
+          paths:
+            - "rainbow"
+            - "assets/rainbow"
+        - id: "segment_.magikarp2"
+          name: "Segment .magikarp2"
+          paths:
+            - "assets/pokemon/magikarp/82F8E0"
+        - id: "segment_.pikachu2"
+          name: "Segment .pikachu2"
+          paths:
+            - "assets/pokemon/pikachu/832960"
+        - id: "segment_.zubat2"
+          name: "Segment .zubat2"
+          paths:
+            - "assets/pokemon/zubat/837360"
+        - id: "segment_.bulbasaur2"
+          name: "Segment .bulbasaur2"
+          paths:
+            - "assets/pokemon/bulbasaur/83A1E0"
+        - id: "segment_.window"
+          name: "Segment .window"
+          paths:
+            - "window"
+        - id: "segment_.camera_check"
+          name: "Segment .camera_check"
+          paths:
+            - "camera_check"
+        - id: "segment_.oaks_lab"
+          name: "Segment .oaks_lab"
+          paths:
+            - "oaks_lab"
+        - id: "segment_.photo_check"
+          name: "Segment .photo_check"
+          paths:
+            - "photo_check"
+        - id: "segment_.pokemon_album"
+          name: "Segment .pokemon_album"
+          paths:
+            - "pokemon_album"
+            - "assets/pokemon_album"
+        - id: "segment_.pokemon_report"
+          name: "Segment .pokemon_report"
+          paths:
+            - "pokemon_report"
+            - "assets/pokemon_report"
+        - id: "segment_.gallery"
+          name: "Segment .gallery"
+          paths:
+            - "gallery"
+        - id: "segment_.unk_end_level_8"
+          name: "Segment .unk_end_level_8"
+          paths:
+            - "unk_end_level_8/A084B0"
+        - id: "segment_.main_menu"
+          name: "Segment .main_menu"
+          paths:
+            - "main_menu"
+            - "assets/main_menu"
+        - id: "segment_.A0F830"
+          name: "Segment .A0F830"
+          paths:
+            - "assets/A0F830"
+        - id: "segment_.menu_new_game"
+          name: "Segment .menu_new_game"
+          paths:
+            - "menu_new_game"
+        - id: "segment_.credits"
+          name: "Segment .credits"
+          paths:
+            - "credits"
+        - id: "segment_.intro_code"
+          name: "Segment .intro_code"
+          paths:
+            - "AA0650"
+        - id: "segment_.AA0B80"
+          name: "Segment .AA0B80"
+          paths:
+            - "assets/AA0B80"
+        - id: "segment_.AA18E0"
+          name: "Segment .AA18E0"
+          paths:
+            - "AA18E0"
+            - "assets/AA20A0"
+        - id: "segment_.AAA610"
+          name: "Segment .AAA610"
+          paths:
+            - "assets/AAA610"
+        - id: "segment_.idle_script_beach"
+          name: "Segment .idle_script_beach"
+          paths:
+            - "assets/idle_script_beach"
+        - id: "segment_.idle_script_tunnel"
+          name: "Segment .idle_script_tunnel"
+          paths:
+            - "assets/idle_script_tunnel"
+        - id: "segment_.fx_script_common"
+          name: "Segment .fx_script_common"
+          paths:
+            - "assets/fx/script/common"
+        - id: "segment_.fx_img_common"
+          name: "Segment .fx_img_common"
+          paths:
+            - "assets/fx/img/common"
+        - id: "segment_.fx_script_beach"
+          name: "Segment .fx_script_beach"
+          paths:
+            - "assets/fx/script/beach"
+        - id: "segment_.fx_img_beach"
+          name: "Segment .fx_img_beach"
+          paths:
+            - "assets/fx/img/beach"
+        - id: "segment_.fx_script_tunnel"
+          name: "Segment .fx_script_tunnel"
+          paths:
+            - "assets/fx/script/tunnel"
+        - id: "segment_.fx_img_tunnel"
+          name: "Segment .fx_img_tunnel"
+          paths:
+            - "assets/fx/img/tunnel"
+        - id: "segment_.fx_script_cave"
+          name: "Segment .fx_script_cave"
+          paths:
+            - "assets/fx/script/cave"
+        - id: "segment_.fx_img_cave"
+          name: "Segment .fx_img_cave"
+          paths:
+            - "assets/fx/img/cave"
+        - id: "segment_.fx_script_river"
+          name: "Segment .fx_script_river"
+          paths:
+            - "assets/fx/script/river"
+        - id: "segment_.fx_img_river"
+          name: "Segment .fx_img_river"
+          paths:
+            - "assets/fx/img/river"
+        - id: "segment_.fx_script_volcano"
+          name: "Segment .fx_script_volcano"
+          paths:
+            - "assets/fx/script/volcano"
+        - id: "segment_.fx_img_volcano"
+          name: "Segment .fx_img_volcano"
+          paths:
+            - "assets/fx/img/volcano"
+        - id: "segment_.fx_script_valley"
+          name: "Segment .fx_script_valley"
+          paths:
+            - "assets/fx/script/valley"
+        - id: "segment_.fx_img_valley"
+          name: "Segment .fx_img_valley"
+          paths:
+            - "assets/fx/img/valley"
+        - id: "segment_.fx_script_rainbow"
+          name: "Segment .fx_script_rainbow"
+          paths:
+            - "assets/fx/script/rainbow"
+        - id: "segment_.fx_img_rainbow"
+          name: "Segment .fx_img_rainbow"
+          paths:
+            - "assets/fx/img/rainbow"
+        - id: "segment_.fx_script_intro"
+          name: "Segment .fx_script_intro"
+          paths:
+            - "assets/fx/script/intro"
+        - id: "segment_.fx_img_intro"
+          name: "Segment .fx_img_intro"
+          paths:
+            - "assets/fx/img/intro"
+        - id: "segment_.AE0510"
+          name: "Segment .AE0510"
+          paths:
+            - "assets/AE0510"
+        - id: "segment_.audio_sbk"
+          name: "Segment .audio_sbk"
+          paths:
+            - "assets/audio/sbk"
+        - id: "segment_.audio_seq_AEFD3C"
+          name: "Segment .audio_seq_AEFD3C"
+          paths:
+            - "assets/audio/seq/AEFD3C"
+        - id: "segment_.audio_seq_AF0A94"
+          name: "Segment .audio_seq_AF0A94"
+          paths:
+            - "assets/audio/seq/AF0A94"
+        - id: "segment_.audio_seq_AF0C30"
+          name: "Segment .audio_seq_AF0C30"
+          paths:
+            - "assets/audio/seq/AF0C30"
+        - id: "segment_.audio_seq_AF0DF4"
+          name: "Segment .audio_seq_AF0DF4"
+          paths:
+            - "assets/audio/seq/AF0DF4"
+        - id: "segment_.audio_seq_AF0FC4"
+          name: "Segment .audio_seq_AF0FC4"
+          paths:
+            - "assets/audio/seq/AF0FC4"
+        - id: "segment_.audio_seq_AF15BC"
+          name: "Segment .audio_seq_AF15BC"
+          paths:
+            - "assets/audio/seq/AF15BC"
+        - id: "segment_.audio_seq_AF1F70"
+          name: "Segment .audio_seq_AF1F70"
+          paths:
+            - "assets/audio/seq/AF1F70"
+        - id: "segment_.audio_seq_AF2B34"
+          name: "Segment .audio_seq_AF2B34"
+          paths:
+            - "assets/audio/seq/AF2B34"
+        - id: "segment_.audio_seq_AF383C"
+          name: "Segment .audio_seq_AF383C"
+          paths:
+            - "assets/audio/seq/AF383C"
+        - id: "segment_.audio_seq_AF3D74"
+          name: "Segment .audio_seq_AF3D74"
+          paths:
+            - "assets/audio/seq/AF3D74"
+        - id: "segment_.audio_seq_AF444C"
+          name: "Segment .audio_seq_AF444C"
+          paths:
+            - "assets/audio/seq/AF444C"
+        - id: "segment_.audio_seq_AF4918"
+          name: "Segment .audio_seq_AF4918"
+          paths:
+            - "assets/audio/seq/AF4918"
+        - id: "segment_.audio_seq_AF5A8C"
+          name: "Segment .audio_seq_AF5A8C"
+          paths:
+            - "assets/audio/seq/AF5A8C"
+        - id: "segment_.audio_seq_AF5F4C"
+          name: "Segment .audio_seq_AF5F4C"
+          paths:
+            - "assets/audio/seq/AF5F4C"
+        - id: "segment_.audio_seq_AF6E84"
+          name: "Segment .audio_seq_AF6E84"
+          paths:
+            - "assets/audio/seq/AF6E84"
+        - id: "segment_.audio_seq_AF7D3C"
+          name: "Segment .audio_seq_AF7D3C"
+          paths:
+            - "assets/audio/seq/AF7D3C"
+        - id: "segment_.audio_seq_AF7F88"
+          name: "Segment .audio_seq_AF7F88"
+          paths:
+            - "assets/audio/seq/AF7F88"
+        - id: "segment_.audio_seq_AF8A10"
+          name: "Segment .audio_seq_AF8A10"
+          paths:
+            - "assets/audio/seq/AF8A10"
+        - id: "segment_.audio_seq_AF8C88"
+          name: "Segment .audio_seq_AF8C88"
+          paths:
+            - "assets/audio/seq/AF8C88"
+        - id: "segment_.audio_seq_AF9508"
+          name: "Segment .audio_seq_AF9508"
+          paths:
+            - "assets/audio/seq/AF9508"
+        - id: "segment_.audio_seq_AF9938"
+          name: "Segment .audio_seq_AF9938"
+          paths:
+            - "assets/audio/seq/AF9938"
+        - id: "segment_.audio_seq_AF9AC8"
+          name: "Segment .audio_seq_AF9AC8"
+          paths:
+            - "assets/audio/seq/AF9AC8"
+        - id: "segment_.audio_seq_AF9BE4"
+          name: "Segment .audio_seq_AF9BE4"
+          paths:
+            - "assets/audio/seq/AF9BE4"
+        - id: "segment_.audio_seq_AF9C5C"
+          name: "Segment .audio_seq_AF9C5C"
+          paths:
+            - "assets/audio/seq/AF9C5C"
+        - id: "segment_.audio_seq_AFA7F8"
+          name: "Segment .audio_seq_AFA7F8"
+          paths:
+            - "assets/audio/seq/AFA7F8"
+        - id: "segment_.audio_seq_AFA96C"
+          name: "Segment .audio_seq_AFA96C"
+          paths:
+            - "assets/audio/seq/AFA96C"
+        - id: "segment_.audio_seq_AFB44C"
+          name: "Segment .audio_seq_AFB44C"
+          paths:
+            - "assets/audio/seq/AFB44C"
+        - id: "segment_.audio_seq_AFB914"
+          name: "Segment .audio_seq_AFB914"
+          paths:
+            - "assets/audio/seq/AFB914"
+        - id: "segment_.audio_seq_AFBEF0"
+          name: "Segment .audio_seq_AFBEF0"
+          paths:
+            - "assets/audio/seq/AFBEF0"
+        - id: "segment_.audio_seq_AFC2D8"
+          name: "Segment .audio_seq_AFC2D8"
+          paths:
+            - "assets/audio/seq/AFC2D8"
+        - id: "segment_.audio_seq_AFCCE8"
+          name: "Segment .audio_seq_AFCCE8"
+          paths:
+            - "assets/audio/seq/AFCCE8"
+        - id: "segment_.audio_seq_AFD194"
+          name: "Segment .audio_seq_AFD194"
+          paths:
+            - "assets/audio/seq/AFD194"
+        - id: "segment_.audio_seq_AFD298"
+          name: "Segment .audio_seq_AFD298"
+          paths:
+            - "assets/audio/seq/AFD298"
+        - id: "segment_.audio_seq_AFD3A4"
+          name: "Segment .audio_seq_AFD3A4"
+          paths:
+            - "assets/audio/seq/AFD3A4"
+        - id: "segment_.audio_seq_AFD494"
+          name: "Segment .audio_seq_AFD494"
+          paths:
+            - "assets/audio/seq/AFD494"
+        - id: "segment_.audio_seq_AFDCD8"
+          name: "Segment .audio_seq_AFDCD8"
+          paths:
+            - "assets/audio/seq/AFDCD8"
+        - id: "segment_.audio_seq_AFDDC4"
+          name: "Segment .audio_seq_AFDDC4"
+          paths:
+            - "assets/audio/seq/AFDDC4"
+        - id: "segment_.AFDDC8"
+          name: "Segment .AFDDC8"
+          paths:
+            - "assets/AFDDC8"
+        - id: "segment_.audio_bank1"
+          name: "Segment .audio_bank1"
+          paths:
+            - "assets/audio/bank1"
+        - id: "segment_.audio_table1"
+          name: "Segment .audio_table1"
+          paths:
+            - "assets/audio/table1"
+        - id: "segment_.audio_bank2"
+          name: "Segment .audio_bank2"
+          paths:
+            - "assets/audio/bank2"
+        - id: "segment_.audio_table2"
+          name: "Segment .audio_table2"
+          paths:
+            - "assets/audio/table2"
+        - id: "segment_.padding"
+          name: "Segment .padding"
+          paths:
+            - "assets/padding"

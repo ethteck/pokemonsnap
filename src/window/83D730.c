@@ -44,23 +44,20 @@ void UIMem_Unlink(HeapChunk* chunk) {
     next->v.link.prev = prev;
 }
 
-#ifdef NON_MATCHING
 void UIMem_InitHeap(u8* base, s32 size) {
-    HeapChunk* header = base;
+    HeapChunk* header;
 
-    D_803A6900_87A0B0 = header;
     D_803A6904_87A0B4 = size;
-    D_803A6908_87A0B8 = (u32) base + D_803A6904_87A0B4;
+    D_803A6900_87A0B0 = (HeapChunk*) base;
+    D_803A6908_87A0B8 = (HeapChunk*) ((uintptr_t) D_803A6900_87A0B0 + size);
 
+    header = D_803A6900_87A0B0;
     header->prev = NULL;
     header->size = size;
     header->allocated = FALSE;
+
     UIMem_Link(&D_803A6910_87A0C0, header, &D_803A6910_87A0C0);
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/window/83D730/UIMem_InitHeap.s")
-void UIMem_InitHeap(u8*, u32);
-#endif
 
 HeapChunk* UIMem_FindChunk(s32 size) {
     HeapChunk* cur;
@@ -201,7 +198,6 @@ u8* UIMem_Reallocate(u8* data_, u32 size) {
         return NULL;
     }
 
-    
     for (i = 0; i < oldSize; i++) {
         newData[i] = data[i];
     }

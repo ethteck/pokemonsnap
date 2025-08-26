@@ -1,17 +1,18 @@
 name: Pokemon Snap
-github: https://github.com/ethteck/pokemonsnap
+repo: https://github.com/ethteck/pokemonsnap
 platform: n64
 versions:
 - name: us
   fullname: US
   sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
   paths:
-    baserom: "/home/ethteck/repos/pokemonsnap/pokemonsnap.z64"
-    build: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.z64"
+    target: "/home/ethteck/repos/pokemonsnap/pokemonsnap.z64"
+    compiled_target: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.z64"
     asm: "/home/ethteck/repos/pokemonsnap/asm"
     nonmatchings: "/home/ethteck/repos/pokemonsnap/asm/nonmatchings"
     map: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.map"
     elf: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.elf"
+    build_dir: "build"
 tools:
   decompme:
     preset: 125

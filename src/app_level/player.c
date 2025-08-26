@@ -959,7 +959,7 @@ void processZoomingIn(GObj* obj) {
         gMainCamera->viewMtx.lookAt.at.y = CameraAtPos.y + CameraVibrationDeltaY;
         gMainCamera->viewMtx.lookAt.at.z = CameraAtPos.z;
 
-        func_80007C20(&gMainCamera->vp, x1, y1, x2, y2);
+        syRdpSetViewport(&gMainCamera->vp, x1, y1, x2, y2);
 
         x3 += 3;
         y3 += 2;
@@ -1060,7 +1060,7 @@ void processZoomingOut(GObj* obj) {
         y1 += 2;
         x2 -= 2;
         y2 -= 2;
-        func_80007C20(&gMainCamera->vp, x1, y1, x2, y2);
+        syRdpSetViewport(&gMainCamera->vp, x1, y1, x2, y2);
 
         gMainCamera->perspMtx.persp.aspect = (f32) (x2 - x1) / (f32) (y2 - y1);
         gMainCamera->perspMtx.persp.fovy = 55.0f - (10.0f - i) * 1.5f;
@@ -2076,7 +2076,7 @@ void Camera_StartStopCutscene(GObj* pokemon, s32 arg1, AnimCmd* animation, f32 t
         gMainCamera->viewMtx.lookAt.eye.z = gMovementState.pos.z + sp34.z * 80.0f;
     }
     gMainCamera->perspMtx.persp.aspect = 4.0f / 3.0f;
-    func_80007C20(&gMainCamera->vp, 0.0f, 0.0f, 320.0f, 240.0f);
+    syRdpSetViewport(&gMainCamera->vp, 0.0f, 0.0f, 320.0f, 240.0f);
 }
 
 void processOutOfFilm(GObj* arg0) {
@@ -2653,7 +2653,7 @@ DObj* func_803573B0_4F77C0(void) {
 }
 
 void resetMainCameraSettings(void) {
-    func_80007C20(&gMainCamera->vp, 0.0f, 0.0f, 320.0f, 240.0f);
+    syRdpSetViewport(&gMainCamera->vp, 0.0f, 0.0f, 320.0f, 240.0f);
     gMainCamera->perspMtx.persp.fovy = 55.0f;
     setMainCameraViewport(0, 0, 320, 240);
 }
@@ -2933,7 +2933,7 @@ GObj* createMainCameras(s32 bgColor) {
     MainCameraViewport[1] = 12;
     MainCameraViewport[2] = 304;
     MainCameraViewport[3] = 232;
-    func_80007C20(&cam->vp, MainCameraViewport[0], MainCameraViewport[1], MainCameraViewport[2], MainCameraViewport[3]);
+    syRdpSetViewport(&cam->vp, MainCameraViewport[0], MainCameraViewport[1], MainCameraViewport[2], MainCameraViewport[3]);
     setMainCameraViewport(cam->vp.vp.vtrans[0] / 4 - cam->vp.vp.vscale[0] / 4,
                           cam->vp.vp.vtrans[1] / 4 - cam->vp.vp.vscale[1] / 4,
                           cam->vp.vp.vtrans[0] / 4 + cam->vp.vp.vscale[0] / 4,

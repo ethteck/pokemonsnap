@@ -2038,7 +2038,7 @@ s32 func_801E28CC_99233C(s32* arg0) {
     sp28 = 0;
     sp24 = 0;
 
-    for (i = 1; i < 0x98; i++) {
+    for (i = 1; i < POKEDEX_MAX + 1; i++) {
         if (func_800BF3D4_5C274(i) == 0) {
 
         } else {
@@ -2047,22 +2047,22 @@ s32 func_801E28CC_99233C(s32* arg0) {
         }
     }
     if (func_800BF3D4_5C274(1004)) {
-        sp28 += func_800BF818_5C6B8(1004);
+        sp28 += func_800BF818_5C6B8(PokemonID_1004);
     }
     if (func_800BF3D4_5C274(1010)) {
-        sp28 += func_800BF818_5C6B8(1010);
+        sp28 += func_800BF818_5C6B8(PokemonID_1010);
     }
     if (func_800BF3D4_5C274(1018)) {
-        sp28 += func_800BF818_5C6B8(1018);
+        sp28 += func_800BF818_5C6B8(PokemonID_1018);
     }
     if (func_800BF3D4_5C274(1022)) {
-        sp28 += func_800BF818_5C6B8(1022);
+        sp28 += func_800BF818_5C6B8(PokemonID_1022);
     }
     if (func_800BF3D4_5C274(1028)) {
-        sp28 += func_800BF818_5C6B8(1028);
+        sp28 += func_800BF818_5C6B8(PokemonID_KOFFING_SMOKE);
     }
     if (func_800BF3D4_5C274(1035)) {
-        sp28 += func_800BF818_5C6B8(1035);
+        sp28 += func_800BF818_5C6B8(PokemonID_1035);
     }
     if (arg0 != NULL) {
         *arg0 = sp24;

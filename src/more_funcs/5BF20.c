@@ -243,14 +243,14 @@ void func_800BF7D4_5C674(s32 arg0, s32 arg1) {
     }
 }
 
-s32 func_800BF818_5C6B8(s32 arg0) {
-    arg0 = func_8009BB4C(arg0);
+s32 func_800BF818_5C6B8(s32 idx) {
+    idx = func_8009BB4C(idx);
 
-    if (arg0 < 0 || arg0 >= 69) {
+    if (idx < 0 || idx >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_6C)) {
         return 0;
     }
 
-    return D_800C21B0_5F050->data.unk_6C[arg0];
+    return D_800C21B0_5F050->data.unk_6C[idx];
 }
 
 s32 func_800BF864_5C704(void) {
@@ -518,16 +518,16 @@ void setPlayerFlag(s32 arg0, s32 arg1) {
     }
 }
 
-s32 func_800C0224_5D0C4(s32 arg0) {
-    if (arg0 < 0 || arg0 >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_34)) {
+s32 func_800C0224_5D0C4(s32 idx) {
+    if (idx < 0 || idx >= ARRAY_COUNT(D_800C21B0_5F050->data.unk_34)) {
         return 0;
     }
-    return D_800C21B0_5F050->data.unk_34[arg0];
+    return D_800C21B0_5F050->data.unk_34[idx];
 }
 
-void func_800C0254_5D0F4(s32 arg0, s32 arg1) {
-    if (arg0 >= 0 && arg0 < ARRAY_COUNT(D_800C21B0_5F050->data.unk_34)) {
-        D_800C21B0_5F050->data.unk_34[arg0] = arg1;
+void func_800C0254_5D0F4(s32 idx, s32 arg1) {
+    if (idx >= 0 && idx < ARRAY_COUNT(D_800C21B0_5F050->data.unk_34)) {
+        D_800C21B0_5F050->data.unk_34[idx] = arg1;
     }
 }
 

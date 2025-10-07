@@ -4679,7 +4679,7 @@ segments:
     - [0x852920, data]
     - [0x879DB0, .data, layout]
     - [0x879DF0, data]
-    - [0x879E80, data, 848B80]
+    - [0x879E80, .data, 848B80]
 
     - [0x879F20, .rodata, text]
     - [0x879FF0, .rodata, focus_mark]

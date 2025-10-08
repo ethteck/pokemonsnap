@@ -3267,6 +3267,7 @@ segments:
     bss_size: 0x9E40
     exclusive_ram_id: app_level
     subsegments:
+    - [auto, c, font]
     - [0x4F0610, c, player]
     - [0x4F8B20, pad, padding_4F8B20]
     - [0x4F8B30, c, bump_detect]
@@ -3300,7 +3301,304 @@ segments:
     - { start: 0x52A7D0, type: .rodata, name: 4FE330, linker_section_order: .data }
     - [0x52A7E0, .data, pokemon]
     - [0x52A870, .data, 503C10]
-    - [0x52A8A0, data]
+    - name: font
+      type: .data
+      dir: font
+      start: 0x52A8A0
+      subsegments:
+        - {start: 0x52A8A8, name: "btn_z", type: rgba16, width: 16, height: 13 }
+        - [0x52AA48]
+        - {start: 0x52AA50, name: "btn_z_pressed", type: rgba16, width: 16, height: 13 }
+        - [0x52ABF0]
+        - {start: 0x52ABF8, name: "btn_r", type: rgba16, width: 16, height: 13 }
+        - [0x52AD98]
+        - {start: 0x52ADA0, name: "btn_r_pressed", type: rgba16, width: 16, height: 13 }
+        - [0x52AF40]
+        - {start: 0x52AF48, name: "page", type: rgba16, width: 16, height: 13 }
+        - [0x52B0E8]
+        - {start: 0x52B0F0, name: "page_folded", type: rgba16, width: 16, height: 13 }
+        - [0x52B290]
+        - {start: 0x52B298, name: "btn_a", type: rgba16, width: 16, height: 13 }
+        - [0x52B438]
+        - {start: 0x52B440, name: "btn_a_pressed", type: rgba16, width: 16, height: 13 }
+        - [0x52B5E0]
+        - {start: 0x52B5E8, name: "btn_b", type: rgba16, width: 16, height: 13 }
+        - [0x52B788]
+        - {start: 0x52B790, name: "btn_b_pressed", type: rgba16, width: 16, height: 13 }
+        - [0x52B930]
+        - {start: 0x52B938, name: "new_l", type: rgba16, width: 16, height: 13 }
+        - [0x52BAD8]
+        - {start: 0x52BAE0, name: "new_r", type: rgba16, width: 16, height: 13 }
+        - [0x52BC80]
+        - {start: 0x52BC88, name: "new_l_alt", type: rgba16, width: 16, height: 13 }
+        - [0x52BE28]
+        - {start: 0x52BE30, name: "new_r_alt", type: rgba16, width: 16, height: 13 }
+        - [0x52BFD0]
+        - {start: 0x52BFD8, type: rgba16, width: 16, height: 13 }
+        - [0x52C178]
+        - {start: 0x52C180, type: rgba16, width: 16, height: 13 }
+        - [0x52C320]
+        - {start: 0x52C470, name: "upper_a", type: i8, width: 16, height: 13}
+        - [0x52C540]
+        - {start: 0x52C548, name: "upper_b", type: i8, width: 16, height: 13}
+        - [0x52C618]
+        - {start: 0x52C620, name: "upper_c", type: i8, width: 16, height: 13}
+        - [0x52C6F0]
+        - {start: 0x52C6F8, name: "upper_d", type: i8, width: 16, height: 13}
+        - [0x52C7C8]
+        - {start: 0x52C7D0, name: "upper_e", type: i8, width: 16, height: 13}
+        - [0x52C8A0]
+        - {start: 0x52C8A8, name: "upper_f", type: i8, width: 16, height: 13}
+        - [0x52C978]
+        - {start: 0x52C980, name: "upper_g", type: i8, width: 16, height: 13}
+        - [0x52CA50]
+        - {start: 0x52CA58, name: "upper_h", type: i8, width: 16, height: 13}
+        - [0x52CB28]
+        - {start: 0x52CB30, name: "upper_i", type: i8, width: 16, height: 13}
+        - [0x52CC00]
+        - {start: 0x52CC08, name: "upper_j", type: i8, width: 16, height: 13}
+        - [0x52CCD8]
+        - {start: 0x52CCE0, name: "upper_k", type: i8, width: 16, height: 13}
+        - [0x52CDB0]
+        - {start: 0x52CDB8, name: "upper_l", type: i8, width: 16, height: 13}
+        - [0x52CE88]
+        - {start: 0x52CE90, name: "upper_m", type: i8, width: 16, height: 13}
+        - [0x52CF60]
+        - {start: 0x52CF68, name: "upper_n", type: i8, width: 16, height: 13}
+        - [0x52D038]
+        - {start: 0x52D040, name: "upper_o", type: i8, width: 16, height: 13}
+        - [0x52D110]
+        - {start: 0x52D118, name: "upper_p", type: i8, width: 16, height: 13}
+        - [0x52D1E8]
+        - {start: 0x52D1F0, name: "upper_q", type: i8, width: 16, height: 13}
+        - [0x52D2C0]
+        - {start: 0x52D2C8, name: "upper_r", type: i8, width: 16, height: 13}
+        - [0x52D398]
+        - {start: 0x52D3A0, name: "upper_s", type: i8, width: 16, height: 13}
+        - [0x52D470]
+        - {start: 0x52D478, name: "upper_t", type: i8, width: 16, height: 13}
+        - [0x52D548]
+        - {start: 0x52D550, name: "upper_u", type: i8, width: 16, height: 13}
+        - [0x52D620]
+        - {start: 0x52D628, name: "upper_v", type: i8, width: 16, height: 13}
+        - [0x52D6F8]
+        - {start: 0x52D700, name: "upper_w", type: i8, width: 16, height: 13}
+        - [0x52D7D0]
+        - {start: 0x52D7D8, name: "upper_x", type: i8, width: 16, height: 13}
+        - [0x52D8A8]
+        - {start: 0x52D8B0, name: "upper_y", type: i8, width: 16, height: 13}
+        - [0x52D980]
+        - {start: 0x52D988, name: "upper_z", type: i8, width: 16, height: 13}
+        - [0x52DA58]
+        - {start: 0x52DA60, name: "lower_a", type: i8, width: 16, height: 13}
+        - [0x52DB30]
+        - {start: 0x52DB38, name: "lower_b", type: i8, width: 16, height: 13}
+        - [0x52DC08]
+        - {start: 0x52DC10, name: "lower_c", type: i8, width: 16, height: 13}
+        - [0x52DCE0]
+        - {start: 0x52DCE8, name: "lower_d", type: i8, width: 16, height: 13}
+        - [0x52DDB8]
+        - {start: 0x52DDC0, name: "lower_e", type: i8, width: 16, height: 13}
+        - [0x52DE90]
+        - {start: 0x52DE98, name: "lower_f", type: i8, width: 16, height: 13}
+        - [0x52DF68]
+        - {start: 0x52DF70, name: "lower_g", type: i8, width: 16, height: 13}
+        - [0x52E040]
+        - {start: 0x52E048, name: "lower_h", type: i8, width: 16, height: 13}
+        - [0x52E118]
+        - {start: 0x52E120, name: "lower_i", type: i8, width: 16, height: 13}
+        - [0x52E1F0]
+        - {start: 0x52E1F8, name: "lower_j", type: i8, width: 16, height: 13}
+        - [0x52E2C8]
+        - {start: 0x52E2D0, name: "lower_k", type: i8, width: 16, height: 13}
+        - [0x52E3A0]
+        - {start: 0x52E3A8, name: "lower_l", type: i8, width: 16, height: 13}
+        - [0x52E478]
+        - {start: 0x52E480, name: "lower_m", type: i8, width: 16, height: 13}
+        - [0x52E550]
+        - {start: 0x52E558, name: "lower_n", type: i8, width: 16, height: 13}
+        - [0x52E628]
+        - {start: 0x52E630, name: "lower_o", type: i8, width: 16, height: 13}
+        - [0x52E700]
+        - {start: 0x52E708, name: "lower_p", type: i8, width: 16, height: 13}
+        - [0x52E7D8]
+        - {start: 0x52E7E0, name: "lower_q", type: i8, width: 16, height: 13}
+        - [0x52E8B0]
+        - {start: 0x52E8B8, name: "lower_r", type: i8, width: 16, height: 13}
+        - [0x52E988]
+        - {start: 0x52E990, name: "lower_s", type: i8, width: 16, height: 13}
+        - [0x52EA60]
+        - {start: 0x52EA68, name: "lower_t", type: i8, width: 16, height: 13}
+        - [0x52EB38]
+        - {start: 0x52EB40, name: "lower_u", type: i8, width: 16, height: 13}
+        - [0x52EC10]
+        - {start: 0x52EC18, name: "lower_v", type: i8, width: 16, height: 13}
+        - [0x52ECE8]
+        - {start: 0x52ECF0, name: "lower_w", type: i8, width: 16, height: 13}
+        - [0x52EDC0]
+        - {start: 0x52EDC8, name: "lower_x", type: i8, width: 16, height: 13}
+        - [0x52EE98]
+        - {start: 0x52EEA0, name: "lower_y", type: i8, width: 16, height: 13}
+        - [0x52EF70]
+        - {start: 0x52EF78, name: "lower_z", type: i8, width: 16, height: 13}
+        - [0x52F048]
+        - {start: 0x52F050, name: "numeral_1", type: i8, width: 16, height: 13}
+        - [0x52F120]
+        - {start: 0x52F128, name: "numeral_2", type: i8, width: 16, height: 13}
+        - [0x52F1F8]
+        - {start: 0x52F200, name: "numeral_3", type: i8, width: 16, height: 13}
+        - [0x52F2D0]
+        - {start: 0x52F2D8, name: "numeral_4", type: i8, width: 16, height: 13}
+        - [0x52F3A8]
+        - {start: 0x52F3B0, name: "numeral_5", type: i8, width: 16, height: 13}
+        - [0x52F480]
+        - {start: 0x52F488, name: "numeral_6", type: i8, width: 16, height: 13}
+        - [0x52F558]
+        - {start: 0x52F560, name: "numeral_7", type: i8, width: 16, height: 13}
+        - [0x52F630]
+        - {start: 0x52F638, name: "numeral_8", type: i8, width: 16, height: 13}
+        - [0x52F708]
+        - {start: 0x52F710, name: "numeral_9", type: i8, width: 16, height: 13}
+        - [0x52F7E0]
+        - {start: 0x52F7E8, name: "numeral_0", type: i8, width: 16, height: 13}
+        - [0x52F8B8]
+        - {start: 0x52F8C0, name: "arrowup", type: i8, width: 16, height: 13}
+        - [0x52F990]
+        - {start: 0x52F998, name: "arrowdown", type: i8, width: 16, height: 13}
+        - [0x52FA68]
+        - {start: 0x52FA70, type: i8, width: 16, height: 13}
+        - [0x52FB40]
+        - {start: 0x52FB48, name: "asciitilde", type: i8, width: 16, height: 13}
+        - [0x52FC18]
+        - {start: 0x52FC20, name: "exclam", type: i8, width: 16, height: 13}
+        - [0x52FCF0]
+        - {start: 0x52FCF8, name: "at", type: i8, width: 16, height: 13}
+        - [0x52FDC8]
+        - {start: 0x52FDD0, name: "numbersign", type: i8, width: 16, height: 13}
+        - [0x52FEA0]
+        - {start: 0x52FEA8, name: "dollar", type: i8, width: 16, height: 13}
+        - [0x52FF78]
+        - {start: 0x52FF80, name: "percent", type: i8, width: 16, height: 13}
+        - [0x530050]
+        - {start: 0x530058, name: "ampersand", type: i8, width: 16, height: 13}
+        - [0x530128]
+        - {start: 0x530130, name: "asterisk", type: i8, width: 16, height: 13}
+        - [0x530200]
+        - {start: 0x530208, name: "parenleft", type: i8, width: 16, height: 13}
+        - [0x5302D8]
+        - {start: 0x5302E0, name: "parenright", type: i8, width: 16, height: 13}
+        - [0x5303B0]
+        - {start: 0x5303B8, name: "underscore", type: i8, width: 16, height: 13}
+        - [0x530488]
+        - {start: 0x530490, name: "plus", type: i8, width: 16, height: 13}
+        - [0x530560]
+        - {start: 0x530568, name: "equal", type: i8, width: 16, height: 13}
+        - [0x530638]
+        - {start: 0x530640, name: "hyphen", type: i8, width: 16, height: 13}
+        - [0x530710]
+        - {start: 0x530718, name: "quotesingle", type: i8, width: 16, height: 13}
+        - [0x5307E8]
+        - {start: 0x5307F0, name: "quotedbl", type: i8, width: 16, height: 13}
+        - [0x5308C0]
+        - {start: 0x5308C8, name: "semicolon", type: i8, width: 16, height: 13}
+        - [0x530998]
+        - {start: 0x5309A0, name: "colon", type: i8, width: 16, height: 13}
+        - [0x530A70]
+        - {start: 0x530A78, name: "slash", type: i8, width: 16, height: 13}
+        - [0x530B48]
+        - {start: 0x530B50, name: "period", type: i8, width: 16, height: 13}
+        - [0x530C20]
+        - {start: 0x530C28, name: "comma", type: i8, width: 16, height: 13}
+        - [0x530CF8]
+        - {start: 0x530D00, name: "question", type: i8, width: 16, height: 13}
+        - [0x530DD0]
+        - {start: 0x530DD8, name: "less", type: i8, width: 16, height: 13}
+        - [0x530EA8]
+        - {start: 0x530EB0, name: "greater", type: i8, width: 16, height: 13}
+        - [0x530F80]
+        - {start: 0x530F88, name: "male", type: i8, width: 16, height: 13}
+        - [0x531058]
+        - {start: 0x531060, name: "female", type: i8, width: 16, height: 13}
+        - [0x531130]
+        - {start: 0x531138, name: "PK", type: i8, width: 16, height: 13}
+        - [0x531208]
+        - {start: 0x531210, name: "MN", type: i8, width: 16, height: 13}
+        - [0x5312E0]
+        - {start: 0x5312E8, name: "pokedollar", type: i8, width: 16, height: 13}
+        - [0x5313B8]
+        - {start: 0x5313C0, name: "bracketleft", type: i8, width: 16, height: 13}
+        - [0x531490]
+        - {start: 0x531498, name: "bracketright", type: i8, width: 16, height: 13}
+        - [0x531568]
+        - {start: 0x531570, name: "eacute", type: i8, width: 16, height: 13}
+        - [0x531640]
+        - {start: 0x531648, name: "arrowright", type: i8, width: 16, height: 13}
+        - [0x531718]
+        - {start: 0x531720, name: "arrowleft", type: i8, width: 16, height: 13}
+        - [0x5317F0]
+        - {start: 0x5317F8, type: i8, width: 16, height: 13}
+        - [0x5318C8]
+        - {start: 0x5318D0, type: i8, width: 16, height: 13}
+        - [0x5319A0]
+        - {start: 0x5319A8, type: i8, width: 16, height: 13}
+        - [0x531A78]
+        - {start: 0x531A80, type: i8, width: 16, height: 13}
+        - [0x531B50]
+        - {start: 0x531B58, type: i8, width: 16, height: 13}
+        - [0x531C28]
+        - {start: 0x531C30, type: i8, width: 16, height: 13}
+        - [0x531D00]
+        - {start: 0x531D08, type: i8, width: 16, height: 13}
+        - [0x531DD8]
+        - {start: 0x531DE0, type: i8, width: 16, height: 13}
+        - [0x531EB0]
+        - {start: 0x531EB8, type: i8, width: 16, height: 13}
+        - [0x531F88]
+        - {start: 0x531F90, type: i8, width: 16, height: 13}
+        - [0x532060]
+        - {start: 0x532068, type: i8, width: 16, height: 13}
+        - [0x532138]
+        - {start: 0x532140, type: i8, width: 16, height: 13}
+        - [0x532210]
+        - {start: 0x532218, type: i8, width: 16, height: 13}
+        - [0x5322E8]
+        - {start: 0x5322F0, type: i8, width: 16, height: 13}
+        - [0x5323C0]
+        - {start: 0x5323C8, type: i8, width: 16, height: 13}
+        - [0x532498]
+        - {start: 0x5324A0, type: i8, width: 16, height: 13}
+        - [0x532570]
+        - {start: 0x532578, type: i8, width: 16, height: 13}
+        - [0x532648]
+        - {start: 0x532650, type: i8, width: 16, height: 13}
+        - [0x532720]
+        - {start: 0x532728, type: i8, width: 16, height: 13}
+        - [0x5327F8]
+        - {start: 0x532800, type: i8, width: 16, height: 13}
+        - [0x5328D0]
+        - {start: 0x5328D8, type: i8, width: 16, height: 13}
+        - [0x5329A8]
+        - {start: 0x5329B0, type: i8, width: 16, height: 13}
+        - [0x532A80]
+        - {start: 0x532A88, type: i8, width: 16, height: 13}
+        - [0x532B58]
+        - {start: 0x532B60, type: i8, width: 16, height: 13}
+        - [0x532C30]
+        - {start: 0x532C38, type: i8, width: 16, height: 13}
+        - [0x532D08]
+        - {start: 0x532D10, type: i8, width: 16, height: 13}
+        - [0x532DE0]
+        - {start: 0x532DE8, type: i8, width: 16, height: 13}
+        - [0x532EB8]
+        - {start: 0x532EC0, type: i8, width: 16, height: 13}
+        - [0x532F90]
+        - {start: 0x532F98, type: i8, width: 16, height: 13}
+        - [0x533068]
+        - {start: 0x533070, type: i8, width: 16, height: 13}
+        - [0x533140]
+        - {start: 0x533148, type: i8, width: 16, height: 13}
+        - [0x533218]
+    - [0x533C00, data]
     - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
     - [0x533ED0, .rodata, 5047F0]

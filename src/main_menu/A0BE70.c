@@ -37,7 +37,7 @@ extern AnimCmd* D_80381D60;
 extern AnimCmd** D_80385700;
 extern UnkEC64Arg3 D_8038F3E0;
 extern Texture** D_8038AD40;
-extern AnimCmd* D_8038F9C0_52FDD0;
+extern AnimCmd* D_8038F9C0;
 extern AnimCmd** D_80393AE0;
 extern UnkEC64Arg3 D_80393D30;
 extern AnimCmd* D_80393DC0;
@@ -120,7 +120,7 @@ void func_800E4B4C_A0C0DC(GObj* arg0) {
     animSetModelTreeTextureAnimation(D_800E8308_A0F898, &D_80359CD0, 0.0f);
     animSetTextureAnimationSpeed(D_800E8308_A0F898, 0.5f);
 
-    animSetModelTreeAnimation(D_800E830C_A0F89C, &D_8038F9C0_52FDD0, 0.0f);
+    animSetModelTreeAnimation(D_800E830C_A0F89C, &D_8038F9C0, 0.0f);
     animSetModelAnimationSpeed(D_800E830C_A0F89C, 0.5f);
     animSetModelTreeTextureAnimation(D_800E830C_A0F89C, &D_80393AE0, 0.0f);
     animSetTextureAnimationSpeed(D_800E830C_A0F89C, 0.5f);

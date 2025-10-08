@@ -25,20 +25,20 @@ u8 jynx_tex_eye_0_png[] = {
 #include "assets/cave/jynx/tex_eye_0.png.bin.c"
 };
 
-__ALIGNER
-u8 jynx_tex_eye_1_pal[] = {
-#include "assets/cave/jynx/tex_eye_1.pal.bin.c"
-};
+// __ALIGNER
+// u8 jynx_tex_eye_1_pal[] = {
+// #include "assets/cave/jynx/tex_eye_1.pal.bin.c"
+// };
 
 __ALIGNER
 u8 jynx_tex_eye_1_png[] = {
 #include "assets/cave/jynx/tex_eye_1.png.bin.c"
 };
 
-__ALIGNER
-u8 jynx_tex_eye_2_pal[] = {
-#include "assets/cave/jynx/tex_eye_2.pal.bin.c"
-};
+// __ALIGNER
+// u8 jynx_tex_eye_2_pal[] = {
+// #include "assets/cave/jynx/tex_eye_2.pal.bin.c"
+// };
 
 __ALIGNER
 u8 jynx_tex_eye_2_png[] = {

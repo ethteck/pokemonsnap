@@ -95,106 +95,1295 @@ Texture* jynx_part1_mat[] = {
 };
 
 #include "assets/cave/jynx/model.vtx.inc.c"
-#include "assets/cave/jynx/first.gfx.inc.c"
-#include "assets/cave/jynx/part0_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part0_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part0_draw.gfx.inc.c"
-#include "assets/cave/jynx/part1_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part1_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part1_pre.gfx.inc.c"
-#include "assets/cave/jynx/part1_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part1_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part1_draw.gfx.inc.c"
-#include "assets/cave/jynx/part2_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part2_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part2_draw.gfx.inc.c"
-#include "assets/cave/jynx/part3_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part3_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part3_pre.gfx.inc.c"
-#include "assets/cave/jynx/part3_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part3_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part3_draw.gfx.inc.c"
-#include "assets/cave/jynx/part4_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part4_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part4_draw.gfx.inc.c"
-#include "assets/cave/jynx/part5_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part5_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part5_pre.gfx.inc.c"
-#include "assets/cave/jynx/part5_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part5_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part5_draw.gfx.inc.c"
-#include "assets/cave/jynx/part6_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part6_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part6_pre.gfx.inc.c"
-#include "assets/cave/jynx/part6_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part6_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part6_draw.gfx.inc.c"
-#include "assets/cave/jynx/part7_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part7_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part7_pre.gfx.inc.c"
-#include "assets/cave/jynx/part7_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part7_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part7_draw.gfx.inc.c"
-#include "assets/cave/jynx/part8_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part8_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part8_pre.gfx.inc.c"
-#include "assets/cave/jynx/part8_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part8_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part8_draw.gfx.inc.c"
-#include "assets/cave/jynx/part9_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part9_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part9_pre.gfx.inc.c"
-#include "assets/cave/jynx/part9_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part9_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part9_draw.gfx.inc.c"
-#include "assets/cave/jynx/part10_pre_near.gfx.inc.c"
-#include "assets/cave/jynx/part10_pre_far.gfx.inc.c"
-#include "assets/cave/jynx/part10_pre.gfx.inc.c"
-#include "assets/cave/jynx/part10_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part10_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part10_draw.gfx.inc.c"
-#include "assets/cave/jynx/part11_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part11_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part11_draw.gfx.inc.c"
-#include "assets/cave/jynx/part12_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part12_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part12_draw.gfx.inc.c"
-#include "assets/cave/jynx/part13_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part13_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part13_draw.gfx.inc.c"
-#include "assets/cave/jynx/part14_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part14_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part14_draw.gfx.inc.c"
-#include "assets/cave/jynx/part15_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part15_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part15_draw.gfx.inc.c"
-#include "assets/cave/jynx/part16_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part16_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part16_draw.gfx.inc.c"
-#include "assets/cave/jynx/part17_draw_near.gfx.inc.c"
-#include "assets/cave/jynx/part17_draw_far.gfx.inc.c"
-#include "assets/cave/jynx/part17_draw.gfx.inc.c"
-#include "assets/cave/jynx/last.gfx.inc.c"
+
+Gfx D_6B5C98[] = {
+    /* 006B5C98: */ gsDPPipeSync(),
+    /* 006B5CA0: */ gsDPSetBlendColor(0x00, 0x00, 0x00, 0x00),
+    /* 006B5CA8: */ gsDPTileSync(),
+    /* 006B5CB0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
+    /* 006B5CB8: */ gsSPDisplayList(0x803334C0),
+    /* 006B5CC0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B5CC8[] = {
+    /* 006B5CC8: */ gsDPPipeSync(),
+    /* 006B5CD0: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B5CD8: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B5CE0: */ gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2),
+    /* 006B5CE8: */ gsDPSetAlphaCompare(G_AC_THRESHOLD),
+    /* 006B5CF0: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B5CF8: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B5D00: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195560),
+    /* 006B5D08: */ gsDPLoadSync(),
+    /* 006B5D10: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B5D18: */ gsDPPipeSync(),
+    /* 006B5D20: */ gsSPDisplayList(0x0E000000),
+    /* 006B5D28: */ gsDPLoadSync(),
+    /* 006B5D30: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 255, 1024),
+    /* 006B5D38: */ gsDPPipeSync(),
+    /* 006B5D40: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B5D48: */ gsSPVertex(0x80330F68, 6, 0),
+    /* 006B5D50: */ gsSP2Triangles(5, 4, 3, 0, 2, 5, 3, 0),
+    /* 006B5D58: */ gsSP2Triangles(1, 5, 2, 0, 0, 1, 2, 0),
+    /* 006B5D60: */ gsDPPipeSync(),
+    /* 006B5D68: */ gsDPSetPrimColor(0, 0, 0x50, 0x38, 0x60, 0xFF),
+    /* 006B5D70: */ gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    /* 006B5D78: */ gsDPSetAlphaCompare(G_AC_NONE),
+    /* 006B5D80: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
+    /* 006B5D88: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195130),
+    /* 006B5D90: */ gsDPLoadSync(),
+    /* 006B5D98: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B5DA0: */ gsDPPipeSync(),
+    /* 006B5DA8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B5DB0: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x007C),
+    /* 006B5DB8: */ gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, 0x80195158),
+    /* 006B5DC0: */ gsDPLoadSync(),
+    /* 006B5DC8: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 511, 512),
+    /* 006B5DD0: */ gsDPPipeSync(),
+    /* 006B5DD8: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD),
+    /* 006B5DE0: */ gsSPVertex(0x80330E38, 3, 0),
+    /* 006B5DE8: */ gsSPVertex(0x80330FC8, 26, 3),
+    /* 006B5DF0: */ gsSP2Triangles(28, 27, 26, 0, 26, 27, 2, 0),
+    /* 006B5DF8: */ gsSP2Triangles(25, 28, 26, 0, 24, 28, 25, 0),
+    /* 006B5E00: */ gsSP2Triangles(23, 26, 2, 0, 22, 24, 25, 0),
+    /* 006B5E08: */ gsSP2Triangles(21, 25, 26, 0, 21, 26, 23, 0),
+    /* 006B5E10: */ gsSP2Triangles(20, 23, 2, 0, 21, 22, 25, 0),
+    /* 006B5E18: */ gsSP2Triangles(20, 2, 0, 0, 19, 24, 22, 0),
+    /* 006B5E20: */ gsSP2Triangles(21, 23, 20, 0, 21, 18, 22, 0),
+    /* 006B5E28: */ gsSP2Triangles(18, 19, 22, 0, 20, 0, 17, 0),
+    /* 006B5E30: */ gsSP2Triangles(1, 17, 0, 0, 21, 20, 16, 0),
+    /* 006B5E38: */ gsSP2Triangles(21, 15, 18, 0, 14, 19, 18, 0),
+    /* 006B5E40: */ gsSP2Triangles(21, 16, 15, 0, 15, 14, 18, 0),
+    /* 006B5E48: */ gsSP2Triangles(1, 13, 17, 0, 20, 17, 16, 0),
+    /* 006B5E50: */ gsSP2Triangles(13, 1, 12, 0, 1, 11, 12, 0),
+    /* 006B5E58: */ gsSP2Triangles(16, 14, 15, 0, 12, 11, 10, 0),
+    /* 006B5E60: */ gsSP2Triangles(14, 16, 9, 0, 16, 17, 8, 0),
+    /* 006B5E68: */ gsSP2Triangles(17, 13, 8, 0, 9, 7, 14, 0),
+    /* 006B5E70: */ gsSP2Triangles(6, 12, 10, 0, 13, 12, 8, 0),
+    /* 006B5E78: */ gsSP2Triangles(6, 10, 5, 0, 4, 6, 5, 0),
+    /* 006B5E80: */ gsSP2Triangles(7, 9, 8, 0, 6, 4, 8, 0),
+    /* 006B5E88: */ gsSP2Triangles(7, 3, 14, 0, 4, 5, 3, 0),
+    /* 006B5E90: */ gsSP2Triangles(12, 6, 8, 0, 7, 4, 3, 0),
+    /* 006B5E98: */ gsSP2Triangles(4, 7, 8, 0, 9, 16, 8, 0),
+    /* 006B5EA0: */ gsDPPipeSync(),
+    /* 006B5EA8: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B5EB0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
+    /* 006B5EB8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801963A8),
+    /* 006B5EC0: */ gsDPLoadSync(),
+    /* 006B5EC8: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 128),
+    /* 006B5ED0: */ gsDPPipeSync(),
+    /* 006B5ED8: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD),
+    /* 006B5EE0: */ gsSPVertex(0x80330EA8, 2, 0),
+    /* 006B5EE8: */ gsSPVertex(0x80330F48, 2, 2),
+    /* 006B5EF0: */ gsSPVertex(0x80331168, 14, 4),
+    /* 006B5EF8: */ gsSP2Triangles(2, 17, 3, 0, 17, 16, 3, 0),
+    /* 006B5F00: */ gsSP2Triangles(15, 16, 17, 0, 14, 15, 17, 0),
+    /* 006B5F08: */ gsSP2Triangles(14, 13, 15, 0, 12, 16, 15, 0),
+    /* 006B5F10: */ gsSP2Triangles(15, 13, 11, 0, 11, 12, 15, 0),
+    /* 006B5F18: */ gsSP2Triangles(10, 0, 1, 0, 9, 10, 1, 0),
+    /* 006B5F20: */ gsSP2Triangles(9, 8, 10, 0, 8, 7, 10, 0),
+    /* 006B5F28: */ gsSP2Triangles(6, 7, 8, 0, 6, 8, 5, 0),
+    /* 006B5F30: */ gsSP2Triangles(4, 5, 8, 0, 9, 4, 8, 0),
+    /* 006B5F38: */ gsDPPipeSync(),
+    /* 006B5F40: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B5F48: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x007C, 0x007C),
+    /* 006B5F50: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195BA0),
+    /* 006B5F58: */ gsDPLoadSync(),
+    /* 006B5F60: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 1023, 256),
+    /* 006B5F68: */ gsDPPipeSync(),
+    /* 006B5F70: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B5F78: */ gsSPVertex(0x80330E68, 4, 0),
+    /* 006B5F80: */ gsSPVertex(0x80330EC8, 8, 4),
+    /* 006B5F88: */ gsSPVertex(0x80331248, 19, 12),
+    /* 006B5F90: */ gsSP2Triangles(30, 29, 8, 0, 8, 9, 28, 0),
+    /* 006B5F98: */ gsSP2Triangles(8, 28, 27, 0, 26, 1, 27, 0),
+    /* 006B5FA0: */ gsSP2Triangles(26, 27, 25, 0, 25, 24, 23, 0),
+    /* 006B5FA8: */ gsSP2Triangles(24, 2, 23, 0, 2, 22, 21, 0),
+    /* 006B5FB0: */ gsSP2Triangles(20, 6, 24, 0, 20, 5, 6, 0),
+    /* 006B5FB8: */ gsSP2Triangles(0, 3, 19, 0, 18, 10, 11, 0),
+    /* 006B5FC0: */ gsSP2Triangles(17, 18, 11, 0, 17, 11, 16, 0),
+    /* 006B5FC8: */ gsSP2Triangles(11, 15, 16, 0, 4, 14, 7, 0),
+    /* 006B5FD0: */ gsSP2Triangles(14, 13, 7, 0, 7, 13, 12, 0),
+    /* 006B5FD8: */ gsSPVertex(0x80331378, 1, 0),
+    /* 006B5FE0: */ gsSP1Triangle(0, 7, 12, 0),
+    /* 006B5FE8: */ gsDPPipeSync(),
+    /* 006B5FF0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B5FF8: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x00FC),
+    /* 006B6000: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801973B0),
+    /* 006B6008: */ gsDPLoadSync(),
+    /* 006B6010: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 256),
+    /* 006B6018: */ gsDPPipeSync(),
+    /* 006B6020: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_MIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B6028: */ gsSPVertex(0x80331388, 21, 0),
+    /* 006B6030: */ gsSP2Triangles(20, 19, 18, 0, 17, 19, 20, 0),
+    /* 006B6038: */ gsSP2Triangles(20, 16, 17, 0, 20, 15, 16, 0),
+    /* 006B6040: */ gsSP2Triangles(15, 14, 16, 0, 19, 13, 18, 0),
+    /* 006B6048: */ gsSP2Triangles(16, 14, 12, 0, 11, 12, 14, 0),
+    /* 006B6050: */ gsSP2Triangles(17, 10, 19, 0, 17, 16, 9, 0),
+    /* 006B6058: */ gsSP2Triangles(19, 8, 13, 0, 10, 8, 19, 0),
+    /* 006B6060: */ gsSP2Triangles(9, 16, 12, 0, 17, 9, 10, 0),
+    /* 006B6068: */ gsSP2Triangles(9, 7, 10, 0, 6, 13, 8, 0),
+    /* 006B6070: */ gsSP2Triangles(5, 13, 6, 0, 4, 8, 10, 0),
+    /* 006B6078: */ gsSP2Triangles(3, 4, 10, 0, 6, 8, 4, 0),
+    /* 006B6080: */ gsSP2Triangles(6, 4, 2, 0, 1, 6, 2, 0),
+    /* 006B6088: */ gsSP2Triangles(2, 0, 1, 0, 1, 5, 6, 0),
+    /* 006B6090: */ gsDPPipeSync(),
+    /* 006B6098: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B60A0: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B60A8: */ gsSPVertex(0x803314D8, 9, 0),
+    /* 006B60B0: */ gsSP2Triangles(8, 7, 6, 0, 7, 5, 6, 0),
+    /* 006B60B8: */ gsSP2Triangles(7, 4, 5, 0, 4, 3, 5, 0),
+    /* 006B60C0: */ gsSP2Triangles(2, 6, 5, 0, 5, 3, 1, 0),
+    /* 006B60C8: */ gsSP2Triangles(2, 5, 1, 0, 3, 0, 1, 0),
+    /* 006B60D0: */ gsDPPipeSync(),
+    /* 006B60D8: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B60E0: */ gsSPVertex(0x80330DE8, 5, 0),
+    /* 006B60E8: */ gsSPVertex(0x80331568, 11, 5),
+    /* 006B60F0: */ gsSP2Triangles(0, 15, 4, 0, 0, 14, 15, 0),
+    /* 006B60F8: */ gsSP2Triangles(0, 13, 14, 0, 0, 3, 13, 0),
+    /* 006B6100: */ gsSP2Triangles(15, 1, 4, 0, 12, 14, 13, 0),
+    /* 006B6108: */ gsSP2Triangles(11, 15, 14, 0, 12, 10, 14, 0),
+    /* 006B6110: */ gsSP2Triangles(15, 9, 1, 0, 15, 8, 9, 0),
+    /* 006B6118: */ gsSP2Triangles(7, 1, 9, 0, 9, 6, 7, 0),
+    /* 006B6120: */ gsSP2Triangles(7, 2, 1, 0, 5, 6, 9, 0),
+    /* 006B6128: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6130[] = {
+    /* 006B6130: */ gsDPPipeSync(),
+    /* 006B6138: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B6140: */ gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2),
+    /* 006B6148: */ gsDPSetAlphaCompare(G_AC_THRESHOLD),
+    /* 006B6150: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B6158: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B6160: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195560),
+    /* 006B6168: */ gsDPLoadSync(),
+    /* 006B6170: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B6178: */ gsDPPipeSync(),
+    /* 006B6180: */ gsSPDisplayList(0x0E000000),
+    /* 006B6188: */ gsDPLoadSync(),
+    /* 006B6190: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 255, 1024),
+    /* 006B6198: */ gsDPPipeSync(),
+    /* 006B61A0: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B61A8: */ gsSPVertex(0x80330F88, 1, 0),
+    /* 006B61B0: */ gsSPVertex(0x803321F8, 5, 1),
+    /* 006B61B8: */ gsSP2Triangles(5, 4, 3, 0, 0, 5, 3, 0),
+    /* 006B61C0: */ gsSP2Triangles(2, 5, 0, 0, 1, 2, 0, 0),
+    /* 006B61C8: */ gsDPPipeSync(),
+    /* 006B61D0: */ gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    /* 006B61D8: */ gsDPSetAlphaCompare(G_AC_NONE),
+    /* 006B61E0: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
+    /* 006B61E8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195130),
+    /* 006B61F0: */ gsDPLoadSync(),
+    /* 006B61F8: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B6200: */ gsDPPipeSync(),
+    /* 006B6208: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6210: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x007C),
+    /* 006B6218: */ gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, 0x80195158),
+    /* 006B6220: */ gsDPLoadSync(),
+    /* 006B6228: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 511, 512),
+    /* 006B6230: */ gsDPPipeSync(),
+    /* 006B6238: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD),
+    /* 006B6240: */ gsSPVertex(0x803320D8, 5, 0),
+    /* 006B6248: */ gsSPVertex(0x80332248, 13, 5),
+    /* 006B6250: */ gsSP2Triangles(0, 17, 2, 0, 0, 16, 17, 0),
+    /* 006B6258: */ gsSP2Triangles(17, 15, 2, 0, 17, 14, 15, 0),
+    /* 006B6260: */ gsSP2Triangles(0, 13, 12, 0, 0, 4, 13, 0),
+    /* 006B6268: */ gsSP2Triangles(11, 12, 13, 0, 13, 4, 10, 0),
+    /* 006B6270: */ gsSP2Triangles(11, 13, 10, 0, 4, 9, 10, 0),
+    /* 006B6278: */ gsSP2Triangles(4, 3, 9, 0, 9, 11, 10, 0),
+    /* 006B6280: */ gsSP2Triangles(8, 11, 9, 0, 8, 9, 7, 0),
+    /* 006B6288: */ gsSP2Triangles(9, 3, 7, 0, 6, 8, 7, 0),
+    /* 006B6290: */ gsSP2Triangles(6, 3, 1, 0, 6, 1, 5, 0),
+    /* 006B6298: */ gsSP2Triangles(5, 8, 6, 0, 3, 6, 7, 0),
+    /* 006B62A0: */ gsDPPipeSync(),
+    /* 006B62A8: */ gsDPSetPrimColor(0, 0, 0x50, 0x38, 0x60, 0xFF),
+    /* 006B62B0: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B62B8: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B62C0: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x007C, 0x007C),
+    /* 006B62C8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195BA0),
+    /* 006B62D0: */ gsDPLoadSync(),
+    /* 006B62D8: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 1023, 256),
+    /* 006B62E0: */ gsDPPipeSync(),
+    /* 006B62E8: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B62F0: */ gsSPVertex(0x80332128, 3, 0),
+    /* 006B62F8: */ gsSPVertex(0x80332178, 6, 3),
+    /* 006B6300: */ gsSPVertex(0x80332318, 13, 9),
+    /* 006B6308: */ gsSP2Triangles(21, 2, 8, 0, 8, 20, 21, 0),
+    /* 006B6310: */ gsSP2Triangles(19, 1, 18, 0, 17, 19, 18, 0),
+    /* 006B6318: */ gsSP2Triangles(1, 19, 16, 0, 19, 15, 16, 0),
+    /* 006B6320: */ gsSP2Triangles(14, 6, 7, 0, 13, 6, 14, 0),
+    /* 006B6328: */ gsSP2Triangles(0, 12, 5, 0, 11, 5, 12, 0),
+    /* 006B6330: */ gsSP2Triangles(4, 10, 9, 0, 4, 9, 3, 0),
+    /* 006B6338: */ gsDPPipeSync(),
+    /* 006B6340: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B6348: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x00FC),
+    /* 006B6350: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801973B0),
+    /* 006B6358: */ gsDPLoadSync(),
+    /* 006B6360: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 256),
+    /* 006B6368: */ gsDPPipeSync(),
+    /* 006B6370: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD, G_TX_MIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B6378: */ gsSPVertex(0x80332158, 2, 0),
+    /* 006B6380: */ gsSPVertex(0x803321D8, 2, 2),
+    /* 006B6388: */ gsSPVertex(0x803323E8, 23, 4),
+    /* 006B6390: */ gsSP2Triangles(26, 25, 24, 0, 24, 23, 26, 0),
+    /* 006B6398: */ gsSP2Triangles(24, 25, 22, 0, 23, 21, 26, 0),
+    /* 006B63A0: */ gsSP2Triangles(25, 20, 22, 0, 26, 19, 25, 0),
+    /* 006B63A8: */ gsSP2Triangles(26, 21, 18, 0, 25, 17, 20, 0),
+    /* 006B63B0: */ gsSP2Triangles(19, 17, 25, 0, 26, 18, 19, 0),
+    /* 006B63B8: */ gsSP2Triangles(16, 20, 17, 0, 18, 15, 19, 0),
+    /* 006B63C0: */ gsSP2Triangles(14, 15, 18, 0, 13, 15, 14, 0),
+    /* 006B63C8: */ gsSP2Triangles(13, 14, 12, 0, 14, 11, 12, 0),
+    /* 006B63D0: */ gsSP2Triangles(12, 11, 2, 0, 3, 12, 2, 0),
+    /* 006B63D8: */ gsSP2Triangles(18, 11, 14, 0, 10, 17, 19, 0),
+    /* 006B63E0: */ gsSP2Triangles(9, 10, 19, 0, 8, 16, 17, 0),
+    /* 006B63E8: */ gsSP2Triangles(9, 7, 10, 0, 9, 6, 7, 0),
+    /* 006B63F0: */ gsSP2Triangles(7, 6, 5, 0, 4, 7, 5, 0),
+    /* 006B63F8: */ gsSP2Triangles(4, 5, 1, 0, 5, 0, 1, 0),
+    /* 006B6400: */ gsSP2Triangles(4, 10, 7, 0, 8, 17, 10, 0),
+    /* 006B6408: */ gsDPPipeSync(),
+    /* 006B6410: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B6418: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B6420: */ gsSPVertex(0x80332558, 8, 0),
+    /* 006B6428: */ gsSP2Triangles(7, 6, 5, 0, 6, 4, 5, 0),
+    /* 006B6430: */ gsSP2Triangles(3, 5, 4, 0, 3, 4, 2, 0),
+    /* 006B6438: */ gsSP2Triangles(4, 1, 2, 0, 1, 0, 2, 0),
+    /* 006B6440: */ gsSP1Triangle(6, 1, 4, 0),
+    /* 006B6448: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6450[] = {
+    /* 006B6450: */ gsSPVertex(0x80332CF8, 1, 31),
+    /* 006B6458: */ gsSPBranchLessZ(0x80332D38, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6468: */ gsSPBranchLessZ(0x803331A0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6478: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6480[] = {
+    /* 006B6480: */ gsDPPipeSync(),
+    /* 006B6488: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B6490: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6498: */ gsSPVertex(0x80330DE8, 4, 0),
+    /* 006B64A0: */ gsSPVertex(0x80330E28, 1, 7),
+    /* 006B64A8: */ gsDPPipeSync(),
+    /* 006B64B0: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B64B8: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B64C0: */ gsSPTexture(0x0FC0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B64C8: */ gsSPVertex(0x80330E38, 3, 4),
+    /* 006B64D0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B64D8[] = {
+    /* 006B64D8: */ gsDPPipeSync(),
+    /* 006B64E0: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B64E8: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B64F0: */ gsSPTexture(0x0FC0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B64F8: */ gsSPVertex(0x803320D8, 5, 0),
+    /* 006B6500: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6508[] = {
+    /* 006B6508: */ gsSPBranchLessZ(0x803334F0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6518: */ gsSPBranchLessZ(0x80333548, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6528: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6530[] = {
+    /* 006B6530: */ gsDPPipeSync(),
+    /* 006B6538: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B6540: */ gsDPTileSync(),
+    /* 006B6548: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
+    /* 006B6550: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B6558: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801993C0),
+    /* 006B6560: */ gsDPLoadSync(),
+    /* 006B6568: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B6570: */ gsDPPipeSync(),
+    /* 006B6578: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6580: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x007C, 0x007C),
+    /* 006B6588: */ gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, 0x801993E8),
+    /* 006B6590: */ gsDPLoadSync(),
+    /* 006B6598: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 255, 1024),
+    /* 006B65A0: */ gsDPPipeSync(),
+    /* 006B65A8: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B65B0: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x01FC03FF),
+    /* 006B65B8: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B65C0: */ gsSPModifyVertex(6, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B65C8: */ gsSPVertex(0x80331618, 2, 8),
+    /* 006B65D0: */ gsSP1Triangle(5, 6, 9, 0),
+    /* 006B65D8: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x02940341),
+    /* 006B65E0: */ gsSP1Triangle(6, 8, 9, 0),
+    /* 006B65E8: */ gsSPModifyVertex(6, G_MWO_POINT_ST, 0x01640341),
+    /* 006B65F0: */ gsSP1Triangle(6, 5, 4, 0),
+    /* 006B65F8: */ gsDPPipeSync(),
+    /* 006B6600: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B6608: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B6610: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B6618: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6620: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6628: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6630: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6638: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6640: */ gsSPModifyVertex(6, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6648: */ gsSPModifyVertex(7, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6650: */ gsSPVertex(0x80331638, 6, 25),
+    /* 006B6658: */ gsSP2Triangles(26, 28, 0, 0, 25, 26, 7, 0),
+    /* 006B6660: */ gsSP2Triangles(26, 0, 7, 0, 3, 0, 28, 0),
+    /* 006B6668: */ gsSP2Triangles(3, 28, 29, 0, 25, 7, 1, 0),
+    /* 006B6670: */ gsSP2Triangles(29, 6, 3, 0, 27, 25, 1, 0),
+    /* 006B6678: */ gsSP2Triangles(30, 27, 2, 0, 27, 1, 2, 0),
+    /* 006B6680: */ gsSP1Triangle(30, 2, 5, 0),
+    /* 006B6688: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6690[] = {
+    /* 006B6690: */ gsDPPipeSync(),
+    /* 006B6698: */ gsDPTileSync(),
+    /* 006B66A0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, 5, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD),
+    /* 006B66A8: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B66B0: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801993C0),
+    /* 006B66B8: */ gsDPLoadSync(),
+    /* 006B66C0: */ gsDPLoadTLUTCmd(5, 15),
+    /* 006B66C8: */ gsDPPipeSync(),
+    /* 006B66D0: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B66D8: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x007C, 0x007C),
+    /* 006B66E0: */ gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, 0x801993E8),
+    /* 006B66E8: */ gsDPLoadSync(),
+    /* 006B66F0: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 255, 1024),
+    /* 006B66F8: */ gsDPPipeSync(),
+    /* 006B6700: */ gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 2, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B6708: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6710: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6718: */ gsSPVertex(0x803325D8, 1, 26),
+    /* 006B6720: */ gsSPVertex(0x803325E8, 1, 30),
+    /* 006B6728: */ gsSP2Triangles(3, 4, 26, 0, 26, 30, 3, 0),
+    /* 006B6730: */ gsDPPipeSync(),
+    /* 006B6738: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B6740: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B6748: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B6750: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B6758: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6760: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6768: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6770: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6778: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6780: */ gsSPVertex(0x803325F8, 2, 5),
+    /* 006B6788: */ gsSPVertex(0x80332618, 1, 25),
+    /* 006B6790: */ gsSPVertex(0x80332628, 3, 27),
+    /* 006B6798: */ gsSP2Triangles(28, 25, 0, 0, 27, 28, 2, 0),
+    /* 006B67A0: */ gsSP2Triangles(28, 0, 2, 0, 0, 0, 0, 0),
+    /* 006B67A8: */ gsSP2Triangles(4, 0, 25, 0, 4, 25, 6, 0),
+    /* 006B67B0: */ gsSP2Triangles(27, 2, 1, 0, 5, 29, 3, 0),
+    /* 006B67B8: */ gsSP2Triangles(29, 1, 3, 0, 29, 27, 1, 0),
+    /* 006B67C0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B67C8[] = {
+    /* 006B67C8: */ gsSPBranchLessZ(0x803335A0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B67D8: */ gsSPBranchLessZ(0x80333700, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B67E8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B67F0[] = {
+    /* 006B67F0: */ gsDPPipeSync(),
+    /* 006B67F8: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B6800: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B6808: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6810: */ gsSPModifyVertex(29, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6818: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6820: */ gsSPVertex(0x80331698, 5, 0),
+    /* 006B6828: */ gsSP2Triangles(30, 29, 4, 0, 29, 3, 4, 0),
+    /* 006B6830: */ gsSP2Triangles(4, 3, 2, 0, 3, 1, 2, 0),
+    /* 006B6838: */ gsSP1Triangle(4, 2, 0, 0),
+    /* 006B6840: */ gsDPPipeSync(),
+    /* 006B6848: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B6850: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B6858: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B6860: */ gsSPModifyVertex(25, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6868: */ gsSPModifyVertex(26, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6870: */ gsSPModifyVertex(27, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6878: */ gsSPModifyVertex(28, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6880: */ gsSPModifyVertex(29, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6888: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6890: */ gsSPVertex(0x803316E8, 17, 0),
+    /* 006B6898: */ gsSP2Triangles(28, 26, 16, 0, 26, 15, 16, 0),
+    /* 006B68A0: */ gsSP2Triangles(16, 15, 14, 0, 15, 13, 14, 0),
+    /* 006B68A8: */ gsSP2Triangles(15, 12, 13, 0, 16, 14, 11, 0),
+    /* 006B68B0: */ gsSP2Triangles(16, 11, 10, 0, 15, 9, 12, 0),
+    /* 006B68B8: */ gsSP2Triangles(9, 8, 12, 0, 9, 15, 26, 0),
+    /* 006B68C0: */ gsSP2Triangles(7, 16, 10, 0, 8, 9, 6, 0),
+    /* 006B68C8: */ gsSP2Triangles(28, 16, 7, 0, 25, 9, 26, 0),
+    /* 006B68D0: */ gsSP2Triangles(9, 5, 6, 0, 29, 28, 7, 0),
+    /* 006B68D8: */ gsSP2Triangles(25, 27, 9, 0, 6, 5, 4, 0),
+    /* 006B68E0: */ gsSP2Triangles(27, 5, 9, 0, 30, 3, 5, 0),
+    /* 006B68E8: */ gsSP2Triangles(5, 3, 2, 0, 27, 30, 5, 0),
+    /* 006B68F0: */ gsSP2Triangles(2, 3, 1, 0, 7, 10, 0, 0),
+    /* 006B68F8: */ gsSP1Triangle(4, 5, 2, 0),
+    /* 006B6900: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6908[] = {
+    /* 006B6908: */ gsDPPipeSync(),
+    /* 006B6910: */ gsDPSetTextureLUT(G_TT_RGBA16),
+    /* 006B6918: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B6920: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6928: */ gsSPModifyVertex(26, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6930: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x03EF03CF),
+    /* 006B6938: */ gsSPVertex(0x80332658, 2, 0),
+    /* 006B6940: */ gsSP2Triangles(1, 30, 26, 0, 0, 1, 26, 0),
+    /* 006B6948: */ gsDPPipeSync(),
+    /* 006B6950: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B6958: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B6960: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B6968: */ gsSPModifyVertex(25, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6970: */ gsSPModifyVertex(26, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6978: */ gsSPModifyVertex(27, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6980: */ gsSPModifyVertex(28, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6988: */ gsSPModifyVertex(29, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6990: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x00000000),
+    /* 006B6998: */ gsSPVertex(0x80332678, 10, 0),
+    /* 006B69A0: */ gsSP2Triangles(9, 25, 28, 0, 8, 9, 28, 0),
+    /* 006B69A8: */ gsSP2Triangles(7, 9, 8, 0, 8, 6, 7, 0),
+    /* 006B69B0: */ gsSP2Triangles(5, 6, 8, 0, 7, 4, 9, 0),
+    /* 006B69B8: */ gsSP2Triangles(8, 3, 5, 0, 3, 8, 28, 0),
+    /* 006B69C0: */ gsSP2Triangles(9, 4, 25, 0, 28, 27, 3, 0),
+    /* 006B69C8: */ gsSP2Triangles(2, 5, 3, 0, 4, 26, 25, 0),
+    /* 006B69D0: */ gsSP2Triangles(1, 3, 27, 0, 0, 2, 1, 0),
+    /* 006B69D8: */ gsSP2Triangles(0, 1, 29, 0, 29, 30, 0, 0),
+    /* 006B69E0: */ gsSP2Triangles(3, 1, 2, 0, 27, 29, 1, 0),
+    /* 006B69E8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B69F0[] = {
+    /* 006B69F0: */ gsSPBranchLessZ(0x80333860, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6A00: */ gsSPBranchLessZ(0x80333978, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6A10: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6A18[] = {
+    /* 006B6A18: */ gsDPPipeSync(),
+    /* 006B6A20: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B6A28: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6A30: */ gsSPVertex(0x80330E68, 4, 0),
+    /* 006B6A38: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6A40[] = {
+    /* 006B6A40: */ gsDPPipeSync(),
+    /* 006B6A48: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B6A50: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6A58: */ gsSPVertex(0x80332128, 3, 0),
+    /* 006B6A60: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6A68[] = {
+    /* 006B6A68: */ gsSPBranchLessZ(0x80333A88, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6A78: */ gsSPBranchLessZ(0x80333AB0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6A88: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6A90[] = {
+    /* 006B6A90: */ gsDPPipeSync(),
+    /* 006B6A98: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B6AA0: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6AA8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195BA0),
+    /* 006B6AB0: */ gsDPLoadSync(),
+    /* 006B6AB8: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 1023, 256),
+    /* 006B6AC0: */ gsDPPipeSync(),
+    /* 006B6AC8: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B6AD0: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6AD8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x030F03EF),
+    /* 006B6AE0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6AE8: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6AF0: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x010F03EF),
+    /* 006B6AF8: */ gsSPVertex(0x803317F8, 5, 26),
+    /* 006B6B00: */ gsSP2Triangles(27, 3, 26, 0, 28, 26, 3, 0),
+    /* 006B6B08: */ gsSP2Triangles(1, 3, 27, 0, 29, 28, 0, 0),
+    /* 006B6B10: */ gsSP2Triangles(3, 0, 28, 0, 0, 30, 29, 0),
+    /* 006B6B18: */ gsSP1Triangle(0, 2, 30, 0),
+    /* 006B6B20: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6B28[] = {
+    /* 006B6B28: */ gsDPPipeSync(),
+    /* 006B6B30: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD),
+    /* 006B6B38: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6B40: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80195BA0),
+    /* 006B6B48: */ gsDPLoadSync(),
+    /* 006B6B50: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 1023, 256),
+    /* 006B6B58: */ gsDPPipeSync(),
+    /* 006B6B60: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD),
+    /* 006B6B68: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6B70: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6B78: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6B80: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6B88: */ gsSPVertex(0x80332718, 3, 28),
+    /* 006B6B90: */ gsSP2Triangles(28, 1, 29, 0, 2, 1, 28, 0),
+    /* 006B6B98: */ gsSP2Triangles(1, 30, 29, 0, 1, 0, 30, 0),
+    /* 006B6BA0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6BA8[] = {
+    /* 006B6BA8: */ gsSPBranchLessZ(0x80333B00, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6BB8: */ gsSPBranchLessZ(0x80333B98, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6BC8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6BD0[] = {
+    /* 006B6BD0: */ gsDPPipeSync(),
+    /* 006B6BD8: */ gsSPModifyVertex(26, G_MWO_POINT_ST, 0x010F020F),
+    /* 006B6BE0: */ gsSPModifyVertex(27, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B6BE8: */ gsSPModifyVertex(28, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B6BF0: */ gsSPModifyVertex(29, G_MWO_POINT_ST, 0x030F020F),
+    /* 006B6BF8: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B6C00: */ gsSPVertex(0x80331848, 2, 0),
+    /* 006B6C08: */ gsSP2Triangles(26, 1, 27, 0, 26, 28, 1, 0),
+    /* 006B6C10: */ gsSP2Triangles(28, 29, 0, 0, 0, 29, 30, 0),
+    /* 006B6C18: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6C20[] = {
+    /* 006B6C20: */ gsDPPipeSync(),
+    /* 006B6C28: */ gsSPModifyVertex(28, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B6C30: */ gsSPModifyVertex(29, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B6C38: */ gsSPModifyVertex(30, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B6C40: */ gsSPVertex(0x80332748, 2, 0),
+    /* 006B6C48: */ gsSP2Triangles(29, 1, 28, 0, 0, 29, 30, 0),
+    /* 006B6C50: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6C58[] = {
+    /* 006B6C58: */ gsSPBranchLessZ(0x80333C40, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6C68: */ gsSPBranchLessZ(0x80333C90, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6C78: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6C80[] = {
+    /* 006B6C80: */ gsDPPipeSync(),
+    /* 006B6C88: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B6C90: */ gsSPTexture(0x0FC0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6C98: */ gsSPVertex(0x80330EA8, 2, 0),
+    /* 006B6CA0: */ gsDPPipeSync(),
+    /* 006B6CA8: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6CB0: */ gsSPVertex(0x80330EC8, 2, 2),
+    /* 006B6CB8: */ gsSPVertex(0x80330E88, 1, 4),
+    /* 006B6CC0: */ gsSPVertex(0x80330EE8, 2, 5),
+    /* 006B6CC8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6CD0[] = {
+    /* 006B6CD0: */ gsDPPipeSync(),
+    /* 006B6CD8: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B6CE0: */ gsSPTexture(0x07C0, 0x0FC0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6CE8: */ gsSPVertex(0x80332158, 2, 0),
+    /* 006B6CF0: */ gsDPPipeSync(),
+    /* 006B6CF8: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6D00: */ gsSPVertex(0x80332178, 3, 2),
+    /* 006B6D08: */ gsSPVertex(0x80332128, 1, 5),
+    /* 006B6D10: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6D18[] = {
+    /* 006B6D18: */ gsSPBranchLessZ(0x80333CF0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6D28: */ gsSPBranchLessZ(0x80333D40, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6D38: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6D40[] = {
+    /* 006B6D40: */ gsDPPipeSync(),
+    /* 006B6D48: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6D50: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6D58: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x005F03D3),
+    /* 006B6D60: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x00E803AA),
+    /* 006B6D68: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6D70: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6D78: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6D80: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6D88: */ gsSPVertex(0x80331868, 10, 7),
+    /* 006B6D90: */ gsSP2Triangles(5, 13, 4, 0, 13, 10, 4, 0),
+    /* 006B6D98: */ gsSP1Triangle(16, 13, 5, 0),
+    /* 006B6DA0: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6DA8: */ gsSPModifyVertex(6, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6DB0: */ gsSP2Triangles(12, 5, 3, 0, 14, 5, 12, 0),
+    /* 006B6DB8: */ gsSP2Triangles(11, 12, 3, 0, 1, 0, 15, 0),
+    /* 006B6DC0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6DC8: */ gsSP2Triangles(9, 2, 6, 0, 8, 9, 1, 0),
+    /* 006B6DD0: */ gsSP2Triangles(1, 9, 6, 0, 7, 2, 9, 0),
+    /* 006B6DD8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6DE0[] = {
+    /* 006B6DE0: */ gsDPPipeSync(),
+    /* 006B6DE8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6DF0: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6DF8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x034103E4),
+    /* 006B6E00: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03FF03BA),
+    /* 006B6E08: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6E10: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6E18: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B6E20: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B6E28: */ gsSPVertex(0x80332768, 6, 6),
+    /* 006B6E30: */ gsSP2Triangles(4, 10, 5, 0, 10, 8, 5, 0),
+    /* 006B6E38: */ gsSP2Triangles(10, 4, 9, 0, 1, 0, 11, 0),
+    /* 006B6E40: */ gsSP2Triangles(7, 3, 2, 0, 7, 6, 3, 0),
+    /* 006B6E48: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6E50[] = {
+    /* 006B6E50: */ gsSPBranchLessZ(0x80333DB0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6E60: */ gsSPBranchLessZ(0x80333E50, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6E70: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6E78[] = {
+    /* 006B6E78: */ gsDPPipeSync(),
+    /* 006B6E80: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B6E88: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6E90: */ gsSPVertex(0x80331868, 3, 0),
+    /* 006B6E98: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6EA0[] = {
+    /* 006B6EA0: */ gsDPPipeSync(),
+    /* 006B6EA8: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B6EB0: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6EB8: */ gsSPVertex(0x80332768, 2, 0),
+    /* 006B6EC0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6EC8[] = {
+    /* 006B6EC8: */ gsSPBranchLessZ(0x80333EE8, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6ED8: */ gsSPBranchLessZ(0x80333F10, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6EE8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6EF0[] = {
+    /* 006B6EF0: */ gsDPPipeSync(),
+    /* 006B6EF8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6F00: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6F08: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x01A403FB),
+    /* 006B6F10: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x0000038F),
+    /* 006B6F18: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B6F20: */ gsSPVertex(0x80331908, 2, 3),
+    /* 006B6F28: */ gsSP1Triangle(0, 4, 1, 0),
+    /* 006B6F30: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B6F38: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B6F40: */ gsSP1Triangle(2, 3, 0, 0),
+    /* 006B6F48: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B6F50: */ gsSP1Triangle(3, 2, 1, 0),
+    /* 006B6F58: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6F60[] = {
+    /* 006B6F60: */ gsDPPipeSync(),
+    /* 006B6F68: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B6F70: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B6F78: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B6F80: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B6F88: */ gsSPVertex(0x803327C8, 1, 2),
+    /* 006B6F90: */ gsSP1Triangle(1, 2, 0, 0),
+    /* 006B6F98: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6FA0[] = {
+    /* 006B6FA0: */ gsSPBranchLessZ(0x80333F60, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B6FB0: */ gsSPBranchLessZ(0x80333FD0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B6FC0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6FC8[] = {
+    /* 006B6FC8: */ gsDPPipeSync(),
+    /* 006B6FD0: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B6FD8: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B6FE0: */ gsSPVertex(0x80331898, 5, 0),
+    /* 006B6FE8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B6FF0[] = {
+    /* 006B6FF0: */ gsDPPipeSync(),
+    /* 006B6FF8: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7000: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7008: */ gsSPVertex(0x80332788, 3, 0),
+    /* 006B7010: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7018[] = {
+    /* 006B7018: */ gsSPBranchLessZ(0x80334038, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7028: */ gsSPBranchLessZ(0x80334060, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7038: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7040[] = {
+    /* 006B7040: */ gsDPPipeSync(),
+    /* 006B7048: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7050: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B7058: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x030F020F),
+    /* 006B7060: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B7068: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x010F020F),
+    /* 006B7070: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B7078: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B7080: */ gsSPVertex(0x80331928, 2, 5),
+    /* 006B7088: */ gsSP1Triangle(6, 0, 3, 0),
+    /* 006B7090: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x030F020F),
+    /* 006B7098: */ gsSP2Triangles(4, 6, 3, 0, 2, 1, 5, 0),
+    /* 006B70A0: */ gsSP1Triangle(4, 2, 5, 0),
+    /* 006B70A8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B70B0[] = {
+    /* 006B70B0: */ gsDPPipeSync(),
+    /* 006B70B8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B70C0: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B70C8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B70D0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B70D8: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B70E0: */ gsSPVertex(0x803327D8, 2, 3),
+    /* 006B70E8: */ gsSP2Triangles(0, 2, 4, 0, 1, 3, 2, 0),
+    /* 006B70F0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B70F8[] = {
+    /* 006B70F8: */ gsSPBranchLessZ(0x803340B0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7108: */ gsSPBranchLessZ(0x80334120, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7118: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7120[] = {
+    /* 006B7120: */ gsDPPipeSync(),
+    /* 006B7128: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7130: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7138: */ gsSPVertex(0x80330E78, 1, 0),
+    /* 006B7140: */ gsSPVertex(0x80330F08, 2, 1),
+    /* 006B7148: */ gsSPVertex(0x80330F28, 2, 5),
+    /* 006B7150: */ gsDPPipeSync(),
+    /* 006B7158: */ gsSPTexture(0x0FC0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7160: */ gsSPVertex(0x80330F48, 2, 3),
+    /* 006B7168: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7170[] = {
+    /* 006B7170: */ gsDPPipeSync(),
+    /* 006B7178: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7180: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7188: */ gsSPVertex(0x80332148, 1, 0),
+    /* 006B7190: */ gsSPVertex(0x803321A8, 1, 1),
+    /* 006B7198: */ gsSPVertex(0x803321B8, 2, 3),
+    /* 006B71A0: */ gsDPPipeSync(),
+    /* 006B71A8: */ gsSPTexture(0x07C0, 0x0FC0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B71B0: */ gsSPVertex(0x803321D8, 1, 2),
+    /* 006B71B8: */ gsSPVertex(0x803321E8, 1, 5),
+    /* 006B71C0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B71C8[] = {
+    /* 006B71C8: */ gsSPBranchLessZ(0x80334190, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B71D8: */ gsSPBranchLessZ(0x803341E0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B71E8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B71F0[] = {
+    /* 006B71F0: */ gsDPPipeSync(),
+    /* 006B71F8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7200: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B7208: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B7210: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B7218: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x033B03D3),
+    /* 006B7220: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B7228: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B7230: */ gsSPModifyVertex(6, G_MWO_POINT_ST, 0x020F03EF),
+    /* 006B7238: */ gsSPVertex(0x80331948, 10, 7),
+    /* 006B7240: */ gsSP2Triangles(10, 1, 0, 0, 10, 11, 1, 0),
+    /* 006B7248: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B7250: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B7258: */ gsSP2Triangles(13, 10, 0, 0, 5, 9, 6, 0),
+    /* 006B7260: */ gsSP2Triangles(5, 7, 9, 0, 9, 8, 4, 0),
+    /* 006B7268: */ gsSP1Triangle(9, 4, 6, 0),
+    /* 006B7270: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x03FF03AA),
+    /* 006B7278: */ gsSP2Triangles(3, 4, 16, 0, 1, 12, 2, 0),
+    /* 006B7280: */ gsSP2Triangles(1, 15, 12, 0, 12, 14, 2, 0),
+    /* 006B7288: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7290[] = {
+    /* 006B7290: */ gsDPPipeSync(),
+    /* 006B7298: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B72A0: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B72A8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B72B0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03EF03EF),
+    /* 006B72B8: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x03FF03BA),
+    /* 006B72C0: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B72C8: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x000F03EF),
+    /* 006B72D0: */ gsSPModifyVertex(5, G_MWO_POINT_ST, 0x034103E4),
+    /* 006B72D8: */ gsSPVertex(0x803327F8, 6, 6),
+    /* 006B72E0: */ gsSP2Triangles(9, 4, 0, 0, 8, 9, 0, 0),
+    /* 006B72E8: */ gsSP2Triangles(4, 9, 10, 0, 5, 2, 11, 0),
+    /* 006B72F0: */ gsSP2Triangles(1, 7, 3, 0, 6, 7, 1, 0),
+    /* 006B72F8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7300[] = {
+    /* 006B7300: */ gsSPBranchLessZ(0x80334260, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7310: */ gsSPBranchLessZ(0x80334300, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7320: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7328[] = {
+    /* 006B7328: */ gsDPPipeSync(),
+    /* 006B7330: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7338: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7340: */ gsSPVertex(0x80331948, 3, 0),
+    /* 006B7348: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7350[] = {
+    /* 006B7350: */ gsDPPipeSync(),
+    /* 006B7358: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7360: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7368: */ gsSPVertex(0x803327F8, 2, 0),
+    /* 006B7370: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7378[] = {
+    /* 006B7378: */ gsSPBranchLessZ(0x80334398, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7388: */ gsSPBranchLessZ(0x803343C0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7398: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B73A0[] = {
+    /* 006B73A0: */ gsDPPipeSync(),
+    /* 006B73A8: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B73B0: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B73B8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B73C0: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B73C8: */ gsSPVertex(0x803319E8, 2, 3),
+    /* 006B73D0: */ gsSP1Triangle(4, 2, 0, 0),
+    /* 006B73D8: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x000003FB),
+    /* 006B73E0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03FF038F),
+    /* 006B73E8: */ gsSP1Triangle(3, 0, 1, 0),
+    /* 006B73F0: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B73F8: */ gsSP1Triangle(2, 4, 1, 0),
+    /* 006B7400: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7408[] = {
+    /* 006B7408: */ gsDPPipeSync(),
+    /* 006B7410: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7418: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B7420: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B7428: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B7430: */ gsSPVertex(0x80332858, 1, 2),
+    /* 006B7438: */ gsSP1Triangle(2, 1, 0, 0),
+    /* 006B7440: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7448[] = {
+    /* 006B7448: */ gsSPBranchLessZ(0x80334410, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7458: */ gsSPBranchLessZ(0x80334478, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7468: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7470[] = {
+    /* 006B7470: */ gsDPPipeSync(),
+    /* 006B7478: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B7480: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B7488: */ gsSPVertex(0x80331978, 5, 0),
+    /* 006B7490: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7498[] = {
+    /* 006B7498: */ gsDPPipeSync(),
+    /* 006B74A0: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B74A8: */ gsSPTexture(0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON),
+    /* 006B74B0: */ gsSPVertex(0x80332818, 3, 0),
+    /* 006B74B8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B74C0[] = {
+    /* 006B74C0: */ gsSPBranchLessZ(0x803344E0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B74D0: */ gsSPBranchLessZ(0x80334508, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B74E0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B74E8[] = {
+    /* 006B74E8: */ gsDPPipeSync(),
+    /* 006B74F0: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B74F8: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B7500: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B7508: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B7510: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x020F020F),
+    /* 006B7518: */ gsSPModifyVertex(3, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B7520: */ gsSPVertex(0x80331A08, 2, 5),
+    /* 006B7528: */ gsSP1Triangle(6, 1, 0, 0),
+    /* 006B7530: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B7538: */ gsSPModifyVertex(4, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B7540: */ gsSP2Triangles(3, 6, 0, 0, 2, 1, 5, 0),
+    /* 006B7548: */ gsSP1Triangle(4, 2, 5, 0),
+    /* 006B7550: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7558[] = {
+    /* 006B7558: */ gsDPPipeSync(),
+    /* 006B7560: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7568: */ gsSPClearGeometryMode(G_CULL_BACK),
+    /* 006B7570: */ gsSPModifyVertex(0, G_MWO_POINT_ST, 0x03EF020F),
+    /* 006B7578: */ gsSPModifyVertex(1, G_MWO_POINT_ST, 0x01EF020F),
+    /* 006B7580: */ gsSPModifyVertex(2, G_MWO_POINT_ST, 0x000F020F),
+    /* 006B7588: */ gsSPVertex(0x80332868, 2, 3),
+    /* 006B7590: */ gsSP2Triangles(1, 0, 4, 0, 3, 2, 1, 0),
+    /* 006B7598: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B75A0[] = {
+    /* 006B75A0: */ gsSPBranchLessZ(0x80334558, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B75B0: */ gsSPBranchLessZ(0x803345C8, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B75C0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B75C8[] = {
+    /* 006B75C8: */ gsDPPipeSync(),
+    /* 006B75D0: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B75D8: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
+    /* 006B75E0: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x007C),
+    /* 006B75E8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801983B8),
+    /* 006B75F0: */ gsDPLoadSync(),
+    /* 006B75F8: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 128),
+    /* 006B7600: */ gsDPPipeSync(),
+    /* 006B7608: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD),
+    /* 006B7610: */ gsSPVertex(0x80331A28, 25, 0),
+    /* 006B7618: */ gsSP2Triangles(24, 23, 22, 0, 22, 21, 24, 0),
+    /* 006B7620: */ gsSP2Triangles(20, 21, 22, 0, 19, 21, 20, 0),
+    /* 006B7628: */ gsSP2Triangles(19, 18, 21, 0, 24, 18, 17, 0),
+    /* 006B7630: */ gsSP2Triangles(19, 20, 16, 0, 24, 21, 18, 0),
+    /* 006B7638: */ gsSP2Triangles(15, 23, 24, 0, 18, 19, 14, 0),
+    /* 006B7640: */ gsSP2Triangles(13, 16, 20, 0, 15, 24, 12, 0),
+    /* 006B7648: */ gsSP2Triangles(11, 12, 24, 0, 11, 24, 10, 0),
+    /* 006B7650: */ gsSP2Triangles(16, 14, 19, 0, 12, 11, 9, 0),
+    /* 006B7658: */ gsSP2Triangles(12, 9, 8, 0, 13, 7, 16, 0),
+    /* 006B7660: */ gsSP2Triangles(12, 6, 15, 0, 13, 5, 7, 0),
+    /* 006B7668: */ gsSP2Triangles(4, 8, 9, 0, 4, 9, 3, 0),
+    /* 006B7670: */ gsSP2Triangles(6, 12, 8, 0, 6, 8, 4, 0),
+    /* 006B7678: */ gsSP2Triangles(3, 2, 7, 0, 7, 4, 3, 0),
+    /* 006B7680: */ gsSP2Triangles(1, 7, 5, 0, 4, 7, 1, 0),
+    /* 006B7688: */ gsSP2Triangles(1, 6, 4, 0, 7, 0, 14, 0),
+    /* 006B7690: */ gsSP1Triangle(16, 7, 14, 0),
+    /* 006B7698: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B76A0[] = {
+    /* 006B76A0: */ gsDPPipeSync(),
+    /* 006B76A8: */ gsSPSetGeometryMode(G_CULL_BACK),
+    /* 006B76B0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 6, G_TX_NOLOD),
+    /* 006B76B8: */ gsDPSetTileSize(G_TX_RENDERTILE, 0, 0, 0x00FC, 0x007C),
+    /* 006B76C0: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x801983B8),
+    /* 006B76C8: */ gsDPLoadSync(),
+    /* 006B76D0: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 128),
+    /* 006B76D8: */ gsDPPipeSync(),
+    /* 006B76E0: */ gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_CLAMP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_CLAMP, 6, G_TX_NOLOD),
+    /* 006B76E8: */ gsSPVertex(0x80332888, 12, 0),
+    /* 006B76F0: */ gsSP2Triangles(11, 10, 9, 0, 11, 9, 8, 0),
+    /* 006B76F8: */ gsSP2Triangles(8, 9, 7, 0, 6, 10, 11, 0),
+    /* 006B7700: */ gsSP2Triangles(8, 7, 5, 0, 4, 6, 11, 0),
+    /* 006B7708: */ gsSP2Triangles(3, 8, 5, 0, 2, 3, 5, 0),
+    /* 006B7710: */ gsSP2Triangles(1, 3, 2, 0, 1, 0, 4, 0),
+    /* 006B7718: */ gsSP2Triangles(6, 4, 0, 0, 1, 4, 3, 0),
+    /* 006B7720: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7728[] = {
+    /* 006B7728: */ gsSPBranchLessZ(0x80334638, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7738: */ gsSPBranchLessZ(0x80334710, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7748: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7750[] = {
+    /* 006B7750: */ gsDPPipeSync(),
+    /* 006B7758: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B7760: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B7768: */ gsSPVertex(0x80331BB8, 14, 0),
+    /* 006B7770: */ gsSP2Triangles(13, 12, 11, 0, 13, 11, 10, 0),
+    /* 006B7778: */ gsSP2Triangles(9, 12, 13, 0, 11, 12, 8, 0),
+    /* 006B7780: */ gsSP2Triangles(7, 13, 10, 0, 10, 11, 8, 0),
+    /* 006B7788: */ gsSP2Triangles(7, 6, 13, 0, 8, 12, 9, 0),
+    /* 006B7790: */ gsSP2Triangles(6, 9, 13, 0, 5, 7, 10, 0),
+    /* 006B7798: */ gsSP2Triangles(4, 5, 10, 0, 3, 10, 8, 0),
+    /* 006B77A0: */ gsSP2Triangles(8, 9, 6, 0, 4, 10, 2, 0),
+    /* 006B77A8: */ gsSP2Triangles(5, 1, 7, 0, 3, 8, 6, 0),
+    /* 006B77B0: */ gsSP2Triangles(1, 6, 7, 0, 10, 3, 2, 0),
+    /* 006B77B8: */ gsSP2Triangles(5, 4, 0, 0, 3, 6, 1, 0),
+    /* 006B77C0: */ gsSP2Triangles(4, 2, 0, 0, 1, 5, 0, 0),
+    /* 006B77C8: */ gsSP2Triangles(2, 1, 0, 0, 2, 3, 1, 0),
+    /* 006B77D0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B77D8[] = {
+    /* 006B77D8: */ gsDPPipeSync(),
+    /* 006B77E0: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B77E8: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B77F0: */ gsSPVertex(0x80332948, 11, 0),
+    /* 006B77F8: */ gsSP2Triangles(10, 9, 8, 0, 7, 6, 5, 0),
+    /* 006B7800: */ gsSP2Triangles(4, 6, 7, 0, 5, 3, 7, 0),
+    /* 006B7808: */ gsSP2Triangles(5, 4, 3, 0, 4, 7, 3, 0),
+    /* 006B7810: */ gsSP1Triangle(2, 1, 0, 0),
+    /* 006B7818: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7820[] = {
+    /* 006B7820: */ gsSPBranchLessZ(0x803347C0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7830: */ gsSPBranchLessZ(0x80334848, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7840: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7848[] = {
+    /* 006B7848: */ gsDPPipeSync(),
+    /* 006B7850: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B7858: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7860: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80194128),
+    /* 006B7868: */ gsDPLoadSync(),
+    /* 006B7870: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 128),
+    /* 006B7878: */ gsDPPipeSync(),
+    /* 006B7880: */ gsSPVertex(0x80331C98, 12, 0),
+    /* 006B7888: */ gsSP2Triangles(11, 10, 9, 0, 8, 11, 9, 0),
+    /* 006B7890: */ gsSP2Triangles(9, 10, 7, 0, 8, 9, 7, 0),
+    /* 006B7898: */ gsSP2Triangles(8, 6, 11, 0, 5, 10, 11, 0),
+    /* 006B78A0: */ gsSP2Triangles(7, 6, 8, 0, 4, 7, 10, 0),
+    /* 006B78A8: */ gsSP2Triangles(11, 6, 3, 0, 11, 2, 5, 0),
+    /* 006B78B0: */ gsSP2Triangles(4, 10, 5, 0, 5, 2, 1, 0),
+    /* 006B78B8: */ gsSP2Triangles(1, 2, 3, 0, 1, 0, 5, 0),
+    /* 006B78C0: */ gsSP2Triangles(3, 0, 1, 0, 3, 2, 11, 0),
+    /* 006B78C8: */ gsSP2Triangles(6, 7, 4, 0, 3, 6, 4, 0),
+    /* 006B78D0: */ gsSP2Triangles(5, 0, 4, 0, 4, 0, 3, 0),
+    /* 006B78D8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B78E0[] = {
+    /* 006B78E0: */ gsDPPipeSync(),
+    /* 006B78E8: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B78F0: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B78F8: */ gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, 0x80194128),
+    /* 006B7900: */ gsDPLoadSync(),
+    /* 006B7908: */ gsDPLoadBlock(G_TX_LOADTILE, 0, 0, 2047, 128),
+    /* 006B7910: */ gsDPPipeSync(),
+    /* 006B7918: */ gsSPVertex(0x803329F8, 8, 0),
+    /* 006B7920: */ gsSP2Triangles(7, 6, 5, 0, 7, 5, 4, 0),
+    /* 006B7928: */ gsSP2Triangles(4, 6, 3, 0, 5, 6, 4, 0),
+    /* 006B7930: */ gsSP2Triangles(7, 2, 6, 0, 4, 2, 7, 0),
+    /* 006B7938: */ gsSP2Triangles(6, 2, 1, 0, 1, 3, 6, 0),
+    /* 006B7940: */ gsSP2Triangles(1, 2, 4, 0, 3, 0, 4, 0),
+    /* 006B7948: */ gsSP2Triangles(4, 0, 1, 0, 0, 3, 1, 0),
+    /* 006B7950: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7958[] = {
+    /* 006B7958: */ gsSPBranchLessZ(0x803348B8, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7968: */ gsSPBranchLessZ(0x80334950, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7978: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7980[] = {
+    /* 006B7980: */ gsDPPipeSync(),
+    /* 006B7988: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B7990: */ gsDPSetPrimColor(0, 0, 0x50, 0x58, 0x70, 0xFF),
+    /* 006B7998: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B79A0: */ gsSPVertex(0x80331D58, 15, 0),
+    /* 006B79A8: */ gsSP2Triangles(14, 13, 12, 0, 14, 11, 13, 0),
+    /* 006B79B0: */ gsSP2Triangles(11, 12, 13, 0, 12, 10, 14, 0),
+    /* 006B79B8: */ gsSP2Triangles(14, 9, 11, 0, 14, 8, 9, 0),
+    /* 006B79C0: */ gsSP2Triangles(10, 8, 14, 0, 7, 10, 12, 0),
+    /* 006B79C8: */ gsSP2Triangles(11, 6, 12, 0, 5, 11, 9, 0),
+    /* 006B79D0: */ gsSP2Triangles(7, 4, 10, 0, 3, 7, 12, 0),
+    /* 006B79D8: */ gsSP2Triangles(3, 12, 6, 0, 11, 2, 6, 0),
+    /* 006B79E0: */ gsSP2Triangles(9, 8, 1, 0, 5, 2, 11, 0),
+    /* 006B79E8: */ gsSP2Triangles(9, 1, 5, 0, 0, 10, 4, 0),
+    /* 006B79F0: */ gsSP2Triangles(0, 8, 10, 0, 0, 4, 7, 0),
+    /* 006B79F8: */ gsSP2Triangles(6, 8, 3, 0, 8, 6, 2, 0),
+    /* 006B7A00: */ gsSP2Triangles(8, 2, 1, 0, 1, 2, 5, 0),
+    /* 006B7A08: */ gsSP2Triangles(0, 3, 8, 0, 0, 7, 3, 0),
+    /* 006B7A10: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7A18[] = {
+    /* 006B7A18: */ gsDPPipeSync(),
+    /* 006B7A20: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B7A28: */ gsDPSetPrimColor(0, 0, 0x50, 0x58, 0x70, 0xFF),
+    /* 006B7A30: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B7A38: */ gsSPVertex(0x80332A78, 12, 0),
+    /* 006B7A40: */ gsSP2Triangles(11, 10, 9, 0, 9, 8, 11, 0),
+    /* 006B7A48: */ gsSP2Triangles(11, 8, 7, 0, 6, 10, 11, 0),
+    /* 006B7A50: */ gsSP2Triangles(5, 9, 10, 0, 8, 9, 5, 0),
+    /* 006B7A58: */ gsSP2Triangles(7, 8, 4, 0, 10, 6, 3, 0),
+    /* 006B7A60: */ gsSP2Triangles(4, 8, 5, 0, 10, 2, 5, 0),
+    /* 006B7A68: */ gsSP2Triangles(1, 2, 10, 0, 5, 6, 4, 0),
+    /* 006B7A70: */ gsSP2Triangles(6, 5, 2, 0, 7, 0, 6, 0),
+    /* 006B7A78: */ gsSP2Triangles(6, 2, 3, 0, 7, 4, 0, 0),
+    /* 006B7A80: */ gsSP2Triangles(0, 4, 6, 0, 7, 6, 11, 0),
+    /* 006B7A88: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7A90[] = {
+    /* 006B7A90: */ gsSPBranchLessZ(0x803349F0, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7AA0: */ gsSPBranchLessZ(0x80334A88, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7AB0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7AB8[] = {
+    /* 006B7AB8: */ gsDPPipeSync(),
+    /* 006B7AC0: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B7AC8: */ gsSPVertex(0x80331E48, 14, 0),
+    /* 006B7AD0: */ gsSP2Triangles(13, 12, 11, 0, 11, 12, 10, 0),
+    /* 006B7AD8: */ gsSP2Triangles(13, 11, 9, 0, 13, 8, 12, 0),
+    /* 006B7AE0: */ gsSP2Triangles(7, 11, 10, 0, 9, 11, 7, 0),
+    /* 006B7AE8: */ gsSP2Triangles(13, 9, 8, 0, 10, 12, 6, 0),
+    /* 006B7AF0: */ gsSP2Triangles(5, 7, 10, 0, 12, 8, 6, 0),
+    /* 006B7AF8: */ gsSP2Triangles(4, 5, 10, 0, 3, 9, 7, 0),
+    /* 006B7B00: */ gsSP2Triangles(4, 10, 6, 0, 8, 9, 3, 0),
+    /* 006B7B08: */ gsSP2Triangles(6, 8, 3, 0, 5, 2, 7, 0),
+    /* 006B7B10: */ gsSP2Triangles(4, 1, 5, 0, 2, 3, 7, 0),
+    /* 006B7B18: */ gsSP2Triangles(0, 4, 6, 0, 0, 6, 3, 0),
+    /* 006B7B20: */ gsSP2Triangles(0, 1, 4, 0, 2, 0, 3, 0),
+    /* 006B7B28: */ gsSP2Triangles(5, 1, 2, 0, 2, 1, 0, 0),
+    /* 006B7B30: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7B38[] = {
+    /* 006B7B38: */ gsDPPipeSync(),
+    /* 006B7B40: */ gsDPSetPrimColor(0, 0, 0xC8, 0x38, 0x38, 0xFF),
+    /* 006B7B48: */ gsSPVertex(0x80332B38, 8, 0),
+    /* 006B7B50: */ gsSP2Triangles(7, 6, 5, 0, 4, 3, 2, 0),
+    /* 006B7B58: */ gsSP2Triangles(3, 1, 2, 0, 3, 4, 1, 0),
+    /* 006B7B60: */ gsSP2Triangles(4, 0, 1, 0, 1, 0, 2, 0),
+    /* 006B7B68: */ gsSP1Triangle(2, 0, 4, 0),
+    /* 006B7B70: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7B78[] = {
+    /* 006B7B78: */ gsSPBranchLessZ(0x80334B28, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7B88: */ gsSPBranchLessZ(0x80334BA8, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7B98: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7BA0[] = {
+    /* 006B7BA0: */ gsDPPipeSync(),
+    /* 006B7BA8: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B7BB0: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7BB8: */ gsSPVertex(0x80331F28, 12, 0),
+    /* 006B7BC0: */ gsSP2Triangles(11, 10, 9, 0, 8, 10, 11, 0),
+    /* 006B7BC8: */ gsSP2Triangles(9, 7, 11, 0, 9, 10, 6, 0),
+    /* 006B7BD0: */ gsSP2Triangles(11, 7, 8, 0, 6, 10, 8, 0),
+    /* 006B7BD8: */ gsSP2Triangles(5, 7, 9, 0, 8, 7, 5, 0),
+    /* 006B7BE0: */ gsSP2Triangles(6, 4, 9, 0, 9, 4, 5, 0),
+    /* 006B7BE8: */ gsSP2Triangles(8, 3, 6, 0, 5, 3, 8, 0),
+    /* 006B7BF0: */ gsSP2Triangles(2, 4, 6, 0, 4, 1, 5, 0),
+    /* 006B7BF8: */ gsSP2Triangles(1, 4, 2, 0, 5, 1, 3, 0),
+    /* 006B7C00: */ gsSP2Triangles(6, 3, 0, 0, 1, 2, 0, 0),
+    /* 006B7C08: */ gsSP2Triangles(0, 3, 1, 0, 2, 6, 0, 0),
+    /* 006B7C10: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7C18[] = {
+    /* 006B7C18: */ gsDPPipeSync(),
+    /* 006B7C20: */ gsDPSetCombineMode(G_CC_MODULATEIDECALA, G_CC_PASS2),
+    /* 006B7C28: */ gsSPTexture(0xFFFF, 0xFFFF, 1, G_TX_RENDERTILE, G_ON),
+    /* 006B7C30: */ gsSPVertex(0x80332BB8, 8, 0),
+    /* 006B7C38: */ gsSP2Triangles(7, 6, 5, 0, 4, 6, 7, 0),
+    /* 006B7C40: */ gsSP2Triangles(6, 4, 3, 0, 7, 5, 3, 0),
+    /* 006B7C48: */ gsSP2Triangles(7, 2, 4, 0, 3, 4, 1, 0),
+    /* 006B7C50: */ gsSP2Triangles(3, 2, 7, 0, 1, 4, 0, 0),
+    /* 006B7C58: */ gsSP2Triangles(4, 2, 0, 0, 3, 1, 0, 0),
+    /* 006B7C60: */ gsSP2Triangles(0, 2, 3, 0, 3, 5, 6, 0),
+    /* 006B7C68: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7C70[] = {
+    /* 006B7C70: */ gsSPBranchLessZ(0x80334C10, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7C80: */ gsSPBranchLessZ(0x80334C88, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7C90: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7C98[] = {
+    /* 006B7C98: */ gsDPPipeSync(),
+    /* 006B7CA0: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B7CA8: */ gsDPSetPrimColor(0, 0, 0x50, 0x58, 0x70, 0xFF),
+    /* 006B7CB0: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B7CB8: */ gsSPVertex(0x80331FE8, 15, 0),
+    /* 006B7CC0: */ gsSP2Triangles(14, 13, 12, 0, 11, 14, 12, 0),
+    /* 006B7CC8: */ gsSP2Triangles(13, 10, 12, 0, 13, 14, 11, 0),
+    /* 006B7CD0: */ gsSP2Triangles(9, 13, 11, 0, 8, 13, 9, 0),
+    /* 006B7CD8: */ gsSP2Triangles(8, 10, 13, 0, 7, 11, 12, 0),
+    /* 006B7CE0: */ gsSP2Triangles(9, 6, 8, 0, 10, 7, 12, 0),
+    /* 006B7CE8: */ gsSP2Triangles(9, 11, 7, 0, 5, 10, 8, 0),
+    /* 006B7CF0: */ gsSP2Triangles(6, 4, 8, 0, 3, 9, 7, 0),
+    /* 006B7CF8: */ gsSP2Triangles(9, 3, 4, 0, 3, 2, 4, 0),
+    /* 006B7D00: */ gsSP2Triangles(5, 4, 1, 0, 1, 0, 5, 0),
+    /* 006B7D08: */ gsSP2Triangles(1, 2, 0, 0, 4, 2, 1, 0),
+    /* 006B7D10: */ gsSP2Triangles(0, 10, 5, 0, 0, 2, 10, 0),
+    /* 006B7D18: */ gsSP2Triangles(4, 5, 8, 0, 7, 10, 3, 0),
+    /* 006B7D20: */ gsSP2Triangles(6, 9, 4, 0, 2, 3, 10, 0),
+    /* 006B7D28: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7D30[] = {
+    /* 006B7D30: */ gsDPPipeSync(),
+    /* 006B7D38: */ gsDPSetCombineLERP(PRIMITIVE, 0, SHADE, 0, 0, 0, 0, PRIMITIVE, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED),
+    /* 006B7D40: */ gsDPSetPrimColor(0, 0, 0x50, 0x58, 0x70, 0xFF),
+    /* 006B7D48: */ gsSPTexture(0, 0, 0, G_TX_RENDERTILE, G_OFF),
+    /* 006B7D50: */ gsSPVertex(0x80332C38, 12, 0),
+    /* 006B7D58: */ gsSP2Triangles(11, 10, 9, 0, 10, 8, 9, 0),
+    /* 006B7D60: */ gsSP2Triangles(7, 11, 9, 0, 9, 6, 7, 0),
+    /* 006B7D68: */ gsSP2Triangles(7, 6, 5, 0, 7, 4, 11, 0),
+    /* 006B7D70: */ gsSP2Triangles(5, 4, 7, 0, 3, 11, 4, 0),
+    /* 006B7D78: */ gsSP2Triangles(3, 2, 11, 0, 4, 2, 1, 0),
+    /* 006B7D80: */ gsSP2Triangles(0, 6, 8, 0, 8, 11, 0, 0),
+    /* 006B7D88: */ gsSP2Triangles(2, 0, 11, 0, 0, 2, 4, 0),
+    /* 006B7D90: */ gsSP2Triangles(4, 5, 0, 0, 0, 5, 6, 0),
+    /* 006B7D98: */ gsSP2Triangles(8, 6, 9, 0, 11, 8, 10, 0),
+    /* 006B7DA0: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7DA8[] = {
+    /* 006B7DA8: */ gsSPBranchLessZ(0x80334D08, 31, 137.779, 1, 1023, G_BZ_PERSP),
+    /* 006B7DB8: */ gsSPBranchLessZ(0x80334DA0, 31, 322.956, 1, 1023, G_BZ_PERSP),
+    /* 006B7DC8: */ gsSPEndDisplayList(),
+};
+
+Gfx D_6B7DD0[] = {
+    /* 006B7DD0: */ gsDPPipeSync(),
+    /* 006B7DD8: */ gsSPDisplayList(0x80334E18),
+    /* 006B7DE0: */ gsDPPipeSync(),
+    /* 006B7DE8: */ gsDPPipelineMode(G_PM_1PRIMITIVE),
+    /* 006B7DF0: */ gsDPSetCycleType(G_CYC_2CYCLE),
+    /* 006B7DF8: */ gsDPSetTexturePersp(G_TP_PERSP),
+    /* 006B7E00: */ gsDPSetTextureDetail(G_TD_CLAMP),
+    /* 006B7E08: */ gsDPSetTextureLOD(G_TL_TILE),
+    /* 006B7E10: */ gsDPSetTextureLUT(G_TT_NONE),
+    /* 006B7E18: */ gsDPSetTextureFilter(G_TF_BILERP),
+    /* 006B7E20: */ gsDPSetTextureConvert(G_TC_FILT),
+    /* 006B7E28: */ gsDPSetCombineKey(G_CK_NONE),
+    /* 006B7E30: */ gsDPSetColorDither(G_CD_MAGICSQ),
+    /* 006B7E38: */ gsDPSetAlphaDither(G_AD_DISABLE),
+    /* 006B7E40: */ gsDPSetAlphaCompare(G_AC_NONE),
+    /* 006B7E48: */ gsDPSetDepthSource(G_ZS_PIXEL),
+    /* 006B7E50: */ gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    /* 006B7E58: */ gsSPEndDisplayList(),
+};
 
 DObjPayloadTypeI jynx_gfxdata[] = {
-    { NULL, jynx_first },
-    { jynx_part1_pre, jynx_part1_draw },
-    { NULL, jynx_part2_draw },
-    { jynx_part3_pre, jynx_part3_draw },
-    { NULL, jynx_part4_draw },
-    { jynx_part5_pre, jynx_part5_draw },
-    { jynx_part6_pre, jynx_part6_draw },
-    { jynx_part7_pre, jynx_part7_draw },
-    { jynx_part8_pre, jynx_part8_draw },
-    { jynx_part9_pre, jynx_part9_draw },
-    { jynx_part10_pre, jynx_part10_draw },
-    { NULL, jynx_part11_draw },
-    { NULL, jynx_part12_draw },
-    { NULL, jynx_part13_draw },
-    { NULL, jynx_part14_draw },
-    { NULL, jynx_part15_draw },
-    { NULL, jynx_part16_draw },
-    { NULL, jynx_last },
+    { NULL, (Gfx*) 0x80332D08 },
+    { (Gfx*) 0x80333578, (Gfx*) 0x80333838 },
+    { NULL, (Gfx*) 0x80333A60 },
+    { (Gfx*) 0x80333AD8, (Gfx*) 0x80333C18 },
+    { NULL, (Gfx*) 0x80333CC8 },
+    { (Gfx*) 0x80333D88, (Gfx*) 0x80333EC0 },
+    { (Gfx*) 0x80333F38, (Gfx*) 0x80334010 },
+    { (Gfx*) 0x80334088, (Gfx*) 0x80334168 },
+    { (Gfx*) 0x80334238, (Gfx*) 0x80334370 },
+    { (Gfx*) 0x803343E8, (Gfx*) 0x803344B8 },
+    { (Gfx*) 0x80334530, (Gfx*) 0x80334610 },
+    { NULL, (Gfx*) 0x80334798 },
+    { NULL, (Gfx*) 0x80334890 },
+    { NULL, (Gfx*) 0x803349C8 },
+    { NULL, (Gfx*) 0x80334B00 },
+    { NULL, (Gfx*) 0x80334BE8 },
+    { NULL, (Gfx*) 0x80334CE0 },
+    { NULL, (Gfx*) 0x80334E40 },
 };
 
 UnkEC64Arg3 jynx_model[] = {

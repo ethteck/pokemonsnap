@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define __ALIGNER_DF static u8 __CONCAT2__(aligner, __LINE__)[] = { 0xDF, 0, 0, 0, 0, 0, 0, 0 };
+#define __ALIGNER_DF static Gfx __CONCAT2__(aligner, __LINE__)[] = { gsSPEndDisplayList() };
 
 __ALIGNER_DF
 u8 font_btn_z[] = {

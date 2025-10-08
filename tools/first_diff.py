@@ -61,7 +61,7 @@ def main():
         build_dir / f"pokemonsnap.map",
         expected_build_dir / f"pokemonsnap.map",
         build_dir / f"pokemonsnap.z64",
-        expected_build_dir / f"pokemonsnap.z64",
+        expected_build_dir / f"/Users/marijn/Desktop/pokemonsnap/NPFP00.z64",
         args.count,
         mismatchSize=True,
         addColons=args.add_colons,

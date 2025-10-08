@@ -10,7 +10,7 @@ versions:
     compiled_target: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.z64"
     asm: "/home/ethteck/repos/pokemonsnap/asm"
     nonmatchings: "/home/ethteck/repos/pokemonsnap/asm/nonmatchings"
-    map: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.map"
+    map: "build/pokemonsnap.map"
     elf: "/home/ethteck/repos/pokemonsnap/build/pokemonsnap.elf"
     build_dir: "build"
 tools:

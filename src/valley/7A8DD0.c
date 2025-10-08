@@ -388,8 +388,14 @@ void func_802D0754_7A9CE4(s32 arg0) {
         case 0x42:
             soundID = SOUND_ID_162;
             break;
+        case 0x4C:
+            soundID = 172;
+            break;
         case 0x51:
             soundID = SOUND_ID_174;
+            break;
+        case 0x53:
+            soundID = 175;
             break;
     }
     if (soundID != 0) {

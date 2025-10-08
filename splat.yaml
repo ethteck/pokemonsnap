@@ -43,7 +43,6 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, pad]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]

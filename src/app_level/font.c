@@ -632,6 +632,59 @@ u8 font_arrowleft[] = {
 };
 
 __ALIGNER_DF
+u8 font_0[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_1[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_2[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_3[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_4[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_5[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_6[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_7[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_8[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_9[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_10[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_11[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_12[] = {
+#include "assets/app_level/font/question.png.bin.c"
+};
+
+__ALIGNER_DF
 u8 font_5317F8[] = {
 #include "assets/app_level/font/5317F8.png.bin.c"
 };
@@ -917,6 +970,19 @@ Bitmap font_mono_bitmaps[] = {
     { 9, 16, 0, 0, &font_532F98, 13, 0 },
     { 9, 16, 0, 0, &font_533070, 13, 0 },
     { 9, 16, 0, 0, &font_533148, 13, 0 },
+    { 9, 16, 0, 0, &font_0, 13, 0 },
+    { 9, 16, 0, 0, &font_1, 13, 0 },
+    { 9, 16, 0, 0, &font_2, 13, 0 },
+    { 9, 16, 0, 0, &font_3, 13, 0 },
+    { 9, 16, 0, 0, &font_4, 13, 0 },
+    { 9, 16, 0, 0, &font_5, 13, 0 },
+    { 9, 16, 0, 0, &font_6, 13, 0 },
+    { 9, 16, 0, 0, &font_7, 13, 0 },
+    { 9, 16, 0, 0, &font_8, 13, 0 },
+    { 9, 16, 0, 0, &font_9, 13, 0 },
+    { 9, 16, 0, 0, &font_10, 13, 0 },
+    { 9, 16, 0, 0, &font_11, 13, 0 },
+    { 9, 16, 0, 0, &font_12, 13, 0 },
 };
 
 Sprite mono_sprites = {
@@ -1104,6 +1170,134 @@ u8 D_803936B8_533AC8[] = {
 };
 
 u8 D_80393738_533B48[] = {
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x62,
+    0x61,
+    0x5D,
+    0x5C,
+    0x5B,
+    0x5A,
+    0x59,
+    0x3F,
+    0x3E,
+    0x84,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x87,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x86,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x85,
+    0x80,
+    0x75,
+    0x8A,
+    0xFF,
+    0x64,
+    0xFF,
+    0xFF,
+    0x8C,
+    0x81,
+    0x63,
+    0xFF,
+    0xFF,
+    0x8D,
+    0x76,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x79,
+    0x82,
+    0x77,
+    0x8B,
+    0xFF,
+    0x65,
+    0xFF,
+    0xFF,
+    0x83,
+    0x78,
+    0xFF,
+    0x66,
+    0xFF,
+    0xFF,
+    0x89,
+    0x6B,
+    0x7B,
+    0x6A,
+    0xFF,
+    0x67,
+    0xFF,
+    0xFF,
+    0x88,
+    0x70,
+    0x60,
+    0x71,
+    0x72,
+    0x7D,
+    0x7C,
+    0x6C,
+    0x6D,
+    0xFF,
+    0x7A,
+    0x7F,
+    0x74,
+    0x73,
+    0xFF,
+    0x68,
+    0xFF,
+    0xFF,
+    0x6F,
+    0x7E,
+    0x6E,
+    0x69,
+    0x00,
+    0x00,
+    0x00,
     0x08,
     0x07,
     0x08,
@@ -1202,49 +1396,54 @@ u8 D_80393738_533B48[] = {
     0x06,
     0x08,
     0x07,
+    0x07,
+    0x08,
+    0x08,
+    0x08,
+    0x07,
+    0x06,
+    0x06,
+    0x07,
+    0x07,
+    0x05,
+    0x03,
+    0x06,
+    0x06,
+    0x06,
+    0x06,
+    0x06,
+    0x06,
+    0x06,
+    0x08,
+    0x05,
+    0x08,
+    0x08,
+    0x08,
+    0x06,
+    0x07,
+    0x03,
+    0x03,
+    0x06,
+    0x06,
+    0x08,
+    0x07,
+    0x08,
+    0x08,
+    0x03,
+    0x06,
+    0x06,
+    0x07,
+    0x05,
+    0x07,
+    0x08,
+    0x08,
+    0x07,
+    0x05,
+    0x00,
     0x00,
     0x00,
 };
 
-s16 D_8039379C_533BAC[] = {
-    0xA2A5,
-    0xA2A7,
-    0xA1A1,
-    0xA1C1,
-    0xA1AA,
-    0xA1F7,
-    0xA1F4,
-    0xA1F0,
-    0xA1F3,
-    0xA1F5,
-    0xA1F6,
-    0xA1CA,
-    0xA1CB,
-    0xA1B2,
-    0xA1DC,
-    0xA1E1,
-    0xA1BC,
-    0xA1C7,
-    0xA1C9,
-    0xA1A8,
-    0xA1A7,
-    0xA1BF,
-    0xA1A5,
-    0xA1A4,
-    0xA1A9,
-    0xA1E3,
-    0xA1E4,
-    0xA1E9,
-    0xA1EA,
-    0xA2F7,
-    0xA2F8,
-    0xA2F9,
-    0xA1CE,
-    0xA1CF,
-    0xA6C5,
-    0xA2AA,
-    0xA2AB,
-    0x0000,
-};
+s16 D_8039379C_533BAC[] = { 0 };
 
 u32 Msg_FrameCounter = 0;

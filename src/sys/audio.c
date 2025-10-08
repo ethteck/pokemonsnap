@@ -906,6 +906,14 @@ void auCreatePlayers(void) {
     }
 }
 
+GLOBAL_ASM(
+    glabel _auThreadMain
+    nop
+    nop
+    nop
+    nop
+)
+
 void auThreadMain(UNUSED void* arg) {
     s32 i;
     s32 j;

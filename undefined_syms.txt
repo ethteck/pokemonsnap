@@ -371,3 +371,17 @@ bulbasaur_tex_8011D210 = 0x8011D210;
 bulbasaur_tex_8011D438 = 0x8011D438;
 bulbasaur_tex_8011D668 = 0x8011D668;
 bulbasaur_tex_8011DCA8 = 0x8011DCA8;
+
+D_80162398_1A84F8 = 0x80162398;
+D_80162E00_1A8F60 = 0x80162E00;
+D_80195E18_95B638 = 0x80195E18;
+
+gate_tex1_png = 0x800EFB90;
+gate_tex2_png = 0x800F0398;
+gate_tex3_png = 0x800EE178;
+gate_tex4_png = 0x800EF388;
+gate_tex2_pal = 0x800EE150;
+gate_tex1_pal = 0x800EE130;
+gate_part1 = 0x800F1A30;
+gate_part2 = 0x800F1E78;
+gate_last = 0x800F2168;

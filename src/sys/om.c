@@ -68,6 +68,22 @@ struct Mtx4Float omD_80040EF8 = { NULL, 0.0, { 0.0, 0.0, 1.0 } };
 struct Mtx4Float omD_80040F0C = { NULL, 0.0, { 0.0, 0.0, 0.0 } };
 struct Mtx3Float omD_80040F20 = { NULL, { 1.0, 1.0, 1.0 } };
 
+GLOBAL_ASM(
+    glabel _omGetThread
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+)
+
 GObjThread* omGetThread(void) {
     GObjThread* ret;
 

@@ -184,128 +184,299 @@ void contUpdateControllerIndices(void) {
     }
 }
 
-void contDetectDevices(void) {
-    s32 i, j, ret;
+void contDetectDevices(void);
 
-    osContStartQuery(&contSIEvtQueue);
-    osRecvMesg(&contSIEvtQueue, NULL, OS_MESG_BLOCK);
-    osContGetQuery(sContStatus);
-    for (i = 0; i < MAXCONTROLLERS; i++) {
-        if (sContStatus[i].errno != 0 || sContStatus[i].status & CONT_CARD_PULL) {
-            if (sContInfo[i].errno == 0 && (sContInfo[i].status & CONT_CARD_ON)) {
-                sContStatus[i].status = CONT_CARD_PULL;
-            } else {
-                sContStatus[i].status = 0;
-            }
-            sContDeviceTypes[i] = CONT_DEV_TYPE_NONE;
-        }
+GLOBAL_ASM(
+    glabel contDetectDevices
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+)
 
-        if (sContStatus[i].errno == 0 &&
-            (sContStatus[i].status & CONT_CARD_ON) &&
-            (!(sContInfo[i].status & CONT_CARD_ON) || sContInfo[i].errno != 0)) {
-            // new device inserted
-            for (j = 0; j < BLOCKSIZE; j++) {
-                contRamDataBlock[j] = OS_PFS_CHECK_ID;
-            }
-            ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
-            if (ret == PFS_ERR_NEW_PACK) {
-                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
-            }
-            if (ret != 0) {
-                continue;
-            }
+void contReadData(void);
 
-            ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
-            if (ret == 0 && contRamDataBlock[0x1F] == OS_PFS_CHECK_ID) {
-                sContDeviceTypes[i] = CONT_DEV_TYPE_NONE;
-            } else {
-                for (j = 0; j < BLOCKSIZE; j++) {
-                    contRamDataBlock[j] = 0x85; // what does 0x85 mean?
-                }
-                ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
-                if (ret == PFS_ERR_NEW_PACK) {
-                    ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
-                }
-                if (ret != 0) {
-                    continue;
-                }
-
-                ret = __osContRamRead(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock);
-                if (ret == 0 && contRamDataBlock[0x1F] == 0x85) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_PRINTER;
-                    if (contPrinterQueue.msg == NULL) {
-                        osCreateMesgQueue(&contPrinterQueue, contPrinterMessages, ARRAY_COUNT(contPrinterMessages));
-                    }
-                } else if (osGbpakInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_GAME_BOY_PAK;
-                    if (contGameBoyPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contGameBoyPakQueue, contGameBoyPakMessages, ARRAY_COUNT(contGameBoyPakMessages));
-                    }
-                    osGbpakReadId(&contPfs[i], &contGameBoyPakInfo[i].id, &contGameBoyPakInfo[i].status);
-                    osGbpakPower(&contPfs[i], OS_GBPAK_POWER_OFF);
-                } else if (osMotorInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_RUMBLE_PAK;
-                    if (contRumblePakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contRumblePakQueue, contRumblePakMessages, ARRAY_COUNT(contRumblePakMessages));
-                    }
-                } else if (osPfsInitPak(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_CONTROLLER_PAK;
-                    if (contControllerPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contControllerPakQueue, contControllerPakMessages, ARRAY_COUNT(contControllerPakMessages));
-                    }
-                    for (j = 0; j < 0x10; j++) {
-                        osPfsFileState(&contPfs[i], j, &contPfsGameNotes[i][j]);
-                    }
-                }
-            }
-        }
-        sContInfo[i].errno = sContStatus[i].errno;
-        sContInfo[i].status = sContStatus[i].status;
-    }
-}
-
-void contReadData(void) {
-    s32 i;
-
-    osContStartReadData(&contSIEvtQueue);
-    osRecvMesg(&contSIEvtQueue, NULL, OS_MESG_BLOCK);
-    osContGetReadData(contPadData);
-
-    for (i = 0; i != MAXCONTROLLERS; i++) {
-        if (!contPadData[i].errno && (sContStatus[i].status & CONT_CARD_ON) && sContInfo[i].errno) {
-            osMotorInit(&contSIEvtQueue, &contPfs[i], i);
-        }
-        sContInfo[i].errno = contPadData[i].errno;
-
-        if ((contPadData[i].errno & 0xFF) == 0) {
-            sContInfo[i].pressedButtons = (contPadData[i].button ^ sContInfo[i].buttons) & contPadData[i].button;
-            sContInfo[i].releasedButtons = (contPadData[i].button ^ sContInfo[i].buttons) & sContInfo[i].buttons;
-
-            if (contPadData[i].button ^ sContInfo[i].buttons) {
-                // new buttons pressed or released
-                sContInfo[i].heldButtons = sContInfo[i].pressedButtons;
-                sContInfo[i].counter = sContInfo[i].holdDelay;
-            } else {
-                sContInfo[i].counter--;
-                if (sContInfo[i].counter > 0) {
-                    sContInfo[i].heldButtons = 0;
-                } else {
-                    sContInfo[i].heldButtons = contPadData[i].button;
-                    sContInfo[i].counter = sContInfo[i].holdInterval;
-                }
-            }
-
-            sContInfo[i].buttons = contPadData[i].button;
-            sContInfo[i].stick_x = contPadData[i].stick_x;
-            sContInfo[i].stick_y = contPadData[i].stick_y;
-
-            sContInfo[i].pressedButtonsAccum |= sContInfo[i].pressedButtons;
-            sContInfo[i].releasedButtonsAccum |= sContInfo[i].releasedButtons;
-            sContInfo[i].heldButtonsAccum |= sContInfo[i].heldButtons;
-        }
-    }
-    sNeedUpdateGlobals = true;
-}
+GLOBAL_ASM(
+    glabel contReadData
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+)
 
 void contUpdateGlobals(void) {
     s32 i;

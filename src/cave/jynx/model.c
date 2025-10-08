@@ -1,18 +1,18 @@
 #include "common.h"
 
-extern u8 jynx_tex_80193B48[];
-extern u8 jynx_tex_80194B50[];
-extern u8 jynx_tex_80194B78_png[];
-extern u8 jynx_tex_80194F80[];
-extern u8 jynx_tex_80194FA8[];
-extern u8 jynx_tex_801951D8[];
-extern u8 jynx_tex_80195408[];
-extern u8 jynx_tex_80195610[];
-extern u8 jynx_tex_80195E18[];
-extern u8 jynx_tex_80196E20[];
-extern u8 jynx_tex_80197E28[];
-extern u8 jynx_tex_80198E30[];
-extern u8 jynx_tex_80198E58_png[];
+extern u8 jynx_tex_arm_png[];
+extern u8 jynx_tex_torso_pal[];
+extern u8 jynx_tex_torso_png[];
+extern u8 jynx_tex_eye_0_pal[];
+extern u8 jynx_tex_eye_0_png[];
+extern u8 jynx_tex_eye_1_png[];
+extern u8 jynx_tex_eye_2_png[];
+extern u8 jynx_tex_hair_png[];
+extern u8 jynx_tex_hair_2_png[];
+extern u8 jynx_tex_hair_3_png[];
+extern u8 jynx_tex_lips_png[];
+extern u8 jynx_tex_dress_pal[];
+extern u8 jynx_tex_dress_png[];
 
 extern Texture* jynx_part1_mat[];
 extern Gfx jynx_part0_draw[];
@@ -40,9 +40,9 @@ Texture** jynx_materials[] = {
 };
 
 u8* jynx_part1_mat0_textures[] = {
-    jynx_tex_80194FA8,
-    jynx_tex_801951D8,
-    jynx_tex_80195408,
+    jynx_tex_eye_0_png,
+    jynx_tex_eye_1_png,
+    jynx_tex_eye_2_png,
 };
 
 Texture jynx_part1_mat0 = {

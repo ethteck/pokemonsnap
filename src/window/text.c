@@ -397,40 +397,33 @@ s32 UIText_PrintChar32(UIText* arg0, s32 x, s32 y, s32 ch) {
     return UIText_GlyphSize[UIText_Charset] + UIText_ShadowOffset;
 }
 
-s32 UIText_Ascii2WideChar(s32 c) {
-    if (c > 0x20 && (u32) c < 0x7F) {
-        c = ((((u8*) UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*) UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
-    } else {
-        c = '　';
-    }
-    return c;
-}
-
 void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
     s32 printedChar;
     u8* ptr = str;
     s32 i;
     s32 posX;
+    s32 tmp;
 
     while (*ptr) {
         u32 c = ptr[0] & 0xFF;
 
-        if (c == '\n') {
-            ptr--;
-            goto NEXT_LINE;
-        } else {
-            printedChar = '　';
-            if (c == ' ') {
-                ptr--;
-            } else if ((s32) c > ' ' && c < 0x7F && c != '\\') {
-                ptr--;
-                printedChar = UIText_Ascii2WideChar(c);
-            } else {
+        switch (*ptr) {
+            case '\n':
+                goto NEXT_LINE;
+                break;
+
+            case '\\':
                 printedChar = ((ptr[0] << 8) & 0xFF00) | (ptr[1] & 0xFF);
-            }
+                ptr++;
+                break;
+
+            default:
+                printedChar = *ptr < 0x20 ? 0x20 : *ptr;
+                break;
         }
-        // BUG: specialChar may be uninitialized
         switch (printedChar) {
+            case ' ':
+                goto SKIP_PRINTING;
             case '\\a':
             case '\\b':
             case '\\c':
@@ -474,13 +467,6 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
                 goto END;
             case '\\n':
                 goto NEXT_LINE;
-            case '　':
-                goto SKIP_PRINTING;
-            case '◆':
-                goto NEXT_LINE;
-            case 0xA1DD:
-                printedChar = 'ー';
-                break;
             default:
                 if (c == '\\') {
                     if (UIText_PrintDelay != 0 && D_803A6A0C_87A1BC != NULL && !UIText_DelayDisabled) {
@@ -494,7 +480,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         if (D_8037EACC_85227C & 1) {
             posX = *x;
         } else {
-            s32 tmp = UIText_Charset != 0 ? 9 : 6;
+            tmp = UIText_Charset != 0 ? 9 : 6;
             posX = *x + (s32) ((tmp - UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)]) * .5 + 0.5);
         }
         if (text->bpp == 4) {
@@ -513,10 +499,27 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         }
 
         if (D_8037EACC_85227C & 1) {
-            if (printedChar == '　') {
-                *x += UIText_Charset != 0 ? 4 : 2;
-            } else {
-                *x += UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)] + 1;
+            switch (printedChar) {
+                case ' ':
+                    tmp = UIText_Charset != 0 ? 4 : 2;
+                    *x += tmp;
+                    break;
+                case 0x5C61: /* switch 2 */
+                case 0x5C62: /* switch 2 */
+                case 0x5C63: /* switch 2 */
+                case 0x5C64: /* switch 2 */
+                case 0x5C66: /* switch 2 */
+                case 0x5C6C: /* switch 2 */
+                case 0x5C6D: /* switch 2 */
+                case 0x5C72: /* switch 2 */
+                case 0x5C73: /* switch 2 */
+                case 0x5C75: /* switch 2 */
+                case 0x5C7A: /* switch 2 */
+                    *x += UIText_Charset != 0 ? 13 : 9;
+                    break;
+                default:
+                    *x += UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)] + 1;
+                    break;
             }
         } else {
             *x += UIText_Charset != 0 ? 9 : 6;
@@ -535,7 +538,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         }
 
     END:
-        ptr += 2;
+        ptr += 1;
     }
 
     UIText_DelayDisabled = false;

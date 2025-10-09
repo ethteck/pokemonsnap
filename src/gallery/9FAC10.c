@@ -352,10 +352,10 @@ void func_801DDCA8_9FB968(s32 arg0) {
             UIElement_PrintText(D_80230880_A4E540, "What an amazing picture!\n\\a Continue.   \\b I'm done.\n\\z Shows the full picture.");
             break;
         case 10:
-            UIElement_PrintText(D_80230880_A4E540, "Choose ”\\hSave\\p” to return to\nthe Title Screen.");
+            UIElement_PrintText(D_80230880_A4E540, "Choose \"\\hSave\\p\" to return to\nthe Title Screen.");
             break;
         case 6:
-            UIElement_PrintText(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists\nthen press \\a to print.");
+            UIElement_PrintText(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists.\nThen press \\a to print.");
             break;
         default:
             UIElement_PrintText(D_80230880_A4E540, "Return to the Title Screen\nby saving.");
@@ -683,7 +683,7 @@ void func_801DEE88_9FCB48(void) {
         UILayout_DisableButton(1, 0x20);
         UIElement_Draw(D_80230880_A4E540);
         UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
-        UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
+        UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
         if (func_801E1504_9FF1C4(1) != 0) {
             sp28 = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
             sp28->data.sobj->sprite.x = 40;
@@ -831,7 +831,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
         } else {
             UIElement_Draw(D_80230880_A4E540);
             UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
-            UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
+            UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
             if (func_801E1504_9FF1C4(1) != 0) {
                 gobj = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
                 gobj->data.sobj->sprite.x = 40;

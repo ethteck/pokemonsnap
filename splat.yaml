@@ -107,7 +107,7 @@ segments:
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, c, ../ultralib/src/audio/cspstop]
-    - [0x33030, pad]
+    # - [0x33030, pad]
     - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, c, ../ultralib/src/audio/sndpallocate]
@@ -150,6 +150,7 @@ segments:
     - [0x363B0, hasm, ../ultralib/src/os/probetlb]
     - [0x36470, c, ../ultralib/src/io/pimgr]
     - [0x365E0, c, ../ultralib/src/io/piacs]
+    - [0x36690, pad]
     - [0x366A0, c, ../ultralib/src/io/devmgr]
     - [0x36B30, c, ../ultralib/src/io/pirawdma]
     - [0x36C10, hasm,  ../ultralib/src/os/getcount]
@@ -9685,6 +9686,7 @@ segments:
     bss_size: 0x8A0
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, font]
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9702,7 +9704,15 @@ segments:
     - [0x848B50, c]
     - [0x848B80, c]
 
-    - [0x848BC0, data]
+    - start: 0x848BC0
+      type: .data
+      name: font
+      subsegments:
+      - {start: 0x848BC0,  name: font_8x8, type: i4, width: 8, height: 2960 }
+      - [0x84BA00]
+      - {start: 0x84BA04, name: font_12x12, type: i4, width: 12, height: 4440 }
+      - [0x852214]
+
     - [0x852220, .data, element]
     - [0x852250, .data, text]
     - [0x852920, data]

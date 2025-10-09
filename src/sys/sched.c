@@ -284,52 +284,15 @@ void scQueue3Remove(SCTaskGfx* task) {
     }
 }
 
-void scSetNewViMode(void);
-GLOBAL_ASM(
-glabel scSetNewViMode
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-nop
-
-
-)
+void scSetNewViMode(void) {
+    scViModeCurrent = scViModeNext;
+    osViSetMode(&scViModeCurrent);
+    osViBlack(scViSettings.blackout);
+    if (osTvType == 0) {
+        osViSetYScale(0.833f);
+    }
+    scViSettingsUpdated = false;
+}
 
 void func_80000F40(u32, u32, s32, s16, s16, s16, s16);
 #ifdef NON_MATCHING
@@ -1546,238 +1509,87 @@ void scAddTask(SCTaskInfo* task) {
 
 void scPreNMIDefault(void);
 
-void scMain(UNUSED void* arg);
+void scMain(void* arg) {
+    OSMesg intrMsg;
+    u32 pad;
+    OSViMode mode;
 
-GLOBAL_ASM(
-    glabel scMain
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-)
+    scClientList = NULL;
+    scPausedQueueHead = scPausedQueueTail = NULL;
+    scCurrentAudioTask = (SCTaskAudio*) scPausedQueueHead;
+    scCurrentGfxTask = (SCTaskGfx*) scCurrentAudioTask;
+    scMainQueueHead = scMainQueueTail = (SCTaskInfo*) scCurrentGfxTask;
+    scCurrentQueue3Task = scQueue3Head = scQueue3Tail = NULL;
+    scViSettingsUpdated = false;
+    scCurrentFrameBuffer = scNextFrameBuffer = scUnkFrameBuffer = NULL;
+    scUseCustomSwapBufferFunc = 0;
+    scPreNMIProc = scPreNMIDefault;
+    scBeforeReset = false;
+
+    switch (osTvType) {
+        case OS_TV_NTSC:
+            PANIC();
+            break;
+        case OS_TV_PAL:
+            mode = osViModeNtscLan1;
+            scViModeCurrent = mode;
+            scViModeNext = mode;
+            break;
+        case OS_TV_MPAL:
+            PANIC();
+            break;
+    }
+
+    scViModeCurrent.comRegs.ctrl = VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_DIVOT_ON | VI_CTRL_DITHER_FILTER_ON;
+    scViModeNext.comRegs.ctrl = VI_CTRL_TYPE_16 | VI_CTRL_GAMMA_DITHER_ON | VI_CTRL_DIVOT_ON | VI_CTRL_DITHER_FILTER_ON;
+    osViSetMode(&scViModeCurrent);
+    osViBlack(true);
+
+    scViSettings.unk_b80 = true;
+    scViSettings.serrate = false;
+    scViSettings.pixelSize32 = false;
+    scViSettings.gamma = false;
+    scViSettings.blackout = true;
+    scViSettings.unk_b04 = false;
+    scViSettings.gammaDither = true;
+    scViSettings.ditherFilter = true;
+    scViSettings.divot = true;
+
+    osCreateMesgQueue(&scTaskQueue, scMessages, ARRAY_COUNT(scMessages));
+    osViSetEvent(&scTaskQueue, (OSMesg) INTR_VRETRACE, 1);
+    osSetEventMesg(OS_EVENT_SP, &scTaskQueue, (OSMesg) INTR_SP_TASK_DONE);
+    osSetEventMesg(OS_EVENT_DP, &scTaskQueue, (OSMesg) INTR_DP_FULL_SYNC);
+    osSetEventMesg(OS_EVENT_PRENMI, &scTaskQueue, (OSMesg) INTR_SOFT_RESET);
+
+    osSendMesg(&gThreadingQueue, (OSMesg) 1, OS_MESG_NOBLOCK);
+
+    while (true) {
+        osRecvMesg(&scTaskQueue, &intrMsg, OS_MESG_BLOCK);
+
+        switch ((uintptr_t) intrMsg) {
+            case INTR_VRETRACE:
+                scHandleVRetrace();
+                break;
+            case INTR_SP_TASK_DONE:
+                scHandleSPTaskDone();
+                break;
+            case INTR_DP_FULL_SYNC:
+                scHandleDPFullSync();
+                break;
+            case INTR_SOFT_RESET:
+                if (scPreNMIProc != NULL) {
+                    scPreNMIProc();
+                }
+                break;
+            default:
+                // task added by client
+                if (scBeforeReset == false) {
+                    scAddTask((SCTaskInfo*) intrMsg);
+                }
+                break;
+        }
+    }
+}
 
 void scPreNMIDefault(void) {
     s32 i;

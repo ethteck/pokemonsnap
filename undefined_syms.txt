@@ -385,3 +385,4 @@ gate_tex1_pal = 0x800EE130;
 gate_part1 = 0x800F1A30;
 gate_part2 = 0x800F1E78;
 gate_last = 0x800F2168;
+func_801E1375 = 0x801E1378;

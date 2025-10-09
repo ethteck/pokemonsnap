@@ -303,7 +303,7 @@ s32 func_800E3CE8_8A9508(void) {
             auPlaySound(0x53);
             UIElement_Draw(sp2C);
             UIElement_SetTextPos(sp2C, 0, 32);
-            UIElement_PrintText(sp2C, "\\eSaving...\\p");
+            UIElement_PrintText(sp2C, "\\eSaving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
             ohWait(48);
             auSetBGMVolumeSmooth(0, 0, 30);
             ohWait(33);
@@ -350,6 +350,7 @@ s32 func_800E3ED4_8A96F4(void) {
     s32 temp_v1;
     char sp44[0x18];
     s32 var_s0;
+    s32 offset;
 
     var_s0 = 0;
     D_80206B40_9CC360 = func_800E3230_8A8A50();
@@ -419,6 +420,9 @@ s32 func_800E3ED4_8A96F4(void) {
                 if (!checkPlayerFlag(PFID_11)) {
                     UIElement_PrintText(func_800E1B40_8A7360(), "Should I take this course?\n\\a Let's go!   \\b Maybe later.");
                 } else {
+                    sprintf(sp44, "\\k\\i%8d\\g pts", 0);
+                    offset = UIText_GetStringWidth(sp44);
+                    offset = MAX(0, 191 - offset);
                     temp_s1 = func_800E1B40_8A7360();
                     temp_s0 = func_803751F8_8489A8(D_80195894_95B0B4);
                     if (temp_s0 < func_800C0224_5D0C4(D_80195894_95B0B4)) {
@@ -429,7 +433,7 @@ s32 func_800E3ED4_8A96F4(void) {
                     UIElement_SetTextPos(temp_s1, 0, 0);
                     UIElement_PrintText(temp_s1, "HI-SCORE");
                     sprintf(sp44, "\\i%8d\\g pts", func_800C0224_5D0C4(D_80195894_95B0B4));
-                    UIElement_SetTextPos(temp_s1, 96, 0);
+                    UIElement_SetTextPos(temp_s1, offset, 0);
                     UIElement_PrintText(temp_s1, sp44);
                     temp_s0 = func_803751F8_8489A8(D_80195894_95B0B4);
                     if (temp_s0 < func_800C0224_5D0C4(D_80195894_95B0B4)) {
@@ -440,7 +444,7 @@ s32 func_800E3ED4_8A96F4(void) {
                     UIElement_SetTextPos(temp_s1, 0, 16);
                     UIElement_PrintText(temp_s1, "CHALLENGE SCORE");
                     sprintf(sp44, "\\i%8d\\g pts", func_803751F8_8489A8(D_80195894_95B0B4));
-                    UIElement_SetTextPos(temp_s1, 96, 32);
+                    UIElement_SetTextPos(temp_s1, offset, 32);
                     UIElement_PrintText(temp_s1, sp44);
                     UIElement_SetColor(temp_s1, UI_FOREGROUND, 255, 255, 255, 255);
                 }

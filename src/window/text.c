@@ -278,11 +278,12 @@ void func_8036DC4C_8413FC(s32 r, s32 g, s32 b, s32 a) {
 }
 
 u8* UIText_GetGlyph(s32 ch) {
+    u8* p = UIText_CharTable;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(UIText_CharTable); i++) {
         u8* tmp = D_8037EA68_852218[UIText_Charset];
-        if (UIText_CharTable[i] == ch) {
+        if (p[i] == ch) {
             return i * UIText_GlyphSize[UIText_Charset] * UIText_GlyphSize[UIText_Charset] / 2 + tmp;
         }
     }

@@ -143,11 +143,11 @@ s32 func_801E2CF8_9D9668(UnkStruct800BEDF8* arg0, s32* arg1) {
     return 0;
 }
 
-s32 func_801E2EB0_9D9820(void) {
+s32 func_801E2EB0_9D9820(s32 arg0) {
     UnkStruct800BEDF8* sp2C;
     UNUSED s32 pad;
 
-    func_801E1378_9D7CE8();
+    func_801E1378_9D7CE8(arg0);
     func_800AA85C(0x18, 0xC);
     UILayout_CreateButtons(func_801E2850_9D91C0());
     FocusMark_SetTargetSize(0x3E, 0xC);
@@ -488,7 +488,7 @@ void func_801E3B18_9DA488(void) {
     while (true) {
         switch (sp18) {
             case 0:
-                sp18 = func_801E2EB0_9D9820();
+                sp18 = func_801E2EB0_9D9820(0);
                 break;
             case 1:
                 sp18 = func_801E3000_9D9970();

@@ -133,7 +133,7 @@ char* SpecialPokemonNames[] = {
     "Gust-using PIDGEY",
     "JIGGLYPUFF on Stage",
     "GRAVELER's Group Dance",
-    "The Rare Pokεmon MEW",
+    "The Rare Pokemon MEW",
     "Fighting MAGMAR",
     "JIGGLYPUFF TRIO on Stage",
 };
@@ -223,7 +223,7 @@ char* PhotoComments[] = {
     "Hmm... It looks happy.",
     "Hmm... It looks jolly.",
     "\\BOh! It sure is jolly!",
-    "Isn't the Pokεmon dance fun?",
+    "Isn't the Pokemon dance fun?",
     "\\BOh! It's rockin'!",
     "\\BOh! It's about to wake up!",
     "\\BOh! It's been caught!",
@@ -400,6 +400,13 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     return D_800AF3C0;
 }
 
+GLOBAL_ASM(
+    glabel split
+    nop
+    nop
+    nop
+    nop
+);
 // split here?
 
 UIElement* func_801DCCE0_98C750(void) {
@@ -489,7 +496,7 @@ s32 func_801DD05C_98CACC(UIElement* arg0, s32 arg1) {
         auPlaySound(0x4D);
     }
     UIElement_SetTextPos(arg0, 180, 32);
-    UIElement_PrintText(arg0, "　");
+    // UIElement_PrintText(arg0, "　");
     ohWait(1);
     UIButtonImage_DeleteAll();
     func_8036EB80_842330(1);
@@ -901,6 +908,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     char sp44[16];
     UnkStruct800BEDF8* sp40;
     s32 sp3C;
+    s32 _sp1EC;
 
     sp1F0 = 2;
     sp210 = 0;
@@ -961,9 +969,10 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
         }
         UIElement_Draw(D_802290DC_9D8B4C);
-        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
         UIText_SetShadowOffset(1);
         UIText_SetSpacing(-1, 3);
+        UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
         func_8037519C_84894C(D_802290DC_9D8B4C, SpecialPokemonNames[photo->specialID]);
         UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 255, 255);
         UIText_SetShadowOffset(1);
@@ -1011,9 +1020,21 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
             UIElement_SetFont(D_802290E4_9D8B54, FONT_8);
-            UIElement_SetTextPos(D_802290E4_9D8B54, 0, 0);
+            _sp1EC = 0x1D - UIText_GetStringWidth("\\j\\gLast time") / 2;
+            if (_sp1EC < 0) {
+                _sp1EC = 0;
+            }
+            UIElement_SetTextPos(D_802290E4_9D8B54, _sp1EC, 0);
             UIElement_PrintText(D_802290E4_9D8B54, "Last time");
-            UIElement_SetTextPos(D_802290E4_9D8B54, 144, 0);
+
+            _sp1EC = 0xAE - UIText_GetStringWidth("\\j\\gThis time") / 2;
+            if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x106) {
+                _sp1EC = 0x105 - UIText_GetStringWidth("\\j\\gThis time");
+            }
+            if (_sp1EC < 0) {
+                _sp1EC = 0;
+            }
+            UIElement_SetTextPos(D_802290E4_9D8B54, _sp1EC, 0);
             UIElement_PrintText(D_802290E4_9D8B54, "This time");
             if (!sp1E8) {
                 D_801F3E2C_9A389C = 0;
@@ -1068,9 +1089,24 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIText_SetShadowOffset(0);
                 UIText_SetSpacing(0, 4);
                 UIElement_SetFont(D_802290E4_9D8B54, FONT_8);
-                UIElement_SetTextPos(D_802290E4_9D8B54, 0, 0);
+                // UIElement_SetTextPos(D_802290E4_9D8B54, 0, 0);
+
+                _sp1EC = 0x1D - (UIText_GetStringWidth("\\j\\gLast time") / 2);
+                if (_sp1EC < 0) {
+                    _sp1EC = 0;
+                }
+
+                UIElement_SetTextPos(D_802290E4_9D8B54, _sp1EC, 0);
                 UIElement_PrintText(D_802290E4_9D8B54, "Last time");
-                UIElement_SetTextPos(D_802290E4_9D8B54, 144, 0);
+
+                _sp1EC = 0xAE - (UIText_GetStringWidth("\\j\\gThis time") / 2);
+                if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x106) {
+                    _sp1EC = 0x105 - UIText_GetStringWidth("\\j\\gThis time");
+                }
+                if (_sp1EC < 0) {
+                    _sp1EC = 0;
+                }
+                UIElement_SetTextPos(D_802290E4_9D8B54, _sp1EC, 0);
                 UIElement_PrintText(D_802290E4_9D8B54, "This time");
             }
             func_801DDAD8_98D548(D_801F3E64_9A38D4, sp210);
@@ -1159,7 +1195,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIText_SetShadowOffset(1);
                 UIText_SetSpacing(-1, 3);
                 UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
-                UIElement_PrintText(D_802290DC_9D8B4C, "It would be better if more of\nthe Pokεmon were in the shot.");
+                UIElement_PrintText(D_802290DC_9D8B4C, "It would be better if more of\nthe Pokemon were in the shot.");
             }
         } else if (sp1FA < 795.0f) {
             auPlaySound(SOUND_ID_94);
@@ -1317,7 +1353,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIElement_Draw(D_802290DC_9D8B4C);
                 UIText_SetShadowOffset(1);
                 UIText_SetSpacing(-1, 3);
-                UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close, but you see...\nIt disappoints Pokεmon to\nbe photographed from behind!");
+                UIElement_PrintText(D_802290DC_9D8B4C, "\\HYou were close, but you see...\nIt disappoints Pokemon to\nbe photographed from behind!");
             } else if (photo->posePts < 800) {
                 auPlaySound(SOUND_ID_94);
                 UIText_SetShadowOffset(0);
@@ -1386,7 +1422,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIText_SetPrintDelay(0);
                 UIText_SetShadowOffset(0);
                 UIText_SetSpacing(0, 4);
-                sprintf(sp214, "ｘ２");
+                sprintf(sp214, "x2");
                 UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
                 UIElement_PrintText(D_802290E0_9D8B50, sp214);
                 UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
@@ -1406,7 +1442,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 16);
-            UIElement_PrintText(D_802290DC_9D8B4C, "OK! The Pokεmon is right in");
+            UIElement_PrintText(D_802290DC_9D8B4C, "OK! The Pokemon is right in");
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
             UIElement_SetTextPos(D_802290DC_9D8B4C, 0, 32);
@@ -1423,7 +1459,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(0);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
-            sprintf(sp214, "ｘ２");
+            sprintf(sp214, "x2");
             UIElement_SetTextPos(D_802290E0_9D8B50, 184 - UIText_GetStringWidth(sp214), 48);
             UIElement_PrintText(D_802290E0_9D8B50, sp214);
             UIElement_SetColor(D_802290DC_9D8B4C, UI_FOREGROUND, 255, 255, 0, 255);
@@ -1445,7 +1481,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIElement_Draw(D_802290DC_9D8B4C);
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
-            UIElement_PrintText(D_802290DC_9D8B4C, "\\QWait...\nYour Pokεmon isn't\nin the middle of the frame.");
+            UIElement_PrintText(D_802290DC_9D8B4C, "\\QWait...\nYour Pokemon isn't\nin the middle of the frame.");
             if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
                 D_801F3E34_9A38A4 = true;
             }
@@ -1454,7 +1490,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIElement_Draw(D_802290DC_9D8B4C);
             UIText_SetShadowOffset(1);
             UIText_SetSpacing(-1, 3);
-            UIElement_PrintText(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokεmon were\nin the middle of the frame.");
+            UIElement_PrintText(D_802290DC_9D8B4C, "It would have been\nperfect if the Pokemon were\nin the middle of the frame.");
         }
         if ((!D_801F3E34_9A38A4) && (func_801DD05C_98CACC(D_802290DC_9D8B4C, 0) == B_BUTTON)) {
             D_801F3E34_9A38A4 = true;
@@ -1479,8 +1515,8 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(0);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
-            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same \x9C\x9B")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same \x9C\x9B");
             UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             UIElement_Draw(D_802290DC_9D8B4C);
             UIText_SetShadowOffset(1);
@@ -1528,8 +1564,8 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(0);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
-            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same \x9C\x9B")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same \x9C\x9B");
             UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             spE0 = sp25C->score.samePkmnBonus;
             UIText_SetShadowOffset(0);
@@ -1663,7 +1699,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(0);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
-            sprintf(sp214, "ｘ２");
+            sprintf(sp214, "x2");
             UIElement_SetTextPos(D_802290E0_9D8B50, 38 - UIText_GetStringWidth(sp214), 48);
             if (sp20C && sp25C->score.isWellFramed != 0) {
                 UIElement_PrintText(D_802290E0_9D8B50, sp214);
@@ -1680,8 +1716,8 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIText_SetPrintDelay(0);
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
-            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same †‡")) / 2) - 71, 48);
-            UIElement_PrintText(D_802290E0_9D8B50, "Same †‡");
+            UIElement_SetTextPos(D_802290E0_9D8B50, ((SCREEN_WIDTH - UIText_GetStringWidth("Same \x9C\x9B")) / 2) - 71, 48);
+            UIElement_PrintText(D_802290E0_9D8B50, "Same \x9C\x9B");
             UIText_SetPrintDelay(D_801F3E34_9A38A4 ? 0 : 2);
             if (sp20C) {
                 UIElement_SetTextPos(D_802290E0_9D8B50, 0, 48);
@@ -1806,6 +1842,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 } else {
                     auPlaySound(0x53);
                     photo->unk_1A_14 = 0;
+                    photo->unk_1A_13 = 0;
                     D_801F3E2C_9A389C = 1;
                     sp1EC = 0;
                 }
@@ -1932,11 +1969,13 @@ void func_801E2454_991EC4(void) {
     s32 sp58;
     s32 sp54;
     s32 sp50;
-    UNUSED s32 pad;
+    s32 pad;
     char* sp48;
     Photo* photo;
-    UNUSED s32 pad2;
+    s32 pad2;
     UIElement* sp3C;
+
+    s8 sp40[24];
 
     sp54 = -26;
     sp50 = 0;
@@ -1985,7 +2024,8 @@ void func_801E2454_991EC4(void) {
                 UIText_SetShadowOffset(0);
                 UIText_SetSpacing(0, 4);
                 UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
-                UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth(sp48)) / 2) - 71, 28);
+                sprintf(&sp40, "fooo %s", sp48);
+                UIElement_SetTextPos(D_802290E4_9D8B54, 0x66 - (UIText_GetStringWidth(&sp40) / 2), 28);
                 UIElement_PrintText(D_802290E4_9D8B54, sp48);
                 UIElement_SetState(D_802290E4_9D8B54, UI_NORMAL);
             }
@@ -2017,7 +2057,7 @@ void func_801E2454_991EC4(void) {
             UIText_SetShadowOffset(0);
             UIText_SetSpacing(0, 4);
             UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
-            UIElement_SetTextPos(D_802290E4_9D8B54, 60, 28);
+            UIElement_SetTextPos(D_802290E4_9D8B54, 0x66 - (UIText_GetStringWidth("PKMN Sign") / 2), 28);
             UIElement_PrintText(D_802290E4_9D8B54, "PKMN Sign");
             UIElement_SetState(D_802290E4_9D8B54, UI_NORMAL);
             func_801E1FA8_991A18(photo, 0, sp54);
@@ -2094,7 +2134,7 @@ void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
 
     if (arg2 < 0) {
         UIElement_SetTextPos(D_802290E0_9D8B50, 0, 10);
-        func_8037519C_84894C(D_802290E0_9D8B50, "Pokεmon in Report");
+        func_8037519C_84894C(D_802290E0_9D8B50, "Pokemon in Report");
         UIElement_SetTextPos(D_802290E0_9D8B50, 109, 10);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g kind%s", numPokemon, numPokemon != 1 ? "s" : "");
         UIElement_SetTextPos(D_802290E0_9D8B50, 0, 42);
@@ -2103,7 +2143,7 @@ void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g point%s", numPoints, numPoints != 1 ? "s" : "");
     } else {
         UIElement_SetTextPos(D_802290E0_9D8B50, 0, 2);
-        func_8037519C_84894C(D_802290E0_9D8B50, "Pokεmon in Report", numPokemon != 1 ? "s" : "");
+        func_8037519C_84894C(D_802290E0_9D8B50, "Pokemon in Report", numPokemon != 1 ? "s" : "");
         UIElement_SetTextPos(D_802290E0_9D8B50, 109, 2);
         func_8037519C_84894C(D_802290E0_9D8B50, "\\i%7d\\g kind%s", numPokemon, numPokemon != 1 ? "s" : "");
         UIElement_SetTextPos(D_802290E0_9D8B50, 0, 18);
@@ -2127,7 +2167,7 @@ void func_801E2AE8_992558(s32 numPokemon, s32 numPoints, s32 arg2) {
 
 void func_801E2ED4_992944(s32 arg0) {
     s32 i;
-    UNUSED s32 pad;
+    s32 pad;
     s32 sp54;
     s32 sp50;
     s32 sp4C;
@@ -2138,7 +2178,9 @@ void func_801E2ED4_992944(s32 arg0) {
     s32 sp38;
     s32 sp34;
     s32 sp30;
-    UNUSED s32 pad2;
+    s32 pad2;
+
+    // u32 offset;
 
     sp54 = 0;
     sp50 = 0;
@@ -2161,7 +2203,9 @@ void func_801E2ED4_992944(s32 arg0) {
     UIElement_Draw(D_802290E0_9D8B50);
     UIElement_SetState(D_802290E0_9D8B50, UI_NORMAL);
     UIElement_SetFont(D_802290E4_9D8B54, FONT_12);
-    UIElement_SetTextPos(D_802290E4_9D8B54, ((SCREEN_WIDTH - UIText_GetStringWidth("Evaluation")) / 2) - 71, 34);
+
+    // offset =  0x66- (UIText_GetStringWidth("Evaluation")/2);
+    UIElement_SetTextPos(D_802290E4_9D8B54, 0x66 - (UIText_GetStringWidth("Evaluation") / 2), 34);
     UIElement_PrintText(D_802290E4_9D8B54, "Evaluation");
 
     for (i = 0; i < 60; i++) {
@@ -2262,9 +2306,9 @@ void func_801E2ED4_992944(s32 arg0) {
     } else if (checkPlayerFlag(PFID_14) != 0) {
         func_8037519C_84894C(D_802290DC_9D8B4C, "The Report is complete,\nisn't it, %s?", getPlayerName());
     } else if (func_800BF3D4_5C274(PokemonID_MEW)) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokεmon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You need \\h%s\\p\nmore Pokemon to\ncomplete the PKMN Report!", func_8037501C_8487CC("%2d", 0x3F - sp44));
     } else if (func_800BFC5C_5CAFC() == 6) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "Take pictures of Pokεmon\nthat live on the Rainbow Cloud!");
+        func_8037519C_84894C(D_802290DC_9D8B4C, "Take pictures of Pokemon\nthat live on the Rainbow Cloud!");
     } else if (func_800BFC5C_5CAFC() == 5) {
         if (checkPlayerFlag(PFID_HAS_FLUTE) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you collect all the\nPKMN Signs, you will be able\nto enter the Secret Course.");
@@ -2273,22 +2317,22 @@ void func_801E2ED4_992944(s32 arg0) {
         } else if (func_801E4510_993F80() == 5) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", getPlayerName());
         } else {
-            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokεmon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", getPlayerName());
+            func_8037519C_84894C(D_802290DC_9D8B4C, "Hmm... Pokemon seem to\nbe \\hbowling\\p in the Valley.\nIt sure looks difficult.", getPlayerName());
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 40 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokemon picture(s).", func_8037501C_8487CC("%d", 40 - sp44));
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (checkPlayerFlag(PFID_HAS_PESTER_BALL) != 0) {
             if (func_801E4510_993F80() == 3) {
                 func_8037519C_84894C(D_802290DC_9D8B4C, "\\hA suspicious Switch...\\p\nGood luck, %s!", getPlayerName());
             } else {
-                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokεmon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", getPlayerName());
+                func_8037519C_84894C(D_802290DC_9D8B4C, "There are Pokemon \\hhiding\\p by\nthe River. Find them with\na PESTER BALL!", getPlayerName());
             }
         } else {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 72500 - sp48));
         }
     } else if (func_800BFC5C_5CAFC() == 2) {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 22 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokemon picture(s).", func_8037501C_8487CC("%d", 22 - sp44));
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (checkPlayerFlag(PFID_HAS_APPLE) != 0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "There is a \\hhidden path\\p in the\nTunnel!\n");
@@ -2297,7 +2341,7 @@ void func_801E2ED4_992944(s32 arg0) {
             func_8037519C_84894C(D_802290DC_9D8B4C, "If you get \\h%s\\p more pts.\non your PKMN Report, you'll\nget something cool.", func_8037501C_8487CC("%d", 24000 - sp48));
         }
     } else {
-        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokεmon picture(s).", func_8037501C_8487CC("%d", 6 - sp44));
+        func_8037519C_84894C(D_802290DC_9D8B4C, "You'll find out what the next\ncourse is if you take \\h%s\\p\nmore Pokemon picture(s).", func_8037501C_8487CC("%d", 6 - sp44));
     }
     func_80374F30_8486E0(D_802290DC_9D8B4C, true);
 }
@@ -2324,10 +2368,10 @@ void func_801E3934_9933A4(void) {
 }
 
 void func_801E39DC_99344C(GObj* arg0) {
-    UNUSED s32 pad;
+    s32 pad;
     s32 sp48;
     s32 i;
-    UNUSED s32 pad2;
+    s32 pad2;
     UIElement* sp3C;
     UIFrame* sp38;
     ucolor sp34; // ?
@@ -2352,7 +2396,7 @@ void func_801E39DC_99344C(GObj* arg0) {
 
     levelName = getLevelName(getLevelId());
     if (levelName == NULL) {
-        levelName = "−−−";
+        levelName = "---";
     } else {
         sprintf(D_802290E8_9D8B58, "%s Course", levelName);
         levelName = D_802290E8_9D8B58;
@@ -2366,7 +2410,13 @@ void func_801E39DC_99344C(GObj* arg0) {
     UIText_SetShadowOffset(0);
     UIText_SetSpacing(0, 4);
     UIElement_SetState(sp3C, UI_HIDDEN);
-    UIElement_SetTextPos(sp3C, 90 - (strlen(levelName) * 3), 62);
+
+    if ((0x58 - (UIText_GetStringWidth(levelName) / 2)) < 0) {
+        UIElement_SetTextPos(sp3C, 0, 0x3E);
+    } else {
+        UIElement_SetTextPos(sp3C, (0x58 - (UIText_GetStringWidth(levelName) / 2)), 62);
+    }
+
     UIElement_PrintText(sp3C, levelName);
     sp38 = UIFrame_Create();
     D_802290D8_9D8B48 = sp38;

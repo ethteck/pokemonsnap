@@ -133,6 +133,26 @@ void func_800E4B4C_A0C0DC(GObj* arg0) {
     }
 }
 
+GLOBAL_ASM(
+    glabel pad
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+);
+
 void func_800E4D74_A0C304(void) {
     GObj* gobj;
 

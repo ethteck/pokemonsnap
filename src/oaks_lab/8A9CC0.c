@@ -70,14 +70,14 @@ void func_800E467C_8A9E9C(void) {
     UIElement* temp_v0;
 
     char* sp54[] = {
-        "\\w\\1\\LHello there\\t, %s!\nI'm Oak, the Pokεmon professor.",
+        "\\w\\1\\LHello there\\t, %s!\nI'm Oak, the Pokemon professor.",
         NULL,
     };
 
     char* sp3C[] = {
         "\\2The reason I invited you here\nis \\Mthis PKMN Report.",
-        "I'd like for you to take\npictures of Pokεmon\nfor the PKMN Report.",
-        "H\\3\\Mere on Pokεmon Island,\nwild Pokεmon can be\nfound everywhere.",
+        "I'd like for you to take\npictures of Pokemon\nfor the PKMN Report.",
+        "H\\3\\Mere on Pokemon Island,\nwild Pokemon can be\nfound everywhere.",
         "T\\4his is my new invention:\nthe \\MZERO-ONE Vehicle. You\ncan take this on your trip.",
         "\\6The ZERO-ONE Vehicle\nconstantly moves toward \\Mthe\nGOAL GATE!",
         NULL,
@@ -113,7 +113,7 @@ void func_800E467C_8A9E9C(void) {
 void func_800E47C0_8A9FE0(void) {
     char* unused;
     char* sp1C[] = {
-        "I've been expecting you,\n%s! The Pokεmon\nAcademy has officially\n",
+        "I've been expecting you,\n%s! The Pokemon\nAcademy has officially\n",
         "announced the record for the\nhighest photo score!",
         "Now you can compete to see\nhow many total points you\ncan get.",
         "I have arranged it so that you\ncan see the \\hChallenge Score\\p\nfor each course.",
@@ -135,7 +135,7 @@ void func_800E482C_8AA04C(void) {
 void func_800E4878_8AA098(void) {
     UIElement* var;
     char* sp1C[] = {
-        "Are you going to take\nPokεmon pictures?\nGood luck, %s!",
+        "Are you going to take\nPokemon pictures?\nGood luck, %s!",
         0x00000000,
     };
 
@@ -204,7 +204,7 @@ void func_800E4AC0_8AA2E0(void) {
     char* sp18[] = {
         "I saw the pictures taken\nby %s.",
         "I saved those pictures in\nthe PKMN Report.",
-        "I'll help you out once you have\nmore Pokεmon pictures.",
+        "I'll help you out once you have\nmore Pokemon pictures.",
         "Good luck, %s!\nOh! I have arranged it so that\nyou can see the PKMN Report.",
         NULL,
     };
@@ -295,12 +295,12 @@ void func_800E4D6C_8AA58C(void) {
     char* sp18[] = {
         "You finally got all of\nthe \\hPKMN Sign\\p pictures!",
         "\\JHmm... After looking at these\nsix pictures, I've noticed that\nthe Signs are just like the",
-        "constellations that can be\nseen from Pokεmon Island!",
+        "constellations that can be\nseen from Pokemon Island!",
         "That's the key to this mystery!\nNow it all makes sense!\n\\PIt's the sky!",
         "Rainbow Cloud, floating in the\nsky, is the secret course!",
         "Someone in the clouds must\nhave created the PKMN Signs.",
         "I have made a new path\nto the Rainbow Cloud.",
-        "This could prove very important\nfor Pokεmon research.\nGood luck, %s!",
+        "This could prove very important\nfor Pokemon research.\nGood luck, %s!",
         0x00000000,
     };
 
@@ -312,7 +312,7 @@ void func_800E4DD4_8AA5F4(void) {
     UIElement* i;
     char* sp18[] = {
         "I've seen your \\hPKMN Sign\\p in\npictures!",
-        "\\OWe have solved a Pokεmon\nIsland mystery.\nKeep going!",
+        "\\OWe have solved a Pokemon\nIsland mystery.\nKeep going!",
         0x00000000,
     };
 
@@ -324,29 +324,29 @@ void func_800E4E28_8AA648(s32 arg0) {
     UIElement* temp_v0;
     char* sp88[] = {
         "You take pictures at a good\npace. To make your work easier,\n\\Dhere is a present for you.\n",
-        "It will come in handy for taking\nPokεmon pictures.",
+        "It will come in handy for taking\nPokemon pictures.",
         0x00000000,
     };
     char* sp68[] = {
-        "Would you like to be\ncloser with Pokεmon?",
-        "\\w\\1Then use \\Mthis \\7apple-shaped\\t\n\\hPOKεMON FOOD\\p.",
+        "Would you like to be\ncloser with Pokemon?",
+        "\\w\\1Then use \\Mthis \\7apple-shaped\\t\n\\hPOKeMON FOOD\\p.",
         "It's easy to use! When you are\nnot focusing your camera,\npress \\a to throw it.",
-        "Pokεmon in the distance will\nhappily come closer when you\nuse this item.",
+        "Pokemon in the distance will\nhappily come closer when you\nuse this item.",
         "If you want to throw farther,\nlook up slightly, then throw!\nHere's a hint for you:",
-        "Throw some Pokεmon Food\nto an \\hELECTRODE that's not\\p\n\\hmoving\\p and see what happens!",
+        "Throw some Pokemon Food\nto an \\hELECTRODE that's not\\p\n\\hmoving\\p and see what happens!",
         "Good luck, %s!",
         0x00000000,
     };
     char* sp58[] = {
-        "\\w\\1If you see a place where you\nthink Pokεmon might be hiding,\nuse \\Mthis \\8\\hPESTER BALL\\p\\t.",
+        "\\w\\1If you see a place where you\nthink Pokemon might be hiding,\nuse \\Mthis \\8\\hPESTER BALL\\p\\t.",
         "It's easy! Press \\b when you\nare not focusing your camera.",
-        "This will make hidden Pokεmon\ncome out into the open.",
+        "This will make hidden Pokemon\ncome out into the open.",
         0x00000000,
     };
     char* sp44[] = {
-        "Would you like to see rare\nPokεmon poses?",
-        "\\w\\1Play \\Mthis \\9\\hPOKε FLUTE\\p\\t to\nmake it happen!\nIt's easy to use!",
-        "The \\d C Button allows\nyou to play the\n\\hPokε Flute\\p.",
+        "Would you like to see rare\nPokemon poses?",
+        "\\w\\1Play \\Mthis \\9\\hPOKe FLUTE\\p\\t to\nmake it happen!\nIt's easy to use!",
+        "The \\d C Button allows\nyou to play the\n\\hPoke Flute\\p.",
         "You can listen to different\nmusic by using \\d.\nTry playing it often!",
         0x00000000,
     };
@@ -385,10 +385,10 @@ void func_800E502C_8AA84C(void) {
     UIElement* i;
     char* sp18[] = {
         "You have completed the\nPKMN Report!",
-        "%s is a genuine Pokεmon\nphotographer.\n\\KCongratulations!",
+        "%s is a genuine Pokemon\nphotographer.\n\\KCongratulations!",
         "I have nothing left to\nteach you.",
         "Listen to your instincts\nand click the shutter when you\nsee something that looks cool.",
-        "Pokεmon research on this island\nseemed long at first,\nbut it really went by fast.",
+        "Pokemon research on this island\nseemed long at first,\nbut it really went by fast.",
         "I appreciate all of your help.\nWell then, see you later!",
         0x00000000,
     };
@@ -439,7 +439,7 @@ void func_800E5120_8AA940(void) {
     UIElement_SetTextPos(sp1C, 0, 0);
     UIElement_PrintText(sp1C, "Well then, see you later!");
     UIElement_SetTextPos(sp1C, 0, 32);
-    UIElement_PrintText(sp1C, "\\eSaving...\\p");
+    UIElement_PrintText(sp1C, "\\eSaving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
     auSetBGMVolumeSmooth(0, 0, 30);
     ohWait(0x21);
     if (func_800BF244_5C0E4() != 0) {

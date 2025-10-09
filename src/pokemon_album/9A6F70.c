@@ -97,6 +97,10 @@ s32 album_GetCurrentPage(void) {
     return album_AlbumPage;
 }
 
+u8 func_801DD2FC(void) {
+    return album_CharGridId;
+}
+
 s32 func_801DCD3C_9A6F8C(s32 idx) {
     if (idx < 0 || idx >= ARRAY_COUNT(D_80208B58_9D2DA8)) {
         return -1;
@@ -104,36 +108,57 @@ s32 func_801DCD3C_9A6F8C(s32 idx) {
     return D_80208B58_9D2DA8[idx];
 }
 
-s32 album_GetCommentTextWidth(s16* wideStr, char* dst) {
-    char temp[0x40];
-    char* srcPtr;
-    char* dstPtr;
-    s32 srcIndex;
-    s32 dstIndex;
+s32 album_GetCommentTextWidth(s16* wideStr, char* dst);
 
-    srcPtr = (char*) wideStr; // todo what is going on with the type of this
-    dstPtr = dst != NULL ? dst : temp;
-    srcIndex = 0;
-    dstIndex = 0;
-
-    while (srcPtr[srcIndex] != 0) {
-        if (*((u16*) (srcPtr + srcIndex)) == '　') {
-            // convert wide space to normal space
-            dstPtr[dstIndex] = ' ';
-            dstPtr[dstIndex + 1] = 0;
-            srcIndex += 2;
-            dstIndex += 1;
-        } else {
-            dstPtr[dstIndex] = srcPtr[srcIndex];
-            dstPtr[dstIndex + 1] = *(srcPtr + srcIndex + 1);
-            srcIndex += 2;
-            dstIndex += 2;
-        }
-    }
-
-    dstPtr[dstIndex] = 0;
-    return UIText_GetStringWidth(dstPtr);
-}
+GLOBAL_ASM(
+glabel album_GetCommentTextWidth
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+);
 
 void album_BlinkCursor(GObj* obj) {
     while (album_IsEditingComment) {
@@ -720,12 +745,12 @@ void func_801DEA4C_9A8C9C(bool arg0, s32 column, s32 row) {
     }
 
     if (album_D_8024FFE8_A1A238) {
-        sp60[0] = album_CharGrids[album_CharGridId][row * 10 + 2 * column];
-        sp60[1] = album_CharGrids[album_CharGridId][row * 10 + 2 * column + 1];
+        sp60[0] = album_CharGrids[album_CharGridId][row * 5 + column];
+        sp60[1] = 0;
         sp60[2] = 0;
         UIElement_Draw(album_UiCommentActiveLetter);
         UIElement_PrintText(album_UiCommentActiveLetter, sp60);
-        if ((((sp60[0] << 8) | sp60[1]) & 0xFFFF) == '　') {
+        if (sp60[0] == ' ') {
             UIElement_SetState(album_UiCommentActiveLetter, UI_HIDDEN);
             album_Cursor->sprite.attr &= ~SP_HIDDEN;
         } else {
@@ -733,10 +758,12 @@ void func_801DEA4C_9A8C9C(bool arg0, s32 column, s32 row) {
             album_Cursor->sprite.attr |= SP_HIDDEN;
         }
     } else {
+        sp60[0] = sp60[1] = sp60[2] = 0;
         UIElement_SetState(album_UiCommentActiveLetter, UI_HIDDEN);
         album_Cursor->sprite.attr &= ~SP_HIDDEN;
     }
 
+    UIText_SetFont(0xC);
     x = album_GetCommentTextWidth(sp64, sp20);
     if ((album_CommentCursorPos < 31) || 168 - UIText_GetStringWidth(sp60) < x) {
         x += 116;
@@ -1049,15 +1076,22 @@ void album_DrawCharacterGrid(s32 page) {
 
     func_8036D4B4_840C64(1, 0);
 
-    for (i = 0; i < ARRAY_COUNT(album_UiRows) - 1; i++) {
+    for (i = 0; i < 0x13; i++) {
         UIElement_Draw(album_UiRows[i]);
 
         for (j = 0; j < 5; j++) {
-            UIElement_SetTextPos(album_UiRows[i], j * 13, 0);
-            sp18[0] = album_CharGrids[page][i * 10 + 2 * j];
-            sp18[1] = album_CharGrids[page][i * 10 + 2 * j + 1];
+            if (!album_CharGrids[page][i * 5 + j]) {
+                break;
+            }
+            sp18[0] = album_CharGrids[page][i * 5 + j];
+            sp18[1] = 0;
             sp18[2] = 0;
+            UIElement_SetTextPos(album_UiRows[i], j * 13, 0);
             UIElement_PrintText(album_UiRows[i], sp18);
+        }
+
+        if (!album_CharGrids[page][i * 5 + j]) {
+            break;
         }
     }
     func_8036D4B4_840C64(1, 1);
@@ -1065,8 +1099,10 @@ void album_DrawCharacterGrid(s32 page) {
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 0, 0);
     UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "←");
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 13, 0);
+    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "←");
+    UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 26, 0);
     UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "→");
-    UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 42, 0);
+    UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 43, 0);
     UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "End");
 }
 
@@ -1111,7 +1147,7 @@ void func_801E008C_9AA2DC(s16* comment, s32 arg1) {
 }
 
 void album_SwitchCharacterGridPage(u32 opId) {
-    UNUSED s32 pad;
+    s32 pad;
 
     switch (opId) {
         case 0:
@@ -1121,23 +1157,7 @@ void album_SwitchCharacterGridPage(u32 opId) {
             func_801DFFEC_9AA23C(1);
             break;
         case 1:
-            album_CharGridId++, album_CharGridId %= 3;
-            album_DrawCharacterGrid(album_CharGridId);
-            break;
-        case 2:
-            album_CharGridId--, album_CharGridId %= 3;
-            album_DrawCharacterGrid(album_CharGridId);
-            break;
-        case 3:
-            album_CharGridId = 0;
-            album_DrawCharacterGrid(album_CharGridId);
-            break;
-        case 4:
-            album_CharGridId = 1;
-            album_DrawCharacterGrid(album_CharGridId);
-            break;
-        case 5:
-            album_CharGridId = 2;
+            album_CharGridId++, album_CharGridId %= 2;
             album_DrawCharacterGrid(album_CharGridId);
             break;
         case 6:
@@ -1188,7 +1208,7 @@ void album_PressedCharacterInGrid(s32 column, s32 row) {
             case 1:
                 // right
                 if (album_CommentCursorPos < 31) {
-                    comment[album_CommentCursorPos] = '　';
+                    comment[album_CommentCursorPos] = ' ';
                     album_CommentCursorPos++;
                     comment[album_CommentCursorPos] = 0;
                     if (album_GetCommentTextWidth(comment, 0) >= 169) {
@@ -1199,18 +1219,22 @@ void album_PressedCharacterInGrid(s32 column, s32 row) {
                         auPlaySound(SOUND_ID_66);
                     }
                 }
-                /* fallthrough */
+                func_801E008C_9AA2DC(comment, album_CommentCursorPos);
+                return;
+            case 2:
+                album_SwitchCharacterGridPage(1);
+                auPlaySound(0x42);
+                return;
             default:
                 func_801E008C_9AA2DC(comment, album_CommentCursorPos);
+                return;
         }
-        return;
     }
 
     if (album_CommentCursorPos < 31) {
         // add character to comment
-        comment[album_CommentCursorPos] = (album_CharGrids[album_CharGridId][row * 10 + column * 2] << 8) |
-                                          album_CharGrids[album_CharGridId][row * 10 + column * 2 + 1];
-        album_CommentCursorPos++;
+        comment[album_CommentCursorPos++] = album_CharGrids[album_CharGridId][row * 5 + column];
+
         comment[album_CommentCursorPos] = 0;
         if (album_GetCommentTextWidth(comment, 0) >= 169) {
             auPlaySound(SOUND_ID_85);
@@ -1245,7 +1269,8 @@ void album_CreateCoverPage(void) {
     s32 sp54;
     s32 i;
     UIElement* sp4C;
-    UNUSED s32 pad[7];
+    s32 pad[7];
+    int sp30;
 
     func_801DF2E0_9A9530();
     album_SetBackgroundTexture(false);
@@ -1261,10 +1286,11 @@ void album_CreateCoverPage(void) {
     UIText_SetShadowOffset(0);
     UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(sp4C);
+    sp30 = 10;
     UIElement_SetFont(sp4C, FONT_8);
-    UIElement_SetTextPos(sp4C, 10, 0);
+    UIElement_SetTextPos(sp4C, sp30, 0);
     func_8037519C_84894C(sp4C, "\\i%2d \\gTaken", album_GetPhotoCount());
-    UIElement_SetTextPos(sp4C, 10, 9);
+    UIElement_SetTextPos(sp4C, sp30, 9);
     func_8037519C_84894C(sp4C, "\\i%2d \\gLeft", 60 - album_GetPhotoCount());
     UIElement_SetState(sp4C, UI_HIDDEN);
     album_UiAlbumStats = sp4C;

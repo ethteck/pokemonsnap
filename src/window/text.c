@@ -144,9 +144,6 @@ s32 UIText_GetCharIndex(s32 ch) {
 
 s32 UIText_SetFont(s32 font) {
     switch (font) {
-        case FONT_8:
-            UIText_Charset = 0;
-            break;
         case FONT_12:
             UIText_Charset = 1;
             break;

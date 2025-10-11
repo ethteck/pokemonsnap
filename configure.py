@@ -524,6 +524,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             elif seg.get_linker_section() == ".text":
                 # Only build the .text section file for a textbin with siblings
                 build(entry.object_path, entry.src_paths, "as")
+        elif seg.type == "vpk0":
+            build(entry.object_path, entry.src_paths, "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":

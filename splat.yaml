@@ -3708,6 +3708,7 @@ segments:
     - [0x562BC0, c]
     - [0x563000, c]
     - [0x563E80, data]
+    - [auto, c, scyther/model]
 
     - [0x566160, .rodata, 55C870]
     - [0x5661B0, .rodata, 55D690]
@@ -3719,6 +3720,78 @@ segments:
     - [0x566210, .rodata, 563000]
 
     - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+    - start: 0x5D8550
+      type: .data
+      dir: scyther
+      name: scyther/model
+      linker_section_order: .rodata
+      subsegments:
+      - {start: 0x5D8558, type: palette, name: tex_a, size: 0x10A}
+      - [0x5D8668]
+      - { start: 0x5D8670, type: ci8, name: tex_a, width: 32, height: 32 }
+      - [0x5D8A70]
+      - [0x5D8A78, palette, tex_b]
+      - [0x5D8A98]
+      - { start: 0x5D8AA0, type: ci4, name: tex_b, width: 64, height: 64 }
+      - [0x5D92A0]
+      - [0x5D92A8, palette, tex_c]
+      - [0x5D92C8]
+      - { start: 0x5D92D0, type: ci4, name: tex_c,  width: 64, height: 32 }
+      - [0x5D96D0, vtx, model]
+      - [0x5DC280, gfx, part0_draw_near]
+      - [0x5DC370, gfx, part0_draw_far]
+      - [0x5DC450, gfx, part0_draw]
+      - [0x5DC480, gfx, part1_draw_near]
+      - [0x5DC5D8, gfx, part1_draw_far]
+      - [0x5DC6D8, gfx, part1_draw]
+      - [0x5DC718, gfx, part2_draw_near]
+      - [0x5DC8C8, gfx, part2_draw_far]
+      - [0x5DC950, gfx, part2_draw]
+      - [0x5DC990, gfx, part3_draw_near]
+      - [0x5DCC48, gfx, part3_draw_far]
+      - [0x5DCE88, gfx, part3_draw]
+      - [0x5DCEB0, gfx, part4_draw_near]
+      - [0x5DD020, gfx, part4_draw_far]
+      - [0x5DD180, gfx, part4_draw]
+      - [0x5DD1C0, gfx, part5_draw_near]
+      - [0x5DD308, gfx, part5_draw_far]
+      - [0x5DD3F0, gfx, part5_draw]
+      - [0x5DD430, gfx, part6_draw_near]
+      - [0x5DD5A0, gfx, part6_draw_far]
+      - [0x5DD700, gfx, part6_draw]
+      - [0x5DD740, gfx, part7_draw_near]
+      - [0x5DD888, gfx, part7_draw_far]
+      - [0x5DD970, gfx, part7_draw]
+      - [0x5DD9B0, gfx, part8_draw_near]
+      - [0x5DDA38, gfx, part8_draw_far]
+      - [0x5DDAA8, gfx, part8_draw]
+      - [0x5DDAD0, gfx, part11_draw_near]
+      - [0x5DDB58, gfx, part11_draw_far]
+      - [0x5DDBC8, gfx, part11_draw]
+      - [0x5DDBF0, gfx, part14_draw_near]
+      - [0x5DDD70, gfx, part14_draw_far]
+      - [0x5DDF40, gfx, part14_draw]
+      - [0x5DDF80, gfx, part15_draw_near]
+      - [0x5DE0F0, gfx, part15_draw_far]
+      - [0x5DE1D0, gfx, part15_draw]
+      - [0x5DE210, gfx, part16_draw_near]
+      - [0x5DE390, gfx, part16_draw_far]
+      - [0x5DE560, gfx, part16_draw]
+      - [0x5DE5A0, gfx, part17_draw_near]
+      - [0x5DE710, gfx, part17_draw_far]
+      - [0x5DE7F0, gfx, part17_draw]
+      - [0x5DE830, gfx, part9_draw_near]
+      - [0x5DE940, gfx, part9_draw_far]
+      - [0x5DEA60, gfx, part9_draw]
+      - [0x5DEA90, gfx, part10_draw_near]
+      - [0x5DEB98, gfx, part10_draw_far]
+      - [0x5DECA0, gfx, part10_draw]
+      - [0x5DECE8, gfx, part12_draw_near]
+      - [0x5DEDF0, gfx, part12_draw_far]
+      - [0x5DEF08, gfx, part12_draw]
+      - [0x5DEF50, gfx, part13_draw_near]
+      - [0x5DF058, gfx, part13_draw_far]
+      - [0x5DF160, gfx, part13_draw]
 
     - { name: bss_80347560, type: bss, vram: 0x80347560 }
   - name: tunnel_code

@@ -4,7 +4,7 @@
 #include "types.h"
 #include "common_structs.h"
 
-#define	MD4_BLOCK_LENGTH 0x200
+#define MD4_BLOCK_LENGTH 0x200
 
 typedef struct {
     /* 0x00 */ u32 a;         // State variable A
@@ -13,7 +13,7 @@ typedef struct {
     /* 0x0C */ u32 d;         // State variable D
     /* 0x10 */ u8 buffer[8];  // Buffer for bit count
     /* 0x18 */ s32 finalized; // Indicates if the digest is finalized
-} MD4Ctx; // size = 0x1C
+} MD4Ctx;                     // size = 0x1C
 
 typedef struct UnkBigBoy {
     /* 0x000 */ s32 a; // MD4 variable 1

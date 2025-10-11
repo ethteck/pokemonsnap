@@ -298,8 +298,8 @@ POKEMON_FUNC(charmeleon_FollowPath)
     }
 
     volcano_FollowPath(obj, &pokemon->miscVars[CHARMELEON_PATH_PARAM].field0,
-                         pokemon->miscVars[CHARMELEON_PATH_END].field0,
-                         pokemon->miscVars[CHARMELEON_PATH_SPEED].field0, 3);
+                       pokemon->miscVars[CHARMELEON_PATH_END].field0,
+                       pokemon->miscVars[CHARMELEON_PATH_SPEED].field0, 3);
 
     if (pokemon->miscVars[CHARMELEON_PATH_END].field0 == 1.0f) {
         pokemon->miscVars[CHARMELEON_PATH_PARAM].field0 = 0.0f;

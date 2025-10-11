@@ -582,7 +582,7 @@ void* func_camera_check_801DDFC4(void) {
 void func_camera_check_801DE288(UnkIndigoHalibut* arg0) {
     UIElement* temp_s0;
     char* levelName;
-    char sp48[32];    
+    char sp48[32];
     s32 unused[2];
 
     temp_s0 = D_camera_check_80249910;

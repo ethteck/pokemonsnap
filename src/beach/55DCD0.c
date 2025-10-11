@@ -6,7 +6,7 @@ void func_beach_802C5C60(GObj* obj) {
     DObj* model = obj->data.dobj;
     Pokemon* pokemon = GET_POKEMON(obj);
     s32 timer;
-    
+
     pokemon->miscVars[4].field1 = true;
 
     timer = 38;

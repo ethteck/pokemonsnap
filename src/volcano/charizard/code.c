@@ -179,7 +179,7 @@ POKEMON_FUNC(charizard_HitByPesterBall)
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     Pokemon_SetAnimation(obj, &charizard_animation_spew_fire);
     Pokemon_StartPathProc(obj, charizard_TurnToPlayer);
     pokemon->transitionGraph = NULL;

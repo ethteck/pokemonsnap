@@ -503,7 +503,8 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
 
     s32 i;
 
-    if (1) {}
+    if (1) {
+    }
 
     at->totalScore = 0;
     D_800BE170.pokemonInFocus = 0;
@@ -598,7 +599,8 @@ struct ScoreData* func_800A0EA4(GObj* camera, PhotoData* photo, u16* buffer, s32
         }
 
         // FAKE
-        if (at && at) {}
+        if (at && at) {
+        }
 
         if ((photo->pokemons[i].pokemonID > 0 && photo->pokemons[i].pokemonID <= POKEDEX_MAX) ||
             photo->pokemons[i].pokemonID == PokemonID_603 || photo->pokemons[i].pokemonID == PokemonID_MOLTRES_EGG ||

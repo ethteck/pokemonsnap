@@ -13,7 +13,7 @@ POKEMON_FUNC(func_802EBBE0_5E8CB0)
 POKEMON_FUNC(func_802EBC04_5E8CD4)
     pokemon->flags |= POKEMON_FLAG_8;
     Pokemon_SetAnimation(obj, &D_802EFD58_5ECE28);
-    Pokemon_StartPathProc(obj, func_802EBC78_5E8D48);    
+    Pokemon_StartPathProc(obj, func_802EBC78_5E8D48);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);

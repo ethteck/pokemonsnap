@@ -114,7 +114,7 @@ POKEMON_FUNC(func_802E95E8_5E66B8)
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802E9538_5E6608);
     }
-    
+
     Pokemon_SetStateRandom(obj, D_802EF44C_5EC51C);
 }
 
@@ -148,7 +148,7 @@ POKEMON_FUNC(func_802E96E8_5E67B8)
     Pokemon_SetAnimation(obj, &D_802EF39C_5EC46C);
     pokemon->transitionGraph = D_802EF4EC_5EC5BC;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9538_5E6608);
 }
 
@@ -157,7 +157,7 @@ POKEMON_FUNC(func_802E97EC_5E68BC)
     Pokemon_SetAnimation(obj, &D_802EF374_5EC444);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9538_5E6608);
 }
 
@@ -170,7 +170,7 @@ POKEMON_FUNC(func_802E9854_5E6924)
     Pokemon_SetAnimation(obj, &D_802EF39C_5EC46C);
     pokemon->transitionGraph = D_802EF51C_5EC5EC;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9538_5E6608);
 }
 
@@ -201,7 +201,7 @@ POKEMON_FUNC(func_802E98F4_5E69C4)
     Pokemon_EatApple(obj);
     pokemon->transitionGraph = D_802EF59C_5EC66C;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9538_5E6608);
 }
 
@@ -221,7 +221,6 @@ POKEMON_FUNC(func_802E9A94_5E6B64)
 }
 
 static void nullsub(void) {
-
 }
 
 POKEMON_FUNC(func_802E9AF8_5E6BC8)
@@ -233,7 +232,7 @@ POKEMON_FUNC(func_802E9AF8_5E6BC8)
     if (pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED) {
         Pokemon_SetState(obj, func_802E9538_5E6608);
     }
-        
+
     Pokemon_SetState(obj, func_802E9AF8_5E6BC8);
 }
 
@@ -276,7 +275,7 @@ POKEMON_FUNC(func_802E9D04_5E6DD4)
     Pokemon_SetAnimation(obj, &D_802EF360_5EC430);
     pokemon->transitionGraph = D_802EF61C_5EC6EC;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9D70_5E6E40);
 }
 
@@ -285,7 +284,7 @@ POKEMON_FUNC(func_802E9D70_5E6E40)
     Pokemon_SetAnimation(obj, &D_802EF338_5EC408);
     pokemon->transitionGraph = D_802EF64C_5EC71C;
     Pokemon_WaitForFlag(obj, 0);
-        
+
     Pokemon_SetState(obj, func_802E9DD8_5E6EA8);
 }
 
@@ -297,7 +296,7 @@ POKEMON_FUNC(func_802E9DD8_5E6EA8)
     Pokemon_SetAnimation(obj, &D_802EF3C4_5EC494);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, NULL);
 }
 
@@ -322,7 +321,7 @@ POKEMON_FUNC(func_802E9E54_5E6F24)
     Pokemon_SetAnimation(obj, &D_802EF3D8_5EC4A8);
     pokemon->transitionGraph = tg;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9D04_5E6DD4);
 }
 
@@ -331,7 +330,7 @@ POKEMON_FUNC(func_802E9F20_5E6FF0)
     Pokemon_SetAnimation(obj, &D_802EF374_5EC444);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802E9D04_5E6DD4);
 }
 
@@ -344,7 +343,7 @@ POKEMON_FUNC(func_802E9F80_5E7050)
     pokemon->counter = 1, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
-    
+
     rotation->v.y = yaw;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetState(obj, func_802EA030_5E7100);
@@ -353,9 +352,9 @@ POKEMON_FUNC(func_802E9F80_5E7050)
 POKEMON_FUNC(func_802EA030_5E7100)
     Pokemon_SetAnimation(obj, &D_802EF338_5EC408);
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
-    pokemon->transitionGraph = D_802EF6B0_5EC780;    
+    pokemon->transitionGraph = D_802EF6B0_5EC780;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-        
+
     Pokemon_SetState(obj, func_802EA030_5E7100);
 }
 
@@ -372,7 +371,7 @@ POKEMON_FUNC(func_802EA108_5E71D8)
     Pokemon_SetAnimation(obj, &D_802EF3B0_5EC480);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     Pokemon_SetAnimation(obj, &D_802EF3C4_5EC494);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
@@ -380,7 +379,7 @@ POKEMON_FUNC(func_802EA108_5E71D8)
     Pokemon_SetAnimation(obj, &D_802EF3D8_5EC4A8);
     pokemon->transitionGraph = D_802EF6B0_5EC780;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802EA21C_5E72EC);
 }
 
@@ -389,7 +388,7 @@ POKEMON_FUNC(func_802EA1B4_5E7284)
     Pokemon_SetAnimation(obj, &D_802EF374_5EC444);
     pokemon->transitionGraph = D_802EF6B0_5EC780;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802EA21C_5E72EC);
 }
 
@@ -414,7 +413,7 @@ POKEMON_FUNC(func_802EA21C_5E72EC)
 
     pokemon->transitionGraph = D_802EF6B0_5EC780;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802EA344_5E7414);
 }
 
@@ -422,7 +421,7 @@ POKEMON_FUNC(func_802EA344_5E7414)
     Pokemon_SetAnimation(obj, &D_802EF338_5EC408);
     pokemon->transitionGraph = D_802EF6B0_5EC780;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
     Pokemon_SetState(obj, func_802EA344_5E7414);
 }
 
@@ -439,7 +438,6 @@ POKEMON_FUNC(func_802EA3EC_5E74BC)
 }
 
 static void nullsub2(void) {
-
 }
 
 GObj* electabuzz_Spawn(s32 objID, u16 id, WorldBlock* block, WorldBlock* blockB, ObjectSpawn* spawn) {

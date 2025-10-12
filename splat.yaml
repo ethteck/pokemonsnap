@@ -5392,13 +5392,81 @@ segments:
     subsegments:
     - [0x554130, bin] # , data]
   - type: code
-    name: bulbasaur3
-    dir: pokemon/bulbasaur
+    name: bulbasaur_model
+    dir: pokemon_common
     start: 0x557050
     vram: 0x8033F6C0
     exclusive_ram_id: unk80344780
     subsegments:
-    - [0x557050, bin] # , data]
+    - [auto, c, bulbasaur/model]
+    - start: 0x557120
+      type: .data
+      dir: bulbasaur
+      name: bulbasaur/model
+      subsegments:
+      - [0x557120, vtx, model]
+      - [0x559100, gfx, first]
+      - [0x559130, gfx, part0_draw_near]
+      - [0x5592D8, gfx, part0_draw_far]
+      - [0x559400, gfx, part0_draw]
+      - [0x559430, gfx, part1_pre_near]
+      - [0x559498, gfx, part1_pre_far]
+      - [0x5594D8, gfx, part1_pre]
+      - [0x559500, gfx, part1_draw_near]
+      - [0x5598F0, gfx, part1_draw_far]
+      - [0x559BC8, gfx, part1_draw]
+      - [0x559BF0, gfx, part2_draw_near]
+      - [0x559D48, gfx, part2_draw_far]
+      - [0x559E68, gfx, part2_draw]
+      - [0x559E90, gfx, part5_pre_near]
+      - [0x559ED8, gfx, part5_pre_far]
+      - [0x559F20, gfx, part5_pre]
+      - [0x559F48, gfx, part5_draw_near]
+      - [0x55A030, gfx, part5_draw_far]
+      - [0x55A148, gfx, part5_draw]
+      - [0x55A170, gfx, part6_draw_near]
+      - [0x55A2A8, gfx, part6_draw_far]
+      - [0x55A388, gfx, part6_draw]
+      - [0x55A3B0, gfx, part7_pre_near]
+      - [0x55A3F8, gfx, part7_pre_far]
+      - [0x55A440, gfx, part7_pre]
+      - [0x55A468, gfx, part7_draw_near]
+      - [0x55A550, gfx, part7_draw_far]
+      - [0x55A640, gfx, part7_draw]
+      - [0x55A668, gfx, part8_draw_near]
+      - [0x55A788, gfx, part8_draw_far]
+      - [0x55A868, gfx, part8_draw]
+      - [0x55A890, gfx, part9_pre_near]
+      - [0x55A8E8, gfx, part9_pre_far]
+      - [0x55A940, gfx, part9_pre]
+      - [0x55A968, gfx, part9_draw_near]
+      - [0x55AB80, gfx, part9_draw_far]
+      - [0x55ADC0, gfx, part9_draw]
+      - [0x55ADE8, gfx, part10_pre_near]
+      - [0x55AE40, gfx, part10_pre_far]
+      - [0x55AE88, gfx, part10_pre]
+      - [0x55AEB0, gfx, part10_draw_near]
+      - [0x55AFC0, gfx, part10_draw_far]
+      - [0x55B0D8, gfx, part10_draw]
+      - [0x55B100, gfx, part11_draw_near]
+      - [0x55B298, gfx, part11_draw_far]
+      - [0x55B398, gfx, part11_draw]
+      - [0x55B3C0, gfx, part12_pre_near]
+      - [0x55B418, gfx, part12_pre_far]
+      - [0x55B460, gfx, part12_pre]
+      - [0x55B488, gfx, part12_draw_near]
+      - [0x55B588, gfx, part12_draw_far]
+      - [0x55B678, gfx, part12_draw]
+      - [0x55B6A0, gfx, part13_draw_near]
+      - [0x55B830, gfx, part13_draw_far]
+      - [0x55B938, gfx, part13_draw]
+      - [0x55B960, gfx, last]
+      - [0x55B988, gfx, part3_draw_near]
+      - [0x55BA48, gfx, part3_draw_far]
+      - [0x55BB08, gfx, part3_draw]
+      - [0x55BB38, gfx, part4_draw_near]
+      - [0x55BBF8, gfx, part4_draw_far]
+      - [0x55BCB8, gfx, part4_draw]
   - name: beach_code
     dir: beach
     symbol_name_format: beach_$VRAM

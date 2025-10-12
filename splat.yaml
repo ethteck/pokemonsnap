@@ -3708,6 +3708,7 @@ segments:
     - [0x562BC0, c]
     - [0x563000, c]
     - [0x563E80, data]
+    - [auto, c, snorlax/model]
     - [auto, c, lapras/model]
     - [auto, c, chansey/model]
     - [auto, c, meowth/model]
@@ -3724,6 +3725,83 @@ segments:
     - [0x566210, .rodata, 563000]
 
     - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+    - start: 0x5C3850
+      type: .data
+      dir: snorlax
+      name: snorlax/model
+      linker_section_order: .rodata
+      subsegments:
+      - { start: 0x5C3858, type: rgba16, width: 16, height: 1 }
+      - [0x5C3878]
+      - { start: 0x5C3880, type: rgba16, width: 16, height: 1 }
+      - [0x5C38A0]
+      - { start: 0x5C38A8, type: rgba16, width: 16, height: 1 }
+      - [0x5C38C8]
+      - { start: 0x5C38D0, type: rgba16, width: 16, height: 1 }
+      - [0x5C38F0]
+      - { start: 0x5C38F8, type: rgba16, width: 16, height: 1 }
+      - [0x5C3918]
+      - { start: 0x5C3920, type: rgba16, width: 16, height: 1 }
+      - [0x5C3940]
+      - { start: 0x5C3948, type: rgba16, width: 16, height: 1 }
+      - [0x5C3968]
+      - [0x5C3BC8, vtx, model]
+      - [0x5C5848, gfx, first]
+      - [0x5C5870, gfx, part0_draw_near]
+      - [0x5C5968, gfx, part0_draw_far]
+      - [0x5C5A60, gfx, part0_draw]
+      - [0x5C5A90, gfx, part1_pre_near]
+      - [0x5C5B38, gfx, part1_pre_far]
+      - [0x5C5BE0, gfx, part1_pre]
+      - [0x5C5C08, gfx, part1_draw_near]
+      - [0x5C5D68, gfx, part1_draw_far]
+      - [0x5C5EC8, gfx, part1_draw]
+      - [0x5C5EF0, gfx, part2_draw_near]
+      - [0x5C6048, gfx, part2_draw_far]
+      - [0x5C61C0, gfx, part2_draw]
+      - [0x5C61E8, gfx, part3_draw_near]
+      - [0x5C65D0, gfx, part3_draw_far]
+      - [0x5C68C0, gfx, part3_draw]
+      - [0x5C68E8, gfx, part5_draw_near]
+      - [0x5C6950, gfx, part5_draw_far]
+      - [0x5C69A8, gfx, part5_draw]
+      - [0x5C69D0, gfx, part6_draw_near]
+      - [0x5C6B08, gfx, part6_draw_far]
+      - [0x5C6BE0, gfx, part6_draw]
+      - [0x5C6C08, gfx, part7_draw_near]
+      - [0x5C6C90, gfx, part7_draw_far]
+      - [0x5C6D00, gfx, part7_draw]
+      - [0x5C6D28, gfx, part8_draw_near]
+      - [0x5C6E60, gfx, part8_draw_far]
+      - [0x5C6F38, gfx, part8_draw]
+      - [0x5C6F60, gfx, part9_pre_near]
+      - [0x5C6FF0, gfx, part9_pre_far]
+      - [0x5C7080, gfx, part9_pre]
+      - [0x5C70A8, gfx, part9_draw_near]
+      - [0x5C7178, gfx, part9_draw_far]
+      - [0x5C7250, gfx, part9_draw]
+      - [0x5C7278, gfx, part10_pre_near]
+      - [0x5C72D8, gfx, part10_pre_far]
+      - [0x5C7330, gfx, part10_pre]
+      - [0x5C7358, gfx, part10_draw_near]
+      - [0x5C73F8, gfx, part10_draw_far]
+      - [0x5C7480, gfx, part10_draw]
+      - [0x5C74A8, gfx, part11_draw_near]
+      - [0x5C7660, gfx, part11_draw_far]
+      - [0x5C77E0, gfx, part11_draw]
+      - [0x5C7808, gfx, part12_pre_near]
+      - [0x5C7868, gfx, part12_pre_far]
+      - [0x5C78C0, gfx, part12_pre]
+      - [0x5C78E8, gfx, part12_draw_near]
+      - [0x5C7988, gfx, part12_draw_far]
+      - [0x5C7A10, gfx, part12_draw]
+      - [0x5C7A38, gfx, part26_draw_near]
+      - [0x5C7BF0, gfx, part26_draw_far]
+      - [0x5C7D70, gfx, part26_draw]
+      - [0x5C7D98, gfx, last]
+      - [0x5C7DC0, gfx, part4_draw_near]
+      - [0x5C7EC0, gfx, part4_draw_far]
+      - [0x5C7FC0, gfx, part4_draw]
     - start: 0x5C8400
       type: .data
       dir: lapras

@@ -3659,20 +3659,114 @@ segments:
       - [0x54D338, gfx, last]
       - [0x54D360]
   - type: code
-    name: pikachu3
-    dir: pokemon/pikachu
+    name: pikachu_model
+    dir: pokemon_common
     start: 0x54D6A0
     vram: 0x803476A0
     exclusive_ram_id: unk803476A0
     subsegments:
-    - [0x54D6A0, bin] # , data]
+    - [auto, c, pikachu/model]
+    - start: 0x54D6A0
+      type: .data
+      dir: pikachu
+      name: pikachu/model
+      subsegments:
+      - [0x54DBE0, vtx, model]
+      - [0x550170, gfx, first]
+      - [0x550198, gfx, part2_draw_near]
+      - [0x550308, gfx, part2_draw_far]
+      - [0x550448, gfx, part2_draw]
+      - [0x550478, gfx, part3_pre_near]
+      - [0x5504E0, gfx, part3_pre_far]
+      - [0x550540, gfx, part3_pre]
+      - [0x550568, gfx, part3_draw_near]
+      - [0x550698, gfx, part3_draw_far]
+      - [0x550798, gfx, part3_draw]
+      - [0x5507C0, gfx, part4_draw_near]
+      - [0x5508C0, gfx, part4_draw_far]
+      - [0x550988, gfx, part4_draw]
+      - [0x5509B0, gfx, part5_draw_near]
+      - [0x550A88, gfx, part5_draw_far]
+      - [0x550B00, gfx, part5_draw]
+      - [0x550B28, gfx, part6_pre_near]
+      - [0x550B98, gfx, part6_pre_far]
+      - [0x550BF8, gfx, part6_pre]
+      - [0x550C20, gfx, part6_draw_near]
+      - [0x550D50, gfx, part6_draw_far]
+      - [0x550E50, gfx, part6_draw]
+      - [0x550E78, gfx, part7_draw_near]
+      - [0x550F70, gfx, part7_draw_far]
+      - [0x551028, gfx, part7_draw]
+      - [0x551050, gfx, part8_draw_near]
+      - [0x551130, gfx, part8_draw_far]
+      - [0x5511A8, gfx, part8_draw]
+      - [0x5511D0, gfx, part9_pre_near]
+      - [0x551248, gfx, part9_pre_far]
+      - [0x5512C0, gfx, part9_pre]
+      - [0x5512E8, gfx, part9_draw_near]
+      - [0x551428, gfx, part9_draw_far]
+      - [0x5515D0, gfx, part9_draw]
+      - [0x5515F8, gfx, part10_pre_near]
+      - [0x551650, gfx, part10_pre_far]
+      - [0x5516C0, gfx, part10_pre]
+      - [0x5516E8, gfx, part10_draw_near]
+      - [0x551A40, gfx, part10_draw_far]
+      - [0x551D00, gfx, part10_draw]
+      - [0x551D28, gfx, part11_pre_near]
+      - [0x551D70, gfx, part11_pre_far]
+      - [0x551DD0, gfx, part11_pre]
+      - [0x551DF8, gfx, part11_draw_near]
+      - [0x551ED0, gfx, part11_draw_far]
+      - [0x551F90, gfx, part11_draw]
+      - [0x551FB8, gfx, part12_pre_near]
+      - [0x552010, gfx, part12_pre_far]
+      - [0x552068, gfx, part12_pre]
+      - [0x552090, gfx, part12_draw_near]
+      - [0x552168, gfx, part12_draw_far]
+      - [0x552228, gfx, part12_draw]
+      - [0x552250, gfx, part13_draw_near]
+      - [0x552378, gfx, part13_draw_far]
+      - [0x5524A0, gfx, part13_draw]
+      - [0x5524C8, gfx, part14_draw_near]
+      - [0x5525B8, gfx, part14_draw_far]
+      - [0x5526A8, gfx, part14_draw]
+      - [0x5526D0, gfx, part15_pre_near]
+      - [0x552730, gfx, part15_pre_far]
+      - [0x552798, gfx, part15_pre]
+      - [0x5527C0, gfx, part15_draw_near]
+      - [0x5528E0, gfx, part15_draw_far]
+      - [0x5529C0, gfx, part15_draw]
+      - [0x5529E8, gfx, part16_draw_near]
+      - [0x552B18, gfx, part16_draw_far]
+      - [0x552BF8, gfx, part16_draw]
+      - [0x552C20, gfx, part17_pre_near]
+      - [0x552C80, gfx, part17_pre_far]
+      - [0x552CF0, gfx, part17_pre]
+      - [0x552D18, gfx, part17_draw_near]
+      - [0x552E38, gfx, part17_draw_far]
+      - [0x552F18, gfx, part17_draw]
+      - [0x552F40, gfx, part18_draw_near]
+      - [0x553090, gfx, part18_draw_far]
+      - [0x553170, gfx, part18_draw]
+      - [0x553198, gfx, part19_draw_near]
+      - [0x553278, gfx, part19_draw_far]
+      - [0x553358, gfx, part19_draw]
+      - [0x553380, gfx, part20_draw_near]
+      - [0x553478, gfx, part20_draw_far]
+      - [0x553580, gfx, part20_draw]
+      - [0x5535A8, gfx, last]
+      - [0x5535E8, gfx, part0_draw_near]
+      - [0x553710, gfx, part0_draw_far]
+      - [0x553838, gfx, part0_draw]
+      - [0x553868, gfx, part1_draw_near]
+      - [0x5539B0, gfx, part1_draw_far]
+      - [0x553AF8, gfx, part1_draw]
   - type: code
     name: zubat_model
     dir: pokemon_common
     start: 0x554130
     vram: 0x80344780
     exclusive_ram_id: unk80344780
-    subsegments:
     subsegments:
     - [auto, c, zubat/model]
     - start: 0x554130

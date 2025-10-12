@@ -178,6 +178,25 @@ meowth_tex_8018C0A0 = 0x8018C0A0;
 pidgey_tex_8019F820 = 0x8019F820;
 pidgey_tex_8019FE30 = 0x8019FE30;
 
+pikachu_tex_801045D8 = 0x801045D8;
+pikachu_tex_801049E0 = 0x801049E0;
+pikachu_tex_800FFF98 = 0x800FFF98;
+pikachu_tex_801007A0 = 0x801007A0;
+pikachu_tex_80100FA8 = 0x80100FA8;
+pikachu_tex_801017B0 = 0x801017B0;
+pikachu_tex_801054D8 = 0x801054D8;
+pikachu_tex_80105AE8 = 0x80105AE8;
+pikachu_tex_801060F8 = 0x801060F8;
+pikachu_tex_80106708 = 0x80106708;
+pikachu_tex_80106D18 = 0x80106D18;
+pikachu_tex_80104E98 = 0x80104E98;
+pikachu_tex_801050C8 = 0x801050C8;
+pikachu_tex_80107328 = 0x80107328;
+pikachu_tex_80107938 = 0x80107938;
+pikachu_tex_80107F48 = 0x80107F48;
+pikachu_tex_80108558 = 0x80108558;
+pikachu_tex_80108B68 = 0x80108B68;
+
 bulbasaur_tex_8011CFE0 = 0x8011CFE0;
 bulbasaur_tex_8011D210 = 0x8011D210;
 bulbasaur_tex_8011D438 = 0x8011D438;

@@ -5775,13 +5775,41 @@ segments:
     subsegments:
     - [0x837360, bin] # , data]
   - type: code # follows the seg before this in memory
-    name: bulbasaur2
-    dir: pokemon/bulbasaur
+    name: bulbasaur_model_hd
+    dir: pokemon_common
     start: 0x83A1E0
     vram: 0x803A71B0
     exclusive_ram_id: unk83A1E0
     subsegments:
-    - [0x83A1E0, bin] # , data]
+    - [auto, c, bulbasaur/model_hd]
+    - start: 0x83A1E0
+      type: .data
+      dir: bulbasaur
+      name: bulbasaur/model_hd
+      subsegments:
+      - [0x83A2B0, vtx, hd_model]
+      - [0x83BAB0, gfx, hd_first]
+      - [0x83BAE8, gfx, hd_part0_draw]
+      - [0x83BD28, gfx, hd_part1_pre]
+      - [0x83BDA8, gfx, hd_part1_draw]
+      - [0x83C218, gfx, hd_part2_draw]
+      - [0x83C358, gfx, hd_part5_pre]
+      - [0x83C388, gfx, hd_part5_draw]
+      - [0x83C468, gfx, hd_part6_draw]
+      - [0x83C530, gfx, hd_part7_pre]
+      - [0x83C570, gfx, hd_part7_draw]
+      - [0x83C5F0, gfx, hd_part8_draw]
+      - [0x83C6A0, gfx, hd_part9_pre]
+      - [0x83C728, gfx, hd_part9_draw]
+      - [0x83CD50, gfx, hd_part10_pre]
+      - [0x83CDA0, gfx, hd_part10_draw]
+      - [0x83CE98, gfx, hd_part11_draw]
+      - [0x83CFC0, gfx, hd_part12_pre]
+      - [0x83D018, gfx, hd_part12_draw]
+      - [0x83D0B0, gfx, hd_part13_draw]
+      - [0x83D210, gfx, hd_last]
+      - [0x83D2B0, gfx, hd_part3_draw]
+      - [0x83D2D0, gfx, hd_part4_draw]
   - name: window
     dir: window
     type: code

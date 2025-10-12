@@ -5384,13 +5384,65 @@ segments:
     subsegments:
     - [0x54D6A0, bin] # , data]
   - type: code
-    name: zubat3
-    dir: pokemon/zubat
+    name: zubat_model
+    dir: pokemon_common
     start: 0x554130
     vram: 0x80344780
     exclusive_ram_id: unk80344780
     subsegments:
-    - [0x554130, bin] # , data]
+    subsegments:
+    - [auto, c, zubat/model]
+    - start: 0x554130
+      type: .data
+      dir: zubat
+      name: zubat/model
+      subsegments:
+      - [0x554130, vtx, model]
+      - [0x555430, gfx, first]
+      - [0x555458, gfx, part0_draw_near]
+      - [0x555850, gfx, part0_draw_far]
+      - [0x555B20, gfx, part0_draw]
+      - [0x555B50, gfx, part1_pre_near]
+      - [0x555B80, gfx, part1_pre_far]
+      - [0x555BB8, gfx, part1_pre]
+      - [0x555BE0, gfx, part1_draw_near]
+      - [0x555C38, gfx, part1_draw_far]
+      - [0x555C98, gfx, part1_draw]
+      - [0x555CC0, gfx, part2_draw_near]
+      - [0x555D18, gfx, part2_draw_far]
+      - [0x555D68, gfx, part2_draw]
+      - [0x555D90, gfx, part3_pre_near]
+      - [0x555DC8, gfx, part3_pre_far]
+      - [0x555DF8, gfx, part3_pre]
+      - [0x555E20, gfx, part3_draw_near]
+      - [0x555E78, gfx, part3_draw_far]
+      - [0x555ED8, gfx, part3_draw]
+      - [0x555F00, gfx, part4_draw_near]
+      - [0x555F58, gfx, part4_draw_far]
+      - [0x555FA8, gfx, part4_draw]
+      - [0x555FD0, gfx, part5_pre_near]
+      - [0x555FF8, gfx, part5_pre]
+      - [0x556010, gfx, part5_draw_near]
+      - [0x556138, gfx, part5_draw_far]
+      - [0x556228, gfx, part5_draw]
+      - [0x556250, gfx, part6_draw_near]
+      - [0x556368, gfx, part6_draw_far]
+      - [0x556460, gfx, part6_draw]
+      - [0x556488, gfx, part7_draw_near]
+      - [0x5565A8, gfx, part7_draw_far]
+      - [0x556690, gfx, part7_draw]
+      - [0x5566B8, gfx, part8_pre_near]
+      - [0x5566F8, gfx, part8_pre]
+      - [0x556710, gfx, part8_draw_near]
+      - [0x556820, gfx, part8_draw_far]
+      - [0x556900, gfx, part8_draw]
+      - [0x556928, gfx, part9_draw_near]
+      - [0x556A40, gfx, part9_draw_far]
+      - [0x556B38, gfx, part9_draw]
+      - [0x556B60, gfx, part10_draw_near]
+      - [0x556C80, gfx, part10_draw_far]
+      - [0x556D68, gfx, part10_draw]
+      - [0x556D90, gfx, last]
   - type: code
     name: bulbasaur_model
     dir: pokemon_common

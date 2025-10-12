@@ -3708,6 +3708,7 @@ segments:
     - [0x562BC0, c]
     - [0x563000, c]
     - [0x563E80, data]
+    - [auto, c, butterfree/model]
     - [auto, c, doduo/model]
     - [auto, c, eevee/model]
     - [auto, c, kangaskhan/model]
@@ -3728,6 +3729,48 @@ segments:
     - [0x566210, .rodata, 563000]
 
     - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+    - start: 0x5B0F80
+      type: .data
+      dir: butterfree
+      name: butterfree/model
+      linker_section_order: .rodata
+      subsegments:
+      - [0x5B0F80, vtx, model]
+      - [0x5B23B0, gfx, first]
+      - [0x5B23F0, gfx, part0_draw_near]
+      - [0x5B24C0, gfx, part0_draw_far]
+      - [0x5B2580, gfx, part0_draw]
+      - [0x5B25B0, gfx, part1_draw_near]
+      - [0x5B2870, gfx, part1_draw_far]
+      - [0x5B2A00, gfx, part1_draw]
+      - [0x5B2A28, gfx, part2_draw_near]
+      - [0x5B2D78, gfx, part2_draw_far]
+      - [0x5B30E0, gfx, part2_draw]
+      - [0x5B3108, gfx, part3_draw_near]
+      - [0x5B31E0, gfx, part3_draw_far]
+      - [0x5B3278, gfx, part3_draw]
+      - [0x5B32A0, gfx, part4_draw_near]
+      - [0x5B3378, gfx, part4_draw_far]
+      - [0x5B3410, gfx, part4_draw]
+      - [0x5B3438, gfx, part5_draw_near]
+      - [0x5B3500, gfx, part5_draw_far]
+      - [0x5B35D0, gfx, part5_draw]
+      - [0x5B35F8, gfx, part6_draw_near]
+      - [0x5B36C0, gfx, part6_draw_far]
+      - [0x5B3788, gfx, part6_draw]
+      - [0x5B37B0, gfx, part7_draw_near]
+      - [0x5B3878, gfx, part7_draw_far]
+      - [0x5B3948, gfx, part7_draw]
+      - [0x5B3970, gfx, part8_draw_near]
+      - [0x5B3A38, gfx, part8_draw_far]
+      - [0x5B3B00, gfx, part8_draw]
+      - [0x5B3B28, gfx, part9_draw_near]
+      - [0x5B3C60, gfx, part9_draw_far]
+      - [0x5B3D78, gfx, part9_draw]
+      - [0x5B3DA0, gfx, part10_draw_near]
+      - [0x5B3ED8, gfx, part10_draw_far]
+      - [0x5B3FF0, gfx, part10_draw]
+      - [0x5B4018, gfx, last]
     - start: 0x5B4290
       type: .data
       dir: doduo

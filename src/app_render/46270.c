@@ -85,7 +85,7 @@ void func_8009A8F0(s32 levelID) {
             dmaLoadOverlay(&overlayCaveAssets);
             dmaReadRom(cave_extra_ROM_START, cave_extra_VRAM, cave_extra_ROM_END - cave_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
-            dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
+            dmaReadRom(bulbasaur_model_hd_ROM_START, bulbasaur_model_hd_VRAM, bulbasaur_model_hd_ROM_END - bulbasaur_model_hd_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
@@ -97,7 +97,7 @@ void func_8009A8F0(s32 levelID) {
             dmaLoadOverlay(&overlayRiverAssets);
             dmaReadRom(river_extra_ROM_START, river_extra_VRAM, river_extra_ROM_END - river_extra_ROM_START);
             dmaReadRom(bulbasaur1_ROM_START, bulbasaur1_VRAM, bulbasaur1_ROM_END - bulbasaur1_ROM_START);
-            dmaReadRom(bulbasaur2_ROM_START, bulbasaur2_VRAM, bulbasaur2_ROM_END - bulbasaur2_ROM_START);
+            dmaReadRom(bulbasaur_model_hd_ROM_START, bulbasaur_model_hd_VRAM, bulbasaur_model_hd_ROM_END - bulbasaur_model_hd_ROM_START);
             dmaReadRom(magikarp_textures_ROM_START, magikarp_textures_VRAM, magikarp_textures_ROM_END - magikarp_textures_ROM_START);
             dmaReadRom(magikarp2_ROM_START, magikarp2_VRAM, magikarp2_ROM_END - magikarp2_ROM_START);
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);

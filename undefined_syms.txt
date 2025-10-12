@@ -119,6 +119,20 @@ D_800BE17A = 0x800BE17A;
 D_800BE204 = 0x800BE204;
 D_8038F9C0 = 0x8038F9C0;
 
+lapras_tex_80182E00 = 0x80182E00;
+lapras_tex_80183030 = 0x80183030;
+lapras_tex_80183260 = 0x80183260;
+
+chansey_tex_80184850 = 0x80184850;
+chansey_tex_801844E0 = 0x801844E0;
+chansey_tex_80184590 = 0x80184590;
+chansey_tex_80184640 = 0x80184640;
+chansey_tex_801846F0 = 0x801846F0;
+chansey_tex_801847A0 = 0x801847A0;
+chansey_tex_80184E10 = 0x80184E10;
+chansey_tex_801849B0 = 0x801849B0;
+chansey_tex_80184BE0 = 0x80184BE0;
+
 meowth_tex_8018F600 = 0x8018F600;
 meowth_tex_8018E3D0 = 0x8018E3D0;
 meowth_tex_8018E9E0 = 0x8018E9E0;

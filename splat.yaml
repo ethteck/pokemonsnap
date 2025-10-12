@@ -9573,13 +9573,36 @@ segments:
     subsegments:
     - [0x832960, bin] # , data]
   - type: code # follows the seg before this in memory
-    name: zubat2
-    dir: pokemon/zubat
+    name: zubat_model_hd
+    dir: pokemon_common
     start: 0x837360
     vram: 0x803AA700
     exclusive_ram_id: unk837360
     subsegments:
-    - [0x837360, bin] # , data]
+    - [auto, c, zubat/model_hd]
+    - start: 0x837360
+      type: .data
+      dir: zubat
+      name: zubat/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x837360, vtx, hd_model]
+      - [0x838A40, gfx, hd_first]
+      - [0x838A68, gfx, hd_part0_draw]
+      - [0x839408, gfx, hd_part1_pre]
+      - [0x839448, gfx, hd_part1_draw]
+      - [0x8394A8, gfx, hd_part2_draw]
+      - [0x839508, gfx, hd_part3_pre]
+      - [0x839540, gfx, hd_part3_draw]
+      - [0x8395A0, gfx, hd_part4_draw]
+      - [0x839600, gfx, hd_part5_pre]
+      - [0x839648, gfx, hd_part5_draw]
+      - [0x8397B0, gfx, hd_part6_draw]
+      - [0x8398F8, gfx, hd_part7_draw]
+      - [0x839A98, gfx, hd_part8_pre]
+      - [0x839AF0, gfx, hd_part8_draw]
+      - [0x839C40, gfx, hd_part9_draw]
+      - [0x839D88, gfx, hd_part10_draw]
   - type: code # follows the seg before this in memory
     name: bulbasaur_model_hd
     dir: pokemon_common

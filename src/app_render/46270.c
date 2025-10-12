@@ -79,7 +79,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
-            dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
+            dmaReadRom(zubat_model_hd_ROM_START, zubat_model_hd_VRAM, zubat_model_hd_ROM_END - zubat_model_hd_ROM_START);
             break;
         case SCENE_CAVE:
             dmaLoadOverlay(&overlayCaveAssets);
@@ -91,7 +91,7 @@ void func_8009A8F0(s32 levelID) {
             dmaReadRom(pikachu1_ROM_START, pikachu1_VRAM, pikachu1_ROM_END - pikachu1_ROM_START);
             dmaReadRom(pikachu2_ROM_START, pikachu2_VRAM, pikachu2_ROM_END - pikachu2_ROM_START);
             dmaReadRom(zubat1_ROM_START, zubat1_VRAM, zubat1_ROM_END - zubat1_ROM_START);
-            dmaReadRom(zubat2_ROM_START, zubat2_VRAM, zubat2_ROM_END - zubat2_ROM_START);
+            dmaReadRom(zubat_model_hd_ROM_START, zubat_model_hd_VRAM, zubat_model_hd_ROM_END - zubat_model_hd_ROM_START);
             break;
         case SCENE_RIVER:
             dmaLoadOverlay(&overlayRiverAssets);

@@ -2869,12 +2869,39 @@ zubat_last = 0x803473E0; // segment:zubat_model
 zubat_gfxdata = 0x80347408; // segment:zubat_model
 zubat_model = 0x80347460; // segment:zubat_model size:0x23C
 
-zubat_tex_8011B058 = 0x8011B058; // segment:zubat_model
-zubat_tex_8011B080_png = 0x8011B080; // segment:zubat_model
-zubat_tex_8011B288 = 0x8011B288; // segment:zubat_model
-zubat_tex_8011B2B0_png = 0x8011B2B0; // segment:zubat_model
-zubat_tex_8011BAB8 = 0x8011BAB8; // segment:zubat_model
-zubat_tex_8011BAE0_png = 0x8011BAE0; // segment:zubat_model
+zubat_hd_vtx = 0x803AA700; // segment:zubat_model_hd size:0x16E0
+zubat_hd_first = 0x803ABDE0; // segment:zubat_model_hd
+zubat_hd_part0_draw = 0x803ABE08; // segment:zubat_model_hd
+zubat_hd_part1_pre = 0x803AC7A8; // segment:zubat_model_hd
+zubat_hd_part1_draw = 0x803AC7E8; // segment:zubat_model_hd
+zubat_hd_part2_draw = 0x803AC848; // segment:zubat_model_hd
+zubat_hd_part3_pre = 0x803AC8A8; // segment:zubat_model_hd
+zubat_hd_part3_draw = 0x803AC8E0; // segment:zubat_model_hd
+zubat_hd_part4_draw = 0x803AC940; // segment:zubat_model_hd
+zubat_hd_part5_pre = 0x803AC9A0; // segment:zubat_model_hd
+zubat_hd_part5_draw = 0x803AC9E8; // segment:zubat_model_hd
+zubat_hd_part6_draw = 0x803ACB50; // segment:zubat_model_hd
+zubat_hd_part7_draw = 0x803ACC98; // segment:zubat_model_hd
+zubat_hd_part8_pre = 0x803ACE38; // segment:zubat_model_hd
+zubat_hd_part8_draw = 0x803ACE90; // segment:zubat_model_hd
+zubat_hd_part9_draw = 0x803ACFE0; // segment:zubat_model_hd
+zubat_hd_part10_draw = 0x803AD128; // segment:zubat_model_hd
+zubat_hd_gfxdata = 0x803AD2E0; // segment:zubat_model_hd
+zubat_hd_model = 0x803AD338; // segment:zubat_model_hd size:0x23C
+
+zubat_tex_8011B058 = 0x8011B058; // segment:zubat_model allow_duplicated:True
+zubat_tex_8011B080_png = 0x8011B080; // segment:zubat_model allow_duplicated:True
+zubat_tex_8011B288 = 0x8011B288; // segment:zubat_model allow_duplicated:True
+zubat_tex_8011B2B0_png = 0x8011B2B0; // segment:zubat_model allow_duplicated:True
+zubat_tex_8011BAB8 = 0x8011BAB8; // segment:zubat_model allow_duplicated:True
+zubat_tex_8011BAE0_png = 0x8011BAE0; // segment:zubat_model allow_duplicated:True
+
+zubat_tex_8011B058 = 0x8011B058; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_8011B080_png = 0x8011B080; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_8011B288 = 0x8011B288; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_8011B2B0_png = 0x8011B2B0; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_8011BAB8 = 0x8011BAB8; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_8011BAE0_png = 0x8011BAE0; // segment:zubat_model_hd allow_duplicated:True
 
 bulbasaur_vtx = 0x8033F790; // segment:bulbasaur_model size:0x1FE0
 bulbasaur_first = 0x80341770; // segment:bulbasaur_model

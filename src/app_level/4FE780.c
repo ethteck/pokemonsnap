@@ -35,7 +35,7 @@ void func_8035E37C_4FE78C(void) {
     obj = omAddGObj(OBJID_28, ohUpdateDefault, LINK_0, 0x80000000);
     omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
     D_803B09D8_550DE8 = obj;
-    
+
     sobj = omGObjAddSprite(obj, &D_80388E00_529210);
     spMove(&sobj->sprite, 257, 22);
 
@@ -66,11 +66,11 @@ s32 func_8035E508_4FE918(void) {
 
 s32 func_8035E52C_4FE93C(void) {
     s32 ones, tens, hundreds;
-    s32 value = 60 - func_8009BC68();    
-    
+    s32 value = 60 - func_8009BC68();
+
     ones = value % 10;
     tens = (value % 100) / 10;
-    hundreds = value / 100;    
+    hundreds = value / 100;
 
     D_80388F58_529368 = D_8038A034_52A444[ones];
 

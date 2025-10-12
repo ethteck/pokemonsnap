@@ -156,7 +156,9 @@ POKEMON_FUNC(diglett_FirstRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_turn);
@@ -214,7 +216,9 @@ POKEMON_FUNC(diglett_SecondRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_turn);
@@ -272,7 +276,9 @@ POKEMON_FUNC(diglett_ThirdRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = diglett_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &diglett_animation_turn);

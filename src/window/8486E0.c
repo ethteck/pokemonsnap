@@ -45,10 +45,10 @@ char* func_8037501C_8487CC(char* fmt, s32 value) {
     static char D_803A6FD0_87A780[16];
     static char* D_803A6FE0_87A790;
     static s16 D_803A6FE8_87A798[17];
-    static s16* D_803A700C_87A7BC;    
-    
+    static s16* D_803A700C_87A7BC;
+
     sprintf(D_803A6FD0_87A780, fmt, value);
-    
+
     for (D_803A6FE0_87A790 = D_803A6FD0_87A780, D_803A700C_87A7BC = D_803A6FE8_87A798; *D_803A6FE0_87A790; D_803A6FE0_87A790++, D_803A700C_87A7BC++) {
         if (*D_803A6FE0_87A790 >= '0' && *D_803A6FE0_87A790 <= '9') {
             *D_803A700C_87A7BC = *D_803A6FE0_87A790 - '0' + (u16) '０';

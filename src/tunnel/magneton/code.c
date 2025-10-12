@@ -101,7 +101,7 @@ POKEMON_FUNC(magneton_Roam1)
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, magneton_Idle);
     }
-    
+
     Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
@@ -122,7 +122,7 @@ POKEMON_FUNC(magneton_Roam2)
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, magneton_Idle);
     }
-    
+
     Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
@@ -142,7 +142,7 @@ POKEMON_FUNC(magneton_AppleNearby)
     if (!(pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED)) {
         Pokemon_SetState(obj, magneton_Idle);
     }
-    
+
     Pokemon_SetState(obj, magneton_WithApple);
 }
 
@@ -167,7 +167,7 @@ POKEMON_FUNC(magneton_WithApple)
     if (pokemon->interactionTarget != NULL) {
         Pokemon_SetState(obj, magneton_WithApple);
     }
-    
+
     Pokemon_SetStateRandom(obj, magneton_idleStates);
 }
 
@@ -180,7 +180,7 @@ POKEMON_FUNC(magneton_RunAway)
     if (pokemon->processFlags & POKEMON_PROCESS_TARGET_REACHED) {
         Pokemon_SetState(obj, magneton_Idle);
     }
-    
+
     pokemon->transitionGraph = magneton_tg_RunAway;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 

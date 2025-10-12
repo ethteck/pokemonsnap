@@ -121,4 +121,3 @@ WorldBlockGFX volcano_block6_gfx = {
     0,
     { 0.0f }
 };
-

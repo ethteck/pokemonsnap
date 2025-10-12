@@ -3708,6 +3708,7 @@ segments:
     - [0x562BC0, c]
     - [0x563000, c]
     - [0x563E80, data]
+    - [auto, c, eevee/model]
     - [auto, c, kangaskhan/model]
     - [auto, c, snorlax/model]
     - [auto, c, lapras/model]
@@ -3726,6 +3727,51 @@ segments:
     - [0x566210, .rodata, 563000]
 
     - { start: 0x566220, type: bin, linker_section_order: .rodata } # , data]
+    - start: 0x5B8140
+      type: .data
+      dir: eevee
+      name: eevee/model
+      linker_section_order: .rodata
+      subsegments:
+      - [0x5B8298, vtx, model]
+      - [0x5BB098, gfx, first]
+      - [0x5BB0D0, gfx, part0_draw_near]
+      - [0x5BB1C8, gfx, part0_draw_far]
+      - [0x5BB2C0, gfx, part0_draw]
+      - [0x5BB2F0, gfx, part1_draw_near]
+      - [0x5BB3D0, gfx, part1_draw_far]
+      - [0x5BB4A0, gfx, part1_draw]
+      - [0x5BB4C8, gfx, part2_draw_near]
+      - [0x5BB5D0, gfx, part2_draw_far]
+      - [0x5BB690, gfx, part2_draw]
+      - [0x5BB6B8, gfx, part3_draw_near]
+      - [0x5BB798, gfx, part3_draw_far]
+      - [0x5BB868, gfx, part3_draw]
+      - [0x5BB890, gfx, part4_draw_near]
+      - [0x5BB998, gfx, part4_draw_far]
+      - [0x5BBA58, gfx, part4_draw]
+      - [0x5BBA80, gfx, part5_draw_near]
+      - [0x5BBB78, gfx, part5_draw_far]
+      - [0x5BBC40, gfx, part5_draw]
+      - [0x5BBC68, gfx, part6_draw_near]
+      - [0x5BBED8, gfx, part6_draw_far]
+      - [0x5BC0C8, gfx, part6_draw]
+      - [0x5BC0F0, gfx, part7_draw_near]
+      - [0x5BC210, gfx, part7_draw_far]
+      - [0x5BC318, gfx, part7_draw]
+      - [0x5BC340, gfx, part8_draw_near]
+      - [0x5BC460, gfx, part8_draw_far]
+      - [0x5BC568, gfx, part8_draw]
+      - [0x5BC590, gfx, part9_draw_near]
+      - [0x5BC6B8, gfx, part9_draw_far]
+      - [0x5BC790, gfx, part9_draw]
+      - [0x5BC7B8, gfx, part10_draw_near]
+      - [0x5BC8E0, gfx, part10_draw_far]
+      - [0x5BC9A8, gfx, part10_draw]
+      - [0x5BC9D0, gfx, part11_draw_near]
+      - [0x5BCAF8, gfx, part11_draw_far]
+      - [0x5BCBC0, gfx, part11_draw]
+      - [0x5BCBE8, gfx, last]
     - start: 0x5BCEB0
       type: .data
       dir: kangaskhan

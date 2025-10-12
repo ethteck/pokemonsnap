@@ -25,7 +25,7 @@ Texture* lapras_part6_mat[];
 
 extern Gfx lapras_part0_draw[];
 
-Texture** D_beach_80330390[] = {
+Texture** lapras_materials[] = {
     NULL,
     NULL,
     NULL,
@@ -79,14 +79,8 @@ Texture lapras_part6_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 38, 38, 38, 0 },
     0,

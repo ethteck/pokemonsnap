@@ -22,8 +22,7 @@ extern u8 eevee_tex_80164BE0[];
 Gfx eevee_part0_draw[];
 
 Texture* eevee_part8_mat[];
-
-Texture** D_beach_803200D0[] = {
+Texture** eevee_materials[] = {
     NULL,
     NULL,
     NULL,
@@ -88,14 +87,8 @@ Texture eevee_part8_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 23, 23, 23, 0 },
     0,
@@ -138,14 +131,8 @@ Texture eevee_part8_mat1 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 23, 23, 23, 0 },
     0,

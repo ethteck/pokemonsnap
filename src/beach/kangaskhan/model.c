@@ -41,7 +41,7 @@ extern u8 kangaskhan_tex_8016E180_png[];
 Texture* kangaskhan_part7_mat[];
 Gfx kangaskhan_part0_draw[];
 
-Texture** D_beach_80324E40[] = {
+Texture** kangaskhan_materials[] = {
     NULL,
     NULL,
     NULL,
@@ -103,14 +103,8 @@ Texture kangaskhan_part7_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 50, 50, 50, 0 },
     0,

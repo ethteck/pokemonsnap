@@ -1029,6 +1029,7 @@ butterfree_tex_80153C58 = 0x80153C58; // segment:beach_code
 butterfree_tex_80154680 = 0x80154680; // segment:beach_code
 butterfree_tex_80154888_png = 0x80154888; // segment:beach_code
 
+doduo_materials = 0x8031C220; // segment:beach_code
 doduo_vtx = 0x8031C378; // segment:beach_code size:0x1A70
 doduo_first = 0x8031DDE8; // segment:beach_code
 doduo_part0_draw_near = 0x8031DE10; // segment:beach_code
@@ -1094,6 +1095,7 @@ doduo_tex_80159D30_png = 0x80159D30; // segment:beach_code
 doduo_tex_80159DB8 = 0x80159DB8; // segment:beach_code
 doduo_tex_80159DE0_png = 0x80159DE0; // segment:beach_code
 
+eevee_materials = 0x803200D0; // segment:beach_code
 eevee_vtx = 0x80320228; // segment:beach_code size:0x2D90
 eevee_first = 0x80323028; // segment:beach_code
 eevee_part0_draw_near = 0x80323060; // segment:beach_code
@@ -1153,6 +1155,7 @@ eevee_tex_801645D8_png = 0x801645D8; // segment:beach_code
 eevee_tex_80164BE0 = 0x80164BE0; // segment:beach_code
 eevee_tex_80164C08_png = 0x80164C08; // segment:beach_code
 
+kangaskhan_materials = 0x80324E40; // segment:beach_code
 kangaskhan_vtx = 0x80324F18; // segment:beach_code size:0x2920
 kangaskhan_first = 0x80327838; // segment:beach_code
 kangaskhan_part0_draw_near = 0x80327868; // segment:beach_code
@@ -1268,6 +1271,7 @@ kangaskhan_tex_8016E050_png = 0x8016E050; // segment:beach_code
 kangaskhan_tex_8016E158 = 0x8016E158; // segment:beach_code
 kangaskhan_tex_8016E180_png = 0x8016E180; // segment:beach_code
 
+snorlax_materials = 0x8032B8F8; // segment:beach_code
 snorlax_vtx = 0x8032BB58; // segment:beach_code size:0x1C80
 snorlax_first = 0x8032D7D8; // segment:beach_code
 snorlax_part0_draw_near = 0x8032D800; // segment:beach_code
@@ -1346,6 +1350,7 @@ snorlax_tex_88017B2F0 = 0x8017B2F0; // segment:beach_code
 snorlax_tex_8017B318_png = 0x8017B318; // segment:beach_code
 snorlax_tex_8017B720_png = 0x8017B720; // segment:beach_code
 
+lapras_materials = 0x80330390; // segment:beach_code
 lapras_vtx = 0x80330448; // segment:beach_code size:0x11B0
 lapras_first = 0x803315F8; // segment:beach_code
 lapras_part0_draw_near = 0x80331620; // segment:beach_code
@@ -1402,6 +1407,7 @@ lapras_tex_801838F0_png = 0x801838F0; // segment:beach_code
 lapras_tex_80183AF8 = 0x80183AF8; // segment:beach_code
 lapras_tex_80183B20_png = 0x80183B20; // segment:beach_code
 
+chansey_materials = 0x803329A0; // segment:beach_code
 chansey_vtx = 0x80332B08; // segment:beach_code size:0x1200
 chansey_first = 0x80333D08; // segment:beach_code
 chansey_part0_draw_near = 0x80333D30; // segment:beach_code

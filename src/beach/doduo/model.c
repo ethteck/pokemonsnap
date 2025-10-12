@@ -20,7 +20,7 @@ Texture* doduo_part5_mat[];
 Texture* doduo_part9_mat[];
 Gfx doduo_part0_draw[];
 
-Texture** D_beach_8031C220[] = {
+Texture** doduo_materials[] = {
     NULL,
     NULL,
     NULL,
@@ -85,14 +85,8 @@ Texture doduo_part5_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 38, 38, 38, 0 },
     0,
@@ -135,14 +129,8 @@ Texture doduo_part9_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 38, 38, 38, 0 },
     0,

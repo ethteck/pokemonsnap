@@ -18,7 +18,7 @@ extern Gfx chansey_part0_draw[];
 
 Texture* chansey_part3_mat[];
 
-Texture** D_beach_803329A0[] = {
+Texture** chansey_materials[] = {
     NULL,
     NULL,
     NULL,
@@ -87,14 +87,8 @@ Texture chansey_part3_mat0 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 51, 51, 51, 0 },
     0,
@@ -137,14 +131,8 @@ Texture chansey_part3_mat1 = {
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    255,
-    0,
-    0,
-    0,
-    8,
+    { 0, 0, 0, 255 },
+    { 0, 0, 0, 8 },
     { 255, 255, 255, 0 },
     { 51, 51, 51, 0 },
     0,

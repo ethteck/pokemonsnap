@@ -3254,11 +3254,61 @@ segments:
     - { name: bss_80139C30, type: bss, vram: 0x80139C30 }
   - type: code
     name: rainbow_extra
+    dir: rainbow
     start: 0x4EC000
     vram: 0x80139C50
     exclusive_ram_id: unk4EC000
     subsegments:
-    - [0x4EC000, bin] # , data]
+    - [auto, c, mew/model_hd]
+    - start: 0x4EC000
+      type: .data
+      dir: mew
+      name: mew/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x4EC120, vtx, hd_model]
+      - [0x4EDC50, gfx, hd_first]
+      - [0x4EDC80, gfx, hd_part0_draw]
+      - [0x4EDF18, gfx, hd_part1_pre]
+      - [0x4EE000, gfx, hd_part1_draw]
+      - [0x4EE1F0, gfx, hd_part2_pre]
+      - [0x4EE278, gfx, hd_part2_draw]
+      - [0x4EE370, gfx, hd_part3_draw]
+      - [0x4EE760, gfx, hd_part4_pre]
+      - [0x4EE798, gfx, hd_part4_draw]
+      - [0x4EE808, gfx, hd_part5_pre]
+      - [0x4EE840, gfx, hd_part5_draw]
+      - [0x4EE8B0, gfx, hd_part6_pre]
+      - [0x4EE910, gfx, hd_part6_draw]
+      - [0x4EE990, gfx, hd_part7_draw]
+      - [0x4EE9E0, gfx, hd_part8_draw]
+      - [0x4EEAF0, gfx, hd_part9_pre]
+      - [0x4EEB50, gfx, hd_part9_draw]
+      - [0x4EEBD0, gfx, hd_part10_draw]
+      - [0x4EEC20, gfx, hd_part11_draw]
+      - [0x4EECF0, gfx, hd_part12_pre]
+      - [0x4EEDA0, gfx, hd_part12_draw]
+      - [0x4EEF60, gfx, hd_part13_draw]
+      - [0x4EEFD8, gfx, hd_part14_draw]
+      - [0x4EF060, gfx, hd_part15_draw]
+      - [0x4EF1F0, gfx, hd_part16_draw]
+      - [0x4EF340, gfx, hd_part17_pre]
+      - [0x4EF410, gfx, hd_part17_draw]
+      - [0x4EF5C8, gfx, hd_part18_draw]
+      - [0x4EF668, gfx, hd_part19_draw]
+      - [0x4EF6F8, gfx, hd_part20_draw]
+      - [0x4EF8B8, gfx, hd_part21_draw]
+      - [0x4EFA18, gfx, hd_part22_pre]
+      - [0x4EFA60, gfx, hd_part22_draw]
+      - [0x4EFB20, gfx, hd_part23_draw]
+      - [0x4EFB88, gfx, hd_part24_draw]
+      - [0x4EFC08, gfx, hd_part25_draw]
+      - [0x4EFC68, gfx, hd_part26_draw]
+      - [0x4EFCB8, gfx, hd_part27_draw]
+      - [0x4EFD68, gfx, hd_part28_draw]
+      - [0x4EFDC0, gfx, hd_part29_draw]
+      - [0x4EFE20, gfx, hd_part30_draw]
+      - [0x4EFE98, gfx, hd_part31_draw]
   - name: app_level
     dir: app_level
     type: code

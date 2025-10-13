@@ -1,4 +1,5 @@
 D_8034C8A0_825E30 = 0x8034C8A0;
+D_8017C090 = 0x8017C090;
 
 func_8036A5B8 = 0x8036A5B8;
 func_8036A8E4 = 0x8036A8E4;
@@ -178,6 +179,63 @@ meowth_tex_8018C0A0 = 0x8018C0A0;
 
 pidgey_tex_8019F820 = 0x8019F820;
 pidgey_tex_8019FE30 = 0x8019FE30;
+
+graveler_tex_8012FBA0 = 0x8012FBA0;
+graveler_tex_8012FDD0 = 0x8012FDD0;
+
+staryu_tex_8013CD20 = 0x8013CD20;
+staryu_tex_8013D330 = 0x8013D330;
+staryu_tex_8013D940 = 0x8013D940;
+
+geodude_tex_8013F690 = 0x8013F690;
+geodude_tex_8013FAC0 = 0x8013FAC0;
+
+mankey_tex_8014E300 = 0x8014E300;
+mankey_tex_8014E8F8 = 0x8014E8F8;
+mankey_tex_8014EEB0 = 0x8014EEB0;
+mankey_tex_8014F460 = 0x8014F460;
+mankey_tex_8014FA68 = 0x8014FA68;
+mankey_tex_80150060 = 0x80150060;
+mankey_tex_80150670 = 0x80150670;
+mankey_tex_80150C68 = 0x80150C68;
+mankey_tex_80151220 = 0x80151220;
+mankey_tex_801517D0 = 0x801517D0;
+
+dratini_tex_8015A008 = 0x8015A008;
+dratini_tex_8015AA18 = 0x8015AA18;
+dratini_tex_8015B428 = 0x8015B428;
+
+sandshrew_tex_80160478 = 0x80160478;
+sandshrew_tex_80160880 = 0x80160880;
+sandshrew_tex_80160C88 = 0x80160C88;
+sandshrew_tex_80161090 = 0x80161090;
+sandshrew_tex_80161498 = 0x80161498;
+sandshrew_tex_801618A0 = 0x801618A0;
+
+sandslash_tex_8016A1D0 = 0x8016A1D0;
+sandslash_tex_8016A600 = 0x8016A600;
+sandslash_tex_8016AA30 = 0x8016AA30;
+sandslash_tex_8033D3B8 = 0x8033D3B8;
+sandslash_tex_8033D3D8_png = 0x8033D3D8;
+
+starmie_tex_80171A60 = 0x80171A60;
+starmie_tex_80172450 = 0x80172450;
+starmie_tex_80172E40 = 0x80172E40;
+
+goldeen_tex_801750C0 = 0x801750C0;
+goldeen_tex_801756D0 = 0x801756D0;
+goldeen_tex_80175CE0 = 0x80175CE0;
+
+squirtle_tex_8017C8D0 = 0x8017C8D0;
+squirtle_tex_8017CB00 = 0x8017CB00;
+squirtle_tex_8017CD30 = 0x8017CD30;
+squirtle_tex_8017CF60 = 0x8017CF60;
+squirtle_tex_8017D190 = 0x8017D190;
+squirtle_tex_8017D3C0 = 0x8017D3C0;
+squirtle_tex_8017D5F0 = 0x8017D5F0;
+squirtle_tex_8017D820 = 0x8017D820;
+squirtle_tex_8017DA50 = 0x8017DA50;
+squirtle_tex_8017DC80 = 0x8017DC80;
 
 mew_tex_80126B20 = 0x80126B20;
 mew_tex_801274B0 = 0x801274B0;

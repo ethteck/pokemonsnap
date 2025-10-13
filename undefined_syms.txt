@@ -269,6 +269,9 @@ mew_tex_801287D0 = 0x801287D0;
 mew_tex_80129160 = 0x80129160;
 mew_tex_80129AF0 = 0x80129AF0;
 
+zapdos_tex_80182BC0 = 0x80182BC0;
+zapdos_tex_80182FF0 = 0x80182FF0;
+
 grimer_tex_80156268 = 0x80156268;
 
 muk_tex_8015DC18 = 0x8015DC18;

@@ -180,6 +180,31 @@ meowth_tex_8018C0A0 = 0x8018C0A0;
 pidgey_tex_8019F820 = 0x8019F820;
 pidgey_tex_8019FE30 = 0x8019FE30;
 
+porygon_tex_80171C50 = 0x80171C50;
+porygon_tex_80171E58 = 0x80171E58;
+porygon_tex_80172060 = 0x80172060;
+porygon_tex_80172268 = 0x80172268;
+porygon_tex_80172470 = 0x80172470;
+porygon_tex_801726A0 = 0x801726A0;
+porygon_tex_801728D0 = 0x801728D0;
+porygon_tex_80172B00 = 0x80172B00;
+
+vileplume_tex_8017BEE0 = 0x8017BEE0;
+vileplume_tex_8017C110 = 0x8017C110;
+vileplume_tex_8017CE28 = 0x8017CE28;
+vileplume_tex_8017D058 = 0x8017D058;
+vileplume_tex_8017D288 = 0x8017D288;
+vileplume_tex_8017D4B8 = 0x8017D4B8;
+
+shellder2_tex_80183088 = 0x80183088;
+
+metapod_tex_801847B0 = 0x801847B0;
+
+slowbro_tex_80192CA0 = 0x80192CA0;
+slowbro_tex_80193960 = 0x80193960;
+slowbro_tex_80338958 = 0x80338958;
+slowbro_tex_80338980_png = 0x80338980;
+
 graveler_tex_8012FBA0 = 0x8012FBA0;
 graveler_tex_8012FDD0 = 0x8012FDD0;
 

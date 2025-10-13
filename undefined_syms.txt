@@ -268,3 +268,57 @@ mew_tex_80127E40 = 0x80127E40;
 mew_tex_801287D0 = 0x801287D0;
 mew_tex_80129160 = 0x80129160;
 mew_tex_80129AF0 = 0x80129AF0;
+
+grimer_tex_80156268 = 0x80156268;
+
+muk_tex_8015DC18 = 0x8015DC18;
+
+koffing_tex_80161B88 = 0x80161B88;
+koffing_tex_80161F90 = 0x80161F90;
+koffing_tex_80162398 = 0x80162398;
+koffing_tex_801627A0 = 0x801627A0;
+koffing_tex_80163230 = 0x80163230;
+koffing_tex_80163660 = 0x80163660;
+koffing_tex_80163A90 = 0x80163A90;
+koffing_tex_80163EC0 = 0x80163EC0;
+koffing_tex_801642F0 = 0x801642F0;
+koffing_tex_80164720 = 0x80164720;
+koffing_tex_80164B50 = 0x80164B50;
+koffing_tex_80164F80 = 0x80164F80;
+koffing_tex_801653B0 = 0x801653B0;
+
+articuno_tex_8016FE08 = 0x8016FE08;
+articuno_tex_80170238 = 0x80170238;
+articuno_tex_80170668 = 0x80170668;
+
+jigglypuff_tex_80187850 = 0x80187850;
+jigglypuff_tex_80187A38 = 0x80187A38;
+jigglypuff_tex_80187C20 = 0x80187C20;
+jigglypuff_tex_80187E08 = 0x80187E08;
+jigglypuff_tex_80187FF0 = 0x80187FF0;
+jigglypuff_tex_80188610 = 0x80188610;
+jigglypuff_tex_80188858 = 0x80188858;
+jigglypuff_tex_80188AA0 = 0x80188AA0;
+jigglypuff_tex_80188CE8 = 0x80188CE8;
+jigglypuff_tex_80188F30 = 0x80188F30;
+jigglypuff_tex_80189178 = 0x80189178;
+jigglypuff_tex_801893C0 = 0x801893C0;
+jigglypuff_tex_80189608 = 0x80189608;
+jigglypuff_tex_80189850 = 0x80189850;
+
+jynx_tex_80194FA8 = 0x80194FA8;
+jynx_tex_801951D8 = 0x801951D8;
+jynx_tex_80195408 = 0x80195408;
+
+victreebel_tex_801A10F0 = 0x801A10F0;
+victreebel_tex_801A1320 = 0x801A1320;
+victreebel_tex_801A1550 = 0x801A1550;
+victreebel_tex_801A1780 = 0x801A1780;
+victreebel_tex_801A19B0 = 0x801A19B0;
+victreebel_tex_801A1BE0 = 0x801A1BE0;
+
+weepinbell_tex_801A5988 = 0x801A5988;
+weepinbell_tex_801A61B8 = 0x801A61B8;
+weepinbell_tex_801A69E8 = 0x801A69E8;
+weepinbell_tex_801A7218 = 0x801A7218;
+weepinbell_tex_801A7A48 = 0x801A7A48;

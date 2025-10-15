@@ -5789,9 +5789,12 @@ segments:
     - [0x5E9B90, c, gate/code]
     - [0x5EA0D0, c, intro]
     - [0x5EA6F0, c, pkmn_1014/code]
+    - [auto, c, kakuna/model]
     - [auto, c, magnemite/model]
     - [auto, c, diglett/model]
     - [auto, c, dugtrio/model]
+    - [auto, c, electabuzz/model]
+    - [auto, c, haunter/model]
     - [auto, c, electrode/model]
     - [auto, c, magneton/model]
     - [auto, c, zapdos/model]
@@ -5819,7 +5822,33 @@ segments:
     - [0x5ED4D0, .rodata, zapdos_egg/code]
     - [0x5ED4E0, .rodata, pkmn_1014/code]
 
-    - { start: 0x5ED4F0, type: bin, linker_section_order: .rodata }
+    - { start: 0x5ED4F0, type: data, linker_section_order: .rodata }
+    - start: 0x623FC0
+      type: .data
+      dir: kakuna
+      name: kakuna/model
+      linker_section_order: .rodata
+      subsegments:
+      - {start: 0x623FC8, type: palette, size: 0x20, name: tex_80326F10}
+      - {start: 0x623FE0, type: ci4, width: 32, height: 32, name: tex_80326F10}
+      - [0x624280, vtx, model]
+      - [0x625BA0, gfx, first]
+      - [0x625BD0, gfx, part0_draw_near]
+      - [0x625C50, gfx, part0_draw_far]
+      - [0x625CD0, gfx, part0_draw]
+      - [0x625D00, gfx, part1_draw_near]
+      - [0x6260C0, gfx, part1_draw_far]
+      - [0x626320, gfx, part1_draw]
+      - [0x626348, gfx, part2_draw_near]
+      - [0x6264A0, gfx, part2_draw_far]
+      - [0x6265E8, gfx, part2_draw]
+      - [0x626610, gfx, part3_draw_near]
+      - [0x626740, gfx, part3_draw_far]
+      - [0x6267E0, gfx, part3_draw]
+      - [0x626808, gfx, part4_draw_near]
+      - [0x626948, gfx, part4_draw_far]
+      - [0x626A80, gfx, part4_draw]
+      - [0x626AA8, gfx, last]
     - start: 0x626C10
       type: .data
       name: magnemite/model
@@ -5913,7 +5942,103 @@ segments:
       - [0x62D700, gfx, part12_draw]
       - [0x62D718, gfx, last]
       - [0x62D740]
-    - { start: 0x62DA00, type: bin, linker_section_order: .rodata }
+    - start: 0x62DA00
+      type: .data
+      dir: electabuzz
+      name: electabuzz/model
+      linker_section_order: .rodata
+      subsegments:
+      - {start: 0x62DA08, type: palette, size: 0x8, name: tex_80330948}
+      - {start: 0x62DA18, type: ci4, width: 16, height: 10, name: tex_80330948}
+      - {start: 0x62DA70, type: palette, size: 0x20, name: tex_03309C8}
+      - {start: 0x62DA98, type: ci4, width: 16, height: 8, name: tex_03309C8}
+      - {start: 0x62DAE0, type: palette, size: 0x20, name: tex_80330A38}
+      - {start: 0x62DB08, type: ci4, width: 32, height: 64, name: tex_80330A38}
+      - {start: 0x62DF10, type: palette, size: 0x20, name: tex_80330E68}
+      - {start: 0x62DF38, type: ci4, width: 32, height: 64, name: tex_80330E68}
+      - [0x62E8E0, vtx, model]
+      - [0x630820, gfx, first]
+      - [0x630850, gfx, part0_draw_near]
+      - [0x630A00, gfx, part0_draw_far]
+      - [0x630BB8, gfx, part0_draw]
+      - [0x630BE8, gfx, part1_pre_near]
+      - [0x630C58, gfx, part1_pre]
+      - [0x630C70, gfx, part1_draw_near]
+      - [0x630E88, gfx, part1_draw_far]
+      - [0x631068, gfx, part1_draw]
+      - [0x631090, gfx, part2_pre_near]
+      - [0x6310E0, gfx, part2_pre]
+      - [0x6310F8, gfx, part2_draw_near]
+      - [0x6311E0, gfx, part2_draw_far]
+      - [0x631278, gfx, part2_draw]
+      - [0x6312A0, gfx, part3_draw_near]
+      - [0x631508, gfx, part3_draw_far]
+      - [0x6316D0, gfx, part3_draw]
+      - [0x6316F8, gfx, part5_pre_near]
+      - [0x631748, gfx, part5_pre]
+      - [0x631760, gfx, part5_draw_near]
+      - [0x631848, gfx, part5_draw_far]
+      - [0x6318E0, gfx, part5_draw]
+      - [0x631908, gfx, part6_draw_near]
+      - [0x631B70, gfx, part6_draw_far]
+      - [0x631D38, gfx, part6_draw]
+      - [0x631D60, gfx, part8_pre_near]
+      - [0x631DA0, gfx, part8_pre]
+      - [0x631DB8, gfx, part8_draw_near]
+      - [0x6321C8, gfx, part8_draw_far]
+      - [0x6324D0, gfx, part8_draw]
+      - [0x6324F8, gfx, part9_draw_near]
+      - [0x632650, gfx, part9_draw_far]
+      - [0x632790, gfx, part9_draw]
+      - [0x6327B8, gfx, part10_pre_near]
+      - [0x6327F8, gfx, part10_pre]
+      - [0x632810, gfx, part10_draw_near]
+      - [0x6328E8, gfx, part10_draw_far]
+      - [0x6329A0, gfx, part10_draw]
+      - [0x6329C8, gfx, part11_draw_near]
+      - [0x632AA0, gfx, part11_draw_far]
+      - [0x632B58, gfx, part11_draw]
+      - [0x632B80, gfx, part12_draw_near]
+      - [0x632C60, gfx, part12_draw_far]
+      - [0x632D28, gfx, part12_draw]
+      - [0x632D50, gfx, part13_pre_near]
+      - [0x632DA0, gfx, part13_pre]
+      - [0x632DB8, gfx, part13_draw_near]
+      - [0x632E70, gfx, part13_draw_far]
+      - [0x632F10, gfx, part13_draw]
+      - [0x632F38, gfx, part14_draw_near]
+      - [0x632FF0, gfx, part14_draw_far]
+      - [0x6330C0, gfx, part14_draw]
+      - [0x6330E8, gfx, part15_draw_near]
+      - [0x633210, gfx, part15_draw_far]
+      - [0x633348, gfx, part15_draw]
+      - [0x633370, gfx, part16_pre_near]
+      - [0x6333C0, gfx, part16_pre]
+      - [0x6333D8, gfx, part16_draw_near]
+      - [0x633490, gfx, part16_draw_far]
+      - [0x633530, gfx, part16_draw]
+      - [0x633558, gfx, part17_draw_near]
+      - [0x633610, gfx, part17_draw_far]
+      - [0x6336D8, gfx, part17_draw]
+      - [0x633700, gfx, part18_draw_near]
+      - [0x633828, gfx, part18_draw_far]
+      - [0x633978, gfx, part18_draw]
+      - [0x6339A0, gfx, last]
+      - [0x6339C8, gfx, part4_draw_near]
+      - [0x633BD0, gfx, part4_draw_far]
+      - [0x633DD8, gfx, part4_draw]
+      - [0x633E08, gfx, part7_draw_near]
+      - [0x634010, gfx, part7_draw_far]
+      - [0x634218, gfx, part7_draw]
+    - start: 0x6347D0
+      type: .data
+      dir: haunter
+      name: haunter/model
+      linker_section_order: .rodata
+      subsegments:
+      - {start: 0x6347D8, type: rgba16, width: 32, height: 32, name: tex_80337708}
+      - [0x634FD8, vtx, model]
+      - [0x635098, gfx, part0_draw]
     - start: 0x635690
       type: .data
       name: electrode/model

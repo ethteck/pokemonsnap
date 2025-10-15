@@ -4256,11 +4256,314 @@ segments:
     - [auto, .bss, world/world]
   - type: code
     name: volcano_extra
+    dir: volcano
     start: 0x3D0560
     vram: 0x801A9900
     exclusive_ram_id: unk3D0560
     subsegments:
-    - [0x3D0560, bin] # , data]
+    - [auto, c, magmar/model_hd]
+    - [auto, c, moltres/model_hd]
+    - [auto, c, rapidash/model_hd]
+    - [auto, c, growlithe/model_hd]
+    - [auto, c, charmander/model_hd]
+    - [auto, c, charmeleon/model_hd]
+    - [auto, c, charizard/model_hd]
+    - [auto, c, vulpix/model_hd]
+    - [auto, c, arcanine/model_hd]
+
+    - start: 0x3D0560
+      type: .data
+      dir: magmar
+      name: magmar/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3D0568, palette, tex_801A9930_hd]
+      - [0x3D0588]
+      - {start: 0x3D0590, type: ci4, name: tex_801A9930_hd, width: 16, height: 16}
+      - [0x3D0610]
+      - [0x3D0780, vtx, hd_model]
+      - [0x3D2E00, gfx, hd_first]
+      - [0x3D2E28, gfx, hd_part0_draw]
+      - [0x3D2EA8, gfx, hd_part1_pre]
+      - [0x3D2EE8, gfx, hd_part1_draw]
+      - [0x3D2F58, gfx, hd_part2_draw]
+      - [0x3D3010, gfx, hd_part4_pre]
+      - [0x3D3068, gfx, hd_part4_draw]
+      - [0x3D32C0, gfx, hd_part5_draw]
+      - [0x3D38D0, gfx, hd_part6_pre]
+      - [0x3D3910, gfx, hd_part6_draw]
+      - [0x3D3978, gfx, hd_part7_pre]
+      - [0x3D39B0, gfx, hd_part7_draw]
+      - [0x3D3A18, gfx, hd_part8_draw]
+      - [0x3D3C18, gfx, hd_part9_draw]
+      - [0x3D3E70, gfx, hd_part10_draw]
+      - [0x3D4080, gfx, hd_part11_draw]
+      - [0x3D42D8, gfx, hd_part12_draw]
+      - [0x3D4428, gfx, hd_part13_draw]
+      - [0x3D4518, gfx, hd_part14_draw]
+      - [0x3D4648, gfx, hd_part15_draw]
+      - [0x3D4798, gfx, hd_part16_draw]
+      - [0x3D4888, gfx, hd_part17_draw]
+      - [0x3D49B8, gfx, hd_part3_draw]
+    - start: 0x3D4FE0
+      type: .data
+      dir: moltres
+      name: moltres/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3D58D0, vtx, hd_model]
+      - [0x3D7280, gfx, hd_first]
+      - [0x3D72C8, gfx, hd_part0_draw]
+      - [0x3D73D8, gfx, hd_part1_pre]
+      - [0x3D7428, gfx, hd_part1_draw]
+      - [0x3D74E0, gfx, hd_part2_draw]
+      - [0x3D7648, gfx, hd_part3_draw]
+      - [0x3D78B0, gfx, hd_part4_pre]
+      - [0x3D7910, gfx, hd_part4_draw]
+      - [0x3D7A60, gfx, hd_part5_draw]
+      - [0x3D7AD8, gfx, hd_part6_draw]
+      - [0x3D7E40, gfx, hd_part7_draw]
+      - [0x3D7F98, gfx, hd_part8_draw]
+      - [0x3D8120, gfx, hd_part9_draw]
+      - [0x3D82D0, gfx, hd_part10_draw]
+      - [0x3D8470, gfx, hd_part11_draw]
+      - [0x3D85E8, gfx, hd_part12_draw]
+      - [0x3D8798, gfx, hd_part13_draw]
+      - [0x3D8938, gfx, hd_part14_draw]
+      - [0x3D8A80, gfx, hd_part15_draw]
+      - [0x3D8C10, gfx, hd_part16_draw]
+      - [0x3D8D78, gfx, hd_part17_pre]
+      - [0x3D8DE0, gfx, hd_part17_draw]
+      - [0x3D8EF0, gfx, hd_part18_draw]
+      - [0x3D9058, gfx, hd_part19_draw]
+    - start: 0x3D9750
+      type: .data
+      dir: rapidash
+      name: rapidash/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3D9E78, vtx, hd_model]
+      - [0x3DB718, gfx, hd_first]
+      - [0x3DB748, gfx, hd_part0_draw]
+      - [0x3DB990, gfx, hd_part1_pre]
+      - [0x3DBA48, gfx, hd_part1_draw]
+      - [0x3DBBC8, gfx, hd_part2_draw]
+      - [0x3DBF08, gfx, hd_part3_draw]
+      - [0x3DBFD0, gfx, hd_part4_draw]
+      - [0x3DC0B0, gfx, hd_part5_pre]
+      - [0x3DC128, gfx, hd_part5_draw]
+      - [0x3DC1E8, gfx, hd_part6_draw]
+      - [0x3DC360, gfx, hd_part7_draw]
+      - [0x3DC4A8, gfx, hd_part8_pre]
+      - [0x3DC500, gfx, hd_part8_draw]
+      - [0x3DC5A0, gfx, hd_part9_draw]
+      - [0x3DC608, gfx, hd_part10_draw]
+      - [0x3DC770, gfx, hd_part11_draw]
+      - [0x3DC8A0, gfx, hd_part12_pre]
+      - [0x3DC8F8, gfx, hd_part12_draw]
+      - [0x3DC9B8, gfx, hd_part13_draw]
+      - [0x3DCB68, gfx, hd_part14_draw]
+      - [0x3DCCB0, gfx, hd_part15_pre]
+      - [0x3DCD08, gfx, hd_part15_draw]
+      - [0x3DCDA8, gfx, hd_part16_draw]
+      - [0x3DCE10, gfx, hd_part17_draw]
+      - [0x3DCF78, gfx, hd_part18_draw]
+      - [0x3DD0A8, gfx, hd_part19_draw]
+      - [0x3DD170, gfx, hd_part20_draw]
+    - start: 0x3DD740
+      type: .data
+      dir: growlithe
+      name: growlithe/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3DD818, vtx, hd_model]
+      - [0x3DF6C8, gfx, hd_first]
+      - [0x3DF6E8, gfx, hd_part0_draw]
+      - [0x3DF888, gfx, hd_part1_pre]
+      - [0x3DF8F0, gfx, hd_part1_draw]
+      - [0x3DFE10, gfx, hd_part2_pre]
+      - [0x3DFE98, gfx, hd_part2_draw]
+      - [0x3E03B8, gfx, hd_part3_draw]
+      - [0x3E04A0, gfx, hd_part4_draw]
+      - [0x3E05A0, gfx, hd_part5_draw]
+      - [0x3E0650, gfx, hd_part6_pre]
+      - [0x3E06B8, gfx, hd_part6_draw]
+      - [0x3E07F8, gfx, hd_part7_draw]
+      - [0x3E0890, gfx, hd_part8_draw]
+      - [0x3E0940, gfx, hd_part9_pre]
+      - [0x3E09E0, gfx, hd_part9_draw]
+      - [0x3E0AB8, gfx, hd_part10_draw]
+      - [0x3E0B58, gfx, hd_part11_draw]
+      - [0x3E0C08, gfx, hd_part12_draw]
+      - [0x3E0D08, gfx, hd_part13_draw]
+      - [0x3E0E18, gfx, hd_part14_pre]
+      - [0x3E0EA8, gfx, hd_part14_draw]
+      - [0x3E1010, gfx, hd_part15_draw]
+      - [0x3E1198, gfx, hd_part16_pre]
+      - [0x3E1228, gfx, hd_part16_draw]
+      - [0x3E13A8, gfx, hd_part17_draw]
+    - start: 0x3E1930
+      type: .data
+      dir: charmander
+      name: charmander/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3E1938, palette, tex_801BAD00_hd]
+      - [0x3E1958]
+      - {start: 0x3E1960, type: ci4, name: tex_801BAD00_hd, width: 32, height: 32}
+      - [0x3E1B60]
+      - [0x3E1CD0, vtx, hd_model]
+      - [0x3E3C80, gfx, hd_first]
+      - [0x3E3CB8, gfx, hd_part0_draw]
+      - [0x3E3F00, gfx, hd_part1_pre]
+      - [0x3E3F38, gfx, hd_part1_draw]
+      - [0x3E4018, gfx, hd_part2_draw]
+      - [0x3E40D0, gfx, hd_part3_pre]
+      - [0x3E4118, gfx, hd_part3_draw]
+      - [0x3E41F8, gfx, hd_part4_draw]
+      - [0x3E42B0, gfx, hd_part5_pre]
+      - [0x3E42F8, gfx, hd_part5_draw]
+      - [0x3E4968, gfx, hd_part6_draw]
+      - [0x3E4C00, gfx, hd_part7_draw]
+      - [0x3E4CD0, gfx, hd_part8_draw]
+      - [0x3E4E88, gfx, hd_part9_draw]
+      - [0x3E4F60, gfx, hd_part10_draw]
+      - [0x3E5118, gfx, hd_part11_pre]
+      - [0x3E5160, gfx, hd_part11_draw]
+      - [0x3E5220, gfx, hd_part12_draw]
+      - [0x3E52F8, gfx, hd_part13_draw]
+    - start: 0x3E57E0
+      type: .data
+      dir: charmeleon
+      name: charmeleon/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3E5948, vtx, hd_model]
+      - [0x3E7728, gfx, hd_first]
+      - [0x3E7748, gfx, hd_part0_draw]
+      - [0x3E7978, gfx, hd_part1_draw]
+      - [0x3E79F0, gfx, hd_part2_draw]
+      - [0x3E7A68, gfx, hd_part3_draw]
+      - [0x3E7C38, gfx, hd_part4_draw]
+      - [0x3E7CB0, gfx, hd_part5_draw]
+      - [0x3E7D28, gfx, hd_part6_draw]
+      - [0x3E7EE0, gfx, hd_part7_pre]
+      - [0x3E7F50, gfx, hd_part7_draw]
+      - [0x3E8670, gfx, hd_part8_draw]
+      - [0x3E8868, gfx, hd_part9_pre]
+      - [0x3E88F8, gfx, hd_part9_draw]
+      - [0x3E8A30, gfx, hd_part10_draw]
+      - [0x3E8B20, gfx, hd_part11_draw]
+      - [0x3E8BC8, gfx, hd_part13_pre]
+      - [0x3E8C28, gfx, hd_part13_draw]
+      - [0x3E8D00, gfx, hd_part14_draw]
+      - [0x3E8E70, gfx, hd_part15_pre]
+      - [0x3E8ED0, gfx, hd_part15_draw]
+      - [0x3E8FA8, gfx, hd_part16_draw]
+      - [0x3E90C0, gfx, hd_part12_draw]
+    - start: 0x3E9660
+      type: .data
+      dir: charizard
+      name: charizard/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3E9730, vtx, hd_model]
+      - [0x3EB050, gfx, hd_first]
+      - [0x3EB088, gfx, hd_part0_draw]
+      - [0x3EB290, gfx, hd_part1_pre]
+      - [0x3EB2C0, gfx, hd_part1_draw]
+      - [0x3EB450, gfx, hd_part2_draw]
+      - [0x3EB5E0, gfx, hd_part3_pre]
+      - [0x3EB620, gfx, hd_part3_draw]
+      - [0x3EB758, gfx, hd_part4_draw]
+      - [0x3EB8E8, gfx, hd_part5_pre]
+      - [0x3EB938, gfx, hd_part5_draw]
+      - [0x3EB9A8, gfx, hd_part6_draw]
+      - [0x3EBA08, gfx, hd_part7_draw]
+      - [0x3EBFE8, gfx, hd_part8_draw]
+      - [0x3EC200, gfx, hd_part9_draw]
+      - [0x3EC2B0, gfx, hd_part10_draw]
+      - [0x3EC310, gfx, hd_part11_pre]
+      - [0x3EC358, gfx, hd_part11_draw]
+      - [0x3EC3D8, gfx, hd_part12_draw]
+      - [0x3EC550, gfx, hd_part13_pre]
+      - [0x3EC5A8, gfx, hd_part13_draw]
+      - [0x3EC638, gfx, hd_part14_draw]
+    - start: 0x3ECAF0
+      type: .data
+      dir: vulpix
+      name: vulpix/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3ECAF8, palette, tex_801C5EC0_hd]
+      - [0x3ECB18]
+      - {start: 0x3ECB20, type: ci4, name: tex_801C5EC0_hd, width: 32, height: 32}
+      - [0x3F1800]
+      - [0x3ECE90, vtx, hd_model]
+      - [0x3EF590, gfx, hd_first]
+      - [0x3EF5C0, gfx, hd_part0_draw]
+      - [0x3EF7B0, gfx, hd_part1_pre]
+      - [0x3EF838, gfx, hd_part1_draw]
+      - [0x3EF8C8, gfx, hd_part2_draw]
+      - [0x3EFB28, gfx, hd_part3_pre]
+      - [0x3EFBA0, gfx, hd_part3_draw]
+      - [0x3EFC30, gfx, hd_part4_draw]
+      - [0x3EFE98, gfx, hd_part5_pre]
+      - [0x3EFEF8, gfx, hd_part5_draw]
+      - [0x3F0610, gfx, hd_part6_pre]
+      - [0x3F0680, gfx, hd_part6_draw]
+      - [0x3F0820, gfx, hd_part7_draw]
+      - [0x3F0988, gfx, hd_part8_draw]
+      - [0x3F0B10, gfx, hd_part9_draw]
+      - [0x3F0C28, gfx, hd_part10_pre]
+      - [0x3F0C88, gfx, hd_part10_draw]
+      - [0x3F0D50, gfx, hd_part11_draw]
+      - [0x3F0DC8, gfx, hd_part12_draw]
+      - [0x3F1010, gfx, hd_part13_pre]
+      - [0x3F1080, gfx, hd_part13_draw]
+      - [0x3F1148, gfx, hd_part14_draw]
+      - [0x3F11C0, gfx, hd_part15_draw]
+
+    - start: 0x3F1800
+      type: .data
+      dir: arcanine
+      name: arcanine/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x3F18E8, vtx, hd_model]
+      - [0x3F3A98, gfx, hd_first]
+      - [0x3F3AC0, gfx, hd_part0_draw]
+      - [0x3F3D20, gfx, hd_part1_pre]
+      - [0x3F3DF8, gfx, hd_part1_draw]
+      - [0x3F4090, gfx, hd_part2_pre]
+      - [0x3F4108, gfx, hd_part2_draw]
+      - [0x3F47E0, gfx, hd_part3_draw]
+      - [0x3F4970, gfx, hd_part4_draw]
+      - [0x3F4A20, gfx, hd_part5_pre]
+      - [0x3F4A70, gfx, hd_part5_draw]
+      - [0x3F4BE8, gfx, hd_part6_draw]
+      - [0x3F4CE8, gfx, hd_part7_draw]
+      - [0x3F4E00, gfx, hd_part8_draw]
+      - [0x3F4ED0, gfx, hd_part9_pre]
+      - [0x3F4F20, gfx, hd_part9_draw]
+      - [0x3F5090, gfx, hd_part10_draw]
+      - [0x3F5170, gfx, hd_part11_draw]
+      - [0x3F5288, gfx, hd_part12_draw]
+      - [0x3F5358, gfx, hd_part13_draw]
+      - [0x3F53C8, gfx, hd_part14_draw]
+      - [0x3F5460, gfx, hd_part15_pre]
+      - [0x3F5500, gfx, hd_part15_draw]
+      - [0x3F56B8, gfx, hd_part16_pre]
+      - [0x3F56F0, gfx, hd_part16_draw]
+      - [0x3F5888, gfx, hd_part17_pre]
+      - [0x3F58E8, gfx, hd_part17_draw]
+      - [0x3F59D8, gfx, hd_part18_pre]
+      - [0x3F5A68, gfx, hd_part18_draw]
+      - [0x3F5C08, gfx, hd_part19_pre]
+      - [0x3F5C30, gfx, hd_part19_draw]
+      - [0x3F5DC8, gfx, hd_part20_pre]
+      - [0x3F5E28, gfx, hd_part20_draw]
+
   - type: code
     name: valley_assets
     start: 0x3F63D0

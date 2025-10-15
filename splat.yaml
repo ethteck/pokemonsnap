@@ -5829,7 +5829,8 @@ segments:
       name: kakuna/model
       linker_section_order: .rodata
       subsegments:
-      - {start: 0x623FC8, type: palette, size: 0x20, name: tex_80326F10}
+      - {start: 0x623FC8, type: palette, size: 0x10, name: tex_80326F10}
+      - [0x623FD8]
       - {start: 0x623FE0, type: ci4, width: 32, height: 32, name: tex_80326F10}
       - [0x624280, vtx, model]
       - [0x625BA0, gfx, first]
@@ -5949,12 +5950,16 @@ segments:
       linker_section_order: .rodata
       subsegments:
       - {start: 0x62DA08, type: palette, size: 0x8, name: tex_80330948}
+      - [0x62DA10]
       - {start: 0x62DA18, type: ci4, width: 16, height: 10, name: tex_80330948}
-      - {start: 0x62DA70, type: palette, size: 0x20, name: tex_03309C8}
-      - {start: 0x62DA98, type: ci4, width: 16, height: 8, name: tex_03309C8}
+      - {start: 0x62DA70, type: palette, size: 0x20, name: tex_803309C8}
+      - [0x62DA90]
+      - {start: 0x62DA98, type: ci4, width: 16, height: 8, name: tex_803309C8}
       - {start: 0x62DAE0, type: palette, size: 0x20, name: tex_80330A38}
+      - [0x62DB00]
       - {start: 0x62DB08, type: ci4, width: 32, height: 64, name: tex_80330A38}
       - {start: 0x62DF10, type: palette, size: 0x20, name: tex_80330E68}
+      - [0x62DF30]
       - {start: 0x62DF38, type: ci4, width: 32, height: 64, name: tex_80330E68}
       - [0x62E8E0, vtx, model]
       - [0x630820, gfx, first]

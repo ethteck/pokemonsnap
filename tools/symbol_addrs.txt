@@ -3480,8 +3480,8 @@ pkmn_1017_draw = 0x8013BA20; // segment:tunnel_assets
 pkmn_1017_vtx = 0x8013BD90; // segment:tunnel_assets size:0x4A0
 
 
-kakuna_tex_80326F10 = 0x80326F10; // segment:tunnel_code
 kakuna_tex_80326EF8 = 0x80326EF8; // segment:tunnel_code
+kakuna_tex_80326F10 = 0x80326F10; // segment:tunnel_code
 kakuna_vtx = 0x803271B0; // segment:tunnel_code size:0x1920
 kakuna_first = 0x80328AD0; // segment:tunnel_code
 kakuna_part0_draw_near = 0x80328B00; // segment:tunnel_code

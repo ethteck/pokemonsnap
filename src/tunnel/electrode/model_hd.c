@@ -48,11 +48,6 @@ extern Texture* electrode_hd_part12_mat[];
 extern Texture* electrode_hd_part13_mat[];
 extern Texture* electrode_hd_part17_mat[];
 
-extern u8 electrode_tex_801A62BC[];
-extern u8 electrode_tex_801A6258[];
-extern u8 electrode_tex_801A6284[];
-extern u8 electrode_tex_801A62A0[];
-
 Texture** electrode_hd_materials[] = {
     NULL,
     NULL,
@@ -86,6 +81,9 @@ u8* electrode_hd_part12_mat1_textures[] = {
     electrode_tex_eyes_frame1_png,
     electrode_tex_eyes_frame2_png,
     electrode_tex_eyes_frame2_png,
+};
+
+u8* electrode_hd_part12_mat1_palettes[] = {
     electrode_tex_eyes_frame0_pal,
     electrode_tex_eyes_frame1_pal,
     electrode_tex_eyes_frame2_pal,
@@ -103,6 +101,9 @@ u8* electrode_hd_part12_mat3_textures[] = {
     electrode_tex_top_frame1_png,
     electrode_tex_top_frame2_png,
     electrode_tex_top_frame2_png,
+};
+
+u8* electrode_hd_part12_mat3_palettes[] = {
     electrode_tex_top_frame0_pal,
     electrode_tex_top_frame1_pal,
     electrode_tex_top_frame2_pal,
@@ -113,6 +114,9 @@ u8* electrode_hd_part12_mat4_textures[] = {
     electrode_tex_mouth_frame1_png,
     electrode_tex_mouth_frame2_png,
     electrode_tex_mouth_frame2_png,
+};
+
+u8* electrode_hd_part12_mat4_palettes[] = {
     electrode_tex_mouth_frame0_pal,
     electrode_tex_mouth_frame1_pal,
     electrode_tex_mouth_frame2_pal,
@@ -123,6 +127,9 @@ u8* electrode_hd_part12_mat5_textures[] = {
     electrode_tex_bottom_frame1_png,
     electrode_tex_bottom_frame2_png,
     electrode_tex_bottom_frame2_png,
+};
+
+u8* electrode_hd_part12_mat5_palettes[] = {
     electrode_tex_bottom_frame0_pal,
     electrode_tex_bottom_frame1_pal,
     electrode_tex_bottom_frame2_pal,
@@ -540,7 +547,7 @@ Texture electrode_hd_part12_mat1 = {
     1.0,
     0.0,
     1.0,
-    electrode_tex_801A6258,
+    electrode_hd_part12_mat1_palettes,
     0x15,
     G_IM_FMT_CI,
     G_IM_SIZ_4b,
@@ -628,7 +635,7 @@ Texture electrode_hd_part12_mat3 = {
     1.0,
     0.0,
     1.0,
-    electrode_tex_801A6284,
+    electrode_hd_part12_mat3_palettes,
     0x15,
     G_IM_FMT_CI,
     G_IM_SIZ_4b,
@@ -672,7 +679,7 @@ Texture electrode_hd_part12_mat4 = {
     1.0,
     0.0,
     1.0,
-    electrode_tex_801A62A0,
+    electrode_hd_part12_mat4_palettes,
     0x15,
     G_IM_FMT_CI,
     G_IM_SIZ_4b,
@@ -716,7 +723,7 @@ Texture electrode_hd_part12_mat5 = {
     1.0,
     0.0,
     1.0,
-    electrode_tex_801A62BC,
+    electrode_hd_part12_mat5_palettes,
     0x15,
     G_IM_FMT_CI,
     G_IM_SIZ_4b,

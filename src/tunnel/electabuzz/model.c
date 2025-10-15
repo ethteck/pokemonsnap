@@ -197,6 +197,7 @@ u8* electabuzz_part9_mat0_textures[] = {
     electabuzz_tex_8016D530,
     electabuzz_tex_8016C4D0,
     electabuzz_tex_8016CD00,
+    NULL,
 };
 
 Texture electabuzz_part5_mat0 = {

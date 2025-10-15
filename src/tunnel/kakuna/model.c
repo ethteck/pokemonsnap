@@ -11,31 +11,19 @@ extern u8 kakuna_tex_80159C90[];
 extern u8 kakuna_tex_80159E98[];
 extern u8 kakuna_tex_80159EB0[];
 extern u8 kakuna_tex_8015A0B8[];
-extern u8 kakuna_tex_80326EF8[];
-extern u8 kakuna_tex_80326F10[];
 
 __ALIGNER
-u8 kakuna_tex_80326F10[] = {
+u8 kakuna_tex_80326EF8[] = {
 #include "assets/tunnel/kakuna/tex_80326F10.pal.bin.c"
 };
 
 __ALIGNER
-u8 kakuna_tex_80326EF8[] = {
+u8 kakuna_tex_80326F10[] = {
 #include "assets/tunnel/kakuna/tex_80326F10.png.bin.c"
 };
 
 extern Texture* kakuna_part1_mat[];
 extern Gfx kakuna_part0_draw[];
-
-__ALIGNER
-u8 kakuna_tex_80326F10_pal[] = {
-#include "assets/tunnel/kakuna/tex_80326F10.pal.bin.c"
-};
-
-__ALIGNER
-u8 kakuna_tex_80326F10_png[] = {
-#include "assets/tunnel/kakuna/tex_80326F10.png.bin.c"
-};
 
 Texture** kakuna_materials[] = {
     NULL,
@@ -48,6 +36,7 @@ Texture** kakuna_materials[] = {
 
 u8* kakuna_part1_mat0_textures[] = {
     kakuna_tex_8015A0B8,
+    NULL,
 };
 
 Texture kakuna_part1_mat0 = {

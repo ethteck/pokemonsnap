@@ -1435,11 +1435,269 @@ segments:
     - { name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: tunnel_extra
+    dir: tunnel
     start: 0x1D1D90
     vram: 0x8018BC50
     exclusive_ram_id: unk_01D1D90
     subsegments:
-    - [0x1D1D90, bin] # , data]
+    - [auto, c, kakuna/model_hd]
+    - [auto, c, magnemite/model_hd]
+    - [auto, c, diglett/model_hd]
+    - [auto, c, dugtrio/model_hd]
+    - [auto, c, electabuzz/model_hd]
+    - [auto, c, haunter/model_hd]
+    - [auto, c, electrode/model_hd]
+    - [auto, c, magneton/model_hd]
+    - [auto, c, zapdos/model_hd]
+    - start: 0x1D1D90
+      type: .data
+      dir: kakuna
+      name: kakuna/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1D1E30, vtx, hd_model]
+      - [0x1D34D0, gfx, hd_first]
+      - [0x1D3508, gfx, hd_part0_draw]
+      - [0x1D3568, gfx, hd_part1_draw]
+      - [0x1D3B78, gfx, hd_part2_draw]
+      - [0x1D3E78, gfx, hd_part3_draw]
+      - [0x1D3F80, gfx, hd_part4_draw]
+    - start: 0x1D4340
+      type: .data
+      dir: magnemite
+      name: magnemite/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - { start: 0x1D4348, type: i4, name: tex_hd_8018E208, width: 32, height: 32 }
+      - [0x1D4548]
+      - [0x1D4A58, vtx, hd_model]
+      - [0x1D6128, gfx, hd_first]
+      - [0x1D6160, gfx, hd_part0_draw]
+      - [0x1D64E8, gfx, hd_part1_draw]
+      - [0x1D6648, gfx, hd_part2_draw]
+      - [0x1D66E8, gfx, hd_part3_draw]
+      - [0x1D6860, gfx, hd_part4_draw]
+      - [0x1D69D8, gfx, hd_part5_draw]
+      - [0x1D6B40, gfx, hd_part6_draw]
+    - start: 0x1D6EB0
+      type: .data
+      dir: diglett
+      name: diglett/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1D6FF8, vtx, hd_model]
+      - [0x1D8A58, gfx, hd_first]
+      - [0x1D8A88, gfx, hd_part0_draw]
+      - [0x1D8D88, gfx, hd_part1_draw]
+      - [0x1D8DD0, gfx, hd_part2_draw]
+      - [0x1D8F20, gfx, hd_part3_draw]
+      - [0x1D8FF8, gfx, hd_part4_draw]
+      - [0x1D93B0, gfx, hd_part5_draw]
+      - [0x1D94E8, gfx, hd_part6_draw]
+      - [0x1D95E0, gfx, hd_part7_draw]
+      - [0x1D96B8, gfx, hd_part8_draw]
+      - [0x1D9740, gfx, hd_part9_draw]
+      - [0x1D97C8, gfx, hd_part10_draw]
+    - start: 0x1D9AD0
+      type: .data
+      dir: dugtrio
+      name: dugtrio/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1D9AD0, vtx, hd_model]
+      - [0x1DBA30, gfx, hd_first]
+      - [0x1DBA70, gfx, hd_part0_draw]
+      - [0x1DBB98, gfx, hd_part1_draw]
+      - [0x1DBC48, gfx, hd_part2_draw]
+      - [0x1DBD28, gfx, hd_part3_draw]
+      - [0x1DC0C0, gfx, hd_part4_draw]
+      - [0x1DC118, gfx, hd_part5_draw]
+      - [0x1DC4B0, gfx, hd_part6_draw]
+      - [0x1DC508, gfx, hd_part7_draw]
+      - [0x1DC8A0, gfx, hd_part8_draw]
+      - [0x1DC9C0, gfx, hd_part9_draw]
+      - [0x1DCA88, gfx, hd_part10_draw]
+      - [0x1DCB50, gfx, hd_part11_draw]
+      - [0x1DCBD8, gfx, hd_part12_draw]
+    - start: 0x1DCF40
+      type: .data
+      dir: electabuzz
+      name: electabuzz/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1DD4E8, vtx, hd_model]
+      - [0x1DF2E8, gfx, hd_first]
+      - [0x1DF320, gfx, hd_part0_draw]
+      - [0x1DF530, gfx, hd_part1_pre]
+      - [0x1DF590, gfx, hd_part1_draw]
+      - [0x1DF830, gfx, hd_part2_pre]
+      - [0x1DF868, gfx, hd_part2_draw]
+      - [0x1DF968, gfx, hd_part3_draw]
+      - [0x1DFBD0, gfx, hd_part5_pre]
+      - [0x1DFC08, gfx, hd_part5_draw]
+      - [0x1DFCC8, gfx, hd_part6_draw]
+      - [0x1DFF38, gfx, hd_part8_pre]
+      - [0x1DFF70, gfx, hd_part8_draw]
+      - [0x1E0578, gfx, hd_part9_draw]
+      - [0x1E06D0, gfx, hd_part10_pre]
+      - [0x1E0708, gfx, hd_part10_draw]
+      - [0x1E07C0, gfx, hd_part11_draw]
+      - [0x1E0818, gfx, hd_part12_draw]
+      - [0x1E0880, gfx, hd_part13_pre]
+      - [0x1E08B8, gfx, hd_part13_draw]
+      - [0x1E0970, gfx, hd_part14_draw]
+      - [0x1E0A08, gfx, hd_part15_draw]
+      - [0x1E0B88, gfx, hd_part16_pre]
+      - [0x1E0BE0, gfx, hd_part16_draw]
+      - [0x1E0C98, gfx, hd_part17_draw]
+      - [0x1E0D30, gfx, hd_part18_draw]
+      - [0x1E0EB0, gfx, hd_last]
+      - [0x1E0F10, gfx, hd_part4_draw]
+      - [0x1E10B8, gfx, hd_part7_draw]
+    - start: 0x1E17F0
+      type: .data
+      dir: haunter
+      name: haunter/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - { start: 0x1E17F8, type: rgba16, name: tex_hd_8019B6B8, width: 16, height: 16 }
+      - [0x1E19F8]
+      - { start: 0x1E1A00, type: rgba16, name: tex_hd_8019B8C0, width: 64, height: 32 }
+      - [0x1E2A00]
+      - { start: 0x1E2A08, type: rgba16, name: tex_hd_8019C8C8, width: 64, height: 32 }
+      - [0x1E3A08]
+      - { start: 0x1E3A10, type: rgba16, name: tex_hd_8019D8D0, width: 64, height: 32 }
+      - [0x1E4A10]
+      - { start: 0x1E4A18, type: rgba16, name: tex_hd_8019E8D8, width: 64, height: 32 }
+      - [0x1E5A18]
+      - { start: 0x1E5A20, type: rgba16, name: tex_hd_8019F8E0, width: 4, height: 4 }
+      - [0x1E5A40]
+      - { start: 0x1E5A48, type: rgba16, name: tex_hd_8019F908, width: 32, height: 64 }
+      - [0x1E6A48]
+      - { start: 0x1E6A50, type: rgba16, name: tex_hd_801A0910, width: 32, height: 64 }
+      - [0x1E7A50]
+      - { start: 0x1E7A58, type: rgba16, name: tex_hd_801A1918, width: 32, height: 32 }
+      - [0x1E8258, vtx, hd_model]
+      - [0x1EA048, gfx, hd_first]
+      - [0x1EA068, gfx, hd_part0_draw]
+      - [0x1EA468, gfx, hd_part1_pre]
+      - [0x1EA4F0, gfx, hd_part1_draw]
+      - [0x1EA5A8, gfx, hd_part2_pre]
+      - [0x1EA620, gfx, hd_part2_draw]
+      - [0x1EA6A0, gfx, hd_part3_pre]
+      - [0x1EA738, gfx, hd_part3_draw]
+      - [0x1EA960, gfx, hd_part4_draw]
+      - [0x1EAA18, gfx, hd_part5_draw]
+      - [0x1EAAB0, gfx, hd_part6_draw]
+      - [0x1EAB68, gfx, hd_part7_pre]
+      - [0x1EABD8, gfx, hd_part7_draw]
+      - [0x1EACA0, gfx, hd_part8_draw]
+      - [0x1EAD88, gfx, hd_part9_draw]
+      - [0x1EADF0, gfx, hd_part10_pre]
+      - [0x1EAE50, gfx, hd_part10_draw]
+      - [0x1EAF00, gfx, hd_part11_pre]
+      - [0x1EAF40, gfx, hd_part11_draw]
+      - [0x1EAFA8, gfx, hd_part12_pre]
+      - [0x1EB010, gfx, hd_part12_draw]
+      - [0x1EB088, gfx, hd_part13_pre]
+      - [0x1EB0D0, gfx, hd_part13_draw]
+      - [0x1EB138, gfx, hd_part14_draw]
+      - [0x1EB270, gfx, hd_part15_pre]
+      - [0x1EB2B0, gfx, hd_part15_draw]
+      - [0x1EB370, gfx, hd_part16_draw]
+      - [0x1EB410, gfx, hd_part17_pre]
+      - [0x1EB458, gfx, hd_part17_draw]
+      - [0x1EB4E8, gfx, hd_part18_draw]
+      - [0x1EB598, gfx, hd_part19_pre]
+      - [0x1EB5D8, gfx, hd_part19_draw]
+      - [0x1EB670, gfx, hd_part20_draw]
+      - [0x1EB720, gfx, hd_part21_draw]
+      - [0x1EB858, gfx, hd_part22_pre]
+      - [0x1EB898, gfx, hd_part22_draw]
+      - [0x1EB960, gfx, hd_part23_draw]
+      - [0x1EBA00, gfx, hd_part24_pre]
+      - [0x1EBA48, gfx, hd_part24_draw]
+      - [0x1EBAE0, gfx, hd_part25_draw]
+      - [0x1EBB88, gfx, hd_part26_pre]
+      - [0x1EBBD0, gfx, hd_part26_draw]
+      - [0x1EBC70, gfx, hd_part27_draw]
+    - start: 0x1EC330
+      type: .data
+      dir: electrode
+      name: electrode/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1ECBF8, vtx, hd_model]
+      - [0x1ED6C8, gfx, hd_part8_draw]
+      - [0x1EDBB0, gfx, hd_part10_draw]
+      - [0x1EDC08, gfx, hd_part11_draw]
+      - [0x1EDC38, gfx, hd_part12_draw]
+      - [0x1EDC68, gfx, hd_part0_draw]
+      - [0x1EDD28, gfx, hd_part1_draw]
+      - [0x1EDDC8, gfx, hd_part2_draw]
+      - [0x1EDE88, gfx, hd_part3_draw]
+      - [0x1EDF48, gfx, hd_part4_draw]
+      - [0x1EE010, gfx, hd_part5_draw]
+      - [0x1EE0E0, gfx, hd_part6_draw]
+      - [0x1EE1B0, gfx, hd_part7_draw]
+      - [0x1EE270, gfx, hd_part9_draw]
+      - [0x1EE330, gfx, hd_part13_draw]
+    - start: 0x1EE810
+      type: .data
+      dir: magneton
+      name: magneton/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1EE810, vtx, hd_model]
+      - [0x1F0D90, gfx, hd_first]
+      - [0x1F0DB0, gfx, hd_part0_draw]
+      - [0x1F0F70, gfx, hd_part1_draw]
+      - [0x1F1000, gfx, hd_part2_draw]
+      - [0x1F1160, gfx, hd_part3_draw]
+      - [0x1F12B0, gfx, hd_part4_draw]
+      - [0x1F1398, gfx, hd_part5_draw]
+      - [0x1F1488, gfx, hd_part6_draw]
+      - [0x1F15A8, gfx, hd_part7_draw]
+      - [0x1F1768, gfx, hd_part8_draw]
+      - [0x1F17F8, gfx, hd_part9_draw]
+      - [0x1F1950, gfx, hd_part10_draw]
+      - [0x1F1AA0, gfx, hd_part11_draw]
+      - [0x1F1B88, gfx, hd_part12_draw]
+      - [0x1F1CA8, gfx, hd_part13_draw]
+      - [0x1F1E78, gfx, hd_part14_draw]
+      - [0x1F1F08, gfx, hd_part15_draw]
+      - [0x1F2060, gfx, hd_part16_draw]
+      - [0x1F21B0, gfx, hd_part17_draw]
+      - [0x1F2298, gfx, hd_part18_draw]
+      - [0x1F23B8, gfx, hd_part19_draw]
+    - start: 0x1F2900
+      type: .data
+      dir: zapdos
+      name: zapdos/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x1F29D0, vtx, hd_model]
+      - [0x1F43B0, gfx, hd_first]
+      - [0x1F43E0, gfx, hd_part0_draw]
+      - [0x1F4550, gfx, hd_part1_draw]
+      - [0x1F4670, gfx, hd_part2_draw]
+      - [0x1F4730, gfx, hd_part3_draw]
+      - [0x1F4808, gfx, hd_part4_draw]
+      - [0x1F49B0, gfx, hd_part5_draw]
+      - [0x1F4A90, gfx, hd_part6_draw]
+      - [0x1F4B50, gfx, hd_part7_draw]
+      - [0x1F4C28, gfx, hd_part8_draw]
+      - [0x1F4DD0, gfx, hd_part9_pre]
+      - [0x1F4E30, gfx, hd_part9_draw]
+      - [0x1F4F78, gfx, hd_part10_draw]
+      - [0x1F50A0, gfx, hd_part11_pre]
+      - [0x1F5100, gfx, hd_part11_draw]
+      - [0x1F5218, gfx, hd_part12_draw]
+      - [0x1F5350, gfx, hd_part13_pre]
+      - [0x1F5388, gfx, hd_part13_draw]
+      - [0x1F5728, gfx, hd_part14_draw]
+      - [0x1F57B8, gfx, hd_part15_pre]
+      - [0x1F57F8, gfx, hd_part15_draw]
   - type: code
     name: cave_assets
     start: 0x1F5E70

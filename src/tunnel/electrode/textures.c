@@ -36,7 +36,7 @@ u8 electrode_tex_bottom_frame0_png[] = {
 };
 
 __ALIGNER
-u8 electore_tex_bright_spot_png[] = {
+u8 electrode_tex_bright_spot_png[] = {
 #include "assets/tunnel/electrode/tex_bright_spot.png.bin.c"
 };
 

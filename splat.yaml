@@ -9557,13 +9557,37 @@ segments:
 
     - { name: bss_80350170, type: bss, vram: 0x80350170 }
   - type: code
-    name: magikarp2
-    dir: pokemon/magikarp
+    name: magikarp_model_hd
+    dir: pokemon_common
     start: 0x82F8E0
     vram: 0x803B1F80
     exclusive_ram_id: unk82F8E0
     subsegments:
-    - [0x82F8E0, bin] # , data]
+    - [auto, c, magikarp/model_hd]
+    - start: 0x82F8E0
+      type: .data
+      dir: magikarp
+      name: magikarp/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x82F8E0, vtx, hd_model]
+      - [0x831380, gfx, hd_first]
+      - [0x8313B0, gfx, hd_part0_draw]
+      - [0x831980, gfx, hd_part1_draw]
+      - [0x831AA0, gfx, hd_part2_draw]
+      - [0x831C10, gfx, hd_part3_draw]
+      - [0x831D68, gfx, hd_part4_draw]
+      - [0x831E38, gfx, hd_part5_draw]
+      - [0x831FE0, gfx, hd_part6_draw]
+      - [0x832118, gfx, hd_part7_draw]
+      - [0x832188, gfx, hd_part8_draw]
+      - [0x8321E0, gfx, hd_part9_draw]
+      - [0x832228, gfx, hd_part10_draw]
+      - [0x832290, gfx, hd_part11_draw]
+      - [0x8322E8, gfx, hd_part12_draw]
+      - [0x832330, gfx, hd_part13_draw]
+      - [0x8323E0, gfx, hd_part14_draw]
+      - [0x832418, gfx, hd_part15_draw]
   - type: code # follows the seg before this in memory
     name: pikachu2
     dir: pokemon/pikachu

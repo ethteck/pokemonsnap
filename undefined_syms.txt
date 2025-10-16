@@ -1,6 +1,9 @@
 D_8034C8A0_825E30 = 0x8034C8A0;
 D_8017C090 = 0x8017C090;
 D_801AEDF0_27AB80 = 0x801AEDF0;
+D_801AEDF0 = 0x801AEDF0;
+D_8019DE50_30DF00 = 0x8019DE50;
+D_8018BC50_1D1D90 = 0x8018BC50;
 
 func_8036A5B8 = 0x8036A5B8;
 func_8036A8E4 = 0x8036A8E4;
@@ -89,6 +92,7 @@ D_80117C40 = 0x80117C40;
 D_8011AEE0 = 0x8011AEE0;
 D_80114610 = 0x80114610;
 D_8011A440 = 0x8011A440;
+D_80344388 = 0x80344388;
 D_8034DD30 = 0x8034DD30;
 D_803476A0 = 0x803476A0;
 
@@ -326,3 +330,44 @@ weepinbell_tex_801A61B8 = 0x801A61B8;
 weepinbell_tex_801A69E8 = 0x801A69E8;
 weepinbell_tex_801A7218 = 0x801A7218;
 weepinbell_tex_801A7A48 = 0x801A7A48;
+
+kakuna_tex_8015A0B8 = 0x8015A0B8;
+
+electabuzz_tex_80167B58 = 0x80167B58;
+electabuzz_tex_80168360 = 0x80168360;
+electabuzz_tex_80168B68 = 0x80168B68;
+electabuzz_tex_80169370 = 0x80169370;
+electabuzz_tex_80169B78 = 0x80169B78;
+electabuzz_tex_8016C4D0 = 0x8016C4D0;
+electabuzz_tex_8016CD00 = 0x8016CD00;
+electabuzz_tex_8016D530 = 0x8016D530;
+
+electrode_tex_801A6258 = 0x801A6258;
+electrode_tex_801A6284 = 0x801A6284;
+electrode_tex_801A62A0 = 0x801A62A0;
+electrode_tex_801A62BC = 0x801A62BC;
+
+pikachu_tex_801045D8 = 0x801045D8;
+pikachu_tex_801049E0 = 0x801049E0;
+pikachu_tex_800FFF98 = 0x800FFF98;
+pikachu_tex_801007A0 = 0x801007A0;
+pikachu_tex_80100FA8 = 0x80100FA8;
+pikachu_tex_801017B0 = 0x801017B0;
+pikachu_tex_801054D8 = 0x801054D8;
+pikachu_tex_80105AE8 = 0x80105AE8;
+pikachu_tex_801060F8 = 0x801060F8;
+pikachu_tex_80106708 = 0x80106708;
+pikachu_tex_80106D18 = 0x80106D18;
+pikachu_tex_80104E98 = 0x80104E98;
+pikachu_tex_801050C8 = 0x801050C8;
+pikachu_tex_80107328 = 0x80107328;
+pikachu_tex_80107938 = 0x80107938;
+pikachu_tex_80107F48 = 0x80107F48;
+pikachu_tex_80108558 = 0x80108558;
+pikachu_tex_80108B68 = 0x80108B68;
+
+bulbasaur_tex_8011CFE0 = 0x8011CFE0;
+bulbasaur_tex_8011D210 = 0x8011D210;
+bulbasaur_tex_8011D438 = 0x8011D438;
+bulbasaur_tex_8011D668 = 0x8011D668;
+bulbasaur_tex_8011DCA8 = 0x8011DCA8;

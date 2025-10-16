@@ -20,7 +20,7 @@ TOOLS_DIR = ROOT / "tools"
 # Allow importing from the tools/build directory
 sys.path.insert(0, str((TOOLS_DIR / "build").resolve()))
 
-YAML_FILE = "splat.yaml"
+YAML_FILE = Path("splat.yaml")
 BASENAME = "pokemonsnap"
 LD_PATH = f"{BASENAME}.ld"
 MAP_PATH = f"build/{BASENAME}.map"
@@ -584,7 +584,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     split.main(
-        [YAML_FILE], modes="all", verbose=False, disassemble_all=args.disassemble_all
+        [YAML_FILE], modes=["all"], verbose=False, disassemble_all=args.disassemble_all
     )
 
     linker_entries = split.linker_writer.entries

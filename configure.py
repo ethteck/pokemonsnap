@@ -46,7 +46,7 @@ O32_TOOL = ROOT / "ultralib/tools/set_o32abi_bit.py"
 
 RAW_BUILD_PREAMBLE = f"$ido -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_mul -woff 513,516,649,838,712 -Xcpluscomm -nostdinc $flags {COMMON_INCLUDES} {IDO_DEFS}"
 
-GAME_CC_CMD = f"python3 tools/asm_processor/build.py --input-enc=utf-8 --output-enc=EUC-JP {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
+GAME_CC_CMD = f"tools/asm_proc/asm-processor --input-enc=utf-8 --output-enc=EUC-JP {IDO_72_CC} -- {CROSS_AS} {AS_FLAGS} -- -G 0 -non_shared -fullwarn -verbose -Xcpluscomm -nostdinc -Wab,-r4300_mul $flags -mips2 {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -c -o $out $in"
 
 RAW_CC_CMD = (
     f"{RAW_BUILD_PREAMBLE} -DBUILD_VERSION=VERSION_I -c -o $out $in && {O32_TOOL} $out"
@@ -106,10 +106,52 @@ def obtain_ido_recomp(version: str):
     shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
+def obtain_asm_processor():
+    download_dir = TOOLS_DIR / "asm_proc"
+
+    if download_dir.exists():
+        print(
+            f"asm-processor already exists at {download_dir}, removing and re-downloading"
+        )
+        shutil.rmtree(download_dir)
+
+    ASM_PROC_RECOMP_VERSION = "1.0.1"
+
+    if sys.platform == "darwin":
+        asm_proc_os = "x86_64-apple-darwin"
+    elif sys.platform == "linux":
+        asm_proc_os = "x86_64-unknown-linux-gnu"
+    elif sys.platform == "win32":
+        asm_proc_os = "x86_64-pc-windows-msvc"
+    else:
+        print(f"Unsupported platform {sys.platform}")
+        sys.exit(1)
+
+    asm_proc_triple = f"asm-processor-{asm_proc_os}"
+    asm_proc_tar_name = f"{asm_proc_triple}.tar.xz"
+    url = f"https://github.com/simonlindholm/asm-processor/releases/download/{ASM_PROC_RECOMP_VERSION}/{asm_proc_tar_name}"
+    target_path = TOOLS_DIR / asm_proc_tar_name
+
+    print(f"Downloading asm-processor: {url}")
+    response = requests.get(url)
+    if response.status_code != 200:
+        print(f"Failed to download asm-processor tarball from {url}")
+        sys.exit(1)
+    with open(target_path, "wb") as f:
+        f.write(response.content)
+
+    shutil.unpack_archive(target_path, download_dir)
+    os.remove(target_path)
+
+    for each_file in (download_dir / asm_proc_triple).glob('*'):
+        each_file.rename(download_dir / each_file.name)
+    (download_dir / asm_proc_triple).rmdir()
+
 
 def setup():
     obtain_ido_recomp("5.3")
     obtain_ido_recomp("7.1")
+    obtain_asm_processor()
     print("Setup complete!")
 
 

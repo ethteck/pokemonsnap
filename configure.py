@@ -6,6 +6,7 @@ import os
 import shutil
 import sys
 from pathlib import Path
+import platform
 from typing import Dict, List, Set, Union
 
 import ninja_syntax
@@ -118,9 +119,15 @@ def obtain_asm_processor():
     ASM_PROC_RECOMP_VERSION = "1.0.1"
 
     if sys.platform == "darwin":
-        asm_proc_os = "x86_64-apple-darwin"
+        if platform.processor() == "arm":
+            asm_proc_os = "aarch64-apple-darwin"
+        else:
+            asm_proc_os = "x86_64-apple-darwin"
     elif sys.platform == "linux":
-        asm_proc_os = "x86_64-unknown-linux-gnu"
+        if platform.processor() == "arm":
+            asm_proc_os = "aarch64-unknown-linux-gnu"
+        else:
+            asm_proc_os = "x86_64-unknown-linux-gnu"
     elif sys.platform == "win32":
         asm_proc_os = "x86_64-pc-windows-msvc"
     else:

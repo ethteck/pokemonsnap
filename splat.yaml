@@ -1700,13 +1700,52 @@ segments:
       - [0x1F57F8, gfx, hd_part15_draw]
   - type: code
     name: cave_assets
+    dir: cave
     start: 0x1F5E70
     vram: 0x8012A0C0
     bss_size: 0x20
     exclusive_ram_id: unk8012A0C0
     subsegments:
+    - [auto, c, jynx/textures]
     - [0x1F5E70, c]
-    - [0x1F5E80, bin] # , data]
+    - [0x1F5E80, bin]
+    - start: 0x25F8F0
+      type: .data
+      name: jynx/textures
+      dir: jynx
+      subsegments:
+      - [0x25F8F0]
+      - { start: 0x25F8F8, type: rgba16, width: 64, height: 32, name: "tex_arm" }
+      - [0x2608F8]
+      - { start: 0x260900, type: palette, name: "tex_torso" }
+      - [0x260920]
+      - { start: 0x260928, type: ci4, width: 64, height: 32, name: "tex_torso" }
+      - [0x260D28]
+      - { start: 0x260D30, type: palette, name: "tex_eye_0" }
+      - [0x260D50]
+      - { start: 0x260D58, type: ci4, width: 32, height: 32, name: "tex_eye_0" }
+      - [0x260F58]
+      - { start: 0x260F60, type: palette, name: "tex_eye_1" }
+      - [0x260F80]
+      - { start: 0x260F88, type: ci4, width: 32, height: 32, name: "tex_eye_1" }
+      - [0x261188]
+      - { start: 0x261190, type: palette, name: "tex_eye_2" }
+      - [0x2611B0]
+      - { start: 0x2611B8, type: ci4, width: 32, height: 32, name: "tex_eye_2" }
+      - [0x2613B8]
+      - { start: 0x2613C0, type: rgba16, width: 32, height: 32, name: "tex_hair" }
+      - [0x261BC0]
+      - { start: 0x261BC8, type: rgba16, width: 64, height: 32, name: "tex_hair_2" }
+      - [0x262BC8]
+      - { start: 0x262BD0, type: rgba16, width: 32, height: 64, name: "tex_hair_3" }
+      - [0x263BD0]
+      - { start: 0x263BD8, type: rgba16, width: 64, height: 32, name: "tex_lips" }
+      - [0x264BD8]
+      - { start: 0x264BE0, type: palette, name: "tex_dress" }
+      - [0x264C00]
+      - { start: 0x264C08, type: ci4, width: 32, height: 32, name: "tex_dress" }
+      - [0x264E08]
+    - [0x264E10, bin]
     - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
   - type: code
     name: cave_extra

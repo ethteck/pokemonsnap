@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern u8 D_801B02F0_13C780[]; // TODO: remove after splat is fixed
-
 extern u8 grimer_tex_80154258[];
 extern u8 grimer_tex_80155260[];
 extern u8 grimer_tex_80156268[];

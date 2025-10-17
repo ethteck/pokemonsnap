@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern u8 D_801B1230[]; // TODO: remove after splat is fixed
-
 extern u8 butterfree_tex_80152928[];
 extern u8 butterfree_tex_80152950_png[];
 extern u8 butterfree_tex_801529D8[];

@@ -1,8 +1,5 @@
 #include "common.h"
 
-extern u8 D_801AEDF0[];        // TODO: remove after splat is fixed
-extern u8 D_801AEDD0_27AB80[]; // TODO: remove after splat is fixed
-
 extern u8 moltres_tex2_pal[];
 extern u8 moltres_tex2_png[];
 extern u8 moltres_tex3_pal[];

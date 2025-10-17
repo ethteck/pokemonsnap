@@ -100,6 +100,10 @@ extern Gfx D_0E000000_pikachu_model[];
 extern Gfx D_0E000008_pikachu_model[];
 extern Gfx D_0E000010_pikachu_model[];
 
+extern Gfx D_0E000000_pikachu_model_hd[];
+extern Gfx D_0E000008_pikachu_model_hd[];
+extern Gfx D_0E000010_pikachu_model_hd[];
+
 extern Gfx D_0E000000_bulbasaur_model[];
 extern Gfx D_0E000000_bulbasaur_model_hd[];
 

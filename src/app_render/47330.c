@@ -11,6 +11,18 @@ char* gLevelNames[] = {
     "Rainbow",
 };
 
+GLOBAL_ASM(
+    glabel _getLevelId
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+)
+
 s32 getLevelId(void) {
     return gLevelID;
 }

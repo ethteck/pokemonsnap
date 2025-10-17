@@ -236,27 +236,28 @@ void contDetectDevices(void) {
                     if (contPrinterQueue.msg == NULL) {
                         osCreateMesgQueue(&contPrinterQueue, contPrinterMessages, ARRAY_COUNT(contPrinterMessages));
                     }
-                } else if (osGbpakInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_GAME_BOY_PAK;
-                    if (contGameBoyPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contGameBoyPakQueue, contGameBoyPakMessages, ARRAY_COUNT(contGameBoyPakMessages));
-                    }
-                    osGbpakReadId(&contPfs[i], &contGameBoyPakInfo[i].id, &contGameBoyPakInfo[i].status);
-                    osGbpakPower(&contPfs[i], OS_GBPAK_POWER_OFF);
-                } else if (osMotorInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_RUMBLE_PAK;
-                    if (contRumblePakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contRumblePakQueue, contRumblePakMessages, ARRAY_COUNT(contRumblePakMessages));
-                    }
-                } else if (osPfsInitPak(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_CONTROLLER_PAK;
-                    if (contControllerPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contControllerPakQueue, contControllerPakMessages, ARRAY_COUNT(contControllerPakMessages));
-                    }
-                    for (j = 0; j < 0x10; j++) {
-                        osPfsFileState(&contPfs[i], j, &contPfsGameNotes[i][j]);
-                    }
                 }
+                // else if (osGbpakInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
+                //     sContDeviceTypes[i] = CONT_DEV_TYPE_GAME_BOY_PAK;
+                //     if (contGameBoyPakQueue.msg == NULL) {
+                //         osCreateMesgQueue(&contGameBoyPakQueue, contGameBoyPakMessages, ARRAY_COUNT(contGameBoyPakMessages));
+                //     }
+                //     osGbpakReadId(&contPfs[i], &contGameBoyPakInfo[i].id, &contGameBoyPakInfo[i].status);
+                //     osGbpakPower(&contPfs[i], OS_GBPAK_POWER_OFF);
+                // } else if (osMotorInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
+                //     sContDeviceTypes[i] = CONT_DEV_TYPE_RUMBLE_PAK;
+                //     if (contRumblePakQueue.msg == NULL) {
+                //         osCreateMesgQueue(&contRumblePakQueue, contRumblePakMessages, ARRAY_COUNT(contRumblePakMessages));
+                //     }
+                // } else if (osPfsInitPak(&contSIEvtQueue, &contPfs[i], i) == 0) {
+                //     sContDeviceTypes[i] = CONT_DEV_TYPE_CONTROLLER_PAK;
+                //     if (contControllerPakQueue.msg == NULL) {
+                //         osCreateMesgQueue(&contControllerPakQueue, contControllerPakMessages, ARRAY_COUNT(contControllerPakMessages));
+                //     }
+                //     for (j = 0; j < 0x10; j++) {
+                //         osPfsFileState(&contPfs[i], j, &contPfsGameNotes[i][j]);
+                //     }
+                // }
             }
         }
         sContInfo[i].errno = sContStatus[i].errno;

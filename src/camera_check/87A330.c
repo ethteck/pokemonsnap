@@ -820,6 +820,8 @@ void func_camera_check_801DECCC(s32 arg0) {
         case 9:
             UIElement_FillRectDefault(sp4C, 0, 0, 191, 14);
             sprintf(sp24, "\\i%d\\g pictures have been taken.", arg0 + 1);
+            UIElement_SetTextPos(sp4C, 0, 0);
+            UIElement_PrintText(sp4C, sp24);
             break;
         case 0:
         case 2:
@@ -831,14 +833,16 @@ void func_camera_check_801DECCC(s32 arg0) {
         case 8:
             UIElement_FillRectDefault(sp4C, 0, 0, 9, 14);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
+            UIElement_SetTextPos(sp4C, 0, 0);
+            UIElement_PrintText(sp4C, sp24);
             break;
         default:
             UIElement_FillRectDefault(sp4C, 0, 0, 18, 14);
             sprintf(sp24, "\\i%d\\g", arg0 + 1);
+            UIElement_SetTextPos(sp4C, 0, 0);
+            UIElement_PrintText(sp4C, sp24);
             break;
     }
-    UIElement_SetTextPos(sp4C, 0, 0);
-    UIElement_PrintText(sp4C, sp24);
     auPlaySound(0x5C);
     ohWait(1);
 }
@@ -853,10 +857,10 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
     if (sp34 != NULL) {
         UIElement_Draw(arg0);
         UIElement_SetFont(arg0, FONT_12);
-        UIElement_SetTextPos(arg0, 54 - (strlen(sp34) * 3), 0);
         UIText_SetShadowOffset(0);
         UIText_SetSpacing(0, 4);
         UIElement_SetColor(arg0, UI_BACKGROUND, 64, 64, 64, 0);
+        UIElement_SetTextPos(arg0, 54 - (strlen(sp34) * 3), 0);
         func_8037519C_84894C(arg0, "%s Course", sp34);
         UIElement_SetFont(arg0, FONT_8);
         UIText_SetShadowOffset(1);
@@ -864,6 +868,7 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
         UIElement_SetColor(arg0, UI_BACKGROUND, 0, 0, 0, 0);
 
         if (checkPlayerFlag(PFID_11)) {
+            sprintf(D_camera_check_80249928, "\\i%8d\\g pts", 0);
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
                 UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 0, 255);
@@ -892,16 +897,32 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
 }
 
 void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 arg3) {
+    int offset;
+    int width;
+
+    u8 buffer[74];
+
+    sprintf(buffer, "\\k\\i%10d\\g pts", 0);
+    offset = UIText_GetStringWidth(buffer);
+
+    sprintf(buffer, "\\k\\i       x%2d\\g kind(s)", 0);
+    if (offset < UIText_GetStringWidth(buffer)) {
+        offset = UIText_GetStringWidth(buffer);
+    }
+    // width = MAX(width, );
+
+    offset = MAX(0, 191 - offset);
+
     UIElement_Draw(arg0);
     UIElement_SetTextPos(arg0, 0, 0);
     UIElement_PrintText(arg0, "Pictures");
     sprintf(D_camera_check_80249928, "\\i%10d\\g pts", func_camera_check_801E246C());
-    UIElement_SetTextPos(arg0, 56, 0);
+    UIElement_SetTextPos(arg0, offset, 0);
     UIElement_PrintText(arg0, D_camera_check_80249928);
     UIElement_SetTextPos(arg0, 0, 16);
     UIElement_PrintText(arg0, "Pokεmon");
     sprintf(D_camera_check_80249928, "\\i       x%2d\\g kinds", func_camera_check_801E2478());
-    UIElement_SetTextPos(arg0, 56, 16);
+    UIElement_SetTextPos(arg0, offset, 16);
     UIElement_PrintText(arg0, D_camera_check_80249928);
 
     if (arg3) {
@@ -1021,6 +1042,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     temp_s1 = func_camera_check_801E2478() * temp_s2;
 
     if (checkPlayerFlag(PFID_11)) {
+        func_80374F30_8486E0(temp_s0, true);
         func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, false);
         func_80374F30_8486E0(temp_s0, true);
         func_camera_check_801DF0D4(temp_s0, new_var, temp_s1, true);

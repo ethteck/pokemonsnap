@@ -18,7 +18,7 @@ s32 func_801E00E0_9D6A50(s32);
 void func_801E0C3C_9D75AC(s32);
 void func_801E0D54_9D76C4(void);
 void func_801E0D84_9D76F4(void);
-void func_801E1378_9D7CE8(void);
+void func_801E1378_9D7CE8(int);
 void func_801E1568_9D7ED8(s32);
 void func_801E16DC_9D804C(void);
 void func_801E1AC4_9D8434(void);

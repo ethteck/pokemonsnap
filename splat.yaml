@@ -43,7 +43,6 @@ segments:
     - [0xC2F0, c, sys/cmd]
     - [0xC5B0, c, sys/oh]
     - [0xD150, c, sys/anim]
-    - [0x11E20, pad]
     - [0x11E30, c, sys/render]
     - [0x1A560, c, sys/misc]
     - [0x1AF60, c, sys/vector]
@@ -108,7 +107,7 @@ segments:
     - [0x32ED0, c, ../ultralib/src/audio/cents2ratio]
     - [0x32F20, c, ../ultralib/src/audio/synstartvoiceparam]
     - [0x33000, c, ../ultralib/src/audio/cspstop]
-    - [0x33030, pad]
+    # - [0x33030, pad]
     - [0x33040, c, ../ultralib/src/audio/sndpsetpriority]
     - [0x33070, c, ../ultralib/src/audio/synallocfx]
     - [0x33110, c, ../ultralib/src/audio/sndpallocate]
@@ -151,6 +150,7 @@ segments:
     - [0x363B0, hasm, ../ultralib/src/os/probetlb]
     - [0x36470, c, ../ultralib/src/io/pimgr]
     - [0x365E0, c, ../ultralib/src/io/piacs]
+    - [0x36690, pad]
     - [0x366A0, c, ../ultralib/src/io/devmgr]
     - [0x36B30, c, ../ultralib/src/io/pirawdma]
     - [0x36C10, hasm,  ../ultralib/src/os/getcount]
@@ -1700,13 +1700,52 @@ segments:
       - [0x1F57F8, gfx, hd_part15_draw]
   - type: code
     name: cave_assets
+    dir: cave
     start: 0x1F5E70
     vram: 0x8012A0C0
     bss_size: 0x20
     exclusive_ram_id: unk8012A0C0
     subsegments:
+    - [auto, c, jynx/textures]
     - [0x1F5E70, c]
-    - [0x1F5E80, bin] # , data]
+    - [0x1F5E80, bin]
+    - start: 0x25F8F0
+      type: .data
+      name: jynx/textures
+      dir: jynx
+      subsegments:
+      - [0x25F8F0]
+      - { start: 0x25F8F8, type: rgba16, width: 64, height: 32, name: "tex_arm" }
+      - [0x2608F8]
+      - { start: 0x260900, type: palette, name: "tex_torso" }
+      - [0x260920]
+      - { start: 0x260928, type: ci4, width: 64, height: 32, name: "tex_torso" }
+      - [0x260D28]
+      - { start: 0x260D30, type: palette, name: "tex_eye_0" }
+      - [0x260D50]
+      - { start: 0x260D58, type: ci4, width: 32, height: 32, name: "tex_eye_0" }
+      - [0x260F58]
+      - { start: 0x260F60, type: palette, name: "tex_eye_1" }
+      - [0x260F80]
+      - { start: 0x260F88, type: ci4, width: 32, height: 32, name: "tex_eye_1" }
+      - [0x261188]
+      - { start: 0x261190, type: palette, name: "tex_eye_2" }
+      - [0x2611B0]
+      - { start: 0x2611B8, type: ci4, width: 32, height: 32, name: "tex_eye_2" }
+      - [0x2613B8]
+      - { start: 0x2613C0, type: rgba16, width: 32, height: 32, name: "tex_hair" }
+      - [0x261BC0]
+      - { start: 0x261BC8, type: rgba16, width: 64, height: 32, name: "tex_hair_2" }
+      - [0x262BC8]
+      - { start: 0x262BD0, type: rgba16, width: 32, height: 64, name: "tex_hair_3" }
+      - [0x263BD0]
+      - { start: 0x263BD8, type: rgba16, width: 64, height: 32, name: "tex_lips" }
+      - [0x264BD8]
+      - { start: 0x264BE0, type: palette, name: "tex_dress" }
+      - [0x264C00]
+      - { start: 0x264C08, type: ci4, width: 32, height: 32, name: "tex_dress" }
+      - [0x264E08]
+    - [0x264E10, bin]
     - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
   - type: code
     name: cave_extra
@@ -9671,6 +9710,7 @@ segments:
     bss_size: 0x8A0
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, font]
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9688,7 +9728,15 @@ segments:
     - [0x848B50, c]
     - [0x848B80, c]
 
-    - [0x848BC0, data]
+    - start: 0x848BC0
+      type: .data
+      name: font
+      subsegments:
+      - {start: 0x848BC0,  name: font_8x8, type: i4, width: 8, height: 2960 }
+      - [0x84BA00]
+      - {start: 0x84BA04, name: font_12x12, type: i4, width: 12, height: 4440 }
+      - [0x852214]
+
     - [0x852220, .data, element]
     - [0x852250, .data, text]
     - [0x852920, data]

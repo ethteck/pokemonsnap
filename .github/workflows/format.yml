@@ -23,7 +23,8 @@ jobs:
         with:
           style: file
           tidy-checks: "-*"
-          files-changed-only: ${{ github.event_name == 'pull_request_target' }}
+          version: 21
+          files-changed-only: true
           format-review: true
           extensions: c,h
           ignore: ultralib

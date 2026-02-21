@@ -2,14 +2,20 @@ name: Build
 
 on:
   push:
-  pull_request:
+  pull_request_target:
 
 jobs:
   build:
+    if: >-
+      github.event_name == 'push' ||
+      contains(fromJSON('["COLLABORATOR", "MEMBER", "OWNER"]'), github.event.pull_request.author_association) ||
+      github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Install system dependencies
         run: sudo apt-get install -y binutils-mips-linux-gnu cpp-mips-linux-gnu ninja-build

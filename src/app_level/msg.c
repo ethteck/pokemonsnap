@@ -114,28 +114,28 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'r': // R button
-                img = font_rgb_bitmaps[2+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[2 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'F': // 'NEXT' mark
-                img = font_rgb_bitmaps[4+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[4 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'a': // A button
-                img = font_rgb_bitmaps[6+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[6 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'b': // B button
-                img = font_rgb_bitmaps[8+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[8 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case '[': // left part of 'NEW'
-                img = font_rgb_bitmaps[10+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[10 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
             case ']': // right part of 'NEW'
-                img = font_rgb_bitmaps[12+Msg_ImageIndex].buf;
+                img = font_rgb_bitmaps[12 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
@@ -189,7 +189,7 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
         i = 0;
         for (i = 0;; i++) {
             if (*test == code2byte) {
-                img = font_mono_bitmaps[62+i].buf;
+                img = font_mono_bitmaps[62 + i].buf;
                 *width = Msg_GetGlyphWidth(i + 62);
                 break;
             }

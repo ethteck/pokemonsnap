@@ -53,7 +53,7 @@ jobs:
         run: bash -o pipefail -c 'ninja 2>&1 | tee build_log.txt'
 
       - name: Report Progress
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && env.FROGRESS_KEY != ''
         env:
           FROGRESS_KEY: ${{ secrets.FROGRESS_KEY }}
         run: uv run python3 tools/progress.py --frogress "$FROGRESS_KEY"

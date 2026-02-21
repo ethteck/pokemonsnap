@@ -1,9 +1,0 @@
-splat64[mips]==0.36.3
-spimdisasm==1.39.0
-ninja_syntax>=1.7.2
-argparse
-GitPython
-requests
-mapfile_parser
-n64img
-pypng

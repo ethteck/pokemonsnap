@@ -7,10 +7,10 @@ pipeline {
         stage('Setup') {
             steps {
                 sh 'cp /usr/local/etc/roms/pokemonsnap.us.z64 pokemonsnap.z64'
-                sh 'pip install -U -r requirements.txt --break-system-packages'
+                sh 'uv sync'
                 sh 'cargo install pigment64'
-                sh './configure.py --setup'
-                sh './configure.py'
+                sh 'uv run ./configure.py --setup'
+                sh 'uv run ./configure.py'
             }
         }
         stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 withCredentials([string(credentialsId: 'pokemonsnap_frogress', variable: 'frogress_key')]) {
-                    sh 'python3 tools/progress.py --frogress $frogress_key'
+                    sh 'uv run python3 tools/progress.py --frogress $frogress_key'
                 }
             }
         }

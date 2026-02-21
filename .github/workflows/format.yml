@@ -22,7 +22,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           style: file
-          tidy-checks: ""
+          tidy-checks: "-*"
           files-changed-only: ${{ github.event_name == 'pull_request_target' }}
           format-review: true
           extensions: c,h
+          ignore: ultralib

@@ -40,9 +40,9 @@ jobs:
         run: cargo install pigment64
 
       - name: Download ROM
+        run: gh release download rom --pattern 'pokemonsnap.z64' --repo ${{ github.repository }}
         env:
-          ROM_GDRIVE_ID: ${{ secrets.ROM_GDRIVE_ID }}
-        run: uvx gdown "$ROM_GDRIVE_ID" -O pokemonsnap.z64
+          GH_TOKEN: ${{ github.token }}
 
       - name: Setup
         run: |

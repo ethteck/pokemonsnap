@@ -19,18 +19,15 @@ pipeline {
             }
         }
         stage('Report Progress') {
-            when {
-                branch 'main'
-            }
             steps {
-                withCredentials([string(credentialsId: 'pokemonsnap_frogress', variable: 'frogress_key')]) {
-                    sh 'python3 tools/progress.py --frogress $frogress_key'
-                }
+                sh 'python3 -m mapfile_parser objdiff_report us_report.json'
+                // sh 'zip us_report.zip report.json'
             }
         }
     }
     post {
         always {
+            archiveArtifacts artifacts: '*_report.json', fingerprint: true
             cleanWs()
         }
     }

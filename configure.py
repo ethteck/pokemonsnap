@@ -298,7 +298,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "effect_sprites",
         description="effect_sprites $in",
-        command="python3 tools/build/effect_sprites.py $in $out",
+        command=f"{sys.executable} tools/build/effect_sprites.py $in $out",
     )
 
     for entry in linker_entries:

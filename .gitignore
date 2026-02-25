@@ -25,6 +25,5 @@ undefined_syms_auto.txt
 
 venv/
 .venv/
-.python-version
 
 !/tools/build/

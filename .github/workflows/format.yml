@@ -15,11 +15,6 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
-          fetch-depth: 2
-
-      - name: Check if clang-format config changed
-        id: config
-        run: echo "changed=$(git diff --name-only HEAD~1 -- .clang-format | head -1)" >> "$GITHUB_OUTPUT"
 
       - uses: cpp-linter/cpp-linter-action@v2
         id: linter
@@ -29,7 +24,7 @@ jobs:
           style: file
           tidy-checks: "-*"
           version: 21
-          files-changed-only: ${{ steps.config.outputs.changed == '' }}
+          files-changed-only: true
           format-review: true
           extensions: c,h
           ignore: ultralib

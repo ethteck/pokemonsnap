@@ -34,7 +34,7 @@ IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
 CROSS = "mips-linux-gnu-"
 CROSS_AS = f"{CROSS}as"
-CROSS_CPP = f"{CROSS}cpp"
+CROSS_CPP = shutil.which(f"{CROSS}cpp") or shutil.which("cpp") or f"{CROSS}cpp"
 CROSS_LD = f"{CROSS}ld"
 CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"

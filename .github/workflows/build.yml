@@ -14,7 +14,7 @@ jobs:
           ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
 
       - name: Install system dependencies
-        run: sudo apt-get install -y binutils-mips-linux-gnu cpp-mips-linux-gnu ninja-build
+        run: sudo apt-get install -y binutils-mips-linux-gnu ninja-build
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7

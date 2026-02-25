@@ -9628,13 +9628,50 @@ segments:
       - [0x8323E0, gfx, hd_part14_draw]
       - [0x832418, gfx, hd_part15_draw]
   - type: code # follows the seg before this in memory
-    name: pikachu2
-    dir: pokemon/pikachu
+    name: pikachu_model_hd
+    dir: pokemon_common
     start: 0x832960
     vram: 0x803AD580
     exclusive_ram_id: unk832960
     subsegments:
-    - [0x832960, bin] # , data]
+    - [auto, c, pikachu/model_hd]
+    - start: 0x832960
+      type: .data
+      dir: pikachu
+      name: pikachu/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x832EA0, vtx, hd_model]
+      - [0x834F20, gfx, hd_first]
+      - [0x834F48, gfx, hd_part2_draw]
+      - [0x835158, gfx, hd_part3_pre]
+      - [0x8351B8, gfx, hd_part3_draw]
+      - [0x8352C8, gfx, hd_part4_draw]
+      - [0x835390, gfx, hd_part5_draw]
+      - [0x835450, gfx, hd_part6_pre]
+      - [0x8354B8, gfx, hd_part6_draw]
+      - [0x8355C8, gfx, hd_part7_draw]
+      - [0x835690, gfx, hd_part8_draw]
+      - [0x835750, gfx, hd_part9_pre]
+      - [0x8357F0, gfx, hd_part9_draw]
+      - [0x8359F0, gfx, hd_part10_pre]
+      - [0x835A70, gfx, hd_part10_draw]
+      - [0x835FB0, gfx, hd_part11_pre]
+      - [0x835FF0, gfx, hd_part11_draw]
+      - [0x8360F8, gfx, hd_part12_pre]
+      - [0x836140, gfx, hd_part12_draw]
+      - [0x8361F0, gfx, hd_part13_draw]
+      - [0x836310, gfx, hd_part14_draw]
+      - [0x8363F8, gfx, hd_part15_pre]
+      - [0x836478, gfx, hd_part15_draw]
+      - [0x836598, gfx, hd_part16_draw]
+      - [0x836698, gfx, hd_part17_pre]
+      - [0x8366E8, gfx, hd_part17_draw]
+      - [0x8367D0, gfx, hd_part18_draw]
+      - [0x8368D0, gfx, hd_part19_draw]
+      - [0x836998, gfx, hd_part20_draw]
+      - [0x836AD8, gfx, hd_part0_draw]
+      - [0x836C18, gfx, hd_part1_draw]
   - type: code # follows the seg before this in memory
     name: zubat_model_hd
     dir: pokemon_common

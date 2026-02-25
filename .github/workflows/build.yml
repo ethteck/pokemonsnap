@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
 
       - name: Install system dependencies
         run: sudo apt-get install -y binutils-mips-linux-gnu cpp-mips-linux-gnu ninja-build

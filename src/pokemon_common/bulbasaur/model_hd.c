@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern Gfx D_0E000000_bulbasaur_model_hd[];
+
 extern u8 bulbasaur_tex_8011CB80_png[];
 extern u8 bulbasaur_tex_8011CDB0_png[];
 extern u8 bulbasaur_tex_8011DA78_png[];

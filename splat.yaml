@@ -3142,7 +3142,7 @@ segments:
       - [0x368880]
       - { start: 0x368888, type: ci4, name: tex6, flip_y: true, width: 16, height: 8 }
       - [0x3688C8]
-      - { start: 0x3688D0, type: palette, name: tex_skin, size: 0x18 }
+      - { start: 0x3688D0, type: palette, name: tex_skin, size: 16 }
       - [0x3688E0]
       - { start: 0x3688E8, type: ci4, name: tex_skin, flip_y: true, width: 16, height: 16 }
     - start: 0x368970
@@ -4537,7 +4537,7 @@ segments:
       - [0x3ECAF8, palette, tex_801C5EC0_hd]
       - [0x3ECB18]
       - {start: 0x3ECB20, type: ci4, name: tex_801C5EC0_hd, width: 32, height: 32}
-      - [0x3F1800]
+      - [0x3ECD20]
       - [0x3ECE90, vtx, hd_model]
       - [0x3EF590, gfx, hd_first]
       - [0x3EF5C0, gfx, hd_part0_draw]
@@ -6245,8 +6245,8 @@ segments:
       name: scyther/model
       linker_section_order: .rodata
       subsegments:
-      - {start: 0x5D8558, type: palette, name: tex_a, size: 0x10A}
-      - [0x5D8668]
+      - {start: 0x5D8558, type: palette, name: tex_a, size: 0x100}
+      - [0x5D8658]
       - { start: 0x5D8670, type: ci8, name: tex_a, width: 32, height: 32 }
       - [0x5D8A70]
       - [0x5D8A78, palette, tex_b]
@@ -6388,7 +6388,7 @@ segments:
       - {start: 0x623FC8, type: palette, size: 0x10, name: tex_80326F10}
       - [0x623FD8]
       - {start: 0x623FE0, type: ci4, width: 32, height: 32, name: tex_80326F10}
-      - [0x624280, vtx, model]
+      - [0x6241E0, vtx, model]
       - [0x625BA0, gfx, first]
       - [0x625BD0, gfx, part0_draw_near]
       - [0x625C50, gfx, part0_draw_far]
@@ -6508,15 +6508,19 @@ segments:
       - {start: 0x62DA08, type: palette, size: 0x8, name: tex_80330948}
       - [0x62DA10]
       - {start: 0x62DA18, type: ci4, width: 16, height: 10, name: tex_80330948}
+      - [0x62DA68]
       - {start: 0x62DA70, type: palette, size: 0x20, name: tex_803309C8}
       - [0x62DA90]
       - {start: 0x62DA98, type: ci4, width: 16, height: 8, name: tex_803309C8}
+      - [0x62DAD8]
       - {start: 0x62DAE0, type: palette, size: 0x20, name: tex_80330A38}
       - [0x62DB00]
       - {start: 0x62DB08, type: ci4, width: 32, height: 64, name: tex_80330A38}
+      - [0x62DF08]
       - {start: 0x62DF10, type: palette, size: 0x20, name: tex_80330E68}
       - [0x62DF30]
       - {start: 0x62DF38, type: ci4, width: 32, height: 64, name: tex_80330E68}
+      - [0x62E338]
       - [0x62E8E0, vtx, model]
       - [0x630820, gfx, first]
       - [0x630850, gfx, part0_draw_near]

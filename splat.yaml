@@ -747,8 +747,8 @@ segments:
       name: lapras/model_hd
       linker_section_order: .rodata
       subsegments:
-      - {start: 0x14EDE8, type: palette, name: tex_801C29A0_hd, size: 0x10}
-      - [0x14EDF8]
+      - {start: 0x14EDE8, type: palette, name: tex_801C29A0_hd, size: 0x20}
+      - [0x14EE08]
       - {start: 0x14EE10, type: ci4, name: tex_801C29A0_hd, width: 32, height: 32}
       - [0x14F010]
       - [0x14F0C8, vtx, hd_model]

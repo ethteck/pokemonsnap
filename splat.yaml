@@ -6245,8 +6245,8 @@ segments:
       name: scyther/model
       linker_section_order: .rodata
       subsegments:
-      - {start: 0x5D8558, type: palette, name: tex_a, size: 0x100}
-      - [0x5D8658]
+      - {start: 0x5D8558, type: palette, name: tex_a, size: 0x110}
+      - [0x5D8668]
       - { start: 0x5D8670, type: ci8, name: tex_a, width: 32, height: 32 }
       - [0x5D8A70]
       - [0x5D8A78, palette, tex_b]
@@ -6388,7 +6388,8 @@ segments:
       - {start: 0x623FC8, type: palette, size: 0x10, name: tex_80326F10}
       - [0x623FD8]
       - {start: 0x623FE0, type: ci4, width: 32, height: 32, name: tex_80326F10}
-      - [0x6241E0, vtx, model]
+      - [0x6241E0]
+      - [0x624280, vtx, model]
       - [0x625BA0, gfx, first]
       - [0x625BD0, gfx, part0_draw_near]
       - [0x625C50, gfx, part0_draw_far]

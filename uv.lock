@@ -317,15 +317,12 @@ wheels = [
 
 [[package]]
 name = "intervaltree"
-version = "3.2.1"
+version = "3.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "sortedcontainers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/53/c3/b2afa612aa0373f3e6bb190e6de35f293b307d1537f109e3e25dbfcdf212/intervaltree-3.2.1.tar.gz", hash = "sha256:f3f7e8baeb7dd75b9f7a6d33cf3ec10025984a8e66e3016d537e52130c73cfe2", size = 1231531, upload-time = "2025-12-24T04:25:06.773Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/83/7f/8a80a1c7c2ed05822b5a2b312d2995f30c533641f8198366ba2e26a7bb03/intervaltree-3.2.1-py2.py3-none-any.whl", hash = "sha256:a8a8381bbd35d48ceebee932c77ffc988492d22fb1d27d0ba1d74a7694eb8f0b", size = 25929, upload-time = "2025-12-24T04:25:05.298Z" },
-]
+sdist = { url = "https://files.pythonhosted.org/packages/50/fb/396d568039d21344639db96d940d40eb62befe704ef849b27949ded5c3bb/intervaltree-3.1.0.tar.gz", hash = "sha256:902b1b88936918f9b2a19e0e5eb7ccb430ae45cde4f39ea4b36932920d33952d", size = 32861, upload-time = "2020-08-03T08:01:11.392Z" }
 
 [[package]]
 name = "mapfile-parser"
@@ -447,7 +444,7 @@ requires-dist = [
     { name = "pypng", specifier = ">=0.20220715.0" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "spimdisasm", specifier = ">=1.39.0" },
-    { name = "splat64", extras = ["mips"], specifier = ">=0.36.3" },
+    { name = "splat64", extras = ["mips"], specifier = ">=0.39.1" },
 ]
 
 [[package]]
@@ -736,7 +733,7 @@ wheels = [
 
 [[package]]
 name = "splat64"
-version = "0.36.3"
+version = "0.39.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama" },
@@ -745,9 +742,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/09/75/c651c2e1219961b170e62d68ad277284d2f42c81168ca31d48963acf3bc3/splat64-0.36.3.tar.gz", hash = "sha256:8551c099428ccc48bd2035da0cb1fe78b3c6cb863cb259ea658ffe2c22501770", size = 137311, upload-time = "2025-10-01T17:13:15.999Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/47/c2/70e1ec4e33b8eb2621e7f67a24853cb58fa07d88d6e67a945f1b4204ce87/splat64-0.39.1.tar.gz", hash = "sha256:34d9dbe11c996e904f1536c142d9e8824f8a95c6accb11b92a1fc3574449eb5b", size = 152456, upload-time = "2026-03-29T17:12:59.068Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/57/b73970df89ab1e735e70396a8baad63b8807e3f644abf87ccd2f362fa52c/splat64-0.36.3-py3-none-any.whl", hash = "sha256:00ba764ab16393b10a7b1245ddcfd1bed49d6512f2c3347e3c6ce464b152415b", size = 113115, upload-time = "2025-10-01T17:13:14.632Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/88/4016af1b7493389c1514c81315558edb559224093f30b73e13ec1058ad54/splat64-0.39.1-py3-none-any.whl", hash = "sha256:3c928cc54d28222a77c5200d2d0ad19a87958ad937363757f25b203214953bc7", size = 119964, upload-time = "2026-03-29T17:12:57.753Z" },
 ]
 
 [package.optional-dependencies]
@@ -761,14 +758,14 @@ mips = [
 
 [[package]]
 name = "tqdm"
-version = "4.67.3"
+version = "4.67.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/09/a9/6ba95a270c6f1fbcd8dac228323f2777d886cb206987444e4bce66338dd4/tqdm-4.67.3.tar.gz", hash = "sha256:7d825f03f89244ef73f1d4ce193cb1774a8179fd96f31d7e1dcde62092b960bb", size = 169598, upload-time = "2026-02-03T17:35:53.048Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz", hash = "sha256:f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2", size = 169737, upload-time = "2024-11-24T20:12:22.481Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/e1/3079a9ff9b8e11b846c6ac5c8b5bfb7ff225eee721825310c91b3b50304f/tqdm-4.67.3-py3-none-any.whl", hash = "sha256:ee1e4c0e59148062281c49d80b25b67771a127c85fc9676d3be5f243206826bf", size = 78374, upload-time = "2026-02-03T17:35:50.982Z" },
+    { url = "https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl", hash = "sha256:26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2", size = 78540, upload-time = "2024-11-24T20:12:19.698Z" },
 ]
 
 [[package]]

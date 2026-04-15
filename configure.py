@@ -108,6 +108,7 @@ def obtain_ido_recomp(version: str):
     shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
+
 def obtain_asm_processor():
     download_dir = TOOLS_DIR / "asm_proc"
 
@@ -151,7 +152,7 @@ def obtain_asm_processor():
     shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
-    for each_file in (download_dir / asm_proc_triple).glob('*'):
+    for each_file in (download_dir / asm_proc_triple).glob("*"):
         each_file.rename(download_dir / each_file.name)
     (download_dir / asm_proc_triple).rmdir()
 
@@ -311,7 +312,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "mksprite",
         description="mksprite $in",
-        command=f"{sys.executable} {MKSPRITE} $in -f $fmt --tile-width $tile_w --tile-height $tile_h --name $sprite_name --dl $dl_name -o $out",
+        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --name $sprite_name --dl $dl_name -o $out",
     )
 
     for entry in linker_entries:
@@ -358,19 +359,31 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
-                elif seg.type == "snap_sprite" and hasattr(seg, "tile_width") and seg.tile_width > 0:
+                elif (
+                    seg.type == "snap_sprite"
+                    and hasattr(seg, "tile_width")
+                    and getattr(seg, "tile_width", 0) > 0
+                ):
+                    tile_width = int(getattr(seg, "tile_width"))
+                    tile_height = int(getattr(seg, "tile_height"))
+                    format_name = str(getattr(seg, "format_name"))
+                    dl_name = str(getattr(seg, "dl_name"))
                     src_png = seg.out_path()
+                    assert src_png is not None
+                    padding_png = src_png.with_name(f"{src_png.stem}.padding.png")
                     inc_path = Path("build/" + str(src_png) + ".inc.h")
                     build(
                         inc_path,
-                        [src_png],
+                        [src_png, padding_png],
                         "mksprite",
                         variables={
-                            "fmt": seg.format_name,
-                            "tile_w": str(seg.tile_width),
-                            "tile_h": str(seg.tile_height),
-                            "sprite_name": seg.name,
-                            "dl_name": seg.dl_name,
+                            "src_png": str(src_png),
+                            "padding_png": str(padding_png),
+                            "fmt": format_name,
+                            "tile_w": str(tile_width),
+                            "tile_h": str(tile_height),
+                            "sprite_name": str(seg.name),
+                            "dl_name": dl_name,
                         },
                     )
                     img_incs.append(str(inc_path))

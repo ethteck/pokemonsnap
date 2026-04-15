@@ -668,12 +668,32 @@ segments:
     - [0x86710, bin]
   - type: code
     name: zubat1
-    dir: pokemon/zubat
+    dir: pokemon_common
     start: 0x98470
     vram: 0x8011B050
     exclusive_ram_id: unk8011B050
     subsegments:
-    - [0x98470, bin] # , data]
+    - [auto, c, zubat/textures]
+    - start: 0x98470
+      type: .data
+      dir: zubat
+      name: zubat/textures
+      subsegments:
+      - [0x98470]
+      - { start: 0x98478, type: palette, name: tex_ear, size: 0x20 }
+      - [0x98498]
+      - { start: 0x984A0, type: ci4, name: tex_ear, flip_y: true, width: 32, height: 32 }
+      - [0x986A0]
+      - { start: 0x986A8, type: palette, name: tex_wing_inside, size: 0x20 }
+      - [0x986C8]
+      - { start: 0x986D0, type: ci4, name: tex_wing_inside, flip_y: true, width: 64, height: 64 }
+      - [0x98ED0]
+      - { start: 0x98ED8, type: palette, name: tex_wing_outside, size: 0x20 }
+      - [0x98EF8]
+      - { start: 0x98F00, type: ci4, name: tex_wing_outside, flip_y: true, width: 64, height: 64 }
+      - [0x99700]
+    # Animation data
+    - [0x99700, bin]
   - type: code
     name: bulbasaur1
     dir: pokemon/bulbasaur

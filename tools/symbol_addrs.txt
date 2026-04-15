@@ -3932,19 +3932,19 @@ zubat_hd_part10_draw = 0x803AD128; // segment:zubat_model_hd
 zubat_hd_gfxdata = 0x803AD2E0; // segment:zubat_model_hd
 zubat_hd_model = 0x803AD338; // segment:zubat_model_hd size:0x23C
 
-zubat_tex_8011B058 = 0x8011B058; // segment:zubat_model allow_duplicated:True
-zubat_tex_8011B080_png = 0x8011B080; // segment:zubat_model allow_duplicated:True
-zubat_tex_8011B288 = 0x8011B288; // segment:zubat_model allow_duplicated:True
-zubat_tex_8011B2B0_png = 0x8011B2B0; // segment:zubat_model allow_duplicated:True
-zubat_tex_8011BAB8 = 0x8011BAB8; // segment:zubat_model allow_duplicated:True
-zubat_tex_8011BAE0_png = 0x8011BAE0; // segment:zubat_model allow_duplicated:True
+zubat_tex_ear_pal = 0x8011B058; // segment:zubat_model allow_duplicated:True
+zubat_tex_ear_png = 0x8011B080; // segment:zubat_model allow_duplicated:True
+zubat_tex_wing_inside_pal = 0x8011B288; // segment:zubat_model allow_duplicated:True
+zubat_tex_wing_inside_png = 0x8011B2B0; // segment:zubat_model allow_duplicated:True
+zubat_tex_wing_outside_pal = 0x8011BAB8; // segment:zubat_model allow_duplicated:True
+zubat_tex_wing_outside_png = 0x8011BAE0; // segment:zubat_model allow_duplicated:True
 
-zubat_tex_8011B058 = 0x8011B058; // segment:zubat_model_hd allow_duplicated:True
-zubat_tex_8011B080_png = 0x8011B080; // segment:zubat_model_hd allow_duplicated:True
-zubat_tex_8011B288 = 0x8011B288; // segment:zubat_model_hd allow_duplicated:True
-zubat_tex_8011B2B0_png = 0x8011B2B0; // segment:zubat_model_hd allow_duplicated:True
-zubat_tex_8011BAB8 = 0x8011BAB8; // segment:zubat_model_hd allow_duplicated:True
-zubat_tex_8011BAE0_png = 0x8011BAE0; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_ear_pal = 0x8011B058; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_ear_png = 0x8011B080; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_wing_inside_pal = 0x8011B288; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_wing_inside_png = 0x8011B2B0; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_wing_outside_pal = 0x8011BAB8; // segment:zubat_model_hd allow_duplicated:True
+zubat_tex_wing_outside_png = 0x8011BAE0; // segment:zubat_model_hd allow_duplicated:True
 
 bulbasaur_vtx = 0x8033F790; // segment:bulbasaur_model size:0x1FE0
 bulbasaur_first = 0x80341770; // segment:bulbasaur_model

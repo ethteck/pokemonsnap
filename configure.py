@@ -61,6 +61,7 @@ LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_
 
 PIGMENT64 = "pigment64"
 BIN2C = TOOLS_DIR / "bin2c.py"
+MKSPRITE = TOOLS_DIR / "mksprite.py"
 
 
 def clean():
@@ -307,6 +308,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/vpk0.py $in $out",
     )
 
+    ninja.rule(
+        "mksprite",
+        description="mksprite $in",
+        command=f"{sys.executable} {MKSPRITE} $in -f $fmt --tile-width $tile_w --tile-height $tile_h --name $sprite_name --dl $dl_name -o $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -350,6 +357,22 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                         variables={"img_type": seg.type, "img_flags": ""},
                     )
                     build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
+                elif seg.type == "snap_sprite" and hasattr(seg, "tile_width") and seg.tile_width > 0:
+                    src_png = seg.out_path()
+                    inc_path = Path("build/" + str(src_png) + ".inc.h")
+                    build(
+                        inc_path,
+                        [src_png],
+                        "mksprite",
+                        variables={
+                            "fmt": seg.format_name,
+                            "tile_w": str(seg.tile_width),
+                            "tile_h": str(seg.tile_height),
+                            "sprite_name": seg.name,
+                            "dl_name": seg.dl_name,
+                        },
+                    )
                     img_incs.append(str(inc_path))
 
     for entry in linker_entries:
@@ -545,6 +568,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 implicit=glob.glob(str(entry.src_paths[0]) + "/*"),
             )
             build(entry.object_path, [raw_bin], "bin")
+        elif seg.type == "snap_sprite":
+            pass  # handled as .data group subsegments
         else:
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)

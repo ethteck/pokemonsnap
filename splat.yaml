@@ -570,12 +570,102 @@ segments:
     - [0x78260, bin]
   - type: code
     name: pikachu1
-    dir: pokemon/pikachu
+    dir: pokemon_common
     start: 0x7D3B0
     vram: 0x800FFF90
     exclusive_ram_id: unk800FFF90
     subsegments:
-    - [0x7D3B0, bin] # , data]
+    - [auto, c, pikachu/textures]
+    - start: 0x7D3B0
+      type: .data
+      dir: pikachu
+      name: pikachu/textures
+      subsegments:
+      - [0x7D3B0]
+      - { start: 0x7D3B8, type: i4, name: tex_lightning0, flip_y: true, width: 128, height: 32 }
+      - [0x7DBB8]
+      - { start: 0x7DBC0, type: i4, name: tex_lightning1, flip_y: true, width: 128, height: 32 }
+      - [0x7E3C0]
+      - { start: 0x7E3C8, type: i4, name: tex_lightning2, flip_y: true, width: 128, height: 32 }
+      - [0x7EBC8]
+      - { start: 0x7EBD0, type: i4, name: tex_lightning3, flip_y: true, width: 128, height: 32 }
+      - [0x7F3D0]
+      - { start: 0x7F3D8, type: rgba16, name: tex_balloon0, flip_y: true, width: 32, height: 64 }
+      - [0x803D8]
+      - { start: 0x803E0, type: rgba16, name: tex_balloon1, flip_y: true, width: 32, height: 64 }
+      - [0x813E0]
+      - { start: 0x813E8, type: palette, name: tex_apple, size: 0x200 }
+      - [0x815E8]
+      - { start: 0x815F0, type: ci8, name: tex_apple, flip_y: true, width: 32, height: 32 }
+      - [0x819F0]
+      - { start: 0x819F8, type: i4, name: tex_07, flip_y: true, width: 64, height: 32 }
+      - [0x81DF8]
+      - { start: 0x81E00, type: i4, name: tex_08, flip_y: true, width: 64, height: 32 }
+      - [0x82200]
+      - { start: 0x82208, type: rgba16, name: tex_body, flip_y: true, width: 8, height: 8 }
+      - [0x82288]
+      - { start: 0x82290, type: palette, name: tex_cheek0, size: 0x20 }
+      - [0x822B0]
+      - { start: 0x822B8, type: ci4, name: tex_cheek0, flip_y: true, width: 32, height: 32 }
+      - [0x824B8]
+      - { start: 0x824C0, type: palette, name: tex_cheek1, size: 0x20 }
+      - [0x824E0]
+      - { start: 0x824E8, type: ci4, name: tex_cheek1, flip_y: true, width: 32, height: 32 }
+      - [0x826E8]
+      - { start: 0x826F0, type: palette, name: tex_mouth0, size: 0x200 }
+      - [0x828F0]
+      - { start: 0x828F8, type: ci8, name: tex_mouth0, flip_y: true, width: 32, height: 32 }
+      - [0x82CF8]
+      - { start: 0x82D00, type: palette, name: tex_mouth1, size: 0x200 }
+      - [0x82F00]
+      - { start: 0x82F08, type: ci8, name: tex_mouth1, flip_y: true, width: 32, height: 32 }
+      - [0x83308]
+      - { start: 0x83310, type: palette, name: tex_mouth2, size: 0x200 }
+      - [0x83510]
+      - { start: 0x83518, type: ci8, name: tex_mouth2, flip_y: true, width: 32, height: 32 }
+      - [0x83918]
+      - { start: 0x83920, type: palette, name: tex_mouth3, size: 0x200 }
+      - [0x83B20]
+      - { start: 0x83B28, type: ci8, name: tex_mouth3, flip_y: true, width: 32, height: 32 }
+      - [0x83F28]
+      - { start: 0x83F30, type: palette, name: tex_mouth4, size: 0x200 }
+      - [0x84130]
+      - { start: 0x84138, type: ci8, name: tex_mouth4, flip_y: true, width: 32, height: 32 }
+      - [0x84538]
+      - { start: 0x84540, type: palette, name: tex_eye0, size: 0x200 }
+      - [0x84740]
+      - { start: 0x84748, type: ci8, name: tex_eye0, flip_y: true, width: 32, height: 32 }
+      - [0x84B48]
+      - { start: 0x84B50, type: palette, name: tex_eye1, size: 0x200 }
+      - [0x84D50]
+      - { start: 0x84D58, type: ci8, name: tex_eye1, flip_y: true, width: 32, height: 32 }
+      - [0x85158]
+      - { start: 0x85160, type: palette, name: tex_eye2, size: 0x200 }
+      - [0x85360]
+      - { start: 0x85368, type: ci8, name: tex_eye2, flip_y: true, width: 32, height: 32 }
+      - [0x85768]
+      - { start: 0x85770, type: palette, name: tex_eye3, size: 0x200 }
+      - [0x85970]
+      - { start: 0x85978, type: ci8, name: tex_eye3, flip_y: true, width: 32, height: 32 }
+      - [0x85D78]
+      - { start: 0x85D80, type: palette, name: tex_eye4, size: 0x200 }
+      - [0x85F80]
+      - { start: 0x85F88, type: ci8, name: tex_eye4, flip_y: true, width: 32, height: 32 }
+      - [0x86388]
+      - { start: 0x86390, type: palette, name: tex_ear, size: 0x10 }
+      - [0x863A0]
+      - { start: 0x863A8, type: ci4, name: tex_ear, flip_y: true, width: 16, height: 32 }
+      - [0x864A8]
+      - { start: 0x864B0, type: palette, name: tex_back, size: 0x20 }
+      - [0x864D0]
+      - { start: 0x864D8, type: ci4, name: tex_back, flip_y: true, width: 32, height: 16 }
+      - [0x865D8]
+      - { start: 0x865E0, type: palette, name: tex_tail, size: 0x20 }
+      - [0x86600]
+      - { start: 0x86608, type: ci4, name: tex_tail, flip_y: true, width: 16, height: 32 }
+      - [0x86708]
+    # Animation data (model anims + material anims)
+    - [0x86710, bin]
   - type: code
     name: zubat1
     dir: pokemon/zubat

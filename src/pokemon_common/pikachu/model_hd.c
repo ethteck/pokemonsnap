@@ -4,38 +4,38 @@ extern Gfx D_0E000000_pikachu_model_hd[];
 extern Gfx D_0E000008_pikachu_model_hd[];
 extern Gfx D_0E000010_pikachu_model_hd[];
 
-extern u8 pikachu_tex_800FFF98[];
-extern u8 pikachu_tex_801007A0[];
-extern u8 pikachu_tex_80100FA8[];
-extern u8 pikachu_tex_801017B0[];
-extern u8 pikachu_tex_801045D8[];
-extern u8 pikachu_tex_801049E0[];
-extern u8 pikachu_tex_80104E98[];
-extern u8 pikachu_tex_801050C8[];
-extern u8 pikachu_tex_801054D8[];
-extern u8 pikachu_tex_80105AE8[];
-extern u8 pikachu_tex_801060F8[];
-extern u8 pikachu_tex_80106708[];
-extern u8 pikachu_tex_80106D18[];
-extern u8 pikachu_tex_80107328[];
-extern u8 pikachu_tex_80107938[];
-extern u8 pikachu_tex_80107F48[];
-extern u8 pikachu_tex_80108558[];
-extern u8 pikachu_tex_80108B68[];
-extern u8 pikachu_tex_80109090[];
-extern u8 pikachu_tex_801090B8_png[];
-extern u8 pikachu_tex_80104DE8[];
-extern u8 pikachu_tex_80107120[];
-extern u8 pikachu_tex_80104E70[];
-extern u8 pikachu_tex_801052D0[];
-extern u8 pikachu_tex_80108F70[];
-extern u8 pikachu_tex_80108F88_png[];
-extern u8 pikachu_tex_80102FC0[];
-extern u8 pikachu_tex_80101FB8[];
-extern u8 pikachu_tex_80103FC8[];
-extern u8 pikachu_tex_801041D0_png[];
-extern u8 pikachu_tex_801091C0[];
-extern u8 pikachu_tex_801091E8_png[];
+extern u8 pikachu_tex_lightning0_png[];
+extern u8 pikachu_tex_lightning1_png[];
+extern u8 pikachu_tex_lightning2_png[];
+extern u8 pikachu_tex_lightning3_png[];
+extern u8 pikachu_tex_07_png[];
+extern u8 pikachu_tex_08_png[];
+extern u8 pikachu_tex_cheek0_png[];
+extern u8 pikachu_tex_cheek1_png[];
+extern u8 pikachu_tex_mouth0_png[];
+extern u8 pikachu_tex_mouth1_png[];
+extern u8 pikachu_tex_mouth2_png[];
+extern u8 pikachu_tex_mouth3_png[];
+extern u8 pikachu_tex_mouth4_png[];
+extern u8 pikachu_tex_eye0_png[];
+extern u8 pikachu_tex_eye1_png[];
+extern u8 pikachu_tex_eye2_png[];
+extern u8 pikachu_tex_eye3_png[];
+extern u8 pikachu_tex_eye4_png[];
+extern u8 pikachu_tex_back_pal[];
+extern u8 pikachu_tex_back_png[];
+extern u8 pikachu_tex_body_png[];
+extern u8 pikachu_tex_eye0_pal[];
+extern u8 pikachu_tex_cheek0_pal[];
+extern u8 pikachu_tex_mouth0_pal[];
+extern u8 pikachu_tex_ear_pal[];
+extern u8 pikachu_tex_ear_png[];
+extern u8 pikachu_tex_balloon1_png[];
+extern u8 pikachu_tex_balloon0_png[];
+extern u8 pikachu_tex_apple_pal[];
+extern u8 pikachu_tex_apple_png[];
+extern u8 pikachu_tex_tail_pal[];
+extern u8 pikachu_tex_tail_png[];
 
 extern Texture* pikachu_hd_part1_mat[];
 extern Texture* pikachu_hd_part2_mat[];
@@ -69,60 +69,60 @@ Texture** pikachu_hd_materials[] = {
 };
 
 u8* pikachu_hd_part1_mat0_textures[] = {
-    pikachu_tex_801045D8,
-    pikachu_tex_801049E0,
+    pikachu_tex_07_png,
+    pikachu_tex_08_png,
 };
 
 u8* pikachu_hd_part1_mat1_textures[] = {
-    pikachu_tex_801049E0,
-    pikachu_tex_801045D8,
+    pikachu_tex_08_png,
+    pikachu_tex_07_png,
 };
 
 u8* pikachu_hd_part2_mat0_textures[] = {
-    pikachu_tex_800FFF98,
-    pikachu_tex_801007A0,
-    pikachu_tex_80100FA8,
-    pikachu_tex_801017B0,
-    pikachu_tex_801017B0,
+    pikachu_tex_lightning0_png,
+    pikachu_tex_lightning1_png,
+    pikachu_tex_lightning2_png,
+    pikachu_tex_lightning3_png,
+    pikachu_tex_lightning3_png,
 };
 
 u8* pikachu_hd_part2_mat1_textures[] = {
-    pikachu_tex_800FFF98,
-    pikachu_tex_801007A0,
-    pikachu_tex_80100FA8,
-    pikachu_tex_801017B0,
-    pikachu_tex_801017B0,
+    pikachu_tex_lightning0_png,
+    pikachu_tex_lightning1_png,
+    pikachu_tex_lightning2_png,
+    pikachu_tex_lightning3_png,
+    pikachu_tex_lightning3_png,
 };
 
 u8* pikachu_hd_part11_mat0_textures[] = {
-    pikachu_tex_801054D8,
-    pikachu_tex_80105AE8,
-    pikachu_tex_801060F8,
-    pikachu_tex_80106708,
-    pikachu_tex_80106D18,
+    pikachu_tex_mouth0_png,
+    pikachu_tex_mouth1_png,
+    pikachu_tex_mouth2_png,
+    pikachu_tex_mouth3_png,
+    pikachu_tex_mouth4_png,
 };
 
 u8* pikachu_hd_part11_mat1_textures[] = {
-    pikachu_tex_80104E98,
-    pikachu_tex_801050C8,
+    pikachu_tex_cheek0_png,
+    pikachu_tex_cheek1_png,
 };
 
 u8* pikachu_hd_part11_mat2_textures[] = {
-    pikachu_tex_80107328,
-    pikachu_tex_80107938,
-    pikachu_tex_80107F48,
-    pikachu_tex_80108558,
-    pikachu_tex_80108B68,
+    pikachu_tex_eye0_png,
+    pikachu_tex_eye1_png,
+    pikachu_tex_eye2_png,
+    pikachu_tex_eye3_png,
+    pikachu_tex_eye4_png,
 };
 
 u8* pikachu_hd_part14_mat0_textures[] = {
-    pikachu_tex_801045D8,
-    pikachu_tex_801049E0,
+    pikachu_tex_07_png,
+    pikachu_tex_08_png,
 };
 
 u8* pikachu_hd_part14_mat1_textures[] = {
-    pikachu_tex_801049E0,
-    pikachu_tex_801045D8,
+    pikachu_tex_08_png,
+    pikachu_tex_07_png,
 };
 
 Texture pikachu_hd_part1_mat0 = {

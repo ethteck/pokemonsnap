@@ -366,8 +366,8 @@ pikachu_tex_eye2_png = 0x80107F48;
 pikachu_tex_eye3_png = 0x80108558;
 pikachu_tex_eye4_png = 0x80108B68;
 
-bulbasaur_tex_8011CFE0 = 0x8011CFE0;
-bulbasaur_tex_8011D210 = 0x8011D210;
-bulbasaur_tex_8011D438 = 0x8011D438;
-bulbasaur_tex_8011D668 = 0x8011D668;
-bulbasaur_tex_8011DCA8 = 0x8011DCA8;
+bulbasaur_tex_eye0_png = 0x8011CFE0;
+bulbasaur_tex_eye1_png = 0x8011D210;
+bulbasaur_tex_eye2_png = 0x8011D438;
+bulbasaur_tex_eye3_png = 0x8011D668;
+bulbasaur_tex_eye4_png = 0x8011DCA8;

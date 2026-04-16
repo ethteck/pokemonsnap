@@ -129,6 +129,9 @@ FORMAT_INFO = {
 
 
 class N64SegSnap_sprite(Segment):
+    DF_ALIGNER = bytes.fromhex("df00000000000000")
+    ZERO_ALIGNER = bytes(8)
+
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.png"
 
@@ -161,7 +164,10 @@ class N64SegSnap_sprite(Segment):
 
         fmt = FORMAT_INFO.get((header.bmfmt, header.bmsiz))
         if fmt is None:
-            print(f"Unsupported format: {header.bmfmt.name} {header.bmsiz.name}")
+            print(
+                f"Unsupported format: {header.bmfmt.name} {header.bmsiz.name} "
+                f"for {self.name} at ROM 0x{self.rom_start:X}-0x{self.rom_end:X}"
+            )
             return
         png_bpp, input_bpp, img_class, format_name = fmt
 
@@ -200,6 +206,7 @@ class N64SegSnap_sprite(Segment):
         self.tile_width = bitmaps[0].width if bitmaps else 0
         self.tile_height = header.bmheight
         self.format_name = format_name
+        self.aligner_mode = "df"
         self.dl_name = (
             self._resolve_name(header.rsp_dl, "dl") if header.rsp_dl else "NULL"
         )
@@ -208,6 +215,8 @@ class N64SegSnap_sprite(Segment):
             if header.bitmap > 0x80000000
             else f"{self.name}_bitmaps"
         )
+        self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
+        self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
 
         # Render the sprite to PNG plus a companion image containing clipped padding texels.
         canvas = bytearray(header.width * header.height * png_bpp)
@@ -236,6 +245,23 @@ class N64SegSnap_sprite(Segment):
             lut_rom = self._resolve_rom(header.LUT)
             assert lut_rom is not None
             palette = bytearray(rom_bytes[lut_rom : lut_rom + header.nTLUT * 2])
+
+        aligners = set()
+        for bitmap in bitmaps:
+            buf_rom = self._resolve_rom(bitmap.buf)
+            assert buf_rom is not None
+            aligner = bytes(rom_bytes[buf_rom - 8 : buf_rom])
+            aligners.add(aligner)
+
+        if aligners == {self.ZERO_ALIGNER}:
+            self.aligner_mode = "zero"
+        elif aligners == {self.DF_ALIGNER}:
+            self.aligner_mode = "df"
+        else:
+            print(
+                f"WARNING: {self.name}: mixed/unknown sprite aligners "
+                f"{[a.hex() for a in sorted(aligners)]}, defaulting to df"
+            )
 
         canvas_y = 0
         canvas_x = 0

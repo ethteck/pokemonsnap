@@ -9841,6 +9841,7 @@ segments:
     bss_size: 0x3590
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites] # TODO: place me
     - [0xA93460, c]
     - [0xA937B0, pad]
     - [0xA937C0, c]
@@ -9848,11 +9849,20 @@ segments:
     - [0xA94930, pad]
     - [0xA94940, c]
     - [0xA95760, data, A93460]
-    - [0xA95880, data] # sprite
-    - [0xA9CC60, data] # sprite
-    - [0xA9D040, data] # sprite starts 8 bytes earlier
-    - [0xA9D3E0, data] # sprite
-    - [0xA9D6B0, data] # sprite
+    - name: sprites
+      type: .data
+      start: 0xA95880
+      subsegments:
+      - [0xA95880, snap_sprite]
+      - [0xA9CC58]
+      - [0xA9CC60, snap_sprite]
+      - [0xA9D030]
+      - [0xA9D038, snap_sprite]
+      - [0xA9D3D8]
+      - [0xA9D3E8, rgba16, 'A9D3E8', 16, 16] # A sprite, but its repeating the same bitmap
+      - [0xA9D5E8]
+      - [0xA9D6B0, snap_sprite]
+      - [0xA9F750]
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
     - [0xAA0000, .rodata, A937C0]

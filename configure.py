@@ -312,7 +312,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "mksprite",
         description="mksprite $in",
-        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --name $sprite_name --dl $dl_name -o $out",
+        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --aligner $aligner_mode --name $sprite_name --dl $dl_name $sprite_flags -o $out",
     )
 
     for entry in linker_entries:
@@ -367,7 +367,15 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     tile_width = int(getattr(seg, "tile_width"))
                     tile_height = int(getattr(seg, "tile_height"))
                     format_name = str(getattr(seg, "format_name"))
+                    aligner_mode = str(getattr(seg, "aligner_mode", "df"))
                     dl_name = str(getattr(seg, "dl_name"))
+                    has_sp_z = bool(getattr(seg, "has_sp_z", True))
+                    has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
+                    sprite_flags = ""
+                    if not has_sp_z:
+                        sprite_flags += " --no-z"
+                    if not has_sp_fastcopy:
+                        sprite_flags += " --no-fastcopy"
                     src_png = seg.out_path()
                     assert src_png is not None
                     padding_png = src_png.with_name(f"{src_png.stem}.padding.png")
@@ -380,10 +388,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                             "src_png": str(src_png),
                             "padding_png": str(padding_png),
                             "fmt": format_name,
+                            "aligner_mode": aligner_mode,
                             "tile_w": str(tile_width),
                             "tile_h": str(tile_height),
                             "sprite_name": str(seg.name),
                             "dl_name": dl_name,
+                            "sprite_flags": sprite_flags.strip(),
                         },
                     )
                     img_incs.append(str(inc_path))

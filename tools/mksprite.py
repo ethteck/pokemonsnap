@@ -4,7 +4,8 @@ mksprite - Convert a PNG image into an N64 Sprite .inc.h file.
 
 Usage:
     mksprite.py <input.png> -f <format> --tile-width <W> --tile-height <H>
-                --padding <input.padding.png> --name <sprite_name> --dl <dl_name> -o <output.inc.h>
+                --padding <input.padding.png> --aligner <df|zero>
+                --name <sprite_name> --dl <dl_name> -o <output.inc.h>
 
 Produces a single .inc.h file containing:
   - Pixel data arrays for each tile (via pigment64 --c-array --word-swap)
@@ -447,8 +448,11 @@ def main():
     parser.add_argument("--tile-width", type=int, required=True)
     parser.add_argument("--tile-height", type=int, required=True)
     parser.add_argument("--padding", type=Path, required=True, help="Padding PNG file")
+    parser.add_argument("--aligner", choices=("df", "zero"), default="df")
     parser.add_argument("--name", required=True, help="Sprite variable name")
     parser.add_argument("--dl", required=True, help="Display list variable name")
+    parser.add_argument("--fastcopy", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--z", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("-o", "--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -477,9 +481,14 @@ def main():
         tile_names.append((tile_name, tile))
 
         c_array = format_bytes_as_c(tile.data, fmt_info["c_type"])
-        out_lines.append(
-            f"static Gfx {tile_name}_C_dummy_aligner[] = {{ gsSPEndDisplayList() }};"
-        )
+        if args.aligner == "df":
+            out_lines.append(
+                f"static Gfx {tile_name}_C_dummy_aligner[] = {{ gsSPEndDisplayList() }};"
+            )
+        else:
+            out_lines.append(
+                f"static u8 {tile_name}_C_dummy_aligner[] = {{ 0, 0, 0, 0, 0, 0, 0, 0 }};"
+            )
         out_lines.append(f"static {fmt_info['c_type']} {tile_name}[] = {{")
         out_lines.append(c_array)
         out_lines.append("};")
@@ -522,7 +531,12 @@ def main():
     out_lines.append(
         f"    0, 0,                          /* Sprite Explosion Spacing: x, y */"
     )
-    out_lines.append(f"    SP_TEXSHUF | SP_Z | SP_FASTCOPY, /* Sprite Attributes */")
+    attr_parts = ["SP_TEXSHUF"]
+    if args.z:
+        attr_parts.append("SP_Z")
+    if args.fastcopy:
+        attr_parts.append("SP_FASTCOPY")
+    out_lines.append(f"    {' | '.join(attr_parts)}, /* Sprite Attributes */")
     out_lines.append(f"    0x1234,                        /* Sprite Depth: Z */")
     out_lines.append(
         f"    255, 255, 255, 255,            /* Sprite Coloration: RGBA */"

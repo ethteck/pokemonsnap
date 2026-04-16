@@ -1,0 +1,78 @@
+#include <common.h>
+#include <PR/sp.h>
+
+#include "build/assets/credits/D_credits_801E6058.png.inc.h"
+static u8 aligner_0[] = { 0, 0, 0,0 };
+#include "build/assets/credits/D_credits_801E6430.png.inc.h"
+static u8 aligner_1[] = { 0, 0, 0,0 };
+#include "build/assets/credits/D_credits_801E67D8.png.inc.h"
+static u8 aligner_b[] = { 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0,0 };
+static unsigned short D_credits_801E6AA8_bm0_0[] = {
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4, 0xD6B4,
+    0xD6B4, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B4,
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4,
+    0xD6B4, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B4,
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4,
+    0xD6B4, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B4,
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4,
+    0xD6B4, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B4,
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4,
+    0xD6B4, 0xD6B4, 0xD6B4, 0xD6B4, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5,
+    0xD6B5, 0xD6B5, 0xD6B5, 0xD6B5, 0xD6B4, 0xD6B4, 0xD6B4, 0xD6B4,
+};
+
+Bitmap D_credits_801E6AA8_bitmaps[] = {
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+    { 16, 16, 0, 0, (u8*)D_credits_801E6AA8_bm0_0, 10, 0 },
+};
+
+#define NUM_D_credits_801E6AA8_BMS  (sizeof(D_credits_801E6AA8_bitmaps) / sizeof(Bitmap))
+
+Sprite D_credits_801E6AA8 = {
+    0, 0,                          /* Position: x, y */
+    16, 10,                      /* Sprite size in texels (x, y) */
+    1.0, 1.0,                      /* Sprite Scale: x, y */
+    0, 0,                          /* Sprite Explosion Spacing: x, y */
+    SP_TEXSHUF, /* Sprite Attributes */
+    0x1234,                        /* Sprite Depth: Z */
+    255, 255, 255, 255,            /* Sprite Coloration: RGBA */
+    0, 0, NULL,  /* CLUT: start, length, address */
+    0, 1,                          /* Bitmap index: start, step */
+    NUM_D_credits_801E6AA8_BMS,              /* Number of bitmaps */
+    NUM_DL(NUM_D_credits_801E6AA8_BMS),      /* Number of display list locations */
+    10, 10,                      /* Bitmap Height: used, physical */
+    G_IM_FMT_RGBA,             /* Bitmap Format */
+    G_IM_SIZ_16b,            /* Bitmap Texel Size */
+    D_credits_801E6AA8_bitmaps,              /* Pointer to bitmaps */
+    NULL,                        /* Display list memory */
+    NULL                           /* next_dl pointer */
+};
+static u8 aligner_2[] = { 0, 0, 0, 0};
+#include "build/assets/credits/D_credits_801E8B50.png.inc.h"

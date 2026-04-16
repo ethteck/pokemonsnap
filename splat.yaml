@@ -9820,17 +9820,26 @@ segments:
     bss_size: 0x51F60
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites]
     - [0xA5CC50, c, A5CC50]
     - [0xA5D5B0, c, A5D5B0]
     - [0xA5E3A0, .data, A5CC50]
     - [0xA5EA50, .rodata, A5CC50]
     - [0xA5F040, .rodata, A5D5B0]
-    - { start: 0xA5F070, type: data, name: sprite_background, linker_section_order: .rodata }
-    - { start: 0xA84C80, type: data, name: sprite_card, linker_section_order: .rodata }
-    - { start: 0xA93390, type: data, name: sprite_cursor, linker_section_order: .rodata }
+    - name: sprites
+      type: .data
+      start: 0xA5F070
+      linker_section_order: .rodata
+      subsegments:
+      - [0xA5F070, snap_sprite, sprite_background]
+      - [0xA84C70]
+      - [0xA84C80, snap_sprite, sprite_card]
+      - [0xA93388]
+      - [0xA93390, snap_sprite, sprite_cursor]
+      - [0xA93458]
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
-    - { name: sprite_bss, type: bss, vram: 0x80168150 }
+    - { name: sprite_bss, type: bss, vram: 0x80168150 } # TODO: fix with sprite generation
 
   - name: credits
     dir: credits

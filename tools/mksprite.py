@@ -489,7 +489,7 @@ def main():
             out_lines.append(
                 f"static u8 {tile_name}_C_dummy_aligner[] = {{ 0, 0, 0, 0, 0, 0, 0, 0 }};"
             )
-        out_lines.append(f"static {fmt_info['c_type']} {tile_name}[] = {{")
+        out_lines.append(f"{fmt_info['c_type']} {tile_name}[] = {{")
         out_lines.append(c_array)
         out_lines.append("};")
         out_lines.append("")

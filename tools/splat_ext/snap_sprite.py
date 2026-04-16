@@ -1,3 +1,4 @@
+import math
 from dataclasses import dataclass
 from enum import IntEnum, IntFlag
 from io import BytesIO
@@ -217,6 +218,14 @@ class N64SegSnap_sprite(Segment):
         )
         self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
         self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
+        cols = math.ceil(header.width / self.tile_width) if self.tile_width > 0 else 1
+        for i, bitmap in enumerate(bitmaps):
+            row = i // cols
+            col = i % cols
+            sym = self.create_symbol(
+                bitmap.buf, in_segment=True, type="data", define=True
+            )
+            sym.given_name = f"{self.name}_bm{row}_{col}"
 
         # Render the sprite to PNG plus a companion image containing clipped padding texels.
         canvas = bytearray(header.width * header.height * png_bpp)

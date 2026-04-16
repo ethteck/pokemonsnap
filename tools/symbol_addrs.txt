@@ -8624,6 +8624,30 @@ UIMem_SplitChunk = 0x8036A07C; // segment:window
 UIMem_MergeChunks = 0x8036A0BC; // segment:window
 UIMem_Reallocate = 0x8036A248; // segment:window
 
+otherText = 0x80203218; // segment:pokemon_report        
+otherText2 = 0x80203268; // segment:pokemon_report    
+otherText3 = 0x802032c4; // segment:pokemon_report    
+otherText4 = 0x80203314; // segment:pokemon_report    
+otherText5 = 0x8020334c; // segment:pokemon_report    
+otherText6 = 0x8020338c; // segment:pokemon_report    
+otherText7 = 0x802033bc; // segment:pokemon_report    
+otherText8 = 0x80203414; // segment:pokemon_report    
+otherText9 = 0x80203470; // segment:pokemon_report    
+otherText10 = 0x802034ac; // segment:pokemon_report     
+otherText11 = 0x80203504; // segment:pokemon_report     
+otherText12 = 0x80203530; // segment:pokemon_report     
+otherText13 = 0x8020357c; // segment:pokemon_report     
+otherText14 = 0x802035dc; // segment:pokemon_report     
+otherText15 = 0x80203630; // segment:pokemon_report     
+otherText16 = 0x8020367c; // segment:pokemon_report     
+otherText17 = 0x802036b4; // segment:pokemon_report     
+otherText18 = 0x802036ec; // segment:pokemon_report     
+otherText19 = 0x80203720; // segment:pokemon_report     
+otherText20 = 0x80203764; // segment:pokemon_report     
+otherText21 = 0x802037a4; // segment:pokemon_report     
+otherText22 = 0x802037f4; // segment:pokemon_report     
+otherText23 = 0x80203840; // segment:pokemon_report
+
 D_beach_802CC344 = 0x802CC344; // segment:beach_code type:s32
 
 fx_makeChildScriptID = 0x800A235C; // segment:app_render

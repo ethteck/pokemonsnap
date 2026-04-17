@@ -162,6 +162,25 @@ def _read_png_rgba_rows(png_path: Path) -> list[list[tuple[int, int, int, int]]]
     return rgba_rows
 
 
+def _swap_rgba32_odd_rows(data: bytes, width: int) -> bytes:
+    """Apply rgb2c's `-S 2` odd-row swap for RGBA32 (swap 2-pixel halves
+    of each 4-pixel chunk). pigment64 --word-swap is hardcoded to 4-byte
+    halves which is wrong for 32bpp; see decompals/pigment64#30.
+    """
+    result = bytearray(data)
+    stride = width * 4
+    for y in range(len(data) // stride):
+        if y % 2 == 0:
+            continue
+        row_off = y * stride
+        for i in range(0, stride - 15, 16):
+            off = row_off + i
+            chunk = bytes(result[off : off + 16])
+            result[off : off + 8] = chunk[8:16]
+            result[off + 8 : off + 16] = chunk[0:8]
+    return bytes(result)
+
+
 def _rgb2c_rgba16_tile(tile_png: Path, actual_w: int, padded_w: int) -> bytes:
     """Recreate rgb2c's readtex+printdata path for RGBA16 with -S 2 padding."""
     rgba_rows = _read_png_rgba_rows(tile_png)
@@ -274,8 +293,11 @@ def _build_tile_from_padding_image(
         _concat_pngs_h(tile_png, pad_tile_png, merged_tile_png)
 
     tile_bin = tmpdir / f"{tile_png.stem}.bin"
-    pigment64_to_bin(merged_tile_png, fmt, tile_bin, word_swap=True)
-    return tile_bin.read_bytes()
+    pigment64_to_bin(merged_tile_png, fmt, tile_bin, word_swap=(fmt != "rgba32"))
+    data = tile_bin.read_bytes()
+    if fmt == "rgba32":
+        data = _swap_rgba32_odd_rows(data, padded_w)
+    return data
 
 
 def pigment64_to_bin(
@@ -413,8 +435,12 @@ def build_sprite_tiles(
                     padded_tile_png = tmpdir / f"tile_{row}_{col}.padded.png"
                     crop_png(input_png, padded_tile_png, x, y, padded_w, actual_h)
                     tile_bin = tmpdir / f"tile_{row}_{col}.bin"
-                    pigment64_to_bin(padded_tile_png, fmt, tile_bin, word_swap=True)
+                    pigment64_to_bin(
+                        padded_tile_png, fmt, tile_bin, word_swap=(fmt != "rgba32")
+                    )
                     tile_bytes = tile_bin.read_bytes()
+                    if fmt == "rgba32":
+                        tile_bytes = _swap_rgba32_odd_rows(tile_bytes, padded_w)
 
                 tiles.append(TileData(actual_w, padded_w, actual_h, tile_bytes))
                 padding_x += pad_w

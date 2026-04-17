@@ -211,11 +211,12 @@ class N64SegSnap_sprite(Segment):
         self.dl_name = (
             self._resolve_name(header.rsp_dl, "dl") if header.rsp_dl else "NULL"
         )
-        self.bitmaps_name = (
-            self._resolve_name(header.bitmap, "bitmaps")
-            if header.bitmap > 0x80000000
-            else f"{self.name}_bitmaps"
-        )
+        self.bitmaps_name = f"{self.name}_bitmaps"
+        if header.bitmap > 0x80000000:
+            sym = self.create_symbol(
+                header.bitmap, in_segment=True, type="data", define=True
+            )
+            sym.given_name = self.bitmaps_name
         self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
         self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
         cols = math.ceil(header.width / self.tile_width) if self.tile_width > 0 else 1

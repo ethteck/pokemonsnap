@@ -570,28 +570,187 @@ segments:
     - [0x78260, bin]
   - type: code
     name: pikachu1
-    dir: pokemon/pikachu
+    dir: pokemon_common
     start: 0x7D3B0
     vram: 0x800FFF90
     exclusive_ram_id: unk800FFF90
     subsegments:
-    - [0x7D3B0, bin] # , data]
+    - [auto, c, pikachu/textures]
+    - start: 0x7D3B0
+      type: .data
+      dir: pikachu
+      name: pikachu/textures
+      subsegments:
+      - [0x7D3B0]
+      - { start: 0x7D3B8, type: i4, name: tex_lightning0, flip_y: true, width: 128, height: 32 }
+      - [0x7DBB8]
+      - { start: 0x7DBC0, type: i4, name: tex_lightning1, flip_y: true, width: 128, height: 32 }
+      - [0x7E3C0]
+      - { start: 0x7E3C8, type: i4, name: tex_lightning2, flip_y: true, width: 128, height: 32 }
+      - [0x7EBC8]
+      - { start: 0x7EBD0, type: i4, name: tex_lightning3, flip_y: true, width: 128, height: 32 }
+      - [0x7F3D0]
+      - { start: 0x7F3D8, type: rgba16, name: tex_balloon0, flip_y: true, width: 32, height: 64 }
+      - [0x803D8]
+      - { start: 0x803E0, type: rgba16, name: tex_balloon1, flip_y: true, width: 32, height: 64 }
+      - [0x813E0]
+      - { start: 0x813E8, type: palette, name: tex_apple, size: 0x200 }
+      - [0x815E8]
+      - { start: 0x815F0, type: ci8, name: tex_apple, flip_y: true, width: 32, height: 32 }
+      - [0x819F0]
+      - { start: 0x819F8, type: i4, name: tex_07, flip_y: true, width: 64, height: 32 }
+      - [0x81DF8]
+      - { start: 0x81E00, type: i4, name: tex_08, flip_y: true, width: 64, height: 32 }
+      - [0x82200]
+      - { start: 0x82208, type: rgba16, name: tex_body, flip_y: true, width: 8, height: 8 }
+      - [0x82288]
+      - { start: 0x82290, type: palette, name: tex_cheek0, size: 0x20 }
+      - [0x822B0]
+      - { start: 0x822B8, type: ci4, name: tex_cheek0, flip_y: true, width: 32, height: 32 }
+      - [0x824B8]
+      - { start: 0x824C0, type: palette, name: tex_cheek1, size: 0x20 }
+      - [0x824E0]
+      - { start: 0x824E8, type: ci4, name: tex_cheek1, flip_y: true, width: 32, height: 32 }
+      - [0x826E8]
+      - { start: 0x826F0, type: palette, name: tex_mouth0, size: 0x200 }
+      - [0x828F0]
+      - { start: 0x828F8, type: ci8, name: tex_mouth0, flip_y: true, width: 32, height: 32 }
+      - [0x82CF8]
+      - { start: 0x82D00, type: palette, name: tex_mouth1, size: 0x200 }
+      - [0x82F00]
+      - { start: 0x82F08, type: ci8, name: tex_mouth1, flip_y: true, width: 32, height: 32 }
+      - [0x83308]
+      - { start: 0x83310, type: palette, name: tex_mouth2, size: 0x200 }
+      - [0x83510]
+      - { start: 0x83518, type: ci8, name: tex_mouth2, flip_y: true, width: 32, height: 32 }
+      - [0x83918]
+      - { start: 0x83920, type: palette, name: tex_mouth3, size: 0x200 }
+      - [0x83B20]
+      - { start: 0x83B28, type: ci8, name: tex_mouth3, flip_y: true, width: 32, height: 32 }
+      - [0x83F28]
+      - { start: 0x83F30, type: palette, name: tex_mouth4, size: 0x200 }
+      - [0x84130]
+      - { start: 0x84138, type: ci8, name: tex_mouth4, flip_y: true, width: 32, height: 32 }
+      - [0x84538]
+      - { start: 0x84540, type: palette, name: tex_eye0, size: 0x200 }
+      - [0x84740]
+      - { start: 0x84748, type: ci8, name: tex_eye0, flip_y: true, width: 32, height: 32 }
+      - [0x84B48]
+      - { start: 0x84B50, type: palette, name: tex_eye1, size: 0x200 }
+      - [0x84D50]
+      - { start: 0x84D58, type: ci8, name: tex_eye1, flip_y: true, width: 32, height: 32 }
+      - [0x85158]
+      - { start: 0x85160, type: palette, name: tex_eye2, size: 0x200 }
+      - [0x85360]
+      - { start: 0x85368, type: ci8, name: tex_eye2, flip_y: true, width: 32, height: 32 }
+      - [0x85768]
+      - { start: 0x85770, type: palette, name: tex_eye3, size: 0x200 }
+      - [0x85970]
+      - { start: 0x85978, type: ci8, name: tex_eye3, flip_y: true, width: 32, height: 32 }
+      - [0x85D78]
+      - { start: 0x85D80, type: palette, name: tex_eye4, size: 0x200 }
+      - [0x85F80]
+      - { start: 0x85F88, type: ci8, name: tex_eye4, flip_y: true, width: 32, height: 32 }
+      - [0x86388]
+      - { start: 0x86390, type: palette, name: tex_ear, size: 0x10 }
+      - [0x863A0]
+      - { start: 0x863A8, type: ci4, name: tex_ear, flip_y: true, width: 16, height: 32 }
+      - [0x864A8]
+      - { start: 0x864B0, type: palette, name: tex_back, size: 0x20 }
+      - [0x864D0]
+      - { start: 0x864D8, type: ci4, name: tex_back, flip_y: true, width: 32, height: 16 }
+      - [0x865D8]
+      - { start: 0x865E0, type: palette, name: tex_tail, size: 0x20 }
+      - [0x86600]
+      - { start: 0x86608, type: ci4, name: tex_tail, flip_y: true, width: 16, height: 32 }
+      - [0x86708]
+    # Animation data (model anims + material anims)
+    - [0x86710, bin]
   - type: code
     name: zubat1
-    dir: pokemon/zubat
+    dir: pokemon_common
     start: 0x98470
     vram: 0x8011B050
     exclusive_ram_id: unk8011B050
     subsegments:
-    - [0x98470, bin] # , data]
+    - [auto, c, zubat/textures]
+    - start: 0x98470
+      type: .data
+      dir: zubat
+      name: zubat/textures
+      subsegments:
+      - [0x98470]
+      - { start: 0x98478, type: palette, name: tex_ear, size: 0x20 }
+      - [0x98498]
+      - { start: 0x984A0, type: ci4, name: tex_ear, flip_y: true, width: 32, height: 32 }
+      - [0x986A0]
+      - { start: 0x986A8, type: palette, name: tex_wing_inside, size: 0x20 }
+      - [0x986C8]
+      - { start: 0x986D0, type: ci4, name: tex_wing_inside, flip_y: true, width: 64, height: 64 }
+      - [0x98ED0]
+      - { start: 0x98ED8, type: palette, name: tex_wing_outside, size: 0x20 }
+      - [0x98EF8]
+      - { start: 0x98F00, type: ci4, name: tex_wing_outside, flip_y: true, width: 64, height: 64 }
+      - [0x99700]
+    # Animation data
+    - [0x99700, bin]
   - type: code
     name: bulbasaur1
-    dir: pokemon/bulbasaur
+    dir: pokemon_common
     start: 0x99F70
     vram: 0x8011CB50
     exclusive_ram_id: unk8011B050
     subsegments:
-    - [0x99F70, bin] # , data]
+    - [auto, c, bulbasaur/textures]
+    - start: 0x99F70
+      type: .data
+      dir: bulbasaur
+      name: bulbasaur/textures
+      subsegments:
+      - [0x99F70]
+      - { start: 0x99F78, type: palette, name: tex_face_spots, size: 0x20 }
+      - [0x99F98]
+      - { start: 0x99FA0, type: ci4, name: tex_face_spots, flip_y: true, width: 32, height: 32 }
+      - [0x9A1A0]
+      - { start: 0x9A1A8, type: palette, name: tex_spots, size: 0x20 }
+      - [0x9A1C8]
+      - { start: 0x9A1D0, type: ci4, name: tex_spots, flip_y: true, width: 32, height: 32 }
+      - [0x9A3D0]
+      - { start: 0x9A3D8, type: palette, name: tex_eye0, size: 0x20 }
+      - [0x9A3F8]
+      - { start: 0x9A400, type: ci4, name: tex_eye0, flip_y: true, width: 32, height: 32 }
+      - [0x9A600]
+      - { start: 0x9A608, type: palette, name: tex_eye1, size: 0x20 }
+      - [0x9A628]
+      - { start: 0x9A630, type: ci4, name: tex_eye1, flip_y: true, width: 32, height: 32 }
+      - [0x9A830]
+      - { start: 0x9A838, type: palette, name: tex_eye2, size: 0x18 }
+      - [0x9A850]
+      - { start: 0x9A858, type: ci4, name: tex_eye2, flip_y: true, width: 32, height: 32 }
+      - [0x9AA58]
+      - { start: 0x9AA60, type: palette, name: tex_eye3, size: 0x20 }
+      - [0x9AA80]
+      - { start: 0x9AA88, type: ci4, name: tex_eye3, flip_y: true, width: 32, height: 32 }
+      - [0x9AC88]
+      - { start: 0x9AC90, type: palette, name: tex_bud, size: 0x200 }
+      - [0x9AE90]
+      - { start: 0x9AE98, type: ci8, name: tex_bud, flip_y: true, width: 16, height: 32 }
+      - [0x9B098]
+      - { start: 0x9B0A0, type: palette, name: tex_eye4, size: 0x20 }
+      - [0x9B0C0]
+      - { start: 0x9B0C8, type: ci4, name: tex_eye4, flip_y: true, width: 32, height: 32 }
+      - [0x9B2C8]
+      - { start: 0x9B2D0, type: palette, name: tex_mouth, size: 0x20 }
+      - [0x9B2F0]
+      - { start: 0x9B2F8, type: ci4, name: tex_mouth, flip_y: true, width: 16, height: 32 }
+      - [0x9B3F8]
+      - { start: 0x9B400, type: palette, name: tex_nostrils, size: 0x20 }
+      - [0x9B420]
+      - { start: 0x9B428, type: ci4, name: tex_nostrils, flip_y: true, width: 32, height: 12 }
+      - [0x9B4E8]
+      - { start: 0x9B4F0, type: i8, name: tex_shine, flip_y: true, width: 64, height: 64 }
+    # Animation data
+    - [0x9C4F0, bin]
   - type: code
     name: beach_assets
     start: 0xA74E0
@@ -9633,13 +9792,50 @@ segments:
       - [0x8323E0, gfx, hd_part14_draw]
       - [0x832418, gfx, hd_part15_draw]
   - type: code # follows the seg before this in memory
-    name: pikachu2
-    dir: pokemon/pikachu
+    name: pikachu_model_hd
+    dir: pokemon_common
     start: 0x832960
     vram: 0x803AD580
     exclusive_ram_id: unk832960
     subsegments:
-    - [0x832960, bin] # , data]
+    - [auto, c, pikachu/model_hd]
+    - start: 0x832960
+      type: .data
+      dir: pikachu
+      name: pikachu/model_hd
+      linker_section_order: .rodata
+      subsegments:
+      - [0x832EA0, vtx, hd_model]
+      - [0x834F20, gfx, hd_first]
+      - [0x834F48, gfx, hd_part2_draw]
+      - [0x835158, gfx, hd_part3_pre]
+      - [0x8351B8, gfx, hd_part3_draw]
+      - [0x8352C8, gfx, hd_part4_draw]
+      - [0x835390, gfx, hd_part5_draw]
+      - [0x835450, gfx, hd_part6_pre]
+      - [0x8354B8, gfx, hd_part6_draw]
+      - [0x8355C8, gfx, hd_part7_draw]
+      - [0x835690, gfx, hd_part8_draw]
+      - [0x835750, gfx, hd_part9_pre]
+      - [0x8357F0, gfx, hd_part9_draw]
+      - [0x8359F0, gfx, hd_part10_pre]
+      - [0x835A70, gfx, hd_part10_draw]
+      - [0x835FB0, gfx, hd_part11_pre]
+      - [0x835FF0, gfx, hd_part11_draw]
+      - [0x8360F8, gfx, hd_part12_pre]
+      - [0x836140, gfx, hd_part12_draw]
+      - [0x8361F0, gfx, hd_part13_draw]
+      - [0x836310, gfx, hd_part14_draw]
+      - [0x8363F8, gfx, hd_part15_pre]
+      - [0x836478, gfx, hd_part15_draw]
+      - [0x836598, gfx, hd_part16_draw]
+      - [0x836698, gfx, hd_part17_pre]
+      - [0x8366E8, gfx, hd_part17_draw]
+      - [0x8367D0, gfx, hd_part18_draw]
+      - [0x8368D0, gfx, hd_part19_draw]
+      - [0x836998, gfx, hd_part20_draw]
+      - [0x836AD8, gfx, hd_part0_draw]
+      - [0x836C18, gfx, hd_part1_draw]
   - type: code # follows the seg before this in memory
     name: zubat_model_hd
     dir: pokemon_common

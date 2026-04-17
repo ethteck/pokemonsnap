@@ -1,13 +1,11 @@
 #include "common.h"
 
-extern u8 D_803AB1C0_54B5D0[]; // TODO: remove after splat is fixed
-
-extern u8 zubat_tex_8011B058[];
-extern u8 zubat_tex_8011B080_png[];
-extern u8 zubat_tex_8011B288[];
-extern u8 zubat_tex_8011B2B0_png[];
-extern u8 zubat_tex_8011BAB8[];
-extern u8 zubat_tex_8011BAE0_png[];
+extern u8 zubat_tex_ear_pal[];
+extern u8 zubat_tex_ear_png[];
+extern u8 zubat_tex_wing_inside_pal[];
+extern u8 zubat_tex_wing_inside_png[];
+extern u8 zubat_tex_wing_outside_pal[];
+extern u8 zubat_tex_wing_outside_png[];
 
 extern Gfx zubat_hd_part0_draw[];
 

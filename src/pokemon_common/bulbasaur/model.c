@@ -2,23 +2,23 @@
 
 extern Gfx D_0E000000_bulbasaur_model[];
 
-extern u8 bulbasaur_tex_8011CB58[];
-extern u8 bulbasaur_tex_8011CB80_png[];
-extern u8 bulbasaur_tex_8011CD88[];
-extern u8 bulbasaur_tex_8011CDB0_png[];
-extern u8 bulbasaur_tex_8011CFB8[];
-extern u8 bulbasaur_tex_8011CFE0[];
-extern u8 bulbasaur_tex_8011D210[];
-extern u8 bulbasaur_tex_8011D438[];
-extern u8 bulbasaur_tex_8011D668[];
-extern u8 bulbasaur_tex_8011D870[];
-extern u8 bulbasaur_tex_8011DA78_png[];
-extern u8 bulbasaur_tex_8011DCA8[];
-extern u8 bulbasaur_tex_8011DEB0[];
-extern u8 bulbasaur_tex_8011DED8_png[];
-extern u8 bulbasaur_tex_8011DFE0[];
-extern u8 bulbasaur_tex_8011E008_png[];
-extern u8 bulbasaur_tex_8011E0D0[];
+extern u8 bulbasaur_tex_face_spots_pal[];
+extern u8 bulbasaur_tex_face_spots_png[];
+extern u8 bulbasaur_tex_spots_pal[];
+extern u8 bulbasaur_tex_spots_png[];
+extern u8 bulbasaur_tex_eye0_pal[];
+extern u8 bulbasaur_tex_eye0_png[];
+extern u8 bulbasaur_tex_eye1_png[];
+extern u8 bulbasaur_tex_eye2_png[];
+extern u8 bulbasaur_tex_eye3_png[];
+extern u8 bulbasaur_tex_bud_pal[];
+extern u8 bulbasaur_tex_bud_png[];
+extern u8 bulbasaur_tex_eye4_png[];
+extern u8 bulbasaur_tex_mouth_pal[];
+extern u8 bulbasaur_tex_mouth_png[];
+extern u8 bulbasaur_tex_nostrils_pal[];
+extern u8 bulbasaur_tex_nostrils_png[];
+extern u8 bulbasaur_tex_shine_png[];
 
 extern Texture* bulbasaur_part2_mat[];
 extern Gfx bulbasaur_part0_draw[];
@@ -42,11 +42,11 @@ Texture** bulbasaur_materials[] = {
 };
 
 u8* bulbasaur_part2_mat0_textures[] = {
-    bulbasaur_tex_8011CFE0,
-    bulbasaur_tex_8011D210,
-    bulbasaur_tex_8011D438,
-    bulbasaur_tex_8011D668,
-    bulbasaur_tex_8011DCA8,
+    bulbasaur_tex_eye0_png,
+    bulbasaur_tex_eye1_png,
+    bulbasaur_tex_eye2_png,
+    bulbasaur_tex_eye3_png,
+    bulbasaur_tex_eye4_png,
 };
 
 Texture bulbasaur_part2_mat0 = {

@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern u8 D_8034C8A0_825E30[]; // TODO: remove after splat is fixed
-
 extern u8 mew_tex_80126918[];
 extern u8 mew_tex_80126B20[];
 extern u8 mew_tex_801274B0[];

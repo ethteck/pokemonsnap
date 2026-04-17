@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern u8 D_801AEDF0[]; // TODO: remove after splat is fixed
-
 extern u8 slowpoke_tex_80185968[];
 extern u8 slowpoke_tex_80185990_png[];
 extern u8 slowpoke_tex_80185B98[];

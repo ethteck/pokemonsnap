@@ -22,9 +22,6 @@ void handleAnalogStick(GObj*);
 void handleCButtons(GObj*);
 void handleItemButtonsPress(GObj*);
 
-// TODO make sprite assets
-
-/*
 s32 sMinTimeBetweenPhotos = 10;
 MovementState gMovementState = {
     0.0f,
@@ -32,35 +29,29 @@ MovementState gMovementState = {
     NULL,
     { 0.0f, 0.0f, 0.0f },
     { 0.0f, 0.0f, 0.0f },
-}
-*/
-
-extern s32 sMinTimeBetweenPhotos;
-extern MovementState gMovementState;
-extern Sprite D_80366DF0_507200; // 506FE8 small reticle
-extern Sprite D_80367580_507990; // 507248 reticle 2
-extern Sprite D_80367D10_508120; // 5079D8 reticle 3
-extern Sprite D_80367DC0_5081D0; // 508168 red dot
-extern Sprite D_80368038_508448; // 508218 white dot
-extern Sprite D_803706E0_510AF0; // 508490
-extern Sprite D_80378D88_519198; // 510B38
-extern Sprite D_80378ED8_5192E8; // 5191E0 white square
-extern Sprite D_8037A9A0_51ADB0; // 519330 Pause
-extern Sprite D_8037C468_51C878; // 51ADF8 Pause Pressed
-extern Sprite D_8037D2A0_51D6B0; // 51C8C0 Quit Course
-extern Sprite D_8037E0D8_51E4E8; // 51D6F8 Quit Course Pressed
-extern Sprite D_8037EF10_51F320; // 51E530 Continue
-extern Sprite D_8037FD48_520158; // 51F368 Continue Pressed
-extern Sprite D_80380B80_520F90; // 5201A0 Retry
-extern Sprite D_803819B8_521DC8; // 520FD8 Retry Pressed
-extern Sprite D_80381B58_521F68; // 521E10 END
-
-// we have to make this small array because of alignment
-u32 D_80382BF0_523000[] = {
-    0x803AE160,
-    0x00000000,
-    0x00000000
 };
+
+
+
+u8 aligner_0[] = {0,0,0,0,0,0,0,0};
+#include "build/assets/app_level/D_80366DF0_507200.png.inc.h" // 506FE8 small reticle
+#include "build/assets/app_level/D_80367580_507990.png.inc.h" // 507248 reticle 2
+#include "build/assets/app_level/D_80367D10_508120.png.inc.h" // 5079D8 reticle 3
+#include "build/assets/app_level/D_80367DC0_5081D0.png.inc.h" // 508168 red dot
+#include "build/assets/app_level/D_80368038_508448.png.inc.h" // 508218 white dot
+#include "build/assets/app_level/D_803706E0_510AF0.png.inc.h" // 508490
+#include "build/assets/app_level/D_80378D88_519198.png.inc.h" // 510B38
+#include "build/assets/app_level/D_80378ED8_5192E8.png.inc.h" // 5191E0 white square
+#include "build/assets/app_level/D_8037A9A0_51ADB0.png.inc.h" // 519330 Pause
+#include "build/assets/app_level/D_8037C468_51C878.png.inc.h" // 51ADF8 Pause Pressed
+#include "build/assets/app_level/D_8037D2A0_51D6B0.png.inc.h" // 51C8C0 Quit Course
+#include "build/assets/app_level/D_8037E0D8_51E4E8.png.inc.h" // 51D6F8 Quit Course Pressed
+#include "build/assets/app_level/D_8037EF10_51F320.png.inc.h" // 51E530 Continue
+#include "build/assets/app_level/D_8037FD48_520158.png.inc.h"  // 51F368 Continue Pressed
+#include "build/assets/app_level/D_80380B80_520F90.png.inc.h" // 5201A0 Retry
+#include "build/assets/app_level/D_803819B8_521DC8.png.inc.h" // 520FD8 Retry Pressed
+#include "build/assets/app_level/D_80381B58_521F68.png.inc.h" // 521E10 END
+#include "build/assets/app_level/D_80382BB8_522FC8.png.inc.h" // WARNING
 
 s32 gDirectionIndex = 2;
 GObj* gObjPlayer = NULL;

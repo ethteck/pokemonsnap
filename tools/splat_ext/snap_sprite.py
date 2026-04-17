@@ -220,6 +220,8 @@ class N64SegSnap_sprite(Segment):
         self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
         self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
         self.has_sp_transparent = bool(header.attr & SpriteAttributes.SP_TRANSPARENT)
+        self.has_sp_scale = bool(header.attr & SpriteAttributes.SP_SCALE)
+        self.has_sp_overlap = bool(header.attr & SpriteAttributes.SP_OVERLAP)
         self.sp_x = int(header.x)
         self.sp_y = int(header.y)
         self.sp_color = (

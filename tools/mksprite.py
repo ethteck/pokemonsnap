@@ -467,6 +467,8 @@ def main():
     parser.add_argument("--fastcopy", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--z", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--transparent", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--scale", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--overlap", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--x", type=int, default=0, help="Sprite X position")
     parser.add_argument("--y", type=int, default=0, help="Sprite Y position")
     parser.add_argument(
@@ -565,10 +567,14 @@ def main():
     attr_parts = ["SP_TEXSHUF"]
     if args.transparent:
         attr_parts.append("SP_TRANSPARENT")
+    if args.scale:
+        attr_parts.append("SP_SCALE")
     if args.z:
         attr_parts.append("SP_Z")
     if args.fastcopy:
         attr_parts.append("SP_FASTCOPY")
+    if args.overlap:
+        attr_parts.append("SP_OVERLAP")
     out_lines.append(f"    {' | '.join(attr_parts)}, /* Sprite Attributes */")
     out_lines.append(f"    0x1234,                        /* Sprite Depth: Z */")
     r, g, b, a = args.color

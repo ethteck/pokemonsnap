@@ -372,6 +372,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     has_sp_z = bool(getattr(seg, "has_sp_z", True))
                     has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
                     has_sp_transparent = bool(getattr(seg, "has_sp_transparent", False))
+                    has_sp_scale = bool(getattr(seg, "has_sp_scale", False))
+                    has_sp_overlap = bool(getattr(seg, "has_sp_overlap", False))
                     sp_x = int(getattr(seg, "sp_x", 0))
                     sp_y = int(getattr(seg, "sp_y", 0))
                     sp_color = int(getattr(seg, "sp_color", 0xFFFFFFFF))
@@ -382,6 +384,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                         sprite_flags += " --no-fastcopy"
                     if has_sp_transparent:
                         sprite_flags += " --transparent"
+                    if has_sp_scale:
+                        sprite_flags += " --scale"
+                    if has_sp_overlap:
+                        sprite_flags += " --overlap"
                     if sp_x != 0 or sp_y != 0:
                         sprite_flags += f" --x {sp_x} --y {sp_y}"
                     if sp_color != 0xFFFFFFFF:

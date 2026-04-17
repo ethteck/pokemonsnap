@@ -95,7 +95,7 @@ extern Bitmap D_801A8F30_96E750_bitmaps[];
 extern Bitmap D_801AA038_96F858_bitmaps[];
 extern Bitmap D_801AB140_970960_bitmaps[];
 
-Bitmap** D_801C5414_98AC34[6] = { 
+Bitmap* D_801C5414_98AC34[6] = { 
     D_8019C2D0_961AF0_bitmaps,
     D_8019D3D8_962BF8_bitmaps,
     D_8019E4E0_963D00_bitmaps,
@@ -104,7 +104,7 @@ Bitmap** D_801C5414_98AC34[6] = {
     D_801A17F8_967018_bitmaps,
 };
 
-Bitmap** D_801C542C_98AC4C[9] = {
+Bitmap* D_801C542C_98AC4C[9] = {
     D_801A2900_968120_bitmaps,
     D_801A3A08_969228_bitmaps,
     D_801A4B10_96A330_bitmaps,

@@ -9658,6 +9658,11 @@ segments:
     bss_size: 0x8A0
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites_1] # TODO: place me
+    - [auto, c, sprites_2] # TODO: place me
+    - [auto, c, sprites_3] # TODO: place me
+    - [auto, c, sprites_4] # TODO: place me
+    - [auto, c, sprites_5] # TODO: place me
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9678,7 +9683,73 @@ segments:
     - [0x848BC0, data]
     - [0x852220, .data, element]
     - [0x852250, .data, text]
-    - [0x852920, data]
+    - name: sprites_1
+      type: .data
+      start: 0x852920
+      subsegments:
+      - [0x852920, snap_sprite]
+      - [0x852A98]
+    - [0x852AA0, data]
+    - name: sprites_2
+      type: .data
+      start: 0x8543A0
+      subsegments:
+      - [0x8543A0, snap_sprite]
+      - [0x854478]
+    - [0x854480, data]
+    - name: sprites_3
+      type: .data
+      start: 0x8550E0
+      subsegments:
+      - [0x8550E0, snap_sprite]
+      - [0x855228]
+    - [0x855230, data]
+    - name: sprites_4
+      type: .data
+      start: 0x855560
+      subsegments:
+      - [0x855560, snap_sprite]
+      - [0x8564D0]
+    - [0x8564E0, data]
+    - name: sprites_5
+      type: .data
+      start: 0x874AD0 # TODO: merge with previous segment
+      subsegments:
+      - [0x874AD8, snap_sprite]
+      - [0x874B50]
+      - [0x874B58, snap_sprite]
+      - [0x875300]
+      - [0x875308, snap_sprite]
+      - [0x875AB0]
+      - [0x875AB8, snap_sprite]
+      - [0x878990]
+      - [0x878998, snap_sprite]
+      - [0x878B10]
+      - [0x878B18, snap_sprite]
+      - [0x878C90]
+      - [0x878C98, snap_sprite]
+      - [0x878E10]
+      - [0x878E18, snap_sprite]
+      - [0x878F90]
+      - [0x878F98, snap_sprite]
+      - [0x879110]
+      - [0x879118, snap_sprite]
+      - [0x879290]
+      - [0x879298, snap_sprite]
+      - [0x879410]
+      - [0x879418, snap_sprite]
+      - [0x879590]
+      - [0x879598, snap_sprite]
+      - [0x879710]
+      - [0x879718, snap_sprite]
+      - [0x879890]
+      - [0x879898, snap_sprite]
+      - [0x879A10]
+      - [0x879A18, snap_sprite]
+      - [0x879B90]
+      - [0x879B98, snap_sprite]
+      - [0x879D10]
+    - [0x879D20, data]
     - [0x879DB0, .data, layout]
     - [0x879DF0, data]
     - [0x879E80, .data, 848B80]

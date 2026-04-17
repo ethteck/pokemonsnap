@@ -7,10 +7,10 @@ extern Sprite D_803A1360_874B10;
 extern Sprite D_803A1B10_8752C0;
 extern Sprite D_803A22C0_875A70;
 extern Sprite D_803A51A0_878950;
-extern Bitmap D_803A6210_8799C0;
+extern Bitmap D_803A6220_8799D0_bitmaps;
 extern Sprite D_803A6220_8799D0;
-extern Bitmap D_803A6390_879B40;
-extern Bitmap D_803A6510_879CC0;
+extern Bitmap D_803A63A0_879B50_bitmaps;
+extern Bitmap D_803A6520_879CD0_bitmaps;
 extern Bitmap* D_803A6564_879D14[];
 
 u32 D_803A6600_879DB0 = 0x803A57A0; // TODO belongs to previous array
@@ -421,9 +421,9 @@ void UILayout_UpdatePrevPageIndicator(GObj* arg0) {
     UILayout_PrevPageIndicatorPosY = var_f0;
 
     if (tmp2 < 0) {
-        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6390_879B40;
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A63A0_879B50_bitmaps;
     } else {
-        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6210_8799C0;
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6220_8799D0_bitmaps;
     }
     UILayout_PrevPageIndicatorCounter = (unsigned long long) tmp2;
     tmp4 = 48;
@@ -461,9 +461,9 @@ void UILayout_UpdateNextPageIndicator(GObj* arg0) {
     UILayout_NextPageIndicatorPosY = var_f0;
 
     if (tmp2 < 0) {
-        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6510_879CC0;
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6520_879CD0_bitmaps;
     } else {
-        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6210_8799C0;
+        arg0->data.sobj->unk_58->sprite.bitmap = &D_803A6220_8799D0_bitmaps;
     }
     UILayout_NextPageIndicatorCounter = (unsigned long long) tmp2;
     tmp4 = 48;

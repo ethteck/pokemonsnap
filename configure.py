@@ -372,6 +372,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     has_sp_z = bool(getattr(seg, "has_sp_z", True))
                     has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
                     has_sp_transparent = bool(getattr(seg, "has_sp_transparent", False))
+                    sp_x = int(getattr(seg, "sp_x", 0))
+                    sp_y = int(getattr(seg, "sp_y", 0))
+                    sp_color = int(getattr(seg, "sp_color", 0xFFFFFFFF))
                     sprite_flags = ""
                     if not has_sp_z:
                         sprite_flags += " --no-z"
@@ -379,6 +382,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                         sprite_flags += " --no-fastcopy"
                     if has_sp_transparent:
                         sprite_flags += " --transparent"
+                    if sp_x != 0 or sp_y != 0:
+                        sprite_flags += f" --x {sp_x} --y {sp_y}"
+                    if sp_color != 0xFFFFFFFF:
+                        sprite_flags += f" --color {sp_color:08X}"
                     src_png = seg.out_path()
                     assert src_png is not None
                     padding_png = src_png.with_name(f"{src_png.stem}.padding.png")

@@ -441,6 +441,19 @@ def format_bytes_as_c(data: bytes, c_type: str) -> str:
         return "\n".join(lines)
 
 
+def parse_rgba(s: str) -> tuple[int, int, int, int]:
+    """Parse an RRGGBBAA hex string (optionally prefixed with # or 0x)."""
+    raw = s.lstrip("#")
+    if raw.lower().startswith("0x"):
+        raw = raw[2:]
+    if len(raw) != 8:
+        raise argparse.ArgumentTypeError(
+            f"Expected 8 hex digits (RRGGBBAA), got {len(raw)}: {s!r}"
+        )
+    val = int(raw, 16)
+    return (val >> 24) & 0xFF, (val >> 16) & 0xFF, (val >> 8) & 0xFF, val & 0xFF
+
+
 def main():
     parser = argparse.ArgumentParser(description="Convert PNG to N64 Sprite .inc.h")
     parser.add_argument("input", type=Path, help="Input PNG file")
@@ -454,6 +467,14 @@ def main():
     parser.add_argument("--fastcopy", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--z", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--transparent", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument("--x", type=int, default=0, help="Sprite X position")
+    parser.add_argument("--y", type=int, default=0, help="Sprite Y position")
+    parser.add_argument(
+        "--color",
+        type=parse_rgba,
+        default=(255, 255, 255, 255),
+        help="Sprite coloration as RRGGBBAA hex (default FFFFFFFF)",
+    )
     parser.add_argument("-o", "--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -524,7 +545,9 @@ def main():
     lut_line = f"0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_pal"
 
     out_lines.append(f"Sprite {args.name} = {{")
-    out_lines.append(f"    0, 0,                          /* Position: x, y */")
+    out_lines.append(
+        f"    {args.x}, {args.y},                          /* Position: x, y */"
+    )
     out_lines.append(
         f"    {sprite.img_w}, {sprite.img_h},                      /* Sprite size in texels (x, y) */"
     )
@@ -541,8 +564,9 @@ def main():
         attr_parts.append("SP_FASTCOPY")
     out_lines.append(f"    {' | '.join(attr_parts)}, /* Sprite Attributes */")
     out_lines.append(f"    0x1234,                        /* Sprite Depth: Z */")
+    r, g, b, a = args.color
     out_lines.append(
-        f"    255, 255, 255, 255,            /* Sprite Coloration: RGBA */"
+        f"    {r}, {g}, {b}, {a},            /* Sprite Coloration: RGBA */"
     )
     out_lines.append(f"    {lut_line},  /* CLUT: start, length, address */")
     out_lines.append(

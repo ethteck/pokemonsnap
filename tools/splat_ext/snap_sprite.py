@@ -220,6 +220,11 @@ class N64SegSnap_sprite(Segment):
         self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
         self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
         self.has_sp_transparent = bool(header.attr & SpriteAttributes.SP_TRANSPARENT)
+        self.sp_x = int(header.x)
+        self.sp_y = int(header.y)
+        self.sp_color = (
+            (header.red << 24) | (header.green << 16) | (header.blue << 8) | header.alpha
+        )
         cols = math.ceil(header.width / self.tile_width) if self.tile_width > 0 else 1
         for i, bitmap in enumerate(bitmaps):
             row = i // cols

@@ -118,9 +118,7 @@ void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);
 void func_801E5030_994AA0(void);
 
-s32 D_801F3B50_9A35C0[] = {
-    0x00000000,
-};
+#include "build/assets/photo_check/D_801F3B10_9A3580.png.inc.h"
 
 char* SpecialPokemonNames[] = {
     NULL,

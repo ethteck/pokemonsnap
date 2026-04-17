@@ -9713,12 +9713,40 @@ segments:
     bss_size: 0x327A0
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites] # TODO: place
     - [0x98C330, c]
     - [auto, c, 98D0F0]
     - [0x993C50, c]
     - [0x993F80, c]
     - [0x994E10, data]
-    - [0x9A35C0, .data, 98C330]
+    - name: sprites
+      type: .data
+      start: 0x994F30
+      subsegments:
+      - [0x994F30, snap_sprite]
+      - [0x995300]
+      - [0x995308, snap_sprite]
+      - [0x9956A8]
+      - [0x9956B0, snap_sprite]
+      - [0x995860]
+      - [0x995868, snap_sprite]
+      - [0x995990]
+      - [0x995998, snap_sprite]
+      - [0x9A1E28]
+      - [0x9A1E30, snap_sprite]
+      - [0x9A2160]
+      - [0x9A2168, snap_sprite]
+      - [0x9A23C0]
+      - [0x9A23C8, snap_sprite]
+      - [0x9A24A0]
+      - [0x9A24A8, snap_sprite]
+      - [0x9A2580]
+    - name: 98C330
+      type: .data
+      start: 0x9A35C0
+      subsegments:
+      - [0x9A2590, snap_sprite]
+      - [0x9A35C0]
     - [0x9A38D0, .data, 98D0F0]
     - [0x9A3C10, .rodata, 98C330]
     - [0x9A5AA0, .rodata, 98D0F0]

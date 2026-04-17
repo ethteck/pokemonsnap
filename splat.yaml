@@ -9731,13 +9731,58 @@ segments:
     bss_size: 0x47970
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites] # TODO: place
     - [0x9A6B10, c]
     - [0x9A6F70, c]
     - [0x9ABB50, c]
     - [0x9ADAD0, c]
     - [0x9AE430, .data, 9A6B10]
-    - [0x9AE550, bin, sprites]
-    - [0x9D2DA0, .data, 9A6F70]
+    - name: sprites
+      type: .data
+      start: 0x9AE550
+      subsegments:
+      - [0x9AE550, snap_sprite]
+      - [0x9AE7A8]
+      - [0x9AE7B0, snap_sprite]
+      - [0x9B77E0]
+      - [0x9B77E8, snap_sprite]
+      - [0x9BCFB8]
+      - [0x9BCFC0, snap_sprite]
+      - [0x9BD218]
+      - [0x9BD220, snap_sprite]
+      - [0x9BD398]
+      - [0x9BD3A0, snap_sprite]
+      - [0x9BD518]
+      - [0x9BD520, snap_sprite]
+      - [0x9BD698]
+      - [0x9BD6A0, snap_sprite]
+      - [0x9BD818]
+      - [0x9BD820, snap_sprite]
+      - [0x9C0DE0]
+      - [0x9C0DE8, snap_sprite]
+      - [0x9C5460]
+      - [0x9C5468, snap_sprite]
+      - [0x9C9CA0]
+      - [0x9C9CA8, snap_sprite]
+      - [0x9C9E40]
+      - [0x9C9E48, snap_sprite]
+      - [0x9C9F10]
+      - [0x9C9F18, snap_sprite]
+      - [0x9CA2E8]
+      - [0x9CA2F0, snap_sprite]
+      - [0x9CA690]
+      - [0x9CA698, snap_sprite]
+      - [0x9CA848]
+    - start: 0x9CA850
+      name: 9A6F70
+      type: .data
+      subsegments:
+      - [0x9CA850, snap_sprite]
+      - [0x9CA978, bin]
+      - [0x9CA988, snap_sprite]
+      - [0x9CB9B8, bin]
+      - [0x9CB9C8, snap_sprite]
+      - [0x9D2DA0]
     - [0x9D2DE0, .data, 9ABB50]
     - [0x9D2E90, .data, 9ADAD0]
     - [0x9D2EA0, .rodata, 9A6F70]

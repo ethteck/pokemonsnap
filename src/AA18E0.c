@@ -4,8 +4,8 @@
 void func_801DC9D0_AA1A10(GObj*);
 
 // data
-extern Sprite D_801E5478_AAA4B8;
-extern u8 D_801E54BC_AAA4FC;
+#include "build/assets/D_801E5478_AAA4B8.png.inc.h"
+u8 D_801E54BC_AAA4FC = 5;
 extern u8 D_801E54C0_AAA500;
 extern u8 D_801E54C4_AAA504;
 extern s32 D_801E54C8_AAA508[211]; // All 0xBDEFBDEF

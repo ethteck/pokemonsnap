@@ -10417,7 +10417,13 @@ segments:
     bss_size: 0x20
     subsegments:
     - [0xAA18E0, c]
-    - [0xAA20A0, bin] # , data] # Image with rights notice printed on pictures
+    - name: AA18E0
+      type: .data
+      start: 0xAA20A0
+      subsegments:
+      - [0xAA20A0, snap_sprite]
+      - [0xAAA4F8]
+    - [0xAAA500, data]
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - { start: 0xAAA610, type: vpk0, align: 16 }

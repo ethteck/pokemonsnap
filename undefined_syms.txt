@@ -371,3 +371,7 @@ bulbasaur_tex_eye1_png = 0x8011D210;
 bulbasaur_tex_eye2_png = 0x8011D438;
 bulbasaur_tex_eye3_png = 0x8011D668;
 bulbasaur_tex_eye4_png = 0x8011DCA8;
+
+D_802EC51C_7C5AAC = 0x802EC51C;
+D_8034DE40_8273D0 = 0x8034DE40;
+D_8034DF60_8274F0 = 0x8034DF60;

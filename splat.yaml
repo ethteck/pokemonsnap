@@ -8610,6 +8610,7 @@ segments:
     bss_size: 0x1880
     exclusive_ram_id: level
     subsegments:
+    - [auto, c, sprites] # TODO: place me
     - [0x79F1B0, c]
     - [0x79FB70, c]
     - [0x7A00C0, c]
@@ -8636,7 +8637,41 @@ segments:
     - [0x7AA790, c]
     - [0x7AB7C0, c]
     - [0x7ABB10, c]
-    - [0x7ABCD0, bin] # , data]
+    - [0x7ABCD0, bin]
+    - name: sprites
+      type: .data
+      start: 0x7AD7C0 # not actual start
+      subsegments:
+      - [0x7AD7C0]
+      - [0x7AD7C8, snap_sprite]
+      - [0x7C00E8]
+      - [0x7C00F0, snap_sprite]
+      - [0x7C06E8]
+      - [0x7C06F0, snap_sprite]
+      - [0x7C0CE8]
+      - [0x7C0CF0, snap_sprite]
+      - [0x7C12E8]
+      - [0x7C12F0, snap_sprite]
+      - [0x7C18E8]
+      - [0x7C18F0, snap_sprite]
+      - [0x7C1EE8]
+      - [0x7C1EF0, snap_sprite]
+      - [0x7C24E8]
+      - [0x7C24F0, snap_sprite]
+      - [0x7C2D88]
+      - [0x7C2D90, snap_sprite]
+      - [0x7C3628]
+      - [0x7C3630, snap_sprite]
+      - [0x7C3EC8]
+      - [0x7C3ED0, snap_sprite]
+      - [0x7C4768]
+      - [0x7C4770, snap_sprite]
+      - [0x7C5008]
+      - [0x7C5010, snap_sprite]
+      - [0x7C58A8]
+      - [0x7C58B0, snap_sprite]
+      - [0x7C5AA8]
+    - [0x7C5AB0, bin]
     - [auto, c, graveler/model]
     - [auto, c, gyarados/model]
     - [auto, c, staryu/model]

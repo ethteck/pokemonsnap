@@ -10202,8 +10202,8 @@ segments:
       - {start: 0xA95880, type: snap_sprite, header_rom: 0xA9CC18}
       - {start: 0xA9CC60, type: snap_sprite, header_rom: 0xA9CFF0}
       - {start: 0xA9D038, type: snap_sprite, header_rom: 0xA9D398}
-      - [0xA9D3E8, rgba16, 'A9D3E8', 16, 16] # A sprite, but its repeating the same bitmap
-      - [0xA9D5E8]
+      - [0xA9D3E8, rgba16, 'A9D3E8', 16, 10] # TODO: add odd-row swap
+      - [0xA9D528]
       - {start: 0xA9D6B0, type: snap_sprite, header_rom: 0xA9F710}
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]

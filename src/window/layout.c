@@ -2,13 +2,13 @@
 #include "sp.h"
 #include "window.h"
 
-extern Sprite D_80382CE0_856490;
-extern Sprite D_803A1360_874B10;
-extern Sprite D_803A1B10_8752C0;
-extern Sprite D_803A22C0_875A70;
-extern Sprite D_803A51A0_878950;
+extern Sprite D_80382CE0_856490_sprite;
+extern Sprite D_803A1360_874B10_sprite;
+extern Sprite D_803A1B10_8752C0_sprite;
+extern Sprite D_803A22C0_875A70_sprite;
+extern Sprite D_803A51A0_878950_sprite;
 extern Bitmap D_803A6220_8799D0_bitmaps;
-extern Sprite D_803A6220_8799D0;
+extern Sprite D_803A6220_8799D0_sprite;
 extern Bitmap D_803A63A0_879B50_bitmaps;
 extern Bitmap D_803A6520_879CD0_bitmaps;
 extern Bitmap* D_803A6564_879D14[];
@@ -480,23 +480,23 @@ void UILayout_InitHeader(void) {
     GObj* obj;
     SObj* sobj;
 
-    obj = func_80371C68_845418(UILayout_UpdatePrevPageIndicator, 6, &D_803A1B10_8752C0);
+    obj = func_80371C68_845418(UILayout_UpdatePrevPageIndicator, 6, &D_803A1B10_8752C0_sprite);
     obj->data.sobj->sprite.x = 96;
     obj->data.sobj->sprite.y = -40;
-    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0);
+    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0_sprite);
     sobj->sprite.x = 9;
     sobj->sprite.y = 22;
     UILayout_PreviousPageIndicator = obj;
 
-    obj = func_80371C68_845418(UILayout_UpdateNextPageIndicator, 6, &D_803A22C0_875A70);
+    obj = func_80371C68_845418(UILayout_UpdateNextPageIndicator, 6, &D_803A22C0_875A70_sprite);
     obj->data.sobj->sprite.x = 280;
     obj->data.sobj->sprite.y = -40;
-    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0);
+    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 22;
     UILayout_NextPageIndicator = obj;
 
-    obj = func_80371C68_845418(UILayout_UpdateTitle, 6, &D_803A51A0_878950);
+    obj = func_80371C68_845418(UILayout_UpdateTitle, 6, &D_803A51A0_878950_sprite);
     obj->data.sobj->sprite.x = 124;
     obj->data.sobj->sprite.y = -40;
     UILayout_Title = obj;
@@ -539,7 +539,7 @@ void UILayout_Init(void) {
     GObj* tabObj;
     s32 i;
 
-    panelObj = func_80371C68_845418(UILayout_UpdatePanel, LINK_6, &D_803A1360_874B10);
+    panelObj = func_80371C68_845418(UILayout_UpdatePanel, LINK_6, &D_803A1360_874B10_sprite);
     panelObj->data.sobj->sprite.x = -180;
     panelObj->data.sobj->sprite.y = 0;
     panelObj->data.sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
@@ -549,7 +549,7 @@ void UILayout_Init(void) {
     UILayout_Panel = panelObj;
 
     for (i = 0; i <= BUTTON_MAX; i++) {
-        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, LINK_6, &D_80382CE0_856490);
+        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, LINK_6, &D_80382CE0_856490_sprite);
         tabObj->data.sobj->sprite.bitmap = D_803A6564_879D14[i];
         tabObj->data.sobj->sprite.x = 0;
         tabObj->data.sobj->sprite.y = 20 + i * 30;

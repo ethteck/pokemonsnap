@@ -522,30 +522,30 @@ void func_800E235C_8A7B7C(s32 arg0) {
 void func_800E2848_8A8068(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(func_800E2058_8A7878, 6, &D_8011EEA0_8E46C0)->data.sobj;
+    sobj = func_80371D14_8454C4(func_800E2058_8A7878, 6, &D_8011EEA0_8E46C0_sprite)->data.sobj;
     D_80206B14_9CC334 = sobj;
     sobj->sprite.x = 100;
     sobj->sprite.y = 34;
 
-    sobj = func_80371E68_845618(sobj, &D_80149A38_90F258);
+    sobj = func_80371E68_845618(sobj, &D_80149A38_90F258_sprite);
     sobj->sprite.x = 43;
     sobj->sprite.y = 32;
-    sobj = func_80371DC0_845570(sobj, &D_80146918_90C138);
+    sobj = func_80371DC0_845570(sobj, &D_80146918_90C138_sprite);
     sobj->sprite.x = 40;
     sobj->sprite.y = 50;
 
-    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68)->data.sobj;
+    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68_sprite)->data.sobj;
     D_80206B18_9CC338 = sobj;
     sobj->sprite.x = 208;
     sobj->sprite.y = 13;
 
-    sobj = func_80371E68_845618(sobj, &D_80136498_8FBCB8);
+    sobj = func_80371E68_845618(sobj, &D_80136498_8FBCB8_sprite);
     sobj->sprite.x = 6;
     sobj->sprite.y = 6;
     sobj->sprite.attr |= SP_HIDDEN;
     D_80206B28_9CC348[1] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_80141F48_907768);
+    sobj = func_80371DC0_845570(sobj, &D_80141F48_907768_sprite);
     sobj->sprite.x = 25;
     sobj->sprite.y = 13;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -744,7 +744,7 @@ void func_800E307C_8A889C(void) {
 void func_800E30B8_8A88D8(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(NULL, 6, &D_80128F38_8EE758)->data.sobj;
+    sobj = func_80371D14_8454C4(NULL, 6, &D_80128F38_8EE758_sprite)->data.sobj;
     sobj->sprite.x = 40;
     sobj->sprite.y = 92;
     FocusMark_SetTargetPos(40, 92);
@@ -765,8 +765,8 @@ void func_800E30B8_8A88D8(void) {
 
 void func_800E3190_8A89B0(void) {
     func_800A85E8(func_800E2C0C_8A842C, LINK_6, DL_LINK_0, NULL);
-    D_80206B30_9CC350 = func_80371D14_8454C4(NULL, 6, &D_8010C590_8D1DB0)->data.sobj;
-    D_80206B10_9CC330 = func_80371D14_8454C4(NULL, 6, &D_80190438_955C58)->data.sobj;
+    D_80206B30_9CC350 = func_80371D14_8454C4(NULL, 6, &D_8010C590_8D1DB0_sprite)->data.sobj;
+    D_80206B10_9CC330 = func_80371D14_8454C4(NULL, 6, &D_80190438_955C58_sprite)->data.sobj;
     func_800E2848_8A8068();
     func_800E66B8_8ABED8();
     func_8036EB8C_84233C(func_800E235C_8A7B7C);

@@ -6,12 +6,12 @@ GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
 }
 
 GObj* func_credits_801DCC70(void) {
-    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058);
+    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058_sprite);
 
-    omGObjAddSprite(gobj, &D_credits_801E6430);
-    omGObjAddSprite(gobj, &D_credits_801E6430);
-    omGObjAddSprite(gobj, &D_credits_801E67D8);
-    omGObjAddSprite(gobj, &D_credits_801E67D8);
+    omGObjAddSprite(gobj, &D_credits_801E6430_sprite);
+    omGObjAddSprite(gobj, &D_credits_801E6430_sprite);
+    omGObjAddSprite(gobj, &D_credits_801E67D8_sprite);
+    omGObjAddSprite(gobj, &D_credits_801E67D8_sprite);
 
     return gobj;
 }
@@ -187,11 +187,11 @@ void func_credits_801DD168(GObj* gobj) {
 }
 
 GObj* func_credits_801DD258(void) {
-    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058);
+    GObj* gobj = func_credits_801DCC00(gobj, &D_credits_801E6058_sprite);
 
-    omGObjAddSprite(gobj, &D_credits_801E6058);
-    omGObjAddSprite(gobj, &D_credits_801E6058);
-    omGObjAddSprite(gobj, &D_credits_801E6058);
+    omGObjAddSprite(gobj, &D_credits_801E6058_sprite);
+    omGObjAddSprite(gobj, &D_credits_801E6058_sprite);
+    omGObjAddSprite(gobj, &D_credits_801E6058_sprite);
     omCreateProcess(gobj, func_credits_801DD168, 0, 1);
 
     return gobj;

@@ -184,7 +184,7 @@ void func_801DCCDC_AA1D1C(void) {
     cam->data.cam->flags = CAMERA_FLAG_8;
     cam->flags = 1;
     D_801E55DC_AAA61C = cam;
-    ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8, 0, NULL, 1);
+    ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8_sprite, 0, NULL, 1);
 
     for (i = 0; i < ARRAY_COUNT(D_801E55E0_AAA620); i++) {
         D_801E55E0_AAA620[i] = NULL;

@@ -112,26 +112,26 @@ void func_camera_check_801DCB58(s32 rgb) {
 void func_camera_check_801DCC0C(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FD5C8)->data.sobj;
+    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FD5C8_sprite)->data.sobj;
     sobj->sprite.x = 96;
     sobj->sprite.y = 42;
     D_camera_check_802499B0 = sobj;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FD6A8);
+    sobj = func_80371E68_845618(sobj, &D_camera_check_801FD6A8_sprite);
     sobj->sprite.x = 8;
     sobj->sprite.y = 0;
     sobj->sprite.attr |= SP_SCALE;
     sobj->sprite.scalex = 25.0f;
     D_camera_check_802499B4 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD4E8);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD4E8_sprite);
     sobj->sprite.x = 0;
     sobj->sprite.y = 8;
     sobj->sprite.height = 112;
     sobj->sprite.istep = 0;
     D_camera_check_802499B8 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD408);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD408_sprite);
     sobj->sprite.x = 8;
     sobj->sprite.y = 8;
     sobj->sprite.height = 0x70;
@@ -159,28 +159,28 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
     s32 x;
     u8* src;
 
-    gobj = func_80371C68_845418(NULL, 6, &D_camera_check_801FE318);
+    gobj = func_80371C68_845418(NULL, 6, &D_camera_check_801FE318_sprite);
     sobj = gobj->data.sobj;
     D_camera_check_802499C0[arg0].unk_00 = gobj;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FE318);
+    sobj = func_80371E68_845618(sobj, &D_camera_check_801FE318_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FCE78);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FCE78_sprite);
     sobj->sprite.x = 56;
     sobj->sprite.y = 0;
     D_camera_check_802499C0[arg0].unk_04 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_80201520);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_80201520_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     D_camera_check_802499C0[arg0].unk_0C = sobj;
@@ -196,30 +196,30 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
         *dest = *src;
     }
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088_sprite);
     sobj->sprite.x = -2;
     sobj->sprite.y = -2;
     D_camera_check_802499C0[arg0].unk_08 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFB08);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFB08_sprite);
     sobj->sprite.x = 6;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= 0x4000 | SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802499C0[arg0].unk_10 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFC88);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFC88_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= 0x4000 | SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802499C0[arg0].unk_14 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802499C0[arg0].unk_18 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -554,59 +554,59 @@ void* func_camera_check_801DDFC4(void) {
     SObj* sobj;
     UIElement* temp_v0_2;
 
-    temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
+    temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8_sprite);
     D_camera_check_802498F0.unk_00 = temp_v0;
     sobj = temp_v0->data.sobj;
     sobj->sprite.x = 101;
     sobj->sprite.y = 47;
     sobj->sprite.attr |= SP_HIDDEN;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FDDB8);
+    sobj = func_80371E68_845618(sobj, &D_camera_check_801FDDB8_sprite);
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD9E0);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD9E0_sprite);
     sobj->sprite.x = 161;
     sobj->sprite.y = 60;
     D_camera_check_802498F0.unk_04 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_80208900);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_80208900_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
     D_camera_check_802498F0.unk_0C = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088_sprite);
     sobj->sprite.x = -2;
     sobj->sprite.y = -2;
     D_camera_check_802498F0.unk_08 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF128);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF128_sprite);
     sobj->sprite.x = 14;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802498F0.unk_10 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF988);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF988_sprite);
     sobj->sprite.x = 100;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802498F0.unk_14 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8_sprite);
     sobj->sprite.x = 100;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802498F0.unk_18 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8_sprite);
     sobj->sprite.x = 14;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -1051,7 +1051,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIText_SetPrintDelay(0);
     D_camera_check_80249914 = sp6C;
 
-    gobj = func_80371D14_8454C4(0, 6, &D_camera_check_801F0560);
+    gobj = func_80371D14_8454C4(0, 6, &D_camera_check_801F0560_sprite);
     gobj->data.sobj->sprite.x = 96;
     gobj->data.sobj->sprite.y = 42;
 
@@ -1135,7 +1135,7 @@ void func_camera_check_801DF938(void) {
     SObj* sobj;
 
     func_800A85E8(func_camera_check_801DF2D8, LINK_6, DL_LINK_0, NULL);
-    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
+    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58_sprite)->data.sobj;
     sobj->sprite.width = 640;
     sobj->sprite.height = 480;
     sobj->sprite.istep = 0;

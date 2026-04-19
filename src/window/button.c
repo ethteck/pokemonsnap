@@ -8,7 +8,7 @@ typedef struct UIButtonImageListEntry {
     /* 0x08 */ GObj* obj;
 } UIButtonImageListEntry; // size = 0xC
 
-extern Sprite D_8037F2A8_852A58;
+extern Sprite D_8037F2A8_852A58_sprite;
 extern Bitmap* D_80380B50_854300[];
 extern s32 D_80380BA8_854358[];
 extern char D_80380BD4_854384[];
@@ -48,7 +48,7 @@ void* UIButtonImage_Create(s32 posX, s32 posY, s32 btnName, s32 scale) {
         return NULL;
     }
 
-    obj = func_800A9F10(UIButtonImage_Update, LINK_6, &D_8037F2A8_852A58);
+    obj = func_800A9F10(UIButtonImage_Update, LINK_6, &D_8037F2A8_852A58_sprite);
     obj->data.sobj->sprite.x = posX;
     obj->data.sobj->sprite.y = posY;
     obj->data.sobj->sprite.bitmap = D_80380B50_854300[2 * (pos - D_80380BD4_854384)];

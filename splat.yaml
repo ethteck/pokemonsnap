@@ -10171,9 +10171,9 @@ segments:
       start: 0xA5F070
       linker_section_order: .rodata
       subsegments:
-      - {start: 0xA5F070, type: snap_sprite, name: sprite_background, header_rom: 0xA84C30}
-      - {start: 0xA84C80, type: snap_sprite, name: sprite_card, header_rom: 0xA93348}
-      - {start: 0xA93390, type: snap_sprite, name: sprite_cursor, header_rom: 0xA93418}
+      - {start: 0xA5F070, type: snap_sprite, header_rom: 0xA84C30}
+      - {start: 0xA84C80, type: snap_sprite, header_rom: 0xA93348}
+      - {start: 0xA93390, type: snap_sprite, header_rom: 0xA93418}
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { name: sprite_bss, type: bss, vram: 0x80168150 } # TODO: fix with sprite generation

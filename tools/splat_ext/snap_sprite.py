@@ -141,6 +141,7 @@ class N64SegSnap_sprite(Segment):
         assert isinstance(yaml, dict) and "header_rom" in yaml, \
             f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
         self.header_rom: int = yaml["header_rom"]
+        self.override_name = yaml.get("name") if isinstance(yaml, dict) else None
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.png"
@@ -156,7 +157,7 @@ class N64SegSnap_sprite(Segment):
             result = self.get_most_parent().ram_to_rom(vram_addr)
         return result
 
-    def _resolve_name(self, vram_addr: int, suffix: str) -> str:
+    def _resolve_name(self, vram_addr: int) -> str:
         """Resolve a VRAM address to a symbol name, with fallback."""
         sym = self.get_symbol(vram_addr, in_segment=True)
         if sym:
@@ -209,16 +210,17 @@ class N64SegSnap_sprite(Segment):
         # Resolve symbol names
         sprite_vram = self.get_most_parent().rom_to_ram(header_rom)
         assert sprite_vram is not None
-        self.name = self._resolve_name(sprite_vram, "sprite")
+        self.name = self._resolve_name(sprite_vram)
+
+        if self.override_name:
+            self.name = self.override_name
 
         # Store metadata for configure.py build rules
         self.tile_width = bitmaps[0].width if bitmaps else 0
         self.tile_height = header.bmheight
         self.format_name = format_name
         self.aligner_mode = "df"
-        self.dl_name = (
-            self._resolve_name(header.rsp_dl, "dl") if header.rsp_dl else "NULL"
-        )
+        self.has_dl = bool(header.rsp_dl)
         self.bitmaps_name = f"{self.name}_bitmaps"
         if header.bitmap > 0x80000000:
             sym = self.create_symbol(

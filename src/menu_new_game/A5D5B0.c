@@ -1,7 +1,7 @@
 #include "common.h"
 #include "../window/window.h"
 
-extern Sprite D_80118068_A93418; // cursor
+extern Sprite D_80118068_A93418_sprite; // cursor
 
 // BSS
 extern UIElement* D_80118110;
@@ -352,7 +352,7 @@ void func_800E2E00_A5E1B0(void) {
 
     omCreateProcess(omAddGObj(14, NULL, 0, 0x80000000), func_800E2C38_A5DFE8, 0, 1);
     D_8016814C = 0;
-    D_80168148 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80118068_A93418, 0, func_800E2D18_A5E0C8, 1);
+    D_80168148 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80118068_A93418_sprite, 0, func_800E2D18_A5E0C8, 1);
     unk_48 = D_80168148->data.sobj;
     unk_48->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     SET_SPRITE_POS(unk_48->sprite, 203, 64);

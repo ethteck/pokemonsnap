@@ -489,7 +489,7 @@ def main():
     parser.add_argument("--padding", type=Path, required=True, help="Padding PNG file")
     parser.add_argument("--aligner", choices=("df", "zero"), default="df")
     parser.add_argument("--name", required=True, help="Sprite variable name")
-    parser.add_argument("--dl", required=True, help="Display list variable name")
+    parser.add_argument("--dl", action="store_true", help="Generate display list")
     parser.add_argument("--fastcopy", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--z", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--transparent", action=argparse.BooleanOptionalAction, default=False)
@@ -565,10 +565,11 @@ def main():
     out_lines.append("")
 
     # Display list
-    if args.dl != "NULL" and args.dl != "D_00000000":
-        out_lines.append(f"extern Gfx {args.dl}[];")
+    if args.dl:
+        # TODO: change to static Gfx {name}_dl[NUM_DL(NUM_{name}_BMS)]
+        out_lines.append(f"extern Gfx {args.name}_dl[];")
         out_lines.append("")
-        dl_ref = args.dl
+        dl_ref = f"{args.name}_dl"
     else:
         dl_ref = "NULL"
 
@@ -579,7 +580,7 @@ def main():
         f"0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_bm0_0tlut"
     )
 
-    out_lines.append(f"Sprite {args.name} = {{")
+    out_lines.append(f"Sprite {args.name}_sprite = {{")
     out_lines.append(
         f"    {args.x}, {args.y},                          /* Position: x, y */"
     )

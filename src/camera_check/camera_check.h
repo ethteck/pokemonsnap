@@ -35,26 +35,26 @@ typedef struct UnkTealFlounder {
     /* 0x1C */ SObj* unk_1C;
 } UnkTealFlounder; // size = 0x20
 
-extern Sprite D_camera_check_801F0560;
-extern Sprite D_camera_check_801FCC58;
-extern Sprite D_camera_check_801FCE78;
-extern Sprite D_camera_check_801FD088;
-extern Sprite D_camera_check_801FD408;
-extern Sprite D_camera_check_801FD4E8;
-extern Sprite D_camera_check_801FD5C8;
-extern Sprite D_camera_check_801FD6A8;
-extern Sprite D_camera_check_801FD9E0;
-extern Sprite D_camera_check_801FDDB8;
-extern Sprite D_camera_check_801FE160;
-extern Sprite D_camera_check_801FE318;
-extern Sprite D_camera_check_801FE448;
-extern Sprite D_camera_check_801FF128;
-extern Sprite D_camera_check_801FF988;
-extern Sprite D_camera_check_801FFB08;
-extern Sprite D_camera_check_801FFC88;
-extern Sprite D_camera_check_802004E8;
-extern Sprite D_camera_check_80201520;
-extern Sprite D_camera_check_80208900;
+extern Sprite D_camera_check_801F0560_sprite;
+extern Sprite D_camera_check_801FCC58_sprite;
+extern Sprite D_camera_check_801FCE78_sprite;
+extern Sprite D_camera_check_801FD088_sprite;
+extern Sprite D_camera_check_801FD408_sprite;
+extern Sprite D_camera_check_801FD4E8_sprite;
+extern Sprite D_camera_check_801FD5C8_sprite;
+extern Sprite D_camera_check_801FD6A8_sprite;
+extern Sprite D_camera_check_801FD9E0_sprite;
+extern Sprite D_camera_check_801FDDB8_sprite;
+extern Sprite D_camera_check_801FE160_sprite;
+extern Sprite D_camera_check_801FE318_sprite;
+extern Sprite D_camera_check_801FE448_sprite;
+extern Sprite D_camera_check_801FF128_sprite;
+extern Sprite D_camera_check_801FF988_sprite;
+extern Sprite D_camera_check_801FFB08_sprite;
+extern Sprite D_camera_check_801FFC88_sprite;
+extern Sprite D_camera_check_802004E8_sprite;
+extern Sprite D_camera_check_80201520_sprite;
+extern Sprite D_camera_check_80208900_sprite;
 
 extern s32 D_camera_check_802089F0;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);

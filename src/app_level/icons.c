@@ -60,14 +60,14 @@ s32 Icons_NumItemsAvailable = 3;
 u8 Icons_DashEngineEnabled = false;
 u8 Icons_FluteIsPlayed = false;
 SpriteDefStruct Icons_IconDefs[] = {
-    { 210, 189, false, 0, 2, &D_80387448_527858 },
-    { 182, 185, false, 0, 0, &D_803867A8_526BB8 },
-    { 238, 185, false, 0, 4, &D_803880E8_5284F8 },
-    { 268, 189, false, 1, 6, &D_80383B48_523F58 },
-    { 268, 155, false, 1, 8, &D_80384E68_525278 },
-    { 316, 155, true, 1, 4, &D_80384E68_525278 },
-    { 238, 233, true, 0, 0, &D_80385B08_525F18 },
-    { 316, 189, true, 1, 2, &D_803841C8_5245D8 },
+    { 210, 189, false, 0, 2, &D_80387448_527858_sprite },
+    { 182, 185, false, 0, 0, &D_803867A8_526BB8_sprite },
+    { 238, 185, false, 0, 4, &D_803880E8_5284F8_sprite },
+    { 268, 189, false, 1, 6, &D_80383B48_523F58_sprite },
+    { 268, 155, false, 1, 8, &D_80384E68_525278_sprite },
+    { 316, 155, true, 1, 4, &D_80384E68_525278_sprite },
+    { 238, 233, true, 0, 0, &D_80385B08_525F18_sprite },
+    { 316, 189, true, 1, 2, &D_803841C8_5245D8_sprite },
 };
 u8 Icons_IsZoomedIn = false;
 

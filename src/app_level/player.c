@@ -134,7 +134,7 @@ u8 D_80382D44_523154 = false;
 s32 LevelBGMSongID = -1;
 
 extern s32 BumpDetector_ProximityLevel;
-extern Sprite D_80388E00_529210;
+extern Sprite D_80388E00_529210_sprite;
 
 // bss
 extern s32 D_803AE408_54E818;
@@ -2087,10 +2087,10 @@ void processOutOfFilm(GObj* arg0) {
     scRemovePostProcessFunc();
     playDashEngineSounds(0);
     Icons_SetDashEngineEnabled(0);
-    sobj1 = omGObjAddSprite(ObjectPauseMenu, &D_80388E00_529210);
+    sobj1 = omGObjAddSprite(ObjectPauseMenu, &D_80388E00_529210_sprite);
     spMove(&sobj1->sprite, 125, 97);
     spColor(&sobj1->sprite, 255, 255, 255, var_s2);
-    sobj2 = omGObjAddSprite(ObjectPauseMenu, &D_80381B58_521F68);
+    sobj2 = omGObjAddSprite(ObjectPauseMenu, &D_80381B58_521F68_sprite);
     spMove(&sobj2->sprite, 149, 103);
     spColor(&sobj2->sprite, 255, 255, 255, var_s2);
 
@@ -2380,53 +2380,53 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32, f32
     TotalSpeedMult = 0.0005f;
     PlayerPos = GET_TRANSFORM(playerDObj)->pos.v;
 
-    obj = ohCreateSprite(OBJID_UI_RETICLE, updateReticleSpritesPos, 0, 0x80000000, renDrawSprite, DL_LINK_1, 0x80000000, -1, &D_80366DF0_507200, 1, updateReticleScreenPos, 9);
+    obj = ohCreateSprite(OBJID_UI_RETICLE, updateReticleSpritesPos, 0, 0x80000000, renDrawSprite, DL_LINK_1, 0x80000000, -1, &D_80366DF0_507200_sprite, 1, updateReticleScreenPos, 9);
     D_80382C38_523048 = obj;
     MainCameraReticles[0] = obj->data.sobj;
 
-    MainCameraReticles[1] = sp40 = omGObjAddSprite(obj, &D_80367580_507990);
+    MainCameraReticles[1] = sp40 = omGObjAddSprite(obj, &D_80367580_507990_sprite);
     spMove(&sp40->sprite, 143, 103);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
 
-    MainCameraReticles[2] = sp40 = omGObjAddSprite(obj, &D_80367D10_508120);
+    MainCameraReticles[2] = sp40 = omGObjAddSprite(obj, &D_80367D10_508120_sprite);
     spMove(&sp40->sprite, 143, 103);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
 
-    MainCameraReticles[3] = sp40 = omGObjAddSprite(obj, &D_80367DC0_5081D0);
+    MainCameraReticles[3] = sp40 = omGObjAddSprite(obj, &D_80367DC0_5081D0_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 157, 117);
 
-    D_803AE458_54E868[0] = sp40 = omGObjAddSprite(obj, &D_80368038_508448);
+    D_803AE458_54E868[0] = sp40 = omGObjAddSprite(obj, &D_80368038_508448_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
     spMove(&sp40->sprite, 78, 58);
     spScale(&sp40->sprite, 82.0f, 1.0f);
 
-    D_803AE458_54E868[1] = sp40 = omGObjAddSprite(obj, &D_80368038_508448);
+    D_803AE458_54E868[1] = sp40 = omGObjAddSprite(obj, &D_80368038_508448_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
     spMove(&sp40->sprite, 78, 180);
     spScale(&sp40->sprite, 82.0f, 1.0f);
 
-    D_803AE458_54E868[2] = sp40 = omGObjAddSprite(obj, &D_80368038_508448);
+    D_803AE458_54E868[2] = sp40 = omGObjAddSprite(obj, &D_80368038_508448_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
     spMove(&sp40->sprite, 78, 60);
     spScale(&sp40->sprite, 1.0f, 60.0f);
 
-    D_803AE458_54E868[3] = sp40 = omGObjAddSprite(obj, &D_80368038_508448);
+    D_803AE458_54E868[3] = sp40 = omGObjAddSprite(obj, &D_80368038_508448_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spColor(&sp40->sprite, 255, 255, 255, 127);
     spMove(&sp40->sprite, 240, 60);
     spScale(&sp40->sprite, 1.0f, 60.0f);
 
-    D_803AE458_54E868[4] = sp40 = omGObjAddSprite(obj, &D_803706E0_510AF0);
+    D_803AE458_54E868[4] = sp40 = omGObjAddSprite(obj, &D_803706E0_510AF0_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 0, 0);
 
-    D_803AE458_54E868[5] = sp40 = omGObjAddSprite(obj, &D_80378D88_519198);
+    D_803AE458_54E868[5] = sp40 = omGObjAddSprite(obj, &D_80378D88_519198_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 0, 187);
 
@@ -2444,39 +2444,39 @@ GObj* initUI(void (*exitBlockCB)(WorldBlock*), void (*updateMovementCB)(s32, f32
     omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
     ObjectPauseMenu = obj;
 
-    D_80382C70_523080 = sp40 = omGObjAddSprite(obj, &D_80378ED8_5192E8);
+    D_80382C70_523080 = sp40 = omGObjAddSprite(obj, &D_80378ED8_5192E8_sprite);
     spMove(&sp40->sprite, 0, 0);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     sp40->sprite.scalex = 32.0f;
     sp40->sprite.scaley = 24.0f;
 
-    Pause_LabelPause2 = sp40 = omGObjAddSprite(obj, &D_8037A9A0_51ADB0);
+    Pause_LabelPause2 = sp40 = omGObjAddSprite(obj, &D_8037A9A0_51ADB0_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
 
-    Pause_LabelPause = sp40 = omGObjAddSprite(obj, &D_8037C468_51C878);
+    Pause_LabelPause = sp40 = omGObjAddSprite(obj, &D_8037C468_51C878_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
 
-    Pause_QuitCourseSelected = sp40 = omGObjAddSprite(obj, &D_8037D2A0_51D6B0);
-    spSetAttribute(&sp40->sprite, SP_HIDDEN);
-    spMove(&sp40->sprite, 116, 156);
-
-    Pause_QuitCourse = sp40 = omGObjAddSprite(obj, &D_8037E0D8_51E4E8);
+    Pause_QuitCourseSelected = sp40 = omGObjAddSprite(obj, &D_8037D2A0_51D6B0_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 116, 156);
 
-    Pause_ContinueSelected = sp40 = omGObjAddSprite(obj, &D_8037EF10_51F320);
+    Pause_QuitCourse = sp40 = omGObjAddSprite(obj, &D_8037E0D8_51E4E8_sprite);
+    spSetAttribute(&sp40->sprite, SP_HIDDEN);
+    spMove(&sp40->sprite, 116, 156);
+
+    Pause_ContinueSelected = sp40 = omGObjAddSprite(obj, &D_8037EF10_51F320_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 116, 133);
 
-    Pause_Continue = sp40 = omGObjAddSprite(obj, &D_8037FD48_520158);
+    Pause_Continue = sp40 = omGObjAddSprite(obj, &D_8037FD48_520158_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 116, 133);
 
-    Pause_RetrySelected = sp40 = omGObjAddSprite(obj, &D_80380B80_520F90);
+    Pause_RetrySelected = sp40 = omGObjAddSprite(obj, &D_80380B80_520F90_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 116, 179);
 
-    Pause_Retry = sp40 = omGObjAddSprite(obj, &D_803819B8_521DC8);
+    Pause_Retry = sp40 = omGObjAddSprite(obj, &D_803819B8_521DC8_sprite);
     spSetAttribute(&sp40->sprite, SP_HIDDEN);
     spMove(&sp40->sprite, 116, 179);
 

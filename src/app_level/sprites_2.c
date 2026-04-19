@@ -15,3 +15,7 @@
 #include "build/assets/app_level/D_80389D20_52A130.png.inc.h"
 #include "build/assets/app_level/D_80389E80_52A290.png.inc.h"
 #include "build/assets/app_level/D_80389FE0_52A3F0.png.inc.h"
+
+s32 D_8038A024_52A434 = 0;
+s32 D_8038A028_52A438 = 0;
+s32 D_8038A02C_52A43C = 0;

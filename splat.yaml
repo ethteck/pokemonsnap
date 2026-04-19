@@ -9694,7 +9694,6 @@ segments:
     - [auto, c, sprites_2] # TODO: place me
     - [auto, c, sprites_3] # TODO: place me
     - [auto, c, sprites_4] # TODO: place me
-    - [auto, c, sprites_5] # TODO: place me
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9738,11 +9737,70 @@ segments:
       start: 0x855560
       subsegments:
       - {start: 0x855560, type: snap_sprite, header_rom: 0x856490}
-    - [0x8564E0, data]
-    - name: sprites_5
-      type: .data
-      start: 0x874AD0 # TODO: merge with previous segment
-      subsegments:
+      - {start: 0x8564E0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8573F8]
+      - {start: 0x857400, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x858318]
+      - {start: 0x858320, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x859238]
+      - {start: 0x859240, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85A158]
+      - {start: 0x85A160, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85B078]
+      - {start: 0x85B080, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85BF98]
+      - {start: 0x85BFA0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85CEB8]
+      - {start: 0x85CEC0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85DDD8]
+      - {start: 0x85DDE0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85ECF8]
+      - {start: 0x85ED00, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x85FC18]
+      - {start: 0x85FC20, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x860B38]
+      - {start: 0x860B40, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x861A58]
+      - {start: 0x861A60, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x862978]
+      - {start: 0x862980, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x863898]
+      - {start: 0x8638A0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8647B8]
+      - {start: 0x8647C0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8656D8]
+      - {start: 0x8656E0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8665F8]
+      - {start: 0x866600, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x867518]
+      - {start: 0x867520, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x868438]
+      - {start: 0x868440, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x869358]
+      - {start: 0x869360, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86A278]
+      - {start: 0x86A280, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86B198]
+      - {start: 0x86B1A0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86C0B8]
+      - {start: 0x86C0C0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86CFD8]
+      - {start: 0x86CFE0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86DEF8]
+      - {start: 0x86DF00, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86EE18]
+      - {start: 0x86EE20, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x86FD38]
+      - {start: 0x86FD40, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x870C58]
+      - {start: 0x870C60, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x871B78]
+      - {start: 0x871B80, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x872A98]
+      - {start: 0x872AA0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8739B8]
+      - {start: 0x8739C0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
+      - [0x8748D8]
       - {start: 0x874AD8, type: snap_sprite, header_rom: 0x874B10}
       - {start: 0x874B58, type: snap_sprite, header_rom: 0x8752C0}
       - {start: 0x875308, type: snap_sprite, header_rom: 0x875A70}

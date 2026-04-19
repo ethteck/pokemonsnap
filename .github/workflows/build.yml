@@ -11,7 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Merge target branch
+        if: github.event_name == 'pull_request_target'
+        run: |
+          echo "PR head:     ${{ github.event.pull_request.head.sha }}"
+          echo "Checked out: $(git rev-parse HEAD)"
+          echo "Base branch: origin/${{ github.event.pull_request.base.ref }} ($(git rev-parse origin/${{ github.event.pull_request.base.ref }}))"
+          git config user.name "CI"
+          git config user.email "ci@localhost"
+          git merge --no-edit origin/${{ github.event.pull_request.base.ref }}
+          echo "After merge: $(git rev-parse HEAD)"
+          git log --oneline -5
 
       - name: Install system dependencies
         run: sudo apt-get install -y binutils-mips-linux-gnu ninja-build

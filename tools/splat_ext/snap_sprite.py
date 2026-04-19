@@ -94,6 +94,8 @@ class SpriteHeader:
     bitmap: int  # bitmap
     rsp_dl: int  # gfx
     rsp_dl_next: int  # gfx
+    frac_s: int
+    frac_t: int
 
     def unpack(self, io: BytesIO):
         (self.x, self.y) = unpack(">hh", io.read(4))
@@ -114,6 +116,7 @@ class SpriteHeader:
         (self.bitmap,) = unpack(">I", io.read(4))
         (self.rsp_dl,) = unpack(">I", io.read(4))
         (self.rsp_dl_next,) = unpack(">I", io.read(4))
+        (self.frac_s, self.frac_t) = unpack(">hh", io.read(4))
 
         self.attr = SpriteAttributes(attr)
         self.bmfmt = IM_FMT(bmfmt)
@@ -132,6 +135,12 @@ FORMAT_INFO = {
 class N64SegSnap_sprite(Segment):
     DF_ALIGNER = bytes.fromhex("df00000000000000")
     ZERO_ALIGNER = bytes(8)
+
+    def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
+        super().__init__(rom_start, rom_end, type, name, vram_start, args, yaml)
+        assert isinstance(yaml, dict) and "header_rom" in yaml, \
+            f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
+        self.header_rom: int = yaml["header_rom"]
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.png"
@@ -159,9 +168,8 @@ class N64SegSnap_sprite(Segment):
 
     def split(self, rom_bytes: bytes):
         header = SpriteHeader()
-        assert self.rom_end is not None
-        header_rom = self.rom_end - 0x40
-        header.unpack(BytesIO(rom_bytes[header_rom : self.rom_end]))
+        header_rom = self.header_rom
+        header.unpack(BytesIO(rom_bytes[header_rom : header_rom + 0x44]))
 
         fmt = FORMAT_INFO.get((header.bmfmt, header.bmsiz))
         if fmt is None:

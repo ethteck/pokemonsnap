@@ -31,9 +31,7 @@ MovementState gMovementState = {
     { 0.0f, 0.0f, 0.0f },
 };
 
-
-
-u8 aligner_0[] = {0,0,0,0,0,0,0,0};
+u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 #include "build/assets/app_level/D_80366DF0_507200.png.inc.h" // 506FE8 small reticle
 #include "build/assets/app_level/D_80367580_507990.png.inc.h" // 507248 reticle 2
 #include "build/assets/app_level/D_80367D10_508120.png.inc.h" // 5079D8 reticle 3
@@ -47,7 +45,7 @@ u8 aligner_0[] = {0,0,0,0,0,0,0,0};
 #include "build/assets/app_level/D_8037D2A0_51D6B0.png.inc.h" // 51C8C0 Quit Course
 #include "build/assets/app_level/D_8037E0D8_51E4E8.png.inc.h" // 51D6F8 Quit Course Pressed
 #include "build/assets/app_level/D_8037EF10_51F320.png.inc.h" // 51E530 Continue
-#include "build/assets/app_level/D_8037FD48_520158.png.inc.h"  // 51F368 Continue Pressed
+#include "build/assets/app_level/D_8037FD48_520158.png.inc.h" // 51F368 Continue Pressed
 #include "build/assets/app_level/D_80380B80_520F90.png.inc.h" // 5201A0 Retry
 #include "build/assets/app_level/D_803819B8_521DC8.png.inc.h" // 520FD8 Retry Pressed
 #include "build/assets/app_level/D_80381B58_521F68.png.inc.h" // 521E10 END

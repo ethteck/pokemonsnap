@@ -1,7 +1,7 @@
 #include <common.h>
 #include <PR/sp.h>
 
-static u8 aligner_0[] = { 0, 0, 0, 0,  0, 0, 0, 0}; // Probably part of previous data
+static u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0 }; // Probably part of previous data
 
 #include "build/assets/valley/D_802E6B18_7C00A8.png.inc.h"
 #include "build/assets/valley/D_802E7118_7C06A8.png.inc.h"

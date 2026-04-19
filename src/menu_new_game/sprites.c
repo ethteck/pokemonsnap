@@ -3,7 +3,7 @@
 
 #include "build/assets/menu_new_game/D_80109880_A84C30.png.inc.h"
 
-static u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0};
+static u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 #include "build/assets/menu_new_game/D_80117F98_A93348.png.inc.h"
 

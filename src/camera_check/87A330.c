@@ -4,57 +4,57 @@
 #include "string.h"
 
 #include "build/assets/camera_check/D_camera_check_801F0560.png.inc.h"
-static u8 aligner_0[] = { 0, 0, 0, 0};
+static u8 aligner_0[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FC9F8_89A1E8.png.inc.h"
-static u8 aligner_1[] = { 0, 0, 0, 0};
+static u8 aligner_1[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FCC58.png.inc.h"
-static u8 aligner_2[] = { 0, 0, 0, 0};
+static u8 aligner_2[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FCE78.png.inc.h"
-static u8 aligner_3[] = { 0, 0, 0, 0};
+static u8 aligner_3[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD088.png.inc.h"
-static u8 aligner_4[] = { 0, 0, 0, 0};
+static u8 aligner_4[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FD168_89A958.png.inc.h"
-static u8 aligner_5[] = { 0, 0, 0, 0};
+static u8 aligner_5[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FD248_89AA38.png.inc.h"
-static u8 aligner_6[] = { 0, 0, 0, 0};
+static u8 aligner_6[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FD328_89AB18.png.inc.h"
-static u8 aligner_7[] = { 0, 0, 0, 0};
+static u8 aligner_7[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD408.png.inc.h"
-static u8 aligner_8[] = { 0, 0, 0, 0};
+static u8 aligner_8[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD4E8.png.inc.h"
-static u8 aligner_9[] = { 0, 0, 0, 0};
+static u8 aligner_9[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD5C8.png.inc.h"
-static u8 aligner_10[] = { 0, 0, 0, 0};
+static u8 aligner_10[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD6A8.png.inc.h"
-static u8 aligner_11[] = { 0, 0, 0, 0};
+static u8 aligner_11[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FD9E0.png.inc.h"
-static u8 aligner_12[] = { 0, 0, 0, 0};
+static u8 aligner_12[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FDDB8.png.inc.h"
-static u8 aligner_13[] = { 0, 0, 0, 0};
+static u8 aligner_13[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FE160.png.inc.h"
-static u8 aligner_14[] = { 0, 0, 0, 0};
+static u8 aligner_14[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FE318.png.inc.h"
-static u8 aligner_15[] = { 0, 0, 0, 0};
+static u8 aligner_15[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FE448.png.inc.h"
-static u8 aligner_16[] = { 0, 0, 0, 0};
+static u8 aligner_16[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FE5C8_89BDB8.png.inc.h"
-static u8 aligner_17[] = { 0, 0, 0, 0};
+static u8 aligner_17[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FE748_89BF38.png.inc.h"
-static u8 aligner_18[] = { 0, 0, 0, 0};
+static u8 aligner_18[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_801FE8C8_89C0B8.png.inc.h"
-static u8 aligner_19[] = { 0, 0, 0, 0};
+static u8 aligner_19[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FF128.png.inc.h"
-static u8 aligner_20[] = { 0, 0, 0, 0};
+static u8 aligner_20[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FF988.png.inc.h"
-static u8 aligner_21[] = { 0, 0, 0, 0};
+static u8 aligner_21[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FFB08.png.inc.h"
-static u8 aligner_22[] = { 0, 0, 0, 0};
+static u8 aligner_22[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_801FFC88.png.inc.h"
-static u8 aligner_23[] = { 0, 0, 0, 0};
+static u8 aligner_23[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_802004E8.png.inc.h"
-static u8 aligner_24[] = { 0, 0, 0, 0};
+static u8 aligner_24[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_80201520.png.inc.h"
-static u8 aligner_25[] = { 0, 0, 0, 0};
+static u8 aligner_25[] = { 0, 0, 0, 0 };
 #include "build/assets/camera_check/D_camera_check_80208900.png.inc.h"
 
 UnkTealFlounder D_camera_check_802498F0;

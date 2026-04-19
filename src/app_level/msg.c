@@ -114,28 +114,28 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'r': // R button
-                img = D_8038C010_52C420_bitmaps[2+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[2 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'F': // 'NEXT' mark
-                img = D_8038C010_52C420_bitmaps[4+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[4 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'a': // A button
-                img = D_8038C010_52C420_bitmaps[6+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[6 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'b': // B button
-                img = D_8038C010_52C420_bitmaps[8+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[8 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case '[': // left part of 'NEW'
-                img = D_8038C010_52C420_bitmaps[10+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[10 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
             case ']': // right part of 'NEW'
-                img = D_8038C010_52C420_bitmaps[12+Msg_ImageIndex].buf;
+                img = D_8038C010_52C420_bitmaps[12 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
@@ -189,7 +189,7 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
         i = 0;
         for (i = 0;; i++) {
             if (*test == code2byte) {
-                img = D_80393628_533A38_bitmaps[62+i].buf;
+                img = D_80393628_533A38_bitmaps[62 + i].buf;
                 *width = Msg_GetGlyphWidth(i + 62);
                 break;
             }

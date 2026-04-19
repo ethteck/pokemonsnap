@@ -38,8 +38,6 @@ typedef struct SpriteStruct {
 #include "build/assets/app_level/D_80387448_527858.png.inc.h" // Icon_Apple
 #include "build/assets/app_level/D_803880E8_5284F8.png.inc.h" // Icon_Flute
 
-
-
 SpriteStruct Icons_IconObjects[] = {
     { 148, 104, NULL, 0, 0, NULL },
     { 124, 80, NULL, 0, 0, NULL },

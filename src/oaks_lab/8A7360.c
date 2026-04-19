@@ -2,131 +2,131 @@
 #include "oaks_lab.h"
 
 #include "build/assets/oaks_lab/D_8010C590_8D1DB0.png.inc.h"
-static u8 aligner_0[] = { 0, 0, 0, 0};
+static u8 aligner_0[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8011EEA0_8E46C0.png.inc.h"
-static u8 aligner_1[] = { 0, 0, 0, 0};
+static u8 aligner_1[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80122548_8E7D68.png.inc.h"
-static u8 aligner_2[] = { 0, 0, 0, 0};
+static u8 aligner_2[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80128F38_8EE758.png.inc.h"
-static u8 aligner_3[] = { 0, 0, 0, 0};
+static u8 aligner_3[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8012B2C8_8F0AE8.png.inc.h"
-static u8 aligner_4[] = { 0, 0, 0, 0};
+static u8 aligner_4[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8012D658_8F2E78.png.inc.h"
-static u8 aligner_5[] = { 0, 0, 0, 0};
+static u8 aligner_5[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8012F9E8_8F5208.png.inc.h"
-static u8 aligner_6[] = { 0, 0, 0, 0};
+static u8 aligner_6[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80131D78_8F7598.png.inc.h"
-static u8 aligner_7[] = { 0, 0, 0, 0};
+static u8 aligner_7[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80134108_8F9928.png.inc.h"
-static u8 aligner_8[] = { 0, 0, 0, 0};
+static u8 aligner_8[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80136498_8FBCB8.png.inc.h"
-static u8 aligner_9[] = { 0, 0, 0, 0};
+static u8 aligner_9[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80138828_8FE048.png.inc.h"
-static u8 aligner_10[] = { 0, 0, 0, 0};
+static u8 aligner_10[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801396F8_8FEF18.png.inc.h"
-static u8 aligner_11[] = { 0, 0, 0, 0};
+static u8 aligner_11[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8013BA88_9012A8.png.inc.h"
-static u8 aligner_12[] = { 0, 0, 0, 0};
+static u8 aligner_12[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8013DE18_903638.png.inc.h"
-static u8 aligner_13[] = { 0, 0, 0, 0};
+static u8 aligner_13[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801401A8_9059C8.png.inc.h"
-static u8 aligner_14[] = { 0, 0, 0, 0};
+static u8 aligner_14[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80141078_906898.png.inc.h"
-static u8 aligner_15[] = { 0, 0, 0, 0};
+static u8 aligner_15[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80141F48_907768.png.inc.h"
-static u8 aligner_16[] = { 0, 0, 0, 0};
+static u8 aligner_16[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80142E18_908638.png.inc.h"
-static u8 aligner_17[] = { 0, 0, 0, 0};
+static u8 aligner_17[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80143CE8_909508.png.inc.h"
-static u8 aligner_18[] = { 0, 0, 0, 0};
+static u8 aligner_18[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80146078_90B898.png.inc.h"
-static u8 aligner_19[] = { 0, 0, 0, 0};
+static u8 aligner_19[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80146918_90C138.png.inc.h"
-static u8 aligner_20[] = { 0, 0, 0, 0};
+static u8 aligner_20[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801471B8_90C9D8.png.inc.h"
-static u8 aligner_21[] = { 0, 0, 0, 0};
+static u8 aligner_21[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80147A58_90D278.png.inc.h"
-static u8 aligner_22[] = { 0, 0, 0, 0};
+static u8 aligner_22[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801482F8_90DB18.png.inc.h"
-static u8 aligner_23[] = { 0, 0, 0, 0};
+static u8 aligner_23[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80148B98_90E3B8.png.inc.h"
-static u8 aligner_24[] = { 0, 0, 0, 0};
+static u8 aligner_24[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80149438_90EC58.png.inc.h"
-static u8 aligner_25[] = { 0, 0, 0, 0};
+static u8 aligner_25[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80149A38_90F258.png.inc.h"
-static u8 aligner_26[] = { 0, 0, 0, 0};
+static u8 aligner_26[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014A038_90F858.png.inc.h"
-static u8 aligner_27[] = { 0, 0, 0, 0};
+static u8 aligner_27[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014A638_90FE58.png.inc.h"
-static u8 aligner_28[] = { 0, 0, 0, 0};
+static u8 aligner_28[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014AC38_910458.png.inc.h"
-static u8 aligner_29[] = { 0, 0, 0, 0};
+static u8 aligner_29[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014B238_910A58.png.inc.h"
-static u8 aligner_30[] = { 0, 0, 0, 0};
+static u8 aligner_30[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014B838_911058.png.inc.h"
-static u8 aligner_31[] = { 0, 0, 0, 0};
+static u8 aligner_31[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014BE38_911658.png.inc.h"
-static u8 aligner_32[] = { 0, 0, 0, 0};
+static u8 aligner_32[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014C438_911C58.png.inc.h"
-static u8 aligner_33[] = { 0, 0, 0, 0};
+static u8 aligner_33[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014CA38_912258.png.inc.h"
-static u8 aligner_34[] = { 0, 0, 0, 0};
+static u8 aligner_34[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014D038_912858.png.inc.h"
-static u8 aligner_35[] = { 0, 0, 0, 0};
+static u8 aligner_35[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014D638_912E58.png.inc.h"
-static u8 aligner_36[] = { 0, 0, 0, 0};
+static u8 aligner_36[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014DC38_913458.png.inc.h"
-static u8 aligner_37[] = { 0, 0, 0, 0};
+static u8 aligner_37[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014E238_913A58.png.inc.h"
-static u8 aligner_38[] = { 0, 0, 0, 0};
+static u8 aligner_38[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8014E838_914058.png.inc.h"
-static u8 aligner_39[] = { 0, 0, 0, 0};
+static u8 aligner_39[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80150890_9160B0.png.inc.h"
-static u8 aligner_40[] = { 0, 0, 0, 0};
+static u8 aligner_40[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801528E8_918108.png.inc.h"
-static u8 aligner_41[] = { 0, 0, 0, 0};
+static u8 aligner_41[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80154940_91A160.png.inc.h"
-static u8 aligner_42[] = { 0, 0, 0, 0};
+static u8 aligner_42[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80156998_91C1B8.png.inc.h"
-static u8 aligner_43[] = { 0, 0, 0, 0};
+static u8 aligner_43[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801589F0_91E210.png.inc.h"
-static u8 aligner_44[] = { 0, 0, 0, 0};
+static u8 aligner_44[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8015AA48_920268.png.inc.h"
-static u8 aligner_45[] = { 0, 0, 0, 0};
+static u8 aligner_45[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8015CAA0_9222C0.png.inc.h"
-static u8 aligner_46[] = { 0, 0, 0, 0};
+static u8 aligner_46[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8015EAF8_924318.png.inc.h"
-static u8 aligner_47[] = { 0, 0, 0, 0};
+static u8 aligner_47[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8015FC00_925420.png.inc.h"
-static u8 aligner_48[] = { 0, 0, 0, 0};
+static u8 aligner_48[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80160D08_926528.png.inc.h"
-static u8 aligner_49[] = { 0, 0, 0, 0};
+static u8 aligner_49[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80161E10_927630.png.inc.h"
-static u8 aligner_50[] = { 0, 0, 0, 0};
+static u8 aligner_50[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80162F18_928738.png.inc.h"
-static u8 aligner_51[] = { 0, 0, 0, 0};
+static u8 aligner_51[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80164020_929840.png.inc.h"
-static u8 aligner_52[] = { 0, 0, 0, 0};
+static u8 aligner_52[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80165128_92A948.png.inc.h"
-static u8 aligner_53[] = { 0, 0, 0, 0};
+static u8 aligner_53[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80166230_92BA50.png.inc.h"
-static u8 aligner_54[] = { 0, 0, 0, 0};
+static u8 aligner_54[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80167338_92CB58.png.inc.h"
-static u8 aligner_55[] = { 0, 0, 0, 0};
+static u8 aligner_55[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80168440_92DC60.png.inc.h"
-static u8 aligner_56[] = { 0, 0, 0, 0};
+static u8 aligner_56[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80169548_92ED68.png.inc.h"
-static u8 aligner_57[] = { 0, 0, 0, 0};
+static u8 aligner_57[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_8016A650_92FE70.png.inc.h"
-static u8 aligner_58[] = { 0, 0, 0, 0};
+static u8 aligner_58[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80190438_955C58.png.inc.h"
-static u8 aligner_59[] = { 0, 0, 0, 0};
+static u8 aligner_59[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80192490_957CB0.png.inc.h"
-static u8 aligner_60[] = { 0, 0, 0, 0};
+static u8 aligner_60[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_80193598_958DB8.png.inc.h"
-static u8 aligner_61[] = { 0, 0, 0, 0};
+static u8 aligner_61[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801946A0_959EC0.png.inc.h"
-static u8 aligner_62[] = { 0, 0, 0, 0};
+static u8 aligner_62[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/D_801957A8_95AFC8.png.inc.h"
 
 s32 D_801957EC_95B00C = 0;

@@ -29,11 +29,11 @@ extern Sprite D_80201728_9CB978;
 extern Sprite D_80208B10_9D2D60;
 
 #include "build/assets/pokemon_album/D_802006E8_9CA938.png.inc.h"
-static u8 aligner_16[] = { 0, 0, 0, 0};
+static u8 aligner_16[] = { 0, 0, 0, 0 };
 static Gfx aligner_a[] = { gsSPEndDisplayList() };
 #include "build/assets/pokemon_album/D_80201728_9CB978.png.inc.h"
-static u8 aligner_17[] = { 0, 0, 0, 0};
-static u8 aligner_18[] = { 0, 0, 0, 0, 0, 0, 0, 0};
+static u8 aligner_17[] = { 0, 0, 0, 0 };
+static u8 aligner_18[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 #include "build/assets/pokemon_album/D_80208B10_9D2D60.png.inc.h"
 
 s32 D_80208B54_9D2DA4 = -1;

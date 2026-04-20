@@ -9693,7 +9693,6 @@ segments:
     - [auto, c, sprites_1] # TODO: place me
     - [auto, c, sprites_2] # TODO: place me
     - [auto, c, sprites_3] # TODO: place me
-    - [auto, c, sprites_4] # TODO: place me
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9732,7 +9731,7 @@ segments:
       subsegments:
       - {start: 0x8550E0, type: snap_sprite, header_rom: 0x8551E8}
     - [0x855230, data]
-    - name: sprites_4
+    - name: layout
       type: .data
       start: 0x855560
       subsegments:
@@ -9818,8 +9817,6 @@ segments:
       - {start: 0x879898, type: snap_sprite, header_rom: 0x8799D0}
       - {start: 0x879A18, type: snap_sprite, header_rom: 0x879B50}
       - {start: 0x879B98, type: snap_sprite, header_rom: 0x879CD0}
-    - [0x879D20, data]
-    - [0x879DB0, .data, layout]
     - [0x879DF0, data]
     - [0x879E80, .data, 848B80]
 

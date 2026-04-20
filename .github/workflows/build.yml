@@ -28,6 +28,9 @@ jobs:
       - name: Install Python dependencies
         run: uv sync
 
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
       - name: Cache pigment64
         id: cache-pigment64
         uses: actions/cache@v5

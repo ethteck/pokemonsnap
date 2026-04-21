@@ -608,8 +608,6 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 implicit=glob.glob(str(entry.src_paths[0]) + "/*"),
             )
             build(entry.object_path, [raw_bin], "bin")
-        elif seg.type == "snap_sprite":
-            pass  # handled as .data group subsegments
         else:
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)

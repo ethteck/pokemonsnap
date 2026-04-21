@@ -98,25 +98,25 @@ class SpriteHeader:
     frac_t: int
 
     def unpack(self, io: BytesIO):
-        (self.x, self.y) = unpack(">hh", io.read(4))
-        (self.width, self.height) = unpack(">hh", io.read(4))
-        (self.scalex, self.scaley) = unpack(">ff", io.read(8))
-        (self.expx, self.expy) = unpack(">hh", io.read(4))
+        self.x, self.y = unpack(">hh", io.read(4))
+        self.width, self.height = unpack(">hh", io.read(4))
+        self.scalex, self.scaley = unpack(">ff", io.read(8))
+        self.expx, self.expy = unpack(">hh", io.read(4))
         (attr,) = unpack(">H", io.read(2))
         (self.zdepth,) = unpack(">h", io.read(2))
-        (self.red, self.green, self.blue, self.alpha) = unpack(">BBBB", io.read(4))
-        (self.startTLUT, self.nTLUT, self.LUT) = unpack(">hhI", io.read(8))
-        (self.istart, self.istep) = unpack(">hh", io.read(4))
+        self.red, self.green, self.blue, self.alpha = unpack(">BBBB", io.read(4))
+        self.startTLUT, self.nTLUT, self.LUT = unpack(">hhI", io.read(8))
+        self.istart, self.istep = unpack(">hh", io.read(4))
         (self.nbitmaps,) = unpack(">H", io.read(2))
         (self.ndisplist,) = unpack(">H", io.read(2))
-        (self.bmheight, self.bmHreal) = unpack(">hh", io.read(4))
+        self.bmheight, self.bmHreal = unpack(">hh", io.read(4))
         (bmfmt,) = unpack(">B", io.read(1))
         (bmsiz,) = unpack(">B", io.read(1))
         io.read(2)
         (self.bitmap,) = unpack(">I", io.read(4))
         (self.rsp_dl,) = unpack(">I", io.read(4))
         (self.rsp_dl_next,) = unpack(">I", io.read(4))
-        (self.frac_s, self.frac_t) = unpack(">hh", io.read(4))
+        self.frac_s, self.frac_t = unpack(">hh", io.read(4))
 
         self.attr = SpriteAttributes(attr)
         self.bmfmt = IM_FMT(bmfmt)
@@ -138,8 +138,9 @@ class N64SegSnap_sprite(Segment):
 
     def __init__(self, rom_start, rom_end, type, name, vram_start, args, yaml):
         super().__init__(rom_start, rom_end, type, name, vram_start, args, yaml)
-        assert isinstance(yaml, dict) and "header_rom" in yaml, \
-            f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
+        assert (
+            isinstance(yaml, dict) and "header_rom" in yaml
+        ), f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
         self.header_rom: int = yaml["header_rom"]
         self.override_name = yaml.get("name") if isinstance(yaml, dict) else None
 
@@ -235,7 +236,10 @@ class N64SegSnap_sprite(Segment):
         self.sp_x = int(header.x)
         self.sp_y = int(header.y)
         self.sp_color = (
-            (header.red << 24) | (header.green << 16) | (header.blue << 8) | header.alpha
+            (header.red << 24)
+            | (header.green << 16)
+            | (header.blue << 8)
+            | header.alpha
         )
         cols = math.ceil(header.width / self.tile_width) if self.tile_width > 0 else 1
         for i, bitmap in enumerate(bitmaps):

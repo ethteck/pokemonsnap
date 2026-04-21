@@ -25,7 +25,6 @@ from pathlib import Path
 
 import png
 
-
 FORMAT_INFO = {
     "rgba16": {
         "bpp": 2,
@@ -490,11 +489,17 @@ def main():
     parser.add_argument("--aligner", choices=("df", "zero"), default="df")
     parser.add_argument("--name", required=True, help="Sprite variable name")
     parser.add_argument("--dl", action="store_true", help="Generate display list")
-    parser.add_argument("--fastcopy", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument(
+        "--fastcopy", action=argparse.BooleanOptionalAction, default=True
+    )
     parser.add_argument("--z", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("--transparent", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument(
+        "--transparent", action=argparse.BooleanOptionalAction, default=False
+    )
     parser.add_argument("--scale", action=argparse.BooleanOptionalAction, default=False)
-    parser.add_argument("--overlap", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument(
+        "--overlap", action=argparse.BooleanOptionalAction, default=False
+    )
     parser.add_argument("--x", type=int, default=0, help="Sprite X position")
     parser.add_argument("--y", type=int, default=0, help="Sprite Y position")
     parser.add_argument(
@@ -576,9 +581,7 @@ def main():
     # Sprite struct
     bmHreal = sprite.tile_h
 
-    lut_line = (
-        f"0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_bm0_0tlut"
-    )
+    lut_line = f"0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_bm0_0tlut"
 
     out_lines.append(f"Sprite {args.name}_sprite = {{")
     out_lines.append(

@@ -9690,9 +9690,9 @@ segments:
     bss_size: 0x8A0
     exclusive_ram_id: level
     subsegments:
-    - [auto, c, sprites_1] # TODO: place me
+    - [auto, c, window_btn_a] # TODO: place me
     - [auto, c, sprites_2] # TODO: place me
-    - [auto, c, sprites_3] # TODO: place me
+    - [auto, c, window_focus_mark] # TODO: place me
     - [0x83D730, c]
     - [0x83DC20, pad]
     - [0x83DC30, c, element]
@@ -9713,7 +9713,7 @@ segments:
     - [0x848BC0, data]
     - [0x852220, .data, element]
     - [0x852250, .data, text]
-    - name: sprites_1
+    - name: window_btn_a
       type: .data
       start: 0x852920
       subsegments:
@@ -9725,7 +9725,7 @@ segments:
       subsegments:
       - {start: 0x8543A0, type: snap_sprite, header_rom: 0x854438}
     - [0x854480, data]
-    - name: sprites_3
+    - name: window_focus_mark
       type: .data
       start: 0x8550E0
       subsegments:

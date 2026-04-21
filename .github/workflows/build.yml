@@ -20,10 +20,6 @@ jobs:
         run: |
           apt-get install -y binutils-mips-linux-gnu ninja-build
 
-      - name: print iconv version
-        run: |
-          iconv --version
-
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:

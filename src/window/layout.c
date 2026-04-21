@@ -2,7 +2,7 @@
 #include "sp.h"
 #include "window.h"
 
-#include "build/assets/window/D_80382CE0_856490.png.inc.h"
+#include "build/assets/window/window_btn_rearrange.png.inc.h"
 
 static u8 aligner_a[] = { 0, 0, 0, 0 };
 
@@ -263,42 +263,42 @@ Bitmap D_803A1318_874AC8[] = {
     { 89, 92, 0, 0, (u8*) D_803A0210_8739C0, 21, 0 },
 };
 
-#include "build/assets/window/D_803A1360_874B10.png.inc.h"
+#include "build/assets/window/window_buttons_bg.png.inc.h"
 static u8 aligner_0[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A1B10_8752C0.png.inc.h"
+#include "build/assets/window/window_page_prev.png.inc.h"
 static u8 aligner_1[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A22C0_875A70.png.inc.h"
+#include "build/assets/window/window_page_next.png.inc.h"
 static u8 aligner_2[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A51A0_878950.png.inc.h"
+#include "build/assets/window/window_page_title.png.inc.h"
 static u8 aligner_3[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5320_878AD0.png.inc.h"
+#include "build/assets/window/window_btn_z.png.inc.h"
 static u8 aligner_4[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A54A0_878C50.png.inc.h"
+#include "build/assets/window/window_btn_z_pressed.png.inc.h"
 static u8 aligner_5[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5620_878DD0.png.inc.h"
+#include "build/assets/window/window_btn_r.png.inc.h"
 static u8 aligner_6[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A57A0_878F50.png.inc.h"
+#include "build/assets/window/window_btn_r_pressed.png.inc.h"
 static u8 aligner_7[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5920_8790D0.png.inc.h"
+#include "build/assets/window/window_btn_c_down.png.inc.h"
 static u8 aligner_8[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5AA0_879250.png.inc.h"
+#include "build/assets/window/window_btn_c_down_pressed.png.inc.h"
 static u8 aligner_9[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5C20_8793D0.png.inc.h"
+#include "build/assets/window/window_btn_c_right.png.inc.h"
 static u8 aligner_10[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5DA0_879550.png.inc.h"
+#include "build/assets/window/window_btn_c_right_pressed.png.inc.h"
 static u8 aligner_11[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A5F20_8796D0.png.inc.h"
+#include "build/assets/window/window_btn_c_left.png.inc.h"
 static u8 aligner_12[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A60A0_879850.png.inc.h"
+#include "build/assets/window/window_btn_c_left_pressed.png.inc.h"
 static u8 aligner_13[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A6220_8799D0.png.inc.h"
+#include "build/assets/window/window_stick.png.inc.h"
 static u8 aligner_14[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A63A0_879B50.png.inc.h"
+#include "build/assets/window/window_stick_left.png.inc.h"
 static u8 aligner_15[] = { 0, 0, 0, 0 };
-#include "build/assets/window/D_803A6520_879CD0.png.inc.h"
+#include "build/assets/window/window_stick_right.png.inc.h"
 
 void* D_803A6564_879D14[32 + 1] = {
-    &D_80382CE0_856490_bitmaps,
+    &window_btn_rearrange_bitmaps,
     &D_803A1128_8748D8,
     &D_803A1138_8748E8,
     &D_803A1148_8748F8,
@@ -334,13 +334,13 @@ void* D_803A6564_879D14[32 + 1] = {
 };
 
 void* D_803A65E8_879D98[] = {
-    &D_803A1360_874B10_sprite,
-    &D_803A1B10_8752C0_sprite,
-    &D_803A5320_878AD0_sprite,
-    &D_803A54A0_878C50_sprite,
-    &D_803A22C0_875A70_sprite,
-    &D_803A5620_878DD0_sprite,
-    &D_803A57A0_878F50_sprite,
+    &window_buttons_bg_sprite,
+    &window_page_prev_sprite,
+    &window_btn_z_sprite,
+    &window_btn_z_pressed_sprite,
+    &window_page_next_sprite,
+    &window_btn_r_sprite,
+    &window_btn_r_pressed_sprite,
 };
 
 s32 UILayout_PanelState = PANEL_STATE_STABLE;
@@ -749,9 +749,9 @@ void UILayout_UpdatePrevPageIndicator(GObj* arg0) {
     UILayout_PrevPageIndicatorPosY = var_f0;
 
     if (tmp2 < 0) {
-        arg0->data.sobj->unk_58->sprite.bitmap = D_803A63A0_879B50_bitmaps;
+        arg0->data.sobj->unk_58->sprite.bitmap = window_stick_left_bitmaps;
     } else {
-        arg0->data.sobj->unk_58->sprite.bitmap = D_803A6220_8799D0_bitmaps;
+        arg0->data.sobj->unk_58->sprite.bitmap = window_stick_bitmaps;
     }
     UILayout_PrevPageIndicatorCounter = (unsigned long long) tmp2;
     tmp4 = 48;
@@ -789,9 +789,9 @@ void UILayout_UpdateNextPageIndicator(GObj* arg0) {
     UILayout_NextPageIndicatorPosY = var_f0;
 
     if (tmp2 < 0) {
-        arg0->data.sobj->unk_58->sprite.bitmap = D_803A6520_879CD0_bitmaps;
+        arg0->data.sobj->unk_58->sprite.bitmap = window_stick_right_bitmaps;
     } else {
-        arg0->data.sobj->unk_58->sprite.bitmap = D_803A6220_8799D0_bitmaps;
+        arg0->data.sobj->unk_58->sprite.bitmap = window_stick_bitmaps;
     }
     UILayout_NextPageIndicatorCounter = (unsigned long long) tmp2;
     tmp4 = 48;
@@ -808,23 +808,23 @@ void UILayout_InitHeader(void) {
     GObj* obj;
     SObj* sobj;
 
-    obj = func_80371C68_845418(UILayout_UpdatePrevPageIndicator, 6, &D_803A1B10_8752C0_sprite);
+    obj = func_80371C68_845418(UILayout_UpdatePrevPageIndicator, 6, &window_page_prev_sprite);
     obj->data.sobj->sprite.x = 96;
     obj->data.sobj->sprite.y = -40;
-    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0_sprite);
+    sobj = func_80371E68_845618(obj->data.sobj, &window_stick_sprite);
     sobj->sprite.x = 9;
     sobj->sprite.y = 22;
     UILayout_PreviousPageIndicator = obj;
 
-    obj = func_80371C68_845418(UILayout_UpdateNextPageIndicator, 6, &D_803A22C0_875A70_sprite);
+    obj = func_80371C68_845418(UILayout_UpdateNextPageIndicator, 6, &window_page_next_sprite);
     obj->data.sobj->sprite.x = 280;
     obj->data.sobj->sprite.y = -40;
-    sobj = func_80371E68_845618(obj->data.sobj, &D_803A6220_8799D0_sprite);
+    sobj = func_80371E68_845618(obj->data.sobj, &window_stick_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 22;
     UILayout_NextPageIndicator = obj;
 
-    obj = func_80371C68_845418(UILayout_UpdateTitle, 6, &D_803A51A0_878950_sprite);
+    obj = func_80371C68_845418(UILayout_UpdateTitle, 6, &window_page_title_sprite);
     obj->data.sobj->sprite.x = 124;
     obj->data.sobj->sprite.y = -40;
     UILayout_Title = obj;
@@ -867,7 +867,7 @@ void UILayout_Init(void) {
     GObj* tabObj;
     s32 i;
 
-    panelObj = func_80371C68_845418(UILayout_UpdatePanel, LINK_6, &D_803A1360_874B10_sprite);
+    panelObj = func_80371C68_845418(UILayout_UpdatePanel, LINK_6, &window_buttons_bg_sprite);
     panelObj->data.sobj->sprite.x = -180;
     panelObj->data.sobj->sprite.y = 0;
     panelObj->data.sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
@@ -877,7 +877,7 @@ void UILayout_Init(void) {
     UILayout_Panel = panelObj;
 
     for (i = 0; i <= BUTTON_MAX; i++) {
-        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, LINK_6, &D_80382CE0_856490_sprite);
+        tabObj = func_80371D14_8454C4(i != 0 ? NULL : UILayout_UpdateButtons, LINK_6, &window_btn_rearrange_sprite);
         tabObj->data.sobj->sprite.bitmap = D_803A6564_879D14[i];
         tabObj->data.sobj->sprite.x = 0;
         tabObj->data.sobj->sprite.y = 20 + i * 30;

@@ -1,11 +1,11 @@
 #include <common.h>
 #include <PR/sp.h>
 
-#include "build/assets/credits/D_credits_801E6058.png.inc.h"
+#include "build/assets/credits/credits_frame_fill.png.inc.h"
 static u8 aligner_0[] = { 0, 0, 0, 0 };
-#include "build/assets/credits/D_credits_801E6430.png.inc.h"
+#include "build/assets/credits/credits_frame_vertical.png.inc.h"
 static u8 aligner_1[] = { 0, 0, 0, 0 };
-#include "build/assets/credits/D_credits_801E67D8.png.inc.h"
+#include "build/assets/credits/credits_frame_horizontal.png.inc.h"
 static u8 aligner_b[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 u8 D_credits_801E6AA8_bm0_0[] = {
@@ -57,4 +57,4 @@ Sprite D_credits_801E6AA8 = {
     NULL                                /* next_dl pointer */
 };
 static u8 aligner_2[] = { 0, 0, 0, 0 };
-#include "build/assets/credits/D_credits_801E8B50.png.inc.h"
+#include "build/assets/credits/credits_nintendo_logo.png.inc.h"

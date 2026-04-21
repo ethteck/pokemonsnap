@@ -5205,24 +5205,24 @@ segments:
       type: .data
       start: 0x506FB0
       subsegments:
-      - {start: 0x506FE8, type: snap_sprite, header_rom: 0x507200}
-      - {start: 0x507248, type: snap_sprite, header_rom: 0x507990}
-      - {start: 0x5079D8, type: snap_sprite, header_rom: 0x508120}
-      - {start: 0x508168, type: snap_sprite, header_rom: 0x5081D0}
-      - {start: 0x508218, type: snap_sprite, header_rom: 0x508448}
-      - {start: 0x508490, type: snap_sprite, header_rom: 0x510AF0}
-      - {start: 0x510B38, type: snap_sprite, header_rom: 0x519198}
-      - {start: 0x5191E0, type: snap_sprite, header_rom: 0x5192E8}
-      - {start: 0x519330, type: snap_sprite, header_rom: 0x51ADB0}
-      - {start: 0x51ADF8, type: snap_sprite, header_rom: 0x51C878}
-      - {start: 0x51C8C0, type: snap_sprite, header_rom: 0x51D6B0}
-      - {start: 0x51D6F8, type: snap_sprite, header_rom: 0x51E4E8}
-      - {start: 0x51E530, type: snap_sprite, header_rom: 0x51F320}
-      - {start: 0x51F368, type: snap_sprite, header_rom: 0x520158}
-      - {start: 0x5201A0, type: snap_sprite, header_rom: 0x520F90}
-      - {start: 0x520FD8, type: snap_sprite, header_rom: 0x521DC8}
-      - {start: 0x521E10, type: snap_sprite, header_rom: 0x521F68}
-      - {start: 0x521FB0, type: snap_sprite, header_rom: 0x522FC8}
+      - {start: 0x506FE8, type: snap_sprite, header_rom: 0x507200, name: level_reticle_sm}
+      - {start: 0x507248, type: snap_sprite, header_rom: 0x507990, name: level_reticle_1}
+      - {start: 0x5079D8, type: snap_sprite, header_rom: 0x508120, name: level_reticle_2}
+      - {start: 0x508168, type: snap_sprite, header_rom: 0x5081D0, name: level_reticle_dot_red}
+      - {start: 0x508218, type: snap_sprite, header_rom: 0x508448, name: level_reticle_dot}
+      - {start: 0x508490, type: snap_sprite, header_rom: 0x510AF0, name: level_viewfinder_shutter_top}
+      - {start: 0x510B38, type: snap_sprite, header_rom: 0x519198, name: level_viewfinder_shutter_bottom}
+      - {start: 0x5191E0, type: snap_sprite, header_rom: 0x5192E8, name: level_viewfinder_frame}
+      - {start: 0x519330, type: snap_sprite, header_rom: 0x51ADB0, name: level_pause}
+      - {start: 0x51ADF8, type: snap_sprite, header_rom: 0x51C878, name: level_pause_intro}
+      - {start: 0x51C8C0, type: snap_sprite, header_rom: 0x51D6B0, name: level_btn_quit_active}
+      - {start: 0x51D6F8, type: snap_sprite, header_rom: 0x51E4E8, name: level_btn_quit}
+      - {start: 0x51E530, type: snap_sprite, header_rom: 0x51F320, name: level_btn_continue_active}
+      - {start: 0x51F368, type: snap_sprite, header_rom: 0x520158, name: level_btn_continue}
+      - {start: 0x5201A0, type: snap_sprite, header_rom: 0x520F90, name: level_btn_retry_active}
+      - {start: 0x520FD8, type: snap_sprite, header_rom: 0x521DC8, name: level_btn_retry}
+      - {start: 0x521E10, type: snap_sprite, header_rom: 0x521F68, name: level_end}
+      - {start: 0x521FB0, type: snap_sprite, header_rom: 0x522FC8, name: level_warning}
     - [0x5231D0, .data, bump_detect]
     - [0x5231F0, .data, pokemon_detect]
     - [0x5232C0, .data, items]
@@ -5230,32 +5230,32 @@ segments:
       start: 0x523300
       type: .data
       subsegments:
-      - {start: 0x523300, type: snap_sprite, header_rom: 0x523F58}
-      - {start: 0x523FA0, type: snap_sprite, header_rom: 0x5245D8}
-      - {start: 0x524620, type: snap_sprite, header_rom: 0x525278}
-      - {start: 0x5252C0, type: snap_sprite, header_rom: 0x525F18}
-      - {start: 0x525F60, type: snap_sprite, header_rom: 0x526BB8}
-      - {start: 0x526C00, type: snap_sprite, header_rom: 0x527858}
-      - {start: 0x5278A0, type: snap_sprite, header_rom: 0x5284F8}
+      - {start: 0x523300, type: snap_sprite, header_rom: 0x523F58, name: level_hud_zoom}
+      - {start: 0x523FA0, type: snap_sprite, header_rom: 0x5245D8, name: level_hud_zoom_off}
+      - {start: 0x524620, type: snap_sprite, header_rom: 0x525278, name: level_hud_engine}
+      - {start: 0x5252C0, type: snap_sprite, header_rom: 0x525F18, name: level_hud_photo}
+      - {start: 0x525F60, type: snap_sprite, header_rom: 0x526BB8, name: level_hud_pester_ball}
+      - {start: 0x526C00, type: snap_sprite, header_rom: 0x527858, name: level_hud_apple}
+      - {start: 0x5278A0, type: snap_sprite, header_rom: 0x5284F8, name: level_hud_pokeflute}
     - [0x528720, .data, 4FE330]
     - name: sprites_2
       start: 0x5287B0
       type: .data
       subsegments:
-      - {start: 0x5287B0, type: snap_sprite, header_rom: 0x529210}
-      - {start: 0x529258, type: snap_sprite, header_rom: 0x529370}
-      - {start: 0x5293B8, type: snap_sprite, header_rom: 0x5294D0}
-      - {start: 0x529518, type: snap_sprite, header_rom: 0x529630}
-      - {start: 0x529678, type: snap_sprite, header_rom: 0x529790}
-      - {start: 0x5297D8, type: snap_sprite, header_rom: 0x5298F0}
-      - {start: 0x529938, type: snap_sprite, header_rom: 0x529A50}
-      - {start: 0x529A98, type: snap_sprite, header_rom: 0x529BB0}
-      - {start: 0x529BF8, type: snap_sprite, header_rom: 0x529D10}
-      - {start: 0x529D58, type: snap_sprite, header_rom: 0x529E70}
-      - {start: 0x529EB8, type: snap_sprite, header_rom: 0x529FD0}
-      - {start: 0x52A018, type: snap_sprite, header_rom: 0x52A130}
-      - {start: 0x52A178, type: snap_sprite, header_rom: 0x52A290}
-      - {start: 0x52A2D8, type: snap_sprite, header_rom: 0x52A3F0}
+      - {start: 0x5287B0, type: snap_sprite, header_rom: 0x529210, name: level_hud_film_strip}
+      - {start: 0x529258, type: snap_sprite, header_rom: 0x529370, name: level_hud_film_ones}
+      - {start: 0x5293B8, type: snap_sprite, header_rom: 0x5294D0, name: level_hud_film_tens}
+      - {start: 0x529518, type: snap_sprite, header_rom: 0x529630, name: level_hud_film_hundreds}
+      - {start: 0x529678, type: snap_sprite, header_rom: 0x529790, name: level_hud_film_0}
+      - {start: 0x5297D8, type: snap_sprite, header_rom: 0x5298F0, name: level_hud_film_1}
+      - {start: 0x529938, type: snap_sprite, header_rom: 0x529A50, name: level_hud_film_2}
+      - {start: 0x529A98, type: snap_sprite, header_rom: 0x529BB0, name: level_hud_film_3}
+      - {start: 0x529BF8, type: snap_sprite, header_rom: 0x529D10, name: level_hud_film_4}
+      - {start: 0x529D58, type: snap_sprite, header_rom: 0x529E70, name: level_hud_film_5}
+      - {start: 0x529EB8, type: snap_sprite, header_rom: 0x529FD0, name: level_hud_film_6}
+      - {start: 0x52A018, type: snap_sprite, header_rom: 0x52A130, name: level_hud_film_7}
+      - {start: 0x52A178, type: snap_sprite, header_rom: 0x52A290, name: level_hud_film_8}
+      - {start: 0x52A2D8, type: snap_sprite, header_rom: 0x52A3F0, name: level_hud_film_9}
     - [0x52A440, data]
     - { start: 0x52A470, type: .rodata, name: player, linker_section_order: .data }
     - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
@@ -5269,8 +5269,8 @@ segments:
       dir: font
       start: 0x52A8A0
       subsegments:
-      - {start: 0x52A8A0, type: snap_sprite, header_rom: 0x52C420}
-      - {start: 0x52C468, type: snap_sprite, header_rom: 0x533A38}
+      - {start: 0x52A8A0, type: snap_sprite, header_rom: 0x52C420, name: level_font_icons}
+      - {start: 0x52C468, type: snap_sprite, header_rom: 0x533A38, name: level_font}
     - [0x533C00, data]
     - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
@@ -8689,20 +8689,20 @@ segments:
       start: 0x7AD7C0 # not actual start
       subsegments:
       - [0x7AD7C0]
-      - {start: 0x7AD7C8, type: snap_sprite, header_rom: 0x7C00A8}
-      - {start: 0x7C00F0, type: snap_sprite, header_rom: 0x7C06A8}
-      - {start: 0x7C06F0, type: snap_sprite, header_rom: 0x7C0CA8}
-      - {start: 0x7C0CF0, type: snap_sprite, header_rom: 0x7C12A8}
-      - {start: 0x7C12F0, type: snap_sprite, header_rom: 0x7C18A8}
-      - {start: 0x7C18F0, type: snap_sprite, header_rom: 0x7C1EA8}
-      - {start: 0x7C1EF0, type: snap_sprite, header_rom: 0x7C24A8}
-      - {start: 0x7C24F0, type: snap_sprite, header_rom: 0x7C2D48}
-      - {start: 0x7C2D90, type: snap_sprite, header_rom: 0x7C35E8}
-      - {start: 0x7C3630, type: snap_sprite, header_rom: 0x7C3E88}
-      - {start: 0x7C3ED0, type: snap_sprite, header_rom: 0x7C4728}
-      - {start: 0x7C4770, type: snap_sprite, header_rom: 0x7C4FC8}
-      - {start: 0x7C5010, type: snap_sprite, header_rom: 0x7C5868}
-      - {start: 0x7C58B0, type: snap_sprite, header_rom: 0x7C5A68}
+      - {start: 0x7AD7C8, type: snap_sprite, header_rom: 0x7C00A8, name: valley_oak}
+      - {start: 0x7C00F0, type: snap_sprite, header_rom: 0x7C06A8, name: valley_oak_eyes_0}
+      - {start: 0x7C06F0, type: snap_sprite, header_rom: 0x7C0CA8, name: valley_oak_eyes_1}
+      - {start: 0x7C0CF0, type: snap_sprite, header_rom: 0x7C12A8, name: valley_oak_eyes_2}
+      - {start: 0x7C12F0, type: snap_sprite, header_rom: 0x7C18A8, name: valley_oak_eyes_3}
+      - {start: 0x7C18F0, type: snap_sprite, header_rom: 0x7C1EA8, name: valley_oak_eyes_4}
+      - {start: 0x7C1EF0, type: snap_sprite, header_rom: 0x7C24A8, name: valley_oak_eyes_5}
+      - {start: 0x7C24F0, type: snap_sprite, header_rom: 0x7C2D48, name: valley_oak_mouth_0}
+      - {start: 0x7C2D90, type: snap_sprite, header_rom: 0x7C35E8, name: valley_oak_mouth_1}
+      - {start: 0x7C3630, type: snap_sprite, header_rom: 0x7C3E88, name: valley_oak_mouth_2}
+      - {start: 0x7C3ED0, type: snap_sprite, header_rom: 0x7C4728, name: valley_oak_mouth_3}
+      - {start: 0x7C4770, type: snap_sprite, header_rom: 0x7C4FC8, name: valley_oak_mouth_4}
+      - {start: 0x7C5010, type: snap_sprite, header_rom: 0x7C5868, name: valley_oak_mouth_5}
+      - {start: 0x7C58B0, type: snap_sprite, header_rom: 0x7C5A68, name: valley_textbox}
     - [0x7C5AB0, bin]
     - [auto, c, graveler/model]
     - [auto, c, gyarados/model]
@@ -9717,7 +9717,7 @@ segments:
       type: .data
       start: 0x852920
       subsegments:
-      - {start: 0x852920, type: snap_sprite, header_rom: 0x852A58}
+      - {start: 0x852920, type: snap_sprite, header_rom: 0x852A58, name: window_btn_a}
     - [0x852AA0, data]
     - name: sprites_2
       type: .data
@@ -9729,13 +9729,13 @@ segments:
       type: .data
       start: 0x8550E0
       subsegments:
-      - {start: 0x8550E0, type: snap_sprite, header_rom: 0x8551E8}
+      - {start: 0x8550E0, type: snap_sprite, header_rom: 0x8551E8, name: window_focus_mark}
     - [0x855230, data]
     - name: layout
       type: .data
       start: 0x855560
       subsegments:
-      - {start: 0x855560, type: snap_sprite, header_rom: 0x856490}
+      - {start: 0x855560, type: snap_sprite, header_rom: 0x856490, name: window_btn_rearrange}
       - {start: 0x8564E0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
       - [0x8573F8]
       - {start: 0x857400, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
@@ -9800,23 +9800,23 @@ segments:
       - [0x8739B8]
       - {start: 0x8739C0, type: rgba16, width: 92, height: 21} # TODO: add odd-row swap
       - [0x8748D8]
-      - {start: 0x874AD8, type: snap_sprite, header_rom: 0x874B10}
-      - {start: 0x874B58, type: snap_sprite, header_rom: 0x8752C0}
-      - {start: 0x875308, type: snap_sprite, header_rom: 0x875A70}
-      - {start: 0x875AB8, type: snap_sprite, header_rom: 0x878950}
-      - {start: 0x878998, type: snap_sprite, header_rom: 0x878AD0}
-      - {start: 0x878B18, type: snap_sprite, header_rom: 0x878C50}
-      - {start: 0x878C98, type: snap_sprite, header_rom: 0x878DD0}
-      - {start: 0x878E18, type: snap_sprite, header_rom: 0x878F50}
-      - {start: 0x878F98, type: snap_sprite, header_rom: 0x8790D0}
-      - {start: 0x879118, type: snap_sprite, header_rom: 0x879250}
-      - {start: 0x879298, type: snap_sprite, header_rom: 0x8793D0}
-      - {start: 0x879418, type: snap_sprite, header_rom: 0x879550}
-      - {start: 0x879598, type: snap_sprite, header_rom: 0x8796D0}
-      - {start: 0x879718, type: snap_sprite, header_rom: 0x879850}
-      - {start: 0x879898, type: snap_sprite, header_rom: 0x8799D0}
-      - {start: 0x879A18, type: snap_sprite, header_rom: 0x879B50}
-      - {start: 0x879B98, type: snap_sprite, header_rom: 0x879CD0}
+      - {start: 0x874AD8, type: snap_sprite, header_rom: 0x874B10, name: window_buttons_bg}
+      - {start: 0x874B58, type: snap_sprite, header_rom: 0x8752C0, name: window_page_prev}
+      - {start: 0x875308, type: snap_sprite, header_rom: 0x875A70, name: window_page_next}
+      - {start: 0x875AB8, type: snap_sprite, header_rom: 0x878950, name: window_page_title}
+      - {start: 0x878998, type: snap_sprite, header_rom: 0x878AD0, name: window_btn_z}
+      - {start: 0x878B18, type: snap_sprite, header_rom: 0x878C50, name: window_btn_z_pressed}
+      - {start: 0x878C98, type: snap_sprite, header_rom: 0x878DD0, name: window_btn_r}
+      - {start: 0x878E18, type: snap_sprite, header_rom: 0x878F50, name: window_btn_r_pressed}
+      - {start: 0x878F98, type: snap_sprite, header_rom: 0x8790D0, name: window_btn_c_down}
+      - {start: 0x879118, type: snap_sprite, header_rom: 0x879250, name: window_btn_c_down_pressed}
+      - {start: 0x879298, type: snap_sprite, header_rom: 0x8793D0, name: window_btn_c_right}
+      - {start: 0x879418, type: snap_sprite, header_rom: 0x879550, name: window_btn_c_right_pressed}
+      - {start: 0x879598, type: snap_sprite, header_rom: 0x8796D0, name: window_btn_c_left}
+      - {start: 0x879718, type: snap_sprite, header_rom: 0x879850, name: window_btn_c_left_pressed}
+      - {start: 0x879898, type: snap_sprite, header_rom: 0x8799D0, name: window_stick}
+      - {start: 0x879A18, type: snap_sprite, header_rom: 0x879B50, name: window_stick_left}
+      - {start: 0x879B98, type: snap_sprite, header_rom: 0x879CD0, name: window_stick_right}
     - [0x879DF0, data]
     - [0x879E80, .data, 848B80]
 
@@ -9845,33 +9845,33 @@ segments:
       type: .data
       start: 0x881900
       subsegments:
-      - {start: 0x881900, type: snap_sprite, header_rom: 0x88DD50}
-      - {start: 0x88DD98, type: snap_sprite, header_rom: 0x89A1E8}
-      - {start: 0x89A230, type: snap_sprite, header_rom: 0x89A448}
-      - {start: 0x89A490, type: snap_sprite, header_rom: 0x89A668}
-      - {start: 0x89A6B0, type: snap_sprite, header_rom: 0x89A878}
+      - {start: 0x881900, type: snap_sprite, header_rom: 0x88DD50, name: camera_check_title}
+      - {start: 0x88DD98, type: snap_sprite, header_rom: 0x89A1E8, name: camera_check_oak_title}
+      - {start: 0x89A230, type: snap_sprite, header_rom: 0x89A448, name: camera_check_background}
+      - {start: 0x89A490, type: snap_sprite, header_rom: 0x89A668, name: camera_check_new_sm}
+      - {start: 0x89A6B0, type: snap_sprite, header_rom: 0x89A878, name: camera_check_good}
       - {start: 0x89A8C0, type: snap_sprite, header_rom: 0x89A958}
       - {start: 0x89A9A0, type: snap_sprite, header_rom: 0x89AA38}
       - {start: 0x89AA80, type: snap_sprite, header_rom: 0x89AB18}
-      - {start: 0x89AB60, type: snap_sprite, header_rom: 0x89ABF8}
-      - {start: 0x89AC40, type: snap_sprite, header_rom: 0x89ACD8}
-      - {start: 0x89AD20, type: snap_sprite, header_rom: 0x89ADB8}
-      - {start: 0x89AE00, type: snap_sprite, header_rom: 0x89AE98}
-      - {start: 0x89AEE0, type: snap_sprite, header_rom: 0x89B1D0}
-      - {start: 0x89B218, type: snap_sprite, header_rom: 0x89B5A8}
-      - {start: 0x89B5F0, type: snap_sprite, header_rom: 0x89B950}
-      - {start: 0x89B998, type: snap_sprite, header_rom: 0x89BB08}
-      - {start: 0x89BB50, type: snap_sprite, header_rom: 0x89BC38}
+      - {start: 0x89AB60, type: snap_sprite, header_rom: 0x89ABF8, name: camera_check_container}
+      - {start: 0x89AC40, type: snap_sprite, header_rom: 0x89ACD8, name: camera_check_container_l}
+      - {start: 0x89AD20, type: snap_sprite, header_rom: 0x89ADB8, name: camera_check_container_tl}
+      - {start: 0x89AE00, type: snap_sprite, header_rom: 0x89AE98, name: camera_check_container_t}
+      - {start: 0x89AEE0, type: snap_sprite, header_rom: 0x89B1D0, name: camera_check_new}
+      - {start: 0x89B218, type: snap_sprite, header_rom: 0x89B5A8, name: camera_check_frame_vertical}
+      - {start: 0x89B5F0, type: snap_sprite, header_rom: 0x89B950, name: camera_check_frame_horizontal}
+      - {start: 0x89B998, type: snap_sprite, header_rom: 0x89BB08, name: camera_check_frame_sm_vertical}
+      - {start: 0x89BB50, type: snap_sprite, header_rom: 0x89BC38, name: camera_check_frame_sm_horizontal}
       - {start: 0x89BC80, type: snap_sprite, header_rom: 0x89BDB8}
       - {start: 0x89BE00, type: snap_sprite, header_rom: 0x89BF38}
       - {start: 0x89BF80, type: snap_sprite, header_rom: 0x89C0B8}
-      - {start: 0x89C100, type: snap_sprite, header_rom: 0x89C918}
-      - {start: 0x89C960, type: snap_sprite, header_rom: 0x89D178}
-      - {start: 0x89D1C0, type: snap_sprite, header_rom: 0x89D2F8}
-      - {start: 0x89D340, type: snap_sprite, header_rom: 0x89D478}
-      - {start: 0x89D4C0, type: snap_sprite, header_rom: 0x89DCD8}
-      - {start: 0x89DD20, type: snap_sprite, header_rom: 0x89ED10}
-      - {start: 0x89ED58, type: snap_sprite, header_rom: 0x8A60F0}
+      - {start: 0x89C100, type: snap_sprite, header_rom: 0x89C918, name: camera_check_mark_album}
+      - {start: 0x89C960, type: snap_sprite, header_rom: 0x89D178, name: camera_check_mark_oak}
+      - {start: 0x89D1C0, type: snap_sprite, header_rom: 0x89D2F8, name: camera_check_mark_album_sm}
+      - {start: 0x89D340, type: snap_sprite, header_rom: 0x89D478, name: camera_check_mark_oak_sm}
+      - {start: 0x89D4C0, type: snap_sprite, header_rom: 0x89DCD8, name: camera_check_cross}
+      - {start: 0x89DD20, type: snap_sprite, header_rom: 0x89ED10, name: camera_check_frame_sm_fill}
+      - {start: 0x89ED58, type: snap_sprite, header_rom: 0x8A60F0, name: camera_check_frame_fill}
     - [0x8A6150, .data, 87D1A0]
     - [0x8A61E0, data]
 
@@ -9898,111 +9898,111 @@ segments:
       type: .data
       start: 0x8AC010
       subsegments:
-      - {start: 0x8AC010, type: snap_sprite, header_rom: 0x8D1DB0}
-      - {start: 0x8D1DF8, type: snap_sprite, header_rom: 0x8E46C0}
-      - {start: 0x8E4708, type: snap_sprite, header_rom: 0x8E7D68}
-      - {start: 0x8E7DB0, type: snap_sprite, header_rom: 0x8EE758}
-      - {start: 0x8EE7A0, type: snap_sprite, header_rom: 0x8F0AE8}
-      - {start: 0x8F0B30, type: snap_sprite, header_rom: 0x8F2E78}
-      - {start: 0x8F2EC0, type: snap_sprite, header_rom: 0x8F5208}
-      - {start: 0x8F5250, type: snap_sprite, header_rom: 0x8F7598}
-      - {start: 0x8F75E0, type: snap_sprite, header_rom: 0x8F9928}
-      - {start: 0x8F9970, type: snap_sprite, header_rom: 0x8FBCB8}
-      - {start: 0x8FBD00, type: snap_sprite, header_rom: 0x8FE048}
-      - {start: 0x8FE090, type: snap_sprite, header_rom: 0x8FEF18}
-      - {start: 0x8FEF60, type: snap_sprite, header_rom: 0x9012A8}
-      - {start: 0x9012F0, type: snap_sprite, header_rom: 0x903638}
-      - {start: 0x903680, type: snap_sprite, header_rom: 0x9059C8}
-      - {start: 0x905A10, type: snap_sprite, header_rom: 0x906898}
-      - {start: 0x9068E0, type: snap_sprite, header_rom: 0x907768}
-      - {start: 0x9077B0, type: snap_sprite, header_rom: 0x908638}
-      - {start: 0x908680, type: snap_sprite, header_rom: 0x909508}
-      - {start: 0x909550, type: snap_sprite, header_rom: 0x90B898}
-      - {start: 0x90B8E0, type: snap_sprite, header_rom: 0x90C138}
-      - {start: 0x90C180, type: snap_sprite, header_rom: 0x90C9D8}
-      - {start: 0x90CA20, type: snap_sprite, header_rom: 0x90D278}
-      - {start: 0x90D2C0, type: snap_sprite, header_rom: 0x90DB18}
-      - {start: 0x90DB60, type: snap_sprite, header_rom: 0x90E3B8}
-      - {start: 0x90E400, type: snap_sprite, header_rom: 0x90EC58}
-      - {start: 0x90ECA0, type: snap_sprite, header_rom: 0x90F258}
-      - {start: 0x90F2A0, type: snap_sprite, header_rom: 0x90F858}
-      - {start: 0x90F8A0, type: snap_sprite, header_rom: 0x90FE58}
-      - {start: 0x90FEA0, type: snap_sprite, header_rom: 0x910458}
-      - {start: 0x9104A0, type: snap_sprite, header_rom: 0x910A58}
-      - {start: 0x910AA0, type: snap_sprite, header_rom: 0x911058}
-      - {start: 0x9110A0, type: snap_sprite, header_rom: 0x911658}
-      - {start: 0x9116A0, type: snap_sprite, header_rom: 0x911C58}
-      - {start: 0x911CA0, type: snap_sprite, header_rom: 0x912258}
-      - {start: 0x9122A0, type: snap_sprite, header_rom: 0x912858}
-      - {start: 0x9128A0, type: snap_sprite, header_rom: 0x912E58}
-      - {start: 0x912EA0, type: snap_sprite, header_rom: 0x913458}
-      - {start: 0x9134A0, type: snap_sprite, header_rom: 0x913A58}
-      - {start: 0x913AA0, type: snap_sprite, header_rom: 0x914058}
-      - {start: 0x9140A0, type: snap_sprite, header_rom: 0x9160B0}
-      - {start: 0x9160F8, type: snap_sprite, header_rom: 0x918108}
-      - {start: 0x918150, type: snap_sprite, header_rom: 0x91A160}
-      - {start: 0x91A1A8, type: snap_sprite, header_rom: 0x91C1B8}
-      - {start: 0x91C200, type: snap_sprite, header_rom: 0x91E210}
-      - {start: 0x91E258, type: snap_sprite, header_rom: 0x920268}
-      - {start: 0x9202B0, type: snap_sprite, header_rom: 0x9222C0}
-      - {start: 0x922308, type: snap_sprite, header_rom: 0x924318}
-      - {start: 0x924360, type: snap_sprite, header_rom: 0x925420}
-      - {start: 0x925468, type: snap_sprite, header_rom: 0x926528}
-      - {start: 0x926570, type: snap_sprite, header_rom: 0x927630}
-      - {start: 0x927678, type: snap_sprite, header_rom: 0x928738}
-      - {start: 0x928780, type: snap_sprite, header_rom: 0x929840}
-      - {start: 0x929888, type: snap_sprite, header_rom: 0x92A948}
-      - {start: 0x92A990, type: snap_sprite, header_rom: 0x92BA50}
-      - {start: 0x92BA98, type: snap_sprite, header_rom: 0x92CB58}
-      - {start: 0x92CBA0, type: snap_sprite, header_rom: 0x92DC60}
-      - {start: 0x92DCA8, type: snap_sprite, header_rom: 0x92ED68}
-      - {start: 0x92EDB0, type: snap_sprite, header_rom: 0x92FE70}
-      - {start: 0x92FEB8, type: snap_sprite, header_rom: 0x955C58}
-      - {start: 0x955CA0, type: snap_sprite, header_rom: 0x957CB0}
-      - {start: 0x957CF8, type: snap_sprite, header_rom: 0x958DB8}
-      - {start: 0x958E00, type: snap_sprite, header_rom: 0x959EC0}
-      - {start: 0x959F08, type: snap_sprite, header_rom: 0x95AFC8}
+      - {start: 0x8AC010, type: snap_sprite, header_rom: 0x8D1DB0, name: lab_bg}
+      - {start: 0x8D1DF8, type: snap_sprite, header_rom: 0x8E46C0, name: lab_oak}
+      - {start: 0x8E4708, type: snap_sprite, header_rom: 0x8E7D68, name: lab_screen}
+      - {start: 0x8E7DB0, type: snap_sprite, header_rom: 0x8EE758, name: lab_save_error}
+      - {start: 0x8EE7A0, type: snap_sprite, header_rom: 0x8F0AE8, name: lab_stage_tunnel}
+      - {start: 0x8F0B30, type: snap_sprite, header_rom: 0x8F2E78, name: lab_stage_river}
+      - {start: 0x8F2EC0, type: snap_sprite, header_rom: 0x8F5208, name: lab_stage_cave}
+      - {start: 0x8F5250, type: snap_sprite, header_rom: 0x8F7598, name: map_stage_rainbow_cloud}
+      - {start: 0x8F75E0, type: snap_sprite, header_rom: 0x8F9928, name: lab_stage_valley}
+      - {start: 0x8F9970, type: snap_sprite, header_rom: 0x8FBCB8, name: lab_stage_beach}
+      - {start: 0x8FBD00, type: snap_sprite, header_rom: 0x8FE048, name: lab_stage_vulcano}
+      - {start: 0x8FE090, type: snap_sprite, header_rom: 0x8FEF18, name: lab_screen_album}
+      - {start: 0x8FEF60, type: snap_sprite, header_rom: 0x9012A8, name: lab_screen_island}
+      - {start: 0x9012F0, type: snap_sprite, header_rom: 0x903638, name: lab_screen_zero_one}
+      - {start: 0x903680, type: snap_sprite, header_rom: 0x9059C8, name: lab_screen_end_gate}
+      - {start: 0x905A10, type: snap_sprite, header_rom: 0x906898, name: lab_screen_engine}
+      - {start: 0x9068E0, type: snap_sprite, header_rom: 0x907768, name: lab_screen_apple}
+      - {start: 0x9077B0, type: snap_sprite, header_rom: 0x908638, name: lab_screen_pester_ball}
+      - {start: 0x908680, type: snap_sprite, header_rom: 0x909508, name: lab_screen_pokeflute}
+      - {start: 0x909550, type: snap_sprite, header_rom: 0x90B898, name: lab_screen_bg}
+      - {start: 0x90B8E0, type: snap_sprite, header_rom: 0x90C138, name: lab_oak_mouth_0}
+      - {start: 0x90C180, type: snap_sprite, header_rom: 0x90C9D8, name: lab_oak_mouth_1}
+      - {start: 0x90CA20, type: snap_sprite, header_rom: 0x90D278, name: lab_oak_mouth_2}
+      - {start: 0x90D2C0, type: snap_sprite, header_rom: 0x90DB18, name: lab_oak_mouth_3}
+      - {start: 0x90DB60, type: snap_sprite, header_rom: 0x90E3B8, name: lab_oak_mouth_4}
+      - {start: 0x90E400, type: snap_sprite, header_rom: 0x90EC58, name: lab_oak_mouth_5}
+      - {start: 0x90ECA0, type: snap_sprite, header_rom: 0x90F258, name: lab_oak_mouth_6}
+      - {start: 0x90F2A0, type: snap_sprite, header_rom: 0x90F858, name: lab_oak_eyes_0}
+      - {start: 0x90F8A0, type: snap_sprite, header_rom: 0x90FE58, name: lab_oak_eyes_1}
+      - {start: 0x90FEA0, type: snap_sprite, header_rom: 0x910458, name: lab_oak_eyes_2}
+      - {start: 0x9104A0, type: snap_sprite, header_rom: 0x910A58, name: lab_oak_eyes_3}
+      - {start: 0x910AA0, type: snap_sprite, header_rom: 0x911058, name: lab_oak_eyes_4}
+      - {start: 0x9110A0, type: snap_sprite, header_rom: 0x911658, name: lab_oak_eyes_5}
+      - {start: 0x9116A0, type: snap_sprite, header_rom: 0x911C58, name: lab_oak_eyes_6}
+      - {start: 0x911CA0, type: snap_sprite, header_rom: 0x912258, name: lab_oak_eyes_7}
+      - {start: 0x9122A0, type: snap_sprite, header_rom: 0x912858, name: lab_oak_eyes_8}
+      - {start: 0x9128A0, type: snap_sprite, header_rom: 0x912E58, name: lab_oak_eyes_9}
+      - {start: 0x912EA0, type: snap_sprite, header_rom: 0x913458, name: lab_oak_eyes_10}
+      - {start: 0x9134A0, type: snap_sprite, header_rom: 0x913A58, name: lab_oak_eyes_11}
+      - {start: 0x913AA0, type: snap_sprite, header_rom: 0x914058, name: lab_oak_eyes_12}
+      - {start: 0x9140A0, type: snap_sprite, header_rom: 0x9160B0, name: map_zero_one_0}
+      - {start: 0x9160F8, type: snap_sprite, header_rom: 0x918108, name: map_zero_one_1}
+      - {start: 0x918150, type: snap_sprite, header_rom: 0x91A160, name: map_zero_one_2}
+      - {start: 0x91A1A8, type: snap_sprite, header_rom: 0x91C1B8, name: map_zero_one_3}
+      - {start: 0x91C200, type: snap_sprite, header_rom: 0x91E210, name: map_zero_one_4}
+      - {start: 0x91E258, type: snap_sprite, header_rom: 0x920268, name: map_zero_one_5}
+      - {start: 0x9202B0, type: snap_sprite, header_rom: 0x9222C0, name: map_zero_one_6}
+      - {start: 0x922308, type: snap_sprite, header_rom: 0x924318, name: map_zero_one_7}
+      - {start: 0x924360, type: snap_sprite, header_rom: 0x925420, name: map_todd_0}
+      - {start: 0x925468, type: snap_sprite, header_rom: 0x926528, name: map_todd_1}
+      - {start: 0x926570, type: snap_sprite, header_rom: 0x927630, name: map_todd_2}
+      - {start: 0x927678, type: snap_sprite, header_rom: 0x928738, name: map_todd_3}
+      - {start: 0x928780, type: snap_sprite, header_rom: 0x929840, name: map_todd_4}
+      - {start: 0x929888, type: snap_sprite, header_rom: 0x92A948, name: map_todd_5}
+      - {start: 0x92A990, type: snap_sprite, header_rom: 0x92BA50, name: map_todd_6}
+      - {start: 0x92BA98, type: snap_sprite, header_rom: 0x92CB58, name: map_todd_7}
+      - {start: 0x92CBA0, type: snap_sprite, header_rom: 0x92DC60, name: map_todd_8}
+      - {start: 0x92DCA8, type: snap_sprite, header_rom: 0x92ED68, name: map_todd_9}
+      - {start: 0x92EDB0, type: snap_sprite, header_rom: 0x92FE70, name: map_todd_10}
+      - {start: 0x92FEB8, type: snap_sprite, header_rom: 0x955C58, name: map_bg}
+      - {start: 0x955CA0, type: snap_sprite, header_rom: 0x957CB0, name: map_zero_one_8}
+      - {start: 0x957CF8, type: snap_sprite, header_rom: 0x958DB8, name: map_todd_11}
+      - {start: 0x958E00, type: snap_sprite, header_rom: 0x959EC0, name: map_todd_12}
+      - {start: 0x959F08, type: snap_sprite, header_rom: 0x95AFC8, name: map_todd_13}
     - [0x95B070, data]
     - [0x95B530, .data, 8A9CC0]
     - name: more_sprites
       type: .data
       start: 0x95B6C0
       subsegments:
-      - {start: 0x95B6C0, type: snap_sprite, header_rom: 0x95D6D0}
-      - {start: 0x95D718, type: snap_sprite, header_rom: 0x95E7D8}
-      - {start: 0x95E820, type: snap_sprite, header_rom: 0x95F8E0}
-      - {start: 0x95F928, type: snap_sprite, header_rom: 0x9609E8}
-      - {start: 0x960A30, type: snap_sprite, header_rom: 0x961AF0}
-      - {start: 0x961B38, type: snap_sprite, header_rom: 0x962BF8}
-      - {start: 0x962C40, type: snap_sprite, header_rom: 0x963D00}
-      - {start: 0x963D48, type: snap_sprite, header_rom: 0x964E08}
-      - {start: 0x964E50, type: snap_sprite, header_rom: 0x965F10}
-      - {start: 0x965F58, type: snap_sprite, header_rom: 0x967018}
-      - {start: 0x967060, type: snap_sprite, header_rom: 0x968120}
-      - {start: 0x968168, type: snap_sprite, header_rom: 0x969228}
-      - {start: 0x969270, type: snap_sprite, header_rom: 0x96A330}
-      - {start: 0x96A378, type: snap_sprite, header_rom: 0x96B438}
-      - {start: 0x96B480, type: snap_sprite, header_rom: 0x96C540}
-      - {start: 0x96C588, type: snap_sprite, header_rom: 0x96D648}
-      - {start: 0x96D690, type: snap_sprite, header_rom: 0x96E750}
-      - {start: 0x96E798, type: snap_sprite, header_rom: 0x96F858}
-      - {start: 0x96F8A0, type: snap_sprite, header_rom: 0x970960}
-      - {start: 0x9709A8, type: snap_sprite, header_rom: 0x9729B8}
-      - {start: 0x972A00, type: snap_sprite, header_rom: 0x974A10}
-      - {start: 0x974A58, type: snap_sprite, header_rom: 0x976A68}
-      - {start: 0x976AB0, type: snap_sprite, header_rom: 0x978AC0}
-      - {start: 0x978B08, type: snap_sprite, header_rom: 0x97AB18}
-      - {start: 0x97AB60, type: snap_sprite, header_rom: 0x97CB70}
-      - {start: 0x97CBB8, type: snap_sprite, header_rom: 0x97EBC8}
-      - {start: 0x97EC10, type: snap_sprite, header_rom: 0x980C20}
-      - {start: 0x980C68, type: snap_sprite, header_rom: 0x982C78}
-      - {start: 0x982CC0, type: snap_sprite, header_rom: 0x9845B0}
-      - {start: 0x9845F8, type: snap_sprite, header_rom: 0x9856B8}
-      - {start: 0x985700, type: snap_sprite, header_rom: 0x9867C0}
-      - {start: 0x986808, type: snap_sprite, header_rom: 0x9878C8}
-      - {start: 0x987910, type: snap_sprite, header_rom: 0x9889D0}
-      - {start: 0x988A18, type: snap_sprite, header_rom: 0x989AD8}
-      - {start: 0x989B20, type: snap_sprite, header_rom: 0x98ABE0}
+      - {start: 0x95B6C0, type: snap_sprite, header_rom: 0x95D6D0, name: map_zero_one_9}
+      - {start: 0x95D718, type: snap_sprite, header_rom: 0x95E7D8, name: map_todd_14}
+      - {start: 0x95E820, type: snap_sprite, header_rom: 0x95F8E0, name: map_todd_15}
+      - {start: 0x95F928, type: snap_sprite, header_rom: 0x9609E8, name: map_todd_16}
+      - {start: 0x960A30, type: snap_sprite, header_rom: 0x961AF0, name: map_todd_17}
+      - {start: 0x961B38, type: snap_sprite, header_rom: 0x962BF8, name: map_todd_18}
+      - {start: 0x962C40, type: snap_sprite, header_rom: 0x963D00, name: map_todd_19}
+      - {start: 0x963D48, type: snap_sprite, header_rom: 0x964E08, name: map_todd_20}
+      - {start: 0x964E50, type: snap_sprite, header_rom: 0x965F10, name: map_todd_21}
+      - {start: 0x965F58, type: snap_sprite, header_rom: 0x967018, name: map_todd_22}
+      - {start: 0x967060, type: snap_sprite, header_rom: 0x968120, name: map_todd_23}
+      - {start: 0x968168, type: snap_sprite, header_rom: 0x969228, name: map_todd_24}
+      - {start: 0x969270, type: snap_sprite, header_rom: 0x96A330, name: map_todd_25}
+      - {start: 0x96A378, type: snap_sprite, header_rom: 0x96B438, name: map_todd_26}
+      - {start: 0x96B480, type: snap_sprite, header_rom: 0x96C540, name: map_todd_27}
+      - {start: 0x96C588, type: snap_sprite, header_rom: 0x96D648, name: map_todd_28}
+      - {start: 0x96D690, type: snap_sprite, header_rom: 0x96E750, name: map_todd_29}
+      - {start: 0x96E798, type: snap_sprite, header_rom: 0x96F858, name: map_todd_30}
+      - {start: 0x96F8A0, type: snap_sprite, header_rom: 0x970960, name: map_todd_31}
+      - {start: 0x9709A8, type: snap_sprite, header_rom: 0x9729B8, name: map_zero_one_10}
+      - {start: 0x972A00, type: snap_sprite, header_rom: 0x974A10, name: map_zero_one_11}
+      - {start: 0x974A58, type: snap_sprite, header_rom: 0x976A68, name: map_zero_one_12}
+      - {start: 0x976AB0, type: snap_sprite, header_rom: 0x978AC0, name: map_zero_one_13}
+      - {start: 0x978B08, type: snap_sprite, header_rom: 0x97AB18, name: map_zero_one_14}
+      - {start: 0x97AB60, type: snap_sprite, header_rom: 0x97CB70, name: map_zero_one_15}
+      - {start: 0x97CBB8, type: snap_sprite, header_rom: 0x97EBC8, name: map_zero_one_16}
+      - {start: 0x97EC10, type: snap_sprite, header_rom: 0x980C20, name: map_zero_one_17}
+      - {start: 0x980C68, type: snap_sprite, header_rom: 0x982C78, name: map_zero_one_18}
+      - {start: 0x982CC0, type: snap_sprite, header_rom: 0x9845B0, name: map_rainbow_cloud}
+      - {start: 0x9845F8, type: snap_sprite, header_rom: 0x9856B8, name: map_oak_0}
+      - {start: 0x985700, type: snap_sprite, header_rom: 0x9867C0, name: map_oak_1}
+      - {start: 0x986808, type: snap_sprite, header_rom: 0x9878C8, name: map_oak_2}
+      - {start: 0x987910, type: snap_sprite, header_rom: 0x9889D0, name: map_oak_3}
+      - {start: 0x988A18, type: snap_sprite, header_rom: 0x989AD8, name: map_oak_4}
+      - {start: 0x989B20, type: snap_sprite, header_rom: 0x98ABE0, name: map_oak_5}
     - [0x98AC70, data]
     - [0x98AD50, rodata] # unreferenced string
     - [0x98AD70, .rodata, 8A7360]
@@ -10031,18 +10031,18 @@ segments:
       subsegments:
       - {start: 0x994F30, type: snap_sprite, header_rom: 0x9952C0}
       - {start: 0x995308, type: snap_sprite, header_rom: 0x995668}
-      - {start: 0x9956B0, type: snap_sprite, header_rom: 0x995820}
-      - {start: 0x995868, type: snap_sprite, header_rom: 0x995950}
-      - {start: 0x995998, type: snap_sprite, header_rom: 0x9A1DE8}
-      - {start: 0x9A1E30, type: snap_sprite, header_rom: 0x9A2120}
-      - {start: 0x9A2168, type: snap_sprite, header_rom: 0x9A2380}
-      - {start: 0x9A23C8, type: snap_sprite, header_rom: 0x9A2460}
-      - {start: 0x9A24A8, type: snap_sprite, header_rom: 0x9A2540}
+      - {start: 0x9956B0, type: snap_sprite, header_rom: 0x995820, name: photo_check_frame_vertical}
+      - {start: 0x995868, type: snap_sprite, header_rom: 0x995950, name: photo_check_frame_horizontal}
+      - {start: 0x995998, type: snap_sprite, header_rom: 0x9A1DE8, name: photo_check_title}
+      - {start: 0x9A1E30, type: snap_sprite, header_rom: 0x9A2120, name: photo_check_new}
+      - {start: 0x9A2168, type: snap_sprite, header_rom: 0x9A2380, name: photo_check_bg}
+      - {start: 0x9A23C8, type: snap_sprite, header_rom: 0x9A2460, name: photo_check_score_bg}
+      - {start: 0x9A24A8, type: snap_sprite, header_rom: 0x9A2540, name: photo_check_scrim}
     - name: 98C330
       type: .data
       start: 0x9A35C0
       subsegments:
-      - {start: 0x9A2590, type: snap_sprite, header_rom: 0x9A3580}
+      - {start: 0x9A2590, type: snap_sprite, header_rom: 0x9A3580, name: photo_check_frame_fill}
     - [0x9A38D0, .data, 98D0F0]
     - [0x9A3C10, .rodata, 98C330]
     - [0x9A5AA0, .rodata, 98D0F0]
@@ -10065,29 +10065,29 @@ segments:
       type: .data
       start: 0x9AE550
       subsegments:
-      - {start: 0x9AE550, type: snap_sprite, header_rom: 0x9AE768}
-      - {start: 0x9AE7B0, type: snap_sprite, header_rom: 0x9B77A0}
-      - {start: 0x9B77E8, type: snap_sprite, header_rom: 0x9BCF78}
-      - {start: 0x9BCFC0, type: snap_sprite, header_rom: 0x9BD1D8}
-      - {start: 0x9BD220, type: snap_sprite, header_rom: 0x9BD358}
-      - {start: 0x9BD3A0, type: snap_sprite, header_rom: 0x9BD4D8}
-      - {start: 0x9BD520, type: snap_sprite, header_rom: 0x9BD658}
-      - {start: 0x9BD6A0, type: snap_sprite, header_rom: 0x9BD7D8}
-      - {start: 0x9BD820, type: snap_sprite, header_rom: 0x9C0DA0}
-      - {start: 0x9C0DE8, type: snap_sprite, header_rom: 0x9C5420}
+      - {start: 0x9AE550, type: snap_sprite, header_rom: 0x9AE768, name: album_bg_red}
+      - {start: 0x9AE7B0, type: snap_sprite, header_rom: 0x9B77A0, name: album_silhouette}
+      - {start: 0x9B77E8, type: snap_sprite, header_rom: 0x9BCF78, name: album_title}
+      - {start: 0x9BCFC0, type: snap_sprite, header_rom: 0x9BD1D8, name: album_bg_tan}
+      - {start: 0x9BD220, type: snap_sprite, header_rom: 0x9BD358, name: album_photo_corner_tl}
+      - {start: 0x9BD3A0, type: snap_sprite, header_rom: 0x9BD4D8, name: album_photo_corner_tr}
+      - {start: 0x9BD520, type: snap_sprite, header_rom: 0x9BD658, name: album_photo_corner_bl}
+      - {start: 0x9BD6A0, type: snap_sprite, header_rom: 0x9BD7D8, name: album_photo_corner_br}
+      - {start: 0x9BD820, type: snap_sprite, header_rom: 0x9C0DA0, name: album_comment_bg}
+      - {start: 0x9C0DE8, type: snap_sprite, header_rom: 0x9C5420, name: album_desc_bg}
       - {start: 0x9C5468, type: snap_sprite, header_rom: 0x9C9C60}
       - {start: 0x9C9CA8, type: snap_sprite, header_rom: 0x9C9E00}
-      - {start: 0x9C9E48, type: snap_sprite, header_rom: 0x9C9ED0}
-      - {start: 0x9C9F18, type: snap_sprite, header_rom: 0x9CA2A8}
-      - {start: 0x9CA2F0, type: snap_sprite, header_rom: 0x9CA650}
-      - {start: 0x9CA698, type: snap_sprite, header_rom: 0x9CA808}
+      - {start: 0x9C9E48, type: snap_sprite, header_rom: 0x9C9ED0, name: album_cursor}
+      - {start: 0x9C9F18, type: snap_sprite, header_rom: 0x9CA2A8, name: album_frame_vertical}
+      - {start: 0x9CA2F0, type: snap_sprite, header_rom: 0x9CA650, name: album_frame_horizontal}
+      - {start: 0x9CA698, type: snap_sprite, header_rom: 0x9CA808, name: album_frame_sm_vertical}
     - start: 0x9CA850
       name: 9A6F70
       type: .data
       subsegments:
-      - {start: 0x9CA850, type: snap_sprite, header_rom: 0x9CA938}
-      - {start: 0x9CA988, type: snap_sprite, header_rom: 0x9CB978}
-      - {start: 0x9CB9C8, type: snap_sprite, header_rom: 0x9D2D60}
+      - {start: 0x9CA850, type: snap_sprite, header_rom: 0x9CA938, name: album_frame_sm_horizontal}
+      - {start: 0x9CA988, type: snap_sprite, header_rom: 0x9CB978, name: album_frame_sm_fill}
+      - {start: 0x9CB9C8, type: snap_sprite, header_rom: 0x9D2D60, name: album_frame_fill}
     - [0x9D2DE0, .data, 9ABB50]
     - [0x9D2E90, .data, 9ADAD0]
     - [0x9D2EA0, .rodata, 9A6F70]
@@ -10109,30 +10109,30 @@ segments:
       type: .data
       start: 0x9DA6A0
       subsegments:
-      - {start: 0x9DA6A0, type: snap_sprite, header_rom: 0x9DA8B8}
-      - {start: 0x9DA900, type: snap_sprite, header_rom: 0x9DF8E0}
-      - {start: 0x9DF928, type: snap_sprite, header_rom: 0x9E46D0}
-      - {start: 0x9E4718, type: snap_sprite, header_rom: 0x9E4860}
-      - {start: 0x9E48A8, type: snap_sprite, header_rom: 0x9E4AC0}
-      - {start: 0x9E4B08, type: snap_sprite, header_rom: 0x9E6140}
-      - {start: 0x9E6188, type: snap_sprite, header_rom: 0x9E77C0}
-      - {start: 0x9E7808, type: snap_sprite, header_rom: 0x9E8BE8}
-      - {start: 0x9E8C30, type: snap_sprite, header_rom: 0x9EA010}
-      - {start: 0x9EA058, type: snap_sprite, header_rom: 0x9EA1D0}
-      - {start: 0x9EA218, type: snap_sprite, header_rom: 0x9EA380}
-      - {start: 0x9EA3C8, type: snap_sprite, header_rom: 0x9EA500}
-      - {start: 0x9EA548, type: snap_sprite, header_rom: 0x9EB6B8}
-      - {start: 0x9EB700, type: snap_sprite, header_rom: 0x9EBA90}
-      - {start: 0x9EBAD8, type: snap_sprite, header_rom: 0x9EBE38}
-      - {start: 0x9EBE80, type: snap_sprite, header_rom: 0x9EBFF0}
-      - {start: 0x9EC038, type: snap_sprite, header_rom: 0x9EC120}
-      - {start: 0x9EC168, type: snap_sprite, header_rom: 0x9ED158}
-      - {start: 0x9ED1A0, type: snap_sprite, header_rom: 0x9EE190}
-      - {start: 0x9EE1D8, type: snap_sprite, header_rom: 0x9EF1C8}
-      - {start: 0x9EF210, type: snap_sprite, header_rom: 0x9F0200}
-      - {start: 0x9F0248, type: snap_sprite, header_rom: 0x9F1238}
-      - {start: 0x9F1280, type: snap_sprite, header_rom: 0x9F2270}
-      - {start: 0x9F22C0, type: snap_sprite, header_rom: 0x9F9658}
+      - {start: 0x9DA6A0, type: snap_sprite, header_rom: 0x9DA8B8, name: report_bg}
+      - {start: 0x9DA900, type: snap_sprite, header_rom: 0x9DF8E0, name: report_title}
+      - {start: 0x9DF928, type: snap_sprite, header_rom: 0x9E46D0, name: report_silhouette}
+      - {start: 0x9E4718, type: snap_sprite, header_rom: 0x9E4860, name: report_divider}
+      - {start: 0x9E48A8, type: snap_sprite, header_rom: 0x9E4AC0, name: report_bg_alt}
+      - {start: 0x9E4B08, type: snap_sprite, header_rom: 0x9E6140, name: report_best_shot_left}
+      - {start: 0x9E6188, type: snap_sprite, header_rom: 0x9E77C0, name: report_best_shot_right}
+      - {start: 0x9E7808, type: snap_sprite, header_rom: 0x9E8BE8, name: report_best_shot_top}
+      - {start: 0x9E8C30, type: snap_sprite, header_rom: 0x9EA010, name: report_best_shot_bottom}
+      - {start: 0x9EA058, type: snap_sprite, header_rom: 0x9EA1D0, name: report_divider_vertical}
+      - {start: 0x9EA218, type: snap_sprite, header_rom: 0x9EA380, name: report_divider_horizontal}
+      - {start: 0x9EA3C8, type: snap_sprite, header_rom: 0x9EA500, name: report_row_icon}
+      - {start: 0x9EA548, type: snap_sprite, header_rom: 0x9EB6B8, name: report_row_fill}
+      - {start: 0x9EB700, type: snap_sprite, header_rom: 0x9EBA90, name: report_frame_vertical}
+      - {start: 0x9EBAD8, type: snap_sprite, header_rom: 0x9EBE38, name: report_frame_horizontal}
+      - {start: 0x9EBE80, type: snap_sprite, header_rom: 0x9EBFF0, name: report_frame_sm_vertical}
+      - {start: 0x9EC038, type: snap_sprite, header_rom: 0x9EC120, name: report_frame_sm_horizontal}
+      - {start: 0x9EC168, type: snap_sprite, header_rom: 0x9ED158, name: report_sign_kingler}
+      - {start: 0x9ED1A0, type: snap_sprite, header_rom: 0x9EE190, name: report_sign_pinsir}
+      - {start: 0x9EE1D8, type: snap_sprite, header_rom: 0x9EF1C8, name: report_sign_koffing}
+      - {start: 0x9EF210, type: snap_sprite, header_rom: 0x9F0200, name: report_sign_cubone}
+      - {start: 0x9F0248, type: snap_sprite, header_rom: 0x9F1238, name: report_sign_mewtwo}
+      - {start: 0x9F1280, type: snap_sprite, header_rom: 0x9F2270, name: report_sign_dugtrio}
+      - {start: 0x9F22C0, type: snap_sprite, header_rom: 0x9F9658, name: report_large_fill}
     - [0x9F96A0, data]
 
     - [0x9F9990, .rodata, 9D3660]
@@ -10157,17 +10157,17 @@ segments:
       type: .data
       start: 0x9FF400
       subsegments:
-      - {start: 0x9FF400, type: snap_sprite, header_rom: 0xA05DA8}
-      - {start: 0xA05DF0, type: snap_sprite, header_rom: 0xA05F60}
-      - {start: 0xA05FA8, type: snap_sprite, header_rom: 0xA06090}
+      - {start: 0x9FF400, type: snap_sprite, header_rom: 0xA05DA8, name: gallery_save_error}
+      - {start: 0xA05DF0, type: snap_sprite, header_rom: 0xA05F60, name: gallery_frame_vertical}
+      - {start: 0xA05FA8, type: snap_sprite, header_rom: 0xA06090, name: gallery_frame_horizontal}
       - {start: 0xA060D8, type: snap_sprite, header_rom: 0xA062F0}
-      - {start: 0xA06338, type: snap_sprite, header_rom: 0xA06550}
+      - {start: 0xA06338, type: snap_sprite, header_rom: 0xA06550, name: gallery_bg_tan}
       - {start: 0xA06598, type: snap_sprite, header_rom: 0xA067B0}
-      - {start: 0xA067F8, type: snap_sprite, header_rom: 0xA06A10}
-      - {start: 0xA06A58, type: snap_sprite, header_rom: 0xA06C70}
+      - {start: 0xA067F8, type: snap_sprite, header_rom: 0xA06A10, name: gallery_bg_lavender}
+      - {start: 0xA06A58, type: snap_sprite, header_rom: 0xA06C70, name: gallery_bg_green}
       - {start: 0xA06CB8, type: snap_sprite, header_rom: 0xA06D50}
       - {start: 0xA06D98, type: snap_sprite, header_rom: 0xA06E30}
-      - {start: 0xA06E80, type: snap_sprite, header_rom: 0xA07E70}
+      - {start: 0xA06E80, type: snap_sprite, header_rom: 0xA07E70, name: gallery_frame_fill}
     - [0xA07EC0, data]
     - [0xA07F80, .rodata, 9FAC10]
     - [0xA08410, .rodata, 9FD510]
@@ -10226,9 +10226,9 @@ segments:
       start: 0xA5F070
       linker_section_order: .rodata
       subsegments:
-      - {start: 0xA5F070, type: snap_sprite, header_rom: 0xA84C30}
-      - {start: 0xA84C80, type: snap_sprite, header_rom: 0xA93348}
-      - {start: 0xA93390, type: snap_sprite, header_rom: 0xA93418}
+      - {start: 0xA5F070, type: snap_sprite, header_rom: 0xA84C30, name: new_game_bg}
+      - {start: 0xA84C80, type: snap_sprite, header_rom: 0xA93348, name: new_game_card}
+      - {start: 0xA93390, type: snap_sprite, header_rom: 0xA93418, name: new_game_cursor}
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
     - { name: sprite_bss, type: bss, vram: 0x80168150 } # TODO: fix with sprite generation
@@ -10254,12 +10254,12 @@ segments:
       type: .data
       start: 0xA95880
       subsegments:
-      - {start: 0xA95880, type: snap_sprite, header_rom: 0xA9CC18}
-      - {start: 0xA9CC60, type: snap_sprite, header_rom: 0xA9CFF0}
-      - {start: 0xA9D038, type: snap_sprite, header_rom: 0xA9D398}
+      - {start: 0xA95880, type: snap_sprite, header_rom: 0xA9CC18, name: credits_frame_fill}
+      - {start: 0xA9CC60, type: snap_sprite, header_rom: 0xA9CFF0, name: credits_frame_vertical}
+      - {start: 0xA9D038, type: snap_sprite, header_rom: 0xA9D398, name: credits_frame_horizontal}
       - [0xA9D3E8, rgba16, 'A9D3E8', 16, 10] # TODO: add odd-row swap
       - [0xA9D528]
-      - {start: 0xA9D6B0, type: snap_sprite, header_rom: 0xA9F710}
+      - {start: 0xA9D6B0, type: snap_sprite, header_rom: 0xA9F710, name: credits_nintendo_logo}
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
     - [0xAA0000, .rodata, A937C0]
@@ -10290,7 +10290,7 @@ segments:
       type: .data
       start: 0xAA20A0
       subsegments:
-      - {start: 0xAA20A0, type: snap_sprite, header_rom: 0xAAA4B8}
+      - {start: 0xAA20A0, type: snap_sprite, header_rom: 0xAAA4B8, name: snap_station_copyright}
     - [0xAAA500, data]
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 

@@ -1,133 +1,133 @@
 #include "common.h"
 #include "oaks_lab.h"
 
-#include "build/assets/oaks_lab/D_8010C590_8D1DB0.png.inc.h"
+#include "build/assets/oaks_lab/lab_bg.png.inc.h"
 static u8 aligner_0[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8011EEA0_8E46C0.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak.png.inc.h"
 static u8 aligner_1[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80122548_8E7D68.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen.png.inc.h"
 static u8 aligner_2[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80128F38_8EE758.png.inc.h"
+#include "build/assets/oaks_lab/lab_save_error.png.inc.h"
 static u8 aligner_3[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8012B2C8_8F0AE8.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_tunnel.png.inc.h"
 static u8 aligner_4[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8012D658_8F2E78.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_river.png.inc.h"
 static u8 aligner_5[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8012F9E8_8F5208.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_cave.png.inc.h"
 static u8 aligner_6[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80131D78_8F7598.png.inc.h"
+#include "build/assets/oaks_lab/map_stage_rainbow_cloud.png.inc.h"
 static u8 aligner_7[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80134108_8F9928.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_valley.png.inc.h"
 static u8 aligner_8[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80136498_8FBCB8.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_beach.png.inc.h"
 static u8 aligner_9[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80138828_8FE048.png.inc.h"
+#include "build/assets/oaks_lab/lab_stage_vulcano.png.inc.h"
 static u8 aligner_10[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801396F8_8FEF18.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_album.png.inc.h"
 static u8 aligner_11[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8013BA88_9012A8.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_island.png.inc.h"
 static u8 aligner_12[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8013DE18_903638.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_zero_one.png.inc.h"
 static u8 aligner_13[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801401A8_9059C8.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_end_gate.png.inc.h"
 static u8 aligner_14[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80141078_906898.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_engine.png.inc.h"
 static u8 aligner_15[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80141F48_907768.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_apple.png.inc.h"
 static u8 aligner_16[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80142E18_908638.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_pester_ball.png.inc.h"
 static u8 aligner_17[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80143CE8_909508.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_pokeflute.png.inc.h"
 static u8 aligner_18[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80146078_90B898.png.inc.h"
+#include "build/assets/oaks_lab/lab_screen_bg.png.inc.h"
 static u8 aligner_19[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80146918_90C138.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_0.png.inc.h"
 static u8 aligner_20[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801471B8_90C9D8.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_1.png.inc.h"
 static u8 aligner_21[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80147A58_90D278.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_2.png.inc.h"
 static u8 aligner_22[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801482F8_90DB18.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_3.png.inc.h"
 static u8 aligner_23[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80148B98_90E3B8.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_4.png.inc.h"
 static u8 aligner_24[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80149438_90EC58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_5.png.inc.h"
 static u8 aligner_25[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80149A38_90F258.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_mouth_6.png.inc.h"
 static u8 aligner_26[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014A038_90F858.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_0.png.inc.h"
 static u8 aligner_27[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014A638_90FE58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_1.png.inc.h"
 static u8 aligner_28[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014AC38_910458.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_2.png.inc.h"
 static u8 aligner_29[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014B238_910A58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_3.png.inc.h"
 static u8 aligner_30[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014B838_911058.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_4.png.inc.h"
 static u8 aligner_31[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014BE38_911658.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_5.png.inc.h"
 static u8 aligner_32[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014C438_911C58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_6.png.inc.h"
 static u8 aligner_33[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014CA38_912258.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_7.png.inc.h"
 static u8 aligner_34[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014D038_912858.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_8.png.inc.h"
 static u8 aligner_35[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014D638_912E58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_9.png.inc.h"
 static u8 aligner_36[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014DC38_913458.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_10.png.inc.h"
 static u8 aligner_37[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014E238_913A58.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_11.png.inc.h"
 static u8 aligner_38[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8014E838_914058.png.inc.h"
+#include "build/assets/oaks_lab/lab_oak_eyes_12.png.inc.h"
 static u8 aligner_39[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80150890_9160B0.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_0.png.inc.h"
 static u8 aligner_40[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801528E8_918108.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_1.png.inc.h"
 static u8 aligner_41[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80154940_91A160.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_2.png.inc.h"
 static u8 aligner_42[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80156998_91C1B8.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_3.png.inc.h"
 static u8 aligner_43[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801589F0_91E210.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_4.png.inc.h"
 static u8 aligner_44[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8015AA48_920268.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_5.png.inc.h"
 static u8 aligner_45[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8015CAA0_9222C0.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_6.png.inc.h"
 static u8 aligner_46[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8015EAF8_924318.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_7.png.inc.h"
 static u8 aligner_47[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8015FC00_925420.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_0.png.inc.h"
 static u8 aligner_48[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80160D08_926528.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_1.png.inc.h"
 static u8 aligner_49[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80161E10_927630.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_2.png.inc.h"
 static u8 aligner_50[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80162F18_928738.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_3.png.inc.h"
 static u8 aligner_51[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80164020_929840.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_4.png.inc.h"
 static u8 aligner_52[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80165128_92A948.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_5.png.inc.h"
 static u8 aligner_53[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80166230_92BA50.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_6.png.inc.h"
 static u8 aligner_54[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80167338_92CB58.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_7.png.inc.h"
 static u8 aligner_55[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80168440_92DC60.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_8.png.inc.h"
 static u8 aligner_56[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80169548_92ED68.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_9.png.inc.h"
 static u8 aligner_57[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_8016A650_92FE70.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_10.png.inc.h"
 static u8 aligner_58[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80190438_955C58.png.inc.h"
+#include "build/assets/oaks_lab/map_bg.png.inc.h"
 static u8 aligner_59[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80192490_957CB0.png.inc.h"
+#include "build/assets/oaks_lab/map_zero_one_8.png.inc.h"
 static u8 aligner_60[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_80193598_958DB8.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_11.png.inc.h"
 static u8 aligner_61[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801946A0_959EC0.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_12.png.inc.h"
 static u8 aligner_62[] = { 0, 0, 0, 0 };
-#include "build/assets/oaks_lab/D_801957A8_95AFC8.png.inc.h"
+#include "build/assets/oaks_lab/map_todd_13.png.inc.h"
 
 s32 D_801957EC_95B00C = 0;
 
@@ -203,43 +203,43 @@ void func_800E1CA0_8A74C0(GObj* arg0) {
 
 // Stage icons
 Bitmap* D_801957F4_95B014[] = {
-    D_80136498_8FBCB8_bitmaps,
-    D_8012B2C8_8F0AE8_bitmaps,
-    D_80138828_8FE048_bitmaps,
-    D_8012D658_8F2E78_bitmaps,
-    D_8012F9E8_8F5208_bitmaps,
-    D_80134108_8F9928_bitmaps,
-    D_80131D78_8F7598_bitmaps,
+    lab_stage_beach_bitmaps,
+    lab_stage_tunnel_bitmaps,
+    lab_stage_vulcano_bitmaps,
+    lab_stage_river_bitmaps,
+    lab_stage_cave_bitmaps,
+    lab_stage_valley_bitmaps,
+    map_stage_rainbow_cloud_bitmaps,
 };
 
 Bitmap* D_80195810_95B030[3][2] = {
-    D_801482F8_90DB18_bitmaps,
-    D_80146918_90C138_bitmaps,
-    D_80148B98_90E3B8_bitmaps,
-    D_801471B8_90C9D8_bitmaps,
-    D_80149438_90EC58_bitmaps,
-    D_80147A58_90D278_bitmaps,
+    lab_oak_mouth_3_bitmaps,
+    lab_oak_mouth_0_bitmaps,
+    lab_oak_mouth_4_bitmaps,
+    lab_oak_mouth_1_bitmaps,
+    lab_oak_mouth_5_bitmaps,
+    lab_oak_mouth_2_bitmaps,
 };
 Bitmap* D_80195828_95B048[5][2] = {
     {
-        D_8014B838_911058_bitmaps,
-        D_80149A38_90F258_bitmaps,
+        lab_oak_eyes_4_bitmaps,
+        lab_oak_mouth_6_bitmaps,
     },
     {
-        D_8014BE38_911658_bitmaps,
-        D_8014A038_90F858_bitmaps,
+        lab_oak_eyes_5_bitmaps,
+        lab_oak_eyes_0_bitmaps,
     },
     {
-        D_8014C438_911C58_bitmaps,
-        D_8014A638_90FE58_bitmaps,
+        lab_oak_eyes_6_bitmaps,
+        lab_oak_eyes_1_bitmaps,
     },
     {
-        D_8014E238_913A58_bitmaps,
-        D_8014D638_912E58_bitmaps,
+        lab_oak_eyes_11_bitmaps,
+        lab_oak_eyes_9_bitmaps,
     },
     {
-        D_8014E838_914058_bitmaps,
-        D_8014DC38_913458_bitmaps,
+        lab_oak_eyes_12_bitmaps,
+        lab_oak_eyes_10_bitmaps,
     },
 };
 
@@ -265,47 +265,47 @@ void func_800E1D68_8A7588(u32 arg0) {
             return;
         case 2:
             D_80206B28_9CC348[0]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[0]->sprite.bitmap = D_801396F8_8FEF18_bitmaps; // Album
+            D_80206B28_9CC348[0]->sprite.bitmap = lab_screen_album_bitmaps; // Album
             D_80206B28_9CC348[1]->sprite.attr |= SP_HIDDEN;
             return;
         case 3:
             D_80206B28_9CC348[0]->sprite.attr |= SP_HIDDEN;
             D_80206B28_9CC348[1]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[1]->sprite.bitmap = D_8013BA88_9012A8_bitmaps; // Island
+            D_80206B28_9CC348[1]->sprite.bitmap = lab_screen_island_bitmaps; // Island
             return;
         case 4:
             D_80206B28_9CC348[0]->sprite.attr |= SP_HIDDEN;
             D_80206B28_9CC348[1]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[1]->sprite.bitmap = D_8013DE18_903638_bitmaps; // zero-one
+            D_80206B28_9CC348[1]->sprite.bitmap = lab_screen_zero_one_bitmaps; // zero-one
             return;
         case 5:
             D_80206B28_9CC348[0]->sprite.attr |= SP_HIDDEN;
             D_80206B28_9CC348[1]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[1]->sprite.bitmap = D_80136498_8FBCB8_bitmaps; // Beach
+            D_80206B28_9CC348[1]->sprite.bitmap = lab_stage_beach_bitmaps; // Beach
             return;
         case 6:
             D_80206B28_9CC348[0]->sprite.attr |= SP_HIDDEN;
             D_80206B28_9CC348[1]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[1]->sprite.bitmap = D_801401A8_9059C8_bitmaps; // end gate
+            D_80206B28_9CC348[1]->sprite.bitmap = lab_screen_end_gate_bitmaps; // end gate
             return;
         case 7:
             D_80206B28_9CC348[0]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[0]->sprite.bitmap = D_80141F48_907768_bitmaps; // apple
+            D_80206B28_9CC348[0]->sprite.bitmap = lab_screen_apple_bitmaps; // apple
             D_80206B28_9CC348[1]->sprite.attr |= SP_HIDDEN;
             return;
         case 8:
             D_80206B28_9CC348[0]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[0]->sprite.bitmap = D_80142E18_908638_bitmaps; // pester ball
+            D_80206B28_9CC348[0]->sprite.bitmap = lab_screen_pester_ball_bitmaps; // pester ball
             D_80206B28_9CC348[1]->sprite.attr |= SP_HIDDEN;
             return;
         case 9:
             D_80206B28_9CC348[0]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[0]->sprite.bitmap = D_80143CE8_909508_bitmaps; // pokeflute
+            D_80206B28_9CC348[0]->sprite.bitmap = lab_screen_pokeflute_bitmaps; // pokeflute
             D_80206B28_9CC348[1]->sprite.attr |= SP_HIDDEN;
             return;
         case 10:
             D_80206B28_9CC348[0]->sprite.attr &= ~SP_HIDDEN;
-            D_80206B28_9CC348[0]->sprite.bitmap = D_80141078_906898_bitmaps; // engine
+            D_80206B28_9CC348[0]->sprite.bitmap = lab_screen_engine_bitmaps; // engine
             D_80206B28_9CC348[1]->sprite.attr |= SP_HIDDEN;
             return;
     }
@@ -522,30 +522,30 @@ void func_800E235C_8A7B7C(s32 arg0) {
 void func_800E2848_8A8068(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(func_800E2058_8A7878, 6, &D_8011EEA0_8E46C0_sprite)->data.sobj;
+    sobj = func_80371D14_8454C4(func_800E2058_8A7878, 6, &lab_oak_sprite)->data.sobj;
     D_80206B14_9CC334 = sobj;
     sobj->sprite.x = 100;
     sobj->sprite.y = 34;
 
-    sobj = func_80371E68_845618(sobj, &D_80149A38_90F258_sprite);
+    sobj = func_80371E68_845618(sobj, &lab_oak_mouth_6_sprite);
     sobj->sprite.x = 43;
     sobj->sprite.y = 32;
-    sobj = func_80371DC0_845570(sobj, &D_80146918_90C138_sprite);
+    sobj = func_80371DC0_845570(sobj, &lab_oak_mouth_0_sprite);
     sobj->sprite.x = 40;
     sobj->sprite.y = 50;
 
-    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &D_80122548_8E7D68_sprite)->data.sobj;
+    sobj = func_80371C68_845418(func_800E1CA0_8A74C0, 6, &lab_screen_sprite)->data.sobj;
     D_80206B18_9CC338 = sobj;
     sobj->sprite.x = 208;
     sobj->sprite.y = 13;
 
-    sobj = func_80371E68_845618(sobj, &D_80136498_8FBCB8_sprite);
+    sobj = func_80371E68_845618(sobj, &lab_stage_beach_sprite);
     sobj->sprite.x = 6;
     sobj->sprite.y = 6;
     sobj->sprite.attr |= SP_HIDDEN;
     D_80206B28_9CC348[1] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_80141F48_907768_sprite);
+    sobj = func_80371DC0_845570(sobj, &lab_screen_apple_sprite);
     sobj->sprite.x = 25;
     sobj->sprite.y = 13;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -744,7 +744,7 @@ void func_800E307C_8A889C(void) {
 void func_800E30B8_8A88D8(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(NULL, 6, &D_80128F38_8EE758_sprite)->data.sobj;
+    sobj = func_80371D14_8454C4(NULL, 6, &lab_save_error_sprite)->data.sobj;
     sobj->sprite.x = 40;
     sobj->sprite.y = 92;
     FocusMark_SetTargetPos(40, 92);
@@ -765,8 +765,8 @@ void func_800E30B8_8A88D8(void) {
 
 void func_800E3190_8A89B0(void) {
     func_800A85E8(func_800E2C0C_8A842C, LINK_6, DL_LINK_0, NULL);
-    D_80206B30_9CC350 = func_80371D14_8454C4(NULL, 6, &D_8010C590_8D1DB0_sprite)->data.sobj;
-    D_80206B10_9CC330 = func_80371D14_8454C4(NULL, 6, &D_80190438_955C58_sprite)->data.sobj;
+    D_80206B30_9CC350 = func_80371D14_8454C4(NULL, 6, &lab_bg_sprite)->data.sobj;
+    D_80206B10_9CC330 = func_80371D14_8454C4(NULL, 6, &map_bg_sprite)->data.sobj;
     func_800E2848_8A8068();
     func_800E66B8_8ABED8();
     func_8036EB8C_84233C(func_800E235C_8A7B7C);

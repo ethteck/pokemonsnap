@@ -35,26 +35,26 @@ typedef struct UnkTealFlounder {
     /* 0x1C */ SObj* unk_1C;
 } UnkTealFlounder; // size = 0x20
 
-extern Sprite D_camera_check_801F0560_sprite;
-extern Sprite D_camera_check_801FCC58_sprite;
-extern Sprite D_camera_check_801FCE78_sprite;
-extern Sprite D_camera_check_801FD088_sprite;
-extern Sprite D_camera_check_801FD408_sprite;
-extern Sprite D_camera_check_801FD4E8_sprite;
-extern Sprite D_camera_check_801FD5C8_sprite;
-extern Sprite D_camera_check_801FD6A8_sprite;
-extern Sprite D_camera_check_801FD9E0_sprite;
-extern Sprite D_camera_check_801FDDB8_sprite;
-extern Sprite D_camera_check_801FE160_sprite;
-extern Sprite D_camera_check_801FE318_sprite;
-extern Sprite D_camera_check_801FE448_sprite;
-extern Sprite D_camera_check_801FF128_sprite;
-extern Sprite D_camera_check_801FF988_sprite;
-extern Sprite D_camera_check_801FFB08_sprite;
-extern Sprite D_camera_check_801FFC88_sprite;
-extern Sprite D_camera_check_802004E8_sprite;
-extern Sprite D_camera_check_80201520_sprite;
-extern Sprite D_camera_check_80208900_sprite;
+extern Sprite camera_check_title_sprite;
+extern Sprite camera_check_background_sprite;
+extern Sprite camera_check_new_sm_sprite;
+extern Sprite camera_check_good_sprite;
+extern Sprite camera_check_container_sprite;
+extern Sprite camera_check_container_l_sprite;
+extern Sprite camera_check_container_tl_sprite;
+extern Sprite camera_check_container_t_sprite;
+extern Sprite camera_check_new_sprite;
+extern Sprite camera_check_frame_vertical_sprite;
+extern Sprite camera_check_frame_horizontal_sprite;
+extern Sprite camera_check_frame_sm_vertical_sprite;
+extern Sprite camera_check_frame_sm_horizontal_sprite;
+extern Sprite camera_check_mark_album_sprite;
+extern Sprite camera_check_mark_oak_sprite;
+extern Sprite camera_check_mark_album_sm_sprite;
+extern Sprite camera_check_mark_oak_sm_sprite;
+extern Sprite camera_check_cross_sprite;
+extern Sprite camera_check_frame_sm_fill_sprite;
+extern Sprite camera_check_frame_fill_sprite;
 
 extern s32 D_camera_check_802089F0;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);

@@ -4,8 +4,8 @@
 #include "sys/gtl.h"
 #include "../window/window.h"
 
-extern Sprite D_80117F98_A93348_sprite; // card
-extern Sprite D_80109880_A84C30_sprite; // background
+extern Sprite new_game_card_sprite; // card
+extern Sprite new_game_bg_sprite; // background
 
 // clang-format off
 char* D_800E2FF0[] = {
@@ -138,7 +138,7 @@ void func_800E18C4_A5CC74(void) {
 void func_800E18CC_A5CC7C(void) {
     SObj* sobj;
 
-    D_801180B4 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80109880_A84C30_sprite, 0, 0, 1);
+    D_801180B4 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &new_game_bg_sprite, 0, 0, 1);
     sobj = D_801180B4->data.sobj;
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 }
@@ -146,7 +146,7 @@ void func_800E18CC_A5CC7C(void) {
 void func_800E1950_A5CD00(void) {
     SObj* sobj;
 
-    D_801180B8 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_80117F98_A93348_sprite, 0, 0, 1);
+    D_801180B8 = ohCreateSprite(14, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &new_game_card_sprite, 0, 0, 1);
     sobj = D_801180B8->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 96, 21);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;

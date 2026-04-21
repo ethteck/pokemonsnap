@@ -2,8 +2,8 @@
 
 #define __ALIGNER_DF static Gfx __CONCAT2__(aligner, __LINE__)[] = { gsSPEndDisplayList() };
 
-#include "build/assets/app_level/font/D_8038C010_52C420.png.inc.h"
-#include "build/assets/app_level/font/D_80393628_533A38.png.inc.h"
+#include "build/assets/app_level/font/level_font_icons.png.inc.h"
+#include "build/assets/app_level/font/level_font.png.inc.h"
 
 u32 Msg_CameraObject = 0;
 u32 Msg_PosX = 0;

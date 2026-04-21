@@ -26,7 +26,7 @@ void func_credits_801DD93C(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_credits_801DCC00(gobj, &D_credits_801E8B50_sprite);
+    gobj = func_credits_801DCC00(gobj, &credits_nintendo_logo_sprite);
     D_credits_801ECCA0 = gobj;
     sobj = gobj->data.sobj;
     func_credits_801DD8C0(sobj);

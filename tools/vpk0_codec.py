@@ -498,6 +498,120 @@ def _choose_bit_widths(values: Sequence[int]) -> List[int]:
     return widths
 
 
+# ---------------------------------------------------------------------------
+# Tree derivation (the remaining research problem)
+# ---------------------------------------------------------------------------
+
+
+def tokens_to_tree_values(tokens: Sequence[LzToken]) -> Tuple[List[int], List[int]]:
+    """Split a token stream into the raw integer value sequences that the
+    offsets tree and lengths tree need to encode, respectively.
+
+    For method 1 the offset stream interleaves direct values and escape
+    pairs; both go through the same tree, so we just concatenate them.
+    """
+    offset_values: List[int] = []
+    length_values: List[int] = []
+    for tok in tokens:
+        if tok.is_literal:
+            continue
+        for v in _encode_offset_fields(tok.move_back):
+            offset_values.append(v)
+        length_values.append(tok.length)
+    return offset_values, length_values
+
+
+def _required_widths(values: Sequence[int]) -> List[int]:
+    return [max(1, v.bit_length()) if v > 0 else 1 for v in values]
+
+
+def _cost_of_tree(tree: Vpk0Tree, values: Sequence[int]) -> int:
+    """Total bits to serialise ``tree`` plus encode every value through it.
+
+    This mirrors what the real encoder does byte-for-byte:
+      * each leaf costs 9 bits (the tag + an 8-bit width field)
+      * each internal node costs 1 bit
+      * plus the 1-bit terminator
+      * each value costs code_len(its bucket) + bucket_width.
+    """
+
+    leaves = [(i, e.bit_size) for i, e in enumerate(tree.entries) if isinstance(e, _Leaf)]
+    nodes = sum(1 for e in tree.entries if isinstance(e, _Node))
+    code_table = tree.code_table()
+
+    # Map bit_size -> (code_len) choosing the shortest code when a width
+    # has multiple leaves (matches the encoder behaviour).
+    width_code_len: dict[int, int] = {}
+    for i, w in leaves:
+        _, length = code_table[i]
+        if w not in width_code_len or length < width_code_len[w]:
+            width_code_len[w] = length
+
+    widths_sorted = sorted(width_code_len.keys())
+
+    stream_bits = 0
+    for v in values:
+        for w in widths_sorted:
+            if v < (1 << w):
+                stream_bits += width_code_len[w] + w
+                break
+        else:
+            return 10**18  # infeasible
+
+    header_bits = 9 * len(leaves) + nodes + 1
+    return header_bits + stream_bits
+
+
+def derive_tree(values: Sequence[int]) -> Vpk0Tree:
+    """Derive a VPK0 tree (bucket set + tree shape) from the raw values
+    that will be encoded through it.
+
+    This is the open research problem. The current implementation tries
+    a small library of candidate shapes and returns the cheapest one
+    (bit-count against the cost model in ``_cost_of_tree``). It
+    reproduces the trivial single-leaf trees in the tiny segment but
+    does not yet match the coalesced multi-leaf trees in the larger
+    segments.
+    """
+
+    if not values:
+        return Vpk0Tree([_Leaf(1)])
+
+    required = _required_widths(values)
+    max_width = max(required)
+
+    candidates: List[Vpk0Tree] = []
+
+    # Candidate 1: a single leaf big enough to hold every value. This is
+    # what the tiny ROM segment uses.
+    candidates.append(Vpk0Tree([_Leaf(max_width)]))
+
+    # Candidate 2: every distinct required width gets its own bucket,
+    # right-skewed by frequency.
+    from collections import Counter
+
+    hist = Counter(required)
+    widths_by_freq = sorted(hist.keys(), key=lambda w: (-hist[w], w))
+    if len(widths_by_freq) > 1:
+        candidates.append(_build_tree_from_bit_widths(widths_by_freq))
+
+    best = min(candidates, key=lambda t: _cost_of_tree(t, values))
+    return best
+
+
+def derive_trees_from_tokens(
+    tokens: Sequence[LzToken],
+) -> Tuple[Vpk0Tree, Vpk0Tree]:
+    """Given an LZSS token stream, derive (offsets_tree, lengths_tree).
+
+    Used by tests to separate tree-derivation quality from LZSS-matching
+    quality: feed the original ROM's own token sequence in, and any
+    mismatch against the ROM's trees is purely a tree-derivation bug.
+    """
+    offset_values, length_values = tokens_to_tree_values(tokens)
+    return derive_tree(offset_values), derive_tree(length_values)
+
+
 def compress_vpk0(
     raw: bytes,
     method: int = 1,

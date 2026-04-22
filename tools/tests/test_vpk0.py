@@ -20,7 +20,14 @@ TOOLS = ROOT / "tools"
 if str(TOOLS) not in sys.path:
     sys.path.insert(0, str(TOOLS))
 
-from vpk0_codec import Vpk0Metadata, compress_vpk0, decompress_vpk0  # noqa: E402
+from vpk0_codec import (  # noqa: E402
+    Vpk0Metadata,
+    Vpk0Tree,
+    compress_vpk0,
+    decompress_vpk0,
+    decompress_vpk0_with_tokens,
+    derive_trees_from_tokens,
+)
 
 
 ROM_PATH = ROOT / "pokemonsnap.z64"
@@ -73,3 +80,51 @@ def test_recompress_bit_matches_rom(
         f"  orig[first_diff:first_diff+16] = {blob[first_diff:first_diff+16].hex()}\n"
         f"  new [first_diff:first_diff+16] = {re_encoded[first_diff:first_diff+16].hex()}"
     )
+
+
+# ---------------------------------------------------------------------------
+# Tree derivation — separate from the slow round-trip test.
+#
+# These tests take the *original* LZSS tokens (recovered from the ROM's
+# compressed bitstream) and ask the tree-derivation code to produce the
+# same offsets / lengths trees the ROM has. By skipping the encoder's
+# LZSS pass we keep these tests fast, and by using ground-truth tokens
+# we isolate tree-derivation quality from match-selection quality.
+# ---------------------------------------------------------------------------
+
+
+def _format_tree(tree: Vpk0Tree) -> str:
+    from vpk0_codec import _Leaf, _Node  # local import to keep module API clean
+
+    leaves = [e.bit_size for e in tree.entries if isinstance(e, _Leaf)]
+    nodes = [(e.left, e.right) for e in tree.entries if isinstance(e, _Node)]
+    return f"leaves={leaves}  nodes={nodes}"
+
+
+@pytest.mark.parametrize(
+    "start,end,name", VPK0_SEGMENTS, ids=[s[2] for s in VPK0_SEGMENTS]
+)
+def test_derived_trees_match_rom(
+    rom: bytes, start: int, end: int, name: str  # noqa: ARG001
+) -> None:
+    blob = rom[start:end]
+    _, original_tokens = decompress_vpk0_with_tokens(blob)
+    original_meta = Vpk0Metadata.from_compressed(blob)
+
+    derived_off, derived_len = derive_trees_from_tokens(original_tokens)
+
+    problems: list[str] = []
+    if derived_off.entries != original_meta.offsets_tree.entries:
+        problems.append(
+            "offsets tree mismatch\n"
+            f"    derived:  {_format_tree(derived_off)}\n"
+            f"    original: {_format_tree(original_meta.offsets_tree)}"
+        )
+    if derived_len.entries != original_meta.lengths_tree.entries:
+        problems.append(
+            "lengths tree mismatch\n"
+            f"    derived:  {_format_tree(derived_len)}\n"
+            f"    original: {_format_tree(original_meta.lengths_tree)}"
+        )
+    if problems:
+        pytest.fail("\n  ".join(problems))

@@ -227,8 +227,9 @@ class Vpk0Metadata:
         )
 
 
-def decompress_vpk0(data: bytes) -> Tuple[bytes, int]:
-    """Return (decompressed_bytes, bytes_consumed_from_input)."""
+def _decompress_internal(
+    data: bytes,
+) -> Tuple[bytes, int, List["LzToken"]]:
     if len(data) < 9:
         raise Vpk0DecompressionError("VPK0 stream is too short for header")
     if data[:4] != b"vpk0":
@@ -244,6 +245,7 @@ def decompress_vpk0(data: bytes) -> Tuple[bytes, int]:
     lengths = Vpk0Tree.read(reader)
 
     output = bytearray()
+    tokens: List[LzToken] = []
     while len(output) < decompressed_size:
         if reader.read_bit():
             initial = offsets.read_value(reader)
@@ -265,11 +267,32 @@ def decompress_vpk0(data: bytes) -> Tuple[bytes, int]:
             start = len(output) - move_back
             for i in range(copy_len):
                 output.append(output[start + i])
+            tokens.append(LzToken(False, move_back=move_back, length=copy_len))
         else:
-            output.append(reader.read_bits(8))
+            b = reader.read_bits(8)
+            output.append(b)
+            tokens.append(LzToken(True, literal=b))
 
     consumed = 9 + reader.bytes_consumed()
-    return bytes(output), consumed
+    return bytes(output), consumed, tokens
+
+
+def decompress_vpk0(data: bytes) -> Tuple[bytes, int]:
+    """Return (decompressed_bytes, bytes_consumed_from_input)."""
+    out, consumed, _ = _decompress_internal(data)
+    return out, consumed
+
+
+def decompress_vpk0_with_tokens(data: bytes) -> Tuple[bytes, List["LzToken"]]:
+    """Decompress and also return the original tool's LZSS token sequence.
+
+    Useful for studying the encoder's match-selection heuristic: every
+    token corresponds to exactly one output byte (literal) or a run of
+    output bytes (backref), so ``tokens`` is the exact sequence of
+    decisions the original compressor made.
+    """
+    out, _, tokens = _decompress_internal(data)
+    return out, tokens
 
 
 # ---------------------------------------------------------------------------
@@ -322,20 +345,20 @@ def _encode_offset_fields(move_back: int) -> List[int]:
 MIN_MATCH = 3
 DEFAULT_MAX_MATCH = 255
 DEFAULT_MAX_WINDOW = 1 << 16
-MAX_CHAIN = 256  # chain-walk limit; enough for the sizes we encode here
 
 
-def _lzss_greedy(
+def _lzss_lazy(
     data: bytes,
     *,
     max_window: int = DEFAULT_MAX_WINDOW,
     max_match: int = DEFAULT_MAX_MATCH,
 ) -> List[LzToken]:
-    """Fast longest-match LZSS via a rolling 3-byte hash chain.
+    """Lazy-match LZSS via a rolling 3-byte hash chain.
 
-    This is NOT the matching algorithm — it just produces valid tokens
-    fast enough that the whole pipeline terminates on the 1MB segment.
-    The byte-match research plugs in later by replacing this pass.
+    The lazy rule: if the best match at ``pos+1`` is strictly longer than
+    the best match at ``pos``, emit a literal at ``pos`` and advance by
+    1. This is the classic gzip heuristic and matches the pattern we
+    observe in the Pokemon Snap VPK0 blobs.
     """
 
     N = len(data)
@@ -353,54 +376,64 @@ def _lzss_greedy(
         b2 = data[pos + 2]
         return ((b0 * 2654435761) ^ (b1 << 8) ^ b2) & HASH_MASK
 
+    def best_match_at(pos: int) -> Tuple[int, int]:
+        """Return (move_back, length). length < MIN_MATCH means "no match"."""
+        if pos + MIN_MATCH > N:
+            return 0, 0
+        best_len = 0
+        best_off = 0
+        key = h3(pos)
+        window_start = max(0, pos - max_window)
+        j = head[key]
+        limit = min(max_match, N - pos)
+        while j != -1 and j >= window_start:
+            if data[j + best_len] == data[pos + best_len]:
+                k = 0
+                while k < limit and data[j + k] == data[pos + k]:
+                    k += 1
+                if k > best_len:
+                    best_len = k
+                    best_off = pos - j
+                    if k == limit:
+                        break
+            j = prev[j]
+        return best_off, best_len
+
+    def insert(pos: int) -> None:
+        if pos + MIN_MATCH > N:
+            return
+        key = h3(pos)
+        prev[pos] = head[key]
+        head[key] = pos
+
     tokens: List[LzToken] = []
     i = 0
     while i < N:
-        best_len = 0
-        best_off = 0
-        remaining = N - i
+        off_i, len_i = best_match_at(i)
+        insert(i)
 
-        if remaining >= MIN_MATCH:
-            key = h3(i)
-            window_start = max(0, i - max_window)
-            j = head[key]
-            chain_left = MAX_CHAIN
-            limit = min(max_match, remaining)
-            while j != -1 and j >= window_start and chain_left > 0:
-                # Quick reject before bytewise compare.
-                if data[j + best_len] == data[i + best_len]:
-                    k = 0
-                    while k < limit and data[j + k] == data[i + k]:
-                        k += 1
-                    if k > best_len:
-                        best_len = k
-                        best_off = i - j
-                        if k == limit:
-                            break
-                j = prev[j]
-                chain_left -= 1
+        if len_i >= MIN_MATCH:
+            # Lazy check: peek one position ahead.
+            if i + 1 < N:
+                _off_next, len_next = best_match_at(i + 1)
+                if len_next > len_i:
+                    # Prefer a literal here so the longer match at i+1
+                    # can be taken on the next iteration.
+                    tokens.append(LzToken(True, literal=data[i]))
+                    i += 1
+                    continue
 
-        # Insert current position into chain (even if we're about to skip
-        # ahead on a match — hash entries for positions we skipped are
-        # still valuable for later matches).
-        if remaining >= MIN_MATCH:
-            key = h3(i)
-            prev[i] = head[key]
-            head[key] = i
-
-        if best_len >= MIN_MATCH:
-            tokens.append(LzToken(False, move_back=best_off, length=best_len))
-            # Advance and insert every intermediate position into the hash
-            # so that future lookups can find overlapping matches.
-            for p in range(i + 1, min(i + best_len, N - MIN_MATCH + 1)):
-                key = h3(p)
-                prev[p] = head[key]
-                head[key] = p
-            i += best_len
+            tokens.append(LzToken(False, move_back=off_i, length=len_i))
+            # Insert every byte inside the match so the chain stays dense.
+            for p in range(i + 1, i + len_i):
+                insert(p)
+            i += len_i
         else:
             tokens.append(LzToken(True, literal=data[i]))
             i += 1
     return tokens
+
+
 
 
 def _build_tree_from_bit_widths(
@@ -509,7 +542,7 @@ def compress_vpk0(
         lzss_max_window = DEFAULT_MAX_WINDOW
         lzss_max_match = DEFAULT_MAX_MATCH
 
-    tokens = _lzss_greedy(raw, max_window=lzss_max_window, max_match=lzss_max_match)
+    tokens = _lzss_lazy(raw, max_window=lzss_max_window, max_match=lzss_max_match)
 
     # Collect values we'll need to encode.
     offset_values: List[int] = []

@@ -94,11 +94,14 @@ def test_recompress_bit_matches_rom(
 
 
 def _format_tree(tree: Vpk0Tree) -> str:
-    from vpk0_codec import _Leaf, _Node  # local import to keep module API clean
+    from vpk0_codec import _Node  # local import to keep module API clean
 
-    leaves = [e.bit_size for e in tree.entries if isinstance(e, _Leaf)]
+    leaves_with_codes = tree.leaves_with_codes()
+    summary = ", ".join(
+        f"{w}@{length}bit" for w, _, length in leaves_with_codes
+    )
     nodes = [(e.left, e.right) for e in tree.entries if isinstance(e, _Node)]
-    return f"leaves={leaves}  nodes={nodes}"
+    return f"[{summary}]  nodes={nodes}"
 
 
 @pytest.mark.parametrize(

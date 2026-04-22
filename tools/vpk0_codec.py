@@ -436,70 +436,9 @@ def _lzss_lazy(
 
 
 
-def _build_tree_from_bit_widths(
-    widths_in_order: Sequence[int],
-) -> Vpk0Tree:
-    """Construct a right-skewed tree: leaf L0 at the top, then L1, L2 ...
-
-    Given widths [w0, w1, ..., wk-1] produces the tree
-
-        entries = [
-            Leaf(w0), Leaf(w1), ..., Leaf(w_{k-1}),
-            Node(k-2, k-1),            # combines last two leaves
-            Node(k-3, k),              # combines w_{k-3} with previous node
-            ...
-            Node(0, 2k-3),             # combines w_0 with everything below
-        ]
-
-    so that the code for w_i has length i+1 for i < k-1 and length k-1
-    for i == k-1. w_0 is the shortest (1-bit code).
-
-    This matches the shape we observed in the ROM for 3+ leaves. A single
-    leaf is a degenerate zero-depth tree.
-    """
-
-    if len(widths_in_order) == 0:
-        raise Vpk0CompressionError("Cannot build tree with no leaves")
-
-    entries: List[TreeEntry] = [_Leaf(w) for w in widths_in_order]
-    if len(widths_in_order) == 1:
-        return Vpk0Tree(entries)
-
-    # Combine from the bottom up. First combine leaves[-2] and leaves[-1].
-    prev_index = len(entries)
-    entries.append(_Node(len(widths_in_order) - 2, len(widths_in_order) - 1))
-    for i in range(len(widths_in_order) - 3, -1, -1):
-        new_index = len(entries)
-        entries.append(_Node(i, prev_index))
-        prev_index = new_index
-    return Vpk0Tree(entries)
-
-
-def _choose_bit_widths(values: Sequence[int]) -> List[int]:
-    """Choose a set of bit-widths to cover ``values`` with reasonable cost.
-
-    This is a first-cut heuristic: take the histogram of ceil(log2(v+1))
-    and emit the set of widths that actually occur, sorted ascending.
-    Not a matching algorithm.
-    """
-
-    if not values:
-        return [1]  # any width that the decoder can parse
-
-    required: set[int] = set()
-    for v in values:
-        if v < 0:
-            raise Vpk0CompressionError(f"Negative value {v}")
-        if v == 0:
-            required.add(1)
-        else:
-            required.add(max(1, v.bit_length()))
-    widths = sorted(required)
-    return widths
-
 
 # ---------------------------------------------------------------------------
-# Tree derivation (the remaining research problem)
+# Tree derivation
 # ---------------------------------------------------------------------------
 
 
@@ -525,129 +464,27 @@ def _required_widths(values: Sequence[int]) -> List[int]:
     return [max(1, v.bit_length()) if v > 0 else 1 for v in values]
 
 
-def _splay_items(items: Sequence[Tuple[int, int]]) -> List[TreeEntry]:
-    """Build tree entries for ``items = [(width, freq), ...]`` assumed
-    sorted by width ascending.
-
-    Rule (reverse-engineered from all four non-trivial ROM trees):
-
-    * ``len == 1``: single leaf.
-    * ``len == 2``: balanced pair; leaves emitted in width-ascending
-      order so they become LEFT and RIGHT children.
-    * Else if the most frequent bucket has ``> total_freq / 2``
-      occurrences, that bucket alone becomes one child and the
-      remainder recurses on the other side.
-    * Else split the item list in half by **count** (not frequency):
-      ``floor(n/2)`` items on the left, the rest on the right, and
-      recurse.
-
-    The side placement preserves the "smaller min_width goes LEFT"
-    convention observed in the ROM, so the post-order linearisation
-    has ascending-width leaves when possible.
-    """
-
-    if len(items) == 1:
-        return [_Leaf(items[0][0])]
-
-    if len(items) == 2:
-        entries: List[TreeEntry] = [_Leaf(items[0][0]), _Leaf(items[1][0])]
-        entries.append(_Node(0, 1))
-        return entries
-
-    total = sum(f for _, f in items)
-    max_idx = 0
-    for i, (_, f) in enumerate(items):
-        if f > items[max_idx][1]:
-            max_idx = i
-    max_item = items[max_idx]
-
-    if max_item[1] * 2 > total:
-        # "Dominant" case. The most-frequent bucket becomes a standalone
-        # leaf on one side; everything else (in original width order)
-        # forms the opposite subtree.
-        others = list(items[:max_idx]) + list(items[max_idx + 1:])
-        lone_min_w = max_item[0]
-        others_min_w = min(w for w, _ in others) if others else lone_min_w
-        if lone_min_w <= others_min_w:
-            left = [_Leaf(lone_min_w)]
-            right = _splay_items(others)
-        else:
-            left = _splay_items(others)
-            right = [_Leaf(lone_min_w)]
-    else:
-        # "Canonical" case. Split by item-count.
-        mid = len(items) // 2
-        left = _splay_items(items[:mid])
-        right = _splay_items(items[mid:])
-
-    combined: List[TreeEntry] = list(left)
-    r_offset = len(combined)
-    left_root_idx = r_offset - 1
-    for e in right:
-        if isinstance(e, _Node):
-            combined.append(_Node(e.left + r_offset, e.right + r_offset))
-        else:
-            combined.append(_Leaf(e.bit_size))
-    right_root_idx = len(combined) - 1
-    combined.append(_Node(left_root_idx, right_root_idx))
-    return combined
-
-
-def _huffman_tree_from_items(items: Sequence[Tuple[int, int]]) -> Vpk0Tree:
-    """Build a VPK0 tree from ``items = [(bit_width, frequency), ...]``."""
-    return Vpk0Tree(_splay_items(items))
-
-
-def _cost_from_items(tree: Vpk0Tree, items: Sequence[Tuple[int, int]]) -> int:
-    """Total bits for ``tree`` header + stream, given per-bucket frequencies.
-
-    This is the fast version of ``_cost_of_tree`` — instead of iterating
-    every value, it takes precomputed (width, freq) pairs.
-    """
-    code_table = tree.code_table()
-    width_to_code_len: dict[int, int] = {}
-    for i, e in enumerate(tree.entries):
-        if isinstance(e, _Leaf):
-            _, length = code_table[i]
-            if e.bit_size not in width_to_code_len or length < width_to_code_len[e.bit_size]:
-                width_to_code_len[e.bit_size] = length
-
-    stream_bits = 0
-    for w, f in items:
-        stream_bits += f * (width_to_code_len[w] + w)
-    header_bits = 10 * len(items)
-    return header_bits + stream_bits
-
-
-def _tree_for_subset(
-    subset: Sequence[int], cum: Sequence[int]
-) -> Tuple[Vpk0Tree, int, List[Tuple[int, int]]]:
-    """Build the VPK0 tree for a bucket-width subset and return
-    (tree, cost, items)."""
-    items: List[Tuple[int, int]] = []
-    prev = 0
-    for w in subset:
-        items.append((w, cum[w] - cum[prev]))
-        prev = w
-    tree = _huffman_tree_from_items(items)
-    return tree, _cost_from_items(tree, items), items
-
 
 def derive_tree(values: Sequence[int]) -> Vpk0Tree:
     """Derive a VPK0 tree (bucket set + tree shape) from the raw values
     that will be encoded through it.
 
-    Strategy (the remaining research problem, partially solved):
+    The algorithm is a **top-down greedy splitter** over contiguous
+    width ranges. Each node covers an interval ``[lo..hi]``; if not
+    split, it becomes a leaf with ``bit_size = hi``. A split at
+    position ``k`` is accepted when the local gain is positive::
 
-    * Bucket-set selection: greedy add. Start with just ``{max_w}``;
-      repeatedly add the single bucket width that lowers the total
-      bit-count the most; stop when no addition helps.
-    * Tree shape for a fixed bucket set: see ``_splay_items``.
+        gain(lo, hi, k) = (hi - k) * freq(lo..k) - freq(lo..hi) - 10
 
-    This reproduces the ROM trees for the tiny and mid segments and
-    the large-OFFSETS tree. The large-LENGTHS tree still disagrees on
-    one bucket — the ROM stops at ``{3, 5, 6, 8}`` but greedy-add
-    keeps going and picks ``{3, 4, 5, 6, 8}``. Investigating.
+    The first term is the raw-bit savings (values in ``[lo..k]`` now
+    use ``k`` bits instead of ``hi``). The second is the extra code bit
+    every value in ``[lo..hi]`` pays. The ``-10`` is the tree-overhead
+    cost of one additional leaf.
+
+    This simultaneously determines the bucket set AND the tree shape.
+    The recursion produces entries in post-order (left subtree, right
+    subtree, combining node), which is exactly VPK0's serialisation
+    order. Verified to reproduce all six ROM trees byte-for-byte.
     """
 
     if not values:
@@ -657,36 +494,49 @@ def derive_tree(values: Sequence[int]) -> Vpk0Tree:
 
     required = _required_widths(values)
     max_w = max(required)
+    min_w = min(required)
     hist = Counter(required)
 
     cum = [0] * (max_w + 2)
     for w in range(1, max_w + 1):
         cum[w] = cum[w - 1] + hist.get(w, 0)
 
-    current: set[int] = {max_w}
-    current_tree, current_cost, _ = _tree_for_subset(sorted(current), cum)
+    def freq(lo: int, hi: int) -> int:
+        return cum[hi] - cum[lo - 1]
 
-    while True:
-        best_w: Optional[int] = None
-        best_cost = current_cost
-        best_tree: Optional[Vpk0Tree] = None
+    def build(lo: int, hi: int) -> List[TreeEntry]:
+        if lo == hi:
+            return [_Leaf(hi)]
 
-        for w in range(1, max_w):
-            if w in current:
-                continue
-            trial = sorted(current | {w})
-            tree, cost, _ = _tree_for_subset(trial, cum)
-            if cost < best_cost:
-                best_cost = cost
-                best_w = w
-                best_tree = tree
+        total = freq(lo, hi)
+        best_gain = 0
+        best_k: Optional[int] = None
 
-        if best_w is None or best_tree is None:
-            return current_tree
+        for k in range(lo, hi):
+            gain = (hi - k) * freq(lo, k) - total - 10
+            if gain > best_gain:
+                best_gain = gain
+                best_k = k
 
-        current.add(best_w)
-        current_tree = best_tree
-        current_cost = best_cost
+        if best_k is None:
+            return [_Leaf(hi)]
+
+        left = build(lo, best_k)
+        right = build(best_k + 1, hi)
+
+        combined: List[TreeEntry] = list(left)
+        r_offset = len(combined)
+        left_root = r_offset - 1
+        for e in right:
+            if isinstance(e, _Node):
+                combined.append(_Node(e.left + r_offset, e.right + r_offset))
+            else:
+                combined.append(_Leaf(e.bit_size))
+        right_root = len(combined) - 1
+        combined.append(_Node(left_root, right_root))
+        return combined
+
+    return Vpk0Tree(build(min_w, max_w))
 
 
 def derive_trees_from_tokens(
@@ -766,10 +616,8 @@ def compress_vpk0(
         offsets_tree = metadata.offsets_tree
         lengths_tree = metadata.lengths_tree
     else:
-        off_widths = _choose_bit_widths(offset_values)
-        len_widths = _choose_bit_widths(length_values)
-        offsets_tree = _build_tree_from_bit_widths(off_widths)
-        lengths_tree = _build_tree_from_bit_widths(len_widths)
+        offsets_tree = derive_tree(offset_values)
+        lengths_tree = derive_tree(length_values)
 
     # Build lookup: bit_width -> (leaf_index, code_bits, code_len)
     def tree_lookup(tree: Vpk0Tree) -> dict[int, Tuple[int, int]]:

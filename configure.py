@@ -301,6 +301,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/build/effect_sprites.py $in $out",
     )
 
+    ninja.rule(
+        "vpk0_compress",
+        description="vpk0 $in",
+        command=f"{sys.executable} tools/vpk0.py $in $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -525,7 +531,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 # Only build the .text section file for a textbin with siblings
                 build(entry.object_path, entry.src_paths, "as")
         elif seg.type == "vpk0":
-            build(entry.object_path, entry.src_paths, "bin")
+            compressed = entry.object_path.with_suffix(".vpk0")
+            build(compressed, entry.src_paths, "vpk0_compress")
+            build(entry.object_path, [compressed], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":

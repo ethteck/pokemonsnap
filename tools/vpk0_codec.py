@@ -525,43 +525,6 @@ def _required_widths(values: Sequence[int]) -> List[int]:
     return [max(1, v.bit_length()) if v > 0 else 1 for v in values]
 
 
-def _cost_of_tree(tree: Vpk0Tree, values: Sequence[int]) -> int:
-    """Total bits to serialise ``tree`` plus encode every value through it.
-
-    This mirrors what the real encoder does byte-for-byte:
-      * each leaf costs 9 bits (the tag + an 8-bit width field)
-      * each internal node costs 1 bit
-      * plus the 1-bit terminator
-      * each value costs code_len(its bucket) + bucket_width.
-    """
-
-    leaves = [(i, e.bit_size) for i, e in enumerate(tree.entries) if isinstance(e, _Leaf)]
-    nodes = sum(1 for e in tree.entries if isinstance(e, _Node))
-    code_table = tree.code_table()
-
-    # Map bit_size -> (code_len) choosing the shortest code when a width
-    # has multiple leaves (matches the encoder behaviour).
-    width_code_len: dict[int, int] = {}
-    for i, w in leaves:
-        _, length = code_table[i]
-        if w not in width_code_len or length < width_code_len[w]:
-            width_code_len[w] = length
-
-    widths_sorted = sorted(width_code_len.keys())
-
-    stream_bits = 0
-    for v in values:
-        for w in widths_sorted:
-            if v < (1 << w):
-                stream_bits += width_code_len[w] + w
-                break
-        else:
-            return 10**18  # infeasible
-
-    header_bits = 9 * len(leaves) + nodes + 1
-    return header_bits + stream_bits
-
-
 def _splay_items(items: Sequence[Tuple[int, int]]) -> List[TreeEntry]:
     """Build tree entries for ``items = [(width, freq), ...]`` assumed
     sorted by width ascending.

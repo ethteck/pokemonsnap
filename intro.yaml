@@ -1,13 +1,17 @@
-# Splat config for the decompressed A0F830 VPK0 overlay.
-# Everything for this standalone pipeline lives under vpk0_overlays/.
+# Splat config for the decompressed A0F830 VPK0 intro overlay.
 
 options:
-  target_path: ../assets/A0F830.bin
+  target_path: assets/A0F830.bin
   platform: n64
-  basename: menu_images
+  basename: intro
   base_path: .
   compiler: IDO
   extensions_path: tools/splat_ext
+  symbol_addrs_path: symbol_addrs_intro.txt
+  ld_script_path: build/intro.ld
+  ld_symbol_header_path: build/include/ld_addrs_intro.h
+  undefined_funcs_auto_path: build/undefined_funcs_auto_intro.txt
+  undefined_syms_auto_path: build/undefined_syms_auto_intro.txt
 
 segments:
   - name: intro

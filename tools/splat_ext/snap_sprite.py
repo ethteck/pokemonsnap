@@ -222,6 +222,7 @@ class N64SegSnap_sprite(Segment):
         self.format_name = format_name
         self.aligner_mode = "df"
         self.has_dl = bool(header.rsp_dl)
+        self.dl_addr = int(header.rsp_dl)
         self.bitmaps_name = f"{self.name}_bitmaps"
         if header.bitmap > 0x80000000:
             sym = self.create_symbol(

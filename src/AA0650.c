@@ -7,7 +7,7 @@ GObj* D_800E1DD0_AA0B80;
 s32 D_800E1DD4_AA0B84;
 
 // external data
-extern Sprite D_802BC0C0;
+extern Sprite n64_logo_sprite;
 extern Addr D_800E1DE0;
 
 // internal data
@@ -83,7 +83,7 @@ GObj* func_800E18A0_AA0650(void) {
     GObj* temp_v0;
 
     temp_v0 =
-        ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_802BC0C0, 0, NULL, 1);
+        ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &n64_logo_sprite, 0, NULL, 1);
     temp_v1 = temp_v0->data.sobj;
     temp_v1->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
     temp_v1->sprite.x = SCREEN_WIDTH / 2 - (temp_v1->sprite.width / 2);

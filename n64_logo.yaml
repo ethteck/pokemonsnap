@@ -1,0 +1,31 @@
+# Splat config for the decompressed AA0B80 VPK0 N64 logo segment.
+
+options:
+  target_path: assets/n64_logo.bin
+  platform: n64
+  basename: n64_logo
+  base_path: .
+  compiler: IDO
+  extensions_path: tools/splat_ext
+  symbol_addrs_path: symbol_addrs_n64_logo.txt
+  ld_script_path: build/n64_logo.ld
+  ld_symbol_header_path: build/include/ld_addrs_n64_logo.h
+  undefined_funcs_auto_path: build/undefined_funcs_auto_n64_logo.txt
+  undefined_syms_auto_path: build/undefined_syms_auto_n64_logo.txt
+
+segments:
+  - name: n64_logo
+    dir: .
+    type: code
+    start: 0x0
+    vram: 0x802B5000
+    subsegments:
+      - [auto, c, n64_logo]
+      - start: 0x0
+        type: .data
+        name: n64_logo
+        dir: .
+        subsegments:
+          - { start: 0x0, type: snap_sprite, name: n64_logo, header_rom: 0x70C0 }
+      - [0x7110]
+  - [0x7110]

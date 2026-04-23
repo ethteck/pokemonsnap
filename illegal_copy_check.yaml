@@ -1,7 +1,7 @@
 # Splat config for the decompressed AAA610 VPK0 illegal copy check segment.
 
 options:
-  target_path: assets/AAA610.bin
+  target_path: assets/illegal_copy_check.bin
   platform: n64
   basename: illegal_copy_check
   base_path: .
@@ -15,7 +15,7 @@ options:
 
 segments:
   - name: illegal_copy_check
-    dir: illegal_copy_check
+    dir: .
     type: code
     start: 0x0
     vram: 0x80200000

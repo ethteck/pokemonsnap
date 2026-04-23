@@ -1,7 +1,7 @@
 # Splat config for the decompressed A0F830 VPK0 intro overlay.
 
 options:
-  target_path: assets/A0F830.bin
+  target_path: assets/intro.bin
   platform: n64
   basename: intro
   base_path: .

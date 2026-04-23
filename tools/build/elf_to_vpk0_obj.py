@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Wrap a VPK0 blob in a relocatable object and re-export overlay VRAM symbols."""
+"""Wrap a VPK0 blob in a relocatable object and re-export overlay ELF symbols."""
 
 from __future__ import annotations
 
 import argparse
 import subprocess
 from pathlib import Path
-from typing import Iterable
 
 
 def parse_args() -> argparse.Namespace:
@@ -14,7 +13,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("elf", type=Path)
     parser.add_argument("vpk0", type=Path)
     parser.add_argument("-o", "--output", type=Path, required=True)
-    parser.add_argument("--reference-objects-file", type=Path)
     parser.add_argument("--cross", default="mips-linux-gnu-")
     return parser.parse_args()
 
@@ -64,47 +62,11 @@ def get_alloc_vram_range(elf_path: Path, objdump: str) -> tuple[int, int]:
     return vram_start, vram_end
 
 
-def batched(values: list[str], size: int) -> Iterable[list[str]]:
-    for i in range(0, len(values), size):
-        yield values[i : i + size]
-
-
-
-def get_referenced_symbols(reference_objects_file: Path | None, nm: str) -> set[str] | None:
-    if reference_objects_file is None:
-        return None
-
-    object_paths = [
-        line.strip()
-        for line in reference_objects_file.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
-    if not object_paths:
-        return set()
-
-    referenced_symbols: set[str] = set()
-    for batch in batched(object_paths, 200):
-        result = subprocess.run(
-            [nm, "--undefined-only", "--format=posix", *batch],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-        for line in result.stdout.splitlines():
-            parts = line.strip().split()
-            if len(parts) >= 2 and parts[1] == "U":
-                referenced_symbols.add(parts[0])
-
-    return referenced_symbols
-
-
-
 def get_exported_symbols(
     elf_path: Path,
     nm: str,
     vram_start: int,
     vram_end: int,
-    referenced_symbols: set[str] | None,
 ) -> list[tuple[int, str]]:
     result = subprocess.run(
         [nm, "-g", "--defined-only", str(elf_path)],
@@ -113,7 +75,8 @@ def get_exported_symbols(
         text=True,
     )
 
-    available_symbols: dict[str, int] = {}
+    symbols: dict[str, int] = {}
+
     for line in result.stdout.splitlines():
         parts = line.strip().split()
         if len(parts) < 3:
@@ -128,21 +91,10 @@ def get_exported_symbols(
         except ValueError:
             continue
 
-        if vram_start <= value < vram_end:
-            available_symbols[name] = value
+        if not (vram_start <= value < vram_end):
+            continue
 
-    if referenced_symbols is None:
-        symbols = available_symbols
-    else:
-        symbols = {}
-        for name in sorted(referenced_symbols):
-            if name in available_symbols:
-                symbols[name] = available_symbols[name]
-                continue
-
-            sprite_name = f"{name}_sprite"
-            if sprite_name in available_symbols:
-                symbols[name] = available_symbols[sprite_name]
+        symbols[name] = value
 
     return sorted((value, name) for name, value in symbols.items())
 
@@ -155,14 +107,7 @@ def main() -> None:
     assembler = f"{args.cross}as"
 
     vram_start, vram_end = get_alloc_vram_range(args.elf, objdump)
-    referenced_symbols = get_referenced_symbols(args.reference_objects_file, nm)
-    symbols = get_exported_symbols(
-        args.elf,
-        nm,
-        vram_start,
-        vram_end,
-        referenced_symbols,
-    )
+    symbols = get_exported_symbols(args.elf, nm, vram_start, vram_end)
 
     asm_lines = [
         '.section .data, "wa"',
@@ -172,7 +117,7 @@ def main() -> None:
     ]
 
     for value, name in symbols:
-        asm_lines.append(f".globl {name}")
+        asm_lines.append(f".weak {name}")
         asm_lines.append(f"{name} = 0x{value:08X}")
 
     asm_lines.append("")

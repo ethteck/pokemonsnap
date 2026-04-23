@@ -1,0 +1,82 @@
+# Splat config for the decompressed A0F830 VPK0 overlay.
+# Everything for this standalone pipeline lives under vpk0_overlays/.
+
+options:
+  target_path: assets/A0F830.bin
+  platform: n64
+  basename: menu_images
+  base_path: .
+  compiler: IDO
+  extensions_path: tools/splat_ext
+
+segments:
+  - name: menu_images
+    type: code
+    start: 0x0
+    vram: 0x802B5000
+    subsegments:
+      - {start: 0x0, type: snap_sprite, name: D_802DABC0, header_rom: 0x25BC0}
+      - {start: 0x25C10, type: snap_sprite, name: D_802DB328, header_rom: 0x26328}
+      - {start: 0x26370, type: snap_sprite, name: D_802DB588, header_rom: 0x26588}
+      - {start: 0x265D0, type: snap_sprite, name: D_802DBCE8, header_rom: 0x26CE8}
+      - {start: 0x26D30, type: snap_sprite, name: D_802DC1A8, header_rom: 0x271A8}
+      - {start: 0x271F0, type: snap_sprite, name: D_802DC718, header_rom: 0x27718}
+      - {start: 0x27760, type: snap_sprite, name: D_802DC978, header_rom: 0x27978}
+      - {start: 0x279C0, type: snap_sprite, name: D_802DCE88, header_rom: 0x27E88}
+      - {start: 0x27ED0, type: snap_sprite, name: D_802DFAB0, header_rom: 0x2AAB0}
+      - {start: 0x2AB00, type: snap_sprite, name: D_802E8DD0, header_rom: 0x33DD0}
+      - {start: 0x33E20, type: snap_sprite, name: D_802F20F0, header_rom: 0x3D0F0}
+      - {start: 0x3D140, type: snap_sprite, name: D_802F4828, header_rom: 0x3F828}
+      - {start: 0x3F870, type: snap_sprite, name: D_802F5B90, header_rom: 0x40B90}
+      - {start: 0x40BE0, type: snap_sprite, name: D_802F6490, header_rom: 0x41490}
+      - {start: 0x414E0, type: snap_sprite, name: D_802F82C8, header_rom: 0x432C8}
+      - {start: 0x43310, type: snap_sprite, name: D_803051F0, header_rom: 0x501F0}
+      - {start: 0x50240, type: snap_sprite, name: D_803072A0, header_rom: 0x522A0}
+      - {start: 0x522F0, type: snap_sprite, name: D_80308A00, header_rom: 0x53A00}
+      - {start: 0x53A50, type: snap_sprite, name: D_80309770, header_rom: 0x54770}
+      - {start: 0x547C0, type: snap_sprite, name: D_8030A4E0, header_rom: 0x554E0}
+      - {start: 0x55530, type: snap_sprite, name: D_8030B250, header_rom: 0x56250}
+      - {start: 0x562A0, type: snap_sprite, name: D_8030BFC0, header_rom: 0x56FC0}
+      - {start: 0x57010, type: snap_sprite, name: D_8030E020, header_rom: 0x59020}
+      - {start: 0x59070, type: snap_sprite, name: D_80310080, header_rom: 0x5B080}
+      - {start: 0x5B0D0, type: snap_sprite, name: D_803120E0, header_rom: 0x5D0E0}
+      - {start: 0x5D130, type: snap_sprite, name: D_80312238, header_rom: 0x5D238}
+      - {start: 0x5D280, type: snap_sprite, name: D_803128E0, header_rom: 0x5D8E0}
+      - {start: 0x5D930, type: snap_sprite, name: D_80316230, header_rom: 0x61230}
+      - {start: 0x61280, type: snap_sprite, name: D_80319B80, header_rom: 0x64B80}
+      - {start: 0x64BD0, type: snap_sprite, name: D_8031D4D0, header_rom: 0x684D0}
+      - {start: 0x68520, type: snap_sprite, name: D_80320E20, header_rom: 0x6BE20}
+      - {start: 0x6BE70, type: snap_sprite, name: D_80324770, header_rom: 0x6F770}
+      - {start: 0x6F7C0, type: snap_sprite, name: D_803280C0, header_rom: 0x730C0}
+      - {start: 0x73110, type: snap_sprite, name: D_8032BA10, header_rom: 0x76A10}
+      - {start: 0x76A60, type: snap_sprite, name: D_8032F360, header_rom: 0x7A360}
+      - {start: 0x7A3B0, type: snap_sprite, name: D_80332CB0, header_rom: 0x7DCB0}
+      - {start: 0x7DD00, type: snap_sprite, name: D_80336600, header_rom: 0x81600}
+      - {start: 0x81650, type: snap_sprite, name: D_80339F50, header_rom: 0x84F50}
+      - {start: 0x84FA0, type: snap_sprite, name: D_8033D8A0, header_rom: 0x888A0}
+      - {start: 0x888F0, type: snap_sprite, name: D_8033E210, header_rom: 0x89210}
+      - {start: 0x89260, type: snap_sprite, name: D_8033E938, header_rom: 0x89938}
+      - {start: 0x89980, type: snap_sprite, name: D_8033ECD0, header_rom: 0x89CD0}
+      - {start: 0x89D20, type: snap_sprite, name: D_8033ED70, header_rom: 0x89D70}
+      - {start: 0x89DC0, type: snap_sprite, name: D_8033F498, header_rom: 0x8A498}
+      - {start: 0x8A4E0, type: snap_sprite, name: D_8033FBB8, header_rom: 0x8ABB8}
+      - {start: 0x8AC00, type: snap_sprite, name: D_80341160, header_rom: 0x8C160}
+      - {start: 0x8C1B0, type: snap_sprite, name: D_80341790, header_rom: 0x8C790}
+      - {start: 0x8C7E0, type: snap_sprite, name: D_80341C70, header_rom: 0x8CC70}
+      - {start: 0x8CCC0, type: snap_sprite, name: D_80342150, header_rom: 0x8D150}
+      - {start: 0x8D1A0, type: snap_sprite, name: D_80342630, header_rom: 0x8D630}
+      - {start: 0x8D680, type: snap_sprite, name: D_80342B10, header_rom: 0x8DB10}
+      - {start: 0x8DB60, type: snap_sprite, name: D_80342FF0, header_rom: 0x8DFF0}
+      - {start: 0x8E040, type: snap_sprite, name: D_803434D0, header_rom: 0x8E4D0}
+      - {start: 0x8E520, type: snap_sprite, name: D_80343B28, header_rom: 0x8EB28}
+      - {start: 0x8EC50, type: snap_sprite, name: D_80344388, header_rom: 0x8F388}
+      - {start: 0x8F3D0, type: snap_sprite, name: D_803444D8, header_rom: 0x8F4D8}
+      - {start: 0x8F520, type: snap_sprite, name: D_80344618, header_rom: 0x8F618}
+      - {start: 0x8F660, type: snap_sprite, name: D_8034B020, header_rom: 0x96020}
+      - {start: 0x96070, type: snap_sprite, name: D_8034B920, header_rom: 0x96920}
+      - {start: 0x96970, type: snap_sprite, name: D_8034BBB8, header_rom: 0x96BB8}
+      - {start: 0x96C00, type: snap_sprite, name: D_8034C4B0, header_rom: 0x974B0}
+      - {start: 0x97500, type: snap_sprite, name: D_8034C710, header_rom: 0x97710}
+      - {start: 0x97760, type: snap_sprite, name: D_8034D3A0, header_rom: 0x983A0}
+      - {start: 0x983F0, type: snap_sprite, name: D_8034FAD8, header_rom: 0x9AAD8}
+  - [0xF3770]

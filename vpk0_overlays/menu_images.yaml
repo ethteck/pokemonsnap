@@ -2,7 +2,7 @@
 # Everything for this standalone pipeline lives under vpk0_overlays/.
 
 options:
-  target_path: assets/A0F830.bin
+  target_path: ../assets/A0F830.bin
   platform: n64
   basename: menu_images
   base_path: .
@@ -10,73 +10,587 @@ options:
   extensions_path: tools/splat_ext
 
 segments:
-  - name: menu_images
+  - name: intro
+    dir: intro
     type: code
     start: 0x0
     vram: 0x802B5000
     subsegments:
-      - {start: 0x0, type: snap_sprite, name: D_802DABC0, header_rom: 0x25BC0}
-      - {start: 0x25C10, type: snap_sprite, name: D_802DB328, header_rom: 0x26328}
-      - {start: 0x26370, type: snap_sprite, name: D_802DB588, header_rom: 0x26588}
-      - {start: 0x265D0, type: snap_sprite, name: D_802DBCE8, header_rom: 0x26CE8}
-      - {start: 0x26D30, type: snap_sprite, name: D_802DC1A8, header_rom: 0x271A8}
-      - {start: 0x271F0, type: snap_sprite, name: D_802DC718, header_rom: 0x27718}
-      - {start: 0x27760, type: snap_sprite, name: D_802DC978, header_rom: 0x27978}
-      - {start: 0x279C0, type: snap_sprite, name: D_802DCE88, header_rom: 0x27E88}
-      - {start: 0x27ED0, type: snap_sprite, name: D_802DFAB0, header_rom: 0x2AAB0}
-      - {start: 0x2AB00, type: snap_sprite, name: D_802E8DD0, header_rom: 0x33DD0}
-      - {start: 0x33E20, type: snap_sprite, name: D_802F20F0, header_rom: 0x3D0F0}
-      - {start: 0x3D140, type: snap_sprite, name: D_802F4828, header_rom: 0x3F828}
-      - {start: 0x3F870, type: snap_sprite, name: D_802F5B90, header_rom: 0x40B90}
-      - {start: 0x40BE0, type: snap_sprite, name: D_802F6490, header_rom: 0x41490}
-      - {start: 0x414E0, type: snap_sprite, name: D_802F82C8, header_rom: 0x432C8}
-      - {start: 0x43310, type: snap_sprite, name: D_803051F0, header_rom: 0x501F0}
-      - {start: 0x50240, type: snap_sprite, name: D_803072A0, header_rom: 0x522A0}
-      - {start: 0x522F0, type: snap_sprite, name: D_80308A00, header_rom: 0x53A00}
-      - {start: 0x53A50, type: snap_sprite, name: D_80309770, header_rom: 0x54770}
-      - {start: 0x547C0, type: snap_sprite, name: D_8030A4E0, header_rom: 0x554E0}
-      - {start: 0x55530, type: snap_sprite, name: D_8030B250, header_rom: 0x56250}
-      - {start: 0x562A0, type: snap_sprite, name: D_8030BFC0, header_rom: 0x56FC0}
-      - {start: 0x57010, type: snap_sprite, name: D_8030E020, header_rom: 0x59020}
-      - {start: 0x59070, type: snap_sprite, name: D_80310080, header_rom: 0x5B080}
-      - {start: 0x5B0D0, type: snap_sprite, name: D_803120E0, header_rom: 0x5D0E0}
-      - {start: 0x5D130, type: snap_sprite, name: D_80312238, header_rom: 0x5D238}
-      - {start: 0x5D280, type: snap_sprite, name: D_803128E0, header_rom: 0x5D8E0}
-      - {start: 0x5D930, type: snap_sprite, name: D_80316230, header_rom: 0x61230}
-      - {start: 0x61280, type: snap_sprite, name: D_80319B80, header_rom: 0x64B80}
-      - {start: 0x64BD0, type: snap_sprite, name: D_8031D4D0, header_rom: 0x684D0}
-      - {start: 0x68520, type: snap_sprite, name: D_80320E20, header_rom: 0x6BE20}
-      - {start: 0x6BE70, type: snap_sprite, name: D_80324770, header_rom: 0x6F770}
-      - {start: 0x6F7C0, type: snap_sprite, name: D_803280C0, header_rom: 0x730C0}
-      - {start: 0x73110, type: snap_sprite, name: D_8032BA10, header_rom: 0x76A10}
-      - {start: 0x76A60, type: snap_sprite, name: D_8032F360, header_rom: 0x7A360}
-      - {start: 0x7A3B0, type: snap_sprite, name: D_80332CB0, header_rom: 0x7DCB0}
-      - {start: 0x7DD00, type: snap_sprite, name: D_80336600, header_rom: 0x81600}
-      - {start: 0x81650, type: snap_sprite, name: D_80339F50, header_rom: 0x84F50}
-      - {start: 0x84FA0, type: snap_sprite, name: D_8033D8A0, header_rom: 0x888A0}
-      - {start: 0x888F0, type: snap_sprite, name: D_8033E210, header_rom: 0x89210}
-      - {start: 0x89260, type: snap_sprite, name: D_8033E938, header_rom: 0x89938}
-      - {start: 0x89980, type: snap_sprite, name: D_8033ECD0, header_rom: 0x89CD0}
-      - {start: 0x89D20, type: snap_sprite, name: D_8033ED70, header_rom: 0x89D70}
-      - {start: 0x89DC0, type: snap_sprite, name: D_8033F498, header_rom: 0x8A498}
-      - {start: 0x8A4E0, type: snap_sprite, name: D_8033FBB8, header_rom: 0x8ABB8}
-      - {start: 0x8AC00, type: snap_sprite, name: D_80341160, header_rom: 0x8C160}
-      - {start: 0x8C1B0, type: snap_sprite, name: D_80341790, header_rom: 0x8C790}
-      - {start: 0x8C7E0, type: snap_sprite, name: D_80341C70, header_rom: 0x8CC70}
-      - {start: 0x8CCC0, type: snap_sprite, name: D_80342150, header_rom: 0x8D150}
-      - {start: 0x8D1A0, type: snap_sprite, name: D_80342630, header_rom: 0x8D630}
-      - {start: 0x8D680, type: snap_sprite, name: D_80342B10, header_rom: 0x8DB10}
-      - {start: 0x8DB60, type: snap_sprite, name: D_80342FF0, header_rom: 0x8DFF0}
-      - {start: 0x8E040, type: snap_sprite, name: D_803434D0, header_rom: 0x8E4D0}
-      - {start: 0x8E520, type: snap_sprite, name: D_80343B28, header_rom: 0x8EB28}
-      - {start: 0x8EC50, type: snap_sprite, name: D_80344388, header_rom: 0x8F388}
-      - {start: 0x8F3D0, type: snap_sprite, name: D_803444D8, header_rom: 0x8F4D8}
-      - {start: 0x8F520, type: snap_sprite, name: D_80344618, header_rom: 0x8F618}
-      - {start: 0x8F660, type: snap_sprite, name: D_8034B020, header_rom: 0x96020}
-      - {start: 0x96070, type: snap_sprite, name: D_8034B920, header_rom: 0x96920}
-      - {start: 0x96970, type: snap_sprite, name: D_8034BBB8, header_rom: 0x96BB8}
-      - {start: 0x96C00, type: snap_sprite, name: D_8034C4B0, header_rom: 0x974B0}
-      - {start: 0x97500, type: snap_sprite, name: D_8034C710, header_rom: 0x97710}
-      - {start: 0x97760, type: snap_sprite, name: D_8034D3A0, header_rom: 0x983A0}
-      - {start: 0x983F0, type: snap_sprite, name: D_8034FAD8, header_rom: 0x9AAD8}
+      - [auto, c, sprites]
+      - [auto, c, fx]
+      - [auto, c, world]
+      - [auto, c, mew]
+      - [auto, c, unk]
+      - [auto, c, todd]
+      - start: 0x0
+        type: .data
+        name: sprites
+        dir: sprites
+        subsegments:
+        - {start: 0x0, type: snap_sprite, name: D_802DABC0, header_rom: 0x25BC0}
+        - {start: 0x25C10, type: snap_sprite, name: D_802DB328, header_rom: 0x26328}
+        - {start: 0x26370, type: snap_sprite, name: D_802DB588, header_rom: 0x26588}
+        - {start: 0x265D0, type: snap_sprite, name: D_802DBCE8, header_rom: 0x26CE8}
+        - {start: 0x26D30, type: snap_sprite, name: D_802DC1A8, header_rom: 0x271A8}
+        - {start: 0x271F0, type: snap_sprite, name: D_802DC718, header_rom: 0x27718}
+        - {start: 0x27760, type: snap_sprite, name: D_802DC978, header_rom: 0x27978}
+        - {start: 0x279C0, type: snap_sprite, name: D_802DCE88, header_rom: 0x27E88}
+        - {start: 0x27ED0, type: snap_sprite, name: D_802DFAB0, header_rom: 0x2AAB0}
+        - {start: 0x2AB00, type: snap_sprite, name: D_802E8DD0, header_rom: 0x33DD0}
+        - {start: 0x33E20, type: snap_sprite, name: D_802F20F0, header_rom: 0x3D0F0}
+        - {start: 0x3D140, type: snap_sprite, name: D_802F4828, header_rom: 0x3F828}
+        - {start: 0x3F870, type: snap_sprite, name: D_802F5B90, header_rom: 0x40B90}
+        - {start: 0x40BE0, type: snap_sprite, name: D_802F6490, header_rom: 0x41490}
+        - {start: 0x414E0, type: snap_sprite, name: D_802F82C8, header_rom: 0x432C8}
+        - {start: 0x43310, type: snap_sprite, name: D_803051F0, header_rom: 0x501F0}
+        - {start: 0x50240, type: snap_sprite, name: D_803072A0, header_rom: 0x522A0}
+        - {start: 0x522F0, type: snap_sprite, name: D_80308A00, header_rom: 0x53A00}
+        - {start: 0x53A50, type: snap_sprite, name: D_80309770, header_rom: 0x54770}
+        - {start: 0x547C0, type: snap_sprite, name: D_8030A4E0, header_rom: 0x554E0}
+        - {start: 0x55530, type: snap_sprite, name: D_8030B250, header_rom: 0x56250}
+        - {start: 0x562A0, type: snap_sprite, name: D_8030BFC0, header_rom: 0x56FC0}
+        - {start: 0x57010, type: snap_sprite, name: D_8030E020, header_rom: 0x59020}
+        - {start: 0x59070, type: snap_sprite, name: D_80310080, header_rom: 0x5B080}
+        - {start: 0x5B0D0, type: snap_sprite, name: D_803120E0, header_rom: 0x5D0E0}
+        - {start: 0x5D130, type: snap_sprite, name: D_80312238, header_rom: 0x5D238}
+        - {start: 0x5D280, type: snap_sprite, name: D_803128E0, header_rom: 0x5D8E0}
+        - {start: 0x5D930, type: snap_sprite, name: D_80316230, header_rom: 0x61230}
+        - {start: 0x61280, type: snap_sprite, name: D_80319B80, header_rom: 0x64B80}
+        - {start: 0x64BD0, type: snap_sprite, name: D_8031D4D0, header_rom: 0x684D0}
+        - {start: 0x68520, type: snap_sprite, name: D_80320E20, header_rom: 0x6BE20}
+        - {start: 0x6BE70, type: snap_sprite, name: D_80324770, header_rom: 0x6F770}
+        - {start: 0x6F7C0, type: snap_sprite, name: D_803280C0, header_rom: 0x730C0}
+        - {start: 0x73110, type: snap_sprite, name: D_8032BA10, header_rom: 0x76A10}
+        - {start: 0x76A60, type: snap_sprite, name: D_8032F360, header_rom: 0x7A360}
+        - {start: 0x7A3B0, type: snap_sprite, name: D_80332CB0, header_rom: 0x7DCB0}
+        - {start: 0x7DD00, type: snap_sprite, name: D_80336600, header_rom: 0x81600}
+        - {start: 0x81650, type: snap_sprite, name: D_80339F50, header_rom: 0x84F50}
+        - {start: 0x84FA0, type: snap_sprite, name: D_8033D8A0, header_rom: 0x888A0}
+        - {start: 0x888F0, type: snap_sprite, name: D_8033E210, header_rom: 0x89210}
+        - {start: 0x89260, type: snap_sprite, name: D_8033E938, header_rom: 0x89938}
+        - {start: 0x89980, type: snap_sprite, name: D_8033ECD0, header_rom: 0x89CD0}
+        - {start: 0x89D20, type: snap_sprite, name: D_8033ED70, header_rom: 0x89D70}
+        - {start: 0x89DC0, type: snap_sprite, name: D_8033F498, header_rom: 0x8A498}
+        - {start: 0x8A4E0, type: snap_sprite, name: D_8033FBB8, header_rom: 0x8ABB8}
+        - {start: 0x8AC00, type: snap_sprite, name: D_80341160, header_rom: 0x8C160}
+        - {start: 0x8C1B0, type: snap_sprite, name: D_80341790, header_rom: 0x8C790}
+        - {start: 0x8C7E0, type: snap_sprite, name: D_80341C70, header_rom: 0x8CC70}
+        - {start: 0x8CCC0, type: snap_sprite, name: D_80342150, header_rom: 0x8D150}
+        - {start: 0x8D1A0, type: snap_sprite, name: D_80342630, header_rom: 0x8D630}
+        - {start: 0x8D680, type: snap_sprite, name: D_80342B10, header_rom: 0x8DB10}
+        - {start: 0x8DB60, type: snap_sprite, name: D_80342FF0, header_rom: 0x8DFF0}
+        - {start: 0x8E040, type: snap_sprite, name: D_803434D0, header_rom: 0x8E4D0}
+        - {start: 0x8E520, type: snap_sprite, name: D_80343B28, header_rom: 0x8EB28}
+        - {start: 0x8EB70, type: snap_sprite, name: D_80343C08, header_rom: 0x8EC08}
+        - {start: 0x8EC50, type: snap_sprite, name: D_80344388, header_rom: 0x8F388}
+        - {start: 0x8F3D0, type: snap_sprite, name: D_803444D8, header_rom: 0x8F4D8}
+        - {start: 0x8F520, type: snap_sprite, name: D_80344618, header_rom: 0x8F618}
+        - {start: 0x8F660, type: snap_sprite, name: D_8034B020, header_rom: 0x96020}
+        - {start: 0x96070, type: snap_sprite, name: D_8034B920, header_rom: 0x96920}
+        - {start: 0x96970, type: snap_sprite, name: D_8034BBB8, header_rom: 0x96BB8}
+        - {start: 0x96C00, type: snap_sprite, name: D_8034C4B0, header_rom: 0x974B0}
+        - {start: 0x97500, type: snap_sprite, name: D_8034C710, header_rom: 0x97710}
+        - {start: 0x97760, type: snap_sprite, name: D_8034D3A0, header_rom: 0x983A0}
+        - {start: 0x983F0, type: snap_sprite, name: D_8034FAD8, header_rom: 0x9AAD8}
+      - start: 0x9AB20
+        type: .data
+        name: fx
+        dir: fx
+        subsegments:
+        - [0x9AB28, i4, tex_8034FB28, 64, 64]
+        - [0x9B328]
+        - [0x9B330, i4, tex_80350330, 64, 64]
+        - [0x9BB30]
+        - [0x9BB38, i4, tex_80350B38, 64, 64]
+        - [0x9C338]
+        - [0x9C340, i8, tex_80351340, 64, 64]
+        - [0x9D340]
+        - [0x9D348, i8, tex_80352348, 64, 64]
+        - [0x9E348]
+        - [0x9E350, i8, tex_80353350, 64, 64]
+        - [0x9F350]
+        - [0x9F358, i8, tex_80354358, 64, 64]
+        - [0xA0358]
+        - [0xA0360, i8, tex_80355360, 64, 64]
+        - [0xA1360]
+        - [0xA1368, i8, tex_80356368, 64, 64]
+        - [0xA2368]
+        - [0xA2370, i8, tex_80357370, 64, 64]
+        - [0xA3370]
+        - [0xA3378, i8, tex_80358378, 64, 64]
+        - [0xA4378]
+        - [0xA4378, data] # intro_fx materials + texture structs
+        - [0xA4540, vtx, model]
+        - [0xA4780, gfx, part0_draw]
+        - [0xA4860, gfx, part1_draw]
+        - [0xA4928, gfx, part2_draw]
+        - [0xA49F0, data] # intro_fx gfxdata + model
+        - [0xA4B30, snap_model_anim, intro_fx_modelanim]
+        - [0xA4CD0, snap_material_anim, intro_fx_matanim]
+      - start: 0xA52A0
+        type: .data
+        name: world
+        dir: world
+        subsegments:
+        - [0xA52A8, ci8, tex_8035A2A8, 128, 96]
+        - [0xA82A8]
+        - [0xA82B0, palette, tex_8035A2A8]
+        - [0xA82F0]
+        - [0xA82F8, ia16, tex_8035D2F8, 32, 64]
+        - [0xA92F8]
+        - [0xA9300, ci4, tex_8035E300, 64, 32]
+        - [0xA9700]
+        - [0xA9708, palette, tex_8035E300]
+        - [0xA9728]
+        - [0xA9730, ia16, tex_8035E730, 32, 64]
+        - [0xAA730]
+        - [0xAA738, ci4, tex_8035F738, 32, 32]
+        - [0xAA938]
+        - [0xAA940, palette, tex_8035F738]
+        - [0xAA960]
+        - [0xAA968, ci4, tex_8035F968, 64, 64]
+        - [0xAB168]
+        - [0xAB170, palette, tex_8035F968]
+        - [0xAB190]
+        - [0xAB198, ia16, tex_80360198, 32, 32]
+        - [0xAB998]
+        - [0xAB9A0, i8, tex_803609A0, 32, 32]
+        - [0xABDA0]
+        - [0xABDA8, i8, tex_80360DA8, 128, 64]
+        - [0xADDA8]
+        - [0xADDB0, ci4, tex_80362DB0, 64, 64]
+        - [0xAE5B0]
+        - [0xAE5B8, palette, tex_80362DB0]
+        - [0xAE5D8]
+        - [0xAE5E0, ci4, tex_803635E0, 64, 64]
+        - [0xAEDE0]
+        - [0xAEDE8, palette, tex_803635E0]
+        - [0xAEE08]
+        - [0xAEE10, ci4, tex_80363E10, 64, 64]
+        - [0xAF610]
+        - [0xAF618, palette, tex_80363E10]
+        - [0xAF638]
+        - [0xAF640, ci4, tex_80364640, 64, 64]
+        - [0xAFE40]
+        - [0xAFE48, palette, tex_80364640]
+        - [0xAFE68]
+        - [0xAFE70, ci4, tex_80364E70, 64, 64]
+        - [0xB0670]
+        - [0xB0678, palette, tex_80364E70]
+        - [0xB0698]
+        - [0xB06A0, ci4, tex_803656A0, 64, 64]
+        - [0xB0EA0]
+        - [0xB0EA8, palette, tex_803656A0]
+        - [0xB0EC8]
+        - [0xB0ED0, ci4, tex_80365ED0, 64, 32]
+        - [0xB12D0]
+        - [0xB12D8, palette, tex_80365ED0]
+        - [0xB12F8]
+        - [0xB1300, ci4, tex_80366300, 64, 32]
+        - [0xB1700]
+        - [0xB1708, palette, tex_80366300]
+        - [0xB1728]
+        - [0xB1730, ci4, tex_80366730, 64, 64]
+        - [0xB1F30]
+        - [0xB1F38, palette, tex_80366730]
+        - [0xB1F58]
+        - [0xB1F60, rgba16, tex_80366F60, 32, 32]
+        - [0xB2760]
+        - [0xB2768, ci4, tex_80367768, 64, 64]
+        - [0xB2F68]
+        - [0xB2F70, palette, tex_80367768]
+        - [0xB2F90]
+        - [0xB2F98, ci4, tex_80367F98, 64, 64]
+        - [0xB3798]
+        - [0xB37A0, palette, tex_80367F98]
+        - [0xB37C0]
+        - [0xB37C8, ci4, tex_803687C8, 64, 32]
+        - [0xB3BC8]
+        - [0xB3BD0, palette, tex_803687C8]
+        - [0xB3BF0]
+        - [0xB3BF8, ci4, tex_80368BF8, 64, 64]
+        - [0xB43F8]
+        - [0xB4400, palette, tex_80368BF8]
+        - [0xB4420]
+        - [0xB4428, ci4, tex_80369428, 64, 64]
+        - [0xB4C28]
+        - [0xB4C30, palette, tex_80369428]
+        - [0xB4C50]
+        - [0xB4C58, rgba16, tex_80369C58, 32, 32]
+        - [0xB5458]
+        - [0xB5458, data] # intro_world materials + texture structs
+        - [0xB5A78, vtx, model]
+        - [0xBD8A8, gfx, part0_draw]
+        - [0xBDB30, gfx, part2_draw]
+        - [0xBDD40, gfx, part3_draw]
+        - [0xBDF40, gfx, part7_draw]
+        - [0xBE058, gfx, part8_draw]
+        - [0xBE178, gfx, part9_draw]
+        - [0xBE298, gfx, part10_draw]
+        - [0xBE3B8, gfx, part11_draw]
+        - [0xBE4D8, gfx, part12_draw]
+        - [0xBE5F8, gfx, part13_draw]
+        - [0xBE718, gfx, part14_draw]
+        - [0xBE838, gfx, part15_draw]
+        - [0xBE958, gfx, part16_draw]
+        - [0xBEA78, gfx, part17_draw]
+        - [0xBEBC0, gfx, part18_draw]
+        - [0xBECD8, gfx, part19_draw]
+        - [0xBEDF8, gfx, part20_draw]
+        - [0xBEF18, gfx, part21_draw]
+        - [0xBF038, gfx, part22_draw]
+        - [0xBF158, gfx, part23_draw]
+        - [0xBF278, gfx, part24_draw]
+        - [0xBF3A8, gfx, part25_draw]
+        - [0xBF4C8, gfx, part26_draw]
+        - [0xBF5E8, gfx, part27_draw]
+        - [0xBF708, gfx, part28_draw]
+        - [0xBF850, gfx, part29_draw]
+        - [0xBF968, gfx, part30_draw]
+        - [0xBFA88, gfx, part31_draw]
+        - [0xBFBA8, gfx, part32_draw]
+        - [0xBFCC8, gfx, part33_draw]
+        - [0xBFDE8, gfx, part34_draw]
+        - [0xBFF08, gfx, part35_draw]
+        - [0xC0038, gfx, part36_draw]
+        - [0xC0158, gfx, part37_draw]
+        - [0xC0278, gfx, part38_draw]
+        - [0xC0398, gfx, part39_draw]
+        - [0xC04E0, gfx, part40_draw]
+        - [0xC05F8, gfx, part41_draw]
+        - [0xC0718, gfx, part42_draw]
+        - [0xC0838, gfx, part43_draw]
+        - [0xC0970, gfx, part44_draw]
+        - [0xC0A90, gfx, part45_draw]
+        - [0xC0BB0, gfx, part46_draw]
+        - [0xC0CD0, gfx, part47_draw]
+        - [0xC0DF0, gfx, part48_draw]
+        - [0xC0F10, gfx, part49_draw]
+        - [0xC1030, gfx, part50_draw]
+        - [0xC1178, gfx, part51_draw]
+        - [0xC1290, gfx, part52_draw]
+        - [0xC13B0, gfx, part53_draw]
+        - [0xC14D0, gfx, part54_draw]
+        - [0xC1608, gfx, part55_draw]
+        - [0xC1728, gfx, part56_draw]
+        - [0xC1848, gfx, part57_draw]
+        - [0xC1968, gfx, part58_draw]
+        - [0xC1A88, gfx, part59_draw]
+        - [0xC1BA8, gfx, part60_draw]
+        - [0xC1CC8, gfx, part61_draw]
+        - [0xC1E10, gfx, part62_draw]
+        - [0xC1F28, gfx, part63_draw]
+        - [0xC2048, gfx, part64_draw]
+        - [0xC2168, gfx, part65_draw]
+        - [0xC2288, gfx, part66_draw]
+        - [0xC23A8, gfx, part67_draw]
+        - [0xC24C8, gfx, part68_draw]
+        - [0xC25E8, gfx, part69_draw]
+        - [0xC2708, gfx, part70_draw]
+        - [0xC2828, gfx, part71_draw]
+        - [0xC2948, gfx, part72_draw]
+        - [0xC2A68, gfx, part73_draw]
+        - [0xC2BB0, gfx, part74_draw]
+        - [0xC2CC8, gfx, part75_draw]
+        - [0xC2DE8, gfx, part76_draw]
+        - [0xC2F08, gfx, part77_draw]
+        - [0xC3028, gfx, part78_draw]
+        - [0xC3148, gfx, part79_draw]
+        - [0xC3268, gfx, part80_draw]
+        - [0xC3398, gfx, part81_draw]
+        - [0xC34B8, gfx, part82_draw]
+        - [0xC35D8, gfx, part83_draw]
+        - [0xC36F8, gfx, part84_draw]
+        - [0xC3840, gfx, part85_draw]
+        - [0xC3958, gfx, part86_draw]
+        - [0xC3A78, gfx, part87_draw]
+        - [0xC3B98, gfx, part88_draw]
+        - [0xC3CB8, gfx, part89_draw]
+        - [0xC3DD8, gfx, part90_draw]
+        - [0xC3EF8, gfx, part91_draw]
+        - [0xC4028, gfx, part92_draw]
+        - [0xC4148, gfx, part93_draw]
+        - [0xC4268, gfx, part94_draw]
+        - [0xC4388, gfx, part95_draw]
+        - [0xC44D0, gfx, part96_draw]
+        - [0xC45E8, gfx, part97_draw]
+        - [0xC4710, gfx, part98_draw]
+        - [0xC4830, gfx, part99_draw]
+        - [0xC4950, gfx, part100_draw]
+        - [0xC4A70, gfx, part101_draw]
+        - [0xC4B90, gfx, part102_draw]
+        - [0xC4CC8, gfx, part103_draw]
+        - [0xC4DE8, gfx, part104_draw]
+        - [0xC4F08, gfx, part105_draw]
+        - [0xC5028, gfx, part106_draw]
+        - [0xC5170, gfx, part107_draw]
+        - [0xC5288, gfx, part108_draw]
+        - [0xC53A8, gfx, part109_draw]
+        - [0xC54C8, gfx, part110_draw]
+        - [0xC55E8, gfx, part111_draw]
+        - [0xC5708, gfx, part112_draw]
+        - [0xC5828, gfx, part113_draw]
+        - [0xC5958, gfx, part114_draw]
+        - [0xC5A78, gfx, part115_draw]
+        - [0xC5B98, gfx, part116_draw]
+        - [0xC5CB8, gfx, part117_draw]
+        - [0xC5E00, gfx, part118_draw]
+        - [0xC5F18, gfx, part119_draw]
+        - [0xC6038, gfx, part120_draw]
+        - [0xC6158, gfx, part121_draw]
+        - [0xC6278, gfx, part122_draw]
+        - [0xC6398, gfx, part123_draw]
+        - [0xC64B8, gfx, part124_draw]
+        - [0xC65D8, gfx, part125_draw]
+        - [0xC66F8, gfx, part126_draw]
+        - [0xC6818, gfx, part127_draw]
+        - [0xC6938, gfx, part128_draw]
+        - [0xC6A80, gfx, part144_draw]
+        - [0xC8360, gfx, part145_draw]
+        - [0xC8738, gfx, part146_draw]
+        - [0xC8868, gfx, part1_draw]
+        - [0xC8968, gfx, first]
+        - [0xC8990, gfx, part4_draw]
+        - [0xC8AE8, gfx, part5_draw]
+        - [0xC8C78, gfx, part6_draw]
+        - [0xC8E08, gfx, part129_draw]
+        - [0xC8EC0, gfx, part130_draw]
+        - [0xC8F78, gfx, part131_draw]
+        - [0xC9038, gfx, part132_draw]
+        - [0xC90F8, gfx, part133_draw]
+        - [0xC91B0, gfx, part134_draw]
+        - [0xC9270, gfx, part135_draw]
+        - [0xC9328, gfx, part136_draw]
+        - [0xC93E0, gfx, part137_draw]
+        - [0xC94A0, gfx, part138_draw]
+        - [0xC9560, gfx, part139_draw]
+        - [0xC9628, gfx, part140_draw]
+        - [0xC96E0, gfx, part141_draw]
+        - [0xC97B0, gfx, part142_draw]
+        - [0xC98E8, gfx, part143_draw]
+        - [0xC9A20, gfx, last]
+        - [0xC9A48, gfx, part147_draw]
+        - [0xC9BA8, gfx, part148_draw]
+        - [0xC9D08, data] # intro_world gfxdata + model
+        - {start: 0xCCD60, type: snap_model_anim, name: intro_world_modelanim, entries: 226}
+        - [0xD0700, snap_material_anim, intro_world_matanim]
+      - start: 0xD0E20
+        type: .data
+        name: mew
+        dir: mew
+        subsegments:
+        - [0xD0E28, rgba16, tex_80385E28, 32, 64]
+        - [0xD1E28]
+        - [0xD1E30, ci4, tex_80386E30, 32, 32]
+        - [0xD2030]
+        - [0xD2038, palette, tex_80386E30]
+        - [0xD2058]
+        - [0xD2060, ci4, tex_80387060, 32, 32]
+        - [0xD2260]
+        - {start: 0xD2268, type: palette, name: tex_80387060, size: 0x10}
+        - [0xD2278]
+        - [0xD2280, ci4, tex_80387280, 32, 32]
+        - [0xD2480]
+        - {start: 0xD2488, type: palette, name: tex_80387280, size: 0x18}
+        - [0xD24A0]
+        - [0xD24A8, ci8, tex_803874A8, 48, 40]
+        - [0xD2C28]
+        - [0xD2C30, palette, tex_803874A8]
+        - [0xD2E30]
+        - { start: 0xD2E38, type: ci8, name: tex_80387E38, width: 48, height: 40, palettes: tex_803874A8 }
+        - [0xD35B8]
+        - { start: 0xD35C0, type: ci8, name: tex_803885C0, width: 48, height: 40, palettes: tex_803874A8 }
+        - [0xD3D40]
+        - { start: 0xD3D48, type: ci8, name: tex_80388D48, width: 48, height: 40, palettes: tex_803874A8 }
+        - [0xD44C8]
+        - { start: 0xD44D0, type: ci8, name: tex_803894D0, width: 48, height: 40, palettes: tex_803874A8 }
+        - [0xD4C50]
+        - [0xD4C58, ci4, tex_80389C58, 32, 32]
+        - [0xD4E58]
+        - [0xD4E60, palette, tex_80389C58]
+        - [0xD4E80]
+        - [0xD4E88, ci4, tex_80389E88, 32, 64]
+        - [0xD5288]
+        - [0xD5290, palette, tex_80389E88]
+        - [0xD52B0]
+        - [0xD52B8, ci4, tex_8038A2B8, 32, 32]
+        - [0xD54B8]
+        - [0xD54C0, palette, tex_8038A2B8]
+        - [0xD54E0]
+        - [0xD54E8, ci4, tex_8038A4E8, 32, 64]
+        - [0xD58E8]
+        - [0xD58F0, palette, tex_8038A4E8]
+        - [0xD5910]
+        - [0xD5918, ci4, tex_8038A918, 32, 64]
+        - [0xD5D18]
+        - [0xD5D20, palette, tex_8038A918]
+        - [0xD5D40, data] # intro_mew materials + texture structs
+        - [0xD5E60, vtx, model]
+        - [0xD7960, gfx, part0_draw]
+        - [0xD7C78, gfx, part1_pre]
+        - [0xD7D60, gfx, part1_draw]
+        - [0xD7F88, gfx, part2_pre]
+        - [0xD7FE8, gfx, part2_draw]
+        - [0xD8150, gfx, part3_draw]
+        - [0xD8588, gfx, part4_pre]
+        - [0xD85B8, gfx, part4_draw]
+        - [0xD8638, gfx, part5_pre]
+        - [0xD8668, gfx, part5_draw]
+        - [0xD86E8, gfx, part6_pre]
+        - [0xD8758, gfx, part6_draw]
+        - [0xD87D8, gfx, part7_draw]
+        - [0xD8848, gfx, part8_draw]
+        - [0xD8988, gfx, part9_pre]
+        - [0xD8A08, gfx, part9_draw]
+        - [0xD8A88, gfx, part10_draw]
+        - [0xD8AF8, gfx, part11_draw]
+        - [0xD8C38, gfx, part12_pre]
+        - [0xD8CF0, gfx, part12_draw]
+        - [0xD8EB8, gfx, part13_draw]
+        - [0xD8F50, gfx, part14_draw]
+        - [0xD8FF8, gfx, part15_draw]
+        - [0xD91A0, gfx, part16_draw]
+        - [0xD9348, gfx, part17_pre]
+        - [0xD93C8, gfx, part17_draw]
+        - [0xD9588, gfx, part18_draw]
+        - [0xD9648, gfx, part19_draw]
+        - [0xD9710, gfx, part20_draw]
+        - [0xD98E0, gfx, part21_draw]
+        - [0xD9A98, gfx, part22_pre]
+        - [0xD9AE0, gfx, part22_draw]
+        - [0xD9BF0, gfx, part23_draw]
+        - [0xD9CF0, gfx, part24_draw]
+        - [0xD9D70, gfx, part25_draw]
+        - [0xD9DF0, gfx, part26_draw]
+        - [0xD9E60, gfx, part27_draw]
+        - [0xD9F50, gfx, part28_draw]
+        - [0xDA040, gfx, part29_draw]
+        - [0xDA138, gfx, part30_draw]
+        - [0xDA248, gfx, part31_draw]
+        - [0xDA2E0, data] # intro_mew gfxdata + model
+        - [0xDA9C0, snap_model_anim, intro_mew_modelanim]
+        - [0xDEAE0, snap_material_anim, intro_mew_matanim]
+      - start: 0xDEBF0
+        type: .data
+        name: unk
+        dir: unk
+        subsegments:
+        - [0xDEBF0, vtx, model]
+        - [0xDECB0, gfx, part0_draw]
+        - [0xDED30, data] # intro_unk model
+        - [0xDEDC0, snap_model_anim, intro_unk_modelanim]
+      - start: 0xDF3B0
+        type: .data
+        name: todd
+        dir: todd
+        subsegments:
+        - [0xDF3B8, i8, tex_803943B8, 32, 32]
+        - [0xDF7B8]
+        - [0xDF7C0, ci4, tex_803947C0, 32, 32]
+        - [0xDF9C0]
+        - {start: 0xDF9C8, type: palette, name: tex_803947C0, size: 8}
+        - [0xDF9D0]
+        - [0xDF9D8, ci4, tex_803949D8, 32, 32]
+        - [0xDFBD8]
+        - {start: 0xDFBE0, type: palette, name: tex_803949D8, size: 0x10}
+        - [0xDFBF0]
+        - [0xDFBF8, ci8, tex_80394BF8, 32, 32]
+        - [0xDFFF8]
+        - {start: 0xE0000, type: palette, name: tex_80394BF8, size: 0xA0}
+        - [0xE00A0]
+        - [0xE00A8, rgba16, tex_803950A8, 32, 32]
+        - [0xE08A8]
+        - [0xE08B0, rgba16, tex_803958B0, 32, 32]
+        - [0xE10B0]
+        - [0xE10B8, rgba16, tex_803960B8, 32, 32]
+        - [0xE18B8]
+        - [0xE18C0, rgba16, tex_803968C0, 32, 32]
+        - [0xE20C0]
+        - [0xE20C8, ci4, tex_803970C8, 32, 32]
+        - [0xE22C8]
+        - [0xE22D0, palette, tex_803970C8]
+        - [0xE22F0]
+        - [0xE22F8, ci4, tex_803972F8, 32, 32]
+        - [0xE24F8]
+        - [0xE2500, palette, tex_803972F8]
+        - [0xE2520]
+        - [0xE2528, ci8, tex_80397528, 32, 32]
+        - [0xE2928]
+        - [0xE2930, palette, tex_80397528]
+        - [0xE2B30]
+        - [0xE2B38, ci8, tex_80397B38, 32, 32]
+        - [0xE2F38]
+        - [0xE2F40, palette, tex_80397B38]
+        - [0xE3140]
+        - [0xE3148, ci8, tex_80398148, 32, 32]
+        - [0xE3548]
+        - [0xE3550, palette, tex_80398148]
+        - [0xE3750]
+        - [0xE3758, ci4, tex_80398758, 32, 32]
+        - [0xE3958]
+        - [0xE3960, palette, tex_80398758]
+        - [0xE3980]
+        - [0xE3988, rgba16, tex_80398988, 32, 32]
+        - [0xE4188]
+        - [0xE4190, ci8, tex_80399190, 64, 32]
+        - [0xE4990]
+        - [0xE4998, palette, tex_80399190]
+        - [0xE4B98]
+        - { start: 0xE4BA0, type: ci8, name: tex_80399BA0, width: 64, height: 32, palettes: tex_80399190 }
+        - [0xE53A0]
+        - { start: 0xE53A8, type: ci8, name: tex_8039A3A8, width: 64, height: 32, palettes: tex_80399190 }
+        - [0xE5BA8]
+        - [0xE5BB0, ci4, tex_8039ABB0, 32, 32]
+        - [0xE5DB0]
+        - [0xE5DB8, palette, tex_8039ABB0]
+        - [0xE5DD8]
+        - [0xE5DE0, ci4, tex_8039ADE0, 32, 32]
+        - [0xE5FE0]
+        - [0xE5FE8, palette, tex_8039ADE0]
+        - [0xE6008]
+        - [0xE6010, ci4, tex_8039B010, 32, 32]
+        - [0xE6210]
+        - {start: 0xE6218, type: palette, name: tex_8039B010, size: 8}
+        - [0xE6220]
+        - [0xE6228, ci4, tex_8039B228, 32, 32]
+        - [0xE6428]
+        - {start: 0xE6430, type: palette, name: tex_8039B228, size: 0x10}
+        - [0xE6440]
+        - [0xE6448, rgba16, tex_8039B448, 32, 32]
+        - [0xE6C48]
+        - [0xE6C48, data] # intro_todd materials + texture structs
+        - [0xE6D40, vtx, model]
+        - [0xE9AB0, gfx, part1_draw]
+        - [0xE9BC8, gfx, part2_pre]
+        - [0xE9C10, gfx, part2_draw]
+        - [0xE9DB0, gfx, part3_draw]
+        - [0xE9F68, gfx, part4_draw]
+        - [0xEA178, gfx, part5_draw]
+        - [0xEA398, gfx, part6_pre]
+        - [0xEA3E0, gfx, part6_draw]
+        - [0xEA580, gfx, part7_draw]
+        - [0xEA730, gfx, part8_draw]
+        - [0xEA968, gfx, part9_draw]
+        - [0xEAB98, gfx, part10_draw]
+        - [0xEACA8, gfx, part11_draw]
+        - [0xEAEB8, gfx, part12_draw]
+        - [0xEAFD0, gfx, part13_draw]
+        - [0xEB200, gfx, part14_pre]
+        - [0xEB248, gfx, part14_draw]
+        - [0xEB348, gfx, part15_draw]
+        - [0xEB650, gfx, part16_draw]
+        - [0xEB738, gfx, part17_draw]
+        - [0xEB9C0, gfx, part18_pre]
+        - [0xEBA08, gfx, part18_draw]
+        - [0xEBBD0, gfx, part19_draw]
+        - [0xEBCD0, gfx, part20_draw]
+        - [0xEBE48, gfx, part21_pre]
+        - [0xEBE90, gfx, part21_draw]
+        - [0xEC068, gfx, part22_draw]
+        - [0xEC168, gfx, part23_draw]
+        - [0xEC2E0, gfx, part24_draw]
+        - [0xEC440, gfx, part0_draw]
+        - [0xEC4D8, data] # intro_todd gfxdata + model
+        - [0xECBE0, snap_model_anim, intro_todd_modelanim]
+        - [0xF2F90, snap_material_anim, intro_todd_matanim]
   - [0xF3770]

@@ -404,8 +404,9 @@ def build_sprite_tiles(
                 y = row * tile_h
                 actual_w = min(tile_w, img_w - x)
                 actual_h = min(tile_h, img_h - y)
-                # Round to 64-bit row alignment: 4 texels for 2bpp, 8 for 1bpp
-                align = 8 // bpp
+                # Round to TMEM 64-bit row alignment per bank
+                # rgba32 is split across two 16bpp banks, so cap at 2 bpp
+                align = 8 // min(bpp, 2)
                 padded_w = (actual_w + align - 1) // align * align
                 pad_w = padded_w - actual_w
 

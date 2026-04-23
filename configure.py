@@ -240,6 +240,99 @@ NULL = "int"
         )
 
 
+def create_ninja_rules(ninja: ninja_syntax.Writer):
+    ninja.rule(
+        "bin",
+        description="bin $in",
+        command=f"{CROSS_LD} -r -b binary $in -o $out",
+    )
+
+    ninja.rule(
+        "as",
+        description="as $in",
+        command=f"bash -o pipefail -c '{CROSS_CPP} {COMMON_INCLUDES} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out'",
+    )
+
+    ninja.rule(
+        "as_libultra",
+        description="as $in",
+        command=f"{LIBULTRA_AS_CMD}",
+    )
+
+    ninja.rule(
+        "cc",
+        description="cc $in",
+        command=f"{GAME_CC_CMD}",
+    )
+
+    ninja.rule(
+        "cc_raw",
+        description="cc $in",
+        command=f"{RAW_CC_CMD}",
+    )
+
+    ninja.rule(
+        "cc_libultra",
+        description="cc $in",
+        command=f"{LIBULTRA_CC_CMD}",
+    )
+
+    ninja.rule(
+        "ld",
+        description="link $out",
+        command=f"{CROSS_LD} -T undefined_syms.txt $undefined_syms_extra -T $undefined_syms_auto -Map $mapfile -T $in -o $out",
+    )
+
+    ninja.rule(
+        "sha1sum",
+        description="sha1sum $in",
+        command="sha1sum -c $in && touch $out",
+    )
+
+    ninja.rule(
+        "elf",
+        description="elf $out",
+        command=f"{CROSS_OBJCOPY} $in $out -O binary",
+    )
+
+    ninja.rule(
+        "z64",
+        description="rom $out",
+        command=f"{CROSS_OBJCOPY} $in $out -O binary",
+    )
+
+    ninja.rule(
+        "pigment",
+        description="img($img_type) $in",
+        command=f"{PIGMENT64} to-bin $img_flags -f $img_type -o $out $in",
+    )
+
+    ninja.rule(
+        "bin2c",
+        description="bin2c $in",
+        command=f"{BIN2C} $in $out",
+    )
+
+    ninja.rule(
+        "effect_sprites",
+        description="effect_sprites $in",
+        command=f"{sys.executable} tools/build/effect_sprites.py $in $out",
+    )
+
+    ninja.rule(
+        "vpk0_compress",
+        description="vpk0 $in",
+        command=f"{sys.executable} tools/vpk0.py $in $out",
+    )
+
+    ninja.rule(
+        "mksprite",
+        description="mksprite $in",
+        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
+    )
+
+
+
 def process_linker_entries(
     linker_entries: List[LinkerEntry],
     build,
@@ -589,97 +682,7 @@ def create_build_script(linker_entries: List[LinkerEntry], disassemble_all: bool
             )
 
     ninja = ninja_syntax.Writer(open(str(ROOT / "build.ninja"), "w"), width=9999)
-
-    # Rules
-    ninja.rule(
-        "bin",
-        description="bin $in",
-        command=f"{CROSS_LD} -r -b binary $in -o $out",
-    )
-
-    ninja.rule(
-        "as",
-        description="as $in",
-        command=f"bash -o pipefail -c '{CROSS_CPP} {COMMON_INCLUDES} $in -o - | iconv -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out'",
-    )
-
-    ninja.rule(
-        "as_libultra",
-        description="as $in",
-        command=f"{LIBULTRA_AS_CMD}",
-    )
-
-    ninja.rule(
-        "cc",
-        description="cc $in",
-        command=f"{GAME_CC_CMD}",
-    )
-
-    ninja.rule(
-        "cc_raw",
-        description="cc $in",
-        command=f"{RAW_CC_CMD}",
-    )
-
-    ninja.rule(
-        "cc_libultra",
-        description="cc $in",
-        command=f"{LIBULTRA_CC_CMD}",
-    )
-
-    ninja.rule(
-        "ld",
-        description="link $out",
-        command=f"{CROSS_LD} -T undefined_syms.txt $undefined_syms_extra -T $undefined_syms_auto -Map $mapfile -T $in -o $out",
-    )
-
-    ninja.rule(
-        "sha1sum",
-        description="sha1sum $in",
-        command="sha1sum -c $in && touch $out",
-    )
-
-    ninja.rule(
-        "elf",
-        description="elf $out",
-        command=f"{CROSS_OBJCOPY} $in $out -O binary",
-    )
-
-    ninja.rule(
-        "z64",
-        description="rom $out",
-        command=f"{CROSS_OBJCOPY} $in $out -O binary",
-    )
-
-    ninja.rule(
-        "pigment",
-        description="img($img_type) $in",
-        command=f"{PIGMENT64} to-bin $img_flags -f $img_type -o $out $in",
-    )
-
-    ninja.rule(
-        "bin2c",
-        description="bin2c $in",
-        command=f"{BIN2C} $in $out",
-    )
-
-    ninja.rule(
-        "effect_sprites",
-        description="effect_sprites $in",
-        command=f"{sys.executable} tools/build/effect_sprites.py $in $out",
-    )
-
-    ninja.rule(
-        "vpk0_compress",
-        description="vpk0 $in",
-        command=f"{sys.executable} tools/vpk0.py $in $out",
-    )
-
-    ninja.rule(
-        "mksprite",
-        description="mksprite $in",
-        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
-    )
+    create_ninja_rules(ninja)
 
     linker_entries = list(linker_entries)
     overlay_builds = {}

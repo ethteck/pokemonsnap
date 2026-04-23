@@ -32,24 +32,24 @@ MovementState gMovementState = {
 };
 
 u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-#include "build/assets/app_level/level_reticle_sm.png.inc.h" // 506FE8 small reticle
-#include "build/assets/app_level/level_reticle_1.png.inc.h" // 507248 reticle 2
-#include "build/assets/app_level/level_reticle_2.png.inc.h" // 5079D8 reticle 3
-#include "build/assets/app_level/level_reticle_dot_red.png.inc.h" // 508168 red dot
-#include "build/assets/app_level/level_reticle_dot.png.inc.h" // 508218 white dot
-#include "build/assets/app_level/level_viewfinder_shutter_top.png.inc.h" // 508490
+#include "build/assets/app_level/level_reticle_sm.png.inc.h"                // 506FE8 small reticle
+#include "build/assets/app_level/level_reticle_1.png.inc.h"                 // 507248 reticle 2
+#include "build/assets/app_level/level_reticle_2.png.inc.h"                 // 5079D8 reticle 3
+#include "build/assets/app_level/level_reticle_dot_red.png.inc.h"           // 508168 red dot
+#include "build/assets/app_level/level_reticle_dot.png.inc.h"               // 508218 white dot
+#include "build/assets/app_level/level_viewfinder_shutter_top.png.inc.h"    // 508490
 #include "build/assets/app_level/level_viewfinder_shutter_bottom.png.inc.h" // 510B38
-#include "build/assets/app_level/level_viewfinder_frame.png.inc.h" // 5191E0 white square
-#include "build/assets/app_level/level_pause.png.inc.h" // 519330 Pause
-#include "build/assets/app_level/level_pause_intro.png.inc.h" // 51ADF8 Pause Pressed
-#include "build/assets/app_level/level_btn_quit_active.png.inc.h" // 51C8C0 Quit Course
-#include "build/assets/app_level/level_btn_quit.png.inc.h" // 51D6F8 Quit Course Pressed
-#include "build/assets/app_level/level_btn_continue_active.png.inc.h" // 51E530 Continue
-#include "build/assets/app_level/level_btn_continue.png.inc.h" // 51F368 Continue Pressed
-#include "build/assets/app_level/level_btn_retry_active.png.inc.h" // 5201A0 Retry
-#include "build/assets/app_level/level_btn_retry.png.inc.h" // 520FD8 Retry Pressed
-#include "build/assets/app_level/level_end.png.inc.h" // 521E10 END
-#include "build/assets/app_level/level_warning.png.inc.h" // WARNING
+#include "build/assets/app_level/level_viewfinder_frame.png.inc.h"          // 5191E0 white square
+#include "build/assets/app_level/level_pause.png.inc.h"                     // 519330 Pause
+#include "build/assets/app_level/level_pause_intro.png.inc.h"               // 51ADF8 Pause Pressed
+#include "build/assets/app_level/level_btn_quit_active.png.inc.h"           // 51C8C0 Quit Course
+#include "build/assets/app_level/level_btn_quit.png.inc.h"                  // 51D6F8 Quit Course Pressed
+#include "build/assets/app_level/level_btn_continue_active.png.inc.h"       // 51E530 Continue
+#include "build/assets/app_level/level_btn_continue.png.inc.h"              // 51F368 Continue Pressed
+#include "build/assets/app_level/level_btn_retry_active.png.inc.h"          // 5201A0 Retry
+#include "build/assets/app_level/level_btn_retry.png.inc.h"                 // 520FD8 Retry Pressed
+#include "build/assets/app_level/level_end.png.inc.h"                       // 521E10 END
+#include "build/assets/app_level/level_warning.png.inc.h"                   // WARNING
 
 s32 gDirectionIndex = 2;
 GObj* gObjPlayer = NULL;

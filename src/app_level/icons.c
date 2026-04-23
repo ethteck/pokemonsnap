@@ -30,13 +30,13 @@ typedef struct SpriteStruct {
 
 // data
 
-#include "build/assets/app_level/level_hud_zoom.png.inc.h" // Icon_Zoom
-#include "build/assets/app_level/level_hud_zoom_off.png.inc.h" // Icon_ZoomOff
-#include "build/assets/app_level/level_hud_engine.png.inc.h" // Icon_Dash
-#include "build/assets/app_level/level_hud_photo.png.inc.h" // Icon_Photo
+#include "build/assets/app_level/level_hud_zoom.png.inc.h"        // Icon_Zoom
+#include "build/assets/app_level/level_hud_zoom_off.png.inc.h"    // Icon_ZoomOff
+#include "build/assets/app_level/level_hud_engine.png.inc.h"      // Icon_Dash
+#include "build/assets/app_level/level_hud_photo.png.inc.h"       // Icon_Photo
 #include "build/assets/app_level/level_hud_pester_ball.png.inc.h" // Icon_PesterBall
-#include "build/assets/app_level/level_hud_apple.png.inc.h" // Icon_Apple
-#include "build/assets/app_level/level_hud_pokeflute.png.inc.h" // Icon_Flute
+#include "build/assets/app_level/level_hud_apple.png.inc.h"       // Icon_Apple
+#include "build/assets/app_level/level_hud_pokeflute.png.inc.h"   // Icon_Flute
 
 SpriteStruct Icons_IconObjects[] = {
     { 148, 104, NULL, 0, 0, NULL },

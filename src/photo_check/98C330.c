@@ -80,11 +80,11 @@ extern s32 D_801E543C_994EAC;
 extern Sprite D_801E5840_9952B0;
 extern Sprite photo_check_frame_vertical_sprite;
 extern Sprite photo_check_frame_horizontal_sprite;
-extern Sprite photo_check_title_sprite; // Prof. Oak's check
-extern Sprite photo_check_new_sprite; // NEW
-extern Sprite photo_check_bg_sprite; // blue diamond background
+extern Sprite photo_check_title_sprite;    // Prof. Oak's check
+extern Sprite photo_check_new_sprite;      // NEW
+extern Sprite photo_check_bg_sprite;       // blue diamond background
 extern Sprite photo_check_score_bg_sprite; // evaluation background sprite
-extern Sprite photo_check_scrim_sprite; // black square
+extern Sprite photo_check_scrim_sprite;    // black square
 extern Sprite photo_check_frame_fill_sprite;
 extern s32 D_801F3E28_9A3898;
 extern s32 D_801F3E2C_9A389C;

@@ -5,7 +5,7 @@
 #include "../window/window.h"
 
 extern Sprite new_game_card_sprite; // card
-extern Sprite new_game_bg_sprite; // background
+extern Sprite new_game_bg_sprite;   // background
 
 // clang-format off
 char* D_800E2FF0[] = {

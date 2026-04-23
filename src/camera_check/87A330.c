@@ -3,8 +3,59 @@
 #include "more_funcs/more_funcs.h"
 #include "string.h"
 
-// part of Sprite structure
-s32 D_camera_check_80208940 = 0;
+#include "build/assets/camera_check/camera_check_title.png.inc.h"
+static u8 aligner_0[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_oak_title.png.inc.h"
+static u8 aligner_1[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_background.png.inc.h"
+static u8 aligner_2[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_new_sm.png.inc.h"
+static u8 aligner_3[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_good.png.inc.h"
+static u8 aligner_4[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FD168_89A958.png.inc.h"
+static u8 aligner_5[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FD248_89AA38.png.inc.h"
+static u8 aligner_6[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FD328_89AB18.png.inc.h"
+static u8 aligner_7[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_container.png.inc.h"
+static u8 aligner_8[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_container_l.png.inc.h"
+static u8 aligner_9[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_container_tl.png.inc.h"
+static u8 aligner_10[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_container_t.png.inc.h"
+static u8 aligner_11[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_new.png.inc.h"
+static u8 aligner_12[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_vertical.png.inc.h"
+static u8 aligner_13[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_horizontal.png.inc.h"
+static u8 aligner_14[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_sm_vertical.png.inc.h"
+static u8 aligner_15[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_sm_horizontal.png.inc.h"
+static u8 aligner_16[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FE5C8_89BDB8.png.inc.h"
+static u8 aligner_17[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FE748_89BF38.png.inc.h"
+static u8 aligner_18[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/D_801FE8C8_89C0B8.png.inc.h"
+static u8 aligner_19[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_mark_album.png.inc.h"
+static u8 aligner_20[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_mark_oak.png.inc.h"
+static u8 aligner_21[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_mark_album_sm.png.inc.h"
+static u8 aligner_22[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_mark_oak_sm.png.inc.h"
+static u8 aligner_23[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_cross.png.inc.h"
+static u8 aligner_24[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_sm_fill.png.inc.h"
+static u8 aligner_25[] = { 0, 0, 0, 0 };
+#include "build/assets/camera_check/camera_check_frame_fill.png.inc.h"
 
 UnkTealFlounder D_camera_check_802498F0;
 UIElement* D_camera_check_80249910;
@@ -61,26 +112,26 @@ void func_camera_check_801DCB58(s32 rgb) {
 void func_camera_check_801DCC0C(void) {
     SObj* sobj;
 
-    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FD5C8)->data.sobj;
+    sobj = func_80371D14_8454C4(0, 6, &camera_check_container_tl_sprite)->data.sobj;
     sobj->sprite.x = 96;
     sobj->sprite.y = 42;
     D_camera_check_802499B0 = sobj;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FD6A8);
+    sobj = func_80371E68_845618(sobj, &camera_check_container_t_sprite);
     sobj->sprite.x = 8;
     sobj->sprite.y = 0;
     sobj->sprite.attr |= SP_SCALE;
     sobj->sprite.scalex = 25.0f;
     D_camera_check_802499B4 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD4E8);
+    sobj = func_80371DC0_845570(sobj, &camera_check_container_l_sprite);
     sobj->sprite.x = 0;
     sobj->sprite.y = 8;
     sobj->sprite.height = 112;
     sobj->sprite.istep = 0;
     D_camera_check_802499B8 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD408);
+    sobj = func_80371DC0_845570(sobj, &camera_check_container_sprite);
     sobj->sprite.x = 8;
     sobj->sprite.y = 8;
     sobj->sprite.height = 0x70;
@@ -108,28 +159,28 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
     s32 x;
     u8* src;
 
-    gobj = func_80371C68_845418(NULL, 6, &D_camera_check_801FE318);
+    gobj = func_80371C68_845418(NULL, 6, &camera_check_frame_sm_vertical_sprite);
     sobj = gobj->data.sobj;
     D_camera_check_802499C0[arg0].unk_00 = gobj;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FE318);
+    sobj = func_80371E68_845618(sobj, &camera_check_frame_sm_vertical_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE448);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FCE78);
+    sobj = func_80371DC0_845570(sobj, &camera_check_new_sm_sprite);
     sobj->sprite.x = 56;
     sobj->sprite.y = 0;
     D_camera_check_802499C0[arg0].unk_04 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_80201520);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_sm_fill_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     D_camera_check_802499C0[arg0].unk_0C = sobj;
@@ -145,30 +196,30 @@ GObj* func_camera_check_801DCF9C(s32 arg0) {
         *dest = *src;
     }
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088);
+    sobj = func_80371DC0_845570(sobj, &camera_check_good_sprite);
     sobj->sprite.x = -2;
     sobj->sprite.y = -2;
     D_camera_check_802499C0[arg0].unk_08 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFB08);
+    sobj = func_80371DC0_845570(sobj, &camera_check_mark_album_sm_sprite);
     sobj->sprite.x = 6;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= 0x4000 | SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802499C0[arg0].unk_10 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FFC88);
+    sobj = func_80371DC0_845570(sobj, &camera_check_mark_oak_sm_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= 0x4000 | SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802499C0[arg0].unk_14 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &camera_check_cross_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802499C0[arg0].unk_18 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &camera_check_cross_sprite);
     sobj->sprite.x = 38;
     sobj->sprite.y = 33;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -503,59 +554,59 @@ void* func_camera_check_801DDFC4(void) {
     SObj* sobj;
     UIElement* temp_v0_2;
 
-    temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &D_camera_check_801FDDB8);
+    temp_v0 = func_80371C68_845418(func_camera_check_801DDF28, 6, &camera_check_frame_vertical_sprite);
     D_camera_check_802498F0.unk_00 = temp_v0;
     sobj = temp_v0->data.sobj;
     sobj->sprite.x = 101;
     sobj->sprite.y = 47;
     sobj->sprite.attr |= SP_HIDDEN;
 
-    sobj = func_80371E68_845618(sobj, &D_camera_check_801FDDB8);
+    sobj = func_80371E68_845618(sobj, &camera_check_frame_vertical_sprite);
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FE160);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD9E0);
+    sobj = func_80371DC0_845570(sobj, &camera_check_new_sprite);
     sobj->sprite.x = 161;
     sobj->sprite.y = 60;
     D_camera_check_802498F0.unk_04 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_80208900);
+    sobj = func_80371DC0_845570(sobj, &camera_check_frame_fill_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
     D_camera_check_802498F0.unk_0C = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FD088);
+    sobj = func_80371DC0_845570(sobj, &camera_check_good_sprite);
     sobj->sprite.x = -2;
     sobj->sprite.y = -2;
     D_camera_check_802498F0.unk_08 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF128);
+    sobj = func_80371DC0_845570(sobj, &camera_check_mark_album_sprite);
     sobj->sprite.x = 14;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802498F0.unk_10 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_801FF988);
+    sobj = func_80371DC0_845570(sobj, &camera_check_mark_oak_sprite);
     sobj->sprite.x = 100;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_SCALE | SP_TRANSPARENT;
     D_camera_check_802498F0.unk_14 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &camera_check_cross_sprite);
     sobj->sprite.x = 100;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
     D_camera_check_802498F0.unk_18 = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_camera_check_802004E8);
+    sobj = func_80371DC0_845570(sobj, &camera_check_cross_sprite);
     sobj->sprite.x = 14;
     sobj->sprite.y = 72;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -1000,7 +1051,7 @@ void func_camera_check_801DF2D8(GObj* arg0) {
     UIText_SetPrintDelay(0);
     D_camera_check_80249914 = sp6C;
 
-    gobj = func_80371D14_8454C4(0, 6, &D_camera_check_801F0560);
+    gobj = func_80371D14_8454C4(0, 6, &camera_check_title_sprite);
     gobj->data.sobj->sprite.x = 96;
     gobj->data.sobj->sprite.y = 42;
 
@@ -1084,7 +1135,7 @@ void func_camera_check_801DF938(void) {
     SObj* sobj;
 
     func_800A85E8(func_camera_check_801DF2D8, LINK_6, DL_LINK_0, NULL);
-    sobj = func_80371D14_8454C4(0, 6, &D_camera_check_801FCC58)->data.sobj;
+    sobj = func_80371D14_8454C4(0, 6, &camera_check_background_sprite)->data.sobj;
     sobj->sprite.width = 640;
     sobj->sprite.height = 480;
     sobj->sprite.istep = 0;

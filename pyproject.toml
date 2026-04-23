@@ -9,6 +9,7 @@ dependencies = [
     "mapfile-parser>=2.12.1",
     "n64img>=0.3.3",
     "ninja-syntax>=1.7.2",
+    "numpy>=2.0.2",
     "pypng>=0.20220715.0",
     "requests>=2.32.5",
     "spimdisasm>=1.39.0",

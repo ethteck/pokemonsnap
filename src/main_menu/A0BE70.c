@@ -23,9 +23,9 @@ extern GObj* D_800E8324_A0F8B4;
 extern u8 D_800E832B_A0F8BB;
 extern u32 D_800E832C_A0F8BC;
 
-extern Sprite D_803051F0;
-extern Sprite D_803072A0;
-extern Sprite D_80308A00;
+extern Sprite D_803051F0_sprite;
+extern Sprite D_803072A0_sprite;
+extern Sprite D_80308A00_sprite;
 
 extern Texture** D_80359378;
 extern UnkEC64Arg3 D_80359A20;
@@ -244,17 +244,17 @@ void func_800E5468_A0C9F8(void) {
     SObj* sobj;
 
     D_800E8318_A0F8A8 = ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                       &D_803051F0, 0, func_800E5370_A0C900, 1);
+                                       &D_803051F0_sprite, 0, func_800E5370_A0C900, 1);
 
     sobj = D_800E8318_A0F8A8->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 98, 68);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0);
+    omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0_sprite);
 
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 96, 103);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00);
+    omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00_sprite);
 
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 71, 112);

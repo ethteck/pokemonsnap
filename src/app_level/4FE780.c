@@ -1,12 +1,12 @@
 #include "common.h"
 
-extern Sprite D_80388E00_529210;
-extern UNK_TYPE D_80388F58_529368;
-extern Sprite D_80388F60_529370;
-extern UNK_TYPE D_803890B8_5294C8;
-extern Sprite D_803890C0_5294D0;
-extern UNK_TYPE D_80389218_529628;
-extern Sprite D_80389220_529630;
+extern Sprite level_hud_film_strip_sprite;
+extern Bitmap level_hud_film_ones_bitmaps[];
+extern Sprite level_hud_film_ones_sprite;
+extern Bitmap level_hud_film_tens_bitmaps[];
+extern Sprite level_hud_film_tens_sprite;
+extern Bitmap level_hud_film_hundreds_bitmaps[];
+extern Sprite level_hud_film_hundreds_sprite;
 extern s32 D_8038A024_52A434;
 extern s32 D_8038A028_52A438;
 extern s32 D_8038A02C_52A43C;
@@ -36,17 +36,17 @@ void func_8035E37C_4FE78C(void) {
     omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
     D_803B09D8_550DE8 = obj;
 
-    sobj = omGObjAddSprite(obj, &D_80388E00_529210);
+    sobj = omGObjAddSprite(obj, &level_hud_film_strip_sprite);
     spMove(&sobj->sprite, 257, 22);
 
-    D_803B0A14_550E24 = sobj = omGObjAddSprite(obj, &D_80388F60_529370);
+    D_803B0A14_550E24 = sobj = omGObjAddSprite(obj, &level_hud_film_ones_sprite);
     spMove(&sobj->sprite, 286, 24);
 
-    D_803B0A18_550E28 = sobj = omGObjAddSprite(obj, &D_803890C0_5294D0);
+    D_803B0A18_550E28 = sobj = omGObjAddSprite(obj, &level_hud_film_tens_sprite);
     spMove(&sobj->sprite, 278, 24);
     spSetAttribute(&sobj->sprite, SP_HIDDEN);
 
-    D_803B0A1C_550E2C = sobj = omGObjAddSprite(obj, &D_80389220_529630);
+    D_803B0A1C_550E2C = sobj = omGObjAddSprite(obj, &level_hud_film_hundreds_sprite);
     spMove(&sobj->sprite, 270, 24);
     spSetAttribute(&sobj->sprite, SP_HIDDEN);
 
@@ -72,20 +72,20 @@ s32 func_8035E52C_4FE93C(void) {
     tens = (value % 100) / 10;
     hundreds = value / 100;
 
-    D_80388F58_529368 = D_8038A034_52A444[ones];
+    level_hud_film_ones_bitmaps[0].buf = D_8038A034_52A444[ones];
 
     if (hundreds == 0) {
         if (tens == 0) {
             spSetAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         } else {
-            D_803890B8_5294C8 = D_8038A034_52A444[tens];
+            level_hud_film_tens_bitmaps[0].buf = D_8038A034_52A444[tens];
             spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         }
         spSetAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     } else {
-        D_803890B8_5294C8 = D_8038A034_52A444[tens];
+        level_hud_film_tens_bitmaps[0].buf = D_8038A034_52A444[tens];
         spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
-        D_80389218_529628 = D_8038A034_52A444[hundreds];
+        level_hud_film_hundreds_bitmaps[0].buf = D_8038A034_52A444[hundreds];
         spClearAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     }
 

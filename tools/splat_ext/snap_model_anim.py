@@ -6,11 +6,21 @@ from struct import unpack_from
 sys.path.insert(0, str(Path(__file__).parent))
 from snap_anim_common import SnapAnimSegmentCommon
 
-class N64SegSnap_model_anim(SnapAnimSegmentCommon):    
+class N64SegSnap_model_anim(SnapAnimSegmentCommon):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if isinstance(self.yaml, dict) and "entries" in self.yaml:
+            self._header_entries_override = self.yaml["entries"]
+        else:
+            self._header_entries_override = None
+
     def cmd_get_param_name(self, index):
         return ("ROTX", "ROTY", "ROTZ", "PATH_PARAM", "POSX", "POSY", "POSZ", "SCALEX", "SCALEY", "SCALEZ")[index]
-    
+
     def get_header_length(self, data, vram_base):
+        if self._header_entries_override is not None:
+            return self._header_entries_override * 4
+
         pointer, offset = 0, 0
         while pointer == 0:
             pointer, offset = unpack_from(">I", data, offset)[0], offset + 4

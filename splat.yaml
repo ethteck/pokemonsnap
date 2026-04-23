@@ -10098,7 +10098,7 @@ segments:
     - { name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
   - { start: 0xA0F830, type: vpk0, align: 16 }
-  - [0xA5CC46, pad]
+  - [0xA5CC46]
 
   - name: menu_new_game
     dir: menu_new_game
@@ -10158,7 +10158,7 @@ segments:
     - { start: auto, name: AA0650, type: .bss, vram: 0x800E1DD0 }
 
   - { start: 0xAA0B80, type: vpk0, align: 16 }
-  - [0xAA18D3, pad]
+  - [0xAA18D3]
 
   - type: code
     start: 0xAA18E0
@@ -10171,7 +10171,7 @@ segments:
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
   - { start: 0xAAA610, type: vpk0, align: 16 }
-  - [0xAAA65B, pad]
+  - [0xAAA65B]
 
   - [0xAAA660, bin, idle_script_beach]
   - [0xAB1470, bin, idle_script_tunnel]

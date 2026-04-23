@@ -63,7 +63,9 @@ class BitReader:
 class BitWriter:
     def __init__(self) -> None:
         self._buf = bytearray()
-        self._bit_cursor = 0  # bits written into last byte (0..7); 0 means new byte needed
+        self._bit_cursor = (
+            0  # bits written into last byte (0..7); 0 means new byte needed
+        )
 
     def write_bit(self, bit: int) -> None:
         if self._bit_cursor == 0:
@@ -434,9 +436,6 @@ def _lzss_lazy(
     return tokens
 
 
-
-
-
 # ---------------------------------------------------------------------------
 # Tree derivation
 # ---------------------------------------------------------------------------
@@ -462,7 +461,6 @@ def tokens_to_tree_values(tokens: Sequence[LzToken]) -> Tuple[List[int], List[in
 
 def _required_widths(values: Sequence[int]) -> List[int]:
     return [max(1, v.bit_length()) if v > 0 else 1 for v in values]
-
 
 
 def derive_tree(values: Sequence[int]) -> Vpk0Tree:
@@ -670,9 +668,7 @@ def compress_vpk0(
                     writer.write_bits(L, w)
                     break
             else:
-                raise Vpk0CompressionError(
-                    f"length tree has no bucket for value {L}"
-                )
+                raise Vpk0CompressionError(f"length tree has no bucket for value {L}")
 
     payload = writer.to_bytes()
     header = b"vpk0" + len(raw).to_bytes(4, "big") + bytes([method])

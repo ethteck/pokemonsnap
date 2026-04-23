@@ -240,6 +240,315 @@ NULL = "int"
         )
 
 
+def process_linker_entries(
+    linker_entries: List[LinkerEntry],
+    build,
+    img_incs: List[str],
+    overlay_builds,
+    build_vpk0_overlays: bool,
+):
+    for entry in linker_entries:
+        seg = entry.segment
+
+        if entry.object_path is None:
+            continue
+
+        # images embedded inside data aren't linked, but they do need to be built into .bin files
+        if seg.type == ".data" and isinstance(
+            seg, splat.segtypes.common.group.CommonSegGroup
+        ):
+            for seg in seg.subsegments:
+                if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
+                    flags = ""
+                    if seg.n64img.flip_h:
+                        flags += "--flip-x "
+                    if seg.n64img.flip_v:
+                        flags += "--flip-y "
+
+                    bin_path = Path("build/" + str(seg.out_path()) + ".bin")
+                    inc_path = Path(str(bin_path) + ".c")
+                    src_path = seg.out_path()
+
+                    build(
+                        bin_path,
+                        [src_path],
+                        "pigment",
+                        variables={"img_type": seg.type, "img_flags": flags},
+                    )
+                    build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
+                elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
+                    bin_path = Path(
+                        "build/" + str(seg.out_path().with_suffix(".pal")) + ".bin"
+                    )
+                    inc_path = Path(str(bin_path) + ".c")
+                    src_path = seg.out_path()
+                    build(
+                        bin_path,
+                        [src_path],
+                        "pigment",
+                        variables={"img_type": seg.type, "img_flags": ""},
+                    )
+                    build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
+                elif (
+                    seg.type == "snap_sprite"
+                    and hasattr(seg, "tile_width")
+                    and getattr(seg, "tile_width", 0) > 0
+                ):
+                    tile_width = int(getattr(seg, "tile_width"))
+                    tile_height = int(getattr(seg, "tile_height"))
+                    format_name = str(getattr(seg, "format_name"))
+                    aligner_mode = str(getattr(seg, "aligner_mode", "df"))
+                    has_dl = bool(getattr(seg, "has_dl", False))
+                    has_sp_z = bool(getattr(seg, "has_sp_z", True))
+                    has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
+                    has_sp_transparent = bool(getattr(seg, "has_sp_transparent", False))
+                    has_sp_scale = bool(getattr(seg, "has_sp_scale", False))
+                    has_sp_overlap = bool(getattr(seg, "has_sp_overlap", False))
+                    sp_x = int(getattr(seg, "sp_x", 0))
+                    sp_y = int(getattr(seg, "sp_y", 0))
+                    sp_color = int(getattr(seg, "sp_color", 0xFFFFFFFF))
+                    sprite_flags = ""
+                    if has_dl:
+                        sprite_flags += " --dl"
+                    if not has_sp_z:
+                        sprite_flags += " --no-z"
+                    if not has_sp_fastcopy:
+                        sprite_flags += " --no-fastcopy"
+                    if has_sp_transparent:
+                        sprite_flags += " --transparent"
+                    if has_sp_scale:
+                        sprite_flags += " --scale"
+                    if has_sp_overlap:
+                        sprite_flags += " --overlap"
+                    if sp_x != 0 or sp_y != 0:
+                        sprite_flags += f" --x {sp_x} --y {sp_y}"
+                    if sp_color != 0xFFFFFFFF:
+                        sprite_flags += f" --color {sp_color:08X}"
+                    src_png = seg.out_path()
+                    assert src_png is not None
+                    padding_png = src_png.with_name(f"{src_png.stem}.padding.png")
+                    inc_path = Path("build/" + str(src_png) + ".inc.h")
+                    build(
+                        inc_path,
+                        [src_png, padding_png],
+                        "mksprite",
+                        variables={
+                            "src_png": str(src_png),
+                            "padding_png": str(padding_png),
+                            "fmt": format_name,
+                            "aligner_mode": aligner_mode,
+                            "tile_w": str(tile_width),
+                            "tile_h": str(tile_height),
+                            "sprite_name": str(seg.name),
+                            "sprite_flags": sprite_flags.strip(),
+                        },
+                    )
+                    img_incs.append(str(inc_path))
+
+    for entry in linker_entries:
+        seg = entry.segment
+
+        if entry.object_path is None:
+            continue
+
+        if seg.type[0] == ".":
+            continue
+
+        if isinstance(seg, splat.segtypes.n64.header.N64SegHeader):
+            build(entry.object_path, entry.src_paths, "as")
+        elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
+            seg, splat.segtypes.common.data.CommonSegData
+        ):
+            s_path = entry.src_paths[0]
+            if "ultralib" in str(s_path):
+                opt_level = "-O2"
+
+                if "/os/" in str(s_path):
+                    opt_level = "-O1"
+
+                if s_path.stem in ["exceptasm"]:
+                    mips = "-mips3 -32"
+                else:
+                    mips = "-mips2 -32"
+
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "as_libultra",
+                    variables={"flags": f"{opt_level} {mips}"},
+                )
+            else:
+                build(entry.object_path, entry.src_paths, "as")
+        elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
+            c_path = entry.src_paths[0]
+
+            if c_path.stem == "osFlash":
+                opt_level = "-O0"
+                ido = "5.3"
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc_raw",
+                    variables={
+                        "flags": opt_level,
+                        "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                    },
+                )
+                continue
+
+            if "ultralib" not in str(c_path):
+                opt_level = "-O2"
+                ido = "7.1"
+
+                if c_path.stem in [
+                    "98C330",
+                    "98D0F0",
+                    "993F80",
+                    "993C50",
+                    "9A6B10",
+                    "9A6F70",
+                    "9ABB50",
+                    "9ADAD0",
+                    "9D3230",
+                    "9D3660",
+                    "9D91C0",
+                    "A084B0",
+                    "9FAC10",
+                    "9FA580",
+                    "9FD510",
+                    "9FEC10",
+                ]:
+                    opt_level = "-g"
+                elif c_path.stem in ["848B50"]:
+                    opt_level = "-O2 -g3"
+
+                build(
+                    entry.object_path,
+                    entry.src_paths,
+                    "cc",
+                    variables={
+                        "flags": opt_level,
+                    },
+                )
+                continue
+
+            opt_level = "-O2"
+            mips = "-mips2"
+            ido = "5.3"
+            libultra = "VERSION_I"
+
+            if (
+                c_path.stem
+                in [
+                    "pigetcmdq",
+                    "controller",
+                ]
+                or "ultralib/src/os" in str(c_path)
+                or "ultralib/src/io" in str(c_path)
+            ):
+                opt_level = "-O1"
+            elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(c_path):
+                opt_level = "-O3"
+                if "color" in str(c_path):
+                    ido = "7.1"
+                if c_path.stem == "spriteex2":
+                    opt_level = "-O2"
+                    ido = "7.1"
+            elif "ultralib/src/libc" in str(c_path):
+                opt_level = "-O3"
+                mips = "-mips2 -32"
+
+                if c_path.stem in ["ll", "llbit", "llcvt"]:
+                    opt_level = "-O1"
+                    mips = "-mips3 -32"
+            elif "ultralib/src/audio" in str(c_path):
+                ido = "7.1"
+
+            if c_path.stem in [
+                "aisetfreq",
+                "cartrominit",
+                "contpfs",
+                "contramread",
+                "contramwrite",
+                "contreaddata",
+                "crc",
+                "epirawdma",
+                "epirawread",
+                "epirawwrite",
+                "gbpakcheckconnector",
+                "gbpakgetstatus",
+                "gbpakinit",
+                "gbpakpower",
+                "gbpakreadid",
+                "gbpakreadwrite",
+                "gbpaksetbank",
+                "motor",
+                "pfschecker",
+                "pfsfilestate",
+                "pfsgetstatus",
+                "pfsinitpak",
+                "pimgr",
+                "pfsselectbank",
+                "sirawdma",
+                "vimgr",
+                "viswapcontext",
+            ]:
+                opt_level = "-O2"
+                libultra = "VERSION_J"
+            elif c_path.stem in [
+                "devmgr",
+                "epiread",
+                "epiwrite",
+                "initialize",
+                "pirawdma",
+                "pirawread",
+                "sirawread",
+            ]:
+                opt_level = "-O1"
+                libultra = "VERSION_J"
+
+            build(
+                entry.object_path,
+                entry.src_paths,
+                "cc_libultra",
+                variables={
+                    "flags": f"{opt_level} {mips}",
+                    "ido": TOOLS_DIR / ("ido" + ido) / "cc",
+                    "libultra": libultra,
+                },
+            )
+        elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
+            if seg.sibling is None:
+                build(entry.object_path, entry.src_paths, "as")
+            elif seg.get_linker_section() == ".text":
+                # Only build the .text section file for a textbin with siblings
+                build(entry.object_path, entry.src_paths, "as")
+        elif seg.type == "vpk0":
+            if build_vpk0_overlays and entry.object_path in overlay_builds:
+                continue
+
+            compressed = entry.object_path.with_suffix(".vpk0")
+            build(compressed, entry.src_paths, "vpk0_compress")
+            build(entry.object_path, [compressed], "bin")
+        elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
+            build(entry.object_path, entry.src_paths, "bin")
+        elif seg.type == "snap_effect_sprites":
+            raw_bin = entry.object_path.with_suffix(".bin")
+            build(
+                raw_bin,
+                entry.src_paths,
+                "effect_sprites",
+                implicit=glob.glob(str(entry.src_paths[0]) + "/*"),
+            )
+            build(entry.object_path, [raw_bin], "bin")
+        else:
+            print(f"ERROR: Unsupported build segment type {seg.type}")
+            sys.exit(1)
+
+
+
 def create_build_script(linker_entries: List[LinkerEntry], disassemble_all: bool):
     built_objects: Set[Path] = set()
     img_incs = []
@@ -414,313 +723,12 @@ def create_build_script(linker_entries: List[LinkerEntry], disassemble_all: bool
         }
         queued_overlay_yamls.add(yaml_path)
 
-    def process_linker_entries(
-        linker_entries: List[LinkerEntry], build_vpk0_overlays: bool
-    ):
-        for entry in linker_entries:
-            seg = entry.segment
-
-            if entry.object_path is None:
-                continue
-
-            # images embedded inside data aren't linked, but they do need to be built into .bin files
-            if seg.type == ".data" and isinstance(
-                seg, splat.segtypes.common.group.CommonSegGroup
-            ):
-                for seg in seg.subsegments:
-                    if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
-                        flags = ""
-                        if seg.n64img.flip_h:
-                            flags += "--flip-x "
-                        if seg.n64img.flip_v:
-                            flags += "--flip-y "
-
-                        bin_path = Path("build/" + str(seg.out_path()) + ".bin")
-                        inc_path = Path(str(bin_path) + ".c")
-                        src_path = seg.out_path()
-
-                        build(
-                            bin_path,
-                            [src_path],
-                            "pigment",
-                            variables={"img_type": seg.type, "img_flags": flags},
-                        )
-                        build(inc_path, [bin_path], "bin2c")
-                        img_incs.append(str(inc_path))
-                    elif isinstance(seg, splat.segtypes.n64.palette.N64SegPalette):
-                        bin_path = Path(
-                            "build/" + str(seg.out_path().with_suffix(".pal")) + ".bin"
-                        )
-                        inc_path = Path(str(bin_path) + ".c")
-                        src_path = seg.out_path()
-                        build(
-                            bin_path,
-                            [src_path],
-                            "pigment",
-                            variables={"img_type": seg.type, "img_flags": ""},
-                        )
-                        build(inc_path, [bin_path], "bin2c")
-                        img_incs.append(str(inc_path))
-                    elif (
-                        seg.type == "snap_sprite"
-                        and hasattr(seg, "tile_width")
-                        and getattr(seg, "tile_width", 0) > 0
-                    ):
-                        tile_width = int(getattr(seg, "tile_width"))
-                        tile_height = int(getattr(seg, "tile_height"))
-                        format_name = str(getattr(seg, "format_name"))
-                        aligner_mode = str(getattr(seg, "aligner_mode", "df"))
-                        has_dl = bool(getattr(seg, "has_dl", False))
-                        has_sp_z = bool(getattr(seg, "has_sp_z", True))
-                        has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
-                        has_sp_transparent = bool(getattr(seg, "has_sp_transparent", False))
-                        has_sp_scale = bool(getattr(seg, "has_sp_scale", False))
-                        has_sp_overlap = bool(getattr(seg, "has_sp_overlap", False))
-                        sp_x = int(getattr(seg, "sp_x", 0))
-                        sp_y = int(getattr(seg, "sp_y", 0))
-                        sp_color = int(getattr(seg, "sp_color", 0xFFFFFFFF))
-                        sprite_flags = ""
-                        if has_dl:
-                            sprite_flags += " --dl"
-                        if not has_sp_z:
-                            sprite_flags += " --no-z"
-                        if not has_sp_fastcopy:
-                            sprite_flags += " --no-fastcopy"
-                        if has_sp_transparent:
-                            sprite_flags += " --transparent"
-                        if has_sp_scale:
-                            sprite_flags += " --scale"
-                        if has_sp_overlap:
-                            sprite_flags += " --overlap"
-                        if sp_x != 0 or sp_y != 0:
-                            sprite_flags += f" --x {sp_x} --y {sp_y}"
-                        if sp_color != 0xFFFFFFFF:
-                            sprite_flags += f" --color {sp_color:08X}"
-                        src_png = seg.out_path()
-                        assert src_png is not None
-                        padding_png = src_png.with_name(f"{src_png.stem}.padding.png")
-                        inc_path = Path("build/" + str(src_png) + ".inc.h")
-                        build(
-                            inc_path,
-                            [src_png, padding_png],
-                            "mksprite",
-                            variables={
-                                "src_png": str(src_png),
-                                "padding_png": str(padding_png),
-                                "fmt": format_name,
-                                "aligner_mode": aligner_mode,
-                                "tile_w": str(tile_width),
-                                "tile_h": str(tile_height),
-                                "sprite_name": str(seg.name),
-                                "sprite_flags": sprite_flags.strip(),
-                            },
-                        )
-                        img_incs.append(str(inc_path))
-
-        for entry in linker_entries:
-            seg = entry.segment
-
-            if entry.object_path is None:
-                continue
-
-            if seg.type[0] == ".":
-                continue
-
-            if isinstance(seg, splat.segtypes.n64.header.N64SegHeader):
-                build(entry.object_path, entry.src_paths, "as")
-            elif isinstance(seg, splat.segtypes.common.asm.CommonSegAsm) or isinstance(
-                seg, splat.segtypes.common.data.CommonSegData
-            ):
-                s_path = entry.src_paths[0]
-                if "ultralib" in str(s_path):
-                    opt_level = "-O2"
-
-                    if "/os/" in str(s_path):
-                        opt_level = "-O1"
-
-                    if s_path.stem in ["exceptasm"]:
-                        mips = "-mips3 -32"
-                    else:
-                        mips = "-mips2 -32"
-
-                    build(
-                        entry.object_path,
-                        entry.src_paths,
-                        "as_libultra",
-                        variables={"flags": f"{opt_level} {mips}"},
-                    )
-                else:
-                    build(entry.object_path, entry.src_paths, "as")
-            elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
-                c_path = entry.src_paths[0]
-
-                if c_path.stem == "osFlash":
-                    opt_level = "-O0"
-                    ido = "5.3"
-                    build(
-                        entry.object_path,
-                        entry.src_paths,
-                        "cc_raw",
-                        variables={
-                            "flags": opt_level,
-                            "ido": TOOLS_DIR / ("ido" + ido) / "cc",
-                        },
-                    )
-                    continue
-
-                if "ultralib" not in str(c_path):
-                    opt_level = "-O2"
-                    ido = "7.1"
-
-                    if c_path.stem in [
-                        "98C330",
-                        "98D0F0",
-                        "993F80",
-                        "993C50",
-                        "9A6B10",
-                        "9A6F70",
-                        "9ABB50",
-                        "9ADAD0",
-                        "9D3230",
-                        "9D3660",
-                        "9D91C0",
-                        "A084B0",
-                        "9FAC10",
-                        "9FA580",
-                        "9FD510",
-                        "9FEC10",
-                    ]:
-                        opt_level = "-g"
-                    elif c_path.stem in ["848B50"]:
-                        opt_level = "-O2 -g3"
-
-                    build(
-                        entry.object_path,
-                        entry.src_paths,
-                        "cc",
-                        variables={
-                            "flags": opt_level,
-                        },
-                    )
-                    continue
-
-                opt_level = "-O2"
-                mips = "-mips2"
-                ido = "5.3"
-                libultra = "VERSION_I"
-
-                if (
-                    c_path.stem
-                    in [
-                        "pigetcmdq",
-                        "controller",
-                    ]
-                    or "ultralib/src/os" in str(c_path)
-                    or "ultralib/src/io" in str(c_path)
-                ):
-                    opt_level = "-O1"
-                elif "ultralib/src/gu" in str(c_path) or "ultralib/src/sp" in str(c_path):
-                    opt_level = "-O3"
-                    if "color" in str(c_path):
-                        ido = "7.1"
-                    if c_path.stem == "spriteex2":
-                        opt_level = "-O2"
-                        ido = "7.1"
-                elif "ultralib/src/libc" in str(c_path):
-                    opt_level = "-O3"
-                    mips = "-mips2 -32"
-
-                    if c_path.stem in ["ll", "llbit", "llcvt"]:
-                        opt_level = "-O1"
-                        mips = "-mips3 -32"
-                elif "ultralib/src/audio" in str(c_path):
-                    ido = "7.1"
-
-                if c_path.stem in [
-                    "aisetfreq",
-                    "cartrominit",
-                    "contpfs",
-                    "contramread",
-                    "contramwrite",
-                    "contreaddata",
-                    "crc",
-                    "epirawdma",
-                    "epirawread",
-                    "epirawwrite",
-                    "gbpakcheckconnector",
-                    "gbpakgetstatus",
-                    "gbpakinit",
-                    "gbpakpower",
-                    "gbpakreadid",
-                    "gbpakreadwrite",
-                    "gbpaksetbank",
-                    "motor",
-                    "pfschecker",
-                    "pfsfilestate",
-                    "pfsgetstatus",
-                    "pfsinitpak",
-                    "pimgr",
-                    "pfsselectbank",
-                    "sirawdma",
-                    "vimgr",
-                    "viswapcontext",
-                ]:
-                    opt_level = "-O2"
-                    libultra = "VERSION_J"
-                elif c_path.stem in [
-                    "devmgr",
-                    "epiread",
-                    "epiwrite",
-                    "initialize",
-                    "pirawdma",
-                    "pirawread",
-                    "sirawread",
-                ]:
-                    opt_level = "-O1"
-                    libultra = "VERSION_J"
-
-                build(
-                    entry.object_path,
-                    entry.src_paths,
-                    "cc_libultra",
-                    variables={
-                        "flags": f"{opt_level} {mips}",
-                        "ido": TOOLS_DIR / ("ido" + ido) / "cc",
-                        "libultra": libultra,
-                    },
-                )
-            elif isinstance(seg, splat.segtypes.common.textbin.CommonSegTextbin):
-                if seg.sibling is None:
-                    build(entry.object_path, entry.src_paths, "as")
-                elif seg.get_linker_section() == ".text":
-                    # Only build the .text section file for a textbin with siblings
-                    build(entry.object_path, entry.src_paths, "as")
-            elif seg.type == "vpk0":
-                if build_vpk0_overlays and entry.object_path in overlay_builds:
-                    continue
-
-                compressed = entry.object_path.with_suffix(".vpk0")
-                build(compressed, entry.src_paths, "vpk0_compress")
-                build(entry.object_path, [compressed], "bin")
-            elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
-                build(entry.object_path, entry.src_paths, "bin")
-            elif seg.type == "snap_effect_sprites":
-                raw_bin = entry.object_path.with_suffix(".bin")
-                build(
-                    raw_bin,
-                    entry.src_paths,
-                    "effect_sprites",
-                    implicit=glob.glob(str(entry.src_paths[0]) + "/*"),
-                )
-                build(entry.object_path, [raw_bin], "bin")
-            else:
-                print(f"ERROR: Unsupported build segment type {seg.type}")
-                sys.exit(1)
-
-    process_linker_entries(linker_entries, True)
+    process_linker_entries(linker_entries, build, img_incs, overlay_builds, True)
 
     for overlay_build in overlay_builds.values():
-        process_linker_entries(overlay_build["entries"], False)
+        process_linker_entries(
+            overlay_build["entries"], build, img_incs, overlay_builds, False
+        )
 
     for object_path, overlay_build in overlay_builds.items():
         undefined_syms_path = overlay_build["undefined_syms_path"]

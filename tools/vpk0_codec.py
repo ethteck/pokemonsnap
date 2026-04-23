@@ -1,7 +1,6 @@
 """Pure-Python VPK0 codec (decompress + compress).
 
-VPK0 is the compression format used by Vanpool/HAL-authored N64 titles
-including Pokemon Snap. A stream consists of:
+VPK0 is the compression format used in Pokemon Snap. A stream consists of:
 
     offset 0   : magic "vpk0"
     offset 4   : decompressed size (u32 big-endian)
@@ -52,10 +51,6 @@ class BitReader:
             value = (value << 1) | self.read_bit()
         return value
 
-    @property
-    def bitpos(self) -> int:
-        return self._bitpos
-
     def bytes_consumed(self) -> int:
         return (self._bitpos + 7) // 8
 
@@ -79,12 +74,6 @@ class BitWriter:
             return
         for i in range(count - 1, -1, -1):
             self.write_bit((value >> i) & 1)
-
-    @property
-    def bitpos(self) -> int:
-        if self._bit_cursor == 0:
-            return len(self._buf) * 8
-        return (len(self._buf) - 1) * 8 + self._bit_cursor
 
     def to_bytes(self) -> bytes:
         return bytes(self._buf)
@@ -181,17 +170,6 @@ class Vpk0Tree:
         walk(len(self.entries) - 1, 0, 0)
         return table
 
-    def leaves_with_codes(self) -> List[Tuple[int, int, int]]:
-        """Return list of (bit_size, code_bits, code_len) for each leaf,
-        in the order their indices appear in ``entries``."""
-        codes = self.code_table()
-        result = []
-        for idx, entry in enumerate(self.entries):
-            if isinstance(entry, _Leaf):
-                code, length = codes[idx]
-                result.append((entry.bit_size, code, length))
-        return result
-
 
 # ---------------------------------------------------------------------------
 # Decompression
@@ -211,22 +189,6 @@ class Vpk0Metadata:
     offsets_tree: Vpk0Tree
     lengths_tree: Vpk0Tree
     decompressed_size: int
-
-    @classmethod
-    def from_compressed(cls, data: bytes) -> "Vpk0Metadata":
-        if len(data) < 9 or data[:4] != b"vpk0":
-            raise Vpk0DecompressionError("Invalid VPK0 header")
-        decompressed_size = int.from_bytes(data[4:8], "big")
-        method = data[8]
-        reader = BitReader(data[9:])
-        offsets = Vpk0Tree.read(reader)
-        lengths = Vpk0Tree.read(reader)
-        return cls(
-            method=method,
-            offsets_tree=offsets,
-            lengths_tree=lengths,
-            decompressed_size=decompressed_size,
-        )
 
 
 def _decompress_internal(
@@ -284,17 +246,6 @@ def decompress_vpk0(data: bytes) -> Tuple[bytes, int]:
     out, consumed, _ = _decompress_internal(data)
     return out, consumed
 
-
-def decompress_vpk0_with_tokens(data: bytes) -> Tuple[bytes, List["LzToken"]]:
-    """Decompress and also return the original tool's LZSS token sequence.
-
-    Useful for studying the encoder's match-selection heuristic: every
-    token corresponds to exactly one output byte (literal) or a run of
-    output bytes (backref), so ``tokens`` is the exact sequence of
-    decisions the original compressor made.
-    """
-    out, _, tokens = _decompress_internal(data)
-    return out, tokens
 
 
 # ---------------------------------------------------------------------------
@@ -441,24 +392,6 @@ def _lzss_lazy(
 # ---------------------------------------------------------------------------
 
 
-def tokens_to_tree_values(tokens: Sequence[LzToken]) -> Tuple[List[int], List[int]]:
-    """Split a token stream into the raw integer value sequences that the
-    offsets tree and lengths tree need to encode, respectively.
-
-    For method 1 the offset stream interleaves direct values and escape
-    pairs; both go through the same tree, so we just concatenate them.
-    """
-    offset_values: List[int] = []
-    length_values: List[int] = []
-    for tok in tokens:
-        if tok.is_literal:
-            continue
-        for v in _encode_offset_fields(tok.move_back):
-            offset_values.append(v)
-        length_values.append(tok.length)
-    return offset_values, length_values
-
-
 def _required_widths(values: Sequence[int]) -> List[int]:
     return [max(1, v.bit_length()) if v > 0 else 1 for v in values]
 
@@ -535,19 +468,6 @@ def derive_tree(values: Sequence[int]) -> Vpk0Tree:
         return combined
 
     return Vpk0Tree(build(min_w, max_w))
-
-
-def derive_trees_from_tokens(
-    tokens: Sequence[LzToken],
-) -> Tuple[Vpk0Tree, Vpk0Tree]:
-    """Given an LZSS token stream, derive (offsets_tree, lengths_tree).
-
-    Used by tests to separate tree-derivation quality from LZSS-matching
-    quality: feed the original ROM's own token sequence in, and any
-    mismatch against the ROM's trees is purely a tree-derivation bug.
-    """
-    offset_values, length_values = tokens_to_tree_values(tokens)
-    return derive_tree(offset_values), derive_tree(length_values)
 
 
 def compress_vpk0(

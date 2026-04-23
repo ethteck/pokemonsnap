@@ -326,6 +326,12 @@ def create_ninja_rules(ninja: ninja_syntax.Writer):
     )
 
     ninja.rule(
+        "elf_to_vpk0_obj",
+        description="vpk0_obj $out",
+        command=f"{sys.executable} tools/build/elf_to_vpk0_obj.py $in -o $out --reference-objects-file $reference_objects_file --cross {CROSS}",
+    )
+
+    ninja.rule(
         "mksprite",
         description="mksprite $in",
         command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
@@ -733,6 +739,16 @@ def create_build_script(linker_entries: List[LinkerEntry], disassemble_all: bool
             overlay_build["entries"], build, img_incs, overlay_builds, False
         )
 
+    main_link_objects = sorted(str(obj) for obj in built_objects)
+    main_link_objects_target = "main_link_objects"
+    overlay_reference_objects_path = Path("build/overlay_reference_objects.txt")
+    overlay_reference_objects_path.parent.mkdir(parents=True, exist_ok=True)
+    overlay_reference_objects_path.write_text(
+        "\n".join(main_link_objects) + ("\n" if main_link_objects else ""),
+        encoding="utf-8",
+    )
+    ninja.build(main_link_objects_target, "phony", main_link_objects)
+
     for object_path, overlay_build in overlay_builds.items():
         undefined_syms_path = overlay_build["undefined_syms_path"]
         undefined_syms_extra = (
@@ -757,7 +773,13 @@ def create_build_script(linker_entries: List[LinkerEntry], disassemble_all: bool
             "vpk0_compress",
             add_to_link=False,
         )
-        build(object_path, [overlay_build["vpk0_path"]], "bin")
+        build(
+            object_path,
+            [overlay_build["elf_path"], overlay_build["vpk0_path"]],
+            "elf_to_vpk0_obj",
+            implicit=[main_link_objects_target, str(overlay_reference_objects_path)],
+            variables={"reference_objects_file": str(overlay_reference_objects_path)},
+        )
 
     build(
         Path(ELF_PATH),

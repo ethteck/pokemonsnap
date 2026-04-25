@@ -35,26 +35,26 @@ typedef struct UnkTealFlounder {
     /* 0x1C */ SObj* unk_1C;
 } UnkTealFlounder; // size = 0x20
 
-extern Sprite D_camera_check_801F0560;
-extern Sprite D_camera_check_801FCC58;
-extern Sprite D_camera_check_801FCE78;
-extern Sprite D_camera_check_801FD088;
-extern Sprite D_camera_check_801FD408;
-extern Sprite D_camera_check_801FD4E8;
-extern Sprite D_camera_check_801FD5C8;
-extern Sprite D_camera_check_801FD6A8;
-extern Sprite D_camera_check_801FD9E0;
-extern Sprite D_camera_check_801FDDB8;
-extern Sprite D_camera_check_801FE160;
-extern Sprite D_camera_check_801FE318;
-extern Sprite D_camera_check_801FE448;
-extern Sprite D_camera_check_801FF128;
-extern Sprite D_camera_check_801FF988;
-extern Sprite D_camera_check_801FFB08;
-extern Sprite D_camera_check_801FFC88;
-extern Sprite D_camera_check_802004E8;
-extern Sprite D_camera_check_80201520;
-extern Sprite D_camera_check_80208900;
+extern Sprite camera_check_title_sprite;
+extern Sprite camera_check_background_sprite;
+extern Sprite camera_check_new_sm_sprite;
+extern Sprite camera_check_good_sprite;
+extern Sprite camera_check_container_sprite;
+extern Sprite camera_check_container_l_sprite;
+extern Sprite camera_check_container_tl_sprite;
+extern Sprite camera_check_container_t_sprite;
+extern Sprite camera_check_new_sprite;
+extern Sprite camera_check_frame_vertical_sprite;
+extern Sprite camera_check_frame_horizontal_sprite;
+extern Sprite camera_check_frame_sm_vertical_sprite;
+extern Sprite camera_check_frame_sm_horizontal_sprite;
+extern Sprite camera_check_mark_album_sprite;
+extern Sprite camera_check_mark_oak_sprite;
+extern Sprite camera_check_mark_album_sm_sprite;
+extern Sprite camera_check_mark_oak_sm_sprite;
+extern Sprite camera_check_cross_sprite;
+extern Sprite camera_check_frame_sm_fill_sprite;
+extern Sprite camera_check_frame_fill_sprite;
 
 extern s32 D_camera_check_802089F0;
 extern s32 (*D_camera_check_802089F4)(const void*, const void*);

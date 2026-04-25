@@ -3,7 +3,7 @@
 #include "credits.h"
 
 Credit D_credits_801E8BA0[] = {
-    { 50, 240.0f, "POKεMON SNAP Staff", 0 },
+    { 50, 240.0f, "Pokemon SNAP Staff", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
@@ -128,12 +128,12 @@ Credit D_credits_801E9260[] = {
     { 50, 320.0f, "Yoichi Kotabe", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
-    { 50, 320.0f, "Pokεmon Created by", 0 },
+    { 50, 320.0f, "Pokemon Created by", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Satoshi Tajiri", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
-    { 50, 320.0f, "Pokεmon Producer", 0 },
+    { 50, 320.0f, "Pokemon Producer", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Tsunekaz Ishihara", 0 },
     { 50, 320.0f, "", 0 },

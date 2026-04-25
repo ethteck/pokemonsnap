@@ -383,7 +383,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                     case 2:
                         if (prevMode != mode) {
                             UIElement_Draw(func_camera_check_801DCB40());
-                            UIElement_PrintText(func_camera_check_801DCB40(), "No Pokεmon are in this picture.\nPress \\a or \\b to return.");
+                            UIElement_PrintText(func_camera_check_801DCB40(), "No Pokemon are in this picture.\nPress \\a or \\b to return.");
                         }
                         break;
                     case 3:
@@ -720,7 +720,7 @@ s32 func_camera_check_801E0F10(void) {
                             case 2:
                                 if (prevMode != mode) {
                                     UIElement_Draw(func_camera_check_801DCB40());
-                                    UIElement_PrintText(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokεmon.");
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokemon.");
                                 }
                                 break;
                             case 3:

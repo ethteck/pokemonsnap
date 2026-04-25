@@ -10097,7 +10097,8 @@ segments:
     - [0xA0F810, .rodata, A0E190]
     - { name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
-  - [0xA0F830, bin] # VPK0 compressed data
+  - { start: 0xA0F830, type: vpk0, align: 16 }
+  - [0xA5CC46]
 
   - name: menu_new_game
     dir: menu_new_game
@@ -10156,7 +10157,8 @@ segments:
     - [0xAA0A60, .data, AA0650]
     - { start: auto, name: AA0650, type: .bss, vram: 0x800E1DD0 }
 
-  - [0xAA0B80, bin] # VPK0 compressed data
+  - { start: 0xAA0B80, type: vpk0, align: 16 }
+  - [0xAA18D3]
 
   - type: code
     start: 0xAA18E0
@@ -10168,7 +10170,8 @@ segments:
     - [0xAA20A0, bin] # , data] # Image with rights notice printed on pictures
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
-  - [0xAAA610, bin] # VPK0 compressed data
+  - { start: 0xAAA610, type: vpk0, align: 16 }
+  - [0xAAA65B]
 
   - [0xAAA660, bin, idle_script_beach]
   - [0xAB1470, bin, idle_script_tunnel]

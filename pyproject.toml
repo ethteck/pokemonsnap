@@ -5,7 +5,7 @@ dynamic = ["version"]
 requires-python = ">=3.9"
 dependencies = [
     "argparse>=1.4.0",
-    "gitpython>=3.1.46",
+    "gitpython>=3.1.47",
     "mapfile-parser>=2.12.1",
     "n64img>=0.3.3",
     "ninja-syntax>=1.7.2",

@@ -1,5 +1,5 @@
 name: Pokemon Snap (Europe)
-sha1: 72558f6e35d0115f06e78f0081b3aa12a8db4390
+sha1: d575b393812a0a59fbb52f3ce55ce4d7bc5f3225
 options:
   basename: pokemonsnap
   find_file_boundaries: true
@@ -7,7 +7,7 @@ options:
   mnemonic_ljust: 11
   platform: n64
   base_path: .
-  target_path: pokemonsnap.z64
+  target_path: /Users/marijn/Desktop/pokemonsnap/NPFP00.z64
   extensions_path: tools/splat_ext
   ld_script_path: pokemonsnap.ld
   ld_symbol_header_path: build/include/ld_addrs.h
@@ -1111,7 +1111,7 @@ segments:
   type: code
   name: more_funcs
   dir: more_funcs
-  vram: 0x800BF080
+  vram: 0x800BF580
   bss_size: 0x01F6F0
   subsegments:
   - start: 0x05B790
@@ -1134,12 +1134,12 @@ segments:
     name: 5BF20
   - type: bss
     name: bss_800C21B0
-    vram: 0x800C21B0
+    vram: 0x800C26B0
 - start: 0x05E8C0
   type: code
   name: world
   dir: world
-  vram: 0x800E18A0
+  vram: 0x800E1DA0
   exclusive_ram_id: level
   bss_size: 0x000390
   subsegments:
@@ -1395,11 +1395,11 @@ segments:
   - start: auto
     type: .bss
     name: block
-    vram: 0x800F5AE0
+    vram: 0x800F5FE0
   - start: auto
     type: .bss
     name: ground_int
-    vram: 0x800F5E20
+    vram: 0x800F6320
 - start: 0x072B00
   type: code
   name: magikarp_textures
@@ -2005,7 +2005,7 @@ segments:
 - start: 0x0A6E30
   type: code
   name: beach_assets
-  vram: 0x8011B050
+  vram: 0x8011B630
   exclusive_ram_id: unk8011B050
   bss_size: 0x000020
   subsegments:
@@ -2017,7 +2017,7 @@ segments:
     name: A74F0
   - type: bss
     name: bss_801B02F0
-    vram: 0x801B02F0
+    vram: 0x801B08D0
 - start: 0x13C0D0
   type: code
   name: beach_extra
@@ -2717,7 +2717,7 @@ segments:
   type: code
   name: tunnel_assets
   dir: tunnel
-  vram: 0x8011CB50
+  vram: 0x8011D130
   exclusive_ram_id: unk8011CB50
   bss_size: 0x000020
   subsegments:
@@ -3890,7 +3890,7 @@ segments:
     name: 1C8AC0
   - type: bss
     name: bss_8018BC30
-    vram: 0x8018BC30
+    vram: 0x8018C210
 - start: 0x1D16E0
   type: code
   name: tunnel_extra
@@ -4570,7 +4570,7 @@ segments:
   type: code
   name: cave_assets
   dir: cave
-  vram: 0x8012A0C0
+  vram: 0x8012A6A0
   exclusive_ram_id: unk8012A0C0
   bss_size: 0x000020
   subsegments:
@@ -4592,7 +4592,7 @@ segments:
     name: 264E10
   - type: bss
     name: bss_801AEDD0
-    vram: 0x801AED80
+    vram: 0x801AF360
 - start: 0x27A480
   type: code
   name: cave_extra
@@ -5244,7 +5244,7 @@ segments:
 - start: 0x2999E0
   type: code
   name: river_assets
-  vram: 0x8012A0C0
+  vram: 0x8012A6A0
   exclusive_ram_id: unk8012A0C0
   bss_size: 0x000020
   subsegments:
@@ -5256,7 +5256,7 @@ segments:
     name: 29A1A0
   - type: bss
     name: bss_8019AEC0
-    vram: 0x8019AEC0
+    vram: 0x8019B4A0
 - start: 0x30A7E0
   type: code
   name: river_extra
@@ -5832,7 +5832,7 @@ segments:
   type: code
   name: volcano_assets
   dir: volcano
-  vram: 0x800FFF90
+  vram: 0x80100570
   exclusive_ram_id: unk800FFF90
   bss_size: 0x000020
   subsegments:
@@ -10668,7 +10668,7 @@ segments:
 - start: 0x3F5C20
   type: code
   name: valley_assets
-  vram: 0x800FFF90
+  vram: 0x80100570
   exclusive_ram_id: unk800FFF90
   bss_size: 0x000020
   subsegments:
@@ -10680,7 +10680,7 @@ segments:
     name: 3F63E0
   - type: bss
     name: bss_80186AF0
-    vram: 0x80186AF0
+    vram: 0x801870D0
 - start: 0x47C780
   type: code
   name: valley_extra
@@ -11525,7 +11525,7 @@ segments:
 - start: 0x4A79B0
   type: code
   name: rainbow_assets
-  vram: 0x800F5D90
+  vram: 0x800F6370
   exclusive_ram_id: unk800F5D90
   bss_size: 0x000020
   subsegments:
@@ -11537,7 +11537,7 @@ segments:
     name: 4A8170
   - type: bss
     name: bss_80139C30
-    vram: 0x80139C30
+    vram: 0x8013A210
 - start: 0x4EB850
   type: code
   name: rainbow_extra
@@ -11687,7 +11687,7 @@ segments:
   type: code
   name: app_level
   dir: app_level
-  vram: 0x80350200
+  vram: 0x8034F1C0
   exclusive_ram_id: app_level
   bss_size: 0x009E40
   subsegments:
@@ -12707,7 +12707,7 @@ segments:
     linker_section_order: .rodata
   - type: bss
     name: bss_803AB1C0
-    vram: 0x803ABD10
+    vram: 0x803AACD0
 - start: 0x54B970
   type: code
   name: magikarp_model
@@ -13475,7 +13475,7 @@ segments:
   type: code
   name: beach_code
   dir: beach
-  vram: 0x802C40A0
+  vram: 0x802C3060
   exclusive_ram_id: level
   symbol_name_format: beach_$VRAM
   bss_size: 0x000140
@@ -15304,12 +15304,12 @@ segments:
       name: part13_draw
   - type: bss
     name: bss_80347560
-    vram: 0x80347560
+    vram: 0x80346520
 - start: 0x5DF970
   type: code
   name: tunnel_code
   dir: tunnel
-  vram: 0x802CE1B0
+  vram: 0x802E14C0
   exclusive_ram_id: level
   bss_size: 0x001690
   subsegments:
@@ -16387,12 +16387,12 @@ segments:
       name: last
   - type: bss
     name: bss_803430E0
-    vram: 0x8032ED90
+    vram: 0x803420A0
 - start: 0x640550
   type: code
   name: cave_code
   dir: cave
-  vram: 0x802BDD00
+  vram: 0x802BD5C0
   exclusive_ram_id: level
   bss_size: 0x001580
   subsegments:
@@ -18167,12 +18167,12 @@ segments:
       name: last
   - type: bss
     name: bss_8033E130
-    vram: 0x8033D830
+    vram: 0x8033D0F0
 - start: 0x6C0080
   type: code
   name: river_code
   dir: river
-  vram: 0x802CE1B0
+  vram: 0x802D77C0
   exclusive_ram_id: level
   bss_size: 0x0001B0
   subsegments:
@@ -19523,12 +19523,12 @@ segments:
       name: last
   - type: bss
     name: bss_8033F500
-    vram: 0x80334EB0
+    vram: 0x8033E4C0
 - start: 0x726D80
   type: code
   name: volcano_code
   dir: volcano
-  vram: 0x802CE1B0
+  vram: 0x802D50A0
   bss_size: 0x000170
   exclusive_ram_id: level
   subsegments:
@@ -21746,7 +21746,7 @@ segments:
   type: code
   name: valley_code
   dir: valley
-  vram: 0x802C5BD4
+  vram: 0x802C4BE0
   exclusive_ram_id: level
   bss_size: 0x001880
   subsegments:
@@ -23816,12 +23816,12 @@ segments:
       name: last
   - type: bss
     name: bss_8034C8A0
-    vram: 0x8034C864
+    vram: 0x8034B870
 - start: 0x8258E0
   type: code
   name: rainbow_code
   dir: rainbow
-  vram: 0x80346660
+  vram: 0x80345680
   exclusive_ram_id: level
   bss_size: 0x000080
   subsegments:
@@ -24139,7 +24139,7 @@ segments:
       name: last
   - type: bss
     name: bss_80350170
-    vram: 0x80350110
+    vram: 0x8034F130
 - start: 0x82F390
   type: code
   name: magikarp_model_hd
@@ -24474,7 +24474,7 @@ segments:
   type: code
   name: window
   dir: window
-  vram: 0x803697C0
+  vram: 0x80370200
   bss_size: 0x0008A0
   exclusive_ram_id: level
   subsegments:
@@ -24566,7 +24566,7 @@ segments:
   type: code
   name: camera_check
   dir: camera_check
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   bss_size: 0x0408F0
   exclusive_ram_id: level
   symbol_name_format: camera_check_$VRAM
@@ -24614,7 +24614,7 @@ segments:
   type: code
   name: oaks_lab
   dir: oaks_lab
-  vram: 0x800E18A0
+  vram: 0x800E1DC0
   exclusive_ram_id: level
   bss_size: 0x040080
   subsegments:
@@ -24671,12 +24671,12 @@ segments:
     name: 8AAF60
   - type: bss
     name: bss_801C6B10
-    vram: 0x801C6B00
+    vram: 0x801C7020
 - start: 0x985CA0
   type: code
   name: photo_check
   dir: photo_check
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   bss_size: 0x0327A0
   exclusive_ram_id: level
   subsegments:
@@ -24714,7 +24714,7 @@ segments:
   type: code
   name: pokemon_album
   dir: pokemon_album
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   bss_size: 0x047970
   exclusive_ram_id: level
   subsegments:
@@ -24755,7 +24755,7 @@ segments:
   type: code
   name: pokemon_report
   dir: pokemon_report
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   exclusive_ram_id: level
   bss_size: 0x02D210
   subsegments:
@@ -24782,12 +24782,12 @@ segments:
     name: 9D91C0
   - type: bss
     name: bss_80203C10
-    vram: 0x80203C50
+    vram: 0x80204210
 - start: 0x9F42A0
   type: code
   name: gallery
   dir: gallery
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   exclusive_ram_id: level
   bss_size: 0x046300
   subsegments:
@@ -24814,16 +24814,16 @@ segments:
     name: 9FD510
   - type: bss
     name: bss_801EA7F0
-    vram: 0x801EA880
+    vram: 0x801EAE40
   - start: auto
     type: .bss
     name: 9FEC10
-    vram: 0x80230950
+    vram: 0x80230F10
 - start: 0xA02260
   type: code
   name: unk_end_level_8
   dir: unk_end_level_8
-  vram: 0x801DC8C0
+  vram: 0x801DCE80
   exclusive_ram_id: level
   bss_size: 0x032020
   subsegments:
@@ -24835,12 +24835,12 @@ segments:
     name: A084B0
   - type: bss
     name: A084B0
-    vram: 0x801DD230
+    vram: 0x801DD7F0
 - start: 0xA02BD0
   type: code
   name: main_menu
   dir: main_menu
-  vram: 0x800E18A0
+  vram: 0x800E1DA0
   exclusive_ram_id: level
   bss_size: 0x000100
   subsegments:
@@ -24873,174 +24873,174 @@ segments:
     name: A0E190
   - type: bss
     name: bss_800E82A0
-    vram: 0x800E8440
+    vram: 0x800E8940
 - start: 0xA09770
   type: bin
   name: A0F830
-- start: 0xA56B90
+- start: 0xA576A0
   type: code
   name: menu_new_game
   dir: menu_new_game
-  vram: 0x800E18A0
+  vram: 0x800E1DA0
   exclusive_ram_id: level
   bss_size: 0x051F60
   subsegments:
-  - start: 0xA56B90
+  - start: 0xA576A0
     type: c
     name: A5CC50
-  - start: 0xA574F0
+  - start: 0xA58000
     type: c
     name: A5D5B0
-  - start: 0xA582E0
+  - start: 0xA58DF0
     type: .data
     name: A5CC50
-  - start: 0xA58990
+  - start: 0xA594A0
     type: .rodata
     name: A5CC50
-  - start: 0xA58F80
+  - start: 0xA59A90
     type: .rodata
     name: A5D5B0
-  - start: 0xA58FB0
+  - start: 0xA59AC0
     type: data
     name: sprite_background
     linker_section_order: .rodata
-  - start: 0xA7EBC0
+  - start: 0xA7F6D0
     type: data
     name: sprite_card
     linker_section_order: .rodata
-  - start: 0xA8D2D0
+  - start: 0xA8DDE0
     type: data
     name: sprite_cursor
     linker_section_order: .rodata
   - start: auto
     type: .bss
     name: A5CC50
-    vram: 0x801180B0
+    vram: 0x801185B0
   - start: auto
     type: .bss
     name: A5D5B0
-    vram: 0x80118110
+    vram: 0x80118610
   - type: bss
     name: sprite_bss
-    vram: 0x80168150
-- start: 0xA8D3A0
+    vram: 0x80168650
+- start: 0xA8DEB0
   type: code
   name: credits
   dir: credits
-  vram: 0x801C6B20
+  vram: 0x801DCE80
   exclusive_ram_id: level
   symbol_name_format: credits_$VRAM
   bss_size: 0x003590
   subsegments:
-  - start: 0xA8D3A0
+  - start: 0xA8DEB0
     type: c
     name: A93460
-  - start: 0xA8D6F0
+  - start: 0xA8E200
     type: pad
     name: A937B0
-  - start: 0xA8D700
+  - start: 0xA8E210
     type: c
     name: A937C0
-  - start: 0xA8E3C0
+  - start: 0xA8EED0
     type: c
     name: A94480
-  - start: 0xA8E870
+  - start: 0xA8F380
     type: pad
     name: A94930
-  - start: 0xA8E880
+  - start: 0xA8F390
     type: c
     name: A94940
-  - start: 0xA8F6A0
+  - start: 0xA901B0
     type: data
     name: A93460
-  - start: 0xA8F7C0
+  - start: 0xA902D0
     type: data
     name: A95880
-  - start: 0xA96BA0
+  - start: 0xA976B0
     type: data
     name: A9CC60
-  - start: 0xA96F80
+  - start: 0xA97A90
     type: data
     name: A9D040
-  - start: 0xA97320
+  - start: 0xA97E30
     type: data
     name: A9D3E0
-  - start: 0xA975F0
+  - start: 0xA98100
     type: data
     name: A9D6B0
-  - start: 0xA996A0
+  - start: 0xA9A1B0
     type: .data
     name: A94940
-  - start: 0xA99F20
+  - start: 0xA9AA30
     type: .rodata
     name: A937C0
-  - start: 0xA99F40
+  - start: 0xA9AA50
     type: .rodata
     name: A937C0
-  - start: 0xA99F50
+  - start: 0xA9AA60
     type: .rodata
     name: A94940
   - type: bss
     name: bss_801E9A90
-    vram: 0x801D3D10
-- start: 0xA9A590
+    vram: 0x801EA070
+- start: 0xA9B0A0
   type: code
   name: intro_code
-  vram: 0x800E18A0
+  vram: 0x800E1DA0
   exclusive_ram_id: level
   bss_size: 0x000010
   subsegments:
-  - start: 0xA9A590
+  - start: 0xA9B0A0
     type: c
     name: AA0650
-  - start: 0xA9A9A0
+  - start: 0xA9B4B0
     type: .data
     name: AA0650
   - start: auto
     type: .bss
     name: AA0650
-    vram: 0x800E1DD0
-- start: 0xA9AAC0
+    vram: 0x800E22D0
+- start: 0xA9B5D0
   type: bin
   name: AA0B80
-- start: 0xA9B820
+- start: 0xA9C330
   type: code
   name: AA18E0
-  vram: 0x801C6B20
+  vram: 0x801DCE80
   exclusive_ram_id: level
   bss_size: 0x000020
   subsegments:
-  - start: 0xA9B820
+  - start: 0xA9C330
     type: c
     name: AA18E0
-  - start: 0xA9BFE0
+  - start: 0xA9CAF0
     type: bin
     name: AA20A0
   - start: auto
     type: .bss
     name: AA18E0
-    vram: 0x801CF850
-- start: 0xAA4550
+    vram: 0x801E5BB0
+- start: 0xAA5060
   type: bin
   name: AAA610
-- start: 0xAA45A0
+- start: 0xAA50B0
   type: bin
   name: idle_script_beach
-- start: 0xAAB3B0
+- start: 0xAABEC0
   type: bin
   name: idle_script_tunnel
-- start: 0xAAF7A0
+- start: 0xAB02B0
   type: bin
   name: fx/script/common
-- - 0xAAF8C0
+- - 0xAB03D0
   - snap_effect_sprites
   - fx/img/common
   - sprite1
   - sprite2
-- start: 0xAB2520
+- start: 0xAB3030
   type: bin
   name: fx/script/beach
-- - 0xAB26C0
+- - 0xAB31D0
   - snap_effect_sprites
   - fx/img/beach
   - sprite1
@@ -25049,10 +25049,10 @@ segments:
   - sprite4
   - sprite5
   - sprite6
-- start: 0xAB86E0
+- start: 0xAB91F0
   type: bin
   name: fx/script/tunnel
-- - 0xAB8B10
+- - 0xAB9620
   - snap_effect_sprites
   - fx/img/tunnel
   - sprite1
@@ -25062,37 +25062,37 @@ segments:
   - sprite5
   - sprite6
   - sprite7
-- start: 0xAC07D0
+- start: 0xAC12E0
   type: bin
   name: fx/script/cave
-- - 0xAC09C0
+- - 0xAC14D0
   - snap_effect_sprites
   - fx/img/cave
   - sprite1
   - sprite2
   - sprite3
-- start: 0xAC2450
+- start: 0xAC2F60
   type: bin
   name: fx/script/river
-- - 0xAC2770
+- - 0xAC3280
   - snap_effect_sprites
   - fx/img/river
   - sprite1
   - sprite2
   - sprite3
   - sprite4
-- start: 0xAC9630
+- start: 0xACA140
   type: bin
   name: fx/script/volcano
-- - 0xAC98E0
+- - 0xACA3F0
   - snap_effect_sprites
   - fx/img/volcano
   - sprite1
   - sprite2
-- start: 0xACAD40
+- start: 0xACB850
   type: bin
   name: fx/script/valley
-- - 0xACB580
+- - 0xACC090
   - snap_effect_sprites
   - fx/img/valley
   - sprite1
@@ -25100,156 +25100,156 @@ segments:
   - sprite3
   - sprite4
   - sprite5
-- start: 0xAD7250
+- start: 0xAD7D60
   type: bin
   name: fx/script/rainbow
-- - 0xAD7510
+- - 0xAD8020
   - snap_effect_sprites
   - fx/img/rainbow
   - sprite1
   - sprite2
   - sprite3
-- start: 0xAD8BA0
+- start: 0xAD96B0
   type: bin
   name: fx/script/intro
-- - 0xAD8D30
+- - 0xAD9840
   - snap_effect_sprites
   - fx/img/intro
   - sprite1
   - sprite2
-- start: 0xADA450
+- start: 0xADAF60
   type: bin
   name: AE0510
-- start: 0xAE9B50
+- start: 0xAEA660
   type: bin
   name: audio/sbk
-- start: 0xAE9C7C
+- start: 0xAEA78C
   type: bin
   name: audio/seq/AEFD3C
-- start: 0xAEA9D4
+- start: 0xAEB4E4
   type: bin
   name: audio/seq/AF0A94
-- start: 0xAEAB70
+- start: 0xAEB680
   type: bin
   name: audio/seq/AF0C30
-- start: 0xAEAD34
+- start: 0xAEB844
   type: bin
   name: audio/seq/AF0DF4
-- start: 0xAEAF04
+- start: 0xAEBA14
   type: bin
   name: audio/seq/AF0FC4
-- start: 0xAEB4FC
+- start: 0xAEC00C
   type: bin
   name: audio/seq/AF15BC
-- start: 0xAEBEB0
+- start: 0xAEC9C0
   type: bin
   name: audio/seq/AF1F70
-- start: 0xAECA74
+- start: 0xAED584
   type: bin
   name: audio/seq/AF2B34
-- start: 0xAED77C
+- start: 0xAEE28C
   type: bin
   name: audio/seq/AF383C
-- start: 0xAEDCB4
+- start: 0xAEE7C4
   type: bin
   name: audio/seq/AF3D74
-- start: 0xAEE38C
+- start: 0xAEEE9C
   type: bin
   name: audio/seq/AF444C
-- start: 0xAEE858
+- start: 0xAEF368
   type: bin
   name: audio/seq/AF4918
-- start: 0xAEF9CC
+- start: 0xAF04DC
   type: bin
   name: audio/seq/AF5A8C
-- start: 0xAEFE8C
+- start: 0xAF099C
   type: bin
   name: audio/seq/AF5F4C
-- start: 0xAF0DC4
+- start: 0xAF18D4
   type: bin
   name: audio/seq/AF6E84
-- start: 0xAF1C7C
+- start: 0xAF278C
   type: bin
   name: audio/seq/AF7D3C
-- start: 0xAF1EC8
+- start: 0xAF29D8
   type: bin
   name: audio/seq/AF7F88
-- start: 0xAF2950
+- start: 0xAF3460
   type: bin
   name: audio/seq/AF8A10
-- start: 0xAF2BC8
+- start: 0xAF36D8
   type: bin
   name: audio/seq/AF8C88
-- start: 0xAF3448
+- start: 0xAF3F58
   type: bin
   name: audio/seq/AF9508
-- start: 0xAF3878
+- start: 0xAF4388
   type: bin
   name: audio/seq/AF9938
-- start: 0xAF3A08
+- start: 0xAF4518
   type: bin
   name: audio/seq/AF9AC8
-- start: 0xAF3B24
+- start: 0xAF4634
   type: bin
   name: audio/seq/AF9BE4
-- start: 0xAF3B9C
+- start: 0xAF46AC
   type: bin
   name: audio/seq/AF9C5C
-- start: 0xAF4738
+- start: 0xAF5248
   type: bin
   name: audio/seq/AFA7F8
-- start: 0xAF48AC
+- start: 0xAF53BC
   type: bin
   name: audio/seq/AFA96C
-- start: 0xAF538C
+- start: 0xAF5E9C
   type: bin
   name: audio/seq/AFB44C
-- start: 0xAF5854
+- start: 0xAF6364
   type: bin
   name: audio/seq/AFB914
-- start: 0xAF5E30
+- start: 0xAF6940
   type: bin
   name: audio/seq/AFBEF0
-- start: 0xAF6218
+- start: 0xAF6D28
   type: bin
   name: audio/seq/AFC2D8
-- start: 0xAF6C28
+- start: 0xAF7738
   type: bin
   name: audio/seq/AFCCE8
-- start: 0xAF70D4
+- start: 0xAF7BE4
   type: bin
   name: audio/seq/AFD194
-- start: 0xAF71D8
+- start: 0xAF7CE8
   type: bin
   name: audio/seq/AFD298
-- start: 0xAF72E4
+- start: 0xAF7DF4
   type: bin
   name: audio/seq/AFD3A4
-- start: 0xAF73D4
+- start: 0xAF7EE4
   type: bin
   name: audio/seq/AFD494
-- start: 0xAF7C18
+- start: 0xAF8728
   type: bin
   name: audio/seq/AFDCD8
-- start: 0xAF7D04
+- start: 0xAF8814
   type: bin
   name: audio/seq/AFDDC4
-- start: 0xAF7D08
+- start: 0xAF8818
   type: bin
   name: AFDDC8
-- start: 0xAF8E20
+- start: 0xAF9930
   type: bin
   name: audio/bank1
-- start: 0xAFE370
+- start: 0xAFEE80
   type: bin
   name: audio/table1
-- start: 0xBA0B60
+- start: 0xBA1670
   type: bin
   name: audio/bank2
-- start: 0xBB0880
+- start: 0xBB1390
   type: bin
   name: audio/table2
-- start: 0xF4D480
+- start: 0xF4DF90
   type: bin
   name: padding
-- - 0xFF9F40
+- - 0xFFAA50

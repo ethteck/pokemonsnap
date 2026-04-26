@@ -6,6 +6,7 @@ class SnapAnimSegmentCommon(Segment):
     def scan(self, rom_bytes):
         data = rom_bytes[self.rom_start : self.rom_end]
         anim_name = self.get_symbol(self.vram_start, in_segment=True, create=True)
+        print(f"[DEBUG snap_anim] Scanning segment: name={self.name}, type={type(self).__name__}, rom_start=0x{self.rom_start:X}, rom_end=0x{self.rom_end:X}, vram_start=0x{self.vram_start:X}, data_len={len(data)}, anim_name={anim_name}")
         self.file_text = self.disassemble_data(data, anim_name, self.vram_start)
 
     def split(self, rom_bytes):

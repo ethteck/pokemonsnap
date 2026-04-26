@@ -1,13 +1,13 @@
 name: Pokemon Snap (Europe)
-sha1: d575b393812a0a59fbb52f3ce55ce4d7bc5f3225
+sha1: 72558f6e35d0115f06e78f0081b3aa12a8db4390
 options:
   basename: pokemonsnap
   find_file_boundaries: true
   compiler: IDO
-  mnemonic_ljust: 0x00000B
+  mnemonic_ljust: 11
   platform: n64
   base_path: .
-  target_path: /Users/marijn/Desktop/pokemonsnap/NPFP00.z64
+  target_path: pokemonsnap.z64
   extensions_path: tools/splat_ext
   ld_script_path: pokemonsnap.ld
   ld_symbol_header_path: build/include/ld_addrs.h
@@ -15,10 +15,10 @@ options:
   symbol_name_format: $VRAM_$ROM
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
-  data_string_guesser_level: 0x000002
-  rodata_string_guesser_level: 0x000003
+  data_string_guesser_level: 2
+  rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
-  subalign: 0x000010
+  subalign: 16
 segments:
 - start: 0x000000
   type: header
@@ -1231,49 +1231,49 @@ segments:
     dir: gate
     linker_section_order: .rodata
     subsegments:
-    - start: 0x06B130
+    - - 0x06B130
     - start: 0x06B138
       type: palette
       name: tex0
       size: 0x000010
-    - start: 0x06B148
+    - - 0x06B148
     - start: 0x06B150
       type: palette
       name: tex1
       size: 0x000018
-    - start: 0x06B168
+    - - 0x06B168
     - start: 0x06B170
       type: palette
       name: tex2
-    - start: 0x06B190
+    - - 0x06B190
     - start: 0x06B198
       type: ci4
       name: tex0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x06B398
+    - - 0x06B398
     - start: 0x06B3A0
       type: ia8
       name: tex3
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x06C3A0
+    - - 0x06C3A0
     - start: 0x06C3A8
       type: ia8
       name: tex4
       flip_y: true
       width: 0x000080
       height: 0x000010
-    - start: 0x06CBA8
+    - - 0x06CBA8
     - start: 0x06CBB0
       type: ci4
       name: tex1
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x06D3B0
+    - - 0x06D3B0
     - start: 0x06D3B8
       type: ci4
       name: tex2
@@ -1311,7 +1311,7 @@ segments:
     - start: 0x06EBE8
       type: gfx
       name: part2
-    - start: 0x06ECF0
+    - - 0x06ECF0
   - start: 0x06EEF0
     type: data
     name: gate_animation
@@ -1322,14 +1322,14 @@ segments:
     dir: evolution_controller
     linker_section_order: .rodata
     subsegments:
-    - start: 0x06F2C0
+    - - 0x06F2C0
     - start: 0x06F2C8
       type: i8
       name: tex0
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x0702C8
+    - - 0x0702C8
     - start: 0x0702D0
       type: i8
       name: tex1
@@ -1373,7 +1373,7 @@ segments:
     - start: 0x072500
       type: gfx
       name: last
-    - start: 0x072530
+    - - 0x072530
   - start: 0x0726F0
     type: .data
     name: evolution_controller/anim/modelanim
@@ -1415,110 +1415,110 @@ segments:
     name: magikarp/textures
     dir: magikarp
     subsegments:
-    - start: 0x072B00
+    - - 0x072B00
     - start: 0x072B08
       type: rgba16
       name: tex_scales
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x073B08
+    - - 0x073B08
     - start: 0x073B10
       type: rgba16
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x074310
+    - - 0x074310
     - start: 0x074318
       type: rgba16
       name: tex_barbel
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x074B18
+    - - 0x074B18
     - start: 0x074B20
       type: palette
       name: tex_arm_fin
-    - start: 0x074D20
+    - - 0x074D20
     - start: 0x074D28
       type: ci8
       name: tex_arm_fin
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x075528
+    - - 0x075528
     - start: 0x075530
       type: palette
       name: tex_belly_fin
       size: 0x0000E0
-    - start: 0x075610
+    - - 0x075610
     - start: 0x075618
       type: ci8
       name: tex_belly_fin
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x075A18
+    - - 0x075A18
     - start: 0x075A20
       type: palette
       name: tex_skin1
       size: 0x0000B0
-    - start: 0x075AD0
+    - - 0x075AD0
     - start: 0x075AD8
       type: ci8
       name: tex_skin1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x075ED8
+    - - 0x075ED8
     - start: 0x075EE0
       type: rgba16
       name: tex_mouth
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x0766E0
+    - - 0x0766E0
     - start: 0x0766E8
       type: palette
       name: tex_eye
-    - start: 0x076708
+    - - 0x076708
     - start: 0x076710
       type: ci4
       name: tex_eye
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x076910
+    - - 0x076910
     - start: 0x076918
       type: palette
       name: tex_skin2
       size: 0x0000F8
-    - start: 0x076A10
+    - - 0x076A10
     - start: 0x076A18
       type: ci8
       name: tex_skin2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x076E18
+    - - 0x076E18
     - start: 0x076E20
       type: palette
       name: tex_tail_fin
       size: 0x0000C0
-    - start: 0x076EE0
+    - - 0x076EE0
     - start: 0x076EE8
       type: ci8
       name: tex_tail_fin
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x0776E8
+    - - 0x0776E8
     - start: 0x0776F0
       type: palette
       name: tex_skin3
       size: 0x0000B8
-    - start: 0x0777A8
+    - - 0x0777A8
     - start: 0x0777B0
       type: ci8
       name: tex_skin3
@@ -1543,262 +1543,262 @@ segments:
     name: pikachu/textures
     dir: pikachu
     subsegments:
-    - start: 0x07CD00
+    - - 0x07CD00
     - start: 0x07CD08
       type: i4
       name: tex_lightning0
       flip_y: true
       width: 0x000080
       height: 0x000020
-    - start: 0x07D508
+    - - 0x07D508
     - start: 0x07D510
       type: i4
       name: tex_lightning1
       flip_y: true
       width: 0x000080
       height: 0x000020
-    - start: 0x07DD10
+    - - 0x07DD10
     - start: 0x07DD18
       type: i4
       name: tex_lightning2
       flip_y: true
       width: 0x000080
       height: 0x000020
-    - start: 0x07E518
+    - - 0x07E518
     - start: 0x07E520
       type: i4
       name: tex_lightning3
       flip_y: true
       width: 0x000080
       height: 0x000020
-    - start: 0x07ED20
+    - - 0x07ED20
     - start: 0x07ED28
       type: rgba16
       name: tex_balloon0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x07FD28
+    - - 0x07FD28
     - start: 0x07FD30
       type: rgba16
       name: tex_balloon1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x080D30
+    - - 0x080D30
     - start: 0x080D38
       type: palette
       name: tex_apple
       size: 0x000200
-    - start: 0x080F38
+    - - 0x080F38
     - start: 0x080F40
       type: ci8
       name: tex_apple
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x081340
+    - - 0x081340
     - start: 0x081348
       type: i4
       name: tex_07
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x081748
+    - - 0x081748
     - start: 0x081750
       type: i4
       name: tex_08
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x081B50
+    - - 0x081B50
     - start: 0x081B58
       type: rgba16
       name: tex_body
       flip_y: true
       width: 0x000008
       height: 0x000008
-    - start: 0x081BD8
+    - - 0x081BD8
     - start: 0x081BE0
       type: palette
       name: tex_cheek0
       size: 0x000020
-    - start: 0x081C00
+    - - 0x081C00
     - start: 0x081C08
       type: ci4
       name: tex_cheek0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x081E08
+    - - 0x081E08
     - start: 0x081E10
       type: palette
       name: tex_cheek1
       size: 0x000020
-    - start: 0x081E30
+    - - 0x081E30
     - start: 0x081E38
       type: ci4
       name: tex_cheek1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x082038
+    - - 0x082038
     - start: 0x082040
       type: palette
       name: tex_mouth0
       size: 0x000200
-    - start: 0x082240
+    - - 0x082240
     - start: 0x082248
       type: ci8
       name: tex_mouth0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x082648
+    - - 0x082648
     - start: 0x082650
       type: palette
       name: tex_mouth1
       size: 0x000200
-    - start: 0x082850
+    - - 0x082850
     - start: 0x082858
       type: ci8
       name: tex_mouth1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x082C58
+    - - 0x082C58
     - start: 0x082C60
       type: palette
       name: tex_mouth2
       size: 0x000200
-    - start: 0x082E60
+    - - 0x082E60
     - start: 0x082E68
       type: ci8
       name: tex_mouth2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x083268
+    - - 0x083268
     - start: 0x083270
       type: palette
       name: tex_mouth3
       size: 0x000200
-    - start: 0x083470
+    - - 0x083470
     - start: 0x083478
       type: ci8
       name: tex_mouth3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x083878
+    - - 0x083878
     - start: 0x083880
       type: palette
       name: tex_mouth4
       size: 0x000200
-    - start: 0x083A80
+    - - 0x083A80
     - start: 0x083A88
       type: ci8
       name: tex_mouth4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x083E88
+    - - 0x083E88
     - start: 0x083E90
       type: palette
       name: tex_eye0
       size: 0x000200
-    - start: 0x084090
+    - - 0x084090
     - start: 0x084098
       type: ci8
       name: tex_eye0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x084498
+    - - 0x084498
     - start: 0x0844A0
       type: palette
       name: tex_eye1
       size: 0x000200
-    - start: 0x0846A0
+    - - 0x0846A0
     - start: 0x0846A8
       type: ci8
       name: tex_eye1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x084AA8
+    - - 0x084AA8
     - start: 0x084AB0
       type: palette
       name: tex_eye2
       size: 0x000200
-    - start: 0x084CB0
+    - - 0x084CB0
     - start: 0x084CB8
       type: ci8
       name: tex_eye2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x0850B8
+    - - 0x0850B8
     - start: 0x0850C0
       type: palette
       name: tex_eye3
       size: 0x000200
-    - start: 0x0852C0
+    - - 0x0852C0
     - start: 0x0852C8
       type: ci8
       name: tex_eye3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x0856C8
+    - - 0x0856C8
     - start: 0x0856D0
       type: palette
       name: tex_eye4
       size: 0x000200
-    - start: 0x0858D0
+    - - 0x0858D0
     - start: 0x0858D8
       type: ci8
       name: tex_eye4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x085CD8
+    - - 0x085CD8
     - start: 0x085CE0
       type: palette
       name: tex_ear
       size: 0x000010
-    - start: 0x085CF0
+    - - 0x085CF0
     - start: 0x085CF8
       type: ci4
       name: tex_ear
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x085DF8
+    - - 0x085DF8
     - start: 0x085E00
       type: palette
       name: tex_back
       size: 0x000020
-    - start: 0x085E20
+    - - 0x085E20
     - start: 0x085E28
       type: ci4
       name: tex_back
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x085F28
+    - - 0x085F28
     - start: 0x085F30
       type: palette
       name: tex_tail
       size: 0x000020
-    - start: 0x085F50
+    - - 0x085F50
     - start: 0x085F58
       type: ci4
       name: tex_tail
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x086058
+    - - 0x086058
   - start: 0x086060
     type: bin
     name: '86710'
@@ -1817,43 +1817,43 @@ segments:
     name: zubat/textures
     dir: zubat
     subsegments:
-    - start: 0x097DC0
+    - - 0x097DC0
     - start: 0x097DC8
       type: palette
       name: tex_ear
       size: 0x000020
-    - start: 0x097DE8
+    - - 0x097DE8
     - start: 0x097DF0
       type: ci4
       name: tex_ear
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x097FF0
+    - - 0x097FF0
     - start: 0x097FF8
       type: palette
       name: tex_wing_inside
       size: 0x000020
-    - start: 0x098018
+    - - 0x098018
     - start: 0x098020
       type: ci4
       name: tex_wing_inside
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x098820
+    - - 0x098820
     - start: 0x098828
       type: palette
       name: tex_wing_outside
       size: 0x000020
-    - start: 0x098848
+    - - 0x098848
     - start: 0x098850
       type: ci4
       name: tex_wing_outside
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x099050
+    - - 0x099050
   - start: 0x099050
     type: bin
     name: '99700'
@@ -1872,127 +1872,127 @@ segments:
     name: bulbasaur/textures
     dir: bulbasaur
     subsegments:
-    - start: 0x0998C0
+    - - 0x0998C0
     - start: 0x0998C8
       type: palette
       name: tex_face_spots
       size: 0x000020
-    - start: 0x0998E8
+    - - 0x0998E8
     - start: 0x0998F0
       type: ci4
       name: tex_face_spots
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x099AF0
+    - - 0x099AF0
     - start: 0x099AF8
       type: palette
       name: tex_spots
       size: 0x000020
-    - start: 0x099B18
+    - - 0x099B18
     - start: 0x099B20
       type: ci4
       name: tex_spots
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x099D20
+    - - 0x099D20
     - start: 0x099D28
       type: palette
       name: tex_eye0
       size: 0x000020
-    - start: 0x099D48
+    - - 0x099D48
     - start: 0x099D50
       type: ci4
       name: tex_eye0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x099F50
+    - - 0x099F50
     - start: 0x099F58
       type: palette
       name: tex_eye1
       size: 0x000020
-    - start: 0x099F78
+    - - 0x099F78
     - start: 0x099F80
       type: ci4
       name: tex_eye1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x09A180
+    - - 0x09A180
     - start: 0x09A188
       type: palette
       name: tex_eye2
       size: 0x000018
-    - start: 0x09A1A0
+    - - 0x09A1A0
     - start: 0x09A1A8
       type: ci4
       name: tex_eye2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x09A3A8
+    - - 0x09A3A8
     - start: 0x09A3B0
       type: palette
       name: tex_eye3
       size: 0x000020
-    - start: 0x09A3D0
+    - - 0x09A3D0
     - start: 0x09A3D8
       type: ci4
       name: tex_eye3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x09A5D8
+    - - 0x09A5D8
     - start: 0x09A5E0
       type: palette
       name: tex_bud
       size: 0x000200
-    - start: 0x09A7E0
+    - - 0x09A7E0
     - start: 0x09A7E8
       type: ci8
       name: tex_bud
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x09A9E8
+    - - 0x09A9E8
     - start: 0x09A9F0
       type: palette
       name: tex_eye4
       size: 0x000020
-    - start: 0x09AA10
+    - - 0x09AA10
     - start: 0x09AA18
       type: ci4
       name: tex_eye4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x09AC18
+    - - 0x09AC18
     - start: 0x09AC20
       type: palette
       name: tex_mouth
       size: 0x000020
-    - start: 0x09AC40
+    - - 0x09AC40
     - start: 0x09AC48
       type: ci4
       name: tex_mouth
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x09AD48
+    - - 0x09AD48
     - start: 0x09AD50
       type: palette
       name: tex_nostrils
       size: 0x000020
-    - start: 0x09AD70
+    - - 0x09AD70
     - start: 0x09AD78
       type: ci4
       name: tex_nostrils
       flip_y: true
       width: 0x000020
       height: 0x00000C
-    - start: 0x09AE38
+    - - 0x09AE38
     - start: 0x09AE40
       type: i8
       name: tex_shine
@@ -2368,13 +2368,13 @@ segments:
       type: palette
       name: tex_801C29A0_hd
       size: 0x000020
-    - start: 0x14E758
+    - - 0x14E758
     - start: 0x14E760
       type: ci4
       name: tex_801C29A0_hd
       width: 0x000020
       height: 0x000020
-    - start: 0x14E960
+    - - 0x14E960
     - start: 0x14EA18
       type: vtx
       name: hd_model
@@ -2502,13 +2502,13 @@ segments:
       type: palette
       name: tex_801C8A50_hd
       size: 0x000010
-    - start: 0x154808
+    - - 0x154808
     - start: 0x154810
       type: ci4
       name: tex_801C8A50_hd
       width: 0x000020
       height: 0x000020
-    - start: 0x154A10
+    - - 0x154A10
     - start: 0x154C18
       type: vtx
       name: hd_model
@@ -2879,7 +2879,7 @@ segments:
     - start: 0x165EB0
       type: gfx
       name: unk
-    - start: 0x165FB0
+    - - 0x165FB0
     - start: 0x166060
       type: snap_model_anim
       name: movement
@@ -2897,7 +2897,7 @@ segments:
     - start: 0x168300
       type: gfx
       name: unk
-    - start: 0x168400
+    - - 0x168400
     - start: 0x1684B0
       type: snap_model_anim
       name: movement
@@ -2912,14 +2912,14 @@ segments:
     - start: 0x169910
       type: vtx
       name: model
-    - start: 0x16BE00
+    - - 0x16BE00
     - start: 0x16BE90
       type: snap_material_anim
       name: anim1
     - start: 0x16BF10
       type: gfx
       name: unk
-    - start: 0x16C010
+    - - 0x16C010
     - start: 0x16C0C0
       type: snap_model_anim
       name: movement
@@ -2937,7 +2937,7 @@ segments:
     - start: 0x16F1C0
       type: gfx
       name: unk
-    - start: 0x16F2C0
+    - - 0x16F2C0
     - start: 0x16F370
       type: snap_model_anim
       name: movement
@@ -2955,7 +2955,7 @@ segments:
     - start: 0x170E10
       type: gfx
       name: unk
-    - start: 0x170F10
+    - - 0x170F10
     - start: 0x170FC0
       type: snap_model_anim
       name: movement
@@ -2973,7 +2973,7 @@ segments:
     - start: 0x1736A0
       type: gfx
       name: unk
-    - start: 0x1737A0
+    - - 0x1737A0
     - start: 0x173850
       type: snap_model_anim
       name: movement
@@ -3024,26 +3024,26 @@ segments:
     name: computer/textures
     dir: computer
     subsegments:
-    - start: 0x18D970
+    - - 0x18D970
     - start: 0x18D978
       type: rgba16
       name: tex_front
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x18E978
+    - - 0x18E978
     - start: 0x18E980
       type: rgba16
       name: tex_side
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x18F980
+    - - 0x18F980
     - start: 0x18F988
       type: palette
       name: tex_back
       size: 0x000018
-    - start: 0x18F9A0
+    - - 0x18F9A0
     - start: 0x18F9A8
       type: ci4
       name: tex_back
@@ -3058,172 +3058,172 @@ segments:
     name: magnemite/textures
     dir: magnemite
     subsegments:
-    - start: 0x1A0A50
+    - - 0x1A0A50
     - start: 0x1A0A58
       type: palette
       name: tex_screw_frame1
-    - start: 0x1A0A78
+    - - 0x1A0A78
     - start: 0x1A0A80
       type: ci4
       name: tex_screw_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A0C80
+    - - 0x1A0C80
     - start: 0x1A0C88
       type: palette
       name: tex_screw_frame2
-    - start: 0x1A0CA8
+    - - 0x1A0CA8
     - start: 0x1A0CB0
       type: ci4
       name: tex_screw_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A0EB0
+    - - 0x1A0EB0
     - start: 0x1A0EB8
       type: palette
       name: tex_screw_frame0
-    - start: 0x1A0ED8
+    - - 0x1A0ED8
     - start: 0x1A0EE0
       type: ci4
       name: tex_screw_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A10E0
+    - - 0x1A10E0
     - start: 0x1A10E8
       type: palette
       name: tex_body_frame1
-    - start: 0x1A1108
+    - - 0x1A1108
     - start: 0x1A1110
       type: ci4
       name: tex_body_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A1510
+    - - 0x1A1510
     - start: 0x1A1518
       type: palette
       name: tex_body_frame2
-    - start: 0x1A1538
+    - - 0x1A1538
     - start: 0x1A1540
       type: ci4
       name: tex_body_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A1940
+    - - 0x1A1940
     - start: 0x1A1948
       type: palette
       name: tex_body_frame0
-    - start: 0x1A1968
+    - - 0x1A1968
     - start: 0x1A1970
       type: ci4
       name: tex_body_frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A1D70
+    - - 0x1A1D70
     - start: 0x1A1D78
       type: palette
       name: tex_eye_frame0
-    - start: 0x1A1D98
+    - - 0x1A1D98
     - start: 0x1A1DA0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A1FA0
+    - - 0x1A1FA0
     - start: 0x1A1FA8
       type: palette
       name: tex_eye_frame1
-    - start: 0x1A1FC8
+    - - 0x1A1FC8
     - start: 0x1A1FD0
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A21D0
+    - - 0x1A21D0
     - start: 0x1A21D8
       type: palette
       name: tex_eye_frame2
-    - start: 0x1A21F8
+    - - 0x1A21F8
     - start: 0x1A2200
       type: ci4
       name: tex_eye_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A2400
+    - - 0x1A2400
     - start: 0x1A2430
       type: ia8
       name: tex_wave
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A2830
+    - - 0x1A2830
     - start: 0x1A2838
       type: palette
       name: tex_magnet_frame1
-    - start: 0x1A2858
+    - - 0x1A2858
     - start: 0x1A2860
       type: ci4
       name: tex_magnet_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A2C60
+    - - 0x1A2C60
     - start: 0x1A2C68
       type: palette
       name: tex_magnet_frame2
-    - start: 0x1A2C88
+    - - 0x1A2C88
     - start: 0x1A2C90
       type: ci4
       name: tex_magnet_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A3090
+    - - 0x1A3090
     - start: 0x1A3098
       type: palette
       name: tex_magnet_frame0
-    - start: 0x1A30B8
+    - - 0x1A30B8
     - start: 0x1A30C0
       type: ci4
       name: tex_magnet_frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A34C0
+    - - 0x1A34C0
     - start: 0x1A34C8
       type: palette
       name: tex_screw_thread_frame1
-    - start: 0x1A34E8
+    - - 0x1A34E8
     - start: 0x1A34F0
       type: ci4
       name: tex_screw_thread_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A38F0
+    - - 0x1A38F0
     - start: 0x1A38F8
       type: palette
       name: tex_screw_thread_frame2
-    - start: 0x1A3918
+    - - 0x1A3918
     - start: 0x1A3920
       type: ci4
       name: tex_screw_thread_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x1A3D20
+    - - 0x1A3D20
     - start: 0x1A3D28
       type: palette
       name: tex_screw_thread_frame0
-    - start: 0x1A3D48
+    - - 0x1A3D48
     - start: 0x1A3D50
       type: ci4
       name: tex_screw_thread_frame0
@@ -3294,88 +3294,88 @@ segments:
     name: diglett/textures
     dir: diglett
     subsegments:
-    - start: 0x1A60A0
+    - - 0x1A60A0
     - start: 0x1A60A8
       type: palette
       name: tex_right_eye_frame0
-    - start: 0x1A60C8
+    - - 0x1A60C8
     - start: 0x1A60D0
       type: ci4
       name: tex_right_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A62D0
+    - - 0x1A62D0
     - start: 0x1A62D8
       type: palette
       name: tex_right_eye_frame1
-    - start: 0x1A62F8
+    - - 0x1A62F8
     - start: 0x1A6300
       type: ci4
       name: tex_right_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6500
+    - - 0x1A6500
     - start: 0x1A6508
       type: palette
       name: tex_left_eye_frame1
-    - start: 0x1A6528
+    - - 0x1A6528
     - start: 0x1A6530
       type: ci4
       name: tex_left_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6730
+    - - 0x1A6730
     - start: 0x1A6738
       type: palette
       name: tex_left_eye_frame0
-    - start: 0x1A6758
+    - - 0x1A6758
     - start: 0x1A6760
       type: ci4
       name: tex_left_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6960
+    - - 0x1A6960
     - start: 0x1A6968
       type: palette
       name: tex_head
-    - start: 0x1A6988
+    - - 0x1A6988
     - start: 0x1A6990
       type: ci4
       name: tex_head
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6B90
+    - - 0x1A6B90
     - start: 0x1A6B98
       type: palette
       name: tex_body
-    - start: 0x1A6BB8
+    - - 0x1A6BB8
     - start: 0x1A6BC0
       type: ci4
       name: tex_body
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6DC0
+    - - 0x1A6DC0
     - start: 0x1A6DC8
       type: palette
       name: tex_nose
-    - start: 0x1A6DE8
+    - - 0x1A6DE8
     - start: 0x1A6DF0
       type: ci4
       name: tex_nose
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A6FF0
+    - - 0x1A6FF0
     - start: 0x1A6FF8
       type: palette
       name: tex_soil
-    - start: 0x1A7018
+    - - 0x1A7018
     - start: 0x1A7020
       type: ci4
       name: tex_soil
@@ -3459,66 +3459,66 @@ segments:
     name: dugtrio/textures
     dir: dugtrio
     subsegments:
-    - start: 0x1A99E0
+    - - 0x1A99E0
     - start: 0x1A99E8
       type: palette
       name: tex_left_eye
-    - start: 0x1A9A08
+    - - 0x1A9A08
     - start: 0x1A9A10
       type: ci4
       name: tex_left_eye
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A9C10
+    - - 0x1A9C10
     - start: 0x1A9C18
       type: palette
       name: tex_right_eye
-    - start: 0x1A9C38
+    - - 0x1A9C38
     - start: 0x1A9C40
       type: ci4
       name: tex_right_eye
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1A9E40
+    - - 0x1A9E40
     - start: 0x1A9E48
       type: palette
       name: tex_head
-    - start: 0x1A9E68
+    - - 0x1A9E68
     - start: 0x1A9E70
       type: ci4
       name: tex_head
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1AA070
+    - - 0x1AA070
     - start: 0x1AA078
       type: palette
       name: tex_body
-    - start: 0x1AA098
+    - - 0x1AA098
     - start: 0x1AA0A0
       type: ci4
       name: tex_body
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1AA2A0
+    - - 0x1AA2A0
     - start: 0x1AA2A8
       type: palette
       name: tex_nose
-    - start: 0x1AA2C8
+    - - 0x1AA2C8
     - start: 0x1AA2D0
       type: ci4
       name: tex_nose
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1AA4D0
+    - - 0x1AA4D0
     - start: 0x1AA4D8
       type: palette
       name: tex_soil
-    - start: 0x1AA4F8
+    - - 0x1AA4F8
     - start: 0x1AA500
       type: ci4
       name: tex_soil
@@ -3573,209 +3573,209 @@ segments:
     name: electrode/textures
     dir: electrode
     subsegments:
-    - start: 0x1BF240
+    - - 0x1BF240
     - start: 0x1BF248
       type: palette
       name: tex_bottom_frame0
-    - start: 0x1BF268
+    - - 0x1BF268
     - start: 0x1BF270
       type: i4
       name: tex_explosion1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1BF470
+    - - 0x1BF470
     - start: 0x1BF478
       type: i4
       name: tex_explosion2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1BF678
+    - - 0x1BF678
     - start: 0x1BF680
       type: i4
       name: tex_explosion3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1BF880
+    - - 0x1BF880
     - start: 0x1BF888
       type: palette
       name: tex_mouth_frame1
-    - start: 0x1BF8A8
+    - - 0x1BF8A8
     - start: 0x1BF8B0
       type: palette
       name: tex_eyes_frame1
-    - start: 0x1BF8D0
+    - - 0x1BF8D0
     - start: 0x1BF8D8
       type: ci4
       name: tex_bottom_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1BFAD8
+    - - 0x1BFAD8
     - start: 0x1BFAE0
       type: i8
       name: tex_bright_spot
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1BFEE0
+    - - 0x1BFEE0
     - start: 0x1BFEE8
       type: palette
       name: tex_mouth_frame0
-    - start: 0x1BFF08
+    - - 0x1BFF08
     - start: 0x1BFF10
       type: ci4
       name: tex_mouth_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C0310
+    - - 0x1C0310
     - start: 0x1C0318
       type: i4
       name: tex_eyebrow
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x1C0418
+    - - 0x1C0418
     - start: 0x1C0420
       type: rgba16
       name: tex_body1_frame2
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C0460
+    - - 0x1C0460
     - start: 0x1C0468
       type: rgba16
       name: tex_body1_frame1
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C04A8
+    - - 0x1C04A8
     - start: 0x1C04B0
       type: rgba16
       name: tex_body1_frame0
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C04F0
+    - - 0x1C04F0
     - start: 0x1C04F8
       type: rgba16
       name: tex_body2_frame0
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C0538
+    - - 0x1C0538
     - start: 0x1C0540
       type: rgba16
       name: tex_body2_frame2
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C0580
+    - - 0x1C0580
     - start: 0x1C0588
       type: rgba16
       name: tex_body2_frame1
       flip_y: true
       width: 0x000004
       height: 0x000008
-    - start: 0x1C05C8
+    - - 0x1C05C8
     - start: 0x1C05D0
       type: palette
       name: tex_bottom_frame2
-    - start: 0x1C05F0
+    - - 0x1C05F0
     - start: 0x1C05F8
       type: ci4
       name: tex_bottom_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C07F8
+    - - 0x1C07F8
     - start: 0x1C0800
       type: palette
       name: tex_bottom_frame1
-    - start: 0x1C0820
+    - - 0x1C0820
     - start: 0x1C0828
       type: ci4
       name: tex_bottom_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C0A28
+    - - 0x1C0A28
     - start: 0x1C0A30
       type: palette
       name: tex_top_frame2
-    - start: 0x1C0A50
+    - - 0x1C0A50
     - start: 0x1C0A58
       type: ci4
       name: tex_top_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C0C58
+    - - 0x1C0C58
     - start: 0x1C0C60
       type: palette
       name: tex_mouth_frame2
-    - start: 0x1C0C80
+    - - 0x1C0C80
     - start: 0x1C0C88
       type: ci4
       name: tex_mouth_frame2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C1088
+    - - 0x1C1088
     - start: 0x1C1090
       type: palette
       name: tex_eyes_frame2
-    - start: 0x1C10B0
+    - - 0x1C10B0
     - start: 0x1C10B8
       type: ci4
       name: tex_eyes_frame2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C14B8
+    - - 0x1C14B8
     - start: 0x1C14C0
       type: ci4
       name: tex_mouth_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C18C0
+    - - 0x1C18C0
     - start: 0x1C18C8
       type: palette
       name: tex_eyes_frame0
-    - start: 0x1C18E8
+    - - 0x1C18E8
     - start: 0x1C18F0
       type: ci4
       name: tex_eyes_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C1CF0
+    - - 0x1C1CF0
     - start: 0x1C1CF8
       type: ci4
       name: tex_eyes_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x1C20F8
+    - - 0x1C20F8
     - start: 0x1C2100
       type: palette
       name: tex_top_frame1
-    - start: 0x1C2120
+    - - 0x1C2120
     - start: 0x1C2128
       type: ci4
       name: tex_top_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C2328
+    - - 0x1C2328
     - start: 0x1C2330
       type: palette
       name: tex_top_frame0
-    - start: 0x1C2350
+    - - 0x1C2350
     - start: 0x1C2358
       type: ci4
       name: tex_top_frame0
@@ -3835,42 +3835,42 @@ segments:
     name: magneton/textures
     dir: magneton
     subsegments:
-    - start: 0x1C4580
+    - - 0x1C4580
     - start: 0x1C4588
       type: rgba16
       name: tex_screw_head
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C4D88
+    - - 0x1C4D88
     - start: 0x1C4D90
       type: ia8
       name: tex_unk_circles
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C5190
+    - - 0x1C5190
     - start: 0x1C5198
       type: ia8
       name: tex_eye
       flip_y: true
       width: 0x000030
       height: 0x00002C
-    - start: 0x1C59D8
+    - - 0x1C59D8
     - start: 0x1C59E0
       type: rgba16
       name: tex_magnet_blue
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C61E0
+    - - 0x1C61E0
     - start: 0x1C61E8
       type: rgba16
       name: tex_magnet_red
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x1C69E8
+    - - 0x1C69E8
     - start: 0x1C69F0
       type: rgba16
       name: tex_screw_thread
@@ -3963,7 +3963,7 @@ segments:
       name: tex_hd_8018E208
       width: 0x000020
       height: 0x000020
-    - start: 0x1D3E98
+    - - 0x1D3E98
     - start: 0x1D43A8
       type: vtx
       name: hd_model
@@ -4191,49 +4191,49 @@ segments:
       name: tex_hd_8019B6B8
       width: 0x000010
       height: 0x000010
-    - start: 0x1E1348
+    - - 0x1E1348
     - start: 0x1E1350
       type: rgba16
       name: tex_hd_8019B8C0
       width: 0x000040
       height: 0x000020
-    - start: 0x1E2350
+    - - 0x1E2350
     - start: 0x1E2358
       type: rgba16
       name: tex_hd_8019C8C8
       width: 0x000040
       height: 0x000020
-    - start: 0x1E3358
+    - - 0x1E3358
     - start: 0x1E3360
       type: rgba16
       name: tex_hd_8019D8D0
       width: 0x000040
       height: 0x000020
-    - start: 0x1E4360
+    - - 0x1E4360
     - start: 0x1E4368
       type: rgba16
       name: tex_hd_8019E8D8
       width: 0x000040
       height: 0x000020
-    - start: 0x1E5368
+    - - 0x1E5368
     - start: 0x1E5370
       type: rgba16
       name: tex_hd_8019F8E0
       width: 0x000004
       height: 0x000004
-    - start: 0x1E5390
+    - - 0x1E5390
     - start: 0x1E5398
       type: rgba16
       name: tex_hd_8019F908
       width: 0x000020
       height: 0x000040
-    - start: 0x1E6398
+    - - 0x1E6398
     - start: 0x1E63A0
       type: rgba16
       name: tex_hd_801A0910
       width: 0x000020
       height: 0x000040
-    - start: 0x1E73A0
+    - - 0x1E73A0
     - start: 0x1E73A8
       type: rgba16
       name: tex_hd_801A1918
@@ -6431,7 +6431,7 @@ segments:
     type: .data
     name: world/skybox
     subsegments:
-    - start: 0x3264B0
+    - - 0x3264B0
     - start: 0x3264D8
       type: rgba16
       name: skybox
@@ -6455,14 +6455,14 @@ segments:
     - start: 0x328320
       type: vtx
       name: model
-    - start: 0x329C60
+    - - 0x329C60
     - start: 0x329D90
       type: snap_material_anim
       name: anim1
     - start: 0x329E00
       type: gfx
       name: unk
-    - start: 0x329F00
+    - - 0x329F00
     - start: 0x329FB0
       type: snap_model_anim
       name: movement
@@ -6477,14 +6477,14 @@ segments:
     - start: 0x32A780
       type: vtx
       name: model
-    - start: 0x32B870
+    - - 0x32B870
     - start: 0x32B910
       type: snap_material_anim
       name: anim1
     - start: 0x32B950
       type: gfx
       name: unk
-    - start: 0x32BA50
+    - - 0x32BA50
     - start: 0x32BB00
       type: snap_model_anim
       name: movement
@@ -6502,7 +6502,7 @@ segments:
     - start: 0x32C6D0
       type: gfx
       name: unk
-    - start: 0x32C7D0
+    - - 0x32C7D0
     - start: 0x32C880
       type: snap_model_anim
       name: movement
@@ -6517,14 +6517,14 @@ segments:
     - start: 0x32D510
       type: vtx
       name: model
-    - start: 0x32F7D0
+    - - 0x32F7D0
     - start: 0x32F900
       type: snap_material_anim
       name: anim1
     - start: 0x32F990
       type: gfx
       name: unk
-    - start: 0x32FA90
+    - - 0x32FA90
     - start: 0x32FB40
       type: snap_model_anim
       name: movement
@@ -6539,14 +6539,14 @@ segments:
     - start: 0x330CF0
       type: vtx
       name: model
-    - start: 0x332C00
+    - - 0x332C00
     - start: 0x332DC0
       type: snap_material_anim
       name: anim1
     - start: 0x332E60
       type: gfx
       name: unk
-    - start: 0x332F60
+    - - 0x332F60
     - start: 0x333010
       type: snap_model_anim
       name: movement
@@ -6561,14 +6561,14 @@ segments:
     - start: 0x334190
       type: vtx
       name: model
-    - start: 0x336FC0
+    - - 0x336FC0
     - start: 0x337180
       type: snap_material_anim
       name: anim1
     - start: 0x337220
       type: gfx
       name: unk
-    - start: 0x337320
+    - - 0x337320
     - start: 0x3373D0
       type: snap_model_anim
       name: movement
@@ -6583,7 +6583,7 @@ segments:
     - start: 0x337DB0
       type: vtx
       name: model
-    - start: 0x338730
+    - - 0x338730
     - start: 0x3387D0
       type: snap_material_anim
       name: anim1
@@ -6601,7 +6601,7 @@ segments:
     - start: 0x339C10
       type: vtx
       name: model
-    - start: 0x339D00
+    - - 0x339D00
   - start: 0x339DA0
     type: .data
     name: growlithe_spawner/materials
@@ -6632,7 +6632,7 @@ segments:
     - start: 0x339FA0
       type: vtx
       name: model
-    - start: 0x33A060
+    - - 0x33A060
   - start: 0x33A1D0
     type: .data
     name: smoke_puff/anim/modelanim
@@ -6663,7 +6663,7 @@ segments:
     - start: 0x33A3A0
       type: vtx
       name: model
-    - start: 0x33A570
+    - - 0x33A570
   - start: 0x33A620
     type: .data
     name: koffing_smoke/materials
@@ -6735,7 +6735,7 @@ segments:
     - start: 0x33A990
       type: vtx
       name: model
-    - start: 0x33AB10
+    - - 0x33AB10
   - start: 0x33ABE0
     type: .data
     name: lava_splash/materials
@@ -6793,7 +6793,7 @@ segments:
     - start: 0x33B220
       type: vtx
       name: model
-    - start: 0x33B2F0
+    - - 0x33B2F0
   - start: 0x33B690
     type: .data
     name: volcano_smoke/materials
@@ -6856,84 +6856,84 @@ segments:
     name: koffing_smoke/textures
     dir: koffing_smoke
     subsegments:
-    - start: 0x33F300
+    - - 0x33F300
     - start: 0x33F308
       type: ia8
       name: frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x33FB08
+    - - 0x33FB08
     - start: 0x33FB10
       type: ia8
       name: frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x340310
+    - - 0x340310
     - start: 0x340318
       type: ia8
       name: frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x340B18
+    - - 0x340B18
     - start: 0x340B20
       type: ia8
       name: frame3
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x341320
+    - - 0x341320
     - start: 0x341328
       type: ia8
       name: frame4
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x341B28
+    - - 0x341B28
     - start: 0x341B30
       type: ia8
       name: frame5
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x342330
+    - - 0x342330
     - start: 0x342338
       type: ia8
       name: frame6
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x342B38
+    - - 0x342B38
     - start: 0x342B40
       type: ia8
       name: frame7
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x343340
+    - - 0x343340
     - start: 0x343348
       type: ia8
       name: frame8
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x343B48
+    - - 0x343B48
     - start: 0x343B50
       type: ia8
       name: frame9
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x344350
+    - - 0x344350
     - start: 0x344358
       type: ia8
       name: frame10
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x344B58
+    - - 0x344B58
     - start: 0x344B60
       type: ia8
       name: frame11
@@ -6945,56 +6945,56 @@ segments:
     name: smoke_puff/textures
     dir: smoke_puff
     subsegments:
-    - start: 0x345360
+    - - 0x345360
     - start: 0x345368
       type: ia8
       name: frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x345B68
+    - - 0x345B68
     - start: 0x345B70
       type: ia8
       name: frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x346370
+    - - 0x346370
     - start: 0x346378
       type: ia8
       name: frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x346B78
+    - - 0x346B78
     - start: 0x346B80
       type: ia8
       name: frame3
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x347380
+    - - 0x347380
     - start: 0x347388
       type: ia8
       name: frame4
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x347B88
+    - - 0x347B88
     - start: 0x347B90
       type: ia8
       name: frame5
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x348390
+    - - 0x348390
     - start: 0x348398
       type: ia8
       name: frame6
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x348B98
+    - - 0x348B98
     - start: 0x348BA0
       type: ia8
       name: frame7
@@ -7006,11 +7006,11 @@ segments:
     name: world/textures1
     dir: world
     subsegments:
-    - start: 0x3493A0
+    - - 0x3493A0
     - start: 0x3493A8
       type: palette
       name: tex_rocks0
-    - start: 0x3493C8
+    - - 0x3493C8
     - start: 0x3493D0
       type: ci4
       name: tex_rocks0
@@ -7022,55 +7022,55 @@ segments:
     name: growlithe_spawner/textures
     dir: growlithe_spawner
     subsegments:
-    - start: 0x349BD0
+    - - 0x349BD0
     - start: 0x349BD8
       type: palette
       name: lava_frame0
-    - start: 0x349BF8
+    - - 0x349BF8
     - start: 0x349C00
       type: ci4
       name: lava_frame0
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34A400
+    - - 0x34A400
     - start: 0x34A408
       type: palette
       name: lava_frame1
-    - start: 0x34A428
+    - - 0x34A428
     - start: 0x34A430
       type: ci4
       name: lava_frame1
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34AC30
+    - - 0x34AC30
     - start: 0x34AC38
       type: palette
       name: lava_frame2
-    - start: 0x34AC58
+    - - 0x34AC58
     - start: 0x34AC60
       type: ci4
       name: lava_frame2
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34B460
+    - - 0x34B460
     - start: 0x34B468
       type: palette
       name: lava_frame3
-    - start: 0x34B488
+    - - 0x34B488
     - start: 0x34B490
       type: ci4
       name: lava_frame3
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34BC90
+    - - 0x34BC90
     - start: 0x34BC98
       type: palette
       name: lava_frame4
-    - start: 0x34BCB8
+    - - 0x34BCB8
     - start: 0x34BCC0
       type: ci4
       name: lava_frame4
@@ -7082,7 +7082,7 @@ segments:
     name: volcano_smoke/textures
     dir: volcano_smoke
     subsegments:
-    - start: 0x34C4C0
+    - - 0x34C4C0
     - start: 0x34C4C8
       type: i4
       name: tex
@@ -7097,161 +7097,161 @@ segments:
     - start: 0x34CCD0
       type: palette
       name: tex_road
-    - start: 0x34CCF0
+    - - 0x34CCF0
     - start: 0x34CCF8
       type: ci4
       name: tex_road
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34D4F8
+    - - 0x34D4F8
     - start: 0x34D500
       type: palette
       name: tex_rocks1
-    - start: 0x34D520
+    - - 0x34D520
     - start: 0x34D528
       type: ci4
       name: tex_rocks1
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34DD28
+    - - 0x34DD28
     - start: 0x34DD30
       type: palette
       name: tex_rocks2
-    - start: 0x34DD50
+    - - 0x34DD50
     - start: 0x34DD58
       type: ci4
       name: tex_rocks2
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34E558
+    - - 0x34E558
     - start: 0x34E560
       type: palette
       name: tex_rocks3
-    - start: 0x34E580
+    - - 0x34E580
     - start: 0x34E588
       type: ci4
       name: tex_rocks3
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34ED88
+    - - 0x34ED88
     - start: 0x34ED90
       type: palette
       name: tex_rocks4
-    - start: 0x34EDB0
+    - - 0x34EDB0
     - start: 0x34EDB8
       type: ci4
       name: tex_rocks4
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34F5B8
+    - - 0x34F5B8
     - start: 0x34F5C0
       type: palette
       name: tex_rocks5
-    - start: 0x34F5E0
+    - - 0x34F5E0
     - start: 0x34F5E8
       type: ci4
       name: tex_rocks5
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x34FDE8
+    - - 0x34FDE8
     - start: 0x34FDF0
       type: palette
       name: tex_rocks6
-    - start: 0x34FE10
+    - - 0x34FE10
     - start: 0x34FE18
       type: ci4
       name: tex_rocks6
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x350618
+    - - 0x350618
     - start: 0x350620
       type: palette
       name: tex_water_frame0
-    - start: 0x350640
+    - - 0x350640
     - start: 0x350648
       type: ci4
       name: tex_water_frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x350A48
+    - - 0x350A48
     - start: 0x350A50
       type: palette
       name: tex_water_frame1
-    - start: 0x350A70
+    - - 0x350A70
     - start: 0x350A78
       type: ci4
       name: tex_water_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x350E78
+    - - 0x350E78
     - start: 0x350E80
       type: palette
       name: tex_water_frame2
-    - start: 0x350EA0
+    - - 0x350EA0
     - start: 0x350EA8
       type: ci4
       name: tex_water_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3512A8
+    - - 0x3512A8
     - start: 0x3512B0
       type: palette
       name: tex_water_frame3
-    - start: 0x3512D0
+    - - 0x3512D0
     - start: 0x3512D8
       type: ci4
       name: tex_water_frame3
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3516D8
+    - - 0x3516D8
     - start: 0x3516E0
       type: palette
       name: tex_lava_frame0
-    - start: 0x351700
+    - - 0x351700
     - start: 0x351708
       type: ci4
       name: tex_lava_frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x351B08
+    - - 0x351B08
     - start: 0x351B10
       type: palette
       name: tex_lava_frame1
-    - start: 0x351B30
+    - - 0x351B30
     - start: 0x351B38
       type: ci4
       name: tex_lava_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x351F38
+    - - 0x351F38
     - start: 0x351F40
       type: palette
       name: tex_lava_frame2
-    - start: 0x351F60
+    - - 0x351F60
     - start: 0x351F68
       type: ci4
       name: tex_lava_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x352368
+    - - 0x352368
     - start: 0x352370
       type: palette
       name: tex_lava_frame3
-    - start: 0x352390
+    - - 0x352390
     - start: 0x352398
       type: ci4
       name: tex_lava_frame3
@@ -7269,14 +7269,14 @@ segments:
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x352FA0
+    - - 0x352FA0
     - start: 0x352FA8
       type: rgba32
       name: frame1
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3537A8
+    - - 0x3537A8
     - start: 0x3537B0
       type: rgba32
       name: frame2
@@ -7288,149 +7288,149 @@ segments:
     name: magmar/textures
     dir: magmar
     subsegments:
-    - start: 0x353FB0
+    - - 0x353FB0
     - start: 0x353FB8
       type: palette
       name: tex_skin1
-    - start: 0x353FD8
+    - - 0x353FD8
     - start: 0x353FE0
       type: ci4
       name: tex_skin1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3543E0
+    - - 0x3543E0
     - start: 0x3543E8
       type: palette
       name: tex_eye_frame0
-    - start: 0x3545E8
+    - - 0x3545E8
     - start: 0x3545F0
       type: ci8
       name: tex_eye_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x354DF0
+    - - 0x354DF0
     - start: 0x354DF8
       type: palette
       name: tex_eye_frame1
-    - start: 0x354FF8
+    - - 0x354FF8
     - start: 0x355000
       type: ci8
       name: tex_eye_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x355800
+    - - 0x355800
     - start: 0x355808
       type: palette
       name: tex_eye_frame2
-    - start: 0x355A08
+    - - 0x355A08
     - start: 0x355A10
       type: ci8
       name: tex_eye_frame2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x356210
+    - - 0x356210
     - start: 0x356218
       type: palette
       name: tex_eye_frame3
-    - start: 0x356418
+    - - 0x356418
     - start: 0x356420
       type: ci8
       name: tex_eye_frame3
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x356C20
+    - - 0x356C20
     - start: 0x356C28
       type: ia16
       name: tex_flame_frame0
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x357028
+    - - 0x357028
     - start: 0x357030
       type: ia16
       name: tex_flame_frame1
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x357430
+    - - 0x357430
     - start: 0x357438
       type: ia16
       name: tex_flame_frame2
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x357838
+    - - 0x357838
     - start: 0x357840
       type: ia16
       name: tex_flame_frame3
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x357C40
+    - - 0x357C40
     - start: 0x357C48
       type: palette
       name: tex_shackles
-    - start: 0x357C68
+    - - 0x357C68
     - start: 0x357C70
       type: ci4
       name: tex_shackles
       flip_y: true
       width: 0x000010
       height: 0x000008
-    - start: 0x357CB0
+    - - 0x357CB0
     - start: 0x357CB8
       type: palette
       name: tex_beak
-    - start: 0x357EB8
+    - - 0x357EB8
     - start: 0x357EC0
       type: ci8
       name: tex_beak
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3580C0
+    - - 0x3580C0
     - start: 0x3580C8
       type: palette
       name: tex_mouth
-    - start: 0x3582C8
+    - - 0x3582C8
     - start: 0x3582D0
       type: ci8
       name: tex_mouth
       flip_y: true
       width: 0x000008
       height: 0x000020
-    - start: 0x3583D0
+    - - 0x3583D0
     - start: 0x3583D8
       type: palette
       name: tex_claw
-    - start: 0x3583F8
+    - - 0x3583F8
     - start: 0x358400
       type: ci4
       name: tex_claw
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x358480
+    - - 0x358480
     - start: 0x358488
       type: palette
       name: tex_arm1
-    - start: 0x358688
+    - - 0x358688
     - start: 0x358690
       type: ci8
       name: tex_arm1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x358A90
+    - - 0x358A90
     - start: 0x358A98
       type: palette
       name: tex_skin2
-    - start: 0x358C98
+    - - 0x358C98
     - start: 0x358CA0
       type: ci8
       name: tex_skin2
@@ -7602,167 +7602,167 @@ segments:
     name: moltres/textures
     dir: moltres
     subsegments:
-    - start: 0x366400
+    - - 0x366400
     - start: 0x366408
       type: palette
       name: tex_flame_frame0
-    - start: 0x366428
+    - - 0x366428
     - start: 0x366430
       type: ci4
       name: tex_flame_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x366630
+    - - 0x366630
     - start: 0x366638
       type: palette
       name: tex_flame_frame1
-    - start: 0x366658
+    - - 0x366658
     - start: 0x366660
       type: ci4
       name: tex_flame_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x366860
+    - - 0x366860
     - start: 0x366868
       type: palette
       name: tex_flame_frame2
-    - start: 0x366888
+    - - 0x366888
     - start: 0x366890
       type: ci4
       name: tex_flame_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x366A90
+    - - 0x366A90
     - start: 0x366A98
       type: palette
       name: tex_flame_frame3
-    - start: 0x366AB8
+    - - 0x366AB8
     - start: 0x366AC0
       type: ci4
       name: tex_flame_frame3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x366CC0
+    - - 0x366CC0
     - start: 0x366CC8
       type: palette
       name: tex_flame_frame4
-    - start: 0x366CE8
+    - - 0x366CE8
     - start: 0x366CF0
       type: ci4
       name: tex_flame_frame4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x366EF0
+    - - 0x366EF0
     - start: 0x366EF8
       type: palette
       name: tex_flame_frame5
-    - start: 0x366F18
+    - - 0x366F18
     - start: 0x366F20
       type: ci4
       name: tex_flame_frame5
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x367120
+    - - 0x367120
     - start: 0x367128
       type: palette
       name: tex_flame_frame6
-    - start: 0x367148
+    - - 0x367148
     - start: 0x367150
       type: ci4
       name: tex_flame_frame6
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x367350
+    - - 0x367350
     - start: 0x367358
       type: palette
       name: tex_flame_frame7
-    - start: 0x367378
+    - - 0x367378
     - start: 0x367380
       type: ci4
       name: tex_flame_frame7
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x367580
+    - - 0x367580
     - start: 0x367588
       type: palette
       name: tex2
-    - start: 0x3675A8
+    - - 0x3675A8
     - start: 0x3675B0
       type: ci4
       name: tex2
       flip_y: true
       width: 0x000010
       height: 0x000030
-    - start: 0x367730
+    - - 0x367730
     - start: 0x367738
       type: palette
       name: tex3
       size: 0x000018
-    - start: 0x367750
+    - - 0x367750
     - start: 0x367758
       type: ci4
       name: tex3
       flip_y: true
       width: 0x000010
       height: 0x000008
-    - start: 0x367798
+    - - 0x367798
     - start: 0x3677A0
       type: palette
       name: tex_eye_frame0
-    - start: 0x3677C0
+    - - 0x3677C0
     - start: 0x3677C8
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x367BC8
+    - - 0x367BC8
     - start: 0x367BD0
       type: palette
       name: tex_eye_frame1
-    - start: 0x367BF0
+    - - 0x367BF0
     - start: 0x367BF8
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x367FF8
+    - - 0x367FF8
     - start: 0x368000
       type: palette
       name: tex_beak
-    - start: 0x368020
+    - - 0x368020
     - start: 0x368028
       type: ci4
       name: tex_beak
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3680A8
+    - - 0x3680A8
     - start: 0x3680B0
       type: palette
       name: tex6
-    - start: 0x3680D0
+    - - 0x3680D0
     - start: 0x3680D8
       type: ci4
       name: tex6
       flip_y: true
       width: 0x000010
       height: 0x000008
-    - start: 0x368118
+    - - 0x368118
     - start: 0x368120
       type: palette
       name: tex_skin
       size: 0x000010
-    - start: 0x368130
+    - - 0x368130
     - start: 0x368138
       type: ci4
       name: tex_skin
@@ -7854,7 +7854,7 @@ segments:
     name: moltres_egg/textures
     dir: moltres_egg
     subsegments:
-    - start: 0x374210
+    - - 0x374210
     - start: 0x374218
       type: rgba16
       name: tex_flame
@@ -7888,173 +7888,173 @@ segments:
     - start: 0x3752E0
       type: gfx
       name: draw
-    - start: 0x375550
+    - - 0x375550
   - start: 0x3755E0
     type: .data
     name: rapidash/textures
     dir: rapidash
     subsegments:
-    - start: 0x3755E0
+    - - 0x3755E0
     - start: 0x3755E8
       type: palette
       name: hoof
       size: 0x000010
-    - start: 0x3755F8
+    - - 0x3755F8
     - start: 0x375600
       type: ci4
       name: hoof
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x375680
+    - - 0x375680
     - start: 0x375688
       type: palette
       name: ear
-    - start: 0x3756A8
+    - - 0x3756A8
     - start: 0x3756B0
       type: ci4
       name: ear
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3758B0
+    - - 0x3758B0
     - start: 0x3758B8
       type: palette
       name: tex_eye_frame0
-    - start: 0x375AB8
+    - - 0x375AB8
     - start: 0x375AC0
       type: ci8
       name: tex_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x375EC0
+    - - 0x375EC0
     - start: 0x375EC8
       type: palette
       name: tex_eye_frame1
-    - start: 0x3760C8
+    - - 0x3760C8
     - start: 0x3760D0
       type: ci8
       name: tex_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3764D0
+    - - 0x3764D0
     - start: 0x3764D8
       type: palette
       name: tex_eye_frame2
-    - start: 0x3766D8
+    - - 0x3766D8
     - start: 0x3766E0
       type: ci8
       name: tex_eye_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x376AE0
+    - - 0x376AE0
     - start: 0x376AE8
       type: palette
       name: tex_flame_frame0
-    - start: 0x376B08
+    - - 0x376B08
     - start: 0x376B10
       type: ci4
       name: tex_flame_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x376D10
+    - - 0x376D10
     - start: 0x376D18
       type: palette
       name: tex_flame_frame1
-    - start: 0x376D38
+    - - 0x376D38
     - start: 0x376D40
       type: ci4
       name: tex_flame_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x376F40
+    - - 0x376F40
     - start: 0x376F48
       type: palette
       name: tex_flame_frame2
-    - start: 0x376F68
+    - - 0x376F68
     - start: 0x376F70
       type: ci4
       name: tex_flame_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x377170
+    - - 0x377170
     - start: 0x377178
       type: palette
       name: tex_flame_frame3
-    - start: 0x377198
+    - - 0x377198
     - start: 0x3771A0
       type: ci4
       name: tex_flame_frame3
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3773A0
+    - - 0x3773A0
     - start: 0x3773A8
       type: palette
       name: tex_flame_frame4
-    - start: 0x3773C8
+    - - 0x3773C8
     - start: 0x3773D0
       type: ci4
       name: tex_flame_frame4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3775D0
+    - - 0x3775D0
     - start: 0x3775D8
       type: palette
       name: tex_flame_frame5
-    - start: 0x3775F8
+    - - 0x3775F8
     - start: 0x377600
       type: ci4
       name: tex_flame_frame5
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x377800
+    - - 0x377800
     - start: 0x377808
       type: palette
       name: tex_flame_frame6
-    - start: 0x377828
+    - - 0x377828
     - start: 0x377830
       type: ci4
       name: tex_flame_frame6
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x377A30
+    - - 0x377A30
     - start: 0x377A38
       type: palette
       name: tex_flame_frame7
-    - start: 0x377A58
+    - - 0x377A58
     - start: 0x377A60
       type: ci4
       name: tex_flame_frame7
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x377C60
+    - - 0x377C60
     - start: 0x377C68
       type: palette
       name: tex_nostril
-    - start: 0x377C88
+    - - 0x377C88
     - start: 0x377C90
       type: ci4
       name: tex_nostril
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x377D10
+    - - 0x377D10
     - start: 0x377D18
       type: palette
       name: tex_skin
       size: 0x000018
-    - start: 0x377D30
+    - - 0x377D30
     - start: 0x377D38
       type: ci4
       name: tex_skin
@@ -8162,144 +8162,144 @@ segments:
     name: growlithe/textures
     dir: growlithe
     subsegments:
-    - start: 0x3880C0
+    - - 0x3880C0
     - start: 0x3880C8
       type: palette
       name: tex_nose
-    - start: 0x3880E8
+    - - 0x3880E8
     - start: 0x3880F0
       type: ci4
       name: tex_nose
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x388170
+    - - 0x388170
     - start: 0x388178
       type: palette
       name: tex_eye_frame0
-    - start: 0x388198
+    - - 0x388198
     - start: 0x3881A0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3885A0
+    - - 0x3885A0
     - start: 0x3885A8
       type: palette
       name: tex_eye_frame1
-    - start: 0x3885C8
+    - - 0x3885C8
     - start: 0x3885D0
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3889D0
+    - - 0x3889D0
     - start: 0x3889D8
       type: palette
       name: tex_fur1
-    - start: 0x3889F8
+    - - 0x3889F8
     - start: 0x388A00
       type: ci4
       name: tex_fur1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x388E00
+    - - 0x388E00
     - start: 0x388E08
       type: palette
       name: tex_fur2
-    - start: 0x388E28
+    - - 0x388E28
     - start: 0x388E30
       type: ci4
       name: tex_fur2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x389230
+    - - 0x389230
     - start: 0x389238
       type: palette
       name: tex_mouth
-    - start: 0x389258
+    - - 0x389258
     - start: 0x389260
       type: ci4
       name: tex_mouth
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x389360
+    - - 0x389360
     - start: 0x389368
       type: palette
       name: tex_skin1
-    - start: 0x389388
+    - - 0x389388
     - start: 0x389390
       type: ci4
       name: tex_skin1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x389790
+    - - 0x389790
     - start: 0x389798
       type: palette
       name: tex_ear
-    - start: 0x3897B8
+    - - 0x3897B8
     - start: 0x3897C0
       type: ci4
       name: tex_ear
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3899C0
+    - - 0x3899C0
     - start: 0x3899C8
       type: palette
       name: tex_fur3
-    - start: 0x3899E8
+    - - 0x3899E8
     - start: 0x3899F0
       type: ci4
       name: tex_fur3
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x389DF0
+    - - 0x389DF0
     - start: 0x389DF8
       type: palette
       name: tex_tongue
       size: 0x000018
-    - start: 0x389E10
+    - - 0x389E10
     - start: 0x389E18
       type: ci4
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x38A218
+    - - 0x38A218
     - start: 0x38A220
       type: palette
       name: tex_skin2
-    - start: 0x38A240
+    - - 0x38A240
     - start: 0x38A248
       type: ci4
       name: tex_skin2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x38A648
+    - - 0x38A648
     - start: 0x38A650
       type: palette
       name: tex_fingers
-    - start: 0x38A670
+    - - 0x38A670
     - start: 0x38A678
       type: ci4
       name: tex_fingers
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x38A878
+    - - 0x38A878
     - start: 0x38A880
       type: palette
       name: tex_foot
-    - start: 0x38A8A0
+    - - 0x38A8A0
     - start: 0x38A8A8
       type: ci4
       name: tex_foot
@@ -8442,167 +8442,167 @@ segments:
     - start: 0x398128
       type: palette
       name: tex_eye_frame1
-    - start: 0x398148
+    - - 0x398148
     - start: 0x398150
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x398550
+    - - 0x398550
     - start: 0x398558
       type: palette
       name: tex_eye_frame2
-    - start: 0x398578
+    - - 0x398578
     - start: 0x398580
       type: ci4
       name: tex_eye_frame2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x398980
+    - - 0x398980
     - start: 0x398988
       type: palette
       name: tex_eye_frame3
-    - start: 0x3989A8
+    - - 0x3989A8
     - start: 0x3989B0
       type: ci4
       name: tex_eye_frame3
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x398DB0
+    - - 0x398DB0
     - start: 0x398DB8
       type: palette
       name: tex_eye_frame4
-    - start: 0x398DD8
+    - - 0x398DD8
     - start: 0x398DE0
       type: ci4
       name: tex_eye_frame4
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3991E0
+    - - 0x3991E0
     - start: 0x3991E8
       type: palette
       name: tex_eye_frame5
-    - start: 0x399208
+    - - 0x399208
     - start: 0x399210
       type: ci4
       name: tex_eye_frame5
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x399610
+    - - 0x399610
     - start: 0x399618
       type: palette
       name: tex_eye_frame6
-    - start: 0x399638
+    - - 0x399638
     - start: 0x399640
       type: ci4
       name: tex_eye_frame6
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x399A40
+    - - 0x399A40
     - start: 0x399A48
       type: palette
       name: tex_eye_frame7
-    - start: 0x399A68
+    - - 0x399A68
     - start: 0x399A70
       type: ci4
       name: tex_eye_frame7
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x399E70
+    - - 0x399E70
     - start: 0x399E78
       type: palette
       name: tex_eye_frame0
-    - start: 0x399E98
+    - - 0x399E98
     - start: 0x399EA0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x39A2A0
+    - - 0x39A2A0
     - start: 0x39A2A8
       type: ia16
       name: tex_flame_frame0
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x39A6A8
+    - - 0x39A6A8
     - start: 0x39A6B0
       type: ia16
       name: tex_flame_frame1
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x39AAB0
+    - - 0x39AAB0
     - start: 0x39AAB8
       type: ia16
       name: tex_flame_frame2
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x39AEB8
+    - - 0x39AEB8
     - start: 0x39AEC0
       type: ia16
       name: tex_flame_frame3
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x39B2C0
+    - - 0x39B2C0
     - start: 0x39B2C8
       type: palette
       name: tex_nostril
-    - start: 0x39B2E8
+    - - 0x39B2E8
     - start: 0x39B2F0
       type: ci4
       name: tex_nostril
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x39B4F0
+    - - 0x39B4F0
     - start: 0x39B4F8
       type: palette
       name: tex_skin
-    - start: 0x39B518
+    - - 0x39B518
     - start: 0x39B520
       type: ci4
       name: tex_skin
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x39B920
+    - - 0x39B920
     - start: 0x39B928
       type: palette
       name: tex_tongue
-    - start: 0x39B948
+    - - 0x39B948
     - start: 0x39B950
       type: ci4
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x39BB50
+    - - 0x39BB50
     - start: 0x39BB58
       type: palette
       name: tex_claw
-    - start: 0x39BB78
+    - - 0x39BB78
     - start: 0x39BB80
       type: ci4
       name: tex_claw
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x39BD80
+    - - 0x39BD80
     - start: 0x39BD88
       type: palette
       name: tex_mouth
-    - start: 0x39BDA8
+    - - 0x39BDA8
     - start: 0x39BDB0
       type: ci4
       name: tex_mouth
@@ -8774,145 +8774,145 @@ segments:
     name: charmeleon/textures
     dir: charmeleon
     subsegments:
-    - start: 0x3A1C60
+    - - 0x3A1C60
     - start: 0x3A1C68
       type: palette
       name: tex_skin
       size: 0x000010
-    - start: 0x3A1C78
+    - - 0x3A1C78
     - start: 0x3A1C80
       type: ci4
       name: tex_skin
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A1E80
+    - - 0x3A1E80
     - start: 0x3A1E88
       type: palette
       name: tex_eye_frame0
-    - start: 0x3A1EA8
+    - - 0x3A1EA8
     - start: 0x3A1EB0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A20B0
+    - - 0x3A20B0
     - start: 0x3A20B8
       type: palette
       name: tex_eye_frame1
-    - start: 0x3A20D8
+    - - 0x3A20D8
     - start: 0x3A20E0
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A22E0
+    - - 0x3A22E0
     - start: 0x3A22E8
       type: palette
       name: tex_eye_frame2
-    - start: 0x3A2308
+    - - 0x3A2308
     - start: 0x3A2310
       type: ci4
       name: tex_eye_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A2510
+    - - 0x3A2510
     - start: 0x3A2518
       type: ia16
       name: tex_flame_frame0
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3A2918
+    - - 0x3A2918
     - start: 0x3A2920
       type: ia16
       name: tex_flame_frame1
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3A2D20
+    - - 0x3A2D20
     - start: 0x3A2D28
       type: ia16
       name: tex_flame_frame2
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3A3128
+    - - 0x3A3128
     - start: 0x3A3130
       type: ia16
       name: tex_flame_frame3
       flip_y: true
       width: 0x000010
       height: 0x000020
-    - start: 0x3A3530
+    - - 0x3A3530
     - start: 0x3A3538
       type: palette
       name: tex_foot
       size: 0x000018
-    - start: 0x3A3550
+    - - 0x3A3550
     - start: 0x3A3558
       type: ci4
       name: tex_foot
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3A35D8
+    - - 0x3A35D8
     - start: 0x3A35E0
       type: palette
       name: tex_nostrils
       size: 0x000010
-    - start: 0x3A35F0
+    - - 0x3A35F0
     - start: 0x3A35F8
       type: ci4
       name: tex_nostrils
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x3A36F8
+    - - 0x3A36F8
     - start: 0x3A3700
       type: palette
       name: tex_claw
       size: 0x000010
-    - start: 0x3A3710
+    - - 0x3A3710
     - start: 0x3A3718
       type: ci4
       name: tex_claw
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3A3798
+    - - 0x3A3798
     - start: 0x3A37A0
       type: palette
       name: tex_tongue
       size: 0x000018
-    - start: 0x3A37B8
+    - - 0x3A37B8
     - start: 0x3A37C0
       type: ci4
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A39C0
+    - - 0x3A39C0
     - start: 0x3A39C8
       type: palette
       name: tex_tail
       size: 0x000010
-    - start: 0x3A39D8
+    - - 0x3A39D8
     - start: 0x3A39E0
       type: ci4
       name: tex_tail
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3A3BE0
+    - - 0x3A3BE0
     - start: 0x3A3BE8
       type: palette
       name: tex_mouth
       size: 0x000010
-    - start: 0x3A3BF8
+    - - 0x3A3BF8
     - start: 0x3A3C00
       type: ci4
       name: tex_mouth
@@ -9068,128 +9068,128 @@ segments:
     name: charizard/textures
     dir: charizard
     subsegments:
-    - start: 0x3AABD0
+    - - 0x3AABD0
     - start: 0x3AABD8
       type: palette
       name: tex_mouth1
-    - start: 0x3AABF8
+    - - 0x3AABF8
     - start: 0x3AAC00
       type: ci4
       name: tex_mouth1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3AB000
+    - - 0x3AB000
     - start: 0x3AB008
       type: palette
       name: tex_mouth2
-    - start: 0x3AB028
+    - - 0x3AB028
     - start: 0x3AB030
       type: ci4
       name: tex_mouth2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3AB430
+    - - 0x3AB430
     - start: 0x3AB438
       type: palette
       name: tex_eye_frame1
-    - start: 0x3AB458
+    - - 0x3AB458
     - start: 0x3AB460
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3AB860
+    - - 0x3AB860
     - start: 0x3AB868
       type: palette
       name: tex_eye_frame2
-    - start: 0x3AB888
+    - - 0x3AB888
     - start: 0x3AB890
       type: ci4
       name: tex_eye_frame2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3ABC90
+    - - 0x3ABC90
     - start: 0x3ABC98
       type: palette
       name: tex_eye_frame0
-    - start: 0x3ABCB8
+    - - 0x3ABCB8
     - start: 0x3ABCC0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3AC0C0
+    - - 0x3AC0C0
     - start: 0x3AC0C8
       type: palette
       name: tex_nostril
-    - start: 0x3AC0E8
+    - - 0x3AC0E8
     - start: 0x3AC0F0
       type: ci4
       name: tex_nostril
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3AC170
+    - - 0x3AC170
     - start: 0x3AC178
       type: ia16
       name: tex_wingshade
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3AD178
+    - - 0x3AD178
     - start: 0x3AD180
       type: palette
       name: tex_wing1
-    - start: 0x3AD380
+    - - 0x3AD380
     - start: 0x3AD388
       type: ci8
       name: tex_wing1
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3ADB88
+    - - 0x3ADB88
     - start: 0x3ADB90
       type: palette
       name: tex_wing2
-    - start: 0x3ADBB0
+    - - 0x3ADBB0
     - start: 0x3ADBB8
       type: ci4
       name: tex_wing2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3ADFB8
+    - - 0x3ADFB8
     - start: 0x3ADFC0
       type: palette
       name: tex_skin
-    - start: 0x3ADFE0
+    - - 0x3ADFE0
     - start: 0x3ADFE8
       type: ci4
       name: tex_skin
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3AE3E8
+    - - 0x3AE3E8
     - start: 0x3AE3F0
       type: palette
       name: tex_tongue
-    - start: 0x3AE410
+    - - 0x3AE410
     - start: 0x3AE418
       type: ci4
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3AE818
+    - - 0x3AE818
     - start: 0x3AE820
       type: palette
       name: tex_claw
-    - start: 0x3AE840
+    - - 0x3AE840
     - start: 0x3AE848
       type: ci4
       name: tex_claw
@@ -9281,165 +9281,165 @@ segments:
     name: vulpix/textures
     dir: vulpix
     subsegments:
-    - start: 0x3B1C20
+    - - 0x3B1C20
     - start: 0x3B1C28
       type: palette
       name: tex_claw
-    - start: 0x3B1E28
+    - - 0x3B1E28
     - start: 0x3B1E30
       type: ci8
       name: tex_claw
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B2230
+    - - 0x3B2230
     - start: 0x3B2238
       type: palette
       name: tex_paw
-    - start: 0x3B2438
+    - - 0x3B2438
     - start: 0x3B2440
       type: ci8
       name: tex_paw
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3B2C40
+    - - 0x3B2C40
     - start: 0x3B2C48
       type: palette
       name: tex_pad
-    - start: 0x3B2C68
+    - - 0x3B2C68
     - start: 0x3B2C70
       type: ci4
       name: tex_pad
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B2E70
+    - - 0x3B2E70
     - start: 0x3B2E78
       type: palette
       name: tex_nose
-    - start: 0x3B2E98
+    - - 0x3B2E98
     - start: 0x3B2EA0
       type: ci4
       name: tex_nose
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B30A0
+    - - 0x3B30A0
     - start: 0x3B30A8
       type: palette
       name: tex_belly
-    - start: 0x3B32A8
+    - - 0x3B32A8
     - start: 0x3B32B0
       type: ci8
       name: tex_belly
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B36B0
+    - - 0x3B36B0
     - start: 0x3B36B8
       type: palette
       name: tex_eye_frame4
-    - start: 0x3B38B8
+    - - 0x3B38B8
     - start: 0x3B38C0
       type: ci8
       name: tex_eye_frame4
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B3CC0
+    - - 0x3B3CC0
     - start: 0x3B3CC8
       type: palette
       name: tex_curl
-    - start: 0x3B3EC8
+    - - 0x3B3EC8
     - start: 0x3B3ED0
       type: ci8
       name: tex_curl
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B42D0
+    - - 0x3B42D0
     - start: 0x3B42D8
       type: palette
       name: tex_hair
-    - start: 0x3B44D8
+    - - 0x3B44D8
     - start: 0x3B44E0
       type: ci8
       name: tex_hair
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3B4CE0
+    - - 0x3B4CE0
     - start: 0x3B4CE8
       type: palette
       name: tex_bang
-    - start: 0x3B4D08
+    - - 0x3B4D08
     - start: 0x3B4D10
       type: ci4
       name: tex_bang
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B4F10
+    - - 0x3B4F10
     - start: 0x3B4F18
       type: palette
       name: tex_eye_frame0
-    - start: 0x3B5118
+    - - 0x3B5118
     - start: 0x3B5120
       type: ci8
       name: tex_eye_frame0
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B5520
+    - - 0x3B5520
     - start: 0x3B5528
       type: palette
       name: tex_eye_frame1
-    - start: 0x3B5728
+    - - 0x3B5728
     - start: 0x3B5730
       type: ci8
       name: tex_eye_frame1
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B5B30
+    - - 0x3B5B30
     - start: 0x3B5B38
       type: palette
       name: tex_eye_frame2
-    - start: 0x3B5D38
+    - - 0x3B5D38
     - start: 0x3B5D40
       type: ci8
       name: tex_eye_frame2
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B6140
+    - - 0x3B6140
     - start: 0x3B6148
       type: palette
       name: tex_ear
-    - start: 0x3B6348
+    - - 0x3B6348
     - start: 0x3B6350
       type: ci8
       name: tex_ear
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B6750
+    - - 0x3B6750
     - start: 0x3B6758
       type: palette
       name: tex_tail
-    - start: 0x3B6778
+    - - 0x3B6778
     - start: 0x3B6780
       type: ci4
       name: tex_tail
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x3B6980
+    - - 0x3B6980
     - start: 0x3B6988
       type: palette
       name: tex_eye_frame3
-    - start: 0x3B6B88
+    - - 0x3B6B88
     - start: 0x3B6B90
       type: ci8
       name: tex_eye_frame3
@@ -9563,178 +9563,178 @@ segments:
     name: arcanine/textures
     dir: arcanine
     subsegments:
-    - start: 0x3BCED0
+    - - 0x3BCED0
     - start: 0x3BCED8
       type: palette
       name: tex_skin1
-    - start: 0x3BCEF8
+    - - 0x3BCEF8
     - start: 0x3BCF00
       type: ci4
       name: tex_skin1
       flip_y: true
       width: 0x000020
       height: 0x000024
-    - start: 0x3BD140
+    - - 0x3BD140
     - start: 0x3BD148
       type: palette
       name: tex_skin2
-    - start: 0x3BD168
+    - - 0x3BD168
     - start: 0x3BD170
       type: ci4
       name: tex_skin2
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x3BD270
+    - - 0x3BD270
     - start: 0x3BD278
       type: palette
       name: tex_skin3
-    - start: 0x3BD298
+    - - 0x3BD298
     - start: 0x3BD2A0
       type: ci4
       name: tex_skin3
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3BD6A0
+    - - 0x3BD6A0
     - start: 0x3BD6A8
       type: palette
       name: tex_skin4
       size: 0x000010
-    - start: 0x3BD6B8
+    - - 0x3BD6B8
     - start: 0x3BD6C0
       type: ci4
       name: tex_skin4
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3BDAC0
+    - - 0x3BDAC0
     - start: 0x3BDAC8
       type: palette
       name: tex_skin5
       size: 0x000010
-    - start: 0x3BDAD8
+    - - 0x3BDAD8
     - start: 0x3BDAE0
       type: ci4
       name: tex_skin5
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3BDB60
+    - - 0x3BDB60
     - start: 0x3BDB68
       type: palette
       name: tex_nose
-    - start: 0x3BDB88
+    - - 0x3BDB88
     - start: 0x3BDB90
       type: ci4
       name: tex_nose
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3BDC10
+    - - 0x3BDC10
     - start: 0x3BDC18
       type: palette
       name: tex_fur1
-    - start: 0x3BDC38
+    - - 0x3BDC38
     - start: 0x3BDC40
       type: ci4
       name: tex_fur1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3BE040
+    - - 0x3BE040
     - start: 0x3BE048
       type: palette
       name: tex_fur2
-    - start: 0x3BE068
+    - - 0x3BE068
     - start: 0x3BE070
       type: ci4
       name: tex_fur2
       flip_y: true
       width: 0x000020
       height: 0x000040
-    - start: 0x3BE470
+    - - 0x3BE470
     - start: 0x3BE478
       type: palette
       name: tex_eye_frame0
-    - start: 0x3BE498
+    - - 0x3BE498
     - start: 0x3BE4A0
       type: ci4
       name: tex_eye_frame0
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3BE8A0
+    - - 0x3BE8A0
     - start: 0x3BE8A8
       type: palette
       name: tex_eye_frame1
-    - start: 0x3BE8C8
+    - - 0x3BE8C8
     - start: 0x3BE8D0
       type: ci4
       name: tex_eye_frame1
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3BECD0
+    - - 0x3BECD0
     - start: 0x3BECD8
       type: palette
       name: tex_eye_frame2
-    - start: 0x3BECF8
+    - - 0x3BECF8
     - start: 0x3BED00
       type: ci4
       name: tex_eye_frame2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x3BF100
+    - - 0x3BF100
     - start: 0x3BF108
       type: palette
       name: tex_ear
-    - start: 0x3BF128
+    - - 0x3BF128
     - start: 0x3BF130
       type: ci4
       name: tex_ear
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3BF1B0
+    - - 0x3BF1B0
     - start: 0x3BF1B8
       type: palette
       name: tex_tongue
-    - start: 0x3BF1D8
+    - - 0x3BF1D8
     - start: 0x3BF1E0
       type: ci4
       name: tex_tongue
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x3BF2E0
+    - - 0x3BF2E0
     - start: 0x3BF2E8
       type: palette
       name: tex_mouth
-    - start: 0x3BF308
+    - - 0x3BF308
     - start: 0x3BF310
       type: ci4
       name: tex_mouth
       flip_y: true
       width: 0x000020
       height: 0x000010
-    - start: 0x3BF410
+    - - 0x3BF410
     - start: 0x3BF418
       type: palette
       name: tex_foot
-    - start: 0x3BF438
+    - - 0x3BF438
     - start: 0x3BF440
       type: ci4
       name: tex_foot
       flip_y: true
       width: 0x000010
       height: 0x000010
-    - start: 0x3BF4C0
+    - - 0x3BF4C0
     - start: 0x3BF4C8
       type: palette
       name: tex_fingers
-    - start: 0x3BF4E8
+    - - 0x3BF4E8
     - start: 0x3BF4F0
       type: ci4
       name: tex_fingers
@@ -9915,13 +9915,13 @@ segments:
     - start: 0x3CFDB8
       type: palette
       name: tex_801A9930_hd
-    - start: 0x3CFDD8
+    - - 0x3CFDD8
     - start: 0x3CFDE0
       type: ci4
       name: tex_801A9930_hd
       width: 0x000010
       height: 0x000010
-    - start: 0x3CFE60
+    - - 0x3CFE60
     - start: 0x3CFFD0
       type: vtx
       name: hd_model
@@ -10258,13 +10258,13 @@ segments:
     - start: 0x3E1188
       type: palette
       name: tex_801BAD00_hd
-    - start: 0x3E11A8
+    - - 0x3E11A8
     - start: 0x3E11B0
       type: ci4
       name: tex_801BAD00_hd
       width: 0x000020
       height: 0x000020
-    - start: 0x3E13B0
+    - - 0x3E13B0
     - start: 0x3E1520
       type: vtx
       name: hd_model
@@ -10481,13 +10481,13 @@ segments:
     - start: 0x3EC348
       type: palette
       name: tex_801C5EC0_hd
-    - start: 0x3EC368
+    - - 0x3EC368
     - start: 0x3EC370
       type: ci4
       name: tex_801C5EC0_hd
       width: 0x000020
       height: 0x000020
-    - start: 0x3EC570
+    - - 0x3EC570
     - start: 0x3EC6E0
       type: vtx
       name: hd_model
@@ -11808,877 +11808,877 @@ segments:
       name: btn_z
       width: 0x000010
       height: 0x00000D
-    - start: 0x52A1B8
+    - - 0x52A1B8
     - start: 0x52A1C0
       type: rgba16
       name: btn_z_pressed
       width: 0x000010
       height: 0x00000D
-    - start: 0x52A360
+    - - 0x52A360
     - start: 0x52A368
       type: rgba16
       name: btn_r
       width: 0x000010
       height: 0x00000D
-    - start: 0x52A508
+    - - 0x52A508
     - start: 0x52A510
       type: rgba16
       name: btn_r_pressed
       width: 0x000010
       height: 0x00000D
-    - start: 0x52A6B0
+    - - 0x52A6B0
     - start: 0x52A6B8
       type: rgba16
       name: page
       width: 0x000010
       height: 0x00000D
-    - start: 0x52A858
+    - - 0x52A858
     - start: 0x52A860
       type: rgba16
       name: page_folded
       width: 0x000010
       height: 0x00000D
-    - start: 0x52AA00
+    - - 0x52AA00
     - start: 0x52AA08
       type: rgba16
       name: btn_a
       width: 0x000010
       height: 0x00000D
-    - start: 0x52ABA8
+    - - 0x52ABA8
     - start: 0x52ABB0
       type: rgba16
       name: btn_a_pressed
       width: 0x000010
       height: 0x00000D
-    - start: 0x52AD50
+    - - 0x52AD50
     - start: 0x52AD58
       type: rgba16
       name: btn_b
       width: 0x000010
       height: 0x00000D
-    - start: 0x52AEF8
+    - - 0x52AEF8
     - start: 0x52AF00
       type: rgba16
       name: btn_b_pressed
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B0A0
+    - - 0x52B0A0
     - start: 0x52B0A8
       type: rgba16
       name: new_l
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B248
+    - - 0x52B248
     - start: 0x52B250
       type: rgba16
       name: new_r
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B3F0
+    - - 0x52B3F0
     - start: 0x52B3F8
       type: rgba16
       name: new_l_alt
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B598
+    - - 0x52B598
     - start: 0x52B5A0
       type: rgba16
       name: new_r_alt
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B740
+    - - 0x52B740
     - start: 0x52B748
       type: rgba16
       name: 52BFD8
       width: 0x000010
       height: 0x00000D
-    - start: 0x52B8E8
+    - - 0x52B8E8
     - start: 0x52B8F0
       type: rgba16
       name: 52C180
       width: 0x000010
       height: 0x00000D
-    - start: 0x52BA90
+    - - 0x52BA90
     - start: 0x52BBE0
       type: i8
       name: upper_a
       width: 0x000010
       height: 0x00000D
-    - start: 0x52BCB0
+    - - 0x52BCB0
     - start: 0x52BCB8
       type: i8
       name: upper_b
       width: 0x000010
       height: 0x00000D
-    - start: 0x52BD88
+    - - 0x52BD88
     - start: 0x52BD90
       type: i8
       name: upper_c
       width: 0x000010
       height: 0x00000D
-    - start: 0x52BE60
+    - - 0x52BE60
     - start: 0x52BE68
       type: i8
       name: upper_d
       width: 0x000010
       height: 0x00000D
-    - start: 0x52BF38
+    - - 0x52BF38
     - start: 0x52BF40
       type: i8
       name: upper_e
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C010
+    - - 0x52C010
     - start: 0x52C018
       type: i8
       name: upper_f
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C0E8
+    - - 0x52C0E8
     - start: 0x52C0F0
       type: i8
       name: upper_g
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C1C0
+    - - 0x52C1C0
     - start: 0x52C1C8
       type: i8
       name: upper_h
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C298
+    - - 0x52C298
     - start: 0x52C2A0
       type: i8
       name: upper_i
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C370
+    - - 0x52C370
     - start: 0x52C378
       type: i8
       name: upper_j
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C448
+    - - 0x52C448
     - start: 0x52C450
       type: i8
       name: upper_k
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C520
+    - - 0x52C520
     - start: 0x52C528
       type: i8
       name: upper_l
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C5F8
+    - - 0x52C5F8
     - start: 0x52C600
       type: i8
       name: upper_m
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C6D0
+    - - 0x52C6D0
     - start: 0x52C6D8
       type: i8
       name: upper_n
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C7A8
+    - - 0x52C7A8
     - start: 0x52C7B0
       type: i8
       name: upper_o
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C880
+    - - 0x52C880
     - start: 0x52C888
       type: i8
       name: upper_p
       width: 0x000010
       height: 0x00000D
-    - start: 0x52C958
+    - - 0x52C958
     - start: 0x52C960
       type: i8
       name: upper_q
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CA30
+    - - 0x52CA30
     - start: 0x52CA38
       type: i8
       name: upper_r
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CB08
+    - - 0x52CB08
     - start: 0x52CB10
       type: i8
       name: upper_s
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CBE0
+    - - 0x52CBE0
     - start: 0x52CBE8
       type: i8
       name: upper_t
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CCB8
+    - - 0x52CCB8
     - start: 0x52CCC0
       type: i8
       name: upper_u
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CD90
+    - - 0x52CD90
     - start: 0x52CD98
       type: i8
       name: upper_v
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CE68
+    - - 0x52CE68
     - start: 0x52CE70
       type: i8
       name: upper_w
       width: 0x000010
       height: 0x00000D
-    - start: 0x52CF40
+    - - 0x52CF40
     - start: 0x52CF48
       type: i8
       name: upper_x
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D018
+    - - 0x52D018
     - start: 0x52D020
       type: i8
       name: upper_y
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D0F0
+    - - 0x52D0F0
     - start: 0x52D0F8
       type: i8
       name: upper_z
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D1C8
+    - - 0x52D1C8
     - start: 0x52D1D0
       type: i8
       name: lower_a
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D2A0
+    - - 0x52D2A0
     - start: 0x52D2A8
       type: i8
       name: lower_b
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D378
+    - - 0x52D378
     - start: 0x52D380
       type: i8
       name: lower_c
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D450
+    - - 0x52D450
     - start: 0x52D458
       type: i8
       name: lower_d
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D528
+    - - 0x52D528
     - start: 0x52D530
       type: i8
       name: lower_e
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D600
+    - - 0x52D600
     - start: 0x52D608
       type: i8
       name: lower_f
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D6D8
+    - - 0x52D6D8
     - start: 0x52D6E0
       type: i8
       name: lower_g
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D7B0
+    - - 0x52D7B0
     - start: 0x52D7B8
       type: i8
       name: lower_h
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D888
+    - - 0x52D888
     - start: 0x52D890
       type: i8
       name: lower_i
       width: 0x000010
       height: 0x00000D
-    - start: 0x52D960
+    - - 0x52D960
     - start: 0x52D968
       type: i8
       name: lower_j
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DA38
+    - - 0x52DA38
     - start: 0x52DA40
       type: i8
       name: lower_k
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DB10
+    - - 0x52DB10
     - start: 0x52DB18
       type: i8
       name: lower_l
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DBE8
+    - - 0x52DBE8
     - start: 0x52DBF0
       type: i8
       name: lower_m
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DCC0
+    - - 0x52DCC0
     - start: 0x52DCC8
       type: i8
       name: lower_n
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DD98
+    - - 0x52DD98
     - start: 0x52DDA0
       type: i8
       name: lower_o
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DE70
+    - - 0x52DE70
     - start: 0x52DE78
       type: i8
       name: lower_p
       width: 0x000010
       height: 0x00000D
-    - start: 0x52DF48
+    - - 0x52DF48
     - start: 0x52DF50
       type: i8
       name: lower_q
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E020
+    - - 0x52E020
     - start: 0x52E028
       type: i8
       name: lower_r
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E0F8
+    - - 0x52E0F8
     - start: 0x52E100
       type: i8
       name: lower_s
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E1D0
+    - - 0x52E1D0
     - start: 0x52E1D8
       type: i8
       name: lower_t
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E2A8
+    - - 0x52E2A8
     - start: 0x52E2B0
       type: i8
       name: lower_u
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E380
+    - - 0x52E380
     - start: 0x52E388
       type: i8
       name: lower_v
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E458
+    - - 0x52E458
     - start: 0x52E460
       type: i8
       name: lower_w
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E530
+    - - 0x52E530
     - start: 0x52E538
       type: i8
       name: lower_x
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E608
+    - - 0x52E608
     - start: 0x52E610
       type: i8
       name: lower_y
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E6E0
+    - - 0x52E6E0
     - start: 0x52E6E8
       type: i8
       name: lower_z
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E7B8
+    - - 0x52E7B8
     - start: 0x52E7C0
       type: i8
       name: numeral_1
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E890
+    - - 0x52E890
     - start: 0x52E898
       type: i8
       name: numeral_2
       width: 0x000010
       height: 0x00000D
-    - start: 0x52E968
+    - - 0x52E968
     - start: 0x52E970
       type: i8
       name: numeral_3
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EA40
+    - - 0x52EA40
     - start: 0x52EA48
       type: i8
       name: numeral_4
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EB18
+    - - 0x52EB18
     - start: 0x52EB20
       type: i8
       name: numeral_5
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EBF0
+    - - 0x52EBF0
     - start: 0x52EBF8
       type: i8
       name: numeral_6
       width: 0x000010
       height: 0x00000D
-    - start: 0x52ECC8
+    - - 0x52ECC8
     - start: 0x52ECD0
       type: i8
       name: numeral_7
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EDA0
+    - - 0x52EDA0
     - start: 0x52EDA8
       type: i8
       name: numeral_8
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EE78
+    - - 0x52EE78
     - start: 0x52EE80
       type: i8
       name: numeral_9
       width: 0x000010
       height: 0x00000D
-    - start: 0x52EF50
+    - - 0x52EF50
     - start: 0x52EF58
       type: i8
       name: numeral_0
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F028
+    - - 0x52F028
     - start: 0x52F030
       type: i8
       name: arrowup
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F100
+    - - 0x52F100
     - start: 0x52F108
       type: i8
       name: arrowdown
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F1D8
+    - - 0x52F1D8
     - start: 0x52F1E0
       type: i8
       name: 52FA70
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F2B0
+    - - 0x52F2B0
     - start: 0x52F2B8
       type: i8
       name: asciitilde
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F388
+    - - 0x52F388
     - start: 0x52F390
       type: i8
       name: exclam
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F460
+    - - 0x52F460
     - start: 0x52F468
       type: i8
       name: at
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F538
+    - - 0x52F538
     - start: 0x52F540
       type: i8
       name: numbersign
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F610
+    - - 0x52F610
     - start: 0x52F618
       type: i8
       name: dollar
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F6E8
+    - - 0x52F6E8
     - start: 0x52F6F0
       type: i8
       name: percent
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F7C0
+    - - 0x52F7C0
     - start: 0x52F7C8
       type: i8
       name: ampersand
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F898
+    - - 0x52F898
     - start: 0x52F8A0
       type: i8
       name: asterisk
       width: 0x000010
       height: 0x00000D
-    - start: 0x52F970
+    - - 0x52F970
     - start: 0x52F978
       type: i8
       name: parenleft
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FA48
+    - - 0x52FA48
     - start: 0x52FA50
       type: i8
       name: parenright
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FB20
+    - - 0x52FB20
     - start: 0x52FB28
       type: i8
       name: underscore
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FBF8
+    - - 0x52FBF8
     - start: 0x52FC00
       type: i8
       name: plus
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FCD0
+    - - 0x52FCD0
     - start: 0x52FCD8
       type: i8
       name: equal
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FDA8
+    - - 0x52FDA8
     - start: 0x52FDB0
       type: i8
       name: hyphen
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FE80
+    - - 0x52FE80
     - start: 0x52FE88
       type: i8
       name: quotesingle
       width: 0x000010
       height: 0x00000D
-    - start: 0x52FF58
+    - - 0x52FF58
     - start: 0x52FF60
       type: i8
       name: quotedbl
       width: 0x000010
       height: 0x00000D
-    - start: 0x530030
+    - - 0x530030
     - start: 0x530038
       type: i8
       name: semicolon
       width: 0x000010
       height: 0x00000D
-    - start: 0x530108
+    - - 0x530108
     - start: 0x530110
       type: i8
       name: colon
       width: 0x000010
       height: 0x00000D
-    - start: 0x5301E0
+    - - 0x5301E0
     - start: 0x5301E8
       type: i8
       name: slash
       width: 0x000010
       height: 0x00000D
-    - start: 0x5302B8
+    - - 0x5302B8
     - start: 0x5302C0
       type: i8
       name: period
       width: 0x000010
       height: 0x00000D
-    - start: 0x530390
+    - - 0x530390
     - start: 0x530398
       type: i8
       name: comma
       width: 0x000010
       height: 0x00000D
-    - start: 0x530468
+    - - 0x530468
     - start: 0x530470
       type: i8
       name: question
       width: 0x000010
       height: 0x00000D
-    - start: 0x530540
+    - - 0x530540
     - start: 0x530548
       type: i8
       name: less
       width: 0x000010
       height: 0x00000D
-    - start: 0x530618
+    - - 0x530618
     - start: 0x530620
       type: i8
       name: greater
       width: 0x000010
       height: 0x00000D
-    - start: 0x5306F0
+    - - 0x5306F0
     - start: 0x5306F8
       type: i8
       name: male
       width: 0x000010
       height: 0x00000D
-    - start: 0x5307C8
+    - - 0x5307C8
     - start: 0x5307D0
       type: i8
       name: female
       width: 0x000010
       height: 0x00000D
-    - start: 0x5308A0
+    - - 0x5308A0
     - start: 0x5308A8
       type: i8
       name: PK
       width: 0x000010
       height: 0x00000D
-    - start: 0x530978
+    - - 0x530978
     - start: 0x530980
       type: i8
       name: MN
       width: 0x000010
       height: 0x00000D
-    - start: 0x530A50
+    - - 0x530A50
     - start: 0x530A58
       type: i8
       name: pokedollar
       width: 0x000010
       height: 0x00000D
-    - start: 0x530B28
+    - - 0x530B28
     - start: 0x530B30
       type: i8
       name: bracketleft
       width: 0x000010
       height: 0x00000D
-    - start: 0x530C00
+    - - 0x530C00
     - start: 0x530C08
       type: i8
       name: bracketright
       width: 0x000010
       height: 0x00000D
-    - start: 0x530CD8
+    - - 0x530CD8
     - start: 0x530CE0
       type: i8
       name: eacute
       width: 0x000010
       height: 0x00000D
-    - start: 0x530DB0
+    - - 0x530DB0
     - start: 0x530DB8
       type: i8
       name: arrowright
       width: 0x000010
       height: 0x00000D
-    - start: 0x530E88
+    - - 0x530E88
     - start: 0x530E90
       type: i8
       name: arrowleft
       width: 0x000010
       height: 0x00000D
-    - start: 0x530F60
+    - - 0x530F60
     - start: 0x530F68
       type: i8
       name: 5317F8
       width: 0x000010
       height: 0x00000D
-    - start: 0x531038
+    - - 0x531038
     - start: 0x531040
       type: i8
       name: 5318D0
       width: 0x000010
       height: 0x00000D
-    - start: 0x531110
+    - - 0x531110
     - start: 0x531118
       type: i8
       name: 5319A8
       width: 0x000010
       height: 0x00000D
-    - start: 0x5311E8
+    - - 0x5311E8
     - start: 0x5311F0
       type: i8
       name: 531A80
       width: 0x000010
       height: 0x00000D
-    - start: 0x5312C0
+    - - 0x5312C0
     - start: 0x5312C8
       type: i8
       name: 531B58
       width: 0x000010
       height: 0x00000D
-    - start: 0x531398
+    - - 0x531398
     - start: 0x5313A0
       type: i8
       name: 531C30
       width: 0x000010
       height: 0x00000D
-    - start: 0x531470
+    - - 0x531470
     - start: 0x531478
       type: i8
       name: 531D08
       width: 0x000010
       height: 0x00000D
-    - start: 0x531548
+    - - 0x531548
     - start: 0x531550
       type: i8
       name: 531DE0
       width: 0x000010
       height: 0x00000D
-    - start: 0x531620
+    - - 0x531620
     - start: 0x531628
       type: i8
       name: 531EB8
       width: 0x000010
       height: 0x00000D
-    - start: 0x5316F8
+    - - 0x5316F8
     - start: 0x531700
       type: i8
       name: 531F90
       width: 0x000010
       height: 0x00000D
-    - start: 0x5317D0
+    - - 0x5317D0
     - start: 0x5317D8
       type: i8
       name: '532068'
       width: 0x000010
       height: 0x00000D
-    - start: 0x5318A8
+    - - 0x5318A8
     - start: 0x5318B0
       type: i8
       name: '532140'
       width: 0x000010
       height: 0x00000D
-    - start: 0x531980
+    - - 0x531980
     - start: 0x531988
       type: i8
       name: '532218'
       width: 0x000010
       height: 0x00000D
-    - start: 0x531A58
+    - - 0x531A58
     - start: 0x531A60
       type: i8
       name: 5322F0
       width: 0x000010
       height: 0x00000D
-    - start: 0x531B30
+    - - 0x531B30
     - start: 0x531B38
       type: i8
       name: 5323C8
       width: 0x000010
       height: 0x00000D
-    - start: 0x531C08
+    - - 0x531C08
     - start: 0x531C10
       type: i8
       name: 5324A0
       width: 0x000010
       height: 0x00000D
-    - start: 0x531CE0
+    - - 0x531CE0
     - start: 0x531CE8
       type: i8
       name: '532578'
       width: 0x000010
       height: 0x00000D
-    - start: 0x531DB8
+    - - 0x531DB8
     - start: 0x531DC0
       type: i8
       name: '532650'
       width: 0x000010
       height: 0x00000D
-    - start: 0x531E90
+    - - 0x531E90
     - start: 0x531E98
       type: i8
       name: '532728'
       width: 0x000010
       height: 0x00000D
-    - start: 0x531F68
+    - - 0x531F68
     - start: 0x531F70
       type: i8
       name: '532800'
       width: 0x000010
       height: 0x00000D
-    - start: 0x532040
+    - - 0x532040
     - start: 0x532048
       type: i8
       name: 5328D8
       width: 0x000010
       height: 0x00000D
-    - start: 0x532118
+    - - 0x532118
     - start: 0x532120
       type: i8
       name: 5329B0
       width: 0x000010
       height: 0x00000D
-    - start: 0x5321F0
+    - - 0x5321F0
     - start: 0x5321F8
       type: i8
       name: 532A88
       width: 0x000010
       height: 0x00000D
-    - start: 0x5322C8
+    - - 0x5322C8
     - start: 0x5322D0
       type: i8
       name: 532B60
       width: 0x000010
       height: 0x00000D
-    - start: 0x5323A0
+    - - 0x5323A0
     - start: 0x5323A8
       type: i8
       name: 532C38
       width: 0x000010
       height: 0x00000D
-    - start: 0x532478
+    - - 0x532478
     - start: 0x532480
       type: i8
       name: 532D10
       width: 0x000010
       height: 0x00000D
-    - start: 0x532550
+    - - 0x532550
     - start: 0x532558
       type: i8
       name: 532DE8
       width: 0x000010
       height: 0x00000D
-    - start: 0x532628
+    - - 0x532628
     - start: 0x532630
       type: i8
       name: 532EC0
       width: 0x000010
       height: 0x00000D
-    - start: 0x532700
+    - - 0x532700
     - start: 0x532708
       type: i8
       name: 532F98
       width: 0x000010
       height: 0x00000D
-    - start: 0x5327D8
+    - - 0x5327D8
     - start: 0x5327E0
       type: i8
       name: '533070'
       width: 0x000010
       height: 0x00000D
-    - start: 0x5328B0
+    - - 0x5328B0
     - start: 0x5328B8
       type: i8
       name: '533148'
       width: 0x000010
       height: 0x00000D
-    - start: 0x532988
+    - - 0x532988
   - start: 0x533FA0
     type: data
     name: 533C00
@@ -12828,7 +12828,7 @@ segments:
     - start: 0x54D6D8
       type: gfx
       name: last
-    - start: 0x54D700
+    - - 0x54D700
 - start: 0x54DA40
   type: code
   name: pikachu_model
@@ -14218,43 +14218,43 @@ segments:
       name: 5C3858
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3C18
+    - - 0x5C3C18
     - start: 0x5C3C20
       type: rgba16
       name: 5C3880
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3C40
+    - - 0x5C3C40
     - start: 0x5C3C48
       type: rgba16
       name: 5C38A8
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3C68
+    - - 0x5C3C68
     - start: 0x5C3C70
       type: rgba16
       name: 5C38D0
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3C90
+    - - 0x5C3C90
     - start: 0x5C3C98
       type: rgba16
       name: 5C38F8
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3CB8
+    - - 0x5C3CB8
     - start: 0x5C3CC0
       type: rgba16
       name: 5C3920
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3CE0
+    - - 0x5C3CE0
     - start: 0x5C3CE8
       type: rgba16
       name: 5C3948
       width: 0x000010
       height: 0x000001
-    - start: 0x5C3D08
+    - - 0x5C3D08
     - start: 0x5C3F68
       type: vtx
       name: model
@@ -15111,27 +15111,27 @@ segments:
       type: palette
       name: tex_a
       size: 0x000110
-    - start: 0x5D8A08
+    - - 0x5D8A08
     - start: 0x5D8A10
       type: ci8
       name: tex_a
       width: 0x000020
       height: 0x000020
-    - start: 0x5D8E10
+    - - 0x5D8E10
     - start: 0x5D8E18
       type: palette
       name: tex_b
-    - start: 0x5D8E38
+    - - 0x5D8E38
     - start: 0x5D8E40
       type: ci4
       name: tex_b
       width: 0x000040
       height: 0x000040
-    - start: 0x5D9640
+    - - 0x5D9640
     - start: 0x5D9648
       type: palette
       name: tex_c
-    - start: 0x5D9668
+    - - 0x5D9668
     - start: 0x5D9670
       type: ci4
       name: tex_c
@@ -15492,13 +15492,13 @@ segments:
       type: palette
       name: tex_80326F10
       size: 0x000010
-    - start: 0x624378
+    - - 0x624378
     - start: 0x624380
       type: ci4
       name: tex_80326F10
       width: 0x000020
       height: 0x000020
-    - start: 0x624580
+    - - 0x624580
     - start: 0x624620
       type: vtx
       name: model
@@ -15559,7 +15559,7 @@ segments:
     dir: magnemite
     linker_section_order: .rodata
     subsegments:
-    - start: 0x626FB0
+    - - 0x626FB0
     - start: 0x6274C0
       type: vtx
       name: model
@@ -15617,7 +15617,7 @@ segments:
     dir: diglett
     linker_section_order: .rodata
     subsegments:
-    - start: 0x629830
+    - - 0x629830
     - start: 0x629978
       type: vtx
       name: model
@@ -15693,7 +15693,7 @@ segments:
     - start: 0x62B818
       type: gfx
       name: last
-    - start: 0x62B840
+    - - 0x62B840
   - start: 0x62BAB0
     type: .data
     name: dugtrio/model
@@ -15787,7 +15787,7 @@ segments:
     - start: 0x62DAB8
       type: gfx
       name: last
-    - start: 0x62DAE0
+    - - 0x62DAE0
   - start: 0x62DDA0
     type: .data
     name: electabuzz/model
@@ -15798,46 +15798,46 @@ segments:
       type: palette
       name: tex_80330948
       size: 0x000008
-    - start: 0x62DDB0
+    - - 0x62DDB0
     - start: 0x62DDB8
       type: ci4
       name: tex_80330948
       width: 0x000010
       height: 0x00000A
-    - start: 0x62DE08
+    - - 0x62DE08
     - start: 0x62DE10
       type: palette
       name: tex_803309C8
       size: 0x000020
-    - start: 0x62DE30
+    - - 0x62DE30
     - start: 0x62DE38
       type: ci4
       name: tex_803309C8
       width: 0x000010
       height: 0x000008
-    - start: 0x62DE78
+    - - 0x62DE78
     - start: 0x62DE80
       type: palette
       name: tex_80330A38
       size: 0x000020
-    - start: 0x62DEA0
+    - - 0x62DEA0
     - start: 0x62DEA8
       type: ci4
       name: tex_80330A38
       width: 0x000020
       height: 0x000040
-    - start: 0x62E2A8
+    - - 0x62E2A8
     - start: 0x62E2B0
       type: palette
       name: tex_80330E68
       size: 0x000020
-    - start: 0x62E2D0
+    - - 0x62E2D0
     - start: 0x62E2D8
       type: ci4
       name: tex_80330E68
       width: 0x000020
       height: 0x000040
-    - start: 0x62E6D8
+    - - 0x62E6D8
     - start: 0x62EC80
       type: vtx
       name: model
@@ -16083,7 +16083,7 @@ segments:
     dir: electrode
     linker_section_order: .rodata
     subsegments:
-    - start: 0x635A30
+    - - 0x635A30
     - start: 0x6362F8
       type: vtx
       name: model
@@ -16174,7 +16174,7 @@ segments:
     - start: 0x638400
       type: gfx
       name: part13_draw
-    - start: 0x638430
+    - - 0x638430
   - start: 0x638860
     type: .data
     name: magneton/model
@@ -16792,13 +16792,13 @@ segments:
       name: tex_8031C028
       width: 0x000040
       height: 0x000020
-    - start: 0x69EC78
+    - - 0x69EC78
     - start: 0x69EC80
       type: i4
       name: tex_8031C430
       width: 0x000040
       height: 0x000020
-    - start: 0x69F080
+    - - 0x69F080
     - start: 0x69F910
       type: vtx
       name: model
@@ -17193,13 +17193,13 @@ segments:
       type: palette
       name: tex_803264E0
       size: 0x000020
-    - start: 0x6A8D28
+    - - 0x6A8D28
     - start: 0x6A8D30
       type: ci4
       name: tex_803264E0
       width: 0x000020
       height: 0x000010
-    - start: 0x6A8E30
+    - - 0x6A8E30
     - start: 0x6A8F10
       type: vtx
       name: model
@@ -17965,35 +17965,35 @@ segments:
       type: palette
       name: tex_8033A120
       size: 0x000020
-    - start: 0x6BC068
+    - - 0x6BC068
     - start: 0x6BC070
       type: ci4
       name: tex_8033A120
       width: 0x000020
       height: 0x000040
-    - start: 0x6BC470
+    - - 0x6BC470
     - start: 0x6BC478
       type: palette
       name: tex_8033A550
       size: 0x000020
-    - start: 0x6BC498
+    - - 0x6BC498
     - start: 0x6BC4A0
       type: ci4
       name: tex_8033A550
       width: 0x000020
       height: 0x000020
-    - start: 0x6BC6A0
+    - - 0x6BC6A0
     - start: 0x6BC6A8
       type: palette
       name: tex_8033A780
       size: 0x000020
-    - start: 0x6BC6C8
+    - - 0x6BC6C8
     - start: 0x6BC6D0
       type: ci4
       name: tex_8033A780
       width: 0x000020
       height: 0x000040
-    - start: 0x6BCAD0
+    - - 0x6BCAD0
     - start: 0x6BCC40
       type: vtx
       name: model
@@ -18991,24 +18991,24 @@ segments:
       type: palette
       name: tex_80331DD8
       size: 0x000008
-    - start: 0x719650
+    - - 0x719650
     - start: 0x719658
       type: ci4
       name: tex_80331DD8
       width: 0x000020
       height: 0x000020
-    - start: 0x719858
+    - - 0x719858
     - start: 0x719860
       type: palette
       name: tex_80331FF0
       size: 0x000008
-    - start: 0x719868
+    - - 0x719868
     - start: 0x719870
       type: ci4
       name: tex_80331FF0
       width: 0x000020
       height: 0x000010
-    - start: 0x719970
+    - - 0x719970
     - start: 0x719A10
       type: vtx
       name: model
@@ -19322,13 +19322,13 @@ segments:
       type: palette
       name: tex_80338980
       size: 0x000020
-    - start: 0x7201F8
+    - - 0x7201F8
     - start: 0x720200
       type: ci4
       name: tex_80338980
       width: 0x000020
       height: 0x000040
-    - start: 0x720600
+    - - 0x720600
     - start: 0x7206D0
       type: vtx
       name: model
@@ -19762,7 +19762,7 @@ segments:
     - start: 0x74C728
       type: snap_height_map_tree
       name: tree
-    - start: 0x76E170
+    - - 0x76E170
   - start: auto
     type: .data
     name: world/height_map
@@ -19779,40 +19779,40 @@ segments:
       flip_y: true
       width: 0x000010
       height: 0x000008
-    - start: 0x76E288
+    - - 0x76E288
     - start: 0x76E290
       type: palette
       name: tex_arm2
-    - start: 0x76E490
+    - - 0x76E490
     - start: 0x76E498
       type: ci8
       name: tex_arm2
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x76EC98
+    - - 0x76EC98
     - start: 0x76ECA0
       type: palette
       name: tex_arm3
-    - start: 0x76EEA0
+    - - 0x76EEA0
     - start: 0x76EEA8
       type: ci8
       name: tex_arm3
       flip_y: true
       width: 0x000040
       height: 0x000020
-    - start: 0x76F6A8
+    - - 0x76F6A8
     - start: 0x76F6B0
       type: palette
       name: tex_hand_claw
-    - start: 0x76F6D0
+    - - 0x76F6D0
     - start: 0x76F6D8
       type: ci4
       name: tex_hand_claw
       flip_y: true
       width: 0x000040
       height: 0x000040
-    - start: 0x76FED8
+    - - 0x76FED8
     - start: 0x770048
       type: vtx
       name: model
@@ -21445,14 +21445,14 @@ segments:
     - start: 0x797B28
       type: palette
       name: tex_skin6
-    - start: 0x797B48
+    - - 0x797B48
     - start: 0x797B50
       type: ci4
       name: tex_skin6
       flip_y: true
       width: 0x000020
       height: 0x000020
-    - start: 0x797D50
+    - - 0x797D50
     - start: 0x797E38
       type: vtx
       name: model
@@ -21741,7 +21741,7 @@ segments:
     - start: 0x79E788
       type: gfx
       name: last
-    - start: 0x79E7A8
+    - - 0x79E7A8
 - start: 0x79EC50
   type: code
   name: valley_code
@@ -23141,13 +23141,13 @@ segments:
       type: palette
       name: sandslash_tex_8033D3D8
       size: 0x000018
-    - start: 0x816410
+    - - 0x816410
     - start: 0x816418
       type: ci4
       name: sandslash_tex_8033D3D8
       width: 0x000008
       height: 0x000008
-    - start: 0x816438
+    - - 0x816438
     - start: 0x816508
       type: vtx
       name: model
@@ -25032,19 +25032,17 @@ segments:
 - start: 0xAAF7A0
   type: bin
   name: fx/script/common
-- start: 0xAAF8C0
-  type: snap_effect_sprites
-  name: fx/img/common
-  args:
+- - 0xAAF8C0
+  - snap_effect_sprites
+  - fx/img/common
   - sprite1
   - sprite2
 - start: 0xAB2520
   type: bin
   name: fx/script/beach
-- start: 0xAB26C0
-  type: snap_effect_sprites
-  name: fx/img/beach
-  args:
+- - 0xAB26C0
+  - snap_effect_sprites
+  - fx/img/beach
   - sprite1
   - sprite2
   - sprite3
@@ -25054,10 +25052,9 @@ segments:
 - start: 0xAB86E0
   type: bin
   name: fx/script/tunnel
-- start: 0xAB8B10
-  type: snap_effect_sprites
-  name: fx/img/tunnel
-  args:
+- - 0xAB8B10
+  - snap_effect_sprites
+  - fx/img/tunnel
   - sprite1
   - sprite2
   - sprite3
@@ -25068,20 +25065,18 @@ segments:
 - start: 0xAC07D0
   type: bin
   name: fx/script/cave
-- start: 0xAC09C0
-  type: snap_effect_sprites
-  name: fx/img/cave
-  args:
+- - 0xAC09C0
+  - snap_effect_sprites
+  - fx/img/cave
   - sprite1
   - sprite2
   - sprite3
 - start: 0xAC2450
   type: bin
   name: fx/script/river
-- start: 0xAC2770
-  type: snap_effect_sprites
-  name: fx/img/river
-  args:
+- - 0xAC2770
+  - snap_effect_sprites
+  - fx/img/river
   - sprite1
   - sprite2
   - sprite3
@@ -25089,19 +25084,17 @@ segments:
 - start: 0xAC9630
   type: bin
   name: fx/script/volcano
-- start: 0xAC98E0
-  type: snap_effect_sprites
-  name: fx/img/volcano
-  args:
+- - 0xAC98E0
+  - snap_effect_sprites
+  - fx/img/volcano
   - sprite1
   - sprite2
 - start: 0xACAD40
   type: bin
   name: fx/script/valley
-- start: 0xACB580
-  type: snap_effect_sprites
-  name: fx/img/valley
-  args:
+- - 0xACB580
+  - snap_effect_sprites
+  - fx/img/valley
   - sprite1
   - sprite2
   - sprite3
@@ -25110,20 +25103,18 @@ segments:
 - start: 0xAD7250
   type: bin
   name: fx/script/rainbow
-- start: 0xAD7510
-  type: snap_effect_sprites
-  name: fx/img/rainbow
-  args:
+- - 0xAD7510
+  - snap_effect_sprites
+  - fx/img/rainbow
   - sprite1
   - sprite2
   - sprite3
 - start: 0xAD8BA0
   type: bin
   name: fx/script/intro
-- start: 0xAD8D30
-  type: snap_effect_sprites
-  name: fx/img/intro
-  args:
+- - 0xAD8D30
+  - snap_effect_sprites
+  - fx/img/intro
   - sprite1
   - sprite2
 - start: 0xADA450
@@ -25261,4 +25252,4 @@ segments:
 - start: 0xF4D480
   type: bin
   name: padding
-- start: 0xFF9F40
+- - 0xFF9F40

@@ -64,6 +64,9 @@ segments:
     type: c
     name: sys/rdp_reset
   - start: 0x008740
+    type: pad
+    name: pal_om_pad
+  - start: 0x008770
     type: c
     name: sys/om
   - start: 0x00BFE0
@@ -99,391 +102,394 @@ segments:
   - start: 0x020620
     type: c
     name: sys/audio
-  - start: 0x0242D0
+  - start: 0x0242E0
     type: c
     name: sys/error
-  - start: 0x026A30
+  - start: 0x026A40
     type: c
     name: ../ultralib/src/sp/color
-  - start: 0x026A60
-    type: c
-    name: ../ultralib/src/sp/setattribute
   - start: 0x026A70
     type: c
+    name: ../ultralib/src/sp/setattribute
+  - start: 0x026A80
+    type: c
     name: 26D80
-  - start: 0x0290E0
+  - start: 0x0290F0
     type: c
     name: ../ultralib/src/sp/clearattribute
-  - start: 0x029100
+  - start: 0x029110
     type: c
     name: ../ultralib/src/sp/hide
-  - start: 0x029120
+  - start: 0x029130
     type: c
     name: ../ultralib/src/sp/show
-  - start: 0x029140
+  - start: 0x029150
     type: c
     name: ../ultralib/src/sp/spscale
-  - start: 0x0291B0
+  - start: 0x0291C0
     type: c
     name: ../ultralib/src/audio/cspsetfxmix
-  - start: 0x029220
+  - start: 0x029230
     type: c
     name: ../ultralib/src/audio/cspsetbank
-  - start: 0x029260
+  - start: 0x029270
     type: c
     name: ../ultralib/src/audio/cspsetpriority
-  - start: 0x0292B0
+  - start: 0x0292C0
     type: c
     name: ../ultralib/src/audio/sndpstop
-  - start: 0x029300
+  - start: 0x029310
     type: c
     name: ../ultralib/src/audio/cseq
-  - start: 0x029E30
+  - start: 0x029E40
     type: c
     name: ../ultralib/src/audio/sndplayer
-  - start: 0x02A500
+  - start: 0x02A510
     type: c
     name: ../ultralib/src/audio/sl
-  - start: 0x02A5C0
+  - start: 0x02A5D0
     type: c
     name: ../ultralib/src/audio/synsetvol
-  - start: 0x02A660
+  - start: 0x02A670
     type: c
     name: ../ultralib/src/audio/event
-  - start: 0x02A9B0
+  - start: 0x02A9C0
     type: c
     name: ../ultralib/src/audio/synfreevoice
-  - start: 0x02AA60
+  - start: 0x02AA70
     type: c
     name: ../ultralib/src/audio/synallocvoice
-  - start: 0x02AC80
+  - start: 0x02AC90
     type: c
     name: ../ultralib/src/audio/cspgettempo
-  - start: 0x02ACC0
+  - start: 0x02ACD0
     type: c
     name: ../ultralib/src/audio/synstartvoice
-  - start: 0x02AD50
+  - start: 0x02AD60
     type: c
     name: ../ultralib/src/audio/sndpsetfxmix
-  - start: 0x02ADB0
+  - start: 0x02ADC0
     type: c
     name: ../ultralib/src/audio/cspsetseq
-  - start: 0x02ADF0
+  - start: 0x02AE00
     type: c
     name: ../ultralib/src/audio/sndpsetsound
-  - start: 0x02AE10
+  - start: 0x02AE20
     type: c
     name: ../ultralib/src/audio/synsetpitch
-  - start: 0x02AEA0
+  - start: 0x02AEB0
     type: c
     name: ../ultralib/src/audio/synsetpan
-  - start: 0x02AF30
+  - start: 0x02AF40
     type: c
     name: ../ultralib/src/audio/sndpsetpitch
-  - start: 0x02AF90
+  - start: 0x02AFA0
     type: c
     name: ../ultralib/src/audio/synthesizer
-  - start: 0x02B610
+  - start: 0x02B620
     type: c
     name: ../ultralib/src/audio/drvrnew
-  - start: 0x02BDA0
+  - start: 0x02BDB0
     type: c
     name: ../ultralib/src/audio/mainbus
-  - start: 0x02BEF0
+  - start: 0x02BF00
     type: c
     name: ../ultralib/src/audio/reverb
-  - start: 0x02CB50
+  - start: 0x02CB60
     type: c
     name: ../ultralib/src/audio/auxbus
-  - start: 0x02CC60
+  - start: 0x02CC70
     type: c
     name: ../ultralib/src/audio/env
-  - start: 0x02D8D0
+  - start: 0x02D8E0
     type: c
     name: ../ultralib/src/audio/resample
-  - start: 0x02DBC0
+  - start: 0x02DBD0
     type: c
     name: ../ultralib/src/audio/load
-  - start: 0x02E6D0
+  - start: 0x02E6E0
     type: c
     name: ../ultralib/src/audio/cspsettempo
-  - start: 0x02E740
+  - start: 0x02E750
     type: c
     name: ../ultralib/src/audio/filter
-  - start: 0x02E760
+  - start: 0x02E770
     type: c
     name: ../ultralib/src/audio/cspsetvol
-  - start: 0x02E7A0
+  - start: 0x02E7B0
     type: c
     name: ../ultralib/src/audio/sndpsetvol
-  - start: 0x02E800
+  - start: 0x02E810
     type: c
     name: ../ultralib/src/audio/synsetfxmix
-  - start: 0x02E8A0
+  - start: 0x02E8B0
     type: c
     name: ../ultralib/src/audio/save
-  - start: 0x02E960
+  - start: 0x02E970
     type: c
     name: ../ultralib/src/audio/cspsetchlvol
-  - start: 0x02EA20
+  - start: 0x02EA30
     type: c
     name: ../ultralib/src/audio/sndpdeallocate
-  - start: 0x02EA70
+  - start: 0x02EA80
     type: c
     name: ../ultralib/src/audio/csplayer
   - start: auto
     type: c
     name: ../ultralib/src/vimodes/vimodepallan1
-  - start: 0x030970
+  - start: 0x030980
     type: c
     name: ../ultralib/src/audio/seqplayer
-  - start: 0x032380
+  - start: 0x032390
     type: c
     name: ../ultralib/src/audio/synsetpriority
-  - start: 0x0323A0
+  - start: 0x0323B0
     type: c
     name: ../ultralib/src/audio/seq
-  - start: 0x0329D0
+  - start: 0x0329E0
     type: c
     name: ../ultralib/src/audio/copy
-  - start: 0x032A50
+  - start: 0x032A60
     type: c
     name: ../ultralib/src/audio/cspplay
-  - start: 0x032A80
+  - start: 0x032A90
     type: c
     name: ../ultralib/src/audio/sndpsetpan
-  - start: 0x032AE0
+  - start: 0x032AF0
     type: c
     name: ../ultralib/src/audio/synaddplayer
-  - start: 0x032B30
+  - start: 0x032B40
     type: c
     name: ../ultralib/src/audio/sndpgetstate
-  - start: 0x032B50
+  - start: 0x032B60
     type: c
     name: ../ultralib/src/audio/sndpplay
-  - start: 0x032BC0
+  - start: 0x032BD0
     type: c
     name: ../ultralib/src/audio/cents2ratio
-  - start: 0x032C10
+  - start: 0x032C20
     type: c
     name: ../ultralib/src/audio/synstartvoiceparam
-  - start: 0x032CF0
+  - start: 0x032D00
     type: c
     name: ../ultralib/src/audio/cspstop
-  - start: 0x032D20
+  - start: 0x032D30
     type: pad
     name: '33030'
-  - start: 0x032D20
+  - start: 0x032D30
     type: c
     name: ../ultralib/src/audio/sndpsetpriority
-  - start: 0x032D50
+  - start: 0x032D60
     type: c
     name: ../ultralib/src/audio/synallocfx
-  - start: 0x032DF0
+  - start: 0x032E00
     type: c
     name: ../ultralib/src/audio/sndpallocate
-  - start: 0x032E80
-    type: c
-    name: ../ultralib/src/audio/syndelete
   - start: 0x032E90
     type: c
+    name: ../ultralib/src/audio/syndelete
+  - start: 0x032EA0
+    type: c
     name: ../ultralib/src/audio/synstopvoice
-  - start: 0x032F10
+  - start: 0x032F20
     type: c
     name: ../ultralib/src/os/sendmesg
-  - start: 0x033060
+  - start: 0x033070
     type: c
     name: ../ultralib/src/os/stopthread
-  - start: 0x033120
+  - start: 0x033130
     type: c
     name: ../ultralib/src/os/recvmesg
-  - start: 0x033260
+  - start: 0x033270
     type: hasm
     name: ../ultralib/src/os/setintmask
-  - start: 0x033300
+  - start: 0x033310
     type: c
     name: ../ultralib/src/gu/sinf
-  - start: 0x0334C0
+  - start: 0x0334D0
     type: c
     name: ../ultralib/src/io/sptask
-  - start: 0x0337B0
+  - start: 0x0337C0
     type: c
     name: ../ultralib/src/os/destroythread
-  - start: 0x0338C0
+  - start: 0x0338D0
     type: c
     name: ../ultralib/src/libc/ll
-  - start: 0x033B80
+  - start: 0x033B90
     type: hasm
     name: ../ultralib/src/os/exceptasm
-  - start: 0x034480
+  - start: 0x034490
     type: c
     name: ../ultralib/src/os/thread
-  - start: 0x0344C0
+  - start: 0x0344D0
     type: hasm
     name: ../ultralib/src/libc/bzero
-  - start: 0x034560
+  - start: 0x034570
     type: c
     name: ../ultralib/src/io/gbpakpower
-  - start: 0x034670
+  - start: 0x034680
     type: c
     name: ../ultralib/src/io/gbpakcheckconnector
-  - start: 0x034B10
+  - start: 0x034B20
     type: c
     name: ../ultralib/src/io/motor
-  - start: 0x034EE0
+  - start: 0x034EF0
     type: c
     name: ../ultralib/src/io/siacs
-  - start: 0x034FA0
+  - start: 0x034FB0
     type: c
     name: ../ultralib/src/io/controller
-  - start: 0x0352E0
+  - start: 0x0352F0
     type: c
     name: ../ultralib/src/os/createthread
-  - start: 0x035430
+  - start: 0x035440
     type: c
     name: ../ultralib/src/io/contreaddata
-  - start: 0x035610
+  - start: 0x035620
     type: c
     name: ../ultralib/src/os/virtualtophysical
-  - start: 0x035690
+  - start: 0x0356A0
     type: hasm
     name: ../ultralib/src/os/writebackdcache
-  - start: 0x035710
+  - start: 0x035720
     type: c
     name: ../ultralib/src/os/initialize
-  - start: 0x035A70
+  - start: 0x035A80
     type: c
     name: ../ultralib/src/io/pirawread
-  - start: 0x035AD0
+  - start: 0x035AE0
     type: hasm
     name: ../ultralib/src/os/parameters
-  - start: 0x035B30
-    type: hasm
-    name: ../ultralib/src/os/setsr
   - start: 0x035B40
     type: hasm
-    name: ../ultralib/src/os/getsr
+    name: ../ultralib/src/os/setsr
   - start: 0x035B50
+    type: hasm
+    name: ../ultralib/src/os/getsr
+  - start: 0x035B60
     type: c
     name: ../ultralib/src/io/vigetnextframebuf
-  - start: 0x035B90
+  - start: 0x035BA0
     type: c
     name: ../ultralib/src/io/gbpakinit
-  - start: 0x035DB0
+  - start: 0x035DC0
     type: c
     name: ../ultralib/src/io/sprawdma
-  - start: 0x035E40
+  - start: 0x035E50
     type: c
     name: ../ultralib/src/io/sirawdma
-  - start: 0x035EF0
+  - start: 0x035F00
     type: c
     name: ../ultralib/src/io/epilinkhandle
-  - start: 0x035F40
+  - start: 0x035F50
     type: c
     name: ../ultralib/src/io/viblack
-  - start: 0x035FB0
+  - start: 0x035FC0
     type: c
     name: ../ultralib/src/io/sirawread
-  - start: 0x036000
+  - start: 0x036010
     type: c
     name: ../ultralib/src/io/sptaskyield
-  - start: 0x036020
+  - start: 0x036030
     type: c
     name: ../ultralib/src/io/visetmode
-  - start: 0x036090
+  - start: 0x0360A0
     type: hasm
     name: ../ultralib/src/os/probetlb
-  - start: 0x036150
+  - start: 0x036160
     type: c
     name: ../ultralib/src/io/pimgr
-  - start: 0x0362C0
+  - start: 0x0362D0
     type: c
     name: ../ultralib/src/io/piacs
-  - start: 0x036380
+  - start: 0x036390
+    type: pad
+    name: pal_pad_36390
+  - start: 0x0363A0
     type: c
     name: ../ultralib/src/io/devmgr
-  - start: 0x036810
+  - start: 0x036830
     type: c
     name: ../ultralib/src/io/pirawdma
-  - start: 0x0368F0
+  - start: 0x036910
     type: hasm
     name: ../ultralib/src/os/getcount
-  - start: 0x036900
+  - start: 0x036920
     type: c
     name: ../ultralib/src/os/seteventmesg
-  - start: 0x036970
+  - start: 0x036990
     type: hasm
     name: ../ultralib/src/gu/sqrtf
-  - start: 0x036980
+  - start: 0x0369A0
     type: c
     name: ../ultralib/src/io/contquery
-  - start: 0x036A30
+  - start: 0x036A50
     type: c
     name: ../ultralib/src/gu/mtxcatl
-  - start: 0x036AF0
+  - start: 0x036B10
     type: c
     name: ../ultralib/src/gu/mtxutil
-  - start: 0x036D60
+  - start: 0x036D80
     type: c
     name: ../ultralib/src/gu/mtxcatf
-  - start: 0x036F70
+  - start: 0x036F90
     type: c
     name: ../ultralib/src/libc/xprintf
-  - start: 0x037C30
+  - start: 0x037C50
     type: c
     name: ../ultralib/src/io/gbpakgetstatus
-  - start: 0x037D90
+  - start: 0x037DB0
     type: c
     name: ../ultralib/src/libc/sprintf
-  - start: 0x037E10
+  - start: 0x037E30
     type: hasm
     name: ../ultralib/src/os/unmaptlball
-  - start: 0x037E60
+  - start: 0x037E80
     type: c
     name: ../ultralib/src/io/epidma
-  - start: 0x037F40
+  - start: 0x037F60
     type: c
     name: ../ultralib/src/libc/string
-  - start: 0x037FE0
+  - start: 0x038000
     type: c
     name: ../ultralib/src/os/createmesgqueue
-  - start: 0x038010
+  - start: 0x038030
     type: hasm
     name: ../ultralib/src/os/invalicache
-  - start: 0x038090
+  - start: 0x0380B0
     type: hasm
     name: ../ultralib/src/os/invaldcache
-  - start: 0x038140
+  - start: 0x038160
     type: c
     name: ../ultralib/src/io/sp
-  - start: 0x038170
+  - start: 0x038190
     type: c
     name: ../ultralib/src/io/si
-  - start: 0x0381A0
+  - start: 0x0381C0
     type: c
     name: ../ultralib/src/os/jammesg
-  - start: 0x0382F0
+  - start: 0x038310
     type: c
     name: ../ultralib/src/os/setthreadpri
-  - start: 0x0383D0
-    type: c
-    name: ../ultralib/src/os/getthreadpri
   - start: 0x0383F0
     type: c
+    name: ../ultralib/src/os/getthreadpri
+  - start: 0x038410
+    type: c
     name: ../ultralib/src/io/viswapbuf
-  - start: 0x038440
+  - start: 0x038460
     type: c
     name: ../ultralib/src/io/epirawdma
-  - start: 0x038620
+  - start: 0x038640
     type: c
     name: ../ultralib/src/io/sptaskyielded
-  - start: 0x0386A0
+  - start: 0x0386C0
     type: hasm
     name: ../ultralib/src/libc/bcmp
-  - start: 0x0387C0
+  - start: 0x0387E0
     type: c
     name: ../ultralib/src/os/gettime
-  - start: 0x038850
+  - start: 0x038870
     type: c
     name: ../ultralib/src/os/timerintr
   - start: auto
@@ -492,408 +498,408 @@ segments:
   - start: auto
     type: c
     name: ../ultralib/src/vimodes/vimodempallan1
-  - start: 0x038C50
+  - start: 0x038C70
     type: c
     name: ../ultralib/src/os/setglobalintmask
-  - start: 0x038CA0
+  - start: 0x038CC0
     type: c
     name: ../ultralib/src/io/aisetfreq
-  - start: 0x038DF0
+  - start: 0x038E10
     type: c
     name: ../ultralib/src/gu/normalize
-  - start: 0x038E80
-    type: hasm
-    name: ../ultralib/src/os/setcompare
-  - start: 0x038E90
-    type: c
-    name: ../ultralib/src/os/getactivequeue
   - start: 0x038EA0
     type: hasm
+    name: ../ultralib/src/os/setcompare
+  - start: 0x038EB0
+    type: c
+    name: ../ultralib/src/os/getactivequeue
+  - start: 0x038EC0
+    type: hasm
     name: ../ultralib/src/libc/bcopy
-  - start: 0x0391B0
+  - start: 0x0391D0
     type: c
     name: ../ultralib/src/os/resetglobalintmask
-  - start: 0x039210
+  - start: 0x039230
     type: c
     name: ../ultralib/src/io/vi
-  - start: 0x039350
+  - start: 0x039370
     type: c
     name: ../ultralib/src/io/viswapcontext
-  - start: 0x039650
+  - start: 0x039670
     type: hasm
     name: ../ultralib/src/os/interrupt
-  - start: 0x039690
+  - start: 0x0396B0
     type: c
     name: ../ultralib/src/io/pigetcmdq
-  - start: 0x0396C0
+  - start: 0x0396E0
     type: c
     name: ../ultralib/src/gu/cosf
   - start: auto
     type: hasm
     name: ../ultralib/src/gu/libm_vals
-  - start: 0x039830
+  - start: 0x039850
     type: c
     name: ../ultralib/src/io/epiread
-  - start: 0x039880
+  - start: 0x0398A0
     type: c
     name: ../ultralib/src/os/settime
-  - start: 0x0398B0
+  - start: 0x0398D0
     type: c
     name: ../ultralib/src/io/visetevent
-  - start: 0x039920
+  - start: 0x039940
     type: c
     name: ../ultralib/src/io/cartrominit
-  - start: 0x039B00
+  - start: 0x039B20
     type: c
     name: ../ultralib/src/io/gbpakreadid
-  - start: 0x039CC0
+  - start: 0x039CE0
     type: c
     name: ../ultralib/src/io/pfsselectbank
-  - start: 0x039D40
+  - start: 0x039D60
     type: hasm
     name: ../ultralib/src/os/setfpccsr
-  - start: 0x039D50
+  - start: 0x039D70
     type: c
     name: ../ultralib/src/io/pfsfilestate
-  - start: 0x039F30
+  - start: 0x039F50
     type: c
     name: ../ultralib/src/io/contpfs
-  - start: 0x03AAB0
+  - start: 0x03AAD0
     type: c
     name: ../ultralib/src/io/pfsinitpak
-  - start: 0x03ACA0
+  - start: 0x03ACC0
     type: c
     name: ../ultralib/src/io/pfsgetstatus
-  - start: 0x03AED0
+  - start: 0x03AEF0
     type: c
     name: ../ultralib/src/io/pfschecker
-  - start: 0x03B870
+  - start: 0x03B890
     type: c
     name: ../ultralib/src/io/pfsisplug
-  - start: 0x03BBB0
+  - start: 0x03BBD0
     type: c
     name: ../ultralib/src/io/epiwrite
-  - start: 0x03BC00
+  - start: 0x03BC20
     type: c
     name: ../ultralib/src/io/epirawread
-  - start: 0x03BD60
+  - start: 0x03BD80
     type: hasm
     name: ../ultralib/src/os/maptlbrdb
-  - start: 0x03BDC0
+  - start: 0x03BDE0
     type: c
     name: ../ultralib/src/os/yieldthread
-  - start: 0x03BE10
+  - start: 0x03BE30
     type: c
     name: ../ultralib/src/io/contramwrite
-  - start: 0x03C060
+  - start: 0x03C080
     type: c
     name: ../ultralib/src/io/contramread
-  - start: 0x03C290
+  - start: 0x03C2B0
     type: c
     name: ../ultralib/src/io/crc
-  - start: 0x03C400
+  - start: 0x03C420
     type: c
     name: ../ultralib/src/io/epirawwrite
-  - start: 0x03C560
+  - start: 0x03C580
     type: c
     name: ../ultralib/src/os/settimer
-  - start: 0x03C640
+  - start: 0x03C660
     type: c
     name: ../ultralib/src/libc/xldtob
-  - start: 0x03D100
+  - start: 0x03D120
     type: c
     name: ../ultralib/src/libc/ldiv
-  - start: 0x03D290
+  - start: 0x03D2B0
     type: c
     name: ../ultralib/src/libc/xlitob
-  - start: 0x03D530
+  - start: 0x03D550
     type: c
     name: ../ultralib/src/io/sirawwrite
-  - start: 0x03D580
+  - start: 0x03D5A0
     type: c
     name: ../ultralib/src/io/dpsetnextbuf
-  - start: 0x03D630
+  - start: 0x03D650
     type: c
     name: ../ultralib/src/io/dp
-  - start: 0x03D660
-    type: c
-    name: ../ultralib/src/io/spsetstat
-  - start: 0x03D670
-    type: c
-    name: ../ultralib/src/io/spgetstat
   - start: 0x03D680
     type: c
+    name: ../ultralib/src/io/spsetstat
+  - start: 0x03D690
+    type: c
+    name: ../ultralib/src/io/spgetstat
+  - start: 0x03D6A0
+    type: c
     name: ../ultralib/src/io/vimgr
-  - start: 0x03D990
+  - start: 0x03D9B0
     type: c
     name: ../ultralib/src/io/vigetcurrcontext
-  - start: 0x03D9A0
+  - start: 0x03D9C0
     type: hasm
     name: ../ultralib/src/os/writebackdcacheall
-  - start: 0x03D9D0
+  - start: 0x03D9F0
     type: c
     name: ../ultralib/src/os/startthread
-  - start: 0x03DB20
+  - start: 0x03DB40
     type: c
     name: ../ultralib/src/io/visetyscale
-  - start: 0x03DB80
+  - start: 0x03DBA0
     type: c
     name: ../ultralib/src/libc/llcvt
-  - start: 0x03DD90
+  - start: 0x03DDB0
     type: c
     name: ../ultralib/src/io/gbpakreadwrite
-  - start: 0x03DF50
+  - start: 0x03DF70
     type: c
     name: ../ultralib/src/io/gbpaksetbank
-  - start: 0x03E020
+  - start: 0x03E040
     type: c
     name: ../ultralib/src/io/aisetnextbuf
-  - start: 0x03E0D0
+  - start: 0x03E0F0
     type: c
     name: ../ultralib/src/io/ai
-  - start: 0x03E100
+  - start: 0x03E120
     type: c
     name: ../ultralib/src/io/vigetcurrframebuf
-  - start: 0x03E140
+  - start: 0x03E160
     type: c
     name: ../ultralib/src/io/spsetpc
-  - start: 0x03E180
+  - start: 0x03E1A0
     type: hasm
     name: ../ultralib/src/os/setwatchlo
-  - start: 0x03E190
+  - start: 0x03E1B0
     type: textbin
     name: rsp/rspboot
-  - start: 0x03E260
+  - start: 0x03E280
     type: textbin
     name: rsp/aspMain
-  - start: 0x03F080
+  - start: 0x03F0A0
     type: textbin
     name: rsp/gspF3DEX2H.NoN.fifo
-  - start: 0x040410
+  - start: 0x040430
     type: textbin
     name: rsp/gspL3DEX2H.fifo
-  - start: 0x0415A0
+  - start: 0x0415C0
     type: .data
     name: sys/main
-  - start: 0x0415D0
+  - start: 0x0415F0
     type: .data
     name: sys/gtl
-  - start: 0x041630
+  - start: 0x041650
     type: .data
     name: sys/rdp_reset
-  - start: 0x041760
+  - start: 0x041780
     type: .data
     name: sys/om
-  - start: 0x041810
-    type: .data
-    name: sys/render
-  - start: 0x041820
-    type: .data
-    name: sys/misc
   - start: 0x041830
     type: .data
+    name: sys/render
+  - start: 0x041840
+    type: .data
+    name: sys/misc
+  - start: 0x041850
+    type: .data
     name: sys/matrix
-  - start: 0x042830
+  - start: 0x042850
     type: .data
     name: sys/audio
-  - start: 0x042D00
+  - start: 0x042D20
     type: .data
     name: sys/error
-  - start: 0x0431C0
+  - start: 0x0431E0
     type: data
     name: 434E0
-  - start: 0x0431D0
+  - start: 0x0431F0
     type: .data
     name: ../ultralib/src/audio/sl
-  - start: 0x0431E0
+  - start: 0x043200
     type: .data
     name: ../ultralib/src/audio/drvrnew
-  - start: 0x043370
-    type: .data
-    name: ../ultralib/src/audio/reverb
   - start: 0x043390
     type: .data
+    name: ../ultralib/src/audio/reverb
+  - start: 0x0433B0
+    type: .data
     name: ../ultralib/src/audio/env
-  - start: 0x0434D0
+  - start: 0x0434F0
     type: .data
     name: ../ultralib/src/audio/csplayer
-  - start: 0x043510
+  - start: 0x043530
     type: .data
     name: ../ultralib/src/vimodes/vimodepallan1
-  - start: 0x043560
+  - start: 0x043580
     type: .data
     name: ../ultralib/src/os/exceptasm
-  - start: 0x043580
+  - start: 0x0435A0
     type: data
     name: 438A0
-  - start: 0x043590
-    type: .data
-    name: ../ultralib/src/os/thread
   - start: 0x0435B0
     type: .data
-    name: ../ultralib/src/io/siacs
-  - start: 0x0435C0
-    type: .data
-    name: ../ultralib/src/io/controller
+    name: ../ultralib/src/os/thread
   - start: 0x0435D0
     type: .data
-    name: ../ultralib/src/os/initialize
+    name: ../ultralib/src/io/siacs
+  - start: 0x0435E0
+    type: .data
+    name: ../ultralib/src/io/controller
   - start: 0x0435F0
     type: .data
+    name: ../ultralib/src/os/initialize
+  - start: 0x043610
+    type: .data
     name: ../ultralib/src/io/pimgr
-  - start: 0x043620
+  - start: 0x043640
     type: .data
     name: ../ultralib/src/io/piacs
-  - start: 0x043630
+  - start: 0x043650
     type: .data
     name: ../ultralib/src/libc/xprintf
-  - start: 0x043680
+  - start: 0x0436A0
     type: .data
     name: ../ultralib/src/os/timerintr
-  - start: 0x043690
+  - start: 0x0436B0
     type: .data
     name: ../ultralib/src/vimodes/vimodentsclan1
-  - start: 0x0436E0
+  - start: 0x043700
     type: .data
     name: ../ultralib/src/vimodes/vimodempallan1
-  - start: 0x043730
+  - start: 0x043750
     type: .data
     name: ../ultralib/src/io/vi
-  - start: 0x0437A0
+  - start: 0x0437C0
     type: .data
     name: ../ultralib/src/io/cartrominit
-  - start: 0x0437B0
+  - start: 0x0437D0
     type: .data
     name: ../ultralib/src/io/gbpakreadid
-  - start: 0x043800
-    type: .data
-    name: ../ultralib/src/io/contpfs
-  - start: 0x043810
-    type: .data
-    name: ../ultralib/src/io/contramread
   - start: 0x043820
     type: .data
-    name: ../ultralib/src/libc/xlitob
-  - start: 0x043850
+    name: ../ultralib/src/io/contpfs
+  - start: 0x043830
     type: .data
-    name: ../ultralib/src/io/vimgr
+    name: ../ultralib/src/io/contramread
+  - start: 0x043840
+    type: .data
+    name: ../ultralib/src/libc/xlitob
   - start: 0x043870
     type: .data
+    name: ../ultralib/src/io/vimgr
+  - start: 0x043890
+    type: .data
     name: ../ultralib/src/io/aisetnextbuf
-  - start: 0x043880
-    type: .rodata
-    name: sys/main
   - start: 0x0438A0
     type: .rodata
-    name: sys/sched
-  - start: 0x043900
+    name: sys/main
+  - start: 0x0438C0
     type: .rodata
-    name: sys/cont
+    name: sys/sched
   - start: 0x043920
     type: .rodata
-    name: sys/gtl
-  - start: 0x043B40
+    name: sys/cont
+  - start: 0x043940
     type: .rodata
-    name: sys/ml
+    name: sys/gtl
   - start: 0x043B60
     type: .rodata
-    name: sys/om
-  - start: 0x043FE0
+    name: sys/ml
+  - start: 0x043B80
     type: .rodata
-    name: sys/cmd
+    name: sys/om
   - start: 0x044000
     type: .rodata
+    name: sys/cmd
+  - start: 0x044020
+    type: .rodata
     name: sys/oh
-  - start: 0x044030
+  - start: 0x044050
     type: .rodata
     name: sys/anim
-  - start: 0x0443D0
+  - start: 0x0443F0
     type: .rodata
     name: sys/render
-  - start: 0x044620
+  - start: 0x044640
     type: .rodata
     name: sys/misc
-  - start: 0x044670
+  - start: 0x044690
     type: .rodata
     name: sys/matrix
-  - start: 0x0446C0
-    type: .rodata
-    name: 1F960
   - start: 0x0446E0
     type: .rodata
+    name: 1F960
+  - start: 0x044700
+    type: .rodata
     name: sys/audio
-  - start: 0x0446F0
+  - start: 0x044710
     type: .rodata
     name: sys/error
-  - start: 0x044B30
-    type: .rodata
-    name: 26D80
-  - start: 0x044B40
-    type: .rodata
-    name: ../ultralib/src/audio/cseq
   - start: 0x044B50
     type: .rodata
+    name: 26D80
+  - start: 0x044B60
+    type: .rodata
+    name: ../ultralib/src/audio/cseq
+  - start: 0x044B70
+    type: .rodata
     name: ../ultralib/src/audio/sndplayer
-  - start: 0x044B90
+  - start: 0x044BB0
     type: .rodata
     name: ../ultralib/src/audio/synthesizer
-  - start: 0x044BA0
-    type: .rodata
-    name: ../ultralib/src/audio/drvrnew
   - start: 0x044BC0
     type: .rodata
+    name: ../ultralib/src/audio/drvrnew
+  - start: 0x044BE0
+    type: .rodata
     name: ../ultralib/src/audio/reverb
-  - start: 0x044BF0
+  - start: 0x044C10
     type: .rodata
     name: ../ultralib/src/audio/env
-  - start: 0x044C50
+  - start: 0x044C70
     type: .rodata
     name: ../ultralib/src/audio/resample
-  - start: 0x044C80
+  - start: 0x044CA0
     type: .rodata
     name: ../ultralib/src/audio/csplayer
-  - start: 0x044F10
+  - start: 0x044F30
     type: .rodata
     name: ../ultralib/src/audio/seqplayer
-  - start: 0x045150
-    type: .rodata
-    name: ../ultralib/src/audio/seq
-  - start: 0x045160
-    type: .rodata
-    name: ../ultralib/src/audio/cents2ratio
   - start: 0x045170
     type: .rodata
+    name: ../ultralib/src/audio/seq
+  - start: 0x045180
+    type: .rodata
+    name: ../ultralib/src/audio/cents2ratio
+  - start: 0x045190
+    type: .rodata
     name: ../ultralib/src/os/setintmask
-  - start: 0x0451F0
+  - start: 0x045210
     type: .rodata
     name: ../ultralib/src/gu/sinf
-  - start: 0x045240
+  - start: 0x045260
     type: .rodata
     name: ../ultralib/src/os/exceptasm
-  - start: 0x045290
-    type: .rodata
-    name: ../ultralib/src/io/devmgr
   - start: 0x0452B0
     type: .rodata
+    name: ../ultralib/src/io/devmgr
+  - start: 0x0452D0
+    type: .rodata
     name: ../ultralib/src/libc/xprintf
-  - start: 0x0453B0
+  - start: 0x0453D0
     type: .rodata
     name: ../ultralib/src/gu/cosf
-  - start: 0x045410
+  - start: 0x045430
     type: .rodata
     name: ../ultralib/src/libc/xldtob
-  - start: 0x045470
+  - start: 0x045490
     type: .rodata
     name: ../ultralib/src/libc/llcvt
-  - start: 0x045480
+  - start: 0x0454A0
     type: databin
     name: rsp/aspMain
     linker_section_order: .rodata
-  - start: 0x045740
+  - start: 0x045760
     type: databin
     name: rsp/gspF3DEX2H.NoN.fifo
     linker_section_order: .rodata
-  - start: 0x045B60
+  - start: 0x045B80
     type: databin
     name: rsp/gspL3DEX2H.fifo
     linker_section_order: .rodata
@@ -4587,6 +4593,82 @@ segments:
     type: .data
     name: jynx/textures
     dir: jynx
+    subsegments:
+    - - 0x25F240
+    - start: 0x25F248
+      type: rgba16
+      name: tex_arm
+      width: 0x000040
+      height: 0x000020
+    - - 0x260248
+    - start: 0x260250
+      type: palette
+      name: tex_torso
+    - - 0x260270
+    - start: 0x260278
+      type: ci4
+      name: tex_torso
+      width: 0x000040
+      height: 0x000020
+    - - 0x260678
+    - start: 0x260680
+      type: palette
+      name: tex_eye_0
+    - - 0x2606A0
+    - start: 0x2606A8
+      type: ci4
+      name: tex_eye_0
+      width: 0x000020
+      height: 0x000020
+    - - 0x2608A8
+    - start: 0x2608B0
+      type: ci4
+      name: tex_eye_1
+      width: 0x000020
+      height: 0x000020
+      palettes: tex_eye_0
+    - - 0x260AB0
+    - start: 0x260AB8
+      type: ci4
+      name: tex_eye_2
+      width: 0x000020
+      height: 0x000020
+      palettes: tex_eye_0
+    - - 0x260CB8
+    - start: 0x260CC0
+      type: rgba16
+      name: tex_hair
+      width: 0x000020
+      height: 0x000020
+    - - 0x2614C0
+    - start: 0x2614C8
+      type: rgba16
+      name: tex_hair_2
+      width: 0x000040
+      height: 0x000020
+    - - 0x2624C8
+    - start: 0x2624D0
+      type: rgba16
+      name: tex_hair_3
+      width: 0x000020
+      height: 0x000040
+    - - 0x2634D0
+    - start: 0x2634D8
+      type: rgba16
+      name: tex_lips
+      width: 0x000040
+      height: 0x000020
+    - - 0x2644D8
+    - start: 0x2644E0
+      type: palette
+      name: tex_dress
+    - - 0x264500
+    - start: 0x264508
+      type: ci4
+      name: tex_dress
+      width: 0x000020
+      height: 0x000020
+    - - 0x264708
   - start: 0x264710
     type: bin
     name: 264E10
@@ -5112,6 +5194,11 @@ segments:
     name: jynx/model_hd
     dir: jynx
     linker_section_order: .rodata
+    subsegments:
+    - start: 0x290308
+      type: vtx
+      name: hd_model
+    - - 0x291EB8
   - start: 0x2937B0
     type: .data
     name: weepinbell/model_hd
@@ -17787,6 +17874,11 @@ segments:
     name: jynx/model
     dir: jynx
     linker_section_order: .rodata
+    subsegments:
+    - start: 0x6B3D78
+      type: vtx
+      name: model
+    - - 0x6B5C98
   - start: 0x6B8260
     type: .data
     name: victreebel/model
@@ -24481,85 +24573,85 @@ segments:
   - start: 0x83D1E0
     type: c
     name: 83D730
-  - start: 0x83DC20
+  - start: 0x83D6D0
     type: pad
     name: 83DC20
-  - start: 0x83DC20
+  - start: 0x83D6E0
     type: c
     name: element
-  - start: 0x840A40
+  - start: 0x840500
     type: c
     name: text
-  - start: 0x8422A0
+  - start: 0x841D60
     type: c
     name: button
-  - start: 0x842760
+  - start: 0x842220
     type: c
     name: frame
-  - start: 0x842F60
+  - start: 0x842A20
     type: c
     name: frame_fade
-  - start: 0x843CC0
+  - start: 0x843150
     type: pad
     name: '843780'
-  - start: 0x843CC0
+  - start: 0x843160
     type: c
     name: focus_mark
-  - start: 0x844240
+  - start: 0x8436E0
     type: c
     name: layout
-  - start: 0x845690
+  - start: 0x844B30
     type: c
     name: '845160'
-  - start: 0x845C10
+  - start: 0x8450B0
     type: c
     name: 8456E0
-  - start: 0x848090
+  - start: 0x847530
     type: c
     name: 847B60
-  - start: 0x848C10
+  - start: 0x8480B0
     type: c
     name: 8486E0
-  - start: 0x849070
+  - start: 0x848510
     type: c
     name: 848B50
-  - start: 0x8490A0
+  - start: 0x848540
     type: c
     name: 848B80
-  - start: 0x849720
+  - start: 0x848580
     type: data
     name: 848BC0
-  - start: 0x84CA40
+  - start: 0x851BE0
     type: .data
     name: element
-  - start: 0x84CA70
+  - start: 0x851C10
     type: .data
     name: text
-  - start: 0x84CC60
+  - start: 0x851E00
     type: data
     name: '852920'
-  - start: 0x873530
+  - start: 0x873590
     type: .data
     name: layout
-  - start: 0x873570
+  - start: 0x8735D0
     type: data
     name: 879DF0
-  - start: 0x873600
+  - start: 0x873660
     type: .data
     name: 848B80
-  - start: 0x8736A0
+  - start: 0x873700
     type: .rodata
     name: text
-  - start: 0x8737E0
+  - start: 0x873840
     type: .rodata
     name: focus_mark
-  - start: 0x8737F0
+  - start: 0x873850
     type: .rodata
     name: layout
-  - start: 0x873880
+  - start: 0x8738E0
     type: .rodata
     name: 8456E0
-  - start: 0x873890
+  - start: 0x8738F0
     type: .rodata
     name: 8486E0
 - start: 0x873900
@@ -24888,19 +24980,19 @@ segments:
   - start: 0xA576A0
     type: c
     name: A5CC50
-  - start: 0xA58000
+  - start: 0xA58080
     type: c
     name: A5D5B0
-  - start: 0xA58DF0
+  - start: 0xA59070
     type: .data
     name: A5CC50
   - start: 0xA594A0
     type: .rodata
     name: A5CC50
-  - start: 0xA59A90
+  - start: 0xA59820
     type: .rodata
     name: A5D5B0
-  - start: 0xA59AC0
+  - start: 0xA59850
     type: data
     name: sprite_background
     linker_section_order: .rodata
@@ -25032,45 +25124,57 @@ segments:
 - start: 0xAB02B0
   type: bin
   name: fx/script/common
-- [0xAB03D0, bin]
+- start: 0xAB03D0
+  type: bin
+  name: fx/img/common
 - start: 0xAB3030
   type: bin
   name: fx/script/beach
-- [0xAB31D0, bin]
+- start: 0xAB31D0
+  type: bin
+  name: fx/img/beach
 - start: 0xAB91F0
   type: bin
   name: fx/script/tunnel
-- [0xAB9620, bin]
+- start: 0xAB9620
+  type: bin
+  name: fx/img/tunnel
 - start: 0xAC12E0
   type: bin
   name: fx/script/cave
-- - 0xAC14D0
-  - bin
+- start: 0xAC14D0
+  type: bin
+  name: fx/img/cave
 - start: 0xAC2F60
   type: bin
   name: fx/script/river
-- - 0xAC3280
-  - bin
+- start: 0xAC3280
+  type: bin
+  name: fx/img/river
 - start: 0xACA140
   type: bin
   name: fx/script/volcano
-- - 0xACA3F0
-  - bin
+- start: 0xACA3F0
+  type: bin
+  name: fx/img/volcano
 - start: 0xACB850
   type: bin
   name: fx/script/valley
-- - 0xACC090
-  - bin
+- start: 0xACC090
+  type: bin
+  name: fx/img/valley
 - start: 0xAD7D60
   type: bin
   name: fx/script/rainbow
-- - 0xAD8020
-  - bin
+- start: 0xAD8020
+  type: bin
+  name: fx/img/rainbow
 - start: 0xAD96B0
   type: bin
   name: fx/script/intro
-- - 0xAD9840
-  - bin
+- start: 0xAD9840
+  type: bin
+  name: fx/img/intro
 - start: 0xADAF60
   type: bin
   name: AE0510

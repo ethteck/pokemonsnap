@@ -110,55 +110,7 @@ s32 func_801DCD3C_9A6F8C(s32 idx) {
 
 s32 album_GetCommentTextWidth(s16* wideStr, char* dst);
 
-GLOBAL_ASM(
-glabel album_GetCommentTextWidth
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-    nop
-);
+#pragma GLOBAL_ASM("asm/nonmatchings/pokemon_album/9A6F70/album_GetCommentTextWidth.s")
 
 void album_BlinkCursor(GObj* obj) {
     while (album_IsEditingComment) {

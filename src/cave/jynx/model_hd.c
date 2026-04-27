@@ -94,7 +94,7 @@ Texture* jynx_hd_part1_mat[] = {
     NULL,
 };
 
-// #include "assets/cave/jynx/hd_model.vtx.inc.c"
+#include "assets/cave/jynx/hd_model.vtx.inc.c"
 
 // 0x291EB8
 Gfx D_801C6C48_291EB8[] = {

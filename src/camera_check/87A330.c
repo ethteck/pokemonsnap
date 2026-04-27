@@ -424,12 +424,12 @@ void func_camera_check_801DDB80(s32 arg0, s32 arg1, s32 arg2) {
     if (var_a2 != NULL) {
         func_camera_check_801DD238(&D_camera_check_802499C0[6], func_camera_check_801E2948(var_a2), arg2 | 0x10 | 0x20);
         if (!(arg2 & 0x40)) {
-            sp1C = "\\i    \\g I choose this!";
+            sp1C = "\\j\\g\\i    \\g I choose this!\\k";
         }
     } else {
         func_camera_check_801DD238(&D_camera_check_802499C0[6], -1, arg2 | 0x10 | 0x20);
         if (!(arg2 & 0x40)) {
-            sp1C = "\\i    \\gAlready Shown";
+            sp1C = "\\j\\g\\i    \\gAlready Shown\\k";
         }
     }
     if (!(arg2 & 0x40)) {
@@ -597,7 +597,7 @@ void func_camera_check_801DE288(UnkIndigoHalibut* arg0) {
         UIElement_SetFont(temp_s0, FONT_8);
         levelName = getLevelName(arg0->unk_00->levelID);
         if (levelName == NULL) {
-            levelName = "ーーー";
+            levelName = "---";
         }
         sprintf(sp48, "%s", levelName);
         UIElement_SetFont(temp_s0, FONT_8);
@@ -653,7 +653,7 @@ void func_camera_check_801DE59C(UnkIndigoHalibut* arg0) {
         UIElement_SetFont(temp_s0, FONT_8);
         levelName = getLevelName(arg0->unk_00->levelID);
         if (levelName == NULL) {
-            levelName = "ーーー";
+            levelName = "---";
         }
         sprintf(sp44, "%s", levelName);
         UIElement_SetTextPos(temp_s0, 45 - UIText_GetStringWidth(sp44), 12);
@@ -868,7 +868,7 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
         UIElement_SetColor(arg0, UI_BACKGROUND, 0, 0, 0, 0);
 
         if (checkPlayerFlag(PFID_11)) {
-            sprintf(D_camera_check_80249928, "\\i%8d\\g pts", 0);
+            sprintf(D_camera_check_80249928, "\\j\\i%8d\\g pts", 0);
             sp2C = func_803751F8_8489A8(getLevelId());
             if (sp2C < func_800C0224_5D0C4(getLevelId())) {
                 UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 0, 255);
@@ -921,7 +921,7 @@ void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 
     UIElement_PrintText(arg0, D_camera_check_80249928);
     UIElement_SetTextPos(arg0, 0, 16);
     UIElement_PrintText(arg0, "Pokemon");
-    sprintf(D_camera_check_80249928, "\\i       x%2d\\g kinds", func_camera_check_801E2478());
+    sprintf(D_camera_check_80249928, "\\i       x%2d\\g kind(s)", func_camera_check_801E2478());
     UIElement_SetTextPos(arg0, offset, 16);
     UIElement_PrintText(arg0, D_camera_check_80249928);
 

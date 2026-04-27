@@ -22,6 +22,7 @@ void func_800E2758_A5DB08(void);
 void func_800E28C0_A5DC70(void);
 u8** func_800E18B4_A5CC64(s32 arg0);
 
+#if 0
 void func_800E2200_A5D5B0(void) {
     if (menu_new_game_CursorY < 19) {
         FocusMark_SetTargetSize(4, 5);
@@ -128,6 +129,19 @@ void func_800E2590_A5D940(UnkStruct800BEDF8* arg0) {
 
 void func_800E25B8_A5D968(void) {
 }
+#else
+void func_800E2314_A5D6C4(void);
+void func_800E23B0_A5D760(void);
+void func_800E2590_A5D940(UnkStruct800BEDF8* arg0);
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2780_A58080.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2904_A58204.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2940_A58240.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2974_A58274.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E29A0_A582A0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E29D0_A582D0.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2C2C_A5852C.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2C54_A58554.s")
+#endif
 
 void func_800E25C0_A5D970(void) {
     u8* src;
@@ -155,6 +169,29 @@ void func_800E25C0_A5D970(void) {
     }
 }
 
+#if 0
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2CB0_A585B0.s") // func_800E25C0_A5D970
+
+ // func_800E26A0_A5DA50
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2E4C_A5874C.s") // func_800E270C_A5DABC
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2E98_A58798.s") // func_800E2758_A5DB08
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2F40_A58840.s") // func_800E2800_A5DBB0
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2FE0_A588E0.s") // func_800E28C0_A5DC70
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E312C_A58A2C.s") // func_800E2A24_A5DDD4
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E318C_A58A8C.s") // func_800E2A84_A5DE34
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E3340_A58C40.s") // func_800E2C38_A5DFE8
+
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E3418_A58D18.s")
+#endif
+
+#if 0
 void func_800E26A0_A5DA50(void) {
     switch (menu_new_game_CursorX) {
         case 0:
@@ -169,6 +206,10 @@ void func_800E26A0_A5DA50(void) {
             break;
     }
 }
+#else
+void func_800E26A0_A5DA50(void);
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2D90_A58690.s")
+#endif
 
 void func_800E270C_A5DABC(void) {
     if (menu_new_game_CursorY < 19) {
@@ -180,7 +221,7 @@ void func_800E270C_A5DABC(void) {
 }
 
 void func_800E2758_A5DB08(void) {
-    u8 sp24[] = "　";
+    u8 sp24[] = " ";
 
     if (D_80168143 < 14) {
         u8* src = sp24;
@@ -197,6 +238,7 @@ void func_800E2758_A5DB08(void) {
     }
 }
 
+#if 0
 void func_800E2800_A5DBB0(void) {
     if (D_80168143 == 0) {
         D_80168130[D_80168143] = 0;
@@ -211,10 +253,14 @@ void func_800E2800_A5DBB0(void) {
     UIElement_SetTextPos(D_80118110, 0, 0);
     UIElement_PrintText(D_80118110, D_80168130);
 }
+#else
+void func_800E2800_A5DBB0(void);
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2F40_A58840.s")
+#endif
 
 void func_800E28C0_A5DC70(void) {
-    u8 sp44[] = "Ｔｏｄｄ";
-    u8 sp34[] = "　　　　　　　";
+    u8 sp44[] = "Todd";
+    u8 sp34[] = "       ";
     u8* sp30;
     u8* sp2C;
     u8* sp28;
@@ -253,7 +299,7 @@ void func_800E28C0_A5DC70(void) {
 
 s32 func_800E2A24_A5DDD4(char* arg0) {
     u8 i = 0;
-    char sp4[] = "　";
+    char sp4[] = " ";
 
     while (i < 3) {
         if (sp4[i++] != *arg0++) {
@@ -358,6 +404,7 @@ void func_800E2E00_A5E1B0(void) {
     SET_SPRITE_POS(unk_48->sprite, 203, 64);
 }
 
+#if 0
 void func_800E2ED0_A5E280(void) {
 
     func_800E23B0_A5D760();
@@ -387,3 +434,6 @@ void func_800E2ED0_A5E280(void) {
         ohWait(1);
     }
 }
+#else
+GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E2ED0_A5E280.s")
+#endif

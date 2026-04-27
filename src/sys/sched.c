@@ -599,23 +599,6 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
 #endif
 
-// #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_pal_80001640.s") // scSetNextFrameBuffer
-// #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_pal_80001768.s") // scExecuteGfxTask / scExecuteAudioTask
-// #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_pal_800017F0.s") // scExecuteGfxTask / scExecuteAudioTask
-// #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_pal_80001888.s") // scExecuteTask
-
-
-// GLOBAL_ASM(
-//     glabel sched_foo
-//     nop
-//     nop
-//     nop
-//     nop
-//     nop
-//     nop
-// )
-
-
 // called when rcp task is done 
 void scSetNextFrameBuffer(void* fb) {
     if (scViSettingsUpdated) {

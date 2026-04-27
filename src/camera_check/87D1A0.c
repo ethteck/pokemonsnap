@@ -8,7 +8,7 @@ extern f32 D_camera_check_80208968 = 1.0f; // unused
 UIButton D_camera_check_8020896C[] = {
     { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
     { BUTTON_SPLITTER, NULL },
-    { BUTTON_24, "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_24, "First, choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
     { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
     { BUTTON_NONE, NULL },
 };
@@ -16,7 +16,7 @@ UIButton D_camera_check_8020896C[] = {
 UIButton D_camera_check_80208994[] = {
     { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
     { BUTTON_SPLITTER, NULL },
-    { BUTTON_24, "First choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_24, "First, choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
     { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
     { BUTTON_NONE, NULL },
 };
@@ -1042,7 +1042,7 @@ u32 func_camera_check_801E1EA4(void) {
         UIElement_PrintText(func_camera_check_801DCB40(), "No pictures to show to\nProf. Oak?\n\\a No.   \\b I have some.");
     } else {
         if ((func_camera_check_801E2A00() + func_camera_check_801E2B60()) != 0) {
-            UIElement_PrintText(func_camera_check_801DCB40(), "Show this picture to Prof. Oak?\n\\a Yeah!\n\\b Maybe not...");
+            UIElement_PrintText(func_camera_check_801DCB40(), "Show picture(s) to Prof. Oak?\n\\a Yeah!\n\\b Maybe not...");
         } else {
             UIElement_PrintText(func_camera_check_801DCB40(), "Save this picture in the Album?\n\\a Yeah!\n\\b Maybe not...");
         }

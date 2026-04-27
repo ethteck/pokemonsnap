@@ -9,6 +9,24 @@
 #include "world/world.h"
 #include "effect.h"
 
+extern Addr fx_img_beach_ROM_END;
+extern Addr fx_img_beach_ROM_START;
+extern Addr fx_img_cave_ROM_END;
+extern Addr fx_img_cave_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_rainbow_ROM_END;
+extern Addr fx_img_rainbow_ROM_START;
+extern Addr fx_img_river_ROM_END;
+extern Addr fx_img_river_ROM_START;
+extern Addr fx_img_tunnel_ROM_END;
+extern Addr fx_img_tunnel_ROM_START;
+extern Addr fx_img_valley_ROM_END;
+extern Addr fx_img_valley_ROM_START;
+extern Addr fx_img_volcano_ROM_END;
+extern Addr fx_img_volcano_ROM_START;
+
+
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
 

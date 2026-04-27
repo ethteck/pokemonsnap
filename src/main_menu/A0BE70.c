@@ -1,4 +1,7 @@
 #include "common.h"
+
+extern Addr fx_img_intro_ROM_START;
+extern Addr fx_img_intro_ROM_END;
 #include "ld_addrs.h"
 
 #include "main_menu.h"

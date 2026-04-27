@@ -1,4 +1,9 @@
 #include "volcano.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_volcano_ROM_START;
+extern Addr fx_img_volcano_ROM_END;
 #include "app_render/effect.h"
 
 __ALIGNER2

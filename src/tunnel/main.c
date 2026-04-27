@@ -1,4 +1,9 @@
 #include "tunnel.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_tunnel_ROM_START;
+extern Addr fx_img_tunnel_ROM_END;
 #include "app_render/effect.h"
 
 EnvSoundData tunnel_EnvSounds[] = {

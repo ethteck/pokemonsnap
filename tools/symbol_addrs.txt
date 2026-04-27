@@ -1,7 +1,11 @@
 func_80003530 = 0x800033D0;
-func_80371F54_845704 = 0x803780F4;
-func_80374714_847EC4 = 0x8037A8B4;
-func_8009E3D0 = 0x8009E3F0;
+func_80371F54_845704 = 0x803780F4; // rom:0x8450D4
+func_80374714_847EC4 = 0x8037A8B4; // rom:0x847894
+func_8009E3D0 = 0x8009ECF0;
+func_80000F40 = 0x80000F5C;  // rom:0x1B5C
+D_PAL_803A6680_873660 = 0x803A6680; // type:s32 segment:window rom:0x873660
+D_PAL_803A66C8_8736A8 = 0x803A66C8; // type:s32 segment:window rom:0x8736A8
+ 
 game_main = 0x80000870; // rom:0x1470
 dmaLoadOverlay = 0x80002A04; // rom:0x3604
 dmaReadRom = 0x80002AC0; // rom:0x36C0

@@ -12,7 +12,7 @@ options:
   ld_script_path: pokemonsnap.ld
   ld_symbol_header_path: build/include/ld_addrs.h
   symbol_addrs_path: tools/symbol_addrs.txt
-  symbol_name_format: $VRAM_$ROM
+  symbol_name_format: PAL_$VRAM_$ROM
   string_encoding: EUC-JP
   data_string_encoding: EUC-JP
   data_string_guesser_level: 2
@@ -30,7 +30,7 @@ segments:
   type: code
   name: main
   vram: 0x80000400
-  symbol_name_format: $VRAM
+  symbol_name_format: PAL_$VRAM
   bss_size: 0x055E50
   subsegments:
   - start: 0x001000
@@ -96,7 +96,7 @@ segments:
   - start: 0x020610
     type: pad
     name: '20930'
-  - start: 0x020610
+  - start: 0x020620
     type: c
     name: sys/audio
   - start: 0x0242D0
@@ -1010,7 +1010,7 @@ segments:
   vram: 0x8009B1C0
   bss_size: 0x00EAF0
   follows_vram: main
-  symbol_name_format: $VRAM
+  symbol_name_format: PAL_$VRAM
   subsegments:
   - start: 0x045F70
     type: c
@@ -13477,7 +13477,7 @@ segments:
   dir: beach
   vram: 0x802C3060
   exclusive_ram_id: level
-  symbol_name_format: beach_$VRAM
+  symbol_name_format: PAL_beach_$VRAM
   bss_size: 0x000140
   subsegments:
   - start: 0x55C4B0
@@ -24569,7 +24569,7 @@ segments:
   vram: 0x801DCE80
   bss_size: 0x0408F0
   exclusive_ram_id: level
-  symbol_name_format: camera_check_$VRAM
+  symbol_name_format: PAL_camera_check_$VRAM
   subsegments:
   - start: 0x873900
     type: c
@@ -24929,7 +24929,7 @@ segments:
   dir: credits
   vram: 0x801DCE80
   exclusive_ram_id: level
-  symbol_name_format: credits_$VRAM
+  symbol_name_format: PAL_credits_$VRAM
   bss_size: 0x003590
   subsegments:
   - start: 0xA8DEB0
@@ -25032,91 +25032,45 @@ segments:
 - start: 0xAB02B0
   type: bin
   name: fx/script/common
-- - 0xAB03D0
-  - snap_effect_sprites
-  - fx/img/common
-  - sprite1
-  - sprite2
+- [0xAB03D0, bin]
 - start: 0xAB3030
   type: bin
   name: fx/script/beach
-- - 0xAB31D0
-  - snap_effect_sprites
-  - fx/img/beach
-  - sprite1
-  - sprite2
-  - sprite3
-  - sprite4
-  - sprite5
-  - sprite6
+- [0xAB31D0, bin]
 - start: 0xAB91F0
   type: bin
   name: fx/script/tunnel
-- - 0xAB9620
-  - snap_effect_sprites
-  - fx/img/tunnel
-  - sprite1
-  - sprite2
-  - sprite3
-  - sprite4
-  - sprite5
-  - sprite6
-  - sprite7
+- [0xAB9620, bin]
 - start: 0xAC12E0
   type: bin
   name: fx/script/cave
 - - 0xAC14D0
-  - snap_effect_sprites
-  - fx/img/cave
-  - sprite1
-  - sprite2
-  - sprite3
+  - bin
 - start: 0xAC2F60
   type: bin
   name: fx/script/river
 - - 0xAC3280
-  - snap_effect_sprites
-  - fx/img/river
-  - sprite1
-  - sprite2
-  - sprite3
-  - sprite4
+  - bin
 - start: 0xACA140
   type: bin
   name: fx/script/volcano
 - - 0xACA3F0
-  - snap_effect_sprites
-  - fx/img/volcano
-  - sprite1
-  - sprite2
+  - bin
 - start: 0xACB850
   type: bin
   name: fx/script/valley
 - - 0xACC090
-  - snap_effect_sprites
-  - fx/img/valley
-  - sprite1
-  - sprite2
-  - sprite3
-  - sprite4
-  - sprite5
+  - bin
 - start: 0xAD7D60
   type: bin
   name: fx/script/rainbow
 - - 0xAD8020
-  - snap_effect_sprites
-  - fx/img/rainbow
-  - sprite1
-  - sprite2
-  - sprite3
+  - bin
 - start: 0xAD96B0
   type: bin
   name: fx/script/intro
 - - 0xAD9840
-  - snap_effect_sprites
-  - fx/img/intro
-  - sprite1
-  - sprite2
+  - bin
 - start: 0xADAF60
   type: bin
   name: AE0510

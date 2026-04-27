@@ -285,7 +285,7 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
     *glp = gl;
 }
 #else
-#pragma GLOBAL_ASM("asm/nonmatchings/window/8456E0/func_80371F54_845704.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/window/8456E0/func_80371F54_845704.s")
 void func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
                           s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy);
 #endif

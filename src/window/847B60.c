@@ -106,7 +106,7 @@ PhotoData* func_803746B4_847E64(s32 arg0) {
     return &func_8009BC74()[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/847B60/func_80374714_847EC4.s")
+// #pragma GLOBAL_ASM("asm/nonmatchings/window/847B60/func_80374714_847EC4.s")
 
 void func_80374D20_8484D0(void) {
     func_8009FBC4();

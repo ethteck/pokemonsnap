@@ -23,6 +23,15 @@ extern u8 charizard_tex_tongue_png[];
 extern u8 charizard_tex_claw_pal[];
 extern u8 charizard_tex_claw_png[];
 
+extern u8 D_8033E770_bulbasaur_model[];
+extern u8 D_8033E7C0_bulbasaur_model[];
+extern u8 D_8033E7E0_bulbasaur_model[];
+extern u8 D_8033E880_bulbasaur_model[];
+extern u8 D_8033E940_bulbasaur_model[];
+extern u8 D_8033EA00_bulbasaur_model[];
+extern u8 D_8033EC00_bulbasaur_model[];
+extern u8 D_8033EC30_bulbasaur_model[];
+
 extern Texture* charizard_part7_mat[];
 extern Gfx charizard_part0_draw[];
 

@@ -17,6 +17,18 @@ extern u8 metapod_tex_80331DD8_png[];
 extern u8 metapod_tex_80331FE0[];
 extern u8 metapod_tex_80331FF0_png[];
 
+extern u8 D_80184808_river_code[];
+extern u8 D_80184830_river_code[];
+extern u8 D_80184A38_river_code[];
+extern u8 D_80184A48_river_code[];
+extern u8 D_80184B50_river_code[];
+extern u8 D_80184B60_river_code[];
+extern u8 D_80184D68_river_code[];
+extern u8 D_80185198_river_code[];
+extern u8 D_801851A8_river_code[];
+extern u8 D_801853B0_river_code[];
+extern u8 D_801853C0_river_code[];
+
 extern Texture* metapod_part1_mat[];
 extern Gfx metapod_part0_draw[];
 

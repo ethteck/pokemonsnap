@@ -8,6 +8,12 @@ extern u8 geodude_tex_8013FEF0_png[];
 extern u8 geodude_tex_801402F8[];
 extern u8 geodude_tex_80140318_png[];
 
+extern u8 D_8013FC48_valley_code[];
+extern u8 D_801404A8_valley_code[];
+extern u8 D_801404D0_valley_code[];
+extern u8 D_801408D8_valley_code[];
+extern u8 D_801408F8_valley_code[];
+
 extern Texture* geodude_part2_mat[];
 extern Gfx geodude_part0_draw[];
 

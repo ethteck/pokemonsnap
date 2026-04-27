@@ -24,6 +24,28 @@ extern u8 slowbro_tex_80193D90_png[];
 extern u8 slowbro_tex_80193F98[];
 extern u8 slowbro_tex_80193FC0_png[];
 
+extern u8 D_80192368_river_code[];
+extern u8 D_80192390_river_code[];
+extern u8 D_80192598_river_code[];
+extern u8 D_801925C0_river_code[];
+extern u8 D_801927C8_river_code[];
+extern u8 D_801927F0_river_code[];
+extern u8 D_80192BF8_river_code[];
+extern u8 D_80192C20_river_code[];
+extern u8 D_80193028_river_code[];
+extern u8 D_80193050_river_code[];
+extern u8 D_80193258_river_code[];
+extern u8 D_80193688_river_code[];
+extern u8 D_801936B0_river_code[];
+extern u8 D_801938B8_river_code[];
+extern u8 D_801938E0_river_code[];
+extern u8 D_80193CE8_river_code[];
+extern u8 D_80193D10_river_code[];
+extern u8 D_80194348_river_code[];
+extern u8 D_80194370_river_code[];
+extern u8 D_80194578_river_code[];
+extern u8 D_801945A0_river_code[];
+
 extern Texture* slowbro_part10_mat[];
 extern Gfx slowbro_part0_draw[];
 

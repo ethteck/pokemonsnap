@@ -19,6 +19,33 @@ extern u8 scyther_tex_801AA460_png[];
 extern u8 scyther_tex_801AA4E8[];
 extern u8 scyther_tex_801AA5C8_png[];
 
+extern u8 D_801AA6B0_beach_extra[];
+extern u8 D_801AA6D0_beach_extra[];
+
+extern u8 D_801A9468_beach_extra[];
+extern u8 D_801A9598_beach_extra[];
+extern u8 D_801A9DA0_beach_extra[];
+extern u8 D_801A9DC8_beach_extra[];
+extern u8 D_801AA1D0_beach_extra[];
+extern u8 D_801AA1F8_beach_extra[];
+extern u8 D_801AA280_beach_extra[];
+extern u8 D_801AA2A8_beach_extra[];
+extern u8 D_801AA758_beach_extra[];
+extern u8 D_801AA780_beach_extra[];
+extern u8 D_801AA7C8_beach_extra[];
+extern u8 D_801AA7F0_beach_extra[];
+extern u8 D_801AA838_beach_extra[];
+extern u8 D_801AAA40_beach_extra[];
+extern u8 D_801AAAC8_beach_extra[];
+extern u8 D_801AABA8_beach_extra[];
+extern u8 D_PAL_801D4730_1604F0[];
+extern u8 D_PAL_801D47F0_1605B0[];
+extern u8 D_PAL_801D48F0_1606B0[];
+extern u8 D_PAL_801D4A20_1607E0[];
+extern u8 D_PAL_801D4B10_1608D0[];
+extern u8 D_PAL_801D4BD0_160990[];
+extern u8 D_PAL_801D4CB0_160A70[];
+
 #include "assets/beach/scyther/hd_model.vtx.inc.c"
 #include "assets/beach/scyther/hd_part0_draw.gfx.inc.c"
 #include "assets/beach/scyther/hd_part1_draw.gfx.inc.c"

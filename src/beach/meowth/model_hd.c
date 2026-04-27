@@ -31,6 +31,33 @@ extern u8 meowth_tex_80190270_png[];
 extern u8 meowth_tex_80190478[];
 extern u8 meowth_tex_80190498_png[];
 
+extern u8 D_PAL_801CC678_158438[];
+extern u8 D_8018CF78_beach_extra[];
+extern u8 D_8018CFA0_beach_extra[];
+
+extern u8 D_8018AB88_beach_extra[];
+extern u8 D_8018CCC8_beach_extra[];
+extern u8 D_8018CCF0_beach_extra[];
+extern u8 D_8018D028_beach_extra[];
+extern u8 D_8018D050_beach_extra[];
+extern u8 D_8018D2D8_beach_extra[];
+extern u8 D_8018D300_beach_extra[];
+extern u8 D_8018DD68_beach_extra[];
+extern u8 D_8018F9D8_beach_extra[];
+extern u8 D_801905F8_beach_extra[];
+extern u8 D_80190620_beach_extra[];
+extern u8 D_80190828_beach_extra[];
+extern u8 D_80190850_beach_extra[];
+extern u8 D_80190A58_beach_extra[];
+extern u8 D_80190A78_beach_extra[];
+extern u8 D_PAL_801C9018_154DD8[];
+extern u8 D_PAL_801C9030_154DF0[];
+extern u8 D_PAL_801CC1D8_157F98[];
+extern u8 D_PAL_801CC2F8_1580B8[];
+extern u8 D_PAL_801CC4F8_1582B8[];
+extern u8 D_PAL_801CC578_158338[];
+extern u8 D_PAL_801CC5F8_1583B8[];
+
 extern Texture* meowth_hd_part12_mat[];
 extern Texture* meowth_hd_part19_mat[];
 extern Gfx meowth_hd_part0_draw[];

@@ -19,6 +19,27 @@ extern u8 magikarp_tex_tail_fin_pal[];
 extern u8 magikarp_tex_tail_fin_png[];
 extern u8 magikarp_tex_tongue_png[];
 
+extern u8 D_800F6378_magikarp_model_hd[];
+extern u8 D_800F7380_magikarp_model_hd[];
+extern u8 D_800F7B88_magikarp_model_hd[];
+extern u8 D_800F8390_magikarp_model_hd[];
+extern u8 D_800F8598_magikarp_model_hd[];
+extern u8 D_800F8DA0_magikarp_model_hd[];
+extern u8 D_800F8E88_magikarp_model_hd[];
+extern u8 D_800F9290_magikarp_model_hd[];
+extern u8 D_800F9348_magikarp_model_hd[];
+extern u8 D_800F9750_magikarp_model_hd[];
+extern u8 D_800F9F58_magikarp_model_hd[];
+extern u8 D_800F9F80_magikarp_model_hd[];
+extern u8 D_800FA188_magikarp_model_hd[];
+extern u8 D_800FA288_magikarp_model_hd[];
+extern u8 D_800FA690_magikarp_model_hd[];
+extern u8 D_800FA758_magikarp_model_hd[];
+extern u8 D_800FAF60_magikarp_model_hd[];
+extern u8 D_800FB020_magikarp_model_hd[];
+extern u8 D_803B1F80_magikarp_model_hd[];
+extern u8 D_PAL_803B3A50_830D30[];
+
 extern Gfx magikarp_hd_part0_draw[];
 
 #include "assets/pokemon_common/magikarp/hd_model.vtx.inc.c"

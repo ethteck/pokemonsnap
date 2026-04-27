@@ -24,6 +24,8 @@ extern u8 charmander_tex_flame_frame1_png[];
 extern u8 charmander_tex_flame_frame2_png[];
 extern u8 charmander_tex_flame_frame3_png[];
 
+extern u8 D_80173F88_volcano_code[];
+
 extern Texture* charmander_part5_mat[];
 extern Texture* charmander_part13_mat[];
 extern Gfx charmander_part0_draw[];

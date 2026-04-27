@@ -20,6 +20,13 @@ extern u8 koffing_tex_80164B50[];
 extern u8 koffing_tex_80164F80[];
 extern u8 koffing_tex_801653B0[];
 
+extern u8 D_80163188_cave_code[];
+extern u8 D_801631B0_cave_code[];
+extern u8 D_801633B8_cave_code[];
+extern u8 D_801633E0_cave_code[];
+extern u8 D_801637E8_cave_code[];
+extern u8 D_80164CD8_cave_code[];
+
 extern Texture* koffing_part1_mat[];
 extern Texture* koffing_part7_mat[];
 extern Texture* koffing_part8_mat[];

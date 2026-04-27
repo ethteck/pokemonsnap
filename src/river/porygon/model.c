@@ -10,6 +10,8 @@ extern u8 porygon_tex_801728A8[];
 extern u8 porygon_tex_801728D0[];
 extern u8 porygon_tex_80172B00[];
 
+extern u8 D_80172E88_river_code[];
+
 extern Texture* porygon_part1_mat[];
 extern Texture* porygon_part2_mat[];
 extern Texture* porygon_part3_mat[];

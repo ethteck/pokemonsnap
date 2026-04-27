@@ -23,6 +23,19 @@ extern u8 squirtle_tex_8017E090_png[];
 extern u8 squirtle_tex_8017E498[];
 extern u8 squirtle_tex_8017E4C0_png[];
 
+extern u8 D_8017C038_valley_code[];
+extern u8 D_8017C240_valley_code[];
+extern u8 D_8017C648_valley_code[];
+extern u8 D_8017C670_valley_code[];
+extern u8 D_8017C878_valley_code[];
+extern u8 D_8017CA80_valley_code[];
+extern u8 D_8017D748_valley_code[];
+extern u8 D_8017E238_valley_code[];
+extern u8 D_8017E468_valley_code[];
+extern u8 D_8017E670_valley_code[];
+extern u8 D_8017EA78_valley_code[];
+extern u8 D_8017EAA0_valley_code[];
+
 extern Texture* squirtle_part2_mat[];
 extern Gfx squirtle_part0_draw[];
 

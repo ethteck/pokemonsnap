@@ -20,6 +20,24 @@ extern u8 goldeen_tex_80178A30[];
 extern u8 goldeen_tex_80179A38[];
 extern u8 goldeen_tex_80179A48_png[];
 
+extern u8 D_801760B8_valley_code[];
+extern u8 D_801766C8_valley_code[];
+extern u8 D_801766D8_valley_code[];
+extern u8 D_801768E0_valley_code[];
+extern u8 D_80176918_valley_code[];
+extern u8 D_80177120_valley_code[];
+extern u8 D_801772A8_valley_code[];
+extern u8 D_80177AB0_valley_code[];
+extern u8 D_80177BA8_valley_code[];
+extern u8 D_80177DB0_valley_code[];
+extern u8 D_80177F88_valley_code[];
+extern u8 D_80178790_valley_code[];
+extern u8 D_80178808_valley_code[];
+extern u8 D_80179010_valley_code[];
+extern u8 D_8017A018_valley_code[];
+extern u8 D_8017A028_valley_code[];
+extern u8 D_80346BB0_pikachu_model[];
+
 extern Texture* goldeen_part1_mat[];
 extern Gfx goldeen_part0_draw[];
 

@@ -12,6 +12,13 @@ extern u8 weepinbell_tex_801A7218[];
 extern u8 weepinbell_tex_801A7A20[];
 extern u8 weepinbell_tex_801A7A48[];
 
+extern u8 D_801A5C48_cave_code[];
+extern u8 D_801A5C70_cave_code[];
+extern u8 D_801A5C98_cave_code[];
+extern u8 D_801A5CC0_cave_code[];
+extern u8 D_801A5CE8_cave_code[];
+extern u8 D_801A7FB0_cave_code[];
+
 __ALIGNER
 u8 weepinbell_tex_8033A0F8[] = {
 #include "assets/cave/weepinbell/tex_8033A120.pal.bin.c"

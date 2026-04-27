@@ -21,6 +21,24 @@ extern u8 lapras_tex_801838F0_png[];
 extern u8 lapras_tex_80183AF8[];
 extern u8 lapras_tex_80183B20_png[];
 
+extern u8 D_80182AF8_beach_code[];
+extern u8 D_80182B20_beach_code[];
+extern u8 D_80182D28_beach_code[];
+extern u8 D_80182D50_beach_code[];
+extern u8 D_80182F58_beach_code[];
+extern u8 D_80182F80_beach_code[];
+extern u8 D_80183188_beach_code[];
+extern u8 D_801831B0_beach_code[];
+extern u8 D_801833B8_beach_code[];
+extern u8 D_80183A48_beach_code[];
+extern u8 D_80183A70_beach_code[];
+extern u8 D_80183C78_beach_code[];
+extern u8 D_80183CA0_beach_code[];
+extern u8 D_80183EA8_beach_code[];
+extern u8 D_80183ED0_beach_code[];
+extern u8 D_801840D8_beach_code[];
+extern u8 D_80184100_beach_code[];
+
 Texture* lapras_part6_mat[];
 
 extern Gfx lapras_part0_draw[];

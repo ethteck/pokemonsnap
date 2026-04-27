@@ -13,6 +13,19 @@ extern u8 slowpoke_tex_80186450_png[];
 extern u8 slowpoke_tex_80186658[];
 extern u8 slowpoke_tex_80186680_png[];
 
+extern u8 D_80185F48_river_code[];
+extern u8 D_80185F70_river_code[];
+extern u8 D_80186178_river_code[];
+extern u8 D_801861A0_river_code[];
+extern u8 D_801863A8_river_code[];
+extern u8 D_801863D0_river_code[];
+extern u8 D_801865D8_river_code[];
+extern u8 D_80186600_river_code[];
+extern u8 D_80186A08_river_code[];
+extern u8 D_80186A30_river_code[];
+extern u8 D_80186C38_river_code[];
+extern u8 D_80186C60_river_code[];
+
 extern Gfx slowpoke_part0_draw[];
 
 #include "assets/river/slowpoke/model.vtx.inc.c"

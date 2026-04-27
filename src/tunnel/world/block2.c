@@ -1,5 +1,24 @@
 #include "../tunnel.h"
 
+extern u8 D_PAL_8014EBC8_194098[];
+extern u8 D_PAL_8014EBF0_1940C0[];
+extern u8 D_PAL_8014F3F8_1948C8[];
+extern u8 D_PAL_8014F420_1948F0[];
+extern u8 D_PAL_8014FC28_1950F8[];
+extern u8 D_PAL_8014FC50_195120[];
+extern u8 D_PAL_80150C88_196158[];
+extern u8 D_PAL_80150CB0_196180[];
+extern u8 D_PAL_801514B8_196988[];
+extern u8 D_PAL_801514E0_1969B0[];
+extern u8 D_PAL_80153E68_199338[];
+extern u8 D_PAL_80153E88_199358[];
+extern u8 D_PAL_80154290_199760[];
+extern u8 D_PAL_801542B8_199788[];
+extern u8 D_PAL_80154AC0_199F90[];
+extern u8 D_PAL_80154AD8_199FA8[];
+extern u8 D_PAL_80158BA8_19E078[];
+extern u8 D_PAL_80158BD0_19E0A0[];
+
 extern Vtx tunnel_block2_vtx[];
 extern Texture* tunnel_block2_materials_mat[];
 

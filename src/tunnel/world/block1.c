@@ -1,5 +1,14 @@
 #include "../tunnel.h"
 
+extern u8 D_PAL_8014F3F8_1948C8[];
+extern u8 D_PAL_8014F420_1948F0[];
+extern u8 D_PAL_8014FC28_1950F8[];
+extern u8 D_PAL_8014FC50_195120[];
+extern u8 D_PAL_80150C88_196158[];
+extern u8 D_PAL_80150CB0_196180[];
+extern u8 D_PAL_80158BA8_19E078[];
+extern u8 D_PAL_80158BD0_19E0A0[];
+
 extern Vtx tunnel_block1_vtx[];
 
 #include "assets/tunnel/block1/draw.gfx.inc.c"

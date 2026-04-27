@@ -9,6 +9,15 @@ extern u8 psyduck_tex_80161670_png[];
 extern u8 psyduck_tex_80161E78[];
 extern u8 psyduck_tex_80162080_png[];
 
+extern u8 D_80161008_river_code[];
+extern u8 D_80161030_river_code[];
+extern u8 D_80161438_river_code[];
+extern u8 D_80161640_river_code[];
+extern u8 D_80161A48_river_code[];
+extern u8 D_80161C50_river_code[];
+extern u8 D_80162458_river_code[];
+extern u8 D_80162660_river_code[];
+
 extern Gfx psyduck_part0_draw[];
 
 #include "assets/river/psyduck/model.vtx.inc.c"

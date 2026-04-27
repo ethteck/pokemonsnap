@@ -6,6 +6,12 @@ extern u8 shellder_tex_80181F48[];
 extern u8 shellder_tex_80182150[];
 extern u8 shellder_tex_80182178_png[];
 
+extern u8 D_801822F8_river_code[];
+extern u8 D_80182320_river_code[];
+extern u8 D_80182528_river_code[];
+extern u8 D_80182730_river_code[];
+extern u8 D_80182758_river_code[];
+
 extern Gfx shellder_part0_draw[];
 
 #include "assets/river/shellder/model.vtx.inc.c"

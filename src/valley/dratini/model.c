@@ -13,6 +13,16 @@ extern u8 dratini_tex_8015C280_png[];
 extern u8 dratini_tex_8015C688[];
 extern u8 dratini_tex_8015C6C8_png[];
 
+extern u8 D_80159FC8_valley_code[];
+extern u8 D_80159FD8_valley_code[];
+extern u8 D_8015A3E0_valley_code[];
+extern u8 D_8015C210_valley_code[];
+extern u8 D_8015C298_valley_code[];
+extern u8 D_8015C6A0_valley_code[];
+extern u8 D_8015C860_valley_code[];
+extern u8 D_8015CC68_valley_code[];
+extern u8 D_8015CCA8_valley_code[];
+
 extern Texture* dratini_part5_mat[];
 extern Gfx dratini_part0_draw[];
 

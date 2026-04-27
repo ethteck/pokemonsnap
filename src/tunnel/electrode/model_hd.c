@@ -36,6 +36,26 @@ extern u8 electrode_tex_explosion2_code[];
 extern u8 electrode_tex_explosion3_png[];
 extern u8 electrode_tex_eyebrow_png[];
 
+extern u8 D_801A7098_tunnel_extra[];
+extern u8 D_801A7268_tunnel_extra[];
+extern u8 D_801A72D8_tunnel_extra[];
+extern u8 D_801A74A8_tunnel_extra[];
+extern u8 D_801A7618_tunnel_extra[];
+extern u8 D_801A7688_tunnel_extra[];
+extern u8 D_801A77D8_tunnel_extra[];
+extern u8 D_801A7858_tunnel_extra[];
+extern u8 D_801A78D8_tunnel_extra[];
+extern u8 D_801A7958_tunnel_extra[];
+extern u8 D_801A7998_tunnel_extra[];
+extern u8 D_801A79D8_tunnel_extra[];
+extern u8 D_801A7A18_tunnel_extra[];
+extern u8 D_801A7A38_tunnel_extra[];
+extern u8 D_801A7A58_tunnel_extra[];
+extern u8 D_801A7A68_tunnel_extra[];
+extern u8 D_801A7A78_tunnel_extra[];
+extern u8 D_801A7AA8_tunnel_extra[];
+extern u8 D_801A7AE8_tunnel_extra[];
+
 extern Texture* electrode_hd_part2_mat[];
 extern Texture* electrode_hd_part3_mat[];
 extern Texture* electrode_hd_part4_mat[];

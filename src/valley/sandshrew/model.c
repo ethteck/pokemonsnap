@@ -18,6 +18,18 @@ extern u8 sandshrew_tex_801626C8[];
 extern u8 sandshrew_tex_801628D0[];
 extern u8 sandshrew_tex_801630D8[];
 
+extern u8 D_8015EE38_valley_code[];
+extern u8 D_8015F240_valley_code[];
+extern u8 D_8015FA48_valley_code[];
+extern u8 D_80160250_valley_code[];
+extern u8 D_80162288_valley_code[];
+extern u8 D_80162A90_valley_code[];
+extern u8 D_80162B98_valley_code[];
+extern u8 D_80162C20_valley_code[];
+extern u8 D_80162CA8_valley_code[];
+extern u8 D_80162EB0_valley_code[];
+extern u8 D_801636B8_valley_code[];
+
 extern Texture* sandshrew_part6_mat[];
 
 Texture** sandshrew_materials[] = {

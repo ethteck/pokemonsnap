@@ -22,6 +22,22 @@ extern u8 vileplume_tex_8017D6C0[];
 extern u8 vileplume_tex_8017D6E8_png[];
 extern u8 vileplume_tex_8017D8F0[];
 
+extern u8 D_8017C498_river_code[];
+extern u8 D_8017C8F8_river_code[];
+extern u8 D_8017C920_river_code[];
+extern u8 D_8017CB28_river_code[];
+extern u8 D_8017CB50_river_code[];
+extern u8 D_8017CD58_river_code[];
+extern u8 D_8017CD80_river_code[];
+extern u8 D_8017CF88_river_code[];
+extern u8 D_8017CFB0_river_code[];
+extern u8 D_8017D1B8_river_code[];
+extern u8 D_8017D1D8_river_code[];
+extern u8 D_8017D3E0_river_code[];
+extern u8 D_8017DCA0_river_code[];
+extern u8 D_8017DCC8_river_code[];
+extern u8 D_8017DED0_river_code[];
+
 extern Texture* vileplume_part1_mat[];
 extern Texture* vileplume_part19_mat[];
 extern Gfx vileplume_part0_draw[];

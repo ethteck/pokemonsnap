@@ -16,6 +16,21 @@ extern u8 zapdos_tex_80183AB0_png[];
 extern u8 zapdos_tex_80183CB8[];
 extern u8 zapdos_tex_80183CE0_png[];
 
+extern u8 D_80182F48_tunnel_code[];
+extern u8 D_80182F70_tunnel_code[];
+extern u8 D_80183178_tunnel_code[];
+extern u8 D_801839D8_tunnel_code[];
+extern u8 D_80183A00_tunnel_code[];
+extern u8 D_80183C08_tunnel_code[];
+extern u8 D_80183C30_tunnel_code[];
+extern u8 D_80183E38_tunnel_code[];
+extern u8 D_80183E60_tunnel_code[];
+extern u8 D_80184068_tunnel_code[];
+extern u8 D_80184090_tunnel_code[];
+extern u8 D_80184298_tunnel_code[];
+extern u8 D_801842C0_tunnel_code[];
+extern u8 D_8033F3C0_bulbasaur_model[];
+
 extern Texture* zapdos_part14_mat[];
 extern Gfx zapdos_part0_draw[];
 

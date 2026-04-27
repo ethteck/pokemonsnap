@@ -25,6 +25,28 @@ extern u8 articuno_tex_80171B38_png[];
 extern u8 articuno_tex_80171F40[];
 extern u8 articuno_tex_80171F68_png[];
 
+extern u8 D_80170068_cave_code[];
+extern u8 D_80170090_cave_code[];
+extern u8 D_80170290_cave_code[];
+extern u8 D_801702B8_cave_code[];
+extern u8 D_801703C0_cave_code[];
+extern u8 D_80171050_cave_code[];
+extern u8 D_80171078_cave_code[];
+extern u8 D_80171280_cave_code[];
+extern u8 D_801712A8_cave_code[];
+extern u8 D_80171330_cave_code[];
+extern u8 D_80171358_cave_code[];
+extern u8 D_80171760_cave_code[];
+extern u8 D_80171788_cave_code[];
+extern u8 D_80171B90_cave_code[];
+extern u8 D_80171BB8_cave_code[];
+extern u8 D_80171FC0_cave_code[];
+extern u8 D_80171FE8_cave_code[];
+extern u8 D_801720F0_cave_code[];
+extern u8 D_80172118_cave_code[];
+extern u8 D_80172520_cave_code[];
+extern u8 D_80172548_cave_code[];
+
 __ALIGNER
 u8 articuno_tex_803264B8[] = {
 #include "assets/cave/articuno/tex_803264E0.pal.bin.c"

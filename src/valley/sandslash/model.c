@@ -14,6 +14,17 @@ extern u8 sandslash_tex_8016AE38[];
 extern u8 sandslash_tex_8016AE60_png[];
 extern u8 sandslash_tex_8016AEE8[];
 
+extern u8 D_8016A2D8_valley_code[];
+extern u8 D_8016A300_valley_code[];
+extern u8 D_8016A508_valley_code[];
+extern u8 D_8016A530_valley_code[];
+extern u8 D_8016A738_valley_code[];
+extern u8 D_8016A760_valley_code[];
+extern u8 D_8016AFE8_valley_code[];
+extern u8 D_8016B418_valley_code[];
+extern u8 D_8016B440_valley_code[];
+extern u8 D_8016B4C8_valley_code[];
+
 extern Texture* sandslash_part9_mat[];
 extern Gfx sandslash_part0_draw[];
 

@@ -22,6 +22,26 @@ extern u8 pidgey_tex_801A0490_png[];
 extern u8 pidgey_tex_801A0698[];
 extern u8 pidgey_tex_801A06C0_png[];
 
+extern u8 D_8019EAD8_beach_code[];
+extern u8 D_8019EB00_beach_code[];
+extern u8 D_8019ED08_beach_code[];
+extern u8 D_8019ED30_beach_code[];
+extern u8 D_8019F138_beach_code[];
+extern u8 D_8019F160_beach_code[];
+extern u8 D_8019F368_beach_code[];
+extern u8 D_8019F390_beach_code[];
+extern u8 D_8019F598_beach_code[];
+extern u8 D_8019F5C0_beach_code[];
+extern u8 D_8019F9C8_beach_code[];
+extern u8 D_8019F9F0_beach_code[];
+extern u8 D_8019FBF8_beach_code[];
+extern u8 D_801A0818_beach_code[];
+extern u8 D_801A0840_beach_code[];
+extern u8 D_801A0A48_beach_code[];
+extern u8 D_801A0A70_beach_code[];
+extern u8 D_801A0C78_beach_code[];
+extern u8 D_801A0CA0_beach_code[];
+
 extern Texture* pidgey_part9_mat[];
 extern Gfx pidgey_part0_draw[];
 

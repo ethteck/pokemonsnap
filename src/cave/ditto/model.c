@@ -3,6 +3,9 @@
 extern u8 ditto_tex_8017D518[];
 extern u8 ditto_tex_8017D550_png[];
 
+extern u8 D_8017DAF8_cave_code[];
+extern u8 D_8017DB30_cave_code[];
+
 extern Gfx ditto_part0_draw[];
 
 #include "assets/cave/ditto/model.vtx.inc.c"

@@ -7,6 +7,10 @@ extern u8 gate_tex0_png[];
 extern u8 gate_tex1_png[];
 extern u8 gate_tex2_png[];
 
+extern u8 D_PAL_800EEA20_6B540[];
+extern u8 D_PAL_800EF250_6BD70[];
+extern u8 D_PAL_800EEA48_6B568[];
+
 extern Gfx gate_part0[];
 
 #include "assets/world/gate/model.vtx.inc.c"

@@ -6,6 +6,11 @@ extern u8 shellder2_tex_80183088[];
 extern u8 shellder2_tex_80183290[];
 extern u8 shellder2_tex_801832B8_png[];
 
+extern u8 D_80183438_river_code[];
+extern u8 D_80183460_river_code[];
+extern u8 D_80183870_river_code[];
+extern u8 D_80183898_river_code[];
+
 extern Texture* shellder2_part2_mat[];
 extern Gfx shellder2_part0_draw[];
 

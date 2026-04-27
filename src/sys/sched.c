@@ -1080,7 +1080,7 @@ void scMain(void* arg) {
             PANIC();
             break;
         case OS_TV_PAL:
-            mode = osViModeNtscLan1;
+            mode = osViModePalLan1;
             scViModeCurrent = mode;
             scViModeNext = mode;
             break;

@@ -119,6 +119,7 @@ void func_800E1A34_AA07E4(s32 unused) {
     }
 }
 
+#if 0
 void func_800E1A94_AA0844(s32 unused) {
     func_800ABB94();
     D_800E1DD0_AA0B80 = func_800E18A0_AA0650();
@@ -134,6 +135,10 @@ void func_800E1A94_AA0844(s32 unused) {
         ohWait(1);
     }
 }
+#else
+void func_800E1A94_AA0844(s32 unused);
+#pragma GLOBAL_ASM("asm/nonmatchings/AA0650/func_800E1A94_AA0844.s")
+#endif
 
 void func_800E1B30_AA08E0(Gfx** dlist) {
     gSPDisplayList((*dlist)++, &D_800E1CE8_AA0A98);

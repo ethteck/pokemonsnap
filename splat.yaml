@@ -906,109 +906,109 @@ segments:
   - start: auto
     type: .bss
     name: sys/main
-    vram: 0x80045350
+    vram: 0x80045370
   - start: auto
     type: .bss
     name: sys/sched
-    vram: 0x80048410
+    vram: 0x80048430
   - start: auto
     type: .bss
     name: sys/dma
-    vram: 0x80048580
+    vram: 0x800485A0
   - start: auto
     type: .bss
     name: sys/cont
-    vram: 0x800485B0
+    vram: 0x800485D0
   - start: auto
     type: .bss
     name: sys/gtl
-    vram: 0x80049450
+    vram: 0x80049470
   - start: auto
     type: .bss
     name: sys/vi
-    vram: 0x8004A630
+    vram: 0x8004A650
   - start: auto
     type: .bss
     name: sys/rdp_reset
-    vram: 0x8004A660
+    vram: 0x8004A680
   - start: auto
     type: .bss
     name: sys/om
-    vram: 0x8004A670
+    vram: 0x8004A690
   - start: auto
     type: .bss
     name: sys/cmd
-    vram: 0x8004ABE0
-  - start: auto
-    type: .bss
-    name: sys/render
     vram: 0x8004AC00
   - start: auto
     type: .bss
+    name: sys/render
+    vram: 0x8004AC20
+  - start: auto
+    type: .bss
     name: sys/audio
-    vram: 0x8004AF30
+    vram: 0x8004AF50
   - start: auto
     type: .bss
     name: sys/error
-    vram: 0x80097260
+    vram: 0x80097280
   - type: bss
     name: sprite
-    vram: 0x80098620
+    vram: 0x80098640
   - start: auto
     type: .bss
     name: ../ultralib/src/io/sptask
-    vram: 0x80098630
+    vram: 0x80098650
   - start: auto
     type: .bss
     name: ../ultralib/src/io/motor
-    vram: 0x80098670
+    vram: 0x80098690
   - start: auto
     type: .bss
     name: ../ultralib/src/io/siacs
-    vram: 0x80098770
-  - start: auto
-    type: .bss
-    name: ../ultralib/src/io/controller
     vram: 0x80098790
   - start: auto
     type: .bss
+    name: ../ultralib/src/io/controller
+    vram: 0x800987B0
+  - start: auto
+    type: .bss
     name: ../ultralib/src/os/initialize
-    vram: 0x80098820
+    vram: 0x80098840
   - start: auto
     type: .bss
     name: ../ultralib/src/io/gbpakinit
-    vram: 0x80098830
+    vram: 0x80098850
   - type: bss
     name: __osThreadSave
-    vram: 0x80098870
+    vram: 0x80098890
   - start: auto
     type: .bss
     name: ../ultralib/src/io/pimgr
-    vram: 0x80098A20
+    vram: 0x80098A40
   - start: auto
     type: .bss
     name: ../ultralib/src/os/seteventmesg
-    vram: 0x80099D00
+    vram: 0x80099D20
   - start: auto
     type: .bss
     name: ../ultralib/src/os/timerintr
-    vram: 0x80099DA0
-  - start: auto
-    type: .bss
-    name: ../ultralib/src/io/cartrominit
     vram: 0x80099DC0
   - start: auto
     type: .bss
+    name: ../ultralib/src/io/cartrominit
+    vram: 0x80099DE0
+  - start: auto
+    type: .bss
     name: ../ultralib/src/io/contpfs
-    vram: 0x80099E40
+    vram: 0x80099E60
   - start: auto
     type: .bss
     name: ../ultralib/src/io/pfsisplug
-    vram: 0x80099F40
+    vram: 0x80099F60
   - start: auto
     type: .bss
     name: ../ultralib/src/io/vimgr
-    vram: 0x80099F80
+    vram: 0x80099FA0
 - start: 0x045F70
   type: code
   name: app_render
@@ -1410,7 +1410,7 @@ segments:
   type: code
   name: magikarp_textures
   dir: pokemon_common
-  vram: 0x800F5D90
+  vram: 0x800F6370
   exclusive_ram_id: unk800F5D90
   subsegments:
   - start: auto
@@ -2028,7 +2028,7 @@ segments:
   type: code
   name: beach_extra
   dir: beach
-  vram: 0x801B0310
+  vram: 0x801B08F0
   exclusive_ram_id: unk8011CB50
   subsegments:
   - start: auto
@@ -24236,7 +24236,7 @@ segments:
   type: code
   name: magikarp_model_hd
   dir: pokemon_common
-  vram: 0x803B20B0
+  vram: 0x803B1F80
   exclusive_ram_id: unk82F8E0
   subsegments:
   - start: auto
@@ -24996,26 +24996,26 @@ segments:
     type: data
     name: sprite_background
     linker_section_order: .rodata
-  - start: 0xA7F6D0
+  - start: 0xA7F460
     type: data
     name: sprite_card
     linker_section_order: .rodata
-  - start: 0xA8DDE0
+  - start: 0xA8DB70
     type: data
     name: sprite_cursor
     linker_section_order: .rodata
   - start: auto
     type: .bss
     name: A5CC50
-    vram: 0x801185B0
+    vram: 0x80118340
   - start: auto
     type: .bss
     name: A5D5B0
-    vram: 0x80118610
+    vram: 0x801183A0
   - type: bss
     name: sprite_bss
-    vram: 0x80168650
-- start: 0xA8DEB0
+    vram: 0x801683E0
+- start: 0xA8DC40
   type: code
   name: credits
   dir: credits
@@ -25024,290 +25024,294 @@ segments:
   symbol_name_format: PAL_credits_$VRAM
   bss_size: 0x003590
   subsegments:
-  - start: 0xA8DEB0
+  - start: 0xA8DC40
     type: c
     name: A93460
-  - start: 0xA8E200
+  - start: 0xA8DF90
     type: pad
     name: A937B0
-  - start: 0xA8E210
+  - start: 0xA8DFA0
     type: c
     name: A937C0
-  - start: 0xA8EED0
+  - start: 0xA8EC60
     type: c
     name: A94480
-  - start: 0xA8F380
+  - start: 0xA8F110
     type: pad
     name: A94930
-  - start: 0xA8F390
+  - start: 0xA8F120
     type: c
     name: A94940
-  - start: 0xA901B0
+  - start: 0xA8FF40
     type: data
     name: A93460
-  - start: 0xA902D0
+  - start: 0xA90060
     type: data
     name: A95880
-  - start: 0xA976B0
+  - start: 0xA97440
     type: data
     name: A9CC60
-  - start: 0xA97A90
+  - start: 0xA97820
     type: data
     name: A9D040
-  - start: 0xA97E30
+  - start: 0xA97BC0
     type: data
     name: A9D3E0
-  - start: 0xA98100
+  - start: 0xA97E90
     type: data
     name: A9D6B0
-  - start: 0xA9A1B0
+  - start: 0xA99F40
     type: .data
     name: A94940
-  - start: 0xA9AA30
+  - start: 0xA9A890
     type: .rodata
     name: A937C0
-  - start: 0xA9AA50
+  - start: 0xA9A8B0
     type: .rodata
     name: A937C0
-  - start: 0xA9AA60
+  - start: 0xA9A8C0
     type: .rodata
     name: A94940
   - type: bss
     name: bss_801E9A90
-    vram: 0x801EA070
-- start: 0xA9B0A0
+    vram: 0x801EA170
+- start: 0xA9AF30
   type: code
   name: intro_code
   vram: 0x800E1DA0
   exclusive_ram_id: level
   bss_size: 0x000010
   subsegments:
-  - start: 0xA9B0A0
+  - start: 0xA9AF30
     type: c
     name: AA0650
-  - start: 0xA9B4B0
+  - start: 0xA9B380
     type: .data
     name: AA0650
   - start: auto
     type: .bss
     name: AA0650
-    vram: 0x800E22D0
-- start: 0xA9B5D0
-  type: bin
+    vram: 0x800E2310
+- start: 0xA9B4A0
+  type: vpk0
   name: AA0B80
-- start: 0xA9C330
+  align: 0x000010
+- - 0xA9C1F3
+- start: 0xA9C200
   type: code
   name: AA18E0
   vram: 0x801DCE80
   exclusive_ram_id: level
   bss_size: 0x000020
   subsegments:
-  - start: 0xA9C330
+  - start: 0xA9C200
     type: c
     name: AA18E0
-  - start: 0xA9CAF0
+  - start: 0xA9C9C0
     type: bin
     name: AA20A0
   - start: auto
     type: .bss
     name: AA18E0
     vram: 0x801E5BB0
-- start: 0xAA5060
-  type: bin
+- start: 0xAA4F30
+  type: vpk0
   name: AAA610
-- start: 0xAA50B0
+  align: 0x000010
+- - 0xAA4F7B
+- start: 0xAA4F80
   type: bin
   name: idle_script_beach
-- start: 0xAABEC0
+- start: 0xAABD90
   type: bin
   name: idle_script_tunnel
-- start: 0xAB02B0
+- start: 0xAB0180
   type: bin
   name: fx/script/common
-- start: 0xAB03D0
+- start: 0xAB02A0
   type: bin
   name: fx/img/common
-- start: 0xAB3030
+- start: 0xAB2F00
   type: bin
   name: fx/script/beach
-- start: 0xAB31D0
+- start: 0xAB30A0
   type: bin
   name: fx/img/beach
-- start: 0xAB91F0
+- start: 0xAB90C0
   type: bin
   name: fx/script/tunnel
-- start: 0xAB9620
+- start: 0xAB94F0
   type: bin
   name: fx/img/tunnel
-- start: 0xAC12E0
+- start: 0xAC11B0
   type: bin
   name: fx/script/cave
-- start: 0xAC14D0
+- start: 0xAC13A0
   type: bin
   name: fx/img/cave
-- start: 0xAC2F60
+- start: 0xAC2E30
   type: bin
   name: fx/script/river
-- start: 0xAC3280
+- start: 0xAC3150
   type: bin
   name: fx/img/river
-- start: 0xACA140
+- start: 0xACA010
   type: bin
   name: fx/script/volcano
-- start: 0xACA3F0
+- start: 0xACA2C0
   type: bin
   name: fx/img/volcano
-- start: 0xACB850
+- start: 0xACB720
   type: bin
   name: fx/script/valley
-- start: 0xACC090
+- start: 0xACBF60
   type: bin
   name: fx/img/valley
-- start: 0xAD7D60
+- start: 0xAD7C30
   type: bin
   name: fx/script/rainbow
-- start: 0xAD8020
+- start: 0xAD7EF0
   type: bin
   name: fx/img/rainbow
-- start: 0xAD96B0
+- start: 0xAD9580
   type: bin
   name: fx/script/intro
-- start: 0xAD9840
+- start: 0xAD9710
   type: bin
   name: fx/img/intro
-- start: 0xADAF60
+- start: 0xADAE30
   type: bin
   name: AE0510
-- start: 0xAEA660
+- start: 0xAEA530
   type: bin
   name: audio/sbk
-- start: 0xAEA78C
+- start: 0xAEA65C
   type: bin
   name: audio/seq/AEFD3C
-- start: 0xAEB4E4
+- start: 0xAEB3B4
   type: bin
   name: audio/seq/AF0A94
-- start: 0xAEB680
+- start: 0xAEB550
   type: bin
   name: audio/seq/AF0C30
-- start: 0xAEB844
+- start: 0xAEB714
   type: bin
   name: audio/seq/AF0DF4
-- start: 0xAEBA14
+- start: 0xAEB8E4
   type: bin
   name: audio/seq/AF0FC4
-- start: 0xAEC00C
+- start: 0xAEBEDC
   type: bin
   name: audio/seq/AF15BC
-- start: 0xAEC9C0
+- start: 0xAEC890
   type: bin
   name: audio/seq/AF1F70
-- start: 0xAED584
+- start: 0xAED454
   type: bin
   name: audio/seq/AF2B34
-- start: 0xAEE28C
+- start: 0xAEE15C
   type: bin
   name: audio/seq/AF383C
-- start: 0xAEE7C4
+- start: 0xAEE694
   type: bin
   name: audio/seq/AF3D74
-- start: 0xAEEE9C
+- start: 0xAEED6C
   type: bin
   name: audio/seq/AF444C
-- start: 0xAEF368
+- start: 0xAEF238
   type: bin
   name: audio/seq/AF4918
-- start: 0xAF04DC
+- start: 0xAF03AC
   type: bin
   name: audio/seq/AF5A8C
-- start: 0xAF099C
+- start: 0xAF086C
   type: bin
   name: audio/seq/AF5F4C
-- start: 0xAF18D4
+- start: 0xAF17A4
   type: bin
   name: audio/seq/AF6E84
-- start: 0xAF278C
+- start: 0xAF265C
   type: bin
   name: audio/seq/AF7D3C
-- start: 0xAF29D8
+- start: 0xAF28A8
   type: bin
   name: audio/seq/AF7F88
-- start: 0xAF3460
+- start: 0xAF3330
   type: bin
   name: audio/seq/AF8A10
-- start: 0xAF36D8
+- start: 0xAF35A8
   type: bin
   name: audio/seq/AF8C88
-- start: 0xAF3F58
+- start: 0xAF3E28
   type: bin
   name: audio/seq/AF9508
-- start: 0xAF4388
+- start: 0xAF4258
   type: bin
   name: audio/seq/AF9938
-- start: 0xAF4518
+- start: 0xAF43E8
   type: bin
   name: audio/seq/AF9AC8
-- start: 0xAF4634
+- start: 0xAF4504
   type: bin
   name: audio/seq/AF9BE4
-- start: 0xAF46AC
+- start: 0xAF457C
   type: bin
   name: audio/seq/AF9C5C
-- start: 0xAF5248
+- start: 0xAF5118
   type: bin
   name: audio/seq/AFA7F8
-- start: 0xAF53BC
+- start: 0xAF528C
   type: bin
   name: audio/seq/AFA96C
-- start: 0xAF5E9C
+- start: 0xAF5D6C
   type: bin
   name: audio/seq/AFB44C
-- start: 0xAF6364
+- start: 0xAF6234
   type: bin
   name: audio/seq/AFB914
-- start: 0xAF6940
+- start: 0xAF6810
   type: bin
   name: audio/seq/AFBEF0
-- start: 0xAF6D28
+- start: 0xAF6BF8
   type: bin
   name: audio/seq/AFC2D8
-- start: 0xAF7738
+- start: 0xAF7608
   type: bin
   name: audio/seq/AFCCE8
-- start: 0xAF7BE4
+- start: 0xAF7AB4
   type: bin
   name: audio/seq/AFD194
-- start: 0xAF7CE8
+- start: 0xAF7BB8
   type: bin
   name: audio/seq/AFD298
-- start: 0xAF7DF4
+- start: 0xAF7CC4
   type: bin
   name: audio/seq/AFD3A4
-- start: 0xAF7EE4
+- start: 0xAF7DB4
   type: bin
   name: audio/seq/AFD494
-- start: 0xAF8728
+- start: 0xAF85F8
   type: bin
   name: audio/seq/AFDCD8
-- start: 0xAF8814
+- start: 0xAF86E4
   type: bin
   name: audio/seq/AFDDC4
-- start: 0xAF8818
+- start: 0xAF86E8
   type: bin
   name: AFDDC8
-- start: 0xAF9930
+- start: 0xAF9800
   type: bin
   name: audio/bank1
-- start: 0xAFEE80
+- start: 0xAFED50
   type: bin
   name: audio/table1
-- start: 0xBA1670
+- start: 0xBA1540
   type: bin
   name: audio/bank2
-- start: 0xBB1390
+- start: 0xBB1260
   type: bin
   name: audio/table2
-- start: 0xF4DF90
+- start: 0xF4DE60
   type: bin
   name: padding
-- - 0xFFAA50
+- - 0x1000000

@@ -9,6 +9,7 @@ album_GetCommentTextWidth = 0x801DD358; // rom:0x9A0BA8
 func_800E18B4_A5CC64 = 0x800E1DB4; // rom:0xA576B4
 func_800E1CF8_A5D0A8 = 0x800E2224; // rom:0xA57B24
 func_800E2ED0_A5E280 = 0x800E35D0; // rom:0xA58ED0
+func_800E1A94_AA0844 = 0x800E1F94; // rom:0xA9B124
  
 game_main = 0x80000870; // rom:0x1470
 dmaLoadOverlay = 0x80002A04; // rom:0x3604

@@ -360,11 +360,11 @@ void func_801DDD58_9D46C8(void) {
 
     if (D_80230CA8_A27618 > 0) {
         UIElement_SetTextPos(D_80230C80_A275F0[0], 174, 0);
-        UIElement_PrintText(D_80230C80_A275F0[0], "▲");
+        UIElement_PrintText(D_80230C80_A275F0[0], "\xA0");
     }
     if (D_80230CAC_A2761C < func_800BF864_5C704() - 1) {
         UIElement_SetTextPos(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], 174, 0);
-        UIElement_PrintText(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "▼");
+        UIElement_PrintText(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "\x9F");
     }
 }
 
@@ -460,15 +460,15 @@ void func_801DE414_9D4D84(s32 arg0) {
 }
 
 const char otherText[] = "It is said that somewhere on\nthis island is a mysterious\ngroup of huge rocks.";
-const char otherText2[] = "Surprisingly, if you look at it\nfrom a certain angle, it appears\nto be a Pokemon shape.";
+const char otherText2[] = "Surprisingly, if you look at it\nfrom a certain angle, it appears\nto be a Pok\xE9mon shape.";
 const char otherText3[] = "When light shines on an\nobject, its shadow will appear\non the wall behind it.";
-const char otherText4[] = "Somewhere there is a\nshadow that looks\nlike a Pokemon!";
-const char otherText5[] = "Smoke changes its shape, and\nsome shapes look like Pokemon.";
+const char otherText4[] = "Somewhere there is a\nshadow that looks\nlike a Pok\xE9mon!";
+const char otherText5[] = "Smoke changes its shape, and\nsome shapes look like Pok\xE9mon.";
 const char otherText6[] = "Where can you find smoke...?\nYou already know!";
 const char otherText7[] = "Have you heard of a tree near\nthe river in the jungle that\nlooks like CUBONE? No one";
 const char otherText8[] = "knows who planted it, but I have\nheard that someone has seen\nthe tree... It's a mystery!";
 const char otherText9[] = "Shining brightly somewhere...\nThat's all I know about this.";
-const char otherText10[] = "Somewhere in the middle of\nsteep mountains is a mountain\nthat looks like a Pokemon.";
+const char otherText10[] = "Somewhere in the middle of\nsteep mountains is a mountain\nthat looks like a Pok\xE9mon.";
 const char otherText11[] = "I went to the Valley to find\nthis mountain.";
 const char otherText12[] = "Isn't it amazing that a simple\nrock like this turned out to be a\nPKMN Sign?";
 const char otherText13[] = "If you look at it from this\nangle, it looks like KINGLER. I\nwill call this KINGLER ROCK!";
@@ -480,7 +480,7 @@ const char otherText18[] = "The tree looked dim because of\nVILEPLUME's powder."
 const char otherText19[] = "Hmm...\nIt looks like CUBONE. I will\ncall this the CUBONE TREE!";
 const char otherText20[] = "I had no idea what this was all\nabout until I saw your picture.";
 const char otherText21[] = "I think this looks like MEWTWO!\nCould this be the constellation\ncalled MEWTWO?";
-const char otherText22[] = "This mountain looks like a\nPokemon... This is it!\nThis is the PKMN Sign!";
+const char otherText22[] = "This mountain looks like a\nPok\xE9mon... This is it!\nThis is the PKMN Sign!";
 const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall this MT. DUGTRIO!";
 
 void func_801DE5A8_9D4F18(s32 arg0) {
@@ -1274,7 +1274,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
     } else if (func_800BF3D4_5C274(PokemonID_MEW)) {
         sprintf(sp28, "%s", "Complete your PKMN Report!");
     } else if (func_800BFC5C_5CAFC() == 6) {
-        sprintf(sp28, "%s", "Find rare Pokemon!");
+        sprintf(sp28, "%s", "Find rare Pok\xE9mon!");
     } else if (func_800BFC5C_5CAFC() == 5) {
         if (checkPlayerFlag(PFID_HAS_FLUTE)) {
             if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
@@ -1292,7 +1292,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
             sprintf(sp28, "%s", "Solve the secret of the Switch!");
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
-        sprintf(sp28, "%s", "Collect more Pokemon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (checkPlayerFlag(PFID_HAS_PESTER_BALL)) {
             sprintf(sp28, "%s", "Solve the secret of the Switch!");
@@ -1300,7 +1300,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
             sprintf(sp28, "%s", "Boost your PKMN Report Score!");
         }
     } else if (func_800BFC5C_5CAFC() == 2) {
-        sprintf(sp28, "%s", "Collect more Pokemon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (checkPlayerFlag(PFID_HAS_APPLE)) {
             sprintf(sp28, "%s", "Solve the mystery of the Tunnel!");
@@ -1308,7 +1308,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
             sprintf(sp28, "%s", "Boost your PKMN Report Score!");
         }
     } else {
-        sprintf(sp28, "%s", "Collect more Pokemon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     }
     UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth(sp28) / 2), 51);
     func_8037519C_84894C(arg0, "%s", sp28);

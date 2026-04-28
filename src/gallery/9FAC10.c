@@ -263,7 +263,7 @@ void func_801DD8F8_9FB5B8(s32 arg0, s32 arg1) {
         UIText_SetShadowOffset(0);
         UIText_SetSpacing(0, 4);
         UIElement_SetTextPos(D_80230884_A4E544, 0, 0);
-        UIElement_PrintText(D_80230884_A4E544, "  \\i−\\g      \\i−\\g  ");
+        UIElement_PrintText(D_80230884_A4E544, "  \\i-\\g      \\i-\\g  ");
         sprintf(sp28, "%d", arg1 + 1);
         UIElement_SetTextPos(D_80230884_A4E544, 30 - (UIText_GetStringWidth(sp28) / 2), 0);
         UIElement_PrintText(D_80230884_A4E544, sp28);
@@ -340,10 +340,10 @@ void func_801DDCA8_9FB968(s32 arg0) {
             UIElement_PrintText(D_80230880_A4E540, "Choose the picture you'd like\nto enlarge with the Control\nStick. Press \\a to decide.");
             break;
         case 12:
-            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
+            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress  \\a to decide.");
             break;
         case 13:
-            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool! 　\\b Not so good...");
+            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool!  \\b Not so good...");
             break;
         case 8:
             UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
@@ -747,7 +747,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIElement_DrawBackground(sp34);
     UIElement_SetFont(sp34, FONT_12);
     UIElement_Draw(sp34);
-    UIElement_PrintText(sp34, "\\i−\\g   \\i−\\g");
+    UIElement_PrintText(sp34, "\\i-\\g   \\i-\\g");
     UIElement_SetState(sp34, UI_HIDDEN);
     D_80230884_A4E544 = sp34;
     sp38 = UIFrame_Create();

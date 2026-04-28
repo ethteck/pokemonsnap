@@ -97,6 +97,7 @@ void func_800E4AF8_A0C088(void) {
     omCreateProcess(D_800E831C_A0F8AC, func_800E4960_A0BEF0, 0, 1);
 }
 
+#if 0
 void func_800E4B4C_A0C0DC(GObj* arg0) {
     GObj* gobj = D_800E82A8_A0F838;
     OMCamera* cam = D_800E82A8_A0F838->data.cam;
@@ -135,6 +136,10 @@ void func_800E4B4C_A0C0DC(GObj* arg0) {
         ohWait(1);
     }
 }
+#else
+void func_800E4B4C_A0C0DC(GObj* arg0);
+#pragma GLOBAL_ASM("asm/nonmatchings/main_menu/0ABE70/func_800E4B4C_A0C0DC.s")
+#endif
 
 GLOBAL_ASM(
     glabel pad

@@ -920,7 +920,7 @@ void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 
     UIElement_SetTextPos(arg0, offset, 0);
     UIElement_PrintText(arg0, D_camera_check_80249928);
     UIElement_SetTextPos(arg0, 0, 16);
-    UIElement_PrintText(arg0, "Pokemon");
+    UIElement_PrintText(arg0, "Pok\xE9mon");
     sprintf(D_camera_check_80249928, "\\i       x%2d\\g kind(s)", func_camera_check_801E2478());
     UIElement_SetTextPos(arg0, offset, 16);
     UIElement_PrintText(arg0, D_camera_check_80249928);

@@ -33,26 +33,50 @@ s32 D_80208B50_9D2DA0 = 0; // TODO belongs to sprites
 s32 D_80208B54_9D2DA4 = -1;
 s32 D_80208B58_9D2DA8[6] = { PokemonID_1004, PokemonID_1010, PokemonID_1018, PokemonID_1022, PokemonID_KOFFING_SMOKE, PokemonID_1035 };
 char* album_CharGrids[] = {
-    "ＡＢＣＤＥ"
-    "ＦＧＨＩＪ"
-    "ＫＬＭＮＯ"
-    "ＰＱＲＳＴ"
-    "ＵＶＷＸＹ"
-    "Ｚａｂｃｄ"
-    "ｅｆｇｈｉ"
-    "ｊｋｌｍｎ"
-    "ｏｐｑｒｓ"
-    "ｔｕｖｗｘ"
-    "ｙｚ０１２"
-    "３４５６７"
-    "８９†‡¶"
-    "〜！？＠＃"
-    "％＆＊（）"
-    "＿＋＝ー’"
-    "”；：／＄"
-    "．，＜＞♂"
-    "♀［］ε　",
+    "ABCDE"
+    "FGHIJ"
+    "KLMNO"
+    "PQRST"
+    "UVWXY"
+    "Z    "
+    "abcde"
+    "fghij"
+    "klmno"
+    "pqrst"
+    "uvwxy"
+    "z    "
+    "01234"
+    "56789"
+    "     "
+    "     "
+    "     "
+    "     "
+    "     "
 };
+
+char* album_CharGrids_2[] = {
+    "\xC1\xC0\xC2\xC4\xC9"
+    "\xC8\xCD\xCC\xD3\xD2"
+    "\xD4\xD6\xDA\xD9\xDC"
+    "\xC7\xD1\xE1\xE0\xE2"
+    "\xE4\xE9\xE8\xEA\xEB"
+    "\xED\xEC\xEE\xEF\xF3"
+    "\xF2\xF4\xF6\xFA\xF9"
+    "\xFC\xE7\xF1\xDF\xBA"
+    "\xAA\xA1\xBF  "
+    "\x9C\x9B\x9A$~"
+    "!?@#%"
+    "&+-=_"
+    "/'\":;"
+    ".,*()"
+    "<>[] "
+    "\x9E\x9D   "
+    "     "
+    "     "
+    "     "
+};
+
+
 bool album_IsEditingComment = true;
 s32 album_CursorAlpha = 10;
 s32 album_CursorAlphaRate = 5;
@@ -354,7 +378,7 @@ void album_DrawAlbumPage(s32 firstPhotoOnPage) {
     UIText_SetShadowOffset(0);
     UIText_SetSpacing(0, 4);
     UIElement_SetTextPos(album_UiPageNumber, 0, 0);
-    UIElement_PrintText(album_UiPageNumber, "  \\i−\\g      \\i−\\g  ");
+    UIElement_PrintText(album_UiPageNumber, "  \\i-\\g      \\i-\\g  ");
     sprintf(strPageNum, "%d", album_AlbumPage + 1);
     UIElement_SetTextPos(album_UiPageNumber, 30 - (UIText_GetStringWidth(strPageNum) / 2), 0);
     UIElement_PrintText(album_UiPageNumber, strPageNum);
@@ -897,7 +921,7 @@ void album_PrintPhotoDescription(s32 descType, s32 entryIndex) {
         UIElement_SetTextPos(album_UiRows[4], 0, 0);
         UIElement_PrintText(album_UiRows[4], "Focus");
 
-        sprintf(str, "%s", (sp4C->score.pokemonInFocus > 0 && sp4C->score.pokemonInFocus <= POKEDEX_MAX) ? getPokemonName(sp4C->score.pokemonInFocus) : "−−−−−");
+        sprintf(str, "%s", (sp4C->score.pokemonInFocus > 0 && sp4C->score.pokemonInFocus <= POKEDEX_MAX) ? getPokemonName(sp4C->score.pokemonInFocus) : "-----");
         UIElement_SetTextPos(album_UiRows[5], 60 - UIText_GetStringWidth(str), 0);
         func_8037519C_84894C(album_UiRows[5], "%s", str);
     } else {
@@ -1049,13 +1073,13 @@ void album_DrawCharacterGrid(s32 page) {
     func_8036D4B4_840C64(1, 1);
     UIElement_Draw(album_UiRows[ARRAY_COUNT(album_UiRows) - 1]);
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 0, 0);
-    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "←");
+    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "\x98");
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 13, 0);
-    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "←");
+    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "\x99");
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 26, 0);
-    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "→");
+    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "\xA0\x9F");
     UIElement_SetTextPos(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], 43, 0);
-    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], "End");
+    UIElement_PrintText(album_UiRows[ARRAY_COUNT(album_UiRows) - 1], " OK");
 }
 
 void func_801DFFEC_9AA23C(s32 show) {
@@ -1323,7 +1347,7 @@ void func_801E0AF0_9AAD40(void) {
     UIElement_DrawBackground(el);
     UIElement_SetFont(el, FONT_12);
     UIElement_Draw(el);
-    UIElement_PrintText(el, "\\i−\\g   \\i−\\g");
+    UIElement_PrintText(el, "\\i-\\g   \\i-\\g");
     UIElement_SetState(el, UI_HIDDEN);
     album_UiPageNumber = el;
 
@@ -1544,7 +1568,8 @@ void album_CreateAlbumUI(GObj* arg0) {
     UIElement* sp64;
     UNUSED s32 pad3;
     s32 sp5C;
-    UNUSED s32 pad4[12];
+    UNUSED s32 pad4[11];
+    s32 xpos;
 
     sp5C = 1;
     UILayout_Init();
@@ -1569,10 +1594,12 @@ void album_CreateAlbumUI(GObj* arg0) {
     UIText_SetShadowOffset(0);
     UIText_SetSpacing(0, 4);
     UIElement_DrawBackground(sp64);
+
+    xpos = 10;
     UIElement_SetFont(sp64, FONT_8);
-    UIElement_SetTextPos(sp64, 10, 0);
+    UIElement_SetTextPos(sp64, xpos, 0);
     func_8037519C_84894C(sp64, "\\i%2d \\gTaken", album_GetPhotoCount());
-    UIElement_SetTextPos(sp64, 10, 9);
+    UIElement_SetTextPos(sp64, xpos, 9);
     func_8037519C_84894C(sp64, "\\i%2d \\gLeft", 60 - album_GetPhotoCount());
     UIElement_SetState(sp64, UI_HIDDEN);
     ohWait(1);

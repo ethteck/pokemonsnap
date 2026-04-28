@@ -24624,13 +24624,13 @@ segments:
   - start: 0x848580
     type: data
     name: 848BC0
-  - start: 0x851BE0
+  - start: 0x84BEE0
     type: .data
     name: element
-  - start: 0x851C10
+  - start: 0x84BF10
     type: .data
     name: text
-  - start: 0x851E00
+  - start: 0x84C100
     type: data
     name: '852920'
   - start: 0x873590
@@ -24726,9 +24726,6 @@ segments:
     type: c
     name: 8A9CC0
   - start: 0x8A4830
-    type: pad
-    name: 8AAF50
-  - start: 0x8A4840
     type: c
     name: 8AAF60
   - start: 0x8A57D0

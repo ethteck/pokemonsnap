@@ -8,7 +8,7 @@ extern f32 D_camera_check_80208968 = 1.0f; // unused
 UIButton D_camera_check_8020896C[] = {
     { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
     { BUTTON_SPLITTER, NULL },
-    { BUTTON_24, "First, choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_24, "First, choose the pictures\nwith \"\\hOak's Mark\\p \\m.\"\n" },
     { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
     { BUTTON_NONE, NULL },
 };
@@ -16,7 +16,7 @@ UIButton D_camera_check_8020896C[] = {
 UIButton D_camera_check_80208994[] = {
     { BUTTON_23, "I'll choose which pictures to\nshow to Prof. Oak!" },
     { BUTTON_SPLITTER, NULL },
-    { BUTTON_24, "First, choose the pictures with\n\"\\hOak's Mark\\p \\m.\"\n" },
+    { BUTTON_24, "First, choose the pictures\nwith \"\\hOak's Mark\\p \\m.\"\n" },
     { BUTTON_22, "Let's show the marked\npicture(s) to Prof. Oak." },
     { BUTTON_NONE, NULL },
 };
@@ -383,7 +383,7 @@ s32 func_camera_check_801E04F4(s32 arg0) {
                     case 2:
                         if (prevMode != mode) {
                             UIElement_Draw(func_camera_check_801DCB40());
-                            UIElement_PrintText(func_camera_check_801DCB40(), "No Pokemon are in this picture.\nPress \\a or \\b to return.");
+                            UIElement_PrintText(func_camera_check_801DCB40(), "No Pok\xE9mon are in this picture.\nPress \\a or \\b to return.");
                         }
                         break;
                     case 3:
@@ -714,13 +714,13 @@ s32 func_camera_check_801E0F10(void) {
                             case 1:
                                 if (prevMode != mode) {
                                     UIElement_Draw(func_camera_check_801DCB40());
-                                    UIElement_PrintText(func_camera_check_801DCB40(), "I've chosen pictures to show to\nProf. Oak! Press \\b to return\nand choose \"\\hTo Prof. Oak\\p!\"");
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "I've chosen pictures to show to\nProf. Oak! Press \\b to return\nand choose \"\\hTo Prof. Oak\\p.\"");
                                 }
                                 break;
                             case 2:
                                 if (prevMode != mode) {
                                     UIElement_Draw(func_camera_check_801DCB40());
-                                    UIElement_PrintText(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pokemon.");
+                                    UIElement_PrintText(func_camera_check_801DCB40(), "Umm... It looks like there are\nno Pok\xE9mon.");
                                 }
                                 break;
                             case 3:
@@ -733,11 +733,11 @@ s32 func_camera_check_801E0F10(void) {
                                 if (numPics < 2) {
                                     if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
                                         UIElement_Draw(func_camera_check_801DCB40());
-                                        func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Prof. Oak has\nseen it already. Check with \\a", numPics, pokemonName);
+                                        func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p picture of %s\nhas been taken! Prof. Oak has\nseen it already. Check with \\a.", numPics, pokemonName);
                                     }
                                 } else if (prevMode != mode || prevPokemonName != pokemonName || prevNumPics != numPics) {
                                     UIElement_Draw(func_camera_check_801DCB40());
-                                    func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Prof. Oak has\nseen this one. Check with \\a", numPics, pokemonName);
+                                    func_8037519C_84894C(func_camera_check_801DCB40(), "\\h%d\\p pictures of %s\nhave been taken! Prof. Oak has\nseen this one. Check with \\a.", numPics, pokemonName);
                                 }
                                 break;
                             case 5:

@@ -15,6 +15,7 @@ Msg_DrawChar = 0x80363CA0; // rom:0x504940
 Msg_DrawMessage = 0x803645AC; // rom:0x50524C
 Msg_ShowMessage = 0x80364A74; // rom:0x505714
 Msg_GetGlyphWidth = 0x8036392C; // rom:0x5045CC
+func_800E4B4C_A0C0DC = 0x800E51AC; // rom:0xA05FDC
  
 game_main = 0x80000870; // rom:0x1470
 dmaLoadOverlay = 0x80002A04; // rom:0x3604

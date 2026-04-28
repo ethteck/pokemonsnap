@@ -146,6 +146,9 @@ extern u8 D_801CD398_volcano_extra[];
 extern u8 D_801CD440_volcano_extra[];
 extern u8 D_PAL_801CC2F8_1580B8[];
 extern u8 D_PAL_801CC578_158338[];
+extern u8 D_801CC2F8_volcano_extra[];
+extern u8 D_801CC578_volcano_extra[];
+
 
 extern Texture* arcanine_hd_part3_mat[];
 extern Gfx arcanine_hd_part0_draw[];

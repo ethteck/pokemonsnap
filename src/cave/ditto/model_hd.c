@@ -181,6 +181,14 @@ extern u8 D_PAL_801C0E90_14CC50[];
 extern u8 D_PAL_801C1060_14CE20[];
 extern u8 D_PAL_801C11A0_14CF60[];
 extern u8 D_PAL_801C1280_14D040[];
+extern u8 D_801C1060_cave_extra[];
+extern u8 D_801C0E90_cave_extra[];
+extern u8 D_801C1060_cave_extra[];
+extern u8 D_801C1280_cave_extra[];
+extern u8 D_801C0DB0_cave_extra[];
+extern u8 D_801C11A0_cave_extra[];
+
+
 
 extern Gfx ditto_hd_part0_draw[];
 

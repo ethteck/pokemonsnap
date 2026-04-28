@@ -1014,7 +1014,7 @@ segments:
   name: app_render
   dir: app_render
   vram: 0x8009B1C0
-  bss_size: 0x00EAF0
+  bss_size: 0x00EB70
   follows_vram: main
   symbol_name_format: PAL_$VRAM
   subsegments:
@@ -1022,6 +1022,9 @@ segments:
     type: c
     name: '46270'
   - start: 0x047030
+    type: c
+    name: pal_47030
+  - start: 0x047050
     type: c
     name: '47330'
   - start: 0x0470A0
@@ -1538,7 +1541,7 @@ segments:
   type: code
   name: pikachu1
   dir: pokemon_common
-  vram: 0x800FFF90
+  vram: 0x80100570
   exclusive_ram_id: unk800FFF90
   subsegments:
   - start: auto
@@ -1812,7 +1815,7 @@ segments:
   type: code
   name: zubat1
   dir: pokemon_common
-  vram: 0x8011B050
+  vram: 0x8011B630
   exclusive_ram_id: unk8011B050
   subsegments:
   - start: auto
@@ -1867,7 +1870,7 @@ segments:
   type: code
   name: bulbasaur1
   dir: pokemon_common
-  vram: 0x8011CB50
+  vram: 0x8011D130
   exclusive_ram_id: unk8011B050
   subsegments:
   - start: auto
@@ -3901,7 +3904,7 @@ segments:
   type: code
   name: tunnel_extra
   dir: tunnel
-  vram: 0x8011B060
+  vram: 0x8018C230
   exclusive_ram_id: unk_01D1D90
   subsegments:
   - start: auto
@@ -4679,7 +4682,7 @@ segments:
   type: code
   name: cave_extra
   dir: cave
-  vram: 0x8011B060
+  vram: 0x801AF380
   exclusive_ram_id: unk27AB80
   subsegments:
   - start: auto
@@ -5348,7 +5351,7 @@ segments:
   type: code
   name: river_extra
   dir: river
-  vram: 0x8011B060
+  vram: 0x8019B4C0
   exclusive_ram_id: unk30AF90
   subsegments:
   - start: auto
@@ -9963,7 +9966,7 @@ segments:
   type: code
   name: volcano_extra
   dir: volcano
-  vram: 0x8011B060
+  vram: 0x801A9EE0
   exclusive_ram_id: unk3D0560
   subsegments:
   - start: auto
@@ -10772,7 +10775,7 @@ segments:
   type: code
   name: valley_extra
   dir: valley
-  vram: 0x8011B060
+  vram: 0x801870F0
   exclusive_ram_id: unk47CF30
   subsegments:
   - start: auto
@@ -11629,7 +11632,7 @@ segments:
   type: code
   name: rainbow_extra
   dir: rainbow
-  vram: 0x8011B060
+  vram: 0x8013A230
   exclusive_ram_id: unk4EC000
   subsegments:
   - start: auto
@@ -11776,7 +11779,7 @@ segments:
   dir: app_level
   vram: 0x8034F1C0
   exclusive_ram_id: app_level
-  bss_size: 0x009E40
+  bss_size: 0x00A320
   subsegments:
   - start: auto
     type: c
@@ -12799,7 +12802,7 @@ segments:
   type: code
   name: magikarp_model
   dir: pokemon_common
-  vram: 0x8034E130
+  vram: 0x8034D0F0
   exclusive_ram_id: unk8034E130
   subsegments:
   - start: auto
@@ -12920,7 +12923,7 @@ segments:
   type: code
   name: pikachu_model
   dir: pokemon_common
-  vram: 0x803476A0
+  vram: 0x80346660
   exclusive_ram_id: unk803476A0
   subsegments:
   - start: auto
@@ -13205,7 +13208,7 @@ segments:
   type: code
   name: zubat_model
   dir: pokemon_common
-  vram: 0x80344780
+  vram: 0x80343740
   exclusive_ram_id: unk80344780
   subsegments:
   - start: auto
@@ -13358,7 +13361,7 @@ segments:
   type: code
   name: bulbasaur_model
   dir: pokemon_common
-  vram: 0x8033F6C0
+  vram: 0x8033E680
   exclusive_ram_id: unk80344780
   subsegments:
   - start: auto
@@ -24306,7 +24309,7 @@ segments:
   type: code
   name: pikachu_model_hd
   dir: pokemon_common
-  vram: 0x803ADA50
+  vram: 0x803AD580
   exclusive_ram_id: unk832960
   subsegments:
   - start: auto
@@ -24415,7 +24418,7 @@ segments:
   type: code
   name: zubat_model_hd
   dir: pokemon_common
-  vram: 0x803AB250
+  vram: 0x803AA700
   exclusive_ram_id: unk837360
   subsegments:
   - start: auto
@@ -24482,7 +24485,7 @@ segments:
   type: code
   name: bulbasaur_model_hd
   dir: pokemon_common
-  vram: 0x803A7C60
+  vram: 0x803A71B0
   exclusive_ram_id: unk83A1E0
   subsegments:
   - start: auto
@@ -25299,19 +25302,19 @@ segments:
 - start: 0xAF86E8
   type: bin
   name: AFDDC8
-- start: 0xAF9800
+- start: 0xAFA270
   type: bin
   name: audio/bank1
-- start: 0xAFED50
+- start: 0xAFF7C0
   type: bin
   name: audio/table1
-- start: 0xBA1540
+- start: 0xBA1FB0
   type: bin
   name: audio/bank2
-- start: 0xBB1260
+- start: 0xBB1CD0
   type: bin
   name: audio/table2
-- start: 0xF4DE60
+- start: 0xF4E8D0
   type: bin
   name: padding
 - - 0x1000000

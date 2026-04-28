@@ -3,7 +3,7 @@
 u8 D_800BF050;
 s8 D_800BF051;
 
-static u8 pad_pal[0x80];
+// static u8 pad_pal[0x80];
 
 void func_800ABB40(void) {
     D_800BF050 = 0;

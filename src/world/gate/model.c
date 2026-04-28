@@ -179,11 +179,11 @@ extern Gfx gate_part3[];
 DObjPayloadTypeC gate_gfxdata[] = {
     { 0, gate_first },
     { 4, NULL },
-    { 0, gate_part1 },
+    { 1, gate_part_c },
     { 4, NULL },
-    { 1, gate_part2 },
+    { 1, gate_part_f },
     { 4, NULL },
-    { 0, gate_last },
+    { 0, gate_part_b },
     { 4, NULL },
 };
 

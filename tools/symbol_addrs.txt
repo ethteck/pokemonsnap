@@ -10,6 +10,11 @@ func_800E18B4_A5CC64 = 0x800E1DB4; // rom:0xA576B4
 func_800E1CF8_A5D0A8 = 0x800E2224; // rom:0xA57B24
 func_800E2ED0_A5E280 = 0x800E35D0; // rom:0xA58ED0
 func_800E1A94_AA0844 = 0x800E1F94; // rom:0xA9B124
+Msg_GetCharParams = 0x80363960; // rom:0x504600
+Msg_DrawChar = 0x80363CA0; // rom:0x504940
+Msg_DrawMessage = 0x803645AC; // rom:0x50524C
+Msg_ShowMessage = 0x80364A74; // rom:0x505714
+Msg_GetGlyphWidth = 0x8036392C; // rom:0x5045CC
  
 game_main = 0x80000870; // rom:0x1470
 dmaLoadOverlay = 0x80002A04; // rom:0x3604

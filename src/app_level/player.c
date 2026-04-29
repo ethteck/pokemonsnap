@@ -57,7 +57,7 @@ extern Sprite D_80381B58_521F68; // 521E10 END
 
 // we have to make this small array because of alignment
 u32 D_80382BF0_523000[] = {
-    0x803AE160,
+    0x803ADC70,
     0x00000000,
     0x00000000
 };

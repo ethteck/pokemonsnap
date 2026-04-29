@@ -14,6 +14,7 @@ UIElement* D_camera_check_8024991C;
 UIFrame* D_camera_check_80249920;
 char D_camera_check_80249928[128];
 SObj* D_camera_check_802499A8;
+u32 pad_pal[1];
 SObj* D_camera_check_802499B0;
 SObj* D_camera_check_802499B4;
 SObj* D_camera_check_802499B8;
@@ -850,6 +851,7 @@ void func_camera_check_801DECCC(s32 arg0) {
 void func_camera_check_801DEDEC(UIElement* arg0) {
     char* sp34;
     s32 pad;
+    s32 pad_pal;
     s32 sp2C;
     s32 pad2;
 
@@ -896,6 +898,7 @@ void func_camera_check_801DEDEC(UIElement* arg0) {
     }
 }
 
+#if 1
 void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 arg3) {
     int offset;
     int width;
@@ -922,7 +925,8 @@ void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 
     UIElement_SetTextPos(arg0, 0, 16);
     UIElement_PrintText(arg0, "Pok\xE9mon");
     sprintf(D_camera_check_80249928, "\\i       x%2d\\g kind(s)", func_camera_check_801E2478());
-    UIElement_SetTextPos(arg0, offset, 16);
+    width = offset;
+    UIElement_SetTextPos(arg0, width, 16);
     UIElement_PrintText(arg0, D_camera_check_80249928);
 
     if (arg3) {
@@ -937,11 +941,15 @@ void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 
         UIElement_SetTextPos(arg0, 0, 32);
         UIElement_PrintText(arg0, "Score");
         sprintf(D_camera_check_80249928, "\\i%10d\\g pts", arg2);
-        UIElement_SetTextPos(arg0, 56, 32);
+        UIElement_SetTextPos(arg0, offset, 32);
         UIElement_PrintText(arg0, D_camera_check_80249928);
         UIElement_SetColor(arg0, UI_FOREGROUND, 255, 255, 255, 255);
     }
 }
+#else
+void func_camera_check_801DF0D4(UIElement* arg0, UIElement* arg1, s32 arg2, s32 arg3);
+#pragma GLOBAL_ASM("asm/nonmatchings/camera_check/87A330/func_camera_check_801DF0D4.s")
+#endif
 
 void func_camera_check_801DF2D8(GObj* arg0) {
     char pad[0x10];

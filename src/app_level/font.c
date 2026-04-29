@@ -128,7 +128,7 @@ Sprite rgb_sprites = {
     0,
     2,
     font_rgb_bitmaps,
-    (void*) 0x803B1560,
+    (void*) 0x803B1070,
     0,
     0,
     0,
@@ -632,59 +632,6 @@ u8 font_arrowleft[] = {
 };
 
 __ALIGNER_DF
-u8 font_0[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_1[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_2[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_3[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_4[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_5[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_6[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_7[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_8[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_9[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_10[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_11[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-__ALIGNER_DF
-u8 font_12[] = {
-#include "assets/app_level/font/question.png.bin.c"
-};
-
-__ALIGNER_DF
 u8 font_5317F8[] = {
 #include "assets/app_level/font/5317F8.png.bin.c"
 };
@@ -839,6 +786,59 @@ u8 font_533148[] = {
 #include "assets/app_level/font/533148.png.bin.c"
 };
 
+__ALIGNER_DF
+u8 font_0[] = {
+#include "assets/app_level/font/pal_0.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_1[] = {
+#include "assets/app_level/font/pal_1.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_2[] = {
+#include "assets/app_level/font/pal_2.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_3[] = {
+#include "assets/app_level/font/pal_3.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_4[] = {
+#include "assets/app_level/font/pal_4.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_5[] = {
+#include "assets/app_level/font/pal_5.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_6[] = {
+#include "assets/app_level/font/pal_6.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_7[] = {
+#include "assets/app_level/font/pal_7.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_8[] = {
+#include "assets/app_level/font/pal_8.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_9[] = {
+#include "assets/app_level/font/pal_9.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_10[] = {
+#include "assets/app_level/font/pal_10.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_11[] = {
+#include "assets/app_level/font/pal_11.png.bin.c"
+};
+__ALIGNER_DF
+u8 font_12[] = {
+#include "assets/app_level/font/pal_12.png.bin.c"
+};
+
 Bitmap font_mono_bitmaps[] = {
     { 9, 16, 0, 0, &font_upper_a, 13, 0 },
     { 9, 16, 0, 0, &font_upper_b, 13, 0 },
@@ -989,7 +989,7 @@ Sprite mono_sprites = {
     0,
     0,
     117,
-    130,
+    143,
     1.0f,
     1.0f,
     0,
@@ -1005,14 +1005,14 @@ Sprite mono_sprites = {
     0,
     0,
     1,
-    0x82,
-    0x0630,
+    0x8F,
+    0x06CC,
     13,
     13,
     4,
     1,
     font_mono_bitmaps,
-    (void*) 0x803B1C20,
+    (void*) 0x803B1730,
     0,
     0,
     0
@@ -1131,8 +1131,8 @@ u8 D_803936B8_533AC8[] = {
     0x18,
     0x19,
     0x5E,
-    0x5F,
     0xFF,
+    0x5F,
     0xFF,
     0x4B,
     0xFF,
@@ -1169,7 +1169,7 @@ u8 D_803936B8_533AC8[] = {
     0xFF,
 };
 
-u8 D_80393738_533B48[] = {
+u8 D_80393738_533B48_PAL[] = {
     0xFF,
     0xFF,
     0xFF,
@@ -1298,6 +1298,10 @@ u8 D_80393738_533B48[] = {
     0x00,
     0x00,
     0x00,
+};
+
+
+u8 D_80393738_533B48[] = {
     0x08,
     0x07,
     0x08,

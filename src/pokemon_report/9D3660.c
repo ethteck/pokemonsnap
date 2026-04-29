@@ -1255,20 +1255,21 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
         UIElement_SetTextPos(arg0, 88, 16);
         func_8037519C_84894C(arg0, "\\i%7d\\g Sign%s", arg2, (arg2 != 1) ? "s" : "");
 
-        UIElement_SetTextPos(arg0, 8, 16);
+        UIElement_SetTextPos(arg0, 8, 32);
         UIElement_PrintText(arg0, "Report Score");
-        UIElement_SetTextPos(arg0, 88, 16);
+        UIElement_SetTextPos(arg0, 88, 32);
         func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     } else {
         UIElement_SetTextPos(arg0, 8, 16);
         UIElement_PrintText(arg0, "No. of PKMN seen");
         UIElement_SetTextPos(arg0, 88, 16);
         func_8037519C_84894C(arg0, "\\i%7d\\g kind%s", arg1, (arg1 != 1) ? "s" : "");
+        UIElement_SetTextPos(arg0, 8, 32);
+        UIElement_PrintText(arg0, "Report Score");
+        UIElement_SetTextPos(arg0, 88, 32);
+        func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     }
-    UIElement_SetTextPos(arg0, 8, 32);
-    UIElement_PrintText(arg0, "Report Score");
-    UIElement_SetTextPos(arg0, 88, 32);
-    func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
+    
     if (checkPlayerFlag(PFID_14)) {
         sprintf(sp28, "%s", "Boost your PKMN Report Score!");
     } else if (func_800BF3D4_5C274(PokemonID_MEW)) {
@@ -1314,8 +1315,6 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
     func_8037519C_84894C(arg0, "%s", sp28);
 }
 
-void func_801E1375(void*, int, int, int, int);
-
 void func_801E1378_9D7CE8(int arg0) {
     s32 i;
     s32 pad2;
@@ -1341,7 +1340,7 @@ void func_801E1378_9D7CE8(int arg0) {
         sp44 = func_801DCF5C_9D38CC(&sp3C);
         sp40 = func_800BF864_5C704();
         UIElement_Draw(sp38);
-        func_801E1375(sp38, sp40, sp3C, sp44, arg0);
+        func_801E0DB4_9D7724(sp38, sp40, sp3C, sp44, arg0);
         ohWait(1);
         UIElement_SetState(sp38, UI_NORMAL);
 

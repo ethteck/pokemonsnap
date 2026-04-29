@@ -246,7 +246,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
             } else {
                 *column = 0;
             }
-        } else if (*column < 2) {
+        } else if (*column < 3) {
             (*column)++;
         } else {
             *column = 0;
@@ -262,7 +262,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
         } else if (*column > 0) {
             *column -= 1;
         } else {
-            *column = 2;
+            *column = 3;
         }
     }
 
@@ -574,8 +574,8 @@ s32 album_UpdateAlbumPage(void) {
                     break;
                 }
 
-                if (input->pressedButtons & B_BUTTON) {
-                    auPlaySound(SOUND_ID_74);
+                if (input->pressedButtons & Z_TRIG) {
+                    auPlaySound(0x4B);
                     if (func_801DD2FC() == 1 && gridRow >= 0xE && gridRow < 0x13) {
                         gridRow = 0xD;
                     }
@@ -601,7 +601,7 @@ s32 album_UpdateAlbumPage(void) {
                         func_801DEA4C_9A8C9C(false, gridColumn, gridRow);
                     }
                     if (album_GetCursorPos() >= 31) {
-                        gridColumn = 2;
+                        gridColumn = 3;
                         gridRow = 19;
                     }
                     break;

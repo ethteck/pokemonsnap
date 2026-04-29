@@ -500,6 +500,7 @@ void func_801E3B18_9DA488(void) {
                 sp18 = func_801E38DC_9DA24C();
                 break;
             case 5:
+            default:
                 return;
         }
     }

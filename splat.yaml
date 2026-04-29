@@ -12769,6 +12769,85 @@ segments:
       width: 0x000010
       height: 0x00000D
     - - 0x532988
+    - start: 0x532990
+      type: i8
+      name: pal_0
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532A60
+    - start: 0x532A68
+      type: i8
+      name: pal_1
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532B38
+    - start: 0x532B40
+      type: i8
+      name: pal_2
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532C10
+    - start: 0x532C18
+      type: i8
+      name: pal_3
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532CE8
+    - start: 0x532CF0
+      type: i8
+      name: pal_4
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532DC0
+    - start: 0x532DC8
+      type: i8
+      name: pal_5
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532E98
+    - start: 0x532EA0
+      type: i8
+      name: pal_6
+      width: 0x000010
+      height: 0x00000D
+    - - 0x532F70
+    - start: 0x532F78
+      type: i8
+      name: pal_7
+      width: 0x000010
+      height: 0x00000D
+    - - 0x533048
+    - start: 0x533050
+      type: i8
+      name: pal_8
+      width: 0x000010
+      height: 0x00000D
+    - - 0x533120
+    - start: 0x533128
+      type: i8
+      name: pal_9
+      width: 0x000010
+      height: 0x00000D
+    - - 0x5331F8
+    - start: 0x533200
+      type: i8
+      name: pal_10
+      width: 0x000010
+      height: 0x00000D
+    - - 0x5332D0
+    - start: 0x5332D8
+      type: i8
+      name: pal_11
+      width: 0x000010
+      height: 0x00000D
+    - - 0x5333A8
+    - start: 0x5333B0
+      type: i8
+      name: pal_12
+      width: 0x000010
+      height: 0x00000D
+    - - 0x533480
+    - - 0x533550
   - start: 0x533FA0
     type: data
     name: 533C00

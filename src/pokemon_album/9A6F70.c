@@ -1199,7 +1199,7 @@ void album_PressedCharacterInGrid(s32 column, s32 row) {
                 return;
             case 2:
                 album_SwitchCharacterGridPage(1);
-                auPlaySound(0x42);
+                auPlaySound(0x4B);
                 return;
             default:
                 func_801E008C_9AA2DC(comment, album_CommentCursorPos);
@@ -1245,7 +1245,7 @@ void album_CreateCoverPage(void) {
     s32 sp54;
     s32 i;
     UIElement* sp4C;
-    s32 pad[7];
+    s32 pad[8];
     int sp30;
 
     func_801DF2E0_9A9530();
@@ -1256,7 +1256,7 @@ void album_CreateCoverPage(void) {
     album_SetCommentBackgroundColor(0);
     func_801DF120_9A9370(true);
 
-    sp4C = UIElement_Create(124, 131, 184, 149, UI_FLAG_32BIT);
+    sp4C = UIElement_Create(124, 131, 0x3C, 0x12, UI_FLAG_32BIT);
     UIElement_SetColor(sp4C, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp4C, UI_BACKGROUND, 0, 0, 0, 0);
     UIText_SetShadowOffset(0);

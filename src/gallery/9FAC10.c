@@ -340,10 +340,10 @@ void func_801DDCA8_9FB968(s32 arg0) {
             UIElement_PrintText(D_80230880_A4E540, "Choose the picture you'd like\nto enlarge with the Control\nStick. Press \\a to decide.");
             break;
         case 12:
-            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress  \\a to decide.");
+            UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
             break;
         case 13:
-            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool!  \\b Not so good...");
+            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool!   \\b Not so good...");
             break;
         case 8:
             UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
@@ -682,7 +682,7 @@ void func_801DEE88_9FCB48(void) {
         FocusMark_Show(false);
         UILayout_DisableButton(1, 0x20);
         UIElement_Draw(D_80230880_A4E540);
-        UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
+        UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
         UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
         if (func_801E1504_9FF1C4(1) != 0) {
             sp28 = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
@@ -830,7 +830,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
             func_801E1504_9FF1C4(0);
         } else {
             UIElement_Draw(D_80230880_A4E540);
-            UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
+            UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
             UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
             if (func_801E1504_9FF1C4(1) != 0) {
                 gobj = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);

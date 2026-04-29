@@ -174,10 +174,10 @@ void func_800E6F68_A0E4F8(void) {
             leftRightCur = 12;
         }
 
-        if (topBottomCur < -12) {
-            topBottomCur = -12;
-        } else if (topBottomCur > 12) {
-            topBottomCur = 12;
+        if (topBottomCur < -9) {
+            topBottomCur = -9;
+        } else if (topBottomCur > 9) {
+            topBottomCur = 9;
         }
         viSetScreenOffsets(leftRightCur, leftRightCur, topBottomCur, topBottomCur);
         ohWait(1);

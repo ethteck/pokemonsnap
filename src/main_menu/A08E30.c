@@ -300,7 +300,7 @@ void func_800E2058_A095E8(void) {
     omGObjAddSprite(gobj, &D_802F82C8);
 
     sobj = sobj->next;
-    func_800E18FC_A08E8C(sobj, 74, 198);
+    func_800E18FC_A08E8C(sobj, 66, 198);
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_TRANSPARENT);
 }
 
@@ -1157,6 +1157,7 @@ void func_800E4100_A0B690(GObj* gobj) {
     }
 }
 
+#if 1
 s32 func_800E426C_A0B7FC(s8 arg0) {
     UNUSED s32 padding;
     GObj* gobj;
@@ -1186,6 +1187,10 @@ s32 func_800E426C_A0B7FC(s8 arg0) {
     ohEndAllObjectProcesses(gobj);
     return ret;
 }
+#else
+s32 func_800E426C_A0B7FC(s8 arg0);
+#pragma GLOBAL_ASM("asm/nonmatchings/main_menu/A08E30/func_800E426C_A0B7FC.s")
+#endif
 
 void func_800E4354_A0B8E4(void) {
     func_800E5D2C_A0D2BC();

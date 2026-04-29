@@ -465,8 +465,8 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
             case '\\k':
                 UIText_SetFont(1); // BUG: 1 is not valid font
                 goto END;
-            case '\\n':
-                goto NEXT_LINE;
+            // case '\\n':
+                // goto NEXT_LINE;
             default:
                 if (c == '\\') {
                     if (UIText_PrintDelay != 0 && D_803A6A0C_87A1BC != NULL && !UIText_DelayDisabled) {

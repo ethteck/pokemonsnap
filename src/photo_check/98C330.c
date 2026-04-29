@@ -98,8 +98,9 @@ typedef struct ObjPair {
 } ObjPair; // size = 0x8
 
 // BSS
-ObjPair D_802290A0_9D8B10[6];
 u8 D_801F70A0_9A6B10[0x32000];
+ObjPair D_802290A0_9D8B10[6];
+static s32 D_802291A0[2]; // padding?
 UIFrame* D_802290D8_9D8B48;
 UIElement* D_802290DC_9D8B4C;
 UIElement* D_802290E0_9D8B50;
@@ -112,7 +113,7 @@ SObj* D_80229184_9D8BF4;
 SObj* D_80229188_9D8BF8;
 s32 D_8022918C_9D8BFC;
 s32 D_80229190_9D8C00;
-static s32 D_802291A0[2]; // padding?
+
 
 void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);
@@ -853,6 +854,7 @@ void func_801DE02C_98DA9C(GObj* arg0) {
     ohWait(0x63);
 }
 
+#if 1
 s32 func_801DE204_98DC74(Photo* photo) {
     Unk803A6C18* sp25C;
     UIElement* sp258;
@@ -1100,7 +1102,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
                 UIElement_PrintText(D_802290E4_9D8B54, "Last time");
 
                 _sp1EC = 0xAE - (UIText_GetStringWidth("\\j\\gThis time") / 2);
-                if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x106) {
+                if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x105) {
                     _sp1EC = 0x105 - UIText_GetStringWidth("\\j\\gThis time");
                 }
                 if (_sp1EC < 0) {
@@ -1867,6 +1869,10 @@ s32 func_801DE204_98DC74(Photo* photo) {
     D_801F3E34_9A38A4 = false;
     return sp1EC;
 }
+#else
+s32 func_801DE204_98DC74(Photo* photo);
+#pragma GLOBAL_ASM("asm/nonmatchings/photo_check/98C330/func_801DE204_98DC74.s")
+#endif
 
 s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     SObj* sp5C;
@@ -1975,7 +1981,7 @@ void func_801E2454_991EC4(void) {
     s32 pad2;
     UIElement* sp3C;
 
-    s8 sp40[24];
+    s8 sp40[20];
 
     sp54 = -26;
     sp50 = 0;
@@ -2384,7 +2390,7 @@ void func_801E39DC_99344C(GObj* arg0) {
     UILayout_Init();
     FocusMark_Create();
     FocusMark_Show(false);
-    sp3C = UIElement_Create(71, 25, 204, 48, 0);
+    sp3C = UIElement_Create(0x3A, 25, 204, 48, 0);
     D_802290E4_9D8B54 = sp3C;
     UIElement_SetColor(sp3C, UI_FOREGROUND, 255, 255, 255, 255);
     UIElement_SetColor(sp3C, UI_BACKGROUND, 17, 78, 125, 0);

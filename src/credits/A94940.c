@@ -3,7 +3,7 @@
 #include "credits.h"
 
 Credit D_credits_801E8BA0[] = {
-    { 50, 240.0f, "POKEMON SNAP Staff", 0 },
+    { 50, 240.0f, "POK\xE9MON SNAP Staff", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
@@ -384,7 +384,7 @@ void func_credits_801DE35C(void) {
     }
 
     func_credits_801DD980();
-    ohWait(180);
+    ohWait(60);
     func_credits_801DD744();
     ohWait(180);
 

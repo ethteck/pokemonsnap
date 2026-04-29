@@ -165,7 +165,7 @@ s32 func_800E37CC_8A8FEC(void) {
     s32 numKinds;
     s32 numPics;
     s32 numPts;
-    char sp4C[0x18];
+    char sp4C[28];
 
     sp78 = -1;
     sp80 = 0;
@@ -302,7 +302,7 @@ s32 func_800E3CE8_8A9508(void) {
             auPlaySoundWithParams(0xA0, 0x7FFF, 0x40, 0.75f, 0);
             auPlaySound(0x53);
             UIElement_Draw(sp2C);
-            UIElement_SetTextPos(sp2C, 0, 32);
+            UIElement_SetTextPos(sp2C, 0, 0);
             UIElement_PrintText(sp2C, "\\eSaving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
             ohWait(48);
             auSetBGMVolumeSmooth(0, 0, 30);

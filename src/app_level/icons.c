@@ -39,7 +39,7 @@ extern Sprite D_80387448_527858; // Icon_Apple
 extern Sprite D_803880E8_5284F8; // Icon_Flute
 // we have to make this small array because of alignment
 u32 EndOfSpriteData[] = {
-    0x803AF790,
+    0x803AF2A0,
     0x00000000,
     0x00000000
 };

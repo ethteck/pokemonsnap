@@ -853,7 +853,6 @@ void func_801DE02C_98DA9C(GObj* arg0) {
     ohWait(0x63);
 }
 
-#if 1
 s32 func_801DE204_98DC74(Photo* photo) {
     Unk803A6C18* sp25C;
     UIElement* sp258;
@@ -870,6 +869,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     s32 sp1F0;
     s32 sp1EC;
     s32 sp1E8;
+    s32 _sp1EC;
     GObj* sp1E4;
     char sp1D4[16];
     char sp1C4[16];
@@ -909,7 +909,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
     char sp44[16];
     UnkStruct800BEDF8* sp40;
     s32 sp3C;
-    s32 _sp1EC;
+    
 
     sp1F0 = 2;
     sp210 = 0;
@@ -1029,7 +1029,7 @@ s32 func_801DE204_98DC74(Photo* photo) {
             UIElement_PrintText(D_802290E4_9D8B54, "Last time");
 
             _sp1EC = 0xAE - UIText_GetStringWidth("\\j\\gThis time") / 2;
-            if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x106) {
+            if ((_sp1EC + UIText_GetStringWidth("\\j\\gThis time")) > 0x105) {
                 _sp1EC = 0x105 - UIText_GetStringWidth("\\j\\gThis time");
             }
             if (_sp1EC < 0) {
@@ -1868,10 +1868,6 @@ s32 func_801DE204_98DC74(Photo* photo) {
     D_801F3E34_9A38A4 = false;
     return sp1EC;
 }
-#else
-s32 func_801DE204_98DC74(Photo* photo);
-#pragma GLOBAL_ASM("asm/nonmatchings/photo_check/98C330/func_801DE204_98DC74.s")
-#endif
 
 s32 func_801E1FA8_991A18(Photo* arg0, s32 arg1, s32 arg2) {
     SObj* sp5C;

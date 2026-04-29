@@ -1157,15 +1157,15 @@ void func_800E4100_A0B690(GObj* gobj) {
     }
 }
 
-#if 1
 s32 func_800E426C_A0B7FC(s8 arg0) {
     UNUSED s32 padding;
     GObj* gobj;
     SObj* sobj;
     s32 ret;
 
-    sobj = D_800E82E0_A0F870->data.sobj;
     gobj = D_800E82E0_A0F870;
+    sobj = gobj->data.sobj;
+    
     func_800E18FC_A08E8C(sobj, (320 - sobj->sprite.width) / 2, 147);
     omCreateProcess(gobj, func_800E4100_A0B690, 0, 1);
     func_800E18AC_A08E3C(sobj, true);
@@ -1187,10 +1187,6 @@ s32 func_800E426C_A0B7FC(s8 arg0) {
     ohEndAllObjectProcesses(gobj);
     return ret;
 }
-#else
-s32 func_800E426C_A0B7FC(s8 arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/main_menu/A08E30/func_800E426C_A0B7FC.s")
-#endif
 
 void func_800E4354_A0B8E4(void) {
     func_800E5D2C_A0D2BC();

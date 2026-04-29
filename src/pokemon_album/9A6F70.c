@@ -76,7 +76,6 @@ char* album_CharGrids_2[] = {
     "     "
 };
 
-
 bool album_IsEditingComment = true;
 s32 album_CursorAlpha = 10;
 s32 album_CursorAlphaRate = 5;

@@ -599,7 +599,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 #pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
 #endif
 
-// called when rcp task is done 
+// called when rcp task is done
 void scSetNextFrameBuffer(void* fb) {
     if (scViSettingsUpdated) {
         if (!scBeforeReset) {

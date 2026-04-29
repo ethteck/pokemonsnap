@@ -16,8 +16,6 @@ extern u8 doduo_tex_80159D30_png[];
 extern u8 doduo_tex_80159DB8[];
 extern u8 doduo_tex_80159DE0_png[];
 
-
-
 extern u8 D_PAL_801B57F0_1415B0[];
 extern u8 D_801597A8_beach_extra[];
 extern u8 D_801599B0_beach_extra[];

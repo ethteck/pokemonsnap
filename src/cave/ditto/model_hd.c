@@ -188,8 +188,6 @@ extern u8 D_801C1280_cave_extra[];
 extern u8 D_801C0DB0_cave_extra[];
 extern u8 D_801C11A0_cave_extra[];
 
-
-
 extern Gfx ditto_hd_part0_draw[];
 
 #include "assets/cave/ditto/hd_model.vtx.inc.c"

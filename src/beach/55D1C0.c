@@ -68,14 +68,14 @@ void func_beach_802C52EC(GObj* obj) {
     startAtY = cam->viewMtx.lookAt.at.y;
     startAtZ = cam->viewMtx.lookAt.at.z;
 
-    cam->animSpeed = 0.5f; 
-    animSetCameraAnimation(cam, &D_8013DA90, 0.0f); 
+    cam->animSpeed = 0.5f;
+    animSetCameraAnimation(cam, &D_8013DA90, 0.0f);
     proc = omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
     PlayerModel_SetAnimation(&D_8013C580, &D_8013CEA0, 0.0f, 0.5f);
     D_beach_802CC0E0 = 0;
     obj->fnAnimCallback = func_beach_802C51A0;
     omCreateProcess(obj, func_beach_802C527C, 0, 1);
- 
+
     i = 0;
     while (D_beach_802CC0E0 == 0 && i < 290) {
         if (gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {

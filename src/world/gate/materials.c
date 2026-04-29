@@ -69,7 +69,7 @@ Texture gate_part1_mat0 = {
     0,
     0,
     0,
-    0, 
+    0,
 };
 
 u8* gate_part2_mat0_textures[] = {

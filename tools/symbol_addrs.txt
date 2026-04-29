@@ -25,6 +25,7 @@ D_800EB460 = 0x800EB960;
 D_800EAF60 = 0x800EB460;
 D_800EDAB0 = 0x800EDFB0;
 D_800ED5B0 = 0x800EDAB0;
+func_800E23E0_A5D790 = 0x800E29D0; // rom:0xA582D0
 
 UIElement_Draw = 0x80370B64; // segment:window
 UIElement_SetTextPos = 0x80371C6C; // segment:window

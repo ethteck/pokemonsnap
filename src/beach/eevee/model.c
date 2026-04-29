@@ -19,8 +19,6 @@ extern u8 eevee_tex_801640A8[];
 extern u8 eevee_tex_801644D8[];
 extern u8 eevee_tex_80164BE0[];
 
-
-
 extern u8 D_PAL_800EEA20_6B540[];
 extern u8 D_PAL_800EF250_6BD70[];
 extern u8 D_PAL_800EEA48_6B568[];

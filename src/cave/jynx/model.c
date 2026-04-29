@@ -94,7 +94,7 @@ Texture* jynx_part1_mat[] = {
     NULL,
 };
 
-#include "assets/cave/jynx/model.vtx.inc.c" 
+#include "assets/cave/jynx/model.vtx.inc.c"
 
 Gfx D_6B5C98[] = {
     /* 006B5C98: */ gsDPPipeSync(),

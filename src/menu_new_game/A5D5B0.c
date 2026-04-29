@@ -16,30 +16,41 @@ static u8 D_80168143;
 static u8 D_80168144;
 static GObj* D_80168148;
 static u8 D_8016814C;
+static s32 pad[1];
+static s8 PAL_VAR;
 
 void func_800E2800_A5DBB0(void);
 void func_800E2758_A5DB08(void);
 void func_800E28C0_A5DC70(void);
 u8** func_800E18B4_A5CC64(s32 arg0);
 
-#if 0
 void func_800E2200_A5D5B0(void) {
     if (menu_new_game_CursorY < 19) {
         FocusMark_SetTargetSize(4, 5);
         FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
-    if (menu_new_game_CursorX < 2) {
-        FocusMark_SetTargetSize(4, 5);
-        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
-        return;
+
+    switch (menu_new_game_CursorX) {
+        case 0:
+        case 1:
+            FocusMark_SetTargetSize(4, 5);
+            FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+            break;
+        case 2:
+            FocusMark_SetTargetSize(8, 5);
+            FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+            break;
+        default:
+        case 3:
+            FocusMark_SetTargetSize(15, 5);
+            FocusMark_SetTargetPos(69, menu_new_game_CursorY * 10 + 22);
+            break;
     }
-    FocusMark_SetTargetSize(15, 5);
-    FocusMark_SetTargetPos(63, menu_new_game_CursorY * 10 + 22);
 }
 
 void func_800E2314_A5D6C4(void) {
-    menu_new_game_CursorX = 2;
+    menu_new_game_CursorX = 3;
     menu_new_game_CursorY = 19;
     func_800E2200_A5D5B0();
     auPlaySound(SOUND_ID_65);
@@ -65,6 +76,7 @@ void func_800E23B0_A5D760(void) {
     func_800E2350_A5D700();
 }
 
+#if 0
 void func_800E23E0_A5D790(s32 buttons) {
     if (menu_new_game_CursorY < 19) {
         if (buttons & 0x10000) {
@@ -121,25 +133,23 @@ void func_800E23E0_A5D790(s32 buttons) {
         }
     }
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E23E0_A5D790.s")
+#endif
 
 void func_800E2590_A5D940(UnkStruct800BEDF8* arg0) {
     func_800E23E0_A5D790(arg0->pressedButtons);
     func_800E2200_A5D5B0();
 }
 
-void func_800E25B8_A5D968(void) {
+#if 0
+void func_PAL_800E2C54_A58554(void) {
+    PAL_VAR+=1;
+    PAL_VAR %= 2;
+    func_800E1CF8_A5D0A8(PAL_VAR);
+    auPlaySound(0x4B);
 }
 #else
-void func_800E2314_A5D6C4(void);
-void func_800E23B0_A5D760(void);
-void func_800E2590_A5D940(UnkStruct800BEDF8* arg0);
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2780_A58080.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E2314_A5D6C4.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2940_A58240.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2974_A58274.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E29A0_A582A0.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E29D0_A582D0.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2C2C_A5852C.s")
 #pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2C54_A58554.s")
 #endif
 

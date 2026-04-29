@@ -119,13 +119,16 @@ void func_800E1A34_AA07E4(s32 unused) {
     }
 }
 
-#if 0
+
 void func_800E1A94_AA0844(s32 unused) {
     func_800ABB94();
     D_800E1DD0_AA0B80 = func_800E18A0_AA0650();
+    D_800E1DD0_AA0B80->flags |= GOBJ_FLAG_HIDDEN;
     ohWait(1);
     func_800C05D4_5D474();
     ohWait(1);
+    ohWait(0x1E);
+    D_800E1DD0_AA0B80->flags &= ~GOBJ_FLAG_HIDDEN;
     if (D_800E1DD4_AA0B84 < 60) {
         ohWait(60 - D_800E1DD4_AA0B84);
     }
@@ -135,10 +138,6 @@ void func_800E1A94_AA0844(s32 unused) {
         ohWait(1);
     }
 }
-#else
-void func_800E1A94_AA0844(s32 unused);
-#pragma GLOBAL_ASM("asm/nonmatchings/AA0650/func_800E1A94_AA0844.s")
-#endif
 
 void func_800E1B30_AA08E0(Gfx** dlist) {
     gSPDisplayList((*dlist)++, &D_800E1CE8_AA0A98);

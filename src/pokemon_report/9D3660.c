@@ -1269,7 +1269,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg
         UIElement_SetTextPos(arg0, 88, 32);
         func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     }
-    
+
     if (checkPlayerFlag(PFID_14)) {
         sprintf(sp28, "%s", "Boost your PKMN Report Score!");
     } else if (func_800BF3D4_5C274(PokemonID_MEW)) {

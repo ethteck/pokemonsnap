@@ -61,7 +61,7 @@ char* D_800E2FF0[] = {
 };
 // clang-format on
 
-char* D_800E356C[] = { "\x98", "\x99", "\xA0\x9F","    OK","\0"};
+char* D_800E356C[] = { "\x98", "\x99", "\xA0\x9F", "    OK", "\0" };
 
 ScreenSettings menu_new_game_video_settings = {
     D_803B5000,    /* fb1 */
@@ -110,7 +110,6 @@ void func_800E18A0_A5CC50(SObj* arg0, u8 color) {
 char** func_800E18B4_A5CC64(s32 arg0);
 
 #pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5CC50/func_800E18B4_A5CC64.s")
-
 
 void func_800E18C4_A5CC74(void) {
 }
@@ -231,7 +230,7 @@ void func_800E1CF8_A5D0A8(s8 arg0) {
         UIElement_PrintText(temp_s2, D_800E356C[temp_s1++]);
     }
 }
-#else 
+#else
 void func_800E1CF8_A5D0A8(s8 arg0);
 #pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5CC50/func_800E1CF8_A5D0A8.s")
 

@@ -113,7 +113,6 @@ GObj* Msg_InitCamera(void) {
 void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 colorR, u8 colorG, u8 colorB, u8 colorA, s32 delayBetweenChars, u8 alignment);
 #pragma GLOBAL_ASM("asm/nonmatchings/app_level/msg/Msg_ShowMessage.s")
 
-
 void Msg_Reset(void) {
     Msg_PrintedText[0] = 0;
     Msg_MessageLength = 0;

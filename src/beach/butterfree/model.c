@@ -18,8 +18,6 @@ extern u8 butterfree_tex_80153C58[];
 extern u8 butterfree_tex_80154680[];
 extern u8 butterfree_tex_80154888_png[];
 
-
-
 extern u8 D_PAL_801B2210_13DFD0[];
 extern u8 D_80154068_beach_extra[];
 extern u8 D_80154090_beach_extra[];

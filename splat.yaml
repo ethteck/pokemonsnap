@@ -247,7 +247,7 @@ segments:
 
     - [0x415C0, .data, sys/main]
     - [0x415F0, .data, sys/gtl]
-    - [0x41650, .data, sys/rdp_reset]
+    - [0x41660, .data, sys/rdp_reset]
     - [0x41780, .data, sys/om]
     - [0x41830, .data, sys/render]
     - [0x41840, .data, sys/misc]
@@ -2644,6 +2644,7 @@ segments:
       - { start: 0x3264D8, type: rgba16, name: skybox, flip_y: true, width: 64, height: 32 }
       - [0x3274D8, vtx, skybox]
       - [0x3278B8, gfx, skybox]
+    - [0x3279E0, .data, world/world_gfx]
     - start: 0x327AE0
       type: .data
       dir: block0
@@ -2732,7 +2733,7 @@ segments:
       - [0x339B00, gfx, draw]
       - [0x339C10, vtx, model]
       - [0x339D00]
-    - [0x339DA0, .data, growlithe_spawner/materials]
+    - [0x339D90, .data, growlithe_spawner/materials]
     - start: 0x339E30
       type: .data
       dir: growlithe_spawner/anim/
@@ -5775,7 +5776,7 @@ segments:
     subsegments:
     - [auto, c, bulbasaur/model]
 
-    - start: 0x5574C0
+    - start: 0x5573F0
       type: .data
       dir: bulbasaur
       name: bulbasaur/model
@@ -8150,8 +8151,7 @@ segments:
       subsegments:
       - [0x7346A0, snap_height_map_patches, patches]
       - [0x74C728, snap_height_map_tree, tree]
-      - [0x76E170]
-    - { start: auto, type: .data, name: world/height_map, linker_section_order: .rodata }
+    - { start: 0x76E170, type: .data, name: world/height_map, linker_section_order: .rodata }
     - start: 0x76E180
       type: .data
       dir: magmar
@@ -9519,7 +9519,7 @@ segments:
       - [0x81F530, gfx, part17_draw_far]
       - [0x81F590, gfx, part17_draw]
       - [0x81F5B8, gfx, last]
-    - start: 0x81FB60
+    - start: 0x81FA10
       type: .data
       dir: goldeen
       name: goldeen/model
@@ -9620,11 +9620,12 @@ segments:
     - [0x82A0F0, data, 82A640]
 
     - [0x82A8A0, .rodata, mew/code]
+    - [0x82A910, .rodata, gate/code]
     - [0x82A920, .rodata, pkmn_1037/code]
     - [0x82A930, .rodata, evolution_controller/code]
     - [0x82A940, .rodata, pkmn_1038/code]
 
-    - start: 0x82AA80
+    - start: 0x82A960
       type: .data
       dir: mew
       name: mew/model
@@ -9939,7 +9940,7 @@ segments:
     - [0x8A0CC0, c, 8A7360]
     - [0x8A22F0, c, 8A8A50]
     - [0x8A35A0, c, 8A9CC0]
-    - [0x8A4830, c, 8AAF60]
+    - [0x8A4840, c, 8AAF60]
 
     - [0x8A57D0, .data, 8A70E0]
     - [0x8A58F0, data, 8AC010]
@@ -10047,6 +10048,8 @@ segments:
 
     - [0xA02AC0, .data, A084B0]
 
+    - [0xA02B80, .rodata, A084B0]
+
     - { name: A084B0, type: bss, vram: 0x801DD7F0 }
   - name: main_menu
     type: code
@@ -10068,7 +10071,8 @@ segments:
     - [0xA09750, .rodata, A0E190]
 
     - { name: bss_800E82A0, type: bss, vram: 0x800E8940 }
-  - [0xA09770, bin, A0F830]
+  - { start: 0xA09770, type: vpk0, name: A0F830, align: 16 }
+  - [0xA57694]
   - name: menu_new_game
     type: code
     dir: menu_new_game
@@ -10117,7 +10121,7 @@ segments:
     - [0xA99F40, .data, A94940]
 
     - [0xA9A890, .rodata, A937C0]
-    - [0xA9A8B0, .rodata, A937C0]
+    - [0xA9A8B0, .rodata, A94480]
     - [0xA9A8C0, .rodata, A94940]
 
     - { name: bss_801E9A90, type: bss, vram: 0x801EA170 }
@@ -10151,23 +10155,23 @@ segments:
   - [0xAA4F80, bin, idle_script_beach]
   - [0xAABD90, bin, idle_script_tunnel]
   - [0xAB0180, bin, fx/script/common]
-  - [0xAB02A0, bin, fx/img/common]
+  - [0xAB02A0, snap_effect_sprites, fx/img/common, sprite1, sprite2]
   - [0xAB2F00, bin, fx/script/beach]
-  - [0xAB30A0, bin, fx/img/beach]
+  - [0xAB30A0, snap_effect_sprites, fx/img/beach, sprite1, sprite2, sprite3, sprite4, sprite5, sprite6]
   - [0xAB90C0, bin, fx/script/tunnel]
-  - [0xAB94F0, bin, fx/img/tunnel]
+  - [0xAB94F0, snap_effect_sprites, fx/img/tunnel, sprite1, sprite2, sprite3, sprite4, sprite5, sprite6, sprite7]
   - [0xAC11B0, bin, fx/script/cave]
-  - [0xAC13A0, bin, fx/img/cave]
+  - [0xAC13A0, snap_effect_sprites, fx/img/cave, sprite1, sprite2, sprite3]
   - [0xAC2E30, bin, fx/script/river]
-  - [0xAC3150, bin, fx/img/river]
+  - [0xAC3150, snap_effect_sprites, fx/img/river, sprite1, sprite2, sprite3, sprite4]
   - [0xACA010, bin, fx/script/volcano]
-  - [0xACA2C0, bin, fx/img/volcano]
+  - [0xACA2C0, snap_effect_sprites, fx/img/volcano, sprite1, sprite2]
   - [0xACB720, bin, fx/script/valley]
-  - [0xACBF60, bin, fx/img/valley]
+  - [0xACBF60, snap_effect_sprites, fx/img/valley, sprite1, sprite2, sprite3, sprite4, sprite5]
   - [0xAD7C30, bin, fx/script/rainbow]
-  - [0xAD7EF0, bin, fx/img/rainbow]
+  - [0xAD7EF0, snap_effect_sprites, fx/img/rainbow, sprite1, sprite2, sprite3]
   - [0xAD9580, bin, fx/script/intro]
-  - [0xAD9710, bin, fx/img/intro]
+  - [0xAD9710, snap_effect_sprites, fx/img/intro, sprite1, sprite2]
   - [0xADAE30, bin, AE0510]
   - [0xAEA530, bin, audio/sbk]
   - [0xAEA65C, bin, audio/seq/AEFD3C]
@@ -10182,32 +10186,31 @@ segments:
   - [0xAEE694, bin, audio/seq/AF3D74]
   - [0xAEED6C, bin, audio/seq/AF444C]
   - [0xAEF238, bin, audio/seq/AF4918]
-  - [0xAF03AC, bin, audio/seq/AF5A8C]
-  - [0xAF086C, bin, audio/seq/AF5F4C]
-  - [0xAF17A4, bin, audio/seq/AF6E84]
-  - [0xAF265C, bin, audio/seq/AF7D3C]
-  - [0xAF28A8, bin, audio/seq/AF7F88]
-  - [0xAF3330, bin, audio/seq/AF8A10]
-  - [0xAF35A8, bin, audio/seq/AF8C88]
-  - [0xAF3E28, bin, audio/seq/AF9508]
-  - [0xAF4258, bin, audio/seq/AF9938]
-  - [0xAF43E8, bin, audio/seq/AF9AC8]
-  - [0xAF4504, bin, audio/seq/AF9BE4]
-  - [0xAF457C, bin, audio/seq/AF9C5C]
-  - [0xAF5118, bin, audio/seq/AFA7F8]
-  - [0xAF528C, bin, audio/seq/AFA96C]
-  - [0xAF5D6C, bin, audio/seq/AFB44C]
-  - [0xAF6234, bin, audio/seq/AFB914]
-  - [0xAF6810, bin, audio/seq/AFBEF0]
-  - [0xAF6BF8, bin, audio/seq/AFC2D8]
-  - [0xAF7608, bin, audio/seq/AFCCE8]
-  - [0xAF7AB4, bin, audio/seq/AFD194]
-  - [0xAF7BB8, bin, audio/seq/AFD298]
-  - [0xAF7CC4, bin, audio/seq/AFD3A4]
-  - [0xAF7DB4, bin, audio/seq/AFD494]
-  - [0xAF85F8, bin, audio/seq/AFDCD8]
-  - [0xAF86E4, bin, audio/seq/AFDDC4]
-  - [0xAF86E8, bin, AFDDC8]
+  - [0xAF09E8, bin, audio/seq/AF5A8C]
+  - [0xAF0EA8, bin, audio/seq/AF5F4C]
+  - [0xAF1DE0, bin, audio/seq/AF6E84]
+  - [0xAF2C98, bin, audio/seq/AF7D3C]
+  - [0xAF2EE4, bin, audio/seq/AF7F88]
+  - [0xAF396C, bin, audio/seq/AF8A10]
+  - [0xAF3BE4, bin, audio/seq/AF8C88]
+  - [0xAF4464, bin, audio/seq/AF9508]
+  - [0xAF4894, bin, audio/seq/AF9938]
+  - [0xAF4A24, bin, audio/seq/AF9AC8]
+  - [0xAF4B40, bin, audio/seq/AF9BE4]
+  - [0xAF4BB8, bin, audio/seq/AF9C5C]
+  - [0xAF5754, bin, audio/seq/AFA7F8]
+  - [0xAF58C8, bin, audio/seq/AFA96C]
+  - [0xAF63A8, bin, audio/seq/AFB44C]
+  - [0xAF6870, bin, audio/seq/AFB914]
+  - [0xAF6E4C, bin, audio/seq/AFBEF0]
+  - [0xAF7234, bin, audio/seq/AFC2D8]
+  - [0xAF7C44, bin, audio/seq/AFCCE8]
+  - [0xAF80F0, bin, audio/seq/AFD194]
+  - [0xAF81F4, bin, audio/seq/AFD298]
+  - [0xAF8300, bin, audio/seq/AFD3A4]
+  - [0xAF83F0, bin, audio/seq/AFD494]
+  - [0xAF8C34, bin, audio/seq/AFDCD8]
+  - [0xAF8D20, bin, audio/seq/AFDDC4]
   - [0xAFA270, bin, audio/bank1]
   - [0xAFF7C0, bin, audio/table1]
   - [0xBA1FB0, bin, audio/bank2]

@@ -457,21 +457,21 @@ segments:
       linker_section_order: .rodata
       subsegments:
       - [0x6B130]
-      - { start: 0x6B138, type: palette, name: tex0, size: 0x10 }
-      - [0x6B148]
-      - { start: 0x6B150, type: palette, name: tex1, size: 0x18 }
-      - [0x6B168]
-      - [0x6B170, palette, tex2]
-      - [0x6B190]
-      - { start: 0x6B198, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
-      - [0x6B398]
-      - { start: 0x6B3A0, type: ia8, name: tex3, flip_y: true, width: 64, height: 64 }
-      - [0x6C3A0]
-      - { start: 0x6C3A8, type: ia8, name: tex4, flip_y: true, width: 128, height: 16 }
-      - [0x6CBA8]
-      - { start: 0x6CBB0, type: ci4, name: tex1, flip_y: true, width: 64, height: 64 }
-      - [0x6D3B0]
-      - { start: 0x6D3B8, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
+      - { start: 0x6B138, type: ci4, name: tex_a, flip_y: true, width: 32, height: 64 }
+      - [0x6B538]
+      - { start: 0x6B540, type: palette, name: tex_a, size: 0x20 }
+      - [0x6B560]
+      - { start: 0x6B568, type: ci4, name: tex_b, flip_y: true, width: 64, height: 64 }
+      - [0x6BD68]
+      - { start: 0x6BD70, type: palette, name: tex_b, size: 0x20 }
+      - [0x6BD90]
+      - { start: 0x6BD98, type: ia4, name: tex_c, flip_y: true, width: 128, height: 32 }
+      - [0x6C598]
+      - { start: 0x6C5A0, type: i8, name: tex_d, flip_y: true, width: 64, height: 64 }
+      - [0x6D5A0]
+      - { start: 0x6D5A8, type: ci4, name: tex_e, flip_y: true, width: 32, height: 32 }
+      - [0x6D7A8]
+      - { start: 0x6D7B0, type: palette, name: tex_e, size: 0x10 }
     - { start: 0x6D7C0, type: .data, name: gate/materials, linker_section_order: .rodata }
     - start: 0x6D960
       type: .data

@@ -457,21 +457,21 @@ segments:
       linker_section_order: .rodata
       subsegments:
       - [0x6B130]
-      - { start: 0x6B138, type: ci4, name: tex_a, flip_y: true, width: 32, height: 64 }
+      - { start: 0x6B138, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
       - [0x6B538]
-      - { start: 0x6B540, type: palette, name: tex_a, size: 0x20 }
+      - [0x6B540, palette, tex2]
       - [0x6B560]
-      - { start: 0x6B568, type: ci4, name: tex_b, flip_y: true, width: 64, height: 64 }
+      - { start: 0x6B568, type: ci4, name: tex1, flip_y: true, width: 64, height: 64 }
       - [0x6BD68]
-      - { start: 0x6BD70, type: palette, name: tex_b, size: 0x20 }
-      - [0x6BD90]
-      - { start: 0x6BD98, type: ia4, name: tex_c, flip_y: true, width: 128, height: 32 }
-      - [0x6C598]
-      - { start: 0x6C5A0, type: i8, name: tex_d, flip_y: true, width: 64, height: 64 }
-      - [0x6D5A0]
-      - { start: 0x6D5A8, type: ci4, name: tex_e, flip_y: true, width: 32, height: 32 }
-      - [0x6D7A8]
-      - { start: 0x6D7B0, type: palette, name: tex_e, size: 0x10 }
+      - { start: 0x6BD70, type: palette, name: tex1, size: 0x18 }
+      - [0x6BD88]
+      - { start: 0x6BD90, type: ia8, name: tex4, flip_y: true, width: 128, height: 16 }
+      - [0x6C590]
+      - { start: 0x6C598, type: ia8, name: tex3, flip_y: true, width: 64, height: 64 }
+      - [0x6D598]
+      - { start: 0x6D5A0, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x6D7A0]
+      - { start: 0x6D7A8, type: palette, name: tex0, size: 0x10 }
     - { start: 0x6D7C0, type: .data, name: gate/materials, linker_section_order: .rodata }
     - start: 0x6D960
       type: .data
@@ -482,11 +482,13 @@ segments:
       - [0x6D960, vtx, model]
       - [0x6E6D0, gfx, first]
       - [0x6E700, gfx, part0]
-      - [0x6E998, gfx, part1]
-      - [0x6EA48, gfx, part3]
-      - [0x6EBC0, gfx, last]
-      - [0x6EBE8, gfx, part2]
-      - [0x6ECF0]
+      - [0x6E998, gfx, part3]
+      - [0x6EB30, gfx, last]
+      - [0x6EBC8, gfx, part1]
+      - [0x6EC18, gfx, part1_sub]
+      - [0x6EC88, gfx, part2_sub]
+      - [0x6ED18, gfx, part2]
+      - [0x6EDD0]
     - { start: 0x6EEF0, type: data, name: gate_animation, linker_section_order: .rodata }
     - start: 0x6F2C0
       type: .data

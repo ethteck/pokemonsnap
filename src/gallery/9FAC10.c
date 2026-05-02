@@ -263,7 +263,7 @@ void func_801DD8F8_9FB5B8(s32 arg0, s32 arg1) {
         UIText_SetShadowOffset(0);
         UIText_SetSpacing(0, 4);
         UIElement_SetTextPos(D_80230884_A4E544, 0, 0);
-        UIElement_PrintText(D_80230884_A4E544, "  \\i−\\g      \\i−\\g  ");
+        UIElement_PrintText(D_80230884_A4E544, "  \\i-\\g      \\i-\\g  ");
         sprintf(sp28, "%d", arg1 + 1);
         UIElement_SetTextPos(D_80230884_A4E544, 30 - (UIText_GetStringWidth(sp28) / 2), 0);
         UIElement_PrintText(D_80230884_A4E544, sp28);
@@ -343,7 +343,7 @@ void func_801DDCA8_9FB968(s32 arg0) {
             UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
             break;
         case 13:
-            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool! 　\\b Not so good...");
+            UIElement_PrintText(D_80230880_A4E540, "How's this?\n\\a Cool!   \\b Not so good...");
             break;
         case 8:
             UIElement_PrintText(D_80230880_A4E540, "Where shall I put this?\nPress \\a to decide.");
@@ -352,10 +352,10 @@ void func_801DDCA8_9FB968(s32 arg0) {
             UIElement_PrintText(D_80230880_A4E540, "What an amazing picture!\n\\a Continue.   \\b I'm done.\n\\z Shows the full picture.");
             break;
         case 10:
-            UIElement_PrintText(D_80230880_A4E540, "Choose ”\\hSave\\p” to return to\nthe Title Screen.");
+            UIElement_PrintText(D_80230880_A4E540, "Choose \"\\hSave\\p\" to return to\nthe Title Screen.");
             break;
         case 6:
-            UIElement_PrintText(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists\nthen press \\a to print.");
+            UIElement_PrintText(D_80230880_A4E540, "If you like these pictures, please\nmake sure a print credit exists.\nThen press \\a to print.");
             break;
         default:
             UIElement_PrintText(D_80230880_A4E540, "Return to the Title Screen\nby saving.");
@@ -682,8 +682,8 @@ void func_801DEE88_9FCB48(void) {
         FocusMark_Show(false);
         UILayout_DisableButton(1, 0x20);
         UIElement_Draw(D_80230880_A4E540);
-        UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
-        UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
+        UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
+        UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
         if (func_801E1504_9FF1C4(1) != 0) {
             sp28 = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
             sp28->data.sobj->sprite.x = 40;
@@ -747,7 +747,7 @@ void func_801DF078_9FCD38(GObj* arg0) {
     UIElement_DrawBackground(sp34);
     UIElement_SetFont(sp34, FONT_12);
     UIElement_Draw(sp34);
-    UIElement_PrintText(sp34, "\\i−\\g   \\i−\\g");
+    UIElement_PrintText(sp34, "\\i-\\g   \\i-\\g");
     UIElement_SetState(sp34, UI_HIDDEN);
     D_80230884_A4E544 = sp34;
     sp38 = UIFrame_Create();
@@ -830,8 +830,8 @@ void func_801DF078_9FCD38(GObj* arg0) {
             func_801E1504_9FF1C4(0);
         } else {
             UIElement_Draw(D_80230880_A4E540);
-            UIElement_SetTextPos(D_80230880_A4E540, 0, 32);
-            UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...");
+            UIElement_SetTextPos(D_80230880_A4E540, 0, 0);
+            UIElement_PrintText(D_80230880_A4E540, "\\eNow Saving...\\p\n\\hCaution: Do not \"Power Off\"\\p\n\\hor press the \"Reset Button\"!!!\\p");
             if (func_801E1504_9FF1C4(1) != 0) {
                 gobj = func_80371D14_8454C4(NULL, 6, &D_801E80E8_A05DA8);
                 gobj->data.sobj->sprite.x = 40;

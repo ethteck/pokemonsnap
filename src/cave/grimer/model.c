@@ -6,6 +6,11 @@ extern u8 grimer_tex_80156268[];
 extern u8 grimer_tex_80156A70[];
 extern u8 grimer_tex_80156A98_png[];
 
+extern u8 D_80154838_cave_code[];
+extern u8 D_80155840_cave_code[];
+extern u8 D_80157050_cave_code[];
+extern u8 D_80157078_cave_code[];
+
 extern Texture* grimer_part1_mat[];
 extern Texture* grimer_part2_mat[];
 extern Texture* grimer_part3_mat[];

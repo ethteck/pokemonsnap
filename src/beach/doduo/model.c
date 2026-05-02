@@ -16,6 +16,24 @@ extern u8 doduo_tex_80159D30_png[];
 extern u8 doduo_tex_80159DB8[];
 extern u8 doduo_tex_80159DE0_png[];
 
+extern u8 D_PAL_801B57F0_1415B0[];
+extern u8 D_801597A8_beach_extra[];
+extern u8 D_801599B0_beach_extra[];
+
+extern u8 D_80158FE8_beach_code[];
+extern u8 D_80159218_beach_code[];
+extern u8 D_80159240_beach_code[];
+extern u8 D_80159678_beach_code[];
+extern u8 D_801596A0_beach_code[];
+extern u8 D_801597A8_beach_code[];
+extern u8 D_801599B0_beach_code[];
+extern u8 D_8015A1B8_beach_code[];
+extern u8 D_8015A1E0_beach_code[];
+extern u8 D_8015A2E8_beach_code[];
+extern u8 D_8015A310_beach_code[];
+extern u8 D_8015A398_beach_code[];
+extern u8 D_8015A3C0_beach_code[];
+
 Texture* doduo_part5_mat[];
 Texture* doduo_part9_mat[];
 Gfx doduo_part0_draw[];

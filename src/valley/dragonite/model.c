@@ -19,6 +19,25 @@ extern u8 dragonite_tex_80144B28_png[];
 extern u8 dragonite_tex_80145330[];
 extern u8 dragonite_tex_80145358_png[];
 
+extern u8 D_801430C0_valley_code[];
+extern u8 D_801430E8_valley_code[];
+extern u8 D_80143270_valley_code[];
+extern u8 D_80143460_valley_code[];
+extern u8 D_80143668_valley_code[];
+extern u8 D_80143780_valley_code[];
+extern u8 D_80143C08_valley_code[];
+extern u8 D_80143E00_valley_code[];
+extern u8 D_80144608_valley_code[];
+extern u8 D_801446A0_valley_code[];
+extern u8 D_801447A8_valley_code[];
+extern u8 D_801447D0_valley_code[];
+extern u8 D_80144958_valley_code[];
+extern u8 D_80144B60_valley_code[];
+extern u8 D_80144F68_valley_code[];
+extern u8 D_80145108_valley_code[];
+extern u8 D_80145910_valley_code[];
+extern u8 D_80145938_valley_code[];
+
 extern Gfx dragonite_part0_draw[];
 
 #include "assets/valley/dragonite/model.vtx.inc.c"

@@ -23,6 +23,29 @@ extern u8 gyarados_tex_80137B28_png[];
 extern u8 gyarados_tex_80137C30[];
 extern u8 gyarados_tex_80137C58_png[];
 
+extern u8 D_80134DB8_valley_code[];
+extern u8 D_80134E78_valley_code[];
+extern u8 D_80135680_valley_code[];
+extern u8 D_80135860_valley_code[];
+extern u8 D_80136068_valley_code[];
+extern u8 D_80136088_valley_code[];
+extern u8 D_80136490_valley_code[];
+extern u8 D_801364B0_valley_code[];
+extern u8 D_801368B8_valley_code[];
+extern u8 D_80136AC0_valley_code[];
+extern u8 D_801372C8_valley_code[];
+extern u8 D_801374D0_valley_code[];
+extern u8 D_80137CD8_valley_code[];
+extern u8 D_80137D00_valley_code[];
+extern u8 D_80137F08_valley_code[];
+extern u8 D_80137F30_valley_code[];
+extern u8 D_80138038_valley_code[];
+extern u8 D_80138058_valley_code[];
+extern u8 D_801380E0_valley_code[];
+extern u8 D_80138108_valley_code[];
+extern u8 D_80138210_valley_code[];
+extern u8 D_80138238_valley_code[];
+
 extern Texture* gyarados_part7_mat[];
 extern Gfx gyarados_part0_draw[];
 

@@ -1,4 +1,9 @@
 #include "rainbow.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_rainbow_ROM_START;
+extern Addr fx_img_rainbow_ROM_END;
 #include "ld_addrs.h"
 #include "app_render/effect.h"
 

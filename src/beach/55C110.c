@@ -1,4 +1,9 @@
 #include "common.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_beach_ROM_START;
+extern Addr fx_img_beach_ROM_END;
 #include "sys/om.h"
 #include "beach.h"
 #include "world/world.h"

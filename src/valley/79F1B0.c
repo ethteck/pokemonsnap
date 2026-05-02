@@ -1,4 +1,9 @@
 #include "valley.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_valley_ROM_START;
+extern Addr fx_img_valley_ROM_END;
 #include "app_render/effect.h"
 
 extern EnvSoundData D_802D2740_7ABCD0[0x3A];

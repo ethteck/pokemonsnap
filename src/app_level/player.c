@@ -57,7 +57,7 @@ extern Sprite D_80381B58_521F68; // 521E10 END
 
 // we have to make this small array because of alignment
 u32 D_80382BF0_523000[] = {
-    0x803AE160,
+    0x803ADC70,
     0x00000000,
     0x00000000
 };
@@ -1855,7 +1855,7 @@ void Tutorial_ShowMessage(s32 msgID) {
                 message = "Press \\a to shoot.";
                 break;
             case MESSAGE_TAKE_PICTURES:
-                message = "Try to take a lot of Pokεmon pictures!";
+                message = "Try to take a lot of Pok\xE9mon pictures!";
                 break;
             case MESSAGE_USE_CONTROL_STICK:
                 message = "Please use the Control Stick.";

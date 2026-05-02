@@ -13,6 +13,43 @@ extern u8 dugtrio_tex_right_eye_png[];
 extern u8 dugtrio_tex_soil_pal[];
 extern u8 dugtrio_tex_soil_png[];
 
+extern u8 D_80193F70_tunnel_extra[];
+extern u8 D_80194170_tunnel_extra[];
+extern u8 D_80194370_tunnel_extra[];
+extern u8 D_801943F0_tunnel_extra[];
+extern u8 D_80194470_tunnel_extra[];
+extern u8 D_801944E0_tunnel_extra[];
+extern u8 D_80194550_tunnel_extra[];
+extern u8 D_80194660_tunnel_extra[];
+extern u8 D_801947B0_tunnel_extra[];
+extern u8 D_80194930_tunnel_extra[];
+extern u8 D_80194940_tunnel_extra[];
+extern u8 D_80194950_tunnel_extra[];
+extern u8 D_80194960_tunnel_extra[];
+extern u8 D_80194B60_tunnel_extra[];
+extern u8 D_80194BD0_tunnel_extra[];
+extern u8 D_80194C40_tunnel_extra[];
+extern u8 D_80194D50_tunnel_extra[];
+extern u8 D_80194EA0_tunnel_extra[];
+extern u8 D_80195020_tunnel_extra[];
+extern u8 D_80195030_tunnel_extra[];
+extern u8 D_80195040_tunnel_extra[];
+extern u8 D_80195050_tunnel_extra[];
+extern u8 D_80195240_tunnel_extra[];
+extern u8 D_801952B0_tunnel_extra[];
+extern u8 D_80195320_tunnel_extra[];
+extern u8 D_80195430_tunnel_extra[];
+extern u8 D_80195580_tunnel_extra[];
+extern u8 D_80195700_tunnel_extra[];
+extern u8 D_80195710_tunnel_extra[];
+extern u8 D_80195720_tunnel_extra[];
+extern u8 D_80195730_tunnel_extra[];
+extern u8 D_801958F0_tunnel_extra[];
+extern u8 D_80195AB0_tunnel_extra[];
+extern u8 D_80195C70_tunnel_extra[];
+extern u8 D_80195DA0_tunnel_extra[];
+extern u8 D_80195F10_tunnel_extra[];
+
 extern Gfx dugtrio_hd_part0_draw[];
 
 #include "assets/tunnel/dugtrio/hd_model.vtx.inc.c"

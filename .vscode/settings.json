@@ -20,7 +20,8 @@
         "algorithm": "c",
         "type_traits": "c",
         "ostream": "c",
-        "optional": "c"
+        "optional": "c",
+        "bitset": "c"
     },
     "files.insertFinalNewline": true,
 }

@@ -1,4 +1,9 @@
 #include "common.h"
+
+extern Addr fx_img_common_ROM_START;
+extern Addr fx_img_common_ROM_END;
+extern Addr fx_img_cave_ROM_START;
+extern Addr fx_img_cave_ROM_END;
 #include "ld_addrs.h"
 #include "world/world.h"
 #include "app_level/app_level.h"

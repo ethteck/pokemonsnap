@@ -300,7 +300,7 @@ void func_800E2058_A095E8(void) {
     omGObjAddSprite(gobj, &D_802F82C8);
 
     sobj = sobj->next;
-    func_800E18FC_A08E8C(sobj, 74, 198);
+    func_800E18FC_A08E8C(sobj, 66, 198);
     func_800E18A0_A08E30(sobj, SP_TEXSHUF | SP_TRANSPARENT);
 }
 
@@ -805,57 +805,57 @@ u8 func_800E33C8_A0A958(GObj** gobjs) {
     switch (sp4E) {
         case 0:
             gobjs[ret] = D_800E82CC_A0F85C;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
             break;
         case 1:
             gobjs[ret] = D_800E82CC_A0F85C;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D0_A0F860;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
             break;
         case 2:
             gobjs[ret] = D_800E82CC_A0F85C;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 127, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D0_A0F860;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D4_A0F864;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 116, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
 
             gobjs[ret] = D_800E82D8_A0F868;
-            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, 128, yVals.data[sp4E][ret]);
+            func_800E18FC_A08E8C(gobjs[ret]->data.sobj, (320 - gobjs[ret]->data.sobj->sprite.width) / 2, yVals.data[sp4E][ret]);
             func_800E18AC_A08E3C(gobjs[ret]->data.sobj, true);
             func_800E18E0_A08E70(gobjs[ret]->data.sobj, 0xC0, 0xC0, 0);
             ret++;
@@ -1163,9 +1163,10 @@ s32 func_800E426C_A0B7FC(s8 arg0) {
     SObj* sobj;
     s32 ret;
 
-    sobj = D_800E82E0_A0F870->data.sobj;
     gobj = D_800E82E0_A0F870;
-    func_800E18FC_A08E8C(sobj, 59, 147);
+    sobj = gobj->data.sobj;
+    
+    func_800E18FC_A08E8C(sobj, (320 - sobj->sprite.width) / 2, 147);
     omCreateProcess(gobj, func_800E4100_A0B690, 0, 1);
     func_800E18AC_A08E3C(sobj, true);
 

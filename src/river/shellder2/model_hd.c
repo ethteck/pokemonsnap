@@ -6,6 +6,37 @@ extern u8 shellder2_tex_80183088[];
 extern u8 shellder2_tex_80183290[];
 extern u8 shellder2_tex_801832B8_png[];
 
+extern u8 D_80183438_river_extra[];
+extern u8 D_80183460_river_extra[];
+extern u8 D_80183870_river_extra[];
+extern u8 D_80183898_river_extra[];
+extern u8 D_801AB898_river_extra[];
+extern u8 D_801AB918_river_extra[];
+extern u8 D_801AB988_river_extra[];
+extern u8 D_801ABA98_river_extra[];
+extern u8 D_801ABAA8_river_extra[];
+extern u8 D_801ABAB8_river_extra[];
+extern u8 D_801ABAC8_river_extra[];
+extern u8 D_801ABAE8_river_extra[];
+extern u8 D_801ABB18_river_extra[];
+extern u8 D_801ABB38_river_extra[];
+extern u8 D_801ABB48_river_extra[];
+extern u8 D_801ABB58_river_extra[];
+extern u8 D_801ABB68_river_extra[];
+extern u8 D_801ABB78_river_extra[];
+extern u8 D_801ABBA8_river_extra[];
+extern u8 D_801ABD18_river_extra[];
+extern u8 D_801ABE08_river_extra[];
+extern u8 D_801ABF58_river_extra[];
+extern u8 D_801AC018_river_extra[];
+extern u8 D_801AC078_river_extra[];
+extern u8 D_801AC0D8_river_extra[];
+extern u8 D_801AC118_river_extra[];
+extern u8 D_801AC318_river_extra[];
+extern u8 D_801AC358_river_extra[];
+extern u8 D_801AC558_river_extra[];
+extern u8 D_801AC6B0_river_extra[];
+
 extern Texture* shellder2_hd_part2_mat[];
 extern Gfx shellder2_hd_part0_draw[];
 

@@ -10,12 +10,14 @@ static s32 menu_new_game_CursorX;
 static s32 menu_new_game_CursorY;
 static s32 D_80168128;
 static s8 D_8016812C;
-static char D_80168130[16];
+static char D_80168130[8];
 static u8 D_80168140[3];
 static u8 D_80168143;
 static u8 D_80168144;
 static GObj* D_80168148;
 static u8 D_8016814C;
+static s32 pad[1];
+static s8 PAL_VAR;
 
 void func_800E2800_A5DBB0(void);
 void func_800E2758_A5DB08(void);
@@ -28,17 +30,27 @@ void func_800E2200_A5D5B0(void) {
         FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
         return;
     }
-    if (menu_new_game_CursorX < 2) {
-        FocusMark_SetTargetSize(4, 5);
-        FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
-        return;
+
+    switch (menu_new_game_CursorX) {
+        case 0:
+        case 1:
+            FocusMark_SetTargetSize(4, 5);
+            FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+            break;
+        case 2:
+            FocusMark_SetTargetSize(8, 5);
+            FocusMark_SetTargetPos(menu_new_game_CursorX * 13 + 25, menu_new_game_CursorY * 10 + 22);
+            break;
+        default:
+        case 3:
+            FocusMark_SetTargetSize(15, 5);
+            FocusMark_SetTargetPos(69, menu_new_game_CursorY * 10 + 22);
+            break;
     }
-    FocusMark_SetTargetSize(15, 5);
-    FocusMark_SetTargetPos(63, menu_new_game_CursorY * 10 + 22);
 }
 
 void func_800E2314_A5D6C4(void) {
-    menu_new_game_CursorX = 2;
+    menu_new_game_CursorX = 3;
     menu_new_game_CursorY = 19;
     func_800E2200_A5D5B0();
     auPlaySound(SOUND_ID_65);
@@ -64,6 +76,7 @@ void func_800E23B0_A5D760(void) {
     func_800E2350_A5D700();
 }
 
+#if 0
 void func_800E23E0_A5D790(s32 buttons) {
     if (menu_new_game_CursorY < 19) {
         if (buttons & 0x10000) {
@@ -120,20 +133,31 @@ void func_800E23E0_A5D790(s32 buttons) {
         }
     }
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E23E0_A5D790.s")
+#endif
 
 void func_800E2590_A5D940(UnkStruct800BEDF8* arg0) {
     func_800E23E0_A5D790(arg0->pressedButtons);
     func_800E2200_A5D5B0();
 }
 
-void func_800E25B8_A5D968(void) {
+#if 0
+void func_PAL_800E2C54_A58554(void) {
+    PAL_VAR+=1;
+    PAL_VAR %= 2;
+    func_800E1CF8_A5D0A8(PAL_VAR);
+    auPlaySound(0x4B);
 }
+#else
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2C54_A58554.s")
+#endif
 
 void func_800E25C0_A5D970(void) {
     u8* src;
     u8* dst;
 
-    if (D_80168143 >= 14) {
+    if (D_80168143 >= 7) {
         func_800E2314_A5D6C4();
         return;
     }
@@ -147,14 +171,15 @@ void func_800E25C0_A5D970(void) {
     UIElement_Draw(D_80118110);
     UIElement_SetTextPos(D_80118110, 0, 0);
     UIElement_PrintText(D_80118110, D_80168130);
-    if (D_80168143 < 14) {
-        D_80168143 += 2;
+    if (D_80168143 < 7) {
+        D_80168143 += 1;
     }
-    if (D_80168143 == 14) {
+    if (D_80168143 >= 7) {
         func_800E2314_A5D6C4();
     }
 }
 
+#if 0
 void func_800E26A0_A5DA50(void) {
     switch (menu_new_game_CursorX) {
         case 0:
@@ -169,6 +194,10 @@ void func_800E26A0_A5DA50(void) {
             break;
     }
 }
+#else
+void func_800E26A0_A5DA50(void);
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E26A0_A5DA50.s")
+#endif
 
 void func_800E270C_A5DABC(void) {
     if (menu_new_game_CursorY < 19) {
@@ -180,9 +209,9 @@ void func_800E270C_A5DABC(void) {
 }
 
 void func_800E2758_A5DB08(void) {
-    u8 sp24[] = "　";
+    u8 sp24[] = " ";
 
-    if (D_80168143 < 14) {
+    if (D_80168143 < 7) {
         u8* src = sp24;
         u8* dst = &D_80168130[D_80168143];
 
@@ -191,12 +220,13 @@ void func_800E2758_A5DB08(void) {
         while (*src != 0) {
             *dst++ = *src++;
         }
-        D_80168143 += 2;
+        D_80168143 += 1;
     } else {
         func_800E2314_A5D6C4();
     }
 }
 
+#if 0
 void func_800E2800_A5DBB0(void) {
     if (D_80168143 == 0) {
         D_80168130[D_80168143] = 0;
@@ -211,10 +241,14 @@ void func_800E2800_A5DBB0(void) {
     UIElement_SetTextPos(D_80118110, 0, 0);
     UIElement_PrintText(D_80118110, D_80168130);
 }
+#else
+void func_800E2800_A5DBB0(void);
+#pragma GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_PAL_800E2F40_A58840.s")
+#endif
 
 void func_800E28C0_A5DC70(void) {
-    u8 sp44[] = "Ｔｏｄｄ";
-    u8 sp34[] = "　　　　　　　";
+    u8 sp44[] = "Todd";
+    u8 sp34[] = "       ";
     u8* sp30;
     u8* sp2C;
     u8* sp28;
@@ -253,9 +287,9 @@ void func_800E28C0_A5DC70(void) {
 
 s32 func_800E2A24_A5DDD4(char* arg0) {
     u8 i = 0;
-    char sp4[] = "　";
+    char sp4[] = " ";
 
-    while (i < 3) {
+    while (i < 2) {
         if (sp4[i++] != *arg0++) {
             return 0;
         }
@@ -272,8 +306,8 @@ void func_800E2A84_A5DE34(char* arg0) {
     sp1A = UIText_GetStringWidth(D_80168130) + 203;
     unk_48 = D_80168148->data.sobj;
     SET_SPRITE_POS(unk_48->sprite, sp1A, 64);
-    if (D_80168143 >= 14 || menu_new_game_CursorY >= 19) {
-        if (D_80168143 < 14) {
+    if (D_80168143 >= 7 || menu_new_game_CursorY >= 19) {
+        if (D_80168143 < 7) {
             D_8016814C = 1;
         } else {
             D_8016814C = 0;
@@ -358,6 +392,7 @@ void func_800E2E00_A5E1B0(void) {
     SET_SPRITE_POS(unk_48->sprite, 203, 64);
 }
 
+#if 0
 void func_800E2ED0_A5E280(void) {
 
     func_800E23B0_A5D760();
@@ -387,3 +422,6 @@ void func_800E2ED0_A5E280(void) {
         ohWait(1);
     }
 }
+#else
+GLOBAL_ASM("asm/nonmatchings/menu_new_game/A5D5B0/func_800E2ED0_A5E280.s")
+#endif

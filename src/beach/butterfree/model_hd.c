@@ -18,6 +18,34 @@ extern u8 butterfree_tex_80153C58[];
 extern u8 butterfree_tex_80154680[];
 extern u8 butterfree_tex_80154888_png[];
 
+extern u8 D_80152F08_beach_extra[];
+extern u8 D_80152F30_beach_extra[];
+extern u8 D_80152FB8_beach_extra[];
+extern u8 D_80152FE0_beach_extra[];
+extern u8 D_80153008_beach_extra[];
+extern u8 D_80153030_beach_extra[];
+extern u8 D_80153838_beach_extra[];
+extern u8 D_80153860_beach_extra[];
+extern u8 D_80154068_beach_extra[];
+extern u8 D_80154090_beach_extra[];
+extern u8 D_801540D8_beach_extra[];
+extern u8 D_80154100_beach_extra[];
+extern u8 D_80154188_beach_extra[];
+extern u8 D_801541B0_beach_extra[];
+extern u8 D_80154238_beach_extra[];
+extern u8 D_80154C60_beach_extra[];
+extern u8 D_80154E68_beach_extra[];
+extern u8 D_PAL_801B1B30_13D8F0[];
+extern u8 D_PAL_801B1D00_13DAC0[];
+extern u8 D_PAL_801B1D30_13DAF0[];
+extern u8 D_PAL_801B1D40_13DB00[];
+extern u8 D_PAL_801B1D80_13DB40[];
+extern u8 D_PAL_801B1D90_13DB50[];
+extern u8 D_PAL_801B1EA0_13DC60[];
+extern u8 D_PAL_801B1FB0_13DD70[];
+extern u8 D_PAL_801B20C0_13DE80[];
+extern u8 D_PAL_801B2210_13DFD0[];
+
 extern Gfx butterfree_hd_part0_draw[];
 
 #include "assets/beach/butterfree/hd_model.vtx.inc.c"

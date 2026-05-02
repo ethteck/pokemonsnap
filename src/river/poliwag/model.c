@@ -8,6 +8,14 @@ extern u8 poliwag_tex_80167DD8[];
 extern u8 poliwag_tex_80168DE0[];
 extern u8 poliwag_tex_80168FE8_png[];
 
+extern u8 D_801679F8_river_code[];
+extern u8 D_80167C00_river_code[];
+extern u8 D_80168208_river_code[];
+extern u8 D_80168230_river_code[];
+extern u8 D_801683B8_river_code[];
+extern u8 D_801693C0_river_code[];
+extern u8 D_801695C8_river_code[];
+
 extern Gfx poliwag_part0_draw[];
 extern Gfx poliwag_part7_draw[];
 

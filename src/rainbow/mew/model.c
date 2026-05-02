@@ -25,6 +25,25 @@ extern u8 mew_tex_8012C3B0_png[];
 extern u8 mew_tex_8012C7B8[];
 extern u8 mew_tex_8012C7E0_png[];
 
+extern u8 D_80126EF8_rainbow_code[];
+extern u8 D_8012A858_rainbow_code[];
+extern u8 D_8012A880_rainbow_code[];
+extern u8 D_8012AC88_rainbow_code[];
+extern u8 D_8012BC90_rainbow_code[];
+extern u8 D_8012BCB0_rainbow_code[];
+extern u8 D_8012BEB8_rainbow_code[];
+extern u8 D_8012BEE0_rainbow_code[];
+extern u8 D_8012C2E8_rainbow_code[];
+extern u8 D_8012C310_rainbow_code[];
+extern u8 D_8012C518_rainbow_code[];
+extern u8 D_8012C540_rainbow_code[];
+extern u8 D_8012C748_rainbow_code[];
+extern u8 D_8012C760_rainbow_code[];
+extern u8 D_8012C968_rainbow_code[];
+extern u8 D_8012C990_rainbow_code[];
+extern u8 D_8012CD98_rainbow_code[];
+extern u8 D_8012CDC0_rainbow_code[];
+
 extern Texture* mew_part4_mat[];
 extern Gfx mew_part0_draw[];
 

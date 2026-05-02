@@ -50,6 +50,34 @@ extern u8 D_80330A38_62DB08[];
 extern u8 D_80330E40_62DF10[];
 extern u8 D_80330E68_62DF38[];
 
+extern u8 D_8016A960_tunnel_code[];
+extern u8 D_8016A988_tunnel_code[];
+extern u8 D_8016AD90_tunnel_code[];
+extern u8 D_8016ADA0_tunnel_code[];
+extern u8 D_8016ADC8_tunnel_code[];
+extern u8 D_8016ADF0_tunnel_code[];
+extern u8 D_8016B5F8_tunnel_code[];
+extern u8 D_8016B620_tunnel_code[];
+extern u8 D_8016BE28_tunnel_code[];
+extern u8 D_8016BE50_tunnel_code[];
+extern u8 D_8016C258_tunnel_code[];
+extern u8 D_8016C280_tunnel_code[];
+extern u8 D_8016DAE8_tunnel_code[];
+extern u8 D_8016E318_tunnel_code[];
+extern u8 D_8016E328_tunnel_code[];
+extern u8 D_8016E350_tunnel_code[];
+extern u8 D_8016E378_tunnel_code[];
+extern u8 D_8016E480_tunnel_code[];
+extern u8 D_8016E4A8_tunnel_code[];
+extern u8 D_8016E5B0_tunnel_code[];
+extern u8 D_8016E5D8_tunnel_code[];
+extern u8 D_8016E6E0_tunnel_code[];
+extern u8 D_8016E708_tunnel_code[];
+extern u8 D_8016E810_tunnel_code[];
+extern u8 D_8016E820_tunnel_code[];
+extern u8 D_8016E878_tunnel_code[];
+extern u8 D_8016E8A0_tunnel_code[];
+
 __ALIGNER
 u8 electabuzz_tex_80330938[] = {
 #include "assets/tunnel/electabuzz/tex_80330948.pal.bin.c"

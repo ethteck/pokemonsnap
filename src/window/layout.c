@@ -13,7 +13,7 @@ extern Bitmap D_803A6390_879B40;
 extern Bitmap D_803A6510_879CC0;
 extern Bitmap* D_803A6564_879D14[];
 
-u32 D_803A6600_879DB0 = 0x803A57A0; // TODO belongs to previous array
+u32 D_803A6600_879DB0 = 0x803A5750; // TODO belongs to previous array
 
 s32 UILayout_PanelState = PANEL_STATE_STABLE;
 s32 UILayout_IsAnimationHorizontal = false;

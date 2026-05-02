@@ -23,6 +23,19 @@ extern u8 mankey_tex_80152168_png[];
 extern u8 mankey_tex_80152570[];
 extern u8 mankey_tex_801525A8_png[];
 
+extern u8 D_8014E0E8_valley_code[];
+extern u8 D_8014E0F8_valley_code[];
+extern u8 D_8014E200_valley_code[];
+extern u8 D_8014E2D0_valley_code[];
+extern u8 D_8014E6D8_valley_code[];
+extern u8 D_8014ECE8_valley_code[];
+extern u8 D_801521B8_valley_code[];
+extern u8 D_801522A0_valley_code[];
+extern u8 D_801526A8_valley_code[];
+extern u8 D_80152748_valley_code[];
+extern u8 D_80152B50_valley_code[];
+extern u8 D_80152B88_valley_code[];
+
 extern Texture* mankey_part1_mat[];
 extern Gfx mankey_part0_draw[];
 

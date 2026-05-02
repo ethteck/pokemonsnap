@@ -14,6 +14,28 @@ extern u8 chansey_tex_80184BE0[];
 extern u8 chansey_tex_80184DE8[];
 extern u8 chansey_tex_80184E10[];
 
+extern u8 D_PAL_801C7C70_153A30[];
+
+extern u8 D_80184E08_beach_extra[];
+extern u8 D_80184EB8_beach_extra[];
+extern u8 D_80184EE0_beach_extra[];
+extern u8 D_801853C8_beach_extra[];
+extern u8 D_PAL_801C75F8_1533B8[];
+extern u8 D_PAL_801C7648_153408[];
+extern u8 D_PAL_801C7678_153438[];
+extern u8 D_PAL_801C7688_153448[];
+extern u8 D_PAL_801C77F8_1535B8[];
+extern u8 D_PAL_801C7868_153628[];
+extern u8 D_PAL_801C78A8_153668[];
+extern u8 D_PAL_801C7928_1536E8[];
+extern u8 D_PAL_801C7968_153728[];
+extern u8 D_PAL_801C79F8_1537B8[];
+extern u8 D_PAL_801C7B38_1538F8[];
+extern u8 D_PAL_801C7B48_153908[];
+extern u8 D_PAL_801C7B58_153918[];
+extern u8 D_PAL_801C7B68_153928[];
+extern u8 D_PAL_801C7B98_153958[];
+
 extern Texture* chansey_hd_part3_mat[];
 extern Gfx chansey_hd_part0_draw[];
 

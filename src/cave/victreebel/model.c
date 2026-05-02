@@ -20,6 +20,20 @@ extern u8 victreebel_tex_801A22C0_png[];
 extern u8 victreebel_tex_801A26C8[];
 extern u8 victreebel_tex_801A26F0[];
 
+extern u8 D_801A0A48_cave_code[];
+extern u8 D_801A0E50_cave_code[];
+extern u8 D_801A2148_cave_code[];
+extern u8 D_801A2378_cave_code[];
+extern u8 D_801A23A0_cave_code[];
+extern u8 D_801A23C8_cave_code[];
+extern u8 D_801A23F0_cave_code[];
+extern u8 D_801A25F8_cave_code[];
+extern u8 D_801A2620_cave_code[];
+extern u8 D_801A2828_cave_code[];
+extern u8 D_801A2850_cave_code[];
+extern u8 D_801A2C58_cave_code[];
+extern u8 D_801A2C80_cave_code[];
+
 extern Texture* victreebel_part1_mat[];
 extern Texture* victreebel_part2_mat[];
 extern Gfx victreebel_part1_draw[];

@@ -17,6 +17,23 @@ extern u8 cloyster_tex_801713D0[];
 extern u8 cloyster_tex_80171418[];
 extern u8 cloyster_tex_80171440_png[];
 
+extern u8 D_80170B18_river_code[];
+extern u8 D_80170B30_river_code[];
+extern u8 D_80170D38_river_code[];
+extern u8 D_80170D60_river_code[];
+extern u8 D_80171168_river_code[];
+extern u8 D_80171190_river_code[];
+extern u8 D_80171398_river_code[];
+extern u8 D_801713C0_river_code[];
+extern u8 D_801717C8_river_code[];
+extern u8 D_801717F0_river_code[];
+extern u8 D_801718F8_river_code[];
+extern u8 D_80171920_river_code[];
+extern u8 D_80171968_river_code[];
+extern u8 D_801719B0_river_code[];
+extern u8 D_801719F8_river_code[];
+extern u8 D_80171A20_river_code[];
+
 extern Gfx cloyster_part0_draw[];
 
 #include "assets/river/cloyster/model.vtx.inc.c"

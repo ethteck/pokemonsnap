@@ -96,9 +96,7 @@ void func_801DC8C0_A084B0(void) {
     UIText_SetPrintDelay(0);
     UIElement_PrintText(
         sp28,
-        "ほれぼれする　しゃしんだね!\n"
-        "\\aつぎをみる　\\bもういいや\n"
-        "\\zメッセージを　けす・ひょうじ");
+        "What an amazing picture!\n\\a Continue.   \\b I'm done.\n\\z Shows the full picture.");
     UIElement_SetState(sp28, true);
     D_801DD258_A08E48 = sp28;
 }

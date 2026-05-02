@@ -7,6 +7,10 @@ extern u8 starmie_tex_80172E40[];
 extern u8 starmie_tex_80173628[];
 extern u8 starmie_tex_80173650_png[];
 
+extern u8 D_80171E38_valley_code[];
+extern u8 D_80173C08_valley_code[];
+extern u8 D_80173C30_valley_code[];
+
 extern Texture* starmie_part9_mat[];
 extern Gfx starmie_part0_draw[];
 

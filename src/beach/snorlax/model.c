@@ -19,6 +19,16 @@ extern u8 snorlax_tex_8017ACB0[];
 extern u8 snorlax_tex_8017AEE0[];
 extern u8 snorlax_tex_8017B0E8[];
 
+extern u8 D_80179FD8_beach_code[];
+extern u8 D_8017A000_beach_code[];
+extern u8 D_8017A208_beach_code[];
+extern u8 D_8017A230_beach_code[];
+extern u8 D_8017A638_beach_code[];
+extern u8 D_8017B498_beach_code[];
+extern u8 D_8017B8D0_beach_code[];
+extern u8 D_8017B8F8_beach_code[];
+extern u8 D_8017BD00_beach_code[];
+
 extern Gfx snorlax_part0_draw[];
 extern Texture* snorlax_part4_mat[];
 extern Texture* snorlax_part5_mat[];

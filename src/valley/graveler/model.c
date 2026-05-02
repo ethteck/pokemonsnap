@@ -8,6 +8,12 @@ extern u8 graveler_tex_8012FB78[];
 extern u8 graveler_tex_8012FBA0[];
 extern u8 graveler_tex_8012FDD0[];
 
+extern u8 D_8012F6D8_valley_code[];
+extern u8 D_8012F6F8_valley_code[];
+extern u8 D_8012F900_valley_code[];
+extern u8 D_8012F950_valley_code[];
+extern u8 D_80130158_valley_code[];
+
 extern Texture* graveler_part1_mat[];
 extern Gfx graveler_part0_draw[];
 

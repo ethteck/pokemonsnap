@@ -19,6 +19,22 @@ extern u8 eevee_tex_801645D8_png[];
 extern u8 eevee_tex_80164BE0[];
 extern u8 eevee_tex_80164C08_png[];
 
+extern u8 D_801620D8_beach_extra[];
+extern u8 D_80162100_beach_extra[];
+extern u8 D_80163198_beach_extra[];
+extern u8 D_80163E28_beach_extra[];
+extern u8 D_80164688_beach_extra[];
+extern u8 D_801646B0_beach_extra[];
+extern u8 D_80164AB8_beach_extra[];
+extern u8 D_80164BB8_beach_extra[];
+extern u8 D_801651C0_beach_extra[];
+extern u8 D_801651E8_beach_extra[];
+extern u8 D_PAL_801B9508_1452C8[];
+extern u8 D_PAL_801B9538_1452F8[];
+extern u8 D_PAL_801B9738_1454F8[];
+extern u8 D_PAL_801B98F8_1456B8[];
+extern u8 D_PAL_801B9960_145720[];
+
 extern Texture* eevee_hd_part8_mat[];
 extern Gfx eevee_hd_part0_draw[];
 

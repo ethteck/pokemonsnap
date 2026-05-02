@@ -14,9 +14,16 @@ class N64SegSnap_model_anim(SnapAnimSegmentCommon):
         pointer, offset = 0, 0
         while pointer == 0:
             pointer, offset = unpack_from(">I", data, offset)[0], offset + 4
+        print(f"[DEBUG get_header_length] First non-zero pointer=0x{pointer:X} at offset={offset-4}, vram_base=0x{vram_base:X}, data_len={len(data)}")
+        print(f"[DEBUG get_header_length] pointer - vram_base = 0x{pointer - vram_base:X} ({pointer - vram_base})")
         if pointer - vram_base > 200:
-            pointer = unpack_from(">I", data, pointer - 0x18 + 0x8 - vram_base)[0]
-        return pointer - vram_base
+            read_offset = pointer - 0x18 + 0x8 - vram_base
+            print(f"[DEBUG get_header_length] Dereferencing: pointer(0x{pointer:X}) - 0x18 + 0x8 - vram_base(0x{vram_base:X}) = offset {read_offset} (0x{read_offset:X}), data_len={len(data)}")
+            pointer = unpack_from(">I", data, read_offset)[0]
+            print(f"[DEBUG get_header_length] Dereferenced pointer=0x{pointer:X}")
+        result = pointer - vram_base
+        print(f"[DEBUG get_header_length] Returning header_length = 0x{result:X} ({result})")
+        return result
     
     def parse_header(self, data, name, vram_base):
         self.header_length = self.get_header_length(data, vram_base)

@@ -7,6 +7,10 @@ extern u8 staryu_tex_8013CD20[];
 extern u8 staryu_tex_8013D330[];
 extern u8 staryu_tex_8013D940[];
 
+extern u8 D_8013CF08_valley_code[];
+extern u8 D_8013CF30_valley_code[];
+extern u8 D_8013D0F8_valley_code[];
+
 extern Texture* staryu_part3_mat[];
 extern Gfx staryu_part0_draw[];
 

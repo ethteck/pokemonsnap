@@ -14,6 +14,11 @@ extern u8 chansey_tex_80184BE0[];
 extern u8 chansey_tex_80184DE8[];
 extern u8 chansey_tex_80184E10[];
 
+extern u8 D_80184E08_beach_code[];
+extern u8 D_80184EB8_beach_code[];
+extern u8 D_80184EE0_beach_code[];
+extern u8 D_801853C8_beach_code[];
+
 extern Gfx chansey_part0_draw[];
 
 Texture* chansey_part3_mat[];

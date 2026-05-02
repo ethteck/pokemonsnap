@@ -8,6 +8,13 @@ extern u8 muk_tex_8015DC18[];
 extern u8 muk_tex_8015DE20[];
 extern u8 muk_tex_8015DE48_png[];
 
+extern u8 D_8015CD48_cave_code[];
+extern u8 D_8015DDA0_cave_code[];
+extern u8 D_8015DDC8_cave_code[];
+extern u8 D_8015E1D0_cave_code[];
+extern u8 D_8015E400_cave_code[];
+extern u8 D_8015E428_cave_code[];
+
 extern Texture* muk_part2_mat[];
 extern Texture* muk_part3_mat[];
 extern Texture* muk_part4_mat[];

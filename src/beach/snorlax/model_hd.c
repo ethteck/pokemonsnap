@@ -19,6 +19,30 @@ extern u8 snorlax_tex_88017A058[];
 extern u8 snorlax_tex_88017AEB8[];
 extern u8 snorlax_tex_88017B2F0[];
 
+extern u8 D_PAL_801C1558_14D318[];
+extern u8 D_8017B8D0_beach_extra[];
+extern u8 D_8017B8F8_beach_extra[];
+
+extern u8 D_80179FD8_beach_extra[];
+extern u8 D_8017A000_beach_extra[];
+extern u8 D_8017A208_beach_extra[];
+extern u8 D_8017A230_beach_extra[];
+extern u8 D_8017A638_beach_extra[];
+extern u8 D_8017B498_beach_extra[];
+extern u8 D_8017BD00_beach_extra[];
+extern u8 D_PAL_801C0DB0_14CB70[];
+extern u8 D_PAL_801C0E80_14CC40[];
+extern u8 D_PAL_801C0E90_14CC50[];
+extern u8 D_PAL_801C0EA0_14CC60[];
+extern u8 D_PAL_801C0F60_14CD20[];
+extern u8 D_PAL_801C0FE0_14CDA0[];
+extern u8 D_PAL_801C1060_14CE20[];
+extern u8 D_PAL_801C10F0_14CEB0[];
+extern u8 D_PAL_801C11A0_14CF60[];
+extern u8 D_PAL_801C1280_14D040[];
+extern u8 D_PAL_801C1290_14D050[];
+extern u8 D_PAL_801C1350_14D110[];
+
 extern Texture* snorlax_hd_part4_mat[];
 extern Texture* snorlax_hd_part5_mat[];
 extern Gfx snorlax_hd_part0_draw[];

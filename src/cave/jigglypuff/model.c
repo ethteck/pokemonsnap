@@ -23,6 +23,15 @@ extern u8 jigglypuff_tex_80189AC0_png[];
 extern u8 jigglypuff_tex_80189B18[];
 extern u8 jigglypuff_tex_80189B40_png[];
 
+extern u8 D_80187E08_cave_code[];
+extern u8 D_801887B8_cave_code[];
+extern u8 D_801887E0_cave_code[];
+extern u8 D_801889E8_cave_code[];
+extern u8 D_8018A078_cave_code[];
+extern u8 D_8018A0A0_cave_code[];
+extern u8 D_8018A0F8_cave_code[];
+extern u8 D_8018A120_cave_code[];
+
 extern Texture* jigglypuff_part1_mat[];
 extern Gfx jigglypuff_part0_draw[];
 

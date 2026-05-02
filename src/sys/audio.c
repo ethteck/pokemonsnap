@@ -256,7 +256,7 @@ u8 auGlobalSoundVolume = 127;
 u8 auGlobalSoundReverbAmt = 0;
 u32 D_800423E0 = 0x7F00;
 
-u8 auHeapBuffer[0x4B000];
+u8 auHeapBuffer[0x4B000 + 0xC00];
 u32 D_80096250;
 ALHeap auHeap;
 void* auHeapBase;
@@ -817,6 +817,7 @@ void auCreatePlayers(void) {
     ALSndpConfig sndpConfig;
     s32 i;
     s32 j;
+    f32 frameRate;
 
     auHeapBase = auHeap.cur;
     auHeapSize = auHeap.count;
@@ -839,7 +840,9 @@ void auCreatePlayers(void) {
 
     alInit(&auGlobals, &synConfig);
 
-    auFrequency = (s32) (synConfig.outputRate / (f32) 60) + 1;
+    frameRate = osTvType == 0 ? 50 : 60;
+
+    auFrequency = (s32) (synConfig.outputRate / frameRate) + 1;
     if (auFrequency & 0xf) {
         auFrequency = (auFrequency & ~0xf) + 0x10;
     }

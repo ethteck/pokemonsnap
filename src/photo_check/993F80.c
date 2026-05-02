@@ -41,9 +41,12 @@ typedef struct Foo2 {
 extern s32 D_801F4194_9A3C04;
 extern s32 (*D_801F4198_9A3C08)(const void*, const void*);
 
-Photo D_802291A0_9D8C10[60];
-static s32 D_80229830[2]; // padding?
+s32 D_80229838_9D92A8_p2[2];
 s32 D_80229838_9D92A8;
+Photo D_802291A0_9D8C10[60];
+// static s32 D_80229830[2];  // padding?
+
+// build: 0x8022A040  target: 0x8022A048
 
 void func_800BF5D8_5C478(s32, PhotoData*);
 void func_800BF690_5C530(s16, PhotoData*);

@@ -219,9 +219,11 @@ void contDetectDevices(void) {
             if (ret == 0 && contRamDataBlock[0x1F] == OS_PFS_CHECK_ID) {
                 sContDeviceTypes[i] = CONT_DEV_TYPE_NONE;
             } else {
-                for (j = 0; j < BLOCKSIZE; j++) {
-                    contRamDataBlock[j] = 0x85; // what does 0x85 mean?
-                }
+
+                // clang-format off
+                for (j = 0; j < BLOCKSIZE; j++) {  contRamDataBlock[j] = 0x85;     }
+                // clang-format on
+
                 ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
                 if (ret == PFS_ERR_NEW_PACK) {
                     ret = __osContRamWrite(&contSIEvtQueue, i, CONT_BLOCK_DETECT, contRamDataBlock, 0);
@@ -235,26 +237,6 @@ void contDetectDevices(void) {
                     sContDeviceTypes[i] = CONT_DEV_TYPE_PRINTER;
                     if (contPrinterQueue.msg == NULL) {
                         osCreateMesgQueue(&contPrinterQueue, contPrinterMessages, ARRAY_COUNT(contPrinterMessages));
-                    }
-                } else if (osGbpakInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_GAME_BOY_PAK;
-                    if (contGameBoyPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contGameBoyPakQueue, contGameBoyPakMessages, ARRAY_COUNT(contGameBoyPakMessages));
-                    }
-                    osGbpakReadId(&contPfs[i], &contGameBoyPakInfo[i].id, &contGameBoyPakInfo[i].status);
-                    osGbpakPower(&contPfs[i], OS_GBPAK_POWER_OFF);
-                } else if (osMotorInit(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_RUMBLE_PAK;
-                    if (contRumblePakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contRumblePakQueue, contRumblePakMessages, ARRAY_COUNT(contRumblePakMessages));
-                    }
-                } else if (osPfsInitPak(&contSIEvtQueue, &contPfs[i], i) == 0) {
-                    sContDeviceTypes[i] = CONT_DEV_TYPE_CONTROLLER_PAK;
-                    if (contControllerPakQueue.msg == NULL) {
-                        osCreateMesgQueue(&contControllerPakQueue, contControllerPakMessages, ARRAY_COUNT(contControllerPakMessages));
-                    }
-                    for (j = 0; j < 0x10; j++) {
-                        osPfsFileState(&contPfs[i], j, &contPfsGameNotes[i][j]);
                     }
                 }
             }

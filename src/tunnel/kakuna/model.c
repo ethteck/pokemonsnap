@@ -12,6 +12,17 @@ extern u8 kakuna_tex_80159E98[];
 extern u8 kakuna_tex_80159EB0[];
 extern u8 kakuna_tex_8015A0B8[];
 
+extern u8 D_80159BE8_tunnel_code[];
+extern u8 D_80159C10_tunnel_code[];
+extern u8 D_80159E18_tunnel_code[];
+extern u8 D_80159E40_tunnel_code[];
+extern u8 D_8015A048_tunnel_code[];
+extern u8 D_8015A058_tunnel_code[];
+extern u8 D_8015A068_tunnel_code[];
+extern u8 D_8015A270_tunnel_code[];
+extern u8 D_8015A478_tunnel_code[];
+extern u8 D_8015A490_tunnel_code[];
+
 __ALIGNER
 u8 kakuna_tex_80326EF8[] = {
 #include "assets/tunnel/kakuna/tex_80326F10.pal.bin.c"

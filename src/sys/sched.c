@@ -288,6 +288,9 @@ void scSetNewViMode(void) {
     scViModeCurrent = scViModeNext;
     osViSetMode(&scViModeCurrent);
     osViBlack(scViSettings.blackout);
+    if (osTvType == 0) {
+        osViSetYScale(0.833f);
+    }
     scViSettingsUpdated = false;
 }
 
@@ -1055,9 +1058,9 @@ void scAddTask(SCTaskInfo* task) {
 
 void scPreNMIDefault(void);
 
-void scMain(UNUSED void* arg) {
+void scMain(void* arg) {
     OSMesg intrMsg;
-    UNUSED u32 pad;
+    u32 pad;
     OSViMode mode;
 
     scClientList = NULL;
@@ -1074,17 +1077,15 @@ void scMain(UNUSED void* arg) {
 
     switch (osTvType) {
         case OS_TV_NTSC:
-            mode = osViModeNtscLan1;
-            scViModeCurrent = mode;
-            scViModeNext = mode;
-            break;
-        case OS_TV_PAL:
             PANIC();
             break;
-        case OS_TV_MPAL:
-            mode = osViModeMpalLan1;
+        case OS_TV_PAL:
+            mode = osViModePalLan1;
             scViModeCurrent = mode;
             scViModeNext = mode;
+            break;
+        case OS_TV_MPAL:
+            PANIC();
             break;
     }
 

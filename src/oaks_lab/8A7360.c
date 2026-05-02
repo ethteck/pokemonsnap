@@ -382,17 +382,7 @@ void func_800E235C_8A7B7C(s32 arg0) {
             auPlaySoundWithParams(0xA1, 0x7FFF, 0x40, 0.75f, 0);
             break;
         default:
-            if (arg0 >= 'あ' && arg0 <= 'も') {
-                D_80195858_95B078 = D_80195874_95B094[(arg0 - 'あ') % ARRAY_COUNT(D_80195874_95B094)];
-                return;
-            } else if (arg0 >= 'ア' && arg0 <= 'モ') {
-                D_80195858_95B078 = D_80195874_95B094[(arg0 - 'ア') % ARRAY_COUNT(D_80195874_95B094)];
-                return;
-            } else if (arg0 == 'ん' || arg0 == 'ン' || arg0 == '　') {
-                D_80195858_95B078 = 0;
-            } else if (arg0 & 0x8000) {
-                D_80195858_95B078 = -1;
-            }
+            D_80195858_95B078 = -1;
             break;
     }
 }

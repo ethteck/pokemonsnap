@@ -5,6 +5,8 @@ extern Gfx volcano_smoke_part0[];
 
 extern u8 D_80125FF8_34CC78[];
 
+extern u8 D_PAL_801265D8_34C4C8[];
+
 #include "assets/volcano/volcano_smoke/first.gfx.inc.c"
 #include "assets/volcano/volcano_smoke/part0.gfx.inc.c"
 #include "assets/volcano/volcano_smoke/part1.gfx.inc.c"

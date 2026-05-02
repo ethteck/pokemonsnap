@@ -39,6 +39,8 @@ s32 D_80208C30_9D2E80 = -1;
 UIButton* album_CoverButtons;
 UIButton* album_PanelButtons;
 
+u8 func_801DD2FC(void);
+
 UIButton* album_GetCoverButtons(void) {
     return album_CoverButtonsDef;
 }
@@ -216,17 +218,25 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
     }
     func_801E3880_9ADAD0();
     if (input->pressedButtons & STICK_SLOW_DOWN) {
-        if (*row < 19) {
-            (*row)++;
-        } else {
+        if (*row == 0x13) {
             *row = 0;
+        } else if ((func_801DD2FC() == 0) && (*row >= 0xD)) {
+            *row = 0x13;
+        } else if ((func_801DD2FC() == 1) && (*row >= 0xF)) {
+            *row = 0x13;
+        } else {
+            (*row)++;
         }
     }
     if (input->pressedButtons & STICK_SLOW_UP) {
-        if (*row > 0) {
-            (*row)--;
+        if (*row == 0) {
+            *row = 0x13;
+        } else if ((*row == 0x13) && (func_801DD2FC() == 0)) {
+            *row = 0xD;
+        } else if ((*row == 0x13) && (func_801DD2FC() == 1)) {
+            *row = 0xF;
         } else {
-            *row = 19;
+            (*row)--;
         }
     }
     if (input->pressedButtons & STICK_SLOW_RIGHT) {
@@ -236,7 +246,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
             } else {
                 *column = 0;
             }
-        } else if (*column < 2) {
+        } else if (*column < 3) {
             (*column)++;
         } else {
             *column = 0;
@@ -252,7 +262,7 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
         } else if (*column > 0) {
             *column -= 1;
         } else {
-            *column = 2;
+            *column = 3;
         }
     }
 
@@ -274,12 +284,21 @@ s32 album_EditComment(UnkStruct800BEDF8* input, s32* column, s32* row) {
         D_80208C30_9D2E80 = *row;
         auPlaySound(SOUND_ID_65);
         func_801DE998_9A8BE8(false);
-        if (*column < 2) {
-            FocusMark_SetTargetSize(4, 5);
-            FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
-        } else {
-            FocusMark_SetTargetSize(13, 5);
-            FocusMark_SetTargetPos(68, (*row * 10) + 22);
+        switch (*column) {
+            case 0:
+            case 1:
+                FocusMark_SetTargetSize(4, 5);
+                FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
+                break;
+
+            case 2:
+                FocusMark_SetTargetSize(8, 5);
+                FocusMark_SetTargetPos((*column * 13) + 25, (*row * 10) + 22);
+                break;
+            case 3:
+            default:
+                FocusMark_SetTargetSize(13, 5);
+                FocusMark_SetTargetPos(68, (*row * 10) + 22);
         }
         func_801DEA4C_9A8C9C(false, *column, *row);
     }
@@ -555,8 +574,18 @@ s32 album_UpdateAlbumPage(void) {
                     break;
                 }
 
+                if (input->pressedButtons & Z_TRIG) {
+                    auPlaySound(0x4B);
+                    if (func_801DD2FC() == 1 && gridRow >= 0xE && gridRow < 0x13) {
+                        gridRow = 0xD;
+                    }
+                    album_SwitchCharacterGridPage(1);
+                    func_801DEA4C_9A8C9C(false, gridColumn, gridRow);
+                    break;
+                }
+
                 if (input->pressedButtons & A_BUTTON) {
-                    if (gridColumn >= 2 && gridRow == 19) {
+                    if (gridColumn >= 3 && gridRow == 19) {
                         auPlaySound(SOUND_ID_66);
                         FocusMark_Show(false);
                         album_SwitchCharacterGridPage(6);
@@ -572,7 +601,7 @@ s32 album_UpdateAlbumPage(void) {
                         func_801DEA4C_9A8C9C(false, gridColumn, gridRow);
                     }
                     if (album_GetCursorPos() >= 31) {
-                        gridColumn = 2;
+                        gridColumn = 3;
                         gridRow = 19;
                     }
                     break;

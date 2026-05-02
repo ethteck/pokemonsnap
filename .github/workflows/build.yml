@@ -2,32 +2,23 @@ name: Build
 
 on:
   push:
-  pull_request_target:
+  pull_request:
 
 jobs:
   build:
+    # This is a *private* build container.
+    container: ghcr.io/ethteck/pokemonsnap-build:main
+
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
-      - name: Merge target branch
-        if: github.event_name == 'pull_request_target'
-        run: |
-          echo "PR head:     ${{ github.event.pull_request.head.sha }}"
-          echo "Checked out: $(git rev-parse HEAD)"
-          echo "Base branch: origin/${{ github.event.pull_request.base.ref }} ($(git rev-parse origin/${{ github.event.pull_request.base.ref }}))"
-          git config user.name "CI"
-          git config user.email "ci@localhost"
-          git merge --no-edit origin/${{ github.event.pull_request.base.ref }}
-          echo "After merge: $(git rev-parse HEAD)"
-          git log --oneline -5
-
       - name: Install system dependencies
-        run: sudo apt-get install -y binutils-mips-linux-gnu ninja-build
+        run: |
+          apt-get install -y binutils-mips-linux-gnu ninja-build
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
@@ -36,6 +27,9 @@ jobs:
 
       - name: Install Python dependencies
         run: uv sync
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Cache pigment64
         id: cache-pigment64
@@ -48,10 +42,8 @@ jobs:
         if: steps.cache-pigment64.outputs.cache-hit != 'true'
         run: cargo install pigment64
 
-      - name: Download ROM
-        env:
-          ROM_GDRIVE_ID: ${{ secrets.ROM_GDRIVE_ID }}
-        run: uvx gdown "$ROM_GDRIVE_ID" -O pokemonsnap.z64
+      - name: Get the dependency
+        run: cp /orig/* .
 
       - name: Setup
         run: |

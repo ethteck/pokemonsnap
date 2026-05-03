@@ -24,16 +24,12 @@ tools:
     decompme_compilers:
       tools/ido7.1/cc: ido7.1
       tools/ido5.3/cc: ido5.3
-  frogress:
-    project: pokemonsnap
-    versions:
-      us: # corresponds with top-level version snames
-        version: us
 
   mapfile_parser:
     progress_report:
       # output: report.json # Optional
-      check_asm_paths: True
+      check_asm_paths: False
+      report_data: True
       prefixes_to_trim:
         - build/lib/
         - build/src/

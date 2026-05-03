@@ -306,7 +306,7 @@ PokemonAnimationSetup charmander_animSetup = {
 
 PokemonInitData charmander_initData = {
     charmander_model,
-    charmander_materials,    
+    charmander_materials,
     renderPokemonModelTypeJFogged,
     &charmander_animSetup,
     { 2, 2, 2 },
@@ -453,7 +453,7 @@ POKEMON_FUNC(charmander_HowlingEnded)
     Pokemon_StopAuxProc(obj);
 }
 
-POKEMON_FUNC(charmander_HitOrBurnt)    
+POKEMON_FUNC(charmander_HitOrBurnt)
     InteractionHandler saved1[2] = charmander_tg_FallingDown;
     InteractionHandler saved2[2] = charmander_tg_LyingOnGround;
 
@@ -645,7 +645,7 @@ POKEMON_FUNC(charmander_SpawnFriend)
     pokemon->flags &= ~POKEMON_FLAG_800;
     pokemon->flags &= ~POKEMON_FLAG_200;
     pokemon->forbiddenGround = charmander_forbiddenGround;
-    SHOW_POKEMON();    
+    SHOW_POKEMON();
     Pokemon_SetAnimation(obj, &charmander_animation_run);
     pokemon->hSpeed = 80.0f;
     Pokemon_StartPathProc(obj, charmander_RunToSummoner);
@@ -688,7 +688,7 @@ POKEMON_FUNC(charmander_RunToSummoner2)
 
 POKEMON_FUNC(charmander_PlayEvolveEffect)
     func_802DED6C_72FF6C(obj);
-    Pokemon_SetAnimation(obj, &charmander_animation_lie);    
+    Pokemon_SetAnimation(obj, &charmander_animation_lie);
     pokemon->transitionGraph = charmander_tg_PlayEvolveEffect;
     Pokemon_WaitForFlag(obj, 0);
 
@@ -703,7 +703,7 @@ POKEMON_FUNC(charmander_BurntWhileFalling)
 }
 
 POKEMON_FUNC(charmander_LieOnGround)
-    Pokemon_ForceAnimation(obj, &charmander_animation_lie);  
+    Pokemon_ForceAnimation(obj, &charmander_animation_lie);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 

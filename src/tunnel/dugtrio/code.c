@@ -160,7 +160,9 @@ POKEMON_FUNC(dugtrio_FirstRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = dugtrio_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_turn);
@@ -219,7 +221,9 @@ POKEMON_FUNC(dugtrio_SecondRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = dugtrio_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_turn);
@@ -280,7 +284,9 @@ POKEMON_FUNC(dugtrio_ThirdRise)
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_look_around);
+    // clang-format off
     pokemon->counter = 30; pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED, pokemon->transitionGraph = dugtrio_tg_ReadyForPhoto;
+    // clang-format on
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED);
 
     Pokemon_SetAnimation(obj, &dugtrio_animation_turn);

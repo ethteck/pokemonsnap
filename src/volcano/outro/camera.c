@@ -49,9 +49,9 @@ InterpData volcano_camera_end_at_path = {
 
 asBegin_ptr2_ns(volcano_camera_anim_end)
     asSetCamPath_f(volcano_camera_end_eye_path, volcano_camera_end_at_path);
-    asSetAfter_1(0, FOVY, 50.0);
-    asSetZeroRate_1(0, EYE_PATH_PARAM, 0.0);
-    asSetBlock_1(0, AT_PATH_PARAM, 0.0);
-    asSetZeroRate_1(150, EYE_PATH_PARAM, 1.0);
-    asSetBlock_1(150, AT_PATH_PARAM, 1.0);
+asSetAfter_1(0, FOVY, 50.0);
+asSetZeroRate_1(0, EYE_PATH_PARAM, 0.0);
+asSetBlock_1(0, AT_PATH_PARAM, 0.0);
+asSetZeroRate_1(150, EYE_PATH_PARAM, 1.0);
+asSetBlock_1(150, AT_PATH_PARAM, 1.0);
 asEnd();

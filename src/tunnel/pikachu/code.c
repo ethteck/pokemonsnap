@@ -336,7 +336,7 @@ POKEMON_FUNC(func_802E7B3C_5E4C0C)
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_1000;
     Pokemon_StartAuxProc(obj, func_802E7CA4_5E4D74);
     pokemon->counter = 180, pokemon->processFlags &= ~POKEMON_PROCESS_WAIT_ENDED;
-    
+
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_2000) {
         Pokemon_SetState(obj, func_802E7C1C_5E4CEC);
     }
@@ -352,7 +352,7 @@ POKEMON_FUNC(func_802E7C1C_5E4CEC)
     Pokemon_ForceAnimation(obj, &D_802EEDE4_5EBEB4);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED | POKEMON_PROCESS_FLAG_1000);
-    
+
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_ANIMATION_ENDED) {
         Pokemon_SetState(obj, func_802E7C1C_5E4CEC);
     }
@@ -365,7 +365,7 @@ POKEMON_FUNC(func_802E7CA4_5E4D74)
     while (Items_GetPokeFluteCmd() != 0) {
         ohWait(1);
     }
-    
+
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_1000;
     Pokemon_StopAuxProc(obj);
 }
@@ -375,7 +375,7 @@ POKEMON_FUNC(func_802E7D04_5E4DD4)
     Pokemon_ForceAnimation(obj, &D_802EEEAC_5EBF7C);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_WAIT_ENDED | POKEMON_PROCESS_FLAG_1000);
-    
+
     if (!(pokemon->processFlags & POKEMON_PROCESS_WAIT_ENDED)) {
         Pokemon_SetState(obj, func_802E782C_5E48FC);
     }
@@ -420,7 +420,7 @@ POKEMON_FUNC(func_802E7E94_5E4F64)
     pokemon->transitionGraph = saved;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
 
-    if (!(pokemon->processFlags &POKEMON_PROCESS_FLAG_1000)) {
+    if (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_1000)) {
         Pokemon_SetState(obj, func_802E7E94_5E4F64);
     }
 
@@ -544,8 +544,8 @@ POKEMON_FUNC(func_802E8330_5E5400)
 POKEMON_FUNC(func_802E8398_5E5468)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, pokemon->path->paramPoints[pokemon->miscVars[0].field1],
-                            pokemon->path->paramPoints[pokemon->miscVars[1].field1],
-                            0.1f, 0.0f, MOVEMENT_FLAG_ON_GROUND | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+                       pokemon->path->paramPoints[pokemon->miscVars[1].field1],
+                       0.1f, 0.0f, MOVEMENT_FLAG_ON_GROUND | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     omEndProcess(NULL);
@@ -641,8 +641,8 @@ POKEMON_FUNC(func_802E86C4_5E5794)
 POKEMON_FUNC(func_802E8754_5E5824)
     Pokemon_ResetPathPos(obj);
     Pokemon_FollowPath(obj, pokemon->path->paramPoints[pokemon->miscVars[0].field1],
-                            pokemon->path->paramPoints[pokemon->miscVars[1].field1],
-                            0.1f, 0.0f, MOVEMENT_FLAG_ON_GROUND | MOVEMENT_FLAG_UPDATE_TARGET_POS);
+                       pokemon->path->paramPoints[pokemon->miscVars[1].field1],
+                       0.1f, 0.0f, MOVEMENT_FLAG_ON_GROUND | MOVEMENT_FLAG_UPDATE_TARGET_POS);
     Pokemon_TurnToTarget(obj, 0.1f, MOVEMENT_FLAG_TURN_TO_PLAYER);
     pokemon->pathProc = NULL;
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
@@ -718,7 +718,7 @@ InteractionHandler D_802EF280_5EC350[] = {
     { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-f32 D_802EF2A0_5EC370[] =  { 0 };
+f32 D_802EF2A0_5EC370[] = { 0 };
 
 POKEMON_FUNC(func_802E8AA4_5E5B74)
     pokemon->forbiddenGround = D_802EF2A0_5EC370;
@@ -747,10 +747,10 @@ POKEMON_FUNC(func_802E8B1C_5E5BEC)
         pokemon->hSpeed = 320.0f;
         Pokemon_SetTargetPos(obj, anotherPos->v.x, anotherPos->v.z);
     } while (Pokemon_StepToTargetPos(obj, 0.1f, 0) == 0);
-    
+
     position->v.x = anotherPos->v.x;
     position->v.z = anotherPos->v.z;
-    position->v.y = anotherPos->v.y + 150.0f; 
+    position->v.y = anotherPos->v.y + 150.0f;
 
     pokemon->processFlags |= POKEMON_PROCESS_FLAG_PATH_ENDED;
     pokemon->pathProc = NULL;
@@ -782,7 +782,7 @@ POKEMON_FUNC(func_802E8D84_5E5E54)
     while (!(pokemon->processFlags & POKEMON_PROCESS_FLAG_4000)) {
         position->v.x = anotherPos->v.x;
         position->v.z = anotherPos->v.z;
-        position->v.y = anotherPos->v.y + 150.0f;        
+        position->v.y = anotherPos->v.y + 150.0f;
         ohWait(1);
     }
     Pokemon_StopAuxProc(obj);
@@ -815,12 +815,12 @@ POKEMON_FUNC(func_802E8EAC_5E5F7C)
 
 POKEMON_FUNC(func_802E8F44_5E6014)
     Vec3f endPos = { 0, 0, 0 };
-    f32 x,z;
+    f32 x, z;
     WorldBlock* block;
 
     block = getCurrentWorldBlock();
-    x  = - (block->descriptor->worldPos.x * 100.0f);
-    z  = - (block->descriptor->worldPos.z * 100.0f);
+    x = -(block->descriptor->worldPos.x * 100.0f);
+    z = -(block->descriptor->worldPos.z * 100.0f);
     GetInterpolatedPosition(&endPos, pokemon->path, 0.99999f);
     x += endPos.x * 100.0f;
     z += endPos.z * 100.0f;
@@ -889,8 +889,8 @@ POKEMON_FUNC(func_802E9288_5E6358)
     WorldBlock* block;
 
     block = getCurrentWorldBlock();
-    sp2C.x  = - (block->descriptor->worldPos.x * 100.0f);
-    sp2C.z  = - (block->descriptor->worldPos.z * 100.0f);
+    sp2C.x = -(block->descriptor->worldPos.x * 100.0f);
+    sp2C.z = -(block->descriptor->worldPos.z * 100.0f);
     GetInterpolatedPosition(&endPos, pokemon->path, 0);
     sp2C.x += endPos.x * 100.0f;
     sp2C.z += endPos.z * 100.0f;

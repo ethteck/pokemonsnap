@@ -181,8 +181,8 @@ void func_800E1A0C_A5CDBC(void) {
     UIText_SetSpacing(-1, 3);
     UIElement_SetFont(id, FONT_12);
     UIElement_PrintText(id, "Enter your name on the card.\n"
-                             "Choose with the Control Stick\n"
-                             "and select with the \\a Button!");
+                            "Choose with the Control Stick\n"
+                            "and select with the \\a Button!");
 
     // character grid
     for (i = 0; i < ARRAY_COUNT(D_801180C0); i++) {

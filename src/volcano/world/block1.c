@@ -78,7 +78,7 @@ Texture* volcano_block1_materials_mat[] = {
 
 #include "assets/volcano/block1/anim1.matanim.inc.c"
 // split ?
-__ALIGNER 
+__ALIGNER
 #include "assets/volcano/block1/unk.gfx.inc.c"
 
 UnkEC64Arg3 volcano_block1_road[] = {

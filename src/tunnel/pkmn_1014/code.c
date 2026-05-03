@@ -163,7 +163,7 @@ void func_802EDB3C_5EAC0C(GObj* obj) {
     func_802EDAE8_5EABB8();
     D_802F0218_5ED2E8 = 0;
     playerGobj->fnAnimCallback = func_802ED720_5EA7F0;
-    
+
     for (var_s1 = 0; D_802F0218_5ED2E8 == 0 && var_s1 < 10800; var_s1++) {
         if (D_802F0220_5ED2F0 >= 0.0f && D_802F0224_5ED2F4 >= 0.0f) {
             func_802ED69C_5EA76C(3.0f);

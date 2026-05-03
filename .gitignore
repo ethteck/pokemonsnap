@@ -7,6 +7,7 @@ build/
 expected/
 tools/ido5.3/
 tools/ido7.1/
+tools/asm_proc/
 
 *.bin
 *.ld

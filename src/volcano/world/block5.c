@@ -195,7 +195,7 @@ Texture* volcano_block5_materials_mat[] = {
 };
 
 #include "assets/volcano/block5/anim1.matanim.inc.c"
-__ALIGNER 
+__ALIGNER
 #include "assets/volcano/block5/unk.gfx.inc.c"
 
 UnkEC64Arg3 volcano_block5_road[] = {

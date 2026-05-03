@@ -18,10 +18,10 @@ void UIFrame_ExpandFromCenter(UIFrame* f, s32 style, s32 show) {
 
         x1 = -92 * v0 / D_80381920_8550D0 + 188;
         x2 = 92 * v0 / D_80381920_8550D0 + 212;
-        y1 = -36 * v0 / D_80381920_8550D0 + 201;        
+        y1 = -36 * v0 / D_80381920_8550D0 + 201;
         y2 = 225;
         opacity = v0 * 255 / D_80381920_8550D0;
-        
+
         UIFrame_SetPos(f, x1, y1);
         UIFrame_SetSize(f, x2 - x1, y2 - y1);
         UIFrame_SetOpacity(f, opacity);
@@ -49,10 +49,10 @@ void UIFrame_ExpandFromRight(UIFrame* f, s32 style, s32 show) {
 
         x1 = -184 * v0 / D_80381920_8550D0 + 280;
         x2 = 304;
-        y1 = -36 * v0 / D_80381920_8550D0 + 201;        
+        y1 = -36 * v0 / D_80381920_8550D0 + 201;
         y2 = 225;
         opacity = v0 * 255 / D_80381920_8550D0;
-        
+
         UIFrame_SetPos(f, x1, y1);
         UIFrame_SetSize(f, x2 - x1, y2 - y1);
         UIFrame_SetOpacity(f, opacity);
@@ -81,7 +81,7 @@ void UIFrame_ExpandFromLeft(UIFrame* f, s32 style, s32 show) {
         width = 184 * v0 / D_80381920_8550D0;
         height = 36 * v0 / D_80381920_8550D0;
         opacity = v0 * 255 / D_80381920_8550D0;
-        
+
         UIFrame_SetSize(f, width + 24, height + 24);
         UIFrame_SetOpacity(f, opacity);
         ohWait(1);

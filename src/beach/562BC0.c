@@ -5,7 +5,7 @@ void func_beach_802CAB50(GObj* obj) {
     UNUSED s32 pad[1];
     DObj* model = obj->data.dobj;
     Mtx4Float* rotation = &GET_TRANSFORM(model)->rot;
-    Pokemon* pokemon = GET_POKEMON(obj);    
+    Pokemon* pokemon = GET_POKEMON(obj);
 
     Pokemon_SetAnimation(obj, &D_beach_802CDAB4);
     rotation->v.y = randRange(360) * PI / 180.0f;

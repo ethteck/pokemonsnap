@@ -1,0 +1,34 @@
+name: Format
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha || github.sha }}
+          fetch-depth: 0
+
+      - uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          style: file
+          tidy-checks: "-*"
+          version: 21
+          files-changed-only: true
+          format-review: true
+          extensions: c,h
+          ignore: ultralib
+
+      - if: steps.linter.outputs.checks-failed > 0
+        run: exit 1

@@ -13,7 +13,6 @@ extern Texture* smoke_puff_part0_mat[];
 
 extern Vtx smoke_puff_vtx[];
 
-
 #include "assets/volcano/smoke_puff/draw.gfx.inc.c"
 __ALIGNER
 #include "assets/volcano/smoke_puff/model.vtx.inc.c"

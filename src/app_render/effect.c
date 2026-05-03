@@ -1354,53 +1354,41 @@ void fx_getPosVelDObj(Vec3f* pos, Vec3f* vel, DObj* dobj) {
     vel->z = dst[0][2] * x + dst[1][2] * y + dst[2][2] * z;
 }
 
-#if 0
 void fx_effectFuncRun(GObj* obj) {
-    UnkPinkRat* ptr;
+    Effect* ptr;
+    Effect* next;
+    f32 tfa0 = 0;
     Vec3f sp128;
     Vec3f sp11C;
+    f32 x, y, z;
+    f32 var_f20;
     f32 sp108;
     f32 angle1;
+    f32 angle2;
     f32 spFC;
     f32 spF8;
-    f32 angle2; // move this
     f32 spF4;
     f32 spF0;
     f32 spEC;
+    f32 var_f14, var_f16, var_f18;
     f32 spDC;
-    f32 spB8;
-    f32 spB4;
-    f32 var_f20;
+    f32 temp_f20;
+    f32 temp_f22;
+    f32 spD0, spCC, spC8;
     f32 var_f24;
     f32 temp_f26;
     f32 temp_f28;
-    f32 temp_f20;
-
-    f32 temp_f0;
-
-    f32 temp_f22, temp_f0_6,
-        spD0, spCC, temp_f12, spC8;
-
-    f32 var_f14, var_f16, var_f18;
-
-    f32 temp_f0_8;
-    f32 temp_f28_4;
-    f32 temp_f22_2;
-    f32 var_f24_3;
-    UnkPinkRat* next;
-
-    f32 nv1;
-
-    f32 x, y, z;
-    f32 x1, y1, z1;
+    f32 spB8;
+    f32 spB4;
+    f32 temp_fv1;
 
     for (ptr = D_800BE1EC, D_800BE2B0 = NULL; ptr != NULL;) {
-        if (obj->flags & (1 << (16 + (ptr->unk_09 >> 3)))) {
+        if (obj->flags & (1 << (16 + (ptr->bankID >> 3)))) {
             D_800BE2B0 = ptr;
             ptr = ptr->next;
             continue;
         }
-        if (ptr->unk_06 & 0x800) {
+        if (ptr->flags & 0x800) {
             D_800BE2B0 = ptr;
             ptr = ptr->next;
             continue;
@@ -1413,21 +1401,21 @@ void fx_effectFuncRun(GObj* obj) {
         }
 
         if (ptr->unk_44 >= 1.0f) {
-            sp11C.x = ptr->unk_20.x;
-            sp11C.y = ptr->unk_20.y;
-            sp11C.z = ptr->unk_20.z;
+            sp11C.x = ptr->vel.x;
+            sp11C.y = ptr->vel.y;
+            sp11C.z = ptr->vel.z;
             if (ptr->dobj != NULL) {
                 fx_getPosVelDObj(&sp128, &sp11C, ptr->dobj);
-                ptr->unk_14.x = sp128.x;
-                ptr->unk_14.y = sp128.y;
-                ptr->unk_14.z = sp128.z;
+                ptr->pos.x = sp128.x;
+                ptr->pos.y = sp128.y;
+                ptr->pos.z = sp128.z;
             }
             spDC = randFloat() * TAU;
             spB8 = TAU / (s32) ptr->unk_44;
         }
 
         while (ptr->unk_44 >= 1.0f) {
-            switch (ptr->unk_08) {
+            switch (ptr->kind) {
                 case 0:
                 case 3:
                 case 4:
@@ -1436,22 +1424,22 @@ void fx_effectFuncRun(GObj* obj) {
                     z = sp11C.z;
 
                     angle1 = atan2f(y, z);
-                    spFC = sinf(angle1);
-                    spF8 = cosf(angle1);
+                    spFC = __sinf(angle1);
+                    spF8 = __cosf(angle1);
 
                     angle2 = atan2f(x, y * spFC + z * spF8);
-                    spF4 = sinf(angle2);
-                    spF0 = cosf(angle2);
+                    spF4 = __sinf(angle2);
+                    spF0 = __cosf(angle2);
 
                     sp108 = sqrtf(SQ(x) + SQ(y) + SQ(z));
 
                     if (ptr->unk_38 < 0.0f) {
-                        spB4 = 1.0f;
+                        spB4 = var_f24 = 1.0f;
                         var_f20 = -ptr->unk_38;
                     } else {
-                        spB4 = randFloat();
-                        if (ptr->unk_08 != 0) {
-                            spB4 = sqrtf(spB4);
+                        spB4 = var_f24 = randFloat();
+                        if (ptr->kind != 0) {
+                            spB4 = var_f24 = sqrtf(var_f24);
                         }
                         var_f20 = ptr->unk_38 * spB4;
                     }
@@ -1461,68 +1449,70 @@ void fx_effectFuncRun(GObj* obj) {
                         var_f24 = -ptr->unk_3C;
                     } else {
                         spDC = randFloat() * TAU;
-                        var_f24 = ptr->unk_3C * spB4;
+                        var_f24 *= ptr->unk_3C;
                     }
 
                     spEC = __cosf(spDC) * var_f20;
                     temp_f26 = __sinf(spDC) * var_f20;
-                    temp_f28 = __sinf(var_f24) * sp108;
+                    angle2 = __sinf(var_f24) * sp108;
 
-                    temp_f20 = __cosf(spDC) * temp_f28;
-                    temp_f22 = __sinf(spDC) * temp_f28;
-                    temp_f0_6 = __cosf(var_f24) * sp108;
+                    x = __cosf(spDC) * angle2;
+                    y = __sinf(spDC) * angle2;
+                    temp_fv1 = __cosf(var_f24) * sp108;
 
-                    spD0 = ptr->unk_14.x;
-                    spD0 += spEC * spF0 + 0;
-                    spCC = -spEC * spFC * spF4 + temp_f26 * spF8 + 0 + ptr->unk_14.y;
-                    spC8 = ptr->unk_14.z + (-spEC * spF8 * spF4 - temp_f26 * spFC + 0);
+                    spD0 = spEC * spF0 + tfa0 + ptr->pos.x;
+                    spCC = -spEC * spFC * spF4 + temp_f26 * spF8 + tfa0 + ptr->pos.y;
+                    spC8 = -spEC * spF8 * spF4 - temp_f26 * spFC + tfa0 + ptr->pos.z;
 
-                    nv1 = temp_f0_6 * spFC * spF0;
-                    var_f14 = temp_f20 * spF0 + temp_f0_6 * spF4;
-                    var_f16 = -temp_f20 * spFC * spF4 + temp_f22 * spF8 + nv1;
-                    var_f18 = -temp_f20 * spF8 * spF4 - temp_f22 * spFC + temp_f0_6 * spF8 * spF0;
+                    var_f14 = x * spF0 + temp_fv1 * spF4;
+                    var_f16 = -x * spFC * spF4 + y * spF8 + temp_fv1 * spFC * spF0;
+                    var_f18 = -x * spF8 * spF4 - y * spFC + temp_fv1 * spF8 * spF0;
 
-                    if (ptr->unk_08 == 3) {
+                    if (ptr->kind == 3) {
                         var_f14 *= spB4;
                         var_f16 *= spB4;
                         var_f18 *= spB4;
                     }
-                    fx_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
-                                  spD0, spCC, spC8,
-                                  var_f14, var_f16, var_f18,
-                                  ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
+                    fx_makeParam(ptr->bankID, ptr->flags, ptr->textureID, ptr->bytecode, ptr->particleLifetime,
+                                 spD0, spCC, spC8,
+                                 var_f14, var_f16, var_f18,
+                                 ptr->size, ptr->gravity, ptr->friction, 0, ptr);
                     break;
                 case 1:
-                    temp_f0 = randFloat();
-                    x1 = ptr->unk_14.x + temp_f0 * (ptr->unk_4C.data1.x - ptr->unk_14.x);
-                    y1 = ptr->unk_14.y + temp_f0 * (ptr->unk_4C.data1.y - ptr->unk_14.y);
-                    z1 = ptr->unk_14.z + temp_f0 * (ptr->unk_4C.data1.z - ptr->unk_14.z);
-                    fx_makeParam(ptr->unk_09, ptr->unk_06, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
-                                  x1, y1, z1,
-                                  sp11C.x, sp11C.y, sp11C.z, ptr->unk_34, ptr->unk_2C, ptr->unk_30, 0, ptr);
+                    var_f24 = randFloat();
+                    spD0 = ptr->pos.x + var_f24 * (ptr->effectVars.move.x - ptr->pos.x);
+                    spCC = ptr->pos.y + var_f24 * (ptr->effectVars.move.y - ptr->pos.y);
+                    spC8 = ptr->pos.z + var_f24 * (ptr->effectVars.move.z - ptr->pos.z);
+                    fx_makeParam(ptr->bankID, ptr->flags, ptr->textureID, ptr->bytecode, ptr->particleLifetime,
+                                 spD0,
+                                 spCC,
+                                 spC8,
+                                 sp11C.x, sp11C.y, sp11C.z, ptr->size, ptr->gravity, ptr->friction, 0, ptr);
                     break;
                 case 2:
                     x = sp11C.x;
                     y = sp11C.y;
                     z = sp11C.z;
-                    temp_f0_8 = atan2f(y, z);
-                    temp_f28_4 = atan2f(x, y * __sinf(temp_f0_8) + z * __cosf(temp_f0_8));
-                    temp_f22_2 = sqrtf(SQ(x) + SQ(y) + SQ(z));
+                    angle1 = atan2f(y, z);
+                    spFC = __sinf(angle1);
+                    spF8 = __cosf(angle1);
+                    angle2 = atan2f(x, y * spFC + z * spF8);
+                    sp108 = sqrtf(SQ(x) + SQ(y) + SQ(z));
                     if (ptr->unk_38 < 0.0f) {
-                        var_f24_3 = 1.0f;
+                        var_f24 = 1.0f;
                     } else {
-                        var_f24_3 = randFloat();
+                        var_f24 = randFloat();
                     }
                     if (ptr->unk_3C < 0.0f) {
                         spDC += spB8;
                     } else {
                         spDC = randFloat() * 6.2831855f;
                     }
-                    ptr->unk_4C.data2.unk_00 = temp_f22_2;
-                    if (fx_makeParam(ptr->unk_09, ptr->unk_06 | 4, ptr->unk_0A, ptr->unk_10, ptr->unk_0C,
-                                      0, 0, 0,
-                                      spDC, var_f24_3, 0, ptr->unk_34, temp_f0_8, temp_f28_4, 0, ptr) != NULL) {
-                        ptr->unk_4C.data2.unk_04++;
+                    ptr->effectVars.data2.unk_00 = sp108;
+                    if (fx_makeParam(ptr->bankID, ptr->flags | 4, ptr->textureID, ptr->bytecode, ptr->particleLifetime,
+                                     0, 0, 0,
+                                     spDC, var_f24, 0, ptr->size, angle1, angle2, 0, ptr) != NULL) {
+                        ptr->effectVars.data2.unk_04++;
                     }
                     break;
                 default:
@@ -1534,10 +1524,13 @@ void fx_effectFuncRun(GObj* obj) {
 
             ptr->unk_44 -= 1.0f;
         }
+        // FAKE
+        if (spDC) {
+        }
 
-        if (ptr->unk_0E != 0 && --ptr->unk_0E == 0) {
-            if (ptr->unk_08 == 2 && ptr->unk_4C.data2.unk_04 != 0) {
-                ptr->unk_0E = 1;
+        if (ptr->effectLifetime != 0 && --ptr->effectLifetime == 0) {
+            if (ptr->kind == 2 && ptr->effectVars.data2.unk_04 != 0) {
+                ptr->effectLifetime = 1;
                 ptr->unk_40 = 0.0f;
                 goto END;
             } else {
@@ -1558,10 +1551,6 @@ void fx_effectFuncRun(GObj* obj) {
         }
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/effect/fx_effectFuncRun.s")
-void fx_effectFuncRun(GObj* obj);
-#endif
 
 Effect* fx_getEffect(void) {
     Effect* ret;

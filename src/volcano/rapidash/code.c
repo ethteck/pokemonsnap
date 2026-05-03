@@ -410,7 +410,7 @@ POKEMON_FUNC(rapidash_RunningAffectedByItem)
     Pokemon_ForceAnimation(obj, &rapidash_animation_rear);
     pokemon->transitionGraph = saved;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    
+
     pokemon->processFlags &= ~POKEMON_PROCESS_FLAG_MOVEMENT_PAUSED;
     Pokemon_SetState(obj, rapidash_RunAlongPath);
 }

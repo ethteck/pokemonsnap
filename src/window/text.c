@@ -460,14 +460,14 @@ s32 UIText_PrintChar32(UIText* arg0, s32 x, s32 y, s32 ch) {
                     continue;
                 }
 
-                UIText_GetBlendedColor((ucolor*)img, &D_803A6A04_87A1B4, ci);
+                UIText_GetBlendedColor((ucolor*) img, &D_803A6A04_87A1B4, ci);
 
                 for (v1 = img, k = UIText_ShadowOffset; k > 0; k--) {
                     v1 += arg0->width + 1;
                     if (k == 1) {
-                        UIText_GetBlendedColor((ucolor*)v1, &UIText_ShadowColor, ci);
+                        UIText_GetBlendedColor((ucolor*) v1, &UIText_ShadowColor, ci);
                     } else {
-                        UIText_GetBlendedColor((ucolor*)v1, &UIText_ShadowColor, 15);
+                        UIText_GetBlendedColor((ucolor*) v1, &UIText_ShadowColor, 15);
                     }
                 }
             }
@@ -480,7 +480,7 @@ s32 UIText_PrintChar32(UIText* arg0, s32 x, s32 y, s32 ch) {
 
 s32 UIText_Ascii2WideChar(s32 c) {
     if (c > 0x20 && (u32) c < 0x7F) {
-        c = ((((u8*)UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*)UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
+        c = ((((u8*) UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*) UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
     } else {
         c = '　';
     }
@@ -604,7 +604,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         }
 
         if (*x > text->width - UIText_HorizontalInterval) {
-    NEXT_LINE:
+        NEXT_LINE:
             *x = 0;
         } else {
             goto END;
@@ -630,7 +630,7 @@ void UIText_PrintAsciiString(UIText* text, s32* x, s32* y, u8* str) {
         s32 c = ptr[0];
 
         if (c > 0x20 && c < 0x7F) {
-            printedChar = ((((u8*)UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*)UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
+            printedChar = ((((u8*) UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*) UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
             if (text->bpp == 4) {
                 UIText_PrintChar32(text, *x, *y, printedChar);
             } else {

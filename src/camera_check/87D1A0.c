@@ -185,7 +185,7 @@ s32 func_camera_check_801DFCD4(UnkStruct800BEDF8* arg0, s32* arg1, s32* arg2, s3
         D_camera_check_802089E8 = *arg1;
         D_camera_check_802089EC = *arg2;
         D_camera_check_80208960 = (D_camera_check_80208960 - D_camera_check_80208960 % 6) + *arg2 * 3 + *arg1;
-        
+
         if (var_t0) {
             FocusMark_SetPos((*arg1 * 66) + 107, (*arg2 * 55) + 56);
         } else {

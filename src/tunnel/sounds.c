@@ -45,7 +45,7 @@ void tunnel_UpdateSounds(s32 blockCount, f32 blockPart) {
             break;
         case 4:
             if (blockCount + blockPart > 0.93f && blockCount + blockPart < 1.13f) {
-                D_802EE1EC_5EB2BC = (u32)((blockCount + blockPart - 0.93f) * 127 / (1.13f - 0.93f));
+                D_802EE1EC_5EB2BC = (u32) ((blockCount + blockPart - 0.93f) * 127 / (1.13f - 0.93f));
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 6, D_802EE1EC_5EB2BC);
             } else if (blockCount + blockPart > 1.13f) {
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 6, 127);
@@ -54,7 +54,7 @@ void tunnel_UpdateSounds(s32 blockCount, f32 blockPart) {
             break;
         case 5:
             if (blockCount + blockPart > 2.0f && blockCount + blockPart < 2.1f) {
-                D_802EE1EC_5EB2BC = (u32)((blockCount + blockPart - 2.0f) * 127 / (2.1f - 2.0f));
+                D_802EE1EC_5EB2BC = (u32) ((blockCount + blockPart - 2.0f) * 127 / (2.1f - 2.0f));
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 7, D_802EE1EC_5EB2BC);
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 12, D_802EE1EC_5EB2BC);
             } else if (blockCount + blockPart > 2.1f) {
@@ -104,7 +104,7 @@ void tunnel_UpdateSounds(s32 blockCount, f32 blockPart) {
             break;
         case 8:
             if (blockCount + blockPart > 5.0f && blockCount + blockPart < 5.3f) {
-                D_802EE1EC_5EB2BC = (u32)((5.3f - (blockCount + blockPart)) * 127 / (5.3f - 5.0f));
+                D_802EE1EC_5EB2BC = (u32) ((5.3f - (blockCount + blockPart)) * 127 / (5.3f - 5.0f));
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 7, D_802EE1EC_5EB2BC);
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, 12, D_802EE1EC_5EB2BC);
                 if (D_803430F8_6401C8) {
@@ -151,7 +151,7 @@ void tunnel_UpdateSounds(s32 blockCount, f32 blockPart) {
         case 2:
             if (blockCount + blockPart > 5.365f) {
                 auSetSoundGlobalReverb(0);
-                auSetBGMExtraReverb(BGM_PLAYER_MAIN, 0);                
+                auSetBGMExtraReverb(BGM_PLAYER_MAIN, 0);
                 auPlaySoundWithParams(SOUND_ID_52, 0x6800, 0, 0.7f, 20);
                 D_802EE1E4_5EB2B4 = 3;
             }

@@ -19,7 +19,7 @@ typedef struct Overlay {
 } Overlay; // size == 0x24
 
 #define OVERLAY(name) \
-    {(u32) name##_ROM_START, (u32) name##_ROM_END, (u32) name##_VRAM, (u32) name##_TEXT_START, (u32) name##_TEXT_END, (u32) name##_DATA_START, (u32) name##_RODATA_END, (u32) name##_BSS_START, (u32) name##_BSS_END}
+    { (u32) name##_ROM_START, (u32) name##_ROM_END, (u32) name##_VRAM, (u32) name##_TEXT_START, (u32) name##_TEXT_END, (u32) name##_DATA_START, (u32) name##_RODATA_END, (u32) name##_BSS_START, (u32) name##_BSS_END }
 
 extern OSPiHandle* gRomPiHandle;
 

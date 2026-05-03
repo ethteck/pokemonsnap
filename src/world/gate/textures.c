@@ -39,4 +39,3 @@ __ALIGNER
 u8 gate_tex2_png[] = {
 #include "assets/world/gate/tex2.png.bin.c"
 };
-

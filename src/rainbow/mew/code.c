@@ -279,7 +279,7 @@ POKEMON_FUNC(func_803475D0_826D40)
         Pokemon_SetAnimation(obj, &D_8034ACEC_82A45C);
         pokemon->transitionGraph = D_8034AE10_82A580;
         Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-        
+
         cmdSendCommand(D_8034AB98_82A308, RAINBOW_CMD_31, obj);
         HIDE_POKEMON();
     } else {
@@ -560,15 +560,15 @@ POKEMON_FUNC(func_80348540_827CB0)
         if (Items_GetPokeFluteCmd() != 0) {
             auSetBGMVolume(BGM_PLAYER_MAIN, 0x7F00);
             func_803484F0_827C60(127, &sp40);
-            for (i = 0; i < (u32)ARRAY_COUNT(sp50); i++) {
+            for (i = 0; i < (u32) ARRAY_COUNT(sp50); i++) {
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp50[i], sp40);
             }
         } else {
             func_803484F0_827C60(D_80350198_82F908 == 1 ? 63 : 0, &sp40);
-            for (i = 0; i < (u32)ARRAY_COUNT(sp50); i++) {
+            for (i = 0; i < (u32) ARRAY_COUNT(sp50); i++) {
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp50[i], sp40);
             }
-            for (i = 0; i < (u32)ARRAY_COUNT(sp4C); i++) {
+            for (i = 0; i < (u32) ARRAY_COUNT(sp4C); i++) {
                 auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp4C[i], 0);
             }
         }
@@ -578,10 +578,10 @@ POKEMON_FUNC(func_80348540_827CB0)
     while (sp40 != 127 || sp38 != 127) {
         func_803484F0_827C60(127, &sp40);
         func_803484F0_827C60(127, &sp38);
-        for (i = 0; i < (u32)ARRAY_COUNT(sp50); i++) {
+        for (i = 0; i < (u32) ARRAY_COUNT(sp50); i++) {
             auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp50[i], sp40);
         }
-        for (i = 0; i < (u32)ARRAY_COUNT(sp4C); i++) {
+        for (i = 0; i < (u32) ARRAY_COUNT(sp4C); i++) {
             auSetBGMChannelVolume(BGM_PLAYER_MAIN, sp4C[i], sp38);
         }
         ohWait(1);

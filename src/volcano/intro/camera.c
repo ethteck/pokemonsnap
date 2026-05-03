@@ -55,16 +55,16 @@ InterpData volcano_camera_intro_at_path = {
 
 asBegin_ptr2_ns(volcano_camera_anim_intro)
     asSetCamPath_f(volcano_camera_intro_eye_path, volcano_camera_intro_at_path);
-    asSetBlock_3(0, EYE_PATH_PARAM, 0.0, AT_PATH_PARAM, 0.0, FOVY, 60.0);
-    asSet_2(120, EYE_PATH_PARAM, 0.2, FOVY, 60.0);
-    asSetBlock_1(60, AT_PATH_PARAM, 0.0);
-    asSetTargetRate_1(0, AT_PATH_PARAM, 0.00040094496);
-    asSetWithRateBlock_2(60, AT_PATH_PARAM, 0.38, 0.018720841);
-    asSetTargetRate_3(0, EYE_PATH_PARAM, 0.010923434, AT_PATH_PARAM, 0.018720834, FOVY, -0.5123);
-    asSetAfterBlock_3(1, EYE_PATH_PARAM, 0.78, AT_PATH_PARAM, 0.7, FOVY, 40.0);
-    asSetTargetRate_1(0, EYE_PATH_PARAM, 0.01056219);
-    asSet_2(29, AT_PATH_PARAM, 1.0, FOVY, 40.0);
-    asSetWithRateBlock_2(25, EYE_PATH_PARAM, 0.976, 0.0070981365);
-    asSetTargetRate_1(0, EYE_PATH_PARAM, 0.0013474334);
-    asSetBlock_1(4, EYE_PATH_PARAM, 1.0);
+asSetBlock_3(0, EYE_PATH_PARAM, 0.0, AT_PATH_PARAM, 0.0, FOVY, 60.0);
+asSet_2(120, EYE_PATH_PARAM, 0.2, FOVY, 60.0);
+asSetBlock_1(60, AT_PATH_PARAM, 0.0);
+asSetTargetRate_1(0, AT_PATH_PARAM, 0.00040094496);
+asSetWithRateBlock_2(60, AT_PATH_PARAM, 0.38, 0.018720841);
+asSetTargetRate_3(0, EYE_PATH_PARAM, 0.010923434, AT_PATH_PARAM, 0.018720834, FOVY, -0.5123);
+asSetAfterBlock_3(1, EYE_PATH_PARAM, 0.78, AT_PATH_PARAM, 0.7, FOVY, 40.0);
+asSetTargetRate_1(0, EYE_PATH_PARAM, 0.01056219);
+asSet_2(29, AT_PATH_PARAM, 1.0, FOVY, 40.0);
+asSetWithRateBlock_2(25, EYE_PATH_PARAM, 0.976, 0.0070981365);
+asSetTargetRate_1(0, EYE_PATH_PARAM, 0.0013474334);
+asSetBlock_1(4, EYE_PATH_PARAM, 1.0);
 asEnd();

@@ -9,7 +9,8 @@ void func_beach_802C7B10(GObj* obj) {
     Mtx3Float* position = &GET_TRANSFORM(model)->pos;
 
     if (1) {
-        if (position) {} // TODO fake match
+        if (position) {
+        } // TODO fake match
         pokemon->miscVars[0].field0 = position->v.y * one;
     }
     Pokemon_SetAnimationAtTime(obj, &D_beach_802CCD24, randFloat() * 100.0f);

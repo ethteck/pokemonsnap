@@ -1,11 +1,11 @@
 #include "common.h"
 
 extern s32* D_803A6640_879DF0; // prev_bmbuf
-extern u16 D_803A6644_879DF4; // sp_attr
-extern s32 D_803A6648_879DF8; // scissor_xmin
-extern s32 D_803A664C_879DFC; // scissor_ymin
-extern s32 D_803A6650_879E00; // scissor_xmax
-extern s32 D_803A6654_879E04; // scissor_ymax
+extern u16 D_803A6644_879DF4;  // sp_attr
+extern s32 D_803A6648_879DF8;  // scissor_xmin
+extern s32 D_803A664C_879DFC;  // scissor_ymin
+extern s32 D_803A6650_879E00;  // scissor_xmax
+extern s32 D_803A6654_879E04;  // scissor_ymax
 
 void func_80371F30_8456E0(s32 xMin, s32 xMax, s32 yMin, s32 yMax) {
     D_803A6648_879DF8 = xMin;
@@ -16,270 +16,269 @@ void func_80371F30_8456E0(s32 xMin, s32 xMax, s32 yMin, s32 yMax) {
 
 #ifdef NON_MATCHING
 static void
-func_80371F54_845704 (Gfx **glp, Sprite *s, Bitmap *b,
-	    s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy)
-{
+func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
+                     s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy) {
     s32 rs, rt;
     s32 rxh, ryh;
     s32 rxl, ryl;
-    Gfx *gl;
+    Gfx* gl;
     s32 tex_width, tex_height;
     Gtexrect gt, *g;
     s32 s_clamp, t_clamp,
-	s_mask,  t_mask,
-	s_lod,   t_lod;
+        s_mask, t_mask,
+        s_lod, t_lod;
 
     g = &gt;
 
     tex_width = b->width_img;
-    tex_height= s->bmHreal;
+    tex_height = s->bmHreal;
 
 #ifdef rmDEBUG
     rmonPrintf("\tdrawbitmap (buf= 0x%08x; x,y= %d,%d; w,h= %d,%d )\n",
-	    b->buf, x, y, b->width, s->bmheight );
+               b->buf, x, y, b->width, s->bmheight);
 #endif
     gl = *glp;
 
     /* Scissoring */
-    if( (x >= D_803A6650_879E00) || (y >= D_803A6654_879E04) ) {
+    if ((x >= D_803A6650_879E00) || (y >= D_803A6654_879E04)) {
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Upper Left corner (%d,%d) beyond range (%d,%d)\n",
-		x, y, D_803A6650_879E00, D_803A6654_879E04 );
+        emPrintf("Sprite Scissoring: Upper Left corner (%d,%d) beyond range (%d,%d)\n",
+                 x, y, D_803A6650_879E00, D_803A6654_879E04);
 #endif
-	return;
+        return;
     }
 
-    if( (xx < D_803A6648_879DF8) || (yy < D_803A664C_879DFC) ) {
+    if ((xx < D_803A6648_879DF8) || (yy < D_803A664C_879DFC)) {
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Lower Right corner (%d,%d) not in range (%d,%d)\n",
-		xx, yy, D_803A6648_879DF8, D_803A664C_879DFC );
+        emPrintf("Sprite Scissoring: Lower Right corner (%d,%d) not in range (%d,%d)\n",
+                 xx, yy, D_803A6648_879DF8, D_803A664C_879DFC);
 #endif
-	return;
+        return;
     }
 
-
-	if (x < D_803A6648_879DF8) {
-	    rxh = D_803A6648_879DF8*4;
-	    rs = (b->s<<5) + fs + (((D_803A6648_879DF8 - x)*sx)>>5);
+    if (x < D_803A6648_879DF8) {
+        rxh = D_803A6648_879DF8 * 4;
+        rs = (b->s << 5) + fs + (((D_803A6648_879DF8 - x) * sx) >> 5);
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Left Edge (%d) not in range (%d,%d)\n",
-		x, D_803A6648_879DF8, D_803A6650_879E00 );
+        emPrintf("Sprite Scissoring: Left Edge (%d) not in range (%d,%d)\n",
+                 x, D_803A6648_879DF8, D_803A6650_879E00);
 #endif
-	} else {
-	    rxh = x*4;
-	    rs = (b->s<<5) + fs;
-	};
+    } else {
+        rxh = x * 4;
+        rs = (b->s << 5) + fs;
+    };
 
-	if (y < D_803A664C_879DFC) {
-	    ryh = D_803A664C_879DFC*4;
-	    rt = (b->t<<5) + ft + (((D_803A664C_879DFC-y)*sy)>>5);
+    if (y < D_803A664C_879DFC) {
+        ryh = D_803A664C_879DFC * 4;
+        rt = (b->t << 5) + ft + (((D_803A664C_879DFC - y) * sy) >> 5);
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Top Edge (%d) not in range (%d,%d)\n",
-		y, D_803A664C_879DFC, D_803A6654_879E04 );
+        emPrintf("Sprite Scissoring: Top Edge (%d) not in range (%d,%d)\n",
+                 y, D_803A664C_879DFC, D_803A6654_879E04);
 #endif
-	} else {
-	    ryh = y*4;
-	    rt = (b->t<<5) + ft;
-	}
+    } else {
+        ryh = y * 4;
+        rt = (b->t << 5) + ft;
+    }
 
-	if( xx >= D_803A6650_879E00 ) {
-	    rxl = D_803A6650_879E00*4;
+    if (xx >= D_803A6650_879E00) {
+        rxl = D_803A6650_879E00 * 4;
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Right Edge (%d) not in range (%d,%d)\n",
-		xx, scissor_xmin, D_803A6650_879E00 );
+        emPrintf("Sprite Scissoring: Right Edge (%d) not in range (%d,%d)\n",
+                 xx, scissor_xmin, D_803A6650_879E00);
 #endif
-	} else {
-	    rxl = xx*4;
-	};
+    } else {
+        rxl = xx * 4;
+    };
 
-	if( yy >= D_803A6654_879E04 ) {
-	    ryl = D_803A6654_879E04*4;
+    if (yy >= D_803A6654_879E04) {
+        ryl = D_803A6654_879E04 * 4;
 #ifdef DEBUG_SCISSOR
-	emPrintf("Sprite Scissoring: Bottom Edge (%d) not in range (%d,%d)\n",
-		yy, scissor_ymin, D_803A6654_879E04 );
+        emPrintf("Sprite Scissoring: Bottom Edge (%d) not in range (%d,%d)\n",
+                 yy, scissor_ymin, D_803A6654_879E04);
 #endif
-	} else {
-	    ryl = yy*4;
-	};
+    } else {
+        ryl = yy * 4;
+    };
 
-	s_clamp = G_TX_CLAMP;	t_clamp = G_TX_CLAMP;
-	s_mask  = G_TX_NOMASK;	t_mask  = G_TX_NOMASK;
-	s_lod   = G_TX_NOLOD;	t_lod   = G_TX_NOLOD;
+    s_clamp = G_TX_CLAMP;
+    t_clamp = G_TX_CLAMP;
+    s_mask = G_TX_NOMASK;
+    t_mask = G_TX_NOMASK;
+    s_lod = G_TX_NOLOD;
+    t_lod = G_TX_NOLOD;
 
 #define LOAD_TEX
 
 #ifdef LOAD_TEX
-    if( b->buf != D_803A6640_879DF0 ) {
-	switch(s->bmsiz)
-	  {
+    if (b->buf != D_803A6640_879DF0) {
+        switch (s->bmsiz) {
 #if BUILD_VERSION >= VERSION_J
-	  case G_IM_SIZ_DD:
-		gDPLoadTextureTile_4b(gl++, b->buf, s->bmfmt, tex_width, tex_height,
-							  b->s, b->t,
-							  b->s + b->width,b->t + b->actualHeight,
-							  0,
-							  s_clamp, t_clamp,
-							  s_mask,  t_mask,
-							  s_lod,   t_lod);
-		break;
+            case G_IM_SIZ_DD:
+                gDPLoadTextureTile_4b(gl++, b->buf, s->bmfmt, tex_width, tex_height,
+                                      b->s, b->t,
+                                      b->s + b->width, b->t + b->actualHeight,
+                                      0,
+                                      s_clamp, t_clamp,
+                                      s_mask, t_mask,
+                                      s_lod, t_lod);
+                break;
 #endif
-	  case G_IM_SIZ_4b:
-		if (s->attr & SP_TEXSHUF) {
-		  gDPLoadTextureBlock_4bS(gl++, b->buf, s->bmfmt,
-								  tex_width, tex_height, 0,
-								  s_clamp, t_clamp,
-								  s_mask,  t_mask,
-								  s_lod,   t_lod);
-		} else {
-		  gDPLoadTextureBlock_4b(gl++, b->buf, s->bmfmt,
-								 tex_width, tex_height, 0,
-								 s_clamp, t_clamp,
-								 s_mask,  t_mask,
-								 s_lod,   t_lod);
-		};
-	    break;
+            case G_IM_SIZ_4b:
+                if (s->attr & SP_TEXSHUF) {
+                    gDPLoadTextureBlock_4bS(gl++, b->buf, s->bmfmt,
+                                            tex_width, tex_height, 0,
+                                            s_clamp, t_clamp,
+                                            s_mask, t_mask,
+                                            s_lod, t_lod);
+                } else {
+                    gDPLoadTextureBlock_4b(gl++, b->buf, s->bmfmt,
+                                           tex_width, tex_height, 0,
+                                           s_clamp, t_clamp,
+                                           s_mask, t_mask,
+                                           s_lod, t_lod);
+                };
+                break;
 
-	  case G_IM_SIZ_8b:
-	    if (s->attr & SP_TEXSHUF) {
-		gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
-				    tex_width, tex_height, 0,
-				       s_clamp, t_clamp,
-				       s_mask,  t_mask,
-				       s_lod,   t_lod);
-	    } else {
-		gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
-				    tex_width, tex_height, 0,
-				       s_clamp, t_clamp,
-				       s_mask,  t_mask,
-				       s_lod,   t_lod);
-	    };
-	    break;
-	  case G_IM_SIZ_16b:
-	    if (s->bmfmt == G_IM_FMT_YUV ) {
-		if (s->attr & SP_TEXSHUF) {
-		    gDPLoadTextureBlockYuvS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-					tex_width, tex_height, 0,
-					   s_clamp, t_clamp,
-					   s_mask,  t_mask,
-					   s_lod,   t_lod);
-		} else {
-		    if( b->LUToffset != 0 ) { /* Split Y and UV areas */
-			unsigned char *uv, *addr;
-			int j;
-			s32 tmem, siz;
+            case G_IM_SIZ_8b:
+                if (s->attr & SP_TEXSHUF) {
+                    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
+                                         tex_width, tex_height, 0,
+                                         s_clamp, t_clamp,
+                                         s_mask, t_mask,
+                                         s_lod, t_lod);
+                } else {
+                    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
+                                        tex_width, tex_height, 0,
+                                        s_clamp, t_clamp,
+                                        s_mask, t_mask,
+                                        s_lod, t_lod);
+                };
+                break;
+            case G_IM_SIZ_16b:
+                if (s->bmfmt == G_IM_FMT_YUV) {
+                    if (s->attr & SP_TEXSHUF) {
+                        gDPLoadTextureBlockYuvS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
+                                                tex_width, tex_height, 0,
+                                                s_clamp, t_clamp,
+                                                s_mask, t_mask,
+                                                s_lod, t_lod);
+                    } else {
+                        if (b->LUToffset != 0) { /* Split Y and UV areas */
+                            unsigned char *uv, *addr;
+                            int j;
+                            s32 tmem, siz;
 
-			gDPSetTextureImage( gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, b->buf);
-			gDPSetTile( gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, 256, G_TX_LOADTILE, 0,
-					t_clamp, t_mask, t_lod,
-					s_clamp, s_mask, s_lod );
-			gDPLoadSync( gl++ );
-			gDPLoadBlock( gl++, G_TX_LOADTILE, 0,0, tex_width*tex_height -1,
-				      CALC_DXT(tex_width,1) );
-			gDPLoadSync( gl++ );
+                            gDPSetTextureImage(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, b->buf);
+                            gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, 256, G_TX_LOADTILE, 0,
+                                       t_clamp, t_mask, t_lod,
+                                       s_clamp, s_mask, s_lod);
+                            gDPLoadSync(gl++);
+                            gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, tex_width * tex_height - 1,
+                                         CALC_DXT(tex_width, 1));
+                            gDPLoadSync(gl++);
 
-			uv = ((unsigned char *)b->buf) +
-				((tex_width*tex_height)/2)*b->LUToffset;
+                            uv = ((unsigned char*) b->buf) +
+                                 ((tex_width * tex_height) / 2) * b->LUToffset;
 
-			for( j=0; j<=(tex_height/2); j++ ) {
-			    addr = uv + ((tex_height/2) -2 -j)*tex_width;
-			    siz = 3*tex_width;
-			    tmem = (tex_width/8)*(tex_height - 2 - 2*j);
-			    if( tmem < 0 ) {
-				addr += (-tmem)*8;
-				siz -= (-tmem)*8;
-				tmem = 0;
-			    };
-			    if( j == 0 )
-				siz = 2*tex_width;
+                            for (j = 0; j <= (tex_height / 2); j++) {
+                                addr = uv + ((tex_height / 2) - 2 - j) * tex_width;
+                                siz = 3 * tex_width;
+                                tmem = (tex_width / 8) * (tex_height - 2 - 2 * j);
+                                if (tmem < 0) {
+                                    addr += (-tmem) * 8;
+                                    siz -= (-tmem) * 8;
+                                    tmem = 0;
+                                };
+                                if (j == 0)
+                                    siz = 2 * tex_width;
 
-			    gDPSetTextureImage( gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, addr);
-			    gDPSetTile( gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, tmem,
-					    G_TX_LOADTILE, 0,
-					    t_clamp, t_mask, t_lod,
-					    s_clamp, s_mask, s_lod );
-			    gDPLoadSync( gl++ );
-			    gDPLoadBlock( gl++, G_TX_LOADTILE, 0,0, siz -1,
-					  CALC_DXT(tex_width,1) );
-			    gDPLoadSync( gl++ );
-			};
+                                gDPSetTextureImage(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, addr);
+                                gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, tmem,
+                                           G_TX_LOADTILE, 0,
+                                           t_clamp, t_mask, t_lod,
+                                           s_clamp, s_mask, s_lod);
+                                gDPLoadSync(gl++);
+                                gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, siz - 1,
+                                             CALC_DXT(tex_width, 1));
+                                gDPLoadSync(gl++);
+                            };
 
-			gDPSetTile( gl++, s->bmfmt, G_IM_SIZ_16b, (((tex_width) * 1)+7)>>3, 0,
-				    G_TX_RENDERTILE, 0,
-				    t_clamp, t_mask, t_lod,
-				    s_clamp, s_mask, s_lod );
-			gDPSetTileSize( gl++, G_TX_RENDERTILE, 0, 0,
-					((tex_width)-1) << G_TEXTURE_IMAGE_FRAC,
-					((tex_height)-1) << G_TEXTURE_IMAGE_FRAC );
+                            gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_16b, (((tex_width) * 1) + 7) >> 3, 0,
+                                       G_TX_RENDERTILE, 0,
+                                       t_clamp, t_mask, t_lod,
+                                       s_clamp, s_mask, s_lod);
+                            gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0,
+                                           ((tex_width) -1) << G_TEXTURE_IMAGE_FRAC,
+                                           ((tex_height) -1) << G_TEXTURE_IMAGE_FRAC);
 
-		    } else {
-			gDPLoadTextureBlockYuv(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-					    tex_width, tex_height, 0,
-					       s_clamp, t_clamp,
-					       s_mask,  t_mask,
-					       s_lod,   t_lod);
-		    };
-		};
-	    } else {
-		if (s->attr & SP_TEXSHUF) {
-		    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-					tex_width, tex_height, 0,
-					   s_clamp, t_clamp,
-					   s_mask,  t_mask,
-					   s_lod,   t_lod);
-		} else {
-		    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-					tex_width, tex_height, 0,
-					   s_clamp, t_clamp,
-					   s_mask,  t_mask,
-					   s_lod,   t_lod);
-		};
-	    };
-	    break;
-	  case G_IM_SIZ_32b:
-	    if (s->attr & SP_TEXSHUF) {
-		gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
-				    tex_width, tex_height, 0,
-				       s_clamp, t_clamp,
-				       s_mask,  t_mask,
-				       s_lod,   t_lod);
-	    } else {
-		gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
-				    tex_width, tex_height, 0,
-				       s_clamp, t_clamp,
-				       s_mask,  t_mask,
-				       s_lod,   t_lod);
-	    };
-	    break;
-       }
-       D_803A6640_879DF0 = b->buf;
+                        } else {
+                            gDPLoadTextureBlockYuv(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
+                                                   tex_width, tex_height, 0,
+                                                   s_clamp, t_clamp,
+                                                   s_mask, t_mask,
+                                                   s_lod, t_lod);
+                        };
+                    };
+                } else {
+                    if (s->attr & SP_TEXSHUF) {
+                        gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
+                                             tex_width, tex_height, 0,
+                                             s_clamp, t_clamp,
+                                             s_mask, t_mask,
+                                             s_lod, t_lod);
+                    } else {
+                        gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
+                                            tex_width, tex_height, 0,
+                                            s_clamp, t_clamp,
+                                            s_mask, t_mask,
+                                            s_lod, t_lod);
+                    };
+                };
+                break;
+            case G_IM_SIZ_32b:
+                if (s->attr & SP_TEXSHUF) {
+                    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
+                                         tex_width, tex_height, 0,
+                                         s_clamp, t_clamp,
+                                         s_mask, t_mask,
+                                         s_lod, t_lod);
+                } else {
+                    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
+                                        tex_width, tex_height, 0,
+                                        s_clamp, t_clamp,
+                                        s_mask, t_mask,
+                                        s_lod, t_lod);
+                };
+                break;
+        }
+        D_803A6640_879DF0 = b->buf;
     }
 #endif /* LOAD_TEX */
 
+    g->cmd = G_TEXRECT;
+    g->tile = 0;
 
-	g->cmd = G_TEXRECT;
-	g->tile = 0;
+    g->xh = rxh;
+    g->xl = rxl;
+    g->yh = ryh;
+    g->yl = ryl;
 
-	g->xh = rxh;
-	g->xl = rxl;
-	g->yh = ryh;
-	g->yl = ryl;
+    g->s = rs;
+    g->t = rt;
 
-	g->s = rs;
-	g->t = rt;
+    if ((s->attr & SP_FASTCOPY) && (s->bmfmt != G_IM_FMT_YUV))
+        g->dsdx = sx * 4;
+    else
+        g->dsdx = sx;
 
-	if ((s->attr & SP_FASTCOPY) && (s->bmfmt != G_IM_FMT_YUV) )
-	    g->dsdx = sx * 4;
-	else
-	    g->dsdx = sx;
-
-	g->dtdy = sy;
+    g->dtdy = sy;
 
 #ifdef rmDEBUG
     rmonPrintf("\trect (xh,l= %d,%d, yh,l= %d,%d, s,t= %d,%d, dsdx=%d, dtdy=%d )\n",
-	    rxh,rxl,ryh,ryl,rs,rt,g->dsdx,sy );
+               rxh, rxl, ryh, ryl, rs, rt, g->dsdx, sy);
 #endif
 
-    gSPTextureRectangle(gl++,g->xh,g->yh,g->xl,g->yl,g->tile,g->s,g->t,g->dsdx,g->dtdy);
+    gSPTextureRectangle(gl++, g->xh, g->yh, g->xl, g->yl, g->tile, g->s, g->t, g->dsdx, g->dtdy);
 
     gDPPipeSync(gl++);
 

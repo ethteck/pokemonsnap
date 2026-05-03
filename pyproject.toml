@@ -14,3 +14,6 @@ dependencies = [
     "spimdisasm>=1.39.0",
     "splat64[mips]>=0.40.0",
 ]
+
+[tool.uv]
+package = false

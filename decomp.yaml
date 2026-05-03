@@ -7,7 +7,6 @@ versions:
   sha1: edc7c49cc568c045fe48be0d18011c30f393cbaf
   paths:
     target: "pokemonsnap.z64"
-
     build_dir: "build"
     map: "build/pokemonsnap.map"
     compiled_target: "build/pokemonsnap.z64"

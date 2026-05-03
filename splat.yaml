@@ -246,7 +246,7 @@ segments:
 
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
-    - [0x41950, .data, sys/rdp_reset]
+    - [0x41960, .data, sys/rdp_reset]
     - [0x41A80, .data, sys/om]
     - [0x41B30, .data, sys/render]
     - [0x41B40, .data, sys/misc]
@@ -2650,6 +2650,7 @@ segments:
       - { start: 0x326C88, type: rgba16, name: skybox, flip_y: true, width: 64, height: 32 }
       - [0x327C88, vtx, skybox]
       - [0x328068, gfx, skybox]
+    - [0x328190, .data, world/world_gfx]
     - start: 0x328290
       type: .data
       name: world/block0
@@ -2738,7 +2739,7 @@ segments:
       - [0x33A2B0, gfx, draw]
       - [0x33A3C0, vtx, model]
       - [0x33A4B0]
-    - [0x33A550, .data, growlithe_spawner/materials]
+    - [0x33A540, .data, growlithe_spawner/materials]
     - start: 0x33A5E0
       type: .data
       dir: growlithe_spawner/anim/
@@ -5743,7 +5744,7 @@ segments:
     exclusive_ram_id: unk80344780
     subsegments:
     - [auto, c, bulbasaur/model]
-    - start: 0x557120
+    - start: 0x557050
       type: .data
       dir: bulbasaur
       name: bulbasaur/model
@@ -8192,8 +8193,7 @@ segments:
       subsegments:
       - [0x734C00, snap_height_map_patches, patches]
       - [0x74CC88, snap_height_map_tree, tree]
-      - [0x76E6D0]
-    - { start: auto, type: .data, name: world/height_map, linker_section_order: .rodata }
+    - { start: 0x76E6D0, type: .data, name: world/height_map, linker_section_order: .rodata }
     - start: 0x76E6E0
       type: .data
       linker_section_order: .rodata
@@ -9561,7 +9561,7 @@ segments:
       - [0x81FA80, gfx, part17_draw_far]
       - [0x81FAE0, gfx, part17_draw]
       - [0x81FB08, gfx, last]
-    - start: 0x8200B0
+    - start: 0x81FF60
       type: .data
       dir: goldeen
       name: goldeen/model
@@ -9662,11 +9662,12 @@ segments:
     - [0x82A640, data]
 
     - [0x82ADF0, .rodata, mew/code]
+    - [0x82AE60, .rodata, gate/code]
     - [0x82AE70, .rodata, pkmn_1037/code]
     - [0x82AE80, .rodata, evolution_controller/code]
     - [0x82AE90, .rodata, pkmn_1038/code]
 
-    - start: 0x82AFD0
+    - start: 0x82AEB0
       type: .data
       dir: mew
       name: mew/model
@@ -10077,6 +10078,7 @@ segments:
     subsegments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
+    - [0xA08DD0, .rodata, A084B0]
     - { name: A084B0, type: bss, vram: 0x801DD240 }
   - name: main_menu
     dir: main_menu
@@ -10143,7 +10145,7 @@ segments:
     - [0xA9D6B0, data] # sprite
     - [0xA9F760, .data, A94940]
     - [0xA9FFE0, .rodata, A937C0]
-    - [0xAA0000, .rodata, A937C0]
+    - [0xAA0000, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
     - { name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
   - name: intro_code
@@ -10243,8 +10245,8 @@ segments:
   - [0xAFD3A4, bin, audio/seq/AFD3A4]
   - [0xAFD494, bin, audio/seq/AFD494]
   - [0xAFDCD8, bin, audio/seq/AFDCD8]
-  - [0xAFDDC4, bin, audio/seq/AFDDC4] # Unknown size for now
-  - [0xAFDDC8, bin]
+  - [0xAFDDC4, bin, audio/seq/AFDDC4]
+  - [0xAFEED8, bin, AFEED8] # padding
 
   # Audio banks and wave tables
   - [0xAFEEE0, bin, audio/bank1]

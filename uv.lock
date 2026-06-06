@@ -447,7 +447,7 @@ requires-dist = [
     { name = "ninja-syntax", specifier = ">=1.7.2" },
     { name = "pypng", specifier = ">=0.20220715.0" },
     { name = "requests", specifier = ">=2.32.5" },
-    { name = "spimdisasm", specifier = ">=1.39.0" },
+    { name = "spimdisasm", specifier = ">=1.41.0" },
     { name = "splat64", extras = ["mips"], specifier = ">=0.40.0" },
 ]
 
@@ -725,14 +725,14 @@ wheels = [
 
 [[package]]
 name = "spimdisasm"
-version = "1.40.2"
+version = "1.41.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "rabbitizer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8d/8e/29f3547c3b11595e3a65241b63bf570fb002af5508f46f6a2ccdeb164843/spimdisasm-1.40.2.tar.gz", hash = "sha256:c1366391128038482dc2dd2799e6040aa988f4b3499c5714600cba24e5285a00", size = 108965, upload-time = "2026-03-18T12:07:32.371Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/29/f1cad1a21eeb084436709c833295e03f74206c6490f22e9de26c0268994d/spimdisasm-1.41.0.tar.gz", hash = "sha256:3eea5ff969e9102354b16517ce3819d6a74f5eea48bae896bfab937bad3ae63f", size = 109174, upload-time = "2026-06-02T01:20:19.978Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/55/60/cc2b49c449b83b75a6abad4db1e61e9cf53d3f6193f4d0cc82f65e8eb6da/spimdisasm-1.40.2-py3-none-any.whl", hash = "sha256:af377877b770c7a10c0ce0ccacdf9b3ff227eeb71af915d6ebaea8598a177c8e", size = 139355, upload-time = "2026-03-18T12:07:30.984Z" },
+    { url = "https://files.pythonhosted.org/packages/04/84/2c2763bd7e7521dc0d91292bc47d33a61350b3e1b93c1d478372dfc1a60f/spimdisasm-1.41.0-py3-none-any.whl", hash = "sha256:4cf73aa4c715b525b64aded55f107f64179d4c994c87f53c8bf873e4a27c23f7", size = 139617, upload-time = "2026-06-02T01:20:18.444Z" },
 ]
 
 [[package]]

@@ -136,7 +136,7 @@ OSThread error_thread8Hang;
 u8 error_thread8HangStack[0x800];
 
 // ???
-extern OSThread D_80046880;
+extern OSThread gThread5;
 
 void func_800239E0(s32 arg0, s32 arg1, s32 arg2, bool arg3) {
     if (arg2 >= 0 && arg2 < ARRAY_COUNT(D_800424A0)) {
@@ -738,7 +738,7 @@ void error_fileLoaderThread8(void* arg0) {
                 error_waitFramebufOrCont(B_BUTTON | R_JPAD, NULL);
                 error_waitFramebufOrCont(0, NULL);
                 error_waitFramebufOrCont(D_JPAD | D_CBUTTONS, NULL);
-                error_framebufPrintThreadStatus(&D_80046880, TRUE);
+                error_framebufPrintThreadStatus(&gThread5, TRUE);
                 if (error_printFunc != NULL) {
                     error_waitFramebufOrCont(0, NULL);
                     error_waitFramebufOrCont(Z_TRIG | L_TRIG | R_TRIG, NULL);

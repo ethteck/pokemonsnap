@@ -3,10 +3,10 @@
 // TODO figure out if this file is included in all levels
 
 extern UnkEC64Arg3 magikarp_model[];
-extern AnimCmd* D_800FDC70[];
-extern AnimCmd* D_800FAE40[];
-extern AnimCmd* D_800FBF50[];
-extern AnimCmd* D_800FD080[];
+extern AnimCmd* D_800FDC70_7B090[];
+extern AnimCmd* D_800FAE40_78260[];
+extern AnimCmd* D_800FBF50_79370[];
+extern AnimCmd* D_800FD080_7A4A0[];
 
 void volcano_magikarp_InitialState(GObj*);
 void func_802DF338_730538(GObj*);
@@ -21,7 +21,7 @@ s32 D_802E35EC_7347EC[] = { 0, SOUND_ID_376, SOUND_ID_114 };
 AnimationHeader D_802E35F8_7347F8 = {
     0.5,
     60,
-    D_800FDC70,
+    D_800FDC70_7B090,
     NULL,
     D_802E35D0_7347D0
 };
@@ -29,7 +29,7 @@ AnimationHeader D_802E35F8_7347F8 = {
 AnimationHeader D_802E360C_73480C = {
     0.5,
     65,
-    D_800FAE40,
+    D_800FAE40_78260,
     NULL,
     D_802E35D4_7347D4
 };
@@ -37,7 +37,7 @@ AnimationHeader D_802E360C_73480C = {
 AnimationHeader D_802E3620_734820 = {
     0.5,
     59,
-    D_800FBF50,
+    D_800FBF50_79370,
     NULL,
     D_802E35E0_7347E0
 };
@@ -45,7 +45,7 @@ AnimationHeader D_802E3620_734820 = {
 AnimationHeader D_802E3634_734834 = {
     0.5,
     50,
-    D_800FD080,
+    D_800FD080_7A4A0,
     NULL,
     D_802E35EC_7347EC
 };

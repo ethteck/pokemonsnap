@@ -197,7 +197,7 @@ typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
 extern WorldSetup D_80100720;
 
-extern Collider D_800EDF78[];
+extern Collider D_800EDF78_6B728[];
 
 void InitCollisionModels(CollisionModel* arg0);
 WorldBlock* enterFirstBlock(s32 arg0);

@@ -5,6 +5,8 @@ D_0E000018 = 0x0E000018; // absolute:True type:Gfx
 D_0E000020 = 0x0E000020; // absolute:True type:Gfx
 D_0E000028 = 0x0E000028; // absolute:True type:Gfx
 
+D_80000000 = 0x80000000; // ignore:True size:0x10
+
 game_main = 0x80000870;
 
 scMain = 0x80002510;
@@ -705,6 +707,26 @@ gspL3DEX2_fifoDataStart = 0x80045280; // name_end:gspL3DEX2_fifoDataEnd
 aspMainTextStart = 0x8003D980; // name_end:aspMainTextEnd
 aspMainDataStart = 0x80044BA0; // name_end:aspMainDataEnd
 rspbootTextStart = 0x8003D8B0; // name_end:rspbootTextEnd
+
+gThread0Stack = 0x80045670;
+sThread1 = 0x80045870;
+sThread1Stack = 0x80045a20;
+sThread3 = 0x80045b20;
+sThread3Stack = 0x80045cd0;
+sThread4 = 0x800460d0;
+sThread4Stack = 0x80046280;
+gThread5 = 0x80046880;
+sThread5Stack = 0x80046a30;
+sThread6 = 0x80047a30;
+sThread6Stack = 0x80047be0;
+gRspBootCode = 0x800483e0;
+gSPImemOkay = 0x800484e0;
+gSPDmemOkay = 0x800484e1;
+sBlockMsg = 0x800484e4;
+gThreadingQueue = 0x800484e8;
+sPIcmdBuf = 0x80048500;
+sPIcmdQ = 0x80048690;
+sThreadArgBuf = 0x800486a8;
 
 // Unreferenced strings
 D_801C5EDC_98B6FC = 0x801C5EDC; // rom:0x98B6FC type:asciz
@@ -3607,6 +3629,14 @@ gate_part1 = 0x800F1978; // segment:world
 gate_part3 = 0x800F1A28; // segment:world
 gate_last = 0x800F1BA0; // segment:world
 gate_part2 = 0x800F1BC8; // segment:world
+gate_modelanim_closed = 0x800F1DF0; // segment:world
+gate_matanim_closed = 0x800F1E40; // segment:world
+gate_modelanim_raise_bar = 0x800F1ED0; // segment:world
+gate_matanim_raise_bar = 0x800F1F20; // segment:world
+gate_modelanim_opening = 0x800F1FD0; // segment:world
+gate_matanim_opening = 0x800F2020; // segment:world
+gate_modelanim_opened = 0x800F20D0; // segment:world
+gate_matanim_opened = 0x800F2110; // segment:world
 
 evolution_controller_tex0_png = 0x800F21C8; // segment:world
 evolution_controller_tex1_png = 0x800F31D0; // segment:world
@@ -3941,6 +3971,10 @@ kakuna_part4_draw = 0x803299B0; // segment:tunnel_code
 kakuna_last = 0x803299D8; // segment:tunnel_code
 kakuna_model = 0x80329A00; // segment:tunnel_code size:0x134
 
+kakuna_hd_materials = 0x8018BC50; // segment:tunnel_extra
+kakuna_hd_part1_mat0_textures = 0x8018BC68; // segment:tunnel_extra
+kakuna_hd_part1_mat0 = 0x8018BC70; // segment:tunnel_extra
+kakuna_hd_part1_mat = 0x8018BCE8; // segment:tunnel_extra
 kakuna_hd_vtx = 0x8018BCF0; // segment:tunnel_extra size:0x15F0
 kakuna_hd_first = 0x8018D390; // segment:tunnel_extra
 kakuna_hd_part0_draw = 0x8018D3C8; // segment:tunnel_extra
@@ -3950,6 +3984,8 @@ kakuna_hd_part3_draw = 0x8018DD38; // segment:tunnel_extra
 kakuna_hd_part4_draw = 0x8018DE40; // segment:tunnel_extra
 kakuna_hd_model = 0x8018E0C0; // segment:tunnel_extra size:0x134
 
+D_8014DDE0_193F40_kakuna = 0x8014DDE0; // segment:tunnel_assets
+D_80158DF8_19EF58_kakuna = 0x80158DF8; // segment:tunnel_assets
 kakuna_tex_80159608 = 0x80159608; // segment:tunnel_assets
 kakuna_tex_80159630 = 0x80159630; // segment:tunnel_assets
 kakuna_tex_80159838 = 0x80159838; // segment:tunnel_assets
@@ -4653,6 +4689,7 @@ grimer_last = 0x8031BBE0; // segment:cave_code
 grimer_gfxdata = 0x8031BC18; // segment:cave_code
 grimer_model = 0x8031BCA8; // segment:cave_code size:0x370
 
+grimer_hd_materials = 0x801AEDF0; // segment:cave_extra size:0x4C
 grimer_hd_vtx = 0x801AF680; // segment:cave_extra size:0x1900
 grimer_hd_first = 0x801B0FB0; // segment:cave_extra
 grimer_hd_part0_draw = 0x801B0FE8; // segment:cave_extra
@@ -5647,7 +5684,7 @@ psyduck_hd_part13_pre = 0x8019DBB0; // segment:river_extra
 psyduck_hd_part13_draw = 0x8019DBF8; // segment:river_extra
 psyduck_hd_part14_draw = 0x8019DCB0; // segment:river_extra
 psyduck_hd_part15_draw = 0x8019DD50; // segment:river_extra
-psyduck_hd_gfxdata = 0x8019DE30; // segment:river_extra
+psyduck_hd_gfxdata = 0x8019DE30; // segment:river_extra size:0x80
 psyduck_hd_model = 0x8019DEB0; // segment:river_extra size:0x344
 
 psyduck_tex_80160A28 = 0x80160A28; // segment:river_assets
@@ -7404,6 +7441,10 @@ squirtle_tex_8017E498 = 0x8017E498; // segment:valley_assets
 squirtle_tex_8017E4C0_png = 0x8017E4C0; // segment:valley_assets
 
 
+mew_materials = 0x8034B740; // segment:rainbow_code
+mew_part4_mat0_textures = 0x8034B7C4; // segment:rainbow_code
+mew_part4_mat0 = 0x8034B7E0; // segment:rainbow_code
+mew_part4_mat = 0x8034B858; // segment:rainbow_code
 mew_vtx = 0x8034B860; // segment:rainbow_code size:0x1B30
 mew_first = 0x8034D390; // segment:rainbow_code
 mew_part0_draw_near = 0x8034D3C0; // segment:rainbow_code
@@ -7581,6 +7622,8 @@ UIMem_MergeChunks = 0x8036A0BC; // segment:window
 UIMem_Reallocate = 0x8036A248; // segment:window
 
 D_beach_802CC344 = 0x802CC344; // segment:beach_code type:s32
+D_beach_8034757A = 0x8034757A; // segment:beach_code size:0x1
+D_beach_8034757B = 0x8034757B; // segment:beach_code size:0x1
 
 fx_makeChildScriptID = 0x800A235C; // segment:app_render
 fx_currentEffectID = 0x800AEC68; // segment:app_render
@@ -7595,8 +7638,16 @@ fx_alphaDitherMode = 0x800AEC64; // segment:app_render
 fx_getPosVelDObj = 0x800A5E98; // segment:app_render
 fx_effectFuncRun = 0x800A63BC; // segment:app_render
 fx_createEffect = 0x800A6C48; // segment:app_render
+fx_ScriptBanksNum = 0x800BE228; // segment:app_render
+fx_SpriteBanksNum = 0x800BE248; // segment:app_render
+fx_ScriptBanks = 0x800BE268; // segment:app_render
+fx_SpriteBanks = 0x800BE288; // segment:app_render
 fx_effectProcDefault = 0x800BE2A8; // segment:app_render
 fx_ejectEffectDObj = 0x800A716C; // segment:app_render
 
 gate_materials = 0x800F07A0; // segment:world
 evolution_controller_materials = 0x800F41D0; // segment:world
+
+D_803430FC_6401CC = 0x803430FC; // segment:tunnel_code size:0x1 type:u8
+D_803430FD_6401CD = 0x803430FD; // segment:tunnel_code size:0x1 type:u8
+diglett_IsPhotoTaken = 0x80343138; // segment:tunnel_code

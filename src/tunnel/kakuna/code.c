@@ -1,13 +1,13 @@
 #include "../tunnel.h"
 
-extern AnimCmd* D_8015AAE0[];
-extern AnimCmd* D_8015A4C0[];
+extern AnimCmd* D_8015AAE0_1A0C40[];
+extern AnimCmd* D_8015A4C0_1A0620[];
 
-extern AnimCmd** D_8015AEF0[];
-extern AnimCmd** D_8015AE40[];
+extern AnimCmd** D_8015AEF0_1A1050[];
+extern AnimCmd** D_8015AE40_1A0FA0[];
 
-extern UnkEC64Arg3 D_80329A00[];
-extern Texture** D_80327110[];
+extern UnkEC64Arg3 kakuna_model[];
+extern Texture** kakuna_materials[];
 
 void func_802E70BC_5E418C(GObj*);
 void func_802E70FC_5E41CC(GObj*);
@@ -32,16 +32,16 @@ s32 D_802EEBF0_5EBCC0[] = { SOUND_ID_327 };
 AnimationHeader D_802EEBF4_5EBCC4 = {
     0.25,
     40,
-    D_8015AAE0,
-    D_8015AEF0,
+    D_8015AAE0_1A0C40,
+    D_8015AEF0_1A1050,
     NULL
 };
 
 AnimationHeader D_802EEC08_5EBCD8 = {
     0.25,
     40,
-    D_8015A4C0,
-    D_8015AE40,
+    D_8015A4C0_1A0620,
+    D_8015AE40_1A0FA0,
     D_802EEBF0_5EBCC0
 };
 
@@ -90,8 +90,8 @@ PokemonAnimationSetup kakuna_animSetup = {
 };
 
 PokemonInitData kakuna_initData = {
-    D_80329A00,
-    D_80327110,
+    kakuna_model,
+    kakuna_materials,
     renderPokemonModelTypeBFogged,
     &kakuna_animSetup,
     { 2.2, 2.2, 2.2 },

@@ -10232,7 +10232,6 @@ segments:
     exclusive_ram_id: level
     prioritized_segments:
     - main_menu_vpk0_bss
-    - main_menu_vpk0
     - app_level
     subsegments:
     - [0xA08E30, c]
@@ -10319,7 +10318,6 @@ segments:
     exclusive_ram_id: level
     prioritized_segments:
     - intro_code_vpk0_bss
-    - intro_code_vpk0
     subsegments:
     - [0xAA0650, c]
     - [0xAA0A60, .data, AA0650]
@@ -10351,7 +10349,6 @@ segments:
     bss_size: 0x20
     prioritized_segments:
     - unk_segment_AA18E0_vpk0_bss
-    - unk_segment_AA18E0_vpk0
     subsegments:
     - [0xAA18E0, c]
     - [0xAA20A0, bin] # , data] # Image with rights notice printed on pictures

@@ -1,6 +1,6 @@
 #include <common.h>
 
-extern u8 charmander_tex_eye_pal[];
+extern u8 charmander_tex_eye_frame0_pal[];
 extern u8 charmander_tex_eye_frame0_png[];
 extern u8 charmander_tex_eye_frame1_png[];
 extern u8 charmander_tex_eye_frame2_png[];

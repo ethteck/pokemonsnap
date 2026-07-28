@@ -5,8 +5,8 @@ extern u8 graveler_tex_8012F118_png[];
 extern u8 graveler_tex_8012F320[];
 extern u8 graveler_tex_8012F370_png[];
 extern u8 graveler_tex_8012FB78[];
-extern u8 graveler_tex_8012FBA0[];
-extern u8 graveler_tex_8012FDD0[];
+extern u8 graveler_tex_8012FBA0_png[];
+extern u8 graveler_tex_8012FDD0_png[];
 
 extern Texture* graveler_part1_mat[];
 extern Gfx graveler_part0_draw[];
@@ -32,8 +32,8 @@ Texture** graveler_materials[] = {
 };
 
 u8* graveler_part1_mat0_textures[] = {
-    graveler_tex_8012FBA0,
-    graveler_tex_8012FDD0,
+    graveler_tex_8012FBA0_png,
+    graveler_tex_8012FDD0_png,
     NULL,
 };
 

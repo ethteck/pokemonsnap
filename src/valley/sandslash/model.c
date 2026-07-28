@@ -6,10 +6,10 @@ extern u8 sandslash_tex_80169F28[];
 extern u8 sandslash_tex_80169F50_png[];
 extern u8 sandslash_tex_8016A158[];
 extern u8 sandslash_tex_8016A180_png[];
-extern u8 sandslash_tex_8016A1D0[];
-extern u8 sandslash_tex_8016A600[];
+extern u8 sandslash_tex_8016A1D0_png[];
+extern u8 sandslash_tex_8016A600_png[];
 extern u8 sandslash_tex_8016AA08[];
-extern u8 sandslash_tex_8016AA30[];
+extern u8 sandslash_tex_8016AA30_png[];
 extern u8 sandslash_tex_8016AE38[];
 extern u8 sandslash_tex_8016AE60_png[];
 extern u8 sandslash_tex_8016AEE8[];
@@ -47,9 +47,9 @@ Texture** sandslash_materials[] = {
 };
 
 u8* sandslash_part9_mat0_textures[] = {
-    sandslash_tex_8016AA30,
-    sandslash_tex_8016A600,
-    sandslash_tex_8016A1D0,
+    sandslash_tex_8016AA30_png,
+    sandslash_tex_8016A600_png,
+    sandslash_tex_8016A1D0_png,
     NULL,
 };
 

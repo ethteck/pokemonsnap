@@ -16,7 +16,7 @@ extern u8 D_801BACD8_3E1938[];
 extern u8 D_801BAD00_3E1960[];
 extern u8 charmander_tex_claw_pal[];
 extern u8 charmander_tex_claw_png[];
-extern u8 charmander_tex_eye_pal[];
+extern u8 charmander_tex_eye_frame0_pal[];
 extern u8 charmander_tex_mouth_pal[];
 extern u8 charmander_tex_mouth_png[];
 extern u8 charmander_tex_nostril_pal[];

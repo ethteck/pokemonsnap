@@ -1,9 +1,9 @@
 #include "common.h"
 
 extern u8 starmie_tex_80171858[];
-extern u8 starmie_tex_80171A60[];
-extern u8 starmie_tex_80172450[];
-extern u8 starmie_tex_80172E40[];
+extern u8 starmie_tex_80171A60_png[];
+extern u8 starmie_tex_80172450_png[];
+extern u8 starmie_tex_80172E40_png[];
 extern u8 starmie_tex_80173628[];
 extern u8 starmie_tex_80173650_png[];
 
@@ -34,15 +34,15 @@ Texture** starmie_hd_materials[] = {
 };
 
 u8* starmie_hd_part9_mat0_textures[] = {
-    starmie_tex_80171A60,
-    starmie_tex_80172450,
-    starmie_tex_80172E40,
+    starmie_tex_80171A60_png,
+    starmie_tex_80172450_png,
+    starmie_tex_80172E40_png,
 };
 
 u8* starmie_hd_part9_mat1_textures[] = {
-    starmie_tex_80171A60,
-    starmie_tex_80172450,
-    starmie_tex_80172E40,
+    starmie_tex_80171A60_png,
+    starmie_tex_80172450_png,
+    starmie_tex_80172E40_png,
 };
 
 Texture starmie_hd_part9_mat0 = {

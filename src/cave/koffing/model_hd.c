@@ -9,16 +9,16 @@ extern u8 koffing_tex_80162BD0_png[];
 extern u8 koffing_tex_80162DD8[];
 extern u8 koffing_tex_80162E00_png[];
 extern u8 koffing_tex_80163208[];
-extern u8 koffing_tex_80163230[];
-extern u8 koffing_tex_80163660[];
-extern u8 koffing_tex_80163A90[];
-extern u8 koffing_tex_80163EC0[];
-extern u8 koffing_tex_801642F0[];
+extern u8 koffing_tex_80163230_png[];
+extern u8 koffing_tex_80163660_png[];
+extern u8 koffing_tex_80163A90_png[];
+extern u8 koffing_tex_80163EC0_png[];
+extern u8 koffing_tex_801642F0_png[];
 extern u8 koffing_tex_801646F8[];
-extern u8 koffing_tex_80164720[];
-extern u8 koffing_tex_80164B50[];
-extern u8 koffing_tex_80164F80[];
-extern u8 koffing_tex_801653B0[];
+extern u8 koffing_tex_80164720_png[];
+extern u8 koffing_tex_80164B50_png[];
+extern u8 koffing_tex_80164F80_png[];
+extern u8 koffing_tex_801653B0_png[];
 
 extern Texture* koffing_hd_part1_mat[];
 extern Texture* koffing_hd_part7_mat[];
@@ -52,18 +52,18 @@ Texture** koffing_hd_materials[] = {
 };
 
 u8* koffing_hd_part1_mat0_textures[] = {
-    koffing_tex_80164720,
-    koffing_tex_80164B50,
-    koffing_tex_80164F80,
-    koffing_tex_801653B0,
+    koffing_tex_80164720_png,
+    koffing_tex_80164B50_png,
+    koffing_tex_80164F80_png,
+    koffing_tex_801653B0_png,
 };
 
 u8* koffing_hd_part1_mat1_textures[] = {
-    koffing_tex_80163230,
-    koffing_tex_80163660,
-    koffing_tex_80163A90,
-    koffing_tex_80163EC0,
-    koffing_tex_801642F0,
+    koffing_tex_80163230_png,
+    koffing_tex_80163660_png,
+    koffing_tex_80163A90_png,
+    koffing_tex_80163EC0_png,
+    koffing_tex_801642F0_png,
 };
 
 u8* koffing_hd_part7_mat0_textures[] = {

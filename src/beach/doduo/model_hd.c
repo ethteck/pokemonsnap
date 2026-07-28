@@ -1,10 +1,10 @@
 #include "common.h"
 
 extern u8 doduo_tex_80158A08[];
-extern u8 doduo_tex_80158A30[];
+extern u8 doduo_tex_80158A30_png[];
 extern u8 doduo_tex_80158C38[];
 extern u8 doduo_tex_80158C60_png[];
-extern u8 doduo_tex_80158E90[];
+extern u8 doduo_tex_80158E90_png[];
 extern u8 doduo_tex_80159098[];
 extern u8 doduo_tex_801590C0_png[];
 extern u8 doduo_tex_801591C8[];
@@ -41,13 +41,13 @@ Texture** doduo_hd_materials[] = {
 };
 
 u8* doduo_hd_part5_mat0_textures[] = {
-    doduo_tex_80158A30,
-    doduo_tex_80158E90,
+    doduo_tex_80158A30_png,
+    doduo_tex_80158E90_png,
 };
 
 u8* doduo_hd_part9_mat0_textures[] = {
-    doduo_tex_80158A30,
-    doduo_tex_80158E90,
+    doduo_tex_80158A30_png,
+    doduo_tex_80158E90_png,
     NULL,
 };
 

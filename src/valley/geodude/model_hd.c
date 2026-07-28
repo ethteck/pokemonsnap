@@ -1,8 +1,8 @@
 #include "common.h"
 
 extern u8 geodude_tex_8013F668[];
-extern u8 geodude_tex_8013F690[];
-extern u8 geodude_tex_8013FAC0[];
+extern u8 geodude_tex_8013F690_png[];
+extern u8 geodude_tex_8013FAC0_png[];
 extern u8 geodude_tex_8013FEC8[];
 extern u8 geodude_tex_8013FEF0_png[];
 extern u8 geodude_tex_801402F8[];
@@ -29,8 +29,8 @@ Texture** geodude_hd_materials[] = {
 };
 
 u8* geodude_hd_part2_mat0_textures[] = {
-    geodude_tex_8013F690,
-    geodude_tex_8013FAC0,
+    geodude_tex_8013F690_png,
+    geodude_tex_8013FAC0_png,
 };
 
 Texture geodude_hd_part2_mat0 = {

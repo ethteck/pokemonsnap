@@ -1,0 +1,1 @@
+#include "assets/cave/ditto/anim/model/anim_3.modelanim.inc.c"

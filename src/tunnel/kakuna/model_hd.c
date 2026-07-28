@@ -1,15 +1,15 @@
 #include "common.h"
 
 extern u8 kakuna_tex_80159608[];
-extern u8 kakuna_tex_80159630[];
+extern u8 kakuna_tex_80159630_png[];
 extern u8 kakuna_tex_80159838[];
-extern u8 kakuna_tex_80159860[];
+extern u8 kakuna_tex_80159860_png[];
 extern u8 kakuna_tex_80159A68[];
 extern u8 kakuna_tex_80159A78[];
-extern u8 kakuna_tex_80159A88[];
-extern u8 kakuna_tex_80159C90[];
+extern u8 kakuna_tex_80159A88_png[];
+extern u8 kakuna_tex_80159C90_png[];
 extern u8 kakuna_tex_80159E98[];
-extern u8 kakuna_tex_80159EB0[];
+extern u8 kakuna_tex_80159EB0_png[];
 extern u8 kakuna_tex_8015A0B8[];
 
 extern Texture* kakuna_hd_part1_mat[];

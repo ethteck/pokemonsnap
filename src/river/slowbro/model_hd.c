@@ -11,14 +11,14 @@ extern u8 slowbro_tex_80192640_png[];
 extern u8 slowbro_tex_80192A48[];
 extern u8 slowbro_tex_80192A70_png[];
 extern u8 slowbro_tex_80192C78[];
-extern u8 slowbro_tex_80192CA0[];
+extern u8 slowbro_tex_80192CA0_png[];
 extern u8 slowbro_tex_801930A8[];
 extern u8 slowbro_tex_801930D0_png[];
 extern u8 slowbro_tex_801932D8[];
 extern u8 slowbro_tex_80193300_png[];
 extern u8 slowbro_tex_80193708[];
 extern u8 slowbro_tex_80193730_png[];
-extern u8 slowbro_tex_80193960[];
+extern u8 slowbro_tex_80193960_png[];
 extern u8 slowbro_tex_80193D68[];
 extern u8 slowbro_tex_80193D90_png[];
 extern u8 slowbro_tex_80193F98[];
@@ -49,8 +49,8 @@ Texture** slowbro_hd_materials[] = {
 };
 
 u8* slowbro_hd_part10_mat0_textures[] = {
-    slowbro_tex_80192CA0,
-    slowbro_tex_80193960,
+    slowbro_tex_80192CA0_png,
+    slowbro_tex_80193960_png,
 };
 
 Texture slowbro_hd_part10_mat0 = {

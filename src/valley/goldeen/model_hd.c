@@ -1,9 +1,9 @@
 #include "common.h"
 
-extern u8 goldeen_tex_801750C0[];
-extern u8 goldeen_tex_801756D0[];
+extern u8 goldeen_tex_801750C0_png[];
+extern u8 goldeen_tex_801756D0_png[];
 extern u8 goldeen_tex_80175AD8[];
-extern u8 goldeen_tex_80175CE0[];
+extern u8 goldeen_tex_80175CE0_png[];
 extern u8 goldeen_tex_801760E8[];
 extern u8 goldeen_tex_801760F8_png[];
 extern u8 goldeen_tex_80176300[];
@@ -41,15 +41,15 @@ Texture** goldeen_hd_materials[] = {
 };
 
 u8* goldeen_hd_part1_mat0_textures[] = {
-    goldeen_tex_80175CE0,
-    goldeen_tex_801750C0,
-    goldeen_tex_801756D0,
+    goldeen_tex_80175CE0_png,
+    goldeen_tex_801750C0_png,
+    goldeen_tex_801756D0_png,
 };
 
 u8* goldeen_hd_part1_mat1_textures[] = {
-    goldeen_tex_80175CE0,
-    goldeen_tex_801750C0,
-    goldeen_tex_801756D0,
+    goldeen_tex_80175CE0_png,
+    goldeen_tex_801750C0_png,
+    goldeen_tex_801756D0_png,
 };
 
 Texture goldeen_hd_part1_mat0 = {

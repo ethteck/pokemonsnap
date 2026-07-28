@@ -20,11 +20,11 @@ extern u8 kangaskhan_tex_8016CAC8[];
 extern u8 kangaskhan_tex_8016CAF0_png[];
 extern u8 kangaskhan_tex_8016CBF8[];
 extern u8 kangaskhan_tex_8016CC20_png[];
-extern u8 kangaskhan_tex_8016CCD0[];
-extern u8 kangaskhan_tex_8016D100[];
+extern u8 kangaskhan_tex_8016CCD0_png[];
+extern u8 kangaskhan_tex_8016D100_png[];
 extern u8 kangaskhan_tex_8016D508[];
-extern u8 kangaskhan_tex_8016D530[];
-extern u8 kangaskhan_tex_8016D960[];
+extern u8 kangaskhan_tex_8016D530_png[];
+extern u8 kangaskhan_tex_8016D960_png[];
 extern u8 kangaskhan_tex_8016DD68[];
 extern u8 kangaskhan_tex_8016DD90_png[];
 extern u8 kangaskhan_tex_8016DE18[];
@@ -63,10 +63,10 @@ Texture** kangaskhan_materials[] = {
 };
 
 u8* kangaskhan_part7_mat0_textures[] = {
-    kangaskhan_tex_8016D530,
-    kangaskhan_tex_8016D960,
-    kangaskhan_tex_8016CCD0,
-    kangaskhan_tex_8016D100,
+    kangaskhan_tex_8016D530_png,
+    kangaskhan_tex_8016D960_png,
+    kangaskhan_tex_8016CCD0_png,
+    kangaskhan_tex_8016D100_png,
 };
 
 Texture kangaskhan_part7_mat0 = {

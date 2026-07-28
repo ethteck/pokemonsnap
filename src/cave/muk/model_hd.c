@@ -2,10 +2,10 @@
 
 extern u8 muk_tex_8015C768[];
 extern u8 muk_tex_8015D7C0[];
-extern u8 muk_tex_8015D7E8[];
+extern u8 muk_tex_8015D7E8_png[];
 extern u8 muk_tex_8015D7E8_png[];
 extern u8 muk_tex_8015DBF0[];
-extern u8 muk_tex_8015DC18[];
+extern u8 muk_tex_8015DC18_png[];
 extern u8 muk_tex_8015DE20[];
 extern u8 muk_tex_8015DE48_png[];
 
@@ -47,63 +47,63 @@ Texture** muk_hd_materials[] = {
 };
 
 u8* muk_hd_part2_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part3_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part4_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part5_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part6_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part7_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part8_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part9_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part10_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part11_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part12_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part13_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part14_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part15_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_hd_part16_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 Texture muk_hd_part2_mat0 = {

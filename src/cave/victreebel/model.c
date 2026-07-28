@@ -2,13 +2,13 @@
 
 extern u8 victreebel_tex_801A04B8[];
 extern u8 victreebel_tex_801A08C0[];
-extern u8 victreebel_tex_801A10F0[];
-extern u8 victreebel_tex_801A1320[];
-extern u8 victreebel_tex_801A1550[];
-extern u8 victreebel_tex_801A1780[];
-extern u8 victreebel_tex_801A19B0[];
+extern u8 victreebel_tex_801A10F0_png[];
+extern u8 victreebel_tex_801A1320_png[];
+extern u8 victreebel_tex_801A1550_png[];
+extern u8 victreebel_tex_801A1780_png[];
+extern u8 victreebel_tex_801A19B0_png[];
 extern u8 victreebel_tex_801A1BB8[];
-extern u8 victreebel_tex_801A1BE0[];
+extern u8 victreebel_tex_801A1BE0_png[];
 extern u8 victreebel_tex_801A1DE8[];
 extern u8 victreebel_tex_801A1E10_png[];
 extern u8 victreebel_tex_801A1E38[];
@@ -46,21 +46,21 @@ Texture** victreebel_materials[] = {
 };
 
 u8* victreebel_part2_mat0_textures[] = {
-    victreebel_tex_801A1BE0,
-    victreebel_tex_801A10F0,
-    victreebel_tex_801A1550,
-    victreebel_tex_801A1780,
-    victreebel_tex_801A1320,
-    victreebel_tex_801A19B0,
+    victreebel_tex_801A1BE0_png,
+    victreebel_tex_801A10F0_png,
+    victreebel_tex_801A1550_png,
+    victreebel_tex_801A1780_png,
+    victreebel_tex_801A1320_png,
+    victreebel_tex_801A19B0_png,
 };
 
 u8* victreebel_part2_mat1_textures[] = {
-    victreebel_tex_801A1BE0,
-    victreebel_tex_801A10F0,
-    victreebel_tex_801A1550,
-    victreebel_tex_801A1780,
-    victreebel_tex_801A1320,
-    victreebel_tex_801A19B0,
+    victreebel_tex_801A1BE0_png,
+    victreebel_tex_801A10F0_png,
+    victreebel_tex_801A1550_png,
+    victreebel_tex_801A1780_png,
+    victreebel_tex_801A1320_png,
+    victreebel_tex_801A19B0_png,
 };
 
 Texture victreebel_part1_mat0 = {

@@ -274,7 +274,7 @@ extern UNK_TYPE D_8017A780;
 extern UNK_TYPE D_80188D28;
 extern UNK_TYPE D_8018A6F0;
 extern UNK_TYPE D_801AFD30;
-extern UNK_TYPE D_8017A710;
+extern UNK_TYPE mon601_modelanim_anim_3;
 extern UNK_TYPE D_801B1230;
 extern UNK_TYPE D_801B1D40;
 extern UNK_TYPE D_801B6B60;
@@ -283,8 +283,8 @@ extern UNK_TYPE D_8017C090;
 extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
-extern UNK_TYPE D_80186E20;
-extern UNK_TYPE D_80188CB0;
+extern UNK_TYPE chansey_modelanim_anim_3;
+extern UNK_TYPE zapdos_egg_modelanim_anim_3;
 
 extern s32 gPokemonIdInFocus;
 extern UnkThing PokemonDetector_Photo[2];
@@ -1193,14 +1193,14 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
 
     switch (arg0->pokemonID) {
         case PokemonID_CHANSEY:
-            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
+            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &chansey_modelanim_anim_3) {
                 model->scale.v.x *= 0.5f;
                 model->scale.v.y *= 0.5f;
                 model->scale.v.z *= 0.5f;
             }
             break;
         case PokemonID_ZAPDOS_EGG:
-            if (D_800AD474[arg0->unk_00_13].unk_00 == &D_80188CB0) {
+            if (D_800AD474[arg0->unk_00_13].unk_00 == &zapdos_egg_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;
@@ -1219,7 +1219,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
             }
             break;
         case PokemonID_601:
-            if (D_800AD444[arg0->unk_00_13].unk_00 == &D_8017A710) {
+            if (D_800AD444[arg0->unk_00_13].unk_00 == &mon601_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;

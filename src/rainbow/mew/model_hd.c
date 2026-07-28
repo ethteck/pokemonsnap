@@ -1,12 +1,12 @@
 #include "common.h"
 
 extern u8 mew_tex_80126918[];
-extern u8 mew_tex_80126B20[];
-extern u8 mew_tex_801274B0[];
-extern u8 mew_tex_80127E40[];
-extern u8 mew_tex_801287D0[];
-extern u8 mew_tex_80129160[];
-extern u8 mew_tex_80129AF0[];
+extern u8 mew_tex_80126B20_png[];
+extern u8 mew_tex_801274B0_png[];
+extern u8 mew_tex_80127E40_png[];
+extern u8 mew_tex_801287D0_png[];
+extern u8 mew_tex_80129160_png[];
+extern u8 mew_tex_80129AF0_png[];
 extern u8 mew_tex_8012A278[];
 extern u8 mew_tex_8012A2A0_png[];
 extern u8 mew_tex_8012A6A8[];
@@ -65,12 +65,12 @@ Texture** mew_hd_materials[] = {
 };
 
 u8* mew_hd_part4_mat0_textures[] = {
-    mew_tex_80126B20,
-    mew_tex_801274B0,
-    mew_tex_80127E40,
-    mew_tex_801287D0,
-    mew_tex_80129160,
-    mew_tex_80129AF0,
+    mew_tex_80126B20_png,
+    mew_tex_801274B0_png,
+    mew_tex_80127E40_png,
+    mew_tex_801287D0_png,
+    mew_tex_80129160_png,
+    mew_tex_80129AF0_png,
     NULL,
 };
 

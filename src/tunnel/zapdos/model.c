@@ -3,8 +3,8 @@
 extern u8 zapdos_tex_80182968[];
 extern u8 zapdos_tex_80182990_png[];
 extern u8 zapdos_tex_80182B98[];
-extern u8 zapdos_tex_80182BC0[];
-extern u8 zapdos_tex_80182FF0[];
+extern u8 zapdos_tex_80182BC0_png[];
+extern u8 zapdos_tex_80182FF0_png[];
 extern u8 zapdos_tex_801833F8[];
 extern u8 zapdos_tex_80183420_png[];
 extern u8 zapdos_tex_80183628[];
@@ -40,8 +40,8 @@ Texture** zapdos_materials[] = {
 };
 
 u8* zapdos_part14_mat0_textures[] = {
-    zapdos_tex_80182BC0,
-    zapdos_tex_80182FF0,
+    zapdos_tex_80182BC0_png,
+    zapdos_tex_80182FF0_png,
     NULL,
 };
 

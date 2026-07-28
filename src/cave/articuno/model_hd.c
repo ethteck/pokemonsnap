@@ -5,9 +5,9 @@ extern u8 articuno_tex_8016FAB0_png[];
 extern u8 articuno_tex_8016FCB0[];
 extern u8 articuno_tex_8016FCD8_png[];
 extern u8 articuno_tex_8016FDE0[];
-extern u8 articuno_tex_8016FE08[];
-extern u8 articuno_tex_80170238[];
-extern u8 articuno_tex_80170668[];
+extern u8 articuno_tex_8016FE08_png[];
+extern u8 articuno_tex_80170238_png[];
+extern u8 articuno_tex_80170668_png[];
 extern u8 articuno_tex_80170A70[];
 extern u8 articuno_tex_80170A98_png[];
 extern u8 articuno_tex_80170CA0[];
@@ -53,9 +53,9 @@ Texture** articuno_hd_materials[] = {
 };
 
 u8* articuno_hd_part16_mat0_textures[] = {
-    articuno_tex_8016FE08,
-    articuno_tex_80170238,
-    articuno_tex_80170668,
+    articuno_tex_8016FE08_png,
+    articuno_tex_80170238_png,
+    articuno_tex_80170668_png,
 };
 
 Texture articuno_hd_part16_mat0 = {

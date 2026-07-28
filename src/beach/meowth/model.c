@@ -1,10 +1,10 @@
 #include "common.h"
 
 extern u8 meowth_tex_8018A5A8[];
-extern u8 meowth_tex_8018A7B0[];
-extern u8 meowth_tex_8018B000[];
-extern u8 meowth_tex_8018B850[];
-extern u8 meowth_tex_8018C0A0[];
+extern u8 meowth_tex_8018A7B0_png[];
+extern u8 meowth_tex_8018B000_png[];
+extern u8 meowth_tex_8018B850_png[];
+extern u8 meowth_tex_8018C0A0_png[];
 extern u8 meowth_tex_8018C6E8[];
 extern u8 meowth_tex_8018C710_png[];
 extern u8 meowth_tex_8018C998[];
@@ -13,17 +13,17 @@ extern u8 meowth_tex_8018CA48[];
 extern u8 meowth_tex_8018CA70_png[];
 extern u8 meowth_tex_8018CCF8[];
 extern u8 meowth_tex_8018CD20_png[];
-extern u8 meowth_tex_8018CF50[];
-extern u8 meowth_tex_8018D380[];
+extern u8 meowth_tex_8018CF50_png[];
+extern u8 meowth_tex_8018D380_png[];
 extern u8 meowth_tex_8018D788[];
-extern u8 meowth_tex_8018D7B0[];
-extern u8 meowth_tex_8018DDC0[];
-extern u8 meowth_tex_8018E3D0[];
-extern u8 meowth_tex_8018E9E0[];
-extern u8 meowth_tex_8018EFF0[];
+extern u8 meowth_tex_8018D7B0_png[];
+extern u8 meowth_tex_8018DDC0_png[];
+extern u8 meowth_tex_8018E3D0_png[];
+extern u8 meowth_tex_8018E9E0_png[];
+extern u8 meowth_tex_8018EFF0_png[];
 extern u8 meowth_tex_8018F3F8[];
-extern u8 meowth_tex_8018F600[];
-extern u8 meowth_tex_8018FC10[];
+extern u8 meowth_tex_8018F600_png[];
+extern u8 meowth_tex_8018FC10_png[];
 extern u8 meowth_tex_80190018[];
 extern u8 meowth_tex_80190040_png[];
 extern u8 meowth_tex_80190248[];
@@ -59,25 +59,25 @@ Texture** meowth_materials[] = {
 };
 
 u8* meowth_part12_mat0_textures[] = {
-    meowth_tex_8018F600,
-    meowth_tex_8018E3D0,
-    meowth_tex_8018E9E0,
-    meowth_tex_8018EFF0,
-    meowth_tex_8018DDC0,
-    meowth_tex_8018FC10,
+    meowth_tex_8018F600_png,
+    meowth_tex_8018E3D0_png,
+    meowth_tex_8018E9E0_png,
+    meowth_tex_8018EFF0_png,
+    meowth_tex_8018DDC0_png,
+    meowth_tex_8018FC10_png,
 };
 
 u8* meowth_part12_mat1_textures[] = {
-    meowth_tex_8018D7B0,
-    meowth_tex_8018CF50,
-    meowth_tex_8018D380,
+    meowth_tex_8018D7B0_png,
+    meowth_tex_8018CF50_png,
+    meowth_tex_8018D380_png,
 };
 
 u8* meowth_part19_mat0_textures[] = {
-    meowth_tex_8018A7B0,
-    meowth_tex_8018B000,
-    meowth_tex_8018B850,
-    meowth_tex_8018C0A0,
+    meowth_tex_8018A7B0_png,
+    meowth_tex_8018B000_png,
+    meowth_tex_8018B850_png,
+    meowth_tex_8018C0A0_png,
     NULL,
 };
 

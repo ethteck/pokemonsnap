@@ -78,14 +78,14 @@ extern ScreenSettings D_801E5410_994E80;
 extern SceneSetup D_801E542C_994E9C;
 extern s32 D_801E543C_994EAC;
 extern Sprite D_801E5840_9952B0;
-extern Sprite D_801E5DB0_995820;
-extern Sprite D_801E5EE0_995950;
-extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check
-extern Sprite D_801F26B0_9A2120; // NEW
-extern Sprite D_801F2910_9A2380; // blue diamond background
-extern Sprite D_801F29F0_9A2460; // evaluation background sprite
-extern Sprite D_801F2AD0_9A2540; // black square
-extern Sprite D_801F3B10_9A3580;
+extern Sprite photo_check_frame_vertical_sprite;
+extern Sprite photo_check_frame_horizontal_sprite;
+extern Sprite photo_check_title_sprite;    // Prof. Oak's check
+extern Sprite photo_check_new_sprite;      // NEW
+extern Sprite photo_check_bg_sprite;       // blue diamond background
+extern Sprite photo_check_score_bg_sprite; // evaluation background sprite
+extern Sprite photo_check_scrim_sprite;    // black square
+extern Sprite photo_check_frame_fill_sprite;
 extern s32 D_801F3E28_9A3898;
 extern s32 D_801F3E2C_9A389C;
 extern s32 D_801F3E30_9A38A0;
@@ -118,9 +118,7 @@ void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);
 void func_801E5030_994AA0(void);
 
-s32 D_801F3B50_9A35C0[] = {
-    0x00000000,
-};
+#include "build/assets/photo_check/photo_check_frame_fill.png.inc.h"
 
 char* SpecialPokemonNames[] = {
     NULL,
@@ -590,7 +588,7 @@ void func_801DD528_98CF98(s32 rgb) {
 }
 
 void func_801DD568_98CFD8(void) {
-    GObj* gobj = func_80371D14_8454C4(NULL, 6, &D_801F29F0_9A2460);
+    GObj* gobj = func_80371D14_8454C4(NULL, 6, &photo_check_score_bg_sprite);
     SObj* sobj = gobj->data.sobj;
 
     sobj->sprite.x = 0;
@@ -635,19 +633,19 @@ GObj* func_801DD720_98D190(s32 idx) {
     u8* sp20;
     u8* sp1C;
 
-    gobj = func_80371C68_845418(NULL, 6, &D_801E5DB0_995820);
+    gobj = func_80371C68_845418(NULL, 6, &photo_check_frame_vertical_sprite);
     sobj = gobj->data.sobj;
     D_802290A0_9D8B10[idx].gobj = gobj;
-    sobj = func_80371E68_845618(sobj, &D_801E5DB0_995820);
+    sobj = func_80371E68_845618(sobj, &photo_check_frame_vertical_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
-    sobj = func_80371DC0_845570(sobj, &D_801E5EE0_995950);
+    sobj = func_80371DC0_845570(sobj, &photo_check_frame_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
-    sobj = func_80371DC0_845570(sobj, &D_801E5EE0_995950);
+    sobj = func_80371DC0_845570(sobj, &photo_check_frame_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
-    sobj = func_80371DC0_845570(sobj, &D_801F3B10_9A3580);
+    sobj = func_80371DC0_845570(sobj, &photo_check_frame_fill_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     D_802290A0_9D8B10[idx].sobj = sobj; // ?
@@ -2461,7 +2459,7 @@ void func_801E3FFC_993A6C(void) {
 
     func_800A85E8(func_801E39DC_99344C, LINK_6, DL_LINK_0, NULL);
 
-    gobj = func_80371D14_8454C4(0, 6, &D_801F2910_9A2380);
+    gobj = func_80371D14_8454C4(0, 6, &photo_check_bg_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;
     sobj->sprite.height = SCREEN_HEIGHT;
@@ -2470,20 +2468,20 @@ void func_801E3FFC_993A6C(void) {
     func_801DD568_98CFD8();
     func_801DD46C_98CEDC(0);
 
-    gobj = func_80371D14_8454C4(0, 6, &D_801F2378_9A1DE8);
+    gobj = func_80371D14_8454C4(0, 6, &photo_check_title_sprite);
     D_80229180_9D8BF0 = gobj->data.sobj;
     D_80229180_9D8BF0->sprite.x = 56;
     D_80229180_9D8BF0->sprite.y = 38;
     func_801DD5F0_98D060(1);
     func_801DD528_98CF98(0);
 
-    gobj = func_80371D14_8454C4(0, 6, &D_801F26B0_9A2120);
+    gobj = func_80371D14_8454C4(0, 6, &photo_check_new_sprite);
     D_80229184_9D8BF4 = gobj->data.sobj;
     D_80229184_9D8BF4->sprite.x = 217;
     D_80229184_9D8BF4->sprite.y = 23;
     func_801DD638_98D0A8(0);
 
-    gobj = func_80371D14_8454C4(0, 6, &D_801F2AD0_9A2540);
+    gobj = func_80371D14_8454C4(0, 6, &photo_check_scrim_sprite);
     D_80229188_9D8BF8 = gobj->data.sobj;
     D_80229188_9D8BF8->sprite.x = 0;
     D_80229188_9D8BF8->sprite.y = 0;

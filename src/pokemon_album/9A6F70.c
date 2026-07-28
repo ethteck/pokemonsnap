@@ -9,26 +9,32 @@ typedef struct AlbumPhoto {
     /* 0x08 */ u8 isShown;
 } AlbumPhoto; // size: 0xC
 
-extern Sprite D_801E4518_9AE768;
-extern Sprite D_801ED550_9B77A0;
-extern Sprite D_801F2D28_9BCF78;
-extern Sprite D_801F2F88_9BD1D8;
-extern Sprite D_801F3108_9BD358;
-extern Sprite D_801F3288_9BD4D8;
-extern Sprite D_801F3408_9BD658;
-extern Sprite D_801F3588_9BD7D8;
-extern Sprite D_801F6B50_9C0DA0;
-extern Sprite D_801FB1D0_9C5420;
-extern Sprite D_801FFA10_9C9C60;
-extern Sprite D_801FFC80_9C9ED0;
-extern Sprite D_80200058_9CA2A8;
-extern Sprite D_80200400_9CA650;
-extern Sprite D_802005B8_9CA808;
-extern Sprite D_802006E8_9CA938;
-extern Sprite D_80201728_9CB978;
-extern Sprite D_80208B10_9D2D60;
+extern Sprite album_bg_red_sprite;
+extern Sprite album_silhouette_sprite;
+extern Sprite album_title_sprite;
+extern Sprite album_bg_tan_sprite;
+extern Sprite album_photo_corner_tl_sprite;
+extern Sprite album_photo_corner_tr_sprite;
+extern Sprite album_photo_corner_bl_sprite;
+extern Sprite album_photo_corner_br_sprite;
+extern Sprite album_comment_bg_sprite;
+extern Sprite album_desc_bg_sprite;
+extern Sprite D_801FFA10_9C9C60_sprite;
+extern Sprite album_cursor_sprite;
+extern Sprite album_frame_vertical_sprite;
+extern Sprite album_frame_horizontal_sprite;
+extern Sprite album_frame_sm_vertical_sprite;
+extern Sprite album_frame_sm_horizontal_sprite;
+extern Sprite album_frame_sm_fill_sprite;
+extern Sprite album_frame_fill_sprite;
 
-s32 D_80208B50_9D2DA0 = 0; // TODO belongs to sprites
+#include "build/assets/pokemon_album/album_frame_sm_horizontal.png.inc.h"
+static u8 aligner_16[] = { 0, 0, 0, 0 };
+static Gfx aligner_a[] = { gsSPEndDisplayList() };
+#include "build/assets/pokemon_album/album_frame_sm_fill.png.inc.h"
+static u8 aligner_17[] = { 0, 0, 0, 0 };
+static u8 aligner_18[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+#include "build/assets/pokemon_album/album_frame_fill.png.inc.h"
 
 s32 D_80208B54_9D2DA4 = -1;
 s32 D_80208B58_9D2DA8[6] = { PokemonID_1004, PokemonID_1010, PokemonID_1018, PokemonID_1022, PokemonID_KOFFING_SMOKE, PokemonID_1035 };
@@ -312,25 +318,25 @@ GObj* album_CreatePhoto(s32 index) {
     x = ((index % 3) * 66) + 104;
     y = ((index / 3) * 55) + 53;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_802005B8_9CA808);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_frame_sm_vertical_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = x;
     sobj->sprite.y = y;
     album_Photos[index].gObj = gobj;
 
-    sobj = func_80371E68_845618(sobj, &D_802005B8_9CA808);
+    sobj = func_80371E68_845618(sobj, &album_frame_sm_vertical_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_802006E8_9CA938);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_802006E8_9CA938);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
 
-    sobj = func_80371DC0_845570(sobj, &D_80201728_9CB978);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_fill_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     album_Photos[index].sObj = sobj;
@@ -439,25 +445,25 @@ GObj* func_801DDE64_9A80B4(void) {
     u8* dest;
     u8* src;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_802005B8_9CA808);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_frame_sm_vertical_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 0;
     sobj->sprite.y = 0;
     sobj->sprite.attr |= SP_HIDDEN;
 
-    sobj = func_80371E68_845618(sobj, &D_802005B8_9CA808);
+    sobj = func_80371E68_845618(sobj, &album_frame_sm_vertical_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_802006E8_9CA938);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_802006E8_9CA938);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
 
-    sobj = func_80371DC0_845570(sobj, &D_80201728_9CB978);
+    sobj = func_80371DC0_845570(sobj, &album_frame_sm_fill_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 2;
     album_DraggedPhotoGObj = gobj;
@@ -496,26 +502,26 @@ void* func_801DE0C8_9A8318(void) {
     SObj* sobj;
     UNUSED s32 pad[2];
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_80200058_9CA2A8);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_frame_vertical_sprite);
     album_D_80250108_A1A358 = gobj;
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
     sobj->sprite.y = 53;
     sobj->sprite.attr |= SP_HIDDEN;
 
-    sobj = func_80371E68_845618(sobj, &D_80200058_9CA2A8);
+    sobj = func_80371E68_845618(sobj, &album_frame_vertical_sprite);
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_80200400_9CA650);
+    sobj = func_80371DC0_845570(sobj, &album_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_80200400_9CA650);
+    sobj = func_80371DC0_845570(sobj, &album_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
 
-    sobj = func_80371DC0_845570(sobj, &D_80208B10_9D2D60);
+    sobj = func_80371DC0_845570(sobj, &album_frame_fill_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
 
@@ -569,37 +575,37 @@ GObj* album_CreatePhotoCorners(void) {
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 3; j++) {
-            gobj = func_80371C68_845418(NULL, LINK_6, &D_801F3108_9BD358);
+            gobj = func_80371C68_845418(NULL, LINK_6, &album_photo_corner_tl_sprite);
             sobj = gobj->data.sobj;
             album_PhotoCorners[(i * 3) + j] = sobj;
             sobj->sprite.x = (j * 66) + 102;
             sobj->sprite.y = (i * 55) + 51;
             sobj->sprite.attr |= SP_HIDDEN;
-            sobj = func_80371E68_845618(sobj, &D_801F3288_9BD4D8);
+            sobj = func_80371E68_845618(sobj, &album_photo_corner_tr_sprite);
             sobj->sprite.x = 48;
             sobj->sprite.y = 0;
-            sobj = func_80371DC0_845570(sobj, &D_801F3408_9BD658);
+            sobj = func_80371DC0_845570(sobj, &album_photo_corner_bl_sprite);
             sobj->sprite.x = 0;
             sobj->sprite.y = 36;
-            sobj = func_80371DC0_845570(sobj, &D_801F3588_9BD7D8);
+            sobj = func_80371DC0_845570(sobj, &album_photo_corner_br_sprite);
             sobj->sprite.x = 48;
             sobj->sprite.y = 36;
         }
     }
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_801F3108_9BD358);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_photo_corner_tl_sprite);
     sobj = gobj->data.sobj;
     album_PhotoCorners[6] = sobj;
     sobj->sprite.x = 125;
     sobj->sprite.y = 51;
     sobj->sprite.attr |= SP_HIDDEN;
-    sobj = func_80371E68_845618(sobj, &D_801F3288_9BD4D8);
+    sobj = func_80371E68_845618(sobj, &album_photo_corner_tr_sprite);
     sobj->sprite.x = 138;
     sobj->sprite.y = 0;
-    sobj = func_80371DC0_845570(sobj, &D_801F3408_9BD658);
+    sobj = func_80371DC0_845570(sobj, &album_photo_corner_bl_sprite);
     sobj->sprite.x = 0;
     sobj->sprite.y = 103;
-    sobj = func_80371DC0_845570(sobj, &D_801F3588_9BD7D8);
+    sobj = func_80371DC0_845570(sobj, &album_photo_corner_br_sprite);
     sobj->sprite.x = 138;
     sobj->sprite.y = 103;
 
@@ -637,7 +643,7 @@ void* album_CreateCommentBackground(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_801F6B50_9C0DA0);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_comment_bg_sprite);
     sobj = gobj->data.sobj;
 
     sobj->sprite.x = 101;
@@ -660,7 +666,7 @@ GObj* album_CreateCommentTextBox(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_801FFC80_9C9ED0);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_cursor_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 115;
     sobj->sprite.y = 196;
@@ -751,7 +757,7 @@ void* album_CreatePhotoDescBackground(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_801FB1D0_9C5420);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_desc_bg_sprite);
     sobj = gobj->data.sobj;
 
     sobj->sprite.x = 308;
@@ -848,13 +854,13 @@ void album_CreateCoverUI(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371D14_8454C4(NULL, LINK_6, &D_801F2D28_9BCF78);
+    gobj = func_80371D14_8454C4(NULL, LINK_6, &album_title_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 106;
     sobj->sprite.y = 52;
     album_CoverTitleSObj[0] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_801ED550_9B77A0);
+    sobj = func_80371DC0_845570(sobj, &album_silhouette_sprite);
     sobj->sprite.x = 110;
     sobj->sprite.y = 108;
     sobj->sprite.alpha = 128;
@@ -870,14 +876,14 @@ void func_801DF2E0_9A9530(void) {
     SObj* sobj;
 
     sobj = album_CoverTitleSObj[0];
-    sobj->sprite = D_801F2D28_9BCF78;
+    sobj->sprite = album_title_sprite;
     sobj->sprite.x = 106;
     sobj->sprite.y = 52;
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
 
     sobj = album_CoverTitleSObj[1];
-    sobj->sprite = D_801ED550_9B77A0;
+    sobj->sprite = album_silhouette_sprite;
     sobj->sprite.x = 110;
     sobj->sprite.y = 108;
     sobj->sprite.alpha = 128;
@@ -1228,9 +1234,9 @@ void album_SetBackgroundTexture(bool arg0) {
     SObj* sobj = gobj->data.sobj;
 
     if (arg0) {
-        sobj->sprite = D_801F2F88_9BD1D8;
+        sobj->sprite = album_bg_tan_sprite;
     } else {
-        sobj->sprite = D_801E4518_9AE768;
+        sobj->sprite = album_bg_red_sprite;
     }
 
     sobj->unk_58 = NULL;
@@ -1461,7 +1467,7 @@ GObj* func_801E10D0_9AB320(void) {
     GObj* gobj;
     SObj* sobj;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_801FFA10_9C9C60);
+    gobj = func_80371C68_845418(NULL, LINK_6, &D_801FFA10_9C9C60_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
     sobj->sprite.y = 53;
@@ -1515,20 +1521,20 @@ void album_DeletePhoto(s32 photoId) {
     SObj* sobj;
     s32 i;
 
-    gobj = func_80371C68_845418(NULL, LINK_6, &D_80200058_9CA2A8);
+    gobj = func_80371C68_845418(NULL, LINK_6, &album_frame_vertical_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 127;
     sobj->sprite.y = 53;
-    sobj = func_80371E68_845618(sobj, &D_80200058_9CA2A8);
+    sobj = func_80371E68_845618(sobj, &album_frame_vertical_sprite);
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
-    sobj = func_80371DC0_845570(sobj, &D_80200400_9CA650);
+    sobj = func_80371DC0_845570(sobj, &album_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
-    sobj = func_80371DC0_845570(sobj, &D_80200400_9CA650);
+    sobj = func_80371DC0_845570(sobj, &album_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
-    sobj = func_80371DC0_845570(sobj, &D_80208B10_9D2D60);
+    sobj = func_80371DC0_845570(sobj, &album_frame_fill_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
     sobj->sprite = album_D_8025010C_A1A35C->sprite;
@@ -1634,7 +1640,7 @@ void album_CreateUI(void) {
     SObj* bgSObj;
 
     func_800A85E8(album_CreateAlbumUI, LINK_6, DL_LINK_0, NULL);
-    bgObj = func_80371D14_8454C4(NULL, LINK_6, &D_801E4518_9AE768);
+    bgObj = func_80371D14_8454C4(NULL, LINK_6, &album_bg_red_sprite);
     bgSObj = bgObj->data.sobj;
     bgSObj->sprite.width = SCREEN_WIDTH;
     bgSObj->sprite.height = SCREEN_HEIGHT;

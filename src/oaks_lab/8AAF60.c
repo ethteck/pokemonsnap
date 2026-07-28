@@ -312,47 +312,47 @@ s32 func_800E6404_8ABC24(void) {
 void func_800E6410_8ABC30(void) {
     D_801C5514_98AD34 = 0;
 
-    D_80206B78_9CC398 = func_800A9F10(func_800E5EF8_8AB718, LINK_6, &D_801BED90_9845B0)->data.sobj;
+    D_80206B78_9CC398 = func_800A9F10(func_800E5EF8_8AB718, LINK_6, &map_rainbow_cloud_sprite)->data.sobj;
     D_80206B78_9CC398->sprite.x = 109;
     D_80206B78_9CC398->sprite.y = 24;
     D_80206B78_9CC398->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
 
-    D_80206B60_9CC380 = func_800A9F10(func_800E58D0_8AB0F0, LINK_6, &D_80197EB0_95D6D0)->data.sobj;
+    D_80206B60_9CC380 = func_800A9F10(func_800E58D0_8AB0F0, LINK_6, &map_zero_one_9_sprite)->data.sobj;
     D_80206B60_9CC380->sprite.x = 105;
     D_80206B60_9CC380->sprite.y = 117;
     D_80206B60_9CC380->sprite.attr |= SP_HIDDEN;
 
-    D_80206B64_9CC384 = func_800A9F10(NULL, LINK_6, &D_80198FB8_95E7D8)->data.sobj;
+    D_80206B64_9CC384 = func_800A9F10(NULL, LINK_6, &map_todd_14_sprite)->data.sobj;
     D_80206B64_9CC384->sprite.x = 170;
     D_80206B64_9CC384->sprite.y = 121;
     D_80206B64_9CC384->sprite.attr |= SP_HIDDEN;
 
-    D_80206B68_9CC388 = func_800A9F10(NULL, LINK_6, &D_8019C2D0_961AF0)->data.sobj;
+    D_80206B68_9CC388 = func_800A9F10(NULL, LINK_6, &map_todd_17_sprite)->data.sobj;
     D_80206B68_9CC388->sprite.x = 137;
     D_80206B68_9CC388->sprite.y = 121;
     D_80206B68_9CC388->sprite.attr |= SP_HIDDEN;
 
-    D_80206B6C_9CC38C = func_800A9F10(NULL, LINK_6, &D_801A2900_968120)->data.sobj;
+    D_80206B6C_9CC38C = func_800A9F10(NULL, LINK_6, &map_todd_23_sprite)->data.sobj;
     D_80206B6C_9CC38C->sprite.x = 170;
     D_80206B6C_9CC38C->sprite.y = 121;
     D_80206B6C_9CC38C->sprite.attr |= SP_HIDDEN;
 
-    D_80206B70_9CC390 = func_800A9F10(NULL, LINK_6, &D_801AD198_9729B8)->data.sobj;
+    D_80206B70_9CC390 = func_800A9F10(NULL, LINK_6, &map_zero_one_10_sprite)->data.sobj;
     D_80206B70_9CC390->sprite.x = 105;
     D_80206B70_9CC390->sprite.y = 117;
     D_80206B70_9CC390->sprite.attr |= SP_HIDDEN;
 
-    D_80206B74_9CC394 = func_800A9F10(NULL, LINK_6, &D_801B93A8_97EBC8)->data.sobj;
+    D_80206B74_9CC394 = func_800A9F10(NULL, LINK_6, &map_zero_one_16_sprite)->data.sobj;
     D_80206B74_9CC394->sprite.x = 170;
     D_80206B74_9CC394->sprite.y = 121;
     D_80206B74_9CC394->sprite.attr |= SP_SCALE | SP_HIDDEN;
 
-    D_80206B7C_9CC39C = func_800A9F10(func_800E5740_8AAF60, LINK_6, &D_801C31B0_9889D0)->data.sobj;
+    D_80206B7C_9CC39C = func_800A9F10(func_800E5740_8AAF60, LINK_6, &map_oak_3_sprite)->data.sobj;
     D_80206B7C_9CC39C->sprite.x = 263;
     D_80206B7C_9CC39C->sprite.y = 121;
     D_80206B7C_9CC39C->sprite.attr |= SP_HIDDEN;
 
-    D_80206B80_9CC3A0 = func_800A9F10(NULL, LINK_6, &D_801BFE98_9856B8)->data.sobj;
+    D_80206B80_9CC3A0 = func_800A9F10(NULL, LINK_6, &map_oak_0_sprite)->data.sobj;
     D_80206B80_9CC3A0->sprite.x = 263;
     D_80206B80_9CC3A0->sprite.y = 121;
     D_80206B80_9CC3A0->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;

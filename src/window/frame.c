@@ -1,7 +1,7 @@
 #include "common.h"
 #include "window.h"
 
-extern Sprite D_80380C88_854438;
+extern Sprite D_80380C88_854438_sprite;
 extern Bitmap* D_803818B0_855060[3][9];
 static UIFrame D_803A6A10_87A1C0;
 
@@ -157,7 +157,7 @@ UIFrame* UIFrame_Create(void) {
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(D_803A6A10_87A1C0.sprites); i++) {
-        D_803A6A10_87A1C0.sprites[i] = func_800A9F10(0, 6, &D_80380C88_854438);
+        D_803A6A10_87A1C0.sprites[i] = func_800A9F10(0, 6, &D_80380C88_854438_sprite);
         if (D_803A6A10_87A1C0.sprites[i] == NULL) {
             return NULL;
         }

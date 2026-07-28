@@ -16,8 +16,8 @@ extern InteractionHandler D_802D41A8_7AD738[];
 extern Vec3f D_802D41C8_7AD758;
 extern PokemonInitData D_802D41E8_7AD778;
 extern AnimationHeader D_802D4220_7AD7B0;
-extern Sprite D_802E6B18_7C00A8;
-extern Sprite D_802EC4D8_7C5A68;
+extern Sprite valley_oak_sprite;
+extern Sprite valley_textbox_sprite;
 extern SomeC D_802EC51C_7C5AAC[];
 extern SomeC D_802EC5D0_7C5B60[];
 extern s32 D_802EC5E8_7C5B78;
@@ -163,12 +163,12 @@ void func_802CFE8C_7A941C(void) {
 
     gobj = omAddGObj(0x1F, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renDrawSprite, 1, 0x80000000, -1);
-    spX2Move(&omGObjAddSprite(gobj, &D_802E6B18_7C00A8)->sprite, 100, 34);
+    spX2Move(&omGObjAddSprite(gobj, &valley_oak_sprite)->sprite, 100, 34);
     D_8034E0A0_827630 = omGObjAddSprite(gobj, NULL);
     omCreateProcess(gobj, func_802CFA40_7A8FD0, 0, 1);
     D_8034E0A4_827634 = omGObjAddSprite(gobj, NULL);
     omCreateProcess(gobj, func_802CFC6C_7A91FC, 0, 1);
-    sprite = omGObjAddSprite(gobj, &D_802EC4D8_7C5A68);
+    sprite = omGObjAddSprite(gobj, &valley_textbox_sprite);
     spX2Move(&sprite->sprite, 51, 158);
     spScale(&sprite->sprite, 17.0f, 5.0f);
     spColor(&sprite->sprite, 0, 0, 0, 127);
@@ -240,7 +240,7 @@ void func_802D017C_7A970C(void) {
 
     gobj = omAddGObj(0x1F, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renDrawSprite, 1, 0x80000000, -1);
-    sprite = omGObjAddSprite(gobj, &D_802EC4D8_7C5A68);
+    sprite = omGObjAddSprite(gobj, &valley_textbox_sprite);
     spX2Move(&sprite->sprite, 51, 158);
     spScale(&sprite->sprite, 17.0f, 5.0f);
     spColor(&sprite->sprite, 0, 0, 0, 0x7F);

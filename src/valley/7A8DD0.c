@@ -292,9 +292,9 @@ void func_802D039C_7A992C(f32 speed) {
 
 void func_802D03D0_7A9960(f32 skipFrames) {
     if (D_802EC648_7C5BD8 != NULL) {
-        animSetCameraAnimation(D_802EC648_7C5BD8, &D_801204A0, skipFrames);
+        animSetCameraAnimation(D_802EC648_7C5BD8, &D_801204A0_4168E0, skipFrames);
     }
-    PlayerModel_ChangeAnimation(&D_8011DA60, &D_8011EA20, skipFrames);
+    PlayerModel_ChangeAnimation(&D_8011DA60_413EA0, &D_8011EA20_414E60, skipFrames);
 }
 
 void func_802D0420_7A99B0(DObj* arg0, s32 arg1, f32 arg2) {
@@ -410,7 +410,7 @@ void func_802D07BC_7A9D4C(GObj* obj) {
     resetMainCameraSettings();
     Msg_Reset();
     cmdSendCommand(gObjPlayer, 0xA, NULL);
-    setSkyBoxAnimationSpeed(D_80100730);
+    setSkyBoxAnimationSpeed(D_80100730_3F6B70);
     D_802EC648_7C5BD8 = getMainCamera();
     camObj = D_802EC648_7C5BD8->obj;
     ohPauseObjectProcesses(camObj);

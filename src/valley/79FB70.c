@@ -1,8 +1,8 @@
 #include "valley.h"
 
-extern AnimCmd* D_80120520[];
-extern AnimCmd** D_801212A0[];
-extern AnimCmd D_80121D30[];
+extern AnimCmd* D_80120520_416960[];
+extern AnimCmd** D_801212A0_4176E0[];
+extern AnimCmd D_80121D30_418170[];
 
 extern bool D_802D2A80_7AC010;
 extern GObj* D_802D2A84_7AC014;
@@ -84,9 +84,9 @@ void func_802C67F4_79FD84(GObj* obj) {
     origYAt = camera->viewMtx.lookAt.at.y;
     origZAt = camera->viewMtx.lookAt.at.z;
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, D_80121D30, 0);
+    animSetCameraAnimation(camera, D_80121D30_418170, 0);
     animProc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(D_80120520, D_801212A0, 0, 0.5f);
+    PlayerModel_SetAnimation(D_80120520_416960, D_801212A0_4176E0, 0, 0.5f);
     D_802D2A80_7AC010 = false;
     obj->fnAnimCallback = func_802C6630_79FBC0;
     omCreateProcess(obj, func_802C673C_79FCCC, 0, 1);

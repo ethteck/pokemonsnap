@@ -21,11 +21,11 @@ extern s8 D_800E8396_A0F926;
 extern GObj* D_800E838C_A0F91C;
 extern GObj* D_800E8390_A0F920;
 
-extern Sprite D_80343B28;
-extern Sprite D_80343C08;
-extern Sprite D_80344388;
-extern Sprite D_803444D8;
-extern Sprite D_80344618;
+extern Sprite D_80343B28_main_menu_vpk0;
+extern Sprite D_80343C08_main_menu_vpk0;
+extern Sprite D_80344388_main_menu_vpk0;
+extern Sprite D_803444D8_main_menu_vpk0;
+extern Sprite D_80344618_main_menu_vpk0;
 
 void func_800E6C00_A0E190(SObj* sobj, u8 color) {
     sobj->sprite.red = color;
@@ -77,37 +77,37 @@ void func_800E6D64_A0E2F4(void) {
     SObj* sobj;
 
     D_800E838C_A0F91C = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80344388, 0, NULL, 1);
+                                              &D_80344388_main_menu_vpk0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 0, -3);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_80343B28);
+    omGObjAddSprite(gobj, &D_80343B28_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 0, 0);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_80344618);
+    omGObjAddSprite(gobj, &D_80344618_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 135, -24);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_80343C08);
+    omGObjAddSprite(gobj, &D_80343C08_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, -24, 95);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
 
     D_800E8390_A0F920 = gobj = ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                              &D_80344388, 0, NULL, 1);
+                                              &D_80344388_main_menu_vpk0, 0, NULL, 1);
     sobj = gobj->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 48, 238);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_80343B28);
+    omGObjAddSprite(gobj, &D_80343B28_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 317, 48);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_803444D8);
+    omGObjAddSprite(gobj, &D_803444D8_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 183, 234);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(gobj, &D_80343C08);
+    omGObjAddSprite(gobj, &D_80343C08_main_menu_vpk0);
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 313, 143);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;

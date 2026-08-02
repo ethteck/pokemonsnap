@@ -1,9 +1,9 @@
 #include "rainbow.h"
 #include "app_render/effect.h"
 
-extern AnimCmd* D_80119AE0;
-extern AnimCmd** D_8011A970;
-extern AnimCmd D_8011B3E0;
+extern AnimCmd* D_80119AE0_4CBEB0;
+extern AnimCmd** D_8011A970_4CCD40;
+extern AnimCmd D_8011B3E0_4CD7B0;
 
 extern s32 D_8034B670_82ADE0;
 extern GObj* D_8034B674_82ADE4;
@@ -102,9 +102,9 @@ void func_8034A7C4_829F34(GObj* obj) {
     origAtY = cam->viewMtx.lookAt.at.y;
     origAtZ = cam->viewMtx.lookAt.at.z;
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_8011B3E0, 0.0f);
+    animSetCameraAnimation(cam, &D_8011B3E0_4CD7B0, 0.0f);
     proc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(&D_80119AE0, &D_8011A970, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_80119AE0_4CBEB0, &D_8011A970_4CCD40, 0.0f, 0.5f);
     D_8034B670_82ADE0 = 0;
     obj->fnAnimCallback = func_8034A578_829CE8;
     omCreateProcess(obj, func_8034A6B4_829E24, 0, 1);

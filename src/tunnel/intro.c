@@ -1,8 +1,8 @@
 #include "tunnel.h"
 
-extern AnimCmd D_8013EE60[];
-extern AnimCmd* D_8013D920[];
-extern AnimCmd** D_8013E3D0[];
+extern AnimCmd D_8013EE60_184FC0[];
+extern AnimCmd* D_8013D920_183A80[];
+extern AnimCmd** D_8013E3D0_184530[];
 
 extern bool D_802F01E0_5ED2B0;
 extern GObj* D_802F01E4_5ED2B4;
@@ -89,9 +89,9 @@ void func_802ED2E8_5EA3B8(GObj* obj) {
     origYAt = camera->viewMtx.lookAt.at.y;
     origZAt = camera->viewMtx.lookAt.at.z;
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, D_8013EE60, 0);
+    animSetCameraAnimation(camera, D_8013EE60_184FC0, 0);
     animProc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(D_8013D920, D_8013E3D0, 0, 0.5f);
+    PlayerModel_SetAnimation(D_8013D920_183A80, D_8013E3D0_184530, 0, 0.5f);
     D_802F01E0_5ED2B0 = false;
     obj->fnAnimCallback = func_802ED050_5EA120;
     omCreateProcess(obj, func_802ED1BC_5EA28C, 0, 1);

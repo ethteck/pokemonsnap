@@ -69,6 +69,7 @@ def clean():
     shutil.rmtree("asm", ignore_errors=True)
     shutil.rmtree("assets", ignore_errors=True)
     shutil.rmtree("build", ignore_errors=True)
+    shutil.rmtree(".splat", ignore_errors=True)
 
 
 def obtain_ido_recomp(version: str):

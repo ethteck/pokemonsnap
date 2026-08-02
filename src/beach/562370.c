@@ -152,15 +152,15 @@ void func_beach_802CA950(GObj* obj) {
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, D_8013C530, 0.0f);
+    animSetCameraAnimation(cam, D_8013C530_C89C0, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_8011B924);
+    setSkyBoxAnimationSpeed(D_8011B924_A7DB4);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, 0);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_8013B030, &D_8013BAA0, 0, 0.5f);
+    PlayerModel_SetAnimation(&D_8013B030_C74C0, &D_8013BAA0_C7F30, 0, 0.5f);
     D_beach_80347658 = playerObj;
     D_beach_802CD9D4 = 0;
     playerObj->fnAnimCallback = func_beach_802CA5A8;

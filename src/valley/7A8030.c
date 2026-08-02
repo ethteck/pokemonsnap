@@ -169,8 +169,8 @@ POKEMON_FUNC(func_802CF114_7A86A4)
     pokemon->transitionGraph = NULL;
     pokemon->lastAnimationFrame = 30.0f;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Camera_StartCutScene(obj, &D_8011C550, D_802D406C_7AD5FC);
-    setSkyBoxAnimationSpeed(D_80100730);
+    Camera_StartCutScene(obj, &D_8011C550_412990, D_802D406C_7AD5FC);
+    setSkyBoxAnimationSpeed(D_80100730_3F6B70);
     gMainCamera->viewMtx.lookAt.eye.x = -328.82117f;
     gMainCamera->viewMtx.lookAt.eye.y = 200.0f;
     gMainCamera->viewMtx.lookAt.eye.z = 747.35345f;

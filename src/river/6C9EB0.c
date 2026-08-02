@@ -3,9 +3,9 @@
 #include "river.h"
 #include "app_render/effect.h"
 
-extern AnimCmd* D_8014A660;
-extern AnimCmd** D_8014B450;
-extern AnimCmd D_8014BF30;
+extern AnimCmd* D_8014A660_2BA730;
+extern AnimCmd** D_8014B450_2BB520;
+extern AnimCmd D_8014BF30_2BC000;
 extern s32 D_802E4B80_6CC960;
 extern GObj* D_802E4B84_6CC964;
 
@@ -91,9 +91,9 @@ void func_802E22E4_6CA0C4(GObj* obj) {
     startAtZ = cam->viewMtx.lookAt.at.z;
 
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_8014BF30, 0.0f);
+    animSetCameraAnimation(cam, &D_8014BF30_2BC000, 0.0f);
     proc = omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(&D_8014A660, &D_8014B450, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_8014A660_2BA730, &D_8014B450_2BB520, 0.0f, 0.5f);
     D_802E4B80_6CC960 = 0;
     obj->fnAnimCallback = func_802E2120_6C9F00;
     omCreateProcess(obj, func_802E222C_6CA00C, 0, 1);

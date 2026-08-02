@@ -1,9 +1,5 @@
 #include "common.h"
 
-extern Gfx D_0E000000_pikachu_model[];
-extern Gfx D_0E000008_pikachu_model[];
-extern Gfx D_0E000010_pikachu_model[];
-
 extern u8 pikachu_tex_lightning0_png[];
 extern u8 pikachu_tex_lightning1_png[];
 extern u8 pikachu_tex_lightning2_png[];

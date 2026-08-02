@@ -7,7 +7,7 @@ void func_802D92B0_6C1090(s32, f32);
 void func_802DFF94_6C7D74(GObj*);
 void func_802E25C4_6CA3A4(void);
 
-extern f32 D_8012ACA0;
+extern f32 D_8012ACA0_29AD70;
 
 extern u16 D_802E28AC_6CA68C;
 extern u16 D_802E28B0_6CA690;

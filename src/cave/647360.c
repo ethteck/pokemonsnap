@@ -4,13 +4,13 @@
 #include "app_render/effect.h"
 #include "cave.h"
 
-extern f32 D_8012A0F8;
-extern AnimCmd* D_80145E30;
-extern AnimCmd** D_80146AB0;
-extern AnimCmd D_801474EC;
-extern AnimCmd* D_80147540;
-extern AnimCmd** D_80148420;
-extern AnimCmd D_80148EA0;
+extern f32 D_8012A0F8_1F5EA8;
+extern AnimCmd* D_80145E30_211BE0;
+extern AnimCmd** D_80146AB0_212860;
+extern AnimCmd D_801474EC_21329C;
+extern AnimCmd* D_80147540_2132F0;
+extern AnimCmd** D_80148420_2141D0;
+extern AnimCmd D_80148EA0_214C50;
 
 extern AnimationHeader D_802C7D1C_64A1CC;
 extern AnimationHeader D_802C7D30_64A1E0;
@@ -337,15 +337,15 @@ void func_802C5970_647E20(GObj* obj) {
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_801474EC, 0.0f);
+    animSetCameraAnimation(cam, &D_801474EC_21329C, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_8012A0F8);
+    setSkyBoxAnimationSpeed(D_8012A0F8_1F5EA8);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_80145E30, &D_80146AB0, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_80145E30_211BE0, &D_80146AB0_212860, 0.0f, 0.5f);
     D_802C7FC4_64A474 = 0;
     playerObj->fnAnimCallback = func_802C5778_647C28;
 
@@ -453,9 +453,9 @@ void func_802C5DFC_6482AC(GObj* obj) {
     origAtY = cam->viewMtx.lookAt.at.y;
     origAtZ = cam->viewMtx.lookAt.at.z;
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_80148EA0, 0.0f);
+    animSetCameraAnimation(cam, &D_80148EA0_214C50, 0.0f);
     proc = omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    PlayerModel_SetAnimation(&D_80147540, &D_80148420, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_80147540_2132F0, &D_80148420_2141D0, 0.0f, 0.5f);
     D_802C8040_64A4F0 = 0;
     obj->fnAnimCallback = func_802C5BB0_648060;
     omCreateProcess(obj, func_802C5CEC_64819C, 0, 1);

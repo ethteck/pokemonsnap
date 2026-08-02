@@ -19,6 +19,7 @@ options:
   rodata_string_guesser_level: 3
   create_undefined_funcs_auto: false
   subalign: 16
+  libultra_symbols: True
 segments:
   - [0x000000, header, header]
   - [0x000040, bin, boot]
@@ -751,6 +752,7 @@ segments:
       - { start: 0x9B4F0, type: i8, name: tex_shine, flip_y: true, width: 64, height: 64 }
     # Animation data
     - [0x9C4F0, bin]
+
   - type: code
     name: beach_assets
     start: 0xA74E0
@@ -759,14 +761,29 @@ segments:
     exclusive_ram_id: unk8011B050
     subsegments:
     - [0xA74E0, c]
-    - [0xA74F0, bin] # , data]
+
+    - [0xA74F0, bin, A74F0] # , data]
+    - [0xDEDB0, bin, butterfree/textures]
+    - [0xE4E90, bin, doduo/textures]
+    - [0xEDF80, bin, eevee/textures]
+    - [0xF7AD0, bin, kangaskhan/textures]
+    - [0x105E80, bin, snorlax/textures]
+    - [0x10E9A0, bin, lapras/textures]
+    - [0x110970, bin, chansey/textures]
+    - [0x116A30, bin, meowth/textures]
+    - [0x12A980, bin, pidgey/textures]
+    - [0x135310, bin, scyther/textures]
+
     - { name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
+
   - type: code
     name: beach_extra
     dir: beach
     start: 0x13C780
     vram: 0x801B0310
     exclusive_ram_id: unk8011CB50
+    prioritized_segments:
+    - beach_assets
     subsegments:
     - [auto, c, butterfree/model_hd]
     - [auto, c, doduo/model_hd]
@@ -1056,10 +1073,12 @@ segments:
     - [auto, c, world/block4]
     - [auto, c, world/block5]
     - [auto, c, world/blocks]
+
     - [auto, c, computer/model]
     - [auto, c, pkmn_1016/model]
     - [auto, c, pkmn_1017/model]
     - [auto, c, computer/textures]
+
     - [auto, c, magnemite/textures]
     - [auto, c, magnemite/anim/model/run]
     - [auto, c, magnemite/anim/model/pulse]
@@ -1068,6 +1087,7 @@ segments:
     - [auto, c, magnemite/anim/model/hit]
     - [auto, c, magnemite/anim/model/react]
     - [auto, c, magnemite/anim/material/pulse]
+
     - [auto, c, diglett/textures]
     - [auto, c, diglett/anim/model/look_around]
     - [auto, c, diglett/anim/model/burrow]
@@ -1078,12 +1098,14 @@ segments:
     - [auto, c, diglett/anim/material/unused]
     - [auto, c, diglett/anim/material/rise]
     - [auto, c, diglett/anim/material/unburrow]
+
     - [auto, c, dugtrio/textures]
     - [auto, c, dugtrio/anim/model/look_around]
     - [auto, c, dugtrio/anim/model/burrow]
     - [auto, c, dugtrio/anim/model/turn]
     - [auto, c, dugtrio/anim/model/rise]
     - [auto, c, dugtrio/anim/model/unburrow]
+
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -1091,8 +1113,10 @@ segments:
     - [auto, c, electrode/anim/model/roll]
     - [auto, c, electrode/anim/material/explode]
     - [auto, c, electrode/anim/material/dead]
+
     - [auto, c, magneton/textures]
     - [auto, c, magneton/anim/animation]
+
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -1194,7 +1218,9 @@ segments:
       - { start: 0x190038, type: palette, name: tex_back, size: 0x18 }
       - [0x190050]
       - { start: 0x190058, type: ci4, name: tex_back, flip_y: true, width: 32, height: 32 }
-    - [0x190260, bin]
+
+    - [0x190260, bin, kakuna/textures]
+
     - start: 0x1A1100
       type: .data
       dir: magnemite
@@ -1455,7 +1481,9 @@ segments:
       name: dugtrio/anim/model/unburrow
       subsegments:
       - [0x1AD380, snap_model_anim, unburrow]
-    - [0x1ADCB0, bin]
+
+    - [0x1ADCB0, bin, electabuzz/textures]
+
     - start: 0x1BF8F0
       type: .data
       dir: electrode
@@ -1590,7 +1618,9 @@ segments:
       name: magneton/anim/animation
       subsegments:
       - [0x1C80A0, snap_model_anim, animation]
-    - [0x1C8AC0, bin]
+
+    - [0x1C8AC0, bin, zapdos/textures]
+
     - { name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
   - type: code
     name: tunnel_extra
@@ -1598,6 +1628,8 @@ segments:
     start: 0x1D1D90
     vram: 0x8018BC50
     exclusive_ram_id: unk_01D1D90
+    prioritized_segments:
+    - tunnel_assets
     subsegments:
     - [auto, c, kakuna/model_hd]
     - [auto, c, magnemite/model_hd]
@@ -1857,6 +1889,7 @@ segments:
       - [0x1F5728, gfx, hd_part14_draw]
       - [0x1F57B8, gfx, hd_part15_pre]
       - [0x1F57F8, gfx, hd_part15_draw]
+
   - type: code
     name: cave_assets
     dir: cave
@@ -1865,9 +1898,27 @@ segments:
     bss_size: 0x20
     exclusive_ram_id: unk8012A0C0
     subsegments:
-    - [auto, c, jynx/textures]
     - [0x1F5E70, c]
+    - [0x1F5E80]
+
+    # - [auto, c, 1F5E80]
+    # - [auto, c, grimer/textures]
+    # - [auto, c, muk/textures]
+    # - [auto, c, koffing/textures]
+    # - [auto, c, articuno/textures]
+    # - [auto, c, ditto/textures]
+    - [auto, c, jynx/textures]
+    # - [auto, c, 264E10]
+    # - [auto, c, victreebel/textures]
+    # - [auto, c, weepinbell/textures]
+
     - [0x1F5E80, bin]
+    - [0x220000, bin, grimer/textures]
+    - [0x228510, bin, muk/textures]
+    - [0x22D930, bin, koffing/textures]
+    - [0x23B830, bin, articuno/textures]
+    - [0x2492C0, bin, ditto/textures]
+    - [0x2535D0, bin, jigglypuff/textures]
     - start: 0x25F8F0
       type: .data
       name: jynx/textures
@@ -1905,13 +1956,19 @@ segments:
       - { start: 0x264C08, type: ci4, width: 32, height: 32, name: "tex_dress" }
       - [0x264E08]
     - [0x264E10, bin]
+    - [0x26C260, bin, victreebel/textures]
+    - [0x271460, bin, weepinbell/textures]
+
     - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
+
   - type: code
     name: cave_extra
     dir: cave
     start: 0x27AB80
     vram: 0x801AEDF0
     exclusive_ram_id: unk27AB80
+    prioritized_segments:
+    - cave_assets
     subsegments:
     - [auto, c, grimer/model_hd]
     - [auto, c, muk/model_hd]
@@ -2191,6 +2248,7 @@ segments:
       - [0x299A90, gfx, hd_part15_draw]
       - [0x299B18, gfx, hd_part16_draw]
       - [0x299BF0, gfx, hd_part0_draw]
+
   - type: code
     name: river_assets
     start: 0x29A190
@@ -2199,14 +2257,30 @@ segments:
     exclusive_ram_id: unk8012A0C0
     subsegments:
     - [0x29A190, c]
+
     - [0x29A1A0, bin] # , data]
+    - [0x2D0AF0, bin, psyduck/textures]
+    - [0x2D74E0, bin, poliwag/textures]
+    - [0x2E0600, bin, cloyster/textures]
+    - [0x2E1D20, bin, porygon/textures]
+    - [0x2EBF80, bin, vileplume/textures]
+    - [0x2F1DE0, bin, shellder/textures]
+    - [0x2F2F20, bin, shellder2/textures]
+    - [0x2F42F0, bin, metapod/textures]
+    - [0x2F5A30, bin, slowpoke/textures]
+    - [0x301E50, bin, slowbro/textures]
+
     - { name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
+
   - type: code
     name: river_extra
     dir: river
     start: 0x30AF90
     vram: 0x8019AEE0
     exclusive_ram_id: unk30AF90
+    prioritized_segments:
+    - river_assets
+    # - river_code # TODO
     subsegments:
     - [auto, c, psyduck/model_hd]
     - [auto, c, poliwag/model_hd]
@@ -4459,6 +4533,8 @@ segments:
     start: 0x3D0560
     vram: 0x801A9900
     exclusive_ram_id: unk3D0560
+    prioritized_segments:
+    - volcano_assets
     subsegments:
     - [auto, c, magmar/model_hd]
     - [auto, c, moltres/model_hd]
@@ -4771,14 +4847,31 @@ segments:
     exclusive_ram_id: unk800FFF90
     subsegments:
     - [0x3F63D0, c]
+
     - [0x3F63E0, bin] # , data]
+    - [0x425530, bin, graveler/textures]
+    - [0x42AC10, bin, gyarados/textures]
+    - [0x432D60, bin, staryu/textures]
+    - [0x435AA0, bin, geodude/textures]
+    - [0x438F20, bin, dragonite/textures]
+    - [0x443F40, bin, mankey/textures]
+    - [0x44FE20, bin, dratini/textures]
+    - [0x454C90, bin, sandshrew/textures]
+    - [0x460130, bin, sandslash/textures]
+    - [0x467C90, bin, starmie/textures]
+    - [0x46B500, bin, goldeen/textures]
+    - [0x471E90, bin, squirtle/textures]
+
     - { name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
+
   - type: code
     name: valley_extra
     start: 0x47CF30
     vram: 0x80186B10
     exclusive_ram_id: unk47CF30
     dir: valley
+    prioritized_segments:
+    - valley_assets
     subsegments:
     - [auto, c, graveler/model_hd]
     - [auto, c, gyarados/model_hd]
@@ -5108,6 +5201,7 @@ segments:
       - [0x4A7CD8, gfx, hd_part6_draw]
       - [0x4A7D48, gfx, hd_part7_draw]
       - [0x4A7E18, gfx, hd_part8_draw]
+
   - type: code
     name: rainbow_assets
     start: 0x4A8160
@@ -5116,14 +5210,20 @@ segments:
     exclusive_ram_id: unk800F5D90
     subsegments:
     - [0x4A8160, c]
+
     - [0x4A8170, bin] # , data]
+    - [0x4D8CE0, bin, mew/textures]
+
     - { name: bss_80139C30, type: bss, vram: 0x80139C30 }
+
   - type: code
     name: rainbow_extra
     dir: rainbow
     start: 0x4EC000
     vram: 0x80139C50
     exclusive_ram_id: unk4EC000
+    prioritized_segments:
+    - rainbow_assets
     subsegments:
     - [auto, c, mew/model_hd]
     - start: 0x4EC000
@@ -5531,6 +5631,8 @@ segments:
     start: 0x54B5D0
     vram: 0x8034E130
     exclusive_ram_id: unk8034E130
+    prioritized_segments:
+    - magikarp_textures
     subsegments:
     - [auto, c, magikarp/model]
     - start: 0x54B5D0
@@ -5580,6 +5682,8 @@ segments:
     start: 0x54D6A0
     vram: 0x803476A0
     exclusive_ram_id: unk803476A0
+    prioritized_segments:
+    - pikachu1
     subsegments:
     - [auto, c, pikachu/model]
     - start: 0x54D6A0
@@ -5683,6 +5787,8 @@ segments:
     start: 0x554130
     vram: 0x80344780
     exclusive_ram_id: unk80344780
+    prioritized_segments:
+    - zubat1
     subsegments:
     - [auto, c, zubat/model]
     - start: 0x554130
@@ -5742,6 +5848,8 @@ segments:
     start: 0x557050
     vram: 0x8033F6C0
     exclusive_ram_id: unk80344780
+    prioritized_segments:
+    - bulbasaur1
     subsegments:
     - [auto, c, bulbasaur/model]
     - start: 0x557050
@@ -5820,6 +5928,9 @@ segments:
     vram: 0x802C40A0
     bss_size: 0x140
     exclusive_ram_id: level
+    prioritized_segments:
+    - beach_assets
+    - world
     subsegments:
     - [0x55C110, c]
     - [0x55C870, c]
@@ -6480,6 +6591,9 @@ segments:
     vram: 0x802E2500
     bss_size: 0x1690
     exclusive_ram_id: level
+    prioritized_segments:
+    - tunnel_assets
+    - world
     subsegments:
     - [0x5DF5D0, c, main]
     - [0x5DFD40, c, sounds]
@@ -6890,6 +7004,9 @@ segments:
     vram: 0x802BDD00
     bss_size: 0x1580
     exclusive_ram_id: level
+    prioritized_segments:
+    - cave_assets
+    - world
     subsegments:
     - [0x6401B0, c]
     - [0x640900, c]
@@ -7611,6 +7728,9 @@ segments:
     vram: 0x802D8800
     bss_size: 0x1B0
     exclusive_ram_id: level
+    prioritized_segments:
+    - river_assets
+    - world
     subsegments:
     - [0x6C05E0, c]
     - [0x6C1090, c]
@@ -8112,6 +8232,9 @@ segments:
     vram: 0x802D60E0
     bss_size: 0x170
     exclusive_ram_id: level
+    prioritized_segments:
+    - volcano_assets
+    - world
     subsegments:
     - [0x7272E0, c, main]
     - [0x728490, c, magmar/code]
@@ -8897,6 +9020,9 @@ segments:
     vram: 0x802C5C20
     bss_size: 0x1880
     exclusive_ram_id: level
+    prioritized_segments:
+    - valley_assets
+    - world
     subsegments:
     - [0x79F1B0, c]
     - [0x79FB70, c]
@@ -9645,6 +9771,9 @@ segments:
     vram: 0x803466C0
     bss_size: 0x80
     exclusive_ram_id: level
+    prioritized_segments:
+    - rainbow_assets
+    - world
     subsegments:
     - [0x825E30, c, main]
     - [0x826700, pad]
@@ -9766,6 +9895,8 @@ segments:
     start: 0x82F8E0
     vram: 0x803B1F80
     exclusive_ram_id: unk82F8E0
+    prioritized_segments:
+    - magikarp_textures
     subsegments:
     - [auto, c, magikarp/model_hd]
     - start: 0x82F8E0
@@ -9798,6 +9929,8 @@ segments:
     start: 0x832960
     vram: 0x803AD580
     exclusive_ram_id: unk832960
+    prioritized_segments:
+    - pikachu1
     subsegments:
     - [auto, c, pikachu/model_hd]
     - start: 0x832960
@@ -9843,6 +9976,8 @@ segments:
     start: 0x837360
     vram: 0x803AA700
     exclusive_ram_id: unk837360
+    prioritized_segments:
+    - zubat1
     subsegments:
     - [auto, c, zubat/model_hd]
     - start: 0x837360
@@ -9874,6 +10009,8 @@ segments:
     start: 0x83A1E0
     vram: 0x803A71B0
     exclusive_ram_id: unk83A1E0
+    prioritized_segments:
+    - bulbasaur1
     subsegments:
     - [auto, c, bulbasaur/model_hd]
     - start: 0x83A1E0
@@ -9950,6 +10087,8 @@ segments:
     vram: 0x801DC8C0
     bss_size: 0x408F0
     exclusive_ram_id: level
+    prioritized_segments:
+    - window
     subsegments:
     - [0x87A0B0, c]
     - [0x87A320, pad] # padding
@@ -10038,6 +10177,8 @@ segments:
     vram: 0x801DC8C0
     bss_size: 0x2D210
     exclusive_ram_id: level
+    prioritized_segments:
+    - window
     subsegments:
     - [0x9D3230, c]
     - [0x9D3660, c]
@@ -10075,6 +10216,8 @@ segments:
     vram: 0x801DC8C0
     bss_size: 0x32020
     exclusive_ram_id: level
+    prioritized_segments:
+    - window
     subsegments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
@@ -10087,6 +10230,9 @@ segments:
     vram: 0x800E18A0
     bss_size: 0x100
     exclusive_ram_id: level
+    prioritized_segments:
+    - main_menu_vpk0_bss
+    - app_level
     subsegments:
     - [0xA08E30, c]
     - [0xA0BE70, c]
@@ -10099,7 +10245,22 @@ segments:
     - [0xA0F810, .rodata, A0E190]
     - { name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
 
-  - { start: 0xA0F830, type: vpk0, align: 16 }
+  # Sentinel segment to simplify symbolizing.
+  # Ideally symbols would be grabbed directly from the vpk0 segment itself.
+  - start: 0xA0F830
+    type: code
+    align: 16
+    name: main_menu_vpk0_bss
+    dir: main_menu_vpk0
+    vram: 0x802B5000 # hardcoded VPK_VRAM
+    bss_size: 0xF3770
+    exclusive_ram_id: vpk0
+    symbol_name_format: $VRAM_main_menu_vpk0
+    symbol_name_format_no_rom: $VRAM_main_menu_vpk0
+    subsegments:
+    - { name: main_menu_vpk0_bss, type: bss, vram: 0x802B5000 } # placeholder for symbolizing
+
+  - { start: 0xA0F830, type: vpk0, align: 16, name: main_menu_vpk0 }
   - [0xA5CC46]
 
   - name: menu_new_game
@@ -10148,31 +10309,67 @@ segments:
     - [0xAA0000, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
     - { name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
+
   - name: intro_code
     type: code
     start: 0xAA0650
     vram: 0x800E18A0
     bss_size: 0x10
     exclusive_ram_id: level
+    prioritized_segments:
+    - intro_code_vpk0_bss
     subsegments:
     - [0xAA0650, c]
     - [0xAA0A60, .data, AA0650]
     - { start: auto, name: AA0650, type: .bss, vram: 0x800E1DD0 }
 
-  - { start: 0xAA0B80, type: vpk0, align: 16 }
+  # Sentinel segment to simplify symbolizing.
+  # Ideally symbols would be grabbed directly from the vpk0 segment itself.
+  - start: 0xAA0B80
+    type: code
+    align: 16
+    name: intro_code_vpk0_bss
+    dir: intro_code_vpk0
+    vram: 0x802B5000 # hardcoded VPK_VRAM
+    bss_size: 0x7110
+    exclusive_ram_id: vpk0
+    symbol_name_format: $VRAM_intro_code_vpk0
+    symbol_name_format_no_rom: $VRAM_intro_code_vpk0
+    subsegments:
+    - { name: intro_code_vpk0_bss, type: bss, vram: 0x802B5000 } # placeholder for symbolizing
+
+  - { start: 0xAA0B80, type: vpk0, align: 16, name: intro_code_vpk0 }
   - [0xAA18D3]
 
   - type: code
+    name: unk_segment_AA18E0
     start: 0xAA18E0
     vram: 0x801DC8A0
     exclusive_ram_id: level
     bss_size: 0x20
+    prioritized_segments:
+    - unk_segment_AA18E0_vpk0_bss
     subsegments:
     - [0xAA18E0, c]
     - [0xAA20A0, bin] # , data] # Image with rights notice printed on pictures
     - { start: auto, name: AA18E0, type: .bss, vram: 0x801E55D0 }
 
-  - { start: 0xAAA610, type: vpk0, align: 16 }
+  # Sentinel segment to simplify symbolizing.
+  # Ideally symbols would be grabbed directly from the vpk0 segment itself.
+  - start: 0xAAA610
+    type: code
+    align: 16
+    name: unk_segment_AA18E0_vpk0_bss
+    dir: unk_segment_AA18E0_vpk0
+    vram: 0x802B5000 # hardcoded VPK_VRAM
+    bss_size: 0x50
+    exclusive_ram_id: vpk0
+    symbol_name_format: $VRAM_unk_segment_AA18E0_vpk0
+    symbol_name_format_no_rom: $VRAM_unk_segment_AA18E0_vpk0
+    subsegments:
+    - { name: unk_segment_AA18E0_vpk0_bss, type: bss, vram: 0x802B5000 } # placeholder for symbolizing
+
+  - { start: 0xAAA610, type: vpk0, align: 16, name: unk_segment_AA18E0_vpk0 }
   - [0xAAA65B]
 
   - [0xAAA660, bin, idle_script_beach]

@@ -5,9 +5,9 @@
 #include "app_render/app_render.h"
 #include "river.h"
 
-extern AnimCmd* D_8014BFB0;
-extern AnimCmd** D_8014CEC0;
-extern AnimCmd D_8014EA10[];
+extern AnimCmd* D_8014BFB0_2BC080;
+extern AnimCmd** D_8014CEC0_2BCF90;
+extern AnimCmd D_8014EA10_2BEAE0[];
 
 extern GObj* D_802E4230_6CC010;
 extern AnimationHeader D_802E4AE0_6CC8C0;
@@ -50,9 +50,9 @@ void func_802E191C_6C96FC(f32 animSpeed) {
 
 void func_802E1950_6C9730(f32 arg0) {
     if (D_802E4B04_6CC8E4 != NULL) {
-        animSetCameraAnimation(D_802E4B04_6CC8E4, D_8014EA10, arg0);
+        animSetCameraAnimation(D_802E4B04_6CC8E4, D_8014EA10_2BEAE0, arg0);
     }
-    PlayerModel_ChangeAnimation(&D_8014BFB0, &D_8014CEC0, arg0);
+    PlayerModel_ChangeAnimation(&D_8014BFB0_2BC080, &D_8014CEC0_2BCF90, arg0);
 }
 
 void func_802E19A0_6C9780(DObj* arg0, s32 arg1, f32 arg2) {
@@ -155,7 +155,7 @@ void func_802E1D10_6C9AF0(GObj* obj) {
         ohResumeObjectProcesses(D_802E4230_6CC010);
     }
     auSetBGMVolumeSmooth(0, 0, 240);
-    setSkyBoxAnimationSpeed(D_8012ACA0);
+    setSkyBoxAnimationSpeed(D_8012ACA0_29AD70);
     D_802E4B04_6CC8E4 = getMainCamera();
     temp_s0 = D_802E4B04_6CC8E4->obj;
     ohPauseObjectProcesses(temp_s0);

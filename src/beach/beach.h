@@ -6,13 +6,13 @@
 #include "app_render/effect.h"
 
 extern WorldSetup D_8011B914;
-extern f32 D_8011B924;
-extern AnimCmd* D_8013B030;
-extern AnimCmd** D_8013BAA0;
-extern AnimCmd D_8013C530[];
-extern AnimCmd* D_8013C580;
-extern AnimCmd** D_8013CEA0;
-extern AnimCmd D_8013DA90;
+extern f32 D_8011B924_A7DB4;
+extern AnimCmd* D_8013B030_C74C0;
+extern AnimCmd** D_8013BAA0_C7F30;
+extern AnimCmd D_8013C530_C89C0[];
+extern AnimCmd* D_8013C580_C8A10;
+extern AnimCmd** D_8013CEA0_C9330;
+extern AnimCmd D_8013DA90_C9F20;
 
 extern PokemonDef D_beach_802CBFF4;
 

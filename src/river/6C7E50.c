@@ -9,9 +9,9 @@ typedef struct Unk6 {
 
 void func_802E0094_6C7E74(GObj*);
 
-extern AnimCmd* D_80148F30;
-extern AnimCmd** D_80149BE0;
-extern AnimCmd D_8014A600[];
+extern AnimCmd* D_80148F30_2B9000;
+extern AnimCmd** D_80149BE0_2B9CB0;
+extern AnimCmd D_8014A600_2BA6D0[];
 
 extern AnimationHeader D_802E4420_6CC200;
 extern AnimationHeader D_802E4434_6CC214;
@@ -121,15 +121,15 @@ void func_802E03C0_6C81A0(GObj* obj) {
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, D_8014A600, 0.0f);
+    animSetCameraAnimation(cam, D_8014A600_2BA6D0, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_8012ACA0);
+    setSkyBoxAnimationSpeed(D_8012ACA0_29AD70);
     playerModelObj = PlayerModel_Init();
     if (playerModelObj == NULL) {
         cmdSendCommand(gObjPlayer, 7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_80148F30, &D_80149BE0, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_80148F30_2B9000, &D_80149BE0_2B9CB0, 0.0f, 0.5f);
     D_802E4474_6CC254 = 0;
     playerModelObj->fnAnimCallback = func_802E01C8_6C7FA8;
     for (i = 0; D_802E4474_6CC254 == 0 && i < 1200; i++) {

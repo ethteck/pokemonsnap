@@ -4,9 +4,9 @@ typedef struct Unks16 {
     /* 0x00 */ s16 unk_00[2];
 } Unks16;
 
-extern AnimCmd D_8013D8D0[];
-extern AnimCmd* D_8013C230[];
-extern AnimCmd** D_8013CEB0[];
+extern AnimCmd D_8013D8D0_183A30[];
+extern AnimCmd* D_8013C230_182390[];
+extern AnimCmd** D_8013CEB0_183010[];
 
 extern AnimationHeader D_802F0110_5ED1E0;
 extern AnimationHeader D_802F0124_5ED1F4;
@@ -118,7 +118,7 @@ POKEMON_FUNC(func_802ECE10_5E9EE0)
 
     ohPauseObjectProcesses(camObj);
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, D_8013D8D0, 0);
+    animSetCameraAnimation(camera, D_8013D8D0_183A30, 0);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
     setSkyBoxAnimationSpeed(tunnel_WorldSetup.unk_10);
 
@@ -128,7 +128,7 @@ POKEMON_FUNC(func_802ECE10_5E9EE0)
         omEndProcess(NULL);
     }
 
-    PlayerModel_SetAnimation(D_8013C230, D_8013CEB0, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(D_8013C230_182390, D_8013CEB0_183010, 0.0f, 0.5f);
     D_802F0164_5ED234 = false;
     player->fnAnimCallback = func_802ECC18_5E9CE8;
 

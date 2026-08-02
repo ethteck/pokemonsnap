@@ -1,7 +1,5 @@
 #include "common.h"
 
-extern Gfx D_0E000000_bulbasaur_model[];
-
 extern u8 bulbasaur_tex_face_spots_pal[];
 extern u8 bulbasaur_tex_face_spots_png[];
 extern u8 bulbasaur_tex_spots_pal[];

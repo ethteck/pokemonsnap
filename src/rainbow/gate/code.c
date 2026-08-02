@@ -4,10 +4,10 @@ typedef struct Unks16 {
     /* 0x00 */ s16 unk_00[3];
 } Unks16;
 
-extern AnimCmd D_80119A8C;
-extern f32 D_800F5DB0;
-extern AnimCmd* D_801183E0;
-extern AnimCmd** D_80119050;
+extern AnimCmd D_80119A8C_4CBE5C;
+extern f32 D_800F5DB0_4A8180;
+extern AnimCmd* D_801183E0_4CA7B0;
+extern AnimCmd** D_80119050_4CB420;
 
 void func_80348994_828104(GObj*);
 void func_80348B34_8282A4(GObj*);
@@ -146,15 +146,15 @@ POKEMON_FUNC(func_80348DD4_828544)
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_80119A8C, 0.0f);
+    animSetCameraAnimation(cam, &D_80119A8C_4CBE5C, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_800F5DB0);
+    setSkyBoxAnimationSpeed(D_800F5DB0_4A8180);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_801183E0, &D_80119050, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(&D_801183E0_4CA7B0, &D_80119050_4CB420, 0.0f, 0.5f);
     D_8034AF34_82A6A4 = 0;
     playerObj->fnAnimCallback = func_80348BDC_82834C;
 

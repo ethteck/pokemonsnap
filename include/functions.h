@@ -18,7 +18,6 @@ char* getLevelName(s32 levelIdx);
 
 void spawnStaryuAtGeo(GObj*);
 void spawnStarmieAtGeo(GObj*);
-void spawnKoffingSmoke(s32 gObjID, u16 id, struct WorldBlock* roomA, struct WorldBlock* roomB, ObjectSpawn* spawn);
 
 GObj* func_8035E1D4_4FE5E4(GObj*);
 

@@ -23,29 +23,29 @@ extern GObj* D_800E8324_A0F8B4;
 extern u8 D_800E832B_A0F8BB;
 extern u32 D_800E832C_A0F8BC;
 
-extern Sprite D_803051F0;
-extern Sprite D_803072A0;
-extern Sprite D_80308A00;
+extern Sprite D_803051F0_main_menu_vpk0;
+extern Sprite D_803072A0_main_menu_vpk0;
+extern Sprite D_80308A00_main_menu_vpk0;
 
-extern Texture** D_80359378;
-extern UnkEC64Arg3 D_80359A20;
-extern AnimCmd* D_80359B30;
-extern AnimCmd** D_80359CD0;
-extern Texture** D_8036A458;
-extern UnkEC64Arg3 D_8037F658;
-extern AnimCmd* D_80381D60;
-extern AnimCmd** D_80385700;
-extern UnkEC64Arg3 D_8038F3E0;
-extern Texture** D_8038AD40;
-extern AnimCmd* D_8038F9C0;
-extern AnimCmd** D_80393AE0;
-extern UnkEC64Arg3 D_80393D30;
-extern AnimCmd* D_80393DC0;
-extern Texture** D_8039BC48;
-extern UnkEC64Arg3 D_803A1730;
-extern AnimCmd* D_803A1BE0;
-extern AnimCmd** D_803A7F90;
-extern AnimCmd D_803A80D0;
+extern Texture** D_80359378_main_menu_vpk0;
+extern UnkEC64Arg3 D_80359A20_main_menu_vpk0;
+extern AnimCmd* D_80359B30_main_menu_vpk0;
+extern AnimCmd** D_80359CD0_main_menu_vpk0;
+extern Texture** D_8036A458_main_menu_vpk0;
+extern UnkEC64Arg3 D_8037F658_main_menu_vpk0;
+extern AnimCmd* D_80381D60_main_menu_vpk0;
+extern AnimCmd** D_80385700_main_menu_vpk0;
+extern UnkEC64Arg3 D_8038F3E0_main_menu_vpk0;
+extern Texture** D_8038AD40_main_menu_vpk0;
+extern AnimCmd* D_8038F9C0_main_menu_vpk0;
+extern AnimCmd** D_80393AE0_main_menu_vpk0;
+extern UnkEC64Arg3 D_80393D30_main_menu_vpk0;
+extern AnimCmd* D_80393DC0_main_menu_vpk0;
+extern Texture** D_8039BC48_main_menu_vpk0;
+extern UnkEC64Arg3 D_803A1730_main_menu_vpk0;
+extern AnimCmd* D_803A1BE0_main_menu_vpk0;
+extern AnimCmd** D_803A7F90_main_menu_vpk0;
+extern AnimCmd D_803A80D0_main_menu_vpk0;
 
 void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
     s32 temp_f8;
@@ -102,30 +102,30 @@ void func_800E4B4C_A0C0DC(GObj* arg0) {
     D_800E830C_A0F89C->fnAnimCallback = func_800E48E0_A0BE70;
     cam->animSpeed = 0.5f;
     cam->perspMtx.persp.near = 47.0f;
-    animSetCameraAnimation(cam, &D_803A80D0, 0.0f);
+    animSetCameraAnimation(cam, &D_803A80D0_main_menu_vpk0, 0.0f);
     omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
 
-    animSetModelTreeAnimation(D_800E8300_A0F890, &D_80381D60, 0.0f);
+    animSetModelTreeAnimation(D_800E8300_A0F890, &D_80381D60_main_menu_vpk0, 0.0f);
     animSetModelAnimationSpeed(D_800E8300_A0F890, 0.5f);
-    animSetModelTreeTextureAnimation(D_800E8300_A0F890, &D_80385700, 0.0f);
+    animSetModelTreeTextureAnimation(D_800E8300_A0F890, &D_80385700_main_menu_vpk0, 0.0f);
     animSetTextureAnimationSpeed(D_800E8300_A0F890, 0.5f);
 
-    animSetModelTreeAnimation(D_800E8304_A0F894, &D_803A1BE0, 0.0f);
+    animSetModelTreeAnimation(D_800E8304_A0F894, &D_803A1BE0_main_menu_vpk0, 0.0f);
     animSetModelAnimationSpeed(D_800E8304_A0F894, 0.5f);
-    animSetModelTreeTextureAnimation(D_800E8304_A0F894, &D_803A7F90, 0.0f);
+    animSetModelTreeTextureAnimation(D_800E8304_A0F894, &D_803A7F90_main_menu_vpk0, 0.0f);
     animSetTextureAnimationSpeed(D_800E8304_A0F894, 0.5f);
 
-    animSetModelTreeAnimation(D_800E8308_A0F898, &D_80359B30, 0.0f);
+    animSetModelTreeAnimation(D_800E8308_A0F898, &D_80359B30_main_menu_vpk0, 0.0f);
     animSetModelAnimationSpeed(D_800E8308_A0F898, 0.5f);
-    animSetModelTreeTextureAnimation(D_800E8308_A0F898, &D_80359CD0, 0.0f);
+    animSetModelTreeTextureAnimation(D_800E8308_A0F898, &D_80359CD0_main_menu_vpk0, 0.0f);
     animSetTextureAnimationSpeed(D_800E8308_A0F898, 0.5f);
 
-    animSetModelTreeAnimation(D_800E830C_A0F89C, &D_8038F9C0, 0.0f);
+    animSetModelTreeAnimation(D_800E830C_A0F89C, &D_8038F9C0_main_menu_vpk0, 0.0f);
     animSetModelAnimationSpeed(D_800E830C_A0F89C, 0.5f);
-    animSetModelTreeTextureAnimation(D_800E830C_A0F89C, &D_80393AE0, 0.0f);
+    animSetModelTreeTextureAnimation(D_800E830C_A0F89C, &D_80393AE0_main_menu_vpk0, 0.0f);
     animSetTextureAnimationSpeed(D_800E830C_A0F89C, 0.5f);
 
-    animSetModelTreeAnimation(D_800E8310_A0F8A0, &D_80393DC0, 0.0f);
+    animSetModelTreeAnimation(D_800E8310_A0F8A0, &D_80393DC0_main_menu_vpk0, 0.0f);
     animSetModelAnimationSpeed(D_800E8310_A0F8A0, 0.5f);
 
     while (true) {
@@ -138,7 +138,7 @@ void func_800E4D74_A0C304(void) {
 
     gobj = D_800E8300_A0F890 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renderModelTypeDFogged, 4, 0x80000000, -1);
-    anim_func_80010230(gobj, &D_8037F658, &D_8036A458, 0, 0x1C, 0, 0);
+    anim_func_80010230(gobj, &D_8037F658_main_menu_vpk0, &D_8036A458_main_menu_vpk0, 0, 0x1C, 0, 0);
     setFogColor(120, 120, 150);
     setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
@@ -149,7 +149,7 @@ void func_800E4E34_A0C3C4(void) {
 
     gobj = D_800E8304_A0F894 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renderModelTypeJFogged, 4, 0x80000000, -1);
-    anim_func_80010230(gobj, &D_803A1730, &D_8039BC48, 0, 0x1C, 0, 0);
+    anim_func_80010230(gobj, &D_803A1730_main_menu_vpk0, &D_8039BC48_main_menu_vpk0, 0, 0x1C, 0, 0);
     setFogColor(120, 120, 150);
     setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
@@ -160,7 +160,7 @@ void func_800E4EF4_A0C484(void) {
 
     gobj = D_800E8308_A0F898 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renderModelTypeDFogged, 4, 0x80000000, -1);
-    anim_func_80010230(gobj, &D_80359A20, &D_80359378, 0, 0x1C, 0, 0);
+    anim_func_80010230(gobj, &D_80359A20_main_menu_vpk0, &D_80359378_main_menu_vpk0, 0, 0x1C, 0, 0);
     setFogColor(120, 120, 150);
     setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
@@ -171,7 +171,7 @@ void func_800E4FB4_A0C544(void) {
 
     gobj = D_800E830C_A0F89C = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renderModelTypeIFogged, 4, 0x80000000, -1);
-    anim_func_80010230(gobj, &D_8038F3E0, &D_8038AD40, 0, 0x1C, 0, 0);
+    anim_func_80010230(gobj, &D_8038F3E0_main_menu_vpk0, &D_8038AD40_main_menu_vpk0, 0, 0x1C, 0, 0);
     setFogColor(120, 120, 150);
     setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
@@ -182,7 +182,7 @@ void func_800E5074_A0C604(void) {
 
     gobj = D_800E8310_A0F8A0 = omAddGObj(0xE, ohUpdateDefault, 0, 0x80000000);
     omLinkGObjDL(gobj, renderModelTypeBFogged, 4, 0x80000000, -1);
-    anim_func_80010230(gobj, &D_80393D30, NULL, 0, 0x1C, 0, 0);
+    anim_func_80010230(gobj, &D_80393D30_main_menu_vpk0, NULL, 0, 0x1C, 0, 0);
     setFogColor(120, 120, 150);
     setFogDistance(989, 1000);
     omCreateProcess(gobj, animUpdateModelTreeAnimation, 1, 1);
@@ -244,17 +244,17 @@ void func_800E5468_A0C9F8(void) {
     SObj* sobj;
 
     D_800E8318_A0F8A8 = ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1,
-                                       &D_803051F0, 0, func_800E5370_A0C900, 1);
+                                       &D_803051F0_main_menu_vpk0, 0, func_800E5370_A0C900, 1);
 
     sobj = D_800E8318_A0F8A8->data.sobj;
     SET_SPRITE_POS(sobj->sprite, 98, 68);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0);
+    omGObjAddSprite(D_800E8318_A0F8A8, &D_803072A0_main_menu_vpk0);
 
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 96, 103);
     sobj->sprite.attr = SP_TEXSHUF | SP_TRANSPARENT;
-    omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00);
+    omGObjAddSprite(D_800E8318_A0F8A8, &D_80308A00_main_menu_vpk0);
 
     sobj = sobj->next;
     SET_SPRITE_POS(sobj->sprite, 71, 112);

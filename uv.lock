@@ -441,7 +441,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "argparse", specifier = ">=1.4.0" },
-    { name = "gitpython", specifier = ">=3.1.52" },
+    { name = "gitpython", specifier = ">=3.1.54" },
     { name = "mapfile-parser", specifier = ">=2.13.0,<3.0" },
     { name = "n64img", specifier = ">=0.3.3" },
     { name = "ninja-syntax", specifier = ">=1.7.2" },

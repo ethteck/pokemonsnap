@@ -43,5 +43,4 @@ extern Gfx D_0E000018[];
 extern Gfx D_0E000020[];
 extern Gfx D_0E000028[];
 
-
 #endif

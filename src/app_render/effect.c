@@ -11,6 +11,7 @@ Effect* D_800BE1E8;
 Effect* D_800BE1EC;
 OMCamera* D_800BE1F0[4];
 u8 D_800BE200[4];
+void* D_800BE204[1];
 DObj* D_800BE208[8];
 s32 fx_ScriptBanksNum[PARTICLE_BANKS_MAX];
 s32 fx_SpriteBanksNum[PARTICLE_BANKS_MAX];

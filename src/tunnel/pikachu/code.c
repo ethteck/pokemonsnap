@@ -1,35 +1,35 @@
 #include "../tunnel.h"
 
-extern AnimCmd* D_80112F20[];
-extern AnimCmd* D_80113740[];
-extern AnimCmd* D_8010E190[];
-extern AnimCmd* D_801092F0[];
-extern AnimCmd* D_8010D410[];
-extern AnimCmd* D_801161D0[];
-extern AnimCmd* D_80111AA0[];
-extern AnimCmd* D_8010CE10[];
-extern AnimCmd* D_8010C370[];
-extern AnimCmd* D_801189D0[];
-extern AnimCmd* D_80109C10[];
-extern AnimCmd* D_80117C40[];
-extern AnimCmd* D_80114610[];
+extern AnimCmd* D_80112F20_90340[];
+extern AnimCmd* D_80113740_90B60[];
+extern AnimCmd* D_8010E190_8B5B0[];
+extern AnimCmd* D_801092F0_86710[];
+extern AnimCmd* D_8010D410_8A830[];
+extern AnimCmd* D_801161D0_935F0[];
+extern AnimCmd* D_80111AA0_8EEC0[];
+extern AnimCmd* D_8010CE10_8A230[];
+extern AnimCmd* D_8010C370_89790[];
+extern AnimCmd* D_801189D0_95DF0[];
+extern AnimCmd* D_80109C10_87030[];
+extern AnimCmd* D_80117C40_95060[];
+extern AnimCmd* D_80114610_91A30[];
 
-extern AnimCmd** D_8011A2B0[];
-extern AnimCmd** D_8011A370[];
-extern AnimCmd** D_80119A00[];
-extern AnimCmd** D_801196C0[];
-extern AnimCmd** D_80119960[];
-extern AnimCmd** D_8011ADE0[];
-extern AnimCmd** D_8011A1B0[];
-extern AnimCmd** D_801198B0[];
-extern AnimCmd** D_80119800[];
-extern AnimCmd** D_8011AF80[];
-extern AnimCmd** D_80119760[];
-extern AnimCmd** D_8011AEE0[];
-extern AnimCmd** D_8011A440[];
+extern AnimCmd** D_8011A2B0_976D0[];
+extern AnimCmd** D_8011A370_97790[];
+extern AnimCmd** D_80119A00_96E20[];
+extern AnimCmd** D_801196C0_96AE0[];
+extern AnimCmd** D_80119960_96D80[];
+extern AnimCmd** D_8011ADE0_98200[];
+extern AnimCmd** D_8011A1B0_975D0[];
+extern AnimCmd** D_801198B0_96CD0[];
+extern AnimCmd** D_80119800_96C20[];
+extern AnimCmd** D_8011AF80_983A0[];
+extern AnimCmd** D_80119760_96B80[];
+extern AnimCmd** D_8011AEE0_98300[];
+extern AnimCmd** D_8011A440_97860[];
 
-extern UnkEC64Arg3 D_8034DD30[];
-extern Texture** D_803476A0[];
+extern UnkEC64Arg3 pikachu_model[];
+extern Texture** pikachu_materials[];
 
 void func_802E796C_5E4A3C(GObj*);
 void func_802E7DDC_5E4EAC(GObj*);
@@ -93,104 +93,104 @@ s32 D_802EEDB0_5EBE80[] = { SOUND_ID_264, SOUND_ID_127, SOUND_ID_360 };
 AnimationHeader D_802EEDBC_5EBE8C = {
     0.43,
     40,
-    D_80112F20,
-    D_8011A2B0,
+    D_80112F20_90340,
+    D_8011A2B0_976D0,
     NULL
 };
 
 AnimationHeader D_802EEDD0_5EBEA0 = {
     0.5,
     80,
-    D_80113740,
-    D_8011A370,
+    D_80113740_90B60,
+    D_8011A370_97790,
     D_802EED80_5EBE50
 };
 
 AnimationHeader D_802EEDE4_5EBEB4 = {
     0.3,
     63,
-    D_8010E190,
-    D_80119A00,
+    D_8010E190_8B5B0,
+    D_80119A00_96E20,
     D_802EED84_5EBE54
 };
 
 AnimationHeader D_802EEDF8_5EBEC8 = {
     0.35,
     12,
-    D_801092F0,
-    D_801196C0,
+    D_801092F0_86710,
+    D_801196C0_96AE0,
     NULL
 };
 
 AnimationHeader D_802EEE0C_5EBEDC = {
     0.6,
     16,
-    D_8010D410,
-    D_80119960,
+    D_8010D410_8A830,
+    D_80119960_96D80,
     NULL
 };
 
 AnimationHeader D_802EEE20_5EBEF0 = {
     0.6,
     120,
-    D_801161D0,
-    D_8011ADE0,
+    D_801161D0_935F0,
+    D_8011ADE0_98200,
     D_802EED90_5EBE60
 };
 
 AnimationHeader D_802EEE34_5EBF04 = {
     0.3,
     36,
-    D_80111AA0,
-    D_8011A1B0,
+    D_80111AA0_8EEC0,
+    D_8011A1B0_975D0,
     D_802EED94_5EBE64
 };
 
 AnimationHeader D_802EEE48_5EBF18 = {
     0.4,
     5,
-    D_8010CE10,
-    D_801198B0,
+    D_8010CE10_8A230,
+    D_801198B0_96CD0,
     NULL
 };
 
 AnimationHeader D_802EEE5C_5EBF2C = {
     0.4,
     35,
-    D_8010C370,
-    D_80119800,
+    D_8010C370_89790,
+    D_80119800_96C20,
     NULL
 };
 
 AnimationHeader D_802EEE70_5EBF40 = {
     0.4,
     75,
-    D_801189D0,
-    D_8011AF80,
+    D_801189D0_95DF0,
+    D_8011AF80_983A0,
     D_802EED9C_5EBE6C
 };
 
 AnimationHeader D_802EEE84_5EBF54 = {
     0.6,
     64,
-    D_80109C10,
-    D_80119760,
+    D_80109C10_87030,
+    D_80119760_96B80,
     D_802EEDA4_5EBE74
 };
 
 AnimationHeader D_802EEE98_5EBF68 = {
     0.6,
     16,
-    D_80117C40,
-    D_8011AEE0,
+    D_80117C40_95060,
+    D_8011AEE0_98300,
     D_802EEDA8_5EBE78
 };
 
 AnimationHeader D_802EEEAC_5EBF7C = {
     0.3,
     63,
-    D_80114610,
-    D_8011A440,
+    D_80114610_91A30,
+    D_8011A440_97860,
     D_802EEDB0_5EBE80
 };
 
@@ -913,8 +913,8 @@ PokemonAnimationSetup D_802EF2BC_5EC38C = {
 };
 
 PokemonInitData D_802EF2D0_5EC3A0 = {
-    D_8034DD30,
-    D_803476A0,
+    pikachu_model,
+    pikachu_materials,
     renderPokemonModelTypeJFogged,
     &D_802EF2BC_5EC38C,
     { 2, 2, 2 },

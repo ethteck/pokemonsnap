@@ -543,7 +543,7 @@ Collider D_8011E59C[] = {
 };
 
 CollisionModel tunnel_CollisionModels[] = {
-    { PokemonID_GATE, D_800EDF78, 1.0 },
+    { PokemonID_GATE, D_800EDF78_6B728, 1.0 },
     { PokemonID_1008, D_8011CF54, 1.0 },
     { PokemonID_1010, D_8011DBF8, 1.0 },
     { PokemonID_COMPUTER, computer_collision_model, -1.0 },

@@ -33,7 +33,7 @@
 #define TUNNEL_CMD_54 POKEMON_CMD_54
 #define TUNNEL_CMD_MAGNEMITE_ZOOMED_IN POKEMON_CMD_55
 
-extern u8 D_8014DDE0_193F40[];
+extern u8 D_8014DDE0_193F40_kakuna[];
 extern u8 D_8014E5E8_194748[];
 extern u8 D_8014E610_194770[];
 extern u8 D_8014EE18_194F78[];
@@ -76,7 +76,7 @@ extern u8 D_801565B8_19C718[];
 extern u8 D_801575C0_19D720[];
 extern u8 D_801585C8_19E728[];
 extern u8 D_801585F0_19E750[];
-extern u8 D_80158DF8_19EF58[];
+extern u8 D_80158DF8_19EF58_kakuna[];
 
 extern Texture** magnemite_materials[];
 extern UnkEC64Arg3 magnemite_model[];

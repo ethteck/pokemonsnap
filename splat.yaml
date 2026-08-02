@@ -348,6 +348,7 @@ segments:
     - { start: auto, name: ../ultralib/src/io/contpfs, type: .bss, vram: 0x80099560 }
     - { start: auto, name: ../ultralib/src/io/pfsisplug, type: .bss, vram: 0x80099660 }
     - { start: auto, name: ../ultralib/src/io/vimgr, type: .bss, vram: 0x800996A0 }
+
   - name: app_render
     dir: app_render
     type: code
@@ -387,7 +388,15 @@ segments:
     - [0x5BEB0, .rodata, 52DE0]
     - [0x5BEE0, .rodata, 53AD0]
     - [0x5BF10, .rodata, 568D0]
-    - { start: 0x5BF20, type: data, linker_section_order: .rodata }
+    - { name: 46270, type: .bss, vram: 0x800B0570 }
+    - { name: 47380, type: .bss, vram: 0x800B0590 }
+    - { name: score, type: .bss, vram: 0x800BDF30 }
+    - { name: effect, type: .bss, vram: 0x800BE1A0 }
+    - { name: 52DE0, type: .bss, vram: 0x800BE2C0 }
+    - { name: 53AD0, type: .bss, vram: 0x800BE2E0 }
+    - { name: 568D0, type: .bss, vram: 0x800BEF60 }
+    - { name: 574F0, type: .bss, vram: 0x800BF050 }
+
   - name: more_funcs
     dir: more_funcs
     type: code
@@ -403,6 +412,7 @@ segments:
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]
     - { name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
+
   - name: world
     dir: world
     type: code
@@ -6593,6 +6603,7 @@ segments:
     exclusive_ram_id: level
     prioritized_segments:
     - tunnel_assets
+    - pikachu1
     - world
     subsegments:
     - [0x5DF5D0, c, main]
@@ -8235,6 +8246,7 @@ segments:
     prioritized_segments:
     - volcano_assets
     - world
+    - magikarp_textures
     subsegments:
     - [0x7272E0, c, main]
     - [0x728490, c, magmar/code]

@@ -408,6 +408,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 opt_level = "-O2"
                 ido = "7.1"
 
+                extra_flags = ""
+                if c_path.stem in ["26D80"]:
+                    extra_flags = " -acpp -Wp,-+"
+
                 if c_path.stem in [
                     "98C330",
                     "98D0F0",
@@ -435,7 +439,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     entry.src_paths,
                     "cc",
                     variables={
-                        "flags": opt_level,
+                        "flags": f"{opt_level} {extra_flags}",
                     },
                 )
                 continue

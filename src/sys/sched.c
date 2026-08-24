@@ -16,7 +16,7 @@ typedef struct {
     u32 gammaDither : 1;  // b6   02 => gamma dither on
     u32 ditherFilter : 1; // b7   01 => dither filter
     u32 divot : 1;        // b8 1 80 => divot on
-                         // b9 1 40
+                          // b9 1 40
 } ViSettings;
 
 SCClient* scClientList;
@@ -414,30 +414,30 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     not_res_in_bounds = !is_res_in_bounds;
 
     vertical = (((not_res_in_bounds != false) && (not_phi_v1 != false)) ? 2 : 1) *
-        (((height * 2048) / ((edgeOffsetBottom - edgeOffsetTop) + 480)) /
-         ((is_res_in_bounds != false) ? 1 : 2));
+               (((height * 2048) / ((edgeOffsetBottom - edgeOffsetTop) + 480)) /
+                ((is_res_in_bounds != false) ? 1 : 2));
 
     scViModeNext.comRegs.width = (((not_res_in_bounds != false) && (phi_v1 != false)) ? 2 : 1) * width;
 
     if (TRUE) {
-    if (osTvType == OS_TV_NTSC) {
-        scViModeNext.comRegs.burst = 0x3E52239;
-        scViModeNext.comRegs.vSync = 0x20C;
-        scViModeNext.comRegs.hSync = 0xC15;
-        scViModeNext.comRegs.leap = 0xC150C15;
-        scViModeNext.comRegs.hStart = 0x6C02EC;
-        scViModeNext.fldRegs[0].vStart = 0x2501FFU;
-        scViModeNext.fldRegs[0].vBurst = 0xE0204;
-    }
-    if (osTvType == OS_TV_MPAL) {
-        scViModeNext.comRegs.burst = 0x4651E39;
-        scViModeNext.comRegs.vSync = 0x20C;
-        scViModeNext.comRegs.hSync = 0xC10;
-        scViModeNext.comRegs.leap = 0xC1C0C1C;
-        scViModeNext.comRegs.hStart = 0x6C02EC;
-        scViModeNext.fldRegs[0].vStart = 0x2501FFU;
-        scViModeNext.fldRegs[0].vBurst = 0xE0204;
-    }
+        if (osTvType == OS_TV_NTSC) {
+            scViModeNext.comRegs.burst = 0x3E52239;
+            scViModeNext.comRegs.vSync = 0x20C;
+            scViModeNext.comRegs.hSync = 0xC15;
+            scViModeNext.comRegs.leap = 0xC150C15;
+            scViModeNext.comRegs.hStart = 0x6C02EC;
+            scViModeNext.fldRegs[0].vStart = 0x2501FFU;
+            scViModeNext.fldRegs[0].vBurst = 0xE0204;
+        }
+        if (osTvType == OS_TV_MPAL) {
+            scViModeNext.comRegs.burst = 0x4651E39;
+            scViModeNext.comRegs.vSync = 0x20C;
+            scViModeNext.comRegs.hSync = 0xC10;
+            scViModeNext.comRegs.leap = 0xC1C0C1C;
+            scViModeNext.comRegs.hStart = 0x6C02EC;
+            scViModeNext.fldRegs[0].vStart = 0x2501FFU;
+            scViModeNext.fldRegs[0].vBurst = 0xE0204;
+        }
     }
 
     scViModeNext.fldRegs[1].vStart = scViModeNext.fldRegs[0].vStart;
@@ -481,7 +481,8 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
 
     if ((is_res_in_bounds != false) && (phi_v1 != false)) {
         scViModeNext.comRegs.vSync += 1;
-        if (1);
+        if (1)
+            ;
         if (osTvType == OS_TV_MPAL) {
             scViModeNext.comRegs.hSync += 0x40001;
         }
@@ -491,7 +492,8 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     } else {
         // L80001580
         scViModeNext.fldRegs[0].vStart += 0xFFFDFFFE;
-        if (1);
+        if (1)
+            ;
         if (osTvType == OS_TV_MPAL) {
             scViModeNext.fldRegs[0].vBurst += 0xFFFCFFFE;
         }
@@ -505,12 +507,13 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     scViModeNext.fldRegs[0].origin = (!(scViSettings.pixelSize32) ? 1 : 2) * width * 2;
     phi_v1 = scViSettings.pixelSize32;
     scViModeNext.fldRegs[1].origin = (!(phi_v1) ? 1 : 2) *
-        (((is_res_in_bounds != false) ? 1 : 2) * width * 2);
+                                     (((is_res_in_bounds != false) ? 1 : 2) * width * 2);
     scViModeNext.fldRegs[0].yScale = vertical;
     scViModeNext.fldRegs[1].yScale = vertical;
 
     if (scViSettings.unk_b04) {
-        if (1);
+        if (1)
+            ;
         if (height < 360) {
             scViModeNext.fldRegs[0].yScale += 0x3000000;
             scViModeNext.fldRegs[1].yScale += 0x1000000;

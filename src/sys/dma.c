@@ -300,27 +300,27 @@ void dmaReadVPK0(u32* rom, u32 ram) {
 
 void func_80003530(u16* data, u8* outBuffer) {
 #define VPK0_MEM_READ_USHORT(csr) \
-    tempValue <<= 0x10;            \
-    tempValue |= *(csr++);         \
+    tempValue <<= 0x10;           \
+    tempValue |= *(csr++);        \
     numBits += 0x10;
 
 #define VPK0_MEM_READ_USHORT2(csr) \
-    tempValue <<= 0x10;             \
-    tempValue |= *(csr++);          \
+    tempValue <<= 0x10;            \
+    tempValue |= *(csr++);         \
     numBits -= 0x10;
 
-#define VPK0_MEM_GET_BITS(var, n, csr)                                               \
-    if (numBits < (n)) {                                                             \
-        VPK0_MEM_READ_USHORT(csr);                                                   \
-    }                                                                                \
-    numBits -= (n);                                                                  \
+#define VPK0_MEM_GET_BITS(var, n, csr) \
+    if (numBits < (n)) {               \
+        VPK0_MEM_READ_USHORT(csr);     \
+    }                                  \
+    numBits -= (n);                    \
     (var) = ((tempValue << (32 - ((n) + numBits))) >> (32 - (u32) (n)));
 
 #define VPK0_RAM_INIT_NODE(node) \
-    node = lengthsNode;           \
-    lengthsNode->left = NULL;     \
-    lengthsNode->right = NULL;    \
-    lengthsNode->value = 0;       \
+    node = lengthsNode;          \
+    lengthsNode->left = NULL;    \
+    lengthsNode->right = NULL;   \
+    lengthsNode->value = 0;      \
     lengthsNode++;
 
     uintptr_t bound;

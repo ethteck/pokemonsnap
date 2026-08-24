@@ -7,15 +7,15 @@
 #include "PR/rcp.h"
 
 typedef struct {
-    u8 unk_b80 : 1;      // b0 0 80 => unknown game control (arg2 & 0x1) [aa & resamp enabled?]
-    u8 serrate : 1;      // b1 0 40 => serrate enabled (bool)
-    u8 pixelSize32 : 1;  // b2   20 => type_32 enabled
-    u8 gamma : 1;        // b3   10 => gamma on
-    u8 blackout : 1;     // b4   08 => unknown game control (arg2 & 0x100) [blackout ?]
-    u8 unk_b04 : 1;      // b5   04 => unknown game control (arg2 & 0x400)
-    u8 gammaDither : 1;  // b6   02 => gamma dither on
-    u8 ditherFilter : 1; // b7   01 => dither filter
-    u8 divot : 1;        // b8 1 80 => divot on
+    u32 unk_b80 : 1;      // b0 0 80 => unknown game control (arg2 & 0x1) [aa & resamp enabled?]
+    u32 serrate : 1;      // b1 0 40 => serrate enabled (bool)
+    u32 pixelSize32 : 1;  // b2   20 => type_32 enabled
+    u32 gamma : 1;        // b3   10 => gamma on
+    u32 blackout : 1;     // b4   08 => unknown game control (arg2 & 0x100) [blackout ?]
+    u32 unk_b04 : 1;      // b5   04 => unknown game control (arg2 & 0x400)
+    u32 gammaDither : 1;  // b6   02 => gamma dither on
+    u32 ditherFilter : 1; // b7   01 => dither filter
+    u32 divot : 1;        // b8 1 80 => divot on
                          // b9 1 40
 } ViSettings;
 
@@ -292,25 +292,16 @@ void scSetNewViMode(void) {
 }
 
 void func_80000F40(u32, u32, s32, s16, s16, s16, s16);
-#ifdef NON_MATCHING
 void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edgeOffsetRight, s16 edgeOffsetTop, s16 edgeOffsetBottom) {
-    u32 phi_a0; // flag collector
+    s32 not_phi_v1;
     s32 phi_v1;
-    s32 phi_t0;
-    s32 phi_t2;
-    u32 phi_t3;
-    u32 sp00;
-    s32 sp14;
-    s32 sp1C;
-    s32 sp20;
+    s32 not_res_in_bounds;
+    s32 is_res_in_bounds;
+    s32 vertical;
+    s32 pos1;
+    s32 pos2;
 
-    if (width > SCREEN_WIDTH || height > SCREEN_HEIGHT) {
-        phi_t2 = 0;
-    } else {
-        phi_t2 = 1;
-    }
-
-    // phi_t2 = arg0 >= SCREEN_WIDTH && arg1 >= SCREEN_HEIGHT ? 0 : 1;
+    is_res_in_bounds = ((width > SCREEN_WIDTH) || (height > SCREEN_HEIGHT)) ? false : true;
 
     // L80000F5C
     if (flags & 0x00004) {
@@ -403,150 +394,94 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     scViModeNext.comRegs.ctrl &= ~VI_CTRL_ANTIALIAS_MASK;
 
     if (scViSettings.unk_b80) {
-        phi_a0 = scViSettings.ditherFilter ? 0x100 : 0;
+        scViModeNext.comRegs.ctrl |= scViSettings.ditherFilter ? 0 : 0x100;
+    } else if (!scViSettings.unk_b04 && scViSettings.pixelSize32 == true) {
+        scViModeNext.comRegs.ctrl |= 0x300;
+    } else {
+        scViModeNext.comRegs.ctrl |= 0x200;
+    }
 
-        // if (viSettings.ditherFilter) {
-        //     phi_a0 = 0x100; // aa & resamp (fetch extra lines if needed)
-        // } else {
-        //     phi_a0 = 0;
-        // }
+    if (is_res_in_bounds != false) {
+        phi_v1 = scViSettings.serrate ? false : true;
+    } else {
+        phi_v1 = scViSettings.unk_b04 ? false : true;
+    }
 
-        // L80001220
-        scViModeNext.comRegs.ctrl |= phi_a0;
-    } else {
-        // L80001238
-        if (!scViSettings.unk_b04 && scViSettings.pixelSize32 == 1) {
-            scViModeNext.comRegs.ctrl = 0x300; // neither (replicate pixels, no interpolate)
-        } else {
-            // L8000126C
-            scViModeNext.comRegs.ctrl = 0x200; // resamp only (treat as all fully covered
-        }
-    }
-    // L8000127C
-    phi_t0 = scViSettings.pixelSize32; // tail expression?
+    edgeOffsetTop &= ~1;
+    edgeOffsetBottom &= ~1;
 
-    if (phi_t2) {
-        if (scViSettings.serrate) {
-            phi_v1 = 0;
-        } else {
-            phi_v1 = 1;
-        }
-    } else {
-        // L800012A0
-        if (scViSettings.unk_b04) {
-            phi_v1 = 1;
-        } else {
-            phi_v1 = 0;
-        }
+    not_phi_v1 = !phi_v1;
+    not_res_in_bounds = !is_res_in_bounds;
+
+    vertical = (((not_res_in_bounds != false) && (not_phi_v1 != false)) ? 2 : 1) *
+        (((height * 2048) / ((edgeOffsetBottom - edgeOffsetTop) + 480)) /
+         ((is_res_in_bounds != false) ? 1 : 2));
+
+    scViModeNext.comRegs.width = (((not_res_in_bounds != false) && (phi_v1 != false)) ? 2 : 1) * width;
+
+    if (TRUE) {
+    if (osTvType == OS_TV_NTSC) {
+        scViModeNext.comRegs.burst = 0x3E52239;
+        scViModeNext.comRegs.vSync = 0x20C;
+        scViModeNext.comRegs.hSync = 0xC15;
+        scViModeNext.comRegs.leap = 0xC150C15;
+        scViModeNext.comRegs.hStart = 0x6C02EC;
+        scViModeNext.fldRegs[0].vStart = 0x2501FFU;
+        scViModeNext.fldRegs[0].vBurst = 0xE0204;
     }
-    // L800012B0
-    // temp_a1 = arg5 & 0xFFFE;
-    // temp_a2 = arg6 & 0xFFFE;
-    edgeOffsetTop &= ~1;    // a1?
-    edgeOffsetBottom &= ~1; // a2?
-    if (!phi_t2 && !phi_v1) {
-        sp14 = 2;
-    } else {
-        sp14 = 1;
+    if (osTvType == OS_TV_MPAL) {
+        scViModeNext.comRegs.burst = 0x4651E39;
+        scViModeNext.comRegs.vSync = 0x20C;
+        scViModeNext.comRegs.hSync = 0xC10;
+        scViModeNext.comRegs.leap = 0xC1C0C1C;
+        scViModeNext.comRegs.hStart = 0x6C02EC;
+        scViModeNext.fldRegs[0].vStart = 0x2501FFU;
+        scViModeNext.fldRegs[0].vBurst = 0xE0204;
     }
-    // L800012EC L800012F0 L800012F4
-    if (phi_t2) {
-        phi_a0 = 1;
-    } else {
-        phi_a0 = 2;
     }
-    // L80001308
-    // t7 = arg6 - arg5
-    // t8 = t7 + 480
-    // t4 = arg1 << 11
-    // t9 = (u32) t4 / t8
-    // t7 = sp14
-    // t5 = arg0 (sp38)
-    // t6 = t9 / phi_a0
-    // t3 = t6 * t7
-    // L80001348
-    phi_t3 = (((height << 11) / ((edgeOffsetBottom - edgeOffsetTop) + 480)) / phi_a0) * (sp14);
-    if (!phi_t2 && phi_v1) {
-        phi_a0 = 2;
-    } else {
-        phi_a0 = 1;
-    }
-    // L80001368
-    scViModeNext.comRegs.width = phi_a0 * width;
-    // TODO: macros
-    switch (osTvType) {
-        case OS_TV_NTSC:
-            scViModeNext.comRegs.burst = 0x3E52239;
-            scViModeNext.comRegs.vSync = 0x20C;
-            scViModeNext.comRegs.hSync = 0xC15;
-            scViModeNext.comRegs.leap = 0xC150C15;
-            scViModeNext.comRegs.hStart = 0x6C02EC;
-            scViModeNext.fldRegs[0].vStart = 0x2501FFU;
-            scViModeNext.fldRegs[0].vBurst = 0xE0204;
-            break;
-        case OS_TV_MPAL:
-            scViModeNext.comRegs.burst = 0x4651E39;
-            scViModeNext.comRegs.vSync = 0x20C;
-            scViModeNext.comRegs.hSync = 0xC10;
-            scViModeNext.comRegs.leap = 0xC1C0C1C;
-            scViModeNext.comRegs.hStart = 0x6C02EC;
-            scViModeNext.fldRegs[0].vStart = 0x2501FFU;
-            scViModeNext.fldRegs[0].vBurst = 0xE0204;
-            break;
-    }
-    // L80001424
-    sp00 = scViModeNext.comRegs.hStart;
+
     scViModeNext.fldRegs[1].vStart = scViModeNext.fldRegs[0].vStart;
-    sp20 = scViModeNext.comRegs.hStart >> 16;
-    sp1C = scViModeNext.comRegs.hStart & 0xFFFF;
 
-    if (sp20 + edgeOffsetRight < 0) {
-        sp20 = 0;
-    } else {
-        sp20 = sp20 + edgeOffsetRight;
+    pos1 = scViModeNext.comRegs.hStart >> 16;
+    pos2 = scViModeNext.comRegs.hStart & 0xFFFF;
+    pos1 += edgeOffsetLeft;
+    if (pos1 < 0) {
+        pos1 = 0;
     }
-    // L80001458
-    if (sp1C + edgeOffsetTop < 0) {
-        sp1C = 0;
-    } else {
-        sp1C = sp1C + edgeOffsetTop;
+    pos2 += edgeOffsetRight;
+    if (pos2 < 0) {
+        pos2 = 0;
     }
-    // L80001470
-    scViModeNext.comRegs.hStart = (sp20 << 16) | sp1C;
-    sp00 = scViModeNext.fldRegs[0].vStart;
-    sp20 = sp00 >> 16;
-    sp1C = sp00 & 0xFFFF;
+    scViModeNext.comRegs.hStart = (pos1 << 16) | pos2;
 
-    sp20 = sp20 + edgeOffsetTop;
-    if (sp20 < 0) {
-        sp20 = 0;
+    pos1 = scViModeNext.fldRegs[0].vStart >> 16;
+    pos2 = scViModeNext.fldRegs[0].vStart & 0xFFFF;
+    pos1 += edgeOffsetTop;
+    if (pos1 < 0) {
+        pos1 = 0;
     }
-    // L800014AC
-    sp1C = sp1C + edgeOffsetBottom;
-    if (sp1C < 0) {
-        sp1C = 0;
+    pos2 += edgeOffsetBottom;
+    if (pos2 < 0) {
+        pos2 = 0;
     }
-    // L800014C0
-    scViModeNext.fldRegs[0].vStart = (sp20 << 16) | sp1C;
-    sp00 = scViModeNext.fldRegs[1].vStart;
-    sp20 = sp00 >> 16;
-    sp1C = sp00 & 0xFFFF;
+    scViModeNext.fldRegs[0].vStart = (pos1 << 16) | pos2;
 
-    sp20 = sp20 + edgeOffsetTop;
-    if (sp20 < 0) {
-        sp20 = 0;
+    pos1 = scViModeNext.fldRegs[1].vStart >> 16;
+    pos2 = scViModeNext.fldRegs[1].vStart & 0xFFFF;
+    pos1 += edgeOffsetTop;
+    if (pos1 < 0) {
+        pos1 = 0;
     }
-    // L800014FC
-    sp1C = sp1C + edgeOffsetBottom;
-    if (sp1C < 0) {
-        sp1C = 0;
+    pos2 += edgeOffsetBottom;
+    if (pos2 < 0) {
+        pos2 = 0;
     }
-    // L80001510
-    scViModeNext.fldRegs[1].vStart = (sp20 << 16) | sp1C;
+    scViModeNext.fldRegs[1].vStart = (pos1 << 16) | pos2;
     scViModeNext.fldRegs[1].vBurst = scViModeNext.fldRegs[0].vBurst;
 
-    if (phi_t2 && phi_v1) {
+    if ((is_res_in_bounds != false) && (phi_v1 != false)) {
         scViModeNext.comRegs.vSync += 1;
+        if (1);
         if (osTvType == OS_TV_MPAL) {
             scViModeNext.comRegs.hSync += 0x40001;
         }
@@ -556,6 +491,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     } else {
         // L80001580
         scViModeNext.fldRegs[0].vStart += 0xFFFDFFFE;
+        if (1);
         if (osTvType == OS_TV_MPAL) {
             scViModeNext.fldRegs[0].vBurst += 0xFFFCFFFE;
         }
@@ -563,38 +499,31 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
             scViModeNext.fldRegs[1].vBurst += 0x2FFFE;
         }
     }
-    // L800015C8
-    scViModeNext.comRegs.vCurrent = 0;
-    scViModeNext.comRegs.xScale = (u32) (width << 0xA) / (u32) ((edgeOffsetRight - edgeOffsetLeft) + 0x280);
-    phi_a0 = phi_t0 ? 2 : 1;
-    scViModeNext.fldRegs[0].origin = (phi_a0 * width * 2);
 
-    sp14 = phi_t0 ? 2 : 1;
-    // L8000163C
-    phi_a0 = phi_t2 ? 2 : 1;
-    // L8000164C
-    scViModeNext.fldRegs[0].yScale = phi_t3;
-    scViModeNext.fldRegs[1].yScale = phi_t3;
-    scViModeNext.fldRegs[1].origin = (phi_a0 * width * 2 * sp14);
+    scViModeNext.comRegs.vCurrent = 0;
+    scViModeNext.comRegs.xScale = (width * 1024) / ((edgeOffsetRight - edgeOffsetLeft) + 640);
+    scViModeNext.fldRegs[0].origin = (!(scViSettings.pixelSize32) ? 1 : 2) * width * 2;
+    phi_v1 = scViSettings.pixelSize32;
+    scViModeNext.fldRegs[1].origin = (!(phi_v1) ? 1 : 2) *
+        (((is_res_in_bounds != false) ? 1 : 2) * width * 2);
+    scViModeNext.fldRegs[0].yScale = vertical;
+    scViModeNext.fldRegs[1].yScale = vertical;
+
     if (scViSettings.unk_b04) {
-        if ((height << 11) < 0xB4000) {
-            scViModeNext.fldRegs[0].yScale = phi_t3 + 0x3000000;
-            scViModeNext.fldRegs[1].yScale = phi_t3 + 0x1000000;
+        if (1);
+        if (height < 360) {
+            scViModeNext.fldRegs[0].yScale += 0x3000000;
+            scViModeNext.fldRegs[1].yScale += 0x1000000;
         } else {
-            // L8000169C
             scViModeNext.fldRegs[0].yScale += 0x2000000;
             scViModeNext.fldRegs[1].yScale += 0x2000000;
         }
-        // L800016B8
     }
-    // L800016BC
+
     scViModeNext.fldRegs[0].vIntr = 2;
     scViModeNext.fldRegs[1].vIntr = 2;
     scViSettingsUpdated = true;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/sched/func_80000F40.s")
-#endif
 
 // called when rcp task is done
 void scSetNextFrameBuffer(void* fb) {

@@ -298,4 +298,190 @@ void dmaReadVPK0(u32* rom, u32 ram) {
     dmaReadVPK0ToBuffer((u32) rom, ram, &buf, sizeof(buf));
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/sys/dma/func_80003530.s")
+void func_80003530(u16* data, u8* outBuffer) {
+#define VPK0_MEM_READ_USHORT(csr) \
+    tempValue <<= 0x10;            \
+    tempValue |= *(csr++);         \
+    numBits += 0x10;
+
+#define VPK0_MEM_READ_USHORT2(csr) \
+    tempValue <<= 0x10;             \
+    tempValue |= *(csr++);          \
+    numBits -= 0x10;
+
+#define VPK0_MEM_GET_BITS(var, n, csr)                                               \
+    if (numBits < (n)) {                                                             \
+        VPK0_MEM_READ_USHORT(csr);                                                   \
+    }                                                                                \
+    numBits -= (n);                                                                  \
+    (var) = ((tempValue << (32 - ((n) + numBits))) >> (32 - (u32) (n)));
+
+#define VPK0_RAM_INIT_NODE(node) \
+    node = lengthsNode;           \
+    lengthsNode->left = NULL;     \
+    lengthsNode->right = NULL;    \
+    lengthsNode->value = 0;       \
+    lengthsNode++;
+
+    uintptr_t bound;
+    HuffmanTreeNode* sampleNode;
+    HuffmanTreeNode* lengthsNode;
+    HuffmanTreeNode nodePool[64];
+    u8* outPtr;
+    HuffmanTreeNode* offsetsTree;
+    HuffmanTreeNode* lengthsTree;
+    u8* copySrc;
+    void* unusedEnd;
+    s32 sampleMethod;
+    HuffmanTreeNode* offStack[20];
+    s32 offStackSize;
+    s32 value;
+    HuffmanTreeNode* offsetsNode;
+    HuffmanTreeNode* offNode;
+    HuffmanTreeNode* lenStack[20];
+    s32 unusedValue;
+    s32 lenStackSize;
+    HuffmanTreeNode* unusedNode;
+    s32 otherValue;
+    HuffmanTreeNode* lengthsCursor;
+    s32 unused3[3];
+    s32 sampleAdjust;
+    u32 tempValue;
+    s32 numBits;
+    u16* csr = data;
+    s32 copyCount;
+
+    lengthsNode = nodePool;
+    numBits = 0;
+    tempValue = 0;
+
+    VPK0_MEM_READ_USHORT(csr);
+    VPK0_MEM_READ_USHORT2(csr);
+    VPK0_MEM_READ_USHORT(csr);
+    VPK0_MEM_READ_USHORT2(csr);
+    bound = tempValue + outBuffer;
+    outPtr = outBuffer;
+
+    VPK0_MEM_GET_BITS(sampleMethod, 8, csr);
+
+    offStackSize = 0;
+    offStack[0] = NULL;
+
+    data = csr;
+    while (true) {
+        VPK0_MEM_GET_BITS(sampleAdjust, 1, data);
+
+        if (sampleAdjust == 0 || offStackSize >= 2) {
+            if (sampleAdjust != 0) {
+                VPK0_RAM_INIT_NODE(offNode);
+                offNode->left = offStack[offStackSize - 2];
+                offNode->right = offStack[offStackSize - 1];
+                offStack[offStackSize - 2] = offNode;
+                offStackSize--;
+            } else {
+                VPK0_RAM_INIT_NODE(offNode);
+                VPK0_MEM_GET_BITS(offNode->value, 8, data);
+                offStack[offStackSize] = offNode;
+                offStackSize++;
+            }
+        } else {
+            break;
+        }
+    }
+
+    offsetsTree = offStack[0];
+    if (!unusedValue) {
+        ;
+    }
+    lenStackSize = 0;
+    lenStack[0] = NULL;
+
+    while (true) {
+        VPK0_MEM_GET_BITS(value, 1, data);
+
+        if (value == 0 || lenStackSize >= 2) {
+            if (value != 0) {
+                VPK0_RAM_INIT_NODE(offNode);
+                offNode->left = lenStack[lenStackSize - 2];
+                offNode->right = lenStack[lenStackSize - 1];
+                lenStack[lenStackSize - 2] = offNode;
+                lenStackSize--;
+            } else {
+                VPK0_RAM_INIT_NODE(offNode);
+                VPK0_MEM_GET_BITS(offNode->value, 8, data);
+                lenStack[lenStackSize] = offNode;
+                lenStackSize++;
+            }
+        } else {
+            break;
+        }
+    }
+
+    lengthsTree = lenStack[0];
+    while ((uintptr_t) outPtr < bound) {
+        if (numBits <= 0) {
+            VPK0_MEM_READ_USHORT(data);
+        }
+        numBits--;
+
+        if (!((tempValue << (0x1F - numBits)) >> 0x1F)) {
+            VPK0_MEM_GET_BITS(*(outPtr++), 8, data);
+        } else {
+            if (sampleMethod != 0) {
+                sampleAdjust = 0;
+
+                sampleNode = offsetsTree;
+                while (sampleNode->left != NULL) {
+                    VPK0_MEM_GET_BITS(unusedValue, 1, data);
+                    sampleNode = !unusedValue ? sampleNode->left : sampleNode->right;
+                }
+
+                VPK0_MEM_GET_BITS(value, sampleNode->value, data);
+                value = (tempValue << (0x20 - (sampleNode->value + numBits))) >> (0x20 - sampleNode->value);
+
+                if (value <= 2) {
+                    sampleAdjust = value + 1;
+                    offsetsNode = offsetsTree;
+                    while (offsetsNode->left != NULL) {
+                        VPK0_MEM_GET_BITS(value, 1, data);
+                        offsetsNode = !value ? offsetsNode->left : offsetsNode->right;
+                    }
+
+                    VPK0_MEM_GET_BITS(value, offsetsNode->value, data);
+                    value = (tempValue << (0x20 - (offsetsNode->value + numBits))) >> (0x20 - offsetsNode->value);
+                }
+                copySrc = outPtr - (value * 4) - sampleAdjust + 8;
+            } else {
+                unusedNode = offsetsTree;
+
+                while (unusedNode->left != NULL) {
+                    VPK0_MEM_GET_BITS(value, 1, data);
+                    unusedNode = !value ? unusedNode->left : unusedNode->right;
+                }
+
+                VPK0_MEM_GET_BITS(value, unusedNode->value, data);
+                value = (tempValue << (0x20 - (unusedNode->value + numBits))) >> (0x20 - unusedNode->value);
+                copySrc = outPtr - value;
+            }
+
+            lengthsCursor = lengthsTree;
+
+            while (lengthsCursor->left != NULL) {
+                VPK0_MEM_GET_BITS(unusedNode, 1, data);
+                lengthsCursor = !unusedNode ? lengthsCursor->left : lengthsCursor->right;
+            }
+
+            VPK0_MEM_GET_BITS(copyCount, lengthsCursor->value, data);
+            copyCount = (tempValue << (0x20 - (lengthsCursor->value + numBits))) >> (0x20 - lengthsCursor->value);
+
+            while (copyCount-- > 0) {
+                *(outPtr++) = *(copySrc++);
+            }
+        }
+    }
+
+#undef VPK0_RAM_INIT_NODE
+#undef VPK0_MEM_GET_BITS
+#undef VPK0_MEM_READ_USHORT2
+#undef VPK0_MEM_READ_USHORT
+}

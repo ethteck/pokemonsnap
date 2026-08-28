@@ -14,8 +14,8 @@ void func_80371F30_8456E0(s32 xMin, s32 xMax, s32 yMin, s32 yMax) {
     D_803A6654_879E04 = yMax;
 }
 
-#ifdef NON_MATCHING
-static void
+// clang-format off
+void
 func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
                      s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy) {
     s32 rs, rt;
@@ -84,7 +84,7 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
         rxl = D_803A6650_879E00 * 4;
 #ifdef DEBUG_SCISSOR
         emPrintf("Sprite Scissoring: Right Edge (%d) not in range (%d,%d)\n",
-                 xx, scissor_xmin, D_803A6650_879E00);
+                 xx, D_803A6648_879DF8, D_803A6650_879E00);
 #endif
     } else {
         rxl = xx * 4;
@@ -94,7 +94,7 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
         ryl = D_803A6654_879E04 * 4;
 #ifdef DEBUG_SCISSOR
         emPrintf("Sprite Scissoring: Bottom Edge (%d) not in range (%d,%d)\n",
-                 yy, scissor_ymin, D_803A6654_879E04);
+                 yy, D_803A664C_879DFC, D_803A6654_879E04);
 #endif
     } else {
         ryl = yy * 4;
@@ -109,59 +109,46 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
 
 #define LOAD_TEX
 
+#define LOAD_TEX_BLOCK_PREFIX(pkt, timg, fmt, load_siz, width, height, incr, shift, cms, cmt, masks, maskt, shifts, shiftt) \
+    {                                                                                                         \
+        gDPSetTextureImage(pkt, fmt, load_siz, 1, timg);                                                      \
+        gDPSetTile(pkt, fmt, load_siz, 0, 0, G_TX_LOADTILE, 0, cmt, maskt, shiftt, cms, masks, shifts);       \
+        gDPLoadSync(pkt);                                                                                     \
+        gDPLoadBlock(pkt, G_TX_LOADTILE, 0, 0, (((width) * (height) + (incr)) >> (shift)) - 1, 0);             \
+        gDPPipeSync(pkt);                                                                                     \
+    }
+
 #ifdef LOAD_TEX
     if (b->buf != D_803A6640_879DF0) {
         switch (s->bmsiz) {
 #if BUILD_VERSION >= VERSION_J
             case G_IM_SIZ_DD:
-                gDPLoadTextureTile_4b(gl++, b->buf, s->bmfmt, tex_width, tex_height,
-                                      b->s, b->t,
-                                      b->s + b->width, b->t + b->actualHeight,
-                                      0,
-                                      s_clamp, t_clamp,
-                                      s_mask, t_mask,
-                                      s_lod, t_lod);
+                gDPLoadTextureTile_4b(gl++, b->buf, s->bmfmt, tex_width, tex_height, b->s, b->t, b->s + b->width, b->t + b->actualHeight, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                 break;
 #endif
             case G_IM_SIZ_4b:
                 if (s->attr & SP_TEXSHUF) {
-                    gDPLoadTextureBlock_4bS(gl++, b->buf, s->bmfmt,
-                                            tex_width, tex_height, 0,
-                                            s_clamp, t_clamp,
-                                            s_mask, t_mask,
-                                            s_lod, t_lod);
+                    gDPLoadTextureBlock_4bS(gl++, b->buf, s->bmfmt, tex_width, tex_height, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                 } else {
-                    gDPLoadTextureBlock_4b(gl++, b->buf, s->bmfmt,
-                                           tex_width, tex_height, 0,
-                                           s_clamp, t_clamp,
-                                           s_mask, t_mask,
-                                           s_lod, t_lod);
+                    gDPLoadTextureBlock_4b(gl++, b->buf, s->bmfmt, tex_width, tex_height, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                 };
                 break;
 
             case G_IM_SIZ_8b:
                 if (s->attr & SP_TEXSHUF) {
-                    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
-                                         tex_width, tex_height, 0,
-                                         s_clamp, t_clamp,
-                                         s_mask, t_mask,
-                                         s_lod, t_lod);
+                    LOAD_TEX_BLOCK_PREFIX(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b_LOAD_BLOCK, tex_width, tex_height, G_IM_SIZ_8b_INCR, G_IM_SIZ_8b_SHIFT, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
+                    gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_8b, (((tex_width * G_IM_SIZ_8b_LINE_BYTES) + 7) >> 3), 0, G_TX_RENDERTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                    gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0, ((tex_width) - 1) << G_TEXTURE_IMAGE_FRAC, ((tex_height) - 1) << G_TEXTURE_IMAGE_FRAC);
                 } else {
-                    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b,
-                                        tex_width, tex_height, 0,
-                                        s_clamp, t_clamp,
-                                        s_mask, t_mask,
-                                        s_lod, t_lod);
+                    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_8b, tex_width, tex_height, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                 };
                 break;
             case G_IM_SIZ_16b:
                 if (s->bmfmt == G_IM_FMT_YUV) {
                     if (s->attr & SP_TEXSHUF) {
-                        gDPLoadTextureBlockYuvS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-                                                tex_width, tex_height, 0,
-                                                s_clamp, t_clamp,
-                                                s_mask, t_mask,
-                                                s_lod, t_lod);
+                        LOAD_TEX_BLOCK_PREFIX(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b_LOAD_BLOCK, tex_width, tex_height, G_IM_SIZ_16b_INCR, G_IM_SIZ_16b_SHIFT, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
+                        gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_16b, (((tex_width) * 1) + 7) >> 3, 0, G_TX_RENDERTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                        gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0, ((tex_width) - 1) << G_TEXTURE_IMAGE_FRAC, ((tex_height) - 1) << G_TEXTURE_IMAGE_FRAC);
                     } else {
                         if (b->LUToffset != 0) { /* Split Y and UV areas */
                             unsigned char *uv, *addr;
@@ -169,12 +156,9 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
                             s32 tmem, siz;
 
                             gDPSetTextureImage(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, b->buf);
-                            gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, 256, G_TX_LOADTILE, 0,
-                                       t_clamp, t_mask, t_lod,
-                                       s_clamp, s_mask, s_lod);
+                            gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, 256, G_TX_LOADTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
                             gDPLoadSync(gl++);
-                            gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, tex_width * tex_height - 1,
-                                         CALC_DXT(tex_width, 1));
+                            gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, tex_width * tex_height - 1, CALC_DXT(tex_width, 1));
                             gDPLoadSync(gl++);
 
                             uv = ((unsigned char*) b->buf) +
@@ -193,61 +177,41 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
                                     siz = 2 * tex_width;
 
                                 gDPSetTextureImage(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 1, addr);
-                                gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, tmem,
-                                           G_TX_LOADTILE, 0,
-                                           t_clamp, t_mask, t_lod,
-                                           s_clamp, s_mask, s_lod);
+                                gDPSetTile(gl++, G_IM_FMT_I, G_IM_SIZ_8b, 0, tmem, G_TX_LOADTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
                                 gDPLoadSync(gl++);
-                                gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, siz - 1,
-                                             CALC_DXT(tex_width, 1));
+                                gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, siz - 1, CALC_DXT(tex_width, 1));
                                 gDPLoadSync(gl++);
                             };
 
-                            gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_16b, (((tex_width) * 1) + 7) >> 3, 0,
-                                       G_TX_RENDERTILE, 0,
-                                       t_clamp, t_mask, t_lod,
-                                       s_clamp, s_mask, s_lod);
-                            gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0,
-                                           ((tex_width) -1) << G_TEXTURE_IMAGE_FRAC,
-                                           ((tex_height) -1) << G_TEXTURE_IMAGE_FRAC);
+                            gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_16b, (((tex_width) * 1) + 7) >> 3, 0, G_TX_RENDERTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                            gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0, ((tex_width) -1) << G_TEXTURE_IMAGE_FRAC, ((tex_height) -1) << G_TEXTURE_IMAGE_FRAC);
 
                         } else {
-                            gDPLoadTextureBlockYuv(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-                                                   tex_width, tex_height, 0,
-                                                   s_clamp, t_clamp,
-                                                   s_mask, t_mask,
-                                                   s_lod, t_lod);
+                            gDPLoadTextureBlockYuv(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b, tex_width, tex_height, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                         };
                     };
                 } else {
                     if (s->attr & SP_TEXSHUF) {
-                        gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-                                             tex_width, tex_height, 0,
-                                             s_clamp, t_clamp,
-                                             s_mask, t_mask,
-                                             s_lod, t_lod);
+                        gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b, tex_width, tex_height,
+                                             0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                     } else {
-                        gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b,
-                                            tex_width, tex_height, 0,
-                                            s_clamp, t_clamp,
-                                            s_mask, t_mask,
-                                            s_lod, t_lod);
+                        gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_16b, tex_width, tex_height, 0, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
                     };
                 };
                 break;
             case G_IM_SIZ_32b:
                 if (s->attr & SP_TEXSHUF) {
-                    gDPLoadTextureBlockS(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
-                                         tex_width, tex_height, 0,
-                                         s_clamp, t_clamp,
-                                         s_mask, t_mask,
-                                         s_lod, t_lod);
+                    LOAD_TEX_BLOCK_PREFIX(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b_LOAD_BLOCK, tex_width, tex_height, G_IM_SIZ_32b_INCR, G_IM_SIZ_32b_SHIFT, s_clamp, t_clamp, s_mask, t_mask, s_lod, t_lod);
+                    gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_32b, (((tex_width * G_IM_SIZ_32b_LINE_BYTES) + 7) >> 3), 0, G_TX_RENDERTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                    gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0, ((tex_width) - 1) << G_TEXTURE_IMAGE_FRAC, ((tex_height) - 1) << G_TEXTURE_IMAGE_FRAC);
                 } else {
-                    gDPLoadTextureBlock(gl++, b->buf, s->bmfmt, G_IM_SIZ_32b,
-                                        tex_width, tex_height, 0,
-                                        s_clamp, t_clamp,
-                                        s_mask, t_mask,
-                                        s_lod, t_lod);
+                    gDPSetTextureImage(gl++, s->bmfmt, G_IM_SIZ_32b_LOAD_BLOCK, 1, b->buf);
+                    gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_32b_LOAD_BLOCK, 0, 0, G_TX_LOADTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                    gDPLoadSync(gl++);
+                    gDPLoadBlock(gl++, G_TX_LOADTILE, 0, 0, (((tex_width * tex_height) + G_IM_SIZ_32b_INCR) >> G_IM_SIZ_32b_SHIFT) - 1, CALC_DXT(tex_width, G_IM_SIZ_32b_BYTES));
+                    gDPPipeSync(gl++);
+                    gDPSetTile(gl++, s->bmfmt, G_IM_SIZ_32b, (((tex_width * G_IM_SIZ_32b_LINE_BYTES) + 7) >> 3), 0, G_TX_RENDERTILE, 0, t_clamp, t_mask, t_lod, s_clamp, s_mask, s_lod);
+                    gDPSetTileSize(gl++, G_TX_RENDERTILE, 0, 0, ((tex_width) - 1) << G_TEXTURE_IMAGE_FRAC, ((tex_height) - 1) << G_TEXTURE_IMAGE_FRAC);
                 };
                 break;
         }
@@ -284,12 +248,9 @@ func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
 
     *glp = gl;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/window/8456E0/func_80371F54_845704.s")
-void func_80371F54_845704(Gfx** glp, Sprite* s, Bitmap* b,
-                          s32 x, s32 y, s32 xx, s32 yy, s32 fs, s32 ft, s32 sx, s32 sy);
-#endif
 
+#undef LOAD_TEX_BLOCK_PREFIX
+// clang-format on
 #define SPRITE_SURF G_RM_TEX_EDGE
 #define SPRITE_SURF2 G_RM_TEX_EDGE2
 

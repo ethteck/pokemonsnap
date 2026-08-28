@@ -409,7 +409,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 ido = "7.1"
 
                 extra_flags = ""
-                if c_path.stem in ["26D80"]:
+                if c_path.stem in ["26D80", "8456E0"]:
                     extra_flags = " -acpp -Wp,-+"
 
                 if c_path.stem in [

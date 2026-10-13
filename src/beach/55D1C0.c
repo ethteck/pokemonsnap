@@ -2,6 +2,14 @@
 #include "beach.h"
 #include "app_level/app_level.h"
 
+// .bss
+u8 D_beach_80347580[0x8];
+u8 D_beach_80347588;
+u8 D_beach_80347589;
+u16 D_beach_8034758A;
+u32 D_beach_8034758C;
+u8 D_beach_80347590[0xC0];
+
 POKEMON_FUNC(func_beach_802C5150)
     func_803571C4_4F75D4();
     func_80357120_4F7530(obj);

@@ -148,34 +148,53 @@ extern s32 BumpDetector_ProximityLevel;
 extern Sprite D_80388E00_529210;
 
 // bss
-extern s32 D_803AE408_54E818;
-extern Vec3f CameraEyePos;
-extern Vec3f CameraAtPos;
-extern Vec3f CameraViewVector;
-extern SObj* MainCameraReticles[4];
-extern SObj* D_803AE458_54E868[6];
-extern s32 D_803AE470_54E880;
-extern s32 D_803AE474_54E884;
-extern f32 D_803AE478_54E888;
-extern f32 D_803AE47C_54E88C;
-extern struct DObjDynamicStore PlayerMatrixStore; // size 0x38
-extern Vec3f D_803AE4D8_54E8E8;
-extern Vec3f D_803AE4E8_54E8F8;
-extern Vec3f D_803AE4F8_54E908;
-extern Vec3f D_803AE508_54E918;
-extern s8 ForceDashEngineDisabled;
-extern s8 IsTutorialEnabled;
-extern s8 D_803AE516_54E926;
-extern IdleScript* gIdleScript;
-extern u32 ProgressFlags;
-extern s8 ZoomSwitchMode;
-extern s8 IsAxisYInverted;
-extern s8 IsDashEngineAvailable;
-extern s32 MainCameraViewport[4]; // Rect?
-extern s32 MainCameraBorderXmin;
-extern s32 MainCameraBorderYmin;
-extern s32 MainCameraBorderXmax;
-extern s32 MainCameraBorderYmax;
+// .bss
+u8 D_803AB1C0_54B5D0[0xDE0];
+u8 D_803ABFA0_54C3B0[0x840];
+u8 D_803AC7E0_54CBF0[0x120];
+u8 D_803AC900_54CD10[0x600];
+u8 D_803ACF00_54D310[0x7E0];
+u8 D_803AD6E0_54DAF0[0x1E0];
+u8 D_803AD8C0_54DCD0[0x1E0];
+u8 D_803ADAA0_54DEB0[0x968];
+s32 D_803AE408_54E818;
+Vec3f CameraEyePos;
+u32 D_803AE41C_54E82C;
+Vec3f CameraAtPos;
+Vec3f CameraViewVector;
+u8 D_803AE43C_54E84C[0x4];
+SObj* MainCameraReticles[4];
+u8 D_803AE450_54E860[0x8];
+SObj* D_803AE458_54E868[6];
+s32 D_803AE470_54E880;
+s32 D_803AE474_54E884;
+f32 D_803AE478_54E888;
+f32 D_803AE47C_54E88C;
+u8 D_803AE480_54E890[0x20];
+struct DObjDynamicStore PlayerMatrixStore; // size 0x38
+u8 D_803AE4A5_54E8B5;
+u16 D_803AE4A6_54E8B6;
+u8 D_803AE4A8_54E8B8[0x30];
+Vec3f D_803AE4D8_54E8E8;
+Vec3f D_803AE4E8_54E8F8;
+Vec3f D_803AE4F8_54E908;
+Vec3f D_803AE508_54E918;
+s8 ForceDashEngineDisabled;
+s8 IsTutorialEnabled;
+s8 D_803AE516_54E926;
+IdleScript* gIdleScript;
+u32 ProgressFlags;
+s8 ZoomSwitchMode;
+s8 IsAxisYInverted;
+s8 IsDashEngineAvailable;
+u8 D_803AE523_54E933;
+u32 D_803AE524_54E934;
+u8 D_803AE528_54E938[0x8];
+s32 MainCameraViewport[4]; // Rect?
+s32 MainCameraBorderXmin;
+s32 MainCameraBorderYmin;
+s32 MainCameraBorderXmax;
+s32 MainCameraBorderYmax;
 
 extern s32 gHasPokemonInFocus;
 extern GObj* gPokemonInFocus;

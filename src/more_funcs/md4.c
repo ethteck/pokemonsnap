@@ -1,7 +1,8 @@
 #include "common.h"
 #include "more_funcs.h"
 
-extern MD4Ctx MD4_GlobalContext;
+// .bss
+MD4Ctx MD4_GlobalContext;
 
 #define ROL32(value, shift) (((value) << (shift)) | ((value) >> (32 - (shift))))
 

@@ -1,6 +1,17 @@
 #include "common.h"
 #include "oaks_lab.h"
 
+// .bss
+SObj* D_80206B60_9CC380;
+SObj* D_80206B64_9CC384;
+SObj* D_80206B68_9CC388;
+SObj* D_80206B6C_9CC38C;
+SObj* D_80206B70_9CC390;
+SObj* D_80206B74_9CC394;
+SObj* D_80206B78_9CC398;
+SObj* D_80206B7C_9CC39C;
+SObj* D_80206B80_9CC3A0;
+
 extern Bitmap* D_801C5404_98AC24[4];
 extern Bitmap* D_801C5414_98AC34[6];
 extern Bitmap* D_801C542C_98AC4C[9];

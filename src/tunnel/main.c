@@ -1,6 +1,10 @@
 #include "tunnel.h"
 #include "app_render/effect.h"
 
+// .bss
+u8 D_803430E0_6401B0[0x8];
+Unk803430E8 D_803430E8_6401B8;
+
 EnvSoundData tunnel_EnvSounds[] = {
     { SOUND_ID_361, PITCH_MOD_1, 20 },
     { SOUND_ID_362, PITCH_MOD_1, 30 },

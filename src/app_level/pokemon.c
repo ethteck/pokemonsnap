@@ -55,19 +55,22 @@ s32 func_8036381C_503C2C(void);
 s32 Pokemon_StepWalkInDirection(GObj* arg0, f32 arg1, u32 arg2);
 
 // bss
-extern PokemonObjectListEntry D_803B0A28_550E38[40];
-extern PokemonObjectListEntry* D_803B0C08_551018;
-extern PokemonObjectListEntry* D_803B0C0C_55101C;
-extern PokemonObjectListEntry* D_803B0C10_551020;
-extern PokemonTransformListEntry D_803B0C18_551028[40];
-extern PokemonTransformListEntry* D_803B0D58_551168;
-extern PokemonTransformListEntry* D_803B0D5C_55116C;
-extern PokemonDataListEntry D_803B0D60_551170[40];
-extern PokemonDataListEntry* D_803B0EA0_5512B0;
-extern PokemonDataListEntry* D_803B0EA4_5512B4;
-extern ItemListEntry D_803B0EA8_5512B8[20];
-extern ItemListEntry* D_803B0F48_551358;
-extern ItemListEntry* D_803B0F4C_55135C;
+// .bss
+u8 D_803B0A20_54B5D0[0x8];
+PokemonObjectListEntry D_803B0A28_550E38[40];
+PokemonObjectListEntry* D_803B0C08_551018;
+PokemonObjectListEntry* D_803B0C0C_55101C;
+PokemonObjectListEntry* D_803B0C10_551020;
+PokemonTransformListEntry D_803B0C18_551028[40];
+PokemonTransformListEntry* D_803B0D58_551168;
+PokemonTransformListEntry* D_803B0D5C_55116C;
+PokemonDataListEntry D_803B0D60_551170[40];
+PokemonDataListEntry* D_803B0EA0_5512B0;
+PokemonDataListEntry* D_803B0EA4_5512B4;
+ItemListEntry D_803B0EA8_5512B8[20];
+ItemListEntry* D_803B0F48_551358;
+ItemListEntry* D_803B0F4C_55135C;
+u8 D_803B0F50_551360[0x10];
 
 void Pokemon_LinkObject(GObj* arg0) {
     PokemonObjectListEntry* entry = D_803B0C10_551020;

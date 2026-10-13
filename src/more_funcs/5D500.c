@@ -2,13 +2,16 @@
 #include "more_funcs.h"
 #include "PR/os_flash.h"
 
-extern OSPiHandle* D_800E16F0_7E590;
-extern uintptr_t D_800E1700_7E5A0;
-extern s64 D_800E1708_7E5A8[];
-extern u32 D_800E1798_7E638; // flash type
-extern u32 D_800E179C_7E63C; // flash maker
-extern OSMesg D_800E17A0_7E640;
-extern OSMesgQueue D_800E17A8_7E648;
+// .bss
+OSPiHandle* D_800E16F0_7E590;
+u32 D_800E16F4_7E594;
+u8 D_800E16F8_7E598[0x8];
+uintptr_t D_800E1700_7E5A0;
+s64 D_800E1708_7E5A8[18];
+u32 D_800E1798_7E638; // flash type
+u32 D_800E179C_7E63C; // flash maker
+OSMesg D_800E17A0_7E640;
+OSMesgQueue D_800E17A8_7E648;
 
 void func_800C0660_5D500(s32* arg0, s32* arg1) {
     if (arg0 != NULL) {

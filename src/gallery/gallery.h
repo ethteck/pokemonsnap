@@ -88,7 +88,7 @@ extern GObj* D_801EA7F4_A084B4; // Camera
 extern OMCamera* D_801EA7F8_A084B8;
 extern GObj* D_801EA7FC_A084BC; // Camera
 extern OMCamera* D_801EA800_A084C0;
-extern u8 D_801EA808_A084C8;
+extern u8 D_801EA808_A084C8[0x46000];
 extern s32 D_80230810_A4E4D0;
 extern UnkLimeHaddock D_80230818_A4E4D8[6];
 extern UnkLimeHaddock D_80230848_A4E508[4];

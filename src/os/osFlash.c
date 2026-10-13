@@ -5,12 +5,13 @@
 /// The ones that did match are included directly from ultralib.
 
 // BSS
-extern u32 __osFlashID[4];
-extern OSIoMesg __osFlashMsg;
-extern OSMesgQueue __osFlashMessageQ;
-extern OSPiHandle __osFlashHandler;
-extern OSMesg __osFlashMsgBuf[1];
-extern s32 __osFlashVersion;
+// .bss
+u32 __osFlashID[4];
+OSIoMesg __osFlashMsg;
+OSMesgQueue __osFlashMessageQ;
+OSPiHandle __osFlashHandler;
+OSMesg __osFlashMsgBuf[1];
+s32 __osFlashVersion;
 
 #include "ultralib/src/flash/flashreinit.c"
 

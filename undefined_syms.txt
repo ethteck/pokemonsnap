@@ -7,3 +7,6 @@ D_0E000010 = 0xE000010;
 D_0E000018 = 0xE000018;
 D_0E000020 = 0xE000020;
 D_0E000028 = 0xE000028;
+
+/* Low byte of D_credits_801ECDA0 (scene id) */
+D_credits_801ECDA3 = D_credits_801ECDA0 + 3;

@@ -1,6 +1,14 @@
 #include "common.h"
 #include "beach.h"
 
+// .bss
+u8 D_beach_80347560[0x18];
+u8 D_beach_80347578;
+u8 D_beach_80347579;
+u8 D_beach_8034757A;
+u8 D_beach_8034757B;
+u16 D_beach_8034757C;
+
 void func_beach_802C4800(s32 arg0, f32 arg1) {
     switch (D_beach_802CC0D0) {
         case 0:

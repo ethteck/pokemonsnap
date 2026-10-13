@@ -3,6 +3,14 @@
 #include "../window/window.h"
 #include "gallery.h"
 
+// .bss
+s32 D_801EA7F0_A084B0;
+GObj* D_801EA7F4_A084B4;
+OMCamera* D_801EA7F8_A084B8;
+GObj* D_801EA7FC_A084BC;
+OMCamera* D_801EA800_A084C0;
+u8 D_801EA808_A084C8[0x46000];
+
 void func_801DC8C0_9FA580(Gfx** dlist) {
     gSPDisplayList(++(*dlist), D_801E1620_9FF2E0);
 }

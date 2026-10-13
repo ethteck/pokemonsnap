@@ -102,14 +102,16 @@ extern u16 D_802EE10C_5EB1DC;
 extern GObj* D_802EF484_5EC554;
 extern GObj* D_802EF488_5EC558;
 
-extern union {
+typedef union Unk803430E8 {
     struct {
         u32 unk_00 : 1;
         u32 unk_01 : 1;
         u32 unk_02 : 30;
     } bits;
     u32 intval;
-} D_803430E8_6401B8;
+} Unk803430E8;
+
+extern Unk803430E8 D_803430E8_6401B8;
 
 void tunnel_UpdateSounds(s32, f32);
 void func_802ED5C8_5EA698(void);

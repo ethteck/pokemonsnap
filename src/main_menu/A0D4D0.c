@@ -2,9 +2,11 @@
 
 #include "main_menu.h"
 
-extern GObj* D_800E8334_A0F8C4;
-extern GObj* D_800E8338_A0F8C8;
-extern GObj* D_800E833C_A0F8CC;
+// .bss
+u8 D_800E8330_A0F830[0x4];
+GObj* D_800E8334_A0F8C4;
+GObj* D_800E8338_A0F8C8;
+GObj* D_800E833C_A0F8CC;
 extern GObj* D_800E8340_A0F8D0;
 extern GObj* D_800E8344_A0F8D4;
 extern GObj* D_800E8348_A0F8D8;

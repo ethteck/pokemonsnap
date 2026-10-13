@@ -2,6 +2,9 @@
 #include "ld_addrs.h"
 #include "oaks_lab.h"
 
+// .bss
+u8 D_801C6B10_98C330[0x40000];
+
 Gfx D_800E66D0_8ABEF0[] = {
     gsDPPipeSync(),
     gsDPPipelineMode(G_PM_NPRIMITIVE),

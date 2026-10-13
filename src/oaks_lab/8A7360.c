@@ -1,6 +1,17 @@
 #include "common.h"
 #include "oaks_lab.h"
 
+// .bss
+SObj* D_80206B10_9CC330;
+SObj* D_80206B14_9CC334;
+SObj* D_80206B18_9CC338;
+UIElement* D_80206B1C_9CC33C;
+UIFrame* D_80206B20_9CC340;
+u32 D_80206B24_9CC344;
+SObj* D_80206B28_9CC348[1];
+u8 D_80206B2C_9CC34C[0x4];
+SObj* D_80206B30_9CC350;
+
 // TODO: part of Sprite. Included for alignment.
 s32 D_801957E0_95B000 = 0;
 s32 D_801957E4_95B004 = 0;

@@ -33,14 +33,17 @@ extern u8 D_80393738_533B48[];
 extern s16 D_8039379C_533BAC[];
 extern u32 Msg_FrameCounter;
 // BSS
-extern u8 Msg_PrintedText[];
-extern u8 Msg_MessageText[];
-extern s32 Msg_LineHeight;
-extern s32 Msg_BlinkFrameCounter;
-extern f32 Msg_CharOffsetX;
-extern f32 Msg_CharOffsetY;
-extern s32 Msg_CharType;
-extern s32 Msg_ImageIndex;
+// .bss
+u8 D_803B1560_551970[0x3840];
+u8 Msg_PrintedText[256];
+u8 Msg_MessageText[256];
+s32 Msg_LineHeight;
+s32 Msg_BlinkFrameCounter;
+f32 Msg_CharOffsetX;
+f32 Msg_CharOffsetY;
+s32 Msg_CharType;
+s32 Msg_ImageIndex;
+u8 D_803B4FB8_5553C8[0x48];
 
 void Msg_UpdatePrinter(GObj* obj) {
     s32 i = 0;

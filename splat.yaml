@@ -411,7 +411,10 @@ segments:
     - [0x5E630, c, ../os/osFlash]
     - [0x5EF80, data]
     - [0x5EFA0, .rodata, 5BF20]
-    - { name: bss_800C21B0, type: bss, vram: 0x800C21B0 }
+    - { name: 5BF20, type: bss, vram: 0x800C21B0 }
+    - { name: 5D500, type: bss, vram: 0x800E16F0 }
+    - { name: md4, type: bss, vram: 0x800E17C0 }
+    - { name: ../os/osFlash, type: bss, vram: 0x800E17E0 }
 
   - name: world
     dir: world
@@ -5632,7 +5635,16 @@ segments:
     - { start: 0x533FE0, type: data, linker_section_order: .rodata } # maybe it is rodata?
     - [0x536010, .rodata, envsound]
     - { start: 0x536030, type: data, linker_section_order: .rodata }
-    - { name: bss_803AB1C0, type: bss, vram: 0x803AB1C0 }
+    - { name: player, type: bss, vram: 0x803AB1C0 }
+    - { name: bump_detect, type: bss, vram: 0x803AE550 }
+    - { name: pokemon_detect, type: bss, vram: 0x803AE560 }
+    - { name: items, type: bss, vram: 0x803AEF60 }
+    - { name: icons, type: bss, vram: 0x803AF8B0 }
+    - { name: 4FE780, type: bss, vram: 0x803AF8E0 }
+    - { name: pokemon, type: bss, vram: 0x803B0A20 }
+    - { name: 503C10, type: bss, vram: 0x803B0F60 }
+    - { name: 5047F0, type: bss, vram: 0x803B14D0 }
+    - { name: msg, type: bss, vram: 0x803B1560 }
     #- { name: 503C10, type: bss, vram: 0x803B0F60 }
     #- { name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
   - type: code
@@ -6593,7 +6605,9 @@ segments:
       - [0x5DF058, gfx, part13_draw_far]
       - [0x5DF160, gfx, part13_draw]
 
-    - { name: bss_80347560, type: bss, vram: 0x80347560 }
+    - { name: 55C870, type: bss, vram: 0x80347560 }
+    - { name: 55D1C0, type: bss, vram: 0x80347580 }
+    - { name: 562370, type: bss, vram: 0x80347650 }
   - name: tunnel_code
     dir: tunnel
     type: code
@@ -7007,7 +7021,12 @@ segments:
       - [0x63FDD0, gfx, part15_draw]
       - [0x63FDE8, gfx, last]
 
-    - { name: bss_803430E0, type: bss, vram: 0x803430E0 }
+    - { name: main, type: bss, vram: 0x803430E0 }
+    - { name: sounds, type: bss, vram: 0x803430F0 }
+    - { name: diglett/code, type: bss, vram: 0x80343130 }
+    - { name: dugtrio/code, type: bss, vram: 0x80343140 }
+    - { name: intro, type: bss, vram: 0x80344730 }
+    - { name: pkmn_1014/code, type: bss, vram: 0x80344740 }
   - name: cave_code
     dir: cave
     type: code
@@ -7731,7 +7750,9 @@ segments:
       - [0x6C01F8, gfx, part15_draw]
       - [0x6C0220, gfx, last]
 
-    - { name: bss_8033E130, type: bss, vram: 0x8033E130 }
+    - { name: 6401B0, type: bss, vram: 0x8033E130 }
+    - { name: 640900, type: bss, vram: 0x8033E140 }
+    - { name: 647360, type: bss, vram: 0x8033F690 }
   - name: river_code
     dir: river
     type: code
@@ -8235,7 +8256,9 @@ segments:
       - [0x726EC0, gfx, part16_draw]
       - [0x726EE8, gfx, last]
 
-    - { name: bss_8033F500, type: bss, vram: 0x8033F500 }
+    - { name: 6C4EC0, type: bss, vram: 0x8033F500 }
+    - { name: 6C9680, type: bss, vram: 0x8033F670 }
+    - { name: 6C9EB0, type: bss, vram: 0x8033F690 }
   - name: volcano_code
     dir: volcano
     type: code
@@ -9025,6 +9048,29 @@ segments:
       - [0x79ECC0, gfx, part20_draw]
       - [0x79ECE8, gfx, last]
       - [0x79ED08]
+    - { start: auto, name: main, type: .bss, vram: 0x8034DFB0 }
+    - { start: auto, name: magmar/code, type: .bss, vram: 0x8034DFC0 }
+    - { start: auto, name: rapidash/code, type: .bss, vram: 0x8034DFD0 }
+    - { start: auto, name: charmander/code, type: .bss, vram: 0x8034DFE0 }
+    - { start: auto, name: vulpix/code, type: .bss, vram: 0x8034DFF0 }
+    - { start: auto, name: growlithe/code, type: .bss, vram: 0x8034E000 }
+    - { start: auto, name: arcanine/code, type: .bss, vram: 0x8034E010 }
+    - { start: auto, name: charmeleon/code, type: .bss, vram: 0x8034E020 }
+    - { start: auto, name: charizard/code, type: .bss, vram: 0x8034E030 }
+    - { start: auto, name: growlithe_spawner/code, type: .bss, vram: 0x8034E040 }
+    - { start: auto, name: moltres_egg/code, type: .bss, vram: 0x8034E050 }
+    - { start: auto, name: moltres/code, type: .bss, vram: 0x8034E060 }
+    - { start: auto, name: koffing_smoke/code, type: .bss, vram: 0x8034E070 }
+    - { start: auto, name: smoke_puff/code, type: .bss, vram: 0x8034E080 }
+    - { start: auto, name: smoke_spawner/code, type: .bss, vram: 0x8034E090 }
+    - { start: auto, name: evolution_controller/code, type: .bss, vram: 0x8034E0A0 }
+    - { start: auto, name: lava_splash/code, type: .bss, vram: 0x8034E0B0 }
+    - { start: auto, name: magikarp/code, type: .bss, vram: 0x8034E0C0 }
+    - { start: auto, name: gate/code, type: .bss, vram: 0x8034E0D0 }
+    - { start: auto, name: volcano_smoke/code, type: .bss, vram: 0x8034E0E0 }
+    - { start: auto, name: sounds, type: .bss, vram: 0x8034E0F0 }
+    - { start: auto, name: intro/code, type: .bss, vram: 0x8034E100 }
+    - { start: auto, name: world/height_map, type: .bss, vram: 0x8034E110 }
   - name: valley_code
     dir: valley
     type: code
@@ -9775,7 +9821,10 @@ segments:
       - [0x825BF8, gfx, part8_draw]
       - [0x825C20, gfx, last]
 
-    - { name: bss_8034C8A0, type: bss, vram: 0x8034C8A0 }
+    - { name: 79FB70, type: bss, vram: 0x8034C8A0 }
+    - { name: 7A00C0, type: bss, vram: 0x8034C8C0 }
+    - { name: 7A1850, type: bss, vram: 0x8034C8D0 }
+    - { name: 7A8DD0, type: bss, vram: 0x8034E080 }
   - name: rainbow_code
     dir: rainbow
     type: code
@@ -9900,7 +9949,8 @@ segments:
       - [0x82F1D0, gfx, part31_draw]
       - [0x82F1E8, gfx, last]
 
-    - { name: bss_80350170, type: bss, vram: 0x80350170 }
+    - { name: mew/code, type: bss, vram: 0x80350170 }
+    - { name: intro, type: bss, vram: 0x803501E0 }
   - type: code
     name: magikarp_model_hd
     dir: pokemon_common
@@ -10091,6 +10141,13 @@ segments:
     - [0x87A000, .rodata, layout]
     - [0x87A090, .rodata, 8456E0]
     - [0x87A0A0, .rodata, 8486E0]
+    - { start: auto, name: 83D730, type: .bss, vram: 0x803A6900 }
+    - { start: auto, name: text, type: .bss, vram: 0x803A6930 }
+    - { start: auto, name: frame, type: .bss, vram: 0x803A6A10 }
+    - { start: auto, name: focus_mark, type: .bss, vram: 0x803A6A50 }
+    - { start: auto, name: layout, type: .bss, vram: 0x803A6A80 }
+    - { start: auto, name: 847B60, type: .bss, vram: 0x803A6C10 }
+    - { start: auto, name: 8486E0, type: .bss, vram: 0x803A6FD0 }
   - name: camera_check
     dir: camera_check
     symbol_name_format: camera_check_$VRAM
@@ -10117,6 +10174,10 @@ segments:
     - [0x8A61F0, .rodata, 87A330]
     - [0x8A6450, .rodata, 87D1A0]
     - [0x8A70C0, .rodata, 87FB20]
+    - { start: auto, name: 87A0B0, type: .bss, vram: 0x802098F0 }
+    - { start: auto, name: 87A330, type: .bss, vram: 0x802498F0 }
+    - { start: auto, name: 87D1A0, type: .bss, vram: 0x80249AA0 }
+    - { start: auto, name: 87FB20, type: .bss, vram: 0x80249B30 }
   - name: oaks_lab
     dir: oaks_lab
     type: code
@@ -10144,7 +10205,11 @@ segments:
     - [0x98B170, .rodata, 8A9CC0]
     - [0x98C300, .rodata, 8AAF60]
 
-    - { name: bss_801C6B10, type: bss, vram: 0x801C6B10 }
+    - { name: 8A70E0, type: bss, vram: 0x801C6B10 }
+    - { name: 8A7360, type: bss, vram: 0x80206B10 }
+    - { name: 8A8A50, type: bss, vram: 0x80206B40 }
+    - { name: 8A9CC0, type: bss, vram: 0x80206B50 }
+    - { name: 8AAF60, type: bss, vram: 0x80206B60 }
   - name: photo_check
     dir: photo_check
     type: code
@@ -10163,6 +10228,8 @@ segments:
     - [0x9A3C10, .rodata, 98C330]
     - [0x9A5AA0, .rodata, 98D0F0]
     - [0x9A6AF0, .rodata, 993F80]
+    - { start: auto, name: 98C330, type: .bss, vram: 0x801F70A0 }
+    - { start: auto, name: 993F80, type: .bss, vram: 0x802291A0 }
   - name: pokemon_album
     dir: pokemon_album
     type: code
@@ -10182,6 +10249,10 @@ segments:
     - [0x9D2E90, .data, 9ADAD0]
     - [0x9D2EA0, .rodata, 9A6F70]
     - [0x9D31A0, .rodata, 9ABB50]
+    - { start: auto, name: 9A6B10, type: .bss, vram: 0x80208FE0 }
+    - { start: auto, name: 9A6F70, type: .bss, vram: 0x8024EFE0 }
+    - { start: auto, name: 9ABB50, type: .bss, vram: 0x80250120 }
+    - { start: auto, name: 9ADAD0, type: .bss, vram: 0x80250130 }
   - name: pokemon_report
     dir: pokemon_report
     type: code
@@ -10201,7 +10272,9 @@ segments:
     - [0x9F9990, .rodata, 9D3660]
     - [0x9FA550, .rodata, 9D91C0]
 
-    - { name: bss_80203C10, type: bss, vram: 0x80203C10 }
+    - { name: 9D3230, type: bss, vram: 0x80203C10 }
+    - { name: 9D3660, type: bss, vram: 0x80230C10 }
+    - { name: 9D91C0, type: bss, vram: 0x80230DD0 }
   - name: gallery
     dir: gallery
     type: code
@@ -10219,7 +10292,9 @@ segments:
     - [0xA07F80, .rodata, 9FAC10]
     - [0xA08410, .rodata, 9FD510]
 
-    - { name: bss_801EA7F0, type: bss, vram: 0x801EA7F0 }
+    - { name: 9FA580, type: bss, vram: 0x801EA7F0 }
+    - { name: 9FAC10, type: bss, vram: 0x80230810 }
+    - { name: 9FD510, type: bss, vram: 0x802308A0 }
     - { start: auto, name: 9FEC10, type: .bss, vram: 0x802308C0 }
   - name: unk_end_level_8
     dir: unk_end_level_8
@@ -10255,7 +10330,10 @@ segments:
     - [0xA0F7B0, .rodata, A08E30]
     - [0xA0F800, .rodata, A0BE70]
     - [0xA0F810, .rodata, A0E190]
-    - { name: bss_800E82A0, type: bss, vram: 0x800E82A0 }
+    - { name: A08E30, type: bss, vram: 0x800E82A0 }
+    - { name: A0BE70, type: bss, vram: 0x800E82F0 }
+    - { name: A0D4D0, type: bss, vram: 0x800E8330 }
+    - { name: A0E190, type: bss, vram: 0x800E8340 }
 
   # Sentinel segment to simplify symbolizing.
   # Ideally symbols would be grabbed directly from the vpk0 segment itself.
@@ -10320,7 +10398,10 @@ segments:
     - [0xA9FFE0, .rodata, A937C0]
     - [0xAA0000, .rodata, A94480]
     - [0xAA0010, .rodata, A94940]
-    - { name: bss_801E9A90, type: bss, vram: 0x801E9A90 }
+    - { name: A93460, type: bss, vram: 0x801E9A90 }
+    - { name: A937C0, type: bss, vram: 0x801ECC80 }
+    - { name: A94480, type: bss, vram: 0x801ECCA0 }
+    - { name: A94940, type: bss, vram: 0x801ECDA0 }
 
   - name: intro_code
     type: code

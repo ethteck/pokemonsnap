@@ -67,7 +67,7 @@ jobs:
 
       - name: Generate objdiff report
         run: |
-          uv run mapfile_parser objdiff_report report.json --version ${{ matrix.version }}
+          uv run tools/objdiff_report.py report.json --version ${{ matrix.version }}
 
       - name: Upload progress report artifact
         uses: actions/upload-artifact@v7

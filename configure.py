@@ -433,6 +433,8 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     opt_level = "-g"
                 elif c_path.stem in ["848B50"]:
                     opt_level = "-O2 -g3"
+                elif c_path.stem in ["847B60"]:
+                    opt_level = "-O2 -Wo,-unrolllimit,500"
 
                 build(
                     entry.object_path,

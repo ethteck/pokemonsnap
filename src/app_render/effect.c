@@ -943,98 +943,80 @@ void fx_structFuncRun(GObj* obj) {
     }
 }
 
-#if 0
 void fx_draw(GObj* camObj) {
-    Particle* var_s7;
-    ParticleAnimData* v0;
-    s32 sp2D4;
-    s32 sp2D0;
-    s32 sp2CC;
-    s32 sp2C8;
-    Mtx4f sp288;
-    Mtx4f sp248;
-    f32 var_f24;
-    f32 var_f16;
-    f32 var_f26;
-    f32 var_f18;
-    f32 temp_f12;
-    f32 temp_f14;
-    f32 temp_f28;
-
-    f32 temp_f0;
-    f32 temp_f22;
-    f32 sp220;
-    f32 sp21C;
-    f32 sp218;
-    f32 sp214;
-    f32 sp210;
-    f32 sp20C;
-    f32 sp208;
-    f32 sp204;
-    s32 sp200;
-    s32 sp1FC;
-    s32 sp1F8;
-    s32 sp1F4;
-    s32 sp1C8;
-    s32 sp1C4;
-
+    Particle* pc;
+    u8* prevImage;
+    u8* prevPalette;
+    u32 prevAlphaCompare;
+    u32 prevBlendAlpha;
+    s32 tlut;
+    Mtx4f lookAtMtx;
+    Mtx4f projMtx;
+    u8 alphaCompare;
+    u8 blendAlpha;
+    s32 bankID;
+    u8** pal;
+    f32 posX;
+    f32 posY;
+    f32 posZ;
+    f32 tx;
+    f32 ty;
+    f32 tz;
+    f32 scaleX;
+    f32 scaleY;
+    f32 vscaleX;
+    f32 vtransX;
+    f32 vscaleY;
+    f32 vtransY;
+    f32 vscaleZ;
+    f32 vtransZ;
+    s32 dsdx;
+    s32 dtdy;
+    s32 i;
+    s32 cms;
+    s32 cmt;
+    s32 fmt;
+    s32 siz;
     s32 j;
-    s32 var_s2;
+    s32 width;
+    s32 height;
+    f32 xh;
+    f32 yh;
+    f32 xl;
+    f32 yl;
+    u8* image;
+    u8* palette;
+    u8 masks;
+    u8 maskt;
+    f32 tm;
 
-    s32 temp_fp;
-    s32 temp_t4;
-    s32 temp_s3;
-    s32 temp_s5;
-    s32 var_s6;
-    s32 var_s1;
-    s32 var_t2;
-    s32 var_a1_2;
-    s32 var_a0;
-
-    f32 temp_f20;
-    f32 temp_f2;
-
-    for (sp1F8 = 0; sp1F8 < 4; sp1F8++) {
-        var_s2 = 0;
-
-        if (D_800BE1F0[sp1F8] == NULL) {
+    for (i = 0; i < 4; i++) {
+        if (D_800BE1F0[i] == NULL) {
             continue;
         }
 
-        hal_look_at_roll_f(sp288, D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xEye,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yEye,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.zEye,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.xAt,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.yAt,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.zAt,
-                           D_800BE1F0[sp1F8]->viewMtx.lookAtRoll.roll,
-                           0.0f, 1.0f, 0.0f);
-        hal_perspective_fast_f(sp248, NULL,
-                               D_800BE1F0[sp1F8]->perspMtx.persp.fovy,
-                               D_800BE1F0[sp1F8]->perspMtx.persp.aspect,
-                               D_800BE1F0[sp1F8]->perspMtx.persp.near,
-                               D_800BE1F0[sp1F8]->perspMtx.persp.far,
-                               D_800BE1F0[sp1F8]->perspMtx.persp.scale);
-        guMtxCatF(sp288, sp248, sp248);
+        hal_look_at_roll_f(lookAtMtx, D_800BE1F0[i]->viewMtx.lookAtRoll.xEye, D_800BE1F0[i]->viewMtx.lookAtRoll.yEye,
+                           D_800BE1F0[i]->viewMtx.lookAtRoll.zEye, D_800BE1F0[i]->viewMtx.lookAtRoll.xAt,
+                           D_800BE1F0[i]->viewMtx.lookAtRoll.yAt, D_800BE1F0[i]->viewMtx.lookAtRoll.zAt,
+                           D_800BE1F0[i]->viewMtx.lookAtRoll.roll, 0.0f, 1.0f, 0.0f);
+        hal_perspective_fast_f(projMtx, NULL, D_800BE1F0[i]->perspMtx.persp.fovy, D_800BE1F0[i]->perspMtx.persp.aspect,
+                               D_800BE1F0[i]->perspMtx.persp.near, D_800BE1F0[i]->perspMtx.persp.far,
+                               D_800BE1F0[i]->perspMtx.persp.scale);
+        guMtxCatF(lookAtMtx, projMtx, projMtx);
 
-        sp2C8 = -1;
-        sp2CC = -1;
-        sp2D0 = -1;
-        sp2D4 = 0;
+        vscaleX = D_800BE1F0[i]->vp.vp.vscale[0];
+        vscaleY = -D_800BE1F0[i]->vp.vp.vscale[1];
+        vscaleZ = D_800BE1F0[i]->vp.vp.vscale[2];
+        vtransX = D_800BE1F0[i]->vp.vp.vtrans[0];
+        vtransY = D_800BE1F0[i]->vp.vp.vtrans[1];
+        vtransZ = D_800BE1F0[i]->vp.vp.vtrans[2];
 
-        sp218 = D_800BE1F0[sp1F8]->vp.vp.vscale[0];
-        sp210 = -D_800BE1F0[sp1F8]->vp.vp.vscale[1];
-        sp208 = D_800BE1F0[sp1F8]->vp.vp.vscale[2];
-        sp214 = D_800BE1F0[sp1F8]->vp.vp.vtrans[0];
-        sp20C = D_800BE1F0[sp1F8]->vp.vp.vtrans[1];
-        sp204 = D_800BE1F0[sp1F8]->vp.vp.vtrans[2];
-
-        sp220 = sqrtf(SQ(sp248[0][0]) + SQ(sp248[1][0]) + SQ(sp248[2][0]));
-        temp_f0 = sqrtf(SQ(sp248[0][1]) + SQ(sp248[1][1]) + SQ(sp248[2][1]));
+        scaleX = sqrtf(SQ(projMtx[0][0]) + SQ(projMtx[1][0]) + SQ(projMtx[2][0]));
+        scaleY = sqrtf(SQ(projMtx[0][1]) + SQ(projMtx[1][1]) + SQ(projMtx[2][1]));
 
         gDPPipeSync(gMainGfxPos[0]++);
         gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
-        if (D_800BE200[sp1F8]) {
+        if (D_800BE200[i]) {
             gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2);
         } else {
             gDPSetRenderMode(gMainGfxPos[0]++, G_RM_XLU_SURF, G_RM_NOOP2);
@@ -1044,188 +1026,191 @@ void fx_draw(GObj* camObj) {
         gDPSetColorDither(gMainGfxPos[0]++, fx_colorDitherMode);
         gDPSetAlphaDither(gMainGfxPos[0]++, fx_alphaDitherMode);
 
+        prevImage = NULL;
+        prevPalette = NULL;
+        prevAlphaCompare = -1;
+        prevBlendAlpha = -1;
+        tlut = -1;
         for (j = 0; j < 16; j++) {
-            for (var_s7 = D_800BE1A8[j]; var_s7 != NULL; var_s7 = var_s7->next) {
-                if (var_s7->unk_40 == 0.0f) {
+            for (pc = D_800BE1A8[j]; pc != NULL; pc = pc->next) {
+                if (pc->size == 0.0f) {
                     continue;
                 }
-                temp_f12 = (sp248[0][0] * var_s7->unk_20.x + sp248[1][0] * var_s7->unk_20.y + sp248[2][0] * var_s7->unk_20.z + sp248[3][0]);
-                temp_f20 = sp248[0][3] * var_s7->unk_20.x + sp248[1][3] * var_s7->unk_20.y + sp248[2][3] * var_s7->unk_20.z + sp248[3][3];
+                xl = pc->pos.x;
+                yl = pc->pos.y;
+                posZ = pc->pos.z;
 
-                if (temp_f20 == 0.0f) {
+                tx = projMtx[0][0] * xl + projMtx[1][0] * yl + projMtx[2][0] * posZ + projMtx[3][0];
+                ty = projMtx[0][1] * xl + projMtx[1][1] * yl + projMtx[2][1] * posZ + projMtx[3][1];
+                tz = projMtx[0][2] * xl + projMtx[1][2] * yl + projMtx[2][2] * posZ + projMtx[3][2];
+                tm = projMtx[0][3] * xl + projMtx[1][3] * yl + projMtx[2][3] * posZ + projMtx[3][3];
+                if (tm == 0.0f) {
+                    continue;
+                }
+                tm = 1.0f / tm;
+                tx *= tm;
+                ty *= tm;
+                tz *= tm;
+                if (tx < -1.0f || tx > 1.0f || ty < -1.0f || ty > 1.0f || tz < -1.0f || tz > 1.0f) {
                     continue;
                 }
 
-                temp_f2 = 1.0f / temp_f20;
-                temp_f12 *= temp_f2;
-                temp_f14 = (sp248[0][1] * var_s7->unk_20.x + sp248[1][1] * var_s7->unk_20.y + sp248[2][1] * var_s7->unk_20.z + sp248[3][1]) * temp_f2;
-                temp_f28 = (sp248[0][2] * var_s7->unk_20.x + sp248[1][2] * var_s7->unk_20.y + sp248[2][2] * var_s7->unk_20.z + sp248[3][2]) * temp_f2;
-
-                if (temp_f12 < -1.0f || temp_f12 > 1.0f || temp_f14 < -1.0f || temp_f14 > 1.0f || temp_f28 < -1.0f || temp_f28 > 1.0f) {
-                    continue;
-                }
-
-                var_f16 = (temp_f2 * var_s7->unk_40 * sp220 + temp_f12) * sp218 + sp214;
-                temp_f12 = temp_f12 * sp218 + sp214;
-                if (var_f16 > temp_f12) {
-                    var_f24 = temp_f12 - (var_f16 - temp_f12);
+                tm *= pc->size;
+                xh = tm * scaleX + tx;
+                yh = tm * scaleY + ty;
+                tx = tx * vscaleX + vtransX;
+                xh = xh * vscaleX + vtransX;
+                if (tx < xh) {
+                    xl = tx - (xh - tx);
                 } else {
-                    var_f24 = var_f16;
-                    var_f16 = temp_f12 - (var_f16 - temp_f12);
+                    xl = xh;
+                    xh = tx - (xh - tx);
                 }
-
-                var_f18 = (temp_f2 * var_s7->unk_40 * temp_f0 + temp_f14) * sp210 + sp20C;
-                temp_f14 = temp_f14 * sp210 + sp20C;
-                if (var_f18 > temp_f14) {
-                    var_f26 = temp_f14 - (var_f18 - temp_f14);
+                ty = ty * vscaleY + vtransY;
+                yh = yh * vscaleY + vtransY;
+                if (ty < yh) {
+                    yl = ty - (yh - ty);
                 } else {
-                    var_f26 = var_f18;
-                    var_f18 = temp_f14 - (var_f18 - temp_f14);
+                    yl = yh;
+                    yh = ty - (yh - ty);
                 }
+                tz = tz * vscaleZ + vtransZ;
 
-                v0 = fx_SpriteBanks[var_s7->unk_08 & 7][var_s7->unk_0A];
-                temp_fp = v0->unk_04;
-                temp_t4 = v0->unk_08;
-                temp_s3 = v0->unk_0C;
-                temp_s5 = v0->unk_10;
-                sp1C8 = v0->unk_18[var_s7->unk_0B];
-                if (temp_fp == 2) {
-                    if (!(var_s7->flags & 0x10)) {
-                        sp1C4 = v0->unk_18[v0->unk_00 + var_s7->unk_0B];
-                    } else {
-                        sp1C4 = v0->unk_18[v0->unk_00];
-                    }
+                bankID = pc->bankID & 7;
+                fmt = fx_SpriteBanks[bankID][pc->textureID]->fmt;
+                siz = fx_SpriteBanks[bankID][pc->textureID]->siz;
+                width = fx_SpriteBanks[bankID][pc->textureID]->width;
+                height = fx_SpriteBanks[bankID][pc->textureID]->height;
+                image = fx_SpriteBanks[bankID][pc->textureID]->data[pc->dataID];
+                if (fmt == G_IM_FMT_CI) {
+                    pal = &fx_SpriteBanks[bankID][pc->textureID]->data[fx_SpriteBanks[bankID][pc->textureID]->numFrames];
+                    palette = (!(pc->flags & 0x10)) ? pal[pc->dataID] : pal[0];
                 }
+                dsdx = (width * 4096.0f) / (xh - xl);
+                dtdy = (height * 4096.0f) / (yh - yl);
 
-                sp200 = (temp_s3 * 4096.0f) / (var_f16 - var_f24);
-                sp1FC = (temp_s5 * 4096.0f) / (var_f18 - var_f26);
-
-                if (var_s7->flags & 0x20) {
-                    sp200 *= 2;
-                    sp1F4 = 1;
-                    switch (temp_s3) {
+                if (pc->flags & 0x20) {
+                    dsdx *= 2;
+                    cms = G_TX_MIRROR;
+                    switch (width) {
                         case 2:
-                            var_s1 = 1;
+                            masks = 1;
                             break;
                         case 4:
-                            var_s1 = 2;
+                            masks = 2;
                             break;
                         case 8:
-                            var_s1 = 3;
+                            masks = 3;
                             break;
                         case 16:
-                            var_s1 = 4;
+                            masks = 4;
                             break;
                         case 32:
-                            var_s1 = 5;
+                            masks = 5;
                             break;
                         case 64:
-                            var_s1 = 6;
+                            masks = 6;
                             break;
                         case 128:
-                            var_s1 = 7;
+                            masks = 7;
                             break;
                         case 256:
-                            var_s1 = 8;
+                            masks = 8;
                             break;
                         default:
-                            var_s1 = 0;
+                            masks = 0;
                             break;
                     }
                 } else {
-                    sp1F4 = 2;
-                    var_s1 = 0;
+                    cms = G_TX_CLAMP;
+                    masks = 0;
                 }
-
-                if (var_s7->flags & 0x40) {
-                    sp1FC *= 2;
-                    var_s6 = 1;
-                    switch (temp_s5) {
+                if (pc->flags & 0x40) {
+                    dtdy *= 2;
+                    cmt = G_TX_MIRROR;
+                    switch (height) {
                         case 2:
-                            var_t2 = 1;
+                            maskt = 1;
                             break;
                         case 4:
-                            var_t2 = 2;
+                            maskt = 2;
                             break;
                         case 8:
-                            var_t2 = 3;
+                            maskt = 3;
                             break;
                         case 16:
-                            var_t2 = 4;
+                            maskt = 4;
                             break;
                         case 32:
-                            var_t2 = 5;
+                            maskt = 5;
                             break;
                         case 64:
-                            var_t2 = 6;
+                            maskt = 6;
                             break;
                         case 128:
-                            var_t2 = 7;
+                            maskt = 7;
                             break;
                         case 256:
-                            var_t2 = 8;
+                            maskt = 8;
                             break;
                         default:
-                            var_t2 = 0;
+                            maskt = 0;
                             break;
                     }
                 } else {
-                    var_s6 = 2;
-                    var_t2 = 0;
+                    cmt = G_TX_CLAMP;
+                    maskt = 0;
                 }
-
-                if (temp_fp == 2) {
-                    if (sp1C4 != sp2D4) {
-                        gDPLoadTLUT_pal256(gMainGfxPos[0]++, sp1C4);
-                        sp2D4 = sp1C4;
+                if (fmt == G_IM_FMT_CI) {
+                    if (palette != prevPalette) {
+                        gDPLoadTLUT_pal256(gMainGfxPos[0]++, palette);
+                        prevPalette = palette;
                     }
-                    if (sp2C8 != 1) {
+                    if (tlut != 1) {
                         gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_RGBA16);
-                        sp2C8 = 1;
+                        tlut = 1;
                     }
-                } else if (sp2C8 != 0) {
+                } else if (tlut != 0) {
                     gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
-                    sp2C8 = 0;
+                    tlut = 0;
                 }
-
-                if (sp1C8 != var_s2) {
-                    switch (temp_t4) {
-                        case 0:
-                            gDPLoadTextureBlock_4b(gMainGfxPos[0]++, sp1C8, temp_fp, temp_s3, temp_s5, 0, sp1F4, var_s6, var_s1, var_t2, G_TX_NOLOD, G_TX_NOLOD);
-                            if (temp_s3 * temp_s5 >= 0x1000) {
-                                sp2D4 = 0;
+                if (image != prevImage) {
+                    switch (siz) {
+                        case G_IM_SIZ_4b:
+                            gDPLoadTextureBlock_4b(gMainGfxPos[0]++, image, fmt, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                            if (width * height >= 4096) {
+                                prevPalette = NULL;
                             }
                             break;
-                        case 1:
-                            gDPLoadTextureBlock(gMainGfxPos[0]++, sp1C8, temp_fp, G_IM_SIZ_8b, temp_s3, temp_s5, 0, sp1F4, var_s6, var_s1, var_t2, G_TX_NOLOD, G_TX_NOLOD);
-                            if (temp_s3 * temp_s5 >= 0x800) {
-                                sp2D4 = 0;
+                        case G_IM_SIZ_8b:
+                            gDPLoadTextureBlock(gMainGfxPos[0]++, image, fmt, G_IM_SIZ_8b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                            if (width * height >= 2048) {
+                                prevPalette = NULL;
                             }
                             break;
-                        case 2:
-                            gDPLoadTextureBlock(gMainGfxPos[0]++, sp1C8, temp_fp, G_IM_SIZ_16b, temp_s3, temp_s5, 0, sp1F4, var_s6, var_s1, var_t2, G_TX_NOLOD, G_TX_NOLOD);
-                            if (temp_s3 * temp_s5 >= 0x400) {
-                                sp2D4 = 0;
+                        case G_IM_SIZ_16b:
+                            gDPLoadTextureBlock(gMainGfxPos[0]++, image, fmt, G_IM_SIZ_16b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                            if (width * height >= 1024) {
+                                prevPalette = NULL;
                             }
                             break;
-                        case 3:
-                            gDPLoadTextureBlock(gMainGfxPos[0]++, sp1C8, temp_fp, G_IM_SIZ_32b, temp_s3, temp_s5, 0, sp1F4, var_s6, var_s1, var_t2, G_TX_NOLOD, G_TX_NOLOD);
-                            if (temp_s3 * temp_s5 >= 0x200) {
-                                sp2D4 = 0;
+                        case G_IM_SIZ_32b:
+                            gDPLoadTextureBlock(gMainGfxPos[0]++, image, fmt, G_IM_SIZ_32b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                            if (width * height >= 512) {
+                                prevPalette = NULL;
                             }
                             break;
                     }
-                    var_s2 = sp1C8;
+                    prevImage = image;
                 }
-
-                gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, var_s7->unk_48.r, var_s7->unk_48.g, var_s7->unk_48.b, var_s7->unk_48.a);
-                if (var_s7->flags & 0x80) {
-                    gDPSetEnvColor(gMainGfxPos[0]++, var_s7->unk_50.r, var_s7->unk_50.g, var_s7->unk_50.b, var_s7->unk_50.a);
+                gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, pc->primColor.r, pc->primColor.g, pc->primColor.b, pc->primColor.a);
+                if (pc->flags & 0x80) {
+                    gDPSetEnvColor(gMainGfxPos[0]++, pc->envColor.r, pc->envColor.g, pc->envColor.b, pc->envColor.a);
                     gDPSetCombineLERP(gMainGfxPos[0]++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
                                       PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
                                       PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
                                       PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
-                } else if (var_s7->flags & 0x100) {
+                } else if (pc->flags & 0x100) {
                     gDPSetCombineLERP(gMainGfxPos[0]++, NOISE, 0, TEXEL0, 0,
                                       TEXEL0, 0, PRIMITIVE, 0,
                                       NOISE, 0, TEXEL0, 0,
@@ -1233,40 +1218,33 @@ void fx_draw(GObj* camObj) {
                 } else {
                     gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
                 }
-
-                if (var_s7->flags & 0x400) {
-                    var_a1_2 = 3;
+                if (pc->flags & 0x400) {
+                    alphaCompare = G_AC_DITHER;
                 } else {
-                    var_a1_2 = 1;
-                    if (var_s7->flags & 0x200) {
-                        var_a0 = var_s7->unk_50.a;
+                    alphaCompare = G_AC_THRESHOLD;
+                    if (pc->flags & 0x200) {
+                        blendAlpha = pc->envColor.a;
                     } else {
-                        var_a0 = 8;
+                        blendAlpha = 8;
                     }
-                    if (sp2CC != var_a0) {
-                        gDPSetBlendColor(gMainGfxPos[0]++, 0, 0, 0, var_a0);
-                        sp2CC = var_a0;
+                    if (prevBlendAlpha != blendAlpha) {
+                        gDPSetBlendColor(gMainGfxPos[0]++, 0, 0, 0, blendAlpha);
+                        prevBlendAlpha = blendAlpha;
                     }
                 }
-
-                if (sp2D0 != var_a1_2) {
-                    gDPSetAlphaCompare(gMainGfxPos[0]++, var_a1_2);
-                    sp2D0 = var_a1_2;
+                if (prevAlphaCompare != alphaCompare) {
+                    gDPSetAlphaCompare(gMainGfxPos[0]++, alphaCompare);
+                    prevAlphaCompare = alphaCompare;
                 }
-
-                gDPSetPrimDepth(gMainGfxPos[0]++, (s32) ((sp204 + temp_f28 * sp208) * 32.0f), 0);
-                gSPScisTextureRectangle(gMainGfxPos[0]++, (s32) var_f24, (s32) var_f26, (s32) var_f16, (s32) var_f18, G_TX_RENDERTILE, 0, 0, sp200, sp1FC);
+                gDPSetPrimDepth(gMainGfxPos[0]++, (s32) (tz * 32.0f), 0);
+                gSPScisTextureRectangle(gMainGfxPos[0]++, (s32) xl, (s32) yl, (s32) xh, (s32) yh, G_TX_RENDERTILE, 0, 0, dsdx, dtdy);
             }
         }
     }
-
-    if (sp2C8 != 0) {
+    if (tlut != 0) {
         gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
     }
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/effect/fx_draw.s")
-#endif
 
 void fx_addAttachDObj(s32 bankID, DObj* dobj) {
     if (bankID > 0 && bankID <= ARRAY_COUNT(D_800BE208)) {

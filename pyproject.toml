@@ -2,7 +2,7 @@
 name = "pokemonsnap"
 description = "A WIP decomp of Pokemon Snap"
 dynamic = ["version"]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = [
     "argparse>=1.4.0",
     "gitpython>=3.1.59",

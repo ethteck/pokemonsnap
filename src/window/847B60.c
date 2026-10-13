@@ -106,7 +106,75 @@ PhotoData* func_803746B4_847E64(s32 arg0) {
     return &func_8009BC74()[arg0];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/window/847B60/func_80374714_847EC4.s")
+#define AVG_PIXEL(p0, p1, p2, p3) \
+    (((((p0) & 0xF800) + ((p1) & 0xF800) + ((p2) & 0xF800) + ((p3) & 0xF800)) / 4) & 0xF800) | \
+    (((((p0) & 0x7C0) + ((p1) & 0x7C0) + ((p2) & 0x7C0) + ((p3) & 0x7C0)) / 4) & 0x7C0) | \
+    (((((p0) & 0x3E) + ((p1) & 0x3E) + ((p2) & 0x3E) + ((p3) & 0x3E)) / 4) & 0x3E) | 1
+
+bool func_80374714_847EC4(PhotoData* photo, Sprite* sprite) {
+    u16* dst;
+    s32 j;
+    s32 height;
+    Bitmap* bitmap;
+    s32 width;
+    s32 widthImg;
+    s16* src;
+    s32 actualHeight;
+    s32 i;
+    s32 p0, p1, p2, p3;
+    s32 row;
+    struct {
+        s16* buf;
+        s32 stride;
+    }* img;
+
+    if (photo == NULL || (img = (void*) func_80374608_847DB8(sprite->width * 2, sprite->height * 2, photo)) == NULL) {
+        dst = sprite->bitmap->buf;
+        width = sprite->bitmap->width_img * sprite->height;
+        i = 0;
+        if (width > 0) {
+            do {
+                *dst++ = 0;
+                i++;
+            } while (i < width);
+        }
+        osWritebackDCache(sprite->bitmap->buf, sprite->bitmap->width_img * sprite->height);
+        return true;
+    }
+
+    width = sprite->width;
+    height = sprite->height;
+    widthImg = sprite->bitmap->width_img;
+    row = 0;
+    actualHeight = sprite->bitmap->actualHeight;
+    bitmap = sprite->bitmap;
+    for (i = 0; i < height; i++) {
+        dst = (u16*) bitmap->buf + row * widthImg;
+        src = img->buf + i * img->stride * 2;
+        j = 0;
+        if (width > 0) do {
+            p0 = src[0];
+            p1 = src[1];
+            p2 = src[img->stride];
+            p3 = src[img->stride + 1];
+            if (row & 1) {
+                *(u16*) ((u32) dst ^ 4) = AVG_PIXEL(p0, p1, p2, p3);
+            } else {
+                *dst = AVG_PIXEL(p0, p1, p2, p3);
+            }
+            src += 2;
+            dst++;
+            j++;
+        } while (j < width);
+        row++;
+        if (row >= actualHeight) {
+            row = 0;
+            bitmap++;
+        }
+    }
+    osWritebackDCache(sprite->bitmap->buf, sprite->bitmap->width_img * sprite->height);
+    return false;
+}
 
 void func_80374D20_8484D0(void) {
     func_8009FBC4();

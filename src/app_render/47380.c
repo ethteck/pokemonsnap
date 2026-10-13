@@ -1342,8 +1342,270 @@ void func_8009E1CC(PhotoData* photoData) {
     }
 }
 
-void func_8009E3D0(GObj*);
-#pragma GLOBAL_ASM("asm/nonmatchings/app_render/47380/func_8009E3D0.s")
+void func_8009E3D0(GObj* gobj) {
+    EffectPhotoData* fx;
+    u8* lastPalette;
+    u32 lastAlphaCompare;
+    s32 lastBlendAlpha;
+    s32 lastTextureLUT;
+    Mtx4f viewMtx;
+    Mtx4f projMtx;
+    EffectSprites* sprites;
+    OMCamera* cam;
+    u8* lastTexture;
+    f32 z;
+    f32 y;
+    u8** pal;
+    f32 w;
+    f32 invW;
+    f32 sx;
+    f32 scaleX;
+    f32 scaleY;
+    f32 vscaleX;
+    f32 vtransX;
+    f32 vscaleY;
+    f32 vtransY;
+    f32 vscaleZ;
+    f32 vtransZ;
+    s32 dsdx;
+    s32 dtdy;
+    f32 sy;
+    f32 sz;
+    f32 left;
+    f32 right;
+    f32 top;
+    f32 bottom;
+    s32 i;
+    s32 fmt;
+    s32 siz;
+    s32 width;
+    s32 height;
+    s32 cms;
+    s32 cmt;
+    u8* palette;
+    u8 masks;
+    u8 maskt;
+    u32 alphaCompare;
+    u16 flags;
+    u8* texture;
+
+    fx = gobj->userData;
+    cam = omCurrentCamera->data.cam;
+
+    gDPPipeSync(gMainGfxPos[0]++);
+    gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
+    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2);
+    gDPSetColorDither(gMainGfxPos[0]++, G_CD_MAGICSQ);
+    gDPSetAlphaDither(gMainGfxPos[0]++, G_AD_PATTERN);
+    gDPSetEnvColor(gMainGfxPos[0]++, D_800BDF2C.r, D_800BDF2C.g, D_800BDF2C.b, D_800BDF2C.a);
+    gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_PERSP);
+    gDPSetDepthSource(gMainGfxPos[0]++, G_ZS_PIXEL);
+    gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
+    gtlCombineAllDLists();
+
+    hal_look_at_f(viewMtx, cam->viewMtx.lookAt.eye.x, cam->viewMtx.lookAt.eye.y, cam->viewMtx.lookAt.eye.z,
+                  cam->viewMtx.lookAt.at.x, cam->viewMtx.lookAt.at.y, cam->viewMtx.lookAt.at.z,
+                  cam->viewMtx.lookAt.up.x, cam->viewMtx.lookAt.up.y, cam->viewMtx.lookAt.up.z);
+    hal_perspective_fast_f(projMtx, NULL, cam->perspMtx.persp.fovy, cam->perspMtx.persp.aspect,
+                           cam->perspMtx.persp.near, cam->perspMtx.persp.far, cam->perspMtx.persp.scale);
+    guMtxCatF(viewMtx, projMtx, projMtx);
+
+    vscaleX = cam->vp.vp.vscale[0];
+    vscaleY = -cam->vp.vp.vscale[1];
+    vscaleZ = cam->vp.vp.vscale[2];
+    vtransX = cam->vp.vp.vtrans[0];
+    vtransY = cam->vp.vp.vtrans[1];
+    vtransZ = cam->vp.vp.vtrans[2];
+
+    scaleX = sqrtf(SQ(projMtx[0][0]) + SQ(projMtx[1][0]) + SQ(projMtx[2][0]));
+    scaleY = sqrtf(SQ(projMtx[0][1]) + SQ(projMtx[1][1]) + SQ(projMtx[2][1]));
+
+    lastTexture = NULL;
+    gDPPipeSync(gMainGfxPos[0]++);
+    gDPSetCycleType(gMainGfxPos[0]++, G_CYC_1CYCLE);
+    gDPSetRenderMode(gMainGfxPos[0]++, G_RM_AA_ZB_XLU_SURF, G_RM_NOOP2);
+    gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_NONE);
+    gDPSetDepthSource(gMainGfxPos[0]++, G_ZS_PRIM);
+    gDPSetColorDither(gMainGfxPos[0]++, G_CD_MAGICSQ);
+    gDPSetAlphaDither(gMainGfxPos[0]++, G_AD_PATTERN);
+    gDPSetEnvColor(gMainGfxPos[0]++, D_800BDF2C.r, D_800BDF2C.g, D_800BDF2C.b, D_800BDF2C.a);
+
+    lastPalette = NULL;
+    lastAlphaCompare = -1;
+    lastBlendAlpha = -1;
+    lastTextureLUT = -1;
+
+    for (i = 0; i < 32; i++) {
+        if (fx[i].textureID < 0) {
+            continue;
+        }
+        left = fx[i].posX * 0.125f;
+        top = fx[i].posY * 0.125f;
+        z = fx[i].posZ * 0.125f;
+        sx = projMtx[0][0] * left + projMtx[1][0] * top + projMtx[2][0] * z + projMtx[3][0];
+        sy = projMtx[0][1] * left + projMtx[1][1] * top + projMtx[2][1] * z + projMtx[3][1];
+        sz = projMtx[0][2] * left + projMtx[1][2] * top + projMtx[2][2] * z + projMtx[3][2];
+        invW = projMtx[0][3] * left + projMtx[1][3] * top + projMtx[2][3] * z + projMtx[3][3];
+        if (invW == 0.0f) {
+            continue;
+        }
+        invW = 1.0f / invW;
+        sx *= invW;
+        sy *= invW;
+        sz *= invW;
+        if (sx < -1.0f || sx > 1.0f || sy < -1.0f || sy > 1.0f || sz < -1.0f || sz > 1.0f) {
+            continue;
+        }
+
+        invW *= (fx[i].size / 128.0f);
+        right = invW * scaleX + sx;
+        bottom = invW * scaleY + sy;
+        sx = sx * vscaleX + vtransX;
+        right = right * vscaleX + vtransX;
+        if (sx < right) {
+            left = sx - (right - sx);
+        } else {
+            left = right;
+            right = sx - (right - sx);
+        }
+        sy = sy * vscaleY + vtransY;
+        bottom = bottom * vscaleY + vtransY;
+        if (sy < bottom) {
+            top = sy - (bottom - sy);
+        } else {
+            top = bottom;
+            bottom = sy - (bottom - sy);
+        }
+
+        sz = sz * vscaleZ + vtransZ;
+        flags = fx[i].unk_03 << 4;
+        fmt = fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->fmt;
+        siz = fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->siz;
+        width = fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->width;
+        height = fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->height;
+        texture = fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->data[fx[i].dataID];
+        if (fmt == G_IM_FMT_CI) {
+            pal = &fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->data[fx_SpriteBanks[fx[i].bankID][fx[i].textureID]->numFrames];
+            if (!(flags & 0x10)) {
+                palette = pal[fx[i].dataID];
+            } else {
+                palette = pal[0];
+            }
+        }
+
+        dsdx = (width * 4096.0f) / (right - left);
+        dtdy = (height * 4096.0f) / (bottom - top);
+
+        if (flags & 0x20) {
+            dsdx *= 2;
+            cms = G_TX_MIRROR;
+            switch (width) {
+                case 2: masks = 1; break;
+                case 4: masks = 2; break;
+                case 8: masks = 3; break;
+                case 16: masks = 4; break;
+                case 32: masks = 5; break;
+                case 64: masks = 6; break;
+                case 128: masks = 7; break;
+                case 256: masks = 8; break;
+                default: masks = 0; break;
+            }
+        } else {
+            cms = G_TX_CLAMP;
+            masks = 0;
+        }
+
+        if (flags & 0x40) {
+            dtdy *= 2;
+            cmt = G_TX_MIRROR;
+            switch (height) {
+                case 2: maskt = 1; break;
+                case 4: maskt = 2; break;
+                case 8: maskt = 3; break;
+                case 16: maskt = 4; break;
+                case 32: maskt = 5; break;
+                case 64: maskt = 6; break;
+                case 128: maskt = 7; break;
+                case 256: maskt = 8; break;
+                default: maskt = 0; break;
+            }
+        } else {
+            cmt = G_TX_CLAMP;
+            maskt = 0;
+        }
+
+        if (fmt == G_IM_FMT_CI) {
+            if (palette != lastPalette) {
+                gDPLoadTLUT_pal256(gMainGfxPos[0]++, palette);
+                lastPalette = palette;
+            }
+            if (lastTextureLUT != G_TT_RGBA16) {
+                gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_RGBA16);
+                lastTextureLUT = G_TT_RGBA16;
+            }
+        } else if (lastTextureLUT != G_TT_NONE) {
+            gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
+            lastTextureLUT = G_TT_NONE;
+        }
+
+        if (texture != lastTexture) {
+            switch (siz) {
+                case G_IM_SIZ_4b:
+                    gDPLoadTextureBlock_4b(gMainGfxPos[0]++, texture, fmt, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                    break;
+                case G_IM_SIZ_8b:
+                    gDPLoadTextureBlock(gMainGfxPos[0]++, texture, fmt, G_IM_SIZ_8b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                    break;
+                case G_IM_SIZ_16b:
+                    gDPLoadTextureBlock(gMainGfxPos[0]++, texture, fmt, G_IM_SIZ_16b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                    break;
+                case G_IM_SIZ_32b:
+                    gDPLoadTextureBlock(gMainGfxPos[0]++, texture, fmt, G_IM_SIZ_32b, width, height, 0, cms, cmt, masks, maskt, G_TX_NOLOD, G_TX_NOLOD);
+                    break;
+            }
+            lastTexture = texture;
+        }
+
+        gDPSetPrimColor(gMainGfxPos[0]++, 0, 0, fx[i].primColor.r, fx[i].primColor.g, fx[i].primColor.b, fx[i].primColor.a);
+        if (flags & 0x80) {
+            gDPSetCombineLERP(gMainGfxPos[0]++, PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
+                              PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
+                              PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT,
+                              PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT);
+        } else if (flags & 0x100) {
+            gDPSetCombineLERP(gMainGfxPos[0]++, NOISE, 0, TEXEL0, 0,
+                              TEXEL0, 0, PRIMITIVE, 0,
+                              NOISE, 0, TEXEL0, 0,
+                              TEXEL0, 0, PRIMITIVE, 0);
+        } else {
+            gDPSetCombineMode(gMainGfxPos[0]++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
+        }
+
+        if (flags & 0x400) {
+            alphaCompare = G_AC_DITHER;
+        } else {
+            alphaCompare = G_AC_THRESHOLD;
+            if (lastBlendAlpha != 8) {
+                gDPSetBlendColor(gMainGfxPos[0]++, 0, 0, 0, 8);
+                lastBlendAlpha = 8;
+            }
+        }
+        if (lastAlphaCompare != alphaCompare) {
+            gDPSetAlphaCompare(gMainGfxPos[0]++, alphaCompare);
+            lastAlphaCompare = alphaCompare;
+        }
+
+        gDPSetPrimDepth(gMainGfxPos[0]++, (s32) (sz * 32.0f), 0);
+        gSPScisTextureRectangle(gMainGfxPos[0]++, (s32) left, (s32) top, (s32) right, (s32) bottom, G_TX_RENDERTILE, 0, 0, dsdx, dtdy);
+    }
+
+    gDPPipeSync(gMainGfxPos[0]++);
+    gDPSetTexturePersp(gMainGfxPos[0]++, G_TP_PERSP);
+    gDPSetDepthSource(gMainGfxPos[0]++, G_ZS_PIXEL);
+    if (lastTextureLUT != G_TT_NONE) {
+        gDPSetTextureLUT(gMainGfxPos[0]++, G_TT_NONE);
+    }
+}
 
 void func_8009FA00(OMCamera* cam, PhotoData* photoData) {
     GObj* gobj;

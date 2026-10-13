@@ -995,7 +995,6 @@ void fx_draw(GObj* camObj) {
             continue;
         }
 
-
         hal_look_at_roll_f(lookAtMtx, D_800BE1F0[i]->viewMtx.lookAtRoll.xEye, D_800BE1F0[i]->viewMtx.lookAtRoll.yEye,
                            D_800BE1F0[i]->viewMtx.lookAtRoll.zEye, D_800BE1F0[i]->viewMtx.lookAtRoll.xAt,
                            D_800BE1F0[i]->viewMtx.lookAtRoll.yAt, D_800BE1F0[i]->viewMtx.lookAtRoll.zAt,
@@ -1094,15 +1093,33 @@ void fx_draw(GObj* camObj) {
                     dsdx *= 2;
                     cms = G_TX_MIRROR;
                     switch (width) {
-                        case 2: masks = 1; break;
-                        case 4: masks = 2; break;
-                        case 8: masks = 3; break;
-                        case 16: masks = 4; break;
-                        case 32: masks = 5; break;
-                        case 64: masks = 6; break;
-                        case 128: masks = 7; break;
-                        case 256: masks = 8; break;
-                        default: masks = 0; break;
+                        case 2:
+                            masks = 1;
+                            break;
+                        case 4:
+                            masks = 2;
+                            break;
+                        case 8:
+                            masks = 3;
+                            break;
+                        case 16:
+                            masks = 4;
+                            break;
+                        case 32:
+                            masks = 5;
+                            break;
+                        case 64:
+                            masks = 6;
+                            break;
+                        case 128:
+                            masks = 7;
+                            break;
+                        case 256:
+                            masks = 8;
+                            break;
+                        default:
+                            masks = 0;
+                            break;
                     }
                 } else {
                     cms = G_TX_CLAMP;
@@ -1112,15 +1129,33 @@ void fx_draw(GObj* camObj) {
                     dtdy *= 2;
                     cmt = G_TX_MIRROR;
                     switch (height) {
-                        case 2: maskt = 1; break;
-                        case 4: maskt = 2; break;
-                        case 8: maskt = 3; break;
-                        case 16: maskt = 4; break;
-                        case 32: maskt = 5; break;
-                        case 64: maskt = 6; break;
-                        case 128: maskt = 7; break;
-                        case 256: maskt = 8; break;
-                        default: maskt = 0; break;
+                        case 2:
+                            maskt = 1;
+                            break;
+                        case 4:
+                            maskt = 2;
+                            break;
+                        case 8:
+                            maskt = 3;
+                            break;
+                        case 16:
+                            maskt = 4;
+                            break;
+                        case 32:
+                            maskt = 5;
+                            break;
+                        case 64:
+                            maskt = 6;
+                            break;
+                        case 128:
+                            maskt = 7;
+                            break;
+                        case 256:
+                            maskt = 8;
+                            break;
+                        default:
+                            maskt = 0;
+                            break;
                     }
                 } else {
                     cmt = G_TX_CLAMP;

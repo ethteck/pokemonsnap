@@ -7,6 +7,8 @@ D_0E000028 = 0x0E000028; // absolute:True type:Gfx
 
 D_80000000 = 0x80000000; // ignore:True size:0x10
 
+entrypoint = 0x80000400;
+
 game_main = 0x80000870;
 
 scMain = 0x80002510;

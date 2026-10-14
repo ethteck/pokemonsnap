@@ -1,6 +1,58 @@
 #include "common.h"
 #include "beach.h"
 
+extern u8 D_801AA9D0_136E60[];
+extern u8 D_801AB610_137AA0[];
+extern u8 D_801AC250_1386E0[];
+extern u8 D_801ACF90_139420[];
+extern u8 D_801AE790_13AC20[];
+extern u8 D_801AF4B0_13B940[];
+extern u8 D_beach_802CD150[];
+extern u8 D_beach_802CD158[];
+void func_beach_802C8DB0(GObj*);
+void func_beach_802C8F48(GObj*);
+void func_beach_802C914C(GObj*);
+extern u8 scyther_model[];
+extern u32 D_beach_802CD160[];
+extern PokemonAnimationSetup D_beach_802CD244;
+
+// .data
+u32 D_beach_802CD160[] = {
+    0x00000000, 0x0000016B,
+};
+
+AnimationHeader D_beach_802CD168 = { 1.0f, 129.0f, (AnimCmd**) &D_801AF4B0_13B940, NULL, (s32*) &D_beach_802CD150 };
+AnimationHeader D_beach_802CD17C = { 1.0f, 108.0f, (AnimCmd**) &D_801AA9D0_136E60, NULL, NULL };
+AnimationHeader D_beach_802CD190 = { 0.65f, 111.0f, (AnimCmd**) &D_801ACF90_139420, NULL, (s32*) &D_beach_802CD158 };
+AnimationHeader D_beach_802CD1A4 = { 1.0f, 108.0f, (AnimCmd**) &D_801AE790_13AC20, NULL, NULL };
+AnimationHeader D_beach_802CD1B8 = { 1.0f, 108.0f, (AnimCmd**) &D_801AC250_1386E0, NULL, (s32*) &D_beach_802CD160 };
+AnimationHeader D_beach_802CD1CC = { 1.0f, 108.0f, (AnimCmd**) &D_801AB610_137AA0, NULL, NULL };
+u32 D_beach_802CD1E0 = 0x00000000;
+
+InteractionHandler D_beach_802CD1E4[3] = {
+    { 9, (GObjFunc) func_beach_802C8F48, 0.0f, NULL },
+    { 10, (GObjFunc) func_beach_802C8F48, 0.0f, NULL },
+    { 58, NULL, 0.0f, NULL },
+};
+
+InteractionHandler D_beach_802CD214[3] = {
+    { 9, NULL, 0.0f, (GObjFunc) func_beach_802C914C },
+    { 13, NULL, 0.0f, (GObjFunc) func_beach_802C914C },
+    { 58, NULL, 0.0f, NULL },
+};
+
+PokemonAnimationSetup D_beach_802CD244 = { (AnimationHeader*) &D_beach_802CD17C, (GObjFunc) func_beach_802C8DB0, 0, "", NULL, NULL };
+PokemonInitData D_beach_802CD258 = { (UnkEC64Arg3*) &scyther_model, NULL, (GObjFunc) renderPokemonModelTypeDFogged, (PokemonAnimationSetup*) &D_beach_802CD244, { 0.9f, 0.9f, 0.9f }, { 0.0f, 60.0f, 0.0f }, 63.0f, 37, 0, 0, 0, "" };
+u32 D_beach_802CD28C = 0x00000000;
+
+u32 D_beach_802CD290[] = {
+    0x00000000, 0x00000079,
+};
+
+u32 D_beach_802CD298[] = {
+    0x000000FC, 0x0000016E,
+};
+
 void func_beach_802C8DB0(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);

@@ -1,6 +1,45 @@
 #include "common.h"
 #include "beach.h"
 
+extern u8 D_800FD080_7A4A0[];
+extern u8 D_beach_802CDA60[];
+extern u8 D_beach_802CDA6C[];
+extern u8 D_beach_802CDA8C[];
+void func_beach_802CAB50(GObj*);
+extern PokemonAnimationSetup D_beach_802CDAD8;
+
+// .data
+u32 D_beach_802CDAB0 = (u32) &D_beach_802CDA60;
+AnimationHeader D_beach_802CDAB4 = { 0.5f, 50.0f, (AnimCmd**) &D_800FD080_7A4A0, NULL, (s32*) &D_beach_802CDA6C };
+
+u32 D_beach_802CDAC8[] = {
+    0x0000003A, 0x00000000, 0x00000000, 0x00000000,
+};
+
+PokemonAnimationSetup D_beach_802CDAD8 = { (AnimationHeader*) &D_beach_802CDA8C, (GObjFunc) func_beach_802CAB50, 0, "", NULL, NULL };
+PokemonInitData D_beach_802CDAEC = { (UnkEC64Arg3*) ((u8*) &D_beach_802CE0DC + 0x81DDC), NULL, (GObjFunc) renderPokemonModelTypeBFogged, (PokemonAnimationSetup*) &D_beach_802CDAD8, { 1.6f, 1.6f, 1.6f }, { 0.0f, -40.0f, -11.0f }, 35.0f, 37, 0, 0, 0, "" };
+u32 D_beach_802CDB20 = 0x0000010A;
+
+u32 D_beach_802CDB24[] = {
+    0x00000108, 0x0000007F, 0x00000168,
+};
+
+u32 D_beach_802CDB30 = 0x00000107;
+
+u32 D_beach_802CDB34[] = {
+    0x00000109, 0x00000173,
+};
+
+u32 D_beach_802CDB3C[] = {
+    0x0000010B, 0x0000010C,
+};
+
+u32 D_beach_802CDB44 = 0x00000162;
+
+u32 D_beach_802CDB48[] = {
+    0x00000000, 0x0000008A,
+};
+
 void func_beach_802CAB50(GObj* obj) {
     UNUSED s32 pad[1];
     DObj* model = obj->data.dobj;

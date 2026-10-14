@@ -1,5 +1,24 @@
 #include "valley.h"
 
+// .rodata unused
+const char D_802ECE00_7C6390[] = "\\BOh! Hi, %s!\nWhat a surprise to see you here!";
+const char D_802ECE30_7C63C0[] = "I suppose you'd like to\nknow why I am here?\nAhh, well...";
+const char D_802ECE6C_7C63FC[] = "I received some interesting\ninformation at\nthe Pokεmon Lab.";
+const char D_802ECEAC_7C643C[] = "It seems that there are six\nPKMN Signs hidden on this\nisland.";
+const char D_802ECEEC_7C647C[] = "They have something to do\nwith important Pokεmon\nthat are here.";
+const char D_802ECF30_7C64C0[] = "The Signs are scenery which\nseem to resemble Pokεmon.";
+const char D_802ECF68_7C64F8[] = "One Sign is a mountain that\nlooks like DUGTRIO. I came\nhere to look for it.";
+const char D_802ECFB4_7C6544[] = "However, I can't go any\ndeeper into the island,\nso I can't find it.";
+const char D_802ECFF8_7C6588[] = "Have you seen a mountain that\nlooks like DUGTRIO?\nOh! I have an idea!";
+const char D_802ED040_7C65D0[] = "If you find this PKMN Sign,\ntake a picture of it like you\nwould a Pokεmon.";
+const char D_802ED08C_7C661C[] = "We might discover clues from\nthe pictures and the places\nwhere you took them.";
+const char D_802ED0DC_7C666C[] = "Shall I repeat this information?\n\\a Yes, please.\n\\b No, thank you.";
+const char D_802ED120_7C66B0[] = "\\QWait...\nI will add a page for PKMN Signs\nin the PKMN Report.";
+const char D_802ED160_7C66F0[] = "See you later!";
+const char D_802ED170_7C6700[] = "There's no one there...";
+const char D_802ED188_7C6718[] = "";
+const char D_802ED18C_7C671C[] = "";
+
 typedef struct SomeS16s {
     s16 data[2];
 } SomeS16s;

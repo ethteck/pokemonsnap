@@ -8,11 +8,34 @@ typedef struct Some14 {
     /* 0x13 */ char unk_13[0x1];
 } Some14;
 
-extern Some14 D_800AEBD0;
-extern s32 D_800AEC08;
-extern s32 D_800AEC0C;
-extern s32 D_800AEC10;
-extern Gfx D_800AEC18[];
+
+extern u8 D_800AEBD8[];
+
+// .data
+Some14 D_800AEBD0 = { { 100, 100, 100, 0, 100, 100, 100, 0, 180, 180, 180, 0, 180, 180, 180, 0 }, 30, 30, 30, "" };
+
+u32 D_800AEBE4_5A594[] = {
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x1E1E1E00, 0x00000000, 0x000005DC,
+    0x000007D0,
+};
+
+s32 D_800AEC08 = 200;
+s32 D_800AEC0C = 200;
+s32 D_800AEC10 = 200;
+u32 D_800AEC14_5A5C4 = 0x00000000;
+
+Gfx D_800AEC18[] = {
+    gsDPPipeSync(),
+    gsSPSetGeometryMode(G_LIGHTING),
+    gsSPNumLights(1),
+    gsSPLight(&D_800AEBD8, 1),
+    gsSPLight(&D_800AEBD0, 2),
+    gsDPSetColorDither(G_CD_MAGICSQ),
+    gsDPSetAlphaDither(G_AD_PATTERN),
+    gsSPEndDisplayList(),
+    gsDPNoOp(),
+};
 
 void func_800A1A50(Gfx** gfx) {
     gSPDisplayList((*gfx)++, D_800AEC18);

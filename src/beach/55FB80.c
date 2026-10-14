@@ -1,6 +1,73 @@
 #include "common.h"
 #include "beach.h"
 
+extern u8 D_801548D0_E0D60[];
+extern u8 D_80156960_E2DF0[];
+extern u8 D_80183D20_1101B0[];
+extern u8 D_80184400_110890[];
+extern u8 butterfree_model[];
+void func_beach_802C7B10(GObj*);
+void func_beach_802C7CF0(GObj*);
+void func_beach_802C7E70(GObj*);
+void func_beach_802C8028(GObj*);
+extern u8 lapras_materials[];
+extern u8 lapras_model[];
+extern u32 D_beach_802CCD20;
+extern PokemonAnimationSetup D_beach_802CCD90;
+extern u32 D_beach_802CCDE0[];
+extern PokemonAnimationSetup D_beach_802CCE3C;
+
+// .data
+u32 D_beach_802CCD20 = 0x000000FD;
+AnimationHeader D_beach_802CCD24 = { 0.3f, 100.0f, (AnimCmd**) &D_801548D0_E0D60, NULL, NULL };
+AnimationHeader D_beach_802CCD38 = { 0.3f, 100.0f, (AnimCmd**) &D_80156960_E2DF0, NULL, (s32*) &D_beach_802CCD20 };
+AnimationHeader D_beach_802CCD4C = { 0.35f, 100.0f, (AnimCmd**) &D_801548D0_E0D60, NULL, NULL };
+
+InteractionHandler D_beach_802CCD60[3] = {
+    { 8, (GObjFunc) func_beach_802C7CF0, 0.0f, NULL },
+    { 12, (GObjFunc) func_beach_802C7CF0, 0.0f, NULL },
+    { 58, NULL, 0.0f, NULL },
+};
+
+PokemonAnimationSetup D_beach_802CCD90 = { (AnimationHeader*) &D_beach_802CCD24, (GObjFunc) func_beach_802C7B10, 0, "", NULL, NULL };
+PokemonInitData D_beach_802CCDA4 = { (UnkEC64Arg3*) &butterfree_model, NULL, (GObjFunc) renderPokemonModelTypeBFogged, (PokemonAnimationSetup*) &D_beach_802CCD90, { 1.6f, 1.6f, 1.6f }, { 0.0f, 0.0f, 0.0f }, 40.0f, 7, 0, 0, 0, "" };
+
+u32 D_beach_802CCDD8[] = {
+    0x00000000, 0x00000000,
+};
+
+u32 D_beach_802CCDE0[] = {
+    0x00000000, 0x0000017F,
+};
+
+AnimationHeader D_beach_802CCDE8 = { 0.5f, 265.0f, (AnimCmd**) &D_80183D20_1101B0, (AnimCmd***) &D_80184400_110890, (s32*) &D_beach_802CCDE0 };
+s32 D_beach_802CCDFC = 0;
+s32 D_beach_802CCE00 = 0;
+s32 D_beach_802CCE04 = 0;
+AnimationHeader D_beach_802CCE08 = { 0.0f, 0.0f, (AnimCmd**) &D_80183D20_1101B0, (AnimCmd***) &D_80184400_110890, NULL };
+
+InteractionHandler D_beach_802CCE1C[2] = {
+    { 24, (GObjFunc) func_beach_802C8028, 0.0f, NULL },
+    { 58, NULL, 0.0f, NULL },
+};
+
+PokemonAnimationSetup D_beach_802CCE3C = { (AnimationHeader*) &D_beach_802CCE08, (GObjFunc) func_beach_802C7E70, 0, "", NULL, NULL };
+PokemonInitData D_beach_802CCE50 = { (UnkEC64Arg3*) &lapras_model, (Texture***) &lapras_materials, (GObjFunc) renderPokemonModelTypeIFogged, (PokemonAnimationSetup*) &D_beach_802CCE3C, { 3.0f, 3.0f, 3.0f }, { 0.0f, -40.0f, -150.0f }, 100.0f, 37, 0, 0, 0, "" };
+
+u32 D_beach_802CCE84[] = {
+    0x00000000, 0x00000000, 0x00000000,
+};
+
+u32 D_beach_802CCE90[] = {
+    0x00000157, 0x0000008F, 0x00000156,
+};
+
+u32 D_beach_802CCE9C = 0x00000158;
+
+u32 D_beach_802CCEA0[] = {
+    0x00000156, 0x00000075, 0x0000008E, 0x0000008F,
+};
+
 void func_beach_802C7B10(GObj* obj) {
     UNUSED s32 pad[2];
     DObj* model = obj->data.dobj;

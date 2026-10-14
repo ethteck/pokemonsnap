@@ -8,6 +8,39 @@ u8 D_credits_801E9C40[0x3000];
 OSMesg D_credits_801ECC40[10];
 OSMesgQueue D_credits_801ECC68;
 
+void func_credits_801DC8C4(void);
+void func_credits_801DC9FC(void*);
+extern u32 D_credits_801DEBC0[];
+extern u32 D_credits_801DEBC8[];
+
+// .data
+ScreenSettings D_credits_801DEBA0 = { (void*) 0x803B5000, (void*) 0x803DA800, NULL, NULL, 320, 240, 0x16A99 };
+u32 D_credits_801DEBBC = 0x00000000;
+
+u32 D_credits_801DEBC0[] = {
+    0x64646400, 0x64646400,
+};
+
+u32 D_credits_801DEBC8[] = {
+    0xB4B4B400, 0xB4B4B400, 0x1E1E1E00, 0x00000000,
+};
+
+Gfx D_credits_801DEBD8[] = {
+    gsDPPipeSync(),
+    gsDPSetCycleType(G_CYC_2CYCLE),
+    gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
+    gsSPFogFactor(256, -512),
+    gsDPSetFogColor(0x00, 0x00, 0x00, 0xFF),
+    gsSPSetGeometryMode(G_FOG),
+    gsSPSetGeometryMode(G_LIGHTING),
+    gsSPNumLights(1),
+    gsSPLight(&D_credits_801DEBC8, 1),
+    gsSPLight(&D_credits_801DEBC0, 2),
+    gsSPEndDisplayList(),
+};
+
+SceneSetup D_credits_801DEC30 = { { 0, (void (*)(void)) omUpdateAll, (void (*)(void)) omDrawAll, (void*) &D_801ED020, 0, 1, 1, 0x8000, 0x2000, 0, 0, 0x1800, 0, 0, (void (*)(Gfx**)) func_800A1A50, (void (*)(void)) contUpdate }, 8, 0x2800, 32, 0, 8, 16, 92, 512, NULL, (void*) func_credits_801DC9FC, 0, 0, 0, 136, 96, 88, 2, 144, (void (*)(void)) func_credits_801DC8C4 };
+
 void func_credits_801DC8A0(Gfx** gfx) {
     gSPDisplayList((*gfx)++, &D_credits_801DEBD8);
 }

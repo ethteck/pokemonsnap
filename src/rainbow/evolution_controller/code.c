@@ -1,10 +1,20 @@
 #include "../rainbow.h"
 
-extern AnimationHeader D_8034B590_82AD00;
-extern PokemonInitData D_8034B5B8_82AD28;
-extern PokemonDef D_8034B5EC_82AD5C;
 
 void func_80349F88_8296F8(GObj*);
+
+extern u8 D_800F5490_72C40[];
+extern u8 evolution_controller_matanim[];
+extern u8 evolution_controller_materials[];
+extern u8 evolution_controller_modelanim[];
+void func_80349F00_829670(GObj*);
+extern PokemonAnimationSetup D_8034B5A4_82AD14;
+
+// .data
+AnimationHeader D_8034B590_82AD00 = { 0.5f, 60.0f, (AnimCmd**) &evolution_controller_modelanim, (AnimCmd***) &evolution_controller_matanim, NULL };
+PokemonAnimationSetup D_8034B5A4_82AD14 = { (AnimationHeader*) &D_8034B590_82AD00, (GObjFunc) func_80349F00_829670, 0, "", NULL, NULL };
+PokemonInitData D_8034B5B8_82AD28 = { (UnkEC64Arg3*) &D_800F5490_72C40, (Texture***) &evolution_controller_materials, (GObjFunc) renderPokemonModelTypeDFogged, (PokemonAnimationSetup*) &D_8034B5A4_82AD14, { 10.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, 0.0f, 0, 0, 0, 0, "" };
+PokemonDef D_8034B5EC_82AD5C = { 0x3EA, (pokemonInit) func_8034A064_8297D4, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne };
 
 POKEMON_FUNC(func_80349F00_829670)
     cmdSendCommand(gObjPlayer, PLAYER_CMD_SHAKE_CAMERA, obj);

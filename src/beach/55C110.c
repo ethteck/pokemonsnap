@@ -7,6 +7,79 @@
 #include "app_render/app_render.h"
 #include "app_render/effect.h"
 
+void beachSpawnMagikarpAtGObj(GObj*);
+extern u8 butterfree_hd_vtx[];
+void func_8035E0D4_4FE4E4();
+void func_beach_802C45C0(void);
+void func_beach_802C4738(s32);
+void func_beach_802C5C28();
+void func_beach_802C71E8();
+void func_beach_802C7270();
+void func_beach_802C7AD0();
+void func_beach_802C7E38();
+void func_beach_802C8274();
+void func_beach_802C8570();
+void func_beach_802C8D3C();
+void func_beach_802C91CC();
+void func_beach_802C9A7C();
+void func_beach_802CA05C();
+void func_beach_802CA2BC();
+void func_beach_802CA418();
+void func_beach_802CAB14();
+void func_beach_802CAC48();
+void func_beach_802CBCA8();
+
+// .data
+EnvSoundData D_beach_802CBE10 = { 253, 1, 7 };
+
+u32 D_beach_802CBE14[] = {
+    0x01560108, 0x01570108, 0x01580108, 0x00750008,
+    0x008E0008, 0x008F0006, 0x00FE0108, 0x00FF0108,
+    0x006E0008, 0x0104010A, 0x0105010A, 0x0106010A,
+    0x0069000A, 0x0068000A, 0x0125010A, 0x0126010A,
+    0x0127010A, 0x0163010A, 0x0128010A, 0x0129010A,
+    0x007D0007, 0x00D20108, 0x00D30108, 0x01780008,
+    0x00720008, 0x017F0228, 0x00FB010A, 0x00FC010A,
+    0x016E000A, 0x0079000A, 0x007A000A, 0x012A0109,
+    0x012B0109, 0x012C0109, 0x012D0109, 0x012E0109,
+    0x01070108, 0x0108010A, 0x01090108, 0x010A0108,
+    0x010B0208, 0x010C0208, 0x01730008, 0x007F000A,
+    0x0168000A, 0x01000108, 0x01010107, 0x007C0007,
+    0x0034010F, 0x0130010A, 0x016B000A, 0x0184000A,
+};
+
+PokemonDef beachPokemonData[17] = {
+    { 12, (pokemonInit) func_beach_802C7E38, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 84, (pokemonInit) func_beach_802C8570, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 133, (pokemonInit) func_beach_802C7AD0, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) Pokemon_ChangeBlockAndRemove, NULL },
+    { 115, (pokemonInit) func_beach_802CA05C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
+    { 143, (pokemonInit) func_beach_802C5C28, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
+    { 131, (pokemonInit) func_beach_802C8274, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 113, (pokemonInit) func_beach_802C9A7C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
+    { 52, (pokemonInit) func_beach_802C7270, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) func_beach_802C71E8, (void (*)(GObj*)) pokemonRemoveOne },
+    { 16, (pokemonInit) func_beach_802C8D3C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 123, (pokemonInit) func_beach_802C91CC, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 129, (pokemonInit) func_beach_802CAC48, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
+    { 25, (pokemonInit) func_beach_802CBCA8, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
+    { 0x3EB, (pokemonInit) func_8035E0D4_4FE4E4, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 0x3EC, (pokemonInit) func_beach_802CA418, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 0x3ED, (pokemonInit) func_beach_802CA2BC, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 0x3E9, (pokemonInit) func_beach_802CAB14, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
+    { 0, NULL, NULL, NULL },
+};
+
+PokemonDef D_beach_802CBFF4 = { 129, (pokemonInit) func_beach_802CAC48, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne };
+
+RandomState2 D_beach_802CC004[2] = {
+    { 3, (GObjFunc) beachSpawnMagikarpAtGObj },
+    { 7, NULL },
+};
+
+u16 D_beach_802CC014 = 0;
+s32 D_beach_802CC018 = 0;
+ScreenSettings D_beach_802CC01C = { (void*) 0x803B5000, (void*) 0x803DA800, NULL, NULL, 320, 240, 0xA99 };
+SceneSetup D_beach_802CC038 = { { 0, (void (*)(void)) omUpdateAll, (void (*)(void)) omDrawAll, (void*) &butterfree_hd_vtx, 0, 1, 2, 0x5000, 0xC00, 0x400, 0, 0xC800, 2, 0x4000, (void (*)(Gfx**)) func_800A1A50, (void (*)(void)) contUpdate }, 0, 0x440, 0, 0, 0, 0, 92, 0, NULL, (void*) func_beach_802C4738, 0, 0, 0, 136, 0, 88, 0, 144, (void (*)(void)) func_beach_802C45C0 };
+
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     DObj* a0;
     Mtx3Float* position;

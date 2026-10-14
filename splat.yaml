@@ -240,10 +240,10 @@ segments:
     - [0x3E460, c, ../ultralib/src/io/spsetpc]
     - [0x3E4A0, hasm, ../ultralib/src/os/setwatchlo]
 
-    - [0x3E4B0, textbin, rsp/rspboot]
-    - [0x3E580, textbin, rsp/aspMain]
-    - [0x3F3A0, textbin, rsp/gspF3DEX2H.NoN.fifo]
-    - [0x40730, textbin, rsp/gspL3DEX2H.fifo]
+    - { start: 0x3E4B0, type: textbin, name: rsp/rspboot, use_src_path: True }
+    - { start: 0x3E580, type: textbin, name: rsp/aspMain, use_src_path: True }
+    - { start: 0x3F3A0, type: textbin, name: rsp/gspF3DEX2H.NoN.fifo, use_src_path: True }
+    - { start: 0x40730, type: textbin, name: rsp/gspL3DEX2H.fifo, use_src_path: True }
 
     - [0x418C0, .data, sys/main]
     - [0x418F0, .data, sys/gtl]
@@ -317,9 +317,9 @@ segments:
     - [0x45730, .rodata, ../ultralib/src/libc/xldtob]
     - [0x45790, .rodata, ../ultralib/src/libc/llcvt]
 
-    - { start: 0x457A0, type: databin, name: rsp/aspMain,             linker_section_order: .rodata }
-    - { start: 0x45A60, type: databin, name: rsp/gspF3DEX2H.NoN.fifo, linker_section_order: .rodata }
-    - { start: 0x45E80, type: databin, name: rsp/gspL3DEX2H.fifo,     linker_section_order: .rodata }
+    - { start: 0x457A0, type: databin, name: rsp/aspMain,             linker_section_order: .rodata, use_src_path: True }
+    - { start: 0x45A60, type: databin, name: rsp/gspF3DEX2H.NoN.fifo, linker_section_order: .rodata, use_src_path: True }
+    - { start: 0x45E80, type: databin, name: rsp/gspL3DEX2H.fifo,     linker_section_order: .rodata, use_src_path: True }
 
     - { start: auto, name: sys/main, type: .bss, vram: 0x80045670 }
     - { start: auto, name: sys/sched, type: .bss, vram: 0x80048730 }

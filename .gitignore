@@ -30,3 +30,6 @@ venv/
 
 /report.json
 /*_report.zip
+
+# Authored existing-slot audio overrides; generated sources remain in build/assets.
+/src/audio/instruments/

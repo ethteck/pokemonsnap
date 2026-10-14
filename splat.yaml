@@ -136,6 +136,7 @@ segments:
     - [0x35930, c, ../ultralib/src/os/virtualtophysical]
     - [0x359B0, hasm, ../ultralib/src/os/writebackdcache]
     - [0x35A30, c, ../ultralib/src/os/initialize]
+    - [0x35D90, c, ../ultralib/src/debug/kdebugserver] # only __osThreadSave in final rom
     - [0x35D90, c, ../ultralib/src/io/pirawread]
     - [0x35DF0, hasm, ../ultralib/src/os/parameters]
     - [0x35E50, hasm, ../ultralib/src/os/setsr]
@@ -333,14 +334,14 @@ segments:
     - { start: auto, name: sys/render, type: .bss, vram: 0x8004AF20 }
     - { start: auto, name: sys/audio, type: .bss, vram: 0x8004B250 }
     - { start: auto, name: sys/error, type: .bss, vram: 0x80096980 }
-    - { name: sprite, type: bss, vram: 0x80097D40} # ../ultralib/src/sp/sprite, type: .bss, vram: 0x80097D40 }
+    - { start: auto, name: 26D80, type: .bss, vram: 0x80097D40 } # ../ultralib/src/sp/sprite
     - { start: auto, name: ../ultralib/src/io/sptask, type: .bss, vram: 0x80097D50 }
     - { start: auto, name: ../ultralib/src/io/motor, type: .bss, vram: 0x80097D90 }
     - { start: auto, name: ../ultralib/src/io/siacs, type: .bss, vram: 0x80097E90 }
     - { start: auto, name: ../ultralib/src/io/controller, type: .bss, vram: 0x80097EB0 }
     - { start: auto, name: ../ultralib/src/os/initialize, type: .bss, vram: 0x80097F40 }
     - { start: auto, name: ../ultralib/src/io/gbpakinit, type: .bss, vram: 0x80097F50 }
-    - { name: __osThreadSave, type: bss, vram: 0x80097F90 } # todo
+    - { start: auto, name: ../ultralib/src/debug/kdebugserver, type: .bss, vram: 0x80097F90 }
     - { start: auto, name: ../ultralib/src/io/pimgr, type: .bss, vram: 0x80098140 }
     - { start: auto, name: ../ultralib/src/os/seteventmesg, type: .bss, vram: 0x80099420 }
     - { start: auto, name: ../ultralib/src/os/timerintr, type: .bss, vram: 0x800994C0 }
@@ -787,7 +788,7 @@ segments:
     - [0x12A980, bin, pidgey/textures]
     - [0x135310, bin, scyther/textures]
 
-    - { name: bss_801B02F0, type: bss, vram: 0x801B02F0 }
+    - { start: auto, name: A74E0, type: .bss, vram: 0x801B02F0 }
 
   - type: code
     name: beach_extra
@@ -1634,7 +1635,7 @@ segments:
 
     - [0x1C8AC0, bin, zapdos/textures]
 
-    - { name: bss_8018BC30, type: bss, vram: 0x8018BC30 }
+    - { start: auto, name: world/world, type: .bss, vram: 0x8018BC30 }
   - type: code
     name: tunnel_extra
     dir: tunnel
@@ -1972,7 +1973,7 @@ segments:
     - [0x26C260, bin, victreebel/textures]
     - [0x271460, bin, weepinbell/textures]
 
-    - { name: bss_801AEDD0, type: bss, vram: 0x801AEDD0 }
+    - { start: auto, name: 1F5E70, type: .bss, vram: 0x801AEDD0 }
 
   - type: code
     name: cave_extra
@@ -2283,7 +2284,7 @@ segments:
     - [0x2F5A30, bin, slowpoke/textures]
     - [0x301E50, bin, slowbro/textures]
 
-    - { name: bss_8019AEC0, type: bss, vram: 0x8019AEC0 }
+    - { start: auto, name: 29A190, type: .bss, vram: 0x8019AEC0 }
 
   - type: code
     name: river_extra
@@ -4875,7 +4876,7 @@ segments:
     - [0x46B500, bin, goldeen/textures]
     - [0x471E90, bin, squirtle/textures]
 
-    - { name: bss_80186AF0, type: bss, vram: 0x80186AF0 }
+    - { start: auto, name: 3F63D0, type: .bss, vram: 0x80186AF0 }
 
   - type: code
     name: valley_extra
@@ -5227,7 +5228,7 @@ segments:
     - [0x4A8170, bin] # , data]
     - [0x4D8CE0, bin, mew/textures]
 
-    - { name: bss_80139C30, type: bss, vram: 0x80139C30 }
+    - { start: auto, name: 4A8160, type: .bss, vram: 0x80139C30 }
 
   - type: code
     name: rainbow_extra
@@ -10307,7 +10308,7 @@ segments:
     - [0xA084B0, c]
     - [0xA08D10, .data, A084B0]
     - [0xA08DD0, .rodata, A084B0]
-    - { name: A084B0, type: bss, vram: 0x801DD240 }
+    - { name: A084B0, type: .bss, vram: 0x801DD240 }
   - name: main_menu
     dir: main_menu
     type: code
@@ -10369,7 +10370,9 @@ segments:
     - { start: 0xA93390, type: data, name: sprite_cursor, linker_section_order: .rodata }
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
-    - { name: sprite_bss, type: bss, vram: 0x80168150 }
+    - { name: sprite_background, type: bss, vram: 0x80168150 }
+    - { name: sprite_card, type: bss, vram: 0x80169110 }
+    - { name: sprite_cursor, type: bss, vram: 0x80169EF0 }
 
   - name: credits
     dir: credits

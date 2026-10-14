@@ -7977,3 +7977,6 @@ D_8034E0A8_827638 = 0x8034E0A8; // segment:valley_code
 D_8034E0AC_82763C = 0x8034E0AC; // segment:valley_code
 D_8034E0B0_827640 = 0x8034E0B0; // segment:valley_code
 D_8034E0B1_827641 = 0x8034E0B1; // segment:valley_code
+D_80168150_A93460 = 0x80168150; // segment:menu_new_game
+D_80169110_A94420 = 0x80169110; // segment:menu_new_game
+D_80169EF0_A95200 = 0x80169EF0; // segment:menu_new_game

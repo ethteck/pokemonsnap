@@ -1,0 +1,11 @@
+/* ROM 4E8150, VRAM 80135D80: complete native animation command stream. */
+struct bank_4A8170_Animation80135D80 D_80135D80_4E8150 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 20.44011116027832f, -7.219987869262695f, 14.37197208404541f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 40, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 20, { 0.0f, -0.023749997839331627f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 20, { -0.949999988079071f, -0.01115293987095356f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 31, { -0.5687999725341797f, 0.027503907680511475f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 29, { 0.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

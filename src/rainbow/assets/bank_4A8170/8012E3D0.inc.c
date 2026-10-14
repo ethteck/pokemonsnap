@@ -1,0 +1,11 @@
+/* ROM 4E07A0, VRAM 8012E3D0: complete native animation command stream. */
+struct bank_4A8170_Animation8012E3D0 D_8012E3D0_4E07A0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.10000038146972656f, -0.10000038146972656f, 76.61812591552734f, -6.263250827789307f, 7.516917705535889f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012E3D0_4E07A0 },
+};

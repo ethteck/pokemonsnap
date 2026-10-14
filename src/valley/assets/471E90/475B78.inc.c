@@ -1,0 +1,20 @@
+/* ROM 475B78, VRAM 8017F738: struct ValleyAnimation8017F738. */
+struct ValleyAnimation8017F738 D_8017F738_475B78 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 0, { -82.5f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY) << 15) | 49, { -82.5f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 43 },
+    { (ANIM_CMD_16 << 25) | ((0x1) << 15) | 6 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 2, { -50.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 2, { -82.5f, -1.5f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 2, { -85.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 1, { -82.5f, 2.8333332538604736f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 1, { -65.0f, 16.25001335144043f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 1, { -50.0f, 15.0f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((POSY) << 15) | 0, { 133.3333282470703f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 5, { 300.0f, 16.66666603088379f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 5, { 300.0f, -16.66666603088379f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 5, { 0.0f, -100.0f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((POSY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 7, { 0.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

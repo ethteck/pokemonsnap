@@ -1,0 +1,6 @@
+/* ROM 2BCECC, VRAM 8014CDFC: complete native animation command stream. */
+struct river_29A1A0_Animation8014CDFC D_8014CDFC_2BCECC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.0561028718948364f, 0.1698751300573349f, -1.3376597166061401f, -1.2296676635742188f, -14.02425765991211f, -0.3201484680175781f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 450 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

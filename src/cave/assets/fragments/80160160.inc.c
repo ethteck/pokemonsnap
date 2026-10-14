@@ -1,0 +1,20 @@
+/* ROM 22BF10, VRAM 80160160: native model/material animation table. */
+AnimCmd* D_80160160_22BF10[17] = {
+    (AnimCmd*) &D_801601A4_22BF54,
+    (AnimCmd*) &D_801601B4_22BF64,
+    (AnimCmd*) &D_80160254_22C004,
+    (AnimCmd*) &D_801602F0_22C0A0,
+    (AnimCmd*) &D_80160354_22C104,
+    (AnimCmd*) &D_80160428_22C1D8,
+    (AnimCmd*) &D_801604E0_22C290,
+    (AnimCmd*) &D_8016059C_22C34C,
+    (AnimCmd*) &D_80160658_22C408,
+    (AnimCmd*) &D_801606EC_22C49C,
+    (AnimCmd*) &D_80160780_22C530,
+    (AnimCmd*) &D_80160808_22C5B8,
+    (AnimCmd*) &D_8016089C_22C64C,
+    (AnimCmd*) &D_80160930_22C6E0,
+    (AnimCmd*) &D_801609C4_22C774,
+    (AnimCmd*) &D_80160A54_22C804,
+    (AnimCmd*) &D_80160B00_22C8B0,
+};

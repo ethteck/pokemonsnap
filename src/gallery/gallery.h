@@ -52,10 +52,9 @@ void func_801E1384_9FF044(void);
 s32 func_801E1504_9FF1C4(s32);
 
 // DATA
-extern Gfx D_801E1620_9FF2E0[];
+extern Gfx D_801E1620_9FF2E0[14];
 extern ScreenSettings D_801E1690_9FF350;
 extern SceneSetup D_801E16AC_9FF36C;
-extern s32 D_801E16BC_9FF37C;
 extern Sprite D_801E80E8_A05DA8;
 extern Sprite D_801E82A0_A05F60;
 extern Sprite D_801E83D0_A06090;
@@ -68,8 +67,8 @@ extern s32 D_801EA1F4_A07EB4;
 extern s32 D_801EA1F8_A07EB8;
 extern s32 D_801EA200_A07EC0;
 extern s32 D_801EA204_A07EC4;
-extern UIButton D_801EA210_A07ED0[];
-extern UIButton D_801EA248_A07F08[];
+extern UIButton D_801EA210_A07ED0[7];
+extern UIButton D_801EA248_A07F08[8];
 extern s32 D_801EA288_A07F48;
 extern s32 D_801EA28C_A07F4C;
 extern s32 D_801EA290_A07F50;

@@ -1,0 +1,20 @@
+/* ROM 275FD0, VRAM 801AA220: native model/material animation table. */
+AnimCmd* D_801AA220_275FD0[17] = {
+    (AnimCmd*) &D_801AA264_276014,
+    (AnimCmd*) &D_801AA27C_27602C,
+    (AnimCmd*) &D_801AA440_2761F0,
+    (AnimCmd*) &D_801AA490_276240,
+    (AnimCmd*) &D_801AA558_276308,
+    (AnimCmd*) &D_801AA698_276448,
+    (AnimCmd*) &D_801AA724_2764D4,
+    (AnimCmd*) &D_801AA754_276504,
+    (AnimCmd*) &D_801AA828_2765D8,
+    (AnimCmd*) &D_801AA858_276608,
+    (AnimCmd*) &D_801AA92C_2766DC,
+    (AnimCmd*) &D_801AAB00_2768B0,
+    (AnimCmd*) &D_801AAC88_276A38,
+    (AnimCmd*) &D_801AAE68_276C18,
+    (AnimCmd*) &D_801AAFF0_276DA0,
+    (AnimCmd*) &D_801AB068_276E18,
+    (AnimCmd*) &D_801AB118_276EC8,
+};

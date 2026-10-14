@@ -1,0 +1,10 @@
+/* ROM 213284, VRAM 801474D4: native InterpData path descriptor. */
+InterpData D_801474D4_213284 = {
+    HAL_INTERP_CATROM,
+    2,
+    0.5f,
+    D_80147488_213238,
+    1.2999989986419678f,
+    D_801474B8_213268,
+    D_801474C0_213270,
+};

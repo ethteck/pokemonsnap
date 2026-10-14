@@ -1,0 +1,6 @@
+/* ROM 0x86F3C; native animation_stream. */
+struct PokemonCommonAnimationPikachu80109B1C D_80109B1C_86F3C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { -1.0236093997955322f, -2.9404544830322266f, 3.7012295722961426f, 83.09136962890625f, 32.75156021118164f, 43.98924255371094f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 12 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80109B1C_86F3C },
+};

@@ -2,28 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-extern AnimationHeader D_802E46D0_6CC4B0;
-extern AnimationHeader D_802E46E4_6CC4C4;
-extern AnimationHeader D_802E46F8_6CC4D8;
-extern AnimationHeader D_802E470C_6CC4EC;
-extern AnimationHeader D_802E4720_6CC500;
-extern AnimationHeader D_802E4734_6CC514;
-extern AnimationHeader D_802E4748_6CC528;
-extern AnimationHeader D_802E475C_6CC53C;
-extern AnimationHeader D_802E4770_6CC550;
-extern AnimationHeader D_802E4784_6CC564;
-extern InteractionHandler D_802E4838_6CC618[];
-extern InteractionHandler D_802E48B8_6CC698[];
-extern InteractionHandler D_802E4908_6CC6E8[];
-extern InteractionHandler D_802E4938_6CC718[];
-extern InteractionHandler D_802E49A0_6CC780[];
-extern InteractionHandler D_802E49E0_6CC7C0[];
-extern InteractionHandler D_802E4A10_6CC7F0[];
-extern InteractionHandler2 D_802E4A40_6CC820;
-extern RandomState D_802E4978_6CC758[];
-extern f32 D_802E4A60_6CC840;
-extern PokemonInitData D_802E4AA8_6CC888;
+#include "assets/6CA400/declarations.h"
 
 void func_802E0A48_6C8828(GObj*);
 void func_802E0C3C_6C8A1C(GObj*);

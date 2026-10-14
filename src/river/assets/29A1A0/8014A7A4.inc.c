@@ -1,0 +1,10 @@
+/* ROM 2BA874, VRAM 8014A7A4: complete native animation command stream. */
+struct river_29A1A0_Animation8014A7A4 D_8014A7A4_2BA874 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | POSY) << 15) | 0, { 0.0f, 72.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 0.0f, 0.9999998807907104f, 0.9999998807907104f, 0.9999998807907104f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY) << 15) | 150, { 72.00006103515625f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 60, { 0.0f, 0.0019610440358519554f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 29, { 0.1745329201221466f, 3.9770791772753e-05f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 61, { 0.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

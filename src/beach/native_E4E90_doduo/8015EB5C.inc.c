@@ -1,0 +1,8 @@
+/* ROM EAFEC, VRAM 8015EB5C: complete native animation command stream. */
+struct native_E4E90_doduo_Animation8015EB5C D_8015EB5C_EAFEC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { -1.1920928244535389e-07f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, -0.2525627613067627f, 91.48855590820312f, 84.8280029296875f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 1, { 0.7199999094009399f, 0.003999995533376932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 3, { 0.015999862924218178f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

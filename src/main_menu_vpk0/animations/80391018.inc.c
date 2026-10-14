@@ -1,0 +1,30 @@
+/* 0x80391018: native struct MainMenuAnimation80391018. */
+struct MainMenuAnimation80391018 {
+    AnimLine9 command_80391018;
+    AnimLine9 command_80391040;
+    AnimLine8 command_80391068;
+    AnimLine2 command_8039108C;
+    AnimLine2 command_80391098;
+    AnimLine2 command_803910A4;
+    AnimLine1 command_803910B0;
+    AnimLine1 command_803910B8;
+    AnimLine1 command_803910C0;
+    AnimLine1 command_803910C8;
+    AnimLine1 command_803910D0;
+    AnimLine0 command_803910D8;
+};
+
+struct MainMenuAnimation80391018 D_80391018_main_menu_vpk0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, -0.5299999713897705f, 0.0f, 42.9348258972168f, 42.39533996582031f, -1.8747707605361938f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 861, { 0.0f, -0.5299999713897705f, 0.0f, 42.9348258972168f, 42.39533996582031f, -1.8747707605361938f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 999, { 0.0f, 0.0f, 42.9348258972168f, 42.39533996582031f, -1.8747707605361938f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 7, { -0.468067467212677f, 0.01760115660727024f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 12, { -0.19557808339595795f, 0.0104760667309165f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 66, { 0.3490658402442932f, 0.005673376377671957f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 30, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 120, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 30, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 30, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 704, { 0.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

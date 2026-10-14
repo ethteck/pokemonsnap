@@ -1,0 +1,18 @@
+/* ROM 0x99908; native animation_stream. */
+struct PokemonCommonAnimationZubat8011C4E8 D_8011C4E8_99908 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.0872664600610733f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 8, { 0.3490658402442932f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, -0.13089969754219055f, -74.60298156738281f, -336.5123291015625f, -60.77685546875f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { -0.0872664600610733f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { -0.0872664600610733f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { -0.0872664600610733f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { -0.0872664600610733f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 8, { 0.3490658402442932f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8011C4E8_99908 },
+};

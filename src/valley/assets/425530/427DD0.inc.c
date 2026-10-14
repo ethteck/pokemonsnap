@@ -1,0 +1,20 @@
+/* ROM 427DD0, VRAM 80131990: AnimCmd*. */
+AnimCmd* D_80131990_427DD0[17] = {
+    (AnimCmd*) &D_801319D4_427E14,
+    (AnimCmd*) &D_80131A68_427EA8,
+    (AnimCmd*) &D_80131AFC_427F3C,
+    (AnimCmd*) &D_80131B74_427FB4,
+    (AnimCmd*) &D_80131BB8_427FF8,
+    (AnimCmd*) &D_80131C30_428070,
+    (AnimCmd*) &D_80131CA8_4280E8,
+    (AnimCmd*) &D_80131CEC_42812C,
+    (AnimCmd*) &D_80131D64_4281A4,
+    (AnimCmd*) &D_80131DDC_42821C,
+    (AnimCmd*) &D_80131E08_428248,
+    (AnimCmd*) &D_80131E40_428280,
+    (AnimCmd*) &D_80131E78_4282B8,
+    (AnimCmd*) &D_80131F84_4283C4,
+    (AnimCmd*) &D_80131FB0_4283F0,
+    (AnimCmd*) &D_801320BC_4284FC,
+    NULL,
+};

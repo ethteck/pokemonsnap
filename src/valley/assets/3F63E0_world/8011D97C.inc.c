@@ -1,0 +1,10 @@
+/* ROM 413DBC, VRAM 8011D97C: native InterpData path descriptor. */
+InterpData D_8011D97C_413DBC = {
+    HAL_INTERP_CATROM,
+    2,
+    0.5f,
+    D_8011D930_413D70,
+    5.648646831512451f,
+    D_8011D960_413DA0,
+    D_8011D968_413DA8,
+};

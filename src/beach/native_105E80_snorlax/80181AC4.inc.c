@@ -1,0 +1,9 @@
+/* ROM 10DF54, VRAM 80181AC4: complete native animation command stream. */
+struct native_105E80_snorlax_Animation80181AC4 D_80181AC4_10DF54 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 0, { 0.0f, 0.02617993950843811f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTZ) << 15) | 10, { 0.15956681966781616f, -0.005561354104429483f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTZ) << 15) | 16, { -0.1445952206850052f, -0.006137185264378786f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTZ) << 15) | 10, { 0.0f, 0.02617993950843811f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80181AC4_10DF54 },
+};

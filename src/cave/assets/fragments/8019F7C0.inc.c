@@ -1,0 +1,13 @@
+/* ROM 26B570, VRAM 8019F7C0: complete native animation command stream. */
+struct Cave_Animation8019F7C0 D_8019F7C0_26B570 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 45, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTZ) << 15) | 20, { 0.2617993950843811f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTZ) << 15) | 25, { 0.0f, -0.01308997068554163f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTZ) << 15) | 15, { 0.0f, 0.0074799819849431515f, -0.2617993950843811f, 0.014959963969886303f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 20, { 0.5235987901687622f, 0.008726646192371845f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 20, { 0.2617993950843811f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | ROTZ) << 15) | 10, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8019F7C0_26B570 },
+};

@@ -1,0 +1,20 @@
+/* ROM 2A67A8, VRAM 801366D8: complete native animation command stream. */
+struct river_29A1A0_Animation801366D8 D_801366D8_2A67A8 = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_801366C0_2A6790 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTY | PATH_PARAM) << 15) | 0, { -1.2217304706573486f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((SCALEX) << 15) | 0, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 35, { 0.3603425920009613f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTY) << 15) | 10, { -1.2217304706573486f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTY) << 15) | 33, { -0.6230471730232239f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 25 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 33, { 0.6461928486824036f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 8 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTY) << 15) | 39, { 0.7042226195335388f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 25 },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM) << 15) | 9, { 0.7163070440292358f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 23, { 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTY) << 15) | 8, { -0.0017719788011163473f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTY) << 15) | 10, { -0.5235987901687622f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

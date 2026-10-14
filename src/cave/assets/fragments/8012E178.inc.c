@@ -1,0 +1,10 @@
+/* ROM 1F9F28, VRAM 8012E178: native InterpData path descriptor. */
+InterpData D_8012E178_1F9F28 = {
+    HAL_INTERP_BEZIER,
+    8,
+    0.0f,
+    D_8012E054_1F9E04,
+    74.10952758789062f,
+    D_8012E0CC_1F9E7C,
+    D_8012E0EC_1F9E9C,
+};

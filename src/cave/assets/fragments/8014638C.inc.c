@@ -1,0 +1,7 @@
+/* ROM 21213C, VRAM 8014638C: complete native animation command stream. */
+struct Cave_Animation8014638C D_8014638C_21213C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -30.048768997192383f, -58.51052474975586f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 150, { 53.407073974609375f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

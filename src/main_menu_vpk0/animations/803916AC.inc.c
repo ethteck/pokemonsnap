@@ -1,0 +1,62 @@
+/* 0x803916AC: native struct MainMenuAnimation803916AC. */
+struct MainMenuAnimation803916AC {
+    AnimLine9 command_803916AC;
+    AnimLine9 command_803916D4;
+    AnimLine1 command_803916FC;
+    AnimLine6 command_80391704;
+    AnimLine4 command_80391720;
+    AnimLine4 command_80391734;
+    AnimLine4 command_80391748;
+    AnimLine2 command_8039175C;
+    AnimLine1 command_80391768;
+    AnimLine1 command_80391770;
+    AnimLine1 command_80391778;
+    AnimLine1 command_80391780;
+    AnimLine1 command_80391788;
+    AnimLine2 command_80391790;
+    AnimLine2 command_8039179C;
+    AnimLine2 command_803917A8;
+    AnimLine2 command_803917B4;
+    AnimLine1 command_803917C0;
+    AnimLine2 command_803917C8;
+    AnimLine1 command_803917D4;
+    AnimLine1 command_803917DC;
+    AnimLine6 command_803917E4;
+    AnimLine2 command_80391800;
+    AnimLine2 command_8039180C;
+    AnimLine1 command_80391818;
+    AnimLine2 command_80391820;
+    AnimLine2 command_8039182C;
+    AnimLine0 command_80391838;
+};
+
+struct MainMenuAnimation803916AC D_803916AC_main_menu_vpk0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -10.220000267028809f, -3.6100001335144043f, 7.185000419616699f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 861, { 0.0f, 0.0f, 0.0f, -10.220000267028809f, -3.6100001335144043f, 7.185000419616699f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTZ) << 15) | 338, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 999, { -10.220000267028809f, -3.6100001335144043f, 7.185000419616699f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTY) << 15) | 7, { 0.0010399873135611415f, 0.00030178038286976516f, 0.06619583070278168f, 0.019911380484700203f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTY) << 15) | 12, { 0.005733826197683811f, -1.3333168681128882e-05f, 0.378316193819046f, 0.01338210329413414f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTY) << 15) | 66, { 0.0f, -5.972737926640548e-05f, 1.1100000143051147f, 0.007621708791702986f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY) << 15) | 30, { 0.0f, 1.1100000143051147f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 223, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 120, { 1.1100000143051147f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 30, { 1.1100000143051147f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY) << 15) | 30, { 0.0f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTY) << 15) | 0, { 0.0031922953203320503f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 5, { 1.2217304706573486f, 0.08272142708301544f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 3, { 0.661770761013031f, -0.24434982240200043f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 2, { 0.0f, -0.05514735355973244f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 10, { 0.0f, 0.08144869655370712f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 5, { 1.2217304706573486f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 8, { 0.0f, -0.08144869655370712f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 7, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 3, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTY | ROTZ) << 15) | 2, { 0.0f, -0.0400221012532711f, 0.0f, 0.035563427954912186f, 0.0f, -0.049909066408872604f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 5, { -0.2801550328731537f, -0.04659990966320038f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY | ROTZ) << 15) | 5, { 0.24894428253173828f, -0.34936386346817017f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTY) << 15) | 654, { 0.24894428253173828f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | ROTZ) << 15) | 15, { -0.9319999814033508f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ) << 15) | 639, { -0.9319999814033508f, 0.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

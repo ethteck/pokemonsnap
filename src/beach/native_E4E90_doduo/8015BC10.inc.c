@@ -1,0 +1,20 @@
+/* ROM E80A0, VRAM 8015BC10: native model/material animation table. */
+AnimCmd* D_8015BC10_E80A0[17] = {
+    (AnimCmd*) &D_8015BC54_E80E4,
+    (AnimCmd*) &D_8015BCA8_E8138,
+    NULL,
+    (AnimCmd*) &D_8015BE44_E82D4,
+    (AnimCmd*) &D_8015BFE8_E8478,
+    (AnimCmd*) &D_8015C0C0_E8550,
+    (AnimCmd*) &D_8015C30C_E879C,
+    (AnimCmd*) &D_8015C334_E87C4,
+    (AnimCmd*) &D_8015C450_E88E0,
+    (AnimCmd*) &D_8015C4F8_E8988,
+    (AnimCmd*) &D_8015C62C_E8ABC,
+    (AnimCmd*) &D_8015C670_E8B00,
+    (AnimCmd*) &D_8015C7B0_E8C40,
+    (AnimCmd*) &D_8015C864_E8CF4,
+    (AnimCmd*) &D_8015C8D4_E8D64,
+    (AnimCmd*) &D_8015CAA0_E8F30,
+    (AnimCmd*) &D_8015CB30_E8FC0,
+};

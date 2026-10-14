@@ -1,0 +1,6 @@
+/* ROM 40E94C, VRAM 8011850C: createWorldBlocks setup. */
+WorldBlockSetup D_8011850C_40E94C = {
+    D_801184E0_40E920,
+    D_80118500_40E940,
+    &D_80100740_3F6B80,
+};

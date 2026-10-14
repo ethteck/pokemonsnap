@@ -1,0 +1,2465 @@
+{
+  "format": "n64-vtx",
+  "containers": {
+    "rom": {
+      "kind": "rom"
+    },
+    "main_menu_vpk0": {
+      "kind": "vpk0",
+      "rom_offset": 10549296,
+      "rom_end": 10865734,
+      "vram": 2150322176,
+      "size": 997232
+    }
+  },
+  "vertices": [
+    {
+      "symbol": "D_800AEC70",
+      "source": "src/app_render/5A580.c",
+      "container": "rom",
+      "offset": 370208,
+      "count": 4,
+      "include": "assets/native/vertices/D_800AEC70.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800AECE0",
+      "source": "src/app_render/5A580.c",
+      "container": "rom",
+      "offset": 370320,
+      "count": 32,
+      "include": "assets/native/vertices/D_800AECE0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800AEF80",
+      "source": "src/app_render/5A580.c",
+      "container": "rom",
+      "offset": 370992,
+      "count": 10,
+      "include": "assets/native/vertices/D_800AEF80.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5898_545CA8",
+      "source": "src/app_level/native_model/803A5898.inc.c",
+      "container": "rom",
+      "offset": 5528744,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A5898_545CA8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A57F8_545C08",
+      "source": "src/app_level/native_model/803A57F8.inc.c",
+      "container": "rom",
+      "offset": 5528584,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A57F8_545C08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A57A8_545BB8",
+      "source": "src/app_level/native_model/803A57A8.inc.c",
+      "container": "rom",
+      "offset": 5528504,
+      "count": 5,
+      "include": "assets/native/vertices/D_803A57A8_545BB8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5768_545B78",
+      "source": "src/app_level/native_model/803A5768.inc.c",
+      "container": "rom",
+      "offset": 5528440,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A5768_545B78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5668_545A78",
+      "source": "src/app_level/native_model/803A5668.inc.c",
+      "container": "rom",
+      "offset": 5528184,
+      "count": 16,
+      "include": "assets/native/vertices/D_803A5668_545A78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5648_545A58",
+      "source": "src/app_level/native_model/803A5648.inc.c",
+      "container": "rom",
+      "offset": 5528152,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5648_545A58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5628_545A38",
+      "source": "src/app_level/native_model/803A5628.inc.c",
+      "container": "rom",
+      "offset": 5528120,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5628_545A38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5468_545878",
+      "source": "src/app_level/native_model/803A5468.inc.c",
+      "container": "rom",
+      "offset": 5527672,
+      "count": 28,
+      "include": "assets/native/vertices/D_803A5468_545878.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5458_545868",
+      "source": "src/app_level/native_model/803A5458.inc.c",
+      "container": "rom",
+      "offset": 5527656,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A5458_545868.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5438_545848",
+      "source": "src/app_level/native_model/803A5438.inc.c",
+      "container": "rom",
+      "offset": 5527624,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5438_545848.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5418_545828",
+      "source": "src/app_level/native_model/803A5418.inc.c",
+      "container": "rom",
+      "offset": 5527592,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5418_545828.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5358_545768",
+      "source": "src/app_level/native_model/803A5358.inc.c",
+      "container": "rom",
+      "offset": 5527400,
+      "count": 12,
+      "include": "assets/native/vertices/D_803A5358_545768.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A52C8_5456D8",
+      "source": "src/app_level/native_model/803A52C8.inc.c",
+      "container": "rom",
+      "offset": 5527256,
+      "count": 9,
+      "include": "assets/native/vertices/D_803A52C8_5456D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A52A8_5456B8",
+      "source": "src/app_level/native_model/803A52A8.inc.c",
+      "container": "rom",
+      "offset": 5527224,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A52A8_5456B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5288_545698",
+      "source": "src/app_level/native_model/803A5288.inc.c",
+      "container": "rom",
+      "offset": 5527192,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5288_545698.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5268_545678",
+      "source": "src/app_level/native_model/803A5268.inc.c",
+      "container": "rom",
+      "offset": 5527160,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5268_545678.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5248_545658",
+      "source": "src/app_level/native_model/803A5248.inc.c",
+      "container": "rom",
+      "offset": 5527128,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5248_545658.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5228_545638",
+      "source": "src/app_level/native_model/803A5228.inc.c",
+      "container": "rom",
+      "offset": 5527096,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5228_545638.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5208_545618",
+      "source": "src/app_level/native_model/803A5208.inc.c",
+      "container": "rom",
+      "offset": 5527064,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A5208_545618.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A51D8_5455E8",
+      "source": "src/app_level/native_model/803A51D8.inc.c",
+      "container": "rom",
+      "offset": 5527016,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A51D8_5455E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A50C8_5454D8",
+      "source": "src/app_level/native_model/803A50C8.inc.c",
+      "container": "rom",
+      "offset": 5526744,
+      "count": 17,
+      "include": "assets/native/vertices/D_803A50C8_5454D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A5088_545498",
+      "source": "src/app_level/native_model/803A5088.inc.c",
+      "container": "rom",
+      "offset": 5526680,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A5088_545498.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4F28_545338",
+      "source": "src/app_level/native_model/803A4F28.inc.c",
+      "container": "rom",
+      "offset": 5526328,
+      "count": 22,
+      "include": "assets/native/vertices/D_803A4F28_545338.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4D28_545138",
+      "source": "src/app_level/native_model/803A4D28.inc.c",
+      "container": "rom",
+      "offset": 5525816,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A4D28_545138.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4C98_5450A8",
+      "source": "src/app_level/native_model/803A4C98.inc.c",
+      "container": "rom",
+      "offset": 5525672,
+      "count": 9,
+      "include": "assets/native/vertices/D_803A4C98_5450A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4B78_544F88",
+      "source": "src/app_level/native_model/803A4B78.inc.c",
+      "container": "rom",
+      "offset": 5525384,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A4B78_544F88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4B58_544F68",
+      "source": "src/app_level/native_model/803A4B58.inc.c",
+      "container": "rom",
+      "offset": 5525352,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4B58_544F68.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4AF8_544F08",
+      "source": "src/app_level/native_model/803A4AF8.inc.c",
+      "container": "rom",
+      "offset": 5525256,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A4AF8_544F08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4AB8_544EC8",
+      "source": "src/app_level/native_model/803A4AB8.inc.c",
+      "container": "rom",
+      "offset": 5525192,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4AB8_544EC8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4A78_544E88",
+      "source": "src/app_level/native_model/803A4A78.inc.c",
+      "container": "rom",
+      "offset": 5525128,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4A78_544E88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4968_544D78",
+      "source": "src/app_level/native_model/803A4968.inc.c",
+      "container": "rom",
+      "offset": 5524856,
+      "count": 17,
+      "include": "assets/native/vertices/D_803A4968_544D78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4848_544C58",
+      "source": "src/app_level/native_model/803A4848.inc.c",
+      "container": "rom",
+      "offset": 5524568,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A4848_544C58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4828_544C38",
+      "source": "src/app_level/native_model/803A4828.inc.c",
+      "container": "rom",
+      "offset": 5524536,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4828_544C38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A47C8_544BD8",
+      "source": "src/app_level/native_model/803A47C8.inc.c",
+      "container": "rom",
+      "offset": 5524440,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A47C8_544BD8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4788_544B98",
+      "source": "src/app_level/native_model/803A4788.inc.c",
+      "container": "rom",
+      "offset": 5524376,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4788_544B98.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4748_544B58",
+      "source": "src/app_level/native_model/803A4748.inc.c",
+      "container": "rom",
+      "offset": 5524312,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4748_544B58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4638_544A48",
+      "source": "src/app_level/native_model/803A4638.inc.c",
+      "container": "rom",
+      "offset": 5524040,
+      "count": 17,
+      "include": "assets/native/vertices/D_803A4638_544A48.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4578_544988",
+      "source": "src/app_level/native_model/803A4578.inc.c",
+      "container": "rom",
+      "offset": 5523848,
+      "count": 12,
+      "include": "assets/native/vertices/D_803A4578_544988.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4448_544858",
+      "source": "src/app_level/native_model/803A4448.inc.c",
+      "container": "rom",
+      "offset": 5523544,
+      "count": 19,
+      "include": "assets/native/vertices/D_803A4448_544858.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4428_544838",
+      "source": "src/app_level/native_model/803A4428.inc.c",
+      "container": "rom",
+      "offset": 5523512,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4428_544838.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4408_544818",
+      "source": "src/app_level/native_model/803A4408.inc.c",
+      "container": "rom",
+      "offset": 5523480,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4408_544818.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A43F8_544808",
+      "source": "src/app_level/native_model/803A43F8.inc.c",
+      "container": "rom",
+      "offset": 5523464,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A43F8_544808.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A43E8_5447F8",
+      "source": "src/app_level/native_model/803A43E8.inc.c",
+      "container": "rom",
+      "offset": 5523448,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A43E8_5447F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A43D8_5447E8",
+      "source": "src/app_level/native_model/803A43D8.inc.c",
+      "container": "rom",
+      "offset": 5523432,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A43D8_5447E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A43C8_5447D8",
+      "source": "src/app_level/native_model/803A43C8.inc.c",
+      "container": "rom",
+      "offset": 5523416,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A43C8_5447D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4388_544798",
+      "source": "src/app_level/native_model/803A4388.inc.c",
+      "container": "rom",
+      "offset": 5523352,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4388_544798.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4348_544758",
+      "source": "src/app_level/native_model/803A4348.inc.c",
+      "container": "rom",
+      "offset": 5523288,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A4348_544758.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4318_544728",
+      "source": "src/app_level/native_model/803A4318.inc.c",
+      "container": "rom",
+      "offset": 5523240,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A4318_544728.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A42D8_5446E8",
+      "source": "src/app_level/native_model/803A42D8.inc.c",
+      "container": "rom",
+      "offset": 5523176,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A42D8_5446E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A42B8_5446C8",
+      "source": "src/app_level/native_model/803A42B8.inc.c",
+      "container": "rom",
+      "offset": 5523144,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A42B8_5446C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A42A8_5446B8",
+      "source": "src/app_level/native_model/803A42A8.inc.c",
+      "container": "rom",
+      "offset": 5523128,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A42A8_5446B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4288_544698",
+      "source": "src/app_level/native_model/803A4288.inc.c",
+      "container": "rom",
+      "offset": 5523096,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4288_544698.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A41F8_544608",
+      "source": "src/app_level/native_model/803A41F8.inc.c",
+      "container": "rom",
+      "offset": 5522952,
+      "count": 9,
+      "include": "assets/native/vertices/D_803A41F8_544608.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A41C8_5445D8",
+      "source": "src/app_level/native_model/803A41C8.inc.c",
+      "container": "rom",
+      "offset": 5522904,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A41C8_5445D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A41B8_5445C8",
+      "source": "src/app_level/native_model/803A41B8.inc.c",
+      "container": "rom",
+      "offset": 5522888,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A41B8_5445C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4198_5445A8",
+      "source": "src/app_level/native_model/803A4198.inc.c",
+      "container": "rom",
+      "offset": 5522856,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4198_5445A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4188_544598",
+      "source": "src/app_level/native_model/803A4188.inc.c",
+      "container": "rom",
+      "offset": 5522840,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A4188_544598.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4158_544568",
+      "source": "src/app_level/native_model/803A4158.inc.c",
+      "container": "rom",
+      "offset": 5522792,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A4158_544568.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4138_544548",
+      "source": "src/app_level/native_model/803A4138.inc.c",
+      "container": "rom",
+      "offset": 5522760,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4138_544548.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4118_544528",
+      "source": "src/app_level/native_model/803A4118.inc.c",
+      "container": "rom",
+      "offset": 5522728,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A4118_544528.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4108_544518",
+      "source": "src/app_level/native_model/803A4108.inc.c",
+      "container": "rom",
+      "offset": 5522712,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A4108_544518.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A40F8_544508",
+      "source": "src/app_level/native_model/803A40F8.inc.c",
+      "container": "rom",
+      "offset": 5522696,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A40F8_544508.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A4018_544428",
+      "source": "src/app_level/native_model/803A4018.inc.c",
+      "container": "rom",
+      "offset": 5522472,
+      "count": 14,
+      "include": "assets/native/vertices/D_803A4018_544428.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3FF8_544408",
+      "source": "src/app_level/native_model/803A3FF8.inc.c",
+      "container": "rom",
+      "offset": 5522440,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3FF8_544408.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3F38_544348",
+      "source": "src/app_level/native_model/803A3F38.inc.c",
+      "container": "rom",
+      "offset": 5522248,
+      "count": 12,
+      "include": "assets/native/vertices/D_803A3F38_544348.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3DE8_5441F8",
+      "source": "src/app_level/native_model/803A3DE8.inc.c",
+      "container": "rom",
+      "offset": 5521912,
+      "count": 21,
+      "include": "assets/native/vertices/D_803A3DE8_5441F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3D18_544128",
+      "source": "src/app_level/native_model/803A3D18.inc.c",
+      "container": "rom",
+      "offset": 5521704,
+      "count": 13,
+      "include": "assets/native/vertices/D_803A3D18_544128.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3CD8_5440E8",
+      "source": "src/app_level/native_model/803A3CD8.inc.c",
+      "container": "rom",
+      "offset": 5521640,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A3CD8_5440E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3CB8_5440C8",
+      "source": "src/app_level/native_model/803A3CB8.inc.c",
+      "container": "rom",
+      "offset": 5521608,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3CB8_5440C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3CA8_5440B8",
+      "source": "src/app_level/native_model/803A3CA8.inc.c",
+      "container": "rom",
+      "offset": 5521592,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3CA8_5440B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C88_544098",
+      "source": "src/app_level/native_model/803A3C88.inc.c",
+      "container": "rom",
+      "offset": 5521560,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3C88_544098.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C78_544088",
+      "source": "src/app_level/native_model/803A3C78.inc.c",
+      "container": "rom",
+      "offset": 5521544,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3C78_544088.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C58_544068",
+      "source": "src/app_level/native_model/803A3C58.inc.c",
+      "container": "rom",
+      "offset": 5521512,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3C58_544068.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C38_544048",
+      "source": "src/app_level/native_model/803A3C38.inc.c",
+      "container": "rom",
+      "offset": 5521480,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3C38_544048.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C28_544038",
+      "source": "src/app_level/native_model/803A3C28.inc.c",
+      "container": "rom",
+      "offset": 5521464,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3C28_544038.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3C18_544028",
+      "source": "src/app_level/native_model/803A3C18.inc.c",
+      "container": "rom",
+      "offset": 5521448,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3C18_544028.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3B68_543F78",
+      "source": "src/app_level/native_model/803A3B68.inc.c",
+      "container": "rom",
+      "offset": 5521272,
+      "count": 11,
+      "include": "assets/native/vertices/D_803A3B68_543F78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3B48_543F58",
+      "source": "src/app_level/native_model/803A3B48.inc.c",
+      "container": "rom",
+      "offset": 5521240,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3B48_543F58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3B38_543F48",
+      "source": "src/app_level/native_model/803A3B38.inc.c",
+      "container": "rom",
+      "offset": 5521224,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3B38_543F48.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3B28_543F38",
+      "source": "src/app_level/native_model/803A3B28.inc.c",
+      "container": "rom",
+      "offset": 5521208,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3B28_543F38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3AF8_543F08",
+      "source": "src/app_level/native_model/803A3AF8.inc.c",
+      "container": "rom",
+      "offset": 5521160,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3AF8_543F08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3AC8_543ED8",
+      "source": "src/app_level/native_model/803A3AC8.inc.c",
+      "container": "rom",
+      "offset": 5521112,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3AC8_543ED8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3AA8_543EB8",
+      "source": "src/app_level/native_model/803A3AA8.inc.c",
+      "container": "rom",
+      "offset": 5521080,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3AA8_543EB8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3A98_543EA8",
+      "source": "src/app_level/native_model/803A3A98.inc.c",
+      "container": "rom",
+      "offset": 5521064,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3A98_543EA8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3A88_543E98",
+      "source": "src/app_level/native_model/803A3A88.inc.c",
+      "container": "rom",
+      "offset": 5521048,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3A88_543E98.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3A78_543E88",
+      "source": "src/app_level/native_model/803A3A78.inc.c",
+      "container": "rom",
+      "offset": 5521032,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3A78_543E88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3A28_543E38",
+      "source": "src/app_level/native_model/803A3A28.inc.c",
+      "container": "rom",
+      "offset": 5520952,
+      "count": 5,
+      "include": "assets/native/vertices/D_803A3A28_543E38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A39A8_543DB8",
+      "source": "src/app_level/native_model/803A39A8.inc.c",
+      "container": "rom",
+      "offset": 5520824,
+      "count": 8,
+      "include": "assets/native/vertices/D_803A39A8_543DB8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3938_543D48",
+      "source": "src/app_level/native_model/803A3938.inc.c",
+      "container": "rom",
+      "offset": 5520712,
+      "count": 7,
+      "include": "assets/native/vertices/D_803A3938_543D48.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A38D8_543CE8",
+      "source": "src/app_level/native_model/803A38D8.inc.c",
+      "container": "rom",
+      "offset": 5520616,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A38D8_543CE8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3878_543C88",
+      "source": "src/app_level/native_model/803A3878.inc.c",
+      "container": "rom",
+      "offset": 5520520,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A3878_543C88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3818_543C28",
+      "source": "src/app_level/native_model/803A3818.inc.c",
+      "container": "rom",
+      "offset": 5520424,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A3818_543C28.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3748_543B58",
+      "source": "src/app_level/native_model/803A3748.inc.c",
+      "container": "rom",
+      "offset": 5520216,
+      "count": 13,
+      "include": "assets/native/vertices/D_803A3748_543B58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3708_543B18",
+      "source": "src/app_level/native_model/803A3708.inc.c",
+      "container": "rom",
+      "offset": 5520152,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A3708_543B18.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A36C8_543AD8",
+      "source": "src/app_level/native_model/803A36C8.inc.c",
+      "container": "rom",
+      "offset": 5520088,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A36C8_543AD8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3668_543A78",
+      "source": "src/app_level/native_model/803A3668.inc.c",
+      "container": "rom",
+      "offset": 5519992,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A3668_543A78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3628_543A38",
+      "source": "src/app_level/native_model/803A3628.inc.c",
+      "container": "rom",
+      "offset": 5519928,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A3628_543A38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3608_543A18",
+      "source": "src/app_level/native_model/803A3608.inc.c",
+      "container": "rom",
+      "offset": 5519896,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3608_543A18.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A35A8_5439B8",
+      "source": "src/app_level/native_model/803A35A8.inc.c",
+      "container": "rom",
+      "offset": 5519800,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A35A8_5439B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3598_5439A8",
+      "source": "src/app_level/native_model/803A3598.inc.c",
+      "container": "rom",
+      "offset": 5519784,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3598_5439A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3568_543978",
+      "source": "src/app_level/native_model/803A3568.inc.c",
+      "container": "rom",
+      "offset": 5519736,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3568_543978.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3508_543918",
+      "source": "src/app_level/native_model/803A3508.inc.c",
+      "container": "rom",
+      "offset": 5519640,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A3508_543918.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A34D8_5438E8",
+      "source": "src/app_level/native_model/803A34D8.inc.c",
+      "container": "rom",
+      "offset": 5519592,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A34D8_5438E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3498_5438A8",
+      "source": "src/app_level/native_model/803A3498.inc.c",
+      "container": "rom",
+      "offset": 5519528,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A3498_5438A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3458_543868",
+      "source": "src/app_level/native_model/803A3458.inc.c",
+      "container": "rom",
+      "offset": 5519464,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A3458_543868.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A33F8_543808",
+      "source": "src/app_level/native_model/803A33F8.inc.c",
+      "container": "rom",
+      "offset": 5519368,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A33F8_543808.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3328_543738",
+      "source": "src/app_level/native_model/803A3328.inc.c",
+      "container": "rom",
+      "offset": 5519160,
+      "count": 13,
+      "include": "assets/native/vertices/D_803A3328_543738.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A32E8_5436F8",
+      "source": "src/app_level/native_model/803A32E8.inc.c",
+      "container": "rom",
+      "offset": 5519096,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A32E8_5436F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A32A8_5436B8",
+      "source": "src/app_level/native_model/803A32A8.inc.c",
+      "container": "rom",
+      "offset": 5519032,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A32A8_5436B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3298_5436A8",
+      "source": "src/app_level/native_model/803A3298.inc.c",
+      "container": "rom",
+      "offset": 5519016,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3298_5436A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3288_543698",
+      "source": "src/app_level/native_model/803A3288.inc.c",
+      "container": "rom",
+      "offset": 5519000,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A3288_543698.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3258_543668",
+      "source": "src/app_level/native_model/803A3258.inc.c",
+      "container": "rom",
+      "offset": 5518952,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3258_543668.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3238_543648",
+      "source": "src/app_level/native_model/803A3238.inc.c",
+      "container": "rom",
+      "offset": 5518920,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3238_543648.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3208_543618",
+      "source": "src/app_level/native_model/803A3208.inc.c",
+      "container": "rom",
+      "offset": 5518872,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3208_543618.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A31D8_5435E8",
+      "source": "src/app_level/native_model/803A31D8.inc.c",
+      "container": "rom",
+      "offset": 5518824,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A31D8_5435E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A31B8_5435C8",
+      "source": "src/app_level/native_model/803A31B8.inc.c",
+      "container": "rom",
+      "offset": 5518792,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A31B8_5435C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3188_543598",
+      "source": "src/app_level/native_model/803A3188.inc.c",
+      "container": "rom",
+      "offset": 5518744,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A3188_543598.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3168_543578",
+      "source": "src/app_level/native_model/803A3168.inc.c",
+      "container": "rom",
+      "offset": 5518712,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3168_543578.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3148_543558",
+      "source": "src/app_level/native_model/803A3148.inc.c",
+      "container": "rom",
+      "offset": 5518680,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A3148_543558.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A3028_543438",
+      "source": "src/app_level/native_model/803A3028.inc.c",
+      "container": "rom",
+      "offset": 5518392,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A3028_543438.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2F08_543318",
+      "source": "src/app_level/native_model/803A2F08.inc.c",
+      "container": "rom",
+      "offset": 5518104,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A2F08_543318.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2D08_543118",
+      "source": "src/app_level/native_model/803A2D08.inc.c",
+      "container": "rom",
+      "offset": 5517592,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A2D08_543118.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2B28_542F38",
+      "source": "src/app_level/native_model/803A2B28.inc.c",
+      "container": "rom",
+      "offset": 5517112,
+      "count": 30,
+      "include": "assets/native/vertices/D_803A2B28_542F38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2928_542D38",
+      "source": "src/app_level/native_model/803A2928.inc.c",
+      "container": "rom",
+      "offset": 5516600,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A2928_542D38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2728_542B38",
+      "source": "src/app_level/native_model/803A2728.inc.c",
+      "container": "rom",
+      "offset": 5516088,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A2728_542B38.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2578_542988",
+      "source": "src/app_level/native_model/803A2578.inc.c",
+      "container": "rom",
+      "offset": 5515656,
+      "count": 27,
+      "include": "assets/native/vertices/D_803A2578_542988.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2508_542918",
+      "source": "src/app_level/native_model/803A2508.inc.c",
+      "container": "rom",
+      "offset": 5515544,
+      "count": 7,
+      "include": "assets/native/vertices/D_803A2508_542918.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2358_542768",
+      "source": "src/app_level/native_model/803A2358.inc.c",
+      "container": "rom",
+      "offset": 5515112,
+      "count": 27,
+      "include": "assets/native/vertices/D_803A2358_542768.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A21A8_5425B8",
+      "source": "src/app_level/native_model/803A21A8.inc.c",
+      "container": "rom",
+      "offset": 5514680,
+      "count": 27,
+      "include": "assets/native/vertices/D_803A21A8_5425B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A2098_5424A8",
+      "source": "src/app_level/native_model/803A2098.inc.c",
+      "container": "rom",
+      "offset": 5514408,
+      "count": 17,
+      "include": "assets/native/vertices/D_803A2098_5424A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1E98_5422A8",
+      "source": "src/app_level/native_model/803A1E98.inc.c",
+      "container": "rom",
+      "offset": 5513896,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A1E98_5422A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1D08_542118",
+      "source": "src/app_level/native_model/803A1D08.inc.c",
+      "container": "rom",
+      "offset": 5513496,
+      "count": 25,
+      "include": "assets/native/vertices/D_803A1D08_542118.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1C88_542098",
+      "source": "src/app_level/native_model/803A1C88.inc.c",
+      "container": "rom",
+      "offset": 5513368,
+      "count": 8,
+      "include": "assets/native/vertices/D_803A1C88_542098.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1B68_541F78",
+      "source": "src/app_level/native_model/803A1B68.inc.c",
+      "container": "rom",
+      "offset": 5513080,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A1B68_541F78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1AE8_541EF8",
+      "source": "src/app_level/native_model/803A1AE8.inc.c",
+      "container": "rom",
+      "offset": 5512952,
+      "count": 8,
+      "include": "assets/native/vertices/D_803A1AE8_541EF8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A18E8_541CF8",
+      "source": "src/app_level/native_model/803A18E8.inc.c",
+      "container": "rom",
+      "offset": 5512440,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A18E8_541CF8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A17E8_541BF8",
+      "source": "src/app_level/native_model/803A17E8.inc.c",
+      "container": "rom",
+      "offset": 5512184,
+      "count": 16,
+      "include": "assets/native/vertices/D_803A17E8_541BF8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1748_541B58",
+      "source": "src/app_level/native_model/803A1748.inc.c",
+      "container": "rom",
+      "offset": 5512024,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A1748_541B58.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A16A8_541AB8",
+      "source": "src/app_level/native_model/803A16A8.inc.c",
+      "container": "rom",
+      "offset": 5511864,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A16A8_541AB8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1668_541A78",
+      "source": "src/app_level/native_model/803A1668.inc.c",
+      "container": "rom",
+      "offset": 5511800,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A1668_541A78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1488_541898",
+      "source": "src/app_level/native_model/803A1488.inc.c",
+      "container": "rom",
+      "offset": 5511320,
+      "count": 30,
+      "include": "assets/native/vertices/D_803A1488_541898.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1368_541778",
+      "source": "src/app_level/native_model/803A1368.inc.c",
+      "container": "rom",
+      "offset": 5511032,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A1368_541778.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A12C8_5416D8",
+      "source": "src/app_level/native_model/803A12C8.inc.c",
+      "container": "rom",
+      "offset": 5510872,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A12C8_5416D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1288_541698",
+      "source": "src/app_level/native_model/803A1288.inc.c",
+      "container": "rom",
+      "offset": 5510808,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A1288_541698.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A1168_541578",
+      "source": "src/app_level/native_model/803A1168.inc.c",
+      "container": "rom",
+      "offset": 5510520,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A1168_541578.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A10E8_5414F8",
+      "source": "src/app_level/native_model/803A10E8.inc.c",
+      "container": "rom",
+      "offset": 5510392,
+      "count": 8,
+      "include": "assets/native/vertices/D_803A10E8_5414F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0FC8_5413D8",
+      "source": "src/app_level/native_model/803A0FC8.inc.c",
+      "container": "rom",
+      "offset": 5510104,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A0FC8_5413D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0F88_541398",
+      "source": "src/app_level/native_model/803A0F88.inc.c",
+      "container": "rom",
+      "offset": 5510040,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0F88_541398.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0F48_541358",
+      "source": "src/app_level/native_model/803A0F48.inc.c",
+      "container": "rom",
+      "offset": 5509976,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0F48_541358.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0E28_541238",
+      "source": "src/app_level/native_model/803A0E28.inc.c",
+      "container": "rom",
+      "offset": 5509688,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A0E28_541238.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0D88_541198",
+      "source": "src/app_level/native_model/803A0D88.inc.c",
+      "container": "rom",
+      "offset": 5509528,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A0D88_541198.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0C68_541078",
+      "source": "src/app_level/native_model/803A0C68.inc.c",
+      "container": "rom",
+      "offset": 5509240,
+      "count": 18,
+      "include": "assets/native/vertices/D_803A0C68_541078.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0C28_541038",
+      "source": "src/app_level/native_model/803A0C28.inc.c",
+      "container": "rom",
+      "offset": 5509176,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0C28_541038.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0B88_540F98",
+      "source": "src/app_level/native_model/803A0B88.inc.c",
+      "container": "rom",
+      "offset": 5509016,
+      "count": 10,
+      "include": "assets/native/vertices/D_803A0B88_540F98.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A09F8_540E08",
+      "source": "src/app_level/native_model/803A09F8.inc.c",
+      "container": "rom",
+      "offset": 5508616,
+      "count": 25,
+      "include": "assets/native/vertices/D_803A09F8_540E08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0978_540D88",
+      "source": "src/app_level/native_model/803A0978.inc.c",
+      "container": "rom",
+      "offset": 5508488,
+      "count": 8,
+      "include": "assets/native/vertices/D_803A0978_540D88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0838_540C48",
+      "source": "src/app_level/native_model/803A0838.inc.c",
+      "container": "rom",
+      "offset": 5508168,
+      "count": 20,
+      "include": "assets/native/vertices/D_803A0838_540C48.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A07D8_540BE8",
+      "source": "src/app_level/native_model/803A07D8.inc.c",
+      "container": "rom",
+      "offset": 5508072,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A07D8_540BE8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A05D8_5409E8",
+      "source": "src/app_level/native_model/803A05D8.inc.c",
+      "container": "rom",
+      "offset": 5507560,
+      "count": 32,
+      "include": "assets/native/vertices/D_803A05D8_5409E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0598_5409A8",
+      "source": "src/app_level/native_model/803A0598.inc.c",
+      "container": "rom",
+      "offset": 5507496,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0598_5409A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0578_540988",
+      "source": "src/app_level/native_model/803A0578.inc.c",
+      "container": "rom",
+      "offset": 5507464,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0578_540988.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0568_540978",
+      "source": "src/app_level/native_model/803A0568.inc.c",
+      "container": "rom",
+      "offset": 5507448,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A0568_540978.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0488_540898",
+      "source": "src/app_level/native_model/803A0488.inc.c",
+      "container": "rom",
+      "offset": 5507224,
+      "count": 14,
+      "include": "assets/native/vertices/D_803A0488_540898.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0478_540888",
+      "source": "src/app_level/native_model/803A0478.inc.c",
+      "container": "rom",
+      "offset": 5507208,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A0478_540888.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0468_540878",
+      "source": "src/app_level/native_model/803A0468.inc.c",
+      "container": "rom",
+      "offset": 5507192,
+      "count": 1,
+      "include": "assets/native/vertices/D_803A0468_540878.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0448_540858",
+      "source": "src/app_level/native_model/803A0448.inc.c",
+      "container": "rom",
+      "offset": 5507160,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0448_540858.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A03B8_5407C8",
+      "source": "src/app_level/native_model/803A03B8.inc.c",
+      "container": "rom",
+      "offset": 5507016,
+      "count": 9,
+      "include": "assets/native/vertices/D_803A03B8_5407C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0358_540768",
+      "source": "src/app_level/native_model/803A0358.inc.c",
+      "container": "rom",
+      "offset": 5506920,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A0358_540768.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0308_540718",
+      "source": "src/app_level/native_model/803A0308.inc.c",
+      "container": "rom",
+      "offset": 5506840,
+      "count": 5,
+      "include": "assets/native/vertices/D_803A0308_540718.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A02A8_5406B8",
+      "source": "src/app_level/native_model/803A02A8.inc.c",
+      "container": "rom",
+      "offset": 5506744,
+      "count": 6,
+      "include": "assets/native/vertices/D_803A02A8_5406B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0268_540678",
+      "source": "src/app_level/native_model/803A0268.inc.c",
+      "container": "rom",
+      "offset": 5506680,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0268_540678.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A01B8_5405C8",
+      "source": "src/app_level/native_model/803A01B8.inc.c",
+      "container": "rom",
+      "offset": 5506504,
+      "count": 11,
+      "include": "assets/native/vertices/D_803A01B8_5405C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0198_5405A8",
+      "source": "src/app_level/native_model/803A0198.inc.c",
+      "container": "rom",
+      "offset": 5506472,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0198_5405A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0168_540578",
+      "source": "src/app_level/native_model/803A0168.inc.c",
+      "container": "rom",
+      "offset": 5506424,
+      "count": 3,
+      "include": "assets/native/vertices/D_803A0168_540578.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0148_540558",
+      "source": "src/app_level/native_model/803A0148.inc.c",
+      "container": "rom",
+      "offset": 5506392,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0148_540558.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0128_540538",
+      "source": "src/app_level/native_model/803A0128.inc.c",
+      "container": "rom",
+      "offset": 5506360,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0128_540538.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0108_540518",
+      "source": "src/app_level/native_model/803A0108.inc.c",
+      "container": "rom",
+      "offset": 5506328,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0108_540518.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A00C8_5404D8",
+      "source": "src/app_level/native_model/803A00C8.inc.c",
+      "container": "rom",
+      "offset": 5506264,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A00C8_5404D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0088_540498",
+      "source": "src/app_level/native_model/803A0088.inc.c",
+      "container": "rom",
+      "offset": 5506200,
+      "count": 4,
+      "include": "assets/native/vertices/D_803A0088_540498.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0068_540478",
+      "source": "src/app_level/native_model/803A0068.inc.c",
+      "container": "rom",
+      "offset": 5506168,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0068_540478.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0048_540458",
+      "source": "src/app_level/native_model/803A0048.inc.c",
+      "container": "rom",
+      "offset": 5506136,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0048_540458.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0028_540438",
+      "source": "src/app_level/native_model/803A0028.inc.c",
+      "container": "rom",
+      "offset": 5506104,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0028_540438.vtx.inc.c"
+    },
+    {
+      "symbol": "D_803A0008_540418",
+      "source": "src/app_level/native_model/803A0008.inc.c",
+      "container": "rom",
+      "offset": 5506072,
+      "count": 2,
+      "include": "assets/native/vertices/D_803A0008_540418.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FFD8_5403E8",
+      "source": "src/app_level/native_model/8039FFD8.inc.c",
+      "container": "rom",
+      "offset": 5506024,
+      "count": 3,
+      "include": "assets/native/vertices/D_8039FFD8_5403E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FFB8_5403C8",
+      "source": "src/app_level/native_model/8039FFB8.inc.c",
+      "container": "rom",
+      "offset": 5505992,
+      "count": 2,
+      "include": "assets/native/vertices/D_8039FFB8_5403C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FF98_5403A8",
+      "source": "src/app_level/native_model/8039FF98.inc.c",
+      "container": "rom",
+      "offset": 5505960,
+      "count": 2,
+      "include": "assets/native/vertices/D_8039FF98_5403A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FF18_540328",
+      "source": "src/app_level/native_model/8039FF18.inc.c",
+      "container": "rom",
+      "offset": 5505832,
+      "count": 8,
+      "include": "assets/native/vertices/D_8039FF18_540328.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FEE8_5402F8",
+      "source": "src/app_level/native_model/8039FEE8.inc.c",
+      "container": "rom",
+      "offset": 5505784,
+      "count": 3,
+      "include": "assets/native/vertices/D_8039FEE8_5402F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FE48_540258",
+      "source": "src/app_level/native_model/8039FE48.inc.c",
+      "container": "rom",
+      "offset": 5505624,
+      "count": 10,
+      "include": "assets/native/vertices/D_8039FE48_540258.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FE08_540218",
+      "source": "src/app_level/native_model/8039FE08.inc.c",
+      "container": "rom",
+      "offset": 5505560,
+      "count": 4,
+      "include": "assets/native/vertices/D_8039FE08_540218.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FDE8_5401F8",
+      "source": "src/app_level/native_model/8039FDE8.inc.c",
+      "container": "rom",
+      "offset": 5505528,
+      "count": 2,
+      "include": "assets/native/vertices/D_8039FDE8_5401F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FDA8_5401B8",
+      "source": "src/app_level/native_model/8039FDA8.inc.c",
+      "container": "rom",
+      "offset": 5505464,
+      "count": 4,
+      "include": "assets/native/vertices/D_8039FDA8_5401B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FD78_540188",
+      "source": "src/app_level/native_model/8039FD78.inc.c",
+      "container": "rom",
+      "offset": 5505416,
+      "count": 3,
+      "include": "assets/native/vertices/D_8039FD78_540188.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FC98_5400A8",
+      "source": "src/app_level/native_model/8039FC98.inc.c",
+      "container": "rom",
+      "offset": 5505192,
+      "count": 14,
+      "include": "assets/native/vertices/D_8039FC98_5400A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FC58_540068",
+      "source": "src/app_level/native_model/8039FC58.inc.c",
+      "container": "rom",
+      "offset": 5505128,
+      "count": 4,
+      "include": "assets/native/vertices/D_8039FC58_540068.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FC18_540028",
+      "source": "src/app_level/native_model/8039FC18.inc.c",
+      "container": "rom",
+      "offset": 5505064,
+      "count": 4,
+      "include": "assets/native/vertices/D_8039FC18_540028.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FB58_53FF68",
+      "source": "src/app_level/native_model/8039FB58.inc.c",
+      "container": "rom",
+      "offset": 5504872,
+      "count": 12,
+      "include": "assets/native/vertices/D_8039FB58_53FF68.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039FA18_53FE28",
+      "source": "src/app_level/native_model/8039FA18.inc.c",
+      "container": "rom",
+      "offset": 5504552,
+      "count": 20,
+      "include": "assets/native/vertices/D_8039FA18_53FE28.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F9F8_53FE08",
+      "source": "src/app_level/native_model/8039F9F8.inc.c",
+      "container": "rom",
+      "offset": 5504520,
+      "count": 2,
+      "include": "assets/native/vertices/D_8039F9F8_53FE08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F7F8_53FC08",
+      "source": "src/app_level/native_model/8039F7F8.inc.c",
+      "container": "rom",
+      "offset": 5504008,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039F7F8_53FC08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F5F8_53FA08",
+      "source": "src/app_level/native_model/8039F5F8.inc.c",
+      "container": "rom",
+      "offset": 5503496,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039F5F8_53FA08.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F4F8_53F908",
+      "source": "src/app_level/native_model/8039F4F8.inc.c",
+      "container": "rom",
+      "offset": 5503240,
+      "count": 16,
+      "include": "assets/native/vertices/D_8039F4F8_53F908.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F418_53F828",
+      "source": "src/app_level/native_model/8039F418.inc.c",
+      "container": "rom",
+      "offset": 5503016,
+      "count": 14,
+      "include": "assets/native/vertices/D_8039F418_53F828.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F3F8_53F808",
+      "source": "src/app_level/native_model/8039F3F8.inc.c",
+      "container": "rom",
+      "offset": 5502984,
+      "count": 2,
+      "include": "assets/native/vertices/D_8039F3F8_53F808.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F3E8_53F7F8",
+      "source": "src/app_level/native_model/8039F3E8.inc.c",
+      "container": "rom",
+      "offset": 5502968,
+      "count": 1,
+      "include": "assets/native/vertices/D_8039F3E8_53F7F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F1E8_53F5F8",
+      "source": "src/app_level/native_model/8039F1E8.inc.c",
+      "container": "rom",
+      "offset": 5502456,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039F1E8_53F5F8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039F0D8_53F4E8",
+      "source": "src/app_level/native_model/8039F0D8.inc.c",
+      "container": "rom",
+      "offset": 5502184,
+      "count": 17,
+      "include": "assets/native/vertices/D_8039F0D8_53F4E8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039EFB8_53F3C8",
+      "source": "src/app_level/native_model/8039EFB8.inc.c",
+      "container": "rom",
+      "offset": 5501896,
+      "count": 18,
+      "include": "assets/native/vertices/D_8039EFB8_53F3C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039EDB8_53F1C8",
+      "source": "src/app_level/native_model/8039EDB8.inc.c",
+      "container": "rom",
+      "offset": 5501384,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039EDB8_53F1C8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039EBB8_53EFC8",
+      "source": "src/app_level/native_model/8039EBB8.inc.c",
+      "container": "rom",
+      "offset": 5500872,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039EBB8_53EFC8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E9D8_53EDE8",
+      "source": "src/app_level/native_model/8039E9D8.inc.c",
+      "container": "rom",
+      "offset": 5500392,
+      "count": 30,
+      "include": "assets/native/vertices/D_8039E9D8_53EDE8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E978_53ED88",
+      "source": "src/app_level/native_model/8039E978.inc.c",
+      "container": "rom",
+      "offset": 5500296,
+      "count": 6,
+      "include": "assets/native/vertices/D_8039E978_53ED88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E8E8_53ECF8",
+      "source": "src/app_level/native_model/8039E8E8.inc.c",
+      "container": "rom",
+      "offset": 5500152,
+      "count": 9,
+      "include": "assets/native/vertices/D_8039E8E8_53ECF8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E868_53EC78",
+      "source": "src/app_level/native_model/8039E868.inc.c",
+      "container": "rom",
+      "offset": 5500024,
+      "count": 8,
+      "include": "assets/native/vertices/D_8039E868_53EC78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E768_53EB78",
+      "source": "src/app_level/native_model/8039E768.inc.c",
+      "container": "rom",
+      "offset": 5499768,
+      "count": 16,
+      "include": "assets/native/vertices/D_8039E768_53EB78.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E568_53E978",
+      "source": "src/app_level/native_model/8039E568.inc.c",
+      "container": "rom",
+      "offset": 5499256,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039E568_53E978.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E4A8_53E8B8",
+      "source": "src/app_level/native_model/8039E4A8.inc.c",
+      "container": "rom",
+      "offset": 5499064,
+      "count": 12,
+      "include": "assets/native/vertices/D_8039E4A8_53E8B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E408_53E818",
+      "source": "src/app_level/native_model/8039E408.inc.c",
+      "container": "rom",
+      "offset": 5498904,
+      "count": 10,
+      "include": "assets/native/vertices/D_8039E408_53E818.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E208_53E618",
+      "source": "src/app_level/native_model/8039E208.inc.c",
+      "container": "rom",
+      "offset": 5498392,
+      "count": 32,
+      "include": "assets/native/vertices/D_8039E208_53E618.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E178_53E588",
+      "source": "src/app_level/native_model/8039E178.inc.c",
+      "container": "rom",
+      "offset": 5498248,
+      "count": 9,
+      "include": "assets/native/vertices/D_8039E178_53E588.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039E138_53E548",
+      "source": "src/app_level/native_model/8039E138.inc.c",
+      "container": "rom",
+      "offset": 5498184,
+      "count": 4,
+      "include": "assets/native/vertices/D_8039E138_53E548.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039DFA8_53E3B8",
+      "source": "src/app_level/native_model/8039DFA8.inc.c",
+      "container": "rom",
+      "offset": 5497784,
+      "count": 25,
+      "include": "assets/native/vertices/D_8039DFA8_53E3B8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039DF28_53E338",
+      "source": "src/app_level/native_model/8039DF28.inc.c",
+      "container": "rom",
+      "offset": 5497656,
+      "count": 8,
+      "include": "assets/native/vertices/D_8039DF28_53E338.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039DEC8_53E2D8",
+      "source": "src/app_level/native_model/8039DEC8.inc.c",
+      "container": "rom",
+      "offset": 5497560,
+      "count": 6,
+      "include": "assets/native/vertices/D_8039DEC8_53E2D8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039DE08_53E218",
+      "source": "src/app_level/native_model/8039DE08.inc.c",
+      "container": "rom",
+      "offset": 5497368,
+      "count": 12,
+      "include": "assets/native/vertices/D_8039DE08_53E218.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80139B50_C5FE0",
+      "source": "src/beach/native_a74f0/80139B50.inc.c",
+      "container": "rom",
+      "offset": 810976,
+      "count": 24,
+      "include": "assets/native/vertices/D_80139B50_C5FE0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80138F60_C53F0",
+      "source": "src/beach/native_a74f0/80138F60.inc.c",
+      "container": "rom",
+      "offset": 807920,
+      "count": 81,
+      "include": "assets/native/vertices/D_80138F60_C53F0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80136C20_C30B0",
+      "source": "src/beach/native_a74f0/80136C20.inc.c",
+      "container": "rom",
+      "offset": 798896,
+      "count": 515,
+      "include": "assets/native/vertices/D_80136C20_C30B0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80132DB0_BF240",
+      "source": "src/beach/native_a74f0/80132DB0.inc.c",
+      "container": "rom",
+      "offset": 782912,
+      "count": 43,
+      "include": "assets/native/vertices/D_80132DB0_BF240.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80132490_BE920",
+      "source": "src/beach/native_a74f0/80132490.inc.c",
+      "container": "rom",
+      "offset": 780576,
+      "count": 91,
+      "include": "assets/native/vertices/D_80132490_BE920.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80131D60_BE1F0",
+      "source": "src/beach/native_a74f0/80131D60.inc.c",
+      "container": "rom",
+      "offset": 778736,
+      "count": 40,
+      "include": "assets/native/vertices/D_80131D60_BE1F0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801316D0_BDB60",
+      "source": "src/beach/native_a74f0/801316D0.inc.c",
+      "container": "rom",
+      "offset": 777056,
+      "count": 68,
+      "include": "assets/native/vertices/D_801316D0_BDB60.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012F3A0_BB830",
+      "source": "src/beach/native_a74f0/8012F3A0.inc.c",
+      "container": "rom",
+      "offset": 768048,
+      "count": 443,
+      "include": "assets/native/vertices/D_8012F3A0_BB830.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012D480_B9910",
+      "source": "src/beach/native_a74f0/8012D480.inc.c",
+      "container": "rom",
+      "offset": 760080,
+      "count": 259,
+      "include": "assets/native/vertices/D_8012D480_B9910.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012AE40_B72D0",
+      "source": "src/beach/native_a74f0/8012AE40.inc.c",
+      "container": "rom",
+      "offset": 750288,
+      "count": 449,
+      "include": "assets/native/vertices/D_8012AE40_B72D0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80129200_B5690",
+      "source": "src/beach/native_a74f0/80129200.inc.c",
+      "container": "rom",
+      "offset": 743056,
+      "count": 225,
+      "include": "assets/native/vertices/D_80129200_B5690.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801261F0_B2680",
+      "source": "src/beach/native_a74f0/801261F0.inc.c",
+      "container": "rom",
+      "offset": 730752,
+      "count": 571,
+      "include": "assets/native/vertices/D_801261F0_B2680.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80124330_B07C0",
+      "source": "src/beach/native_a74f0/80124330.inc.c",
+      "container": "rom",
+      "offset": 722880,
+      "count": 239,
+      "include": "assets/native/vertices/D_80124330_B07C0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801230C0_AF550",
+      "source": "src/beach/native_a74f0/801230C0.inc.c",
+      "container": "rom",
+      "offset": 718160,
+      "count": 138,
+      "include": "assets/native/vertices/D_801230C0_AF550.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8011E580_AAA10",
+      "source": "src/beach/native_a74f0/8011E580.inc.c",
+      "container": "rom",
+      "offset": 698896,
+      "count": 1062,
+      "include": "assets/native/vertices/D_8011E580_AAA10.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8011C968_A8DF8",
+      "source": "src/beach/native_a74f0/8011C968.inc.c",
+      "container": "rom",
+      "offset": 691704,
+      "count": 44,
+      "include": "assets/native/vertices/D_8011C968_A8DF8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8017C090_247E40",
+      "source": "src/cave/assets/fragments/8017C090.inc.c",
+      "container": "rom",
+      "offset": 2391616,
+      "count": 328,
+      "include": "assets/native/vertices/D_8017C090_247E40.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8017A780_246530",
+      "source": "src/cave/assets/fragments/8017A780.inc.c",
+      "container": "rom",
+      "offset": 2385200,
+      "count": 328,
+      "include": "assets/native/vertices/D_8017A780_246530.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80143A50_20F800",
+      "source": "src/cave/assets/fragments/80143A50.inc.c",
+      "container": "rom",
+      "offset": 2160640,
+      "count": 326,
+      "include": "assets/native/vertices/D_80143A50_20F800.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013F270_20B020",
+      "source": "src/cave/assets/fragments/8013F270.inc.c",
+      "container": "rom",
+      "offset": 2142240,
+      "count": 33,
+      "include": "assets/native/vertices/D_8013F270_20B020.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013D110_208EC0",
+      "source": "src/cave/assets/fragments/8013D110.inc.c",
+      "container": "rom",
+      "offset": 2133696,
+      "count": 458,
+      "include": "assets/native/vertices/D_8013D110_208EC0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80138F60_204D10",
+      "source": "src/cave/assets/fragments/80138F60.inc.c",
+      "container": "rom",
+      "offset": 2116880,
+      "count": 798,
+      "include": "assets/native/vertices/D_80138F60_204D10.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80134240_1FFFF0",
+      "source": "src/cave/assets/fragments/80134240.inc.c",
+      "container": "rom",
+      "offset": 2097136,
+      "count": 805,
+      "include": "assets/native/vertices/D_80134240_1FFFF0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012F2C0_1FB070",
+      "source": "src/cave/assets/fragments/8012F2C0.inc.c",
+      "container": "rom",
+      "offset": 2076784,
+      "count": 909,
+      "include": "assets/native/vertices/D_8012F2C0_1FB070.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012AEC0_1F6C70",
+      "source": "src/cave/assets/fragments/8012AEC0.inc.c",
+      "container": "rom",
+      "offset": 2059376,
+      "count": 752,
+      "include": "assets/native/vertices/D_8012AEC0_1F6C70.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801182A0_4CA670",
+      "source": "src/rainbow/assets/bank_4A8170/801182A0.inc.c",
+      "container": "rom",
+      "offset": 5023344,
+      "count": 12,
+      "include": "assets/native/vertices/D_801182A0_4CA670.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80116FD0_4C93A0",
+      "source": "src/rainbow/assets/bank_4A8170/80116FD0.inc.c",
+      "container": "rom",
+      "offset": 5018528,
+      "count": 36,
+      "include": "assets/native/vertices/D_80116FD0_4C93A0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80115C80_4C8050",
+      "source": "src/rainbow/assets/bank_4A8170/80115C80.inc.c",
+      "container": "rom",
+      "offset": 5013584,
+      "count": 204,
+      "include": "assets/native/vertices/D_80115C80_4C8050.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801103B8_4C2788",
+      "source": "src/rainbow/assets/bank_4A8170/801103B8.inc.c",
+      "container": "rom",
+      "offset": 4990856,
+      "count": 741,
+      "include": "assets/native/vertices/D_801103B8_4C2788.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801475A0_2B7670",
+      "source": "src/river/assets/29A1A0/801475A0.inc.c",
+      "container": "rom",
+      "offset": 2848368,
+      "count": 397,
+      "include": "assets/native/vertices/D_801475A0_2B7670.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80146490_2B6560",
+      "source": "src/river/assets/29A1A0/80146490.inc.c",
+      "container": "rom",
+      "offset": 2844000,
+      "count": 12,
+      "include": "assets/native/vertices/D_80146490_2B6560.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80146140_2B6210",
+      "source": "src/river/assets/29A1A0/80146140.inc.c",
+      "container": "rom",
+      "offset": 2843152,
+      "count": 12,
+      "include": "assets/native/vertices/D_80146140_2B6210.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80145DF0_2B5EC0",
+      "source": "src/river/assets/29A1A0/80145DF0.inc.c",
+      "container": "rom",
+      "offset": 2842304,
+      "count": 12,
+      "include": "assets/native/vertices/D_80145DF0_2B5EC0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80144BA0_2B4C70",
+      "source": "src/river/assets/29A1A0/80144BA0.inc.c",
+      "container": "rom",
+      "offset": 2837616,
+      "count": 245,
+      "include": "assets/native/vertices/D_80144BA0_2B4C70.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80143E10_2B3EE0",
+      "source": "src/river/assets/29A1A0/80143E10.inc.c",
+      "container": "rom",
+      "offset": 2834144,
+      "count": 56,
+      "include": "assets/native/vertices/D_80143E10_2B3EE0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80140F10_2B0FE0",
+      "source": "src/river/assets/29A1A0/80140F10.inc.c",
+      "container": "rom",
+      "offset": 2822112,
+      "count": 126,
+      "include": "assets/native/vertices/D_80140F10_2B0FE0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013FC50_2AFD20",
+      "source": "src/river/assets/29A1A0/8013FC50.inc.c",
+      "container": "rom",
+      "offset": 2817312,
+      "count": 243,
+      "include": "assets/native/vertices/D_8013FC50_2AFD20.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013E930_2AEA00",
+      "source": "src/river/assets/29A1A0/8013E930.inc.c",
+      "container": "rom",
+      "offset": 2812416,
+      "count": 180,
+      "include": "assets/native/vertices/D_8013E930_2AEA00.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013DE80_2ADF50",
+      "source": "src/river/assets/29A1A0/8013DE80.inc.c",
+      "container": "rom",
+      "offset": 2809680,
+      "count": 76,
+      "include": "assets/native/vertices/D_8013DE80_2ADF50.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013AF70_2AB040",
+      "source": "src/river/assets/29A1A0/8013AF70.inc.c",
+      "container": "rom",
+      "offset": 2797632,
+      "count": 594,
+      "include": "assets/native/vertices/D_8013AF70_2AB040.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801375A0_2A7670",
+      "source": "src/river/assets/29A1A0/801375A0.inc.c",
+      "container": "rom",
+      "offset": 2782832,
+      "count": 518,
+      "include": "assets/native/vertices/D_801375A0_2A7670.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80134130_2A4200",
+      "source": "src/river/assets/29A1A0/80134130.inc.c",
+      "container": "rom",
+      "offset": 2769408,
+      "count": 522,
+      "include": "assets/native/vertices/D_80134130_2A4200.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80130DD0_2A0EA0",
+      "source": "src/river/assets/29A1A0/80130DD0.inc.c",
+      "container": "rom",
+      "offset": 2756256,
+      "count": 522,
+      "include": "assets/native/vertices/D_80130DD0_2A0EA0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012F290_29F360",
+      "source": "src/river/assets/29A1A0/8012F290.inc.c",
+      "container": "rom",
+      "offset": 2749280,
+      "count": 193,
+      "include": "assets/native/vertices/D_8012F290_29F360.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012CC90_29CD60",
+      "source": "src/river/assets/29A1A0/8012CC90.inc.c",
+      "container": "rom",
+      "offset": 2739552,
+      "count": 376,
+      "include": "assets/native/vertices/D_8012CC90_29CD60.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8012BCD8_29BDA8",
+      "source": "src/river/assets/29A1A0/8012BCD8.inc.c",
+      "container": "rom",
+      "offset": 2735528,
+      "count": 62,
+      "include": "assets/native/vertices/D_8012BCD8_29BDA8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8018A6F0_1D0850",
+      "source": "src/tunnel/assets/1C8AC0/8018A6F0.inc.c",
+      "container": "rom",
+      "offset": 1902672,
+      "count": 340,
+      "include": "assets/native/vertices/D_8018A6F0_1D0850.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80188D28_1CEE88",
+      "source": "src/tunnel/assets/1C8AC0/80188D28.inc.c",
+      "container": "rom",
+      "offset": 1896072,
+      "count": 340,
+      "include": "assets/native/vertices/D_80188D28_1CEE88.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8013A050_1801B0",
+      "source": "src/tunnel/assets/175FF0/8013A050.inc.c",
+      "container": "rom",
+      "offset": 1573296,
+      "count": 155,
+      "include": "assets/native/vertices/D_8013A050_1801B0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80139750_17F8B0",
+      "source": "src/tunnel/assets/175FF0/80139750.inc.c",
+      "container": "rom",
+      "offset": 1570992,
+      "count": 32,
+      "include": "assets/native/vertices/D_80139750_17F8B0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80139160_17F2C0",
+      "source": "src/tunnel/assets/175FF0/80139160.inc.c",
+      "container": "rom",
+      "offset": 1569472,
+      "count": 32,
+      "include": "assets/native/vertices/D_80139160_17F2C0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80138BB0_17ED10",
+      "source": "src/tunnel/assets/175FF0/80138BB0.inc.c",
+      "container": "rom",
+      "offset": 1568016,
+      "count": 36,
+      "include": "assets/native/vertices/D_80138BB0_17ED10.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80135C20_17BD80",
+      "source": "src/tunnel/assets/175FF0/80135C20.inc.c",
+      "container": "rom",
+      "offset": 1555840,
+      "count": 604,
+      "include": "assets/native/vertices/D_80135C20_17BD80.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80131250_1773B0",
+      "source": "src/tunnel/assets/175FF0/80131250.inc.c",
+      "container": "rom",
+      "offset": 1536944,
+      "count": 462,
+      "include": "assets/native/vertices/D_80131250_1773B0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8011AE40_411280",
+      "source": "src/valley/assets/3F63E0_world/8011AE40.inc.c",
+      "container": "rom",
+      "offset": 4264576,
+      "count": 357,
+      "include": "assets/native/vertices/D_8011AE40_411280.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80119C40_410080",
+      "source": "src/valley/assets/3F63E0_world/80119C40.inc.c",
+      "container": "rom",
+      "offset": 4259968,
+      "count": 42,
+      "include": "assets/native/vertices/D_80119C40_410080.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801193E0_40F820",
+      "source": "src/valley/assets/3F63E0_world/801193E0.inc.c",
+      "container": "rom",
+      "offset": 4257824,
+      "count": 65,
+      "include": "assets/native/vertices/D_801193E0_40F820.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801188D0_40ED10",
+      "source": "src/valley/assets/3F63E0_world/801188D0.inc.c",
+      "container": "rom",
+      "offset": 4254992,
+      "count": 72,
+      "include": "assets/native/vertices/D_801188D0_40ED10.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80115BC0_40C000",
+      "source": "src/valley/assets/3F63E0_world/80115BC0.inc.c",
+      "container": "rom",
+      "offset": 4243456,
+      "count": 235,
+      "include": "assets/native/vertices/D_80115BC0_40C000.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80112650_408A90",
+      "source": "src/valley/assets/3F63E0_world/80112650.inc.c",
+      "container": "rom",
+      "offset": 4229776,
+      "count": 693,
+      "include": "assets/native/vertices/D_80112650_408A90.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8010EB60_404FA0",
+      "source": "src/valley/assets/3F63E0_world/8010EB60.inc.c",
+      "container": "rom",
+      "offset": 4214688,
+      "count": 440,
+      "include": "assets/native/vertices/D_8010EB60_404FA0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8010C970_402DB0",
+      "source": "src/valley/assets/3F63E0_world/8010C970.inc.c",
+      "container": "rom",
+      "offset": 4206000,
+      "count": 200,
+      "include": "assets/native/vertices/D_8010C970_402DB0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8010AB60_400FA0",
+      "source": "src/valley/assets/3F63E0_world/8010AB60.inc.c",
+      "container": "rom",
+      "offset": 4198304,
+      "count": 235,
+      "include": "assets/native/vertices/D_8010AB60_400FA0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80109220_3FF660",
+      "source": "src/valley/assets/3F63E0_world/80109220.inc.c",
+      "container": "rom",
+      "offset": 4191840,
+      "count": 189,
+      "include": "assets/native/vertices/D_80109220_3FF660.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80106D60_3FD1A0",
+      "source": "src/valley/assets/3F63E0_world/80106D60.inc.c",
+      "container": "rom",
+      "offset": 4182432,
+      "count": 321,
+      "include": "assets/native/vertices/D_80106D60_3FD1A0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80104A20_3FAE60",
+      "source": "src/valley/assets/3F63E0_world/80104A20.inc.c",
+      "container": "rom",
+      "offset": 4173408,
+      "count": 314,
+      "include": "assets/native/vertices/D_80104A20_3FAE60.vtx.inc.c"
+    },
+    {
+      "symbol": "D_801032F0_3F9730",
+      "source": "src/valley/assets/3F63E0_world/801032F0.inc.c",
+      "container": "rom",
+      "offset": 4167472,
+      "count": 159,
+      "include": "assets/native/vertices/D_801032F0_3F9730.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80102770_3F8BB0",
+      "source": "src/valley/assets/3F63E0_world/80102770.inc.c",
+      "container": "rom",
+      "offset": 4164528,
+      "count": 62,
+      "include": "assets/native/vertices/D_80102770_3F8BB0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800EDC20_6B3D0",
+      "source": "src/world/assets/bank_64420/800EDC20.inc.c",
+      "container": "rom",
+      "offset": 439248,
+      "count": 9,
+      "include": "assets/native/vertices/D_800EDC20_6B3D0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800ED6E0_6AE90",
+      "source": "src/world/assets/bank_64420/800ED6E0.inc.c",
+      "container": "rom",
+      "offset": 437904,
+      "count": 24,
+      "include": "assets/native/vertices/D_800ED6E0_6AE90.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800EB0F0_688A0",
+      "source": "src/world/assets/bank_64420/800EB0F0.inc.c",
+      "container": "rom",
+      "offset": 428192,
+      "count": 24,
+      "include": "assets/native/vertices/D_800EB0F0_688A0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800EACF8_684A8",
+      "source": "src/world/assets/bank_64420/800EACF8.inc.c",
+      "container": "rom",
+      "offset": 427176,
+      "count": 12,
+      "include": "assets/native/vertices/D_800EACF8_684A8.vtx.inc.c"
+    },
+    {
+      "symbol": "D_800E8F60_66710",
+      "source": "src/world/assets/bank_64420/800E8F60.inc.c",
+      "container": "rom",
+      "offset": 419600,
+      "count": 12,
+      "include": "assets/native/vertices/D_800E8F60_66710.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8039BD40_main_menu_vpk0",
+      "source": "src/main_menu_vpk0/models/8039BD40.inc.c",
+      "container": "main_menu_vpk0",
+      "offset": 945472,
+      "count": 727,
+      "include": "assets/native/vertices/D_8039BD40_main_menu_vpk0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80393BF0_main_menu_vpk0",
+      "source": "src/main_menu_vpk0/models/80393BF0.inc.c",
+      "container": "main_menu_vpk0",
+      "offset": 912368,
+      "count": 12,
+      "include": "assets/native/vertices/D_80393BF0_main_menu_vpk0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8038AE60_main_menu_vpk0",
+      "source": "src/main_menu_vpk0/models/8038AE60.inc.c",
+      "container": "main_menu_vpk0",
+      "offset": 876128,
+      "count": 432,
+      "include": "assets/native/vertices/D_8038AE60_main_menu_vpk0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_8036AA78_main_menu_vpk0",
+      "source": "src/main_menu_vpk0/models/8036AA78.inc.c",
+      "container": "main_menu_vpk0",
+      "offset": 744056,
+      "count": 2019,
+      "include": "assets/native/vertices/D_8036AA78_main_menu_vpk0.vtx.inc.c"
+    },
+    {
+      "symbol": "D_80359540_main_menu_vpk0",
+      "source": "src/main_menu_vpk0/models/80359540.inc.c",
+      "container": "main_menu_vpk0",
+      "offset": 673088,
+      "count": 36,
+      "include": "assets/native/vertices/D_80359540_main_menu_vpk0.vtx.inc.c"
+    }
+  ]
+}

@@ -1,13 +1,5 @@
 #include "../rainbow.h"
-
-typedef struct Unks16 {
-    /* 0x00 */ s16 unk_00[3];
-} Unks16;
-
-extern AnimCmd D_80119A8C_4CBE5C;
-extern f32 D_800F5DB0_4A8180;
-extern AnimCmd* D_801183E0_4CA7B0;
-extern AnimCmd** D_80119050_4CB420;
+#include "../assets/bank_4A8170/declarations.h"
 
 void func_80348994_828104(GObj*);
 void func_80348B34_8282A4(GObj*);
@@ -22,7 +14,7 @@ extern CollisionModel D_8034AF20_82A690;
 extern GObj* D_8034AF2C_82A69C;
 extern s32 D_8034AF30_82A6A0;
 extern s32 D_8034AF34_82A6A4;
-extern InteractionHandler D_8034AF3C_82A6AC[];
+extern InteractionHandler D_8034AF3C_82A6AC[2];
 extern Unks16 D_8034AF5C_82A6CC;
 extern PokemonInitData D_8034AF78_82A6E8;
 extern PokemonDef D_8034AFAC_82A71C;
@@ -146,15 +138,15 @@ POKEMON_FUNC(func_80348DD4_828544)
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_80119A8C_4CBE5C, 0.0f);
+    animSetCameraAnimation(cam, (AnimCmd*) &D_80119A8C_4CBE5C, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_800F5DB0_4A8180);
+    setSkyBoxAnimationSpeed(D_800F5DA0.unk_10);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
         cmdSendCommand(gObjPlayer, PLAYER_CMD_7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_801183E0_4CA7B0, &D_80119050_4CB420, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(D_801183E0_4CA7B0, D_80119050_4CB420, 0.0f, 0.5f);
     D_8034AF34_82A6A4 = 0;
     playerObj->fnAnimCallback = func_80348BDC_82834C;
 

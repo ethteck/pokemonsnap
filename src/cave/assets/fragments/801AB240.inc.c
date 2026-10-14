@@ -1,0 +1,20 @@
+/* ROM 276FF0, VRAM 801AB240: native model/material animation table. */
+AnimCmd* D_801AB240_276FF0[17] = {
+    (AnimCmd*) &D_801AB284_277034,
+    (AnimCmd*) &D_801AB6F4_2774A4,
+    (AnimCmd*) &D_801AB724_2774D4,
+    (AnimCmd*) &D_801AB848_2775F8,
+    (AnimCmd*) &D_801ABA3C_2777EC,
+    (AnimCmd*) &D_801ABC64_277A14,
+    (AnimCmd*) &D_801ABC94_277A44,
+    (AnimCmd*) &D_801ABCC4_277A74,
+    (AnimCmd*) &D_801ABD58_277B08,
+    (AnimCmd*) &D_801ABD88_277B38,
+    (AnimCmd*) &D_801ABE1C_277BCC,
+    (AnimCmd*) &D_801AC0AC_277E5C,
+    (AnimCmd*) &D_801AC25C_27800C,
+    (AnimCmd*) &D_801AC46C_27821C,
+    (AnimCmd*) &D_801AC62C_2783DC,
+    (AnimCmd*) &D_801AC748_2784F8,
+    (AnimCmd*) &D_801AC964_278714,
+};

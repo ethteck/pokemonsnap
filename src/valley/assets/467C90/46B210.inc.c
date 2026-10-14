@@ -1,0 +1,23 @@
+/* ROM 46B210, VRAM 80174DD0: AnimCmd**. */
+AnimCmd** D_80174DD0_46B210[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80174E38_46B278,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

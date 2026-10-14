@@ -4,21 +4,8 @@
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
 #include "river.h"
-
-extern AnimCmd* D_8014BFB0_2BC080;
-extern AnimCmd** D_8014CEC0_2BCF90;
-extern AnimCmd D_8014EA10_2BEAE0[];
-
-extern GObj* D_802E4230_6CC010;
-extern AnimationHeader D_802E4AE0_6CC8C0;
-extern InteractionHandler D_802E4B14_6CC8F4[];
-extern f32 D_802E4AF4_6CC8D4[3];
-extern GObj* D_802E4B00_6CC8E0;
-extern OMCamera* D_802E4B04_6CC8E4;
-extern PokemonInitData D_802E4B48_6CC928;
-extern s32 D_802E4B08_6CC8E8;
-extern f32 D_802E4B0C_6CC8EC;
-extern f32 D_802E4B10_6CC8F0;
+#include "assets/29A1A0/declarations.h"
+#include "assets/6CA400/declarations.h"
 
 extern GObj* D_8033F678_727458;
 extern u32 D_8033F67C_72745C;
@@ -50,9 +37,9 @@ void func_802E191C_6C96FC(f32 animSpeed) {
 
 void func_802E1950_6C9730(f32 arg0) {
     if (D_802E4B04_6CC8E4 != NULL) {
-        animSetCameraAnimation(D_802E4B04_6CC8E4, D_8014EA10_2BEAE0, arg0);
+        animSetCameraAnimation(D_802E4B04_6CC8E4, (AnimCmd*) &D_8014EA10_2BEAE0, arg0);
     }
-    PlayerModel_ChangeAnimation(&D_8014BFB0_2BC080, &D_8014CEC0_2BCF90, arg0);
+    PlayerModel_ChangeAnimation(D_8014BFB0_2BC080, D_8014CEC0_2BCF90, arg0);
 }
 
 void func_802E19A0_6C9780(DObj* arg0, s32 arg1, f32 arg2) {
@@ -155,7 +142,7 @@ void func_802E1D10_6C9AF0(GObj* obj) {
         ohResumeObjectProcesses(D_802E4230_6CC010);
     }
     auSetBGMVolumeSmooth(0, 0, 240);
-    setSkyBoxAnimationSpeed(D_8012ACA0_29AD70);
+    setSkyBoxAnimationSpeed(D_8012AC90.unk_10);
     D_802E4B04_6CC8E4 = getMainCamera();
     temp_s0 = D_802E4B04_6CC8E4->obj;
     ohPauseObjectProcesses(temp_s0);

@@ -1,0 +1,20 @@
+/* ROM 42AB30, VRAM 801346F0: AnimCmd**. */
+AnimCmd** D_801346F0_42AB30[17] = {
+    NULL,
+    D_80134760_42ABA0,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

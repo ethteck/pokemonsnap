@@ -1,0 +1,6 @@
+/* ROM 275B58, VRAM 801A9DA8: complete native animation command stream. */
+struct Cave_Animation801A9DA8 D_801A9DA8_275B58 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -2.9802322387695312e-06f, -9.5367431640625e-05f, 147.24893188476562f, 0.9999998807907104f, 0.9999998807907104f, 1.649999976158142f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 32 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801A9DA8_275B58 },
+};

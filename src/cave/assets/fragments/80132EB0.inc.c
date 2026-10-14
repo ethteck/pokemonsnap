@@ -1,0 +1,10 @@
+/* ROM 1FEC60, VRAM 80132EB0: native InterpData path descriptor. */
+InterpData D_80132EB0_1FEC60 = {
+    HAL_INTERP_BEZIER,
+    10,
+    0.0f,
+    D_80132D44_1FEAF4,
+    48.61966323852539f,
+    D_80132DD4_1FEB84,
+    D_80132DFC_1FEBAC,
+};

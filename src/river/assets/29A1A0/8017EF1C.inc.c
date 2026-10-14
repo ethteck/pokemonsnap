@@ -1,0 +1,14 @@
+/* ROM 2EEFEC, VRAM 8017EF1C: complete native animation command stream. */
+struct river_29A1A0_Animation8017EF1C D_8017EF1C_2EEFEC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((SCALEY) << 15) | 0, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEZ) << 15) | 0, { -0.03399990499019623f, 0.0f, 0.0f, 0.0f, 383.560791015625f, -9.253483772277832f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 15, { 1.5f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEY) << 15) | 14, { 1.0f, -0.008333333767950535f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 16, { 1.25f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEY) << 15) | 15, { 1.0f, 0.008333333767950535f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 15, { 1.5f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEY) << 15) | 14, { 1.0f, -0.008333335630595684f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 16, { 1.25f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 15, { 1.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8017EF1C_2EEFEC },
+};

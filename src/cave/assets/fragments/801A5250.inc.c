@@ -1,0 +1,21 @@
+/* ROM 271000, VRAM 801A5250: native model/material animation table. */
+AnimCmd** D_801A5250_271000[18] = {
+    NULL,
+    NULL,
+    D_801A5370_271120,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

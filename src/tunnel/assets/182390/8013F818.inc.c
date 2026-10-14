@@ -1,0 +1,10 @@
+/* ROM 185978, VRAM 8013F818: complete native animation command stream. */
+struct tunnel_182390_Animation8013F818 D_8013F818_185978 = {
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 0, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 0.0f, -30.048728942871094f, -58.51061248779297f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 270, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 10, { 1.25f, 1.25f, 1.25f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 5, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 165, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

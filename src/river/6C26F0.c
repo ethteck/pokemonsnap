@@ -2,11 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-extern AnimationHeader D_802E2F0C_6CACEC;
-extern AnimationHeader D_802E2F20_6CAD00;
-extern InteractionHandler D_802E2F34_6CAD14[];
-extern PokemonInitData D_802E2F70_6CAD50;
+#include "assets/6CA400/declarations.h"
 
 void func_802DA910_6C26F0(GObj* obj) {
     UNUSED s32 pad[3];

@@ -1,0 +1,21 @@
+{
+  "vram": 2149580800,
+  "size": 80,
+  "sources": [
+    {
+      "path": "src/app_level/rsp_mem_check.c",
+      "object": "build/src/app_level/rsp_mem_check.c.o",
+      "flags": "-O2",
+      "implicit": []
+    }
+  ],
+  "sections": [
+    {
+      "object": "build/src/app_level/rsp_mem_check.c.o",
+      "name": ".text",
+      "offset": 0,
+      "size": 80
+    }
+  ],
+  "images": []
+}

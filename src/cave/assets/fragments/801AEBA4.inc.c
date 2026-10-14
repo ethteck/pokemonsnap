@@ -1,0 +1,23 @@
+/* ROM 27A954, VRAM 801AEBA4: complete native animation command stream. */
+struct Cave_Animation801AEBA4 D_801AEBA4_27A954 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 0, { -0.5f, -0.5f, 2.0f, 2.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 0, { 2.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 9, { -0.5f, 0.0010971531737595797f, -0.5f, -0.0010690110502764583f, 2.0f, -0.0014648416545242071f, 2.0f, -0.0014014395419508219f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 2, { 3.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 1, { 4.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 1, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 1, { 2.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((IMG_INDEX) << 15) | 3, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((IMG_INDEX) << 15) | 15, { 2.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 1 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 2, { 1.4901161193847656e-08f, 0.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((OFFSET_S | SCALE_S | SCALE_T) << 15) | 6, { -0.5f, 0.0010831465478986502f, 2.0f, 0.0013120454968884587f, 2.0f, 0.001323256641626358f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((OFFSET_T) << 15) | 6, { -0.5f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 3, { -7.450580596923828e-09f, 0.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 6, { -0.5f, -0.0011044213315472007f, -0.5f, -0.0011141331633552909f, 2.0f, 0.0013154635671526194f, 2.0f, 0.0013986303238198161f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((IMG_INDEX) << 15) | 7, { 2.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((OFFSET_S | OFFSET_T | SCALE_S | SCALE_T) << 15) | 4, { -0.5f, -0.5f, 2.0f, 2.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

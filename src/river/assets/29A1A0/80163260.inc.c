@@ -1,0 +1,21 @@
+/* ROM 2D3330, VRAM 80163260: native model/material animation table. */
+AnimCmd* D_80163260_2D3330[18] = {
+    (AnimCmd*) &D_801632A8_2D3378,
+    (AnimCmd*) &D_80163318_2D33E8,
+    (AnimCmd*) &D_80163348_2D3418,
+    (AnimCmd*) &D_80163398_2D3468,
+    (AnimCmd*) &D_801633E8_2D34B8,
+    (AnimCmd*) &D_80163400_2D34D0,
+    (AnimCmd*) &D_8016344C_2D351C,
+    (AnimCmd*) &D_80163498_2D3568,
+    (AnimCmd*) &D_80163580_2D3650,
+    (AnimCmd*) &D_80163678_2D3748,
+    (AnimCmd*) &D_801636A8_2D3778,
+    (AnimCmd*) &D_801636F8_2D37C8,
+    (AnimCmd*) &D_8016374C_2D381C,
+    (AnimCmd*) &D_80163934_2D3A04,
+    (AnimCmd*) &D_801639BC_2D3A8C,
+    (AnimCmd*) &D_80163A0C_2D3ADC,
+    (AnimCmd*) &D_80163B64_2D3C34,
+    (AnimCmd*) &D_80163BC0_2D3C90,
+};

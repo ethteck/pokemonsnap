@@ -1,0 +1,21 @@
+/* ROM 4307B0, VRAM 8013A370: AnimCmd*. */
+AnimCmd* D_8013A370_4307B0[18] = {
+    (AnimCmd*) &D_8013A3B8_4307F8,
+    (AnimCmd*) &D_8013A3C4_430804,
+    (AnimCmd*) &D_8013A484_4308C4,
+    (AnimCmd*) &D_8013A578_4309B8,
+    (AnimCmd*) &D_8013A65C_430A9C,
+    (AnimCmd*) &D_8013A76C_430BAC,
+    (AnimCmd*) &D_8013A880_430CC0,
+    (AnimCmd*) &D_8013AA10_430E50,
+    (AnimCmd*) &D_8013AB24_430F64,
+    (AnimCmd*) &D_8013ABA4_430FE4,
+    (AnimCmd*) &D_8013AC24_431064,
+    (AnimCmd*) &D_8013AD6C_4311AC,
+    NULL,
+    (AnimCmd*) &D_8013AD90_4311D0,
+    (AnimCmd*) &D_8013AE50_431290,
+    (AnimCmd*) &D_8013AF58_431398,
+    (AnimCmd*) &D_8013B03C_43147C,
+    (AnimCmd*) &D_8013B0C0_431500,
+};

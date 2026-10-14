@@ -1,0 +1,20 @@
+/* ROM 139420, VRAM 801ACF90: native model/material animation table. */
+AnimCmd* D_801ACF90_139420[17] = {
+    (AnimCmd*) &D_801ACFD4_139464,
+    (AnimCmd*) &D_801ACFEC_13947C,
+    (AnimCmd*) &D_801AD154_1395E4,
+    (AnimCmd*) &D_801AD2A4_139734,
+    (AnimCmd*) &D_801AD438_1398C8,
+    (AnimCmd*) &D_801AD55C_1399EC,
+    (AnimCmd*) &D_801AD754_139BE4,
+    (AnimCmd*) &D_801AD89C_139D2C,
+    (AnimCmd*) &D_801ADAB0_139F40,
+    (AnimCmd*) &D_801ADC00_13A090,
+    (AnimCmd*) &D_801ADD60_13A1F0,
+    (AnimCmd*) &D_801ADEC8_13A358,
+    (AnimCmd*) &D_801AE028_13A4B8,
+    (AnimCmd*) &D_801AE188_13A618,
+    (AnimCmd*) &D_801AE370_13A800,
+    (AnimCmd*) &D_801AE460_13A8F0,
+    (AnimCmd*) &D_801AE644_13AAD4,
+};

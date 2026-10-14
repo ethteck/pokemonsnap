@@ -1,0 +1,6 @@
+/* ROM 183D4C, VRAM 8013DBEC: complete native animation command stream. */
+struct tunnel_182390_Animation8013DBEC D_8013DBEC_183D4C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 3.18756103515625f, -10.116720199584961f, 34.549808502197266f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_FLAGS << 25) | ((0x1) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

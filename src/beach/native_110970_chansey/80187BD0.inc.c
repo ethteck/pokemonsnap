@@ -1,0 +1,20 @@
+/* ROM 114060, VRAM 80187BD0: native model/material animation table. */
+AnimCmd* D_80187BD0_114060[17] = {
+    (AnimCmd*) &D_80187C14_1140A4,
+    (AnimCmd*) &D_80187C24_1140B4,
+    NULL,
+    NULL,
+    (AnimCmd*) &D_80187D4C_1141DC,
+    (AnimCmd*) &D_80187DD4_114264,
+    (AnimCmd*) &D_80187E5C_1142EC,
+    (AnimCmd*) &D_80187EE8_114378,
+    (AnimCmd*) &D_80187F7C_11440C,
+    (AnimCmd*) &D_80188010_1144A0,
+    (AnimCmd*) &D_8018809C_11452C,
+    (AnimCmd*) &D_80188134_1145C4,
+    NULL,
+    NULL,
+    NULL,
+    (AnimCmd*) &D_801881CC_11465C,
+    NULL,
+};

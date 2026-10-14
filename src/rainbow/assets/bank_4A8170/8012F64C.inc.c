@@ -1,0 +1,14 @@
+/* ROM 4E1A1C, VRAM 8012F64C: complete native animation command stream. */
+struct bank_4A8170_Animation8012F64C D_8012F64C_4E1A1C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f, -0.00870308093726635f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 5.778175354003906f, -76.84915924072266f, 62.97479248046875f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 20, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 15, { -0.059532154351472855f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 15, { 0.08970916271209717f, 0.0010824028868228197f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 50, { 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 40, { 0.0f, -0.00870308093726635f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012F64C_4E1A1C },
+};

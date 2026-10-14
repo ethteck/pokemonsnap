@@ -4,9 +4,9 @@
 
 void* func_800E3230_8A8A50(void) {
     if (!checkPlayerFlag(PFID_7)) {
-        return &D_801958F0_95B110;
+        return D_801958F0_95B110;
     }
-    return &D_801958C0_95B0E0;
+    return D_801958C0_95B0E0;
 }
 
 // TODO struct in arg1

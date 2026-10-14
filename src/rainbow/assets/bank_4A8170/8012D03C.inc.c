@@ -1,0 +1,9 @@
+/* ROM 4DF40C, VRAM 8012D03C: complete native animation command stream. */
+struct bank_4A8170_Animation8012D03C D_8012D03C_4DF40C = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.1899999976158142f, 0.10999998450279236f, -76.62000274658203f, -6.259998798370361f, 7.510000228881836f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { -0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012D03C_4DF40C },
+};

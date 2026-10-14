@@ -1,0 +1,21 @@
+/* ROM 304290, VRAM 801941C0: native model/material animation table. */
+AnimCmd* D_801941C0_304290[18] = {
+    (AnimCmd*) &D_80194208_3042D8,
+    (AnimCmd*) &D_80194224_3042F4,
+    (AnimCmd*) &D_80194300_3043D0,
+    (AnimCmd*) &D_80194374_304444,
+    (AnimCmd*) &D_8019440C_3044DC,
+    (AnimCmd*) &D_80194500_3045D0,
+    (AnimCmd*) &D_80194534_304604,
+    (AnimCmd*) &D_80194568_304638,
+    (AnimCmd*) &D_801945B4_304684,
+    (AnimCmd*) &D_80194604_3046D4,
+    (AnimCmd*) &D_80194698_304768,
+    (AnimCmd*) &D_80194728_3047F8,
+    (AnimCmd*) &D_80194830_304900,
+    (AnimCmd*) &D_801948E4_3049B4,
+    (AnimCmd*) &D_80194AB0_304B80,
+    (AnimCmd*) &D_80194B58_304C28,
+    (AnimCmd*) &D_80194C20_304CF0,
+    (AnimCmd*) &D_80194DEC_304EBC,
+};

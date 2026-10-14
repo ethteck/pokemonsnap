@@ -1,0 +1,6 @@
+/* ROM 478804, VRAM 801823C4: struct ValleyAnimation801823C4. */
+struct ValleyAnimation801823C4 D_801823C4_478804 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -1.5707963705062866f, 0.0f, 0.0f, 0.0f, 30.000001907348633f, 39.99999237060547f, 0.75f, 0.75f, 0.75f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 40 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801823C4_478804 },
+};

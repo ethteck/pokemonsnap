@@ -1,0 +1,6 @@
+/* ROM 44F948, VRAM 80159508: struct ValleyAnimation80159508. */
+struct ValleyAnimation80159508 D_80159508_44F948 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.033500462770462036f, 0.11420299112796783f, 0.5779038667678833f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 30 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80159508_44F948 },
+};

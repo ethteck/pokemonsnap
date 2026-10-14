@@ -1,0 +1,21 @@
+/* ROM 42FCC0, VRAM 80139880: AnimCmd*. */
+AnimCmd* D_80139880_42FCC0[18] = {
+    NULL,
+    (AnimCmd*) &D_801398C8_42FD08,
+    (AnimCmd*) &D_801399AC_42FDEC,
+    (AnimCmd*) &D_80139A88_42FEC8,
+    (AnimCmd*) &D_80139B54_42FF94,
+    (AnimCmd*) &D_80139C20_430060,
+    (AnimCmd*) &D_80139D08_430148,
+    (AnimCmd*) &D_80139DF0_430230,
+    (AnimCmd*) &D_80139EF0_430330,
+    (AnimCmd*) &D_80139F80_4303C0,
+    (AnimCmd*) &D_8013A0A0_4304E0,
+    (AnimCmd*) &D_8013A158_430598,
+    NULL,
+    (AnimCmd*) &D_8013A194_4305D4,
+    (AnimCmd*) &D_8013A1F8_430638,
+    (AnimCmd*) &D_8013A25C_43069C,
+    (AnimCmd*) &D_8013A294_4306D4,
+    (AnimCmd*) &D_8013A300_430740,
+};

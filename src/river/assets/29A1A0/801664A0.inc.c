@@ -1,0 +1,21 @@
+/* ROM 2D6570, VRAM 801664A0: native model/material animation table. */
+AnimCmd* D_801664A0_2D6570[18] = {
+    (AnimCmd*) &D_801664E8_2D65B8,
+    (AnimCmd*) &D_8016654C_2D661C,
+    (AnimCmd*) &D_80166594_2D6664,
+    (AnimCmd*) &D_801665F4_2D66C4,
+    (AnimCmd*) &D_80166654_2D6724,
+    (AnimCmd*) &D_8016666C_2D673C,
+    (AnimCmd*) &D_801666C8_2D6798,
+    (AnimCmd*) &D_80166724_2D67F4,
+    (AnimCmd*) &D_80166784_2D6854,
+    (AnimCmd*) &D_801667E0_2D68B0,
+    (AnimCmd*) &D_80166838_2D6908,
+    (AnimCmd*) &D_80166868_2D6938,
+    (AnimCmd*) &D_80166898_2D6968,
+    (AnimCmd*) &D_80166904_2D69D4,
+    (AnimCmd*) &D_80166960_2D6A30,
+    (AnimCmd*) &D_80166990_2D6A60,
+    (AnimCmd*) &D_801669FC_2D6ACC,
+    (AnimCmd*) &D_80166A58_2D6B28,
+};

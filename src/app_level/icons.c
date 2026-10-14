@@ -1,5 +1,5 @@
 #include "common.h"
-#include "app_level.h"
+#include "native_data.h"
 
 enum IconSpriteIds {
     ICON_ID_APPLE = 0,
@@ -21,15 +21,7 @@ typedef struct SpriteDefStruct {
     /* 0x14 */ Sprite* spriteDef;
 } SpriteDefStruct; // size = 0x18
 
-typedef struct SpriteStruct {
-    /* 0x00 */ u32 x;
-    /* 0x04 */ u32 y;
-    /* 0x08 */ SObj* spriteObj;
-    /* 0x0C */ char unused[12];
-} SpriteStruct; // size = 0x18
-
 // data
-// TODO make sprite assets
 extern Sprite D_80383B48_523F58; // Icon_Zoom
 extern Sprite D_803841C8_5245D8; // Icon_ZoomOff
 extern Sprite D_80384E68_525278; // Icon_Dash
@@ -37,12 +29,7 @@ extern Sprite D_80385B08_525F18; // Icon_Photo
 extern Sprite D_803867A8_526BB8; // Icon_PesterBall
 extern Sprite D_80387448_527858; // Icon_Apple
 extern Sprite D_803880E8_5284F8; // Icon_Flute
-// we have to make this small array because of alignment
-u32 EndOfSpriteData[] = {
-    0x803AF790,
-    0x00000000,
-    0x00000000
-};
+#include "native_icons_data.inc.c"
 
 SpriteStruct Icons_IconObjects[] = {
     { 148, 104, NULL, 0, 0, NULL },

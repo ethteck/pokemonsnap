@@ -1,0 +1,6 @@
+/* ROM 1BC80C, VRAM 801766AC: complete native animation command stream. */
+struct tunnel_1ADCB0_Animation801766AC D_801766AC_1BC80C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.9236390590667725f, -0.30311673879623413f, 0.5537933111190796f, -10.726428031921387f, -109.12799835205078f, 13.031375885009766f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 49 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

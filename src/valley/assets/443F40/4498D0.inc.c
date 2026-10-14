@@ -1,0 +1,20 @@
+/* ROM 4498D0, VRAM 80153490: AnimCmd*. */
+AnimCmd* D_80153490_4498D0[17] = {
+    (AnimCmd*) &D_801534D4_449914,
+    (AnimCmd*) &D_80153704_449B44,
+    NULL,
+    (AnimCmd*) &D_80153840_449C80,
+    (AnimCmd*) &D_80153A08_449E48,
+    (AnimCmd*) &D_80153B28_449F68,
+    (AnimCmd*) &D_80153CF0_44A130,
+    (AnimCmd*) &D_80153E9C_44A2DC,
+    (AnimCmd*) &D_80153FF4_44A434,
+    (AnimCmd*) &D_8015414C_44A58C,
+    (AnimCmd*) &D_801542F8_44A738,
+    (AnimCmd*) &D_80154418_44A858,
+    (AnimCmd*) &D_80154570_44A9B0,
+    (AnimCmd*) &D_8015478C_44ABCC,
+    (AnimCmd*) &D_801548C8_44AD08,
+    (AnimCmd*) &D_801549B0_44ADF0,
+    (AnimCmd*) &D_80154B08_44AF48,
+};

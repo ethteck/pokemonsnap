@@ -1,17 +1,17 @@
 #include "common.h"
 
 extern Sprite D_80388E00_529210;
-extern UNK_TYPE D_80388F58_529368;
+extern Bitmap D_80388F50_529360[1];
 extern Sprite D_80388F60_529370;
-extern UNK_TYPE D_803890B8_5294C8;
+extern Bitmap D_803890B0_5294C0[1];
 extern Sprite D_803890C0_5294D0;
-extern UNK_TYPE D_80389218_529628;
+extern Bitmap D_80389210_529620[1];
 extern Sprite D_80389220_529630;
 extern s32 D_8038A024_52A434;
 extern s32 D_8038A028_52A438;
 extern s32 D_8038A02C_52A43C;
 extern s32 D_8038A030_52A440;
-extern UNK_TYPE D_8038A034_52A444[];
+extern u8* D_8038A034_52A444[10];
 extern GObj* D_803B09D8_550DE8;
 extern SObj* D_803B0A14_550E24;
 extern SObj* D_803B0A18_550E28;
@@ -72,20 +72,20 @@ s32 func_8035E52C_4FE93C(void) {
     tens = (value % 100) / 10;
     hundreds = value / 100;
 
-    D_80388F58_529368 = D_8038A034_52A444[ones];
+    D_80388F50_529360[0].buf = D_8038A034_52A444[ones];
 
     if (hundreds == 0) {
         if (tens == 0) {
             spSetAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         } else {
-            D_803890B8_5294C8 = D_8038A034_52A444[tens];
+            D_803890B0_5294C0[0].buf = D_8038A034_52A444[tens];
             spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         }
         spSetAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     } else {
-        D_803890B8_5294C8 = D_8038A034_52A444[tens];
+        D_803890B0_5294C0[0].buf = D_8038A034_52A444[tens];
         spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
-        D_80389218_529628 = D_8038A034_52A444[hundreds];
+        D_80389210_529620[0].buf = D_8038A034_52A444[hundreds];
         spClearAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     }
 

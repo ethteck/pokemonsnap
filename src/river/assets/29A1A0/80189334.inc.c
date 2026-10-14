@@ -1,0 +1,8 @@
+/* ROM 2F9404, VRAM 80189334: complete native animation command stream. */
+struct river_29A1A0_Animation80189334 D_80189334_2F9404 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { 0.6981316804885864f, -0.009217693470418453f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 25, { 0.8023198843002319f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 15, { 0.6981316804885864f, -0.008331946097314358f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80189334_2F9404 },
+};

@@ -1,0 +1,21 @@
+/* ROM 17E790, VRAM 80138630: renderer node count bounds material slots. */
+Texture** D_80138630_17E790[18] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_801387F8_17E958,
+    D_80138800_17E960,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

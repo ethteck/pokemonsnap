@@ -1,11 +1,5 @@
 #include "../tunnel.h"
 
-extern AnimCmd* D_8015AAE0_1A0C40[];
-extern AnimCmd* D_8015A4C0_1A0620[];
-
-extern AnimCmd** D_8015AEF0_1A1050[];
-extern AnimCmd** D_8015AE40_1A0FA0[];
-
 extern UnkEC64Arg3 kakuna_model[];
 extern Texture** kakuna_materials[];
 

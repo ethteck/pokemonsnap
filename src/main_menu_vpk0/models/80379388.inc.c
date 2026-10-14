@@ -1,0 +1,4 @@
+/* 0x80379388: native Gfx. */
+Gfx D_80379388_main_menu_vpk0[41] = {
+#include "build/assets/native/gfx/D_80379388_main_menu_vpk0.dl.inc.c"
+};

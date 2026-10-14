@@ -1,0 +1,20 @@
+/* ROM EA9E0, VRAM 8015E550: native model/material animation table. */
+AnimCmd* D_8015E550_EA9E0[17] = {
+    NULL,
+    (AnimCmd*) &D_8015E594_EAA24,
+    NULL,
+    (AnimCmd*) &D_8015E5F8_EAA88,
+    (AnimCmd*) &D_8015E654_EAAE4,
+    (AnimCmd*) &D_8015E6A0_EAB30,
+    (AnimCmd*) &D_8015E704_EAB94,
+    (AnimCmd*) &D_8015E780_EAC10,
+    (AnimCmd*) &D_8015E7E4_EAC74,
+    (AnimCmd*) &D_8015E850_EACE0,
+    (AnimCmd*) &D_8015E8E8_EAD78,
+    (AnimCmd*) &D_8015E944_EADD4,
+    (AnimCmd*) &D_8015E9C4_EAE54,
+    (AnimCmd*) &D_8015E9F4_EAE84,
+    (AnimCmd*) &D_8015EA80_EAF10,
+    (AnimCmd*) &D_8015EADC_EAF6C,
+    (AnimCmd*) &D_8015EB5C_EAFEC,
+};

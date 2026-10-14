@@ -1,0 +1,7 @@
+/* ROM 4EA8C8, VRAM 801384F8: complete native animation command stream. */
+struct bank_4A8170_Animation801384F8 D_801384F8_4EA8C8 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { -0.0899999737739563f, -0.00167192448861897f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -9.5f, 11.869999885559082f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 135, { -0.0899999737739563f, -0.00167192448861897f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801384F8_4EA8C8 },
+};

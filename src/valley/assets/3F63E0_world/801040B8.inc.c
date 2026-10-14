@@ -1,0 +1,10 @@
+/* ROM 3FA4F8, VRAM 801040B8: native InterpData path descriptor. */
+InterpData D_801040B8_3FA4F8 = {
+    HAL_INTERP_BEZIER,
+    7,
+    0.0f,
+    D_80103FB8_3FA3F8,
+    47.08000564575195f,
+    D_80104024_3FA464,
+    D_80104040_3FA480,
+};

@@ -1,0 +1,13 @@
+/* ROM 2EAE70, VRAM 8017ADA0: native model/material animation table. */
+AnimCmd** D_8017ADA0_2EAE70[10] = {
+    NULL,
+    D_8017AE68_2EAF38,
+    D_8017AE70_2EAF40,
+    D_8017AE74_2EAF44,
+    D_8017AE78_2EAF48,
+    D_8017AE7C_2EAF4C,
+    D_8017AE80_2EAF50,
+    NULL,
+    NULL,
+    D_8017AE84_2EAF54,
+};

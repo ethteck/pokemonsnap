@@ -1,0 +1,20 @@
+/* ROM 27A440, VRAM 801AE690: native model/material animation table. */
+AnimCmd** D_801AE690_27A440[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_801AE71C_27A4CC,
+    NULL,
+    NULL,
+};

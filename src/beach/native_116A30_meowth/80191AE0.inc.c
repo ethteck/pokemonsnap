@@ -1,0 +1,23 @@
+/* ROM 11DF70, VRAM 80191AE0: native model/material animation table. */
+AnimCmd* D_80191AE0_11DF70[20] = {
+    (AnimCmd*) &D_80191B30_11DFC0,
+    (AnimCmd*) &D_80191C74_11E104,
+    (AnimCmd*) &D_80191E00_11E290,
+    (AnimCmd*) &D_80191F6C_11E3FC,
+    (AnimCmd*) &D_80192058_11E4E8,
+    (AnimCmd*) &D_801920F0_11E580,
+    (AnimCmd*) &D_801921F0_11E680,
+    (AnimCmd*) &D_80192288_11E718,
+    (AnimCmd*) &D_80192414_11E8A4,
+    (AnimCmd*) &D_801924A4_11E934,
+    (AnimCmd*) &D_8019259C_11EA2C,
+    (AnimCmd*) &D_80192640_11EAD0,
+    (AnimCmd*) &D_801926BC_11EB4C,
+    (AnimCmd*) &D_8019281C_11ECAC,
+    (AnimCmd*) &D_801928E0_11ED70,
+    (AnimCmd*) &D_80192988_11EE18,
+    (AnimCmd*) &D_80192A2C_11EEBC,
+    (AnimCmd*) &D_80192AD4_11EF64,
+    (AnimCmd*) &D_80192B74_11F004,
+    (AnimCmd*) &D_80192C08_11F098,
+};

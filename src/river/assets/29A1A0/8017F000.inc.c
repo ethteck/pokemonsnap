@@ -1,0 +1,6 @@
+/* ROM 2EF0D0, VRAM 8017F000: complete native animation command stream. */
+struct river_29A1A0_Animation8017F000 D_8017F000_2EF0D0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.21800005435943604f, 0.0f, 0.0f, 9.999999747378752e-05f, 161.41815185546875f, 39.34140396118164f, 1.0f, 0.2539750635623932f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 100 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8017F000_2EF0D0 },
+};

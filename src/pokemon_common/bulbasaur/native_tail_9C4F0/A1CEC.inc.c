@@ -1,0 +1,8 @@
+/* ROM 0xA1CEC; native animation_stream. */
+struct PokemonCommonAnimationBulbasaur801248CC D_801248CC_A1CEC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 1.30385160446167e-07f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 196.7126922607422f, 12.61802864074707f, 249.01695251464844f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 31, { 0.4591197967529297f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 19, { 1.30385160446167e-07f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801248CC_A1CEC },
+};

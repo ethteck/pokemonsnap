@@ -1,0 +1,21 @@
+/* ROM 1000C0, VRAM 80173C30: native model/material animation table. */
+AnimCmd* D_80173C30_1000C0[18] = {
+    (AnimCmd*) &D_80173C78_100108,
+    (AnimCmd*) &D_80173CAC_10013C,
+    (AnimCmd*) &D_80173E4C_1002DC,
+    (AnimCmd*) &D_80173F7C_10040C,
+    (AnimCmd*) &D_80174004_100494,
+    (AnimCmd*) &D_80174188_100618,
+    (AnimCmd*) &D_80174218_1006A8,
+    (AnimCmd*) &D_801743DC_10086C,
+    (AnimCmd*) &D_8017457C_100A0C,
+    (AnimCmd*) &D_8017460C_100A9C,
+    (AnimCmd*) &D_801747D0_100C60,
+    (AnimCmd*) &D_80174938_100DC8,
+    (AnimCmd*) &D_80174AC8_100F58,
+    (AnimCmd*) &D_80174BEC_10107C,
+    (AnimCmd*) &D_80174C20_1010B0,
+    (AnimCmd*) &D_80174D70_101200,
+    (AnimCmd*) &D_80174FC0_101450,
+    (AnimCmd*) &D_801751E0_101670,
+};

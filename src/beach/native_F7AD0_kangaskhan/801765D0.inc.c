@@ -1,0 +1,21 @@
+/* ROM 102A60, VRAM 801765D0: native model/material animation table. */
+AnimCmd* D_801765D0_102A60[18] = {
+    (AnimCmd*) &D_80176618_102AA8,
+    (AnimCmd*) &D_80176650_102AE0,
+    (AnimCmd*) &D_801767B4_102C44,
+    (AnimCmd*) &D_80176890_102D20,
+    (AnimCmd*) &D_80176998_102E28,
+    (AnimCmd*) &D_80176A74_102F04,
+    (AnimCmd*) &D_80176B7C_10300C,
+    (AnimCmd*) &D_80176CA8_103138,
+    (AnimCmd*) &D_80176D9C_10322C,
+    (AnimCmd*) &D_80176DF4_103284,
+    (AnimCmd*) &D_80176ED8_103368,
+    (AnimCmd*) &D_80176F54_1033E4,
+    (AnimCmd*) &D_80177040_1034D0,
+    (AnimCmd*) &D_801770D0_103560,
+    (AnimCmd*) &D_80177104_103594,
+    (AnimCmd*) &D_8017717C_10360C,
+    (AnimCmd*) &D_80177274_103704,
+    (AnimCmd*) &D_801773E0_103870,
+};

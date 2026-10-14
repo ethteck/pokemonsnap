@@ -1,7 +1,7 @@
 #include "common.h"
 #include "app_level/app_level.h"
 
-extern s16 D_802C6354_648804;
+extern u16 D_802C6354_648804;
 extern AnimationHeader D_802C779C_649C4C;
 extern PokemonInitData D_802C77FC_649CAC;
 

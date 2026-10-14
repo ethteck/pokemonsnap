@@ -1,0 +1,23 @@
+/* ROM 3010C0, VRAM 80190FF0: native model/material animation table. */
+AnimCmd* D_80190FF0_3010C0[20] = {
+    (AnimCmd*) &D_80191040_301110,
+    (AnimCmd*) &D_8019105C_30112C,
+    (AnimCmd*) &D_801910C4_301194,
+    NULL,
+    (AnimCmd*) &D_8019116C_30123C,
+    NULL,
+    (AnimCmd*) &D_80191214_3012E4,
+    (AnimCmd*) &D_80191914_3019E4,
+    (AnimCmd*) &D_80191990_301A60,
+    NULL,
+    (AnimCmd*) &D_801919F0_301AC0,
+    (AnimCmd*) &D_80191A64_301B34,
+    NULL,
+    (AnimCmd*) &D_80191AB8_301B88,
+    NULL,
+    (AnimCmd*) &D_80191B0C_301BDC,
+    (AnimCmd*) &D_80191B44_301C14,
+    (AnimCmd*) &D_80191B84_301C54,
+    (AnimCmd*) &D_80191BD4_301CA4,
+    (AnimCmd*) &D_80191C24_301CF4,
+};

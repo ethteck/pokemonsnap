@@ -1,0 +1,22 @@
+/* ROM B196C, VRAM 801254DC: complete native animation command stream. */
+struct native_a74f0_Animation801254DC D_801254DC_B196C = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_801254C4_B1954 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 0, { 1.2217304706573486f, 0.01745329238474369f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM | SCALEX) << 15) | 0, { 0.0f, 2.140000104904175f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 37, { 0.0f, 3.729732270585373e-05f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 90, { 2.5307273864746094f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 100, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX) << 15) | 1, { 4.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX) << 15) | 39, { 2.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 36 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 18, { -0.18199999630451202f, -0.004851554054766893f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX) << 15) | 60, { 2.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 15 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 32, { -0.2425776869058609f, 0.004044444765895605f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 13, { 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 10, { 2.5307273864746094f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

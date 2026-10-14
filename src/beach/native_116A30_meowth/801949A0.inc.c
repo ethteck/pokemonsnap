@@ -1,0 +1,23 @@
+/* ROM 120E30, VRAM 801949A0: native model/material animation table. */
+AnimCmd* D_801949A0_120E30[20] = {
+    (AnimCmd*) &D_801949F0_120E80,
+    (AnimCmd*) &D_80194A0C_120E9C,
+    (AnimCmd*) &D_80194BD0_121060,
+    (AnimCmd*) &D_80194D14_1211A4,
+    (AnimCmd*) &D_80194EB8_121348,
+    (AnimCmd*) &D_80194F38_1213C8,
+    (AnimCmd*) &D_80195014_1214A4,
+    (AnimCmd*) &D_80195094_121524,
+    (AnimCmd*) &D_80195260_1216F0,
+    (AnimCmd*) &D_801952E0_121770,
+    (AnimCmd*) &D_801953DC_12186C,
+    (AnimCmd*) &D_8019545C_1218EC,
+    (AnimCmd*) &D_80195500_121990,
+    (AnimCmd*) &D_80195604_121A94,
+    (AnimCmd*) &D_801956E8_121B78,
+    (AnimCmd*) &D_801957D8_121C68,
+    (AnimCmd*) &D_80195880_121D10,
+    (AnimCmd*) &D_80195938_121DC8,
+    (AnimCmd*) &D_801959F0_121E80,
+    (AnimCmd*) &D_80195A5C_121EEC,
+};

@@ -1,0 +1,20 @@
+/* ROM 22B5D0, VRAM 8015F820: native model/material animation table. */
+AnimCmd* D_8015F820_22B5D0[17] = {
+    (AnimCmd*) &D_8015F864_22B614,
+    (AnimCmd*) &D_8015F870_22B620,
+    (AnimCmd*) &D_8015F888_22B638,
+    (AnimCmd*) &D_8015F94C_22B6FC,
+    (AnimCmd*) &D_8015F9C8_22B778,
+    (AnimCmd*) &D_8015FAF4_22B8A4,
+    (AnimCmd*) &D_8015FBB4_22B964,
+    (AnimCmd*) &D_8015FC40_22B9F0,
+    (AnimCmd*) &D_8015FCAC_22BA5C,
+    (AnimCmd*) &D_8015FD18_22BAC8,
+    (AnimCmd*) &D_8015FD84_22BB34,
+    (AnimCmd*) &D_8015FD9C_22BB4C,
+    (AnimCmd*) &D_8015FE40_22BBF0,
+    (AnimCmd*) &D_8015FEE4_22BC94,
+    (AnimCmd*) &D_8015FF64_22BD14,
+    (AnimCmd*) &D_8015FFBC_22BD6C,
+    (AnimCmd*) &D_8016008C_22BE3C,
+};

@@ -1,0 +1,21 @@
+/* ROM 1039B0, VRAM 80177520: native model/material animation table. */
+AnimCmd* D_80177520_1039B0[18] = {
+    (AnimCmd*) &D_80177568_1039F8,
+    (AnimCmd*) &D_8017764C_103ADC,
+    (AnimCmd*) &D_8017799C_103E2C,
+    (AnimCmd*) &D_80177CC8_104158,
+    (AnimCmd*) &D_80177E00_104290,
+    (AnimCmd*) &D_80178158_1045E8,
+    (AnimCmd*) &D_80178258_1046E8,
+    (AnimCmd*) &D_801785B4_104A44,
+    (AnimCmd*) &D_80178834_104CC4,
+    (AnimCmd*) &D_80178940_104DD0,
+    (AnimCmd*) &D_80178AB4_104F44,
+    (AnimCmd*) &D_80178C04_105094,
+    (AnimCmd*) &D_80178D78_105208,
+    (AnimCmd*) &D_80178EF0_105380,
+    (AnimCmd*) &D_80178F24_1053B4,
+    (AnimCmd*) &D_80179034_1054C4,
+    (AnimCmd*) &D_80179270_105700,
+    (AnimCmd*) &D_801793F8_105888,
+};

@@ -1,0 +1,21 @@
+/* ROM 432BE0, VRAM 8013C7A0: AnimCmd**. */
+AnimCmd** D_8013C7A0_432BE0[18] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8013C820_432C60,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

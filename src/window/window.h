@@ -1,6 +1,21 @@
 #ifndef _WINDOW_H
 #define _WINDOW_H
 
+typedef struct UIButtonImageListEntry {
+    /* 0x00 */ struct UIButtonImageListEntry* next;
+    /* 0x04 */ struct UIButtonImageListEntry* prev;
+    /* 0x08 */ GObj* obj;
+} UIButtonImageListEntry; // size = 0xC
+typedef struct WindowPhotoBuffer {
+    u16* buf;
+    s32 width;
+    s32 height;
+    s32 unkC;
+    s32 unk10;
+    s32 unk14;
+    s32 unk18;
+} WindowPhotoBuffer;
+
 enum FrameStyle {
     FRAME_STYLE_0,
     FRAME_STYLE_1,

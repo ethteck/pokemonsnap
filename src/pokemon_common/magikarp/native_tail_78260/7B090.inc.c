@@ -1,0 +1,21 @@
+/* ROM 0x7B090; native model_root. */
+AnimCmd* D_800FDC70_7B090[18] = {
+    (AnimCmd*) &D_800FDCB8_7B0D8,
+    (AnimCmd*) &D_800FDE18_7B238,
+    (AnimCmd*) &D_800FE1F0_7B610,
+    (AnimCmd*) &D_800FE50C_7B92C,
+    (AnimCmd*) &D_800FE7F8_7BC18,
+    (AnimCmd*) &D_800FEAB0_7BED0,
+    (AnimCmd*) &D_800FED38_7C158,
+    NULL,
+    (AnimCmd*) &D_800FED6C_7C18C,
+    (AnimCmd*) &D_800FEDA0_7C1C0,
+    (AnimCmd*) &D_800FEFB4_7C3D4,
+    (AnimCmd*) &D_800FF19C_7C5BC,
+    (AnimCmd*) &D_800FF384_7C7A4,
+    (AnimCmd*) &D_800FF5D0_7C9F0,
+    (AnimCmd*) &D_800FF854_7CC74,
+    (AnimCmd*) &D_800FFA84_7CEA4,
+    (AnimCmd*) &D_800FFC50_7D070,
+    NULL,
+};

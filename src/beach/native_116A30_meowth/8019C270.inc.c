@@ -1,0 +1,23 @@
+/* ROM 128700, VRAM 8019C270: native model/material animation table. */
+AnimCmd* D_8019C270_128700[20] = {
+    (AnimCmd*) &D_8019C2C0_128750,
+    (AnimCmd*) &D_8019C2DC_12876C,
+    (AnimCmd*) &D_8019C504_128994,
+    (AnimCmd*) &D_8019C5D4_128A64,
+    (AnimCmd*) &D_8019C780_128C10,
+    (AnimCmd*) &D_8019C7C4_128C54,
+    (AnimCmd*) &D_8019C90C_128D9C,
+    (AnimCmd*) &D_8019C9E8_128E78,
+    (AnimCmd*) &D_8019CB74_129004,
+    (AnimCmd*) &D_8019CBD0_129060,
+    (AnimCmd*) &D_8019CCF4_129184,
+    (AnimCmd*) &D_8019CDC4_129254,
+    (AnimCmd*) &D_8019CF78_129408,
+    (AnimCmd*) &D_8019D118_1295A8,
+    (AnimCmd*) &D_8019D288_129718,
+    (AnimCmd*) &D_8019D430_1298C0,
+    (AnimCmd*) &D_8019D4BC_12994C,
+    (AnimCmd*) &D_8019D658_129AE8,
+    (AnimCmd*) &D_8019D7FC_129C8C,
+    (AnimCmd*) &D_8019D87C_129D0C,
+};

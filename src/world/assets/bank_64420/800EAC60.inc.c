@@ -1,0 +1,9 @@
+/* ROM 68410, VRAM 800EAC60: consumer-bounded pointer table. */
+u8* D_800EAC60_68410[6] = {
+    D_800EA858_68008,
+    D_800EA450_67C00,
+    D_800EA048_677F8,
+    D_800E9C40_673F0,
+    D_800E9838_66FE8,
+    D_800E9430_66BE0,
+};

@@ -3,14 +3,8 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
+#include "assets/6CA400/declarations.h"
 
-extern AnimationHeader D_802E3CF8_6CBAD8;
-extern AnimationHeader D_802E3D0C_6CBAEC;
-extern AnimationHeader D_802E3D20_6CBB00;
-extern InteractionHandler D_802E3D34_6CBB14[];
-extern PokemonInitData D_802E3D68_6CBB48;
-extern s32 D_802E3DA0_6CBB80;
-extern PokemonInitData D_802E3DCC_6CBBAC;
 extern GObj* D_8033F5C8_7273A8;
 
 void func_802DEB00_6C68E0(GObj*);

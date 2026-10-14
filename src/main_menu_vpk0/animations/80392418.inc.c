@@ -1,0 +1,40 @@
+/* 0x80392418: native struct MainMenuAnimation80392418. */
+struct MainMenuAnimation80392418 {
+    AnimLine9 command_80392418;
+    AnimLine9 command_80392440;
+    AnimLine1 command_80392468;
+    AnimLine8 command_80392470;
+    AnimLine2 command_80392494;
+    AnimLine2 command_803924A0;
+    AnimLine2 command_803924AC;
+    AnimLine1 command_803924B8;
+    AnimLine1 command_803924C0;
+    AnimLine1 command_803924C8;
+    AnimLine1 command_803924D0;
+    AnimLine1 command_803924D8;
+    AnimLine1 command_803924E0;
+    AnimLine2 command_803924E8;
+    AnimLine1 command_803924F4;
+    AnimLine1 command_803924FC;
+    AnimLine0 command_80392504;
+};
+
+struct MainMenuAnimation80392418 D_80392418_main_menu_vpk0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.3399999737739563f, 0.0f, 0.0f, 0.0f, -13.654999732971191f, 35.220001220703125f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 861, { 0.3399999737739563f, 0.0f, 0.0f, 0.0f, -13.654999732971191f, 35.220001220703125f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { 0.00392258120700717f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 999, { 0.0f, 0.0f, 0.0f, -13.654999732971191f, 35.220001220703125f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 7, { 0.24039298295974731f, -0.01842944510281086f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 12, { -0.010159402154386044f, -0.0038547308649867773f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 66, { -0.0602760836482048f, -0.0005220489692874253f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX) << 15) | 30, { -0.0602760836482048f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 120, { -0.0602760836482048f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX) << 15) | 30, { -0.0602760836482048f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX) << 15) | 30, { 0.3399999737739563f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { 0.006647298112511635f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 33, { 0.35850340127944946f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 7, { 0.3399999737739563f, -0.0005286682862788439f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 28, { 0.3399999737739563f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX) << 15) | 636, { 0.3399999737739563f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,6 @@
+/* ROM 1220E4, VRAM 80195C54: complete native animation command stream. */
+struct native_116A30_meowth_Animation80195C54 D_80195C54_1220E4 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.1299998015165329f, 0.16000008583068848f, -0.30000004172325134f, -37.521785736083984f, 13.502860069274902f, 2.8693318367004395f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 30 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80195C54_1220E4 },
+};

@@ -1,0 +1,21 @@
+/* ROM EC1E4, VRAM 8015FD54: complete native animation command stream. */
+struct native_E4E90_doduo_Animation8015FD54 D_8015FD54_EC1E4 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY | POSZ) << 15) | 0, { -213.32020568847656f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY | POSZ) << 15) | 9, { 58.82019805908203f, 29.443178176879883f, 396.0800476074219f, 14.355389595031738f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 7 },
+    { (ANIM_CMD_16 << 25) | ((0x102) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY | POSZ) << 15) | 16, { 522.75927734375f, 13.183100700378418f, 358.88470458984375f, -8.48742961883545f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 7 },
+    { (ANIM_CMD_16 << 25) | ((0x1) << 15) | 9 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY | POSZ) << 15) | 12, { 427.9469909667969f, -41.25657272338867f, 158.4320068359375f, -19.938037872314453f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY | POSZ) << 15) | 6, { 0.0f, -0.8496109843254089f, 0.0f, -17.603559494018555f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSZ) << 15) | 3, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY) << 15) | 3, { 0.0f, 0.2361459583044052f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 1 },
+    { (ANIM_CMD_16 << 25) | ((0x203) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY | POSZ) << 15) | 26, { 0.0f, 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 22 },
+    { (ANIM_CMD_16 << 25) | ((0x304) << 15) | 4 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

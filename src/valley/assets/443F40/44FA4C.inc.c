@@ -1,0 +1,6 @@
+/* ROM 44FA4C, VRAM 8015960C: struct ValleyAnimation8015960C. */
+struct ValleyAnimation8015960C D_8015960C_44FA4C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.34780991077423096f, -0.2727121412754059f, 0.5556774735450745f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 30 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8015960C_44FA4C },
+};

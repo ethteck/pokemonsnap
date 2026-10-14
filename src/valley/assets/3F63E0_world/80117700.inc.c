@@ -1,0 +1,10 @@
+/* ROM 40DB40, VRAM 80117700: native InterpData path descriptor. */
+InterpData D_80117700_40DB40 = {
+    HAL_INTERP_BEZIER,
+    9,
+    0.0f,
+    D_801175B8_40D9F8,
+    75.36528778076172f,
+    D_8011763C_40DA7C,
+    D_80117660_40DAA0,
+};

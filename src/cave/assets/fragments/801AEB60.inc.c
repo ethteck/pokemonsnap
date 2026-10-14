@@ -1,0 +1,20 @@
+/* ROM 27A910, VRAM 801AEB60: native model/material animation table. */
+AnimCmd** D_801AEB60_27A910[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_801AEDBC_27AB6C,
+    NULL,
+    NULL,
+};

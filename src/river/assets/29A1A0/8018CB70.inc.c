@@ -1,0 +1,23 @@
+/* ROM 2FCC40, VRAM 8018CB70: native model/material animation table. */
+AnimCmd* D_8018CB70_2FCC40[20] = {
+    (AnimCmd*) &D_8018CBC0_2FCC90,
+    (AnimCmd*) &D_8018CC60_2FCD30,
+    (AnimCmd*) &D_8018CDB4_2FCE84,
+    (AnimCmd*) &D_8018CEE4_2FCFB4,
+    (AnimCmd*) &D_8018CF7C_2FD04C,
+    (AnimCmd*) &D_8018D058_2FD128,
+    (AnimCmd*) &D_8018D0E8_2FD1B8,
+    (AnimCmd*) &D_8018D5B4_2FD684,
+    (AnimCmd*) &D_8018D6C8_2FD798,
+    (AnimCmd*) &D_8018D6F8_2FD7C8,
+    (AnimCmd*) &D_8018D728_2FD7F8,
+    (AnimCmd*) &D_8018D768_2FD838,
+    (AnimCmd*) &D_8018D85C_2FD92C,
+    (AnimCmd*) &D_8018D928_2FD9F8,
+    (AnimCmd*) &D_8018DA38_2FDB08,
+    (AnimCmd*) &D_8018DB10_2FDBE0,
+    (AnimCmd*) &D_8018DBD4_2FDCA4,
+    (AnimCmd*) &D_8018DCC4_2FDD94,
+    (AnimCmd*) &D_8018DD64_2FDE34,
+    (AnimCmd*) &D_8018DE28_2FDEF8,
+};

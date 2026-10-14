@@ -1,0 +1,6 @@
+/* ROM 2B96AC, VRAM 801495DC: complete native animation command stream. */
+struct river_29A1A0_Animation801495DC D_801495DC_2B96AC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.483529806137085f, -3.725290298461914e-09f, -7.450580596923828e-09f, -0.5379654169082642f, -31.202003479003906f, -1.7881393432617188e-05f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

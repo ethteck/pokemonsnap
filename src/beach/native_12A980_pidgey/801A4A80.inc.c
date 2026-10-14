@@ -1,0 +1,20 @@
+/* ROM 130F10, VRAM 801A4A80: native model/material animation table. */
+AnimCmd* D_801A4A80_130F10[17] = {
+    (AnimCmd*) &D_801A4AC4_130F54,
+    NULL,
+    (AnimCmd*) &D_801A4B3C_130FCC,
+    (AnimCmd*) &D_801A4C08_131098,
+    (AnimCmd*) &D_801A4D0C_13119C,
+    (AnimCmd*) &D_801A4DBC_13124C,
+    (AnimCmd*) &D_801A4E34_1312C4,
+    (AnimCmd*) &D_801A4EC4_131354,
+    (AnimCmd*) &D_801A4F3C_1313CC,
+    (AnimCmd*) &D_801A5008_131498,
+    (AnimCmd*) &D_801A50D4_131564,
+    (AnimCmd*) &D_801A50F0_131580,
+    (AnimCmd*) &D_801A5494_131924,
+    (AnimCmd*) &D_801A5838_131CC8,
+    (AnimCmd*) &D_801A5BDC_13206C,
+    (AnimCmd*) &D_801A5F80_132410,
+    (AnimCmd*) &D_801A6324_1327B4,
+};

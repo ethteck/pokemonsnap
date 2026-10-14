@@ -1,0 +1,20 @@
+/* ROM 44FD80, VRAM 80159940: AnimCmd**. */
+AnimCmd** D_80159940_44FD80[17] = {
+    NULL,
+    D_801599CC_44FE0C,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

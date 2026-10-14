@@ -1,0 +1,20 @@
+/* ROM 44B090, VRAM 80154C50: AnimCmd*. */
+AnimCmd* D_80154C50_44B090[17] = {
+    (AnimCmd*) &D_80154C94_44B0D4,
+    (AnimCmd*) &D_80154ED0_44B310,
+    NULL,
+    (AnimCmd*) &D_8015500C_44B44C,
+    (AnimCmd*) &D_801551D4_44B614,
+    (AnimCmd*) &D_801552F4_44B734,
+    (AnimCmd*) &D_801554BC_44B8FC,
+    (AnimCmd*) &D_80155668_44BAA8,
+    (AnimCmd*) &D_801557C0_44BC00,
+    (AnimCmd*) &D_80155918_44BD58,
+    (AnimCmd*) &D_80155AC4_44BF04,
+    (AnimCmd*) &D_80155BE4_44C024,
+    (AnimCmd*) &D_80155D3C_44C17C,
+    (AnimCmd*) &D_80155F58_44C398,
+    (AnimCmd*) &D_80156094_44C4D4,
+    (AnimCmd*) &D_8015617C_44C5BC,
+    (AnimCmd*) &D_801562D4_44C714,
+};

@@ -1,0 +1,10 @@
+/* ROM 3FC9BC, VRAM 8010657C: native InterpData path descriptor. */
+InterpData D_8010657C_3FC9BC = {
+    HAL_INTERP_BEZIER,
+    11,
+    0.0f,
+    D_801063EC_3FC82C,
+    73.78511047363281f,
+    D_80106488_3FC8C8,
+    D_801064B4_3FC8F4,
+};

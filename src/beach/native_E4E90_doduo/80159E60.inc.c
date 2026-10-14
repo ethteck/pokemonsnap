@@ -1,0 +1,20 @@
+/* ROM E62F0, VRAM 80159E60: native model/material animation table. */
+AnimCmd* D_80159E60_E62F0[17] = {
+    (AnimCmd*) &D_80159EA4_E6334,
+    (AnimCmd*) &D_80159EF0_E6380,
+    NULL,
+    (AnimCmd*) &D_8015A35C_E67EC,
+    (AnimCmd*) &D_8015A6C0_E6B50,
+    (AnimCmd*) &D_8015A758_E6BE8,
+    (AnimCmd*) &D_8015A920_E6DB0,
+    (AnimCmd*) &D_8015A988_E6E18,
+    (AnimCmd*) &D_8015AC9C_E712C,
+    (AnimCmd*) &D_8015AD8C_E721C,
+    (AnimCmd*) &D_8015AEFC_E738C,
+    (AnimCmd*) &D_8015AF78_E7408,
+    (AnimCmd*) &D_8015B29C_E772C,
+    (AnimCmd*) &D_8015B418_E78A8,
+    (AnimCmd*) &D_8015B5C4_E7A54,
+    (AnimCmd*) &D_8015B8D8_E7D68,
+    (AnimCmd*) &D_8015BA4C_E7EDC,
+};

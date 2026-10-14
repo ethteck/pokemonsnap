@@ -1,0 +1,22 @@
+/* ROM 22C1D8, VRAM 80160428: complete native animation command stream. */
+struct Cave_Animation80160428 D_80160428_22C1D8 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | POSY | POSZ) << 15) | 0, { 0.0f, -43.58808898925781f, 336.9822082519531f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 0, { 0.0f, 0.013962634839117527f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | POSX) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTZ | POSZ) << 15) | 8, { 0.12217304855585098f, 0.10471975803375244f, 272.84454345703125f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 7, { 124.95661926269531f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY) << 15) | 7, { -43.58808898925781f, 4.2574751546453626e-07f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 1 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | POSZ) << 15) | 7, { 0.0f, 336.9822082519531f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 7, { 0.0f, -0.013962635770440102f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 6 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY) << 15) | 7, { 124.95657348632812f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 1 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTZ | POSZ) << 15) | 8, { 0.12217304855585098f, -0.10471975803375244f, 272.84454345703125f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 6 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY) << 15) | 9, { -43.58808898925781f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 7, { 0.0f, 0.013962634839117527f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | POSZ) << 15) | 7, { 0.0f, 336.9822082519531f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80160428_22C1D8 },
+};

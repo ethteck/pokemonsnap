@@ -1,0 +1,161 @@
+{
+  "vram": 2150322176,
+  "size": 28944,
+  "sources": [
+    {
+      "path": "src/intro_code_vpk0/sprite.c",
+      "object": "build/src/intro_code_vpk0/sprite.c.o",
+      "flags": "-O2",
+      "implicit": []
+    }
+  ],
+  "sections": [
+    {
+      "name": ".data",
+      "offset": 0,
+      "size": 28944,
+      "alignment": 16,
+      "object": "build/src/intro_code_vpk0/sprite.c.o"
+    },
+    {
+      "name": ".bss",
+      "offset": 28944,
+      "vram": 2150351120,
+      "size": 960,
+      "alignment": 8,
+      "noload": true,
+      "compressed_payload": false,
+      "object": "build/src/intro_code_vpk0/sprite.c.o"
+    }
+  ],
+  "images": [
+    {
+      "offset": 8,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_00",
+      "path": "assets/intro_code_vpk0/tile_00.png",
+      "include": "assets/intro_code_vpk0/tile_00.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 64,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 4096,
+      "symbol": "D_802B5008_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_00.png"
+    },
+    {
+      "offset": 4112,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_01",
+      "path": "assets/intro_code_vpk0/tile_01.png",
+      "include": "assets/intro_code_vpk0/tile_01.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 64,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 4096,
+      "symbol": "D_802B6010_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_01.png"
+    },
+    {
+      "offset": 8216,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_02",
+      "path": "assets/intro_code_vpk0/tile_02.png",
+      "include": "assets/intro_code_vpk0/tile_02.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 64,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 4096,
+      "symbol": "D_802B7018_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_02.png"
+    },
+    {
+      "offset": 12320,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_03",
+      "path": "assets/intro_code_vpk0/tile_03.png",
+      "include": "assets/intro_code_vpk0/tile_03.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 64,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 4096,
+      "symbol": "D_802B8020_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_03.png"
+    },
+    {
+      "offset": 16424,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_04",
+      "path": "assets/intro_code_vpk0/tile_04.png",
+      "include": "assets/intro_code_vpk0/tile_04.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 48,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 3072,
+      "symbol": "D_802B9028_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_04.png"
+    },
+    {
+      "offset": 19504,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_05",
+      "path": "assets/intro_code_vpk0/tile_05.png",
+      "include": "assets/intro_code_vpk0/tile_05.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 48,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 3072,
+      "symbol": "D_802B9C30_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_05.png"
+    },
+    {
+      "offset": 22584,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_06",
+      "path": "assets/intro_code_vpk0/tile_06.png",
+      "include": "assets/intro_code_vpk0/tile_06.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 48,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 3072,
+      "symbol": "D_802BA838_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_06.png"
+    },
+    {
+      "offset": 25664,
+      "type": "snap_rgba16",
+      "name": "intro_code_vpk0/tile_07",
+      "path": "assets/intro_code_vpk0/tile_07.png",
+      "include": "assets/intro_code_vpk0/tile_07.png.bin.c",
+      "fmt": "rgba16",
+      "width": 32,
+      "height": 48,
+      "flip_y": false,
+      "word_swap": true,
+      "palette": null,
+      "size": 3072,
+      "symbol": "D_802BB440_intro_code_vpk0",
+      "asset": "assets/intro_code_vpk0/tile_07.png"
+    }
+  ]
+}

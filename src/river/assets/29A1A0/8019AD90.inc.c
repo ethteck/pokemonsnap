@@ -1,0 +1,21 @@
+/* ROM 30AE60, VRAM 8019AD90: native model/material animation table. */
+AnimCmd** D_8019AD90_30AE60[18] = {
+    NULL,
+    NULL,
+    NULL,
+    D_8019AEAC_30AF7C,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019AEB0_30AF80,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

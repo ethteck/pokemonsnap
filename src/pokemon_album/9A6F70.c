@@ -9,26 +9,7 @@ typedef struct AlbumPhoto {
     /* 0x08 */ u8 isShown;
 } AlbumPhoto; // size: 0xC
 
-extern Sprite D_801E4518_9AE768;
-extern Sprite D_801ED550_9B77A0;
-extern Sprite D_801F2D28_9BCF78;
-extern Sprite D_801F2F88_9BD1D8;
-extern Sprite D_801F3108_9BD358;
-extern Sprite D_801F3288_9BD4D8;
-extern Sprite D_801F3408_9BD658;
-extern Sprite D_801F3588_9BD7D8;
-extern Sprite D_801F6B50_9C0DA0;
-extern Sprite D_801FB1D0_9C5420;
-extern Sprite D_801FFA10_9C9C60;
-extern Sprite D_801FFC80_9C9ED0;
-extern Sprite D_80200058_9CA2A8;
-extern Sprite D_80200400_9CA650;
-extern Sprite D_802005B8_9CA808;
-extern Sprite D_802006E8_9CA938;
-extern Sprite D_80201728_9CB978;
-extern Sprite D_80208B10_9D2D60;
-
-s32 D_80208B50_9D2DA0 = 0; // TODO belongs to sprites
+#include "remaining_ui_9AE550.inc.c"
 
 s32 D_80208B54_9D2DA4 = -1;
 s32 D_80208B58_9D2DA8[6] = { PokemonID_1004, PokemonID_1010, PokemonID_1018, PokemonID_1022, PokemonID_KOFFING_SMOKE, PokemonID_1035 };
@@ -60,12 +41,7 @@ s32 album_LetterAlpha = 10;
 s32 album_LetterAlphaRate = 5;
 bool D_80208B88_9D2DD8 = false;
 
-s32 album_D_8024EFE0_A19230;
-u8 album_unused[0x1000];
-bool album_D_8024FFE8_A1A238;
-s32 album_D_8024FFEC_A1A23C;
-UIElement* album_UiCommentActiveLetter;
-UIElement* album_UiAlbumStats;
+/* Keep this declaration order for IDO's BSS layout with native data above. */
 UIElement* album_UiAlbumHeader;
 UIElement* album_UiPhotoComment;
 UIElement* album_D_80250000_A1A250;
@@ -92,6 +68,12 @@ AlbumPhoto album_Photos[6];
 GObj* album_D_80250108_A1A358;
 SObj* album_D_8025010C_A1A35C;
 s32 album_D_80250110_A1A360;
+s32 album_D_8024EFE0_A19230;
+u8 album_unused[0x1000];
+bool album_D_8024FFE8_A1A238;
+s32 album_D_8024FFEC_A1A23C;
+UIElement* album_UiCommentActiveLetter;
+UIElement* album_UiAlbumStats;
 
 s32 album_GetCurrentPage(void) {
     return album_AlbumPage;

@@ -1,0 +1,23 @@
+/* ROM 1B68A0, VRAM 80170740: native model/material animation table. */
+AnimCmd* D_80170740_1B68A0[20] = {
+    (AnimCmd*) &D_80170790_1B68F0,
+    (AnimCmd*) &D_801707AC_1B690C,
+    (AnimCmd*) &D_8017081C_1B697C,
+    (AnimCmd*) &D_8017093C_1B6A9C,
+    (AnimCmd*) &D_801709D4_1B6B34,
+    (AnimCmd*) &D_80170BDC_1B6D3C,
+    (AnimCmd*) &D_80170BE8_1B6D48,
+    (AnimCmd*) &D_80170C8C_1B6DEC,
+    (AnimCmd*) &D_80170E9C_1B6FFC,
+    (AnimCmd*) &D_80170EA8_1B7008,
+    (AnimCmd*) &D_80171070_1B71D0,
+    (AnimCmd*) &D_801710C4_1B7224,
+    (AnimCmd*) &D_80171150_1B72B0,
+    (AnimCmd*) &D_801711DC_1B733C,
+    (AnimCmd*) &D_80171230_1B7390,
+    (AnimCmd*) &D_801712B8_1B7418,
+    (AnimCmd*) &D_80171360_1B74C0,
+    (AnimCmd*) &D_801713D8_1B7538,
+    (AnimCmd*) &D_80171464_1B75C4,
+    (AnimCmd*) &D_801714F4_1B7654,
+};

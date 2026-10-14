@@ -1,0 +1,15 @@
+/* ROM 11EAD0, VRAM 80192640: complete native animation command stream. */
+struct native_116A30_meowth_Animation80192640 D_80192640_11EAD0 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.7999998927116394f, -0.2047068476676941f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 9, { 0.4299999475479126f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 6 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -23.14934730529785f, -34.42304611206055f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 3, { -0.7999998927116394f, -0.23578444123268127f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { -0.22514992952346802f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 9, { 0.4299999475479126f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 3, { -0.7999998927116394f, -0.2047068476676941f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 9, { 0.4299999475479126f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 6 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80192640_11EAD0 },
+};

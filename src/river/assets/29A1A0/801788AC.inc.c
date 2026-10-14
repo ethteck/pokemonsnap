@@ -1,0 +1,21 @@
+/* ROM 2E897C, VRAM 801788AC: complete native animation command stream. */
+struct river_29A1A0_Animation801788AC D_801788AC_2E897C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEY) << 15) | 0, { 1.0f, -0.02421785518527031f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((SCALEY) << 15) | 3, { 0.826238751411438f, -0.007059755269438028f } },
+    { (ANIM_CMD_12 << 25) | ((SCALEY) << 15) | 1 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 16, { 0.0f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 1 },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEY) << 15) | 11, { 0.7709041833877563f, -0.0007513811578974128f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((SCALEY) << 15) | 5, { 1.0f, 0.025315064936876297f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 16, { 0.6981316804885864f, -0.0006957154837436974f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEY) << 15) | 8, { 1.100000023841858f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((SCALEY) << 15) | 24, { 1.0f, -0.0030065467581152916f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 13, { 0.5107524394989014f, -0.03674377128481865f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 6, { 0.0f, -0.10706987977027893f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,20 @@
+/* ROM 1CBFD0, VRAM 80185E70: native model/material animation table. */
+AnimCmd* D_80185E70_1CBFD0[17] = {
+    (AnimCmd*) &D_80185EB4_1CC014,
+    (AnimCmd*) &D_80185F00_1CC060,
+    (AnimCmd*) &D_80185F78_1CC0D8,
+    (AnimCmd*) &D_80185FC8_1CC128,
+    (AnimCmd*) &D_80186028_1CC188,
+    (AnimCmd*) &D_80186088_1CC1E8,
+    (AnimCmd*) &D_801860BC_1CC21C,
+    (AnimCmd*) &D_8018610C_1CC26C,
+    (AnimCmd*) &D_8018616C_1CC2CC,
+    (AnimCmd*) &D_801861CC_1CC32C,
+    (AnimCmd*) &D_80186200_1CC360,
+    (AnimCmd*) &D_80186294_1CC3F4,
+    (AnimCmd*) &D_80186320_1CC480,
+    (AnimCmd*) &D_801863B4_1CC514,
+    (AnimCmd*) &D_80186440_1CC5A0,
+    (AnimCmd*) &D_801864A8_1CC608,
+    (AnimCmd*) &D_801864FC_1CC65C,
+};

@@ -1,0 +1,10 @@
+/* ROM 187C80, VRAM 80141B20: native InterpData path descriptor. */
+InterpData D_80141B20_187C80 = {
+    HAL_INTERP_CATROM,
+    3,
+    0.5f,
+    D_80141AB0_187C10,
+    6.367619037628174f,
+    D_80141AEC_187C4C,
+    D_80141AF8_187C58,
+};

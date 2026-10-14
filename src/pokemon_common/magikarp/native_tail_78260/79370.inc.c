@@ -1,0 +1,21 @@
+/* ROM 0x79370; native model_root. */
+AnimCmd* D_800FBF50_79370[18] = {
+    (AnimCmd*) &D_800FBF98_793B8,
+    (AnimCmd*) &D_800FC018_79438,
+    (AnimCmd*) &D_800FC1A0_795C0,
+    (AnimCmd*) &D_800FC26C_7968C,
+    (AnimCmd*) &D_800FC3F0_79810,
+    (AnimCmd*) &D_800FC578_79998,
+    (AnimCmd*) &D_800FC6AC_79ACC,
+    (AnimCmd*) &D_800FC6DC_79AFC,
+    NULL,
+    (AnimCmd*) &D_800FC6F4_79B14,
+    (AnimCmd*) &D_800FC814_79C34,
+    (AnimCmd*) &D_800FC934_79D54,
+    (AnimCmd*) &D_800FCA54_79E74,
+    (AnimCmd*) &D_800FCB74_79F94,
+    (AnimCmd*) &D_800FCC7C_7A09C,
+    (AnimCmd*) &D_800FCD9C_7A1BC,
+    (AnimCmd*) &D_800FCF08_7A328,
+    (AnimCmd*) &D_800FD048_7A468,
+};

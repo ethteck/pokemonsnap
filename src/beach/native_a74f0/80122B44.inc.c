@@ -1,0 +1,19 @@
+/* ROM AEFD4, VRAM 80122B44: complete native animation command stream. */
+struct native_a74f0_Animation80122B44 D_80122B44_AEFD4 = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_80122B2C_AEFBC },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM | SCALEX) << 15) | 0, { 0.0f, 0.8999999761581421f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 60, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 100, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX) << 15) | 44, { 0.8999999761581421f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX) << 15) | 6, { 0.20000000298023224f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX) << 15) | 35, { 0.20000000298023224f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 7, { -0.45239028334617615f, -0.08292542397975922f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 6, { -0.8726646304130554f, 0.0006504032062366605f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 12, { -0.1035458892583847f, 0.03071308694779873f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 15, { 0.0872664600610733f, 0.008726646192371845f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX) << 15) | 5, { 0.8999999761581421f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX) << 15) | 10, { 0.8999999761581421f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

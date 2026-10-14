@@ -1,0 +1,6 @@
+/* ROM 12248C, VRAM 80195FFC: complete native animation command stream. */
+struct native_116A30_meowth_Animation80195FFC D_80195FFC_12248C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -1.4385890700907566e-08f, 0.27584660053253174f, -0.15578074753284454f, -84.05374145507812f, 4.0842413902282715f, 5.537361145019531f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 30 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80195FFC_12248C },
+};

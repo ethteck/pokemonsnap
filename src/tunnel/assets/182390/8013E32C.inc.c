@@ -1,0 +1,6 @@
+/* ROM 18448C, VRAM 8013E32C: complete native animation command stream. */
+struct tunnel_182390_Animation8013E32C D_8013E32C_18448C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 1.056102991104126f, 0.1698751449584961f, -1.3376595973968506f, -1.2295633554458618f, -14.02420425415039f, -0.3201901912689209f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

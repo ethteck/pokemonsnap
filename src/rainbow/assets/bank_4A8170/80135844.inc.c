@@ -1,0 +1,11 @@
+/* ROM 4E7C14, VRAM 80135844: complete native animation command stream. */
+struct bank_4A8170_Animation80135844 D_80135844_4E7C14 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.822746753692627f, -78.9834976196289f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTZ) << 15) | 75, { -1.4901161193847656e-08f, -1.655684478407693e-10f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 75, { -1.4901161193847656e-08f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 35, { -1.4901161193847656e-08f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTZ) << 15) | 15, { -1.4901161193847656e-08f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTZ) << 15) | 20, { -1.4901161193847656e-08f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

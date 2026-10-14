@@ -1,0 +1,23 @@
+/* ROM 1BDC20, VRAM 80177AC0: native model/material animation table. */
+AnimCmd** D_80177AC0_1BDC20[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80177B44_1BDCA4,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

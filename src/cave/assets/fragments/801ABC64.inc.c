@@ -1,0 +1,6 @@
+/* ROM 277A14, VRAM 801ABC64: complete native animation command stream. */
+struct Cave_Animation801ABC64 D_801ABC64_277A14 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.008726618252694607f, 0.0f, 0.0f, -3.3831518067017896e-06f, -40.00520706176758f, -9.300000190734863f, 1.065000057220459f, 1.0f, 1.0652999877929688f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 90 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

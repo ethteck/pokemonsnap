@@ -1,0 +1,22 @@
+/* ROM 2705C8, VRAM 801A4818: complete native animation command stream. */
+struct Cave_Animation801A4818 D_801A4818_2705C8 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSY) << 15) | 0, { 0.0f, 0.0f, 1200.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 30, { 0.0f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 1 },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 2 },
+    { (ANIM_CMD_16 << 25) | ((0x304) << 15) | 27 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 9, { 0.0f, 0.11941726505756378f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 6 },
+    { (ANIM_CMD_16 << 25) | ((0x102) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 10, { 2.268928050994873f, 0.13089968264102936f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 7 },
+    { (ANIM_CMD_16 << 25) | ((0x203) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 10, { 2.6179938316345215f, 0.18124572932720184f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 16, { 6.981317043304443f, 0.12217304855585098f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 7 },
+    { (ANIM_CMD_16 << 25) | ((0x1) << 15) | 9 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 14, { 6.2831854820251465f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTX) << 15) | 11, { 6.2831854820251465f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

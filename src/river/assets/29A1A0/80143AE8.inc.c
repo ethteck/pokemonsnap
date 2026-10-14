@@ -1,0 +1,6 @@
+/* ROM 2B3BB8, VRAM 80143AE8: createWorldBlocks setup. */
+WorldBlockSetup D_80143AE8_2B3BB8 = {
+    D_80143AB8_2B3B88,
+    D_80143AD4_2B3BA4,
+    &D_8012ACB0_29AD80,
+};

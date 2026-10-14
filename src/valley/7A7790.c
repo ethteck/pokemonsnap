@@ -10,14 +10,14 @@ extern AnimationHeader D_802D3CD4_7AD264;
 extern AnimationHeader D_802D3CE8_7AD278;
 extern AnimationHeader D_802D3CFC_7AD28C;
 extern AnimationHeader D_802D3D10_7AD2A0;
-extern InteractionHandler D_802D3D24_7AD2B4[];
-extern RandomState D_802D3D84_7AD314;
+extern InteractionHandler D_802D3D24_7AD2B4[6];
+extern RandomState D_802D3D84_7AD314[4];
 extern InteractionHandler2 D_802D3DA4_7AD334;
-extern InteractionHandler D_802D3DC4_7AD354[];
-extern InteractionHandler D_802D3DE4_7AD374[];
-extern InteractionHandler D_802D3E14_7AD3A4[];
-extern InteractionHandler D_802D3E44_7AD3D4[];
-extern InteractionHandler D_802D3E94_7AD424[];
+extern InteractionHandler D_802D3DC4_7AD354[2];
+extern InteractionHandler D_802D3DE4_7AD374[3];
+extern InteractionHandler D_802D3E14_7AD3A4[3];
+extern InteractionHandler D_802D3E44_7AD3D4[5];
+extern InteractionHandler D_802D3E94_7AD424[5];
 extern InteractionHandler4 D_802D3EE4_7AD474;
 extern PokemonInitData D_802D3F38_7AD4C8;
 
@@ -83,7 +83,7 @@ POKEMON_FUNC(func_802CE440_7A79D0)
     Pokemon_SetAnimation(obj, &D_802D3C5C_7AD1EC);
     pokemon->transitionGraph = D_802D3D24_7AD2B4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802D3D84_7AD314);
+    Pokemon_SetStateRandom(obj, D_802D3D84_7AD314);
 }
 
 POKEMON_FUNC(func_802CE4B0_7A7A40)
@@ -95,7 +95,7 @@ POKEMON_FUNC(func_802CE4B0_7A7A40)
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802CE440_7A79D0);
     }
-    Pokemon_SetStateRandom(obj, &D_802D3D84_7AD314);
+    Pokemon_SetStateRandom(obj, D_802D3D84_7AD314);
 }
 
 POKEMON_FUNC(func_802CE554_7A7AE4)
@@ -115,7 +115,7 @@ POKEMON_FUNC(func_802CE5B0_7A7B40)
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802CE440_7A79D0);
     }
-    Pokemon_SetStateRandom(obj, &D_802D3D84_7AD314);
+    Pokemon_SetStateRandom(obj, D_802D3D84_7AD314);
 }
 
 POKEMON_FUNC(func_802CE654_7A7BE4)
@@ -176,7 +176,7 @@ POKEMON_FUNC(func_802CE8F4_7A7E84)
     if (pokemon->interactionTarget != NULL) {
         Pokemon_SetState(obj, func_802CE8F4_7A7E84);
     }
-    Pokemon_SetStateRandom(obj, &D_802D3D84_7AD314);
+    Pokemon_SetStateRandom(obj, D_802D3D84_7AD314);
 }
 
 POKEMON_FUNC(func_802CE978_7A7F08)

@@ -1,0 +1,10 @@
+/* ROM 4CC1AC, VRAM 80119DDC: complete native animation command stream. */
+struct bank_4A8170_Animation80119DDC D_80119DDC_4CC1AC = {
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 0, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 0.00012218952178955078f, -35.0f, 0.00400543212890625f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 85, { 2.0f, 2.0f, 2.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 10, { 2.0f, 2.0f, 2.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 25, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 30, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

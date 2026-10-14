@@ -1,0 +1,23 @@
+/* ROM 1B54B0, VRAM 8016F350: native model/material animation table. */
+AnimCmd* D_8016F350_1B54B0[20] = {
+    (AnimCmd*) &D_8016F3A0_1B5500,
+    (AnimCmd*) &D_8016F3C4_1B5524,
+    (AnimCmd*) &D_8016F438_1B5598,
+    (AnimCmd*) &D_8016F470_1B55D0,
+    (AnimCmd*) &D_8016F504_1B5664,
+    (AnimCmd*) &D_8016F598_1B56F8,
+    (AnimCmd*) &D_8016F5A4_1B5704,
+    (AnimCmd*) &D_8016F614_1B5774,
+    (AnimCmd*) &D_8016F690_1B57F0,
+    (AnimCmd*) &D_8016F69C_1B57FC,
+    (AnimCmd*) &D_8016F6D4_1B5834,
+    (AnimCmd*) &D_8016F6F0_1B5850,
+    (AnimCmd*) &D_8016F7B0_1B5910,
+    (AnimCmd*) &D_8016F854_1B59B4,
+    (AnimCmd*) &D_8016F914_1B5A74,
+    (AnimCmd*) &D_8016F9BC_1B5B1C,
+    (AnimCmd*) &D_8016FA48_1B5BA8,
+    (AnimCmd*) &D_8016FB10_1B5C70,
+    (AnimCmd*) &D_8016FBEC_1B5D4C,
+    (AnimCmd*) &D_8016FC68_1B5DC8,
+};

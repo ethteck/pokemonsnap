@@ -1,0 +1,8 @@
+/* ROM 0xA21FC; native animation_stream. */
+struct PokemonCommonAnimationBulbasaur80124DDC D_80124DDC_A21FC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 1.30385160446167e-07f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 196.7126922607422f, 12.61802864074707f, 249.01695251464844f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 31, { 0.4591197967529297f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 19, { 1.30385160446167e-07f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80124DDC_A21FC },
+};

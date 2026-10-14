@@ -1,0 +1,22 @@
+/* ROM 226130, VRAM 8015A380: native model/material animation table. */
+AnimCmd* D_8015A380_226130[19] = {
+    (AnimCmd*) &D_8015A3CC_22617C,
+    (AnimCmd*) &D_8015A3DC_22618C,
+    (AnimCmd*) &D_8015A45C_22620C,
+    (AnimCmd*) &D_8015A508_2262B8,
+    (AnimCmd*) &D_8015A5E8_226398,
+    (AnimCmd*) &D_8015A654_226404,
+    (AnimCmd*) &D_8015A724_2264D4,
+    (AnimCmd*) &D_8015A8B8_226668,
+    (AnimCmd*) &D_8015AA48_2267F8,
+    (AnimCmd*) &D_8015AB90_226940,
+    (AnimCmd*) &D_8015ACE0_226A90,
+    (AnimCmd*) &D_8015AE74_226C24,
+    (AnimCmd*) &D_8015B008_226DB8,
+    (AnimCmd*) &D_8015B19C_226F4C,
+    (AnimCmd*) &D_8015B268_227018,
+    (AnimCmd*) &D_8015B2F4_2270A4,
+    (AnimCmd*) &D_8015B3FC_2271AC,
+    (AnimCmd*) &D_8015B454_227204,
+    NULL,
+};

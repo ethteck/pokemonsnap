@@ -30,12 +30,10 @@ typedef struct Matrix3f {
 extern UNK_TYPE D_800AF0D4;
 extern UNK_TYPE D_800AF0D4;
 
-static s32 padding3[] = { 0, 0 };
-
 extern Rect D_800AF0D8[];
-extern s32 D_800AF158[8][8];
+extern s32 D_800AF158[17][8];
 
-f32 D_800AF378[] = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
+extern f32 D_800AF378[10];
 s32 D_800AF3A0 = false;
 s32 D_800AF3A4 = 36;
 s32 D_800AF3A8 = 12;

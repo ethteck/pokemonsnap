@@ -1,0 +1,6 @@
+/* ROM 426884, VRAM 80130444: struct ValleyAnimation80130444. */
+struct ValleyAnimation80130444 D_80130444_426884 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.06457097083330154f, -0.22548285126686096f, 0.1084989458322525f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 24 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80130444_426884 },
+};

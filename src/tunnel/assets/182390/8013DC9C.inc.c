@@ -1,0 +1,6 @@
+/* ROM 183DFC, VRAM 8013DC9C: complete native animation command stream. */
+struct tunnel_182390_Animation8013DC9C D_8013DC9C_183DFC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -19.199920654296875f, -29.489612579345703f, 20.648193359375f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_FLAGS << 25) | ((0x2) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

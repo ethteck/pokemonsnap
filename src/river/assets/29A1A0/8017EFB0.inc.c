@@ -1,0 +1,23 @@
+/* ROM 2EF080, VRAM 8017EFB0: native model/material animation table. */
+AnimCmd* D_8017EFB0_2EF080[20] = {
+    NULL,
+    (AnimCmd*) &D_8017F000_2EF0D0,
+    (AnimCmd*) &D_8017F034_2EF104,
+    (AnimCmd*) &D_8017F080_2EF150,
+    (AnimCmd*) &D_8017F0B4_2EF184,
+    (AnimCmd*) &D_8017F100_2EF1D0,
+    (AnimCmd*) &D_8017F134_2EF204,
+    (AnimCmd*) &D_8017F180_2EF250,
+    (AnimCmd*) &D_8017F1B4_2EF284,
+    (AnimCmd*) &D_8017F200_2EF2D0,
+    (AnimCmd*) &D_8017F234_2EF304,
+    (AnimCmd*) &D_8017F280_2EF350,
+    (AnimCmd*) &D_8017F2B4_2EF384,
+    (AnimCmd*) &D_8017F2E8_2EF3B8,
+    (AnimCmd*) &D_8017F31C_2EF3EC,
+    (AnimCmd*) &D_8017F350_2EF420,
+    (AnimCmd*) &D_8017F384_2EF454,
+    (AnimCmd*) &D_8017F3B8_2EF488,
+    (AnimCmd*) &D_8017F3EC_2EF4BC,
+    (AnimCmd*) &D_8017F454_2EF524,
+};

@@ -3,7 +3,7 @@
 extern AnimationHeader D_802D3958_7ACEE8;
 extern AnimationHeader D_802D396C_7ACEFC;
 extern AnimationHeader D_802D3980_7ACF10;
-extern InteractionHandler D_802D3994_7ACF24[];
+extern InteractionHandler D_802D3994_7ACF24[2];
 extern RandomStates3 D_802D39B4_7ACF44;
 extern s32 D_802D39CC_7ACF5C;
 extern InteractionHandler2 D_802D39D0_7ACF60;

@@ -1,0 +1,6 @@
+/* ROM 2BCA90, VRAM 8014C9C0: complete native animation command stream. */
+struct river_29A1A0_Animation8014C9C0 D_8014C9C0_2BCA90 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.48482057452201843f, -0.4171189069747925f, 0.08336329460144043f, 13.986492156982422f, 5.90205192565918f, 0.0164031982421875f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 450 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

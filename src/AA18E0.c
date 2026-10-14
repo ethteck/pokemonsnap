@@ -8,13 +8,11 @@ extern Sprite D_801E5478_AAA4B8;
 extern u8 D_801E54BC_AAA4FC;
 extern u8 D_801E54C0_AAA500;
 extern u8 D_801E54C4_AAA504;
-extern s32 D_801E54C8_AAA508[211]; // All 0xBDEFBDEF
+extern s32 D_801E54C8_AAA508[17];
 extern s32 D_801E550C_AAA54C;
 extern ScreenSettings D_801E5510_AAA550;
 extern SceneSetup D_801E552C_AAA56C;
-extern s32 D_801E553C_AAA57C;
 extern f32 D_801E55C0_AAA600;
-extern UNK_PTR D_801E54CC_AAA50C;
 
 // bss
 s32 D_801E55D0_AAA610[2];
@@ -193,7 +191,7 @@ void func_801DCCDC_AA1D1C(void) {
 
 s32 func_801DD010_AA2050(s32 arg0) {
     D_801E55D8_AAA618 = arg0;
-    D_801E553C_AAA57C = 0x2D4000;
+    D_801E552C_AAA56C.gtlSetup.heapSize = 0x2D4000;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E552C_AAA56C);
     return D_801E54C8_AAA508[0];

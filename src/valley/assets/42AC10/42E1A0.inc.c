@@ -1,0 +1,21 @@
+/* ROM 42E1A0, VRAM 80137D60: AnimCmd*. */
+AnimCmd* D_80137D60_42E1A0[18] = {
+    (AnimCmd*) &D_80137DA8_42E1E8,
+    (AnimCmd*) &D_80137DC0_42E200,
+    (AnimCmd*) &D_80137E94_42E2D4,
+    (AnimCmd*) &D_80137EFC_42E33C,
+    (AnimCmd*) &D_80137FA0_42E3E0,
+    (AnimCmd*) &D_80138044_42E484,
+    (AnimCmd*) &D_801380E8_42E528,
+    (AnimCmd*) &D_801381E8_42E628,
+    (AnimCmd*) &D_80138378_42E7B8,
+    (AnimCmd*) &D_8013839C_42E7DC,
+    (AnimCmd*) &D_80138458_42E898,
+    (AnimCmd*) &D_801385C8_42EA08,
+    (AnimCmd*) &D_801386B4_42EAF4,
+    (AnimCmd*) &D_8013875C_42EB9C,
+    (AnimCmd*) &D_801387A0_42EBE0,
+    (AnimCmd*) &D_801387E4_42EC24,
+    (AnimCmd*) &D_80139754_42FB94,
+    (AnimCmd*) &D_801397E8_42FC28,
+};

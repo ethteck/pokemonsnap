@@ -5,33 +5,19 @@
 #include "app_render/app_render.h"
 #include "river.h"
 #include "app_render/effect.h"
-
-extern u8 D_802E2620_6CA400;
-extern EnvSoundData D_802E2624_6CA404[62];
-extern PokemonDef D_802E271C_6CA4FC;
-extern s32 D_802E28B4_6CA694;
-extern PokemonDef D_802E28B8_6CA698;
-extern PokemonDef D_802E28C8_6CA6A8;
-extern PokemonDef D_802E28D8_6CA6B8;
-extern PokemonDef D_802E28E8_6CA6C8;
-extern PokemonDef D_802E28F8_6CA6D8;
-extern RandomState2 D_802E2908_6CA6E8[];
-extern ScreenSettings D_802E2920_6CA700;
-extern SceneSetup D_802E293C_6CA71C;
-extern f32 D_802E4B90_6CC970;
-
-extern HeightMap D_80321560_709340;
+#include "assets/6CA400/declarations.h"
+#include "assets/6CCA80/declarations.h"
 
 void func_802D8800_6C05E0(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonAdd(arg0, arg1, &D_802E271C_6CA4FC);
+    pokemonAdd(arg0, arg1, D_802E271C_6CA4FC);
 }
 
 void func_802D8824_6C0604(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonsChangeBlock(arg0, arg1, &D_802E271C_6CA4FC);
+    pokemonsChangeBlock(arg0, arg1, D_802E271C_6CA4FC);
 }
 
 void func_802D8848_6C0628(WorldBlock* arg0) {
-    pokemonRemove(arg0, &D_802E271C_6CA4FC);
+    pokemonRemove(arg0, D_802E271C_6CA4FC);
 }
 
 void func_802D886C_6C064C(void) {

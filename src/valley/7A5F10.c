@@ -6,10 +6,10 @@ extern AnimationHeader D_802D381C_7ACDAC;
 extern f32 D_802D3844_7ACDD4;
 extern s32 D_802D3848_7ACDD8;
 extern f32 D_802D384C_7ACDDC;
-extern InteractionHandler D_802D3850_7ACDE0[];
+extern InteractionHandler D_802D3850_7ACDE0[3];
 extern InteractionHandler2 D_802D3880_7ACE10;
-extern InteractionHandler D_802D38A0_7ACE30[];
-extern InteractionHandler D_802D38E0_7ACE70[];
+extern InteractionHandler D_802D38A0_7ACE30[4];
+extern InteractionHandler D_802D38E0_7ACE70[2];
 extern PokemonInitData D_802D3914_7ACEA4;
 extern GObj* D_802D3B34_7AD0C4;
 

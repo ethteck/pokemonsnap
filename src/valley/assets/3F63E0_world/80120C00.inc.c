@@ -1,0 +1,6 @@
+/* ROM 417040, VRAM 80120C00: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation80120C00 D_80120C00_417040 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.483529806137085f, -3.725290298461914e-09f, -7.450580596923828e-09f, -0.537949800491333f, -31.201982498168945f, -0.00019073486328125f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

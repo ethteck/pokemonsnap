@@ -1,0 +1,7 @@
+/* ROM 24E44C, VRAM 8018269C: complete native animation command stream. */
+struct Cave_Animation8018269C D_8018269C_24E44C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((SCALEZ) << 15) | 0, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY) << 15) | 0, { 0.0f, 2.9240009784698486f, 0.0f, 74.8671875f, -108.41973114013672f, -130.89389038085938f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEZ) << 15) | 30, { 1.0f, 0.014928458258509636f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8018269C_24E44C },
+};

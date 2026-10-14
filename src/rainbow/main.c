@@ -2,8 +2,6 @@
 #include "ld_addrs.h"
 #include "app_render/effect.h"
 
-extern f32 D_800F5DB0_4A8180;
-
 EnvSoundData D_8034AB10_82A280[] = {
     { SOUND_ID_349, PITCH_MOD_1, 22 },
     { SOUND_ID_350, PITCH_MOD_1, 22 },
@@ -216,7 +214,7 @@ void func_80346B0C_82627C(GObj* arg0) {
 
 void func_80346B94_826304(s32 arg0) {
     if (arg0 == 0) {
-        setSkyBoxAnimationSpeed(D_800F5DB0_4A8180);
+        setSkyBoxAnimationSpeed(D_800F5DA0.unk_10);
     } else {
         setSkyBoxAnimationSpeed(0.0f);
     }

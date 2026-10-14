@@ -1,0 +1,10 @@
+/* ROM 2DDF2C, VRAM 8016DE5C: complete native animation command stream. */
+struct river_29A1A0_Animation8016DE5C D_8016DE5C_2DDF2C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { -2.4835271617007493e-09f, 0.0f, 1.2351274490356445f, -144.81700134277344f, -1.1752128601074219f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 5, { 0.0f, 0.038785092532634735f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 4, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 9, { 0.0f, -0.012928364798426628f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 18, { 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8016DE5C_2DDF2C },
+};

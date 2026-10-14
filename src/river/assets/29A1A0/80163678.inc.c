@@ -1,0 +1,6 @@
+/* ROM 2D3748, VRAM 80163678: complete native animation command stream. */
+struct river_29A1A0_Animation80163678 D_80163678_2D3748 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -3.725289943190546e-08f, 0.0f, 2.2538011990036466e-07f, 0.0f, 269.77081298828125f, -12.744979858398438f, 0.9999997615814209f, 1.0000001192092896f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 60 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

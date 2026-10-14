@@ -1,0 +1,23 @@
+/* ROM 1BD8F0, VRAM 80177790: native model/material animation table. */
+AnimCmd** D_80177790_1BD8F0[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80177884_1BD9E4,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

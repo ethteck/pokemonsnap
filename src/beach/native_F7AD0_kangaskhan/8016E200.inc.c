@@ -1,0 +1,21 @@
+/* ROM FA690, VRAM 8016E200: native model/material animation table. */
+AnimCmd* D_8016E200_FA690[18] = {
+    (AnimCmd*) &D_8016E248_FA6D8,
+    (AnimCmd*) &D_8016E27C_FA70C,
+    (AnimCmd*) &D_8016E3B0_FA840,
+    (AnimCmd*) &D_8016E5A0_FAA30,
+    (AnimCmd*) &D_8016E694_FAB24,
+    (AnimCmd*) &D_8016E8B8_FAD48,
+    (AnimCmd*) &D_8016E9EC_FAE7C,
+    (AnimCmd*) &D_8016EC3C_FB0CC,
+    (AnimCmd*) &D_8016ED38_FB1C8,
+    (AnimCmd*) &D_8016EDB8_FB248,
+    (AnimCmd*) &D_8016EE54_FB2E4,
+    (AnimCmd*) &D_8016EEEC_FB37C,
+    (AnimCmd*) &D_8016EF8C_FB41C,
+    (AnimCmd*) &D_8016F024_FB4B4,
+    (AnimCmd*) &D_8016F0CC_FB55C,
+    (AnimCmd*) &D_8016F270_FB700,
+    (AnimCmd*) &D_8016F364_FB7F4,
+    (AnimCmd*) &D_8016F540_FB9D0,
+};

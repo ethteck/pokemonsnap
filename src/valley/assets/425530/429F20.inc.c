@@ -1,0 +1,20 @@
+/* ROM 429F20, VRAM 80133AE0: AnimCmd*. */
+AnimCmd* D_80133AE0_429F20[17] = {
+    (AnimCmd*) &D_80133B24_429F64,
+    (AnimCmd*) &D_80133BC4_42A004,
+    (AnimCmd*) &D_80133C90_42A0D0,
+    (AnimCmd*) &D_80133D5C_42A19C,
+    (AnimCmd*) &D_80133DCC_42A20C,
+    (AnimCmd*) &D_80133E94_42A2D4,
+    (AnimCmd*) &D_80133F60_42A3A0,
+    (AnimCmd*) &D_80133FD0_42A410,
+    (AnimCmd*) &D_8013409C_42A4DC,
+    (AnimCmd*) &D_80134168_42A5A8,
+    (AnimCmd*) &D_801341E8_42A628,
+    (AnimCmd*) &D_801342B4_42A6F4,
+    (AnimCmd*) &D_8013433C_42A77C,
+    (AnimCmd*) &D_801343C8_42A808,
+    (AnimCmd*) &D_80134454_42A894,
+    (AnimCmd*) &D_801344E0_42A920,
+    NULL,
+};

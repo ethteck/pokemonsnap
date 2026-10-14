@@ -1,0 +1,12 @@
+/* ROM 185AC8, VRAM 8013F968: complete native animation command stream. */
+struct tunnel_182390_Animation8013F968 D_8013F968_185AC8 = {
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTX | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -30.048768997192383f, -58.510528564453125f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 270, { 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTX) << 15) | 50, { 7.8539814949035645f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTX) << 15) | 400, { 7.8539814949035645f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 220 },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 15, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 165, { 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

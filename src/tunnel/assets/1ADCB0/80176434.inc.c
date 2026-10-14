@@ -1,0 +1,6 @@
+/* ROM 1BC594, VRAM 80176434: complete native animation command stream. */
+struct tunnel_1ADCB0_Animation80176434 D_80176434_1BC594 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 1.4103606939315796f, 0.21538467705249786f, -0.06723767518997192f, 6.328785419464111f, -111.37447357177734f, 17.79553985595703f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 49 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

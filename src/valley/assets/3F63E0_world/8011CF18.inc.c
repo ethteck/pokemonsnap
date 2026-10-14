@@ -1,0 +1,6 @@
+/* ROM 413358, VRAM 8011CF18: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation8011CF18 D_8011CF18_413358 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.18259279429912567f, -1.3333814144134521f, 1.2278910875320435f, -0.020936131477355957f, -13.914192199707031f, -0.05984902381896973f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

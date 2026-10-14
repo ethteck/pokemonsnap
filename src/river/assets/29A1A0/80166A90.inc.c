@@ -1,0 +1,21 @@
+/* ROM 2D6B60, VRAM 80166A90: native model/material animation table. */
+AnimCmd* D_80166A90_2D6B60[18] = {
+    (AnimCmd*) &D_80166AD8_2D6BA8,
+    (AnimCmd*) &D_80166B74_2D6C44,
+    (AnimCmd*) &D_80166BF0_2D6CC0,
+    (AnimCmd*) &D_80166C50_2D6D20,
+    (AnimCmd*) &D_80166CBC_2D6D8C,
+    (AnimCmd*) &D_80166CD4_2D6DA4,
+    (AnimCmd*) &D_80166D34_2D6E04,
+    (AnimCmd*) &D_80166D94_2D6E64,
+    (AnimCmd*) &D_80166E24_2D6EF4,
+    (AnimCmd*) &D_80166EA4_2D6F74,
+    (AnimCmd*) &D_80166EF4_2D6FC4,
+    (AnimCmd*) &D_80166FB8_2D7088,
+    (AnimCmd*) &D_80167088_2D7158,
+    (AnimCmd*) &D_8016710C_2D71DC,
+    (AnimCmd*) &D_80167204_2D72D4,
+    (AnimCmd*) &D_80167248_2D7318,
+    (AnimCmd*) &D_801672CC_2D739C,
+    (AnimCmd*) &D_801673C4_2D7494,
+};

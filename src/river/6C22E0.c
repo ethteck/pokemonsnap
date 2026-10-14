@@ -2,11 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-extern AnimationHeader D_802E2E44_6CAC24;
-extern InteractionHandler D_802E2E58_6CAC38[];
-extern InteractionHandler D_802E2E88_6CAC68[];
-extern PokemonInitData D_802E2EC4_6CACA4;
+#include "assets/6CA400/declarations.h"
 
 void func_802DA590_6C2370(GObj*);
 void func_802DA620_6C2400(GObj*);

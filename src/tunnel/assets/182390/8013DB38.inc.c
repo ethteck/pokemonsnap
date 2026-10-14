@@ -1,0 +1,11 @@
+/* ROM 183C98, VRAM 8013DB38: complete native animation command stream. */
+struct tunnel_182390_Animation8013DB38 D_8013DB38_183C98 = {
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTX) << 15) | 0, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((POSX | POSY | POSZ) << 15) | 0, { 30.000028610229492f, -25.19999122619629f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTX) << 15) | 88, { 0.3490658402442932f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { -0.022778814658522606f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 32, { -0.2617993950843811f, 9.288641740567982e-05f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { 9.29096931940876e-05f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 30, { 0.2617993950843811f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

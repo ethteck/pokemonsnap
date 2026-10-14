@@ -1,0 +1,22 @@
+/* ROM 224A40, VRAM 80158C90: native model/material animation table. */
+AnimCmd* D_80158C90_224A40[19] = {
+    (AnimCmd*) &D_80158CDC_224A8C,
+    (AnimCmd*) &D_80158D10_224AC0,
+    (AnimCmd*) &D_80158D94_224B44,
+    (AnimCmd*) &D_80158E68_224C18,
+    (AnimCmd*) &D_80158F50_224D00,
+    (AnimCmd*) &D_80158FE8_224D98,
+    (AnimCmd*) &D_801590EC_224E9C,
+    (AnimCmd*) &D_801591E8_224F98,
+    (AnimCmd*) &D_8015926C_22501C,
+    (AnimCmd*) &D_801592EC_22509C,
+    (AnimCmd*) &D_801593C4_225174,
+    (AnimCmd*) &D_801594DC_22528C,
+    (AnimCmd*) &D_8015955C_22530C,
+    (AnimCmd*) &D_801595C8_225378,
+    (AnimCmd*) &D_801596E8_225498,
+    (AnimCmd*) &D_8015973C_2254EC,
+    (AnimCmd*) &D_80159860_225610,
+    (AnimCmd*) &D_80159890_225640,
+    NULL,
+};

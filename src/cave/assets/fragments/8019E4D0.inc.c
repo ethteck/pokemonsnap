@@ -1,0 +1,22 @@
+/* ROM 26A280, VRAM 8019E4D0: native model/material animation table. */
+AnimCmd* D_8019E4D0_26A280[19] = {
+    NULL,
+    (AnimCmd*) &D_8019E51C_26A2CC,
+    (AnimCmd*) &D_8019E59C_26A34C,
+    (AnimCmd*) &D_8019E684_26A434,
+    (AnimCmd*) &D_8019E860_26A610,
+    (AnimCmd*) &D_8019E8E0_26A690,
+    (AnimCmd*) &D_8019E960_26A710,
+    (AnimCmd*) &D_8019E9E0_26A790,
+    (AnimCmd*) &D_8019EA60_26A810,
+    (AnimCmd*) &D_8019EAE0_26A890,
+    (AnimCmd*) &D_8019EB60_26A910,
+    (AnimCmd*) &D_8019EBE0_26A990,
+    (AnimCmd*) &D_8019EC60_26AA10,
+    (AnimCmd*) &D_8019EC94_26AA44,
+    (AnimCmd*) &D_8019ED08_26AAB8,
+    (AnimCmd*) &D_8019ED6C_26AB1C,
+    (AnimCmd*) &D_8019EE54_26AC04,
+    (AnimCmd*) &D_8019EE88_26AC38,
+    (AnimCmd*) &D_8019EF08_26ACB8,
+};

@@ -1,0 +1,21 @@
+/* ROM 309B90, VRAM 80199AC0: native model/material animation table. */
+AnimCmd* D_80199AC0_309B90[18] = {
+    (AnimCmd*) &D_80199B08_309BD8,
+    (AnimCmd*) &D_80199B38_309C08,
+    (AnimCmd*) &D_80199C6C_309D3C,
+    (AnimCmd*) &D_80199DD8_309EA8,
+    (AnimCmd*) &D_80199E54_309F24,
+    (AnimCmd*) &D_80199EE0_309FB0,
+    (AnimCmd*) &D_80199F10_309FE0,
+    (AnimCmd*) &D_80199F40_30A010,
+    (AnimCmd*) &D_80199F70_30A040,
+    (AnimCmd*) &D_80199FA0_30A070,
+    (AnimCmd*) &D_80199FFC_30A0CC,
+    (AnimCmd*) &D_8019A088_30A158,
+    (AnimCmd*) &D_8019A0B8_30A188,
+    (AnimCmd*) &D_8019A188_30A258,
+    (AnimCmd*) &D_8019A298_30A368,
+    (AnimCmd*) &D_8019A71C_30A7EC,
+    (AnimCmd*) &D_8019A7D4_30A8A4,
+    (AnimCmd*) &D_8019A8E8_30A9B8,
+};

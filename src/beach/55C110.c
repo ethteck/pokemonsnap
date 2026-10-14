@@ -159,7 +159,7 @@ void func_beach_802C45C0(void) {
 
     setEndLevelCallback(func_beach_802C43CC);
     setPauseCallback(func_beach_802C4438);
-    EnvSound_Init(&D_beach_802CBE10, 0x35);
+    EnvSound_Init(D_beach_802CBE10, 0x35);
     func_beach_802C44D4();
     PokemonDetector_Create();
     PokemonDetector_Enable();

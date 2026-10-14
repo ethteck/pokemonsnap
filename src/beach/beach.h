@@ -16,7 +16,7 @@ extern AnimCmd D_8013DA90_C9F20;
 
 extern PokemonDef D_beach_802CBFF4;
 
-extern EnvSoundData D_beach_802CBE10;
+extern EnvSoundData D_beach_802CBE10[53];
 extern RandomState2 D_beach_802CC004[2];
 extern u16 D_beach_802CC014;
 extern s32 D_beach_802CC018;

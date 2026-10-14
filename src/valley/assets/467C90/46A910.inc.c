@@ -1,0 +1,23 @@
+/* ROM 46A910, VRAM 801744D0: AnimCmd*. */
+AnimCmd* D_801744D0_46A910[20] = {
+    (AnimCmd*) &D_80174520_46A960,
+    NULL,
+    (AnimCmd*) &D_801745C0_46AA00,
+    (AnimCmd*) &D_801745E4_46AA24,
+    (AnimCmd*) &D_80174618_46AA58,
+    (AnimCmd*) &D_80174664_46AAA4,
+    (AnimCmd*) &D_801746B0_46AAF0,
+    (AnimCmd*) &D_801746FC_46AB3C,
+    (AnimCmd*) &D_80174748_46AB88,
+    (AnimCmd*) &D_80174794_46ABD4,
+    (AnimCmd*) &D_801747B8_46ABF8,
+    (AnimCmd*) &D_80174840_46AC80,
+    (AnimCmd*) &D_801748C8_46AD08,
+    (AnimCmd*) &D_80174968_46ADA8,
+    (AnimCmd*) &D_801749C0_46AE00,
+    (AnimCmd*) &D_80174A58_46AE98,
+    (AnimCmd*) &D_80174AD0_46AF10,
+    (AnimCmd*) &D_80174B68_46AFA8,
+    (AnimCmd*) &D_80174BE0_46B020,
+    (AnimCmd*) &D_80174C80_46B0C0,
+};

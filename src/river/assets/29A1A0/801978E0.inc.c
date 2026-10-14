@@ -1,0 +1,21 @@
+/* ROM 3079B0, VRAM 801978E0: native model/material animation table. */
+AnimCmd* D_801978E0_3079B0[18] = {
+    (AnimCmd*) &D_80197928_3079F8,
+    (AnimCmd*) &D_8019795C_307A2C,
+    (AnimCmd*) &D_80197A1C_307AEC,
+    (AnimCmd*) &D_80197B38_307C08,
+    (AnimCmd*) &D_80197C80_307D50,
+    (AnimCmd*) &D_80197CF4_307DC4,
+    (AnimCmd*) &D_80197E8C_307F5C,
+    (AnimCmd*) &D_80197FE4_3080B4,
+    (AnimCmd*) &D_80198068_308138,
+    (AnimCmd*) &D_80198108_3081D8,
+    (AnimCmd*) &D_801981CC_30829C,
+    (AnimCmd*) &D_801982E4_3083B4,
+    (AnimCmd*) &D_80198314_3083E4,
+    (AnimCmd*) &D_80198364_308434,
+    (AnimCmd*) &D_801983BC_30848C,
+    (AnimCmd*) &D_8019863C_30870C,
+    (AnimCmd*) &D_8019866C_30873C,
+    (AnimCmd*) &D_8019869C_30876C,
+};

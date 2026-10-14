@@ -1,0 +1,20 @@
+/* ROM 1CA040, VRAM 80183EE0: native model/material animation table. */
+AnimCmd* D_80183EE0_1CA040[17] = {
+    (AnimCmd*) &D_80183F24_1CA084,
+    (AnimCmd*) &D_80183F88_1CA0E8,
+    (AnimCmd*) &D_80184038_1CA198,
+    (AnimCmd*) &D_8018406C_1CA1CC,
+    (AnimCmd*) &D_801840E4_1CA244,
+    (AnimCmd*) &D_80184150_1CA2B0,
+    (AnimCmd*) &D_80184184_1CA2E4,
+    (AnimCmd*) &D_801841B8_1CA318,
+    (AnimCmd*) &D_80184220_1CA380,
+    (AnimCmd*) &D_80184298_1CA3F8,
+    (AnimCmd*) &D_801842CC_1CA42C,
+    (AnimCmd*) &D_801843C8_1CA528,
+    (AnimCmd*) &D_80184490_1CA5F0,
+    (AnimCmd*) &D_8018458C_1CA6EC,
+    (AnimCmd*) &D_80184648_1CA7A8,
+    (AnimCmd*) &D_801847C4_1CA924,
+    (AnimCmd*) &D_80184828_1CA988,
+};

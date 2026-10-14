@@ -1,0 +1,20 @@
+/* ROM 115A70, VRAM 801895E0: native model/material animation table. */
+AnimCmd* D_801895E0_115A70[17] = {
+    (AnimCmd*) &D_80189624_115AB4,
+    (AnimCmd*) &D_8018963C_115ACC,
+    (AnimCmd*) &D_80189738_115BC8,
+    (AnimCmd*) &D_801897DC_115C6C,
+    (AnimCmd*) &D_80189880_115D10,
+    (AnimCmd*) &D_801898EC_115D7C,
+    (AnimCmd*) &D_80189958_115DE8,
+    (AnimCmd*) &D_801899C4_115E54,
+    (AnimCmd*) &D_80189A30_115EC0,
+    (AnimCmd*) &D_80189A9C_115F2C,
+    (AnimCmd*) &D_80189B08_115F98,
+    (AnimCmd*) &D_80189BC8_116058,
+    (AnimCmd*) &D_80189C88_116118,
+    (AnimCmd*) &D_80189D7C_11620C,
+    (AnimCmd*) &D_80189ED4_116364,
+    (AnimCmd*) &D_80189F40_1163D0,
+    (AnimCmd*) &D_8018A104_116594,
+};

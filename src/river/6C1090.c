@@ -1,7 +1,6 @@
 #include "common.h"
 #include "river.h"
-
-extern u32 D_802E29D0_6CA7B0;
+#include "assets/6CA400/declarations.h"
 
 void func_802D92B0_6C1090(s32 arg0, f32 arg1) {
     f32 temp_f0;

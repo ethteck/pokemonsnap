@@ -1,0 +1,11 @@
+/* ROM BEFF4, VRAM 80132B64: complete native animation command stream. */
+struct native_a74f0_Animation80132B64 D_80132B64_BEFF4 = {
+    { (ANIM_CMD_SET_VALUE << 25) | ((OFFSET_T | MAT_PARAM_6 | MAT_PARAM_8) << 15) | 0, { 0.0f, 0.0f, 0.4000000059604645f } },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((IMG_INDEX | OFFSET_S | SCALE_S | SCALE_T | MAT_PARAM_5 | MAT_PARAM_7) << 15) | 0, { 0.0f, 0.0f, 1.0f, 1.034500002861023f, 1.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((OFFSET_T | MAT_PARAM_6) << 15) | 100, { -0.03449999913573265f, -0.03449999913573265f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((MAT_PARAM_8) << 15) | 25, { 0.6000000238418579f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((MAT_PARAM_8) << 15) | 25, { 0.4000000059604645f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((MAT_PARAM_8) << 15) | 25, { 0.6000000238418579f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((MAT_PARAM_8) << 15) | 25, { 0.4000000059604645f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

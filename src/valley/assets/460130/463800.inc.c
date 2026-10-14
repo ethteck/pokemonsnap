@@ -1,0 +1,8 @@
+/* ROM 463800, VRAM 8016D3C0: struct ValleyAnimation8016D3C0. */
+struct ValleyAnimation8016D3C0 D_8016D3C0_463800 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.12470004707574844f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 5, { -0.4062890410423279f, -0.04022699594497681f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 2, { -0.4062890410423279f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTX) << 15) | 38, { -0.4062890410423279f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,21 @@
+/* ROM 4006D8, VRAM 8010A298: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation8010A298 D_8010A298_4006D8 = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_8010A280_4006C0 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((SCALEX) << 15) | 0, { 4.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 0, { 0.5235987901687622f, 0.01745329238474369f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 42, { 0.4857867956161499f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 55, { 1.1800906658172607f, 0.009674598462879658f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEX) << 15) | 29, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((SCALEX) << 15) | 36, { 2.0f, 0.04545454680919647f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 13 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((PATH_PARAM) << 15) | 58, { 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 13 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 45, { 1.7453292608261108f, 0.01745329238474369f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEX) << 15) | 30, { 4.0f, -2.5999999706982635e-05f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((SCALEX) << 15) | 0, { -2.6666666599339806e-05f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((SCALEX) << 15) | 5, { 4.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

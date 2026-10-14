@@ -1,0 +1,21 @@
+/* ROM 431590, VRAM 8013B150: AnimCmd*. */
+AnimCmd* D_8013B150_431590[18] = {
+    (AnimCmd*) &D_8013B198_4315D8,
+    (AnimCmd*) &D_8013B1A8_4315E8,
+    (AnimCmd*) &D_8013B2A0_4316E0,
+    (AnimCmd*) &D_8013B38C_4317CC,
+    (AnimCmd*) &D_8013B4A8_4318E8,
+    (AnimCmd*) &D_8013B5AC_4319EC,
+    (AnimCmd*) &D_8013B6B8_431AF8,
+    (AnimCmd*) &D_8013B830_431C70,
+    (AnimCmd*) &D_8013B9BC_431DFC,
+    (AnimCmd*) &D_8013BA1C_431E5C,
+    (AnimCmd*) &D_8013BAB8_431EF8,
+    (AnimCmd*) &D_8013BB84_431FC4,
+    NULL,
+    (AnimCmd*) &D_8013BBAC_431FEC,
+    (AnimCmd*) &D_8013BC30_432070,
+    (AnimCmd*) &D_8013BCB4_4320F4,
+    (AnimCmd*) &D_8013BDF8_432238,
+    (AnimCmd*) &D_8013BE58_432298,
+};

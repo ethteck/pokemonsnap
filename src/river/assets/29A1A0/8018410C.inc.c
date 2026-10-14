@@ -1,0 +1,6 @@
+/* ROM 2F41DC, VRAM 8018410C: complete native animation command stream. */
+struct river_29A1A0_Animation8018410C D_8018410C_2F41DC = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, -2.9802347256691064e-08f, 2.570452295458381e-07f, -0.00033080577850341797f, 0.0f, 0.0f, 0.9999992251396179f, 0.9999967217445374f, 0.999997615814209f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 35 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

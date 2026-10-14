@@ -1,0 +1,10 @@
+/* ROM 2B2814, VRAM 80142744: native InterpData path descriptor. */
+InterpData D_80142744_2B2814 = {
+    HAL_INTERP_BEZIER,
+    3,
+    0.0f,
+    D_801426D4_2B27A4,
+    4.514853000640869f,
+    D_80142710_2B27E0,
+    D_8014271C_2B27EC,
+};

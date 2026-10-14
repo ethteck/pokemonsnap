@@ -1,0 +1,7 @@
+/* ROM 24E48C, VRAM 801826DC: complete native animation command stream. */
+struct Cave_Animation801826DC D_801826DC_24E48C = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((SCALEZ) << 15) | 0, { 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY) << 15) | 0, { 0.0f, 3.492000102996826f, 0.0f, -74.60786437988281f, -101.25994873046875f, -120.41360473632812f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((SCALEZ) << 15) | 30, { 1.0f, 0.014974470250308514f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801826DC_24E48C },
+};

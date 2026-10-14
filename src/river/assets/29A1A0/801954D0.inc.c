@@ -1,0 +1,7 @@
+/* ROM 3055A0, VRAM 801954D0: complete native animation command stream. */
+struct river_29A1A0_Animation801954D0 D_801954D0_3055A0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -75.0001220703125f, -550.0001831054688f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.07853999733924866f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 20, { -0.07853999733924866f, 0.016729187220335007f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801954D0_3055A0 },
+};

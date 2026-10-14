@@ -1,0 +1,22 @@
+/* ROM 264E10, VRAM 80199060: native model/material animation table. */
+AnimCmd* D_80199060_264E10[19] = {
+    (AnimCmd*) &D_801990AC_264E5C,
+    (AnimCmd*) &D_801990C4_264E74,
+    (AnimCmd*) &D_801992C0_265070,
+    (AnimCmd*) &D_801994D0_265280,
+    (AnimCmd*) &D_80199C9C_265A4C,
+    (AnimCmd*) &D_80199E10_265BC0,
+    (AnimCmd*) &D_80199F28_265CD8,
+    (AnimCmd*) &D_8019A070_265E20,
+    (AnimCmd*) &D_8019A188_265F38,
+    (AnimCmd*) &D_8019A2D4_266084,
+    (AnimCmd*) &D_8019A410_2661C0,
+    (AnimCmd*) &D_8019A528_2662D8,
+    (AnimCmd*) &D_8019A664_266414,
+    (AnimCmd*) &D_8019A698_266448,
+    (AnimCmd*) &D_8019A8F0_2666A0,
+    (AnimCmd*) &D_8019AAB4_266864,
+    (AnimCmd*) &D_8019ABFC_2669AC,
+    (AnimCmd*) &D_8019AE4C_266BFC,
+    (AnimCmd*) &D_8019B010_266DC0,
+};

@@ -1,0 +1,21 @@
+/* ROM FBA40, VRAM 8016F5B0: native model/material animation table. */
+AnimCmd* D_8016F5B0_FBA40[18] = {
+    (AnimCmd*) &D_8016F5F8_FBA88,
+    (AnimCmd*) &D_8016F638_FBAC8,
+    (AnimCmd*) &D_8016F7E4_FBC74,
+    (AnimCmd*) &D_8016F954_FBDE4,
+    (AnimCmd*) &D_8016FB3C_FBFCC,
+    (AnimCmd*) &D_8016FCA8_FC138,
+    (AnimCmd*) &D_8016FE3C_FC2CC,
+    (AnimCmd*) &D_80170024_FC4B4,
+    (AnimCmd*) &D_801701E4_FC674,
+    (AnimCmd*) &D_801702C4_FC754,
+    (AnimCmd*) &D_80170360_FC7F0,
+    (AnimCmd*) &D_80170438_FC8C8,
+    (AnimCmd*) &D_8017050C_FC99C,
+    (AnimCmd*) &D_801705C8_FCA58,
+    (AnimCmd*) &D_80170614_FCAA4,
+    (AnimCmd*) &D_8017073C_FCBCC,
+    (AnimCmd*) &D_801708EC_FCD7C,
+    (AnimCmd*) &D_80170A28_FCEB8,
+};

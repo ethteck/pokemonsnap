@@ -1,29 +1,21 @@
 #include "valley.h"
 
-typedef struct SomeC {
-    /* 0x00 */ char* unk_00;
-    /* 0x04 */ u8 unk_04;
-    /* 0x05 */ u8 unk_05;
-    /* 0x06 */ char unk_06[0x2];
-    /* 0x08 */ s32 unk_08;
-} SomeC; // size = 0xC
-
 extern AnimationHeader D_802D4168_7AD6F8;
 extern AnimationHeader D_802D417C_7AD70C;
 extern AnimationHeader D_802D4190_7AD720;
 extern GObj* D_802D41A4_7AD734;
-extern InteractionHandler D_802D41A8_7AD738[];
+extern InteractionHandler D_802D41A8_7AD738[2];
 extern Vec3f D_802D41C8_7AD758;
 extern PokemonInitData D_802D41E8_7AD778;
 extern AnimationHeader D_802D4220_7AD7B0;
 extern Sprite D_802E6B18_7C00A8;
 extern Sprite D_802EC4D8_7C5A68;
-extern SomeC D_802EC51C_7C5AAC[];
-extern SomeC D_802EC5D0_7C5B60[];
+extern SomeC D_802EC51C_7C5AAC[15];
+extern SomeC D_802EC5D0_7C5B60[2];
 extern s32 D_802EC5E8_7C5B78;
 extern s32 D_802EC5EC_7C5B7C;
-extern Sprite* D_802EC5F0_7C5B80[];
-extern Sprite* D_802EC608_7C5B98[];
+extern Sprite* D_802EC5F0_7C5B80[6];
+extern Sprite* D_802EC608_7C5B98[6];
 extern Sprite* D_802EC620_7C5BB0[6];
 extern f32 D_802EC638_7C5BC8[3];
 extern GObj* D_802EC644_7C5BD4;
@@ -31,11 +23,10 @@ extern OMCamera* D_802EC648_7C5BD8;
 extern s32 D_802EC64C_7C5BDC;
 extern f32 D_802EC650_7C5BE0;
 extern f32 D_802EC654_7C5BE4;
-extern InteractionHandler D_802EC658_7C5BE8[];
+extern InteractionHandler D_802EC658_7C5BE8[2];
 extern PokemonInitData D_802EC68C_7C5C1C;
 
 extern u8 D_8034C8C8_825E58;
-extern char D_8034E080_827610[20]; // player name
 extern SObj* D_8034E0A0_827630;
 extern SObj* D_8034E0A4_827634;
 extern GObj* D_8034E0A8_827638;
@@ -292,9 +283,9 @@ void func_802D039C_7A992C(f32 speed) {
 
 void func_802D03D0_7A9960(f32 skipFrames) {
     if (D_802EC648_7C5BD8 != NULL) {
-        animSetCameraAnimation(D_802EC648_7C5BD8, &D_801204A0_4168E0, skipFrames);
+        animSetCameraAnimation(D_802EC648_7C5BD8, (AnimCmd*) &D_801204A0_4168E0, skipFrames);
     }
-    PlayerModel_ChangeAnimation(&D_8011DA60_413EA0, &D_8011EA20_414E60, skipFrames);
+    PlayerModel_ChangeAnimation(D_8011DA60_413EA0, D_8011EA20_414E60, skipFrames);
 }
 
 void func_802D0420_7A99B0(DObj* arg0, s32 arg1, f32 arg2) {
@@ -410,7 +401,7 @@ void func_802D07BC_7A9D4C(GObj* obj) {
     resetMainCameraSettings();
     Msg_Reset();
     cmdSendCommand(gObjPlayer, 0xA, NULL);
-    setSkyBoxAnimationSpeed(D_80100730_3F6B70);
+    setSkyBoxAnimationSpeed(D_80100720.unk_10);
     D_802EC648_7C5BD8 = getMainCamera();
     camObj = D_802EC648_7C5BD8->obj;
     ohPauseObjectProcesses(camObj);

@@ -1,0 +1,6 @@
+/* ROM 4CCB5C, VRAM 8011A78C: complete native animation command stream. */
+struct bank_4A8170_Animation8011A78C D_8011A78C_4CCB5C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -2.400134563446045f, 0.5323883891105652f, -0.6147677302360535f, -0.4604071378707886f, -22.244924545288086f, -2.9802322387695312e-06f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

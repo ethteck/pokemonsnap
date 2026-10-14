@@ -4,17 +4,13 @@ typedef struct SomeS16s {
     s16 data[2];
 } SomeS16s;
 
-extern f32 D_80100730_3F6B70;
-extern AnimCmd* D_8011C5A0_4129E0;
-extern AnimCmd** D_8011CFB0_4133F0;
-extern AnimCmd D_8011DA1C_413E5C;
 extern AnimationHeader D_802EC6C0_7C5C50;
 extern AnimationHeader D_802EC6D4_7C5C64;
 extern AnimationHeader D_802EC6E8_7C5C78;
 extern AnimationHeader D_802EC6FC_7C5C8C;
 extern s32 D_802EC710_7C5CA0;
 extern s32 D_802EC714_7C5CA4;
-extern InteractionHandler D_802EC718_7C5CA8[];
+extern InteractionHandler D_802EC718_7C5CA8[2];
 extern SomeS16s D_802EC738_7C5CC8;
 extern PokemonInitData D_802EC750_7C5CE0;
 
@@ -113,15 +109,15 @@ POKEMON_FUNC(func_802D0F98_7AA528)
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, &D_8011DA1C_413E5C, 0.0f);
+    animSetCameraAnimation(cam, (AnimCmd*) &D_8011DA1C_413E5C, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_80100730_3F6B70);
+    setSkyBoxAnimationSpeed(D_80100720.unk_10);
     playerObj = PlayerModel_Init();
     if (playerObj == NULL) {
         cmdSendCommand(gObjPlayer, 7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_8011C5A0_4129E0, &D_8011CFB0_4133F0, 0, 0.5f);
+    PlayerModel_SetAnimation(D_8011C5A0_4129E0, D_8011CFB0_4133F0, 0, 0.5f);
     D_802EC714_7C5CA4 = 0;
     playerObj->fnAnimCallback = func_802D0CD8_7AA268;
 

@@ -1,0 +1,22 @@
+/* ROM 269250, VRAM 8019D4A0: native model/material animation table. */
+AnimCmd* D_8019D4A0_269250[19] = {
+    (AnimCmd*) &D_8019D4EC_26929C,
+    (AnimCmd*) &D_8019D4F8_2692A8,
+    (AnimCmd*) &D_8019D624_2693D4,
+    (AnimCmd*) &D_8019D6F4_2694A4,
+    (AnimCmd*) &D_8019DAB8_269868,
+    (AnimCmd*) &D_8019DB68_269918,
+    (AnimCmd*) &D_8019DC1C_2699CC,
+    (AnimCmd*) &D_8019DCB0_269A60,
+    (AnimCmd*) &D_8019DD3C_269AEC,
+    (AnimCmd*) &D_8019DDC8_269B78,
+    (AnimCmd*) &D_8019DE88_269C38,
+    (AnimCmd*) &D_8019DF40_269CF0,
+    (AnimCmd*) &D_8019DFF4_269DA4,
+    (AnimCmd*) &D_8019E024_269DD4,
+    (AnimCmd*) &D_8019E100_269EB0,
+    (AnimCmd*) &D_8019E1BC_269F6C,
+    (AnimCmd*) &D_8019E284_26A034,
+    (AnimCmd*) &D_8019E34C_26A0FC,
+    (AnimCmd*) &D_8019E3FC_26A1AC,
+};

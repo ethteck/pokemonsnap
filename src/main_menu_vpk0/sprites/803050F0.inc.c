@@ -1,0 +1,18 @@
+Bitmap D_803050F0_main_menu_vpk0[16] = {
+    { 32, 32, 0, 0, D_802F8318_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802F9320_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802FA328_main_menu_vpk0, 32, 0 },
+    { 28, 28, 0, 0, D_802FB330_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802FC138_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802FD140_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802FE148_main_menu_vpk0, 32, 0 },
+    { 28, 28, 0, 0, D_802FF150_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_802FFF58_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_80300F60_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_80301F68_main_menu_vpk0, 32, 0 },
+    { 28, 28, 0, 0, D_80302F70_main_menu_vpk0, 32, 0 },
+    { 32, 32, 0, 0, D_80303D78_main_menu_vpk0, 10, 0 },
+    { 32, 32, 0, 0, D_80304280_main_menu_vpk0, 10, 0 },
+    { 32, 32, 0, 0, D_80304788_main_menu_vpk0, 10, 0 },
+    { 28, 28, 0, 0, D_80304C90_main_menu_vpk0, 10, 0 },
+};

@@ -15,7 +15,7 @@ extern f32 D_802C6AA4_648F54;
 extern InteractionHandler D_802C6AA8_648F58[];
 extern InteractionHandler D_802C6AD8_648F88[];
 extern InteractionHandler D_802C6B08_648FB8[];
-extern RandomState D_802C6B28_648FD8;
+extern RandomState D_802C6B28_648FD8[4];
 extern PokemonInitData D_802C6B5C_64900C;
 
 void func_802BF68C_641B3C(GObj*);
@@ -64,7 +64,7 @@ void func_802BF68C_641B3C(GObj* obj) {
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802BF68C_641B3C);
     }
-    Pokemon_SetStateRandom(obj, &D_802C6B28_648FD8);
+    Pokemon_SetStateRandom(obj, D_802C6B28_648FD8);
 
     if (pokemon) {
         // TODO required to match

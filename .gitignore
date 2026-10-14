@@ -2,7 +2,7 @@
 .splat/
 __pycache__/
 asm/
-assets/
+/assets/
 build/
 expected/
 tools/ido5.3/
@@ -15,6 +15,7 @@ tools/asm_proc/
 *.z64
 
 .ninja_log
+.ninja_deps
 .splache
 build.ninja
 ctx.c

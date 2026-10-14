@@ -10,9 +10,9 @@ typedef struct Unk800E1510 {
     u32 unk_04_20 : 21;
 } Unk800E1510;
 
-extern char D_800C20E0_5EF80[16]; // HAL_SNAP_V1.0-1 in EUC-JP encoding
-extern s32 D_800C20F0_5EF90;      // s32 D_800C20F0_5EF90 = 0;
-extern bool D_800C20F4_5EF94;
+char D_800C20E0_5EF80[16] = "HAL_SNAP_V1.0-1";
+s32 D_800C20F0_5EF90 = 0;
+bool D_800C20F4_5EF94 = false;
 extern UnkBigBoy* D_800C21B0_5F050;
 extern UnkBigBoy* D_800C21B8_5F058[]; // Likely wrong type, but so far it's only being used in one place and it works for now.
 extern u8 D_800E14FC_7E39C[4];

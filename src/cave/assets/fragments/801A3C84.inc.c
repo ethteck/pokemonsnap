@@ -1,0 +1,18 @@
+/* ROM 26FA34, VRAM 801A3C84: complete native animation command stream. */
+struct Cave_Animation801A3C84 D_801A3C84_26FA34 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTY | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.9999993443489075f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTZ) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | ROTY | SCALEX | SCALEY | SCALEZ) << 15) | 6, { -0.5235987901687622f, -0.1745329201221466f, 1.2999999523162842f, 1.2999999523162842f, 1.2999999523162842f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 13, { 0.9999993443489075f, -0.00410959729924798f, 1.0f, -0.004109588451683521f, 1.0f, -0.004109588451683521f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 68, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 9, { 0.0f, 0.0025666607543826103f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 59, { 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 4 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 60, { 0.9999993443489075f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 55 },
+    { (ANIM_CMD_SET_VALUE << 25) | ((ROTX) << 15) | 6, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 6, { 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((SCALEX | SCALEY | SCALEZ) << 15) | 1, { 0.9999993443489075f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801A3C84_26FA34 },
+};

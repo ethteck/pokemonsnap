@@ -1,0 +1,20 @@
+/* ROM 426E70, VRAM 80130A30: AnimCmd*. */
+AnimCmd* D_80130A30_426E70[17] = {
+    (AnimCmd*) &D_80130A74_426EB4,
+    (AnimCmd*) &D_80130B24_426F64,
+    (AnimCmd*) &D_80130BB8_426FF8,
+    (AnimCmd*) &D_80130C30_427070,
+    (AnimCmd*) &D_80130C74_4270B4,
+    (AnimCmd*) &D_80130D08_427148,
+    (AnimCmd*) &D_80130DB8_4271F8,
+    (AnimCmd*) &D_80130E10_427250,
+    (AnimCmd*) &D_80130EC0_427300,
+    (AnimCmd*) &D_80130F28_427368,
+    (AnimCmd*) &D_80130F90_4273D0,
+    (AnimCmd*) &D_80130FFC_42743C,
+    (AnimCmd*) &D_80131064_4274A4,
+    (AnimCmd*) &D_801310DC_42751C,
+    (AnimCmd*) &D_80131150_427590,
+    (AnimCmd*) &D_801311C8_427608,
+    NULL,
+};

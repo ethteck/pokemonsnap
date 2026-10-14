@@ -1,0 +1,21 @@
+/* ROM 26F770, VRAM 801A39C0: native model/material animation table. */
+AnimCmd* D_801A39C0_26F770[18] = {
+    (AnimCmd*) &D_801A3A08_26F7B8,
+    (AnimCmd*) &D_801A3ABC_26F86C,
+    (AnimCmd*) &D_801A3AC8_26F878,
+    (AnimCmd*) &D_801A3B88_26F938,
+    (AnimCmd*) &D_801A3C84_26FA34,
+    (AnimCmd*) &D_801A3D38_26FAE8,
+    (AnimCmd*) &D_801A3E6C_26FC1C,
+    (AnimCmd*) &D_801A3F30_26FCE0,
+    (AnimCmd*) &D_801A3FF4_26FDA4,
+    (AnimCmd*) &D_801A40AC_26FE5C,
+    (AnimCmd*) &D_801A40C8_26FE78,
+    (AnimCmd*) &D_801A4158_26FF08,
+    (AnimCmd*) &D_801A41B0_26FF60,
+    (AnimCmd*) &D_801A4290_270040,
+    (AnimCmd*) &D_801A4380_270130,
+    (AnimCmd*) &D_801A44B8_270268,
+    (AnimCmd*) &D_801A45D8_270388,
+    (AnimCmd*) &D_801A46DC_27048C,
+};

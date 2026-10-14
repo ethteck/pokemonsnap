@@ -1,0 +1,10 @@
+/* ROM 400824, VRAM 8010A3E4: native InterpData path descriptor. */
+InterpData D_8010A3E4_400824 = {
+    HAL_INTERP_BEZIER,
+    5,
+    0.0f,
+    D_8010A32C_40076C,
+    36.00431442260742f,
+    D_8010A380_4007C0,
+    D_8010A394_4007D4,
+};

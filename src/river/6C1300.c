@@ -2,25 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-extern u8 D_802E2620_6CA400;
-extern AnimationHeader D_802E29FC_6CA7DC;
-extern AnimationHeader D_802E2A10_6CA7F0;
-extern AnimationHeader D_802E2A24_6CA804;
-extern AnimationHeader D_802E2A38_6CA818;
-extern AnimationHeader D_802E2A4C_6CA82C;
-extern AnimationHeader D_802E2A60_6CA840;
-extern AnimationHeader D_802E2A74_6CA854;
-extern AnimationHeader D_802E2A88_6CA868;
-extern AnimationHeader D_802E2A9C_6CA87C;
-extern AnimationHeader D_802E2AB0_6CA890;
-extern InteractionHandler D_802E2AC4_6CA8A4[];
-extern RandomState D_802E2B24_6CA904;
-extern InteractionHandler D_802E2B3C_6CA91C[];
-extern InteractionHandler D_802E2B7C_6CA95C[];
-extern InteractionHandler D_802E2B9C_6CA97C[];
-extern Vec3f D_802E2BBC_6CA99C;
-extern PokemonInitData D_802E2BDC_6CA9BC;
+#include "assets/6CA400/declarations.h"
 
 void func_802D990C_6C16EC(GObj*);
 void func_802D9A0C_6C17EC(GObj*);
@@ -73,7 +55,7 @@ void func_802D9664_6C1444(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E2AC4_6CA8A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E2B24_6CA904);
+    Pokemon_SetStateRandom(obj, D_802E2B24_6CA904);
 }
 
 void func_802D96FC_6C14DC(GObj* obj) {
@@ -84,7 +66,7 @@ void func_802D96FC_6C14DC(GObj* obj) {
     Pokemon_StartPathProc(obj, NULL);
     pokemon->transitionGraph = D_802E2AC4_6CA8A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E2B24_6CA904);
+    Pokemon_SetStateRandom(obj, D_802E2B24_6CA904);
 }
 
 void func_802D976C_6C154C(GObj* obj) {
@@ -98,7 +80,7 @@ void func_802D976C_6C154C(GObj* obj) {
     pokemon->transitionGraph = D_802E2AC4_6CA8A4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     pokemon->collisionOffset.y = pokemon->miscVars[0].field0;
-    Pokemon_SetStateRandom(obj, &D_802E2B24_6CA904);
+    Pokemon_SetStateRandom(obj, D_802E2B24_6CA904);
 }
 
 void func_802D9808_6C15E8(GObj* obj) {

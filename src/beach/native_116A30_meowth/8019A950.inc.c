@@ -1,0 +1,23 @@
+/* ROM 126DE0, VRAM 8019A950: native model/material animation table. */
+AnimCmd* D_8019A950_126DE0[20] = {
+    (AnimCmd*) &D_8019A9A0_126E30,
+    (AnimCmd*) &D_8019AA04_126E94,
+    (AnimCmd*) &D_8019ABE0_127070,
+    (AnimCmd*) &D_8019AE74_127304,
+    (AnimCmd*) &D_8019B1F4_127684,
+    (AnimCmd*) &D_8019B27C_12770C,
+    (AnimCmd*) &D_8019B374_127804,
+    (AnimCmd*) &D_8019B3A4_127834,
+    (AnimCmd*) &D_8019B6EC_127B7C,
+    (AnimCmd*) &D_8019B780_127C10,
+    (AnimCmd*) &D_8019B880_127D10,
+    (AnimCmd*) &D_8019B8E4_127D74,
+    (AnimCmd*) &D_8019BA8C_127F1C,
+    (AnimCmd*) &D_8019BD98_128228,
+    (AnimCmd*) &D_8019BE74_128304,
+    (AnimCmd*) &D_8019BF08_128398,
+    (AnimCmd*) &D_8019BF70_128400,
+    (AnimCmd*) &D_8019C0B4_128544,
+    (AnimCmd*) &D_8019C160_1285F0,
+    (AnimCmd*) &D_8019C200_128690,
+};

@@ -1,0 +1,20 @@
+/* ROM 1CC690, VRAM 80186530: native model/material animation table. */
+AnimCmd* D_80186530_1CC690[17] = {
+    (AnimCmd*) &D_80186574_1CC6D4,
+    (AnimCmd*) &D_801865C8_1CC728,
+    (AnimCmd*) &D_80186660_1CC7C0,
+    (AnimCmd*) &D_801866D4_1CC834,
+    (AnimCmd*) &D_80186754_1CC8B4,
+    (AnimCmd*) &D_801867D4_1CC934,
+    (AnimCmd*) &D_80186808_1CC968,
+    (AnimCmd*) &D_8018687C_1CC9DC,
+    (AnimCmd*) &D_801868FC_1CCA5C,
+    (AnimCmd*) &D_8018697C_1CCADC,
+    (AnimCmd*) &D_801869B0_1CCB10,
+    (AnimCmd*) &D_80186A80_1CCBE0,
+    (AnimCmd*) &D_80186B3C_1CCC9C,
+    (AnimCmd*) &D_80186C0C_1CCD6C,
+    (AnimCmd*) &D_80186CC8_1CCE28,
+    (AnimCmd*) &D_80186D7C_1CCEDC,
+    (AnimCmd*) &D_80186DE4_1CCF44,
+};

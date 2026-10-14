@@ -2,26 +2,10 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-typedef struct Unk6 {
-    u16 data[3];
-} Unk6;
+#include "assets/29A1A0/declarations.h"
+#include "assets/6CA400/declarations.h"
 
 void func_802E0094_6C7E74(GObj*);
-
-extern AnimCmd* D_80148F30_2B9000;
-extern AnimCmd** D_80149BE0_2B9CB0;
-extern AnimCmd D_8014A600_2BA6D0[];
-
-extern AnimationHeader D_802E4420_6CC200;
-extern AnimationHeader D_802E4434_6CC214;
-extern AnimationHeader D_802E4448_6CC228;
-extern AnimationHeader D_802E445C_6CC23C;
-extern s32 D_802E4470_6CC250;
-extern u32 D_802E4474_6CC254;
-extern InteractionHandler D_802E4478_6CC258[];
-extern Unk6 D_802E4498_6CC278;
-extern PokemonInitData D_802E44B4_6CC294;
 
 void func_802E03C0_6C81A0(GObj*);
 
@@ -121,15 +105,15 @@ void func_802E03C0_6C81A0(GObj* obj) {
     camObj = cam->obj;
     ohPauseObjectProcesses(camObj);
     cam->animSpeed = 0.5f;
-    animSetCameraAnimation(cam, D_8014A600_2BA6D0, 0.0f);
+    animSetCameraAnimation(cam, (AnimCmd*) &D_8014A600_2BA6D0, 0.0f);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
-    setSkyBoxAnimationSpeed(D_8012ACA0_29AD70);
+    setSkyBoxAnimationSpeed(D_8012AC90.unk_10);
     playerModelObj = PlayerModel_Init();
     if (playerModelObj == NULL) {
         cmdSendCommand(gObjPlayer, 7, NULL);
         omEndProcess(NULL);
     }
-    PlayerModel_SetAnimation(&D_80148F30_2B9000, &D_80149BE0_2B9CB0, 0.0f, 0.5f);
+    PlayerModel_SetAnimation(D_80148F30_2B9000, D_80149BE0_2B9CB0, 0.0f, 0.5f);
     D_802E4474_6CC254 = 0;
     playerModelObj->fnAnimCallback = func_802E01C8_6C7FA8;
     for (i = 0; D_802E4474_6CC254 == 0 && i < 1200; i++) {

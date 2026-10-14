@@ -1,0 +1,10 @@
+/* ROM 3FA6A0, VRAM 80104260: native InterpData path descriptor. */
+InterpData D_80104260_3FA6A0 = {
+    HAL_INTERP_BEZIER,
+    7,
+    0.0f,
+    D_80104160_3FA5A0,
+    45.62211608886719f,
+    D_801041CC_3FA60C,
+    D_801041E8_3FA628,
+};

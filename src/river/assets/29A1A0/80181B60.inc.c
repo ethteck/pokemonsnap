@@ -1,0 +1,23 @@
+/* ROM 2F1C30, VRAM 80181B60: native model/material animation table. */
+AnimCmd** D_80181B60_2F1C30[20] = {
+    NULL,
+    D_80181C10_2F1CE0,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

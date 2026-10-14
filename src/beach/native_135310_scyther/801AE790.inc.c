@@ -1,0 +1,20 @@
+/* ROM 13AC20, VRAM 801AE790: native model/material animation table. */
+AnimCmd* D_801AE790_13AC20[17] = {
+    (AnimCmd*) &D_801AE7D4_13AC64,
+    (AnimCmd*) &D_801AE820_13ACB0,
+    (AnimCmd*) &D_801AE848_13ACD8,
+    (AnimCmd*) &D_801AE89C_13AD2C,
+    (AnimCmd*) &D_801AE8E8_13AD78,
+    (AnimCmd*) &D_801AE93C_13ADCC,
+    (AnimCmd*) &D_801AEA50_13AEE0,
+    (AnimCmd*) &D_801AEAAC_13AF3C,
+    (AnimCmd*) &D_801AEBBC_13B04C,
+    (AnimCmd*) &D_801AEC3C_13B0CC,
+    (AnimCmd*) &D_801AED84_13B214,
+    (AnimCmd*) &D_801AEECC_13B35C,
+    (AnimCmd*) &D_801AF014_13B4A4,
+    (AnimCmd*) &D_801AF15C_13B5EC,
+    (AnimCmd*) &D_801AF24C_13B6DC,
+    (AnimCmd*) &D_801AF2F0_13B780,
+    (AnimCmd*) &D_801AF3F8_13B888,
+};

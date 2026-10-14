@@ -2,6 +2,7 @@
 
 import argparse
 import glob
+import json
 import os
 import shutil
 import sys
@@ -14,6 +15,7 @@ import requests
 import splat
 import splat.scripts.split as split
 from splat.segtypes.linker_entry import LinkerEntry
+from tools.native_vpk0 import linker_script as native_payload_linker_script
 
 ROOT = Path(__file__).parent.relative_to(os.getcwd())
 TOOLS_DIR = ROOT / "tools"
@@ -27,12 +29,16 @@ LD_PATH = f"{BASENAME}.ld"
 MAP_PATH = f"build/{BASENAME}.map"
 ELF_PATH = f"build/{BASENAME}.elf"
 Z64_PATH = f"build/{BASENAME}.z64"
+OBJECTS_PATH = f"build/{BASENAME}.objects"
+GENERATED_UNDEFINED_SYMS_PATH = f"build/{BASENAME}.undefined_syms.txt"
+UNDEFINED_SYMS_GENERATOR = TOOLS_DIR / "build" / "undefined_syms.py"
 OK_PATH = f"build/{BASENAME}.ok"
 
 COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src -I build/include -I build -I ."
 IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
 CROSS = "mips-linux-gnu-"
+CROSS_NM = f"{CROSS}nm"
 CROSS_AS = f"{CROSS}as"
 CROSS_CPP = shutil.which(f"{CROSS}cpp") or shutil.which("cpp") or f"{CROSS}cpp"
 CROSS_LD = f"{CROSS}ld"
@@ -245,7 +251,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "cc",
         description="cc $in",
-        command=f"{GAME_CC_CMD}",
+        command=f"{CROSS_CPP} -M {COMMON_INCLUDES} {IDO_DEFS} -DBUILD_VERSION=VERSION_I -MT $out -MF $out.d $in && {GAME_CC_CMD}",
+        depfile="$out.d",
+        deps="gcc",
     )
 
     ninja.rule(
@@ -261,9 +269,15 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "undefined_syms",
+        description="undefined_syms $out",
+        command=f"{sys.executable} {UNDEFINED_SYMS_GENERATOR} --nm {CROSS_NM} --objects $objects --auto undefined_syms_auto.txt --manual undefined_syms.txt --output $out",
+    )
+
+    ninja.rule(
         "ld",
         description="link $out",
-        command=f"{CROSS_LD} -T undefined_syms.txt -T undefined_syms_auto.txt -Map $mapfile -T $in -o $out",
+        command=f"{CROSS_LD} -T undefined_syms.txt -T $undefined_syms -Map $mapfile -T $in -o $out",
     )
 
     ninja.rule(
@@ -308,6 +322,111 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/vpk0.py $in $out",
     )
 
+    ninja.rule(
+        "idle_script",
+        description="idle_script $in",
+        command=f"{sys.executable} tools/idle_script.py build $in $out",
+    )
+
+    ninja.rule(
+        "effect_scripts",
+        description="effect_scripts $in",
+        command=f"{sys.executable} tools/effect_scripts.py build $in $out",
+    )
+
+    ninja.rule(
+        "audio_seq",
+        description="audio_seq $in",
+        command=f"{sys.executable} tools/audio_seq.py build $in $out",
+    )
+
+    ninja.rule(
+        "audio_pair",
+        description="audio_pair $in",
+        command=f"{sys.executable} tools/audio_bank.py build $in $bank_bin $table_bin",
+    )
+
+    ninja.rule(
+        "native_payload_link",
+        description="native_payload $out",
+        command=f"{CROSS_LD} -T $script -o $out $in",
+    )
+
+    ninja.rule(
+        "native_payload_bin",
+        description="native_payload_bin $out",
+        command=f"{CROSS_OBJCOPY} -O binary -j .payload $in $out",
+    )
+
+    ninja.rule(
+        "window_font",
+        description="window_font $in",
+        command=f"{sys.executable} tools/window_font.py $in $out --glyph-size $glyph_size --c",
+    )
+
+    ninja.rule(
+        "native_photos_extract",
+        description="native_photos_extract $in",
+        command=f"{sys.executable} tools/photo_bank.py extract --input $in --output $out",
+        restat=True,
+    )
+    ninja.build(
+        "assets/remaining_ui_ae0510/photos.json",
+        "native_photos_extract",
+        "pokemonsnap.z64",
+        implicit=["tools/photo_bank.py"],
+    )
+
+    ninja.rule(
+        "native_photos",
+        description="native_photos $in",
+        command=f"{sys.executable} tools/photo_bank.py generate --input $in --output $out",
+        restat=True,
+    )
+
+    photo_include = Path("build/assets/remaining_ui_ae0510/photos.inc.c")
+    build(
+        photo_include,
+        ["assets/remaining_ui_ae0510/photos.json"],
+        "native_photos",
+        implicit=["tools/photo_bank.py"],
+    )
+    img_incs.append(str(photo_include))
+
+    vertex_layout = Path("tools/native_layouts/vertices.json")
+    vertex_outputs = [
+        record["include"] for record in json.loads(vertex_layout.read_text())["vertices"]
+    ]
+    ninja.rule(
+        "native_vertices",
+        description="native_vertices $in",
+        command=f"{sys.executable} tools/native_vertices.py pokemonsnap.z64 {vertex_layout}",
+    )
+    ninja.build(
+        vertex_outputs,
+        "native_vertices",
+        ["pokemonsnap.z64", str(vertex_layout)],
+        implicit=["tools/native_vertices.py", "tools/vpk0_codec.py"],
+    )
+    img_incs.extend(vertex_outputs)
+
+    gfx_layout = Path("tools/native_layouts/gfx.json")
+    gfx_outputs = [
+        record["include"] for record in json.loads(gfx_layout.read_text())["display_lists"]
+    ]
+    ninja.rule(
+        "native_gfx",
+        description="native_gfx $in",
+        command=f"{sys.executable} tools/native_gfx.py pokemonsnap.z64 {gfx_layout}",
+    )
+    ninja.build(
+        gfx_outputs,
+        "native_gfx",
+        ["pokemonsnap.z64", str(gfx_layout)],
+        implicit=["tools/native_gfx.py", "tools/vpk0_codec.py"],
+    )
+    img_incs.extend(gfx_outputs)
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -319,22 +438,37 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             seg, splat.segtypes.common.group.CommonSegGroup
         ):
             for seg in seg.subsegments:
+                if seg.type == "snap_window_font":
+                    inc_path = Path("build/" + str(seg.out_path()) + ".bin.c")
+                    build(
+                        inc_path, [seg.out_path()], "window_font",
+                        implicit=["tools/window_font.py"],
+                        variables={"glyph_size": str(seg.glyph_size)},
+                    )
+                    img_incs.append(str(inc_path))
+                    continue
                 if isinstance(seg, splat.segtypes.n64.img.N64SegImg):
                     flags = ""
                     if seg.n64img.flip_h:
                         flags += "--flip-x "
                     if seg.n64img.flip_v:
                         flags += "--flip-y "
+                    if getattr(seg, "word_swap", False):
+                        flags += "--word-swap "
 
-                    bin_path = Path("build/" + str(seg.out_path()) + ".bin")
-                    inc_path = Path(str(bin_path) + ".c")
+                    include = seg.yaml.get("native_include") if isinstance(seg.yaml, dict) else None
+                    inc_path = Path("build") / include if include else Path("build/" + str(seg.out_path()) + ".bin.c")
+                    bin_path = inc_path.with_suffix(".bin")
                     src_path = seg.out_path()
 
                     build(
                         bin_path,
                         [src_path],
                         "pigment",
-                        variables={"img_type": seg.type, "img_flags": flags},
+                        variables={
+                            "img_type": getattr(seg, "image_type", seg.type),
+                            "img_flags": flags,
+                        },
                     )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
@@ -352,6 +486,27 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
+
+    for entry in linker_entries:
+        if entry.segment.type != "vpk0":
+            continue
+        layout = json.loads(entry.src_paths[0].read_text())
+        for image in layout["images"]:
+            flags = ""
+            if image.get("flip_x"):
+                flags += "--flip-x "
+            if image.get("flip_y"):
+                flags += "--flip-y "
+            if image.get("word_swap"):
+                flags += "--word-swap "
+            inc_path = Path("build") / image["include"]
+            bin_path = inc_path.with_suffix(".bin")
+            build(
+                bin_path, [Path(image["asset"])], "pigment",
+                variables={"img_type": image["fmt"], "img_flags": flags},
+            )
+            build(inc_path, [bin_path], "bin2c")
+            img_incs.append(str(inc_path))
 
     for entry in linker_entries:
         seg = entry.segment
@@ -538,9 +693,72 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                 # Only build the .text section file for a textbin with siblings
                 build(entry.object_path, entry.src_paths, "as")
         elif seg.type == "vpk0":
+            layout_path = entry.src_paths[0]
+            layout = json.loads(layout_path.read_text())
+            native_bin = entry.object_path.with_suffix(".native.bin")
+            native_elf = native_bin.with_suffix(".elf")
+            native_script = native_bin.with_suffix(".ld")
+            native_script.parent.mkdir(parents=True, exist_ok=True)
+            script = native_payload_linker_script(layout)
+            if not native_script.exists() or native_script.read_text() != script:
+                native_script.write_text(script)
+            objects = []
+            for source in layout["sources"]:
+                objects.append(source["object"])
+                ninja.build(
+                    source["object"], "cc", source["path"],
+                    implicit=["img_incs", *source.get("implicit", [])],
+                    variables={"flags": source["flags"]},
+                )
+            ninja.build(
+                str(native_elf), "native_payload_link", objects,
+                implicit=[str(native_script), str(layout_path)],
+                variables={"script": str(native_script)},
+            )
+            build(native_bin, [native_elf], "native_payload_bin")
             compressed = entry.object_path.with_suffix(".vpk0")
-            build(compressed, entry.src_paths, "vpk0_compress")
+            build(
+                compressed, [native_bin], "vpk0_compress",
+                implicit=["tools/vpk0.py", "tools/vpk0_codec.py"],
+            )
             build(entry.object_path, [compressed], "bin")
+        elif seg.type == "snap_idle_script":
+            raw_bin = entry.object_path.with_suffix("")
+            build(raw_bin, entry.src_paths, "idle_script", implicit=["tools/idle_script.py"])
+            build(entry.object_path, [raw_bin], "bin")
+        elif seg.type == "snap_effect_scripts":
+            raw_bin = entry.object_path.with_suffix("")
+            build(raw_bin, entry.src_paths, "effect_scripts", implicit=["tools/effect_scripts.py"])
+            build(entry.object_path, [raw_bin], "bin")
+        elif seg.type in ("snap_audio_sbk", "snap_audio_seq"):
+            raw_bin = entry.object_path.with_suffix("")
+            build(raw_bin, entry.src_paths, "audio_seq", implicit=["tools/audio_seq.py"])
+            build(entry.object_path, [raw_bin], "bin")
+        elif seg.type in ("snap_audio_bank", "snap_audio_table"):
+            raw_bin = entry.object_path.with_suffix("")
+            if seg.type == "snap_audio_bank":
+                table_entry = next(
+                    item for item in linker_entries
+                    if item.segment.type == "snap_audio_table"
+                    and item.segment.rom_start == seg.yaml["audio_table_start"]
+                )
+                table_json = table_entry.src_paths[0]
+                table_bin = table_entry.object_path.with_suffix("")
+                table = json.loads(table_json.read_text())
+                implicit = ["tools/audio_bank.py"] + [
+                    str(table_json.parent / sample["asset"])
+                    for sample in table["samples"]
+                ]
+                ninja.build(
+                    outputs=[str(raw_bin), str(table_bin)],
+                    rule="audio_pair",
+                    inputs=[str(entry.src_paths[0]), str(table_json)],
+                    implicit=implicit,
+                    variables={"bank_bin": str(raw_bin), "table_bin": str(table_bin)},
+                )
+            build(entry.object_path, [raw_bin], "bin")
+        elif seg.type == "snap_fill":
+            build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":
@@ -556,12 +774,33 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             print(f"ERROR: Unsupported build segment type {seg.type}")
             sys.exit(1)
 
+    object_strs = sorted(str(obj) for obj in built_objects)
+    objects_path = Path(OBJECTS_PATH)
+    objects_path.parent.mkdir(parents=True, exist_ok=True)
+    objects_path.write_text("\n".join(object_strs) + "\n")
+
+    ninja.build(
+        GENERATED_UNDEFINED_SYMS_PATH,
+        "undefined_syms",
+        [
+            str(UNDEFINED_SYMS_GENERATOR),
+            OBJECTS_PATH,
+            "undefined_syms_auto.txt",
+            "undefined_syms.txt",
+        ],
+        implicit=object_strs,
+        variables={"objects": OBJECTS_PATH},
+    )
+
     ninja.build(
         ELF_PATH,
         "ld",
         LD_PATH,
-        implicit=[str(obj) for obj in built_objects],
-        variables={"mapfile": MAP_PATH},
+        implicit=[GENERATED_UNDEFINED_SYMS_PATH, *object_strs],
+        variables={
+            "mapfile": MAP_PATH,
+            "undefined_syms": GENERATED_UNDEFINED_SYMS_PATH,
+        },
     )
 
     ninja.build(

@@ -1,0 +1,9 @@
+/* ROM 2E50FC, VRAM 8017502C: complete native animation command stream. */
+struct river_29A1A0_Animation8017502C D_8017502C_2E50FC = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 0, { 0.0f, -0.010054334066808224f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { -0.06981316953897476f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 22, { 0.0f, 0.008911561220884323f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { 0.06981316953897476f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 22, { 0.0f, -0.006718487944453955f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8017502C_2E50FC },
+};

@@ -1,14 +1,6 @@
 #include "common.h"
 
-typedef struct Some14 {
-    /* 0x00 */ char unk_00[0x10];
-    /* 0x10 */ s8 unk_10;
-    /* 0x11 */ s8 unk_11;
-    /* 0x12 */ s8 unk_12;
-    /* 0x13 */ char unk_13[0x1];
-} Some14;
-
-extern Some14 D_800AEBD0;
+extern Lights1 D_800AEBD0;
 extern s32 D_800AEC08;
 extern s32 D_800AEC0C;
 extern s32 D_800AEC10;
@@ -28,9 +20,9 @@ void func_800A1A74(s32 arg0) {
     theta = ((f32) (arg0 * 0.25) * M_PI_F) / 180.0f;
     cos = __cosf(theta) * 127.0;
     sin = __sinf(theta);
-    D_800AEBD0.unk_10 = cos;
-    D_800AEBD0.unk_11 = (f32) (sin * 127.0);
-    D_800AEBD0.unk_12 = 0;
+    D_800AEBD0.l[0].l.dir[0] = cos;
+    D_800AEBD0.l[0].l.dir[1] = (f32) (sin * 127.0);
+    D_800AEBD0.l[0].l.dir[2] = 0;
 
     if (arg0 >= 880 && arg0 <= 1280) {
         var_a1 = arg0 - 1080 < 0 ? 1080 - arg0 : arg0 - 1080;
@@ -96,7 +88,7 @@ void func_800A1E44(s32* arg0, s32* arg1, s32* arg2) {
 }
 
 void func_800A1E6C(Vec3f* arg0) {
-    D_800AEBD0.unk_10 = arg0->x * 127.0f;
-    D_800AEBD0.unk_11 = arg0->y * 127.0f;
-    D_800AEBD0.unk_12 = arg0->z * 127.0f;
+    D_800AEBD0.l[0].l.dir[0] = arg0->x * 127.0f;
+    D_800AEBD0.l[0].l.dir[1] = arg0->y * 127.0f;
+    D_800AEBD0.l[0].l.dir[2] = arg0->z * 127.0f;
 }

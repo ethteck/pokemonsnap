@@ -1,0 +1,6 @@
+/* ROM 213B70, VRAM 80147DC0: complete native animation command stream. */
+struct Cave_Animation80147DC0 D_80147DC0_213B70 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -0.4363323152065277f, 0.3490658402442932f, -6.342993685848342e-08f, -2.2351741790771484e-06f, -17.304588317871094f, -0.002110004425048828f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

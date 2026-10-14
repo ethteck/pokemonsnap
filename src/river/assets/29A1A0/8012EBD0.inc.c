@@ -1,0 +1,10 @@
+/* ROM 29ECA0, VRAM 8012EBD0: native InterpData path descriptor. */
+InterpData D_8012EBD0_29ECA0 = {
+    HAL_INTERP_BEZIER,
+    10,
+    0.0f,
+    D_8012EA64_29EB34,
+    43.55643081665039f,
+    D_8012EAF4_29EBC4,
+    D_8012EB1C_29EBEC,
+};

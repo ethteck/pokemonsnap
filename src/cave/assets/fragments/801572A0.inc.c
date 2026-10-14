@@ -1,0 +1,22 @@
+/* ROM 223050, VRAM 801572A0: native model/material animation table. */
+AnimCmd* D_801572A0_223050[19] = {
+    (AnimCmd*) &D_801572EC_22309C,
+    (AnimCmd*) &D_80157320_2230D0,
+    (AnimCmd*) &D_801573AC_22315C,
+    (AnimCmd*) &D_80157488_223238,
+    (AnimCmd*) &D_80157570_223320,
+    (AnimCmd*) &D_801575D8_223388,
+    (AnimCmd*) &D_801576B0_223460,
+    (AnimCmd*) &D_80157768_223518,
+    (AnimCmd*) &D_80157810_2235C0,
+    (AnimCmd*) &D_801578CC_22367C,
+    (AnimCmd*) &D_801579D8_223788,
+    (AnimCmd*) &D_80157A7C_22382C,
+    (AnimCmd*) &D_80157B1C_2238CC,
+    (AnimCmd*) &D_80157BB8_223968,
+    (AnimCmd*) &D_80157C98_223A48,
+    (AnimCmd*) &D_80157D5C_223B0C,
+    (AnimCmd*) &D_80157EEC_223C9C,
+    (AnimCmd*) &D_80157F20_223CD0,
+    (AnimCmd*) &D_80157FA8_223D58,
+};

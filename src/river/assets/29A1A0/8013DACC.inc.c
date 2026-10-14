@@ -1,0 +1,10 @@
+/* ROM 2ADB9C, VRAM 8013DACC: native InterpData path descriptor. */
+InterpData D_8013DACC_2ADB9C = {
+    HAL_INTERP_BEZIER,
+    7,
+    0.0f,
+    D_8013D9CC_2ADA9C,
+    38.88307189941406f,
+    D_8013DA38_2ADB08,
+    D_8013DA54_2ADB24,
+};

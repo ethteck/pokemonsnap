@@ -1,0 +1,23 @@
+/* ROM 301D50, VRAM 80191C80: native model/material animation table. */
+AnimCmd** D_80191C80_301D50[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80191D70_301E40,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

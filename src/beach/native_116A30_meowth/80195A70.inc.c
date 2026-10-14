@@ -1,0 +1,23 @@
+/* ROM 121F00, VRAM 80195A70: native model/material animation table. */
+AnimCmd* D_80195A70_121F00[20] = {
+    (AnimCmd*) &D_80195AC0_121F50,
+    (AnimCmd*) &D_80195ADC_121F6C,
+    (AnimCmd*) &D_80195B30_121FC0,
+    (AnimCmd*) &D_80195B74_122004,
+    (AnimCmd*) &D_80195BA8_122038,
+    (AnimCmd*) &D_80195BDC_12206C,
+    (AnimCmd*) &D_80195C10_1220A0,
+    (AnimCmd*) &D_80195C54_1220E4,
+    (AnimCmd*) &D_80195C88_122118,
+    (AnimCmd*) &D_80195CBC_12214C,
+    (AnimCmd*) &D_80195CF0_122180,
+    (AnimCmd*) &D_80195D34_1221C4,
+    (AnimCmd*) &D_80195D78_122208,
+    (AnimCmd*) &D_80195F2C_1223BC,
+    (AnimCmd*) &D_80195F60_1223F0,
+    (AnimCmd*) &D_80195F94_122424,
+    (AnimCmd*) &D_80195FC8_122458,
+    (AnimCmd*) &D_80195FFC_12248C,
+    (AnimCmd*) &D_80196030_1224C0,
+    (AnimCmd*) &D_80196064_1224F4,
+};

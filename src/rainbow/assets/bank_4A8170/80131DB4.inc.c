@@ -1,0 +1,19 @@
+/* ROM 4E4184, VRAM 80131DB4: complete native animation command stream. */
+struct bank_4A8170_Animation80131DB4 D_80131DB4_4E4184 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY | POSY) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { -12.566370964050293f, 0.6608935594558716f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTZ | POSX | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX | ROTY) << 15) | 35, { -0.09998991340398788f, 3.1415927410125732f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 30, { 100.0f, -0.07328005135059357f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY) << 15) | 12, { -125.0f, -0.06913333386182785f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX | ROTY) << 15) | 15, { -0.09999999403953552f, -1.8324362827115692e-07f, 3.1415927410125732f, 0.011635527946054935f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 6 },
+    { (ANIM_CMD_16 << 25) | ((0x1) << 15) | 1 },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((POSY) << 15) | 0, { 11.91200065612793f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY) << 15) | 48, { 0.0f, -1.1333333253860474f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 8 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 40, { 3.1415927410125732f, 0.011635527946054935f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 40, { -0.09999999403953552f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -5,18 +5,16 @@
 #include "app_render/app_render.h"
 #include "cave.h"
 #include "app_render/effect.h"
+#include "assets/declarations.h"
 
-extern EnvSoundData D_802C6150_648600;
-extern PokemonDef D_802C6234_6486E4;
+extern EnvSoundData D_802C6150_648600[57];
+extern PokemonDef D_802C6234_6486E4[18];
 extern u16 D_802C6354_648804;
 extern PokemonDef D_802C6358_648808;
 extern RandomState2 D_802C6368_648818[2];
 extern s32 D_802C6378_648828;
 extern ScreenSettings D_802C637C_64882C;
 extern SceneSetup D_802C6398_648848;
-
-extern HeightMap D_80317610_699AC0;
-extern HeightMap D_80317618_699AC8;
 
 void func_802BDD00_6401B0(GObj* obj) {
     DObj* a0;
@@ -76,15 +74,15 @@ void func_802BDDCC_64027C(GObj* obj, GroundResult* groundResult) {
 }
 
 void func_802BDF34_6403E4(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonAdd(arg0, arg1, &D_802C6234_6486E4);
+    pokemonAdd(arg0, arg1, D_802C6234_6486E4);
 }
 
 void func_802BDF58_640408(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonsChangeBlock(arg0, arg1, &D_802C6234_6486E4);
+    pokemonsChangeBlock(arg0, arg1, D_802C6234_6486E4);
 }
 
 void func_802BDF7C_64042C(WorldBlock* arg0) {
-    pokemonRemove(arg0, &D_802C6234_6486E4);
+    pokemonRemove(arg0, D_802C6234_6486E4);
 }
 
 void func_802BDFA0_640450(void) {
@@ -168,7 +166,7 @@ void func_802BE22C_6406DC(void) {
     initUI(func_802BE0AC_64055C, func_802BE450_640900, NULL, 0, func_802BDDCC_64027C);
     setEndLevelCallback(func_802BE038_6404E8);
     setPauseCallback(func_802BE0A4_640554);
-    EnvSound_Init(&D_802C6150_648600, 57);
+    EnvSound_Init(D_802C6150_648600, 57);
     func_802BE140_6405F0();
     PokemonDetector_Create();
     PokemonDetector_Enable();

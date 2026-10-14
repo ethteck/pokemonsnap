@@ -1,0 +1,23 @@
+/* ROM 1B4C20, VRAM 8016EAC0: native model/material animation table. */
+AnimCmd* D_8016EAC0_1B4C20[20] = {
+    NULL,
+    (AnimCmd*) &D_8016EB10_1B4C70,
+    (AnimCmd*) &D_8016EB84_1B4CE4,
+    (AnimCmd*) &D_8016EBBC_1B4D1C,
+    (AnimCmd*) &D_8016EC50_1B4DB0,
+    (AnimCmd*) &D_8016ECCC_1B4E2C,
+    (AnimCmd*) &D_8016ECD8_1B4E38,
+    (AnimCmd*) &D_8016ED6C_1B4ECC,
+    (AnimCmd*) &D_8016EDE8_1B4F48,
+    (AnimCmd*) &D_8016EDF4_1B4F54,
+    (AnimCmd*) &D_8016EE2C_1B4F8C,
+    (AnimCmd*) &D_8016EE48_1B4FA8,
+    (AnimCmd*) &D_8016EED4_1B5034,
+    (AnimCmd*) &D_8016EF1C_1B507C,
+    (AnimCmd*) &D_8016EF68_1B50C8,
+    (AnimCmd*) &D_8016F00C_1B516C,
+    (AnimCmd*) &D_8016F0C0_1B5220,
+    (AnimCmd*) &D_8016F188_1B52E8,
+    (AnimCmd*) &D_8016F250_1B53B0,
+    (AnimCmd*) &D_8016F2CC_1B542C,
+};

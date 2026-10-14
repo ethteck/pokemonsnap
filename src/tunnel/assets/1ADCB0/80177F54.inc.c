@@ -1,0 +1,11 @@
+/* ROM 1BE0B4, VRAM 80177F54: complete native animation command stream. */
+struct tunnel_1ADCB0_Animation80177F54 D_80177F54_1BE0B4 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -1.1223661948361126e-15f, 2.4251434194155763e-15f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 12, { 0.43740737438201904f, 0.01227272767573595f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 10, { 0.26999998092651367f, -0.014580246061086655f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 20, { 0.0f, -0.005094339605420828f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 33, { 0.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 32 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80177F54_1BE0B4 },
+};

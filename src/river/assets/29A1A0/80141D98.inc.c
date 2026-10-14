@@ -1,0 +1,10 @@
+/* ROM 2B1E68, VRAM 80141D98: native InterpData path descriptor. */
+InterpData D_80141D98_2B1E68 = {
+    HAL_INTERP_BEZIER,
+    6,
+    0.0f,
+    D_80141CBC_2B1D8C,
+    11.020896911621094f,
+    D_80141D1C_2B1DEC,
+    D_80141D34_2B1E04,
+};

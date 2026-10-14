@@ -1,0 +1,15 @@
+/* ROM 1A6630, VRAM 801604D0: native model/material animation table. */
+AnimCmd** D_801604D0_1A6630[12] = {
+    NULL,
+    D_801605CC_1A672C,
+    D_801605D0_1A6730,
+    D_801605D8_1A6738,
+    NULL,
+    D_801605DC_1A673C,
+    NULL,
+    D_801605E0_1A6740,
+    D_801605E4_1A6744,
+    D_801605EC_1A674C,
+    NULL,
+    NULL,
+};

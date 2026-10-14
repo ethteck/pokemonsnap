@@ -1,0 +1,6 @@
+/* ROM 429DBC, VRAM 8013397C: struct ValleyAnimation8013397C. */
+struct ValleyAnimation8013397C D_8013397C_429DBC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -2.767576217651367f, 0.5519886612892151f, -2.1971840858459473f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8013397C_429DBC },
+};

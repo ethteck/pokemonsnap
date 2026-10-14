@@ -1,0 +1,20 @@
+/* ROM 274000, VRAM 801A8250: native model/material animation table. */
+AnimCmd* D_801A8250_274000[17] = {
+    (AnimCmd*) &D_801A8294_274044,
+    (AnimCmd*) &D_801A82B4_274064,
+    (AnimCmd*) &D_801A83EC_27419C,
+    (AnimCmd*) &D_801A8430_2741E0,
+    (AnimCmd*) &D_801A84A4_274254,
+    (AnimCmd*) &D_801A8518_2742C8,
+    (AnimCmd*) &D_801A8564_274314,
+    (AnimCmd*) &D_801A8598_274348,
+    (AnimCmd*) &D_801A85F4_2743A4,
+    (AnimCmd*) &D_801A8628_2743D8,
+    (AnimCmd*) &D_801A8684_274434,
+    (AnimCmd*) &D_801A87C0_274570,
+    (AnimCmd*) &D_801A8870_274620,
+    (AnimCmd*) &D_801A89AC_27475C,
+    (AnimCmd*) &D_801A8A60_274810,
+    (AnimCmd*) &D_801A8AB4_274864,
+    (AnimCmd*) &D_801A8B50_274900,
+};

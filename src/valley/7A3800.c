@@ -1,11 +1,11 @@
 #include "valley.h"
 
-extern s32 D_802D2980_7ABF10;
+extern GObj* D_802D2980_7ABF10;
 extern u16 D_802D2FF4_7AC584;
 extern AnimationHeader D_802D3084_7AC614;
 extern AnimationHeader D_802D3098_7AC628;
 extern AnimationHeader D_802D30AC_7AC63C;
-extern RandomState D_802D30C0_7AC650;
+extern RandomState D_802D30C0_7AC650[4];
 extern Vec3f D_802D30E0_7AC670;
 extern PokemonInitData D_802D3100_7AC690;
 
@@ -19,7 +19,7 @@ POKEMON_FUNC(func_802CA270_7A3800)
     if (pokemon->behavior == 1) {
         Pokemon_SetState(obj, func_802CA574_7A3B04);
     }
-    Pokemon_SetStateRandom(obj, &D_802D30C0_7AC650);
+    Pokemon_SetStateRandom(obj, D_802D30C0_7AC650);
 }
 
 POKEMON_FUNC(func_802CA2BC_7A384C)
@@ -100,7 +100,7 @@ POKEMON_FUNC(func_802CA5B4_7A3B44)
     }
     pokemon->tangible = true;
     obj->flags = 0;
-    Pokemon_SetStateRandom(obj, &D_802D30C0_7AC650);
+    Pokemon_SetStateRandom(obj, D_802D30C0_7AC650);
 }
 
 POKEMON_FUNC(func_802CA65C_7A3BEC)

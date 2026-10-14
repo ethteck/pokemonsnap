@@ -1,0 +1,6 @@
+/* ROM 4142A8, VRAM 8011DE68: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation8011DE68 D_8011DE68_4142A8 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 19.199975967407227f, -20.648849487304688f, 29.48945426940918f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 450 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

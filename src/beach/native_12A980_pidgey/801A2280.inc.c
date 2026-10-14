@@ -1,0 +1,20 @@
+/* ROM 12E710, VRAM 801A2280: native model/material animation table. */
+AnimCmd* D_801A2280_12E710[17] = {
+    (AnimCmd*) &D_801A22C4_12E754,
+    NULL,
+    (AnimCmd*) &D_801A238C_12E81C,
+    (AnimCmd*) &D_801A241C_12E8AC,
+    (AnimCmd*) &D_801A251C_12E9AC,
+    (AnimCmd*) &D_801A25E4_12EA74,
+    (AnimCmd*) &D_801A2684_12EB14,
+    (AnimCmd*) &D_801A2730_12EBC0,
+    (AnimCmd*) &D_801A27D8_12EC68,
+    (AnimCmd*) &D_801A2884_12ED14,
+    (AnimCmd*) &D_801A29F4_12EE84,
+    (AnimCmd*) &D_801A2A40_12EED0,
+    (AnimCmd*) &D_801A2FA0_12F430,
+    (AnimCmd*) &D_801A3500_12F990,
+    (AnimCmd*) &D_801A3A60_12FEF0,
+    (AnimCmd*) &D_801A3FC0_130450,
+    (AnimCmd*) &D_801A4520_1309B0,
+};

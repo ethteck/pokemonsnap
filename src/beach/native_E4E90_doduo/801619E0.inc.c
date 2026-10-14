@@ -1,0 +1,20 @@
+/* ROM EDE70, VRAM 801619E0: native model/material animation table. */
+AnimCmd** D_801619E0_EDE70[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80161AD4_EDF64,
+    NULL,
+    NULL,
+    NULL,
+    D_80161ADC_EDF6C,
+    NULL,
+};

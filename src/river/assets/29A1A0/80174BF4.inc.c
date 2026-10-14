@@ -1,0 +1,10 @@
+/* ROM 2E4CC4, VRAM 80174BF4: complete native animation command stream. */
+struct river_29A1A0_Animation80174BF4 D_80174BF4_2E4CC4 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f, -0.006557953543961048f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 8, { -0.5235987901687622f, -0.006476729176938534f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 22, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 8, { -0.5235987901687622f, -0.014612387865781784f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 22, { 0.0f, 0.0006652653682976961f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80174BF4_2E4CC4 },
+};

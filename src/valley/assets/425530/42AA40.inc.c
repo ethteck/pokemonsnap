@@ -1,0 +1,4 @@
+/* ROM 42AA40, VRAM 80134600: AnimCmd*. */
+AnimCmd* D_80134600_42AA40[1] = {
+    (AnimCmd*) &D_801345B4_42A9F4,
+};

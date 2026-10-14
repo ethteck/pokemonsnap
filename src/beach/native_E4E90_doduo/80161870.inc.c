@@ -1,0 +1,20 @@
+/* ROM EDD00, VRAM 80161870: native model/material animation table. */
+AnimCmd** D_80161870_EDD00[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_801619C4_EDE54,
+    NULL,
+    NULL,
+    NULL,
+    D_801619CC_EDE5C,
+    NULL,
+};

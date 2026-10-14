@@ -1,0 +1,21 @@
+/* ROM 307100, VRAM 80197030: native model/material animation table. */
+AnimCmd* D_80197030_307100[18] = {
+    (AnimCmd*) &D_80197078_307148,
+    (AnimCmd*) &D_801970AC_30717C,
+    (AnimCmd*) &D_80197118_3071E8,
+    (AnimCmd*) &D_80197190_307260,
+    (AnimCmd*) &D_801971F8_3072C8,
+    (AnimCmd*) &D_80197254_307324,
+    (AnimCmd*) &D_80197288_307358,
+    (AnimCmd*) &D_801972BC_30738C,
+    (AnimCmd*) &D_80197328_3073F8,
+    (AnimCmd*) &D_8019746C_30753C,
+    (AnimCmd*) &D_801974C0_307590,
+    (AnimCmd*) &D_801975E0_3076B0,
+    (AnimCmd*) &D_80197614_3076E4,
+    (AnimCmd*) &D_80197658_307728,
+    (AnimCmd*) &D_801976B4_307784,
+    (AnimCmd*) &D_801977BC_30788C,
+    (AnimCmd*) &D_801977F0_3078C0,
+    (AnimCmd*) &D_80197824_3078F4,
+};

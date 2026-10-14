@@ -1,0 +1,6 @@
+/* ROM 429EAC, VRAM 80133A6C: struct ValleyAnimation80133A6C. */
+struct ValleyAnimation80133A6C D_80133A6C_429EAC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { 3.7897160053253174f, 3.021529197692871f, 3.000178813934326f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80133A6C_429EAC },
+};

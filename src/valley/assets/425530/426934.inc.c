@@ -1,0 +1,6 @@
+/* ROM 426934, VRAM 801304F4: struct ValleyAnimation801304F4. */
+struct ValleyAnimation801304F4 D_801304F4_426934 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.09585310518741608f, 0.03492886945605278f, 0.07976976037025452f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 24 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801304F4_426934 },
+};

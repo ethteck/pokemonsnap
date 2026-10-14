@@ -1,5 +1,10 @@
 #include "valley.h"
 
+extern PokemonInitData D_802ECB2C_7C60BC;
+extern PokemonDef extraStaryuDef;
+extern PokemonDef extraStarmieDef;
+extern RandomState D_802ECB00_7C6090[3];
+
 POKEMON_FUNC(spawnStaryuAtGeo)
     Pokemon_AddAtGeo(obj, PokemonID_STARYU, &extraStaryuDef);
     omEndProcess(NULL);

@@ -1,0 +1,21 @@
+/* ROM 2D2950, VRAM 80162880: native model/material animation table. */
+AnimCmd* D_80162880_2D2950[18] = {
+    (AnimCmd*) &D_801628C8_2D2998,
+    (AnimCmd*) &D_801628FC_2D29CC,
+    (AnimCmd*) &D_801629D0_2D2AA0,
+    (AnimCmd*) &D_80162A74_2D2B44,
+    (AnimCmd*) &D_80162B18_2D2BE8,
+    (AnimCmd*) &D_80162B34_2D2C04,
+    (AnimCmd*) &D_80162BA0_2D2C70,
+    (AnimCmd*) &D_80162C0C_2D2CDC,
+    (AnimCmd*) &D_80162D24_2D2DF4,
+    (AnimCmd*) &D_80162DD4_2D2EA4,
+    (AnimCmd*) &D_80162E08_2D2ED8,
+    (AnimCmd*) &D_80162EBC_2D2F8C,
+    (AnimCmd*) &D_80162F70_2D3040,
+    (AnimCmd*) &D_80163018_2D30E8,
+    (AnimCmd*) &D_8016307C_2D314C,
+    (AnimCmd*) &D_801630B0_2D3180,
+    (AnimCmd*) &D_801631BC_2D328C,
+    (AnimCmd*) &D_80163224_2D32F4,
+};

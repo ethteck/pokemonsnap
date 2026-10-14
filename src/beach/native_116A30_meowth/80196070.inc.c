@@ -1,0 +1,23 @@
+/* ROM 122500, VRAM 80196070: native model/material animation table. */
+AnimCmd* D_80196070_122500[20] = {
+    (AnimCmd*) &D_801960C0_122550,
+    (AnimCmd*) &D_80196168_1225F8,
+    (AnimCmd*) &D_801963C8_122858,
+    (AnimCmd*) &D_8019653C_1229CC,
+    (AnimCmd*) &D_8019679C_122C2C,
+    (AnimCmd*) &D_80196838_122CC8,
+    (AnimCmd*) &D_801969F8_122E88,
+    (AnimCmd*) &D_80196AE8_122F78,
+    (AnimCmd*) &D_80196D8C_12321C,
+    (AnimCmd*) &D_80196E58_1232E8,
+    (AnimCmd*) &D_80197030_1234C0,
+    (AnimCmd*) &D_80197158_1235E8,
+    (AnimCmd*) &D_80197318_1237A8,
+    (AnimCmd*) &D_801974E4_123974,
+    (AnimCmd*) &D_801975C8_123A58,
+    (AnimCmd*) &D_801976E8_123B78,
+    (AnimCmd*) &D_80197780_123C10,
+    (AnimCmd*) &D_8019786C_123CFC,
+    (AnimCmd*) &D_80197950_123DE0,
+    (AnimCmd*) &D_801979E8_123E78,
+};

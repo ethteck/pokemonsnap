@@ -13,21 +13,19 @@ extern Bitmap D_803A6390_879B40;
 extern Bitmap D_803A6510_879CC0;
 extern Bitmap* D_803A6564_879D14[];
 
-u32 D_803A6600_879DB0 = 0x803A57A0; // TODO belongs to previous array
-
-s32 UILayout_PanelState = PANEL_STATE_STABLE;
-s32 UILayout_IsAnimationHorizontal = false;
-s32 UILayout_IsInstantTransition = false;
-UIButton* UILayout_Buttons = NULL;
-s32 UILayout_AnimationFrames = 3;
-s32 UILayout_HeaderFlags = 0;
-f32 UILayout_TitlePosY = -40.0f;
-f32 UILayout_PrevPageIndicatorPosY = -40.0f;
-s32 UILayout_PrevPageIndicatorCounter = 0;
-f32 UILayout_NextPageIndicatorPosY = -40.0f;
-s32 UILayout_NextPageIndicatorCounter = 0;
-s32 UILayout_PanelVisibility = 0;
-f32 UILayout_PanelPosX = -180.0f;
+extern s32 UILayout_PanelState;
+extern s32 UILayout_IsAnimationHorizontal;
+extern s32 UILayout_IsInstantTransition;
+extern UIButton* UILayout_Buttons;
+extern s32 UILayout_AnimationFrames;
+extern s32 UILayout_HeaderFlags;
+extern f32 UILayout_TitlePosY;
+extern f32 UILayout_PrevPageIndicatorPosY;
+extern s32 UILayout_PrevPageIndicatorCounter;
+extern f32 UILayout_NextPageIndicatorPosY;
+extern s32 UILayout_NextPageIndicatorCounter;
+extern s32 UILayout_PanelVisibility;
+extern f32 UILayout_PanelPosX;
 
 // BSS
 static GObj* UILayout_PreviousPageIndicator;

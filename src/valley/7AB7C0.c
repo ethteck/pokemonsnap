@@ -1,11 +1,11 @@
 #include "valley.h"
 
-extern s32 D_802D2980_7ABF10;
+extern GObj* D_802D2980_7ABF10;
 extern AnimationHeader D_802EC994_7C5F24;
 extern AnimationHeader D_802EC9A8_7C5F38;
 extern AnimationHeader D_802EC9BC_7C5F4C;
-extern InteractionHandler D_802EC9D0_7C5F60[];
-extern RandomState D_802EC9F0_7C5F80[];
+extern InteractionHandler D_802EC9D0_7C5F60[2];
+extern RandomState D_802EC9F0_7C5F80[4];
 extern Vec3f D_802ECA10_7C5FA0;
 extern PokemonInitData D_802ECA30_7C5FC0;
 

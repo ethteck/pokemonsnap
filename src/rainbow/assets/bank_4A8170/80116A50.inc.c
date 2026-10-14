@@ -1,0 +1,6 @@
+/* ROM 4C8E20, VRAM 80116A50: createWorldBlocks setup. */
+WorldBlockSetup D_80116A50_4C8E20 = {
+    D_80116A44_4C8E14,
+    D_80116A4C_4C8E1C,
+    &D_800F5DC0_4A8190,
+};

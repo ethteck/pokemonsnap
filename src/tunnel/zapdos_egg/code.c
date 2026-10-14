@@ -1,15 +1,11 @@
 #include "../tunnel.h"
+#include "../assets/5EC3E0_types.h"
 
 void func_802EC078_5E9148(GObj*);
 void func_802EBFDC_5E90AC(GObj*);
 void func_802EC178_5E9248(GObj*);
 void func_802EC294_5E9364(GObj*);
 void func_802EC23C_5E930C(GObj*);
-
-// TODO remove this when data is migrated
-struct TempStruct {
-    int v[5];
-};
 
 extern AnimationHeader D_802EFEBC_5ECF8C;
 extern AnimationHeader D_802EFED0_5ECFA0;
@@ -19,7 +15,7 @@ extern EggStruct D_802EFF14_5ECFE4;
 extern GObj* D_802EFF28_5ECFF8;
 extern InteractionHandler D_802EFF2C_5ECFFC[];
 extern InteractionHandler2 D_802EFF4C_5ED01C;
-extern struct TempStruct D_802EFF6C_5ED03C;
+extern TunnelEggBursts D_802EFF6C_5ED03C;
 extern PokemonInitData D_802EFF94_5ED064;
 
 POKEMON_FUNC(func_802EBF40_5E9010)
@@ -73,7 +69,7 @@ POKEMON_FUNC(func_802EC078_5E9148)
 
 POKEMON_FUNC(func_802EC178_5E9248)
     s32 i, j;
-    struct TempStruct sp2C = D_802EFF6C_5ED03C;
+    TunnelEggBursts sp2C = D_802EFF6C_5ED03C;
 
     for (i = 0; i < 5; i++) {
         for (j = 0; j < sp2C.v[i]; j++) {

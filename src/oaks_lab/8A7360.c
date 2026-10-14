@@ -1,11 +1,8 @@
 #include "common.h"
 #include "oaks_lab.h"
 
-// TODO: part of Sprite. Included for alignment.
-s32 D_801957E0_95B000 = 0;
-s32 D_801957E4_95B004 = 0;
-s32 D_801957E8_95B008 = 0;
-// end Sprite
+#include "native_data.h"
+#include "data_8AC010.inc.c"
 
 s32 D_801957EC_95B00C = 0;
 

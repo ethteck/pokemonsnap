@@ -1,0 +1,10 @@
+/* ROM 1BE200, VRAM 801780A0: complete native animation command stream. */
+struct tunnel_1ADCB0_Animation801780A0 D_801780A0_1BE200 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f, -0.015109557658433914f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, -155.40017700195312f, -300.0f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 24, { -0.15999986231327057f, 0.002813967177644372f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 23, { 0.13225644826889038f, 0.0031372520606964827f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 28, { 0.0f, -0.013632241636514664f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 27 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801780A0_1BE200 },
+};

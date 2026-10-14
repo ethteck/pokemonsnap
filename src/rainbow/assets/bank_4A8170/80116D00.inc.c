@@ -1,0 +1,8 @@
+/* ROM 4C90D0, VRAM 80116D00: consumer-bounded pointer table. */
+u8* D_80116D00_4C90D0[5] = {
+    D_8011BC90_4CE060,
+    D_8011B488_4CD858,
+    D_8011BC90_4CE060,
+    D_8011C498_4CE868,
+    D_8011C498_4CE868,
+};

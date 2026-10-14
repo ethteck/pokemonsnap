@@ -1,0 +1,6 @@
+/* ROM 0x86F80; native animation_stream. */
+struct PokemonCommonAnimationPikachu80109B60 D_80109B60_86F80 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 5.316311359405518f, 2.768075942993164f, 2.6157386302948f, -83.7055892944336f, 34.35192108154297f, 45.46881866455078f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 12 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80109B60_86F80 },
+};

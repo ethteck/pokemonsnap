@@ -1,0 +1,23 @@
+/* ROM 469C50, VRAM 80173810: AnimCmd*. */
+AnimCmd* D_80173810_469C50[20] = {
+    (AnimCmd*) &D_80173860_469CA0,
+    NULL,
+    NULL,
+    (AnimCmd*) &D_801738E0_469D20,
+    (AnimCmd*) &D_80173900_469D40,
+    (AnimCmd*) &D_80173938_469D78,
+    (AnimCmd*) &D_80173970_469DB0,
+    (AnimCmd*) &D_801739A8_469DE8,
+    (AnimCmd*) &D_801739E0_469E20,
+    NULL,
+    (AnimCmd*) &D_80173A18_469E58,
+    (AnimCmd*) &D_80173A88_469EC8,
+    (AnimCmd*) &D_80173AF8_469F38,
+    (AnimCmd*) &D_80173B88_469FC8,
+    (AnimCmd*) &D_80173BC8_46A008,
+    (AnimCmd*) &D_80173C50_46A090,
+    (AnimCmd*) &D_80173CB0_46A0F0,
+    (AnimCmd*) &D_80173D38_46A178,
+    (AnimCmd*) &D_80173D98_46A1D8,
+    (AnimCmd*) &D_80173E28_46A268,
+};

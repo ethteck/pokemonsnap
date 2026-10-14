@@ -1,0 +1,23 @@
+/* ROM 46A2B0, VRAM 80173E70: AnimCmd*. */
+AnimCmd* D_80173E70_46A2B0[20] = {
+    (AnimCmd*) &D_80173EC0_46A300,
+    NULL,
+    NULL,
+    (AnimCmd*) &D_80173F3C_46A37C,
+    (AnimCmd*) &D_80173F5C_46A39C,
+    (AnimCmd*) &D_80173F94_46A3D4,
+    (AnimCmd*) &D_80173FCC_46A40C,
+    (AnimCmd*) &D_80174004_46A444,
+    (AnimCmd*) &D_8017403C_46A47C,
+    NULL,
+    (AnimCmd*) &D_80174074_46A4B4,
+    (AnimCmd*) &D_801740E4_46A524,
+    (AnimCmd*) &D_80174154_46A594,
+    (AnimCmd*) &D_801741E4_46A624,
+    (AnimCmd*) &D_80174224_46A664,
+    (AnimCmd*) &D_801742AC_46A6EC,
+    (AnimCmd*) &D_8017430C_46A74C,
+    (AnimCmd*) &D_80174394_46A7D4,
+    (AnimCmd*) &D_801743F4_46A834,
+    (AnimCmd*) &D_80174484_46A8C4,
+};

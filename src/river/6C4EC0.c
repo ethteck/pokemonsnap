@@ -2,49 +2,8 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
+#include "assets/6CA400/declarations.h"
 
-typedef struct {
-    u16 data[9];
-} Unk6CBA74;
-
-extern AnimationHeader D_802E3800_6CB5E0;
-extern AnimationHeader D_802E3814_6CB5F4;
-extern AnimationHeader D_802E3828_6CB608;
-extern AnimationHeader D_802E383C_6CB61C;
-extern AnimationHeader D_802E3850_6CB630;
-extern AnimationHeader D_802E3864_6CB644;
-extern AnimationHeader D_802E3878_6CB658;
-extern AnimationHeader D_802E388C_6CB66C;
-extern AnimationHeader D_802E38A0_6CB680;
-extern AnimationHeader D_802E38B4_6CB694;
-extern AnimationHeader D_802E38C8_6CB6A8;
-extern AnimationHeader D_802E38DC_6CB6BC;
-extern AnimationHeader D_802E38F0_6CB6D0;
-extern AnimationHeader D_802E3904_6CB6E4;
-extern AnimationHeader D_802E3918_6CB6F8;
-extern AnimationHeader D_802E392C_6CB70C;
-extern AnimationHeader D_802E3940_6CB720;
-extern AnimationHeader D_802E3954_6CB734;
-extern AnimationHeader D_802E3968_6CB748;
-extern AnimationHeader D_802E397C_6CB75C;
-extern AnimationHeader D_802E3990_6CB770;
-extern AnimationHeader D_802E39A4_6CB784;
-extern InteractionHandler D_802E39B8_6CB798[];
-extern InteractionHandler D_802E39E8_6CB7C8[];
-extern InteractionHandler D_802E3A38_6CB818[];
-extern InteractionHandler D_802E3A88_6CB868[];
-extern InteractionHandler D_802E3AD8_6CB8B8[];
-extern InteractionHandler D_802E3B28_6CB908[];
-extern InteractionHandler D_802E3B78_6CB958[];
-extern RandomState D_802E3BC8_6CB9A8;
-extern RandomState D_802E3BE8_6CB9C8;
-extern RandomState D_802E3C08_6CB9E8;
-extern InteractionHandler3 D_802E3C28_6CBA08;
-extern InteractionHandler3 D_802E3C58_6CBA38;
-extern Vec3f D_802E3C88_6CBA68;
-extern Unk6CBA74 D_802E3C94_6CBA74;
-extern PokemonInitData D_802E3CBC_6CBA9C;
-extern GObj* D_802E4B00_6CC8E0;
 extern GObj* D_8033F5C8_7273A8;
 
 void func_802DD2BC_6C509C(GObj*);
@@ -230,7 +189,7 @@ void func_802DD6F0_6C54D0(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_802E3800_6CB5E0);
     pokemon->transitionGraph = D_802E39E8_6CB7C8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3BC8_6CB9A8);
+    Pokemon_SetStateRandom(obj, D_802E3BC8_6CB9A8);
 }
 
 void func_802DD74C_6C552C(GObj* obj) {
@@ -242,7 +201,7 @@ void func_802DD74C_6C552C(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD7CC_6C55AC);
     pokemon->transitionGraph = D_802E39E8_6CB7C8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3BC8_6CB9A8);
+    Pokemon_SetStateRandom(obj, D_802E3BC8_6CB9A8);
 }
 
 void func_802DD7CC_6C55AC(GObj* obj) {
@@ -265,7 +224,7 @@ void func_802DD828_6C5608(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD8A8_6C5688);
     pokemon->transitionGraph = D_802E39E8_6CB7C8;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3BC8_6CB9A8);
+    Pokemon_SetStateRandom(obj, D_802E3BC8_6CB9A8);
 }
 
 void func_802DD8A8_6C5688(GObj* obj) {
@@ -378,7 +337,7 @@ void func_802DDCB8_6C5A98(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD7CC_6C55AC);
     pokemon->transitionGraph = D_802E3B28_6CB908;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3BE8_6CB9C8);
+    Pokemon_SetStateRandom(obj, D_802E3BE8_6CB9C8);
 }
 
 void func_802DDD38_6C5B18(GObj* obj) {
@@ -390,7 +349,7 @@ void func_802DDD38_6C5B18(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD8A8_6C5688);
     pokemon->transitionGraph = D_802E3B28_6CB908;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3BE8_6CB9C8);
+    Pokemon_SetStateRandom(obj, D_802E3BE8_6CB9C8);
 }
 
 void func_802DDDB8_6C5B98(GObj* obj) {
@@ -485,7 +444,7 @@ void func_802DE100_6C5EE0(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD7CC_6C55AC);
     pokemon->transitionGraph = D_802E3B78_6CB958;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3C08_6CB9E8);
+    Pokemon_SetStateRandom(obj, D_802E3C08_6CB9E8);
 }
 
 void func_802DE180_6C5F60(GObj* obj) {
@@ -497,7 +456,7 @@ void func_802DE180_6C5F60(GObj* obj) {
     Pokemon_StartPathProc(obj, func_802DD8A8_6C5688);
     pokemon->transitionGraph = D_802E3B78_6CB958;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED | POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802E3C08_6CB9E8);
+    Pokemon_SetStateRandom(obj, D_802E3C08_6CB9E8);
 }
 
 void func_802DE200_6C5FE0(GObj* obj) {

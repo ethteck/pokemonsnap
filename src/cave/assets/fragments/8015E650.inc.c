@@ -1,0 +1,20 @@
+/* ROM 22A400, VRAM 8015E650: native model/material animation table. */
+AnimCmd* D_8015E650_22A400[17] = {
+    NULL,
+    (AnimCmd*) &D_8015E694_22A444,
+    (AnimCmd*) &D_8015E6B0_22A460,
+    (AnimCmd*) &D_8015E70C_22A4BC,
+    (AnimCmd*) &D_8015E754_22A504,
+    (AnimCmd*) &D_8015E7CC_22A57C,
+    (AnimCmd*) &D_8015E814_22A5C4,
+    (AnimCmd*) &D_8015E878_22A628,
+    (AnimCmd*) &D_8015E8D0_22A680,
+    (AnimCmd*) &D_8015E928_22A6D8,
+    (AnimCmd*) &D_8015E980_22A730,
+    (AnimCmd*) &D_8015E9B4_22A764,
+    (AnimCmd*) &D_8015EA10_22A7C0,
+    (AnimCmd*) &D_8015EA58_22A808,
+    (AnimCmd*) &D_8015EAA8_22A858,
+    (AnimCmd*) &D_8015EAF8_22A8A8,
+    (AnimCmd*) &D_8015EBA0_22A950,
+};

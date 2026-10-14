@@ -1,0 +1,9 @@
+/* ROM 0xA3E28; native animation_stream. */
+struct PokemonCommonAnimationBulbasaur80126A08 D_80126A08_A3E28 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.0f, 0.0f, 0.0f, 135.11767578125f, 290.9105224609375f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 13, { -0.11289339512586594f, -0.027826083824038506f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 10, { -0.6399999260902405f, -0.0016365406336262822f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 47, { -0.6976649165153503f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

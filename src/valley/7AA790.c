@@ -1,6 +1,6 @@
 #include "valley.h"
 
-extern s32 D_802D2980_7ABF10;
+extern GObj* D_802D2980_7ABF10;
 extern GObj* D_802D2D74_7AC304;
 extern u16 D_802D2D78_7AC308;
 extern GObj* D_802D3FF4_7AD584;
@@ -11,13 +11,13 @@ extern AnimationHeader D_802EC840_7C5DD0;
 extern AnimationHeader D_802EC854_7C5DE4;
 extern u16 D_802EC868_7C5DF8;
 extern u16 D_802EC86C_7C5DFC;
-extern RandomState D_802EC870_7C5E00;
+extern RandomState D_802EC870_7C5E00[4];
 extern s32 D_802EC890_7C5E20;
 extern f32 D_802EC894_7C5E24;
-extern InteractionHandler D_802EC898_7C5E28[];
-extern InteractionHandler D_802EC8B8_7C5E48[];
+extern InteractionHandler D_802EC898_7C5E28[2];
+extern InteractionHandler D_802EC8B8_7C5E48[2];
 extern Vec3f D_802EC8D8_7C5E68;
-extern InteractionHandler D_802EC8E4_7C5E74[];
+extern InteractionHandler D_802EC8E4_7C5E74[3];
 extern Vec3f D_802EC914_7C5EA4;
 extern PokemonInitData D_802EC934_7C5EC4;
 
@@ -51,7 +51,7 @@ POKEMON_FUNC(func_802D1200_7AA790)
     if (pokemon->behavior == 3) {
         Pokemon_SetState(obj, func_802D1BC8_7AB158);
     }
-    Pokemon_SetStateRandom(obj, &D_802EC870_7C5E00);
+    Pokemon_SetStateRandom(obj, D_802EC870_7C5E00);
 }
 
 POKEMON_FUNC(func_802D129C_7AA82C)
@@ -111,7 +111,7 @@ POKEMON_FUNC(func_802D1454_7AA9E4)
     func_8035E174_4FE584(obj, &sp34);
     pokemon->tangible = true;
     obj->flags = 0;
-    Pokemon_SetStateRandom(obj, &D_802EC870_7C5E00);
+    Pokemon_SetStateRandom(obj, D_802EC870_7C5E00);
 }
 
 POKEMON_FUNC(func_802D156C_7AAAFC)

@@ -1,8 +1,6 @@
 #include "../tunnel.h"
 
-extern AnimCmd* D_8013EEE0_185040[];
-extern AnimCmd** D_8013FDD0_185F30[];
-extern AnimCmd D_801419E4_187B44[];
+#include "../assets/182390/declarations.h"
 
 void func_802ED644_5EA714(GObj*);
 
@@ -41,9 +39,9 @@ void func_802ED69C_5EA76C(f32 arg0) {
 
 void func_802ED6D0_5EA7A0(f32 arg0) {
     if (D_802F0214_5ED2E4 != NULL) {
-        animSetCameraAnimation(D_802F0214_5ED2E4, D_801419E4_187B44, arg0);
+        animSetCameraAnimation(D_802F0214_5ED2E4, (AnimCmd*) &D_801419E4_187B44, arg0);
     }
-    PlayerModel_ChangeAnimation(D_8013EEE0_185040, D_8013FDD0_185F30, arg0);
+    PlayerModel_ChangeAnimation(&D_8013EEDC_18503C[1], &D_8013FDC8_185F28[2], arg0);
 }
 
 void func_802ED720_5EA7F0(DObj* arg0, s32 arg1, f32 arg2) {

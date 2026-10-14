@@ -1,0 +1,22 @@
+/* ROM 26C170, VRAM 801A03C0: native model/material animation table. */
+AnimCmd** D_801A03C0_26C170[19] = {
+    NULL,
+    D_801A0430_26C1E0,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

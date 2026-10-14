@@ -1,0 +1,6 @@
+/* ROM 182848, VRAM 8013C6E8: complete native animation command stream. */
+struct tunnel_182390_Animation8013C6E8 D_8013C6E8_182848 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -1.4809393882751465f, -1.61285400390625f, 1.4808602333068848f, 0.0f, 0.0f, 0.0f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

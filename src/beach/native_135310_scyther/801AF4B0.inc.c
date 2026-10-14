@@ -1,0 +1,20 @@
+/* ROM 13B940, VRAM 801AF4B0: native model/material animation table. */
+AnimCmd* D_801AF4B0_13B940[17] = {
+    (AnimCmd*) &D_801AF4F4_13B984,
+    (AnimCmd*) &D_801AF504_13B994,
+    (AnimCmd*) &D_801AF558_13B9E8,
+    (AnimCmd*) &D_801AF5B4_13BA44,
+    (AnimCmd*) &D_801AF630_13BAC0,
+    (AnimCmd*) &D_801AF6A0_13BB30,
+    (AnimCmd*) &D_801AF7A8_13BC38,
+    (AnimCmd*) &D_801AF84C_13BCDC,
+    (AnimCmd*) &D_801AF940_13BDD0,
+    (AnimCmd*) &D_801AF9E4_13BE74,
+    (AnimCmd*) &D_801AFB68_13BFF8,
+    (AnimCmd*) &D_801AFCEC_13C17C,
+    (AnimCmd*) &D_801AFED0_13C360,
+    (AnimCmd*) &D_801B0054_13C4E4,
+    (AnimCmd*) &D_801B0144_13C5D4,
+    (AnimCmd*) &D_801B018C_13C61C,
+    (AnimCmd*) &D_801B0294_13C724,
+};

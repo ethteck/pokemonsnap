@@ -6,78 +6,9 @@
 
 #include "photo_check.h"
 
-extern s32 D_80229840;
-
-// data
-// Gfx D_801E53A0_994E10[] = {
-//     gsDPPipeSync(),
-//     gsDPPipelineMode(G_PM_NPRIMITIVE),
-//     gsSPSetGeometryMode(G_LIGHTING),
-//     gsDPSetTextureLOD(G_TL_TILE),
-//     gsDPSetTextureDetail(G_TD_CLAMP),
-//     gsDPSetTexturePersp(G_TP_PERSP),
-//     gsDPSetTextureLUT(G_TT_NONE),
-//     gsDPSetTextureFilter(G_TF_BILERP),
-//     gsDPSetTextureConvert(G_TC_FILT),
-//     gsSPClipRatio(FRUSTRATIO_6),
-//     gsSPEndDisplayList(),
-// };
-
-// ScreenSettings D_801E5410_994E80 = {
-//     D_803B5000,
-//     D_803DA800,
-//     NULL,
-//     NULL,
-//     SCREEN_WIDTH,
-//     SCREEN_HEIGHT,
-//     0x16A99,
-// };
-
-// SceneSetup D_801E542C_994E9C = {
-//     {
-//         0,
-//         func_8000AFFC,
-//         func_8000ADA0,
-//         &D_80229840,
-//         0,
-//         1,
-//         1,
-//         0x0000C000,
-//         0x00002000,
-//         0,
-//         0,
-//         0x00003000,
-//         0x00020000,
-//         0x00003000,
-//         func_800A1A50,
-//         contUpdate,
-//     },
-//     32,
-//     0x00002000,
-//     0x00000020,
-//     0,
-//     0x00000040,
-//     0,
-//     0x0000005C,
-//     0x00000400,
-//     0,
-//     0,
-//     0,
-//     0x00000010,
-//     0,
-//     0x00000088,
-//     0,
-//     0x00000060,
-//     0,
-//     0x00000090,
-//     func_801DCBF4_98C664
-// };
-
 extern Gfx D_801E53A0_994E10[];
 extern ScreenSettings D_801E5410_994E80;
 extern SceneSetup D_801E542C_994E9C;
-extern s32 D_801E543C_994EAC;
-extern Sprite D_801E5840_9952B0;
 extern Sprite D_801E5DB0_995820;
 extern Sprite D_801E5EE0_995950;
 extern Sprite D_801F2378_9A1DE8; // Prof. Oak's check
@@ -118,9 +49,7 @@ void func_801E3FFC_993A6C(void);
 s32 func_801E4428_993E98(void);
 void func_801E5030_994AA0(void);
 
-s32 D_801F3B50_9A35C0[] = {
-    0x00000000,
-};
+#include "photo_check/data.inc.c"
 
 char* SpecialPokemonNames[] = {
     NULL,
@@ -394,7 +323,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     UNUSED s32 pad[3];
 
     viApplyScreenSettings(&D_801E5410_994E80);
-    D_801E543C_994EAC = (s32) &D_80369F80 - (s32) &D_80229840;
+    D_801E542C_994E9C.gtlSetup.heapSize = (s32) &D_80369F80 - (s32) photo_check_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E542C_994E9C);
     return D_800AF3C0;

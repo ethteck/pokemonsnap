@@ -1,0 +1,9 @@
+/* ROM 4540D0, VRAM 8015DC90: struct ValleyAnimation8015DC90. */
+struct ValleyAnimation8015DC90 D_8015DC90_4540D0 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTZ) << 15) | 0, { -7.450581485102248e-09f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY) << 15) | 0, { 7.450581485102248e-09f, -8.881785255792436e-16f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTZ) << 15) | 8, { 0.4363323152065277f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTZ) << 15) | 30, { -7.450581485102248e-09f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTZ) << 15) | 7, { -7.450581485102248e-09f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

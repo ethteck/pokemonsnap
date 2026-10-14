@@ -1,12 +1,7 @@
 #include "../tunnel.h"
 
-typedef struct Unks16 {
-    /* 0x00 */ s16 unk_00[2];
-} Unks16;
-
-extern AnimCmd D_8013D8D0_183A30[];
-extern AnimCmd* D_8013C230_182390[];
-extern AnimCmd** D_8013CEB0_183010[];
+#include "../assets/182390/declarations.h"
+#include "../assets/5EC3E0_types.h"
 
 extern AnimationHeader D_802F0110_5ED1E0;
 extern AnimationHeader D_802F0124_5ED1F4;
@@ -15,7 +10,7 @@ extern AnimationHeader D_802F014C_5ED21C;
 extern s32 D_802F0160_5ED230;
 extern bool D_802F0164_5ED234;
 extern InteractionHandler D_802F0168_5ED238[];
-extern Unks16 D_802F0188_5ED258;
+extern TunnelGateAngles D_802F0188_5ED258;
 extern PokemonInitData D_802F01A0_5ED270;
 
 void func_802ECAE4_5E9BB4(GObj*);
@@ -102,7 +97,7 @@ POKEMON_FUNC(func_802ECE10_5E9EE0)
     GObj* camObj;
     GObj* player;
     s32 i;
-    Unks16 sp2C = D_802F0188_5ED258;
+    TunnelGateAngles sp2C = D_802F0188_5ED258;
 
     Pokemon_RemovePokemons(&sp2C);
     ohWait(1);
@@ -118,7 +113,7 @@ POKEMON_FUNC(func_802ECE10_5E9EE0)
 
     ohPauseObjectProcesses(camObj);
     camera->animSpeed = 0.5f;
-    animSetCameraAnimation(camera, D_8013D8D0_183A30, 0);
+    animSetCameraAnimation(camera, (AnimCmd*) &D_8013D8D0_183A30, 0);
     omCreateProcess(camObj, animUpdateCameraAnimation, 1, 1);
     setSkyBoxAnimationSpeed(tunnel_WorldSetup.unk_10);
 

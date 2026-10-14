@@ -1,0 +1,6 @@
+/* ROM 412F88, VRAM 8011CB48: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation8011CB48 D_8011CB48_412F88 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { -0.4363323152065277f, 0.3490658402442932f, -6.342993685848342e-08f, -2.2351741790771484e-06f, -17.304588317871094f, -0.002110004425048828f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

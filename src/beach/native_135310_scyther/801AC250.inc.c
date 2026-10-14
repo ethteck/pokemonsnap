@@ -1,0 +1,20 @@
+/* ROM 1386E0, VRAM 801AC250: native model/material animation table. */
+AnimCmd* D_801AC250_1386E0[17] = {
+    (AnimCmd*) &D_801AC294_138724,
+    (AnimCmd*) &D_801AC2F4_138784,
+    (AnimCmd*) &D_801AC344_1387D4,
+    (AnimCmd*) &D_801AC3A4_138834,
+    (AnimCmd*) &D_801AC3F4_138884,
+    (AnimCmd*) &D_801AC444_1388D4,
+    (AnimCmd*) &D_801AC55C_1389EC,
+    (AnimCmd*) &D_801AC60C_138A9C,
+    (AnimCmd*) &D_801AC730_138BC0,
+    (AnimCmd*) &D_801AC7EC_138C7C,
+    (AnimCmd*) &D_801AC93C_138DCC,
+    (AnimCmd*) &D_801ACA8C_138F1C,
+    (AnimCmd*) &D_801ACBDC_13906C,
+    (AnimCmd*) &D_801ACD2C_1391BC,
+    (AnimCmd*) &D_801ACDE4_139274,
+    (AnimCmd*) &D_801ACE80_139310,
+    (AnimCmd*) &D_801ACF24_1393B4,
+};

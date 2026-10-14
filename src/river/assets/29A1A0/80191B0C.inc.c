@@ -1,0 +1,8 @@
+/* ROM 301BDC, VRAM 80191B0C: complete native animation command stream. */
+struct river_29A1A0_Animation80191B0C D_80191B0C_301BDC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 0, { 0.2617993950843811f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ | POSX | POSY | POSZ) << 15) | 0, { -0.30286335945129395f, 0.0f, 0.0f, 66.72177124023438f, -126.68170928955078f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { -0.2617993950843811f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 20, { 0.2617993950843811f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80191B0C_301BDC },
+};

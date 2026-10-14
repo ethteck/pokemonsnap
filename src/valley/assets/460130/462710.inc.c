@@ -1,0 +1,23 @@
+/* ROM 462710, VRAM 8016C2D0: struct ValleyAnimation8016C2D0. */
+struct ValleyAnimation8016C2D0 D_8016C2D0_462710 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 0, { -0.15056197345256805f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 30, { 0.06318294256925583f } },
+    { (ANIM_CMD_12 << 25) | ((ROTY) << 15) | 25 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.1818585842847824f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 15, { -0.004986860323697329f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 13 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTZ | POSX | POSY | POSZ) << 15) | 0, { -0.004911942407488823f, 0.0f, -90.48609924316406f, -177.7487335205078f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 2 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 15, { -0.18045753240585327f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 30, { -0.15056197345256805f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 12 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 15, { -0.004986860323697329f, -4.670186172006652e-05f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 15, { -0.1818585842847824f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 3 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY) << 15) | 30, { 0.06318294256925583f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 12 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 15, { -0.004986860323697329f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 13 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8016C2D0_462710 },
+};

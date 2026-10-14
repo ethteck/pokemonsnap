@@ -1,0 +1,21 @@
+/* ROM 0x78260; native model_root. */
+AnimCmd* D_800FAE40_78260[18] = {
+    (AnimCmd*) &D_800FAE88_782A8,
+    (AnimCmd*) &D_800FAF60_78380,
+    (AnimCmd*) &D_800FB0B8_784D8,
+    (AnimCmd*) &D_800FB1F4_78614,
+    (AnimCmd*) &D_800FB32C_7874C,
+    (AnimCmd*) &D_800FB474_78894,
+    (AnimCmd*) &D_800FB5BC_789DC,
+    NULL,
+    (AnimCmd*) &D_800FB5EC_78A0C,
+    (AnimCmd*) &D_800FB604_78A24,
+    (AnimCmd*) &D_800FB718_78B38,
+    (AnimCmd*) &D_800FB82C_78C4C,
+    (AnimCmd*) &D_800FB940_78D60,
+    (AnimCmd*) &D_800FBA54_78E74,
+    (AnimCmd*) &D_800FBB4C_78F6C,
+    (AnimCmd*) &D_800FBC60_79080,
+    (AnimCmd*) &D_800FBDFC_7921C,
+    NULL,
+};

@@ -1,0 +1,23 @@
+/* ROM 129D20, VRAM 8019D890: native model/material animation table. */
+AnimCmd** D_8019D890_129D20[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019D9D4_129E64,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019D9DC_129E6C,
+};

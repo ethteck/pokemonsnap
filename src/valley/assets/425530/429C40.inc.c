@@ -1,0 +1,20 @@
+/* ROM 429C40, VRAM 80133800: AnimCmd*. */
+AnimCmd* D_80133800_429C40[17] = {
+    (AnimCmd*) &D_80133844_429C84,
+    (AnimCmd*) &D_80133860_429CA0,
+    (AnimCmd*) &D_80133898_429CD8,
+    (AnimCmd*) &D_801338C4_429D04,
+    (AnimCmd*) &D_80133908_429D48,
+    (AnimCmd*) &D_80133924_429D64,
+    (AnimCmd*) &D_80133950_429D90,
+    (AnimCmd*) &D_8013397C_429DBC,
+    (AnimCmd*) &D_80133998_429DD8,
+    (AnimCmd*) &D_801339D0_429E10,
+    (AnimCmd*) &D_801339EC_429E2C,
+    (AnimCmd*) &D_80133A18_429E58,
+    (AnimCmd*) &D_80133A34_429E74,
+    (AnimCmd*) &D_80133A6C_429EAC,
+    (AnimCmd*) &D_80133A88_429EC8,
+    (AnimCmd*) &D_80133AC0_429F00,
+    NULL,
+};

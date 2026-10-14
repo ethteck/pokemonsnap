@@ -4,6 +4,7 @@
 #include "app_render/app_render.h"
 #include "app_render/effect.h"
 #include "river.h"
+#include "assets/6CA400/declarations.h"
 
 void func_802DB1C4_6C2FA4(GObj*);
 void func_802DB270_6C3050(GObj*);
@@ -13,22 +14,6 @@ void func_802DB5C0_6C33A0(GObj*);
 void func_802DB630_6C3410(GObj*);
 void func_802DB71C_6C34FC(GObj*);
 void func_802DB85C_6C363C(GObj*);
-
-extern AnimationHeader D_802E319C_6CAF7C;
-extern AnimationHeader D_802E31B0_6CAF90;
-extern AnimationHeader D_802E31C4_6CAFA4;
-extern AnimationHeader D_802E31D8_6CAFB8;
-extern AnimationHeader D_802E31EC_6CAFCC;
-extern AnimationHeader D_802E3200_6CAFE0;
-extern AnimationHeader D_802E3214_6CAFF4;
-extern AnimationHeader D_802E3228_6CB008;
-extern InteractionHandler D_802E324C_6CB02C[];
-extern RandomState D_802E32BC_6CB09C;
-extern Vec3f D_802E32DC_6CB0BC;
-extern Vec3f D_802E3308_6CB0E8;
-extern PokemonInitData D_802E3328_6CB108;
-extern InteractionHandler D_802E328C_6CB06C[];
-extern InteractionHandler D_802E32E8_6CB0C8[];
 
 void func_802DB270_6C3050(GObj*);
 void func_802DB388_6C3168(GObj*);
@@ -48,7 +33,7 @@ void func_802DB0A0_6C2E80(GObj* obj) {
             Pokemon_SetState(obj, func_802DB8EC_6C36CC);
             break;
     }
-    Pokemon_SetStateRandom(obj, &D_802E32BC_6CB09C);
+    Pokemon_SetStateRandom(obj, D_802E32BC_6CB09C);
 }
 
 void func_802DB11C_6C2EFC(GObj* obj) {

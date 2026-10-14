@@ -1,0 +1,23 @@
+/* ROM 12A6F0, VRAM 8019E260: native model/material animation table. */
+AnimCmd** D_8019E260_12A6F0[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019E3E4_12A874,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019E3EC_12A87C,
+};

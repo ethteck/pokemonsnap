@@ -1,0 +1,21 @@
+/* ROM 432300, VRAM 8013BEC0: AnimCmd*. */
+AnimCmd* D_8013BEC0_432300[18] = {
+    (AnimCmd*) &D_8013BF08_432348,
+    (AnimCmd*) &D_8013BF78_4323B8,
+    (AnimCmd*) &D_8013C008_432448,
+    (AnimCmd*) &D_8013C098_4324D8,
+    (AnimCmd*) &D_8013C12C_43256C,
+    (AnimCmd*) &D_8013C1D4_432614,
+    (AnimCmd*) &D_8013C280_4326C0,
+    (AnimCmd*) &D_8013C344_432784,
+    (AnimCmd*) &D_8013C3F0_432830,
+    (AnimCmd*) &D_8013C434_432874,
+    (AnimCmd*) &D_8013C478_4328B8,
+    (AnimCmd*) &D_8013C490_4328D0,
+    NULL,
+    (AnimCmd*) &D_8013C4A8_4328E8,
+    (AnimCmd*) &D_8013C508_432948,
+    (AnimCmd*) &D_8013C568_4329A8,
+    (AnimCmd*) &D_8013C594_4329D4,
+    (AnimCmd*) &D_8013C5D8_432A18,
+};

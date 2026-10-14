@@ -459,29 +459,7 @@ void func_801DE414_9D4D84(s32 arg0) {
     UIElement_PrintText(D_80230C1C_A2758C, ((arg0 - 16) ^ 0) ? "SCORE" : "\\eSCORE");
 }
 
-const char otherText[] = "It is said that somewhere on\nthis island is a mysterious\ngroup of huge rocks.";
-const char otherText2[] = "Surprisingly, if you look at it\nfrom a certain angle, it appears\nto be a Pokεmon shape.";
-const char otherText3[] = "When light shines on an\nobject, its shadow will appear\non the wall behind it.";
-const char otherText4[] = "Somewhere there is a\nshadow that looks\nlike a Pokεmon!";
-const char otherText5[] = "Smoke changes its shape, and\nsome shapes look like Pokεmon.";
-const char otherText6[] = "Where can you find smoke...?\nYou already know!";
-const char otherText7[] = "Have you heard of a tree near\nthe river in the jungle that\nlooks like CUBONE? No one";
-const char otherText8[] = "knows who planted it, but I have\nheard that someone has seen\nthe tree... It's a mystery!";
-const char otherText9[] = "Shining brightly somewhere...\nThat's all I know about this.";
-const char otherText10[] = "Somewhere in the middle of\nsteep mountains is a mountain\nthat looks like a Pokεmon.";
-const char otherText11[] = "I went to the Valley to find\nthis mountain.";
-const char otherText12[] = "Isn't it amazing that a simple\nrock like this turned out to be a\nPKMN Sign?";
-const char otherText13[] = "If you look at it from this\nangle, it looks like KINGLER. I\nwill call this ”KINGLER ROCK!”";
-const char otherText14[] = "It was very clever of you to\nactivate the generator with\nZAPDOS's electric shock.";
-const char otherText15[] = "This shadow looks like\nPINSIR... I will call this\nthe ”PINSIR SHADOW!”";
-const char otherText16[] = "You hit it with a\nPESTER BALL?\nHa, ha, ha! This smoke";
-const char otherText17[] = "looks like KOFFING.\nI will call this\n”KOFFING SMOKE!”";
-const char otherText18[] = "The tree looked dim because of\nVILEPLUME's powder.";
-const char otherText19[] = "Hmm...\nIt looks like CUBONE. I will\ncall this the ”CUBONE TREE!”";
-const char otherText20[] = "I had no idea what this was all\nabout until I saw your picture.";
-const char otherText21[] = "I think this looks like MEWTWO!\nCould this be the constellation\ncalled MEWTWO?";
-const char otherText22[] = "This mountain looks like a\nPokεmon... This is it!\nThis is the PKMN Sign!";
-const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall this ”MT. DUGTRIO!”";
+#include "remaining_ui_9DA6A0_dialogue.inc.c"
 
 void func_801DE5A8_9D4F18(s32 arg0) {
     UIElement_Draw(D_80230C1C_A2758C);

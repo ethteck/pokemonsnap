@@ -1,0 +1,10 @@
+/* ROM 211CD8, VRAM 80145F28: native InterpData path descriptor. */
+InterpData D_80145F28_211CD8 = {
+    HAL_INTERP_CATROM,
+    2,
+    0.5f,
+    D_80145EDC_211C8C,
+    6.0999932289123535f,
+    D_80145F0C_211CBC,
+    D_80145F14_211CC4,
+};

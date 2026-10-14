@@ -1,0 +1,20 @@
+/* ROM 1CD100, VRAM 80186FA0: native model/material animation table. */
+AnimCmd** D_80186FA0_1CD100[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8018700C_1CD16C,
+    NULL,
+    NULL,
+};

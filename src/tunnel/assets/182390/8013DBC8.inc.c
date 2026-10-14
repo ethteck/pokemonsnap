@@ -1,0 +1,6 @@
+/* ROM 183D28, VRAM 8013DBC8: complete native animation command stream. */
+struct tunnel_182390_Animation8013DBC8 D_8013DBC8_183D28 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 15.000185012817383f, -10.116386413574219f, 34.5494270324707f, 9.999999747378752e-06f, 9.999999747378752e-06f, 9.999999747378752e-06f } },
+    { (ANIM_CMD_SET_FLAGS << 25) | ((0x1) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,18 @@
+/* ROM 1881F8, VRAM 80142098: complete native animation command stream. */
+struct tunnel_182390_Animation80142098 D_80142098_1881F8 = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_80142080_1881E0 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 70, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM) << 15) | 70, { 0.0f } },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((PATH_PARAM) << 15) | 0, { 2.1194509827182628e-05f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((PATH_PARAM) << 15) | 90, { 0.20082643628120422f, 0.001387403579428792f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 90, { 1.6599998474121094f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((PATH_PARAM) << 15) | 50, { 0.5f, 0.006147488951683044f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 50, { 2.268928050994873f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((PATH_PARAM) << 15) | 80, { 1.0f, 0.017472194507718086f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 80, { 3.1415927410125732f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 160, { 3.1415927410125732f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((PATH_PARAM) << 15) | 160, { 1.0f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

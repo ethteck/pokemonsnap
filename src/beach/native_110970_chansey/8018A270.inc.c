@@ -1,0 +1,20 @@
+/* ROM 116700, VRAM 8018A270: native model/material animation table. */
+AnimCmd** D_8018A270_116700[17] = {
+    NULL,
+    NULL,
+    NULL,
+    D_8018A2E8_116778,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

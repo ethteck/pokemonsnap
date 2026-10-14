@@ -1,0 +1,10 @@
+/* ROM 20B5F0, VRAM 8013F840: native InterpData path descriptor. */
+InterpData D_8013F840_20B5F0 = {
+    HAL_INTERP_BEZIER,
+    11,
+    0.0f,
+    D_8013F6B0_20B460,
+    91.83206176757812f,
+    D_8013F74C_20B4FC,
+    D_8013F778_20B528,
+};

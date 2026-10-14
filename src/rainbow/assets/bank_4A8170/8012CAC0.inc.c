@@ -1,0 +1,8 @@
+/* ROM 4DEE90, VRAM 8012CAC0: complete native animation command stream. */
+struct bank_4A8170_Animation8012CAC0 D_8012CAC0_4DEE90 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 225.8209686279297f, 0.0f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY | ROTZ) << 15) | 0, { 0.0f, -0.0290888212621212f, 0.0f, -0.0290888212621212f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX) << 15) | 0, { 1.2217304706573486f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY | ROTZ) << 15) | 40, { 0.0f, -0.0290888212621212f, 0.0f, -0.0290888212621212f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012CAC0_4DEE90 },
+};

@@ -1,0 +1,7 @@
+/* ROM 253588, VRAM 801877D8: complete native animation command stream. */
+struct Cave_Animation801877D8 D_801877D8_253588 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f, 0.007073128595948219f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, -44.826377868652344f, 47.18568420410156f, -2.117680072784424f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 85, { 0.0f, 0.007073128595948219f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801877D8_253588 },
+};

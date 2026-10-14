@@ -1,0 +1,10 @@
+/* ROM 412AD8, VRAM 8011C698: native InterpData path descriptor. */
+InterpData D_8011C698_412AD8 = {
+    HAL_INTERP_CATROM,
+    2,
+    0.5f,
+    D_8011C64C_412A8C,
+    6.606167793273926f,
+    D_8011C67C_412ABC,
+    D_8011C684_412AC4,
+};

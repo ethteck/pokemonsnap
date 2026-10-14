@@ -1,0 +1,10 @@
+/* ROM 182488, VRAM 8013C328: native InterpData path descriptor. */
+InterpData D_8013C328_182488 = {
+    HAL_INTERP_CATROM,
+    2,
+    0.5f,
+    D_8013C2DC_18243C,
+    3.8982930183410645f,
+    D_8013C30C_18246C,
+    D_8013C314_182474,
+};

@@ -1,0 +1,6 @@
+/* ROM 429E10, VRAM 801339D0: struct ValleyAnimation801339D0. */
+struct ValleyAnimation801339D0 D_801339D0_429E10 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.6547461152076721f, 0.5286003947257996f, -0.5819833874702454f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_801339D0_429E10 },
+};

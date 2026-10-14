@@ -1,0 +1,8 @@
+/* ROM 4E0A6C, VRAM 8012E69C: complete native animation command stream. */
+struct bank_4A8170_Animation8012E69C D_8012E69C_4E0A6C = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX | ROTY) << 15) | 0, { -0.0899999737739563f, -4.2238087189616635e-05f, 0.0f, 0.007741178385913372f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, -9.5f, 11.869999885559082f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | ROTY) << 15) | 35, { -0.0899999737739563f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX | ROTY) << 15) | 45, { -0.0899999737739563f, 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012E69C_4E0A6C },
+};

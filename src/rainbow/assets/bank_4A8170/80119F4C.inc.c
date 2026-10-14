@@ -1,0 +1,6 @@
+/* ROM 4CC31C, VRAM 80119F4C: complete native animation command stream. */
+struct bank_4A8170_Animation80119F4C D_80119F4C_4CC31C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -0.6981688141822815f, 0.014762240462005138f, -0.009320906363427639f, -19.199975967407227f, -20.648849487304688f, 29.489452362060547f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

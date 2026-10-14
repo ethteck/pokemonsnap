@@ -5,6 +5,9 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "app_render/app_render.h"
+typedef struct Unks16 {
+    /* 0x00 */ s16 unk_00[3];
+} Unks16;
 
 #define RAINBOW_CMD_28 POKEMON_CMD_28
 #define RAINBOW_CMD_29 POKEMON_CMD_29

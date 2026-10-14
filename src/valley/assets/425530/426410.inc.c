@@ -1,0 +1,20 @@
+/* ROM 426410, VRAM 8012FFD0: AnimCmd*. */
+AnimCmd* D_8012FFD0_426410[17] = {
+    (AnimCmd*) &D_80130014_426454,
+    (AnimCmd*) &D_801300CC_42650C,
+    (AnimCmd*) &D_80130154_426594,
+    (AnimCmd*) &D_801301CC_42660C,
+    (AnimCmd*) &D_80130210_426650,
+    (AnimCmd*) &D_80130248_426688,
+    (AnimCmd*) &D_801302F8_426738,
+    (AnimCmd*) &D_80130338_426778,
+    (AnimCmd*) &D_801303B0_4267F0,
+    (AnimCmd*) &D_80130444_426884,
+    (AnimCmd*) &D_80130460_4268A0,
+    (AnimCmd*) &D_801304F4_426934,
+    (AnimCmd*) &D_80130510_426950,
+    (AnimCmd*) &D_801306AC_426AEC,
+    (AnimCmd*) &D_80130794_426BD4,
+    (AnimCmd*) &D_80130924_426D64,
+    (AnimCmd*) &D_80130A0C_426E4C,
+};

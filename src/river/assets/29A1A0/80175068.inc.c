@@ -1,0 +1,10 @@
+/* ROM 2E5138, VRAM 80175068: complete native animation command stream. */
+struct river_29A1A0_Animation80175068 D_80175068_2E5138 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY) << 15) | 0, { 0.0f, 0.004685045685619116f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 8, { 0.5235987901687622f, 0.005863401107490063f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 22, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 8, { 0.5235987901687622f, 0.012793081812560558f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 22, { 0.0f, -0.0006652653682976961f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80175068_2E5138 },
+};

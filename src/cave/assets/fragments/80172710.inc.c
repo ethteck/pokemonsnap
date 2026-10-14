@@ -1,0 +1,6 @@
+/* ROM 23E4C0, VRAM 80172710: complete native animation command stream. */
+struct Cave_Animation80172710 D_80172710_23E4C0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -1.3271350240984248e-08f, -1.043081283569336e-07f, -4.1909511416804435e-09f, -6.51925802230835e-06f, 1.7881393432617188e-05f, -1.1920928955078125e-05f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 40 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80172710_23E4C0 },
+};

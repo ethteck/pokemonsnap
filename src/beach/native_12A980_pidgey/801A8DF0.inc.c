@@ -1,0 +1,20 @@
+/* ROM 135280, VRAM 801A8DF0: native model/material animation table. */
+AnimCmd** D_801A8DF0_135280[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_801A8E7C_13530C,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

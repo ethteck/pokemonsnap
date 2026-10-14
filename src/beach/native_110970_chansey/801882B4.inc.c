@@ -1,0 +1,21 @@
+/* ROM 114744, VRAM 801882B4: complete native animation command stream. */
+struct native_110970_chansey_Animation801882B4 D_801882B4_114744 = {
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | POSZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX | ROTZ) << 15) | 0, { 12.566370964050293f, 0.4363323152065277f, 0.0f, -0.05235987901687622f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTZ) << 15) | 16, { 0.0f } },
+    { (ANIM_CMD_12 << 25) | ((ROTZ) << 15) | 12 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 16, { 19.19862174987793f, 0.4363323152065277f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 12 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 0, { 2000.0f, -160.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((POSY) << 15) | 6, { 400.0f } },
+    { (ANIM_CMD_12 << 25) | ((POSY) << 15) | 2 },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 4 },
+    { (ANIM_CMD_SET_TARGET_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE << 25) | ((POSY) << 15) | 24, { 400.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTZ) << 15) | 24, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 4, { 18.84955596923828f, -0.0581776387989521f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 8, { 18.500490188598633f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 4, { 18.84955596923828f } },
+    { (ANIM_CMD_SET_VALUE_LAST << 25) | ((ROTX) << 15) | 8, { 18.84955596923828f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

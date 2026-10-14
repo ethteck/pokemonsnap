@@ -1,0 +1,21 @@
+/* ROM FCF60, VRAM 80170AD0: native model/material animation table. */
+AnimCmd* D_80170AD0_FCF60[18] = {
+    (AnimCmd*) &D_80170B18_FCFA8,
+    (AnimCmd*) &D_80170BA8_FD038,
+    (AnimCmd*) &D_80171018_FD4A8,
+    (AnimCmd*) &D_8017140C_FD89C,
+    (AnimCmd*) &D_80171614_FDAA4,
+    (AnimCmd*) &D_80171A74_FDF04,
+    (AnimCmd*) &D_80171D78_FE208,
+    (AnimCmd*) &D_80172000_FE490,
+    (AnimCmd*) &D_80172360_FE7F0,
+    (AnimCmd*) &D_80172530_FE9C0,
+    (AnimCmd*) &D_801727A0_FEC30,
+    (AnimCmd*) &D_801729B0_FEE40,
+    (AnimCmd*) &D_80172BF4_FF084,
+    (AnimCmd*) &D_80172DDC_FF26C,
+    (AnimCmd*) &D_80172EA8_FF338,
+    (AnimCmd*) &D_8017323C_FF6CC,
+    (AnimCmd*) &D_80173634_FFAC4,
+    (AnimCmd*) &D_80173A1C_FFEAC,
+};

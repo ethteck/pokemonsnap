@@ -1,0 +1,23 @@
+/* ROM 12A480, VRAM 8019DFF0: native model/material animation table. */
+AnimCmd** D_8019DFF0_12A480[20] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019E100_12A590,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8019E108_12A598,
+};

@@ -2,10 +2,7 @@
 #include "world/world.h"
 #include "app_level/app_level.h"
 #include "river.h"
-
-extern AnimationHeader D_802E43B0_6CC190;
-extern PokemonInitData D_802E43D8_6CC1B8;
-extern PokemonDef D_802E440C_6CC1EC;
+#include "assets/6CA400/declarations.h"
 
 POKEMON_FUNC(func_802DFEF0_6C7CD0)
     Pokemon_ForceAnimation(obj, &D_802E43B0_6CC190);

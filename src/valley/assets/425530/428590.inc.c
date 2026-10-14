@@ -1,0 +1,20 @@
+/* ROM 428590, VRAM 80132150: AnimCmd*. */
+AnimCmd* D_80132150_428590[17] = {
+    (AnimCmd*) &D_80132194_4285D4,
+    (AnimCmd*) &D_8013220C_42864C,
+    (AnimCmd*) &D_80132284_4286C4,
+    (AnimCmd*) &D_801322FC_42873C,
+    (AnimCmd*) &D_80132340_428780,
+    (AnimCmd*) &D_801323B8_4287F8,
+    (AnimCmd*) &D_80132468_4288A8,
+    (AnimCmd*) &D_801324B8_4288F8,
+    (AnimCmd*) &D_80132578_4289B8,
+    (AnimCmd*) &D_801325D4_428A14,
+    (AnimCmd*) &D_80132630_428A70,
+    (AnimCmd*) &D_801326E0_428B20,
+    (AnimCmd*) &D_80132774_428BB4,
+    (AnimCmd*) &D_80132824_428C64,
+    (AnimCmd*) &D_8013289C_428CDC,
+    (AnimCmd*) &D_80132930_428D70,
+    NULL,
+};

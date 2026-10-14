@@ -2,21 +2,10 @@
 
 #include "main_menu.h"
 
-typedef struct PanData {
-    /* 0x00 */ s32 data[4];
-} PanData;
-
-typedef struct YValues {
-    /* 0x00 */ s16 data[3][4];
-} YValues;
-
 extern s8 D_800E80D0_A0F660;
-extern PanData D_800E80D4_A0F664;
-extern YValues D_800E80E4_A0F674;
 extern ScreenSettings D_800E80FC_A0F68C;
 extern Gfx D_800E8130_A0F6C0[];
 extern SceneSetup D_800E8188_A0F718;
-extern s32 D_800E8198_A0F728;
 extern GObj* D_800E82A4_A0F834;
 extern GObj* D_800E82A8_A0F838;
 extern GObj* D_800E82AC_A0F83C;
@@ -1306,7 +1295,7 @@ void func_800E4634_A0BBC4(void) {
 }
 
 s32 func_800E4830_A0BDC0(s32 sceneId) {
-    D_800E8198_A0F728 = VPK_VRAM - (s32) &D_800E83A0;
+    D_800E8188_A0F718.gtlSetup.heapSize = VPK_VRAM - (s32) &D_800E83A0;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E8188_A0F718);
 

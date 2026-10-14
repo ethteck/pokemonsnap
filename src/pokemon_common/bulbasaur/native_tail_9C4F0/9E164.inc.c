@@ -1,0 +1,9 @@
+/* ROM 0x9E164; native animation_stream. */
+struct PokemonCommonAnimationBulbasaur80120D44 D_80120D44_9E164 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { -5.960464477539063e-08f, 0.09922213107347488f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 25, { 1.7199995517730713f, 0.004319481551647186f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 26, { 0.22029350697994232f, -0.03127272427082062f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 29, { -4.172325134277344e-07f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80120D44_9E164 },
+};

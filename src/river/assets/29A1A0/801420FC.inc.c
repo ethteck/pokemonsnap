@@ -1,0 +1,10 @@
+/* ROM 2B21CC, VRAM 801420FC: native InterpData path descriptor. */
+InterpData D_801420FC_2B21CC = {
+    HAL_INTERP_BEZIER,
+    3,
+    0.0f,
+    D_8014208C_2B215C,
+    9.103349685668945f,
+    D_801420C8_2B2198,
+    D_801420D4_2B21A4,
+};

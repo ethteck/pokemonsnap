@@ -13,7 +13,7 @@ extern AnimationHeader D_802C68E8_648D98;
 extern AnimationHeader D_802C68FC_648DAC;
 extern AnimationHeader D_802C6910_648DC0;
 extern InteractionHandler D_802C6924_648DD4[];
-extern RandomState D_802C6964_648E14;
+extern RandomState D_802C6964_648E14[3];
 extern InteractionHandler D_802C697C_648E2C[];
 extern PokemonInitData D_802C69C0_648E70;
 
@@ -48,7 +48,7 @@ void func_802BF0B4_641564(GObj* obj) {
     Pokemon_SetAnimation(obj, &D_802C6870_648D20);
     pokemon->transitionGraph = D_802C6924_648DD4;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802C6964_648E14);
+    Pokemon_SetStateRandom(obj, D_802C6964_648E14);
 }
 
 void func_802BF124_6415D4(GObj* obj) {
@@ -63,7 +63,7 @@ void func_802BF124_6415D4(GObj* obj) {
     if (pokemon->processFlags & POKEMON_PROCESS_FLAG_PATH_ENDED) {
         Pokemon_SetState(obj, func_802BF0B4_641564);
     }
-    Pokemon_SetStateRandom(obj, &D_802C6964_648E14);
+    Pokemon_SetStateRandom(obj, D_802C6964_648E14);
 }
 
 void func_802BF1C4_641674(GObj* obj) {
@@ -143,7 +143,7 @@ void func_802BF454_641904(GObj* obj) {
     if (pokemon->interactionTarget != NULL) {
         Pokemon_SetState(obj, func_802BF454_641904);
     }
-    Pokemon_SetStateRandom(obj, &D_802C6964_648E14);
+    Pokemon_SetStateRandom(obj, D_802C6964_648E14);
 }
 
 void func_802BF4E8_641998(GObj* obj) {

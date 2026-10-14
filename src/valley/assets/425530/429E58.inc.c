@@ -1,0 +1,6 @@
+/* ROM 429E58, VRAM 80133A18: struct ValleyAnimation80133A18. */
+struct ValleyAnimation80133A18 D_80133A18_429E58 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { -0.21279877424240112f, -0.09125299751758575f, 0.10200836509466171f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 10 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80133A18_429E58 },
+};

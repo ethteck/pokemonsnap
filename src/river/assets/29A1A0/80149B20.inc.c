@@ -1,0 +1,6 @@
+/* ROM 2B9BF0, VRAM 80149B20: complete native animation command stream. */
+struct river_29A1A0_Animation80149B20 D_80149B20_2B9BF0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.056102991104126f, 0.1698751449584961f, -1.3376595973968506f, -1.2295633554458618f, -14.02420425415039f, -0.3201901912689209f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

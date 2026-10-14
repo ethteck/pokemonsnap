@@ -1,0 +1,23 @@
+/* ROM 2F0DC0, VRAM 80180CF0: native model/material animation table. */
+AnimCmd* D_80180CF0_2F0DC0[20] = {
+    (AnimCmd*) &D_80180D40_2F0E10,
+    (AnimCmd*) &D_80180D50_2F0E20,
+    (AnimCmd*) &D_80181154_2F1224,
+    (AnimCmd*) &D_801811C0_2F1290,
+    (AnimCmd*) &D_8018122C_2F12FC,
+    (AnimCmd*) &D_80181298_2F1368,
+    (AnimCmd*) &D_80181304_2F13D4,
+    (AnimCmd*) &D_80181370_2F1440,
+    (AnimCmd*) &D_801813DC_2F14AC,
+    (AnimCmd*) &D_80181448_2F1518,
+    (AnimCmd*) &D_801814B4_2F1584,
+    (AnimCmd*) &D_80181520_2F15F0,
+    (AnimCmd*) &D_8018158C_2F165C,
+    (AnimCmd*) &D_8018160C_2F16DC,
+    (AnimCmd*) &D_8018168C_2F175C,
+    (AnimCmd*) &D_80181788_2F1858,
+    (AnimCmd*) &D_80181808_2F18D8,
+    (AnimCmd*) &D_80181904_2F19D4,
+    (AnimCmd*) &D_8018199C_2F1A6C,
+    (AnimCmd*) &D_801819D0_2F1AA0,
+};

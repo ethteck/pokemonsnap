@@ -1,0 +1,28 @@
+/* ROM 6CA4FC, VRAM 802E271C: River gameplay consumer and complete native ABI. */
+PokemonDef D_802E271C_6CA4FC[25] = {
+    { 79, (pokemonInit) func_802D9F44_6C1D24, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 80, (pokemonInit) func_802DA4B8_6C2298, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 603, (pokemonInit) func_802DA9A4_6C2784, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 90, (pokemonInit) func_802DA8CC_6C26AC, pokemonChangeBlock, pokemonRemoveOne },
+    { 91, (pokemonInit) func_802DB064_6C2E44, pokemonChangeBlock, pokemonRemoveOne },
+    { 54, (pokemonInit) func_802DBB54_6C3934, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 60, (pokemonInit) func_802DCEB0_6C4C90, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 129, (pokemonInit) func_802DD0A8_6C4E88, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 11, (pokemonInit) func_802DEF88_6C6D68, pokemonChangeBlock, pokemonRemoveOne },
+    { 137, (pokemonInit) func_802DE8BC_6C669C, pokemonChangeBlock, pokemonRemoveOne },
+    { 45, (pokemonInit) func_802DF634_6C7414, pokemonChangeBlockOnGround, pokemonRemoveOne },
+    { 25, (pokemonInit) func_802DFEB0_6C7C90, pokemonChangeBlock, pokemonRemoveOne },
+    { 1, (pokemonInit) func_802E1864_6C9644, pokemonChangeBlock, NULL },
+    { 1003, func_8035E0D4_4FE4E4, pokemonChangeBlock, pokemonRemoveOne },
+    { 1020, (pokemonInit) func_802DAD28_6C2B08, pokemonChangeBlock, pokemonRemoveOne },
+    { 1021, func_802DE9C0_6C67A0, pokemonChangeBlock, pokemonRemoveOne },
+    { 1002, (pokemonInit) func_802DFF5C_6C7D3C, pokemonChangeBlock, pokemonRemoveOne },
+    { 1022, (pokemonInit) func_802DEC50_6C6A30, pokemonChangeBlock, pokemonRemoveOne },
+    { 1001, (pokemonInit) func_802E0584_6C8364, pokemonChangeBlock, pokemonRemoveOne },
+    { 1023, (pokemonInit) func_802E0694_6C8474, pokemonChangeBlock, pokemonRemoveOne },
+    { 1024, (pokemonInit) func_802E07A4_6C8584, pokemonChangeBlock, pokemonRemoveOne },
+    { 1025, (pokemonInit) func_802E08C4_6C86A4, pokemonChangeBlock, pokemonRemoveOne },
+    { 1003, func_8035E0D4_4FE4E4, pokemonChangeBlock, pokemonRemoveOne },
+    { 1019, func_802E2084_6C9E64, pokemonChangeBlock, pokemonRemoveOne },
+    { 0, NULL, NULL, NULL }
+};

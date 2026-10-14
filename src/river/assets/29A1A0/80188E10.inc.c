@@ -1,0 +1,23 @@
+/* ROM 2F8EE0, VRAM 80188E10: native model/material animation table. */
+AnimCmd* D_80188E10_2F8EE0[20] = {
+    NULL,
+    (AnimCmd*) &D_80188E60_2F8F30,
+    (AnimCmd*) &D_80188EC8_2F8F98,
+    NULL,
+    (AnimCmd*) &D_80188F70_2F9040,
+    NULL,
+    (AnimCmd*) &D_80189018_2F90E8,
+    (AnimCmd*) &D_801890EC_2F91BC,
+    (AnimCmd*) &D_80189144_2F9214,
+    NULL,
+    (AnimCmd*) &D_801891A4_2F9274,
+    (AnimCmd*) &D_80189218_2F92E8,
+    NULL,
+    (AnimCmd*) &D_8018926C_2F933C,
+    NULL,
+    (AnimCmd*) &D_801892C0_2F9390,
+    (AnimCmd*) &D_801892EC_2F93BC,
+    (AnimCmd*) &D_80189308_2F93D8,
+    (AnimCmd*) &D_80189334_2F9404,
+    (AnimCmd*) &D_80189368_2F9438,
+};

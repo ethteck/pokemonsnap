@@ -1,0 +1,10 @@
+#include "declarations.h"
+
+#include "fragments/802C8160.inc.c"
+#include "fragments/802DFCD4.inc.c"
+#include "fragments/80300FF4.inc.c"
+#include "fragments/80301000.inc.c"
+#include "fragments/8030A538.inc.c"
+#include "fragments/80317604.inc.c"
+#include "fragments/80317610.inc.c"
+#include "fragments/80317618.inc.c"

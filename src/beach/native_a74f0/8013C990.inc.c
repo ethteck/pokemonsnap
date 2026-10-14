@@ -1,0 +1,6 @@
+/* ROM C8E20, VRAM 8013C990: complete native animation command stream. */
+struct native_a74f0_Animation8013C990 D_8013C990_C8E20 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.48482057452201843f, -0.4171189069747925f, 0.08336329460144043f, 13.986532211303711f, 5.902046203613281f, 0.016771122813224792f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 150 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,20 @@
+/* ROM 1CCF80, VRAM 80186E20: native model/material animation table. */
+AnimCmd** D_80186E20_1CCF80[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_80186E9C_1CCFFC,
+    NULL,
+    NULL,
+};

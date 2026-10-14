@@ -1,0 +1,8 @@
+/* ROM 4E14C4, VRAM 8012F0F4: complete native animation command stream. */
+struct bank_4A8170_Animation8012F0F4 D_8012F0F4_4E14C4 = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((POSY) << 15) | 0, { 52.5780029296875f, 1.6666666269302368f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTX | ROTY | ROTZ | POSX | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.11999998986721039f, 0.0f, 0.0f, 0.0f, -16.274169921875f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((POSY) << 15) | 20, { 65.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((POSY) << 15) | 50, { 52.5780029296875f, 1.6666666269302368f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012F0F4_4E14C4 },
+};

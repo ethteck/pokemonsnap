@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -13,10 +14,32 @@ from splat.segtypes.n64.decompressor import CommonSegDecompressor  # type: ignor
 from splat.util import log  # type: ignore
 
 from vpk0_codec import Vpk0DecompressionError, decompress_vpk0  # noqa: E402
+from native_vpk0 import extract_images
+from splat.segtypes.linker_entry import LinkerEntry
+from splat.util import options
 
 
 class N64SegVpk0(CommonSegDecompressor):
     compression_error_hint = "(hint: add a 'bin' segment after it)"
+
+    def split(self, rom_bytes):
+        assert isinstance(self.rom_start, int)
+        assert isinstance(self.rom_end, int)
+        data = self.decompress(rom_bytes[self.rom_start:self.rom_end])
+        layout = json.loads(Path(self.yaml["native_manifest"]).read_text())
+        extract_images(data, layout)
+
+    def get_linker_entries(self):
+        return [
+            LinkerEntry(
+                self,
+                [Path(self.yaml["native_manifest"])],
+                options.opts.asset_path / self.dir / f"{self.name}.Vpk0",
+                self.get_linker_section_order(),
+                self.get_linker_section_linksection(),
+                self.is_noload(),
+            )
+        ]
 
     @property
     def compression_type(self) -> str:

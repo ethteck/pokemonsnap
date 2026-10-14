@@ -1,0 +1,21 @@
+/* ROM 0x7A4A0; native model_root. */
+AnimCmd* D_800FD080_7A4A0[18] = {
+    (AnimCmd*) &D_800FD0C8_7A4E8,
+    (AnimCmd*) &D_800FD138_7A558,
+    (AnimCmd*) &D_800FD188_7A5A8,
+    (AnimCmd*) &D_800FD288_7A6A8,
+    (AnimCmd*) &D_800FD3A0_7A7C0,
+    (AnimCmd*) &D_800FD4D4_7A8F4,
+    NULL,
+    NULL,
+    (AnimCmd*) &D_800FD5C4_7A9E4,
+    (AnimCmd*) &D_800FD5DC_7A9FC,
+    (AnimCmd*) &D_800FD6E0_7AB00,
+    (AnimCmd*) &D_800FD7AC_7ABCC,
+    (AnimCmd*) &D_800FD894_7ACB4,
+    (AnimCmd*) &D_800FD970_7AD90,
+    (AnimCmd*) &D_800FDA20_7AE40,
+    (AnimCmd*) &D_800FDAD0_7AEF0,
+    (AnimCmd*) &D_800FDBA8_7AFC8,
+    NULL,
+};

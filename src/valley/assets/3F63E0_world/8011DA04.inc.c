@@ -1,0 +1,10 @@
+/* ROM 413E44, VRAM 8011DA04: native InterpData path descriptor. */
+InterpData D_8011DA04_413E44 = {
+    HAL_INTERP_CATROM,
+    3,
+    0.5f,
+    D_8011D994_413DD4,
+    6.418015956878662f,
+    D_8011D9D0_413E10,
+    D_8011D9DC_413E1C,
+};

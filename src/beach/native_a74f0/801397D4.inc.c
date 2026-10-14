@@ -1,0 +1,7 @@
+/* ROM C5C64, VRAM 801397D4: consumer-bounded pointer table. */
+u8* D_801397D4_C5C64[4] = {
+    D_80152118_DE5A8,
+    D_80150900_DCD90,
+    D_80151108_DD598,
+    D_80151910_DDDA0,
+};

@@ -1,0 +1,20 @@
+/* ROM EDC60, VRAM 801617D0: native model/material animation table. */
+AnimCmd** D_801617D0_EDC60[17] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    D_8016185C_EDCEC,
+    NULL,
+    NULL,
+    NULL,
+    D_80161860_EDCF0,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};

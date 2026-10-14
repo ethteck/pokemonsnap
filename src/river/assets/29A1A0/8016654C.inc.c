@@ -1,0 +1,8 @@
+/* ROM 2D661C, VRAM 8016654C: complete native animation command stream. */
+struct river_29A1A0_Animation8016654C D_8016654C_2D661C = {
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f, 0.025016386061906815f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.0f, 0.0f, 0.0008463859558105469f, 169.3431854248047f, 7.938241958618164f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 3, { 0.0f, 0.08806668967008591f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 27, { 2.642000675201416f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

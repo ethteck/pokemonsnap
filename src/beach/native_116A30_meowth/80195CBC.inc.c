@@ -1,0 +1,6 @@
+/* ROM 12214C, VRAM 80195CBC: complete native animation command stream. */
+struct native_116A30_meowth_Animation80195CBC D_80195CBC_12214C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.6399999260902405f, -2.9802322387695312e-08f, 0.15000000596046448f, -0.3435462713241577f, -26.576440811157227f, 2.965521812438965f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 30 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80195CBC_12214C },
+};

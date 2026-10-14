@@ -1,0 +1,20 @@
+/* ROM 427680, VRAM 80131240: AnimCmd*. */
+AnimCmd* D_80131240_427680[17] = {
+    (AnimCmd*) &D_80131284_4276C4,
+    (AnimCmd*) &D_80131334_427774,
+    (AnimCmd*) &D_801313AC_4277EC,
+    (AnimCmd*) &D_80131420_427860,
+    (AnimCmd*) &D_8013144C_42788C,
+    (AnimCmd*) &D_80131484_4278C4,
+    (AnimCmd*) &D_80131518_427958,
+    (AnimCmd*) &D_80131568_4279A8,
+    (AnimCmd*) &D_80131634_427A74,
+    (AnimCmd*) &D_80131660_427AA0,
+    (AnimCmd*) &D_8013167C_427ABC,
+    (AnimCmd*) &D_801316F4_427B34,
+    (AnimCmd*) &D_8013176C_427BAC,
+    (AnimCmd*) &D_801317E4_427C24,
+    (AnimCmd*) &D_80131878_427CB8,
+    (AnimCmd*) &D_801318F0_427D30,
+    NULL,
+};

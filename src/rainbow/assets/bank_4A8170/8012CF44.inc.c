@@ -1,0 +1,10 @@
+/* ROM 4DF314, VRAM 8012CF44: complete native animation command stream. */
+struct bank_4A8170_Animation8012CF44 D_8012CF44_4DF314 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((ROTY | ROTZ) << 15) | 0, { 0.0f, 0.01078855898231268f, 0.0f, -0.0030545995105057955f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { -5.779999732971191f, -76.8499984741211f, 62.969993591308594f, 1.0f, 0.9999999403953552f, 1.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTY | ROTZ) << 15) | 40, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 20, { -0.6981316804885864f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 20, { 0.0f } },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8012CF44_4DF314 },
+};

@@ -1,0 +1,6 @@
+/* ROM 427AA0, VRAM 80131660: struct ValleyAnimation80131660. */
+struct ValleyAnimation80131660 D_80131660_427AA0 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ) << 15) | 0, { 0.6045355200767517f, 0.5286003947257996f, -0.5819833874702454f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 20 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_80131660_427AA0 },
+};

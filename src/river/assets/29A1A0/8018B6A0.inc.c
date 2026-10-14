@@ -1,0 +1,23 @@
+/* ROM 2FB770, VRAM 8018B6A0: native model/material animation table. */
+AnimCmd* D_8018B6A0_2FB770[20] = {
+    (AnimCmd*) &D_8018B6F0_2FB7C0,
+    (AnimCmd*) &D_8018B720_2FB7F0,
+    (AnimCmd*) &D_8018B7BC_2FB88C,
+    (AnimCmd*) &D_8018B83C_2FB90C,
+    (AnimCmd*) &D_8018B8F0_2FB9C0,
+    (AnimCmd*) &D_8018B96C_2FBA3C,
+    (AnimCmd*) &D_8018BA20_2FBAF0,
+    (AnimCmd*) &D_8018BF8C_2FC05C,
+    (AnimCmd*) &D_8018C0E4_2FC1B4,
+    (AnimCmd*) &D_8018C1E4_2FC2B4,
+    (AnimCmd*) &D_8018C214_2FC2E4,
+    (AnimCmd*) &D_8018C2E8_2FC3B8,
+    (AnimCmd*) &D_8018C470_2FC540,
+    (AnimCmd*) &D_8018C4E4_2FC5B4,
+    (AnimCmd*) &D_8018C678_2FC748,
+    (AnimCmd*) &D_8018C718_2FC7E8,
+    (AnimCmd*) &D_8018C830_2FC900,
+    (AnimCmd*) &D_8018C8A4_2FC974,
+    (AnimCmd*) &D_8018C9A0_2FCA70,
+    (AnimCmd*) &D_8018CAA0_2FCB70,
+};

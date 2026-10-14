@@ -1,0 +1,20 @@
+/* ROM E9050, VRAM 8015CBC0: native model/material animation table. */
+AnimCmd* D_8015CBC0_E9050[17] = {
+    (AnimCmd*) &D_8015CC04_E9094,
+    (AnimCmd*) &D_8015CC8C_E911C,
+    NULL,
+    (AnimCmd*) &D_8015CF30_E93C0,
+    (AnimCmd*) &D_8015D170_E9600,
+    (AnimCmd*) &D_8015D280_E9710,
+    (AnimCmd*) &D_8015D474_E9904,
+    (AnimCmd*) &D_8015D4F0_E9980,
+    (AnimCmd*) &D_8015D744_E9BD4,
+    (AnimCmd*) &D_8015D864_E9CF4,
+    (AnimCmd*) &D_8015DA8C_E9F1C,
+    (AnimCmd*) &D_8015DB04_E9F94,
+    (AnimCmd*) &D_8015DD4C_EA1DC,
+    (AnimCmd*) &D_8015DEC0_EA350,
+    (AnimCmd*) &D_8015E02C_EA4BC,
+    (AnimCmd*) &D_8015E28C_EA71C,
+    (AnimCmd*) &D_8015E434_EA8C4,
+};

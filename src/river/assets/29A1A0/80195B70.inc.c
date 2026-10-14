@@ -1,0 +1,21 @@
+/* ROM 305C40, VRAM 80195B70: native model/material animation table. */
+AnimCmd* D_80195B70_305C40[18] = {
+    (AnimCmd*) &D_80195BB8_305C88,
+    (AnimCmd*) &D_80195C38_305D08,
+    (AnimCmd*) &D_80195E24_305EF4,
+    (AnimCmd*) &D_80196020_3060F0,
+    (AnimCmd*) &D_80196168_306238,
+    (AnimCmd*) &D_801961E0_3062B0,
+    (AnimCmd*) &D_801962F0_3063C0,
+    (AnimCmd*) &D_80196374_306444,
+    (AnimCmd*) &D_8019648C_30655C,
+    (AnimCmd*) &D_80196584_306654,
+    (AnimCmd*) &D_80196700_3067D0,
+    (AnimCmd*) &D_80196874_306944,
+    (AnimCmd*) &D_80196944_306A14,
+    (AnimCmd*) &D_80196ABC_306B8C,
+    (AnimCmd*) &D_80196C98_306D68,
+    (AnimCmd*) &D_80196D3C_306E0C,
+    (AnimCmd*) &D_80196E9C_306F6C,
+    (AnimCmd*) &D_80196FB0_307080,
+};

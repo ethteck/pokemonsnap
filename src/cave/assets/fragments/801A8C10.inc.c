@@ -1,0 +1,20 @@
+/* ROM 2749C0, VRAM 801A8C10: native model/material animation table. */
+AnimCmd* D_801A8C10_2749C0[17] = {
+    (AnimCmd*) &D_801A8C54_274A04,
+    (AnimCmd*) &D_801A8C68_274A18,
+    (AnimCmd*) &D_801A8D3C_274AEC,
+    (AnimCmd*) &D_801A8D80_274B30,
+    (AnimCmd*) &D_801A8E68_274C18,
+    (AnimCmd*) &D_801A8F50_274D00,
+    (AnimCmd*) &D_801A8FC0_274D70,
+    (AnimCmd*) &D_801A8FF4_274DA4,
+    (AnimCmd*) &D_801A9094_274E44,
+    (AnimCmd*) &D_801A90C8_274E78,
+    (AnimCmd*) &D_801A9168_274F18,
+    (AnimCmd*) &D_801A93E0_275190,
+    (AnimCmd*) &D_801A94D4_275284,
+    (AnimCmd*) &D_801A96B8_275468,
+    (AnimCmd*) &D_801A97AC_27555C,
+    (AnimCmd*) &D_801A9834_2755E4,
+    (AnimCmd*) &D_801A98E8_275698,
+};

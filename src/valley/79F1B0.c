@@ -3,7 +3,7 @@
 
 extern EnvSoundData D_802D2740_7ABCD0[0x3A];
 extern f32 D_802D2828_7ABDB8;
-extern PokemonDef D_802D282C_7ABDBC;
+extern PokemonDef D_802D282C_7ABDBC[21];
 extern s32 D_802D297C_7ABF0C;
 extern GObj* D_802D2980_7ABF10;
 extern PokemonDef D_802D2984_7ABF14;
@@ -12,21 +12,20 @@ extern PokemonDef D_802D29A4_7ABF34;
 extern RandomState2 D_802D29B4_7ABF44[4];
 extern ScreenSettings D_802D29D4_7ABF64;
 extern SceneSetup D_802D29F0_7ABF80;
-extern UNK_TYPE D_802D2A00_7ABF90;
 extern GObj* D_802D3B34_7AD0C4;
 
 extern HeightMap D_8031F9C0_7F8F50;
 
 void func_802C5C20_79F1B0(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonAdd(arg0, arg1, &D_802D282C_7ABDBC);
+    pokemonAdd(arg0, arg1, D_802D282C_7ABDBC);
 }
 
 void func_802C5C44_79F1D4(WorldBlock* arg0, WorldBlock* arg1) {
-    pokemonsChangeBlock(arg0, arg1, &D_802D282C_7ABDBC);
+    pokemonsChangeBlock(arg0, arg1, D_802D282C_7ABDBC);
 }
 
 void func_802C5C68_79F1F8(WorldBlock* arg0) {
-    pokemonRemove(arg0, &D_802D282C_7ABDBC);
+    pokemonRemove(arg0, D_802D282C_7ABDBC);
 }
 
 void func_802C5C8C_79F21C(void) {
@@ -265,7 +264,7 @@ void func_802C653C_79FACC(s32 arg0) {
 }
 
 s32 func_802C6544_79FAD4(s32 arg0) {
-    D_802D2A00_7ABF90 = valley_code_VRAM - valley_assets_VRAM_END; // TODO OR valley_extra_VRAM
+    D_802D29F0_7ABF80.gtlSetup.heapSize = valley_code_VRAM - valley_assets_VRAM_END;
 
     gtlSetIntervals(1, 2);
     gtlDisableNearClipping(1);

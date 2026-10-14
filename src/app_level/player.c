@@ -22,19 +22,6 @@ void handleAnalogStick(GObj*);
 void handleCButtons(GObj*);
 void handleItemButtonsPress(GObj*);
 
-// TODO make sprite assets
-
-/*
-s32 sMinTimeBetweenPhotos = 10;
-MovementState gMovementState = {
-    0.0f,
-    0.5f,
-    NULL,
-    { 0.0f, 0.0f, 0.0f },
-    { 0.0f, 0.0f, 0.0f },
-}
-*/
-
 extern s32 sMinTimeBetweenPhotos;
 extern MovementState gMovementState;
 extern Sprite D_80366DF0_507200; // 506FE8 small reticle
@@ -55,14 +42,7 @@ extern Sprite D_80380B80_520F90; // 5201A0 Retry
 extern Sprite D_803819B8_521DC8; // 520FD8 Retry Pressed
 extern Sprite D_80381B58_521F68; // 521E10 END
 
-// we have to make this small array because of alignment
-u32 D_80382BF0_523000[] = {
-    0x803AE160,
-    0x00000000,
-    0x00000000
-};
-
-s32 gDirectionIndex = 2;
+extern s32 gDirectionIndex;
 GObj* gObjPlayer = NULL;
 DObj* gPlayerDObj = NULL;
 s32 D_80382C08_523018_unused = 0;

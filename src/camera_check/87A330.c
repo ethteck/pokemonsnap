@@ -3,8 +3,7 @@
 #include "more_funcs/more_funcs.h"
 #include "string.h"
 
-// part of Sprite structure
-s32 D_camera_check_80208940 = 0;
+#include "sprite_data.inc.c"
 
 UnkTealFlounder D_camera_check_802498F0;
 UIElement* D_camera_check_80249910;

@@ -1,0 +1,12 @@
+/* ROM 462CFC, VRAM 8016C8BC: struct ValleyAnimation8016C8BC. */
+struct ValleyAnimation8016C8BC D_8016C8BC_462CFC = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 0, { -0.5049165487289429f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 30, { -0.3193180561065674f } },
+    { (ANIM_CMD_12 << 25) | ((ROTX) << 15) | 25 },
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.2348414957523346f, 0.05166494473814964f, 0.0f, -90.48609924316406f, -177.7487335205078f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 5 },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 30, { -0.5049165487289429f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 30, { -0.3193180561065674f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 25 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8016C8BC_462CFC },
+};

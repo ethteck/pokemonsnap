@@ -8,12 +8,12 @@ extern AnimationHeader D_802D2B24_7AC0B4;
 extern AnimationHeader D_802D2B38_7AC0C8;
 extern AnimationHeader D_802D2B4C_7AC0DC;
 extern AnimationHeader D_802D2B60_7AC0F0;
-extern RandomState D_802D2B74_7AC104;
+extern RandomState D_802D2B74_7AC104[3];
 extern GObj* D_802D2B8C_7AC11C;
 extern GObj* D_802D2B90_7AC120;
 extern InteractionHandler2 D_802D2B94_7AC124;
-extern InteractionHandler D_802D2BB4_7AC144;
-extern InteractionHandler D_802D2BD4_7AC164;
+extern InteractionHandler D_802D2BB4_7AC144[2];
+extern InteractionHandler D_802D2BD4_7AC164[2];
 extern f32 D_802D2BF4_7AC184;
 extern f32 D_802D2BF8_7AC188;
 extern Vec3f D_802D2BFC_7AC18C;
@@ -100,20 +100,20 @@ POKEMON_FUNC(func_802C84D0_7A1A60)
 
 POKEMON_FUNC(func_802C853C_7A1ACC)
     Pokemon_SetAnimation(obj, &D_802D2AC0_7AC050);
-    pokemon->transitionGraph = &D_802D2BB4_7AC144;
+    pokemon->transitionGraph = D_802D2BB4_7AC144;
     Pokemon_WaitForFlag(obj, 0);
     Pokemon_SetState(obj, NULL);
 }
 
 POKEMON_FUNC(func_802C8594_7A1B24)
     Pokemon_SetAnimation(obj, &D_802D2B38_7AC0C8);
-    pokemon->transitionGraph = &D_802D2BD4_7AC164;
+    pokemon->transitionGraph = D_802D2BD4_7AC164;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     Pokemon_SetAnimation(obj, &D_802D2B4C_7AC0DC);
-    pokemon->transitionGraph = &D_802D2BD4_7AC164;
+    pokemon->transitionGraph = D_802D2BD4_7AC164;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     Pokemon_SetAnimation(obj, &D_802D2B60_7AC0F0);
-    pokemon->transitionGraph = &D_802D2BD4_7AC164;
+    pokemon->transitionGraph = D_802D2BD4_7AC164;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_ANIMATION_ENDED);
     Pokemon_SetState(obj, func_802C853C_7A1ACC);
 }
@@ -177,7 +177,7 @@ POKEMON_FUNC(func_802C892C_7A1EBC)
     Pokemon_SetAnimation(obj, &D_802D2B24_7AC0B4);
     pokemon->transitionGraph = NULL;
     Pokemon_WaitForFlag(obj, POKEMON_PROCESS_FLAG_PATH_ENDED);
-    Pokemon_SetStateRandom(obj, &D_802D2B74_7AC104);
+    Pokemon_SetStateRandom(obj, D_802D2B74_7AC104);
 }
 
 POKEMON_FUNC(func_802C8998_7A1F28)

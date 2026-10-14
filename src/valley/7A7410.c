@@ -11,10 +11,10 @@ extern AnimationHeader D_802D3AF8_7AD088;
 extern AnimationHeader D_802D3B0C_7AD09C;
 extern AnimationHeader D_802D3B20_7AD0B0;
 extern GObj* D_802D3B34_7AD0C4;
-extern InteractionHandler D_802D3B38_7AD0C8[];
-extern InteractionHandler D_802D3B68_7AD0F8[];
-extern InteractionHandler D_802D3B98_7AD128[];
-extern InteractionHandler D_802D3BC8_7AD158[];
+extern InteractionHandler D_802D3B38_7AD0C8[3];
+extern InteractionHandler D_802D3B68_7AD0F8[3];
+extern InteractionHandler D_802D3B98_7AD128[3];
+extern InteractionHandler D_802D3BC8_7AD158[3];
 extern PokemonInitData D_802D3C0C_7AD19C;
 
 void func_802CDEA4_7A7434(GObj*);

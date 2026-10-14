@@ -1,0 +1,6 @@
+/* ROM 3083B4, VRAM 801982E4: complete native animation command stream. */
+struct river_29A1A0_Animation801982E4 D_801982E4_3083B4 = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 0.08726603537797928f, -0.9599311947822571f, 0.0f, 70.0f, -50.0f, -30.00006675720215f, 1.2999999523162842f, 1.2999999523162842f, 1.3000010251998901f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 50 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

@@ -1,0 +1,6 @@
+/* ROM 185B9C, VRAM 8013FA3C: complete native animation command stream. */
+struct tunnel_182390_Animation8013FA3C D_8013FA3C_185B9C = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ | SCALEX | SCALEY | SCALEZ) << 15) | 0, { 1.951236367225647f, 0.2563978433609009f, 0.5637539625167847f, -0.5379654169082642f, -31.202003479003906f, -1.7881393432617188e-05f, 1.0f, 1.0f, 1.0f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 450 },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

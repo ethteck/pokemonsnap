@@ -1,0 +1,23 @@
+/* ROM 2F6950, VRAM 80186880: native model/material animation table. */
+AnimCmd* D_80186880_2F6950[20] = {
+    NULL,
+    (AnimCmd*) &D_801868D0_2F69A0,
+    (AnimCmd*) &D_80186950_2F6A20,
+    (AnimCmd*) &D_801869C4_2F6A94,
+    (AnimCmd*) &D_801869FC_2F6ACC,
+    (AnimCmd*) &D_80186A40_2F6B10,
+    (AnimCmd*) &D_80186A6C_2F6B3C,
+    (AnimCmd*) &D_80186BC0_2F6C90,
+    (AnimCmd*) &D_80186C10_2F6CE0,
+    NULL,
+    (AnimCmd*) &D_80186C3C_2F6D0C,
+    (AnimCmd*) &D_80186C80_2F6D50,
+    (AnimCmd*) &D_80186D24_2F6DF4,
+    (AnimCmd*) &D_80186DCC_2F6E9C,
+    (AnimCmd*) &D_80186E50_2F6F20,
+    (AnimCmd*) &D_80186EFC_2F6FCC,
+    (AnimCmd*) &D_80186F48_2F7018,
+    (AnimCmd*) &D_80186F94_2F7064,
+    (AnimCmd*) &D_80186FFC_2F70CC,
+    (AnimCmd*) &D_80187064_2F7134,
+};

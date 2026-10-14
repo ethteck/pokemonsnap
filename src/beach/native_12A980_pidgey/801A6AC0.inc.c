@@ -1,0 +1,10 @@
+/* ROM 132F50, VRAM 801A6AC0: complete native animation command stream. */
+struct native_12A980_pidgey_Animation801A6AC0 D_801A6AC0_132F50 = {
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE << 25) | ((ROTX) << 15) | 0, { -0.30462080240249634f } },
+    { (ANIM_CMD_SET_VALUE_AFTER_LAST << 25) | ((ROTY | ROTZ) << 15) | 0, { 0.0f, 0.0f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 4, { 0.5853793025016785f, 0.03869565203785896f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 19, { 0.5853793025016785f, -0.04435372352600098f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTX) << 15) | 11, { -0.7452324628829956f, -0.058093003928661346f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTX) << 15) | 16, { -0.9831317663192749f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

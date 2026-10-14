@@ -2,12 +2,6 @@
 #include "window.h"
 #include "string.h"
 
-typedef struct UIButtonImageListEntry {
-    /* 0x00 */ struct UIButtonImageListEntry* next;
-    /* 0x04 */ struct UIButtonImageListEntry* prev;
-    /* 0x08 */ GObj* obj;
-} UIButtonImageListEntry; // size = 0xC
-
 extern Sprite D_8037F2A8_852A58;
 extern Bitmap* D_80380B50_854300[];
 extern s32 D_80380BA8_854358[];

@@ -1,0 +1,10 @@
+/* ROM 412AF0, VRAM 8011C6B0: complete native animation command stream. */
+struct ValleyWorld3F63E0_Animation8011C6B0 D_8011C6B0_412AF0 = {
+    { (ANIM_CMD_13 << 25) | ((PATH_PARAM) << 15) | 0, &D_8011C698_412AD8 },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((PATH_PARAM) << 15) | 0, { 0.0f, 0.0008938448736444116f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 0, { 1.820796012878418f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE << 25) | ((PATH_PARAM) << 15) | 150, { 1.0f, 0.007269694469869137f } },
+    { (ANIM_CMD_SET_VALUE_WITH_RATE_LAST << 25) | ((ROTY) << 15) | 98, { 1.8240985870361328f, -0.0016666665906086564f } },
+    { (ANIM_CMD_SET_VALUE_ZERO_RATE_LAST << 25) | ((ROTY) << 15) | 52, { 1.570796012878418f } },
+    { (ANIM_CMD_END << 25) | ((0x0) << 15) | 0 },
+};

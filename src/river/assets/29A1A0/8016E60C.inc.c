@@ -1,0 +1,6 @@
+/* ROM 2DE6DC, VRAM 8016E60C: complete native animation command stream. */
+struct river_29A1A0_Animation8016E60C D_8016E60C_2DE6DC = {
+    { (ANIM_CMD_SET_VALUE_AFTER << 25) | ((ROTX | ROTY | ROTZ | POSX | POSY | POSZ) << 15) | 0, { 0.6981316804885864f, -0.2617993950843811f, -0.4363323152065277f, -112.5843734741211f, 49.70004653930664f, -18.79030418395996f } },
+    { (ANIM_CMD_WAIT << 25) | ((0x0) << 15) | 50 },
+    { (ANIM_CMD_SET_ANIMATION << 25) | ((0x0) << 15) | 0, (AnimCmd*) &D_8016E60C_2DE6DC },
+};

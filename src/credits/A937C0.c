@@ -1,6 +1,11 @@
 #include "common.h"
 #include "credits.h"
 
+// .bss
+GObj* D_credits_801ECC80[5];
+void* D_credits_801ECC94;
+GObj* D_credits_801ECC98[2];
+
 GObj* func_credits_801DCC00(GObj* arg0, Sprite* arg1) {
     return ohCreateSprite(0xE, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, arg1, 0, NULL, 1);
 }

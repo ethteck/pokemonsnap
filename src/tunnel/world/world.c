@@ -1,6 +1,9 @@
 #include <common.h>
 #include "world/world.h"
 
+// .bss
+s32 tunnel_unused_bss[8];
+
 extern WorldBlockSetup tunnel_blocksSetup[];
 extern Gfx computer_draw[];
 extern Gfx pkmn_1016_draw[];

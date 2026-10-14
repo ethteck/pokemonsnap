@@ -33,32 +33,34 @@ extern Gfx PokemonDetector_GfxCopyTile[] = {
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, 0x0F000000),
     gsSPEndDisplayList(),
 };
-// bss
-extern s32 PokemonDetector_IsEnabled;
-extern s32 PokemonDetector_NumPokemons[2];
-extern u16* PokemonDetector_Regions[MAX_POKEMONS];
-extern GObj* PokemonDetector_Pokemons[2][MAX_POKEMONS];
-extern s32 PokemonDetector_PokemonIds[2][MAX_POKEMONS];
-extern u16 PokemonDetector_PokemonFlags[2][MAX_POKEMONS];
-extern s32 PokemonDetector_HasPokemonInFocus;
-extern GObj* PokemonDetector_PokemonInFocus;
-extern s32 PokemonDetector_PokemonIdInFocus;
-extern u16 PokemonDetector_PokemonFlagsInFocus;
-extern s32 gHasPokemonInFocus;
-extern GObj* gPokemonInFocus;
-extern s32 gPokemonIdInFocus;
-extern u16 gPokemonFlagsInFocus;
-extern s32 PokemonDetector_XMin;
-extern s32 PokemonDetector_YMin;
-extern s32 PokemonDetector_XMax;
-extern s32 PokemonDetector_YMax;
-extern UnkThing PokemonDetector_Photo[];
-extern s32 PokemonDetector_TakenPhotoIndex;
-extern u16 PokemonDetector_ContextId;
-extern u16 PokemonDetector_AnalyzedPhotoId;
-extern u16 gCurrentPhotoContext;
-extern OSMesg PokemonDetector_Messages[2];
-extern OSMesgQueue PokemonDetector_MessageQueue;
+
+// .bss
+u8 D_803AE560_54B5D0[0x8];
+s32 PokemonDetector_IsEnabled;
+s32 PokemonDetector_NumPokemons[2];
+u16* PokemonDetector_Regions[MAX_POKEMONS];
+GObj* PokemonDetector_Pokemons[2][MAX_POKEMONS];
+s32 PokemonDetector_PokemonIds[2][MAX_POKEMONS];
+u16 PokemonDetector_PokemonFlags[2][MAX_POKEMONS];
+s32 PokemonDetector_HasPokemonInFocus;
+GObj* PokemonDetector_PokemonInFocus;
+s32 PokemonDetector_PokemonIdInFocus;
+u16 PokemonDetector_PokemonFlagsInFocus;
+s32 gHasPokemonInFocus;
+GObj* gPokemonInFocus;
+s32 gPokemonIdInFocus;
+u16 gPokemonFlagsInFocus;
+s32 PokemonDetector_XMin;
+s32 PokemonDetector_YMin;
+s32 PokemonDetector_XMax;
+s32 PokemonDetector_YMax;
+UnkThing PokemonDetector_Photo[2];
+s32 PokemonDetector_TakenPhotoIndex;
+u16 PokemonDetector_ContextId;
+u16 PokemonDetector_AnalyzedPhotoId;
+u16 gCurrentPhotoContext;
+OSMesg PokemonDetector_Messages[2];
+OSMesgQueue PokemonDetector_MessageQueue;
 
 void PokemonDetector_SaveRegion(GObj* arg0);
 

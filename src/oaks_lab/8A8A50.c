@@ -2,6 +2,11 @@
 #include "oaks_lab.h"
 #include "more_funcs/more_funcs.h"
 
+// .bss
+void* D_80206B40_9CC360;
+UIButton* D_80206B44_9CC364;
+void (*D_80206B48_9CC368)(void);
+
 void* func_800E3230_8A8A50(void) {
     if (!checkPlayerFlag(PFID_7)) {
         return &D_801958F0_95B110;

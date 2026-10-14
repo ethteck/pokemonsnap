@@ -1,6 +1,9 @@
 #include "common.h"
 #include "oaks_lab.h"
 
+// .bss
+s32 D_80206B50_9CC370;
+
 // TODO: probably remove this when more data is integrated
 s32 D_80195D10 = 0;
 s32 D_80195D14 = 0;

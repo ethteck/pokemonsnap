@@ -101,8 +101,11 @@ PokemonInitData dugtrio_initData = {
     { 0, 0, 0 }
 };
 
-extern s32 dugtrio_IsPhotoTaken;
-extern s32 dugtrio_MissedPhotoCount;
+// .bss
+u8 D_80343140_6401B0[0x8];
+s32 dugtrio_IsPhotoTaken;
+s32 dugtrio_MissedPhotoCount;
+u8 D_80343150_6401C0[0x15E0];
 
 POKEMON_FUNC(dugtrio_InitialState)
     pokemon->flags |= POKEMON_FLAG_8;

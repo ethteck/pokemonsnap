@@ -6,6 +6,10 @@
 #include "cave.h"
 #include "app_render/effect.h"
 
+// .bss
+u8 D_8033E130_6C05E0[0x8];
+SomeBits D_8033E138_6C05E8;
+
 extern EnvSoundData D_802C6150_648600;
 extern PokemonDef D_802C6234_6486E4;
 extern u16 D_802C6354_648804;

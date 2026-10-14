@@ -7,9 +7,10 @@ extern AnimCmd D_80121D30_418170[];
 extern bool D_802D2A80_7AC010;
 extern GObj* D_802D2A84_7AC014;
 
-// BSS
-extern u8 D_8034C8B8_825E48; // valley_intro_SoundHandle1;
-extern u8 D_8034C8B9_825E49; // valley_intro_SoundHandle2;
+// .bss
+u8 D_8034C8A0_825E30[0x18];
+u8 D_8034C8B8_825E48; // valley_intro_SoundHandle1;
+u8 D_8034C8B9_825E49; // valley_intro_SoundHandle2;
 
 void func_802C65E0_79FB70(GObj* arg0) {
     func_803571C4_4F75D4();

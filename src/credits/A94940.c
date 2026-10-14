@@ -2,6 +2,13 @@
 #include "../window/window.h"
 #include "credits.h"
 
+// .bss
+s32 D_credits_801ECDA0;
+u8 D_credits_801ECDA4;
+s32 D_credits_801ECDA8;
+s32 D_credits_801ECDB0[152];
+s32 D_credits_801ED010;
+
 Credit D_credits_801E8BA0[] = {
     { 50, 240.0f, "POKεMON SNAP Staff", 0 },
     { 50, 320.0f, "", 0 },

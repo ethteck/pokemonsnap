@@ -24,8 +24,11 @@ extern InteractionHandler3 D_802D2C40_7AC1D0;
 extern InteractionHandler3 D_802D2C70_7AC200;
 extern PokemonInitData D_802D2CB4_7AC244;
 
-extern f32 D_8034C8D8_825E68;
-extern f32 D_8034C8DC_825E6C;
+// .bss
+u8 D_8034C8D0_825E30[0x8];
+f32 D_8034C8D8_825E68;
+f32 D_8034C8DC_825E6C;
+u8 D_8034C8E0_825E70[0x17A0];
 
 void func_802C8354_7A18E4(GObj*);
 void func_802C853C_7A1ACC(GObj*);

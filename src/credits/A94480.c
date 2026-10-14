@@ -2,6 +2,12 @@
 #include "../window/window.h"
 #include "credits.h"
 
+// .bss
+GObj* D_credits_801ECCA0;
+u32 D_credits_801ECCA4;
+u8 D_credits_801ECCA8[0x8];
+Credit D_credits_801ECCB0[15];
+
 void func_credits_801DD8C0(SObj* sobj) {
     switch (D_credits_801ECDA0) {
         case SCENE_CREDITS_17:

@@ -2,6 +2,12 @@
 #include "../window/window.h"
 #include "credits.h"
 
+// .bss
+OSThread D_credits_801E9A90;
+u8 D_credits_801E9C40[0x3000];
+OSMesg D_credits_801ECC40[10];
+OSMesgQueue D_credits_801ECC68;
+
 void func_credits_801DC8A0(Gfx** gfx) {
     gSPDisplayList((*gfx)++, &D_credits_801DEBD8);
 }

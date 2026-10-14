@@ -2,7 +2,8 @@
 #include "ld_addrs.h"
 #include "window/window.h"
 
-extern u8 D_80203C10_9FA580[0x2D000];
+// .bss
+u8 D_80203C10_9FA580[0x2D000];
 
 void func_801DCBF4_9D3564(void);
 void func_801DCA48_9D33B8(void);

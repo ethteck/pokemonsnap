@@ -4,11 +4,11 @@
 extern s32* prev_bmbuf;
 extern u16 sp_attr;
 
-// BSS
-extern s32 scissor_xmax;
-extern s32 scissor_ymax;
-extern s32 scissor_xmin;
-extern s32 scissor_ymin;
+// .bss
+s32 scissor_xmax;
+s32 scissor_ymax;
+s32 scissor_xmin;
+s32 scissor_ymin;
 
 void spSetZ(Sprite* sp, s32 z) {
     sp->zdepth = z;

@@ -104,7 +104,9 @@ PokemonInitData diglett_initData = {
     { 0, 0, 0 }
 };
 
-extern s32 diglett_IsPhotoTaken;
+// .bss
+u8 D_80343130_6401B0[0x8];
+s32 diglett_IsPhotoTaken;
 
 POKEMON_FUNC(diglett_InitialState)
     pokemon->flags |= POKEMON_FLAG_8;

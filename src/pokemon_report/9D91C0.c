@@ -25,8 +25,10 @@ extern s32 D_80203004_9F9974;
 extern s32 D_80203008_9F9978;
 extern s32 D_8020300C_9F997C;
 extern s32 D_80203014_9F9984;
-extern UIButton* D_80230E10_A27780;
-extern UIButton* D_80230E14_A27784;
+
+// .bss
+UIButton* D_80230E10_A27780;
+UIButton* D_80230E14_A27784;
 
 UIButton* func_801E2850_9D91C0(void) {
     if (checkPlayerFlag(PFID_HAS_DASH_ENGINE)) {

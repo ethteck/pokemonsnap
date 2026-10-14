@@ -2,6 +2,15 @@
 #include "../window/window.h"
 #include "gallery.h"
 
+// .bss
+UIButton* D_802308A0_A4E560;
+s32 D_802308A4_A4E564;
+s32 D_802308A8_A4E568;
+s32 D_802308AC_A4E56C;
+s32 D_802308B0_A4E570;
+s32 D_802308B4_A4E574;
+s32 D_802308B8_A4E578;
+
 UIButton* func_801DF850_9FD510(void) {
     return contIsPrinterAvailable() ? D_801EA248_A07F08 : D_801EA210_A07ED0;
 }

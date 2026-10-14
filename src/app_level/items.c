@@ -38,17 +38,22 @@ extern Texture** D_800EDB90[];
 
 extern DObj* gPlayerDObj;
 
-// bss
-extern ItemObjectListEntry Items_ListEntryArray[20];
-extern ItemObjectListEntry* Items_AllocatedObjectListHead;
-extern ItemObjectListEntry* Items_AllocatedObjectListTail;
-extern ItemObjectListEntry* Items_FreeObjectListHead;
-extern s32 D_803AF0B4_54F4C4;
-extern s32 D_803AF0B8_54F4C8;
-extern s32 Items_TotalItemCount;
-extern s32 Items_PesterBallCount;
-extern s32 Items_AppleCount;
-extern u8 Items_FnUpdateKind;
+// .bss
+u8 D_803AEF60_54B5D0[0x8];
+ItemObjectListEntry Items_ListEntryArray[20];
+ItemObjectListEntry* Items_AllocatedObjectListHead;
+ItemObjectListEntry* Items_AllocatedObjectListTail;
+ItemObjectListEntry* Items_FreeObjectListHead;
+s32 D_803AF0B4_54F4C4;
+s32 D_803AF0B8_54F4C8;
+s32 Items_TotalItemCount;
+s32 Items_PesterBallCount;
+s32 Items_AppleCount;
+u8 Items_FnUpdateKind;
+u8 D_803AF0C9_54F4D9;
+u16 D_803AF0CA_54F4DA;
+u32 D_803AF0CC_54F4DC;
+u8 D_803AF0D0_54F4E0[0x7E0];
 
 void Pokemon_SendDieCommand(GObj*);
 void Pokemon_FreeItem(void*);

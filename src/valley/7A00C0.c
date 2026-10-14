@@ -2,7 +2,10 @@
 
 extern u32 D_802D2A90_7AC020;
 extern u32 D_802D2A94_7AC024;
-extern u8 D_8034C8C8_825E58[];
+
+// .bss
+u8 D_8034C8C0_825E30[0x8];
+u8 D_8034C8C8_825E58[8];
 
 void func_802C6B30_7A00C0(s32 arg0, f32 arg1) {
     switch (D_802D2A90_7AC020) {

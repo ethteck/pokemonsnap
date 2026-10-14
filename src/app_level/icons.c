@@ -77,10 +77,11 @@ SpriteDefStruct Icons_IconDefs[] = {
 };
 u8 Icons_IsZoomedIn = false;
 
-// bss
-extern s32 Icons_TotalMoveOutFrameCounter;
-extern s32 D_803AF8BC_54FCCC;
-extern s32 Icons_MoveOutCounter[8];
+// .bss
+u8 D_803AF8B0_54B5D0[0x8];
+s32 Icons_TotalMoveOutFrameCounter;
+s32 D_803AF8BC_54FCCC;
+s32 Icons_MoveOutCounter[8];
 
 void Icons_FinishZoomIn(GObj*);
 

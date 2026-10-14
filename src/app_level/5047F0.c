@@ -7,8 +7,10 @@ typedef struct Unk80364494 {
     /* 0x20 */ Vec3f unk_20;
 } Unk80364494; // size >= 0x2C
 
-extern Mtx4f D_803B14D8_5518E8;
-extern Mtx4f D_803B1518_551928;
+// .bss
+u8 D_803B14D0_54B5D0[0x8];
+Mtx4f D_803B14D8_5518E8;
+Mtx4f D_803B1518_551928;
 
 void func_803643E0_5047F0(OMCamera* cam);
 

@@ -3,7 +3,14 @@
 #include "app_level/app_level.h"
 
 extern u32 D_802C6430_6488E0;
-extern u8 D_8033E148_6C05F8;
+
+// .bss
+u8 D_8033E140_6C05E0[0x8];
+u8 D_8033E148_6C05F8;
+u8 D_8033E149_6C05F9;
+u16 D_8033E14A_6C05FA;
+u32 D_8033E14C_6C05FC;
+u8 D_8033E150_6C0600[0x1540];
 
 void func_802BE450_640900(s32 arg0, f32 arg1) {
     switch (D_802C6430_6488E0) {

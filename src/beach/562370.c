@@ -1,6 +1,12 @@
 #include "common.h"
 #include "beach.h"
 
+// .bss
+u8 D_beach_80347650[0x8];
+void* D_beach_80347658;
+u32 D_beach_8034765C;
+u8 D_beach_80347660[0x40];
+
 void func_beach_802CA300(GObj* obj) {
     UNUSED s32 pad[3];
     Pokemon* pokemon = GET_POKEMON(obj);

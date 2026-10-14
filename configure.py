@@ -325,6 +325,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/vpk0.py $in $out",
     )
 
+    ninja.rule(
+        "effect_scripts",
+        description="effect_scripts $in",
+        command=f"{sys.executable} tools/effect_scripts.py build $in $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -558,6 +564,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             compressed = entry.object_path.with_suffix(".vpk0")
             build(compressed, entry.src_paths, "vpk0_compress")
             build(entry.object_path, [compressed], "bin")
+        elif seg.type == "snap_effect_scripts":
+            raw_bin = entry.object_path.with_suffix("")
+            build(raw_bin, entry.src_paths, "effect_scripts", implicit=["tools/effect_scripts.py"])
+            build(entry.object_path, [raw_bin], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":
@@ -667,7 +677,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     split.main(
-        [YAML_FILE], modes=["all"], verbose=False, disassemble_all=args.disassemble_all
+        [YAML_FILE], modes=["all"], verbose=False, use_cache=False,
+        disassemble_all=args.disassemble_all
     )
 
     linker_entries = split.linker_writer.entries

@@ -248,6 +248,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "idle_script",
+        description="idle_script $in",
+        command=f"{sys.executable} tools/idle_script.py build $in $out",
+    )
+
+    ninja.rule(
         "as",
         description="as $in",
         command=f"bash -o pipefail -c '{CROSS_CPP} {COMMON_INCLUDES} $in -o - | iconv -f UTF-8 -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32 -o $out'",
@@ -558,6 +564,10 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             compressed = entry.object_path.with_suffix(".vpk0")
             build(compressed, entry.src_paths, "vpk0_compress")
             build(entry.object_path, [compressed], "bin")
+        elif seg.type == "snap_idle_script":
+            raw_bin = entry.object_path.with_suffix("")
+            build(raw_bin, entry.src_paths, "idle_script", implicit=["tools/idle_script.py"])
+            build(entry.object_path, [raw_bin], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":
@@ -667,7 +677,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     split.main(
-        [YAML_FILE], modes=["all"], verbose=False, disassemble_all=args.disassemble_all
+        [YAML_FILE], modes=["all"], verbose=False, use_cache=False,
+        disassemble_all=args.disassemble_all
     )
 
     linker_entries = split.linker_writer.entries

@@ -10466,8 +10466,8 @@ segments:
   - { start: 0xAAA610, type: vpk0, align: 16, name: unk_segment_AA18E0_vpk0 }
   - [0xAAA65B]
 
-  - [0xAAA660, bin, idle_script_beach]
-  - [0xAB1470, bin, idle_script_tunnel]
+  - [0xAAA660, snap_idle_script, idle_script_beach]
+  - [0xAB1470, snap_idle_script, idle_script_tunnel]
 
   - [0xAB5860, bin, fx/script/common]
   - [0xAB5980, snap_effect_sprites, fx/img/common, sprite1, sprite2]

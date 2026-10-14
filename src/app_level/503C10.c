@@ -18,8 +18,6 @@ s32 sPokemonLink = 0;
 s32 D_8038A47C_52A88C = 0;
 s32 D_8038A480_52A890 = 0; // unused
 
-// bss
-extern u8 padding_503C10[8];
 // .bss
 u8 D_803B0F60_551370[0x8];
 PokemonListEntry sPokemonListEntries[100];

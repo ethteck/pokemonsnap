@@ -4,7 +4,7 @@
 s32 BumpDetector_ProximityLevel = 0;
 s8 BumpDetector_IsEnabled = 0;
 f32 BumpDetector_Thresholds[4] = { 90.0f, 60.0f, 30.0f, 5.0f };
-// bss
+
 // .bss
 u8 D_803AE550_54B5D0[0x8];
 GObj* BumpDetector_Object;

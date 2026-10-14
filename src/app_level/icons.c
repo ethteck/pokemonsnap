@@ -77,7 +77,6 @@ SpriteDefStruct Icons_IconDefs[] = {
 };
 u8 Icons_IsZoomedIn = false;
 
-// bss
 // .bss
 u8 D_803AF8B0_54B5D0[0x8];
 s32 Icons_TotalMoveOutFrameCounter;

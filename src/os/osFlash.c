@@ -4,7 +4,6 @@
 /// Some functions here seem to be modified from libultra's osFlash.c.
 /// The ones that did match are included directly from ultralib.
 
-// BSS
 // .bss
 u32 __osFlashID[4];
 OSIoMesg __osFlashMsg;

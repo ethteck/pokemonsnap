@@ -5645,8 +5645,6 @@ segments:
     - { name: 503C10, type: .bss, vram: 0x803B0F60 }
     - { name: 5047F0, type: .bss, vram: 0x803B14D0 }
     - { name: msg, type: .bss, vram: 0x803B1560 }
-    #- { name: 503C10, type: bss, vram: 0x803B0F60 }
-    #- { name: bss_803B12C0, type: bss, vram: 0x803B12C0 }
   - type: code
     name: magikarp_model
     dir: pokemon_common

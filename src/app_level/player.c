@@ -147,7 +147,13 @@ s32 LevelBGMSongID = -1;
 extern s32 BumpDetector_ProximityLevel;
 extern Sprite D_80388E00_529210;
 
-// bss
+extern s32 gHasPokemonInFocus;
+extern GObj* gPokemonInFocus;
+extern s32 gPokemonIdInFocus;
+extern u16 gPokemonFlagsInFocus;
+extern s32 PokemonDetector_TakenPhotoIndex;
+extern u16 gCurrentPhotoContext;
+
 // .bss
 u8 D_803AB1C0_54B5D0[0xDE0];
 u8 D_803ABFA0_54C3B0[0x840];
@@ -195,13 +201,6 @@ s32 MainCameraBorderXmin;
 s32 MainCameraBorderYmin;
 s32 MainCameraBorderXmax;
 s32 MainCameraBorderYmax;
-
-extern s32 gHasPokemonInFocus;
-extern GObj* gPokemonInFocus;
-extern s32 gPokemonIdInFocus;
-extern u16 gPokemonFlagsInFocus;
-extern s32 PokemonDetector_TakenPhotoIndex;
-extern u16 gCurrentPhotoContext;
 
 void resetMainCameraSettings(void);
 void handleItemButtonsPress(GObj*);

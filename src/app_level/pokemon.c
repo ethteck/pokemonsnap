@@ -54,7 +54,6 @@ u8 getIsPaused(void);
 s32 func_8036381C_503C2C(void);
 s32 Pokemon_StepWalkInDirection(GObj* arg0, f32 arg1, u32 arg2);
 
-// bss
 // .bss
 u8 D_803B0A20_54B5D0[0x8];
 PokemonObjectListEntry D_803B0A28_550E38[40];

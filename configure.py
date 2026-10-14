@@ -32,13 +32,30 @@ OK_PATH = f"build/{BASENAME}.ok"
 COMMON_INCLUDES = "-I include -I src -I ultralib/include -I ultralib/include/ido -I ultralib/include/PR -I ultralib/src -I build/include -I build -I ."
 IDO_DEFS = "-DF3DEX_GBI_2 -D_LANGUAGE_C -DNDEBUG -D_FINALROM"
 
-CROSS = "mips-linux-gnu-"
+CROSS_PREFIXES = ["mips-linux-gnu-", "mips-elf-"]
+
+def find_cross() -> str:
+    """Pick the binutils prefix: $CROSS"""
+    cross = os.environ.get("CROSS")
+    if cross:
+        return cross
+    for prefix in CROSS_PREFIXES:
+        if shutil.which(f"{prefix}as"):
+            return prefix
+    return CROSS_PREFIXES[0]
+
+CROSS = find_cross()
 CROSS_AS = f"{CROSS}as"
-CROSS_CPP = shutil.which(f"{CROSS}cpp") or shutil.which("cpp") or f"{CROSS}cpp"
+CROSS_CPP = shutil.which(f"{CROSS}cpp")
+if CROSS_CPP is None:
+    if sys.platform == "darwin" and shutil.which("clang"):
+        CROSS_CPP = "clang -E -x assembler-with-cpp"
+    else:
+        CROSS_CPP = shutil.which("cpp") or f"{CROSS}cpp"
 CROSS_LD = f"{CROSS}ld"
 CROSS_STRIP = f"{CROSS}strip"
 CROSS_OBJCOPY = f"{CROSS}objcopy"
-AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300"
+AS_FLAGS = f"-G 0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32"
 
 IDO_72_CC = TOOLS_DIR / "ido7.1" / "cc"
 IDO_53_CC = TOOLS_DIR / "ido5.3" / "cc"
@@ -233,7 +250,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "as",
         description="as $in",
-        command=f"bash -o pipefail -c '{CROSS_CPP} {COMMON_INCLUDES} $in -o - | iconv -f UTF-8 -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -o $out'",
+        command=f"bash -o pipefail -c '{CROSS_CPP} {COMMON_INCLUDES} $in -o - | iconv -f UTF-8 -t EUC-JP | {CROSS_AS} -G0 {COMMON_INCLUDES} -EB -mtune=vr4300 -march=vr4300 -mabi=32 -o $out'",
     )
 
     ninja.rule(

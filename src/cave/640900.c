@@ -3,6 +3,7 @@
 #include "app_level/app_level.h"
 
 extern u32 D_802C6430_6488E0;
+
 // .bss
 u8 D_8033E140_6C05E0[0x8];
 u8 D_8033E148_6C05F8;

@@ -7,6 +7,7 @@ extern AnimCmd D_8011B3E0_4CD7B0;
 
 extern s32 D_8034B670_82ADE0;
 extern GObj* D_8034B674_82ADE4;
+
 // .bss
 u8 D_803501E0_82F8E0[0x8];
 u8 D_803501E8_82F958;

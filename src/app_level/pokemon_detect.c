@@ -33,7 +33,7 @@ extern Gfx PokemonDetector_GfxCopyTile[] = {
     gsDPSetColorImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, 0x0F000000),
     gsSPEndDisplayList(),
 };
-// bss
+
 // .bss
 u8 D_803AE560_54B5D0[0x8];
 s32 PokemonDetector_IsEnabled;

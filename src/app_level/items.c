@@ -38,7 +38,6 @@ extern Texture** D_800EDB90[];
 
 extern DObj* gPlayerDObj;
 
-// bss
 // .bss
 u8 D_803AEF60_54B5D0[0x8];
 ItemObjectListEntry Items_ListEntryArray[20];

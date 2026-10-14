@@ -32,7 +32,7 @@ extern u8 D_803936B8_533AC8[];
 extern u8 D_80393738_533B48[];
 extern s16 D_8039379C_533BAC[];
 extern u32 Msg_FrameCounter;
-// BSS
+
 // .bss
 u8 D_803B1560_551970[0x3840];
 u8 Msg_PrintedText[256];

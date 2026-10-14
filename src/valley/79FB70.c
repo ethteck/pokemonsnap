@@ -7,7 +7,6 @@ extern AnimCmd D_80121D30_418170[];
 extern bool D_802D2A80_7AC010;
 extern GObj* D_802D2A84_7AC014;
 
-// BSS
 // .bss
 u8 D_8034C8A0_825E30[0x18];
 u8 D_8034C8B8_825E48; // valley_intro_SoundHandle1;

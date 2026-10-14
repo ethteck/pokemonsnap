@@ -35,6 +35,7 @@ extern InteractionHandler D_802EC658_7C5BE8[];
 extern PokemonInitData D_802EC68C_7C5C1C;
 
 extern u8 D_8034C8C8_825E58;
+
 // .bss
 char D_8034E080_827610[32]; // player name
 SObj* D_8034E0A0_827630;

@@ -17,6 +17,7 @@ extern ScreenSettings D_800E80FC_A0F68C;
 extern Gfx D_800E8130_A0F6C0[];
 extern SceneSetup D_800E8188_A0F718;
 extern s32 D_800E8198_A0F728;
+
 // .bss
 u8 D_800E82A0_A0F830[0x4];
 GObj* D_800E82A4_A0F834;

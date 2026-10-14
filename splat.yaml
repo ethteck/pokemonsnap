@@ -30,7 +30,7 @@ segments:
     bss_size: 0x55250
     symbol_name_format: $VRAM
     subsegments:
-    - [0x1000, hasm, entry]
+    - [0x1000, hasm, ../src/entry/entry]
     - [0x1060, c, sys/main]
     - [0x1510, pad]
     - [0x1520, c, sys/sched]

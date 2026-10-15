@@ -14,94 +14,99 @@ void func_80348B34_8282A4(GObj*);
 void func_80348DD4_828544(GObj*);
 void func_80349084_8287F4(GObj*);
 
+extern UnkEC64Arg3 gate_model[];
+extern Texture** gate_materials[];
 
-extern u8 D_800F1D10_6F4C0[];
-extern u8 D_8012C9E0_4DEDB0[];
-extern u8 D_8012D700_4DFAD0[];
-extern u8 D_8012EFF0_4E13C0[];
-extern u8 D_8012FB60_4E1F30[];
-extern u8 D_80131D30_4E4100[];
-extern u8 D_80133040_4E5410[];
-extern u8 D_801358A0_4E7C70[];
-extern u8 D_801368F0_4E8CC0[];
-extern u8 D_801394D0_4EB8A0[];
-extern u8 D_801395A0_4EB970[];
-extern u8 D_80139690_4EBA60[];
-extern u8 D_80139770_4EBB40[];
-extern u8 D_80139840_4EBC10[];
-extern u8 D_80139900_4EBCD0[];
-extern u8 D_80139A00_4EBDD0[];
-extern u8 D_80139B00_4EBED0[];
+extern AnimCmd* gate_modelanim_closed[];
+extern AnimCmd* gate_modelanim_raise_bar[];
+extern AnimCmd* gate_modelanim_opening[];
+extern AnimCmd* gate_modelanim_opened[];
+
+extern AnimCmd** gate_matanim_closed[];
+extern AnimCmd** gate_matanim_raise_bar[];
+extern AnimCmd** gate_matanim_opening[];
+extern AnimCmd** gate_matanim_opened[];
+
+
+
 void func_80348970_8280E0(GObj*);
 void func_80348A04_828174(GObj*);
-extern u8 gate_matanim_closed[];
-extern u8 gate_matanim_opened[];
-extern u8 gate_matanim_opening[];
-extern u8 gate_matanim_raise_bar[];
-extern u8 gate_materials[];
-extern u8 gate_modelanim_closed[];
-extern u8 gate_modelanim_opened[];
-extern u8 gate_modelanim_opening[];
-extern u8 gate_modelanim_raise_bar[];
-extern PokemonAnimationSetup D_8034AF64_82A6D4;
-extern u32 D_8034AFC0_82A730;
-extern u32 D_8034AFC4_82A734;
-extern u32 D_8034AFC8_82A738[];
-extern u32 D_8034AFD0_82A740;
-extern u32 D_8034AFD4_82A744;
-extern u32 D_8034AFD8_82A748[];
 
 // .data
-AnimationHeader D_8034AED0_82A640 = { 1.0f, 100.0f, (AnimCmd**) &gate_modelanim_closed, (AnimCmd***) &gate_matanim_closed, NULL };
-AnimationHeader D_8034AEE4_82A654 = { 1.0f, 100.0f, (AnimCmd**) &gate_modelanim_raise_bar, (AnimCmd***) &gate_matanim_raise_bar, NULL };
-AnimationHeader D_8034AEF8_82A668 = { 1.0f, 100.0f, (AnimCmd**) &gate_modelanim_opening, (AnimCmd***) &gate_matanim_opening, NULL };
-AnimationHeader D_8034AF0C_82A67C = { 1.0f, 100.0f, (AnimCmd**) &gate_modelanim_opened, (AnimCmd***) &gate_matanim_opened, NULL };
-CollisionModel D_8034AF20_82A690 = { 0x3E9, (Collider*) &D_800EDF78_6B728, 1.0f };
+AnimationHeader D_8034AED0_82A640 = {
+    1,
+    100,
+    gate_modelanim_closed,
+    gate_matanim_closed,
+    NULL
+};
+
+AnimationHeader D_8034AEE4_82A654 = {
+    1,
+    100,
+    gate_modelanim_raise_bar,
+    gate_matanim_raise_bar,
+    NULL
+};
+
+AnimationHeader D_8034AEF8_82A668 = {
+    1,
+    100,
+    gate_modelanim_opening,
+    gate_matanim_opening,
+    NULL
+};
+
+AnimationHeader D_8034AF0C_82A67C = {
+    1,
+    100,
+    gate_modelanim_opened,
+    gate_matanim_opened,
+    NULL
+};
+
+CollisionModel D_8034AF20_82A690 = { PokemonID_GATE, D_800EDF78_6B728, 1.0 };
 GObj* D_8034AF2C_82A69C = NULL;
 s32 D_8034AF30_82A6A0 = -1;
 s32 D_8034AF34_82A6A4 = 0;
 s32 D_8034AF38_82A6A8 = 0;
 
-InteractionHandler D_8034AF3C_82A6AC[2] = {
-    { 16, (GObjFunc) func_80348A04_828174, 5000.0f, NULL },
-    { 58, NULL, 0.0f, NULL },
+InteractionHandler D_8034AF3C_82A6AC[] = {
+    { POKEMON_CMD_16, func_80348A04_828174, 5000, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
 };
 
-Unks16 D_8034AF5C_82A6CC = { { 151, 0x3E9, 0 } };
-PokemonAnimationSetup D_8034AF64_82A6D4 = { (AnimationHeader*) &D_8034AED0_82A640, (GObjFunc) func_80348970_8280E0, 0, "", NULL, NULL };
-PokemonInitData D_8034AF78_82A6E8 = { (UnkEC64Arg3*) &D_800F1D10_6F4C0, (Texture***) &gate_materials, (GObjFunc) renderModelTypeDFogged, (PokemonAnimationSetup*) &D_8034AF64_82A6D4, { 10.0f, 10.0f, 10.0f }, { 0.0f, 0.0f, 0.0f }, 0.01f, 0, 0, 0, 0, "" };
-PokemonDef D_8034AFAC_82A71C = { 0x3E9, (pokemonInit) func_80348FB8_828728, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne };
-u32 D_8034AFBC_82A72C = 0x00000000;
-u32 D_8034AFC0_82A730 = 0x0000015D;
-u32 D_8034AFC4_82A734 = 0x0000015F;
+Unks16 D_8034AF5C_82A6CC = { { PokemonID_MEW, PokemonID_GATE, 0 } };
 
-u32 D_8034AFC8_82A738[] = {
-    0x0000015E, 0x00000093,
+PokemonAnimationSetup D_8034AF64_82A6D4 = {
+    &D_8034AED0_82A640,
+    func_80348970_8280E0,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
 };
 
-u32 D_8034AFD0_82A740 = 0x0000015D;
-u32 D_8034AFD4_82A744 = 0x0000015F;
-
-u32 D_8034AFD8_82A748[] = {
-    0x00000160, 0x00000091, 0x3F000000, 0x428C0000,
-    (u32) &D_8012EFF0_4E13C0, (u32) &D_80139690_4EBA60, 0x00000000, 0x3F266666,
-    0x43070000, (u32) &D_801368F0_4E8CC0, (u32) &D_80139B00_4EBED0, (u32) &D_8034AFC0_82A730,
-    0x3F4CCCCD, 0x430C0000, (u32) &D_801358A0_4E7C70, (u32) &D_80139A00_4EBDD0,
-    (u32) &D_8034AFC4_82A734, 0x3F19999A, 0x42DC0000, (u32) &D_80133040_4E5410,
-    (u32) &D_80139900_4EBCD0, (u32) &D_8034AFC8_82A738, 0x3F000000, 0x42200000,
-    (u32) &D_8012C9E0_4DEDB0, (u32) &D_801394D0_4EB8A0, 0x00000000, 0x3F000000,
-    0x42A00000, (u32) &D_8012D700_4DFAD0, (u32) &D_801395A0_4EB970, (u32) &D_8034AFD0_82A740,
-    0x3F000000, 0x42B40000, (u32) &D_80131D30_4E4100, (u32) &D_80139840_4EBC10,
-    (u32) &D_8034AFD4_82A744, 0x3F400000, 0x43480000, (u32) &D_8012FB60_4E1F30,
-    (u32) &D_80139770_4EBB40, (u32) &D_8034AFD8_82A748,
+PokemonInitData D_8034AF78_82A6E8 = {
+    gate_model,
+    gate_materials,
+    renderModelTypeDFogged,
+    &D_8034AF64_82A6D4,
+    { 10, 10, 10 },
+    { 0, 0, 0 },
+    0.01,
+    0,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
 };
 
-u32 D_8034B080_82A7F0[] = {
-    0x00000000, 0x00000094,
-};
-
-u32 D_8034B088_82A7F8[] = {
-    0x00000000, 0x0000009B,
+PokemonDef D_8034AFAC_82A71C = {
+    PokemonID_GATE,
+    func_80348FB8_828728,
+    pokemonChangeBlock,
+    pokemonRemoveOne
 };
 
 POKEMON_FUNC(func_80348970_8280E0)

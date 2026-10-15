@@ -10,20 +10,19 @@ OSMesgQueue D_credits_801ECC68;
 
 void func_credits_801DC8C4(void);
 void func_credits_801DC9FC(void*);
-extern u32 D_credits_801DEBC0[];
-extern u32 D_credits_801DEBC8[];
 
 // .data
-ScreenSettings D_credits_801DEBA0 = { (void*) 0x803B5000, (void*) 0x803DA800, NULL, NULL, 320, 240, 0x16A99 };
+ScreenSettings D_credits_801DEBA0 = {
+    D_803B5000,    /* fb1 */
+    D_803DA800,    /* fb2 */
+    NULL,          /* fb3 */
+    NULL,          /* zbuffer */
+    SCREEN_WIDTH,  /* width*/
+    SCREEN_HEIGHT, /* height */
+    0x00016A99     /* flags*/
+};
 u32 D_credits_801DEBBC = 0x00000000;
-
-u32 D_credits_801DEBC0[] = {
-    0x64646400, 0x64646400,
-};
-
-u32 D_credits_801DEBC8[] = {
-    0xB4B4B400, 0xB4B4B400, 0x1E1E1E00, 0x00000000,
-};
+Lights1 D_credits_801DEBC0 = gdSPDefLights1(100, 100, 100, 180, 180, 180, 30, 30, 30);
 
 Gfx D_credits_801DEBD8[] = {
     gsDPPipeSync(),
@@ -33,13 +32,49 @@ Gfx D_credits_801DEBD8[] = {
     gsDPSetFogColor(0x00, 0x00, 0x00, 0xFF),
     gsSPSetGeometryMode(G_FOG),
     gsSPSetGeometryMode(G_LIGHTING),
-    gsSPNumLights(1),
-    gsSPLight(&D_credits_801DEBC8, 1),
-    gsSPLight(&D_credits_801DEBC0, 2),
+    gsSPSetLights1(D_credits_801DEBC0),
     gsSPEndDisplayList(),
 };
 
-SceneSetup D_credits_801DEC30 = { { 0, (void (*)(void)) omUpdateAll, (void (*)(void)) omDrawAll, (void*) &D_801ED020, 0, 1, 1, 0x8000, 0x2000, 0, 0, 0x1800, 0, 0, (void (*)(Gfx**)) func_800A1A50, (void (*)(void)) contUpdate }, 8, 0x2800, 32, 0, 8, 16, 92, 512, NULL, (void*) func_credits_801DC9FC, 0, 0, 0, 136, 96, 88, 2, 144, (void (*)(void)) func_credits_801DC8C4 };
+SceneSetup D_credits_801DEC30 = {
+    {
+        0,              /* unk_00*/
+        omUpdateAll,    /* fnUpdate */
+        omDrawAll,      /* fnDraw */
+        D_801ED020,     /* heapBase */
+        0,              /* heapSize */
+        1,              /* unk_14 */
+        1,              /* numContexts */
+        0x8000,         /* dlBufferSize0 */
+        0x2000,         /* dlBufferSize1 */
+        0x0000,         /* dlBufferSize2 */
+        0x0000,         /* dlBufferSize3 */
+        0x1800,         /* gfxHeapSize */
+        0,              /* unk30 */
+        0,              /* rdpOutputBufferSize */
+        func_800A1A50,  /* fnPreRender */
+        contUpdate      /* fnUpdateInput */
+    },
+    8,                     /* numOMThreads */
+    0x2800,                /* omThreadStackSize */
+    32,                    /* numOMStacks */
+    0,                     /* unk4C */
+    8,                     /* numOMProcesses */
+    16,                    /* numOMGobjs */
+    sizeof(GObj),          /* objectSize */
+    512,                   /* numOMMtx */
+    NULL,                  /* unk60 */
+    func_credits_801DC9FC, /* unk64 */
+    0,                     /* numOMAobjs */
+    0,                     /* numOMMobjs */
+    0,                     /* numOMDobjs */
+    sizeof(DObj),          /* omDobjSize */
+    96,                    /* numOMSobjs */
+    0x58,                  /* omSobjSize */
+    2,                     /* numOMCameras */
+    sizeof(OMCamera),      /* omCameraSize */
+    func_credits_801DC8C4  /* postInitFunc */
+};
 
 void func_credits_801DC8A0(Gfx** gfx) {
     gSPDisplayList((*gfx)++, &D_credits_801DEBD8);
@@ -97,7 +132,7 @@ void func_credits_801DCAF8(SObj* arg0) {
 
 s32 func_credits_801DCB24(s32 sceneId) {
     D_credits_801ECDA0 = sceneId;
-    D_credits_801DEC40 = (uintptr_t) &D_80369F80 - (uintptr_t) &D_801ED020;
+    D_credits_801DEC30.gtlSetup.heapSize = (uintptr_t) D_80369F80 - (uintptr_t) D_801ED020;
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     osCreateMesgQueue(&D_credits_801ECC68, D_credits_801ECC40, ARRAY_COUNT(D_credits_801ECC40));

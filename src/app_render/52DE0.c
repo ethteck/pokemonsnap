@@ -12,105 +12,13 @@ static OMCamera* D_800BE2C8;
 static bool D_800BE2CC;
 static GObj* D_800BE2D0;
 
-extern u32 D_800AECE0[];
-extern u32 D_800AEF80[];
-
 // .data
-Vtx D_800AEC70[] = {
-    { { { 0, 50, 50 }, 0, { 0, 0 }, { 0, 0, 127, 0 } } },
-    { { { 0, 50, -50 }, 0, { 0, 0 }, { 0, 0, 127, 0 } } },
-    { { { 0, -50, -50 }, 0, { 0, 0 }, { 0, 0, 127, 0 } } },
-    { { { 0, -50, 50 }, 0, { 0, 0 }, { 0, 0, 127, 0 } } },
-};
-
-Gfx D_800AECB0[] = {
-    gsDPSetCycleType(G_CYC_1CYCLE),
-    gsSPClearGeometryMode(G_LIGHTING),
-    gsDPSetCombineMode(G_CC_PRIMITIVE, G_CC_PRIMITIVE),
-    gsSPVertex(D_800AEC70, 4, 0),
-    gsSP2Triangles(3, 2, 1, 0, 0, 3, 1, 0),
-    gsSPEndDisplayList(),
-};
-
-u32 D_800AECE0[] = {
-    0x00000014, 0xFF9E0000, 0x00000000, 0x7F000000,
-    0x00000026, 0xFFA40000, 0x00000000, 0x7F000000,
-    0x00000038, 0xFFAD0000, 0x00000000, 0x7F000000,
-    0x00000047, 0xFFB90000, 0x00000000, 0x7F000000,
-    0x00000053, 0xFFC80000, 0x00000000, 0x7F000000,
-    0x0000005C, 0xFFDA0000, 0x00000000, 0x7F000000,
-    0x00000062, 0xFFEC0000, 0x00000000, 0x7F000000,
-    0x00000064, 0x00000000, 0x00000000, 0x7F000000,
-    0x00000062, 0x00140000, 0x00000000, 0x7F000000,
-    0x0000005C, 0x00260000, 0x00000000, 0x7F000000,
-    0x00000053, 0x00380000, 0x00000000, 0x7F000000,
-    0x00000047, 0x00470000, 0x00000000, 0x7F000000,
-    0x00000038, 0x00530000, 0x00000000, 0x7F000000,
-    0x00000026, 0x005C0000, 0x00000000, 0x7F000000,
-    0x00000014, 0x00620000, 0x00000000, 0x7F000000,
-    0x00000000, 0x00640000, 0x00000000, 0x7F000000,
-    0x0000FFEC, 0x00620000, 0x00000000, 0x7F000000,
-    0x0000FFDA, 0x005C0000, 0x00000000, 0x7F000000,
-    0x0000FFC8, 0x00530000, 0x00000000, 0x7F000000,
-    0x0000FFB9, 0x00470000, 0x00000000, 0x7F000000,
-    0x0000FFAD, 0x00380000, 0x00000000, 0x7F000000,
-    0x0000FFA4, 0x00260000, 0x00000000, 0x7F000000,
-    0x0000FF9E, 0x00140000, 0x00000000, 0x7F000000,
-    0x0000FF9C, 0x00000000, 0x00000000, 0x7F000000,
-    0x0000FFEC, 0xFF9E0000, 0x00000000, 0x7F000000,
-    0x0000FF9E, 0xFFEC0000, 0x00000000, 0x7F000000,
-    0x0000FFA4, 0xFFDA0000, 0x00000000, 0x7F000000,
-    0x0000FFDA, 0xFFA40000, 0x00000000, 0x7F000000,
-    0x0000FFAD, 0xFFC80000, 0x00000000, 0x7F000000,
-    0x00000000, 0xFF9C0000, 0x00000000, 0x7F000000,
-    0x0000FFC8, 0xFFAD0000, 0x00000000, 0x7F000000,
-    0x0000FFB9, 0xFFB90000, 0x00000000, 0x7F000000,
-};
-
-Gfx D_800AEEE0[] = {
-    gsDPSetCycleType(G_CYC_1CYCLE),
-    gsSPClearGeometryMode(G_LIGHTING),
-    gsDPSetCombineMode(G_CC_PRIMITIVE, G_CC_PRIMITIVE),
-    gsSPVertex(D_800AECE0, 32, 0),
-    gsSP2Triangles(31, 30, 29, 0, 28, 31, 29, 0),
-    gsSP2Triangles(30, 27, 29, 0, 26, 28, 29, 0),
-    gsSP2Triangles(25, 26, 29, 0, 27, 24, 29, 0),
-    gsSP2Triangles(23, 25, 29, 0, 22, 23, 29, 0),
-    gsSP2Triangles(21, 22, 29, 0, 20, 21, 29, 0),
-    gsSP2Triangles(19, 20, 29, 0, 18, 19, 29, 0),
-    gsSP2Triangles(17, 18, 29, 0, 16, 17, 29, 0),
-    gsSP2Triangles(15, 16, 29, 0, 14, 15, 29, 0),
-    gsSP2Triangles(13, 14, 29, 0, 12, 13, 29, 0),
-    gsSP2Triangles(11, 12, 29, 0, 10, 11, 29, 0),
-    gsSP2Triangles(9, 10, 29, 0, 8, 9, 29, 0),
-    gsSP2Triangles(7, 8, 29, 0, 6, 7, 29, 0),
-    gsSP2Triangles(5, 6, 29, 0, 4, 5, 29, 0),
-    gsSP2Triangles(3, 4, 29, 0, 2, 3, 29, 0),
-    gsSP2Triangles(1, 2, 29, 0, 0, 1, 29, 0),
-    gsSPEndDisplayList(),
-};
-
-u32 D_800AEF80[] = {
-    0x000000BE, 0x003E0000, 0x00000000, 0x7F000000,
-    0x00000000, 0x00C80000, 0x00000000, 0x7F000000,
-    0x00000076, 0xFF5E0000, 0x00000000, 0x7F000000,
-    0x00000049, 0xFFE80000, 0x00000000, 0x7F000000,
-    0x0000002D, 0x003E0000, 0x00000000, 0x7F000000,
-    0x0000FF42, 0x003E0000, 0x00000000, 0x7F000000,
-    0x0000FFD3, 0x003E0000, 0x00000000, 0x7F000000,
-    0x00000000, 0xFFB30000, 0x00000000, 0x7F000000,
-    0x0000FF8A, 0xFF5E0000, 0x00000000, 0x7F000000,
-    0x0000FFB7, 0xFFE80000, 0x00000000, 0x7F000000,
-};
-
-Gfx D_800AF020[] = {
-    gsSPVertex(D_800AEF80, 10, 0),
-    gsSP2Triangles(9, 8, 7, 0, 6, 9, 7, 0),
-    gsSP2Triangles(9, 6, 5, 0, 4, 6, 7, 0),
-    gsSP2Triangles(3, 4, 7, 0, 2, 3, 7, 0),
-    gsSP2Triangles(4, 1, 6, 0, 0, 4, 3, 0),
-    gsSPEndDisplayList(),
-};
+#include "assets/app_render/D_800AEC70.vtx.inc.c"
+#include "assets/app_render/D_800AECB0.gfx.inc.c"
+#include "assets/app_render/D_800AECE0.vtx.inc.c"
+#include "assets/app_render/D_800AEEE0.gfx.inc.c"
+#include "assets/app_render/D_800AEF80.vtx.inc.c"
+#include "assets/app_render/D_800AF020.gfx.inc.c"
 
 s32 D_800AF050 = 0;
 s32 D_800AF054 = 0; // r

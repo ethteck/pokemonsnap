@@ -15,22 +15,22 @@ s32 D_802308B8_A4E578;
 UIButton D_801EA210_A07ED0[7] = {
     { 2, NULL },
     { 3, NULL },
-    { 26, NULL },
-    { 20, NULL },
-    { 34, NULL },
+    { BUTTON_ARRANGE, NULL },
+    { BUTTON_ENLARGE, NULL },
+    { BUTTON_SPLITTER, NULL },
     { 4, NULL },
-    { 35, NULL },
+    { BUTTON_NONE, NULL },
 };
 
 UIButton D_801EA248_A07F08[8] = {
     { 2, NULL },
     { 3, NULL },
-    { 26, NULL },
-    { 20, NULL },
-    { 34, NULL },
-    { 32, NULL },
+    { BUTTON_ARRANGE, NULL },
+    { BUTTON_ENLARGE, NULL },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_MAX, NULL },
     { 4, NULL },
-    { 35, NULL },
+    { BUTTON_NONE, NULL },
 };
 
 s32 D_801EA288_A07F48 = 0;

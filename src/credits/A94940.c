@@ -426,7 +426,7 @@ void func_credits_801DE7B4(s32 arg0) {
 void func_credits_801DE844(GObj* arg0) {
     func_credits_801DE7B4(D_credits_801ECDA0);
     func_credits_801DDD80();
-    func_credits_801DDAE8(D_credits_801ECDA3);
+    func_credits_801DDAE8(D_credits_801ECDA0);
     func_credits_801DDC70();
     func_credits_801DE734(arg0);
     func_800067DC();

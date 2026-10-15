@@ -7765,7 +7765,6 @@ D_credits_801ECC9C = 0x801ECC9C; // segment:credits
 D_credits_801ECCA0 = 0x801ECCA0; // segment:credits
 D_credits_801ECCB0 = 0x801ECCB0; // segment:credits
 D_credits_801ECDA0 = 0x801ECDA0; // segment:credits
-D_credits_801ECDA3 = 0x801ECDA3; // segment:credits
 D_credits_801ECDA4 = 0x801ECDA4; // segment:credits
 D_credits_801ECDA8 = 0x801ECDA8; // segment:credits
 D_credits_801ECDB0 = 0x801ECDB0; // segment:credits

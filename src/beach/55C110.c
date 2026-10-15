@@ -8,77 +8,213 @@
 #include "app_render/effect.h"
 
 void beachSpawnMagikarpAtGObj(GObj*);
-extern u8 butterfree_hd_vtx[];
-void func_8035E0D4_4FE4E4();
+GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 void func_beach_802C45C0(void);
 void func_beach_802C4738(s32);
-void func_beach_802C5C28();
-void func_beach_802C71E8();
-void func_beach_802C7270();
-void func_beach_802C7AD0();
-void func_beach_802C7E38();
-void func_beach_802C8274();
-void func_beach_802C8570();
-void func_beach_802C8D3C();
-void func_beach_802C91CC();
-void func_beach_802C9A7C();
-void func_beach_802CA05C();
-void func_beach_802CA2BC();
-void func_beach_802CA418();
-void func_beach_802CAB14();
-void func_beach_802CAC48();
-void func_beach_802CBCA8();
+void func_beach_802C5C28(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C71E8(GObj*, f32, f32, f32, f32, f32, f32);
+void func_beach_802C7270(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C7AD0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C7E38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C8274(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C8570(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C8D3C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C91CC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C9A7C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CA05C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CA2BC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CA418(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CAB14(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CAC48(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802CBCA8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 
 // .data
-EnvSoundData D_beach_802CBE10 = { 253, 1, 7 };
-
-u32 D_beach_802CBE14[] = {
-    0x01560108, 0x01570108, 0x01580108, 0x00750008,
-    0x008E0008, 0x008F0006, 0x00FE0108, 0x00FF0108,
-    0x006E0008, 0x0104010A, 0x0105010A, 0x0106010A,
-    0x0069000A, 0x0068000A, 0x0125010A, 0x0126010A,
-    0x0127010A, 0x0163010A, 0x0128010A, 0x0129010A,
-    0x007D0007, 0x00D20108, 0x00D30108, 0x01780008,
-    0x00720008, 0x017F0228, 0x00FB010A, 0x00FC010A,
-    0x016E000A, 0x0079000A, 0x007A000A, 0x012A0109,
-    0x012B0109, 0x012C0109, 0x012D0109, 0x012E0109,
-    0x01070108, 0x0108010A, 0x01090108, 0x010A0108,
-    0x010B0208, 0x010C0208, 0x01730008, 0x007F000A,
-    0x0168000A, 0x01000108, 0x01010107, 0x007C0007,
-    0x0034010F, 0x0130010A, 0x016B000A, 0x0184000A,
+EnvSoundData D_beach_802CBE10[] = {
+    { SOUND_ID_253, PITCH_MOD_1, 7 },
+    { SOUND_ID_342, PITCH_MOD_1, 8 },
+    { SOUND_ID_343, PITCH_MOD_1, 8 },
+    { SOUND_ID_344, PITCH_MOD_1, 8 },
+    { SOUND_ID_117, PITCH_MOD_0, 8 },
+    { SOUND_ID_142, PITCH_MOD_0, 8 },
+    { SOUND_ID_143, PITCH_MOD_0, 6 },
+    { SOUND_ID_254, PITCH_MOD_1, 8 },
+    { SOUND_ID_255, PITCH_MOD_1, 8 },
+    { SOUND_ID_110, PITCH_MOD_0, 8 },
+    { SOUND_ID_260, PITCH_MOD_1, 10 },
+    { SOUND_ID_261, PITCH_MOD_1, 10 },
+    { SOUND_ID_262, PITCH_MOD_1, 10 },
+    { SOUND_ID_105, PITCH_MOD_0, 10 },
+    { SOUND_ID_104, PITCH_MOD_0, 10 },
+    { SOUND_ID_293, PITCH_MOD_1, 10 },
+    { SOUND_ID_294, PITCH_MOD_1, 10 },
+    { SOUND_ID_295, PITCH_MOD_1, 10 },
+    { SOUND_ID_355, PITCH_MOD_1, 10 },
+    { SOUND_ID_296, PITCH_MOD_1, 10 },
+    { SOUND_ID_297, PITCH_MOD_1, 10 },
+    { SOUND_ID_125, PITCH_MOD_0, 7 },
+    { SOUND_ID_210, PITCH_MOD_1, 8 },
+    { SOUND_ID_211, PITCH_MOD_1, 8 },
+    { SOUND_ID_376, PITCH_MOD_0, 8 },
+    { SOUND_ID_114, PITCH_MOD_0, 8 },
+    { SOUND_ID_383, PITCH_MOD_2, 40 },
+    { SOUND_ID_251, PITCH_MOD_1, 10 },
+    { SOUND_ID_252, PITCH_MOD_1, 10 },
+    { SOUND_ID_366, PITCH_MOD_0, 10 },
+    { SOUND_ID_121, PITCH_MOD_0, 10 },
+    { SOUND_ID_122, PITCH_MOD_0, 10 },
+    { SOUND_ID_298, PITCH_MOD_1, 9 },
+    { SOUND_ID_299, PITCH_MOD_1, 9 },
+    { SOUND_ID_300, PITCH_MOD_1, 9 },
+    { SOUND_ID_301, PITCH_MOD_1, 9 },
+    { SOUND_ID_302, PITCH_MOD_1, 9 },
+    { SOUND_ID_263, PITCH_MOD_1, 8 },
+    { SOUND_ID_264, PITCH_MOD_1, 10 },
+    { SOUND_ID_265, PITCH_MOD_1, 8 },
+    { SOUND_ID_266, PITCH_MOD_1, 8 },
+    { SOUND_ID_267, PITCH_MOD_2, 8 },
+    { SOUND_ID_268, PITCH_MOD_2, 8 },
+    { SOUND_ID_371, PITCH_MOD_0, 8 },
+    { SOUND_ID_127, PITCH_MOD_0, 10 },
+    { SOUND_ID_360, PITCH_MOD_0, 10 },
+    { SOUND_ID_256, PITCH_MOD_1, 8 },
+    { SOUND_ID_257, PITCH_MOD_1, 7 },
+    { SOUND_ID_124, PITCH_MOD_0, 7 },
+    { SOUND_ID_52, PITCH_MOD_1, 15 },
+    { SOUND_ID_304, PITCH_MOD_1, 10 },
+    { SOUND_ID_363, PITCH_MOD_0, 10 },
+    { SOUND_ID_388, PITCH_MOD_0, 10 },
 };
 
-PokemonDef beachPokemonData[17] = {
-    { 12, (pokemonInit) func_beach_802C7E38, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 84, (pokemonInit) func_beach_802C8570, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 133, (pokemonInit) func_beach_802C7AD0, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) Pokemon_ChangeBlockAndRemove, NULL },
-    { 115, (pokemonInit) func_beach_802CA05C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
-    { 143, (pokemonInit) func_beach_802C5C28, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
-    { 131, (pokemonInit) func_beach_802C8274, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 113, (pokemonInit) func_beach_802C9A7C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
-    { 52, (pokemonInit) func_beach_802C7270, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) func_beach_802C71E8, (void (*)(GObj*)) pokemonRemoveOne },
-    { 16, (pokemonInit) func_beach_802C8D3C, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 123, (pokemonInit) func_beach_802C91CC, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 129, (pokemonInit) func_beach_802CAC48, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
-    { 25, (pokemonInit) func_beach_802CBCA8, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne },
-    { 0x3EB, (pokemonInit) func_8035E0D4_4FE4E4, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 0x3EC, (pokemonInit) func_beach_802CA418, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 0x3ED, (pokemonInit) func_beach_802CA2BC, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 0x3E9, (pokemonInit) func_beach_802CAB14, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne },
-    { 0, NULL, NULL, NULL },
+PokemonDef beachPokemonData[] = {
+    { PokemonID_BUTTERFREE,
+      (pokemonInit) func_beach_802C7E38,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_DODUO,
+      (pokemonInit) func_beach_802C8570,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_EEVEE,
+      (pokemonInit) func_beach_802C7AD0,
+      Pokemon_ChangeBlockAndRemove,
+      NULL },
+    { PokemonID_KANGASKHAN,
+      (pokemonInit) func_beach_802CA05C,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { PokemonID_SNORLAX,
+      (pokemonInit) func_beach_802C5C28,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { PokemonID_LAPRAS,
+      (pokemonInit) func_beach_802C8274,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_CHANSEY,
+      (pokemonInit) func_beach_802C9A7C,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { PokemonID_MEOWTH,
+      (pokemonInit) func_beach_802C7270,
+      func_beach_802C71E8,
+      pokemonRemoveOne },
+    { PokemonID_PIDGEY,
+      (pokemonInit) func_beach_802C8D3C,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_SCYTHER,
+      (pokemonInit) func_beach_802C91CC,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_MAGIKARP,
+      (pokemonInit) func_beach_802CAC48,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { PokemonID_PIKACHU,
+      (pokemonInit) func_beach_802CBCA8,
+      pokemonChangeBlockOnGround,
+      pokemonRemoveOne },
+    { PokemonID_1003,
+      func_8035E0D4_4FE4E4,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_1004,
+      (pokemonInit) func_beach_802CA418,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_1005,
+      (pokemonInit) func_beach_802CA2BC,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { PokemonID_GATE,
+      (pokemonInit) func_beach_802CAB14,
+      pokemonChangeBlock,
+      pokemonRemoveOne },
+    { 0, NULL, NULL, NULL }
 };
 
-PokemonDef D_beach_802CBFF4 = { 129, (pokemonInit) func_beach_802CAC48, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlockOnGround, (void (*)(GObj*)) pokemonRemoveOne };
+PokemonDef D_beach_802CBFF4 = {
+    PokemonID_MAGIKARP,
+    (pokemonInit) func_beach_802CAC48,
+    pokemonChangeBlockOnGround,
+    pokemonRemoveOne
+};
 
 RandomState2 D_beach_802CC004[2] = {
-    { 3, (GObjFunc) beachSpawnMagikarpAtGObj },
-    { 7, NULL },
+    { 3, beachSpawnMagikarpAtGObj },
+    { 7, NULL }
 };
 
 u16 D_beach_802CC014 = 0;
 s32 D_beach_802CC018 = 0;
-ScreenSettings D_beach_802CC01C = { (void*) 0x803B5000, (void*) 0x803DA800, NULL, NULL, 320, 240, 0xA99 };
-SceneSetup D_beach_802CC038 = { { 0, (void (*)(void)) omUpdateAll, (void (*)(void)) omDrawAll, (void*) &butterfree_hd_vtx, 0, 1, 2, 0x5000, 0xC00, 0x400, 0, 0xC800, 2, 0x4000, (void (*)(Gfx**)) func_800A1A50, (void (*)(void)) contUpdate }, 0, 0x440, 0, 0, 0, 0, 92, 0, NULL, (void*) func_beach_802C4738, 0, 0, 0, 136, 0, 88, 0, 144, (void (*)(void)) func_beach_802C45C0 };
+ScreenSettings D_beach_802CC01C = {
+    D_803B5000,    /* fb1 */
+    D_803DA800,    /* fb2 */
+    NULL,          /* fb3 */
+    NULL,          /* zbuffer */
+    SCREEN_WIDTH,  /* width*/
+    SCREEN_HEIGHT, /* height */
+    0x00000A99     /* flags*/
+};
+SceneSetup D_beach_802CC038 = {
+    {
+        0,                     /* unk_00*/
+        omUpdateAll,           /* fnUpdate */
+        omDrawAll,             /* fnDraw */
+        beach_assets_VRAM_END, /* heapBase */
+        0,                     /* heapSize */
+        1,                     /* unk_14 */
+        2,                     /* numContexts */
+        0x5000,                /* dlBufferSize0 */
+        0x0C00,                /* dlBufferSize1 */
+        0x0400,                /* dlBufferSize2 */
+        0x0000,                /* dlBufferSize3 */
+        0xC800,                /* gfxHeapSize */
+        2,                     /* unk30 */
+        0x4000,                /* rdpOutputBufferSize */
+        func_800A1A50,         /* fnPreRender */
+        contUpdate             /* fnUpdateInput */
+    },
+    0,                   /* numOMThreads */
+    1088,                /* omThreadStackSize */
+    0,                   /* numOMStacks */
+    0,                   /* unk4C */
+    0,                   /* numOMProcesses */
+    0,                   /* numOMGobjs */
+    sizeof(GObj),        /* objectSize */
+    0,                   /* numOMMtx */
+    0,                   /* unk60 */
+    func_beach_802C4738, /* unk64 */
+    0,                   /* numOMAobjs */
+    0,                   /* numOMMobjs */
+    0,                   /* numOMDobjs */
+    sizeof(DObj),        /* omDobjSize */
+    0,                   /* numOMSobjs */
+    0x58,                /* omSobjSize */
+    0,                   /* numOMCameras */
+    sizeof(OMCamera),    /* omCameraSize */
+    func_beach_802C45C0  /* postInitFunc */
+};
 
 void beachSpawnMagikarpAtGObj(GObj* obj) {
     DObj* a0;
@@ -232,7 +368,7 @@ void func_beach_802C45C0(void) {
 
     setEndLevelCallback(func_beach_802C43CC);
     setPauseCallback(func_beach_802C4438);
-    EnvSound_Init(&D_beach_802CBE10, 0x35);
+    EnvSound_Init(D_beach_802CBE10, ARRAY_COUNT(D_beach_802CBE10));
     func_beach_802C44D4();
     PokemonDetector_Create();
     PokemonDetector_Enable();

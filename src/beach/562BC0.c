@@ -1,43 +1,77 @@
 #include "common.h"
 #include "beach.h"
 
-extern u8 D_800FD080_7A4A0[];
-extern u8 D_beach_802CDA60[];
-extern u8 D_beach_802CDA6C[];
-extern u8 D_beach_802CDA8C[];
+extern AnimCmd* D_800FAE40_78260[];
+extern AnimCmd* D_800FBF50_79370[];
+extern AnimCmd* D_800FDC70_7B090[];
+extern AnimCmd* D_800FD080_7A4A0[];
+extern UnkEC64Arg3 magikarp_model[];
 void func_beach_802CAB50(GObj*);
-extern PokemonAnimationSetup D_beach_802CDAD8;
 
 // .data
-u32 D_beach_802CDAB0 = (u32) &D_beach_802CDA60;
-AnimationHeader D_beach_802CDAB4 = { 0.5f, 50.0f, (AnimCmd**) &D_800FD080_7A4A0, NULL, (s32*) &D_beach_802CDA6C };
+s32 D_beach_802CDA50[] = { SOUND_ID_211 };
+s32 D_beach_802CDA54[] = { SOUND_ID_210, SOUND_ID_376, SOUND_ID_114 };
+s32 D_beach_802CDA60[] = { SOUND_ID_211, SOUND_ID_376, SOUND_ID_114 };
+s32 D_beach_802CDA6C[] = { 0, SOUND_ID_376, SOUND_ID_114 };
 
-u32 D_beach_802CDAC8[] = {
-    0x0000003A, 0x00000000, 0x00000000, 0x00000000,
+AnimationHeader D_beach_802CDA78 = {
+    0.5,
+    60,
+    D_800FDC70_7B090,
+    NULL,
+    D_beach_802CDA50
 };
 
-PokemonAnimationSetup D_beach_802CDAD8 = { (AnimationHeader*) &D_beach_802CDA8C, (GObjFunc) func_beach_802CAB50, 0, "", NULL, NULL };
-PokemonInitData D_beach_802CDAEC = { (UnkEC64Arg3*) ((u8*) &D_beach_802CE0DC + 0x81DDC), NULL, (GObjFunc) renderPokemonModelTypeBFogged, (PokemonAnimationSetup*) &D_beach_802CDAD8, { 1.6f, 1.6f, 1.6f }, { 0.0f, -40.0f, -11.0f }, 35.0f, 37, 0, 0, 0, "" };
-u32 D_beach_802CDB20 = 0x0000010A;
-
-u32 D_beach_802CDB24[] = {
-    0x00000108, 0x0000007F, 0x00000168,
+AnimationHeader D_beach_802CDA8C = {
+    0.5,
+    65,
+    D_800FAE40_78260,
+    NULL,
+    D_beach_802CDA54
 };
 
-u32 D_beach_802CDB30 = 0x00000107;
-
-u32 D_beach_802CDB34[] = {
-    0x00000109, 0x00000173,
+AnimationHeader D_beach_802CDAA0 = {
+    0.5,
+    59,
+    D_800FBF50_79370,
+    NULL,
+    D_beach_802CDA60
 };
 
-u32 D_beach_802CDB3C[] = {
-    0x0000010B, 0x0000010C,
+AnimationHeader D_beach_802CDAB4 = {
+    0.5,
+    50,
+    D_800FD080_7A4A0,
+    NULL,
+    D_beach_802CDA6C
 };
 
-u32 D_beach_802CDB44 = 0x00000162;
+InteractionHandler D_beach_802CDAC8[] = {
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
 
-u32 D_beach_802CDB48[] = {
-    0x00000000, 0x0000008A,
+PokemonAnimationSetup D_beach_802CDAD8 = {
+    &D_beach_802CDA8C,
+    func_beach_802CAB50,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_beach_802CDAEC = {
+    magikarp_model,
+    NULL,
+    renderPokemonModelTypeBFogged,
+    &D_beach_802CDAD8,
+    { 1.6, 1.6, 1.6 },
+    { 0, -40, -11 },
+    35,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
 };
 
 void func_beach_802CAB50(GObj* obj) {

@@ -14,15 +14,6 @@ u8 D_beach_80347590[0xC0];
 s32 D_beach_802CC0E0 = 0;
 GObj* D_beach_802CC0E4 = NULL;
 
-u32 D_beach_802CC0E8[] = {
-    0x00000000, 0x00000000,
-};
-
-u32 D_beach_802CC0F0 = 0x00000126;
-u32 D_beach_802CC0F4 = 0x00000125;
-u32 D_beach_802CC0F8 = 0x00000127;
-u32 D_beach_802CC0FC = 0x00000163;
-
 POKEMON_FUNC(func_beach_802C5150)
     func_803571C4_4F75D4();
     func_80357120_4F7530(obj);

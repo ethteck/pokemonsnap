@@ -1,48 +1,78 @@
 #include "common.h"
 #include "beach.h"
 
-extern u8 D_80138C50_C50E0[];
-extern u8 D_beach_802CD7E0[];
-void func_beach_802C8D74();
-void func_beach_802C9204();
+void func_beach_802C8D74(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
+void func_beach_802C9204(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 void func_beach_802CA148(GObj*);
 void func_beach_802CA198(GObj*);
 void func_beach_802CA1BC(GObj*);
 void func_beach_802CA23C(GObj*);
-extern PokemonAnimationSetup D_beach_802CD8D0;
 
 // .data
-u32 D_beach_802CD830[] = {
-    0x00000000, 0x00000000,
+UnkEC64Arg3 D_beach_802CD7E0[] = {
+    { 0,
+      NULL,
+      { 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0 },
+      { 1.0, 1.0, 1.0 } },
+    { 18,
+      NULL,
+      { 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0 } },
 };
 
-PokemonDef D_beach_802CD838 = { 16, (pokemonInit) func_beach_802C8D74, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne };
-PokemonDef D_beach_802CD848 = { 123, (pokemonInit) func_beach_802C9204, (void (*)(GObj*, f32, f32, f32, f32, f32, f32)) pokemonChangeBlock, (void (*)(GObj*)) pokemonRemoveOne };
-
-InteractionHandler D_beach_802CD858[6] = {
-    { 9, (GObjFunc) func_beach_802CA198, 0.0f, NULL },
-    { 13, (GObjFunc) func_beach_802CA198, 0.0f, NULL },
-    { 10, (GObjFunc) func_beach_802CA198, 0.0f, NULL },
-    { 14, (GObjFunc) func_beach_802CA198, 0.0f, NULL },
-    { 16, (GObjFunc) func_beach_802CA198, 1000.0f, NULL },
-    { 58, NULL, 0.0f, NULL },
+PokemonDef D_beach_802CD838 = {
+    PokemonID_PIDGEY,
+    (pokemonInit) func_beach_802C8D74,
+    pokemonChangeBlock,
+    pokemonRemoveOne
 };
 
-RandomState D_beach_802CD8B8[3] = {
-    { 70, (GObjFunc) func_beach_802CA1BC },
-    { 30, (GObjFunc) func_beach_802CA23C },
+PokemonDef D_beach_802CD848 = {
+    PokemonID_SCYTHER,
+    (pokemonInit) func_beach_802C9204,
+    pokemonChangeBlock,
+    pokemonRemoveOne
+};
+
+InteractionHandler D_beach_802CD858[] = {
+    { POKEMON_CMD_9, func_beach_802CA198, 0, NULL },
+    { POKEMON_CMD_13, func_beach_802CA198, 0, NULL },
+    { POKEMON_CMD_10, func_beach_802CA198, 0, NULL },
+    { POKEMON_CMD_14, func_beach_802CA198, 0, NULL },
+    { POKEMON_CMD_16, func_beach_802CA198, 1000, NULL },
+    { POKEMON_CMD_58, NULL, 0, NULL },
+};
+
+RandomState D_beach_802CD8B8[] = {
+    { 70, func_beach_802CA1BC },
+    { 30, func_beach_802CA23C },
     { 0, NULL },
 };
 
-PokemonAnimationSetup D_beach_802CD8D0 = { NULL, (GObjFunc) func_beach_802CA148, 0, "", NULL, NULL };
-PokemonInitData D_beach_802CD8E4 = { (UnkEC64Arg3*) &D_beach_802CD7E0, NULL, (GObjFunc) renRenderModelTypeB, (PokemonAnimationSetup*) &D_beach_802CD8D0, { 2.0f, 2.0f, 2.0f }, { 0.0f, 17.0f, -2.0f }, 17.0f, 1, 0, 0, 0, "" };
-
-u32 D_beach_802CD918[] = {
-    0x00000000, 0x00000000,
+PokemonAnimationSetup D_beach_802CD8D0 = {
+    NULL,
+    func_beach_802CA148,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
 };
 
-u32 D_beach_802CD920[] = {
-    0x00000000, 0x42C80000, (u32) &D_80138C50_C50E0, 0x00000000,
+PokemonInitData D_beach_802CD8E4 = {
+    D_beach_802CD7E0,
+    NULL,
+    renRenderModelTypeB,
+    &D_beach_802CD8D0,
+    { 2, 2, 2 },
+    { 0, 17, -2 },
+    17,
+    POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
 };
 
 void func_beach_802CA0A0(GObj* obj) {

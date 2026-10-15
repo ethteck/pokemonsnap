@@ -13,7 +13,6 @@ typedef struct Credit {
 extern ScreenSettings D_credits_801DEBA0;
 extern Gfx D_credits_801DEBD8[];
 extern SceneSetup D_credits_801DEC30;
-extern s32 D_credits_801DEC40;
 extern Sprite D_credits_801E6058;
 extern Sprite D_credits_801E6430;
 extern Sprite D_credits_801E67D8;
@@ -28,7 +27,6 @@ extern GObj* D_credits_801ECC98[2];
 extern GObj* D_credits_801ECCA0;
 extern Credit D_credits_801ECCB0[];
 extern s32 D_credits_801ECDA0; // scene id
-extern u8 D_credits_801ECDA3;
 extern u8 D_credits_801ECDA4;
 extern s32 D_credits_801ECDA8;
 extern s32 D_credits_801ECDB0[];

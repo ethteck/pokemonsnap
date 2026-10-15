@@ -1,9 +1,11 @@
 # pokemonsnap
 
+[![US Data]](https://decomp.dev/ethteck/pokemonsnap/us)
 [![US Bytes]](https://decomp.dev/ethteck/pokemonsnap/us)
 [![US Functions]](https://decomp.dev/ethteck/pokemonsnap/us)
 
-[US Bytes]: https://decomp.dev/ethteck/pokemonsnap/us.svg?mode=shield&label=US+Bytes&measure=matched_data_percent
+[US Data]: https://decomp.dev/ethteck/pokemonsnap/us.svg?mode=shield&label=US+Bytes&measure=matched_data_percent
+[US Bytes]: https://decomp.dev/ethteck/pokemonsnap/us.svg?mode=shield&label=US+Bytes&measure=matched_code_percent
 [US Functions]: https://decomp.dev/ethteck/pokemonsnap/us.svg?mode=shield&label=US+Functions&measure=matched_functions_percent
 
 A WIP decomp of Pokemon Snap.

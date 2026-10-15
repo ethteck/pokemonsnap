@@ -9,6 +9,16 @@
 #include "world/world.h"
 #include "effect.h"
 
+// .bss
+static s32 padding[2];
+PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
+PhotoData* D_800BDF18;
+u8 D_800BDF1C;
+u8 D_800BDF1D;
+u8 D_800BDF1E;
+s32 D_800BDF20[3];
+ucolor D_800BDF2C;
+
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
 
@@ -1632,14 +1642,6 @@ s8 D_800AE4E4[156] = {
     58, 59, 60, -1, 61, -1, 62, 0, 0, 0, 0, 0,
 };
 
-static s32 padding[2];
-PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-PhotoData* D_800BDF18;
-u8 D_800BDF1C;
-u8 D_800BDF1D;
-u8 D_800BDF1E;
-s32 D_800BDF20[3];
-ucolor D_800BDF2C;
 
 extern GObj* photo_PokemonObjs[];
 extern s32 photo_PokemonCount;

@@ -1,16 +1,14 @@
 #include "common.h"
 
-// data?
+// .data
+s32* prev_bmbuf = NULL;
+u16 sp_attr = 0;
 
 // .bss
 s32 scissor_xmax;
 s32 scissor_ymax;
 s32 scissor_xmin;
 s32 scissor_ymin;
-
-// .data
-s32* prev_bmbuf = NULL;
-u16 sp_attr = 0;
 
 void spSetZ(Sprite* sp, s32 z) {
     sp->zdepth = z;

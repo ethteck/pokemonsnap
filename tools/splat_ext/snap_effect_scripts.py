@@ -1,10 +1,11 @@
-"""Splat extraction of native EffectScript banks into semantic JSON sources."""
+"""Splat extraction of native EffectScript banks into semantic YAML sources."""
 
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
+
+import yaml
 
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
@@ -19,7 +20,7 @@ from effect_scripts import decode
 
 class N64SegSnap_effect_scripts(CommonSegBin):
     def out_path(self) -> Path:
-        return options.opts.asset_path / self.dir / f"{self.name}.json"
+        return options.opts.asset_path / self.dir / f"{self.name}.yaml"
 
     def split(self, rom_bytes: bytes) -> None:
         if not isinstance(self.rom_start, int) or not isinstance(self.rom_end, int):
@@ -27,14 +28,14 @@ class N64SegSnap_effect_scripts(CommonSegBin):
         source = decode(rom_bytes[self.rom_start:self.rom_end])
         path = self.out_path()
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(source, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+        path.write_text(yaml.safe_dump(source, sort_keys=False), encoding="utf-8")
         self.log(f"Wrote semantic effect scripts to {path}")
 
     def get_linker_entries(self) -> list[LinkerEntry]:
         if not self.has_linker_entry:
             return []
-        # Retain the former bin segment's object path; JSON is now its only
-        # input. The build must encode JSON before the generic CommonSegBin arm.
+        # Retain the former bin segment's object path; YAML is now its only
+        # input. The build must encode YAML before the generic CommonSegBin arm.
         return [
             LinkerEntry(
                 self,

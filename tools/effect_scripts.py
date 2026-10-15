@@ -19,23 +19,24 @@ compact would suffice. begin_loop count is the serialized u8 (zero wraps to
 set_return records the next instruction; restart jumps to that saved position
 (initially bytecode offset zero), independently of the counted-loop position.
 
-Finite float32 values are JSON numbers (including -0.0). Infinity is represented
+Finite float32 values are YAML numbers (including -0.0). Infinity is represented
 as {infinity: 1|-1}; NaNs use {nan: {negative: bool, fraction: 1..0x7fffff}},
 preserving the IEEE-754 sign and quiet/signaling payload without float conversion.
 The interpreter ignores reserved opcodes E0..F9; reserved_noop explicitly names
 that behavior and its one-byte reserved_opcode. There is no raw-command escape.
 
-Usage: effect_scripts.py extract INPUT OUTPUT_JSON
-       effect_scripts.py build INPUT_JSON OUTPUT_BIN
+Usage: effect_scripts.py extract INPUT OUTPUT_YAML
+       effect_scripts.py build INPUT_YAML OUTPUT_BIN
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import math
 import struct
 from pathlib import Path
+
+import yaml
 
 FORMAT = "snap_effect_scripts"
 VERSION = 1
@@ -419,7 +420,7 @@ def encode(spec: dict) -> bytes:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
-    for name, help_text in (("extract", "Decode a bank into editable JSON"), ("build", "Encode JSON into a native bank")):
+    for name, help_text in (("extract", "Decode a bank into editable YAML"), ("build", "Encode YAML into a native bank")):
         command = commands.add_parser(name, help=help_text)
         command.add_argument("input", type=Path)
         command.add_argument("output", type=Path)
@@ -427,15 +428,15 @@ def main() -> None:
     try:
         if args.command == "extract":
             spec = decode(args.input.read_bytes())
-            content = json.dumps(spec, indent=2, allow_nan=False) + "\n"
+            content = yaml.safe_dump(spec, sort_keys=False)
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(content, encoding="utf-8")
         else:
-            spec = json.loads(args.input.read_text(encoding="utf-8"))
+            spec = yaml.safe_load(args.input.read_text(encoding="utf-8"))
             data = encode(spec)
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_bytes(data)
-    except (OSError, ValueError, KeyError, TypeError, OverflowError, struct.error) as error:
+    except (OSError, ValueError, KeyError, TypeError, OverflowError, struct.error, yaml.YAMLError) as error:
         parser.exit(1, f"{args.command}: {error}\n")
 
 

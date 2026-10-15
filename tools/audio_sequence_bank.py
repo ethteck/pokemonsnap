@@ -1,8 +1,10 @@
-"""Extract and rebuild the complete Snap ALSeqFile region, with indexed MIDI overrides."""
+"""Rebuild the complete Snap ALSeqFile region from YAML, with indexed MIDI overrides."""
 import argparse
 import json
 import struct
 from pathlib import Path
+
+import yaml
 
 from audio_seq import decode_sbk, encode, decode
 from audio_midi import import_midi, export_midi
@@ -82,8 +84,8 @@ def build(spec, overrides=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['inventory', 'build', 'export'])
-    parser.add_argument('input', type=Path)
-    parser.add_argument('output', type=Path)
+    parser.add_argument('input', type=Path, help='MIDI directory for inventory; YAML manifest for build/export')
+    parser.add_argument('output', type=Path, help='inventory cache, native bank binary, or standard MIDI file')
     parser.add_argument('--overrides', type=Path, default=Path('src/audio/midis'))
     parser.add_argument('--slot', type=int, choices=range(37))
     args = parser.parse_args()
@@ -92,11 +94,11 @@ def main():
     elif args.command == 'export':
         if args.slot is None:
             parser.error('export requires --slot 0..36')
-        spec = json.loads(args.input.read_text())
+        spec = yaml.safe_load(args.input.read_text(encoding='utf-8'))
         args.output.parent.mkdir(parents=True, exist_ok=True)
         export_midi(encode(spec['slots'][args.slot]['source'])).save(args.output)
     else:
-        write_changed(args.output, build(json.loads(args.input.read_text()), discover(args.overrides)))
+        write_changed(args.output, build(yaml.safe_load(args.input.read_text(encoding='utf-8')), discover(args.overrides)))
 
 
 if __name__ == '__main__':

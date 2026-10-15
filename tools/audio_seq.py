@@ -1,11 +1,11 @@
-"""Editable Nintendo compact MIDI and ALSeqFile sources.
+"""Editable YAML Nintendo compact MIDI and ALSeqFile sources.
 
 Compression positions count decoded bytes, not events; references replay physical
 bytes without recursively interpreting FE. Loop-end fields bypass the SDK byte
 reader. Tracks may share physical storage, which is checked when assembling.
 """
 import argparse
-import json
+import yaml
 import struct
 from pathlib import Path
 
@@ -310,8 +310,8 @@ def encode_sbk(spec):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['extract', 'build'])
-    parser.add_argument('input', type=Path)
-    parser.add_argument('output', type=Path)
+    parser.add_argument('input', type=Path, help='native binary for extract; YAML source for build')
+    parser.add_argument('output', type=Path, help='YAML source for extract; native binary for build')
     parser.add_argument('--kind', choices=['sequence', 'sbk', 'fill'], default='sequence')
     parser.add_argument('--rom-start', type=lambda value: int(value, 0), default=0xAEFC10)
     args = parser.parse_args()
@@ -326,9 +326,9 @@ def main():
         else:
             spec = decode(data)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(spec, indent=2) + '\n')
+        args.output.write_text(yaml.safe_dump(spec, sort_keys=False), encoding='utf-8')
     else:
-        spec = json.loads(args.input.read_text())
+        spec = yaml.safe_load(args.input.read_text(encoding='utf-8'))
         data = encode_sbk(spec) if spec['format'] == 'snap_sequence_bank' else encode(spec)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_bytes(data)

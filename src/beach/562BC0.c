@@ -1,6 +1,78 @@
 #include "common.h"
 #include "beach.h"
 
+extern AnimCmd* D_800FAE40_78260[];
+extern AnimCmd* D_800FBF50_79370[];
+extern AnimCmd* D_800FDC70_7B090[];
+extern AnimCmd* D_800FD080_7A4A0[];
+extern UnkEC64Arg3 magikarp_model[];
+
+// .data
+s32 D_beach_802CDA50[] = { SOUND_ID_211 };
+s32 D_beach_802CDA54[] = { SOUND_ID_210, SOUND_ID_376, SOUND_ID_114 };
+s32 D_beach_802CDA60[] = { SOUND_ID_211, SOUND_ID_376, SOUND_ID_114 };
+s32 D_beach_802CDA6C[] = { 0, SOUND_ID_376, SOUND_ID_114 };
+
+AnimationHeader D_beach_802CDA78 = {
+    0.5f,
+    60.0f,
+    D_800FDC70_7B090,
+    NULL,
+    D_beach_802CDA50
+};
+
+AnimationHeader D_beach_802CDA8C = {
+    0.5f,
+    65.0f,
+    D_800FAE40_78260,
+    NULL,
+    D_beach_802CDA54
+};
+
+AnimationHeader D_beach_802CDAA0 = {
+    0.5f,
+    59.0f,
+    D_800FBF50_79370,
+    NULL,
+    D_beach_802CDA60
+};
+
+AnimationHeader D_beach_802CDAB4 = {
+    0.5f,
+    50.0f,
+    D_800FD080_7A4A0,
+    NULL,
+    D_beach_802CDA6C
+};
+
+InteractionHandler D_beach_802CDAC8[] = {
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
+};
+
+PokemonAnimationSetup D_beach_802CDAD8 = {
+    &D_beach_802CDA8C,
+    func_beach_802CAB50,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_beach_802CDAEC = {
+    magikarp_model,
+    NULL,
+    renderPokemonModelTypeBFogged,
+    &D_beach_802CDAD8,
+    { 1.6f, 1.6f, 1.6f },
+    { 0.0f, -40.0f, -11.0f },
+    35.0f,
+    POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
+
 void func_beach_802CAB50(GObj* obj) {
     UNUSED s32 pad[1];
     DObj* model = obj->data.dobj;

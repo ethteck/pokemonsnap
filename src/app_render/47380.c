@@ -9,6 +9,16 @@
 #include "world/world.h"
 #include "effect.h"
 
+// .bss
+static s32 padding[2];
+PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
+PhotoData* D_800BDF18;
+u8 D_800BDF1C;
+u8 D_800BDF1D;
+u8 D_800BDF1E;
+s32 D_800BDF20[3];
+ucolor D_800BDF2C;
+
 s32 getNumberOfPoses(void);
 void func_800AB050(f32 arg0, s32 arg1, UNK_TYPE* arg2, UNK_TYPE* arg3, UNK_TYPE* arg4);
 
@@ -48,197 +58,1588 @@ typedef struct Unkfunc_8009BDDC {
     /* 0x08 */ s32 unk_08; // number of unk_04 records?
 } Unkfunc_8009BDDC;        // size = 0xC
 
-typedef struct Struct_800ACD9C {
-    /* 0x00 */ UNK_TYPE* unk_00;
-    /* 0x04 */ char unk_04[8];
-} Struct_800ACD9C; // size = 0xC
+extern AnimCmd* D_800EAFB0;
+extern AnimCmd** D_800EB0C0;
+extern UnkEC64Arg3 D_800EB430;
+extern Texture** D_800EB510;
+extern AnimCmd* D_8017A710;
+extern AnimCmd* D_80186E20;
+extern AnimCmd* D_80188CB0;
+extern AnimCmd* D_800FAE40_78260[];
+extern AnimCmd* D_800FBF50_79370[];
+extern AnimCmd* D_800FD080_7A4A0[];
+extern AnimCmd* D_800FDC70_7B090[];
+extern AnimCmd* D_801092F0_86710[];
+extern AnimCmd* D_80109C10_87030[];
+extern AnimCmd* D_8010C370_89790[];
+extern AnimCmd* D_8010CE10_8A230[];
+extern AnimCmd* D_8010D410_8A830[];
+extern AnimCmd* D_8010E190_8B5B0[];
+extern AnimCmd* D_80111AA0_8EEC0[];
+extern AnimCmd* D_80112F20_90340[];
+extern AnimCmd* D_80113740_90B60[];
+extern AnimCmd* D_80114610_91A30[];
+extern AnimCmd* D_801161D0_935F0[];
+extern Texture** D_80116CF0_4C90C0[];
+extern UnkEC64Arg3 D_80116EF0_4C92C0[];
+extern AnimCmd* D_80117210_4C95E0[];
+extern AnimCmd** D_80117260_4C9630[];
+extern AnimCmd* D_80117310_4C96E0[];
+extern AnimCmd** D_80117360_4C9730[];
+extern AnimCmd* D_80117410_4C97E0[];
+extern AnimCmd** D_80117480_4C9850[];
+extern AnimCmd* D_80117570_4C9940[];
+extern AnimCmd** D_801175E0_4C99B0[];
+extern AnimCmd* D_801176D0_4C9AA0[];
+extern AnimCmd** D_80117730_4C9B00[];
+extern AnimCmd* D_80117840_4C9C10[];
+extern AnimCmd** D_801178A0_4C9C70[];
+extern AnimCmd* D_80117980_4C9D50[];
+extern AnimCmd** D_801179C0_4C9D90[];
+extern AnimCmd* D_80117A50_4C9E20[];
+extern AnimCmd** D_80117A90_4C9E60[];
+extern AnimCmd* D_80117B20_4C9EF0[];
+extern AnimCmd** D_80117B60_4C9F30[];
+extern AnimCmd* D_80117C40_95060[];
+extern AnimCmd* D_80117C70_4CA040[];
+extern AnimCmd** D_80117CB0_4CA080[];
+extern AnimCmd* D_80117DC0_4CA190[];
+extern AnimCmd** D_80117DF0_4CA1C0[];
+extern AnimCmd* D_80117F10_4CA2E0[];
+extern AnimCmd** D_80117F40_4CA310[];
+extern Texture** D_80118160_4CA530[];
+extern UnkEC64Arg3 D_80118210_4CA5E0[];
+extern AnimCmd* D_80118360_4CA730[];
+extern AnimCmd** D_80118390_4CA760[];
+extern AnimCmd* D_801189D0_95DF0[];
+extern AnimCmd** D_801196C0_96AE0[];
+extern AnimCmd** D_80119760_96B80[];
+extern AnimCmd** D_80119800_96C20[];
+extern AnimCmd** D_801198B0_96CD0[];
+extern AnimCmd** D_80119960_96D80[];
+extern AnimCmd** D_80119A00_96E20[];
+extern AnimCmd** D_8011A1B0_975D0[];
+extern AnimCmd** D_8011A2B0_976D0[];
+extern AnimCmd** D_8011A370_97790[];
+extern AnimCmd** D_8011A440_97860[];
+extern AnimCmd** D_8011ADE0_98200[];
+extern AnimCmd** D_8011AEE0_98300[];
+extern AnimCmd** D_8011AF80_983A0[];
+extern AnimCmd* D_8012C9E0_4DEDB0[];
+extern AnimCmd* D_8012D700_4DFAD0[];
+extern AnimCmd* D_8012EFF0_4E13C0[];
+extern AnimCmd* D_8012FB60_4E1F30[];
+extern AnimCmd* D_80131D30_4E4100[];
+extern AnimCmd* D_80133040_4E5410[];
+extern AnimCmd* D_801358A0_4E7C70[];
+extern AnimCmd* D_801368F0_4E8CC0[];
+extern UnkEC64Arg3 D_80136AC0_C2F50[];
+extern AnimCmd** D_801394D0_4EB8A0[];
+extern AnimCmd** D_801395A0_4EB970[];
+extern AnimCmd** D_80139690_4EBA60[];
+extern AnimCmd** D_80139770_4EBB40[];
+extern Texture** D_801397C0_C5C50[];
+extern AnimCmd** D_80139840_4EBC10[];
+extern AnimCmd** D_80139900_4EBCD0[];
+extern AnimCmd** D_80139A00_4EBDD0[];
+extern UnkEC64Arg3 D_80139A40_C5ED0[];
+extern AnimCmd** D_80139B00_4EBED0[];
+extern AnimCmd* D_80139CD0_C6160[];
+extern AnimCmd** D_8013ACA0_C7130[];
+extern AnimCmd* D_801548D0_E0D60[];
+extern AnimCmd* D_80156960_E2DF0[];
+extern AnimCmd* D_80159E60_E62F0[];
+extern AnimCmd* D_8015A4C0_1A0620[];
+extern AnimCmd* D_8015AAE0_1A0C40[];
+extern AnimCmd** D_8015AE40_1A0FA0[];
+extern AnimCmd** D_8015AEF0_1A1050[];
+extern AnimCmd* D_8015BC10_E80A0[];
+extern AnimCmd* D_8015CBC0_E9050[];
+extern AnimCmd* D_8015EBA0_EB030[];
+extern AnimCmd* D_8015FD10_EC1A0[];
+extern AnimCmd** D_801617D0_EDC60[];
+extern AnimCmd* D_80165010_F14A0[];
+extern AnimCmd* D_80165D90_F2220[];
+extern AnimCmd* D_80166A90_F2F20[];
+extern AnimCmd* D_80167D20_F41B0[];
+extern AnimCmd* D_80168D50_F51E0[];
+extern AnimCmd** D_8016B190_F7620[];
+extern AnimCmd** D_8016B250_F76E0[];
+extern AnimCmd** D_8016B300_F7790[];
+extern AnimCmd** D_8016B420_F78B0[];
+extern AnimCmd** D_8016B4F0_F7980[];
+extern AnimCmd* D_8016E200_FA690[];
+extern AnimCmd* D_8016F5B0_FBA40[];
+extern AnimCmd* D_80170AD0_FCF60[];
+extern AnimCmd* D_80173C30_1000C0[];
+extern AnimCmd* D_80175390_101820[];
+extern AnimCmd* D_801765D0_102A60[];
+extern AnimCmd* D_80177520_1039B0[];
+extern AnimCmd** D_80179560_1059F0[];
+extern AnimCmd** D_80179600_105A90[];
+extern AnimCmd** D_801796A0_105B30[];
+extern AnimCmd** D_80179760_105BF0[];
+extern AnimCmd** D_80179810_105CA0[];
+extern AnimCmd** D_801798B0_105D40[];
+extern AnimCmd** D_80179940_105DD0[];
+extern AnimCmd* D_8017BB20_107FB0[];
+extern AnimCmd* D_8017DA60_109EF0[];
+extern AnimCmd* D_8017E2E0_10A770[];
+extern AnimCmd* D_8017E740_10ABD0[];
+extern AnimCmd* D_8017EBA0_10B030[];
+extern AnimCmd* D_8017F080_10B510[];
+extern AnimCmd* D_8017F8B0_10BD40[];
+extern AnimCmd* D_8017FEF0_10C380[];
+extern AnimCmd* D_80180910_10CDA0[];
+extern AnimCmd* D_80181880_10DD10[];
+extern AnimCmd** D_801820B0_10E540[];
+extern AnimCmd** D_80182150_10E5E0[];
+extern AnimCmd** D_801821C0_10E650[];
+extern AnimCmd** D_80182230_10E6C0[];
+extern AnimCmd** D_80182310_10E7A0[];
+extern AnimCmd** D_801823C0_10E850[];
+extern AnimCmd* D_80183D20_1101B0[];
+extern AnimCmd** D_80184400_110890[];
+extern AnimCmd* D_80185010_1114A0[];
+extern AnimCmd* D_80185D90_112220[];
+extern AnimCmd* D_801866A0_112B30[];
+extern AnimCmd* D_80187230_1136C0[];
+extern AnimCmd* D_80187BD0_114060[];
+extern AnimCmd* D_80188260_1146F0[];
+extern AnimCmd* D_80188ED0_115360[];
+extern AnimCmd* D_801895E0_115A70[];
+extern AnimCmd** D_8018A270_116700[];
+extern AnimCmd** D_8018A370_116800[];
+extern AnimCmd** D_8018A410_1168A0[];
+extern AnimCmd** D_8018A4C0_116950[];
+extern AnimCmd* D_801906A0_11CB30[];
+extern AnimCmd* D_80191AE0_11DF70[];
+extern AnimCmd* D_80192C20_11F0B0[];
+extern AnimCmd* D_801949A0_120E30[];
+extern AnimCmd* D_80195A70_121F00[];
+extern AnimCmd* D_80196070_122500[];
+extern AnimCmd* D_80197A00_123E90[];
+extern AnimCmd* D_80198BF0_125080[];
+extern AnimCmd* D_8019A950_126DE0[];
+extern AnimCmd* D_8019C270_128700[];
+extern AnimCmd** D_8019D890_129D20[];
+extern AnimCmd** D_8019D9E0_129E70[];
+extern AnimCmd** D_8019DAF0_129F80[];
+extern AnimCmd** D_8019DC60_12A0F0[];
+extern AnimCmd** D_8019DD80_12A210[];
+extern AnimCmd** D_8019DE50_12A2E0[];
+extern AnimCmd** D_8019DFF0_12A480[];
+extern AnimCmd** D_8019E110_12A5A0[];
+extern AnimCmd** D_8019E260_12A6F0[];
+extern AnimCmd** D_8019E3F0_12A880[];
+extern AnimCmd* D_801A08C0_12CD50[];
+extern AnimCmd* D_801A2280_12E710[];
+extern AnimCmd* D_801A4A80_130F10[];
+extern AnimCmd* D_801A66D0_132B60[];
+extern AnimCmd** D_801A8CC0_135150[];
+extern AnimCmd** D_801A8D50_1351E0[];
+extern AnimCmd** D_801A8DF0_135280[];
+extern AnimCmd* D_801AA9D0_136E60[];
+extern AnimCmd* D_801AB610_137AA0[];
+extern AnimCmd* D_801AC250_1386E0[];
+extern AnimCmd* D_801ACF90_139420[];
+extern AnimCmd* D_801AE790_13AC20[];
+extern AnimCmd* D_801AF4B0_13B940[];
+extern Texture** arcanine_hd_materials[];
+extern UnkEC64Arg3 arcanine_hd_model[];
+extern AnimCmd** arcanine_matanim_eat[];
+extern AnimCmd** arcanine_matanim_hit[];
+extern AnimCmd** arcanine_matanim_idle[];
+extern AnimCmd** arcanine_matanim_jump[];
+extern AnimCmd** arcanine_matanim_roar[];
+extern AnimCmd** arcanine_matanim_run[];
+extern AnimCmd** arcanine_matanim_shake_head[];
+extern AnimCmd** arcanine_matanim_walk[];
+extern AnimCmd* arcanine_modelanim_eat[];
+extern AnimCmd* arcanine_modelanim_hit[];
+extern AnimCmd* arcanine_modelanim_idle[];
+extern AnimCmd* arcanine_modelanim_jump[];
+extern AnimCmd* arcanine_modelanim_roar[];
+extern AnimCmd* arcanine_modelanim_run[];
+extern AnimCmd* arcanine_modelanim_shake_head[];
+extern AnimCmd* arcanine_modelanim_walk[];
+extern Texture** articuno_hd_materials[];
+extern UnkEC64Arg3 articuno_hd_model[];
+extern Texture** bulbasaur_hd_materials[];
+extern UnkEC64Arg3 bulbasaur_hd_model[];
+extern UnkEC64Arg3 butterfree_hd_model[];
+extern Texture** chansey_hd_materials[];
+extern UnkEC64Arg3 chansey_hd_model[];
+extern Texture** charizard_hd_materials[];
+extern UnkEC64Arg3 charizard_hd_model[];
+extern AnimCmd** charizard_matanim_appear[];
+extern AnimCmd** charizard_matanim_idle[];
+extern AnimCmd** charizard_matanim_roar[];
+extern AnimCmd** charizard_matanim_spew_fire[];
+extern AnimCmd** charizard_matanim_spin[];
+extern AnimCmd* charizard_modelanim_appear[];
+extern AnimCmd* charizard_modelanim_idle[];
+extern AnimCmd* charizard_modelanim_roar[];
+extern AnimCmd* charizard_modelanim_spew_fire[];
+extern AnimCmd* charizard_modelanim_spin[];
+extern Texture** charmander_hd_materials[];
+extern UnkEC64Arg3 charmander_hd_model[];
+extern AnimCmd** charmander_matanim_fall[];
+extern AnimCmd** charmander_matanim_hit[];
+extern AnimCmd** charmander_matanim_howl[];
+extern AnimCmd** charmander_matanim_idle[];
+extern AnimCmd** charmander_matanim_jump[];
+extern AnimCmd** charmander_matanim_lie[];
+extern AnimCmd** charmander_matanim_roar[];
+extern AnimCmd** charmander_matanim_run[];
+extern AnimCmd** charmander_matanim_shake_hands[];
+extern AnimCmd** charmander_matanim_walk[];
+extern AnimCmd* charmander_modelanim_fall[];
+extern AnimCmd* charmander_modelanim_hit[];
+extern AnimCmd* charmander_modelanim_howl[];
+extern AnimCmd* charmander_modelanim_idle[];
+extern AnimCmd* charmander_modelanim_jump[];
+extern AnimCmd* charmander_modelanim_lie[];
+extern AnimCmd* charmander_modelanim_roar[];
+extern AnimCmd* charmander_modelanim_run[];
+extern AnimCmd* charmander_modelanim_shake_hands[];
+extern AnimCmd* charmander_modelanim_walk[];
+extern Texture** charmeleon_hd_materials[];
+extern UnkEC64Arg3 charmeleon_hd_model[];
+extern AnimCmd** charmeleon_matanim_fall[];
+extern AnimCmd** charmeleon_matanim_get_up[];
+extern AnimCmd** charmeleon_matanim_hit[];
+extern AnimCmd** charmeleon_matanim_idle[];
+extern AnimCmd** charmeleon_matanim_lie[];
+extern AnimCmd** charmeleon_matanim_look_around[];
+extern AnimCmd** charmeleon_matanim_roar[];
+extern AnimCmd** charmeleon_matanim_run[];
+extern AnimCmd** charmeleon_matanim_walk[];
+extern AnimCmd* charmeleon_modelanim_fall[];
+extern AnimCmd* charmeleon_modelanim_get_up[];
+extern AnimCmd* charmeleon_modelanim_hit[];
+extern AnimCmd* charmeleon_modelanim_idle[];
+extern AnimCmd* charmeleon_modelanim_lie[];
+extern AnimCmd* charmeleon_modelanim_look_around[];
+extern AnimCmd* charmeleon_modelanim_roar[];
+extern AnimCmd* charmeleon_modelanim_run[];
+extern AnimCmd* charmeleon_modelanim_walk[];
+extern UnkEC64Arg3 cloyster_hd_model[];
+extern Texture** diglett_hd_materials[];
+extern UnkEC64Arg3 diglett_hd_model[];
+extern AnimCmd** diglett_matanim_look_around[];
+extern AnimCmd** diglett_matanim_rise[];
+extern AnimCmd** diglett_matanim_unburrow[];
+extern AnimCmd* diglett_modelanim_burrow[];
+extern AnimCmd* diglett_modelanim_look_around[];
+extern AnimCmd* diglett_modelanim_rise[];
+extern AnimCmd* diglett_modelanim_turn[];
+extern AnimCmd* diglett_modelanim_unburrow[];
+extern UnkEC64Arg3 ditto_hd_model[];
+extern Texture** doduo_hd_materials[];
+extern UnkEC64Arg3 doduo_hd_model[];
+extern UnkEC64Arg3 dragonite_hd_model[];
+extern Texture** dratini_hd_materials[];
+extern UnkEC64Arg3 dratini_hd_model[];
+extern UnkEC64Arg3 dugtrio_hd_model[];
+extern AnimCmd* dugtrio_modelanim_burrow[];
+extern AnimCmd* dugtrio_modelanim_look_around[];
+extern AnimCmd* dugtrio_modelanim_rise[];
+extern AnimCmd* dugtrio_modelanim_turn[];
+extern AnimCmd* dugtrio_modelanim_unburrow[];
+extern Texture** eevee_hd_materials[];
+extern UnkEC64Arg3 eevee_hd_model[];
+extern Texture** electabuzz_hd_materials[];
+extern UnkEC64Arg3 electabuzz_hd_model[];
+extern Texture** electrode_hd_materials[];
+extern UnkEC64Arg3 electrode_hd_model[];
+extern AnimCmd** electrode_matanim_dead[];
+extern AnimCmd** electrode_matanim_explode[];
+extern AnimCmd* electrode_modelanim_dead[];
+extern AnimCmd* electrode_modelanim_explode[];
+extern AnimCmd* electrode_modelanim_idle[];
+extern AnimCmd* electrode_modelanim_roll[];
+extern AnimCmd** evolution_controller_matanim[];
+extern Texture** evolution_controller_materials[];
+extern UnkEC64Arg3 evolution_controller_model[];
+extern AnimCmd* evolution_controller_modelanim[];
+extern AnimCmd** gate_matanim_closed[];
+extern AnimCmd** gate_matanim_opened[];
+extern AnimCmd** gate_matanim_opening[];
+extern AnimCmd** gate_matanim_raise_bar[];
+extern Texture** gate_materials[];
+extern UnkEC64Arg3 gate_model[];
+extern AnimCmd* gate_modelanim_closed[];
+extern AnimCmd* gate_modelanim_opened[];
+extern AnimCmd* gate_modelanim_opening[];
+extern AnimCmd* gate_modelanim_raise_bar[];
+extern Texture** geodude_hd_materials[];
+extern UnkEC64Arg3 geodude_hd_model[];
+extern Texture** goldeen_hd_materials[];
+extern UnkEC64Arg3 goldeen_hd_model[];
+extern Texture** graveler_hd_materials[];
+extern UnkEC64Arg3 graveler_hd_model[];
+extern Texture** grimer_hd_materials[];
+extern UnkEC64Arg3 grimer_hd_model[];
+extern Texture** growlithe_hd_materials[];
+extern UnkEC64Arg3 growlithe_hd_model[];
+extern AnimCmd** growlithe_matanim_eat[];
+extern AnimCmd** growlithe_matanim_hit[];
+extern AnimCmd** growlithe_matanim_idle[];
+extern AnimCmd** growlithe_matanim_jump[];
+extern AnimCmd** growlithe_matanim_roar[];
+extern AnimCmd** growlithe_matanim_run[];
+extern AnimCmd** growlithe_matanim_shake_head[];
+extern AnimCmd** growlithe_matanim_walk[];
+extern AnimCmd* growlithe_modelanim_eat[];
+extern AnimCmd* growlithe_modelanim_hit[];
+extern AnimCmd* growlithe_modelanim_idle[];
+extern AnimCmd* growlithe_modelanim_jump[];
+extern AnimCmd* growlithe_modelanim_roar[];
+extern AnimCmd* growlithe_modelanim_run[];
+extern AnimCmd* growlithe_modelanim_shake_head[];
+extern AnimCmd* growlithe_modelanim_walk[];
+extern AnimCmd** growlithe_spawner_matanim[];
+extern Texture** growlithe_spawner_materials[];
+extern UnkEC64Arg3 growlithe_spawner_model[];
+extern AnimCmd* growlithe_spawner_modelanim[];
+extern Texture** gyarados_hd_materials[];
+extern UnkEC64Arg3 gyarados_hd_model[];
+extern UnkEC64Arg3 haunter_hd_model[];
+extern Texture** jigglypuff_hd_materials[];
+extern UnkEC64Arg3 jigglypuff_hd_model[];
+extern Texture** jynx_hd_materials[];
+extern UnkEC64Arg3 jynx_hd_model[];
+extern Texture** kakuna_hd_materials[];
+extern UnkEC64Arg3 kakuna_hd_model[];
+extern Texture** kangaskhan_hd_materials[];
+extern UnkEC64Arg3 kangaskhan_hd_model[];
+extern Texture** koffing_hd_materials[];
+extern UnkEC64Arg3 koffing_hd_model[];
+extern AnimCmd** koffing_smoke_matanim_hide[];
+extern AnimCmd** koffing_smoke_matanim_reveal[];
+extern AnimCmd** koffing_smoke_matanim_show[];
+extern Texture** koffing_smoke_materials[];
+extern UnkEC64Arg3 koffing_smoke_model[];
+extern AnimCmd* koffing_smoke_modelanim_hide[];
+extern AnimCmd* koffing_smoke_modelanim_reveal[];
+extern AnimCmd* koffing_smoke_modelanim_show[];
+extern Texture** lapras_hd_materials[];
+extern UnkEC64Arg3 lapras_hd_model[];
+extern AnimCmd** lava_splash_matanim[];
+extern Texture** lava_splash_materials[];
+extern UnkEC64Arg3 lava_splash_model[];
+extern AnimCmd* lava_splash_modelanim[];
+extern UnkEC64Arg3 magikarp_hd_model[];
+extern Texture** magmar_hd_materials[];
+extern UnkEC64Arg3 magmar_hd_model[];
+extern AnimCmd** magmar_matanim_eat[];
+extern AnimCmd** magmar_matanim_get_up[];
+extern AnimCmd** magmar_matanim_hit[];
+extern AnimCmd** magmar_matanim_idle[];
+extern AnimCmd** magmar_matanim_look_around[];
+extern AnimCmd** magmar_matanim_run[];
+extern AnimCmd** magmar_matanim_spew_fire[];
+extern AnimCmd** magmar_matanim_walk[];
+extern AnimCmd* magmar_modelanim_eat[];
+extern AnimCmd* magmar_modelanim_fall[];
+extern AnimCmd* magmar_modelanim_get_up[];
+extern AnimCmd* magmar_modelanim_hit[];
+extern AnimCmd* magmar_modelanim_idle[];
+extern AnimCmd* magmar_modelanim_lie[];
+extern AnimCmd* magmar_modelanim_look_around[];
+extern AnimCmd* magmar_modelanim_run[];
+extern AnimCmd* magmar_modelanim_spew_fire[];
+extern AnimCmd* magmar_modelanim_walk[];
+extern Texture** magnemite_hd_materials[];
+extern UnkEC64Arg3 magnemite_hd_model[];
+extern AnimCmd** magnemite_matanim_pulse[];
+extern AnimCmd* magnemite_modelanim_hit[];
+extern AnimCmd* magnemite_modelanim_idle[];
+extern AnimCmd* magnemite_modelanim_move[];
+extern AnimCmd* magnemite_modelanim_pulse[];
+extern AnimCmd* magnemite_modelanim_react[];
+extern AnimCmd* magnemite_modelanim_run[];
+extern UnkEC64Arg3 magneton_hd_model[];
+extern AnimCmd* magneton_modelanim[];
+extern Texture** mankey_hd_materials[];
+extern UnkEC64Arg3 mankey_hd_model[];
+extern Texture** meowth_hd_materials[];
+extern UnkEC64Arg3 meowth_hd_model[];
+extern Texture** metapod_hd_materials[];
+extern UnkEC64Arg3 metapod_hd_model[];
+extern Texture** mew_hd_materials[];
+extern UnkEC64Arg3 mew_hd_model[];
+extern UnkEC64Arg3 moltres_egg_model[];
+extern AnimCmd* moltres_egg_modelanim_drown[];
+extern AnimCmd* moltres_egg_modelanim_idle[];
+extern Texture** moltres_hd_materials[];
+extern UnkEC64Arg3 moltres_hd_model[];
+extern AnimCmd** moltres_matanim_appear[];
+extern AnimCmd** moltres_matanim_fly[];
+extern AnimCmd** moltres_matanim_fly2[];
+extern AnimCmd** moltres_matanim_fly_away[];
+extern AnimCmd** moltres_matanim_shake_off[];
+extern AnimCmd* moltres_modelanim_appear[];
+extern AnimCmd* moltres_modelanim_fly[];
+extern AnimCmd* moltres_modelanim_fly2[];
+extern AnimCmd* moltres_modelanim_fly_away[];
+extern AnimCmd* moltres_modelanim_shake_off[];
+extern Texture** muk_hd_materials[];
+extern UnkEC64Arg3 muk_hd_model[];
+extern Texture** pidgey_hd_materials[];
+extern UnkEC64Arg3 pidgey_hd_model[];
+extern Texture** pikachu_hd_materials[];
+extern UnkEC64Arg3 pikachu_hd_model[];
+extern UnkEC64Arg3 poliwag_hd_model[];
+extern Texture** porygon_hd_materials[];
+extern UnkEC64Arg3 porygon_hd_model[];
+extern UnkEC64Arg3 psyduck_hd_model[];
+extern Texture** rapidash_hd_materials[];
+extern UnkEC64Arg3 rapidash_hd_model[];
+extern AnimCmd** rapidash_matanim_idle[];
+extern AnimCmd** rapidash_matanim_kick[];
+extern AnimCmd** rapidash_matanim_rear[];
+extern AnimCmd** rapidash_matanim_run[];
+extern AnimCmd** rapidash_matanim_shake_head[];
+extern AnimCmd** rapidash_matanim_walk[];
+extern AnimCmd* rapidash_modelanim_idle[];
+extern AnimCmd* rapidash_modelanim_kick[];
+extern AnimCmd* rapidash_modelanim_rear[];
+extern AnimCmd* rapidash_modelanim_run[];
+extern AnimCmd* rapidash_modelanim_shake_head[];
+extern AnimCmd* rapidash_modelanim_walk[];
+extern Texture** sandshrew_hd_materials[];
+extern UnkEC64Arg3 sandshrew_hd_model[];
+extern Texture** sandslash_hd_materials[];
+extern UnkEC64Arg3 sandslash_hd_model[];
+extern UnkEC64Arg3 scyther_hd_model[];
+extern Texture** shellder2_hd_materials[];
+extern UnkEC64Arg3 shellder2_hd_model[];
+extern UnkEC64Arg3 shellder_hd_model[];
+extern Texture** slowbro_hd_materials[];
+extern UnkEC64Arg3 slowbro_hd_model[];
+extern UnkEC64Arg3 slowpoke_hd_model[];
+extern AnimCmd** smoke_puff_matanim[];
+extern Texture** smoke_puff_materials[];
+extern UnkEC64Arg3 smoke_puff_model[];
+extern AnimCmd* smoke_puff_modelanim[];
+extern Texture** snorlax_hd_materials[];
+extern UnkEC64Arg3 snorlax_hd_model[];
+extern Texture** squirtle_hd_materials[];
+extern UnkEC64Arg3 squirtle_hd_model[];
+extern Texture** starmie_hd_materials[];
+extern UnkEC64Arg3 starmie_hd_model[];
+extern Texture** staryu_hd_materials[];
+extern UnkEC64Arg3 staryu_hd_model[];
+extern Texture** victreebel_hd_materials[];
+extern UnkEC64Arg3 victreebel_hd_model[];
+extern Texture** vileplume_hd_materials[];
+extern UnkEC64Arg3 vileplume_hd_model[];
+extern AnimCmd** volcano_smoke_matanim[];
+extern Texture** volcano_smoke_materials[];
+extern UnkEC64Arg3 volcano_smoke_model[];
+extern AnimCmd* volcano_smoke_modelanim[];
+extern Texture** vulpix_hd_materials[];
+extern UnkEC64Arg3 vulpix_hd_model[];
+extern AnimCmd** vulpix_matanim_eat[];
+extern AnimCmd** vulpix_matanim_fall[];
+extern AnimCmd** vulpix_matanim_get_up[];
+extern AnimCmd** vulpix_matanim_hit[];
+extern AnimCmd** vulpix_matanim_idle[];
+extern AnimCmd** vulpix_matanim_lie[];
+extern AnimCmd* vulpix_modelanim_eat[];
+extern AnimCmd* vulpix_modelanim_fall[];
+extern AnimCmd* vulpix_modelanim_get_up[];
+extern AnimCmd* vulpix_modelanim_hit[];
+extern AnimCmd* vulpix_modelanim_idle[];
+extern AnimCmd* vulpix_modelanim_lie[];
+extern AnimCmd* vulpix_modelanim_run[];
+extern AnimCmd* vulpix_modelanim_walk[];
+extern Texture** weepinbell_hd_materials[];
+extern UnkEC64Arg3 weepinbell_hd_model[];
+extern Texture** zapdos_hd_materials[];
+extern UnkEC64Arg3 zapdos_hd_model[];
+extern UnkEC64Arg3 zubat_hd_model[];
 
-extern s32 D_800AC0F0; // level id?
-extern MovementState D_800AC0F4;
-extern Struct_800ACD9C D_800ACD9C[];
-extern Struct_800ACD9C D_800AD444[];
-extern Struct_800ACD9C D_800AD474[];
-extern Unkfunc_8009BDDC D_800AD4B8[67];
-extern Unkfunc_8009BDDC D_800AD9A4[16];
-extern Unk1C D_800ADA64[];
-extern UnkV0 D_800ADBEC[];
-extern s32 D_800AE27C;
-extern s32 D_800AE280;
-extern char* D_800AE284[]; // Pokedex entries
-extern s8 D_800AE4E4[];
+// .data
+s32 gPhotoCount = 0;
 
-// s8 D_800AE4E4[] = {
-//     0,  -1, -1, 1,  2,  3,  4,  -1, -1, -1, 5,  6,  -1, 7,  -1, 8,  -1, -1, -1, -1, -1, -1, -1, -1, 9,  -1,
-//     10, 11, -1, -1, -1, -1, -1, -1, -1, -1, 12, -1, 13, -1, 14, -1, -1, -1, 15, -1, -1, -1, -1, 16, 17, 18,
-//     -1, 19, -1, 20, -1, 21, 22, 23, -1, -1, -1, -1, -1, -1, -1, -1, -1, 24, 25, -1, -1, 26, 27, -1, -1, 28,
-//     29, 30, 31, 32, -1, 33, -1, -1, -1, 34, 35, 36, 37, -1, 38, -1, -1, -1, -1, -1, -1, -1, 39, -1, -1, -1,
-//     -1, -1, -1, -1, 40, -1, -1, -1, 41, -1, 42, -1, -1, 43, -1, 44, 45, -1, 46, 47, 48, 49, -1, -1, 50, 51,
-//     52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57, 58, 59, 60, -1, 61, -1, 62, 0,  0,  0,  0,  0,
-// };
+u32 D_800AC0E4_57A94[] = {
+    0x00000000, 0x00000000, 0x00000000,
+};
 
-// Manually define this RODATA here until data is migrated for D_800AE284
-// These are the names of all pokemon in order, used for returning their names when needed.
-const char D_800AF420[] = ""; // Blank first entry as there's no Pokedex zero.
-const char D_800AF424[] = "ＢＵＬＢＡＳＡＵＲ";
-const char D_800AF438[] = "ＩＶＹＳＡＵＲ";
-const char D_800AF448[] = "ＶＥＮＵＳＡＵＲ";
-const char D_800AF45C[] = "ＣＨＡＲＭＡＮＤＥＲ";
-const char D_800AF474[] = "ＣＨＡＲＭＥＬＥＯＮ";
-const char D_800AF48C[] = "ＣＨＡＲＩＺＡＲＤ";
-const char D_800AF4A0[] = "ＳＱＵＩＲＴＬＥ";
-const char D_800AF4B4[] = "ＷＡＲＴＯＲＴＬＥ";
-const char D_800AF4C8[] = "ＢＬＡＳＴＯＩＳＥ";
-const char D_800AF4DC[] = "ＣＡＴＥＲＰＩＥ";
-const char D_800AF4F0[] = "ＭＥＴＡＰＯＤ";
-const char D_800AF500[] = "ＢＵＴＴＥＲＦＲＥＥ";
-const char D_800AF518[] = "ＷＥＥＤＬＥ";
-const char D_800AF528[] = "ＫＡＫＵＮＡ";
-const char D_800AF538[] = "ＢＥＥＤＲＩＬＬ";
-const char D_800AF54C[] = "ＰＩＤＧＥＹ";
-const char D_800AF55C[] = "ＰＩＤＧＥＯＴＴＯ";
-const char D_800AF570[] = "ＰＩＤＧＥＯＴ";
-const char D_800AF580[] = "ＲＡＴＴＡＴＡ";
-const char D_800AF590[] = "ＲＡＴＩＣＡＴＥ";
-const char D_800AF5A4[] = "ＳＰＥＡＲＯＷ";
-const char D_800AF5B4[] = "ＦＥＡＲＯＷ";
-const char D_800AF5C4[] = "ＥＫＡＮＳ";
-const char D_800AF5D0[] = "ＡＲＢＯＫ";
-const char D_800AF5DC[] = "ＰＩＫＡＣＨＵ";
-const char D_800AF5EC[] = "ＲＡＩＣＨＵ";
-const char D_800AF5FC[] = "ＳＡＮＤＳＨＲＥＷ";
-const char D_800AF610[] = "ＳＡＮＤＳＬＡＳＨ";
-const char D_800AF624[] = "ＮＩＤＲＡＮｆ";
-const char D_800AF634[] = "ＮＩＤＯＲＩＮＡ";
-const char D_800AF648[] = "ＮＩＤＯＱＵＥＥＮ";
-const char D_800AF65C[] = "ＮＩＤＯＲＡＮｍ";
-const char D_800AF670[] = "ＮＩＤＯＲＩＮＯ";
-const char D_800AF684[] = "ＮＩＤＯＫＩＮＧ";
-const char D_800AF698[] = "ＣＬＥＦＡＩＲＹ";
-const char D_800AF6AC[] = "ＣＬＥＦＡＢＬＥ";
-const char D_800AF6C0[] = "ＶＵＬＰＩＸ";
-const char D_800AF6D0[] = "ＮＩＮＥＴＡＬＥＳ";
-const char D_800AF6E4[] = "ＪＩＧＧＬＹＰＵＦＦ";
-const char D_800AF6FC[] = "ＷＩＧＧＬＹＴＵＦＦ";
-const char D_800AF714[] = "ＺＵＢＡＴ";
-const char D_800AF720[] = "ＧＯＬＢＡＴ";
-const char D_800AF730[] = "ＯＤＤＩＳＨ";
-const char D_800AF740[] = "ＧＬＯＯＭ";
-const char D_800AF74C[] = "ＶＩＬＥＰＬＵＭＥ";
-const char D_800AF760[] = "ＰＡＲＡＳ";
-const char D_800AF76C[] = "ＰＡＲＡＳＥＣＴ";
-const char D_800AF780[] = "ＶＥＮＯＮＡＴ";
-const char D_800AF790[] = "ＶＥＮＯＭＯＴＨ";
-const char D_800AF7A4[] = "ＤＩＧＬＥＴＴ";
-const char D_800AF7B4[] = "ＤＵＧＴＲＩＯ";
-const char D_800AF7C4[] = "ＭＥＯＷＴＨ";
-const char D_800AF7D4[] = "ＰＥＲＳＩＡＮ";
-const char D_800AF7E4[] = "ＰＳＹＤＵＣＫ";
-const char D_800AF7F4[] = "ＧＯＬＤＵＣＫ";
-const char D_800AF804[] = "ＭＡＮＫＥＹ";
-const char D_800AF814[] = "ＰＲＩＭＥＡＰＥ";
-const char D_800AF828[] = "ＧＲＯＷＬＩＴＨＥ";
-const char D_800AF83C[] = "ＡＲＣＡＮＩＮＥ";
-const char D_800AF850[] = "ＰＯＬＩＷＡＧ";
-const char D_800AF860[] = "ＰＯＬＩＷＨＩＲＬ";
-const char D_800AF874[] = "ＰＯＬＩＷＲＡＴＨ";
-const char D_800AF888[] = "ＡＢＲＡ";
-const char D_800AF894[] = "ＫＡＤＡＢＲＡ";
-const char D_800AF8A4[] = "ＡＬＡＫＡＺＡＭ";
-const char D_800AF8B8[] = "ＭＡＣＨＯＰ";
-const char D_800AF8C8[] = "ＭＡＣＨＯＫＥ";
-const char D_800AF8D8[] = "ＭＡＣＨＡＭＰ";
-const char D_800AF8E8[] = "ＢＥＬＬＳＰＲＯＵＴ";
-const char D_800AF900[] = "ＷＥＥＰＩＮＢＥＬＬ";
-const char D_800AF918[] = "ＶＩＣＴＲＥＥＢＥＬ";
-const char D_800AF930[] = "ＴＥＮＴＡＣＯＯＬ";
-const char D_800AF944[] = "ＴＥＮＴＡＣＲＵＥＬ";
-const char D_800AF95C[] = "ＧＥＯＤＵＤＥ";
-const char D_800AF96C[] = "ＧＲＡＶＥＬＥＲ";
-const char D_800AF980[] = "ＧＯＬＥＭ";
-const char D_800AF98C[] = "ＰＯＮＹＴＡ";
-const char D_800AF99C[] = "ＲＡＰＩＤＡＳＨ";
-const char D_800AF9B0[] = "ＳＬＯＷＰＯＫＥ";
-const char D_800AF9C4[] = "ＳＬＯＷＢＲＯ";
-const char D_800AF9D4[] = "ＭＡＧＮＥＭＩＴＥ";
-const char D_800AF9E8[] = "ＭＡＧＮＥＴＯＮ";
-const char D_800AF9FC[] = "ＦＡＲＦＥＴＣＨ’Ｄ";
-const char D_800AFA14[] = "ＤＯＤＵＯ";
-const char D_800AFA20[] = "ＤＯＤＲＩＯ";
-const char D_800AFA30[] = "ＳＥＥＬ";
-const char D_800AFA3C[] = "ＤＥＷＧＯＮＧ";
-const char D_800AFA4C[] = "ＧＲＩＭＥＲ";
-const char D_800AFA5C[] = "ＭＵＫ";
-const char D_800AFA64[] = "ＳＨＥＬＬＤＥＲ";
-const char D_800AFA78[] = "ＣＬＯＹＳＴＥＲ";
-const char D_800AFA8C[] = "ＧＡＳＴＬＹ";
-const char D_800AFA9C[] = "ＨＡＵＮＴＥＲ";
-const char D_800AFAAC[] = "ＧＥＮＧＡＲ";
-const char D_800AFABC[] = "ＯＮＩＸ";
-const char D_800AFAC8[] = "ＤＲＯＷＺＥＥ";
-const char D_800AFAD8[] = "ＨＹＰＮＯ";
-const char D_800AFAE4[] = "ＫＲＡＢＢＹ";
-const char D_800AFAF4[] = "ＫＩＮＧＬＥＲ";
-const char D_800AFB04[] = "ＶＯＬＴＯＲＢ";
-const char D_800AFB14[] = "ＥＬＥＣＴＲＯＤＥ";
-const char D_800AFB28[] = "ＥＸＥＧＧＣＵＴＥ";
-const char D_800AFB3C[] = "ＥＸＥＧＧＵＴＯＲ";
-const char D_800AFB50[] = "ＣＵＢＯＮＥ";
-const char D_800AFB60[] = "ＭＡＲＯＷＡＫ";
-const char D_800AFB70[] = "ＨＩＴＭＯＮＬＥＥ";
-const char D_800AFB84[] = "ＨＩＴＭＯＮＣＨＡＮ";
-const char D_800AFB9C[] = "ＬＩＣＫＩＴＵＮＧ";
-const char D_800AFBB0[] = "ＫＯＦＦＩＮＧ";
-const char D_800AFBC0[] = "ＷＥＥＺＩＮＧ";
-const char D_800AFBD0[] = "ＲＨＹＨＯＲＮ";
-const char D_800AFBE0[] = "ＲＨＹＤＯＮ";
-const char D_800AFBF0[] = "ＣＨＡＮＳＥＹ";
-const char D_800AFC00[] = "ＴＡＮＧＥＬＡ";
-const char D_800AFC10[] = "ＫＡＮＧＡＳＫＨＡＮ";
-const char D_800AFC28[] = "ＨＯＲＳＥＡ";
-const char D_800AFC38[] = "ＳＥＡＤＲＡ";
-const char D_800AFC48[] = "ＧＯＬＤＥＥＮ";
-const char D_800AFC58[] = "ＳＥＡＫＩＮＧ";
-const char D_800AFC68[] = "ＳＴＡＲＹＵ";
-const char D_800AFC78[] = "ＳＴＡＲＭＩＥ";
-const char D_800AFC88[] = "ＭＲ．ＭＩＭＥ";
-const char D_800AFC98[] = "ＳＣＹＴＨＥＲ";
-const char D_800AFCA8[] = "ＪＹＮＸ";
-const char D_800AFCB4[] = "ＥＬＥＣＴＡＢＵＺＺ";
-const char D_800AFCCC[] = "ＭＡＧＭＡＲ";
-const char D_800AFCDC[] = "ＰＩＮＳＥＲ";
-const char D_800AFCEC[] = "ＴＡＵＲＯＳ";
-const char D_800AFCFC[] = "ＭＡＧＩＫＡＲＰ";
-const char D_800AFD10[] = "ＧＹＡＲＡＤＯＳ";
-const char D_800AFD24[] = "ＬＡＰＲＡＳ";
-const char D_800AFD34[] = "ＤＩＴＴＯ";
-const char D_800AFD40[] = "ＥＥＶＥＥ";
-const char D_800AFD4C[] = "ＶＡＰＯＥＲＯＮ";
-const char D_800AFD60[] = "ＪＯＬＴＥＯＮ";
-const char D_800AFD70[] = "ＦＬＡＲＥＯＮ";
-const char D_800AFD80[] = "ＰＯＲＹＧＯＮ";
-const char D_800AFD90[] = "ＯＭＡＮＹＴＥ";
-const char D_800AFDA0[] = "ＯＭＡＳＴＡＲ";
-const char D_800AFDB0[] = "ＫＡＢＵＴＯ";
-const char D_800AFDC0[] = "ＫＡＢＵＴＯＰＳ";
-const char D_800AFDD4[] = "ＡＥＲＯＤＡＣＴＹＬ";
-const char D_800AFDEC[] = "ＳＮＯＲＬＡＸ";
-const char D_800AFDFC[] = "ＡＲＴＩＣＵＮＯ";
-const char D_800AFE10[] = "ＺＡＰＤＯＳ";
-const char D_800AFE20[] = "ＭＯＬＴＲＥＳ";
-const char D_800AFE30[] = "ＤＲＡＴＩＮＩ";
-const char D_800AFE40[] = "ＤＲＡＧＯＮＡＩＲ";
-const char D_800AFE54[] = "ＤＲＡＧＯＮＩＴＥ";
-const char D_800AFE68[] = "ＭＥＷＴＷＯ";
-const char D_800AFE78[] = "ＭＥＷ";
+s32 D_800AC0F0 = -1; // level id?
+MovementState D_800AC0F4 = { 0.0f, 0.5f, NULL, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, 0.0f, 0.0f };
 
-static s32 padding[2];
-PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
-PhotoData* D_800BDF18;
-u8 D_800BDF1C;
-u8 D_800BDF1D;
-u8 D_800BDF1E;
-s32 D_800BDF20[3];
-ucolor D_800BDF2C;
+Unkfunc_8009BDDCSub D_800AC120[] = {
+    { 0.0f, (AnimCmd**) 0x80121410, (AnimCmd***) 0x80129980 },
+    { 0.0f, (AnimCmd**) 0x80123320, (AnimCmd***) 0x80129AE0 },
+    { 0.0f, (AnimCmd**) 0x80124C20, (AnimCmd***) 0x80129C10 },
+    { 0.0f, (AnimCmd**) 0x8011F9D0, (AnimCmd***) 0x80129750 },
+    { 0.0f, (AnimCmd**) 0x80120850, NULL },
+    { 0.0f, (AnimCmd**) 0x80125F00, (AnimCmd***) 0x80129DF0 },
+    { 96.0f, (AnimCmd**) 0x80126680, (AnimCmd***) 0x80129F00 },
+    { 97.0f, (AnimCmd**) 0x80121A50, (AnimCmd***) 0x80129A10 },
+    { 98.0f, (AnimCmd**) 0x80125130, (AnimCmd***) 0x80129CC0 },
+    { 99.0f, (AnimCmd**) 0x801283C0, (AnimCmd***) 0x80129FF0 },
+    { 0.0f, (AnimCmd**) 0x80120DD0, (AnimCmd***) 0x80129910 },
+    { 0.0f, (AnimCmd**) 0x80121F30, (AnimCmd***) 0x80129A80 },
+    { 0.0f, (AnimCmd**) 0x80124710, (AnimCmd***) 0x80129BA0 },
+    { 0.0f, (AnimCmd**) 0x8011F0D0, (AnimCmd***) 0x801296E0 },
+    { 0.0f, (AnimCmd**) 0x801202D0, (AnimCmd***) 0x80129800 },
+    { 0.0f, (AnimCmd**) 0x80125B80, (AnimCmd***) 0x80129D80 },
+    { 0.0f, (AnimCmd**) 0x80127090, (AnimCmd***) 0x80129F80 },
+    { -100.0f, (AnimCmd**) 0x80126310, (AnimCmd***) 0x80129EA0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC1F8[] = {
+    { 0.0f, charmander_modelanim_idle, charmander_matanim_idle },
+    { 0.0f, charmander_modelanim_howl, charmander_matanim_howl },
+    { 0.0f, charmander_modelanim_walk, charmander_matanim_walk },
+    { 0.0f, charmander_modelanim_run, charmander_matanim_run },
+    { 0.0f, charmander_modelanim_shake_hands, charmander_matanim_shake_hands },
+    { 103.0f, charmander_modelanim_fall, charmander_matanim_fall },
+    { 104.0f, charmander_modelanim_lie, charmander_matanim_lie },
+    { 105.0f, charmander_modelanim_hit, charmander_matanim_hit },
+    { 106.0f, charmander_modelanim_jump, charmander_matanim_jump },
+    { 0.0f, charmander_modelanim_roar, charmander_matanim_roar },
+};
+
+Unkfunc_8009BDDCSub D_800AC270[] = {
+    { 0.0f, charmeleon_modelanim_idle, charmeleon_matanim_idle },
+    { 115.0f, charmeleon_modelanim_roar, charmeleon_matanim_roar },
+    { 0.0f, charmeleon_modelanim_look_around, charmeleon_matanim_look_around },
+    { 0.0f, charmeleon_modelanim_walk, charmeleon_matanim_walk },
+    { 0.0f, charmeleon_modelanim_run, charmeleon_matanim_run },
+    { 0.0f, charmeleon_modelanim_hit, charmeleon_matanim_hit },
+    { 112.0f, charmeleon_modelanim_fall, charmeleon_matanim_fall },
+    { 113.0f, charmeleon_modelanim_lie, charmeleon_matanim_lie },
+    { 114.0f, charmeleon_modelanim_get_up, charmeleon_matanim_get_up },
+};
+
+Unkfunc_8009BDDCSub D_800AC2DC[] = {
+    { 0.0f, charizard_modelanim_appear, charizard_matanim_appear },
+    { 0.0f, charizard_modelanim_idle, charizard_matanim_idle },
+    { 0.0f, charizard_modelanim_roar, charizard_matanim_roar },
+    { 101.0f, charizard_modelanim_spin, charizard_matanim_spin },
+    { 102.0f, charizard_modelanim_spew_fire, charizard_matanim_spew_fire },
+};
+
+Unkfunc_8009BDDCSub D_800AC318[] = {
+    { 0.0f, (AnimCmd**) 0x801803B0, (AnimCmd***) 0x801865D0 },
+    { 0.0f, (AnimCmd**) 0x80182400, (AnimCmd***) 0x801867B0 },
+    { 0.0f, (AnimCmd**) 0x80183180, (AnimCmd***) 0x80186830 },
+    { 0.0f, (AnimCmd**) 0x8017E6C0, (AnimCmd***) 0x80186440 },
+    { 0.0f, (AnimCmd**) 0x8017EB60, NULL },
+    { 0.0f, (AnimCmd**) 0x80184470, (AnimCmd***) 0x80186960 },
+    { 74.0f, (AnimCmd**) 0x80185B30, (AnimCmd***) 0x80186A80 },
+    { 75.0f, (AnimCmd**) 0x80181510, NULL },
+    { 76.0f, (AnimCmd**) 0x80183AC0, (AnimCmd***) 0x801868C0 },
+    { 80.0f, (AnimCmd**) 0x8017EFF0, (AnimCmd***) 0x801864B0 },
+    { 0.0f, (AnimCmd**) 0x80185230, (AnimCmd***) 0x801869E0 },
+    { 77.0f, (AnimCmd**) 0x801818B0, (AnimCmd***) 0x801866D0 },
+    { 78.0f, (AnimCmd**) 0x801821A0, NULL },
+    { 79.0f, (AnimCmd**) 0x8017F710, (AnimCmd***) 0x80186540 },
+};
+
+Unkfunc_8009BDDCSub D_800AC3C0[] = {
+    { 0.0f, (AnimCmd**) 0x801854F0, (AnimCmd***) 0x801858A0 },
+    { 0.0f, (AnimCmd**) 0x80184E00, (AnimCmd***) 0x80185740 },
+    { 0.0f, (AnimCmd**) 0x80185290, (AnimCmd***) 0x801857F0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC3E4[] = {
+    { 0.0f, D_801548D0_E0D60, NULL },
+    { 0.0f, D_80156960_E2DF0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC3FC[] = {
+    { 0.0f, D_8015AAE0_1A0C40, D_8015AEF0_1A1050 },
+    { 0.0f, D_8015A4C0_1A0620, D_8015AE40_1A0FA0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC414[] = {
+    { 0.0f, D_801A66D0_132B60, NULL },
+    { 0.0f, D_801A08C0_12CD50, D_801A8CC0_135150 },
+    { 1.0f, D_801A2280_12E710, D_801A8D50_1351E0 },
+    { 0.0f, D_801A4A80_130F10, D_801A8DF0_135280 },
+};
+
+Unkfunc_8009BDDCSub D_800AC444[] = {
+    { 0.0f, D_80112F20_90340, D_8011A2B0_976D0 },
+    { 0.0f, D_80113740_90B60, D_8011A370_97790 },
+    { 134.0f, D_8010E190_8B5B0, D_80119A00_96E20 },
+    { 0.0f, D_801092F0_86710, D_801196C0_96AE0 },
+    { 0.0f, D_8010D410_8A830, D_80119960_96D80 },
+    { 0.0f, D_801161D0_935F0, D_8011ADE0_98200 },
+    { 135.0f, D_80111AA0_8EEC0, D_8011A1B0_975D0 },
+    { 0.0f, D_8010CE10_8A230, D_801198B0_96CD0 },
+    { 0.0f, D_8010C370_89790, D_80119800_96C20 },
+    { 0.0f, D_801189D0_95DF0, D_8011AF80_983A0 },
+    { 0.0f, D_80109C10_87030, D_80119760_96B80 },
+    { 0.0f, D_80117C40_95060, D_8011AEE0_98300 },
+    { 145.0f, D_80114610_91A30, D_8011A440_97860 },
+};
+
+Unkfunc_8009BDDCSub D_800AC4E0[] = {
+    { 0.0f, (AnimCmd**) 0x80164440, (AnimCmd***) 0x80169A60 },
+    { 0.0f, (AnimCmd**) 0x801638E0, NULL },
+    { 0.0f, (AnimCmd**) 0x80163E80, NULL },
+    { 0.0f, (AnimCmd**) 0x801672A0, (AnimCmd***) 0x80169C20 },
+    { 59.0f, (AnimCmd**) 0x80167E40, (AnimCmd***) 0x80169C90 },
+    { 60.0f, (AnimCmd**) 0x80164BB0, (AnimCmd***) 0x80169B00 },
+    { 61.0f, (AnimCmd**) 0x80166600, (AnimCmd***) 0x80169BC0 },
+    { 64.0f, (AnimCmd**) 0x801690E0, NULL },
+    { 62.0f, (AnimCmd**) 0x80168870, NULL },
+    { 63.0f, (AnimCmd**) 0x80165100, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC558[] = {
+    { 0.0f, (AnimCmd**) 0x8016C3F0, (AnimCmd***) 0x80171560 },
+    { 0.0f, (AnimCmd**) 0x8016AF90, (AnimCmd***) 0x80171420 },
+    { 0.0f, (AnimCmd**) 0x8016BB80, (AnimCmd***) 0x801714D0 },
+    { 0.0f, (AnimCmd**) 0x8016DF30, (AnimCmd***) 0x80171710 },
+    { 65.0f, (AnimCmd**) 0x8016EBE0, (AnimCmd***) 0x801717D0 },
+    { 66.0f, (AnimCmd**) 0x8016C960, (AnimCmd***) 0x801715F0 },
+    { 67.0f, (AnimCmd**) 0x8016D3F0, (AnimCmd***) 0x80171670 },
+    { 70.0f, (AnimCmd**) 0x8016FC50, NULL },
+    { 68.0f, (AnimCmd**) 0x8016F230, NULL },
+    { 69.0f, (AnimCmd**) 0x8016CD10, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC5D0[] = {
+    { 0.0f, vulpix_modelanim_idle, vulpix_matanim_idle },
+    { 0.0f, vulpix_modelanim_walk, NULL },
+    { 0.0f, vulpix_modelanim_run, NULL },
+    { 0.0f, vulpix_modelanim_hit, vulpix_matanim_hit },
+    { 116.0f, vulpix_modelanim_fall, vulpix_matanim_fall },
+    { 117.0f, vulpix_modelanim_lie, vulpix_matanim_lie },
+    { 118.0f, vulpix_modelanim_get_up, vulpix_matanim_get_up },
+    { 119.0f, vulpix_modelanim_eat, vulpix_matanim_eat },
+};
+
+Unkfunc_8009BDDCSub D_800AC630[] = {
+    { 0.0f, (AnimCmd**) 0x8018AD70, (AnimCmd***) 0x80192E30 },
+    { 0.0f, (AnimCmd**) 0x80190AA0, (AnimCmd***) 0x80193780 },
+    { 0.0f, (AnimCmd**) 0x8018DA20, (AnimCmd***) 0x80193200 },
+    { 24.0f, (AnimCmd**) 0x80189BC0, (AnimCmd***) 0x80192CF0 },
+    { 25.0f, (AnimCmd**) 0x8018EBD0, (AnimCmd***) 0x801933D0 },
+    { 26.0f, (AnimCmd**) 0x8018F850, (AnimCmd***) 0x80193510 },
+    { 0.0f, (AnimCmd**) 0x8018BF00, (AnimCmd***) 0x80192FF0 },
+    { 0.0f, (AnimCmd**) 0x801921E0, (AnimCmd***) 0x801939E0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC690[] = {
+    { 0.0f, (AnimCmd**) 0x8011C2E0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC69C[] = {
+    { -100.0f, (AnimCmd**) 0x8017EFB0, (AnimCmd***) 0x801819E0 },
+    { 84.0f, (AnimCmd**) 0x80180CF0, NULL },
+    { 85.0f, (AnimCmd**) 0x801802D0, (AnimCmd***) 0x80181C20 },
+    { 0.0f, (AnimCmd**) 0x8017DCF0, NULL },
+    { 86.0f, (AnimCmd**) 0x8017FB40, (AnimCmd***) 0x80181B60 },
+    { 0.0f, (AnimCmd**) 0x8017F490, (AnimCmd***) 0x80181AA0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC6E4[] = {
+    { 0.0f, diglett_modelanim_look_around, diglett_matanim_look_around },
+    { 35.0f, diglett_modelanim_turn, NULL },
+    { -100.0f, diglett_modelanim_unburrow, diglett_matanim_unburrow },
+    { 160.0f, diglett_modelanim_rise, diglett_matanim_rise },
+    { -100.0f, diglett_modelanim_burrow, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC720[] = {
+    { 0.0f, dugtrio_modelanim_look_around, NULL },
+    { 37.0f, dugtrio_modelanim_turn, NULL },
+    { -100.0f, dugtrio_modelanim_unburrow, NULL },
+    { 158.0f, dugtrio_modelanim_rise, NULL },
+    { -100.0f, dugtrio_modelanim_burrow, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC75C[] = {
+    { 0.0f, D_801949A0_120E30, D_8019DC60_12A0F0 },
+    { 0.0f, D_801906A0_11CB30, D_8019D890_129D20 },
+    { 0.0f, D_80191AE0_11DF70, D_8019D9E0_129E70 },
+    { 0.0f, D_80192C20_11F0B0, D_8019DAF0_129F80 },
+    { 0.0f, D_80198BF0_125080, D_8019E110_12A5A0 },
+    { 128.0f, D_8019C270_128700, D_8019E3F0_12A880 },
+    { 129.0f, D_80195A70_121F00, D_8019DD80_12A210 },
+    { 130.0f, D_80197A00_123E90, D_8019DFF0_12A480 },
+    { 0.0f, D_8019A950_126DE0, D_8019E260_12A6F0 },
+    { 131.0f, D_80196070_122500, D_8019DE50_12A2E0 },
+};
+
+Unkfunc_8009BDDCSub D_800AC7D4[] = {
+    { 90.0f, (AnimCmd**) 0x80163260, NULL },
+    { 91.0f, (AnimCmd**) 0x80163C30, NULL },
+    { 92.0f, (AnimCmd**) 0x80164410, NULL },
+    { 0.0f, (AnimCmd**) 0x801649D0, NULL },
+    { 0.0f, (AnimCmd**) 0x80162880, NULL },
+    { 93.0f, (AnimCmd**) 0x80166A90, NULL },
+    { 94.0f, (AnimCmd**) 0x801653D0, NULL },
+    { 95.0f, (AnimCmd**) 0x801664A0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC834[] = {
+    { 0.0f, (AnimCmd**) 0x80156410, (AnimCmd***) 0x80159880 },
+    { 0.0f, (AnimCmd**) 0x801529B0, (AnimCmd***) 0x80159660 },
+    { 44.0f, (AnimCmd**) 0x80154C50, (AnimCmd***) 0x801597C0 },
+    { 45.0f, (AnimCmd**) 0x80153490, (AnimCmd***) 0x80159700 },
+    { 46.0f, (AnimCmd**) 0x80159220, (AnimCmd***) 0x80159940 },
+};
+
+Unkfunc_8009BDDCSub D_800AC870[] = {
+    { 0.0f, growlithe_modelanim_idle, growlithe_matanim_idle },
+    { 0.0f, growlithe_modelanim_roar, growlithe_matanim_roar },
+    { 0.0f, growlithe_modelanim_walk, growlithe_matanim_walk },
+    { 0.0f, growlithe_modelanim_run, growlithe_matanim_run },
+    { 0.0f, growlithe_modelanim_hit, growlithe_matanim_hit },
+    { 0.0f, growlithe_modelanim_eat, growlithe_matanim_eat },
+    { 7.0f, growlithe_modelanim_shake_head, growlithe_matanim_shake_head },
+    { 0.0f, growlithe_modelanim_jump, growlithe_matanim_jump },
+};
+
+Unkfunc_8009BDDCSub D_800AC8D0[] = {
+    { 0.0f, arcanine_modelanim_idle, arcanine_matanim_idle },
+    { 0.0f, arcanine_modelanim_roar, arcanine_matanim_roar },
+    { 0.0f, arcanine_modelanim_walk, arcanine_matanim_walk },
+    { 0.0f, arcanine_modelanim_run, arcanine_matanim_run },
+    { 0.0f, arcanine_modelanim_hit, arcanine_matanim_hit },
+    { 0.0f, arcanine_modelanim_eat, arcanine_matanim_eat },
+    { 6.0f, arcanine_modelanim_shake_head, arcanine_matanim_shake_head },
+    { 0.0f, arcanine_modelanim_jump, arcanine_matanim_jump },
+};
+
+Unkfunc_8009BDDCSub D_800AC930[] = {
+    { 52.0f, (AnimCmd**) 0x8016A500, NULL },
+    { 53.0f, (AnimCmd**) 0x8016B930, NULL },
+    { 54.0f, (AnimCmd**) 0x8016C340, NULL },
+    { 0.0f, (AnimCmd**) 0x8016DAC0, NULL },
+    { 0.0f, (AnimCmd**) 0x8016D250, NULL },
+    { 0.0f, (AnimCmd**) 0x801697D0, NULL },
+    { 58.0f, (AnimCmd**) 0x8016FDB0, NULL },
+    { 55.0f, (AnimCmd**) 0x8016F2A0, NULL },
+    { 56.0f, (AnimCmd**) 0x8016E3F0, NULL },
+    { 57.0f, (AnimCmd**) 0x8016E7A0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC9A8[] = {
+    { 0.0f, (AnimCmd**) 0x801A8C10, NULL },
+    { 0.0f, (AnimCmd**) 0x801AA220, (AnimCmd***) 0x801AE8C0 },
+    { 0.0f, (AnimCmd**) 0x801A8250, NULL },
+    { 0.0f, (AnimCmd**) 0x801ACBD0, (AnimCmd***) 0x801AE9A0 },
+    { 0.0f, (AnimCmd**) 0x801ADA80, (AnimCmd***) 0x801AEB60 },
+    { 0.0f, (AnimCmd**) 0x801A9A10, (AnimCmd***) 0x801AE730 },
+    { 0.0f, (AnimCmd**) 0x801AB240, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AC9FC[] = {
+    { 0.0f, (AnimCmd**) 0x801A2EF0, (AnimCmd***) 0x801A5250 },
+    { 10.0f, (AnimCmd**) 0x801A47D0, (AnimCmd***) 0x801A54D0 },
+    { 0.0f, (AnimCmd**) 0x801A39C0, (AnimCmd***) 0x801A5380 },
+};
+
+Unkfunc_8009BDDCSub D_800ACA20[] = {
+    { 0.0f, (AnimCmd**) 0x80141F80, NULL },
+    { 0.0f, (AnimCmd**) 0x80141060, (AnimCmd***) 0x80142610 },
+    { 0.0f, (AnimCmd**) 0x80141C70, (AnimCmd***) 0x80142770 },
+    { 0.0f, (AnimCmd**) 0x80141660, (AnimCmd***) 0x801426C0 },
+    { 0.0f, (AnimCmd**) 0x80140CE0, (AnimCmd***) 0x80142560 },
+    { 0.0f, (AnimCmd**) 0x80140720, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACA68[] = {
+    { 0.0f, (AnimCmd**) 0x80133AE0, NULL },
+    { 41.0f, (AnimCmd**) 0x801329B0, NULL },
+    { 42.0f, (AnimCmd**) 0x80133800, NULL },
+    { 43.0f, (AnimCmd**) 0x80132DF0, (AnimCmd***) 0x801346F0 },
+    { 0.0f, (AnimCmd**) 0x80131990, (AnimCmd***) 0x80134610 },
+    { 0.0f, (AnimCmd**) 0x8012FFD0, (AnimCmd***) 0x80134570 },
+    { 0.0f, (AnimCmd**) 0x80130A30, NULL },
+    { 0.0f, (AnimCmd**) 0x80131240, NULL },
+    { 0.0f, (AnimCmd**) 0x80132150, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACAD4[] = {
+    { 0.0f, rapidash_modelanim_idle, rapidash_matanim_idle },
+    { 0.0f, rapidash_modelanim_walk, rapidash_matanim_walk },
+    { 0.0f, rapidash_modelanim_run, rapidash_matanim_run },
+    { 0.0f, rapidash_modelanim_shake_head, rapidash_matanim_shake_head },
+    { 0.0f, rapidash_modelanim_kick, rapidash_matanim_kick },
+    { 5.0f, rapidash_modelanim_rear, rapidash_matanim_rear },
+};
+
+Unkfunc_8009BDDCSub D_800ACB1C[] = {
+    { 0.0f, (AnimCmd**) 0x80188E10, NULL },
+    { 0.0f, (AnimCmd**) 0x80189A90, NULL },
+    { 0.0f, (AnimCmd**) 0x80186880, NULL },
+    { 0.0f, (AnimCmd**) 0x801870C0, NULL },
+    { 0.0f, (AnimCmd**) 0x8018B6A0, NULL },
+    { 89.0f, (AnimCmd**) 0x8018DF00, NULL },
+    { 156.0f, (AnimCmd**) 0x80190FF0, NULL },
+    { 0.0f, (AnimCmd**) 0x801893B0, NULL },
+    { 0.0f, (AnimCmd**) 0x801878B0, (AnimCmd***) 0x80191C80 },
+    { 157.0f, (AnimCmd**) 0x8018CB70, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACB94[] = {
+    { 0.0f, (AnimCmd**) 0x80197030, NULL },
+    { 0.0f, (AnimCmd**) 0x801978E0, NULL },
+    { 0.0f, (AnimCmd**) 0x801941C0, NULL },
+    { 0.0f, (AnimCmd**) 0x80194F10, NULL },
+    { 0.0f, (AnimCmd**) 0x801988E0, (AnimCmd***) 0x8019AD90 },
+    { 11.0f, (AnimCmd**) 0x80199AC0, NULL },
+    { 0.0f, (AnimCmd**) 0x80195B70, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACBE8[] = {
+    { 0.0f, magnemite_modelanim_move, NULL },
+    { 0.0f, magnemite_modelanim_idle, NULL },
+    { -100.0f, magnemite_modelanim_pulse, magnemite_matanim_pulse },
+    { 0.0f, magnemite_modelanim_run, NULL },
+    { 33.0f, magnemite_modelanim_hit, NULL },
+    { 34.0f, magnemite_modelanim_react, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACC30[] = {
+    { 0.0f, magneton_modelanim, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACC3C[] = {
+    { 0.0f, D_80159E60_E62F0, NULL },
+    { 123.0f, D_8015EBA0_EB030, NULL },
+    { 124.0f, D_8015BC10_E80A0, D_801617D0_EDC60 },
+    { 125.0f, D_8015CBC0_E9050, NULL },
+    { 0.0f, D_8015FD10_EC1A0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACC78[] = {
+    { 0.0f, (AnimCmd**) 0x801580F0, (AnimCmd***) 0x8015B8C0 },
+    { 0.0f, (AnimCmd**) 0x801572A0, (AnimCmd***) 0x8015B4F0 },
+    { 16.0f, (AnimCmd**) 0x8015A380, (AnimCmd***) 0x8015C410 },
+    { 0.0f, (AnimCmd**) 0x80158C90, (AnimCmd***) 0x8015BC90 },
+    { 0.0f, (AnimCmd**) 0x80159940, (AnimCmd***) 0x8015BFA0 },
+};
+
+Unkfunc_8009BDDCSub D_800ACCB4[] = {
+    { 0.0f, (AnimCmd**) 0x8015EC20, (AnimCmd***) 0x80160EC0 },
+    { 0.0f, (AnimCmd**) 0x8015E650, (AnimCmd***) 0x80160BA0 },
+    { 15.0f, (AnimCmd**) 0x80160160, (AnimCmd***) 0x80161860 },
+    { 0.0f, (AnimCmd**) 0x8015F820, (AnimCmd***) 0x80161540 },
+    { 0.0f, (AnimCmd**) 0x8015F1D0, (AnimCmd***) 0x80161220 },
+};
+
+Unkfunc_8009BDDCSub D_800ACCF0[] = {
+    { 0.0f, (AnimCmd**) 0x80182580, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACCFC[] = {
+    { 0.0f, (AnimCmd**) 0x80171780, NULL },
+    { 0.0f, (AnimCmd**) 0x80171480, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACD14[] = {
+    { 0.0f, (AnimCmd**) 0x80177B50, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACD20[] = {
+    { 0.0f, electrode_modelanim_idle, NULL },
+    { 28.0f, electrode_modelanim_explode, electrode_matanim_explode },
+    { 0.0f, electrode_modelanim_dead, electrode_matanim_dead },
+    { 27.0f, electrode_modelanim_roll, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACD50[] = {
+    { 0.0f, (AnimCmd**) 0x80166B20, (AnimCmd***) 0x8016E240 },
+    { 0.0f, (AnimCmd**) 0x801676C0, (AnimCmd***) 0x8016E570 },
+    { 0.0f, (AnimCmd**) 0x8016B2D0, (AnimCmd***) 0x8016F440 },
+    { 155.0f, (AnimCmd**) 0x801680F0, (AnimCmd***) 0x8016E910 },
+    { 0.0f, (AnimCmd**) 0x801657B0, (AnimCmd***) 0x8016DCF0 },
+    { 0.0f, (AnimCmd**) 0x8016A380, (AnimCmd***) 0x8016EF90 },
+};
+
+Unkfunc_8009BDDCSub D_800ACD98[] = {
+    { -100.0f, &D_80186E20, NULL },
+    { 0.0f, D_80187230_1136C0, NULL },
+    { -100.0f, D_80188ED0_115360, D_8018A4C0_116950 },
+    { 0.0f, D_801866A0_112B30, D_8018A270_116700 },
+    { 0.0f, D_80185010_1114A0, NULL },
+    { 0.0f, D_80187BD0_114060, D_8018A370_116800 },
+    { 0.0f, D_80185D90_112220, NULL },
+    { 122.0f, D_801895E0_115A70, NULL },
+    { 161.0f, D_80188260_1146F0, D_8018A410_1168A0 },
+};
+
+Unkfunc_8009BDDCSub D_800ACE04[] = {
+    { 0.0f, D_80173C30_1000C0, D_80179760_105BF0 },
+    { 0.0f, D_8016E200_FA690, D_80179560_1059F0 },
+    { 0.0f, D_8016F5B0_FBA40, D_80179600_105A90 },
+    { 126.0f, D_80170AD0_FCF60, D_801796A0_105B30 },
+    { 0.0f, D_801765D0_102A60, D_801798B0_105D40 },
+    { 0.0f, D_80177520_1039B0, D_80179940_105DD0 },
+    { 127.0f, D_80175390_101820, D_80179810_105CA0 },
+};
+
+Unkfunc_8009BDDCSub D_800ACE58[] = {
+    { 71.0f, (AnimCmd**) 0x80179C50, (AnimCmd***) 0x8017B800 },
+    { 72.0f, (AnimCmd**) 0x8017A420, (AnimCmd***) 0x8017B8D0 },
+    { 73.0f, (AnimCmd**) 0x8017AED0, (AnimCmd***) 0x8017B980 },
+};
+
+Unkfunc_8009BDDCSub D_800ACE7C[] = {
+    { 0.0f, (AnimCmd**) 0x8013E410, NULL },
+    { 0.0f, (AnimCmd**) 0x8013DD40, (AnimCmd***) 0x8013F550 },
+    { 0.0f, (AnimCmd**) 0x8013EAE0, (AnimCmd***) 0x8013F5E0 },
+};
+
+Unkfunc_8009BDDCSub D_800ACEA0[] = {
+    { 0.0f, (AnimCmd**) 0x80173E70, (AnimCmd***) 0x80174DD0 },
+    { 0.0f, (AnimCmd**) 0x80173810, (AnimCmd***) 0x80174CE0 },
+    { 0.0f, (AnimCmd**) 0x801744D0, (AnimCmd***) 0x80174E40 },
+};
+
+Unkfunc_8009BDDCSub D_800ACEC4[] = {
+    { 0.0f, D_801AF4B0_13B940, NULL },
+    { 0.0f, D_801AA9D0_136E60, NULL },
+    { 2.0f, D_801ACF90_139420, NULL },
+    { 0.0f, D_801AE790_13AC20, NULL },
+    { 0.0f, D_801AC250_1386E0, NULL },
+    { 0.0f, D_801AB610_137AA0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACF0C[] = {
+    { 0.0f, (AnimCmd**) 0x8019E4D0, NULL },
+    { 0.0f, (AnimCmd**) 0x8019D4A0, (AnimCmd***) 0x801A03C0 },
+    { 0.0f, (AnimCmd**) 0x8019B160, (AnimCmd***) 0x801A02A0 },
+    { 0.0f, (AnimCmd**) 0x8019EF80, NULL },
+    { 0.0f, (AnimCmd**) 0x8019C070, (AnimCmd***) 0x801A0310 },
+    { 17.0f, (AnimCmd**) 0x80199060, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800ACF54[] = {
+    { 0.0f, (AnimCmd**) 0x8016FCF0, NULL },
+    { 0.0f, (AnimCmd**) 0x8016EAC0, NULL },
+    { 0.0f, (AnimCmd**) 0x8016F350, NULL },
+    { 0.0f, (AnimCmd**) 0x801742D0, (AnimCmd***) 0x80177A20 },
+    { 154.0f, (AnimCmd**) 0x80175690, NULL },
+    { 32.0f, (AnimCmd**) 0x80172FA0, (AnimCmd***) 0x80177890 },
+    { 29.0f, (AnimCmd**) 0x80176800, (AnimCmd***) 0x80177AC0 },
+    { 30.0f, (AnimCmd**) 0x80170740, (AnimCmd***) 0x80177710 },
+    { 31.0f, (AnimCmd**) 0x80171520, (AnimCmd***) 0x80177790 },
+};
+
+Unkfunc_8009BDDCSub D_800ACFC0[] = {
+    { 0.0f, magmar_modelanim_idle, magmar_matanim_idle },
+    { 0.0f, magmar_modelanim_look_around, magmar_matanim_look_around },
+    { 0.0f, magmar_modelanim_walk, magmar_matanim_walk },
+    { 0.0f, magmar_modelanim_run, magmar_matanim_run },
+    { 107.0f, magmar_modelanim_hit, magmar_matanim_hit },
+    { 108.0f, magmar_modelanim_fall, NULL },
+    { 109.0f, magmar_modelanim_lie, NULL },
+    { 110.0f, magmar_modelanim_get_up, magmar_matanim_get_up },
+    { 0.0f, magmar_modelanim_eat, magmar_matanim_eat },
+    { 111.0f, magmar_modelanim_spew_fire, magmar_matanim_spew_fire },
+};
+
+Unkfunc_8009BDDCSub D_800AD038[] = {
+    { 51.0f, D_800FDC70_7B090, NULL },
+    { 48.0f, D_800FAE40_78260, NULL },
+    { 49.0f, D_800FBF50_79370, NULL },
+    { 50.0f, D_800FD080_7A4A0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD068[] = {
+    { 20.0f, (AnimCmd**) 0x8013BEC0, NULL },
+    { 21.0f, (AnimCmd**) 0x80139880, (AnimCmd***) 0x8013C6B0 },
+    { 22.0f, (AnimCmd**) 0x8013A370, (AnimCmd***) 0x8013C7A0 },
+    { 19.0f, (AnimCmd**) 0x80137D60, NULL },
+    { 23.0f, (AnimCmd**) 0x8013B150, (AnimCmd***) 0x8013C830 },
+};
+
+Unkfunc_8009BDDCSub D_800AD0A4[] = {
+    { 4.0f, D_80183D20_1101B0, D_80184400_110890 },
+};
+
+Unkfunc_8009BDDCSub D_800AD0B0[] = {
+    { 0.0f, (AnimCmd**) 0x8017EE10, NULL },
+    { 0.0f, (AnimCmd**) 0x8017D950, NULL },
+    { 0.0f, (AnimCmd**) 0x8017E460, NULL },
+    { 0.0f, (AnimCmd**) 0x80183C40, NULL },
+    { 0.0f, (AnimCmd**) 0x80184C20, NULL },
+    { 0.0f, (AnimCmd**) 0x80182410, NULL },
+    { 0.0f, (AnimCmd**) 0x80182D00, NULL },
+    { 14.0f, (AnimCmd**) 0x80186450, NULL },
+    { 0.0f, (AnimCmd**) 0x80181570, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD11C[] = {
+    { 0.0f, D_80166A90_F2F20, D_8016B300_F7790 },
+    { 0.0f, D_80165010_F14A0, D_8016B190_F7620 },
+    { 0.0f, D_80165D90_F2220, D_8016B250_F76E0 },
+    { 0.0f, D_80167D20_F41B0, D_8016B420_F78B0 },
+    { 3.0f, D_80168D50_F51E0, D_8016B4F0_F7980 },
+};
+
+Unkfunc_8009BDDCSub D_800AD158[] = {
+    { 0.0f, (AnimCmd**) 0x80174FC0, (AnimCmd***) 0x8017ADA0 },
+    { 0.0f, (AnimCmd**) 0x80173140, (AnimCmd***) 0x8017A330 },
+    { 0.0f, (AnimCmd**) 0x80173B00, (AnimCmd***) 0x8017A710 },
+    { 0.0f, (AnimCmd**) 0x80176740, (AnimCmd***) 0x8017B110 },
+    { 0.0f, (AnimCmd**) 0x801746F0, (AnimCmd***) 0x8017AAA0 },
+    { 83.0f, (AnimCmd**) 0x801799E0, (AnimCmd***) 0x8017BD70 },
+    { 0.0f, (AnimCmd**) 0x801779A0, (AnimCmd***) 0x8017B580 },
+    { -100.0f, (AnimCmd**) 0x80174B00, (AnimCmd***) 0x8017ABC0 },
+    { 0.0f, (AnimCmd**) 0x80172D00, (AnimCmd***) 0x8017A0B0 },
+    { 0.0f, (AnimCmd**) 0x80173360, (AnimCmd***) 0x8017A470 },
+    { 0.0f, (AnimCmd**) 0x80175220, (AnimCmd***) 0x8017AE90 },
+    { 0.0f, (AnimCmd**) 0x80173ED0, (AnimCmd***) 0x8017A860 },
+    { 81.0f, (AnimCmd**) 0x80178C40, (AnimCmd***) 0x8017BAF0 },
+    { 0.0f, (AnimCmd**) 0x80178400, (AnimCmd***) 0x8017B8B0 },
+    { 0.0f, (AnimCmd**) 0x801771D0, (AnimCmd***) 0x8017B250 },
+    { -100.0f, (AnimCmd**) 0x80174D60, (AnimCmd***) 0x8017ACB0 },
+    { 0.0f, (AnimCmd**) 0x80172F20, (AnimCmd***) 0x8017A1F0 },
+    { 0.0f, (AnimCmd**) 0x80173730, (AnimCmd***) 0x8017A5C0 },
+    { 0.0f, (AnimCmd**) 0x80175CB0, (AnimCmd***) 0x8017AFD0 },
+    { 0.0f, (AnimCmd**) 0x801742E0, (AnimCmd***) 0x8017A980 },
+    { 82.0f, (AnimCmd**) 0x80179310, (AnimCmd***) 0x8017BC30 },
+    { 0.0f, (AnimCmd**) 0x80178820, (AnimCmd***) 0x8017B9D0 },
+};
+
+Unkfunc_8009BDDCSub D_800AD260[] = {
+    { -100.0f, D_8017EBA0_10B030, D_80182230_10E6C0 },
+    { -100.0f, D_8017E740_10ABD0, D_801821C0_10E650 },
+    { -100.0f, D_8017F8B0_10BD40, D_80182310_10E7A0 },
+    { 162.0f, D_8017FEF0_10C380, NULL },
+    { 132.0f, D_8017F080_10B510, NULL },
+    { 0.0f, D_80181880_10DD10, NULL },
+    { 0.0f, D_80180910_10CDA0, D_801823C0_10E850 },
+    { 133.0f, D_8017BB20_107FB0, NULL },
+    { 163.0f, D_8017DA60_109EF0, D_801820B0_10E540 },
+    { -100.0f, D_8017E2E0_10A770, D_80182150_10E5E0 },
+};
+
+Unkfunc_8009BDDCSub D_800AD2D8[] = {
+    { 18.0f, (AnimCmd**) 0x801746E0, (AnimCmd***) 0x80178920 },
+    { 0.0f, (AnimCmd**) 0x80172370, (AnimCmd***) 0x80178800 },
+    { 0.0f, (AnimCmd**) 0x80172E00, (AnimCmd***) 0x80178890 },
+};
+
+Unkfunc_8009BDDCSub D_800AD2FC[] = {
+    { 0.0f, (AnimCmd**) 0x80185E70, (AnimCmd***) 0x80186F30 },
+    { 0.0f, (AnimCmd**) 0x80184920, (AnimCmd***) 0x80186EA0 },
+    { 13.0f, (AnimCmd**) 0x80186530, (AnimCmd***) 0x80186FA0 },
+    { 0.0f, (AnimCmd**) 0x80183EE0, (AnimCmd***) 0x80186E20 },
+};
+
+Unkfunc_8009BDDCSub D_800AD32C[] = {
+    { 0.0f, moltres_modelanim_fly, moltres_matanim_fly },
+    { 0.0f, moltres_modelanim_fly2, moltres_matanim_fly2 },
+    { 100.0f, moltres_modelanim_shake_off, moltres_matanim_shake_off },
+    { 0.0f, moltres_modelanim_appear, moltres_matanim_appear },
+    { 0.0f, moltres_modelanim_fly_away, moltres_matanim_fly_away },
+};
+
+Unkfunc_8009BDDCSub D_800AD368[] = {
+    { 38.0f, (AnimCmd**) 0x8015CED0, (AnimCmd***) 0x8015E720 },
+    { 39.0f, (AnimCmd**) 0x8015DA00, NULL },
+    { 40.0f, (AnimCmd**) 0x8015DCE0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD38C[] = {
+    { 0.0f, (AnimCmd**) 0x8014B280, NULL },
+    { 0.0f, (AnimCmd**) 0x8014ABC0, NULL },
+    { 12.0f, (AnimCmd**) 0x801470F0, NULL },
+    { 0.0f, (AnimCmd**) 0x801462C0, NULL },
+    { 0.0f, (AnimCmd**) 0x801453E0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD3C8[] = {
+    { -100.0f, D_8012EFF0_4E13C0, D_80139690_4EBA60 },
+    { -100.0f, D_801368F0_4E8CC0, D_80139B00_4EBED0 },
+    { -100.0f, D_801358A0_4E7C70, D_80139A00_4EBDD0 },
+    { -100.0f, D_80133040_4E5410, D_80139900_4EBCD0 },
+    { 149.0f, D_8012C9E0_4DEDB0, D_801394D0_4EB8A0 },
+    { 150.0f, D_8012D700_4DFAD0, D_801395A0_4EB970 },
+    { 151.0f, D_80131D30_4E4100, D_80139840_4EBC10 },
+    { 152.0f, D_8012FB60_4E1F30, D_80139770_4EBB40 },
+};
+
+Unkfunc_8009BDDCSub D_800AD428[] = {
+    { -100.0f, moltres_egg_modelanim_idle, NULL },
+    { -100.0f, moltres_egg_modelanim_drown, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD440[] = {
+    { -100.0f, (AnimCmd**) 0x8017A200, NULL },
+    { -100.0f, (AnimCmd**) 0x8017A350, NULL },
+    { -100.0f, &D_8017A710, NULL },
+    { -100.0f, (AnimCmd**) 0x8017A510, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD470[] = {
+    { -100.0f, (AnimCmd**) 0x80188820, NULL },
+    { -100.0f, (AnimCmd**) 0x80188940, NULL },
+    { -100.0f, &D_80188CB0, NULL },
+    { -100.0f, (AnimCmd**) 0x80188AF0, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD4A0[] = {
+    { 87.0f, (AnimCmd**) 0x80183C10, NULL },
+    { 88.0f, (AnimCmd**) 0x801836C0, NULL },
+};
+
+Unkfunc_8009BDDC D_800AD4B8[] = {
+    { PokemonID_GRIMER, D_800ACC78, ARRAY_COUNT(D_800ACC78) },
+    { PokemonID_MUK, D_800ACCB4, ARRAY_COUNT(D_800ACCB4) },
+    { PokemonID_MAGMAR, D_800ACFC0, ARRAY_COUNT(D_800ACFC0) },
+    { PokemonID_BUTTERFREE, D_800AC3E4, ARRAY_COUNT(D_800AC3E4) },
+    { PokemonID_KAKUNA, D_800AC3FC, ARRAY_COUNT(D_800AC3FC) },
+    { PokemonID_MAGNEMITE, D_800ACBE8, ARRAY_COUNT(D_800ACBE8) },
+    { PokemonID_DIGLETT, D_800AC6E4, ARRAY_COUNT(D_800AC6E4) },
+    { PokemonID_DODUO, D_800ACC3C, ARRAY_COUNT(D_800ACC3C) },
+    { PokemonID_KOFFING, D_800ACD50, ARRAY_COUNT(D_800ACD50) },
+    { PokemonID_DUGTRIO, D_800AC720, ARRAY_COUNT(D_800AC720) },
+    { PokemonID_EEVEE, D_800AD11C, ARRAY_COUNT(D_800AD11C) },
+    { PokemonID_ELECTABUZZ, D_800ACF54, ARRAY_COUNT(D_800ACF54) },
+    { PokemonID_MOLTRES, D_800AD32C, ARRAY_COUNT(D_800AD32C) },
+    { PokemonID_MOLTRES_EGG, D_800AD428, ARRAY_COUNT(D_800AD428) },
+    { PokemonID_ARTICUNO, D_800AD2D8, ARRAY_COUNT(D_800AD2D8) },
+    { PokemonID_601, D_800AD440, ARRAY_COUNT(D_800AD440) },
+    { PokemonID_BULBASAUR, D_800AC120, ARRAY_COUNT(D_800AC120) },
+    { PokemonID_RAPIDASH, D_800ACAD4, ARRAY_COUNT(D_800ACAD4) },
+    { PokemonID_GROWLITHE, D_800AC870, ARRAY_COUNT(D_800AC870) },
+    { PokemonID_KANGASKHAN, D_800ACE04, ARRAY_COUNT(D_800ACE04) },
+    { PokemonID_HAUNTER, D_800ACD14, ARRAY_COUNT(D_800ACD14) },
+    { PokemonID_GRAVELER, D_800ACA68, ARRAY_COUNT(D_800ACA68) },
+    { PokemonID_GYARADOS, D_800AD068, ARRAY_COUNT(D_800AD068) },
+    { PokemonID_STARYU, D_800ACE7C, ARRAY_COUNT(D_800ACE7C) },
+    { PokemonID_CHARMANDER, D_800AC1F8, ARRAY_COUNT(D_800AC1F8) },
+    { PokemonID_GEODUDE, D_800ACA20, ARRAY_COUNT(D_800ACA20) },
+    { PokemonID_SNORLAX, D_800AD260, ARRAY_COUNT(D_800AD260) },
+    { PokemonID_DRAGONITE, D_800AD38C, ARRAY_COUNT(D_800AD38C) },
+    { PokemonID_PSYDUCK, D_800AC7D4, ARRAY_COUNT(D_800AC7D4) },
+    { PokemonID_MAGIKARP, D_800AD038, ARRAY_COUNT(D_800AD038) },
+    { PokemonID_LAPRAS, D_800AD0A4, ARRAY_COUNT(D_800AD0A4) },
+    { PokemonID_CHARMELEON, D_800AC270, ARRAY_COUNT(D_800AC270) },
+    { PokemonID_CHARIZARD, D_800AC2DC, ARRAY_COUNT(D_800AC2DC) },
+    { PokemonID_CHANSEY, D_800ACD98, ARRAY_COUNT(D_800ACD98) },
+    { PokemonID_MANKEY, D_800AC834, ARRAY_COUNT(D_800AC834) },
+    { PokemonID_ELECTRODE, D_800ACD20, ARRAY_COUNT(D_800ACD20) },
+    { PokemonID_DITTO, D_800AD0B0, ARRAY_COUNT(D_800AD0B0) },
+    { PokemonID_MEW, D_800AD3C8, ARRAY_COUNT(D_800AD3C8) },
+    { PokemonID_DRATINI, D_800AD368, ARRAY_COUNT(D_800AD368) },
+    { PokemonID_MEOWTH, D_800AC75C, ARRAY_COUNT(D_800AC75C) },
+    { PokemonID_POLIWAG, D_800AC930, ARRAY_COUNT(D_800AC930) },
+    { PokemonID_CLOYSTER, D_800ACCFC, ARRAY_COUNT(D_800ACCFC) },
+    { PokemonID_PIKACHU, D_800AC444, ARRAY_COUNT(D_800AC444) },
+    { PokemonID_PIDGEY, D_800AC414, ARRAY_COUNT(D_800AC414) },
+    { PokemonID_PORYGON, D_800AD158, ARRAY_COUNT(D_800AD158) },
+    { PokemonID_JIGGLYPUFF, D_800AC630, ARRAY_COUNT(D_800AC630) },
+    { PokemonID_MAGNETON, D_800ACC30, ARRAY_COUNT(D_800ACC30) },
+    { PokemonID_VULPIX, D_800AC5D0, ARRAY_COUNT(D_800AC5D0) },
+    { PokemonID_JYNX, D_800ACF0C, ARRAY_COUNT(D_800ACF0C) },
+    { PokemonID_VILEPLUME, D_800AC69C, ARRAY_COUNT(D_800AC69C) },
+    { PokemonID_SANDSHREW, D_800AC4E0, ARRAY_COUNT(D_800AC4E0) },
+    { PokemonID_SANDSLASH, D_800AC558, ARRAY_COUNT(D_800AC558) },
+    { PokemonID_SHELLDER, D_800ACCF0, ARRAY_COUNT(D_800ACCF0) },
+    { PokemonID_603, D_800AD4A0, ARRAY_COUNT(D_800AD4A0) },
+    { PokemonID_STARMIE, D_800ACEA0, ARRAY_COUNT(D_800ACEA0) },
+    { PokemonID_SCYTHER, D_800ACEC4, ARRAY_COUNT(D_800ACEC4) },
+    { PokemonID_ZAPDOS, D_800AD2FC, ARRAY_COUNT(D_800AD2FC) },
+    { PokemonID_ZAPDOS_EGG, D_800AD470, ARRAY_COUNT(D_800AD470) },
+    { PokemonID_GOLDEEN, D_800ACE58, ARRAY_COUNT(D_800ACE58) },
+    { PokemonID_METAPOD, D_800AC3C0, ARRAY_COUNT(D_800AC3C0) },
+    { PokemonID_VICTREEBEL, D_800AC9FC, ARRAY_COUNT(D_800AC9FC) },
+    { PokemonID_WEEPINBELL, D_800AC9A8, ARRAY_COUNT(D_800AC9A8) },
+    { PokemonID_ARCANINE, D_800AC8D0, ARRAY_COUNT(D_800AC8D0) },
+    { PokemonID_SLOWPOKE, D_800ACB1C, ARRAY_COUNT(D_800ACB1C) },
+    { PokemonID_SLOWBRO, D_800ACB94, ARRAY_COUNT(D_800ACB94) },
+    { PokemonID_SQUIRTLE, D_800AC318, ARRAY_COUNT(D_800AC318) },
+    { PokemonID_ZUBAT, D_800AC690, ARRAY_COUNT(D_800AC690) },
+};
+
+Unkfunc_8009BDDCSub D_800AD7DC[] = {
+    { 0.0f, gate_modelanim_closed, gate_matanim_closed },
+    { 0.0f, gate_modelanim_raise_bar, gate_matanim_raise_bar },
+    { 0.0f, gate_modelanim_opening, gate_matanim_opening },
+    { 0.0f, gate_modelanim_opened, gate_matanim_opened },
+};
+
+Unkfunc_8009BDDCSub D_800AD80C[] = {
+    { 0.0f, evolution_controller_modelanim, evolution_controller_matanim },
+};
+
+Unkfunc_8009BDDCSub D_800AD818[] = {
+    { 0.0f, &D_800EAFB0, &D_800EB0C0 },
+};
+
+Unkfunc_8009BDDCSub D_800AD824[] = {
+    { 0.0f, D_80139CD0_C6160, D_8013ACA0_C7130 },
+};
+
+Unkfunc_8009BDDCSub D_800AD830[] = {
+    { 0.0f, (AnimCmd**) 0x80138ED0, NULL },
+    { 0.0f, (AnimCmd**) 0x80138F20, NULL },
+};
+
+Unkfunc_8009BDDCSub D_800AD848[] = {
+    { 0.0f, (AnimCmd**) 0x80138810, (AnimCmd***) 0x80138870 },
+    { 0.0f, (AnimCmd**) 0x80138930, (AnimCmd***) 0x80138990 },
+};
+
+Unkfunc_8009BDDCSub D_800AD860[] = {
+    { 0.0f, (AnimCmd**) 0x80133740, (AnimCmd***) 0x801338B0 },
+    { 0.0f, (AnimCmd**) 0x80134090, (AnimCmd***) 0x80134150 },
+};
+
+Unkfunc_8009BDDCSub D_800AD878[] = {
+    { 0.0f, (AnimCmd**) 0x801394A0, (AnimCmd***) 0x801394B0 },
+    { 0.0f, (AnimCmd**) 0x80139500, (AnimCmd***) 0x80139510 },
+};
+
+Unkfunc_8009BDDCSub D_800AD890[] = {
+    { 0.0f, (AnimCmd**) 0x80139A90, (AnimCmd***) 0x80139AA0 },
+    { 0.0f, (AnimCmd**) 0x80139AF0, (AnimCmd***) 0x80139B00 },
+};
+
+Unkfunc_8009BDDCSub D_800AD8A8[] = {
+    { 0.0f, koffing_smoke_modelanim_show, koffing_smoke_matanim_show },
+    { 0.0f, koffing_smoke_modelanim_reveal, koffing_smoke_matanim_reveal },
+    { 0.0f, koffing_smoke_modelanim_hide, koffing_smoke_matanim_hide },
+};
+
+Unkfunc_8009BDDCSub D_800AD8CC[] = {
+    { 0.0f, smoke_puff_modelanim, smoke_puff_matanim },
+};
+
+Unkfunc_8009BDDCSub D_800AD8D8[] = {
+    { 0.0f, lava_splash_modelanim, lava_splash_matanim },
+};
+
+Unkfunc_8009BDDCSub D_800AD8E4[] = {
+    { 0.0f, volcano_smoke_modelanim, volcano_smoke_matanim },
+};
+
+Unkfunc_8009BDDCSub D_800AD8F0[] = {
+    { 0.0f, (AnimCmd**) 0x801197F0, (AnimCmd***) 0x80119830 },
+    { 0.0f, (AnimCmd**) 0x801198F0, (AnimCmd***) 0x80119940 },
+};
+
+Unkfunc_8009BDDCSub D_800AD908[] = {
+    { 0.0f, D_80117210_4C95E0, D_80117260_4C9630 },
+    { 0.0f, D_80117310_4C96E0, D_80117360_4C9730 },
+    { 0.0f, D_80117410_4C97E0, D_80117480_4C9850 },
+    { 0.0f, D_80117570_4C9940, D_801175E0_4C99B0 },
+    { 0.0f, D_801176D0_4C9AA0, D_80117730_4C9B00 },
+    { 0.0f, D_80117840_4C9C10, D_801178A0_4C9C70 },
+    { 0.0f, D_80117980_4C9D50, D_801179C0_4C9D90 },
+    { 0.0f, D_80117A50_4C9E20, D_80117A90_4C9E60 },
+    { 0.0f, D_80117B20_4C9EF0, D_80117B60_4C9F30 },
+    { 0.0f, D_80117C70_4CA040, D_80117CB0_4CA080 },
+    { 0.0f, D_80117DC0_4CA190, D_80117DF0_4CA1C0 },
+    { 0.0f, D_80117F10_4CA2E0, D_80117F40_4CA310 },
+};
+
+Unkfunc_8009BDDCSub D_800AD998[] = {
+    { 0.0f, D_80118360_4CA730, D_80118390_4CA760 },
+};
+
+Unkfunc_8009BDDC D_800AD9A4[] = {
+    { PokemonID_GATE, D_800AD7DC, ARRAY_COUNT(D_800AD7DC) },
+    { PokemonID_EVOLUTION_CONTROLLER, D_800AD80C, ARRAY_COUNT(D_800AD80C) },
+    { PokemonID_1003, D_800AD818, ARRAY_COUNT(D_800AD818) },
+    { PokemonID_1006, D_800AD824, ARRAY_COUNT(D_800AD824) },
+    { PokemonID_1009, D_800AD830, ARRAY_COUNT(D_800AD830) },
+    { PokemonID_1010, D_800AD848, ARRAY_COUNT(D_800AD848) },
+    { PokemonID_1008, D_800AD860, ARRAY_COUNT(D_800AD860) },
+    { PokemonID_1012, D_800AD878, ARRAY_COUNT(D_800AD878) },
+    { PokemonID_1013, D_800AD890, ARRAY_COUNT(D_800AD890) },
+    { PokemonID_KOFFING_SMOKE, D_800AD8A8, ARRAY_COUNT(D_800AD8A8) },
+    { PokemonID_SMOKE_PUFF, D_800AD8CC, ARRAY_COUNT(D_800AD8CC) },
+    { PokemonID_LAVA_SPLASH, D_800AD8D8, ARRAY_COUNT(D_800AD8D8) },
+    { PokemonID_VOLCANO_SMOKE, D_800AD8E4, ARRAY_COUNT(D_800AD8E4) },
+    { PokemonID_1033, D_800AD8F0, ARRAY_COUNT(D_800AD8F0) },
+    { PokemonID_1037, D_800AD908, ARRAY_COUNT(D_800AD908) },
+    { PokemonID_1038, D_800AD998, ARRAY_COUNT(D_800AD998) },
+};
+
+Unk1C D_800ADA64[] = {
+    { PokemonID_1004, 10.0f, D_80136AC0_C2F50, NULL, renderModelTypeDFogged, NULL, NULL },
+    { PokemonID_1014, 10.0f, (UnkEC64Arg3*) 0x8013AA00, NULL, renderModelTypeBFogged, NULL, NULL },
+    { PokemonID_1018, 10.0f, (UnkEC64Arg3*) 0x801450C0, NULL, renderModelTypeDFogged, (AnimCmd**) 0x801456D0, NULL },
+    { PokemonID_1019, 10.0f, (UnkEC64Arg3*) 0x801473B0, NULL, renderModelTypeBFogged, NULL, NULL },
+    { PokemonID_1021, 2.0f, (UnkEC64Arg3*) 0x80143D60, (Texture***) 0x80143CC0, renderModelTypeBFogged, NULL, NULL },
+    { PokemonID_1022, 10.0f, (UnkEC64Arg3*) 0x80145B08, NULL, renderModelTypeDFogged, NULL, NULL },
+    { PokemonID_1023, 10.0f, (UnkEC64Arg3*) 0x80145D60, (Texture***) 0x80145CC0, renderModelTypeBFogged, (AnimCmd**) 0x80145EB0, (AnimCmd***) 0x80145ED0 },
+    { PokemonID_1024, 10.0f, (UnkEC64Arg3*) 0x801460B0, (Texture***) 0x80146010, renderModelTypeBFogged, (AnimCmd**) 0x80146200, (AnimCmd***) 0x80146220 },
+    { PokemonID_1025, 10.0f, (UnkEC64Arg3*) 0x80146400, (Texture***) 0x80146360, renderModelTypeBFogged, (AnimCmd**) 0x80146550, (AnimCmd***) 0x80146570 },
+    { PokemonID_GROWLITHE_SPAWNER, 10.0f, growlithe_spawner_model, growlithe_spawner_materials, renderModelTypeBFogged, growlithe_spawner_modelanim, growlithe_spawner_matanim },
+    { PokemonID_1032, 10.0f, (UnkEC64Arg3*) 0x8011AC50, NULL, renderModelTypeBFogged, NULL, NULL },
+    { PokemonID_1034, 2.0f, (UnkEC64Arg3*) 0x80118820, (Texture***) 0x80118780, renderModelTypeBFogged, NULL, NULL },
+    { PokemonID_1035, 10.0f, (UnkEC64Arg3*) 0x80119BB0, NULL, renderModelTypeBFogged, NULL, NULL },
+    { 0, 0.0f, NULL, NULL, NULL, NULL, NULL },
+};
+
+UnkV0 D_800ADBEC[] = {
+    { PokemonID_GRIMER, 2.0f, grimer_hd_model, grimer_hd_materials, renderModelTypeIFogged },
+    { PokemonID_MUK, 1.5f, muk_hd_model, muk_hd_materials, renderModelTypeIFogged },
+    { PokemonID_MAGMAR, 1.3f, magmar_hd_model, magmar_hd_materials, renderModelTypeJFogged },
+    { PokemonID_BUTTERFREE, 1.6f, butterfree_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_KAKUNA, 2.2f, kakuna_hd_model, kakuna_hd_materials, renderModelTypeBFogged },
+    { PokemonID_MAGNEMITE, 2.2f, magnemite_hd_model, magnemite_hd_materials, renderModelTypeDFogged },
+    { PokemonID_DIGLETT, 2.4f, diglett_hd_model, diglett_hd_materials, renderModelTypeBFogged },
+    { PokemonID_DODUO, 2.0f, doduo_hd_model, doduo_hd_materials, renderModelTypeBFogged },
+    { PokemonID_KOFFING, 2.5f, koffing_hd_model, koffing_hd_materials, renderModelTypeJFogged },
+    { PokemonID_DUGTRIO, 1.7f, dugtrio_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_EEVEE, 2.4f, eevee_hd_model, eevee_hd_materials, renderModelTypeBFogged },
+    { PokemonID_ELECTABUZZ, 1.7f, electabuzz_hd_model, electabuzz_hd_materials, renderModelTypeJFogged },
+    { PokemonID_MOLTRES, 1.5f, moltres_hd_model, moltres_hd_materials, func_800A1680 },
+    { PokemonID_MOLTRES_EGG, 1.7f, moltres_egg_model, NULL, renderModelTypeBFogged },
+    { PokemonID_ARTICUNO, 1.6f, articuno_hd_model, articuno_hd_materials, renderModelTypeIFogged },
+    { PokemonID_601, 2.2f, (UnkEC64Arg3*) 0x8017BFA8, NULL, renderModelTypeDFogged },
+    { PokemonID_BULBASAUR, 2.0f, bulbasaur_hd_model, bulbasaur_hd_materials, renderModelTypeJFogged },
+    { PokemonID_RAPIDASH, 1.2f, rapidash_hd_model, rapidash_hd_materials, func_800A1680 },
+    { PokemonID_GROWLITHE, 2.2f, growlithe_hd_model, growlithe_hd_materials, renderModelTypeIFogged },
+    { PokemonID_KANGASKHAN, 1.5f, kangaskhan_hd_model, kangaskhan_hd_materials, renderModelTypeIFogged },
+    { PokemonID_HAUNTER, 1.0f, haunter_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_GRAVELER, 2.2f, graveler_hd_model, graveler_hd_materials, renderModelTypeIFogged },
+    { PokemonID_GYARADOS, 2.0f, gyarados_hd_model, gyarados_hd_materials, renderModelTypeBFogged },
+    { PokemonID_STARYU, 2.0f, staryu_hd_model, staryu_hd_materials, renderModelTypeIFogged },
+    { PokemonID_CHARMANDER, 2.0f, charmander_hd_model, charmander_hd_materials, renderModelTypeJFogged },
+    { PokemonID_GEODUDE, 2.0f, geodude_hd_model, geodude_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SNORLAX, 1.5f, snorlax_hd_model, snorlax_hd_materials, renderModelTypeJFogged },
+    { PokemonID_DRAGONITE, 2.2f, dragonite_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_PSYDUCK, 1.4f, psyduck_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_MAGIKARP, 1.6f, magikarp_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_LAPRAS, 3.0f, lapras_hd_model, lapras_hd_materials, renderModelTypeIFogged },
+    { PokemonID_CHARMELEON, 1.8f, charmeleon_hd_model, charmeleon_hd_materials, renderModelTypeJFogged },
+    { PokemonID_CHARIZARD, 3.5f, charizard_hd_model, charizard_hd_materials, renderModelTypeIFogged },
+    { PokemonID_CHANSEY, 2.0f, chansey_hd_model, chansey_hd_materials, renderModelTypeIFogged },
+    { PokemonID_MANKEY, 2.0f, mankey_hd_model, mankey_hd_materials, renderModelTypeIFogged },
+    { PokemonID_ELECTRODE, 1.4f, electrode_hd_model, electrode_hd_materials, renderModelTypeDFogged },
+    { PokemonID_DITTO, 2.6f, ditto_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_MEW, 2.0f, mew_hd_model, mew_hd_materials, renderModelTypeIFogged },
+    { PokemonID_DRATINI, 1.5f, dratini_hd_model, dratini_hd_materials, renderModelTypeIFogged },
+    { PokemonID_MEOWTH, 2.4f, meowth_hd_model, meowth_hd_materials, renderModelTypeBFogged },
+    { PokemonID_POLIWAG, 1.6f, poliwag_hd_model, NULL, renderModelTypeDFogged },
+    { PokemonID_CLOYSTER, 1.3f, cloyster_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_PIKACHU, 2.0f, pikachu_hd_model, pikachu_hd_materials, renderModelTypeJFogged },
+    { PokemonID_PIDGEY, 2.0f, pidgey_hd_model, pidgey_hd_materials, renderModelTypeIFogged },
+    { PokemonID_PORYGON, 1.5f, porygon_hd_model, porygon_hd_materials, renderModelTypeIFogged },
+    { PokemonID_JIGGLYPUFF, 2.2f, jigglypuff_hd_model, jigglypuff_hd_materials, renderModelTypeIFogged },
+    { PokemonID_MAGNETON, 2.2f, magneton_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_VULPIX, 1.7f, vulpix_hd_model, vulpix_hd_materials, renderModelTypeIFogged },
+    { PokemonID_JYNX, 1.4f, jynx_hd_model, jynx_hd_materials, renderModelTypeIFogged },
+    { PokemonID_VILEPLUME, 1.5f, vileplume_hd_model, vileplume_hd_materials, renderModelTypeDFogged },
+    { PokemonID_SANDSHREW, 2.0f, sandshrew_hd_model, sandshrew_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SANDSLASH, 2.0f, sandslash_hd_model, sandslash_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SHELLDER, 2.2f, shellder_hd_model, NULL, renderModelTypeBFogged },
+    { PokemonID_603, 2.0f, shellder2_hd_model, shellder2_hd_materials, renderModelTypeBFogged },
+    { PokemonID_STARMIE, 2.2f, starmie_hd_model, starmie_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SCYTHER, 0.9f, scyther_hd_model, NULL, renderModelTypeDFogged },
+    { PokemonID_ZAPDOS, 1.5f, zapdos_hd_model, zapdos_hd_materials, renderModelTypeIFogged },
+    { PokemonID_ZAPDOS_EGG, 2.0f, (UnkEC64Arg3*) 0x8018A640, NULL, renderModelTypeDFogged },
+    { PokemonID_GOLDEEN, 2.0f, goldeen_hd_model, goldeen_hd_materials, renderModelTypeIFogged },
+    { PokemonID_METAPOD, 1.8f, metapod_hd_model, metapod_hd_materials, renderModelTypeBFogged },
+    { PokemonID_VICTREEBEL, 2.0f, victreebel_hd_model, victreebel_hd_materials, renderModelTypeDFogged },
+    { PokemonID_WEEPINBELL, 2.0f, weepinbell_hd_model, weepinbell_hd_materials, renderModelTypeIFogged },
+    { PokemonID_ARCANINE, 1.4f, arcanine_hd_model, arcanine_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SLOWPOKE, 1.6f, slowpoke_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_SLOWBRO, 1.3f, slowbro_hd_model, slowbro_hd_materials, renderModelTypeIFogged },
+    { PokemonID_SQUIRTLE, 2.2f, squirtle_hd_model, squirtle_hd_materials, renderModelTypeBFogged },
+    { PokemonID_ZUBAT, 2.2f, zubat_hd_model, NULL, renderModelTypeIFogged },
+    { PokemonID_GATE, 10.0f, gate_model, gate_materials, renderModelTypeDFogged },
+    { PokemonID_EVOLUTION_CONTROLLER, 20.0f, evolution_controller_model, evolution_controller_materials, renderModelTypeDFogged },
+    { PokemonID_1003, 2.0f, &D_800EB430, &D_800EB510, renderModelTypeDFogged },
+    { PokemonID_1006, 3.0f, D_80139A40_C5ED0, D_801397C0_C5C50, renderModelTypeDFogged },
+    { PokemonID_1009, 10.0f, (UnkEC64Arg3*) 0x80138DF0, NULL, renderModelTypeBFogged },
+    { PokemonID_1010, 10.0f, (UnkEC64Arg3*) 0x801382E0, (Texture***) 0x80138630, renderModelTypeDFogged },
+    { PokemonID_1008, 10.0f, (UnkEC64Arg3*) 0x80132F30, (Texture***) 0x80133250, renderModelTypeBFogged },
+    { PokemonID_1012, 10.0f, (UnkEC64Arg3*) 0x80139378, (Texture***) 0x80139400, renderModelTypeDFogged },
+    { PokemonID_1013, 10.0f, (UnkEC64Arg3*) 0x80139968, (Texture***) 0x801399F0, renderModelTypeDFogged },
+    { PokemonID_KOFFING_SMOKE, 30.0f, koffing_smoke_model, koffing_smoke_materials, renderModelTypeDFogged },
+    { PokemonID_SMOKE_PUFF, 30.0f, smoke_puff_model, smoke_puff_materials, renderModelTypeDFogged },
+    { PokemonID_LAVA_SPLASH, 10.0f, lava_splash_model, lava_splash_materials, renderModelTypeDFogged },
+    { PokemonID_VOLCANO_SMOKE, 10.0f, volcano_smoke_model, volcano_smoke_materials, renderModelTypeDFogged },
+    { PokemonID_1033, 10.0f, (UnkEC64Arg3*) 0x80119330, (Texture***) 0x80119210, renderModelTypeBFogged },
+    { PokemonID_1037, 2.0f, D_80116EF0_4C92C0, D_80116CF0_4C90C0, renderModelTypeDFogged },
+    { PokemonID_1038, 2.0f, D_80118210_4CA5E0, D_80118160_4CA530, renderModelTypeDFogged },
+    { 0, 0.0f, NULL, NULL, NULL },
+};
+
+s32 D_800AE27C = 0;
+s32 D_800AE280 = 0;
+
+char* D_800AE284[] = {
+    "",
+    "ＢＵＬＢＡＳＡＵＲ",
+    "ＩＶＹＳＡＵＲ",
+    "ＶＥＮＵＳＡＵＲ",
+    "ＣＨＡＲＭＡＮＤＥＲ",
+    "ＣＨＡＲＭＥＬＥＯＮ",
+    "ＣＨＡＲＩＺＡＲＤ",
+    "ＳＱＵＩＲＴＬＥ",
+    "ＷＡＲＴＯＲＴＬＥ",
+    "ＢＬＡＳＴＯＩＳＥ",
+    "ＣＡＴＥＲＰＩＥ",
+    "ＭＥＴＡＰＯＤ",
+    "ＢＵＴＴＥＲＦＲＥＥ",
+    "ＷＥＥＤＬＥ",
+    "ＫＡＫＵＮＡ",
+    "ＢＥＥＤＲＩＬＬ",
+    "ＰＩＤＧＥＹ",
+    "ＰＩＤＧＥＯＴＴＯ",
+    "ＰＩＤＧＥＯＴ",
+    "ＲＡＴＴＡＴＡ",
+    "ＲＡＴＩＣＡＴＥ",
+    "ＳＰＥＡＲＯＷ",
+    "ＦＥＡＲＯＷ",
+    "ＥＫＡＮＳ",
+    "ＡＲＢＯＫ",
+    "ＰＩＫＡＣＨＵ",
+    "ＲＡＩＣＨＵ",
+    "ＳＡＮＤＳＨＲＥＷ",
+    "ＳＡＮＤＳＬＡＳＨ",
+    "ＮＩＤＲＡＮｆ",
+    "ＮＩＤＯＲＩＮＡ",
+    "ＮＩＤＯＱＵＥＥＮ",
+    "ＮＩＤＯＲＡＮｍ",
+    "ＮＩＤＯＲＩＮＯ",
+    "ＮＩＤＯＫＩＮＧ",
+    "ＣＬＥＦＡＩＲＹ",
+    "ＣＬＥＦＡＢＬＥ",
+    "ＶＵＬＰＩＸ",
+    "ＮＩＮＥＴＡＬＥＳ",
+    "ＪＩＧＧＬＹＰＵＦＦ",
+    "ＷＩＧＧＬＹＴＵＦＦ",
+    "ＺＵＢＡＴ",
+    "ＧＯＬＢＡＴ",
+    "ＯＤＤＩＳＨ",
+    "ＧＬＯＯＭ",
+    "ＶＩＬＥＰＬＵＭＥ",
+    "ＰＡＲＡＳ",
+    "ＰＡＲＡＳＥＣＴ",
+    "ＶＥＮＯＮＡＴ",
+    "ＶＥＮＯＭＯＴＨ",
+    "ＤＩＧＬＥＴＴ",
+    "ＤＵＧＴＲＩＯ",
+    "ＭＥＯＷＴＨ",
+    "ＰＥＲＳＩＡＮ",
+    "ＰＳＹＤＵＣＫ",
+    "ＧＯＬＤＵＣＫ",
+    "ＭＡＮＫＥＹ",
+    "ＰＲＩＭＥＡＰＥ",
+    "ＧＲＯＷＬＩＴＨＥ",
+    "ＡＲＣＡＮＩＮＥ",
+    "ＰＯＬＩＷＡＧ",
+    "ＰＯＬＩＷＨＩＲＬ",
+    "ＰＯＬＩＷＲＡＴＨ",
+    "ＡＢＲＡ",
+    "ＫＡＤＡＢＲＡ",
+    "ＡＬＡＫＡＺＡＭ",
+    "ＭＡＣＨＯＰ",
+    "ＭＡＣＨＯＫＥ",
+    "ＭＡＣＨＡＭＰ",
+    "ＢＥＬＬＳＰＲＯＵＴ",
+    "ＷＥＥＰＩＮＢＥＬＬ",
+    "ＶＩＣＴＲＥＥＢＥＬ",
+    "ＴＥＮＴＡＣＯＯＬ",
+    "ＴＥＮＴＡＣＲＵＥＬ",
+    "ＧＥＯＤＵＤＥ",
+    "ＧＲＡＶＥＬＥＲ",
+    "ＧＯＬＥＭ",
+    "ＰＯＮＹＴＡ",
+    "ＲＡＰＩＤＡＳＨ",
+    "ＳＬＯＷＰＯＫＥ",
+    "ＳＬＯＷＢＲＯ",
+    "ＭＡＧＮＥＭＩＴＥ",
+    "ＭＡＧＮＥＴＯＮ",
+    "ＦＡＲＦＥＴＣＨ’Ｄ",
+    "ＤＯＤＵＯ",
+    "ＤＯＤＲＩＯ",
+    "ＳＥＥＬ",
+    "ＤＥＷＧＯＮＧ",
+    "ＧＲＩＭＥＲ",
+    "ＭＵＫ",
+    "ＳＨＥＬＬＤＥＲ",
+    "ＣＬＯＹＳＴＥＲ",
+    "ＧＡＳＴＬＹ",
+    "ＨＡＵＮＴＥＲ",
+    "ＧＥＮＧＡＲ",
+    "ＯＮＩＸ",
+    "ＤＲＯＷＺＥＥ",
+    "ＨＹＰＮＯ",
+    "ＫＲＡＢＢＹ",
+    "ＫＩＮＧＬＥＲ",
+    "ＶＯＬＴＯＲＢ",
+    "ＥＬＥＣＴＲＯＤＥ",
+    "ＥＸＥＧＧＣＵＴＥ",
+    "ＥＸＥＧＧＵＴＯＲ",
+    "ＣＵＢＯＮＥ",
+    "ＭＡＲＯＷＡＫ",
+    "ＨＩＴＭＯＮＬＥＥ",
+    "ＨＩＴＭＯＮＣＨＡＮ",
+    "ＬＩＣＫＩＴＵＮＧ",
+    "ＫＯＦＦＩＮＧ",
+    "ＷＥＥＺＩＮＧ",
+    "ＲＨＹＨＯＲＮ",
+    "ＲＨＹＤＯＮ",
+    "ＣＨＡＮＳＥＹ",
+    "ＴＡＮＧＥＬＡ",
+    "ＫＡＮＧＡＳＫＨＡＮ",
+    "ＨＯＲＳＥＡ",
+    "ＳＥＡＤＲＡ",
+    "ＧＯＬＤＥＥＮ",
+    "ＳＥＡＫＩＮＧ",
+    "ＳＴＡＲＹＵ",
+    "ＳＴＡＲＭＩＥ",
+    "ＭＲ．ＭＩＭＥ",
+    "ＳＣＹＴＨＥＲ",
+    "ＪＹＮＸ",
+    "ＥＬＥＣＴＡＢＵＺＺ",
+    "ＭＡＧＭＡＲ",
+    "ＰＩＮＳＥＲ",
+    "ＴＡＵＲＯＳ",
+    "ＭＡＧＩＫＡＲＰ",
+    "ＧＹＡＲＡＤＯＳ",
+    "ＬＡＰＲＡＳ",
+    "ＤＩＴＴＯ",
+    "ＥＥＶＥＥ",
+    "ＶＡＰＯＥＲＯＮ",
+    "ＪＯＬＴＥＯＮ",
+    "ＦＬＡＲＥＯＮ",
+    "ＰＯＲＹＧＯＮ",
+    "ＯＭＡＮＹＴＥ",
+    "ＯＭＡＳＴＡＲ",
+    "ＫＡＢＵＴＯ",
+    "ＫＡＢＵＴＯＰＳ",
+    "ＡＥＲＯＤＡＣＴＹＬ",
+    "ＳＮＯＲＬＡＸ",
+    "ＡＲＴＩＣＵＮＯ",
+    "ＺＡＰＤＯＳ",
+    "ＭＯＬＴＲＥＳ",
+    "ＤＲＡＴＩＮＩ",
+    "ＤＲＡＧＯＮＡＩＲ",
+    "ＤＲＡＧＯＮＩＴＥ",
+    "ＭＥＷＴＷＯ",
+    "ＭＥＷ",
+};
+
+s8 D_800AE4E4[156] = {
+    0, -1, -1, 1, 2, 3, 4, -1, -1, -1, 5, 6, -1, 7, -1, 8,
+    -1, -1, -1, -1, -1, -1, -1, -1, 9, -1, 10, 11, -1, -1, -1, -1,
+    -1, -1, -1, -1, 12, -1, 13, -1, 14, -1, -1, -1, 15, -1, -1, -1,
+    -1, 16, 17, 18, -1, 19, -1, 20, -1, 21, 22, 23, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, 24, 25, -1, -1, 26, 27, -1, -1, 28, 29, 30,
+    31, 32, -1, 33, -1, -1, -1, 34, 35, 36, 37, -1, 38, -1, -1, -1,
+    -1, -1, -1, -1, 39, -1, -1, -1, -1, -1, -1, -1, 40, -1, -1, -1,
+    41, -1, 42, -1, -1, 43, -1, 44, 45, -1, 46, 47, 48, 49, -1, -1,
+    50, 51, 52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57,
+    58, 59, 60, -1, 61, -1, 62, 0, 0, 0, 0, 0,
+};
 
 extern GObj* photo_PokemonObjs[];
 extern s32 photo_PokemonCount;
@@ -274,7 +1675,6 @@ extern UNK_TYPE D_8017A780;
 extern UNK_TYPE D_80188D28;
 extern UNK_TYPE D_8018A6F0;
 extern UNK_TYPE D_801AFD30;
-extern UNK_TYPE D_8017A710;
 extern UNK_TYPE D_801B1230;
 extern UNK_TYPE D_801B1D40;
 extern UNK_TYPE D_801B6B60;
@@ -283,8 +1683,6 @@ extern UNK_TYPE D_8017C090;
 extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
-extern UNK_TYPE D_80186E20;
-extern UNK_TYPE D_80188CB0;
 
 extern s32 gPokemonIdInFocus;
 extern UnkThing PokemonDetector_Photo[2];
@@ -1193,14 +2591,14 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
 
     switch (arg0->pokemonID) {
         case PokemonID_CHANSEY:
-            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
+            if (D_800ACD98[arg0->unk_00_13].modelAnims == &D_80186E20) {
                 model->scale.v.x *= 0.5f;
                 model->scale.v.y *= 0.5f;
                 model->scale.v.z *= 0.5f;
             }
             break;
         case PokemonID_ZAPDOS_EGG:
-            if (D_800AD474[arg0->unk_00_13].unk_00 == &D_80188CB0) {
+            if (D_800AD470[arg0->unk_00_13].modelAnims == &D_80188CB0) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;
@@ -1219,7 +2617,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
             }
             break;
         case PokemonID_601:
-            if (D_800AD444[arg0->unk_00_13].unk_00 == &D_8017A710) {
+            if (D_800AD440[arg0->unk_00_13].modelAnims == &D_8017A710) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;

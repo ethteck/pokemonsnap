@@ -7,6 +7,118 @@ void* D_80206B40_9CC360;
 UIButton* D_80206B44_9CC364;
 void (*D_80206B48_9CC368)(void);
 
+// .data
+s32 D_80195890_95B0B0 = 0;
+s32 D_80195894_95B0B4 = 0;
+
+UIButton D_80195898_95B0B8[] = {
+    { 1, "Press \\a to do it!" },
+    { 2, NULL },
+    { BUTTON_SPLITTER, NULL },
+    { 4, "Do you want to save\ntoday's trip?" },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_801958C0_95B0E0[] = {
+    { 1, "Press \\a to do it!" },
+    { 2, NULL },
+    { BUTTON_SPLITTER, NULL },
+    { 3, NULL },
+    { 4, "Do you want to save\ntoday's trip?" },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_801958F0_95B110[] = {
+    { 1, "Press \\a to do it!" },
+    { BUTTON_SPLITTER, NULL },
+    { 3, NULL },
+    { 4, "Do you want to save\ntoday's trip?" },
+    { BUTTON_NONE, NULL },
+};
+
+char D_80195918_95B138[] = "What a sunny beach. It looks\ngreat! I should get some\nawesome shots there!";
+char D_80195964_95B184[] = "There used to be a Power Plant\nin this long, dark tunnel.\nI can't wait to check it out!";
+char D_801959BC_95B1DC[] = "This is a scary-looking cave.\nI bet if I listen carefully,\nI'll hear lots of strange noises.";
+char D_80195A1C_95B23C[] = "The river here is flowing gently.\nSomeone might be hiding\nnearby...";
+char D_80195A60_95B280[] = "The boiling magma here makes\nthis place very hot.\nI'm sweating already!";
+char D_80195AA8_95B2C8[] = "This river is rapid!  I'll have to\nconcentrate hard, or I could\nmiss a good shot!";
+char D_80195AFC_95B31C[] = "This is a secret course...\nIn that case, I should find the\nrarest Pokεmon!";
+char D_80195B48_95B368[] = "Maybe I should stop taking\nphotos.";
+
+UIButton D_80195B6C_95B38C[] = {
+    { 6, D_80195918_95B138 },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195B8C_95B3AC[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195BB4_95B3D4[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { 8, D_80195A60_95B280 },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195BE4_95B404[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { 8, D_80195A60_95B280 },
+    { 9, D_80195A1C_95B23C },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195C1C_95B43C[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { 8, D_80195A60_95B280 },
+    { 9, D_80195A1C_95B23C },
+    { 10, D_801959BC_95B1DC },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195C5C_95B47C[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { 8, D_80195A60_95B280 },
+    { 9, D_80195A1C_95B23C },
+    { 10, D_801959BC_95B1DC },
+    { 11, D_80195AA8_95B2C8 },
+    { BUTTON_SPLITTER, NULL },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton D_80195CA4_95B4C4[] = {
+    { 6, D_80195918_95B138 },
+    { 7, D_80195964_95B184 },
+    { 8, D_80195A60_95B280 },
+    { 9, D_80195A1C_95B23C },
+    { 10, D_801959BC_95B1DC },
+    { 11, D_80195AA8_95B2C8 },
+    { 12, D_80195AFC_95B31C },
+    { BUTTON_RETURN, D_80195B48_95B368 },
+    { BUTTON_NONE, NULL },
+};
+
+UIButton* D_80195CEC_95B50C[9] = {
+    D_80195B6C_95B38C, D_80195B8C_95B3AC, D_80195BB4_95B3D4, D_80195BE4_95B404, D_80195C1C_95B43C,
+    D_80195C5C_95B47C, D_80195CA4_95B4C4, NULL, NULL,
+};
+
 void* func_800E3230_8A8A50(void) {
     if (!checkPlayerFlag(PFID_7)) {
         return &D_801958F0_95B110;
@@ -152,13 +264,6 @@ s32 func_800E3774_8A8F94(void) {
 
     return ret;
 }
-
-const char D_801C5650_98AE70[] = "Press \\a to do it!";
-const char D_801C5664_98AE84[] = "Do you want to save\ntoday's trip?";
-const char D_801C5688_98AEA8[] = "Press \\a to do it!";
-const char D_801C569C_98AEBC[] = "Do you want to save\ntoday's trip?";
-const char D_801C56C0_98AEE0[] = "Press \\a to do it!";
-const char D_801C56D4_98AEF4[] = "Do you want to save\ntoday's trip?";
 
 s32 func_800E37CC_8A8FEC(void) {
     s32 i;

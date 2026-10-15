@@ -210,6 +210,7 @@ void func_80357150_4F7560(GObj*);
 void func_80357170_4F7580(void);
 void func_803571C4_4F75D4(void);
 void func_803572B0_4F76C0(void);
+GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
 void func_8035E174_4FE584(GObj* obj, Vec3f*);
 GObj* func_8035E238_4FE648(GObj* obj);
 void func_8035E264_4FE674(GObj* obj, Vec3f*);

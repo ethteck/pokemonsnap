@@ -31,7 +31,7 @@ Credit D_credits_801E8BA0[] = {
     { 50, 320.0f, "Takeyuki Machida", 0 },
     { 50, 320.0f, "Masanobu Yamamoto", 0 },
     { 50, 320.0f, "Shizu Higashiyama", 0 },
-    { 0, 0, NULL, 0 },
+    { 0, 0.0f, NULL, 0 },
 };
 
 Credit D_credits_801E8D00[] = {
@@ -53,7 +53,7 @@ Credit D_credits_801E8D00[] = {
     { 50, 320.0f, "Technical Support", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Makoto Kanai", 0 },
-    { 0, 0, NULL, 0 },
+    { 0, 0.0f, NULL, 0 },
 };
 
 Credit D_credits_801E8E30[] = {
@@ -93,7 +93,7 @@ Credit D_credits_801E8E30[] = {
     { 50, 320.0f, "Kazuo Yazawa", 0 },
     { 50, 320.0f, "Akira Yamazaki", 0 },
     { 50, 320.0f, "Shinichi Yoshikawa", 0 },
-    { 0, 0, NULL, 0 },
+    { 0, 0.0f, NULL, 0 },
 };
 
 Credit D_credits_801E9080[] = {
@@ -126,7 +126,7 @@ Credit D_credits_801E9080[] = {
     { 50, 320.0f, "Super Mario Club", 0 },
     { 50, 320.0f, "Creatures inc.", 0 },
     { 50, 320.0f, "GAME FREAK inc.", 0 },
-    { 0, 0, NULL, 0 },
+    { 0, 0.0f, NULL, 0 },
 };
 
 Credit D_credits_801E9260[] = {
@@ -155,7 +155,7 @@ Credit D_credits_801E9260[] = {
     { 50, 320.0f, "Executive Producer", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Hiroshi Yamauchi", 0 },
-    { 0, 0, NULL, 0 },
+    { 0, 0.0f, NULL, 0 },
 };
 
 Credit* D_credits_801E9400[] = {
@@ -426,7 +426,7 @@ void func_credits_801DE7B4(s32 arg0) {
 void func_credits_801DE844(GObj* arg0) {
     func_credits_801DE7B4(D_credits_801ECDA0);
     func_credits_801DDD80();
-    func_credits_801DDAE8(D_credits_801ECDA3);
+    func_credits_801DDAE8(D_credits_801ECDA0);
     func_credits_801DDC70();
     func_credits_801DE734(arg0);
     func_800067DC();

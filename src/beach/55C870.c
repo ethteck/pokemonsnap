@@ -9,6 +9,11 @@ u8 D_beach_8034757A;
 u8 D_beach_8034757B;
 u16 D_beach_8034757C;
 
+// .data
+s32 D_beach_802CC0D0 = 0;
+s32 D_beach_802CC0D4 = 0;
+s32 D_beach_802CC0D8 = 0;
+
 void func_beach_802C4800(s32 arg0, f32 arg1) {
     switch (D_beach_802CC0D0) {
         case 0:

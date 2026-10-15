@@ -3,11 +3,21 @@
 #include "string.h"
 #include "ultralib/src/libc/xstdio.h"
 
-extern s32 D_803A66A0_879E50[];
-extern s32 D_803A66BC_879E6C;
-extern s32 D_803A66C0_879E70; // song id
-extern s32 D_803A66C4_879E74;
-extern GObj* D_803A66C8_879E78;
+// .data
+s32 D_803A66A0_879E50[7] = {
+    1510000,
+    1510000,
+    1510000,
+    1510000,
+    1510000,
+    1510000,
+    420000,
+};
+
+s32 D_803A66BC_879E6C = 0;
+s32 D_803A66C0_879E70 = 0; // song id
+s32 D_803A66C4_879E74 = 3;
+GObj* D_803A66C8_879E78 = NULL;
 
 s32 func_80374F30_8486E0(UIElement* arg0, bool arg1) {
     s32 button;

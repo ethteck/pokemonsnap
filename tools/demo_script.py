@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Editable Pokemon Snap IdleScript recordings, serialized in big-endian order.
+"""Editable Pokemon Snap demo recordings, serialized in native big-endian order.
 
 The 16-byte header contains dataSize (u32), the reserved word at 0x04
 (u32), randSeed (s32), and playerFlags (u32). Each input is the native
 ControllerInput: four u16 button masks, then signed stickX and stickY bytes.
-JSON field names follow include/sys/cont.h; header.reserved preserves unk_04.
+YAML field names follow include/sys/cont.h; header.reserved preserves unk_04.
 
 The physical input count is independent of header.dataSize. In particular,
 the original tunnel segment ends with only the first three button masks of
@@ -15,9 +15,10 @@ repairs the header, completes a partial input, or adds alignment padding.
 """
 
 import argparse
-import json
 import struct
 from pathlib import Path
+
+import yaml
 
 
 HEADER = struct.Struct(">IIiI")
@@ -108,20 +109,20 @@ def encode(spec: dict) -> bytes:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
-    extract = commands.add_parser("extract", help="decode a native recording into editable JSON")
+    extract = commands.add_parser("extract", help="decode a native recording into editable YAML")
     extract.add_argument("input", type=Path)
-    extract.add_argument("output_json", type=Path)
-    build = commands.add_parser("build", help="encode JSON into a native recording")
-    build.add_argument("input_json", type=Path)
+    extract.add_argument("output_yaml", type=Path)
+    build = commands.add_parser("build", help="encode YAML into a native recording")
+    build.add_argument("input_yaml", type=Path)
     build.add_argument("output_bin", type=Path)
     args = parser.parse_args()
 
     if args.command == "extract":
         spec = decode(args.input.read_bytes())
-        args.output_json.parent.mkdir(parents=True, exist_ok=True)
-        args.output_json.write_text(json.dumps(spec, indent=2) + "\n", encoding="utf-8")
+        args.output_yaml.parent.mkdir(parents=True, exist_ok=True)
+        args.output_yaml.write_text(yaml.safe_dump(spec, sort_keys=False), encoding="utf-8")
     else:
-        spec = json.loads(args.input_json.read_text(encoding="utf-8"))
+        spec = yaml.safe_load(args.input_yaml.read_text(encoding="utf-8"))
         args.output_bin.parent.mkdir(parents=True, exist_ok=True)
         args.output_bin.write_bytes(encode(spec))
 

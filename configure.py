@@ -248,9 +248,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
-        "idle_script",
-        description="idle_script $in",
-        command=f"{sys.executable} tools/idle_script.py build $in $out",
+        "demo_script",
+        description="demo_script $in",
+        command=f"{sys.executable} tools/demo_script.py build $in $out",
     )
 
     ninja.rule(
@@ -564,9 +564,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             compressed = entry.object_path.with_suffix(".vpk0")
             build(compressed, entry.src_paths, "vpk0_compress")
             build(entry.object_path, [compressed], "bin")
-        elif seg.type == "snap_idle_script":
+        elif seg.type == "snap_demo_script":
             raw_bin = entry.object_path.with_suffix("")
-            build(raw_bin, entry.src_paths, "idle_script", implicit=["tools/idle_script.py"])
+            build(raw_bin, entry.src_paths, "demo_script", implicit=["tools/demo_script.py"])
             build(entry.object_path, [raw_bin], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")

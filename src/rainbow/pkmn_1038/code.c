@@ -1,6 +1,5 @@
 #include "../rainbow.h"
 
-
 void func_8034A334_829AA4(GObj*);
 void func_8034A3A0_829B10(GObj*);
 
@@ -9,19 +8,17 @@ extern Texture** D_80118160_4CA530[];
 extern AnimCmd* D_80118360_4CA730[];
 extern AnimCmd** D_80118390_4CA760[];
 
-void func_8034A190_829900(GObj*);
-
 // .data
 AnimationHeader D_8034B600_82AD70 = {
-    0.1,
-    50,
+    0.1f,
+    50.0f,
     D_80118360_4CA730,
     D_80118390_4CA760,
     NULL
 };
 
 InteractionHandler D_8034B614_82AD84[] = {
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_8034B624_82AD94 = {
@@ -38,9 +35,9 @@ PokemonInitData D_8034B638_82ADA8 = {
     D_80118160_4CA530,
     renderModelTypeDFogged,
     &D_8034B624_82AD94,
-    { 2, 2, 2 },
-    { 0, 0, 0 },
-    0,
+    { 2.0f, 2.0f, 2.0f },
+    { 0.0f, 0.0f, 0.0f },
+    0.0f,
     0,
     0,
     0,

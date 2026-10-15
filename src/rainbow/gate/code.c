@@ -27,53 +27,48 @@ extern AnimCmd** gate_matanim_raise_bar[];
 extern AnimCmd** gate_matanim_opening[];
 extern AnimCmd** gate_matanim_opened[];
 
-
-
-void func_80348970_8280E0(GObj*);
-void func_80348A04_828174(GObj*);
-
 // .data
 AnimationHeader D_8034AED0_82A640 = {
-    1,
-    100,
+    1.0f,
+    100.0f,
     gate_modelanim_closed,
     gate_matanim_closed,
     NULL
 };
 
 AnimationHeader D_8034AEE4_82A654 = {
-    1,
-    100,
+    1.0f,
+    100.0f,
     gate_modelanim_raise_bar,
     gate_matanim_raise_bar,
     NULL
 };
 
 AnimationHeader D_8034AEF8_82A668 = {
-    1,
-    100,
+    1.0f,
+    100.0f,
     gate_modelanim_opening,
     gate_matanim_opening,
     NULL
 };
 
 AnimationHeader D_8034AF0C_82A67C = {
-    1,
-    100,
+    1.0f,
+    100.0f,
     gate_modelanim_opened,
     gate_matanim_opened,
     NULL
 };
 
-CollisionModel D_8034AF20_82A690 = { PokemonID_GATE, D_800EDF78_6B728, 1.0 };
+CollisionModel D_8034AF20_82A690 = { PokemonID_GATE, D_800EDF78_6B728, 1.0f };
 GObj* D_8034AF2C_82A69C = NULL;
 s32 D_8034AF30_82A6A0 = -1;
 s32 D_8034AF34_82A6A4 = 0;
 s32 D_8034AF38_82A6A8 = 0;
 
 InteractionHandler D_8034AF3C_82A6AC[] = {
-    { POKEMON_CMD_16, func_80348A04_828174, 5000, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_16, func_80348A04_828174, 5000.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 Unks16 D_8034AF5C_82A6CC = { { PokemonID_MEW, PokemonID_GATE, 0 } };
@@ -92,9 +87,9 @@ PokemonInitData D_8034AF78_82A6E8 = {
     gate_materials,
     renderModelTypeDFogged,
     &D_8034AF64_82A6D4,
-    { 10, 10, 10 },
-    { 0, 0, 0 },
-    0.01,
+    { 10.0f, 10.0f, 10.0f },
+    { 0.0f, 0.0f, 0.0f },
+    0.01f,
     0,
     0,
     0,

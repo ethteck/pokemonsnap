@@ -7,27 +7,6 @@
 #include "app_render/app_render.h"
 #include "app_render/effect.h"
 
-void beachSpawnMagikarpAtGObj(GObj*);
-GObj* func_8035E0D4_4FE4E4(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C45C0(void);
-void func_beach_802C4738(s32);
-void func_beach_802C5C28(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C71E8(GObj*, f32, f32, f32, f32, f32, f32);
-void func_beach_802C7270(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C7AD0(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C7E38(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C8274(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C8570(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C8D3C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C91CC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C9A7C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CA05C(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CA2BC(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CA418(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CAB14(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CAC48(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CBCA8(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-
 // .data
 EnvSoundData D_beach_802CBE10[] = {
     { SOUND_ID_253, PITCH_MOD_1, 7 },

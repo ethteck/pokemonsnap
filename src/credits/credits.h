@@ -32,6 +32,8 @@ extern s32 D_credits_801ECDA8;
 extern s32 D_credits_801ECDB0[];
 extern s32 D_credits_801ED010;
 
+void func_credits_801DC8C4(void);
+void func_credits_801DC9FC(void*);
 void func_credits_801DCAF8(SObj*);
 GObj* func_credits_801DCC00(GObj*, Sprite*);
 void func_credits_801DCE10(void);

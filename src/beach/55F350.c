@@ -13,69 +13,61 @@ extern AnimCmd** D_8016B420_F78B0[];
 extern AnimCmd** D_8016B4F0_F7980[];
 extern Texture** eevee_materials[];
 extern UnkEC64Arg3 eevee_model[];
-void func_beach_802C72E0(GObj*);
-void func_beach_802C73EC(GObj*);
-void func_beach_802C74EC(GObj*);
-void func_beach_802C755C(GObj*);
-void func_beach_802C77CC(GObj*);
-void func_beach_802C77F0(GObj*);
-void func_beach_802C79DC(GObj*);
-void func_beach_802C7A60(GObj*);
 
 // .data
 s32 D_beach_802CC9A0[] = { SOUND_ID_254 };
 s32 D_beach_802CC9A4[] = { SOUND_ID_255, SOUND_ID_110 };
 
 AnimationHeader D_beach_802CC9AC = {
-    0.34,
-    70,
+    0.34f,
+    70.0f,
     D_80166A90_F2F20,
     D_8016B300_F7790,
     NULL
 };
 
 AnimationHeader D_beach_802CC9C0 = {
-    1,
-    40,
+    1.0f,
+    40.0f,
     D_80165010_F14A0,
     D_8016B190_F7620,
     NULL
 };
 
 AnimationHeader D_beach_802CC9D4 = {
-    1,
-    38,
+    1.0f,
+    38.0f,
     D_80165D90_F2220,
     D_8016B250_F76E0,
     NULL
 };
 
 AnimationHeader D_beach_802CC9E8 = {
-    0.53,
-    36,
+    0.53f,
+    36.0f,
     D_80167D20_F41B0,
     D_8016B420_F78B0,
     D_beach_802CC9A0
 };
 
 AnimationHeader D_beach_802CC9FC = {
-    0.3,
-    66,
+    0.3f,
+    66.0f,
     D_80168D50_F51E0,
     D_8016B4F0_F7980,
     D_beach_802CC9A4
 };
 
 InteractionHandler D_beach_802CCA10[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802C755C, 0, NULL },
-    { POKEMON_CMD_14, func_beach_802C762C, 0, NULL },
-    { POKEMON_CMD_5, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_6, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_7, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_15, func_beach_802C77CC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802C755C, 0.0f, NULL },
+    { POKEMON_CMD_14, func_beach_802C762C, 0.0f, NULL },
+    { POKEMON_CMD_5, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_6, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_7, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_15, func_beach_802C77CC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 RandomState D_beach_802CCAA0[] = {
@@ -85,61 +77,61 @@ RandomState D_beach_802CCAA0[] = {
 };
 
 InteractionHandler D_beach_802CCAB8[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCAE8[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802C755C, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802C755C, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCB28[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802C755C, 0, NULL },
-    { POKEMON_CMD_14, func_beach_802C762C, 0, NULL },
-    { POKEMON_CMD_5, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_6, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_7, func_beach_802C77F0, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802C755C, 0.0f, NULL },
+    { POKEMON_CMD_14, func_beach_802C762C, 0.0f, NULL },
+    { POKEMON_CMD_5, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_6, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_7, func_beach_802C77F0, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCBA8[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802C755C, 0, NULL },
-    { POKEMON_CMD_14, func_beach_802C762C, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802C755C, 0.0f, NULL },
+    { POKEMON_CMD_14, func_beach_802C762C, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCBF8[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCC28[] = {
-    { POKEMON_CMD_32, func_beach_802C7A60, 0, NULL },
-    { POKEMON_CMD_9, func_beach_802C79DC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C79DC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_32, func_beach_802C7A60, 0.0f, NULL },
+    { POKEMON_CMD_9, func_beach_802C79DC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C79DC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCC68[] = {
-    { POKEMON_CMD_32, func_beach_802C7A60, 0, NULL },
-    { POKEMON_CMD_9, func_beach_802C79DC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C79DC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_32, func_beach_802C7A60, 0.0f, NULL },
+    { POKEMON_CMD_9, func_beach_802C79DC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C79DC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CCCA8[] = {
-    { POKEMON_CMD_9, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C74EC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C74EC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_beach_802CCCD8 = {
@@ -156,9 +148,9 @@ PokemonInitData D_beach_802CCCEC = {
     eevee_materials,
     renderPokemonModelTypeBFogged,
     &D_beach_802CCCD8,
-    { 2.4, 2.4, 2.4 },
-    { 0, 80, 0 },
-    22,
+    { 2.4f, 2.4f, 2.4f },
+    { 0.0f, 80.0f, 0.0f },
+    22.0f,
     POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,

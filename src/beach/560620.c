@@ -13,12 +13,6 @@ extern AnimCmd* D_801A66D0_132B60[];
 extern AnimCmd** D_801A8CC0_135150[];
 extern AnimCmd** D_801A8D50_1351E0[];
 extern AnimCmd** D_801A8DF0_135280[];
-void func_beach_802C85B0(GObj*);
-void func_beach_802C8900(GObj*);
-void func_beach_802C8AAC(GObj*);
-void func_beach_802C8C30(GObj*);
-void func_beach_802C8C58(GObj*);
-void func_beach_802C8CC0(GObj*);
 extern Texture** pidgey_materials[];
 extern UnkEC64Arg3 pidgey_model[];
 
@@ -27,67 +21,67 @@ s32 D_beach_802CCFB0[] = { SOUND_ID_256, SOUND_ID_124 };
 s32 D_beach_802CCFB8[] = { SOUND_ID_257, SOUND_ID_124 };
 
 AnimationHeader D_beach_802CCFC0 = {
-    0.4,
-    50,
+    0.4f,
+    50.0f,
     D_801A66D0_132B60,
     NULL,
     D_beach_802CCFB0
 };
 
 AnimationHeader D_beach_802CCFD4 = {
-    0.3,
-    51,
+    0.3f,
+    51.0f,
     D_801A08C0_12CD50,
     D_801A8CC0_135150,
     NULL
 };
 
 AnimationHeader D_beach_802CCFE8 = {
-    0.33,
-    48,
+    0.33f,
+    48.0f,
     D_801A2280_12E710,
     D_801A8D50_1351E0,
     D_beach_802CCFB8
 };
 
 AnimationHeader D_beach_802CCFFC = {
-    0.33,
-    32,
+    0.33f,
+    32.0f,
     D_801A4A80_130F10,
     D_801A8DF0_135280,
     NULL
 };
 
 InteractionHandler D_beach_802CD010[] = {
-    { POKEMON_CMD_9, NULL, 0, func_beach_802C8900 },
-    { POKEMON_CMD_13, NULL, 0, func_beach_802C8900 },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, NULL, 0.0f, func_beach_802C8900 },
+    { POKEMON_CMD_13, NULL, 0.0f, func_beach_802C8900 },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD040[] = {
-    { POKEMON_CMD_16, func_beach_802C86A8, 1000, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_16, func_beach_802C86A8, 1000.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 s32 D_beach_802CD060 = 0;
 
 InteractionHandler D_beach_802CD064[] = {
-    { POKEMON_CMD_9, func_beach_802C8AAC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C8AAC, 0, NULL },
-    { POKEMON_CMD_37, NULL, 0, func_beach_802C8C30 },
-    { POKEMON_CMD_38, NULL, 0, func_beach_802C8C58 },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C8AAC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C8AAC, 0.0f, NULL },
+    { POKEMON_CMD_37, NULL, 0.0f, func_beach_802C8C30 },
+    { POKEMON_CMD_38, NULL, 0.0f, func_beach_802C8C58 },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD0B4[] = {
-    { POKEMON_CMD_9, func_beach_802C8CC0, 0, NULL },
-    { POKEMON_CMD_31, func_beach_802C86A8, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C8CC0, 0.0f, NULL },
+    { POKEMON_CMD_31, func_beach_802C86A8, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD0E4[] = {
     { POKEMON_CMD_16, func_beach_802C86A8, 666.6667f, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_beach_802CD104 = {
@@ -104,9 +98,9 @@ PokemonInitData D_beach_802CD118 = {
     pidgey_materials,
     renderPokemonModelTypeIFogged,
     &D_beach_802CD104,
-    { 2, 2, 2 },
-    { 0, 74, -2 },
-    30,
+    { 2.0f, 2.0f, 2.0f },
+    { 0.0f, 74.0f, -2.0f },
+    30.0f,
     POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,

@@ -8,9 +8,6 @@ u8 D_credits_801E9C40[0x3000];
 OSMesg D_credits_801ECC40[10];
 OSMesgQueue D_credits_801ECC68;
 
-void func_credits_801DC8C4(void);
-void func_credits_801DC9FC(void*);
-
 // .data
 ScreenSettings D_credits_801DEBA0 = {
     D_803B5000,    /* fb1 */

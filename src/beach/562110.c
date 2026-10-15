@@ -1,25 +1,18 @@
 #include "common.h"
 #include "beach.h"
 
-void func_beach_802C8D74(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802C9204(s32, u16, WorldBlock*, WorldBlock*, ObjectSpawn*);
-void func_beach_802CA148(GObj*);
-void func_beach_802CA198(GObj*);
-void func_beach_802CA1BC(GObj*);
-void func_beach_802CA23C(GObj*);
-
 // .data
 UnkEC64Arg3 D_beach_802CD7E0[] = {
     { 0,
       NULL,
-      { 0.0, 0.0, 0.0 },
-      { 0.0, 0.0, 0.0 },
-      { 1.0, 1.0, 1.0 } },
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f },
+      { 1.0f, 1.0f, 1.0f } },
     { 18,
       NULL,
-      { 0.0, 0.0, 0.0 },
-      { 0.0, 0.0, 0.0 },
-      { 0.0, 0.0, 0.0 } },
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f } },
 };
 
 PokemonDef D_beach_802CD838 = {
@@ -37,12 +30,12 @@ PokemonDef D_beach_802CD848 = {
 };
 
 InteractionHandler D_beach_802CD858[] = {
-    { POKEMON_CMD_9, func_beach_802CA198, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802CA198, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802CA198, 0, NULL },
-    { POKEMON_CMD_14, func_beach_802CA198, 0, NULL },
-    { POKEMON_CMD_16, func_beach_802CA198, 1000, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_14, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_16, func_beach_802CA198, 1000.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 RandomState D_beach_802CD8B8[] = {
@@ -65,9 +58,9 @@ PokemonInitData D_beach_802CD8E4 = {
     NULL,
     renRenderModelTypeB,
     &D_beach_802CD8D0,
-    { 2, 2, 2 },
-    { 0, 17, -2 },
-    17,
+    { 2.0f, 2.0f, 2.0f },
+    { 0.0f, 17.0f, -2.0f },
+    17.0f,
     POKEMON_FLAG_1,
     0,
     0,

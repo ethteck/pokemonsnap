@@ -7,9 +7,6 @@ extern AnimCmd* D_801AC250_1386E0[];
 extern AnimCmd* D_801ACF90_139420[];
 extern AnimCmd* D_801AE790_13AC20[];
 extern AnimCmd* D_801AF4B0_13B940[];
-void func_beach_802C8DB0(GObj*);
-void func_beach_802C8F48(GObj*);
-void func_beach_802C914C(GObj*);
 extern UnkEC64Arg3 scyther_model[];
 
 // .data
@@ -18,48 +15,48 @@ s32 D_beach_802CD158[] = { SOUND_ID_304, SOUND_ID_388 };
 s32 D_beach_802CD160[] = { 0, SOUND_ID_363 };
 
 AnimationHeader D_beach_802CD168 = {
-    1,
-    129,
+    1.0f,
+    129.0f,
     D_801AF4B0_13B940,
     NULL,
     D_beach_802CD150
 };
 
 AnimationHeader D_beach_802CD17C = {
-    1,
-    108,
+    1.0f,
+    108.0f,
     D_801AA9D0_136E60,
     NULL,
     NULL
 };
 
 AnimationHeader D_beach_802CD190 = {
-    0.65,
-    111,
+    0.65f,
+    111.0f,
     D_801ACF90_139420,
     NULL,
     D_beach_802CD158
 };
 
 AnimationHeader D_beach_802CD1A4 = {
-    1,
-    108,
+    1.0f,
+    108.0f,
     D_801AE790_13AC20,
     NULL,
     NULL
 };
 
 AnimationHeader D_beach_802CD1B8 = {
-    1,
-    108,
+    1.0f,
+    108.0f,
     D_801AC250_1386E0,
     NULL,
     D_beach_802CD160
 };
 
 AnimationHeader D_beach_802CD1CC = {
-    1,
-    108,
+    1.0f,
+    108.0f,
     D_801AB610_137AA0,
     NULL,
     NULL
@@ -68,15 +65,15 @@ AnimationHeader D_beach_802CD1CC = {
 u32 D_beach_802CD1E0 = 0x00000000;
 
 InteractionHandler D_beach_802CD1E4[] = {
-    { POKEMON_CMD_9, func_beach_802C8F48, 0, NULL },
-    { POKEMON_CMD_10, func_beach_802C8F48, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C8F48, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802C8F48, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD214[] = {
-    { POKEMON_CMD_9, NULL, 0, func_beach_802C914C },
-    { POKEMON_CMD_13, NULL, 0, func_beach_802C914C },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, NULL, 0.0f, func_beach_802C914C },
+    { POKEMON_CMD_13, NULL, 0.0f, func_beach_802C914C },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_beach_802CD244 = {
@@ -93,9 +90,9 @@ PokemonInitData D_beach_802CD258 = {
     NULL,
     renderPokemonModelTypeDFogged,
     &D_beach_802CD244,
-    { 0.9, 0.9, 0.9 },
-    { 0, 60, 0 },
-    63,
+    { 0.9f, 0.9f, 0.9f },
+    { 0.0f, 60.0f, 0.0f },
+    63.0f,
     POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,

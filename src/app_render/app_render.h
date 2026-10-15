@@ -15,6 +15,7 @@ PhotoData* func_8009BC74(void);
 f32 func_8009BDDC(s16, s8);
 struct ScoreData* func_800A0EA4(GObj*, PhotoData*, u16*, s32, s32, u16*);
 void getBackgroundColor(u8* r, u8* g, u8* b);
+void func_800A1680(GObj*);
 void func_800A7F40(f32 arg0, f32 arg1, s32 arg2, f32 arg3);
 void func_800A7918(s32, f32);
 

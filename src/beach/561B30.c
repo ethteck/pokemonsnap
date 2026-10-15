@@ -15,12 +15,6 @@ extern AnimCmd** D_80179760_105BF0[];
 extern AnimCmd** D_80179810_105CA0[];
 extern AnimCmd** D_801798B0_105D40[];
 extern AnimCmd** D_80179940_105DD0[];
-void func_beach_802C9AC0(GObj*);
-void func_beach_802C9B40(GObj*);
-void func_beach_802C9B9C(GObj*);
-void func_beach_802C9BF8(GObj*);
-void func_beach_802C9DCC(GObj*);
-void func_beach_802C9EBC(GObj*);
 extern Texture** kangaskhan_materials[];
 extern UnkEC64Arg3 kangaskhan_model[];
 
@@ -31,93 +25,93 @@ s32 D_beach_802CD5A0[] = { SOUND_ID_260 };
 s32 D_beach_802CD5A4[] = { SOUND_ID_262 };
 
 AnimationHeader D_beach_802CD5A8 = {
-    0.25,
-    60,
+    0.25f,
+    60.0f,
     D_80173C30_1000C0,
     D_80179760_105BF0,
     NULL
 };
 
 AnimationHeader D_beach_802CD5BC = {
-    0.8,
-    80,
+    0.8f,
+    80.0f,
     D_8016E200_FA690,
     D_80179560_1059F0,
     NULL
 };
 
 AnimationHeader D_beach_802CD5D0 = {
-    0.68,
-    50,
+    0.68f,
+    50.0f,
     D_8016F5B0_FBA40,
     D_80179600_105A90,
     D_beach_802CD590
 };
 
 AnimationHeader D_beach_802CD5E4 = {
-    0.38,
-    107,
+    0.38f,
+    107.0f,
     D_80170AD0_FCF60,
     D_801796A0_105B30,
     D_beach_802CD598
 };
 
 AnimationHeader D_beach_802CD5F8 = {
-    0.45,
-    40,
+    0.45f,
+    40.0f,
     D_801765D0_102A60,
     D_801798B0_105D40,
     D_beach_802CD5A0
 };
 
 AnimationHeader D_beach_802CD60C = {
-    0.5,
-    98,
+    0.5f,
+    98.0f,
     D_80177520_1039B0,
     D_80179940_105DD0,
     NULL
 };
 
 AnimationHeader D_beach_802CD620 = {
-    1,
-    120,
+    1.0f,
+    120.0f,
     D_80175390_101820,
     D_80179810_105CA0,
     D_beach_802CD5A4
 };
 
 InteractionHandler D_beach_802CD634[] = {
-    { POKEMON_CMD_9, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_5, func_beach_802C9EBC, 0, NULL },
-    { POKEMON_CMD_6, func_beach_802C9EBC, 0, NULL },
-    { POKEMON_CMD_7, func_beach_802C9EBC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_5, func_beach_802C9EBC, 0.0f, NULL },
+    { POKEMON_CMD_6, func_beach_802C9EBC, 0.0f, NULL },
+    { POKEMON_CMD_7, func_beach_802C9EBC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD694[] = {
-    { POKEMON_CMD_9, func_beach_802C9BF8, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C9BF8, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C9BF8, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C9BF8, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD6C4[] = {
-    { POKEMON_CMD_9, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD6F4[] = {
-    { POKEMON_CMD_9, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 InteractionHandler D_beach_802CD724[] = {
-    { POKEMON_CMD_9, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_13, func_beach_802C9DCC, 0, NULL },
-    { POKEMON_CMD_16, func_beach_802C9F9C, 500, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_9, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802C9DCC, 0.0f, NULL },
+    { POKEMON_CMD_16, func_beach_802C9F9C, 500.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 RandomState D_beach_802CD764[] = {
@@ -146,9 +140,9 @@ PokemonInitData D_beach_802CD7A8 = {
     kangaskhan_materials,
     renderPokemonModelTypeIFogged,
     &D_beach_802CD794,
-    { 1.5, 1.5, 1.5 },
-    { 0, 235, 0 },
-    104,
+    { 1.5f, 1.5f, 1.5f },
+    { 0.0f, 235.0f, 0.0f },
+    104.0f,
     POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,

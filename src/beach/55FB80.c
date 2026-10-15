@@ -6,10 +6,6 @@ extern AnimCmd* D_80156960_E2DF0[];
 extern AnimCmd* D_80183D20_1101B0[];
 extern AnimCmd** D_80184400_110890[];
 extern UnkEC64Arg3 butterfree_model[];
-void func_beach_802C7B10(GObj*);
-void func_beach_802C7CF0(GObj*);
-void func_beach_802C7E70(GObj*);
-void func_beach_802C8028(GObj*);
 extern Texture** lapras_materials[];
 extern UnkEC64Arg3 lapras_model[];
 
@@ -17,33 +13,33 @@ extern UnkEC64Arg3 lapras_model[];
 s32 D_beach_802CCD20[] = { SOUND_ID_253 };
 
 AnimationHeader D_beach_802CCD24 = {
-    0.3,
-    100,
+    0.3f,
+    100.0f,
     D_801548D0_E0D60,
     NULL,
     NULL
 };
 
 AnimationHeader D_beach_802CCD38 = {
-    0.3,
-    100,
+    0.3f,
+    100.0f,
     D_80156960_E2DF0,
     NULL,
     D_beach_802CCD20
 };
 
 AnimationHeader D_beach_802CCD4C = {
-    0.35,
-    100,
+    0.35f,
+    100.0f,
     D_801548D0_E0D60,
     NULL,
     NULL
 };
 
 InteractionHandler D_beach_802CCD60[] = {
-    { POKEMON_CMD_8, func_beach_802C7CF0, 0, NULL },
-    { POKEMON_CMD_12, func_beach_802C7CF0, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_8, func_beach_802C7CF0, 0.0f, NULL },
+    { POKEMON_CMD_12, func_beach_802C7CF0, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_beach_802CCD90 = {
@@ -60,9 +56,9 @@ PokemonInitData D_beach_802CCDA4 = {
     NULL,
     renderPokemonModelTypeBFogged,
     &D_beach_802CCD90,
-    { 1.6, 1.6, 1.6 },
-    { 0, 0, 0 },
-    40,
+    { 1.6f, 1.6f, 1.6f },
+    { 0.0f, 0.0f, 0.0f },
+    40.0f,
     POKEMON_FLAG_4 | POKEMON_FLAG_2 | POKEMON_FLAG_1,
     0,
     0,
@@ -77,8 +73,8 @@ u32 D_beach_802CCDD8[] = {
 s32 D_beach_802CCDE0[] = { 0, SOUND_ID_383 };
 
 AnimationHeader D_beach_802CCDE8 = {
-    0.5,
-    265,
+    0.5f,
+    265.0f,
     D_80183D20_1101B0,
     D_80184400_110890,
     D_beach_802CCDE0
@@ -89,16 +85,16 @@ s32 D_beach_802CCE00 = 0;
 s32 D_beach_802CCE04 = 0;
 
 AnimationHeader D_beach_802CCE08 = {
-    0,
-    0,
+    0.0f,
+    0.0f,
     D_80183D20_1101B0,
     D_80184400_110890,
     NULL
 };
 
 InteractionHandler D_beach_802CCE1C[] = {
-    { POKEMON_CMD_24, func_beach_802C8028, 0, NULL },
-    { POKEMON_CMD_58, NULL, 0, NULL },
+    { POKEMON_CMD_24, func_beach_802C8028, 0.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
 };
 
 PokemonAnimationSetup D_beach_802CCE3C = {
@@ -115,9 +111,9 @@ PokemonInitData D_beach_802CCE50 = {
     lapras_materials,
     renderPokemonModelTypeIFogged,
     &D_beach_802CCE3C,
-    { 3, 3, 3 },
-    { 0, -40, -150 },
-    100,
+    { 3.0f, 3.0f, 3.0f },
+    { 0.0f, -40.0f, -150.0f },
+    100.0f,
     POKEMON_FLAG_20 | POKEMON_FLAG_4 | POKEMON_FLAG_1,
     0,
     0,

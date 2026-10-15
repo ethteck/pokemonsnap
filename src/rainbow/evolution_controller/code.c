@@ -1,6 +1,5 @@
 #include "../rainbow.h"
 
-
 void func_80349F88_8296F8(GObj*);
 
 extern UnkEC64Arg3 evolution_controller_model[];
@@ -8,12 +7,10 @@ extern Texture** evolution_controller_materials[];
 extern AnimCmd* evolution_controller_modelanim[];
 extern AnimCmd** evolution_controller_matanim[];
 
-void func_80349F00_829670(GObj*);
-
 // .data
 AnimationHeader D_8034B590_82AD00 = {
-    0.5,
-    60,
+    0.5f,
+    60.0f,
     evolution_controller_modelanim,
     evolution_controller_matanim,
     NULL
@@ -33,9 +30,9 @@ PokemonInitData D_8034B5B8_82AD28 = {
     evolution_controller_materials,
     renderPokemonModelTypeDFogged,
     &D_8034B5A4_82AD14,
-    { 10, 10, 10 },
-    { 0, 0, 0 },
-    0,
+    { 10.0f, 10.0f, 10.0f },
+    { 0.0f, 0.0f, 0.0f },
+    0.0f,
     0,
     0,
     0,

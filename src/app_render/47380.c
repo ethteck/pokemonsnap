@@ -65,7 +65,6 @@ extern Texture** D_800EB510;
 extern AnimCmd* D_8017A710;
 extern AnimCmd* D_80186E20;
 extern AnimCmd* D_80188CB0;
-void func_800A1680(GObj*);
 extern AnimCmd* D_800FAE40_78260[];
 extern AnimCmd* D_800FBF50_79370[];
 extern AnimCmd* D_800FD080_7A4A0[];
@@ -1641,7 +1640,6 @@ s8 D_800AE4E4[156] = {
     50, 51, 52, 53, 54, -1, -1, -1, 55, -1, -1, -1, -1, -1, 56, 57,
     58, 59, 60, -1, 61, -1, 62, 0, 0, 0, 0, 0,
 };
-
 
 extern GObj* photo_PokemonObjs[];
 extern s32 photo_PokemonCount;

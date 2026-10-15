@@ -1,5 +1,5 @@
 """Native SDK bank graph; original assets/audio/bankN.bin.o identity retained."""
-import json
+import yaml
 import sys
 from pathlib import Path
 
@@ -16,7 +16,7 @@ from audio_bank import decode
 
 class N64SegSnap_audio_bank(CommonSegBin):
     def out_path(self) -> Path:
-        return options.opts.asset_path / self.dir / f"{self.name}.json"
+        return options.opts.asset_path / self.dir / f"{self.name}.yaml"
 
     def get_linker_entries(self):
         if not self.has_linker_entry:
@@ -39,5 +39,5 @@ class N64SegSnap_audio_bank(CommonSegBin):
                              rom_bytes[table_start:table_end], f"waves/{self.name}")
         path = self.out_path()
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")
+        path.write_text(yaml.safe_dump(bank, sort_keys=False), encoding="utf-8")
         self.log(f"Wrote native bank graph to {path}")

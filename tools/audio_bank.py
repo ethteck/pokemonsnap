@@ -7,8 +7,8 @@ bank-relative offsets. ALWaveTable is TWENTY bytes: two bytes of alignment
 at 10, loop at 12, book at 16 (not the reverse). Its raw union retains the
 unused word. All visited flags and C structure padding are explicit.
 
-bankN.json contains offset-addressed, ID-referenced records, preserving
-physical order and sharing. tableN.json places standard, self-contained
+bankN.yaml contains offset-addressed, ID-referenced records, preserving
+physical order and sharing. tableN.yaml places standard, self-contained
 AIFC files and explicit fill runs, including the zero byte after an odd
 ADPCM frame stream when the native wavetable length includes it. COMM's
 sample count is the complete coded frame count * 16: precompression trim
@@ -27,7 +27,7 @@ conflicting overlaps and non-padding orphan bytes are errors, not fallbacks.
 from __future__ import annotations
 
 import argparse
-import json
+import yaml
 import math
 import struct
 from pathlib import Path
@@ -391,7 +391,7 @@ class _Image:
 
 def encode(bank: dict, table: dict, wave_root: Path | str = ".",
            read_asset: Callable[[str], bytes] | None = None) -> tuple[bytes, bytes]:
-    """Build both complete native images solely from JSON and AIFC sources."""
+    """Build both complete native images solely from YAML and AIFC sources."""
     if bank["format"] != "snap-sdk-bank-v1" or table["format"] != "snap-sdk-table-v1":
         raise ValueError("unsupported native audio source format")
     loader = read_asset if read_asset is not None else lambda asset: (Path(wave_root) / asset).read_bytes()
@@ -492,12 +492,12 @@ def extract(rom: bytes, bank_start: int, table_start: int, table_end: int,
     if not 0 <= bank_start < table_start < table_end <= len(rom):
         raise ValueError("invalid audio pair ROM bounds")
     if bank_path.parent != table_path.parent:
-        raise ValueError("bank/table JSON must share their relative asset root")
+        raise ValueError("bank/table YAML must share their relative asset root")
     bank, table, assets = decode(rom[bank_start:table_start], rom[table_start:table_end],
                                  f"waves/{bank_path.stem}")
     bank_path.parent.mkdir(parents=True, exist_ok=True)
-    bank_path.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")
-    table_path.write_text(json.dumps(table, indent=2) + "\n", encoding="utf-8")
+    bank_path.write_text(yaml.safe_dump(bank, sort_keys=False), encoding="utf-8")
+    table_path.write_text(yaml.safe_dump(table, sort_keys=False), encoding="utf-8")
     for relative, data in assets.items():
         path = bank_path.parent / relative
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -510,24 +510,24 @@ def main() -> None:
     commands = parser.add_subparsers(dest="command", required=True)
     split = commands.add_parser("extract", help="extract a complete bank/table pair from ROM")
     split.add_argument("rom", type=Path)
-    split.add_argument("bank_json", type=Path)
-    split.add_argument("table_json", type=Path)
+    split.add_argument("bank_yaml", type=Path)
+    split.add_argument("table_yaml", type=Path)
     for name in ("bank-start", "table-start", "table-end"):
         split.add_argument("--" + name, required=True, type=lambda value: int(value, 0))
-    build = commands.add_parser("build", help="build native images from JSON and AIFC only")
-    build.add_argument("bank_json", type=Path)
-    build.add_argument("table_json", type=Path)
+    build = commands.add_parser("build", help="build native images from YAML and AIFC only")
+    build.add_argument("bank_yaml", type=Path)
+    build.add_argument("table_yaml", type=Path)
     build.add_argument("bank_bin", type=Path)
     build.add_argument("table_bin", type=Path)
     args = parser.parse_args()
     if args.command == "extract":
         extract(args.rom.read_bytes(), args.bank_start, args.table_start, args.table_end,
-                args.bank_json, args.table_json)
+                args.bank_yaml, args.table_yaml)
     else:
-        if args.bank_json.parent != args.table_json.parent:
-            parser.error("bank/table JSON must share their relative asset root")
-        bank, table = encode(json.loads(args.bank_json.read_text(encoding="utf-8")),
-                             json.loads(args.table_json.read_text(encoding="utf-8")), args.bank_json.parent)
+        if args.bank_yaml.parent != args.table_yaml.parent:
+            parser.error("bank/table YAML must share their relative asset root")
+        bank, table = encode(yaml.safe_load(args.bank_yaml.read_text(encoding="utf-8")),
+                             yaml.safe_load(args.table_yaml.read_text(encoding="utf-8")), args.bank_yaml.parent)
         for path, data in ((args.bank_bin, bank), (args.table_bin, table)):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(data)

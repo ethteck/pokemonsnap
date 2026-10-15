@@ -1,5 +1,5 @@
 """Native audio table placement and standard AIFCs; original .bin.o retained."""
-import json
+import yaml
 import sys
 from pathlib import Path
 
@@ -16,7 +16,7 @@ from audio_bank import decode
 
 class N64SegSnap_audio_table(CommonSegBin):
     def out_path(self) -> Path:
-        return options.opts.asset_path / self.dir / f"{self.name}.json"
+        return options.opts.asset_path / self.dir / f"{self.name}.yaml"
 
     def get_linker_entries(self):
         if not self.has_linker_entry:
@@ -39,7 +39,7 @@ class N64SegSnap_audio_table(CommonSegBin):
                                   rom_bytes[self.rom_start:self.rom_end], f"waves/{bank_name}")
         path = self.out_path()
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(table, indent=2) + "\n", encoding="utf-8")
+        path.write_text(yaml.safe_dump(table, sort_keys=False), encoding="utf-8")
         for relative, data in assets.items():
             asset = path.parent / relative
             asset.parent.mkdir(parents=True, exist_ok=True)

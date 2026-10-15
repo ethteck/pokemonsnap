@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import yaml
 import sys
 from pathlib import Path
 
@@ -36,7 +37,7 @@ def overrides_in(directory: Path, sample_ids: set[str]) -> dict[str, Path]:
 
 
 def inventory(table_path: Path, directory: Path, output: Path) -> None:
-    table = json.loads(table_path.read_text())
+    table = yaml.safe_load(table_path.read_text())
     paths = overrides_in(directory, {s["id"] for s in table["samples"]})
     entries = []
     for sample_id, path in paths.items():
@@ -334,8 +335,8 @@ def emit_c(bank: dict, symbol: str) -> str:
 
 
 def generate(bank_path: Path, table_path: Path, directory: Path, c_path: Path, table_bin: Path) -> None:
-    bank = json.loads(bank_path.read_text())
-    table = json.loads(table_path.read_text())
+    bank = yaml.safe_load(bank_path.read_text())
+    table = yaml.safe_load(table_path.read_text())
     paths = overrides_in(directory, {s["id"] for s in table["samples"]})
     stock_loader = lambda asset: (table_path.parent / asset).read_bytes()
     bank, table, samples = plan(bank, table, stock_loader,
@@ -356,21 +357,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     scan = sub.add_parser("inventory")
-    scan.add_argument("table_json", type=Path)
+    scan.add_argument("table_yaml", type=Path)
     scan.add_argument("overrides", type=Path)
     scan.add_argument("output", type=Path)
     build = sub.add_parser("generate")
-    build.add_argument("bank_json", type=Path)
-    build.add_argument("table_json", type=Path)
+    build.add_argument("bank_yaml", type=Path)
+    build.add_argument("table_yaml", type=Path)
     build.add_argument("overrides", type=Path)
     build.add_argument("bank_c", type=Path)
     build.add_argument("table_bin", type=Path)
     args = parser.parse_args()
     try:
         if args.command == "inventory":
-            inventory(args.table_json, args.overrides, args.output)
+            inventory(args.table_yaml, args.overrides, args.output)
         else:
-            generate(args.bank_json, args.table_json, args.overrides, args.bank_c, args.table_bin)
+            generate(args.bank_yaml, args.table_yaml, args.overrides, args.bank_c, args.table_bin)
     except (ValueError, KeyError) as error:
         parser.exit(1, f"audio bank: {error}\n")
 

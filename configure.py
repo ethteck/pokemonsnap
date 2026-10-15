@@ -2,7 +2,7 @@
 
 import argparse
 import glob
-import json
+import yaml
 import os
 import shutil
 import sys
@@ -342,7 +342,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "audio_inventory",
         description="scan audio overrides $overrides",
-        command=f"{sys.executable} tools/build/audio_banks.py inventory $table_json $overrides $out",
+        command=f"{sys.executable} tools/build/audio_banks.py inventory $table_yaml $overrides $out",
         restat=True,
     )
 
@@ -588,27 +588,27 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     if item.segment.type == "snap_audio_table"
                     and item.segment.rom_start == seg.yaml["audio_table_start"]
                 )
-                bank_json = entry.src_paths[0]
-                table_json = table_entry.src_paths[0]
+                bank_yaml = entry.src_paths[0]
+                table_yaml = table_entry.src_paths[0]
                 table_bin = table_entry.object_path.with_suffix("")
                 bank_c = entry.object_path.with_suffix(".c")
-                override_dir = Path("src/audio/instruments") / bank_json.stem
+                override_dir = Path("src/audio/instruments") / bank_yaml.stem
                 inventory_path = bank_c.with_suffix(".inventory.json")
                 tool_inputs = ["tools/audio_bank.py", "tools/build/audio_banks.py"]
                 ninja.build(
                     str(inventory_path),
                     "audio_inventory",
                     ["audio_always"],
-                    implicit=[str(table_json)] + tool_inputs,
-                    variables={"table_json": str(table_json), "overrides": str(override_dir)},
+                    implicit=[str(table_yaml)] + tool_inputs,
+                    variables={"table_yaml": str(table_yaml), "overrides": str(override_dir)},
                 )
-                table = json.loads(table_json.read_text())
+                table = yaml.safe_load(table_yaml.read_text())
                 ninja.build(
                     outputs=[str(bank_c), str(table_bin)],
                     rule="audio_pair",
-                    inputs=[str(bank_json), str(table_json)],
+                    inputs=[str(bank_yaml), str(table_yaml)],
                     implicit=tool_inputs + [str(inventory_path)] + [
-                        str(table_json.parent / sample["asset"])
+                        str(table_yaml.parent / sample["asset"])
                         for sample in table["samples"]
                     ],
                     variables={

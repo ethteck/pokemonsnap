@@ -1,6 +1,6 @@
 """Synthetic native graphs only: no copyrighted ROM/sample fixtures required."""
 import copy
-import json
+import yaml
 import struct
 from pathlib import Path
 import sys
@@ -223,8 +223,8 @@ class BankOverrideTests(unittest.TestCase):
         _, table, assets = fixture()
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            source = root / "table.json"
-            source.write_text(json.dumps(table))
+            source = root / "table.yaml"
+            source.write_text(yaml.safe_dump(table, sort_keys=False))
             directory = root / "overrides"
             output = root / "inventory.json"
             inventory(source, directory, output)

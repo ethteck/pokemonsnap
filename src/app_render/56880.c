@@ -1,6 +1,5 @@
 #include "common.h"
 
-// .data
 s32 D_800AF3D0 = 0;
 
 void func_800AAED0(s32 arg0) {

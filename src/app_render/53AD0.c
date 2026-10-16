@@ -27,7 +27,6 @@ typedef struct Matrix3f {
     /* 0x18 */ Vec3f z;
 } Matrix3f; // size = 0x24
 
-// .data
 s32 D_800AF0D0 = 0;
 UNK_TYPE D_800AF0D4 = 0;
 

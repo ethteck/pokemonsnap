@@ -1,8 +1,8 @@
 #include "common.h"
 
-// data?
-extern s32* prev_bmbuf;
-extern u16 sp_attr;
+// .data
+s32* prev_bmbuf = NULL;
+u16 sp_attr = 0;
 
 // .bss
 s32 scissor_xmax;

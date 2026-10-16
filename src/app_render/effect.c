@@ -1,9 +1,6 @@
 #include "app_render.h"
 #include "effect.h"
 
-extern u8 fx_colorDitherMode;
-extern u8 fx_alphaDitherMode;
-extern u16 fx_currentEffectID;
 
 Particle* D_800BE1A0;
 Particle* D_800BE1A8[16];
@@ -25,6 +22,11 @@ Particle* fx_updateStruct(Particle*, Particle*, s32);
 void fx_structFuncRun(GObj*);
 void fx_draw(GObj*);
 void fx_effectFuncRun(GObj*);
+
+// .data
+u8 fx_colorDitherMode = 0;
+u8 fx_alphaDitherMode = 0;
+u16 fx_currentEffectID = 0;
 
 void fx_setupBankID(s32 bankID, s32* scriptDesc, s32* spritesDesc) { // TODO structs for these
     s32 i, j;

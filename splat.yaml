@@ -255,7 +255,7 @@ segments:
     - [0x41B50, .data, sys/matrix]
     - [0x42B50, .data, sys/audio]
     - [0x43020, .data, sys/error]
-    - [0x434E0, data] # .data, ../ultralib/src/sp/sprite]
+    - [0x434E0, .data, 26D80] # .data, ../ultralib/src/sp/sprite]
     - [0x434F0, .data, ../ultralib/src/audio/sl]
     - [0x43500, .data, ../ultralib/src/audio/drvrnew]
     - [0x43690, .data, ../ultralib/src/audio/reverb]
@@ -378,9 +378,21 @@ segments:
     - [0x57A90, data, 47380]
     - [0x59F30, .data, score]
     - [0x5A400, .data, 4CDB0]
-    - [0x5A580, data]
-    - [0x5AD20, .data, 53AD0]
-    - [0x5AD80, data]
+    - [0x5A580, .data, 4D400]
+    - [0x5A610, .data, effect]
+    - start: 0x5A620
+      type: .data
+      name: 52DE0
+      subsegments:
+      - [0x5A620, vtx, D_800AEC70]
+      - [0x5A660, gfx, D_800AECB0]
+      - [0x5A690, vtx, D_800AECE0]
+      - [0x5A890, gfx, D_800AEEE0]
+      - [0x5A930, vtx, D_800AEF80]
+      - [0x5A9D0, gfx, D_800AF020]
+      - [0x5AA00]
+    - [0x5AA80, .data, 53AD0]
+    - [0x5AD80, .data, 56880]
     - [0x5AD90, .rodata, 47330]
     - [0x5ADD0, .rodata, 47380]
     - [0x5BB30, .rodata, score]
@@ -410,7 +422,7 @@ segments:
     - [0x5D500, c]
     - [0x5DA50, c, md4]
     - [0x5E630, c, ../os/osFlash]
-    - [0x5EF80, data]
+    - [0x5EF80, .data, 5BF20]
     - [0x5EFA0, .rodata, 5BF20]
     - { name: 5BF20, type: .bss, vram: 0x800C21B0 }
     - { name: 5D500, type: .bss, vram: 0x800E16F0 }
@@ -5315,15 +5327,15 @@ segments:
     - [0x506290, c, render_player]
     - [0x5064F0, c, envsound]
     - [0x506DD0, c, trig]
-    - [0x506FB0, data]
+    - [0x506FB0, data, player]
     - [0x523000, .data, player]
     - [0x5231D0, .data, bump_detect]
     - [0x5231F0, .data, pokemon_detect]
     - [0x5232C0, .data, items]
-    - [0x523300, data] # has sprite data which should be in icons.c
+    - [0x523300, data, icons] # sprite data
     - [0x528530, .data, icons]
     - [0x528720, .data, 4FE330]
-    - [0x5287B0, data]
+    - [0x5287B0, data, 4FE780]
     - { start: 0x52A470, type: .rodata, name: player, linker_section_order: .data }
     - { start: 0x52A710, type: .rodata, name: bump_detect, linker_section_order: .data }
     - { start: 0x52A720, type: .rodata, name: items, linker_section_order: .data }
@@ -5628,12 +5640,13 @@ segments:
         - [0x533140]
         - {start: 0x533148, type: i8, width: 16, height: 13}
         - [0x533218]
-    - [0x533C00, data]
+    - [0x533C00, .data, render_player]
     - [0x533C10, .rodata, pokemon]
     - [0x533E90, .rodata, 503C10]
     - [0x533ED0, .rodata, 5047F0]
     - [0x533EE0, .rodata, msg]
-    - { start: 0x533FE0, type: data, linker_section_order: .rodata } # maybe it is rodata?
+    - { start: 0x533FE0, type: .data, name: envsound, linker_section_order: .rodata  } # maybe it is rodata?
+    - { start: 0x534000, type: .data, name: trig, linker_section_order: .rodata  }
     - [0x536010, .rodata, envsound]
     - { start: 0x536030, type: data, linker_section_order: .rodata }
     - { name: player, type: .bss, vram: 0x803AB1C0 }

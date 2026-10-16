@@ -121,7 +121,7 @@ void func_802C5F70_79F500(GObj* obj) {
 
     if (D_802D2980_7ABF10 == NULL) {
         roomA = getCurrentWorldBlock();
-        spawn.id = PokemonID_ARTICUNO;
+        spawn.id = PokemonID_DRATINI;
         spawn.translation.x = 0.0;
         spawn.translation.y = 0.0;
         spawn.translation.z = 0.0;

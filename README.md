@@ -20,4 +20,4 @@ For Python dependencies:
 3. Run extraction and disassembly: `uv run configure.py`
 4. Rebuild the rom: `ninja`
 
-See [Demo scripts](tools/DEMO_SCRIPT.md) for editing and converting demo recordings.
+See [Asset documentation](ASSETS.md) for asset formats and authoring.

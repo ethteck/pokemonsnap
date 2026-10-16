@@ -1,4 +1,6 @@
-# Demo scripts
+# Assets
+
+## Demo scripts
 
 Extraction writes the beach and tunnel demo recordings to
 `assets/demo_script_beach.yaml` and `assets/demo_script_tunnel.yaml`. Edit the

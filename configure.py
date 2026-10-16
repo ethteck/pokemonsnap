@@ -2,6 +2,7 @@
 
 import argparse
 import glob
+import yaml
 import os
 import shutil
 import sys
@@ -298,7 +299,13 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "z64",
         description="rom $out",
-        command=f"{CROSS_OBJCOPY} $in $out -O binary",
+        command=f"{sys.executable} tools/build/audio_rom.py rom --objcopy {CROSS_OBJCOPY} $in $out",
+    )
+
+    ninja.rule(
+        "audio_mod",
+        description="audio checksum $out",
+        command=f"{sys.executable} tools/build/audio_rom.py checksum $in $out",
     )
 
     ninja.rule(
@@ -325,6 +332,22 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/vpk0.py $in $out",
     )
 
+    ninja.rule(
+        "audio_pair",
+        description="typed audio bank $bank_c",
+        command=f"{sys.executable} tools/build/audio_banks.py generate $in $overrides $bank_c $table_bin",
+        restat=True,
+    )
+
+    ninja.rule(
+        "audio_inventory",
+        description="scan audio overrides $overrides",
+        command=f"{sys.executable} tools/build/audio_banks.py inventory $table_yaml $overrides $out",
+        restat=True,
+    )
+
+
+    ninja.build("audio_always", "phony")
     for entry in linker_entries:
         seg = entry.segment
 
@@ -558,6 +581,49 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             compressed = entry.object_path.with_suffix(".vpk0")
             build(compressed, entry.src_paths, "vpk0_compress")
             build(entry.object_path, [compressed], "bin")
+        elif seg.type in ("snap_audio_bank", "snap_audio_table"):
+            if seg.type == "snap_audio_bank":
+                table_entry = next(
+                    item for item in linker_entries
+                    if item.segment.type == "snap_audio_table"
+                    and item.segment.rom_start == seg.yaml["audio_table_start"]
+                )
+                bank_yaml = entry.src_paths[0]
+                table_yaml = table_entry.src_paths[0]
+                table_bin = table_entry.object_path.with_suffix("")
+                bank_c = entry.object_path.with_suffix(".c")
+                override_dir = Path("src/audio/instruments") / bank_yaml.stem
+                inventory_path = bank_c.with_suffix(".inventory.json")
+                tool_inputs = ["tools/audio_bank.py", "tools/build/audio_banks.py"]
+                ninja.build(
+                    str(inventory_path),
+                    "audio_inventory",
+                    ["audio_always"],
+                    implicit=[str(table_yaml)] + tool_inputs,
+                    variables={"table_yaml": str(table_yaml), "overrides": str(override_dir)},
+                )
+                table = yaml.safe_load(table_yaml.read_text())
+                ninja.build(
+                    outputs=[str(bank_c), str(table_bin)],
+                    rule="audio_pair",
+                    inputs=[str(bank_yaml), str(table_yaml)],
+                    implicit=tool_inputs + [str(inventory_path)] + [
+                        str(table_yaml.parent / sample["asset"])
+                        for sample in table["samples"]
+                    ],
+                    variables={
+                        "overrides": str(override_dir),
+                        "bank_c": str(bank_c),
+                        "table_bin": str(table_bin),
+                    },
+                )
+                build(
+                    entry.object_path, [bank_c], "cc_raw",
+                    implicit=["ultralib/include/PR/libaudio.h", "ultralib/include/ultra64.h", "ultralib/include/macros.h"],
+                    variables={"ido": IDO_72_CC, "flags": "-O2 -mips2"},
+                )
+            else:
+                build(entry.object_path, [entry.object_path.with_suffix("")], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":
@@ -585,6 +651,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         Z64_PATH,
         "z64",
         ELF_PATH,
+        implicit=["tools/build/audio_rom.py"],
     )
 
     ninja.build(
@@ -593,6 +660,14 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "checksum.sha1",
         implicit=[Z64_PATH],
     )
+
+    mod_path = "build/pokemonsnap.mod.z64"
+    ninja.build(
+        mod_path, "audio_mod", Z64_PATH,
+        implicit=["tools/build/audio_rom.py"],
+    )
+    ninja.build("audio-mod", "phony", mod_path)
+    ninja.default(OK_PATH)
 
     ninja.build("img_incs", "phony", img_incs)
 
@@ -667,7 +742,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     split.main(
-        [YAML_FILE], modes=["all"], verbose=False, disassemble_all=args.disassemble_all
+        [YAML_FILE], modes=["all"], verbose=False, use_cache=False,
+        disassemble_all=args.disassemble_all
     )
 
     linker_entries = split.linker_writer.entries

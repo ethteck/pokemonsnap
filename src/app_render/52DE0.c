@@ -5,14 +5,12 @@
 #define FORCE_S32(thing) (void*) (*(s32*) (&thing)) // TODO cursed
 #define FORCE_F32(thing) (*(f32*) (&thing))         // TODO cursed
 
-
 static s32 D_800BE2C0;
 static s32 D_800BE2C4;
 static OMCamera* D_800BE2C8;
 static bool D_800BE2CC;
 static GObj* D_800BE2D0;
 
-// .data
 #include "assets/app_render/D_800AEC70.vtx.inc.c"
 #include "assets/app_render/D_800AECB0.gfx.inc.c"
 #include "assets/app_render/D_800AECE0.vtx.inc.c"

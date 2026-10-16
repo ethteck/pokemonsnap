@@ -3,11 +3,9 @@
 #include "functions.h"
 #include "sys/om.h"
 
-
 DObj* func_803573B0_4F77C0(void);
 s32 atan2s(f32, f32);
 
-// .data
 EnvSound* EnvSound_Sounds = NULL;
 DObj* EnvSound_PlayerModel = NULL;
 OMCamera* EnvSound_MainCamera = NULL;

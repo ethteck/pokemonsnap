@@ -1,6 +1,5 @@
 #include "common.h"
 
-// .data
 Lights1 D_800AEBD0 = gdSPDefLights1(100, 100, 100, 180, 180, 180, 30, 30, 30);
 Lights1 D_800AEBE8_5A598 = gdSPDefLights1(0, 0, 0, 0, 0, 0, 30, 30, 30);
 s32 D_800AEC00_5A5B0[] = { 1500, 2000 };

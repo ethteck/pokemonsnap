@@ -1,7 +1,6 @@
 #include "app_render.h"
 #include "effect.h"
 
-
 Particle* D_800BE1A0;
 Particle* D_800BE1A8[16];
 Effect* D_800BE1E8;
@@ -23,7 +22,6 @@ void fx_structFuncRun(GObj*);
 void fx_draw(GObj*);
 void fx_effectFuncRun(GObj*);
 
-// .data
 u8 fx_colorDitherMode = 0;
 u8 fx_alphaDitherMode = 0;
 u16 fx_currentEffectID = 0;

@@ -1,4 +1,6 @@
-# Effect script banks
+# Assets
+
+## Effect script banks
 
 Extraction also decodes the nine particle-script banks (`common`, `beach`,
 `tunnel`, `cave`, `river`, `volcano`, `valley`, `rainbow`, and `intro`) into

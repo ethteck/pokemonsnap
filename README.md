@@ -20,4 +20,4 @@ For Python dependencies:
 3. Run extraction and disassembly: `uv run configure.py`
 4. Rebuild the rom: `ninja`
 
-See [Effect script banks](tools/EFFECT_SCRIPT.md) for particle-script authoring.
+See [Asset documentation](ASSETS.md) for asset formats and authoring.

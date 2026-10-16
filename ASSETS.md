@@ -1,4 +1,6 @@
-# Audio banks and wave tables
+# Assets
+
+## Audio banks and wave tables
 
 Extraction generates the complete SDK bank graphs in `assets/audio/bank1.yaml`
 and `bank2.yaml`, table layouts in `table1.yaml` and `table2.yaml`, and
@@ -76,7 +78,7 @@ uv run python -m unittest discover -s tests -p 'test_audio_banks.py'
 diagnostics. Production bank generation uses `tools/build/audio_banks.py`; the
 Ninja compile edge uses the same configured IDO toolchain as the project.
 
-## Editable source layout and fixed-layout diagnostics
+### Editable source layout and fixed-layout diagnostics
 
 The YAML retains the `snap-sdk-bank-v1` and `snap-sdk-table-v1` format tags.
 Bank records are offset-addressed and reference stable IDs, preserving physical

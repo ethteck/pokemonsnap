@@ -20,4 +20,4 @@ For Python dependencies:
 3. Run extraction and disassembly: `uv run configure.py`
 4. Rebuild the rom: `ninja`
 
-See [Audio banks and wave tables](tools/AUDIO_BANK.md) for YAML sources, AIFC overrides and audio builds.
+See [Asset documentation](ASSETS.md) for asset formats and authoring.

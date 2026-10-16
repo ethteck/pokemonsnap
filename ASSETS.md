@@ -1,4 +1,6 @@
-# MIDI sequence authoring
+# Assets
+
+## MIDI sequence authoring
 
 Extraction writes an ignored `assets/audio/sbk.yaml` manifest covering the
 complete `0xAEFC10`–`0xAFEEE0` sequence region. Its 37 indexed slots retain

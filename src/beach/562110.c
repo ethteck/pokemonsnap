@@ -1,7 +1,6 @@
 #include "common.h"
 #include "beach.h"
 
-// .data
 UnkEC64Arg3 D_beach_802CD7E0[] = {
     { 0,
       NULL,

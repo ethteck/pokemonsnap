@@ -8,7 +8,6 @@ extern Texture** D_80118160_4CA530[];
 extern AnimCmd* D_80118360_4CA730[];
 extern AnimCmd** D_80118390_4CA760[];
 
-// .data
 AnimationHeader D_8034B600_82AD70 = {
     0.1f,
     50.0f,

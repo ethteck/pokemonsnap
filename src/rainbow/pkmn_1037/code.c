@@ -63,7 +63,6 @@ extern AnimCmd** D_80139900_4EBCD0[];
 extern AnimCmd** D_80139A00_4EBDD0[];
 extern AnimCmd** D_80139B00_4EBED0[];
 
-// .data
 // copy of the mew animations
 s32 D_8034AFC0_82A730[] = { SOUND_ID_349 };
 s32 D_8034AFC4_82A734[] = { SOUND_ID_351 };

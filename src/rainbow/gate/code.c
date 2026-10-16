@@ -27,7 +27,6 @@ extern AnimCmd** gate_matanim_raise_bar[];
 extern AnimCmd** gate_matanim_opening[];
 extern AnimCmd** gate_matanim_opened[];
 
-// .data
 AnimationHeader D_8034AED0_82A640 = {
     1.0f,
     100.0f,

@@ -18,7 +18,6 @@ extern AnimCmd** D_80179940_105DD0[];
 extern Texture** kangaskhan_materials[];
 extern UnkEC64Arg3 kangaskhan_model[];
 
-// .data
 s32 D_beach_802CD590[] = { 0, SOUND_ID_105 };
 s32 D_beach_802CD598[] = { SOUND_ID_261, SOUND_ID_104 };
 s32 D_beach_802CD5A0[] = { SOUND_ID_260 };

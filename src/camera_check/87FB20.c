@@ -10,7 +10,6 @@ u8 D_camera_check_8024A1C8[9];
 s32 D_camera_check_8024A1D4;
 s32 D_camera_check_8024A1D8;
 
-// .data
 s32 D_camera_check_802089F0 = 0;
 s32 (*D_camera_check_802089F4)(const void*, const void*) = NULL;
 

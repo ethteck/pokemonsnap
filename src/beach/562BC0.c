@@ -7,7 +7,6 @@ extern AnimCmd* D_800FDC70_7B090[];
 extern AnimCmd* D_800FD080_7A4A0[];
 extern UnkEC64Arg3 magikarp_model[];
 
-// .data
 s32 D_beach_802CDA50[] = { SOUND_ID_211 };
 s32 D_beach_802CDA54[] = { SOUND_ID_210, SOUND_ID_376, SOUND_ID_114 };
 s32 D_beach_802CDA60[] = { SOUND_ID_211, SOUND_ID_376, SOUND_ID_114 };

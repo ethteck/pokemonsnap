@@ -16,7 +16,6 @@ extern AnimCmd** D_801A8DF0_135280[];
 extern Texture** pidgey_materials[];
 extern UnkEC64Arg3 pidgey_model[];
 
-// .data
 s32 D_beach_802CCFB0[] = { SOUND_ID_256, SOUND_ID_124 };
 s32 D_beach_802CCFB8[] = { SOUND_ID_257, SOUND_ID_124 };
 

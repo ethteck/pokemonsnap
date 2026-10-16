@@ -3,12 +3,10 @@
 #include "app_render/app_render.h"
 #include "photo_check/photo_check.h"
 
-
 static u16* D_803A6C10_87A3C0;
 static u16* D_803A6C14_87A3C4;
 static Unk803A6C18 D_803A6C18_87A3C8;
 
-// .data
 s32 D_803A6660_879E10 = 320;
 s32 D_803A6664_879E14 = 210;
 f32 D_803A6668_879E18 = 1.0f;

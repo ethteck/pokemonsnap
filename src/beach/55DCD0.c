@@ -24,7 +24,6 @@ extern AnimCmd** D_8019E3F0_12A880[];
 extern Texture** meowth_materials[];
 extern UnkEC64Arg3 meowth_model[];
 
-// .data
 s32 D_beach_802CC330[] = { SOUND_ID_299 };
 s32 D_beach_802CC334[] = { SOUND_ID_300 };
 s32 D_beach_802CC338[] = { SOUND_ID_298 };

@@ -19,7 +19,6 @@ extern AnimCmd** D_8018A4C0_116950[];
 extern Texture** chansey_materials[];
 extern UnkEC64Arg3 chansey_model[];
 
-// .data
 s32 D_beach_802CD290[] = { 0, SOUND_ID_121 };
 s32 D_beach_802CD298[] = { SOUND_ID_252, SOUND_ID_366 };
 s32 D_beach_802CD2A0[] = { SOUND_ID_251, SOUND_ID_122 };

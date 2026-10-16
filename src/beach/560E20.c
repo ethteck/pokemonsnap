@@ -9,7 +9,6 @@ extern AnimCmd* D_801AE790_13AC20[];
 extern AnimCmd* D_801AF4B0_13B940[];
 extern UnkEC64Arg3 scyther_model[];
 
-// .data
 s32 D_beach_802CD150[] = { SOUND_ID_304, SOUND_ID_363 };
 s32 D_beach_802CD158[] = { SOUND_ID_304, SOUND_ID_388 };
 s32 D_beach_802CD160[] = { 0, SOUND_ID_363 };

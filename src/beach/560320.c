@@ -10,7 +10,6 @@ extern AnimCmd** D_801617D0_EDC60[];
 extern Texture** doduo_materials[];
 extern UnkEC64Arg3 doduo_model[];
 
-// .data
 s32 D_beach_802CCE90[] = { SOUND_ID_343, SOUND_ID_143, SOUND_ID_342 };
 s32 D_beach_802CCE9C[] = { SOUND_ID_344 };
 s32 D_beach_802CCEA0[] = { SOUND_ID_342, SOUND_ID_117, SOUND_ID_142, SOUND_ID_143 };

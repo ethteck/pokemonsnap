@@ -14,7 +14,6 @@ extern AnimCmd** D_8016B4F0_F7980[];
 extern Texture** eevee_materials[];
 extern UnkEC64Arg3 eevee_model[];
 
-// .data
 s32 D_beach_802CC9A0[] = { SOUND_ID_254 };
 s32 D_beach_802CC9A4[] = { SOUND_ID_255, SOUND_ID_110 };
 

@@ -20,7 +20,6 @@ extern AnimCmd** D_801823C0_10E850[];
 extern Texture** snorlax_materials[];
 extern UnkEC64Arg3 snorlax_model[];
 
-// .data
 s32 D_beach_802CC0F0[] = { SOUND_ID_294 };
 s32 D_beach_802CC0F4[] = { SOUND_ID_293 };
 s32 D_beach_802CC0F8[] = { SOUND_ID_295 };

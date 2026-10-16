@@ -39,7 +39,6 @@ extern AnimCmd** D_8013ACA0_C7130[];
 extern Texture** pikachu_materials[];
 extern UnkEC64Arg3 pikachu_model[];
 
-// .data
 s32 D_beach_802CDB20[] = { SOUND_ID_266 };
 s32 D_beach_802CDB24[] = { SOUND_ID_264, SOUND_ID_127, SOUND_ID_360 };
 s32 D_beach_802CDB30[] = { SOUND_ID_263 };

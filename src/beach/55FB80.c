@@ -9,7 +9,6 @@ extern UnkEC64Arg3 butterfree_model[];
 extern Texture** lapras_materials[];
 extern UnkEC64Arg3 lapras_model[];
 
-// .data
 s32 D_beach_802CCD20[] = { SOUND_ID_253 };
 
 AnimationHeader D_beach_802CCD24 = {

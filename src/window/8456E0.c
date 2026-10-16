@@ -1,6 +1,5 @@
 #include "common.h"
 
-// .data
 s32* D_803A6640_879DF0 = NULL; // prev_bmbuf
 u16 D_803A6644_879DF4 = 0; // sp_attr
 s32 D_803A6648_879DF8 = 0; // scissor_xmin

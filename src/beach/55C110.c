@@ -7,7 +7,6 @@
 #include "app_render/app_render.h"
 #include "app_render/effect.h"
 
-// .data
 EnvSoundData D_beach_802CBE10[] = {
     { SOUND_ID_253, PITCH_MOD_1, 7 },
     { SOUND_ID_342, PITCH_MOD_1, 8 },

@@ -3,7 +3,6 @@
 #include "string.h"
 #include "ultralib/src/libc/xstdio.h"
 
-// .data
 s32 D_803A66A0_879E50[7] = {
     1510000,
     1510000,

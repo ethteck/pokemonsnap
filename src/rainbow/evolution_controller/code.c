@@ -7,7 +7,6 @@ extern Texture** evolution_controller_materials[];
 extern AnimCmd* evolution_controller_modelanim[];
 extern AnimCmd** evolution_controller_matanim[];
 
-// .data
 AnimationHeader D_8034B590_82AD00 = {
     0.5f,
     60.0f,

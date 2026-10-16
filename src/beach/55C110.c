@@ -153,7 +153,7 @@ void func_beach_802C45C0(void) {
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
     if (func_8009A8E4() != 0) {
-        setIdleScript(func_800A73C0((u32) idle_script_beach_ROM_START, (u32) idle_script_beach_ROM_END));
+        setIdleScript(func_800A73C0((u32) demo_script_beach_ROM_START, (u32) demo_script_beach_ROM_END));
     }
     initUI(func_beach_802C4440, func_beach_802C4800, NULL, 0, func_beach_802C416C);
 

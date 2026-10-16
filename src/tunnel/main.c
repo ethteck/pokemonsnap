@@ -353,7 +353,7 @@ void tunnel_Init(void) {
     getBackgroundColor(&r, &g, &b);
     createMainCameras(r << 0x18 | g << 0x10 | b << 8);
     if (func_8009A8E4() != 0) {
-        setIdleScript(func_800A73C0((u32) idle_script_tunnel_ROM_START, (u32) idle_script_tunnel_ROM_END));
+        setIdleScript(func_800A73C0((u32) demo_script_tunnel_ROM_START, (u32) demo_script_tunnel_ROM_END));
     }
     initUI(tunnel_ExitBlock, tunnel_UpdateSounds, NULL, 0, tunnel_HandleCollision);
     setEndLevelCallback(tunnel_EndLevel);

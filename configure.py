@@ -298,7 +298,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "z64",
         description="rom $out",
-        command=f"{CROSS_OBJCOPY} $in $out -O binary",
+        command=f"{sys.executable} tools/build/audio_rom.py rom --objcopy {CROSS_OBJCOPY} $in $out",
     )
 
     ninja.rule(
@@ -323,6 +323,25 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "vpk0_compress",
         description="vpk0 $in",
         command=f"{sys.executable} tools/vpk0.py $in $out",
+    )
+
+    ninja.rule(
+        "audio_seq",
+        description="audio sequence bank $out",
+        command=f"{sys.executable} tools/audio_sequence_bank.py build $source $out",
+        restat=True,
+    )
+    ninja.rule(
+        "audio_inventory",
+        command=f"{sys.executable} tools/audio_sequence_bank.py inventory src/audio/midis $out",
+        restat=True,
+    )
+    ninja.build("audio_inventory_force", "phony")
+    ninja.build("build/audio_sequences.inventory", "audio_inventory",
+                implicit=["audio_inventory_force", "tools/audio_sequence_bank.py"])
+    ninja.rule(
+        "audio_mod_checksum",
+        command=f"{sys.executable} tools/build/audio_rom.py checksum $in $out",
     )
 
     for entry in linker_entries:
@@ -558,6 +577,15 @@ def create_build_script(linker_entries: List[LinkerEntry]):
             compressed = entry.object_path.with_suffix(".vpk0")
             build(compressed, entry.src_paths, "vpk0_compress")
             build(entry.object_path, [compressed], "bin")
+        elif seg.type == "snap_audio_sbk":
+            raw_bin = entry.object_path.with_suffix("")
+            ninja.build(str(raw_bin), "audio_seq",
+                        [str(path) for path in entry.src_paths],
+                        implicit=["build/audio_sequences.inventory", "tools/audio_seq.py",
+                                  "tools/audio_midi.py", "tools/audio_native.py",
+                                  "tools/audio_midi_hints.py", "tools/audio_sequence_bank.py"],
+                        variables={"source": str(entry.src_paths[0])})
+            build(entry.object_path, [raw_bin], "bin")
         elif isinstance(seg, splat.segtypes.common.bin.CommonSegBin):
             build(entry.object_path, entry.src_paths, "bin")
         elif seg.type == "snap_effect_sprites":
@@ -585,6 +613,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         Z64_PATH,
         "z64",
         ELF_PATH,
+        implicit=["tools/build/audio_rom.py"],
     )
 
     ninja.build(
@@ -593,6 +622,9 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         "checksum.sha1",
         implicit=[Z64_PATH],
     )
+    ninja.build("build/pokemonsnap.mod.z64", "audio_mod_checksum", Z64_PATH,
+                implicit=["tools/build/audio_rom.py"])
+    ninja.build("audio-mod", "phony", "build/pokemonsnap.mod.z64")
 
     ninja.build("img_incs", "phony", img_incs)
 
@@ -667,7 +699,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     split.main(
-        [YAML_FILE], modes=["all"], verbose=False, disassemble_all=args.disassemble_all
+        [YAML_FILE], modes=["all"], verbose=False, use_cache=False,
+        disassemble_all=args.disassemble_all
     )
 
     linker_entries = split.linker_writer.entries

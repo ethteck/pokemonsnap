@@ -3,14 +3,14 @@
 #include "functions.h"
 #include "sys/om.h"
 
-extern EnvSound* EnvSound_Sounds;
-extern EnvSoundData* EnvSound_InitData;
-extern s32 EnvSound_InitDataSize;
-extern DObj* EnvSound_PlayerModel;
-extern OMCamera* EnvSound_MainCamera;
-
 DObj* func_803573B0_4F77C0(void);
 s32 atan2s(f32, f32);
+
+EnvSound* EnvSound_Sounds = NULL;
+DObj* EnvSound_PlayerModel = NULL;
+OMCamera* EnvSound_MainCamera = NULL;
+EnvSoundData* EnvSound_InitData = NULL;
+s32 EnvSound_InitDataSize = 0;
 
 f32 EnvSound_GetDecay(GObj* obj, u8 hearingRange) {
     Pokemon* pokemon = GET_POKEMON(obj);

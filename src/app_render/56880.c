@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 D_800AF3D0;
+s32 D_800AF3D0 = 0;
 
 void func_800AAED0(s32 arg0) {
     D_800AF3D0 |= arg0;

@@ -5,20 +5,40 @@
 #define FORCE_S32(thing) (void*) (*(s32*) (&thing)) // TODO cursed
 #define FORCE_F32(thing) (*(f32*) (&thing))         // TODO cursed
 
-extern Gfx D_800AECB0[];
-extern Gfx D_800AEEE0[];
-extern Gfx D_800AF020[];
-extern s32 D_800AF050;
-extern s32 D_800AF054; // r
-extern s32 D_800AF058; // g
-extern s32 D_800AF05C; // b
-extern s32 D_800AF060; // a
-
 static s32 D_800BE2C0;
 static s32 D_800BE2C4;
 static OMCamera* D_800BE2C8;
 static bool D_800BE2CC;
 static GObj* D_800BE2D0;
+
+#include "assets/app_render/D_800AEC70.vtx.inc.c"
+#include "assets/app_render/D_800AECB0.gfx.inc.c"
+#include "assets/app_render/D_800AECE0.vtx.inc.c"
+#include "assets/app_render/D_800AEEE0.gfx.inc.c"
+#include "assets/app_render/D_800AEF80.vtx.inc.c"
+#include "assets/app_render/D_800AF020.gfx.inc.c"
+
+s32 D_800AF050 = 0;
+s32 D_800AF054 = 0; // r
+s32 D_800AF058 = 0; // g
+s32 D_800AF05C = 0; // b
+s32 D_800AF060 = 0; // a
+
+f32 D_800AF064_5AA14[] = {
+    0.0f, 0.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 0.0f, 1.0f,
+};
+
+Vec3f D_800AF094 = { -1.0f, 0.0f, 0.0f };
+
+f32 D_800AF0A0_5AA50[] = {
+    0.0f, -1.0f, 0.0f, 0.0f,
+    0.0f, -1.0f, 0.0f, 0.0f,
+    0.0f,
+};
+
+Vec3f D_800AF0C4 = { 0.0f, 0.0f, 0.0f };
 
 f32 func_800A7430(f32 arg0) {
     return ABS(arg0);

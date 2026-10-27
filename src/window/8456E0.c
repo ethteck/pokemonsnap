@@ -1,11 +1,11 @@
 #include "common.h"
 
-extern s32* D_803A6640_879DF0; // prev_bmbuf
-extern u16 D_803A6644_879DF4;  // sp_attr
-extern s32 D_803A6648_879DF8;  // scissor_xmin
-extern s32 D_803A664C_879DFC;  // scissor_ymin
-extern s32 D_803A6650_879E00;  // scissor_xmax
-extern s32 D_803A6654_879E04;  // scissor_ymax
+s32* D_803A6640_879DF0 = NULL; // prev_bmbuf
+u16 D_803A6644_879DF4 = 0; // sp_attr
+s32 D_803A6648_879DF8 = 0; // scissor_xmin
+s32 D_803A664C_879DFC = 0; // scissor_ymin
+s32 D_803A6650_879E00 = 639; // scissor_xmax
+s32 D_803A6654_879E04 = 479; // scissor_ymax
 
 void func_80371F30_8456E0(s32 xMin, s32 xMax, s32 yMin, s32 yMax) {
     D_803A6648_879DF8 = xMin;

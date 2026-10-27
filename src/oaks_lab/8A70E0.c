@@ -2,6 +2,9 @@
 #include "ld_addrs.h"
 #include "oaks_lab.h"
 
+// .rodata unused
+const char D_801C5530_98AD50[] = "%s can go to\nthe next course!";
+
 // .bss
 u8 D_801C6B10_98C330[0x40000];
 

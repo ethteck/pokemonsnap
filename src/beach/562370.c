@@ -1,6 +1,120 @@
 #include "common.h"
 #include "beach.h"
 
+extern AnimCmd* D_80138C50_C50E0[];
+extern UnkEC64Arg3 D_80136AC0_C2F50[];
+extern AnimCmd** gate_matanim_closed[];
+extern AnimCmd** gate_matanim_opened[];
+extern AnimCmd** gate_matanim_opening[];
+extern AnimCmd** gate_matanim_raise_bar[];
+extern UnkEC64Arg3 gate_model[];
+extern Texture** gate_materials[];
+extern AnimCmd* gate_modelanim_closed[];
+extern AnimCmd* gate_modelanim_opened[];
+extern AnimCmd* gate_modelanim_opening[];
+extern AnimCmd* gate_modelanim_raise_bar[];
+
+// .data
+AnimationHeader D_beach_802CD920 = {
+    0.0f,
+    100.0f,
+    D_80138C50_C50E0,
+    NULL,
+    NULL
+};
+
+PokemonAnimationSetup D_beach_802CD934 = {
+    &D_beach_802CD920,
+    func_beach_802CA300,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_beach_802CD948 = {
+    D_80136AC0_C2F50,
+    NULL,
+    renderPokemonModelTypeDFogged,
+    &D_beach_802CD934,
+    { 10.0f, 10.0f, 10.0f },
+    { 0.0f, 0.0f, 0.0f },
+    1.0f,
+    POKEMON_FLAG_40,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
+
+u32 D_beach_802CD97C = 0x00000000;
+
+AnimationHeader D_beach_802CD980 = {
+    1.0f,
+    100.0f,
+    gate_modelanim_closed,
+    gate_matanim_closed,
+    NULL
+};
+
+AnimationHeader D_beach_802CD994 = {
+    1.0f,
+    100.0f,
+    gate_modelanim_raise_bar,
+    gate_matanim_raise_bar,
+    NULL
+};
+
+AnimationHeader D_beach_802CD9A8 = {
+    1.0f,
+    100.0f,
+    gate_modelanim_opening,
+    gate_matanim_opening,
+    NULL
+};
+
+AnimationHeader D_beach_802CD9BC = {
+    1.0f,
+    100.0f,
+    gate_modelanim_opened,
+    gate_matanim_opened,
+    NULL
+};
+
+s32 D_beach_802CD9D0 = -1;
+s32 D_beach_802CD9D4 = 0;
+
+InteractionHandler D_beach_802CD9D8[] = {
+    { POKEMON_CMD_16, func_beach_802CA4CC, 2000.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
+};
+
+UnkBlueShark D_beach_802CD9F8 = { PokemonID_GATE, 0 };
+
+PokemonAnimationSetup D_beach_802CD9FC = {
+    &D_beach_802CD980,
+    func_beach_802CA450,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_beach_802CDA10 = {
+    gate_model,
+    gate_materials,
+    renderModelTypeDFogged,
+    &D_beach_802CD9FC,
+    { 10.0f, 10.0f, 10.0f },
+    { 0.0f, 0.0f, 0.0f },
+    0.01f,
+    0,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
+
 // .bss
 u8 D_beach_80347650[0x8];
 void* D_beach_80347658;

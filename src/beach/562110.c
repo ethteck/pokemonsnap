@@ -1,6 +1,72 @@
 #include "common.h"
 #include "beach.h"
 
+UnkEC64Arg3 D_beach_802CD7E0[] = {
+    { 0,
+      NULL,
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f },
+      { 1.0f, 1.0f, 1.0f } },
+    { 18,
+      NULL,
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f },
+      { 0.0f, 0.0f, 0.0f } },
+};
+
+PokemonDef D_beach_802CD838 = {
+    PokemonID_PIDGEY,
+    (pokemonInit) func_beach_802C8D74,
+    pokemonChangeBlock,
+    pokemonRemoveOne
+};
+
+PokemonDef D_beach_802CD848 = {
+    PokemonID_SCYTHER,
+    (pokemonInit) func_beach_802C9204,
+    pokemonChangeBlock,
+    pokemonRemoveOne
+};
+
+InteractionHandler D_beach_802CD858[] = {
+    { POKEMON_CMD_9, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_13, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_10, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_14, func_beach_802CA198, 0.0f, NULL },
+    { POKEMON_CMD_16, func_beach_802CA198, 1000.0f, NULL },
+    { POKEMON_CMD_58, NULL, 0.0f, NULL },
+};
+
+RandomState D_beach_802CD8B8[] = {
+    { 70, func_beach_802CA1BC },
+    { 30, func_beach_802CA23C },
+    { 0, NULL },
+};
+
+PokemonAnimationSetup D_beach_802CD8D0 = {
+    NULL,
+    func_beach_802CA148,
+    0,
+    { 0, 0, 0 },
+    NULL,
+    NULL
+};
+
+PokemonInitData D_beach_802CD8E4 = {
+    D_beach_802CD7E0,
+    NULL,
+    renRenderModelTypeB,
+    &D_beach_802CD8D0,
+    { 2.0f, 2.0f, 2.0f },
+    { 0.0f, 17.0f, -2.0f },
+    17.0f,
+    POKEMON_FLAG_1,
+    0,
+    0,
+    0,
+    { 0, 0, 0 }
+};
+
 void func_beach_802CA0A0(GObj* obj) {
     // TODO: see if this can be inlined
     PokemonDef sp18 = D_beach_802CD838;

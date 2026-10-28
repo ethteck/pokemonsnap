@@ -9,9 +9,9 @@ extern u8 lapras_tex_801829A0_png[];
 extern u8 lapras_tex_80182BA8[];
 extern u8 lapras_tex_80182BD0_png[];
 extern u8 lapras_tex_80182DD8[];
-extern u8 lapras_tex_80182E00[];
-extern u8 lapras_tex_80183030[];
-extern u8 lapras_tex_80183260[];
+extern u8 lapras_tex_80182E00_png[];
+extern u8 lapras_tex_80183030_png[];
+extern u8 lapras_tex_80183260_png[];
 extern u8 lapras_tex_80183468[];
 extern u8 lapras_tex_80183490_png[];
 extern u8 lapras_tex_80183698[];
@@ -49,9 +49,9 @@ Texture** lapras_hd_materials[] = {
 };
 
 u8* lapras_hd_part6_mat0_textures[] = {
-    lapras_tex_80182E00,
-    lapras_tex_80183030,
-    lapras_tex_80183260,
+    lapras_tex_80182E00_png,
+    lapras_tex_80183030_png,
+    lapras_tex_80183260_png,
 };
 
 Texture lapras_hd_part6_mat0 = {

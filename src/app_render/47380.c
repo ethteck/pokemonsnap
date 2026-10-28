@@ -283,7 +283,7 @@ extern UNK_TYPE D_8017C090;
 extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
-extern UNK_TYPE D_80186E20;
+extern UNK_TYPE chansey_modelanim_anim_3;
 extern UNK_TYPE D_80188CB0;
 
 extern s32 gPokemonIdInFocus;
@@ -1193,7 +1193,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
 
     switch (arg0->pokemonID) {
         case PokemonID_CHANSEY:
-            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
+            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &chansey_modelanim_anim_3) {
                 model->scale.v.x *= 0.5f;
                 model->scale.v.y *= 0.5f;
                 model->scale.v.z *= 0.5f;

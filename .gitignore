@@ -30,3 +30,5 @@ venv/
 
 /report.json
 /*_report.zip
+/src/audio/midis/
+/src/pokemonsnap.egg-info/

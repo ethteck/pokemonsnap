@@ -274,7 +274,7 @@ extern UNK_TYPE D_8017A780;
 extern UNK_TYPE D_80188D28;
 extern UNK_TYPE D_8018A6F0;
 extern UNK_TYPE D_801AFD30;
-extern UNK_TYPE D_8017A710;
+extern UNK_TYPE mon601_modelanim_anim_3;
 extern UNK_TYPE D_801B1230;
 extern UNK_TYPE D_801B1D40;
 extern UNK_TYPE D_801B6B60;
@@ -1219,7 +1219,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
             }
             break;
         case PokemonID_601:
-            if (D_800AD444[arg0->unk_00_13].unk_00 == &D_8017A710) {
+            if (D_800AD444[arg0->unk_00_13].unk_00 == &mon601_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;

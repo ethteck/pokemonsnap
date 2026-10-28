@@ -1,23 +1,23 @@
 #include "common.h"
 
 extern u8 jigglypuff_tex_80187828[];
-extern u8 jigglypuff_tex_80187850[];
-extern u8 jigglypuff_tex_80187A38[];
-extern u8 jigglypuff_tex_80187C20[];
-extern u8 jigglypuff_tex_80187E08[];
-extern u8 jigglypuff_tex_80187FF0[];
+extern u8 jigglypuff_tex_80187850_png[];
+extern u8 jigglypuff_tex_80187A38_png[];
+extern u8 jigglypuff_tex_80187C20_png[];
+extern u8 jigglypuff_tex_80187E08_png[];
+extern u8 jigglypuff_tex_80187FF0_png[];
 extern u8 jigglypuff_tex_801881D8[];
 extern u8 jigglypuff_tex_80188200_png[];
 extern u8 jigglypuff_tex_80188408[];
-extern u8 jigglypuff_tex_80188610[];
-extern u8 jigglypuff_tex_80188858[];
-extern u8 jigglypuff_tex_80188AA0[];
-extern u8 jigglypuff_tex_80188CE8[];
-extern u8 jigglypuff_tex_80188F30[];
-extern u8 jigglypuff_tex_80189178[];
-extern u8 jigglypuff_tex_801893C0[];
-extern u8 jigglypuff_tex_80189608[];
-extern u8 jigglypuff_tex_80189850[];
+extern u8 jigglypuff_tex_80188610_png[];
+extern u8 jigglypuff_tex_80188858_png[];
+extern u8 jigglypuff_tex_80188AA0_png[];
+extern u8 jigglypuff_tex_80188CE8_png[];
+extern u8 jigglypuff_tex_80188F30_png[];
+extern u8 jigglypuff_tex_80189178_png[];
+extern u8 jigglypuff_tex_801893C0_png[];
+extern u8 jigglypuff_tex_80189608_png[];
+extern u8 jigglypuff_tex_80189850_png[];
 extern u8 jigglypuff_tex_80189A98[];
 extern u8 jigglypuff_tex_80189AC0_png[];
 extern u8 jigglypuff_tex_80189B18[];
@@ -45,29 +45,29 @@ Texture** jigglypuff_hd_materials[] = {
 };
 
 u8* jigglypuff_hd_part1_mat0_textures[] = {
-    jigglypuff_tex_80188610,
-    jigglypuff_tex_80188858,
-    jigglypuff_tex_80188AA0,
-    jigglypuff_tex_80188CE8,
-    jigglypuff_tex_80188F30,
-    jigglypuff_tex_80189850,
+    jigglypuff_tex_80188610_png,
+    jigglypuff_tex_80188858_png,
+    jigglypuff_tex_80188AA0_png,
+    jigglypuff_tex_80188CE8_png,
+    jigglypuff_tex_80188F30_png,
+    jigglypuff_tex_80189850_png,
 };
 
 u8* jigglypuff_hd_part1_mat1_textures[] = {
-    jigglypuff_tex_80188610,
-    jigglypuff_tex_80188858,
-    jigglypuff_tex_80188AA0,
-    jigglypuff_tex_80189178,
-    jigglypuff_tex_801893C0,
-    jigglypuff_tex_80189608,
+    jigglypuff_tex_80188610_png,
+    jigglypuff_tex_80188858_png,
+    jigglypuff_tex_80188AA0_png,
+    jigglypuff_tex_80189178_png,
+    jigglypuff_tex_801893C0_png,
+    jigglypuff_tex_80189608_png,
 };
 
 u8* jigglypuff_hd_part1_mat2_textures[] = {
-    jigglypuff_tex_80187850,
-    jigglypuff_tex_80187A38,
-    jigglypuff_tex_80187C20,
-    jigglypuff_tex_80187E08,
-    jigglypuff_tex_80187FF0,
+    jigglypuff_tex_80187850_png,
+    jigglypuff_tex_80187A38_png,
+    jigglypuff_tex_80187C20_png,
+    jigglypuff_tex_80187E08_png,
+    jigglypuff_tex_80187FF0_png,
 };
 
 Texture jigglypuff_hd_part1_mat0 = {

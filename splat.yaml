@@ -7425,18 +7425,191 @@ segments:
 
   - type: code
     name: rainbow_assets
+    dir: rainbow
     start: 0x4A8160
     vram: 0x800F5D90
     bss_size: 0x20
     exclusive_ram_id: unk800F5D90
     subsegments:
     - [0x4A8160, c]
-
-    - [0x4A8170, bin] # , data]
-    - [0x4D8CE0, bin, mew/textures]
-
+    - [auto, c, mew/textures]
+    - [auto, c, mew/anim/model/anim_0]
+    - [auto, c, mew/anim/model/anim_1]
+    - [auto, c, mew/anim/model/anim_2]
+    - [auto, c, mew/anim/model/anim_3]
+    - [auto, c, mew/anim/model/anim_4]
+    - [auto, c, mew/anim/model/anim_5]
+    - [auto, c, mew/anim/model/anim_6]
+    - [auto, c, mew/anim/model/anim_7]
+    - [auto, c, mew/anim/material/anim_0]
+    - [auto, c, mew/anim/material/anim_1]
+    - [auto, c, mew/anim/material/anim_2]
+    - [auto, c, mew/anim/material/anim_3]
+    - [auto, c, mew/anim/material/anim_4]
+    - [auto, c, mew/anim/material/anim_5]
+    - [auto, c, mew/anim/material/anim_6]
+    - [auto, c, mew/anim/material/anim_7]
+    - [0x4A8170, databin]
+    - start: 0x4D8CE0
+      type: .data
+      dir: mew
+      name: mew/textures
+      subsegments:
+      - [0x4D8CE0]
+      - { start: 0x4D8CE8, type: palette, name: tex0, size: 0x200 }
+      - [0x4D8EE8]
+      - { start: 0x4D8EF0, type: ci8, name: tex0, flip_y: true, width: 48, height: 40 }
+      - [0x4D9670]
+      - { start: 0x4D9678, type: palette, name: tex1, size: 0x200 }
+      - [0x4D9878]
+      - { start: 0x4D9880, type: ci8, name: tex1, flip_y: true, width: 48, height: 40 }
+      - [0x4DA000]
+      - { start: 0x4DA008, type: palette, name: tex2, size: 0x200 }
+      - [0x4DA208]
+      - { start: 0x4DA210, type: ci8, name: tex2, flip_y: true, width: 48, height: 40 }
+      - [0x4DA990]
+      - { start: 0x4DA998, type: palette, name: tex3, size: 0x200 }
+      - [0x4DAB98]
+      - { start: 0x4DABA0, type: ci8, name: tex3, flip_y: true, width: 48, height: 40 }
+      - [0x4DB320]
+      - { start: 0x4DB328, type: palette, name: tex4, size: 0x200 }
+      - [0x4DB528]
+      - { start: 0x4DB530, type: ci8, name: tex4, flip_y: true, width: 48, height: 40 }
+      - [0x4DBCB0]
+      - { start: 0x4DBCB8, type: palette, name: tex5, size: 0x200 }
+      - [0x4DBEB8]
+      - { start: 0x4DBEC0, type: ci8, name: tex5, flip_y: true, width: 48, height: 40 }
+      - [0x4DC640]
+      - { start: 0x4DC648, type: palette, name: tex6, size: 0x20 }
+      - [0x4DC668]
+      - { start: 0x4DC670, type: ci4, name: tex6, flip_y: true, width: 32, height: 64 }
+      - [0x4DCA70]
+      - { start: 0x4DCA78, type: rgba16, name: tex7, flip_y: true, width: 32, height: 64 }
+      - [0x4DDA78]
+      - { start: 0x4DDA80, type: palette, name: tex8, size: 0x18 }
+      - [0x4DDA98]
+      - { start: 0x4DDAA0, type: ci4, name: tex8, flip_y: true, width: 32, height: 32 }
+      - [0x4DDCA0]
+      - { start: 0x4DDCA8, type: palette, name: tex9, size: 0x20 }
+      - [0x4DDCC8]
+      - { start: 0x4DDCD0, type: ci4, name: tex9, flip_y: true, width: 32, height: 64 }
+      - [0x4DE0D0]
+      - { start: 0x4DE0D8, type: palette, name: tex10, size: 0x20 }
+      - [0x4DE0F8]
+      - { start: 0x4DE100, type: ci4, name: tex10, flip_y: true, width: 32, height: 32 }
+      - [0x4DE300]
+      - { start: 0x4DE308, type: palette, name: tex11, size: 0x20 }
+      - [0x4DE328]
+      - { start: 0x4DE330, type: ci4, name: tex11, flip_y: true, width: 32, height: 32 }
+      - [0x4DE530]
+      - { start: 0x4DE538, type: palette, name: tex12, size: 0x10 }
+      - [0x4DE548]
+      - { start: 0x4DE550, type: ci4, name: tex12, flip_y: true, width: 32, height: 32 }
+      - [0x4DE750]
+      - { start: 0x4DE758, type: palette, name: tex13, size: 0x20 }
+      - [0x4DE778]
+      - { start: 0x4DE780, type: ci4, name: tex13, flip_y: true, width: 32, height: 64 }
+      - [0x4DEB80]
+      - { start: 0x4DEB88, type: palette, name: tex14, size: 0x20 }
+      - [0x4DEBA8]
+      - { start: 0x4DEBB0, type: ci4, name: tex14, flip_y: true, width: 32, height: 32 }
+    - start: 0x4DEDB0
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_0
+      subsegments:
+      - [0x4DEDB0, snap_model_anim, anim_0]
+    - start: 0x4DFAD0
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_1
+      subsegments:
+      - [0x4DFAD0, snap_model_anim, anim_1]
+    - start: 0x4E13C0
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_2
+      subsegments:
+      - [0x4E13C0, snap_model_anim, anim_2]
+    - start: 0x4E1F30
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_3
+      subsegments:
+      - [0x4E1F30, snap_model_anim, anim_3]
+    - start: 0x4E4100
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_4
+      subsegments:
+      - [0x4E4100, snap_model_anim, anim_4]
+    - start: 0x4E5410
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_5
+      subsegments:
+      - [0x4E5410, snap_model_anim, anim_5]
+    - start: 0x4E7C70
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_6
+      subsegments:
+      - [0x4E7C70, snap_model_anim, anim_6]
+    - start: 0x4E8CC0
+      type: .data
+      dir: mew/anim/model/
+      name: mew/anim/model/anim_7
+      subsegments:
+      - [0x4E8CC0, snap_model_anim, anim_7]
+    - start: 0x4EB8A0
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_0
+      subsegments:
+      - [0x4EB8A0, snap_material_anim, anim_0]
+    - start: 0x4EB970
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_1
+      subsegments:
+      - [0x4EB970, snap_material_anim, anim_1]
+    - start: 0x4EBA60
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_2
+      subsegments:
+      - [0x4EBA60, snap_material_anim, anim_2]
+    - start: 0x4EBB40
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_3
+      subsegments:
+      - [0x4EBB40, snap_material_anim, anim_3]
+    - start: 0x4EBC10
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_4
+      subsegments:
+      - [0x4EBC10, snap_material_anim, anim_4]
+    - start: 0x4EBCD0
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_5
+      subsegments:
+      - [0x4EBCD0, snap_material_anim, anim_5]
+    - start: 0x4EBDD0
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_6
+      subsegments:
+      - [0x4EBDD0, snap_material_anim, anim_6]
+    - start: 0x4EBED0
+      type: .data
+      dir: mew/anim/material/
+      name: mew/anim/material/anim_7
+      subsegments:
+      - [0x4EBED0, snap_material_anim, anim_7]
     - { start: auto, name: 4A8160, type: .bss, vram: 0x80139C30 }
-
   - type: code
     name: rainbow_extra
     dir: rainbow

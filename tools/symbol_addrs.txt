@@ -6,6 +6,7 @@ D_0E000020 = 0x0E000020; // absolute:True type:Gfx
 D_0E000028 = 0x0E000028; // absolute:True type:Gfx
 
 D_80000000 = 0x80000000; // ignore:True size:0x10
+D_80139C50 = 0x80139C50; // ignore:True
 
 entrypoint = 0x80000400;
 
@@ -7778,7 +7779,6 @@ mew_last = 0x8034FA78; // segment:rainbow_code
 mew_gfxdata = 0x8034FA98; // segment:rainbow_code
 mew_model = 0x8034FB98; // segment:rainbow_code size:0x5D8
 
-mew_hd_materials = 0x80139C50; // segment:rainbow_extra
 mew_hd_vtx = 0x80139D70; // segment:rainbow_extra size:0x1AF0
 mew_hd_first = 0x8013B8A0; // segment:rainbow_extra
 mew_hd_part0_draw = 0x8013B8D0; // segment:rainbow_extra
@@ -7826,12 +7826,6 @@ mew_hd_gfxdata = 0x8013DB80; // segment:rainbow_extra
 mew_hd_model = 0x8013DC80; // segment:rainbow_extra size:0x5D8
 
 mew_tex_80126918 = 0x80126918; // segment:rainbow_assets
-mew_tex_80126B20 = 0x80126B20; // segment:rainbow_assets
-mew_tex_801274B0 = 0x801274B0; // segment:rainbow_assets
-mew_tex_80127E40 = 0x80127E40; // segment:rainbow_assets
-mew_tex_801287D0 = 0x801287D0; // segment:rainbow_assets
-mew_tex_80129160 = 0x80129160; // segment:rainbow_assets
-mew_tex_80129AF0 = 0x80129AF0; // segment:rainbow_assets
 mew_tex_8012A278 = 0x8012A278; // segment:rainbow_assets
 mew_tex_8012A2A0_png = 0x8012A2A0; // segment:rainbow_assets
 mew_tex_8012A6A8 = 0x8012A6A8; // segment:rainbow_assets
@@ -7849,6 +7843,33 @@ mew_tex_8012C388 = 0x8012C388; // segment:rainbow_assets
 mew_tex_8012C3B0_png = 0x8012C3B0; // segment:rainbow_assets
 mew_tex_8012C7B8 = 0x8012C7B8; // segment:rainbow_assets
 mew_tex_8012C7E0_png = 0x8012C7E0; // segment:rainbow_assets
+mew_tex_80126B20_png = 0x80126B20; // segment:rainbow_assets
+mew_modelanim_anim_0 = 0x8012C9E0; // segment:rainbow_assets
+mew_tex_801272A8 = 0x801272A8; // segment:rainbow_assets
+mew_tex_801274B0_png = 0x801274B0; // segment:rainbow_assets
+mew_tex_80127C38 = 0x80127C38; // segment:rainbow_assets
+mew_tex_80127E40_png = 0x80127E40; // segment:rainbow_assets
+mew_tex_801285C8 = 0x801285C8; // segment:rainbow_assets
+mew_tex_801287D0_png = 0x801287D0; // segment:rainbow_assets
+mew_tex_80128F58 = 0x80128F58; // segment:rainbow_assets
+mew_tex_80129160_png = 0x80129160; // segment:rainbow_assets
+mew_tex_801298E8 = 0x801298E8; // segment:rainbow_assets
+mew_tex_80129AF0_png = 0x80129AF0; // segment:rainbow_assets
+mew_modelanim_anim_1 = 0x8012D700; // segment:rainbow_assets
+mew_modelanim_anim_2 = 0x8012EFF0; // segment:rainbow_assets
+mew_modelanim_anim_3 = 0x8012FB60; // segment:rainbow_assets
+mew_modelanim_anim_4 = 0x80131D30; // segment:rainbow_assets
+mew_modelanim_anim_5 = 0x80133040; // segment:rainbow_assets
+mew_modelanim_anim_6 = 0x801358A0; // segment:rainbow_assets
+mew_modelanim_anim_7 = 0x801368F0; // segment:rainbow_assets
+mew_matanim_anim_0 = 0x801394D0; // segment:rainbow_assets
+mew_matanim_anim_1 = 0x801395A0; // segment:rainbow_assets
+mew_matanim_anim_2 = 0x80139690; // segment:rainbow_assets
+mew_matanim_anim_3 = 0x80139770; // segment:rainbow_assets
+mew_matanim_anim_4 = 0x80139840; // segment:rainbow_assets
+mew_matanim_anim_5 = 0x80139900; // segment:rainbow_assets
+mew_matanim_anim_6 = 0x80139A00; // segment:rainbow_assets
+mew_matanim_anim_7 = 0x80139B00; // segment:rainbow_assets
 
 dugtrio_modelanim_look_around = 0x80165250; // segment:tunnel_assets
 dugtrio_modelanim_burrow = 0x80165B30; // segment:tunnel_assets

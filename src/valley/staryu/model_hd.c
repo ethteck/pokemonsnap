@@ -3,9 +3,9 @@
 extern u8 staryu_tex_8013C928[];
 extern u8 staryu_tex_8013C950_png[];
 extern u8 staryu_tex_8013CB18[];
-extern u8 staryu_tex_8013CD20[];
-extern u8 staryu_tex_8013D330[];
-extern u8 staryu_tex_8013D940[];
+extern u8 staryu_tex_8013CD20_png[];
+extern u8 staryu_tex_8013D330_png[];
+extern u8 staryu_tex_8013D940_png[];
 
 extern Texture* staryu_hd_part3_mat[];
 extern Gfx staryu_hd_part0_draw[];
@@ -28,9 +28,9 @@ Texture** staryu_hd_materials[] = {
 };
 
 u8* staryu_hd_part3_mat0_textures[] = {
-    staryu_tex_8013CD20,
-    staryu_tex_8013D940,
-    staryu_tex_8013D330,
+    staryu_tex_8013CD20_png,
+    staryu_tex_8013D940_png,
+    staryu_tex_8013D330_png,
     NULL,
 };
 

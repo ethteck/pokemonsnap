@@ -3,9 +3,9 @@
 extern u8 dratini_tex_801599E8[];
 extern u8 dratini_tex_801599F8_png[];
 extern u8 dratini_tex_80159E00[];
-extern u8 dratini_tex_8015A008[];
-extern u8 dratini_tex_8015AA18[];
-extern u8 dratini_tex_8015B428[];
+extern u8 dratini_tex_8015A008_png[];
+extern u8 dratini_tex_8015AA18_png[];
+extern u8 dratini_tex_8015B428_png[];
 extern u8 dratini_tex_8015BC30[];
 extern u8 dratini_tex_8015BCB8_png[];
 extern u8 dratini_tex_8015C0C0[];
@@ -34,9 +34,9 @@ Texture** dratini_materials[] = {
 };
 
 u8* dratini_part5_mat0_textures[] = {
-    dratini_tex_8015A008,
-    dratini_tex_8015AA18,
-    dratini_tex_8015B428,
+    dratini_tex_8015A008_png,
+    dratini_tex_8015AA18_png,
+    dratini_tex_8015B428_png,
     NULL,
 };
 

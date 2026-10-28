@@ -10496,9 +10496,7 @@ segments:
       - {start: 0xA93390, type: snap_sprite, header_rom: 0xA93418, name: new_game_cursor}
     - { start: auto, name: A5CC50, type: .bss, vram: 0x801180B0 }
     - { start: auto, name: A5D5B0, type: .bss, vram: 0x80118110 }
-    - { name: sprite_background, type: bss, vram: 0x80168150 }
-    - { name: sprite_card, type: bss, vram: 0x80169110 }
-    - { name: sprite_cursor, type: bss, vram: 0x80169EF0 }
+    - { start: auto, name: sprites, type: .bss, vram: 0x80168150 }
 
   - name: credits
     dir: credits

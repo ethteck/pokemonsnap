@@ -8037,6 +8037,3 @@ valley_oak_mouth_4_dl = 0x8034DD20; // segment:valley_code size:0x120
 valley_oak_mouth_5_dl = 0x8034DE40; // segment:valley_code size:0x120
 valley_textbox_dl = 0x8034DF60; // segment:valley_code size:0x120
 
-new_game_bg_dl = 0x80168150; // segment:menu_new_game size:0xFC0
-new_game_card_dl = 0x80169110; // segment:menu_new_game size:0xDE0
-new_game_cursor_dl = 0x80169EF0; // segment:menu_new_game size:0x120

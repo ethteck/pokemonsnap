@@ -2,16 +2,16 @@
 
 extern u8 eevee_tex_80161AF8[];
 extern u8 eevee_tex_80161B20_png[];
-extern u8 eevee_tex_80161F50[];
-extern u8 eevee_tex_80162380[];
-extern u8 eevee_tex_801627B0[];
+extern u8 eevee_tex_80161F50_png[];
+extern u8 eevee_tex_80162380_png[];
+extern u8 eevee_tex_801627B0_png[];
 extern u8 eevee_tex_80162BB8[];
-extern u8 eevee_tex_80162BE0[];
-extern u8 eevee_tex_80163010[];
-extern u8 eevee_tex_80163440[];
+extern u8 eevee_tex_80162BE0_png[];
+extern u8 eevee_tex_80163010_png[];
+extern u8 eevee_tex_80163440_png[];
 extern u8 eevee_tex_80163848[];
-extern u8 eevee_tex_80163870[];
-extern u8 eevee_tex_80163CA0[];
+extern u8 eevee_tex_80163870_png[];
+extern u8 eevee_tex_80163CA0_png[];
 extern u8 eevee_tex_801640A8[];
 extern u8 eevee_tex_801640D0_png[];
 extern u8 eevee_tex_801644D8[];
@@ -40,17 +40,17 @@ Texture** eevee_hd_materials[] = {
 };
 
 u8* eevee_hd_part8_mat0_textures[] = {
-    eevee_tex_80163870,
-    eevee_tex_80163010,
-    eevee_tex_80163440,
-    eevee_tex_80163CA0,
+    eevee_tex_80163870_png,
+    eevee_tex_80163010_png,
+    eevee_tex_80163440_png,
+    eevee_tex_80163CA0_png,
 };
 
 u8* eevee_hd_part8_mat1_textures[] = {
-    eevee_tex_80162BE0,
-    eevee_tex_80162380,
-    eevee_tex_80161F50,
-    eevee_tex_801627B0,
+    eevee_tex_80162BE0_png,
+    eevee_tex_80162380_png,
+    eevee_tex_80161F50_png,
+    eevee_tex_801627B0_png,
 };
 
 Texture eevee_hd_part8_mat0 = {

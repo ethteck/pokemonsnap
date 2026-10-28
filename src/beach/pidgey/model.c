@@ -13,8 +13,8 @@ extern u8 pidgey_tex_8019EFE0_png[];
 extern u8 pidgey_tex_8019F3E8[];
 extern u8 pidgey_tex_8019F410_png[];
 extern u8 pidgey_tex_8019F618[];
-extern u8 pidgey_tex_8019F820[];
-extern u8 pidgey_tex_8019FE30[];
+extern u8 pidgey_tex_8019F820_png[];
+extern u8 pidgey_tex_8019FE30_png[];
 extern u8 pidgey_tex_801A0238[];
 extern u8 pidgey_tex_801A0260_png[];
 extern u8 pidgey_tex_801A0468[];
@@ -46,8 +46,8 @@ Texture** pidgey_materials[] = {
 };
 
 u8* pidgey_part9_mat0_textures[] = {
-    pidgey_tex_8019F820,
-    pidgey_tex_8019FE30,
+    pidgey_tex_8019F820_png,
+    pidgey_tex_8019FE30_png,
     NULL,
 };
 

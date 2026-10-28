@@ -5,17 +5,17 @@ extern u8 mankey_tex_8014DB18_png[];
 extern u8 mankey_tex_8014DC20[];
 extern u8 mankey_tex_8014DCF0_png[];
 extern u8 mankey_tex_8014E0F8[];
-extern u8 mankey_tex_8014E300[];
+extern u8 mankey_tex_8014E300_png[];
 extern u8 mankey_tex_8014E708[];
-extern u8 mankey_tex_8014E8F8[];
-extern u8 mankey_tex_8014EEB0[];
-extern u8 mankey_tex_8014F460[];
-extern u8 mankey_tex_8014FA68[];
-extern u8 mankey_tex_80150060[];
-extern u8 mankey_tex_80150670[];
-extern u8 mankey_tex_80150C68[];
-extern u8 mankey_tex_80151220[];
-extern u8 mankey_tex_801517D0[];
+extern u8 mankey_tex_8014E8F8_png[];
+extern u8 mankey_tex_8014EEB0_png[];
+extern u8 mankey_tex_8014F460_png[];
+extern u8 mankey_tex_8014FA68_png[];
+extern u8 mankey_tex_80150060_png[];
+extern u8 mankey_tex_80150670_png[];
+extern u8 mankey_tex_80150C68_png[];
+extern u8 mankey_tex_80151220_png[];
+extern u8 mankey_tex_801517D0_png[];
 extern u8 mankey_tex_80151BD8[];
 extern u8 mankey_tex_80151CC0_png[];
 extern u8 mankey_tex_801520C8[];
@@ -47,19 +47,19 @@ Texture** mankey_hd_materials[] = {
 };
 
 u8* mankey_hd_part1_mat0_textures[] = {
-    mankey_tex_8014E300,
-    mankey_tex_8014EEB0,
-    mankey_tex_8014FA68,
-    mankey_tex_80150670,
-    mankey_tex_80151220,
+    mankey_tex_8014E300_png,
+    mankey_tex_8014EEB0_png,
+    mankey_tex_8014FA68_png,
+    mankey_tex_80150670_png,
+    mankey_tex_80151220_png,
 };
 
 u8* mankey_hd_part1_mat1_textures[] = {
-    mankey_tex_8014E8F8,
-    mankey_tex_8014F460,
-    mankey_tex_80150060,
-    mankey_tex_80150C68,
-    mankey_tex_801517D0,
+    mankey_tex_8014E8F8_png,
+    mankey_tex_8014F460_png,
+    mankey_tex_80150060_png,
+    mankey_tex_80150C68_png,
+    mankey_tex_801517D0_png,
     NULL,
 };
 

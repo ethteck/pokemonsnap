@@ -5,12 +5,12 @@ extern u8 weepinbell_tex_801A56E0[];
 extern u8 weepinbell_tex_801A5708[];
 extern u8 weepinbell_tex_801A5730[];
 extern u8 weepinbell_tex_801A5758_png[];
-extern u8 weepinbell_tex_801A5988[];
-extern u8 weepinbell_tex_801A61B8[];
-extern u8 weepinbell_tex_801A69E8[];
-extern u8 weepinbell_tex_801A7218[];
+extern u8 weepinbell_tex_801A5988_png[];
+extern u8 weepinbell_tex_801A61B8_png[];
+extern u8 weepinbell_tex_801A69E8_png[];
+extern u8 weepinbell_tex_801A7218_png[];
 extern u8 weepinbell_tex_801A7A20[];
-extern u8 weepinbell_tex_801A7A48[];
+extern u8 weepinbell_tex_801A7A48_png[];
 
 extern Texture* weepinbell_hd_part14_mat[];
 extern Gfx weepinbell_hd_part0_draw[];
@@ -36,19 +36,19 @@ Texture** weepinbell_hd_materials[] = {
 };
 
 u8* weepinbell_hd_part14_mat0_textures[] = {
-    weepinbell_tex_801A7A48,
-    weepinbell_tex_801A5988,
-    weepinbell_tex_801A7218,
-    weepinbell_tex_801A69E8,
-    weepinbell_tex_801A61B8,
+    weepinbell_tex_801A7A48_png,
+    weepinbell_tex_801A5988_png,
+    weepinbell_tex_801A7218_png,
+    weepinbell_tex_801A69E8_png,
+    weepinbell_tex_801A61B8_png,
 };
 
 u8* weepinbell_hd_part14_mat1_textures[] = {
-    weepinbell_tex_801A7A48,
-    weepinbell_tex_801A5988,
-    weepinbell_tex_801A61B8,
-    weepinbell_tex_801A69E8,
-    weepinbell_tex_801A7218,
+    weepinbell_tex_801A7A48_png,
+    weepinbell_tex_801A5988_png,
+    weepinbell_tex_801A61B8_png,
+    weepinbell_tex_801A69E8_png,
+    weepinbell_tex_801A7218_png,
     NULL,
 };
 

@@ -2,9 +2,9 @@
 
 extern u8 muk_tex_8015C768[];
 extern u8 muk_tex_8015D7C0[];
-extern u8 muk_tex_8015D7E8[];
+extern u8 muk_tex_8015D7E8_png[];
 extern u8 muk_tex_8015DBF0[];
-extern u8 muk_tex_8015DC18[];
+extern u8 muk_tex_8015DC18_png[];
 extern u8 muk_tex_8015DE20[];
 extern u8 muk_tex_8015DE48_png[];
 
@@ -26,12 +26,12 @@ extern Texture* muk_part16_mat[];
 extern Gfx muk_part0_draw[];
 
 __ALIGNER
-u8 muk_tex_8031C028[] = {
+u8 muk_tex_8031C028_png[] = {
 #include "assets/cave/muk/tex_8031C028.png.bin.c"
 };
 
 __ALIGNER
-u8 muk_tex_8031C430[] = {
+u8 muk_tex_8031C430_png[] = {
 #include "assets/cave/muk/tex_8031C430.png.bin.c"
 };
 
@@ -56,69 +56,69 @@ Texture** muk_materials[] = {
 };
 
 u8* muk_part2_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part3_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part4_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part5_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part6_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part7_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part8_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part9_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part10_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part11_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part12_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part13_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part14_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part15_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
 };
 
 u8* muk_part15_mat1_textures[] = {
-    muk_tex_8015D7E8,
-    muk_tex_8031C028,
-    muk_tex_8031C430,
+    muk_tex_8015D7E8_png,
+    muk_tex_8031C028_png,
+    muk_tex_8031C430_png,
 };
 
 u8* muk_part16_mat0_textures[] = {
-    muk_tex_8015DC18,
+    muk_tex_8015DC18_png,
     NULL,
 };
 

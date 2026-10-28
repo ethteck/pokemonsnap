@@ -72,10 +72,10 @@ static u8 aligner_33[] = { 0, 0, 0, 0 };
 #include "build/assets/oaks_lab/map_oak_5.png.inc.h"
 
 Bitmap* D_801C5404_98AC24[4] = {
-    (Bitmap*) (0x80198F98),
-    (Bitmap*) (0x8019A0A0),
-    (Bitmap*) (0x8019B1A8),
-    (Bitmap*) (0x8019A0A0),
+    map_todd_14_bitmaps,
+    map_todd_15_bitmaps,
+    map_todd_16_bitmaps,
+    map_todd_15_bitmaps,
 };
 
 extern Bitmap map_todd_17_bitmaps[];

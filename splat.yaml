@@ -4472,27 +4472,1083 @@ segments:
 
   - type: code
     name: river_assets
+    dir: river
     start: 0x29A190
     vram: 0x8012A0C0
     bss_size: 0x20
     exclusive_ram_id: unk8012A0C0
     subsegments:
     - [0x29A190, c]
-
-    - [0x29A1A0, bin] # , data]
-    - [0x2D0AF0, bin, psyduck/textures]
-    - [0x2D74E0, bin, poliwag/textures]
-    - [0x2E0600, bin, cloyster/textures]
-    - [0x2E1D20, bin, porygon/textures]
-    - [0x2EBF80, bin, vileplume/textures]
-    - [0x2F1DE0, bin, shellder/textures]
-    - [0x2F2F20, bin, shellder2/textures]
-    - [0x2F42F0, bin, metapod/textures]
-    - [0x2F5A30, bin, slowpoke/textures]
-    - [0x301E50, bin, slowbro/textures]
-
+    - [0x29A1A0, databin]
+    - [auto, c, psyduck/textures]
+    - [auto, c, psyduck/anim/model/anim_0]
+    - [auto, c, psyduck/anim/model/anim_1]
+    - [auto, c, psyduck/anim/model/anim_2]
+    - [auto, c, psyduck/anim/model/anim_3]
+    - [auto, c, psyduck/anim/model/anim_4]
+    - [auto, c, psyduck/anim/model/anim_5]
+    - [auto, c, psyduck/anim/model/anim_6]
+    - [auto, c, psyduck/anim/model/anim_7]
+    - [auto, c, poliwag/textures]
+    - [auto, c, poliwag/anim/model/anim_0]
+    - [auto, c, poliwag/anim/model/anim_1]
+    - [auto, c, poliwag/anim/model/anim_2]
+    - [auto, c, poliwag/anim/model/anim_3]
+    - [auto, c, poliwag/anim/model/anim_4]
+    - [auto, c, poliwag/anim/model/anim_5]
+    - [auto, c, poliwag/anim/model/anim_6]
+    - [auto, c, poliwag/anim/model/anim_7]
+    - [auto, c, poliwag/anim/model/anim_8]
+    - [auto, c, poliwag/anim/model/anim_9]
+    - [auto, c, poliwag/anim/material/anim_0]
+    - [auto, c, poliwag/anim/material/anim_1]
+    - [auto, c, cloyster/textures]
+    - [auto, c, cloyster/anim/model/anim_0]
+    - [auto, c, cloyster/anim/model/anim_1]
+    - [auto, c, unk/anim/material/anim_0]
+    - [auto, c, unk/anim/material/anim_1]
+    - [auto, c, porygon/textures]
+    - [auto, c, porygon/anim/model/anim_0]
+    - [auto, c, porygon/anim/model/anim_1]
+    - [auto, c, porygon/anim/model/anim_2]
+    - [auto, c, porygon/anim/model/anim_3]
+    - [auto, c, porygon/anim/model/anim_4]
+    - [auto, c, porygon/anim/model/anim_5]
+    - [auto, c, porygon/anim/model/anim_6]
+    - [auto, c, porygon/anim/model/anim_7]
+    - [auto, c, porygon/anim/model/anim_8]
+    - [auto, c, porygon/anim/model/anim_9]
+    - [auto, c, porygon/anim/model/anim_10]
+    - [auto, c, porygon/anim/model/anim_11]
+    - [auto, c, porygon/anim/model/anim_12]
+    - [auto, c, porygon/anim/model/anim_13]
+    - [auto, c, porygon/anim/model/anim_14]
+    - [auto, c, porygon/anim/model/anim_15]
+    - [auto, c, porygon/anim/model/anim_16]
+    - [auto, c, porygon/anim/model/anim_17]
+    - [auto, c, porygon/anim/model/anim_18]
+    - [auto, c, porygon/anim/model/anim_19]
+    - [auto, c, porygon/anim/model/anim_20]
+    - [auto, c, porygon/anim/model/anim_21]
+    - [auto, c, porygon/anim/model/anim_22]
+    - [auto, c, porygon/anim/material/anim_0]
+    - [auto, c, porygon/anim/material/anim_1]
+    - [auto, c, porygon/anim/material/anim_2]
+    - [auto, c, porygon/anim/material/anim_3]
+    - [auto, c, porygon/anim/material/anim_4]
+    - [auto, c, porygon/anim/material/anim_5]
+    - [auto, c, porygon/anim/material/anim_6]
+    - [auto, c, porygon/anim/material/anim_7]
+    - [auto, c, porygon/anim/material/anim_8]
+    - [auto, c, porygon/anim/material/anim_9]
+    - [auto, c, porygon/anim/material/anim_10]
+    - [auto, c, porygon/anim/material/anim_11]
+    - [auto, c, porygon/anim/material/anim_12]
+    - [auto, c, porygon/anim/material/anim_13]
+    - [auto, c, porygon/anim/material/anim_14]
+    - [auto, c, porygon/anim/material/anim_15]
+    - [auto, c, porygon/anim/material/anim_16]
+    - [auto, c, porygon/anim/material/anim_17]
+    - [auto, c, porygon/anim/material/anim_18]
+    - [auto, c, porygon/anim/material/anim_19]
+    - [auto, c, porygon/anim/material/anim_20]
+    - [auto, c, porygon/anim/material/anim_21]
+    - [auto, c, vileplume/textures]
+    - [auto, c, vileplume/anim/model/anim_0]
+    - [auto, c, vileplume/anim/model/anim_1]
+    - [auto, c, vileplume/anim/model/anim_2]
+    - [auto, c, vileplume/anim/model/anim_3]
+    - [auto, c, vileplume/anim/model/anim_4]
+    - [auto, c, vileplume/anim/model/anim_5]
+    - [auto, c, vileplume/anim/material/anim_0]
+    - [auto, c, vileplume/anim/material/anim_1]
+    - [auto, c, vileplume/anim/material/anim_2]
+    - [auto, c, vileplume/anim/material/anim_3]
+    - [auto, c, shellder/textures]
+    - [auto, c, shellder/anim/model/anim_0]
+    - [auto, c, shellder/anim/material/anim_0]
+    - [auto, c, shellder2/textures]
+    - [auto, c, unk603/anim/model/anim_0]
+    - [auto, c, unk603/anim/model/anim_1]
+    - [auto, c, metapod/textures]
+    - [auto, c, metapod/anim/model/anim_0]
+    - [auto, c, metapod/anim/model/anim_1]
+    - [auto, c, metapod/anim/model/anim_2]
+    - [auto, c, metapod/anim/material/anim_0]
+    - [auto, c, metapod/anim/material/anim_1]
+    - [auto, c, metapod/anim/material/anim_2]
+    - [auto, c, slowpoke/textures]
+    - [auto, c, slowpoke/anim/model/anim_0]
+    - [auto, c, slowpoke/anim/model/anim_1]
+    - [auto, c, slowpoke/anim/model/anim_2]
+    - [auto, c, slowpoke/anim/model/anim_3]
+    - [auto, c, slowpoke/anim/model/anim_4]
+    - [auto, c, slowpoke/anim/model/anim_5]
+    - [auto, c, slowpoke/anim/model/anim_6]
+    - [auto, c, slowpoke/anim/model/anim_7]
+    - [auto, c, slowpoke/anim/model/anim_8]
+    - [auto, c, slowpoke/anim/model/anim_9]
+    - [auto, c, slowpoke/anim/material/anim_0]
+    - [auto, c, slowbro/textures]
+    - [auto, c, slowbro/anim/model/anim_0]
+    - [auto, c, slowbro/anim/model/anim_1]
+    - [auto, c, slowbro/anim/model/anim_2]
+    - [auto, c, slowbro/anim/model/anim_3]
+    - [auto, c, slowbro/anim/model/anim_4]
+    - [auto, c, slowbro/anim/model/anim_5]
+    - [auto, c, slowbro/anim/model/anim_6]
+    - [auto, c, slowbro/anim/material/anim_0]
+    - start: 0x2D0AF0
+      type: .data
+      dir: psyduck
+      name: psyduck/textures
+      subsegments:
+      - [0x2D0AF0]
+      - { start: 0x2D0AF8, type: palette, name: tex0, size: 0x20 }
+      - [0x2D0B18]
+      - { start: 0x2D0B20, type: ci4, name: tex0, flip_y: true, width: 32, height: 64 }
+      - [0x2D0F20]
+      - { start: 0x2D0F28, type: palette, name: tex1, size: 0x200 }
+      - [0x2D1128]
+      - { start: 0x2D1130, type: ci8, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2D1530]
+      - { start: 0x2D1538, type: palette, name: tex2, size: 0x200 }
+      - [0x2D1738]
+      - { start: 0x2D1740, type: ci8, name: tex2, flip_y: true, width: 32, height: 64 }
+      - [0x2D1F40]
+      - { start: 0x2D1F48, type: palette, name: tex3, size: 0x200 }
+      - [0x2D2148]
+      - { start: 0x2D2150, type: ci8, name: tex3, flip_y: true, width: 64, height: 32 }
+    - start: 0x2D2950
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_0
+      subsegments:
+      - [0x2D2950, snap_model_anim, anim_0]
+    - start: 0x2D3330
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_1
+      subsegments:
+      - [0x2D3330, snap_model_anim, anim_1]
+    - start: 0x2D3D00
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_2
+      subsegments:
+      - [0x2D3D00, snap_model_anim, anim_2]
+    - start: 0x2D44E0
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_3
+      subsegments:
+      - [0x2D44E0, snap_model_anim, anim_3]
+    - start: 0x2D4AA0
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_4
+      subsegments:
+      - [0x2D4AA0, snap_model_anim, anim_4]
+    - start: 0x2D54A0
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_5
+      subsegments:
+      - [0x2D54A0, snap_model_anim, anim_5]
+    - start: 0x2D6570
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_6
+      subsegments:
+      - [0x2D6570, snap_model_anim, anim_6]
+    - start: 0x2D6B60
+      type: .data
+      dir: psyduck/anim/model/
+      name: psyduck/anim/model/anim_7
+      subsegments:
+      - [0x2D6B60, snap_model_anim, anim_7]
+    - start: 0x2D74E0
+      type: .data
+      dir: poliwag
+      name: poliwag/textures
+      subsegments:
+      - [0x2D74E0]
+      - { start: 0x2D74E8, type: palette, name: tex0, size: 0x200 }
+      - [0x2D76E8]
+      - { start: 0x2D76F0, type: ci8, name: tex0, flip_y: true, width: 32, height: 48 }
+      - [0x2D7CF0]
+      - { start: 0x2D7CF8, type: palette, name: tex1, size: 0x20 }
+      - [0x2D7D18]
+      - { start: 0x2D7D20, type: ci4, name: tex1, flip_y: true, width: 32, height: 24 }
+      - [0x2D7EA0]
+      - { start: 0x2D7EA8, type: rgba32, name: tex2, flip_y: true, width: 16, height: 64 }
+      - [0x2D8EA8]
+      - { start: 0x2D8EB0, type: palette, name: tex3, size: 0x200 }
+      - [0x2D90B0]
+      - { start: 0x2D90B8, type: ci8, name: tex3, flip_y: true, width: 48, height: 42 }
+    - start: 0x2D98A0
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_0
+      subsegments:
+      - [0x2D98A0, snap_model_anim, anim_0]
+    - start: 0x2DA5D0
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_1
+      subsegments:
+      - [0x2DA5D0, snap_model_anim, anim_1]
+    - start: 0x2DBA00
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_2
+      subsegments:
+      - [0x2DBA00, snap_model_anim, anim_2]
+    - start: 0x2DC410
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_3
+      subsegments:
+      - [0x2DC410, snap_model_anim, anim_3]
+    - start: 0x2DD320
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_4
+      subsegments:
+      - [0x2DD320, snap_model_anim, anim_4]
+    - start: 0x2DDB90
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_5
+      subsegments:
+      - [0x2DDB90, snap_model_anim, anim_5]
+    - start: 0x2DE4C0
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_6
+      subsegments:
+      - [0x2DE4C0, snap_model_anim, anim_6]
+    - start: 0x2DE870
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_7
+      subsegments:
+      - [0x2DE870, snap_model_anim, anim_7]
+    - start: 0x2DF370
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_8
+      subsegments:
+      - [0x2DF370, snap_model_anim, anim_8]
+    - start: 0x2DFE80
+      type: .data
+      dir: poliwag/anim/model/
+      name: poliwag/anim/model/anim_9
+      subsegments:
+      - [0x2DFE80, snap_model_anim, anim_9]
+    - start: 0x2E0520
+      type: .data
+      dir: poliwag/anim/material/
+      name: poliwag/anim/material/anim_0
+      subsegments:
+      - [0x2E0520, snap_material_anim, anim_0]
+    - start: 0x2E0590
+      type: .data
+      dir: poliwag/anim/material/
+      name: poliwag/anim/material/anim_1
+      subsegments:
+      - [0x2E0590, snap_material_anim, anim_1]
+    - start: 0x2E0600
+      type: .data
+      dir: cloyster
+      name: cloyster/textures
+      subsegments:
+      - [0x2E0600]
+      - { start: 0x2E0608, type: palette, name: tex0, size: 0x10 }
+      - [0x2E0618]
+      - { start: 0x2E0620, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2E0820]
+      - { start: 0x2E0828, type: palette, name: tex1, size: 0x20 }
+      - [0x2E0848]
+      - { start: 0x2E0850, type: ci4, name: tex1, flip_y: true, width: 64, height: 32 }
+      - [0x2E0C50]
+      - { start: 0x2E0C58, type: palette, name: tex2, size: 0x20 }
+      - [0x2E0C78]
+      - { start: 0x2E0C80, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x2E0E80]
+      - { start: 0x2E0E88, type: palette, name: tex3, size: 0x20 }
+      - [0x2E0EA8]
+      - { start: 0x2E0EB0, type: ci4, name: tex3, flip_y: true, width: 64, height: 32 }
+      - [0x2E12B0]
+      - { start: 0x2E12B8, type: palette, name: tex4, size: 0x20 }
+      - [0x2E12D8]
+      - { start: 0x2E12E0, type: ci4, name: tex4, flip_y: true, width: 16, height: 32 }
+      - [0x2E13E0]
+      - { start: 0x2E13E8, type: palette, name: tex5, size: 0x20 }
+      - [0x2E1408]
+      - { start: 0x2E1410, type: ci4, name: tex5, flip_y: true, width: 16, height: 8 }
+      - [0x2E1450]
+      - { start: 0x2E1458, type: i4, name: tex6, flip_y: true, width: 16, height: 8 }
+      - [0x2E1498]
+      - { start: 0x2E14A0, type: i4, name: tex7, flip_y: true, width: 16, height: 8 }
+      - [0x2E14E0]
+      - { start: 0x2E14E8, type: palette, name: tex8, size: 0x20 }
+      - [0x2E1508]
+      - { start: 0x2E1510, type: ci4, name: tex8, flip_y: true, width: 16, height: 8 }
+    - start: 0x2E1550
+      type: .data
+      dir: cloyster/anim/model/
+      name: cloyster/anim/model/anim_0
+      subsegments:
+      - [0x2E1550, snap_model_anim, anim_0]
+    - start: 0x2E1850
+      type: .data
+      dir: cloyster/anim/model/
+      name: cloyster/anim/model/anim_1
+      subsegments:
+      - [0x2E1850, snap_model_anim, anim_1]
+    - start: 0x2E1BC0
+      type: .data
+      dir: unk/anim/material/
+      name: unk/anim/material/anim_0
+      subsegments:
+      - [0x2E1BC0, snap_material_anim, anim_0]
+    - start: 0x2E1C60
+      type: .data
+      dir: unk/anim/material/
+      name: unk/anim/material/anim_1
+      subsegments:
+      - [0x2E1C60, snap_material_anim, anim_1]
+    - start: 0x2E1CF0
+      type: .data
+      dir: porygon
+      name: porygon/textures
+      subsegments:
+      - [0x2E1CF0]
+      - { start: 0x2E1CF8, type: palette, name: tex0, size: 0x20 }
+      - [0x2E1D18]
+      - { start: 0x2E1D20, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2E1F20]
+      - { start: 0x2E1F28, type: i4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2E2128]
+      - { start: 0x2E2130, type: i4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x2E2330]
+      - { start: 0x2E2338, type: i4, name: tex3, flip_y: true, width: 32, height: 32 }
+      - [0x2E2538]
+      - { start: 0x2E2540, type: i4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x2E2740]
+      - { start: 0x2E2748, type: palette, name: tex5, size: 0x20 }
+      - [0x2E2768]
+      - { start: 0x2E2770, type: ci4, name: tex5, flip_y: true, width: 32, height: 32 }
+      - [0x2E2970]
+      - { start: 0x2E2978, type: palette, name: tex6, size: 0x20 }
+      - [0x2E2998]
+      - { start: 0x2E29A0, type: ci4, name: tex6, flip_y: true, width: 32, height: 32 }
+      - [0x2E2BA0]
+      - { start: 0x2E2BA8, type: palette, name: tex7, size: 0x20 }
+      - [0x2E2BC8]
+      - { start: 0x2E2BD0, type: ci4, name: tex7, flip_y: true, width: 32, height: 32 }
+    - start: 0x2E2DD0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_0
+      subsegments:
+      - [0x2E2DD0, snap_model_anim, anim_0]
+    - start: 0x2E2FF0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_1
+      subsegments:
+      - [0x2E2FF0, snap_model_anim, anim_1]
+    - start: 0x2E3210
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_2
+      subsegments:
+      - [0x2E3210, snap_model_anim, anim_2]
+    - start: 0x2E3430
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_3
+      subsegments:
+      - [0x2E3430, snap_model_anim, anim_3]
+    - start: 0x2E3800
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_4
+      subsegments:
+      - [0x2E3800, snap_model_anim, anim_4]
+    - start: 0x2E3BD0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_5
+      subsegments:
+      - [0x2E3BD0, snap_model_anim, anim_5]
+    - start: 0x2E3FA0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_6
+      subsegments:
+      - [0x2E3FA0, snap_model_anim, anim_6]
+    - start: 0x2E43B0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_7
+      subsegments:
+      - [0x2E43B0, snap_model_anim, anim_7]
+    - start: 0x2E47C0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_8
+      subsegments:
+      - [0x2E47C0, snap_model_anim, anim_8]
+    - start: 0x2E4BD0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_9
+      subsegments:
+      - [0x2E4BD0, snap_model_anim, anim_9]
+    - start: 0x2E4E30
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_10
+      subsegments:
+      - [0x2E4E30, snap_model_anim, anim_10]
+    - start: 0x2E5090
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_11
+      subsegments:
+      - [0x2E5090, snap_model_anim, anim_11]
+    - start: 0x2E52F0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_12
+      subsegments:
+      - [0x2E52F0, snap_model_anim, anim_12]
+    - start: 0x2E5D80
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_13
+      subsegments:
+      - [0x2E5D80, snap_model_anim, anim_13]
+    - start: 0x2E6810
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_14
+      subsegments:
+      - [0x2E6810, snap_model_anim, anim_14]
+    - start: 0x2E72A0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_15
+      subsegments:
+      - [0x2E72A0, snap_model_anim, anim_15]
+    - start: 0x2E7A70
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_16
+      subsegments:
+      - [0x2E7A70, snap_model_anim, anim_16]
+    - start: 0x2E8240
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_17
+      subsegments:
+      - [0x2E8240, snap_model_anim, anim_17]
+    - start: 0x2E84D0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_18
+      subsegments:
+      - [0x2E84D0, snap_model_anim, anim_18]
+    - start: 0x2E88F0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_19
+      subsegments:
+      - [0x2E88F0, snap_model_anim, anim_19]
+    - start: 0x2E8D10
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_20
+      subsegments:
+      - [0x2E8D10, snap_model_anim, anim_20]
+    - start: 0x2E93E0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_21
+      subsegments:
+      - [0x2E93E0, snap_model_anim, anim_21]
+    - start: 0x2E9AB0
+      type: .data
+      dir: porygon/anim/model/
+      name: porygon/anim/model/anim_22
+      subsegments:
+      - [0x2E9AB0, snap_model_anim, anim_22]
+    - start: 0x2EA180
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_0
+      subsegments:
+      - [0x2EA180, snap_material_anim, anim_0]
+    - start: 0x2EA2C0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_1
+      subsegments:
+      - [0x2EA2C0, snap_material_anim, anim_1]
+    - start: 0x2EA400
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_2
+      subsegments:
+      - [0x2EA400, snap_material_anim, anim_2]
+    - start: 0x2EA540
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_3
+      subsegments:
+      - [0x2EA540, snap_material_anim, anim_3]
+    - start: 0x2EA690
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_4
+      subsegments:
+      - [0x2EA690, snap_material_anim, anim_4]
+    - start: 0x2EA7E0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_5
+      subsegments:
+      - [0x2EA7E0, snap_material_anim, anim_5]
+    - start: 0x2EA930
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_6
+      subsegments:
+      - [0x2EA930, snap_material_anim, anim_6]
+    - start: 0x2EAA50
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_7
+      subsegments:
+      - [0x2EAA50, snap_material_anim, anim_7]
+    - start: 0x2EAB70
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_8
+      subsegments:
+      - [0x2EAB70, snap_material_anim, anim_8]
+    - start: 0x2EAC90
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_9
+      subsegments:
+      - [0x2EAC90, snap_material_anim, anim_9]
+    - start: 0x2EAD80
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_10
+      subsegments:
+      - [0x2EAD80, snap_material_anim, anim_10]
+    - start: 0x2EAE70
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_11
+      subsegments:
+      - [0x2EAE70, snap_material_anim, anim_11]
+    - start: 0x2EAF60
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_12
+      subsegments:
+      - [0x2EAF60, snap_material_anim, anim_12]
+    - start: 0x2EB0A0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_13
+      subsegments:
+      - [0x2EB0A0, snap_material_anim, anim_13]
+    - start: 0x2EB1E0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_14
+      subsegments:
+      - [0x2EB1E0, snap_material_anim, anim_14]
+    - start: 0x2EB320
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_15
+      subsegments:
+      - [0x2EB320, snap_material_anim, anim_15]
+    - start: 0x2EB650
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_16
+      subsegments:
+      - [0x2EB650, snap_material_anim, anim_16]
+    - start: 0x2EB980
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_17
+      subsegments:
+      - [0x2EB980, snap_material_anim, anim_17]
+    - start: 0x2EBAA0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_18
+      subsegments:
+      - [0x2EBAA0, snap_material_anim, anim_18]
+    - start: 0x2EBBC0
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_19
+      subsegments:
+      - [0x2EBBC0, snap_material_anim, anim_19]
+    - start: 0x2EBD00
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_20
+      subsegments:
+      - [0x2EBD00, snap_material_anim, anim_20]
+    - start: 0x2EBE40
+      type: .data
+      dir: porygon/anim/material/
+      name: porygon/anim/material/anim_21
+      subsegments:
+      - [0x2EBE40, snap_material_anim, anim_21]
+    - start: 0x2EBF80
+      type: .data
+      dir: vileplume
+      name: vileplume/textures
+      subsegments:
+      - [0x2EBF80]
+      - { start: 0x2EBF88, type: palette, name: tex0, size: 0x20 }
+      - [0x2EBFA8]
+      - { start: 0x2EBFB0, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2EC1B0]
+      - { start: 0x2EC1B8, type: palette, name: tex1, size: 0x20 }
+      - [0x2EC1D8]
+      - { start: 0x2EC1E0, type: ci4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2EC3E0]
+      - { start: 0x2EC3E8, type: palette, name: tex2, size: 0x20 }
+      - [0x2EC408]
+      - { start: 0x2EC410, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x2EC610]
+      - { start: 0x2EC618, type: palette, name: tex3, size: 0x20 }
+      - [0x2EC638]
+      - { start: 0x2EC640, type: ci4, name: tex3, flip_y: true, width: 32, height: 32 }
+      - [0x2EC840]
+      - { start: 0x2EC848, type: palette, name: tex4, size: 0x20 }
+      - [0x2EC868]
+      - { start: 0x2EC870, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x2ECA70]
+      - { start: 0x2ECA78, type: palette, name: tex5, size: 0x20 }
+      - [0x2ECA98]
+      - { start: 0x2ECAA0, type: ci4, name: tex5, flip_y: true, width: 32, height: 32 }
+      - [0x2ECCA0]
+      - { start: 0x2ECCA8, type: palette, name: tex6, size: 0x18 }
+      - [0x2ECCC0]
+      - { start: 0x2ECCC8, type: ci4, name: tex6, flip_y: true, width: 32, height: 32 }
+      - [0x2ECEC8]
+      - { start: 0x2ECED0, type: palette, name: tex7, size: 0x20 }
+      - [0x2ECEF0]
+      - { start: 0x2ECEF8, type: ci4, name: tex7, flip_y: true, width: 32, height: 32 }
+      - [0x2ED0F8]
+      - { start: 0x2ED100, type: palette, name: tex8, size: 0x20 }
+      - [0x2ED120]
+      - { start: 0x2ED128, type: ci4, name: tex8, flip_y: true, width: 32, height: 32 }
+      - [0x2ED328]
+      - { start: 0x2ED330, type: palette, name: tex9, size: 0x20 }
+      - [0x2ED350]
+      - { start: 0x2ED358, type: ci4, name: tex9, flip_y: true, width: 32, height: 32 }
+      - [0x2ED558]
+      - { start: 0x2ED560, type: palette, name: tex10, size: 0x20 }
+      - [0x2ED580]
+      - { start: 0x2ED588, type: ci4, name: tex10, flip_y: true, width: 32, height: 32 }
+      - [0x2ED788]
+      - { start: 0x2ED790, type: palette, name: tex11, size: 0x20 }
+      - [0x2ED7B0]
+      - { start: 0x2ED7B8, type: ci4, name: tex11, flip_y: true, width: 32, height: 32 }
+      - [0x2ED9B8]
+      - { start: 0x2ED9C0, type: i4, name: tex12, flip_y: true, width: 32, height: 64 }
+    - start: 0x2EDDC0
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_0
+      subsegments:
+      - [0x2EDDC0, snap_model_anim, anim_0]
+    - start: 0x2EF080
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_1
+      subsegments:
+      - [0x2EF080, snap_model_anim, anim_1]
+    - start: 0x2EF560
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_2
+      subsegments:
+      - [0x2EF560, snap_model_anim, anim_2]
+    - start: 0x2EFC10
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_3
+      subsegments:
+      - [0x2EFC10, snap_model_anim, anim_3]
+    - start: 0x2F03A0
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_4
+      subsegments:
+      - [0x2F03A0, snap_model_anim, anim_4]
+    - start: 0x2F0DC0
+      type: .data
+      dir: vileplume/anim/model/
+      name: vileplume/anim/model/anim_5
+      subsegments:
+      - [0x2F0DC0, snap_model_anim, anim_5]
+    - start: 0x2F1AB0
+      type: .data
+      dir: vileplume/anim/material/
+      name: vileplume/anim/material/anim_0
+      subsegments:
+      - [0x2F1AB0, snap_material_anim, anim_0]
+    - start: 0x2F1B70
+      type: .data
+      dir: vileplume/anim/material/
+      name: vileplume/anim/material/anim_1
+      subsegments:
+      - [0x2F1B70, snap_material_anim, anim_1]
+    - start: 0x2F1C30
+      type: .data
+      dir: vileplume/anim/material/
+      name: vileplume/anim/material/anim_2
+      subsegments:
+      - [0x2F1C30, snap_material_anim, anim_2]
+    - start: 0x2F1CF0
+      type: .data
+      dir: vileplume/anim/material/
+      name: vileplume/anim/material/anim_3
+      subsegments:
+      - [0x2F1CF0, snap_material_anim, anim_3]
+    - start: 0x2F1DE0
+      type: .data
+      dir: shellder
+      name: shellder/textures
+      subsegments:
+      - [0x2F1DE0]
+      - { start: 0x2F1DE8, type: palette, name: tex0, size: 0x20 }
+      - [0x2F1E08]
+      - { start: 0x2F1E10, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2F2010]
+      - { start: 0x2F2018, type: i4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2F2218]
+      - { start: 0x2F2220, type: palette, name: tex2, size: 0x20 }
+      - [0x2F2240]
+      - { start: 0x2F2248, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
+    - start: 0x2F2650
+      type: .data
+      dir: shellder/anim/model/
+      name: shellder/anim/model/anim_0
+      subsegments:
+      - [0x2F2650, snap_model_anim, anim_0]
+    - start: 0x2F2EA0
+      type: .data
+      dir: shellder/anim/material/
+      name: shellder/anim/material/anim_0
+      subsegments:
+      - [0x2F2EA0, snap_material_anim, anim_0]
+    - start: 0x2F2F20
+      type: .data
+      dir: shellder2
+      name: shellder2/textures
+      subsegments:
+      - [0x2F2F20]
+      - { start: 0x2F2F28, type: palette, name: tex0, size: 0x20 }
+      - [0x2F2F48]
+      - { start: 0x2F2F50, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2F3150]
+      - { start: 0x2F3158, type: i4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2F3358]
+      - { start: 0x2F3360, type: palette, name: tex2, size: 0x20 }
+      - [0x2F3380]
+      - { start: 0x2F3388, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
+    - start: 0x2F3790
+      type: .data
+      dir: unk603/anim/model/
+      name: unk603/anim/model/anim_0
+      subsegments:
+      - [0x2F3790, snap_model_anim, anim_0]
+    - start: 0x2F3CE0
+      type: .data
+      dir: unk603/anim/model/
+      name: unk603/anim/model/anim_1
+      subsegments:
+      - [0x2F3CE0, snap_model_anim, anim_1]
+    - start: 0x2F42F0
+      type: .data
+      dir: metapod
+      name: metapod/textures
+      subsegments:
+      - [0x2F42F0]
+      - { start: 0x2F42F8, type: palette, name: tex0, size: 0x20 }
+      - [0x2F4318]
+      - { start: 0x2F4320, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2F4520]
+      - { start: 0x2F4528, type: palette, name: tex1, size: 0x8 }
+      - [0x2F4530]
+      - { start: 0x2F4538, type: ci4, name: tex1, flip_y: true, width: 32, height: 16 }
+      - [0x2F4638]
+      - { start: 0x2F4640, type: palette, name: tex2, size: 0x8 }
+      - [0x2F4648]
+      - { start: 0x2F4650, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x2F4850]
+      - { start: 0x2F4858, type: palette, name: tex3, size: 0x20 }
+      - [0x2F4878]
+      - { start: 0x2F4880, type: ci4, name: tex3, flip_y: true, width: 16, height: 128 }
+      - [0x2F4C80]
+      - { start: 0x2F4C88, type: palette, name: tex4, size: 0x8 }
+      - [0x2F4C90]
+      - { start: 0x2F4C98, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x2F4E98]
+      - { start: 0x2F4EA0, type: palette, name: tex5, size: 0x8 }
+      - [0x2F4EA8]
+      - { start: 0x2F4EB0, type: ci4, name: tex5, flip_y: true, width: 16, height: 4 }
+    - start: 0x2F4ED0
+      type: .data
+      dir: metapod/anim/model/
+      name: metapod/anim/model/anim_0
+      subsegments:
+      - [0x2F4ED0, snap_model_anim, anim_0]
+    - start: 0x2F5360
+      type: .data
+      dir: metapod/anim/model/
+      name: metapod/anim/model/anim_1
+      subsegments:
+      - [0x2F5360, snap_model_anim, anim_1]
+    - start: 0x2F55C0
+      type: .data
+      dir: metapod/anim/model/
+      name: metapod/anim/model/anim_2
+      subsegments:
+      - [0x2F55C0, snap_model_anim, anim_2]
+    - start: 0x2F5810
+      type: .data
+      dir: metapod/anim/material/
+      name: metapod/anim/material/anim_0
+      subsegments:
+      - [0x2F5810, snap_material_anim, anim_0]
+    - start: 0x2F58C0
+      type: .data
+      dir: metapod/anim/material/
+      name: metapod/anim/material/anim_1
+      subsegments:
+      - [0x2F58C0, snap_material_anim, anim_1]
+    - start: 0x2F5970
+      type: .data
+      dir: metapod/anim/material/
+      name: metapod/anim/material/anim_2
+      subsegments:
+      - [0x2F5970, snap_material_anim, anim_2]
+    - start: 0x2F5A30
+      type: .data
+      dir: slowpoke
+      name: slowpoke/textures
+      subsegments:
+      - [0x2F5A30]
+      - { start: 0x2F5A38, type: palette, name: tex0, size: 0x20 }
+      - [0x2F5A58]
+      - { start: 0x2F5A60, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x2F5C60]
+      - { start: 0x2F5C68, type: palette, name: tex1, size: 0x20 }
+      - [0x2F5C88]
+      - { start: 0x2F5C90, type: ci4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x2F5E90]
+      - { start: 0x2F5E98, type: palette, name: tex2, size: 0x20 }
+      - [0x2F5EB8]
+      - { start: 0x2F5EC0, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x2F60C0]
+      - { start: 0x2F60C8, type: palette, name: tex3, size: 0x20 }
+      - [0x2F60E8]
+      - { start: 0x2F60F0, type: ci4, name: tex3, flip_y: true, width: 64, height: 32 }
+      - [0x2F64F0]
+      - { start: 0x2F64F8, type: palette, name: tex4, size: 0x20 }
+      - [0x2F6518]
+      - { start: 0x2F6520, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x2F6720]
+      - { start: 0x2F6728, type: palette, name: tex5, size: 0x20 }
+      - [0x2F6748]
+      - { start: 0x2F6750, type: ci4, name: tex5, flip_y: true, width: 32, height: 32 }
+    - start: 0x2F6950
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_0
+      subsegments:
+      - [0x2F6950, snap_model_anim, anim_0]
+    - start: 0x2F7190
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_1
+      subsegments:
+      - [0x2F7190, snap_model_anim, anim_1]
+    - start: 0x2F7980
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_2
+      subsegments:
+      - [0x2F7980, snap_model_anim, anim_2]
+    - start: 0x2F8EE0
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_3
+      subsegments:
+      - [0x2F8EE0, snap_model_anim, anim_3]
+    - start: 0x2F9480
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_4
+      subsegments:
+      - [0x2F9480, snap_model_anim, anim_4]
+    - start: 0x2F9B60
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_5
+      subsegments:
+      - [0x2F9B60, snap_model_anim, anim_5]
+    - start: 0x2FB770
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_6
+      subsegments:
+      - [0x2FB770, snap_model_anim, anim_6]
+    - start: 0x2FCC40
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_7
+      subsegments:
+      - [0x2FCC40, snap_model_anim, anim_7]
+    - start: 0x2FDFD0
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_8
+      subsegments:
+      - [0x2FDFD0, snap_model_anim, anim_8]
+    - start: 0x3010C0
+      type: .data
+      dir: slowpoke/anim/model/
+      name: slowpoke/anim/model/anim_9
+      subsegments:
+      - [0x3010C0, snap_model_anim, anim_9]
+    - start: 0x301D50
+      type: .data
+      dir: slowpoke/anim/material/
+      name: slowpoke/anim/material/anim_0
+      subsegments:
+      - [0x301D50, snap_material_anim, anim_0]
+    - start: 0x301E50
+      type: .data
+      dir: slowbro
+      name: slowbro/textures
+      subsegments:
+      - [0x301E50]
+      - { start: 0x301E58, type: palette, name: tex0, size: 0x20 }
+      - [0x301E78]
+      - { start: 0x301E80, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x302080]
+      - { start: 0x302088, type: palette, name: tex1, size: 0x20 }
+      - [0x3020A8]
+      - { start: 0x3020B0, type: ci4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x3022B0]
+      - { start: 0x3022B8, type: palette, name: tex2, size: 0x20 }
+      - [0x3022D8]
+      - { start: 0x3022E0, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
+      - [0x3026E0]
+      - { start: 0x3026E8, type: palette, name: tex3, size: 0x20 }
+      - [0x302708]
+      - { start: 0x302710, type: ci4, name: tex3, flip_y: true, width: 64, height: 32 }
+      - [0x302B10]
+      - { start: 0x302B18, type: palette, name: tex4, size: 0x20 }
+      - [0x302B38]
+      - { start: 0x302B40, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x302D40]
+      - { start: 0x302D48, type: palette, name: tex5, size: 0x20 }
+      - [0x302D68]
+      - { start: 0x302D70, type: ci4, name: tex5, flip_y: true, width: 64, height: 32 }
+      - [0x303170]
+      - { start: 0x303178, type: palette, name: tex6, size: 0x20 }
+      - [0x303198]
+      - { start: 0x3031A0, type: ci4, name: tex6, flip_y: true, width: 32, height: 32 }
+      - [0x3033A0]
+      - { start: 0x3033A8, type: palette, name: tex7, size: 0x20 }
+      - [0x3033C8]
+      - { start: 0x3033D0, type: ci4, name: tex7, flip_y: true, width: 64, height: 32 }
+      - [0x3037D0]
+      - { start: 0x3037D8, type: palette, name: tex8, size: 0x20 }
+      - [0x3037F8]
+      - { start: 0x303800, type: ci4, name: tex8, flip_y: true, width: 32, height: 32 }
+      - [0x303A00]
+      - { start: 0x303A08, type: palette, name: tex9, size: 0x20 }
+      - [0x303A28]
+      - { start: 0x303A30, type: ci4, name: tex9, flip_y: true, width: 64, height: 32 }
+      - [0x303E30]
+      - { start: 0x303E38, type: palette, name: tex10, size: 0x20 }
+      - [0x303E58]
+      - { start: 0x303E60, type: ci4, name: tex10, flip_y: true, width: 32, height: 32 }
+      - [0x304060]
+      - { start: 0x304068, type: palette, name: tex11, size: 0x20 }
+      - [0x304088]
+      - { start: 0x304090, type: ci4, name: tex11, flip_y: true, width: 32, height: 32 }
+    - start: 0x304290
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_0
+      subsegments:
+      - [0x304290, snap_model_anim, anim_0]
+    - start: 0x304FE0
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_1
+      subsegments:
+      - [0x304FE0, snap_model_anim, anim_1]
+    - start: 0x305C40
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_2
+      subsegments:
+      - [0x305C40, snap_model_anim, anim_2]
+    - start: 0x307100
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_3
+      subsegments:
+      - [0x307100, snap_model_anim, anim_3]
+    - start: 0x3079B0
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_4
+      subsegments:
+      - [0x3079B0, snap_model_anim, anim_4]
+    - start: 0x3089B0
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_5
+      subsegments:
+      - [0x3089B0, snap_model_anim, anim_5]
+    - start: 0x309B90
+      type: .data
+      dir: slowbro/anim/model/
+      name: slowbro/anim/model/anim_6
+      subsegments:
+      - [0x309B90, snap_model_anim, anim_6]
+    - start: 0x30AE60
+      type: .data
+      dir: slowbro/anim/material/
+      name: slowbro/anim/material/anim_0
+      subsegments:
+      - [0x30AE60, snap_material_anim, anim_0]
     - { start: auto, name: 29A190, type: .bss, vram: 0x8019AEC0 }
-
   - type: code
     name: river_extra
     dir: river

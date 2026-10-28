@@ -284,7 +284,7 @@ extern UNK_TYPE D_801CF770;
 extern UNK_TYPE D_801CF840;
 extern UNK_TYPE D_801D6840;
 extern UNK_TYPE chansey_modelanim_anim_3;
-extern UNK_TYPE D_80188CB0;
+extern UNK_TYPE zapdos_egg_modelanim_anim_3;
 
 extern s32 gPokemonIdInFocus;
 extern UnkThing PokemonDetector_Photo[2];
@@ -1200,7 +1200,7 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
             }
             break;
         case PokemonID_ZAPDOS_EGG:
-            if (D_800AD474[arg0->unk_00_13].unk_00 == &D_80188CB0) {
+            if (D_800AD474[arg0->unk_00_13].unk_00 == &zapdos_egg_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;

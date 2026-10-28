@@ -6,35 +6,35 @@ extern u8 electabuzz_tex_80168B68[];
 extern u8 electabuzz_tex_80169370[];
 extern u8 electabuzz_tex_80169B78[];
 extern u8 electabuzz_tex_8016A380[];
-extern u8 electabuzz_tex_8016A3A8[];
+extern u8 electabuzz_tex_8016A3A8_png[];
 extern u8 electabuzz_tex_8016A7B0[];
-extern u8 electabuzz_tex_8016A7C0[];
+extern u8 electabuzz_tex_8016A7C0_png[];
 extern u8 electabuzz_tex_8016A7E8[];
-extern u8 electabuzz_tex_8016A810[];
+extern u8 electabuzz_tex_8016A810_png[];
 extern u8 electabuzz_tex_8016B018[];
-extern u8 electabuzz_tex_8016B040[];
+extern u8 electabuzz_tex_8016B040_png[];
 extern u8 electabuzz_tex_8016B848[];
-extern u8 electabuzz_tex_8016B870[];
+extern u8 electabuzz_tex_8016B870_png[];
 extern u8 electabuzz_tex_8016BC78[];
-extern u8 electabuzz_tex_8016BCA0[];
-extern u8 electabuzz_tex_8016C4D0[];
-extern u8 electabuzz_tex_8016CD00[];
+extern u8 electabuzz_tex_8016BCA0_png[];
+extern u8 electabuzz_tex_8016C4D0_png[];
+extern u8 electabuzz_tex_8016CD00_png[];
 extern u8 electabuzz_tex_8016D508[];
-extern u8 electabuzz_tex_8016D530[];
+extern u8 electabuzz_tex_8016D530_png[];
 extern u8 electabuzz_tex_8016DD38[];
-extern u8 electabuzz_tex_8016DD48[];
+extern u8 electabuzz_tex_8016DD48_png[];
 extern u8 electabuzz_tex_8016DD70[];
-extern u8 electabuzz_tex_8016DD98[];
+extern u8 electabuzz_tex_8016DD98_png[];
 extern u8 electabuzz_tex_8016DEA0[];
-extern u8 electabuzz_tex_8016DEC8[];
+extern u8 electabuzz_tex_8016DEC8_png[];
 extern u8 electabuzz_tex_8016DFD0[];
-extern u8 electabuzz_tex_8016DFF8[];
+extern u8 electabuzz_tex_8016DFF8_png[];
 extern u8 electabuzz_tex_8016E100[];
-extern u8 electabuzz_tex_8016E128[];
+extern u8 electabuzz_tex_8016E128_png[];
 extern u8 electabuzz_tex_8016E230[];
-extern u8 electabuzz_tex_8016E240[];
+extern u8 electabuzz_tex_8016E240_png[];
 extern u8 electabuzz_tex_8016E298[];
-extern u8 electabuzz_tex_8016E2C0[];
+extern u8 electabuzz_tex_8016E2C0_png[];
 
 extern Texture* electabuzz_hd_part5_mat[];
 extern Texture* electabuzz_hd_part8_mat[];
@@ -146,9 +146,9 @@ u8* electabuzz_hd_part8_mat3_textures[] = {
 };
 
 u8* electabuzz_hd_part9_mat0_textures[] = {
-    electabuzz_tex_8016D530,
-    electabuzz_tex_8016C4D0,
-    electabuzz_tex_8016CD00,
+    electabuzz_tex_8016D530_png,
+    electabuzz_tex_8016C4D0_png,
+    electabuzz_tex_8016CD00_png,
     NULL,
 };
 

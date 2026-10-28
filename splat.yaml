@@ -2339,8 +2339,15 @@ segments:
     - [auto, c, computer/model]
     - [auto, c, pkmn_1016/model]
     - [auto, c, pkmn_1017/model]
+    - [auto, c, textures_0]
     - [auto, c, computer/textures]
-
+    - [auto, c, textures_1]
+    - [auto, c, textures_2]
+    - [auto, c, kakuna/textures]
+    - [auto, c, kakuna/anim/model/anim_0]
+    - [auto, c, kakuna/anim/model/anim_1]
+    - [auto, c, kakuna/anim/material/anim_0]
+    - [auto, c, kakuna/anim/material/anim_1]
     - [auto, c, magnemite/textures]
     - [auto, c, magnemite/anim/model/run]
     - [auto, c, magnemite/anim/model/pulse]
@@ -2367,7 +2374,22 @@ segments:
     - [auto, c, dugtrio/anim/model/turn]
     - [auto, c, dugtrio/anim/model/rise]
     - [auto, c, dugtrio/anim/model/unburrow]
-
+    - [auto, c, electabuzz/textures]
+    - [auto, c, electabuzz/anim/model/anim_0]
+    - [auto, c, electabuzz/anim/model/anim_1]
+    - [auto, c, electabuzz/anim/model/anim_2]
+    - [auto, c, electabuzz/anim/model/anim_3]
+    - [auto, c, electabuzz/anim/model/anim_4]
+    - [auto, c, electabuzz/anim/model/anim_5]
+    - [auto, c, electabuzz/anim/model/anim_6]
+    - [auto, c, electabuzz/anim/model/anim_7]
+    - [auto, c, electabuzz/anim/model/anim_8]
+    - [auto, c, electabuzz/anim/material/anim_0]
+    - [auto, c, electabuzz/anim/material/anim_1]
+    - [auto, c, electabuzz/anim/material/anim_2]
+    - [auto, c, electabuzz/anim/material/anim_3]
+    - [auto, c, electabuzz/anim/material/anim_4]
+    - [auto, c, haunter/anim/model/anim_0]
     - [auto, c, electrode/textures]
     - [auto, c, electrode/anim/model/explode]
     - [auto, c, electrode/anim/model/idle]
@@ -2378,7 +2400,21 @@ segments:
 
     - [auto, c, magneton/textures]
     - [auto, c, magneton/anim/animation]
-
+    - [auto, c, zapdos/textures]
+    - [auto, c, zapdos/anim/model/anim_0]
+    - [auto, c, zapdos/anim/model/anim_1]
+    - [auto, c, zapdos/anim/model/anim_2]
+    - [auto, c, zapdos/anim/model/anim_3]
+    - [auto, c, zapdos/anim/material/anim_0]
+    - [auto, c, zapdos/anim/material/anim_1]
+    - [auto, c, zapdos/anim/material/anim_2]
+    - [auto, c, zapdos/anim/material/anim_3]
+    - [auto, c, zapdos_egg/textures]
+    - [auto, c, zapdos_egg/anim/model/anim_0]
+    - [auto, c, zapdos_egg/anim/model/anim_1]
+    - [auto, c, zapdos_egg/anim/model/anim_2]
+    - [auto, c, zapdos_egg/anim/model/anim_3]
+    - [auto, c, unk/anim/material/anim_0]
     - [0x162CC0, .data, world/world]
     - [0x164850, .data, world/world_gfx]
     - start: 0x164930
@@ -2467,6 +2503,50 @@ segments:
       - [0x181B80, gfx, draw]
       - [0x181EF0, vtx, model]
     - [0x182390, bin]
+    - start: 0x188280
+      type: .data
+      name: textures_0
+      subsegments:
+      - [0x188280]
+      - { start: 0x188288, type: palette, name: s0_tex0, size: 0x20 }
+      - [0x1882A8]
+      - { start: 0x1882B0, type: ci4, name: s0_tex0, flip_y: true, width: 64, height: 64 }
+      - [0x188AB0]
+      - { start: 0x188AB8, type: palette, name: s0_tex1, size: 0x20 }
+      - [0x188AD8]
+      - { start: 0x188AE0, type: ci4, name: s0_tex1, flip_y: true, width: 64, height: 64 }
+      - [0x1892E0]
+      - { start: 0x1892E8, type: palette, name: s0_tex2, size: 0x20 }
+      - [0x189308]
+      - { start: 0x189310, type: ci4, name: s0_tex2, flip_y: true, width: 64, height: 64 }
+      - [0x189B10]
+      - { start: 0x189B18, type: rgba16, name: s0_tex3, flip_y: true, width: 16, height: 64 }
+      - [0x18A318]
+      - { start: 0x18A320, type: rgba16, name: s0_tex4, flip_y: true, width: 16, height: 64 }
+      - [0x18AB20]
+      - { start: 0x18AB28, type: rgba16, name: s0_tex5, flip_y: true, width: 16, height: 64 }
+      - [0x18B328]
+      - { start: 0x18B330, type: i8, name: s0_tex6, flip_y: true, width: 64, height: 64 }
+      - [0x18C330]
+      - { start: 0x18C338, type: palette, name: s0_tex7, size: 0x20 }
+      - [0x18C358]
+      - { start: 0x18C360, type: ci4, name: s0_tex7, flip_y: true, width: 64, height: 64 }
+      - [0x18CB60]
+      - { start: 0x18CB68, type: palette, name: s0_tex8, size: 0x20 }
+      - [0x18CB88]
+      - { start: 0x18CB90, type: ci4, name: s0_tex8, flip_y: true, width: 64, height: 64 }
+      - [0x18D390]
+      - { start: 0x18D398, type: palette, name: s0_tex9, size: 0x20 }
+      - [0x18D3B8]
+      - { start: 0x18D3C0, type: ci4, name: s0_tex9, flip_y: true, width: 32, height: 64 }
+      - [0x18D7C0]
+      - { start: 0x18D7C8, type: palette, name: s0_tex10, size: 0x20 }
+      - [0x18D7E8]
+      - { start: 0x18D7F0, type: ci4, name: s0_tex10, flip_y: true, width: 64, height: 32 }
+      - [0x18DBF0]
+      - { start: 0x18DBF8, type: palette, name: s0_tex11, size: 0x20 }
+      - [0x18DC18]
+      - { start: 0x18DC20, type: ci4, name: s0_tex11, flip_y: true, width: 32, height: 64 }
     - start: 0x18E020
       type: .data
       dir: computer
@@ -2480,9 +2560,202 @@ segments:
       - { start: 0x190038, type: palette, name: tex_back, size: 0x18 }
       - [0x190050]
       - { start: 0x190058, type: ci4, name: tex_back, flip_y: true, width: 32, height: 32 }
-
-    - [0x190260, bin, kakuna/textures]
-
+    - [0x190260, databin]
+    - start: 0x191D70
+      type: .data
+      name: textures_1
+      subsegments:
+      - [0x191D70]
+      - { start: 0x191D78, type: palette, name: s1_tex0, size: 0x10 }
+      - [0x191D88]
+      - { start: 0x191D90, type: ci4, name: s1_tex0, flip_y: true, width: 32, height: 32 }
+      - [0x191F90]
+      - { start: 0x191F98, type: palette, name: s1_tex1, size: 0x20 }
+      - [0x191FB8]
+      - { start: 0x191FC0, type: ci4, name: s1_tex1, flip_y: true, width: 32, height: 32 }
+      - [0x1921C0]
+      - { start: 0x1921C8, type: palette, name: s1_tex2, size: 0x20 }
+      - [0x1921E8]
+      - { start: 0x1921F0, type: ci4, name: s1_tex2, flip_y: true, width: 32, height: 32 }
+      - [0x1923F0]
+      - { start: 0x1923F8, type: palette, name: s1_tex3, size: 0x20 }
+      - [0x192418]
+      - { start: 0x192420, type: ci4, name: s1_tex3, flip_y: true, width: 64, height: 64 }
+      - [0x192C20]
+      - { start: 0x192C28, type: palette, name: s1_tex4, size: 0x20 }
+      - [0x192C48]
+      - { start: 0x192C50, type: ci4, name: s1_tex4, flip_y: true, width: 32, height: 32 }
+      - [0x192E50]
+      - { start: 0x192E58, type: palette, name: s1_tex5, size: 0x18 }
+      - [0x192E70]
+      - { start: 0x192E78, type: ci4, name: s1_tex5, flip_y: true, width: 32, height: 64 }
+      - [0x193278]
+      - { start: 0x193280, type: palette, name: s1_tex6, size: 0x20 }
+      - [0x1932A0]
+      - { start: 0x1932A8, type: ci4, name: s1_tex6, flip_y: true, width: 32, height: 32 }
+      - [0x1934A8]
+      - { start: 0x1934B0, type: palette, name: s1_tex7, size: 0x20 }
+      - [0x1934D0]
+      - { start: 0x1934D8, type: ci4, name: s1_tex7, flip_y: true, width: 32, height: 32 }
+      - [0x1936D8]
+      - { start: 0x1936E0, type: palette, name: s1_tex8, size: 0x20 }
+      - [0x193700]
+      - { start: 0x193708, type: ci4, name: s1_tex8, flip_y: true, width: 32, height: 64 }
+      - [0x193B08]
+      - { start: 0x193B10, type: palette, name: s1_tex9, size: 0x20 }
+      - [0x193B30]
+      - { start: 0x193B38, type: ci4, name: s1_tex9, flip_y: true, width: 32, height: 64 }
+    - start: 0x193F40
+      type: .data
+      name: textures_2
+      subsegments:
+      - [0x193F40]
+      - { start: 0x193F40, type: rgba16, name: s2_tex0, flip_y: true, width: 32, height: 32 }
+      - [0x194740]
+      - { start: 0x194748, type: palette, name: s2_tex1, size: 0x20 }
+      - [0x194768]
+      - { start: 0x194770, type: ci4, name: s2_tex1, flip_y: true, width: 64, height: 64 }
+      - [0x194F70]
+      - { start: 0x194F78, type: palette, name: s2_tex2, size: 0x20 }
+      - [0x194F98]
+      - { start: 0x194FA0, type: ci4, name: s2_tex2, flip_y: true, width: 64, height: 64 }
+      - [0x1957A0]
+      - { start: 0x1957A8, type: palette, name: s2_tex3, size: 0x20 }
+      - [0x1957C8]
+      - { start: 0x1957D0, type: ci4, name: s2_tex3, flip_y: true, width: 64, height: 64 }
+      - [0x195FD0]
+      - { start: 0x195FD8, type: palette, name: s2_tex4, size: 0x20 }
+      - [0x195FF8]
+      - { start: 0x196000, type: ci4, name: s2_tex4, flip_y: true, width: 64, height: 64 }
+      - [0x196800]
+      - { start: 0x196808, type: palette, name: s2_tex5, size: 0x20 }
+      - [0x196828]
+      - { start: 0x196830, type: ci4, name: s2_tex5, flip_y: true, width: 64, height: 64 }
+      - [0x197030]
+      - { start: 0x197038, type: palette, name: s2_tex6, size: 0x20 }
+      - [0x197058]
+      - { start: 0x197060, type: ci4, name: s2_tex6, flip_y: true, width: 64, height: 64 }
+      - [0x197860]
+      - { start: 0x197868, type: palette, name: s2_tex7, size: 0x20 }
+      - [0x197888]
+      - { start: 0x197890, type: ci4, name: s2_tex7, flip_y: true, width: 32, height: 64 }
+      - [0x197C90]
+      - { start: 0x197C98, type: palette, name: s2_tex8, size: 0x20 }
+      - [0x197CB8]
+      - { start: 0x197CC0, type: ci4, name: s2_tex8, flip_y: true, width: 32, height: 64 }
+      - [0x1980C0]
+      - { start: 0x1980C8, type: palette, name: s2_tex9, size: 0x20 }
+      - [0x1980E8]
+      - { start: 0x1980F0, type: ci4, name: s2_tex9, flip_y: true, width: 32, height: 64 }
+      - [0x1984F0]
+      - { start: 0x1984F8, type: palette, name: s2_tex10, size: 0x20 }
+      - [0x198518]
+      - { start: 0x198520, type: ci4, name: s2_tex10, flip_y: true, width: 32, height: 64 }
+      - [0x198920]
+      - { start: 0x198928, type: palette, name: s2_tex11, size: 0x20 }
+      - [0x198948]
+      - { start: 0x198950, type: ci4, name: s2_tex11, flip_y: true, width: 32, height: 64 }
+      - [0x198D50]
+      - { start: 0x198D58, type: palette, name: s2_tex12, size: 0x20 }
+      - [0x198D78]
+      - { start: 0x198D80, type: ci4, name: s2_tex12, flip_y: true, width: 32, height: 64 }
+      - [0x199180]
+      - { start: 0x199188, type: palette, name: s2_tex13, size: 0x20 }
+      - [0x1991A8]
+      - { start: 0x1991B0, type: ci4, name: s2_tex13, flip_y: true, width: 32, height: 64 }
+      - [0x1995B0]
+      - { start: 0x1995B8, type: palette, name: s2_tex14, size: 0x20 }
+      - [0x1995D8]
+      - { start: 0x1995E0, type: ci4, name: s2_tex14, flip_y: true, width: 32, height: 64 }
+      - [0x1999E0]
+      - { start: 0x1999E8, type: palette, name: s2_tex15, size: 0x18 }
+      - [0x199A00]
+      - { start: 0x199A08, type: ci4, name: s2_tex15, flip_y: true, width: 32, height: 64 }
+      - [0x199E08]
+      - { start: 0x199E10, type: palette, name: s2_tex16, size: 0x20 }
+      - [0x199E30]
+      - { start: 0x199E38, type: ci4, name: s2_tex16, flip_y: true, width: 64, height: 64 }
+      - [0x19A638]
+      - { start: 0x19A640, type: palette, name: s2_tex17, size: 0x10 }
+      - [0x19A650]
+      - { start: 0x19A658, type: ci4, name: s2_tex17, flip_y: true, width: 64, height: 64 }
+      - [0x19AE58]
+      - { start: 0x19AE60, type: palette, name: s2_tex18, size: 0x20 }
+      - [0x19AE80]
+      - { start: 0x19AE88, type: ci4, name: s2_tex18, flip_y: true, width: 32, height: 64 }
+      - [0x19B288]
+      - { start: 0x19B290, type: palette, name: s2_tex19, size: 0x20 }
+      - [0x19B2B0]
+      - { start: 0x19B2B8, type: ci4, name: s2_tex19, flip_y: true, width: 32, height: 64 }
+      - [0x19B6B8]
+      - { start: 0x19B6C0, type: palette, name: s2_tex20, size: 0x18 }
+      - [0x19B6D8]
+      - { start: 0x19B6E0, type: ci4, name: s2_tex20, flip_y: true, width: 64, height: 64 }
+      - [0x19BEE0]
+      - { start: 0x19BEE8, type: palette, name: s2_tex21, size: 0x20 }
+      - [0x19BF08]
+      - { start: 0x19BF10, type: ci4, name: s2_tex21, flip_y: true, width: 64, height: 64 }
+      - [0x19C710]
+      - { start: 0x19C718, type: rgba16, name: s2_tex22, flip_y: true, width: 64, height: 32 }
+      - [0x19D718]
+      - { start: 0x19D720, type: rgba16, name: s2_tex23, flip_y: true, width: 64, height: 32 }
+      - [0x19E720]
+      - { start: 0x19E728, type: palette, name: s2_tex24, size: 0x20 }
+      - [0x19E748]
+      - { start: 0x19E750, type: ci4, name: s2_tex24, flip_y: true, width: 64, height: 64 }
+      - [0x19EF50]
+      - { start: 0x19EF58, type: rgba16, name: s2_tex25, flip_y: true, width: 32, height: 32 }
+    - start: 0x19F760
+      type: .data
+      dir: kakuna
+      name: kakuna/textures
+      subsegments:
+      - [0x19F760]
+      - { start: 0x19F768, type: palette, name: tex0, size: 0x20 }
+      - [0x19F788]
+      - { start: 0x19F790, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x19F990]
+      - { start: 0x19F998, type: palette, name: tex1, size: 0x20 }
+      - [0x19F9B8]
+      - { start: 0x19F9C0, type: ci4, name: tex1, flip_y: true, width: 32, height: 32 }
+      - [0x19FBC0]
+      - { start: 0x19FBC8, type: palette, name: tex3, size: 0x8 }
+      - [0x19FBD0]
+      - { start: 0x19FBD8, type: palette, name: tex2, size: 0x8 }
+      - [0x19FBE0]
+      - { start: 0x19FBE8, type: ci4, name: tex2, flip_y: true, width: 32, height: 32 }
+      - [0x19FDE8]
+      - { start: 0x19FDF0, type: ci4, name: tex3, flip_y: true, width: 32, height: 32, }
+      - [0x19FFF0]
+      - { start: 0x19FFF8, type: palette, name: tex4, size: 0x10 }
+      - [0x1A0008]
+      - { start: 0x1A0010, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x1A0210]
+      - { start: 0x1A0218, type: rgba16, name: tex5, flip_y: true, width: 4, height: 128 }
+    - start: 0x1A0620
+      type: .data
+      dir: kakuna/anim/model/
+      name: kakuna/anim/model/anim_0
+      subsegments:
+      - [0x1A0620, snap_model_anim, anim_0]
+    - start: 0x1A0C40
+      type: .data
+      dir: kakuna/anim/model/
+      name: kakuna/anim/model/anim_1
+      subsegments:
+      - [0x1A0C40, snap_model_anim, anim_1]
+    - start: 0x1A0FA0
+      type: .data
+      dir: kakuna/anim/material/
+      name: kakuna/anim/material/anim_0
+      subsegments:
+      - [0x1A0FA0, snap_material_anim, anim_0]
+    - start: 0x1A1050
+      type: .data
+      dir: kakuna/anim/material/
+      name: kakuna/anim/material/anim_1
+      subsegments:
+      - [0x1A1050, snap_material_anim, anim_1]
     - start: 0x1A1100
       type: .data
       dir: magnemite
@@ -2592,7 +2865,12 @@ segments:
       name: magnemite/anim/material/pulse
       subsegments:
       - [0x1A63C0, snap_material_anim, pulse]
-    - [0x1A6630, bin]
+    - start: 0x1A6630
+      type: .data
+      dir: unk/anim/material/
+      name: unk/anim/material/anim_0
+      subsegments:
+      - [0x1A6630, snap_material_anim, anim_0]
     - start: 0x1A6750
       type: .data
       dir: diglett
@@ -2743,9 +3021,175 @@ segments:
       name: dugtrio/anim/model/unburrow
       subsegments:
       - [0x1AD380, snap_model_anim, unburrow]
-
-    - [0x1ADCB0, bin, electabuzz/textures]
-
+    - start: 0x1ADCB0
+      type: .data
+      dir: electabuzz
+      name: electabuzz/textures
+      subsegments:
+      - [0x1ADCB0]
+      - { start: 0x1ADCB8, type: i4, name: tex0, flip_y: true, width: 128, height: 32 }
+      - [0x1AE4B8]
+      - { start: 0x1AE4C0, type: i4, name: tex1, flip_y: true, width: 128, height: 32 }
+      - [0x1AECC0]
+      - { start: 0x1AECC8, type: i4, name: tex2, flip_y: true, width: 128, height: 32 }
+      - [0x1AF4C8]
+      - { start: 0x1AF4D0, type: i4, name: tex3, flip_y: true, width: 128, height: 32 }
+      - [0x1AFCD0]
+      - { start: 0x1AFCD8, type: i4, name: tex4, flip_y: true, width: 128, height: 32 }
+      - [0x1B04D8]
+      - { start: 0x1B04E0, type: palette, name: tex5, size: 0x20 }
+      - [0x1B0500]
+      - { start: 0x1B0508, type: ci4, name: tex5, flip_y: true, width: 64, height: 32 }
+      - [0x1B0908]
+      - { start: 0x1B0910, type: palette, name: tex6, size: 0x8 }
+      - [0x1B0918]
+      - { start: 0x1B0920, type: ci4, name: tex6, flip_y: true, width: 16, height: 4 }
+      - [0x1B0940]
+      - { start: 0x1B0948, type: palette, name: tex7, size: 0x20 }
+      - [0x1B0968]
+      - { start: 0x1B0970, type: ci4, name: tex7, flip_y: true, width: 64, height: 64 }
+      - [0x1B1170]
+      - { start: 0x1B1178, type: palette, name: tex8, size: 0x20 }
+      - [0x1B1198]
+      - { start: 0x1B11A0, type: ci4, name: tex8, flip_y: true, width: 64, height: 64 }
+      - [0x1B19A0]
+      - { start: 0x1B19A8, type: palette, name: tex9, size: 0x20 }
+      - [0x1B19C8]
+      - { start: 0x1B19D0, type: ci4, name: tex9, flip_y: true, width: 64, height: 32 }
+      - [0x1B1DD0]
+      - { start: 0x1B1DD8, type: palette, name: tex10, size: 0x20 }
+      - [0x1B1DF8]
+      - { start: 0x1B1E00, type: ci4, name: tex10, flip_y: true, width: 64, height: 64 }
+      - [0x1B2600]
+      - { start: 0x1B2608, type: palette, name: tex11, size: 0x20 }
+      - [0x1B2628]
+      - { start: 0x1B2630, type: ci4, name: tex11, flip_y: true, width: 64, height: 64 }
+      - [0x1B2E30]
+      - { start: 0x1B2E38, type: palette, name: tex12, size: 0x20 }
+      - [0x1B2E58]
+      - { start: 0x1B2E60, type: ci4, name: tex12, flip_y: true, width: 64, height: 64 }
+      - [0x1B3660]
+      - { start: 0x1B3668, type: palette, name: tex13, size: 0x20 }
+      - [0x1B3688]
+      - { start: 0x1B3690, type: ci4, name: tex13, flip_y: true, width: 64, height: 64 }
+      - [0x1B3E90]
+      - { start: 0x1B3E98, type: palette, name: tex14, size: 0x8 }
+      - [0x1B3EA0]
+      - { start: 0x1B3EA8, type: ci4, name: tex14, flip_y: true, width: 16, height: 4 }
+      - [0x1B3EC8]
+      - { start: 0x1B3ED0, type: palette, name: tex15, size: 0x20 }
+      - [0x1B3EF0]
+      - { start: 0x1B3EF8, type: ci4, name: tex15, flip_y: true, width: 32, height: 16 }
+      - [0x1B3FF8]
+      - { start: 0x1B4000, type: palette, name: tex16, size: 0x20 }
+      - [0x1B4020]
+      - { start: 0x1B4028, type: ci4, name: tex16, flip_y: true, width: 32, height: 16 }
+      - [0x1B4128]
+      - { start: 0x1B4130, type: palette, name: tex17, size: 0x20 }
+      - [0x1B4150]
+      - { start: 0x1B4158, type: ci4, name: tex17, flip_y: true, width: 32, height: 16 }
+      - [0x1B4258]
+      - { start: 0x1B4260, type: palette, name: tex18, size: 0x20 }
+      - [0x1B4280]
+      - { start: 0x1B4288, type: ci4, name: tex18, flip_y: true, width: 32, height: 16 }
+      - [0x1B4388]
+      - { start: 0x1B4390, type: palette, name: tex19, size: 0x8 }
+      - [0x1B4398]
+      - { start: 0x1B43A0, type: ci4, name: tex19, flip_y: true, width: 16, height: 10 }
+      - [0x1B43F0]
+      - { start: 0x1B43F8, type: palette, name: tex20, size: 0x20 }
+      - [0x1B4418]
+      - { start: 0x1B4420, type: ci4, name: tex20, flip_y: true, width: 64, height: 64 }
+    - start: 0x1B4C20
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_0
+      subsegments:
+      - [0x1B4C20, snap_model_anim, anim_0]
+    - start: 0x1B54B0
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_1
+      subsegments:
+      - [0x1B54B0, snap_model_anim, anim_1]
+    - start: 0x1B5E50
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_2
+      subsegments:
+      - [0x1B5E50, snap_model_anim, anim_2]
+    - start: 0x1B68A0
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_3
+      subsegments:
+      - [0x1B68A0, snap_model_anim, anim_3]
+    - start: 0x1B7680
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_4
+      subsegments:
+      - [0x1B7680, snap_model_anim, anim_4]
+    - start: 0x1B9100
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_5
+      subsegments:
+      - [0x1B9100, snap_model_anim, anim_5]
+    - start: 0x1BA430
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_6
+      subsegments:
+      - [0x1BA430, snap_model_anim, anim_6]
+    - start: 0x1BB7F0
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_7
+      subsegments:
+      - [0x1BB7F0, snap_model_anim, anim_7]
+    - start: 0x1BC960
+      type: .data
+      dir: electabuzz/anim/model/
+      name: electabuzz/anim/model/anim_8
+      subsegments:
+      - [0x1BC960, snap_model_anim, anim_8]
+    - start: 0x1BD870
+      type: .data
+      dir: electabuzz/anim/material/
+      name: electabuzz/anim/material/anim_0
+      subsegments:
+      - [0x1BD870, snap_material_anim, anim_0]
+    - start: 0x1BD8F0
+      type: .data
+      dir: electabuzz/anim/material/
+      name: electabuzz/anim/material/anim_1
+      subsegments:
+      - [0x1BD8F0, snap_material_anim, anim_1]
+    - start: 0x1BD9F0
+      type: .data
+      dir: electabuzz/anim/material/
+      name: electabuzz/anim/material/anim_2
+      subsegments:
+      - [0x1BD9F0, snap_material_anim, anim_2]
+    - start: 0x1BDB80
+      type: .data
+      dir: electabuzz/anim/material/
+      name: electabuzz/anim/material/anim_3
+      subsegments:
+      - [0x1BDB80, snap_material_anim, anim_3]
+    - start: 0x1BDC20
+      type: .data
+      dir: electabuzz/anim/material/
+      name: electabuzz/anim/material/anim_4
+      subsegments:
+      - [0x1BDC20, snap_material_anim, anim_4]
+    - start: 0x1BDCB0
+      type: .data
+      dir: haunter/anim/model/
+      name: haunter/anim/model/anim_0
+      subsegments:
+      - [0x1BDCB0, snap_model_anim, anim_0]
     - start: 0x1BF8F0
       type: .data
       dir: electrode
@@ -2880,9 +3324,125 @@ segments:
       name: magneton/anim/animation
       subsegments:
       - [0x1C80A0, snap_model_anim, animation]
-
-    - [0x1C8AC0, bin, zapdos/textures]
-
+    - start: 0x1C8AC0
+      type: .data
+      dir: zapdos
+      name: zapdos/textures
+      subsegments:
+      - [0x1C8AC0]
+      - { start: 0x1C8AC8, type: palette, name: tex0, size: 0x20 }
+      - [0x1C8AE8]
+      - { start: 0x1C8AF0, type: ci4, name: tex0, flip_y: true, width: 32, height: 32 }
+      - [0x1C8CF0]
+      - { start: 0x1C8CF8, type: palette, name: tex1, size: 0x20 }
+      - [0x1C8D18]
+      - { start: 0x1C8D20, type: ci4, name: tex1, flip_y: true, width: 32, height: 64 }
+      - [0x1C9120]
+      - { start: 0x1C9128, type: palette, name: tex2, size: 0x20 }
+      - [0x1C9148]
+      - { start: 0x1C9150, type: ci4, name: tex2, flip_y: true, width: 32, height: 64 }
+      - [0x1C9550]
+      - { start: 0x1C9558, type: palette, name: tex3, size: 0x20 }
+      - [0x1C9578]
+      - { start: 0x1C9580, type: ci4, name: tex3, flip_y: true, width: 32, height: 32 }
+      - [0x1C9780]
+      - { start: 0x1C9788, type: palette, name: tex4, size: 0x20 }
+      - [0x1C97A8]
+      - { start: 0x1C97B0, type: ci4, name: tex4, flip_y: true, width: 32, height: 32 }
+      - [0x1C99B0]
+      - { start: 0x1C99B8, type: palette, name: tex5, size: 0x20 }
+      - [0x1C99D8]
+      - { start: 0x1C99E0, type: ci4, name: tex5, flip_y: true, width: 32, height: 32 }
+      - [0x1C9BE0]
+      - { start: 0x1C9BE8, type: palette, name: tex6, size: 0x20 }
+      - [0x1C9C08]
+      - { start: 0x1C9C10, type: ci4, name: tex6, flip_y: true, width: 32, height: 32 }
+      - [0x1C9E10]
+      - { start: 0x1C9E18, type: palette, name: tex7, size: 0x20 }
+      - [0x1C9E38]
+      - { start: 0x1C9E40, type: ci4, name: tex7, flip_y: true, width: 32, height: 32 }
+    - start: 0x1CA040
+      type: .data
+      dir: zapdos/anim/model/
+      name: zapdos/anim/model/anim_0
+      subsegments:
+      - [0x1CA040, snap_model_anim, anim_0]
+    - start: 0x1CAA80
+      type: .data
+      dir: zapdos/anim/model/
+      name: zapdos/anim/model/anim_1
+      subsegments:
+      - [0x1CAA80, snap_model_anim, anim_1]
+    - start: 0x1CBFD0
+      type: .data
+      dir: zapdos/anim/model/
+      name: zapdos/anim/model/anim_2
+      subsegments:
+      - [0x1CBFD0, snap_model_anim, anim_2]
+    - start: 0x1CC690
+      type: .data
+      dir: zapdos/anim/model/
+      name: zapdos/anim/model/anim_3
+      subsegments:
+      - [0x1CC690, snap_model_anim, anim_3]
+    - start: 0x1CCF80
+      type: .data
+      dir: zapdos/anim/material/
+      name: zapdos/anim/material/anim_0
+      subsegments:
+      - [0x1CCF80, snap_material_anim, anim_0]
+    - start: 0x1CD000
+      type: .data
+      dir: zapdos/anim/material/
+      name: zapdos/anim/material/anim_1
+      subsegments:
+      - [0x1CD000, snap_material_anim, anim_1]
+    - start: 0x1CD090
+      type: .data
+      dir: zapdos/anim/material/
+      name: zapdos/anim/material/anim_2
+      subsegments:
+      - [0x1CD090, snap_material_anim, anim_2]
+    - start: 0x1CD100
+      type: .data
+      dir: zapdos/anim/material/
+      name: zapdos/anim/material/anim_3
+      subsegments:
+      - [0x1CD100, snap_material_anim, anim_3]
+    - start: 0x1CD170
+      type: .data
+      dir: zapdos_egg
+      name: zapdos_egg/textures
+      subsegments:
+      - [0x1CD170]
+      - { start: 0x1CD178, type: ia8, name: tex0, flip_y: true, width: 64, height: 64 }
+      - [0x1CE178]
+      - { start: 0x1CE180, type: i4, name: tex1, flip_y: true, width: 64, height: 64 }
+    - start: 0x1CE980
+      type: .data
+      dir: zapdos_egg/anim/model/
+      name: zapdos_egg/anim/model/anim_0
+      subsegments:
+      - [0x1CE980, snap_model_anim, anim_0]
+    - start: 0x1CEAA0
+      type: .data
+      dir: zapdos_egg/anim/model/
+      name: zapdos_egg/anim/model/anim_1
+      subsegments:
+      - [0x1CEAA0, snap_model_anim, anim_1]
+    - start: 0x1CEC50
+      type: .data
+      dir: zapdos_egg/anim/model/
+      name: zapdos_egg/anim/model/anim_2
+      subsegments:
+      - [0x1CEC50, snap_model_anim, anim_2]
+    - start: 0x1CEE10
+      type: .data
+      dir: zapdos_egg/anim/model/
+      name: zapdos_egg/anim/model/anim_3
+      subsegments:
+      - [0x1CEE10, snap_model_anim, anim_3]
+    - [0x1CEE60, databin]
     - { start: auto, name: world/world, type: .bss, vram: 0x8018BC30 }
   - type: code
     name: tunnel_extra

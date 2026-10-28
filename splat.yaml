@@ -10553,10 +10553,9 @@ segments:
   - [0xAFEED8, bin, AFEED8] # padding
 
   # Audio banks and wave tables
-  - [0xAFEEE0, bin, audio/bank1]
-  - [0xB04430, bin, audio/table1]
-  - [0xBA6C20, bin, audio/bank2]
-  - [0xBB6940, bin, audio/table2]
+  - { start: 0xAFEEE0, type: snap_audio_bank, name: audio/bank1, audio_table_start: 0xB04430, audio_table_end: 0xBA6C20 }
+  - { start: 0xB04430, type: snap_audio_table, name: audio/table1, audio_bank_start: 0xAFEEE0, audio_bank_name: bank1 }
+  - { start: 0xBA6C20, type: snap_audio_bank, name: audio/bank2, audio_table_start: 0xBB6940, audio_table_end: 0xF53540 }
+  - { start: 0xBB6940, type: snap_audio_table, name: audio/table2, audio_bank_start: 0xBA6C20, audio_bank_name: bank2 }
 
-  - [0xF53540, bin, padding]
-  - [0x1000000]
+  - [0xF53540]

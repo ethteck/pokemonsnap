@@ -1,12 +1,12 @@
 #include "common.h"
 
-extern Sprite D_80388E00_529210;
-extern UNK_TYPE D_80388F58_529368;
-extern Sprite D_80388F60_529370;
-extern UNK_TYPE D_803890B8_5294C8;
-extern Sprite D_803890C0_5294D0;
-extern UNK_TYPE D_80389218_529628;
-extern Sprite D_80389220_529630;
+extern Sprite level_hud_film_strip_sprite;
+extern Bitmap level_hud_film_ones_bitmaps[];
+extern Sprite level_hud_film_ones_sprite;
+extern Bitmap level_hud_film_tens_bitmaps[];
+extern Sprite level_hud_film_tens_sprite;
+extern Bitmap level_hud_film_hundreds_bitmaps[];
+extern Sprite level_hud_film_hundreds_sprite;
 extern s32 D_8038A024_52A434;
 extern s32 D_8038A028_52A438;
 extern s32 D_8038A02C_52A43C;
@@ -14,19 +14,22 @@ extern s32 D_8038A030_52A440;
 extern UNK_TYPE D_8038A034_52A444[];
 
 // .bss
-u8 D_803AF8E0_54FCF0[0x250];
-u8 D_803AFB30_54FF40[0x120];
-u8 D_803AFC50_550060[0x120];
-u8 D_803AFD70_550180[0x120];
-u8 D_803AFE90_5502A0[0x240];
-u8 D_803B00D0_5504E0[0x120];
-u8 D_803B01F0_550600[0x120];
-u8 D_803B0310_550720[0x120];
-u8 D_803B0430_550840[0x120];
-u8 D_803B0550_550960[0x120];
-u8 D_803B0670_550A80[0x120];
-u8 D_803B0790_550BA0[0x120];
-u8 D_803B08B0_550CC0[0x128];
+u8 D_803AF8E0_54FCF0[0x10];
+Gfx level_hud_film_strip_dl[0x240 / sizeof(Gfx)];
+Gfx level_hud_film_ones_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_tens_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_hundreds_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_0_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_1_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_2_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_3_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_4_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_5_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_6_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_7_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_8_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_film_9_dl[0x120 / sizeof(Gfx)];
+u8 D_803B09D0_550DE0[0x8];
 GObj* D_803B09D8_550DE8;
 u32 D_803B09DC_550DEC;
 u8 D_803B09E0_550DF0[0x30];
@@ -54,17 +57,17 @@ void func_8035E37C_4FE78C(void) {
     omLinkGObjDL(obj, renDrawSprite, DL_LINK_1, 0x80000000, -1);
     D_803B09D8_550DE8 = obj;
 
-    sobj = omGObjAddSprite(obj, &D_80388E00_529210);
+    sobj = omGObjAddSprite(obj, &level_hud_film_strip_sprite);
     spMove(&sobj->sprite, 257, 22);
 
-    D_803B0A14_550E24 = sobj = omGObjAddSprite(obj, &D_80388F60_529370);
+    D_803B0A14_550E24 = sobj = omGObjAddSprite(obj, &level_hud_film_ones_sprite);
     spMove(&sobj->sprite, 286, 24);
 
-    D_803B0A18_550E28 = sobj = omGObjAddSprite(obj, &D_803890C0_5294D0);
+    D_803B0A18_550E28 = sobj = omGObjAddSprite(obj, &level_hud_film_tens_sprite);
     spMove(&sobj->sprite, 278, 24);
     spSetAttribute(&sobj->sprite, SP_HIDDEN);
 
-    D_803B0A1C_550E2C = sobj = omGObjAddSprite(obj, &D_80389220_529630);
+    D_803B0A1C_550E2C = sobj = omGObjAddSprite(obj, &level_hud_film_hundreds_sprite);
     spMove(&sobj->sprite, 270, 24);
     spSetAttribute(&sobj->sprite, SP_HIDDEN);
 
@@ -90,20 +93,20 @@ s32 func_8035E52C_4FE93C(void) {
     tens = (value % 100) / 10;
     hundreds = value / 100;
 
-    D_80388F58_529368 = D_8038A034_52A444[ones];
+    level_hud_film_ones_bitmaps[0].buf = D_8038A034_52A444[ones];
 
     if (hundreds == 0) {
         if (tens == 0) {
             spSetAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         } else {
-            D_803890B8_5294C8 = D_8038A034_52A444[tens];
+            level_hud_film_tens_bitmaps[0].buf = D_8038A034_52A444[tens];
             spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
         }
         spSetAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     } else {
-        D_803890B8_5294C8 = D_8038A034_52A444[tens];
+        level_hud_film_tens_bitmaps[0].buf = D_8038A034_52A444[tens];
         spClearAttribute(&D_803B0A18_550E28->sprite, SP_HIDDEN);
-        D_80389218_529628 = D_8038A034_52A444[hundreds];
+        level_hud_film_hundreds_bitmaps[0].buf = D_8038A034_52A444[hundreds];
         spClearAttribute(&D_803B0A1C_550E2C->sprite, SP_HIDDEN);
     }
 

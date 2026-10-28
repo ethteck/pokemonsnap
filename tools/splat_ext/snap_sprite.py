@@ -1,4 +1,5 @@
 import math
+import sys
 from dataclasses import dataclass
 from enum import IntEnum, IntFlag
 from io import BytesIO
@@ -6,10 +7,12 @@ from pathlib import Path
 from struct import unpack
 
 import n64img.image
-import numpy
 import numpy as np
 from splat.segtypes.segment import Segment
 from splat.util import options
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from rgb2c import decode_rgba16_row  # noqa: E402
 
 
 class IM_FMT(IntEnum):
@@ -82,7 +85,7 @@ class SpriteHeader:
     alpha: int
     startTLUT: int
     nTLUT: int
-    LUT: int  # list[int]
+    LUT: int
     istart: int
     istep: int
     nbitmaps: int
@@ -91,9 +94,9 @@ class SpriteHeader:
     bmHreal: int
     bmfmt: IM_FMT
     bmsiz: IM_SIZ
-    bitmap: int  # bitmap
-    rsp_dl: int  # gfx
-    rsp_dl_next: int  # gfx
+    bitmap: int
+    rsp_dl: int
+    rsp_dl_next: int
     frac_s: int
     frac_t: int
 
@@ -142,14 +145,10 @@ class N64SegSnap_sprite(Segment):
             isinstance(yaml, dict) and "header_rom" in yaml
         ), f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
         self.header_rom: int = yaml["header_rom"]
-        self.override_name = yaml.get("name") if isinstance(yaml, dict) else None
+        self.override_name = yaml.get("name")
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.png"
-
-    def padding_out_path(self) -> Path:
-        path = self.out_path()
-        return path.with_name(f"{path.stem}.padding.png")
 
     def _resolve_rom(self, vram_addr: int) -> int | None:
         """Convert VRAM to ROM, falling back to the top-level parent segment."""
@@ -250,27 +249,7 @@ class N64SegSnap_sprite(Segment):
             )
             sym.given_name = f"{self.name}_bm{row}_{col}"
 
-        # Render the sprite to PNG plus a companion image containing clipped padding texels.
-        canvas = bytearray(header.width * header.height * png_bpp)
-        canvas = np.array(canvas).reshape(header.height, header.width, png_bpp)
-
-        padding_row_width = 0
-        current_row_width = 0
-        current_padding_width = 0
-        for bitmap in bitmaps:
-            current_row_width += bitmap.width
-            current_padding_width += max(bitmap.width_img - bitmap.width, 0)
-            if current_row_width >= header.width:
-                padding_row_width = max(padding_row_width, current_padding_width)
-                current_row_width = 0
-                current_padding_width = 0
-        padding_row_width = max(padding_row_width, current_padding_width)
-        padding_row_width = max(padding_row_width, 1)
-
-        padding_canvas = bytearray(padding_row_width * header.height * png_bpp)
-        padding_canvas = np.array(padding_canvas).reshape(
-            header.height, padding_row_width, png_bpp
-        )
+        canvas = np.zeros((header.height, header.width, png_bpp), dtype=np.uint8)
 
         palette = None
         if header.LUT:
@@ -297,78 +276,78 @@ class N64SegSnap_sprite(Segment):
 
         canvas_y = 0
         canvas_x = 0
-        padding_x = 0
         for bitmap in bitmaps:
             buf_rom = self._resolve_rom(bitmap.buf)
             assert buf_rom is not None
             buf_size = bitmap.width_img * bitmap.actual_height * input_bpp
             input_bytes = rom_bytes[buf_rom : buf_rom + buf_size]
 
-            tile = img_class(input_bytes, bitmap.width_img, bitmap.actual_height)
-            if palette:
-                tile.set_palette(palette, "big")
-
-            pixels = tile.parse()
-            pixels = np.array(bytearray(pixels)).reshape(
-                bitmap.actual_height, bitmap.width_img, png_bpp
-            )
-
-            # un-swap the odd rows (reverse word-swap for TMEM interleaving)
-            if input_bpp >= 2:
-                for y in range(len(pixels)):
-                    if y % 2 == 1:
-                        for x in range(0, len(pixels[0]), 4):
-                            temp = numpy.copy(pixels[y][x : x + 4])
-                            pixels[y][x] = temp[2]
-                            pixels[y][x + 1] = temp[3]
-                            pixels[y][x + 2] = temp[0]
-                            pixels[y][x + 3] = temp[1]
-            elif input_bpp == 1:
-                for y in range(len(pixels)):
-                    if y % 2 == 1:
-                        for x in range(0, len(pixels[0]), 8):
-                            temp = numpy.copy(pixels[y][x : x + 8])
-                            pixels[y][x + 0] = temp[4]
-                            pixels[y][x + 1] = temp[5]
-                            pixels[y][x + 2] = temp[6]
-                            pixels[y][x + 3] = temp[7]
-                            pixels[y][x + 4] = temp[0]
-                            pixels[y][x + 5] = temp[1]
-                            pixels[y][x + 6] = temp[2]
-                            pixels[y][x + 7] = temp[3]
+            if format_name == "rgba16":
+                pixels = self._decode_rgba16_tile(input_bytes, bitmap)
+            else:
+                pixels = self._decode_tile(
+                    input_bytes, bitmap, img_class, palette, png_bpp, input_bpp
+                )
 
             canvas[
                 canvas_y : canvas_y + bitmap.actual_height,
                 canvas_x : canvas_x + bitmap.width,
             ] = pixels[0 : bitmap.actual_height, 0 : bitmap.width]
 
-            pad_width = max(bitmap.width_img - bitmap.width, 0)
-            if pad_width > 0:
-                padding_canvas[
-                    canvas_y : canvas_y + bitmap.actual_height,
-                    padding_x : padding_x + pad_width,
-                ] = pixels[
-                    0 : bitmap.actual_height,
-                    bitmap.width : bitmap.width_img,
-                ]
-                padding_x += pad_width
-
             canvas_x += bitmap.width
             if canvas_x >= header.width:
                 canvas_x = 0
-                padding_x = 0
                 canvas_y += bitmap.actual_height
 
         canvas_img = img_class(bytearray(), header.width, header.height)
-        padding_img = img_class(bytearray(), padding_row_width, header.height)
         if palette:
             canvas_img.set_palette(palette)
-            padding_img.set_palette(palette)
 
         path = self.out_path()
-        padding_path = self.padding_out_path()
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
             canvas_img.get_writer().write_array(f, canvas.tobytes())
-        with open(padding_path, "wb") as f:
-            padding_img.get_writer().write_array(f, padding_canvas.tobytes())
+
+    def _decode_rgba16_tile(self, input_bytes: bytes, bitmap: Bitmap):
+        """Recover 8-bit pixels that rgb2c turns back into these exact texels,
+        padding and dither included."""
+        w, W = bitmap.width, bitmap.width_img
+        texels = unpack(f">{W * bitmap.actual_height}H", input_bytes)
+        pixels = np.zeros((bitmap.actual_height, W, 4), dtype=np.uint8)
+        for y in range(bitmap.actual_height):
+            row = list(texels[y * W : (y + 1) * W])
+            try:
+                decoded = decode_rgba16_row(row, w, 2 if y % 2 else 0)
+            except ValueError as e:
+                raise ValueError(f"{self.name}: tile row {y}: {e}") from e
+            pixels[y, :w] = decoded
+        return pixels
+
+    def _decode_tile(self, input_bytes, bitmap, img_class, palette, png_bpp, input_bpp):
+        """Decode a dither-free tile and check its padding repeats the last
+        texel of each row, as rgb2c generates it."""
+        tile = img_class(input_bytes, bitmap.width_img, bitmap.actual_height)
+        if palette:
+            tile.set_palette(palette, "big")
+
+        pixels = tile.parse()
+        pixels = np.array(bytearray(pixels)).reshape(
+            bitmap.actual_height, bitmap.width_img, png_bpp
+        )
+
+        # un-swap the odd rows (reverse word-swap for TMEM interleaving)
+        group = 4 if input_bpp >= 2 else 8
+        half = group // 2
+        for y in range(1, len(pixels), 2):
+            for x in range(0, len(pixels[0]), group):
+                temp = np.copy(pixels[y][x : x + group])
+                pixels[y][x : x + half] = temp[half:]
+                pixels[y][x + half : x + group] = temp[:half]
+
+        w = bitmap.width
+        for y, row in enumerate(pixels):
+            if not (row[w:] == row[w - 1]).all():
+                raise ValueError(
+                    f"{self.name}: padding of tile row {y} does not repeat the last pixel"
+                )
+        return pixels

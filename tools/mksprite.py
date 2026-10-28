@@ -4,11 +4,14 @@ mksprite - Convert a PNG image into an N64 Sprite .inc.h file.
 
 Usage:
     mksprite.py <input.png> -f <format> --tile-width <W> --tile-height <H>
-                --padding <input.padding.png> --aligner <df|zero>
-                --name <sprite_name> --dl <dl_name> -o <output.inc.h>
+                --aligner <df|zero> --name <sprite_name> [--dl] -o <output.inc.h>
+
+Tiles are converted like the SDK's mksprite scripts (subimg + rgb2c -F -S 2):
+each tile row is padded by repeating its last pixel, RGBA16 is dithered by
+tools/rgb2c.py, and the other formats are packed by pigment64.
 
 Produces a single .inc.h file containing:
-  - Pixel data arrays for each tile (via pigment64 --c-array --word-swap)
+  - Pixel data arrays for each tile
   - Palette data (for CI formats)
   - Bitmap struct array
   - Display list declaration
@@ -24,6 +27,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import png
+
+from rgb2c import encode_rgba16_row
 
 FORMAT_INFO = {
     "rgba16": {
@@ -59,8 +64,19 @@ FORMAT_INFO = {
 }
 
 
-def crop_png(src_path: Path, dst_path: Path, x: int, y: int, w: int, h: int):
-    """Crop a region from a PNG and write it to dst_path."""
+def crop_png(
+    src_path: Path,
+    dst_path: Path,
+    x: int,
+    y: int,
+    w: int,
+    h: int,
+    visible_w: int | None = None,
+):
+    """Crop a region from a PNG and write it to dst_path. Columns past
+    `visible_w` (or the image edge) repeat the last pixel, like rgb2c does."""
+    if visible_w is None:
+        visible_w = w
     reader = png.Reader(filename=str(src_path))
     img_w, img_h, rows, info = reader.read()
 
@@ -76,16 +92,14 @@ def crop_png(src_path: Path, dst_path: Path, x: int, y: int, w: int, h: int):
     for row_idx in range(y, min(y + h, img_h)):
         row = all_rows[row_idx]
         if palette:
-            row_data = list(row[x : x + w])
+            row_data = list(row[x : x + min(w, visible_w)])
             if len(row_data) < w:
-                # Pad with last pixel when past image edge
                 fill = row_data[-1] if row_data else 0
                 row_data.extend([fill] * (w - len(row_data)))
             cropped_rows.append(row_data)
         else:
-            row_data = list(row[x * planes : (x + w) * planes])
+            row_data = list(row[x * planes : (x + min(w, visible_w)) * planes])
             if len(row_data) < w * planes:
-                # Pad with last pixel when past image edge
                 last_pixel = (
                     row_data[-(planes):] if len(row_data) >= planes else [0] * planes
                 )
@@ -108,13 +122,6 @@ def crop_png(src_path: Path, dst_path: Path, x: int, y: int, w: int, h: int):
     writer = png.Writer(**writer_kwargs)
     with open(dst_path, "wb") as f:
         writer.write(f, cropped_rows)
-
-
-def read_png_size(src_path: Path) -> tuple[int, int]:
-    """Read a PNG's width and height."""
-    reader = png.Reader(filename=str(src_path))
-    img_w, img_h, _, _ = reader.read()
-    return img_w, img_h
 
 
 def _read_png_rgba_rows(png_path: Path) -> list[list[tuple[int, int, int, int]]]:
@@ -181,122 +188,13 @@ def _swap_rgba32_odd_rows(data: bytes, width: int) -> bytes:
 
 
 def _rgb2c_rgba16_tile(tile_png: Path, actual_w: int, padded_w: int) -> bytes:
-    """Recreate rgb2c's readtex+printdata path for RGBA16 with -S 2 padding."""
-    rgba_rows = _read_png_rgba_rows(tile_png)
+    """Convert an RGBA16 tile exactly like rgb2c -F -S 2 (dither, padding and
+    odd-row shuffle); see tools/rgb2c.py."""
     result = bytearray()
-
-    odd_line = False
-    for rgba_row in rgba_rows:
-        red = [pixel[0] for pixel in rgba_row[:actual_w]]
-        green = [pixel[1] for pixel in rgba_row[:actual_w]]
-        blue = [pixel[2] for pixel in rgba_row[:actual_w]]
-        alpha = [pixel[3] for pixel in rgba_row[:actual_w]]
-
-        while len(red) < padded_w:
-            red.append(red[-1])
-            green.append(green[-1])
-            blue.append(blue[-1])
-            alpha.append(alpha[-1])
-
-        shuffle_mask = 2 if odd_line else 0
-        red_prev = 0
-        green_prev = 0
-        blue_prev = 0
-        r_acc = 4
-        g_acc = 4
-        b_acc = 4
-
-        for x in range(padded_w):
-            src = shuffle_mask ^ x
-
-            if red[src] == red_prev:
-                r_acc = 4
-            if green[src] == green_prev:
-                g_acc = 4
-            if blue[src] == blue_prev:
-                b_acc = 4
-
-            r_acc = min((r_acc & 7) + red[src], 0xFF)
-            g_acc = min((g_acc & 7) + green[src], 0xFF)
-            b_acc = min((b_acc & 7) + blue[src], 0xFF)
-
-            red_prev = red[src]
-            green_prev = green[src]
-            blue_prev = blue[src]
-
-            texel = (
-                ((r_acc >> 3) << 11)
-                | ((g_acc >> 3) << 6)
-                | ((b_acc >> 3) << 1)
-                | (alpha[src] >> 7)
-            )
+    for y, rgba_row in enumerate(_read_png_rgba_rows(tile_png)):
+        for texel in encode_rgba16_row(rgba_row[:actual_w], padded_w, 2 if y % 2 else 0):
             result.extend(texel.to_bytes(2, "big"))
-
-        odd_line = not odd_line
-
     return bytes(result)
-
-
-def _concat_pngs_h(left_path: Path, right_path: Path, out_path: Path):
-    """Concatenate two PNGs of the same height horizontally."""
-    left_w, left_h, left_rows, left_info = png.Reader(filename=str(left_path)).read()
-    right_w, right_h, right_rows, right_info = png.Reader(
-        filename=str(right_path)
-    ).read()
-
-    if left_h != right_h:
-        raise ValueError(f"PNG height mismatch: {left_h} != {right_h}")
-    left_format = {k: v for k, v in left_info.items() if k != "size"}
-    right_format = {k: v for k, v in right_info.items() if k != "size"}
-    if left_format != right_format:
-        raise ValueError("PNG format mismatch while concatenating tile padding")
-
-    writer_kwargs = {
-        "width": left_w + right_w,
-        "height": left_h,
-        "bitdepth": left_info.get("bitdepth", 8),
-        "greyscale": left_info.get("greyscale", False),
-        "alpha": left_info.get("alpha", False),
-    }
-    palette = left_info.get("palette")
-    if palette:
-        writer_kwargs["palette"] = palette
-        writer_kwargs["greyscale"] = False
-        writer_kwargs["alpha"] = False
-
-    merged_rows = [
-        list(left_row) + list(right_row)
-        for left_row, right_row in zip(left_rows, right_rows)
-    ]
-    with open(out_path, "wb") as f:
-        png.Writer(**writer_kwargs).write(f, merged_rows)
-
-
-def _build_tile_from_padding_image(
-    tile_png: Path,
-    padding_png: Path,
-    fmt: str,
-    padded_w: int,
-    actual_h: int,
-    padding_x: int,
-    padding_y: int,
-    tmpdir: Path,
-) -> bytes:
-    """Build a tile using explicit padding texels extracted from snap_sprite."""
-    pad_w = padded_w - read_png_size(tile_png)[0]
-    merged_tile_png = tile_png
-    if pad_w > 0:
-        pad_tile_png = tmpdir / f"{tile_png.stem}.padding.png"
-        crop_png(padding_png, pad_tile_png, padding_x, padding_y, pad_w, actual_h)
-        merged_tile_png = tmpdir / f"{tile_png.stem}.merged.png"
-        _concat_pngs_h(tile_png, pad_tile_png, merged_tile_png)
-
-    tile_bin = tmpdir / f"{tile_png.stem}.bin"
-    pigment64_to_bin(merged_tile_png, fmt, tile_bin, word_swap=(fmt != "rgba32"))
-    data = tile_bin.read_bytes()
-    if fmt == "rgba32":
-        data = _swap_rgba32_odd_rows(data, padded_w)
-    return data
 
 
 def pigment64_to_bin(
@@ -320,20 +218,6 @@ def pigment64_to_bin(
 def pigment64_palette(png_path: Path, output_path: Path):
     """Extract palette from a CI PNG as raw binary."""
     pigment64_to_bin(png_path, "palette", output_path)
-
-
-def format_bin_as_u16_array(bin_path: Path) -> str:
-    """Format raw binary as a u16 C array."""
-    with open(bin_path, "rb") as f:
-        data = f.read()
-    words = []
-    for i in range(0, len(data), 2):
-        val = (data[i] << 8) | data[i + 1] if i + 1 < len(data) else data[i] << 8
-        words.append(f"0x{val:04X}")
-    lines = []
-    for i in range(0, len(words), 8):
-        lines.append("    " + ", ".join(words[i : i + 8]) + ",")
-    return "\n".join(lines)
 
 
 @dataclass
@@ -364,7 +248,6 @@ def build_sprite_tiles(
     fmt: str,
     tile_w: int,
     tile_h: int,
-    padding_png: Path | None = None,
 ) -> SpriteData:
     """Convert a PNG into structured sprite tile data."""
     fmt_info = FORMAT_INFO[fmt]
@@ -373,14 +256,6 @@ def build_sprite_tiles(
 
     reader = png.Reader(filename=str(input_png))
     img_w, img_h, _, _ = reader.read()
-
-    padding_img_w = padding_img_h = 0
-    if padding_png is not None:
-        padding_img_w, padding_img_h = read_png_size(padding_png)
-        if padding_img_h != img_h:
-            raise ValueError(
-                f"Padding image height mismatch: {padding_img_h} != {img_h}"
-            )
 
     cols = math.ceil(img_w / tile_w)
     rows = math.ceil(img_h / tile_h)
@@ -398,7 +273,6 @@ def build_sprite_tiles(
                 palette = f.read()
 
         for row in range(rows):
-            padding_x = 0
             for col in range(cols):
                 x = col * tile_w
                 y = row * tile_h
@@ -407,32 +281,17 @@ def build_sprite_tiles(
                 # Round to 64-bit row alignment: 4 texels for 2bpp, 8 for 1bpp
                 align = 8 // bpp
                 padded_w = (actual_w + align - 1) // align * align
-                pad_w = padded_w - actual_w
 
                 tile_png = tmpdir / f"tile_{row}_{col}.png"
                 crop_png(input_png, tile_png, x, y, actual_w, actual_h)
 
-                if padding_png is not None:
-                    assert padding_png is not None
-                    if padding_x + pad_w > padding_img_w:
-                        raise ValueError(
-                            f"Padding image too narrow for tile {row},{col}: need {padding_x + pad_w}, have {padding_img_w}"
-                        )
-                    tile_bytes = _build_tile_from_padding_image(
-                        tile_png,
-                        padding_png,
-                        fmt,
-                        padded_w,
-                        actual_h,
-                        padding_x,
-                        y,
-                        tmpdir,
-                    )
-                elif fmt == "rgba16":
+                if fmt == "rgba16":
                     tile_bytes = _rgb2c_rgba16_tile(tile_png, actual_w, padded_w)
                 else:
                     padded_tile_png = tmpdir / f"tile_{row}_{col}.padded.png"
-                    crop_png(input_png, padded_tile_png, x, y, padded_w, actual_h)
+                    crop_png(
+                        input_png, padded_tile_png, x, y, padded_w, actual_h, actual_w
+                    )
                     tile_bin = tmpdir / f"tile_{row}_{col}.bin"
                     pigment64_to_bin(
                         padded_tile_png, fmt, tile_bin, word_swap=(fmt != "rgba32")
@@ -442,7 +301,6 @@ def build_sprite_tiles(
                         tile_bytes = _swap_rgba32_odd_rows(tile_bytes, padded_w)
 
                 tiles.append(TileData(actual_w, padded_w, actual_h, tile_bytes))
-                padding_x += pad_w
 
     return SpriteData(img_w, img_h, tile_w, tile_h, fmt, tiles, palette)
 
@@ -485,7 +343,6 @@ def main():
     parser.add_argument("-f", "--format", required=True, choices=FORMAT_INFO.keys())
     parser.add_argument("--tile-width", type=int, required=True)
     parser.add_argument("--tile-height", type=int, required=True)
-    parser.add_argument("--padding", type=Path, required=True, help="Padding PNG file")
     parser.add_argument("--aligner", choices=("df", "zero"), default="df")
     parser.add_argument("--name", required=True, help="Sprite variable name")
     parser.add_argument("--dl", action="store_true", help="Generate display list")
@@ -515,7 +372,7 @@ def main():
     is_ci = args.format.startswith("ci")
 
     sprite = build_sprite_tiles(
-        args.input, args.format, args.tile_width, args.tile_height, args.padding
+        args.input, args.format, args.tile_width, args.tile_height
     )
 
     out_lines = []
@@ -563,7 +420,6 @@ def main():
     out_lines.append("};")
     out_lines.append("")
 
-    nbitmaps = len(tile_names)
     out_lines.append(
         f"#define NUM_{args.name}_BMS  (sizeof({args.name}_bitmaps) / sizeof(Bitmap))"
     )
@@ -571,7 +427,6 @@ def main():
 
     # Display list
     if args.dl:
-        # TODO: change to static Gfx {name}_dl[NUM_DL(NUM_{name}_BMS)]
         out_lines.append(f"extern Gfx {args.name}_dl[];")
         out_lines.append("")
         dl_ref = f"{args.name}_dl"
@@ -579,9 +434,7 @@ def main():
         dl_ref = "NULL"
 
     # Sprite struct
-    bmHreal = sprite.tile_h
-
-    lut_line = f"0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_bm0_0tlut"
+    lut_line = "0, 0, NULL" if not is_ci else f"0, 256, (u8*){args.name}_bm0_0tlut"
 
     out_lines.append(f"Sprite {args.name}_sprite = {{")
     out_lines.append(
@@ -590,9 +443,9 @@ def main():
     out_lines.append(
         f"    {sprite.img_w}, {sprite.img_h},                      /* Sprite size in texels (x, y) */"
     )
-    out_lines.append(f"    1.0, 1.0,                      /* Sprite Scale: x, y */")
+    out_lines.append("    1.0, 1.0,                      /* Sprite Scale: x, y */")
     out_lines.append(
-        f"    0, 0,                          /* Sprite Explosion Spacing: x, y */"
+        "    0, 0,                          /* Sprite Explosion Spacing: x, y */"
     )
     attr_parts = ["SP_TEXSHUF"]
     if args.transparent:
@@ -606,28 +459,28 @@ def main():
     if args.overlap:
         attr_parts.append("SP_OVERLAP")
     out_lines.append(f"    {' | '.join(attr_parts)}, /* Sprite Attributes */")
-    out_lines.append(f"    0x1234,                        /* Sprite Depth: Z */")
+    out_lines.append("    0x1234,                        /* Sprite Depth: Z */")
     r, g, b, a = args.color
     out_lines.append(
         f"    {r}, {g}, {b}, {a},            /* Sprite Coloration: RGBA */"
     )
     out_lines.append(f"    {lut_line},  /* CLUT: start, length, address */")
     out_lines.append(
-        f"    0, 1,                          /* Bitmap index: start, step */"
+        "    0, 1,                          /* Bitmap index: start, step */"
     )
     out_lines.append(f"    NUM_{args.name}_BMS,              /* Number of bitmaps */")
     out_lines.append(
         f"    NUM_DL(NUM_{args.name}_BMS),      /* Number of display list locations */"
     )
     out_lines.append(
-        f"    {sprite.tile_h}, {bmHreal},                      /* Bitmap Height: used, physical */"
+        f"    {sprite.tile_h}, {sprite.tile_h},                      /* Bitmap Height: used, physical */"
     )
     out_lines.append(f"    {fmt_info['gbi_fmt']},             /* Bitmap Format */")
     out_lines.append(f"    {fmt_info['gbi_siz']},            /* Bitmap Texel Size */")
     out_lines.append(f"    {args.name}_bitmaps,              /* Pointer to bitmaps */")
     out_lines.append(f"    {dl_ref},                        /* Display list memory */")
-    out_lines.append(f"    NULL                           /* next_dl pointer */")
-    out_lines.append(f"}};")
+    out_lines.append("    NULL                           /* next_dl pointer */")
+    out_lines.append("};")
     out_lines.append("")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

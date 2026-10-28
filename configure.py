@@ -126,7 +126,6 @@ def obtain_ido_recomp(version: str):
     shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
-
 def obtain_asm_processor():
     download_dir = TOOLS_DIR / "asm_proc"
 
@@ -170,7 +169,7 @@ def obtain_asm_processor():
     shutil.unpack_archive(target_path, download_dir)
     os.remove(target_path)
 
-    for each_file in (download_dir / asm_proc_triple).glob("*"):
+    for each_file in (download_dir / asm_proc_triple).glob('*'):
         each_file.rename(download_dir / each_file.name)
     (download_dir / asm_proc_triple).rmdir()
 
@@ -330,7 +329,7 @@ def create_build_script(linker_entries: List[LinkerEntry]):
     ninja.rule(
         "mksprite",
         description="mksprite $in",
-        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --padding $padding_png --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
+        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
     )
 
     for entry in linker_entries:
@@ -377,56 +376,36 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
-                elif (
-                    seg.type == "snap_sprite"
-                    and hasattr(seg, "tile_width")
-                    and getattr(seg, "tile_width", 0) > 0
-                ):
-                    tile_width = int(getattr(seg, "tile_width"))
-                    tile_height = int(getattr(seg, "tile_height"))
-                    format_name = str(getattr(seg, "format_name"))
-                    aligner_mode = str(getattr(seg, "aligner_mode", "df"))
-                    has_dl = bool(getattr(seg, "has_dl", False))
-                    has_sp_z = bool(getattr(seg, "has_sp_z", True))
-                    has_sp_fastcopy = bool(getattr(seg, "has_sp_fastcopy", True))
-                    has_sp_transparent = bool(getattr(seg, "has_sp_transparent", False))
-                    has_sp_scale = bool(getattr(seg, "has_sp_scale", False))
-                    has_sp_overlap = bool(getattr(seg, "has_sp_overlap", False))
-                    sp_x = int(getattr(seg, "sp_x", 0))
-                    sp_y = int(getattr(seg, "sp_y", 0))
-                    sp_color = int(getattr(seg, "sp_color", 0xFFFFFFFF))
+                elif seg.type == "snap_sprite" and getattr(seg, "tile_width", 0) > 0:
                     sprite_flags = ""
-                    if has_dl:
+                    if seg.has_dl:
                         sprite_flags += " --dl"
-                    if not has_sp_z:
+                    if not seg.has_sp_z:
                         sprite_flags += " --no-z"
-                    if not has_sp_fastcopy:
+                    if not seg.has_sp_fastcopy:
                         sprite_flags += " --no-fastcopy"
-                    if has_sp_transparent:
+                    if seg.has_sp_transparent:
                         sprite_flags += " --transparent"
-                    if has_sp_scale:
+                    if seg.has_sp_scale:
                         sprite_flags += " --scale"
-                    if has_sp_overlap:
+                    if seg.has_sp_overlap:
                         sprite_flags += " --overlap"
-                    if sp_x != 0 or sp_y != 0:
-                        sprite_flags += f" --x {sp_x} --y {sp_y}"
-                    if sp_color != 0xFFFFFFFF:
-                        sprite_flags += f" --color {sp_color:08X}"
+                    if seg.sp_x != 0 or seg.sp_y != 0:
+                        sprite_flags += f" --x {seg.sp_x} --y {seg.sp_y}"
+                    if seg.sp_color != 0xFFFFFFFF:
+                        sprite_flags += f" --color {seg.sp_color:08X}"
                     src_png = seg.out_path()
-                    assert src_png is not None
-                    padding_png = src_png.with_name(f"{src_png.stem}.padding.png")
                     inc_path = Path("build/" + str(src_png) + ".inc.h")
                     build(
                         inc_path,
-                        [src_png, padding_png],
+                        [src_png],
                         "mksprite",
                         variables={
                             "src_png": str(src_png),
-                            "padding_png": str(padding_png),
-                            "fmt": format_name,
-                            "aligner_mode": aligner_mode,
-                            "tile_w": str(tile_width),
-                            "tile_h": str(tile_height),
+                            "fmt": seg.format_name,
+                            "aligner_mode": seg.aligner_mode,
+                            "tile_w": str(seg.tile_width),
+                            "tile_h": str(seg.tile_height),
                             "sprite_name": str(seg.name),
                             "sprite_flags": sprite_flags.strip(),
                         },

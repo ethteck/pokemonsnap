@@ -12,8 +12,8 @@ Texture** tunnel_block2_materials[] = {
 };
 
 u8* tunnel_block2_materials_mat0_textures[] = {
-    D_80158DF8_19EF58_kakuna,
-    D_8014DDE0_193F40_kakuna,
+    tunnel_world_tex_80158DF8,
+    tunnel_world_tex_8014DDE0,
     NULL,
 };
 

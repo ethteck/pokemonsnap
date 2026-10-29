@@ -1,10 +1,10 @@
 #include "../tunnel.h"
 
-extern AnimCmd* D_8015AAE0_1A0C40[];
-extern AnimCmd* D_8015A4C0_1A0620[];
+extern AnimCmd* kakuna_modelanim_anim_1[];
+extern AnimCmd* kakuna_modelanim_anim_0[];
 
-extern AnimCmd** D_8015AEF0_1A1050[];
-extern AnimCmd** D_8015AE40_1A0FA0[];
+extern AnimCmd** kakuna_matanim_anim_1[];
+extern AnimCmd** kakuna_matanim_anim_0[];
 
 extern UnkEC64Arg3 kakuna_model[];
 extern Texture** kakuna_materials[];
@@ -32,16 +32,16 @@ s32 D_802EEBF0_5EBCC0[] = { SOUND_ID_327 };
 AnimationHeader D_802EEBF4_5EBCC4 = {
     0.25,
     40,
-    D_8015AAE0_1A0C40,
-    D_8015AEF0_1A1050,
+    kakuna_modelanim_anim_1,
+    kakuna_matanim_anim_1,
     NULL
 };
 
 AnimationHeader D_802EEC08_5EBCD8 = {
     0.25,
     40,
-    D_8015A4C0_1A0620,
-    D_8015AE40_1A0FA0,
+    kakuna_modelanim_anim_0,
+    kakuna_matanim_anim_0,
     D_802EEBF0_5EBCC0
 };
 

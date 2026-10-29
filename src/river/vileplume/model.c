@@ -1,8 +1,8 @@
 #include "common.h"
 
 extern u8 vileplume_tex_8017BEB8[];
-extern u8 vileplume_tex_8017BEE0[];
-extern u8 vileplume_tex_8017C110[];
+extern u8 vileplume_tex_8017BEE0_png[];
+extern u8 vileplume_tex_8017C110_png[];
 extern u8 vileplume_tex_8017C318[];
 extern u8 vileplume_tex_8017C340_png[];
 extern u8 vileplume_tex_8017C548[];
@@ -14,10 +14,10 @@ extern u8 vileplume_tex_8017C9D0_png[];
 extern u8 vileplume_tex_8017CBD8[];
 extern u8 vileplume_tex_8017CBF8_png[];
 extern u8 vileplume_tex_8017CE00[];
-extern u8 vileplume_tex_8017CE28[];
-extern u8 vileplume_tex_8017D058[];
-extern u8 vileplume_tex_8017D288[];
-extern u8 vileplume_tex_8017D4B8[];
+extern u8 vileplume_tex_8017CE28_png[];
+extern u8 vileplume_tex_8017D058_png[];
+extern u8 vileplume_tex_8017D288_png[];
+extern u8 vileplume_tex_8017D4B8_png[];
 extern u8 vileplume_tex_8017D6C0[];
 extern u8 vileplume_tex_8017D6E8_png[];
 extern u8 vileplume_tex_8017D8F0[];
@@ -50,15 +50,15 @@ Texture** vileplume_materials[] = {
 };
 
 u8* vileplume_part1_mat0_textures[] = {
-    vileplume_tex_8017BEE0,
-    vileplume_tex_8017C110,
+    vileplume_tex_8017BEE0_png,
+    vileplume_tex_8017C110_png,
 };
 
 u8* vileplume_part1_mat1_textures[] = {
-    vileplume_tex_8017CE28,
-    vileplume_tex_8017D058,
-    vileplume_tex_8017D288,
-    vileplume_tex_8017D4B8,
+    vileplume_tex_8017CE28_png,
+    vileplume_tex_8017D058_png,
+    vileplume_tex_8017D288_png,
+    vileplume_tex_8017D4B8_png,
 };
 
 Texture vileplume_part1_mat0 = {

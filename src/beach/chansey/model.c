@@ -1,18 +1,18 @@
 #include "common.h"
 
-extern u8 chansey_tex_801844E0[];
-extern u8 chansey_tex_80184590[];
-extern u8 chansey_tex_80184640[];
-extern u8 chansey_tex_801846F0[];
-extern u8 chansey_tex_801847A0[];
+extern u8 chansey_tex_801844E0_png[];
+extern u8 chansey_tex_80184590_png[];
+extern u8 chansey_tex_80184640_png[];
+extern u8 chansey_tex_801846F0_png[];
+extern u8 chansey_tex_801847A0_png[];
 extern u8 chansey_tex_80184828[];
-extern u8 chansey_tex_80184850[];
+extern u8 chansey_tex_80184850_png[];
 extern u8 chansey_tex_801848D8[];
-extern u8 chansey_tex_80184900[];
-extern u8 chansey_tex_801849B0[];
-extern u8 chansey_tex_80184BE0[];
+extern u8 chansey_tex_80184900_png[];
+extern u8 chansey_tex_801849B0_png[];
+extern u8 chansey_tex_80184BE0_png[];
 extern u8 chansey_tex_80184DE8[];
-extern u8 chansey_tex_80184E10[];
+extern u8 chansey_tex_80184E10_png[];
 
 extern Gfx chansey_part0_draw[];
 
@@ -39,18 +39,18 @@ Texture** chansey_materials[] = {
 };
 
 u8* chansey_part3_mat0_textures[] = {
-    chansey_tex_80184850,
-    chansey_tex_801844E0,
-    chansey_tex_80184590,
-    chansey_tex_80184640,
-    chansey_tex_801846F0,
-    chansey_tex_801847A0,
+    chansey_tex_80184850_png,
+    chansey_tex_801844E0_png,
+    chansey_tex_80184590_png,
+    chansey_tex_80184640_png,
+    chansey_tex_801846F0_png,
+    chansey_tex_801847A0_png,
 };
 
 u8* chansey_part3_mat1_textures[] = {
-    chansey_tex_80184E10,
-    chansey_tex_801849B0,
-    chansey_tex_80184BE0,
+    chansey_tex_80184E10_png,
+    chansey_tex_801849B0_png,
+    chansey_tex_80184BE0_png,
 };
 
 Texture chansey_part3_mat0 = {

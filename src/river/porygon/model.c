@@ -1,14 +1,14 @@
 #include "common.h"
 
-extern u8 porygon_tex_80171C50[];
+extern u8 porygon_tex_80171C50_png[];
 extern u8 porygon_tex_80171E58[];
 extern u8 porygon_tex_80172060[];
 extern u8 porygon_tex_80172268[];
 extern u8 porygon_tex_80172470[];
-extern u8 porygon_tex_801726A0[];
+extern u8 porygon_tex_801726A0_png[];
 extern u8 porygon_tex_801728A8[];
-extern u8 porygon_tex_801728D0[];
-extern u8 porygon_tex_80172B00[];
+extern u8 porygon_tex_801728D0_png[];
+extern u8 porygon_tex_80172B00_png[];
 
 extern Texture* porygon_part1_mat[];
 extern Texture* porygon_part2_mat[];
@@ -35,45 +35,45 @@ Texture** porygon_materials[] = {
 };
 
 u8* porygon_part1_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80172B00,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80172B00_png,
 };
 
 u8* porygon_part1_mat1_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 u8* porygon_part2_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 u8* porygon_part3_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 u8* porygon_part4_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80172B00,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80172B00_png,
 };
 
 u8* porygon_part5_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 u8* porygon_part6_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 u8* porygon_part7_mat0_textures[] = {
@@ -91,9 +91,9 @@ u8* porygon_part8_mat0_textures[] = {
 };
 
 u8* porygon_part9_mat0_textures[] = {
-    porygon_tex_801728D0,
-    porygon_tex_801726A0,
-    porygon_tex_80171C50,
+    porygon_tex_801728D0_png,
+    porygon_tex_801726A0_png,
+    porygon_tex_80171C50_png,
 };
 
 Texture porygon_part1_mat0 = {

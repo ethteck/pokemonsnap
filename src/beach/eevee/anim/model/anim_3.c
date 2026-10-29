@@ -1,0 +1,1 @@
+#include "assets/beach/eevee/anim/model/anim_3.modelanim.inc.c"

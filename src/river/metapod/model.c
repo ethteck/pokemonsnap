@@ -7,7 +7,7 @@ extern u8 metapod_tex_80184468_png[];
 extern u8 metapod_tex_80184570[];
 extern u8 metapod_tex_80184580_png[];
 extern u8 metapod_tex_80184788[];
-extern u8 metapod_tex_801847B0[];
+extern u8 metapod_tex_801847B0_png[];
 extern u8 metapod_tex_80184BB8[];
 extern u8 metapod_tex_80184BC8_png[];
 extern u8 metapod_tex_80184DD0[];
@@ -50,7 +50,7 @@ Texture** metapod_materials[] = {
 };
 
 u8* metapod_part1_mat0_textures[] = {
-    metapod_tex_801847B0,
+    metapod_tex_801847B0_png,
     NULL,
 };
 

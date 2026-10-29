@@ -10269,7 +10269,7 @@ segments:
       - {start: 0x9A24A8, type: snap_sprite, header_rom: 0x9A2540, name: photo_check_scrim}
     - name: 98C330
       type: .data
-      start: 0x9A35C0
+      start: 0x9A2590
       subsegments:
       - {start: 0x9A2590, type: snap_sprite, header_rom: 0x9A3580, name: photo_check_frame_fill}
     - [0x9A38D0, .data, 98D0F0]

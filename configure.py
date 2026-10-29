@@ -78,6 +78,7 @@ LIBULTRA_AS_CMD = f"{IDO_53_CC} -G 0 -non_shared -fullwarn -verbose -Wab,-r4300_
 
 PIGMENT64 = "pigment64"
 BIN2C = TOOLS_DIR / "bin2c.py"
+MKSPRITE = TOOLS_DIR / "mksprite.py"
 
 
 def clean():
@@ -209,6 +210,7 @@ NULL = "int"
 def create_build_script(linker_entries: List[LinkerEntry]):
     built_objects: Set[Path] = set()
     img_incs = []
+    rom_bytes = Path(f"{BASENAME}.z64").read_bytes()
 
     def build(
         object_paths: Union[Path, List[Path]],
@@ -325,6 +327,12 @@ def create_build_script(linker_entries: List[LinkerEntry]):
         command=f"{sys.executable} tools/vpk0.py $in $out",
     )
 
+    ninja.rule(
+        "mksprite",
+        description="mksprite $in",
+        command=f"{sys.executable} {MKSPRITE} $src_png -f $fmt --tile-width $tile_w --tile-height $tile_h --aligner $aligner_mode --name $sprite_name $sprite_flags -o $out",
+    )
+
     for entry in linker_entries:
         seg = entry.segment
 
@@ -368,6 +376,47 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                         variables={"img_type": seg.type, "img_flags": ""},
                     )
                     build(inc_path, [bin_path], "bin2c")
+                    img_incs.append(str(inc_path))
+                elif (
+                    seg.type == "snap_sprite"
+                    and seg.load_metadata(rom_bytes)
+                    and seg.tile_width > 0
+                ):
+                    # split() doesn't run for cached segments, so load the
+                    # metadata needed for the build rule explicitly
+                    sprite_flags = ""
+                    if seg.has_dl:
+                        sprite_flags += " --dl"
+                    if not seg.has_sp_z:
+                        sprite_flags += " --no-z"
+                    if not seg.has_sp_fastcopy:
+                        sprite_flags += " --no-fastcopy"
+                    if seg.has_sp_transparent:
+                        sprite_flags += " --transparent"
+                    if seg.has_sp_scale:
+                        sprite_flags += " --scale"
+                    if seg.has_sp_overlap:
+                        sprite_flags += " --overlap"
+                    if seg.sp_x != 0 or seg.sp_y != 0:
+                        sprite_flags += f" --x {seg.sp_x} --y {seg.sp_y}"
+                    if seg.sp_color != 0xFFFFFFFF:
+                        sprite_flags += f" --color {seg.sp_color:08X}"
+                    src_png = seg.out_path()
+                    inc_path = Path("build/" + str(src_png) + ".inc.h")
+                    build(
+                        inc_path,
+                        [src_png],
+                        "mksprite",
+                        variables={
+                            "src_png": str(src_png),
+                            "fmt": seg.format_name,
+                            "aligner_mode": seg.aligner_mode,
+                            "tile_w": str(seg.tile_width),
+                            "tile_h": str(seg.tile_height),
+                            "sprite_name": str(seg.name),
+                            "sprite_flags": sprite_flags.strip(),
+                        },
+                    )
                     img_incs.append(str(inc_path))
 
     for entry in linker_entries:

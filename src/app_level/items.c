@@ -53,7 +53,13 @@ u8 Items_FnUpdateKind;
 u8 D_803AF0C9_54F4D9;
 u16 D_803AF0CA_54F4DA;
 u32 D_803AF0CC_54F4DC;
-u8 D_803AF0D0_54F4E0[0x7E0];
+Gfx level_hud_zoom_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_zoom_off_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_engine_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_photo_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_pester_ball_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_apple_dl[0x120 / sizeof(Gfx)];
+Gfx level_hud_pokeflute_dl[0x120 / sizeof(Gfx)];
 
 void Pokemon_SendDieCommand(GObj*);
 void Pokemon_FreeItem(void*);

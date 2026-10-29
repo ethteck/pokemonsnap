@@ -4,8 +4,8 @@
 void func_801DC9D0_AA1A10(GObj*);
 
 // data
-extern Sprite D_801E5478_AAA4B8;
-extern u8 D_801E54BC_AAA4FC;
+#include "build/assets/snap_station_copyright.png.inc.h"
+u8 D_801E54BC_AAA4FC = 5;
 extern u8 D_801E54C0_AAA500;
 extern u8 D_801E54C4_AAA504;
 extern s32 D_801E54C8_AAA508[211]; // All 0xBDEFBDEF
@@ -184,7 +184,7 @@ void func_801DCCDC_AA1D1C(void) {
     cam->data.cam->flags = CAMERA_FLAG_8;
     cam->flags = 1;
     D_801E55DC_AAA61C = cam;
-    ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &D_801E5478_AAA4B8, 0, NULL, 1);
+    ohCreateSprite(0x1F, ohUpdateDefault, 0, 0x80000000, renDrawSprite, 1, 0x80000000, -1, &snap_station_copyright_sprite, 0, NULL, 1);
 
     for (i = 0; i < ARRAY_COUNT(D_801E55E0_AAA620); i++) {
         D_801E55E0_AAA620[i] = NULL;

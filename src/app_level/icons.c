@@ -29,20 +29,14 @@ typedef struct SpriteStruct {
 } SpriteStruct; // size = 0x18
 
 // data
-// TODO make sprite assets
-extern Sprite D_80383B48_523F58; // Icon_Zoom
-extern Sprite D_803841C8_5245D8; // Icon_ZoomOff
-extern Sprite D_80384E68_525278; // Icon_Dash
-extern Sprite D_80385B08_525F18; // Icon_Photo
-extern Sprite D_803867A8_526BB8; // Icon_PesterBall
-extern Sprite D_80387448_527858; // Icon_Apple
-extern Sprite D_803880E8_5284F8; // Icon_Flute
-// we have to make this small array because of alignment
-u32 EndOfSpriteData[] = {
-    0x803AF790,
-    0x00000000,
-    0x00000000
-};
+
+#include "build/assets/app_level/level_hud_zoom.png.inc.h"        // Icon_Zoom
+#include "build/assets/app_level/level_hud_zoom_off.png.inc.h"    // Icon_ZoomOff
+#include "build/assets/app_level/level_hud_engine.png.inc.h"      // Icon_Dash
+#include "build/assets/app_level/level_hud_photo.png.inc.h"       // Icon_Photo
+#include "build/assets/app_level/level_hud_pester_ball.png.inc.h" // Icon_PesterBall
+#include "build/assets/app_level/level_hud_apple.png.inc.h"       // Icon_Apple
+#include "build/assets/app_level/level_hud_pokeflute.png.inc.h"   // Icon_Flute
 
 SpriteStruct Icons_IconObjects[] = {
     { 148, 104, NULL, 0, 0, NULL },
@@ -66,14 +60,14 @@ s32 Icons_NumItemsAvailable = 3;
 u8 Icons_DashEngineEnabled = false;
 u8 Icons_FluteIsPlayed = false;
 SpriteDefStruct Icons_IconDefs[] = {
-    { 210, 189, false, 0, 2, &D_80387448_527858 },
-    { 182, 185, false, 0, 0, &D_803867A8_526BB8 },
-    { 238, 185, false, 0, 4, &D_803880E8_5284F8 },
-    { 268, 189, false, 1, 6, &D_80383B48_523F58 },
-    { 268, 155, false, 1, 8, &D_80384E68_525278 },
-    { 316, 155, true, 1, 4, &D_80384E68_525278 },
-    { 238, 233, true, 0, 0, &D_80385B08_525F18 },
-    { 316, 189, true, 1, 2, &D_803841C8_5245D8 },
+    { 210, 189, false, 0, 2, &level_hud_apple_sprite },
+    { 182, 185, false, 0, 0, &level_hud_pester_ball_sprite },
+    { 238, 185, false, 0, 4, &level_hud_pokeflute_sprite },
+    { 268, 189, false, 1, 6, &level_hud_zoom_sprite },
+    { 268, 155, false, 1, 8, &level_hud_engine_sprite },
+    { 316, 155, true, 1, 4, &level_hud_engine_sprite },
+    { 238, 233, true, 0, 0, &level_hud_photo_sprite },
+    { 316, 189, true, 1, 2, &level_hud_zoom_off_sprite },
 };
 u8 Icons_IsZoomedIn = false;
 

@@ -210,6 +210,7 @@ NULL = "int"
 def create_build_script(linker_entries: List[LinkerEntry]):
     built_objects: Set[Path] = set()
     img_incs = []
+    rom_bytes = Path(f"{BASENAME}.z64").read_bytes()
 
     def build(
         object_paths: Union[Path, List[Path]],
@@ -376,7 +377,13 @@ def create_build_script(linker_entries: List[LinkerEntry]):
                     )
                     build(inc_path, [bin_path], "bin2c")
                     img_incs.append(str(inc_path))
-                elif seg.type == "snap_sprite" and getattr(seg, "tile_width", 0) > 0:
+                elif (
+                    seg.type == "snap_sprite"
+                    and seg.load_metadata(rom_bytes)
+                    and seg.tile_width > 0
+                ):
+                    # split() doesn't run for cached segments, so load the
+                    # metadata needed for the build rule explicitly
                     sprite_flags = ""
                     if seg.has_dl:
                         sprite_flags += " --dl"

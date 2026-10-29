@@ -146,6 +146,7 @@ class N64SegSnap_sprite(Segment):
         ), f"snap_sprite segment at 0x{rom_start:X} missing required 'header_rom' in YAML"
         self.header_rom: int = yaml["header_rom"]
         self.override_name = yaml.get("name")
+        self._metadata = None
 
     def out_path(self) -> Path:
         return options.opts.asset_path / self.dir / f"{self.name}.png"
@@ -167,7 +168,16 @@ class N64SegSnap_sprite(Segment):
             return f"D_{vram_addr:08X}_{rom:X}"
         return f"D_{vram_addr:08X}"
 
-    def split(self, rom_bytes: bytes):
+    def load_metadata(self, rom_bytes: bytes) -> bool:
+        """Parse the sprite header and bitmap table and set the attributes
+        configure.py needs for build rules (tile size, format, flags, ...).
+
+        Separate from split() because splat skips split() for cached segments,
+        while configure.py needs this metadata on every run. Returns False if
+        the sprite format is unsupported (no metadata is set then)."""
+        if self._metadata is not None:
+            return True
+
         header = SpriteHeader()
         header_rom = self.header_rom
         header.unpack(BytesIO(rom_bytes[header_rom : header_rom + 0x44]))
@@ -178,8 +188,7 @@ class N64SegSnap_sprite(Segment):
                 f"Unsupported format: {header.bmfmt.name} {header.bmsiz.name} "
                 f"for {self.name} at ROM 0x{self.rom_start:X}-0x{self.rom_end:X}"
             )
-            return
-        png_bpp, input_bpp, img_class, format_name = fmt
+            return False
 
         if self.rom_start == 0xA9D3E0:
             header.width = 320
@@ -195,38 +204,18 @@ class N64SegSnap_sprite(Segment):
             bitmaps.append(bitmap)
             bm_vram += 0x10
 
-        # Validate: first pixel should be at rom_start + 8
-        if bitmaps:
-            first_buf_rom = self._resolve_rom(bitmaps[0].buf)
-            assert first_buf_rom is not None
-            assert self.rom_start is not None
-            expected = self.rom_start + 8
-            if first_buf_rom != expected:
-                print(
-                    f"WARNING: {self.name}: first pixel data at 0x{first_buf_rom:X}, "
-                    f"expected 0x{expected:X} (segment starts at 0x{self.rom_start:X})"
-                )
-
-        # Resolve symbol names
+        # Resolve the name before anything derives names from it
         sprite_vram = self.get_most_parent().rom_to_ram(header_rom)
         assert sprite_vram is not None
         self.name = self._resolve_name(sprite_vram)
-
         if self.override_name:
             self.name = self.override_name
 
-        # Store metadata for configure.py build rules
         self.tile_width = bitmaps[0].width if bitmaps else 0
         self.tile_height = header.bmheight
-        self.format_name = format_name
-        self.aligner_mode = "df"
+        self.format_name = fmt[3]
         self.has_dl = bool(header.rsp_dl)
         self.bitmaps_name = f"{self.name}_bitmaps"
-        if header.bitmap > 0x80000000:
-            sym = self.create_symbol(
-                header.bitmap, in_segment=True, type="data", define=True
-            )
-            sym.given_name = self.bitmaps_name
         self.has_sp_z = bool(header.attr & SpriteAttributes.SP_Z)
         self.has_sp_fastcopy = bool(header.attr & SpriteAttributes.SP_FASTCOPY)
         self.has_sp_transparent = bool(header.attr & SpriteAttributes.SP_TRANSPARENT)
@@ -240,6 +229,49 @@ class N64SegSnap_sprite(Segment):
             | (header.blue << 8)
             | header.alpha
         )
+
+        aligners = set()
+        for bitmap in bitmaps:
+            buf_rom = self._resolve_rom(bitmap.buf)
+            assert buf_rom is not None
+            aligners.add(bytes(rom_bytes[buf_rom - 8 : buf_rom]))
+        if aligners == {self.ZERO_ALIGNER}:
+            self.aligner_mode = "zero"
+        elif aligners == {self.DF_ALIGNER}:
+            self.aligner_mode = "df"
+        else:
+            self.aligner_mode = "df"
+            print(
+                f"WARNING: {self.name}: mixed/unknown sprite aligners "
+                f"{[a.hex() for a in sorted(aligners)]}, defaulting to df"
+            )
+
+        self._metadata = (header, bitmaps, fmt)
+        return True
+
+    def split(self, rom_bytes: bytes):
+        if not self.load_metadata(rom_bytes):
+            return
+        header, bitmaps, fmt = self._metadata
+        png_bpp, input_bpp, img_class, format_name = fmt
+
+        # Validate: first pixel should be at rom_start + 8
+        if bitmaps:
+            first_buf_rom = self._resolve_rom(bitmaps[0].buf)
+            assert first_buf_rom is not None
+            assert self.rom_start is not None
+            expected = self.rom_start + 8
+            if first_buf_rom != expected:
+                print(
+                    f"WARNING: {self.name}: first pixel data at 0x{first_buf_rom:X}, "
+                    f"expected 0x{expected:X} (segment starts at 0x{self.rom_start:X})"
+                )
+
+        if header.bitmap > 0x80000000:
+            sym = self.create_symbol(
+                header.bitmap, in_segment=True, type="data", define=True
+            )
+            sym.given_name = self.bitmaps_name
         cols = math.ceil(header.width / self.tile_width) if self.tile_width > 0 else 1
         for i, bitmap in enumerate(bitmaps):
             row = i // cols
@@ -256,23 +288,6 @@ class N64SegSnap_sprite(Segment):
             lut_rom = self._resolve_rom(header.LUT)
             assert lut_rom is not None
             palette = bytearray(rom_bytes[lut_rom : lut_rom + header.nTLUT * 2])
-
-        aligners = set()
-        for bitmap in bitmaps:
-            buf_rom = self._resolve_rom(bitmap.buf)
-            assert buf_rom is not None
-            aligner = bytes(rom_bytes[buf_rom - 8 : buf_rom])
-            aligners.add(aligner)
-
-        if aligners == {self.ZERO_ALIGNER}:
-            self.aligner_mode = "zero"
-        elif aligners == {self.DF_ALIGNER}:
-            self.aligner_mode = "df"
-        else:
-            print(
-                f"WARNING: {self.name}: mixed/unknown sprite aligners "
-                f"{[a.hex() for a in sorted(aligners)]}, defaulting to df"
-            )
 
         canvas_y = 0
         canvas_x = 0

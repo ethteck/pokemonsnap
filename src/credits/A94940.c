@@ -10,7 +10,9 @@ s32 D_credits_801ECDB0[152];
 s32 D_credits_801ED010;
 
 Credit D_credits_801E8BA0[] = {
-    { 50, 240.0f, "POKεMON SNAP Staff", 0 },
+    { 50, 240.0f, "POK\xE9MON SNAP Staff", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
@@ -18,11 +20,13 @@ Credit D_credits_801E8BA0[] = {
     { 50, 320.0f, "JACK and BEANS", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Director", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Yoichi Yamamoto", 0 },
     { 50, 320.0f, "Koji Inokuchi", 0 },
     { 50, 320.0f, "Akira Takeshima", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Designer", 0 },
@@ -40,6 +44,7 @@ Credit D_credits_801E8D00[] = {
     { 50, 320.0f, "Ikuko Mimori", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Programmer", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Yoshiaki Shinohara", 0 },
@@ -48,6 +53,7 @@ Credit D_credits_801E8D00[] = {
     { 50, 320.0f, "Tomoyuki Sumi", 0 },
     { 50, 320.0f, "Hirotaka Kato", 0 },
     { 50, 320.0f, "Hideaki Kiko", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Technical Support", 0 },
@@ -60,6 +66,7 @@ Credit D_credits_801E8E30[] = {
     { 50, 320.0f, "Supervisor", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Kensuke Tanabe", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "US Coordination", 0 },
@@ -100,10 +107,11 @@ Credit D_credits_801E9080[] = {
     { 50, 320.0f, "Voice Actor", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Stan Hart", 0 },
-    { 50, 320.0f, "Jimmy Zoppi", 0 },
     { 50, 320.0f, "Ikue Otani", 0 },
+    { 50, 320.0f, "Jimmy Zoppi", 0 },
     { 50, 320.0f, "and", 0 },
     { 50, 320.0f, "Others...", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
@@ -120,6 +128,7 @@ Credit D_credits_801E9080[] = {
     { 50, 320.0f, "Hisatoshi Takeuchi", 0 },
     { 50, 320.0f, "Keita Oriuchi", 0 },
     { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "N64 Modeling Center Kyoto", 0 },
     { 50, 320.0f, "System Development #2 (HAL)", 0 },
     { 50, 320.0f, "HAL Debug Team", 0 },
@@ -135,14 +144,17 @@ Credit D_credits_801E9260[] = {
     { 50, 320.0f, "Yoichi Kotabe", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
-    { 50, 320.0f, "Pokεmon Created by", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Pok\xE9mon Created by", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Satoshi Tajiri", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
-    { 50, 320.0f, "Pokεmon Producer", 0 },
+    { 50, 320.0f, "", 0 },
+    { 50, 320.0f, "Pok\xE9mon Producer", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Tsunekaz Ishihara", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Producer", 0 },
@@ -150,6 +162,7 @@ Credit D_credits_801E9260[] = {
     { 50, 320.0f, "Satoru Iwata", 0 },
     { 50, 320.0f, "Kenji Miki", 0 },
     { 50, 320.0f, "Shigeru Miyamoto", 0 },
+    { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "", 0 },
     { 50, 320.0f, "Executive Producer", 0 },
@@ -378,7 +391,7 @@ void func_credits_801DE35C(void) {
     }
 
     func_credits_801DD980();
-    ohWait(180);
+    ohWait(60);
     func_credits_801DD744();
     ohWait(180);
 

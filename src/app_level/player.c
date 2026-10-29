@@ -1873,7 +1873,7 @@ void Tutorial_ShowMessage(s32 msgID) {
                 message = "Press \\a to shoot.";
                 break;
             case MESSAGE_TAKE_PICTURES:
-                message = "Try to take a lot of Pokεmon pictures!";
+                message = "Try to take a lot of Pok\xE9mon pictures!";
                 break;
             case MESSAGE_USE_CONTROL_STICK:
                 message = "Please use the Control Stick.";

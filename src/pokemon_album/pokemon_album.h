@@ -28,6 +28,7 @@ void func_801DE998_9A8BE8(bool);
 void func_801DEA4C_9A8C9C(bool, s32 column, s32 row);
 void func_801DF744_9A9994(s32, s32);
 void album_SwitchCharacterGridPage(u32);
+u8 album_GetCharGridId(void);
 void album_DeleteCharInComment(void);
 void album_PressedCharacterInGrid(s32, s32);
 void album_CreateCoverPage(void);

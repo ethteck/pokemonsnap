@@ -288,10 +288,16 @@ void scSetNewViMode(void) {
     scViModeCurrent = scViModeNext;
     osViSetMode(&scViModeCurrent);
     osViBlack(scViSettings.blackout);
+    if (osTvType == OS_TV_PAL) {
+        osViSetYScale(0.833f);
+    }
     scViSettingsUpdated = false;
 }
 
 void func_80000F40(u32, u32, s32, s16, s16, s16, s16);
+// The PAL build checks the TV type at compile time instead of reading osTvType
+#define TV_TYPE OS_TV_PAL
+
 void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edgeOffsetRight, s16 edgeOffsetTop, s16 edgeOffsetBottom) {
     s32 not_phi_v1;
     s32 phi_v1;
@@ -420,7 +426,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
     scViModeNext.comRegs.width = (((not_res_in_bounds != false) && (phi_v1 != false)) ? 2 : 1) * width;
 
     if (TRUE) {
-        if (osTvType == OS_TV_NTSC) {
+        if (TV_TYPE == OS_TV_NTSC) {
             scViModeNext.comRegs.burst = 0x3E52239;
             scViModeNext.comRegs.vSync = 0x20C;
             scViModeNext.comRegs.hSync = 0xC15;
@@ -429,7 +435,7 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
             scViModeNext.fldRegs[0].vStart = 0x2501FFU;
             scViModeNext.fldRegs[0].vBurst = 0xE0204;
         }
-        if (osTvType == OS_TV_MPAL) {
+        if (TV_TYPE == OS_TV_MPAL) {
             scViModeNext.comRegs.burst = 0x4651E39;
             scViModeNext.comRegs.vSync = 0x20C;
             scViModeNext.comRegs.hSync = 0xC10;
@@ -437,6 +443,15 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
             scViModeNext.comRegs.hStart = 0x6C02EC;
             scViModeNext.fldRegs[0].vStart = 0x2501FFU;
             scViModeNext.fldRegs[0].vBurst = 0xE0204;
+        }
+        if (TV_TYPE == OS_TV_PAL) {
+            scViModeNext.comRegs.burst = 0x404233A;
+            scViModeNext.comRegs.vSync = 0x270;
+            scViModeNext.comRegs.hSync = 0x150C69;
+            scViModeNext.comRegs.leap = 0xC6F0C6E;
+            scViModeNext.comRegs.hStart = 0x800300;
+            scViModeNext.fldRegs[0].vStart = 0x2F0269;
+            scViModeNext.fldRegs[0].vBurst = 0x9026B;
         }
     }
 
@@ -483,10 +498,10 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
         scViModeNext.comRegs.vSync += 1;
         if (1)
             ;
-        if (osTvType == OS_TV_MPAL) {
+        if (TV_TYPE == OS_TV_MPAL) {
             scViModeNext.comRegs.hSync += 0x40001;
         }
-        if (osTvType == OS_TV_MPAL) {
+        if (TV_TYPE == OS_TV_MPAL) {
             scViModeNext.comRegs.leap += 0xFFFCFFFE;
         }
     } else {
@@ -494,10 +509,10 @@ void func_80000F40(u32 width, u32 height, s32 flags, s16 edgeOffsetLeft, s16 edg
         scViModeNext.fldRegs[0].vStart += 0xFFFDFFFE;
         if (1)
             ;
-        if (osTvType == OS_TV_MPAL) {
+        if (TV_TYPE == OS_TV_MPAL) {
             scViModeNext.fldRegs[0].vBurst += 0xFFFCFFFE;
         }
-        if (osTvType == OS_TV_PAL) {
+        if (TV_TYPE == OS_TV_PAL) {
             scViModeNext.fldRegs[1].vBurst += 0x2FFFE;
         }
     }
@@ -1006,17 +1021,15 @@ void scMain(UNUSED void* arg) {
 
     switch (osTvType) {
         case OS_TV_NTSC:
-            mode = osViModeNtscLan1;
-            scViModeCurrent = mode;
-            scViModeNext = mode;
-            break;
-        case OS_TV_PAL:
             PANIC();
             break;
-        case OS_TV_MPAL:
-            mode = osViModeMpalLan1;
+        case OS_TV_PAL:
+            mode = osViModePalLan1;
             scViModeCurrent = mode;
             scViModeNext = mode;
+            break;
+        case OS_TV_MPAL:
+            PANIC();
             break;
     }
 

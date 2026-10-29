@@ -16,15 +16,12 @@ Texture** gate_materials[] = {
 
 u8* gate_part1_mat0_textures[] = {
     gate_tex4_png,
-};
-
-u8* gate_part2_mat0_textures[] = {
-    gate_tex3_png,
+    NULL,
 };
 
 Texture gate_part1_mat0 = {
     0,
-    G_IM_FMT_IA,
+    G_IM_FMT_I,
     G_IM_SIZ_16b,
     gate_part1_mat0_textures,
     32,
@@ -40,12 +37,12 @@ Texture gate_part1_mat0 = {
     2.0,
     NULL,
     0xA1,
-    G_IM_FMT_IA,
-    G_IM_SIZ_8b,
-    128,
-    16,
-    256,
-    16,
+    G_IM_FMT_RGBA,
+    G_IM_SIZ_16b,
+    0,
+    0,
+    0,
+    0,
     0.0,
     0.0,
     0.0,
@@ -75,6 +72,11 @@ Texture gate_part1_mat0 = {
     0,
 };
 
+u8* gate_part2_mat0_textures[] = {
+    gate_tex3_png,
+    NULL,
+};
+
 Texture gate_part2_mat0 = {
     0,
     G_IM_FMT_IA,
@@ -93,14 +95,14 @@ Texture gate_part2_mat0 = {
     1.0,
     NULL,
     0xA1,
-    G_IM_FMT_IA,
-    G_IM_SIZ_8b,
-    64,
-    64,
-    64,
-    128,
+    G_IM_FMT_RGBA,
+    G_IM_SIZ_16b,
+    0,
+    0,
+    0,
+    0,
     0.0,
-    -1.0,
+    0.0,
     0.0,
     { 0, 0, 0, 0 },
     8709,
@@ -145,7 +147,7 @@ Texture gate_part3_mat0 = {
     0.0,
     0.0,
     NULL,
-    0x200,
+    0x3200,
     G_IM_FMT_RGBA,
     G_IM_SIZ_16b,
     0,
@@ -156,7 +158,7 @@ Texture gate_part3_mat0 = {
     0.0,
     0.0,
     { 0, 0, 0, 0 },
-    8709,
+    139781,
     { 102,
       0,
       102,

@@ -25,23 +25,23 @@ void func_80348208_827978(GObj*);
 void func_80347574_826CE4(GObj*);
 void func_80349084_8287F4(GObj*);
 
-extern AnimCmd* D_8012C9E0_4DEDB0[];
-extern AnimCmd* D_8012D700_4DFAD0[];
-extern AnimCmd* D_8012EFF0_4E13C0[];
-extern AnimCmd* D_8012FB60_4E1F30[];
-extern AnimCmd* D_80131D30_4E4100[];
-extern AnimCmd* D_80133040_4E5410[];
-extern AnimCmd* D_801358A0_4E7C70[];
-extern AnimCmd* D_801368F0_4E8CC0[];
+extern AnimCmd* mew_modelanim_anim_0[];
+extern AnimCmd* mew_modelanim_anim_1[];
+extern AnimCmd* mew_modelanim_anim_2[];
+extern AnimCmd* mew_modelanim_anim_3[];
+extern AnimCmd* mew_modelanim_anim_4[];
+extern AnimCmd* mew_modelanim_anim_5[];
+extern AnimCmd* mew_modelanim_anim_6[];
+extern AnimCmd* mew_modelanim_anim_7[];
 
-extern AnimCmd** D_801394D0_4EB8A0[];
-extern AnimCmd** D_801395A0_4EB970[];
-extern AnimCmd** D_80139690_4EBA60[];
-extern AnimCmd** D_80139770_4EBB40[];
-extern AnimCmd** D_80139840_4EBC10[];
-extern AnimCmd** D_80139900_4EBCD0[];
-extern AnimCmd** D_80139A00_4EBDD0[];
-extern AnimCmd** D_80139B00_4EBED0[];
+extern AnimCmd** mew_matanim_anim_0[];
+extern AnimCmd** mew_matanim_anim_1[];
+extern AnimCmd** mew_matanim_anim_2[];
+extern AnimCmd** mew_matanim_anim_3[];
+extern AnimCmd** mew_matanim_anim_4[];
+extern AnimCmd** mew_matanim_anim_5[];
+extern AnimCmd** mew_matanim_anim_6[];
+extern AnimCmd** mew_matanim_anim_7[];
 
 extern UnkEC64Arg3 mew_model[];
 extern Texture** mew_materials[];
@@ -56,64 +56,64 @@ s32 D_8034ACA8_82A418[] = { SOUND_ID_352, SOUND_ID_145 };
 AnimationHeader D_8034ACB0_82A420 = {
     0.5,
     70,
-    D_8012EFF0_4E13C0,
-    D_80139690_4EBA60,
+    mew_modelanim_anim_2,
+    mew_matanim_anim_2,
     NULL
 };
 
 AnimationHeader D_8034ACC4_82A434 = {
     0.65,
     135,
-    D_801368F0_4E8CC0,
-    D_80139B00_4EBED0,
+    mew_modelanim_anim_7,
+    mew_matanim_anim_7,
     D_8034AC90_82A400
 };
 
 AnimationHeader D_8034ACD8_82A448 = {
     0.8,
     140,
-    D_801358A0_4E7C70,
-    D_80139A00_4EBDD0,
+    mew_modelanim_anim_6,
+    mew_matanim_anim_6,
     D_8034AC94_82A404
 };
 
 AnimationHeader D_8034ACEC_82A45C = {
     0.6,
     110,
-    D_80133040_4E5410,
-    D_80139900_4EBCD0,
+    mew_modelanim_anim_5,
+    mew_matanim_anim_5,
     D_8034AC98_82A408
 };
 
 AnimationHeader D_8034AD00_82A470 = {
     0.5,
     40,
-    D_8012C9E0_4DEDB0,
-    D_801394D0_4EB8A0,
+    mew_modelanim_anim_0,
+    mew_matanim_anim_0,
     NULL
 };
 
 AnimationHeader D_8034AD14_82A484 = {
     0.5,
     80,
-    D_8012D700_4DFAD0,
-    D_801395A0_4EB970,
+    mew_modelanim_anim_1,
+    mew_matanim_anim_1,
     D_8034ACA0_82A410
 };
 
 AnimationHeader D_8034AD28_82A498 = {
     0.5,
     90,
-    D_80131D30_4E4100,
-    D_80139840_4EBC10,
+    mew_modelanim_anim_4,
+    mew_matanim_anim_4,
     D_8034ACA4_82A414
 };
 
 AnimationHeader D_8034AD3C_82A4AC = {
     0.75,
     200,
-    D_8012FB60_4E1F30,
-    D_80139770_4EBB40,
+    mew_modelanim_anim_3,
+    mew_matanim_anim_3,
     D_8034ACA8_82A418
 };
 

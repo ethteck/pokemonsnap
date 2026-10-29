@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 #include "../window/window.h"
 #include "credits.h"
 
@@ -64,7 +65,7 @@ void func_credits_801DCAF8(SObj* arg0) {
 
 s32 func_credits_801DCB24(s32 sceneId) {
     D_credits_801ECDA0 = sceneId;
-    D_credits_801DEC40 = (uintptr_t) &D_80369F80 - (uintptr_t) &D_801ED020;
+    D_credits_801DEC40 = (uintptr_t) window_VRAM - (uintptr_t) credits_VRAM_END;
     gtlDisableNearClipping(1);
     gtlSetIntervals(1, 2);
     osCreateMesgQueue(&D_credits_801ECC68, D_credits_801ECC40, ARRAY_COUNT(D_credits_801ECC40));

@@ -11,7 +11,7 @@ typedef struct FocusMarkData {
     /* 0x1C */ f32 targetHeight;
 } FocusMarkData; // size = 0x20
 
-extern Sprite D_80381A38_8551E8;
+extern Sprite window_focus_mark_sprite;
 extern Bitmap* D_80381D98_855548[];
 
 static GObj* D_803A6A50_87A200[4];
@@ -110,7 +110,7 @@ void FocusMark_Create(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        D_803A6A50_87A200[i] = func_800A9F10(i != 0 ? NULL : FocusMark_Update, 6, &D_80381A38_8551E8);
+        D_803A6A50_87A200[i] = func_800A9F10(i != 0 ? NULL : FocusMark_Update, 6, &window_focus_mark_sprite);
         D_803A6A50_87A200[i]->data.sobj->sprite.bitmap = D_80381D98_855548[i];
         D_803A6A50_87A200[i]->data.sobj->sprite.x = 80;
         D_803A6A50_87A200[i]->data.sobj->sprite.y = 80;

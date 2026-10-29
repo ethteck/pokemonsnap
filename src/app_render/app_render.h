@@ -5,10 +5,10 @@
 
 extern s32 photo_PokemonIndexes[12];
 
-extern struct WorldSetup D_800F5DA0;
+extern struct WorldSetup rainbow_WorldSetup;
 
-extern struct WorldSetup D_8012A0E8;
-extern struct WorldSetup D_8012AC90;
+extern struct WorldSetup cave_WorldSetup;
+extern struct WorldSetup river_WorldSetup;
 
 PhotoData* func_8009BC74(void);
 // s32 func_8009BCC4(PhotoData*);

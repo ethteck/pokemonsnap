@@ -6,18 +6,18 @@ extern u8 squirtle_tex_8017C068[];
 extern u8 squirtle_tex_8017C090_png[];
 extern u8 squirtle_tex_8017C298[];
 extern u8 squirtle_tex_8017C4A0_png[];
-extern u8 squirtle_tex_8017C8D0[];
-extern u8 squirtle_tex_8017CB00[];
-extern u8 squirtle_tex_8017CD30[];
-extern u8 squirtle_tex_8017CF60[];
+extern u8 squirtle_tex_8017C8D0_png[];
+extern u8 squirtle_tex_8017CB00_png[];
+extern u8 squirtle_tex_8017CD30_png[];
+extern u8 squirtle_tex_8017CF60_png[];
 extern u8 squirtle_tex_8017D168[];
-extern u8 squirtle_tex_8017D190[];
-extern u8 squirtle_tex_8017D3C0[];
-extern u8 squirtle_tex_8017D5F0[];
-extern u8 squirtle_tex_8017D820[];
-extern u8 squirtle_tex_8017DA50[];
+extern u8 squirtle_tex_8017D190_png[];
+extern u8 squirtle_tex_8017D3C0_png[];
+extern u8 squirtle_tex_8017D5F0_png[];
+extern u8 squirtle_tex_8017D820_png[];
+extern u8 squirtle_tex_8017DA50_png[];
 extern u8 squirtle_tex_8017DC58[];
-extern u8 squirtle_tex_8017DC80[];
+extern u8 squirtle_tex_8017DC80_png[];
 extern u8 squirtle_tex_8017DE88[];
 extern u8 squirtle_tex_8017E090_png[];
 extern u8 squirtle_tex_8017E498[];
@@ -40,19 +40,19 @@ Texture** squirtle_materials[] = {
 };
 
 u8* squirtle_part2_mat0_textures[] = {
-    squirtle_tex_8017DC80,
-    squirtle_tex_8017D3C0,
-    squirtle_tex_8017D5F0,
-    squirtle_tex_8017D820,
-    squirtle_tex_8017DA50,
+    squirtle_tex_8017DC80_png,
+    squirtle_tex_8017D3C0_png,
+    squirtle_tex_8017D5F0_png,
+    squirtle_tex_8017D820_png,
+    squirtle_tex_8017DA50_png,
 };
 
 u8* squirtle_part2_mat1_textures[] = {
-    squirtle_tex_8017D190,
-    squirtle_tex_8017C8D0,
-    squirtle_tex_8017CB00,
-    squirtle_tex_8017CD30,
-    squirtle_tex_8017CF60,
+    squirtle_tex_8017D190_png,
+    squirtle_tex_8017C8D0_png,
+    squirtle_tex_8017CB00_png,
+    squirtle_tex_8017CD30_png,
+    squirtle_tex_8017CF60_png,
 };
 
 Texture squirtle_part2_mat0 = {

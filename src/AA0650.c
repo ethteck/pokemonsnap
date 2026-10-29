@@ -8,7 +8,6 @@ s32 D_800E1DD4_AA0B84;
 
 // external data
 extern Sprite D_802BC0C0_intro_code_vpk0;
-extern Addr D_800E1DE0;
 
 // internal data
 ScreenSettings D_800E1CB0_AA0A60 = {
@@ -43,7 +42,7 @@ SceneSetup D_800E1D40_AA0AF0 = {
         0,
         omUpdateAll,
         omDrawAll,
-        D_800E1DE0,
+        intro_code_VRAM_END,
         0,
         1,
         2,
@@ -122,9 +121,12 @@ void func_800E1A34_AA07E4(s32 unused) {
 void func_800E1A94_AA0844(s32 unused) {
     func_800ABB94();
     D_800E1DD0_AA0B80 = func_800E18A0_AA0650();
+    D_800E1DD0_AA0B80->flags |= GOBJ_FLAG_HIDDEN;
     ohWait(1);
     func_800C05D4_5D474();
     ohWait(1);
+    ohWait(0x1E);
+    D_800E1DD0_AA0B80->flags &= ~GOBJ_FLAG_HIDDEN;
     if (D_800E1DD4_AA0B84 < 60) {
         ohWait(60 - D_800E1DD4_AA0B84);
     }

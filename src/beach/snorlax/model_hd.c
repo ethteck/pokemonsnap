@@ -2,22 +2,22 @@
 
 extern u8 snorlax_tex_80179A20_png[];
 extern u8 snorlax_tex_80179C50_png[];
-extern u8 snorlax_tex_8017A080[];
-extern u8 snorlax_tex_8017A288[];
-extern u8 snorlax_tex_8017A490[];
-extern u8 snorlax_tex_8017A698[];
-extern u8 snorlax_tex_8017A8A0[];
-extern u8 snorlax_tex_8017AAA8[];
-extern u8 snorlax_tex_8017ACB0[];
-extern u8 snorlax_tex_8017AEE0[];
-extern u8 snorlax_tex_8017B0E8[];
+extern u8 snorlax_tex_8017A080_png[];
+extern u8 snorlax_tex_8017A288_png[];
+extern u8 snorlax_tex_8017A490_png[];
+extern u8 snorlax_tex_8017A698_png[];
+extern u8 snorlax_tex_8017A8A0_png[];
+extern u8 snorlax_tex_8017AAA8_png[];
+extern u8 snorlax_tex_8017ACB0_png[];
+extern u8 snorlax_tex_8017AEE0_png[];
+extern u8 snorlax_tex_8017B0E8_png[];
 extern u8 snorlax_tex_8017B318_png[];
 extern u8 snorlax_tex_8017B720_png[];
-extern u8 snorlax_tex_8801799F8[];
-extern u8 snorlax_tex_880179C28[];
-extern u8 snorlax_tex_88017A058[];
-extern u8 snorlax_tex_88017AEB8[];
-extern u8 snorlax_tex_88017B2F0[];
+extern u8 snorlax_tex_801799F8[];
+extern u8 snorlax_tex_80179C28[];
+extern u8 snorlax_tex_8017A058[];
+extern u8 snorlax_tex_8017AEB8[];
+extern u8 snorlax_tex_8017B2F0[];
 
 extern Texture* snorlax_hd_part4_mat[];
 extern Texture* snorlax_hd_part5_mat[];
@@ -42,13 +42,13 @@ Texture** snorlax_hd_materials[] = {
 };
 
 u8* snorlax_hd_part4_mat0_textures[] = {
-    snorlax_tex_8017A080,
-    snorlax_tex_8017A288,
-    snorlax_tex_8017A490,
-    snorlax_tex_8017A698,
-    snorlax_tex_8017A8A0,
-    snorlax_tex_8017AAA8,
-    snorlax_tex_8017ACB0,
+    snorlax_tex_8017A080_png,
+    snorlax_tex_8017A288_png,
+    snorlax_tex_8017A490_png,
+    snorlax_tex_8017A698_png,
+    snorlax_tex_8017A8A0_png,
+    snorlax_tex_8017AAA8_png,
+    snorlax_tex_8017ACB0_png,
 };
 
 Texture snorlax_hd_part4_mat0 = {
@@ -96,8 +96,8 @@ Texture snorlax_hd_part4_mat0 = {
 };
 
 u8* snorlax_hd_part4_mat1_textures[] = {
-    snorlax_tex_8017AEE0,
-    snorlax_tex_8017B0E8,
+    snorlax_tex_8017AEE0_png,
+    snorlax_tex_8017B0E8_png,
 };
 
 Texture snorlax_hd_part4_mat1 = {
@@ -145,8 +145,8 @@ Texture snorlax_hd_part4_mat1 = {
 };
 
 u8* snorlax_hd_part4_mat2_textures[] = {
-    snorlax_tex_8017AEE0,
-    snorlax_tex_8017B0E8,
+    snorlax_tex_8017AEE0_png,
+    snorlax_tex_8017B0E8_png,
 };
 
 Texture snorlax_hd_part4_mat2 = {

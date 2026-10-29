@@ -5,7 +5,7 @@
 #include "app_level/app_level.h"
 #include "app_render/effect.h"
 
-extern WorldSetup D_8011B914;
+extern WorldSetup beach_WorldSetup;
 extern f32 D_8011B924_A7DB4;
 extern AnimCmd* D_8013B030_C74C0;
 extern AnimCmd** D_8013BAA0_C7F30;

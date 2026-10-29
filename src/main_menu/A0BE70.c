@@ -72,7 +72,7 @@ void func_800E48E0_A0BE70(DObj* dobj, s32 arg1, f32 arg2) {
 void func_800E4960_A0BEF0(GObj* gobj) {
     while (true) {
         if (D_800E832B_A0F8BB == 5) {
-            if (D_800E832C_A0F8BC >= 3600.0) {
+            if (D_800E832C_A0F8BC >= 3000.0) {
                 D_800E832B_A0F8BB = 1;
             } else if (D_800BF051 == 0 && D_800E832C_A0F8BC > 1.0 && gContInputPressedButtons & (A_BUTTON | START_BUTTON)) {
                 D_800E832B_A0F8BB = 4;
@@ -99,38 +99,49 @@ void func_800E4AF8_A0C088(void) {
 }
 
 void func_800E4B4C_A0C0DC(GObj* arg0) {
-    GObj* gobj = D_800E82A8_A0F838;
-    OMCamera* cam = D_800E82A8_A0F838->data.cam;
+    GObj* gobj;
+    OMCamera* cam;
+    f32 speed = 0.5f;
+    f32 speed2;
+
+    if (osTvType == OS_TV_PAL) {
+        speed /= 0.8333333f;
+    }
+    gobj = D_800E82A8_A0F838;
+    cam = D_800E82A8_A0F838->data.cam;
 
     D_800E8308_A0F898->fnAnimCallback = func_800E48E0_A0BE70;
     D_800E830C_A0F89C->fnAnimCallback = func_800E48E0_A0BE70;
-    cam->animSpeed = 0.5f;
+    cam->animSpeed = speed;
     cam->perspMtx.persp.near = 47.0f;
+    // never used, but the ROM computes it
+    speed2 = 0.5f;
+    speed2 /= 0.8333333f;
     animSetCameraAnimation(cam, &D_803A80D0_main_menu_vpk0, 0.0f);
     omCreateProcess(gobj, animUpdateCameraAnimation, 1, 1);
 
     animSetModelTreeAnimation(D_800E8300_A0F890, &D_80381D60_main_menu_vpk0, 0.0f);
-    animSetModelAnimationSpeed(D_800E8300_A0F890, 0.5f);
+    animSetModelAnimationSpeed(D_800E8300_A0F890, speed);
     animSetModelTreeTextureAnimation(D_800E8300_A0F890, &D_80385700_main_menu_vpk0, 0.0f);
-    animSetTextureAnimationSpeed(D_800E8300_A0F890, 0.5f);
+    animSetTextureAnimationSpeed(D_800E8300_A0F890, speed);
 
     animSetModelTreeAnimation(D_800E8304_A0F894, &D_803A1BE0_main_menu_vpk0, 0.0f);
-    animSetModelAnimationSpeed(D_800E8304_A0F894, 0.5f);
+    animSetModelAnimationSpeed(D_800E8304_A0F894, speed);
     animSetModelTreeTextureAnimation(D_800E8304_A0F894, &D_803A7F90_main_menu_vpk0, 0.0f);
-    animSetTextureAnimationSpeed(D_800E8304_A0F894, 0.5f);
+    animSetTextureAnimationSpeed(D_800E8304_A0F894, speed);
 
     animSetModelTreeAnimation(D_800E8308_A0F898, &D_80359B30_main_menu_vpk0, 0.0f);
-    animSetModelAnimationSpeed(D_800E8308_A0F898, 0.5f);
+    animSetModelAnimationSpeed(D_800E8308_A0F898, speed);
     animSetModelTreeTextureAnimation(D_800E8308_A0F898, &D_80359CD0_main_menu_vpk0, 0.0f);
-    animSetTextureAnimationSpeed(D_800E8308_A0F898, 0.5f);
+    animSetTextureAnimationSpeed(D_800E8308_A0F898, speed);
 
     animSetModelTreeAnimation(D_800E830C_A0F89C, &D_8038F9C0_main_menu_vpk0, 0.0f);
-    animSetModelAnimationSpeed(D_800E830C_A0F89C, 0.5f);
+    animSetModelAnimationSpeed(D_800E830C_A0F89C, speed);
     animSetModelTreeTextureAnimation(D_800E830C_A0F89C, &D_80393AE0_main_menu_vpk0, 0.0f);
-    animSetTextureAnimationSpeed(D_800E830C_A0F89C, 0.5f);
+    animSetTextureAnimationSpeed(D_800E830C_A0F89C, speed);
 
     animSetModelTreeAnimation(D_800E8310_A0F8A0, &D_80393DC0_main_menu_vpk0, 0.0f);
-    animSetModelAnimationSpeed(D_800E8310_A0F8A0, 0.5f);
+    animSetModelAnimationSpeed(D_800E8310_A0F8A0, speed);
 
     while (true) {
         ohWait(1);
@@ -204,7 +215,7 @@ void func_800E5130_A0C6C0(GObj* gobj) {
         sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = sobj->sprite.alpha = color;
     }
 
-    ohWait(180);
+    ohWait(150);
 
     for (color = 255.0f; color >= 8.5f; color -= 8.5f, ohWait(1)) {
         sobj->sprite.red = sobj->sprite.green = sobj->sprite.blue = sobj->sprite.alpha = color;
@@ -230,13 +241,13 @@ void func_800E5370_A0C900(GObj* arg0) {
 
     while (true) {
         switch (D_800E832C_A0F8BC) {
-            case 0xD2:
+            case 0xAF:
                 func_800E5330_A0C8C0(sobj1);
                 break;
-            case 0x1E0:
+            case 0x190:
                 func_800E5330_A0C8C0(sobj0);
                 break;
-            case 0x2EE:
+            case 0x271:
                 func_800E5330_A0C8C0(sobj2);
                 break;
         }
@@ -282,98 +293,98 @@ void func_800E5574_A0CB04(GObj* arg0) {
                 auSetBGMVolumeSmooth(1, 0x6400, 0x3C);
                 func_800AB700(D_800E82F4_A0F884, 0x2000, 0x4800, 60);
                 break;
-            case 0x46:
+            case 0x3A:
                 func_800AB700(D_800E82F4_A0F884, 0x4800, 0x2000, 600);
                 func_800AB41C(D_800E82F4_A0F884, 0x40, 0, 0x190);
                 break;
-            case 0x2EE:
+            case 0x271:
                 auPlaySoundWithParams(0x18, 0x3800, 0, 1.0f, 0);
                 func_800AB700(D_800E82F4_A0F884, 0x2000, 0x400, 90);
                 break;
-            case 0x318:
+            case 0x294:
                 auPlaySoundWithParams(0x18, 0x6800, 0x40, 1.0f, 0);
                 break;
-            case 0x348:
+            case 0x2BC:
                 auPlaySoundWithParams(0x18, 0x3800, 0x7F, 1.0f, 0);
                 auStopSound(D_800E82F4_A0F884);
                 break;
-            case 0x370:
+            case 0x2DD:
                 auPlaySoundWithParams(0x18, 0x2000, 0x40, 1.0f, 0);
                 break;
-            case 0x398:
+            case 0x2FE:
                 auPlaySoundWithParams(0x18, 0x2000, 0x40, 1.0f, 0);
                 break;
-            case 0x3C0:
+            case 0x320:
                 auPlaySoundWithParams(0x18, 0x3800, 0x40, 1.0f, 0);
                 break;
-            case 0x3E8:
+            case 0x341:
                 auPlaySoundWithParams(0x18, 0x4000, 0x40, 1.0f, 0);
                 break;
-            case 0x410:
+            case 0x362:
                 auPlaySoundWithParams(0x18, 0x3800, 0x40, 1.0f, 0);
                 break;
-            case 0x438:
+            case 0x384:
                 auPlaySoundWithParams(0x18, 0x4000, 0x40, 1.0f, 0);
                 break;
-            case 0x456:
+            case 0x39D:
                 auPlaySoundWithParams(0x18, 0x3000, 0x40, 1.0f, 0);
                 break;
-            case 0x69A:
+            case 0x580:
                 D_800E82F8_A0F888 = auPlaySoundWithParams(0x12, 0x6800, 0x14, 1.0f, 0xA);
                 auSetBGMVolumeSmooth(1, 0, 30);
                 break;
-            case 0x6A4:
+            case 0x588:
                 func_800AB41C(D_800E82F8_A0F888, 0x18, 0x5E, 30);
                 break;
-            case 0x6CC:
+            case 0x5AA:
                 D_800E82FC_A0F88C = auPlaySoundWithParams(0x75, 0x3800, 40, 1.0f, 30);
                 break;
-            case 0x6D6:
+            case 0x5B2:
                 func_800AB41C(D_800E82FC_A0F88C, 0x2C, 0x7C, 0x14);
                 break;
-            case 0x726:
+            case 0x5F5:
                 auPlaySoundWithParams(0x12, 0x4000, 0x40, 0.9f, 0x14);
                 break;
-            case 0x744:
+            case 0x60E:
                 break;
-            case 0x76C:
-            case 0x7A8:
-            case 0x7E4:
-            case 0x85C:
-            case 0x898:
-            case 0x8D4:
+            case 0x62F:
+            case 0x661:
+            case 0x693:
+            case 0x6F7:
+            case 0x729:
+            case 0x75B:
                 auPlaySoundWithParams(0, 0x7FFF, 0x40, 1.0f, 0xA);
                 break;
-            case 0x910:
+            case 0x78D:
                 D_800E82F8_A0F888 = auPlaySoundWithParams(0x9B, 0x6000, 0x36, 0.7f, 40);
                 break;
-            case 0x91A:
+            case 0x795:
                 func_800AB41C(D_800E82F8_A0F888, 0x36, 0xE, 0x28);
                 break;
-            case 0x942:
+            case 0x7B7:
                 auPlaySoundWithParams(0x9B, 0x4800, 0x18, 0.7f, 0x14);
                 break;
-            case 0x96A:
+            case 0x7D8:
                 auPlaySoundWithParams(0x9B, 0x3C00, 0x5E, 1.0f, 30);
                 break;
-            case 0x992:
+            case 0x7F9:
                 auPlaySoundWithParams(0x9B, 0x2C00, 0xE, 0.7f, 30);
                 break;
-            case 0x9B0:
+            case 0x812:
                 auPlaySoundWithParams(0x9B, 0x2000, 0x54, 0.68f, 30);
                 break;
-            case 0x9D8:
+            case 0x834:
                 break;
-            case 0x9C4:
+            case 0x823:
                 auPlaySoundWithParams(0x9B, 0x1800, 0x2C, 0.65f, 40);
                 break;
-            case 0xAAA:
+            case 0x8E3:
                 auSetBGMVolumeSmooth(1, 0x6400, 120);
                 break;
-            case 0xD56:
+            case 0xB1D:
                 auPlaySoundWithParams(0x12, 0x1C00, 0x40, 0.9f, 30);
                 break;
-            case 0xE2C:
+            case 0xBCF:
                 break;
         }
 
@@ -439,12 +450,12 @@ void func_800E5D2C_A0D2BC(void) {
     }
 
     if (D_800E832B_A0F8BB == 1) {
-        func_800AB918(0x5A);
+        func_800AB918(0x4B);
         func_800E1930_A08EC0(1, 0, 0, 0, 1.5f);
         auStopAllSounds();
         auStopBGM();
     } else if (D_800E832B_A0F8BB == 4) {
-        func_800AB918(0x1E);
+        func_800AB918(0x19);
         func_800E1930_A08EC0(1, 0, 0, 0, 0.5f);
         auStopAllSounds();
         auStopBGM();

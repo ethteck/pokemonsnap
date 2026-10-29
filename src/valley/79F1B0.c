@@ -31,7 +31,7 @@ void func_802C5C68_79F1F8(WorldBlock* arg0) {
 
 void func_802C5C8C_79F21C(void) {
     setHeightMap(&D_8031F9C0_7F8F50);
-    createWorld(&D_80100720, 0x63, 0x64, 0x7E, 9, 3, &func_802C5C20_79F1B0, &func_802C5C68_79F1F8, &func_802C5C44_79F1D4);
+    createWorld(&valley_WorldSetup, 0x63, 0x64, 0x7E, 9, 3, &func_802C5C20_79F1B0, &func_802C5C68_79F1F8, &func_802C5C44_79F1D4);
     setSkyBoxFollowPlayer();
     func_80363928_503D38(0x80, 0xE4, 3, 5);
 }

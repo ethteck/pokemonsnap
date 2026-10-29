@@ -195,7 +195,7 @@ enum SurfaceTypes {
 typedef void (*BlockFunc)(WorldBlock*);
 typedef void (*BlockFunc2)(WorldBlock*, WorldBlock*);
 
-extern WorldSetup D_80100720;
+extern WorldSetup valley_WorldSetup;
 
 extern Collider D_800EDF78_6B728[];
 

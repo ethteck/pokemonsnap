@@ -79,157 +79,157 @@ extern s8 D_800AE4E4[];
 // Manually define this RODATA here until data is migrated for D_800AE284
 // These are the names of all pokemon in order, used for returning their names when needed.
 const char D_800AF420[] = ""; // Blank first entry as there's no Pokedex zero.
-const char D_800AF424[] = "ＢＵＬＢＡＳＡＵＲ";
-const char D_800AF438[] = "ＩＶＹＳＡＵＲ";
-const char D_800AF448[] = "ＶＥＮＵＳＡＵＲ";
-const char D_800AF45C[] = "ＣＨＡＲＭＡＮＤＥＲ";
-const char D_800AF474[] = "ＣＨＡＲＭＥＬＥＯＮ";
-const char D_800AF48C[] = "ＣＨＡＲＩＺＡＲＤ";
-const char D_800AF4A0[] = "ＳＱＵＩＲＴＬＥ";
-const char D_800AF4B4[] = "ＷＡＲＴＯＲＴＬＥ";
-const char D_800AF4C8[] = "ＢＬＡＳＴＯＩＳＥ";
-const char D_800AF4DC[] = "ＣＡＴＥＲＰＩＥ";
-const char D_800AF4F0[] = "ＭＥＴＡＰＯＤ";
-const char D_800AF500[] = "ＢＵＴＴＥＲＦＲＥＥ";
-const char D_800AF518[] = "ＷＥＥＤＬＥ";
-const char D_800AF528[] = "ＫＡＫＵＮＡ";
-const char D_800AF538[] = "ＢＥＥＤＲＩＬＬ";
-const char D_800AF54C[] = "ＰＩＤＧＥＹ";
-const char D_800AF55C[] = "ＰＩＤＧＥＯＴＴＯ";
-const char D_800AF570[] = "ＰＩＤＧＥＯＴ";
-const char D_800AF580[] = "ＲＡＴＴＡＴＡ";
-const char D_800AF590[] = "ＲＡＴＩＣＡＴＥ";
-const char D_800AF5A4[] = "ＳＰＥＡＲＯＷ";
-const char D_800AF5B4[] = "ＦＥＡＲＯＷ";
-const char D_800AF5C4[] = "ＥＫＡＮＳ";
-const char D_800AF5D0[] = "ＡＲＢＯＫ";
-const char D_800AF5DC[] = "ＰＩＫＡＣＨＵ";
-const char D_800AF5EC[] = "ＲＡＩＣＨＵ";
-const char D_800AF5FC[] = "ＳＡＮＤＳＨＲＥＷ";
-const char D_800AF610[] = "ＳＡＮＤＳＬＡＳＨ";
-const char D_800AF624[] = "ＮＩＤＲＡＮｆ";
-const char D_800AF634[] = "ＮＩＤＯＲＩＮＡ";
-const char D_800AF648[] = "ＮＩＤＯＱＵＥＥＮ";
-const char D_800AF65C[] = "ＮＩＤＯＲＡＮｍ";
-const char D_800AF670[] = "ＮＩＤＯＲＩＮＯ";
-const char D_800AF684[] = "ＮＩＤＯＫＩＮＧ";
-const char D_800AF698[] = "ＣＬＥＦＡＩＲＹ";
-const char D_800AF6AC[] = "ＣＬＥＦＡＢＬＥ";
-const char D_800AF6C0[] = "ＶＵＬＰＩＸ";
-const char D_800AF6D0[] = "ＮＩＮＥＴＡＬＥＳ";
-const char D_800AF6E4[] = "ＪＩＧＧＬＹＰＵＦＦ";
-const char D_800AF6FC[] = "ＷＩＧＧＬＹＴＵＦＦ";
-const char D_800AF714[] = "ＺＵＢＡＴ";
-const char D_800AF720[] = "ＧＯＬＢＡＴ";
-const char D_800AF730[] = "ＯＤＤＩＳＨ";
-const char D_800AF740[] = "ＧＬＯＯＭ";
-const char D_800AF74C[] = "ＶＩＬＥＰＬＵＭＥ";
-const char D_800AF760[] = "ＰＡＲＡＳ";
-const char D_800AF76C[] = "ＰＡＲＡＳＥＣＴ";
-const char D_800AF780[] = "ＶＥＮＯＮＡＴ";
-const char D_800AF790[] = "ＶＥＮＯＭＯＴＨ";
-const char D_800AF7A4[] = "ＤＩＧＬＥＴＴ";
-const char D_800AF7B4[] = "ＤＵＧＴＲＩＯ";
-const char D_800AF7C4[] = "ＭＥＯＷＴＨ";
-const char D_800AF7D4[] = "ＰＥＲＳＩＡＮ";
-const char D_800AF7E4[] = "ＰＳＹＤＵＣＫ";
-const char D_800AF7F4[] = "ＧＯＬＤＵＣＫ";
-const char D_800AF804[] = "ＭＡＮＫＥＹ";
-const char D_800AF814[] = "ＰＲＩＭＥＡＰＥ";
-const char D_800AF828[] = "ＧＲＯＷＬＩＴＨＥ";
-const char D_800AF83C[] = "ＡＲＣＡＮＩＮＥ";
-const char D_800AF850[] = "ＰＯＬＩＷＡＧ";
-const char D_800AF860[] = "ＰＯＬＩＷＨＩＲＬ";
-const char D_800AF874[] = "ＰＯＬＩＷＲＡＴＨ";
-const char D_800AF888[] = "ＡＢＲＡ";
-const char D_800AF894[] = "ＫＡＤＡＢＲＡ";
-const char D_800AF8A4[] = "ＡＬＡＫＡＺＡＭ";
-const char D_800AF8B8[] = "ＭＡＣＨＯＰ";
-const char D_800AF8C8[] = "ＭＡＣＨＯＫＥ";
-const char D_800AF8D8[] = "ＭＡＣＨＡＭＰ";
-const char D_800AF8E8[] = "ＢＥＬＬＳＰＲＯＵＴ";
-const char D_800AF900[] = "ＷＥＥＰＩＮＢＥＬＬ";
-const char D_800AF918[] = "ＶＩＣＴＲＥＥＢＥＬ";
-const char D_800AF930[] = "ＴＥＮＴＡＣＯＯＬ";
-const char D_800AF944[] = "ＴＥＮＴＡＣＲＵＥＬ";
-const char D_800AF95C[] = "ＧＥＯＤＵＤＥ";
-const char D_800AF96C[] = "ＧＲＡＶＥＬＥＲ";
-const char D_800AF980[] = "ＧＯＬＥＭ";
-const char D_800AF98C[] = "ＰＯＮＹＴＡ";
-const char D_800AF99C[] = "ＲＡＰＩＤＡＳＨ";
-const char D_800AF9B0[] = "ＳＬＯＷＰＯＫＥ";
-const char D_800AF9C4[] = "ＳＬＯＷＢＲＯ";
-const char D_800AF9D4[] = "ＭＡＧＮＥＭＩＴＥ";
-const char D_800AF9E8[] = "ＭＡＧＮＥＴＯＮ";
-const char D_800AF9FC[] = "ＦＡＲＦＥＴＣＨ’Ｄ";
-const char D_800AFA14[] = "ＤＯＤＵＯ";
-const char D_800AFA20[] = "ＤＯＤＲＩＯ";
-const char D_800AFA30[] = "ＳＥＥＬ";
-const char D_800AFA3C[] = "ＤＥＷＧＯＮＧ";
-const char D_800AFA4C[] = "ＧＲＩＭＥＲ";
-const char D_800AFA5C[] = "ＭＵＫ";
-const char D_800AFA64[] = "ＳＨＥＬＬＤＥＲ";
-const char D_800AFA78[] = "ＣＬＯＹＳＴＥＲ";
-const char D_800AFA8C[] = "ＧＡＳＴＬＹ";
-const char D_800AFA9C[] = "ＨＡＵＮＴＥＲ";
-const char D_800AFAAC[] = "ＧＥＮＧＡＲ";
-const char D_800AFABC[] = "ＯＮＩＸ";
-const char D_800AFAC8[] = "ＤＲＯＷＺＥＥ";
-const char D_800AFAD8[] = "ＨＹＰＮＯ";
-const char D_800AFAE4[] = "ＫＲＡＢＢＹ";
-const char D_800AFAF4[] = "ＫＩＮＧＬＥＲ";
-const char D_800AFB04[] = "ＶＯＬＴＯＲＢ";
-const char D_800AFB14[] = "ＥＬＥＣＴＲＯＤＥ";
-const char D_800AFB28[] = "ＥＸＥＧＧＣＵＴＥ";
-const char D_800AFB3C[] = "ＥＸＥＧＧＵＴＯＲ";
-const char D_800AFB50[] = "ＣＵＢＯＮＥ";
-const char D_800AFB60[] = "ＭＡＲＯＷＡＫ";
-const char D_800AFB70[] = "ＨＩＴＭＯＮＬＥＥ";
-const char D_800AFB84[] = "ＨＩＴＭＯＮＣＨＡＮ";
-const char D_800AFB9C[] = "ＬＩＣＫＩＴＵＮＧ";
-const char D_800AFBB0[] = "ＫＯＦＦＩＮＧ";
-const char D_800AFBC0[] = "ＷＥＥＺＩＮＧ";
-const char D_800AFBD0[] = "ＲＨＹＨＯＲＮ";
-const char D_800AFBE0[] = "ＲＨＹＤＯＮ";
-const char D_800AFBF0[] = "ＣＨＡＮＳＥＹ";
-const char D_800AFC00[] = "ＴＡＮＧＥＬＡ";
-const char D_800AFC10[] = "ＫＡＮＧＡＳＫＨＡＮ";
-const char D_800AFC28[] = "ＨＯＲＳＥＡ";
-const char D_800AFC38[] = "ＳＥＡＤＲＡ";
-const char D_800AFC48[] = "ＧＯＬＤＥＥＮ";
-const char D_800AFC58[] = "ＳＥＡＫＩＮＧ";
-const char D_800AFC68[] = "ＳＴＡＲＹＵ";
-const char D_800AFC78[] = "ＳＴＡＲＭＩＥ";
-const char D_800AFC88[] = "ＭＲ．ＭＩＭＥ";
-const char D_800AFC98[] = "ＳＣＹＴＨＥＲ";
-const char D_800AFCA8[] = "ＪＹＮＸ";
-const char D_800AFCB4[] = "ＥＬＥＣＴＡＢＵＺＺ";
-const char D_800AFCCC[] = "ＭＡＧＭＡＲ";
-const char D_800AFCDC[] = "ＰＩＮＳＥＲ";
-const char D_800AFCEC[] = "ＴＡＵＲＯＳ";
-const char D_800AFCFC[] = "ＭＡＧＩＫＡＲＰ";
-const char D_800AFD10[] = "ＧＹＡＲＡＤＯＳ";
-const char D_800AFD24[] = "ＬＡＰＲＡＳ";
-const char D_800AFD34[] = "ＤＩＴＴＯ";
-const char D_800AFD40[] = "ＥＥＶＥＥ";
-const char D_800AFD4C[] = "ＶＡＰＯＥＲＯＮ";
-const char D_800AFD60[] = "ＪＯＬＴＥＯＮ";
-const char D_800AFD70[] = "ＦＬＡＲＥＯＮ";
-const char D_800AFD80[] = "ＰＯＲＹＧＯＮ";
-const char D_800AFD90[] = "ＯＭＡＮＹＴＥ";
-const char D_800AFDA0[] = "ＯＭＡＳＴＡＲ";
-const char D_800AFDB0[] = "ＫＡＢＵＴＯ";
-const char D_800AFDC0[] = "ＫＡＢＵＴＯＰＳ";
-const char D_800AFDD4[] = "ＡＥＲＯＤＡＣＴＹＬ";
-const char D_800AFDEC[] = "ＳＮＯＲＬＡＸ";
-const char D_800AFDFC[] = "ＡＲＴＩＣＵＮＯ";
-const char D_800AFE10[] = "ＺＡＰＤＯＳ";
-const char D_800AFE20[] = "ＭＯＬＴＲＥＳ";
-const char D_800AFE30[] = "ＤＲＡＴＩＮＩ";
-const char D_800AFE40[] = "ＤＲＡＧＯＮＡＩＲ";
-const char D_800AFE54[] = "ＤＲＡＧＯＮＩＴＥ";
-const char D_800AFE68[] = "ＭＥＷＴＷＯ";
-const char D_800AFE78[] = "ＭＥＷ";
+const char D_800AF424[] = "BULBASAUR";
+const char D_800AF438[] = "IVYSAUR";
+const char D_800AF448[] = "VENUSAUR";
+const char D_800AF45C[] = "CHARMANDER";
+const char D_800AF474[] = "CHARMELEON";
+const char D_800AF48C[] = "CHARIZARD";
+const char D_800AF4A0[] = "SQUIRTLE";
+const char D_800AF4B4[] = "WARTORTLE";
+const char D_800AF4C8[] = "BLASTOISE";
+const char D_800AF4DC[] = "CATERPIE";
+const char D_800AF4F0[] = "METAPOD";
+const char D_800AF500[] = "BUTTERFREE";
+const char D_800AF518[] = "WEEDLE";
+const char D_800AF528[] = "KAKUNA";
+const char D_800AF538[] = "BEEDRILL";
+const char D_800AF54C[] = "PIDGEY";
+const char D_800AF55C[] = "PIDGEOTTO";
+const char D_800AF570[] = "PIDGEOT";
+const char D_800AF580[] = "RATTATA";
+const char D_800AF590[] = "RATICATE";
+const char D_800AF5A4[] = "SPEAROW";
+const char D_800AF5B4[] = "FEAROW";
+const char D_800AF5C4[] = "EKANS";
+const char D_800AF5D0[] = "ARBOK";
+const char D_800AF5DC[] = "PIKACHU";
+const char D_800AF5EC[] = "RAICHU";
+const char D_800AF5FC[] = "SANDSHREW";
+const char D_800AF610[] = "SANDSLASH";
+const char D_800AF624[] = "NIDRANf";
+const char D_800AF634[] = "NIDORINA";
+const char D_800AF648[] = "NIDOQUEEN";
+const char D_800AF65C[] = "NIDORANm";
+const char D_800AF670[] = "NIDORINO";
+const char D_800AF684[] = "NIDOKING";
+const char D_800AF698[] = "CLEFAIRY";
+const char D_800AF6AC[] = "CLEFABLE";
+const char D_800AF6C0[] = "VULPIX";
+const char D_800AF6D0[] = "NINETALES";
+const char D_800AF6E4[] = "JIGGLYPUFF";
+const char D_800AF6FC[] = "WIGGLYTUFF";
+const char D_800AF714[] = "ZUBAT";
+const char D_800AF720[] = "GOLBAT";
+const char D_800AF730[] = "ODDISH";
+const char D_800AF740[] = "GLOOM";
+const char D_800AF74C[] = "VILEPLUME";
+const char D_800AF760[] = "PARAS";
+const char D_800AF76C[] = "PARASECT";
+const char D_800AF780[] = "VENONAT";
+const char D_800AF790[] = "VENOMOTH";
+const char D_800AF7A4[] = "DIGLETT";
+const char D_800AF7B4[] = "DUGTRIO";
+const char D_800AF7C4[] = "MEOWTH";
+const char D_800AF7D4[] = "PERSIAN";
+const char D_800AF7E4[] = "PSYDUCK";
+const char D_800AF7F4[] = "GOLDUCK";
+const char D_800AF804[] = "MANKEY";
+const char D_800AF814[] = "PRIMEAPE";
+const char D_800AF828[] = "GROWLITHE";
+const char D_800AF83C[] = "ARCANINE";
+const char D_800AF850[] = "POLIWAG";
+const char D_800AF860[] = "POLIWHIRL";
+const char D_800AF874[] = "POLIWRATH";
+const char D_800AF888[] = "ABRA";
+const char D_800AF894[] = "KADABRA";
+const char D_800AF8A4[] = "ALAKAZAM";
+const char D_800AF8B8[] = "MACHOP";
+const char D_800AF8C8[] = "MACHOKE";
+const char D_800AF8D8[] = "MACHAMP";
+const char D_800AF8E8[] = "BELLSPROUT";
+const char D_800AF900[] = "WEEPINBELL";
+const char D_800AF918[] = "VICTREEBEL";
+const char D_800AF930[] = "TENTACOOL";
+const char D_800AF944[] = "TENTACRUEL";
+const char D_800AF95C[] = "GEODUDE";
+const char D_800AF96C[] = "GRAVELER";
+const char D_800AF980[] = "GOLEM";
+const char D_800AF98C[] = "PONYTA";
+const char D_800AF99C[] = "RAPIDASH";
+const char D_800AF9B0[] = "SLOWPOKE";
+const char D_800AF9C4[] = "SLOWBRO";
+const char D_800AF9D4[] = "MAGNEMITE";
+const char D_800AF9E8[] = "MAGNETON";
+const char D_800AF9FC[] = "FARFETCH'D";
+const char D_800AFA14[] = "DODUO";
+const char D_800AFA20[] = "DODRIO";
+const char D_800AFA30[] = "SEEL";
+const char D_800AFA3C[] = "DEWGONG";
+const char D_800AFA4C[] = "GRIMER";
+const char D_800AFA5C[] = "MUK";
+const char D_800AFA64[] = "SHELLDER";
+const char D_800AFA78[] = "CLOYSTER";
+const char D_800AFA8C[] = "GASTLY";
+const char D_800AFA9C[] = "HAUNTER";
+const char D_800AFAAC[] = "GENGAR";
+const char D_800AFABC[] = "ONIX";
+const char D_800AFAC8[] = "DROWZEE";
+const char D_800AFAD8[] = "HYPNO";
+const char D_800AFAE4[] = "KRABBY";
+const char D_800AFAF4[] = "KINGLER";
+const char D_800AFB04[] = "VOLTORB";
+const char D_800AFB14[] = "ELECTRODE";
+const char D_800AFB28[] = "EXEGGCUTE";
+const char D_800AFB3C[] = "EXEGGUTOR";
+const char D_800AFB50[] = "CUBONE";
+const char D_800AFB60[] = "MAROWAK";
+const char D_800AFB70[] = "HITMONLEE";
+const char D_800AFB84[] = "HITMONCHAN";
+const char D_800AFB9C[] = "LICKITUNG";
+const char D_800AFBB0[] = "KOFFING";
+const char D_800AFBC0[] = "WEEZING";
+const char D_800AFBD0[] = "RHYHORN";
+const char D_800AFBE0[] = "RHYDON";
+const char D_800AFBF0[] = "CHANSEY";
+const char D_800AFC00[] = "TANGELA";
+const char D_800AFC10[] = "KANGASKHAN";
+const char D_800AFC28[] = "HORSEA";
+const char D_800AFC38[] = "SEADRA";
+const char D_800AFC48[] = "GOLDEEN";
+const char D_800AFC58[] = "SEAKING";
+const char D_800AFC68[] = "STARYU";
+const char D_800AFC78[] = "STARMIE";
+const char D_800AFC88[] = "MR.MIME";
+const char D_800AFC98[] = "SCYTHER";
+const char D_800AFCA8[] = "JYNX";
+const char D_800AFCB4[] = "ELECTABUZZ";
+const char D_800AFCCC[] = "MAGMAR";
+const char D_800AFCDC[] = "PINSER";
+const char D_800AFCEC[] = "TAUROS";
+const char D_800AFCFC[] = "MAGIKARP";
+const char D_800AFD10[] = "GYARADOS";
+const char D_800AFD24[] = "LAPRAS";
+const char D_800AFD34[] = "DITTO";
+const char D_800AFD40[] = "EEVEE";
+const char D_800AFD4C[] = "VAPOERON";
+const char D_800AFD60[] = "JOLTEON";
+const char D_800AFD70[] = "FLAREON";
+const char D_800AFD80[] = "PORYGON";
+const char D_800AFD90[] = "OMANYTE";
+const char D_800AFDA0[] = "OMASTAR";
+const char D_800AFDB0[] = "KABUTO";
+const char D_800AFDC0[] = "KABUTOPS";
+const char D_800AFDD4[] = "AERODACTYL";
+const char D_800AFDEC[] = "SNORLAX";
+const char D_800AFDFC[] = "ARTICUNO";
+const char D_800AFE10[] = "ZAPDOS";
+const char D_800AFE20[] = "MOLTRES";
+const char D_800AFE30[] = "DRATINI";
+const char D_800AFE40[] = "DRAGONAIR";
+const char D_800AFE54[] = "DRAGONITE";
+const char D_800AFE68[] = "MEWTWO";
+const char D_800AFE78[] = "MEW";
 
 static s32 padding[2];
 PhotoData D_800B0598[60]; // Size: 0xD980 - All photos taken in a level
@@ -262,29 +262,22 @@ extern UNK_PTR* D_800EDAE0;
 extern UnkEC64Arg3 D_800EDAB0;
 extern Texture** D_800EDB90;
 
-extern WorldSetup D_800F5DA0;
+extern WorldSetup rainbow_WorldSetup;
 extern WorldSetup volcano_WorldSetup;
-extern WorldSetup D_80100720;
+extern WorldSetup valley_WorldSetup;
 extern WorldSetup tunnel_WorldSetup;
-extern WorldSetup D_8012A0E8;
-extern WorldSetup D_8012AC90;
+extern WorldSetup cave_WorldSetup;
+extern WorldSetup river_WorldSetup;
 
-extern UNK_TYPE D_8013E260;
-extern UNK_TYPE D_8017A780;
-extern UNK_TYPE D_80188D28;
-extern UNK_TYPE D_8018A6F0;
-extern UNK_TYPE D_801AFD30;
-extern UNK_TYPE D_8017A710;
-extern UNK_TYPE D_801B1230;
-extern UNK_TYPE D_801B1D40;
-extern UNK_TYPE D_801B6B60;
-extern UNK_TYPE D_801CE400;
-extern UNK_TYPE D_8017C090;
-extern UNK_TYPE D_801CF770;
-extern UNK_TYPE D_801CF840;
-extern UNK_TYPE D_801D6840;
-extern UNK_TYPE D_80186E20;
-extern UNK_TYPE D_80188CB0;
+extern UNK_TYPE mon601_modelanim_anim_3;
+extern Struct_800AB050 zapdos_egg_vtx[0x150];
+extern Struct_800AB050 zapdos_egg_vtx_target[0x150];
+extern Struct_800AB050 unk601_vtx[0x144];
+extern Struct_800AB050 unk601_vtx_target[0x144];
+extern Struct_800AB050 tunnel_egg_buffer[0x150];
+extern Struct_800AB050 cave_egg_buffer[0x144];
+extern UNK_TYPE chansey_modelanim_anim_3;
+extern UNK_TYPE zapdos_egg_modelanim_anim_3;
 
 extern s32 gPokemonIdInFocus;
 extern UnkThing PokemonDetector_Photo[2];
@@ -297,13 +290,13 @@ char* getPokemonName(s32 pkmnID) {
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
         pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (checkPlayerFlag(PFID_HAS_DASH_ENGINE) == 0) {
-            return "？";
+            return "?";
         }
     }
     if (pkmnID == PokemonID_1004 || pkmnID == PokemonID_1010 || pkmnID == PokemonID_1018 || pkmnID == PokemonID_1022 ||
         pkmnID == PokemonID_KOFFING_SMOKE || pkmnID == PokemonID_1035) {
         if (!func_800BF3D4_5C274(pkmnID)) {
-            return "Ｓｉｇｎ？";
+            return "Sign?";
         }
     }
     switch (pkmnID) {
@@ -315,12 +308,12 @@ char* getPokemonName(s32 pkmnID) {
         case PokemonID_1022:
         case PokemonID_KOFFING_SMOKE:
         case PokemonID_1035:
-            return "Ｓｉｇｎ";
+            return "Sign";
         case PokemonID_500:
         case PokemonID_MOLTRES_EGG:
         case PokemonID_601:
         case PokemonID_ZAPDOS_EGG:
-            return "？";
+            return "?";
         default:
             return NULL;
     }
@@ -969,9 +962,9 @@ void func_8009D37C(u8 levelID) {
 
     switch (levelID) {
         case SCENE_BEACH:
-            func_8009D184(&D_8011B914);
-            func_8009D1E8((u32) fx_img_beach_ROM_START, (u32) fx_img_beach_ROM_END, (s32) &D_801D6840);
-            func_8009D21C(0, &D_801D6840);
+            func_8009D184(&beach_WorldSetup);
+            func_8009D1E8((u32) fx_img_beach_ROM_START, (u32) fx_img_beach_ROM_END, (s32) beach_extra_VRAM_END);
+            func_8009D21C(0, beach_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
@@ -979,28 +972,28 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_TUNNEL:
             func_8009D184(&tunnel_WorldSetup);
-            func_8009D1E8((u32) fx_img_tunnel_ROM_START, (u32) fx_img_tunnel_ROM_END, (s32) &D_801B1230);
-            func_8009D21C(0, &D_801B1230);
+            func_8009D1E8((u32) fx_img_tunnel_ROM_START, (u32) fx_img_tunnel_ROM_END, (s32) tunnel_egg_buffer_VRAM_END);
+            func_8009D21C(0, tunnel_egg_buffer_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0;
             D_800BDF2C.a = 0;
-            memcpy(&D_801AFD30, &D_80188D28, 0x1500);
+            memcpy(tunnel_egg_buffer, zapdos_egg_vtx, sizeof(zapdos_egg_vtx));
             break;
         case SCENE_CAVE:
-            func_8009D184(&D_8012A0E8);
-            func_8009D1E8((u32) fx_img_cave_ROM_START, (u32) fx_img_cave_ROM_END, (s32) &D_801CF840);
-            func_8009D21C(0, &D_801CF840);
+            func_8009D184(&cave_WorldSetup);
+            func_8009D1E8((u32) fx_img_cave_ROM_START, (u32) fx_img_cave_ROM_END, (s32) cave_egg_buffer_VRAM_END);
+            func_8009D21C(0, cave_egg_buffer_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
             D_800BDF2C.a = 0;
-            memcpy(&D_801CE400, &D_8017A780, 0x1440);
+            memcpy(cave_egg_buffer, unk601_vtx, sizeof(unk601_vtx));
             break;
         case SCENE_RIVER:
-            func_8009D184(&D_8012AC90);
-            func_8009D1E8((u32) fx_img_river_ROM_START, (u32) fx_img_river_ROM_END, (s32) &D_801B6B60);
-            func_8009D21C(0, &D_801B6B60);
+            func_8009D184(&river_WorldSetup);
+            func_8009D1E8((u32) fx_img_river_ROM_START, (u32) fx_img_river_ROM_END, (s32) river_extra_VRAM_END);
+            func_8009D21C(0, river_extra_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0x80;
@@ -1008,26 +1001,26 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VOLCANO:
             func_8009D184(&volcano_WorldSetup);
-            func_8009D1E8((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END, (s32) &D_801CF770);
-            func_8009D21C(0, &D_801CF770);
+            func_8009D1E8((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END, (s32) volcano_extra_VRAM_END);
+            func_8009D21C(0, volcano_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0;
             D_800BDF2C.b = 0;
             D_800BDF2C.a = 0;
             break;
         case SCENE_VALLEY:
-            func_8009D184(&D_80100720);
-            func_8009D1E8((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END, (s32) &D_801B1D40);
-            func_8009D21C(0, &D_801B1D40);
+            func_8009D184(&valley_WorldSetup);
+            func_8009D1E8((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END, (s32) valley_extra_VRAM_END);
+            func_8009D21C(0, valley_extra_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0x80;
             D_800BDF2C.a = 0;
             break;
         case SCENE_RAINBOW:
-            func_8009D184(&D_800F5DA0);
-            func_8009D1E8((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END, (s32) &D_8013E260);
-            func_8009D21C(0, &D_8013E260);
+            func_8009D184(&rainbow_WorldSetup);
+            func_8009D1E8((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END, (s32) rainbow_extra_VRAM_END);
+            func_8009D21C(0, rainbow_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
@@ -1193,14 +1186,14 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
 
     switch (arg0->pokemonID) {
         case PokemonID_CHANSEY:
-            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &D_80186E20) {
+            if (D_800ACD9C[arg0->unk_00_13].unk_00 == &chansey_modelanim_anim_3) {
                 model->scale.v.x *= 0.5f;
                 model->scale.v.y *= 0.5f;
                 model->scale.v.z *= 0.5f;
             }
             break;
         case PokemonID_ZAPDOS_EGG:
-            if (D_800AD474[arg0->unk_00_13].unk_00 == &D_80188CB0) {
+            if (D_800AD474[arg0->unk_00_13].unk_00 == &zapdos_egg_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;
@@ -1213,13 +1206,13 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
                 if (f2 > 1.0f) {
                     f2 = 1.0f;
                 }
-                func_800AB050(f2, 0x150, &D_80188D28, &D_801AFD30, &D_8018A6F0);
+                func_800AB050(f2, ARRAY_COUNT(zapdos_egg_vtx), zapdos_egg_vtx, tunnel_egg_buffer, zapdos_egg_vtx_target);
             } else {
-                memcpy(&D_80188D28, &D_801AFD30, 0x1500);
+                memcpy(zapdos_egg_vtx, tunnel_egg_buffer, sizeof(zapdos_egg_vtx));
             }
             break;
         case PokemonID_601:
-            if (D_800AD444[arg0->unk_00_13].unk_00 == &D_8017A710) {
+            if (D_800AD444[arg0->unk_00_13].unk_00 == &mon601_modelanim_anim_3) {
                 f32 f2;
                 if (arg0->animationTime < 0 || arg0->animationTime > 60.0f) {
                     f2 = 1.0f;
@@ -1232,9 +1225,9 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
                 if (f2 > 1.0f) {
                     f2 = 1.0f;
                 }
-                func_800AB050(f2, 0x144, &D_8017A780, &D_801CE400, &D_8017C090);
+                func_800AB050(f2, ARRAY_COUNT(unk601_vtx), unk601_vtx, cave_egg_buffer, unk601_vtx_target);
             } else {
-                memcpy(&D_8017A780, &D_801CE400, 0x1440);
+                memcpy(unk601_vtx, cave_egg_buffer, sizeof(unk601_vtx));
             }
             break;
     }

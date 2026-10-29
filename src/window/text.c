@@ -20,138 +20,45 @@ ucolor UIText_RedColor = { 255, 0, 0, 255 };
 ucolor UIText_YellowColor = { 255, 255, 0, 255 };
 s32 D_8037EAE0_852290 = false;
 // clang-format off
-u16 UIText_CharTable[370] = {
-    'あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ',
-    'さ', 'し', 'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と',
-    'な', 'に', 'ぬ', 'ね', 'の', 'は', 'ひ', 'ふ', 'へ', 'ほ',
-    'ま', 'み', 'む', 'め', 'も', 'や', 'ゆ', 'よ', 'ら', 'り',
-    'る', 'れ', 'ろ', 'わ', 'ゐ', 'ゑ','を', 'ん',  'が', 'ぎ',
-    'ぐ', 'げ', 'ご', 'ざ', 'じ', 'ず', 'ぜ', 'ぞ', 'だ', 'ぢ',
-    'づ', 'で', 'ど', 'ば', 'び', 'ぶ', 'べ', 'ぼ', 'ぱ', 'ぴ',
-    'ぷ', 'ぺ', 'ぽ', 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ', 'っ', 'ゃ',
-    'ゅ', 'ょ', 'ゎ', '・', '・', '・','・','・','・','・',
-    '「', '」', '『', '』', '・', '・', 'mm','cm','\\m', 'Km',
-    '\\g', 'Kg', '\\l', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', '・', '℃', 'No', '・', '・', '・', '・', '・',
-    '↑', '↓', '○', '◎', '●', '・','・','・','・', '×',
-    '÷', '・','・','・','・', '★','☆', 'ア', 'イ', 'ウ',
-    'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ', 'サ', 'シ', 'ス',
-    'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト', 'ナ', 'ニ', 'ヌ',
-    'ネ', 'ノ', 'ハ', 'ヒ', 'フ', 'ヘ', 'ホ', 'マ', 'ミ', 'ム',
-    'メ', 'モ', 'ヤ', 'ユ', 'ヨ', 'ラ', 'リ', 'ル', 'レ', 'ロ',
-    'ワ', 'ヰ', 'ヱ', 'ヲ', 'ン', 'ガ', 'ギ', 'グ', 'ゲ', 'ゴ',
-    'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ', 'ダ', 'ヂ', 'ヅ', 'デ', 'ド',
-    'バ', 'ビ', 'ブ', 'ベ', 'ボ', 'パ', 'ピ', 'プ', 'ペ', 'ポ',
-    'ァ', 'ィ', 'ゥ', 'ェ', 'ォ', 'ッ', 'ャ', 'ュ', 'ョ', 'ヮ',
-    '・', '・', '・', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', '・', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', '・', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', '・', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', '・', '・', '・', '・', '・', '・', '・', '・',
-    '・', '・', 'Ａ', 'Ｂ', 'Ｃ', 'Ｄ', 'Ｅ', 'Ｆ', 'Ｇ', 'Ｈ',
-    'Ｉ', 'Ｊ', 'Ｋ', 'Ｌ', 'Ｍ', 'Ｎ', 'Ｏ', 'Ｐ', 'Ｑ', 'Ｒ',
-    'Ｓ', 'Ｔ', 'Ｕ', 'Ｖ', 'Ｗ', 'Ｘ', 'Ｙ', 'Ｚ', 'ａ', 'ｂ',
-    'ｃ', 'ｄ', 'ｅ', 'ｆ', 'ｇ', 'ｈ', 'ｉ', 'ｊ', 'ｋ', 'ｌ',
-    'ｍ', 'ｎ', 'ｏ', 'ｐ', 'ｑ', 'ｒ', 'ｓ', 'ｔ', 'ｕ', 'ｖ',
-    'ｗ', 'ｘ', 'ｙ', 'ｚ', '１', '２', '３', '４', '５', '６',
-    '７', '８', '９', '０', '▲', '▼', 0xA1C1, '！', '＠', '＃',
-    '＄', '％', '＆', '＊', '（', '）', '＿', '＋', '＝', 'ー',
-    '’', '”', '；', '：', '／', '．', '，', '？', '＜', '＞',
-    '♂', '♀', '†', '‡', '¶', '［', '］', 'ε', '→', '←'
-};
-s32 unused_2 = 0;
-u16 UIText_AsciiTable[] = {
-    '！', '”', '＃', '＄', '％', '＆', '’', '（', '）', '＊',
-    '＋', '，', 'ー', '．', '／', '０', '１', '２', '３', '４',
-    '５', '６', '７', '８', '９', '：', '；', '＜', '＝', '＞',
-    '？', '＠', 'Ａ', 'Ｂ', 'Ｃ', 'Ｄ', 'Ｅ', 'Ｆ', 'Ｇ', 'Ｈ',
-    'Ｉ', 'Ｊ', 'Ｋ', 'Ｌ', 'Ｍ', 'Ｎ', 'Ｏ', 'Ｐ', 'Ｑ', 'Ｒ',
-    'Ｓ', 'Ｔ', 'Ｕ', 'Ｖ', 'Ｗ', 'Ｘ', 'Ｙ', 'Ｚ', '［', '￥',
-    '］', '＾', '＿', '‘', 'ａ', 'ｂ', 'ｃ', 'ｄ', 'ｅ', 'ｆ',
-    'ｇ', 'ｈ', 'ｉ', 'ｊ', 'ｋ', 'ｌ', 'ｍ', 'ｎ', 'ｏ', 'ｐ',
-    'ｑ', 'ｒ', 'ｓ', 'ｔ', 'ｕ', 'ｖ', 'ｗ', 'ｘ', 'ｙ', 'ｚ',
-    '｛', '｜', '｝', '￣',
-};
-s32 unused_3 = 0;
-
-u8 UIText_WidthTable[2][370] = {
+u8 UIText_CharTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                         "abcdefghijklmnopqrstuvwxyz"
+                         "1234567890"
+                         "\xA0\x9F~!@#$%&*()_+=-'\";:/.,?<>\x9E\x9D\x9C\x9B\x9A[]"
+                         "\xE9\x99\x98\xC9\xC4\xD6\xDC\xE4\xF6\xFC\xE2\xE0\xEE\xEF\xFB\xF9\xE8\xEA\xEB\xF4\xF3\xC1\xCD\xD3\xDA\xD1\xF1\xE1\xED\xEC\xFA\xF2\xC0\xC8\xD2\xD9\xA1\xBF\xBA\xAA\xE7\xDF\xC2\xD4\xC7\xCC";
+u8 UIText_WidthTable[2][142] = {
     {
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
-        8, 8, 5, 5, 5, 5, 5, 5, 5, 5,
-        3, 5, 5, 4, 5, 5, 5, 5, 5, 5,
-        4, 5, 5, 5, 5, 5, 5, 5, 5, 4,
-        3, 4, 4, 4, 4, 4, 2, 3, 4, 1,
-        5, 4, 4, 3, 4, 3, 3, 4, 4, 4,
-        5, 4, 4, 4, 3, 5, 5, 5, 5, 5,
-        5, 5, 5, 5, 5, 5, 5, 2, 5, 5,
-        4, 5, 5, 5, 2, 2, 4, 5, 3, 3,
-        1, 3, 2, 1, 3, 1, 2, 4, 3, 3,
-        5, 5, 5, 5, 5, 2, 2, 4, 5, 5,
+        5, 5, 5, 5, 5, 5, 5, 5, 3, 5,
+        5, 4, 5, 5, 5, 5, 5, 5, 4, 5,
+        5, 5, 5, 5, 5, 5, 5, 4, 3, 4,
+        4, 4, 4, 4, 2, 3, 4, 1, 5, 4,
+        4, 3, 4, 3, 3, 4, 4, 4, 5, 4,
+        4, 4, 3, 5, 5, 5, 5, 5, 5, 5,
+        5, 5, 5, 5, 5, 2, 5, 5, 4, 5,
+        5, 5, 2, 2, 4, 5, 3, 3, 1, 3,
+        2, 1, 3, 1, 2, 4, 3, 3, 5, 5,
+        5, 5, 5, 2, 2, 4, 5, 5, 5, 5,
+        5, 5, 5, 4, 4, 5, 5, 3, 3, 4,
+        4, 4, 4, 4, 4, 4, 5, 3, 5, 5,
+        5, 4, 5, 4, 4, 4, 4, 5, 5, 5,
+        5, 2, 4, 4, 5, 3, 5, 5, 5, 5,
+        3, 0,
     },
     {
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
-        12, 12, 8, 7, 8, 8, 7, 7, 7, 7,
-        5, 8, 7, 6, 8, 8, 8, 7, 8, 7,
-        6, 8, 8, 8, 8, 8, 8, 7, 7, 6,
-        5, 6, 6, 6, 5, 6, 2, 4, 5, 2,
-        8, 6, 6, 5, 6, 5, 4, 6, 6, 6,
-        7, 5, 6, 6, 3, 7, 8, 8, 7, 6,
-        7, 6, 6, 8, 8, 8, 8, 3, 8, 8,
-        6, 8, 7, 8, 4, 4, 6, 8, 5, 5,
-        2, 5, 2, 2, 5, 2, 2, 6, 5, 5,
-        8, 7, 8, 8, 8, 4, 4, 6, 8, 7,
+        8, 7, 8, 8, 7, 7, 7, 7, 5, 8,
+        7, 6, 8, 8, 8, 7, 8, 7, 6, 8,
+        8, 8, 8, 8, 8, 7, 7, 6, 5, 6,
+        6, 6, 5, 6, 2, 4, 5, 2, 8, 6,
+        6, 5, 6, 5, 4, 6, 6, 6, 7, 5,
+        6, 6, 3, 7, 8, 8, 7, 6, 7, 6,
+        6, 8, 8, 8, 8, 3, 8, 8, 6, 8,
+        7, 8, 4, 4, 6, 8, 5, 5, 2, 5,
+        2, 2, 5, 2, 2, 6, 5, 5, 8, 7,
+        8, 8, 8, 4, 4, 6, 8, 7, 7, 8,
+        8, 8, 7, 6, 6, 7, 7, 5, 3, 6,
+        6, 6, 6, 6, 6, 6, 8, 5, 8, 8,
+        8, 6, 7, 3, 3, 6, 6, 8, 7, 8,
+        8, 3, 6, 6, 7, 5, 7, 8, 8, 7,
+        5, 0,
     }
 };
 // clang-format on
@@ -168,10 +75,11 @@ s32 UIText_Ascii2WideChar(s32 arg0);
 void* UIButtonImage_Create(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 
 s32 UIText_GetCharIndex(s32 ch) {
+    u8* p = UIText_CharTable;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(UIText_CharTable); i++) {
-        if (ch == UIText_CharTable[i]) {
+        if (ch == p[i]) {
             return i;
         }
     }
@@ -180,9 +88,6 @@ s32 UIText_GetCharIndex(s32 ch) {
 
 s32 UIText_SetFont(s32 font) {
     switch (font) {
-        case FONT_8:
-            UIText_Charset = 0;
-            break;
         case FONT_12:
             UIText_Charset = 1;
             break;
@@ -227,31 +132,39 @@ void func_8036D4B4_840C64(s32 flags, s32 set) {
 }
 
 s32 UIText_GetStringWidth(char* ptr) {
-    s32 width = 0;
+    u8* text;
     s32 printedChar;
-    s32 charset = UIText_Charset;
+    s32 charset;
+    s32 width = 0;
     s32 s4 = D_8037EACC_85227C & 1;
-    u8* text = ptr;
     s32 v1;
+
+    charset = UIText_Charset;
+    text = ptr;
 
     while (*text) {
         s32 isSpecial = false;
-        u32 c = text[0] & 0xFF;
+        s32 c = *text;
 
-        if (c == '\n') {
-            text--;
-        } else {
-            printedChar = '　';
-            if (c == ' ') {
-                text--;
-            } else if ((s32) c > ' ' && c < 0x7F && c != '\\') {
-                text--;
-                printedChar = UIText_Ascii2WideChar(c);
-            } else {
+        switch (*text) {
+            case '\n':
+                printedChar = '\n';
+                break;
+            case '\\':
                 printedChar = ((text[0] << 8) & 0xFF00) | (text[1] & 0xFF);
-            }
+                if (text[1]) {
+                    text++;
+                }
+                break;
+            default:
+                if (*text < ' ') {
+                    printedChar = ' ';
+                } else {
+                    printedChar = *text;
+                }
+                break;
         }
-        // BUG: printedChar may be uninitialized
+
         switch (printedChar) {
             case '\\a':
             case '\\b':
@@ -275,25 +188,29 @@ s32 UIText_GetStringWidth(char* ptr) {
                 s4 = 1;
                 isSpecial = true;
                 break;
+            case '\\j':
+                charset = 0;
+                isSpecial = true;
+                break;
+            case '\\k':
+                charset = 1;
+                isSpecial = true;
+                break;
             case '\\e':
             case '\\h':
             case '\\n':
             case '\\p':
             case '\\t':
             case '\\w':
-            case '◆':
                 isSpecial = true;
                 break;
-            case '　':
+            case ' ':
                 if (s4 != 0) {
                     width += charset ? 4 : 2;
                 } else {
                     width += charset ? 9 : 6;
                 }
                 isSpecial = true;
-                break;
-            case 0xA1DD:
-                printedChar = 'ー';
                 break;
             default:
                 if (c == '\\') {
@@ -304,13 +221,13 @@ s32 UIText_GetStringWidth(char* ptr) {
 
         if (!isSpecial) {
             if (s4 != 0) {
-                width += UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)] + 1;
+                width += UIText_WidthTable[charset][UIText_GetCharIndex(printedChar)] + 1;
             } else {
                 width += charset ? 9 : 6;
             }
         }
 
-        text += 2;
+        text++;
     }
 
     return width;
@@ -360,11 +277,12 @@ void func_8036DC4C_8413FC(s32 r, s32 g, s32 b, s32 a) {
 }
 
 u8* UIText_GetGlyph(s32 ch) {
+    u8* p = UIText_CharTable;
     s32 i;
 
     for (i = 0; i < ARRAY_COUNT(UIText_CharTable); i++) {
         u8* tmp = D_8037EA68_852218[UIText_Charset];
-        if (UIText_CharTable[i] == ch) {
+        if (p[i] == ch) {
             return i * UIText_GlyphSize[UIText_Charset] * UIText_GlyphSize[UIText_Charset] / 2 + tmp;
         }
     }
@@ -478,40 +396,30 @@ s32 UIText_PrintChar32(UIText* arg0, s32 x, s32 y, s32 ch) {
     return UIText_GlyphSize[UIText_Charset] + UIText_ShadowOffset;
 }
 
-s32 UIText_Ascii2WideChar(s32 c) {
-    if (c > 0x20 && (u32) c < 0x7F) {
-        c = ((((u8*) UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*) UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
-    } else {
-        c = '　';
-    }
-    return c;
-}
-
 void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
     s32 printedChar;
     u8* ptr = str;
     s32 i;
     s32 posX;
+    s32 tmp;
 
     while (*ptr) {
         u32 c = ptr[0] & 0xFF;
 
-        if (c == '\n') {
-            ptr--;
-            goto NEXT_LINE;
-        } else {
-            printedChar = '　';
-            if (c == ' ') {
-                ptr--;
-            } else if ((s32) c > ' ' && c < 0x7F && c != '\\') {
-                ptr--;
-                printedChar = UIText_Ascii2WideChar(c);
-            } else {
+        switch (*ptr) {
+            case '\n':
+                goto NEXT_LINE;
+            case '\\':
                 printedChar = ((ptr[0] << 8) & 0xFF00) | (ptr[1] & 0xFF);
-            }
+                ptr++;
+                break;
+            default:
+                printedChar = *ptr < ' ' ? ' ' : *ptr;
+                break;
         }
-        // BUG: specialChar may be uninitialized
         switch (printedChar) {
+            case ' ':
+                goto SKIP_PRINTING;
             case '\\a':
             case '\\b':
             case '\\c':
@@ -553,15 +461,6 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
             case '\\k':
                 UIText_SetFont(1); // BUG: 1 is not valid font
                 goto END;
-            case '\\n':
-                goto NEXT_LINE;
-            case '　':
-                goto SKIP_PRINTING;
-            case '◆':
-                goto NEXT_LINE;
-            case 0xA1DD:
-                printedChar = 'ー';
-                break;
             default:
                 if (c == '\\') {
                     if (UIText_PrintDelay != 0 && D_803A6A0C_87A1BC != NULL && !UIText_DelayDisabled) {
@@ -575,7 +474,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         if (D_8037EACC_85227C & 1) {
             posX = *x;
         } else {
-            s32 tmp = UIText_Charset != 0 ? 9 : 6;
+            tmp = UIText_Charset != 0 ? 9 : 6;
             posX = *x + (s32) ((tmp - UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)]) * .5 + 0.5);
         }
         if (text->bpp == 4) {
@@ -594,10 +493,27 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         }
 
         if (D_8037EACC_85227C & 1) {
-            if (printedChar == '　') {
-                *x += UIText_Charset != 0 ? 4 : 2;
-            } else {
-                *x += UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)] + 1;
+            switch (printedChar) {
+                case ' ':
+                    tmp = UIText_Charset != 0 ? 4 : 2;
+                    *x += tmp;
+                    break;
+                case '\\a':
+                case '\\b':
+                case '\\c':
+                case '\\d':
+                case '\\f':
+                case '\\l':
+                case '\\m':
+                case '\\r':
+                case '\\s':
+                case '\\u':
+                case '\\z':
+                    *x += UIText_Charset != 0 ? 13 : 9;
+                    break;
+                default:
+                    *x += UIText_WidthTable[UIText_Charset][UIText_GetCharIndex(printedChar)] + 1;
+                    break;
             }
         } else {
             *x += UIText_Charset != 0 ? 9 : 6;
@@ -616,7 +532,7 @@ void UIText_PrintString(UIText* text, s32* x, s32* y, char* str) {
         }
 
     END:
-        ptr += 2;
+        ptr++;
     }
 
     UIText_DelayDisabled = false;
@@ -629,8 +545,8 @@ void UIText_PrintAsciiString(UIText* text, s32* x, s32* y, u8* str) {
     while (*ptr) {
         s32 c = ptr[0];
 
-        if (c > 0x20 && c < 0x7F) {
-            printedChar = ((((u8*) UIText_AsciiTable)[(c - 0x21) * 2] << 8) & 0xFF00) | (((u8*) UIText_AsciiTable)[(c - 0x21) * 2 + 1] & 0xFF);
+        if (ptr[0] > 0x20 && ptr[0] < 0xFD) {
+            printedChar = ptr[0];
             if (text->bpp == 4) {
                 UIText_PrintChar32(text, *x, *y, printedChar);
             } else {

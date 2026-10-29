@@ -10,24 +10,24 @@ typedef struct UnkTriple {
     /* 0x08 */ void* unk_08;
 } UnkTriple;
 
-extern Sprite D_801E3F48_9DA8B8;
-extern Sprite D_801EDD60_9E46D0;
-extern Sprite D_801EDEF0_9E4860;
-extern Sprite D_801E8F70_9DF8E0;
-extern Sprite D_801EE150_9E4AC0;
-extern Sprite D_801EF7D0_9E6140;
-extern Sprite D_801F0E50_9E77C0;
-extern Sprite D_801F2278_9E8BE8;
-extern Sprite D_801F36A0_9EA010;
-extern Sprite D_801F3860_9EA1D0;
-extern Sprite D_801F3A10_9EA380;
-extern Sprite D_801F3B90_9EA500;
-extern Sprite D_801F4D48_9EB6B8;
-extern Sprite D_801F5120_9EBA90;
-extern Sprite D_801F54C8_9EBE38;
-extern Sprite D_801F5680_9EBFF0;
-extern Sprite D_801F57B0_9EC120;
-extern Sprite D_80202CE8_9F9658;
+extern Sprite report_bg_sprite;
+extern Sprite report_silhouette_sprite;
+extern Sprite report_divider_sprite;
+extern Sprite report_title_sprite;
+extern Sprite report_bg_alt_sprite;
+extern Sprite report_best_shot_left_sprite;
+extern Sprite report_best_shot_right_sprite;
+extern Sprite report_best_shot_top_sprite;
+extern Sprite report_best_shot_bottom_sprite;
+extern Sprite report_divider_vertical_sprite;
+extern Sprite report_divider_horizontal_sprite;
+extern Sprite report_row_icon_sprite;
+extern Sprite report_row_fill_sprite;
+extern Sprite report_frame_vertical_sprite;
+extern Sprite report_frame_horizontal_sprite;
+extern Sprite report_frame_sm_vertical_sprite;
+extern Sprite report_frame_sm_horizontal_sprite;
+extern Sprite report_large_fill_sprite;
 extern s32 (*D_80202D2C_9F969C)(const void*, const void*);
 extern s32 D_80202D30_9F96A0;
 extern s16 D_80202D4C_9F96BC[];
@@ -266,41 +266,41 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             }
         } else {
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
-            UIElement_PrintText(D_80230C30_A275A0, "スペシャル"); // special
+            UIElement_PrintText(D_80230C30_A275A0, "Special"); // special
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 12);
             UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.specialID));
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 24);
             UIElement_SetTextPos(D_80230C30_A275A0, 0, 36);
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 0);
-            UIElement_PrintText(D_80230C30_A275A0, "めんせき");
+            UIElement_PrintText(D_80230C30_A275A0, "MENSEKI");
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 12);
             UIElement_PrintText(D_80230C30_A275A0, func_8037501C_8487CC("%5d", D_80230C20_A27590->score.proximityScore));
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 24);
-            UIElement_PrintText(D_80230C30_A275A0, "まるみえ"); // full view
+            UIElement_PrintText(D_80230C30_A275A0, "MARUMIE"); // full view
             UIElement_SetTextPos(D_80230C30_A275A0, 45, 36);
             if (D_80230C20_A27590->score.completenessScore < 10000) {
                 func_8037519C_84894C(D_80230C30_A275A0, "%s。", func_8037501C_8487CC("%2d", D_80230C20_A27590->score.completenessScore / 100));
                 func_8037519C_84894C(D_80230C30_A275A0, "%s％", func_8037501C_8487CC("%d", (D_80230C20_A27590->score.completenessScore % 100) / 10));
             } else {
-                func_8037519C_84894C(D_80230C30_A275A0, "   １００％");
+                func_8037519C_84894C(D_80230C30_A275A0, "   100");
             }
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 0);
-            UIElement_PrintText(D_80230C30_A275A0, "コメント"); // comment
+            UIElement_PrintText(D_80230C30_A275A0, "comment"); // comment
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 12);
             func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%5d", D_80230C20_A27590->score.poseID));
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 24);
-            UIElement_PrintText(D_80230C30_A275A0, "むきタイプ"); // muki type
+            UIElement_PrintText(D_80230C30_A275A0, "MUKItype"); // muki type
             UIElement_SetTextPos(D_80230C30_A275A0, 90, 36);
 
             switch (D_80202D4C_9F96BC[func_8009BB4C(D_80230C20_A27590->score.pokemonInFocus)]) {
                 case 1:
-                    UIElement_PrintText(D_80230C30_A275A0, "            Ａ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            A");
                     break;
                 case 2:
-                    UIElement_PrintText(D_80230C30_A275A0, "            Ｂ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            B");
                     break;
                 case 3:
-                    UIElement_PrintText(D_80230C30_A275A0, "            Ｃ");
+                    UIElement_PrintText(D_80230C30_A275A0, "            C");
                     break;
                 default:
                     UIElement_PrintText(D_80230C30_A275A0, "               ");
@@ -308,13 +308,13 @@ void func_801DD164_9D3AD4(s32 arg0, s32 arg1) {
             }
 
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 0);
-            UIElement_PrintText(D_80230C30_A275A0, "センサー"); // sensor
+            UIElement_PrintText(D_80230C30_A275A0, "sensor"); // sensor
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 12);
-            func_8037519C_84894C(D_80230C30_A275A0, "         %s", (D_80230C20_A27590->photo.unk_00_16 & 0xE0) ? "オン" : "オフ"); // on / off
+            func_8037519C_84894C(D_80230C30_A275A0, "         %s", (D_80230C20_A27590->photo.unk_00_16 & 0xE0) ? "on" : "off"); // on / off
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 24);
-            UIElement_PrintText(D_80230C30_A275A0, "なかま"); // friend ???
+            UIElement_PrintText(D_80230C30_A275A0, "NAKAMA"); // friend ???
             UIElement_SetTextPos(D_80230C30_A275A0, 135, 36);
-            func_8037519C_84894C(D_80230C30_A275A0, "%sひき", func_8037501C_8487CC("%3d", D_80230C20_A27590->score.samePkmnNumber));
+            func_8037519C_84894C(D_80230C30_A275A0, "%s", func_8037501C_8487CC("%3d", D_80230C20_A27590->score.samePkmnNumber));
         }
     }
 }
@@ -363,11 +363,11 @@ void func_801DDD58_9D46C8(void) {
 
     if (D_80230CA8_A27618 > 0) {
         UIElement_SetTextPos(D_80230C80_A275F0[0], 174, 0);
-        UIElement_PrintText(D_80230C80_A275F0[0], "▲");
+        UIElement_PrintText(D_80230C80_A275F0[0], "\xA0");
     }
     if (D_80230CAC_A2761C < func_800BF864_5C704() - 1) {
         UIElement_SetTextPos(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], 174, 0);
-        UIElement_PrintText(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "▼");
+        UIElement_PrintText(D_80230C80_A275F0[ARRAY_COUNT(D_80230C80_A275F0) - 1], "\x9F");
     }
 }
 
@@ -463,28 +463,28 @@ void func_801DE414_9D4D84(s32 arg0) {
 }
 
 const char otherText[] = "It is said that somewhere on\nthis island is a mysterious\ngroup of huge rocks.";
-const char otherText2[] = "Surprisingly, if you look at it\nfrom a certain angle, it appears\nto be a Pokεmon shape.";
+const char otherText2[] = "Surprisingly, if you look at it\nfrom a certain angle, it appears\nto be a Pok\xE9mon shape.";
 const char otherText3[] = "When light shines on an\nobject, its shadow will appear\non the wall behind it.";
-const char otherText4[] = "Somewhere there is a\nshadow that looks\nlike a Pokεmon!";
-const char otherText5[] = "Smoke changes its shape, and\nsome shapes look like Pokεmon.";
+const char otherText4[] = "Somewhere there is a\nshadow that looks\nlike a Pok\xE9mon!";
+const char otherText5[] = "Smoke changes its shape, and\nsome shapes look like Pok\xE9mon.";
 const char otherText6[] = "Where can you find smoke...?\nYou already know!";
 const char otherText7[] = "Have you heard of a tree near\nthe river in the jungle that\nlooks like CUBONE? No one";
 const char otherText8[] = "knows who planted it, but I have\nheard that someone has seen\nthe tree... It's a mystery!";
 const char otherText9[] = "Shining brightly somewhere...\nThat's all I know about this.";
-const char otherText10[] = "Somewhere in the middle of\nsteep mountains is a mountain\nthat looks like a Pokεmon.";
+const char otherText10[] = "Somewhere in the middle of\nsteep mountains is a mountain\nthat looks like a Pok\xE9mon.";
 const char otherText11[] = "I went to the Valley to find\nthis mountain.";
 const char otherText12[] = "Isn't it amazing that a simple\nrock like this turned out to be a\nPKMN Sign?";
-const char otherText13[] = "If you look at it from this\nangle, it looks like KINGLER. I\nwill call this ”KINGLER ROCK!”";
+const char otherText13[] = "If you look at it from this\nangle, it looks like KINGLER. I\nwill call this KINGLER ROCK!";
 const char otherText14[] = "It was very clever of you to\nactivate the generator with\nZAPDOS's electric shock.";
-const char otherText15[] = "This shadow looks like\nPINSIR... I will call this\nthe ”PINSIR SHADOW!”";
+const char otherText15[] = "This shadow looks like\nPINSIR... I will call this\nthe PINSIR SHADOW!";
 const char otherText16[] = "You hit it with a\nPESTER BALL?\nHa, ha, ha! This smoke";
-const char otherText17[] = "looks like KOFFING.\nI will call this\n”KOFFING SMOKE!”";
+const char otherText17[] = "looks like KOFFING.\nI will call this\nKOFFING SMOKE!";
 const char otherText18[] = "The tree looked dim because of\nVILEPLUME's powder.";
-const char otherText19[] = "Hmm...\nIt looks like CUBONE. I will\ncall this the ”CUBONE TREE!”";
+const char otherText19[] = "Hmm...\nIt looks like CUBONE. I will\ncall this the CUBONE TREE!";
 const char otherText20[] = "I had no idea what this was all\nabout until I saw your picture.";
 const char otherText21[] = "I think this looks like MEWTWO!\nCould this be the constellation\ncalled MEWTWO?";
-const char otherText22[] = "This mountain looks like a\nPokεmon... This is it!\nThis is the PKMN Sign!";
-const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall this ”MT. DUGTRIO!”";
+const char otherText22[] = "This mountain looks like a\nPok\xE9mon... This is it!\nThis is the PKMN Sign!";
+const char otherText23[] = "Is this DIGLETT...?\nNo, it's DUGTRIO! I will\ncall this MT. DUGTRIO!";
 
 void func_801DE5A8_9D4F18(s32 arg0) {
     UIElement_Draw(D_80230C1C_A2758C);
@@ -757,21 +757,21 @@ GObj* func_801DF4AC_9D5E1C(s32 arg0) {
     x = ((arg0 % 3) * 69) + 103;
     y = ((arg0 / 3) * 55) + 53;
 
-    gobj = func_80371C68_845418(NULL, 6, &D_801F5680_9EBFF0);
+    gobj = func_80371C68_845418(NULL, 6, &report_frame_sm_vertical_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = x;
     sobj->sprite.y = y;
     D_80230DC8_A27738[arg0].unk_00 = gobj;
 
-    sobj = func_80371E68_845618(sobj, &D_801F5680_9EBFF0);
+    sobj = func_80371E68_845618(sobj, &report_frame_sm_vertical_sprite);
     sobj->sprite.x = 54;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F57B0_9EC120);
+    sobj = func_80371DC0_845570(sobj, &report_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F57B0_9EC120);
+    sobj = func_80371DC0_845570(sobj, &report_frame_sm_horizontal_sprite);
     sobj->sprite.x = 2;
     sobj->sprite.y = 41;
 
@@ -827,22 +827,22 @@ void* func_801DF884_9D61F4(s32 arg0) {
     GObj* gobj = D_80230C10_A27580;
     SObj* sobj = gobj->data.sobj;
 
-    sobj->sprite = D_801F5120_9EBA90;
+    sobj->sprite = report_frame_vertical_sprite;
     sobj->sprite.x = 127;
     sobj->sprite.y = 43;
 
     sobj = sobj->unk_58;
-    sobj->sprite = D_801F5120_9EBA90;
+    sobj->sprite = report_frame_vertical_sprite;
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F54C8_9EBE38;
+    sobj->sprite = report_frame_horizontal_sprite;
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F54C8_9EBE38;
+    sobj->sprite = report_frame_horizontal_sprite;
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
     sobj = sobj->next;
@@ -894,7 +894,7 @@ void func_801DFC20_9D6590(s32 arg0) {
     if (func_800BF3D4_5C274(D_80202D34_9F96A4[arg0]) == 0) {
         return;
     }
-    D_80230C14_A27584->sprite = D_80202CE8_9F9658;
+    D_80230C14_A27584->sprite = report_large_fill_sprite;
     D_80230C14_A27584->sprite.x = 3;
     D_80230C14_A27584->sprite.y = 3;
     D_80230C14_A27584->sprite.attr &= ~SP_SCALE;
@@ -913,26 +913,26 @@ GObj* func_801DFD68_9D66D8(void) {
     GObj* gobj;
     SObj* sobj;
 
-    D_80230C10_A27580 = gobj = func_80371C68_845418(NULL, 6, &D_801F5120_9EBA90);
+    D_80230C10_A27580 = gobj = func_80371C68_845418(NULL, 6, &report_frame_vertical_sprite);
 
     sobj = gobj->data.sobj;
     sobj->sprite.x = 130;
     sobj->sprite.y = 46;
     sobj->sprite.attr |= SP_HIDDEN;
 
-    sobj = func_80371E68_845618(sobj, &D_801F5120_9EBA90);
+    sobj = func_80371E68_845618(sobj, &report_frame_vertical_sprite);
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F54C8_9EBE38);
+    sobj = func_80371DC0_845570(sobj, &report_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F54C8_9EBE38);
+    sobj = func_80371DC0_845570(sobj, &report_frame_horizontal_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
 
-    sobj = func_80371DC0_845570(sobj, &D_80202CE8_9F9658);
+    sobj = func_80371DC0_845570(sobj, &report_large_fill_sprite);
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
 
@@ -944,28 +944,28 @@ GObj* func_801DFE9C_9D680C(void) {
     GObj* gobj = D_80230C10_A27580;
     SObj* sobj = gobj->data.sobj;
 
-    sobj->sprite = D_801F5120_9EBA90;
+    sobj->sprite = report_frame_vertical_sprite;
     sobj->sprite.x = 130;
     sobj->sprite.y = 46;
     sobj->sprite.attr |= SP_HIDDEN;
 
     sobj = sobj->unk_58;
-    sobj->sprite = D_801F5120_9EBA90;
+    sobj->sprite = report_frame_vertical_sprite;
     sobj->sprite.x = 143;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F54C8_9EBE38;
+    sobj->sprite = report_frame_horizontal_sprite;
     sobj->sprite.x = 3;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F54C8_9EBE38;
+    sobj->sprite = report_frame_horizontal_sprite;
     sobj->sprite.x = 3;
     sobj->sprite.y = 108;
 
     sobj = sobj->next;
-    sobj->sprite = D_80202CE8_9F9658;
+    sobj->sprite = report_large_fill_sprite;
     sobj->sprite.x = 3;
     sobj->sprite.y = 3;
 
@@ -994,21 +994,21 @@ s32 func_801E00E0_9D6A50(s32 arg0) {
 }
 
 void func_801E01C4_9D6B34(void) {
-    GObj* sp1C = func_80371D14_8454C4(0, 6, &D_801E8F70_9DF8E0);
+    GObj* sp1C = func_80371D14_8454C4(0, 6, &report_title_sprite);
     SObj* sp18 = sp1C->data.sobj;
 
     sp18->sprite.x = 106;
     sp18->sprite.y = 52;
     D_80230C48_A275B8[0] = sp18;
 
-    sp18 = func_80371DC0_845570(sp18, &D_801EDD60_9E46D0);
+    sp18 = func_80371DC0_845570(sp18, &report_silhouette_sprite);
     sp18->sprite.x = 149;
     sp18->sprite.y = 116;
     sp18->sprite.alpha = 0x80;
     sp18->sprite.attr |= SP_TRANSPARENT;
     D_80230C48_A275B8[1] = sp18;
 
-    sp18 = func_80371DC0_845570(sp18, &D_801EDEF0_9E4860);
+    sp18 = func_80371DC0_845570(sp18, &report_divider_sprite);
     sp18->sprite.x = 124;
     sp18->sprite.y = 168;
 
@@ -1021,7 +1021,7 @@ void func_801E01C4_9D6B34(void) {
 
 void func_801E02F4_9D6C64(void) {
     GObj* gobj = D_80230C40_A275B0;
-    SObj* sobj = omGObjAddSprite(gobj, &D_801E3F48_9DA8B8);
+    SObj* sobj = omGObjAddSprite(gobj, &report_bg_sprite);
 
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
@@ -1031,21 +1031,21 @@ void func_801E02F4_9D6C64(void) {
     D_80230C3C_A275AC = sobj;
     gobj = D_80230C60_A275D0;
 
-    sobj = omGObjAddSprite(gobj, &D_801E8F70_9DF8E0);
+    sobj = omGObjAddSprite(gobj, &report_title_sprite);
     sobj->sprite.x = 106;
     sobj->sprite.y = 52;
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     D_80230C48_A275B8[0] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_801EDD60_9E46D0);
+    sobj = func_80371DC0_845570(sobj, &report_silhouette_sprite);
     sobj->sprite.x = 149;
     sobj->sprite.y = 116;
     sobj->sprite.alpha = 0x80;
     sobj->sprite.attr |= SP_TRANSPARENT;
     D_80230C48_A275B8[1] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_801EDEF0_9E4860);
+    sobj = func_80371DC0_845570(sobj, &report_divider_sprite);
     sobj->sprite.x = 124;
     sobj->sprite.y = 168;
 
@@ -1061,7 +1061,7 @@ void func_801E0480_9D6DF0(void) {
     UNUSED s32 pad;
 
     gobj = D_80230C40_A275B0;
-    sobj = omGObjAddSprite(gobj, &D_801EE150_9E4AC0);
+    sobj = omGObjAddSprite(gobj, &report_bg_alt_sprite);
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     sobj->sprite.width = SCREEN_WIDTH;
@@ -1070,24 +1070,24 @@ void func_801E0480_9D6DF0(void) {
     D_80230C3C_A275AC = sobj;
 
     gobj = D_80230C60_A275D0;
-    sobj = omGObjAddSprite(gobj, &D_801F3A10_9EA380);
+    sobj = omGObjAddSprite(gobj, &report_divider_horizontal_sprite);
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     sobj->sprite.x = 112;
     sobj->sprite.y = 63;
     sobj->sprite.attr &= ~SP_SCALE;
     D_80230C48_A275B8[0] = sobj;
-    sobj = func_80371DC0_845570(sobj, &D_801F3860_9EA1D0);
+    sobj = func_80371DC0_845570(sobj, &report_divider_vertical_sprite);
     sobj->sprite.x = 154;
     sobj->sprite.y = 173;
     sobj->sprite.attr |= SP_HIDDEN;
     D_80230C48_A275B8[1] = sobj;
-    sobj = func_80371DC0_845570(sobj, &D_801F3860_9EA1D0);
+    sobj = func_80371DC0_845570(sobj, &report_divider_vertical_sprite);
     sobj->sprite.x = 199;
     sobj->sprite.y = 173;
     sobj->sprite.attr |= SP_HIDDEN;
     D_80230C48_A275B8[2] = sobj;
-    sobj = func_80371DC0_845570(sobj, &D_801F3860_9EA1D0);
+    sobj = func_80371DC0_845570(sobj, &report_divider_vertical_sprite);
     sobj->sprite.x = 244;
     sobj->sprite.y = 173;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -1095,7 +1095,7 @@ void func_801E0480_9D6DF0(void) {
     D_80230C48_A275B8[4] = NULL;
     D_80230C48_A275B8[5] = NULL;
 
-    gobj = func_80371D14_8454C4(0, 6, &D_801F4D48_9EB6B8);
+    gobj = func_80371D14_8454C4(0, 6, &report_row_fill_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.x = 102;
     sobj->sprite.y = 67;
@@ -1103,7 +1103,7 @@ void func_801E0480_9D6DF0(void) {
     sobj->sprite.attr |= SP_HIDDEN | SP_TRANSPARENT;
     D_80230C70_A275E0 = gobj;
     D_80230C68_A275D8[0] = sobj;
-    sobj = func_80371DC0_845570(sobj, &D_801F3B90_9EA500);
+    sobj = func_80371DC0_845570(sobj, &report_row_icon_sprite);
     sobj->sprite.x = 96;
     sobj->sprite.y = 67;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -1117,7 +1117,7 @@ void func_801E072C_9D709C(void) {
     UNUSED s32 pad;
 
     gobj = D_80230C40_A275B0;
-    sobj = omGObjAddSprite(gobj, &D_801EE150_9E4AC0);
+    sobj = omGObjAddSprite(gobj, &report_bg_alt_sprite);
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     sobj->sprite.width = SCREEN_WIDTH;
@@ -1135,7 +1135,7 @@ void func_801E07C0_9D7130(void) {
     UNUSED s32 pad;
 
     gobj = D_80230C40_A275B0;
-    sobj = omGObjAddSprite(gobj, &D_801EE150_9E4AC0);
+    sobj = omGObjAddSprite(gobj, &report_bg_alt_sprite);
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     sobj->sprite.width = SCREEN_WIDTH;
@@ -1144,7 +1144,7 @@ void func_801E07C0_9D7130(void) {
     D_80230C3C_A275AC = sobj;
 
     gobj = D_80230C60_A275D0;
-    sobj = omGObjAddSprite(gobj, &D_801F3860_9EA1D0);
+    sobj = omGObjAddSprite(gobj, &report_divider_vertical_sprite);
     sobj->unk_58 = NULL;
     sobj->unk_5C = NULL;
     sobj->sprite.x = 154;
@@ -1153,13 +1153,13 @@ void func_801E07C0_9D7130(void) {
     sobj->sprite.attr |= SP_HIDDEN;
     D_80230C48_A275B8[0] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F3860_9EA1D0);
+    sobj = func_80371DC0_845570(sobj, &report_divider_vertical_sprite);
     sobj->sprite.x = 199;
     sobj->sprite.y = 173;
     sobj->sprite.attr |= SP_HIDDEN;
     D_80230C48_A275B8[1] = sobj;
 
-    sobj = func_80371DC0_845570(sobj, &D_801F3860_9EA1D0);
+    sobj = func_80371DC0_845570(sobj, &report_divider_vertical_sprite);
     sobj->sprite.x = 244;
     sobj->sprite.y = 173;
     sobj->sprite.attr |= SP_HIDDEN;
@@ -1170,27 +1170,27 @@ void func_801E07C0_9D7130(void) {
 
     gobj = D_80230C10_A27580;
     sobj = gobj->data.sobj;
-    sobj->sprite = D_801EF7D0_9E6140;
+    sobj->sprite = report_best_shot_left_sprite;
     sobj->sprite.x = 112;
     sobj->sprite.y = 21;
 
     sobj = sobj->unk_58;
-    sobj->sprite = D_801F0E50_9E77C0;
+    sobj->sprite = report_best_shot_right_sprite;
     sobj->sprite.x = 158;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F2278_9E8BE8;
+    sobj->sprite = report_best_shot_top_sprite;
     sobj->sprite.x = 18;
     sobj->sprite.y = 0;
 
     sobj = sobj->next;
-    sobj->sprite = D_801F36A0_9EA010;
+    sobj->sprite = report_best_shot_bottom_sprite;
     sobj->sprite.x = 18;
     sobj->sprite.y = 123;
 
     sobj = sobj->next;
-    sobj->sprite = D_80202CE8_9F9658;
+    sobj->sprite = report_large_fill_sprite;
     sobj->sprite.x = 18;
     sobj->sprite.y = 18;
     D_80230C14_A27584 = sobj;
@@ -1229,7 +1229,7 @@ void func_801E0C3C_9D75AC(s32 arg0) {
     UIElement_SetTextPos(D_80230C30_A275A0, 0, 0);
     UIElement_PrintText(D_80230C30_A275A0, "You have collected");
     UIElement_SetTextPos(D_80230C30_A275A0, 0, 18);
-    func_8037519C_84894C(D_80230C30_A275A0, "%d PKMN Signs.", sp1C);
+    func_8037519C_84894C(D_80230C30_A275A0, "%d PKMN Sign(s).", sp1C);
 }
 
 void func_801E0D54_9D76C4(void) {
@@ -1242,7 +1242,7 @@ void func_801E0D84_9D76F4(void) {
     func_801DF7F0_9D6160(0);
 }
 
-void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     char sp28[0x80];
 
     UIElement_Draw(arg0);
@@ -1257,22 +1257,26 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
         func_8037519C_84894C(arg0, "No. of PKMN Signs seen", (arg2 != 1) ? "s" : "");
         UIElement_SetTextPos(arg0, 88, 16);
         func_8037519C_84894C(arg0, "\\i%7d\\g Sign%s", arg2, (arg2 != 1) ? "s" : "");
+        UIElement_SetTextPos(arg0, 8, 32);
+        UIElement_PrintText(arg0, "Report Score");
+        UIElement_SetTextPos(arg0, 88, 32);
+        func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     } else {
         UIElement_SetTextPos(arg0, 8, 16);
         UIElement_PrintText(arg0, "No. of PKMN seen");
         UIElement_SetTextPos(arg0, 88, 16);
-        func_8037519C_84894C(arg0, "\\i%7d\\g kind%s", arg1, (arg1 >= 2) ? "s" : "");
+        func_8037519C_84894C(arg0, "\\i%7d\\g kind%s", arg1, (arg1 != 1) ? "s" : "");
+        UIElement_SetTextPos(arg0, 8, 32);
+        UIElement_PrintText(arg0, "Report Score");
+        UIElement_SetTextPos(arg0, 88, 32);
+        func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     }
-    UIElement_SetTextPos(arg0, 8, 32);
-    UIElement_PrintText(arg0, "Report Score");
-    UIElement_SetTextPos(arg0, 88, 32);
-    func_8037519C_84894C(arg0, "\\i%7d\\g points", arg3);
     if (checkPlayerFlag(PFID_14)) {
         sprintf(sp28, "%s", "Boost your PKMN Report Score!");
     } else if (func_800BF3D4_5C274(PokemonID_MEW)) {
         sprintf(sp28, "%s", "Complete your PKMN Report!");
     } else if (func_800BFC5C_5CAFC() == 6) {
-        sprintf(sp28, "%s", "Find rare Pokεmon!");
+        sprintf(sp28, "%s", "Find rare Pok\xE9mon!");
     } else if (func_800BFC5C_5CAFC() == 5) {
         if (checkPlayerFlag(PFID_HAS_FLUTE)) {
             if (func_800BF3D4_5C274(PokemonID_1004) && func_800BF3D4_5C274(PokemonID_1010) && func_800BF3D4_5C274(PokemonID_KOFFING_SMOKE) &&
@@ -1290,7 +1294,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
             sprintf(sp28, "%s", "Solve the secret of the Switch!");
         }
     } else if (func_800BFC5C_5CAFC() == 4) {
-        sprintf(sp28, "%s", "Collect more Pokεmon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     } else if (func_800BFC5C_5CAFC() == 3) {
         if (checkPlayerFlag(PFID_HAS_PESTER_BALL)) {
             sprintf(sp28, "%s", "Solve the secret of the Switch!");
@@ -1298,7 +1302,7 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
             sprintf(sp28, "%s", "Boost your PKMN Report Score!");
         }
     } else if (func_800BFC5C_5CAFC() == 2) {
-        sprintf(sp28, "%s", "Collect more Pokεmon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     } else if (func_800BFC5C_5CAFC() == 1) {
         if (checkPlayerFlag(PFID_HAS_APPLE)) {
             sprintf(sp28, "%s", "Solve the mystery of the Tunnel!");
@@ -1306,13 +1310,13 @@ void func_801E0DB4_9D7724(UIElement* arg0, s32 arg1, s32 arg2, s32 arg3) {
             sprintf(sp28, "%s", "Boost your PKMN Report Score!");
         }
     } else {
-        sprintf(sp28, "%s", "Collect more Pokεmon for the Report!");
+        sprintf(sp28, "%s", "Collect more Pok\xE9mon for the Report!");
     }
     UIElement_SetTextPos(arg0, 82 - (UIText_GetStringWidth(sp28) / 2), 51);
     func_8037519C_84894C(arg0, "%s", sp28);
 }
 
-void func_801E1378_9D7CE8(void) {
+void func_801E1378_9D7CE8(s32 arg0) {
     s32 i;
     UNUSED s32 pad2;
     s32 sp44;
@@ -1337,7 +1341,7 @@ void func_801E1378_9D7CE8(void) {
         sp44 = func_801DCF5C_9D38CC(&sp3C);
         sp40 = func_800BF864_5C704();
         UIElement_Draw(sp38);
-        func_801E0DB4_9D7724(sp38, sp40, sp3C, sp44);
+        func_801E0DB4_9D7724(sp38, sp40, sp3C, sp44, arg0);
         ohWait(1);
         UIElement_SetState(sp38, UI_NORMAL);
 
@@ -1550,7 +1554,7 @@ void func_801E1BEC_9D855C(void) {
         UIElement_SetTextPos(sp2C, 0, 0);
         UIElement_PrintText(sp2C, "You have collected");
         UIElement_SetTextPos(sp2C, 0, 18);
-        func_8037519C_84894C(sp2C, "%d PKMN Signs.", sp38);
+        func_8037519C_84894C(sp2C, "%d PKMN Sign(s).", sp38);
     }
 }
 
@@ -1691,7 +1695,7 @@ void func_801E24B4_9D8E24(GObj* arg0) {
     UIElement_SetFont(sp30, FONT_8);
     UIElement_Draw(sp30);
     UIElement_SetState(sp30, UI_HIDDEN);
-    func_801E0DB4_9D7724(sp30, sp38, sp34, sp3C);
+    func_801E0DB4_9D7724(sp30, sp38, sp34, sp3C, 0);
     D_80230C1C_A2758C = sp30;
     func_801DF704_9D6074();
     func_801DF7F0_9D6160(0);
@@ -1735,7 +1739,7 @@ void func_801E2790_9D9100(void) {
     SObj* sobj;
 
     func_800A85E8(func_801E24B4_9D8E24, LINK_6, DL_LINK_0, NULL);
-    gobj = func_80371D14_8454C4(0, 6, &D_801E3F48_9DA8B8);
+    gobj = func_80371D14_8454C4(0, 6, &report_bg_sprite);
     sobj = gobj->data.sobj;
     sobj->sprite.width = SCREEN_WIDTH;
     sobj->sprite.height = SCREEN_HEIGHT;

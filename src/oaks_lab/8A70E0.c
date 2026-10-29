@@ -34,7 +34,7 @@ SceneSetup D_800E675C_8ABF7C = {
         0,
         omUpdateAll,
         omDrawAll,
-        D_80206B90,
+        oaks_lab_VRAM_END,
         0,
         2,
         1,

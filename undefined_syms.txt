@@ -16,3 +16,4 @@ gThread0StackTop = gThread0Stack + 0x200;
 main_BSS_SIZE_HI = main_BSS_SIZE >> 16;
 main_BSS_SIZE_LO = main_BSS_SIZE & 0xFFFF;
 ENTRY(entrypoint);
+

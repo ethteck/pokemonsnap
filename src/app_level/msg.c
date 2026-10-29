@@ -6,8 +6,8 @@ enum CharTypes {
     CHAR_TYPE_IMAGE
 };
 
-extern Bitmap font_rgb_bitmaps[];
-extern Bitmap font_mono_bitmaps[];
+extern Bitmap level_font_icons_bitmaps[];
+extern Bitmap level_font_bitmaps[];
 extern GObj* Msg_CameraObject;
 extern s32 Msg_PosX;
 extern s32 Msg_PosY;
@@ -34,7 +34,8 @@ extern s16 D_8039379C_533BAC[];
 extern u32 Msg_FrameCounter;
 
 // .bss
-u8 D_803B1560_551970[0x3840];
+Gfx level_font_icons_dl[0x6C0 / sizeof(Gfx)];
+Gfx level_font_dl[0x3660 / sizeof(Gfx)];
 u8 Msg_PrintedText[256];
 u8 Msg_MessageText[256];
 s32 Msg_LineHeight;
@@ -113,32 +114,32 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
         // special chars
         switch (c1) {
             case 'z': // Z trigger
-                img = font_rgb_bitmaps[Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'r': // R button
-                img = font_rgb_bitmaps[2 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[2 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'F': // 'NEXT' mark
-                img = font_rgb_bitmaps[4 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[4 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'a': // A button
-                img = font_rgb_bitmaps[6 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[6 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case 'b': // B button
-                img = font_rgb_bitmaps[8 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[8 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 break;
             case '[': // left part of 'NEW'
-                img = font_rgb_bitmaps[10 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[10 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
             case ']': // right part of 'NEW'
-                img = font_rgb_bitmaps[12 + Msg_ImageIndex].buf;
+                img = level_font_icons_bitmaps[12 + Msg_ImageIndex].buf;
                 Msg_CharType = CHAR_TYPE_IMAGE;
                 *width = 11;
                 break;
@@ -164,46 +165,23 @@ u8* Msg_GetCharParams(u8* ptr, s32* nbytes, s32* width) {
                 *width = 0;
                 break;
             case 'B':
+            case 'L':
             case 'Q':
+            case 'S':
                 break;
             default:
                 *nbytes = 1;
                 *width = 0;
                 break;
         }
-    } else if (c0 >= ' ' && c0 < 0x80) {
-        // ascii character
+    } else {
         *nbytes = 1;
         glyphIndex = D_803936B8_533AC8[c0];
-        img = font_mono_bitmaps[glyphIndex].buf;
+        if (glyphIndex < 0 || glyphIndex >= 0xFDU) {
+            *width = 0;
+        }
+        img = level_font_bitmaps[glyphIndex].buf;
         *width = Msg_GetGlyphWidth(glyphIndex);
-    } else if (c0 == 0xA3) {
-        // wide latin letters
-        s32 v02 = c1 - 0x80;
-        if (c1 - 0x80 >= 0x20 && c1 - 0x80 < 0x80) {
-            glyphIndex = D_803936B8_533AC8[v02];
-            img = font_mono_bitmaps[glyphIndex].buf;
-            *width = Msg_GetGlyphWidth(glyphIndex);
-        }
-    } else {
-        // wide non-alphanumeric chars
-        s16 code2byte = ((c0 & 0xFF) << 8) + (c1 & 0xFF);
-        s16* test = D_8039379C_533BAC;
-        i = 0;
-        for (i = 0;; i++) {
-            if (*test == code2byte) {
-                img = font_mono_bitmaps[62 + i].buf;
-                *width = Msg_GetGlyphWidth(i + 62);
-                break;
-            }
-
-            if (((*test >> 8) & 0xFF) == 0) {
-                *nbytes = 1;
-                *width = 0;
-                break;
-            }
-            test++;
-        }
     }
     return img;
 }
@@ -337,7 +315,7 @@ void Msg_ShowMessage(u8* message, s32 posX, s32 posY, u8 colorR, u8 colorG, u8 c
     for (ptr = message; *ptr != 0; ptr += nbytes) {
         Msg_GetCharParams(ptr, &nbytes, &charWidth);
         messageWidth += charWidth + 1;
-        if (*ptr == '\\' && (ptr[1] == (0, 'B') || ptr[1] == (0, 'Q')) && Msg_SpecialHandler != NULL) { // TODO find better way to match
+        if (*ptr == '\\' && (ptr[1] == (0, 'B') || ptr[1] == (0, 'L') || ptr[1] == (0, 'Q') || ptr[1] == (0, 'S')) && Msg_SpecialHandler != NULL) { // TODO find better way to match
             Msg_SpecialHandler(ptr[1]);
         }
     }

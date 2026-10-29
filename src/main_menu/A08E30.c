@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 
 #include "main_menu.h"
 
@@ -40,7 +41,6 @@ u8 D_800E82E4_A0F874;
 u32 D_800E82E8_A0F878;
 u8 D_800E82EC_A0F87C;
 s8 D_800E82ED_A0F87D;
-extern s32 D_800E83A0;
 
 extern Sprite D_802DABC0_main_menu_vpk0;
 extern Sprite D_802DB328_main_menu_vpk0;
@@ -1309,7 +1309,7 @@ void func_800E4634_A0BBC4(void) {
 }
 
 s32 func_800E4830_A0BDC0(s32 sceneId) {
-    D_800E8198_A0F728 = VPK_VRAM - (s32) &D_800E83A0;
+    D_800E8198_A0F728 = VPK_VRAM - (s32) main_menu_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_800E8188_A0F718);
 

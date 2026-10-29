@@ -90,7 +90,6 @@ extern SObj* D_80206B74_9CC394;
 extern SObj* D_80206B78_9CC398;
 extern SObj* D_80206B7C_9CC39C;
 extern SObj* D_80206B80_9CC3A0;
-extern u8 D_80206B90[];
 
 void func_800E1A60_8A7280(void);
 UIElement* func_800E1B40_8A7360(void);

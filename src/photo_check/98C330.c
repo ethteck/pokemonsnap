@@ -1,4 +1,5 @@
 #include "common.h"
+#include "ld_addrs.h"
 
 #include "gbi.h"
 #include "string.h"
@@ -6,7 +7,6 @@
 
 #include "photo_check.h"
 
-extern s32 D_80229840;
 
 // data
 // Gfx D_801E53A0_994E10[] = {
@@ -392,7 +392,7 @@ s32 func_801DCC74_98C6E4(s32 arg0) {
     UNUSED s32 pad[3];
 
     viApplyScreenSettings(&D_801E5410_994E80);
-    D_801E543C_994EAC = (s32) &D_80369F80 - (s32) &D_80229840;
+    D_801E543C_994EAC = (s32) window_VRAM - (s32) photo_check_VRAM_END;
     gtlDisableNearClipping(1);
     omSetupScene(&D_801E542C_994E9C);
     return D_800AF3C0;

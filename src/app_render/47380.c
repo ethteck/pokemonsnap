@@ -262,27 +262,20 @@ extern UNK_PTR* D_800EDAE0;
 extern UnkEC64Arg3 D_800EDAB0;
 extern Texture** D_800EDB90;
 
-extern WorldSetup D_800F5DA0;
+extern WorldSetup rainbow_WorldSetup;
 extern WorldSetup volcano_WorldSetup;
-extern WorldSetup D_80100720;
+extern WorldSetup valley_WorldSetup;
 extern WorldSetup tunnel_WorldSetup;
-extern WorldSetup D_8012A0E8;
-extern WorldSetup D_8012AC90;
+extern WorldSetup cave_WorldSetup;
+extern WorldSetup river_WorldSetup;
 
-extern UNK_TYPE D_8013E260;
-extern UNK_TYPE D_8017A780;
-extern UNK_TYPE D_80188D28;
-extern UNK_TYPE D_8018A6F0;
-extern UNK_TYPE D_801AFD30;
 extern UNK_TYPE mon601_modelanim_anim_3;
-extern UNK_TYPE D_801B1230;
-extern UNK_TYPE D_801B1D40;
-extern UNK_TYPE D_801B6B60;
-extern UNK_TYPE D_801CE400;
-extern UNK_TYPE D_8017C090;
-extern UNK_TYPE D_801CF770;
-extern UNK_TYPE D_801CF840;
-extern UNK_TYPE D_801D6840;
+extern Struct_800AB050 zapdos_egg_vtx[0x150];
+extern Struct_800AB050 zapdos_egg_vtx_target[0x150];
+extern Struct_800AB050 unk601_vtx[0x144];
+extern Struct_800AB050 unk601_vtx_target[0x144];
+extern Struct_800AB050 tunnel_egg_buffer[0x150];
+extern Struct_800AB050 cave_egg_buffer[0x144];
 extern UNK_TYPE chansey_modelanim_anim_3;
 extern UNK_TYPE zapdos_egg_modelanim_anim_3;
 
@@ -969,9 +962,9 @@ void func_8009D37C(u8 levelID) {
 
     switch (levelID) {
         case SCENE_BEACH:
-            func_8009D184(&D_8011B914);
-            func_8009D1E8((u32) fx_img_beach_ROM_START, (u32) fx_img_beach_ROM_END, (s32) &D_801D6840);
-            func_8009D21C(0, &D_801D6840);
+            func_8009D184(&beach_WorldSetup);
+            func_8009D1E8((u32) fx_img_beach_ROM_START, (u32) fx_img_beach_ROM_END, (s32) beach_extra_VRAM_END);
+            func_8009D21C(0, beach_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
@@ -979,28 +972,28 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_TUNNEL:
             func_8009D184(&tunnel_WorldSetup);
-            func_8009D1E8((u32) fx_img_tunnel_ROM_START, (u32) fx_img_tunnel_ROM_END, (s32) &D_801B1230);
-            func_8009D21C(0, &D_801B1230);
+            func_8009D1E8((u32) fx_img_tunnel_ROM_START, (u32) fx_img_tunnel_ROM_END, (s32) tunnel_egg_buffer_VRAM_END);
+            func_8009D21C(0, tunnel_egg_buffer_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0;
             D_800BDF2C.a = 0;
-            memcpy(&D_801AFD30, &D_80188D28, 0x1500);
+            memcpy(tunnel_egg_buffer, zapdos_egg_vtx, sizeof(zapdos_egg_vtx));
             break;
         case SCENE_CAVE:
-            func_8009D184(&D_8012A0E8);
-            func_8009D1E8((u32) fx_img_cave_ROM_START, (u32) fx_img_cave_ROM_END, (s32) &D_801CF840);
-            func_8009D21C(0, &D_801CF840);
+            func_8009D184(&cave_WorldSetup);
+            func_8009D1E8((u32) fx_img_cave_ROM_START, (u32) fx_img_cave_ROM_END, (s32) cave_egg_buffer_VRAM_END);
+            func_8009D21C(0, cave_egg_buffer_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
             D_800BDF2C.a = 0;
-            memcpy(&D_801CE400, &D_8017A780, 0x1440);
+            memcpy(cave_egg_buffer, unk601_vtx, sizeof(unk601_vtx));
             break;
         case SCENE_RIVER:
-            func_8009D184(&D_8012AC90);
-            func_8009D1E8((u32) fx_img_river_ROM_START, (u32) fx_img_river_ROM_END, (s32) &D_801B6B60);
-            func_8009D21C(0, &D_801B6B60);
+            func_8009D184(&river_WorldSetup);
+            func_8009D1E8((u32) fx_img_river_ROM_START, (u32) fx_img_river_ROM_END, (s32) river_extra_VRAM_END);
+            func_8009D21C(0, river_extra_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0x80;
@@ -1008,26 +1001,26 @@ void func_8009D37C(u8 levelID) {
             break;
         case SCENE_VOLCANO:
             func_8009D184(&volcano_WorldSetup);
-            func_8009D1E8((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END, (s32) &D_801CF770);
-            func_8009D21C(0, &D_801CF770);
+            func_8009D1E8((u32) fx_img_volcano_ROM_START, (u32) fx_img_volcano_ROM_END, (s32) volcano_extra_VRAM_END);
+            func_8009D21C(0, volcano_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0;
             D_800BDF2C.b = 0;
             D_800BDF2C.a = 0;
             break;
         case SCENE_VALLEY:
-            func_8009D184(&D_80100720);
-            func_8009D1E8((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END, (s32) &D_801B1D40);
-            func_8009D21C(0, &D_801B1D40);
+            func_8009D184(&valley_WorldSetup);
+            func_8009D1E8((u32) fx_img_valley_ROM_START, (u32) fx_img_valley_ROM_END, (s32) valley_extra_VRAM_END);
+            func_8009D21C(0, valley_extra_VRAM_END);
             D_800BDF2C.r = 0x80;
             D_800BDF2C.g = 0x80;
             D_800BDF2C.b = 0x80;
             D_800BDF2C.a = 0;
             break;
         case SCENE_RAINBOW:
-            func_8009D184(&D_800F5DA0);
-            func_8009D1E8((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END, (s32) &D_8013E260);
-            func_8009D21C(0, &D_8013E260);
+            func_8009D184(&rainbow_WorldSetup);
+            func_8009D1E8((u32) fx_img_rainbow_ROM_START, (u32) fx_img_rainbow_ROM_END, (s32) rainbow_extra_VRAM_END);
+            func_8009D21C(0, rainbow_extra_VRAM_END);
             D_800BDF2C.r = 0xFF;
             D_800BDF2C.g = 0xFF;
             D_800BDF2C.b = 0xFF;
@@ -1213,9 +1206,9 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
                 if (f2 > 1.0f) {
                     f2 = 1.0f;
                 }
-                func_800AB050(f2, 0x150, &D_80188D28, &D_801AFD30, &D_8018A6F0);
+                func_800AB050(f2, ARRAY_COUNT(zapdos_egg_vtx), zapdos_egg_vtx, tunnel_egg_buffer, zapdos_egg_vtx_target);
             } else {
-                memcpy(&D_80188D28, &D_801AFD30, 0x1500);
+                memcpy(zapdos_egg_vtx, tunnel_egg_buffer, sizeof(zapdos_egg_vtx));
             }
             break;
         case PokemonID_601:
@@ -1232,9 +1225,9 @@ GObj* func_8009D9A0(PokemonPhotoData* arg0, f32 arg1, UnkEC64Arg3* arg2, Texture
                 if (f2 > 1.0f) {
                     f2 = 1.0f;
                 }
-                func_800AB050(f2, 0x144, &D_8017A780, &D_801CE400, &D_8017C090);
+                func_800AB050(f2, ARRAY_COUNT(unk601_vtx), unk601_vtx, cave_egg_buffer, unk601_vtx_target);
             } else {
-                memcpy(&D_8017A780, &D_801CE400, 0x1440);
+                memcpy(unk601_vtx, cave_egg_buffer, sizeof(unk601_vtx));
             }
             break;
     }

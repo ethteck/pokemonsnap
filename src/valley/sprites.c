@@ -18,6 +18,7 @@ static u8 aligner_0[] = { 0, 0, 0, 0, 0, 0, 0, 0 }; // Probably part of previous
 #include "build/assets/valley/valley_oak_mouth_5.png.inc.h"
 #include "build/assets/valley/valley_textbox.png.inc.h"
 
-// Part of next data
+// The SomeC table used by 7A8DD0.c starts right after the last sprite; this file holds
+// its first word (the rest is in the following data)
 extern s32 D_802ECE00_7C6390;
-void* D_7C5AAC = &D_802ECE00_7C6390;
+void* D_802EC51C_7C5AAC = &D_802ECE00_7C6390;

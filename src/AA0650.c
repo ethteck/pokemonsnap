@@ -8,7 +8,6 @@ s32 D_800E1DD4_AA0B84;
 
 // external data
 extern Sprite D_802BC0C0_intro_code_vpk0;
-extern Addr D_800E1DE0;
 
 // internal data
 ScreenSettings D_800E1CB0_AA0A60 = {
@@ -43,7 +42,7 @@ SceneSetup D_800E1D40_AA0AF0 = {
         0,
         omUpdateAll,
         omDrawAll,
-        D_800E1DE0,
+        intro_code_VRAM_END,
         0,
         1,
         2,

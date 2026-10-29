@@ -27,14 +27,12 @@ extern s8 D_800BF051;
 
 extern s32 D_801B0310;
 
-extern u8 D_80369F80[];
 extern GObj* D_80382D10_523120;
 extern GObj* D_80382D14_523124;
 extern u16 D_803B5000[SCREEN_WIDTH * SCREEN_HEIGHT];
 extern u16 D_803DA800[SCREEN_WIDTH * SCREEN_HEIGHT];
 
 extern DynamicBuffer sGeneralHeap;
-extern u8 D_801ED020[];
 
 extern Gfx D_0E000000[];
 extern Gfx D_0E000008[];
